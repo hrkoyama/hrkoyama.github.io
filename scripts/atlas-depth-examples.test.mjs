@@ -16,7 +16,7 @@ const catalog = json('catalog/atlas-depth-expansion.json');
 const edition = group => catalog.groups.find(x => x.id === group).edition || catalog.edition;
 const base = group => `code/validated-examples/${edition(group)}/${group}/`;
 const entry = id => `numerical-methods-atlas/validation/${id}/`;
-const groupIds = ['foundations', 'models', 'particles', 'mhd', 'thermostats', 'biology', 'mcmc', 'mhd-convergence', 'foundations-conditioning', 'particle-transport', 'splitting', 'noh', 'noh-cartesian', 'sedov', 'double-mach', 'forward-step','low-mach','guderley','euler-positivity'];
+const groupIds = ['foundations', 'models', 'particles', 'mhd', 'thermostats', 'biology', 'mcmc', 'mhd-convergence', 'foundations-conditioning', 'particle-transport', 'splitting', 'noh', 'noh-cartesian', 'sedov', 'double-mach', 'forward-step','low-mach','guderley','euler-positivity','zalesak'];
 const expectedIds = [
   'sa-amg', 'qr-svd-factorization', 'krylov-eigenvalues', 'gauss-adaptive-quadrature',
   'gaussian-mcmc', 'langevin-harmonic', 'reaction-diffusion-fourier', 'turing-schnakenberg', 'fitzhugh-nagumo',
@@ -28,7 +28,7 @@ const expectedIds = [
   'ct-glm-smooth-convergence', 'ct-glm-ot-convergence', 'ct-glm-constraint-control',
   'amg-conditioning', 'qr-svd-conditioning', 'krylov-eigen-conditioning', 'quadrature-conditioning',
   'ewald-convergence', 'spme-convergence', 'fmm-convergence', 'pic-conservation', 'dsmc-statistics', 'radiation-convergence',
-  'reaction-diffusion-splitting', 'noh-shock', 'noh-cartesian-2d', 'sedov-blast', 'double-mach-reflection', 'forward-step-m3', 'low-mach-vortex', 'guderley-implosion', 'euler-double-rarefaction-positivity',
+  'reaction-diffusion-splitting', 'noh-shock', 'noh-cartesian-2d', 'sedov-blast', 'double-mach-reflection', 'forward-step-m3', 'low-mach-vortex', 'guderley-implosion', 'euler-double-rarefaction-positivity', 'zalesak-rotation',
 ].sort();
 const metadata = group => {
   const value = json(base(group) + 'cases.json');
@@ -96,10 +96,10 @@ test('forty original cases plus Noh and their independently dated releases stay 
   const index = json('numerical-methods-atlas/validation/index.json');
   assert.deepEqual(actualCases.map(x => x.item.id).sort(), expectedIds);
   assert.deepEqual(index.cases.map(x => x.id).sort(), expectedIds);
-  assert.equal(index.case_count, 48);
-  assert.equal(actualCases.filter(x => !['noh','noh-cartesian','sedov','double-mach','forward-step','low-mach','guderley','euler-positivity'].includes(x.group)).length, 40);
+  assert.equal(index.case_count, 49);
+  assert.equal(actualCases.filter(x => !['noh','noh-cartesian','sedov','double-mach','forward-step','low-mach','guderley','euler-positivity','zalesak'].includes(x.group)).length, 40);
   assert.equal(edition('noh'), '2026-11-23-r5');
-  assert.ok(groupIds.filter(x => !['noh','noh-cartesian','sedov','double-mach','forward-step','low-mach','guderley','euler-positivity'].includes(x)).every(x => edition(x) === '2026-11-22'));
+  assert.ok(groupIds.filter(x => !['noh','noh-cartesian','sedov','double-mach','forward-step','low-mach','guderley','euler-positivity','zalesak'].includes(x)).every(x => edition(x) === '2026-11-22'));
   assert.equal(index.case_problem_ids['noh-shock'], 'noh');
   assert.deepEqual(index.groups.map(x => x.id).sort(), [...groupIds].sort());
   assert.equal(index.common_registry.example_count, 22);
@@ -186,7 +186,9 @@ test('each bilingual entry exposes its actual measurement, code, input, tests, f
     assert.ok(!html.includes('katex-error'));
     assert.ok(html.includes('katex-mathml'), item.id);
     for (const reference of item.references) {
-      assert.ok(reference.review_level && html.includes(reference.review_level));
+      assert.ok(reference.review_level);
+      const review = reference.review_level.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#x27;');
+      assert.ok(html.includes(review), item.id + '/' + reference.id);
       assert.ok(markdown.includes(reference.title));
     }
   }

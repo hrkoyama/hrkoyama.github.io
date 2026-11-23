@@ -1,0 +1,90 @@
+[
+  {
+    "id": "zalesak1979",
+    "author": "Steven T. Zalesak",
+    "year": 1979,
+    "title": "Fully multidimensional flux-corrected transport algorithms for fluids",
+    "journal": "Journal of Computational Physics",
+    "volume": "31",
+    "number": "3",
+    "pages": "335–362",
+    "doi": "10.1016/0021-9991(79)90051-2",
+    "url": "https://www.sciencedirect.com/science/article/pii/0021999179900512",
+    "type": "article",
+    "role": "historical slotted-cylinder/FCT source; not the implemented method",
+    "review_scope": "publisher bibliography and abstract inspected; direct full-paper open returned403; original test geometry and boundary conditions not audited",
+    "review": {
+      "ja": "出版社の書誌と多次元FCTの抄録を確認。原著全文とその格子・境界・具体形状は今回未確認です。本例をZalesakのFCTアルゴリズム再現とは表示しません。",
+      "en": "Publisher record and abstract checked. The full original test geometry/grid/boundaries were not audited. This example does not implement or reproduce Zalesak FCT."
+    },
+    "accessed_on": "2026-11-23"
+  },
+  {
+    "id": "firedrake-dg-advection",
+    "author": "Firedrake developers",
+    "title": "DG advection equation with upwinding",
+    "url": "https://www.firedrakeproject.org/demos/DG_advection.py.html",
+    "type": "official-documentation",
+    "role": "actually inspected normalized slotted-disk geometry, rotation velocity and period",
+    "review_scope": "official documentation equations and source lines46,63–92: disk(.5,.75),R.15,slot(.475,.525),y<.85,velocity(.5−y,x−.5),T2pi; SSP equations43–45 and135–143",
+    "review": {
+      "ja": "公式デモの形状・回転速度・周期とSSPRK式を確認。元デモはbell・coneと背景1を加え、DQ1・流入値1を使います。本例はスロット円板だけの0–1指示関数・有限体積・周期境界という明示的な変形です。Firedrakeは実行・転載しません。",
+      "en": "Inspected official geometry, velocity, period and SSP formulas. The demo includes a bell, cone, background1, DQ1 elements and inflow1. This is an explicit isolated0–1 slotted-disk FV/periodic variant. No Firedrake software was executed or copied."
+    },
+    "accessed_on": "2026-11-23"
+  },
+  {
+    "id": "leveque1996advection",
+    "author": "Randall J. LeVeque",
+    "year": 1996,
+    "title": "High-Resolution Conservative Algorithms for Advection in Incompressible Flow",
+    "journal": "SIAM Journal on Numerical Analysis",
+    "volume": "33",
+    "number": "2",
+    "pages": "627–665",
+    "doi": "10.1137/0733033",
+    "url": "https://faculty.washington.edu/rjl/pubs/hiresadv/0733033.pdf",
+    "type": "article",
+    "role": "conservative scalar-advection and donor-cell/minmod background; official demo attribution",
+    "review_scope": "author-hosted paper selected sections1–3 actually inspected: PDE/incompressibility, FV means, minmod definition, donor-cell flux; no full-paper or numerical-table reproduction",
+    "review": {
+      "ja": "著者公開論文の節1–3で保存形・非圧縮条件・セル平均・minmod・donor-cellを確認。Firedrakeが標準複合図形の出典として引用しています。本例のMUSCL＋SSPRKは同論文のCTU／波動伝播法そのものではありません。",
+      "en": "Read sections1–3 on conservative transport, incompressibility, means, minmod and donor-cell fluxes. Firedrake cites this paper for its composite-shape test. Our MUSCL/SSPRK update is not the paper’s CTU/wave-propagation algorithm."
+    },
+    "accessed_on": "2026-11-23"
+  },
+  {
+    "id": "shu1988ssprk",
+    "author": "Chi-Wang Shu and Stanley Osher",
+    "year": 1988,
+    "title": "Efficient implementation of essentially non-oscillatory shock-capturing schemes",
+    "journal": "Journal of Computational Physics",
+    "volume": "77",
+    "number": "2",
+    "pages": "439–471",
+    "doi": "10.1016/0021-9991(88)90177-5",
+    "url": "https://www.sciencedirect.com/science/article/pii/0021999188901775",
+    "type": "article",
+    "role": "historical SSP/TVD Runge-Kutta source",
+    "review_scope": "publisher bibliography/abstract inspected; actual three-stage convex formulas checked in official Firedrake demo, not a full original-paper audit",
+    "review": {
+      "ja": "出版社の書誌とTVD Runge–Kuttaの抄録を確認。使う三段凸結合はFiredrake公式記述でも確認しました。原著全文の監査とは区別します。",
+      "en": "Publisher bibliography/abstract checked; the actual three-stage convex formulas were also inspected in the official Firedrake demo. The original full paper was not audited."
+    },
+    "accessed_on": "2026-11-23"
+  },
+  {
+    "id": "scipy114quad",
+    "author": "SciPy developers",
+    "title": "scipy.integrate.quad — SciPy v1.14.1 Manual",
+    "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.quad.html",
+    "type": "official-documentation",
+    "role": "actually executed independent adaptive vertical-section quadrature for geometry qualification",
+    "review_scope": "official versioned API: QUADPACK integration, break points, epsabs/epsrel, reported error; use is evidenced by qualification receipts",
+    "review": {
+      "ja": "版を固定した公式APIでQUADPACK、分割点、絶対・相対公差と推定誤差の意味を確認。解析的な円・多角形の面積計算とは異なる垂直断面求積を、実行記録付きで照合します。",
+      "en": "Versioned official API checked for QUADPACK, break points, tolerances and reported error. Independently integrated vertical sections are compared with circle/polygon areas; execution is established by saved receipts."
+    },
+    "accessed_on": "2026-11-23"
+  }
+]

@@ -1025,6 +1025,10 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "validation-zalesak": [
+    "ja",
+    "en"
+  ],
   "wavelets": [
     "ja",
     "en"

@@ -7499,5 +7499,21 @@
   "reference.guderley.assumptions": {
     "ja": "理想気体Eulerの球半径対称、γ=1.4、未衝撃上流ρ0=1,u=p=0。Lazarus時間t∈[-1,-.85]、r∈[0,.75]、R_s(t)=.6(-t)^α、α=1/λです。原点収束t=0は区間外で、初期場の外側には衝撃後の相似状態があります。λは固定ExactPackの固有値探索と元stateの8点照合で求めた資格確認済みの保存値を通常追試で再利用し、相似ODE・Gauss16/32球殻求積・Euler計算は再実行します。固有値探索と元ソース点照合の再生成は別の明示コマンドです。衝撃で積分を分けた保存量の体積平均からpを求め、原始圧力の平均と区別します。閉形式の厳密セル平均や独立に実装した相似解とは呼びません。図は1D球半径結果の2D子午面表示で、2D Cartesianや反射後の計算ではありません。",
     "en": "Ideal-gas Euler in spherical radial symmetry, gamma=1.4, with unshocked upstream rho0=1, u=p=0. Lazarus time t in [-1,-0.85] excludes collapse at 0; r in [0,0.75], Rs(t)=0.6*(-t)^alpha and alpha=1/lambda. The initial field already contains the shocked outer similarity state. Lambda was computed and qualified using pinned ExactPack eigenvalue shooting and eight original-state probes. Routine replay reuses that recorded lambda and freshly integrates the same pinned pre-collapse similarity ODE. Full eigenvalue and original-probe regeneration is a separate explicit command. Shells are split at the shock and conserved states are Gauss16 volume averaged, checked against Gauss32; pressure is p(Ubar). This is a dense-output adapter to ExactPack, not closed-form exact cell means or an independent similarity implementation. The figure maps 1D spherical-radial data onto a 2D meridional section, not 2D Cartesian or post-collapse evolution."
+  },
+  "reference.zalesak.title": {
+    "ja": "Zalesak型の切り欠き円盤：剛体回転と幾何学的セル平均",
+    "en": "Zalesak-type slotted disk: rigid rotation and geometric cell means"
+  },
+  "reference.zalesak.assumptions": {
+    "ja": "単位正方形の2次元スカラー輸送です。速度(.5−y,x−.5)、角速度1、周期2π、中心(.5,.75)・半径.15の円盤から.475<x<.525かつy<.85のスロットを除き、内部1・外部0とします。公式Firedrake例の正規化した切り欠き円盤だけを取り出した変種で、bell・cone・背景値1・DG・流入境界は再現しません。周期有限体積の対向面では法線速度が一致します。連続解の台は境界から離れており、数値的な裾は別に測ります。参照は剛体回転の逆特性と円盤・多角形の解析的な面積積分によるセル平均で、点値を並べた画像や別PDE計算の細格子解ではありません。一回転後の連続形状への帰還と、位置・初期角度を変えた固定診断を区別します。",
+    "en": "Unit-square two-dimensional scalar transport with prescribed velocity (0.5-y,x-0.5), angular speed 1 and period2*pi. The baseline indicator is one inside the disk of radius 0.15 centered at (0.5,0.75), excluding 0.475<x<0.525 and y<0.85, and zero outside. This isolates the normalized slotted-cylinder component described in the official Firedrake setup; its bell, cone, background 1, DG discretization and inflow boundary are not copied. Periodic finite-volume normal velocities match on opposite faces; the compact exact body stays away from the boundary, while numerical tails are measured. Exact rigid characteristics and analytic disk/polygon intersection areas define the reference cell means, not rasterized point samples or a second numerical PDE solution. A full turn returns to the initial continuum shape; rotated/shifted variants are separate fixed diagnostics."
+  },
+  "coverage.rotational-advection.title": {
+    "ja": "2次元の回転移流",
+    "en": "Two-dimensional rotational advection"
+  },
+  "coverage.rotational-advection.scope": {
+    "ja": "与えた発散ゼロの剛体回転だけを扱います。Euler流体や任意速度場の一般的な検証ではありません。",
+    "en": "Prescribed divergence-free solid rotation only; not Euler fluid dynamics or arbitrary velocity fields."
   }
 }

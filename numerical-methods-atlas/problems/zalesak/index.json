@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "id": "zalesak",
+  "name": {
+    "ja": "Zalesak型の切り欠き円盤の回転輸送",
+    "en": "Zalesak-type slotted-disk rotation"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/zalesak/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/zalesak/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/zalesak/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/results/zalesak-rotation-preview.png",
+    "sha256": "4c1236cfeda0f42d555a6a918ed20682729c95c91f2ab6a9c615e2eb5fbcdccc",
+    "width": 1680,
+    "height": 800,
+    "caption": {
+      "ja": "実際の2次元スカラー輸送の最細格子の保存セル平均。全[0,1]²のうちx∈[.28,.72], y∈[.53,.97]の円盤周辺を拡大し、一回転後の一次風上とminmod MUSCLを幾何学的な参照セル平均と比較します。切り欠きの数値拡散を残した図で、FCT法やEuler流体の計算ではありません。",
+      "en": "Saved cell means on the finest grid of actual two-dimensional scalar transport. Zoom x in[.28,.72],y in[.53,.97] from the full unit square and compare donor-cell upwinding and minmod MUSCL after one revolution against geometric reference cell means. Slot diffusion remains visible; this is not an FCT algorithm or Euler-flow calculation."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-zalesak/#zalesak-rotation",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-zalesak/#zalesak-rotation"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#zalesak",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#zalesak-en"
+  },
+  "equations": [
+    {
+      "id": "rotational-advection",
+      "name": {
+        "ja": "2次元の回転移流",
+        "en": "Two-dimensional rotational advection"
+      },
+      "formula": [
+        "\\partial_t q+\\partial_x(aq)+\\partial_y(bq)=0,\\qquad a=-\\omega(y-y_c),\\quad b=\\omega(x-x_c),\\quad \\partial_xa+\\partial_yb=0"
+      ],
+      "note": {
+        "ja": "与えた剛体回転速度でスカラーを運ぶ2次元保存則。連続場は一回転で戻り、保存量・有界性と切り欠きの形状誤差を調べます。",
+        "en": "A two-dimensional scalar conservation law in a prescribed rigid rotation. The continuum field returns after one turn, enabling mass, bounds and slotted-shape error checks."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#rotational-advection-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#rotational-advection-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "与えた発散ゼロの回転速度に従うスカラー輸送で、Euler流体の発展ではありません。Zalesak型の円盤・スロットによる形状保持の問題を用いますが、ZalesakのFCTアルゴリズムそのものを実装した例ではありません。連続指示関数の点値と保存量の幾何学的セル平均を区別し、周期境界での数値的な裾も測ります。",
+    "en": "This is scalar transport in a prescribed divergence-free rotation, not Euler-fluid evolution. It uses a Zalesak-type slotted-disk shape test without claiming implementation of Zalesak’s FCT algorithm. Pointwise indicator values and geometric conserved cell means are distinguished; numerical tails near periodic boundaries are also measured."
+  },
+  "formulations": [
+    {
+      "id": "supplement-zalesak-rotation",
+      "name": {
+        "ja": "Zalesak型2D回転輸送：保存・有界性・形状誤差",
+        "en": "Zalesak-type 2D rotation: conservation, bounds and shape error"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "\\partial_t q+\\partial_x(uq)+\\partial_y(vq)=0,\\qquad (u,v)=(-(y-y_c),x-x_c),\\quad T=2\\pi",
+        "q(x,t)=q_0\\!\\left(c+R_{-t}(x-c)\\right),\\qquad \\bar q_{ij}(t)=h^{-2}\\int_{C_{ij}}q(x,t)\\,dx\\,dy",
+        "s_i=\\operatorname{minmod}(q_i-q_{i-1},q_{i+1}-q_i),\\quad q_i^{\\pm}=\\bar q_i\\pm\\tfrac12 s_i,\\quad \\bar q_{ij}=\\tfrac14(q_L+q_R+q_D+q_U)",
+        "\\widehat F_{i+1/2,j}=u_j^+q_{R,ij}+u_j^-q_{L,i+1,j},\\qquad E_{\\Delta t}(q)_{ij}=q_{ij}-\\frac{\\Delta t}{h}(\\Delta_x\\widehat F+\\Delta_y\\widehat G)_{ij}",
+        "q^{(1)}=E_{\\Delta t}(q^n),\\quad q^{(2)}=\\tfrac34q^n+\\tfrac14E_{\\Delta t}(q^{(1)}),\\quad q^{n+1}=\\tfrac13q^n+\\tfrac23E_{\\Delta t}(q^{(2)})",
+        "\\frac{\\Delta t}{h}\\max(|u|,|v|)\\le\\tfrac14,\\quad D_h\\!\\cdot u=0\\quad\\Longrightarrow\\quad 0\\le E_{\\Delta t}(\\bar q)\\le1\\ \\text{if all four face states lie in }[0,1]"
+      ],
+      "note": {
+        "ja": "スロット付き円盤を実際の2次元有限体積法で一回転させ、donor-cellとminmod MUSCLを比較します。3格子と、半セルの中心ずらし・45度の初期向きを含む8計算で、保存・各SSP段の有界性・形状誤差とスロットの埋まりを測ります。",
+        "en": "Rotate a slotted disk through one full turn with an actual 2D finite-volume solver, comparing donor-cell and minmod MUSCL. Eight runs combine three grids with half-cell-center and 45-degree-start probes; measure conservation, bounds at every SSP stage, shape error and slot filling."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "zalesak-rotation",
+      "kind": "analytic",
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "title": {
+        "ja": "Zalesak型の切り欠き円盤：剛体回転と幾何学的セル平均",
+        "en": "Zalesak-type slotted disk: rigid rotation and geometric cell means"
+      },
+      "formula": "q(x,t)=1_D(c+R(-t)(x-c)); qbar_K(t)=area(K intersect [c+R(t)(D-c)])/area(K), c=(0.5,0.5), T=2*pi. D=disk((0.5,0.75),0.15) minus {0.475<x<0.525,y<0.85}.",
+      "assumptions": {
+        "ja": "単位正方形の2次元スカラー輸送です。速度(.5−y,x−.5)、角速度1、周期2π、中心(.5,.75)・半径.15の円盤から.475<x<.525かつy<.85のスロットを除き、内部1・外部0とします。公式Firedrake例の正規化した切り欠き円盤だけを取り出した変種で、bell・cone・背景値1・DG・流入境界は再現しません。周期有限体積の対向面では法線速度が一致します。連続解の台は境界から離れており、数値的な裾は別に測ります。参照は剛体回転の逆特性と円盤・多角形の解析的な面積積分によるセル平均で、点値を並べた画像や別PDE計算の細格子解ではありません。一回転後の連続形状への帰還と、位置・初期角度を変えた固定診断を区別します。",
+        "en": "Unit-square two-dimensional scalar transport with prescribed velocity (0.5-y,x-0.5), angular speed 1 and period2*pi. The baseline indicator is one inside the disk of radius 0.15 centered at (0.5,0.75), excluding 0.475<x<0.525 and y<0.85, and zero outside. This isolates the normalized slotted-cylinder component described in the official Firedrake setup; its bell, cone, background 1, DG discretization and inflow boundary are not copied. Periodic finite-volume normal velocities match on opposite faces; the compact exact body stays away from the boundary, while numerical tails are measured. Exact rigid characteristics and analytic disk/polygon intersection areas define the reference cell means, not rasterized point samples or a second numerical PDE solution. A full turn returns to the initial continuum shape; rotated/shifted variants are separate fixed diagnostics."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "円盤とスロットの定義を固定し、保存した初期・帰還時のセル平均と比較します。指示関数の点値や別実装PDEの細格子解を参照と混同しません。",
+        "en": "Fix the disk and slot geometry and compare stored initial/returned cell means. Distinguish indicator point samples and a finer PDE calculation from this geometric reference."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/zalesak-rotation/?lang=ja#zalesak-rotation-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/zalesak-rotation/?lang=en#zalesak-rotation-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "参照は流れを逆回転して初期指示関数を評価する剛体回転です。一回転後は連続場が初期形状へ戻り、比較には同じ格子の幾何学的セル平均を使います。",
+    "en": "The reference evaluates the initial indicator under inverse rigid rotation. The continuum field returns after one revolution; comparisons use geometric cell means on the same grid."
+  },
+  "methods": [
+    {
+      "id": "upwind",
+      "name": {
+        "ja": "風上差分（upwind）",
+        "en": "Upwind finite differences"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/upwind/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/upwind/?lang=en"
+      }
+    },
+    {
+      "id": "muscl",
+      "name": {
+        "ja": "MUSCL再構成",
+        "en": "MUSCL reconstruction"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=en"
+      }
+    },
+    {
+      "id": "minmod",
+      "name": {
+        "ja": "Minmod",
+        "en": "Minmod"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/minmod/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/minmod/?lang=en"
+      }
+    },
+    {
+      "id": "ssprk33",
+      "name": {
+        "ja": "SSPRK(3,3)",
+        "en": "SSPRK(3,3)"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ssprk33/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ssprk33/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "同じ回転速度・周期有限体積格子で、一次風上とminmod MUSCLをSSPRK(3,3)で進めます。Zalesak FCTを実装したという意味ではありません。",
+    "en": "Donor-cell upwinding and minmod MUSCL use the same prescribed rotation, periodic finite-volume grid and SSPRK(3,3). This does not claim implementation of Zalesak FCT."
+  },
+  "executions": [
+    {
+      "id": "zalesak-rotation",
+      "kind": "supplement",
+      "name": {
+        "ja": "Zalesak型2D回転輸送：保存・有界性・形状誤差",
+        "en": "Zalesak-type 2D rotation: conservation, bounds and shape error"
+      },
+      "method_ids": [
+        "upwind",
+        "muscl",
+        "minmod",
+        "ssprk33"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/zalesak-rotation/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/zalesak-rotation/?lang=en"
+      },
+      "scope": {
+        "ja": "スロット付き円盤を実際の2次元有限体積法で一回転させ、donor-cellとminmod MUSCLを比較します。3格子と、半セルの中心ずらし・45度の初期向きを含む8計算で、保存・各SSP段の有界性・形状誤差とスロットの埋まりを測ります。",
+        "en": "Rotate a slotted disk through one full turn with an actual 2D finite-volume solver, comparing donor-cell and minmod MUSCL. Eight runs combine three grids with half-cell-center and 45-degree-start probes; measure conservation, bounds at every SSP stage, shape error and slot filling."
+      },
+      "assumptions": {
+        "ja": "無次元の[0,1]²、回転中心(.5,.5)、円盤中心(.5,.75)、半径.15、スロット幅.05・上端y=.85、角速度1、一回転T=2π、64²/128²/256²セルを固定します。スロット以外はq=1、外側は0です。周期境界を使い、厳密な物体の支持は境界から離れます。速度の周期延長には接線成分の継ぎ目があり、数値拡散の裾が届く場合は境界帯の質量として記録します。",
+        "en": "Fix the dimensionless unit square, rotation center(.5,.5), disk center(.5,.75), radius.15, slot width.05/top y=.85, angular speed1, T=2pi and64²/128²/256² cells. The body is1 and exterior/slot0. Periodic normal face velocities match; the exact compact support stays away from the boundary. The periodic extension has a tangential-velocity seam, and diffusive tails reaching its fixed-width boundary band are measured."
+      },
+      "limits": {
+        "ja": "標準的なスロット形状を単独の0–1物体として使う周期境界の限定例です。Zalesak原著のFCTアルゴリズム、原著の格子・境界、bell/coneを加えたFiredrakeデモ全体の再現ではありません。スロット内の診断は、固定した内側長方形と区分定数セル平均との面積重み付き値です。粗格子では厳密セル平均の投影だけでも0にならないため、その参照baselineと過剰な埋まりを別々に示します。格子中心・45度方向の2診断を普遍的な等方性保証とせず、完全な形状保持や一般流れの最大値原理を主張しません。解析幾何の微小な面積丸め処理と、実際の輸送状態をクリップしないことを区別します。",
+        "en": "This is an isolated0–1 standard slotted body with periodic boundaries. It does not implement Zalesak FCT, reproduce the original paper’s grid/boundaries or the entire Firedrake bell/cone/background demonstration. The inner-slot diagnostic area-weights piecewise-constant means over a fixed rectangle. Coarse exact cell projection can already give a nonzero baseline, which is reported separately from excess numerical filling. Two center/orientation probes do not establish universal isotropy, perfect shape retention or a maximum principle for arbitrary flows. Tiny geometric-area roundoff handling is distinguished from the absence of transported-state clipping."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/atlas-zalesak-2026-11-23.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "26単体検査と8固定計算158判定を実行前に固定します。全FE候補・SSP凸結合のmin/max、共有流束による質量収支、再構築の平均保存、3格子のL1/L∞・相対L2を保存します。円と凸多角形の交差面積から独立に作る厳密輸送のセル平均を、SciPyの鉛直切片求積と面積・一次モーメントで照合します。1/4・1/2・3/4回転の誤差と重心も検査し、回転方向や速度の誤りが一回転のreturnだけで隠れないようにします。",
+        "en": "Freeze26 unit checks and158 gates across eight fixed runs before execution. Retain min/max of every FE candidate/SSP convex mean, shared-flux mass budgets, reconstruction mean preservation and three-grid L1/Linf/relative-L2 errors. Independent circle/convex-polygon intersection means are qualified against SciPy vertical-slice quadrature, total area and first moments. Also check quarter/half/three-quarter-turn errors and centroids so a wrong direction or speed cannot hide behind a full-turn return."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/rotation.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/references/geometry.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/references/qualify_reference.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/test_rotation.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

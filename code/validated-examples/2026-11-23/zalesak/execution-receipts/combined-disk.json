@@ -1,0 +1,188 @@
+{
+  "started_at_utc": "2026-11-23T09:57:09.992262+00:00",
+  "command": [
+    "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/zl-env/bin/python",
+    "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/zl-combined.py",
+    "--python",
+    "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/zl-env/bin/python",
+    "--output",
+    "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/zl-attempt-02"
+  ],
+  "cwd": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/atlas-search-publisher/scripts/depth-zalesak",
+  "initial_free_bytes": 12095115264,
+  "reserve_bytes": 2684354560,
+  "minimum_free_bytes": 12090572800,
+  "samples": [
+    {
+      "seconds": 0.0,
+      "free_bytes": 12095107072
+    },
+    {
+      "seconds": 0.51,
+      "free_bytes": 12095000576
+    },
+    {
+      "seconds": 1.01,
+      "free_bytes": 12094910464
+    },
+    {
+      "seconds": 1.51,
+      "free_bytes": 12094312448
+    },
+    {
+      "seconds": 2.02,
+      "free_bytes": 12094308352
+    },
+    {
+      "seconds": 2.52,
+      "free_bytes": 12093440000
+    },
+    {
+      "seconds": 3.02,
+      "free_bytes": 12093403136
+    },
+    {
+      "seconds": 3.53,
+      "free_bytes": 12093571072
+    },
+    {
+      "seconds": 4.03,
+      "free_bytes": 12092637184
+    },
+    {
+      "seconds": 4.53,
+      "free_bytes": 12092600320
+    },
+    {
+      "seconds": 5.04,
+      "free_bytes": 12092641280
+    },
+    {
+      "seconds": 5.54,
+      "free_bytes": 12092428288
+    },
+    {
+      "seconds": 6.05,
+      "free_bytes": 12092268544
+    },
+    {
+      "seconds": 6.55,
+      "free_bytes": 12092030976
+    },
+    {
+      "seconds": 7.06,
+      "free_bytes": 12092252160
+    },
+    {
+      "seconds": 7.56,
+      "free_bytes": 12092203008
+    },
+    {
+      "seconds": 8.07,
+      "free_bytes": 12092375040
+    },
+    {
+      "seconds": 8.57,
+      "free_bytes": 12097495040
+    },
+    {
+      "seconds": 9.08,
+      "free_bytes": 12094316544
+    },
+    {
+      "seconds": 9.58,
+      "free_bytes": 12094308352
+    },
+    {
+      "seconds": 10.08,
+      "free_bytes": 12094222336
+    },
+    {
+      "seconds": 10.58,
+      "free_bytes": 12094218240
+    },
+    {
+      "seconds": 11.09,
+      "free_bytes": 12094201856
+    },
+    {
+      "seconds": 11.59,
+      "free_bytes": 12094201856
+    },
+    {
+      "seconds": 12.09,
+      "free_bytes": 12094201856
+    },
+    {
+      "seconds": 12.6,
+      "free_bytes": 12094201856
+    },
+    {
+      "seconds": 13.1,
+      "free_bytes": 12094201856
+    },
+    {
+      "seconds": 13.61,
+      "free_bytes": 12094201856
+    },
+    {
+      "seconds": 14.11,
+      "free_bytes": 12094169088
+    },
+    {
+      "seconds": 14.62,
+      "free_bytes": 12094169088
+    },
+    {
+      "seconds": 15.13,
+      "free_bytes": 12094140416
+    },
+    {
+      "seconds": 15.63,
+      "free_bytes": 12094144512
+    },
+    {
+      "seconds": 16.13,
+      "free_bytes": 12094136320
+    },
+    {
+      "seconds": 16.64,
+      "free_bytes": 12094119936
+    },
+    {
+      "seconds": 17.14,
+      "free_bytes": 12094119936
+    },
+    {
+      "seconds": 17.65,
+      "free_bytes": 12094119936
+    },
+    {
+      "seconds": 18.15,
+      "free_bytes": 12094394368
+    },
+    {
+      "seconds": 18.66,
+      "free_bytes": 12094369792
+    },
+    {
+      "seconds": 19.16,
+      "free_bytes": 12091355136
+    },
+    {
+      "seconds": 19.67,
+      "free_bytes": 12090593280
+    },
+    {
+      "seconds": 20.17,
+      "free_bytes": 12090572800
+    }
+  ],
+  "disk_stop": false,
+  "started": true,
+  "owned_process_group": 82551,
+  "child_returncode": 0,
+  "returncode": 0,
+  "final_free_bytes": 12090572800,
+  "completed_at_utc": "2026-11-23T09:57:30.166585+00:00"
+}

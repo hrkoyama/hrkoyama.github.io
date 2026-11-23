@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-11-23",
+  "reviewer": "independent reference/provenance agent; static source review before execution",
+  "execution_performed": false,
+  "review_completed_before_first_scientific_execution": false,
+  "verdict": "ready to freeze; no blocking mathematical issue found in this scoped update",
+  "planned_pytest": 26,
+  "planned_fixed_rotations": 8,
+  "planned_numerical_gates": 158,
+  "planned_independent_reference_checks": 8,
+  "files_sha256": {
+    "rotation.py": "085877635c181710fe749fc680e2825d89ad660d036d0a851862474051cccd71",
+    "run.py": "eb80d86d24904f12971f6cca407bd2b289576810491701aa82ff1698ca82c01f",
+    "test_rotation.py": "03327580c5a7c479137b6ff2dea8c8949676c663719546506aaa407cc8112747",
+    "inputs.json": "0dcc0dc1e870fd50ddf5778ee189ec4069694247fdee6610c16832ed4d690c63",
+    "acceptance.json": "9901dd30dacc8cd472cb0ff7d4b859c9131f913c40118030bc806e45207e35f4",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "source-provenance.json": "6a435417d628c17e5caf742ddc01799f953bc1e66e9fa59a3834d6a22647d1ed",
+    "references/__init__.py": "9bda9af4ad164caf6eac03d56da365ae5ca1b4a29d6d35f88d9198578b2af7c5",
+    "references/geometry.py": "70ff5f47aa8a4aa7bfc7eb65921dd7e7c1386dd92c3133ba87c6fbef38247ace",
+    "references/qualify_reference.py": "eb7b858d6dc85e76a5ac49d9dc603da206de51ca608e89eecdb3b59b2fda6cb0",
+    "references/citations.json": "8f9f287e7f6f4ea867385022a48379b9803fa7db9c42537d1c7055ca58b37f4f",
+    "references/source-review.json": "c47dc5a01c7643d8599f74b7c96dcea5ad5cf22a45bd12854cb693f141640640",
+    "references/README.md": "109639cb48b5ea969f537e0d39e7838c1267f8c9370fe8c750aa12178d23652f"
+  },
+  "scope": "One periodic 2D scalar-FV variant of normalized slotted-disk rotation, with donor-cell/minmod-MUSCL and SSPRK33. Static inspection is not evidence that numerical gates have executed.",
+  "review_findings": [
+    {
+      "topic": "primary geometry",
+      "finding": "Firedrake official normalized geometry/velocity/period inspected directly. The isolated0–1 cylinder, periodic boundaries and FV solver differ from its combined background1/DQ1/inflow example; original Zalesak1979 full test not audited."
+    },
+    {
+      "topic": "conditional bound preservation",
+      "finding": "Four face midpoint values average to the P1 cell mean. Every outgoing own-face coefficient1/4−dt*outward_speed/h is nonnegative atfaceCourant<=1/4; incoming coefficients nonnegative andsum1 under the actual exactlyzero discrete divergence. Minmod boundsfacevalues; SSPRK33 combinations inherit bound in real arithmetic."
+    },
+    {
+      "topic": "actual numerical flux and conservation",
+      "finding": "Stored right/top upwind fluxes are shared via rolls with both neighboring cells. Periodic opposite normalvelocities match. FEcandidate andSSPmean mass/bounds are actuallyrecorded andgated; noPDE clipping/retry path."
+    },
+    {
+      "topic": "reference geometry",
+      "finding": "Disk-minus-slot is partitioned into3disjointconvexpieces. Halfplaneclipping+circlecrossing Green/arcintegrals compute cellarea; no pointmask orPDEreference. Wholearea/truecentroid closed formulas independently derived."
+    },
+    {
+      "topic": "independent reference qualification",
+      "finding": "Eight predetermined checks compare12fixedcutcells to separate vertical-section SciPyquad, closedarea/truefirstmoments at3angles, quarter/fullreturn and separate geometrycleanupbands. QuadsharesneitherpolygonclipnorGreenprimitive."
+    },
+    {
+      "topic": "quarter-turn path",
+      "finding": "Forq[j,i] y-indexascending, physicalCCW quarterturn is np.rot90(initial,-1). Numericalquarterfields comparewithrotatedcellmeans/discretecentroids so a wrongdirectioncannotpassmerelybyonefullreturn."
+    },
+    {
+      "topic": "cell-mean projection diagnostics",
+      "finding": "Slotprobe usesexactgeometricoverlapweights overpiecewiseconstantcellmeans, retainsnonzero exactprojectionbaseline andexcess. Truecontinuumcentroiddistinctfromcellcenterquadrature. Fixedphysical .05boundarybandweights separateseamcontamination."
+    },
+    {
+      "topic": "fixed acceptance",
+      "finding": "26tests and158gates over8runs declaredbeforeexecution. Boundsroundoff5e-13 concernsrawPDEvalues; geometryfractioncleanup2e-12 anddimensionalarea128eps*r² areseparatewithcounts,maxima,signedmasschanges andpre/postareas."
+    },
+    {
+      "topic": "revision2 before execution",
+      "finding": "The original attempt passed all26tests and156/158gates, but the presetfinestaccuracycriteriafailed. The newthreegridfamily is finer; physics/CFL/acceptance/solver/tests/geometricintegrationareunchanged. This reviewbindsrevision2 BEFOREits execution anddoesnotclaimtobepre-first-attempt."
+    }
+  ],
+  "limitations": [
+    "Not the ZalesakFCT, LeVequeCTU or FiredrakeDG algorithm.",
+    "Periodicvelocityextension has tangential seams; only exactcompact support avoids them, numericaltailsmeasured.",
+    "Boundedness andconservation do not imply exactslotpreservation, multidimensionalTVD, entropyproperties orformalconvergenceorder.",
+    "Geometryqualification is fixedfloating-point evidence, not aninterval proof forarbitrarypolygons/parameters.",
+    "Presentationfiles areexcludedfromscientificbinding; renderedfigures mustbeQAchecked againstsaveddata."
+  ],
+  "revision": 2,
+  "review_completed_before_this_revision_scientific_execution": true,
+  "previous_review_sha256": "9f906d05b022e1f98cd28c7c4881c7d86ff45219d9871f0c502cabfbab3f62a3",
+  "previous_attempt": {
+    "retained_under": "attempts/01",
+    "pytest_passed": 26,
+    "numerical_gates_passed": 156,
+    "numerical_gates_total": 158,
+    "failed_criteria": [
+      "N128 donor-cell relativeL1 exceeds unchanged1.0 criterion",
+      "N128 minmodMUSCL relativeL1 exceeds unchanged.55 criterion"
+    ],
+    "all_eight_runs_completed": true,
+    "bounds_mass_and_quarter_turn_gates_passed": true,
+    "failure_not_erased": true
+  },
+  "revision_scope": {
+    "change": "Refine the preset PDE family32/64/128 to64/128/256; N64center/orientationdiagnostics stayunchanged. AddN256 to referenceareaqualificationwhilepreservingalloldqualificationcases/checks/tolerances. Plotfinestgrid/ticksderivedfromsavedrecords.",
+    "criteria_relaxed": false,
+    "all_other_input_fields_unchanged": true,
+    "unchanged_core_file_sha256": {
+      "rotation.py": "085877635c181710fe749fc680e2825d89ad660d036d0a851862474051cccd71",
+      "test_rotation.py": "03327580c5a7c479137b6ff2dea8c8949676c663719546506aaa407cc8112747",
+      "acceptance.json": "9901dd30dacc8cd472cb0ff7d4b859c9131f913c40118030bc806e45207e35f4",
+      "references/geometry.py": "70ff5f47aa8a4aa7bfc7eb65921dd7e7c1386dd92c3133ba87c6fbef38247ace"
+    },
+    "new_execution_not_performed_by_this_review": true
+  }
+}

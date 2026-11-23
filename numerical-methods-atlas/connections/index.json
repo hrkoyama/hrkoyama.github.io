@@ -2512,13 +2512,18 @@
                   "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/stability/"
                 },
                 "code_urls": [
-                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/advection.py"
+                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/advection.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/rotation.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/references/geometry.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/references/qualify_reference.py"
                 ],
                 "test_urls": [
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
-                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py"
+                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/test_rotation.py"
                 ],
-                "code_mapping_scope": "Related chapter modules and test files; not a claim that each test covers every named method."
+                "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               },
               {
                 "id": "projection",
@@ -3639,14 +3644,14 @@
   "verification_receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
   "source_sha256": {
     "catalog/atlas-crossovers.json": "04358952828bd2732864c794205f60e351d0a7a669abec0222c2821fc03fd71f",
-    "catalog/atlas-methods.json": "696235ecc3e65cfcf75d16fd70878d2241f13ad7ad41493879ea34a7f272a2c9",
-    "numerical-methods-atlas/methods/index.json": "8ac19ec9c065054b6d12c9c1f46d305d94a939f397d3aa56e2e1244a78087d89",
+    "catalog/atlas-methods.json": "270402769611e844e54a79e38931e2ab348797a838e383f8e3e712317db1376b",
+    "numerical-methods-atlas/methods/index.json": "48960237b756cdfa494c8ee8616b576721c889c4f0f492f0302570fc9c64e601",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
     "numerical-methods-atlas/assets/biological-models.json": "657be85b4aa6dc2fe2488167635ddd71888fe47459972723a5830a5323f8a1ba"
   },
   "supplemental_source_sha256": {
-    "catalog/atlas-depth-expansion.json": "6c85fa8d07dafa4c461460451d809316cc5bf999dca5c2bd0a94163c0c26dac7",
+    "catalog/atlas-depth-expansion.json": "b2e5a2d218c1bc2f542b2f54d38fc1c1b21193b1fa931ca6cfd3bccddb5667cf",
     "code/validated-examples/2026-11-22/biology/source-manifest.json": "56947a4fb54ae757408ddddfc5de0884bfe35266032ee425a8d96a815f3362ba",
     "code/validated-examples/2026-11-22/biology/verification.json": "5cafaaef809f46e6ab01327107f7367113b8069931621fc92d446fbf142682bd",
     "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",

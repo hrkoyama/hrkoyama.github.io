@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "shared_budget_seconds": 120,
+  "commands": [
+    {
+      "phase": "pytest",
+      "returncode": 0,
+      "duration_seconds": 0.5656723749998491
+    },
+    {
+      "phase": "run",
+      "returncode": 0,
+      "duration_seconds": 19.01667154199822
+    }
+  ],
+  "duration_seconds": 19.583093875000486,
+  "contract_sha256": "aed497b96ed7db92b0746d12ada06b8c2e7b040261fd87dab826f79152abbaa9"
+}

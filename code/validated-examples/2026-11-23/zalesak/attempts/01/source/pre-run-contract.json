@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "revision": 1,
+  "created_at_utc": "2026-11-23T09:53:06.346436+00:00",
+  "declared_before_first_scientific_execution": true,
+  "declared_before_first_pde_run": true,
+  "declared_before_first_pytest_execution": true,
+  "planned_tests": 26,
+  "planned_numerical_gates": 158,
+  "planned_fixed_runs": 8,
+  "runtime_limit_seconds": 120,
+  "shared_pytest_plus_main_budget_seconds": 120,
+  "scoped_update": "Actual2D scalar FV slotted-disk rotation: donor-cell and minmod MUSCL with shared periodic upwind fluxes and SSPRK33. Three grid refinements plus half-cell-center and45degree-start probes. Exact geometric cell means at allquartertimes, independent area/moment/cut-cell qualification; allFE/SSP bounds and massresiduals retained. Not Zalesak FCT.",
+  "conditional_bound": "Four face means average to each cell mean; minmod faces are in neighboring range; divergencefree normal face velocities and individual outgoing-face Courant<=1/4 make FE convex. ActualCourant.20; SSP convexity extends this to every recorded stage. Fixed roundoffband5e-13, no stateclipping orretry.",
+  "presentation_files_excluded": [
+    "cases.json",
+    "README.md",
+    "LICENSE",
+    "plot.py",
+    "requirements-plot.txt"
+  ],
+  "files_sha256": {
+    "acceptance.json": "9901dd30dacc8cd472cb0ff7d4b859c9131f913c40118030bc806e45207e35f4",
+    "inputs.json": "871d02271edf4438bf7c71ddd26c13a41c08d19cfb0dae8a5d8c5509710c7c72",
+    "pre-run-review.json": "9f906d05b022e1f98cd28c7c4881c7d86ff45219d9871f0c502cabfbab3f62a3",
+    "references/README.md": "2bc230360352c88ab8266b197ae14a38371471a5e2d2b684fb881688e59fbd39",
+    "references/__init__.py": "9bda9af4ad164caf6eac03d56da365ae5ca1b4a29d6d35f88d9198578b2af7c5",
+    "references/citations.json": "8f9f287e7f6f4ea867385022a48379b9803fa7db9c42537d1c7055ca58b37f4f",
+    "references/geometry.py": "70ff5f47aa8a4aa7bfc7eb65921dd7e7c1386dd92c3133ba87c6fbef38247ace",
+    "references/qualify_reference.py": "005e943e434c5c116cbecf2ed15e97f6713b0d2dd5b60dc3fcc9d4411a36ab72",
+    "references/source-review.json": "c47dc5a01c7643d8599f74b7c96dcea5ad5cf22a45bd12854cb693f141640640",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "rotation.py": "085877635c181710fe749fc680e2825d89ad660d036d0a851862474051cccd71",
+    "run.py": "4f83c9dca1865c600e4a72d9d275d2b75128a474a2d25f28b4ee0c757bc33a9e",
+    "source-provenance.json": "6a435417d628c17e5caf742ddc01799f953bc1e66e9fa59a3834d6a22647d1ed",
+    "test_rotation.py": "03327580c5a7c479137b6ff2dea8c8949676c663719546506aaa407cc8112747"
+  }
+}

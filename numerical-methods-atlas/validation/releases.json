@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "edition": "2026-11-22",
-  "case_count": 48,
+  "case_count": 49,
   "releases": [
     {
       "group": "foundations",
@@ -297,6 +297,20 @@
         "euler-double-rarefaction-positivity"
       ],
       "tests": 27
+    },
+    {
+      "group": "zalesak",
+      "edition": "2026-11-23",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/",
+      "archive": "atlas-zalesak-2026-11-23.zip",
+      "archive_sha256": "28e7d2bc93d3a5ba1cb015c874c489e9fd1a2e8a586a46d519800c799b0fb6f8",
+      "manifest_sha256": "d13a134c2e791740190529a8a4eef07eda5126a14101155d254f450d0438eb55",
+      "verification_sha256": "aad9b39c23d83e967588361edfdb05724f1ea3fade93843ebb05b5fd829ba44e",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "zalesak-rotation"
+      ],
+      "tests": 26
     }
   ]
 }

@@ -270,6 +270,21 @@
         "ja": "強い二重膨張波を1次元MUSCL有限体積法・Lax–Friedrichs流束・SSPRK(3,3)で解きます。平均を保つ正値状態スケーリングを各段に接続し、許容CFL、セル平均と再構成面の密度・圧力、共有境界流束による保存収支を分けて確認します。",
         "en": "A one-dimensional MUSCL finite-volume Euler double rarefaction combines Lax–Friedrichs fluxes, SSPRK(3,3) and mean-preserving positive-state scaling at each stage. Check the admissible CFL, density/pressure in cell means and face states, and conservation budgets from actual shared boundary fluxes separately."
       }
+    },
+    {
+      "id": "zalesak",
+      "edition": "2026-11-23",
+      "title": {
+        "ja": "Zalesak型2D回転輸送：保存・有界性・形状誤差",
+        "en": "Zalesak-type 2D rotation: conservation, bounds and shape error"
+      },
+      "fields": [
+        "fluid"
+      ],
+      "intro": {
+        "ja": "切り欠き付き円盤を、与えた剛体回転速度で運ぶ2次元スカラー保存則です。一次風上とminmod付きMUSCLを同じSSPRK(3,3)で比較し、一回転後の保存量・範囲・形状誤差と格子位置・初期角度の依存を確認します。 基準系列は64²・128²・256²セルで、64²の位置ずらし・初期角度診断を別に設けます。",
+        "en": "A two-dimensional scalar conservation law transports a slotted disk in a prescribed rigid-rotation velocity. Compare donor-cell upwinding and minmod MUSCL with the same SSPRK(3,3), checking full-turn mass, bounds, shape error and dependence on grid placement and initial angle. The base refinements use64²,128² and256² cells, with separate placement and initial-angle diagnostics at64²."
+      }
     }
   ],
   "case_problem_ids": {
@@ -320,7 +335,8 @@
     "forward-step-m3": "forward-step",
     "low-mach-vortex": "isentropic-vortex",
     "guderley-implosion": "guderley",
-    "euler-double-rarefaction-positivity": "double-rarefaction"
+    "euler-double-rarefaction-positivity": "double-rarefaction",
+    "zalesak-rotation": "zalesak"
   },
   "routine_policy": {
     "ja": "通常の補助例CIは、公開レジストリに登録した補助配布グループをNumPy・SciPy・pytestで実行します。保存済みの独立参照は版・入力・実行記録を照合し、新規の参照計算と区別します。量子収束を含む従来の共通22例は必要時の手動実行とし、既存の配布物・公差・履歴を保持します。",
@@ -426,6 +442,10 @@
     "euler-double-rarefaction-positivity": {
       "ja": "既存の二重膨張波と同じγ=1.4、左右(ρ,u,p)=(1,−2,.4)/(1,2,.4)、[0,1]、x₀=.5、t=.15の入力です。中心は低密度・低圧の正の状態で、真空生成の別入力とは区別します。段ごとのスケーリング、十分CFLとLax–Friedrichs波速条件を結び付けた限定例であり、既存WENO、DG、MHDや一般EOSの完全離散正値性を保証しません。",
       "en": "The same fixed physical input as the existing double rarefaction uses gamma=1.4, left/right (rho,u,p)=(1,-2,.4)/(1,2,.4), [0,1], x0=.5 and t=.15. Its middle state has small positive density/pressure, unlike separate vacuum-generating data. Stage scaling is connected to sufficient CFL and Lax–Friedrichs wave-speed conditions for this scoped example, without certifying existing WENO, DG, MHD or general equations of state."
+    },
+    "zalesak-rotation": {
+      "ja": "与えた発散ゼロの回転速度に従うスカラー輸送で、Euler流体の発展ではありません。Zalesak型の円盤・スロットによる形状保持の問題を用いますが、ZalesakのFCTアルゴリズムそのものを実装した例ではありません。連続指示関数の点値と保存量の幾何学的セル平均を区別し、周期境界での数値的な裾も測ります。 初版の32²/64²/128²では26検査・156/158判定に合格しましたが、最細の相対L1誤差が一次風上で約1.11675（基準1.0）、MUSCLで約.6023（基準.55）となり不合格でした。元入力・受入基準・保存配列・失敗を保持し、受入基準と流束・26検査を変えずに、改訂の実行前契約で基準系列を64²/128²/256²へ細分化しました。 改訂は26検査と8計算158判定に合格し、テストと本計算は同じ120秒枠で約19.58秒でした。N256の相対L1は一次風上約.932256、MUSCL約.394271（比約.423）、全計算の質量変化の最大値は約8.90×10⁻¹⁵です。全段の記録範囲は0〜1でしたが、この範囲には初期状態も含み、有界性だけで切り欠きが正しく保たれたとは判断しません。空スロット内プローブはセル平均の区分定数場を重み付けする離散診断で、連続解の点値ではありません。参照セル平均にも混合セルによる射影基準があるため、数値平均・参照平均・その差を別に保存します。N256の超過量は一次風上約.63465、MUSCL約.36501と、なお拡散が残ります。N64ではMUSCLのプローブ超過量が一次風上を上回る場合もあり、全指標・全格子での一様な優位は主張しません。幅.05の境界帯にある質量の割合はN256で約.0178615/.000243761（一次風上/MUSCL）でした。連続の厳密場はこの帯でゼロであり、周期境界へ伸びる数値的な裾を隠していません。",
+      "en": "This is scalar transport in a prescribed divergence-free rotation, not Euler-fluid evolution. It uses a Zalesak-type slotted-disk shape test without claiming implementation of Zalesak’s FCT algorithm. Pointwise indicator values and geometric conserved cell means are distinguished; numerical tails near periodic boundaries are also measured. The initial32²/64²/128² series passed26 tests and156/158 gates, but its finest relative L1 was about1.11675 for donor-cell(limit1.0) and.6023 for MUSCL(limit.55), so it failed. Retain all original inputs,criteria,fields and failed decisions. A new pre-execution contract refines the base series to64²/128²/256² without changing acceptance thresholds, flux algorithms or the26 tests. Revision 2 passed all 26 tests and all 158 gates over eight runs; tests plus the fixed-input driver took about 19.58 seconds within one 120-second budget. At N=256 the relative L1 errors are about 0.932256 for donor-cell and 0.394271 for MUSCL (ratio about 0.423); the maximum absolute mass change over all runs is about 8.90e-15. Recorded stage bounds are 0 to 1, including initial states, but bounds alone do not establish accurate slot preservation. The inner empty-slot probe weights the piecewise-constant cell-mean field; it is not a point value of the continuum solution. Mixed reference cells create a projection baseline, so numerical mean, reference mean and their excess are stored separately. At N=256 the excesses are about 0.63465 and 0.36501 for donor-cell/MUSCL, showing substantial remaining diffusion. At N=64 the MUSCL slot excess can exceed donor-cell, so no uniform improvement across every metric and grid is claimed. The N=256 mass fractions in the fixed-width 0.05 boundary band are about 0.0178615/0.000243761 for donor-cell/MUSCL. The compact exact field vanishes there; these periodic-boundary tails remain visible in the diagnostics."
     }
   },
   "case_equations": {
@@ -499,6 +519,15 @@
       "note": {
         "ja": "γ=1.4の無外力1次元Euler保存系。セル平均の密度・運動量・全エネルギーを、線形保存量MUSCL再構成と共有Lax–Friedrichs流束で更新します。",
         "en": "Unforced one-dimensional ideal-gas Euler at gamma=1.4 evolves cell means of density, momentum and total energy using linear conservative MUSCL reconstruction and shared Lax–Friedrichs fluxes."
+      }
+    },
+    "zalesak-rotation": {
+      "ids": [
+        "rotational-advection"
+      ],
+      "note": {
+        "ja": "qの2次元保存形輸送。速度a=−ω(y−yc), b=ω(x−xc)は与えられ、∂xa+∂yb=0です。面で共有する速度・数値流束を使い、スカラーのセル平均を更新します。",
+        "en": "Two-dimensional conservative transport of q with prescribed a=-omega(y-yc), b=omega(x-xc), whose divergence is zero. Shared face velocities and numerical fluxes update scalar cell means."
       }
     }
   }

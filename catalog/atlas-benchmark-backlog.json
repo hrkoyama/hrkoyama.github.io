@@ -992,14 +992,14 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "planned",
-      "current": "MUSCL、WENO-JS/Z、PPM、CIP、DG、特性再構築、各limiterは実装済み。1D滑らか/不連続、2D entropy wave、保存・界面恒等式の検査がある。",
+      "state": "verified",
+      "current": "26単体検査・64²/128²/256²と位置/角度を含む8計算158判定、独立ZIP展開の再実行が合格。公開URLと公開ZIPのLinux確認は未完了です。",
       "tasks": [
         "既存1D矩形波と2D滑らかentropy waveを残し、周期回転後の解析的returnを新たな問題として追加。",
         "総量、min/max、形状誤差と回転中心/格子方向依存を比較。",
         "スロット形状・時刻・境界と点値/セル平均を原著または公式実装から固定する。"
       ],
-      "scope_note": "",
+      "scope_note": "Firedrake公式例で形状・速度・周期を確認した単独0–1円盤の周期有限体積変種。真の2次元回転輸送を一次風上/保存量MUSCL minmod・SSPRK33で比較し、全段の保存・上下限、四分の一周と1周の形状誤差、位置/角度・境界帯の診断を保存。Zalesak FCT・Firedrake DG・LeVeque CTUの再現ではありません。初回32²/64²/128²の156/158判定と不合格を保持し、同一受入基準で細分化しています。",
       "sources": [
         {
           "title": "Zalesak (1979), Fully multidimensional flux-corrected transport algorithms for fluids",
@@ -1014,7 +1014,35 @@
           "observation": "既存は1D不連続または2D滑らか。Zalesak固有IDなし。"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23/zalesak/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23/zalesak/inputs.json",
+          "/code/validated-examples/2026-11-23/zalesak/acceptance.json",
+          "/code/validated-examples/2026-11-23/zalesak/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23/zalesak/results/zalesak-rotation-preview.png",
+          "/code/validated-examples/2026-11-23/zalesak/results/zalesak-rotation.png"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#zalesak-ja",
+        "execution": "/numerical-methods-atlas/validation/zalesak-rotation/?lang=ja",
+        "code": [
+          "/code/validated-examples/2026-11-23/zalesak/run.py",
+          "/code/validated-examples/2026-11-23/zalesak/rotation.py",
+          "/code/validated-examples/2026-11-23/zalesak/references/geometry.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-23/zalesak/references/citations.json",
+          "/code/validated-examples/2026-11-23/zalesak/references/README.md",
+          "/code/validated-examples/2026-11-23/zalesak/references/source-review.json",
+          "/code/validated-examples/2026-11-23/zalesak/source-provenance.json",
+          "/code/validated-examples/2026-11-23/zalesak/pre-run-review.json",
+          "/code/validated-examples/2026-11-23/zalesak/attempts/01/attempt-summary.json",
+          "/code/validated-examples/2026-11-23/zalesak/attempts/01/results/result.json",
+          "/code/validated-examples/2026-11-23/zalesak/attempts/01/source/pre-run-contract.json"
+        ]
+      },
       "sequence": 12
     },
     {

@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "group": "zalesak",
+  "edition": "2026-11-23",
+  "verified_on": "2026-11-23",
+  "source_manifest_sha256": "d13a134c2e791740190529a8a4eef07eda5126a14101155d254f450d0438eb55",
+  "archive": {
+    "file": "atlas-zalesak-2026-11-23.zip",
+    "sha256": "28e7d2bc93d3a5ba1cb015c874c489e9fd1a2e8a586a46d519800c799b0fb6f8",
+    "bytes": 12360247,
+    "archive_directory": "atlas-zalesak-2026-11-23"
+  },
+  "archive_sha256": "28e7d2bc93d3a5ba1cb015c874c489e9fd1a2e8a586a46d519800c799b0fb6f8",
+  "returncode": 0,
+  "passed_tests": 26,
+  "tests": 26,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "zalesak-rotation"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 19.03571408300195,
+  "independent_rerun_seconds": 18.980824750000465,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

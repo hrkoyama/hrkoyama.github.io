@@ -1,0 +1,13 @@
+{
+  "reason": "Initial fixed32/64/128 refinement completed with26pytest and156of158gates passed. Only fixed finest-density shape-error limits failed; all stage bounds/mass/quarter checks passed. No acceptance threshold is changed. Before new data, select64/128/256 for revision2; fixed64diagnostics stay.",
+  "original_contract_sha256": "985d85e4d98bc576fbd8e0a46c125c2dd80e71a467d7bbd522aec0dce88b0f19",
+  "test_filename_archive_map": {
+    "source/archived_test_rotation.py": "test_rotation.py"
+  },
+  "full_original_source": "working-folder outputs/atlas-zalesak-2026-11-23/source-attempt-01",
+  "failed_shape_errors": {
+    "donor_relative_l1": 1.1167523099754153,
+    "muscl_relative_l1": 0.6023268138280995
+  },
+  "acceptance_sha256": "9901dd30dacc8cd472cb0ff7d4b859c9131f913c40118030bc806e45207e35f4"
+}

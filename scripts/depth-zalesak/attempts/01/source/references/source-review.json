@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-11-23",
+  "sources": [
+    {
+      "id": "zalesak1979",
+      "url": "https://www.sciencedirect.com/science/article/pii/0021999179900512",
+      "role": "historical slotted-cylinder/FCT source; not the implemented method",
+      "review_scope": "publisher bibliography and abstract inspected; direct full-paper open returned403; original test geometry and boundary conditions not audited",
+      "accessed_on": "2026-11-23"
+    },
+    {
+      "id": "firedrake-dg-advection",
+      "url": "https://www.firedrakeproject.org/demos/DG_advection.py.html",
+      "role": "actually inspected normalized slotted-disk geometry, rotation velocity and period",
+      "review_scope": "official documentation equations and source lines46,63–92: disk(.5,.75),R.15,slot(.475,.525),y<.85,velocity(.5−y,x−.5),T2pi; SSP equations43–45 and135–143",
+      "accessed_on": "2026-11-23"
+    },
+    {
+      "id": "leveque1996advection",
+      "url": "https://faculty.washington.edu/rjl/pubs/hiresadv/0733033.pdf",
+      "role": "conservative scalar-advection and donor-cell/minmod background; official demo attribution",
+      "review_scope": "author-hosted paper selected sections1–3 actually inspected: PDE/incompressibility, FV means, minmod definition, donor-cell flux; no full-paper or numerical-table reproduction",
+      "accessed_on": "2026-11-23"
+    },
+    {
+      "id": "shu1988ssprk",
+      "url": "https://www.sciencedirect.com/science/article/pii/0021999188901775",
+      "role": "historical SSP/TVD Runge-Kutta source",
+      "review_scope": "publisher bibliography/abstract inspected; actual three-stage convex formulas checked in official Firedrake demo, not a full original-paper audit",
+      "accessed_on": "2026-11-23"
+    },
+    {
+      "id": "scipy114quad",
+      "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.quad.html",
+      "role": "actually executed independent adaptive vertical-section quadrature for geometry qualification",
+      "review_scope": "official versioned API: QUADPACK integration, break points, epsabs/epsrel, reported error; use is evidenced by qualification receipts",
+      "accessed_on": "2026-11-23"
+    }
+  ],
+  "execution_before_contract": false,
+  "primary_definition": {
+    "domain": [
+      0,
+      1,
+      0,
+      1
+    ],
+    "rotation_center": [
+      0.5,
+      0.5
+    ],
+    "shape_center": [
+      0.5,
+      0.75
+    ],
+    "radius": 0.15,
+    "slot_left": 0.475,
+    "slot_right": 0.525,
+    "slot_top": 0.85,
+    "omega": 1,
+    "period": "2*pi"
+  },
+  "variant_differences": [
+    "Isolate only the slotted-cylinder indicator in[0,1]; no bell,cone or background1.",
+    "Use periodic conservative FV with donor-cell/minmodMUSCL+SSPRK33; not official DQ1/inflow-outflow discretization.",
+    "No Zalesak1979 FCT, CTU, interface-reconstruction, level-set or VOF algorithm implemented.",
+    "Cell-area fractions replace point interpolation.",
+    "Exact compact rotating support remains withinradius.4 of the rotation center and never reaches a periodic seam; coarse numerical leakage near seams is measured."
+  ],
+  "copied_third_party_sources": []
+}

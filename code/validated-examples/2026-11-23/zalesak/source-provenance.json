@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-11-23",
+  "primary_definition": "Firedrake official DG advection demo, selected geometry/velocity/period only. This standalone FV test is a scoped variant; no Firedrake/Clawpack/ExactPack run.",
+  "numerical_method": "New conservative 2D donor-cell or minmod-MUSCL shared upwind fluxes with SSPRK33. Not Zalesak FCT or LeVeque CTU.",
+  "reference": "New analytic circle/convex-polygon Green-area integration and disjoint slot partition. Independent SciPy1.14.1 vertical-section adaptive quadrature qualifies12cutcells, wholearea and truefirstmoments. No PDE reference engine.",
+  "continuum_solution": "Rigid inverse rotation of an indicator; each finite-volume reference is the indicator integral over a cell. Full-turn return alone is supplemented by quarter-turn orientation/trajectory checks.",
+  "bounds": "Four face-center values average to each P1 mean. Each outgoing face coefficient1/4−dt*outward_speed/h is nonnegative underfaceCourant<=1/4; incoming coefficients are nonnegative and sum withowncoefficients to1 because discretevelocitydivergenceiszero. Minmod bounds facevalues; SSP convexcombinations retainthis conditionalbound.",
+  "roundoff": "Analytic geometry alone has documented dimensional area and2e−12 fraction cleanup bands, with actual counts/maxima. Numerical evolution retains raw stage values within a separately declared5e−13 roundoff band and performs no state clipping or retries.",
+  "boundary_scope": "Periodic finite-volume scalar model withmatching normal fluxes and tangential velocity seams. Exact support staysawayfromseams. This is not the official tutorial inflow/outflow problem or a globallysmooth periodic solidrotationfield.",
+  "source_review": "references/source-review.json",
+  "citations": "references/citations.json",
+  "copied_third_party_sources": []
+}

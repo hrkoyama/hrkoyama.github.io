@@ -10,7 +10,7 @@
     "test_problems": "Count independent problems across published atlas results and the verified public code edition. Distinguish governing equations, dimensions, boundary conditions and named initial/source problems; merge solver, mesh, step-size, parameter-sweep, random-seed and presentation variants of the same problem. Repeated Sod exhibits, wedge Mach variants and CT/GLM variants do not add problems. Exclude reference-only evaluations, planned/literature-only entries, diagrams, and local identity/invariant/input-error unit checks. Static-force, boundary-value, approximation and algebraic problems are included; not every entry is a time-evolving simulation."
   },
   "counts": {
-    "equations": 46,
+    "equations": 47,
     "methods": 131,
     "papers": 243,
     "references": 300,
@@ -20,16 +20,16 @@
     "chapters": 3,
     "reports": 3,
     "other_sources": 26,
-    "local_equations": 23,
+    "local_equations": 24,
     "reading_equations": 23,
     "local_methods": 117,
     "reading_methods": 14,
     "biological_entries": 22,
     "gallery_cases": 9,
     "gallery_equations": 7,
-    "reading_chapters": 101,
-    "test_problems": 86,
-    "saved_test_problems": 86,
+    "reading_chapters": 102,
+    "test_problems": 87,
+    "saved_test_problems": 87,
     "code_test_problems": 0
   },
   "items": [
@@ -226,15 +226,6 @@
       "kind": "method",
       "id": "backward-difference",
       "label": "Backward spatial difference",
-      "chapter": "stability",
-      "status": "local-example",
-      "group": "Spatial discretization",
-      "scope": ""
-    },
-    {
-      "kind": "method",
-      "id": "upwind",
-      "label": "Upwind finite differences",
       "chapter": "stability",
       "status": "local-example",
       "group": "Spatial discretization",
@@ -1309,6 +1300,16 @@
       "origin": "curated-quantum-reading"
     },
     {
+      "kind": "equation",
+      "id": "rotational-advection",
+      "label": "Two-dimensional rotational advection",
+      "chapter": "validation-zalesak",
+      "status": "local-example",
+      "group": "Physics & mathematical models",
+      "scope": "Prescribed divergence-free solid rotation only; not Euler fluid dynamics or arbitrary velocity fields.",
+      "origin": "curated-equation-catalog"
+    },
+    {
       "kind": "method",
       "id": "monte-carlo",
       "label": "Monte Carlo integration",
@@ -1380,6 +1381,16 @@
     },
     {
       "kind": "method",
+      "id": "upwind",
+      "label": "Upwind finite differences",
+      "chapter": "validation-zalesak",
+      "status": "local-example",
+      "group": "Spatial discretization",
+      "scope": "The additional Zalesak-type example is two-dimensional scalar rotation in a prescribed divergence-free velocity. Compare donor-cell upwinding and minmod MUSCL with the same periodic grid and SSPRK(3,3), measuring stage bounds, conservation and full-turn shape errors. It does not certify FCT or general multidimensional Euler bounds.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
       "id": "lax-friedrichs",
       "label": "Lax–Friedrichs",
       "chapter": "validation-euler-positivity",
@@ -1395,7 +1406,7 @@
       "chapter": "validation-mhd",
       "status": "local-example",
       "group": "Spatial discretization",
-      "scope": "Compare shock–density-wave interaction against separately executed Athena++ reference data rather than a finer grid of the same Python code. The additional Noh edition uses volume-centroid conservative MUSCL/minmod with Heun only in spherical runs; planar/cylindrical states stay piecewise constant. The additional low-Mach vortex uses the same unlimited central primitive reconstruction for both Roe variants. It does not verify general limited MUSCL or a TVD guarantee. The additional double rarefaction connects one-dimensional conservative MUSCL, shared Lax–Friedrichs fluxes, mean-preserving positive-state scaling and SSPRK(3,3). Check the admissible CFL/wave-speed conditions, means and faces at each forward-Euler candidate/SSP stage, and conservation budgets; this does not certify general Euler, WENO, DG or MHD positivity.",
+      "scope": "Compare shock–density-wave interaction against separately executed Athena++ reference data rather than a finer grid of the same Python code. The additional Noh edition uses volume-centroid conservative MUSCL/minmod with Heun only in spherical runs; planar/cylindrical states stay piecewise constant. The additional low-Mach vortex uses the same unlimited central primitive reconstruction for both Roe variants. It does not verify general limited MUSCL or a TVD guarantee. The additional double rarefaction connects one-dimensional conservative MUSCL, shared Lax–Friedrichs fluxes, mean-preserving positive-state scaling and SSPRK(3,3). Check the admissible CFL/wave-speed conditions, means and faces at each forward-Euler candidate/SSP stage, and conservation budgets; this does not certify general Euler, WENO, DG or MHD positivity. The additional Zalesak-type example is two-dimensional scalar rotation in a prescribed divergence-free velocity. Compare donor-cell upwinding and minmod MUSCL with the same periodic grid and SSPRK(3,3), measuring stage bounds, conservation and full-turn shape errors. It does not certify FCT or general multidimensional Euler bounds.",
       "origin": "curated-depth-example"
     },
     {
@@ -1435,7 +1446,7 @@
       "chapter": "validation-noh",
       "status": "local-example",
       "group": "Limiters & admissibility",
-      "scope": "Minmod limits conserved-variable MUSCL slopes in this Noh edition's spherical series. Planar/cylindrical runs retain piecewise-constant states.",
+      "scope": "Minmod limits conserved-variable MUSCL slopes in this Noh edition's spherical series. Planar/cylindrical runs retain piecewise-constant states. The additional Zalesak-type example is two-dimensional scalar rotation in a prescribed divergence-free velocity. Compare donor-cell upwinding and minmod MUSCL with the same periodic grid and SSPRK(3,3), measuring stage bounds, conservation and full-turn shape errors. It does not certify FCT or general multidimensional Euler bounds.",
       "origin": "curated-depth-example"
     },
     {
@@ -1465,7 +1476,7 @@
       "chapter": "validation-low-mach",
       "status": "local-example",
       "group": "Time integration",
-      "scope": "A fixed smooth 2D Euler isentropic vortex at background Mach numbers .1 and .01 compares ordinary Roe and Miczek-type dissipation-matrix preconditioning D=P⁻¹|PA|, with unlimited central primitive-variable MUSCL reconstruction for both. SSPRK(3,3) retains physical time and the acoustic CFL. Velocity error, dynamically normalized pressure error, periodic conservation and sampled Fourier diagnostics are evaluated separately. Pseudo-time or dual-time steady acceleration, slope limiting and TVD guarantees remain outside this example. The additional double rarefaction connects one-dimensional conservative MUSCL, shared Lax–Friedrichs fluxes, mean-preserving positive-state scaling and SSPRK(3,3). Check the admissible CFL/wave-speed conditions, means and faces at each forward-Euler candidate/SSP stage, and conservation budgets; this does not certify general Euler, WENO, DG or MHD positivity.",
+      "scope": "A fixed smooth 2D Euler isentropic vortex at background Mach numbers .1 and .01 compares ordinary Roe and Miczek-type dissipation-matrix preconditioning D=P⁻¹|PA|, with unlimited central primitive-variable MUSCL reconstruction for both. SSPRK(3,3) retains physical time and the acoustic CFL. Velocity error, dynamically normalized pressure error, periodic conservation and sampled Fourier diagnostics are evaluated separately. Pseudo-time or dual-time steady acceleration, slope limiting and TVD guarantees remain outside this example. The additional double rarefaction connects one-dimensional conservative MUSCL, shared Lax–Friedrichs fluxes, mean-preserving positive-state scaling and SSPRK(3,3). Check the admissible CFL/wave-speed conditions, means and faces at each forward-Euler candidate/SSP stage, and conservation budgets; this does not certify general Euler, WENO, DG or MHD positivity. The additional Zalesak-type example is two-dimensional scalar rotation in a prescribed divergence-free velocity. Compare donor-cell upwinding and minmod MUSCL with the same periodic grid and SSPRK(3,3), measuring stage bounds, conservation and full-turn shape errors. It does not certify FCT or general multidimensional Euler bounds.",
       "origin": "curated-depth-example"
     },
     {
@@ -3328,15 +3339,15 @@
   },
   "public_extension_sha256": {
     "catalog/atlas-quantum.json": "415dd98efe103ad5a2d950c22b98980f53539f6243b93e4e193dbca2c67169fe",
-    "catalog/atlas-methods.json": "696235ecc3e65cfcf75d16fd70878d2241f13ad7ad41493879ea34a7f272a2c9",
-    "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
+    "catalog/atlas-methods.json": "270402769611e844e54a79e38931e2ab348797a838e383f8e3e712317db1376b",
+    "catalog/atlas-equations.json": "1973bd5c31ca893e0b3e18c5e37a7520cbc7ef70ef6872a803cabba5b5afd5d0",
     "catalog/atlas-method-primary-references.json": "9bc3991b1f9c50bc75d5c6c69a09b5fd030341ba2834f19d79cc76c92b37b0d5"
   },
   "equation_execution_source_sha256": {
     "numerical-methods-atlas/assets/biological-models.json": "657be85b4aa6dc2fe2488167635ddd71888fe47459972723a5830a5323f8a1ba",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
+    "catalog/atlas-equations.json": "1973bd5c31ca893e0b3e18c5e37a7520cbc7ef70ef6872a803cabba5b5afd5d0",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
     "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",

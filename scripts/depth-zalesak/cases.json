@@ -1,0 +1,244 @@
+[
+  {
+    "id": "zalesak-rotation",
+    "title": {
+      "ja": "Zalesak型2D回転輸送：保存・有界性・形状誤差",
+      "en": "Zalesak-type 2D rotation: conservation, bounds and shape error"
+    },
+    "method_ids": [
+      "upwind",
+      "muscl",
+      "minmod",
+      "ssprk33"
+    ],
+    "domains": [
+      "transport",
+      "pde",
+      "time"
+    ],
+    "code_files": [
+      "run.py",
+      "rotation.py",
+      "references/geometry.py",
+      "references/qualify_reference.py"
+    ],
+    "summary": {
+      "ja": "スロット付き円盤を実際の2次元有限体積法で一回転させ、donor-cellとminmod MUSCLを比較します。3格子と、半セルの中心ずらし・45度の初期向きを含む8計算で、保存・各SSP段の有界性・形状誤差とスロットの埋まりを測ります。",
+      "en": "Rotate a slotted disk through one full turn with an actual 2D finite-volume solver, comparing donor-cell and minmod MUSCL. Eight runs combine three grids with half-cell-center and 45-degree-start probes; measure conservation, bounds at every SSP stage, shape error and slot filling."
+    },
+    "assumptions": {
+      "ja": "無次元の[0,1]²、回転中心(.5,.5)、円盤中心(.5,.75)、半径.15、スロット幅.05・上端y=.85、角速度1、一回転T=2π、64²/128²/256²セルを固定します。スロット以外はq=1、外側は0です。周期境界を使い、厳密な物体の支持は境界から離れます。速度の周期延長には接線成分の継ぎ目があり、数値拡散の裾が届く場合は境界帯の質量として記録します。",
+      "en": "Fix the dimensionless unit square, rotation center(.5,.5), disk center(.5,.75), radius.15, slot width.05/top y=.85, angular speed1, T=2pi and64²/128²/256² cells. The body is1 and exterior/slot0. Periodic normal face velocities match; the exact compact support stays away from the boundary. The periodic extension has a tangential-velocity seam, and diffusive tails reaching its fixed-width boundary band are measured."
+    },
+    "algorithm": {
+      "ja": "解析的な発散ゼロの法線面速度と、隣接セルで共有する上流数値流束を用います。区分定数donor-cellと、方向別minmod勾配による平均保存型MUSCLを、どちらもSSPRK(3,3)で進めます。4面中点の平均がセル平均に等しいことと、各面のCourant数≤1/4による凸結合を使い、実際の値.20を各FE段で確認します。セル平均のクリップ、状態floor、刻み棄却・再試行は行いません。",
+      "en": "Use analytic divergence-free normal face averages and one shared upwind flux per interface. Both piecewise-constant donor-cell and mean-preserving directional-minmod MUSCL use SSPRK(3,3). The four face-midpoint mean equals the cell mean; individual outgoing-face Courant<=1/4 gives a convex FE update. Check the actual .20 bound at every stage. No transported-state clipping/floors or rejected/retried steps are used."
+    },
+    "validation": {
+      "ja": "26単体検査と8固定計算158判定を実行前に固定します。全FE候補・SSP凸結合のmin/max、共有流束による質量収支、再構築の平均保存、3格子のL1/L∞・相対L2を保存します。円と凸多角形の交差面積から独立に作る厳密輸送のセル平均を、SciPyの鉛直切片求積と面積・一次モーメントで照合します。1/4・1/2・3/4回転の誤差と重心も検査し、回転方向や速度の誤りが一回転のreturnだけで隠れないようにします。",
+      "en": "Freeze26 unit checks and158 gates across eight fixed runs before execution. Retain min/max of every FE candidate/SSP convex mean, shared-flux mass budgets, reconstruction mean preservation and three-grid L1/Linf/relative-L2 errors. Independent circle/convex-polygon intersection means are qualified against SciPy vertical-slice quadrature, total area and first moments. Also check quarter/half/three-quarter-turn errors and centroids so a wrong direction or speed cannot hide behind a full-turn return."
+    },
+    "limits": {
+      "ja": "標準的なスロット形状を単独の0–1物体として使う周期境界の限定例です。Zalesak原著のFCTアルゴリズム、原著の格子・境界、bell/coneを加えたFiredrakeデモ全体の再現ではありません。スロット内の診断は、固定した内側長方形と区分定数セル平均との面積重み付き値です。粗格子では厳密セル平均の投影だけでも0にならないため、その参照baselineと過剰な埋まりを別々に示します。格子中心・45度方向の2診断を普遍的な等方性保証とせず、完全な形状保持や一般流れの最大値原理を主張しません。解析幾何の微小な面積丸め処理と、実際の輸送状態をクリップしないことを区別します。",
+      "en": "This is an isolated0–1 standard slotted body with periodic boundaries. It does not implement Zalesak FCT, reproduce the original paper’s grid/boundaries or the entire Firedrake bell/cone/background demonstration. The inner-slot diagnostic area-weights piecewise-constant means over a fixed rectangle. Coarse exact cell projection can already give a nonzero baseline, which is reported separately from excess numerical filling. Two center/orientation probes do not establish universal isotropy, perfect shape retention or a maximum principle for arbitrary flows. Tiny geometric-area roundoff handling is distinguished from the absence of transported-state clipping."
+    },
+    "formulas": [
+      "\\partial_t q+\\partial_x(uq)+\\partial_y(vq)=0,\\qquad (u,v)=(-(y-y_c),x-x_c),\\quad T=2\\pi",
+      "q(x,t)=q_0\\!\\left(c+R_{-t}(x-c)\\right),\\qquad \\bar q_{ij}(t)=h^{-2}\\int_{C_{ij}}q(x,t)\\,dx\\,dy",
+      "s_i=\\operatorname{minmod}(q_i-q_{i-1},q_{i+1}-q_i),\\quad q_i^{\\pm}=\\bar q_i\\pm\\tfrac12 s_i,\\quad \\bar q_{ij}=\\tfrac14(q_L+q_R+q_D+q_U)",
+      "\\widehat F_{i+1/2,j}=u_j^+q_{R,ij}+u_j^-q_{L,i+1,j},\\qquad E_{\\Delta t}(q)_{ij}=q_{ij}-\\frac{\\Delta t}{h}(\\Delta_x\\widehat F+\\Delta_y\\widehat G)_{ij}",
+      "q^{(1)}=E_{\\Delta t}(q^n),\\quad q^{(2)}=\\tfrac34q^n+\\tfrac14E_{\\Delta t}(q^{(1)}),\\quad q^{n+1}=\\tfrac13q^n+\\tfrac23E_{\\Delta t}(q^{(2)})",
+      "\\frac{\\Delta t}{h}\\max(|u|,|v|)\\le\\tfrac14,\\quad D_h\\!\\cdot u=0\\quad\\Longrightarrow\\quad 0\\le E_{\\Delta t}(\\bar q)\\le1\\ \\text{if all four face states lie in }[0,1]"
+    ],
+    "citations": [
+      {
+        "id": "zalesak1979",
+        "author": "Steven T. Zalesak",
+        "year": 1979,
+        "title": "Fully multidimensional flux-corrected transport algorithms for fluids",
+        "journal": "Journal of Computational Physics",
+        "volume": "31",
+        "number": "3",
+        "pages": "335–362",
+        "doi": "10.1016/0021-9991(79)90051-2",
+        "url": "https://www.sciencedirect.com/science/article/pii/0021999179900512",
+        "type": "article",
+        "role": "historical slotted-cylinder/FCT source; not the implemented method",
+        "review_scope": "publisher bibliography and abstract inspected; direct full-paper open returned403; original test geometry and boundary conditions not audited",
+        "review": {
+          "ja": "出版社の書誌と多次元FCTの抄録を確認。原著全文とその格子・境界・具体形状は今回未確認です。本例をZalesakのFCTアルゴリズム再現とは表示しません。",
+          "en": "Publisher record and abstract checked. The full original test geometry/grid/boundaries were not audited. This example does not implement or reproduce Zalesak FCT."
+        },
+        "accessed_on": "2026-11-23"
+      },
+      {
+        "id": "firedrake-dg-advection",
+        "author": "Firedrake developers",
+        "title": "DG advection equation with upwinding",
+        "url": "https://www.firedrakeproject.org/demos/DG_advection.py.html",
+        "type": "official-documentation",
+        "role": "actually inspected normalized slotted-disk geometry, rotation velocity and period",
+        "review_scope": "official documentation equations and source lines46,63–92: disk(.5,.75),R.15,slot(.475,.525),y<.85,velocity(.5−y,x−.5),T2pi; SSP equations43–45 and135–143",
+        "review": {
+          "ja": "公式デモの形状・回転速度・周期とSSPRK式を確認。元デモはbell・coneと背景1を加え、DQ1・流入値1を使います。本例はスロット円板だけの0–1指示関数・有限体積・周期境界という明示的な変形です。Firedrakeは実行・転載しません。",
+          "en": "Inspected official geometry, velocity, period and SSP formulas. The demo includes a bell, cone, background1, DQ1 elements and inflow1. This is an explicit isolated0–1 slotted-disk FV/periodic variant. No Firedrake software was executed or copied."
+        },
+        "accessed_on": "2026-11-23"
+      },
+      {
+        "id": "leveque1996advection",
+        "author": "Randall J. LeVeque",
+        "year": 1996,
+        "title": "High-Resolution Conservative Algorithms for Advection in Incompressible Flow",
+        "journal": "SIAM Journal on Numerical Analysis",
+        "volume": "33",
+        "number": "2",
+        "pages": "627–665",
+        "doi": "10.1137/0733033",
+        "url": "https://faculty.washington.edu/rjl/pubs/hiresadv/0733033.pdf",
+        "type": "article",
+        "role": "conservative scalar-advection and donor-cell/minmod background; official demo attribution",
+        "review_scope": "author-hosted paper selected sections1–3 actually inspected: PDE/incompressibility, FV means, minmod definition, donor-cell flux; no full-paper or numerical-table reproduction",
+        "review": {
+          "ja": "著者公開論文の節1–3で保存形・非圧縮条件・セル平均・minmod・donor-cellを確認。Firedrakeが標準複合図形の出典として引用しています。本例のMUSCL＋SSPRKは同論文のCTU／波動伝播法そのものではありません。",
+          "en": "Read sections1–3 on conservative transport, incompressibility, means, minmod and donor-cell fluxes. Firedrake cites this paper for its composite-shape test. Our MUSCL/SSPRK update is not the paper’s CTU/wave-propagation algorithm."
+        },
+        "accessed_on": "2026-11-23"
+      },
+      {
+        "id": "shu1988ssprk",
+        "author": "Chi-Wang Shu and Stanley Osher",
+        "year": 1988,
+        "title": "Efficient implementation of essentially non-oscillatory shock-capturing schemes",
+        "journal": "Journal of Computational Physics",
+        "volume": "77",
+        "number": "2",
+        "pages": "439–471",
+        "doi": "10.1016/0021-9991(88)90177-5",
+        "url": "https://www.sciencedirect.com/science/article/pii/0021999188901775",
+        "type": "article",
+        "role": "historical SSP/TVD Runge-Kutta source",
+        "review_scope": "publisher bibliography/abstract inspected; actual three-stage convex formulas checked in official Firedrake demo, not a full original-paper audit",
+        "review": {
+          "ja": "出版社の書誌とTVD Runge–Kuttaの抄録を確認。使う三段凸結合はFiredrake公式記述でも確認しました。原著全文の監査とは区別します。",
+          "en": "Publisher bibliography/abstract checked; the actual three-stage convex formulas were also inspected in the official Firedrake demo. The original full paper was not audited."
+        },
+        "accessed_on": "2026-11-23"
+      },
+      {
+        "id": "scipy114quad",
+        "author": "SciPy developers",
+        "title": "scipy.integrate.quad — SciPy v1.14.1 Manual",
+        "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.quad.html",
+        "type": "official-documentation",
+        "role": "actually executed independent adaptive vertical-section quadrature for geometry qualification",
+        "review_scope": "official versioned API: QUADPACK integration, break points, epsabs/epsrel, reported error; use is evidenced by qualification receipts",
+        "review": {
+          "ja": "版を固定した公式APIでQUADPACK、分割点、絶対・相対公差と推定誤差の意味を確認。解析的な円・多角形の面積計算とは異なる垂直断面求積を、実行記録付きで照合します。",
+          "en": "Versioned official API checked for QUADPACK, break points, tolerances and reported error. Independently integrated vertical sections are compared with circle/polygon areas; execution is established by saved receipts."
+        },
+        "accessed_on": "2026-11-23"
+      }
+    ],
+    "references": [
+      {
+        "id": "zalesak1979",
+        "author": "Steven T. Zalesak",
+        "year": 1979,
+        "title": "Fully multidimensional flux-corrected transport algorithms for fluids",
+        "journal": "Journal of Computational Physics",
+        "volume": "31",
+        "number": "3",
+        "pages": "335–362",
+        "doi": "10.1016/0021-9991(79)90051-2",
+        "url": "https://www.sciencedirect.com/science/article/pii/0021999179900512",
+        "type": "article",
+        "role": "historical slotted-cylinder/FCT source; not the implemented method",
+        "review": {
+          "ja": "出版社の書誌と多次元FCTの抄録を確認。原著全文とその格子・境界・具体形状は今回未確認です。本例をZalesakのFCTアルゴリズム再現とは表示しません。",
+          "en": "Publisher record and abstract checked. The full original test geometry/grid/boundaries were not audited. This example does not implement or reproduce Zalesak FCT."
+        },
+        "accessed_on": "2026-11-23",
+        "review_level": "publisher bibliography and abstract inspected; direct full-paper open returned403; original test geometry and boundary conditions not audited"
+      },
+      {
+        "id": "firedrake-dg-advection",
+        "author": "Firedrake developers",
+        "title": "DG advection equation with upwinding",
+        "url": "https://www.firedrakeproject.org/demos/DG_advection.py.html",
+        "type": "official-documentation",
+        "role": "actually inspected normalized slotted-disk geometry, rotation velocity and period",
+        "review": {
+          "ja": "公式デモの形状・回転速度・周期とSSPRK式を確認。元デモはbell・coneと背景1を加え、DQ1・流入値1を使います。本例はスロット円板だけの0–1指示関数・有限体積・周期境界という明示的な変形です。Firedrakeは実行・転載しません。",
+          "en": "Inspected official geometry, velocity, period and SSP formulas. The demo includes a bell, cone, background1, DQ1 elements and inflow1. This is an explicit isolated0–1 slotted-disk FV/periodic variant. No Firedrake software was executed or copied."
+        },
+        "accessed_on": "2026-11-23",
+        "review_level": "official documentation equations and source lines46,63–92: disk(.5,.75),R.15,slot(.475,.525),y<.85,velocity(.5−y,x−.5),T2pi; SSP equations43–45 and135–143"
+      },
+      {
+        "id": "leveque1996advection",
+        "author": "Randall J. LeVeque",
+        "year": 1996,
+        "title": "High-Resolution Conservative Algorithms for Advection in Incompressible Flow",
+        "journal": "SIAM Journal on Numerical Analysis",
+        "volume": "33",
+        "number": "2",
+        "pages": "627–665",
+        "doi": "10.1137/0733033",
+        "url": "https://faculty.washington.edu/rjl/pubs/hiresadv/0733033.pdf",
+        "type": "article",
+        "role": "conservative scalar-advection and donor-cell/minmod background; official demo attribution",
+        "review": {
+          "ja": "著者公開論文の節1–3で保存形・非圧縮条件・セル平均・minmod・donor-cellを確認。Firedrakeが標準複合図形の出典として引用しています。本例のMUSCL＋SSPRKは同論文のCTU／波動伝播法そのものではありません。",
+          "en": "Read sections1–3 on conservative transport, incompressibility, means, minmod and donor-cell fluxes. Firedrake cites this paper for its composite-shape test. Our MUSCL/SSPRK update is not the paper’s CTU/wave-propagation algorithm."
+        },
+        "accessed_on": "2026-11-23",
+        "review_level": "author-hosted paper selected sections1–3 actually inspected: PDE/incompressibility, FV means, minmod definition, donor-cell flux; no full-paper or numerical-table reproduction"
+      },
+      {
+        "id": "shu1988ssprk",
+        "author": "Chi-Wang Shu and Stanley Osher",
+        "year": 1988,
+        "title": "Efficient implementation of essentially non-oscillatory shock-capturing schemes",
+        "journal": "Journal of Computational Physics",
+        "volume": "77",
+        "number": "2",
+        "pages": "439–471",
+        "doi": "10.1016/0021-9991(88)90177-5",
+        "url": "https://www.sciencedirect.com/science/article/pii/0021999188901775",
+        "type": "article",
+        "role": "historical SSP/TVD Runge-Kutta source",
+        "review": {
+          "ja": "出版社の書誌とTVD Runge–Kuttaの抄録を確認。使う三段凸結合はFiredrake公式記述でも確認しました。原著全文の監査とは区別します。",
+          "en": "Publisher bibliography/abstract checked; the actual three-stage convex formulas were also inspected in the official Firedrake demo. The original full paper was not audited."
+        },
+        "accessed_on": "2026-11-23",
+        "review_level": "publisher bibliography/abstract inspected; actual three-stage convex formulas checked in official Firedrake demo, not a full original-paper audit"
+      },
+      {
+        "id": "scipy114quad",
+        "author": "SciPy developers",
+        "title": "scipy.integrate.quad — SciPy v1.14.1 Manual",
+        "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.quad.html",
+        "type": "official-documentation",
+        "role": "actually executed independent adaptive vertical-section quadrature for geometry qualification",
+        "review": {
+          "ja": "版を固定した公式APIでQUADPACK、分割点、絶対・相対公差と推定誤差の意味を確認。解析的な円・多角形の面積計算とは異なる垂直断面求積を、実行記録付きで照合します。",
+          "en": "Versioned official API checked for QUADPACK, break points, tolerances and reported error. Independently integrated vertical sections are compared with circle/polygon areas; execution is established by saved receipts."
+        },
+        "accessed_on": "2026-11-23",
+        "review_level": "official versioned API: QUADPACK integration, break points, epsabs/epsrel, reported error; use is evidenced by qualification receipts"
+      }
+    ],
+    "additional_figures": [
+      {
+        "file": "zalesak-rotation-preview.png",
+        "caption": {
+          "ja": "一回転後の実2次元セル平均。厳密幾何参照・donor-cell・minmod MUSCLを同じ色尺度で比較します。",
+          "en": "Actual2D cell means after one full turn: analytic geometric reference, donor-cell and minmod MUSCL use a common color scale."
+        }
+      }
+    ],
+    "gallery_figure": "zalesak-rotation-preview.png"
+  }
+]

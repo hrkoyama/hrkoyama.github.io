@@ -753,6 +753,38 @@ Taylor–Green：y = π/4のx方向断面です。2次元セル平均ではな�
 
 
 
+### Zalesak型の切り欠き円盤：剛体回転と幾何学的セル平均
+
+解析解 · 2次元
+
+`q(x,t)=1_D(c+R(-t)(x-c)); qbar_K(t)=area(K intersect [c+R(t)(D-c)])/area(K), c=(0.5,0.5), T=2*pi. D=disk((0.5,0.75),0.15) minus {0.475<x<0.525,y<0.85}.`
+
+単位正方形の2次元スカラー輸送です。速度(.5−y,x−.5)、角速度1、周期2π、中心(.5,.75)・半径.15の円盤から.475<x<.525かつy<.85のスロットを除き、内部1・外部0とします。公式Firedrake例の正規化した切り欠き円盤だけを取り出した変種で、bell・cone・背景値1・DG・流入境界は再現しません。周期有限体積の対向面では法線速度が一致します。連続解の台は境界から離れており、数値的な裾は別に測ります。参照は剛体回転の逆特性と円盤・多角形の解析的な面積積分によるセル平均で、点値を並べた画像や別PDE計算の細格子解ではありません。一回転後の連続形状への帰還と、位置・初期角度を変えた固定診断を区別します。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/zalesak-rotation/?lang=ja#zalesak-rotation-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-zalesak/#zalesak-rotation)
+
+- historical-original-problem-attribution: [Steven T. Zalesak (1979), Fully multidimensional flux-corrected transport algorithms for fluids, Journal of Computational Physics 31, 335–362](https://doi.org/10.1016/0021-9991(79)90051-2) — Publisher bibliography and abstract checked. Direct full-text access was unavailable; no complete original-test transcription or FCT replication is claimed.
+- official-setup-cross-check: [Firedrake project, DG advection demo: normalized slotted-cylinder geometry and rigid velocity](https://www.firedrakeproject.org/demos/DG_advection.py.html) — Inspected the official velocity, period and geometry definitions. This release isolates a 0–1 slotted disk and uses periodic finite volumes; the official bell/cone/background 1, DG scheme, inflow boundary and full Firedrake experiment are not reproduced or executed.
+- official-demo-historical-context: [Randall J. LeVeque (1996), High-Resolution Conservative Algorithms for Advection in Incompressible Flow, SIAM Journal on Numerical Analysis 33, 627–665](https://doi.org/10.1137/0733033) — The official Firedrake demonstration attributes its rotating-body setup to this work. Its role here is contextual attribution, not a claim that the full paper or its numerical algorithm was implemented.
+#### 関連するテスト問題の図とコード
+
+##### [Zalesak型の切り欠き円盤の回転輸送](https://hrkoyama.github.io/numerical-methods-atlas/problems/zalesak/?lang=ja) (`zalesak`)
+
+![実際の2次元スカラー輸送の最細格子の保存セル平均。全\[0,1\]²のうちx∈\[.28,.72\], y∈\[.53,.97\]の円盤周辺を拡大し、一回転後の一次風上とminmod MUSCLを幾何学的な参照セル平均と比較します。切り欠きの数値拡散を残した図で、FCT法やEuler流体の計算ではありません。](https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/results/zalesak-rotation-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/zalesak/?lang=ja#code-ja)
+
+同じ問題への対応
+
+円盤とスロットの定義を固定し、保存した初期・帰還時のセル平均と比較します。指示関数の点値や別実装PDEの細格子解を参照と混同しません。
+
+- [実行・検証：Zalesak型2D回転輸送：保存・有界性・形状誤差](https://hrkoyama.github.io/numerical-methods-atlas/validation/zalesak-rotation/?lang=ja) (`zalesak-rotation`) · [コードZIP：Zalesak型2D回転輸送：保存・有界性・形状誤差](https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/atlas-zalesak-2026-11-23.zip)
+
+この実行例の範囲：スロット付き円盤を実際の2次元有限体積法で一回転させ、donor-cellとminmod MUSCLを比較します。3格子と、半セルの中心ずらし・45度の初期向きを含む8計算で、保存・各SSP段の有界性・形状誤差とスロットの埋まりを測ります。
+
+
+
+
 ## English
 
 ### Advection / sine translation
@@ -1498,3 +1530,35 @@ The pre-collapse branch of the spherical Guderley similarity solution at gamma=1
 - [Run and validate: Guderley converging shock: lightweight spherical-radial verification](https://hrkoyama.github.io/numerical-methods-atlas/validation/guderley-implosion/?lang=en) (`guderley-implosion`) · [Code ZIP: Guderley converging shock: lightweight spherical-radial verification](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/atlas-guderley-2026-11-23-r3.zip)
 
 Scope of this execution example: An inward spherical Guderley shock in cold stationary gas is evolved from t=-1 to -0.85 on 128/256/512 radial shells. HLL fluxes and Heun steps are checked against a similarity eigenvalue/field, shock trajectory and discrete conservation budgets.
+
+
+
+
+### Zalesak-type slotted disk: rigid rotation and geometric cell means
+
+Analytic reference · 2D
+
+`q(x,t)=1_D(c+R(-t)(x-c)); qbar_K(t)=area(K intersect [c+R(t)(D-c)])/area(K), c=(0.5,0.5), T=2*pi. D=disk((0.5,0.75),0.15) minus {0.475<x<0.525,y<0.85}.`
+
+Unit-square two-dimensional scalar transport with prescribed velocity (0.5-y,x-0.5), angular speed 1 and period2*pi. The baseline indicator is one inside the disk of radius 0.15 centered at (0.5,0.75), excluding 0.475<x<0.525 and y<0.85, and zero outside. This isolates the normalized slotted-cylinder component described in the official Firedrake setup; its bell, cone, background 1, DG discretization and inflow boundary are not copied. Periodic finite-volume normal velocities match on opposite faces; the compact exact body stays away from the boundary, while numerical tails are measured. Exact rigid characteristics and analytic disk/polygon intersection areas define the reference cell means, not rasterized point samples or a second numerical PDE solution. A full turn returns to the initial continuum shape; rotated/shifted variants are separate fixed diagnostics.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/zalesak-rotation/?lang=en#zalesak-rotation-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-zalesak/#zalesak-rotation)
+
+- historical-original-problem-attribution: [Steven T. Zalesak (1979), Fully multidimensional flux-corrected transport algorithms for fluids, Journal of Computational Physics 31, 335–362](https://doi.org/10.1016/0021-9991(79)90051-2) — Publisher bibliography and abstract checked. Direct full-text access was unavailable; no complete original-test transcription or FCT replication is claimed.
+- official-setup-cross-check: [Firedrake project, DG advection demo: normalized slotted-cylinder geometry and rigid velocity](https://www.firedrakeproject.org/demos/DG_advection.py.html) — Inspected the official velocity, period and geometry definitions. This release isolates a 0–1 slotted disk and uses periodic finite volumes; the official bell/cone/background 1, DG scheme, inflow boundary and full Firedrake experiment are not reproduced or executed.
+- official-demo-historical-context: [Randall J. LeVeque (1996), High-Resolution Conservative Algorithms for Advection in Incompressible Flow, SIAM Journal on Numerical Analysis 33, 627–665](https://doi.org/10.1137/0733033) — The official Firedrake demonstration attributes its rotating-body setup to this work. Its role here is contextual attribution, not a claim that the full paper or its numerical algorithm was implemented.
+#### Related test problem figures and code
+
+##### [Zalesak-type slotted-disk rotation](https://hrkoyama.github.io/numerical-methods-atlas/problems/zalesak/?lang=en) (`zalesak`)
+
+![Saved cell means on the finest grid of actual two-dimensional scalar transport. Zoom x in\[.28,.72\],y in\[.53,.97\] from the full unit square and compare donor-cell upwinding and minmod MUSCL after one revolution against geometric reference cell means. Slot diffusion remains visible; this is not an FCT algorithm or Euler-flow calculation.](https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/results/zalesak-rotation-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/zalesak/?lang=en#code-en)
+
+Same-problem link
+
+Fix the disk and slot geometry and compare stored initial/returned cell means. Distinguish indicator point samples and a finer PDE calculation from this geometric reference.
+
+- [Run and validate: Zalesak-type 2D rotation: conservation, bounds and shape error](https://hrkoyama.github.io/numerical-methods-atlas/validation/zalesak-rotation/?lang=en) (`zalesak-rotation`) · [Code ZIP: Zalesak-type 2D rotation: conservation, bounds and shape error](https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/atlas-zalesak-2026-11-23.zip)
+
+Scope of this execution example: Rotate a slotted disk through one full turn with an actual 2D finite-volume solver, comparing donor-cell and minmod MUSCL. Eight runs combine three grids with half-cell-center and 45-degree-start probes; measure conservation, bounds at every SSP stage, shape error and slot filling.

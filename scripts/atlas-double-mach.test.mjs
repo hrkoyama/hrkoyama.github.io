@@ -12,12 +12,12 @@ const base='code/validated-examples/2026-11-23/double-mach/';
 
 test('Double Mach extends an existing problem and preserves all fourteen earlier release records and eighty-two historical pictures',()=>{
  const registry=json('numerical-methods-atlas/validation/releases.json');
- assert.equal(objectHash(registry.releases.filter(r=>!['double-mach','forward-step','low-mach','guderley','euler-positivity'].includes(r.group))),'bb57fe2ece2d6f8b07b9e793ab8a21c3a9bcc2166d0e04dd73e00fe9d9ed46c3');
- assert.equal(registry.case_count,48);assert.equal(registry.releases.length,19);assert.equal(registry.releases.filter(r=>r.group!=='euler-positivity').reduce((s,r)=>s+r.tests,0),571);
+ assert.equal(objectHash(registry.releases.filter(r=>!['double-mach','forward-step','low-mach','guderley','euler-positivity','zalesak'].includes(r.group))),'bb57fe2ece2d6f8b07b9e793ab8a21c3a9bcc2166d0e04dd73e00fe9d9ed46c3');
+ assert.equal(registry.case_count,49);assert.equal(registry.releases.length,20);assert.equal(registry.releases.filter(r=>!['euler-positivity','zalesak'].includes(r.group)).reduce((s,r)=>s+r.tests,0),571);
  const release=registry.releases.find(r=>r.group==='double-mach');assert.equal(release.tests,21);assert.deepEqual(release.case_ids,['double-mach-reflection']);
- const pictures=json('numerical-methods-atlas/gallery/preview-manifest.json').items.filter(r=>!['double-mach','forward-step','isentropic-vortex','guderley'].includes(r.id)).map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}));
+ const pictures=json('numerical-methods-atlas/gallery/preview-manifest.json').items.filter(r=>!['double-mach','forward-step','isentropic-vortex','guderley','zalesak'].includes(r.id)).map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}));
  assert.equal(pictures.length,82);assert.equal(objectHash(pictures),'c37221ab9426dd1bd3b6497f2ca56764ab7d737807edceb231600fc0f3294483');
- assert.equal(json('catalog/atlas-test-problems.json').problems.length,86);assert.equal(json('catalog/atlas-methods.json').methods.length,147);assert.equal(json('catalog/atlas-execution-examples.json').examples.length,22);
+ assert.equal(json('catalog/atlas-test-problems.json').problems.length,87);assert.equal(json('catalog/atlas-methods.json').methods.length,147);assert.equal(json('catalog/atlas-execution-examples.json').examples.length,22);
  const manifest=json(base+'source-manifest.json');for(const[p,h]of Object.entries(manifest.files))assert.equal(hash(base+p),h,p);
  const receipt=json(base+'verification.json');assert.equal(receipt.tests,21);assert.equal(receipt.passed,true);assert.equal(receipt.all_cases_rerun,true);assert.equal(hash(base+receipt.archive.file),receipt.archive.sha256);
 });

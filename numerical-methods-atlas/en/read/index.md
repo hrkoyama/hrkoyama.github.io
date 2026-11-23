@@ -53,6 +53,7 @@ Read about reconstruction, limiting and shock robustness, followed by low-Mach c
 - [Slope limiters: minmod, Superbee, MC, van Leer, and van Albada](https://hrkoyama.github.io/numerical-methods-atlas/en/read/limiters/)
 - [Advanced limiters: TVB and positivity preservation](https://hrkoyama.github.io/numerical-methods-atlas/en/read/advanced-limiters/)
 - [Euler double rarefaction: positivity at every stage](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-euler-positivity/)
+- [Zalesak-type 2D rotation: conservation, bounds and shape error](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-zalesak/)
 - [Rotated-hybrid Riemann solver](https://hrkoyama.github.io/numerical-methods-atlas/en/read/rotated-hybrid/)
 - [Traced PPM, AUSM variants and curved bow shocks](https://hrkoyama.github.io/numerical-methods-atlas/en/read/shock-expansion/)
 - [The carbuncle phenomenon](https://hrkoyama.github.io/numerical-methods-atlas/en/read/carbuncle/)

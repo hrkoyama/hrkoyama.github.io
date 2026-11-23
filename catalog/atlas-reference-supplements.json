@@ -476,6 +476,89 @@
           "note": "Inspected pinned eexp, the pre-collapse ODE/state, transcribed tables, official regression values and BSD 3 terms. This is not a claim to have run the complete ExactPack suite; actual reference execution is recorded separately. The selected exponent, pre-collapse ODE and eight original state probes were actually executed; qualification.json and pinned source/license hashes are archived with this release. The public Guderley class, reflected B solve and full ExactPack suite were not run. Routine replay reuses the recorded qualified lambda and freshly integrates the pinned pre-collapse ODE; it does not claim to repeat eexp shooting or the eight original-state probes by default. Their full regeneration is separately available."
         }
       ]
+    },
+    {
+      "id": "zalesak-rotation",
+      "model": "rotational-advection",
+      "kind": "analytic",
+      "title": "Zalesak-type slotted disk: rigid rotation and geometric cell means",
+      "assumptions": "Unit-square two-dimensional scalar transport with prescribed velocity (0.5-y,x-0.5), angular speed 1 and period2*pi. The baseline indicator is one inside the disk of radius 0.15 centered at (0.5,0.75), excluding 0.475<x<0.525 and y<0.85, and zero outside. This isolates the normalized slotted-cylinder component described in the official Firedrake setup; its bell, cone, background 1, DG discretization and inflow boundary are not copied. Periodic finite-volume normal velocities match on opposite faces; the compact exact body stays away from the boundary, while numerical tails are measured. Exact rigid characteristics and analytic disk/polygon intersection areas define the reference cell means, not rasterized point samples or a second numerical PDE solution. A full turn returns to the initial continuum shape; rotated/shifted variants are separate fixed diagnostics.",
+      "formula": "q(x,t)=1_D(c+R(-t)(x-c)); qbar_K(t)=area(K intersect [c+R(t)(D-c)])/area(K), c=(0.5,0.5), T=2*pi. D=disk((0.5,0.75),0.15) minus {0.475<x<0.525,y<0.85}.",
+      "dimension": 2,
+      "bounds": [
+        [
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "components": [
+        "q"
+      ],
+      "field_type": "scalar",
+      "parameters": {
+        "angular_speed": 1.0,
+        "period": "2*pi",
+        "rotation_center": [
+          0.5,
+          0.5
+        ],
+        "disk_center": [
+          0.5,
+          0.75
+        ],
+        "disk_radius": 0.15,
+        "slot_x": [
+          0.475,
+          0.525
+        ],
+        "slot_y_upper": 0.85,
+        "inside_value": 1.0,
+        "outside_value": 0.0,
+        "grids": [
+          64,
+          128,
+          256
+        ],
+        "boundary": "periodic finite volume; exact compact support stays inside"
+      },
+      "sources": [
+        "https://doi.org/10.1016/0021-9991(79)90051-2",
+        "https://www.firedrakeproject.org/demos/DG_advection.py.html",
+        "https://doi.org/10.1137/0733033"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/zalesak-rotation/?lang=ja#zalesak-rotation-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/zalesak-rotation/?lang=en#zalesak-rotation-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-zalesak/#zalesak-rotation",
+        "en": "/numerical-methods-atlas/en/read/validation-zalesak/#zalesak-rotation"
+      },
+      "reference_scope": "The reference is inverse rigid rotation of a fixed discontinuous geometric set and analytic area integration over each cell. Full-turn return, total geometric area, rotated geometry and an independently evaluated quadrature comparison are checked by the dedicated release; actual execution is established by its saved qualification and test receipt. No Firedrake PDE or FCT algorithm is executed. The normalized shape component is distinguished from the combined Firedrake demonstration and the uninspected full Zalesak1979 numerical setup.",
+      "citations": [
+        {
+          "role": "historical-original-problem-attribution",
+          "title": "Steven T. Zalesak (1979), Fully multidimensional flux-corrected transport algorithms for fluids, Journal of Computational Physics 31, 335–362",
+          "url": "https://doi.org/10.1016/0021-9991(79)90051-2",
+          "note": "Publisher bibliography and abstract checked. Direct full-text access was unavailable; no complete original-test transcription or FCT replication is claimed."
+        },
+        {
+          "role": "official-setup-cross-check",
+          "title": "Firedrake project, DG advection demo: normalized slotted-cylinder geometry and rigid velocity",
+          "url": "https://www.firedrakeproject.org/demos/DG_advection.py.html",
+          "note": "Inspected the official velocity, period and geometry definitions. This release isolates a 0–1 slotted disk and uses periodic finite volumes; the official bell/cone/background 1, DG scheme, inflow boundary and full Firedrake experiment are not reproduced or executed."
+        },
+        {
+          "role": "official-demo-historical-context",
+          "title": "Randall J. LeVeque (1996), High-Resolution Conservative Algorithms for Advection in Incompressible Flow, SIAM Journal on Numerical Analysis 33, 627–665",
+          "url": "https://doi.org/10.1137/0733033",
+          "note": "The official Firedrake demonstration attributes its rotating-body setup to this work. Its role here is contextual attribution, not a claim that the full paper or its numerical algorithm was implemented."
+        }
+      ]
     }
   ]
 }

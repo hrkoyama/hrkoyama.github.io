@@ -2957,6 +2957,54 @@
           }
         }
       ]
+    },
+    {
+      "id": "zalesak",
+      "group": "transport",
+      "name": {
+        "ja": "Zalesak型の切り欠き円盤の回転輸送",
+        "en": "Zalesak-type slotted-disk rotation"
+      },
+      "chapter": "validation-zalesak",
+      "reading_section": "zalesak-rotation",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/zalesak/",
+      "verification": "/code/validated-examples/2026-11-23/zalesak/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/zalesak/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "zalesak-rotation"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/zalesak/results/zalesak-rotation-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/zalesak/inputs.json",
+          "json_pointer": "/cases/zalesak-rotation"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/zalesak/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "zalesak-rotation",
+          "url": "/numerical-methods-atlas/validation/zalesak-rotation/",
+          "name": {
+            "ja": "Zalesak型2D回転輸送：保存・有界性・形状誤差",
+            "en": "Zalesak-type 2D rotation: conservation, bounds and shape error"
+          }
+        }
+      ]
     }
   ],
   "excluded_examples": {

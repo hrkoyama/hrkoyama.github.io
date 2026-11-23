@@ -1234,14 +1234,14 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "planned",
-      "current": "MUSCL、WENO-JS/Z、PPM、CIP、DG、特性再構築、各limiterは実装済み。1D滑らか/不連続、2D entropy wave、保存・界面恒等式の検査がある。",
+      "state": "verified",
+      "current": "26単体検査・64²/128²/256²と位置/角度を含む8計算158判定、独立ZIP展開の再実行が合格。公開URLと公開ZIPのLinux確認は未完了です。",
       "tasks": [
         "既存1D矩形波と2D滑らかentropy waveを残し、周期回転後の解析的returnを新たな問題として追加。",
         "総量、min/max、形状誤差と回転中心/格子方向依存を比較。",
         "スロット形状・時刻・境界と点値/セル平均を原著または公式実装から固定する。"
       ],
-      "scope_note": "",
+      "scope_note": "Firedrake公式例で形状・速度・周期を確認した単独0–1円盤の周期有限体積変種。真の2次元回転輸送を一次風上/保存量MUSCL minmod・SSPRK33で比較し、全段の保存・上下限、四分の一周と1周の形状誤差、位置/角度・境界帯の診断を保存。Zalesak FCT・Firedrake DG・LeVeque CTUの再現ではありません。初回32²/64²/128²の156/158判定と不合格を保持し、同一受入基準で細分化しています。",
       "sources": [
         {
           "title": "Zalesak (1979), Fully multidimensional flux-corrected transport algorithms for fluids",
@@ -1256,9 +1256,71 @@
           "observation": "既存は1D不連続または2D滑らか。Zalesak固有IDなし。"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23/zalesak/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23/zalesak/inputs.json",
+          "/code/validated-examples/2026-11-23/zalesak/acceptance.json",
+          "/code/validated-examples/2026-11-23/zalesak/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23/zalesak/results/zalesak-rotation-preview.png",
+          "/code/validated-examples/2026-11-23/zalesak/results/zalesak-rotation.png"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#zalesak-ja",
+        "execution": "/numerical-methods-atlas/validation/zalesak-rotation/?lang=ja",
+        "code": [
+          "/code/validated-examples/2026-11-23/zalesak/run.py",
+          "/code/validated-examples/2026-11-23/zalesak/rotation.py",
+          "/code/validated-examples/2026-11-23/zalesak/references/geometry.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-23/zalesak/references/citations.json",
+          "/code/validated-examples/2026-11-23/zalesak/references/README.md",
+          "/code/validated-examples/2026-11-23/zalesak/references/source-review.json",
+          "/code/validated-examples/2026-11-23/zalesak/source-provenance.json",
+          "/code/validated-examples/2026-11-23/zalesak/pre-run-review.json",
+          "/code/validated-examples/2026-11-23/zalesak/attempts/01/attempt-summary.json",
+          "/code/validated-examples/2026-11-23/zalesak/attempts/01/results/result.json",
+          "/code/validated-examples/2026-11-23/zalesak/attempts/01/source/pre-run-contract.json"
+        ]
+      },
       "sequence": 12,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-23/zalesak/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-23/zalesak/inputs.json",
+            "/code/validated-examples/2026-11-23/zalesak/acceptance.json",
+            "/code/validated-examples/2026-11-23/zalesak/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-23/zalesak/results/zalesak-rotation-preview.png",
+            "/code/validated-examples/2026-11-23/zalesak/results/zalesak-rotation.png"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#zalesak-ja",
+          "execution": "/numerical-methods-atlas/validation/zalesak-rotation/?lang=ja",
+          "code": [
+            "/code/validated-examples/2026-11-23/zalesak/run.py",
+            "/code/validated-examples/2026-11-23/zalesak/rotation.py",
+            "/code/validated-examples/2026-11-23/zalesak/references/geometry.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-23/zalesak/references/citations.json",
+            "/code/validated-examples/2026-11-23/zalesak/references/README.md",
+            "/code/validated-examples/2026-11-23/zalesak/references/source-review.json",
+            "/code/validated-examples/2026-11-23/zalesak/source-provenance.json",
+            "/code/validated-examples/2026-11-23/zalesak/pre-run-review.json",
+            "/code/validated-examples/2026-11-23/zalesak/attempts/01/attempt-summary.json",
+            "/code/validated-examples/2026-11-23/zalesak/attempts/01/results/result.json",
+            "/code/validated-examples/2026-11-23/zalesak/attempts/01/source/pre-run-contract.json"
+          ]
+        }
+      }
     },
     {
       "id": "advection-reconstruction-3",
@@ -5123,9 +5185,9 @@
     "total": 103,
     "fields": 36,
     "states": {
-      "planned": 97,
+      "planned": 96,
       "in-progress": 0,
-      "verified": 0,
+      "verified": 1,
       "published": 6
     },
     "kinds": {
@@ -5141,7 +5203,7 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-benchmark-backlog.json": "7b44114099b5f3d91c9e7fe4731f4494272cde24bb7ff198a73856acabbf9fa0",
+    "catalog/atlas-benchmark-backlog.json": "4d4f642b4c45a5dfe0feb491fdb3efdcc9156fc997d58e80ccf51e479ca2e56b",
     "code/validated-examples/2026-11-23-r2/euler-positivity/acceptance.json": "f08558b2703369a2260db1252dc40272f76556a2f6205688faa88a4c37c79050",
     "code/validated-examples/2026-11-23-r2/euler-positivity/euler_positivity.py": "c22015d9435095b3f08189d1b09be4a040c79062b1cc76fd15648cca00f73a58",
     "code/validated-examples/2026-11-23-r2/euler-positivity/inputs.json": "a1185e4b8be0f49f8f3f551f934614110c227d39b2bb0dc4438c5301428d751b",
@@ -5256,8 +5318,25 @@
     "code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex.png": "38635f161af26efd48e0c0a2bc463974e3e81e6b506770a4c6f6c19b24be1970",
     "code/validated-examples/2026-11-23/low-mach/run.py": "727cbf0477eaac09bc23179c8fb2d5f71c187a6fe4d33fc166d55274a3baba6e",
     "code/validated-examples/2026-11-23/low-mach/verification.json": "f747210e1d46900c4f56b01e989696c3feaee35361fe42be11428fd280bacf84",
-    "numerical-methods-atlas/gallery/index.html": "493b4fe3d73a73b189ae2fa0c1aa523b06a7a8078c861f77ff47d0969fc2a75c",
-    "numerical-methods-atlas/solutions/index.html": "0a8a076dea7be0137492abb709d465edfee94d1f2220360295b577b4c880718e",
+    "code/validated-examples/2026-11-23/zalesak/acceptance.json": "9901dd30dacc8cd472cb0ff7d4b859c9131f913c40118030bc806e45207e35f4",
+    "code/validated-examples/2026-11-23/zalesak/attempts/01/attempt-summary.json": "4db41b3618472ec0cbbe3e65766cdb2ebd84d9ed0c3899f42bae9d44ba4b3abf",
+    "code/validated-examples/2026-11-23/zalesak/attempts/01/results/result.json": "f1d69a92d781b46bf8e715af9736f282417b472c9584b01d1c491846932f126e",
+    "code/validated-examples/2026-11-23/zalesak/attempts/01/source/pre-run-contract.json": "985d85e4d98bc576fbd8e0a46c125c2dd80e71a467d7bbd522aec0dce88b0f19",
+    "code/validated-examples/2026-11-23/zalesak/inputs.json": "0dcc0dc1e870fd50ddf5778ee189ec4069694247fdee6610c16832ed4d690c63",
+    "code/validated-examples/2026-11-23/zalesak/pre-run-contract.json": "aed497b96ed7db92b0746d12ada06b8c2e7b040261fd87dab826f79152abbaa9",
+    "code/validated-examples/2026-11-23/zalesak/pre-run-review.json": "7475f42011013162e11d079c4b0344da631d7f3b694939546d3fd289ce5bcac6",
+    "code/validated-examples/2026-11-23/zalesak/references/README.md": "109639cb48b5ea969f537e0d39e7838c1267f8c9370fe8c750aa12178d23652f",
+    "code/validated-examples/2026-11-23/zalesak/references/citations.json": "8f9f287e7f6f4ea867385022a48379b9803fa7db9c42537d1c7055ca58b37f4f",
+    "code/validated-examples/2026-11-23/zalesak/references/geometry.py": "70ff5f47aa8a4aa7bfc7eb65921dd7e7c1386dd92c3133ba87c6fbef38247ace",
+    "code/validated-examples/2026-11-23/zalesak/references/source-review.json": "c47dc5a01c7643d8599f74b7c96dcea5ad5cf22a45bd12854cb693f141640640",
+    "code/validated-examples/2026-11-23/zalesak/results/zalesak-rotation-preview.png": "4c1236cfeda0f42d555a6a918ed20682729c95c91f2ab6a9c615e2eb5fbcdccc",
+    "code/validated-examples/2026-11-23/zalesak/results/zalesak-rotation.png": "1d7ed7b6669b25cbe45951d26ffc82974790c5234237eff32e7456064822ed27",
+    "code/validated-examples/2026-11-23/zalesak/rotation.py": "085877635c181710fe749fc680e2825d89ad660d036d0a851862474051cccd71",
+    "code/validated-examples/2026-11-23/zalesak/run.py": "eb80d86d24904f12971f6cca407bd2b289576810491701aa82ff1698ca82c01f",
+    "code/validated-examples/2026-11-23/zalesak/source-provenance.json": "6a435417d628c17e5caf742ddc01799f953bc1e66e9fa59a3834d6a22647d1ed",
+    "code/validated-examples/2026-11-23/zalesak/verification.json": "aad9b39c23d83e967588361edfdb05724f1ea3fade93843ebb05b5fd829ba44e",
+    "numerical-methods-atlas/gallery/index.html": "c5e1c37f0dc5e69f9550325414febc2fea896b398fc4644e51d7a7e8e03bd71e",
+    "numerical-methods-atlas/solutions/index.html": "9c9c25bfab604738bf36a0fb9b29fed735d432c014935df82ef536fec66ddf4f",
     "numerical-methods-atlas/validation/double-mach-reflection/index.html": "a97c707de665870d0897a0cdaddda7b7b455e0beb56778061c2d8a02ba3f4979",
     "numerical-methods-atlas/validation/euler-double-rarefaction-positivity/index.html": "258ca38fb35c74927604e37433023b5ead4a20dc9a7f970565def08c7eb21fc2",
     "numerical-methods-atlas/validation/forward-step-m3/index.html": "708a4748a1108bc66d709800ff2ae21b4cad482fe6e470dfdbd30484149e08a0",
@@ -5265,6 +5344,7 @@
     "numerical-methods-atlas/validation/low-mach-vortex/index.html": "2744e0d480dc86de863edef6de5ced0fc0c3cf3f7bec0eda8581a5589c774d53",
     "numerical-methods-atlas/validation/noh-cartesian-2d/index.html": "484592fde6dbf3f4b5da68a363d9907e9deda9ea1883525c40762d405d64e2e1",
     "numerical-methods-atlas/validation/sedov-blast/index.html": "3b23469cd17837f105df30961020a8c4ff8b47efe937bf45430b8720a6e440ed",
-    "numerical-methods-atlas/validation/verification/2026-11-23-euler-positivity-public.json": "6d219b1fe34353e9a6634d64c8379d3a7dab6b324b538b35ecb695f5a584e757"
+    "numerical-methods-atlas/validation/verification/2026-11-23-euler-positivity-public.json": "6d219b1fe34353e9a6634d64c8379d3a7dab6b324b538b35ecb695f5a584e757",
+    "numerical-methods-atlas/validation/zalesak-rotation/index.html": "2f2287fd37a8a620bcd82a64c8952b6ed852d864321cd3114872c883f5a4e3ed"
   }
 }

@@ -1,0 +1,49 @@
+{
+  "case": "zalesak-rotation",
+  "source_result_sha256": "51851a31df72eec078e25171deeacd2699a9bfe9eedc55b4bc6831fd233b408d",
+  "source_fields_sha256": {
+    "field-base-donor-cell-n64.npz": "d06e04fd0b6ad50d1bba007873f96a2501d7e8003300d25ddac2406bf118b5b5",
+    "stages-base-donor-cell-n64.npz": "1db8dc5b8b169fb7edbe39b5e0ad5a5c64eb040470483c56db4d7686496d33ef",
+    "field-base-muscl-minmod-n64.npz": "16ab8fd13e2b701940684b55756c9d41e5739ef4341c2cc4980739819a693711",
+    "stages-base-muscl-minmod-n64.npz": "0e019b694638749e8facb63e13c86eaf38855b746bdaafb32a5bd2239a8dffde",
+    "field-base-donor-cell-n128.npz": "75b2abeea3b6082111d4660bce4997d49d3a57fdfe7eecd954cc3b9852807e80",
+    "stages-base-donor-cell-n128.npz": "fefdf73e26b5b9b60a78d3c098d4fbb2cec5414834df033e99bdf0f9800fc7bb",
+    "field-base-muscl-minmod-n128.npz": "2a7b7050e8687e62c5551aa6e875cf809f19ad9e7e9d915ae6cb245191e87757",
+    "stages-base-muscl-minmod-n128.npz": "9b0bbdad0cae692251f16f2e545df897d5465ffebf952785e28ae67ddcafde09",
+    "field-base-donor-cell-n256.npz": "95ccafebb1fda9f84503f241c6e746e9bcc40e8f9ad77242fd758768a9ee4025",
+    "stages-base-donor-cell-n256.npz": "85df56af153b71817bbe0b054734845178c1bac8632cb8ac0a434d1fa8efcea2",
+    "field-base-muscl-minmod-n256.npz": "f0a4333eeedefe92b5b3690bb4a4614ac69b433e781b832d632abfd931f26fe8",
+    "stages-base-muscl-minmod-n256.npz": "fdb49b2eae9d3465d97d40a5c2fc05fbc4e59c20dbdc8bd2271f7e5afca1e338",
+    "field-half-cell-shift.npz": "994b0031ad193493813eedcc3b23053d3fa471d32ee9d28389fa388c91d1d007",
+    "stages-half-cell-shift.npz": "48bc455f3a8472f0f55e1254e0bb5608e9cfbd3cf7a383ba55ed3c59cdc959c1",
+    "field-oblique-start.npz": "70e583ca1c492b07f2a4d681e972e5fa455b61420b9350bb03466aad64ad0a74",
+    "stages-oblique-start.npz": "6b8820004803e6d98d55862c659aceea2c8f6ad07476ad2292e16b09287e053c"
+  },
+  "figures": [
+    {
+      "path": "zalesak-rotation-preview.png",
+      "sha256": "4c1236cfeda0f42d555a6a918ed20682729c95c91f2ab6a9c615e2eb5fbcdccc"
+    },
+    {
+      "path": "zalesak-rotation-preview.svg",
+      "sha256": "2f04b047aba836aaa7ab176162cb8bc1f3e0f6e6fc78eb9ef0c0787d9823dd98"
+    },
+    {
+      "path": "zalesak-rotation-preview.pdf",
+      "sha256": "3d12d76bd3d81d6fe194ca2cfbc8febecb7d53ea3730e98bf6fdc0aabdd1a1fe"
+    },
+    {
+      "path": "zalesak-rotation.png",
+      "sha256": "1d7ed7b6669b25cbe45951d26ffc82974790c5234237eff32e7456064822ed27"
+    },
+    {
+      "path": "zalesak-rotation.svg",
+      "sha256": "f505a029aaf51c5735db8ac400d8d744111565ccfb67f3a8f17708c9b6f89d41"
+    },
+    {
+      "path": "zalesak-rotation.pdf",
+      "sha256": "cc00b2bbfd3e57ce7c12ee00b22b53a69b62e9bb8d9fb126f2095f07a7c27569"
+    }
+  ],
+  "scope": "Actual saved 2D scalar cell means; preview is a labeled crop, main fields show the full unit square; error metrics cover the whole domain. Shared0–1color scale, with saved reference0.5contour."
+}

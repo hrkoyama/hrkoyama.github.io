@@ -14,6 +14,7 @@ from urllib.parse import urlparse
 import xml.etree.ElementTree as ET
 from atlas_execution_discovery import load_discovery
 from atlas_equation_availability import equation_evidence
+from atlas_equation_inventory import merge_catalog_equations
 
 ROOT=Path(__file__).resolve().parents[1]
 ATLAS=ROOT/'numerical-methods-atlas'
@@ -122,6 +123,10 @@ for path in [ATLAS/'coverage.json',ATLAS/'assets/site-coverage.json']:
     coverage['items']=[x for x in coverage['items'] if x.get('origin')!='curated-quantum-reading']
     for x in methods.values():coverage['items'].append({'kind':'method','id':x['id'],'label':x['name']['en'],'chapter':'quantum-chemistry','status':'local-example' if x.get('quantum_examples') or x.get('molecular_examples') or x.get('periodic_examples') else 'reading','group':'Electronic structure & quantum chemistry','scope':' '.join(s['en'] for s in [x.get('example_scope',{}),x.get('molecular_scope',{}),x.get('periodic_scope',{})] if s.get('en')) if x.get('quantum_examples') or x.get('molecular_examples') or x.get('periodic_examples') else 'Introductory formulation only; no dedicated solver or numerical validation.','origin':'curated-quantum-reading'})
     for x in equations:coverage['items'].append({'kind':'equation','id':x['id'],'label':x['name']['en'],'chapter':x['chapter'],'status':x['status'],'group':'Electronic structure & quantum chemistry','scope':x['note']['en'],'origin':'curated-quantum-reading'})
+    # The shared catalog also grows outside quantum chemistry. Preserve the
+    # imported entries, while deriving missing model identities from its
+    # canonical formulas rather than allowing a second inventory to drift.
+    coverage['items']=merge_catalog_equations(coverage['items'],all_equations)
     # Align previously imported biology labels with their verified scoped runs.
     # Counts refer to equation/model entries, never independent physical problems.
     for item in coverage['items']:

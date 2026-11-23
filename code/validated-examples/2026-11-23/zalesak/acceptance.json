@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "declared_before_first_scientific_execution": true,
+  "limits": {
+    "mass_balance": 3e-12,
+    "reconstruction_mean": 3e-15,
+    "reference_area": 3e-12,
+    "reference_centroid": 3e-12,
+    "reference_independent_cell_area": 3e-12,
+    "finest_donor_relative_l1": 1.0,
+    "finest_muscl_relative_l1": 0.55,
+    "consecutive_refinement_ratio": 0.98,
+    "finest_muscl_to_donor_l1": 0.85,
+    "diagnostic_relative_l1": 1.2,
+    "finest_quarter_relative_l1": 1.3,
+    "finest_quarter_discrete_centroid_distance": 0.04
+  },
+  "interpretation": "Finite fixed-grid checks, not a universal accuracy theorem. The exact compact rotating body stays inside the domain. The periodic extension has a tangential velocity seam; donor-cell tails reaching it are measured. Slot filling, boundary-band contamination and grid-center/orientation changes are diagnostic values, not a promise of perfect shape preservation. No state clipping, retries or tolerance relaxation is permitted."
+}

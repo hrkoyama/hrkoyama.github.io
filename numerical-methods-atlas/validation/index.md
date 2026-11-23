@@ -2102,6 +2102,71 @@ $$
 
 γ=1.4、左右(1,-2,0.4)/(1,2,0.4)、[0,1]、x0=0.5、t=0.15が保存プレビューと一致します。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。
 
+## Zalesak型2D回転輸送：保存・有界性・形状誤差
+
+- [Zalesak型2D回転輸送：保存・有界性・形状誤差](https://hrkoyama.github.io/numerical-methods-atlas/validation/zalesak-rotation/?lang=ja): スロット付き円盤を実際の2次元有限体積法で一回転させ、donor-cellとminmod MUSCLを比較します。3格子と、半セルの中心ずらし・45度の初期向きを含む8計算で、保存・各SSP段の有界性・形状誤差とスロットの埋まりを測ります。
+**使用手法**
+
+- [風上差分（upwind）](https://hrkoyama.github.io/numerical-methods-atlas/methods/upwind/?lang=ja) (`upwind`)
+- [MUSCL再構成](https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=ja) (`muscl`)
+- [Minmod](https://hrkoyama.github.io/numerical-methods-atlas/methods/minmod/?lang=ja) (`minmod`)
+- [SSPRK(3,3)](https://hrkoyama.github.io/numerical-methods-atlas/methods/ssprk33/?lang=ja) (`ssprk33`)
+
+**方程式**
+
+[この実行例の式と条件](https://hrkoyama.github.io/numerical-methods-atlas/validation/zalesak-rotation/?lang=ja#zalesak-rotation-ja-algorithm)
+
+解析的な発散ゼロの法線面速度と、隣接セルで共有する上流数値流束を用います。区分定数donor-cellと、方向別minmod勾配による平均保存型MUSCLを、どちらもSSPRK(3,3)で進めます。4面中点の平均がセル平均に等しいことと、各面のCourant数≤1/4による凸結合を使い、実際の値.20を各FE段で確認します。セル平均のクリップ、状態floor、刻み棄却・再試行は行いません。
+
+$$
+\partial_t q+\partial_x(uq)+\partial_y(vq)=0,\qquad (u,v)=(-(y-y_c),x-x_c),\quad T=2\pi
+$$
+
+$$
+q(x,t)=q_0\!\left(c+R_{-t}(x-c)\right),\qquad \bar q_{ij}(t)=h^{-2}\int_{C_{ij}}q(x,t)\,dx\,dy
+$$
+
+$$
+s_i=\operatorname{minmod}(q_i-q_{i-1},q_{i+1}-q_i),\quad q_i^{\pm}=\bar q_i\pm\tfrac12 s_i,\quad \bar q_{ij}=\tfrac14(q_L+q_R+q_D+q_U)
+$$
+
+$$
+\widehat F_{i+1/2,j}=u_j^+q_{R,ij}+u_j^-q_{L,i+1,j},\qquad E_{\Delta t}(q)_{ij}=q_{ij}-\frac{\Delta t}{h}(\Delta_x\widehat F+\Delta_y\widehat G)_{ij}
+$$
+
+$$
+q^{(1)}=E_{\Delta t}(q^n),\quad q^{(2)}=\tfrac34q^n+\tfrac14E_{\Delta t}(q^{(1)}),\quad q^{n+1}=\tfrac13q^n+\tfrac23E_{\Delta t}(q^{(2)})
+$$
+
+$$
+\frac{\Delta t}{h}\max(|u|,|v|)\le\tfrac14,\quad D_h\!\cdot u=0\quad\Longrightarrow\quad 0\le E_{\Delta t}(\bar q)\le1\ \text{if all four face states lie in }[0,1]
+$$
+
+- [2次元の回転移流](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#rotational-advection-ja) (`rotational-advection`)
+
+qの2次元保存形輸送。速度a=−ω(y−yc), b=ω(x−xc)は与えられ、∂xa+∂yb=0です。面で共有する速度・数値流束を使い、スカラーのセル平均を更新します。
+
+
+**問題の図**
+
+![Zalesak型2D回転輸送：保存・有界性・形状誤差：この実行例の保存済み検証図。](https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/results/zalesak-rotation.png)
+
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+
+[Zalesak型の切り欠き円盤の回転輸送](https://hrkoyama.github.io/numerical-methods-atlas/problems/zalesak/?lang=ja) (`zalesak`)
+
+[この問題のコード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/zalesak/?lang=ja#code-ja)
+
+**厳密解・参照解**
+
+[この実行例の参照・検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/zalesak-rotation/?lang=ja#zalesak-rotation-ja-validation)
+
+26単体検査と8固定計算158判定を実行前に固定します。全FE候補・SSP凸結合のmin/max、共有流束による質量収支、再構築の平均保存、3格子のL1/L∞・相対L2を保存します。円と凸多角形の交差面積から独立に作る厳密輸送のセル平均を、SciPyの鉛直切片求積と面積・一次モーメントで照合します。1/4・1/2・3/4回転の誤差と重心も検査し、回転方向や速度の誤りが一回転のreturnだけで隠れないようにします。
+
+- [Zalesak型の切り欠き円盤：剛体回転と幾何学的セル平均](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-zalesak-rotation-ja) (`zalesak-rotation`; 同じ問題の参照 · 解析参照)
+
+円盤とスロットの定義を固定し、保存した初期・帰還時のセル平均と比較します。指示関数の点値や別実装PDEの細格子解を参照と混同しません。
+
 # Explore small implemented validations by field
 
 These additional validation supplements are managed separately from the common 22-example registry. Receipts cover independent ZIP extraction, tests and every fixed input within each group. Changes of settings, methods or step sizes do not add independent physical problems.
@@ -4205,6 +4270,71 @@ Freeze 27 unit tests and 73 gates over three grids before execution. Retain nega
 - [Euler / double rarefaction](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-euler-double-rarefaction-en) (`euler-double-rarefaction`; Related-model reference · Semi-analytic reference)
 
 γ=1.4, states (1,-2,0.4)/(1,2,0.4), [0,1], x0=0.5 and t=0.15 match the saved preview. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations.
+
+## Zalesak-type 2D rotation: conservation, bounds and shape error
+
+- [Zalesak-type 2D rotation: conservation, bounds and shape error](https://hrkoyama.github.io/numerical-methods-atlas/validation/zalesak-rotation/?lang=en): Rotate a slotted disk through one full turn with an actual 2D finite-volume solver, comparing donor-cell and minmod MUSCL. Eight runs combine three grids with half-cell-center and 45-degree-start probes; measure conservation, bounds at every SSP stage, shape error and slot filling.
+**Methods used**
+
+- [Upwind finite differences](https://hrkoyama.github.io/numerical-methods-atlas/methods/upwind/?lang=en) (`upwind`)
+- [MUSCL reconstruction](https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=en) (`muscl`)
+- [Minmod](https://hrkoyama.github.io/numerical-methods-atlas/methods/minmod/?lang=en) (`minmod`)
+- [SSPRK(3,3)](https://hrkoyama.github.io/numerical-methods-atlas/methods/ssprk33/?lang=en) (`ssprk33`)
+
+**Equations**
+
+[This example’s formulation and conditions](https://hrkoyama.github.io/numerical-methods-atlas/validation/zalesak-rotation/?lang=en#zalesak-rotation-en-algorithm)
+
+Use analytic divergence-free normal face averages and one shared upwind flux per interface. Both piecewise-constant donor-cell and mean-preserving directional-minmod MUSCL use SSPRK(3,3). The four face-midpoint mean equals the cell mean; individual outgoing-face Courant<=1/4 gives a convex FE update. Check the actual .20 bound at every stage. No transported-state clipping/floors or rejected/retried steps are used.
+
+$$
+\partial_t q+\partial_x(uq)+\partial_y(vq)=0,\qquad (u,v)=(-(y-y_c),x-x_c),\quad T=2\pi
+$$
+
+$$
+q(x,t)=q_0\!\left(c+R_{-t}(x-c)\right),\qquad \bar q_{ij}(t)=h^{-2}\int_{C_{ij}}q(x,t)\,dx\,dy
+$$
+
+$$
+s_i=\operatorname{minmod}(q_i-q_{i-1},q_{i+1}-q_i),\quad q_i^{\pm}=\bar q_i\pm\tfrac12 s_i,\quad \bar q_{ij}=\tfrac14(q_L+q_R+q_D+q_U)
+$$
+
+$$
+\widehat F_{i+1/2,j}=u_j^+q_{R,ij}+u_j^-q_{L,i+1,j},\qquad E_{\Delta t}(q)_{ij}=q_{ij}-\frac{\Delta t}{h}(\Delta_x\widehat F+\Delta_y\widehat G)_{ij}
+$$
+
+$$
+q^{(1)}=E_{\Delta t}(q^n),\quad q^{(2)}=\tfrac34q^n+\tfrac14E_{\Delta t}(q^{(1)}),\quad q^{n+1}=\tfrac13q^n+\tfrac23E_{\Delta t}(q^{(2)})
+$$
+
+$$
+\frac{\Delta t}{h}\max(|u|,|v|)\le\tfrac14,\quad D_h\!\cdot u=0\quad\Longrightarrow\quad 0\le E_{\Delta t}(\bar q)\le1\ \text{if all four face states lie in }[0,1]
+$$
+
+- [Two-dimensional rotational advection](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#rotational-advection-en) (`rotational-advection`)
+
+Two-dimensional conservative transport of q with prescribed a=-omega(y-yc), b=omega(x-xc), whose divergence is zero. Shared face velocities and numerical fluxes update scalar cell means.
+
+
+**Problem figure**
+
+![Zalesak-type 2D rotation: conservation, bounds and shape error: saved validation figure for this execution.](https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/results/zalesak-rotation.png)
+
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+
+[Zalesak-type slotted-disk rotation](https://hrkoyama.github.io/numerical-methods-atlas/problems/zalesak/?lang=en) (`zalesak`)
+
+[This problem’s code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/zalesak/?lang=en#code-en)
+
+**Exact / reference solutions**
+
+[References and checks for this execution](https://hrkoyama.github.io/numerical-methods-atlas/validation/zalesak-rotation/?lang=en#zalesak-rotation-en-validation)
+
+Freeze26 unit checks and158 gates across eight fixed runs before execution. Retain min/max of every FE candidate/SSP convex mean, shared-flux mass budgets, reconstruction mean preservation and three-grid L1/Linf/relative-L2 errors. Independent circle/convex-polygon intersection means are qualified against SciPy vertical-slice quadrature, total area and first moments. Also check quarter/half/three-quarter-turn errors and centroids so a wrong direction or speed cannot hide behind a full-turn return.
+
+- [Zalesak-type slotted disk: rigid rotation and geometric cell means](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-zalesak-rotation-en) (`zalesak-rotation`; Same-problem reference · Analytic reference)
+
+Fix the disk and slot geometry and compare stored initial/returned cell means. Distinguish indicator point samples and a finer PDE calculation from this geometric reference.
 
 
 Original code: MIT. Other materials: https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.

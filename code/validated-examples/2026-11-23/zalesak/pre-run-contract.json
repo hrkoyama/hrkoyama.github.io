@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "revision": 2,
+  "created_at_utc": "2026-11-23T09:56:53.516006+00:00",
+  "declared_before_first_scientific_execution": false,
+  "declared_before_first_pde_run": false,
+  "declared_before_first_pytest_execution": false,
+  "planned_tests": 26,
+  "planned_numerical_gates": 158,
+  "planned_fixed_runs": 8,
+  "runtime_limit_seconds": 120,
+  "shared_pytest_plus_main_budget_seconds": 120,
+  "scoped_update": "Actual2D scalar FV slotted-disk rotation: donor-cell and minmod MUSCL with shared periodic upwind fluxes and SSPRK33. Three grid refinements plus half-cell-center and45degree-start probes. Exact geometric cell means at allquartertimes, independent area/moment/cut-cell qualification; allFE/SSP bounds and massresiduals retained. Not Zalesak FCT.",
+  "conditional_bound": "Four face means average to each cell mean; minmod faces are in neighboring range; divergencefree normal face velocities and individual outgoing-face Courant<=1/4 make FE convex. ActualCourant.20; SSP convexity extends this to every recorded stage. Fixed roundoffband5e-13, no stateclipping orretry.",
+  "presentation_files_excluded": [
+    "cases.json",
+    "README.md",
+    "LICENSE",
+    "plot.py",
+    "requirements-plot.txt"
+  ],
+  "files_sha256": {
+    "acceptance.json": "9901dd30dacc8cd472cb0ff7d4b859c9131f913c40118030bc806e45207e35f4",
+    "inputs.json": "0dcc0dc1e870fd50ddf5778ee189ec4069694247fdee6610c16832ed4d690c63",
+    "pre-run-review.json": "7475f42011013162e11d079c4b0344da631d7f3b694939546d3fd289ce5bcac6",
+    "references/README.md": "109639cb48b5ea969f537e0d39e7838c1267f8c9370fe8c750aa12178d23652f",
+    "references/__init__.py": "9bda9af4ad164caf6eac03d56da365ae5ca1b4a29d6d35f88d9198578b2af7c5",
+    "references/citations.json": "8f9f287e7f6f4ea867385022a48379b9803fa7db9c42537d1c7055ca58b37f4f",
+    "references/geometry.py": "70ff5f47aa8a4aa7bfc7eb65921dd7e7c1386dd92c3133ba87c6fbef38247ace",
+    "references/qualify_reference.py": "eb7b858d6dc85e76a5ac49d9dc603da206de51ca608e89eecdb3b59b2fda6cb0",
+    "references/source-review.json": "c47dc5a01c7643d8599f74b7c96dcea5ad5cf22a45bd12854cb693f141640640",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "rotation.py": "085877635c181710fe749fc680e2825d89ad660d036d0a851862474051cccd71",
+    "run.py": "eb80d86d24904f12971f6cca407bd2b289576810491701aa82ff1698ca82c01f",
+    "source-provenance.json": "6a435417d628c17e5caf742ddc01799f953bc1e66e9fa59a3834d6a22647d1ed",
+    "test_rotation.py": "03327580c5a7c479137b6ff2dea8c8949676c663719546506aaa407cc8112747"
+  },
+  "declared_before_this_revision_scientific_execution": true,
+  "declared_before_this_revision_pde_execution": true,
+  "declared_before_this_revision_pytest_execution": true,
+  "previous_contract_sha256": "985d85e4d98bc576fbd8e0a46c125c2dd80e71a467d7bbd522aec0dce88b0f19",
+  "original_acceptance_sha256": "9901dd30dacc8cd472cb0ff7d4b859c9131f913c40118030bc806e45207e35f4",
+  "revision_reason": "The first32/64/128batch passed26tests and156/158gates but the finest donor/MUSCL relativeL1 errors exceeded the original1.0/.55 limits. Keep the acceptance file, solver, test code and analytic geometry byte-identical. Refine the base grids to64/128/256; retain both64diagnostics. The driver selects its displayed finest metric dynamically, the reference qualifier additionally includes256, and source/arrays/decisions from the first attempt are preserved. No tolerance relaxation or PDE-state repair.",
+  "grid_change": {
+    "previous": [
+      32,
+      64,
+      128
+    ],
+    "current": [
+      64,
+      128,
+      256
+    ],
+    "diagnostics_unchanged_n": 64
+  }
+}

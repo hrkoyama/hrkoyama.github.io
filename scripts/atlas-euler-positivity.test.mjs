@@ -44,15 +44,15 @@ print('manifest-bound supplemental gallery opt-in checked')`;
 
 test('Euler stage positivity reuses one problem and preserves eighteen older releases and all eighty-six primary pictures',()=>{
  const registry=json('numerical-methods-atlas/validation/releases.json');
- assert.equal(objectHash(registry.releases.filter(r=>r.group!==group)),'897f2f731b5911739be0230dfb5ae0ab174ebeb08b954bcca028f02d59dba1ee');
- assert.equal(registry.case_count,48);assert.equal(registry.releases.length,19);
+ assert.equal(objectHash(registry.releases.filter(r=>r.group!==group&&r.group!=='zalesak')),'897f2f731b5911739be0230dfb5ae0ab174ebeb08b954bcca028f02d59dba1ee');
+ assert.equal(registry.case_count,49);assert.equal(registry.releases.length,20);
  const release=registry.releases.find(r=>r.group===group);assert.deepEqual(release.case_ids,[id]);
- assert.equal(registry.releases.reduce((s,r)=>s+r.tests,0),571+release.tests);
- const pictures=json('numerical-methods-atlas/gallery/preview-manifest.json').items.map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}));
+ assert.equal(registry.releases.filter(r=>r.group!=='zalesak').reduce((s,r)=>s+r.tests,0),571+release.tests);
+ const pictures=json('numerical-methods-atlas/gallery/preview-manifest.json').items.filter(r=>r.id!=='zalesak').map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}));
  assert.equal(pictures.length,86);assert.equal(objectHash(pictures),'c64fafd78d6ae0a39941161c2932799ffca4f8eb0e3885ce2998de58f4a1f429');
  const problems=json('catalog/atlas-test-problems.json').problems;
- assert.equal(problems.length,86);
- const before=problems.map(p=>{if(p.id!=='double-rarefaction')return p;const copy={...p};delete copy.supplemental_examples;return copy;});
+ assert.equal(problems.length,87);
+ const before=problems.filter(p=>p.id!=='zalesak').map(p=>{if(p.id!=='double-rarefaction')return p;const copy={...p};delete copy.supplemental_examples;return copy;});
  assert.equal(objectHash(before),'cb3e36911d193201104862c1d0038e1b1b08c551946f7508a0ce7f4eb1fafd67');
  assert.equal(json('catalog/atlas-methods.json').methods.length,147);
  assert.equal(hash('numerical-methods-atlas/code-and-data/examples.json'),'3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7');

@@ -26,7 +26,7 @@
     "test_time_geometry",
     "test_numerics"
   ],
-  "code_mapping_scope": "Related chapter modules and test files; not a claim that each test covers every named method.",
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct.",
   "references": [
     {
       "url": "https://doi.org/10.1002/cpa.3160050303",
@@ -167,15 +167,3096 @@
     "upwind scheme",
     "upwind differencing"
   ],
+  "depth_release": {
+    "group": "zalesak",
+    "case_ids": [
+      "zalesak-rotation"
+    ],
+    "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/",
+    "code_edition": "2026-11-23",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/rotation.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/references/geometry.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/references/qualify_reference.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/test_rotation.py"
+    ],
+    "run_commands": [
+      "python -m pytest -q",
+      "python run.py --input inputs.json --output output"
+    ],
+    "run_from": "atlas-zalesak-2026-11-23",
+    "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/atlas-zalesak-2026-11-23.zip",
+    "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/source-manifest.json",
+    "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/verification.json",
+    "code_archive_sha256": "28e7d2bc93d3a5ba1cb015c874c489e9fd1a2e8a586a46d519800c799b0fb6f8",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/results/result.json",
+    "passed_tests": 26,
+    "examples": [
+      {
+        "id": "zalesak-rotation",
+        "title": {
+          "ja": "Zalesak型2D回転輸送：保存・有界性・形状誤差",
+          "en": "Zalesak-type 2D rotation: conservation, bounds and shape error"
+        },
+        "method_ids": [
+          "upwind",
+          "muscl",
+          "minmod",
+          "ssprk33"
+        ],
+        "domains": [
+          "transport",
+          "pde",
+          "time"
+        ],
+        "code_files": [
+          "run.py",
+          "rotation.py",
+          "references/geometry.py",
+          "references/qualify_reference.py"
+        ],
+        "summary": {
+          "ja": "スロット付き円盤を実際の2次元有限体積法で一回転させ、donor-cellとminmod MUSCLを比較します。3格子と、半セルの中心ずらし・45度の初期向きを含む8計算で、保存・各SSP段の有界性・形状誤差とスロットの埋まりを測ります。",
+          "en": "Rotate a slotted disk through one full turn with an actual 2D finite-volume solver, comparing donor-cell and minmod MUSCL. Eight runs combine three grids with half-cell-center and 45-degree-start probes; measure conservation, bounds at every SSP stage, shape error and slot filling."
+        },
+        "assumptions": {
+          "ja": "無次元の[0,1]²、回転中心(.5,.5)、円盤中心(.5,.75)、半径.15、スロット幅.05・上端y=.85、角速度1、一回転T=2π、64²/128²/256²セルを固定します。スロット以外はq=1、外側は0です。周期境界を使い、厳密な物体の支持は境界から離れます。速度の周期延長には接線成分の継ぎ目があり、数値拡散の裾が届く場合は境界帯の質量として記録します。",
+          "en": "Fix the dimensionless unit square, rotation center(.5,.5), disk center(.5,.75), radius.15, slot width.05/top y=.85, angular speed1, T=2pi and64²/128²/256² cells. The body is1 and exterior/slot0. Periodic normal face velocities match; the exact compact support stays away from the boundary. The periodic extension has a tangential-velocity seam, and diffusive tails reaching its fixed-width boundary band are measured."
+        },
+        "algorithm": {
+          "ja": "解析的な発散ゼロの法線面速度と、隣接セルで共有する上流数値流束を用います。区分定数donor-cellと、方向別minmod勾配による平均保存型MUSCLを、どちらもSSPRK(3,3)で進めます。4面中点の平均がセル平均に等しいことと、各面のCourant数≤1/4による凸結合を使い、実際の値.20を各FE段で確認します。セル平均のクリップ、状態floor、刻み棄却・再試行は行いません。",
+          "en": "Use analytic divergence-free normal face averages and one shared upwind flux per interface. Both piecewise-constant donor-cell and mean-preserving directional-minmod MUSCL use SSPRK(3,3). The four face-midpoint mean equals the cell mean; individual outgoing-face Courant<=1/4 gives a convex FE update. Check the actual .20 bound at every stage. No transported-state clipping/floors or rejected/retried steps are used."
+        },
+        "validation": {
+          "ja": "26単体検査と8固定計算158判定を実行前に固定します。全FE候補・SSP凸結合のmin/max、共有流束による質量収支、再構築の平均保存、3格子のL1/L∞・相対L2を保存します。円と凸多角形の交差面積から独立に作る厳密輸送のセル平均を、SciPyの鉛直切片求積と面積・一次モーメントで照合します。1/4・1/2・3/4回転の誤差と重心も検査し、回転方向や速度の誤りが一回転のreturnだけで隠れないようにします。",
+          "en": "Freeze26 unit checks and158 gates across eight fixed runs before execution. Retain min/max of every FE candidate/SSP convex mean, shared-flux mass budgets, reconstruction mean preservation and three-grid L1/Linf/relative-L2 errors. Independent circle/convex-polygon intersection means are qualified against SciPy vertical-slice quadrature, total area and first moments. Also check quarter/half/three-quarter-turn errors and centroids so a wrong direction or speed cannot hide behind a full-turn return."
+        },
+        "limits": {
+          "ja": "標準的なスロット形状を単独の0–1物体として使う周期境界の限定例です。Zalesak原著のFCTアルゴリズム、原著の格子・境界、bell/coneを加えたFiredrakeデモ全体の再現ではありません。スロット内の診断は、固定した内側長方形と区分定数セル平均との面積重み付き値です。粗格子では厳密セル平均の投影だけでも0にならないため、その参照baselineと過剰な埋まりを別々に示します。格子中心・45度方向の2診断を普遍的な等方性保証とせず、完全な形状保持や一般流れの最大値原理を主張しません。解析幾何の微小な面積丸め処理と、実際の輸送状態をクリップしないことを区別します。",
+          "en": "This is an isolated0–1 standard slotted body with periodic boundaries. It does not implement Zalesak FCT, reproduce the original paper’s grid/boundaries or the entire Firedrake bell/cone/background demonstration. The inner-slot diagnostic area-weights piecewise-constant means over a fixed rectangle. Coarse exact cell projection can already give a nonzero baseline, which is reported separately from excess numerical filling. Two center/orientation probes do not establish universal isotropy, perfect shape retention or a maximum principle for arbitrary flows. Tiny geometric-area roundoff handling is distinguished from the absence of transported-state clipping."
+        },
+        "formulas": [
+          "\\partial_t q+\\partial_x(uq)+\\partial_y(vq)=0,\\qquad (u,v)=(-(y-y_c),x-x_c),\\quad T=2\\pi",
+          "q(x,t)=q_0\\!\\left(c+R_{-t}(x-c)\\right),\\qquad \\bar q_{ij}(t)=h^{-2}\\int_{C_{ij}}q(x,t)\\,dx\\,dy",
+          "s_i=\\operatorname{minmod}(q_i-q_{i-1},q_{i+1}-q_i),\\quad q_i^{\\pm}=\\bar q_i\\pm\\tfrac12 s_i,\\quad \\bar q_{ij}=\\tfrac14(q_L+q_R+q_D+q_U)",
+          "\\widehat F_{i+1/2,j}=u_j^+q_{R,ij}+u_j^-q_{L,i+1,j},\\qquad E_{\\Delta t}(q)_{ij}=q_{ij}-\\frac{\\Delta t}{h}(\\Delta_x\\widehat F+\\Delta_y\\widehat G)_{ij}",
+          "q^{(1)}=E_{\\Delta t}(q^n),\\quad q^{(2)}=\\tfrac34q^n+\\tfrac14E_{\\Delta t}(q^{(1)}),\\quad q^{n+1}=\\tfrac13q^n+\\tfrac23E_{\\Delta t}(q^{(2)})",
+          "\\frac{\\Delta t}{h}\\max(|u|,|v|)\\le\\tfrac14,\\quad D_h\\!\\cdot u=0\\quad\\Longrightarrow\\quad 0\\le E_{\\Delta t}(\\bar q)\\le1\\ \\text{if all four face states lie in }[0,1]"
+        ],
+        "citations": [
+          {
+            "id": "zalesak1979",
+            "author": "Steven T. Zalesak",
+            "year": 1979,
+            "title": "Fully multidimensional flux-corrected transport algorithms for fluids",
+            "journal": "Journal of Computational Physics",
+            "volume": "31",
+            "number": "3",
+            "pages": "335–362",
+            "doi": "10.1016/0021-9991(79)90051-2",
+            "url": "https://www.sciencedirect.com/science/article/pii/0021999179900512",
+            "type": "article",
+            "role": "historical slotted-cylinder/FCT source; not the implemented method",
+            "review_scope": "publisher bibliography and abstract inspected; direct full-paper open returned403; original test geometry and boundary conditions not audited",
+            "review": {
+              "ja": "出版社の書誌と多次元FCTの抄録を確認。原著全文とその格子・境界・具体形状は今回未確認です。本例をZalesakのFCTアルゴリズム再現とは表示しません。",
+              "en": "Publisher record and abstract checked. The full original test geometry/grid/boundaries were not audited. This example does not implement or reproduce Zalesak FCT."
+            },
+            "accessed_on": "2026-11-23"
+          },
+          {
+            "id": "firedrake-dg-advection",
+            "author": "Firedrake developers",
+            "title": "DG advection equation with upwinding",
+            "url": "https://www.firedrakeproject.org/demos/DG_advection.py.html",
+            "type": "official-documentation",
+            "role": "actually inspected normalized slotted-disk geometry, rotation velocity and period",
+            "review_scope": "official documentation equations and source lines46,63–92: disk(.5,.75),R.15,slot(.475,.525),y<.85,velocity(.5−y,x−.5),T2pi; SSP equations43–45 and135–143",
+            "review": {
+              "ja": "公式デモの形状・回転速度・周期とSSPRK式を確認。元デモはbell・coneと背景1を加え、DQ1・流入値1を使います。本例はスロット円板だけの0–1指示関数・有限体積・周期境界という明示的な変形です。Firedrakeは実行・転載しません。",
+              "en": "Inspected official geometry, velocity, period and SSP formulas. The demo includes a bell, cone, background1, DQ1 elements and inflow1. This is an explicit isolated0–1 slotted-disk FV/periodic variant. No Firedrake software was executed or copied."
+            },
+            "accessed_on": "2026-11-23"
+          },
+          {
+            "id": "leveque1996advection",
+            "author": "Randall J. LeVeque",
+            "year": 1996,
+            "title": "High-Resolution Conservative Algorithms for Advection in Incompressible Flow",
+            "journal": "SIAM Journal on Numerical Analysis",
+            "volume": "33",
+            "number": "2",
+            "pages": "627–665",
+            "doi": "10.1137/0733033",
+            "url": "https://faculty.washington.edu/rjl/pubs/hiresadv/0733033.pdf",
+            "type": "article",
+            "role": "conservative scalar-advection and donor-cell/minmod background; official demo attribution",
+            "review_scope": "author-hosted paper selected sections1–3 actually inspected: PDE/incompressibility, FV means, minmod definition, donor-cell flux; no full-paper or numerical-table reproduction",
+            "review": {
+              "ja": "著者公開論文の節1–3で保存形・非圧縮条件・セル平均・minmod・donor-cellを確認。Firedrakeが標準複合図形の出典として引用しています。本例のMUSCL＋SSPRKは同論文のCTU／波動伝播法そのものではありません。",
+              "en": "Read sections1–3 on conservative transport, incompressibility, means, minmod and donor-cell fluxes. Firedrake cites this paper for its composite-shape test. Our MUSCL/SSPRK update is not the paper’s CTU/wave-propagation algorithm."
+            },
+            "accessed_on": "2026-11-23"
+          },
+          {
+            "id": "shu1988ssprk",
+            "author": "Chi-Wang Shu and Stanley Osher",
+            "year": 1988,
+            "title": "Efficient implementation of essentially non-oscillatory shock-capturing schemes",
+            "journal": "Journal of Computational Physics",
+            "volume": "77",
+            "number": "2",
+            "pages": "439–471",
+            "doi": "10.1016/0021-9991(88)90177-5",
+            "url": "https://www.sciencedirect.com/science/article/pii/0021999188901775",
+            "type": "article",
+            "role": "historical SSP/TVD Runge-Kutta source",
+            "review_scope": "publisher bibliography/abstract inspected; actual three-stage convex formulas checked in official Firedrake demo, not a full original-paper audit",
+            "review": {
+              "ja": "出版社の書誌とTVD Runge–Kuttaの抄録を確認。使う三段凸結合はFiredrake公式記述でも確認しました。原著全文の監査とは区別します。",
+              "en": "Publisher bibliography/abstract checked; the actual three-stage convex formulas were also inspected in the official Firedrake demo. The original full paper was not audited."
+            },
+            "accessed_on": "2026-11-23"
+          },
+          {
+            "id": "scipy114quad",
+            "author": "SciPy developers",
+            "title": "scipy.integrate.quad — SciPy v1.14.1 Manual",
+            "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.quad.html",
+            "type": "official-documentation",
+            "role": "actually executed independent adaptive vertical-section quadrature for geometry qualification",
+            "review_scope": "official versioned API: QUADPACK integration, break points, epsabs/epsrel, reported error; use is evidenced by qualification receipts",
+            "review": {
+              "ja": "版を固定した公式APIでQUADPACK、分割点、絶対・相対公差と推定誤差の意味を確認。解析的な円・多角形の面積計算とは異なる垂直断面求積を、実行記録付きで照合します。",
+              "en": "Versioned official API checked for QUADPACK, break points, tolerances and reported error. Independently integrated vertical sections are compared with circle/polygon areas; execution is established by saved receipts."
+            },
+            "accessed_on": "2026-11-23"
+          }
+        ],
+        "references": [
+          {
+            "id": "zalesak1979",
+            "author": "Steven T. Zalesak",
+            "year": 1979,
+            "title": "Fully multidimensional flux-corrected transport algorithms for fluids",
+            "journal": "Journal of Computational Physics",
+            "volume": "31",
+            "number": "3",
+            "pages": "335–362",
+            "doi": "10.1016/0021-9991(79)90051-2",
+            "url": "https://www.sciencedirect.com/science/article/pii/0021999179900512",
+            "type": "article",
+            "role": "historical slotted-cylinder/FCT source; not the implemented method",
+            "review": {
+              "ja": "出版社の書誌と多次元FCTの抄録を確認。原著全文とその格子・境界・具体形状は今回未確認です。本例をZalesakのFCTアルゴリズム再現とは表示しません。",
+              "en": "Publisher record and abstract checked. The full original test geometry/grid/boundaries were not audited. This example does not implement or reproduce Zalesak FCT."
+            },
+            "accessed_on": "2026-11-23",
+            "review_level": "publisher bibliography and abstract inspected; direct full-paper open returned403; original test geometry and boundary conditions not audited"
+          },
+          {
+            "id": "firedrake-dg-advection",
+            "author": "Firedrake developers",
+            "title": "DG advection equation with upwinding",
+            "url": "https://www.firedrakeproject.org/demos/DG_advection.py.html",
+            "type": "official-documentation",
+            "role": "actually inspected normalized slotted-disk geometry, rotation velocity and period",
+            "review": {
+              "ja": "公式デモの形状・回転速度・周期とSSPRK式を確認。元デモはbell・coneと背景1を加え、DQ1・流入値1を使います。本例はスロット円板だけの0–1指示関数・有限体積・周期境界という明示的な変形です。Firedrakeは実行・転載しません。",
+              "en": "Inspected official geometry, velocity, period and SSP formulas. The demo includes a bell, cone, background1, DQ1 elements and inflow1. This is an explicit isolated0–1 slotted-disk FV/periodic variant. No Firedrake software was executed or copied."
+            },
+            "accessed_on": "2026-11-23",
+            "review_level": "official documentation equations and source lines46,63–92: disk(.5,.75),R.15,slot(.475,.525),y<.85,velocity(.5−y,x−.5),T2pi; SSP equations43–45 and135–143"
+          },
+          {
+            "id": "leveque1996advection",
+            "author": "Randall J. LeVeque",
+            "year": 1996,
+            "title": "High-Resolution Conservative Algorithms for Advection in Incompressible Flow",
+            "journal": "SIAM Journal on Numerical Analysis",
+            "volume": "33",
+            "number": "2",
+            "pages": "627–665",
+            "doi": "10.1137/0733033",
+            "url": "https://faculty.washington.edu/rjl/pubs/hiresadv/0733033.pdf",
+            "type": "article",
+            "role": "conservative scalar-advection and donor-cell/minmod background; official demo attribution",
+            "review": {
+              "ja": "著者公開論文の節1–3で保存形・非圧縮条件・セル平均・minmod・donor-cellを確認。Firedrakeが標準複合図形の出典として引用しています。本例のMUSCL＋SSPRKは同論文のCTU／波動伝播法そのものではありません。",
+              "en": "Read sections1–3 on conservative transport, incompressibility, means, minmod and donor-cell fluxes. Firedrake cites this paper for its composite-shape test. Our MUSCL/SSPRK update is not the paper’s CTU/wave-propagation algorithm."
+            },
+            "accessed_on": "2026-11-23",
+            "review_level": "author-hosted paper selected sections1–3 actually inspected: PDE/incompressibility, FV means, minmod definition, donor-cell flux; no full-paper or numerical-table reproduction"
+          },
+          {
+            "id": "shu1988ssprk",
+            "author": "Chi-Wang Shu and Stanley Osher",
+            "year": 1988,
+            "title": "Efficient implementation of essentially non-oscillatory shock-capturing schemes",
+            "journal": "Journal of Computational Physics",
+            "volume": "77",
+            "number": "2",
+            "pages": "439–471",
+            "doi": "10.1016/0021-9991(88)90177-5",
+            "url": "https://www.sciencedirect.com/science/article/pii/0021999188901775",
+            "type": "article",
+            "role": "historical SSP/TVD Runge-Kutta source",
+            "review": {
+              "ja": "出版社の書誌とTVD Runge–Kuttaの抄録を確認。使う三段凸結合はFiredrake公式記述でも確認しました。原著全文の監査とは区別します。",
+              "en": "Publisher bibliography/abstract checked; the actual three-stage convex formulas were also inspected in the official Firedrake demo. The original full paper was not audited."
+            },
+            "accessed_on": "2026-11-23",
+            "review_level": "publisher bibliography/abstract inspected; actual three-stage convex formulas checked in official Firedrake demo, not a full original-paper audit"
+          },
+          {
+            "id": "scipy114quad",
+            "author": "SciPy developers",
+            "title": "scipy.integrate.quad — SciPy v1.14.1 Manual",
+            "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.quad.html",
+            "type": "official-documentation",
+            "role": "actually executed independent adaptive vertical-section quadrature for geometry qualification",
+            "review": {
+              "ja": "版を固定した公式APIでQUADPACK、分割点、絶対・相対公差と推定誤差の意味を確認。解析的な円・多角形の面積計算とは異なる垂直断面求積を、実行記録付きで照合します。",
+              "en": "Versioned official API checked for QUADPACK, break points, tolerances and reported error. Independently integrated vertical sections are compared with circle/polygon areas; execution is established by saved receipts."
+            },
+            "accessed_on": "2026-11-23",
+            "review_level": "official versioned API: QUADPACK integration, break points, epsabs/epsrel, reported error; use is evidenced by qualification receipts"
+          }
+        ],
+        "additional_figures": [
+          {
+            "file": "zalesak-rotation-preview.png",
+            "caption": {
+              "ja": "一回転後の実2次元セル平均。厳密幾何参照・donor-cell・minmod MUSCLを同じ色尺度で比較します。",
+              "en": "Actual2D cell means after one full turn: analytic geometric reference, donor-cell and minmod MUSCL use a common color scale."
+            }
+          }
+        ],
+        "gallery_figure": "zalesak-rotation-preview.png",
+        "measured": {
+          "id": "zalesak-rotation",
+          "passed": true,
+          "records": [
+            {
+              "id": "base-donor-cell-n64",
+              "family": "refinement",
+              "n": 64,
+              "method": "donor-cell",
+              "shift_cells": 0.0,
+              "angle0": 0.0,
+              "time": 6.283185307179586,
+              "steps": 992,
+              "stages": 2976,
+              "snapshots": 5,
+              "relative_l1": 1.269116635621491,
+              "l1_absolute": 0.07388886278961643,
+              "linf": 0.7855648924348677,
+              "relative_l2": 0.7061446237574471,
+              "initial_mass": 0.05822070305889007,
+              "final_mass": 0.05822070305888797,
+              "mass_change": -2.1024848528838902e-15,
+              "initial_area_error": 6.938893903907228e-18,
+              "reference_area_error": 6.938893903907228e-18,
+              "reference_return_maximum": 7.993605777301127e-15,
+              "minimum": 0.0,
+              "maximum": 1.0,
+              "maximum_courant": 0.2,
+              "maximum_mean_preservation_defect": 0.0,
+              "maximum_fe_mass_defect": 2.0816681711721685e-17,
+              "maximum_rk_mass_defect": 2.1024848528838902e-15,
+              "maximum_discrete_divergence": 0.0,
+              "slot_probe_mean": 0.38835465662349256,
+              "slot_probe_reference_mean": 0.0,
+              "slot_probe_excess": 0.38835465662349256,
+              "slot_probe_weight_sum": 17.919999999999845,
+              "boundary_band_width": 0.05,
+              "boundary_band_mass_fraction": 0.06842381404705418,
+              "total_variation": 0.6204852290307068,
+              "state_clip_count": 0,
+              "retries": 0,
+              "rejected_steps": 0,
+              "snapshot_times": [
+                0.0,
+                1.5707963267948966,
+                3.141592653589793,
+                4.71238898038469,
+                6.283185307179586
+              ],
+              "snapshot_relative_l1": [
+                0.0,
+                0.8592702159953395,
+                1.0486396882993556,
+                1.171712413423044,
+                1.269116635621491
+              ],
+              "snapshot_discrete_centroid_distances": [
+                0.0,
+                0.005614989563414765,
+                0.022000211270697442,
+                0.04055917467767413,
+                0.05930700308092668
+              ],
+              "reference_discrete_to_continuum_centroid_distances": [
+                5.592884561034239e-07,
+                5.592884560201572e-07,
+                5.592884560201572e-07,
+                5.592884561034239e-07,
+                5.592884561034239e-07
+              ],
+              "all_saved_values_finite": true,
+              "field": "field-base-donor-cell-n64.npz",
+              "history": "stages-base-donor-cell-n64.npz",
+              "geometric_roundoff": [
+                {
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 108,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889007,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889007,
+                  "represented_area_before_any_cleanup": 0.05822070305889007
+                },
+                {
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 108,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889008,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889008,
+                  "represented_area_before_any_cleanup": 0.05822070305889008
+                },
+                {
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 108,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889007,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889007,
+                  "represented_area_before_any_cleanup": 0.05822070305889007
+                },
+                {
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 108,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889007,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889007,
+                  "represented_area_before_any_cleanup": 0.05822070305889007
+                },
+                {
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 108,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889007,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889007,
+                  "represented_area_before_any_cleanup": 0.05822070305889007
+                }
+              ]
+            },
+            {
+              "id": "base-muscl-minmod-n64",
+              "family": "refinement",
+              "n": 64,
+              "method": "muscl-minmod",
+              "shift_cells": 0.0,
+              "angle0": 0.0,
+              "time": 6.283185307179586,
+              "steps": 992,
+              "stages": 2976,
+              "snapshots": 5,
+              "relative_l1": 0.7743958047949033,
+              "l1_absolute": 0.045085868201014276,
+              "linf": 0.6887681467024801,
+              "relative_l2": 0.5216721893428169,
+              "initial_mass": 0.05822070305889007,
+              "final_mass": 0.05822070305888809,
+              "mass_change": -1.9845236565174673e-15,
+              "initial_area_error": 6.938893903907228e-18,
+              "reference_area_error": 6.938893903907228e-18,
+              "reference_return_maximum": 7.993605777301127e-15,
+              "minimum": 0.0,
+              "maximum": 1.0,
+              "maximum_courant": 0.2,
+              "maximum_mean_preservation_defect": 1.1102230246251565e-16,
+              "maximum_fe_mass_defect": 2.0816681711721685e-17,
+              "maximum_rk_mass_defect": 1.9845236565174673e-15,
+              "maximum_discrete_divergence": 0.0,
+              "slot_probe_mean": 0.6568758474321503,
+              "slot_probe_reference_mean": 0.0,
+              "slot_probe_excess": 0.6568758474321503,
+              "slot_probe_weight_sum": 17.919999999999845,
+              "boundary_band_width": 0.05,
+              "boundary_band_mass_fraction": 0.010849335068560867,
+              "total_variation": 0.8577419630625032,
+              "state_clip_count": 0,
+              "retries": 0,
+              "rejected_steps": 0,
+              "snapshot_times": [
+                0.0,
+                1.5707963267948966,
+                3.141592653589793,
+                4.71238898038469,
+                6.283185307179586
+              ],
+              "snapshot_relative_l1": [
+                0.0,
+                0.5196028291252962,
+                0.6526166075037709,
+                0.7254087541903119,
+                0.7743958047949033
+              ],
+              "snapshot_discrete_centroid_distances": [
+                0.0,
+                0.00011419789132553335,
+                0.000832138375942268,
+                0.0019212575629624358,
+                0.0032531851878493186
+              ],
+              "reference_discrete_to_continuum_centroid_distances": [
+                5.592884561034239e-07,
+                5.592884560201572e-07,
+                5.592884560201572e-07,
+                5.592884561034239e-07,
+                5.592884561034239e-07
+              ],
+              "all_saved_values_finite": true,
+              "field": "field-base-muscl-minmod-n64.npz",
+              "history": "stages-base-muscl-minmod-n64.npz",
+              "geometric_roundoff": [
+                {
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 108,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889007,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889007,
+                  "represented_area_before_any_cleanup": 0.05822070305889007
+                },
+                {
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 108,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889008,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889008,
+                  "represented_area_before_any_cleanup": 0.05822070305889008
+                },
+                {
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 108,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889007,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889007,
+                  "represented_area_before_any_cleanup": 0.05822070305889007
+                },
+                {
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 108,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889007,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889007,
+                  "represented_area_before_any_cleanup": 0.05822070305889007
+                },
+                {
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 108,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889007,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889007,
+                  "represented_area_before_any_cleanup": 0.05822070305889007
+                }
+              ]
+            },
+            {
+              "id": "base-donor-cell-n128",
+              "family": "refinement",
+              "n": 128,
+              "method": "donor-cell",
+              "shift_cells": 0.0,
+              "angle0": 0.0,
+              "time": 6.283185307179586,
+              "steps": 1996,
+              "stages": 5988,
+              "snapshots": 5,
+              "relative_l1": 1.1167523099754153,
+              "l1_absolute": 0.06501810462940823,
+              "linf": 0.7303276292174478,
+              "relative_l2": 0.6610204629985316,
+              "initial_mass": 0.05822070305889007,
+              "final_mass": 0.058220703058885936,
+              "mass_change": -4.135580766728708e-15,
+              "initial_area_error": 6.938893903907228e-18,
+              "reference_area_error": 6.938893903907228e-18,
+              "reference_return_maximum": 1.5987211554602254e-14,
+              "minimum": 0.0,
+              "maximum": 1.0,
+              "maximum_courant": 0.2,
+              "maximum_mean_preservation_defect": 0.0,
+              "maximum_fe_mass_defect": 2.0816681711721685e-17,
+              "maximum_rk_mass_defect": 4.135580766728708e-15,
+              "maximum_discrete_divergence": 0.0,
+              "slot_probe_mean": 0.545011958231506,
+              "slot_probe_reference_mean": 0.0,
+              "slot_probe_excess": 0.545011958231506,
+              "slot_probe_weight_sum": 71.68000000000029,
+              "boundary_band_width": 0.05,
+              "boundary_band_mass_fraction": 0.036525365082585776,
+              "total_variation": 0.7670523630574595,
+              "state_clip_count": 0,
+              "retries": 0,
+              "rejected_steps": 0,
+              "snapshot_times": [
+                0.0,
+                1.5707963267948966,
+                3.141592653589793,
+                4.71238898038469,
+                6.283185307179586
+              ],
+              "snapshot_relative_l1": [
+                0.0,
+                0.7323847740893629,
+                0.9192189358819539,
+                1.0320794104497115,
+                1.1167523099754153
+              ],
+              "snapshot_discrete_centroid_distances": [
+                0.0,
+                0.0007333023384912009,
+                0.005703309743284131,
+                0.013256122614393056,
+                0.022062863711190626
+              ],
+              "reference_discrete_to_continuum_centroid_distances": [
+                1.541537024252193e-06,
+                1.541537024390971e-06,
+                1.541537024390971e-06,
+                1.541537024252193e-06,
+                1.541537024252193e-06
+              ],
+              "all_saved_values_finite": true,
+              "field": "field-base-donor-cell-n128.npz",
+              "history": "stages-base-donor-cell-n128.npz",
+              "geometric_roundoff": [
+                {
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 216,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889007,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889007,
+                  "represented_area_before_any_cleanup": 0.05822070305889007
+                },
+                {
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 216,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889008,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889008,
+                  "represented_area_before_any_cleanup": 0.05822070305889008
+                },
+                {
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 216,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889007,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889007,
+                  "represented_area_before_any_cleanup": 0.05822070305889007
+                },
+                {
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 216,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889007,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889007,
+                  "represented_area_before_any_cleanup": 0.05822070305889007
+                },
+                {
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 216,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889007,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889007,
+                  "represented_area_before_any_cleanup": 0.05822070305889007
+                }
+              ]
+            },
+            {
+              "id": "base-muscl-minmod-n128",
+              "family": "refinement",
+              "n": 128,
+              "method": "muscl-minmod",
+              "shift_cells": 0.0,
+              "angle0": 0.0,
+              "time": 6.283185307179586,
+              "steps": 1996,
+              "stages": 5988,
+              "snapshots": 5,
+              "relative_l1": 0.6023268138280995,
+              "l1_absolute": 0.03506789057229315,
+              "linf": 0.6877745044979586,
+              "relative_l2": 0.4528689854694908,
+              "initial_mass": 0.05822070305889007,
+              "final_mass": 0.05822070305888572,
+              "mass_change": -4.350686477749832e-15,
+              "initial_area_error": 6.938893903907228e-18,
+              "reference_area_error": 6.938893903907228e-18,
+              "reference_return_maximum": 1.5987211554602254e-14,
+              "minimum": 0.0,
+              "maximum": 1.0,
+              "maximum_courant": 0.2,
+              "maximum_mean_preservation_defect": 1.1102230246251565e-16,
+              "maximum_fe_mass_defect": 2.7755575615628914e-17,
+              "maximum_rk_mass_defect": 4.350686477749832e-15,
+              "maximum_discrete_divergence": 0.0,
+              "slot_probe_mean": 0.5867582390577423,
+              "slot_probe_reference_mean": 0.0,
+              "slot_probe_excess": 0.5867582390577423,
+              "slot_probe_weight_sum": 71.68000000000029,
+              "boundary_band_width": 0.05,
+              "boundary_band_mass_fraction": 0.0025624407962764645,
+              "total_variation": 1.0409940270822085,
+              "state_clip_count": 0,
+              "retries": 0,
+              "rejected_steps": 0,
+              "snapshot_times": [
+                0.0,
+                1.5707963267948966,
+                3.141592653589793,
+                4.71238898038469,
+                6.283185307179586
+              ],
+              "snapshot_relative_l1": [
+                0.0,
+                0.3705204690454533,
+                0.47979781118754555,
+                0.5502334264160986,
+                0.6023268138280995
+              ],
+              "snapshot_discrete_centroid_distances": [
+                0.0,
+                1.4549591845283232e-05,
+                2.6220963226562622e-05,
+                8.699636293504671e-05,
+                0.00019959719030365034
+              ],
+              "reference_discrete_to_continuum_centroid_distances": [
+                1.541537024252193e-06,
+                1.541537024390971e-06,
+                1.541537024390971e-06,
+                1.541537024252193e-06,
+                1.541537024252193e-06
+              ],
+              "all_saved_values_finite": true,
+              "field": "field-base-muscl-minmod-n128.npz",
+              "history": "stages-base-muscl-minmod-n128.npz",
+              "geometric_roundoff": [
+                {
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 216,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889007,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889007,
+                  "represented_area_before_any_cleanup": 0.05822070305889007
+                },
+                {
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 216,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889008,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889008,
+                  "represented_area_before_any_cleanup": 0.05822070305889008
+                },
+                {
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 216,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889007,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889007,
+                  "represented_area_before_any_cleanup": 0.05822070305889007
+                },
+                {
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 216,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889007,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889007,
+                  "represented_area_before_any_cleanup": 0.05822070305889007
+                },
+                {
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 216,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889007,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889007,
+                  "represented_area_before_any_cleanup": 0.05822070305889007
+                }
+              ]
+            },
+            {
+              "id": "base-donor-cell-n256",
+              "family": "refinement",
+              "n": 256,
+              "method": "donor-cell",
+              "shift_cells": 0.0,
+              "angle0": 0.0,
+              "time": 6.283185307179586,
+              "steps": 4008,
+              "stages": 12024,
+              "snapshots": 5,
+              "relative_l1": 0.9322557981564463,
+              "l1_absolute": 0.054276587999395026,
+              "linf": 0.7400188217139683,
+              "relative_l2": 0.6036402695438281,
+              "initial_mass": 0.05822070305889007,
+              "final_mass": 0.058220703058881856,
+              "mass_change": -8.215650382226158e-15,
+              "initial_area_error": 6.938893903907228e-18,
+              "reference_area_error": 6.938893903907228e-18,
+              "reference_return_maximum": 5.5067062021407764e-14,
+              "minimum": 0.0,
+              "maximum": 1.0,
+              "maximum_courant": 0.2,
+              "maximum_mean_preservation_defect": 0.0,
+              "maximum_fe_mass_defect": 2.7755575615628914e-17,
+              "maximum_rk_mass_defect": 8.215650382226158e-15,
+              "maximum_discrete_divergence": 0.0,
+              "slot_probe_mean": 0.6346500340210263,
+              "slot_probe_reference_mean": 0.0,
+              "slot_probe_excess": 0.6346500340210263,
+              "slot_probe_weight_sum": 286.72000000000116,
+              "boundary_band_width": 0.05,
+              "boundary_band_mass_fraction": 0.017861521618788193,
+              "total_variation": 0.8470993315588976,
+              "state_clip_count": 0,
+              "retries": 0,
+              "rejected_steps": 0,
+              "snapshot_times": [
+                0.0,
+                1.5707963267948966,
+                3.141592653589793,
+                4.71238898038469,
+                6.283185307179586
+              ],
+              "snapshot_relative_l1": [
+                0.0,
+                0.566804533652593,
+                0.746172902314317,
+                0.8549767847860748,
+                0.9322557981564463
+              ],
+              "snapshot_discrete_centroid_distances": [
+                0.0,
+                2.861756123308295e-05,
+                0.0007528192823951286,
+                0.0026841765759190307,
+                0.005534160943586699
+              ],
+              "reference_discrete_to_continuum_centroid_distances": [
+                4.911242840188734e-07,
+                4.911242841576513e-07,
+                4.911242841576513e-07,
+                4.91124284240918e-07,
+                4.91124284240918e-07
+              ],
+              "all_saved_values_finite": true,
+              "field": "field-base-donor-cell-n256.npz",
+              "history": "stages-base-donor-cell-n256.npz",
+              "geometric_roundoff": [
+                {
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 432,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889007,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889007,
+                  "represented_area_before_any_cleanup": 0.05822070305889007
+                },
+                {
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 432,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889008,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889008,
+                  "represented_area_before_any_cleanup": 0.05822070305889008
+                },
+                {
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 432,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889008,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889008,
+                  "represented_area_before_any_cleanup": 0.05822070305889008
+                },
+                {
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 432,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889007,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889007,
+                  "represented_area_before_any_cleanup": 0.05822070305889007
+                },
+                {
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 432,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889007,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889007,
+                  "represented_area_before_any_cleanup": 0.05822070305889007
+                }
+              ]
+            },
+            {
+              "id": "base-muscl-minmod-n256",
+              "family": "refinement",
+              "n": 256,
+              "method": "muscl-minmod",
+              "shift_cells": 0.0,
+              "angle0": 0.0,
+              "time": 6.283185307179586,
+              "steps": 4008,
+              "stages": 12024,
+              "snapshots": 5,
+              "relative_l1": 0.39427105204685026,
+              "l1_absolute": 0.022954737845935866,
+              "linf": 0.7430454904444476,
+              "relative_l2": 0.3404884399563395,
+              "initial_mass": 0.05822070305889007,
+              "final_mass": 0.05822070305888117,
+              "mass_change": -8.902600878712974e-15,
+              "initial_area_error": 6.938893903907228e-18,
+              "reference_area_error": 6.938893903907228e-18,
+              "reference_return_maximum": 5.5067062021407764e-14,
+              "minimum": 0.0,
+              "maximum": 1.0,
+              "maximum_courant": 0.2,
+              "maximum_mean_preservation_defect": 1.1102230246251565e-16,
+              "maximum_fe_mass_defect": 2.7755575615628914e-17,
+              "maximum_rk_mass_defect": 8.902600878712974e-15,
+              "maximum_discrete_divergence": 0.0,
+              "slot_probe_mean": 0.36500692217705044,
+              "slot_probe_reference_mean": 0.0,
+              "slot_probe_excess": 0.36500692217705044,
+              "slot_probe_weight_sum": 286.72000000000116,
+              "boundary_band_width": 0.05,
+              "boundary_band_mass_fraction": 0.00024376119280261055,
+              "total_variation": 1.353666880236625,
+              "state_clip_count": 0,
+              "retries": 0,
+              "rejected_steps": 0,
+              "snapshot_times": [
+                0.0,
+                1.5707963267948966,
+                3.141592653589793,
+                4.71238898038469,
+                6.283185307179586
+              ],
+              "snapshot_relative_l1": [
+                0.0,
+                0.2282251349613835,
+                0.30189249025189613,
+                0.35378497752266586,
+                0.39427105204685026
+              ],
+              "snapshot_discrete_centroid_distances": [
+                0.0,
+                1.950829607913196e-05,
+                2.0638675802185796e-05,
+                1.8345104938228806e-05,
+                1.633525385112188e-05
+              ],
+              "reference_discrete_to_continuum_centroid_distances": [
+                4.911242840188734e-07,
+                4.911242841576513e-07,
+                4.911242841576513e-07,
+                4.91124284240918e-07,
+                4.91124284240918e-07
+              ],
+              "all_saved_values_finite": true,
+              "field": "field-base-muscl-minmod-n256.npz",
+              "history": "stages-base-muscl-minmod-n256.npz",
+              "geometric_roundoff": [
+                {
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 432,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889007,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889007,
+                  "represented_area_before_any_cleanup": 0.05822070305889007
+                },
+                {
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 432,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889008,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889008,
+                  "represented_area_before_any_cleanup": 0.05822070305889008
+                },
+                {
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 432,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889008,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889008,
+                  "represented_area_before_any_cleanup": 0.05822070305889008
+                },
+                {
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 432,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889007,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889007,
+                  "represented_area_before_any_cleanup": 0.05822070305889007
+                },
+                {
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 432,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889007,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889007,
+                  "represented_area_before_any_cleanup": 0.05822070305889007
+                }
+              ]
+            },
+            {
+              "id": "half-cell-shift",
+              "n": 64,
+              "method": "muscl-minmod",
+              "shift_cells": 0.5,
+              "angle0": 0.0,
+              "family": "half-cell-shift",
+              "time": 6.283185307179586,
+              "steps": 1008,
+              "stages": 3024,
+              "snapshots": 5,
+              "relative_l1": 0.8193276013163368,
+              "l1_absolute": 0.04770182898419112,
+              "linf": 0.6887533596253386,
+              "relative_l2": 0.5480879028548047,
+              "initial_mass": 0.05822070305889008,
+              "final_mass": 0.058220703058888046,
+              "mass_change": -2.033095913844818e-15,
+              "initial_area_error": 0.0,
+              "reference_area_error": 6.938893903907228e-18,
+              "reference_return_maximum": 9.769962616701378e-15,
+              "minimum": 0.0,
+              "maximum": 1.0,
+              "maximum_courant": 0.2,
+              "maximum_mean_preservation_defect": 1.1102230246251565e-16,
+              "maximum_fe_mass_defect": 2.0816681711721685e-17,
+              "maximum_rk_mass_defect": 2.033095913844818e-15,
+              "maximum_discrete_divergence": 0.0,
+              "slot_probe_mean": 0.6570613739524885,
+              "slot_probe_reference_mean": 0.0,
+              "slot_probe_excess": 0.6570613739524885,
+              "slot_probe_weight_sum": 17.91999999999996,
+              "boundary_band_width": 0.05,
+              "boundary_band_mass_fraction": 0.013664432554239497,
+              "total_variation": 0.8595716113210111,
+              "state_clip_count": 0,
+              "retries": 0,
+              "rejected_steps": 0,
+              "snapshot_times": [
+                0.0,
+                1.5707963267948966,
+                3.141592653589793,
+                4.71238898038469,
+                6.283185307179586
+              ],
+              "snapshot_relative_l1": [
+                0.0,
+                0.5674297506388984,
+                0.6972980564390795,
+                0.7700640807796597,
+                0.8193276013163368
+              ],
+              "snapshot_discrete_centroid_distances": [
+                0.0,
+                5.221629482743989e-05,
+                0.0005979520890585441,
+                0.00241975001409572,
+                0.0039590074592064815
+              ],
+              "reference_discrete_to_continuum_centroid_distances": [
+                3.642362504940877e-06,
+                3.6423625048298547e-06,
+                3.6423625048298547e-06,
+                3.64236250460781e-06,
+                3.6423625047188324e-06
+              ],
+              "all_saved_values_finite": true,
+              "field": "field-half-cell-shift.npz",
+              "history": "stages-half-cell-shift.npz",
+              "geometric_roundoff": [
+                {
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 108,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889008,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889008,
+                  "represented_area_before_any_cleanup": 0.05822070305889008
+                },
+                {
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 108,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889007,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889007,
+                  "represented_area_before_any_cleanup": 0.05822070305889007
+                },
+                {
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 108,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889007,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889007,
+                  "represented_area_before_any_cleanup": 0.05822070305889007
+                },
+                {
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 108,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889007,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889007,
+                  "represented_area_before_any_cleanup": 0.05822070305889007
+                },
+                {
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 108,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889007,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889007,
+                  "represented_area_before_any_cleanup": 0.05822070305889007
+                }
+              ]
+            },
+            {
+              "id": "oblique-start",
+              "n": 64,
+              "method": "muscl-minmod",
+              "shift_cells": 0.0,
+              "angle0": 0.7853981633974483,
+              "family": "oblique-start",
+              "time": 6.283185307179586,
+              "steps": 992,
+              "stages": 2976,
+              "snapshots": 5,
+              "relative_l1": 0.8036348842562988,
+              "l1_absolute": 0.04678818796405147,
+              "linf": 0.6884405351479925,
+              "relative_l2": 0.5358948306387893,
+              "initial_mass": 0.05822070305889007,
+              "final_mass": 0.05822070305888809,
+              "mass_change": -1.9845236565174673e-15,
+              "initial_area_error": 6.938893903907228e-18,
+              "reference_area_error": 1.3877787807814457e-17,
+              "reference_return_maximum": 1.1546319456101628e-14,
+              "minimum": 0.0,
+              "maximum": 1.0,
+              "maximum_courant": 0.2,
+              "maximum_mean_preservation_defect": 1.1102230246251565e-16,
+              "maximum_fe_mass_defect": 2.0816681711721685e-17,
+              "maximum_rk_mass_defect": 1.9914625504213745e-15,
+              "maximum_discrete_divergence": 0.0,
+              "slot_probe_mean": 0.6569743873075328,
+              "slot_probe_reference_mean": 0.0020939164385535515,
+              "slot_probe_excess": 0.6548804708689792,
+              "slot_probe_weight_sum": 17.919999999999845,
+              "boundary_band_width": 0.05,
+              "boundary_band_mass_fraction": 0.0035009238649157527,
+              "total_variation": 0.8915451753468869,
+              "state_clip_count": 0,
+              "retries": 0,
+              "rejected_steps": 0,
+              "snapshot_times": [
+                0.0,
+                1.5707963267948966,
+                3.141592653589793,
+                4.71238898038469,
+                6.283185307179586
+              ],
+              "snapshot_relative_l1": [
+                0.0,
+                0.5478641266905471,
+                0.6815551209725824,
+                0.7545401133931189,
+                0.8036348842562988
+              ],
+              "snapshot_discrete_centroid_distances": [
+                0.0,
+                0.00019494256791744417,
+                0.0006617724839849714,
+                0.0016636242812072247,
+                0.003038834645992939
+              ],
+              "reference_discrete_to_continuum_centroid_distances": [
+                6.22748651625726e-06,
+                6.227486516296512e-06,
+                6.227486516218008e-06,
+                6.227486516414269e-06,
+                6.227486516375018e-06
+              ],
+              "all_saved_values_finite": true,
+              "field": "field-oblique-start.npz",
+              "history": "stages-oblique-start.npz",
+              "geometric_roundoff": [
+                {
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 2,
+                  "maximum_fraction_cleanup": 6.217248937900877e-15,
+                  "fraction_cleanup_signed_area": -1.951563910473908e-18,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 6.217248937900877e-15,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 120,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889007,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889007,
+                  "represented_area_before_any_cleanup": 0.05822070305889007
+                },
+                {
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 2,
+                  "maximum_fraction_cleanup": 1.1546319456101628e-14,
+                  "fraction_cleanup_signed_area": -4.9873299934333204e-18,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 1.1546319456101628e-14,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 120,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.058220703058890065,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889007,
+                  "represented_area_before_any_cleanup": 0.05822070305889007
+                },
+                {
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 1,
+                  "maximum_fraction_cleanup": 2.6645352591003757e-15,
+                  "fraction_cleanup_signed_area": -6.505213034913027e-19,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 2.6645352591003757e-15,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 120,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889007,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889007,
+                  "represented_area_before_any_cleanup": 0.05822070305889007
+                },
+                {
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 120,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889007,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889007,
+                  "represented_area_before_any_cleanup": 0.05822070305889007
+                },
+                {
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 120,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.058220703058890065,
+                  "represented_area_before_fraction_cleanup": 0.058220703058890065,
+                  "represented_area_before_any_cleanup": 0.058220703058890065
+                }
+              ]
+            }
+          ],
+          "metrics": {
+            "n": 256,
+            "shift_cells": 0.0,
+            "angle0": 0.0,
+            "time": 6.283185307179586,
+            "steps": 4008,
+            "stages": 12024,
+            "snapshots": 5,
+            "relative_l1": 0.39427105204685026,
+            "l1_absolute": 0.022954737845935866,
+            "linf": 0.7430454904444476,
+            "relative_l2": 0.3404884399563395,
+            "initial_mass": 0.05822070305889007,
+            "final_mass": 0.05822070305888117,
+            "mass_change": -8.902600878712974e-15,
+            "initial_area_error": 6.938893903907228e-18,
+            "reference_area_error": 6.938893903907228e-18,
+            "reference_return_maximum": 5.5067062021407764e-14,
+            "minimum": 0.0,
+            "maximum": 1.0,
+            "maximum_courant": 0.2,
+            "maximum_mean_preservation_defect": 1.1102230246251565e-16,
+            "maximum_fe_mass_defect": 2.7755575615628914e-17,
+            "maximum_rk_mass_defect": 8.902600878712974e-15,
+            "maximum_discrete_divergence": 0.0,
+            "slot_probe_mean": 0.36500692217705044,
+            "slot_probe_reference_mean": 0.0,
+            "slot_probe_excess": 0.36500692217705044,
+            "slot_probe_weight_sum": 286.72000000000116,
+            "boundary_band_width": 0.05,
+            "boundary_band_mass_fraction": 0.00024376119280261055,
+            "total_variation": 1.353666880236625,
+            "state_clip_count": 0,
+            "retries": 0,
+            "rejected_steps": 0,
+            "all_saved_values_finite": true
+          },
+          "checks": {
+            "all eight fixed rotations completed": true,
+            "base-donor-cell-n64: final time": true,
+            "base-donor-cell-n64: initial represented area": true,
+            "base-donor-cell-n64: periodic mass conservation": true,
+            "base-donor-cell-n64: three FE records per SSP step": true,
+            "base-donor-cell-n64: finite saved means and stage data": true,
+            "base-donor-cell-n64: all stage lower bounds": true,
+            "base-donor-cell-n64: all stage upper bounds": true,
+            "base-donor-cell-n64: sufficient individual face Courant": true,
+            "base-donor-cell-n64: four-face mean preserved": true,
+            "base-donor-cell-n64: each FE shared-flux balance": true,
+            "base-donor-cell-n64: each SSP convex-mean balance": true,
+            "base-donor-cell-n64: all rotated reference areas": true,
+            "base-donor-cell-n64: full-turn geometric return": true,
+            "base-donor-cell-n64: zero clipping and retries": true,
+            "base-donor-cell-n64: exact discrete velocity divergence": true,
+            "base-donor-cell-n64: quarter-turn snapshots retained": true,
+            "base-muscl-minmod-n64: final time": true,
+            "base-muscl-minmod-n64: initial represented area": true,
+            "base-muscl-minmod-n64: periodic mass conservation": true,
+            "base-muscl-minmod-n64: three FE records per SSP step": true,
+            "base-muscl-minmod-n64: finite saved means and stage data": true,
+            "base-muscl-minmod-n64: all stage lower bounds": true,
+            "base-muscl-minmod-n64: all stage upper bounds": true,
+            "base-muscl-minmod-n64: sufficient individual face Courant": true,
+            "base-muscl-minmod-n64: four-face mean preserved": true,
+            "base-muscl-minmod-n64: each FE shared-flux balance": true,
+            "base-muscl-minmod-n64: each SSP convex-mean balance": true,
+            "base-muscl-minmod-n64: all rotated reference areas": true,
+            "base-muscl-minmod-n64: full-turn geometric return": true,
+            "base-muscl-minmod-n64: zero clipping and retries": true,
+            "base-muscl-minmod-n64: exact discrete velocity divergence": true,
+            "base-muscl-minmod-n64: quarter-turn snapshots retained": true,
+            "base-donor-cell-n128: final time": true,
+            "base-donor-cell-n128: initial represented area": true,
+            "base-donor-cell-n128: periodic mass conservation": true,
+            "base-donor-cell-n128: three FE records per SSP step": true,
+            "base-donor-cell-n128: finite saved means and stage data": true,
+            "base-donor-cell-n128: all stage lower bounds": true,
+            "base-donor-cell-n128: all stage upper bounds": true,
+            "base-donor-cell-n128: sufficient individual face Courant": true,
+            "base-donor-cell-n128: four-face mean preserved": true,
+            "base-donor-cell-n128: each FE shared-flux balance": true,
+            "base-donor-cell-n128: each SSP convex-mean balance": true,
+            "base-donor-cell-n128: all rotated reference areas": true,
+            "base-donor-cell-n128: full-turn geometric return": true,
+            "base-donor-cell-n128: zero clipping and retries": true,
+            "base-donor-cell-n128: exact discrete velocity divergence": true,
+            "base-donor-cell-n128: quarter-turn snapshots retained": true,
+            "base-muscl-minmod-n128: final time": true,
+            "base-muscl-minmod-n128: initial represented area": true,
+            "base-muscl-minmod-n128: periodic mass conservation": true,
+            "base-muscl-minmod-n128: three FE records per SSP step": true,
+            "base-muscl-minmod-n128: finite saved means and stage data": true,
+            "base-muscl-minmod-n128: all stage lower bounds": true,
+            "base-muscl-minmod-n128: all stage upper bounds": true,
+            "base-muscl-minmod-n128: sufficient individual face Courant": true,
+            "base-muscl-minmod-n128: four-face mean preserved": true,
+            "base-muscl-minmod-n128: each FE shared-flux balance": true,
+            "base-muscl-minmod-n128: each SSP convex-mean balance": true,
+            "base-muscl-minmod-n128: all rotated reference areas": true,
+            "base-muscl-minmod-n128: full-turn geometric return": true,
+            "base-muscl-minmod-n128: zero clipping and retries": true,
+            "base-muscl-minmod-n128: exact discrete velocity divergence": true,
+            "base-muscl-minmod-n128: quarter-turn snapshots retained": true,
+            "base-donor-cell-n256: final time": true,
+            "base-donor-cell-n256: initial represented area": true,
+            "base-donor-cell-n256: periodic mass conservation": true,
+            "base-donor-cell-n256: three FE records per SSP step": true,
+            "base-donor-cell-n256: finite saved means and stage data": true,
+            "base-donor-cell-n256: all stage lower bounds": true,
+            "base-donor-cell-n256: all stage upper bounds": true,
+            "base-donor-cell-n256: sufficient individual face Courant": true,
+            "base-donor-cell-n256: four-face mean preserved": true,
+            "base-donor-cell-n256: each FE shared-flux balance": true,
+            "base-donor-cell-n256: each SSP convex-mean balance": true,
+            "base-donor-cell-n256: all rotated reference areas": true,
+            "base-donor-cell-n256: full-turn geometric return": true,
+            "base-donor-cell-n256: zero clipping and retries": true,
+            "base-donor-cell-n256: exact discrete velocity divergence": true,
+            "base-donor-cell-n256: quarter-turn snapshots retained": true,
+            "base-muscl-minmod-n256: final time": true,
+            "base-muscl-minmod-n256: initial represented area": true,
+            "base-muscl-minmod-n256: periodic mass conservation": true,
+            "base-muscl-minmod-n256: three FE records per SSP step": true,
+            "base-muscl-minmod-n256: finite saved means and stage data": true,
+            "base-muscl-minmod-n256: all stage lower bounds": true,
+            "base-muscl-minmod-n256: all stage upper bounds": true,
+            "base-muscl-minmod-n256: sufficient individual face Courant": true,
+            "base-muscl-minmod-n256: four-face mean preserved": true,
+            "base-muscl-minmod-n256: each FE shared-flux balance": true,
+            "base-muscl-minmod-n256: each SSP convex-mean balance": true,
+            "base-muscl-minmod-n256: all rotated reference areas": true,
+            "base-muscl-minmod-n256: full-turn geometric return": true,
+            "base-muscl-minmod-n256: zero clipping and retries": true,
+            "base-muscl-minmod-n256: exact discrete velocity divergence": true,
+            "base-muscl-minmod-n256: quarter-turn snapshots retained": true,
+            "half-cell-shift: final time": true,
+            "half-cell-shift: initial represented area": true,
+            "half-cell-shift: periodic mass conservation": true,
+            "half-cell-shift: three FE records per SSP step": true,
+            "half-cell-shift: finite saved means and stage data": true,
+            "half-cell-shift: all stage lower bounds": true,
+            "half-cell-shift: all stage upper bounds": true,
+            "half-cell-shift: sufficient individual face Courant": true,
+            "half-cell-shift: four-face mean preserved": true,
+            "half-cell-shift: each FE shared-flux balance": true,
+            "half-cell-shift: each SSP convex-mean balance": true,
+            "half-cell-shift: all rotated reference areas": true,
+            "half-cell-shift: full-turn geometric return": true,
+            "half-cell-shift: zero clipping and retries": true,
+            "half-cell-shift: exact discrete velocity divergence": true,
+            "half-cell-shift: quarter-turn snapshots retained": true,
+            "oblique-start: final time": true,
+            "oblique-start: initial represented area": true,
+            "oblique-start: periodic mass conservation": true,
+            "oblique-start: three FE records per SSP step": true,
+            "oblique-start: finite saved means and stage data": true,
+            "oblique-start: all stage lower bounds": true,
+            "oblique-start: all stage upper bounds": true,
+            "oblique-start: sufficient individual face Courant": true,
+            "oblique-start: four-face mean preserved": true,
+            "oblique-start: each FE shared-flux balance": true,
+            "oblique-start: each SSP convex-mean balance": true,
+            "oblique-start: all rotated reference areas": true,
+            "oblique-start: full-turn geometric return": true,
+            "oblique-start: zero clipping and retries": true,
+            "oblique-start: exact discrete velocity divergence": true,
+            "oblique-start: quarter-turn snapshots retained": true,
+            "donor-cell finest relative L1": true,
+            "donor-cell refinement ratio 1": true,
+            "donor-cell refinement ratio 2": true,
+            "donor-cell intermediate relative L1 1": true,
+            "donor-cell intermediate centroid distance 1": true,
+            "donor-cell intermediate relative L1 2": true,
+            "donor-cell intermediate centroid distance 2": true,
+            "donor-cell intermediate relative L1 3": true,
+            "donor-cell intermediate centroid distance 3": true,
+            "muscl-minmod finest relative L1": true,
+            "muscl-minmod refinement ratio 1": true,
+            "muscl-minmod refinement ratio 2": true,
+            "muscl-minmod intermediate relative L1 1": true,
+            "muscl-minmod intermediate centroid distance 1": true,
+            "muscl-minmod intermediate relative L1 2": true,
+            "muscl-minmod intermediate centroid distance 2": true,
+            "muscl-minmod intermediate relative L1 3": true,
+            "muscl-minmod intermediate centroid distance 3": true,
+            "finest MUSCL/donor relative L1": true,
+            "half-cell-shift shape error": true,
+            "oblique-start shape error": true,
+            "independent geometry: analytic circle partitions conserve closed total area": true,
+            "independent geometry: twelve fixed cut cells agree with independent vertical quadrature": true,
+            "independent geometry: independent whole-area quadrature agrees with closed area": true,
+            "independent geometry: true analytic centroid agrees with independent first moments": true,
+            "independent geometry: full-turn geometric cell means return": true,
+            "independent geometry: quarter-turn geometry has the correct counterclockwise orientation": true,
+            "independent geometry: geometric fraction roundoff cleanup remains within its separate band": true,
+            "independent geometry: analytic area cleanup remains within its dimensional floating-point band": true
+          },
+          "check_details": [
+            {
+              "name": "all eight fixed rotations completed",
+              "value": [
+                "base-donor-cell-n64",
+                "base-muscl-minmod-n64",
+                "base-donor-cell-n128",
+                "base-muscl-minmod-n128",
+                "base-donor-cell-n256",
+                "base-muscl-minmod-n256",
+                "half-cell-shift",
+                "oblique-start"
+              ],
+              "bound": [
+                "base-donor-cell-n64",
+                "base-muscl-minmod-n64",
+                "base-donor-cell-n128",
+                "base-muscl-minmod-n128",
+                "base-donor-cell-n256",
+                "base-muscl-minmod-n256",
+                "half-cell-shift",
+                "oblique-start"
+              ],
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n64: final time",
+              "value": 6.283185307179586,
+              "bound": 6.283185307179586,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n64: initial represented area",
+              "value": 6.938893903907228e-18,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n64: periodic mass conservation",
+              "value": 2.1024848528838902e-15,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n64: three FE records per SSP step",
+              "value": 2976,
+              "bound": 2976,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n64: finite saved means and stage data",
+              "value": true,
+              "bound": true,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n64: all stage lower bounds",
+              "value": 0.0,
+              "bound": -5e-13,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n64: all stage upper bounds",
+              "value": 1.0,
+              "bound": 1.0000000000005,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n64: sufficient individual face Courant",
+              "value": 0.2,
+              "bound": 0.25,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n64: four-face mean preserved",
+              "value": 0.0,
+              "bound": 3e-15,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n64: each FE shared-flux balance",
+              "value": 2.0816681711721685e-17,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n64: each SSP convex-mean balance",
+              "value": 2.1024848528838902e-15,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n64: all rotated reference areas",
+              "value": 6.938893903907228e-18,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n64: full-turn geometric return",
+              "value": 7.993605777301127e-15,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n64: zero clipping and retries",
+              "value": 0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n64: exact discrete velocity divergence",
+              "value": 0.0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n64: quarter-turn snapshots retained",
+              "value": [
+                0.0,
+                1.5707963267948966,
+                3.141592653589793,
+                4.71238898038469,
+                6.283185307179586
+              ],
+              "bound": [
+                0.0,
+                1.5707963267948966,
+                3.141592653589793,
+                4.71238898038469,
+                6.283185307179586
+              ],
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n64: final time",
+              "value": 6.283185307179586,
+              "bound": 6.283185307179586,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n64: initial represented area",
+              "value": 6.938893903907228e-18,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n64: periodic mass conservation",
+              "value": 1.9845236565174673e-15,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n64: three FE records per SSP step",
+              "value": 2976,
+              "bound": 2976,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n64: finite saved means and stage data",
+              "value": true,
+              "bound": true,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n64: all stage lower bounds",
+              "value": 0.0,
+              "bound": -5e-13,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n64: all stage upper bounds",
+              "value": 1.0,
+              "bound": 1.0000000000005,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n64: sufficient individual face Courant",
+              "value": 0.2,
+              "bound": 0.25,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n64: four-face mean preserved",
+              "value": 1.1102230246251565e-16,
+              "bound": 3e-15,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n64: each FE shared-flux balance",
+              "value": 2.0816681711721685e-17,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n64: each SSP convex-mean balance",
+              "value": 1.9845236565174673e-15,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n64: all rotated reference areas",
+              "value": 6.938893903907228e-18,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n64: full-turn geometric return",
+              "value": 7.993605777301127e-15,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n64: zero clipping and retries",
+              "value": 0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n64: exact discrete velocity divergence",
+              "value": 0.0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n64: quarter-turn snapshots retained",
+              "value": [
+                0.0,
+                1.5707963267948966,
+                3.141592653589793,
+                4.71238898038469,
+                6.283185307179586
+              ],
+              "bound": [
+                0.0,
+                1.5707963267948966,
+                3.141592653589793,
+                4.71238898038469,
+                6.283185307179586
+              ],
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n128: final time",
+              "value": 6.283185307179586,
+              "bound": 6.283185307179586,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n128: initial represented area",
+              "value": 6.938893903907228e-18,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n128: periodic mass conservation",
+              "value": 4.135580766728708e-15,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n128: three FE records per SSP step",
+              "value": 5988,
+              "bound": 5988,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n128: finite saved means and stage data",
+              "value": true,
+              "bound": true,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n128: all stage lower bounds",
+              "value": 0.0,
+              "bound": -5e-13,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n128: all stage upper bounds",
+              "value": 1.0,
+              "bound": 1.0000000000005,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n128: sufficient individual face Courant",
+              "value": 0.2,
+              "bound": 0.25,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n128: four-face mean preserved",
+              "value": 0.0,
+              "bound": 3e-15,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n128: each FE shared-flux balance",
+              "value": 2.0816681711721685e-17,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n128: each SSP convex-mean balance",
+              "value": 4.135580766728708e-15,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n128: all rotated reference areas",
+              "value": 6.938893903907228e-18,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n128: full-turn geometric return",
+              "value": 1.5987211554602254e-14,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n128: zero clipping and retries",
+              "value": 0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n128: exact discrete velocity divergence",
+              "value": 0.0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n128: quarter-turn snapshots retained",
+              "value": [
+                0.0,
+                1.5707963267948966,
+                3.141592653589793,
+                4.71238898038469,
+                6.283185307179586
+              ],
+              "bound": [
+                0.0,
+                1.5707963267948966,
+                3.141592653589793,
+                4.71238898038469,
+                6.283185307179586
+              ],
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n128: final time",
+              "value": 6.283185307179586,
+              "bound": 6.283185307179586,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n128: initial represented area",
+              "value": 6.938893903907228e-18,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n128: periodic mass conservation",
+              "value": 4.350686477749832e-15,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n128: three FE records per SSP step",
+              "value": 5988,
+              "bound": 5988,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n128: finite saved means and stage data",
+              "value": true,
+              "bound": true,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n128: all stage lower bounds",
+              "value": 0.0,
+              "bound": -5e-13,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n128: all stage upper bounds",
+              "value": 1.0,
+              "bound": 1.0000000000005,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n128: sufficient individual face Courant",
+              "value": 0.2,
+              "bound": 0.25,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n128: four-face mean preserved",
+              "value": 1.1102230246251565e-16,
+              "bound": 3e-15,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n128: each FE shared-flux balance",
+              "value": 2.7755575615628914e-17,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n128: each SSP convex-mean balance",
+              "value": 4.350686477749832e-15,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n128: all rotated reference areas",
+              "value": 6.938893903907228e-18,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n128: full-turn geometric return",
+              "value": 1.5987211554602254e-14,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n128: zero clipping and retries",
+              "value": 0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n128: exact discrete velocity divergence",
+              "value": 0.0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n128: quarter-turn snapshots retained",
+              "value": [
+                0.0,
+                1.5707963267948966,
+                3.141592653589793,
+                4.71238898038469,
+                6.283185307179586
+              ],
+              "bound": [
+                0.0,
+                1.5707963267948966,
+                3.141592653589793,
+                4.71238898038469,
+                6.283185307179586
+              ],
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n256: final time",
+              "value": 6.283185307179586,
+              "bound": 6.283185307179586,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n256: initial represented area",
+              "value": 6.938893903907228e-18,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n256: periodic mass conservation",
+              "value": 8.215650382226158e-15,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n256: three FE records per SSP step",
+              "value": 12024,
+              "bound": 12024,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n256: finite saved means and stage data",
+              "value": true,
+              "bound": true,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n256: all stage lower bounds",
+              "value": 0.0,
+              "bound": -5e-13,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n256: all stage upper bounds",
+              "value": 1.0,
+              "bound": 1.0000000000005,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n256: sufficient individual face Courant",
+              "value": 0.2,
+              "bound": 0.25,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n256: four-face mean preserved",
+              "value": 0.0,
+              "bound": 3e-15,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n256: each FE shared-flux balance",
+              "value": 2.7755575615628914e-17,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n256: each SSP convex-mean balance",
+              "value": 8.215650382226158e-15,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n256: all rotated reference areas",
+              "value": 6.938893903907228e-18,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n256: full-turn geometric return",
+              "value": 5.5067062021407764e-14,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n256: zero clipping and retries",
+              "value": 0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n256: exact discrete velocity divergence",
+              "value": 0.0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "base-donor-cell-n256: quarter-turn snapshots retained",
+              "value": [
+                0.0,
+                1.5707963267948966,
+                3.141592653589793,
+                4.71238898038469,
+                6.283185307179586
+              ],
+              "bound": [
+                0.0,
+                1.5707963267948966,
+                3.141592653589793,
+                4.71238898038469,
+                6.283185307179586
+              ],
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n256: final time",
+              "value": 6.283185307179586,
+              "bound": 6.283185307179586,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n256: initial represented area",
+              "value": 6.938893903907228e-18,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n256: periodic mass conservation",
+              "value": 8.902600878712974e-15,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n256: three FE records per SSP step",
+              "value": 12024,
+              "bound": 12024,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n256: finite saved means and stage data",
+              "value": true,
+              "bound": true,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n256: all stage lower bounds",
+              "value": 0.0,
+              "bound": -5e-13,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n256: all stage upper bounds",
+              "value": 1.0,
+              "bound": 1.0000000000005,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n256: sufficient individual face Courant",
+              "value": 0.2,
+              "bound": 0.25,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n256: four-face mean preserved",
+              "value": 1.1102230246251565e-16,
+              "bound": 3e-15,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n256: each FE shared-flux balance",
+              "value": 2.7755575615628914e-17,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n256: each SSP convex-mean balance",
+              "value": 8.902600878712974e-15,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n256: all rotated reference areas",
+              "value": 6.938893903907228e-18,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n256: full-turn geometric return",
+              "value": 5.5067062021407764e-14,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n256: zero clipping and retries",
+              "value": 0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n256: exact discrete velocity divergence",
+              "value": 0.0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "base-muscl-minmod-n256: quarter-turn snapshots retained",
+              "value": [
+                0.0,
+                1.5707963267948966,
+                3.141592653589793,
+                4.71238898038469,
+                6.283185307179586
+              ],
+              "bound": [
+                0.0,
+                1.5707963267948966,
+                3.141592653589793,
+                4.71238898038469,
+                6.283185307179586
+              ],
+              "passed": true
+            },
+            {
+              "name": "half-cell-shift: final time",
+              "value": 6.283185307179586,
+              "bound": 6.283185307179586,
+              "passed": true
+            },
+            {
+              "name": "half-cell-shift: initial represented area",
+              "value": 0.0,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "half-cell-shift: periodic mass conservation",
+              "value": 2.033095913844818e-15,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "half-cell-shift: three FE records per SSP step",
+              "value": 3024,
+              "bound": 3024,
+              "passed": true
+            },
+            {
+              "name": "half-cell-shift: finite saved means and stage data",
+              "value": true,
+              "bound": true,
+              "passed": true
+            },
+            {
+              "name": "half-cell-shift: all stage lower bounds",
+              "value": 0.0,
+              "bound": -5e-13,
+              "passed": true
+            },
+            {
+              "name": "half-cell-shift: all stage upper bounds",
+              "value": 1.0,
+              "bound": 1.0000000000005,
+              "passed": true
+            },
+            {
+              "name": "half-cell-shift: sufficient individual face Courant",
+              "value": 0.2,
+              "bound": 0.25,
+              "passed": true
+            },
+            {
+              "name": "half-cell-shift: four-face mean preserved",
+              "value": 1.1102230246251565e-16,
+              "bound": 3e-15,
+              "passed": true
+            },
+            {
+              "name": "half-cell-shift: each FE shared-flux balance",
+              "value": 2.0816681711721685e-17,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "half-cell-shift: each SSP convex-mean balance",
+              "value": 2.033095913844818e-15,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "half-cell-shift: all rotated reference areas",
+              "value": 6.938893903907228e-18,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "half-cell-shift: full-turn geometric return",
+              "value": 9.769962616701378e-15,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "half-cell-shift: zero clipping and retries",
+              "value": 0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "half-cell-shift: exact discrete velocity divergence",
+              "value": 0.0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "half-cell-shift: quarter-turn snapshots retained",
+              "value": [
+                0.0,
+                1.5707963267948966,
+                3.141592653589793,
+                4.71238898038469,
+                6.283185307179586
+              ],
+              "bound": [
+                0.0,
+                1.5707963267948966,
+                3.141592653589793,
+                4.71238898038469,
+                6.283185307179586
+              ],
+              "passed": true
+            },
+            {
+              "name": "oblique-start: final time",
+              "value": 6.283185307179586,
+              "bound": 6.283185307179586,
+              "passed": true
+            },
+            {
+              "name": "oblique-start: initial represented area",
+              "value": 6.938893903907228e-18,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "oblique-start: periodic mass conservation",
+              "value": 1.9845236565174673e-15,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "oblique-start: three FE records per SSP step",
+              "value": 2976,
+              "bound": 2976,
+              "passed": true
+            },
+            {
+              "name": "oblique-start: finite saved means and stage data",
+              "value": true,
+              "bound": true,
+              "passed": true
+            },
+            {
+              "name": "oblique-start: all stage lower bounds",
+              "value": 0.0,
+              "bound": -5e-13,
+              "passed": true
+            },
+            {
+              "name": "oblique-start: all stage upper bounds",
+              "value": 1.0,
+              "bound": 1.0000000000005,
+              "passed": true
+            },
+            {
+              "name": "oblique-start: sufficient individual face Courant",
+              "value": 0.2,
+              "bound": 0.25,
+              "passed": true
+            },
+            {
+              "name": "oblique-start: four-face mean preserved",
+              "value": 1.1102230246251565e-16,
+              "bound": 3e-15,
+              "passed": true
+            },
+            {
+              "name": "oblique-start: each FE shared-flux balance",
+              "value": 2.0816681711721685e-17,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "oblique-start: each SSP convex-mean balance",
+              "value": 1.9914625504213745e-15,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "oblique-start: all rotated reference areas",
+              "value": 1.3877787807814457e-17,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "oblique-start: full-turn geometric return",
+              "value": 1.1546319456101628e-14,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "oblique-start: zero clipping and retries",
+              "value": 0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "oblique-start: exact discrete velocity divergence",
+              "value": 0.0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "oblique-start: quarter-turn snapshots retained",
+              "value": [
+                0.0,
+                1.5707963267948966,
+                3.141592653589793,
+                4.71238898038469,
+                6.283185307179586
+              ],
+              "bound": [
+                0.0,
+                1.5707963267948966,
+                3.141592653589793,
+                4.71238898038469,
+                6.283185307179586
+              ],
+              "passed": true
+            },
+            {
+              "name": "donor-cell finest relative L1",
+              "value": 0.9322557981564463,
+              "bound": 1.0,
+              "passed": true
+            },
+            {
+              "name": "donor-cell refinement ratio 1",
+              "value": 0.8799445839968347,
+              "bound": 0.98,
+              "passed": true
+            },
+            {
+              "name": "donor-cell refinement ratio 2",
+              "value": 0.8347919138640236,
+              "bound": 0.98,
+              "passed": true
+            },
+            {
+              "name": "donor-cell intermediate relative L1 1",
+              "value": 0.566804533652593,
+              "bound": 1.3,
+              "passed": true
+            },
+            {
+              "name": "donor-cell intermediate centroid distance 1",
+              "value": 2.861756123308295e-05,
+              "bound": 0.04,
+              "passed": true
+            },
+            {
+              "name": "donor-cell intermediate relative L1 2",
+              "value": 0.746172902314317,
+              "bound": 1.3,
+              "passed": true
+            },
+            {
+              "name": "donor-cell intermediate centroid distance 2",
+              "value": 0.0007528192823951286,
+              "bound": 0.04,
+              "passed": true
+            },
+            {
+              "name": "donor-cell intermediate relative L1 3",
+              "value": 0.8549767847860748,
+              "bound": 1.3,
+              "passed": true
+            },
+            {
+              "name": "donor-cell intermediate centroid distance 3",
+              "value": 0.0026841765759190307,
+              "bound": 0.04,
+              "passed": true
+            },
+            {
+              "name": "muscl-minmod finest relative L1",
+              "value": 0.39427105204685026,
+              "bound": 0.55,
+              "passed": true
+            },
+            {
+              "name": "muscl-minmod refinement ratio 1",
+              "value": 0.7778022686830337,
+              "bound": 0.98,
+              "passed": true
+            },
+            {
+              "name": "muscl-minmod refinement ratio 2",
+              "value": 0.6545799439693762,
+              "bound": 0.98,
+              "passed": true
+            },
+            {
+              "name": "muscl-minmod intermediate relative L1 1",
+              "value": 0.2282251349613835,
+              "bound": 1.3,
+              "passed": true
+            },
+            {
+              "name": "muscl-minmod intermediate centroid distance 1",
+              "value": 1.950829607913196e-05,
+              "bound": 0.04,
+              "passed": true
+            },
+            {
+              "name": "muscl-minmod intermediate relative L1 2",
+              "value": 0.30189249025189613,
+              "bound": 1.3,
+              "passed": true
+            },
+            {
+              "name": "muscl-minmod intermediate centroid distance 2",
+              "value": 2.0638675802185796e-05,
+              "bound": 0.04,
+              "passed": true
+            },
+            {
+              "name": "muscl-minmod intermediate relative L1 3",
+              "value": 0.35378497752266586,
+              "bound": 1.3,
+              "passed": true
+            },
+            {
+              "name": "muscl-minmod intermediate centroid distance 3",
+              "value": 1.8345104938228806e-05,
+              "bound": 0.04,
+              "passed": true
+            },
+            {
+              "name": "finest MUSCL/donor relative L1",
+              "value": 0.42292153379633446,
+              "bound": 0.85,
+              "passed": true
+            },
+            {
+              "name": "half-cell-shift shape error",
+              "value": 0.8193276013163368,
+              "bound": 1.2,
+              "passed": true
+            },
+            {
+              "name": "oblique-start shape error",
+              "value": 0.8036348842562988,
+              "bound": 1.2,
+              "passed": true
+            },
+            {
+              "name": "independent geometry: analytic circle partitions conserve closed total area",
+              "value": true,
+              "bound": true,
+              "passed": true
+            },
+            {
+              "name": "independent geometry: twelve fixed cut cells agree with independent vertical quadrature",
+              "value": true,
+              "bound": true,
+              "passed": true
+            },
+            {
+              "name": "independent geometry: independent whole-area quadrature agrees with closed area",
+              "value": true,
+              "bound": true,
+              "passed": true
+            },
+            {
+              "name": "independent geometry: true analytic centroid agrees with independent first moments",
+              "value": true,
+              "bound": true,
+              "passed": true
+            },
+            {
+              "name": "independent geometry: full-turn geometric cell means return",
+              "value": true,
+              "bound": true,
+              "passed": true
+            },
+            {
+              "name": "independent geometry: quarter-turn geometry has the correct counterclockwise orientation",
+              "value": true,
+              "bound": true,
+              "passed": true
+            },
+            {
+              "name": "independent geometry: geometric fraction roundoff cleanup remains within its separate band",
+              "value": true,
+              "bound": true,
+              "passed": true
+            },
+            {
+              "name": "independent geometry: analytic area cleanup remains within its dimensional floating-point band",
+              "value": true,
+              "bound": true,
+              "passed": true
+            }
+          ],
+          "reference_qualification": {
+            "checks": {
+              "analytic circle partitions conserve closed total area": true,
+              "twelve fixed cut cells agree with independent vertical quadrature": true,
+              "independent whole-area quadrature agrees with closed area": true,
+              "true analytic centroid agrees with independent first moments": true,
+              "full-turn geometric cell means return": true,
+              "quarter-turn geometry has the correct counterclockwise orientation": true,
+              "geometric fraction roundoff cleanup remains within its separate band": true,
+              "analytic area cleanup remains within its dimensional floating-point band": true
+            },
+            "metrics": {
+              "closed_total_area": 0.05822070305889008,
+              "maximum_partition_total_area_error": 6.938893903907228e-18,
+              "cut_cells": [
+                {
+                  "angle": 0.0,
+                  "i": 31,
+                  "j": 38,
+                  "analytic_fraction": 0.0,
+                  "quad_fraction": 0.0,
+                  "absolute_difference": 0.0,
+                  "quad_reported_absolute_error": 0.0
+                },
+                {
+                  "angle": 0.0,
+                  "i": 31,
+                  "j": 54,
+                  "analytic_fraction": 0.6000000000000014,
+                  "quad_fraction": 0.6000000000000014,
+                  "absolute_difference": 0.0,
+                  "quad_reported_absolute_error": 1.6263032587282605e-18
+                },
+                {
+                  "angle": 0.0,
+                  "i": 41,
+                  "j": 48,
+                  "analytic_fraction": 0.5826105217879549,
+                  "quad_fraction": 0.5826105217879549,
+                  "absolute_difference": 0.0,
+                  "quad_reported_absolute_error": 5.068645156369733e-18
+                },
+                {
+                  "angle": 0.0,
+                  "i": 31,
+                  "j": 57,
+                  "analytic_fraction": 0.5826105217879549,
+                  "quad_fraction": 0.5826105217879552,
+                  "absolute_difference": 3.3306690738754696e-16,
+                  "quad_reported_absolute_error": 1.579168983588536e-18
+                },
+                {
+                  "angle": 0.0,
+                  "i": 40,
+                  "j": 52,
+                  "analytic_fraction": 0.4736712831751353,
+                  "quad_fraction": 0.473671283175136,
+                  "absolute_difference": 7.216449660063518e-16,
+                  "quad_reported_absolute_error": 1.2838885856561976e-18
+                },
+                {
+                  "angle": 0.0,
+                  "i": 32,
+                  "j": 48,
+                  "analytic_fraction": 0.0,
+                  "quad_fraction": 0.0,
+                  "absolute_difference": 0.0,
+                  "quad_reported_absolute_error": 0.0
+                },
+                {
+                  "angle": 0.7853981633974483,
+                  "i": 30,
+                  "j": 43,
+                  "analytic_fraction": 0.2801393002315855,
+                  "quad_fraction": 0.2801393002315861,
+                  "absolute_difference": 6.106226635438361e-16,
+                  "quad_reported_absolute_error": 3.5236570605778894e-19
+                },
+                {
+                  "angle": 0.7853981633974483,
+                  "i": 20,
+                  "j": 52,
+                  "analytic_fraction": 0.9075562982011056,
+                  "quad_fraction": 0.9075562982011043,
+                  "absolute_difference": 1.3322676295501878e-15,
+                  "quad_reported_absolute_error": 2.4599362754063493e-18
+                },
+                {
+                  "angle": 0.7853981633974483,
+                  "i": 17,
+                  "j": 48,
+                  "analytic_fraction": 0.3226268397973886,
+                  "quad_fraction": 0.32262683979739254,
+                  "absolute_difference": 3.941291737419306e-15,
+                  "quad_reported_absolute_error": 8.744818015261644e-19
+                },
+                {
+                  "angle": 0.7853981633974483,
+                  "i": 15,
+                  "j": 46,
+                  "analytic_fraction": 0.3226268397973957,
+                  "quad_fraction": 0.3226268397973947,
+                  "absolute_difference": 9.992007221626409e-16,
+                  "quad_reported_absolute_error": 8.744818015261704e-19
+                },
+                {
+                  "angle": 0.7853981633974483,
+                  "i": 14,
+                  "j": 39,
+                  "analytic_fraction": 1.0,
+                  "quad_fraction": 1.0,
+                  "absolute_difference": 0.0,
+                  "quad_reported_absolute_error": 2.710505431213761e-18
+                },
+                {
+                  "angle": 0.7853981633974483,
+                  "i": 20,
+                  "j": 43,
+                  "analytic_fraction": 0.0,
+                  "quad_fraction": 0.0,
+                  "absolute_difference": 0.0,
+                  "quad_reported_absolute_error": 0.0
+                }
+              ],
+              "maximum_independent_cut_cell_difference": 3.941291737419306e-15,
+              "continuum_moments": [
+                {
+                  "angle": 0.0,
+                  "quad_area": 0.05822070305889008,
+                  "quad_centroid": [
+                    0.49999999999999994,
+                    0.7552780480228114
+                  ],
+                  "analytic_centroid": [
+                    0.5,
+                    0.7552780480228114
+                  ],
+                  "area_difference": 0.0,
+                  "centroid_maximum_difference": 5.551115123125783e-17,
+                  "quad_reported_absolute_error": 1.9550333574258616e-14
+                },
+                {
+                  "angle": 0.7853981633974483,
+                  "quad_area": 0.05822070305889005,
+                  "quad_centroid": [
+                    0.31949116115500475,
+                    0.6805088388449952
+                  ],
+                  "analytic_centroid": [
+                    0.31949116115500487,
+                    0.6805088388449951
+                  ],
+                  "area_difference": 2.7755575615628914e-17,
+                  "centroid_maximum_difference": 1.1102230246251565e-16,
+                  "quad_reported_absolute_error": 7.7021722333370235e-16
+                },
+                {
+                  "angle": 1.5707963267948966,
+                  "quad_area": 0.058220703058890065,
+                  "quad_centroid": [
+                    0.2447219519771886,
+                    0.5
+                  ],
+                  "analytic_centroid": [
+                    0.24472195197718855,
+                    0.5
+                  ],
+                  "area_difference": 1.3877787807814457e-17,
+                  "centroid_maximum_difference": 5.551115123125783e-17,
+                  "quad_reported_absolute_error": 1.55500612386561e-14
+                }
+              ],
+              "full_turn_maximum_cell_mean_difference": 7.993605777301127e-15,
+              "quarter_turn_maximum_array_rotation_difference": 9.992007221626409e-16,
+              "geometry_roundoff_diagnostics": [
+                {
+                  "n": 32,
+                  "angle": 0.0,
+                  "shift": 0.0,
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 52,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.058220703058890086,
+                  "represented_area_before_fraction_cleanup": 0.058220703058890086,
+                  "represented_area_before_any_cleanup": 0.058220703058890086
+                },
+                {
+                  "n": 64,
+                  "angle": 0.0,
+                  "shift": 0.0,
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 108,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889007,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889007,
+                  "represented_area_before_any_cleanup": 0.05822070305889007
+                },
+                {
+                  "n": 128,
+                  "angle": 0.0,
+                  "shift": 0.0,
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 216,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889007,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889007,
+                  "represented_area_before_any_cleanup": 0.05822070305889007
+                },
+                {
+                  "n": 256,
+                  "angle": 0.0,
+                  "shift": 0.0,
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 432,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889007,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889007,
+                  "represented_area_before_any_cleanup": 0.05822070305889007
+                },
+                {
+                  "n": 64,
+                  "angle": 0.7853981633974483,
+                  "shift": 0.0,
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 2,
+                  "maximum_fraction_cleanup": 6.217248937900877e-15,
+                  "fraction_cleanup_signed_area": -1.951563910473908e-18,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 6.217248937900877e-15,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 120,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889007,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889007,
+                  "represented_area_before_any_cleanup": 0.05822070305889007
+                },
+                {
+                  "n": 64,
+                  "angle": 1.5707963267948966,
+                  "shift": 0.0,
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 108,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889008,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889008,
+                  "represented_area_before_any_cleanup": 0.05822070305889008
+                },
+                {
+                  "n": 64,
+                  "angle": 0.0,
+                  "shift": 0.0078125,
+                  "area_cleanup_count": 0,
+                  "maximum_area_cleanup": 0.0,
+                  "area_cleanup_signed_change": 0.0,
+                  "fraction_cleanup_count": 0,
+                  "maximum_fraction_cleanup": 0.0,
+                  "fraction_cleanup_signed_area": 0.0,
+                  "maximum_raw_fraction_lower_excess": 0.0,
+                  "maximum_raw_fraction_upper_excess": 0.0,
+                  "fraction_roundoff_band": 2e-12,
+                  "mixed_cells": 108,
+                  "scope": "Analytic geometric integration only; never PDE-state clipping.",
+                  "represented_area": 0.05822070305889008,
+                  "represented_area_before_fraction_cleanup": 0.05822070305889008,
+                  "represented_area_before_any_cleanup": 0.05822070305889008
+                }
+              ]
+            },
+            "scope": "Independent analytic geometry qualification, not a PDE solver. True first moments are distinct from cell-center centroid quadrature. No Firedrake software was executed."
+          }
+        },
+        "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/zalesak-rotation/",
+        "reading": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-zalesak/#zalesak-rotation",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-zalesak/#zalesak-rotation"
+        }
+      }
+    ]
+  },
+  "depth_scope": {
+    "ja": "追加のZalesak型例は与えた発散ゼロ速度による2次元スカラー回転輸送です。同一の周期格子・SSPRK(3,3)で一次風上とminmod MUSCLを比較し、各段の範囲・保存量と一回転後の形状誤差を調べます。FCT法や多次元Euler全般の有界性を認証しません。",
+    "en": "The additional Zalesak-type example is two-dimensional scalar rotation in a prescribed divergence-free velocity. Compare donor-cell upwinding and minmod MUSCL with the same periodic grid and SSPRK(3,3), measuring stage bounds, conservation and full-turn shape errors. It does not certify FCT or general multidimensional Euler bounds."
+  },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/upwind/",
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/upwind/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/upwind/index.md",
   "code_urls": [
-    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/advection.py"
+    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/advection.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/rotation.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/references/geometry.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/references/qualify_reference.py"
   ],
   "test_urls": [
     "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
-    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py"
+    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/test_rotation.py"
   ],
   "run_commands": [
     "python -m pytest -q tests/test_time_geometry.py tests/test_numerics.py"
@@ -191,6 +3272,15 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#advection-sine-ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#advection-sine-en"
       }
+    },
+    {
+      "id": "zalesak-rotation",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/zalesak-rotation/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/zalesak-rotation/?lang=en"
+      },
+      "kind": "dedicated-supplement"
     }
   ],
   "problem_navigation": {
@@ -210,6 +3300,20 @@
         "url": {
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#linear-advection-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#linear-advection-en"
+        }
+      },
+      {
+        "id": "rotational-advection",
+        "name": {
+          "ja": "2次元の回転移流",
+          "en": "Two-dimensional rotational advection"
+        },
+        "problem_ids": [
+          "zalesak"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#rotational-advection-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#rotational-advection-en"
         }
       }
     ],
@@ -308,6 +3412,68 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-square/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-square/?lang=en#references-en"
         }
+      },
+      {
+        "id": "zalesak",
+        "name": {
+          "ja": "Zalesak型の切り欠き円盤の回転輸送",
+          "en": "Zalesak-type slotted-disk rotation"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/results/zalesak-rotation-preview.png",
+          "sha256": "4c1236cfeda0f42d555a6a918ed20682729c95c91f2ab6a9c615e2eb5fbcdccc",
+          "width": 1680,
+          "height": 800,
+          "caption": {
+            "ja": "実際の2次元スカラー輸送の最細格子の保存セル平均。全[0,1]²のうちx∈[.28,.72], y∈[.53,.97]の円盤周辺を拡大し、一回転後の一次風上とminmod MUSCLを幾何学的な参照セル平均と比較します。切り欠きの数値拡散を残した図で、FCT法やEuler流体の計算ではありません。",
+            "en": "Saved cell means on the finest grid of actual two-dimensional scalar transport. Zoom x in[.28,.72],y in[.53,.97] from the full unit square and compare donor-cell upwinding and minmod MUSCL after one revolution against geometric reference cell means. Slot diffusion remains visible; this is not an FCT algorithm or Euler-flow calculation."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/zalesak/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/zalesak/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/zalesak/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/zalesak/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "zalesak-rotation",
+            "kind": "supplement",
+            "name": {
+              "ja": "Zalesak型2D回転輸送：保存・有界性・形状誤差",
+              "en": "Zalesak-type 2D rotation: conservation, bounds and shape error"
+            },
+            "scope": {
+              "ja": "スロット付き円盤を実際の2次元有限体積法で一回転させ、donor-cellとminmod MUSCLを比較します。3格子と、半セルの中心ずらし・45度の初期向きを含む8計算で、保存・各SSP段の有界性・形状誤差とスロットの埋まりを測ります。",
+              "en": "Rotate a slotted disk through one full turn with an actual 2D finite-volume solver, comparing donor-cell and minmod MUSCL. Eight runs combine three grids with half-cell-center and 45-degree-start probes; measure conservation, bounds at every SSP stage, shape error and slot filling."
+            },
+            "method_ids": [
+              "upwind",
+              "muscl",
+              "minmod",
+              "ssprk33"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/zalesak-rotation/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/zalesak-rotation/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/atlas-zalesak-2026-11-23.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "同じ回転速度・周期有限体積格子で、一次風上とminmod MUSCLをSSPRK(3,3)で進めます。Zalesak FCTを実装したという意味ではありません。",
+          "en": "Donor-cell upwinding and minmod MUSCL use the same prescribed rotation, periodic finite-volume grid and SSPRK(3,3). This does not claim implementation of Zalesak FCT."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/zalesak/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/zalesak/?lang=en#references-en"
+        }
       }
     ],
     "references": [
@@ -375,6 +3541,40 @@
             "view": {
               "ja": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=sine-advection",
               "en": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=sine-advection"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "zalesak",
+        "problem_name": {
+          "ja": "Zalesak型の切り欠き円盤の回転輸送",
+          "en": "Zalesak-type slotted-disk rotation"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/zalesak/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/zalesak/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "zalesak-rotation",
+            "title": {
+              "ja": "Zalesak型の切り欠き円盤：剛体回転と幾何学的セル平均",
+              "en": "Zalesak-type slotted disk: rigid rotation and geometric cell means"
+            },
+            "kind": "analytic",
+            "relation": "same-problem",
+            "note": {
+              "ja": "円盤とスロットの定義を固定し、保存した初期・帰還時のセル平均と比較します。指示関数の点値や別実装PDEの細格子解を参照と混同しません。",
+              "en": "Fix the disk and slot geometry and compare stored initial/returned cell means. Distinguish indicator point samples and a finer PDE calculation from this geometric reference."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-zalesak-rotation-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-zalesak-rotation-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/zalesak-rotation/?lang=ja#zalesak-rotation-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/zalesak-rotation/?lang=en#zalesak-rotation-en-measurements"
             }
           }
         ]

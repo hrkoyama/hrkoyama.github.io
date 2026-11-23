@@ -3948,6 +3948,65 @@
         "python -m pytest -q",
         "python run.py --input inputs.json --output output"
       ]
+    },
+    {
+      "id": "zalesak",
+      "group": "transport",
+      "name": {
+        "ja": "Zalesak型の切り欠き円盤の回転輸送",
+        "en": "Zalesak-type slotted-disk rotation"
+      },
+      "chapter": "validation-zalesak",
+      "reading_section": "zalesak-rotation",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/zalesak/",
+      "verification": "/code/validated-examples/2026-11-23/zalesak/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/zalesak/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "zalesak-rotation"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/zalesak/results/zalesak-rotation-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/zalesak/inputs.json",
+          "json_pointer": "/cases/zalesak-rotation"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/zalesak/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "zalesak-rotation",
+          "url": "/numerical-methods-atlas/validation/zalesak-rotation/",
+          "name": {
+            "ja": "Zalesak型2D回転輸送：保存・有界性・形状誤差",
+            "en": "Zalesak-type 2D rotation: conservation, bounds and shape error"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-zalesak/#zalesak-rotation",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-zalesak/#zalesak-rotation"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#zalesak",
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ]
     }
   ],
   "excluded_examples": {
@@ -3976,11 +4035,11 @@
   },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/",
   "counts": {
-    "test_problems": 86,
-    "saved_test_problems": 86,
+    "test_problems": 87,
+    "saved_test_problems": 87,
     "code_test_problems": 0,
     "groups": {
-      "transport": 9,
+      "transport": 10,
       "fluid": 19,
       "mhd": 5,
       "viscous": 3,
@@ -3995,7 +4054,7 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-test-problems.json": "f0d5260b28da470236000ab7d675cf92330bcf864f65e4558360c49506428ac7",
+    "catalog/atlas-test-problems.json": "5f210155a1fa739db4baa26e279015aebc92914c6a613dd3cf882e0d72c5fda9",
     "numerical-methods-atlas/equation-gallery.json": "e99af38238a50232f92875817c4556ab6c730289db13014efdd41913096c902e",
     "numerical-methods-atlas/cip.json": "3aa33fbffad6b9ad76310e9b713629a1a35b4e30e419db0c531180cf769e6b6f",
     "numerical-methods-atlas/limiters.json": "3242180ba171420220fd349cac93dff552466070f886f3d00a70927939255312",
@@ -4136,7 +4195,11 @@
     "code/validated-examples/2026-11-23-r3/guderley/results/result.json": "c85894f329b97d62ef9d093792316028e4b3b9ca38a0488047bdbab2542e84bb",
     "code/validated-examples/2026-11-23-r3/guderley/results/guderley-implosion-preview.png": "03774f695db7f8e07eb006db120075d808871a194e1ab59abb815995fc53f383",
     "code/validated-examples/2026-11-23-r3/guderley/inputs.json": "55012ed25956636e2433f61c5bd5de45651c8d252212aac2e9c8cb47e7e1442c",
-    "code/validated-examples/2026-11-23-r3/guderley/verification.json": "3eb90bb576b4b9579433bb15a93b0acc42948a85f335a45de7c649ec1b61e625"
+    "code/validated-examples/2026-11-23-r3/guderley/verification.json": "3eb90bb576b4b9579433bb15a93b0acc42948a85f335a45de7c649ec1b61e625",
+    "code/validated-examples/2026-11-23/zalesak/results/result.json": "51851a31df72eec078e25171deeacd2699a9bfe9eedc55b4bc6831fd233b408d",
+    "code/validated-examples/2026-11-23/zalesak/results/zalesak-rotation-preview.png": "4c1236cfeda0f42d555a6a918ed20682729c95c91f2ab6a9c615e2eb5fbcdccc",
+    "code/validated-examples/2026-11-23/zalesak/inputs.json": "0dcc0dc1e870fd50ddf5778ee189ec4069694247fdee6610c16832ed4d690c63",
+    "code/validated-examples/2026-11-23/zalesak/verification.json": "aad9b39c23d83e967588361edfdb05724f1ea3fade93843ebb05b5fd829ba44e"
   },
   "code_edition": "2026-11-21",
   "code_verification": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/verification.json"

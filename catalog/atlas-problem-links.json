@@ -2088,6 +2088,40 @@
         "ja": "球殻の面積・体積と幾何学的な圧力源を使う区分定数HLL有限体積流束、物理時間のHeun更新による限定例です。",
         "en": "A scoped spherical-shell example with piecewise-constant HLL finite-volume fluxes, shell areas/volumes, the geometric pressure source and physical-time Heun updates."
       }
+    },
+    {
+      "id": "zalesak",
+      "equation_ids": [
+        "rotational-advection"
+      ],
+      "equation_note": {
+        "ja": "与えた発散ゼロの回転速度に従うスカラー輸送で、Euler流体の発展ではありません。Zalesak型の円盤・スロットによる形状保持の問題を用いますが、ZalesakのFCTアルゴリズムそのものを実装した例ではありません。連続指示関数の点値と保存量の幾何学的セル平均を区別し、周期境界での数値的な裾も測ります。",
+        "en": "This is scalar transport in a prescribed divergence-free rotation, not Euler-fluid evolution. It uses a Zalesak-type slotted-disk shape test without claiming implementation of Zalesak’s FCT algorithm. Pointwise indicator values and geometric conserved cell means are distinguished; numerical tails near periodic boundaries are also measured."
+      },
+      "reference_note": {
+        "ja": "参照は流れを逆回転して初期指示関数を評価する剛体回転です。一回転後は連続場が初期形状へ戻り、比較には同じ格子の幾何学的セル平均を使います。",
+        "en": "The reference evaluates the initial indicator under inverse rigid rotation. The continuum field returns after one revolution; comparisons use geometric cell means on the same grid."
+      },
+      "references": [
+        {
+          "id": "zalesak-rotation",
+          "relation": "same-problem",
+          "note": {
+            "ja": "円盤とスロットの定義を固定し、保存した初期・帰還時のセル平均と比較します。指示関数の点値や別実装PDEの細格子解を参照と混同しません。",
+            "en": "Fix the disk and slot geometry and compare stored initial/returned cell means. Distinguish indicator point samples and a finer PDE calculation from this geometric reference."
+          }
+        }
+      ],
+      "method_ids": [
+        "upwind",
+        "muscl",
+        "minmod",
+        "ssprk33"
+      ],
+      "method_note": {
+        "ja": "同じ回転速度・周期有限体積格子で、一次風上とminmod MUSCLをSSPRK(3,3)で進めます。Zalesak FCTを実装したという意味ではありません。",
+        "en": "Donor-cell upwinding and minmod MUSCL use the same prescribed rotation, periodic finite-volume grid and SSPRK(3,3). This does not claim implementation of Zalesak FCT."
+      }
     }
   ]
 }

@@ -612,13 +612,13 @@ ID: advection-reconstruction-1 · P1 · 公開済み · 検証の拡充
 
 ### Zalesak型2D回転輸送・形状保持
 
-ID: advection-reconstruction-2 · P2 · 未着手 · 新規実装
+ID: advection-reconstruction-2 · P2 · 検証済み · 新規実装
 
 調査時の範囲：未収録
 
 調査時の現状：
 
-MUSCL、WENO-JS/Z、PPM、CIP、DG、特性再構築、各limiterは実装済み。1D滑らか/不連続、2D entropy wave、保存・界面恒等式の検査がある。
+26単体検査・64²/128²/256²と位置/角度を含む8計算158判定、独立ZIP展開の再実行が合格。公開URLと公開ZIPのLinux確認は未完了です。
 
 追加内容・最小の検証：
 
@@ -633,6 +633,8 @@ MUSCL、WENO-JS/Z、PPM、CIP、DG、特性再構築、各limiterは実装済み
 - 誤差・収束と制約が分かる図を保存する。
 - 実在する問題ギャラリー・実行入口・入力・図への対応を確認する。
 
+Firedrake公式例で形状・速度・周期を確認した単独0–1円盤の周期有限体積変種。真の2次元回転輸送を一次風上/保存量MUSCL minmod・SSPRK33で比較し、全段の保存・上下限、四分の一周と1周の形状誤差、位置/角度・境界帯の診断を保存。Zalesak FCT・Firedrake DG・LeVeque CTUの再現ではありません。初回32²/64²/128²の156/158判定と不合格を保持し、同一受入基準で細分化しています。
+
 調査時の根拠：
 
 - `catalog/atlas-test-problems.json` · advection-square/entropy-2d
@@ -640,6 +642,40 @@ MUSCL、WENO-JS/Z、PPM、CIP、DG、特性再構築、各limiterは実装済み
 
 - [Zalesak (1979), Fully multidimensional flux-corrected transport algorithms for fluids](<https://www.sciencedirect.com/science/article/pii/0021999179900512>)
   出版社書誌・抄録を確認。具体的スロット形状等は実装前に原文のテスト定義を照合する。
+
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-23/zalesak/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-23/zalesak/inputs.json",
+    "/code/validated-examples/2026-11-23/zalesak/acceptance.json",
+    "/code/validated-examples/2026-11-23/zalesak/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-23/zalesak/results/zalesak-rotation-preview.png",
+    "/code/validated-examples/2026-11-23/zalesak/results/zalesak-rotation.png"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#zalesak-ja",
+  "execution": "/numerical-methods-atlas/validation/zalesak-rotation/?lang=ja",
+  "code": [
+    "/code/validated-examples/2026-11-23/zalesak/run.py",
+    "/code/validated-examples/2026-11-23/zalesak/rotation.py",
+    "/code/validated-examples/2026-11-23/zalesak/references/geometry.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-23/zalesak/references/citations.json",
+    "/code/validated-examples/2026-11-23/zalesak/references/README.md",
+    "/code/validated-examples/2026-11-23/zalesak/references/source-review.json",
+    "/code/validated-examples/2026-11-23/zalesak/source-provenance.json",
+    "/code/validated-examples/2026-11-23/zalesak/pre-run-review.json",
+    "/code/validated-examples/2026-11-23/zalesak/attempts/01/attempt-summary.json",
+    "/code/validated-examples/2026-11-23/zalesak/attempts/01/results/result.json",
+    "/code/validated-examples/2026-11-23/zalesak/attempts/01/source/pre-run-contract.json"
+  ]
+}
+```
 
 ### WENO-Zの臨界点・epsilon依存の比較
 

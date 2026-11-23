@@ -4,8 +4,8 @@
   "title": "Learn by field",
   "description": "Read the theory, derivations and worked examples by field, from foundations to related methods and verification.",
   "source": "/catalog/atlas-reading-index.json",
-  "source_sha256": "5efffa817041fda365a10fbbfc03e6bda37d439e78f6646d9a2ef9772561e4fb",
-  "chapter_count": 101,
+  "source_sha256": "119522b39111340ab8fe6257062833ee98d921877a3d2cdb758df23b8116c19d",
+  "chapter_count": 102,
   "groups": [
     {
       "id": "foundations-time",
@@ -384,6 +384,17 @@
             "en"
           ],
           "search_text": "validation-euler-positivity Euler二重膨張波：段階ごとの正値性 Euler double rarefaction: positivity at every stage 流体・衝撃波・定常解法 Fluids, shocks and steady solvers"
+        },
+        {
+          "id": "validation-zalesak",
+          "title": "Zalesak-type 2D rotation: conservation, bounds and shape error",
+          "url": "/numerical-methods-atlas/en/read/validation-zalesak/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-zalesak Zalesak型2D回転輸送：保存・有界性・形状誤差 Zalesak-type 2D rotation: conservation, bounds and shape error 流体・衝撃波・定常解法 Fluids, shocks and steady solvers"
         },
         {
           "id": "rotated-hybrid",

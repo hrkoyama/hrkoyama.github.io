@@ -26,8 +26,8 @@ test('seven methods retain original particle releases and expose precisely their
 });
 
 test('six refinements reuse five physical families without changing diagnostic or problem totals',()=>{
- const index=json('numerical-methods-atlas/validation/index.json');assert.equal(index.case_count,48);assert.equal(index.groups.length,19);assert.equal(Object.values(index.case_problem_ids).filter(x=>x===null).length,5);
- const problems=json('numerical-methods-atlas/test-cases/index.json').problems;assert.equal(problems.length,86);
+ const index=json('numerical-methods-atlas/validation/index.json');assert.equal(index.case_count,49);assert.equal(index.groups.length,20);assert.equal(Object.values(index.case_problem_ids).filter(x=>x===null).length,5);
+ const problems=json('numerical-methods-atlas/test-cases/index.json').problems;assert.equal(problems.length,87);
  for(const [,caseId,problemId] of Object.values(mapping)){
   assert.equal(index.case_problem_ids[caseId],problemId);
   assert.deepEqual(problems.filter(p=>(p.supplemental_examples||[]).some(x=>x.id===caseId)).map(x=>x.id),[problemId]);

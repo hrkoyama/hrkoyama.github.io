@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "cases": {
+    "zalesak-rotation": {
+      "domain": [
+        0.0,
+        1.0,
+        0.0,
+        1.0
+      ],
+      "rotation_center": [
+        0.5,
+        0.5
+      ],
+      "shape_center": [
+        0.5,
+        0.75
+      ],
+      "radius": 0.15,
+      "slot_width": 0.05,
+      "slot_top": 0.85,
+      "omega": 1.0,
+      "final_time": 6.283185307179586,
+      "grids": [
+        64,
+        128,
+        256
+      ],
+      "methods": [
+        "donor-cell",
+        "muscl-minmod"
+      ],
+      "face_courant": 0.2,
+      "sufficient_face_courant": 0.25,
+      "max_steps": 5000,
+      "bounds_roundoff_tolerance": 5e-13,
+      "boundary_band_width": 0.05,
+      "diagnostics": [
+        {
+          "id": "half-cell-shift",
+          "n": 64,
+          "method": "muscl-minmod",
+          "shift_cells": 0.5,
+          "angle0": 0.0
+        },
+        {
+          "id": "oblique-start",
+          "n": 64,
+          "method": "muscl-minmod",
+          "shift_cells": 0.0,
+          "angle0": 0.7853981633974483
+        }
+      ]
+    }
+  }
+}
