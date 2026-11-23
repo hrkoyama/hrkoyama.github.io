@@ -70,6 +70,10 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   An inward spherical Guderley shock in cold stationary gas is evolved from t=-1 to -0.85 on 128/256/512 radial shells. HLL fluxes and Heun steps are checked against a similarity eigenvalue/field, shock trajectory and discrete conservation budgets.
+- [Euler double rarefaction: positivity at every stage](<https://hrkoyama.github.io/numerical-methods-atlas/validation/euler-double-rarefaction-positivity/?lang=en>)
+  availability: run
+
+  Evolve the existing strong double rarefaction on 128/256/512 cells, connecting mean-preserving positivity scaling to MUSCL, global LF fluxes and SSPRK(3,3). Log density, pressure and boundary budgets for every FE substep and SSP convex combination.
 - [Low-Mach isentropic vortex: preconditioned Roe flux verification](<https://hrkoyama.github.io/numerical-methods-atlas/validation/low-mach-vortex/?lang=en>)
   availability: run
 

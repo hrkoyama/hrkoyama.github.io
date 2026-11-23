@@ -8,7 +8,7 @@ import zipfile
 import zlib
 
 ORIGIN = 'https://hrkoyama.github.io'
-GROUPS = ('foundations', 'models', 'particles', 'mhd', 'thermostats', 'biology', 'mcmc', 'mhd-convergence', 'foundations-conditioning', 'particle-transport', 'splitting', 'noh', 'noh-cartesian', 'sedov', 'double-mach', 'forward-step', 'low-mach', 'guderley')
+GROUPS = ('foundations', 'models', 'particles', 'mhd', 'thermostats', 'biology', 'mcmc', 'mhd-convergence', 'foundations-conditioning', 'particle-transport', 'splitting', 'noh', 'noh-cartesian', 'sedov', 'double-mach', 'forward-step', 'low-mach', 'guderley', 'euler-positivity')
 EDITION_PATTERN = r'\d{4}-\d{2}-\d{2}(?:-r\d+)?'
 
 
@@ -104,6 +104,19 @@ def depth_additional_figures(directory, manifest, case):
     return figures
 
 
+def depth_gallery_figure(directory, manifest, case):
+    """Opt in to one already verified extra figure, preserving primary pictures."""
+    if 'gallery_figure' not in case:
+        return None
+    name = case['gallery_figure']
+    assert isinstance(name, str), 'Gallery figure must name an additional PNG'
+    figures = depth_additional_figures(directory, manifest, case)
+    matches = [row for row in figures if row['file'] == name]
+    assert len(matches) == 1, 'Gallery figure must be a hash-bound additional figure'
+    row = matches[0]
+    return {**row, 'sha256': manifest['files']['results/'+name]}
+
+
 def load_depth_group(root, group, edition):
     """Strictly validate files, archive, numerical flags and independent-rerun receipt.
 
@@ -151,6 +164,7 @@ def load_depth_group(root, group, edition):
         assert case['references'] and all(reference.get('review_level') for reference in case['references'])
         assert 'results/'+case['id']+'.png' in manifest['files'], 'Missing stored figure: '+case['id']
         depth_additional_figures(directory, manifest, case)
+        depth_gallery_figure(directory, manifest, case)
 
     results = read_json(file('results/result.json'))
     _finite(results)

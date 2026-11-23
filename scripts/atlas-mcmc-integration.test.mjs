@@ -34,7 +34,7 @@ const methods=json('numerical-methods-atlas/methods/index.json').methods;
 
  test('three sampler scenarios add one target and the calibration diagnostic adds no physical problem',()=>{
  const d=json('numerical-methods-atlas/validation/index.json');
- assert.equal(d.case_count,47);assert.equal(d.groups.length,18);
+ assert.equal(d.case_count,48);assert.equal(d.groups.length,19);
  assert.equal(d.case_problem_ids[cases[0]],'mcmc-bimodal-mixture');
  assert.equal(d.case_problem_ids[cases[1]],null);
  const problems=json('numerical-methods-atlas/test-cases/index.json').problems;

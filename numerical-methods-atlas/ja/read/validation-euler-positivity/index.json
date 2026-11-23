@@ -1,0 +1,913 @@
+{
+  "title": "Euler二重膨張波：段階ごとの正値性",
+  "html": "<h1>Euler二重膨張波：段階ごとの正値性</h1><p>強い二重膨張波を1次元MUSCL有限体積法・Lax–Friedrichs流束・SSPRK(3,3)で解きます。平均を保つ正値状態スケーリングを各段に接続し、許容CFL、セル平均と再構成面の密度・圧力、共有境界流束による保存収支を分けて確認します。</p><aside class=\"validation-scope\"><p>共通22実行例の台帳とは別に管理する追加検証集です。配布ZIPを独立展開し、各グループの全固定入力と検査を実行した記録を示します。設定・手法・刻み幅の違いを独立した物理問題の数には加算しません。</p><p>通常の補助例CIは、公開レジストリに登録した補助配布グループをNumPy・SciPy・pytestで実行します。保存済みの独立参照は版・入力・実行記録を照合し、新規の参照計算と区別します。量子収束を含む従来の共通22例は必要時の手動実行とし、既存の配布物・公差・履歴を保持します。</p></aside><nav class=\"validation-actions\"><a href=\"/numerical-methods-atlas/validation/?lang=ja\">追加検証の一覧</a><a href=\"/code/validated-examples/2026-11-23-r2/euler-positivity/atlas-euler-positivity-2026-11-23-r2.zip\">コード・テスト / ZIP</a><a href=\"/code/validated-examples/2026-11-23-r2/euler-positivity/verification.json\">独立展開の検証記録</a></nav><nav class=\"validation-toc\" aria-label=\"この章の例\"><a href=\"#euler-double-rarefaction-positivity\">Euler二重膨張波：段階ごとの正値性</a></nav><section><h2 id=\"run-all\">配布版を取得して実行する</h2><p>ZIPの atlas-euler-positivity-2026-11-23-r2 フォルダで実行します。このコマンドは配布版の全1例を実行します。新規または空の出力先を指定してください。</p><pre><code>python -m pip install -r requirements.txt\npython -m pytest -q\npython run.py --input inputs.json --output output</code></pre><p>Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。</p></section><article class=\"validation-case\" data-validation-case=\"euler-double-rarefaction-positivity\" id=\"euler-double-rarefaction-positivity\"><h2>Euler二重膨張波：段階ごとの正値性</h2><p>既存の強い二重希薄波を128/256/512セルで計算し、平均保存型の正値性スケーリングをMUSCL・大域LF流束・SSPRK(3,3)へ接続します。各前進Euler段と各SSP凸結合の密度・圧力・境界保存収支を記録します。</p><nav class=\"validation-actions\" aria-label=\"コード・入力・検証\"><a href=\"/numerical-methods-atlas/validation/euler-double-rarefaction-positivity/?lang=ja\">固定入力・実行入口</a><a href=\"/code/validated-examples/2026-11-23-r2/euler-positivity/atlas-euler-positivity-2026-11-23-r2.zip\">コード / ZIP</a><a href=\"/code/validated-examples/2026-11-23-r2/euler-positivity/inputs.json\">固定入力 / JSON</a><a href=\"/code/validated-examples/2026-11-23-r2/euler-positivity/results/result.json\">全結果 / JSON</a><a href=\"/code/validated-examples/2026-11-23-r2/euler-positivity/source-manifest.json\">配布物のSHA-256</a><a href=\"/code/validated-examples/2026-11-23-r2/euler-positivity/verification.json\">独立展開の検証記録</a></nav><details class=\"execution-resource-details\"><summary>手法・式・図・参照解</summary><div class=\"execution-navigation execution-resource-navigation\" data-execution-navigation=\"euler-double-rarefaction-positivity\" role=\"group\" aria-label=\"この実行例に関連する資料\"><div class=\"execution-navigation-grid\"><div class=\"execution-navigation-card\" data-execution-navigation-card=\"methods\"><p class=\"execution-navigation-label\"><strong>使用手法</strong></p><ul class=\"execution-navigation-links\"><li data-execution-method-id=\"lax-friedrichs\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/methods/lax-friedrichs/?lang=ja\" data-execution-method-link>Lax–Friedrichs法</a></li><li data-execution-method-id=\"muscl\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=ja\" data-execution-method-link>MUSCL再構成</a></li><li data-execution-method-id=\"positive-scaling\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/methods/positive-scaling/?lang=ja\" data-execution-method-link>平均を保つ正値状態スケーリング</a></li><li data-execution-method-id=\"ssprk33\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/methods/ssprk33/?lang=ja\" data-execution-method-link>SSPRK(3,3)</a></li></ul><p class=\"execution-navigation-note\">この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。</p></div><div class=\"execution-navigation-card\" data-execution-navigation-card=\"equations\"><p class=\"execution-navigation-label\"><strong>方程式</strong></p><p class=\"execution-navigation-primary\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/validation/euler-double-rarefaction-positivity/?lang=ja#euler-double-rarefaction-positivity-ja-algorithm\" data-execution-formulation-link>この実行例の式と条件</a></p><p class=\"execution-navigation-note\">保存量の無制限中央線形再構築を行い、セル平均と左右2端点へ共通の係数θを用いて密度・圧力を正にします。端点平均は元の保存量平均のままです。共有LF流束による前進Euler更新をSSPRK(3,3)で凸結合し、各段の流束前に再構築と制限をやり直します。ε=10⁻¹³は再構築の目標で、密度・エネルギーを加えるfloorではありません。平均の修復・無言の刻み再試行は行いません。</p><ul class=\"execution-navigation-links\"><li data-execution-equation-id=\"euler\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja\" data-execution-equation-link>圧縮性Euler方程式</a><p class=\"execution-navigation-equation-note\">γ=1.4の無外力1次元Euler保存系。セル平均の密度・運動量・全エネルギーを、線形保存量MUSCL再構成と共有Lax–Friedrichs流束で更新します。</p></li></ul></div><div class=\"execution-navigation-card\" data-execution-navigation-card=\"figure\"><p class=\"execution-navigation-label\"><strong>問題の図</strong></p><a class=\"execution-navigation-figure\" data-execution-figure-link href=\"https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/euler-positivity/results/euler-double-rarefaction-positivity.png\"><img src=\"https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/euler-positivity/results/euler-double-rarefaction-positivity.png\" alt=\"Euler二重膨張波：段階ごとの正値性：この実行例の保存済み検証図。\" width=\"1920\" height=\"1248\" loading=\"lazy\" decoding=\"async\"></a><p class=\"execution-navigation-note\">この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。</p><p class=\"execution-navigation-primary\" data-execution-problem-id=\"double-rarefaction\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/problems/double-rarefaction/?lang=ja\" data-execution-problem-link>Euler二重膨張波</a></p><p class=\"execution-navigation-primary\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/problems/double-rarefaction/?lang=ja#code-ja\" data-execution-problem-code>この問題のコード・検証状況</a></p></div><div class=\"execution-navigation-card\" data-execution-navigation-card=\"references\"><p class=\"execution-navigation-label\"><strong>厳密解・参照解</strong></p><p class=\"execution-navigation-primary\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/validation/euler-double-rarefaction-positivity/?lang=ja#euler-double-rarefaction-positivity-ja-validation\" data-execution-validation-link>この実行例の参照・検証</a></p><p class=\"execution-navigation-note\">27単体検査と3格子73判定を実行前に固定します。スケーリング前に生じる負の端点圧力を保持し、制限後の端点・前進Euler平均・SSP凸結合平均、θ、全3保存量の境界流束収支を別々に測ります。閉形式の対称希薄波と既存の独立な対数圧力根探索を照合し、保存量のGauss8/16セル平均との誤差と格子細分化を記録します。</p><ul class=\"execution-navigation-reference-cases\"><li data-execution-reference-id=\"euler-double-rarefaction\" data-reference-relation=\"related-model\"><p class=\"execution-navigation-relation\">関連モデルの参照 · 半解析参照</p><p class=\"execution-navigation-primary\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-euler-double-rarefaction-ja\" data-execution-reference-link>Euler／二重膨張波</a></p><p class=\"execution-navigation-reference-note\">γ=1.4、左右(1,-2,0.4)/(1,2,0.4)、[0,1]、x0=0.5、t=0.15が保存プレビューと一致します。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。</p></li></ul></div></div></div></details><h3 id=\"euler-double-rarefaction-positivity-assumptions\">前提・単位・境界</h3><p>γ1.4、x∈[0,1]、x0=.5、左右状態(ρ,u,p)=(1,−2,.4)/(1,2,.4)、T=.15を固定します。中心の密度・圧力は小さいものの正で、真空生成例ではありません。大域LF分離速度a=4、dt·a/dx≤.4を固定し、実際の全端点の|u|+c≤aと十分条件dt·a/dx≤1/2を確認します。</p><aside class=\"validation-scope validation-editorial-note\"><strong>編集上の補足</strong><p>既存の二重膨張波と同じγ=1.4、左右(ρ,u,p)=(1,−2,.4)/(1,2,.4)、[0,1]、x₀=.5、t=.15の入力です。中心は低密度・低圧の正の状態で、真空生成の別入力とは区別します。段ごとのスケーリング、十分CFLとLax–Friedrichs波速条件を結び付けた限定例であり、既存WENO、DG、MHDや一般EOSの完全離散正値性を保証しません。</p></aside><h3 id=\"euler-double-rarefaction-positivity-algorithm\">採用した計算法</h3><p>保存量の無制限中央線形再構築を行い、セル平均と左右2端点へ共通の係数θを用いて密度・圧力を正にします。端点平均は元の保存量平均のままです。共有LF流束による前進Euler更新をSSPRK(3,3)で凸結合し、各段の流束前に再構築と制限をやり直します。ε=10⁻¹³は再構築の目標で、密度・エネルギーを加えるfloorではありません。平均の修復・無言の刻み再試行は行いません。</p><div class=\"validation-math\"><span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi mathvariant=\"normal\">∂</mi><mi>t</mi></msub><mi>U</mi><mo>+</mo><msub><mi mathvariant=\"normal\">∂</mi><mi>x</mi></msub><mi>F</mi><mo stretchy=\"false\">(</mo><mi>U</mi><mo stretchy=\"false\">)</mo><mo>=</mo><mn>0</mn><mo separator=\"true\">,</mo><mspace width=\"2em\"/><mi>U</mi><mo>=</mo><mo stretchy=\"false\">(</mo><mi>ρ</mi><mo separator=\"true\">,</mo><mi>m</mi><mo separator=\"true\">,</mo><mi>E</mi><msup><mo stretchy=\"false\">)</mo><mi>T</mi></msup><mo separator=\"true\">,</mo><mspace width=\"1em\"/><mi>F</mi><mo>=</mo><mo stretchy=\"false\">(</mo><mi>m</mi><mo separator=\"true\">,</mo><msup><mi>m</mi><mn>2</mn></msup><mi mathvariant=\"normal\">/</mi><mi>ρ</mi><mo>+</mo><mi>p</mi><mo separator=\"true\">,</mo><mo stretchy=\"false\">(</mo><mi>E</mi><mo>+</mo><mi>p</mi><mo stretchy=\"false\">)</mo><mi>m</mi><mi mathvariant=\"normal\">/</mi><mi>ρ</mi><msup><mo stretchy=\"false\">)</mo><mi>T</mi></msup><mo separator=\"true\">,</mo><mspace width=\"1em\"/><mi>p</mi><mo>=</mo><mo stretchy=\"false\">(</mo><mi>γ</mi><mo>−</mo><mn>1</mn><mo stretchy=\"false\">)</mo><mo stretchy=\"false\">(</mo><mi>E</mi><mo>−</mo><msup><mi>m</mi><mn>2</mn></msup><mi mathvariant=\"normal\">/</mi><mo stretchy=\"false\">(</mo><mn>2</mn><mi>ρ</mi><mo stretchy=\"false\">)</mo><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">\\partial_t U+\\partial_x F(U)=0,\\qquad U=(\\rho,m,E)^T,\\quad F=(m,m^2/\\rho+p,(E+p)m/\\rho)^T,\\quad p=(\\gamma-1)(E-m^2/(2\\rho))</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.8444em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord\" style=\"margin-right:0.0556em;\">∂</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2806em;\"><span style=\"top:-2.55em;margin-left:-0.0556em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">t</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord\"><span class=\"mord\" style=\"margin-right:0.0556em;\">∂</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:-0.0556em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">x</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\" style=\"margin-right:0.1389em;\">F</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span><span class=\"mclose\">)</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.8778em;vertical-align:-0.1944em;\"></span><span class=\"mord\">0</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:2em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.1413em;vertical-align:-0.25em;\"></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">ρ</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\">m</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.0576em;\">E</span><span class=\"mclose\"><span class=\"mclose\">)</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8913em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.1389em;\">T</span></span></span></span></span></span></span></span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:1em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.1389em;\">F</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.1141em;vertical-align:-0.25em;\"></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">m</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">m</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8641em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">2</span></span></span></span></span></span></span></span><span class=\"mord\">/</span><span class=\"mord mathnormal\">ρ</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\">p</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\" style=\"margin-right:0.0576em;\">E</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.1413em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\">p</span><span class=\"mclose\">)</span><span class=\"mord mathnormal\">m</span><span class=\"mord\">/</span><span class=\"mord mathnormal\">ρ</span><span class=\"mclose\"><span class=\"mclose\">)</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8913em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.1389em;\">T</span></span></span></span></span></span></span></span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:1em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\">p</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\" style=\"margin-right:0.0556em;\">γ</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord\">1</span><span class=\"mclose\">)</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\" style=\"margin-right:0.0576em;\">E</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.1141em;vertical-align:-0.25em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">m</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8641em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">2</span></span></span></span></span></span></span></span><span class=\"mord\">/</span><span class=\"mopen\">(</span><span class=\"mord\">2</span><span class=\"mord mathnormal\">ρ</span><span class=\"mclose\">))</span></span></span></span></span></div><div class=\"validation-math\"><span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msubsup><mi>U</mi><mi>i</mi><mo lspace=\"0em\" rspace=\"0em\">±</mo></msubsup><mo>=</mo><msub><mover accent=\"true\"><mi>U</mi><mo>ˉ</mo></mover><mi>i</mi></msub><mo>±</mo><mi>δ</mi><msub><mi>U</mi><mi>i</mi></msub><mo separator=\"true\">,</mo><mspace width=\"2em\"/><msubsup><mover accent=\"true\"><mi>U</mi><mo stretchy=\"true\">^</mo></mover><mi>i</mi><mo lspace=\"0em\" rspace=\"0em\">±</mo></msubsup><mo>=</mo><msub><mover accent=\"true\"><mi>U</mi><mo>ˉ</mo></mover><mi>i</mi></msub><mo>+</mo><msub><mi>θ</mi><mi>i</mi></msub><mo stretchy=\"false\">(</mo><msubsup><mi>U</mi><mi>i</mi><mo lspace=\"0em\" rspace=\"0em\">±</mo></msubsup><mo>−</mo><msub><mover accent=\"true\"><mi>U</mi><mo>ˉ</mo></mover><mi>i</mi></msub><mo stretchy=\"false\">)</mo><mo separator=\"true\">,</mo><mspace width=\"1em\"/><mn>0</mn><mo>≤</mo><msub><mi>θ</mi><mi>i</mi></msub><mo>≤</mo><mn>1</mn><mo separator=\"true\">,</mo><mspace width=\"2em\"/><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mo stretchy=\"false\">(</mo><msubsup><mover accent=\"true\"><mi>U</mi><mo stretchy=\"true\">^</mo></mover><mi>i</mi><mo>−</mo></msubsup><mo>+</mo><msubsup><mover accent=\"true\"><mi>U</mi><mo stretchy=\"true\">^</mo></mover><mi>i</mi><mo>+</mo></msubsup><mo stretchy=\"false\">)</mo><mo>=</mo><msub><mover accent=\"true\"><mi>U</mi><mo>ˉ</mo></mover><mi>i</mi></msub></mrow><annotation encoding=\"application/x-tex\">U_i^{\\pm}=\\bar U_i\\pm\\delta U_i,\\qquad\\widehat U_i^{\\pm}=\\bar U_i+\\theta_i(U_i^{\\pm}-\\bar U_i),\\quad0\\le\\theta_i\\le1,\\qquad\\tfrac12(\\widehat U_i^-+\\widehat U_i^+)=\\bar U_i</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.0883em;vertical-align:-0.267em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8213em;\"><span style=\"top:-2.433em;margin-left:-0.109em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">i</span></span></span><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">±</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.267em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.9701em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8201em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span></span><span style=\"top:-3.2523em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.2222em;\"><span class=\"mord\">ˉ</span></span></span></span></span></span></span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3117em;\"><span style=\"top:-2.55em;margin-left:-0.109em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">i</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">±</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.1903em;vertical-align:-0.267em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.0379em;\">δ</span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3117em;\"><span style=\"top:-2.55em;margin-left:-0.109em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">i</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:2em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.9233em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span></span><span class=\"svg-align\" style=\"width:calc(100% - 0.0556em);margin-left:0.0556em;top:-3.6833em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span style=\"height:0.24em;\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"0.24em\" viewBox=\"0 0 1062 239\" preserveAspectRatio=\"none\"><path d=\"M529 0h5l519 115c5 1 9 5 9 10 0 1-1 2-1 3l-4 22\nc-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z\"/></svg></span></span></span></span></span></span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8213em;\"><span style=\"top:-2.433em;margin-left:-0.109em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">i</span></span></span><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">±</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.267em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.9701em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8201em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span></span><span style=\"top:-3.2523em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.2222em;\"><span class=\"mord\">ˉ</span></span></span></span></span></span></span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3117em;\"><span style=\"top:-2.55em;margin-left:-0.109em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">i</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.0883em;vertical-align:-0.267em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0278em;\">θ</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3117em;\"><span style=\"top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">i</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mopen\">(</span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8213em;\"><span style=\"top:-2.433em;margin-left:-0.109em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">i</span></span></span><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">±</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.267em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.0701em;vertical-align:-0.25em;\"></span><span class=\"mord\"><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8201em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span></span><span style=\"top:-3.2523em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.2222em;\"><span class=\"mord\">ˉ</span></span></span></span></span></span></span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3117em;\"><span style=\"top:-2.55em;margin-left:-0.109em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">i</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mclose\">)</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:1em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\">0</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">≤</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.8444em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0278em;\">θ</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3117em;\"><span style=\"top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">i</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">≤</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.2683em;vertical-align:-0.345em;\"></span><span class=\"mord\">1</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:2em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8451em;\"><span style=\"top:-2.655em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">2</span></span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.394em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">1</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.345em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mopen\">(</span><span class=\"mord\"><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.9233em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span></span><span class=\"svg-align\" style=\"width:calc(100% - 0.0556em);margin-left:0.0556em;top:-3.6833em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span style=\"height:0.24em;\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"0.24em\" viewBox=\"0 0 1062 239\" preserveAspectRatio=\"none\"><path d=\"M529 0h5l519 115c5 1 9 5 9 10 0 1-1 2-1 3l-4 22\nc-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z\"/></svg></span></span></span></span></span></span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8213em;\"><span style=\"top:-2.433em;margin-left:-0.109em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">i</span></span></span><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mbin mtight\">−</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.267em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.1903em;vertical-align:-0.267em;\"></span><span class=\"mord\"><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.9233em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span></span><span class=\"svg-align\" style=\"width:calc(100% - 0.0556em);margin-left:0.0556em;top:-3.6833em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span style=\"height:0.24em;\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"0.24em\" viewBox=\"0 0 1062 239\" preserveAspectRatio=\"none\"><path d=\"M529 0h5l519 115c5 1 9 5 9 10 0 1-1 2-1 3l-4 22\nc-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z\"/></svg></span></span></span></span></span></span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8213em;\"><span style=\"top:-2.433em;margin-left:-0.109em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">i</span></span></span><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mbin mtight\">+</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.267em;\"><span></span></span></span></span></span></span><span class=\"mclose\">)</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.9701em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8201em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span></span><span style=\"top:-3.2523em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.2222em;\"><span class=\"mord\">ˉ</span></span></span></span></span></span></span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3117em;\"><span style=\"top:-2.55em;margin-left:-0.109em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">i</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span></span></span></span></span></div><div class=\"validation-math\"><span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mover accent=\"true\"><mi>F</mi><mo stretchy=\"true\">^</mo></mover><mrow><mi>i</mi><mo>+</mo><mn>1</mn><mi mathvariant=\"normal\">/</mi><mn>2</mn></mrow></msub><mo>=</mo><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mtext> ⁣</mtext><mrow><mo fence=\"true\">[</mo><mi>F</mi><mo stretchy=\"false\">(</mo><msubsup><mover accent=\"true\"><mi>U</mi><mo stretchy=\"true\">^</mo></mover><mi>i</mi><mo>+</mo></msubsup><mo stretchy=\"false\">)</mo><mo>+</mo><mi>F</mi><mo stretchy=\"false\">(</mo><msubsup><mover accent=\"true\"><mi>U</mi><mo stretchy=\"true\">^</mo></mover><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow><mo>−</mo></msubsup><mo stretchy=\"false\">)</mo><mo>−</mo><mi>a</mi><mo stretchy=\"false\">(</mo><msubsup><mover accent=\"true\"><mi>U</mi><mo stretchy=\"true\">^</mo></mover><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow><mo>−</mo></msubsup><mo>−</mo><msubsup><mover accent=\"true\"><mi>U</mi><mo stretchy=\"true\">^</mo></mover><mi>i</mi><mo>+</mo></msubsup><mo stretchy=\"false\">)</mo><mo fence=\"true\">]</mo></mrow><mo separator=\"true\">,</mo><mspace width=\"2em\"/><msub><mi mathvariant=\"script\">E</mi><mrow><mi mathvariant=\"normal\">Δ</mi><mi>t</mi></mrow></msub><mo stretchy=\"false\">(</mo><mover accent=\"true\"><mi>U</mi><mo>ˉ</mo></mover><msub><mo stretchy=\"false\">)</mo><mi>i</mi></msub><mo>=</mo><msub><mover accent=\"true\"><mi>U</mi><mo>ˉ</mo></mover><mi>i</mi></msub><mo>−</mo><mfrac><mrow><mi mathvariant=\"normal\">Δ</mi><mi>t</mi></mrow><mrow><mi mathvariant=\"normal\">Δ</mi><mi>x</mi></mrow></mfrac><mo stretchy=\"false\">(</mo><msub><mover accent=\"true\"><mi>F</mi><mo stretchy=\"true\">^</mo></mover><mrow><mi>i</mi><mo>+</mo><mn>1</mn><mi mathvariant=\"normal\">/</mi><mn>2</mn></mrow></msub><mo>−</mo><msub><mover accent=\"true\"><mi>F</mi><mo stretchy=\"true\">^</mo></mover><mrow><mi>i</mi><mo>−</mo><mn>1</mn><mi mathvariant=\"normal\">/</mi><mn>2</mn></mrow></msub><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">\\widehat F_{i+1/2}=\\tfrac12\\!\\left[F(\\widehat U_i^+)+F(\\widehat U_{i+1}^-)-a(\\widehat U_{i+1}^--\\widehat U_i^+)\\right],\\qquad\\mathcal E_{\\Delta t}(\\bar U)_i=\\bar U_i-\\frac{\\Delta t}{\\Delta x}(\\widehat F_{i+1/2}-\\widehat F_{i-1/2})</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.2785em;vertical-align:-0.3552em;\"></span><span class=\"mord\"><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.9233em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.1389em;\">F</span></span><span class=\"svg-align\" style=\"width:calc(100% - 0.1667em);margin-left:0.1667em;top:-3.6833em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span style=\"height:0.24em;\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"0.24em\" viewBox=\"0 0 1062 239\" preserveAspectRatio=\"none\"><path d=\"M529 0h5l519 115c5 1 9 5 9 10 0 1-1 2-1 3l-4 22\nc-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z\"/></svg></span></span></span></span></span></span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3448em;\"><span style=\"top:-2.5198em;margin-left:-0.1389em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">i</span><span class=\"mbin mtight\">+</span><span class=\"mord mtight\">1/2</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3552em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.8em;vertical-align:-0.65em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8451em;\"><span style=\"top:-2.655em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">2</span></span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.394em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">1</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.345em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mspace\" style=\"margin-right:-0.1667em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"minner\"><span class=\"mopen delimcenter\" style=\"top:0em;\"><span class=\"delimsizing size2\">[</span></span><span class=\"mord mathnormal\" style=\"margin-right:0.1389em;\">F</span><span class=\"mopen\">(</span><span class=\"mord\"><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.9233em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span></span><span class=\"svg-align\" style=\"width:calc(100% - 0.0556em);margin-left:0.0556em;top:-3.6833em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span style=\"height:0.24em;\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"0.24em\" viewBox=\"0 0 1062 239\" preserveAspectRatio=\"none\"><path d=\"M529 0h5l519 115c5 1 9 5 9 10 0 1-1 2-1 3l-4 22\nc-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z\"/></svg></span></span></span></span></span></span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8213em;\"><span style=\"top:-2.433em;margin-left:-0.109em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">i</span></span></span><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mbin mtight\">+</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.267em;\"><span></span></span></span></span></span></span><span class=\"mclose\">)</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.1389em;\">F</span><span class=\"mopen\">(</span><span class=\"mord\"><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.9233em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span></span><span class=\"svg-align\" style=\"width:calc(100% - 0.0556em);margin-left:0.0556em;top:-3.6833em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span style=\"height:0.24em;\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"0.24em\" viewBox=\"0 0 1062 239\" preserveAspectRatio=\"none\"><path d=\"M529 0h5l519 115c5 1 9 5 9 10 0 1-1 2-1 3l-4 22\nc-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z\"/></svg></span></span></span></span></span></span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8213em;\"><span style=\"top:-2.433em;margin-left:-0.109em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">i</span><span class=\"mbin mtight\">+</span><span class=\"mord mtight\">1</span></span></span></span><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mbin mtight\">−</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3253em;\"><span></span></span></span></span></span></span><span class=\"mclose\">)</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mord mathnormal\">a</span><span class=\"mopen\">(</span><span class=\"mord\"><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.9233em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span></span><span class=\"svg-align\" style=\"width:calc(100% - 0.0556em);margin-left:0.0556em;top:-3.6833em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span style=\"height:0.24em;\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"0.24em\" viewBox=\"0 0 1062 239\" preserveAspectRatio=\"none\"><path d=\"M529 0h5l519 115c5 1 9 5 9 10 0 1-1 2-1 3l-4 22\nc-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z\"/></svg></span></span></span></span></span></span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8213em;\"><span style=\"top:-2.433em;margin-left:-0.109em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">i</span><span class=\"mbin mtight\">+</span><span class=\"mord mtight\">1</span></span></span></span><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mbin mtight\">−</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3253em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mord\"><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.9233em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span></span><span class=\"svg-align\" style=\"width:calc(100% - 0.0556em);margin-left:0.0556em;top:-3.6833em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span style=\"height:0.24em;\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"0.24em\" viewBox=\"0 0 1062 239\" preserveAspectRatio=\"none\"><path d=\"M529 0h5l519 115c5 1 9 5 9 10 0 1-1 2-1 3l-4 22\nc-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z\"/></svg></span></span></span></span></span></span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8213em;\"><span style=\"top:-2.433em;margin-left:-0.109em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">i</span></span></span><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mbin mtight\">+</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.267em;\"><span></span></span></span></span></span></span><span class=\"mclose\">)</span><span class=\"mclose delimcenter\" style=\"top:0em;\"><span class=\"delimsizing size2\">]</span></span></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:2em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathcal\" style=\"margin-right:0.0894em;\">E</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:-0.0894em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">Δ</span><span class=\"mord mathnormal mtight\">t</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mopen\">(</span><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8201em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span></span><span style=\"top:-3.2523em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.2222em;\"><span class=\"mord\">ˉ</span></span></span></span></span></span></span><span class=\"mclose\"><span class=\"mclose\">)</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3117em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">i</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.9701em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8201em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span></span><span style=\"top:-3.2523em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.2222em;\"><span class=\"mord\">ˉ</span></span></span></span></span></span></span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3117em;\"><span style=\"top:-2.55em;margin-left:-0.109em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">i</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:2.0463em;vertical-align:-0.686em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:1.3603em;\"><span style=\"top:-2.314em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord\">Δ</span><span class=\"mord mathnormal\">x</span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.677em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord\">Δ</span><span class=\"mord mathnormal\">t</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.686em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mopen\">(</span><span class=\"mord\"><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.9233em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.1389em;\">F</span></span><span class=\"svg-align\" style=\"width:calc(100% - 0.1667em);margin-left:0.1667em;top:-3.6833em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span style=\"height:0.24em;\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"0.24em\" viewBox=\"0 0 1062 239\" preserveAspectRatio=\"none\"><path d=\"M529 0h5l519 115c5 1 9 5 9 10 0 1-1 2-1 3l-4 22\nc-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z\"/></svg></span></span></span></span></span></span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3448em;\"><span style=\"top:-2.5198em;margin-left:-0.1389em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">i</span><span class=\"mbin mtight\">+</span><span class=\"mord mtight\">1/2</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3552em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.2785em;vertical-align:-0.3552em;\"></span><span class=\"mord\"><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.9233em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.1389em;\">F</span></span><span class=\"svg-align\" style=\"width:calc(100% - 0.1667em);margin-left:0.1667em;top:-3.6833em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span style=\"height:0.24em;\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"0.24em\" viewBox=\"0 0 1062 239\" preserveAspectRatio=\"none\"><path d=\"M529 0h5l519 115c5 1 9 5 9 10 0 1-1 2-1 3l-4 22\nc-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z\"/></svg></span></span></span></span></span></span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3448em;\"><span style=\"top:-2.5198em;margin-left:-0.1389em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">i</span><span class=\"mbin mtight\">−</span><span class=\"mord mtight\">1/2</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3552em;\"><span></span></span></span></span></span></span><span class=\"mclose\">)</span></span></span></span></span></div><div class=\"validation-math\"><span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msup><mi>U</mi><mrow><mo stretchy=\"false\">(</mo><mn>1</mn><mo stretchy=\"false\">)</mo></mrow></msup><mo>=</mo><msub><mi mathvariant=\"script\">E</mi><mrow><mi mathvariant=\"normal\">Δ</mi><mi>t</mi></mrow></msub><mo stretchy=\"false\">(</mo><msup><mi>U</mi><mi>n</mi></msup><mo stretchy=\"false\">)</mo><mo separator=\"true\">,</mo><mspace width=\"2em\"/><msup><mi>U</mi><mrow><mo stretchy=\"false\">(</mo><mn>2</mn><mo stretchy=\"false\">)</mo></mrow></msup><mo>=</mo><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mfrac><mn>3</mn><mn>4</mn></mfrac></mstyle><msup><mi>U</mi><mi>n</mi></msup><mo>+</mo><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mfrac><mn>1</mn><mn>4</mn></mfrac></mstyle><msub><mi mathvariant=\"script\">E</mi><mrow><mi mathvariant=\"normal\">Δ</mi><mi>t</mi></mrow></msub><mo stretchy=\"false\">(</mo><msup><mi>U</mi><mrow><mo stretchy=\"false\">(</mo><mn>1</mn><mo stretchy=\"false\">)</mo></mrow></msup><mo stretchy=\"false\">)</mo><mo separator=\"true\">,</mo><mspace width=\"2em\"/><msup><mi>U</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup><mo>=</mo><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mfrac><mn>1</mn><mn>3</mn></mfrac></mstyle><msup><mi>U</mi><mi>n</mi></msup><mo>+</mo><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mfrac><mn>2</mn><mn>3</mn></mfrac></mstyle><msub><mi mathvariant=\"script\">E</mi><mrow><mi mathvariant=\"normal\">Δ</mi><mi>t</mi></mrow></msub><mo stretchy=\"false\">(</mo><msup><mi>U</mi><mrow><mo stretchy=\"false\">(</mo><mn>2</mn><mo stretchy=\"false\">)</mo></mrow></msup><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">U^{(1)}=\\mathcal E_{\\Delta t}(U^n),\\qquad U^{(2)}=\\tfrac34U^n+\\tfrac14\\mathcal E_{\\Delta t}(U^{(1)}),\\qquad U^{n+1}=\\tfrac13U^n+\\tfrac23\\mathcal E_{\\Delta t}(U^{(2)})</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.938em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.938em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mopen mtight\">(</span><span class=\"mord mtight\">1</span><span class=\"mclose mtight\">)</span></span></span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.188em;vertical-align:-0.25em;\"></span><span class=\"mord\"><span class=\"mord mathcal\" style=\"margin-right:0.0894em;\">E</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:-0.0894em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">Δ</span><span class=\"mord mathnormal mtight\">t</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mopen\">(</span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.7144em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">n</span></span></span></span></span></span></span></span><span class=\"mclose\">)</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:2em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.938em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mopen mtight\">(</span><span class=\"mord mtight\">2</span><span class=\"mclose mtight\">)</span></span></span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.1901em;vertical-align:-0.345em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8451em;\"><span style=\"top:-2.655em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">4</span></span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.394em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">3</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.345em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.7144em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">n</span></span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.283em;vertical-align:-0.345em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8451em;\"><span style=\"top:-2.655em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">4</span></span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.394em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">1</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.345em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mord\"><span class=\"mord mathcal\" style=\"margin-right:0.0894em;\">E</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:-0.0894em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">Δ</span><span class=\"mord mathnormal mtight\">t</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mopen\">(</span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.938em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mopen mtight\">(</span><span class=\"mord mtight\">1</span><span class=\"mclose mtight\">)</span></span></span></span></span></span></span></span></span><span class=\"mclose\">)</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:2em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8641em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">n</span><span class=\"mbin mtight\">+</span><span class=\"mord mtight\">1</span></span></span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.1901em;vertical-align:-0.345em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8451em;\"><span style=\"top:-2.655em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">3</span></span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.394em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">1</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.345em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.7144em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">n</span></span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.283em;vertical-align:-0.345em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8451em;\"><span style=\"top:-2.655em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">3</span></span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.394em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">2</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.345em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mord\"><span class=\"mord mathcal\" style=\"margin-right:0.0894em;\">E</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:-0.0894em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">Δ</span><span class=\"mord mathnormal mtight\">t</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mopen\">(</span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.938em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mopen mtight\">(</span><span class=\"mord mtight\">2</span><span class=\"mclose mtight\">)</span></span></span></span></span></span></span></span></span><span class=\"mclose\">)</span></span></span></span></span></div><div class=\"validation-math\"><span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><mi>a</mi><mo>≥</mo><munder><mrow><mi>max</mi><mo>⁡</mo></mrow><mrow><mi>i</mi><mo separator=\"true\">,</mo><mo>±</mo></mrow></munder><mo stretchy=\"false\">(</mo><mi mathvariant=\"normal\">∣</mi><mi>u</mi><mo stretchy=\"false\">(</mo><msubsup><mover accent=\"true\"><mi>U</mi><mo stretchy=\"true\">^</mo></mover><mi>i</mi><mo>±</mo></msubsup><mo stretchy=\"false\">)</mo><mi mathvariant=\"normal\">∣</mi><mo>+</mo><mi>c</mi><mo stretchy=\"false\">(</mo><msubsup><mover accent=\"true\"><mi>U</mi><mo stretchy=\"true\">^</mo></mover><mi>i</mi><mo>±</mo></msubsup><mo stretchy=\"false\">)</mo><mo stretchy=\"false\">)</mo><mo separator=\"true\">,</mo><mspace width=\"2em\"/><mfrac><mrow><mi>a</mi><mi mathvariant=\"normal\">Δ</mi><mi>t</mi></mrow><mrow><mi mathvariant=\"normal\">Δ</mi><mi>x</mi></mrow></mfrac><mo>≤</mo><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mo separator=\"true\">,</mo><mspace width=\"2em\"/><mi>ρ</mi><mo stretchy=\"false\">(</mo><msubsup><mover accent=\"true\"><mi>U</mi><mo stretchy=\"true\">^</mo></mover><mi>i</mi><mo>±</mo></msubsup><mo stretchy=\"false\">)</mo><mo>&gt;</mo><mn>0</mn><mo separator=\"true\">,</mo><mspace width=\"1em\"/><mi>p</mi><mo stretchy=\"false\">(</mo><msubsup><mover accent=\"true\"><mi>U</mi><mo stretchy=\"true\">^</mo></mover><mi>i</mi><mo>±</mo></msubsup><mo stretchy=\"false\">)</mo><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding=\"application/x-tex\">a\\ge\\max_{i,\\pm}(|u(\\widehat U_i^\\pm)|+c(\\widehat U_i^\\pm)),\\qquad\\frac{a\\Delta t}{\\Delta x}\\le\\tfrac12,\\qquad\\rho(\\widehat U_i^\\pm)&gt;0,\\quad p(\\widehat U_i^\\pm)&gt;0</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.7719em;vertical-align:-0.136em;\"></span><span class=\"mord mathnormal\">a</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">≥</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.7871em;vertical-align:-0.8638em;\"></span><span class=\"mop op-limits\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.4306em;\"><span style=\"top:-2.3723em;margin-left:0em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">i</span><span class=\"mpunct mtight\">,</span><span class=\"mord mtight\">±</span></span></span></span><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span><span class=\"mop\">max</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8638em;\"><span></span></span></span></span></span><span class=\"mopen\">(</span><span class=\"mord\">∣</span><span class=\"mord mathnormal\">u</span><span class=\"mopen\">(</span><span class=\"mord\"><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.9233em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span></span><span class=\"svg-align\" style=\"width:calc(100% - 0.0556em);margin-left:0.0556em;top:-3.6833em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span style=\"height:0.24em;\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"0.24em\" viewBox=\"0 0 1062 239\" preserveAspectRatio=\"none\"><path d=\"M529 0h5l519 115c5 1 9 5 9 10 0 1-1 2-1 3l-4 22\nc-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z\"/></svg></span></span></span></span></span></span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8213em;\"><span style=\"top:-2.433em;margin-left:-0.109em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">i</span></span></span><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mbin mtight\">±</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.267em;\"><span></span></span></span></span></span></span><span class=\"mclose\">)</span><span class=\"mord\">∣</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:2.0463em;vertical-align:-0.686em;\"></span><span class=\"mord mathnormal\">c</span><span class=\"mopen\">(</span><span class=\"mord\"><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.9233em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span></span><span class=\"svg-align\" style=\"width:calc(100% - 0.0556em);margin-left:0.0556em;top:-3.6833em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span style=\"height:0.24em;\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"0.24em\" viewBox=\"0 0 1062 239\" preserveAspectRatio=\"none\"><path d=\"M529 0h5l519 115c5 1 9 5 9 10 0 1-1 2-1 3l-4 22\nc-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z\"/></svg></span></span></span></span></span></span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8213em;\"><span style=\"top:-2.433em;margin-left:-0.109em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">i</span></span></span><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mbin mtight\">±</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.267em;\"><span></span></span></span></span></span></span><span class=\"mclose\">))</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:2em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:1.3603em;\"><span style=\"top:-2.314em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord\">Δ</span><span class=\"mord mathnormal\">x</span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.677em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">a</span><span class=\"mord\">Δ</span><span class=\"mord mathnormal\">t</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.686em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">≤</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.2683em;vertical-align:-0.345em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8451em;\"><span style=\"top:-2.655em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">2</span></span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.394em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">1</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.345em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:2em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\">ρ</span><span class=\"mopen\">(</span><span class=\"mord\"><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.9233em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span></span><span class=\"svg-align\" style=\"width:calc(100% - 0.0556em);margin-left:0.0556em;top:-3.6833em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span style=\"height:0.24em;\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"0.24em\" viewBox=\"0 0 1062 239\" preserveAspectRatio=\"none\"><path d=\"M529 0h5l519 115c5 1 9 5 9 10 0 1-1 2-1 3l-4 22\nc-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z\"/></svg></span></span></span></span></span></span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8213em;\"><span style=\"top:-2.433em;margin-left:-0.109em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">i</span></span></span><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mbin mtight\">±</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.267em;\"><span></span></span></span></span></span></span><span class=\"mclose\">)</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">&gt;</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.1903em;vertical-align:-0.267em;\"></span><span class=\"mord\">0</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:1em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\">p</span><span class=\"mopen\">(</span><span class=\"mord\"><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.9233em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span></span><span class=\"svg-align\" style=\"width:calc(100% - 0.0556em);margin-left:0.0556em;top:-3.6833em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span style=\"height:0.24em;\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"0.24em\" viewBox=\"0 0 1062 239\" preserveAspectRatio=\"none\"><path d=\"M529 0h5l519 115c5 1 9 5 9 10 0 1-1 2-1 3l-4 22\nc-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z\"/></svg></span></span></span></span></span></span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8213em;\"><span style=\"top:-2.433em;margin-left:-0.109em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">i</span></span></span><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mbin mtight\">±</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.267em;\"><span></span></span></span></span></span></span><span class=\"mclose\">)</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">&gt;</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.6444em;\"></span><span class=\"mord\">0</span></span></span></span></span></div><h3 id=\"euler-double-rarefaction-positivity-validation\">何と比較し、何を測るか</h3><p>27単体検査と3格子73判定を実行前に固定します。スケーリング前に生じる負の端点圧力を保持し、制限後の端点・前進Euler平均・SSP凸結合平均、θ、全3保存量の境界流束収支を別々に測ります。閉形式の対称希薄波と既存の独立な対数圧力根探索を照合し、保存量のGauss8/16セル平均との誤差と格子細分化を記録します。</p><h3 id=\"euler-double-rarefaction-positivity-limits\">確認の限界と失敗条件</h3><p>この一つのP1有限体積更新と固定入力の検証です。一般のMUSCL/WENO/DG、特性再構築、反射壁、真空生成、2D/3Dの正値性を認証しません。空間再構築は無制限中央傾きで、TVD・最大値原理・無振動性を保証しません。生の端点圧力は密度が正の端点だけで評価し、密度≤0は別に数えます。圧力参照は保存量セル平均から評価するp(q̄)で、平均圧力とは異なります。ギャラリー図は保存した1次元場のx–t表示であり、2次元流体計算ではありません。ExactPackや別のPDEエンジンを実行した例ではありません。</p><h3 id=\"euler-double-rarefaction-positivity-measurements\">保存した実測値と判定</h3><p>表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。</p><div class=\"validation-table\" tabindex=\"0\" role=\"region\" aria-label=\"Euler二重膨張波：段階ごとの正値性：実測値\"><table><thead><tr><th scope=\"col\">量 / metric</th><th scope=\"col\">実測値</th></tr></thead><tbody><tr><td>n</td><td>512</td></tr><tr><td>time</td><td>0.15</td></tr><tr><td>steps</td><td>769</td></tr><tr><td>stages</td><td>2307</td></tr><tr><td>density_l1</td><td>0.0137865356907</td></tr><tr><td>pressure_l1</td><td>0.0143565346963</td></tr><tr><td>density_linf</td><td>0.0360151271185</td></tr><tr><td>pressure_linf</td><td>0.0199739243509</td></tr><tr><td>velocity_linf</td><td>0.0275663173676</td></tr><tr><td>reference_quadrature_maximum</td><td>1.33226762955e-15</td></tr><tr><td>scaled_cells</td><td>6</td></tr><tr><td>maximum_face_spectral_radius</td><td>2.77119182328</td></tr><tr><td>maximum_courant</td><td>0.4</td></tr><tr><td>maximum_mean_preservation_defect</td><td>2.22044604925e-16</td></tr><tr><td>maximum_fe_boundary_balance_defect</td><td>1.90819582357e-17</td></tr><tr><td>maximum_rk_boundary_balance_defect</td><td>8.45677694539e-17</td></tr><tr><td>raw_endpoint_nonpositive_density_count</td><td>0</td></tr><tr><td>state_floor_count</td><td>0</td></tr><tr><td>rejected_steps</td><td>0</td></tr><tr><td>retries</td><td>0</td></tr><tr><td>raw_endpoint_min_density</td><td>0.00973263121829</td></tr><tr><td>raw_endpoint_min_pressure</td><td>-0.6</td></tr><tr><td>endpoint_min_density</td><td>0.00973263121829</td></tr><tr><td>endpoint_min_pressure</td><td>1.0640377468e-13</td></tr><tr><td>fe_mean_min_density</td><td>0.00977432090215</td></tr><tr><td>fe_mean_min_pressure</td><td>0.00169446406356</td></tr><tr><td>rk_mean_min_density</td><td>0.00977443913337</td></tr><tr><td>rk_mean_min_pressure</td><td>0.00169449268658</td></tr><tr><td>minimum_theta</td><td>0.449489742783</td></tr></tbody></table></div><div class=\"validation-table\" tabindex=\"0\" role=\"region\" aria-label=\"Euler二重膨張波：段階ごとの正値性：判定\"><table><thead><tr><th scope=\"col\">判定 / check</th><th scope=\"col\">合格</th></tr></thead><tbody><tr><td>all fixed refinements completed</td><td>true</td></tr><tr><td>N128: final time</td><td>true</td></tr><tr><td>N128: three records per full SSP step</td><td>true</td></tr><tr><td>N128: rk_mean_min_density</td><td>true</td></tr><tr><td>N128: rk_mean_min_pressure</td><td>true</td></tr><tr><td>N128: endpoint_min_density</td><td>true</td></tr><tr><td>N128: endpoint_min_pressure</td><td>true</td></tr><tr><td>N128: fe_mean_min_density</td><td>true</td></tr><tr><td>N128: fe_mean_min_pressure</td><td>true</td></tr><tr><td>N128: maximum_face_spectral_radius</td><td>true</td></tr><tr><td>N128: maximum_courant</td><td>true</td></tr><tr><td>N128: maximum_mean_preservation_defect</td><td>true</td></tr><tr><td>N128: maximum_fe_boundary_balance_defect</td><td>true</td></tr><tr><td>N128: maximum_rk_boundary_balance_defect</td><td>true</td></tr><tr><td>N128: zero mass/energy floor injections</td><td>true</td></tr><tr><td>N128: zero retries or rejected steps</td><td>true</td></tr><tr><td>N128: scaling actually exercised</td><td>true</td></tr><tr><td>N128: raw nonadmissible reconstruction retained</td><td>true</td></tr><tr><td>N128: mass boundary budget</td><td>true</td></tr><tr><td>N128: momentum boundary budget</td><td>true</td></tr><tr><td>N128: energy boundary budget</td><td>true</td></tr><tr><td>N128: split Gauss8/16 reference</td><td>true</td></tr><tr><td>N256: final time</td><td>true</td></tr><tr><td>N256: three records per full SSP step</td><td>true</td></tr><tr><td>N256: rk_mean_min_density</td><td>true</td></tr><tr><td>N256: rk_mean_min_pressure</td><td>true</td></tr><tr><td>N256: endpoint_min_density</td><td>true</td></tr><tr><td>N256: endpoint_min_pressure</td><td>true</td></tr><tr><td>N256: fe_mean_min_density</td><td>true</td></tr><tr><td>N256: fe_mean_min_pressure</td><td>true</td></tr><tr><td>N256: maximum_face_spectral_radius</td><td>true</td></tr><tr><td>N256: maximum_courant</td><td>true</td></tr><tr><td>N256: maximum_mean_preservation_defect</td><td>true</td></tr><tr><td>N256: maximum_fe_boundary_balance_defect</td><td>true</td></tr><tr><td>N256: maximum_rk_boundary_balance_defect</td><td>true</td></tr><tr><td>N256: zero mass/energy floor injections</td><td>true</td></tr><tr><td>N256: zero retries or rejected steps</td><td>true</td></tr><tr><td>N256: scaling actually exercised</td><td>true</td></tr><tr><td>N256: raw nonadmissible reconstruction retained</td><td>true</td></tr><tr><td>N256: mass boundary budget</td><td>true</td></tr><tr><td>N256: momentum boundary budget</td><td>true</td></tr><tr><td>N256: energy boundary budget</td><td>true</td></tr><tr><td>N256: split Gauss8/16 reference</td><td>true</td></tr><tr><td>N512: final time</td><td>true</td></tr><tr><td>N512: three records per full SSP step</td><td>true</td></tr><tr><td>N512: rk_mean_min_density</td><td>true</td></tr><tr><td>N512: rk_mean_min_pressure</td><td>true</td></tr><tr><td>N512: endpoint_min_density</td><td>true</td></tr><tr><td>N512: endpoint_min_pressure</td><td>true</td></tr><tr><td>N512: fe_mean_min_density</td><td>true</td></tr><tr><td>N512: fe_mean_min_pressure</td><td>true</td></tr><tr><td>N512: maximum_face_spectral_radius</td><td>true</td></tr><tr><td>N512: maximum_courant</td><td>true</td></tr><tr><td>N512: maximum_mean_preservation_defect</td><td>true</td></tr><tr><td>N512: maximum_fe_boundary_balance_defect</td><td>true</td></tr><tr><td>N512: maximum_rk_boundary_balance_defect</td><td>true</td></tr><tr><td>N512: zero mass/energy floor injections</td><td>true</td></tr><tr><td>N512: zero retries or rejected steps</td><td>true</td></tr><tr><td>N512: scaling actually exercised</td><td>true</td></tr><tr><td>N512: raw nonadmissible reconstruction retained</td><td>true</td></tr><tr><td>N512: mass boundary budget</td><td>true</td></tr><tr><td>N512: momentum boundary budget</td><td>true</td></tr><tr><td>N512: energy boundary budget</td><td>true</td></tr><tr><td>N512: split Gauss8/16 reference</td><td>true</td></tr><tr><td>finest density_l1</td><td>true</td></tr><tr><td>density_l1 refinement ratio 1</td><td>true</td></tr><tr><td>density_l1 refinement ratio 2</td><td>true</td></tr><tr><td>finest pressure_l1</td><td>true</td></tr><tr><td>pressure_l1 refinement ratio 1</td><td>true</td></tr><tr><td>pressure_l1 refinement ratio 2</td><td>true</td></tr><tr><td>reference: star_pressure_absolute_difference</td><td>true</td></tr><tr><td>reference: independent_root_point_maximum_difference</td><td>true</td></tr><tr><td>reference: maximum_scaled_euler_residual</td><td>true</td></tr></tbody></table></div><figure><img loading=\"lazy\" src=\"/code/validated-examples/2026-11-23-r2/euler-positivity/results/euler-double-rarefaction-positivity.png\" width=\"1920\" height=\"1248\" alt=\"Euler二重膨張波：段階ごとの正値性の保存済み検証図\"><figcaption>保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。</figcaption></figure><figure class=\"validation-additional-figure\" data-validation-additional-figure=\"euler-double-rarefaction-positivity-preview.png\"><a href=\"/code/validated-examples/2026-11-23-r2/euler-positivity/results/euler-double-rarefaction-positivity-preview.png\"><img loading=\"lazy\" src=\"/code/validated-examples/2026-11-23-r2/euler-positivity/results/euler-double-rarefaction-positivity-preview.png\" width=\"1408\" height=\"880\" alt=\"強い二重希薄波の密度・圧力：保存した1次元計算のx–t図（2次元流体計算ではない）。\"></a><figcaption>強い二重希薄波の密度・圧力：保存した1次元計算のx–t図（2次元流体計算ではない）。</figcaption></figure><details class=\"validation-records\"><summary>全記録を表で読む</summary><div class=\"validation-table\" tabindex=\"0\" role=\"region\" aria-label=\"euler-double-rarefaction-positivity records\"><table><thead><tr><th scope=\"col\">n</th><th scope=\"col\">time</th><th scope=\"col\">steps</th><th scope=\"col\">stages</th><th scope=\"col\">density_l1</th><th scope=\"col\">pressure_l1</th><th scope=\"col\">density_linf</th><th scope=\"col\">pressure_linf</th><th scope=\"col\">velocity_linf</th><th scope=\"col\">reference_quadrature_maximum</th><th scope=\"col\">scaled_cells</th><th scope=\"col\">maximum_face_spectral_radius</th><th scope=\"col\">maximum_courant</th><th scope=\"col\">maximum_mean_preservation_defect</th><th scope=\"col\">maximum_fe_boundary_balance_defect</th><th scope=\"col\">maximum_rk_boundary_balance_defect</th><th scope=\"col\">raw_endpoint_nonpositive_density_count</th><th scope=\"col\">initial_integral</th><th scope=\"col\">final_integral</th><th scope=\"col\">boundary_net_integral</th><th scope=\"col\">conservation_residual</th><th scope=\"col\">conservation_relative</th><th scope=\"col\">state_floor_count</th><th scope=\"col\">rejected_steps</th><th scope=\"col\">retries</th><th scope=\"col\">raw_endpoint_min_density</th><th scope=\"col\">raw_endpoint_min_pressure</th><th scope=\"col\">endpoint_min_density</th><th scope=\"col\">endpoint_min_pressure</th><th scope=\"col\">fe_mean_min_density</th><th scope=\"col\">fe_mean_min_pressure</th><th scope=\"col\">rk_mean_min_density</th><th scope=\"col\">rk_mean_min_pressure</th><th scope=\"col\">minimum_theta</th><th scope=\"col\">field</th><th scope=\"col\">history</th></tr></thead><tbody><tr><td>128</td><td>0.15</td><td>192</td><td>576</td><td>0.0527487693779</td><td>0.0460626814654</td><td>0.0795476444428</td><td>0.0439260896234</td><td>0.123008579545</td><td>8.881784197e-16</td><td>6</td><td>2.77119182328</td><td>0.4</td><td>2.22044604925e-16</td><td>4.85722573274e-17</td><td>1.83880688454e-16</td><td>0</td><td>[1.0,0.0,3.0]</td><td>[0.4001271124036316,-4.85722573273506e-17,0.9606244195598075]</td><td>[-0.5998728875963634,0.0,-2.0393755804401787]</td><td>[-4.9960036108132044e-15,-4.85722573273506e-17,-1.3766765505351941e-14]</td><td>[3.1227503444471525e-15,4.85722573273506e-17,2.7318395474999388e-15]</td><td>0</td><td>0</td><td>0</td><td>0.0104666636747</td><td>-0.6</td><td>0.0104666636747</td><td>1.0640377468e-13</td><td>0.0104999234475</td><td>0.00186603486913</td><td>0.0105240371242</td><td>0.00187190134053</td><td>0.449489742783</td><td>field-n128.npz</td><td>stages-n128.json</td></tr><tr><td>256</td><td>0.15</td><td>384</td><td>1152</td><td>0.0277326966306</td><td>0.0269661819995</td><td>0.0563596543818</td><td>0.0312212885639</td><td>0.0434303467177</td><td>1.7763568394e-15</td><td>6</td><td>2.77119182328</td><td>0.4</td><td>2.22044604925e-16</td><td>2.51534904017e-17</td><td>1.22298005056e-16</td><td>0</td><td>[1.0,0.0,3.0]</td><td>[0.3999972283193048,6.938893903907228e-18,0.9599864217668014]</td><td>[-0.600002771680688,0.0,-2.0400135782331827]</td><td>[-7.216449660063518e-15,6.938893903907228e-18,-1.5987211554602254e-14]</td><td>[4.510273224391452e-15,6.938893903907228e-18,3.172057238823293e-15]</td><td>0</td><td>0</td><td>0</td><td>0.00973263121829</td><td>-0.6</td><td>0.00973263121829</td><td>1.0640377468e-13</td><td>0.00977432090215</td><td>0.00169446406356</td><td>0.00977443913337</td><td>0.00169449268658</td><td>0.449489742783</td><td>field-n256.npz</td><td>stages-n256.json</td></tr><tr><td>512</td><td>0.15</td><td>769</td><td>2307</td><td>0.0137865356907</td><td>0.0143565346963</td><td>0.0360151271185</td><td>0.0199739243509</td><td>0.0275663173676</td><td>1.33226762955e-15</td><td>6</td><td>2.77119182328</td><td>0.4</td><td>2.22044604925e-16</td><td>1.90819582357e-17</td><td>8.45677694539e-17</td><td>0</td><td>[1.0,0.0,3.0]</td><td>[0.40000003166389897,2.862293735361732e-17,0.9600001550468746]</td><td>[-0.5999999683360934,0.0,-2.039999844953108]</td><td>[-7.66053886991358e-15,2.862293735361732e-17,-1.7319479184152442e-14]</td><td>[4.787836888447e-15,2.862293735361732e-17,3.4364047057452995e-15]</td><td>0</td><td>0</td><td>0</td><td>0.00973263121829</td><td>-0.6</td><td>0.00973263121829</td><td>1.0640377468e-13</td><td>0.00977432090215</td><td>0.00169446406356</td><td>0.00977443913337</td><td>0.00169449268658</td><td>0.449489742783</td><td>field-n512.npz</td><td>stages-n512.json</td></tr></tbody></table></div></details><p><a href=\"/numerical-methods-atlas/validation/euler-double-rarefaction-positivity/index.json\">この例の実測値・全記録 / JSON</a></p><h3 id=\"euler-double-rarefaction-positivity-references\">一次文献・関連資料と確認範囲</h3><p>原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。</p><ol class=\"validation-references\"><li id=\"euler-double-rarefaction-positivity-source-zhang2010positivity\"><a href=\"https://www.math.purdue.edu/~zhan1966/research/paper/euler.pdf\">Xiangxiong Zhang and Chi-Wang Shu (2010). On positivity-preserving high order discontinuous Galerkin schemes for compressible Euler equations on rectangular meshes</a> · <a href=\"https://doi.org/10.1016/j.jcp.2010.08.016\">DOI: 10.1016/j.jcp.2010.08.016</a><p>確認範囲 / review_level: author manuscript selected sections actually inspected: §2 Theorem2.1, Remarks2.2/2.4/2.6/2.7; §4.3 distinguishes vacuum input</p><p>著者稿の定理・LF条件・各SSP段階への適用と波速見積りの注意を確認。P1有限体積への限定適用で、原著の真空例・3次DGを再現したとは扱いません。</p></li><li id=\"euler-double-rarefaction-positivity-source-clawpack-euler-riemann\"><a href=\"https://www.clawpack.org/riemann_book/html/Euler.html\">David I. Ketcheson, Randall J. LeVeque and Mauricio J. del Razo (2020). Riemann Problems and Jupyter Solutions: The Euler equations of gas dynamics</a> · <a href=\"https://doi.org/10.1137/1.9781611976212\">DOI: 10.1137/1.9781611976212</a><p>確認範囲 / review_level: official chapter sections Riemann invariants, exact solution, symmetric expansion and vacuum; official exact_solvers/euler.py integral_curve_1/3 inspected read-only</p><p>公式章の希薄波不変量と対称膨張・真空条件を確認。今回の固定値は既存アトラスの入力を継承し、同章の数値例そのものとは区別します。Clawpackコードは実行・転載しません。</p></li><li id=\"euler-double-rarefaction-positivity-source-shu1988ssprk\"><a href=\"https://www.sciencedirect.com/science/article/pii/0021999188901775\">Chi-Wang Shu and Stanley Osher (1988). Efficient implementation of essentially non-oscillatory shock-capturing schemes</a> · <a href=\"https://doi.org/10.1016/0021-9991(88)90177-5\">DOI: 10.1016/0021-9991(88)90177-5</a><p>確認範囲 / review_level: publisher bibliographic record and abstract only; no full-paper audit</p><p>出版社の書誌とTVD型Runge–Kuttaの抄録を確認。原著全文・全数値実験の監査ではありません。SSP凸結合による正値性の議論はZhang–Shu著者稿でも確認。</p></li><li id=\"euler-double-rarefaction-positivity-source-toro2009riemann\"><a href=\"https://link.springer.com/book/10.1007/b79761\">Eleuterio F. Toro (2009). Riemann Solvers and Numerical Methods for Fluid Dynamics: A Practical Introduction</a> · <a href=\"https://doi.org/10.1007/b79761\">DOI: 10.1007/b79761</a><p>確認範囲 / review_level: publisher bibliography and chapter4 title/pages115–162 only; full text not inspected</p><p>出版社で第3版・著者・年とEulerのRiemann問題の章を確認。固定数値の原典をこの閲覧だけで断定しません。</p></li><li id=\"euler-double-rarefaction-positivity-source-atlas-riemann-2026\"><a href=\"https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/reference_riemann.py\">Hiroshi Koyama (2026). Numerical Methods Atlas: released independent Euler Riemann evaluator</a><p>確認範囲 / review_level: local immutable source inspected; copied without changes with SHA and MIT license; execution recorded by tests, not presumed</p><p>既存の対数圧力根探索と希薄波評価を独立な式経路の照合に使います。実行記録とSHA・MIT条項を別に保存し、異なるPDE計算エンジンの検証とは表示しません。</p></li></ol></article><aside class=\"validation-terms\"><p>オリジナルコードはMIT。本文・図・固定入力・数値データと第三者資料は、それぞれの利用条件に従います。</p><p><a href=\"/LICENSING.md\">LICENSING.md</a> · <a href=\"/rights/?lang=ja\">利用条件・AI方針</a></p></aside>",
+  "headings": [
+    {
+      "level": 2,
+      "id": "run-all",
+      "title": "配布版を取得して実行する"
+    },
+    {
+      "level": 3,
+      "id": "euler-double-rarefaction-positivity-assumptions",
+      "title": "前提・単位・境界"
+    },
+    {
+      "level": 3,
+      "id": "euler-double-rarefaction-positivity-algorithm",
+      "title": "採用した計算法"
+    },
+    {
+      "level": 3,
+      "id": "euler-double-rarefaction-positivity-validation",
+      "title": "何と比較し、何を測るか"
+    },
+    {
+      "level": 3,
+      "id": "euler-double-rarefaction-positivity-limits",
+      "title": "確認の限界と失敗条件"
+    },
+    {
+      "level": 3,
+      "id": "euler-double-rarefaction-positivity-measurements",
+      "title": "保存した実測値と判定"
+    },
+    {
+      "level": 3,
+      "id": "euler-double-rarefaction-positivity-references",
+      "title": "一次文献・関連資料と確認範囲"
+    },
+    {
+      "level": 2,
+      "id": "euler-double-rarefaction-positivity",
+      "title": "Euler二重膨張波：段階ごとの正値性"
+    }
+  ],
+  "locale": "ja",
+  "source_url": "/code/validated-examples/2026-11-23-r2/euler-positivity/cases.json",
+  "updated_on": "2026-11-23",
+  "translation_status": "draft",
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-euler-positivity/",
+  "group": "euler-positivity",
+  "case_ids": [
+    "euler-double-rarefaction-positivity"
+  ],
+  "measurements": [
+    {
+      "id": "euler-double-rarefaction-positivity",
+      "passed": true,
+      "records": [
+        {
+          "n": 128,
+          "time": 0.15,
+          "steps": 192,
+          "stages": 576,
+          "density_l1": 0.05274876937794691,
+          "pressure_l1": 0.0460626814654289,
+          "density_linf": 0.07954764444280427,
+          "pressure_linf": 0.043926089623357256,
+          "velocity_linf": 0.12300857954546912,
+          "reference_quadrature_maximum": 8.881784197001252e-16,
+          "scaled_cells": 6,
+          "maximum_face_spectral_radius": 2.771191823275851,
+          "maximum_courant": 0.4,
+          "maximum_mean_preservation_defect": 2.220446049250313e-16,
+          "maximum_fe_boundary_balance_defect": 4.85722573273506e-17,
+          "maximum_rk_boundary_balance_defect": 1.8388068845354155e-16,
+          "raw_endpoint_nonpositive_density_count": 0,
+          "initial_integral": [
+            1.0,
+            0.0,
+            3.0
+          ],
+          "final_integral": [
+            0.4001271124036316,
+            -4.85722573273506e-17,
+            0.9606244195598075
+          ],
+          "boundary_net_integral": [
+            -0.5998728875963634,
+            0.0,
+            -2.0393755804401787
+          ],
+          "conservation_residual": [
+            -4.9960036108132044e-15,
+            -4.85722573273506e-17,
+            -1.3766765505351941e-14
+          ],
+          "conservation_relative": [
+            3.1227503444471525e-15,
+            4.85722573273506e-17,
+            2.7318395474999388e-15
+          ],
+          "state_floor_count": 0,
+          "rejected_steps": 0,
+          "retries": 0,
+          "raw_endpoint_min_density": 0.010466663674740733,
+          "raw_endpoint_min_pressure": -0.5999999999999999,
+          "endpoint_min_density": 0.010466663674740733,
+          "endpoint_min_pressure": 1.0640377468007498e-13,
+          "fe_mean_min_density": 0.010499923447493387,
+          "fe_mean_min_pressure": 0.0018660348691301473,
+          "rk_mean_min_density": 0.010524037124213192,
+          "rk_mean_min_pressure": 0.001871901340525429,
+          "minimum_theta": 0.4494897427830696,
+          "field": "field-n128.npz",
+          "history": "stages-n128.json"
+        },
+        {
+          "n": 256,
+          "time": 0.15,
+          "steps": 384,
+          "stages": 1152,
+          "density_l1": 0.02773269663057136,
+          "pressure_l1": 0.026966181999486128,
+          "density_linf": 0.05635965438184676,
+          "pressure_linf": 0.031221288563931304,
+          "velocity_linf": 0.04343034671773327,
+          "reference_quadrature_maximum": 1.7763568394002505e-15,
+          "scaled_cells": 6,
+          "maximum_face_spectral_radius": 2.771191823275851,
+          "maximum_courant": 0.4,
+          "maximum_mean_preservation_defect": 2.220446049250313e-16,
+          "maximum_fe_boundary_balance_defect": 2.5153490401663703e-17,
+          "maximum_rk_boundary_balance_defect": 1.222980050563649e-16,
+          "raw_endpoint_nonpositive_density_count": 0,
+          "initial_integral": [
+            1.0,
+            0.0,
+            3.0
+          ],
+          "final_integral": [
+            0.3999972283193048,
+            6.938893903907228e-18,
+            0.9599864217668014
+          ],
+          "boundary_net_integral": [
+            -0.600002771680688,
+            0.0,
+            -2.0400135782331827
+          ],
+          "conservation_residual": [
+            -7.216449660063518e-15,
+            6.938893903907228e-18,
+            -1.5987211554602254e-14
+          ],
+          "conservation_relative": [
+            4.510273224391452e-15,
+            6.938893903907228e-18,
+            3.172057238823293e-15
+          ],
+          "state_floor_count": 0,
+          "rejected_steps": 0,
+          "retries": 0,
+          "raw_endpoint_min_density": 0.009732631218285564,
+          "raw_endpoint_min_pressure": -0.5999999999999999,
+          "endpoint_min_density": 0.009732631218285564,
+          "endpoint_min_pressure": 1.0640377468007498e-13,
+          "fe_mean_min_density": 0.009774320902145379,
+          "fe_mean_min_pressure": 0.0016944640635574622,
+          "rk_mean_min_density": 0.00977443913337385,
+          "rk_mean_min_pressure": 0.0016944926865771217,
+          "minimum_theta": 0.4494897427830696,
+          "field": "field-n256.npz",
+          "history": "stages-n256.json"
+        },
+        {
+          "n": 512,
+          "time": 0.15,
+          "steps": 769,
+          "stages": 2307,
+          "density_l1": 0.013786535690656554,
+          "pressure_l1": 0.01435653469629682,
+          "density_linf": 0.03601512711847121,
+          "pressure_linf": 0.019973924350945027,
+          "velocity_linf": 0.027566317367641924,
+          "reference_quadrature_maximum": 1.3322676295501878e-15,
+          "scaled_cells": 6,
+          "maximum_face_spectral_radius": 2.771191823275851,
+          "maximum_courant": 0.4,
+          "maximum_mean_preservation_defect": 2.220446049250313e-16,
+          "maximum_fe_boundary_balance_defect": 1.9081958235744878e-17,
+          "maximum_rk_boundary_balance_defect": 8.456776945386935e-17,
+          "raw_endpoint_nonpositive_density_count": 0,
+          "initial_integral": [
+            1.0,
+            0.0,
+            3.0
+          ],
+          "final_integral": [
+            0.40000003166389897,
+            2.862293735361732e-17,
+            0.9600001550468746
+          ],
+          "boundary_net_integral": [
+            -0.5999999683360934,
+            0.0,
+            -2.039999844953108
+          ],
+          "conservation_residual": [
+            -7.66053886991358e-15,
+            2.862293735361732e-17,
+            -1.7319479184152442e-14
+          ],
+          "conservation_relative": [
+            4.787836888447e-15,
+            2.862293735361732e-17,
+            3.4364047057452995e-15
+          ],
+          "state_floor_count": 0,
+          "rejected_steps": 0,
+          "retries": 0,
+          "raw_endpoint_min_density": 0.009732631218285564,
+          "raw_endpoint_min_pressure": -0.5999999999999999,
+          "endpoint_min_density": 0.009732631218285564,
+          "endpoint_min_pressure": 1.0640377468007498e-13,
+          "fe_mean_min_density": 0.009774320902145379,
+          "fe_mean_min_pressure": 0.0016944640635574622,
+          "rk_mean_min_density": 0.00977443913337385,
+          "rk_mean_min_pressure": 0.0016944926865771217,
+          "minimum_theta": 0.4494897427830696,
+          "field": "field-n512.npz",
+          "history": "stages-n512.json"
+        }
+      ],
+      "metrics": {
+        "n": 512,
+        "time": 0.15,
+        "steps": 769,
+        "stages": 2307,
+        "density_l1": 0.013786535690656554,
+        "pressure_l1": 0.01435653469629682,
+        "density_linf": 0.03601512711847121,
+        "pressure_linf": 0.019973924350945027,
+        "velocity_linf": 0.027566317367641924,
+        "reference_quadrature_maximum": 1.3322676295501878e-15,
+        "scaled_cells": 6,
+        "maximum_face_spectral_radius": 2.771191823275851,
+        "maximum_courant": 0.4,
+        "maximum_mean_preservation_defect": 2.220446049250313e-16,
+        "maximum_fe_boundary_balance_defect": 1.9081958235744878e-17,
+        "maximum_rk_boundary_balance_defect": 8.456776945386935e-17,
+        "raw_endpoint_nonpositive_density_count": 0,
+        "state_floor_count": 0,
+        "rejected_steps": 0,
+        "retries": 0,
+        "raw_endpoint_min_density": 0.009732631218285564,
+        "raw_endpoint_min_pressure": -0.5999999999999999,
+        "endpoint_min_density": 0.009732631218285564,
+        "endpoint_min_pressure": 1.0640377468007498e-13,
+        "fe_mean_min_density": 0.009774320902145379,
+        "fe_mean_min_pressure": 0.0016944640635574622,
+        "rk_mean_min_density": 0.00977443913337385,
+        "rk_mean_min_pressure": 0.0016944926865771217,
+        "minimum_theta": 0.4494897427830696
+      },
+      "checks": {
+        "all fixed refinements completed": true,
+        "N128: final time": true,
+        "N128: three records per full SSP step": true,
+        "N128: rk_mean_min_density": true,
+        "N128: rk_mean_min_pressure": true,
+        "N128: endpoint_min_density": true,
+        "N128: endpoint_min_pressure": true,
+        "N128: fe_mean_min_density": true,
+        "N128: fe_mean_min_pressure": true,
+        "N128: maximum_face_spectral_radius": true,
+        "N128: maximum_courant": true,
+        "N128: maximum_mean_preservation_defect": true,
+        "N128: maximum_fe_boundary_balance_defect": true,
+        "N128: maximum_rk_boundary_balance_defect": true,
+        "N128: zero mass/energy floor injections": true,
+        "N128: zero retries or rejected steps": true,
+        "N128: scaling actually exercised": true,
+        "N128: raw nonadmissible reconstruction retained": true,
+        "N128: mass boundary budget": true,
+        "N128: momentum boundary budget": true,
+        "N128: energy boundary budget": true,
+        "N128: split Gauss8/16 reference": true,
+        "N256: final time": true,
+        "N256: three records per full SSP step": true,
+        "N256: rk_mean_min_density": true,
+        "N256: rk_mean_min_pressure": true,
+        "N256: endpoint_min_density": true,
+        "N256: endpoint_min_pressure": true,
+        "N256: fe_mean_min_density": true,
+        "N256: fe_mean_min_pressure": true,
+        "N256: maximum_face_spectral_radius": true,
+        "N256: maximum_courant": true,
+        "N256: maximum_mean_preservation_defect": true,
+        "N256: maximum_fe_boundary_balance_defect": true,
+        "N256: maximum_rk_boundary_balance_defect": true,
+        "N256: zero mass/energy floor injections": true,
+        "N256: zero retries or rejected steps": true,
+        "N256: scaling actually exercised": true,
+        "N256: raw nonadmissible reconstruction retained": true,
+        "N256: mass boundary budget": true,
+        "N256: momentum boundary budget": true,
+        "N256: energy boundary budget": true,
+        "N256: split Gauss8/16 reference": true,
+        "N512: final time": true,
+        "N512: three records per full SSP step": true,
+        "N512: rk_mean_min_density": true,
+        "N512: rk_mean_min_pressure": true,
+        "N512: endpoint_min_density": true,
+        "N512: endpoint_min_pressure": true,
+        "N512: fe_mean_min_density": true,
+        "N512: fe_mean_min_pressure": true,
+        "N512: maximum_face_spectral_radius": true,
+        "N512: maximum_courant": true,
+        "N512: maximum_mean_preservation_defect": true,
+        "N512: maximum_fe_boundary_balance_defect": true,
+        "N512: maximum_rk_boundary_balance_defect": true,
+        "N512: zero mass/energy floor injections": true,
+        "N512: zero retries or rejected steps": true,
+        "N512: scaling actually exercised": true,
+        "N512: raw nonadmissible reconstruction retained": true,
+        "N512: mass boundary budget": true,
+        "N512: momentum boundary budget": true,
+        "N512: energy boundary budget": true,
+        "N512: split Gauss8/16 reference": true,
+        "finest density_l1": true,
+        "density_l1 refinement ratio 1": true,
+        "density_l1 refinement ratio 2": true,
+        "finest pressure_l1": true,
+        "pressure_l1 refinement ratio 1": true,
+        "pressure_l1 refinement ratio 2": true,
+        "reference: star_pressure_absolute_difference": true,
+        "reference: independent_root_point_maximum_difference": true,
+        "reference: maximum_scaled_euler_residual": true
+      },
+      "check_details": [
+        {
+          "name": "all fixed refinements completed",
+          "value": [
+            128,
+            256,
+            512
+          ],
+          "bound": [
+            128,
+            256,
+            512
+          ],
+          "passed": true
+        },
+        {
+          "name": "N128: final time",
+          "value": 0.15,
+          "bound": 0.15,
+          "passed": true
+        },
+        {
+          "name": "N128: three records per full SSP step",
+          "value": 576,
+          "bound": 576,
+          "passed": true
+        },
+        {
+          "name": "N128: rk_mean_min_density",
+          "value": 0.010524037124213192,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N128: rk_mean_min_pressure",
+          "value": 0.001871901340525429,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N128: endpoint_min_density",
+          "value": 0.010466663674740733,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N128: endpoint_min_pressure",
+          "value": 1.0640377468007498e-13,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N128: fe_mean_min_density",
+          "value": 0.010499923447493387,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N128: fe_mean_min_pressure",
+          "value": 0.0018660348691301473,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N128: maximum_face_spectral_radius",
+          "value": 2.771191823275851,
+          "bound": 4.0,
+          "passed": true
+        },
+        {
+          "name": "N128: maximum_courant",
+          "value": 0.4,
+          "bound": 0.5,
+          "passed": true
+        },
+        {
+          "name": "N128: maximum_mean_preservation_defect",
+          "value": 2.220446049250313e-16,
+          "bound": 3e-14,
+          "passed": true
+        },
+        {
+          "name": "N128: maximum_fe_boundary_balance_defect",
+          "value": 4.85722573273506e-17,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "N128: maximum_rk_boundary_balance_defect",
+          "value": 1.8388068845354155e-16,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "N128: zero mass/energy floor injections",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N128: zero retries or rejected steps",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N128: scaling actually exercised",
+          "value": 6,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N128: raw nonadmissible reconstruction retained",
+          "value": -0.5999999999999999,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N128: mass boundary budget",
+          "value": 3.1227503444471525e-15,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "N128: momentum boundary budget",
+          "value": 4.85722573273506e-17,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "N128: energy boundary budget",
+          "value": 2.7318395474999388e-15,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "N128: split Gauss8/16 reference",
+          "value": 8.881784197001252e-16,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "N256: final time",
+          "value": 0.15,
+          "bound": 0.15,
+          "passed": true
+        },
+        {
+          "name": "N256: three records per full SSP step",
+          "value": 1152,
+          "bound": 1152,
+          "passed": true
+        },
+        {
+          "name": "N256: rk_mean_min_density",
+          "value": 0.00977443913337385,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N256: rk_mean_min_pressure",
+          "value": 0.0016944926865771217,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N256: endpoint_min_density",
+          "value": 0.009732631218285564,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N256: endpoint_min_pressure",
+          "value": 1.0640377468007498e-13,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N256: fe_mean_min_density",
+          "value": 0.009774320902145379,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N256: fe_mean_min_pressure",
+          "value": 0.0016944640635574622,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N256: maximum_face_spectral_radius",
+          "value": 2.771191823275851,
+          "bound": 4.0,
+          "passed": true
+        },
+        {
+          "name": "N256: maximum_courant",
+          "value": 0.4,
+          "bound": 0.5,
+          "passed": true
+        },
+        {
+          "name": "N256: maximum_mean_preservation_defect",
+          "value": 2.220446049250313e-16,
+          "bound": 3e-14,
+          "passed": true
+        },
+        {
+          "name": "N256: maximum_fe_boundary_balance_defect",
+          "value": 2.5153490401663703e-17,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "N256: maximum_rk_boundary_balance_defect",
+          "value": 1.222980050563649e-16,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "N256: zero mass/energy floor injections",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N256: zero retries or rejected steps",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N256: scaling actually exercised",
+          "value": 6,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N256: raw nonadmissible reconstruction retained",
+          "value": -0.5999999999999999,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N256: mass boundary budget",
+          "value": 4.510273224391452e-15,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "N256: momentum boundary budget",
+          "value": 6.938893903907228e-18,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "N256: energy boundary budget",
+          "value": 3.172057238823293e-15,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "N256: split Gauss8/16 reference",
+          "value": 1.7763568394002505e-15,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "N512: final time",
+          "value": 0.15,
+          "bound": 0.15,
+          "passed": true
+        },
+        {
+          "name": "N512: three records per full SSP step",
+          "value": 2307,
+          "bound": 2307,
+          "passed": true
+        },
+        {
+          "name": "N512: rk_mean_min_density",
+          "value": 0.00977443913337385,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N512: rk_mean_min_pressure",
+          "value": 0.0016944926865771217,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N512: endpoint_min_density",
+          "value": 0.009732631218285564,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N512: endpoint_min_pressure",
+          "value": 1.0640377468007498e-13,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N512: fe_mean_min_density",
+          "value": 0.009774320902145379,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N512: fe_mean_min_pressure",
+          "value": 0.0016944640635574622,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N512: maximum_face_spectral_radius",
+          "value": 2.771191823275851,
+          "bound": 4.0,
+          "passed": true
+        },
+        {
+          "name": "N512: maximum_courant",
+          "value": 0.4,
+          "bound": 0.5,
+          "passed": true
+        },
+        {
+          "name": "N512: maximum_mean_preservation_defect",
+          "value": 2.220446049250313e-16,
+          "bound": 3e-14,
+          "passed": true
+        },
+        {
+          "name": "N512: maximum_fe_boundary_balance_defect",
+          "value": 1.9081958235744878e-17,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "N512: maximum_rk_boundary_balance_defect",
+          "value": 8.456776945386935e-17,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "N512: zero mass/energy floor injections",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N512: zero retries or rejected steps",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N512: scaling actually exercised",
+          "value": 6,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N512: raw nonadmissible reconstruction retained",
+          "value": -0.5999999999999999,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N512: mass boundary budget",
+          "value": 4.787836888447e-15,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "N512: momentum boundary budget",
+          "value": 2.862293735361732e-17,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "N512: energy boundary budget",
+          "value": 3.4364047057452995e-15,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "N512: split Gauss8/16 reference",
+          "value": 1.3322676295501878e-15,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "finest density_l1",
+          "value": 0.013786535690656554,
+          "bound": 0.08,
+          "passed": true
+        },
+        {
+          "name": "density_l1 refinement ratio 1",
+          "value": 0.5257505901581428,
+          "bound": 0.95,
+          "passed": true
+        },
+        {
+          "name": "density_l1 refinement ratio 2",
+          "value": 0.4971220748673555,
+          "bound": 0.95,
+          "passed": true
+        },
+        {
+          "name": "finest pressure_l1",
+          "value": 0.01435653469629682,
+          "bound": 0.1,
+          "passed": true
+        },
+        {
+          "name": "pressure_l1 refinement ratio 1",
+          "value": 0.5854236258417753,
+          "bound": 0.95,
+          "passed": true
+        },
+        {
+          "name": "pressure_l1 refinement ratio 2",
+          "value": 0.5323903360353498,
+          "bound": 0.95,
+          "passed": true
+        },
+        {
+          "name": "reference: star_pressure_absolute_difference",
+          "value": 5.355958732078392e-17,
+          "bound": 2e-13,
+          "passed": true
+        },
+        {
+          "name": "reference: independent_root_point_maximum_difference",
+          "value": 2.4424906541753444e-15,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "reference: maximum_scaled_euler_residual",
+          "value": 1.5220171275817243e-10,
+          "bound": 2e-06,
+          "passed": true
+        }
+      ],
+      "reference_qualification": {
+        "star_pressure_absolute_difference": 5.355958732078392e-17,
+        "independent_root_point_maximum_difference": 2.4424906541753444e-15,
+        "maximum_scaled_euler_residual": 1.5220171275817243e-10,
+        "independent_root_diagnostics": {
+          "iterations": 46,
+          "log_bracket_width": 1.7053025658242404e-13,
+          "wave_residual": 1.4210854715202004e-14
+        },
+        "derivative_step": 1e-06,
+        "residual_points": [
+          0.13,
+          0.23,
+          0.37,
+          0.49,
+          0.51,
+          0.63,
+          0.77,
+          0.87
+        ],
+        "star_density": 0.021852118206812838,
+        "star_pressure": 0.0018938734200547643
+      },
+      "scope": "One-dimensional Euler strong double rarefaction. Gallery heatmaps are saved x-t fields, not two-dimensional flow."
+    }
+  ],
+  "source_sha256": {
+    "catalog/atlas-depth-expansion.json": "6c85fa8d07dafa4c461460451d809316cc5bf999dca5c2bd0a94163c0c26dac7",
+    "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
+    "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
+    "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
+    "code/validated-examples/2026-11-22/foundations/results/result.json": "93a27cb8e43d7195d2417fc9110f196b07c826ea1f4e2b240f879ab8ab8b4b77",
+    "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
+    "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
+    "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
+    "code/validated-examples/2026-11-22/models/cases.json": "09b670a3462f7f1395dcdf12b507786b69616c0ea165d2678efe780ddb0cf0e6",
+    "code/validated-examples/2026-11-22/models/results/result.json": "d3af162e0e4a1cb0cc14bd41f250cfe16b69e0b6f111cc4ba1c71eb4ca55e266",
+    "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
+    "code/validated-examples/2026-11-22/particles/source-manifest.json": "63cefd473db691db611628f6501b2b58d6727c055ffde1b9a4962bfecfacd125",
+    "code/validated-examples/2026-11-22/particles/verification.json": "48744c4ce661cb76ce7cba81d55bbbb2737885c472966237e78c9e3dfcbf43b7",
+    "code/validated-examples/2026-11-22/particles/cases.json": "f6e68b2ec8d0cd56357b1aeecea3f9c40cf22f89e7f9c1b8b9442ad020ddbf86",
+    "code/validated-examples/2026-11-22/particles/results/result.json": "ed038f2af0d25bb29235e5f2853e0c8360974e8a499475f4b5cb3146d142ad60",
+    "code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+    "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
+    "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
+    "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
+    "code/validated-examples/2026-11-22/mhd/results/result.json": "ce1a011a3f2a18727aa7c10a81d712e23b536e9367e4be18d6847b74210a73f6",
+    "code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip": "2e7eeaaacaeb918671228cc56ab333d0c4ca5a9879241846f5772594552d0b16",
+    "code/validated-examples/2026-11-22/thermostats/source-manifest.json": "81a854bdfe3ae33b4eb4bffdccc9ab15a09f2bddbffb294cd2c2cbd07e641580",
+    "code/validated-examples/2026-11-22/thermostats/verification.json": "c14f55ac05d93269dbf8eef4a2a4042f75764d5228d06f8e41039d0b60351905",
+    "code/validated-examples/2026-11-22/thermostats/cases.json": "123566ec7000dce11f2a6a7474d35e45c8fdf24db85a0556e2cbb3911d3acd77",
+    "code/validated-examples/2026-11-22/thermostats/results/result.json": "7971007807acce9f75261b684b789f196e1d5dffc80797e102d1b0bebbc93f11",
+    "code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip": "38142da988bf0c790eab7e7f10f8d1e209d074c3627f73a207f5223a24e18d65",
+    "code/validated-examples/2026-11-22/biology/source-manifest.json": "56947a4fb54ae757408ddddfc5de0884bfe35266032ee425a8d96a815f3362ba",
+    "code/validated-examples/2026-11-22/biology/verification.json": "5cafaaef809f46e6ab01327107f7367113b8069931621fc92d446fbf142682bd",
+    "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
+    "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
+    "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
+    "code/validated-examples/2026-11-22/mcmc/source-manifest.json": "c288e5c96aefe6f4bfdab4dbd78efc8b27924087aa09ac7e91d61adf63ebf195",
+    "code/validated-examples/2026-11-22/mcmc/verification.json": "f39975a549b48345d5b6f833d6226cdae1054ecb9f004d9c845d1ffa8bbc8c9e",
+    "code/validated-examples/2026-11-22/mcmc/cases.json": "fa950eafd45ac23aa2eba3374b23ab2d8df934368ab5b833bf812fbdd095fcaa",
+    "code/validated-examples/2026-11-22/mcmc/results/result.json": "530a343f4e59e03aa9369e373507e73a063eb810eb5a24fd820568467567cbd5",
+    "code/validated-examples/2026-11-22/mcmc/atlas-mcmc-2026-11-22.zip": "7fb1cde233b79e2b2d56edac89c6e1bdbe8239c1b7f5e166054f8e3e2cdaac11",
+    "code/validated-examples/2026-11-22/mhd-convergence/source-manifest.json": "9d5fd8eb67ed3d4ac3965596bbd12152bdc1ae2e03a3a4f060573175d00caf67",
+    "code/validated-examples/2026-11-22/mhd-convergence/verification.json": "ddf51e803eb94ca7dc419d0b9fc4aa6ec7204c319e448f7d4b120f5342a319d8",
+    "code/validated-examples/2026-11-22/mhd-convergence/cases.json": "a1ebd3a1344c90cc49e11dd790a522434f7fdec27f77d8621a2197a7be738434",
+    "code/validated-examples/2026-11-22/mhd-convergence/results/result.json": "7b1ddd177a96b1ede21b568b0f8e72e4b23d970d96ace3ab2441b0df0efbfe6b",
+    "code/validated-examples/2026-11-22/mhd-convergence/atlas-mhd-convergence-2026-11-22.zip": "5db2fc202014a576145e98c84e1802540df7d8e26353d469fbd55c8e393fd866",
+    "code/validated-examples/2026-11-22/foundations-conditioning/source-manifest.json": "f5b5b5cb5540a1ea76f60f599bd3afd99ffbf312343588e6c7d5c5bcffb3dd9c",
+    "code/validated-examples/2026-11-22/foundations-conditioning/verification.json": "3368c373d622c4246868a43ce869f160de34d0d124c0334d4355573e7c8b3b5f",
+    "code/validated-examples/2026-11-22/foundations-conditioning/cases.json": "fe1b43a92ad60c91a1fdbd79342db0269e27cc0ef2f7d1ddcee58e183cf5b66c",
+    "code/validated-examples/2026-11-22/foundations-conditioning/results/result.json": "0b8ef84da85f950afa9779feb79052401dcdda707d1ac6bb314c3afa3a1973e9",
+    "code/validated-examples/2026-11-22/foundations-conditioning/atlas-foundations-conditioning-2026-11-22.zip": "71d8f0d3b0bed4a6a97f976aabfd02cc0baf08a30c1655f6b1ea42ea16df3c9d",
+    "code/validated-examples/2026-11-22/particle-transport/source-manifest.json": "d5724e7fd43635a489acb3b9ae90ac83fcce734ee89b6f29bc80cbdd4cefac97",
+    "code/validated-examples/2026-11-22/particle-transport/verification.json": "a16b3b90fd815909a8f3241dd7c04aeedabb2dd964da603eadd851fd6a0e171d",
+    "code/validated-examples/2026-11-22/particle-transport/cases.json": "3d3dd9cbc6c62666bb76f893762cf27b33b2606a34e87ffe8c4275e258b96f66",
+    "code/validated-examples/2026-11-22/particle-transport/results/result.json": "8e189a555c575dba4878c1813f828b29a3045c5015bb4ff2aa1b16c8eab9b138",
+    "code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip": "940c1b9c867d5fda395bf93d9dac6b38d992bb4d3de29065f1b42108d1d4c0c9",
+    "code/validated-examples/2026-11-22/splitting/source-manifest.json": "e071ab71032cce9e1a8340cdd80bb58364b7105de764594507024259915f6368",
+    "code/validated-examples/2026-11-22/splitting/verification.json": "899af4b800c58e990a6eae62dd5510ff1afed02060ab7fb67e1c5c8ebcd47b53",
+    "code/validated-examples/2026-11-22/splitting/cases.json": "f252ee6b994a6827e5579b28127143680170124de50f05057d2890e545dcc84f",
+    "code/validated-examples/2026-11-22/splitting/results/result.json": "7b1b8338ec2a03eb04e82f3891d4e2fd08a2edb665313dc8bd0991b1a7a9a8f2",
+    "code/validated-examples/2026-11-22/splitting/atlas-splitting-2026-11-22.zip": "2ae466a4ea62e204716a388b86033de3a6493a9ab0ef4ad9aec4ebb038d8a404",
+    "code/validated-examples/2026-11-23-r5/noh/source-manifest.json": "8597cbc7b841502f4e7eca154e86fe8893402c1167614952de682d7307c5595d",
+    "code/validated-examples/2026-11-23-r5/noh/verification.json": "48545a33ab2c19e9071616a15a1fcbf90c716096aa1a12550d3cb872ed8d9e36",
+    "code/validated-examples/2026-11-23-r5/noh/cases.json": "9501c9cb57617c09a8ceb0aa7e124ba1e2af303144eaa82045e8632fc7c39fc2",
+    "code/validated-examples/2026-11-23-r5/noh/results/result.json": "4e92acb911d505b3f7e74e39f01acf77e59fbe15577f321ac759f1315e487724",
+    "code/validated-examples/2026-11-23-r5/noh/atlas-noh-2026-11-23-r5.zip": "64de5483e9896a3773348b75e1ec2b4630f8a709d68194c1d94772396f531733",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/source-manifest.json": "3f34837f6078bfdc96e5bea2a0ec36c3ae4c48a09c25fcd61560cbb4f4781f93",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/verification.json": "7c530b06df5d2878958bd249b3035050592365e23aee79804e600368dfb09f46",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/cases.json": "49b94c1f65e269d4a878be3a4d8778375b88b767f5dd01998ae5fe6b8fc2b3ee",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/results/result.json": "e121c2f5171ee53491b492019311d002ceb44213f6f7cd43051a3ca68f74c694",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/atlas-noh-cartesian-2026-11-23-r2.zip": "2145beb161f993c1608fc5ac167af5278d58e10f92e74ed37e5fb9c35243b918",
+    "code/validated-examples/2026-11-23-r2/sedov/source-manifest.json": "4a92404602abd0d01096aae1576afb96533c64ea68989615df885a4310e3479f",
+    "code/validated-examples/2026-11-23-r2/sedov/verification.json": "1bec773b9e6d657ea7b71996df2bcc2c593f64b8cbb51942ed7d106be3419a03",
+    "code/validated-examples/2026-11-23-r2/sedov/cases.json": "aab3ca7447d35997bd38505e1ef79e1693096a29cc52c10e994bdcc9c80c8c03",
+    "code/validated-examples/2026-11-23-r2/sedov/results/result.json": "e4767029260bee54e0de2c85b07cbca07c5b99c4eb999b9d609735b6e615ef23",
+    "code/validated-examples/2026-11-23-r2/sedov/atlas-sedov-2026-11-23-r2.zip": "abb7344023b91b090820de1ebec8d6c6a949b8c06fda73037204a5d6f62b4b73",
+    "code/validated-examples/2026-11-23/double-mach/source-manifest.json": "32ba5521149368b729b31796dcc0006c8fd743e840e1e36533a867a47170d8c8",
+    "code/validated-examples/2026-11-23/double-mach/verification.json": "c588b4ce7f539d53b1d5eec4413ce3a1dc104eff975e4adddf0c544460dbb49e",
+    "code/validated-examples/2026-11-23/double-mach/cases.json": "38eb6a6fb4af35cdd3ca8834b9f3e5c80be22a50615f03aef712bc67b11b85e3",
+    "code/validated-examples/2026-11-23/double-mach/results/result.json": "3b4a36b9b3e10e7a6984130ee24bb7d5707de0fe24facff3a49b8eabd71ea5fe",
+    "code/validated-examples/2026-11-23/double-mach/atlas-double-mach-2026-11-23.zip": "0a68d19746c508e0ac0cf9b5bebe9375c797a87ade1a9fbfbef87d6e5fa63347",
+    "code/validated-examples/2026-11-23/forward-step/source-manifest.json": "77546e263d8e08266cedb57ef5e128a3bee68d7b9597fb56bed2eee5dcbec6dc",
+    "code/validated-examples/2026-11-23/forward-step/verification.json": "f40317a2721c2048c6174bf41c03adf5e3eddae07e19ae95e6ed5210a9b01914",
+    "code/validated-examples/2026-11-23/forward-step/cases.json": "e7397c94e5d170170b09a6baa4fdf9276d83419118e456cc172ad6c5cf63b363",
+    "code/validated-examples/2026-11-23/forward-step/results/result.json": "636e179813165fbe620caadd825ac699973ea2dde897d13aed8b2d22102e6704",
+    "code/validated-examples/2026-11-23/forward-step/atlas-forward-step-2026-11-23.zip": "ae69647a4e63c75c0888a6daf15835d348e9d74de58b5e59926e359e9ffc52cd",
+    "code/validated-examples/2026-11-23/low-mach/source-manifest.json": "ff359786cf6efff8e5e61f842ae63a866cb7655a4151b2d33ac12501eed98124",
+    "code/validated-examples/2026-11-23/low-mach/verification.json": "f747210e1d46900c4f56b01e989696c3feaee35361fe42be11428fd280bacf84",
+    "code/validated-examples/2026-11-23/low-mach/cases.json": "8a33dd861d6c635afeb526a2823fa33e88dc84fb49f1ae8a5ba19cbad32ae058",
+    "code/validated-examples/2026-11-23/low-mach/results/result.json": "5e1fdfa86dc57b13857bd571de1070d00ac5237400e0fc9ee9875fae9824d9f5",
+    "code/validated-examples/2026-11-23/low-mach/atlas-low-mach-2026-11-23.zip": "717b2ceed76d37cf4c1e570a7a022e1a17d66fce3048648a3edde4164a1513aa",
+    "code/validated-examples/2026-11-23-r3/guderley/source-manifest.json": "e436ada98187ba8a1ca755712fc60d1ce5f735379f026d92d63b2cbd19c6d112",
+    "code/validated-examples/2026-11-23-r3/guderley/verification.json": "3eb90bb576b4b9579433bb15a93b0acc42948a85f335a45de7c649ec1b61e625",
+    "code/validated-examples/2026-11-23-r3/guderley/cases.json": "72e621b096fdb1ff229dba33b9243667a7e7c4f9b2593d7331953333707f28f7",
+    "code/validated-examples/2026-11-23-r3/guderley/results/result.json": "c85894f329b97d62ef9d093792316028e4b3b9ca38a0488047bdbab2542e84bb",
+    "code/validated-examples/2026-11-23-r3/guderley/atlas-guderley-2026-11-23-r3.zip": "f00ff906861495bd73b2ae75f7c3895fab505ba45ad7a34a2612700405d8466f",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/source-manifest.json": "86eef08f81c19d211d9908ba195f6fbbdcd4af54dcfaf8df59ebbe9df73b34b9",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/verification.json": "4c205d9d21d1ea7efbf3d56e881c8c740f26a983576415a69e95490393af4f3d",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/cases.json": "52e618b3a97dab879badba192d5c2f74c5a08c25e473f055de81c645a6985d5a",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/results/result.json": "bee593154817e7a6339cee14fa7c029000002f42ade8ccd6d568119d375fdddc",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/atlas-euler-positivity-2026-11-23-r2.zip": "0f2c8a3bf94a612f89d8f6f695b94574dd05d70976aa97a497ef47ff4e0c1efe"
+  }
+}

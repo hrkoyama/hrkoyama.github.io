@@ -543,13 +543,13 @@ ID: compressible-fluid-additional · P2 · 公開済み · 新規実装
 
 ### Eulerの段階ごとの完全離散正値性
 
-ID: advection-reconstruction-1 · P1 · 未着手 · 検証の拡充
+ID: advection-reconstruction-1 · P1 · 検証済み · 検証の拡充
 
 調査時の範囲：検証範囲不足
 
 調査時の現状：
 
-MUSCL、WENO-JS/Z、PPM、CIP、DG、特性再構築、各limiterは実装済み。1D滑らか/不連続、2D entropy wave、保存・界面恒等式の検査がある。
+27単体検査・3格子73判定と独立ZIP展開の再実行が合格。公開URLと公開ZIPのLinux確認は未完了です。
 
 追加内容・最小の検証：
 
@@ -564,6 +564,8 @@ MUSCL、WENO-JS/Z、PPM、CIP、DG、特性再構築、各limiterは実装済み
 - 誤差・収束と制約が分かる図を保存する。
 - 実在する問題ギャラリー・実行入口・入力・図への対応を確認する。
 
+γ1.4の既存二重希薄波、128/256/512セル、保存量MUSCL・大域LF a4・SSPRK33に限定。CFL .4≤.5と全段波速上限を実測し、密度・圧力・保存収支・制限発動を記録。真空生成・一般のWENO/DG・2D正値性の検証ではありません。
+
 調査時の根拠：
 
 - `code/numerical-methods-atlas/2026-11-21/numart/limiters.py` · positive_reconstruction
@@ -575,6 +577,37 @@ MUSCL、WENO-JS/Z、PPM、CIP、DG、特性再構築、各limiterは実装済み
 
 - [Zhang & Shu (2010), positivity-preserving Euler DG schemes](<https://www.math.purdue.edu/~zhan1966/research/paper/euler.pdf>)
   著者公開原稿をopenし題名・著者・密度圧力正値性の対象を確認。全文監査ではない。
+
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-23-r2/euler-positivity/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-23-r2/euler-positivity/inputs.json",
+    "/code/validated-examples/2026-11-23-r2/euler-positivity/acceptance.json",
+    "/code/validated-examples/2026-11-23-r2/euler-positivity/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-23-r2/euler-positivity/results/euler-double-rarefaction-positivity-preview.png",
+    "/code/validated-examples/2026-11-23-r2/euler-positivity/results/euler-double-rarefaction-positivity.png"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#double-rarefaction-ja",
+  "execution": "/numerical-methods-atlas/validation/euler-double-rarefaction-positivity/?lang=ja",
+  "code": [
+    "/code/validated-examples/2026-11-23-r2/euler-positivity/run.py",
+    "/code/validated-examples/2026-11-23-r2/euler-positivity/euler_positivity.py",
+    "/code/validated-examples/2026-11-23-r2/euler-positivity/references/double_rarefaction.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-23-r2/euler-positivity/references/citations.json",
+    "/code/validated-examples/2026-11-23-r2/euler-positivity/references/README.md",
+    "/code/validated-examples/2026-11-23-r2/euler-positivity/references/source-review.json",
+    "/code/validated-examples/2026-11-23-r2/euler-positivity/source-provenance.json",
+    "/code/validated-examples/2026-11-23-r2/euler-positivity/pre-run-review.json"
+  ]
+}
+```
 
 ### Zalesak型2D回転輸送・形状保持
 

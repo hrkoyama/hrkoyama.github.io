@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "group": "euler-positivity",
+  "edition": "2026-11-23-r2",
+  "verified_on": "2026-11-23",
+  "source_manifest_sha256": "86eef08f81c19d211d9908ba195f6fbbdcd4af54dcfaf8df59ebbe9df73b34b9",
+  "archive": {
+    "file": "atlas-euler-positivity-2026-11-23-r2.zip",
+    "sha256": "0f2c8a3bf94a612f89d8f6f695b94574dd05d70976aa97a497ef47ff4e0c1efe",
+    "bytes": 2759019,
+    "archive_directory": "atlas-euler-positivity-2026-11-23-r2"
+  },
+  "archive_sha256": "0f2c8a3bf94a612f89d8f6f695b94574dd05d70976aa97a497ef47ff4e0c1efe",
+  "returncode": 0,
+  "passed_tests": 27,
+  "tests": 27,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "euler-double-rarefaction-positivity"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 1.1964343330000702,
+  "independent_rerun_seconds": 1.218600874999538,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

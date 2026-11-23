@@ -31,7 +31,7 @@ test('four conditioning examples extend their own methods while retaining the or
 
 test('algebraic AMG controls borrow no Poisson validation and the remaining refinements add no problem families',()=>{
  const index=json('numerical-methods-atlas/validation/index.json');
- assert.equal(index.case_count,47);assert.equal(index.groups.length,18);
+ assert.equal(index.case_count,48);assert.equal(index.groups.length,19);
  assert.equal(Object.values(index.case_problem_ids).filter(x=>x===null).length,5);
  const problems=json('numerical-methods-atlas/test-cases/index.json').problems;
  assert.equal(problems.length,86);

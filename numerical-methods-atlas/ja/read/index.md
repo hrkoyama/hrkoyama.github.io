@@ -52,6 +52,7 @@
 - [Euler再構成：PPM・特性変数・WENO-Z・AUSM](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/reconstruction/)
 - [勾配制限：minmod、Superbee、MC、van Leer、van Albada](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/limiters/)
 - [発展的な勾配制限：TVBと正値性保存](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/advanced-limiters/)
+- [Euler二重膨張波：段階ごとの正値性](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-euler-positivity/)
 - [回転ハイブリッド・リーマンソルバー](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/rotated-hybrid/)
 - [波追跡PPM、AUSM系と曲面前方の衝撃波](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/shock-expansion/)
 - [カーバンクル現象](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/carbuncle/)

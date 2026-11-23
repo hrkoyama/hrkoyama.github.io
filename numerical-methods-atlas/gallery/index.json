@@ -5,11 +5,11 @@
   "scope": "One explicitly mapped visual per atlas test problem. Existing shared figures are identified. Derived plots use stored numerical values; computed previews record fixed inputs and numerical checks.",
   "counts": {
     "test_problems": 86,
-    "runnable_problems": 45,
+    "runnable_problems": 46,
     "common_runnable_problems": 22,
-    "supplemental_runnable_problems": 26,
-    "supplemental_case_count": 42,
-    "supplemental_release_case_count": 47,
+    "supplemental_runnable_problems": 27,
+    "supplemental_case_count": 43,
+    "supplemental_release_case_count": 48,
     "groups": {
       "transport": 9,
       "fluid": 19,
@@ -992,6 +992,16 @@
         }
       ],
       "availability": "saved-output",
+      "supplemental_examples": [
+        {
+          "id": "euler-double-rarefaction-positivity",
+          "url": "/numerical-methods-atlas/validation/euler-double-rarefaction-positivity/",
+          "name": {
+            "ja": "Euler二重膨張波：段階ごとの正値性",
+            "en": "Euler double rarefaction: positivity at every stage"
+          }
+        }
+      ],
       "reading": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/benchmarks/",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/benchmarks/"
@@ -1024,9 +1034,45 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-rarefaction/?lang=ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-rarefaction/?lang=en"
       },
-      "runnable": false,
+      "runnable": true,
       "execution_entry": null,
-      "supplemental_execution_entries": []
+      "supplemental_execution_entries": [
+        {
+          "id": "euler-double-rarefaction-positivity",
+          "title": {
+            "ja": "Euler二重膨張波：段階ごとの正値性",
+            "en": "Euler double rarefaction: positivity at every stage"
+          },
+          "group": "euler-positivity",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/euler-double-rarefaction-positivity/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/euler-double-rarefaction-positivity/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/euler-positivity/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/euler-positivity/euler_positivity.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/euler-positivity/references/double_rarefaction.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/euler-positivity/references/numart_reference_riemann.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/euler-positivity/test_euler_positivity.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/euler-positivity/atlas-euler-positivity-2026-11-23-r2.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/euler-positivity/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/euler-positivity/verification.json",
+          "preview": {
+            "file": "euler-double-rarefaction-positivity-preview.png",
+            "caption": {
+              "ja": "強い二重希薄波の密度・圧力：保存した1次元計算のx–t図（2次元流体計算ではない）。",
+              "en": "Density/pressure of the strong double rarefaction: x-t views of saved one-dimensional evolution, not two-dimensional flow."
+            },
+            "width": 1408,
+            "height": 880,
+            "sha256": "3e602f0921d9e2cc6ff945acbded724fb8c710f4da57d2e3301e189f05d811ae",
+            "url": "/code/validated-examples/2026-11-23-r2/euler-positivity/results/euler-double-rarefaction-positivity-preview.png"
+          }
+        }
+      ]
     },
     {
       "id": "dam-break",
@@ -7660,8 +7706,8 @@
     "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
     "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
     "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
-    "catalog/atlas-test-problems.json": "25febf285358beb3f730decdd4c48c870766542829f71da96087b2974d47b65d",
-    "catalog/atlas-depth-expansion.json": "5d68fb749341591df2537dcee7c9ee757976a54a2fd2ab2c52b41ed67c4bd689",
+    "catalog/atlas-test-problems.json": "f0d5260b28da470236000ab7d675cf92330bcf864f65e4558360c49506428ac7",
+    "catalog/atlas-depth-expansion.json": "6c85fa8d07dafa4c461460451d809316cc5bf999dca5c2bd0a94163c0c26dac7",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
     "code/validated-examples/2026-11-22/foundations/inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -7814,19 +7860,26 @@
     "code/validated-examples/2026-11-23-r3/guderley/results/result.json": "c85894f329b97d62ef9d093792316028e4b3b9ca38a0488047bdbab2542e84bb",
     "code/validated-examples/2026-11-23-r3/guderley/results/guderley-implosion.png": "af3c5bc89657b250436a73571bfb793345c17dc283c08d8f9b278060138918f9",
     "code/validated-examples/2026-11-23-r3/guderley/results/guderley-implosion-preview.png": "03774f695db7f8e07eb006db120075d808871a194e1ab59abb815995fc53f383",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/cases.json": "52e618b3a97dab879badba192d5c2f74c5a08c25e473f055de81c645a6985d5a",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/inputs.json": "a1185e4b8be0f49f8f3f551f934614110c227d39b2bb0dc4438c5301428d751b",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/source-manifest.json": "86eef08f81c19d211d9908ba195f6fbbdcd4af54dcfaf8df59ebbe9df73b34b9",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/verification.json": "4c205d9d21d1ea7efbf3d56e881c8c740f26a983576415a69e95490393af4f3d",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/results/result.json": "bee593154817e7a6339cee14fa7c029000002f42ade8ccd6d568119d375fdddc",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/results/euler-double-rarefaction-positivity.png": "f1d024c853686c5733c1139f5836392352cfa2cf1390f1f2a69e3215872b0877",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/results/euler-double-rarefaction-positivity-preview.png": "3e602f0921d9e2cc6ff945acbded724fb8c710f4da57d2e3301e189f05d811ae",
     "code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py": "4ad61ac54dfa59d7d61959c5699f290e2386c23bf5b4b930a5d98576feaa54d1",
     "code/numerical-methods-atlas/2026-11-21/tests/test_linear.py": "5e7323f2734fb7328c35706ccd90fc25076bd46d01d32cd9c78c8cd25dd0421f",
     "code/numerical-methods-atlas/2026-11-21/tests/test_sparse_fem.py": "4076e514e0b9b5fd94dead4af33fe7e7548fba6a7b48b3e21a406034f7170afb",
     "code/numerical-methods-atlas/2026-11-21/tests/test_runge_kutta.py": "920a5eb560afe7f560cae8d22f879f125851f4ee0451b24720d0eca0082c31ce",
     "code/numerical-methods-atlas/2026-11-21/tests/test_new_models.py": "2937daf8fa8ad86882ac06e47835a6309ca1df3d0283c7dfb7b9606dc3906b1f",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "68234fcfee30b055401fa6eb252da01f5a9030c88902c8e4ecf3171a5dcf9580",
+    "numerical-methods-atlas/gallery/preview-manifest.json": "f884f85c3acedbfe591b081b6ff0f30781cb3bd45027869292a7b0ce184be815",
     "numerical-methods-atlas/gallery/calculations.json": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6",
     "numerical-methods-atlas/gallery/verification.json": "46c39543afa9d943dfef896fadbc8f84d847f1a145d9b1427a2336de7a3a50f9",
-    "numerical-methods-atlas/test-cases/index.json": "981270699b988283a478395856a03f075b8f00a25ff82c6d82b03944a57c2fa1",
+    "numerical-methods-atlas/test-cases/index.json": "54cf6a87fc0eabeb4c461233d3131f41641a4a297fcb1f172c12c2fe2fb161a0",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "scripts/atlas_execution_discovery.py": "3431dae95fb0adc68e1deca07b406b70bd99480f9ad6023a31765cb07ccf84be",
-    "scripts/atlas_depth_release.py": "b33d31851e8cbbb16a491682f930cd7c8dbae91c0c958ae5a95a601d2627a731",
-    "scripts/atlas_goal_availability.py": "3b32fcee61cd8452e529a73ed203b1a64aa32db7312734df477926f5fa39fab5",
+    "scripts/atlas_depth_release.py": "8b7d20972aafd5ab45c1738daed4519be7eff7a1412ebb6a09da4be682f8d39e",
+    "scripts/atlas_goal_availability.py": "110f9026c13acbba1c02bfc6dd3234ba3e7ead631a5fefd129cee9d9ec30721b",
     "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
     "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
     "code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
@@ -7848,6 +7901,7 @@
     "code/validated-examples/2026-11-23/double-mach/atlas-double-mach-2026-11-23.zip": "0a68d19746c508e0ac0cf9b5bebe9375c797a87ade1a9fbfbef87d6e5fa63347",
     "code/validated-examples/2026-11-23/forward-step/atlas-forward-step-2026-11-23.zip": "ae69647a4e63c75c0888a6daf15835d348e9d74de58b5e59926e359e9ffc52cd",
     "code/validated-examples/2026-11-23/low-mach/atlas-low-mach-2026-11-23.zip": "717b2ceed76d37cf4c1e570a7a022e1a17d66fce3048648a3edde4164a1513aa",
-    "code/validated-examples/2026-11-23-r3/guderley/atlas-guderley-2026-11-23-r3.zip": "f00ff906861495bd73b2ae75f7c3895fab505ba45ad7a34a2612700405d8466f"
+    "code/validated-examples/2026-11-23-r3/guderley/atlas-guderley-2026-11-23-r3.zip": "f00ff906861495bd73b2ae75f7c3895fab505ba45ad7a34a2612700405d8466f",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/atlas-euler-positivity-2026-11-23-r2.zip": "0f2c8a3bf94a612f89d8f6f695b94574dd05d70976aa97a497ef47ff4e0c1efe"
   }
 }

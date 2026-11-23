@@ -1,0 +1,39 @@
+{
+  "case": "euler-double-rarefaction-positivity",
+  "source_result_sha256": "bee593154817e7a6339cee14fa7c029000002f42ade8ccd6d568119d375fdddc",
+  "source_fields_sha256": {
+    "field-n128.npz": "8cb730c68022cef9f2cc3b42be49c1f38b9c85a9f716a5c7e78ad583625701a8",
+    "stages-n128.json": "bf7ece1468ad5b852ef7b8a667a8d99259c5935d65f43a87f4bce0e1801fd0f4",
+    "field-n256.npz": "4f1a3d32520388bfa4ab067ba42f438790f82521c2fab160465ce26270f01aac",
+    "stages-n256.json": "c2dc66e7e3cb0b7f0330a12b43959561c7fc43ffa361a7c91bd189b7de59bbba",
+    "field-n512.npz": "a0900495af849b0cd8534e4a964cb230260b1b994a3af2e5e00c00967aff7ba5",
+    "stages-n512.json": "0a5cae6db884a03202a933ce940a008f56a34e43e9305d3f13a71d63a43b4d50"
+  },
+  "figures": [
+    {
+      "path": "euler-double-rarefaction-positivity-preview.png",
+      "sha256": "3e602f0921d9e2cc6ff945acbded724fb8c710f4da57d2e3301e189f05d811ae"
+    },
+    {
+      "path": "euler-double-rarefaction-positivity-preview.svg",
+      "sha256": "ce81330fcda9a02b7045bd9e66938bc087c6c3f13ff071321e545f030bce91b4"
+    },
+    {
+      "path": "euler-double-rarefaction-positivity-preview.pdf",
+      "sha256": "01697cc92a82a4c008b785d896680493d15eed09fcd4202dfa6fc116a9464e3a"
+    },
+    {
+      "path": "euler-double-rarefaction-positivity.png",
+      "sha256": "f1d024c853686c5733c1139f5836392352cfa2cf1390f1f2a69e3215872b0877"
+    },
+    {
+      "path": "euler-double-rarefaction-positivity.svg",
+      "sha256": "b458d2e2e6211dfdc64f9c8e7fa931f7eac10633a1e037dd551aaeb3291de301"
+    },
+    {
+      "path": "euler-double-rarefaction-positivity.pdf",
+      "sha256": "8bd90d3b392184d9c90d1df67e62b2ff4e5318b4b939380fc10a23f881ef70ad"
+    }
+  ],
+  "scope": "Actual saved 1D cell means and stage diagnostics. Preview axes are space and time, not two spatial dimensions."
+}

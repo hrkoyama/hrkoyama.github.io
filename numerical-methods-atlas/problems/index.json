@@ -2328,7 +2328,28 @@
         "ja": "この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。",
         "en": "Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters."
       },
-      "formulations": [],
+      "formulations": [
+        {
+          "id": "supplement-euler-double-rarefaction-positivity",
+          "name": {
+            "ja": "Euler二重膨張波：段階ごとの正値性",
+            "en": "Euler double rarefaction: positivity at every stage"
+          },
+          "source": "supplement",
+          "role": "example-definition",
+          "latex": [
+            "\\partial_t U+\\partial_x F(U)=0,\\qquad U=(\\rho,m,E)^T,\\quad F=(m,m^2/\\rho+p,(E+p)m/\\rho)^T,\\quad p=(\\gamma-1)(E-m^2/(2\\rho))",
+            "U_i^{\\pm}=\\bar U_i\\pm\\delta U_i,\\qquad\\widehat U_i^{\\pm}=\\bar U_i+\\theta_i(U_i^{\\pm}-\\bar U_i),\\quad0\\le\\theta_i\\le1,\\qquad\\tfrac12(\\widehat U_i^-+\\widehat U_i^+)=\\bar U_i",
+            "\\widehat F_{i+1/2}=\\tfrac12\\!\\left[F(\\widehat U_i^+)+F(\\widehat U_{i+1}^-)-a(\\widehat U_{i+1}^--\\widehat U_i^+)\\right],\\qquad\\mathcal E_{\\Delta t}(\\bar U)_i=\\bar U_i-\\frac{\\Delta t}{\\Delta x}(\\widehat F_{i+1/2}-\\widehat F_{i-1/2})",
+            "U^{(1)}=\\mathcal E_{\\Delta t}(U^n),\\qquad U^{(2)}=\\tfrac34U^n+\\tfrac14\\mathcal E_{\\Delta t}(U^{(1)}),\\qquad U^{n+1}=\\tfrac13U^n+\\tfrac23\\mathcal E_{\\Delta t}(U^{(2)})",
+            "a\\ge\\max_{i,\\pm}(|u(\\widehat U_i^\\pm)|+c(\\widehat U_i^\\pm)),\\qquad\\frac{a\\Delta t}{\\Delta x}\\le\\tfrac12,\\qquad\\rho(\\widehat U_i^\\pm)>0,\\quad p(\\widehat U_i^\\pm)>0"
+          ],
+          "note": {
+            "ja": "既存の強い二重希薄波を128/256/512セルで計算し、平均保存型の正値性スケーリングをMUSCL・大域LF流束・SSPRK(3,3)へ接続します。各前進Euler段と各SSP凸結合の密度・圧力・境界保存収支を記録します。",
+            "en": "Evolve the existing strong double rarefaction on 128/256/512 cells, connecting mean-preserving positivity scaling to MUSCL, global LF fluxes and SSPRK(3,3). Log density, pressure and boundary budgets for every FE substep and SSP convex combination."
+          }
+        }
+      ],
       "references": [
         {
           "id": "euler-double-rarefaction",
@@ -2387,13 +2408,122 @@
             "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hlle/?lang=ja",
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hlle/?lang=en"
           }
+        },
+        {
+          "id": "muscl",
+          "name": {
+            "ja": "MUSCL再構成",
+            "en": "MUSCL reconstruction"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=en"
+          }
+        },
+        {
+          "id": "lax-friedrichs",
+          "name": {
+            "ja": "Lax–Friedrichs法",
+            "en": "Lax–Friedrichs"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/lax-friedrichs/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/lax-friedrichs/?lang=en"
+          }
+        },
+        {
+          "id": "positive-scaling",
+          "name": {
+            "ja": "平均を保つ正値状態スケーリング",
+            "en": "Mean-preserving positive-state scaling"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/positive-scaling/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/positive-scaling/?lang=en"
+          }
+        },
+        {
+          "id": "ssprk33",
+          "name": {
+            "ja": "SSPRK(3,3)",
+            "en": "SSPRK(3,3)"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ssprk33/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ssprk33/?lang=en"
+          }
         }
       ],
       "method_note": {
-        "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
-        "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+        "ja": "従来のGodunov／HLLEプレビューと、追加のMUSCL・Lax–Friedrichs・平均保存スケーリング・SSPRK(3,3)固定入力は別の実行例です。段階正値性の条件は追加版の説明・契約・全段ログに限定します。",
+        "en": "The earlier Godunov/HLLE preview and the new MUSCL/Lax–Friedrichs/mean-preserving-scaling/SSPRK(3,3) run are separate execution records. Stage-positivity conditions are scoped to the additional release, its contract and all-stage diagnostics."
       },
-      "executions": [],
+      "executions": [
+        {
+          "id": "euler-double-rarefaction-positivity",
+          "kind": "supplement",
+          "name": {
+            "ja": "Euler二重膨張波：段階ごとの正値性",
+            "en": "Euler double rarefaction: positivity at every stage"
+          },
+          "method_ids": [
+            "lax-friedrichs",
+            "muscl",
+            "positive-scaling",
+            "ssprk33"
+          ],
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/euler-double-rarefaction-positivity/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/euler-double-rarefaction-positivity/?lang=en"
+          },
+          "scope": {
+            "ja": "既存の強い二重希薄波を128/256/512セルで計算し、平均保存型の正値性スケーリングをMUSCL・大域LF流束・SSPRK(3,3)へ接続します。各前進Euler段と各SSP凸結合の密度・圧力・境界保存収支を記録します。",
+            "en": "Evolve the existing strong double rarefaction on 128/256/512 cells, connecting mean-preserving positivity scaling to MUSCL, global LF fluxes and SSPRK(3,3). Log density, pressure and boundary budgets for every FE substep and SSP convex combination."
+          },
+          "assumptions": {
+            "ja": "γ1.4、x∈[0,1]、x0=.5、左右状態(ρ,u,p)=(1,−2,.4)/(1,2,.4)、T=.15を固定します。中心の密度・圧力は小さいものの正で、真空生成例ではありません。大域LF分離速度a=4、dt·a/dx≤.4を固定し、実際の全端点の|u|+c≤aと十分条件dt·a/dx≤1/2を確認します。",
+            "en": "Fix gamma1.4, x in [0,1], discontinuity x0=.5, outer primitive states(1,-2,.4)/(1,2,.4) and T=.15. The low-density central state remains strictly positive; this is not a vacuum-generating case. Use fixed global LF splitting speed a4 and dt*a/dx<=.4; assert every actual endpoint satisfies |u|+c<=a and the sufficient dt*a/dx<=1/2 condition."
+          },
+          "limits": {
+            "ja": "この一つのP1有限体積更新と固定入力の検証です。一般のMUSCL/WENO/DG、特性再構築、反射壁、真空生成、2D/3Dの正値性を認証しません。空間再構築は無制限中央傾きで、TVD・最大値原理・無振動性を保証しません。生の端点圧力は密度が正の端点だけで評価し、密度≤0は別に数えます。圧力参照は保存量セル平均から評価するp(q̄)で、平均圧力とは異なります。ギャラリー図は保存した1次元場のx–t表示であり、2次元流体計算ではありません。ExactPackや別のPDEエンジンを実行した例ではありません。",
+            "en": "Evidence covers this one P1 FV update and fixed input, not general MUSCL/WENO/DG, characteristic reconstruction, reflecting walls, vacuum generation or multidimensional positivity. Unlimited central slopes have no TVD, maximum-principle or nonoscillation guarantee. Raw pressure is evaluated only where raw density is positive; nonpositive raw density has its own count. Reference pressure is p(mean conserved q), not mean pressure. Gallery plots are saved one-dimensional x-t fields, not two-dimensional flow. No ExactPack or separate PDE engine is executed."
+          },
+          "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/euler-positivity/inputs.json",
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/euler-positivity/atlas-euler-positivity-2026-11-23-r2.zip",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/euler-positivity/verification.json",
+          "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/euler-positivity/source-manifest.json",
+          "commands": [
+            "python -m pip install -r requirements.txt",
+            "python -m pytest -q",
+            "python run.py --input inputs.json --output output"
+          ],
+          "reference_note": {
+            "ja": "27単体検査と3格子73判定を実行前に固定します。スケーリング前に生じる負の端点圧力を保持し、制限後の端点・前進Euler平均・SSP凸結合平均、θ、全3保存量の境界流束収支を別々に測ります。閉形式の対称希薄波と既存の独立な対数圧力根探索を照合し、保存量のGauss8/16セル平均との誤差と格子細分化を記録します。",
+            "en": "Freeze 27 unit tests and 73 gates over three grids before execution. Retain negative raw endpoint pressures, then separately measure limited endpoints, FE means, SSP convex means, theta and all three boundary-flux conservation budgets. Cross-check the closed symmetric fan against the prior independent logarithmic-pressure root evaluator; record errors/refinement against conserved Gauss8/16 cell means."
+          },
+          "reference_data": [],
+          "results": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/euler-positivity/results/result.json"
+          ],
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/euler-positivity/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/euler-positivity/euler_positivity.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/euler-positivity/references/double_rarefaction.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/euler-positivity/test_euler_positivity.py"
+          ],
+          "source_scope": "package"
+        }
+      ],
       "code_checks": [
         {
           "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py",
@@ -15086,10 +15216,10 @@
     }
   ],
   "source_sha256": {
-    "catalog/atlas-depth-expansion.json": "5d68fb749341591df2537dcee7c9ee757976a54a2fd2ab2c52b41ed67c4bd689",
+    "catalog/atlas-depth-expansion.json": "6c85fa8d07dafa4c461460451d809316cc5bf999dca5c2bd0a94163c0c26dac7",
     "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
-    "catalog/atlas-problem-links.json": "34d30b7bb8df3e2a930933b429748baf86a87fe1769c31fb5ca37c5d80c87bb1",
+    "catalog/atlas-problem-links.json": "2dc0d615ee1c250f78172d5734f2955394474d11e95fb9eb4738f85a88eb35f4",
     "catalog/atlas-reference-supplements.json": "a6a6915367571a4316964453ef2fd0ed4456d3e235be80bdfd59e113983cb153",
     "code/model-benchmarks/2026-11-22/model-benchmarks-2026-11-22.zip": "8c9c70c4577de3737d739dfd39e11beecd37006808ffd79c3dfcda7f3ced1db5",
     "code/molecular-hf/2026-11-22/molecular-hf-2026-11-22.zip": "293988ec209a867491cf8356f12ce5cb8484a51d5c1d444acd5f217062b5ba79",
@@ -15152,6 +15282,11 @@
     "code/validated-examples/2026-11-22/thermostats/results/result.json": "7971007807acce9f75261b684b789f196e1d5dffc80797e102d1b0bebbc93f11",
     "code/validated-examples/2026-11-22/thermostats/source-manifest.json": "81a854bdfe3ae33b4eb4bffdccc9ab15a09f2bddbffb294cd2c2cbd07e641580",
     "code/validated-examples/2026-11-22/thermostats/verification.json": "c14f55ac05d93269dbf8eef4a2a4042f75764d5228d06f8e41039d0b60351905",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/atlas-euler-positivity-2026-11-23-r2.zip": "0f2c8a3bf94a612f89d8f6f695b94574dd05d70976aa97a497ef47ff4e0c1efe",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/cases.json": "52e618b3a97dab879badba192d5c2f74c5a08c25e473f055de81c645a6985d5a",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/results/result.json": "bee593154817e7a6339cee14fa7c029000002f42ade8ccd6d568119d375fdddc",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/source-manifest.json": "86eef08f81c19d211d9908ba195f6fbbdcd4af54dcfaf8df59ebbe9df73b34b9",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/verification.json": "4c205d9d21d1ea7efbf3d56e881c8c740f26a983576415a69e95490393af4f3d",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/atlas-noh-cartesian-2026-11-23-r2.zip": "2145beb161f993c1608fc5ac167af5278d58e10f92e74ed37e5fb9c35243b918",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/cases.json": "49b94c1f65e269d4a878be3a4d8778375b88b767f5dd01998ae5fe6b8fc2b3ee",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/results/result.json": "e121c2f5171ee53491b492019311d002ceb44213f6f7cd43051a3ca68f74c694",
@@ -15190,9 +15325,9 @@
     "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/gallery/index.json": "3b97a43b6029252d556119d2c19f431e7f6e15ff2297de9c0158d98f1980a032",
-    "numerical-methods-atlas/methods/index.json": "0377bc3ef8ab09f7f7edb885781f3555a0bbfe8ccc999697954daf11ea1d50bc",
-    "numerical-methods-atlas/solutions/index.json": "dd487d104e89066691850a281958664d02c994c87cb870e07bb16273ac89e89b",
-    "numerical-methods-atlas/test-cases/index.json": "981270699b988283a478395856a03f075b8f00a25ff82c6d82b03944a57c2fa1"
+    "numerical-methods-atlas/gallery/index.json": "7a45192830d41b42de44850dfc7c03a9924b2df6fdd41f72b33bf0cd387bc19f",
+    "numerical-methods-atlas/methods/index.json": "8ac19ec9c065054b6d12c9c1f46d305d94a939f397d3aa56e2e1244a78087d89",
+    "numerical-methods-atlas/solutions/index.json": "084f00524abc3f5a4a5cd183f31b3d3fda285acead32fb14b44ab534d5838154",
+    "numerical-methods-atlas/test-cases/index.json": "54cf6a87fc0eabeb4c461233d3131f41641a4a297fcb1f172c12c2fe2fb161a0"
   }
 }

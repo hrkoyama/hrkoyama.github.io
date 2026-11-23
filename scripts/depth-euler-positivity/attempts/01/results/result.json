@@ -1,0 +1,796 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "checks": {
+    "euler-double-rarefaction-positivity": true
+  },
+  "cases": [
+    {
+      "id": "euler-double-rarefaction-positivity",
+      "passed": true,
+      "records": [
+        {
+          "n": 128,
+          "time": 0.15,
+          "steps": 192,
+          "stages": 576,
+          "density_l1": 0.05274876937794691,
+          "pressure_l1": 0.0460626814654289,
+          "density_linf": 0.07954764444280427,
+          "pressure_linf": 0.043926089623357256,
+          "velocity_linf": 0.12300857954546912,
+          "reference_quadrature_maximum": 8.881784197001252e-16,
+          "scaled_cells": 6,
+          "maximum_face_spectral_radius": 2.771191823275851,
+          "maximum_courant": 0.4,
+          "maximum_mean_preservation_defect": 2.220446049250313e-16,
+          "maximum_fe_boundary_balance_defect": 4.85722573273506e-17,
+          "maximum_rk_boundary_balance_defect": 1.8388068845354155e-16,
+          "raw_endpoint_nonpositive_density_count": 0,
+          "initial_integral": [
+            1.0,
+            0.0,
+            3.0
+          ],
+          "final_integral": [
+            0.4001271124036316,
+            -4.85722573273506e-17,
+            0.9606244195598075
+          ],
+          "boundary_net_integral": [
+            -0.5998728875963634,
+            0.0,
+            -2.0393755804401787
+          ],
+          "conservation_residual": [
+            -4.9960036108132044e-15,
+            -4.85722573273506e-17,
+            -1.3766765505351941e-14
+          ],
+          "conservation_relative": [
+            3.1227503444471525e-15,
+            4.85722573273506e-17,
+            2.7318395474999388e-15
+          ],
+          "state_floor_count": 0,
+          "rejected_steps": 0,
+          "retries": 0,
+          "raw_endpoint_min_density": 0.010466663674740733,
+          "raw_endpoint_min_pressure": -0.5999999999999999,
+          "endpoint_min_density": 0.010466663674740733,
+          "endpoint_min_pressure": 1.0640377468007498e-13,
+          "fe_mean_min_density": 0.010499923447493387,
+          "fe_mean_min_pressure": 0.0018660348691301473,
+          "rk_mean_min_density": 0.010524037124213192,
+          "rk_mean_min_pressure": 0.001871901340525429,
+          "minimum_theta": 0.4494897427830696,
+          "field": "field-n128.npz",
+          "history": "stages-n128.json"
+        },
+        {
+          "n": 256,
+          "time": 0.15,
+          "steps": 384,
+          "stages": 1152,
+          "density_l1": 0.02773269663057136,
+          "pressure_l1": 0.026966181999486128,
+          "density_linf": 0.05635965438184676,
+          "pressure_linf": 0.031221288563931304,
+          "velocity_linf": 0.04343034671773327,
+          "reference_quadrature_maximum": 1.7763568394002505e-15,
+          "scaled_cells": 6,
+          "maximum_face_spectral_radius": 2.771191823275851,
+          "maximum_courant": 0.4,
+          "maximum_mean_preservation_defect": 2.220446049250313e-16,
+          "maximum_fe_boundary_balance_defect": 2.5153490401663703e-17,
+          "maximum_rk_boundary_balance_defect": 1.222980050563649e-16,
+          "raw_endpoint_nonpositive_density_count": 0,
+          "initial_integral": [
+            1.0,
+            0.0,
+            3.0
+          ],
+          "final_integral": [
+            0.3999972283193048,
+            6.938893903907228e-18,
+            0.9599864217668014
+          ],
+          "boundary_net_integral": [
+            -0.600002771680688,
+            0.0,
+            -2.0400135782331827
+          ],
+          "conservation_residual": [
+            -7.216449660063518e-15,
+            6.938893903907228e-18,
+            -1.5987211554602254e-14
+          ],
+          "conservation_relative": [
+            4.510273224391452e-15,
+            6.938893903907228e-18,
+            3.172057238823293e-15
+          ],
+          "state_floor_count": 0,
+          "rejected_steps": 0,
+          "retries": 0,
+          "raw_endpoint_min_density": 0.009732631218285564,
+          "raw_endpoint_min_pressure": -0.5999999999999999,
+          "endpoint_min_density": 0.009732631218285564,
+          "endpoint_min_pressure": 1.0640377468007498e-13,
+          "fe_mean_min_density": 0.009774320902145379,
+          "fe_mean_min_pressure": 0.0016944640635574622,
+          "rk_mean_min_density": 0.00977443913337385,
+          "rk_mean_min_pressure": 0.0016944926865771217,
+          "minimum_theta": 0.4494897427830696,
+          "field": "field-n256.npz",
+          "history": "stages-n256.json"
+        },
+        {
+          "n": 512,
+          "time": 0.15,
+          "steps": 769,
+          "stages": 2307,
+          "density_l1": 0.013786535690656554,
+          "pressure_l1": 0.01435653469629682,
+          "density_linf": 0.03601512711847121,
+          "pressure_linf": 0.019973924350945027,
+          "velocity_linf": 0.027566317367641924,
+          "reference_quadrature_maximum": 1.3322676295501878e-15,
+          "scaled_cells": 6,
+          "maximum_face_spectral_radius": 2.771191823275851,
+          "maximum_courant": 0.4,
+          "maximum_mean_preservation_defect": 2.220446049250313e-16,
+          "maximum_fe_boundary_balance_defect": 1.9081958235744878e-17,
+          "maximum_rk_boundary_balance_defect": 8.456776945386935e-17,
+          "raw_endpoint_nonpositive_density_count": 0,
+          "initial_integral": [
+            1.0,
+            0.0,
+            3.0
+          ],
+          "final_integral": [
+            0.40000003166389897,
+            2.862293735361732e-17,
+            0.9600001550468746
+          ],
+          "boundary_net_integral": [
+            -0.5999999683360934,
+            0.0,
+            -2.039999844953108
+          ],
+          "conservation_residual": [
+            -7.66053886991358e-15,
+            2.862293735361732e-17,
+            -1.7319479184152442e-14
+          ],
+          "conservation_relative": [
+            4.787836888447e-15,
+            2.862293735361732e-17,
+            3.4364047057452995e-15
+          ],
+          "state_floor_count": 0,
+          "rejected_steps": 0,
+          "retries": 0,
+          "raw_endpoint_min_density": 0.009732631218285564,
+          "raw_endpoint_min_pressure": -0.5999999999999999,
+          "endpoint_min_density": 0.009732631218285564,
+          "endpoint_min_pressure": 1.0640377468007498e-13,
+          "fe_mean_min_density": 0.009774320902145379,
+          "fe_mean_min_pressure": 0.0016944640635574622,
+          "rk_mean_min_density": 0.00977443913337385,
+          "rk_mean_min_pressure": 0.0016944926865771217,
+          "minimum_theta": 0.4494897427830696,
+          "field": "field-n512.npz",
+          "history": "stages-n512.json"
+        }
+      ],
+      "metrics": {
+        "n": 512,
+        "time": 0.15,
+        "steps": 769,
+        "stages": 2307,
+        "density_l1": 0.013786535690656554,
+        "pressure_l1": 0.01435653469629682,
+        "density_linf": 0.03601512711847121,
+        "pressure_linf": 0.019973924350945027,
+        "velocity_linf": 0.027566317367641924,
+        "reference_quadrature_maximum": 1.3322676295501878e-15,
+        "scaled_cells": 6,
+        "maximum_face_spectral_radius": 2.771191823275851,
+        "maximum_courant": 0.4,
+        "maximum_mean_preservation_defect": 2.220446049250313e-16,
+        "maximum_fe_boundary_balance_defect": 1.9081958235744878e-17,
+        "maximum_rk_boundary_balance_defect": 8.456776945386935e-17,
+        "raw_endpoint_nonpositive_density_count": 0,
+        "state_floor_count": 0,
+        "rejected_steps": 0,
+        "retries": 0,
+        "raw_endpoint_min_density": 0.009732631218285564,
+        "raw_endpoint_min_pressure": -0.5999999999999999,
+        "endpoint_min_density": 0.009732631218285564,
+        "endpoint_min_pressure": 1.0640377468007498e-13,
+        "fe_mean_min_density": 0.009774320902145379,
+        "fe_mean_min_pressure": 0.0016944640635574622,
+        "rk_mean_min_density": 0.00977443913337385,
+        "rk_mean_min_pressure": 0.0016944926865771217,
+        "minimum_theta": 0.4494897427830696
+      },
+      "checks": {
+        "all fixed refinements completed": true,
+        "N128: final time": true,
+        "N128: three records per full SSP step": true,
+        "N128: rk_mean_min_density": true,
+        "N128: rk_mean_min_pressure": true,
+        "N128: endpoint_min_density": true,
+        "N128: endpoint_min_pressure": true,
+        "N128: fe_mean_min_density": true,
+        "N128: fe_mean_min_pressure": true,
+        "N128: maximum_face_spectral_radius": true,
+        "N128: maximum_courant": true,
+        "N128: maximum_mean_preservation_defect": true,
+        "N128: maximum_fe_boundary_balance_defect": true,
+        "N128: maximum_rk_boundary_balance_defect": true,
+        "N128: zero mass/energy floor injections": true,
+        "N128: zero retries or rejected steps": true,
+        "N128: scaling actually exercised": true,
+        "N128: raw nonadmissible reconstruction retained": true,
+        "N128: mass boundary budget": true,
+        "N128: momentum boundary budget": true,
+        "N128: energy boundary budget": true,
+        "N128: split Gauss8/16 reference": true,
+        "N256: final time": true,
+        "N256: three records per full SSP step": true,
+        "N256: rk_mean_min_density": true,
+        "N256: rk_mean_min_pressure": true,
+        "N256: endpoint_min_density": true,
+        "N256: endpoint_min_pressure": true,
+        "N256: fe_mean_min_density": true,
+        "N256: fe_mean_min_pressure": true,
+        "N256: maximum_face_spectral_radius": true,
+        "N256: maximum_courant": true,
+        "N256: maximum_mean_preservation_defect": true,
+        "N256: maximum_fe_boundary_balance_defect": true,
+        "N256: maximum_rk_boundary_balance_defect": true,
+        "N256: zero mass/energy floor injections": true,
+        "N256: zero retries or rejected steps": true,
+        "N256: scaling actually exercised": true,
+        "N256: raw nonadmissible reconstruction retained": true,
+        "N256: mass boundary budget": true,
+        "N256: momentum boundary budget": true,
+        "N256: energy boundary budget": true,
+        "N256: split Gauss8/16 reference": true,
+        "N512: final time": true,
+        "N512: three records per full SSP step": true,
+        "N512: rk_mean_min_density": true,
+        "N512: rk_mean_min_pressure": true,
+        "N512: endpoint_min_density": true,
+        "N512: endpoint_min_pressure": true,
+        "N512: fe_mean_min_density": true,
+        "N512: fe_mean_min_pressure": true,
+        "N512: maximum_face_spectral_radius": true,
+        "N512: maximum_courant": true,
+        "N512: maximum_mean_preservation_defect": true,
+        "N512: maximum_fe_boundary_balance_defect": true,
+        "N512: maximum_rk_boundary_balance_defect": true,
+        "N512: zero mass/energy floor injections": true,
+        "N512: zero retries or rejected steps": true,
+        "N512: scaling actually exercised": true,
+        "N512: raw nonadmissible reconstruction retained": true,
+        "N512: mass boundary budget": true,
+        "N512: momentum boundary budget": true,
+        "N512: energy boundary budget": true,
+        "N512: split Gauss8/16 reference": true,
+        "finest density_l1": true,
+        "density_l1 refinement ratio 1": true,
+        "density_l1 refinement ratio 2": true,
+        "finest pressure_l1": true,
+        "pressure_l1 refinement ratio 1": true,
+        "pressure_l1 refinement ratio 2": true,
+        "reference: star_pressure_absolute_difference": true,
+        "reference: independent_root_point_maximum_difference": true,
+        "reference: maximum_scaled_euler_residual": true
+      },
+      "check_details": [
+        {
+          "name": "all fixed refinements completed",
+          "value": [
+            128,
+            256,
+            512
+          ],
+          "bound": [
+            128,
+            256,
+            512
+          ],
+          "passed": true
+        },
+        {
+          "name": "N128: final time",
+          "value": 0.15,
+          "bound": 0.15,
+          "passed": true
+        },
+        {
+          "name": "N128: three records per full SSP step",
+          "value": 576,
+          "bound": 576,
+          "passed": true
+        },
+        {
+          "name": "N128: rk_mean_min_density",
+          "value": 0.010524037124213192,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N128: rk_mean_min_pressure",
+          "value": 0.001871901340525429,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N128: endpoint_min_density",
+          "value": 0.010466663674740733,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N128: endpoint_min_pressure",
+          "value": 1.0640377468007498e-13,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N128: fe_mean_min_density",
+          "value": 0.010499923447493387,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N128: fe_mean_min_pressure",
+          "value": 0.0018660348691301473,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N128: maximum_face_spectral_radius",
+          "value": 2.771191823275851,
+          "bound": 4.0,
+          "passed": true
+        },
+        {
+          "name": "N128: maximum_courant",
+          "value": 0.4,
+          "bound": 0.5,
+          "passed": true
+        },
+        {
+          "name": "N128: maximum_mean_preservation_defect",
+          "value": 2.220446049250313e-16,
+          "bound": 3e-14,
+          "passed": true
+        },
+        {
+          "name": "N128: maximum_fe_boundary_balance_defect",
+          "value": 4.85722573273506e-17,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "N128: maximum_rk_boundary_balance_defect",
+          "value": 1.8388068845354155e-16,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "N128: zero mass/energy floor injections",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N128: zero retries or rejected steps",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N128: scaling actually exercised",
+          "value": 6,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N128: raw nonadmissible reconstruction retained",
+          "value": -0.5999999999999999,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N128: mass boundary budget",
+          "value": 3.1227503444471525e-15,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "N128: momentum boundary budget",
+          "value": 4.85722573273506e-17,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "N128: energy boundary budget",
+          "value": 2.7318395474999388e-15,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "N128: split Gauss8/16 reference",
+          "value": 8.881784197001252e-16,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "N256: final time",
+          "value": 0.15,
+          "bound": 0.15,
+          "passed": true
+        },
+        {
+          "name": "N256: three records per full SSP step",
+          "value": 1152,
+          "bound": 1152,
+          "passed": true
+        },
+        {
+          "name": "N256: rk_mean_min_density",
+          "value": 0.00977443913337385,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N256: rk_mean_min_pressure",
+          "value": 0.0016944926865771217,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N256: endpoint_min_density",
+          "value": 0.009732631218285564,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N256: endpoint_min_pressure",
+          "value": 1.0640377468007498e-13,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N256: fe_mean_min_density",
+          "value": 0.009774320902145379,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N256: fe_mean_min_pressure",
+          "value": 0.0016944640635574622,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N256: maximum_face_spectral_radius",
+          "value": 2.771191823275851,
+          "bound": 4.0,
+          "passed": true
+        },
+        {
+          "name": "N256: maximum_courant",
+          "value": 0.4,
+          "bound": 0.5,
+          "passed": true
+        },
+        {
+          "name": "N256: maximum_mean_preservation_defect",
+          "value": 2.220446049250313e-16,
+          "bound": 3e-14,
+          "passed": true
+        },
+        {
+          "name": "N256: maximum_fe_boundary_balance_defect",
+          "value": 2.5153490401663703e-17,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "N256: maximum_rk_boundary_balance_defect",
+          "value": 1.222980050563649e-16,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "N256: zero mass/energy floor injections",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N256: zero retries or rejected steps",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N256: scaling actually exercised",
+          "value": 6,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N256: raw nonadmissible reconstruction retained",
+          "value": -0.5999999999999999,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N256: mass boundary budget",
+          "value": 4.510273224391452e-15,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "N256: momentum boundary budget",
+          "value": 6.938893903907228e-18,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "N256: energy boundary budget",
+          "value": 3.172057238823293e-15,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "N256: split Gauss8/16 reference",
+          "value": 1.7763568394002505e-15,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "N512: final time",
+          "value": 0.15,
+          "bound": 0.15,
+          "passed": true
+        },
+        {
+          "name": "N512: three records per full SSP step",
+          "value": 2307,
+          "bound": 2307,
+          "passed": true
+        },
+        {
+          "name": "N512: rk_mean_min_density",
+          "value": 0.00977443913337385,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N512: rk_mean_min_pressure",
+          "value": 0.0016944926865771217,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N512: endpoint_min_density",
+          "value": 0.009732631218285564,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N512: endpoint_min_pressure",
+          "value": 1.0640377468007498e-13,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N512: fe_mean_min_density",
+          "value": 0.009774320902145379,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N512: fe_mean_min_pressure",
+          "value": 0.0016944640635574622,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N512: maximum_face_spectral_radius",
+          "value": 2.771191823275851,
+          "bound": 4.0,
+          "passed": true
+        },
+        {
+          "name": "N512: maximum_courant",
+          "value": 0.4,
+          "bound": 0.5,
+          "passed": true
+        },
+        {
+          "name": "N512: maximum_mean_preservation_defect",
+          "value": 2.220446049250313e-16,
+          "bound": 3e-14,
+          "passed": true
+        },
+        {
+          "name": "N512: maximum_fe_boundary_balance_defect",
+          "value": 1.9081958235744878e-17,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "N512: maximum_rk_boundary_balance_defect",
+          "value": 8.456776945386935e-17,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "N512: zero mass/energy floor injections",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N512: zero retries or rejected steps",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N512: scaling actually exercised",
+          "value": 6,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N512: raw nonadmissible reconstruction retained",
+          "value": -0.5999999999999999,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N512: mass boundary budget",
+          "value": 4.787836888447e-15,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "N512: momentum boundary budget",
+          "value": 2.862293735361732e-17,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "N512: energy boundary budget",
+          "value": 3.4364047057452995e-15,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "N512: split Gauss8/16 reference",
+          "value": 1.3322676295501878e-15,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "finest density_l1",
+          "value": 0.013786535690656554,
+          "bound": 0.08,
+          "passed": true
+        },
+        {
+          "name": "density_l1 refinement ratio 1",
+          "value": 0.5257505901581428,
+          "bound": 0.95,
+          "passed": true
+        },
+        {
+          "name": "density_l1 refinement ratio 2",
+          "value": 0.4971220748673555,
+          "bound": 0.95,
+          "passed": true
+        },
+        {
+          "name": "finest pressure_l1",
+          "value": 0.01435653469629682,
+          "bound": 0.1,
+          "passed": true
+        },
+        {
+          "name": "pressure_l1 refinement ratio 1",
+          "value": 0.5854236258417753,
+          "bound": 0.95,
+          "passed": true
+        },
+        {
+          "name": "pressure_l1 refinement ratio 2",
+          "value": 0.5323903360353498,
+          "bound": 0.95,
+          "passed": true
+        },
+        {
+          "name": "reference: star_pressure_absolute_difference",
+          "value": 5.355958732078392e-17,
+          "bound": 2e-13,
+          "passed": true
+        },
+        {
+          "name": "reference: independent_root_point_maximum_difference",
+          "value": 2.4424906541753444e-15,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "reference: maximum_scaled_euler_residual",
+          "value": 1.5220171275817243e-10,
+          "bound": 2e-06,
+          "passed": true
+        }
+      ],
+      "reference_qualification": {
+        "star_pressure_absolute_difference": 5.355958732078392e-17,
+        "independent_root_point_maximum_difference": 2.4424906541753444e-15,
+        "maximum_scaled_euler_residual": 1.5220171275817243e-10,
+        "independent_root_diagnostics": {
+          "iterations": 46,
+          "log_bracket_width": 1.7053025658242404e-13,
+          "wave_residual": 1.4210854715202004e-14
+        },
+        "derivative_step": 1e-06,
+        "residual_points": [
+          0.13,
+          0.23,
+          0.37,
+          0.49,
+          0.51,
+          0.63,
+          0.77,
+          0.87
+        ],
+        "star_density": 0.021852118206812838,
+        "star_pressure": 0.0018938734200547643
+      },
+      "scope": "One-dimensional Euler strong double rarefaction. Gallery heatmaps are saved x-t fields, not two-dimensional flow."
+    }
+  ],
+  "termination": "fixed_budget_completed",
+  "input_sha256": "a1185e4b8be0f49f8f3f551f934614110c227d39b2bb0dc4438c5301428d751b",
+  "files_sha256": {
+    "field-n128.npz": "8cb730c68022cef9f2cc3b42be49c1f38b9c85a9f716a5c7e78ad583625701a8",
+    "stages-n128.json": "bf7ece1468ad5b852ef7b8a667a8d99259c5935d65f43a87f4bce0e1801fd0f4",
+    "field-n256.npz": "4f1a3d32520388bfa4ab067ba42f438790f82521c2fab160465ce26270f01aac",
+    "stages-n256.json": "c2dc66e7e3cb0b7f0330a12b43959561c7fc43ffa361a7c91bd189b7de59bbba",
+    "field-n512.npz": "a0900495af849b0cd8534e4a964cb230260b1b994a3af2e5e00c00967aff7ba5",
+    "stages-n512.json": "0a5cae6db884a03202a933ce940a008f56a34e43e9305d3f13a71d63a43b4d50"
+  },
+  "source_sha256": {
+    "euler_positivity.py": "c22015d9435095b3f08189d1b09be4a040c79062b1cc76fd15648cca00f73a58",
+    "run.py": "6faaa677e674a54ff600e578ac6b3d0c1fd8322fd5d292d4f0afc99880bddda8",
+    "test_euler_positivity.py": "b475a4105d0538c4f615f6cb46aa949aadc3e1f0e530bcb360e33aab831fe21c",
+    "inputs.json": "a1185e4b8be0f49f8f3f551f934614110c227d39b2bb0dc4438c5301428d751b",
+    "acceptance.json": "f08558b2703369a2260db1252dc40272f76556a2f6205688faa88a4c37c79050",
+    "requirements.txt": "0022940efad2d12d6da6aa50093fa8049c2344821082bc5d502fa46f20953d8a",
+    "source-provenance.json": "f0ecec8dc99c73d99bc48ae62824346513fd00094af90e4134408b5f6756658f",
+    "references/NUMART-LICENSE.txt": "07cca125623617c85a41e9a21a2b114d693c61737bc353e3ca98587431e26ee6",
+    "references/README.md": "f86bccc729ac6344d768a0c361d6ea7495e6952b8ac922c35002e414ab8db63a",
+    "references/__init__.py": "1a73455cd310d2a0585f36e3a77856e5397dfb0b756cd22bba8fb0e8b72a0f37",
+    "references/citations.json": "e6ec0469f798e7f3a316fb9f696295f9e2a32b6540e17f4b1d93d0fad4971f17",
+    "references/double_rarefaction.py": "b15fb61762d7a4a4a1d1f3402366e858cabad0069e5bf55ba7ab1fecef98b9b7",
+    "references/numart_reference_riemann.py": "5d2b36eb1e4165d6cf791702529642c9a0c8672cd44a591962efeee7ea66709f",
+    "references/source-review.json": "de49147a0403d768309ec93baa6533513a1a77b5bda745bf3bb1e12a818e797a",
+    "pre-run-contract.json": "2c7060ae0da2ea2ca65e5259d9850e5603d6f05141ae6ba108b5325893d78eb6"
+  },
+  "failure": null,
+  "duration_seconds": 1.0961413750010252
+}

@@ -151,7 +151,7 @@
     "passed_tests": 11
   },
   "source_sha256": {
-    "catalog/atlas-depth-expansion.json": "5d68fb749341591df2537dcee7c9ee757976a54a2fd2ab2c52b41ed67c4bd689",
+    "catalog/atlas-depth-expansion.json": "6c85fa8d07dafa4c461460451d809316cc5bf999dca5c2bd0a94163c0c26dac7",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
     "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
@@ -241,7 +241,12 @@
     "code/validated-examples/2026-11-23-r3/guderley/verification.json": "3eb90bb576b4b9579433bb15a93b0acc42948a85f335a45de7c649ec1b61e625",
     "code/validated-examples/2026-11-23-r3/guderley/cases.json": "72e621b096fdb1ff229dba33b9243667a7e7c4f9b2593d7331953333707f28f7",
     "code/validated-examples/2026-11-23-r3/guderley/results/result.json": "c85894f329b97d62ef9d093792316028e4b3b9ca38a0488047bdbab2542e84bb",
-    "code/validated-examples/2026-11-23-r3/guderley/atlas-guderley-2026-11-23-r3.zip": "f00ff906861495bd73b2ae75f7c3895fab505ba45ad7a34a2612700405d8466f"
+    "code/validated-examples/2026-11-23-r3/guderley/atlas-guderley-2026-11-23-r3.zip": "f00ff906861495bd73b2ae75f7c3895fab505ba45ad7a34a2612700405d8466f",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/source-manifest.json": "86eef08f81c19d211d9908ba195f6fbbdcd4af54dcfaf8df59ebbe9df73b34b9",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/verification.json": "4c205d9d21d1ea7efbf3d56e881c8c740f26a983576415a69e95490393af4f3d",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/cases.json": "52e618b3a97dab879badba192d5c2f74c5a08c25e473f055de81c645a6985d5a",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/results/result.json": "bee593154817e7a6339cee14fa7c029000002f42ade8ccd6d568119d375fdddc",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/atlas-euler-positivity-2026-11-23-r2.zip": "0f2c8a3bf94a612f89d8f6f695b94574dd05d70976aa97a497ef47ff4e0c1efe"
   },
   "scope": {
     "ja": "共通22実行例の台帳とは別に管理する追加検証集です。配布ZIPを独立展開し、各グループの全固定入力と検査を実行した記録を示します。設定・手法・刻み幅の違いを独立した物理問題の数には加算しません。",
@@ -380,13 +385,13 @@
     }
   },
   "navigation_source_sha256": {
-    "catalog/atlas-depth-expansion.json": "5d68fb749341591df2537dcee7c9ee757976a54a2fd2ab2c52b41ed67c4bd689",
+    "catalog/atlas-depth-expansion.json": "6c85fa8d07dafa4c461460451d809316cc5bf999dca5c2bd0a94163c0c26dac7",
     "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
-    "catalog/atlas-methods.json": "5ba47bcb2832285b5ee8f45c5db63858069bf36779e9aa6d57de97bc5e16ef30",
-    "catalog/atlas-problem-links.json": "34d30b7bb8df3e2a930933b429748baf86a87fe1769c31fb5ca37c5d80c87bb1",
+    "catalog/atlas-methods.json": "696235ecc3e65cfcf75d16fd70878d2241f13ad7ad41493879ea34a7f272a2c9",
+    "catalog/atlas-problem-links.json": "2dc0d615ee1c250f78172d5734f2955394474d11e95fb9eb4738f85a88eb35f4",
     "catalog/atlas-reference-supplements.json": "a6a6915367571a4316964453ef2fd0ed4456d3e235be80bdfd59e113983cb153",
-    "catalog/atlas-test-problems.json": "25febf285358beb3f730decdd4c48c870766542829f71da96087b2974d47b65d",
+    "catalog/atlas-test-problems.json": "f0d5260b28da470236000ab7d675cf92330bcf864f65e4558360c49506428ac7",
     "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
     "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
     "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
@@ -482,6 +487,12 @@
     "code/validated-examples/2026-11-22/thermostats/results/result.json": "7971007807acce9f75261b684b789f196e1d5dffc80797e102d1b0bebbc93f11",
     "code/validated-examples/2026-11-22/thermostats/source-manifest.json": "81a854bdfe3ae33b4eb4bffdccc9ab15a09f2bddbffb294cd2c2cbd07e641580",
     "code/validated-examples/2026-11-22/thermostats/verification.json": "c14f55ac05d93269dbf8eef4a2a4042f75764d5228d06f8e41039d0b60351905",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/atlas-euler-positivity-2026-11-23-r2.zip": "0f2c8a3bf94a612f89d8f6f695b94574dd05d70976aa97a497ef47ff4e0c1efe",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/cases.json": "52e618b3a97dab879badba192d5c2f74c5a08c25e473f055de81c645a6985d5a",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/results/euler-double-rarefaction-positivity.png": "f1d024c853686c5733c1139f5836392352cfa2cf1390f1f2a69e3215872b0877",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/results/result.json": "bee593154817e7a6339cee14fa7c029000002f42ade8ccd6d568119d375fdddc",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/source-manifest.json": "86eef08f81c19d211d9908ba195f6fbbdcd4af54dcfaf8df59ebbe9df73b34b9",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/verification.json": "4c205d9d21d1ea7efbf3d56e881c8c740f26a983576415a69e95490393af4f3d",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/atlas-noh-cartesian-2026-11-23-r2.zip": "2145beb161f993c1608fc5ac167af5278d58e10f92e74ed37e5fb9c35243b918",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/cases.json": "49b94c1f65e269d4a878be3a4d8778375b88b767f5dd01998ae5fe6b8fc2b3ee",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/results/noh-cartesian-2d.png": "cca6fdfc8f524ee05f729437b38ce064f276aaebe1485ed6e26045c279ac1ae4",
@@ -527,7 +538,7 @@
     "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "68234fcfee30b055401fa6eb252da01f5a9030c88902c8e4ecf3171a5dcf9580",
+    "numerical-methods-atlas/gallery/preview-manifest.json": "f884f85c3acedbfe591b081b6ff0f30781cb3bd45027869292a7b0ce184be815",
     "numerical-methods-atlas/locales/messages.json": "5600601127f438f2935a88d5ce597656cef65b07034961fc863a7074da0e6fd7"
   }
 }

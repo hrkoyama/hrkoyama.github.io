@@ -79,6 +79,10 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Advance q_t+a q_x=0 for one period on a unit periodic interval. Compare first-order upwind on 64/128 points with an analytically translated sine, exporting computed, analytic and error values.
+- [Euler double rarefaction: positivity at every stage](<https://hrkoyama.github.io/numerical-methods-atlas/validation/euler-double-rarefaction-positivity/?lang=en>)
+  availability: run
+
+  Evolve the existing strong double rarefaction on 128/256/512 cells, connecting mean-preserving positivity scaling to MUSCL, global LF fluxes and SSPRK(3,3). Log density, pressure and boundary budgets for every FE substep and SSP convex combination.
 - [Forward spatial difference — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/forward-difference/?lang=en#method-execution-en>)
   availability: source
 

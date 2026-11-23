@@ -12,8 +12,8 @@ const base='code/validated-examples/2026-11-23/forward-step/';
 
 test('forward step preserves all fifteen published releases and eighty-three historical gallery pictures',()=>{
  const registry=json('numerical-methods-atlas/validation/releases.json');
- assert.equal(objectHash(registry.releases.filter(r=>!['forward-step','low-mach','guderley'].includes(r.group))),'22b3f44f5555a2e12fbacb96b4a4ccc57fb5e620a971df9c548908695cb4225b');
- assert.equal(registry.case_count,47);assert.equal(registry.releases.length,18);assert.equal(registry.releases.reduce((s,r)=>s+r.tests,0),571);
+ assert.equal(objectHash(registry.releases.filter(r=>!['forward-step','low-mach','guderley','euler-positivity'].includes(r.group))),'22b3f44f5555a2e12fbacb96b4a4ccc57fb5e620a971df9c548908695cb4225b');
+ assert.equal(registry.case_count,48);assert.equal(registry.releases.length,19);assert.equal(registry.releases.filter(r=>r.group!=='euler-positivity').reduce((s,r)=>s+r.tests,0),571);
  const release=registry.releases.find(r=>r.group==='forward-step');assert.equal(release.tests,24);assert.deepEqual(release.case_ids,['forward-step-m3']);
  const pictures=json('numerical-methods-atlas/gallery/preview-manifest.json').items.filter(r=>!['forward-step','isentropic-vortex','guderley'].includes(r.id)).map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}));
  assert.equal(pictures.length,83);assert.equal(objectHash(pictures),'cc42574f290cd31549ef959f4bc97086be02d90e57655fcf5d2c172dbf3203b6');

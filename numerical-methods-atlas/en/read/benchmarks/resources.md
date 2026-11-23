@@ -32,10 +32,22 @@ Resources explicitly registered to the methods, problems and executions of this 
   Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability.
 - [Godunov-type finite volumes](<https://hrkoyama.github.io/numerical-methods-atlas/methods/godunov/?lang=en>)
 
-  Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability.
+  The earlier Godunov/HLLE preview and the new MUSCL/Lax–Friedrichs/mean-preserving-scaling/SSPRK(3,3) run are separate execution records. Stage-positivity conditions are scoped to the additional release, its contract and all-stage diagnostics.
 - [HLLE / Einfeldt wave speeds](<https://hrkoyama.github.io/numerical-methods-atlas/methods/hlle/?lang=en>)
 
-  Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability.
+  The earlier Godunov/HLLE preview and the new MUSCL/Lax–Friedrichs/mean-preserving-scaling/SSPRK(3,3) run are separate execution records. Stage-positivity conditions are scoped to the additional release, its contract and all-stage diagnostics.
+- [MUSCL reconstruction](<https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=en>)
+
+  The earlier Godunov/HLLE preview and the new MUSCL/Lax–Friedrichs/mean-preserving-scaling/SSPRK(3,3) run are separate execution records. Stage-positivity conditions are scoped to the additional release, its contract and all-stage diagnostics.
+- [Lax–Friedrichs](<https://hrkoyama.github.io/numerical-methods-atlas/methods/lax-friedrichs/?lang=en>)
+
+  The earlier Godunov/HLLE preview and the new MUSCL/Lax–Friedrichs/mean-preserving-scaling/SSPRK(3,3) run are separate execution records. Stage-positivity conditions are scoped to the additional release, its contract and all-stage diagnostics.
+- [Mean-preserving positive-state scaling](<https://hrkoyama.github.io/numerical-methods-atlas/methods/positive-scaling/?lang=en>)
+
+  The earlier Godunov/HLLE preview and the new MUSCL/Lax–Friedrichs/mean-preserving-scaling/SSPRK(3,3) run are separate execution records. Stage-positivity conditions are scoped to the additional release, its contract and all-stage diagnostics.
+- [SSPRK(3,3)](<https://hrkoyama.github.io/numerical-methods-atlas/methods/ssprk33/?lang=en>)
+
+  The earlier Godunov/HLLE preview and the new MUSCL/Lax–Friedrichs/mean-preserving-scaling/SSPRK(3,3) run are separate execution records. Stage-positivity conditions are scoped to the additional release, its contract and all-stage diagnostics.
 - [MUSCL reconstruction](<https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=en>)
 
   Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability.
@@ -177,6 +189,10 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Compare shock–density-wave interaction against separately executed Athena++ reference data rather than a finer grid of the same Python code.
+- [Euler double rarefaction: positivity at every stage](<https://hrkoyama.github.io/numerical-methods-atlas/validation/euler-double-rarefaction-positivity/?lang=en>)
+  availability: run
+
+  Evolve the existing strong double rarefaction on 128/256/512 cells, connecting mean-preserving positivity scaling to MUSCL, global LF fluxes and SSPRK(3,3). Log density, pressure and boundary budgets for every FE substep and SSP convex combination.
 - [Low-Mach isentropic vortex: preconditioned Roe flux verification](<https://hrkoyama.github.io/numerical-methods-atlas/validation/low-mach-vortex/?lang=en>)
   availability: run
 

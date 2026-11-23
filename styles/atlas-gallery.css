@@ -14,3 +14,5 @@
 .gallery-policy>summary:focus-visible{outline:3px solid #9b5b26;outline-offset:3px}
 .gallery-policy .gallery-note{margin-top:8px}
 @media(max-width:620px){.gallery-tools{padding:14px}}
+
+.gallery-supplement-preview{margin:1rem 0}.gallery-supplement-preview img{display:block;width:100%;height:auto;border-radius:.6rem}.gallery-supplement-preview figcaption{font-size:.85rem;line-height:1.55;margin-top:.5rem;color:var(--muted,#59656b)}

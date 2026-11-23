@@ -26,8 +26,8 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     env:
-      ATLAS_DEPTH_BOOTSTRAP_SHA256: '74434eb6179772c1aeb669ebca8f885f8eac8488018852a83d9ee1f4a1f40619'
-      ATLAS_DEPTH_REGISTRY_SHA256: 'f6d247f238fbe3943a9af94ca988eba8b92a02f63a4e981211d66d57ad67ef00'
+      ATLAS_DEPTH_BOOTSTRAP_SHA256: 'c8c599e566b2ce2eaac39b59264653225d648e7b23f28de85f501d2352c88beb'
+      ATLAS_DEPTH_REGISTRY_SHA256: '3690fa85ea0d5cb389aa9d4a20b50724f33c29eae25320f5cd3302f0e7e0764d'
       PYTHONNOUSERSITE: '1'
       PYTHONDONTWRITEBYTECODE: '1'
       PIP_DISABLE_PIP_VERSION_CHECK: '1'
@@ -151,7 +151,7 @@ jobs:
               report['error'] = {'message': 'Verifier did not produce a report; inspect bootstrap/pip logs and context'}
           (root/'workflow-status.json').write_text(json.dumps(report, indent=2)+'\n')
           lines = ['## Lightweight public-distribution Linux verification', '',
-                   'Fresh Ubuntu24.04/Python3.12; twelve public supplements only; no source checkout or quantum sweeps.', '',
+                   'Fresh Ubuntu24.04/Python3.12; registered public supplements only; no source checkout or quantum sweeps.', '',
                    '- passed: '+str(report.get('passed', False)),
                    '- phase: '+str(report.get('phase', 'unavailable')),
                    '- registry SHA-256: '+str(report.get('registry_sha256', 'unavailable'))]

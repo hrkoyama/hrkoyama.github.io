@@ -132,5 +132,5 @@ test('all 80 historical gallery illustrations, image checksums and captions surv
  assert.equal(items.length,80);
  assert.equal(hash(items.map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}))),'25c25a4cb7ad5c54e5788b984d949c44994d3f1706ed36c4ef30a3ce36fa6c2b');
  const gallery=json('numerical-methods-atlas/gallery/index.json');
- assert.equal(gallery.items.length,86);assert.equal(gallery.items.filter(x=>x.runnable).length,45);
+ assert.equal(gallery.items.length,86);assert.equal(gallery.items.filter(x=>x.runnable).length,46);
 });

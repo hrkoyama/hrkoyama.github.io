@@ -31,3 +31,7 @@ code/validated-examples/2026-11-23-r3/guderley/references/exactpack_guderley/ori
 code/validated-examples/2026-11-23-r3/guderley/references/attempts/**/EXACTPACK-LICENSE.txt -whitespace
 code/validated-examples/2026-11-23-r3/guderley/references/attempts/**/EXACTPACK-test_guderley.py -whitespace
 code/validated-examples/2026-11-23-r3/guderley/references/attempts/**/exactpack_guderley/original_init.py -whitespace
+
+# Preserve verbatim prepublication failure logs in the Euler positivity receipt.
+code/validated-examples/2026-11-23-r2/euler-positivity/attempts/01/site-tests.log -whitespace
+scripts/depth-euler-positivity/attempts/01/site-tests.log -whitespace

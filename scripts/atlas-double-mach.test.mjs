@@ -12,8 +12,8 @@ const base='code/validated-examples/2026-11-23/double-mach/';
 
 test('Double Mach extends an existing problem and preserves all fourteen earlier release records and eighty-two historical pictures',()=>{
  const registry=json('numerical-methods-atlas/validation/releases.json');
- assert.equal(objectHash(registry.releases.filter(r=>!['double-mach','forward-step','low-mach','guderley'].includes(r.group))),'bb57fe2ece2d6f8b07b9e793ab8a21c3a9bcc2166d0e04dd73e00fe9d9ed46c3');
- assert.equal(registry.case_count,47);assert.equal(registry.releases.length,18);assert.equal(registry.releases.reduce((s,r)=>s+r.tests,0),571);
+ assert.equal(objectHash(registry.releases.filter(r=>!['double-mach','forward-step','low-mach','guderley','euler-positivity'].includes(r.group))),'bb57fe2ece2d6f8b07b9e793ab8a21c3a9bcc2166d0e04dd73e00fe9d9ed46c3');
+ assert.equal(registry.case_count,48);assert.equal(registry.releases.length,19);assert.equal(registry.releases.filter(r=>r.group!=='euler-positivity').reduce((s,r)=>s+r.tests,0),571);
  const release=registry.releases.find(r=>r.group==='double-mach');assert.equal(release.tests,21);assert.deepEqual(release.case_ids,['double-mach-reflection']);
  const pictures=json('numerical-methods-atlas/gallery/preview-manifest.json').items.filter(r=>!['double-mach','forward-step','isentropic-vortex','guderley'].includes(r.id)).map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}));
  assert.equal(pictures.length,82);assert.equal(objectHash(pictures),'c37221ab9426dd1bd3b6497f2ca56764ab7d737807edceb231600fc0f3294483');

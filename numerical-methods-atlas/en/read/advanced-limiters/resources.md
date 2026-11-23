@@ -25,6 +25,10 @@ No chapter-specific association is registered. Atlas-wide index: [Exact and refe
 
 ## Code and validation
 
+- [Euler double rarefaction: positivity at every stage](<https://hrkoyama.github.io/numerical-methods-atlas/validation/euler-double-rarefaction-positivity/?lang=en>)
+  availability: run
+
+  Evolve the existing strong double rarefaction on 128/256/512 cells, connecting mean-preserving positivity scaling to MUSCL, global LF fluxes and SSPRK(3,3). Log density, pressure and boundary budgets for every FE substep and SSP convex combination.
 - [TVB modified minmod — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/tvb/?lang=en#method-execution-en>)
   availability: source
 

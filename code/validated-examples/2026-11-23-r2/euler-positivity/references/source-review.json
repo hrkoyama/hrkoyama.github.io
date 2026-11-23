@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-11-23",
+  "sources": [
+    {
+      "id": "zhang2010positivity",
+      "url": "https://www.math.purdue.edu/~zhan1966/research/paper/euler.pdf",
+      "role": "positivity theorem and conservative scaling; FV application",
+      "scope": "author manuscript selected sections actually inspected: §2 Theorem2.1, Remarks2.2/2.4/2.6/2.7; §4.3 distinguishes vacuum input"
+    },
+    {
+      "id": "clawpack-euler-riemann",
+      "url": "https://www.clawpack.org/riemann_book/html/Euler.html",
+      "role": "analytic Riemann invariants and symmetric-expansion reference derivation",
+      "scope": "official chapter sections Riemann invariants, exact solution, symmetric expansion and vacuum; official exact_solvers/euler.py integral_curve_1/3 inspected read-only"
+    },
+    {
+      "id": "shu1988ssprk",
+      "url": "https://www.sciencedirect.com/science/article/pii/0021999188901775",
+      "role": "historical SSP/TVD Runge-Kutta time-discretization source",
+      "scope": "publisher bibliographic record and abstract only; no full-paper audit"
+    },
+    {
+      "id": "toro2009riemann",
+      "url": "https://link.springer.com/book/10.1007/b79761",
+      "role": "general Euler Riemann problem background; not unique original test attribution",
+      "scope": "publisher bibliography and chapter4 title/pages115–162 only; full text not inspected"
+    },
+    {
+      "id": "atlas-riemann-2026",
+      "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/reference_riemann.py",
+      "role": "actually executed separate log-root reference cross-check; no separate PDE solver",
+      "scope": "local immutable source inspected; copied without changes with SHA and MIT license; execution recorded by tests, not presumed"
+    }
+  ],
+  "not_claimed": [
+    "No claim of original-problem invention or full original-book audit.",
+    "No paper PDFs copied into the public package.",
+    "No ExactPack or Clawpack execution.",
+    "The theorem is conditional on admissible means/endpoints, globalLF wave bound and FE-substep CFL, all checked on this fixed run.",
+    "The strict positivity threshold used for affine slope scaling is not cell-average clipping or mass/energy injection.",
+    "Failure/retry/floor counters and any diagnostic failing trials must be kept with actual output."
+  ]
+}

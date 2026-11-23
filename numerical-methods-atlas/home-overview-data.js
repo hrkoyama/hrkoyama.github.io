@@ -957,6 +957,10 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "validation-euler-positivity": [
+    "ja",
+    "en"
+  ],
   "validation-forward-step": [
     "ja",
     "en"

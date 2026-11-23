@@ -592,6 +592,16 @@
         }
       ],
       "availability": "saved-output",
+      "supplemental_examples": [
+        {
+          "id": "euler-double-rarefaction-positivity",
+          "url": "/numerical-methods-atlas/validation/euler-double-rarefaction-positivity/",
+          "name": {
+            "ja": "Euler二重膨張波：段階ごとの正値性",
+            "en": "Euler double rarefaction: positivity at every stage"
+          }
+        }
+      ],
       "reading": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/benchmarks/",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/benchmarks/"
@@ -3985,7 +3995,7 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-test-problems.json": "25febf285358beb3f730decdd4c48c870766542829f71da96087b2974d47b65d",
+    "catalog/atlas-test-problems.json": "f0d5260b28da470236000ab7d675cf92330bcf864f65e4558360c49506428ac7",
     "numerical-methods-atlas/equation-gallery.json": "e99af38238a50232f92875817c4556ab6c730289db13014efdd41913096c902e",
     "numerical-methods-atlas/cip.json": "3aa33fbffad6b9ad76310e9b713629a1a35b4e30e419db0c531180cf769e6b6f",
     "numerical-methods-atlas/limiters.json": "3242180ba171420220fd349cac93dff552466070f886f3d00a70927939255312",

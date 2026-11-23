@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-23-2c8e1af241
-Captured (UTC): 2026-11-23T07:44:26+00:00
+Snapshot: 2026-11-23-ffab33ac84
+Captured (UTC): 2026-11-23T08:49:43+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -495,12 +495,7 @@ including interface states, a corresponding wave-speed/CFL restriction, and
 limiting at all required stages. SSP time stepping propagates a forward-Euler
 positivity property only when that property and its step restriction already
 hold. Source terms and boundary treatment require their own checks.
-This helper is not wired into the existing Euler MUSCL, finite-difference
-WENO, CT/GLM, or KEEP time updates. Those solvers retain their documented
-limitations. A future complete implementation should add stage-by-stage
-admissibility and conservation checks, near-vacuum double rarefaction, and
-strong blast-wave tests before claiming positivity preservation over time.
-Multidimensional and non-ideal-EOS extensions need additional analysis.
+In the original Numart release, this helper is not wired into the existing Euler MUSCL, finite-difference WENO, CT/GLM, or KEEP time updates. That immutable release and the existing solvers retain their documented limitations. A separately distributed example now checks one-dimensional Euler MUSCL stage updates. Finite-difference WENO, CT/GLM, KEEP, strong blasts, multidimensional flow and non-ideal equations of state remain outside this verification.
 
 ## Advanced limiters: TVB and positivity preservation — From reconstruction to a fully discrete guarantee# [en]
 
@@ -12593,7 +12588,7 @@ Coverage: reading
 
 Published web edition, counted 2026-11-22. These are counts of catalog entries and documented examples, not a claim that every entry is a verified end-to-end solver.
 46 equation/model entries · 131 methods and building blocks · 243 journal/conference papers · 300 total sources.
-There are 9 saved-profile equation-gallery cases across 7 equation families, and 100 reading chapters including this inventory.
+There are 9 saved-profile equation-gallery cases across 7 equation families, and 101 reading chapters including this inventory.
 
 ## Site coverage and counting rules — Equations and models# [en]
 
@@ -15157,6 +15152,259 @@ Checked Mach10, gamma1.4, domain, shock foot x=1/6, upstream state, boundaries a
 Hiroshi Koyama (2026). Independent finite-volume references distributed with the RKDG2D agent kit, 2026-11-23-r2
 Review scope / review_level: hash-checked-selected-public-archive-artifacts
 Selected source, two-grid data and execution records were copied from the immutable archive. No reference PDE, Athena or LAVA was rerun here. The flux family HLL is shared, while the reference is a separate implementation without imports of primary spatial operators.
+
+## Euler double rarefaction: positivity at every stage — Euler double rarefaction: positivity at every stage [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-euler-positivity/
+Coverage: reading
+
+A one-dimensional MUSCL finite-volume Euler double rarefaction combines Lax–Friedrichs fluxes, SSPRK(3,3) and mean-preserving positive-state scaling at each stage. Check the admissible CFL, density/pressure in cell means and face states, and conservation budgets from actual shared boundary fluxes separately.
+
+## Euler double rarefaction: positivity at every stage — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-euler-positivity/#run-all
+Coverage: reading
+
+Run inside atlas-euler-positivity-2026-11-23-r2 from the ZIP. This command executes all 1 fixed cases in the supplement. Choose a new or empty output directory.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Euler double rarefaction: positivity at every stage — Euler double rarefaction: positivity at every stage [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-euler-positivity/
+Coverage: reading
+
+Evolve the existing strong double rarefaction on 128/256/512 cells, connecting mean-preserving positivity scaling to MUSCL, global LF fluxes and SSPRK(3,3). Log density, pressure and boundary budgets for every FE substep and SSP convex combination.
+Methods, equations, figures and references
+Methods used
+Lax–Friedrichs
+MUSCL reconstruction
+Mean-preserving positive-state scaling
+SSPRK(3,3)
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Unlimited conservative central linear reconstruction is scaled toward its mean with one common theta per cell until both endpoint densities/pressures are positive. The two endpoint mean remains the original conserved mean. Shared LF FE updates are combined by SSPRK(3,3), reconstructing/limiting before every flux stage. Epsilon1e-13 is a reconstruction target, not an injected density/energy floor. No average repair or hidden time-step retries are used.
+Compressible Euler equations
+Unforced one-dimensional ideal-gas Euler at gamma=1.4 evolves cell means of density, momentum and total energy using linear conservative MUSCL reconstruction and shared Lax–Friedrichs fluxes.
+Problem figure
+
+## Euler double rarefaction: positivity at every stage — Euler double rarefaction: positivity at every stage [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-euler-positivity/
+Coverage: reading
+
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Euler double rarefaction
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+Freeze 27 unit tests and 73 gates over three grids before execution. Retain negative raw endpoint pressures, then separately measure limited endpoints, FE means, SSP convex means, theta and all three boundary-flux conservation budgets. Cross-check the closed symmetric fan against the prior independent logarithmic-pressure root evaluator; record errors/refinement against conserved Gauss8/16 cell means.
+Related-model reference · Semi-analytic reference
+Euler / double rarefaction
+γ=1.4, states (1,-2,0.4)/(1,2,0.4), [0,1], x0=0.5 and t=0.15 match the saved preview. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations.
+
+## Euler double rarefaction: positivity at every stage — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-euler-positivity/#euler-double-rarefaction-positivity-assumptions
+Coverage: reading
+
+Fix gamma1.4, x in [0,1], discontinuity x0=.5, outer primitive states(1,-2,.4)/(1,2,.4) and T=.15. The low-density central state remains strictly positive; this is not a vacuum-generating case. Use fixed global LF splitting speed a4 and dt*a/dx<=.4; assert every actual endpoint satisfies |u|+c<=a and the sufficient dt*a/dx<=1/2 condition.
+
+## Euler double rarefaction: positivity at every stage — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-euler-positivity/#euler-double-rarefaction-positivity-algorithm
+Coverage: reading
+
+Unlimited conservative central linear reconstruction is scaled toward its mean with one common theta per cell until both endpoint densities/pressures are positive. The two endpoint mean remains the original conserved mean. Shared LF FE updates are combined by SSPRK(3,3), reconstructing/limiting before every flux stage. Epsilon1e-13 is a reconstruction target, not an injected density/energy floor. No average repair or hidden time-step retries are used.
+\partial_t U+\partial_x F(U)=0,\qquad U=(\rho,m,E)^T,\quad F=(m,m^2/\rho+p,(E+p)m/\rho)^T,\quad p=(\gamma-1)(E-m^2/(2\rho))U_i^{\pm}=\bar U_i\pm\delta U_i,\qquad\widehat U_i^{\pm}=\bar U_i+\theta_i(U_i^{\pm}-\bar U_i),\quad0\le\theta_i\le1,\qquad\tfrac12(\widehat U_i^-+\widehat U_i^+)=\bar U_i\widehat F_{i+1/2}=\tfrac12\!\left[F(\widehat U_i^+)+F(\widehat U_{i+1}^-)-a(\widehat U_{i+1}^--\widehat U_i^+)\right],\qquad\mathcal E_{\Delta t}(\bar U)_i=\bar U_i-\frac{\Delta t}{\Delta x}(\widehat F_{i+1/2}-\widehat F_{i-1/2})U^{(1)}=\mathcal E_{\Delta t}(U^n),\qquad U^{(2)}=\tfrac34U^n+\tfrac14\mathcal E_{\Delta t}(U^{(1)}),\qquad U^{n+1}=\tfrac13U^n+\tfrac23\mathcal E_{\Delta t}(U^{(2)})a\ge\max_{i,\pm}(|u(\widehat U_i^\pm)|+c(\widehat U_i^\pm)),\qquad\frac{a\Delta t}{\Delta x}\le\tfrac12,\qquad\rho(\widehat U_i^\pm)>0,\quad p(\widehat U_i^\pm)>0
+
+## Euler double rarefaction: positivity at every stage — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-euler-positivity/#euler-double-rarefaction-positivity-validation
+Coverage: reading
+
+Freeze 27 unit tests and 73 gates over three grids before execution. Retain negative raw endpoint pressures, then separately measure limited endpoints, FE means, SSP convex means, theta and all three boundary-flux conservation budgets. Cross-check the closed symmetric fan against the prior independent logarithmic-pressure root evaluator; record errors/refinement against conserved Gauss8/16 cell means.
+
+## Euler double rarefaction: positivity at every stage — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-euler-positivity/#euler-double-rarefaction-positivity-limits
+Coverage: reading
+
+Evidence covers this one P1 FV update and fixed input, not general MUSCL/WENO/DG, characteristic reconstruction, reflecting walls, vacuum generation or multidimensional positivity. Unlimited central slopes have no TVD, maximum-principle or nonoscillation guarantee. Raw pressure is evaluated only where raw density is positive; nonpositive raw density has its own count. Reference pressure is p(mean conserved q), not mean pressure. Gallery plots are saved one-dimensional x-t fields, not two-dimensional flow. No ExactPack or separate PDE engine is executed.
+
+## Euler double rarefaction: positivity at every stage — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-euler-positivity/#euler-double-rarefaction-positivity-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+n512
+time0.15
+steps769
+stages2307
+density_l10.0137865356907
+pressure_l10.0143565346963
+density_linf0.0360151271185
+pressure_linf0.0199739243509
+velocity_linf0.0275663173676
+reference_quadrature_maximum1.33226762955e-15
+scaled_cells6
+maximum_face_spectral_radius2.77119182328
+maximum_courant0.4
+maximum_mean_preservation_defect2.22044604925e-16
+maximum_fe_boundary_balance_defect1.90819582357e-17
+maximum_rk_boundary_balance_defect8.45677694539e-17
+raw_endpoint_nonpositive_density_count0
+state_floor_count0
+rejected_steps0
+retries0
+raw_endpoint_min_density0.00973263121829
+raw_endpoint_min_pressure-0.6
+endpoint_min_density0.00973263121829
+endpoint_min_pressure1.0640377468e-13
+fe_mean_min_density0.00977432090215
+fe_mean_min_pressure0.00169446406356
+rk_mean_min_density0.00977443913337
+rk_mean_min_pressure0.00169449268658
+minimum_theta0.449489742783
+判定 / checkPassed
+all fixed refinements completedtrue
+N128: final timetrue
+N128: three records per full SSP steptrue
+N128: rk_mean_min_densitytrue
+N128: rk_mean_min_pressuretrue
+N128: endpoint_min_densitytrue
+N128: endpoint_min_pressuretrue
+N128: fe_mean_min_densitytrue
+N128: fe_mean_min_pressuretrue
+N128: maximum_face_spectral_radiustrue
+N128: maximum_couranttrue
+
+## Euler double rarefaction: positivity at every stage — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-euler-positivity/#euler-double-rarefaction-positivity-measurements
+Coverage: reading
+
+N128: maximum_mean_preservation_defecttrue
+N128: maximum_fe_boundary_balance_defecttrue
+N128: maximum_rk_boundary_balance_defecttrue
+N128: zero mass/energy floor injectionstrue
+N128: zero retries or rejected stepstrue
+N128: scaling actually exercisedtrue
+N128: raw nonadmissible reconstruction retainedtrue
+N128: mass boundary budgettrue
+N128: momentum boundary budgettrue
+N128: energy boundary budgettrue
+N128: split Gauss8/16 referencetrue
+N256: final timetrue
+N256: three records per full SSP steptrue
+N256: rk_mean_min_densitytrue
+N256: rk_mean_min_pressuretrue
+N256: endpoint_min_densitytrue
+N256: endpoint_min_pressuretrue
+N256: fe_mean_min_densitytrue
+N256: fe_mean_min_pressuretrue
+N256: maximum_face_spectral_radiustrue
+N256: maximum_couranttrue
+N256: maximum_mean_preservation_defecttrue
+N256: maximum_fe_boundary_balance_defecttrue
+N256: maximum_rk_boundary_balance_defecttrue
+N256: zero mass/energy floor injectionstrue
+N256: zero retries or rejected stepstrue
+N256: scaling actually exercisedtrue
+N256: raw nonadmissible reconstruction retainedtrue
+N256: mass boundary budgettrue
+N256: momentum boundary budgettrue
+N256: energy boundary budgettrue
+N256: split Gauss8/16 referencetrue
+N512: final timetrue
+N512: three records per full SSP steptrue
+N512: rk_mean_min_densitytrue
+N512: rk_mean_min_pressuretrue
+N512: endpoint_min_densitytrue
+N512: endpoint_min_pressuretrue
+
+## Euler double rarefaction: positivity at every stage — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-euler-positivity/#euler-double-rarefaction-positivity-measurements
+Coverage: reading
+
+N512: fe_mean_min_densitytrue
+N512: fe_mean_min_pressuretrue
+N512: maximum_face_spectral_radiustrue
+N512: maximum_couranttrue
+N512: maximum_mean_preservation_defecttrue
+N512: maximum_fe_boundary_balance_defecttrue
+N512: maximum_rk_boundary_balance_defecttrue
+N512: zero mass/energy floor injectionstrue
+N512: zero retries or rejected stepstrue
+N512: scaling actually exercisedtrue
+N512: raw nonadmissible reconstruction retainedtrue
+N512: mass boundary budgettrue
+N512: momentum boundary budgettrue
+N512: energy boundary budgettrue
+N512: split Gauss8/16 referencetrue
+finest density_l1true
+density_l1 refinement ratio 1true
+density_l1 refinement ratio 2true
+finest pressure_l1true
+pressure_l1 refinement ratio 1true
+pressure_l1 refinement ratio 2true
+reference: star_pressure_absolute_differencetrue
+reference: independent_root_point_maximum_differencetrue
+reference: maximum_scaled_euler_residualtrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Density/pressure of the strong double rarefaction: x-t views of saved one-dimensional evolution, not two-dimensional flow.Read every stored record
+
+## Euler double rarefaction: positivity at every stage — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-euler-positivity/#euler-double-rarefaction-positivity-measurements
+Coverage: reading
+
+ntimestepsstagesdensity_l1pressure_l1density_linfpressure_linfvelocity_linfreference_quadrature_maximumscaled_cellsmaximum_face_spectral_radiusmaximum_courantmaximum_mean_preservation_defectmaximum_fe_boundary_balance_defectmaximum_rk_boundary_balance_defectraw_endpoint_nonpositive_density_countinitial_integralfinal_integralboundary_net_integralconservation_residualconservation_relativestate_floor_countrejected_stepsretriesraw_endpoint_min_densityraw_endpoint_min_pressureendpoint_min_densityendpoint_min_pressurefe_mean_min_densityfe_mean_min_pressurerk_mean_min_densityrk_mean_min_pressureminimum_thetafieldhistory
+1280.151925760.05274876937790.04606268146540.07954764444280.04392608962340.1230085795458.881784197e-1662.771191823280.42.22044604925e-164.85722573274e-171.83880688454e-160[1.0,0.0,3.0][0.4001271124036316,-4.85722573273506e-17,0.9606244195598075][-0.5998728875963634,0.0,-2.0393755804401787][-4.9960036108132044e-15,-4.85722573273506e-17,-1.3766765505351941e-14][3.1227503444471525e-15,4.85722573273506e-17,2.7318395474999388e-15]0000.0104666636747-0.60.01046666367471.0640377468e-130.01049992344750.001866034869130.01052403712420.001871901340530.449489742783field-n128.npzstages-n128.json
+
+## Euler double rarefaction: positivity at every stage — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-euler-positivity/#euler-double-rarefaction-positivity-measurements
+Coverage: reading
+
+2560.1538411520.02773269663060.02696618199950.05635965438180.03122128856390.04343034671771.7763568394e-1562.771191823280.42.22044604925e-162.51534904017e-171.22298005056e-160[1.0,0.0,3.0][0.3999972283193048,6.938893903907228e-18,0.9599864217668014][-0.600002771680688,0.0,-2.0400135782331827][-7.216449660063518e-15,6.938893903907228e-18,-1.5987211554602254e-14][4.510273224391452e-15,6.938893903907228e-18,3.172057238823293e-15]0000.00973263121829-0.60.009732631218291.0640377468e-130.009774320902150.001694464063560.009774439133370.001694492686580.449489742783field-n256.npzstages-n256.json
+5120.1576923070.01378653569070.01435653469630.03601512711850.01997392435090.02756631736761.33226762955e-1562.771191823280.42.22044604925e-161.90819582357e-178.45677694539e-170[1.0,0.0,3.0][0.40000003166389897,2.862293735361732e-17,0.9600001550468746][-0.5999999683360934,0.0,-2.039999844953108][-7.66053886991358e-15,2.862293735361732e-17,-1.7319479184152442e-14][4.787836888447e-15,2.862293735361732e-17,3.4364047057452995e-15]0000.00973263121829-0.60.009732631218291.0640377468e-130.009774320902150.001694464063560.009774439133370.001694492686580.449489742783field-n512.npzstages-n512.json
+Measurements and complete records / JSON
+
+## Euler double rarefaction: positivity at every stage — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-euler-positivity/#euler-double-rarefaction-positivity-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Xiangxiong Zhang and Chi-Wang Shu (2010). On positivity-preserving high order discontinuous Galerkin schemes for compressible Euler equations on rectangular meshes · DOI: 10.1016/j.jcp.2010.08.016
+Review scope / review_level: author manuscript selected sections actually inspected: §2 Theorem2.1, Remarks2.2/2.4/2.6/2.7; §4.3 distinguishes vacuum input
+Inspected positivity conditions, LF proof, stage limiting and speed-bound caution. This applies the framework to P1 FV; it does not reproduce the paper’s vacuum test or third-order DG scheme.
+David I. Ketcheson, Randall J. LeVeque and Mauricio J. del Razo (2020). Riemann Problems and Jupyter Solutions: The Euler equations of gas dynamics · DOI: 10.1137/1.9781611976212
+Review scope / review_level: official chapter sections Riemann invariants, exact solution, symmetric expansion and vacuum; official exact_solvers/euler.py integral_curve_1/3 inspected read-only
+Read the official invariants, symmetric expansion and vacuum conditions. The fixed values inherit the existing atlas case and differ from this chapter’s example. No Clawpack software is executed or copied.
+
+## Euler double rarefaction: positivity at every stage — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-euler-positivity/#euler-double-rarefaction-positivity-references
+Coverage: reading
+
+Chi-Wang Shu and Stanley Osher (1988). Efficient implementation of essentially non-oscillatory shock-capturing schemes · DOI: 10.1016/0021-9991(88)90177-5
+Review scope / review_level: publisher bibliographic record and abstract only; no full-paper audit
+Publisher record and abstract reviewed; the full paper and numerical experiments were not audited. The convex-combination positivity application was also checked in the Zhang–Shu manuscript.
+Eleuterio F. Toro (2009). Riemann Solvers and Numerical Methods for Fluid Dynamics: A Practical Introduction · DOI: 10.1007/b79761
+Review scope / review_level: publisher bibliography and chapter4 title/pages115–162 only; full text not inspected
+Publisher metadata and Euler Riemann chapter listing checked. This inspection alone does not establish the first historical source of the fixed numerical data.
+Hiroshi Koyama (2026). Numerical Methods Atlas: released independent Euler Riemann evaluator
+Review scope / review_level: local immutable source inspected; copied without changes with SHA and MIT license; execution recorded by tests, not presumed
+The prior logarithmic-pressure root and fan evaluator provide a separate algebraic check, with SHA and MIT terms. It is not a different PDE engine; execution is established by test receipts.
 
 ## Mach-3 forward-facing step: lightweight 2D verification — Mach-3 forward-facing step: lightweight 2D verification [en]
 
@@ -28463,7 +28711,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/advanced-limi
 Coverage: reading
 
 完全な正値性保存Euler法には、整合する正値性保存流束、界面状態を含む正の求積分解、対応する波速／CFL制約、必要な全段階での制限も必要です。SSP時間積分が前進Eulerの正値性を伝えるのは、その性質と刻み制約が既に成り立つ場合だけです。ソース項と境界処理にも独自の検証が必要です。
-この補助関数は既存のEuler MUSCL、差分WENO、CT／GLM、KEEPの時間更新へ接続していません。既存の限界はそのままです。今後は各段階の許容性・保存性、真空近傍の二重膨張波、強い爆風を確認してから、時間全体の正値性を主張すべきです。多次元・非理想状態方程式にも追加解析が必要です。
+従来のNumart配布版では、この補助関数は既存のEuler MUSCL、差分WENO、CT／GLM、KEEPの時間更新へ接続されていません。その配布版と既存ソルバーの限界は保持します。別配布の追加例で1次元Euler MUSCLの段階更新を確認しますが、差分WENO・CT／GLM・KEEP・強い爆風・多次元・非理想状態方程式は今回の確認範囲に含みません。
 
 ## 前処理、二重時間積分、残差分配法 [ja]
 
@@ -38097,7 +38345,7 @@ Coverage: reading
 
 公開Web版、集計日2026-11-22。数えるのはカタログ項目と記載した実験例です。すべての項目が検証済みの完全なソルバーであるという意味ではありません。
 方程式・モデル46項目・計算法と構成要素131項目・学術誌／会議論文243件・全参考資料300件。
-保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め100章です。
+保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め101章です。
 
 ## 収録範囲と数え方 — 方程式とモデル# [ja]
 
@@ -40485,6 +40733,251 @@ NASA Advanced Supercomputing Division, LAVA team (n.d.). Double Mach Reflection 
 Hiroshi Koyama (2026). Independent finite-volume references distributed with the RKDG2D agent kit, 2026-11-23-r2
 確認範囲 / review_level: hash-checked-selected-public-archive-artifacts
 保存済みの独立2D FV-MUSCL/HLL/Heun参照のソース・2格子データ・実行記録を不変ZIPから選択取得。今回の参照PDE再実行や別のAthena/LAVA実行ではありません。主計算とHLLという流束族は共有しますが、参照は主計算の空間演算をimportしない別実装です。
+
+## Euler二重膨張波：段階ごとの正値性 — Euler二重膨張波：段階ごとの正値性 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-euler-positivity/
+Coverage: reading
+
+強い二重膨張波を1次元MUSCL有限体積法・Lax–Friedrichs流束・SSPRK(3,3)で解きます。平均を保つ正値状態スケーリングを各段に接続し、許容CFL、セル平均と再構成面の密度・圧力、共有境界流束による保存収支を分けて確認します。
+
+## Euler二重膨張波：段階ごとの正値性 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-euler-positivity/#run-all
+Coverage: reading
+
+ZIPの atlas-euler-positivity-2026-11-23-r2 フォルダで実行します。このコマンドは配布版の全1例を実行します。新規または空の出力先を指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## Euler二重膨張波：段階ごとの正値性 — Euler二重膨張波：段階ごとの正値性 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-euler-positivity/
+Coverage: reading
+
+既存の強い二重希薄波を128/256/512セルで計算し、平均保存型の正値性スケーリングをMUSCL・大域LF流束・SSPRK(3,3)へ接続します。各前進Euler段と各SSP凸結合の密度・圧力・境界保存収支を記録します。
+手法・式・図・参照解
+使用手法
+Lax–Friedrichs法
+MUSCL再構成
+平均を保つ正値状態スケーリング
+SSPRK(3,3)
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+保存量の無制限中央線形再構築を行い、セル平均と左右2端点へ共通の係数θを用いて密度・圧力を正にします。端点平均は元の保存量平均のままです。共有LF流束による前進Euler更新をSSPRK(3,3)で凸結合し、各段の流束前に再構築と制限をやり直します。ε=10⁻¹³は再構築の目標で、密度・エネルギーを加えるfloorではありません。平均の修復・無言の刻み再試行は行いません。
+圧縮性Euler方程式
+γ=1.4の無外力1次元Euler保存系。セル平均の密度・運動量・全エネルギーを、線形保存量MUSCL再構成と共有Lax–Friedrichs流束で更新します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+Euler二重膨張波
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+27単体検査と3格子73判定を実行前に固定します。スケーリング前に生じる負の端点圧力を保持し、制限後の端点・前進Euler平均・SSP凸結合平均、θ、全3保存量の境界流束収支を別々に測ります。閉形式の対称希薄波と既存の独立な対数圧力根探索を照合し、保存量のGauss8/16セル平均との誤差と格子細分化を記録します。
+関連モデルの参照 · 半解析参照
+Euler／二重膨張波
+γ=1.4、左右(1,-2,0.4)/(1,2,0.4)、[0,1]、x0=0.5、t=0.15が保存プレビューと一致します。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。
+
+## Euler二重膨張波：段階ごとの正値性 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-euler-positivity/#euler-double-rarefaction-positivity-assumptions
+Coverage: reading
+
+γ1.4、x∈[0,1]、x0=.5、左右状態(ρ,u,p)=(1,−2,.4)/(1,2,.4)、T=.15を固定します。中心の密度・圧力は小さいものの正で、真空生成例ではありません。大域LF分離速度a=4、dt·a/dx≤.4を固定し、実際の全端点の|u|+c≤aと十分条件dt·a/dx≤1/2を確認します。
+
+## Euler二重膨張波：段階ごとの正値性 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-euler-positivity/#euler-double-rarefaction-positivity-algorithm
+Coverage: reading
+
+保存量の無制限中央線形再構築を行い、セル平均と左右2端点へ共通の係数θを用いて密度・圧力を正にします。端点平均は元の保存量平均のままです。共有LF流束による前進Euler更新をSSPRK(3,3)で凸結合し、各段の流束前に再構築と制限をやり直します。ε=10⁻¹³は再構築の目標で、密度・エネルギーを加えるfloorではありません。平均の修復・無言の刻み再試行は行いません。
+\partial_t U+\partial_x F(U)=0,\qquad U=(\rho,m,E)^T,\quad F=(m,m^2/\rho+p,(E+p)m/\rho)^T,\quad p=(\gamma-1)(E-m^2/(2\rho))U_i^{\pm}=\bar U_i\pm\delta U_i,\qquad\widehat U_i^{\pm}=\bar U_i+\theta_i(U_i^{\pm}-\bar U_i),\quad0\le\theta_i\le1,\qquad\tfrac12(\widehat U_i^-+\widehat U_i^+)=\bar U_i\widehat F_{i+1/2}=\tfrac12\!\left[F(\widehat U_i^+)+F(\widehat U_{i+1}^-)-a(\widehat U_{i+1}^--\widehat U_i^+)\right],\qquad\mathcal E_{\Delta t}(\bar U)_i=\bar U_i-\frac{\Delta t}{\Delta x}(\widehat F_{i+1/2}-\widehat F_{i-1/2})U^{(1)}=\mathcal E_{\Delta t}(U^n),\qquad U^{(2)}=\tfrac34U^n+\tfrac14\mathcal E_{\Delta t}(U^{(1)}),\qquad U^{n+1}=\tfrac13U^n+\tfrac23\mathcal E_{\Delta t}(U^{(2)})a\ge\max_{i,\pm}(|u(\widehat U_i^\pm)|+c(\widehat U_i^\pm)),\qquad\frac{a\Delta t}{\Delta x}\le\tfrac12,\qquad\rho(\widehat U_i^\pm)>0,\quad p(\widehat U_i^\pm)>0
+
+## Euler二重膨張波：段階ごとの正値性 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-euler-positivity/#euler-double-rarefaction-positivity-validation
+Coverage: reading
+
+27単体検査と3格子73判定を実行前に固定します。スケーリング前に生じる負の端点圧力を保持し、制限後の端点・前進Euler平均・SSP凸結合平均、θ、全3保存量の境界流束収支を別々に測ります。閉形式の対称希薄波と既存の独立な対数圧力根探索を照合し、保存量のGauss8/16セル平均との誤差と格子細分化を記録します。
+
+## Euler二重膨張波：段階ごとの正値性 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-euler-positivity/#euler-double-rarefaction-positivity-limits
+Coverage: reading
+
+この一つのP1有限体積更新と固定入力の検証です。一般のMUSCL/WENO/DG、特性再構築、反射壁、真空生成、2D/3Dの正値性を認証しません。空間再構築は無制限中央傾きで、TVD・最大値原理・無振動性を保証しません。生の端点圧力は密度が正の端点だけで評価し、密度≤0は別に数えます。圧力参照は保存量セル平均から評価するp(q̄)で、平均圧力とは異なります。ギャラリー図は保存した1次元場のx–t表示であり、2次元流体計算ではありません。ExactPackや別のPDEエンジンを実行した例ではありません。
+
+## Euler二重膨張波：段階ごとの正値性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-euler-positivity/#euler-double-rarefaction-positivity-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+n512
+time0.15
+steps769
+stages2307
+density_l10.0137865356907
+pressure_l10.0143565346963
+density_linf0.0360151271185
+pressure_linf0.0199739243509
+velocity_linf0.0275663173676
+reference_quadrature_maximum1.33226762955e-15
+scaled_cells6
+maximum_face_spectral_radius2.77119182328
+maximum_courant0.4
+maximum_mean_preservation_defect2.22044604925e-16
+maximum_fe_boundary_balance_defect1.90819582357e-17
+maximum_rk_boundary_balance_defect8.45677694539e-17
+raw_endpoint_nonpositive_density_count0
+state_floor_count0
+rejected_steps0
+retries0
+raw_endpoint_min_density0.00973263121829
+raw_endpoint_min_pressure-0.6
+endpoint_min_density0.00973263121829
+endpoint_min_pressure1.0640377468e-13
+fe_mean_min_density0.00977432090215
+fe_mean_min_pressure0.00169446406356
+rk_mean_min_density0.00977443913337
+rk_mean_min_pressure0.00169449268658
+minimum_theta0.449489742783
+判定 / check合格
+all fixed refinements completedtrue
+N128: final timetrue
+N128: three records per full SSP steptrue
+N128: rk_mean_min_densitytrue
+N128: rk_mean_min_pressuretrue
+N128: endpoint_min_densitytrue
+N128: endpoint_min_pressuretrue
+N128: fe_mean_min_densitytrue
+N128: fe_mean_min_pressuretrue
+N128: maximum_face_spectral_radiustrue
+N128: maximum_couranttrue
+N128: maximum_mean_preservation_defecttrue
+N128: maximum_fe_boundary_balance_defecttrue
+
+## Euler二重膨張波：段階ごとの正値性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-euler-positivity/#euler-double-rarefaction-positivity-measurements
+Coverage: reading
+
+N128: maximum_rk_boundary_balance_defecttrue
+N128: zero mass/energy floor injectionstrue
+N128: zero retries or rejected stepstrue
+N128: scaling actually exercisedtrue
+N128: raw nonadmissible reconstruction retainedtrue
+N128: mass boundary budgettrue
+N128: momentum boundary budgettrue
+N128: energy boundary budgettrue
+N128: split Gauss8/16 referencetrue
+N256: final timetrue
+N256: three records per full SSP steptrue
+N256: rk_mean_min_densitytrue
+N256: rk_mean_min_pressuretrue
+N256: endpoint_min_densitytrue
+N256: endpoint_min_pressuretrue
+N256: fe_mean_min_densitytrue
+N256: fe_mean_min_pressuretrue
+N256: maximum_face_spectral_radiustrue
+N256: maximum_couranttrue
+N256: maximum_mean_preservation_defecttrue
+N256: maximum_fe_boundary_balance_defecttrue
+N256: maximum_rk_boundary_balance_defecttrue
+N256: zero mass/energy floor injectionstrue
+N256: zero retries or rejected stepstrue
+N256: scaling actually exercisedtrue
+N256: raw nonadmissible reconstruction retainedtrue
+N256: mass boundary budgettrue
+N256: momentum boundary budgettrue
+N256: energy boundary budgettrue
+N256: split Gauss8/16 referencetrue
+N512: final timetrue
+N512: three records per full SSP steptrue
+N512: rk_mean_min_densitytrue
+N512: rk_mean_min_pressuretrue
+N512: endpoint_min_densitytrue
+N512: endpoint_min_pressuretrue
+N512: fe_mean_min_densitytrue
+N512: fe_mean_min_pressuretrue
+N512: maximum_face_spectral_radiustrue
+
+## Euler二重膨張波：段階ごとの正値性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-euler-positivity/#euler-double-rarefaction-positivity-measurements
+Coverage: reading
+
+N512: maximum_couranttrue
+N512: maximum_mean_preservation_defecttrue
+N512: maximum_fe_boundary_balance_defecttrue
+N512: maximum_rk_boundary_balance_defecttrue
+N512: zero mass/energy floor injectionstrue
+N512: zero retries or rejected stepstrue
+N512: scaling actually exercisedtrue
+N512: raw nonadmissible reconstruction retainedtrue
+N512: mass boundary budgettrue
+N512: momentum boundary budgettrue
+N512: energy boundary budgettrue
+N512: split Gauss8/16 referencetrue
+finest density_l1true
+density_l1 refinement ratio 1true
+density_l1 refinement ratio 2true
+finest pressure_l1true
+pressure_l1 refinement ratio 1true
+pressure_l1 refinement ratio 2true
+reference: star_pressure_absolute_differencetrue
+reference: independent_root_point_maximum_differencetrue
+reference: maximum_scaled_euler_residualtrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。強い二重希薄波の密度・圧力：保存した1次元計算のx–t図（2次元流体計算ではない）。全記録を表で読む
+
+## Euler二重膨張波：段階ごとの正値性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-euler-positivity/#euler-double-rarefaction-positivity-measurements
+Coverage: reading
+
+ntimestepsstagesdensity_l1pressure_l1density_linfpressure_linfvelocity_linfreference_quadrature_maximumscaled_cellsmaximum_face_spectral_radiusmaximum_courantmaximum_mean_preservation_defectmaximum_fe_boundary_balance_defectmaximum_rk_boundary_balance_defectraw_endpoint_nonpositive_density_countinitial_integralfinal_integralboundary_net_integralconservation_residualconservation_relativestate_floor_countrejected_stepsretriesraw_endpoint_min_densityraw_endpoint_min_pressureendpoint_min_densityendpoint_min_pressurefe_mean_min_densityfe_mean_min_pressurerk_mean_min_densityrk_mean_min_pressureminimum_thetafieldhistory
+1280.151925760.05274876937790.04606268146540.07954764444280.04392608962340.1230085795458.881784197e-1662.771191823280.42.22044604925e-164.85722573274e-171.83880688454e-160[1.0,0.0,3.0][0.4001271124036316,-4.85722573273506e-17,0.9606244195598075][-0.5998728875963634,0.0,-2.0393755804401787][-4.9960036108132044e-15,-4.85722573273506e-17,-1.3766765505351941e-14][3.1227503444471525e-15,4.85722573273506e-17,2.7318395474999388e-15]0000.0104666636747-0.60.01046666367471.0640377468e-130.01049992344750.001866034869130.01052403712420.001871901340530.449489742783field-n128.npzstages-n128.json
+
+## Euler二重膨張波：段階ごとの正値性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-euler-positivity/#euler-double-rarefaction-positivity-measurements
+Coverage: reading
+
+2560.1538411520.02773269663060.02696618199950.05635965438180.03122128856390.04343034671771.7763568394e-1562.771191823280.42.22044604925e-162.51534904017e-171.22298005056e-160[1.0,0.0,3.0][0.3999972283193048,6.938893903907228e-18,0.9599864217668014][-0.600002771680688,0.0,-2.0400135782331827][-7.216449660063518e-15,6.938893903907228e-18,-1.5987211554602254e-14][4.510273224391452e-15,6.938893903907228e-18,3.172057238823293e-15]0000.00973263121829-0.60.009732631218291.0640377468e-130.009774320902150.001694464063560.009774439133370.001694492686580.449489742783field-n256.npzstages-n256.json
+5120.1576923070.01378653569070.01435653469630.03601512711850.01997392435090.02756631736761.33226762955e-1562.771191823280.42.22044604925e-161.90819582357e-178.45677694539e-170[1.0,0.0,3.0][0.40000003166389897,2.862293735361732e-17,0.9600001550468746][-0.5999999683360934,0.0,-2.039999844953108][-7.66053886991358e-15,2.862293735361732e-17,-1.7319479184152442e-14][4.787836888447e-15,2.862293735361732e-17,3.4364047057452995e-15]0000.00973263121829-0.60.009732631218291.0640377468e-130.009774320902150.001694464063560.009774439133370.001694492686580.449489742783field-n512.npzstages-n512.json
+この例の実測値・全記録 / JSON
+
+## Euler二重膨張波：段階ごとの正値性 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-euler-positivity/#euler-double-rarefaction-positivity-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Xiangxiong Zhang and Chi-Wang Shu (2010). On positivity-preserving high order discontinuous Galerkin schemes for compressible Euler equations on rectangular meshes · DOI: 10.1016/j.jcp.2010.08.016
+確認範囲 / review_level: author manuscript selected sections actually inspected: §2 Theorem2.1, Remarks2.2/2.4/2.6/2.7; §4.3 distinguishes vacuum input
+著者稿の定理・LF条件・各SSP段階への適用と波速見積りの注意を確認。P1有限体積への限定適用で、原著の真空例・3次DGを再現したとは扱いません。
+David I. Ketcheson, Randall J. LeVeque and Mauricio J. del Razo (2020). Riemann Problems and Jupyter Solutions: The Euler equations of gas dynamics · DOI: 10.1137/1.9781611976212
+確認範囲 / review_level: official chapter sections Riemann invariants, exact solution, symmetric expansion and vacuum; official exact_solvers/euler.py integral_curve_1/3 inspected read-only
+公式章の希薄波不変量と対称膨張・真空条件を確認。今回の固定値は既存アトラスの入力を継承し、同章の数値例そのものとは区別します。Clawpackコードは実行・転載しません。
+Chi-Wang Shu and Stanley Osher (1988). Efficient implementation of essentially non-oscillatory shock-capturing schemes · DOI: 10.1016/0021-9991(88)90177-5
+確認範囲 / review_level: publisher bibliographic record and abstract only; no full-paper audit
+出版社の書誌とTVD型Runge–Kuttaの抄録を確認。原著全文・全数値実験の監査ではありません。SSP凸結合による正値性の議論はZhang–Shu著者稿でも確認。
+
+## Euler二重膨張波：段階ごとの正値性 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-euler-positivity/#euler-double-rarefaction-positivity-references
+Coverage: reading
+
+Eleuterio F. Toro (2009). Riemann Solvers and Numerical Methods for Fluid Dynamics: A Practical Introduction · DOI: 10.1007/b79761
+確認範囲 / review_level: publisher bibliography and chapter4 title/pages115–162 only; full text not inspected
+出版社で第3版・著者・年とEulerのRiemann問題の章を確認。固定数値の原典をこの閲覧だけで断定しません。
+Hiroshi Koyama (2026). Numerical Methods Atlas: released independent Euler Riemann evaluator
+確認範囲 / review_level: local immutable source inspected; copied without changes with SHA and MIT license; execution recorded by tests, not presumed
+既存の対数圧力根探索と希薄波評価を独立な式経路の照合に使います。実行記録とSHA・MIT条項を別に保存し、異なるPDE計算エンジンの検証とは表示しません。
 
 ## Mach 3前向きステップ：軽量な2次元検証 — Mach 3前向きステップ：軽量な2次元検証 [ja]
 

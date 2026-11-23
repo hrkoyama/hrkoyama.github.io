@@ -34,10 +34,10 @@ print('invalid metadata rejected before scientific execution')`;
 
 test('Guderley adds one physical problem while preserving seventeen releases and all eighty-five earlier pictures',()=>{
  const registry=json('numerical-methods-atlas/validation/releases.json');
- assert.equal(objectHash(registry.releases.filter(r=>r.group!=='guderley')),'b95903d012a9887e306fcf32ee3955420226f179b2ab9861acd3a9aea94c54b6');
- assert.equal(registry.case_count,47);assert.equal(registry.releases.length,18);
+ assert.equal(objectHash(registry.releases.filter(r=>!['guderley','euler-positivity'].includes(r.group))),'b95903d012a9887e306fcf32ee3955420226f179b2ab9861acd3a9aea94c54b6');
+ assert.equal(registry.case_count,48);assert.equal(registry.releases.length,19);
  const release=registry.releases.find(r=>r.group==='guderley');assert.deepEqual(release.case_ids,['guderley-implosion']);
- assert.equal(registry.releases.reduce((s,r)=>s+r.tests,0),538+release.tests);
+ assert.equal(registry.releases.filter(r=>r.group!=='euler-positivity').reduce((s,r)=>s+r.tests,0),538+release.tests);
  const pictures=json('numerical-methods-atlas/gallery/preview-manifest.json').items.filter(r=>r.id!=='guderley').map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}));
  assert.equal(pictures.length,85);assert.equal(objectHash(pictures),'2a351e7c3700902a8c862474c75f7c2bd985b2c3312d573bdc9e2187f8def7f4');
  assert.equal(json('catalog/atlas-test-problems.json').problems.length,86);

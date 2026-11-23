@@ -237,6 +237,21 @@ for lang in ['ja','en']:
         content=documents[lang];text=re.sub(re.escape(marker)+'.*?'+re.escape(end),'',content[ident]['html'],flags=re.S);content[ident]['html']=note+text
     write(ATLAS/f'content.{lang}.json',documents[lang])
     if lang=='en':write(ATLAS/'content.json',documents[lang])
+# Keep the original standalone-limiter exposition and point to the fully
+# discrete, separately scoped finite-volume update without rewriting history.
+for lang in ['ja','en']:
+    marker='<!-- euler-stage-positivity-followup -->';end='<!-- /euler-stage-positivity-followup -->'
+    message=('従来の配布版は平均を保つスケーリングの部品検査です。追加版では同じ操作を1次元Eulerの保存量MUSCL・Lax–Friedrichs流束・SSPRK(3,3)の各段に接続し、強い二重膨張波の平均・面状態・保存収支を確認します。十分CFLと波速条件を明記し、DG・WENO・MHD全体の正値性保証とは区別します。' if lang=='ja' else 'The original release checks mean-preserving scaling as a standalone helper. An additional release connects the operation to every stage of a one-dimensional conservative-MUSCL, Lax–Friedrichs, SSPRK(3,3) Euler update and checks means, faces and conservation in a strong double rarefaction. Its sufficient CFL and wave-speed conditions remain distinct from general DG, WENO or MHD positivity guarantees.')
+    note=marker+'<aside class="callout" id="euler-stage-positivity-followup"><p>'+escape(message)+'</p><p>'+link('/numerical-methods-atlas/validation/euler-double-rarefaction-positivity/?lang='+lang,'段階ごとのEuler正値性を試す' if lang=='ja' else 'Run the Euler stage-positivity example')+'</p></aside>'+end
+    old_scope=('この補助関数は<strong>既存のEuler MUSCL、差分WENO、CT／GLM、KEEPの時間更新へ接続していません</strong>。既存の限界はそのままです。今後は各段階の許容性・保存性、真空近傍の二重膨張波、強い爆風を確認してから、時間全体の正値性を主張すべきです。多次元・非理想状態方程式にも追加解析が必要です。' if lang=='ja' else
+        'This helper is <strong>not wired into the existing Euler MUSCL, finite-difference\nWENO, CT/GLM, or KEEP time updates</strong>. Those solvers retain their documented\nlimitations. A future complete implementation should add stage-by-stage\nadmissibility and conservation checks, near-vacuum double rarefaction, and\nstrong blast-wave tests before claiming positivity preservation over time.\nMultidimensional and non-ideal-EOS extensions need additional analysis.')
+    new_scope=('従来のNumart配布版では、この補助関数は<strong>既存のEuler MUSCL、差分WENO、CT／GLM、KEEPの時間更新へ接続されていません</strong>。その配布版と既存ソルバーの限界は保持します。別配布の追加例で1次元Euler MUSCLの段階更新を確認しますが、差分WENO・CT／GLM・KEEP・強い爆風・多次元・非理想状態方程式は今回の確認範囲に含みません。' if lang=='ja' else
+        'In the original Numart release, this helper is <strong>not wired into the existing Euler MUSCL, finite-difference WENO, CT/GLM, or KEEP time updates</strong>. That immutable release and the existing solvers retain their documented limitations. A separately distributed example now checks one-dimensional Euler MUSCL stage updates. Finite-difference WENO, CT/GLM, KEEP, strong blasts, multidimensional flow and non-ideal equations of state remain outside this verification.')
+    path=ATLAS/lang/'read/advanced-limiters/index.html';text=re.sub(re.escape(marker)+'.*?'+re.escape(end),'',path.read_text(),flags=re.S).replace(old_scope,new_scope)
+    path.write_text(re.sub(r'<article\b[^>]*>',lambda m:m[0]+note,text,count=1))
+    content=documents[lang];text=re.sub(re.escape(marker)+'.*?'+re.escape(end),'',content['advanced-limiters']['html'],flags=re.S).replace(old_scope,new_scope);content['advanced-limiters']['html']=note+text
+    write(ATLAS/f'content.{lang}.json',content)
+    if lang=='en':write(ATLAS/'content.json',content)
 # The imported atlas sitemap is additive; root sitemap is rebuilt later.
 path=ATLAS/'sitemap.xml';xml=ET.parse(path);root=xml.getroot();existing={x.text for x in root.findall('.//{*}loc')};ns='{http://www.sitemaps.org/schemas/sitemap/0.9}'
 for c in data['chapters']:

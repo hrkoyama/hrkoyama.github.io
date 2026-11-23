@@ -71,10 +71,10 @@ test('the two methods acquire only the verified dedicated release and the physic
   assert.ok(method.code_urls.every(url=>url.includes('/splitting/')));
  }
  const registry=json('numerical-methods-atlas/validation/releases.json');
- assert.equal(registry.releases.length,18);assert.equal(registry.case_count,47);
- assert.equal(registry.releases.filter(row=>!['noh','noh-cartesian','sedov','double-mach','forward-step','low-mach','guderley'].includes(row.group)).reduce((sum,row)=>sum+row.tests,0),388);
+ assert.equal(registry.releases.length,19);assert.equal(registry.case_count,48);
+ assert.equal(registry.releases.filter(row=>!['noh','noh-cartesian','sedov','double-mach','forward-step','low-mach','guderley','euler-positivity'].includes(row.group)).reduce((sum,row)=>sum+row.tests,0),388);
  assert.equal(registry.releases.find(row=>row.group==='noh').tests,28);
- assert.equal(registry.releases.reduce((sum,row)=>sum+row.tests,0),571);
+ assert.equal(registry.releases.filter(row=>row.group!=='euler-positivity').reduce((sum,row)=>sum+row.tests,0),571);
  const problems=json('numerical-methods-atlas/test-cases/index.json').problems;
  assert.equal(problems.length,86);
  assert.deepEqual(problems.filter(p=>(p.supplemental_examples||[]).some(x=>x.id===id)).map(x=>x.id),['turing-schnakenberg']);

@@ -1,0 +1,93 @@
+[
+  {
+    "id": "zhang2010positivity",
+    "author": "Xiangxiong Zhang and Chi-Wang Shu",
+    "year": 2010,
+    "title": "On positivity-preserving high order discontinuous Galerkin schemes for compressible Euler equations on rectangular meshes",
+    "journal": "Journal of Computational Physics",
+    "volume": "229",
+    "number": "23",
+    "pages": "8918–8934",
+    "doi": "10.1016/j.jcp.2010.08.016",
+    "url": "https://www.math.purdue.edu/~zhan1966/research/paper/euler.pdf",
+    "type": "article",
+    "role": "positivity theorem and conservative scaling; FV application",
+    "review_level": "author manuscript selected sections actually inspected: §2 Theorem2.1, Remarks2.2/2.4/2.6/2.7; §4.3 distinguishes vacuum input",
+    "review": {
+      "ja": "著者稿の定理・LF条件・各SSP段階への適用と波速見積りの注意を確認。P1有限体積への限定適用で、原著の真空例・3次DGを再現したとは扱いません。",
+      "en": "Inspected positivity conditions, LF proof, stage limiting and speed-bound caution. This applies the framework to P1 FV; it does not reproduce the paper’s vacuum test or third-order DG scheme."
+    },
+    "accessed_on": "2026-11-23"
+  },
+  {
+    "id": "clawpack-euler-riemann",
+    "author": "David I. Ketcheson, Randall J. LeVeque and Mauricio J. del Razo",
+    "title": "Riemann Problems and Jupyter Solutions: The Euler equations of gas dynamics",
+    "url": "https://www.clawpack.org/riemann_book/html/Euler.html",
+    "type": "online-book-chapter",
+    "role": "analytic Riemann invariants and symmetric-expansion reference derivation",
+    "review_level": "official chapter sections Riemann invariants, exact solution, symmetric expansion and vacuum; official exact_solvers/euler.py integral_curve_1/3 inspected read-only",
+    "review": {
+      "ja": "公式章の希薄波不変量と対称膨張・真空条件を確認。今回の固定値は既存アトラスの入力を継承し、同章の数値例そのものとは区別します。Clawpackコードは実行・転載しません。",
+      "en": "Read the official invariants, symmetric expansion and vacuum conditions. The fixed values inherit the existing atlas case and differ from this chapter’s example. No Clawpack software is executed or copied."
+    },
+    "accessed_on": "2026-11-23",
+    "year": 2020,
+    "publisher": "SIAM",
+    "doi": "10.1137/1.9781611976212",
+    "bibliographic_url": "https://www.clawpack.org/riemann_book/"
+  },
+  {
+    "id": "shu1988ssprk",
+    "author": "Chi-Wang Shu and Stanley Osher",
+    "year": 1988,
+    "title": "Efficient implementation of essentially non-oscillatory shock-capturing schemes",
+    "journal": "Journal of Computational Physics",
+    "volume": "77",
+    "number": "2",
+    "pages": "439–471",
+    "doi": "10.1016/0021-9991(88)90177-5",
+    "url": "https://www.sciencedirect.com/science/article/pii/0021999188901775",
+    "type": "article",
+    "role": "historical SSP/TVD Runge-Kutta time-discretization source",
+    "review_level": "publisher bibliographic record and abstract only; no full-paper audit",
+    "review": {
+      "ja": "出版社の書誌とTVD型Runge–Kuttaの抄録を確認。原著全文・全数値実験の監査ではありません。SSP凸結合による正値性の議論はZhang–Shu著者稿でも確認。",
+      "en": "Publisher record and abstract reviewed; the full paper and numerical experiments were not audited. The convex-combination positivity application was also checked in the Zhang–Shu manuscript."
+    },
+    "accessed_on": "2026-11-23"
+  },
+  {
+    "id": "toro2009riemann",
+    "author": "Eleuterio F. Toro",
+    "year": 2009,
+    "title": "Riemann Solvers and Numerical Methods for Fluid Dynamics: A Practical Introduction",
+    "edition": "3",
+    "publisher": "Springer Berlin, Heidelberg",
+    "doi": "10.1007/b79761",
+    "url": "https://link.springer.com/book/10.1007/b79761",
+    "type": "book",
+    "role": "general Euler Riemann problem background; not unique original test attribution",
+    "review_level": "publisher bibliography and chapter4 title/pages115–162 only; full text not inspected",
+    "review": {
+      "ja": "出版社で第3版・著者・年とEulerのRiemann問題の章を確認。固定数値の原典をこの閲覧だけで断定しません。",
+      "en": "Publisher metadata and Euler Riemann chapter listing checked. This inspection alone does not establish the first historical source of the fixed numerical data."
+    },
+    "accessed_on": "2026-11-23"
+  },
+  {
+    "id": "atlas-riemann-2026",
+    "author": "Hiroshi Koyama",
+    "year": 2026,
+    "title": "Numerical Methods Atlas: released independent Euler Riemann evaluator",
+    "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/reference_riemann.py",
+    "type": "software",
+    "role": "actually executed separate log-root reference cross-check; no separate PDE solver",
+    "review_level": "local immutable source inspected; copied without changes with SHA and MIT license; execution recorded by tests, not presumed",
+    "review": {
+      "ja": "既存の対数圧力根探索と希薄波評価を独立な式経路の照合に使います。実行記録とSHA・MIT条項を別に保存し、異なるPDE計算エンジンの検証とは表示しません。",
+      "en": "The prior logarithmic-pressure root and fan evaluator provide a separate algebraic check, with SHA and MIT terms. It is not a different PDE engine; execution is established by test receipts."
+    },
+    "accessed_on": "2026-11-23"
+  }
+]

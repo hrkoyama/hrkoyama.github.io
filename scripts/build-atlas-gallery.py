@@ -76,7 +76,8 @@ for problem in inventory['problems']:
         extra_entries.append({'id': extra['id'], 'title': supplement['title'], 'group': supplement['group'],
             'url': {lang: ORIGIN + supplement['url'] + '?lang=' + lang for lang in ['ja', 'en']},
             **{key: supplement[key] for key in ['code_urls', 'test_urls']},
-            **{key: ORIGIN + supplement[key] for key in ['download', 'results', 'verification']}})
+            **{key: ORIGIN + supplement[key] for key in ['download', 'results', 'verification']},
+            **({'preview': supplement['gallery_preview']} if 'gallery_preview' in supplement else {})})
     items.append({**problem, **image, 'visual_input': inputs[problem['id']], 'width': width, 'height': height,
                   'gallery_url': ORIGIN + ROUTE + '#' + problem['id'] + '-ja',
                   'problem_page': {lang: problem_url(problem['id'], lang) for lang in ['ja', 'en']},
@@ -135,6 +136,10 @@ for lang in ['ja', 'en']:
             body += '<p class="gallery-execution-badge">' + link(destination, '実行・検証例あり →' if ja else 'Run and validate →') + '</p>'
         for extra in extras:
             body += '<p class="gallery-execution-badge gallery-supplemental-badge" data-supplemental-execution="' + extra['id'] + '">' + link(extra['url'][lang], ('補助実行例：' if ja else 'Supplementary run: ') + extra['title'][lang]) + '</p>'
+            if 'preview' in extra:
+                preview = extra['preview']
+                body += '<figure class="gallery-supplement-preview" data-supplemental-preview="' + esc(extra['id']) + '"><a href="' + esc(extra['url'][lang]) + '"><img src="' + esc(preview['url']) + '" alt="' + esc(preview['caption'][lang]) + '" width="' + str(preview['width']) + '" height="' + str(preview['height']) + '" loading="lazy" decoding="async"></a><figcaption>' + esc(preview['caption'][lang]) + '</figcaption></figure>'
+
         body += '<h2>' + link(hub, x['name'][lang]) + '</h2><p>' + esc(x['caption'][lang]) + '</p><p class="gallery-meta">' + source_labels[x['source_kind']][lang] + (' · 英語の解説（日本語版未公開）' if fallback else '') + '</p><nav class="gallery-card-links">'
         body += link(reading, '解説へ →' if ja else 'Read →') + link('/numerical-methods-atlas/test-cases/?lang=' + lang + '#' + x['id'] + ('' if ja else '-en'), '条件・根拠' if ja else 'Conditions and evidence') + link(x['image'], '画像を拡大' if ja else 'Full-size image') + '</nav></div></li>'
     body += '</ul><p class="gallery-empty" data-gallery-empty hidden>' + ('該当する問題がありません。検索語や分野を変えてください。' if ja else 'No matching problems. Try another query or domain.') + '</p><p>'

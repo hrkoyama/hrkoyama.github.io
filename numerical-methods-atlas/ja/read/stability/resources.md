@@ -79,6 +79,10 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/stability/
   availability: run
 
   長さ1の周期区間でq_t+a q_x=0を1周期進め、64/128点の1次風上法を平行移動した正弦波と比較する。計算値、解析値、誤差をCSVへ出す。
+- [Euler二重膨張波：段階ごとの正値性](<https://hrkoyama.github.io/numerical-methods-atlas/validation/euler-double-rarefaction-positivity/?lang=ja>)
+  availability: run
+
+  既存の強い二重希薄波を128/256/512セルで計算し、平均保存型の正値性スケーリングをMUSCL・大域LF流束・SSPRK(3,3)へ接続します。各前進Euler段と各SSP凸結合の密度・圧力・境界保存収支を記録します。
 - [空間前進差分：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/forward-difference/?lang=ja#method-execution-ja>)
   availability: source
 

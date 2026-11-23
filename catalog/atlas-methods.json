@@ -519,7 +519,19 @@
         "Lax-Friedrichs法",
         "Lax Friedrichs scheme",
         "ラックス・フリードリヒス法"
-      ]
+      ],
+      "depth_previous_status": "educational-example",
+      "depth_release": {
+        "group": "euler-positivity",
+        "edition": "2026-11-23-r2",
+        "case_ids": [
+          "euler-double-rarefaction-positivity"
+        ]
+      },
+      "depth_scope": {
+        "ja": "追加の二重膨張波は1次元保存量MUSCL・共有Lax–Friedrichs流束・平均を保つ正値状態スケーリング・SSPRK(3,3)を接続した限定例です。許容CFLと波速条件、各前進Euler候補・SSP段の平均と面状態、保存収支を測り、一般のEuler・WENO・DG・MHDの正値性保証へ拡張しません。",
+        "en": "The additional double rarefaction connects one-dimensional conservative MUSCL, shared Lax–Friedrichs fluxes, mean-preserving positive-state scaling and SSPRK(3,3). Check the admissible CFL/wave-speed conditions, means and faces at each forward-Euler candidate/SSP stage, and conservation budgets; this does not certify general Euler, WENO, DG or MHD positivity."
+      }
     },
     {
       "id": "lax-wendroff",
@@ -904,8 +916,8 @@
         ]
       },
       "depth_scope": {
-        "ja": "衝撃波と密度正弦波の相互作用を、同じPython実装の細格子ではなく、別に実行したAthena++の参照と照合します。 追加Noh版では球対称系列だけに体積重心を用いる保存量MUSCL/minmod＋Heunを実装し、平面・円筒は区分定数のままです。 低Mach渦の追加例は、両Roe流束に同じ無制限の中心primitive再構築を用います。勾配制限付きMUSCL全般やTVDの保証ではありません。",
-        "en": "Compare shock–density-wave interaction against separately executed Athena++ reference data rather than a finer grid of the same Python code. The additional Noh edition uses volume-centroid conservative MUSCL/minmod with Heun only in spherical runs; planar/cylindrical states stay piecewise constant. The additional low-Mach vortex uses the same unlimited central primitive reconstruction for both Roe variants. It does not verify general limited MUSCL or a TVD guarantee."
+        "ja": "衝撃波と密度正弦波の相互作用を、同じPython実装の細格子ではなく、別に実行したAthena++の参照と照合します。 追加Noh版では球対称系列だけに体積重心を用いる保存量MUSCL/minmod＋Heunを実装し、平面・円筒は区分定数のままです。 低Mach渦の追加例は、両Roe流束に同じ無制限の中心primitive再構築を用います。勾配制限付きMUSCL全般やTVDの保証ではありません。 追加の二重膨張波は1次元保存量MUSCL・共有Lax–Friedrichs流束・平均を保つ正値状態スケーリング・SSPRK(3,3)を接続した限定例です。許容CFLと波速条件、各前進Euler候補・SSP段の平均と面状態、保存収支を測り、一般のEuler・WENO・DG・MHDの正値性保証へ拡張しません。",
+        "en": "Compare shock–density-wave interaction against separately executed Athena++ reference data rather than a finer grid of the same Python code. The additional Noh edition uses volume-centroid conservative MUSCL/minmod with Heun only in spherical runs; planar/cylindrical states stay piecewise constant. The additional low-Mach vortex uses the same unlimited central primitive reconstruction for both Roe variants. It does not verify general limited MUSCL or a TVD guarantee. The additional double rarefaction connects one-dimensional conservative MUSCL, shared Lax–Friedrichs fluxes, mean-preserving positive-state scaling and SSPRK(3,3). Check the admissible CFL/wave-speed conditions, means and faces at each forward-Euler candidate/SSP stage, and conservation budgets; this does not certify general Euler, WENO, DG or MHD positivity."
       },
       "depth_additional_releases": [
         {
@@ -920,6 +932,13 @@
           "edition": "2026-11-23",
           "case_ids": [
             "low-mach-vortex"
+          ]
+        },
+        {
+          "group": "euler-positivity",
+          "edition": "2026-11-23-r2",
+          "case_ids": [
+            "euler-double-rarefaction-positivity"
           ]
         }
       ]
@@ -2510,8 +2529,8 @@
       "units": null,
       "boundary_conditions": null,
       "limitations": {
-        "ja": "再構成に対する独立した補助関数です。Euler・WENO・MHDの時間更新全体に接続した正値性保証ではありません。",
-        "en": "A standalone reconstruction helper, not a positivity guarantee integrated into full Euler, WENO or MHD time updates."
+        "ja": "旧配布版の部品検査と、新しい1次元MUSCL＋Lax–Friedrichs＋SSPRK(3,3)の限定更新を区別します。追加版のCFL・波速条件と固定入力で段階正値性を調べますが、既存Euler・WENO・DG・MHD全体の保証ではありません。",
+        "en": "Distinguish the earlier standalone helper checks from the new scoped one-dimensional MUSCL/Lax–Friedrichs/SSPRK(3,3) update. Its stage positivity is checked under the stated CFL/wave-speed conditions and fixed inputs, without certifying all existing Euler, WENO, DG or MHD updates."
       },
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
@@ -2522,7 +2541,19 @@
         "正値性保持スケーリング",
         "positive state scaling",
         "mean preserving scaling"
-      ]
+      ],
+      "depth_previous_status": "educational-example",
+      "depth_release": {
+        "group": "euler-positivity",
+        "edition": "2026-11-23-r2",
+        "case_ids": [
+          "euler-double-rarefaction-positivity"
+        ]
+      },
+      "depth_scope": {
+        "ja": "追加の二重膨張波は1次元保存量MUSCL・共有Lax–Friedrichs流束・平均を保つ正値状態スケーリング・SSPRK(3,3)を接続した限定例です。許容CFLと波速条件、各前進Euler候補・SSP段の平均と面状態、保存収支を測り、一般のEuler・WENO・DG・MHDの正値性保証へ拡張しません。",
+        "en": "The additional double rarefaction connects one-dimensional conservative MUSCL, shared Lax–Friedrichs fluxes, mean-preserving positive-state scaling and SSPRK(3,3). Check the admissible CFL/wave-speed conditions, means and faces at each forward-Euler candidate/SSP stage, and conservation budgets; this does not certify general Euler, WENO, DG or MHD positivity."
+      }
     },
     {
       "id": "forward-euler",
@@ -2987,9 +3018,18 @@
         ]
       },
       "depth_scope": {
-        "ja": "背景Mach数.1/.01の滑らかな2D Euler等エントロピー渦で、両流束に無制限の中心primitive MUSCL再構築を用い、通常RoeとMiczek系の数値散逸行列前処理D=P⁻¹|PA|を比較します。SSPRK(3,3)で元の物理時間項と音響CFLを保ち、速度誤差・動圧規格化した圧力誤差・周期保存収支・標本Fourier診断を分けて評価します。擬似時間・二重時間積分の定常加速や、勾配制限・TVDの保証は扱いません。",
-        "en": "A fixed smooth 2D Euler isentropic vortex at background Mach numbers .1 and .01 compares ordinary Roe and Miczek-type dissipation-matrix preconditioning D=P⁻¹|PA|, with unlimited central primitive-variable MUSCL reconstruction for both. SSPRK(3,3) retains physical time and the acoustic CFL. Velocity error, dynamically normalized pressure error, periodic conservation and sampled Fourier diagnostics are evaluated separately. Pseudo-time or dual-time steady acceleration, slope limiting and TVD guarantees remain outside this example."
-      }
+        "ja": "背景Mach数.1/.01の滑らかな2D Euler等エントロピー渦で、両流束に無制限の中心primitive MUSCL再構築を用い、通常RoeとMiczek系の数値散逸行列前処理D=P⁻¹|PA|を比較します。SSPRK(3,3)で元の物理時間項と音響CFLを保ち、速度誤差・動圧規格化した圧力誤差・周期保存収支・標本Fourier診断を分けて評価します。擬似時間・二重時間積分の定常加速や、勾配制限・TVDの保証は扱いません。 追加の二重膨張波は1次元保存量MUSCL・共有Lax–Friedrichs流束・平均を保つ正値状態スケーリング・SSPRK(3,3)を接続した限定例です。許容CFLと波速条件、各前進Euler候補・SSP段の平均と面状態、保存収支を測り、一般のEuler・WENO・DG・MHDの正値性保証へ拡張しません。",
+        "en": "A fixed smooth 2D Euler isentropic vortex at background Mach numbers .1 and .01 compares ordinary Roe and Miczek-type dissipation-matrix preconditioning D=P⁻¹|PA|, with unlimited central primitive-variable MUSCL reconstruction for both. SSPRK(3,3) retains physical time and the acoustic CFL. Velocity error, dynamically normalized pressure error, periodic conservation and sampled Fourier diagnostics are evaluated separately. Pseudo-time or dual-time steady acceleration, slope limiting and TVD guarantees remain outside this example. The additional double rarefaction connects one-dimensional conservative MUSCL, shared Lax–Friedrichs fluxes, mean-preserving positive-state scaling and SSPRK(3,3). Check the admissible CFL/wave-speed conditions, means and faces at each forward-Euler candidate/SSP stage, and conservation budgets; this does not certify general Euler, WENO, DG or MHD positivity."
+      },
+      "depth_additional_releases": [
+        {
+          "group": "euler-positivity",
+          "edition": "2026-11-23-r2",
+          "case_ids": [
+            "euler-double-rarefaction-positivity"
+          ]
+        }
+      ]
     },
     {
       "id": "ssprk43",

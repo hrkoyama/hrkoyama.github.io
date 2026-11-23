@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "cases": {
+    "euler-double-rarefaction-positivity": {
+      "gamma": 1.4,
+      "domain": [0.0, 1.0],
+      "origin": 0.5,
+      "left": [1.0, -2.0, 0.4],
+      "right": [1.0, 2.0, 0.4],
+      "final_time": 0.15,
+      "grids": [128, 256, 512],
+      "fixed_lf_alpha": 4.0,
+      "cfl": 0.4,
+      "positivity_cfl_bound": 0.5,
+      "reconstruction_epsilon": 1e-13,
+      "max_steps_per_run": 2000,
+      "history_stride": 8,
+      "reference_order": 8,
+      "reference_check_order": 16
+    }
+  }
+}

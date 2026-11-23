@@ -3,7 +3,7 @@ from html import escape
 from hashlib import sha256
 import json
 from pathlib import Path
-from atlas_depth_release import load_depth_group, depth_code_urls
+from atlas_depth_release import load_depth_group, depth_code_urls, depth_gallery_figure
 
 
 def load_supplemental_examples(root, identifiers):
@@ -26,6 +26,7 @@ def load_supplemental_examples(root, identifiers):
             if ident not in identifiers:
                 continue
             assert ident not in selected, 'Repeated supplemental case: ' + ident
+            gallery = depth_gallery_figure(data['directory'], data['manifest'], case)
             selected[ident] = {
                 **case, 'name': case['title'], 'group': group['id'],
                 'url': '/numerical-methods-atlas/validation/' + ident + '/',
@@ -35,6 +36,7 @@ def load_supplemental_examples(root, identifiers):
                 'results': data['base'] + 'results/result.json',
                 'verification': data['base'] + 'verification.json',
                 'source_sha256': data['source_sha256'],
+                **({'gallery_preview': {**gallery, 'url': data['base']+'results/'+gallery['file']}} if gallery else {}),
             }
     assert set(selected) == set(identifiers), 'Unknown supplemental case IDs: ' + str(set(identifiers) - set(selected))
     return [selected[ident] for ident in identifiers]

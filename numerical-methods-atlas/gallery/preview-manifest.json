@@ -1083,8 +1083,8 @@
     "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
     "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
     "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
-    "catalog/atlas-test-problems.json": "25febf285358beb3f730decdd4c48c870766542829f71da96087b2974d47b65d",
-    "catalog/atlas-depth-expansion.json": "5d68fb749341591df2537dcee7c9ee757976a54a2fd2ab2c52b41ed67c4bd689",
+    "catalog/atlas-test-problems.json": "f0d5260b28da470236000ab7d675cf92330bcf864f65e4558360c49506428ac7",
+    "catalog/atlas-depth-expansion.json": "6c85fa8d07dafa4c461460451d809316cc5bf999dca5c2bd0a94163c0c26dac7",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
     "code/validated-examples/2026-11-22/foundations/inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -1236,7 +1236,84 @@
     "code/validated-examples/2026-11-23-r3/guderley/verification.json": "3eb90bb576b4b9579433bb15a93b0acc42948a85f335a45de7c649ec1b61e625",
     "code/validated-examples/2026-11-23-r3/guderley/results/result.json": "c85894f329b97d62ef9d093792316028e4b3b9ca38a0488047bdbab2542e84bb",
     "code/validated-examples/2026-11-23-r3/guderley/results/guderley-implosion.png": "af3c5bc89657b250436a73571bfb793345c17dc283c08d8f9b278060138918f9",
-    "code/validated-examples/2026-11-23-r3/guderley/results/guderley-implosion-preview.png": "03774f695db7f8e07eb006db120075d808871a194e1ab59abb815995fc53f383"
+    "code/validated-examples/2026-11-23-r3/guderley/results/guderley-implosion-preview.png": "03774f695db7f8e07eb006db120075d808871a194e1ab59abb815995fc53f383",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/cases.json": "52e618b3a97dab879badba192d5c2f74c5a08c25e473f055de81c645a6985d5a",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/inputs.json": "a1185e4b8be0f49f8f3f551f934614110c227d39b2bb0dc4438c5301428d751b",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/source-manifest.json": "86eef08f81c19d211d9908ba195f6fbbdcd4af54dcfaf8df59ebbe9df73b34b9",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/verification.json": "4c205d9d21d1ea7efbf3d56e881c8c740f26a983576415a69e95490393af4f3d",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/results/result.json": "bee593154817e7a6339cee14fa7c029000002f42ade8ccd6d568119d375fdddc",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/results/euler-double-rarefaction-positivity.png": "f1d024c853686c5733c1139f5836392352cfa2cf1390f1f2a69e3215872b0877",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/results/euler-double-rarefaction-positivity-preview.png": "3e602f0921d9e2cc6ff945acbded724fb8c710f4da57d2e3301e189f05d811ae"
   },
-  "calculations_sha256": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6"
+  "calculations_sha256": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6",
+  "maintenance_updates": [
+    {
+      "schema_version": 1,
+      "reviewed_on": "2026-11-23",
+      "operation": "Register an additional fixed-input Euler stage-positivity execution and visible x-t preview for the existing double-rarefaction problem; refresh metadata bindings without rerendering historical images or rerunning their numerical previews.",
+      "prior_manifest_sha256": "68234fcfee30b055401fa6eb252da01f5a9030c88902c8e4ecf3171a5dcf9580",
+      "primary_item_count": 86,
+      "primary_item_records_unchanged": true,
+      "old_source_binding_count": 201,
+      "new_source_binding_count": 208,
+      "changed_catalog_bindings": {
+        "catalog/atlas-test-problems.json": {
+          "before_sha256": "25febf285358beb3f730decdd4c48c870766542829f71da96087b2974d47b65d",
+          "after_sha256": "f0d5260b28da470236000ab7d675cf92330bcf864f65e4558360c49506428ac7"
+        },
+        "catalog/atlas-depth-expansion.json": {
+          "before_sha256": "5d68fb749341591df2537dcee7c9ee757976a54a2fd2ab2c52b41ed67c4bd689",
+          "after_sha256": "7d88ebd6cc385e5c3c6537657e28b28f2467f473e6031913419c5798de58641a"
+        }
+      },
+      "added_release_bindings": {
+        "code/validated-examples/2026-11-23/euler-positivity/cases.json": "d519962250160d59d419a7811c5b0f049b73b9154cba709eebc40d6f61a92a9a",
+        "code/validated-examples/2026-11-23/euler-positivity/inputs.json": "a1185e4b8be0f49f8f3f551f934614110c227d39b2bb0dc4438c5301428d751b",
+        "code/validated-examples/2026-11-23/euler-positivity/source-manifest.json": "67de8a3a6954076a9c71b4cdf08393e38c78bae510706e37575b6b8b8b0518ad",
+        "code/validated-examples/2026-11-23/euler-positivity/verification.json": "935e5ea4eec0888fccf480ee11b5e27a9fd40474448205d20a8d5a5f4ef8c4e1",
+        "code/validated-examples/2026-11-23/euler-positivity/results/result.json": "87f91959fab4adb6764336dfee9bee38630041f550e9ecf1729c188d1bdc4335",
+        "code/validated-examples/2026-11-23/euler-positivity/results/euler-double-rarefaction-positivity.png": "f1d024c853686c5733c1139f5836392352cfa2cf1390f1f2a69e3215872b0877",
+        "code/validated-examples/2026-11-23/euler-positivity/results/euler-double-rarefaction-positivity-preview.png": "3e602f0921d9e2cc6ff945acbded724fb8c710f4da57d2e3301e189f05d811ae"
+      },
+      "historical_numerical_preview_executed": false,
+      "historical_figures_rerendered": false,
+      "new_supplement_verification_sha256": "935e5ea4eec0888fccf480ee11b5e27a9fd40474448205d20a8d5a5f4ef8c4e1"
+    },
+    {
+      "reviewed_on": "2026-11-23",
+      "operation": "Retarget the additional Euler execution and x-t preview to r2 after prepublication requirements/MathML corrections. The initial unpublished package and its receipts are retained in the working-folder evidence.",
+      "superseded_unpublished_bindings": {
+        "code/validated-examples/2026-11-23/euler-positivity/cases.json": "d519962250160d59d419a7811c5b0f049b73b9154cba709eebc40d6f61a92a9a",
+        "code/validated-examples/2026-11-23/euler-positivity/inputs.json": "a1185e4b8be0f49f8f3f551f934614110c227d39b2bb0dc4438c5301428d751b",
+        "code/validated-examples/2026-11-23/euler-positivity/source-manifest.json": "67de8a3a6954076a9c71b4cdf08393e38c78bae510706e37575b6b8b8b0518ad",
+        "code/validated-examples/2026-11-23/euler-positivity/verification.json": "935e5ea4eec0888fccf480ee11b5e27a9fd40474448205d20a8d5a5f4ef8c4e1",
+        "code/validated-examples/2026-11-23/euler-positivity/results/result.json": "87f91959fab4adb6764336dfee9bee38630041f550e9ecf1729c188d1bdc4335",
+        "code/validated-examples/2026-11-23/euler-positivity/results/euler-double-rarefaction-positivity.png": "f1d024c853686c5733c1139f5836392352cfa2cf1390f1f2a69e3215872b0877",
+        "code/validated-examples/2026-11-23/euler-positivity/results/euler-double-rarefaction-positivity-preview.png": "3e602f0921d9e2cc6ff945acbded724fb8c710f4da57d2e3301e189f05d811ae"
+      },
+      "active_release_bindings": {
+        "code/validated-examples/2026-11-23-r2/euler-positivity/cases.json": "52e618b3a97dab879badba192d5c2f74c5a08c25e473f055de81c645a6985d5a",
+        "code/validated-examples/2026-11-23-r2/euler-positivity/inputs.json": "a1185e4b8be0f49f8f3f551f934614110c227d39b2bb0dc4438c5301428d751b",
+        "code/validated-examples/2026-11-23-r2/euler-positivity/source-manifest.json": "86eef08f81c19d211d9908ba195f6fbbdcd4af54dcfaf8df59ebbe9df73b34b9",
+        "code/validated-examples/2026-11-23-r2/euler-positivity/verification.json": "4c205d9d21d1ea7efbf3d56e881c8c740f26a983576415a69e95490393af4f3d",
+        "code/validated-examples/2026-11-23-r2/euler-positivity/results/result.json": "bee593154817e7a6339cee14fa7c029000002f42ade8ccd6d568119d375fdddc",
+        "code/validated-examples/2026-11-23-r2/euler-positivity/results/euler-double-rarefaction-positivity.png": "f1d024c853686c5733c1139f5836392352cfa2cf1390f1f2a69e3215872b0877",
+        "code/validated-examples/2026-11-23-r2/euler-positivity/results/euler-double-rarefaction-positivity-preview.png": "3e602f0921d9e2cc6ff945acbded724fb8c710f4da57d2e3301e189f05d811ae"
+      },
+      "changed_catalog_bindings": {
+        "catalog/atlas-test-problems.json": {
+          "before_sha256": "f0d5260b28da470236000ab7d675cf92330bcf864f65e4558360c49506428ac7",
+          "after_sha256": "f0d5260b28da470236000ab7d675cf92330bcf864f65e4558360c49506428ac7"
+        },
+        "catalog/atlas-depth-expansion.json": {
+          "before_sha256": "7d88ebd6cc385e5c3c6537657e28b28f2467f473e6031913419c5798de58641a",
+          "after_sha256": "6c85fa8d07dafa4c461460451d809316cc5bf999dca5c2bd0a94163c0c26dac7"
+        }
+      },
+      "primary_item_count": 86,
+      "primary_item_records_unchanged": true,
+      "historical_numerical_preview_executed": false,
+      "historical_figures_rerendered": false
+    }
+  ]
 }

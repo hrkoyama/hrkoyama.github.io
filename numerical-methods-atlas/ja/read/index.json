@@ -4,8 +4,8 @@
   "title": "分野別に解説を読む",
   "description": "理論・導出・計算例を、分野ごとにまとめた読み物です。基礎から関連する手法と検証例へ進めます。",
   "source": "/catalog/atlas-reading-index.json",
-  "source_sha256": "89a8de16bd56dcc3ede62a7a7192e4524d779ba202d3789d5fb96d4fe30154db",
-  "chapter_count": 100,
+  "source_sha256": "5efffa817041fda365a10fbbfc03e6bda37d439e78f6646d9a2ef9772561e4fb",
+  "chapter_count": 101,
   "groups": [
     {
       "id": "foundations-time",
@@ -373,6 +373,17 @@
             "en"
           ],
           "search_text": "advanced-limiters 発展的な勾配制限：TVBと正値性保存 Advanced limiters: TVB and positivity preservation 流体・衝撃波・定常解法 Fluids, shocks and steady solvers"
+        },
+        {
+          "id": "validation-euler-positivity",
+          "title": "Euler二重膨張波：段階ごとの正値性",
+          "url": "/numerical-methods-atlas/ja/read/validation-euler-positivity/",
+          "language": "ja",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-euler-positivity Euler二重膨張波：段階ごとの正値性 Euler double rarefaction: positivity at every stage 流体・衝撃波・定常解法 Fluids, shocks and steady solvers"
         },
         {
           "id": "rotated-hybrid",

@@ -25,7 +25,7 @@ function local(value){
 test('Noh adds one physical problem while every historical problem, image and reference value remains unchanged',()=>{
   const problems=json('catalog/atlas-test-problems.json').problems;
   assert.equal(problems.length,86);assert.equal(problems.filter(row=>row.id==='noh').length,1);
-  assert.equal(objectSha(problems.filter(row=>!['noh','sedov','double-mach','forward-step','isentropic-vortex','guderley'].includes(row.id))),'3268e6e1356ae6fb75dc525ee8420673efb2237dd0aef8a111abaa919db6a7ab');
+  assert.equal(objectSha(problems.filter(row=>!['noh','sedov','double-mach','forward-step','isentropic-vortex','guderley'].includes(row.id)).map(row=>{if(row.id!=='double-rarefaction')return row;const copy={...row};delete copy.supplemental_examples;return copy;})),'3268e6e1356ae6fb75dc525ee8420673efb2237dd0aef8a111abaa919db6a7ab');
   const previews=json('numerical-methods-atlas/gallery/preview-manifest.json').items;
   assert.equal(previews.length,86);
   assert.equal(objectSha(previews.filter(row=>!['noh','sedov','double-mach','forward-step','isentropic-vortex','guderley'].includes(row.id)).map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}))),'25c25a4cb7ad5c54e5788b984d949c44994d3f1706ed36c4ef30a3ce36fa6c2b');

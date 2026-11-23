@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "edition": "2026-11-22",
-  "case_count": 47,
+  "case_count": 48,
   "releases": [
     {
       "group": "foundations",
@@ -283,6 +283,20 @@
         "guderley-implosion"
       ],
       "tests": 33
+    },
+    {
+      "group": "euler-positivity",
+      "edition": "2026-11-23-r2",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/euler-positivity/",
+      "archive": "atlas-euler-positivity-2026-11-23-r2.zip",
+      "archive_sha256": "0f2c8a3bf94a612f89d8f6f695b94574dd05d70976aa97a497ef47ff4e0c1efe",
+      "manifest_sha256": "86eef08f81c19d211d9908ba195f6fbbdcd4af54dcfaf8df59ebbe9df73b34b9",
+      "verification_sha256": "4c205d9d21d1ea7efbf3d56e881c8c740f26a983576415a69e95490393af4f3d",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "euler-double-rarefaction-positivity"
+      ],
+      "tests": 27
     }
   ]
 }

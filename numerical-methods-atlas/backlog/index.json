@@ -1129,14 +1129,14 @@
       "priority": "P1",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "planned",
-      "current": "MUSCL、WENO-JS/Z、PPM、CIP、DG、特性再構築、各limiterは実装済み。1D滑らか/不連続、2D entropy wave、保存・界面恒等式の検査がある。",
+      "state": "verified",
+      "current": "27単体検査・3格子73判定と独立ZIP展開の再実行が合格。公開URLと公開ZIPのLinux確認は未完了です。",
       "tasks": [
         "既存mean-preserving scalingの部品検査から、許容数値流束・SSP段階・CFLを含む一つの限定更新へ接続。",
         "密度/圧力最小値とセル平均保存を全段階で測る。",
         "強希薄波/near-vacuumで失敗・retry・floorを記録し、結果を理論の保証条件と対応付ける。"
       ],
-      "scope_note": "",
+      "scope_note": "γ1.4の既存二重希薄波、128/256/512セル、保存量MUSCL・大域LF a4・SSPRK33に限定。CFL .4≤.5と全段波速上限を実測し、密度・圧力・保存収支・制限発動を記録。真空生成・一般のWENO/DG・2D正値性の検証ではありません。",
       "sources": [
         {
           "title": "Zhang & Shu (2010), positivity-preserving Euler DG schemes",
@@ -1161,9 +1161,65 @@
           "observation": "Euler MUSCL/FD WENOへの未接続を明記。"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23-r2/euler-positivity/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23-r2/euler-positivity/inputs.json",
+          "/code/validated-examples/2026-11-23-r2/euler-positivity/acceptance.json",
+          "/code/validated-examples/2026-11-23-r2/euler-positivity/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23-r2/euler-positivity/results/euler-double-rarefaction-positivity-preview.png",
+          "/code/validated-examples/2026-11-23-r2/euler-positivity/results/euler-double-rarefaction-positivity.png"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#double-rarefaction-ja",
+        "execution": "/numerical-methods-atlas/validation/euler-double-rarefaction-positivity/?lang=ja",
+        "code": [
+          "/code/validated-examples/2026-11-23-r2/euler-positivity/run.py",
+          "/code/validated-examples/2026-11-23-r2/euler-positivity/euler_positivity.py",
+          "/code/validated-examples/2026-11-23-r2/euler-positivity/references/double_rarefaction.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-23-r2/euler-positivity/references/citations.json",
+          "/code/validated-examples/2026-11-23-r2/euler-positivity/references/README.md",
+          "/code/validated-examples/2026-11-23-r2/euler-positivity/references/source-review.json",
+          "/code/validated-examples/2026-11-23-r2/euler-positivity/source-provenance.json",
+          "/code/validated-examples/2026-11-23-r2/euler-positivity/pre-run-review.json"
+        ]
+      },
       "sequence": 11,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-23-r2/euler-positivity/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-23-r2/euler-positivity/inputs.json",
+            "/code/validated-examples/2026-11-23-r2/euler-positivity/acceptance.json",
+            "/code/validated-examples/2026-11-23-r2/euler-positivity/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-23-r2/euler-positivity/results/euler-double-rarefaction-positivity-preview.png",
+            "/code/validated-examples/2026-11-23-r2/euler-positivity/results/euler-double-rarefaction-positivity.png"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#double-rarefaction-ja",
+          "execution": "/numerical-methods-atlas/validation/euler-double-rarefaction-positivity/?lang=ja",
+          "code": [
+            "/code/validated-examples/2026-11-23-r2/euler-positivity/run.py",
+            "/code/validated-examples/2026-11-23-r2/euler-positivity/euler_positivity.py",
+            "/code/validated-examples/2026-11-23-r2/euler-positivity/references/double_rarefaction.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-23-r2/euler-positivity/references/citations.json",
+            "/code/validated-examples/2026-11-23-r2/euler-positivity/references/README.md",
+            "/code/validated-examples/2026-11-23-r2/euler-positivity/references/source-review.json",
+            "/code/validated-examples/2026-11-23-r2/euler-positivity/source-provenance.json",
+            "/code/validated-examples/2026-11-23-r2/euler-positivity/pre-run-review.json"
+          ]
+        }
+      }
     },
     {
       "id": "advection-reconstruction-2",
@@ -5065,9 +5121,9 @@
     "total": 103,
     "fields": 36,
     "states": {
-      "planned": 98,
+      "planned": 97,
       "in-progress": 0,
-      "verified": 0,
+      "verified": 1,
       "published": 5
     },
     "kinds": {
@@ -5083,7 +5139,21 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-benchmark-backlog.json": "46fcb1b9808055f7ef0ca7dc2df790f97b4e550fc031aff0ca800d33198cbc06",
+    "catalog/atlas-benchmark-backlog.json": "9d9edee8d1c7108c28cc25ee3066d8de528f582aa81bba71b096ee3f16ad09af",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/acceptance.json": "f08558b2703369a2260db1252dc40272f76556a2f6205688faa88a4c37c79050",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/euler_positivity.py": "c22015d9435095b3f08189d1b09be4a040c79062b1cc76fd15648cca00f73a58",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/inputs.json": "a1185e4b8be0f49f8f3f551f934614110c227d39b2bb0dc4438c5301428d751b",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/pre-run-contract.json": "1520cc0a8cd724707d0e854d97d8910f1271ee65c7cb2a869e9343556e0a8222",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/pre-run-review.json": "0a83ed31108259df707b49aa293126ee90f9b98e6f95c3ba0c0253c1521b1f0c",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/references/README.md": "f86bccc729ac6344d768a0c361d6ea7495e6952b8ac922c35002e414ab8db63a",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/references/citations.json": "e6ec0469f798e7f3a316fb9f696295f9e2a32b6540e17f4b1d93d0fad4971f17",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/references/double_rarefaction.py": "b15fb61762d7a4a4a1d1f3402366e858cabad0069e5bf55ba7ab1fecef98b9b7",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/references/source-review.json": "de49147a0403d768309ec93baa6533513a1a77b5bda745bf3bb1e12a818e797a",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/results/euler-double-rarefaction-positivity-preview.png": "3e602f0921d9e2cc6ff945acbded724fb8c710f4da57d2e3301e189f05d811ae",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/results/euler-double-rarefaction-positivity.png": "f1d024c853686c5733c1139f5836392352cfa2cf1390f1f2a69e3215872b0877",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/run.py": "6faaa677e674a54ff600e578ac6b3d0c1fd8322fd5d292d4f0afc99880bddda8",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/source-provenance.json": "f0ecec8dc99c73d99bc48ae62824346513fd00094af90e4134408b5f6756658f",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/verification.json": "4c205d9d21d1ea7efbf3d56e881c8c740f26a983576415a69e95490393af4f3d",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/acceptance.json": "9da18d8d22194a07bc0d8e7c619199baab0984f978d84a673bc8f94d4baf5f8b",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/cartesian_reference.py": "b53b9ac767938389abc99eedc3bc2dd23bab965bdb4f41fe19933b2da1b312c0",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/cartesian_solver.py": "7360a880b6318259ddf50b18d79861aca7f806190baaaa1d1200e6d9e4c7e0f8",
@@ -5184,9 +5254,10 @@
     "code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex.png": "38635f161af26efd48e0c0a2bc463974e3e81e6b506770a4c6f6c19b24be1970",
     "code/validated-examples/2026-11-23/low-mach/run.py": "727cbf0477eaac09bc23179c8fb2d5f71c187a6fe4d33fc166d55274a3baba6e",
     "code/validated-examples/2026-11-23/low-mach/verification.json": "f747210e1d46900c4f56b01e989696c3feaee35361fe42be11428fd280bacf84",
-    "numerical-methods-atlas/gallery/index.html": "2284c7b397a9aaa7e2fa3b78ba55d387fb49b3e24307bcec4e772de7145c7e9a",
-    "numerical-methods-atlas/solutions/index.html": "06862a63e89c8d5249686530eb32ec989910a4a23cb4bdbce0057bafede20f4a",
+    "numerical-methods-atlas/gallery/index.html": "493b4fe3d73a73b189ae2fa0c1aa523b06a7a8078c861f77ff47d0969fc2a75c",
+    "numerical-methods-atlas/solutions/index.html": "0a8a076dea7be0137492abb709d465edfee94d1f2220360295b577b4c880718e",
     "numerical-methods-atlas/validation/double-mach-reflection/index.html": "a97c707de665870d0897a0cdaddda7b7b455e0beb56778061c2d8a02ba3f4979",
+    "numerical-methods-atlas/validation/euler-double-rarefaction-positivity/index.html": "258ca38fb35c74927604e37433023b5ead4a20dc9a7f970565def08c7eb21fc2",
     "numerical-methods-atlas/validation/forward-step-m3/index.html": "708a4748a1108bc66d709800ff2ae21b4cad482fe6e470dfdbd30484149e08a0",
     "numerical-methods-atlas/validation/guderley-implosion/index.html": "267f7a62dc4509301181934bfa05f2fcb501d14c94bbf362ae98624fbcf126ae",
     "numerical-methods-atlas/validation/low-mach-vortex/index.html": "2744e0d480dc86de863edef6de5ced0fc0c3cf3f7bec0eda8581a5589c774d53",

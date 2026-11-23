@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "declared_before_first_pde_run": true,
+  "limits": {
+    "balance": 3e-12,
+    "mean_preservation": 3e-14,
+    "reference_quadrature": 2e-12,
+    "finest_density_l1": 0.08,
+    "finest_pressure_l1": 0.10,
+    "refinement_ratio": 0.95,
+    "reference_euler_residual": 2e-6
+  },
+  "interpretation": "Fixed-input finite-grid evidence only. The theorem requires admissible reconstructed endpoints, global LF splitting speed bounding all actual endpoints and dt*a/dx<=1/2. No general MUSCL/WENO/DG positivity certification. No state floors or retries. Pressure is evaluated from conserved means."
+}

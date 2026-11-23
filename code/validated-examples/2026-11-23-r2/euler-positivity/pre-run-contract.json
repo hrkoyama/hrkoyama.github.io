@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "revision": 2,
+  "created_at_utc": "2026-11-23T08:40:20.816708+00:00",
+  "declared_before_first_pde_run": false,
+  "declared_before_first_pytest_execution": false,
+  "planned_tests": 27,
+  "planned_numerical_gates": 73,
+  "planned_fixed_runs": 3,
+  "runtime_limit_seconds": 120,
+  "shared_pytest_plus_main_budget_seconds": 120,
+  "scoped_update": "P1 conservative central FV reconstruction, common affine positivity scaling, fixed global LF a4 with all-stage speed validation, SSPRK33, endpoint sufficient CFL1/2; actualCFL.4. Strong double rarefaction with no vacuum generation.",
+  "presentation_files_excluded": [
+    "cases.json",
+    "README.md",
+    "LICENSE",
+    "plot.py",
+    "requirements-plot.txt"
+  ],
+  "files_sha256": {
+    "euler_positivity.py": "c22015d9435095b3f08189d1b09be4a040c79062b1cc76fd15648cca00f73a58",
+    "run.py": "6faaa677e674a54ff600e578ac6b3d0c1fd8322fd5d292d4f0afc99880bddda8",
+    "test_euler_positivity.py": "b475a4105d0538c4f615f6cb46aa949aadc3e1f0e530bcb360e33aab831fe21c",
+    "inputs.json": "a1185e4b8be0f49f8f3f551f934614110c227d39b2bb0dc4438c5301428d751b",
+    "acceptance.json": "f08558b2703369a2260db1252dc40272f76556a2f6205688faa88a4c37c79050",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "source-provenance.json": "f0ecec8dc99c73d99bc48ae62824346513fd00094af90e4134408b5f6756658f",
+    "references/NUMART-LICENSE.txt": "07cca125623617c85a41e9a21a2b114d693c61737bc353e3ca98587431e26ee6",
+    "references/README.md": "f86bccc729ac6344d768a0c361d6ea7495e6952b8ac922c35002e414ab8db63a",
+    "references/__init__.py": "1a73455cd310d2a0585f36e3a77856e5397dfb0b756cd22bba8fb0e8b72a0f37",
+    "references/citations.json": "e6ec0469f798e7f3a316fb9f696295f9e2a32b6540e17f4b1d93d0fad4971f17",
+    "references/double_rarefaction.py": "b15fb61762d7a4a4a1d1f3402366e858cabad0069e5bf55ba7ab1fecef98b9b7",
+    "references/numart_reference_riemann.py": "5d2b36eb1e4165d6cf791702529642c9a0c8672cd44a591962efeee7ea66709f",
+    "references/source-review.json": "de49147a0403d768309ec93baa6533513a1a77b5bda745bf3bb1e12a818e797a"
+  },
+  "declared_before_this_revision_pde_execution": true,
+  "declared_before_this_revision_pytest_execution": true,
+  "revision_reason": "Unpublished scientific package passed all27tests/73gates, but full site test found public verifier requires exactly three reviewed direct pins. Add unused SciPy1.14.1 pin to match established verifier; inputs, acceptance, numerical solver, reference and tests remain unchanged. Preserve original unpublished ZIP and first contract/results. Presentation adds KaTeX formula separately.",
+  "previous_contract_sha256": "2c7060ae0da2ea2ca65e5259d9850e5603d6f05141ae6ba108b5325893d78eb6"
+}

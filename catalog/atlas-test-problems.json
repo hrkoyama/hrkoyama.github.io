@@ -453,7 +453,17 @@
           "json_pointer": "/cases/double-rarefaction"
         }
       ],
-      "availability": "saved-output"
+      "availability": "saved-output",
+      "supplemental_examples": [
+        {
+          "id": "euler-double-rarefaction-positivity",
+          "url": "/numerical-methods-atlas/validation/euler-double-rarefaction-positivity/",
+          "name": {
+            "ja": "Euler二重膨張波：段階ごとの正値性",
+            "en": "Euler double rarefaction: positivity at every stage"
+          }
+        }
+      ]
     },
     {
       "id": "dam-break",

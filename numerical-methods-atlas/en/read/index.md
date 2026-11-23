@@ -52,6 +52,7 @@ Read about reconstruction, limiting and shock robustness, followed by low-Mach c
 - [Euler reconstruction: PPM, characteristics, WENO-Z and AUSM](https://hrkoyama.github.io/numerical-methods-atlas/en/read/reconstruction/)
 - [Slope limiters: minmod, Superbee, MC, van Leer, and van Albada](https://hrkoyama.github.io/numerical-methods-atlas/en/read/limiters/)
 - [Advanced limiters: TVB and positivity preservation](https://hrkoyama.github.io/numerical-methods-atlas/en/read/advanced-limiters/)
+- [Euler double rarefaction: positivity at every stage](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-euler-positivity/)
 - [Rotated-hybrid Riemann solver](https://hrkoyama.github.io/numerical-methods-atlas/en/read/rotated-hybrid/)
 - [Traced PPM, AUSM variants and curved bow shocks](https://hrkoyama.github.io/numerical-methods-atlas/en/read/shock-expansion/)
 - [The carbuncle phenomenon](https://hrkoyama.github.io/numerical-methods-atlas/en/read/carbuncle/)

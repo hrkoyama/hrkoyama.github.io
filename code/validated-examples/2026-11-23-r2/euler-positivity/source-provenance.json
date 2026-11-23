@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-11-23",
+  "primary_implementation": "New standalone 1D finite-volume P1 reconstruction with affine conservative positivity scaling, fixed global Lax-Friedrichs flux and SSPRK(3,3). Not a DG evolution.",
+  "theory": "Zhang-Shu2010 Theorem2.1, Remarks2.2/2.4/2.6/2.7: P1 Lobatto endpoints have normalized weights1/2; globalLF alpha0=1; sufficient dt*a/dx<=1/2 if a bounds every reconstructed endpoint at each FE substep. The fixed a bound is checked in every actual stage; no universal a priori bound for other data is claimed.",
+  "reference": "Separately derived closed symmetric non-vacuum rarefaction evaluator; star state from Riemann invariants, conserved fan-front-split Gauss cell integration. Independent algebraic/root-solve comparison with unchanged released Numart evaluator. Neither evaluator is a separate PDE engine.",
+  "problem": "Existing atlas fixed double-rarefaction inputs rho1,u±2,p.4,gamma1.4,x[0,1],x0.5,T.15; not the different true-vacuum case rho7,u±1,p.2 in Zhang-Shu2010 §4.3. No unique original inventor is attributed.",
+  "copied_sources": [
+    {
+      "path": "references/numart_reference_riemann.py",
+      "origin": "code/numerical-methods-atlas/2026-11-21/numart/reference_riemann.py",
+      "sha256": "5d2b36eb1e4165d6cf791702529642c9a0c8672cd44a591962efeee7ea66709f",
+      "license": "MIT; NUMART-LICENSE.txt",
+      "changes": "none",
+      "role": "independent pre-existing bracketed-log-root Riemann algebra check; not numerical flux"
+    }
+  ],
+  "exclusions": [
+    "No imported ExactPack evaluator is needed or executed for this closed formula.",
+    "No vacuum-generating or initial-vacuum input, general EOS,2D Euler or all existing WENO/DG/PPM families is validated.",
+    "Numerical positivity is not a TVD,entropy-stability or formal global convergence proof."
+  ]
+}

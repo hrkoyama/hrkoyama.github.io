@@ -1,0 +1,248 @@
+[
+  {
+    "id": "euler-double-rarefaction-positivity",
+    "title": {
+      "ja": "Euler二重膨張波：段階ごとの正値性",
+      "en": "Euler double rarefaction: positivity at every stage"
+    },
+    "method_ids": [
+      "lax-friedrichs",
+      "muscl",
+      "positive-scaling",
+      "ssprk33"
+    ],
+    "domains": [
+      "fluid",
+      "time",
+      "pde"
+    ],
+    "code_files": [
+      "run.py",
+      "euler_positivity.py",
+      "references/double_rarefaction.py"
+    ],
+    "summary": {
+      "ja": "既存の強い二重希薄波を128/256/512セルで計算し、平均保存型の正値性スケーリングをMUSCL・大域LF流束・SSPRK(3,3)へ接続します。各前進Euler段と各SSP凸結合の密度・圧力・境界保存収支を記録します。",
+      "en": "Evolve the existing strong double rarefaction on 128/256/512 cells, connecting mean-preserving positivity scaling to MUSCL, global LF fluxes and SSPRK(3,3). Log density, pressure and boundary budgets for every FE substep and SSP convex combination."
+    },
+    "assumptions": {
+      "ja": "γ1.4、x∈[0,1]、x0=.5、左右状態(ρ,u,p)=(1,−2,.4)/(1,2,.4)、T=.15を固定します。中心の密度・圧力は小さいものの正で、真空生成例ではありません。大域LF分離速度a=4、dt·a/dx≤.4を固定し、実際の全端点の|u|+c≤aと十分条件dt·a/dx≤1/2を確認します。",
+      "en": "Fix gamma1.4, x in [0,1], discontinuity x0=.5, outer primitive states(1,-2,.4)/(1,2,.4) and T=.15. The low-density central state remains strictly positive; this is not a vacuum-generating case. Use fixed global LF splitting speed a4 and dt*a/dx<=.4; assert every actual endpoint satisfies |u|+c<=a and the sufficient dt*a/dx<=1/2 condition."
+    },
+    "algorithm": {
+      "ja": "保存量の無制限中央線形再構築を行い、セル平均と左右2端点へ共通の係数θを用いて密度・圧力を正にします。端点平均は元の保存量平均のままです。共有LF流束による前進Euler更新をSSPRK(3,3)で凸結合し、各段の流束前に再構築と制限をやり直します。ε=10⁻¹³は再構築の目標で、密度・エネルギーを加えるfloorではありません。平均の修復・無言の刻み再試行は行いません。",
+      "en": "Unlimited conservative central linear reconstruction is scaled toward its mean with one common theta per cell until both endpoint densities/pressures are positive. The two endpoint mean remains the original conserved mean. Shared LF FE updates are combined by SSPRK(3,3), reconstructing/limiting before every flux stage. Epsilon1e-13 is a reconstruction target, not an injected density/energy floor. No average repair or hidden time-step retries are used."
+    },
+    "validation": {
+      "ja": "27単体検査と3格子73判定を実行前に固定します。スケーリング前に生じる負の端点圧力を保持し、制限後の端点・前進Euler平均・SSP凸結合平均、θ、全3保存量の境界流束収支を別々に測ります。閉形式の対称希薄波と既存の独立な対数圧力根探索を照合し、保存量のGauss8/16セル平均との誤差と格子細分化を記録します。",
+      "en": "Freeze 27 unit tests and 73 gates over three grids before execution. Retain negative raw endpoint pressures, then separately measure limited endpoints, FE means, SSP convex means, theta and all three boundary-flux conservation budgets. Cross-check the closed symmetric fan against the prior independent logarithmic-pressure root evaluator; record errors/refinement against conserved Gauss8/16 cell means."
+    },
+    "limits": {
+      "ja": "この一つのP1有限体積更新と固定入力の検証です。一般のMUSCL/WENO/DG、特性再構築、反射壁、真空生成、2D/3Dの正値性を認証しません。空間再構築は無制限中央傾きで、TVD・最大値原理・無振動性を保証しません。生の端点圧力は密度が正の端点だけで評価し、密度≤0は別に数えます。圧力参照は保存量セル平均から評価するp(q̄)で、平均圧力とは異なります。ギャラリー図は保存した1次元場のx–t表示であり、2次元流体計算ではありません。ExactPackや別のPDEエンジンを実行した例ではありません。",
+      "en": "Evidence covers this one P1 FV update and fixed input, not general MUSCL/WENO/DG, characteristic reconstruction, reflecting walls, vacuum generation or multidimensional positivity. Unlimited central slopes have no TVD, maximum-principle or nonoscillation guarantee. Raw pressure is evaluated only where raw density is positive; nonpositive raw density has its own count. Reference pressure is p(mean conserved q), not mean pressure. Gallery plots are saved one-dimensional x-t fields, not two-dimensional flow. No ExactPack or separate PDE engine is executed."
+    },
+    "citations": [
+      {
+        "id": "zhang2010positivity",
+        "author": "Xiangxiong Zhang and Chi-Wang Shu",
+        "year": 2010,
+        "title": "On positivity-preserving high order discontinuous Galerkin schemes for compressible Euler equations on rectangular meshes",
+        "journal": "Journal of Computational Physics",
+        "volume": "229",
+        "number": "23",
+        "pages": "8918–8934",
+        "doi": "10.1016/j.jcp.2010.08.016",
+        "url": "https://www.math.purdue.edu/~zhan1966/research/paper/euler.pdf",
+        "type": "article",
+        "role": "positivity theorem and conservative scaling; FV application",
+        "review": {
+          "ja": "著者稿の定理・LF条件・各SSP段階への適用と波速見積りの注意を確認。P1有限体積への限定適用で、原著の真空例・3次DGを再現したとは扱いません。",
+          "en": "Inspected positivity conditions, LF proof, stage limiting and speed-bound caution. This applies the framework to P1 FV; it does not reproduce the paper’s vacuum test or third-order DG scheme."
+        },
+        "accessed_on": "2026-11-23",
+        "review_scope": "author manuscript selected sections actually inspected: §2 Theorem2.1, Remarks2.2/2.4/2.6/2.7; §4.3 distinguishes vacuum input"
+      },
+      {
+        "id": "clawpack-euler-riemann",
+        "author": "David I. Ketcheson, Randall J. LeVeque and Mauricio J. del Razo",
+        "title": "Riemann Problems and Jupyter Solutions: The Euler equations of gas dynamics",
+        "url": "https://www.clawpack.org/riemann_book/html/Euler.html",
+        "type": "online-book-chapter",
+        "role": "analytic Riemann invariants and symmetric-expansion reference derivation",
+        "review": {
+          "ja": "公式章の希薄波不変量と対称膨張・真空条件を確認。今回の固定値は既存アトラスの入力を継承し、同章の数値例そのものとは区別します。Clawpackコードは実行・転載しません。",
+          "en": "Read the official invariants, symmetric expansion and vacuum conditions. The fixed values inherit the existing atlas case and differ from this chapter’s example. No Clawpack software is executed or copied."
+        },
+        "accessed_on": "2026-11-23",
+        "year": 2020,
+        "publisher": "SIAM",
+        "doi": "10.1137/1.9781611976212",
+        "bibliographic_url": "https://www.clawpack.org/riemann_book/",
+        "review_scope": "official chapter sections Riemann invariants, exact solution, symmetric expansion and vacuum; official exact_solvers/euler.py integral_curve_1/3 inspected read-only"
+      },
+      {
+        "id": "shu1988ssprk",
+        "author": "Chi-Wang Shu and Stanley Osher",
+        "year": 1988,
+        "title": "Efficient implementation of essentially non-oscillatory shock-capturing schemes",
+        "journal": "Journal of Computational Physics",
+        "volume": "77",
+        "number": "2",
+        "pages": "439–471",
+        "doi": "10.1016/0021-9991(88)90177-5",
+        "url": "https://www.sciencedirect.com/science/article/pii/0021999188901775",
+        "type": "article",
+        "role": "historical SSP/TVD Runge-Kutta time-discretization source",
+        "review": {
+          "ja": "出版社の書誌とTVD型Runge–Kuttaの抄録を確認。原著全文・全数値実験の監査ではありません。SSP凸結合による正値性の議論はZhang–Shu著者稿でも確認。",
+          "en": "Publisher record and abstract reviewed; the full paper and numerical experiments were not audited. The convex-combination positivity application was also checked in the Zhang–Shu manuscript."
+        },
+        "accessed_on": "2026-11-23",
+        "review_scope": "publisher bibliographic record and abstract only; no full-paper audit"
+      },
+      {
+        "id": "toro2009riemann",
+        "author": "Eleuterio F. Toro",
+        "year": 2009,
+        "title": "Riemann Solvers and Numerical Methods for Fluid Dynamics: A Practical Introduction",
+        "edition": "3",
+        "publisher": "Springer Berlin, Heidelberg",
+        "doi": "10.1007/b79761",
+        "url": "https://link.springer.com/book/10.1007/b79761",
+        "type": "book",
+        "role": "general Euler Riemann problem background; not unique original test attribution",
+        "review": {
+          "ja": "出版社で第3版・著者・年とEulerのRiemann問題の章を確認。固定数値の原典をこの閲覧だけで断定しません。",
+          "en": "Publisher metadata and Euler Riemann chapter listing checked. This inspection alone does not establish the first historical source of the fixed numerical data."
+        },
+        "accessed_on": "2026-11-23",
+        "review_scope": "publisher bibliography and chapter4 title/pages115–162 only; full text not inspected"
+      },
+      {
+        "id": "atlas-riemann-2026",
+        "author": "Hiroshi Koyama",
+        "year": 2026,
+        "title": "Numerical Methods Atlas: released independent Euler Riemann evaluator",
+        "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/reference_riemann.py",
+        "type": "software",
+        "role": "actually executed separate log-root reference cross-check; no separate PDE solver",
+        "review": {
+          "ja": "既存の対数圧力根探索と希薄波評価を独立な式経路の照合に使います。実行記録とSHA・MIT条項を別に保存し、異なるPDE計算エンジンの検証とは表示しません。",
+          "en": "The prior logarithmic-pressure root and fan evaluator provide a separate algebraic check, with SHA and MIT terms. It is not a different PDE engine; execution is established by test receipts."
+        },
+        "accessed_on": "2026-11-23",
+        "review_scope": "local immutable source inspected; copied without changes with SHA and MIT license; execution recorded by tests, not presumed"
+      }
+    ],
+    "additional_figures": [
+      {
+        "file": "euler-double-rarefaction-positivity-preview.png",
+        "caption": {
+          "ja": "強い二重希薄波の密度・圧力：保存した1次元計算のx–t図（2次元流体計算ではない）。",
+          "en": "Density/pressure of the strong double rarefaction: x-t views of saved one-dimensional evolution, not two-dimensional flow."
+        }
+      }
+    ],
+    "gallery_figure": "euler-double-rarefaction-positivity-preview.png",
+    "references": [
+      {
+        "id": "zhang2010positivity",
+        "author": "Xiangxiong Zhang and Chi-Wang Shu",
+        "year": 2010,
+        "title": "On positivity-preserving high order discontinuous Galerkin schemes for compressible Euler equations on rectangular meshes",
+        "journal": "Journal of Computational Physics",
+        "volume": "229",
+        "number": "23",
+        "pages": "8918–8934",
+        "doi": "10.1016/j.jcp.2010.08.016",
+        "url": "https://www.math.purdue.edu/~zhan1966/research/paper/euler.pdf",
+        "type": "article",
+        "role": "positivity theorem and conservative scaling; FV application",
+        "review_level": "author manuscript selected sections actually inspected: §2 Theorem2.1, Remarks2.2/2.4/2.6/2.7; §4.3 distinguishes vacuum input",
+        "review": {
+          "ja": "著者稿の定理・LF条件・各SSP段階への適用と波速見積りの注意を確認。P1有限体積への限定適用で、原著の真空例・3次DGを再現したとは扱いません。",
+          "en": "Inspected positivity conditions, LF proof, stage limiting and speed-bound caution. This applies the framework to P1 FV; it does not reproduce the paper’s vacuum test or third-order DG scheme."
+        },
+        "accessed_on": "2026-11-23"
+      },
+      {
+        "id": "clawpack-euler-riemann",
+        "author": "David I. Ketcheson, Randall J. LeVeque and Mauricio J. del Razo",
+        "title": "Riemann Problems and Jupyter Solutions: The Euler equations of gas dynamics",
+        "url": "https://www.clawpack.org/riemann_book/html/Euler.html",
+        "type": "online-book-chapter",
+        "role": "analytic Riemann invariants and symmetric-expansion reference derivation",
+        "review_level": "official chapter sections Riemann invariants, exact solution, symmetric expansion and vacuum; official exact_solvers/euler.py integral_curve_1/3 inspected read-only",
+        "review": {
+          "ja": "公式章の希薄波不変量と対称膨張・真空条件を確認。今回の固定値は既存アトラスの入力を継承し、同章の数値例そのものとは区別します。Clawpackコードは実行・転載しません。",
+          "en": "Read the official invariants, symmetric expansion and vacuum conditions. The fixed values inherit the existing atlas case and differ from this chapter’s example. No Clawpack software is executed or copied."
+        },
+        "accessed_on": "2026-11-23",
+        "year": 2020,
+        "publisher": "SIAM",
+        "doi": "10.1137/1.9781611976212",
+        "bibliographic_url": "https://www.clawpack.org/riemann_book/"
+      },
+      {
+        "id": "shu1988ssprk",
+        "author": "Chi-Wang Shu and Stanley Osher",
+        "year": 1988,
+        "title": "Efficient implementation of essentially non-oscillatory shock-capturing schemes",
+        "journal": "Journal of Computational Physics",
+        "volume": "77",
+        "number": "2",
+        "pages": "439–471",
+        "doi": "10.1016/0021-9991(88)90177-5",
+        "url": "https://www.sciencedirect.com/science/article/pii/0021999188901775",
+        "type": "article",
+        "role": "historical SSP/TVD Runge-Kutta time-discretization source",
+        "review_level": "publisher bibliographic record and abstract only; no full-paper audit",
+        "review": {
+          "ja": "出版社の書誌とTVD型Runge–Kuttaの抄録を確認。原著全文・全数値実験の監査ではありません。SSP凸結合による正値性の議論はZhang–Shu著者稿でも確認。",
+          "en": "Publisher record and abstract reviewed; the full paper and numerical experiments were not audited. The convex-combination positivity application was also checked in the Zhang–Shu manuscript."
+        },
+        "accessed_on": "2026-11-23"
+      },
+      {
+        "id": "toro2009riemann",
+        "author": "Eleuterio F. Toro",
+        "year": 2009,
+        "title": "Riemann Solvers and Numerical Methods for Fluid Dynamics: A Practical Introduction",
+        "edition": "3",
+        "publisher": "Springer Berlin, Heidelberg",
+        "doi": "10.1007/b79761",
+        "url": "https://link.springer.com/book/10.1007/b79761",
+        "type": "book",
+        "role": "general Euler Riemann problem background; not unique original test attribution",
+        "review_level": "publisher bibliography and chapter4 title/pages115–162 only; full text not inspected",
+        "review": {
+          "ja": "出版社で第3版・著者・年とEulerのRiemann問題の章を確認。固定数値の原典をこの閲覧だけで断定しません。",
+          "en": "Publisher metadata and Euler Riemann chapter listing checked. This inspection alone does not establish the first historical source of the fixed numerical data."
+        },
+        "accessed_on": "2026-11-23"
+      },
+      {
+        "id": "atlas-riemann-2026",
+        "author": "Hiroshi Koyama",
+        "year": 2026,
+        "title": "Numerical Methods Atlas: released independent Euler Riemann evaluator",
+        "url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/reference_riemann.py",
+        "type": "software",
+        "role": "actually executed separate log-root reference cross-check; no separate PDE solver",
+        "review_level": "local immutable source inspected; copied without changes with SHA and MIT license; execution recorded by tests, not presumed",
+        "review": {
+          "ja": "既存の対数圧力根探索と希薄波評価を独立な式経路の照合に使います。実行記録とSHA・MIT条項を別に保存し、異なるPDE計算エンジンの検証とは表示しません。",
+          "en": "The prior logarithmic-pressure root and fan evaluator provide a separate algebraic check, with SHA and MIT terms. It is not a different PDE engine; execution is established by test receipts."
+        },
+        "accessed_on": "2026-11-23"
+      }
+    ],
+    "formulas": [
+      "\\partial_t U+\\partial_x F(U)=0,\\qquad U=(\\rho,m,E)^T,\\quad F=(m,m^2/\\rho+p,(E+p)m/\\rho)^T,\\quad p=(\\gamma-1)(E-m^2/(2\\rho))",
+      "U_i^{\\pm}=\\bar U_i\\pm\\delta U_i,\\qquad\\widehat U_i^{\\pm}=\\bar U_i+\\theta_i(U_i^{\\pm}-\\bar U_i),\\quad0\\le\\theta_i\\le1,\\qquad\\tfrac12(\\widehat U_i^-+\\widehat U_i^+)=\\bar U_i",
+      "\\widehat F_{i+1/2}=\\tfrac12\\!\\left[F(\\widehat U_i^+)+F(\\widehat U_{i+1}^-)-a(\\widehat U_{i+1}^--\\widehat U_i^+)\\right],\\qquad\\mathcal E_{\\Delta t}(\\bar U)_i=\\bar U_i-\\frac{\\Delta t}{\\Delta x}(\\widehat F_{i+1/2}-\\widehat F_{i-1/2})",
+      "U^{(1)}=\\mathcal E_{\\Delta t}(U^n),\\qquad U^{(2)}=\\tfrac34U^n+\\tfrac14\\mathcal E_{\\Delta t}(U^{(1)}),\\qquad U^{n+1}=\\tfrac13U^n+\\tfrac23\\mathcal E_{\\Delta t}(U^{(2)})",
+      "a\\ge\\max_{i,\\pm}(|u(\\widehat U_i^\\pm)|+c(\\widehat U_i^\\pm)),\\qquad\\frac{a\\Delta t}{\\Delta x}\\le\\tfrac12,\\qquad\\rho(\\widehat U_i^\\pm)>0,\\quad p(\\widehat U_i^\\pm)>0"
+    ]
+  }
+]

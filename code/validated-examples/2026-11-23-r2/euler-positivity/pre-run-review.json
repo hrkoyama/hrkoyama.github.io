@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-11-23",
+  "reviewer": "separate reference/science-audit agent",
+  "execution_performed": false,
+  "review_completed_before_first_scientific_execution": true,
+  "verdict": "ready for frozen fixed-input execution; actual numerical success remains unmeasured",
+  "files_sha256": {
+    "euler_positivity.py": "c22015d9435095b3f08189d1b09be4a040c79062b1cc76fd15648cca00f73a58",
+    "run.py": "6faaa677e674a54ff600e578ac6b3d0c1fd8322fd5d292d4f0afc99880bddda8",
+    "test_euler_positivity.py": "b475a4105d0538c4f615f6cb46aa949aadc3e1f0e530bcb360e33aab831fe21c",
+    "inputs.json": "a1185e4b8be0f49f8f3f551f934614110c227d39b2bb0dc4438c5301428d751b",
+    "acceptance.json": "f08558b2703369a2260db1252dc40272f76556a2f6205688faa88a4c37c79050",
+    "plot.py": "1e8a4495b061a24d4e58332c79768767fd00d80c76b3048d32937bf37f525d67",
+    "references/double_rarefaction.py": "b15fb61762d7a4a4a1d1f3402366e858cabad0069e5bf55ba7ab1fecef98b9b7",
+    "references/numart_reference_riemann.py": "5d2b36eb1e4165d6cf791702529642c9a0c8672cd44a591962efeee7ea66709f",
+    "references/citations.json": "e6ec0469f798e7f3a316fb9f696295f9e2a32b6540e17f4b1d93d0fad4971f17",
+    "references/source-review.json": "de49147a0403d768309ec93baa6533513a1a77b5bda745bf3bb1e12a818e797a",
+    "source-provenance.json": "f0ecec8dc99c73d99bc48ae62824346513fd00094af90e4134408b5f6756658f"
+  },
+  "scope": {
+    "physical_input": "gamma1.4,[0,1],x0.5,rho1,u±2,p.4,T.15,N128/256/512",
+    "planned_pytest_cases": 27,
+    "planned_runner_gates": 73,
+    "method": "P1 finite-volume reconstruction, one affine cell factor, global Lax-Friedrichs a4, SSPRK(3,3),CFL.4",
+    "reference": "closed symmetric non-vacuum fan; splitGauss conserved means; separate existing log-root Riemann evaluator"
+  },
+  "review_findings": [
+    {
+      "topic": "conditional positivity theorem",
+      "finding": "P1 endpoint quadrature weights1/2; globalLF alpha0=1. Actual endpoint spectra and all FE-substep dt*a/dx<=1/2 are checked. This is a conditional theorem applied to this recorded run, not an a priori universal stage speed bound."
+    },
+    {
+      "topic": "mean preservation",
+      "finding": "Central reconstruction q±one half-slope and one common affine scaling preserve each conserved mean in real arithmetic; measured floating-point defects are gated."
+    },
+    {
+      "topic": "SSP convexity and conservation",
+      "finding": "SSPRK stages q1=FE(q0),q2=3q0/4+FE(q1)/4,q3=q0/3+2FE(q2)/3 are checked separately. Net actual boundary flux weights1/6,1/6,2/3 and per-FE/per-combination/full-step budgets are correct."
+    },
+    {
+      "topic": "raw state handling",
+      "finding": "Raw nonpositive densities are counted without undefined pressure division; scaled endpoints and FE/SSP means must be admissible. No cell-average floors or silent retry path exists."
+    },
+    {
+      "topic": "reference formulas",
+      "finding": "Closed star and symmetric fan formulas satisfy head/tail continuity; pointwise agreement with the independent root evaluator, splitGauss8/16, symmetry and Euler residual are planned."
+    },
+    {
+      "topic": "absolute finite-domain reference balance",
+      "finding": "AtT.15 all exact fan fronts are inside[0,1]. Initial integral[1,0,3]+.15*far-field net flux[-4,0,-13.6]=[.4,0,.96] is independently asserted in test25."
+    },
+    {
+      "topic": "saved figures",
+      "finding": "Pre-execution plot source reads only hashed saved conserved arrays and stage records. Preview axes are x and time, not two spatial dimensions. Pressure is p(conserved mean), not mean pointwise pressure."
+    }
+  ],
+  "limitations": [
+    "This is a positive non-vacuum central state, unlike the different actual-vacuum input in the cited paper.",
+    "No general Euler EOS/multidimensional/WENO/DG/PPM certification.",
+    "Positivity is not a TVD,entropy stability or global convergence theorem.",
+    "Bibliographic records, inspected formulas and actually executed software are distinguished in the source reviews."
+  ]
+}

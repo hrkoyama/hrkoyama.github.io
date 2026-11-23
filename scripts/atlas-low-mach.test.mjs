@@ -12,8 +12,8 @@ const base='code/validated-examples/2026-11-23/low-mach/';
 
 test('low-Mach vortex preserves sixteen frozen release records and eighty-four other pictures',()=>{
  const registry=json('numerical-methods-atlas/validation/releases.json');
- assert.equal(objectHash(registry.releases.filter(r=>!['low-mach','guderley'].includes(r.group))),'59a536ae50edae648ee6306e24a2597ba79d20eba0c1ffd23d7aab9e1d289804');
- assert.equal(registry.case_count,47);assert.equal(registry.releases.length,18);assert.equal(registry.releases.reduce((s,r)=>s+r.tests,0),571);
+ assert.equal(objectHash(registry.releases.filter(r=>!['low-mach','guderley','euler-positivity'].includes(r.group))),'59a536ae50edae648ee6306e24a2597ba79d20eba0c1ffd23d7aab9e1d289804');
+ assert.equal(registry.case_count,48);assert.equal(registry.releases.length,19);assert.equal(registry.releases.filter(r=>r.group!=='euler-positivity').reduce((s,r)=>s+r.tests,0),571);
  const release=registry.releases.find(r=>r.group==='low-mach');assert.equal(release.tests,35);assert.deepEqual(release.case_ids,['low-mach-vortex']);
  const pictures=json('numerical-methods-atlas/gallery/preview-manifest.json').items.filter(r=>!['isentropic-vortex','guderley'].includes(r.id)).map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}));
  assert.equal(pictures.length,84);assert.equal(objectHash(pictures),'1b8d229d378a47d05a78a8d2c3ca6350c794b1cee3366a0a12c7805602a84107');
