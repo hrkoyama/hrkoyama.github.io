@@ -1,0 +1,324 @@
+{
+  "passed": true,
+  "scope": "Component-only finite law/equivalence/timing; no particle evolution,streaming,collision or PDE main executed. No full-main runtime or statistical-precision guarantee.",
+  "checks": {
+    "labels[]/coupled exact order": true,
+    "labels[]/partition": true,
+    "labels[]/exact pair probabilities": true,
+    "labels[0]/coupled exact order": true,
+    "labels[0]/partition": true,
+    "labels[0]/exact pair probabilities": true,
+    "labels[0, 0]/coupled exact order": true,
+    "labels[0, 0]/partition": true,
+    "labels[0, 0]/exact pair probabilities": true,
+    "labels[0, 0, 0]/coupled exact order": true,
+    "labels[0, 0, 0]/partition": true,
+    "labels[0, 0, 0]/exact pair probabilities": true,
+    "labels[0, 0, 0, 0]/coupled exact order": true,
+    "labels[0, 0, 0, 0]/partition": true,
+    "labels[0, 0, 0, 0]/exact pair probabilities": true,
+    "labels[0, 0, 0, 0, 0]/coupled exact order": true,
+    "labels[0, 0, 0, 0, 0]/partition": true,
+    "labels[0, 0, 0, 0, 0]/exact pair probabilities": true,
+    "labels[0, 0, 0, 0, 0, 0]/coupled exact order": true,
+    "labels[0, 0, 0, 0, 0, 0]/partition": true,
+    "labels[0, 0, 0, 0, 0, 0]/exact pair probabilities": true,
+    "labels[0, 0, 0, 0, 0, 0, 0]/coupled exact order": true,
+    "labels[0, 0, 0, 0, 0, 0, 0]/partition": true,
+    "labels[0, 0, 0, 0, 0, 0, 0]/exact pair probabilities": true,
+    "labels[0, 0, 0, 0, 1, 1, 1]/coupled exact order": true,
+    "labels[0, 0, 0, 0, 1, 1, 1]/partition": true,
+    "labels[0, 0, 0, 0, 1, 1, 1]/exact pair probabilities": true,
+    "cdf[2.581988897471611, 1]/unchanged final residual": true,
+    "cdf[2.581988897471611, 1]/CDF law equivalence": true,
+    "cdf[2.581988897471611, 1]/finite physical speeds": true,
+    "cdf[-1.12962014264383, 2.078125]/unchanged final residual": true,
+    "cdf[-1.12962014264383, 2.078125]/CDF law equivalence": true,
+    "cdf[-1.12962014264383, 2.078125]/finite physical speeds": true,
+    "cdf[2.58, 1]/unchanged final residual": true,
+    "cdf[2.58, 1]/CDF law equivalence": true,
+    "cdf[2.58, 1]/finite physical speeds": true,
+    "cdf[-1.13, 2.08]/unchanged final residual": true,
+    "cdf[-1.13, 2.08]/CDF law equivalence": true,
+    "cdf[-1.13, 2.08]/finite physical speeds": true,
+    "cdf[0, 1]/unchanged final residual": true,
+    "cdf[0, 1]/CDF law equivalence": true,
+    "cdf[0, 1]/finite physical speeds": true,
+    "sort speed/5120": true,
+    "sort speed/10240": true,
+    "CDF no slowdown/0": true,
+    "CDF no slowdown/1": true,
+    "CDF no slowdown/3": true,
+    "CDF no slowdown/8": true
+  },
+  "metrics": {
+    "pair_laws": [
+      {
+        "cell_labels": [],
+        "permutations": 1,
+        "pair_probabilities": {}
+      },
+      {
+        "cell_labels": [
+          0
+        ],
+        "permutations": 1,
+        "pair_probabilities": {}
+      },
+      {
+        "cell_labels": [
+          0,
+          0
+        ],
+        "permutations": 2,
+        "pair_probabilities": {
+          "(0, 1)": "1"
+        }
+      },
+      {
+        "cell_labels": [
+          0,
+          0,
+          0
+        ],
+        "permutations": 6,
+        "pair_probabilities": {
+          "(0, 1)": "1/3",
+          "(0, 2)": "1/3",
+          "(1, 2)": "1/3"
+        }
+      },
+      {
+        "cell_labels": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "permutations": 24,
+        "pair_probabilities": {
+          "(0, 1)": "1/3",
+          "(0, 2)": "1/3",
+          "(0, 3)": "1/3",
+          "(1, 2)": "1/3",
+          "(1, 3)": "1/3",
+          "(2, 3)": "1/3"
+        }
+      },
+      {
+        "cell_labels": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "permutations": 120,
+        "pair_probabilities": {
+          "(0, 1)": "1/5",
+          "(0, 2)": "1/5",
+          "(0, 3)": "1/5",
+          "(0, 4)": "1/5",
+          "(1, 2)": "1/5",
+          "(1, 3)": "1/5",
+          "(1, 4)": "1/5",
+          "(2, 3)": "1/5",
+          "(2, 4)": "1/5",
+          "(3, 4)": "1/5"
+        }
+      },
+      {
+        "cell_labels": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "permutations": 720,
+        "pair_probabilities": {
+          "(0, 1)": "1/5",
+          "(0, 2)": "1/5",
+          "(0, 3)": "1/5",
+          "(0, 4)": "1/5",
+          "(0, 5)": "1/5",
+          "(1, 2)": "1/5",
+          "(1, 3)": "1/5",
+          "(1, 4)": "1/5",
+          "(1, 5)": "1/5",
+          "(2, 3)": "1/5",
+          "(2, 4)": "1/5",
+          "(2, 5)": "1/5",
+          "(3, 4)": "1/5",
+          "(3, 5)": "1/5",
+          "(4, 5)": "1/5"
+        }
+      },
+      {
+        "cell_labels": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "permutations": 5040,
+        "pair_probabilities": {
+          "(0, 1)": "1/7",
+          "(0, 2)": "1/7",
+          "(0, 3)": "1/7",
+          "(0, 4)": "1/7",
+          "(0, 5)": "1/7",
+          "(0, 6)": "1/7",
+          "(1, 2)": "1/7",
+          "(1, 3)": "1/7",
+          "(1, 4)": "1/7",
+          "(1, 5)": "1/7",
+          "(1, 6)": "1/7",
+          "(2, 3)": "1/7",
+          "(2, 4)": "1/7",
+          "(2, 5)": "1/7",
+          "(2, 6)": "1/7",
+          "(3, 4)": "1/7",
+          "(3, 5)": "1/7",
+          "(3, 6)": "1/7",
+          "(4, 5)": "1/7",
+          "(4, 6)": "1/7",
+          "(5, 6)": "1/7"
+        }
+      },
+      {
+        "cell_labels": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1
+        ],
+        "permutations": 5040,
+        "pair_probabilities": {
+          "(0, 1)": "1/3",
+          "(0, 2)": "1/3",
+          "(0, 3)": "1/3",
+          "(1, 2)": "1/3",
+          "(1, 3)": "1/3",
+          "(2, 3)": "1/3",
+          "(4, 5)": "1/3",
+          "(4, 6)": "1/3",
+          "(5, 6)": "1/3"
+        }
+      }
+    ],
+    "sort_timing": [
+      {
+        "particles": 5120,
+        "blocks": [
+          {
+            "baseline": 0.1898838750057621,
+            "candidate": 0.09524537499964936
+          },
+          {
+            "baseline": 0.19503987499774667,
+            "candidate": 0.09440966699912678
+          },
+          {
+            "baseline": 0.19760025000141468,
+            "candidate": 0.10171704199456144
+          }
+        ],
+        "median_candidate_over_baseline": 0.48833796166424814
+      },
+      {
+        "particles": 10240,
+        "blocks": [
+          {
+            "baseline": 0.4483598750011879,
+            "candidate": 0.20389758400415303
+          },
+          {
+            "baseline": 0.4321609999969951,
+            "candidate": 0.2161415830050828
+          },
+          {
+            "baseline": 0.4469402920003631,
+            "candidate": 0.21121791699988535
+          }
+        ],
+        "median_candidate_over_baseline": 0.47258642995586925
+      }
+    ],
+    "cdf_timing": [
+      {
+        "count": 0,
+        "seconds": {
+          "baseline": 0.0861282920013764,
+          "candidate": 0.00018283400277141482
+        },
+        "candidate_over_baseline": 0.00212281003747866
+      },
+      {
+        "count": 1,
+        "seconds": {
+          "baseline": 0.10590212500392227,
+          "candidate": 0.037131124998268206
+        },
+        "candidate_over_baseline": 0.35061737426791945
+      },
+      {
+        "count": 3,
+        "seconds": {
+          "baseline": 0.100996415996633,
+          "candidate": 0.05353724999440601
+        },
+        "candidate_over_baseline": 0.5300905924839038
+      },
+      {
+        "count": 8,
+        "seconds": {
+          "baseline": 0.10394516700034728,
+          "candidate": 0.0547430830047233
+        },
+        "candidate_over_baseline": 0.5266534710992422
+      }
+    ],
+    "cdf_equivalence": [
+      {
+        "drift": 2.581988897471611,
+        "temperature": 1,
+        "max_CDF_residual": 4.440892098500626e-16,
+        "max_CDF_difference": 7.771561172376096e-16
+      },
+      {
+        "drift": -1.12962014264383,
+        "temperature": 2.078125,
+        "max_CDF_residual": 1.5334955527634975e-15,
+        "max_CDF_difference": 2.6853519408120974e-15
+      },
+      {
+        "drift": 2.58,
+        "temperature": 1,
+        "max_CDF_residual": 4.440892098500626e-16,
+        "max_CDF_difference": 5.551115123125783e-16
+      },
+      {
+        "drift": -1.13,
+        "temperature": 2.08,
+        "max_CDF_residual": 1.5543122344752192e-15,
+        "max_CDF_difference": 2.4980018054066022e-15
+      },
+      {
+        "drift": 0,
+        "temperature": 1,
+        "max_CDF_residual": 6.301179738578411e-15,
+        "max_CDF_difference": 6.301179738578411e-15
+      }
+    ]
+  },
+  "wall_seconds": 3.589166124998883,
+  "protocol_sha256": "1f06b091f1f2e82ed359e00081fb26258611952a0dd13327f4c04ba7e1dbb957"
+}

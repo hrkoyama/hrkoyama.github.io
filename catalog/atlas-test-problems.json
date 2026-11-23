@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_on": "2026-11-23",
+  "reviewed_on": "2026-11-24",
   "policy": {
     "ja": "アトラス全体の公開済み計算データ、および検証済み公開コード版の独立したテスト問題を数えます。方程式・次元・境界条件・名前を付けた初期値やソースの違いで問題を区別し、同じ問題の手法・格子数・刻み幅・パラメータ走査・乱数種・表示形式の違いは統合します。Sodの重複掲載、楔のMach数違い、CT/GLMの違いも加算しません。参照式の評価のみ、予定・文献調査のみ、図のみ、局所的な恒等式・不変量・入力エラー等の単体検査は総数に含めません。静的な力・境界値・関数近似・代数方程式の問題を含み、全件が時間発展シミュレーションという意味ではありません。",
     "en": "Count independent problems across published atlas results and the verified public code edition. Distinguish governing equations, dimensions, boundary conditions and named initial/source problems; merge solver, mesh, step-size, parameter-sweep, random-seed and presentation variants of the same problem. Repeated Sod exhibits, wedge Mach variants and CT/GLM variants do not add problems. Exclude reference-only evaluations, planned/literature-only entries, diagrams, and local identity/invariant/input-error unit checks. Static-force, boundary-value, approximation and algebraic problems are included; not every entry is a time-evolving simulation."
@@ -4273,26 +4273,26 @@
       "chapter": "validation-dsmc-shock",
       "reading_section": "dsmc-planar-shock",
       "availability": "saved-output",
-      "code_base": "/code/validated-examples/2026-11-23/dsmc-shock/",
-      "verification": "/code/validated-examples/2026-11-23/dsmc-shock/verification.json",
+      "code_base": "/code/validated-examples/2026-11-24/dsmc-shock/",
+      "verification": "/code/validated-examples/2026-11-24/dsmc-shock/verification.json",
       "commands": [
         "python -W error -m pytest -q -p no:cacheprovider",
         "python -W error run.py --input inputs.json --output output"
       ],
       "evidence": [
         {
-          "path": "code/validated-examples/2026-11-23/dsmc-shock/results/result.json",
+          "path": "code/validated-examples/2026-11-24/dsmc-shock/results/result.json",
           "json_pointer": "/cases",
           "where": {
             "id": "dsmc-planar-shock"
           }
         },
         {
-          "path": "code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock-preview.png",
+          "path": "code/validated-examples/2026-11-24/dsmc-shock/results/dsmc-planar-shock-preview.png",
           "artifact": "image"
         },
         {
-          "path": "code/validated-examples/2026-11-23/dsmc-shock/verification.json",
+          "path": "code/validated-examples/2026-11-24/dsmc-shock/verification.json",
           "json_pointer": "/all_cases_rerun"
         }
       ],

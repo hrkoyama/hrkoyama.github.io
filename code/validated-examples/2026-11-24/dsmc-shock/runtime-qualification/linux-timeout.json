@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "status": "FAILED_EXTERNAL_SHARED_BUDGET",
+  "public_workflow_run": 45197177345,
+  "public_source_commit": "0e53b62dd4d442d8609f93ff45201cd60a5b4d1d",
+  "source_report_sha256": "0d0469fb90eeb7cc73908ed7590d940a37b1a7229890b5aa0a120afede698d2b",
+  "source_report_private_relative_path": "0e53b62d/second-linux-failure/linux-failed-report.json",
+  "finished_at_utc": "2026-11-23T15:03:25.846928+00:00",
+  "passed": false,
+  "group": {
+    "group": "dsmc-shock",
+    "passed": false,
+    "status": "failed",
+    "case_ids": [
+      "dsmc-planar-shock"
+    ],
+    "expected_tests": 20,
+    "archive_sha256": "a0781fe0b577cd65f60489e77672bbfdbc7d1f657c9514ad1c0c862125ba4eda",
+    "manifest_sha256": "2dfb1b6074aec28dddb083cc715c85080be678f39e55b2472c518730ec72c766",
+    "pytest_process": {
+      "command": [
+        "/home/runner/work/_temp/atlas-depth-public-env/bin/python",
+        "-W",
+        "error",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--junitxml=/home/runner/work/_temp/atlas-depth-public-report/verification/groups/dsmc-shock/pytest.xml"
+      ],
+      "started": true,
+      "completed": true,
+      "timed_out": false,
+      "exit_code": 0,
+      "stdout": "pytest.stdout.log",
+      "stderr": "pytest.stderr.log",
+      "duration_seconds": 0.565254901000003
+    },
+    "pytest": {
+      "tests": 20,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "run_process": {
+      "command": [
+        "/home/runner/work/_temp/atlas-depth-public-env/bin/python",
+        "-W",
+        "error",
+        "run.py",
+        "--input",
+        "inputs.json",
+        "--output",
+        "/home/runner/work/_temp/atlas-depth-public-report/verification/groups/dsmc-shock/generated"
+      ],
+      "started": true,
+      "completed": false,
+      "timed_out": true,
+      "exit_code": null,
+      "stdout": "run.stdout.log",
+      "stderr": "run.stderr.log",
+      "duration_seconds": 118.903726957
+    }
+  },
+  "checkpoint_records": [
+    {
+      "file": "linux-timeout-checkpoint-0.json",
+      "sha256": "9b222e755ac6174b32aad53d1bf7623348c380f20b643b2c2ac8ea5b70716862",
+      "original_report_relative_path": "details/verification__groups__dsmc-shock__generated__dsmc-planar-shock-checkpoint.json"
+    },
+    {
+      "file": "linux-timeout-checkpoint-1.json",
+      "sha256": "0cb0896e10be3744d8d08eb71b91c10156381f7cd366a0246d7d53a0545ab540",
+      "original_report_relative_path": "details/verification__groups__dsmc-shock__generated__dsmc-planar-shock-completed-runs.json"
+    }
+  ],
+  "scope": "20pytest passed; main external shared120s timeout after14of15 runs (all12base plus fixed-weight mesh and double-particle companion), final half-dt run incomplete. Recorded84per-run gates true are not full129-gate completion. Old scientific saved success remains valid; the Linux timeout is retained as a separate failed execution. No scientific threshold or budget is relaxed."
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "component_checks_passed": 163,
+  "component_execution_receipt": "component-attempt-01/receipt.json",
+  "component_protocol_sha256": "f49a86e1d54e143eab762e944f819bc208bc2159c81b3d57e3308ec66d5f0aaa",
+  "scope": "Component-only exact bit/RNG equivalence and fixed pure-kernel profile. No simulate/main/PDE or reference regeneration. Component timing does not establish full-main or Linux timing.",
+  "inert_source_policy": "All bundled component source/checker/native snapshots are inert text, preserved with pathmap/SHA. Original failed redesign histories and R3 backend qualification remain distinct and unchanged.",
+  "private_only_profile_binary": {
+    "relative_private_location": "component-attempt-01/results/baseline-components.prof",
+    "sha256": "467c440389f0d9e7b2704c325fe3e0ac82569de756a01b9acd1a3857c8461208",
+    "bytes": 18230,
+    "bundled": false
+  }
+}

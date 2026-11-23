@@ -16,7 +16,7 @@ Evolve physical-time hard-sphere collisions and molecular streaming; compare act
 
 [This example’s formulation and conditions](https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=en#dsmc-planar-shock-en-algorithm)
 
-Disjoint cell-local random pairs with even/odd finite-N physical-time sigma*g acceptance,energy-based safe majorant and predeclared bounded subcycling; no probability caps. Exact flight-to-wall and flux-conditioned diffuse/reservoir velocities with remaining flight time. Open-reservoir macro counts use unbiased floor(mean)+Bernoulli(fraction) per face/species/half-stream to reduce artificial sampling variance; no Poisson number-fluctuation or thermodynamic-fluctuation reproduction claim. Retain the original four seeds and append the next eight consecutive seeds; uniform permutation/stable integer sorting preserves the ideal within-cell matching law,not RNG consumption or bit-identical trajectories.
+Disjoint cell-local random pairs with even/odd finite-N physical-time sigma*g acceptance,energy-based safe majorant and predeclared bounded subcycling; no probability caps. Exact flight-to-wall and flux-conditioned diffuse/reservoir velocities with remaining flight time. Open-reservoir macro counts use unbiased floor(mean)+Bernoulli(fraction) per face/species/half-stream to reduce artificial sampling variance; no Poisson number-fluctuation or thermodynamic-fluctuation reproduction claim. Retain the original four seeds and append the next eight consecutive seeds; uniform permutation/stable integer sorting preserves the ideal within-cell matching law,not RNG consumption or bit-identical trajectories. Edition2026-11-24 only reuses immutable reservoir coefficients and an inverse-CDF residual at unchanged v,fuses concatenation in unchanged keep-left-right order,and reversibly narrows range-checked integer sort keys to uint8 before the same stable sort. Original permutation/RNG calls,equal-key particle order,collision pairs and scientific inputs remain unchanged. The first three changes passed163component checks; a separate348check study qualifies the sort-key composition with exact byte/RNG comparisons. Neither is a new main run; full saved-science equality remains pending.
 
 $$
 \partial_t f+v_x\partial_x f=Q_{\mathrm{HS}}(f,f),\quad \sigma=\pi d^2=1/\sqrt{2}
@@ -41,7 +41,7 @@ $$
 
 **Problem figure**
 
-![Hard-sphere DSMC Mach2 planar shock: saved validation figure for this execution.](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock.png)
+![Hard-sphere DSMC Mach2 planar shock: saved validation figure for this execution.](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/results/dsmc-planar-shock.png)
 
 A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
 
@@ -53,7 +53,7 @@ A saved validation figure for this execution example. Its conditions and accepta
 
 [References and checks for this execution](https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=en#dsmc-planar-shock-en-validation)
 
-Predeclare20pytest per group and15new fixed primary runs. Separate boundary-inclusive budgets,local lambda/collision-time diagnostics,reference error,whole-seed precision and block stationarity. Reference36runs/87qualifiers already passed; primary results remain pending until the frozen run. Preserve all81old gates and add48new-run gates=129. Primary12seed t95 usesdf11,reference4seed usesdf3; descriptive approximate-normal whole-seed intervals,not unconditional adaptive-study coverage.
+Predeclare20pytest per group and15new fixed primary runs. Separate boundary-inclusive budgets,local lambda/collision-time diagnostics,reference error,whole-seed precision and block stationarity. Reference36runs/87qualifiers already passed; primary results remain pending until the frozen run. Preserve all81old gates and add48new-run gates=129. Primary12seed t95 usesdf11,reference4seed usesdf3; descriptive approximate-normal whole-seed intervals,not unconditional adaptive-study coverage. This new edition main has not run at contract freeze. Retain all20pytest,15runs,129gates and the original shared120s outer deadline,then compare every saved scientific array/history/metric with the immutable successful Nov23baseline. No independent reference is regenerated.
 
 - [Mach2 planar hard-sphere shock](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-dsmc-planar-shock-en) (`dsmc-planar-shock`; Same-problem reference · Finite-grid numerical reference)
 
@@ -68,7 +68,7 @@ Finite-particle finite-grid independent stochastic reference,empirically qualifi
 
 ### Adopted numerical method
 
-Disjoint cell-local random pairs with even/odd finite-N physical-time sigma*g acceptance,energy-based safe majorant and predeclared bounded subcycling; no probability caps. Exact flight-to-wall and flux-conditioned diffuse/reservoir velocities with remaining flight time. Open-reservoir macro counts use unbiased floor(mean)+Bernoulli(fraction) per face/species/half-stream to reduce artificial sampling variance; no Poisson number-fluctuation or thermodynamic-fluctuation reproduction claim. Retain the original four seeds and append the next eight consecutive seeds; uniform permutation/stable integer sorting preserves the ideal within-cell matching law,not RNG consumption or bit-identical trajectories.
+Disjoint cell-local random pairs with even/odd finite-N physical-time sigma*g acceptance,energy-based safe majorant and predeclared bounded subcycling; no probability caps. Exact flight-to-wall and flux-conditioned diffuse/reservoir velocities with remaining flight time. Open-reservoir macro counts use unbiased floor(mean)+Bernoulli(fraction) per face/species/half-stream to reduce artificial sampling variance; no Poisson number-fluctuation or thermodynamic-fluctuation reproduction claim. Retain the original four seeds and append the next eight consecutive seeds; uniform permutation/stable integer sorting preserves the ideal within-cell matching law,not RNG consumption or bit-identical trajectories. Edition2026-11-24 only reuses immutable reservoir coefficients and an inverse-CDF residual at unchanged v,fuses concatenation in unchanged keep-left-right order,and reversibly narrows range-checked integer sort keys to uint8 before the same stable sort. Original permutation/RNG calls,equal-key particle order,collision pairs and scientific inputs remain unchanged. The first three changes passed163component checks; a separate348check study qualifies the sort-key composition with exact byte/RNG comparisons. Neither is a new main run; full saved-science equality remains pending.
 
 $$
 \partial_t f+v_x\partial_x f=Q_{\mathrm{HS}}(f,f),\quad \sigma=\pi d^2=1/\sqrt{2}
@@ -88,7 +88,7 @@ $$
 
 ### References and validation
 
-Predeclare20pytest per group and15new fixed primary runs. Separate boundary-inclusive budgets,local lambda/collision-time diagnostics,reference error,whole-seed precision and block stationarity. Reference36runs/87qualifiers already passed; primary results remain pending until the frozen run. Preserve all81old gates and add48new-run gates=129. Primary12seed t95 usesdf11,reference4seed usesdf3; descriptive approximate-normal whole-seed intervals,not unconditional adaptive-study coverage.
+Predeclare20pytest per group and15new fixed primary runs. Separate boundary-inclusive budgets,local lambda/collision-time diagnostics,reference error,whole-seed precision and block stationarity. Reference36runs/87qualifiers already passed; primary results remain pending until the frozen run. Preserve all81old gates and add48new-run gates=129. Primary12seed t95 usesdf11,reference4seed usesdf3; descriptive approximate-normal whole-seed intervals,not unconditional adaptive-study coverage. This new edition main has not run at contract freeze. Retain all20pytest,15runs,129gates and the original shared120s outer deadline,then compare every saved scientific array/history/metric with the immutable successful Nov23baseline. No independent reference is regenerated.
 
 ### Limits
 
@@ -421,16 +421,16 @@ Finite-particle finite-grid independent stochastic reference,empirically qualifi
 
 Complete records and reference_records: https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-planar-shock/index.json
 
-![Actual saved particle position-velocity histograms; phase space of1D position and molecular velocity,not2D physical flow.](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock-preview.png)
+![Actual saved particle position-velocity histograms; phase space of1D position and molecular velocity,not2D physical flow.](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/results/dsmc-planar-shock-preview.png)
 
 Actual saved particle position-velocity histograms; phase space of1D position and molecular velocity,not2D physical flow.
 
 ### Download and run
 
-ZIP: https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/atlas-dsmc-shock-2026-11-23.zip
-Input: https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/inputs.json
-Results: https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/results/result.json
-Receipt: https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/verification.json
+ZIP: https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/atlas-dsmc-shock-2026-11-24.zip
+Input: https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/inputs.json
+Results: https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/results/result.json
+Receipt: https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/verification.json
 
 ```sh
 python -m pip install -r requirements.txt

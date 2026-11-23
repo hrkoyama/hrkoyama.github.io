@@ -1,0 +1,170 @@
+"""DRAFT component-only bit/RNG equivalence and fixed workload profiling.
+
+No simulate/main/PDE evolution, reference generation or adaptive timing loop.
+Execution requires independent review and root authorization of protocol.json.
+"""
+from pathlib import Path
+import argparse,ast,cProfile,hashlib,importlib.util,json,pstats,time,traceback
+import numpy as np
+
+HERE=Path(__file__).resolve().parent
+
+def digest(path):return hashlib.sha256(path.read_bytes()).hexdigest()
+def save(path,value):path.write_text(json.dumps(value,indent=2,allow_nan=False)+'\n')
+def load(name,path):
+    spec=importlib.util.spec_from_file_location(name,path)
+    module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+    return module
+
+def same(a,b):
+    if isinstance(a,np.ndarray) or isinstance(b,np.ndarray):
+        return isinstance(a,np.ndarray) and isinstance(b,np.ndarray) and a.dtype==b.dtype and a.shape==b.shape and a.tobytes(order='C')==b.tobytes(order='C')
+    if isinstance(a,np.generic) or isinstance(b,np.generic):
+        return isinstance(a,np.generic) and isinstance(b,np.generic) and a.dtype==b.dtype and a.tobytes()==b.tobytes()
+    if isinstance(a,dict) or isinstance(b,dict):
+        return isinstance(a,dict) and isinstance(b,dict) and a.keys()==b.keys() and all(same(a[k],b[k]) for k in a)
+    if isinstance(a,(tuple,list)) or isinstance(b,(tuple,list)):
+        return type(a) is type(b) and len(a)==len(b) and all(same(x,y) for x,y in zip(a,b))
+    return type(a) is type(b) and a==b
+
+class RecordedRNG:
+    def __init__(self,seed):self.rng=np.random.default_rng(seed);self.calls=[]
+    def __getattr__(self,name):
+        method=getattr(self.rng,name)
+        def call(*args,**kwargs):
+            value=method(*args,**kwargs);array=np.asarray(value)
+            self.calls.append({'method':name,'args':repr(args),'kwargs':repr(kwargs),'dtype':array.dtype.str,'shape':list(array.shape),'bytes_sha256':hashlib.sha256(array.tobytes()).hexdigest()})
+            return value
+        return call
+    def evidence(self):return {'calls':self.calls,'final_state':self.rng.bit_generator.state}
+
+class FixedRNG:
+    def __init__(self,values):self.values=np.asarray(values);self.calls=[]
+    def random(self,count):
+        self.calls.append(count)
+        if count!=len(self.values):raise AssertionError('Fixed uniform count')
+        return self.values.copy()
+    def evidence(self):return {'calls':self.calls}
+
+def captured(function):
+    try:return {'value':function(),'error':None}
+    except Exception as error:
+        return {'value':None,'error':{'type':type(error).__name__,'message':str(error),'position':getattr(error,'position',None),'velocity':getattr(error,'velocity',None)}}
+
+def function_text(path,name):
+    text=path.read_text();node=next(n for n in ast.parse(text).body if isinstance(n,(ast.FunctionDef,ast.ClassDef)) and n.name==name)
+    return '\n'.join(text.splitlines()[node.lineno-1:node.end_lineno])
+
+def main():
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--output',type=Path,required=True);args=parser.parse_args()
+    if args.output.exists() and any(args.output.iterdir()):raise ValueError('Use fresh component output')
+    args.output.mkdir(parents=True,exist_ok=True);started=time.perf_counter();checks=[];details=[];failure=None;timings=[];profile_rows=[]
+    def check(name,passed,detail=None,evidence=None):
+        checks.append({'name':name,'passed':bool(passed)})
+        if detail is not None:details.append({'name':name,'detail':detail})
+        if not passed and evidence is not None:
+            arrays={}
+            def unpack(value,key='root'):
+                if isinstance(value,(np.ndarray,np.generic)):
+                    arrays[key]=np.asarray(value);return {'npz_key':key}
+                if isinstance(value,dict):return {str(k):unpack(v,key+'/'+str(k)) for k,v in value.items()}
+                if isinstance(value,(list,tuple)):return [unpack(v,key+'/'+str(i)) for i,v in enumerate(value)]
+                return value
+            structure=unpack(evidence);stem='failed-component-'+str(len(checks))
+            np.savez_compressed(args.output/(stem+'.npz'),**arrays)
+            save(args.output/(stem+'.json'),{'name':name,'structure':structure})
+    try:
+        protocol=json.loads((HERE/'protocol.json').read_text())
+        for relative,expected in protocol['files_sha256'].items():
+            if digest(HERE/relative)!=expected:raise ValueError('Changed bound component source '+relative)
+        old_path=HERE/'baseline/source/dsmc.py';new_path=HERE/'candidate/source/dsmc.py'
+        old=load('legacy_dsmc_component',old_path);new=load('candidate_dsmc_component',new_path)
+        cfg=json.loads((HERE/'baseline/source/inputs.json').read_text())['cases']['dsmc-planar-shock']['configurations']['base']
+        for name in protocol['protected_functions']:
+            check('unchanged function '+name,function_text(old_path,name)==function_text(new_path,name))
+        manifest=json.loads((HERE/'baseline/source-manifest.json').read_text())['original_files_sha256']
+        for name,expected in manifest.items():
+            check('baseline original '+name,digest(HERE/'baseline/source'/name)==expected)
+            if name!='dsmc.py':check('candidate unchanged '+name,digest(HERE/'candidate/source'/name)==expected)
+        for drift,temperature in [(old.U1,1.),(-old.U2,old.TEMP2)]:
+            label=str(drift)
+            a,b=old.FluxSampler(drift,temperature),new.FluxSampler(drift,temperature)
+            points=np.array([0,1e-14,.001*a.s,.019*a.s,.021*a.s,a.s,3*a.s,a.grid[-1]])
+            cdf_a,cdf_b=a.cdf(points),b.cdf(points)
+            check('cdf and inverse grid '+label,same(a.grid,b.grid) and same(a.cdf_grid,b.cdf_grid) and same(cdf_a,cdf_b),evidence={'points':points,'legacy_cdf':cdf_a,'candidate_cdf':cdf_b,'legacy_grid':a.grid,'candidate_grid':b.grid,'legacy_cdf_grid':a.cdf_grid,'candidate_cdf_grid':b.cdf_grid})
+            for count in protocol['sample_counts']:
+                for seed in protocol['seeds']:
+                    r,s=RecordedRNG(seed),RecordedRNG(seed)
+                    left,right=captured(lambda:a.sample(r,count)),captured(lambda:b.sample(s,count))
+                    check('sample '+label+' '+str(count)+' '+str(seed),same(left,right) and same(r.evidence(),s.evidence()),evidence={'legacy':left,'candidate':right,'legacy_rng':r.evidence(),'candidate_rng':s.evidence()})
+            targets=np.array([0,1e-14,1e-8,.1,.5,.9,1-1e-12])
+            r,s=FixedRNG(targets),FixedRNG(targets)
+            left,right=captured(lambda:a.sample(r,len(targets))),captured(lambda:b.sample(s,len(targets)))
+            check('extreme inverse '+label,same(left,right) and same(r.evidence(),s.evidence()),evidence={'legacy':left,'candidate':right,'legacy_rng':r.evidence(),'candidate_rng':s.evidence()})
+            for guard in ['six-update-residual','bracket']:
+                traces=[];outputs=[]
+                for module in (old,new):
+                    sampler=module.FluxSampler(drift,temperature);calls=[]
+                    cut=float(np.interp(.5,sampler.cdf_grid,sampler.grid))
+                    def artificial(values,guard=guard,cut=cut,calls=calls):
+                        calls.append(np.asarray(values).copy())
+                        return np.where(np.asarray(values)>=cut,.5+1e-8,.5-1e-8) if guard=='six-update-residual' else np.full_like(np.asarray(values),10.)
+                    sampler.cdf=artificial
+                    outputs.append(captured(lambda:sampler.sample(FixedRNG([.5]),1)));traces.append(calls)
+                expected='Flux CDF inversion residual' if guard=='six-update-residual' else 'Flux CDF Newton left physical bracket'
+                check('guard '+guard+' '+label,same(outputs[0],outputs[1]) and outputs[0]['error'] is not None and outputs[0]['error']['message']==expected and same(traces[0],traces[1]) and (len(traces[0])==7 if guard=='six-update-residual' else True),{'legacy_cdf_calls':len(traces[0]),'candidate_cdf_calls':len(traces[1]),'expected_error':expected},evidence={'legacy':outputs[0],'candidate':outputs[1],'cdf_traces':traces})
+        for seed in protocol['seeds']:
+            x,v,_=old.initialize(cfg,seed)
+            scenarios=[('production-size',x,v,.5*cfg['dt'],cfg['length'],cfg['weight'],[(1.,1.,old.U1),(old.RHO2,old.TEMP2,old.U2)]),
+             ('empty-zero-arrivals',np.empty(0),np.empty((0,3)),.005,16.,cfg['weight'],[(0.,1.,old.U1),(0.,old.TEMP2,old.U2)]),
+             ('left-only',x,v,.005,16.,cfg['weight'],[(1.,1.,old.U1),(0.,old.TEMP2,old.U2)]),
+             ('right-only',x,v,.005,16.,cfg['weight'],[(0.,1.,old.U1),(old.RHO2,old.TEMP2,old.U2)]),
+             ('both-leaving-incoming',np.array([.0001,15.9999,16.,8.]),np.array([[-1.,0,0],[1.,0,0],[0.,0,0],[0.,1,0]]),.005,16.,.0001,[(2.,1.,old.U1),(2.,old.TEMP2,old.U2)]),
+             ('zero-arrivals-leaving',np.array([0.,16.,8.]),np.array([[-1.,0,0],[1.,0,0],[0.,1,0]]),.005,16.,cfg['weight'],[(0.,1.,old.U1),(0.,old.TEMP2,old.U2)]),
+             ('cross-domain-guard',np.empty(0),np.empty((0,3)),2.,1.,.1,[(1.,1.,old.U1),(old.RHO2,old.TEMP2,old.U2)])]
+            for name,px,pv,dt,length,weight,reservoirs in scenarios:
+                outcomes=[];rngs=[];input_unchanged=[]
+                for module in (old,new):
+                    xx,vv=px.copy(),pv.copy();rng=RecordedRNG(seed)
+                    samplers=[module.FluxSampler(old.U1,1.),module.FluxSampler(-old.U2,old.TEMP2)]
+                    outcomes.append(captured(lambda:module.stream_open(xx,vv,dt,length,weight,reservoirs,samplers,rng)))
+                    rngs.append(rng.evidence());input_unchanged.append(same(xx,px) and same(vv,pv))
+                passed=same(outcomes[0],outcomes[1]) and same(rngs[0],rngs[1]) and all(input_unchanged)
+                if name=='cross-domain-guard':passed=passed and outcomes[0]['error'] is not None and outcomes[0]['error']['message']=='Injected particle crossed entire domain'
+                check('stream '+name+' '+str(seed),passed,{'rng_methods':[r['method'] for r in rngs[0]['calls']],'output_particle_count':None if outcomes[0]['error'] else len(outcomes[0]['value'][0])},evidence={'position':px,'velocity':pv,'legacy':outcomes[0],'candidate':outcomes[1],'legacy_rng':rngs[0],'candidate_rng':rngs[1]})
+        if not all(c['passed'] for c in checks):raise AssertionError('Component bit/RNG qualification failed; timings not executed')
+        # Independent reset-state kernels only; no particle transport/collision trajectory.
+        x,v,_=old.initialize(cfg,protocol['seeds'][0])
+        def workload(module,kind):
+            rng=np.random.default_rng(protocol['timing_seed']);samplers=[module.FluxSampler(old.U1,1.),module.FluxSampler(-old.U2,old.TEMP2)]
+            if kind=='flux':
+                for count in protocol['timing_sample_counts']:
+                    for _ in range(protocol['timing_repeats']['flux_per_count']):samplers[0].sample(rng,count)
+            elif kind=='stream':
+                reservoirs=[(1.,1.,old.U1),(old.RHO2,old.TEMP2,old.U2)]
+                for _ in range(protocol['timing_repeats']['stream']):module.stream_open(x.copy(),v.copy(),.005,16.,cfg['weight'],reservoirs,samplers,rng)
+            elif kind=='collision':
+                for _ in range(protocol['timing_repeats']['collision']):module.collision_round(x,v.copy(),cfg['cells'],16.,cfg['weight'],cfg['dt'],rng)
+            elif kind=='raw-profile':
+                for _ in range(protocol['timing_repeats']['raw_profile']):module.raw_profile(x,v,64,16.,cfg['weight'])
+            else:raise AssertionError(kind)
+        profiler=cProfile.Profile();profiler.enable()
+        for kind in protocol['timing_kinds']:workload(old,kind)
+        profiler.disable();profiler.dump_stats(str(args.output/'baseline-components.prof'))
+        statistics=pstats.Stats(profiler)
+        for (filename,line,function),(cc,nc,tt,ct,callers) in statistics.stats.items():
+            profile_rows.append({'file':filename,'line':line,'function':function,'primitive_calls':cc,'calls':nc,'own_seconds':tt,'cumulative_seconds':ct})
+        profile_rows.sort(key=lambda r:r['cumulative_seconds'],reverse=True)
+        for repetition in range(protocol['timing_repetitions']):
+            for label,module in [('legacy',old),('candidate',new)]:
+                for kind in protocol['timing_kinds']:
+                    tick=time.perf_counter();workload(module,kind)
+                    timings.append({'repetition':repetition,'implementation':label,'kind':kind,'seconds':time.perf_counter()-tick})
+    except Exception as error:
+        failure={'type':type(error).__name__,'message':str(error),'traceback':traceback.format_exc()}
+    result={'status':'PASS' if failure is None and all(c['passed'] for c in checks) else 'FAIL','passed':failure is None and bool(checks) and all(c['passed'] for c in checks),'protocol_sha256':digest(HERE/'protocol.json'),'checks':checks,'check_count':len(checks),'failed_checks':[c for c in checks if not c['passed']],'details':details,'timings':timings,'baseline_component_profile':profile_rows,'failure':failure,'component_seconds':time.perf_counter()-started,'PDE_executions':0,'source_edits_during_execution':0}
+    save(args.output/'result.json',result)
+    print(json.dumps({'passed':result['passed'],'checks':len(checks),'failed':result['failed_checks'],'seconds':result['component_seconds'],'failure':failure}))
+    if not result['passed']:raise SystemExit(1)
+
+if __name__=='__main__':main()

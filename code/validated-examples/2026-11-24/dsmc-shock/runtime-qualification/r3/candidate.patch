@@ -1,0 +1,17 @@
+--- a/dsmc.py
++++ b/dsmc.py
+@@ -101,7 +101,13 @@
+     random-number consumption/trajectories and finite-priority ties differ.
+     """
+     permutation=rng.permutation(len(index))
+-    return permutation[np.argsort(index[permutation],kind='stable')]
++    keys=index[permutation]
++    # Exact order embedding; preserve the original key type outside [0,255].
++    # Python ints avoid narrow-dtype scalar-promotion overflow in the guard.
++    if keys.size and np.issubdtype(keys.dtype,np.integer):
++        if int(np.min(keys))>=0 and int(np.max(keys))<=255:
++            keys=keys.astype(np.uint8,copy=False)
++    return permutation[np.argsort(keys,kind='stable')]
+ 
+ 
+ def collision_round(x, v, cells, length, weight, dt, rng, max_subcycles=8):

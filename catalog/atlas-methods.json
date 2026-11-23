@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_on": "2026-11-23",
+  "reviewed_on": "2026-11-24",
   "scope": "An extensible map, not a claim to exhaust numerical computation or to implement all candidates. Existing coverage counts are preserved separately. Null assumptions/units/boundaries mean not yet curated at method-record level, not unrestricted applicability.",
   "code_edition": "2026-11-21",
   "code_base": "/code/numerical-methods-atlas/2026-11-21/",
@@ -13204,7 +13204,7 @@
         },
         {
           "group": "dsmc-shock",
-          "edition": "2026-11-23",
+          "edition": "2026-11-24",
           "case_ids": [
             "dsmc-planar-shock"
           ]
@@ -13239,7 +13239,7 @@
         {
           "release": {
             "group": "dsmc-shock",
-            "edition": "2026-11-23",
+            "edition": "2026-11-24",
             "case_ids": [
               "dsmc-planar-shock"
             ]

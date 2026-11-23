@@ -1,0 +1,198 @@
+[
+  {
+    "configuration": "base",
+    "seed": 371001,
+    "fields": "dsmc-planar-shock-base-371001.npz",
+    "profile_csv": "dsmc-planar-shock-base-371001-profile.csv",
+    "resolution": {
+      "dx_over_lambda": 0.19328125,
+      "dt_over_maxwell_tau": 0.05340168257623221
+    },
+    "collisions": 395162,
+    "candidates": 19001523,
+    "max_subcycles": 2,
+    "scaled_budget": 1.2941827549064656e-14
+  },
+  {
+    "configuration": "base",
+    "seed": 371002,
+    "fields": "dsmc-planar-shock-base-371002.npz",
+    "profile_csv": "dsmc-planar-shock-base-371002-profile.csv",
+    "resolution": {
+      "dx_over_lambda": 0.19442708333333336,
+      "dt_over_maxwell_tau": 0.05335175757092599
+    },
+    "collisions": 405904,
+    "candidates": 19319208,
+    "max_subcycles": 2,
+    "scaled_budget": 1.549795912858913e-14
+  },
+  {
+    "configuration": "base",
+    "seed": 371003,
+    "fields": "dsmc-planar-shock-base-371003.npz",
+    "profile_csv": "dsmc-planar-shock-base-371003-profile.csv",
+    "resolution": {
+      "dx_over_lambda": 0.19369791666666666,
+      "dt_over_maxwell_tau": 0.053233960240091215
+    },
+    "collisions": 398236,
+    "candidates": 19117117,
+    "max_subcycles": 2,
+    "scaled_budget": 1.3388339300284474e-14
+  },
+  {
+    "configuration": "base",
+    "seed": 371004,
+    "fields": "dsmc-planar-shock-base-371004.npz",
+    "profile_csv": "dsmc-planar-shock-base-371004-profile.csv",
+    "resolution": {
+      "dx_over_lambda": 0.19538194444444446,
+      "dt_over_maxwell_tau": 0.054170162759724576
+    },
+    "collisions": 420256,
+    "candidates": 19870092,
+    "max_subcycles": 2,
+    "scaled_budget": 1.9019211867667656e-14
+  },
+  {
+    "configuration": "base",
+    "seed": 371005,
+    "fields": "dsmc-planar-shock-base-371005.npz",
+    "profile_csv": "dsmc-planar-shock-base-371005-profile.csv",
+    "resolution": {
+      "dx_over_lambda": 0.19375868055555556,
+      "dt_over_maxwell_tau": 0.05389362808292988
+    },
+    "collisions": 419472,
+    "candidates": 19767437,
+    "max_subcycles": 2,
+    "scaled_budget": 1.6619324503929696e-14
+  },
+  {
+    "configuration": "base",
+    "seed": 371006,
+    "fields": "dsmc-planar-shock-base-371006.npz",
+    "profile_csv": "dsmc-planar-shock-base-371006-profile.csv",
+    "resolution": {
+      "dx_over_lambda": 0.19381076388888888,
+      "dt_over_maxwell_tau": 0.05338462197331667
+    },
+    "collisions": 390887,
+    "candidates": 18905382,
+    "max_subcycles": 2,
+    "scaled_budget": 1.3673337930377997e-14
+  },
+  {
+    "configuration": "base",
+    "seed": 371007,
+    "fields": "dsmc-planar-shock-base-371007.npz",
+    "profile_csv": "dsmc-planar-shock-base-371007-profile.csv",
+    "resolution": {
+      "dx_over_lambda": 0.19390624999999997,
+      "dt_over_maxwell_tau": 0.05395761268348778
+    },
+    "collisions": 407693,
+    "candidates": 19512755,
+    "max_subcycles": 2,
+    "scaled_budget": 1.0538873468062088e-14
+  },
+  {
+    "configuration": "base",
+    "seed": 371008,
+    "fields": "dsmc-planar-shock-base-371008.npz",
+    "profile_csv": "dsmc-planar-shock-base-371008-profile.csv",
+    "resolution": {
+      "dx_over_lambda": 0.1928819444444444,
+      "dt_over_maxwell_tau": 0.053216327436915026
+    },
+    "collisions": 401098,
+    "candidates": 19304448,
+    "max_subcycles": 2,
+    "scaled_budget": 1.1522523530868128e-14
+  },
+  {
+    "configuration": "base",
+    "seed": 371009,
+    "fields": "dsmc-planar-shock-base-371009.npz",
+    "profile_csv": "dsmc-planar-shock-base-371009-profile.csv",
+    "resolution": {
+      "dx_over_lambda": 0.1932986111111111,
+      "dt_over_maxwell_tau": 0.05321562802115527
+    },
+    "collisions": 395093,
+    "candidates": 19093170,
+    "max_subcycles": 2,
+    "scaled_budget": 1.0414205694117952e-14
+  },
+  {
+    "configuration": "base",
+    "seed": 371010,
+    "fields": "dsmc-planar-shock-base-371010.npz",
+    "profile_csv": "dsmc-planar-shock-base-371010-profile.csv",
+    "resolution": {
+      "dx_over_lambda": 0.19600694444444444,
+      "dt_over_maxwell_tau": 0.05410218321274896
+    },
+    "collisions": 395074,
+    "candidates": 18968052,
+    "max_subcycles": 2,
+    "scaled_budget": 1.2591470851316292e-14
+  },
+  {
+    "configuration": "base",
+    "seed": 371011,
+    "fields": "dsmc-planar-shock-base-371011.npz",
+    "profile_csv": "dsmc-planar-shock-base-371011-profile.csv",
+    "resolution": {
+      "dx_over_lambda": 0.1955642361111111,
+      "dt_over_maxwell_tau": 0.05417051688718669
+    },
+    "collisions": 412467,
+    "candidates": 19670969,
+    "max_subcycles": 2,
+    "scaled_budget": 2.1753682368397076e-14
+  },
+  {
+    "configuration": "base",
+    "seed": 371012,
+    "fields": "dsmc-planar-shock-base-371012.npz",
+    "profile_csv": "dsmc-planar-shock-base-371012-profile.csv",
+    "resolution": {
+      "dx_over_lambda": 0.19194444444444447,
+      "dt_over_maxwell_tau": 0.052865931393740226
+    },
+    "collisions": 407930,
+    "candidates": 19296514,
+    "max_subcycles": 2,
+    "scaled_budget": 2.2084263659336765e-14
+  },
+  {
+    "configuration": "fixed_weight_mesh",
+    "seed": 371001,
+    "fields": "dsmc-planar-shock-fixed_weight_mesh-371001.npz",
+    "profile_csv": "dsmc-planar-shock-fixed_weight_mesh-371001-profile.csv",
+    "resolution": {
+      "dx_over_lambda": 0.29423177083333335,
+      "dt_over_maxwell_tau": 0.054253430524018195
+    },
+    "collisions": 410635,
+    "candidates": 20047062,
+    "max_subcycles": 2,
+    "scaled_budget": 4.1169278187575757e-14
+  },
+  {
+    "configuration": "double_particles",
+    "seed": 371001,
+    "fields": "dsmc-planar-shock-double_particles-371001.npz",
+    "profile_csv": "dsmc-planar-shock-double_particles-371001-profile.csv",
+    "resolution": {
+      "dx_over_lambda": 0.19350694444444447,
+      "dt_over_maxwell_tau": 0.0532112690968283
+    },
+    "collisions": 821915,
+    "candidates": 40305832,
+    "max_subcycles": 2,
+    "scaled_budget": 4.263243791627522e-14
+  }
+]

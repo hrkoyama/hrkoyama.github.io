@@ -1,0 +1,26 @@
+{
+  "group": "dsmc-shock",
+  "attempt": 2,
+  "started_utc": "2026-11-23T13:52:32.616079+00:00",
+  "contract_sha256": "bf663f75e15dc6464a73e62ad56ee49903e6303d1939e8bb1be7c86bd3b322fb",
+  "shared_timeout_seconds": 120,
+  "passed": false,
+  "phases": [
+    {
+      "phase": "pytest",
+      "returncode": 0,
+      "combined_elapsed_seconds": 0.5704031249988475
+    },
+    {
+      "phase": "main",
+      "returncode": 1,
+      "combined_elapsed_seconds": 64.81015937500342
+    }
+  ],
+  "failure": {
+    "type": "RuntimeError",
+    "message": "main failed; source/logs/partial results retained"
+  },
+  "finished_utc": "2026-11-23T13:53:37.426716+00:00",
+  "combined_elapsed_seconds": 64.81019933400239
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "status": "COMPONENT348PASS_MAIN_NOT_EXECUTED",
+  "baseline": "R2three-change candidate,original Nov23->R2qualification163retained separately",
+  "component_protocol_sha256": "980326f0665340dffe04dfa6244c5dbf07c81176e7d3ec3b5e81aecd71631c5d",
+  "component_result_sha256": "c2852ce73835dbe896726a0adeb53312c23165890c440bf30741872f369ad225",
+  "component_checks": 348,
+  "component_shared_seconds": 2.6937950840001577,
+  "component_limit_seconds": 30,
+  "PDE_executions": 0,
+  "profile_scope": "Fixed isolated kernels and sort-key calls only; no full-main or Linux timing inference.",
+  "private_only_profile_binary": {
+    "relative_private_location": "results/baseline-components.prof",
+    "sha256": "8bfaf28deec9d537351a00576812e59931a1e5e054e64a4f7f82d9270ddc9212",
+    "bytes": 18559,
+    "bundled": false
+  },
+  "matching_scope": "Exact reversible integer-key embedding,unchanged single permutation and stable order. All180matching/6collision exact outcomes are included in348; no RNG/collision law or floating expression change."
+}

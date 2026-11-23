@@ -45,9 +45,9 @@ Results: https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall
 
 - Hard-sphere DSMC Mach2 planar shock: https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-planar-shock/
 
-Download: https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/atlas-dsmc-shock-2026-11-23.zip
-Verification: https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/verification.json
-Results: https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/results/result.json
+Download: https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/atlas-dsmc-shock-2026-11-24.zip
+Verification: https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/verification.json
+Results: https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/results/result.json
 
 Common execution records: [{"id": "dsmc", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "dsmc-statistics", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-statistics/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-statistics/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "dsmc-couette", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-couette/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-couette/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "dsmc-fourier", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-fourier/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-fourier/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "dsmc-planar-shock", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=en"}, "kind": "dedicated-supplement"}]
 
@@ -110,13 +110,13 @@ Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-d
 
 ##### [硬球DSMCのMach2平面衝撃波](https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-planar-shock/?lang=ja) (`dsmc-planar-shock`)
 
-![保存した実粒子の位置–速度ヒストグラム。1次元位置と分子速度の位相空間であり、2D物理流れではありません。](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock-preview.png)
+![保存した実粒子の位置–速度ヒストグラム。1次元位置と分子速度の位相空間であり、2D物理流れではありません。](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/results/dsmc-planar-shock-preview.png)
 
 セル内の非重複ランダム対へ、偶数・奇数粒子数を区別した物理時間のσg衝突確率を適用。エネルギーによる安全上界で事前にsubcycle数を定め、確率clipはしません。壁・流入はflux重み付き分布と実際の残り飛行時間を用います。 開境界のmacro粒子到着数は平均を保つfloor(平均)+Bernoulli(小数部)で分散を下げます。Poisson数揺らぎや熱揺らぎの再現は主張しません。 既存4seedを残して次の8連番seedを追加します。一様順列と安定整数sortは対選択法則を保ちますが、乱数消費と軌道のbit一致は主張しません。
 
 [この問題の参照・検証資料](https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-planar-shock/?lang=ja#references-ja) · [この問題のコード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-planar-shock/?lang=ja#code-ja)
 
-- [硬球DSMCのMach2平面衝撃波](https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=ja) (`dsmc-planar-shock`) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/atlas-dsmc-shock-2026-11-23.zip)
+- [硬球DSMCのMach2平面衝撃波](https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=ja) (`dsmc-planar-shock`) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/atlas-dsmc-shock-2026-11-24.zip)
 
 物理時間の硬球衝突と実際の分子輸送を計算し、独立SPARTAの資格確認済みモーメント場と比較します。
 
@@ -206,11 +206,11 @@ Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-d
 
 ##### 硬球DSMCのMach2平面衝撃波 (`dsmc-planar-shock`)
 
-[硬球DSMCのMach2平面衝撃波](https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-planar-shock/?lang=ja) · [実行・検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=ja) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/atlas-dsmc-shock-2026-11-23.zip)
+[硬球DSMCのMach2平面衝撃波](https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-planar-shock/?lang=ja) · [実行・検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=ja) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/atlas-dsmc-shock-2026-11-24.zip)
 
-[固定入力](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/inputs.json)
+[固定入力](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/inputs.json)
 
-[検証記録](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/verification.json)
+[検証記録](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/verification.json)
 
 物理時間の硬球衝突と実際の分子輸送を計算し、独立SPARTAの資格確認済みモーメント場と比較します。
 
@@ -243,11 +243,11 @@ Scoped fixed-input examples; original method variants and earlier releases remai
 - [/code/validated-examples/2026-11-23/dsmc-wall/diagnostics.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/diagnostics.py)
 - [/code/validated-examples/2026-11-23/dsmc-wall/references/generate.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/references/generate.py)
 - [/code/validated-examples/2026-11-23/dsmc-wall/references/qualify.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/references/qualify.py)
-- [/code/validated-examples/2026-11-23/dsmc-shock/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/run.py)
-- [/code/validated-examples/2026-11-23/dsmc-shock/dsmc.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/dsmc.py)
-- [/code/validated-examples/2026-11-23/dsmc-shock/diagnostics.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/diagnostics.py)
-- [/code/validated-examples/2026-11-23/dsmc-shock/references/generate.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/references/generate.py)
-- [/code/validated-examples/2026-11-23/dsmc-shock/references/qualify.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/references/qualify.py)
+- [/code/validated-examples/2026-11-24/dsmc-shock/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/run.py)
+- [/code/validated-examples/2026-11-24/dsmc-shock/dsmc.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/dsmc.py)
+- [/code/validated-examples/2026-11-24/dsmc-shock/diagnostics.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/diagnostics.py)
+- [/code/validated-examples/2026-11-24/dsmc-shock/references/generate.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/references/generate.py)
+- [/code/validated-examples/2026-11-24/dsmc-shock/references/qualify.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/references/qualify.py)
 
 ###### 配布版のテスト
 
@@ -257,10 +257,10 @@ Scoped fixed-input examples; original method variants and earlier releases remai
 - [/code/validated-examples/2026-11-22/particle-transport/test_runner.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_runner.py)
 - [/code/validated-examples/2026-11-23/dsmc-wall/test_core.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/test_core.py)
 - [/code/validated-examples/2026-11-23/dsmc-wall/test_wall.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/test_wall.py)
-- [/code/validated-examples/2026-11-23/dsmc-shock/test_arrivals.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/test_arrivals.py)
-- [/code/validated-examples/2026-11-23/dsmc-shock/test_core.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/test_core.py)
-- [/code/validated-examples/2026-11-23/dsmc-shock/test_matching.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/test_matching.py)
-- [/code/validated-examples/2026-11-23/dsmc-shock/test_shock.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/test_shock.py)
+- [/code/validated-examples/2026-11-24/dsmc-shock/test_arrivals.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/test_arrivals.py)
+- [/code/validated-examples/2026-11-24/dsmc-shock/test_core.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/test_core.py)
+- [/code/validated-examples/2026-11-24/dsmc-shock/test_matching.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/test_matching.py)
+- [/code/validated-examples/2026-11-24/dsmc-shock/test_shock.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/test_shock.py)
 
 配布版の案内で条件と作業フォルダを確認してください。複数例の検査や図生成を含む場合があります。
 
@@ -322,13 +322,13 @@ Evolve physical-time hard-sphere collisions and molecular streaming; compare act
 
 ##### [Hard-sphere DSMC Mach2 planar shock](https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-planar-shock/?lang=en) (`dsmc-planar-shock`)
 
-![Actual saved particle position-velocity histograms; phase space of1D position and molecular velocity,not2D physical flow.](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock-preview.png)
+![Actual saved particle position-velocity histograms; phase space of1D position and molecular velocity,not2D physical flow.](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/results/dsmc-planar-shock-preview.png)
 
 Disjoint cell-local random pairs with even/odd finite-N physical-time sigma*g acceptance,energy-based safe majorant and predeclared bounded subcycling; no probability caps. Exact flight-to-wall and flux-conditioned diffuse/reservoir velocities with remaining flight time. Open-reservoir macro counts use unbiased floor(mean)+Bernoulli(fraction) per face/species/half-stream to reduce artificial sampling variance; no Poisson number-fluctuation or thermodynamic-fluctuation reproduction claim. Retain the original four seeds and append the next eight consecutive seeds; uniform permutation/stable integer sorting preserves the ideal within-cell matching law,not RNG consumption or bit-identical trajectories.
 
 [This problem’s references and checks](https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-planar-shock/?lang=en#references-en) · [This problem’s code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-planar-shock/?lang=en#code-en)
 
-- [Hard-sphere DSMC Mach2 planar shock](https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=en) (`dsmc-planar-shock`) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/atlas-dsmc-shock-2026-11-23.zip)
+- [Hard-sphere DSMC Mach2 planar shock](https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=en) (`dsmc-planar-shock`) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/atlas-dsmc-shock-2026-11-24.zip)
 
 Evolve physical-time hard-sphere collisions and molecular streaming; compare actual moments with qualified independent SPARTA fields.
 
@@ -418,11 +418,11 @@ Evolve physical-time hard-sphere collisions and molecular streaming; compare act
 
 ##### Hard-sphere DSMC Mach2 planar shock (`dsmc-planar-shock`)
 
-[Hard-sphere DSMC Mach2 planar shock](https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-planar-shock/?lang=en) · [Run and validate](https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=en) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/atlas-dsmc-shock-2026-11-23.zip)
+[Hard-sphere DSMC Mach2 planar shock](https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-planar-shock/?lang=en) · [Run and validate](https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=en) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/atlas-dsmc-shock-2026-11-24.zip)
 
-[Fixed input](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/inputs.json)
+[Fixed input](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/inputs.json)
 
-[Verification receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/verification.json)
+[Verification receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/verification.json)
 
 Evolve physical-time hard-sphere collisions and molecular streaming; compare actual moments with qualified independent SPARTA fields.
 
@@ -455,11 +455,11 @@ Scoped fixed-input examples; original method variants and earlier releases remai
 - [/code/validated-examples/2026-11-23/dsmc-wall/diagnostics.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/diagnostics.py)
 - [/code/validated-examples/2026-11-23/dsmc-wall/references/generate.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/references/generate.py)
 - [/code/validated-examples/2026-11-23/dsmc-wall/references/qualify.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/references/qualify.py)
-- [/code/validated-examples/2026-11-23/dsmc-shock/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/run.py)
-- [/code/validated-examples/2026-11-23/dsmc-shock/dsmc.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/dsmc.py)
-- [/code/validated-examples/2026-11-23/dsmc-shock/diagnostics.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/diagnostics.py)
-- [/code/validated-examples/2026-11-23/dsmc-shock/references/generate.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/references/generate.py)
-- [/code/validated-examples/2026-11-23/dsmc-shock/references/qualify.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/references/qualify.py)
+- [/code/validated-examples/2026-11-24/dsmc-shock/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/run.py)
+- [/code/validated-examples/2026-11-24/dsmc-shock/dsmc.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/dsmc.py)
+- [/code/validated-examples/2026-11-24/dsmc-shock/diagnostics.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/diagnostics.py)
+- [/code/validated-examples/2026-11-24/dsmc-shock/references/generate.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/references/generate.py)
+- [/code/validated-examples/2026-11-24/dsmc-shock/references/qualify.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/references/qualify.py)
 
 ###### Package tests
 
@@ -469,10 +469,10 @@ Scoped fixed-input examples; original method variants and earlier releases remai
 - [/code/validated-examples/2026-11-22/particle-transport/test_runner.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_runner.py)
 - [/code/validated-examples/2026-11-23/dsmc-wall/test_core.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/test_core.py)
 - [/code/validated-examples/2026-11-23/dsmc-wall/test_wall.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/test_wall.py)
-- [/code/validated-examples/2026-11-23/dsmc-shock/test_arrivals.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/test_arrivals.py)
-- [/code/validated-examples/2026-11-23/dsmc-shock/test_core.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/test_core.py)
-- [/code/validated-examples/2026-11-23/dsmc-shock/test_matching.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/test_matching.py)
-- [/code/validated-examples/2026-11-23/dsmc-shock/test_shock.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/test_shock.py)
+- [/code/validated-examples/2026-11-24/dsmc-shock/test_arrivals.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/test_arrivals.py)
+- [/code/validated-examples/2026-11-24/dsmc-shock/test_core.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/test_core.py)
+- [/code/validated-examples/2026-11-24/dsmc-shock/test_matching.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/test_matching.py)
+- [/code/validated-examples/2026-11-24/dsmc-shock/test_shock.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/test_shock.py)
 
 Consult the edition’s guide for conditions and working directory; commands may check or generate figures for several cases.
 

@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "reviewer": "/root/batch_weno",
+  "status": "STATIC_COMPONENT_PREFLIGHT_PASS_AWAITING_ROOT_EXECUTION_AUTHORIZATION",
+  "started_at_utc": "2026-11-23T15:13:49Z",
+  "ended_at_utc": "2026-11-23T15:15:31.326704+00:00",
+  "protocol_sha256": "f49a86e1d54e143eab762e944f819bc208bc2159c81b3d57e3308ec66d5f0aaa",
+  "candidate_sha256": "a101a0a2b909900cf85b803a88e27f32389b60eda635a1e38fd76ea2f49a48eb",
+  "checker_sha256": "cbd23009d3d2aedf25d3cecbfbd1d2312a4327615cea86c8a2c7e8e18044710e",
+  "bound_file_count": 119,
+  "all_119_bindings_match": true,
+  "mismatches": [],
+  "execution_authorized": false,
+  "component_executed": false,
+  "candidate_imported_or_compiled": false,
+  "PDE_executions": 0,
+  "PUB_edits": 0,
+  "Git_mutations": 0,
+  "review_method": "Read complete original/candidate patch and checker as text, read non-binding protocol in full, hash all bound files. No scientific/component execution or compilation.",
+  "candidate_assessment": {
+    "coefficient_cache": "Original scalar floating-point expression trees retained: a=u/s; phi(a)=exp(-a*a/2)/sqrt(2*pi); ndtr(-a); normalization=(s*sqrt(2*pi))*flux. Immutable production reservoir parameters are explicitly scoped. External attribute mutation equivalence is not claimed.",
+    "cdf_guard": "count0 returns before residual variables. A break occurs before v changes; its residual norm is reusable against unchanged 2e-12 final guard. The for-else exhaustion branch recomputes CDF after the sixth v=proposed. Both 1e-14/2e-12 tests, six-update cap and physical bracket rejection remain.",
+    "stream_concatenation": "No RNG calls or ledger/crossing arithmetic moved. Retained particles and left/right arrivals remain in keep,left,right order. Each positions/incoming array is newly allocated, appended to a list and subsequently only referenced; rebinding in the next side does not mutate previous arrays. Final concatenate allocates fresh output, preserving input nonmutation and particle order.",
+    "protected_scope": "No matching_order/collision_round/macro_arrival_count/majorant/cap/finiteness/conservation modifications. No threshold, timestep, seed, sampling/histogram cadence or failed-state retention edits."
+  },
+  "checker_assessment": {
+    "planned_checks": 163,
+    "derivation": "10 protected functions +58 baseline original files +57 unchanged candidate files +2 CDF/grid cases +16 sample count/seed cases +2 extreme inverse cases +4 forced guards +14 stream cases =163.",
+    "exactness": "same() requires exact dtype/shape/C-order bytes for ndarrays and exact NumPy scalar bytes. RNG method/arguments/output hashes/final state compared; not just a distribution or moment comparison.",
+    "negative_controls": "Pure artificial discontinuous CDF forces all six updates and seventh residual check; constant CDF forces physical-bracket exception. Both require expected error and same trace. Cross-domain stream case requires its expected exception/payload equality. No stateful mock or tolerance relaxation.",
+    "boundary_coverage": "Two reservoir drifts, count0/1/4/32, extreme quantiles including zero, near-zero quadrature branch, production-sized state, empty state, one-sided arrivals, both exits/arrivals, x==length, zero-arrival exits, and cross-domain rejection are specified.",
+    "timing": "One old-only cProfile workload and exactly three fixed legacy/candidate reset-state component repetitions are proposed. No simulate/main or coupled physical trajectory. Outer30s enforcement is explicitly parent-owned; checker itself is not an outer-timeout implementation. No speedup or full-main success inference."
+  },
+  "must_fix_before_component_execution": [],
+  "later_main_requirements": {
+    "status": "NOT_AUTHORIZED_BY_COMPONENT_REVIEW",
+    "original_tests": 20,
+    "base_seeds": 12,
+    "complete_runs": 15,
+    "scientific_gates": 129,
+    "shared_seconds": 120,
+    "old_2026_11_23_bytes": "Immutable source/ZIP/result/reference and failure evidence retained.",
+    "comparison": "After separate new-edition pre-run review, compare every retained scientific NPZ array/history/snapshot/particle/RNG-dependent diagnostic and decision with the unchanged baseline, isolating source/timing metadata differences. No reference regeneration or fewer inputs."
+  },
+  "summary_ja": "R2の静的独立レビューPASS。候補の数学/alias/RNG/guardは整合、119bindings一致。通常fixtureの正常終了要件と163完了の計時前gateを確認しR1指摘2件解消。元R1のchecker/protocol/本レビューを保持。成分・profile実行は未実施で親の別認可待ち。外部共有30秒1回のみの成分資格案であり、main/参照生成/公開は認可しない。",
+  "revision": 2,
+  "prior_unexecuted_review": {
+    "sha256": "663c2f2c3b29c837a9f183461160b63aed7a54de27dea1bfd16e5b25024f6342",
+    "record": {
+      "schema_version": 1,
+      "reviewer": "/root/batch_weno",
+      "status": "CANDIDATE_STATIC_PASS_CHECKER_STRENGTHENING_REQUIRED",
+      "started_at_utc": "2026-11-23T15:13:49Z",
+      "ended_at_utc": "2026-11-23T15:15:03.691511+00:00",
+      "protocol_sha256": "f49a86e1d54e143eab762e944f819bc208bc2159c81b3d57e3308ec66d5f0aaa",
+      "candidate_sha256": "a101a0a2b909900cf85b803a88e27f32389b60eda635a1e38fd76ea2f49a48eb",
+      "checker_sha256": "cbd23009d3d2aedf25d3cecbfbd1d2312a4327615cea86c8a2c7e8e18044710e",
+      "bound_file_count": 119,
+      "all_119_bindings_match": true,
+      "mismatches": [],
+      "execution_authorized": false,
+      "component_executed": false,
+      "candidate_imported_or_compiled": false,
+      "PDE_executions": 0,
+      "PUB_edits": 0,
+      "Git_mutations": 0,
+      "review_method": "Read complete original/candidate patch and checker as text, read non-binding protocol in full, hash all bound files. No scientific/component execution or compilation.",
+      "candidate_assessment": {
+        "coefficient_cache": "Original scalar floating-point expression trees retained: a=u/s; phi(a)=exp(-a*a/2)/sqrt(2*pi); ndtr(-a); normalization=(s*sqrt(2*pi))*flux. Immutable production reservoir parameters are explicitly scoped. External attribute mutation equivalence is not claimed.",
+        "cdf_guard": "count0 returns before residual variables. A break occurs before v changes; its residual norm is reusable against unchanged 2e-12 final guard. The for-else exhaustion branch recomputes CDF after the sixth v=proposed. Both 1e-14/2e-12 tests, six-update cap and physical bracket rejection remain.",
+        "stream_concatenation": "No RNG calls or ledger/crossing arithmetic moved. Retained particles and left/right arrivals remain in keep,left,right order. Each positions/incoming array is newly allocated, appended to a list and subsequently only referenced; rebinding in the next side does not mutate previous arrays. Final concatenate allocates fresh output, preserving input nonmutation and particle order.",
+        "protected_scope": "No matching_order/collision_round/macro_arrival_count/majorant/cap/finiteness/conservation modifications. No threshold, timestep, seed, sampling/histogram cadence or failed-state retention edits."
+      },
+      "checker_assessment": {
+        "planned_checks": 163,
+        "derivation": "10 protected functions +58 baseline original files +57 unchanged candidate files +2 CDF/grid cases +16 sample count/seed cases +2 extreme inverse cases +4 forced guards +14 stream cases =163.",
+        "exactness": "same() requires exact dtype/shape/C-order bytes for ndarrays and exact NumPy scalar bytes. RNG method/arguments/output hashes/final state compared; not just a distribution or moment comparison.",
+        "negative_controls": "Pure artificial discontinuous CDF forces all six updates and seventh residual check; constant CDF forces physical-bracket exception. Both require expected error and same trace. Cross-domain stream case requires its expected exception/payload equality. No stateful mock or tolerance relaxation.",
+        "boundary_coverage": "Two reservoir drifts, count0/1/4/32, extreme quantiles including zero, near-zero quadrature branch, production-sized state, empty state, one-sided arrivals, both exits/arrivals, x==length, zero-arrival exits, and cross-domain rejection are specified.",
+        "timing": "One old-only cProfile workload and exactly three fixed legacy/candidate reset-state component repetitions are proposed. No simulate/main or coupled physical trajectory. Outer30s enforcement is explicitly parent-owned; checker itself is not an outer-timeout implementation. No speedup or full-main success inference."
+      },
+      "must_fix_before_component_execution": [
+        {
+          "id": "C1-NORMAL-SUCCESS",
+          "file": "check_components.py",
+          "lines": [
+            99,
+            103,
+            132,
+            133
+          ],
+          "finding": "Normal sample/extreme inverse and six non-guard stream scenarios currently accept identical captured exceptions. This can label missing successful branch coverage as a passing equivalence check.",
+          "minimal_fix": "Require both captured errors to be None for ordinary sample/extreme and non-cross-domain stream cases. Keep the dedicated forced-error controls and their expected errors unchanged. Add these requirements to the existing booleans, retaining all163 fixtures/check count and all numerical/RNG criteria."
+        },
+        {
+          "id": "C2-COUNT-BEFORE-TIMING",
+          "file": "check_components.py",
+          "line": 135,
+          "finding": "The timing gate checks all collected booleans but never asserts that all planned163 checks were collected.",
+          "minimal_fix": "Before profiling/timing, require len(checks)==protocol[planned_checks] as well as all existing checks passing. A missing check or false result must fail without timing. Rehash checker/protocol and retain this reviewed unexecuted version before another authorization."
+        }
+      ],
+      "later_main_requirements": {
+        "status": "NOT_AUTHORIZED_BY_COMPONENT_REVIEW",
+        "original_tests": 20,
+        "base_seeds": 12,
+        "complete_runs": 15,
+        "scientific_gates": 129,
+        "shared_seconds": 120,
+        "old_2026_11_23_bytes": "Immutable source/ZIP/result/reference and failure evidence retained.",
+        "comparison": "After separate new-edition pre-run review, compare every retained scientific NPZ array/history/snapshot/particle/RNG-dependent diagnostic and decision with the unchanged baseline, isolating source/timing metadata differences. No reference regeneration or fewer inputs."
+      },
+      "summary_ja": "候補3変更は静的に整合、119SHA一致。実行前の修正はchecker限定で、通常fixtureの正常終了明示と全163check完了を計時前に要求する2点。数学・入力・公差・RNG・fixture数を変える必要はない。未実行・未適用で、速度改善やmain合格を示さない。"
+    }
+  },
+  "resolved_review_requirements": [
+    {
+      "id": "C1-NORMAL-SUCCESS",
+      "status": "RESOLVED_BY_STATIC_DIFF",
+      "details": "Both ordinary sample/extreme outputs explicitly require error None; all six non-guard stream scenarios do likewise. Forced guard error expectations stay unchanged."
+    },
+    {
+      "id": "C2-COUNT-BEFORE-TIMING",
+      "status": "RESOLVED_BY_STATIC_DIFF",
+      "details": "len(checks)==protocol[planned_checks] is now mandatory before all-pass gate and before any cProfile or timing."
+    }
+  ],
+  "revision2_preservation": {
+    "old_protocol_sha256": "8a7ca3c05caa1eb5afd0a43d5ac6df7a4537c7a2f7ccf902dd0aa40a6d3441ec",
+    "old_checker_sha256": "285f13426569a69357867537ab78fb557d248636f8b6fbc652dad1b21174b0de",
+    "candidate_source_unchanged": true,
+    "fixture_values_inputs_thresholds_component_counts_budget_unchanged": true,
+    "checker_diff_scope": "Only success booleans and pre-timing count assertion. No numerical function or workload change."
+  }
+}

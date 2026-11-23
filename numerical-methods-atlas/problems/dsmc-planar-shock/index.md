@@ -4,7 +4,7 @@ https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-planar-shock/
 
 ## 日本語
 
-[保存した実粒子の位置–速度ヒストグラム。1次元位置と分子速度の位相空間であり、2D物理流れではありません。](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock-preview.png)
+[保存した実粒子の位置–速度ヒストグラム。1次元位置と分子速度の位相空間であり、2D物理流れではありません。](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/results/dsmc-planar-shock-preview.png)
 
 [解説](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-shock/#dsmc-planar-shock) · [条件・根拠](https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#dsmc-planar-shock)
 
@@ -62,9 +62,9 @@ partial_t f+v_x partial_x f=Q_HS(f,f); sigma=pi*d^2=1/sqrt(2); lambda0=1; n,u,T,
 
 #### 硬球DSMCのMach2平面衝撃波
 
-各群20pytestを事前固定。新しい固定計算は15本。境界込みの質量・運動量・エネルギー、局所λ/衝突時間、独立参照への誤差とseed精度、時間block定常性を別に判定します。 群の判定は既存81項目を保持し、新8計算の48項目を追加した129項目です。primary t95はdf11、独立参照4seedはdf3です。
+各群20pytestを事前固定。新しい固定計算は15本。境界込みの質量・運動量・エネルギー、局所λ/衝突時間、独立参照への誤差とseed精度、時間block定常性を別に判定します。 群の判定は既存81項目を保持し、新8計算の48項目を追加した129項目です。primary t95はdf11、独立参照4seedはdf3です。 Nov23保存成功と全15計算・129判定の厳密比較を行う新mainは、本契約の時点で未実行です。20pytestと全mainの外部共有上限120秒、全診断・NPZ・CSVを維持します。
 
-- [保存結果](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/results/result.json)
+- [保存結果](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/results/result.json)
 
 [参照・検証条件の詳細](https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=ja)
 
@@ -84,11 +84,11 @@ partial_t f+v_x partial_x f=Q_HS(f,f); sigma=pi*d^2=1/sqrt(2); lambda0=1; n,u,T,
 
 1次元位置・3次元速度、単原子硬球。Mach2、区間[0,16]、RHの開境界reservoir。192セル、粒子重み1/192、dt=.01、burn20/sample20、12seed。
 
-[コード / ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/atlas-dsmc-shock-2026-11-23.zip) · [検証記録](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/verification.json)
+[コード / ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/atlas-dsmc-shock-2026-11-24.zip) · [検証記録](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/verification.json)
 
-[固定入力](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/inputs.json)
+[固定入力](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/inputs.json)
 
-[配布ファイルとハッシュ](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/source-manifest.json)
+[配布ファイルとハッシュ](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/source-manifest.json)
 
 ZIPを展開し、実行案内の作業フォルダで実行します。配布版の複数例をまとめて実行する場合があります。
 
@@ -102,17 +102,17 @@ python run.py --input inputs.json --output output
 
 同じ配布版で共有するソースとテストを含みます。すべてがこの問題専用とは限りません。
 
-- [/code/validated-examples/2026-11-23/dsmc-shock/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/run.py)
-- [/code/validated-examples/2026-11-23/dsmc-shock/dsmc.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/dsmc.py)
-- [/code/validated-examples/2026-11-23/dsmc-shock/diagnostics.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/diagnostics.py)
-- [/code/validated-examples/2026-11-23/dsmc-shock/test_arrivals.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/test_arrivals.py)
-- [/code/validated-examples/2026-11-23/dsmc-shock/test_core.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/test_core.py)
-- [/code/validated-examples/2026-11-23/dsmc-shock/test_matching.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/test_matching.py)
-- [/code/validated-examples/2026-11-23/dsmc-shock/test_shock.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/test_shock.py)
+- [/code/validated-examples/2026-11-24/dsmc-shock/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/run.py)
+- [/code/validated-examples/2026-11-24/dsmc-shock/dsmc.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/dsmc.py)
+- [/code/validated-examples/2026-11-24/dsmc-shock/diagnostics.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/diagnostics.py)
+- [/code/validated-examples/2026-11-24/dsmc-shock/test_arrivals.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/test_arrivals.py)
+- [/code/validated-examples/2026-11-24/dsmc-shock/test_core.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/test_core.py)
+- [/code/validated-examples/2026-11-24/dsmc-shock/test_matching.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/test_matching.py)
+- [/code/validated-examples/2026-11-24/dsmc-shock/test_shock.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/test_shock.py)
 
 ## English
 
-[Actual saved particle position-velocity histograms; phase space of1D position and molecular velocity,not2D physical flow.](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock-preview.png)
+[Actual saved particle position-velocity histograms; phase space of1D position and molecular velocity,not2D physical flow.](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/results/dsmc-planar-shock-preview.png)
 
 [Reading](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-shock/#dsmc-planar-shock) · [Conditions and evidence](https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#dsmc-planar-shock-en)
 
@@ -170,9 +170,9 @@ Finite-particle finite-grid independent stochastic reference,empirically qualifi
 
 #### Hard-sphere DSMC Mach2 planar shock
 
-Predeclare20pytest per group and15new fixed primary runs. Separate boundary-inclusive budgets,local lambda/collision-time diagnostics,reference error,whole-seed precision and block stationarity. Reference36runs/87qualifiers already passed; primary results remain pending until the frozen run. Preserve all81old gates and add48new-run gates=129. Primary12seed t95 usesdf11,reference4seed usesdf3; descriptive approximate-normal whole-seed intervals,not unconditional adaptive-study coverage.
+Predeclare20pytest per group and15new fixed primary runs. Separate boundary-inclusive budgets,local lambda/collision-time diagnostics,reference error,whole-seed precision and block stationarity. Reference36runs/87qualifiers already passed; primary results remain pending until the frozen run. Preserve all81old gates and add48new-run gates=129. Primary12seed t95 usesdf11,reference4seed usesdf3; descriptive approximate-normal whole-seed intervals,not unconditional adaptive-study coverage. This new edition main has not run at contract freeze. Retain all20pytest,15runs,129gates and the original shared120s outer deadline,then compare every saved scientific array/history/metric with the immutable successful Nov23baseline. No independent reference is regenerated.
 
-- [Saved result](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/results/result.json)
+- [Saved result](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/results/result.json)
 
 [Reference and validation details](https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=en)
 
@@ -192,11 +192,11 @@ Evolve physical-time hard-sphere collisions and molecular streaming; compare act
 
 {"kind":"shock","cells":192,"length":16,"weight":0.005208333333333333,"dt":0.01,"burn_in":20,"sample_time":20,"blocks":5,"bins":64,"sample_every":10,"hist_velocity":[-4,7]} Twelve independent seeds; primary fixed-weight mesh,particle-weight,and half-step companions each retain seed1.
 
-[Code / ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/atlas-dsmc-shock-2026-11-23.zip) · [Verification receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/verification.json)
+[Code / ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/atlas-dsmc-shock-2026-11-24.zip) · [Verification receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/verification.json)
 
-[Fixed input](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/inputs.json)
+[Fixed input](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/inputs.json)
 
-[File manifest and hashes](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/source-manifest.json)
+[File manifest and hashes](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/source-manifest.json)
 
 After extracting the ZIP, run these in the working directory specified by the guide. A command may execute several package cases.
 
@@ -210,10 +210,10 @@ Finite-particle finite-grid independent stochastic reference,empirically qualifi
 
 These source and test lists include files shared across the package; they are not all dedicated to this problem.
 
-- [/code/validated-examples/2026-11-23/dsmc-shock/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/run.py)
-- [/code/validated-examples/2026-11-23/dsmc-shock/dsmc.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/dsmc.py)
-- [/code/validated-examples/2026-11-23/dsmc-shock/diagnostics.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/diagnostics.py)
-- [/code/validated-examples/2026-11-23/dsmc-shock/test_arrivals.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/test_arrivals.py)
-- [/code/validated-examples/2026-11-23/dsmc-shock/test_core.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/test_core.py)
-- [/code/validated-examples/2026-11-23/dsmc-shock/test_matching.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/test_matching.py)
-- [/code/validated-examples/2026-11-23/dsmc-shock/test_shock.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/test_shock.py)
+- [/code/validated-examples/2026-11-24/dsmc-shock/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/run.py)
+- [/code/validated-examples/2026-11-24/dsmc-shock/dsmc.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/dsmc.py)
+- [/code/validated-examples/2026-11-24/dsmc-shock/diagnostics.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/diagnostics.py)
+- [/code/validated-examples/2026-11-24/dsmc-shock/test_arrivals.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/test_arrivals.py)
+- [/code/validated-examples/2026-11-24/dsmc-shock/test_core.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/test_core.py)
+- [/code/validated-examples/2026-11-24/dsmc-shock/test_matching.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/test_matching.py)
+- [/code/validated-examples/2026-11-24/dsmc-shock/test_shock.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/test_shock.py)

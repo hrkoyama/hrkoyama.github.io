@@ -1768,7 +1768,7 @@
     }
   ],
   "source_sha256": {
-    "catalog/atlas-depth-expansion.json": "bfd3d4d52c78416dc2140beafdf559f8b6e98373d55e7fbb95ec85f7c296d7ee",
+    "catalog/atlas-depth-expansion.json": "28ed0737a4c15dce04bf7c7f5563d1a7b51fadd44fb8bfa6cbed7d2255ff8efb",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
     "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
@@ -1954,10 +1954,10 @@
     "code/validated-examples/2026-11-23/dsmc-wall/cases.json": "0b1fb2514bff09c0dd5e214348a875f15f37cbde756afbf88ea2fcac188e7bb5",
     "code/validated-examples/2026-11-23/dsmc-wall/results/result.json": "e25dc3114ca3149ec876c88d5cdaf7e1cd8b2639e71e09fd8338f0e488e52824",
     "code/validated-examples/2026-11-23/dsmc-wall/atlas-dsmc-wall-2026-11-23.zip": "7b6d5a11874a0042ce772df4c241c72ce42f861c43ed0d44164074ba662da0cb",
-    "code/validated-examples/2026-11-23/dsmc-shock/source-manifest.json": "2dfb1b6074aec28dddb083cc715c85080be678f39e55b2472c518730ec72c766",
-    "code/validated-examples/2026-11-23/dsmc-shock/verification.json": "fdca2ddb0069b640ef24da3de9766b5ccee5c5a117c7017589bd0de07d003623",
-    "code/validated-examples/2026-11-23/dsmc-shock/cases.json": "c5055607e9aa3b76824051db6fdf01ffa9e01243f6989f0a348519045eddea22",
-    "code/validated-examples/2026-11-23/dsmc-shock/results/result.json": "5c33c06b72bb7f5f778b21e02e02804df57eb82cad2e15d08e5f06acf8196599",
-    "code/validated-examples/2026-11-23/dsmc-shock/atlas-dsmc-shock-2026-11-23.zip": "a0781fe0b577cd65f60489e77672bbfdbc7d1f657c9514ad1c0c862125ba4eda"
+    "code/validated-examples/2026-11-24/dsmc-shock/source-manifest.json": "cc8ff5afec49e7f1ccffd2cce91bcf85e4e116c7389342304667bc7c9bb5eccf",
+    "code/validated-examples/2026-11-24/dsmc-shock/verification.json": "7e7919032dafc67b5e857acd4464516cb4b742eed89ff8adae7f3c8cf75a96f5",
+    "code/validated-examples/2026-11-24/dsmc-shock/cases.json": "d5123d6e0f48145bcf0b25a68cffb2f9250bb019e21ea42760db848aed536b22",
+    "code/validated-examples/2026-11-24/dsmc-shock/results/result.json": "a4cd1e0092935bccd85bc0cf14086d01c723f05e4ce9474c3563283b3a55562e",
+    "code/validated-examples/2026-11-24/dsmc-shock/atlas-dsmc-shock-2026-11-24.zip": "92794cc568e7857346a24489eddaae113eb60754de7ba717254955ace9d8d961"
   }
 }

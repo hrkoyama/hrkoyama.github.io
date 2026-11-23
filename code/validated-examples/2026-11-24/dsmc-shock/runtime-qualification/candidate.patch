@@ -1,0 +1,79 @@
+--- a/dsmc.py
++++ b/dsmc.py
+@@ -41,6 +41,13 @@
+             raise ValueError('Positive reservoir temperature required')
+         self.s = np.sqrt(self.t)
+         self.flux = positive_flux(self.u, self.t)
++        # Reservoir parameters remain immutable throughout a production run.
++        # Keep each coefficient's original floating-point expression order.
++        self._a = self.u/self.s
++        self._sqrt_two_pi = np.sqrt(2*np.pi)
++        self._phi_a = np.exp(-self._a*self._a/2)/self._sqrt_two_pi
++        self._ndtr_minus_a = ndtr(-self._a)
++        self._pdf_normalization = self.s*self._sqrt_two_pi*self.flux
+         self.nodes,self.weights=np.polynomial.legendre.leggauss(8)
+         self.grid = np.linspace(0, max(0,self.u)+12*self.s, 4097)
+         self.cdf_grid = self.cdf(self.grid)
+@@ -48,15 +55,15 @@
+             raise ValueError('Unresolved reservoir tail')
+ 
+     def cdf(self, v):
+-        a, z = self.u/self.s, (np.asarray(v)-self.u)/self.s
+-        phi = lambda x: np.exp(-x*x/2)/np.sqrt(2*np.pi)
+-        value=np.asarray((self.s*(phi(a)-phi(z))+self.u*(ndtr(z)-ndtr(-a)))/self.flux)
++        z = (np.asarray(v)-self.u)/self.s
++        phi = lambda x: np.exp(-x*x/2)/self._sqrt_two_pi
++        value=np.asarray((self.s*(self._phi_a-phi(z))+self.u*(ndtr(z)-self._ndtr_minus_a))/self.flux)
+         # Positive quadrature avoids cancellation of two O(1) terms near v=0.
+         v=np.asarray(v);small=(v>=0)&(v<.02*self.s)
+         if np.any(small):
+             upper=v[small]
+             point=.5*upper[:,None]*(self.nodes[None,:]+1)
+-            integrand=point*np.exp(-.5*((point-self.u)/self.s)**2)/(self.s*np.sqrt(2*np.pi)*self.flux)
++            integrand=point*np.exp(-.5*((point-self.u)/self.s)**2)/self._pdf_normalization
+             value[small]=.5*upper*np.sum(self.weights[None,:]*integrand,axis=1)
+         return value
+ 
+@@ -68,8 +75,9 @@
+         v[near_zero]=self.grid[1]*np.sqrt(target[near_zero]/self.cdf_grid[1])
+         for _ in range(6):
+             residual = self.cdf(v)-target
+-            if np.max(np.abs(residual))<=1e-14:break
+-            pdf = v*np.exp(-.5*((v-self.u)/self.s)**2)/(self.s*np.sqrt(2*np.pi)*self.flux)
++            residual_norm = np.max(np.abs(residual))
++            if residual_norm<=1e-14:break
++            pdf = v*np.exp(-.5*((v-self.u)/self.s)**2)/self._pdf_normalization
+             moving = (target>0) & (pdf>0)
+             delta = np.zeros(count)
+             np.divide(residual,pdf,out=delta,where=moving)
+@@ -77,7 +85,11 @@
+             if np.any(proposed < 0) or np.any(proposed > self.grid[-1]):
+                 raise PhysicalFailure('Flux CDF Newton left physical bracket')
+             v = proposed
+-        if count and np.max(np.abs(self.cdf(v)-target))>2e-12:
++        else:
++            # Six updates changed v after the last loop residual evaluation.
++            residual_norm = np.max(np.abs(self.cdf(v)-target))
++        # On early break v has not changed, so its checked residual is reusable.
++        if count and residual_norm>2e-12:
+             raise PhysicalFailure('Flux CDF inversion residual')
+         return v
+ 
+@@ -197,6 +209,7 @@
+         ledger[side]-=totals(v[leaving],weight)
+         crossings[side,1]+=int(np.sum(leaving))
+     keep=(x>=0)&(x<length);x,v=x[keep],v[keep]
++    position_parts=[x];velocity_parts=[v]
+     for side in (0,1):
+         density,temperature,drift=reservoirs[side]
+         amount=macro_arrival_count(density*samplers[side].flux*dt/weight,rng)
+@@ -206,7 +219,8 @@
+         if np.any(positions<0) or np.any(positions>=length):
+             raise PhysicalFailure('Injected particle crossed entire domain',positions,incoming)
+         ledger[side]+=totals(incoming,weight);crossings[side,0]+=amount
+-        x=np.concatenate((x,positions));v=np.concatenate((v,incoming))
++        position_parts.append(positions);velocity_parts.append(incoming)
++    x=np.concatenate(position_parts);v=np.concatenate(velocity_parts)
+     return x,v,ledger,crossings
+ 
+ 

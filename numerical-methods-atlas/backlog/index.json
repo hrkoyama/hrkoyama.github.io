@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_on": "2026-11-23",
+  "reviewed_on": "2026-11-24",
   "title": {
     "ja": "未実装・拡充候補：問題ごとに検証し、まとめて公開する",
     "en": "Benchmark backlog: verify each problem, publish in batches"
@@ -3431,20 +3431,22 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-23/dsmc-shock/verification.json",
+        "verification": "/code/validated-examples/2026-11-24/dsmc-shock/verification.json",
         "inputs": [
-          "/code/validated-examples/2026-11-23/dsmc-shock/inputs.json",
-          "/code/validated-examples/2026-11-23/dsmc-shock/acceptance.json",
-          "/code/validated-examples/2026-11-23/dsmc-shock/pre-run-contract.json"
+          "/code/validated-examples/2026-11-24/dsmc-shock/inputs.json",
+          "/code/validated-examples/2026-11-24/dsmc-shock/acceptance.json",
+          "/code/validated-examples/2026-11-24/dsmc-shock/pre-run-contract.json"
         ],
         "plots": [
-          "/code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock-preview.png"
+          "/code/validated-examples/2026-11-24/dsmc-shock/results/dsmc-planar-shock-preview.png"
         ],
         "code": [
-          "/code/validated-examples/2026-11-23/dsmc-shock/run.py"
+          "/code/validated-examples/2026-11-24/dsmc-shock/run.py"
         ],
         "references": [
-          "/code/validated-examples/2026-11-23/dsmc-shock/README.md"
+          "/code/validated-examples/2026-11-24/dsmc-shock/README.md",
+          "/code/validated-examples/2026-11-23/dsmc-shock/README.md",
+          "/code/validated-examples/2026-11-23/dsmc-shock/verification.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#dsmc-planar-shock-ja",
         "execution": "/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=ja"
@@ -3456,20 +3458,22 @@
         "local_evidence_checked": true,
         "verification_passed": true,
         "links": {
-          "verification": "/code/validated-examples/2026-11-23/dsmc-shock/verification.json",
+          "verification": "/code/validated-examples/2026-11-24/dsmc-shock/verification.json",
           "inputs": [
-            "/code/validated-examples/2026-11-23/dsmc-shock/inputs.json",
-            "/code/validated-examples/2026-11-23/dsmc-shock/acceptance.json",
-            "/code/validated-examples/2026-11-23/dsmc-shock/pre-run-contract.json"
+            "/code/validated-examples/2026-11-24/dsmc-shock/inputs.json",
+            "/code/validated-examples/2026-11-24/dsmc-shock/acceptance.json",
+            "/code/validated-examples/2026-11-24/dsmc-shock/pre-run-contract.json"
           ],
           "plots": [
-            "/code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock-preview.png"
+            "/code/validated-examples/2026-11-24/dsmc-shock/results/dsmc-planar-shock-preview.png"
           ],
           "code": [
-            "/code/validated-examples/2026-11-23/dsmc-shock/run.py"
+            "/code/validated-examples/2026-11-24/dsmc-shock/run.py"
           ],
           "references": [
-            "/code/validated-examples/2026-11-23/dsmc-shock/README.md"
+            "/code/validated-examples/2026-11-24/dsmc-shock/README.md",
+            "/code/validated-examples/2026-11-23/dsmc-shock/README.md",
+            "/code/validated-examples/2026-11-23/dsmc-shock/verification.json"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#dsmc-planar-shock-ja",
           "execution": "/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=ja"
@@ -6347,8 +6351,8 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-benchmark-backlog.json": "88c94c622d0faecfb337cb2ad999e662e3501e859c235e9f4ff3043a683cc07d",
-    "catalog/atlas-methods.json": "0223e48245d78ba1af00cb8713a1fff340e6fbfd99617b446a72cd286be9fe17",
+    "catalog/atlas-benchmark-backlog.json": "3cebbbd2009cf517d64f826c42c0246a2c724aec57974f577e1a5b9b80106491",
+    "catalog/atlas-methods.json": "059728dddbfeda2cba7a0bb022735b12a8d30857a0a6ab7881209b25c61041f8",
     "code/validated-examples/2026-11-23-r2/euler-positivity/acceptance.json": "f08558b2703369a2260db1252dc40272f76556a2f6205688faa88a4c37c79050",
     "code/validated-examples/2026-11-23-r2/euler-positivity/euler_positivity.py": "c22015d9435095b3f08189d1b09be4a040c79062b1cc76fd15648cca00f73a58",
     "code/validated-examples/2026-11-23-r2/euler-positivity/inputs.json": "a1185e4b8be0f49f8f3f551f934614110c227d39b2bb0dc4438c5301428d751b",
@@ -6462,11 +6466,6 @@
     "code/validated-examples/2026-11-23/double-mach/run.py": "ab357547a4168cd9a7149f5318f12f3b44408e7934fdf34468d38d333343afa6",
     "code/validated-examples/2026-11-23/double-mach/verification.json": "c588b4ce7f539d53b1d5eec4413ce3a1dc104eff975e4adddf0c544460dbb49e",
     "code/validated-examples/2026-11-23/dsmc-shock/README.md": "62c01dce2e0a9f01afb7d0c6ff11102305e06bef8d9fb97e73e1c2641f05bd69",
-    "code/validated-examples/2026-11-23/dsmc-shock/acceptance.json": "ca835b4e4606640d6da9cc49b1332fed4c44c5e47c3b49e547a8687f0881986b",
-    "code/validated-examples/2026-11-23/dsmc-shock/inputs.json": "ef53152d7f42f153843ec505116be67377db77336bf14dd724c4f253d4d0f166",
-    "code/validated-examples/2026-11-23/dsmc-shock/pre-run-contract.json": "62e0f1debf50ff00d434ad4d240a14ba291128444bc1b85c0be559ca8b7f01cf",
-    "code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock-preview.png": "89e25d3088c177ac0cb027fe58f02627b049626d0198bda02abc0eb6fec6555c",
-    "code/validated-examples/2026-11-23/dsmc-shock/run.py": "badd9a284810dcfba7467726a6e042be6766dde1b7cea65dd3e856e39c9addec",
     "code/validated-examples/2026-11-23/dsmc-shock/verification.json": "fdca2ddb0069b640ef24da3de9766b5ccee5c5a117c7017589bd0de07d003623",
     "code/validated-examples/2026-11-23/dsmc-wall/README.md": "d26a7f037fa4f0888e4ca629a2d9aa693a85f25e7496359bb0dcd9336f5eb9fb",
     "code/validated-examples/2026-11-23/dsmc-wall/acceptance.json": "604489392d946f6d6d13c896b32f2154de5f5d8d523753b6a26895754441c207",
@@ -6624,10 +6623,17 @@
     "code/validated-examples/2026-11-23/zalesak/run.py": "eb80d86d24904f12971f6cca407bd2b289576810491701aa82ff1698ca82c01f",
     "code/validated-examples/2026-11-23/zalesak/source-provenance.json": "6a435417d628c17e5caf742ddc01799f953bc1e66e9fa59a3834d6a22647d1ed",
     "code/validated-examples/2026-11-23/zalesak/verification.json": "aad9b39c23d83e967588361edfdb05724f1ea3fade93843ebb05b5fd829ba44e",
-    "numerical-methods-atlas/gallery/index.html": "f31d62dc93290c101bb2784bbc21ee64ab0806cf41529f88c0fddffce39c6412",
+    "code/validated-examples/2026-11-24/dsmc-shock/README.md": "86ad36d722e09fe9b812418433596bf043ca6be296dc98ff73204bdd8f98d802",
+    "code/validated-examples/2026-11-24/dsmc-shock/acceptance.json": "ca835b4e4606640d6da9cc49b1332fed4c44c5e47c3b49e547a8687f0881986b",
+    "code/validated-examples/2026-11-24/dsmc-shock/inputs.json": "ef53152d7f42f153843ec505116be67377db77336bf14dd724c4f253d4d0f166",
+    "code/validated-examples/2026-11-24/dsmc-shock/pre-run-contract.json": "02992a78faa2da2b83de6f4f18e7f9d7373755a5047f4ad0446e1e288e1ff741",
+    "code/validated-examples/2026-11-24/dsmc-shock/results/dsmc-planar-shock-preview.png": "89e25d3088c177ac0cb027fe58f02627b049626d0198bda02abc0eb6fec6555c",
+    "code/validated-examples/2026-11-24/dsmc-shock/run.py": "badd9a284810dcfba7467726a6e042be6766dde1b7cea65dd3e856e39c9addec",
+    "code/validated-examples/2026-11-24/dsmc-shock/verification.json": "7e7919032dafc67b5e857acd4464516cb4b742eed89ff8adae7f3c8cf75a96f5",
+    "numerical-methods-atlas/gallery/index.html": "da3300927a02fedd0350efc6a1df83ac6a907573af2a88be7cd782a2d6bfd7a8",
     "numerical-methods-atlas/methods/thomas/index.html": "cf92964a5b2eab9c90daf72376e94298f9d780fec46c632d28b3ff7642e2de2e",
     "numerical-methods-atlas/reading/thomas-provenance.json": "a9eff54993f6f992bcddbb01ddf306adf59a234c8745a7a86557d38a3ab65ee2",
-    "numerical-methods-atlas/solutions/index.html": "1b8f14206510836b8715285f459526622d21d0c39b7bbdd57a6821de23cc08f6",
+    "numerical-methods-atlas/solutions/index.html": "444ecd1f1fca5d09bac6e0c243d47d1214edf4749f016c91a1528b1e36749844",
     "numerical-methods-atlas/validation/ale-nonuniform-transport/index.html": "7aa6c5eb188f78d0dfe31500b2fbc2e029abb79f844d658ce3a35afd68004a46",
     "numerical-methods-atlas/validation/annular-viscous-mms/index.html": "fcd250bb18308ab5934e70fa6c15f2d810d6544459dd5c38adb6914d00be1024",
     "numerical-methods-atlas/validation/cavity-ghia-re100/index.html": "95926835f80913ba43e6c471a4384b01bea6af082c9f607349f3f4aeacb8eb78",
@@ -6637,7 +6643,7 @@
     "numerical-methods-atlas/validation/double-mach-reflection/index.html": "2ab935a6cb4710b7eea6d72d54db00a0b475b1e07f54530d3dd33cf7f5a2fd37",
     "numerical-methods-atlas/validation/dry-bed-dam-break/index.html": "bb98e74ec14bdec09a7c804752f2c2cd35fc69f3d9eba3ec34bbe42a3369859a",
     "numerical-methods-atlas/validation/dsmc-couette/index.html": "c5c40ac4f238e57549672403759e21395f56f3058bf791f0b9961e87e51381b5",
-    "numerical-methods-atlas/validation/dsmc-planar-shock/index.html": "c3440b3814bf1dc2ec760e7af2a8b60df73a132cba6b24d47be4325cc879bc1a",
+    "numerical-methods-atlas/validation/dsmc-planar-shock/index.html": "dda0273a46f3684182afbc58ee4ddb4062ab6b481995c53858749205f84a2bca",
     "numerical-methods-atlas/validation/euler-double-rarefaction-positivity/index.html": "4d466052eefedc32d8ba2d5719f03631042701c2b0ca09ec1a7f6c539c4bb5ca",
     "numerical-methods-atlas/validation/fmm3d-inverse-r/index.html": "3f08ba996f5682e7df3187dd0d3243e58ac33ace110ddd7f77536e4dea2a3e32",
     "numerical-methods-atlas/validation/forward-step-m3/index.html": "ca49671c5b742c52c6df00924b61fb0de1eefed1f31b9933480b8f7668147d69",

@@ -568,12 +568,12 @@
     },
     {
       "group": "dsmc-shock",
-      "edition": "2026-11-23",
-      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/",
-      "archive": "atlas-dsmc-shock-2026-11-23.zip",
-      "archive_sha256": "a0781fe0b577cd65f60489e77672bbfdbc7d1f657c9514ad1c0c862125ba4eda",
-      "manifest_sha256": "2dfb1b6074aec28dddb083cc715c85080be678f39e55b2472c518730ec72c766",
-      "verification_sha256": "fdca2ddb0069b640ef24da3de9766b5ccee5c5a117c7017589bd0de07d003623",
+      "edition": "2026-11-24",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/",
+      "archive": "atlas-dsmc-shock-2026-11-24.zip",
+      "archive_sha256": "92794cc568e7857346a24489eddaae113eb60754de7ba717254955ace9d8d961",
+      "manifest_sha256": "cc8ff5afec49e7f1ccffd2cce91bcf85e4e116c7389342304667bc7c9bb5eccf",
+      "verification_sha256": "7e7919032dafc67b5e857acd4464516cb4b742eed89ff8adae7f3c8cf75a96f5",
       "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
       "case_ids": [
         "dsmc-planar-shock"
