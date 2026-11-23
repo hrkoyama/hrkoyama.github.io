@@ -497,8 +497,10 @@ ExactPackを使う際は、元の問題・解の原著と別に Thrussell–Ferg
 
 ## 2D RKDGのAIエージェント向け開発キット（2026-11-23）
 
-入口は `/numerical-methods-atlas/agent-kits/rkdg2d/`。日英の `TESTSET.md` / `TESTSET-en.md` をAIへ渡し、機械可読 `manifest.json` と不変な `/code/rkdg2d/2026-11-23-r1/atlas-rkdg-agent-kit.zip`、SHA256副ファイルからコード・固定入力・独立参照・評価器を取得する。`catalog/atlas-agent-kits.json` と `scripts/build-atlas-agent-kits.py` が案内HTML/JSONを生成し、通常refreshの索引とサイトマップに反映する。トップの入口は `catalog/atlas-home.json` と共通 `home-overview.js`、コード案内は `build-atlas-execution-guide.py`、AI用直リンクは `llms.txt` に接続する。共通22実行例や全体の手法・問題件数へキットを別問題として加算しない。
+入口は `/numerical-methods-atlas/agent-kits/rkdg2d/`。日英の `TESTSET.md` / `TESTSET-en.md` をAIへ渡し、機械可読 `manifest.json` と現行の不変版 `/code/rkdg2d/2026-11-23-r2/atlas-rkdg-agent-kit.zip`、SHA256副ファイルからコード・固定入力・独立参照・評価器を取得する。`catalog/atlas-agent-kits.json` と `scripts/build-atlas-agent-kits.py` が案内HTML/JSONを生成し、通常refreshの索引とサイトマップに反映する。トップの入口は `catalog/atlas-home.json` と共通 `home-overview.js`、コード案内は `build-atlas-execution-guide.py`、AI用直リンクは `llms.txt` に接続する。共通22実行例や全体の手法・問題件数へキットを別問題として加算しない。
 
 小さな新規PDEによるクイック検査、保存結果のハッシュ照合と再判定、全固定入力の新規再計算を区別する。元48科学ケースと波形4診断の合格を保持し、別の反転x追加試験は6件中5件合格・Shu–Osher p3不合格のまま公開する。固定閾値を緩めず、全モードの反転差と密度差を保持する。C++17解析I/O・1/2/4分割fixtureを、実MPI実行や他言語PDEの追試と呼ばない。完全2D結合は斜め波とDouble Mach、厳密1D入力は解析的縮約として範囲を明記する。
 
 更新は旧ZIPや候補SHAを上書きせず、新しい版・manifest・MD・SHA目録を揃える。builderは保存物の存在・ハッシュ・既知の合否だけを確認し、PDE・独立参照生成は起動しない。公開後はMD・manifest・図・ZIPを匿名取得して照合し、その取得ZIPから軽量実計算と保存判定を行う。ポスター本体、非公開草稿やそのQRはこのキットへ含めない。
+
+RKDG初版r1のLinux追試では、新規6本smokeは合格した一方、保存結果の照合で旧packagerが浮動小数点辞書の完全一致を要求し、プラットフォーム間の末尾桁差を失敗扱いにした。r2は記録照合の移植性を修正し、科学ソルバー・固定基準・独立参照・元の測定記録を同一バイト列で保持する。物理的な受入閾値の緩和ではない。r1 ZIP/SHAを上書きせず、そのMD日英とmanifestも同じr1フォルダへ原本のまま保存する。現行入口のMD/manifestとcatalogはr2へ揃える。r1がLinuxで全検証に成功したという記録は作らない。

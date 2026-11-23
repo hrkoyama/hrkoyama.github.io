@@ -10,6 +10,7 @@ import json
 import os
 from pathlib import Path, PurePosixPath
 import platform
+import re
 import stat
 import subprocess
 import sys
@@ -20,7 +21,6 @@ import zipfile
 
 ORIGIN = 'https://hrkoyama.github.io'
 MANIFEST_URL = ORIGIN+'/numerical-methods-atlas/agent-kits/rkdg2d/manifest.json'
-ARCHIVE_URL = ORIGIN+'/code/rkdg2d/2026-11-23-r1/atlas-rkdg-agent-kit.zip'
 ROOT_NAME = 'atlas-rkdg-agent-kit'
 
 
@@ -67,14 +67,18 @@ def run(output, expected_manifest, wait_seconds):
         report['downloads'].append({'url': MANIFEST_URL, 'sha256': digest(manifest_bytes)})
         (output/'manifest.json').write_bytes(manifest_bytes)
         archive = manifest['archive']
-        if archive['url'] != ARCHIVE_URL:
+        edition = manifest['release']
+        if not isinstance(edition, str) or re.fullmatch(r'\d{4}-\d{2}-\d{2}-r[1-9]\d*', edition) is None:
+            raise ValueError('Unexpected release identifier')
+        archive_url = ORIGIN+'/code/rkdg2d/'+edition+'/atlas-rkdg-agent-kit.zip'
+        if archive['url'] != archive_url:
             raise ValueError('Unexpected archive URL')
-        raw = fetch(ARCHIVE_URL, 64*1024*1024)
+        raw = fetch(archive_url, 64*1024*1024)
         if digest(raw) != archive['sha256'] or len(raw) != archive['bytes']:
             raise ValueError('Public archive differs from pinned manifest')
         archive_path = output/'atlas-rkdg-agent-kit.zip'
         archive_path.write_bytes(raw)
-        report['downloads'].append({'url': ARCHIVE_URL, 'sha256': digest(raw), 'bytes': len(raw)})
+        report['downloads'].append({'url': archive_url, 'sha256': digest(raw), 'bytes': len(raw)})
         for lang in ('ja', 'en'):
             guide = manifest['guides'][lang]
             data = fetch(guide['url'], 1_000_000)
@@ -82,7 +86,7 @@ def run(output, expected_manifest, wait_seconds):
                 raise ValueError('Public guide differs from pinned manifest: '+lang)
             (output/('TESTSET-'+lang+'.md')).write_bytes(data)
             report['downloads'].append({'url': guide['url'], 'sha256': digest(data)})
-        checksum = fetch(ARCHIVE_URL+'.sha256', 1000).decode().split()
+        checksum = fetch(archive_url+'.sha256', 1000).decode().split()
         if checksum != [archive['sha256'], 'atlas-rkdg-agent-kit.zip']:
             raise ValueError('Archive checksum sidecar mismatch')
         report['phase'] = 'extract-and-hash'

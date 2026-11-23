@@ -1,18 +1,18 @@
 # 2D Euler RKDG：AIエージェント向けコードと固定テスト
 
-公開版 **2026-11-23-r1**。入口：[数値計算法アトラス](https://hrkoyama.github.io/numerical-methods-atlas/agent-kits/rkdg2d/)。[English](https://hrkoyama.github.io/numerical-methods-atlas/agent-kits/rkdg2d/TESTSET-en.md)／[機械可読の公開manifest](https://hrkoyama.github.io/numerical-methods-atlas/agent-kits/rkdg2d/manifest.json)。
+公開版 **2026-11-23-r2**。入口：[数値計算法アトラス](https://hrkoyama.github.io/numerical-methods-atlas/agent-kits/rkdg2d/)。[English](https://hrkoyama.github.io/numerical-methods-atlas/agent-kits/rkdg2d/TESTSET-en.md)／[機械可読の公開manifest](https://hrkoyama.github.io/numerical-methods-atlas/agent-kits/rkdg2d/manifest.json)。
 
 「2次元圧縮性流体をDG法で解きたい」とき、このMDを利用者のAIに渡す。アトラスから完成コード・固定入力・独立参照・評価器を取得し、別コピーで改修した候補を同じ試験へ渡せる。任意のAI生成コードの成功を保証するものではない。
 
 ## 取得して最初の実計算を行う
 
-Python 3.9以上、NumPyが必要。実際の確認環境はPython 3.9.6／NumPy 2.0.2。全対応版の検証ではない。`curl`、`unzip`とSHA256ツールも使う。未使用の作業ディレクトリで実行する。
+推奨セットアップはPython 3.12。コード構文の最小条件はPython 3.9で、固定依存のローカル確認環境はPython 3.9.6／NumPy 2.0.2。Python 3.13以降は本配布版では未確認であり、将来の全Python版で固定依存が導入できる意味ではない。Linuxの実測状況は公開入口の追試結果で確認する。`curl`、`unzip`とSHA256ツールも使う。未使用の作業ディレクトリで実行する。
 
 ```bash
-mkdir rkdg-atlas-2026-11-23-r1
-cd rkdg-atlas-2026-11-23-r1
-curl -fL https://hrkoyama.github.io/code/rkdg2d/2026-11-23-r1/atlas-rkdg-agent-kit.zip -o atlas-rkdg-agent-kit.zip
-curl -fL https://hrkoyama.github.io/code/rkdg2d/2026-11-23-r1/atlas-rkdg-agent-kit.zip.sha256 -o atlas-rkdg-agent-kit.zip.sha256
+mkdir rkdg-atlas-2026-11-23-r2
+cd rkdg-atlas-2026-11-23-r2
+curl -fL https://hrkoyama.github.io/code/rkdg2d/2026-11-23-r2/atlas-rkdg-agent-kit.zip -o atlas-rkdg-agent-kit.zip
+curl -fL https://hrkoyama.github.io/code/rkdg2d/2026-11-23-r2/atlas-rkdg-agent-kit.zip.sha256 -o atlas-rkdg-agent-kit.zip.sha256
 sha256sum -c atlas-rkdg-agent-kit.zip.sha256
 # macOSでsha256sumがなければ、直前の1行を次に置き換える。
 # shasum -a 256 -c atlas-rkdg-agent-kit.zip.sha256
@@ -20,7 +20,8 @@ unzip -q atlas-rkdg-agent-kit.zip
 cd atlas-rkdg-agent-kit
 sha256sum -c SHA256SUMS.txt
 # macOSでは shasum -a 256 -c SHA256SUMS.txt
-python3 -m venv .venv
+# 実測したPython 3.9.6を使う場合はpython3.12をその実行ファイルへ置き換える。
+python3.12 -m venv .venv
 .venv/bin/python -m pip install -r requirements-verified.txt
 .venv/bin/python scripts/run_rkdg_smoke.py --output outputs/fresh-smoke.json
 ```
@@ -28,6 +29,8 @@ python3 -m venv .venv
 SHA不一致なら実行を中止して取得した版を確認する。内部`SHA256SUMS.txt`は自身を除く配布全ファイルを照合する。以後の`python`は`.venv/bin/python`へ読み替える。Windowsでは対応する仮想環境のPythonを使う。
 
 smokeは**新しい6本のPDE計算**（p1/p2/p3、6²→12²、t=0.02）で、xとyの両方向に変化する斜めエントロピー波を解く。候補のsample関数を使わず、モードから独立に再構成した密度と厳密解を比較し、粗い格子でのL₂次数・保存・指定点の正値性を確認する。終了コード0と`outputs/fresh-smoke.json`の`passed=true`が合格。**元48ケースの合格を意味しない。** 実時間はJSONの`wall_seconds`に記録する。速度の保証はない。
+
+r2では保存済み波形診断の照合だけを可搬化した。同じ凍結評価器で科学的合否を再判定した後、明示した派生出力の浮動小数値だけ64倍の倍精度機械イプシロン（約1.42×10⁻¹⁴）の相対丸め差を許容する。入力・座標・SHA・ケースID・合否は完全一致を要求し、最大差と項目名をJSONへ記録する。科学的閾値・ソルバー・参照配列は変更しない。r1のZIPも元のまま保持する。
 
 ## 提供する計算と固定した版
 

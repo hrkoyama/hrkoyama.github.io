@@ -1,18 +1,18 @@
 # 2D Euler RKDG: code and fixed tests for AI agents
 
-Release **2026-11-23-r1**. [Atlas entry](https://hrkoyama.github.io/numerical-methods-atlas/agent-kits/rkdg2d/) / [日本語](https://hrkoyama.github.io/numerical-methods-atlas/agent-kits/rkdg2d/TESTSET.md) / [public machine-readable manifest](https://hrkoyama.github.io/numerical-methods-atlas/agent-kits/rkdg2d/manifest.json).
+Release **2026-11-23-r2**. [Atlas entry](https://hrkoyama.github.io/numerical-methods-atlas/agent-kits/rkdg2d/) / [日本語](https://hrkoyama.github.io/numerical-methods-atlas/agent-kits/rkdg2d/TESTSET.md) / [public machine-readable manifest](https://hrkoyama.github.io/numerical-methods-atlas/agent-kits/rkdg2d/manifest.json).
 
 Give this Markdown to your AI agent when you want a Cartesian DG solver for two-dimensional compressible Euler flow. Obtain working Atlas code, frozen inputs, independent references and evaluators. Develop a separate candidate, then run the same checks. This is a bounded development workflow using supplied code, not a guarantee that arbitrary AI-generated scientific code succeeds.
 
 ## Download, verify and run a first actual calculation
 
-Computation requires Python >=3.9 and NumPy. The checked environment is Python3.9.6 / NumPy2.0.2; this does not establish testing of every supported version. The commands also use curl, unzip and a SHA256 utility. Start in a new working directory.
+Recommended setup: Python3.12. The source-syntax minimum is Python3.9; the locally checked fixed-dependency environment is Python3.9.6 / NumPy2.0.2. Python3.13 and later are unverified for this release; the minimum does not promise that fixed dependencies install on every future interpreter. Consult the public entry for measured Linux replay status. The commands also use curl, unzip and a SHA256 utility. Start in a new working directory.
 
 ```bash
-mkdir rkdg-atlas-2026-11-23-r1
-cd rkdg-atlas-2026-11-23-r1
-curl -fL https://hrkoyama.github.io/code/rkdg2d/2026-11-23-r1/atlas-rkdg-agent-kit.zip -o atlas-rkdg-agent-kit.zip
-curl -fL https://hrkoyama.github.io/code/rkdg2d/2026-11-23-r1/atlas-rkdg-agent-kit.zip.sha256 -o atlas-rkdg-agent-kit.zip.sha256
+mkdir rkdg-atlas-2026-11-23-r2
+cd rkdg-atlas-2026-11-23-r2
+curl -fL https://hrkoyama.github.io/code/rkdg2d/2026-11-23-r2/atlas-rkdg-agent-kit.zip -o atlas-rkdg-agent-kit.zip
+curl -fL https://hrkoyama.github.io/code/rkdg2d/2026-11-23-r2/atlas-rkdg-agent-kit.zip.sha256 -o atlas-rkdg-agent-kit.zip.sha256
 sha256sum -c atlas-rkdg-agent-kit.zip.sha256
 # On macOS, if sha256sum is absent, replace the previous line with:
 # shasum -a 256 -c atlas-rkdg-agent-kit.zip.sha256
@@ -20,7 +20,8 @@ unzip -q atlas-rkdg-agent-kit.zip
 cd atlas-rkdg-agent-kit
 sha256sum -c SHA256SUMS.txt
 # macOS: shasum -a 256 -c SHA256SUMS.txt
-python3 -m venv .venv
+# To use the measured Python3.9.6 environment, substitute that executable for python3.12.
+python3.12 -m venv .venv
 .venv/bin/python -m pip install -r requirements-verified.txt
 .venv/bin/python scripts/run_rkdg_smoke.py --output outputs/fresh-smoke.json
 ```
@@ -28,6 +29,8 @@ python3 -m venv .venv
 Stop on a checksum mismatch and investigate the downloaded version. Internal SHA256SUMS.txt covers all distributed files except itself. In the remaining commands, replace `python` with `.venv/bin/python`; use the corresponding virtual-environment executable on Windows.
 
 The smoke test performs **six fresh PDE evolutions**: p1/p2/p3, 6² to12² cells, t=0.02. The oblique entropy wave varies in both x and y and exercises the fully2D operator. Density is independently reconstructed from raw modes, without solver.sample, and compared with the exact solution. The test checks coarse-grid L2 order, conservation and positivity at declared sample points. Success means exit0 and `outputs/fresh-smoke.json` containing `passed=true`. **This does not qualify the original48 cases.** Actual elapsed time is recorded as `wall_seconds`, without a runtime guarantee.
+
+r2 makes only the saved-waveform-record comparison portable. The unchanged frozen evaluator must first pass scientific acceptance. Then only explicitly named derived output floats may differ by64 double-precision machine eps relative (about1.42e-14). Inputs, coordinates, hashes, case IDs and verdicts remain exact. The report lists maximum differences and changed field names. No scientific threshold, solver or reference array changes; the r1 ZIP is retained unchanged.
 
 ## Supplied numerics and fixed identities
 

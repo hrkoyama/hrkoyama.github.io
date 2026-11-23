@@ -18,6 +18,7 @@ archive_sha = hashlib.sha256(archive.read_bytes()).hexdigest()
 for name in ['TESTSET.md', 'TESTSET-en.md', 'manifest.json']:
     assert (dest/name).is_file(), 'Missing agent entry input: '+name
 manifest=json.loads((dest/'manifest.json').read_text())
+assert manifest['release']==data['edition']
 assert manifest['archive']['url']==ORIGIN+data['archive']
 assert manifest['archive']['sha256']==archive_sha
 assert manifest['archive']['bytes']==archive.stat().st_size
@@ -109,6 +110,12 @@ for lang in ['ja', 'en']:
     body += p('実装コードは同梱MITライセンス。本文・図・保存データと第三者資料の条件はコードと分け、ZIPの来歴・ライセンス案内を確認してください。独立参照は別実装のFV WENO5/HLLCとFV MUSCL/HLL、およびSodの厳密Riemann解です。' if ja else 'Implementation code uses the bundled MIT license. Read the kit provenance and license notes separately for text, figures, stored data and third-party material. Independent references use separate FV WENO5/HLLC and FV MUSCL/HLL implementations and the exact Sod Riemann solution.')
     body += '<ul>'+''.join('<li>'+link('https://doi.org/'+x['doi'],x['label'])+'</li>' for x in data['references'])+'</ul>'
     body += p('詳しい数式、固定入力、実測値、過去の失敗・修正履歴はZIP内の docs/rkdg.md / docs/rkdg-en.md を参照してください。' if ja else 'See docs/rkdg.md / docs/rkdg-en.md inside the ZIP for equations, fixed inputs, measurements and the history of failures and repairs.')+'</section>'
+    if data.get('history'):
+        body += '<section><h2>'+('配布版の履歴' if ja else 'Release history')+'</h2>'
+        for old in data['history']:
+            body += '<h3>'+esc(old['edition'])+'</h3>'+p(old['note'][lang])
+            body += '<nav class="resource-nav">'+link(old['archive'], '旧版ZIP' if ja else 'Previous ZIP')+link(old['manifest'], '保存したmanifest' if ja else 'Archived manifest')+link(old['guides'][lang], '保存したMarkdown' if ja else 'Archived Markdown')+'</nav>'
+        body += '</section>'
     body += '<nav class="resource-nav">'+link('/numerical-methods-atlas/?lang='+lang, 'アトラス冒頭' if ja else 'Atlas home')+link('/numerical-methods-atlas/code-and-data/?lang='+lang, '既存の実行例とコード' if ja else 'Existing examples and code')+link('/numerical-methods-atlas/methods/dg/?lang='+lang, 'DG法の解説と対応表' if ja else 'DG method and code reference')+'</nav></section>'
     sections.append(body)
 

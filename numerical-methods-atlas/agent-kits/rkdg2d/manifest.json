@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "release": "2026-11-23-r1",
+  "release": "2026-11-23-r2",
   "kit_url": "https://hrkoyama.github.io/numerical-methods-atlas/agent-kits/rkdg2d/",
-  "archive_url": "https://hrkoyama.github.io/code/rkdg2d/2026-11-23-r1/atlas-rkdg-agent-kit.zip",
+  "archive_url": "https://hrkoyama.github.io/code/rkdg2d/2026-11-23-r2/atlas-rkdg-agent-kit.zip",
   "candidate": "agent-kits/rkdg2d/generated/rkdg2d.py",
   "candidate_sha256": "4ed984a01c42fe9bb657c09c61361b086682d6aa611e9f478bf996c0b29b81d4",
   "original_48_passed": true,
@@ -12,21 +12,29 @@
   "reflection_baseline_only": true,
   "smoke_criteria_sha256": "54f397cbb8c875781ad8fc4bffd243db908bc9144ebcaf33a0b062089d4462c8",
   "python_minimum": "3.9",
+  "recommended_python": "3.12",
+  "python_minimum_scope": "source syntax only; Python3.13+ fixed dependencies unverified",
   "tested_python": "3.9.6",
   "tested_numpy": "2.0.2",
   "license": "MIT",
+  "revision_note": "r2: portable saved-diagnostic comparison (named derived floats <=64eps relative); scientific criteria/solver/reference arrays unchanged; r1 archive retained",
   "history_note": "accepted/ and assembly-notes are historical v2; current source is explicitly pinned above",
-  "archive_sha256": "dce2866531edd11b0b2b9efe50901f940aafb52228305e4193c27d4b01680f40",
-  "archive_bytes": 26998411,
-  "archive_file_count": 294,
+  "archive_sha256": "6fa8d75c1f70281eb0a78363eb3323c5a9a1b006f01f49182c4827f4d5710a69",
+  "archive_bytes": 27004122,
+  "archive_file_count": 296,
   "archive_root": "atlas-rkdg-agent-kit",
-  "checksum_url": "https://hrkoyama.github.io/code/rkdg2d/2026-11-23-r1/atlas-rkdg-agent-kit.zip.sha256",
+  "checksum_url": "https://hrkoyama.github.io/code/rkdg2d/2026-11-23-r2/atlas-rkdg-agent-kit.zip.sha256",
   "entry_ja": "https://hrkoyama.github.io/numerical-methods-atlas/agent-kits/rkdg2d/TESTSET.md",
   "entry_en": "https://hrkoyama.github.io/numerical-methods-atlas/agent-kits/rkdg2d/TESTSET-en.md",
   "commands": {
     "smoke": "python scripts/run_rkdg_smoke.py --output outputs/fresh-smoke.json",
     "saved_original": "python validation/rkdg/evaluate.py outputs/rkdg-2026-11-23/accepted-v3/metrics.json --solver agent-kits/rkdg2d/generated/rkdg2d.py --output outputs/saved-verdict.json",
-    "saved_waveform": "python validation/rkdg/resolution.py --campaign outputs/rkdg-2026-11-23/accepted-v3 --solver agent-kits/rkdg2d/generated/rkdg2d.py --output outputs/saved-resolution-verdict.json"
+    "saved_waveform": "python validation/rkdg/resolution.py --campaign outputs/rkdg-2026-11-23/accepted-v3 --solver agent-kits/rkdg2d/generated/rkdg2d.py --output outputs/saved-resolution-verdict.json",
+    "saved_integrity": "python scripts/package_rkdg_agent_release.py --verify-only",
+    "campaign": "python scripts/run_rkdg_campaign.py --solver candidate/rkdg2d.py --output outputs/candidate-full",
+    "negative": "python scripts/run_rkdg_negative_control.py --solver candidate/rkdg2d.py --campaign outputs/candidate-full --output outputs/candidate-negative",
+    "evaluate": "python validation/rkdg/evaluate.py outputs/candidate-full/metrics.json --solver candidate/rkdg2d.py --output outputs/candidate-full/verdict.json",
+    "waveform": "python validation/rkdg/resolution.py --campaign outputs/candidate-full --solver candidate/rkdg2d.py --output outputs/candidate-full/resolution-verdict.json"
   },
   "reflection_supplement": {
     "integrity_passed": true,
@@ -103,19 +111,19 @@
     "pde_rerun_by_packager": false
   },
   "archive": {
-    "url": "https://hrkoyama.github.io/code/rkdg2d/2026-11-23-r1/atlas-rkdg-agent-kit.zip",
-    "sha256": "dce2866531edd11b0b2b9efe50901f940aafb52228305e4193c27d4b01680f40",
-    "bytes": 26998411,
+    "url": "https://hrkoyama.github.io/code/rkdg2d/2026-11-23-r2/atlas-rkdg-agent-kit.zip",
+    "sha256": "6fa8d75c1f70281eb0a78363eb3323c5a9a1b006f01f49182c4827f4d5710a69",
+    "bytes": 27004122,
     "root_directory": "atlas-rkdg-agent-kit"
   },
   "guides": {
     "ja": {
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/agent-kits/rkdg2d/TESTSET.md",
-      "sha256": "4e37b4cc66b5f1410794b5f25c882e9323df102afd8883ea07726a3d7f5991b2"
+      "sha256": "69ef21cf26d0979e477727c7a3604dceb729bc24db3680d0152476f4a2ea9b8f"
     },
     "en": {
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/agent-kits/rkdg2d/TESTSET-en.md",
-      "sha256": "b301aef4215248f06e6d28e6f880f5e4ee76063b21df21a9265eebb0cd87ccc1"
+      "sha256": "abf9942cfe9df500f5563075de399c7796c642ad5b66f4dbefaed0ccfb7d48aa"
     }
   }
 }

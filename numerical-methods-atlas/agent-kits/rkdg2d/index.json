@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "id": "rkdg2d",
-  "edition": "2026-11-23-r1",
+  "edition": "2026-11-23-r2",
   "route": "/numerical-methods-atlas/agent-kits/rkdg2d/",
-  "archive": "/code/rkdg2d/2026-11-23-r1/atlas-rkdg-agent-kit.zip",
+  "archive": "/code/rkdg2d/2026-11-23-r2/atlas-rkdg-agent-kit.zip",
   "source_sha256": "4ed984a01c42fe9bb657c09c61361b086682d6aa611e9f478bf996c0b29b81d4",
   "title": {
     "ja": "2D RKDG：コードと固定テストをAIへ渡す",
@@ -89,8 +89,23 @@
       "doi": "10.1016/j.jcp.2010.08.016"
     }
   ],
-  "archive_sha256": "dce2866531edd11b0b2b9efe50901f940aafb52228305e4193c27d4b01680f40",
-  "archive_bytes": 26998411,
+  "history": [
+    {
+      "edition": "2026-11-23-r1",
+      "archive": "/code/rkdg2d/2026-11-23-r1/atlas-rkdg-agent-kit.zip",
+      "manifest": "/code/rkdg2d/2026-11-23-r1/manifest.json",
+      "guides": {
+        "ja": "/code/rkdg2d/2026-11-23-r1/TESTSET.md",
+        "en": "/code/rkdg2d/2026-11-23-r1/TESTSET-en.md"
+      },
+      "note": {
+        "ja": "初版を変更せず保存。Linuxで保存記録を照合する際の浮動小数点の完全一致判定に問題があり、後続版で照合の移植性を修正。",
+        "en": "Original release retained unchanged. Its saved-record recheck used exact floating-point equality that failed on Linux; a later release corrects the portability of that recheck."
+      }
+    }
+  ],
+  "archive_sha256": "6fa8d75c1f70281eb0a78363eb3323c5a9a1b006f01f49182c4827f4d5710a69",
+  "archive_bytes": 27004122,
   "guides": {
     "ja": "https://hrkoyama.github.io/numerical-methods-atlas/agent-kits/rkdg2d/TESTSET.md",
     "en": "https://hrkoyama.github.io/numerical-methods-atlas/agent-kits/rkdg2d/TESTSET-en.md"

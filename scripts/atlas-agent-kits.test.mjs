@@ -61,3 +61,18 @@ test('agent kit is reachable from the real static and runtime home and code guid
  for(const file of ['TESTSET.md','TESTSET-en.md','manifest.json'])assert.ok(read('llms.txt').includes('https://hrkoyama.github.io'+config.route+file));
  assert.ok(read('scripts/refresh-site.py').includes('scripts/build-atlas-agent-kits.py'));
 });
+
+test('the first release and its original instructions remain byte-identical',()=>{
+ const prefix='code/rkdg2d/2026-11-23-r1/';
+ const hashes={
+  'atlas-rkdg-agent-kit.zip':'dce2866531edd11b0b2b9efe50901f940aafb52228305e4193c27d4b01680f40',
+  'TESTSET.md':'4e37b4cc66b5f1410794b5f25c882e9323df102afd8883ea07726a3d7f5991b2',
+  'TESTSET-en.md':'b301aef4215248f06e6d28e6f880f5e4ee76063b21df21a9265eebb0cd87ccc1',
+  'manifest.json':'56309d6ba15f08243facba575d1af583a6cfa6c99b126b65ef3e26719ca4a549',
+ };
+ for(const [file,digest] of Object.entries(hashes))assert.equal(hash(readFileSync(new URL(prefix+file,root))),digest);
+ const old=json(prefix+'manifest.json');
+ assert.equal(old.candidate_sha256,config.source_sha256);
+ assert.equal(old.original_48_passed,true);assert.equal(old.waveform_4_passed,true);
+ assert.equal(old.reflection_6_passed,false);
+});
