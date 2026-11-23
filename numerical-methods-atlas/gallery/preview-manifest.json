@@ -208,14 +208,14 @@
     },
     {
       "id": "double-mach",
-      "image": "/numerical-methods-atlas/assets/movies/double-mach/frame-080.webp",
-      "image_sha256": "c25e7e545607ec4e2f8d56186d6d963956c28d7e9e28b2a45b504f60c42e8eec",
-      "width": 960,
-      "height": 640,
+      "image": "/code/validated-examples/2026-11-23/double-mach/results/double-mach-reflection-preview.png",
+      "image_sha256": "53153eee0fd13c933f8da09b0d628169906c4962c4926555858542d965c27587",
+      "width": 1312,
+      "height": 728,
       "source_kind": "existing-figure",
       "caption": {
-        "ja": "保存済み2次元Double Mach反射の最終フレーム。",
-        "en": "Stored final frame of 2D Double Mach reflection."
+        "ja": "実際の2次元Euler計算の密度場。Mach10、γ=1.4、T=.2、256×64セル。保存済みの別実装FV参照への差とwall jet診断を示します。細い噴流・渦構造の収束を保証する図ではありません。",
+        "en": "Density from the actual 2D Euler calculation: Mach 10, gamma = 1.4, T = 0.2, 256 × 64 cells. Differences from a saved reference computed with a separate FV implementation and wall-jet diagnostics remain visible. The picture does not establish convergence of thin jets or vortices."
       }
     },
     {
@@ -1024,7 +1024,7 @@
     }
   ],
   "source_sha256": {
-    "catalog/atlas-gallery.json": "693ddae09d21ad345a5a486dd461a57c5b672370686948d27451a52c436cb8e1",
+    "catalog/atlas-gallery.json": "68e8c4ca2f4493438363376a9dcf4f5b5d64bc38f6ddbff7f2cdb51635dd69e9",
     "scripts/render-atlas-gallery.py": "62956b5a0ece0c5144ec079bb30f36e44b3ccf97e4b56b677d4de356cdbab04c",
     "code/numerical-methods-atlas/2026-11-21/numart/benchmarks.py": "dc8f83aafea473b5f0e1e7bf82630484dd60aa446859c1f602571adc3c59f019",
     "code/numerical-methods-atlas/2026-11-21/numart/solvers.py": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d",
@@ -1071,8 +1071,8 @@
     "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
     "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
     "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
-    "catalog/atlas-test-problems.json": "1d441ab46fc99d1a65edf673484c5b2d53d5dc4fb7ee4a0e1ca65ae58b8d16a4",
-    "catalog/atlas-depth-expansion.json": "837d924d9dbff1039bdb5c66549ed98042f4d5cd71eee1fb596a6c14c96f3e62",
+    "catalog/atlas-test-problems.json": "6585a905ba296ab9731d1bbbc1a9cc43877b0254339b2867c28928eb9cc47720",
+    "catalog/atlas-depth-expansion.json": "15ba0967cb9d417ebbcdb027ef0adac50cff449887cfe723bdba6b221a1d5b63",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
     "code/validated-examples/2026-11-22/foundations/inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -1196,7 +1196,14 @@
     "code/validated-examples/2026-11-23-r2/sedov/verification.json": "1bec773b9e6d657ea7b71996df2bcc2c593f64b8cbb51942ed7d106be3419a03",
     "code/validated-examples/2026-11-23-r2/sedov/results/result.json": "e4767029260bee54e0de2c85b07cbca07c5b99c4eb999b9d609735b6e615ef23",
     "code/validated-examples/2026-11-23-r2/sedov/results/sedov-blast.png": "40a5d1f86e9aecab42be47d61c7c3b1b2e6e04a0cad8938caaa6d7c3ab5f2146",
-    "code/validated-examples/2026-11-23-r2/sedov/results/sedov-blast-preview.png": "ce5d4651b188e6cd5caab2cf6840829788e1952386e8bb7d235928d2a982d847"
+    "code/validated-examples/2026-11-23-r2/sedov/results/sedov-blast-preview.png": "ce5d4651b188e6cd5caab2cf6840829788e1952386e8bb7d235928d2a982d847",
+    "code/validated-examples/2026-11-23/double-mach/cases.json": "38eb6a6fb4af35cdd3ca8834b9f3e5c80be22a50615f03aef712bc67b11b85e3",
+    "code/validated-examples/2026-11-23/double-mach/inputs.json": "636a7713665a5e8679452d420d042e685db03275e6140f05a286e586c81c5e76",
+    "code/validated-examples/2026-11-23/double-mach/source-manifest.json": "32ba5521149368b729b31796dcc0006c8fd743e840e1e36533a867a47170d8c8",
+    "code/validated-examples/2026-11-23/double-mach/verification.json": "c588b4ce7f539d53b1d5eec4413ce3a1dc104eff975e4adddf0c544460dbb49e",
+    "code/validated-examples/2026-11-23/double-mach/results/result.json": "3b4a36b9b3e10e7a6984130ee24bb7d5707de0fe24facff3a49b8eabd71ea5fe",
+    "code/validated-examples/2026-11-23/double-mach/results/double-mach-reflection.png": "564ab5c372e1c4ce5e468876142858830f6425eca79a7dc34a18568ecc89edff",
+    "code/validated-examples/2026-11-23/double-mach/results/double-mach-reflection-preview.png": "53153eee0fd13c933f8da09b0d628169906c4962c4926555858542d965c27587"
   },
   "calculations_sha256": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6"
 }

@@ -619,6 +619,38 @@ Taylor–Green：y = π/4のx方向断面です。2次元セル平均ではな�
 
 
 
+### Double Mach反射：保存済み独立有限格子数値参照
+
+有限格子の数値参照 · 2次元
+
+`partial_t U + partial_x F(U) + partial_y G(U) = 0; Uref_C = sum_f(|C_f| Uref_f)/|C| (conservative restriction of saved finite-grid data).`
+
+領域[0,4]×[0,1]の2次元理想気体Euler、γ=1.4、Mach10・角度60度の入射衝撃波、初期の衝撃脚x=1/6、最終時刻T=.2。保存参照は別実装の非分割primitive MUSCL/HLL/Heun有限体積法（勾配制限はgeneralized minmodのθ=1.5、MC型であり標準MCのθ=2とは異なる）で、256×64と512×128セルです。主計算とHLLという流束族・Heun時間積分の数式を共有しますが、空間再構成と実装は別です。保存量を保つ制限で比較用セル平均を得ます。不変のRKDG2Dキットで以前に実行したソース・配列・記録を再利用し、今回の参照PDE・Athena・LAVAの新規実行ではありません。参照の格子差も有限分解能の感度指標で、厳密な誤差上界ではありません。厳密2D解でも細いwall jet・渦構造の収束検証でもありません。 入射不連続面の初期化はセル中心での状態判定であり、衝撃面で切られたセルの厳密平均からの初期化ではありません。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/double-mach-reflection/?lang=ja#double-mach-reflection-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-double-mach/#double-mach-reflection)
+
+- original-problem: [P. Woodward and P. Colella (1984), The numerical simulation of two-dimensional fluid flow with strong shocks, Journal of Computational Physics54(1),115–173](https://doi.org/10.1016/0021-9991(84)90142-6) — Publisher metadata/abstract and official NASA setup checked. No direct full-original-paper review is claimed.
+- official-setup-cross-check: [NASA LAVA tutorial: Double Mach Reflection](https://www.nas.nasa.gov/LAVA/unst_docs/tutorials/double_mach/double_mach/) — Official selected setup and boundary cross-check only; no LAVA execution or figure redistribution.
+- executed-reference-implementation: [Previously executed independent FV-MUSCL/generalized-minmod(theta1.5)/HLL/Heun reference distributed with the RKDG2D agent kit,2026-11-23-r2](https://hrkoyama.github.io/code/rkdg2d/2026-11-23-r2/atlas-rkdg-agent-kit.zip) — Selected sourceSHA256bc206f991594c6b011bb3cde50f104b8806a371df19af0464ff6b1a1d1cc39af; archiveSHA2566fa8d75c1f70281eb0a78363eb3323c5a9a1b006f01f49182c4827f4d5710a69. Reuse previously executed256×64 and512×128 arrays, source and records under MIT; no new reference PDE/Athena/LAVA execution. Reference has an adaptive retry capability, but the selected saved records report zero rejected steps.
+#### 関連するテスト問題の図とコード
+
+##### [二重Mach反射](https://hrkoyama.github.io/numerical-methods-atlas/problems/double-mach/?lang=ja) (`double-mach`)
+
+![実際の2次元Euler計算の密度場。Mach10、γ=1.4、T=.2、256×64セル。保存済みの別実装FV参照への差とwall jet診断を示します。細い噴流・渦構造の収束を保証する図ではありません。](https://hrkoyama.github.io/code/validated-examples/2026-11-23/double-mach/results/double-mach-reflection-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/double-mach/?lang=ja#code-ja)
+
+同じ問題への対応
+
+以前に独立実行した2格子の有限体積参照を保存量制限で比較します。有限格子数値参照であり、厳密2D解や誤差上界ではありません。
+
+- [実行・検証：Double Mach反射：多格子の軽量検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/double-mach-reflection/?lang=ja) (`double-mach-reflection`) · [コードZIP：Double Mach反射：多格子の軽量検証](https://hrkoyama.github.io/code/validated-examples/2026-11-23/double-mach/atlas-double-mach-2026-11-23.zip)
+
+この実行例の範囲：既存のDouble Mach反射と同じ初期値・境界を使い、64×16・128×32・256×64の実2D Euler有限体積計算をT=.2まで実行します。別実装の有限格子参照との差、実際の境界流束収支、上部の入射衝撃位置と壁近傍を比較します。
+
+
+
+
 ## English
 
 ### Advection / sine translation
@@ -1230,3 +1262,35 @@ An energy-normalized spherical similarity reference. Numerical integration of si
 - [Run and validate: Sedov–Taylor point blast: lightweight spherical-radial validation](https://hrkoyama.github.io/numerical-methods-atlas/validation/sedov-blast/?lang=en) (`sedov-blast`) · [Code ZIP: Sedov–Taylor point blast: lightweight spherical-radial validation](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/atlas-sedov-2026-11-23-r2.zip)
 
 Scope of this execution example: A lightweight spherical-radial Euler finite-volume example deposits unit energy inside fixed radius0.03. Three grids of128/256/512 radial cells measure differences from a point-blast similarity reference and conservation budgets. The picture is a section display of1D spherical data, not a2D Cartesian calculation.
+
+
+
+
+### Double Mach reflection: saved independent finite-grid numerical reference
+
+Finite-grid numerical reference · 2D
+
+`partial_t U + partial_x F(U) + partial_y G(U) = 0; Uref_C = sum_f(|C_f| Uref_f)/|C| (conservative restriction of saved finite-grid data).`
+
+Two-dimensional ideal-gas Euler flow on [0,4] × [0,1], with gamma = 1.4, a Mach-10 incident shock at 60 degrees, initial shock foot x = 1/6 and final time T = 0.2. The saved reference uses a separately written, unsplit primitive MUSCL/HLL/Heun finite-volume code on 256 × 64 and 512 × 128 cells. Its generalized-minmod slope parameter is theta = 1.5 (MC-type, rather than canonical MC with theta = 2). The primary and reference codes share the HLL flux family and Heun time-integration equations, while their spatial reconstruction and implementations are separate. Conservative restriction produces comparison cell means. Previously executed source, data and receipts are reused from the immutable RKDG2D kit; no reference PDE, Athena or LAVA was executed anew for this addition. Reference grid differences indicate finite-resolution sensitivity, not rigorous error bounds. This is not an analytic 2D solution or a convergence test for the thin wall jet and vortex pattern. The incident discontinuity is classified at cell centers, rather than initialized from exact cut-cell averages.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/double-mach-reflection/?lang=en#double-mach-reflection-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-double-mach/#double-mach-reflection)
+
+- original-problem: [P. Woodward and P. Colella (1984), The numerical simulation of two-dimensional fluid flow with strong shocks, Journal of Computational Physics54(1),115–173](https://doi.org/10.1016/0021-9991(84)90142-6) — Publisher metadata/abstract and official NASA setup checked. No direct full-original-paper review is claimed.
+- official-setup-cross-check: [NASA LAVA tutorial: Double Mach Reflection](https://www.nas.nasa.gov/LAVA/unst_docs/tutorials/double_mach/double_mach/) — Official selected setup and boundary cross-check only; no LAVA execution or figure redistribution.
+- executed-reference-implementation: [Previously executed independent FV-MUSCL/generalized-minmod(theta1.5)/HLL/Heun reference distributed with the RKDG2D agent kit,2026-11-23-r2](https://hrkoyama.github.io/code/rkdg2d/2026-11-23-r2/atlas-rkdg-agent-kit.zip) — Selected sourceSHA256bc206f991594c6b011bb3cde50f104b8806a371df19af0464ff6b1a1d1cc39af; archiveSHA2566fa8d75c1f70281eb0a78363eb3323c5a9a1b006f01f49182c4827f4d5710a69. Reuse previously executed256×64 and512×128 arrays, source and records under MIT; no new reference PDE/Athena/LAVA execution. Reference has an adaptive retry capability, but the selected saved records report zero rejected steps.
+#### Related test problem figures and code
+
+##### [Double Mach reflection](https://hrkoyama.github.io/numerical-methods-atlas/problems/double-mach/?lang=en) (`double-mach`)
+
+![Density from the actual 2D Euler calculation: Mach 10, gamma = 1.4, T = 0.2, 256 × 64 cells. Differences from a saved reference computed with a separate FV implementation and wall-jet diagnostics remain visible. The picture does not establish convergence of thin jets or vortices.](https://hrkoyama.github.io/code/validated-examples/2026-11-23/double-mach/results/double-mach-reflection-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/double-mach/?lang=en#code-en)
+
+Same-problem link
+
+Compare against two previously independently executed finite-volume reference grids using conservative restriction. This is a finite-grid numerical reference, not an exact2D solution or error bound.
+
+- [Run and validate: Double Mach reflection: lightweight grid verification](https://hrkoyama.github.io/numerical-methods-atlas/validation/double-mach-reflection/?lang=en) (`double-mach-reflection`) · [Code ZIP: Double Mach reflection: lightweight grid verification](https://hrkoyama.github.io/code/validated-examples/2026-11-23/double-mach/atlas-double-mach-2026-11-23.zip)
+
+Scope of this execution example: Full 2D Euler finite volumes evolve the existing Double Mach initial/boundary data to T=.2 on64x16,128x32 and256x64 cells. Compare a separately written finite-grid reference, actual boundary-flux budgets, an upper incident-front position and a fixed near-wall region.

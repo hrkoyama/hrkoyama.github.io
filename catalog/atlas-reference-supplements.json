@@ -140,6 +140,83 @@
           "note": "BSD-3-Clause. The selected unmodified pinned Sedov evaluator was actually run at npts6001/12001 with gamma=5/3,rho0=E0=1,t=.05,geometry3 and probes xi=.15,.25,.5,.75,.9,1.05. Source hashes, invocation and point values are archived. The upstream small-radius warning for density/internal energy is retained; the central region and shock jump are excluded from these point probes. This does not validate other ExactPack solvers or an independent PDE engine."
         }
       ]
+    },
+    {
+      "id": "double-mach",
+      "model": "euler",
+      "kind": "numerical-reference",
+      "formula": "partial_t U + partial_x F(U) + partial_y G(U) = 0; Uref_C = sum_f(|C_f| Uref_f)/|C| (conservative restriction of saved finite-grid data).",
+      "dimension": 2,
+      "bounds": [
+        [
+          0.0,
+          4.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "components": [
+        "density",
+        "x momentum",
+        "y momentum",
+        "total energy"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "gamma": 1.4,
+        "incident_mach": 10.0,
+        "shock_angle_degrees": 60.0,
+        "initial_shock_foot_x": 0.16666666666666666,
+        "time": 0.2,
+        "reference_grids": [
+          [
+            256,
+            64
+          ],
+          [
+            512,
+            128
+          ]
+        ]
+      },
+      "sources": [
+        "https://doi.org/10.1016/0021-9991(84)90142-6",
+        "https://www.nas.nasa.gov/LAVA/unst_docs/tutorials/double_mach/double_mach/",
+        "https://hrkoyama.github.io/code/rkdg2d/2026-11-23-r2/atlas-rkdg-agent-kit.zip"
+      ],
+      "title": "Double Mach reflection: saved independent finite-grid numerical reference",
+      "assumptions": "Two-dimensional ideal-gas Euler flow on [0,4] × [0,1], with gamma = 1.4, a Mach-10 incident shock at 60 degrees, initial shock foot x = 1/6 and final time T = 0.2. The saved reference uses a separately written, unsplit primitive MUSCL/HLL/Heun finite-volume code on 256 × 64 and 512 × 128 cells. Its generalized-minmod slope parameter is theta = 1.5 (MC-type, rather than canonical MC with theta = 2). The primary and reference codes share the HLL flux family and Heun time-integration equations, while their spatial reconstruction and implementations are separate. Conservative restriction produces comparison cell means. Previously executed source, data and receipts are reused from the immutable RKDG2D kit; no reference PDE, Athena or LAVA was executed anew for this addition. Reference grid differences indicate finite-resolution sensitivity, not rigorous error bounds. This is not an analytic 2D solution or a convergence test for the thin wall jet and vortex pattern. The incident discontinuity is classified at cell centers, rather than initialized from exact cut-cell averages.",
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/double-mach-reflection/?lang=ja#double-mach-reflection-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/double-mach-reflection/?lang=en#double-mach-reflection-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-double-mach/#double-mach-reflection",
+        "en": "/numerical-methods-atlas/en/read/validation-double-mach/#double-mach-reflection"
+      },
+      "reference_scope": "Previously independently executed finite-volume reference data and source, copied with hashes and the MIT license from the immutable RKDG2D kit. The HLL flux family and Heun equations are shared, while spatial reconstruction and implementation are separate. No new reference PDE or external Athena/LAVA execution. Finite-grid and wall-jet resolution limits remain explicit.",
+      "citations": [
+        {
+          "role": "original-problem",
+          "title": "P. Woodward and P. Colella (1984), The numerical simulation of two-dimensional fluid flow with strong shocks, Journal of Computational Physics54(1),115–173",
+          "url": "https://doi.org/10.1016/0021-9991(84)90142-6",
+          "note": "Publisher metadata/abstract and official NASA setup checked. No direct full-original-paper review is claimed."
+        },
+        {
+          "role": "official-setup-cross-check",
+          "title": "NASA LAVA tutorial: Double Mach Reflection",
+          "url": "https://www.nas.nasa.gov/LAVA/unst_docs/tutorials/double_mach/double_mach/",
+          "note": "Official selected setup and boundary cross-check only; no LAVA execution or figure redistribution."
+        },
+        {
+          "role": "executed-reference-implementation",
+          "title": "Previously executed independent FV-MUSCL/generalized-minmod(theta1.5)/HLL/Heun reference distributed with the RKDG2D agent kit,2026-11-23-r2",
+          "url": "https://hrkoyama.github.io/code/rkdg2d/2026-11-23-r2/atlas-rkdg-agent-kit.zip",
+          "note": "Selected sourceSHA256bc206f991594c6b011bb3cde50f104b8806a371df19af0464ff6b1a1d1cc39af; archiveSHA2566fa8d75c1f70281eb0a78363eb3323c5a9a1b006f01f49182c4827f4d5710a69. Reuse previously executed256×64 and512×128 arrays, source and records under MIT; no new reference PDE/Athena/LAVA execution. Reference has an adaptive retry capability, but the selected saved records report zero rejected steps."
+        }
+      ]
     }
   ]
 }

@@ -1,0 +1,39 @@
+{
+  "started_at_utc": "2026-11-23T04:31:35.976947+00:00",
+  "command": [
+    "env",
+    "PYTHONDONTWRITEBYTECODE=1",
+    "OPENBLAS_NUM_THREADS=1",
+    "OMP_NUM_THREADS=1",
+    "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/dm-env/bin/python",
+    "-W",
+    "error",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "--junitxml=attempts/01/pytest.xml"
+  ],
+  "cwd": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/atlas-search-publisher/scripts/depth-double-mach",
+  "initial_free_bytes": 13155115008,
+  "reserve_bytes": 2684354560,
+  "minimum_free_bytes": 13155106816,
+  "samples": [
+    {
+      "seconds": 0.0,
+      "free_bytes": 13155106816
+    },
+    {
+      "seconds": 0.5,
+      "free_bytes": 13155143680
+    }
+  ],
+  "disk_stop": false,
+  "started": true,
+  "owned_process_group": 29521,
+  "child_returncode": 0,
+  "returncode": 0,
+  "final_free_bytes": 13155139584,
+  "completed_at_utc": "2026-11-23T04:31:36.481655+00:00"
+}

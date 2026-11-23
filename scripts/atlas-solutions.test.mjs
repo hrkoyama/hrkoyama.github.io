@@ -61,7 +61,7 @@ with tempfile.TemporaryDirectory(prefix='atlas-solutions-fixture-') as temporary
 test('the saved-solution index derives every existing case and source hash without changing scientific inputs',()=>{
   assert.equal(historicalCases.length,18);
   assert.equal(sha(source),'c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc','the historical18 scientific references remain byte-identical');
-  assert.deepEqual(cases.slice(historicalCases.length).map(row=>row.id),['noh','sedov']);
+  assert.deepEqual(cases.slice(historicalCases.length).map(row=>row.id),['noh','sedov','double-mach']);
   assert.equal(rendered.record.supplements_source_sha256,sha(supplementSource));
   assert.deepEqual(rendered.record.cases.map(row=>row.id),cases.map(row=>row.id));
   assert.equal(rendered.record.count,cases.length);
@@ -75,7 +75,7 @@ test('the saved-solution index derives every existing case and source hash witho
 });
 
 test('names, formulas, dimensions and analytic/semi-analytic/manufactured distinctions come from the same source records',()=>{
-  const kindNames={'analytic':'Analytic reference','semi-analytic':'Semi-analytic reference','manufactured':'Manufactured solution'};
+  const kindNames={'analytic':'Analytic reference','semi-analytic':'Semi-analytic reference','manufactured':'Manufactured solution','numerical-reference':'Finite-grid numerical reference'};
   for(const original of cases){
     const row=rendered.record.cases.find(row=>row.id===original.id);
     for(const field of ['kind','formula','dimension','model','field_type'])assert.deepEqual(row[field],original[field],original.id+'/'+field);

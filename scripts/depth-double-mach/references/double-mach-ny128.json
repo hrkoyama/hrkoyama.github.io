@@ -1,0 +1,30 @@
+{
+  "problem": "double-mach",
+  "shape": [
+    512,
+    128,
+    4
+  ],
+  "time": 0.2,
+  "steps": 2436,
+  "wall_seconds": 76.34202833399999,
+  "diagnostics": {
+    "method": "unsplit FV primitive-MC MUSCL/HLL/SSPRK2",
+    "initialization": "cell center hot/cold classification",
+    "rejected_steps": 0,
+    "cfl": 0.3,
+    "balance_residual": [
+      4.462918923309189e-11,
+      -1.2391865311656147e-11,
+      2.1316282072803006e-14,
+      -1.546140993013978e-11
+    ]
+  },
+  "gamma": 1.4,
+  "python": "3.9.6",
+  "numpy": "2.0.2",
+  "source_sha256": "bc206f991594c6b011bb3cde50f104b8806a371df19af0464ff6b1a1d1cc39af",
+  "npz_sha256": "dc7be0b6b652384ee400a75700b8ec909a4784d31c87345c3ef7bbfc8b9e92b1",
+  "independence": "No imports from numart or RKDG spatial/time implementation",
+  "reference_scope": "finite resolution numerical comparison; no exact-solution claim"
+}

@@ -1,0 +1,46 @@
+{
+  "schema": "atlas-rkdg-independent-reference-v1",
+  "gamma": 1.4,
+  "state_order": ["rho", "rho_u", "rho_v", "total_energy_density"],
+  "array_interpretation": "finite-volume cell averages; q indexed [x,variables] or [x,y,variables]",
+  "shu_osher": {
+    "domain": [-5.0, 5.0],
+    "final_time": 1.8,
+    "discontinuity": -4.0,
+    "left_primitive_rho_u_v_p": [3.857143, 2.629369, 0.0, 10.33333],
+    "right_primitive": "rho=1+0.2*sin(5*x), u=v=0, p=1",
+    "initialization": "analytic sinusoidal cell averages, discontinuity aligned to cell face",
+    "boundary": "zero normal derivative (constant extrapolation) at each endpoint",
+    "method": "component-wise conservative finite-volume WENO5-JS, HLLC, SSPRK(3,3)",
+    "cfl": 0.4,
+    "grids": [800, 1600, 3200],
+    "reference": "shu-osher-n3200.npz",
+    "uncertainty": "compare n1600 and n3200 after conservative restriction"
+  },
+  "double_mach": {
+    "domain": [0.0, 4.0, 0.0, 1.0],
+    "final_time": 0.2,
+    "shock_angle_degrees": 60.0,
+    "shock_speed_normal": 10.0,
+    "hot_primitive": "rho=8,u=8.25*sqrt(3)/2,v=-4.125,p=116.5",
+    "cold_primitive_rho_u_v_p": [1.4, 0.0, 0.0, 1.0],
+    "initialization": "cell-center hot if x < 1/6+y/sqrt(3); cold otherwise",
+    "left_boundary": "hot inflow",
+    "right_boundary": "zero normal derivative outflow",
+    "bottom_boundary": "hot for x<1/6; reflecting slip wall otherwise",
+    "top_boundary": "hot if x<1/6+(1+20*t)/sqrt(3); cold otherwise, at actual RK stage time",
+    "method": "unsplit primitive-MC MUSCL, HLL, SSPRK(2,2)",
+    "cfl": 0.3,
+    "ny_grids": [64, 128],
+    "nx": "4*ny",
+    "reference": "double-mach-ny128.npz",
+    "uncertainty": "compare ny64 and ny128 after 2x2 conservative restriction",
+    "scope": "broad density and shock structure only; not a fine-scale vortex or exact-solution reference"
+  },
+  "primary_sources": [
+    {"citation": "Jiang & Shu (1996), Efficient Implementation of Weighted ENO Schemes", "doi": "10.1006/jcph.1996.0130"},
+    {"citation": "Shu & Osher (1989), Efficient implementation of essentially non-oscillatory shock-capturing schemes II", "doi": "10.1016/0021-9991(89)90222-2"},
+    {"citation": "Woodward & Colella (1984), The numerical simulation of two-dimensional fluid flow with strong shocks", "doi": "10.1016/0021-9991(84)90142-6"},
+    {"citation": "NASA LAVA Double Mach Reflection tutorial", "url": "https://nas.nasa.gov/LAVA/unst_docs/tutorials/double_mach/double_mach/"}
+  ]
+}

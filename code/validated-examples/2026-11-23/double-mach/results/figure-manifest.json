@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "validation_passed": true,
+  "result_sha256": "3b4a36b9b3e10e7a6984130ee24bb7d5707de0fe24facff3a49b8eabd71ea5fe",
+  "plot_sha256": "8d76717d9c6ef91df22c10841b09c1fb72341127945f80b95d8d386b2b464e2d",
+  "files_sha256": {
+    "field-ny16.npz": "f71043b0417feaef93752ae26387f33d49c6bdbad320175ea7cb1a04a2ce0f4c",
+    "history-ny16.json": "c3dea4a763ff960b31634df542a6f9dfc0a84c1b6fde42f71ef07a47e6831177",
+    "field-ny32.npz": "e1c8c09f0dcd1d0fc3852695237e2dba76340eb5aee0dfa135744b905c9b6aa2",
+    "history-ny32.json": "bee0b8e1421a8a4fb750bdcbce7edf900e035da6709bf08ccd48b7b4c22418f3",
+    "field-ny64.npz": "fa01638155d204eee531b350efb6a86209a9e370c06be44e46e1eef842038df1",
+    "history-ny64.json": "98c0238cac528720557f7fdaaffc50c4a175f2e9ba75cbc5b047805e4299e447"
+  },
+  "actual_cartesian_field": true,
+  "geometry": "Full 2D Cartesian Euler evolution, indexed[x,y,conserved]",
+  "nx": 256,
+  "ny": 64,
+  "figures": [
+    {
+      "path": "double-mach-reflection-preview.png",
+      "sha256": "53153eee0fd13c933f8da09b0d628169906c4962c4926555858542d965c27587"
+    },
+    {
+      "path": "double-mach-reflection-preview.svg",
+      "sha256": "af45fb19f5794d2461982f02c263ad6ac8b04fcea85f299e040a452697494f7e"
+    },
+    {
+      "path": "double-mach-reflection-preview.pdf",
+      "sha256": "b4a1033ede3a5b740c5576b021c8cceb248451ebb3d50f880cb954ae2f730ff8"
+    },
+    {
+      "path": "double-mach-reflection.png",
+      "sha256": "564ab5c372e1c4ce5e468876142858830f6425eca79a7dc34a18568ecc89edff"
+    },
+    {
+      "path": "double-mach-reflection.svg",
+      "sha256": "9dc8fa4e082cc675444109bab23fc4d2ff9f460879c10bc292ff511c201a1e7f"
+    },
+    {
+      "path": "double-mach-reflection.pdf",
+      "sha256": "3ae2660643e15f9cb118c3014cdb5dd2f594f3ba1ff006eb5c3e85760d80c876"
+    }
+  ]
+}

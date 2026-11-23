@@ -75,6 +75,7 @@ def _reference_kind(kind, language):
         'analytic': {'ja': '解析参照', 'en': 'Analytic reference'},
         'semi-analytic': {'ja': '半解析参照', 'en': 'Semi-analytic reference'},
         'manufactured': {'ja': '製造解', 'en': 'Manufactured solution'},
+        'numerical-reference': {'ja': '有限格子の数値参照', 'en': 'Finite-grid numerical reference'},
     }
     if kind not in labels:
         raise ValueError('Unknown method reference kind: ' + str(kind))

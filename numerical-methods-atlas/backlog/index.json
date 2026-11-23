@@ -22,7 +22,7 @@
   },
   "workflow": {
     "max_active": 1,
-    "active_item": "compressible-fluid-2",
+    "active_item": "compressible-fluid-3",
     "states": [
       "planned",
       "in-progress",
@@ -611,14 +611,14 @@
       "priority": "P1",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "in-progress",
-      "current": "1D球対称の固定入力・半解析参照・独立ExactPack点値・図・コードを追加。初版のLinux追試はCFL中間比のoverflow警告で失敗したため、その失敗と旧配布物を保持し、新r2で等価なCFL計算へ修正。入力と受入閾値を保って23検査・全4計算を再実行。",
+      "state": "published",
+      "current": "1D球対称の固定入力・半解析参照・独立ExactPack点値・図・コードを追加。初版のLinux追試はCFL中間比のoverflow警告で失敗したため、その失敗と旧配布物を保持し、新r2で等価なCFL計算へ修正。入力と受入閾値を保って23検査・全4計算を再実行。 修正版r2は指定HRサイトで公開され、公開ZIPだけのLinux458検査（Sedov23検査・全4計算48判定）と匿名取得の照合まで確認済み。",
       "tasks": [
         "固定爆発エネルギーの正規化、自己相似の衝撃半径と密度/圧力/速度を比較。",
         "有限セルへのエネルギー投入半径の誤差とPDE格子誤差を分け、球対称体積平均で参照を作る。",
         "低密度/負圧、総エネルギー、球対称性、中心特異点を報告。"
       ],
-      "scope_note": "軽量検証は128/256/512球殻と同じ最細格子での投入半径.03/.015感度に限定します。r1はMacで成功後、公開ZIPのLinux -Werror本計算でoverflow警告を例外扱いし失敗。r2では1/max(波速/幅)という等価なCFL演算で中間overflowを回避し、数値基準を緩めていません。有限投入半径と理想点源のモデル差が残り、傾きは純粋な空間精度次数ではありません。完全な連続極限分離、実2D Cartesian、非対称安定性、他γ・周囲密度勾配は未検証です。",
+      "scope_note": "軽量検証は128/256/512球殻と同じ最細格子での投入半径.03/.015感度に限定します。r1はMacで成功後、公開ZIPのLinux -Werror本計算でoverflow警告を例外扱いし失敗。r2では1/max(波速/幅)という等価なCFL演算で中間overflowを回避し、数値基準を緩めていません。有限投入半径と理想点源のモデル差が残り、傾きは純粋な空間精度次数ではありません。完全な連続極限分離、実2D Cartesian、非対称安定性、他γ・周囲密度勾配は未検証です。 公開済みという状態は、この固定入力で完了した軽量検証に限ります。",
       "sources": [
         {
           "title": "LANL ExactPack: official benchmark collection and references",
@@ -662,13 +662,14 @@
           "/numerical-methods-atlas/solutions/?lang=ja#solution-sedov-ja",
           "/code/validated-examples/2026-11-23-r2/sedov/exactpack-receipt.json",
           "/code/validated-examples/2026-11-23-r2/sedov/exactpack-snapshot.json",
-          "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45109504662"
+          "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45109504662",
+          "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45111190625"
         ]
       },
       "sequence": 7,
       "completion_evidence": {
         "kind": "scientific",
-        "partial": true,
+        "partial": false,
         "local_evidence_checked": true,
         "verification_passed": true,
         "links": {
@@ -695,7 +696,8 @@
             "/numerical-methods-atlas/solutions/?lang=ja#solution-sedov-ja",
             "/code/validated-examples/2026-11-23-r2/sedov/exactpack-receipt.json",
             "/code/validated-examples/2026-11-23-r2/sedov/exactpack-snapshot.json",
-            "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45109504662"
+            "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45109504662",
+            "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45111190625"
           ]
         }
       }
@@ -705,20 +707,20 @@
       "field_id": "compressible-fluid",
       "title": {
         "ja": "Double-Mach/前向きステップの多格子・独立参照",
-        "en": "Double-Mach/前向きステップの多格子・独立参照"
+        "en": "Double Mach / forward-step grid and independent-reference verification"
       },
       "detail_language": "ja",
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "planned",
-      "current": "Sod・Shu–Osherの固定入力、独立Athena++追補shu-independent、PPM/AUSM/回転流束の既存実装と2D保存画像がある。Noh/Sedovは本文の将来項目のみ。",
+      "state": "in-progress",
+      "current": "Double Mach反射の固定入力・少数格子・保存済み独立有限体積参照との照合・保存収支・衝撃位置・wall jet診断・図とコードを追加。参照PDEの新規実行ではなく、不変RKDG2Dキットに含まれる以前の2格子参照をハッシュ照合して再利用する。前向きステップと細いwall jetの収束は未検証。",
       "tasks": [
         "既存初期条件と境界処理を固定し、少数格子で衝撃位置・保存誤差・wall jetを比較。",
         "独立コードの有限格子数値参照として保存し厳密2D解とは呼ばない。",
         "現時刻まで到達しない計算と成功例を混ぜない。"
       ],
-      "scope_note": "",
+      "scope_note": "今回の作業単位はDouble Mach反射の軽量な固定入力です。前向きステップ、高解像度の細いwall jetやfull-patternの収束、一般の衝撃反射条件は未検証のまま区別します。",
       "sources": [],
       "baseline_evidence": [
         {
@@ -732,9 +734,63 @@
           "observation": "粗格子HLL像でfull-pattern収束・独立比較は未達と明記。"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23/double-mach/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23/double-mach/inputs.json",
+          "/code/validated-examples/2026-11-23/double-mach/acceptance.json",
+          "/code/validated-examples/2026-11-23/double-mach/pre-run-contract.json",
+          "/code/validated-examples/2026-11-23/double-mach/references/independent-reuse.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23/double-mach/results/double-mach-reflection-preview.png",
+          "/code/validated-examples/2026-11-23/double-mach/results/double-mach-reflection.png"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#double-mach-ja",
+        "execution": "/numerical-methods-atlas/validation/double-mach-reflection/?lang=ja",
+        "code": [
+          "/code/validated-examples/2026-11-23/double-mach/run.py",
+          "/code/validated-examples/2026-11-23/double-mach/dm_solver.py"
+        ],
+        "references": [
+          "/numerical-methods-atlas/solutions/?lang=ja#solution-double-mach-ja",
+          "/code/validated-examples/2026-11-23/double-mach/references/independent-reuse.json",
+          "/code/validated-examples/2026-11-23/double-mach/references/quality.json",
+          "https://doi.org/10.1016/0021-9991(84)90142-6"
+        ]
+      },
       "sequence": 8,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": true,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-23/double-mach/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-23/double-mach/inputs.json",
+            "/code/validated-examples/2026-11-23/double-mach/acceptance.json",
+            "/code/validated-examples/2026-11-23/double-mach/pre-run-contract.json",
+            "/code/validated-examples/2026-11-23/double-mach/references/independent-reuse.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-23/double-mach/results/double-mach-reflection-preview.png",
+            "/code/validated-examples/2026-11-23/double-mach/results/double-mach-reflection.png"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#double-mach-ja",
+          "execution": "/numerical-methods-atlas/validation/double-mach-reflection/?lang=ja",
+          "code": [
+            "/code/validated-examples/2026-11-23/double-mach/run.py",
+            "/code/validated-examples/2026-11-23/double-mach/dm_solver.py"
+          ],
+          "references": [
+            "/numerical-methods-atlas/solutions/?lang=ja#solution-double-mach-ja",
+            "/code/validated-examples/2026-11-23/double-mach/references/independent-reuse.json",
+            "/code/validated-examples/2026-11-23/double-mach/references/quality.json",
+            "https://doi.org/10.1016/0021-9991(84)90142-6"
+          ]
+        }
+      }
     },
     {
       "id": "compressible-fluid-4",
@@ -4765,10 +4821,10 @@
     "total": 103,
     "fields": 36,
     "states": {
-      "planned": 101,
+      "planned": 100,
       "in-progress": 1,
       "verified": 0,
-      "published": 1
+      "published": 2
     },
     "kinds": {
       "implementation": 58,
@@ -4783,7 +4839,7 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-benchmark-backlog.json": "b5e70be88c3ab713092d85b495d5797d4e3e4f65bc4c446fd69fe97487299cd4",
+    "catalog/atlas-benchmark-backlog.json": "58103cd82083048689249cc9f49a85611fa18ad6e2fefa500b2e8d3b3dce6030",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/acceptance.json": "9da18d8d22194a07bc0d8e7c619199baab0984f978d84a673bc8f94d4baf5f8b",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/cartesian_reference.py": "b53b9ac767938389abc99eedc3bc2dd23bab965bdb4f41fe19933b2da1b312c0",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/cartesian_solver.py": "7360a880b6318259ddf50b18d79861aca7f806190baaaa1d1200e6d9e4c7e0f8",
@@ -4818,8 +4874,19 @@
     "code/validated-examples/2026-11-23-r5/noh/results/noh-spherical-budget.png": "7b7672b50bdeefb62c50d10fd150a075eee2657cc3ec18e146dc24d261807f42",
     "code/validated-examples/2026-11-23-r5/noh/spherical-acceptance.json": "bb1c8d14feb07a8876f04711aa81780642d5f6a547f6754ccafd2eaf223530a2",
     "code/validated-examples/2026-11-23-r5/noh/verification.json": "48545a33ab2c19e9071616a15a1fcbf90c716096aa1a12550d3cb872ed8d9e36",
-    "numerical-methods-atlas/gallery/index.html": "7c9c1556f8d06f5312a4a5d0d0a98f36dcc8c968baa3124c3edca40c6eed922e",
-    "numerical-methods-atlas/solutions/index.html": "24479e1cf552561f2a7fe5b196b72be7cfcbbdfdc76f49d465f7f8f56cd99e80",
+    "code/validated-examples/2026-11-23/double-mach/acceptance.json": "9fbcd74dfcd990b1b7b70181ea2d4ed7480e227fa6c6cd0e48a42e8a5fc2c2d2",
+    "code/validated-examples/2026-11-23/double-mach/dm_solver.py": "9de89afac1960c1a4217e83a20ef5a98d6205c6217b11cea2608a0da3c88694e",
+    "code/validated-examples/2026-11-23/double-mach/inputs.json": "636a7713665a5e8679452d420d042e685db03275e6140f05a286e586c81c5e76",
+    "code/validated-examples/2026-11-23/double-mach/pre-run-contract.json": "022e47c99b3c73c679176be85b25b8497ab848c91d853f3acf18adb70b1b1a4d",
+    "code/validated-examples/2026-11-23/double-mach/references/independent-reuse.json": "465016e0dacb972ac14e3d80c96e4d0841104619a856169bff306fca0b168d0c",
+    "code/validated-examples/2026-11-23/double-mach/references/quality.json": "cb45047ca0ffee69443865d43aad0eed9c1c711d41018bf3330caeb89a22cd68",
+    "code/validated-examples/2026-11-23/double-mach/results/double-mach-reflection-preview.png": "53153eee0fd13c933f8da09b0d628169906c4962c4926555858542d965c27587",
+    "code/validated-examples/2026-11-23/double-mach/results/double-mach-reflection.png": "564ab5c372e1c4ce5e468876142858830f6425eca79a7dc34a18568ecc89edff",
+    "code/validated-examples/2026-11-23/double-mach/run.py": "ab357547a4168cd9a7149f5318f12f3b44408e7934fdf34468d38d333343afa6",
+    "code/validated-examples/2026-11-23/double-mach/verification.json": "c588b4ce7f539d53b1d5eec4413ce3a1dc104eff975e4adddf0c544460dbb49e",
+    "numerical-methods-atlas/gallery/index.html": "c81243a3c0a6fab9e9f08f9691e55c021781e48a095966f79a135ef34dbbfe5a",
+    "numerical-methods-atlas/solutions/index.html": "f8e23d7525146f23e4b513fed30e4bed7823314fbf60f514ca98f77ddd70179e",
+    "numerical-methods-atlas/validation/double-mach-reflection/index.html": "a97c707de665870d0897a0cdaddda7b7b455e0beb56778061c2d8a02ba3f4979",
     "numerical-methods-atlas/validation/noh-cartesian-2d/index.html": "484592fde6dbf3f4b5da68a363d9907e9deda9ea1883525c40762d405d64e2e1",
     "numerical-methods-atlas/validation/sedov-blast/index.html": "3b23469cd17837f105df30961020a8c4ff8b47efe937bf45430b8720a6e440ed"
   }

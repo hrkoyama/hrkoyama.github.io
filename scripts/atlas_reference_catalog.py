@@ -26,7 +26,7 @@ def load_reference_cases(root, read=None):
         for key in ['title', 'assumptions', 'formula']:
             if not isinstance(case.get(key), str) or not case[key].strip():
                 raise ValueError('Missing reference metadata: '+key)
-        if case.get('kind') not in {'analytic', 'semi-analytic', 'manufactured'}:
+        if case.get('kind') not in {'analytic', 'semi-analytic', 'manufactured', 'numerical-reference'}:
             raise ValueError('Unknown supplementary reference kind')
         if not case.get('citations') or not all(row.get('role') and row.get('title') and row.get('url') for row in case['citations']):
             raise ValueError('Supplementary references need explicit citation roles')

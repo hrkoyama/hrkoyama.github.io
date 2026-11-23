@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "edition": "2026-11-22",
-  "case_count": 43,
+  "case_count": 44,
   "releases": [
     {
       "group": "foundations",
@@ -227,6 +227,20 @@
         "sedov-blast"
       ],
       "tests": 23
+    },
+    {
+      "group": "double-mach",
+      "edition": "2026-11-23",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/double-mach/",
+      "archive": "atlas-double-mach-2026-11-23.zip",
+      "archive_sha256": "0a68d19746c508e0ac0cf9b5bebe9375c797a87ade1a9fbfbef87d6e5fa63347",
+      "manifest_sha256": "32ba5521149368b729b31796dcc0006c8fd743e840e1e36533a867a47170d8c8",
+      "verification_sha256": "c588b4ce7f539d53b1d5eec4413ce3a1dc104eff975e4adddf0c544460dbb49e",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "double-mach-reflection"
+      ],
+      "tests": 21
     }
   ]
 }

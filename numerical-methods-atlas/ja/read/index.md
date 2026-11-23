@@ -56,6 +56,7 @@
 - [波追跡PPM、AUSM系と曲面前方の衝撃波](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/shock-expansion/)
 - [カーバンクル現象](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/carbuncle/)
 - [二重Mach反射](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/double-mach/)
+- [Double Mach反射：多格子の軽量検証](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-double-mach/)
 - [KEEP法：滑らかな流れの釣合いと限界を検証する](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/keep/)
 - [前処理、二重時間積分、残差分配法](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/advanced/)
 - [前処理行列・低Mach数・音速点とエントロピー修正](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/low-mach-preconditioning/)

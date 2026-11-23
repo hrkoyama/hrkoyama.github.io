@@ -1,0 +1,6 @@
+{
+  "source": "code/numerical-methods-atlas/2026-11-22/numart/euler2d.py",
+  "sha256": "f924068bf0d79719f2650d148a3f8e07958493e0666ecad9628c59364db38f9a",
+  "changes": "Budget instrumentation, stage admissibility/failure retention and local standalone packaging; same first-order HLL/Heun, cell-center initial states and moving-stage boundary definitions. No change to the published original.",
+  "independent_reference": "Separately written primitive MUSCL generalized-minmod theta1.5/HLL/Heun from immutable RKDG kit; shared HLL family, not an external engine."
+}

@@ -193,6 +193,10 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   A lightweight spherical-radial Euler finite-volume example deposits unit energy inside fixed radius0.03. Three grids of128/256/512 radial cells measure differences from a point-blast similarity reference and conservation budgets. The picture is a section display of1D spherical data, not a2D Cartesian calculation.
+- [Double Mach reflection: lightweight grid verification](<https://hrkoyama.github.io/numerical-methods-atlas/validation/double-mach-reflection/?lang=en>)
+  availability: run
+
+  Full 2D Euler finite volumes evolve the existing Double Mach initial/boundary data to T=.2 on64x16,128x32 and256x64 cells. Compare a separately written finite-grid reference, actual boundary-flux budgets, an upper incident-front position and a fixed near-wall region.
 - [Godunov-type finite volumes — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/godunov/?lang=en#method-execution-en>)
   availability: source
 

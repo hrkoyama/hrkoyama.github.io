@@ -564,13 +564,13 @@
           "en": "Double Mach reflection"
         },
         "image": {
-          "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/movies/double-mach/frame-080.webp",
-          "sha256": "c25e7e545607ec4e2f8d56186d6d963956c28d7e9e28b2a45b504f60c42e8eec",
-          "width": 960,
-          "height": 640,
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/double-mach/results/double-mach-reflection-preview.png",
+          "sha256": "53153eee0fd13c933f8da09b0d628169906c4962c4926555858542d965c27587",
+          "width": 1312,
+          "height": 728,
           "caption": {
-            "ja": "保存済み2次元Double Mach反射の最終フレーム。",
-            "en": "Stored final frame of 2D Double Mach reflection."
+            "ja": "実際の2次元Euler計算の密度場。Mach10、γ=1.4、T=.2、256×64セル。保存済みの別実装FV参照への差とwall jet診断を示します。細い噴流・渦構造の収束を保証する図ではありません。",
+            "en": "Density from the actual 2D Euler calculation: Mach 10, gamma = 1.4, T = 0.2, 256 × 64 cells. Differences from a saved reference computed with a separate FV implementation and wall-jet diagnostics remain visible. The picture does not establish convergence of thin jets or vortices."
           },
           "source_kind": "existing-figure"
         },
@@ -585,8 +585,8 @@
         "executions": [],
         "role": "related",
         "method_note": {
-          "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
-          "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+          "ja": "既存のGodunov/HLL像と、新しい区分定数HLL＋Heunの固定入力を区別します。各実行例にはその計算で実際に使う手法だけを結びます。",
+          "en": "Distinguish the existing Godunov/HLL view from new piecewise-constant HLL plus Heun fixed inputs. Each execution links only the methods actually used in that computation."
         },
         "reference_url": {
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-mach/?lang=ja#references-ja",
@@ -809,7 +809,29 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-mach/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-mach/?lang=en#references-en"
         },
-        "cases": []
+        "cases": [
+          {
+            "id": "double-mach",
+            "title": {
+              "ja": "Double Mach反射：保存済み独立有限格子数値参照",
+              "en": "Double Mach reflection: saved independent finite-grid numerical reference"
+            },
+            "kind": "numerical-reference",
+            "relation": "same-problem",
+            "note": {
+              "ja": "以前に独立実行した2格子の有限体積参照を保存量制限で比較します。有限格子数値参照であり、厳密2D解や誤差上界ではありません。",
+              "en": "Compare against two previously independently executed finite-volume reference grids using conservative restriction. This is a finite-grid numerical reference, not an exact2D solution or error bound."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-double-mach-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-double-mach-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/double-mach-reflection/?lang=ja#double-mach-reflection-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/double-mach-reflection/?lang=en#double-mach-reflection-en-measurements"
+            }
+          }
+        ]
       }
     ]
   }

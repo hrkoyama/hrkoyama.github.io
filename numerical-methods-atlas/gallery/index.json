@@ -5,11 +5,11 @@
   "scope": "One explicitly mapped visual per atlas test problem. Existing shared figures are identified. Derived plots use stored numerical values; computed previews record fixed inputs and numerical checks.",
   "counts": {
     "test_problems": 85,
-    "runnable_problems": 41,
+    "runnable_problems": 42,
     "common_runnable_problems": 22,
-    "supplemental_runnable_problems": 22,
-    "supplemental_case_count": 38,
-    "supplemental_release_case_count": 43,
+    "supplemental_runnable_problems": 23,
+    "supplemental_case_count": 39,
+    "supplemental_release_case_count": 44,
     "groups": {
       "transport": 9,
       "fluid": 18,
@@ -1153,7 +1153,7 @@
         "ja": "二重Mach反射",
         "en": "Double Mach reflection"
       },
-      "chapter": "double-mach",
+      "chapter": "validation-double-mach",
       "evidence": [
         {
           "path": "numerical-methods-atlas/assets/double-mach-run.json",
@@ -1162,32 +1162,76 @@
         {
           "path": "numerical-methods-atlas/assets/movies/shock-catalog.json",
           "json_pointer": "/movies"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/double-mach/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "double-mach-reflection"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/double-mach/results/double-mach-reflection-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/double-mach/inputs.json",
+          "json_pointer": "/cases/double-mach-reflection"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/double-mach/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/double-mach/references/independent-reuse.json",
+          "json_pointer": "/passed"
         }
       ],
       "availability": "saved-output",
+      "reading_section": "double-mach-reflection",
+      "code_base": "/code/validated-examples/2026-11-23/double-mach/",
+      "verification": "/code/validated-examples/2026-11-23/double-mach/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "supplemental_examples": [
+        {
+          "id": "double-mach-reflection",
+          "url": "/numerical-methods-atlas/validation/double-mach-reflection/",
+          "name": {
+            "ja": "Double Mach反射：多格子の軽量検証",
+            "en": "Double Mach reflection: lightweight grid verification"
+          }
+        }
+      ],
       "reading": {
-        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/double-mach/",
-        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/double-mach/"
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-double-mach/#double-mach-reflection",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-double-mach/#double-mach-reflection"
       },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/double-mach/verification.json",
       "execution_examples": [],
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#double-mach",
-      "run_commands": [],
-      "image": "/numerical-methods-atlas/assets/movies/double-mach/frame-080.webp",
-      "image_sha256": "c25e7e545607ec4e2f8d56186d6d963956c28d7e9e28b2a45b504f60c42e8eec",
-      "width": 960,
-      "height": 640,
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "image": "/code/validated-examples/2026-11-23/double-mach/results/double-mach-reflection-preview.png",
+      "image_sha256": "53153eee0fd13c933f8da09b0d628169906c4962c4926555858542d965c27587",
+      "width": 1312,
+      "height": 728,
       "source_kind": "existing-figure",
       "caption": {
-        "ja": "保存済み2次元Double Mach反射の最終フレーム。",
-        "en": "Stored final frame of 2D Double Mach reflection."
+        "ja": "実際の2次元Euler計算の密度場。Mach10、γ=1.4、T=.2、256×64セル。保存済みの別実装FV参照への差とwall jet診断を示します。細い噴流・渦構造の収束を保証する図ではありません。",
+        "en": "Density from the actual 2D Euler calculation: Mach 10, gamma = 1.4, T = 0.2, 256 × 64 cells. Differences from a saved reference computed with a separate FV implementation and wall-jet diagnostics remain visible. The picture does not establish convergence of thin jets or vortices."
       },
       "visual_input": {
         "id": "double-mach",
         "kind": "image",
-        "source": "assets/movies/double-mach/frame-080.webp",
+        "source": "/code/validated-examples/2026-11-23/double-mach/results/double-mach-reflection-preview.png",
         "caption": {
-          "ja": "保存済み2次元Double Mach反射の最終フレーム。",
-          "en": "Stored final frame of 2D Double Mach reflection."
+          "ja": "実際の2次元Euler計算の密度場。Mach10、γ=1.4、T=.2、256×64セル。保存済みの別実装FV参照への差とwall jet診断を示します。細い噴流・渦構造の収束を保証する図ではありません。",
+          "en": "Density from the actual 2D Euler calculation: Mach 10, gamma = 1.4, T = 0.2, 256 × 64 cells. Differences from a saved reference computed with a separate FV implementation and wall-jet diagnostics remain visible. The picture does not establish convergence of thin jets or vortices."
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#double-mach-ja",
@@ -1195,9 +1239,33 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-mach/?lang=ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-mach/?lang=en"
       },
-      "runnable": false,
+      "runnable": true,
       "execution_entry": null,
-      "supplemental_execution_entries": []
+      "supplemental_execution_entries": [
+        {
+          "id": "double-mach-reflection",
+          "title": {
+            "ja": "Double Mach反射：多格子の軽量検証",
+            "en": "Double Mach reflection: lightweight grid verification"
+          },
+          "group": "double-mach",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/double-mach-reflection/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/double-mach-reflection/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/double-mach/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/double-mach/dm_solver.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/double-mach/references/reference-source.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/double-mach/test_dm.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/double-mach/atlas-double-mach-2026-11-23.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/double-mach/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/double-mach/verification.json"
+        }
+      ]
     },
     {
       "id": "nasa-wedge",
@@ -7293,7 +7361,7 @@
     }
   ],
   "source_sha256": {
-    "catalog/atlas-gallery.json": "693ddae09d21ad345a5a486dd461a57c5b672370686948d27451a52c436cb8e1",
+    "catalog/atlas-gallery.json": "68e8c4ca2f4493438363376a9dcf4f5b5d64bc38f6ddbff7f2cdb51635dd69e9",
     "scripts/render-atlas-gallery.py": "62956b5a0ece0c5144ec079bb30f36e44b3ccf97e4b56b677d4de356cdbab04c",
     "code/numerical-methods-atlas/2026-11-21/numart/benchmarks.py": "dc8f83aafea473b5f0e1e7bf82630484dd60aa446859c1f602571adc3c59f019",
     "code/numerical-methods-atlas/2026-11-21/numart/solvers.py": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d",
@@ -7340,8 +7408,8 @@
     "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
     "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
     "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
-    "catalog/atlas-test-problems.json": "1d441ab46fc99d1a65edf673484c5b2d53d5dc4fb7ee4a0e1ca65ae58b8d16a4",
-    "catalog/atlas-depth-expansion.json": "837d924d9dbff1039bdb5c66549ed98042f4d5cd71eee1fb596a6c14c96f3e62",
+    "catalog/atlas-test-problems.json": "6585a905ba296ab9731d1bbbc1a9cc43877b0254339b2867c28928eb9cc47720",
+    "catalog/atlas-depth-expansion.json": "15ba0967cb9d417ebbcdb027ef0adac50cff449887cfe723bdba6b221a1d5b63",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
     "code/validated-examples/2026-11-22/foundations/inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -7466,18 +7534,25 @@
     "code/validated-examples/2026-11-23-r2/sedov/results/result.json": "e4767029260bee54e0de2c85b07cbca07c5b99c4eb999b9d609735b6e615ef23",
     "code/validated-examples/2026-11-23-r2/sedov/results/sedov-blast.png": "40a5d1f86e9aecab42be47d61c7c3b1b2e6e04a0cad8938caaa6d7c3ab5f2146",
     "code/validated-examples/2026-11-23-r2/sedov/results/sedov-blast-preview.png": "ce5d4651b188e6cd5caab2cf6840829788e1952386e8bb7d235928d2a982d847",
+    "code/validated-examples/2026-11-23/double-mach/cases.json": "38eb6a6fb4af35cdd3ca8834b9f3e5c80be22a50615f03aef712bc67b11b85e3",
+    "code/validated-examples/2026-11-23/double-mach/inputs.json": "636a7713665a5e8679452d420d042e685db03275e6140f05a286e586c81c5e76",
+    "code/validated-examples/2026-11-23/double-mach/source-manifest.json": "32ba5521149368b729b31796dcc0006c8fd743e840e1e36533a867a47170d8c8",
+    "code/validated-examples/2026-11-23/double-mach/verification.json": "c588b4ce7f539d53b1d5eec4413ce3a1dc104eff975e4adddf0c544460dbb49e",
+    "code/validated-examples/2026-11-23/double-mach/results/result.json": "3b4a36b9b3e10e7a6984130ee24bb7d5707de0fe24facff3a49b8eabd71ea5fe",
+    "code/validated-examples/2026-11-23/double-mach/results/double-mach-reflection.png": "564ab5c372e1c4ce5e468876142858830f6425eca79a7dc34a18568ecc89edff",
+    "code/validated-examples/2026-11-23/double-mach/results/double-mach-reflection-preview.png": "53153eee0fd13c933f8da09b0d628169906c4962c4926555858542d965c27587",
     "code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py": "4ad61ac54dfa59d7d61959c5699f290e2386c23bf5b4b930a5d98576feaa54d1",
     "code/numerical-methods-atlas/2026-11-21/tests/test_linear.py": "5e7323f2734fb7328c35706ccd90fc25076bd46d01d32cd9c78c8cd25dd0421f",
     "code/numerical-methods-atlas/2026-11-21/tests/test_sparse_fem.py": "4076e514e0b9b5fd94dead4af33fe7e7548fba6a7b48b3e21a406034f7170afb",
     "code/numerical-methods-atlas/2026-11-21/tests/test_runge_kutta.py": "920a5eb560afe7f560cae8d22f879f125851f4ee0451b24720d0eca0082c31ce",
     "code/numerical-methods-atlas/2026-11-21/tests/test_new_models.py": "2937daf8fa8ad86882ac06e47835a6309ca1df3d0283c7dfb7b9606dc3906b1f",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "afa8243d23425797b11b256a2b1e83b2b70d18c9a29d5f11e513a9adadb990ed",
+    "numerical-methods-atlas/gallery/preview-manifest.json": "cf3fa51285928331e2f8efbce596408bac617b3a5b8e70ef11e6f497f24ce5f5",
     "numerical-methods-atlas/gallery/calculations.json": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6",
     "numerical-methods-atlas/gallery/verification.json": "46c39543afa9d943dfef896fadbc8f84d847f1a145d9b1427a2336de7a3a50f9",
-    "numerical-methods-atlas/test-cases/index.json": "f366f57c1e62fcc0007487f64ed2c644c75c5faa46d101c8e5b8effa338703bb",
+    "numerical-methods-atlas/test-cases/index.json": "465c6f4701a96ed9c2032d1eeddd9e4eb031d6cd43e86bfe404c966d9e417915",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "scripts/atlas_execution_discovery.py": "3431dae95fb0adc68e1deca07b406b70bd99480f9ad6023a31765cb07ccf84be",
-    "scripts/atlas_depth_release.py": "4d360c07c645a6d780c43bd0dc78e4f465e8aa28b104c1f84da04bb7d647690f",
+    "scripts/atlas_depth_release.py": "23bcaba6452f88050b16903d73eab25a1a284892e5f266ee7056854ef192cc1e",
     "scripts/atlas_goal_availability.py": "3b32fcee61cd8452e529a73ed203b1a64aa32db7312734df477926f5fa39fab5",
     "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
     "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
@@ -7496,6 +7571,7 @@
     "code/validated-examples/2026-11-22/splitting/atlas-splitting-2026-11-22.zip": "2ae466a4ea62e204716a388b86033de3a6493a9ab0ef4ad9aec4ebb038d8a404",
     "code/validated-examples/2026-11-23-r5/noh/atlas-noh-2026-11-23-r5.zip": "64de5483e9896a3773348b75e1ec2b4630f8a709d68194c1d94772396f531733",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/atlas-noh-cartesian-2026-11-23-r2.zip": "2145beb161f993c1608fc5ac167af5278d58e10f92e74ed37e5fb9c35243b918",
-    "code/validated-examples/2026-11-23-r2/sedov/atlas-sedov-2026-11-23-r2.zip": "abb7344023b91b090820de1ebec8d6c6a949b8c06fda73037204a5d6f62b4b73"
+    "code/validated-examples/2026-11-23-r2/sedov/atlas-sedov-2026-11-23-r2.zip": "abb7344023b91b090820de1ebec8d6c6a949b8c06fda73037204a5d6f62b4b73",
+    "code/validated-examples/2026-11-23/double-mach/atlas-double-mach-2026-11-23.zip": "0a68d19746c508e0ac0cf9b5bebe9375c797a87ade1a9fbfbef87d6e5fa63347"
   }
 }

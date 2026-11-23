@@ -14,8 +14,8 @@ BASE = '/numerical-methods-atlas/'
 ROUTE = BASE + 'solutions/'
 SOURCE = 'numerical-methods-atlas/assets/reference-solutions.json'
 TRANSLATIONS = 'numerical-methods-atlas/locales/messages.json'
-KIND_NAMES = {'analytic': 'Analytic reference', 'semi-analytic': 'Semi-analytic reference', 'manufactured': 'Manufactured solution'}
-CITATION_ROLES = {'original-problem': ('原問題・誤差解析', 'Original problem and error analysis'), 'reference-software-paper': ('参照ソフトの論文', 'Reference-software paper'), 'executed-reference-implementation': ('実際に照合したコード版', 'Executed reference implementation')}
+KIND_NAMES = {'analytic': 'Analytic reference', 'semi-analytic': 'Semi-analytic reference', 'manufactured': 'Manufactured solution', 'numerical-reference': 'Finite-grid numerical reference'}
+CITATION_ROLES = {'official-setup-cross-check': ('公式の設定・境界の照合', 'Official setup and boundary cross-check'), 'original-problem': ('原問題・誤差解析', 'Original problem and error analysis'), 'reference-software-paper': ('参照ソフトの論文', 'Reference-software paper'), 'executed-reference-implementation': ('実際に照合したコード版', 'Executed reference implementation')}
 
 def citation_role(citation, language):
     return CITATION_ROLES.get(citation['role'], (citation['role'], citation['role']))[language == 'en']
@@ -81,8 +81,8 @@ def section(data, language):
     body += link(BASE + 'gallery/?lang=' + language, 'テスト問題（名前と図）' if ja else 'Test problems by name and figure')
     body += link(BASE + 'equations/?lang=' + language, '方程式' if ja else 'Equations')
     body += link(BASE + language + '/read/reference-solutions/', '参照解の定義と検証' if ja else 'Reference definitions and verification') + '</nav>'
-    body += '<details class="solutions-scope"><summary>' + ('参照解の種類と表示範囲' if ja else 'Reference types and display scope') + '</summary><p>' + ('解析解・半解析解・製造解を区別しています。半解析解では有限精度の求根を使い、製造解では目標解から外力を選びます。' if ja else
-             'Analytic, semi-analytic and manufactured references are distinct. Semi-analytic cases use finite-precision root solving; the manufactured case chooses the forcing from a target solution.') + '</p><p>'
+    body += '<details class="solutions-scope"><summary>' + ('参照解の種類と表示範囲' if ja else 'Reference types and display scope') + '</summary><p>' + ('解析解・半解析解・製造解・有限格子の数値参照を区別します。半解析解は有限精度の求根・ODE積分・求積などを含み、製造解は目標解から外力を選びます。数値参照は別計算で得た有限格子の結果で、離散化・境界・時間刻みの誤差や参照自身の感度が残ります。厳密解や保証された誤差上界ではありません。' if ja else
+             'Analytic, semi-analytic, manufactured and finite-grid numerical references are distinct. Semi-analytic cases include finite-precision roots, ODE integration or quadrature; manufactured cases choose forcing from a target solution. Numerical references come from separate computations and retain discretization, boundary and time-step errors and their own resolution sensitivity. They are not exact solutions or guaranteed error bounds.') + '</p><p>'
     body += ('次元は元データの定義に従います。Taylor–Greenは2次元の式ですが、既存の表示は y = π/4 のx方向断面です。' if ja else
              'Dimensions follow the source metadata. Taylor–Green has a two-dimensional formula; the existing display is an x-slice at y = π/4.') + '</p></details>'
     body += '<div class="solutions-summary">' + ''.join('<span>' + escape(next(case['kind_label'][language] for case in data['cases'] if case['kind'] == kind)) + ' · ' + str(data['counts'].get(kind, 0)) + '</span>' for kind in KIND_NAMES if data['counts'].get(kind)) + '</div>'
@@ -141,7 +141,7 @@ def build(root=ROOT, problem_routes=None):
     routes_css_hash = digest(root / 'styles/atlas-problem-routes.css')[:12]
     head = '<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
     head += '<title data-page-title-ja="厳密解・参照解 | 数値計算法アトラス" data-page-title-en="Exact and reference solutions | Numerical Methods Atlas">厳密解・参照解 | 数値計算法アトラス</title>'
-    head += '<meta name="description" content="保存済み参照解の名前・式・適用条件を一覧。Analytic, semi-analytic and manufactured references, with formulas and assumptions.">'
+    head += '<meta name="description" content="保存済みの解析・半解析・製造解と有限格子数値参照を、式・適用条件・限界から選ぶ一覧。Analytic, semi-analytic, manufactured and finite-grid numerical references, with assumptions and limits.">'
     head += '<link rel="canonical" href="' + ORIGIN + ROUTE + '"><link rel="stylesheet" href="/styles/atlas-solutions.css?v=' + css_hash + '"><link rel="stylesheet" href="/styles/atlas-problem-routes.css?v=' + routes_css_hash + '"></head>'
     document = head + '<body class="profile-page atlas-solutions" data-site-language-anchors="suffix"><main id="main" class="solutions-index">' + ''.join(section(data, language) for language in ['ja', 'en']) + '</main></body></html>\n'
     directory = root / ROUTE.strip('/')

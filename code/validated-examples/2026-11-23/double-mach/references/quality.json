@@ -1,0 +1,89 @@
+{
+  "comparisons": [
+    {
+      "coarse": "shu-osher-n800",
+      "fine": "shu-osher-n1600",
+      "comparison": "conservative equal-area restriction of finer cell averages to coarse grid",
+      "rho_relative_l1": 0.0022771919123757006,
+      "rho_linf_difference": 0.43659984191943857,
+      "all_variables_relative_l1": [
+        0.00227719191237569,
+        0.0023078800369759934,
+        0.0,
+        0.0011936914876412995
+      ]
+    },
+    {
+      "coarse": "shu-osher-n1600",
+      "fine": "shu-osher-n3200",
+      "comparison": "conservative equal-area restriction of finer cell averages to coarse grid",
+      "rho_relative_l1": 0.0009951359279730737,
+      "rho_linf_difference": 0.2723945573874398,
+      "all_variables_relative_l1": [
+        0.000995135927973064,
+        0.0010195573323173426,
+        0.0,
+        0.0005718084682948526
+      ]
+    },
+    {
+      "coarse": "double-mach-ny64",
+      "fine": "double-mach-ny128",
+      "comparison": "conservative equal-area restriction of finer cell averages to coarse grid",
+      "rho_relative_l1": 0.009552513326390188,
+      "rho_linf_difference": 4.43170433870166,
+      "all_variables_relative_l1": [
+        0.009552513326392169,
+        0.011498421619569425,
+        0.019476683107928043,
+        0.01221739078967083
+      ]
+    }
+  ],
+  "files": [
+    {
+      "file": "double-mach-ny128.npz",
+      "sha256": "dc7be0b6b652384ee400a75700b8ec909a4784d31c87345c3ef7bbfc8b9e92b1",
+      "bytes": 1178169,
+      "min_density": 1.4,
+      "min_pressure": 1.0000000000000002
+    },
+    {
+      "file": "double-mach-ny64.npz",
+      "sha256": "21473a9fb01dc3b7b7956416f7a5a7440b57cf0f366112f1202a45336f87e4a8",
+      "bytes": 321933,
+      "min_density": 1.4,
+      "min_pressure": 1.0000000000000002
+    },
+    {
+      "file": "shu-osher-n1600.npz",
+      "sha256": "c033fcc64ee4a5fb1bc001502a5b8f02c7b67d96934b8b65a1ac6d25e46adbee",
+      "bytes": 28720,
+      "min_density": 0.8000253887294263,
+      "min_pressure": 0.9999923248507909
+    },
+    {
+      "file": "shu-osher-n3200.npz",
+      "sha256": "b6c51a2abed1ae7eb71d4ebcb1dfcdf1348686521f8a2b8d8941ed638413bd46",
+      "bytes": 54272,
+      "min_density": 0.8000048669327469,
+      "min_pressure": 0.9999933951728626
+    },
+    {
+      "file": "shu-osher-n800.npz",
+      "sha256": "26dd6afd169f5eff2a785af570788ff35d128b33b290170fe464933b2ff31069",
+      "bytes": 15719,
+      "min_density": 0.8000331706044854,
+      "min_pressure": 0.9999924930331716
+    }
+  ],
+  "scope": [
+    "Independent implementation, no shared RKDG operators.",
+    "Grid-change estimates are global density L1 differences; pointwise shock uncertainty remains much larger.",
+    "DMR reference resolves broad shock structure and is not an exact or fine-vortex reference."
+  ],
+  "tests": {
+    "command": ".venv/bin/python -m pytest -q tests/test_rkdg_references.py",
+    "passed": 6
+  }
+}

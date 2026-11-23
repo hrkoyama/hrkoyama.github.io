@@ -30,7 +30,7 @@ import zipfile
 
 ORIGIN = 'https://hrkoyama.github.io'
 REGISTRY_URL = ORIGIN + '/numerical-methods-atlas/validation/releases.json'
-GROUPS = ('foundations', 'models', 'particles', 'mhd', 'thermostats', 'biology', 'mcmc', 'mhd-convergence', 'foundations-conditioning', 'particle-transport', 'splitting', 'noh', 'noh-cartesian', 'sedov')
+GROUPS = ('foundations', 'models', 'particles', 'mhd', 'thermostats', 'biology', 'mcmc', 'mhd-convergence', 'foundations-conditioning', 'particle-transport', 'splitting', 'noh', 'noh-cartesian', 'sedov', 'double-mach')
 DIRECT_PINS = {'numpy': '2.0.2', 'scipy': '1.14.1', 'pytest': '8.3.5'}
 GROUP_TIMEOUT_SECONDS = 120
 MAX_DOWNLOAD_BYTES = 64 * 1024 * 1024

@@ -1,0 +1,51 @@
+[
+  {
+    "id": "woodward1984",
+    "author": "Paul Woodward and Phillip Colella",
+    "year": 1984,
+    "title": "The numerical simulation of two-dimensional fluid flow with strong shocks",
+    "journal": "Journal of Computational Physics",
+    "volume": "54",
+    "number": "1",
+    "pages": "115–173",
+    "doi": "10.1016/0021-9991(84)90142-6",
+    "url": "https://www.sciencedirect.com/science/article/pii/0021999184901426",
+    "type": "article",
+    "role": "original-benchmark-and-method-comparison",
+    "review_level": "publisher-metadata-and-abstract; official-NASA-setup-cross-check",
+    "review": {
+      "ja": "出版社の書誌・抄録とNASA公式の設定説明を確認。原著本文を直接読んだという記録ではなく、元の強衝撃波比較と問題設定の出典として引用します。",
+      "en": "Publisher metadata/abstract and the official NASA setup were checked. No direct full-paper review is claimed; cited for the original strong-shock comparison and benchmark."
+    }
+  },
+  {
+    "id": "nasa-lava-double-mach",
+    "author": "NASA Advanced Supercomputing Division, LAVA team",
+    "year": 2026,
+    "title": "Double Mach Reflection — LAVA tutorial",
+    "url": "https://www.nas.nasa.gov/LAVA/unst_docs/tutorials/double_mach/double_mach/",
+    "type": "documentation",
+    "role": "official-setup-cross-check",
+    "review_level": "official-tutorial-selected-setup-and-boundaries",
+    "review": {
+      "ja": "公式チュートリアルのMach10・γ=1.4、領域、衝撃脚x=1/6、初期密度/圧力、境界とT=.2を確認。LAVA自体を実行した意味ではなく、図も転載しません。",
+      "en": "Checked Mach10, gamma1.4, domain, shock foot x=1/6, upstream state, boundaries and T=.2. No LAVA execution or figure redistribution."
+    }
+  },
+  {
+    "id": "atlas-rkdg-fv-reference",
+    "author": "Hiroshi Koyama",
+    "year": 2026,
+    "title": "Independent finite-volume references distributed with the RKDG2D agent kit, 2026-11-23-r2",
+    "url": "https://hrkoyama.github.io/code/rkdg2d/2026-11-23-r2/atlas-rkdg-agent-kit.zip",
+    "type": "software-and-saved-data",
+    "role": "previously-executed-independent-reference-implementation",
+    "license": "MIT",
+    "source_sha256": "bc206f991594c6b011bb3cde50f104b8806a371df19af0464ff6b1a1d1cc39af",
+    "review_level": "hash-checked-selected-public-archive-artifacts",
+    "review": {
+      "ja": "保存済みの独立2D FV-MUSCL/HLL/Heun参照のソース・2格子データ・実行記録を不変ZIPから選択取得。今回の参照PDE再実行や別のAthena/LAVA実行ではありません。主計算とHLLという流束族は共有しますが、参照は主計算の空間演算をimportしない別実装です。",
+      "en": "Selected source, two-grid data and execution records were copied from the immutable archive. No reference PDE, Athena or LAVA was rerun here. The flux family HLL is shared, while the reference is a separate implementation without imports of primary spatial operators."
+    }
+  }
+]

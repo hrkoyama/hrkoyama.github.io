@@ -4,8 +4,8 @@
   "title": "Learn by field",
   "description": "Read the theory, derivations and worked examples by field, from foundations to related methods and verification.",
   "source": "/catalog/atlas-reading-index.json",
-  "source_sha256": "d46a2c6dde8d8e38ff637953c613b03d53f43988c054aaaa95811dc11ed65f18",
-  "chapter_count": 96,
+  "source_sha256": "749c67bf6b26ca8035ea28679aefa626c09aa18ddd424c258cfea00c1fef173d",
+  "chapter_count": 97,
   "groups": [
     {
       "id": "foundations-time",
@@ -417,6 +417,17 @@
             "en"
           ],
           "search_text": "double-mach 二重Mach反射 Double Mach Reflection 流体・衝撃波・定常解法 Fluids, shocks and steady solvers"
+        },
+        {
+          "id": "validation-double-mach",
+          "title": "Double Mach reflection: lightweight grid verification",
+          "url": "/numerical-methods-atlas/en/read/validation-double-mach/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-double-mach Double Mach反射：多格子の軽量検証 Double Mach reflection: lightweight grid verification 流体・衝撃波・定常解法 Fluids, shocks and steady solvers"
         },
         {
           "id": "keep",

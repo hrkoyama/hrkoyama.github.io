@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "frozen_before_first_pde_or_unit_execution": true,
+  "limits": {
+    "balance": 2e-12,
+    "finest_density_l1": 0.15,
+    "finest_pressure_l1": 0.15,
+    "finest_front_cells": 4.0,
+    "minimum_density_slope": 0.2,
+    "reference_increment_l1": 0.1,
+    "reference_to_primary_ratio": 0.75
+  },
+  "diagnostics_only": [
+    "wall-jet density/velocity comparisons",
+    "full-domain Linf",
+    "actual density/pressure extrema"
+  ],
+  "scope": "Differences include initial projection, stage-sampled moving boundaries, discretization and finite-reference uncertainty. No rigorous full-pattern spatial order or fine wall-jet convergence claim."
+}

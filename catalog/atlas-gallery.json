@@ -172,10 +172,10 @@
     {
       "id": "double-mach",
       "kind": "image",
-      "source": "assets/movies/double-mach/frame-080.webp",
+      "source": "/code/validated-examples/2026-11-23/double-mach/results/double-mach-reflection-preview.png",
       "caption": {
-        "ja": "保存済み2次元Double Mach反射の最終フレーム。",
-        "en": "Stored final frame of 2D Double Mach reflection."
+        "ja": "実際の2次元Euler計算の密度場。Mach10、γ=1.4、T=.2、256×64セル。保存済みの別実装FV参照への差とwall jet診断を示します。細い噴流・渦構造の収束を保証する図ではありません。",
+        "en": "Density from the actual 2D Euler calculation: Mach 10, gamma = 1.4, T = 0.2, 256 × 64 cells. Differences from a saved reference computed with a separate FV implementation and wall-jet diagnostics remain visible. The picture does not establish convergence of thin jets or vortices."
       }
     },
     {

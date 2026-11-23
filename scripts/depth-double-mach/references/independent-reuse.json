@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-11-23",
+  "purpose": "Reuse independently executed finite-volume reference artifacts; no new reference PDE execution",
+  "source_release": {
+    "archive_url": "https://hrkoyama.github.io/code/rkdg2d/2026-11-23-r2/atlas-rkdg-agent-kit.zip",
+    "archive_sha256": "6fa8d75c1f70281eb0a78363eb3323c5a9a1b006f01f49182c4827f4d5710a69",
+    "archive_bytes": 27004122,
+    "source_reference_sha256": "bc206f991594c6b011bb3cde50f104b8806a371df19af0464ff6b1a1d1cc39af"
+  },
+  "files": {
+    "reference-source.py": {
+      "archive_path": "atlas-rkdg-agent-kit/validation/rkdg/reference.py",
+      "sha256": "bc206f991594c6b011bb3cde50f104b8806a371df19af0464ff6b1a1d1cc39af",
+      "bytes": 12539
+    },
+    "REFERENCE-LICENSE.txt": {
+      "archive_path": "atlas-rkdg-agent-kit/LICENSE",
+      "sha256": "07cca125623617c85a41e9a21a2b114d693c61737bc353e3ca98587431e26ee6",
+      "bytes": 1071
+    },
+    "definition.json": {
+      "archive_path": "atlas-rkdg-agent-kit/validation/rkdg/references/definition.json",
+      "sha256": "39e33265a62fc63687d949f5e75733363f65728ad127397cc1c30535f8d85c9f",
+      "bytes": 2463
+    },
+    "quality.json": {
+      "archive_path": "atlas-rkdg-agent-kit/validation/rkdg/references/quality.json",
+      "sha256": "cb45047ca0ffee69443865d43aad0eed9c1c711d41018bf3330caeb89a22cd68",
+      "bytes": 2894
+    },
+    "double-mach-ny64.npz": {
+      "archive_path": "atlas-rkdg-agent-kit/validation/rkdg/references/double-mach-ny64.npz",
+      "sha256": "21473a9fb01dc3b7b7956416f7a5a7440b57cf0f366112f1202a45336f87e4a8",
+      "bytes": 321933
+    },
+    "double-mach-ny128.npz": {
+      "archive_path": "atlas-rkdg-agent-kit/validation/rkdg/references/double-mach-ny128.npz",
+      "sha256": "dc7be0b6b652384ee400a75700b8ec909a4784d31c87345c3ef7bbfc8b9e92b1",
+      "bytes": 1178169
+    },
+    "double-mach-ny64.json": {
+      "archive_path": "atlas-rkdg-agent-kit/validation/rkdg/references/double-mach-ny64.json",
+      "sha256": "7c5c4ff5964849065b36e953bdb646e6360d95490565982cc76f0976dcda3528",
+      "bytes": 875
+    },
+    "double-mach-ny128.json": {
+      "archive_path": "atlas-rkdg-agent-kit/validation/rkdg/references/double-mach-ny128.json",
+      "sha256": "92d06d1697d3f4e2dde574c56a5ddc13ee2f6a4fac5125b3aae7399bdcebc409",
+      "bytes": 873
+    },
+    "citations.json": {
+      "sha256": "3d2d896900e717451ffc31e52044cf835a96497a7c69acdabdccab3fbf236ba8",
+      "bytes": 3060,
+      "origin": "Selected reviewed source metadata written for this example"
+    }
+  },
+  "reference_kind": "independent-finite-grid-numerical",
+  "method": "unsplit finite-volume primitive-MC MUSCL/HLL/SSPRK(2,2)",
+  "geometry": "Actual2D Cartesian [0,4]x[0,1], q[x,y,4]",
+  "saved_grids_ny": [
+    64,
+    128
+  ],
+  "final_time": 0.2,
+  "new_reference_pde_executed": false,
+  "no_new_athena_or_lava_execution": true,
+  "scope": "Selected original RKDG-kit reference artifacts copied verbatim with source and MIT license. All numeric data were independently executed previously; this task verifies hashes and reuses them.",
+  "limitations": [
+    "Finite-resolution numerical reference, not exact2D solution",
+    "Primary first-order HLL and reference MUSCL/HLL share a flux family; implementations and spatial reconstructions are separate",
+    "Reference has adaptive rejection logic but both saved runs record zero rejections",
+    "Known64-to128 density L1 difference is .009552513326390188; it estimates reference grid sensitivity, not distance to an exact solution",
+    "Cell-center discontinuity classification and moving stage-time upper boundary are part of this setup",
+    "No fine wall-jet/vortex convergence or separate Athena/LAVA run is established"
+  ],
+  "files_sha256": {
+    "reference-source.py": "bc206f991594c6b011bb3cde50f104b8806a371df19af0464ff6b1a1d1cc39af",
+    "REFERENCE-LICENSE.txt": "07cca125623617c85a41e9a21a2b114d693c61737bc353e3ca98587431e26ee6",
+    "definition.json": "39e33265a62fc63687d949f5e75733363f65728ad127397cc1c30535f8d85c9f",
+    "quality.json": "cb45047ca0ffee69443865d43aad0eed9c1c711d41018bf3330caeb89a22cd68",
+    "double-mach-ny64.npz": "21473a9fb01dc3b7b7956416f7a5a7440b57cf0f366112f1202a45336f87e4a8",
+    "double-mach-ny128.npz": "dc7be0b6b652384ee400a75700b8ec909a4784d31c87345c3ef7bbfc8b9e92b1",
+    "double-mach-ny64.json": "7c5c4ff5964849065b36e953bdb646e6360d95490565982cc76f0976dcda3528",
+    "double-mach-ny128.json": "92d06d1697d3f4e2dde574c56a5ddc13ee2f6a4fac5125b3aae7399bdcebc409",
+    "citations.json": "3d2d896900e717451ffc31e52044cf835a96497a7c69acdabdccab3fbf236ba8"
+  },
+  "passed": true
+}

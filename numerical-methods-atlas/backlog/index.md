@@ -220,13 +220,13 @@ ID: compressible-fluid-1 · P1 · 公開済み · 新規実装
 
 ### Sedov–Taylorの点爆発
 
-ID: compressible-fluid-2 · P1 · 作業中 · 新規実装
+ID: compressible-fluid-2 · P1 · 公開済み · 新規実装
 
 調査時の範囲：未収録
 
 調査時の現状：
 
-1D球対称の固定入力・半解析参照・独立ExactPack点値・図・コードを追加。初版のLinux追試はCFL中間比のoverflow警告で失敗したため、その失敗と旧配布物を保持し、新r2で等価なCFL計算へ修正。入力と受入閾値を保って23検査・全4計算を再実行。
+1D球対称の固定入力・半解析参照・独立ExactPack点値・図・コードを追加。初版のLinux追試はCFL中間比のoverflow警告で失敗したため、その失敗と旧配布物を保持し、新r2で等価なCFL計算へ修正。入力と受入閾値を保って23検査・全4計算を再実行。 修正版r2は指定HRサイトで公開され、公開ZIPだけのLinux458検査（Sedov23検査・全4計算48判定）と匿名取得の照合まで確認済み。
 
 追加内容・最小の検証：
 
@@ -241,9 +241,7 @@ ID: compressible-fluid-2 · P1 · 作業中 · 新規実装
 - 誤差・収束と制約が分かる図を保存する。
 - 実在する問題ギャラリー・実行入口・入力・図への対応を確認する。
 
-公開した段階と残る範囲：
-
-軽量検証は128/256/512球殻と同じ最細格子での投入半径.03/.015感度に限定します。r1はMacで成功後、公開ZIPのLinux -Werror本計算でoverflow警告を例外扱いし失敗。r2では1/max(波速/幅)という等価なCFL演算で中間overflowを回避し、数値基準を緩めていません。有限投入半径と理想点源のモデル差が残り、傾きは純粋な空間精度次数ではありません。完全な連続極限分離、実2D Cartesian、非対称安定性、他γ・周囲密度勾配は未検証です。
+軽量検証は128/256/512球殻と同じ最細格子での投入半径.03/.015感度に限定します。r1はMacで成功後、公開ZIPのLinux -Werror本計算でoverflow警告を例外扱いし失敗。r2では1/max(波速/幅)という等価なCFL演算で中間overflowを回避し、数値基準を緩めていません。有限投入半径と理想点源のモデル差が残り、傾きは純粋な空間精度次数ではありません。完全な連続極限分離、実2D Cartesian、非対称安定性、他γ・周囲密度勾配は未検証です。 公開済みという状態は、この固定入力で完了した軽量検証に限ります。
 
 調査時の根拠：
 
@@ -255,7 +253,7 @@ ID: compressible-fluid-2 · P1 · 作業中 · 新規実装
 - [LANL ExactPack: official benchmark collection and references](<https://github.com/lanl/ExactPack>)
   公式READMEでNoh/Sedov/Guderleyと出典一覧を確認。追加して相互検証する候補であり、現アトラスの依存や照合済み実績ではない。
 
-公開した段階の根拠：
+完了の根拠：
 
 ```json
 {
@@ -282,20 +280,21 @@ ID: compressible-fluid-2 · P1 · 作業中 · 新規実装
     "/numerical-methods-atlas/solutions/?lang=ja#solution-sedov-ja",
     "/code/validated-examples/2026-11-23-r2/sedov/exactpack-receipt.json",
     "/code/validated-examples/2026-11-23-r2/sedov/exactpack-snapshot.json",
-    "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45109504662"
+    "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45109504662",
+    "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45111190625"
   ]
 }
 ```
 
 ### Double-Mach/前向きステップの多格子・独立参照
 
-ID: compressible-fluid-3 · P2 · 未着手 · 検証の拡充
+ID: compressible-fluid-3 · P2 · 作業中 · 検証の拡充
 
 調査時の範囲：検証範囲不足
 
 調査時の現状：
 
-Sod・Shu–Osherの固定入力、独立Athena++追補shu-independent、PPM/AUSM/回転流束の既存実装と2D保存画像がある。Noh/Sedovは本文の将来項目のみ。
+Double Mach反射の固定入力・少数格子・保存済み独立有限体積参照との照合・保存収支・衝撃位置・wall jet診断・図とコードを追加。参照PDEの新規実行ではなく、不変RKDG2Dキットに含まれる以前の2格子参照をハッシュ照合して再利用する。前向きステップと細いwall jetの収束は未検証。
 
 追加内容・最小の検証：
 
@@ -310,6 +309,10 @@ Sod・Shu–Osherの固定入力、独立Athena++追補shu-independent、PPM/AUS
 - 誤差・収束と制約が分かる図を保存する。
 - 実在する問題ギャラリー・実行入口・入力・図への対応を確認する。
 
+公開した段階と残る範囲：
+
+今回の作業単位はDouble Mach反射の軽量な固定入力です。前向きステップ、高解像度の細いwall jetやfull-patternの収束、一般の衝撃反射条件は未検証のまま区別します。
+
 調査時の根拠：
 
 - `catalog/atlas-test-problems.json` · double-mach/forward-step
@@ -317,6 +320,36 @@ Sod・Shu–Osherの固定入力、独立Athena++追補shu-independent、PPM/AUS
 - `numerical-methods-atlas/en/read/double-mach/index.html` · double-mach
   粗格子HLL像でfull-pattern収束・独立比較は未達と明記。
 
+
+公開した段階の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-23/double-mach/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-23/double-mach/inputs.json",
+    "/code/validated-examples/2026-11-23/double-mach/acceptance.json",
+    "/code/validated-examples/2026-11-23/double-mach/pre-run-contract.json",
+    "/code/validated-examples/2026-11-23/double-mach/references/independent-reuse.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-23/double-mach/results/double-mach-reflection-preview.png",
+    "/code/validated-examples/2026-11-23/double-mach/results/double-mach-reflection.png"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#double-mach-ja",
+  "execution": "/numerical-methods-atlas/validation/double-mach-reflection/?lang=ja",
+  "code": [
+    "/code/validated-examples/2026-11-23/double-mach/run.py",
+    "/code/validated-examples/2026-11-23/double-mach/dm_solver.py"
+  ],
+  "references": [
+    "/numerical-methods-atlas/solutions/?lang=ja#solution-double-mach-ja",
+    "/code/validated-examples/2026-11-23/double-mach/references/independent-reuse.json",
+    "/code/validated-examples/2026-11-23/double-mach/references/quality.json",
+    "https://doi.org/10.1016/0021-9991(84)90142-6"
+  ]
+}
+```
 
 ### 低Mach前処理の限定した渦検証
 

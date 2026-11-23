@@ -56,6 +56,7 @@ Read about reconstruction, limiting and shock robustness, followed by low-Mach c
 - [Traced PPM, AUSM variants and curved bow shocks](https://hrkoyama.github.io/numerical-methods-atlas/en/read/shock-expansion/)
 - [The carbuncle phenomenon](https://hrkoyama.github.io/numerical-methods-atlas/en/read/carbuncle/)
 - [Double Mach Reflection](https://hrkoyama.github.io/numerical-methods-atlas/en/read/double-mach/)
+- [Double Mach reflection: lightweight grid verification](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-double-mach/)
 - [KEEP schemes: preserve the smooth-flow balance, test the limits](https://hrkoyama.github.io/numerical-methods-atlas/en/read/keep/)
 - [Preconditioning, dual time stepping, and residual distribution](https://hrkoyama.github.io/numerical-methods-atlas/en/read/advanced/)
 - [Preconditioning matrices, low Mach numbers, sonic points and entropy fixes](https://hrkoyama.github.io/numerical-methods-atlas/en/read/low-mach-preconditioning/)

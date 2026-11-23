@@ -1551,7 +1551,19 @@
         "HLL流束",
         "HLLリーマンソルバー",
         "Harten-Lax-van Leer"
-      ]
+      ],
+      "depth_release": {
+        "group": "double-mach",
+        "edition": "2026-11-23",
+        "case_ids": [
+          "double-mach-reflection"
+        ]
+      },
+      "depth_previous_status": "educational-example",
+      "depth_scope": {
+        "ja": "既存のHLL流束・Heunによる2D Double Mach反射を3格子で検証し、別実装の有限格子数値参照との差、境界流束収支、衝撃位置と未解像の壁近傍構造を示します。",
+        "en": "Three-grid 2D Double Mach verification using HLL and Heun compares a separately written finite-grid numerical reference, boundary-flux budgets, shock position and unresolved near-wall structure."
+      }
     },
     {
       "id": "hllc",
@@ -2666,6 +2678,13 @@
           "edition": "2026-11-23-r2",
           "case_ids": [
             "sedov-blast"
+          ]
+        },
+        {
+          "group": "double-mach",
+          "edition": "2026-11-23",
+          "case_ids": [
+            "double-mach-reflection"
           ]
         }
       ]

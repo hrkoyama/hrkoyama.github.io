@@ -200,6 +200,16 @@ for lang in ['ja','en']:
     path=ATLAS/lang/'read/advanced/index.html';text=re.sub(re.escape(marker)+'.*?'+re.escape(end),'',path.read_text(),flags=re.S);path.write_text(text.replace('</article>',note+'</article>',1))
     content=documents[lang];text=re.sub(re.escape(marker)+'.*?'+re.escape(end),'',content['advanced']['html'],flags=re.S);content['advanced']['html']=text+note;write(ATLAS/f'content.{lang}.json',content)
     if lang=='en':write(ATLAS/'content.json',content)
+# Keep the historical baseline chapter distinct from its newer measured follow-up.
+for lang in ['ja','en']:
+    marker='<!-- double-mach-validation-followup -->';end='<!-- /double-mach-validation-followup -->'
+    message=('この章は以前のHLL基準計算の記録です。追加の軽量検証では、同じ初期条件・境界条件の3格子を、別実装による保存済み有限格子参照と比較します。参照の格子差と壁近傍の未解像性も示しています。' if lang=='ja' else 'This chapter records the earlier HLL baseline. A newer lightweight verification compares three grids at the same initial and boundary conditions with a stored finite-grid reference from a separate implementation, including reference-grid sensitivity and unresolved near-wall structure.')
+    note=marker+'<aside class="callout" id="double-mach-validation-followup"><p>'+escape(message)+'</p><p>'+link('/numerical-methods-atlas/validation/double-mach-reflection/?lang='+lang,'追加の実行・検証へ' if lang=='ja' else 'Open the additional execution and verification')+'</p></aside>'+end
+    path=ATLAS/lang/'read/double-mach/index.html';text=re.sub(re.escape(marker)+'.*?'+re.escape(end),'',path.read_text(),flags=re.S)
+    path.write_text(re.sub(r'<article\b[^>]*>',lambda m:m[0]+note,text,count=1))
+    content=documents[lang];text=re.sub(re.escape(marker)+'.*?'+re.escape(end),'',content['double-mach']['html'],flags=re.S);content['double-mach']['html']=note+text
+    write(ATLAS/f'content.{lang}.json',content)
+    if lang=='en':write(ATLAS/'content.json',content)
 # The imported atlas sitemap is additive; root sitemap is rebuilt later.
 path=ATLAS/'sitemap.xml';xml=ET.parse(path);root=xml.getroot();existing={x.text for x in root.findall('.//{*}loc')};ns='{http://www.sitemaps.org/schemas/sitemap/0.9}'
 for c in data['chapters']:

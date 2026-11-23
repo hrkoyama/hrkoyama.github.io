@@ -166,7 +166,7 @@ guide.write_text(text.rstrip()+f"\n- [Small cross-field validation supplements](
 
 text=guide.read_text()
 browse_links=[
-    ('Reference solution index', 'solutions/', 'Saved analytic, semi-analytic and manufactured reference cases, with formulas, assumptions and links to the existing displays. JSON and Markdown: solutions/index.json and solutions/index.md.'),
+    ('Reference solution index', 'solutions/', 'Saved analytic, semi-analytic, manufactured and finite-grid numerical references, with defining formulas, assumptions, uncertainty and links to their displays. JSON and Markdown: solutions/index.json and solutions/index.md.'),
     ('Visual test-problem index', 'gallery/', 'Every published test problem by name and saved figure, with separate image provenance and execution evidence. JSON: gallery/index.json.'),
     ('Problem hub registry', 'problems/index.json', 'Every visual problem links to a bilingual hub with scoped equations, references, methods, verified execution examples and existing code evidence. Per-problem HTML, index.json and index.md live under problems/{id}/.'),
     ('Equation and model index', 'equations/', 'Current representative equations and models, linked to their scope, explanations and existing execution examples. JSON: equations/index.json.'),

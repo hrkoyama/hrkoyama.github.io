@@ -1,0 +1,554 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "termination": "fixed_budget_completed",
+  "input_sha256": "636a7713665a5e8679452d420d042e685db03275e6140f05a286e586c81c5e76",
+  "checks": {
+    "double-mach-reflection": true
+  },
+  "cases": [
+    {
+      "id": "double-mach-reflection",
+      "passed": true,
+      "records": [
+        {
+          "n": 16,
+          "ny": 16,
+          "nx": 64,
+          "time": 0.2,
+          "steps": 184,
+          "density_l1": 0.08430727127814448,
+          "pressure_l1": 0.0955597340048287,
+          "density_l2": 0.11771715878396082,
+          "density_linf": 0.2049854501288726,
+          "minimum_density_all_stages": 1.4,
+          "minimum_pressure_all_stages": 1.0,
+          "density_min": 1.4,
+          "density_max": 17.86479839775984,
+          "pressure_min": 1.0,
+          "pressure_max": 423.45731687315754,
+          "state_floor_count": 0,
+          "rejected_steps": 0,
+          "initial_integral": [
+            8.616406250000292,
+            26.1228444063415,
+            -15.08203125,
+            266.39453125
+          ],
+          "final_integral": [
+            31.31823285543897,
+            211.61601679929564,
+            -66.80536604214466,
+            2196.30616468052
+          ],
+          "boundary_net_integral": [
+            22.70182660543915,
+            185.49317239295428,
+            -51.72333479214456,
+            1929.9116334305206
+          ],
+          "conservation_residual": [
+            -4.725109192804666e-13,
+            -1.4210854715202004e-13,
+            -9.237055564881302e-14,
+            -6.821210263296962e-13
+          ],
+          "conservation_relative": [
+            2.0813784172206536e-14,
+            7.661120100473189e-16,
+            1.7858584721966093e-15,
+            3.53446766428984e-16
+          ],
+          "incident_front_x": 3.0,
+          "reference_incident_front_x": 2.875,
+          "front_row_y": 0.71875,
+          "incident_front_error_cells": 2.0,
+          "wall_jet_density_l1": 0.10602076389834944,
+          "wall_jet_mean_density": 13.227373879520284,
+          "wall_jet_reference_mean_density": 13.97485965152079,
+          "wall_jet_mean_u": 8.047535880989681,
+          "wall_jet_reference_mean_u": 8.398075951249254,
+          "wall_jet_max_u": 10.164597117575338,
+          "wall_jet_reference_max_u": 15.250963876028548,
+          "field": "field-ny16.npz",
+          "history": "history-ny16.json"
+        },
+        {
+          "n": 32,
+          "ny": 32,
+          "nx": 128,
+          "time": 0.2,
+          "steps": 387,
+          "density_l1": 0.05802212662703617,
+          "pressure_l1": 0.06798369427217338,
+          "density_l2": 0.10104803955362635,
+          "density_linf": 0.3034600432527803,
+          "minimum_density_all_stages": 1.4,
+          "minimum_pressure_all_stages": 1.0,
+          "density_min": 1.4,
+          "density_max": 18.989354743497643,
+          "pressure_min": 1.0,
+          "pressure_max": 470.5347507929463,
+          "state_floor_count": 0,
+          "rejected_steps": 0,
+          "initial_integral": [
+            8.609960937498832,
+            26.06702636273852,
+            -15.0498046875,
+            265.8466796875
+          ],
+          "final_integral": [
+            31.503093312506067,
+            213.1336076518094,
+            -66.61325022533528,
+            2212.4163785612673
+          ],
+          "boundary_net_integral": [
+            22.893132375004935,
+            187.06658128907154,
+            -51.56344553783528,
+            1946.569698873778
+          ],
+          "conservation_residual": [
+            2.298605750183924e-12,
+            -6.536993168992922e-13,
+            0.0,
+            -1.0686562745831907e-11
+          ],
+          "conservation_relative": [
+            1.0040590831045804e-13,
+            3.4944740658361593e-15,
+            0.0,
+            5.489946109823247e-15
+          ],
+          "incident_front_x": 2.96875,
+          "reference_incident_front_x": 2.90625,
+          "front_row_y": 0.734375,
+          "incident_front_error_cells": 2.0,
+          "wall_jet_density_l1": 0.08535302601381249,
+          "wall_jet_mean_density": 13.603751968371308,
+          "wall_jet_reference_mean_density": 13.97485965152079,
+          "wall_jet_mean_u": 8.251719551493599,
+          "wall_jet_reference_mean_u": 8.397705257099902,
+          "wall_jet_max_u": 11.682260906118717,
+          "wall_jet_reference_max_u": 16.003077646198246,
+          "field": "field-ny32.npz",
+          "history": "history-ny32.json"
+        },
+        {
+          "n": 64,
+          "ny": 64,
+          "nx": 256,
+          "time": 0.2,
+          "steps": 811,
+          "density_l1": 0.035029442558786025,
+          "pressure_l1": 0.04155565203322573,
+          "density_l2": 0.07511923063820683,
+          "density_linf": 0.2503923225552139,
+          "minimum_density_all_stages": 1.4,
+          "minimum_pressure_all_stages": 1.0,
+          "density_min": 1.4,
+          "density_max": 20.3156584501302,
+          "pressure_min": 1.0,
+          "pressure_max": 530.3379565726824,
+          "state_floor_count": 0,
+          "rejected_steps": 0,
+          "initial_integral": [
+            8.60673828125468,
+            26.039117340937253,
+            -15.03369140625,
+            265.57275390625
+          ],
+          "final_integral": [
+            31.38603559752645,
+            212.41777216225316,
+            -67.18454289259282,
+            2202.4961628781566
+          ],
+          "boundary_net_integral": [
+            22.779297316282232,
+            186.37865482131582,
+            -52.150851486343086,
+            1936.92340897191
+          ],
+          "conservation_residual": [
+            -1.0459189070388675e-11,
+            8.526512829121202e-14,
+            2.7000623958883807e-13,
+            -3.410605131648481e-12
+          ],
+          "conservation_relative": [
+            4.591532796278415e-13,
+            4.574833334480124e-16,
+            5.1774080747185015e-15,
+            1.7608363427538826e-15
+          ],
+          "incident_front_x": 2.9375,
+          "reference_incident_front_x": 2.90625,
+          "front_row_y": 0.7421875,
+          "incident_front_error_cells": 2.0,
+          "wall_jet_density_l1": 0.060165720387909134,
+          "wall_jet_mean_density": 13.785652231102395,
+          "wall_jet_reference_mean_density": 13.97485965152079,
+          "wall_jet_mean_u": 8.343336108943573,
+          "wall_jet_reference_mean_u": 8.397760320217083,
+          "wall_jet_max_u": 12.644046893512225,
+          "wall_jet_reference_max_u": 16.125383198389834,
+          "field": "field-ny64.npz",
+          "history": "history-ny64.json"
+        }
+      ],
+      "reference_increment": {
+        "density_l1": 0.009552513326390188,
+        "pressure_l1": 0.012501688051372074,
+        "scope": "Ny64 versus conservatively restricted Ny128 independent numerical references; not an exact error bound."
+      },
+      "checks": {
+        "three final-time refinements complete": true,
+        "ny16: requested time reached": true,
+        "ny16: minimum_density_all_stages": true,
+        "ny16: minimum_pressure_all_stages": true,
+        "ny16: state_floor_count": true,
+        "ny16: rejected_steps": true,
+        "ny16: mass boundary balance": true,
+        "ny16: x momentum boundary balance": true,
+        "ny16: y momentum boundary balance": true,
+        "ny16: energy boundary balance": true,
+        "ny16: unmasked maximum and wall-jet diagnostics retained": true,
+        "ny32: requested time reached": true,
+        "ny32: minimum_density_all_stages": true,
+        "ny32: minimum_pressure_all_stages": true,
+        "ny32: state_floor_count": true,
+        "ny32: rejected_steps": true,
+        "ny32: mass boundary balance": true,
+        "ny32: x momentum boundary balance": true,
+        "ny32: y momentum boundary balance": true,
+        "ny32: energy boundary balance": true,
+        "ny32: unmasked maximum and wall-jet diagnostics retained": true,
+        "ny64: requested time reached": true,
+        "ny64: minimum_density_all_stages": true,
+        "ny64: minimum_pressure_all_stages": true,
+        "ny64: state_floor_count": true,
+        "ny64: rejected_steps": true,
+        "ny64: mass boundary balance": true,
+        "ny64: x momentum boundary balance": true,
+        "ny64: y momentum boundary balance": true,
+        "ny64: energy boundary balance": true,
+        "ny64: unmasked maximum and wall-jet diagnostics retained": true,
+        "finest density_l1": true,
+        "finest pressure_l1": true,
+        "finest upper incident front difference": true,
+        "density difference decreases across the fixed grids": true,
+        "last-pair density difference slope": true,
+        "reference increment density_l1": true,
+        "reference increment / primary finest density_l1": true,
+        "reference increment pressure_l1": true,
+        "reference increment / primary finest pressure_l1": true
+      },
+      "check_details": [
+        {
+          "name": "three final-time refinements complete",
+          "value": [
+            16,
+            32,
+            64
+          ],
+          "bound": [
+            16,
+            32,
+            64
+          ],
+          "passed": true
+        },
+        {
+          "name": "ny16: requested time reached",
+          "value": 0.2,
+          "bound": 0.2,
+          "passed": true
+        },
+        {
+          "name": "ny16: minimum_density_all_stages",
+          "value": 1.4,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "ny16: minimum_pressure_all_stages",
+          "value": 1.0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "ny16: state_floor_count",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "ny16: rejected_steps",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "ny16: mass boundary balance",
+          "value": 2.0813784172206536e-14,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "ny16: x momentum boundary balance",
+          "value": 7.661120100473189e-16,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "ny16: y momentum boundary balance",
+          "value": 1.7858584721966093e-15,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "ny16: energy boundary balance",
+          "value": 3.53446766428984e-16,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "ny16: unmasked maximum and wall-jet diagnostics retained",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "ny32: requested time reached",
+          "value": 0.2,
+          "bound": 0.2,
+          "passed": true
+        },
+        {
+          "name": "ny32: minimum_density_all_stages",
+          "value": 1.4,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "ny32: minimum_pressure_all_stages",
+          "value": 1.0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "ny32: state_floor_count",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "ny32: rejected_steps",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "ny32: mass boundary balance",
+          "value": 1.0040590831045804e-13,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "ny32: x momentum boundary balance",
+          "value": 3.4944740658361593e-15,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "ny32: y momentum boundary balance",
+          "value": 0.0,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "ny32: energy boundary balance",
+          "value": 5.489946109823247e-15,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "ny32: unmasked maximum and wall-jet diagnostics retained",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "ny64: requested time reached",
+          "value": 0.2,
+          "bound": 0.2,
+          "passed": true
+        },
+        {
+          "name": "ny64: minimum_density_all_stages",
+          "value": 1.4,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "ny64: minimum_pressure_all_stages",
+          "value": 1.0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "ny64: state_floor_count",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "ny64: rejected_steps",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "ny64: mass boundary balance",
+          "value": 4.591532796278415e-13,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "ny64: x momentum boundary balance",
+          "value": 4.574833334480124e-16,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "ny64: y momentum boundary balance",
+          "value": 5.1774080747185015e-15,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "ny64: energy boundary balance",
+          "value": 1.7608363427538826e-15,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "ny64: unmasked maximum and wall-jet diagnostics retained",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "finest density_l1",
+          "value": 0.035029442558786025,
+          "bound": 0.15,
+          "passed": true
+        },
+        {
+          "name": "finest pressure_l1",
+          "value": 0.04155565203322573,
+          "bound": 0.15,
+          "passed": true
+        },
+        {
+          "name": "finest upper incident front difference",
+          "value": 2.0,
+          "bound": 4.0,
+          "passed": true
+        },
+        {
+          "name": "density difference decreases across the fixed grids",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "last-pair density difference slope",
+          "value": 0.728035144177169,
+          "bound": 0.2,
+          "passed": true
+        },
+        {
+          "name": "reference increment density_l1",
+          "value": 0.009552513326390188,
+          "bound": 0.1,
+          "passed": true
+        },
+        {
+          "name": "reference increment / primary finest density_l1",
+          "value": 0.27269955296488846,
+          "bound": 0.75,
+          "passed": true
+        },
+        {
+          "name": "reference increment pressure_l1",
+          "value": 0.012501688051372074,
+          "bound": 0.1,
+          "passed": true
+        },
+        {
+          "name": "reference increment / primary finest pressure_l1",
+          "value": 0.3008420621429878,
+          "bound": 0.75,
+          "passed": true
+        }
+      ],
+      "metrics": {
+        "n": 64,
+        "ny": 64,
+        "nx": 256,
+        "time": 0.2,
+        "steps": 811,
+        "density_l1": 0.035029442558786025,
+        "pressure_l1": 0.04155565203322573,
+        "density_l2": 0.07511923063820683,
+        "density_linf": 0.2503923225552139,
+        "minimum_density_all_stages": 1.4,
+        "minimum_pressure_all_stages": 1.0,
+        "density_min": 1.4,
+        "density_max": 20.3156584501302,
+        "pressure_min": 1.0,
+        "pressure_max": 530.3379565726824,
+        "state_floor_count": 0,
+        "rejected_steps": 0,
+        "incident_front_x": 2.9375,
+        "reference_incident_front_x": 2.90625,
+        "front_row_y": 0.7421875,
+        "incident_front_error_cells": 2.0,
+        "wall_jet_density_l1": 0.060165720387909134,
+        "wall_jet_mean_density": 13.785652231102395,
+        "wall_jet_reference_mean_density": 13.97485965152079,
+        "wall_jet_mean_u": 8.343336108943573,
+        "wall_jet_reference_mean_u": 8.397760320217083,
+        "wall_jet_max_u": 12.644046893512225,
+        "wall_jet_reference_max_u": 16.125383198389834
+      },
+      "scope": "Full 2D first-order HLL/Heun Double Mach at T=.2; finite-grid independently written MUSCL reference, broad structures only."
+    }
+  ],
+  "files_sha256": {
+    "field-ny16.npz": "f71043b0417feaef93752ae26387f33d49c6bdbad320175ea7cb1a04a2ce0f4c",
+    "history-ny16.json": "c3dea4a763ff960b31634df542a6f9dfc0a84c1b6fde42f71ef07a47e6831177",
+    "field-ny32.npz": "e1c8c09f0dcd1d0fc3852695237e2dba76340eb5aee0dfa135744b905c9b6aa2",
+    "history-ny32.json": "bee0b8e1421a8a4fb750bdcbce7edf900e035da6709bf08ccd48b7b4c22418f3",
+    "field-ny64.npz": "fa01638155d204eee531b350efb6a86209a9e370c06be44e46e1eef842038df1",
+    "history-ny64.json": "98c0238cac528720557f7fdaaffc50c4a175f2e9ba75cbc5b047805e4299e447"
+  },
+  "source_sha256": {
+    "dm_solver.py": "9de89afac1960c1a4217e83a20ef5a98d6205c6217b11cea2608a0da3c88694e",
+    "run.py": "ab357547a4168cd9a7149f5318f12f3b44408e7934fdf34468d38d333343afa6",
+    "inputs.json": "636a7713665a5e8679452d420d042e685db03275e6140f05a286e586c81c5e76",
+    "acceptance.json": "9fbcd74dfcd990b1b7b70181ea2d4ed7480e227fa6c6cd0e48a42e8a5fc2c2d2",
+    "pre-run-contract.json": "022e47c99b3c73c679176be85b25b8497ab848c91d853f3acf18adb70b1b1a4d"
+  },
+  "reference_sha256": {
+    "references/double-mach-ny64.npz": "21473a9fb01dc3b7b7956416f7a5a7440b57cf0f366112f1202a45336f87e4a8",
+    "references/double-mach-ny64.json": "7c5c4ff5964849065b36e953bdb646e6360d95490565982cc76f0976dcda3528",
+    "references/double-mach-ny128.npz": "dc7be0b6b652384ee400a75700b8ec909a4784d31c87345c3ef7bbfc8b9e92b1",
+    "references/double-mach-ny128.json": "92d06d1697d3f4e2dde574c56a5ddc13ee2f6a4fac5125b3aae7399bdcebc409"
+  },
+  "failure": null,
+  "duration_seconds": 5.015708167000412
+}

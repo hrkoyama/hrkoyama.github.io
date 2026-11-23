@@ -673,7 +673,7 @@
         "ja": "二重Mach反射",
         "en": "Double Mach reflection"
       },
-      "chapter": "double-mach",
+      "chapter": "validation-double-mach",
       "evidence": [
         {
           "path": "numerical-methods-atlas/assets/double-mach-run.json",
@@ -682,16 +682,60 @@
         {
           "path": "numerical-methods-atlas/assets/movies/shock-catalog.json",
           "json_pointer": "/movies"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/double-mach/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "double-mach-reflection"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/double-mach/results/double-mach-reflection-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/double-mach/inputs.json",
+          "json_pointer": "/cases/double-mach-reflection"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/double-mach/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/double-mach/references/independent-reuse.json",
+          "json_pointer": "/passed"
         }
       ],
       "availability": "saved-output",
+      "reading_section": "double-mach-reflection",
+      "code_base": "/code/validated-examples/2026-11-23/double-mach/",
+      "verification": "/code/validated-examples/2026-11-23/double-mach/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "supplemental_examples": [
+        {
+          "id": "double-mach-reflection",
+          "url": "/numerical-methods-atlas/validation/double-mach-reflection/",
+          "name": {
+            "ja": "Double Mach反射：多格子の軽量検証",
+            "en": "Double Mach reflection: lightweight grid verification"
+          }
+        }
+      ],
       "reading": {
-        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/double-mach/",
-        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/double-mach/"
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-double-mach/#double-mach-reflection",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-double-mach/#double-mach-reflection"
       },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/double-mach/verification.json",
       "execution_examples": [],
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#double-mach",
-      "run_commands": []
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ]
     },
     {
       "id": "nasa-wedge",
@@ -3798,7 +3842,7 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-test-problems.json": "1d441ab46fc99d1a65edf673484c5b2d53d5dc4fb7ee4a0e1ca65ae58b8d16a4",
+    "catalog/atlas-test-problems.json": "6585a905ba296ab9731d1bbbc1a9cc43877b0254339b2867c28928eb9cc47720",
     "numerical-methods-atlas/equation-gallery.json": "e99af38238a50232f92875817c4556ab6c730289db13014efdd41913096c902e",
     "numerical-methods-atlas/cip.json": "3aa33fbffad6b9ad76310e9b713629a1a35b4e30e419db0c531180cf769e6b6f",
     "numerical-methods-atlas/limiters.json": "3242180ba171420220fd349cac93dff552466070f886f3d00a70927939255312",
@@ -3817,6 +3861,11 @@
     "numerical-methods-atlas/gallery/calculations.json": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6",
     "numerical-methods-atlas/assets/double-mach-run.json": "4596fdd6b2b6fcc0da80181bcc48b13a80e605e618bde265fbf5f6abb9c1be0a",
     "numerical-methods-atlas/assets/movies/shock-catalog.json": "5ae9a49aa23b2f5a735247acbbe9a16371404ceec0be2fb951664658af61c5bf",
+    "code/validated-examples/2026-11-23/double-mach/results/result.json": "3b4a36b9b3e10e7a6984130ee24bb7d5707de0fe24facff3a49b8eabd71ea5fe",
+    "code/validated-examples/2026-11-23/double-mach/results/double-mach-reflection-preview.png": "53153eee0fd13c933f8da09b0d628169906c4962c4926555858542d965c27587",
+    "code/validated-examples/2026-11-23/double-mach/inputs.json": "636a7713665a5e8679452d420d042e685db03275e6140f05a286e586c81c5e76",
+    "code/validated-examples/2026-11-23/double-mach/verification.json": "c588b4ce7f539d53b1d5eec4413ce3a1dc104eff975e4adddf0c544460dbb49e",
+    "code/validated-examples/2026-11-23/double-mach/references/independent-reuse.json": "465016e0dacb972ac14e3d80c96e4d0841104619a856169bff306fca0b168d0c",
     "numerical-methods-atlas/assets/shock-gallery.json": "ce84e5fa7f6414e2f1cd4eeacdbd7dba60cfd048dfc3b4bdd72ec463bb592e64",
     "numerical-methods-atlas/assets/comparisons/euler-comparison.json": "b249c2748936df1a562c9dad9d91ec20eb7b2d0f8aa8c9f514f92317c160405c",
     "code/numerical-methods-atlas/2026-11-21/tests/test_muscl2d.py": "43a462dd3086893015c62335cbdb0aadf094f8c519d5db80d80fbaa8b03a84d7",

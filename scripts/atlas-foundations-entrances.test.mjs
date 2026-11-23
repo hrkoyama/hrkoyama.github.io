@@ -88,8 +88,8 @@ for lang in ['ja','en']:
  execFileSync('python3',['-B','-c',source],{cwd:root,encoding:'utf8',timeout:30000});
 });
 
-test('all 83 historical illustrations, checksums and captions remain unchanged',()=>{
- const items=json('numerical-methods-atlas/gallery/preview-manifest.json').items.filter(x=>!['noh','sedov'].includes(x.id));
- assert.equal(items.length,83);
- assert.equal(hash(items.map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}))),'57239dc61d0fc48ff97ec9cfa2c771bd1b675b561a884bb6843c70251f4481c0');
+test('all 82 historical illustrations, checksums and captions remain unchanged',()=>{
+ const items=json('numerical-methods-atlas/gallery/preview-manifest.json').items.filter(x=>!['noh','sedov','double-mach'].includes(x.id));
+ assert.equal(items.length,82);
+ assert.equal(hash(items.map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}))),'b255b3c071b678981cceb7b78743f7e25cb78df254e0cb18d76e51616045a487');
 });

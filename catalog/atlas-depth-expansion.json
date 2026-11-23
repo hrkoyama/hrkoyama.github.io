@@ -195,6 +195,21 @@
         "ja": "球対称Euler方程式を半径方向の有限体積法で解く軽量例です。固定した半径0.03の領域に総エネルギー1を与え、128・256・512セルで点爆発の相似参照からの差と保存収支を測ります。図は1次元球対称データの断面表示で、2次元Cartesian計算ではありません。",
         "en": "A lightweight spherical-radial Euler finite-volume example deposits unit energy inside fixed radius0.03. Three grids of128/256/512 radial cells measure differences from a point-blast similarity reference and conservation budgets. The picture is a section display of1D spherical data, not a2D Cartesian calculation."
       }
+    },
+    {
+      "id": "double-mach",
+      "edition": "2026-11-23",
+      "title": {
+        "ja": "Double Mach反射：多格子の軽量検証",
+        "en": "Double Mach reflection: lightweight grid verification"
+      },
+      "fields": [
+        "fluid"
+      ],
+      "intro": {
+        "ja": "既存のDouble Mach反射と同じ初期値・境界を使い、64×16・128×32・256×64の実2D Euler有限体積計算をT=.2まで実行します。別実装の有限格子参照との差、実際の境界流束収支、上部の入射衝撃位置と壁近傍を比較します。",
+        "en": "Full 2D Euler finite volumes evolve the existing Double Mach initial/boundary data to T=.2 on64x16,128x32 and256x64 cells. Compare a separately written finite-grid reference, actual boundary-flux budgets, an upper incident-front position and a fixed near-wall region."
+      }
     }
   ],
   "case_problem_ids": {
@@ -240,7 +255,8 @@
     "reaction-diffusion-splitting": "turing-schnakenberg",
     "noh-shock": "noh",
     "noh-cartesian-2d": "noh",
-    "sedov-blast": "sedov"
+    "sedov-blast": "sedov",
+    "double-mach-reflection": "double-mach"
   },
   "routine_policy": {
     "ja": "通常の補助例CIはNumPy・SciPy・pytestで実行する11グループです。独立ライブラリ等の保存参照は版と入力を記録した保存値に照合します。量子収束を含む従来の共通22例は必要時の手動実行とし、既存の配布物・公差・履歴を保持します。",
@@ -326,6 +342,10 @@
     "sedov-blast": {
       "ja": "初版r1はMacで22検査・4計算が合格しましたが、公開ZIPのLinux追試では22検査の後、-Werror付き本計算で冷たい裾の極小波速に対するCFL候補比がoverflow警告となり失敗しました。r2は同じCFL条件を1/max(波速/幅)で計算して中間overflowを回避します。入力・受入閾値は変更せず、旧版・失敗記録を保持して23検査と全固定入力を新しいZIPで再実行しました。固定投入半径で点源参照と比べる誤差にはモデル差も含まれ、その傾きは純粋な空間精度次数ではありません。投入半径の比較は感度診断であり、投入モデルとPDE離散化誤差の完全分離ではありません。 初版Linux失敗記録: https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45109504662 （22検査は合格、最初の128セル・投入半径.03の本計算でRuntimeWarning: overflow encountered in divide）。",
       "en": "Revisionr1 passed22 tests and four runs on Mac, but its public-ZIP Linux retry passed22 tests then failed in the -Werror main run when a CFL candidate ratio overflowed at tiny cold-tail wave speeds. Revisionr2 evaluates the same CFL condition as1/max(speed/width), avoiding intermediate overflow. Inputs/acceptance thresholds stay unchanged; retain the old release/failure and independently rerun23 tests and all fixed inputs from a new ZIP. Fixed-radius point-source comparison includes model discrepancy: its refinement slope is not a pure spatial order, and the radius comparison is sensitivity rather than complete deposition/PDE-error separation. Original Linux failure: https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45109504662 (all22 tests passed; the first128-cell,rdep.03 main calculation raised RuntimeWarning: overflow encountered in divide before completion)."
+    },
+    "double-mach-reflection": {
+      "ja": "独立な有限格子の数値参照と比較する軽量例であり、2次元全場の厳密解ではありません。少数格子で測った衝撃位置・保存収支・wall jetの診断と、細い壁面噴流の収束を区別します。前向きステップは今回の実行対象に含めません。",
+      "en": "A lightweight comparison with an independent finite-grid numerical reference, not an exact2D full-field solution. Separate measured shock location, conservation budgets and wall-jet diagnostics from convergence of the thin wall jet. Forward-facing step is outside this execution scope."
     }
   },
   "case_equations": {
@@ -354,6 +374,15 @@
       "note": {
         "ja": "理想気体Eulerの1次元球半径対称形。原点反射、幾何源、有限半径へのエネルギー投入と外側境界は、この例の固定入力で定義します。",
         "en": "The one-dimensional spherical-radial ideal-gas Euler system. This example defines origin reflection, geometric source, finite-radius energy deposition and outer boundary in its fixed input."
+      }
+    },
+    "double-mach-reflection": {
+      "ids": [
+        "euler"
+      ],
+      "note": {
+        "ja": "γ=1.4の2次元圧縮性Euler保存系。Mach10の入射衝撃波、流入・流出・反射壁・移動衝撃波を与える上端境界は、この例の固定入力で定義します。",
+        "en": "Two-dimensional compressible Euler conservation laws with gamma1.4. This example fixes the Mach10 incident shock, inflow/outflow, reflecting wall and moving-shock top boundary."
       }
     }
   }

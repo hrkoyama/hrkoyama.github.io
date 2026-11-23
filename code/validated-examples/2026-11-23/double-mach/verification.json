@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "group": "double-mach",
+  "edition": "2026-11-23",
+  "verified_on": "2026-11-23",
+  "source_manifest_sha256": "32ba5521149368b729b31796dcc0006c8fd743e840e1e36533a867a47170d8c8",
+  "archive": {
+    "file": "atlas-double-mach-2026-11-23.zip",
+    "sha256": "0a68d19746c508e0ac0cf9b5bebe9375c797a87ade1a9fbfbef87d6e5fa63347",
+    "bytes": 3930316,
+    "archive_directory": "atlas-double-mach-2026-11-23"
+  },
+  "archive_sha256": "0a68d19746c508e0ac0cf9b5bebe9375c797a87ade1a9fbfbef87d6e5fa63347",
+  "returncode": 0,
+  "passed_tests": 21,
+  "tests": 21,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "double-mach-reflection"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 5.161454749999393,
+  "independent_rerun_seconds": 5.160107207999317,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

@@ -11,9 +11,9 @@ const base='code/validated-examples/2026-11-23-r2/sedov/';
 
 test('Sedov adds one problem and release while preserving the previous thirteen frozen release records',()=>{
  const registry=json('numerical-methods-atlas/validation/releases.json');
- assert.equal(objectHash(registry.releases.filter(r=>r.group!=='sedov')),'8f4b09898b9509788ae2e51e18846b6b5b7b71458fa7366b128ffcab4f1a43f3');
- assert.equal(registry.case_count,43);assert.equal(registry.releases.length,14);
- assert.equal(registry.releases.reduce((s,r)=>s+r.tests,0),458);
+ assert.equal(objectHash(registry.releases.filter(r=>!['sedov','double-mach'].includes(r.group))),'8f4b09898b9509788ae2e51e18846b6b5b7b71458fa7366b128ffcab4f1a43f3');
+ assert.equal(registry.case_count,44);assert.equal(registry.releases.length,15);
+ assert.equal(registry.releases.reduce((s,r)=>s+r.tests,0),479);
  const release=registry.releases.find(r=>r.group==='sedov');assert.equal(release.tests,23);assert.deepEqual(release.case_ids,['sedov-blast']);
  const problems=json('catalog/atlas-test-problems.json').problems;assert.equal(problems.length,85);assert.equal(problems.filter(p=>p.id==='sedov').length,1);
  assert.equal(json('catalog/atlas-methods.json').methods.length,147);

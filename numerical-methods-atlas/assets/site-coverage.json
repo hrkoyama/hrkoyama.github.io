@@ -27,7 +27,7 @@
     "biological_entries": 22,
     "gallery_cases": 9,
     "gallery_equations": 7,
-    "reading_chapters": 96,
+    "reading_chapters": 97,
     "test_problems": 85,
     "saved_test_problems": 85,
     "code_test_problems": 0
@@ -310,15 +310,6 @@
       "chapter": "fem",
       "status": "local-example",
       "group": "Spatial discretization",
-      "scope": ""
-    },
-    {
-      "kind": "method",
-      "id": "hll",
-      "label": "HLL",
-      "chapter": "benchmarks",
-      "status": "local-example",
-      "group": "Riemann fluxes & corrections",
       "scope": ""
     },
     {
@@ -1450,6 +1441,16 @@
       "status": "local-example",
       "group": "Riemann fluxes & corrections",
       "scope": "An original small 1D finite-volume code solves zero-pressure Noh flow in planar, cylindrical and spherical symmetry. Grids 64/128/256/512 measure full-domain error, origin heating, shock location and budgets, and compare spherical boundary-inflow time-quadrature error with its analytic identity. The additional2D Cartesian Noh edition updates both x/y fluxes and both momenta on a full square. The additional spherical Sedov blast measures grid and finite deposition-radius effects separately.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "hll",
+      "label": "HLL",
+      "chapter": "validation-double-mach",
+      "status": "local-example",
+      "group": "Riemann fluxes & corrections",
+      "scope": "Three-grid 2D Double Mach verification using HLL and Heun compares a separately written finite-grid numerical reference, boundary-flux budgets, shock position and unresolved near-wall structure.",
       "origin": "curated-depth-example"
     },
     {
@@ -3322,7 +3323,7 @@
   },
   "public_extension_sha256": {
     "catalog/atlas-quantum.json": "415dd98efe103ad5a2d950c22b98980f53539f6243b93e4e193dbca2c67169fe",
-    "catalog/atlas-methods.json": "1c95c506079e1b6c9aaebb83de3a13e715cd61337edfa34e416aed611f0b9ad3",
+    "catalog/atlas-methods.json": "c3515d3b333e4f47134814008ed467d86a8327cb2b7ac3575f6e03ba6ea05d88",
     "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
     "catalog/atlas-method-primary-references.json": "9bc3991b1f9c50bc75d5c6c69a09b5fd030341ba2834f19d79cc76c92b37b0d5"
   },

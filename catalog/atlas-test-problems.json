@@ -508,7 +508,7 @@
         "ja": "二重Mach反射",
         "en": "Double Mach reflection"
       },
-      "chapter": "double-mach",
+      "chapter": "validation-double-mach",
       "evidence": [
         {
           "path": "numerical-methods-atlas/assets/double-mach-run.json",
@@ -517,9 +517,49 @@
         {
           "path": "numerical-methods-atlas/assets/movies/shock-catalog.json",
           "json_pointer": "/movies"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/double-mach/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "double-mach-reflection"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/double-mach/results/double-mach-reflection-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/double-mach/inputs.json",
+          "json_pointer": "/cases/double-mach-reflection"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/double-mach/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/double-mach/references/independent-reuse.json",
+          "json_pointer": "/passed"
         }
       ],
-      "availability": "saved-output"
+      "availability": "saved-output",
+      "reading_section": "double-mach-reflection",
+      "code_base": "/code/validated-examples/2026-11-23/double-mach/",
+      "verification": "/code/validated-examples/2026-11-23/double-mach/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "supplemental_examples": [
+        {
+          "id": "double-mach-reflection",
+          "url": "/numerical-methods-atlas/validation/double-mach-reflection/",
+          "name": {
+            "ja": "Double Mach反射：多格子の軽量検証",
+            "en": "Double Mach reflection: lightweight grid verification"
+          }
+        }
+      ]
     },
     {
       "id": "nasa-wedge",

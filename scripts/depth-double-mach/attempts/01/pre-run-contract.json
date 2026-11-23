@@ -1,0 +1,26 @@
+{
+  "declared_at_utc": "2026-11-23T04:31:35.923117+00:00",
+  "declared_before_first_pde_or_unit_execution": true,
+  "planned_tests": 20,
+  "target_edition": "2026-11-23",
+  "case": "double-mach-reflection",
+  "files_sha256": {
+    "dm_solver.py": "9de89afac1960c1a4217e83a20ef5a98d6205c6217b11cea2608a0da3c88694e",
+    "run.py": "0897a3215b93fa9c08afd52728b8986c542edfaa076bc51ed37583943a921a0c",
+    "test_dm.py": "cef43beacda3e22c37e6ebb23345ba04cef810068c7e196309c6869ef6adc6c8",
+    "inputs.json": "636a7713665a5e8679452d420d042e685db03275e6140f05a286e586c81c5e76",
+    "acceptance.json": "9fbcd74dfcd990b1b7b70181ea2d4ed7480e227fa6c6cd0e48a42e8a5fc2c2d2",
+    "source-provenance.json": "472266d23416b1e06fd7eb634b8b3b846cb7c16b5e5d00a826ac35bbe7967c97",
+    "references/REFERENCE-LICENSE.txt": "07cca125623617c85a41e9a21a2b114d693c61737bc353e3ca98587431e26ee6",
+    "references/citations.json": "3d2d896900e717451ffc31e52044cf835a96497a7c69acdabdccab3fbf236ba8",
+    "references/definition.json": "39e33265a62fc63687d949f5e75733363f65728ad127397cc1c30535f8d85c9f",
+    "references/double-mach-ny128.json": "92d06d1697d3f4e2dde574c56a5ddc13ee2f6a4fac5125b3aae7399bdcebc409",
+    "references/double-mach-ny128.npz": "dc7be0b6b652384ee400a75700b8ec909a4784d31c87345c3ef7bbfc8b9e92b1",
+    "references/double-mach-ny64.json": "7c5c4ff5964849065b36e953bdb646e6360d95490565982cc76f0976dcda3528",
+    "references/double-mach-ny64.npz": "21473a9fb01dc3b7b7956416f7a5a7440b57cf0f366112f1202a45336f87e4a8",
+    "references/independent-reuse.json": "465016e0dacb972ac14e3d80c96e4d0841104619a856169bff306fca0b168d0c",
+    "references/quality.json": "cb45047ca0ffee69443865d43aad0eed9c1c711d41018bf3330caeb89a22cd68",
+    "references/reference-source.py": "bc206f991594c6b011bb3cde50f104b8806a371df19af0464ff6b1a1d1cc39af"
+  },
+  "scope": "New fixed-input primary refinement; saved independently executed reference reuse/readonly diagnostics are separately recorded. No primary PDE or unit test executed before this contract."
+}
