@@ -340,7 +340,7 @@
         "セル平均と点値、体積重み付き誤差、衝撃近傍と原点近傍の誤差を分ける。",
         "厳密なcold limit p0=0と正圧近似を区別。既存Eulerはp<=0を拒否するので無言のfloor追加で厳密Nohと称さない。"
       ],
-      "scope_note": "今回公開する段階は、初期圧力ゼロの平面1Dと円筒対称1D半径方向の実装・厳密体積平均・格子系列・保存収支・原点過熱の検証です。球対称PDEとCartesian多次元は未実行で、候補全体は進行中のまま保持します。図は円筒半径方向の解の回転表示です。",
+      "scope_note": "公開した段階は、初期圧力ゼロの平面・円筒・球の1D半径対称PDEです。旧平面・円筒8本と59基準を保持し、球の4格子・厳密セル平均・原点を含むcore誤差・離散収支と境界時間求積のΣdt³を検証しました。球の定数再構築2試行の不合格を保存し、同じ105条件で線形面応力求積＋MUSCL/minmodを比較します。図は1D半径解の中心断面です。Cartesian多次元・角度方向の対称性破れは未実行で、候補全体は進行中です。",
       "sources": [
         {
           "title": "Noh (1987), Errors for calculations of strong shocks using an artificial viscosity and an artificial heat flux",
@@ -371,26 +371,30 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-23-r3/noh/verification.json",
+        "verification": "/code/validated-examples/2026-11-23-r5/noh/verification.json",
         "inputs": [
-          "/code/validated-examples/2026-11-23-r3/noh/inputs.json",
-          "/code/validated-examples/2026-11-23-r3/noh/acceptance.json"
+          "/code/validated-examples/2026-11-23-r5/noh/inputs.json",
+          "/code/validated-examples/2026-11-23-r5/noh/acceptance.json",
+          "/code/validated-examples/2026-11-23-r5/noh/spherical-acceptance.json",
+          "/code/validated-examples/2026-11-23-r5/noh/pre-run-contract-spherical.json",
+          "/code/validated-examples/2026-11-23-r5/noh/pre-run-contract-spherical-revision03.json"
         ],
         "plots": [
-          "/code/validated-examples/2026-11-23-r3/noh/results/noh-shock-preview.png",
-          "/code/validated-examples/2026-11-23-r3/noh/results/noh-shock.png",
-          "/code/validated-examples/2026-11-23-r3/noh/results/noh-shock-errors.png"
+          "/code/validated-examples/2026-11-23-r5/noh/results/noh-shock-preview.png",
+          "/code/validated-examples/2026-11-23-r5/noh/results/noh-shock.png",
+          "/code/validated-examples/2026-11-23-r5/noh/results/noh-shock-errors.png",
+          "/code/validated-examples/2026-11-23-r5/noh/results/noh-spherical-budget.png"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#noh-ja",
         "execution": "/numerical-methods-atlas/validation/noh-shock/?lang=ja",
         "code": [
-          "/code/validated-examples/2026-11-23-r3/noh/noh_solver.py",
-          "/code/validated-examples/2026-11-23-r3/noh/noh_reference.py"
+          "/code/validated-examples/2026-11-23-r5/noh/noh_solver.py",
+          "/code/validated-examples/2026-11-23-r5/noh/noh_reference.py"
         ],
         "references": [
           "/numerical-methods-atlas/solutions/?lang=ja#solution-noh-ja",
-          "/code/validated-examples/2026-11-23-r3/noh/exactpack-reference.json",
-          "/code/validated-examples/2026-11-23-r3/noh/exactpack-reference-receipt.json"
+          "/code/validated-examples/2026-11-23-r5/noh/exactpack-reference.json",
+          "/code/validated-examples/2026-11-23-r5/noh/exactpack-reference-receipt.json"
         ]
       },
       "sequence": 1,
@@ -404,26 +408,30 @@
         "local_evidence_checked": true,
         "verification_passed": true,
         "links": {
-          "verification": "/code/validated-examples/2026-11-23-r3/noh/verification.json",
+          "verification": "/code/validated-examples/2026-11-23-r5/noh/verification.json",
           "inputs": [
-            "/code/validated-examples/2026-11-23-r3/noh/inputs.json",
-            "/code/validated-examples/2026-11-23-r3/noh/acceptance.json"
+            "/code/validated-examples/2026-11-23-r5/noh/inputs.json",
+            "/code/validated-examples/2026-11-23-r5/noh/acceptance.json",
+            "/code/validated-examples/2026-11-23-r5/noh/spherical-acceptance.json",
+            "/code/validated-examples/2026-11-23-r5/noh/pre-run-contract-spherical.json",
+            "/code/validated-examples/2026-11-23-r5/noh/pre-run-contract-spherical-revision03.json"
           ],
           "plots": [
-            "/code/validated-examples/2026-11-23-r3/noh/results/noh-shock-preview.png",
-            "/code/validated-examples/2026-11-23-r3/noh/results/noh-shock.png",
-            "/code/validated-examples/2026-11-23-r3/noh/results/noh-shock-errors.png"
+            "/code/validated-examples/2026-11-23-r5/noh/results/noh-shock-preview.png",
+            "/code/validated-examples/2026-11-23-r5/noh/results/noh-shock.png",
+            "/code/validated-examples/2026-11-23-r5/noh/results/noh-shock-errors.png",
+            "/code/validated-examples/2026-11-23-r5/noh/results/noh-spherical-budget.png"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#noh-ja",
           "execution": "/numerical-methods-atlas/validation/noh-shock/?lang=ja",
           "code": [
-            "/code/validated-examples/2026-11-23-r3/noh/noh_solver.py",
-            "/code/validated-examples/2026-11-23-r3/noh/noh_reference.py"
+            "/code/validated-examples/2026-11-23-r5/noh/noh_solver.py",
+            "/code/validated-examples/2026-11-23-r5/noh/noh_reference.py"
           ],
           "references": [
             "/numerical-methods-atlas/solutions/?lang=ja#solution-noh-ja",
-            "/code/validated-examples/2026-11-23-r3/noh/exactpack-reference.json",
-            "/code/validated-examples/2026-11-23-r3/noh/exactpack-reference-receipt.json"
+            "/code/validated-examples/2026-11-23-r5/noh/exactpack-reference.json",
+            "/code/validated-examples/2026-11-23-r5/noh/exactpack-reference-receipt.json"
           ]
         }
       }
@@ -4703,19 +4711,23 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-benchmark-backlog.json": "5e2cf07fdae02c0ed5a159f5d262ae6d5cd473cba38f22a5363775fca4d8283d",
-    "code/validated-examples/2026-11-23-r3/noh/acceptance.json": "a12c0ce119877e71fc8dfd852bd6dfb6aa6d8e7beb5e18bd13e91a5dd16117ff",
-    "code/validated-examples/2026-11-23-r3/noh/exactpack-reference-receipt.json": "35d1622672578b48639766b916645d1bbbdc2c65d999968b6b5f699197f2ce64",
-    "code/validated-examples/2026-11-23-r3/noh/exactpack-reference.json": "7442d51a8f53939a2a37009c4d9e1856eb80408670875c4ac6b85c22499d8d74",
-    "code/validated-examples/2026-11-23-r3/noh/inputs.json": "20c0883d11f1aacd35761ccd1e46fe5c45c79345f698ddd9ffbb0281c23385d8",
-    "code/validated-examples/2026-11-23-r3/noh/noh_reference.py": "77ac42ca9d3a276ebaba1de030a33dd4c835463e3fc17f73d07f742ecaf2d8b2",
-    "code/validated-examples/2026-11-23-r3/noh/noh_solver.py": "ad1446f241b7e79f9cf42de84f077dcc3da695987a0552c1549d0838a8398f98",
-    "code/validated-examples/2026-11-23-r3/noh/results/noh-shock-errors.png": "521c74bda9d8f00d47250281eecab491635d4fd0ec1ac0f030de5e5a5d3875b2",
-    "code/validated-examples/2026-11-23-r3/noh/results/noh-shock-preview.png": "d56eec6c8f6e110f3cec5a90f80eb05ab134443aa0d68985d03bddb92f4f98bb",
-    "code/validated-examples/2026-11-23-r3/noh/results/noh-shock.png": "f89d3289b2ac41d2e291f0964f8635e8084355420d53cb583876a579d94810fd",
-    "code/validated-examples/2026-11-23-r3/noh/verification.json": "056f668cd6f5450df3626383121274b55b2edf20519886d75f64f60d24ba6f29",
-    "numerical-methods-atlas/gallery/index.html": "65a92737e522fe92bec32f3f21cff9b813fb0fb6533b36f9a31ff2ba53d100fa",
-    "numerical-methods-atlas/solutions/index.html": "4031ba6070185d24a9d696cbe1639bfc30e27c7476ce43214d9729794d5cc76b",
-    "numerical-methods-atlas/validation/noh-shock/index.html": "b11eda903a10b40432ae3e577f68ec70ef7460346a2303d052102f3cbaa823c7"
+    "catalog/atlas-benchmark-backlog.json": "0c2625e3cc0439563a3625a42c094652acb2d90d141d23baf74eea96d74ae08e",
+    "code/validated-examples/2026-11-23-r5/noh/acceptance.json": "a12c0ce119877e71fc8dfd852bd6dfb6aa6d8e7beb5e18bd13e91a5dd16117ff",
+    "code/validated-examples/2026-11-23-r5/noh/exactpack-reference-receipt.json": "35d1622672578b48639766b916645d1bbbdc2c65d999968b6b5f699197f2ce64",
+    "code/validated-examples/2026-11-23-r5/noh/exactpack-reference.json": "7442d51a8f53939a2a37009c4d9e1856eb80408670875c4ac6b85c22499d8d74",
+    "code/validated-examples/2026-11-23-r5/noh/inputs.json": "c40e6a8ec27de510a77b7b41778b8c2c34ff0d10d90657fbcb574f03206f0a60",
+    "code/validated-examples/2026-11-23-r5/noh/noh_reference.py": "77ac42ca9d3a276ebaba1de030a33dd4c835463e3fc17f73d07f742ecaf2d8b2",
+    "code/validated-examples/2026-11-23-r5/noh/noh_solver.py": "376a6f881b1f855cf188e66400b47fe5949da5a20fda776474f7841de8833bfb",
+    "code/validated-examples/2026-11-23-r5/noh/pre-run-contract-spherical-revision03.json": "44f30c618a7df68b803da1f873135f5f38d04859eeb3286311032c7202240352",
+    "code/validated-examples/2026-11-23-r5/noh/pre-run-contract-spherical.json": "e3d99d1f46bcabc2b69a8392011df41442ff4bbdef60ebe17ffbe0209296852c",
+    "code/validated-examples/2026-11-23-r5/noh/results/noh-shock-errors.png": "83fa3afcce5ef76c14956ec0a707777ea84f2b16bb29d0a6c8278680043b56ab",
+    "code/validated-examples/2026-11-23-r5/noh/results/noh-shock-preview.png": "993fea822153b052ba707787525853884a84e327b420462a442d05781c2ed331",
+    "code/validated-examples/2026-11-23-r5/noh/results/noh-shock.png": "11d0f030985cf900b04ce6f8b903be486684c43129f2e3f4226ed81b70041f4f",
+    "code/validated-examples/2026-11-23-r5/noh/results/noh-spherical-budget.png": "7b7672b50bdeefb62c50d10fd150a075eee2657cc3ec18e146dc24d261807f42",
+    "code/validated-examples/2026-11-23-r5/noh/spherical-acceptance.json": "bb1c8d14feb07a8876f04711aa81780642d5f6a547f6754ccafd2eaf223530a2",
+    "code/validated-examples/2026-11-23-r5/noh/verification.json": "48545a33ab2c19e9071616a15a1fcbf90c716096aa1a12550d3cb872ed8d9e36",
+    "numerical-methods-atlas/gallery/index.html": "498fd5e9434ac89da9d47d425717efc609750a449f48f4cf423dc7be17a3718e",
+    "numerical-methods-atlas/solutions/index.html": "efcc5bc6e8abf1a61b294c3e1f5c8e32e7f087f7a8dcee7615bd346d9765c525",
+    "numerical-methods-atlas/validation/noh-shock/index.html": "7b3ac0f6d4c1fd70075eca0ecbefb93fd139ffff245c779b92e1d07cea729296"
   }
 }

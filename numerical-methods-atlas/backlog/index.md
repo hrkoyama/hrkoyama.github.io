@@ -165,7 +165,7 @@ Sod・Shu–Osherの固定入力、独立Athena++追補shu-independent、PPM/AUS
 
 公開した段階と残る範囲：
 
-今回公開する段階は、初期圧力ゼロの平面1Dと円筒対称1D半径方向の実装・厳密体積平均・格子系列・保存収支・原点過熱の検証です。球対称PDEとCartesian多次元は未実行で、候補全体は進行中のまま保持します。図は円筒半径方向の解の回転表示です。
+公開した段階は、初期圧力ゼロの平面・円筒・球の1D半径対称PDEです。旧平面・円筒8本と59基準を保持し、球の4格子・厳密セル平均・原点を含むcore誤差・離散収支と境界時間求積のΣdt³を検証しました。球の定数再構築2試行の不合格を保存し、同じ105条件で線形面応力求積＋MUSCL/minmodを比較します。図は1D半径解の中心断面です。Cartesian多次元・角度方向の対称性破れは未実行で、候補全体は進行中です。
 
 調査時の根拠：
 
@@ -185,26 +185,30 @@ Sod・Shu–Osherの固定入力、独立Athena++追補shu-independent、PPM/AUS
 
 ```json
 {
-  "verification": "/code/validated-examples/2026-11-23-r3/noh/verification.json",
+  "verification": "/code/validated-examples/2026-11-23-r5/noh/verification.json",
   "inputs": [
-    "/code/validated-examples/2026-11-23-r3/noh/inputs.json",
-    "/code/validated-examples/2026-11-23-r3/noh/acceptance.json"
+    "/code/validated-examples/2026-11-23-r5/noh/inputs.json",
+    "/code/validated-examples/2026-11-23-r5/noh/acceptance.json",
+    "/code/validated-examples/2026-11-23-r5/noh/spherical-acceptance.json",
+    "/code/validated-examples/2026-11-23-r5/noh/pre-run-contract-spherical.json",
+    "/code/validated-examples/2026-11-23-r5/noh/pre-run-contract-spherical-revision03.json"
   ],
   "plots": [
-    "/code/validated-examples/2026-11-23-r3/noh/results/noh-shock-preview.png",
-    "/code/validated-examples/2026-11-23-r3/noh/results/noh-shock.png",
-    "/code/validated-examples/2026-11-23-r3/noh/results/noh-shock-errors.png"
+    "/code/validated-examples/2026-11-23-r5/noh/results/noh-shock-preview.png",
+    "/code/validated-examples/2026-11-23-r5/noh/results/noh-shock.png",
+    "/code/validated-examples/2026-11-23-r5/noh/results/noh-shock-errors.png",
+    "/code/validated-examples/2026-11-23-r5/noh/results/noh-spherical-budget.png"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#noh-ja",
   "execution": "/numerical-methods-atlas/validation/noh-shock/?lang=ja",
   "code": [
-    "/code/validated-examples/2026-11-23-r3/noh/noh_solver.py",
-    "/code/validated-examples/2026-11-23-r3/noh/noh_reference.py"
+    "/code/validated-examples/2026-11-23-r5/noh/noh_solver.py",
+    "/code/validated-examples/2026-11-23-r5/noh/noh_reference.py"
   ],
   "references": [
     "/numerical-methods-atlas/solutions/?lang=ja#solution-noh-ja",
-    "/code/validated-examples/2026-11-23-r3/noh/exactpack-reference.json",
-    "/code/validated-examples/2026-11-23-r3/noh/exactpack-reference-receipt.json"
+    "/code/validated-examples/2026-11-23-r5/noh/exactpack-reference.json",
+    "/code/validated-examples/2026-11-23-r5/noh/exactpack-reference-receipt.json"
   ]
 }
 ```

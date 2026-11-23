@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "attempt": "spherical-02",
+  "target_edition": "2026-11-23-r4",
+  "started_at_utc": "2026-11-23T02:05:38.522917+00:00",
+  "cwd": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/atlas-search-publisher/scripts/depth-noh",
+  "python": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/noh-spherical-env/bin/python",
+  "source_review_sha256": "562c4855c1b64597d310b19c47370921d39351f1e849b47ac971f4df1937a7d8",
+  "active_contract_sha256": "45b4273a6666f96d0f6dbd299e7f106e4eb2783ff2b62414b24ea4ae640d0d42",
+  "frozen_numeric_files": {
+    "acceptance.json": "a12c0ce119877e71fc8dfd852bd6dfb6aa6d8e7beb5e18bd13e91a5dd16117ff",
+    "exactpack-reference-receipt.json": "35d1622672578b48639766b916645d1bbbdc2c65d999968b6b5f699197f2ce64",
+    "exactpack-reference-snapshot.json": "0be18147421e7c59988561d2fe921e29370ef3f1ae77a5f0febc3b40de4ac4fa",
+    "exactpack-reference.json": "7442d51a8f53939a2a37009c4d9e1856eb80408670875c4ac6b85c22499d8d74",
+    "generate_exactpack_reference.py": "8a86e9ecd15ec971c29a37e0c1e14283780bb5dd8314c7059192f3295fd312d9",
+    "inputs.json": "1237df125035342156b2f05be90ad1edc8e78dbe88dc4482f34247dd52356cb0",
+    "noh_reference.py": "77ac42ca9d3a276ebaba1de030a33dd4c835463e3fc17f73d07f742ecaf2d8b2",
+    "noh_solver.py": "fb7a0b000a313101319ad00dce25aff3670cd50f8a02ea1f74c5800d494e85c9",
+    "pre-run-contract-spherical.json": "e3d99d1f46bcabc2b69a8392011df41442ff4bbdef60ebe17ffbe0209296852c",
+    "requirements-plotting.txt": "01ef5e8e6561e0877b51622518cb029e54b58e5795cb2e73614000094637eb7b",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "run.py": "91d2d839a7a4be5a3c8b0cfe81695463216e353a2d9ed4cc841016487a499c22",
+    "spherical-acceptance.json": "bb1c8d14feb07a8876f04711aa81780642d5f6a547f6754ccafd2eaf223530a2",
+    "test_noh.py": "8e46b0b0f694690f9dd5a0040b93be3eb8d6e860e6b817202125f4c8c41073c3"
+  },
+  "environment_overrides": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+  },
+  "source_match_before": true,
+  "stages": []
+}

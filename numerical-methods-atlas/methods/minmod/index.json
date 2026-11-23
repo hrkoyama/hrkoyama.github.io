@@ -27,7 +27,7 @@
   "test_files": [
     "test_limiters"
   ],
-  "code_mapping_scope": "Related chapter modules and test files; not a claim that each test covers every named method.",
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct.",
   "references": [
     {
       "url": "https://doi.org/10.1137/0721062",
@@ -52,16 +52,1305 @@
     "minmod制限関数",
     "minmod勾配制限"
   ],
+  "depth_release": {
+    "group": "noh",
+    "case_ids": [
+      "noh-shock"
+    ],
+    "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/",
+    "code_edition": "2026-11-23-r5",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/noh_solver.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/noh_reference.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/generate_exactpack_reference.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/plot_noh.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/test_noh.py"
+    ],
+    "run_commands": [
+      "python -m pytest -q",
+      "python run.py --input inputs.json --output output"
+    ],
+    "run_from": "atlas-noh-2026-11-23-r5",
+    "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/atlas-noh-2026-11-23-r5.zip",
+    "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/source-manifest.json",
+    "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/verification.json",
+    "code_archive_sha256": "64de5483e9896a3773348b75e1ec2b4630f8a709d68194c1d94772396f531733",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/results/result.json",
+    "passed_tests": 28,
+    "examples": [
+      {
+        "id": "noh-shock",
+        "title": {
+          "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒・球対称計算",
+          "en": "Noh shocks: zero-pressure planar, cylindrical and spherical flow"
+        },
+        "method_ids": [
+          "rusanov",
+          "heun",
+          "muscl",
+          "minmod"
+        ],
+        "domains": [
+          "fluid",
+          "shock",
+          "time"
+        ],
+        "code_files": [
+          "run.py",
+          "noh_solver.py",
+          "noh_reference.py",
+          "generate_exactpack_reference.py"
+        ],
+        "summary": {
+          "ja": "初期圧力ゼロのNoh問題を、独自の小型1D有限体積コードで平面・円筒・球対称に計算します。64/128/256/512格子の全域誤差、原点過熱、衝撃位置、保存収支を測り、球で現れる境界流入の時間積分誤差を解析式と照合します。",
+          "en": "An original small 1D finite-volume code solves zero-pressure Noh flow in planar, cylindrical and spherical symmetry. Grids 64/128/256/512 measure full-domain error, origin heating, shock location and budgets, and compare spherical boundary-inflow time-quadrature error with its analytic identity."
+        },
+        "assumptions": {
+          "ja": "無次元r∈[0,1]、γ=5/3、ρ0=1、u0=-1、p0=0、T=.6。平面d=1・円筒半径対称d=2・球半径対称d=3をPDE実行し、衝撃半径は.2。外側密度は(1+t)^(d-1)、原点は反射、体積測度r^(d-1)dr。角度因子をすべての収支から共通に省き、球の解析総量はM=512/375、E=256/375です。球の図は1D半径解の中心断面で、Cartesianの2D/3D計算や角度方向の対称性破れの検証ではありません。",
+          "en": "Nondimensional r in [0,1], gamma=5/3, rho0=1, u0=-1, p0=0, T=.6. PDE runs use planar d=1, cylindrical-radial d=2 and spherical-radial d=3, with shock radius .2. Outer density is (1+t)^(d-1), the origin reflects, and the measure is r^(d-1)dr. The same angular factor is omitted throughout; spherical analytic totals are M=512/375 and E=256/375. Its figure is a central section of a 1D radial solution, not a Cartesian 2D/3D calculation or a test of angular symmetry breaking."
+        },
+        "algorithm": {
+          "ja": "Rusanov流束とSSPRK2（Heun）を使用します。平面・円筒は従来の区分定数再構築、球は保存量を体積重心の周りにMUSCL型線形再構築し、内部セルは重心間距離によるminmod傾きを使い、両端の境界セルは傾き0とします。各セル共通の係数θで左右面の全保存量傾きを縮小し、密度と内部エネルギーの面状態を検査します。セル平均の修正・圧力seed・floorは使いません。波速、Rusanov流束、数値応力P*=F_mom−((u_L+u_R)/2)F_massは同じ面状態から計算し、幾何CFLはV/(A_La_L+A_Ra_R)、指定値.35です。球では線形面応力の∫2rP*(r)drを厳密積分、平面・円筒は旧算術平均求積を保持します。反射面は再構築後の面状態を偶奇反転し、外側の冷たい流入は物理流束で与えます。各RK段の有限性・密度・内部エネルギーを検査し、不正なら失敗を記録します。",
+          "en": "Rusanov flux with SSPRK2 (Heun). Planar/cylindrical runs retain piecewise-constant reconstruction. Spherical runs reconstruct conserved variables linearly around volume centroids with minmod slopes based on centroid distances in interior cells and zero slopes in the two boundary cells. A single theta per cell scales all conserved slopes at both faces to check face density/internal energy. Cell means are never corrected and no pressure seed/floor is used. Wave speeds, Rusanov flux and numerical stress P*=F_mom-((u_L+u_R)/2)F_mass use the same face states. The geometric CFL V/(A_La_L+A_Ra_R) uses the prescribed .35. Spherical source quadrature exactly integrates the face-linear numerical stress against 2r dr; planar/cylindrical runs keep the old arithmetic rule. Reconstructed reflection faces use even/odd parity, with physical cold inflow at the outer face. Every RK stage is checked and invalid states cause a retained failure."
+        },
+        "validation": {
+          "ja": "旧平面・円筒の受入基準と59判定を保持し、球の追加基準・入力・ソースhashを初回の球PDE実行前に保存します。初回の円筒不合格はソース・全8本の診断ログ・不合格サマリーを保持し、同じ基準で面応力版を再検証した履歴です。厳密保存量セル平均は衝撃をまたぐ積分を分割し、p(平均U)と平均pを分けます。固定版LANL ExactPackの独立解析照合はd=1/2/3を含みます。球の新規PDE系列では全域r²重みL1/L2/L∞、原点を含むr≤.70rsの密度L1、原点・衝撃・plateauを別測定。各段の境界流入による離散保存収支と、連続解析総量との差を分け、M_h−M_exact=Σdt³/6、E_h−E_exact=Σdt³/12というSSPRK2境界求積の恒等式を検査します。 最初の球対称実行は旧算術平均源のまま105条件中2条件で不合格（最細衝撃位置3.923セル、plateau密度誤差11.03%）となり、全結果を保存しました。第2試行は球の面応力求積だけを変更しましたが、同じ2条件が未達（衝撃位置3.919セル、密度誤差11.018%）でした。第3試行はその求積を保ち、球だけMUSCL・minmod再構築を加えて、同じ105条件で比較します。 第3試行は28検査と全12格子計算を完了し、105条件すべてに合格しました。球N=512では全域密度L1=.0114343、衝撃位置誤差1.98856セル、plateau密度誤差5.2533%、原点込みcore密度L1=.0549503です。一方、中心最大比内部エネルギーの相対過剰は20.59%で、第2試行の15.52%より悪化しており、全指標の改善は主張しません。",
+          "en": "Retain the planar/cylindrical acceptance file and all 59 original decisions, and save spherical criteria, inputs and source hashes before the first spherical PDE run. The initial cylindrical failure retains its source, all eight diagnostic logs and failed summary; the face-stress revision was tested against the same gates. Analytic conserved means split shock-crossing integrals and distinguish p(mean U) from mean p. The pinned independent LANL ExactPack analytic comparison includes d=1/2/3. New spherical PDE refinements separately measure full-domain r^2-weighted L1/L2/Linf, density L1 in r<=.70rs including the origin, and center/shock/plateau diagnostics. Discrete stage-weighted inflow budgets are distinct from continuous analytic totals; SSPRK2 boundary quadrature is checked through M_h-M_exact=sum(dt^3)/6 and E_h-E_exact=sum(dt^3)/12. The first spherical run retained arithmetic source quadrature and failed two of 105 gates (finest shock-position error 3.923 cells, plateau-density error 11.03%); all results are retained. A second attempt changed only spherical stress quadrature, but still failed the same two gates (3.919 cells and 11.018% density error). A third attempt retains that quadrature and adds MUSCL/minmod reconstruction only for spherical runs, against the same 105 criteria. The third attempt completed 28 tests and all 12 grid runs, passing all 105 gates. At spherical N=512 the whole-domain density L1 is .0114343, shock error 1.98856 cells, plateau-density error 5.2533%, and origin-inclusive core-density L1 .0549503. Maximum center specific-internal-energy excess is 20.59%, worse than the second attempt's 15.52%; not every diagnostic improves."
+        },
+        "limits": {
+          "ja": "平面・円筒は空間一次、球はMUSCL型の制限線形再構築を使う教育用計算です。原点過熱と有限格子のplateau誤差が残り、全域誤差から原点を除外しません。r²重みで中心欠陥が小さく見えるため、原点を含む固定coreの誤差と拡大図も示します。L∞や中心最大誤差のゼロ収束、滑らかな球問題での方式全体の高次精度、幾何源付き全RK段階の一般の正値性保証、Cartesian多次元、任意γの独立照合は検証していません。円筒L∞は旧系列で単調減少せず、球のL2/L∞と過熱も診断値として保持します。球の離散質量・エネルギー収支が丸め誤差でも、解析総量との差は境界時間求積のO(dt²)となります。半径方向の運動量には幾何源があり、保存されるCartesian運動量とは異なります。ExactPackは解析評価器の独立実装で、別の数値PDEエンジンではありません。",
+          "en": "An educational calculation: first-order space in planar/cylindrical flow and MUSCL-type limited linear reconstruction in spherical flow. Origin heating and finite-grid plateau errors remain; the center is never removed from whole-domain error. Because r^2 weighting can make central defects appear small, an origin-inclusive fixed-core norm and enlarged view are also shown. Vanishing Linf/center maximum error, high order for the complete method on smooth spherical problems, general stage positivity with the geometric source, Cartesian multidimensional flow and independent arbitrary-gamma validation are not established. Cylindrical Linf was not monotone in the old series; spherical L2/Linf and heating are retained as diagnostics. Roundoff-scale discrete mass/energy balance coexists with O(dt^2) spherical boundary-time-quadrature error against analytic totals. Radial momentum has a geometric source and is not a conserved Cartesian momentum component. ExactPack independently implements the analytic evaluator, not another numerical PDE engine."
+        },
+        "formulas": [
+          "\\partial_tU+r^{1-d}\\partial_r(r^{d-1}F(U))=(0,(d-1)p/r,0)^T,\\quad U=(\\rho,\\rho u,E)^T",
+          "C=(\\gamma+1)/(\\gamma-1),\\quad r_s=|u_0|(\\gamma-1)t/2,\\quad \\rho_2=\\rho_0C^d,\\quad p_2=(\\gamma-1)\\rho_2u_0^2/2",
+          "\\rho_1(r,t)=\\rho_0(1+|u_0|t/r)^{d-1},\\quad u_1=u_0,\\quad p_1=0",
+          "V_i=(r_{i+1/2}^d-r_{i-1/2}^d)/d,\\quad P_f^*=\\widehat F_{m,f}-\\bar u_f\\widehat F_{\\rho,f},\\quad \\text{arithmetic-face option: }S_{m,i}V_i=\\tfrac12(P_{i-1/2}^*+P_{i+1/2}^*)(A_{i+1/2}-A_{i-1/2})",
+          "\\mathcal E_1=\\frac{\\sum_iV_i|\\bar\\rho_i-\\bar\\rho_i^{\\rm exact}|}{\\sum_iV_i\\bar\\rho_i^{\\rm exact}},\\quad M(t)=\\rho_0(R+|u_0|t)^d/d,\\quad E_{\\rm tot}(t)=u_0^2M(t)/2",
+          "d=3,\\ \\rho_0=|u_0|=1:\\quad M_h-M_{\\rm exact}=\\frac16\\sum_n\\Delta t_n^3,\\qquad E_h-E_{\\rm exact}=\\frac1{12}\\sum_n\\Delta t_n^3",
+          "\\mathcal E_{\\rm core}=\\frac{\\sum_{r_{i+1/2}\\le0.70r_s}V_i|\\bar\\rho_i-\\bar\\rho_i^{\\rm exact}|}{\\sum_{r_{i+1/2}\\le0.70r_s}V_i\\bar\\rho_i^{\\rm exact}},\\qquad V_i=\\frac{r_{i+1/2}^3-r_{i-1/2}^3}{3}",
+          "d=3:\\quad \\int_a^b2rP^*(r)\\,dr=\\frac{b-a}{3}\\big[(b+2a)P_L^*+(2b+a)P_R^*\\big]",
+          "\\bar r_i=\\frac{d}{d+1}\\frac{r_{i+1/2}^{d+1}-r_{i-1/2}^{d+1}}{r_{i+1/2}^{d}-r_{i-1/2}^{d}},\\qquad U_i(r)=\\bar U_i+\\theta_i\\sigma_i(r-\\bar r_i)",
+          "\\sigma_i=\\operatorname{minmod}\\left(\\frac{\\bar U_i-\\bar U_{i-1}}{\\bar r_i-\\bar r_{i-1}},\\frac{\\bar U_{i+1}-\\bar U_i}{\\bar r_{i+1}-\\bar r_i}\\right),\\quad 0\\le\\theta_i\\le1\\quad \\text{interior cells; boundary slopes }\\sigma_0=\\sigma_{N-1}=0"
+        ],
+        "references": [
+          {
+            "id": "noh1987",
+            "author": "W. F. Noh",
+            "year": 1987,
+            "title": "Errors for calculations of strong shocks using an artificial viscosity and an artificial heat flux",
+            "journal": "Journal of Computational Physics",
+            "volume": "72",
+            "number": "1",
+            "pages": "78–120",
+            "doi": "10.1016/0021-9991(87)90074-X",
+            "url": "https://www.sciencedirect.com/science/article/pii/002199918790074X",
+            "type": "article",
+            "role": "original-problem-and-error-analysis",
+            "review_level": "publisher-metadata-and-abstract",
+            "review": {
+              "ja": "出版社書誌・抄録を確認。原著本文の直接取得は403のため全文未読。Noh問題・過熱誤差の原著として引用し、今回の有限体積離散化そのものの出典とは呼びません。",
+              "en": "Publisher metadata and abstract checked; full original text was not accessed (403). Cited for the problem and heating-error analysis, not as the source of this particular finite-volume discretization."
+            }
+          },
+          {
+            "id": "thrussell2023exactpack",
+            "author": "J. Thrussell and J. M. Ferguson",
+            "year": 2023,
+            "title": "ExactPack: A python library of exact analytic solutions",
+            "journal": "SoftwareX",
+            "volume": "24",
+            "article_number": "101560",
+            "doi": "10.1016/j.softx.2023.101560",
+            "url": "https://doi.org/10.1016/j.softx.2023.101560",
+            "type": "article",
+            "role": "independent-reference-software",
+            "software_commit": "9bacc477eb791e959c9621e771fc7a725db755fa",
+            "software_url": "https://github.com/lanl/ExactPack/tree/9bacc477eb791e959c9621e771fc7a725db755fa",
+            "review_level": "official-record-and-unmodified-pinned-code-execution",
+            "review": {
+              "ja": "LANL公式書誌と固定commit 9bacc477eb791e959c9621e771fc7a725db755faのNohコードを確認・別実行。gamma=5/3,rho0=|u0|=1に限定し、点値と衝撃を分割したGauss積分で参照保存量平均を照合。このd=3解析照合の既存receiptを保持し、本版の球対称PDE系列は別途実行します。",
+              "en": "Checked the LANL software record and separately executed unmodified Noh code at commit 9bacc477eb791e959c9621e771fc7a725db755fa. Cross-checks use only gamma=5/3 and rho0=|u0|=1: points and shock-split Gauss integration of conservative means. Retain that d=3 analytic-comparison receipt; this edition separately executes its spherical PDE series."
+            }
+          },
+          {
+            "id": "vanleer1979",
+            "year": 1979,
+            "author": "van Leer, Bram",
+            "title": "Towards the ultimate conservative difference scheme. V. A second-order sequel to Godunov's method",
+            "journal": "Journal of Computational Physics",
+            "volume": "32",
+            "pages": "101--136",
+            "doi": "10.1016/0021-9991(79)90145-1",
+            "source": "https://www.sciencedirect.com/science/article/pii/0021999179901451",
+            "type": "article",
+            "role": "reconstruction-and-limiter-background",
+            "review_level": "existing-atlas-publisher-record-and-abstract",
+            "review": {
+              "ja": "既存アトラスの書誌参照。制限線形再構築とlimiterの背景として引用し、原論文の全アルゴリズムや一般の幾何源付き零圧Eulerに対する正値性定理を再現したとは主張しません。",
+              "en": "Existing Atlas bibliography record. Background for limited linear reconstruction and limiters, not a claim to reproduce the full original algorithm or a general positivity theorem for geometric-source zero-pressure Euler."
+            }
+          },
+          {
+            "id": "sweby1984",
+            "year": 1984,
+            "author": "Sweby, P. K.",
+            "title": "High Resolution Schemes Using Flux Limiters for Hyperbolic Conservation Laws",
+            "journal": "SIAM Journal on Numerical Analysis",
+            "volume": "21",
+            "pages": "995--1011",
+            "doi": "10.1137/0721062",
+            "source": "https://epubs.siam.org/doi/10.1137/0721062",
+            "type": "article",
+            "role": "reconstruction-and-limiter-background",
+            "review_level": "existing-atlas-publisher-record-and-abstract",
+            "review": {
+              "ja": "既存アトラスの書誌参照。制限線形再構築とlimiterの背景として引用し、原論文の全アルゴリズムや一般の幾何源付き零圧Eulerに対する正値性定理を再現したとは主張しません。",
+              "en": "Existing Atlas bibliography record. Background for limited linear reconstruction and limiters, not a claim to reproduce the full original algorithm or a general positivity theorem for geometric-source zero-pressure Euler."
+            }
+          },
+          {
+            "id": "mignone2014curvilinear",
+            "type": "article",
+            "author": "Mignone, Andrea",
+            "year": 2014,
+            "title": "High-order conservative reconstruction schemes for finite volume methods in cylindrical and spherical coordinates",
+            "journal": "Journal of Computational Physics",
+            "doi": "10.1016/j.jcp.2014.04.001",
+            "source": "https://arxiv.org/abs/1404.0537",
+            "review_level": "original-arxiv-selected-sections-2.2-3.1-4.2",
+            "note": "Original arXiv sections on volume centroids, conservative linear reconstruction and source integration checked. Cited for coordinate-aware reconstruction; the Atlas uses its own restricted minmod/Rusanov/Heun implementation and numerical-stress source, without claiming the full paper scheme or global second-order accuracy.",
+            "origin": "atlas-benchmark-references",
+            "review": {
+              "ja": "原著arXivの§2.2・3.1・4.2を選択確認。体積重心と保存的な線形再構築・幾何源積分の背景です。本実装は限定したminmod/Rusanov/Heunと独自の数値応力源を使い、論文全体の方式の再現とは区別します。",
+              "en": "Selected original arXiv sections 2.2, 3.1 and 4.2 checked for volume centroids, conservative linear reconstruction and source integration. The restricted minmod/Rusanov/Heun and numerical-stress source are Atlas choices, distinct from reproducing the full paper scheme."
+            }
+          }
+        ],
+        "additional_figures": [
+          {
+            "file": "noh-shock-errors.png",
+            "caption": {
+              "ja": "3つの対称性の原点過熱・符号付き密度誤差・全域L1/L2/L∞。原点と衝撃を含む全域誤差を保持します。",
+              "en": "Origin heating, signed density error and whole-domain L1/L2/Linf for all three symmetries. Full-domain norms retain the origin and shock."
+            }
+          },
+          {
+            "file": "noh-spherical-budget.png",
+            "caption": {
+              "ja": "球対称の離散保存収支と解析総量との差、境界時間求積のΣdt³予測、原点を含むcore誤差を分けた診断。",
+              "en": "Spherical diagnostics separate discrete budgets, differences from analytic totals, the sum(dt^3) boundary-quadrature prediction and origin-inclusive core error."
+            }
+          }
+        ],
+        "measured": {
+          "id": "noh-shock",
+          "passed": true,
+          "metrics": {
+            "planar_density_l1_finest": 0.006389021550074538,
+            "planar_density_l2_finest": 0.035622324219688015,
+            "planar_density_linf_finest": 0.2913310649697939,
+            "planar_density_l1_order_finest": 1.088972053769089,
+            "planar_shock_error_finest": 0.0006243356111319265,
+            "planar_center_max_sie_relative_excess_finest": 0.025776017620378955,
+            "planar_core_density_l1_finest": 0.006592233446323422,
+            "planar_radial_momentum_balance_relative_finest": 1.2490009027033014e-16,
+            "planar_mass_temporal_bias_residual_relative_finest": 6.938893903907228e-16,
+            "planar_energy_temporal_bias_residual_relative_finest": 6.938893903907228e-16,
+            "planar_reconstruction_theta_reduced_stage_cells_finest": 0,
+            "planar_reconstruction_theta_zero_stage_cells_finest": 0,
+            "planar_reconstruction_theta_min_finest": 1.0,
+            "cylindrical_density_l1_finest": 0.01868269537157265,
+            "cylindrical_density_l2_finest": 0.10813806869356997,
+            "cylindrical_density_linf_finest": 0.5794791984687887,
+            "cylindrical_density_l1_order_finest": 0.9603991144824785,
+            "cylindrical_shock_error_finest": 0.004146970746716938,
+            "cylindrical_center_max_sie_relative_excess_finest": 0.08161167421978366,
+            "cylindrical_core_density_l1_finest": 0.04533233801997577,
+            "cylindrical_radial_momentum_balance_relative_finest": 4.77048955893622e-16,
+            "cylindrical_mass_temporal_bias_residual_relative_finest": 0.0,
+            "cylindrical_energy_temporal_bias_residual_relative_finest": 0.0,
+            "cylindrical_reconstruction_theta_reduced_stage_cells_finest": 0,
+            "cylindrical_reconstruction_theta_zero_stage_cells_finest": 0,
+            "cylindrical_reconstruction_theta_min_finest": 1.0,
+            "spherical_density_l1_finest": 0.011434288260693065,
+            "spherical_density_l2_finest": 0.12865133541762314,
+            "spherical_density_linf_finest": 0.6509628676271373,
+            "spherical_density_l1_order_finest": 0.9289091507144915,
+            "spherical_shock_error_finest": 0.003883913585905091,
+            "spherical_center_max_sie_relative_excess_finest": 0.205922730533584,
+            "spherical_core_density_l1_finest": 0.05495030379369082,
+            "spherical_radial_momentum_balance_relative_finest": 4.3706899842577265e-16,
+            "spherical_mass_temporal_bias_residual_relative_finest": 6.154895124725433e-16,
+            "spherical_energy_temporal_bias_residual_relative_finest": 6.154895124725433e-16,
+            "spherical_reconstruction_theta_reduced_stage_cells_finest": 1968,
+            "spherical_reconstruction_theta_zero_stage_cells_finest": 0,
+            "spherical_reconstruction_theta_min_finest": 3.415046023746981e-13
+          },
+          "checks": {
+            "all_runs_reach_final_time": true,
+            "planar-n64: finite positive density": true,
+            "planar-n64: pressure within roundoff": true,
+            "planar-n64: no state floors": true,
+            "planar-n64: mass_balance_relative": true,
+            "planar-n64: energy_balance_relative": true,
+            "planar-n128: finite positive density": true,
+            "planar-n128: pressure within roundoff": true,
+            "planar-n128: no state floors": true,
+            "planar-n128: mass_balance_relative": true,
+            "planar-n128: energy_balance_relative": true,
+            "planar-n256: finite positive density": true,
+            "planar-n256: pressure within roundoff": true,
+            "planar-n256: no state floors": true,
+            "planar-n256: mass_balance_relative": true,
+            "planar-n256: energy_balance_relative": true,
+            "planar-n512: finite positive density": true,
+            "planar-n512: pressure within roundoff": true,
+            "planar-n512: no state floors": true,
+            "planar-n512: mass_balance_relative": true,
+            "planar-n512: energy_balance_relative": true,
+            "cylindrical-n64: finite positive density": true,
+            "cylindrical-n64: pressure within roundoff": true,
+            "cylindrical-n64: no state floors": true,
+            "cylindrical-n64: mass_balance_relative": true,
+            "cylindrical-n64: energy_balance_relative": true,
+            "cylindrical-n128: finite positive density": true,
+            "cylindrical-n128: pressure within roundoff": true,
+            "cylindrical-n128: no state floors": true,
+            "cylindrical-n128: mass_balance_relative": true,
+            "cylindrical-n128: energy_balance_relative": true,
+            "cylindrical-n256: finite positive density": true,
+            "cylindrical-n256: pressure within roundoff": true,
+            "cylindrical-n256: no state floors": true,
+            "cylindrical-n256: mass_balance_relative": true,
+            "cylindrical-n256: energy_balance_relative": true,
+            "cylindrical-n512: finite positive density": true,
+            "cylindrical-n512: pressure within roundoff": true,
+            "cylindrical-n512: no state floors": true,
+            "cylindrical-n512: mass_balance_relative": true,
+            "cylindrical-n512: energy_balance_relative": true,
+            "spherical-n64: finite positive density": true,
+            "spherical-n64: pressure within roundoff": true,
+            "spherical-n64: no state floors": true,
+            "spherical-n64: mass_balance_relative": true,
+            "spherical-n64: energy_balance_relative": true,
+            "spherical-n128: finite positive density": true,
+            "spherical-n128: pressure within roundoff": true,
+            "spherical-n128: no state floors": true,
+            "spherical-n128: mass_balance_relative": true,
+            "spherical-n128: energy_balance_relative": true,
+            "spherical-n256: finite positive density": true,
+            "spherical-n256: pressure within roundoff": true,
+            "spherical-n256: no state floors": true,
+            "spherical-n256: mass_balance_relative": true,
+            "spherical-n256: energy_balance_relative": true,
+            "spherical-n512: finite positive density": true,
+            "spherical-n512: pressure within roundoff": true,
+            "spherical-n512: no state floors": true,
+            "spherical-n512: mass_balance_relative": true,
+            "spherical-n512: energy_balance_relative": true,
+            "planar: finest density_l1": true,
+            "planar: finest shock_error_in_dx": true,
+            "planar: finest plateau_density_relative_error": true,
+            "planar: finest plateau_pressure_relative_error": true,
+            "planar: finest mass_vs_analytic_relative": true,
+            "planar: finest energy_vs_analytic_relative": true,
+            "planar: density L1 decreases": true,
+            "planar: last-pair L1 order": true,
+            "planar: unmasked center heating reported": true,
+            "cylindrical: finest density_l1": true,
+            "cylindrical: finest shock_error_in_dx": true,
+            "cylindrical: finest plateau_density_relative_error": true,
+            "cylindrical: finest plateau_pressure_relative_error": true,
+            "cylindrical: finest mass_vs_analytic_relative": true,
+            "cylindrical: finest energy_vs_analytic_relative": true,
+            "cylindrical: density L1 decreases": true,
+            "cylindrical: last-pair L1 order": true,
+            "cylindrical: unmasked center heating reported": true,
+            "spherical: finest density_l1": true,
+            "spherical: finest shock_error_in_dx": true,
+            "spherical: finest plateau_density_relative_error": true,
+            "spherical: finest plateau_pressure_relative_error": true,
+            "spherical: finest mass_vs_analytic_relative": true,
+            "spherical: finest energy_vs_analytic_relative": true,
+            "spherical: density L1 decreases": true,
+            "spherical: last-pair L1 order": true,
+            "spherical: unmasked center heating reported": true,
+            "spherical-n64: radial momentum balance relative": true,
+            "spherical-n64: mass temporal bias identity relative": true,
+            "spherical-n64: energy temporal bias identity relative": true,
+            "spherical-n64: finite center diagnostics": true,
+            "spherical-n128: radial momentum balance relative": true,
+            "spherical-n128: mass temporal bias identity relative": true,
+            "spherical-n128: energy temporal bias identity relative": true,
+            "spherical-n128: finite center diagnostics": true,
+            "spherical-n256: radial momentum balance relative": true,
+            "spherical-n256: mass temporal bias identity relative": true,
+            "spherical-n256: energy temporal bias identity relative": true,
+            "spherical-n256: finite center diagnostics": true,
+            "spherical-n512: radial momentum balance relative": true,
+            "spherical-n512: mass temporal bias identity relative": true,
+            "spherical-n512: energy temporal bias identity relative": true,
+            "spherical-n512: finite center diagnostics": true,
+            "spherical: finest core density_l1 (origin included)": true
+          },
+          "check_details": [
+            {
+              "name": "all_runs_reach_final_time",
+              "passed": true,
+              "value": null,
+              "bound": null
+            },
+            {
+              "name": "planar-n64: finite positive density",
+              "passed": true,
+              "value": 1.0,
+              "bound": 0
+            },
+            {
+              "name": "planar-n64: pressure within roundoff",
+              "passed": true,
+              "value": -6.9999999520844165,
+              "bound": -64.0
+            },
+            {
+              "name": "planar-n64: no state floors",
+              "passed": true,
+              "value": 0,
+              "bound": 0
+            },
+            {
+              "name": "planar-n64: mass_balance_relative",
+              "passed": true,
+              "value": 2.081668171172169e-16,
+              "bound": 2e-12
+            },
+            {
+              "name": "planar-n64: energy_balance_relative",
+              "passed": true,
+              "value": 2.081668171172169e-16,
+              "bound": 2e-12
+            },
+            {
+              "name": "planar-n128: finite positive density",
+              "passed": true,
+              "value": 1.0,
+              "bound": 0
+            },
+            {
+              "name": "planar-n128: pressure within roundoff",
+              "passed": true,
+              "value": -6.9999999520844165,
+              "bound": -64.0
+            },
+            {
+              "name": "planar-n128: no state floors",
+              "passed": true,
+              "value": 0,
+              "bound": 0
+            },
+            {
+              "name": "planar-n128: mass_balance_relative",
+              "passed": true,
+              "value": 6.938893903907228e-17,
+              "bound": 2e-12
+            },
+            {
+              "name": "planar-n128: energy_balance_relative",
+              "passed": true,
+              "value": 6.938893903907228e-17,
+              "bound": 2e-12
+            },
+            {
+              "name": "planar-n256: finite positive density",
+              "passed": true,
+              "value": 1.0,
+              "bound": 0
+            },
+            {
+              "name": "planar-n256: pressure within roundoff",
+              "passed": true,
+              "value": -7.9999999854634485,
+              "bound": -64.0
+            },
+            {
+              "name": "planar-n256: no state floors",
+              "passed": true,
+              "value": 0,
+              "bound": 0
+            },
+            {
+              "name": "planar-n256: mass_balance_relative",
+              "passed": true,
+              "value": 6.938893903907228e-17,
+              "bound": 2e-12
+            },
+            {
+              "name": "planar-n256: energy_balance_relative",
+              "passed": true,
+              "value": 2.081668171172168e-16,
+              "bound": 2e-12
+            },
+            {
+              "name": "planar-n512: finite positive density",
+              "passed": true,
+              "value": 1.0,
+              "bound": 0
+            },
+            {
+              "name": "planar-n512: pressure within roundoff",
+              "passed": true,
+              "value": -7.9999999854634485,
+              "bound": -64.0
+            },
+            {
+              "name": "planar-n512: no state floors",
+              "passed": true,
+              "value": 0,
+              "bound": 0
+            },
+            {
+              "name": "planar-n512: mass_balance_relative",
+              "passed": true,
+              "value": 7.632783294297945e-16,
+              "bound": 2e-12
+            },
+            {
+              "name": "planar-n512: energy_balance_relative",
+              "passed": true,
+              "value": 7.632783294297945e-16,
+              "bound": 2e-12
+            },
+            {
+              "name": "cylindrical-n64: finite positive density",
+              "passed": true,
+              "value": 1.0,
+              "bound": 0
+            },
+            {
+              "name": "cylindrical-n64: pressure within roundoff",
+              "passed": true,
+              "value": -2.9642498522277614,
+              "bound": -64.0
+            },
+            {
+              "name": "cylindrical-n64: no state floors",
+              "passed": true,
+              "value": 0,
+              "bound": 0
+            },
+            {
+              "name": "cylindrical-n64: mass_balance_relative",
+              "passed": true,
+              "value": 0.0,
+              "bound": 2e-12
+            },
+            {
+              "name": "cylindrical-n64: energy_balance_relative",
+              "passed": true,
+              "value": 0.0,
+              "bound": 2e-12
+            },
+            {
+              "name": "cylindrical-n128: finite positive density",
+              "passed": true,
+              "value": 1.0,
+              "bound": 0
+            },
+            {
+              "name": "cylindrical-n128: pressure within roundoff",
+              "passed": true,
+              "value": -3.734762204069096,
+              "bound": -64.0
+            },
+            {
+              "name": "cylindrical-n128: no state floors",
+              "passed": true,
+              "value": 0,
+              "bound": 0
+            },
+            {
+              "name": "cylindrical-n128: mass_balance_relative",
+              "passed": true,
+              "value": 4.3368086899420133e-16,
+              "bound": 2e-12
+            },
+            {
+              "name": "cylindrical-n128: energy_balance_relative",
+              "passed": true,
+              "value": 4.3368086899420133e-16,
+              "bound": 2e-12
+            },
+            {
+              "name": "cylindrical-n256: finite positive density",
+              "passed": true,
+              "value": 1.0,
+              "bound": 0
+            },
+            {
+              "name": "cylindrical-n256: pressure within roundoff",
+              "passed": true,
+              "value": -3.734762204069096,
+              "bound": -64.0
+            },
+            {
+              "name": "cylindrical-n256: no state floors",
+              "passed": true,
+              "value": 0,
+              "bound": 0
+            },
+            {
+              "name": "cylindrical-n256: mass_balance_relative",
+              "passed": true,
+              "value": 3.4694469519536083e-16,
+              "bound": 2e-12
+            },
+            {
+              "name": "cylindrical-n256: energy_balance_relative",
+              "passed": true,
+              "value": 1.7347234759768036e-16,
+              "bound": 2e-12
+            },
+            {
+              "name": "cylindrical-n512: finite positive density",
+              "passed": true,
+              "value": 1.0,
+              "bound": 0
+            },
+            {
+              "name": "cylindrical-n512: pressure within roundoff",
+              "passed": true,
+              "value": -3.734762204069096,
+              "bound": -64.0
+            },
+            {
+              "name": "cylindrical-n512: no state floors",
+              "passed": true,
+              "value": 0,
+              "bound": 0
+            },
+            {
+              "name": "cylindrical-n512: mass_balance_relative",
+              "passed": true,
+              "value": 3.4694469519536137e-16,
+              "bound": 2e-12
+            },
+            {
+              "name": "cylindrical-n512: energy_balance_relative",
+              "passed": true,
+              "value": 3.4694469519536137e-16,
+              "bound": 2e-12
+            },
+            {
+              "name": "spherical-n64: finite positive density",
+              "passed": true,
+              "value": 1.0,
+              "bound": 0
+            },
+            {
+              "name": "spherical-n64: pressure within roundoff",
+              "passed": true,
+              "value": -2.016501641043114,
+              "bound": -64.0
+            },
+            {
+              "name": "spherical-n64: no state floors",
+              "passed": true,
+              "value": 0,
+              "bound": 0
+            },
+            {
+              "name": "spherical-n64: mass_balance_relative",
+              "passed": true,
+              "value": 3.2526055231713414e-16,
+              "bound": 2e-12
+            },
+            {
+              "name": "spherical-n64: energy_balance_relative",
+              "passed": true,
+              "value": 3.2526055231713414e-16,
+              "bound": 2e-12
+            },
+            {
+              "name": "spherical-n128: finite positive density",
+              "passed": true,
+              "value": 1.0,
+              "bound": 0
+            },
+            {
+              "name": "spherical-n128: pressure within roundoff",
+              "passed": true,
+              "value": -5.81779698060281,
+              "bound": -64.0
+            },
+            {
+              "name": "spherical-n128: no state floors",
+              "passed": true,
+              "value": 0,
+              "bound": 0
+            },
+            {
+              "name": "spherical-n128: mass_balance_relative",
+              "passed": true,
+              "value": 0.0,
+              "bound": 2e-12
+            },
+            {
+              "name": "spherical-n128: energy_balance_relative",
+              "passed": true,
+              "value": 0.0,
+              "bound": 2e-12
+            },
+            {
+              "name": "spherical-n256: finite positive density",
+              "passed": true,
+              "value": 1.0,
+              "bound": 0
+            },
+            {
+              "name": "spherical-n256: pressure within roundoff",
+              "passed": true,
+              "value": -5.065087181904945,
+              "bound": -64.0
+            },
+            {
+              "name": "spherical-n256: no state floors",
+              "passed": true,
+              "value": 0,
+              "bound": 0
+            },
+            {
+              "name": "spherical-n256: mass_balance_relative",
+              "passed": true,
+              "value": 1.301042579932574e-15,
+              "bound": 2e-12
+            },
+            {
+              "name": "spherical-n256: energy_balance_relative",
+              "passed": true,
+              "value": 1.301042579932574e-15,
+              "bound": 2e-12
+            },
+            {
+              "name": "spherical-n512: finite positive density",
+              "passed": true,
+              "value": 1.0,
+              "bound": 0
+            },
+            {
+              "name": "spherical-n512: pressure within roundoff",
+              "passed": true,
+              "value": -4.520887311344608,
+              "bound": -64.0
+            },
+            {
+              "name": "spherical-n512: no state floors",
+              "passed": true,
+              "value": 0,
+              "bound": 0
+            },
+            {
+              "name": "spherical-n512: mass_balance_relative",
+              "passed": true,
+              "value": 8.131516249781814e-16,
+              "bound": 2e-12
+            },
+            {
+              "name": "spherical-n512: energy_balance_relative",
+              "passed": true,
+              "value": 8.131516249781814e-16,
+              "bound": 2e-12
+            },
+            {
+              "name": "planar: finest density_l1",
+              "passed": true,
+              "value": 0.006389021550074538,
+              "bound": 0.12
+            },
+            {
+              "name": "planar: finest shock_error_in_dx",
+              "passed": true,
+              "value": 0.31965983289954636,
+              "bound": 3.0
+            },
+            {
+              "name": "planar: finest plateau_density_relative_error",
+              "passed": true,
+              "value": 0.0008299724488419757,
+              "bound": 0.1
+            },
+            {
+              "name": "planar: finest plateau_pressure_relative_error",
+              "passed": true,
+              "value": 3.100081590212689e-06,
+              "bound": 0.1
+            },
+            {
+              "name": "planar: finest mass_vs_analytic_relative",
+              "passed": true,
+              "value": 6.661338147750939e-16,
+              "bound": 2e-05
+            },
+            {
+              "name": "planar: finest energy_vs_analytic_relative",
+              "passed": true,
+              "value": 6.661338147750939e-16,
+              "bound": 2e-05
+            },
+            {
+              "name": "planar: density L1 decreases",
+              "passed": true,
+              "value": [
+                0.051784761372760495,
+                0.024096012366673462,
+                0.013590880867475546,
+                0.006389021550074538
+              ],
+              "bound": null
+            },
+            {
+              "name": "planar: last-pair L1 order",
+              "passed": true,
+              "value": 1.088972053769089,
+              "bound": 0.35
+            },
+            {
+              "name": "planar: unmasked center heating reported",
+              "passed": true,
+              "value": null,
+              "bound": null
+            },
+            {
+              "name": "cylindrical: finest density_l1",
+              "passed": true,
+              "value": 0.01868269537157265,
+              "bound": 0.12
+            },
+            {
+              "name": "cylindrical: finest shock_error_in_dx",
+              "passed": true,
+              "value": 2.1232490223190723,
+              "bound": 3.0
+            },
+            {
+              "name": "cylindrical: finest plateau_density_relative_error",
+              "passed": true,
+              "value": 0.040142796410122084,
+              "bound": 0.1
+            },
+            {
+              "name": "cylindrical: finest plateau_pressure_relative_error",
+              "passed": true,
+              "value": 0.027443384425929862,
+              "bound": 0.1
+            },
+            {
+              "name": "cylindrical: finest mass_vs_analytic_relative",
+              "passed": true,
+              "value": 0.0,
+              "bound": 2e-05
+            },
+            {
+              "name": "cylindrical: finest energy_vs_analytic_relative",
+              "passed": true,
+              "value": 0.0,
+              "bound": 2e-05
+            },
+            {
+              "name": "cylindrical: density L1 decreases",
+              "passed": true,
+              "value": [
+                0.11453468784784018,
+                0.065993093319001,
+                0.03635368784614136,
+                0.01868269537157265
+              ],
+              "bound": null
+            },
+            {
+              "name": "cylindrical: last-pair L1 order",
+              "passed": true,
+              "value": 0.9603991144824785,
+              "bound": 0.35
+            },
+            {
+              "name": "cylindrical: unmasked center heating reported",
+              "passed": true,
+              "value": null,
+              "bound": null
+            },
+            {
+              "name": "spherical: finest density_l1",
+              "passed": true,
+              "value": 0.011434288260693065,
+              "bound": 0.12
+            },
+            {
+              "name": "spherical: finest shock_error_in_dx",
+              "passed": true,
+              "value": 1.9885637559834066,
+              "bound": 3.0
+            },
+            {
+              "name": "spherical: finest plateau_density_relative_error",
+              "passed": true,
+              "value": 0.0525327590988689,
+              "bound": 0.1
+            },
+            {
+              "name": "spherical: finest plateau_pressure_relative_error",
+              "passed": true,
+              "value": 0.03909215529844168,
+              "bound": 0.1
+            },
+            {
+              "name": "spherical: finest mass_vs_analytic_relative",
+              "passed": true,
+              "value": 5.3937623256672396e-09,
+              "bound": 2e-05
+            },
+            {
+              "name": "spherical: finest energy_vs_analytic_relative",
+              "passed": true,
+              "value": 5.3937623256672396e-09,
+              "bound": 2e-05
+            },
+            {
+              "name": "spherical: density L1 decreases",
+              "passed": true,
+              "value": [
+                0.06372131456995628,
+                0.03788054829018362,
+                0.021769008767570396,
+                0.011434288260693065
+              ],
+              "bound": null
+            },
+            {
+              "name": "spherical: last-pair L1 order",
+              "passed": true,
+              "value": 0.9289091507144915,
+              "bound": 0.35
+            },
+            {
+              "name": "spherical: unmasked center heating reported",
+              "passed": true,
+              "value": null,
+              "bound": null
+            },
+            {
+              "name": "spherical-n64: radial momentum balance relative",
+              "passed": true,
+              "value": 1.7279466841847752e-16,
+              "bound": 2e-12
+            },
+            {
+              "name": "spherical-n64: mass temporal bias identity relative",
+              "passed": true,
+              "value": 3.4741585727227153e-19,
+              "bound": 2e-12
+            },
+            {
+              "name": "spherical-n64: energy temporal bias identity relative",
+              "passed": true,
+              "value": 3.4741585727227153e-19,
+              "bound": 2e-12
+            },
+            {
+              "name": "spherical-n64: finite center diagnostics",
+              "passed": true,
+              "value": {
+                "center_max_specific_internal_energy": 0.6708535202875113,
+                "center_max_specific_internal_energy_ratio": 1.3417070405750227,
+                "center_min_density": 37.69480426460801,
+                "center_min_density_ratio": 0.5889813166345002,
+                "center_max_pressure": 16.85846142497399,
+                "center_max_pressure_ratio": 0.7902403792956556,
+                "center_first_cell": {
+                  "rho": 37.69480426460801,
+                  "pressure": 16.85846142497399,
+                  "specific_internal_energy": 0.6708535202875113,
+                  "rho_exact": 64.0,
+                  "pressure_exact": 21.333333333333336,
+                  "specific_internal_energy_exact": 0.5,
+                  "rho_ratio": 0.5889813166345002,
+                  "pressure_ratio": 0.7902403792956556,
+                  "specific_internal_energy_ratio": 1.3417070405750227
+                }
+              },
+              "bound": "all finite; no maximum-error convergence gate"
+            },
+            {
+              "name": "spherical-n128: radial momentum balance relative",
+              "passed": true,
+              "value": 1.3213712920557589e-16,
+              "bound": 2e-12
+            },
+            {
+              "name": "spherical-n128: mass temporal bias identity relative",
+              "passed": true,
+              "value": 5.807203783593541e-16,
+              "bound": 2e-12
+            },
+            {
+              "name": "spherical-n128: energy temporal bias identity relative",
+              "passed": true,
+              "value": 5.807203783593541e-16,
+              "bound": 2e-12
+            },
+            {
+              "name": "spherical-n128: finite center diagnostics",
+              "passed": true,
+              "value": {
+                "center_max_specific_internal_energy": 0.6464928307818312,
+                "center_max_specific_internal_energy_ratio": 1.2929856615636623,
+                "center_min_density": 43.0098203923572,
+                "center_min_density_ratio": 0.6720284436305812,
+                "center_max_pressure": 18.53702702458209,
+                "center_max_pressure_ratio": 0.8689231417772855,
+                "center_first_cell": {
+                  "rho": 43.0098203923572,
+                  "pressure": 18.53702702458209,
+                  "specific_internal_energy": 0.6464928307818312,
+                  "rho_exact": 64.0,
+                  "pressure_exact": 21.333333333333336,
+                  "specific_internal_energy_exact": 0.5,
+                  "rho_ratio": 0.6720284436305812,
+                  "pressure_ratio": 0.8689231417772855,
+                  "specific_internal_energy_ratio": 1.2929856615636623
+                }
+              },
+              "bound": "all finite; no maximum-error convergence gate"
+            },
+            {
+              "name": "spherical-n256: radial momentum balance relative",
+              "passed": true,
+              "value": 4.3706899169609947e-16,
+              "bound": 2e-12
+            },
+            {
+              "name": "spherical-n256: mass temporal bias identity relative",
+              "passed": true,
+              "value": 3.5033226265979265e-16,
+              "bound": 2e-12
+            },
+            {
+              "name": "spherical-n256: energy temporal bias identity relative",
+              "passed": true,
+              "value": 3.5033226265979265e-16,
+              "bound": 2e-12
+            },
+            {
+              "name": "spherical-n256: finite center diagnostics",
+              "passed": true,
+              "value": {
+                "center_max_specific_internal_energy": 0.6245096951667918,
+                "center_max_specific_internal_energy_ratio": 1.2490193903335836,
+                "center_min_density": 47.51790448663438,
+                "center_min_density_ratio": 0.7424672576036622,
+                "center_max_pressure": 19.78507684610758,
+                "center_max_pressure_ratio": 0.9274254771612926,
+                "center_first_cell": {
+                  "rho": 47.51790448663438,
+                  "pressure": 19.783594697275177,
+                  "specific_internal_energy": 0.6245096951667918,
+                  "rho_exact": 64.0,
+                  "pressure_exact": 21.333333333333336,
+                  "specific_internal_energy_exact": 0.5,
+                  "rho_ratio": 0.7424672576036622,
+                  "pressure_ratio": 0.9273560014347738,
+                  "specific_internal_energy_ratio": 1.2490193903335836
+                }
+              },
+              "bound": "all finite; no maximum-error convergence gate"
+            },
+            {
+              "name": "spherical-n512: radial momentum balance relative",
+              "passed": true,
+              "value": 4.3706899842577265e-16,
+              "bound": 2e-12
+            },
+            {
+              "name": "spherical-n512: mass temporal bias identity relative",
+              "passed": true,
+              "value": 6.154895124725433e-16,
+              "bound": 2e-12
+            },
+            {
+              "name": "spherical-n512: energy temporal bias identity relative",
+              "passed": true,
+              "value": 6.154895124725433e-16,
+              "bound": 2e-12
+            },
+            {
+              "name": "spherical-n512: finite center diagnostics",
+              "passed": true,
+              "value": {
+                "center_max_specific_internal_energy": 0.602961365266792,
+                "center_max_specific_internal_energy_ratio": 1.205922730533584,
+                "center_min_density": 51.03843900658354,
+                "center_min_density_ratio": 0.7974756094778678,
+                "center_max_pressure": 20.516508140858274,
+                "center_max_pressure_ratio": 0.9617113191027316,
+                "center_first_cell": {
+                  "rho": 51.03843900658354,
+                  "pressure": 20.51613790966367,
+                  "specific_internal_energy": 0.602961365266792,
+                  "rho_exact": 64.0,
+                  "pressure_exact": 21.333333333333336,
+                  "specific_internal_energy_exact": 0.5,
+                  "rho_ratio": 0.7974756094778678,
+                  "pressure_ratio": 0.9616939645154844,
+                  "specific_internal_energy_ratio": 1.205922730533584
+                }
+              },
+              "bound": "all finite; no maximum-error convergence gate"
+            },
+            {
+              "name": "spherical: finest core density_l1 (origin included)",
+              "passed": true,
+              "value": 0.05495030379369082,
+              "bound": 0.2
+            }
+          ],
+          "records": [
+            {
+              "geometry": "planar",
+              "n": 64,
+              "steps": 246,
+              "density_l1": 0.051784761372760495,
+              "density_l2": 0.11770132762533601,
+              "density_linf": 0.36630816683975775,
+              "shock_error_in_dx": 0.3299417315482387,
+              "plateau_density_amplification": 3.8430166673586648,
+              "plateau_pressure": 1.3313755803030487,
+              "center_max_sie_relative_excess": 0.08415476533562116,
+              "mass_balance_relative": 2.081668171172169e-16,
+              "energy_balance_relative": 2.081668171172169e-16
+            },
+            {
+              "geometry": "planar",
+              "n": 128,
+              "steps": 491,
+              "density_l1": 0.024096012366673462,
+              "density_l2": 0.0731725455633801,
+              "density_linf": 0.3261422617941202,
+              "shock_error_in_dx": 0.3128767508621415,
+              "plateau_density_amplification": 3.942716368781054,
+              "plateau_pressure": 1.3334673588589738,
+              "center_max_sie_relative_excess": 0.055896246833455177,
+              "mass_balance_relative": 6.938893903907228e-17,
+              "energy_balance_relative": 6.938893903907228e-17
+            },
+            {
+              "geometry": "planar",
+              "n": 256,
+              "steps": 979,
+              "density_l1": 0.013590880867475546,
+              "density_l2": 0.05604548645255093,
+              "density_linf": 0.28385235698044675,
+              "shock_error_in_dx": 0.3145120623903921,
+              "plateau_density_amplification": 3.982869747863899,
+              "plateau_pressure": 1.333349555783057,
+              "center_max_sie_relative_excess": 0.03760874346634546,
+              "mass_balance_relative": 6.938893903907228e-17,
+              "energy_balance_relative": 2.081668171172168e-16
+            },
+            {
+              "geometry": "planar",
+              "n": 512,
+              "steps": 1956,
+              "density_l1": 0.006389021550074538,
+              "density_l2": 0.035622324219688015,
+              "density_linf": 0.2913310649697939,
+              "shock_error_in_dx": 0.31965983289954636,
+              "plateau_density_amplification": 3.996680110204632,
+              "plateau_pressure": 1.3333291998912131,
+              "center_max_sie_relative_excess": 0.025776017620378955,
+              "mass_balance_relative": 7.632783294297945e-16,
+              "energy_balance_relative": 7.632783294297945e-16
+            },
+            {
+              "geometry": "cylindrical",
+              "n": 64,
+              "steps": 250,
+              "density_l1": 0.11453468784784018,
+              "density_l2": 0.3023657799600322,
+              "density_linf": 0.4594047057312892,
+              "shock_error_in_dx": 1.5025784436400311,
+              "plateau_density_amplification": 11.78220886459282,
+              "plateau_pressure": 4.422737361461817,
+              "center_max_sie_relative_excess": 0.19846832850256524,
+              "mass_balance_relative": 0.0,
+              "energy_balance_relative": 0.0
+            },
+            {
+              "geometry": "cylindrical",
+              "n": 128,
+              "steps": 495,
+              "density_l1": 0.065993093319001,
+              "density_l2": 0.21524305158495197,
+              "density_linf": 0.5281380987541245,
+              "shock_error_in_dx": 1.8565383248552259,
+              "plateau_density_amplification": 13.541369654489902,
+              "plateau_pressure": 4.811172851533026,
+              "center_max_sie_relative_excess": 0.15094615448671878,
+              "mass_balance_relative": 4.3368086899420133e-16,
+              "energy_balance_relative": 4.3368086899420133e-16
+            },
+            {
+              "geometry": "cylindrical",
+              "n": 256,
+              "steps": 985,
+              "density_l1": 0.03635368784614136,
+              "density_l2": 0.15677660931999998,
+              "density_linf": 0.528754896745749,
+              "shock_error_in_dx": 2.0210035067047585,
+              "plateau_density_amplification": 14.708198248389266,
+              "plateau_pressure": 5.0521653431377995,
+              "center_max_sie_relative_excess": 0.11186807572325064,
+              "mass_balance_relative": 3.4694469519536083e-16,
+              "energy_balance_relative": 1.7347234759768036e-16
+            },
+            {
+              "geometry": "cylindrical",
+              "n": 512,
+              "steps": 1963,
+              "density_l1": 0.01868269537157265,
+              "density_l2": 0.10813806869356997,
+              "density_linf": 0.5794791984687887,
+              "shock_error_in_dx": 2.1232490223190723,
+              "plateau_density_amplification": 15.357715257438047,
+              "plateau_pressure": 5.186968616395041,
+              "center_max_sie_relative_excess": 0.08161167421978366,
+              "mass_balance_relative": 3.4694469519536137e-16,
+              "energy_balance_relative": 3.4694469519536137e-16
+            },
+            {
+              "geometry": "spherical",
+              "n": 64,
+              "steps": 296,
+              "density_l1": 0.06372131456995628,
+              "density_l2": 0.33533610753001597,
+              "density_linf": 0.4879562668498812,
+              "shock_error_in_dx": 1.3657820653455186,
+              "plateau_density_amplification": 43.739156068417415,
+              "plateau_pressure": 16.462480289660334,
+              "center_max_sie_relative_excess": 0.34170704057502266,
+              "mass_balance_relative": 3.2526055231713414e-16,
+              "energy_balance_relative": 3.2526055231713414e-16,
+              "dt_cubed_sum": 2.5042028810624156e-06,
+              "core_density_l1": 0.3256631488765628,
+              "radial_momentum_balance_relative": 1.7279466841847752e-16,
+              "mass_temporal_bias_residual_relative": 3.4741585727227153e-19,
+              "energy_temporal_bias_residual_relative": 3.4741585727227153e-19,
+              "reconstruction_theta_reduced_stage_cells": 313,
+              "reconstruction_theta_zero_stage_cells": 0,
+              "reconstruction_theta_min": 3.415046023746981e-13
+            },
+            {
+              "geometry": "spherical",
+              "n": 128,
+              "steps": 577,
+              "density_l1": 0.03788054829018362,
+              "density_l2": 0.2442462875999278,
+              "density_linf": 0.5731912765825762,
+              "shock_error_in_dx": 1.6961924373586896,
+              "plateau_density_amplification": 52.172976773925015,
+              "plateau_pressure": 18.47875306258749,
+              "center_max_sie_relative_excess": 0.29298566156366235,
+              "mass_balance_relative": 0.0,
+              "energy_balance_relative": 0.0,
+              "dt_cubed_sum": 6.550577474728315e-07,
+              "core_density_l1": 0.19145268602144502,
+              "radial_momentum_balance_relative": 1.3213712920557589e-16,
+              "mass_temporal_bias_residual_relative": 5.807203783593541e-16,
+              "energy_temporal_bias_residual_relative": 5.807203783593541e-16,
+              "reconstruction_theta_reduced_stage_cells": 589,
+              "reconstruction_theta_zero_stage_cells": 0,
+              "reconstruction_theta_min": 3.415046023746981e-13
+            },
+            {
+              "geometry": "spherical",
+              "n": 256,
+              "steps": 1130,
+              "density_l1": 0.021769008767570396,
+              "density_l2": 0.18293632120192402,
+              "density_linf": 0.5757953795140922,
+              "shock_error_in_dx": 1.8721878737543989,
+              "plateau_density_amplification": 57.56577172858118,
+              "plateau_pressure": 19.757588956793334,
+              "center_max_sie_relative_excess": 0.24901939033358356,
+              "mass_balance_relative": 1.301042579932574e-15,
+              "energy_balance_relative": 1.301042579932574e-15,
+              "dt_cubed_sum": 1.7032021372709778e-07,
+              "core_density_l1": 0.10460742311949278,
+              "radial_momentum_balance_relative": 4.3706899169609947e-16,
+              "mass_temporal_bias_residual_relative": 3.5033226265979265e-16,
+              "energy_temporal_bias_residual_relative": 3.5033226265979265e-16,
+              "reconstruction_theta_reduced_stage_cells": 1083,
+              "reconstruction_theta_zero_stage_cells": 0,
+              "reconstruction_theta_min": 3.415046023746981e-13
+            },
+            {
+              "geometry": "spherical",
+              "n": 512,
+              "steps": 2216,
+              "density_l1": 0.011434288260693065,
+              "density_l2": 0.12865133541762314,
+              "density_linf": 0.6509628676271373,
+              "shock_error_in_dx": 1.9885637559834066,
+              "plateau_density_amplification": 60.63790341767239,
+              "plateau_pressure": 20.499367353633247,
+              "center_max_sie_relative_excess": 0.205922730533584,
+              "mass_balance_relative": 8.131516249781814e-16,
+              "energy_balance_relative": 8.131516249781814e-16,
+              "dt_cubed_sum": 4.418569672203109e-08,
+              "core_density_l1": 0.05495030379369082,
+              "radial_momentum_balance_relative": 4.3706899842577265e-16,
+              "mass_temporal_bias_residual_relative": 6.154895124725433e-16,
+              "energy_temporal_bias_residual_relative": 6.154895124725433e-16,
+              "reconstruction_theta_reduced_stage_cells": 1968,
+              "reconstruction_theta_zero_stage_cells": 0,
+              "reconstruction_theta_min": 3.415046023746981e-13
+            }
+          ],
+          "scope": "1D planar, 1D cylindrical-radial and 1D spherical-radial symmetry only; no Cartesian 2D/3D Euler calculation",
+          "detail": "results.json",
+          "input_sha256": "a7bf3b2e869a43b49a626f5c1e522ddfaa86ed4a3518f1713d0c4b4c5876b143"
+        },
+        "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-shock/",
+        "reading": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh/#noh-shock",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh/#noh-shock"
+        }
+      }
+    ]
+  },
+  "depth_previous_status": "educational-example",
+  "depth_scope": {
+    "ja": "このNoh配布の球対称系列で、保存量のMUSCL型再構築の傾きをminmodで制限します。平面・円筒は区分定数のままです。",
+    "en": "Minmod limits conserved-variable MUSCL slopes in this Noh edition's spherical series. Planar/cylindrical runs retain piecewise-constant states."
+  },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/minmod/",
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/minmod/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/minmod/index.md",
   "code_urls": [
     "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/limiters.py",
     "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/tvd.py",
-    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/solvers.py"
+    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/solvers.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/noh_solver.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/noh_reference.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/generate_exactpack_reference.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/plot_noh.py"
   ],
   "test_urls": [
-    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_limiters.py"
+    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_limiters.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/test_noh.py"
   ],
   "run_commands": [
     "python -m pytest -q tests/test_limiters.py"
@@ -69,7 +1358,17 @@
   "run_from": "Extracted code edition directory",
   "code_base": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/",
   "code_edition": "2026-11-21",
-  "execution_examples": [],
+  "execution_examples": [
+    {
+      "id": "noh-shock",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-shock/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-shock/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    }
+  ],
   "problem_navigation": {
     "method_id": "minmod",
     "status": "educational-example",
@@ -155,7 +1454,8 @@
         "problem_ids": [
           "nasa-wedge",
           "forward-step",
-          "entropy-2d"
+          "entropy-2d",
+          "noh"
         ],
         "url": {
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja",
@@ -523,6 +1823,68 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/entropy-2d/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/entropy-2d/?lang=en#references-en"
         }
+      },
+      {
+        "id": "noh",
+        "name": {
+          "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒・球対称計算",
+          "en": "Noh shocks: zero-pressure planar, cylindrical and spherical flow"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/results/noh-shock-preview.png",
+          "sha256": "993fea822153b052ba707787525853884a84e327b420462a442d05781c2ed331",
+          "width": 832,
+          "height": 494,
+          "caption": {
+            "ja": "内向き流入から外向きに進むNoh衝撃波。球対称1Dの密度セル平均を中心断面として表示し、厳密セル平均と比較します。Cartesianの3D計算ではありません。γ=5/3、初期圧力ゼロ、512セル、t=0.6。",
+            "en": "Inward flow generates an outward Noh shock. A central section of spherical 1D density cell means is compared with exact cell means. This is not a Cartesian 3D calculation. Gamma=5/3, zero initial pressure, 512 cells, t=0.6."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "noh-shock",
+            "kind": "supplement",
+            "name": {
+              "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒・球対称計算",
+              "en": "Noh shocks: zero-pressure planar, cylindrical and spherical flow"
+            },
+            "scope": {
+              "ja": "初期圧力ゼロのNoh問題を、独自の小型1D有限体積コードで平面・円筒・球対称に計算します。64/128/256/512格子の全域誤差、原点過熱、衝撃位置、保存収支を測り、球で現れる境界流入の時間積分誤差を解析式と照合します。",
+              "en": "An original small 1D finite-volume code solves zero-pressure Noh flow in planar, cylindrical and spherical symmetry. Grids 64/128/256/512 measure full-domain error, origin heating, shock location and budgets, and compare spherical boundary-inflow time-quadrature error with its analytic identity."
+            },
+            "method_ids": [
+              "rusanov",
+              "heun",
+              "muscl",
+              "minmod"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-shock/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-shock/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/atlas-noh-2026-11-23-r5.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "全系列でRusanov流束とHeunを使います。平面・円筒は区分定数、球だけ体積重心でのMUSCL/minmodと線形面応力の球殻求積を使用し、同じ105条件で不合格の定数再構築2系列とも比較します。",
+          "en": "All series use Rusanov flux and Heun. Planar/cylindrical reconstruction is piecewise constant; spherical runs use volume-centroid MUSCL/minmod and radial quadrature of face-linear stress, compared with two failed constant-reconstruction baselines under the same 105 gates."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=en#references-en"
+        }
       }
     ],
     "references": [
@@ -799,6 +2161,40 @@
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/entropy-2d/?lang=en#references-en"
         },
         "cases": []
+      },
+      {
+        "problem_id": "noh",
+        "problem_name": {
+          "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒・球対称計算",
+          "en": "Noh shocks: zero-pressure planar, cylindrical and spherical flow"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "noh",
+            "title": {
+              "ja": "Nohの冷たい流入衝撃波：平面・円筒・球対称",
+              "en": "Noh cold-inflow shock: planar, cylindrical and spherical symmetry"
+            },
+            "kind": "analytic",
+            "relation": "same-problem",
+            "note": {
+              "ja": "同じ初期圧力ゼロのNoh問題の連続厳密解です。初期密度からの増幅4^dと、衝撃波そのものの密度比4を区別します。有限体積の比較は保存量の厳密体積平均を使い、p(平均U)と平均pを別に示します。",
+              "en": "The continuous exact solution of this same zero-pressure Noh problem. Distinguish initial-density amplification4^d from the across-shock ratio4. Finite-volume errors use exact conserved-volume averages, with p(mean U) distinct from mean p."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-noh-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-noh-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/noh-shock/?lang=ja#noh-shock-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/noh-shock/?lang=en#noh-shock-en-measurements"
+            }
+          }
+        ]
       }
     ]
   }

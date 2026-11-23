@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "maximum_total_seconds": 60.0,
+  "scope": "True cold p0=0; one-dimensional planar, cylindrical-radial and spherical-radial finite volumes. No Cartesian 2D/3D calculation. The original base acceptance is unchanged; separately frozen spherical diagnostics are additive.",
+  "cases": {
+    "noh-shock": {
+      "schema_version": 1,
+      "case_id": "noh-shock",
+      "gamma": 1.6666666666666667,
+      "rho0": 1.0,
+      "u0": -1.0,
+      "p0": 0.0,
+      "r_max": 1.0,
+      "final_time": 0.6,
+      "geometries": [
+        "planar",
+        "cylindrical",
+        "spherical"
+      ],
+      "grids": [
+        64,
+        128,
+        256,
+        512
+      ],
+      "cfl": 0.35,
+      "flux": "local-lax-friedrichs",
+      "reconstruction": "piecewise-constant",
+      "time_integrator": "SSPRK2",
+      "origin": "reflecting parity; cylindrical and spherical origin faces have zero area",
+      "outer_boundary": "time-dependent analytic cold inflow evaluated at boundary face",
+      "state_floor": null,
+      "geometric_source": "interfacial Rusanov normal stress F_mom-u_face*F_mass, with geometric stress integral selected explicitly by stress_quadrature_by_geometry",
+      "volume_measure": "r^(d-1)dr, angular factor omitted consistently",
+      "spatial_claim": "1D planar, 1D cylindrical-radial and 1D spherical-radial symmetry only; no Cartesian 2D/3D Euler calculation",
+      "solver_revision": "04-conservative-muscl-minmod-option",
+      "retained_failed_attempt": "attempts/attempt-01-cell-pressure/results/results.json",
+      "diagnostics_revision": "spherical-r4-03-shared-theta",
+      "stress_quadrature_by_geometry": {
+        "planar": "arithmetic-face",
+        "cylindrical": "arithmetic-face",
+        "spherical": "linear-radial-stress"
+      },
+      "active_spherical_pre_run_contract": "pre-run-contract-spherical-revision03.json",
+      "reconstruction_by_geometry": {
+        "planar": "piecewise-constant",
+        "cylindrical": "piecewise-constant",
+        "spherical": "muscl-minmod"
+      }
+    }
+  },
+  "target_edition": "2026-11-23-r4"
+}

@@ -2638,40 +2638,40 @@
       "id": "noh",
       "group": "fluid",
       "name": {
-        "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒対称計算",
-        "en": "Noh shocks: zero-pressure planar and cylindrical flow"
+        "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒・球対称計算",
+        "en": "Noh shocks: zero-pressure planar, cylindrical and spherical flow"
       },
       "chapter": "validation-noh",
       "reading_section": "noh-shock",
       "availability": "saved-output",
-      "code_base": "/code/validated-examples/2026-11-23-r3/noh/",
-      "verification": "/code/validated-examples/2026-11-23-r3/noh/verification.json",
+      "code_base": "/code/validated-examples/2026-11-23-r5/noh/",
+      "verification": "/code/validated-examples/2026-11-23-r5/noh/verification.json",
       "commands": [
         "python -m pytest -q",
         "python run.py --input inputs.json --output output"
       ],
       "evidence": [
         {
-          "path": "code/validated-examples/2026-11-23-r3/noh/results/result.json",
+          "path": "code/validated-examples/2026-11-23-r5/noh/results/result.json",
           "json_pointer": "/cases",
           "where": {
             "id": "noh-shock"
           }
         },
         {
-          "path": "code/validated-examples/2026-11-23-r3/noh/results/noh-shock-preview.png",
+          "path": "code/validated-examples/2026-11-23-r5/noh/results/noh-shock-preview.png",
           "artifact": "image"
         },
         {
-          "path": "code/validated-examples/2026-11-23-r3/noh/inputs.json",
+          "path": "code/validated-examples/2026-11-23-r5/noh/inputs.json",
           "json_pointer": "/cases/noh-shock"
         },
         {
-          "path": "code/validated-examples/2026-11-23-r3/noh/verification.json",
+          "path": "code/validated-examples/2026-11-23-r5/noh/verification.json",
           "json_pointer": "/all_cases_rerun"
         },
         {
-          "path": "code/validated-examples/2026-11-23-r3/noh/exactpack-reference-receipt.json",
+          "path": "code/validated-examples/2026-11-23-r5/noh/exactpack-reference-receipt.json",
           "json_pointer": "/passed"
         }
       ],
@@ -2680,8 +2680,8 @@
           "id": "noh-shock",
           "url": "/numerical-methods-atlas/validation/noh-shock/",
           "name": {
-            "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒対称計算",
-            "en": "Noh shocks: zero-pressure planar and cylindrical flow"
+            "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒・球対称計算",
+            "en": "Noh shocks: zero-pressure planar, cylindrical and spherical flow"
           }
         }
       ]

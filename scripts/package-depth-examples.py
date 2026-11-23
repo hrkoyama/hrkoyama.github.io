@@ -23,7 +23,7 @@ def package(group,edition):
         for p in source.rglob('*'):
             rel=p.relative_to(source)
             if not p.is_file() or any(x in rel.parts for x in ['__pycache__','.pytest_cache']) or rel.parts[0] in ['results','output','outputs']:continue
-            if p.name!='LICENSE' and not p.name.startswith('athinput-') and p.suffix not in ['.py','.json','.md','.txt','.npz','.patch','.csv','.log']:raise ValueError('Unexpected source file '+str(rel))
+            if p.name!='LICENSE' and not p.name.startswith('athinput-') and p.suffix not in ['.py','.json','.md','.txt','.npz','.patch','.csv','.log','.xml']:raise ValueError('Unexpected source file '+str(rel))
             (stage/rel).parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(p,stage/rel)
         env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1','OPENBLAS_NUM_THREADS':'1','OMP_NUM_THREADS':'1','MKL_NUM_THREADS':'1','MPLBACKEND':'Agg','MPLCONFIGDIR':str(tmp/'mpl')}
         def execute(cwd,out):

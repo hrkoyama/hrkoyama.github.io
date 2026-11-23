@@ -12,7 +12,7 @@ import struct
 import subprocess
 import xml.etree.ElementTree as ET
 
-from atlas_depth_release import GROUPS, ORIGIN, depth_code_urls, digest, load_depth_group, read_json
+from atlas_depth_release import GROUPS, ORIGIN, depth_additional_figures, depth_code_urls, digest, load_depth_group, read_json
 from atlas_execution_routes import load_execution_routes
 from atlas_execution_navigation import render_execution_navigation, execution_navigation_markdown
 
@@ -193,6 +193,11 @@ def render_case(case, measured, data, language, rendered, heading_level=2, comma
     png = (data['directory']/'results'/(ident+'.png')).read_bytes(); assert png[:8] == b'\x89PNG\r\n\x1a\n'
     width, height = struct.unpack('>II', png[16:24])
     body += '<figure><img loading="lazy" src="'+base+'results/'+ident+'.png" width="'+str(width)+'" height="'+str(height)+'" alt="'+escape(case['title'][language]+('の保存済み検証図' if ja else ': stored validation figure'), quote=True)+'"><figcaption>'+('保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。' if ja else 'Figure from saved results. See the text and JSON for input, reference and acceptance scope.')+'</figcaption></figure>'
+    if 'additional_figures' in case:
+        for figure in depth_additional_figures(data['directory'], data['manifest'], case):
+            url = base+'results/'+figure['file']
+            caption = figure['caption'][language]
+            body += '<figure class="validation-additional-figure" data-validation-additional-figure="'+escape(figure['file'], quote=True)+'"><a href="'+escape(url, quote=True)+'"><img loading="lazy" src="'+escape(url, quote=True)+'" width="'+str(figure['width'])+'" height="'+str(figure['height'])+'" alt="'+escape(caption, quote=True)+'"></a><figcaption>'+escape(caption)+'</figcaption></figure>'
     body += '<details class="validation-records"><summary>'+('全記録を表で読む' if ja else 'Read every stored record')+'</summary>'+record_tables(measured['records'], language, ident+' records')+'</details>'
     if measured.get('reference_records'):
         body += '<details class="validation-records"><summary>'+('独立参照の記録を表で読む' if ja else 'Read independent-reference records')+'</summary>'+record_tables(measured['reference_records'], language, ident+' reference records')+'</details>'
@@ -222,6 +227,11 @@ def markdown_case(case, measured, data, language, heading_level=1, editorial_not
             out += ''.join('$$\n'+formula+'\n$$\n\n' for formula in case.get('formulas', case.get('equations', [])))
     out += subheading+' '+('保存実測値と判定' if language == 'ja' else 'Stored measurements and decisions')+'\n\n```json\n'+json.dumps({'metrics': measured['metrics'], 'checks': measured['checks']}, ensure_ascii=False, indent=2, allow_nan=False)+'\n```\n\n'
     out += ('全recordsとreference_records：' if language == 'ja' else 'Complete records and reference_records: ')+ORIGIN+case_route(case['id'])+'index.json\n\n'
+    if 'additional_figures' in case:
+        for figure in depth_additional_figures(data['directory'], data['manifest'], case):
+            caption = figure['caption'][language]
+            alt = caption.replace('\\', '\\\\').replace('[', '\\[').replace(']', '\\]')
+            out += '!['+alt+']('+ORIGIN+data['base']+'results/'+figure['file']+')\n\n'+caption+'\n\n'
     out += subheading+' '+('取得・実行' if language == 'ja' else 'Download and run')+'\n\nZIP: '+ORIGIN+data['base']+data['verification']['archive']['file']+'\nInput: '+ORIGIN+data['base']+'inputs.json\nResults: '+ORIGIN+data['base']+'results/result.json\nReceipt: '+ORIGIN+data['base']+'verification.json\n\n```sh\npython -m pip install -r requirements.txt\npython -m pytest -q\npython run.py --input inputs.json --output output\n```\n\n'
     out += ('このコマンドは配布グループの全例を実行します。\n\n' if language == 'ja' else 'This command executes every fixed case in the distribution group.\n\n')
     initial = initial_input_name(data)

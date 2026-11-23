@@ -1,0 +1,379 @@
+[
+  {
+    "step": 1,
+    "time": 0.0004557291666666666,
+    "dt": 0.0004557291666666666,
+    "dt_cubed_sum": 9.464996832388416e-11,
+    "reconstruction_theta_reduced_stage_cells": 1,
+    "reconstruction_theta_zero_stage_cells": 0,
+    "reconstruction_theta_min": 3.415046023746981e-13,
+    "integral": [
+      0.33378927023639837,
+      -0.3337892636304975,
+      0.16689463511819919
+    ],
+    "boundary_net_integral": [
+      0.0004559369030650014,
+      -0.0004559369030650014,
+      0.0002279684515325007
+    ],
+    "source_integral": [
+      0.0,
+      6.605900887497605e-09,
+      0.0
+    ],
+    "balance_residual": [
+      1.669129244541434e-16,
+      -1.725485589070264e-16,
+      8.34564622270717e-17
+    ]
+  },
+  {
+    "step": 100,
+    "time": 0.04801345736948098,
+    "dt": 0.00051389400036732,
+    "dt_cubed_sum": 1.1433975942340666e-08,
+    "reconstruction_theta_reduced_stage_cells": 107,
+    "reconstruction_theta_zero_stage_cells": 0,
+    "reconstruction_theta_min": 3.415046023746981e-13,
+    "integral": [
+      0.38368897971152116,
+      -0.38358698792406287,
+      0.19184448985576058
+    ],
+    "boundary_net_integral": [
+      0.050355646378187534,
+      -0.050355646378187534,
+      0.025177823189093767
+    ],
+    "source_integral": [
+      0.0,
+      0.00010199178745831898,
+      0.0
+    ],
+    "balance_residual": [
+      4.2327252813834093e-16,
+      -4.535082162235304e-16,
+      2.1163626406917047e-16
+    ]
+  },
+  {
+    "step": 200,
+    "time": 0.09965000673498889,
+    "dt": 0.0005272799182364522,
+    "dt_cubed_sum": 2.5214917635705385e-08,
+    "reconstruction_theta_reduced_stage_cells": 208,
+    "reconstruction_theta_zero_stage_cells": 0,
+    "reconstruction_theta_min": 3.415046023746981e-13,
+    "integral": [
+      0.4432433137490128,
+      -0.4423917689628275,
+      0.2216216568745064
+    ],
+    "boundary_net_integral": [
+      0.10990998041567938,
+      -0.10990998041567938,
+      0.05495499020783969
+    ],
+    "source_integral": [
+      0.0,
+      0.0008515447861853009,
+      0.0
+    ],
+    "balance_residual": [
+      2.3592239273284576e-16,
+      -2.1586465254186393e-16,
+      1.1796119636642288e-16
+    ]
+  },
+  {
+    "step": 300,
+    "time": 0.15231867845201297,
+    "dt": 0.00052702247802362,
+    "dt_cubed_sum": 3.982754906543231e-08,
+    "reconstruction_theta_reduced_stage_cells": 313,
+    "reconstruction_theta_zero_stage_cells": 0,
+    "reconstruction_theta_min": 3.415046023746981e-13,
+    "integral": [
+      0.5100309790895541,
+      -0.5070698104657092,
+      0.25501548954477704
+    ],
+    "boundary_net_integral": [
+      0.1766976457562207,
+      -0.1766976457562207,
+      0.08834882287811036
+    ],
+    "source_integral": [
+      0.0,
+      0.0029611686238449142,
+      0.0
+    ],
+    "balance_residual": [
+      1.6653345369377348e-16,
+      -2.0209528495129803e-16,
+      8.326672684688674e-17
+    ]
+  },
+  {
+    "step": 400,
+    "time": 0.2054532874674324,
+    "dt": 0.0005327906496553174,
+    "dt_cubed_sum": 5.4829413982268147e-08,
+    "reconstruction_theta_reduced_stage_cells": 419,
+    "reconstruction_theta_zero_stage_cells": 0,
+    "reconstruction_theta_min": 3.415046023746981e-13,
+    "integral": [
+      0.583888483161628,
+      -0.5767171423250192,
+      0.291944241580814
+    ],
+    "boundary_net_integral": [
+      0.2505551498282943,
+      -0.2505551498282943,
+      0.12527757491414715
+    ],
+    "source_integral": [
+      0.0,
+      0.007171340836608712,
+      0.0
+    ],
+    "balance_residual": [
+      4.996003610813204e-16,
+      -4.588343593958655e-16,
+      2.498001805406602e-16
+    ]
+  },
+  {
+    "step": 500,
+    "time": 0.25891010494617916,
+    "dt": 0.0005354176059450363,
+    "dt_cubed_sum": 7.010554798181424e-08,
+    "reconstruction_theta_reduced_stage_cells": 509,
+    "reconstruction_theta_zero_stage_cells": 0,
+    "reconstruction_theta_min": 3.415046023746981e-13,
+    "integral": [
+      0.6650631905830082,
+      -0.650833913114706,
+      0.3325315952915041
+    ],
+    "boundary_net_integral": [
+      0.3317298572496746,
+      -0.3317298572496746,
+      0.1658649286248373
+    ],
+    "source_integral": [
+      0.0,
+      0.014229277468302416,
+      0.0
+    ],
+    "balance_residual": [
+      4.440892098500626e-16,
+      -5.898059818321144e-16,
+      2.220446049250313e-16
+    ]
+  },
+  {
+    "step": 600,
+    "time": 0.3126108409379392,
+    "dt": 0.0005382925738247604,
+    "dt_cubed_sum": 8.559172250771502e-08,
+    "reconstruction_theta_reduced_stage_cells": 608,
+    "reconstruction_theta_zero_stage_cells": 0,
+    "reconstruction_theta_min": 3.415046023746981e-13,
+    "integral": [
+      0.7538530806002367,
+      -0.7289509399070552,
+      0.37692654030011835
+    ],
+    "boundary_net_integral": [
+      0.4205197472669034,
+      -0.4205197472669034,
+      0.2102598736334517
+    ],
+    "source_integral": [
+      0.0,
+      0.02490214069318155,
+      0.0
+    ],
+    "balance_residual": [
+      1.1102230246251565e-16,
+      -1.3183898417423734e-16,
+      5.551115123125783e-17
+    ]
+  },
+  {
+    "step": 700,
+    "time": 0.3665392935509413,
+    "dt": 0.0005405860187169745,
+    "dt_cubed_sum": 1.0127567780383452e-07,
+    "reconstruction_theta_reduced_stage_cells": 702,
+    "reconstruction_theta_zero_stage_cells": 0,
+    "reconstruction_theta_min": 3.415046023746981e-13,
+    "integral": [
+      0.8506386775861075,
+      -0.8106637007034643,
+      0.4253193387930537
+    ],
+    "boundary_net_integral": [
+      0.5173053442527737,
+      -0.5173053442527737,
+      0.2586526721263869
+    ],
+    "source_integral": [
+      0.0,
+      0.03997497688264307,
+      0.0
+    ],
+    "balance_residual": [
+      4.440892098500626e-16,
+      -3.95516952522712e-16,
+      2.220446049250313e-16
+    ]
+  },
+  {
+    "step": 800,
+    "time": 0.4206672726928219,
+    "dt": 0.0005422374215030258,
+    "dt_cubed_sum": 1.171343447346994e-07,
+    "reconstruction_theta_reduced_stage_cells": 787,
+    "reconstruction_theta_zero_stage_cells": 0,
+    "reconstruction_theta_min": 3.415046023746981e-13,
+    "integral": [
+      0.9557754738716076,
+      -0.8955443124797831,
+      0.4778877369358038
+    ],
+    "boundary_net_integral": [
+      0.6224421405382734,
+      -0.6224421405382734,
+      0.3112210702691367
+    ],
+    "source_integral": [
+      0.0,
+      0.06023116139182463,
+      0.0
+    ],
+    "balance_residual": [
+      8.881784197001252e-16,
+      -1.0200174038743626e-15,
+      4.440892098500626e-16
+    ]
+  },
+  {
+    "step": 900,
+    "time": 0.47496879340966947,
+    "dt": 0.0005437684694062805,
+    "dt_cubed_sum": 1.3314602991529533e-07,
+    "reconstruction_theta_reduced_stage_cells": 881,
+    "reconstruction_theta_zero_stage_cells": 0,
+    "reconstruction_theta_min": 3.415046023746981e-13,
+    "integral": [
+      1.0696144214560046,
+      -0.9831350982598566,
+      0.5348072107280023
+    ],
+    "boundary_net_integral": [
+      0.73628108812267,
+      -0.73628108812267,
+      0.368140544061335
+    ],
+    "source_integral": [
+      0.0,
+      0.08647932319614789,
+      0.0
+    ],
+    "balance_residual": [
+      1.3322676295501878e-15,
+      -1.1796119636642288e-15,
+      6.661338147750939e-16
+    ]
+  },
+  {
+    "step": 1000,
+    "time": 0.529426124099495,
+    "dt": 0.0005452669881936693,
+    "dt_cubed_sum": 1.4929592996086308e-07,
+    "reconstruction_theta_reduced_stage_cells": 968,
+    "reconstruction_theta_zero_stage_cells": 0,
+    "reconstruction_theta_min": 3.415046023746981e-13,
+    "integral": [
+      1.192516142604495,
+      -1.0729921294213605,
+      0.5962580713022475
+    ],
+    "boundary_net_integral": [
+      0.85918280927116,
+      -0.85918280927116,
+      0.42959140463558
+    ],
+    "source_integral": [
+      0.0,
+      0.11952401318313384,
+      0.0
+    ],
+    "balance_residual": [
+      1.7763568394002505e-15,
+      -1.0685896612017132e-15,
+      8.881784197001252e-16
+    ]
+  },
+  {
+    "step": 1100,
+    "time": 0.5840283971943253,
+    "dt": 0.0005467266307963469,
+    "dt_cubed_sum": 1.655751219188763e-07,
+    "reconstruction_theta_reduced_stage_cells": 1050,
+    "reconstruction_theta_zero_stage_cells": 0,
+    "reconstruction_theta_min": 3.415046023746981e-13,
+    "integral": [
+      1.3248528470240064,
+      -1.1646775416507735,
+      0.6624264235120031
+    ],
+    "boundary_net_integral": [
+      0.9915195136906715,
+      -0.9915195136906715,
+      0.49575975684533574
+    ],
+    "source_integral": [
+      0.0,
+      0.16017530537323293,
+      0.0
+    ],
+    "balance_residual": [
+      1.6653345369377348e-15,
+      -1.7208456881689926e-15,
+      7.216449660063518e-16
+    ]
+  },
+  {
+    "step": 1130,
+    "time": 0.6,
+    "dt": 0.00011155461787981658,
+    "dt_cubed_sum": 1.7032021372709778e-07,
+    "reconstruction_theta_reduced_stage_cells": 1083,
+    "reconstruction_theta_zero_stage_cells": 0,
+    "reconstruction_theta_min": 3.415046023746981e-13,
+    "integral": [
+      1.3653333617200365,
+      -1.1917255787355363,
+      0.6826666808600182
+    ],
+    "boundary_net_integral": [
+      1.0320000283867015,
+      -1.0320000283867015,
+      0.5160000141933507
+    ],
+    "source_integral": [
+      0.0,
+      0.1736077829844996,
+      0.0
+    ],
+    "balance_residual": [
+      1.7763568394002505e-15,
+      -1.1934897514720433e-15,
+      8.881784197001252e-16
+    ]
+  }
+]

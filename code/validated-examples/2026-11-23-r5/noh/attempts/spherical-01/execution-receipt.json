@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "attempt": "spherical-01",
+  "target_edition": "2026-11-23-r4",
+  "started_at_utc": "2026-11-23T01:55:13.855184+00:00",
+  "cwd": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/atlas-search-publisher/scripts/depth-noh",
+  "python": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/noh-spherical-env/bin/python",
+  "source_review_sha256": "5dde07e984c0cd49d80d36a6897344e03faaee31d003a94a9252e9452a463b8c",
+  "frozen_numeric_files": {
+    "acceptance.json": "a12c0ce119877e71fc8dfd852bd6dfb6aa6d8e7beb5e18bd13e91a5dd16117ff",
+    "exactpack-reference-receipt.json": "35d1622672578b48639766b916645d1bbbdc2c65d999968b6b5f699197f2ce64",
+    "exactpack-reference-snapshot.json": "0be18147421e7c59988561d2fe921e29370ef3f1ae77a5f0febc3b40de4ac4fa",
+    "exactpack-reference.json": "7442d51a8f53939a2a37009c4d9e1856eb80408670875c4ac6b85c22499d8d74",
+    "generate_exactpack_reference.py": "8a86e9ecd15ec971c29a37e0c1e14283780bb5dd8314c7059192f3295fd312d9",
+    "inputs.json": "baaa250653d6c00cb56771d713a5e3de49911b4115d090d1c0f5379b1a1d2039",
+    "noh_reference.py": "77ac42ca9d3a276ebaba1de030a33dd4c835463e3fc17f73d07f742ecaf2d8b2",
+    "noh_solver.py": "33caa85d4ca9af762cfcda1e53b58701dafbb57d314252746c3c3529043aad55",
+    "requirements-plotting.txt": "01ef5e8e6561e0877b51622518cb029e54b58e5795cb2e73614000094637eb7b",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "run.py": "cc12de8b7658cbfef77a565a3f672b2d64ab9561f18b815940cb96f163010da6",
+    "spherical-acceptance.json": "bb1c8d14feb07a8876f04711aa81780642d5f6a547f6754ccafd2eaf223530a2",
+    "test_noh.py": "dc975bdf56a6c512c0d5c6126263b16b332df9958e4bf70a28f98ee67f867db9"
+  },
+  "environment_overrides": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+  },
+  "source_match_before": true,
+  "stages": [
+    {
+      "stage": "pytest",
+      "command": [
+        "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/noh-spherical-env/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--junitxml=attempts/spherical-01/pytest.xml"
+      ],
+      "started_at_utc": "2026-11-23T01:55:13.855420+00:00",
+      "log": "pytest.log",
+      "returncode": 0,
+      "completed_at_utc": "2026-11-23T01:55:14.574286+00:00",
+      "elapsed_seconds": 0.7188602079986595,
+      "log_sha256": "4cc13e06b61ef0fe542129e450f63e5aa4103dac85ac0eeb4cd2dab09321e1e3",
+      "junit_sha256": "b4701019f9f22bc38ecb610f2ebabcde1a146c2ecc9869132b164c069bb58fd7"
+    },
+    {
+      "stage": "fixed-series",
+      "command": [
+        "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/noh-spherical-env/bin/python",
+        "run.py",
+        "--input",
+        "inputs.json",
+        "--output",
+        "attempts/spherical-01/results"
+      ],
+      "started_at_utc": "2026-11-23T01:55:14.574571+00:00",
+      "log": "run.log",
+      "returncode": 1,
+      "completed_at_utc": "2026-11-23T01:55:16.497716+00:00",
+      "elapsed_seconds": 1.9231110830005491,
+      "log_sha256": "24fbc221aed1d877e088de2bce0e009b8d8e24d19251f12e40faca6be378c800"
+    }
+  ],
+  "source_match_after": true,
+  "completed_at_utc": "2026-11-23T01:55:16.498363+00:00",
+  "commands_passed": false,
+  "passed": false,
+  "result_files_sha256": {
+    "results/histories/cylindrical-n128.json": "64e912e19c20db169b8cfeb070f78e7fb31f4c33b8e9577c17596610c14a8bd9",
+    "results/histories/cylindrical-n256.json": "2963e291c06248460c44592968aea58c66c6c801b848731c3ed07bdcdae7bb1d",
+    "results/histories/cylindrical-n512.json": "8ffcf03b5e62b27cccafb5b522d5b4f8b5c6b05cc1f3707c0010233e75de44f2",
+    "results/histories/cylindrical-n64.json": "c9ebc4d537bd457259a685c2d66b3766fb84fff388a9b361303ab61fb9928a98",
+    "results/histories/planar-n128.json": "c2212132a81e54df6d1bf93ab8f77ffaf4871f4c3799393435202a0025d7dfda",
+    "results/histories/planar-n256.json": "833f45de7a109f56287763a2e873f2630e241597fcc0619c292515ed4cc519fe",
+    "results/histories/planar-n512.json": "a06dbf7955e55d62621bac48a8def3094833c0c36279625033cbcd0a1acbbf7a",
+    "results/histories/planar-n64.json": "e40f470bdf552719cce02301c6c772c41b68db522e0e0c90cfcf6371244e7bc1",
+    "results/histories/spherical-n128.json": "8dae6e34fe0f16bbac936b89c29473888e240ea2b7dbf62b7a774eb153188edf",
+    "results/histories/spherical-n256.json": "f34ef5b5f9a7d141538bc1e78c690ac70b06ee4b090d20282b4567b51096348b",
+    "results/histories/spherical-n512.json": "2aa6175ee8b3685087a302492e2ce045aa14dd0d80ae3f9b211eb73e257794c3",
+    "results/histories/spherical-n64.json": "43d860e3909e5ff1adf25f18daa1650f321f17841d978cfbc149e3045a0379f7",
+    "results/noh-shock.csv": "a1503fa0c4683940c4509f4ac9c33dc76e4780d57777bb59be3be1ea6157b4c9",
+    "results/profiles/cylindrical-n128.csv": "56209be550aade035c4f758d6397c31612cbd95ae75506a85c4c19e051f3af8d",
+    "results/profiles/cylindrical-n256.csv": "ac1ab1b49eebc06e2f913d5a5273b10873b568679b13574296cfc505dd6fc1bf",
+    "results/profiles/cylindrical-n512.csv": "0d62a36ea7e369b3ce205f9d63b62bbe2febc16539945913e381e821b78f7820",
+    "results/profiles/cylindrical-n64.csv": "05a99258d4bcc2fa9f72d63ae173136875e925bcab76bc8fd13766d4ea1883a1",
+    "results/profiles/planar-n128.csv": "4ea66a2280a06b761464c7589848f9e387dc90fe521e6adeffdf31ed04119433",
+    "results/profiles/planar-n256.csv": "93d709a8352c127cb72098f24bcc8b8b59cb68ec55d1b10283ab2ce027747b6a",
+    "results/profiles/planar-n512.csv": "8d4dd3fdbcd4c1f530126186114c9cf99027027a01e14119a7fc935aa14d8d74",
+    "results/profiles/planar-n64.csv": "83ffc0332b6c1c45e963f019ef624fa4b3f0cfe73b735fcb96aa164020cbf2a2",
+    "results/profiles/spherical-n128.csv": "a14f11c18f952168712ca86f88007b06b4ccad6b56cecf22e9da378ba1085765",
+    "results/profiles/spherical-n256.csv": "37faff9471c9b9c233fe82690346ae1181f4a8530905429e6e50caac5339dc98",
+    "results/profiles/spherical-n512.csv": "e7f4c29d7af2a2583f2fe1b0a3fbda8847b05ec76ad6263f19f94d58854358cc",
+    "results/profiles/spherical-n64.csv": "f27f39921539f4717263071d3d67c2212700c22141ff590d097870182333f2d4",
+    "results/result.json": "689971044289b8cc8aaf4e4ccf08c116ee92a6f1ea031a27a7ded67d02e5c580",
+    "results/results.json": "2c2580101568db624acf5da5e8bcd69e089294ca325ae246f9518e11f5eb04c4",
+    "results/results.partial.json": "f74c8716504ea271a13bf0700d282d864ff008c7dca28fbaf2c2df9fdf938c6e"
+  }
+}

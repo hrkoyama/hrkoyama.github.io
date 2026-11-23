@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-11-23",
+  "reference_id": "exactpack2023",
+  "role": "independent-reference-implementation",
+  "citation": {
+    "authors": [
+      {
+        "given": "Jasper",
+        "family": "Thrussell"
+      },
+      {
+        "given": "Jim Michael",
+        "family": "Ferguson"
+      }
+    ],
+    "title": "ExactPack: A python library of exact analytic solutions",
+    "year": 2023,
+    "journal": "SoftwareX",
+    "volume": "24",
+    "article_number": "101560",
+    "doi": "10.1016/j.softx.2023.101560",
+    "url": "https://doi.org/10.1016/j.softx.2023.101560",
+    "primary_record": "https://laro.lanl.gov/esploro/outputs/journalArticle/ExactPack-A-python-library-of-exact/9916418740503761",
+    "open_article": "https://www.osti.gov/servlets/purl/2204208",
+    "report_number": "LA-UR-23-25048"
+  },
+  "original_problem": {
+    "authors": "W. F. Noh",
+    "title": "Errors for calculations of strong shocks using an artificial viscosity and an artificial heat flux",
+    "year": 1987,
+    "journal": "Journal of Computational Physics",
+    "volume": "72",
+    "issue": "1",
+    "pages": "78–120",
+    "doi": "10.1016/0021-9991(87)90074-X",
+    "url": "https://www.sciencedirect.com/science/article/pii/002199918790074X",
+    "role": "original-problem-and-error-analysis",
+    "review": "Publisher metadata and abstract inspected; full original paper not inspected. Distinct from the ExactPack software citation."
+  },
+  "software": {
+    "name": "LANL ExactPack",
+    "repository": "https://github.com/lanl/ExactPack",
+    "version": "1.7.11",
+    "commit": "9bacc477eb791e959c9621e771fc7a725db755fa",
+    "commit_resolution": "Read-only git ls-remote of refs/heads/master on 2026-11-23; subsequent retrieval uses the full commit, not the moving branch.",
+    "commit_url": "https://github.com/lanl/ExactPack/tree/9bacc477eb791e959c9621e771fc7a725db755fa",
+    "solver_path": "exactpack/solvers/noh/noh1.py",
+    "solver_url": "https://github.com/lanl/ExactPack/blob/9bacc477eb791e959c9621e771fc7a725db755fa/exactpack/solvers/noh/noh1.py",
+    "solver_raw_url": "https://raw.githubusercontent.com/lanl/ExactPack/9bacc477eb791e959c9621e771fc7a725db755fa/exactpack/solvers/noh/noh1.py",
+    "solver_sha256": "bac597f501b021be85ef4956d0e075f1cdbff69aa72a3de788600f8c28e0d5a1",
+    "license_url": "https://github.com/lanl/ExactPack/blob/9bacc477eb791e959c9621e771fc7a725db755fa/LICENSE.txt",
+    "license_sha256": "763767e730623814502f95054919a019f17f5257e0cd8d60aede203d9736dd40"
+  },
+  "license": {
+    "official_name": "BSD-3 License",
+    "normalized_spdx": "BSD-3-Clause",
+    "copyright": "© 2023. Triad National Security, LLC. All rights reserved.",
+    "contract": "89233218CNA000001",
+    "source_redistribution": "Retain the copyright notice, license conditions and disclaimer with redistributed source, including modified source.",
+    "binary_redistribution": "Reproduce the notice, conditions and disclaimer in documentation/materials accompanying a binary redistribution.",
+    "endorsement": "Do not use the copyright holder/contributor names to endorse or promote derived products without prior written permission.",
+    "planned_usage": "Upstream source is fetched into a separate temporary reference directory and executed unchanged. The Atlas PDE solver does not import it. Only the independently generated snapshot, receipt and this attribution are candidates for distribution; upstream source is not silently vendored.",
+    "article_license_distinction": "The software paper PDF declares CC BY-NC-ND 4.0. That article license is distinct from the code's BSD-3 license. Do not copy the paper's figures/text as though they were BSD code."
+  },
+  "actual_usage": {
+    "parameters": {
+      "gamma": 1.6666666666666667,
+      "rho0": 1,
+      "u0": -1,
+      "geometries": [
+        1,
+        2,
+        3
+      ]
+    },
+    "point_comparison": "Positive radii away from the discontinuity; check density, radial velocity, pressure and specific internal energy.",
+    "cell_average_comparison": "Split each radial shell at the shock location reported by ExactPack, integrate unmodified point values with Gauss-Legendre quadrature in r^(d-1)dr, and compare conserved cell averages and volume-average pressure with the independent local reference.",
+    "scope": "An independent implementation cross-check of the analytic reference, not a second Euler PDE computation or a full ExactPack test-suite run. Geometry=3 reference checks do not by themselves establish a spherical numerical-solver result."
+  },
+  "limitations": [
+    {
+      "id": "gamma-pressure-hardcoded",
+      "detail": "At the pinned code, shock location and density depend on gamma but pressure is rho0*u0^2*4^geometry/3. Hence external pressure comparison is restricted to gamma=5/3. General-gamma pressure must instead satisfy p2=(gamma-1)*rho0*((gamma+1)/(gamma-1))^geometry*u0^2/2."
+    },
+    {
+      "id": "jump-metadata-fixed",
+      "detail": "Upstream jump metadata includes 4^(geometry-1) and velocity -1, so it is not used as a general-parameter independent jump reference."
+    },
+    {
+      "id": "origin-and-shock",
+      "detail": "Avoid r=0 because np.where evaluates an upstream 1/r expression, and avoid exact jump points because the trace convention is not a unique physical point value."
+    }
+  ],
+  "review_sources": [
+    {
+      "url": "https://laro.lanl.gov/esploro/outputs/journalArticle/ExactPack-A-python-library-of-exact/9916418740503761",
+      "checked": "Authors/title/year/journal/DOI"
+    },
+    {
+      "url": "https://www.osti.gov/servlets/purl/2204208",
+      "checked": "Original software publication identity and article license"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/lanl/ExactPack/9bacc477eb791e959c9621e771fc7a725db755fa/LICENSE.txt",
+      "checked": "Actual fixed code license and copyright"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/lanl/ExactPack/9bacc477eb791e959c9621e771fc7a725db755fa/exactpack/solvers/noh/noh1.py",
+      "checked": "Actual fixed implementation, parameter limits and unmodified execution"
+    }
+  ]
+}

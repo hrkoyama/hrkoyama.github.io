@@ -1210,7 +1210,8 @@
             "moving-contact",
             "nasa-wedge",
             "forward-step",
-            "entropy-2d"
+            "entropy-2d",
+            "noh"
           ],
           "url": {
             "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja",
@@ -1884,6 +1885,68 @@
             "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/circular-alfven/?lang=ja#references-ja",
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/circular-alfven/?lang=en#references-en"
           }
+        },
+        {
+          "id": "noh",
+          "name": {
+            "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒・球対称計算",
+            "en": "Noh shocks: zero-pressure planar, cylindrical and spherical flow"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/results/noh-shock-preview.png",
+            "sha256": "993fea822153b052ba707787525853884a84e327b420462a442d05781c2ed331",
+            "width": 832,
+            "height": 494,
+            "caption": {
+              "ja": "内向き流入から外向きに進むNoh衝撃波。球対称1Dの密度セル平均を中心断面として表示し、厳密セル平均と比較します。Cartesianの3D計算ではありません。γ=5/3、初期圧力ゼロ、512セル、t=0.6。",
+              "en": "Inward flow generates an outward Noh shock. A central section of spherical 1D density cell means is compared with exact cell means. This is not a Cartesian 3D calculation. Gamma=5/3, zero initial pressure, 512 cells, t=0.6."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "noh-shock",
+              "kind": "supplement",
+              "name": {
+                "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒・球対称計算",
+                "en": "Noh shocks: zero-pressure planar, cylindrical and spherical flow"
+              },
+              "scope": {
+                "ja": "初期圧力ゼロのNoh問題を、独自の小型1D有限体積コードで平面・円筒・球対称に計算します。64/128/256/512格子の全域誤差、原点過熱、衝撃位置、保存収支を測り、球で現れる境界流入の時間積分誤差を解析式と照合します。",
+                "en": "An original small 1D finite-volume code solves zero-pressure Noh flow in planar, cylindrical and spherical symmetry. Grids 64/128/256/512 measure full-domain error, origin heating, shock location and budgets, and compare spherical boundary-inflow time-quadrature error with its analytic identity."
+              },
+              "method_ids": [
+                "rusanov",
+                "heun",
+                "muscl",
+                "minmod"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-shock/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-shock/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/atlas-noh-2026-11-23-r5.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/verification.json"
+            }
+          ],
+          "role": "execution",
+          "method_note": {
+            "ja": "全系列でRusanov流束とHeunを使います。平面・円筒は区分定数、球だけ体積重心でのMUSCL/minmodと線形面応力の球殻求積を使用し、同じ105条件で不合格の定数再構築2系列とも比較します。",
+            "en": "All series use Rusanov flux and Heun. Planar/cylindrical reconstruction is piecewise constant; spherical runs use volume-centroid MUSCL/minmod and radial quadrature of face-linear stress, compared with two failed constant-reconstruction baselines under the same 105 gates."
+          },
+          "reference_url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=ja#references-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=en#references-en"
+          }
         }
       ],
       "references": [
@@ -2254,6 +2317,40 @@
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/circular-alfven/?lang=en#references-en"
           },
           "cases": []
+        },
+        {
+          "problem_id": "noh",
+          "problem_name": {
+            "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒・球対称計算",
+            "en": "Noh shocks: zero-pressure planar, cylindrical and spherical flow"
+          },
+          "reference_url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=ja#references-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=en#references-en"
+          },
+          "cases": [
+            {
+              "id": "noh",
+              "title": {
+                "ja": "Nohの冷たい流入衝撃波：平面・円筒・球対称",
+                "en": "Noh cold-inflow shock: planar, cylindrical and spherical symmetry"
+              },
+              "kind": "analytic",
+              "relation": "same-problem",
+              "note": {
+                "ja": "同じ初期圧力ゼロのNoh問題の連続厳密解です。初期密度からの増幅4^dと、衝撃波そのものの密度比4を区別します。有限体積の比較は保存量の厳密体積平均を使い、p(平均U)と平均pを別に示します。",
+                "en": "The continuous exact solution of this same zero-pressure Noh problem. Distinguish initial-density amplification4^d from the across-shock ratio4. Finite-volume errors use exact conserved-volume averages, with p(mean U) distinct from mean p."
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-noh-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-noh-en"
+              },
+              "view": {
+                "ja": "/numerical-methods-atlas/validation/noh-shock/?lang=ja#noh-shock-ja-measurements",
+                "en": "/numerical-methods-atlas/validation/noh-shock/?lang=en#noh-shock-en-measurements"
+              }
+            }
+          ]
         }
       ]
     },
@@ -2827,17 +2924,17 @@
         {
           "id": "noh",
           "name": {
-            "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒対称計算",
-            "en": "Noh shocks: zero-pressure planar and cylindrical flow"
+            "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒・球対称計算",
+            "en": "Noh shocks: zero-pressure planar, cylindrical and spherical flow"
           },
           "image": {
-            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/noh/results/noh-shock-preview.png",
-            "sha256": "d56eec6c8f6e110f3cec5a90f80eb05ab134443aa0d68985d03bddb92f4f98bb",
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/results/noh-shock-preview.png",
+            "sha256": "993fea822153b052ba707787525853884a84e327b420462a442d05781c2ed331",
             "width": 832,
             "height": 494,
             "caption": {
-              "ja": "内向きに収束する流れが、外向きに進む衝撃波を作ります。円筒対称の1次元有限体積密度を回転表示し、厳密なセル平均と比較します。独立した2次元Euler計算ではありません。初期圧力ゼロ、γ=5/3、512セル、t=0.6。",
-              "en": "Inward converging flow generates an outward moving shock. Revolved density from a 1D cylindrical-radial finite-volume calculation, compared with exact cell means. This is not an independent 2D Euler calculation. Zero initial pressure, gamma=5/3, 512 cells, t=0.6."
+              "ja": "内向き流入から外向きに進むNoh衝撃波。球対称1Dの密度セル平均を中心断面として表示し、厳密セル平均と比較します。Cartesianの3D計算ではありません。γ=5/3、初期圧力ゼロ、512セル、t=0.6。",
+              "en": "Inward flow generates an outward Noh shock. A central section of spherical 1D density cell means is compared with exact cell means. This is not a Cartesian 3D calculation. Gamma=5/3, zero initial pressure, 512 cells, t=0.6."
             },
             "source_kind": "existing-figure"
           },
@@ -2854,30 +2951,32 @@
               "id": "noh-shock",
               "kind": "supplement",
               "name": {
-                "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒対称計算",
-                "en": "Noh shocks: zero-pressure planar and cylindrical flow"
+                "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒・球対称計算",
+                "en": "Noh shocks: zero-pressure planar, cylindrical and spherical flow"
               },
               "scope": {
-                "ja": "圧力をゼロから始めるNoh問題を、独自の小型1D有限体積ソルバーで平面・円筒半径対称に計算します。64/128/256/512格子で体積重み誤差、衝撃位置、密度増幅、原点過熱、外側流入を含む質量・全エネルギー収支を別々に測ります。",
-                "en": "A small original 1D finite-volume solver advances the Noh problem from exactly zero pressure, in planar and cylindrical-radial symmetry. Grids 64/128/256/512 separately measure volume-weighted errors, shock location, density amplification, origin heating and mass/total-energy budgets including outer inflow."
+                "ja": "初期圧力ゼロのNoh問題を、独自の小型1D有限体積コードで平面・円筒・球対称に計算します。64/128/256/512格子の全域誤差、原点過熱、衝撃位置、保存収支を測り、球で現れる境界流入の時間積分誤差を解析式と照合します。",
+                "en": "An original small 1D finite-volume code solves zero-pressure Noh flow in planar, cylindrical and spherical symmetry. Grids 64/128/256/512 measure full-domain error, origin heating, shock location and budgets, and compare spherical boundary-inflow time-quadrature error with its analytic identity."
               },
               "method_ids": [
                 "rusanov",
-                "heun"
+                "heun",
+                "muscl",
+                "minmod"
               ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-shock/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-shock/?lang=en"
               },
-              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/noh/inputs.json",
-              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/noh/atlas-noh-2026-11-23-r3.zip",
-              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/noh/verification.json"
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/atlas-noh-2026-11-23-r5.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/verification.json"
             }
           ],
           "role": "execution",
           "method_note": {
-            "ja": "新しい専用配布版は区分定数Rusanov流束とSSPRK2/Heunを使用します。旧Eulerモジュールを圧力床で変更したものではなく、半径方向の面応力を用いる独自の整合的一次源項を検証します。",
-            "en": "The new dedicated edition uses piecewise-constant Rusanov flux with SSPRK2/Heun. It does not alter the older Euler module with a pressure floor; it checks an original consistent first-order radial face-stress source."
+            "ja": "全系列でRusanov流束とHeunを使います。平面・円筒は区分定数、球だけ体積重心でのMUSCL/minmodと線形面応力の球殻求積を使用し、同じ105条件で不合格の定数再構築2系列とも比較します。",
+            "en": "All series use Rusanov flux and Heun. Planar/cylindrical reconstruction is piecewise constant; spherical runs use volume-centroid MUSCL/minmod and radial quadrature of face-linear stress, compared with two failed constant-reconstruction baselines under the same 105 gates."
           },
           "reference_url": {
             "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=ja#references-ja",
@@ -2889,8 +2988,8 @@
         {
           "problem_id": "noh",
           "problem_name": {
-            "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒対称計算",
-            "en": "Noh shocks: zero-pressure planar and cylindrical flow"
+            "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒・球対称計算",
+            "en": "Noh shocks: zero-pressure planar, cylindrical and spherical flow"
           },
           "reference_url": {
             "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=ja#references-ja",
@@ -2900,8 +2999,8 @@
             {
               "id": "noh",
               "title": {
-                "ja": "Nohの冷たい流入衝撃波：平面・円筒対称",
-                "en": "Noh cold-inflow shock: planar and cylindrical symmetry"
+                "ja": "Nohの冷たい流入衝撃波：平面・円筒・球対称",
+                "en": "Noh cold-inflow shock: planar, cylindrical and spherical symmetry"
               },
               "kind": "analytic",
               "relation": "same-problem",
@@ -4298,7 +4397,8 @@
           "problem_ids": [
             "nasa-wedge",
             "forward-step",
-            "entropy-2d"
+            "entropy-2d",
+            "noh"
           ],
           "url": {
             "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja",
@@ -4666,6 +4766,68 @@
             "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/entropy-2d/?lang=ja#references-ja",
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/entropy-2d/?lang=en#references-en"
           }
+        },
+        {
+          "id": "noh",
+          "name": {
+            "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒・球対称計算",
+            "en": "Noh shocks: zero-pressure planar, cylindrical and spherical flow"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/results/noh-shock-preview.png",
+            "sha256": "993fea822153b052ba707787525853884a84e327b420462a442d05781c2ed331",
+            "width": 832,
+            "height": 494,
+            "caption": {
+              "ja": "内向き流入から外向きに進むNoh衝撃波。球対称1Dの密度セル平均を中心断面として表示し、厳密セル平均と比較します。Cartesianの3D計算ではありません。γ=5/3、初期圧力ゼロ、512セル、t=0.6。",
+              "en": "Inward flow generates an outward Noh shock. A central section of spherical 1D density cell means is compared with exact cell means. This is not a Cartesian 3D calculation. Gamma=5/3, zero initial pressure, 512 cells, t=0.6."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "noh-shock",
+              "kind": "supplement",
+              "name": {
+                "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒・球対称計算",
+                "en": "Noh shocks: zero-pressure planar, cylindrical and spherical flow"
+              },
+              "scope": {
+                "ja": "初期圧力ゼロのNoh問題を、独自の小型1D有限体積コードで平面・円筒・球対称に計算します。64/128/256/512格子の全域誤差、原点過熱、衝撃位置、保存収支を測り、球で現れる境界流入の時間積分誤差を解析式と照合します。",
+                "en": "An original small 1D finite-volume code solves zero-pressure Noh flow in planar, cylindrical and spherical symmetry. Grids 64/128/256/512 measure full-domain error, origin heating, shock location and budgets, and compare spherical boundary-inflow time-quadrature error with its analytic identity."
+              },
+              "method_ids": [
+                "rusanov",
+                "heun",
+                "muscl",
+                "minmod"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-shock/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-shock/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/atlas-noh-2026-11-23-r5.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/verification.json"
+            }
+          ],
+          "role": "execution",
+          "method_note": {
+            "ja": "全系列でRusanov流束とHeunを使います。平面・円筒は区分定数、球だけ体積重心でのMUSCL/minmodと線形面応力の球殻求積を使用し、同じ105条件で不合格の定数再構築2系列とも比較します。",
+            "en": "All series use Rusanov flux and Heun. Planar/cylindrical reconstruction is piecewise constant; spherical runs use volume-centroid MUSCL/minmod and radial quadrature of face-linear stress, compared with two failed constant-reconstruction baselines under the same 105 gates."
+          },
+          "reference_url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=ja#references-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=en#references-en"
+          }
         }
       ],
       "references": [
@@ -4942,6 +5104,40 @@
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/entropy-2d/?lang=en#references-en"
           },
           "cases": []
+        },
+        {
+          "problem_id": "noh",
+          "problem_name": {
+            "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒・球対称計算",
+            "en": "Noh shocks: zero-pressure planar, cylindrical and spherical flow"
+          },
+          "reference_url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=ja#references-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=en#references-en"
+          },
+          "cases": [
+            {
+              "id": "noh",
+              "title": {
+                "ja": "Nohの冷たい流入衝撃波：平面・円筒・球対称",
+                "en": "Noh cold-inflow shock: planar, cylindrical and spherical symmetry"
+              },
+              "kind": "analytic",
+              "relation": "same-problem",
+              "note": {
+                "ja": "同じ初期圧力ゼロのNoh問題の連続厳密解です。初期密度からの増幅4^dと、衝撃波そのものの密度比4を区別します。有限体積の比較は保存量の厳密体積平均を使い、p(平均U)と平均pを別に示します。",
+                "en": "The continuous exact solution of this same zero-pressure Noh problem. Distinguish initial-density amplification4^d from the across-shock ratio4. Finite-volume errors use exact conserved-volume averages, with p(mean U) distinct from mean p."
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-noh-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-noh-en"
+              },
+              "view": {
+                "ja": "/numerical-methods-atlas/validation/noh-shock/?lang=ja#noh-shock-ja-measurements",
+                "en": "/numerical-methods-atlas/validation/noh-shock/?lang=en#noh-shock-en-measurements"
+              }
+            }
+          ]
         }
       ]
     },
@@ -6080,17 +6276,17 @@
         {
           "id": "noh",
           "name": {
-            "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒対称計算",
-            "en": "Noh shocks: zero-pressure planar and cylindrical flow"
+            "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒・球対称計算",
+            "en": "Noh shocks: zero-pressure planar, cylindrical and spherical flow"
           },
           "image": {
-            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/noh/results/noh-shock-preview.png",
-            "sha256": "d56eec6c8f6e110f3cec5a90f80eb05ab134443aa0d68985d03bddb92f4f98bb",
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/results/noh-shock-preview.png",
+            "sha256": "993fea822153b052ba707787525853884a84e327b420462a442d05781c2ed331",
             "width": 832,
             "height": 494,
             "caption": {
-              "ja": "内向きに収束する流れが、外向きに進む衝撃波を作ります。円筒対称の1次元有限体積密度を回転表示し、厳密なセル平均と比較します。独立した2次元Euler計算ではありません。初期圧力ゼロ、γ=5/3、512セル、t=0.6。",
-              "en": "Inward converging flow generates an outward moving shock. Revolved density from a 1D cylindrical-radial finite-volume calculation, compared with exact cell means. This is not an independent 2D Euler calculation. Zero initial pressure, gamma=5/3, 512 cells, t=0.6."
+              "ja": "内向き流入から外向きに進むNoh衝撃波。球対称1Dの密度セル平均を中心断面として表示し、厳密セル平均と比較します。Cartesianの3D計算ではありません。γ=5/3、初期圧力ゼロ、512セル、t=0.6。",
+              "en": "Inward flow generates an outward Noh shock. A central section of spherical 1D density cell means is compared with exact cell means. This is not a Cartesian 3D calculation. Gamma=5/3, zero initial pressure, 512 cells, t=0.6."
             },
             "source_kind": "existing-figure"
           },
@@ -6107,30 +6303,32 @@
               "id": "noh-shock",
               "kind": "supplement",
               "name": {
-                "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒対称計算",
-                "en": "Noh shocks: zero-pressure planar and cylindrical flow"
+                "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒・球対称計算",
+                "en": "Noh shocks: zero-pressure planar, cylindrical and spherical flow"
               },
               "scope": {
-                "ja": "圧力をゼロから始めるNoh問題を、独自の小型1D有限体積ソルバーで平面・円筒半径対称に計算します。64/128/256/512格子で体積重み誤差、衝撃位置、密度増幅、原点過熱、外側流入を含む質量・全エネルギー収支を別々に測ります。",
-                "en": "A small original 1D finite-volume solver advances the Noh problem from exactly zero pressure, in planar and cylindrical-radial symmetry. Grids 64/128/256/512 separately measure volume-weighted errors, shock location, density amplification, origin heating and mass/total-energy budgets including outer inflow."
+                "ja": "初期圧力ゼロのNoh問題を、独自の小型1D有限体積コードで平面・円筒・球対称に計算します。64/128/256/512格子の全域誤差、原点過熱、衝撃位置、保存収支を測り、球で現れる境界流入の時間積分誤差を解析式と照合します。",
+                "en": "An original small 1D finite-volume code solves zero-pressure Noh flow in planar, cylindrical and spherical symmetry. Grids 64/128/256/512 measure full-domain error, origin heating, shock location and budgets, and compare spherical boundary-inflow time-quadrature error with its analytic identity."
               },
               "method_ids": [
                 "rusanov",
-                "heun"
+                "heun",
+                "muscl",
+                "minmod"
               ],
               "guide": {
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-shock/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-shock/?lang=en"
               },
-              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/noh/inputs.json",
-              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/noh/atlas-noh-2026-11-23-r3.zip",
-              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/noh/verification.json"
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/atlas-noh-2026-11-23-r5.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/verification.json"
             }
           ],
           "role": "execution",
           "method_note": {
-            "ja": "新しい専用配布版は区分定数Rusanov流束とSSPRK2/Heunを使用します。旧Eulerモジュールを圧力床で変更したものではなく、半径方向の面応力を用いる独自の整合的一次源項を検証します。",
-            "en": "The new dedicated edition uses piecewise-constant Rusanov flux with SSPRK2/Heun. It does not alter the older Euler module with a pressure floor; it checks an original consistent first-order radial face-stress source."
+            "ja": "全系列でRusanov流束とHeunを使います。平面・円筒は区分定数、球だけ体積重心でのMUSCL/minmodと線形面応力の球殻求積を使用し、同じ105条件で不合格の定数再構築2系列とも比較します。",
+            "en": "All series use Rusanov flux and Heun. Planar/cylindrical reconstruction is piecewise constant; spherical runs use volume-centroid MUSCL/minmod and radial quadrature of face-linear stress, compared with two failed constant-reconstruction baselines under the same 105 gates."
           },
           "reference_url": {
             "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=ja#references-ja",
@@ -6166,8 +6364,8 @@
         {
           "problem_id": "noh",
           "problem_name": {
-            "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒対称計算",
-            "en": "Noh shocks: zero-pressure planar and cylindrical flow"
+            "ja": "Noh衝撃波：初期圧力ゼロの平面・円筒・球対称計算",
+            "en": "Noh shocks: zero-pressure planar, cylindrical and spherical flow"
           },
           "reference_url": {
             "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/noh/?lang=ja#references-ja",
@@ -6177,8 +6375,8 @@
             {
               "id": "noh",
               "title": {
-                "ja": "Nohの冷たい流入衝撃波：平面・円筒対称",
-                "en": "Noh cold-inflow shock: planar and cylindrical symmetry"
+                "ja": "Nohの冷たい流入衝撃波：平面・円筒・球対称",
+                "en": "Noh cold-inflow shock: planar, cylindrical and spherical symmetry"
               },
               "kind": "analytic",
               "relation": "same-problem",
@@ -18058,13 +18256,13 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-depth-expansion.json": "ec2c98f7597aa423af185c0c0c58728b39d5a3b878799d899c596a0306f995b5",
+    "catalog/atlas-depth-expansion.json": "d57f9af2c0f060f2effe79457b56d54801ce1dfbbfb8564bd23fed7eb65d7d6f",
     "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
-    "catalog/atlas-methods.json": "033e6472c6650b8757642c7d87215e99eed704a4f5be6c2e2c8eadd6e6b6ff99",
-    "catalog/atlas-problem-links.json": "b8fa6ecffc8970cc3bf5ccbd24b84353f5c993c3ad14639bb487865f8c23ebcb",
-    "catalog/atlas-reference-supplements.json": "e02d28b66c1530eb267dcaa94b662ebbfd85cd4e85ebdfbd85afb9dc83621947",
-    "catalog/atlas-test-problems.json": "ca55076edfb48f2dcb4e45612a3b2fd84a526008bd5a18aa57167af64061f230",
+    "catalog/atlas-methods.json": "19d4c81cf54153548c06b323117f0a3badb52f365d334961bb37b5d5349509c1",
+    "catalog/atlas-problem-links.json": "e37f01b7fbf713137aba04b47765875f157f06ff5780b1cc9897c4a3faa7bc87",
+    "catalog/atlas-reference-supplements.json": "ea4014bbe27f19de45865bfa74a5f7995343ea94582114ff020c2393558ea5aa",
+    "catalog/atlas-test-problems.json": "a30773033afdacf1e13eb3a569bd77b415d50b414dad4c2e3624e61285365e05",
     "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
     "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
     "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
@@ -18120,15 +18318,15 @@
     "code/validated-examples/2026-11-22/thermostats/results/result.json": "7971007807acce9f75261b684b789f196e1d5dffc80797e102d1b0bebbc93f11",
     "code/validated-examples/2026-11-22/thermostats/source-manifest.json": "81a854bdfe3ae33b4eb4bffdccc9ab15a09f2bddbffb294cd2c2cbd07e641580",
     "code/validated-examples/2026-11-22/thermostats/verification.json": "c14f55ac05d93269dbf8eef4a2a4042f75764d5228d06f8e41039d0b60351905",
-    "code/validated-examples/2026-11-23-r3/noh/atlas-noh-2026-11-23-r3.zip": "8c59623825c2eee95b6679a6697a0a91a729ba439545a880946d04764e384b36",
-    "code/validated-examples/2026-11-23-r3/noh/cases.json": "8409325dd840291acadfcdf78b2570b938bbf22efb8e3bdf7c12e715e19e144b",
-    "code/validated-examples/2026-11-23-r3/noh/results/result.json": "9262e65824154fcc1f39ee769e7c312d4652c0533c6756d5e25f42296932c1d3",
-    "code/validated-examples/2026-11-23-r3/noh/source-manifest.json": "228da58295758877c3131fc888bfd39dcf33aa30d493b89655d7e3e9ce9b8207",
-    "code/validated-examples/2026-11-23-r3/noh/verification.json": "056f668cd6f5450df3626383121274b55b2edf20519886d75f64f60d24ba6f29",
+    "code/validated-examples/2026-11-23-r5/noh/atlas-noh-2026-11-23-r5.zip": "64de5483e9896a3773348b75e1ec2b4630f8a709d68194c1d94772396f531733",
+    "code/validated-examples/2026-11-23-r5/noh/cases.json": "9501c9cb57617c09a8ceb0aa7e124ba1e2af303144eaa82045e8632fc7c39fc2",
+    "code/validated-examples/2026-11-23-r5/noh/results/result.json": "4e92acb911d505b3f7e74e39f01acf77e59fbe15577f321ac759f1315e487724",
+    "code/validated-examples/2026-11-23-r5/noh/source-manifest.json": "8597cbc7b841502f4e7eca154e86fe8893402c1167614952de682d7307c5595d",
+    "code/validated-examples/2026-11-23-r5/noh/verification.json": "48545a33ab2c19e9071616a15a1fcbf90c716096aa1a12550d3cb872ed8d9e36",
     "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "c3f00613d6e379a01c22b6aae9049787dc80d237384a0f3f9e82043120a474c0",
-    "numerical-methods-atlas/locales/messages.json": "001acc4b119671baec3f38157f9aa8c87022516877797dfa8715a27fd721a889"
+    "numerical-methods-atlas/gallery/preview-manifest.json": "f1fe2340951e960588a9189735b742d9cefd58f4b9b372b3333c306a45d46893",
+    "numerical-methods-atlas/locales/messages.json": "3e711e98b27c782dc89ab98cb38888b33948a1e7d026f313ebea36d948204e74"
   }
 }

@@ -1,9 +1,10 @@
 # True-cold Noh shocks / 真の低温Noh衝撃波
 
-Original educational finite-volume code; edition 2026-11-23-r3. One registered case
-`noh-shock` contains planar and cylindrical-radial refinements. It is not two
-independent problem discoveries, a Cartesian 2D Euler calculation, or an
-independent PDE-engine comparison.
+Original educational finite-volume code; edition 2026-11-23-r5. One registered case
+`noh-shock` contains planar, cylindrical-radial and spherical-radial refinements.
+They remain one physical problem and one registered execution case. The new
+spherical picture is a central section of 1D radial data, not Cartesian 3D
+Euler or an independent PDE-engine comparison.
 
 ## Run / 実行
 
@@ -35,8 +36,8 @@ source, as described in `THIRD_PARTY.md` and its `--help`.
 ## Fixed physical problem / 固定する物理問題
 
 Dimensionless radius `0 <= r <= 1`; gamma=5/3, rho0=1, u0=-1,
-**p0=0 exactly**, final time .6. PDE executions use d=1 (planar) and d=2
-(cylindrical-radial), N=64/128/256/512. Angular factors are omitted consistently
+**p0=0 exactly**, final time .6. PDE executions use d=1 (planar), d=2
+(cylindrical-radial) and d=3 (spherical-radial), N=64/128/256/512. Angular factors are omitted consistently
 from volumes, face areas and all integrals. Cell volumes are
 `V=(r_right**d-r_left**d)/d`, areas `A=r**(d-1)` (A=1 for planar).
 
@@ -47,13 +48,16 @@ integrated with the same two SSPRK stages as the state.
 
 C=(gamma+1)/(gamma-1)=4, shock speed=1/3, shock position=.2 at T=.6.
 Behind it rho=4**d, u=0, p=4**d/3, specific internal energy=.5. Ahead,
-rho=(1+t/r)**(d-1), u=-1, p=0. The jump at the shock is 4 in both geometries;
-the amplification relative to initial density is 4 (planar) or 16 (cylindrical).
+rho=(1+t/r)**(d-1), u=-1, p=0. The jump at the shock is 4 in all three geometries;
+the amplification relative to initial density is 4 (planar), 16 (cylindrical)
+or 64 (spherical).
 The cold flow converges inward; the generated shock propagates outward.
 
 ## Algorithm and origin treatment / 離散化と原点
 
-Piecewise-constant local Lax–Friedrichs/Rusanov flux, SSPRK2/Heun in time. The
+Planar/cylindrical runs retain piecewise-constant states. Spherical runs use
+conservative MUSCL/minmod reconstruction. All use local Lax–Friedrichs/Rusanov
+flux and SSPRK2/Heun in time. The
 geometric CFL uses `(A_left*a_left+A_right*a_right)/V`, not a Cartesian dx-only
 bound. No conservative state or pressure floor, clipping, analytic-array
 replacement, or hidden pressure seed is used. Tiny negative internal energy up
@@ -62,7 +66,8 @@ sound-speed square-root argument may use zero at roundoff. Actual cold states
 remain exactly cold in the primitive routine.
 
 The radial source is an explicitly documented **interface-stress quadrature**.
-For the same numerical flux already used by the update,
+Planar/cylindrical runs retain the original arithmetic rule. For the same
+numerical flux already used by the update,
 
 ```
 ubar_f = (u_L+u_R)/2
@@ -70,7 +75,7 @@ Pstar_f = Fhat_momentum_f - ubar_f*Fhat_mass_f
 S_momentum_i * V_i = (Pstar_left+Pstar_right)/2 * (A_right-A_left)
 ```
 
-Thus its pressure part simplifies exactly to
+For that arithmetic rule, the pressure part simplifies exactly to
 `-(A_left+A_right)/2 * (Pstar_right-Pstar_left) / V_i`. This is a consistent
 first-order approximation to the pressure gradient, uses the reflection
 Riemann stress at the origin, balances static constant pressure exactly, and
@@ -79,6 +84,41 @@ interior flow Pstar=0. The Rusanov numerical stress differs from thermodynamic
 cell pressure at finite resolution; it must not be described as exact
 integration of p_i or attributed to Noh's original method. No theorem of
 positivity or convergence for all radial data is claimed.
+
+For spherical runs this edition selects `linear-radial-stress`: linearly
+interpolate the *numerical face stress*, then integrate it against `2*r dr`.
+For a shell [a,b],
+
+```
+source_momentum_integral = (b-a)*((b+2*a)*Pstar_left + (2*b+a)*Pstar_right)/3
+```
+
+Together with the pressure-like face flux this gives the exact volume mean of
+a linear stress gradient: `-(Pstar_right-Pstar_left)/(b-a)`. This is an
+independently derived geometry quadrature, without any Noh solution values.
+It is not exact integration of the unknown physical pressure. The spherical series additionally uses limited linear reconstruction. No
+global second-order accuracy or positivity theorem is inferred. Its choice by geometry is explicit in the
+input, with the old arithmetic rule remaining the default solver option.
+
+### Conservative reconstruction in spherical flow
+
+For each radial cell use the volume centroid
+`rbar = d/(d+1)*(r_right**(d+1)-r_left**(d+1))/(r_right**d-r_left**d)`.
+Reconstruct all conserved variables as `qbar + theta*slope*(r-rbar)`, with
+componentwise minmod slopes from adjacent centroids; the two boundary cells
+have zero slope. A single common theta
+per cell scales both faces and every conserved component, preserving the cell
+mean. Face admissibility uses the existing finite/positive-density/64-roundoff
+internal-energy rule. Scaling slopes does not change qbar, inject a pressure
+seed or repair a cell state. The scaling count and minimum theta are recorded.
+Wave speeds and source stress use these same face states; each Heun RHS
+reconstructs again. Invalid RK stages remain failures; no hidden timestep
+retry, cell replacement or pressure clipping is used.
+
+Mignone (2014), DOI 10.1016/j.jcp.2014.04.001, sections 2.2/3.1/4.2,
+provides coordinate-aware reconstruction and source-integration background.
+This restricted minmod/Rusanov/Heun implementation does not reproduce all of
+that paper or establish its overall smooth-flow convergence order.
 
 ## Exact cell means / 厳密セル平均
 
@@ -99,7 +139,7 @@ LANL ExactPack, independently executed unchanged at commit
 `9bacc477eb791e959c9621e771fc7a725db755fa`, cross-checks the analytic reference.
 Point samples and Gauss integration split at the shock are saved in
 `exactpack-reference-snapshot.json`, with hashes, environment and errors in its
-receipt. Geometry-3 analytic checks are **not** a spherical PDE run. ExactPack's
+receipt. Those geometry-3 analytic checks are separate from this edition's new spherical PDE runs. ExactPack's
 Noh pressure expression is gamma=5/3-specific despite the broader API, so the
 independent cross-check is explicitly restricted to gamma=5/3 and rho0=|u0|=1.
 
@@ -110,8 +150,11 @@ first numerical execution. All original thresholds are retained. Initial code
 used the cell-pressure source p_i*(A_right-A_left). Planar flow passed, but the
 area-zero cylindrical origin left constant-velocity cold accumulation and no
 stagnation shock. It failed six predeclared gates even though total mass and
-energy balanced. That source, inputs, gates and all failed refinement results
-are retained under `attempts/attempt-01-cell-pressure/`.
+energy balanced. Its source, inputs, gates, all eight diagnostic logs and
+failed summary are retained under `attempts/attempt-01-cell-pressure/`. All
+eight original failed full-field profile CSVs are also retained there, with
+byte-identical copies in the prior r3 distribution. The reconstructed summary
+history described in the attempt receipt is distinct from these original CSVs.
 
 The interface-stress revision was separately executed against **the same**
 acceptance file; the revision02 source, receipt and successful result summary
@@ -138,6 +181,49 @@ For this input total mass M(t)=(1+t)**d/d and energy E(t)=M(t)/2;
 these analytic inflow totals are checked separately from discrete telescoping
 mass/energy balances. Scalar radial momentum includes a geometric source and
 is not a conserved Cartesian vector component.
+
+## Spherical extension / 球対称の追加検証
+
+The published r3 remains unchanged. Its original `acceptance.json` is retained
+byte for byte; `spherical-acceptance.json` adds criteria frozen before the first
+spherical PDE run. Shared planar/cylindrical gate names and bounds remain the
+same. The new receipt records the complete sum of actual step cubes.
+
+The first sphere attempt (`attempts/spherical-01/`) completed all 12 grid runs
+and 15 tests but failed 2/105 scientific gates: shock position 3.92281 cells
+(limit 3), and plateau-density relative error .110277 (limit .1). The shock
+was ahead of its exact position. Its complete source, inputs, logs and arrays
+are retained. A separately named pre-run revision changes only the spherical
+stress quadrature; no acceptance bound is altered after these observations. The second attempt
+(`attempts/spherical-02/`) also failed the same two gates (3.91882 cells and
+.110179 density error). The third attempt keeps its linear-stress quadrature
+and changes only spherical reconstruction to conservative MUSCL/minmod; both
+failed baseline datasets remain available for the comparison figure.
+
+The third attempt passed all **105/105** unchanged gates after 28 unit tests
+and all 12 fixed grid runs. At spherical N=512, density L1=.0114343, shock
+error=1.98856 cells, plateau-density error=5.2533%, and origin-inclusive core
+density L1=.0549503. Center maximum specific-internal-energy excess is **20.59%**,
+worse than the second attempt's 15.52%. This is not an improvement in every
+diagnostic; the unmasked center heating is retained and plotted.
+
+At d=3 the outer mass inflow rate is `(1+t)^2`. SSPRK2 uses its trapezoidal
+integral, so discrete mass/energy balance can be at roundoff while the totals
+differ from the continuous analytic solution. With rho0=|u0|=R=1,
+
+```
+M_exact(.6) = 512/375
+E_exact(.6) = 256/375
+M_h - M_exact = sum(dt_n**3)/6
+E_h - E_exact = sum(dt_n**3)/12
+```
+
+These signed identities are checked separately from the discrete telescoping
+budgets. Radial-momentum balance includes the geometric source. The fixed core
+`r_right <= .70*r_shock` includes the origin; its density L1 supplements the
+whole-domain r^2-weighted error. First-cell values and center heating remain
+visible even if their maximum errors do not converge to zero. The additional
+figures show all three geometry error series and the spherical budget split.
 
 ## Provenance / 出典の役割
 

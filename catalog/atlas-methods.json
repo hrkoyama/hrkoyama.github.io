@@ -904,9 +904,18 @@
         ]
       },
       "depth_scope": {
-        "ja": "衝撃波と密度正弦波の相互作用を、同じPython実装の細格子ではなく、別に実行したAthena++の参照と照合します。",
-        "en": "Compare shock–density-wave interaction against separately executed Athena++ reference data rather than a finer grid of the same Python code."
-      }
+        "ja": "衝撃波と密度正弦波の相互作用を、同じPython実装の細格子ではなく、別に実行したAthena++の参照と照合します。 追加Noh版では球対称系列だけに体積重心を用いる保存量MUSCL/minmod＋Heunを実装し、平面・円筒は区分定数のままです。",
+        "en": "Compare shock–density-wave interaction against separately executed Athena++ reference data rather than a finer grid of the same Python code. The additional Noh edition uses volume-centroid conservative MUSCL/minmod with Heun only in spherical runs; planar/cylindrical states stay piecewise constant."
+      },
+      "depth_additional_releases": [
+        {
+          "group": "noh",
+          "edition": "2026-11-23-r5",
+          "case_ids": [
+            "noh-shock"
+          ]
+        }
+      ]
     },
     {
       "id": "weno-js",
@@ -1445,15 +1454,15 @@
       ],
       "depth_release": {
         "group": "noh",
-        "edition": "2026-11-23-r3",
+        "edition": "2026-11-23-r5",
         "case_ids": [
           "noh-shock"
         ]
       },
       "depth_previous_status": "educational-example",
       "depth_scope": {
-        "ja": "圧力をゼロから始めるNoh問題を、独自の小型1D有限体積ソルバーで平面・円筒半径対称に計算します。64/128/256/512格子で体積重み誤差、衝撃位置、密度増幅、原点過熱、外側流入を含む質量・全エネルギー収支を別々に測ります。",
-        "en": "A small original 1D finite-volume solver advances the Noh problem from exactly zero pressure, in planar and cylindrical-radial symmetry. Grids 64/128/256/512 separately measure volume-weighted errors, shock location, density amplification, origin heating and mass/total-energy budgets including outer inflow."
+        "ja": "初期圧力ゼロのNoh問題を、独自の小型1D有限体積コードで平面・円筒・球対称に計算します。64/128/256/512格子の全域誤差、原点過熱、衝撃位置、保存収支を測り、球で現れる境界流入の時間積分誤差を解析式と照合します。",
+        "en": "An original small 1D finite-volume code solves zero-pressure Noh flow in planar, cylindrical and spherical symmetry. Grids 64/128/256/512 measure full-domain error, origin heating, shock location and budgets, and compare spherical boundary-inflow time-quadrature error with its analytic identity."
       }
     },
     {
@@ -2094,7 +2103,19 @@
         "minmod limiter",
         "minmod制限関数",
         "minmod勾配制限"
-      ]
+      ],
+      "depth_release": {
+        "group": "noh",
+        "edition": "2026-11-23-r5",
+        "case_ids": [
+          "noh-shock"
+        ]
+      },
+      "depth_previous_status": "educational-example",
+      "depth_scope": {
+        "ja": "このNoh配布の球対称系列で、保存量のMUSCL型再構築の傾きをminmodで制限します。平面・円筒は区分定数のままです。",
+        "en": "Minmod limits conserved-variable MUSCL slopes in this Noh edition's spherical series. Planar/cylindrical runs retain piecewise-constant states."
+      }
     },
     {
       "id": "superbee",
@@ -2606,15 +2627,15 @@
       ],
       "depth_release": {
         "group": "noh",
-        "edition": "2026-11-23-r3",
+        "edition": "2026-11-23-r5",
         "case_ids": [
           "noh-shock"
         ]
       },
       "depth_previous_status": "educational-example",
       "depth_scope": {
-        "ja": "圧力をゼロから始めるNoh問題を、独自の小型1D有限体積ソルバーで平面・円筒半径対称に計算します。64/128/256/512格子で体積重み誤差、衝撃位置、密度増幅、原点過熱、外側流入を含む質量・全エネルギー収支を別々に測ります。",
-        "en": "A small original 1D finite-volume solver advances the Noh problem from exactly zero pressure, in planar and cylindrical-radial symmetry. Grids 64/128/256/512 separately measure volume-weighted errors, shock location, density amplification, origin heating and mass/total-energy budgets including outer inflow."
+        "ja": "初期圧力ゼロのNoh問題を、独自の小型1D有限体積コードで平面・円筒・球対称に計算します。64/128/256/512格子の全域誤差、原点過熱、衝撃位置、保存収支を測り、球で現れる境界流入の時間積分誤差を解析式と照合します。",
+        "en": "An original small 1D finite-volume code solves zero-pressure Noh flow in planar, cylindrical and spherical symmetry. Grids 64/128/256/512 measure full-domain error, origin heating, shock location and budgets, and compare spherical boundary-inflow time-quadrature error with its analytic identity."
       }
     },
     {

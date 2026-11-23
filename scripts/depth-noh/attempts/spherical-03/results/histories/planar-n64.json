@@ -1,0 +1,118 @@
+[
+  {
+    "step": 1,
+    "time": 0.002734375,
+    "dt": 0.002734375,
+    "dt_cubed_sum": 2.044439315795898e-08,
+    "reconstruction_theta_reduced_stage_cells": 0,
+    "reconstruction_theta_zero_stage_cells": 0,
+    "reconstruction_theta_min": 1.0,
+    "integral": [
+      1.002734375,
+      -0.9975459726449296,
+      0.5013671875
+    ],
+    "boundary_net_integral": [
+      0.002734375,
+      0.002454027355070354,
+      0.0013671875
+    ],
+    "source_integral": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "balance_residual": [
+      -4.423544863740858e-17,
+      3.3393426912553537e-17,
+      -2.211772431870429e-17
+    ]
+  },
+  {
+    "step": 100,
+    "time": 0.2416155458243925,
+    "dt": 0.0024444317582794817,
+    "dt_cubed_sum": 1.4132549115680706e-06,
+    "reconstruction_theta_reduced_stage_cells": 0,
+    "reconstruction_theta_zero_stage_cells": 0,
+    "reconstruction_theta_min": 1.0,
+    "integral": [
+      1.2416155458243925,
+      -0.9307748911187305,
+      0.6208077729121961
+    ],
+    "boundary_net_integral": [
+      0.2416155458243925,
+      0.0692251088812695,
+      0.12080777291219626
+    ],
+    "source_integral": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "balance_residual": [
+      -2.7755575615628914e-17,
+      4.163336342344337e-17,
+      -1.249000902703301e-16
+    ]
+  },
+  {
+    "step": 200,
+    "time": 0.4871351936853309,
+    "dt": 0.002466921417874469,
+    "dt_cubed_sum": 2.8933096176502765e-06,
+    "reconstruction_theta_reduced_stage_cells": 0,
+    "reconstruction_theta_zero_stage_cells": 0,
+    "reconstruction_theta_min": 1.0,
+    "integral": [
+      1.4871351936853303,
+      -0.8509360838441506,
+      0.7435675968426652
+    ],
+    "boundary_net_integral": [
+      0.4871351936853309,
+      0.14906391615584938,
+      0.24356759684266546
+    ],
+    "source_integral": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "balance_residual": [
+      -6.106226635438361e-16,
+      -2.7755575615628914e-17,
+      -3.0531133177191805e-16
+    ]
+  },
+  {
+    "step": 246,
+    "time": 0.6,
+    "dt": 0.0022710280617435075,
+    "dt_cubed_sum": 3.573041067368297e-06,
+    "reconstruction_theta_reduced_stage_cells": 0,
+    "reconstruction_theta_zero_stage_cells": 0,
+    "reconstruction_theta_min": 1.0,
+    "integral": [
+      1.5999999999999996,
+      -0.8135105687303927,
+      0.7999999999999998
+    ],
+    "boundary_net_integral": [
+      0.6,
+      0.18648943126960743,
+      0.3
+    ],
+    "source_integral": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "balance_residual": [
+      -3.3306690738754696e-16,
+      -1.6653345369377348e-16,
+      -1.6653345369377348e-16
+    ]
+  }
+]

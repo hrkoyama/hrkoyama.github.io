@@ -1,0 +1,617 @@
+{
+  "schema_version": 1,
+  "target_edition": "2026-11-23-r4",
+  "attempt": "spherical-03",
+  "numerical_passed": true,
+  "gate_count": 105,
+  "failed_checks": [],
+  "all_12_runs_completed": true,
+  "preservation_passed": true,
+  "execution_receipt_sha256": "b0c4592a1b2cd014fd06844263edbf88643d61664f23ab7ae40ac8fd158b7435",
+  "comparison_receipt_sha256": "1401351858907cfc055ca197c982072c9e941641d67d9ffbd06a89f2838926f7",
+  "spherical_runs": [
+    {
+      "n": 64,
+      "steps": 296,
+      "stress_quadrature": "linear-radial-stress",
+      "reconstruction": "muscl-minmod",
+      "metrics": {
+        "density_l1": 0.06372131456995628,
+        "density_l2": 0.33533610753001597,
+        "density_linf": 0.4879562668498812,
+        "density_errors": {
+          "full": {
+            "l1": 0.06372131456995628,
+            "l2": 0.33533610753001597,
+            "linf": 0.4879562668498812,
+            "cells": 64
+          },
+          "outside_center_and_shock": {
+            "l1": 0.01522443132872837,
+            "l2": 0.20580917787603428,
+            "linf": 0.3809434449072697,
+            "cells": 54
+          },
+          "center": {
+            "l1": 0.4006932311908565,
+            "l2": 0.4007185758503249,
+            "linf": 0.41101868336549985,
+            "cells": 3
+          },
+          "shock_band": {
+            "l1": 0.4648492907535246,
+            "l2": 0.4367986376382656,
+            "linf": 0.4879562668498812,
+            "cells": 7
+          }
+        },
+        "core_density_l1": 0.3256631488765628,
+        "core_density_errors": {
+          "l1": 0.3256631488765628,
+          "l2": 0.32720170283110844,
+          "linf": 0.41101868336549985,
+          "cells": 8
+        },
+        "core_mask": "r_right <= 0.70*r_shock, origin included",
+        "shock_exact": 0.2,
+        "shock_measured_pressure_half_height": 0.22134034477102374,
+        "shock_error": 0.021340344771023728,
+        "shock_error_in_dx": 1.3657820653455186,
+        "shock_position_signed_error": 0.021340344771023728,
+        "plateau_density": 43.739156068417415,
+        "plateau_density_exact": 64.0,
+        "plateau_density_amplification": 43.739156068417415,
+        "plateau_density_relative_error": 0.3165756864309779,
+        "plateau_density_signed_relative_error": -0.3165756864309779,
+        "plateau_pressure": 16.462480289660334,
+        "plateau_pressure_exact": 21.333333333333336,
+        "plateau_pressure_relative_error": 0.22832123642217195,
+        "plateau_pressure_signed_relative_error": -0.22832123642217195,
+        "shock_jump_exact": 4.0,
+        "initial_density_amplification_exact": 64.0,
+        "shock_jump_using_plateau_and_exact_upstream": 2.7336972542760885,
+        "center_max_specific_internal_energy": 0.6708535202875113,
+        "center_max_sie_relative_excess": 0.34170704057502266,
+        "center_max_specific_internal_energy_ratio": 1.3417070405750227,
+        "center_min_density": 37.69480426460801,
+        "center_min_density_ratio": 0.5889813166345002,
+        "center_max_pressure": 16.85846142497399,
+        "center_max_pressure_ratio": 0.7902403792956556,
+        "center_first_cell": {
+          "rho": 37.69480426460801,
+          "pressure": 16.85846142497399,
+          "specific_internal_energy": 0.6708535202875113,
+          "rho_exact": 64.0,
+          "pressure_exact": 21.333333333333336,
+          "specific_internal_energy_exact": 0.5,
+          "rho_ratio": 0.5889813166345002,
+          "pressure_ratio": 0.7902403792956556,
+          "specific_internal_energy_ratio": 1.3417070405750227
+        },
+        "initial_integral": [
+          0.3333333333333333,
+          -0.3333333333333333,
+          0.16666666666666666
+        ],
+        "final_integral": [
+          1.3653337507004806,
+          -1.1841728266520237,
+          0.6826668753502403
+        ],
+        "boundary_net_integral": [
+          1.0320004173671469,
+          -1.0320004173671469,
+          0.5160002086835734
+        ],
+        "geometric_source_integral": [
+          0.0,
+          0.18116092404845688,
+          0.0
+        ],
+        "conservation_residual": [
+          4.440892098500626e-16,
+          -4.718447854656915e-16,
+          2.220446049250313e-16
+        ],
+        "mass_balance_relative": 3.2526055231713414e-16,
+        "mass_balance_signed": 4.440892098500626e-16,
+        "mass_balance_signed_relative": 3.2526055231713414e-16,
+        "energy_balance_relative": 3.2526055231713414e-16,
+        "energy_balance_signed": 2.220446049250313e-16,
+        "energy_balance_signed_relative": 3.2526055231713414e-16,
+        "radial_momentum_balance_absolute": 4.718447854656915e-16,
+        "radial_momentum_balance_signed": -4.718447854656915e-16,
+        "radial_momentum_balance_scale": 2.7306675014009607,
+        "radial_momentum_balance_relative": 1.7279466841847752e-16,
+        "radial_momentum_balance_signed_relative": -1.7279466841847752e-16,
+        "analytic_total_mass": 1.3653333333333337,
+        "analytic_total_energy": 0.6826666666666669,
+        "mass_vs_analytic_relative": 3.0568882825043886e-07,
+        "energy_vs_analytic_relative": 3.0568882825043886e-07,
+        "mass_vs_analytic_signed": 4.173671468432616e-07,
+        "energy_vs_analytic_signed": 2.086835734216308e-07,
+        "mass_vs_analytic_signed_relative": 3.056888282543419e-07,
+        "energy_vs_analytic_signed_relative": 3.056888282543419e-07,
+        "dt_cubed_sum": 2.5042028810624156e-06,
+        "mass_temporal_bias_expected": 4.1736714684373593e-07,
+        "energy_temporal_bias_expected": 2.0868357342186797e-07,
+        "mass_temporal_bias_residual_signed": -4.743384504624082e-19,
+        "energy_temporal_bias_residual_signed": -2.371692252312041e-19,
+        "mass_temporal_bias_residual_relative": 3.4741585727227153e-19,
+        "energy_temporal_bias_residual_relative": 3.4741585727227153e-19,
+        "mass_temporal_bias_residual_signed_relative": -3.4741585727227153e-19,
+        "energy_temporal_bias_residual_signed_relative": -3.4741585727227153e-19,
+        "min_pressure_all_stages": -5.921189464667502e-16,
+        "min_density_all_stages": 1.0,
+        "min_internal_energy_roundoff_units": -2.016501641043114,
+        "negative_pressure_evaluations": 143,
+        "state_floor_corrections": 0,
+        "reconstruction_theta_reduced_stage_cells": 313,
+        "reconstruction_theta_zero_stage_cells": 0,
+        "reconstruction_theta_min": 3.415046023746981e-13
+      }
+    },
+    {
+      "n": 128,
+      "steps": 577,
+      "stress_quadrature": "linear-radial-stress",
+      "reconstruction": "muscl-minmod",
+      "metrics": {
+        "density_l1": 0.03788054829018362,
+        "density_l2": 0.2442462875999278,
+        "density_linf": 0.5731912765825762,
+        "density_errors": {
+          "full": {
+            "l1": 0.03788054829018362,
+            "l2": 0.2442462875999278,
+            "linf": 0.5731912765825762,
+            "cells": 128
+          },
+          "outside_center_and_shock": {
+            "l1": 0.014152506869729296,
+            "l2": 0.12976807216936007,
+            "linf": 0.2571506823671753,
+            "cells": 115
+          },
+          "center": {
+            "l1": 0.29363672465653184,
+            "l2": 0.29409015572393843,
+            "linf": 0.32797155636941877,
+            "cells": 6
+          },
+          "shock_band": {
+            "l1": 0.41183095606336556,
+            "l2": 0.4257685585728428,
+            "linf": 0.5731912765825762,
+            "cells": 7
+          }
+        },
+        "core_density_l1": 0.19145268602144502,
+        "core_density_errors": {
+          "l1": 0.19145268602144502,
+          "l2": 0.19405293627558434,
+          "linf": 0.32797155636941877,
+          "cells": 17
+        },
+        "core_mask": "r_right <= 0.70*r_shock, origin included",
+        "shock_exact": 0.2,
+        "shock_measured_pressure_half_height": 0.21325150341686477,
+        "shock_error": 0.013251503416864763,
+        "shock_error_in_dx": 1.6961924373586896,
+        "shock_position_signed_error": 0.013251503416864763,
+        "plateau_density": 52.172976773925015,
+        "plateau_density_exact": 64.0,
+        "plateau_density_amplification": 52.172976773925015,
+        "plateau_density_relative_error": 0.18479723790742164,
+        "plateau_density_signed_relative_error": -0.18479723790742164,
+        "plateau_pressure": 18.47875306258749,
+        "plateau_pressure_exact": 21.333333333333336,
+        "plateau_pressure_relative_error": 0.13380845019121146,
+        "plateau_pressure_signed_relative_error": -0.13380845019121146,
+        "shock_jump_exact": 4.0,
+        "initial_density_amplification_exact": 64.0,
+        "shock_jump_using_plateau_and_exact_upstream": 3.2608110483703134,
+        "center_max_specific_internal_energy": 0.6464928307818312,
+        "center_max_sie_relative_excess": 0.29298566156366235,
+        "center_max_specific_internal_energy_ratio": 1.2929856615636623,
+        "center_min_density": 43.0098203923572,
+        "center_min_density_ratio": 0.6720284436305812,
+        "center_max_pressure": 18.53702702458209,
+        "center_max_pressure_ratio": 0.8689231417772855,
+        "center_first_cell": {
+          "rho": 43.0098203923572,
+          "pressure": 18.53702702458209,
+          "specific_internal_energy": 0.6464928307818312,
+          "rho_exact": 64.0,
+          "pressure_exact": 21.333333333333336,
+          "specific_internal_energy_exact": 0.5,
+          "rho_ratio": 0.6720284436305812,
+          "pressure_ratio": 0.8689231417772855,
+          "specific_internal_energy_ratio": 1.2929856615636623
+        },
+        "initial_integral": [
+          0.33333333333333337,
+          -0.33333333333333337,
+          0.16666666666666669
+        ],
+        "final_integral": [
+          1.3653334425096242,
+          -1.1890539405644909,
+          0.6826667212548121
+        ],
+        "boundary_net_integral": [
+          1.0320001091762907,
+          -1.0320001091762907,
+          0.5160000545881454
+        ],
+        "geometric_source_integral": [
+          0.0,
+          0.17627950194513356,
+          0.0
+        ],
+        "conservation_residual": [
+          0.0,
+          -3.608224830031759e-16,
+          0.0
+        ],
+        "mass_balance_relative": 0.0,
+        "mass_balance_signed": 0.0,
+        "mass_balance_signed_relative": 0.0,
+        "energy_balance_relative": 0.0,
+        "energy_balance_signed": 0.0,
+        "energy_balance_signed_relative": 0.0,
+        "radial_momentum_balance_absolute": 3.608224830031759e-16,
+        "radial_momentum_balance_signed": -3.608224830031759e-16,
+        "radial_momentum_balance_scale": 2.7306668850192484,
+        "radial_momentum_balance_relative": 1.3213712920557589e-16,
+        "radial_momentum_balance_signed_relative": -1.3213712920557589e-16,
+        "analytic_total_mass": 1.3653333333333337,
+        "analytic_total_energy": 0.6826666666666669,
+        "mass_vs_analytic_relative": 7.996310324998035e-08,
+        "energy_vs_analytic_relative": 7.996310324998035e-08,
+        "mass_vs_analytic_signed": 1.0917629045259503e-07,
+        "energy_vs_analytic_signed": 5.458814522629751e-08,
+        "mass_vs_analytic_signed_relative": 7.996310335883422e-08,
+        "energy_vs_analytic_signed_relative": 7.996310335883422e-08,
+        "dt_cubed_sum": 6.550577474728315e-07,
+        "mass_temporal_bias_expected": 1.0917629124547192e-07,
+        "energy_temporal_bias_expected": 5.458814562273596e-08,
+        "mass_temporal_bias_residual_signed": -7.928768899199718e-16,
+        "energy_temporal_bias_residual_signed": -3.964384449599859e-16,
+        "mass_temporal_bias_residual_relative": 5.807203783593541e-16,
+        "energy_temporal_bias_residual_relative": 5.807203783593541e-16,
+        "mass_temporal_bias_residual_signed_relative": -5.807203783593541e-16,
+        "energy_temporal_bias_residual_signed_relative": -5.807203783593541e-16,
+        "min_pressure_all_stages": -2.664535259100376e-15,
+        "min_density_all_stages": 1.0,
+        "min_internal_energy_roundoff_units": -5.81779698060281,
+        "negative_pressure_evaluations": 431,
+        "state_floor_corrections": 0,
+        "reconstruction_theta_reduced_stage_cells": 589,
+        "reconstruction_theta_zero_stage_cells": 0,
+        "reconstruction_theta_min": 3.415046023746981e-13
+      }
+    },
+    {
+      "n": 256,
+      "steps": 1130,
+      "stress_quadrature": "linear-radial-stress",
+      "reconstruction": "muscl-minmod",
+      "metrics": {
+        "density_l1": 0.021769008767570396,
+        "density_l2": 0.18293632120192402,
+        "density_linf": 0.5757953795140922,
+        "density_errors": {
+          "full": {
+            "l1": 0.021769008767570396,
+            "l2": 0.18293632120192402,
+            "linf": 0.5757953795140922,
+            "cells": 256
+          },
+          "outside_center_and_shock": {
+            "l1": 0.009335319833462178,
+            "l2": 0.07177867319936736,
+            "linf": 0.15205618202600468,
+            "cells": 237
+          },
+          "center": {
+            "l1": 0.1876004869739394,
+            "l2": 0.189496663837017,
+            "linf": 0.25753274239633783,
+            "cells": 12
+          },
+          "shock_band": {
+            "l1": 0.4268791403784894,
+            "l2": 0.4775050848811907,
+            "linf": 0.5757953795140922,
+            "cells": 7
+          }
+        },
+        "core_density_l1": 0.10460742311949278,
+        "core_density_errors": {
+          "l1": 0.10460742311949278,
+          "l2": 0.10703598865520317,
+          "linf": 0.25753274239633783,
+          "cells": 35
+        },
+        "core_mask": "r_right <= 0.70*r_shock, origin included",
+        "shock_exact": 0.2,
+        "shock_measured_pressure_half_height": 0.20731323388185313,
+        "shock_error": 0.007313233881853121,
+        "shock_error_in_dx": 1.8721878737543989,
+        "shock_position_signed_error": 0.007313233881853121,
+        "plateau_density": 57.56577172858118,
+        "plateau_density_exact": 64.0,
+        "plateau_density_amplification": 57.56577172858118,
+        "plateau_density_relative_error": 0.10053481674091902,
+        "plateau_density_signed_relative_error": -0.10053481674091902,
+        "plateau_pressure": 19.757588956793334,
+        "plateau_pressure_exact": 21.333333333333336,
+        "plateau_pressure_relative_error": 0.07386301765031256,
+        "plateau_pressure_signed_relative_error": -0.07386301765031256,
+        "shock_jump_exact": 4.0,
+        "initial_density_amplification_exact": 64.0,
+        "shock_jump_using_plateau_and_exact_upstream": 3.597860733036324,
+        "center_max_specific_internal_energy": 0.6245096951667918,
+        "center_max_sie_relative_excess": 0.24901939033358356,
+        "center_max_specific_internal_energy_ratio": 1.2490193903335836,
+        "center_min_density": 47.51790448663438,
+        "center_min_density_ratio": 0.7424672576036622,
+        "center_max_pressure": 19.78507684610758,
+        "center_max_pressure_ratio": 0.9274254771612926,
+        "center_first_cell": {
+          "rho": 47.51790448663438,
+          "pressure": 19.783594697275177,
+          "specific_internal_energy": 0.6245096951667918,
+          "rho_exact": 64.0,
+          "pressure_exact": 21.333333333333336,
+          "specific_internal_energy_exact": 0.5,
+          "rho_ratio": 0.7424672576036622,
+          "pressure_ratio": 0.9273560014347738,
+          "specific_internal_energy_ratio": 1.2490193903335836
+        },
+        "initial_integral": [
+          0.3333333333333332,
+          -0.3333333333333332,
+          0.1666666666666666
+        ],
+        "final_integral": [
+          1.3653333617200365,
+          -1.1917255787355363,
+          0.6826666808600182
+        ],
+        "boundary_net_integral": [
+          1.0320000283867015,
+          -1.0320000283867015,
+          0.5160000141933507
+        ],
+        "geometric_source_integral": [
+          0.0,
+          0.1736077829844996,
+          0.0
+        ],
+        "conservation_residual": [
+          1.7763568394002505e-15,
+          -1.1934897514720433e-15,
+          8.881784197001252e-16
+        ],
+        "mass_balance_relative": 1.301042579932574e-15,
+        "mass_balance_signed": 1.7763568394002505e-15,
+        "mass_balance_signed_relative": 1.301042579932574e-15,
+        "energy_balance_relative": 1.301042579932574e-15,
+        "energy_balance_signed": 8.881784197001252e-16,
+        "energy_balance_signed_relative": 1.301042579932574e-15,
+        "radial_momentum_balance_absolute": 1.1934897514720433e-15,
+        "radial_momentum_balance_signed": -1.1934897514720433e-15,
+        "radial_momentum_balance_scale": 2.7306667234400703,
+        "radial_momentum_balance_relative": 4.3706899169609947e-16,
+        "radial_momentum_balance_signed_relative": -4.3706899169609947e-16,
+        "analytic_total_mass": 1.3653333333333337,
+        "analytic_total_energy": 0.6826666666666669,
+        "mass_vs_analytic_relative": 2.0791041999146387e-08,
+        "energy_vs_analytic_relative": 2.0791041999146387e-08,
+        "mass_vs_analytic_signed": 2.8386702766169947e-08,
+        "energy_vs_analytic_signed": 1.4193351383084973e-08,
+        "mass_vs_analytic_signed_relative": 2.0791042065065872e-08,
+        "energy_vs_analytic_signed_relative": 2.0791042065065872e-08,
+        "dt_cubed_sum": 1.7032021372709778e-07,
+        "mass_temporal_bias_expected": 2.838670228784963e-08,
+        "energy_temporal_bias_expected": 1.4193351143924815e-08,
+        "mass_temporal_bias_residual_signed": 4.783203159515037e-16,
+        "energy_temporal_bias_residual_signed": 2.3916015797575185e-16,
+        "mass_temporal_bias_residual_relative": 3.5033226265979265e-16,
+        "energy_temporal_bias_residual_relative": 3.5033226265979265e-16,
+        "mass_temporal_bias_residual_signed_relative": 3.5033226265979265e-16,
+        "energy_temporal_bias_residual_signed_relative": 3.5033226265979265e-16,
+        "min_pressure_all_stages": -3.552713678800501e-15,
+        "min_density_all_stages": 1.0,
+        "min_internal_energy_roundoff_units": -5.065087181904945,
+        "negative_pressure_evaluations": 802,
+        "state_floor_corrections": 0,
+        "reconstruction_theta_reduced_stage_cells": 1083,
+        "reconstruction_theta_zero_stage_cells": 0,
+        "reconstruction_theta_min": 3.415046023746981e-13
+      }
+    },
+    {
+      "n": 512,
+      "steps": 2216,
+      "stress_quadrature": "linear-radial-stress",
+      "reconstruction": "muscl-minmod",
+      "metrics": {
+        "density_l1": 0.011434288260693065,
+        "density_l2": 0.12865133541762314,
+        "density_linf": 0.6509628676271373,
+        "density_errors": {
+          "full": {
+            "l1": 0.011434288260693065,
+            "l2": 0.12865133541762314,
+            "linf": 0.6509628676271373,
+            "cells": 512
+          },
+          "outside_center_and_shock": {
+            "l1": 0.005217750912344503,
+            "l2": 0.03765223826487083,
+            "linf": 0.08039744388089343,
+            "cells": 480
+          },
+          "center": {
+            "l1": 0.1044304768114253,
+            "l2": 0.10732858334168863,
+            "linf": 0.20252439052213222,
+            "cells": 25
+          },
+          "shock_band": {
+            "l1": 0.39800490216879675,
+            "l2": 0.47346932321112706,
+            "linf": 0.6509628676271373,
+            "cells": 7
+          }
+        },
+        "core_density_l1": 0.05495030379369082,
+        "core_density_errors": {
+          "l1": 0.05495030379369082,
+          "l2": 0.05667510768239794,
+          "linf": 0.20252439052213222,
+          "cells": 71
+        },
+        "core_mask": "r_right <= 0.70*r_shock, origin included",
+        "shock_exact": 0.2,
+        "shock_measured_pressure_half_height": 0.2038839135859051,
+        "shock_error": 0.003883913585905091,
+        "shock_error_in_dx": 1.9885637559834066,
+        "shock_position_signed_error": 0.003883913585905091,
+        "plateau_density": 60.63790341767239,
+        "plateau_density_exact": 64.0,
+        "plateau_density_amplification": 60.63790341767239,
+        "plateau_density_relative_error": 0.0525327590988689,
+        "plateau_density_signed_relative_error": -0.0525327590988689,
+        "plateau_pressure": 20.499367353633247,
+        "plateau_pressure_exact": 21.333333333333336,
+        "plateau_pressure_relative_error": 0.03909215529844168,
+        "plateau_pressure_signed_relative_error": -0.03909215529844168,
+        "shock_jump_exact": 4.0,
+        "initial_density_amplification_exact": 64.0,
+        "shock_jump_using_plateau_and_exact_upstream": 3.7898689636045244,
+        "center_max_specific_internal_energy": 0.602961365266792,
+        "center_max_sie_relative_excess": 0.205922730533584,
+        "center_max_specific_internal_energy_ratio": 1.205922730533584,
+        "center_min_density": 51.03843900658354,
+        "center_min_density_ratio": 0.7974756094778678,
+        "center_max_pressure": 20.516508140858274,
+        "center_max_pressure_ratio": 0.9617113191027316,
+        "center_first_cell": {
+          "rho": 51.03843900658354,
+          "pressure": 20.51613790966367,
+          "specific_internal_energy": 0.602961365266792,
+          "rho_exact": 64.0,
+          "pressure_exact": 21.333333333333336,
+          "specific_internal_energy_exact": 0.5,
+          "rho_ratio": 0.7974756094778678,
+          "pressure_ratio": 0.9616939645154844,
+          "specific_internal_energy_ratio": 1.205922730533584
+        },
+        "initial_integral": [
+          0.33333333333333354,
+          -0.33333333333333354,
+          0.16666666666666677
+        ],
+        "final_integral": [
+          1.3653333406976174,
+          -1.193155577705667,
+          0.6826666703488087
+        ],
+        "boundary_net_integral": [
+          1.0320000073642828,
+          -1.0320000073642828,
+          0.5160000036821414
+        ],
+        "geometric_source_integral": [
+          0.0,
+          0.1721777629919504,
+          0.0
+        ],
+        "conservation_residual": [
+          1.1102230246251565e-15,
+          -1.1934897514720433e-15,
+          5.551115123125783e-16
+        ],
+        "mass_balance_relative": 8.131516249781814e-16,
+        "mass_balance_signed": 1.1102230246251565e-15,
+        "mass_balance_signed_relative": 8.131516249781814e-16,
+        "energy_balance_relative": 8.131516249781814e-16,
+        "energy_balance_signed": 5.551115123125783e-16,
+        "energy_balance_signed_relative": 8.131516249781814e-16,
+        "radial_momentum_balance_absolute": 1.1934897514720433e-15,
+        "radial_momentum_balance_signed": -1.1934897514720433e-15,
+        "radial_momentum_balance_scale": 2.730666681395234,
+        "radial_momentum_balance_relative": 4.3706899842577265e-16,
+        "radial_momentum_balance_signed_relative": -4.3706899842577265e-16,
+        "analytic_total_mass": 1.3653333333333337,
+        "analytic_total_energy": 0.6826666666666669,
+        "mass_vs_analytic_relative": 5.3937623256672396e-09,
+        "energy_vs_analytic_relative": 5.3937623256672396e-09,
+        "mass_vs_analytic_signed": 7.3642836273535295e-09,
+        "energy_vs_analytic_signed": 3.6821418136767647e-09,
+        "mass_vs_analytic_signed_relative": 5.393762422378072e-09,
+        "energy_vs_analytic_signed_relative": 5.393762422378072e-09,
+        "dt_cubed_sum": 4.418569672203109e-08,
+        "mass_temporal_bias_expected": 7.364282787005182e-09,
+        "energy_temporal_bias_expected": 3.682141393502591e-09,
+        "mass_temporal_bias_residual_signed": 8.40348347695846e-16,
+        "energy_temporal_bias_residual_signed": 4.20174173847923e-16,
+        "mass_temporal_bias_residual_relative": 6.154895124725433e-16,
+        "energy_temporal_bias_residual_relative": 6.154895124725433e-16,
+        "mass_temporal_bias_residual_signed_relative": 6.154895124725433e-16,
+        "energy_temporal_bias_residual_signed_relative": 6.154895124725433e-16,
+        "min_pressure_all_stages": -3.552713678800501e-15,
+        "min_density_all_stages": 1.0,
+        "min_internal_energy_roundoff_units": -4.520887311344608,
+        "negative_pressure_evaluations": 1479,
+        "state_floor_corrections": 0,
+        "reconstruction_theta_reduced_stage_cells": 1968,
+        "reconstruction_theta_zero_stage_cells": 0,
+        "reconstruction_theta_min": 3.415046023746981e-13
+      }
+    }
+  ],
+  "spherical_convergence": [
+    {
+      "n": 64,
+      "density_l1": 0.06372131456995628,
+      "density_l2": 0.33533610753001597,
+      "density_linf": 0.4879562668498812,
+      "shock_error": 0.021340344771023728,
+      "center_max_sie_relative_excess": 0.34170704057502266,
+      "density_l1_order": null
+    },
+    {
+      "n": 128,
+      "density_l1": 0.03788054829018362,
+      "density_l2": 0.2442462875999278,
+      "density_linf": 0.5731912765825762,
+      "shock_error": 0.013251503416864763,
+      "center_max_sie_relative_excess": 0.29298566156366235,
+      "density_l1_order": 0.7503188171547368
+    },
+    {
+      "n": 256,
+      "density_l1": 0.021769008767570396,
+      "density_l2": 0.18293632120192402,
+      "density_linf": 0.5757953795140922,
+      "shock_error": 0.007313233881853121,
+      "center_max_sie_relative_excess": 0.24901939033358356,
+      "density_l1_order": 0.7991814956092329
+    },
+    {
+      "n": 512,
+      "density_l1": 0.011434288260693065,
+      "density_l2": 0.12865133541762314,
+      "density_linf": 0.6509628676271373,
+      "shock_error": 0.003883913585905091,
+      "center_max_sie_relative_excess": 0.205922730533584,
+      "density_l1_order": 0.9289091507144915
+    }
+  ],
+  "interpretation": "All predeclared gates pass. Improved global L1/shock/plateau/core errors do not imply universal improvement: center maximum specific internal energy is higher than in the prior piecewise-constant attempts; report it without concealment."
+}

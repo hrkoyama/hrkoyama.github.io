@@ -28,7 +28,8 @@
         "p0": 0.0,
         "geometry_dimensions": [
           1,
-          2
+          2,
+          3
         ],
         "time": 0.6
       },
@@ -37,8 +38,8 @@
         "https://doi.org/10.1016/j.softx.2023.101560",
         "https://github.com/lanl/ExactPack/tree/9bacc477eb791e959c9621e771fc7a725db755fa"
       ],
-      "title": "Noh cold-inflow shock: planar and cylindrical symmetry",
-      "assumptions": "Ideal-gas Euler, gamma=5/3, rho0=1, inward speed 1, p0=0; r in [0,1], t=0.6. Planar (d=1) and cylindrically symmetric radial (d=2) finite-volume calculations; no pressure floor. The radial color image is a revolved one-dimensional solution, not a two-dimensional Cartesian computation.",
+      "title": "Noh cold-inflow shock: planar, cylindrical and spherical symmetry",
+      "assumptions": "Ideal-gas Euler, gamma=5/3, rho0=1, inward speed 1, p0=0; r in [0,1], t=0.6. Planar (d=1), cylindrical-radial (d=2) and spherical-radial (d=3) finite-volume calculations without a pressure floor. The spherical color picture is a central section of one-dimensional radial data, not a Cartesian three-dimensional computation.",
       "view": {
         "ja": "/numerical-methods-atlas/validation/noh-shock/?lang=ja#noh-shock-ja-measurements",
         "en": "/numerical-methods-atlas/validation/noh-shock/?lang=en#noh-shock-en-measurements"

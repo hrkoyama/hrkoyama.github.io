@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "case_id": "noh-cold-radial",
+  "gamma": 1.6666666666666667,
+  "rho0": 1.0,
+  "u0": -1.0,
+  "p0": 0.0,
+  "r_max": 1.0,
+  "final_time": 0.6,
+  "geometries": [
+    "planar",
+    "cylindrical"
+  ],
+  "grids": [
+    64,
+    128,
+    256,
+    512
+  ],
+  "cfl": 0.35,
+  "flux": "local-lax-friedrichs",
+  "reconstruction": "piecewise-constant",
+  "time_integrator": "SSPRK2",
+  "origin": "reflecting parity; cylindrical origin face has zero area",
+  "outer_boundary": "time-dependent analytic cold inflow evaluated at boundary face",
+  "state_floor": null,
+  "geometric_source": "integrated pressure source p_i*(A_right-A_left) in radial momentum",
+  "volume_measure": "r^(d-1)dr, angular factor omitted consistently",
+  "spatial_claim": "1D planar and 1D cylindrical-radial symmetry only; no Cartesian 2D Euler calculation"
+}

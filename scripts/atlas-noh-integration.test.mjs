@@ -11,7 +11,8 @@ const read=path=>bytes(path).toString();
 const json=path=>JSON.parse(read(path));
 const sha=path=>createHash('sha256').update(bytes(path)).digest('hex');
 const objectSha=value=>createHash('sha256').update(JSON.stringify(value)).digest('hex');
-const base='code/validated-examples/2026-11-23-r3/noh/';
+const base='code/validated-examples/2026-11-23-r5/noh/';
+const previous='code/validated-examples/2026-11-23-r3/noh/';
 const commit='9bacc477eb791e959c9621e771fc7a725db755fa';
 function local(value){
   const url=new URL(value,origin);assert.equal(url.origin,origin);
@@ -35,8 +36,11 @@ test('Noh adds one physical problem while every historical problem, image and re
 test('the fixed Noh computation uses cold inflow, conservative radial averages and the original acceptance contract',()=>{
   const input=json(base+'inputs.json').cases['noh-shock'],acceptance=json(base+'acceptance.json');
   assert.equal(input.gamma,5/3);assert.equal(input.rho0,1);assert.equal(input.u0,-1);assert.equal(input.p0,0);
-  assert.deepEqual(input.geometries,['planar','cylindrical']);assert.deepEqual(input.grids,[64,128,256,512]);
+  assert.deepEqual(input.geometries,['planar','cylindrical','spherical']);assert.deepEqual(input.grids,[64,128,256,512]);
   assert.equal(input.state_floor,null);assert.equal(input.time_integrator,'SSPRK2');
+  assert.deepEqual(input.stress_quadrature_by_geometry,{planar:'arithmetic-face',cylindrical:'arithmetic-face',spherical:'linear-radial-stress'});
+  assert.deepEqual(input.reconstruction_by_geometry,{planar:'piecewise-constant',cylindrical:'piecewise-constant',spherical:'muscl-minmod'});
+  assert.equal(input.active_spherical_pre_run_contract,'pre-run-contract-spherical-revision03.json');
   assert.equal(input.final_time,.6);assert.equal(input.r_max,1);
   assert.equal(acceptance.frozen_before_first_run,true);
   assert.equal(sha(base+'acceptance.json'),'a12c0ce119877e71fc8dfd852bd6dfb6aa6d8e7beb5e18bd13e91a5dd16117ff','acceptance is the file frozen before the first failed run');
@@ -49,7 +53,7 @@ test('the fixed Noh computation uses cold inflow, conservative radial averages a
   assert.match(input.spatial_claim,/no Cartesian 2D/);
   const result=json(base+'results/result.json'),row=result.cases.find(row=>row.id==='noh-shock');
   assert.equal(result.passed,true);assert.equal(result.input_sha256,sha(base+'inputs.json'));
-  assert.equal(Object.keys(row.checks).length,59);assert.ok(Object.values(row.checks).every(value=>value===true));
+  assert.equal(Object.keys(row.checks).length,105);assert.ok(Object.values(row.checks).every(value=>value===true));
   for(const geometry of input.geometries){
     const records=row.records.filter(record=>record.geometry===geometry);
     assert.deepEqual(records.map(record=>record.n),input.grids);
@@ -82,9 +86,116 @@ test('ExactPack is a separately cited, pinned analytic comparison with reproduci
   assert.match(JSON.stringify(bibliography.limitations),/gamma/);
   assert.match(receipt.scope,/not a spherical PDE execution/);
   const metadata=json(base+'cases.json')[0];
-  assert.deepEqual([...metadata.method_ids].sort(),['heun','rusanov']);
+  assert.deepEqual([...metadata.method_ids].sort(),['heun','minmod','muscl','rusanov']);
   const prose=read(base+'README.md')+read(base+'THIRD_PARTY.md');
   for(const needle of ['ExactPack','10.1016/0021-9991(87)90074-X','10.1016/j.softx.2023.101560',commit])assert.ok(prose.includes(needle),needle);
+});
+
+test('spherical extension preserves the complete r3 release, the original59 gates and all eight planar/cylindrical profiles',()=>{
+  assert.equal(sha(previous+'source-manifest.json'),'228da58295758877c3131fc888bfd39dcf33aa30d493b89655d7e3e9ce9b8207');
+  assert.equal(sha(previous+'verification.json'),'056f668cd6f5450df3626383121274b55b2edf20519886d75f64f60d24ba6f29');
+  assert.equal(sha(previous+'atlas-noh-2026-11-23-r3.zip'),'8c59623825c2eee95b6679a6697a0a91a729ba439545a880946d04764e384b36');
+  const frozen=json(previous+'source-manifest.json');
+  for(const [path,hash]of Object.entries(frozen.files))assert.equal(sha(previous+path),hash,'r3/'+path);
+  const original=json(previous+'results/result.json').cases[0],current=json(base+'results/result.json').cases[0];
+  assert.equal(Object.keys(original.checks).length,59);
+  const details=new Map(current.check_details.map(row=>[row.name,row]));
+  for(const item of original.check_details){
+    assert.ok(details.has(item.name),item.name+' is retained');
+    assert.deepEqual(details.get(item.name).bound,item.bound,item.name+' retains its frozen bound');
+    assert.equal(current.checks[item.name],true);
+  }
+  assert.deepEqual(current.records.filter(row=>row.geometry!=='spherical'),original.records,'all original eight standard result records retain their values and keys');
+  const profiles=Object.keys(frozen.files).filter(path=>/^results\/profiles\/(?:planar|cylindrical)-n\d+[.]csv$/.test(path));
+  assert.equal(profiles.length,8);
+  for(const path of profiles)assert.equal(sha(base+path),frozen.files[path],path+' retains its exact CSV bytes');
+  for(const file of ['acceptance.json','noh_reference.py','generate_exactpack_reference.py','exactpack-reference.json','exactpack-reference-receipt.json','exactpack-reference-snapshot.json'])assert.equal(sha(base+file),sha(previous+file),file+' is unchanged');
+  const contract=json(base+'pre-run-contract-spherical.json');
+  assert.equal(contract.pde_or_unit_tests_executed_after_spherical_changes,false,'the pre-run contract remains the original declaration');
+  assert.deepEqual(contract.base_check_inventory,original.check_details.map(({name,bound})=>({name,bound})));
+  assert.equal(contract.files_sha256['acceptance.json'],sha(base+'acceptance.json'));
+  assert.equal(contract.files_sha256['spherical-acceptance.json'],sha(base+'spherical-acceptance.json'));
+  const sphericalAcceptance=json(base+'spherical-acceptance.json');
+  assert.deepEqual(contract.new_spherical_check_inventory,sphericalAcceptance.check_name_templates);
+  const specificNames=[...[64,128,256,512].flatMap(n=>contract.new_spherical_check_inventory.per_grid.map(name=>name.replace('{N}',n))),contract.new_spherical_check_inventory.finest];
+  const sphereBase=Object.keys(original.checks).filter(name=>name.startsWith('planar')).map(name=>name.replace(/^planar/,'spherical'));
+  const expected=[...Object.keys(original.checks),...sphereBase,...specificNames];
+  assert.equal(expected.length,105);assert.equal(new Set(expected).size,105);
+  assert.deepEqual(Object.keys(current.checks).sort(),expected.sort(),'only the declared spherical gates are added');
+  const extraBounds=[sphericalAcceptance.checks.radial_momentum_balance_relative_max,sphericalAcceptance.checks.mass_temporal_bias_identity_relative_max,sphericalAcceptance.checks.energy_temporal_bias_identity_relative_max,'all finite; no maximum-error convergence gate'];
+  for(const n of [64,128,256,512])for(const [i,template]of contract.new_spherical_check_inventory.per_grid.entries())assert.deepEqual(details.get(template.replace('{N}',n)).bound,extraBounds[i]);
+  assert.equal(details.get(contract.new_spherical_check_inventory.finest).bound,sphericalAcceptance.checks.core_density_l1_finest_max);
+  const input=json(base+'inputs.json').cases['noh-shock'];
+  assert.match(input.active_spherical_pre_run_contract,/^pre-run-contract-[a-z0-9-]+[.]json$/);
+  const active=json(base+input.active_spherical_pre_run_contract);
+  assert.deepEqual(active.gate_inventory,current.check_details.map(({name,bound})=>({name,bound})),'the active revision retains all105 frozen names and bounds');
+  assert.deepEqual(active.change.stress_quadrature_by_geometry,input.stress_quadrature_by_geometry);
+  assert.deepEqual(active.change.reconstruction_by_geometry,input.reconstruction_by_geometry);
+  assert.equal(active.change.default_reconstruction,'piecewise-constant');
+  assert.equal(active.revision03_unit_tests_or_pde_executed,false);
+  assert.equal(active.planned_pytest_count,28);
+  assert.equal(json(base+'verification.json').tests,28);
+  for(const path of ['inputs.json','run.py','noh_solver.py','test_noh.py','acceptance.json','spherical-acceptance.json'])assert.equal(sha(base+path),active.files_sha256[path],path+' matches the active pre-run source declaration');
+  const raw=json(base+'results/results.json');
+  assert.equal(raw.receipts.spherical_pre_run_contract_filename,input.active_spherical_pre_run_contract);
+  assert.equal(raw.receipts.spherical_pre_run_contract_sha256,sha(base+input.active_spherical_pre_run_contract));
+  for(const run of raw.runs){
+    assert.equal(run.stress_quadrature,input.stress_quadrature_by_geometry[run.geometry]);
+    assert.equal(run.reconstruction,input.reconstruction_by_geometry[run.geometry]);
+  }
+  const firstSphere=json(base+'attempts/spherical-01/results/result.json').cases[0];
+  assert.equal(firstSphere.passed,false,'the original unsuccessful spherical attempt remains evidence');
+  const failedNames=['spherical: finest shock_error_in_dx','spherical: finest plateau_density_relative_error'].sort();
+  assert.deepEqual(Object.entries(firstSphere.checks).filter(([,passed])=>!passed).map(([name])=>name).sort(),failedNames);
+  const secondSphere=json(base+'attempts/spherical-02/results/result.json').cases[0];
+  assert.equal(secondSphere.passed,false);
+  assert.deepEqual(Object.entries(secondSphere.checks).filter(([,passed])=>!passed).map(([name])=>name).sort(),failedNames);
+});
+
+test('spherical diagnostics distinguish discrete conservation from the signed SSPRK2 boundary bias and retain the origin in the core norm',()=>{
+  const acceptance=json(base+'spherical-acceptance.json');
+  assert.equal(sha(base+'spherical-acceptance.json'),'bb1c8d14feb07a8876f04711aa81780642d5f6a547f6754ccafd2eaf223530a2');
+  assert.equal(acceptance.frozen_before_first_spherical_pde_run_and_unit_tests,true);
+  const raw=json(base+'results/results.json');
+  const sphere=raw.runs.filter(row=>row.geometry==='spherical');
+  assert.deepEqual(sphere.map(row=>row.n),[64,128,256,512]);
+  const close=(a,b,tolerance=2e-12)=>assert.ok(Number.isFinite(a)&&Number.isFinite(b)&&Math.abs(a-b)<=tolerance*Math.max(Math.abs(a),Math.abs(b),Number.MIN_VALUE),a+' versus '+b);
+  for(const run of sphere){
+    assert.equal(run.dimension,3);assert.equal(run.status,'completed');
+    const m=run.metrics;assert.ok(m.dt_cubed_sum>0);
+    assert.equal(run.reconstruction,'muscl-minmod');
+    assert.ok(Number.isInteger(m.reconstruction_theta_reduced_stage_cells)&&m.reconstruction_theta_reduced_stage_cells>=0);
+    assert.ok(Number.isInteger(m.reconstruction_theta_zero_stage_cells)&&m.reconstruction_theta_zero_stage_cells>=0&&m.reconstruction_theta_zero_stage_cells<=m.reconstruction_theta_reduced_stage_cells);
+    assert.ok(m.reconstruction_theta_min>=0&&m.reconstruction_theta_min<=1);
+    close(m.analytic_total_mass,512/375);close(m.analytic_total_energy,256/375);
+    close(m.mass_temporal_bias_expected,m.dt_cubed_sum/6,32*Number.EPSILON);
+    close(m.energy_temporal_bias_expected,m.dt_cubed_sum/12,32*Number.EPSILON);
+    assert.ok(m.mass_vs_analytic_signed>0&&m.energy_vs_analytic_signed>0,'the quadrature bias is recorded without correcting the solution');
+    const massResidual=m.final_integral[0]-512/375-m.dt_cubed_sum/6;
+    const energyResidual=m.final_integral[2]-256/375-m.dt_cubed_sum/12;
+    assert.ok(Math.abs(massResidual)/(512/375)<=acceptance.checks.mass_temporal_bias_identity_relative_max);
+    assert.ok(Math.abs(energyResidual)/(256/375)<=acceptance.checks.energy_temporal_bias_identity_relative_max);
+    const momentum=m.final_integral[1]-m.initial_integral[1]-m.boundary_net_integral[1]-m.geometric_source_integral[1];
+    assert.ok(Math.abs(momentum)/m.radial_momentum_balance_scale<=acceptance.checks.radial_momentum_balance_relative_max);
+    for(const key of ['mass_balance_signed','energy_balance_signed','radial_momentum_balance_signed','mass_temporal_bias_residual_signed','energy_temporal_bias_residual_signed','mass_temporal_bias_residual_signed_relative','energy_temporal_bias_residual_signed_relative'])assert.ok(Number.isFinite(m[key]),key);
+    for(const value of Object.values(m.center_first_cell))assert.ok(Number.isFinite(value),'first-cell center diagnostics remain visible');
+    for(const key of ['center_max_specific_internal_energy','center_max_specific_internal_energy_ratio','center_min_density','center_min_density_ratio','center_max_pressure','center_max_pressure_ratio'])assert.ok(Number.isFinite(m[key]),key);
+    const lines=read(base+'results/'+run.profile).trim().split(/\r?\n/),columns=lines.shift().split(',');
+    const cells=lines.map(line=>Object.fromEntries(line.split(',').map((value,i)=>[columns[i],Number(value)])));
+    assert.equal(cells.length,run.n);
+    for(const cell of cells){
+      assert.ok(Number.isFinite(cell.r_volume_centroid)&&cell.r_volume_centroid>cell.r_left&&cell.r_volume_centroid<cell.r_right);
+      close(cell.r_volume_centroid,.75*(cell.r_right**4-cell.r_left**4)/(cell.r_right**3-cell.r_left**3));
+    }
+    assert.equal(cells[0].mask_core,1);assert.equal(cells[0].mask_center,1,'the core includes the origin cells');
+    const core=cells.filter(row=>row.r_right<=.7*m.shock_exact);
+    assert.ok(core.length>0);assert.equal(core.length,m.core_density_errors.cells);
+    const numerator=core.reduce((sum,row)=>sum+(row.r_right**3-row.r_left**3)/3*Math.abs(row.rho-64),0);
+    const denominator=core.reduce((sum,row)=>sum+(row.r_right**3-row.r_left**3)/3*64,0);
+    close(numerator/denominator,m.core_density_l1);
+    for(const row of cells)assert.equal(row.mask_core,row.r_right<=.7*m.shock_exact?1:0);
+  }
+  assert.ok(sphere.at(-1).metrics.core_density_l1<=acceptance.checks.core_density_l1_finest_max);
 });
 
 test('Noh reference, figure, chapter and execution connect through their actual new records',()=>{
@@ -94,12 +205,13 @@ test('Noh reference, figure, chapter and execution connect through their actual 
   const problem=json('numerical-methods-atlas/problems/noh/index.json');
   const run=json('numerical-methods-atlas/validation/noh-shock/index.json');
   const gallery=json('numerical-methods-atlas/gallery/index.json').items.find(row=>row.id==='noh');
+  assert.deepEqual(run.additional_figures.map(row=>row.file),['noh-shock-errors.png','noh-spherical-budget.png']);
   assert.deepEqual(problem.executions.map(row=>row.id),['noh-shock']);
   assert.deepEqual(problem.references.map(row=>row.id),['noh']);
   assert.deepEqual(problem.equations.map(row=>row.id),['euler']);
-  assert.deepEqual([...run.method_ids].sort(),['heun','rusanov']);
+  assert.deepEqual([...run.method_ids].sort(),['heun','minmod','muscl','rusanov']);
   assert.ok([...run.release.code_urls,...run.release.test_urls].every(url=>!url.includes('/attempts/')),'failed revisions are evidence, not the active algorithm');
-  assert.deepEqual(run.execution_navigation.methods.map(row=>row.id).sort(),['heun','rusanov']);
+  assert.deepEqual(run.execution_navigation.methods.map(row=>row.id).sort(),['heun','minmod','muscl','rusanov']);
   const mapping=json('catalog/atlas-depth-expansion.json').case_equations['noh-shock'];
   assert.deepEqual(mapping.ids,['euler']);
   assert.deepEqual(run.execution_navigation.equations.map(row=>row.id),mapping.ids);
@@ -109,12 +221,34 @@ test('Noh reference, figure, chapter and execution connect through their actual 
   assert.equal(gallery.image_sha256,sha(base+'results/noh-shock-preview.png'));
   assert.equal(run.execution_navigation.figure.url,origin+'/'+base+'results/noh-shock.png');
   assert.notEqual(gallery.image,new URL(run.execution_navigation.figure.url).pathname);
-  assert.match(JSON.stringify(addition[0].assumptions),/not a two-dimensional Cartesian computation/);
+  const methods=json('numerical-methods-atlas/methods/index.json').methods;
+  const muscl=methods.find(row=>row.id==='muscl');
+  assert.equal(muscl.depth_release.group,'mhd','the original MUSCL MHD release remains primary');
+  assert.equal(muscl.depth_release.edition,'2026-11-22');
+  assert.deepEqual(muscl.depth_release.case_ids,['shu-independent']);
+  const extra=muscl.depth_additional_releases.find(row=>row.group==='noh');
+  assert.equal(extra.edition,'2026-11-23-r5');assert.deepEqual(extra.case_ids,['noh-shock']);
+  for(const id of ['heun','minmod','muscl','rusanov']){
+    const method=methods.find(row=>row.id===id),card=method.problem_navigation.problems.find(row=>row.id==='noh');
+    assert.equal(card.role,'execution');
+    assert.deepEqual(card.executions.map(row=>row.id),['noh-shock'],id+' is tied to the actual four-method Noh edition');
+  }
+  assert.equal(addition[0].dimension,1,'symmetry dimension is distinct from a Cartesian multidimensional computation');
+  assert.deepEqual(addition[0].parameters.geometry_dimensions,[1,2,3]);
+  assert.match(addition[0].assumptions,/radial/);
+  assert.match(addition[0].assumptions,/Cartesian/);
   for(const language of ['ja','en']){
     assert.equal(local(reference.view[language]).pathname,'/numerical-methods-atlas/validation/noh-shock/');
     assert.equal(local(reference.reading[language]).pathname,`/numerical-methods-atlas/${language}/read/validation-noh/`);
     const page=read(`numerical-methods-atlas/${language}/read/validation-noh/index.html`);
     assert.ok(page.includes('ExactPack')&&page.includes('10.1016/j.softx.2023.101560'));
+    for(const figure of run.additional_figures){
+      const url=origin+'/'+base+'results/'+figure.file;
+      local(url);
+      assert.ok(page.includes('href="'+new URL(url).pathname+'"'));
+      assert.ok(read('numerical-methods-atlas/validation/noh-shock/index.md').includes(url));
+      assert.ok(read(`numerical-methods-atlas/${language}/read/validation-noh/index.md`).includes(figure.caption[language]));
+    }
   }
 });
 

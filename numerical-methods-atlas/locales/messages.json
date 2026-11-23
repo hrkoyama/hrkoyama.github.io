@@ -7449,11 +7449,11 @@
     "en": "Multi-parameter Bratu inversion and regularization"
   },
   "reference.noh.title": {
-    "en": "Noh cold-inflow shock: planar and cylindrical symmetry",
-    "ja": "Nohの冷たい流入衝撃波：平面・円筒対称"
+    "en": "Noh cold-inflow shock: planar, cylindrical and spherical symmetry",
+    "ja": "Nohの冷たい流入衝撃波：平面・円筒・球対称"
   },
   "reference.noh.assumptions": {
-    "en": "Ideal-gas Euler, gamma=5/3, rho0=1, inward speed 1, p0=0; r in [0,1], t=0.6. Planar (d=1) and cylindrically symmetric radial (d=2) finite-volume calculations; no pressure floor. The radial color image is a revolved one-dimensional solution, not a two-dimensional Cartesian computation.",
-    "ja": "理想気体Euler、γ=5/3、初期密度1・内向き速度1・圧力0。r∈[0,1]、t=0.6。平面(d=1)と円筒対称の半径方向(d=2)の有限体積計算で、圧力の床は使いません。カラー図は1次元の半径方向解を回転表示したもので、Cartesianの2次元計算ではありません。"
+    "en": "Ideal-gas Euler, gamma=5/3, rho0=1, inward speed 1, p0=0; r in [0,1], t=0.6. Planar (d=1), cylindrical-radial (d=2) and spherical-radial (d=3) finite-volume calculations without a pressure floor. The spherical color picture is a central section of one-dimensional radial data, not a Cartesian three-dimensional computation.",
+    "ja": "理想気体Euler、γ=5/3、初期密度1・内向き速度1・圧力0。r∈[0,1]、t=0.6。平面(d=1)・円筒半径対称(d=2)・球半径対称(d=3)の有限体積計算で、圧力の床は使いません。球のカラー図は1次元半径データの中心断面で、Cartesianの3次元計算ではありません。"
   }
 }

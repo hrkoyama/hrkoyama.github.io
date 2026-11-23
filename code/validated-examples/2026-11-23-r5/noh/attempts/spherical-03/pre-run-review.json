@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "saved_at_utc": "2026-11-23T02:16:11.871711+00:00",
+  "stage": "parent reviewed; revision03 unit tests and fixed runs may start",
+  "changes_reviewed": "Conservative volume-centroid MUSCL/minmod with one common theta for all components and both faces, reconstructed reflecting face, matching wave speed and numerical stress pairs; no mean repair, floors, retry or analytic state replacement. Planar/cylindrical constant branch operation order retained. Independent read-only review found no blocking formula/index issue.",
+  "original_105_gate_names_and_bounds_unchanged": true,
+  "both_acceptance_files_unchanged": true,
+  "first_two_attempts_retained": true,
+  "frozen_numeric_files": {
+    "acceptance.json": "a12c0ce119877e71fc8dfd852bd6dfb6aa6d8e7beb5e18bd13e91a5dd16117ff",
+    "exactpack-reference-receipt.json": "35d1622672578b48639766b916645d1bbbdc2c65d999968b6b5f699197f2ce64",
+    "exactpack-reference-snapshot.json": "0be18147421e7c59988561d2fe921e29370ef3f1ae77a5f0febc3b40de4ac4fa",
+    "exactpack-reference.json": "7442d51a8f53939a2a37009c4d9e1856eb80408670875c4ac6b85c22499d8d74",
+    "generate_exactpack_reference.py": "8a86e9ecd15ec971c29a37e0c1e14283780bb5dd8314c7059192f3295fd312d9",
+    "inputs.json": "c40e6a8ec27de510a77b7b41778b8c2c34ff0d10d90657fbcb574f03206f0a60",
+    "noh_reference.py": "77ac42ca9d3a276ebaba1de030a33dd4c835463e3fc17f73d07f742ecaf2d8b2",
+    "noh_solver.py": "376a6f881b1f855cf188e66400b47fe5949da5a20fda776474f7841de8833bfb",
+    "pre-run-contract-spherical-revision02.json": "45b4273a6666f96d0f6dbd299e7f106e4eb2783ff2b62414b24ea4ae640d0d42",
+    "pre-run-contract-spherical.json": "e3d99d1f46bcabc2b69a8392011df41442ff4bbdef60ebe17ffbe0209296852c",
+    "requirements-plotting.txt": "01ef5e8e6561e0877b51622518cb029e54b58e5795cb2e73614000094637eb7b",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "run.py": "6c7e7837a3b9447871660ec7dbf0f36f1dc5c136183448c54e234db3c3b02922",
+    "spherical-acceptance.json": "bb1c8d14feb07a8876f04711aa81780642d5f6a547f6754ccafd2eaf223530a2",
+    "test_noh.py": "2997548bf922fbe222931a6e07f38ccf04c2e3a7a531bc6f7229eef19d1e56be"
+  },
+  "active_contract_sha256": "44f30c618a7df68b803da1f873135f5f38d04859eeb3286311032c7202240352",
+  "planned_pytest_count": 28,
+  "planned_gate_count": 105,
+  "planned_fixed_runs": 12
+}

@@ -1,0 +1,535 @@
+{
+  "schema_version": 1,
+  "contract_id": "noh-spherical-pre-run-revision02",
+  "target_edition": "2026-11-23-r4",
+  "saved_at_utc": "2026-11-23T02:03:02.287240+00:00",
+  "stage": "SOURCE/INPUT/ACCEPTANCE FROZEN; awaiting parent review before revision02 unit tests or PDE execution",
+  "revision02_unit_tests_or_pde_executed": false,
+  "policy": "Keep both acceptance files, physical inputs and all 105 gate names/bounds unchanged. Retain attempt spherical-01 unmodified. Do not execute revision02 before parent review; retain all new logs/results even on failure.",
+  "intended_attempt_directory": "attempts/spherical-02",
+  "files_sha256": {
+    "acceptance.json": "a12c0ce119877e71fc8dfd852bd6dfb6aa6d8e7beb5e18bd13e91a5dd16117ff",
+    "exactpack-reference-receipt.json": "35d1622672578b48639766b916645d1bbbdc2c65d999968b6b5f699197f2ce64",
+    "exactpack-reference-snapshot.json": "0be18147421e7c59988561d2fe921e29370ef3f1ae77a5f0febc3b40de4ac4fa",
+    "exactpack-reference.json": "7442d51a8f53939a2a37009c4d9e1856eb80408670875c4ac6b85c22499d8d74",
+    "generate_exactpack_reference.py": "8a86e9ecd15ec971c29a37e0c1e14283780bb5dd8314c7059192f3295fd312d9",
+    "inputs.json": "681b43c48802ab65cfa14271ff83d9b0372b69c8430b2e6802654d8e68510c22",
+    "noh_reference.py": "77ac42ca9d3a276ebaba1de030a33dd4c835463e3fc17f73d07f742ecaf2d8b2",
+    "noh_solver.py": "fb7a0b000a313101319ad00dce25aff3670cd50f8a02ea1f74c5800d494e85c9",
+    "plot.py": "c43a0a01f58dfb44845bfdf8bac48ad01a9065108bcd343c2827d6d0b5d9a6be",
+    "plot_noh.py": "84d644fa2b008f6cf0c65d41959bd5ce25808a1c4e3ecab71a13a438fc6639a7",
+    "pre-run-contract-spherical.json": "e3d99d1f46bcabc2b69a8392011df41442ff4bbdef60ebe17ffbe0209296852c",
+    "requirements-plotting.txt": "01ef5e8e6561e0877b51622518cb029e54b58e5795cb2e73614000094637eb7b",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "run.py": "a060d6a386e730a31d31953172dc6c80171142d43a245eb477a07f69452390b3",
+    "spherical-acceptance.json": "bb1c8d14feb07a8876f04711aa81780642d5f6a547f6754ccafd2eaf223530a2",
+    "test_noh.py": "6ba60315c765c7e801201340f6bce7ab607ce2e0375143155de0794e2e7f98da"
+  },
+  "change": {
+    "selection": {
+      "planar": "arithmetic-face",
+      "cylindrical": "arithmetic-face",
+      "spherical": "linear-radial-stress"
+    },
+    "default": "arithmetic-face",
+    "only_numerical_change": "For selected spherical d=3 cells, integrate the linearly interpolated numerical face stress exactly against 2*r dr. No MUSCL/reconstruction/flux/CFL/time/state/outer-inflow/face-stress change.",
+    "direct_integral": "(b-a)*((b+2*a)*Pleft+(2*b+a)*Pright)/3",
+    "implemented_constant_preserving_equivalent": "0.5*(Pleft+Pright)*(b^2-a^2)+(b-a)^2*(Pright-Pleft)/6",
+    "constant_stress": "Exact constant stress gives zero correction; the arithmetic integral has the original operation order.",
+    "lower_dimensions": "d=1 source remains zero; d=2 uses the original arithmetic path, already exact for linear stress.",
+    "no_solution_or_flux_bias_correction": true
+  },
+  "preservation": {
+    "base_acceptance_sha256": "a12c0ce119877e71fc8dfd852bd6dfb6aa6d8e7beb5e18bd13e91a5dd16117ff",
+    "spherical_acceptance_sha256": "bb1c8d14feb07a8876f04711aa81780642d5f6a547f6754ccafd2eaf223530a2",
+    "both_acceptance_files_identical_to_attempt01": true,
+    "physical_input_keys_identical_to_attempt01": [
+      "gamma",
+      "rho0",
+      "u0",
+      "p0",
+      "r_max",
+      "final_time",
+      "geometries",
+      "grids",
+      "cfl",
+      "flux",
+      "reconstruction",
+      "time_integrator",
+      "origin",
+      "outer_boundary",
+      "state_floor",
+      "volume_measure"
+    ],
+    "gate_function_AST_identical_to_attempt01": true,
+    "primitive_and_flux_functions_AST_identical_to_attempt01": true,
+    "attempt01_result_and_log_hashes_still_match_execution_receipt": true,
+    "attempt01_execution_receipt_sha256": "c402992d1c36750ccf829782fb7557d01089fd154e5a7314b33563e399c8c87f",
+    "attempt01_results_sha256": "2c2580101568db624acf5da5e8bcd69e089294ca325ae246f9518e11f5eb04c4",
+    "first_spherical_contract_sha256": "e3d99d1f46bcabc2b69a8392011df41442ff4bbdef60ebe17ffbe0209296852c"
+  },
+  "gate_inventory": [
+    {
+      "name": "all_runs_reach_final_time",
+      "bound": null
+    },
+    {
+      "name": "planar-n64: finite positive density",
+      "bound": 0
+    },
+    {
+      "name": "planar-n64: pressure within roundoff",
+      "bound": -64.0
+    },
+    {
+      "name": "planar-n64: no state floors",
+      "bound": 0
+    },
+    {
+      "name": "planar-n64: mass_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "planar-n64: energy_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "planar-n128: finite positive density",
+      "bound": 0
+    },
+    {
+      "name": "planar-n128: pressure within roundoff",
+      "bound": -64.0
+    },
+    {
+      "name": "planar-n128: no state floors",
+      "bound": 0
+    },
+    {
+      "name": "planar-n128: mass_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "planar-n128: energy_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "planar-n256: finite positive density",
+      "bound": 0
+    },
+    {
+      "name": "planar-n256: pressure within roundoff",
+      "bound": -64.0
+    },
+    {
+      "name": "planar-n256: no state floors",
+      "bound": 0
+    },
+    {
+      "name": "planar-n256: mass_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "planar-n256: energy_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "planar-n512: finite positive density",
+      "bound": 0
+    },
+    {
+      "name": "planar-n512: pressure within roundoff",
+      "bound": -64.0
+    },
+    {
+      "name": "planar-n512: no state floors",
+      "bound": 0
+    },
+    {
+      "name": "planar-n512: mass_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "planar-n512: energy_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "cylindrical-n64: finite positive density",
+      "bound": 0
+    },
+    {
+      "name": "cylindrical-n64: pressure within roundoff",
+      "bound": -64.0
+    },
+    {
+      "name": "cylindrical-n64: no state floors",
+      "bound": 0
+    },
+    {
+      "name": "cylindrical-n64: mass_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "cylindrical-n64: energy_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "cylindrical-n128: finite positive density",
+      "bound": 0
+    },
+    {
+      "name": "cylindrical-n128: pressure within roundoff",
+      "bound": -64.0
+    },
+    {
+      "name": "cylindrical-n128: no state floors",
+      "bound": 0
+    },
+    {
+      "name": "cylindrical-n128: mass_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "cylindrical-n128: energy_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "cylindrical-n256: finite positive density",
+      "bound": 0
+    },
+    {
+      "name": "cylindrical-n256: pressure within roundoff",
+      "bound": -64.0
+    },
+    {
+      "name": "cylindrical-n256: no state floors",
+      "bound": 0
+    },
+    {
+      "name": "cylindrical-n256: mass_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "cylindrical-n256: energy_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "cylindrical-n512: finite positive density",
+      "bound": 0
+    },
+    {
+      "name": "cylindrical-n512: pressure within roundoff",
+      "bound": -64.0
+    },
+    {
+      "name": "cylindrical-n512: no state floors",
+      "bound": 0
+    },
+    {
+      "name": "cylindrical-n512: mass_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "cylindrical-n512: energy_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "spherical-n64: finite positive density",
+      "bound": 0
+    },
+    {
+      "name": "spherical-n64: pressure within roundoff",
+      "bound": -64.0
+    },
+    {
+      "name": "spherical-n64: no state floors",
+      "bound": 0
+    },
+    {
+      "name": "spherical-n64: mass_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "spherical-n64: energy_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "spherical-n128: finite positive density",
+      "bound": 0
+    },
+    {
+      "name": "spherical-n128: pressure within roundoff",
+      "bound": -64.0
+    },
+    {
+      "name": "spherical-n128: no state floors",
+      "bound": 0
+    },
+    {
+      "name": "spherical-n128: mass_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "spherical-n128: energy_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "spherical-n256: finite positive density",
+      "bound": 0
+    },
+    {
+      "name": "spherical-n256: pressure within roundoff",
+      "bound": -64.0
+    },
+    {
+      "name": "spherical-n256: no state floors",
+      "bound": 0
+    },
+    {
+      "name": "spherical-n256: mass_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "spherical-n256: energy_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "spherical-n512: finite positive density",
+      "bound": 0
+    },
+    {
+      "name": "spherical-n512: pressure within roundoff",
+      "bound": -64.0
+    },
+    {
+      "name": "spherical-n512: no state floors",
+      "bound": 0
+    },
+    {
+      "name": "spherical-n512: mass_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "spherical-n512: energy_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "planar: finest density_l1",
+      "bound": 0.12
+    },
+    {
+      "name": "planar: finest shock_error_in_dx",
+      "bound": 3.0
+    },
+    {
+      "name": "planar: finest plateau_density_relative_error",
+      "bound": 0.1
+    },
+    {
+      "name": "planar: finest plateau_pressure_relative_error",
+      "bound": 0.1
+    },
+    {
+      "name": "planar: finest mass_vs_analytic_relative",
+      "bound": 2e-05
+    },
+    {
+      "name": "planar: finest energy_vs_analytic_relative",
+      "bound": 2e-05
+    },
+    {
+      "name": "planar: density L1 decreases",
+      "bound": null
+    },
+    {
+      "name": "planar: last-pair L1 order",
+      "bound": 0.35
+    },
+    {
+      "name": "planar: unmasked center heating reported",
+      "bound": null
+    },
+    {
+      "name": "cylindrical: finest density_l1",
+      "bound": 0.12
+    },
+    {
+      "name": "cylindrical: finest shock_error_in_dx",
+      "bound": 3.0
+    },
+    {
+      "name": "cylindrical: finest plateau_density_relative_error",
+      "bound": 0.1
+    },
+    {
+      "name": "cylindrical: finest plateau_pressure_relative_error",
+      "bound": 0.1
+    },
+    {
+      "name": "cylindrical: finest mass_vs_analytic_relative",
+      "bound": 2e-05
+    },
+    {
+      "name": "cylindrical: finest energy_vs_analytic_relative",
+      "bound": 2e-05
+    },
+    {
+      "name": "cylindrical: density L1 decreases",
+      "bound": null
+    },
+    {
+      "name": "cylindrical: last-pair L1 order",
+      "bound": 0.35
+    },
+    {
+      "name": "cylindrical: unmasked center heating reported",
+      "bound": null
+    },
+    {
+      "name": "spherical: finest density_l1",
+      "bound": 0.12
+    },
+    {
+      "name": "spherical: finest shock_error_in_dx",
+      "bound": 3.0
+    },
+    {
+      "name": "spherical: finest plateau_density_relative_error",
+      "bound": 0.1
+    },
+    {
+      "name": "spherical: finest plateau_pressure_relative_error",
+      "bound": 0.1
+    },
+    {
+      "name": "spherical: finest mass_vs_analytic_relative",
+      "bound": 2e-05
+    },
+    {
+      "name": "spherical: finest energy_vs_analytic_relative",
+      "bound": 2e-05
+    },
+    {
+      "name": "spherical: density L1 decreases",
+      "bound": null
+    },
+    {
+      "name": "spherical: last-pair L1 order",
+      "bound": 0.35
+    },
+    {
+      "name": "spherical: unmasked center heating reported",
+      "bound": null
+    },
+    {
+      "name": "spherical-n64: radial momentum balance relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "spherical-n64: mass temporal bias identity relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "spherical-n64: energy temporal bias identity relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "spherical-n64: finite center diagnostics",
+      "bound": "all finite; no maximum-error convergence gate"
+    },
+    {
+      "name": "spherical-n128: radial momentum balance relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "spherical-n128: mass temporal bias identity relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "spherical-n128: energy temporal bias identity relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "spherical-n128: finite center diagnostics",
+      "bound": "all finite; no maximum-error convergence gate"
+    },
+    {
+      "name": "spherical-n256: radial momentum balance relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "spherical-n256: mass temporal bias identity relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "spherical-n256: energy temporal bias identity relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "spherical-n256: finite center diagnostics",
+      "bound": "all finite; no maximum-error convergence gate"
+    },
+    {
+      "name": "spherical-n512: radial momentum balance relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "spherical-n512: mass temporal bias identity relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "spherical-n512: energy temporal bias identity relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "spherical-n512: finite center diagnostics",
+      "bound": "all finite; no maximum-error convergence gate"
+    },
+    {
+      "name": "spherical: finest core density_l1 (origin included)",
+      "bound": 0.2
+    }
+  ],
+  "previous_failed_checks": [
+    {
+      "name": "spherical: finest shock_error_in_dx",
+      "passed": false,
+      "value": 3.9228085714794076,
+      "bound": 3.0
+    },
+    {
+      "name": "spherical: finest plateau_density_relative_error",
+      "passed": false,
+      "value": 0.11027727145332611,
+      "bound": 0.1
+    }
+  ],
+  "planned_pytest_count": 19,
+  "planned_tests": [
+    "test_pinned_independent_exactpack_snapshot",
+    "test_known_gamma53_states_and_jump",
+    "test_exact_cell_averages_against_split_point_quadrature",
+    "test_crossing_cell_pressure_average_is_not_pressure_of_average",
+    "test_global_integrals_include_time_dependent_radial_inflow",
+    "test_cold_state_is_not_replaced_by_positive_pressure_floor",
+    "test_geometric_static_pressure_cancellation",
+    "test_uniform_velocity_cold_density_gradient_has_no_geometric_stress",
+    "test_origin_generates_heat_without_injecting_mass_or_energy",
+    "test_face_linear_stress_integrates_nonuniform_spherical_shells",
+    "test_constant_stress_integral_matches_geometric_area_difference",
+    "test_linear_stress_option_preserves_planar_and_cylindrical_operator",
+    "test_invalid_stress_quadrature_is_rejected",
+    "test_cylindrical_outer_boundary_density_grows_in_time",
+    "test_spherical_outer_boundary_matches_independent_constants",
+    "test_dt_cubed_diagnostic_tracks_every_actual_step",
+    "test_spherical_trapezoidal_boundary_bias_on_nonuniform_steps",
+    "test_rejects_genuinely_negative_internal_energy",
+    "test_rejects_invalid_and_boundary_overtaking_inputs"
+  ],
+  "plot_scope_note": "Current visualization source hashes are captured for provenance. Plotting remains separate from the PDE update and may receive a separate final rendering receipt.",
+  "pre_parent_review_metadata_correction": {
+    "description": "Replace the inherited all-arithmetic descriptive label with an accurate description of explicit per-geometry selection. No physical inputs, options, numerical source or acceptance was changed. No tests/PDE had been executed.",
+    "previous_draft_sha256": "eb707fa7e4b7744f397268b954f7ccdb94e12173349d8383018aafdcd6ea1a75",
+    "previous_draft_retained": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/noh-spherical-revision02-contract-pre-review-draft.json"
+  }
+}

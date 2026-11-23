@@ -68,6 +68,10 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/limiters/
 
 ## コード・検証
 
+- [Noh衝撃波：初期圧力ゼロの平面・円筒・球対称計算](<https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-shock/?lang=ja>)
+  availability: run
+
+  初期圧力ゼロのNoh問題を、独自の小型1D有限体積コードで平面・円筒・球対称に計算します。64/128/256/512格子の全域誤差、原点過熱、衝撃位置、保存収支を測り、球で現れる境界流入の時間積分誤差を解析式と照合します。
 - [Minmod：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/minmod/?lang=ja#method-execution-ja>)
   availability: source
 

@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "frozen_before_first_run": true,
+  "policy": "These criteria are saved before the initial run. Failed runs and failed checks are retained. Changes require a new named revision and may not overwrite this initial contract.",
+  "checks": {
+    "all_runs_reach_final_time": true,
+    "finite_positive_density": true,
+    "pressure_lower_bound_in_energy_roundoff_units": -64.0,
+    "state_floor_corrections_equal": 0,
+    "conservation_mass_relative_max": 2e-12,
+    "conservation_energy_relative_max": 2e-12,
+    "mass_boundary_quadrature_error_finest_max": 2e-05,
+    "energy_boundary_quadrature_error_finest_max": 2e-05,
+    "density_l1_finest_max": 0.12,
+    "density_l1_coarse_to_fine_decreases": true,
+    "density_l1_last_pair_order_min": 0.35,
+    "shock_position_error_finest_in_dx_max": 3.0,
+    "plateau_density_amplification_relative_error_finest_max": 0.1,
+    "plateau_pressure_relative_error_finest_max": 0.1,
+    "center_specific_internal_energy_is_reported_unmasked": true,
+    "center_heating_bound_is_not_an_accuracy_gate": true
+  },
+  "norm_definition": "sum_i V_i |rho_i-rho_exact_cellavg_i| / sum_i V_i rho_exact_cellavg_i; L2 and Linf recorded separately.",
+  "masks": "center=r_right<=.25*r_shock; shock=cells intersecting r_shock±3*dx; plateau=cell wholly within [.25,.70]*r_shock. All full-domain errors are always retained.",
+  "notes": [
+    "No requirement of vanishing central maximum error: first-order shock-capturing wall/origin heating is an intended diagnostic, not hidden by excluding the center.",
+    "Shock location and plateau diagnostics do not replace volume-weighted full-domain error.",
+    "A cell containing the discontinuity has p(average(U)) different from average(p); both reference quantities are retained.",
+    "Compression across the shock is 4; density amplification relative to initial rho0 is 4^d.",
+    "Negative pressure within stated floating-point roundoff is logged; only a wave-speed sqrt argument may use zero at roundoff. No conservative state or pressure is repaired."
+  ]
+}

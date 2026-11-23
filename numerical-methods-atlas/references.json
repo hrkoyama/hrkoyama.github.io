@@ -3599,6 +3599,19 @@
     "origin": "atlas-benchmark-references"
   },
   {
+    "id": "mignone2014curvilinear",
+    "type": "article",
+    "author": "Mignone, Andrea",
+    "year": 2014,
+    "title": "High-order conservative reconstruction schemes for finite volume methods in cylindrical and spherical coordinates",
+    "journal": "Journal of Computational Physics",
+    "doi": "10.1016/j.jcp.2014.04.001",
+    "source": "https://arxiv.org/abs/1404.0537",
+    "review_level": "original-arxiv-selected-sections-2.2-3.1-4.2",
+    "note": "Original arXiv sections on volume centroids, conservative linear reconstruction and source integration checked. Cited for coordinate-aware reconstruction; the Atlas uses its own restricted minmod/Rusanov/Heun implementation and numerical-stress source, without claiming the full paper scheme or global second-order accuracy.",
+    "origin": "atlas-benchmark-references"
+  },
+  {
     "id": "schrodinger1926",
     "year": 1926,
     "author": "Schrödinger, E.",

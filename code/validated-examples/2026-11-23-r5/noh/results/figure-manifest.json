@@ -1,0 +1,522 @@
+{
+  "schema_version": 1,
+  "validation_passed": true,
+  "failed_checks": [],
+  "calculation_kind": "one-dimensional finite volume; planar, cylindrical, spherical",
+  "algorithms_by_geometry": {
+    "planar": {
+      "stress_quadrature": "arithmetic-face",
+      "reconstruction": "piecewise-constant"
+    },
+    "cylindrical": {
+      "stress_quadrature": "arithmetic-face",
+      "reconstruction": "piecewise-constant"
+    },
+    "spherical": {
+      "stress_quadrature": "linear-radial-stress",
+      "reconstruction": "muscl-minmod"
+    }
+  },
+  "reconstruction_scope": "Saved cell means are displayed piecewise constantly. Face admissibility checks do not establish a general positivity or convergence theorem for radial cold flows.",
+  "thumbnail_geometry": "spherical",
+  "picture_kind": "z=0 radial section of piecewise-constant 1D spherical density; r=sqrt(x^2+y^2)",
+  "not_a_two_dimensional_euler_calculation": true,
+  "not_a_cartesian_three_dimensional_calculation": true,
+  "no_angular_symmetry_test": true,
+  "gallery_caption": {
+    "ja": "球対称1次元の半径方向Noh計算から密度セル平均をz=0断面として表示（r=√(x²+y²)）。右は同じセルの厳密平均との比較。Cartesian 3次元計算・角方向の対称性検証ではありません。",
+    "en": "A z=0 radial section of density cell means from a 1D spherical-radial Noh run (r=sqrt(x^2+y^2)); the profile compares exact means on the same cells. Not a Cartesian 3D calculation or an angular-symmetry test."
+  },
+  "source_sha256": {
+    "results.json": "02c32dda3cdd32845f7803f8f976baee63cdb0a154e576d6fb80a0a9e4bf3355",
+    "profiles/planar-n64.csv": "83ffc0332b6c1c45e963f019ef624fa4b3f0cfe73b735fcb96aa164020cbf2a2",
+    "histories/planar-n64.json": "93c1e5fffdadef0e759f77afe3a07f4781ad38f77b5a6fcab0f999bbdefa3b14",
+    "profiles/planar-n128.csv": "4ea66a2280a06b761464c7589848f9e387dc90fe521e6adeffdf31ed04119433",
+    "histories/planar-n128.json": "3567dd9b2f9eb2bf2e45fcb1d654c19efb0b9f32350dec981a8917bd1745ca4c",
+    "profiles/planar-n256.csv": "93d709a8352c127cb72098f24bcc8b8b59cb68ec55d1b10283ab2ce027747b6a",
+    "histories/planar-n256.json": "d4b0c4c58dc7a85977cfe110b233b5eccd85d65d7423386a887fa8282f780bc9",
+    "profiles/planar-n512.csv": "8d4dd3fdbcd4c1f530126186114c9cf99027027a01e14119a7fc935aa14d8d74",
+    "histories/planar-n512.json": "3de66c13fee1984bcd02c7085b1211d33251c1cbb40fa20742ed2c521ed1d8dd",
+    "profiles/cylindrical-n64.csv": "05a99258d4bcc2fa9f72d63ae173136875e925bcab76bc8fd13766d4ea1883a1",
+    "histories/cylindrical-n64.json": "09f571435543769dfda9b9d3837254bf7c6ecaf125d0f8ccb4536f6ca9176187",
+    "profiles/cylindrical-n128.csv": "56209be550aade035c4f758d6397c31612cbd95ae75506a85c4c19e051f3af8d",
+    "histories/cylindrical-n128.json": "253a32d6e42c784eea1571715b19716d4504ea721b005173eaa8d3755052399f",
+    "profiles/cylindrical-n256.csv": "ac1ab1b49eebc06e2f913d5a5273b10873b568679b13574296cfc505dd6fc1bf",
+    "histories/cylindrical-n256.json": "fb29bf3a1174e513a2a35c38f871daa391cc651a968acf3bb3427c24b46b1aba",
+    "profiles/cylindrical-n512.csv": "0d62a36ea7e369b3ce205f9d63b62bbe2febc16539945913e381e821b78f7820",
+    "histories/cylindrical-n512.json": "ea7d89566a01d97e78c33306f10527dc93a0b74fea5f0c85042f04526701b9e2",
+    "profiles/spherical-n64.csv": "723da86d0c8992c9e0b8c5ac6e5f10f61dc248fb416a3ddb88f0cbc9731284c4",
+    "histories/spherical-n64.json": "e972d4c362d6cf1b02baa6fd4ead99582c4285cb29466de567a83d7beac91db6",
+    "profiles/spherical-n128.csv": "d6daf88310a905237ca4a8b5ca534c3995b84327d2ad0fc421a0d238e641effb",
+    "histories/spherical-n128.json": "7a5a79a6a1b41d58651e00bdbe9a25162c55ff174d64ea0e2148172ead86e400",
+    "profiles/spherical-n256.csv": "cad02714d551a6089919db455962b19ba73555f383152f5223a840a297a7a381",
+    "histories/spherical-n256.json": "bd33ee8ee1e8b939bc11f954f0f37b54add3ad192f72acb2a85fe640b4b26eab",
+    "profiles/spherical-n512.csv": "1320bad6ca48dc98cd649f85d9b3faa5c092028c440eb1fa05abc3543740e2e0",
+    "histories/spherical-n512.json": "e32b74281f171f953ee6eeb03aa16f8311871374861bb89b6ce6f9b9269c516b"
+  },
+  "provenance": {
+    "saved_execution_receipts": {
+      "input_sha256": "c40e6a8ec27de510a77b7b41778b8c2c34ff0d10d90657fbcb574f03206f0a60",
+      "acceptance_sha256": "a12c0ce119877e71fc8dfd852bd6dfb6aa6d8e7beb5e18bd13e91a5dd16117ff",
+      "source_sha256": {
+        "run.py": "6c7e7837a3b9447871660ec7dbf0f36f1dc5c136183448c54e234db3c3b02922",
+        "noh_solver.py": "376a6f881b1f855cf188e66400b47fe5949da5a20fda776474f7841de8833bfb",
+        "noh_reference.py": "77ac42ca9d3a276ebaba1de030a33dd4c835463e3fc17f73d07f742ecaf2d8b2",
+        "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75"
+      },
+      "spherical_acceptance_sha256": "bb1c8d14feb07a8876f04711aa81780642d5f6a547f6754ccafd2eaf223530a2",
+      "spherical_pre_run_contract_filename": "pre-run-contract-spherical-revision03.json",
+      "spherical_pre_run_contract_sha256": "44f30c618a7df68b803da1f873135f5f38d04859eeb3286311032c7202240352",
+      "spherical_original_pre_run_contract_sha256": "e3d99d1f46bcabc2b69a8392011df41442ff4bbdef60ebe17ffbe0209296852c"
+    },
+    "verified_source_and_input_sha256": {
+      "run.py": "6c7e7837a3b9447871660ec7dbf0f36f1dc5c136183448c54e234db3c3b02922",
+      "noh_solver.py": "376a6f881b1f855cf188e66400b47fe5949da5a20fda776474f7841de8833bfb",
+      "noh_reference.py": "77ac42ca9d3a276ebaba1de030a33dd4c835463e3fc17f73d07f742ecaf2d8b2",
+      "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "inputs.json": "c40e6a8ec27de510a77b7b41778b8c2c34ff0d10d90657fbcb574f03206f0a60",
+      "acceptance.json": "a12c0ce119877e71fc8dfd852bd6dfb6aa6d8e7beb5e18bd13e91a5dd16117ff",
+      "spherical-acceptance.json": "bb1c8d14feb07a8876f04711aa81780642d5f6a547f6754ccafd2eaf223530a2",
+      "pre-run-contract-spherical-revision03.json": "44f30c618a7df68b803da1f873135f5f38d04859eeb3286311032c7202240352",
+      "pre-run-contract-spherical.json": "e3d99d1f46bcabc2b69a8392011df41442ff4bbdef60ebe17ffbe0209296852c"
+    },
+    "supporting_receipt_sha256": {
+      "exactpack-reference-snapshot.json": "0be18147421e7c59988561d2fe921e29370ef3f1ae77a5f0febc3b40de4ac4fa",
+      "exactpack-reference-receipt.json": "35d1622672578b48639766b916645d1bbbdc2c65d999968b6b5f699197f2ce64",
+      "unit-tests-receipt.json": "e6c8fa1cb335f9e73194327a2099cbf286d74eef3baf7620afe7165080794cca",
+      "pre-run-contract-spherical.json": "e3d99d1f46bcabc2b69a8392011df41442ff4bbdef60ebe17ffbe0209296852c",
+      "pre-run-contract-spherical-revision03.json": "44f30c618a7df68b803da1f873135f5f38d04859eeb3286311032c7202240352",
+      "pre-run-contract-figure-r3.json": "a9c2f58c0ecc7e1a19ab589f1f7882cffd564b72edcd4078ecd38b7d89e20847",
+      "pre-run-contract-packaged.json": "705da017006aaa6f391d2ed7849b507fd2be6590fca46d310adc24fb5b60440d",
+      "pre-run-contract-spherical-revision02.json": "45b4273a6666f96d0f6dbd299e7f106e4eb2783ff2b62414b24ea4ae640d0d42",
+      "pre-run-contract-public-ci-r2.json": "3dab6d053e68b46e9fceacf19ec8881d8ba13aa80d77e202eb497fea1bf95d60",
+      "pre-run-contract-revision02.json": "35ec948d1a4146cedeb56ee6e1f620385446f8b3b2122515f88f3ef2e39c9345",
+      "pre-run-contract.json": "9170f4fd3c83db6ce16e9f9a3767ad39043bd3bc85a5e5d47269c82bd412fc09",
+      "pre-run-contract-final.json": "458891d66aa2e1320a0394f59e8c040c3fd5b7b2fdac4df9f7012bd5ae991dff"
+    },
+    "plot_script_sha256": {
+      "plot_noh.py": "6279a04a2dd22519564fe664ab3cb5271264ff2afe4246eeb47536b4a7ef7ef3"
+    },
+    "receipt_scope": "Execution receipts and numerical/reference pre-render evidence only; post-render packaging QA is excluded to avoid a hash cycle."
+  },
+  "source_comparison": {
+    "kind": "same-mesh source/reconstruction comparison with retained failed baselines",
+    "current_source": "linear-radial-stress",
+    "current_reconstruction": "muscl-minmod",
+    "current_center_max_sie_relative_excess": 0.205922730533584,
+    "current_face_limiter": "one common theta for all conserved components and both faces; cell means unchanged",
+    "current_validation_passed": true,
+    "same_mesh_and_physical_parameters": true,
+    "acceptance_unchanged": true,
+    "acceptance_sha256": {
+      "acceptance_sha256": "a12c0ce119877e71fc8dfd852bd6dfb6aa6d8e7beb5e18bd13e91a5dd16117ff",
+      "spherical_acceptance_sha256": "bb1c8d14feb07a8876f04711aa81780642d5f6a547f6754ccafd2eaf223530a2"
+    },
+    "baselines": [
+      {
+        "attempt": "spherical-01",
+        "kind": "retained failed constant-reconstruction spherical baseline",
+        "validation_passed": false,
+        "n": 512,
+        "time": 0.6,
+        "stress_quadrature": "arithmetic-face",
+        "reconstruction": "piecewise-constant",
+        "center_max_sie_relative_excess": 0.15568086492903155,
+        "failed_checks": [
+          "spherical: finest shock_error_in_dx",
+          "spherical: finest plateau_density_relative_error"
+        ],
+        "source_sha256": {
+          "results.json": "2c2580101568db624acf5da5e8bcd69e089294ca325ae246f9518e11f5eb04c4",
+          "profiles/planar-n64.csv": "83ffc0332b6c1c45e963f019ef624fa4b3f0cfe73b735fcb96aa164020cbf2a2",
+          "histories/planar-n64.json": "e40f470bdf552719cce02301c6c772c41b68db522e0e0c90cfcf6371244e7bc1",
+          "profiles/planar-n128.csv": "4ea66a2280a06b761464c7589848f9e387dc90fe521e6adeffdf31ed04119433",
+          "histories/planar-n128.json": "c2212132a81e54df6d1bf93ab8f77ffaf4871f4c3799393435202a0025d7dfda",
+          "profiles/planar-n256.csv": "93d709a8352c127cb72098f24bcc8b8b59cb68ec55d1b10283ab2ce027747b6a",
+          "histories/planar-n256.json": "833f45de7a109f56287763a2e873f2630e241597fcc0619c292515ed4cc519fe",
+          "profiles/planar-n512.csv": "8d4dd3fdbcd4c1f530126186114c9cf99027027a01e14119a7fc935aa14d8d74",
+          "histories/planar-n512.json": "a06dbf7955e55d62621bac48a8def3094833c0c36279625033cbcd0a1acbbf7a",
+          "profiles/cylindrical-n64.csv": "05a99258d4bcc2fa9f72d63ae173136875e925bcab76bc8fd13766d4ea1883a1",
+          "histories/cylindrical-n64.json": "c9ebc4d537bd457259a685c2d66b3766fb84fff388a9b361303ab61fb9928a98",
+          "profiles/cylindrical-n128.csv": "56209be550aade035c4f758d6397c31612cbd95ae75506a85c4c19e051f3af8d",
+          "histories/cylindrical-n128.json": "64e912e19c20db169b8cfeb070f78e7fb31f4c33b8e9577c17596610c14a8bd9",
+          "profiles/cylindrical-n256.csv": "ac1ab1b49eebc06e2f913d5a5273b10873b568679b13574296cfc505dd6fc1bf",
+          "histories/cylindrical-n256.json": "2963e291c06248460c44592968aea58c66c6c801b848731c3ed07bdcdae7bb1d",
+          "profiles/cylindrical-n512.csv": "0d62a36ea7e369b3ce205f9d63b62bbe2febc16539945913e381e821b78f7820",
+          "histories/cylindrical-n512.json": "8ffcf03b5e62b27cccafb5b522d5b4f8b5c6b05cc1f3707c0010233e75de44f2",
+          "profiles/spherical-n64.csv": "f27f39921539f4717263071d3d67c2212700c22141ff590d097870182333f2d4",
+          "histories/spherical-n64.json": "43d860e3909e5ff1adf25f18daa1650f321f17841d978cfbc149e3045a0379f7",
+          "profiles/spherical-n128.csv": "a14f11c18f952168712ca86f88007b06b4ccad6b56cecf22e9da378ba1085765",
+          "histories/spherical-n128.json": "8dae6e34fe0f16bbac936b89c29473888e240ea2b7dbf62b7a774eb153188edf",
+          "profiles/spherical-n256.csv": "37faff9471c9b9c233fe82690346ae1181f4a8530905429e6e50caac5339dc98",
+          "histories/spherical-n256.json": "f34ef5b5f9a7d141538bc1e78c690ac70b06ee4b090d20282b4567b51096348b",
+          "profiles/spherical-n512.csv": "e7f4c29d7af2a2583f2fe1b0a3fbda8847b05ec76ad6263f19f94d58854358cc",
+          "histories/spherical-n512.json": "2aa6175ee8b3685087a302492e2ce045aa14dd0d80ae3f9b211eb73e257794c3"
+        },
+        "provenance": {
+          "saved_execution_receipts": {
+            "input_sha256": "baaa250653d6c00cb56771d713a5e3de49911b4115d090d1c0f5379b1a1d2039",
+            "acceptance_sha256": "a12c0ce119877e71fc8dfd852bd6dfb6aa6d8e7beb5e18bd13e91a5dd16117ff",
+            "source_sha256": {
+              "run.py": "cc12de8b7658cbfef77a565a3f672b2d64ab9561f18b815940cb96f163010da6",
+              "noh_solver.py": "33caa85d4ca9af762cfcda1e53b58701dafbb57d314252746c3c3529043aad55",
+              "noh_reference.py": "77ac42ca9d3a276ebaba1de030a33dd4c835463e3fc17f73d07f742ecaf2d8b2",
+              "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75"
+            },
+            "spherical_acceptance_sha256": "bb1c8d14feb07a8876f04711aa81780642d5f6a547f6754ccafd2eaf223530a2",
+            "spherical_pre_run_contract_sha256": "e3d99d1f46bcabc2b69a8392011df41442ff4bbdef60ebe17ffbe0209296852c"
+          },
+          "verified_source_and_input_sha256": {
+            "run.py": "cc12de8b7658cbfef77a565a3f672b2d64ab9561f18b815940cb96f163010da6",
+            "noh_solver.py": "33caa85d4ca9af762cfcda1e53b58701dafbb57d314252746c3c3529043aad55",
+            "noh_reference.py": "77ac42ca9d3a276ebaba1de030a33dd4c835463e3fc17f73d07f742ecaf2d8b2",
+            "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+            "inputs.json": "baaa250653d6c00cb56771d713a5e3de49911b4115d090d1c0f5379b1a1d2039",
+            "acceptance.json": "a12c0ce119877e71fc8dfd852bd6dfb6aa6d8e7beb5e18bd13e91a5dd16117ff",
+            "spherical-acceptance.json": "bb1c8d14feb07a8876f04711aa81780642d5f6a547f6754ccafd2eaf223530a2",
+            "pre-run-contract-spherical.json": "e3d99d1f46bcabc2b69a8392011df41442ff4bbdef60ebe17ffbe0209296852c"
+          },
+          "supporting_receipt_sha256": {
+            "exactpack-reference-snapshot.json": "0be18147421e7c59988561d2fe921e29370ef3f1ae77a5f0febc3b40de4ac4fa",
+            "exactpack-reference-receipt.json": "35d1622672578b48639766b916645d1bbbdc2c65d999968b6b5f699197f2ce64",
+            "pre-run-contract-spherical.json": "e3d99d1f46bcabc2b69a8392011df41442ff4bbdef60ebe17ffbe0209296852c",
+            "attempt/execution-receipt.json": "c402992d1c36750ccf829782fb7557d01089fd154e5a7314b33563e399c8c87f",
+            "attempt/execution-start.json": "f2d65f6e6ce5104c6dacd34bf1faf9ec37fe151db8b537ccb8cf6f9edc60ffc0",
+            "attempt/pre-run-review.json": "5dde07e984c0cd49d80d36a6897344e03faaee31d003a94a9252e9452a463b8c",
+            "attempt/r3-preservation-comparison.json": "4ac8b5a177174ffaaf98664516f24300793bd5df94fd074630ff73ff6f89032a",
+            "attempt/spherical-attempt-summary.json": "ebbbf0dda7761866bffde0ced625031db8cec35230c1262099587235e2064ad5"
+          },
+          "plot_script_sha256": {
+            "plot_noh.py": "6279a04a2dd22519564fe664ab3cb5271264ff2afe4246eeb47536b4a7ef7ef3"
+          },
+          "receipt_scope": "Execution receipts and numerical/reference pre-render evidence only; post-render packaging QA is excluded to avoid a hash cycle."
+        }
+      },
+      {
+        "attempt": "spherical-02",
+        "kind": "retained failed constant-reconstruction spherical baseline",
+        "validation_passed": false,
+        "n": 512,
+        "time": 0.6,
+        "stress_quadrature": "linear-radial-stress",
+        "reconstruction": "piecewise-constant",
+        "center_max_sie_relative_excess": 0.1551541074966316,
+        "failed_checks": [
+          "spherical: finest shock_error_in_dx",
+          "spherical: finest plateau_density_relative_error"
+        ],
+        "source_sha256": {
+          "results.json": "7f161c3801339d1f2450812b0654dec92947e90c458c0eef020dc94c46839354",
+          "profiles/planar-n64.csv": "83ffc0332b6c1c45e963f019ef624fa4b3f0cfe73b735fcb96aa164020cbf2a2",
+          "histories/planar-n64.json": "e40f470bdf552719cce02301c6c772c41b68db522e0e0c90cfcf6371244e7bc1",
+          "profiles/planar-n128.csv": "4ea66a2280a06b761464c7589848f9e387dc90fe521e6adeffdf31ed04119433",
+          "histories/planar-n128.json": "c2212132a81e54df6d1bf93ab8f77ffaf4871f4c3799393435202a0025d7dfda",
+          "profiles/planar-n256.csv": "93d709a8352c127cb72098f24bcc8b8b59cb68ec55d1b10283ab2ce027747b6a",
+          "histories/planar-n256.json": "833f45de7a109f56287763a2e873f2630e241597fcc0619c292515ed4cc519fe",
+          "profiles/planar-n512.csv": "8d4dd3fdbcd4c1f530126186114c9cf99027027a01e14119a7fc935aa14d8d74",
+          "histories/planar-n512.json": "a06dbf7955e55d62621bac48a8def3094833c0c36279625033cbcd0a1acbbf7a",
+          "profiles/cylindrical-n64.csv": "05a99258d4bcc2fa9f72d63ae173136875e925bcab76bc8fd13766d4ea1883a1",
+          "histories/cylindrical-n64.json": "c9ebc4d537bd457259a685c2d66b3766fb84fff388a9b361303ab61fb9928a98",
+          "profiles/cylindrical-n128.csv": "56209be550aade035c4f758d6397c31612cbd95ae75506a85c4c19e051f3af8d",
+          "histories/cylindrical-n128.json": "64e912e19c20db169b8cfeb070f78e7fb31f4c33b8e9577c17596610c14a8bd9",
+          "profiles/cylindrical-n256.csv": "ac1ab1b49eebc06e2f913d5a5273b10873b568679b13574296cfc505dd6fc1bf",
+          "histories/cylindrical-n256.json": "2963e291c06248460c44592968aea58c66c6c801b848731c3ed07bdcdae7bb1d",
+          "profiles/cylindrical-n512.csv": "0d62a36ea7e369b3ce205f9d63b62bbe2febc16539945913e381e821b78f7820",
+          "histories/cylindrical-n512.json": "8ffcf03b5e62b27cccafb5b522d5b4f8b5c6b05cc1f3707c0010233e75de44f2",
+          "profiles/spherical-n64.csv": "f46e8d002ceb4c77fc3717917a3ec4e04b01a1350949cd990d8e48af35e6eddb",
+          "histories/spherical-n64.json": "8f4edc0a45ef2a98f721b0e5204e920ff689bdd6230947a48cd6eb599c93ae0e",
+          "profiles/spherical-n128.csv": "c0e3cf84760320cf9d218e5f9188e649d00701fab68ff22dc270eebcece9bd4f",
+          "histories/spherical-n128.json": "a33526b50e812d39b77069fae7555c3629182e6d2d6d250a7b6829d6530440c7",
+          "profiles/spherical-n256.csv": "ddf75a433ede6695c61ee5cd0679cbcd211850d1216572f2f4d15c5a623f26e5",
+          "histories/spherical-n256.json": "3f5efed81a58945a5434a70db2cb2afad8bdcbe3ade572e704e550356277a7a3",
+          "profiles/spherical-n512.csv": "b562c5e1bbdc20f11069792b18c8b01a3d2df8e1d392e007f325ce46a198fbad",
+          "histories/spherical-n512.json": "fb3769fd2104d723067fd90f82ec34e2db63c9959ad01e034c85d74cd35ea869"
+        },
+        "provenance": {
+          "saved_execution_receipts": {
+            "input_sha256": "1237df125035342156b2f05be90ad1edc8e78dbe88dc4482f34247dd52356cb0",
+            "acceptance_sha256": "a12c0ce119877e71fc8dfd852bd6dfb6aa6d8e7beb5e18bd13e91a5dd16117ff",
+            "source_sha256": {
+              "run.py": "91d2d839a7a4be5a3c8b0cfe81695463216e353a2d9ed4cc841016487a499c22",
+              "noh_solver.py": "fb7a0b000a313101319ad00dce25aff3670cd50f8a02ea1f74c5800d494e85c9",
+              "noh_reference.py": "77ac42ca9d3a276ebaba1de030a33dd4c835463e3fc17f73d07f742ecaf2d8b2",
+              "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75"
+            },
+            "spherical_acceptance_sha256": "bb1c8d14feb07a8876f04711aa81780642d5f6a547f6754ccafd2eaf223530a2",
+            "spherical_pre_run_contract_filename": "pre-run-contract-spherical-revision02.json",
+            "spherical_pre_run_contract_sha256": "45b4273a6666f96d0f6dbd299e7f106e4eb2783ff2b62414b24ea4ae640d0d42",
+            "spherical_original_pre_run_contract_sha256": "e3d99d1f46bcabc2b69a8392011df41442ff4bbdef60ebe17ffbe0209296852c"
+          },
+          "verified_source_and_input_sha256": {
+            "run.py": "91d2d839a7a4be5a3c8b0cfe81695463216e353a2d9ed4cc841016487a499c22",
+            "noh_solver.py": "fb7a0b000a313101319ad00dce25aff3670cd50f8a02ea1f74c5800d494e85c9",
+            "noh_reference.py": "77ac42ca9d3a276ebaba1de030a33dd4c835463e3fc17f73d07f742ecaf2d8b2",
+            "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+            "inputs.json": "1237df125035342156b2f05be90ad1edc8e78dbe88dc4482f34247dd52356cb0",
+            "acceptance.json": "a12c0ce119877e71fc8dfd852bd6dfb6aa6d8e7beb5e18bd13e91a5dd16117ff",
+            "spherical-acceptance.json": "bb1c8d14feb07a8876f04711aa81780642d5f6a547f6754ccafd2eaf223530a2",
+            "pre-run-contract-spherical-revision02.json": "45b4273a6666f96d0f6dbd299e7f106e4eb2783ff2b62414b24ea4ae640d0d42",
+            "pre-run-contract-spherical.json": "e3d99d1f46bcabc2b69a8392011df41442ff4bbdef60ebe17ffbe0209296852c"
+          },
+          "supporting_receipt_sha256": {
+            "exactpack-reference-snapshot.json": "0be18147421e7c59988561d2fe921e29370ef3f1ae77a5f0febc3b40de4ac4fa",
+            "exactpack-reference-receipt.json": "35d1622672578b48639766b916645d1bbbdc2c65d999968b6b5f699197f2ce64",
+            "pre-run-contract-spherical.json": "e3d99d1f46bcabc2b69a8392011df41442ff4bbdef60ebe17ffbe0209296852c",
+            "pre-run-contract-spherical-revision02.json": "45b4273a6666f96d0f6dbd299e7f106e4eb2783ff2b62414b24ea4ae640d0d42",
+            "attempt/execution-receipt.json": "6ce2a005742b7b848cad3e035904556a115fa6ca07352fecd13ee7c361625db4",
+            "attempt/execution-start.json": "89750394aa1a6c6fe872d65c97817b37a664e6f0b9416542f745b28da258862b",
+            "attempt/pre-run-review.json": "562c4855c1b64597d310b19c47370921d39351f1e849b47ac971f4df1937a7d8",
+            "attempt/spherical-attempt-summary.json": "df86b7aab42c27739af19358d6a46204837a1821f5d0c6864880517bec82846a"
+          },
+          "plot_script_sha256": {
+            "plot_noh.py": "6279a04a2dd22519564fe664ab3cb5271264ff2afe4246eeb47536b4a7ef7ef3"
+          },
+          "receipt_scope": "Execution receipts and numerical/reference pre-render evidence only; post-render packaging QA is excluded to avoid a hash cycle."
+        }
+      }
+    ]
+  },
+  "plot_script_sha256": "6279a04a2dd22519564fe664ab3cb5271264ff2afe4246eeb47536b4a7ef7ef3",
+  "reference": {
+    "citation": "Noh (1987), J. Comput. Phys. 72, 78-120",
+    "doi": "10.1016/0021-9991(87)90074-X",
+    "representation": {
+      "conserved": "numerical and exact volume cell averages",
+      "pressure": "p(q_bar), not the exact volume average of pressure",
+      "exact_pressure_average": "independently integrated pressure mean",
+      "cylindrical_display": "1D radial cell means rotated for display; not 2D Euler",
+      "spherical_display": "z=0 section of 1D spherical-radial cell means, r=sqrt(x^2+y^2); not Cartesian 3D Euler"
+    }
+  },
+  "plot_reductions": {
+    "definition": "L1=sum(V*abs(error))/sum(V*abs(exact)); L2=sqrt(sum(V*error^2)/sum(V*exact^2)); Linf=max(abs(error))/max(abs(exact)). Compared with the saved run metrics. No solver execution.",
+    "records": {
+      "planar": [
+        {
+          "n": 64,
+          "density_relative_l1": 0.051784761372760495,
+          "density_relative_l2": 0.11770132762533601,
+          "density_relative_linf": 0.36630816683975775,
+          "center_specific_internal_energy_ratio": 1.0841547653356212
+        },
+        {
+          "n": 128,
+          "density_relative_l1": 0.024096012366673462,
+          "density_relative_l2": 0.0731725455633801,
+          "density_relative_linf": 0.3261422617941202,
+          "center_specific_internal_energy_ratio": 1.0558962468334552
+        },
+        {
+          "n": 256,
+          "density_relative_l1": 0.013590880867475546,
+          "density_relative_l2": 0.05604548645255093,
+          "density_relative_linf": 0.28385235698044675,
+          "center_specific_internal_energy_ratio": 1.0376087434663455
+        },
+        {
+          "n": 512,
+          "density_relative_l1": 0.006389021550074538,
+          "density_relative_l2": 0.035622324219688015,
+          "density_relative_linf": 0.2913310649697939,
+          "center_specific_internal_energy_ratio": 1.025776017620379
+        }
+      ],
+      "cylindrical": [
+        {
+          "n": 64,
+          "density_relative_l1": 0.11453468784784018,
+          "density_relative_l2": 0.3023657799600322,
+          "density_relative_linf": 0.4594047057312892,
+          "center_specific_internal_energy_ratio": 1.1984683285025652
+        },
+        {
+          "n": 128,
+          "density_relative_l1": 0.065993093319001,
+          "density_relative_l2": 0.21524305158495197,
+          "density_relative_linf": 0.5281380987541245,
+          "center_specific_internal_energy_ratio": 1.1509461544867188
+        },
+        {
+          "n": 256,
+          "density_relative_l1": 0.03635368784614136,
+          "density_relative_l2": 0.15677660931999998,
+          "density_relative_linf": 0.528754896745749,
+          "center_specific_internal_energy_ratio": 1.1118680757232506
+        },
+        {
+          "n": 512,
+          "density_relative_l1": 0.01868269537157265,
+          "density_relative_l2": 0.10813806869356997,
+          "density_relative_linf": 0.5794791984687887,
+          "center_specific_internal_energy_ratio": 1.0816116742197837
+        }
+      ],
+      "spherical": [
+        {
+          "n": 64,
+          "density_relative_l1": 0.06372131456995629,
+          "density_relative_l2": 0.33533610753001597,
+          "density_relative_linf": 0.4879562668498812,
+          "center_specific_internal_energy_ratio": 1.3417070405750227,
+          "core_density_relative_l1": 0.3256631488765628,
+          "core_cells": 8
+        },
+        {
+          "n": 128,
+          "density_relative_l1": 0.03788054829018361,
+          "density_relative_l2": 0.24424628759992784,
+          "density_relative_linf": 0.5731912765825762,
+          "center_specific_internal_energy_ratio": 1.2929856615636623,
+          "core_density_relative_l1": 0.19145268602144502,
+          "core_cells": 17
+        },
+        {
+          "n": 256,
+          "density_relative_l1": 0.021769008767570396,
+          "density_relative_l2": 0.18293632120192405,
+          "density_relative_linf": 0.5757953795140922,
+          "center_specific_internal_energy_ratio": 1.2490193903335836,
+          "core_density_relative_l1": 0.10460742311949278,
+          "core_cells": 35
+        },
+        {
+          "n": 512,
+          "density_relative_l1": 0.011434288260693067,
+          "density_relative_l2": 0.12865133541762316,
+          "density_relative_linf": 0.6509628676271373,
+          "center_specific_internal_energy_ratio": 1.205922730533584,
+          "core_density_relative_l1": 0.05495030379369082,
+          "core_cells": 71
+        }
+      ]
+    },
+    "spherical_budget": [
+      {
+        "n": 64,
+        "dt_cubed_sum": 2.5042028810624156e-06,
+        "core_density_relative_l1": 0.3256631488765628,
+        "density_relative_l1": 0.06372131456995629,
+        "mass_closure_absolute_relative": 3.2526055231713414e-16,
+        "mass_analytic_signed_difference": 4.173671468432616e-07,
+        "mass_bias_formula": 4.1736714684373593e-07,
+        "mass_bias_residual_signed_relative": -3.4741585727227153e-19,
+        "energy_closure_absolute_relative": 3.2526055231713414e-16,
+        "energy_analytic_signed_difference": 2.086835734216308e-07,
+        "energy_bias_formula": 2.0868357342186797e-07,
+        "energy_bias_residual_signed_relative": -3.4741585727227153e-19
+      },
+      {
+        "n": 128,
+        "dt_cubed_sum": 6.550577474728315e-07,
+        "core_density_relative_l1": 0.19145268602144502,
+        "density_relative_l1": 0.03788054829018361,
+        "mass_closure_absolute_relative": 0.0,
+        "mass_analytic_signed_difference": 1.0917629045259503e-07,
+        "mass_bias_formula": 1.0917629124547192e-07,
+        "mass_bias_residual_signed_relative": -5.807203783593541e-16,
+        "energy_closure_absolute_relative": 0.0,
+        "energy_analytic_signed_difference": 5.458814522629751e-08,
+        "energy_bias_formula": 5.458814562273596e-08,
+        "energy_bias_residual_signed_relative": -5.807203783593541e-16
+      },
+      {
+        "n": 256,
+        "dt_cubed_sum": 1.7032021372709778e-07,
+        "core_density_relative_l1": 0.10460742311949278,
+        "density_relative_l1": 0.021769008767570396,
+        "mass_closure_absolute_relative": 1.301042579932574e-15,
+        "mass_analytic_signed_difference": 2.8386702766169947e-08,
+        "mass_bias_formula": 2.838670228784963e-08,
+        "mass_bias_residual_signed_relative": 3.5033226265979265e-16,
+        "energy_closure_absolute_relative": 1.301042579932574e-15,
+        "energy_analytic_signed_difference": 1.4193351383084973e-08,
+        "energy_bias_formula": 1.4193351143924815e-08,
+        "energy_bias_residual_signed_relative": 3.5033226265979265e-16
+      },
+      {
+        "n": 512,
+        "dt_cubed_sum": 4.418569672203109e-08,
+        "core_density_relative_l1": 0.05495030379369082,
+        "density_relative_l1": 0.011434288260693067,
+        "mass_closure_absolute_relative": 8.131516249781814e-16,
+        "mass_analytic_signed_difference": 7.3642836273535295e-09,
+        "mass_bias_formula": 7.364282787005182e-09,
+        "mass_bias_residual_signed_relative": 6.154895124725433e-16,
+        "energy_closure_absolute_relative": 8.131516249781814e-16,
+        "energy_analytic_signed_difference": 3.6821418136767647e-09,
+        "energy_bias_formula": 3.682141393502591e-09,
+        "energy_bias_residual_signed_relative": 6.154895124725433e-16
+      }
+    ],
+    "core_definition": "Cells with r_right <= 0.70*exact shock radius; the origin is never excluded. Core and whole-domain L1 have separate exact-mass denominators."
+  },
+  "figures": [
+    {
+      "path": "noh-shock-preview.png",
+      "sha256": "993fea822153b052ba707787525853884a84e327b420462a442d05781c2ed331",
+      "width": 832,
+      "height": 494
+    },
+    {
+      "path": "noh-shock-preview.svg",
+      "sha256": "525e3f2d419041ca45fc3fec8eda5c3965afa4af7a9756abd8fbb0c53fdcef2d"
+    },
+    {
+      "path": "noh-shock-preview.pdf",
+      "sha256": "4239baf1ee3af1533e4016e76ebe570303efea1f77aea407cca2f7e7ab291eb8"
+    },
+    {
+      "path": "noh-shock.png",
+      "sha256": "11d0f030985cf900b04ce6f8b903be486684c43129f2e3f4226ed81b70041f4f",
+      "width": 2048,
+      "height": 1863
+    },
+    {
+      "path": "noh-shock.svg",
+      "sha256": "c6852874bcfa9432c7d6d54e67ba8b356e179e03483232188f3280cd076643c6"
+    },
+    {
+      "path": "noh-shock.pdf",
+      "sha256": "b2895443ffe2c55ed06f164660c6747f83fec3dc3732cb0d9dce17c42f16d876"
+    },
+    {
+      "path": "noh-shock-errors.png",
+      "sha256": "83fa3afcce5ef76c14956ec0a707777ea84f2b16bb29d0a6c8278680043b56ab",
+      "width": 2048,
+      "height": 1904
+    },
+    {
+      "path": "noh-shock-errors.svg",
+      "sha256": "8d56663c7f71469e80e9ade185dd8418e1a05e7600e533ba317a42ae0bd77f50"
+    },
+    {
+      "path": "noh-shock-errors.pdf",
+      "sha256": "2e23afe152d6e0310625946620e11a4e0a737064d5c2edb94835f17a3ee797f5"
+    },
+    {
+      "path": "noh-spherical-budget.png",
+      "sha256": "7b7672b50bdeefb62c50d10fd150a075eee2657cc3ec18e146dc24d261807f42",
+      "width": 2048,
+      "height": 1424
+    },
+    {
+      "path": "noh-spherical-budget.svg",
+      "sha256": "112d4f0d69211c63506bd4299faf16a4ab6b9ba5719f69cfa9ec3e403c5f7fe9"
+    },
+    {
+      "path": "noh-spherical-budget.pdf",
+      "sha256": "1ce9e075bf52abb6818f10cd42c24f1892ae93fda97e904e5d249a6c5e8358e7"
+    }
+  ],
+  "driver_source_sha256": {
+    "plot.py": "15961edb61fb5e73891b7e7f863869615935e9c834fd4a8f6122615ea7c401c6",
+    "result.json": "4e92acb911d505b3f7e74e39f01acf77e59fbe15577f321ac759f1315e487724"
+  },
+  "primary_detail": "noh-shock.png",
+  "gallery_preview": "noh-shock-preview.png",
+  "additional_detail": "noh-shock-errors.png",
+  "additional_details": [
+    "noh-shock-errors.png",
+    "noh-spherical-budget.png"
+  ]
+}

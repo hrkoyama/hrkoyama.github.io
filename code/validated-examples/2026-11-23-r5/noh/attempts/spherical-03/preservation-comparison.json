@@ -1,0 +1,1383 @@
+{
+  "schema_version": 1,
+  "checked_at_utc": "2026-11-23T02:17:41.926142+00:00",
+  "reference_release": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/atlas-search-publisher/code/validated-examples/2026-11-23-r3/noh",
+  "execution_receipt_sha256": "b0c4592a1b2cd014fd06844263edbf88643d61664f23ab7ae40ac8fd158b7435",
+  "preservation_passed": true,
+  "overall_numerical_passed": true,
+  "old_profile_csv_count": 8,
+  "old_profile_csv_identical_count": 8,
+  "profiles": [
+    {
+      "geometry": "planar",
+      "n": 64,
+      "path": "profiles/planar-n64.csv",
+      "r3_sha256": "83ffc0332b6c1c45e963f019ef624fa4b3f0cfe73b735fcb96aa164020cbf2a2",
+      "new_sha256": "83ffc0332b6c1c45e963f019ef624fa4b3f0cfe73b735fcb96aa164020cbf2a2",
+      "identical": true
+    },
+    {
+      "geometry": "planar",
+      "n": 128,
+      "path": "profiles/planar-n128.csv",
+      "r3_sha256": "4ea66a2280a06b761464c7589848f9e387dc90fe521e6adeffdf31ed04119433",
+      "new_sha256": "4ea66a2280a06b761464c7589848f9e387dc90fe521e6adeffdf31ed04119433",
+      "identical": true
+    },
+    {
+      "geometry": "planar",
+      "n": 256,
+      "path": "profiles/planar-n256.csv",
+      "r3_sha256": "93d709a8352c127cb72098f24bcc8b8b59cb68ec55d1b10283ab2ce027747b6a",
+      "new_sha256": "93d709a8352c127cb72098f24bcc8b8b59cb68ec55d1b10283ab2ce027747b6a",
+      "identical": true
+    },
+    {
+      "geometry": "planar",
+      "n": 512,
+      "path": "profiles/planar-n512.csv",
+      "r3_sha256": "8d4dd3fdbcd4c1f530126186114c9cf99027027a01e14119a7fc935aa14d8d74",
+      "new_sha256": "8d4dd3fdbcd4c1f530126186114c9cf99027027a01e14119a7fc935aa14d8d74",
+      "identical": true
+    },
+    {
+      "geometry": "cylindrical",
+      "n": 64,
+      "path": "profiles/cylindrical-n64.csv",
+      "r3_sha256": "05a99258d4bcc2fa9f72d63ae173136875e925bcab76bc8fd13766d4ea1883a1",
+      "new_sha256": "05a99258d4bcc2fa9f72d63ae173136875e925bcab76bc8fd13766d4ea1883a1",
+      "identical": true
+    },
+    {
+      "geometry": "cylindrical",
+      "n": 128,
+      "path": "profiles/cylindrical-n128.csv",
+      "r3_sha256": "56209be550aade035c4f758d6397c31612cbd95ae75506a85c4c19e051f3af8d",
+      "new_sha256": "56209be550aade035c4f758d6397c31612cbd95ae75506a85c4c19e051f3af8d",
+      "identical": true
+    },
+    {
+      "geometry": "cylindrical",
+      "n": 256,
+      "path": "profiles/cylindrical-n256.csv",
+      "r3_sha256": "ac1ab1b49eebc06e2f913d5a5273b10873b568679b13574296cfc505dd6fc1bf",
+      "new_sha256": "ac1ab1b49eebc06e2f913d5a5273b10873b568679b13574296cfc505dd6fc1bf",
+      "identical": true
+    },
+    {
+      "geometry": "cylindrical",
+      "n": 512,
+      "path": "profiles/cylindrical-n512.csv",
+      "r3_sha256": "0d62a36ea7e369b3ce205f9d63b62bbe2febc16539945913e381e821b78f7820",
+      "new_sha256": "0d62a36ea7e369b3ce205f9d63b62bbe2febc16539945913e381e821b78f7820",
+      "identical": true
+    }
+  ],
+  "old_gate_count": 59,
+  "old_gate_name_bound_passed_identical_count": 59,
+  "old_gates": [
+    {
+      "name": "all_runs_reach_final_time",
+      "r3": {
+        "name": "all_runs_reach_final_time",
+        "bound": null,
+        "passed": true
+      },
+      "current": {
+        "name": "all_runs_reach_final_time",
+        "bound": null,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "planar-n64: finite positive density",
+      "r3": {
+        "name": "planar-n64: finite positive density",
+        "bound": 0,
+        "passed": true
+      },
+      "current": {
+        "name": "planar-n64: finite positive density",
+        "bound": 0,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "planar-n64: pressure within roundoff",
+      "r3": {
+        "name": "planar-n64: pressure within roundoff",
+        "bound": -64.0,
+        "passed": true
+      },
+      "current": {
+        "name": "planar-n64: pressure within roundoff",
+        "bound": -64.0,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "planar-n64: no state floors",
+      "r3": {
+        "name": "planar-n64: no state floors",
+        "bound": 0,
+        "passed": true
+      },
+      "current": {
+        "name": "planar-n64: no state floors",
+        "bound": 0,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "planar-n64: mass_balance_relative",
+      "r3": {
+        "name": "planar-n64: mass_balance_relative",
+        "bound": 2e-12,
+        "passed": true
+      },
+      "current": {
+        "name": "planar-n64: mass_balance_relative",
+        "bound": 2e-12,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "planar-n64: energy_balance_relative",
+      "r3": {
+        "name": "planar-n64: energy_balance_relative",
+        "bound": 2e-12,
+        "passed": true
+      },
+      "current": {
+        "name": "planar-n64: energy_balance_relative",
+        "bound": 2e-12,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "planar-n128: finite positive density",
+      "r3": {
+        "name": "planar-n128: finite positive density",
+        "bound": 0,
+        "passed": true
+      },
+      "current": {
+        "name": "planar-n128: finite positive density",
+        "bound": 0,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "planar-n128: pressure within roundoff",
+      "r3": {
+        "name": "planar-n128: pressure within roundoff",
+        "bound": -64.0,
+        "passed": true
+      },
+      "current": {
+        "name": "planar-n128: pressure within roundoff",
+        "bound": -64.0,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "planar-n128: no state floors",
+      "r3": {
+        "name": "planar-n128: no state floors",
+        "bound": 0,
+        "passed": true
+      },
+      "current": {
+        "name": "planar-n128: no state floors",
+        "bound": 0,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "planar-n128: mass_balance_relative",
+      "r3": {
+        "name": "planar-n128: mass_balance_relative",
+        "bound": 2e-12,
+        "passed": true
+      },
+      "current": {
+        "name": "planar-n128: mass_balance_relative",
+        "bound": 2e-12,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "planar-n128: energy_balance_relative",
+      "r3": {
+        "name": "planar-n128: energy_balance_relative",
+        "bound": 2e-12,
+        "passed": true
+      },
+      "current": {
+        "name": "planar-n128: energy_balance_relative",
+        "bound": 2e-12,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "planar-n256: finite positive density",
+      "r3": {
+        "name": "planar-n256: finite positive density",
+        "bound": 0,
+        "passed": true
+      },
+      "current": {
+        "name": "planar-n256: finite positive density",
+        "bound": 0,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "planar-n256: pressure within roundoff",
+      "r3": {
+        "name": "planar-n256: pressure within roundoff",
+        "bound": -64.0,
+        "passed": true
+      },
+      "current": {
+        "name": "planar-n256: pressure within roundoff",
+        "bound": -64.0,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "planar-n256: no state floors",
+      "r3": {
+        "name": "planar-n256: no state floors",
+        "bound": 0,
+        "passed": true
+      },
+      "current": {
+        "name": "planar-n256: no state floors",
+        "bound": 0,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "planar-n256: mass_balance_relative",
+      "r3": {
+        "name": "planar-n256: mass_balance_relative",
+        "bound": 2e-12,
+        "passed": true
+      },
+      "current": {
+        "name": "planar-n256: mass_balance_relative",
+        "bound": 2e-12,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "planar-n256: energy_balance_relative",
+      "r3": {
+        "name": "planar-n256: energy_balance_relative",
+        "bound": 2e-12,
+        "passed": true
+      },
+      "current": {
+        "name": "planar-n256: energy_balance_relative",
+        "bound": 2e-12,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "planar-n512: finite positive density",
+      "r3": {
+        "name": "planar-n512: finite positive density",
+        "bound": 0,
+        "passed": true
+      },
+      "current": {
+        "name": "planar-n512: finite positive density",
+        "bound": 0,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "planar-n512: pressure within roundoff",
+      "r3": {
+        "name": "planar-n512: pressure within roundoff",
+        "bound": -64.0,
+        "passed": true
+      },
+      "current": {
+        "name": "planar-n512: pressure within roundoff",
+        "bound": -64.0,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "planar-n512: no state floors",
+      "r3": {
+        "name": "planar-n512: no state floors",
+        "bound": 0,
+        "passed": true
+      },
+      "current": {
+        "name": "planar-n512: no state floors",
+        "bound": 0,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "planar-n512: mass_balance_relative",
+      "r3": {
+        "name": "planar-n512: mass_balance_relative",
+        "bound": 2e-12,
+        "passed": true
+      },
+      "current": {
+        "name": "planar-n512: mass_balance_relative",
+        "bound": 2e-12,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "planar-n512: energy_balance_relative",
+      "r3": {
+        "name": "planar-n512: energy_balance_relative",
+        "bound": 2e-12,
+        "passed": true
+      },
+      "current": {
+        "name": "planar-n512: energy_balance_relative",
+        "bound": 2e-12,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "cylindrical-n64: finite positive density",
+      "r3": {
+        "name": "cylindrical-n64: finite positive density",
+        "bound": 0,
+        "passed": true
+      },
+      "current": {
+        "name": "cylindrical-n64: finite positive density",
+        "bound": 0,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "cylindrical-n64: pressure within roundoff",
+      "r3": {
+        "name": "cylindrical-n64: pressure within roundoff",
+        "bound": -64.0,
+        "passed": true
+      },
+      "current": {
+        "name": "cylindrical-n64: pressure within roundoff",
+        "bound": -64.0,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "cylindrical-n64: no state floors",
+      "r3": {
+        "name": "cylindrical-n64: no state floors",
+        "bound": 0,
+        "passed": true
+      },
+      "current": {
+        "name": "cylindrical-n64: no state floors",
+        "bound": 0,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "cylindrical-n64: mass_balance_relative",
+      "r3": {
+        "name": "cylindrical-n64: mass_balance_relative",
+        "bound": 2e-12,
+        "passed": true
+      },
+      "current": {
+        "name": "cylindrical-n64: mass_balance_relative",
+        "bound": 2e-12,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "cylindrical-n64: energy_balance_relative",
+      "r3": {
+        "name": "cylindrical-n64: energy_balance_relative",
+        "bound": 2e-12,
+        "passed": true
+      },
+      "current": {
+        "name": "cylindrical-n64: energy_balance_relative",
+        "bound": 2e-12,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "cylindrical-n128: finite positive density",
+      "r3": {
+        "name": "cylindrical-n128: finite positive density",
+        "bound": 0,
+        "passed": true
+      },
+      "current": {
+        "name": "cylindrical-n128: finite positive density",
+        "bound": 0,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "cylindrical-n128: pressure within roundoff",
+      "r3": {
+        "name": "cylindrical-n128: pressure within roundoff",
+        "bound": -64.0,
+        "passed": true
+      },
+      "current": {
+        "name": "cylindrical-n128: pressure within roundoff",
+        "bound": -64.0,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "cylindrical-n128: no state floors",
+      "r3": {
+        "name": "cylindrical-n128: no state floors",
+        "bound": 0,
+        "passed": true
+      },
+      "current": {
+        "name": "cylindrical-n128: no state floors",
+        "bound": 0,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "cylindrical-n128: mass_balance_relative",
+      "r3": {
+        "name": "cylindrical-n128: mass_balance_relative",
+        "bound": 2e-12,
+        "passed": true
+      },
+      "current": {
+        "name": "cylindrical-n128: mass_balance_relative",
+        "bound": 2e-12,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "cylindrical-n128: energy_balance_relative",
+      "r3": {
+        "name": "cylindrical-n128: energy_balance_relative",
+        "bound": 2e-12,
+        "passed": true
+      },
+      "current": {
+        "name": "cylindrical-n128: energy_balance_relative",
+        "bound": 2e-12,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "cylindrical-n256: finite positive density",
+      "r3": {
+        "name": "cylindrical-n256: finite positive density",
+        "bound": 0,
+        "passed": true
+      },
+      "current": {
+        "name": "cylindrical-n256: finite positive density",
+        "bound": 0,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "cylindrical-n256: pressure within roundoff",
+      "r3": {
+        "name": "cylindrical-n256: pressure within roundoff",
+        "bound": -64.0,
+        "passed": true
+      },
+      "current": {
+        "name": "cylindrical-n256: pressure within roundoff",
+        "bound": -64.0,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "cylindrical-n256: no state floors",
+      "r3": {
+        "name": "cylindrical-n256: no state floors",
+        "bound": 0,
+        "passed": true
+      },
+      "current": {
+        "name": "cylindrical-n256: no state floors",
+        "bound": 0,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "cylindrical-n256: mass_balance_relative",
+      "r3": {
+        "name": "cylindrical-n256: mass_balance_relative",
+        "bound": 2e-12,
+        "passed": true
+      },
+      "current": {
+        "name": "cylindrical-n256: mass_balance_relative",
+        "bound": 2e-12,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "cylindrical-n256: energy_balance_relative",
+      "r3": {
+        "name": "cylindrical-n256: energy_balance_relative",
+        "bound": 2e-12,
+        "passed": true
+      },
+      "current": {
+        "name": "cylindrical-n256: energy_balance_relative",
+        "bound": 2e-12,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "cylindrical-n512: finite positive density",
+      "r3": {
+        "name": "cylindrical-n512: finite positive density",
+        "bound": 0,
+        "passed": true
+      },
+      "current": {
+        "name": "cylindrical-n512: finite positive density",
+        "bound": 0,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "cylindrical-n512: pressure within roundoff",
+      "r3": {
+        "name": "cylindrical-n512: pressure within roundoff",
+        "bound": -64.0,
+        "passed": true
+      },
+      "current": {
+        "name": "cylindrical-n512: pressure within roundoff",
+        "bound": -64.0,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "cylindrical-n512: no state floors",
+      "r3": {
+        "name": "cylindrical-n512: no state floors",
+        "bound": 0,
+        "passed": true
+      },
+      "current": {
+        "name": "cylindrical-n512: no state floors",
+        "bound": 0,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "cylindrical-n512: mass_balance_relative",
+      "r3": {
+        "name": "cylindrical-n512: mass_balance_relative",
+        "bound": 2e-12,
+        "passed": true
+      },
+      "current": {
+        "name": "cylindrical-n512: mass_balance_relative",
+        "bound": 2e-12,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "cylindrical-n512: energy_balance_relative",
+      "r3": {
+        "name": "cylindrical-n512: energy_balance_relative",
+        "bound": 2e-12,
+        "passed": true
+      },
+      "current": {
+        "name": "cylindrical-n512: energy_balance_relative",
+        "bound": 2e-12,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "planar: finest density_l1",
+      "r3": {
+        "name": "planar: finest density_l1",
+        "bound": 0.12,
+        "passed": true
+      },
+      "current": {
+        "name": "planar: finest density_l1",
+        "bound": 0.12,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "planar: finest shock_error_in_dx",
+      "r3": {
+        "name": "planar: finest shock_error_in_dx",
+        "bound": 3.0,
+        "passed": true
+      },
+      "current": {
+        "name": "planar: finest shock_error_in_dx",
+        "bound": 3.0,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "planar: finest plateau_density_relative_error",
+      "r3": {
+        "name": "planar: finest plateau_density_relative_error",
+        "bound": 0.1,
+        "passed": true
+      },
+      "current": {
+        "name": "planar: finest plateau_density_relative_error",
+        "bound": 0.1,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "planar: finest plateau_pressure_relative_error",
+      "r3": {
+        "name": "planar: finest plateau_pressure_relative_error",
+        "bound": 0.1,
+        "passed": true
+      },
+      "current": {
+        "name": "planar: finest plateau_pressure_relative_error",
+        "bound": 0.1,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "planar: finest mass_vs_analytic_relative",
+      "r3": {
+        "name": "planar: finest mass_vs_analytic_relative",
+        "bound": 2e-05,
+        "passed": true
+      },
+      "current": {
+        "name": "planar: finest mass_vs_analytic_relative",
+        "bound": 2e-05,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "planar: finest energy_vs_analytic_relative",
+      "r3": {
+        "name": "planar: finest energy_vs_analytic_relative",
+        "bound": 2e-05,
+        "passed": true
+      },
+      "current": {
+        "name": "planar: finest energy_vs_analytic_relative",
+        "bound": 2e-05,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "planar: density L1 decreases",
+      "r3": {
+        "name": "planar: density L1 decreases",
+        "bound": null,
+        "passed": true
+      },
+      "current": {
+        "name": "planar: density L1 decreases",
+        "bound": null,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "planar: last-pair L1 order",
+      "r3": {
+        "name": "planar: last-pair L1 order",
+        "bound": 0.35,
+        "passed": true
+      },
+      "current": {
+        "name": "planar: last-pair L1 order",
+        "bound": 0.35,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "planar: unmasked center heating reported",
+      "r3": {
+        "name": "planar: unmasked center heating reported",
+        "bound": null,
+        "passed": true
+      },
+      "current": {
+        "name": "planar: unmasked center heating reported",
+        "bound": null,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "cylindrical: finest density_l1",
+      "r3": {
+        "name": "cylindrical: finest density_l1",
+        "bound": 0.12,
+        "passed": true
+      },
+      "current": {
+        "name": "cylindrical: finest density_l1",
+        "bound": 0.12,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "cylindrical: finest shock_error_in_dx",
+      "r3": {
+        "name": "cylindrical: finest shock_error_in_dx",
+        "bound": 3.0,
+        "passed": true
+      },
+      "current": {
+        "name": "cylindrical: finest shock_error_in_dx",
+        "bound": 3.0,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "cylindrical: finest plateau_density_relative_error",
+      "r3": {
+        "name": "cylindrical: finest plateau_density_relative_error",
+        "bound": 0.1,
+        "passed": true
+      },
+      "current": {
+        "name": "cylindrical: finest plateau_density_relative_error",
+        "bound": 0.1,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "cylindrical: finest plateau_pressure_relative_error",
+      "r3": {
+        "name": "cylindrical: finest plateau_pressure_relative_error",
+        "bound": 0.1,
+        "passed": true
+      },
+      "current": {
+        "name": "cylindrical: finest plateau_pressure_relative_error",
+        "bound": 0.1,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "cylindrical: finest mass_vs_analytic_relative",
+      "r3": {
+        "name": "cylindrical: finest mass_vs_analytic_relative",
+        "bound": 2e-05,
+        "passed": true
+      },
+      "current": {
+        "name": "cylindrical: finest mass_vs_analytic_relative",
+        "bound": 2e-05,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "cylindrical: finest energy_vs_analytic_relative",
+      "r3": {
+        "name": "cylindrical: finest energy_vs_analytic_relative",
+        "bound": 2e-05,
+        "passed": true
+      },
+      "current": {
+        "name": "cylindrical: finest energy_vs_analytic_relative",
+        "bound": 2e-05,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "cylindrical: density L1 decreases",
+      "r3": {
+        "name": "cylindrical: density L1 decreases",
+        "bound": null,
+        "passed": true
+      },
+      "current": {
+        "name": "cylindrical: density L1 decreases",
+        "bound": null,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "cylindrical: last-pair L1 order",
+      "r3": {
+        "name": "cylindrical: last-pair L1 order",
+        "bound": 0.35,
+        "passed": true
+      },
+      "current": {
+        "name": "cylindrical: last-pair L1 order",
+        "bound": 0.35,
+        "passed": true
+      },
+      "identical": true
+    },
+    {
+      "name": "cylindrical: unmasked center heating reported",
+      "r3": {
+        "name": "cylindrical: unmasked center heating reported",
+        "bound": null,
+        "passed": true
+      },
+      "current": {
+        "name": "cylindrical: unmasked center heating reported",
+        "bound": null,
+        "passed": true
+      },
+      "identical": true
+    }
+  ],
+  "old_records_count": 8,
+  "old_records_exactly_identical": true,
+  "previous_attempts": [
+    {
+      "attempt": "spherical-01",
+      "execution_receipt_sha256": "c402992d1c36750ccf829782fb7557d01089fd154e5a7314b33563e399c8c87f",
+      "results_sha256": "2c2580101568db624acf5da5e8bcd69e089294ca325ae246f9518e11f5eb04c4",
+      "all_result_artifacts_unchanged": true,
+      "all_logs_unchanged": true,
+      "gate_names_bounds_identical": true,
+      "gate_count": 105,
+      "base_acceptance_identical": true,
+      "spherical_acceptance_identical": true,
+      "original_failed_checks": [
+        {
+          "name": "spherical: finest shock_error_in_dx",
+          "passed": false,
+          "value": 3.9228085714794076,
+          "bound": 3.0
+        },
+        {
+          "name": "spherical: finest plateau_density_relative_error",
+          "passed": false,
+          "value": 0.11027727145332611,
+          "bound": 0.1
+        }
+      ]
+    },
+    {
+      "attempt": "spherical-02",
+      "execution_receipt_sha256": "6ce2a005742b7b848cad3e035904556a115fa6ca07352fecd13ee7c361625db4",
+      "results_sha256": "7f161c3801339d1f2450812b0654dec92947e90c458c0eef020dc94c46839354",
+      "all_result_artifacts_unchanged": true,
+      "all_logs_unchanged": true,
+      "gate_names_bounds_identical": true,
+      "gate_count": 105,
+      "base_acceptance_identical": true,
+      "spherical_acceptance_identical": true,
+      "original_failed_checks": [
+        {
+          "name": "spherical: finest shock_error_in_dx",
+          "passed": false,
+          "value": 3.9188220137905603,
+          "bound": 3.0
+        },
+        {
+          "name": "spherical: finest plateau_density_relative_error",
+          "passed": false,
+          "value": 0.11017926207766193,
+          "bound": 0.1
+        }
+      ]
+    }
+  ],
+  "current_gate_inventory": [
+    {
+      "name": "all_runs_reach_final_time",
+      "bound": null
+    },
+    {
+      "name": "planar-n64: finite positive density",
+      "bound": 0
+    },
+    {
+      "name": "planar-n64: pressure within roundoff",
+      "bound": -64.0
+    },
+    {
+      "name": "planar-n64: no state floors",
+      "bound": 0
+    },
+    {
+      "name": "planar-n64: mass_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "planar-n64: energy_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "planar-n128: finite positive density",
+      "bound": 0
+    },
+    {
+      "name": "planar-n128: pressure within roundoff",
+      "bound": -64.0
+    },
+    {
+      "name": "planar-n128: no state floors",
+      "bound": 0
+    },
+    {
+      "name": "planar-n128: mass_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "planar-n128: energy_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "planar-n256: finite positive density",
+      "bound": 0
+    },
+    {
+      "name": "planar-n256: pressure within roundoff",
+      "bound": -64.0
+    },
+    {
+      "name": "planar-n256: no state floors",
+      "bound": 0
+    },
+    {
+      "name": "planar-n256: mass_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "planar-n256: energy_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "planar-n512: finite positive density",
+      "bound": 0
+    },
+    {
+      "name": "planar-n512: pressure within roundoff",
+      "bound": -64.0
+    },
+    {
+      "name": "planar-n512: no state floors",
+      "bound": 0
+    },
+    {
+      "name": "planar-n512: mass_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "planar-n512: energy_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "cylindrical-n64: finite positive density",
+      "bound": 0
+    },
+    {
+      "name": "cylindrical-n64: pressure within roundoff",
+      "bound": -64.0
+    },
+    {
+      "name": "cylindrical-n64: no state floors",
+      "bound": 0
+    },
+    {
+      "name": "cylindrical-n64: mass_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "cylindrical-n64: energy_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "cylindrical-n128: finite positive density",
+      "bound": 0
+    },
+    {
+      "name": "cylindrical-n128: pressure within roundoff",
+      "bound": -64.0
+    },
+    {
+      "name": "cylindrical-n128: no state floors",
+      "bound": 0
+    },
+    {
+      "name": "cylindrical-n128: mass_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "cylindrical-n128: energy_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "cylindrical-n256: finite positive density",
+      "bound": 0
+    },
+    {
+      "name": "cylindrical-n256: pressure within roundoff",
+      "bound": -64.0
+    },
+    {
+      "name": "cylindrical-n256: no state floors",
+      "bound": 0
+    },
+    {
+      "name": "cylindrical-n256: mass_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "cylindrical-n256: energy_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "cylindrical-n512: finite positive density",
+      "bound": 0
+    },
+    {
+      "name": "cylindrical-n512: pressure within roundoff",
+      "bound": -64.0
+    },
+    {
+      "name": "cylindrical-n512: no state floors",
+      "bound": 0
+    },
+    {
+      "name": "cylindrical-n512: mass_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "cylindrical-n512: energy_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "spherical-n64: finite positive density",
+      "bound": 0
+    },
+    {
+      "name": "spherical-n64: pressure within roundoff",
+      "bound": -64.0
+    },
+    {
+      "name": "spherical-n64: no state floors",
+      "bound": 0
+    },
+    {
+      "name": "spherical-n64: mass_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "spherical-n64: energy_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "spherical-n128: finite positive density",
+      "bound": 0
+    },
+    {
+      "name": "spherical-n128: pressure within roundoff",
+      "bound": -64.0
+    },
+    {
+      "name": "spherical-n128: no state floors",
+      "bound": 0
+    },
+    {
+      "name": "spherical-n128: mass_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "spherical-n128: energy_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "spherical-n256: finite positive density",
+      "bound": 0
+    },
+    {
+      "name": "spherical-n256: pressure within roundoff",
+      "bound": -64.0
+    },
+    {
+      "name": "spherical-n256: no state floors",
+      "bound": 0
+    },
+    {
+      "name": "spherical-n256: mass_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "spherical-n256: energy_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "spherical-n512: finite positive density",
+      "bound": 0
+    },
+    {
+      "name": "spherical-n512: pressure within roundoff",
+      "bound": -64.0
+    },
+    {
+      "name": "spherical-n512: no state floors",
+      "bound": 0
+    },
+    {
+      "name": "spherical-n512: mass_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "spherical-n512: energy_balance_relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "planar: finest density_l1",
+      "bound": 0.12
+    },
+    {
+      "name": "planar: finest shock_error_in_dx",
+      "bound": 3.0
+    },
+    {
+      "name": "planar: finest plateau_density_relative_error",
+      "bound": 0.1
+    },
+    {
+      "name": "planar: finest plateau_pressure_relative_error",
+      "bound": 0.1
+    },
+    {
+      "name": "planar: finest mass_vs_analytic_relative",
+      "bound": 2e-05
+    },
+    {
+      "name": "planar: finest energy_vs_analytic_relative",
+      "bound": 2e-05
+    },
+    {
+      "name": "planar: density L1 decreases",
+      "bound": null
+    },
+    {
+      "name": "planar: last-pair L1 order",
+      "bound": 0.35
+    },
+    {
+      "name": "planar: unmasked center heating reported",
+      "bound": null
+    },
+    {
+      "name": "cylindrical: finest density_l1",
+      "bound": 0.12
+    },
+    {
+      "name": "cylindrical: finest shock_error_in_dx",
+      "bound": 3.0
+    },
+    {
+      "name": "cylindrical: finest plateau_density_relative_error",
+      "bound": 0.1
+    },
+    {
+      "name": "cylindrical: finest plateau_pressure_relative_error",
+      "bound": 0.1
+    },
+    {
+      "name": "cylindrical: finest mass_vs_analytic_relative",
+      "bound": 2e-05
+    },
+    {
+      "name": "cylindrical: finest energy_vs_analytic_relative",
+      "bound": 2e-05
+    },
+    {
+      "name": "cylindrical: density L1 decreases",
+      "bound": null
+    },
+    {
+      "name": "cylindrical: last-pair L1 order",
+      "bound": 0.35
+    },
+    {
+      "name": "cylindrical: unmasked center heating reported",
+      "bound": null
+    },
+    {
+      "name": "spherical: finest density_l1",
+      "bound": 0.12
+    },
+    {
+      "name": "spherical: finest shock_error_in_dx",
+      "bound": 3.0
+    },
+    {
+      "name": "spherical: finest plateau_density_relative_error",
+      "bound": 0.1
+    },
+    {
+      "name": "spherical: finest plateau_pressure_relative_error",
+      "bound": 0.1
+    },
+    {
+      "name": "spherical: finest mass_vs_analytic_relative",
+      "bound": 2e-05
+    },
+    {
+      "name": "spherical: finest energy_vs_analytic_relative",
+      "bound": 2e-05
+    },
+    {
+      "name": "spherical: density L1 decreases",
+      "bound": null
+    },
+    {
+      "name": "spherical: last-pair L1 order",
+      "bound": 0.35
+    },
+    {
+      "name": "spherical: unmasked center heating reported",
+      "bound": null
+    },
+    {
+      "name": "spherical-n64: radial momentum balance relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "spherical-n64: mass temporal bias identity relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "spherical-n64: energy temporal bias identity relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "spherical-n64: finite center diagnostics",
+      "bound": "all finite; no maximum-error convergence gate"
+    },
+    {
+      "name": "spherical-n128: radial momentum balance relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "spherical-n128: mass temporal bias identity relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "spherical-n128: energy temporal bias identity relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "spherical-n128: finite center diagnostics",
+      "bound": "all finite; no maximum-error convergence gate"
+    },
+    {
+      "name": "spherical-n256: radial momentum balance relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "spherical-n256: mass temporal bias identity relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "spherical-n256: energy temporal bias identity relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "spherical-n256: finite center diagnostics",
+      "bound": "all finite; no maximum-error convergence gate"
+    },
+    {
+      "name": "spherical-n512: radial momentum balance relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "spherical-n512: mass temporal bias identity relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "spherical-n512: energy temporal bias identity relative",
+      "bound": 2e-12
+    },
+    {
+      "name": "spherical-n512: finite center diagnostics",
+      "bound": "all finite; no maximum-error convergence gate"
+    },
+    {
+      "name": "spherical: finest core density_l1 (origin included)",
+      "bound": 0.2
+    }
+  ],
+  "current_failed_checks": []
+}

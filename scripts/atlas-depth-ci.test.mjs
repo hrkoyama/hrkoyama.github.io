@@ -65,9 +65,10 @@ test('registry preserves eleven frozen releases and adds the separately dated No
   assert.equal(createHash('sha256').update(JSON.stringify(previous)).digest('hex'), 'b2e03aeb8798240a38d00bbe2491a5fc50109f2020078decf419f7276eb3241f', 'old eleven release metadata and hashes are immutable');
   assert.ok(previous.every(x => x.edition === '2026-11-22'));
   const noh = registry.releases.find(x => x.group === 'noh');
-  assert.equal(noh.edition, '2026-11-23-r3');
+  assert.equal(noh.edition, '2026-11-23-r5');
   assert.deepEqual(noh.case_ids, ['noh-shock']);
-  assert.ok(noh.tests > 0);
+  assert.equal(noh.tests,28);
+  assert.equal(registry.releases.reduce((sum,row)=>sum+row.tests,0),416);
   assert.deepEqual(registry.releases.map(x => x.group), ['foundations', 'models', 'particles', 'mhd', 'thermostats', 'biology', 'mcmc', 'mhd-convergence', 'foundations-conditioning', 'particle-transport', 'splitting', 'noh']);
   assert.deepEqual(registry.releases.slice(0,4).map(x => x.tests), [29, 26, 27, 11]);
   assert.equal(registry.releases[4].tests,42);

@@ -153,7 +153,7 @@
     },
     {
       "id": "noh",
-      "edition": "2026-11-23-r3",
+      "edition": "2026-11-23-r5",
       "title": {
         "ja": "Noh衝撃波：厳密解・過熱誤差・格子収束",
         "en": "Noh shocks: exact reference, origin heating and refinement"
@@ -162,8 +162,8 @@
         "fluid"
       ],
       "intro": {
-        "ja": "初期圧力ゼロの平面・円筒対称Noh問題を小さな有限体積コードで解きます。原著と固定版ExactPackを引用し、厳密解・体積平均・原点過熱・保存収支と、残る誤差を一緒に確認します。",
-        "en": "A small finite-volume code solves zero-pressure planar and cylindrical Noh flow. Cite the original problem and pinned ExactPack, and examine exact volume averages, origin heating, budgets and remaining errors."
+        "ja": "初期圧力ゼロの平面・円筒・球対称Noh問題を1D有限体積法で解きます。厳密セル平均・原点過熱・格子収束を比較し、球では離散保存と境界時間求積の誤差を別々に検証します。",
+        "en": "Solve zero-pressure planar, cylindrical and spherical Noh flow with 1D finite volumes. Compare exact cell means, origin heating and refinement; separately verify discrete budgets and boundary-time-quadrature error in spherical flow."
       }
     }
   ],
@@ -298,8 +298,8 @@
         "euler"
       ],
       "note": {
-        "ja": "理想気体Eulerの平面・円筒半径対称という限定した形です。幾何源と初期圧力ゼロの条件は、この実行例の式・固定入力で定義します。",
-        "en": "The scoped planar and cylindrical-radial form of ideal-gas Euler. This example defines the geometric source and zero initial pressure in its formulas and fixed input."
+        "ja": "理想気体Eulerの平面・円筒・球の半径対称という限定した形です。幾何源・外側流入・初期圧力ゼロの条件は、この実行例の式・固定入力で定義します。",
+        "en": "The scoped planar, cylindrical-radial and spherical-radial forms of ideal-gas Euler. This example defines the geometric source, outer inflow and exactly zero initial pressure in its formulas and fixed input."
       }
     }
   }

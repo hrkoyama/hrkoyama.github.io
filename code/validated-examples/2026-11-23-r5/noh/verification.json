@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "group": "noh",
+  "edition": "2026-11-23-r5",
+  "verified_on": "2026-11-23",
+  "source_manifest_sha256": "8597cbc7b841502f4e7eca154e86fe8893402c1167614952de682d7307c5595d",
+  "archive": {
+    "file": "atlas-noh-2026-11-23-r5.zip",
+    "sha256": "64de5483e9896a3773348b75e1ec2b4630f8a709d68194c1d94772396f531733",
+    "bytes": 2730386,
+    "archive_directory": "atlas-noh-2026-11-23-r5"
+  },
+  "archive_sha256": "64de5483e9896a3773348b75e1ec2b4630f8a709d68194c1d94772396f531733",
+  "returncode": 0,
+  "passed_tests": 28,
+  "tests": 28,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "noh-shock"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 6.5000981250050245,
+  "independent_rerun_seconds": 6.486014833004447,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

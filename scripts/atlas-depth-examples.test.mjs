@@ -37,13 +37,68 @@ const metadata = group => {
 const measured = group => json(base(group) + 'results/result.json');
 const actualCases = groupIds.flatMap(group => metadata(group).map(item => ({group, item})));
 
+test('optional figures require real manifest-bound PNGs and visible bilingual captions without affecting absent metadata', () => {
+  const program = String.raw`
+import base64,copy,hashlib,html,importlib.util,json,tempfile,sys
+from pathlib import Path
+sys.path.insert(0,str(Path.cwd()/'scripts'))
+from atlas_depth_release import depth_additional_figures
+spec=importlib.util.spec_from_file_location('depth_figure_builder','scripts/build-atlas-depth-examples.py')
+builder=importlib.util.module_from_spec(spec);spec.loader.exec_module(builder)
+with tempfile.TemporaryDirectory(prefix='atlas-additional-figures-') as temporary:
+ directory=Path(temporary);(directory/'results').mkdir()
+ png=base64.b64decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=')
+ caption={'ja':'追加の保存図：条件と誤差','en':'Additional saved figure: conditions and errors'}
+ fields=['title','summary','assumptions','algorithm','validation','limits']
+ case={'id':'fixture','references':[],'formulas':[],**{key:{'ja':'固定入力の試験','en':'Fixed-input fixture'} for key in fields}}
+ case['additional_figures']=[{'file':'errors.png','caption':caption}]
+ for name in ['fixture.png','errors.png','unlisted.png']:(directory/'results'/name).write_bytes(png)
+ manifest={'files':{'results/'+name:hashlib.sha256(png).hexdigest() for name in ['fixture.png','errors.png']}}
+ resolved=depth_additional_figures(directory,manifest,case)
+ assert len(resolved)==1 and resolved[0]['width']==resolved[0]['height']==1
+ data={'base':'/code/validated-examples/fixture/','directory':directory,'manifest':manifest,'verification':{'archive':{'file':'fixture.zip'}}}
+ measured={'metrics':{'saved':0.},'checks':{'complete':True},'records':[{'n':1,'error':0.}]}
+ for lang in ['ja','en']:
+  rendered=builder.render_case(case,measured,data,lang,{})
+  markdown=builder.markdown_case(case,measured,data,lang)
+  assert '<figcaption>'+html.escape(caption[lang])+'</figcaption>' in rendered
+  assert 'href="/code/validated-examples/fixture/results/errors.png"' in rendered
+  assert 'https://hrkoyama.github.io/code/validated-examples/fixture/results/errors.png' in markdown and caption[lang] in markdown
+  absent=copy.deepcopy(case);del absent['additional_figures']
+  empty=copy.deepcopy(absent);empty['additional_figures']=[]
+  assert builder.render_case(absent,measured,data,lang,{})==builder.render_case(empty,measured,data,lang,{})
+  assert builder.markdown_case(absent,measured,data,lang)==builder.markdown_case(empty,measured,data,lang)
+  assert 'data-validation-additional-figure' not in builder.render_case(absent,measured,data,lang,{})
+ def rejects(value,expected_manifest=manifest):
+  try:depth_additional_figures(directory,expected_manifest,value)
+  except (AssertionError,ValueError,KeyError):return
+  raise AssertionError('Invalid optional figure accepted')
+ for name in ['../errors.png','/errors.png','results/errors.png','https://evil.example/errors.png','errors.svg','errors.txt','missing.png','unlisted.png']:
+  bad=copy.deepcopy(case);bad['additional_figures'][0]['file']=name;rejects(bad)
+ for captions in [{'ja':'説明'},{'ja':'説明','en':''},{'ja':'説明','en':42},None]:
+  bad=copy.deepcopy(case);bad['additional_figures'][0]['caption']=captions;rejects(bad)
+ bad=copy.deepcopy(case);bad['additional_figures']*=2;rejects(bad)
+ bad=copy.deepcopy(case);bad['additional_figures'][0]['file']='fixture.png';rejects(bad)
+ bad=copy.deepcopy(case);bad['additional_figures']=None;rejects(bad)
+ altered=copy.deepcopy(manifest);altered['files']['results/errors.png']='a'*64;rejects(case,altered)
+ for invalid in [png[:24],png[:52]+bytes([png[52]^1])+png[53:],png+b'<svg/>']:
+  (directory/'results/errors.png').write_bytes(invalid)
+  altered=copy.deepcopy(manifest);altered['files']['results/errors.png']=hashlib.sha256(invalid).hexdigest();rejects(case,altered)
+ (directory/'results/errors.png').write_bytes(b'<svg xmlns="http://www.w3.org/2000/svg"/>')
+ altered=copy.deepcopy(manifest);altered['files']['results/errors.png']=hashlib.sha256((directory/'results/errors.png').read_bytes()).hexdigest();rejects(case,altered)
+ (directory/'results/errors.png').unlink();rejects(case)
+ print('optional saved-figure contracts checked')
+`;
+  assert.match(execFileSync('python3', ['-B', '-c', program], {cwd: root, encoding: 'utf8', timeout: 30000}), /optional saved-figure contracts checked/);
+});
+
 test('forty original cases plus Noh and their independently dated releases stay distinct from the existing execution registry', () => {
   const index = json('numerical-methods-atlas/validation/index.json');
   assert.deepEqual(actualCases.map(x => x.item.id).sort(), expectedIds);
   assert.deepEqual(index.cases.map(x => x.id).sort(), expectedIds);
   assert.equal(index.case_count, 41);
   assert.equal(actualCases.filter(x => x.group !== 'noh').length, 40);
-  assert.equal(edition('noh'), '2026-11-23-r3');
+  assert.equal(edition('noh'), '2026-11-23-r5');
   assert.ok(groupIds.filter(x => x !== 'noh').every(x => edition(x) === '2026-11-22'));
   assert.equal(index.case_problem_ids['noh-shock'], 'noh');
   assert.deepEqual(index.groups.map(x => x.id).sort(), [...groupIds].sort());
@@ -103,6 +158,7 @@ test('each bilingual entry exposes its actual measurement, code, input, tests, f
     assert.equal(record.problem_id, catalog.case_problem_ids[item.id]);
     assert.deepEqual(record.measured, measured(group).cases.find(x => x.id === item.id));
     assert.deepEqual(record.method_ids, item.method_ids);
+    assert.deepEqual(record.additional_figures || [], item.additional_figures || []);
     assert.deepEqual(record.editorial_note, catalog.case_notes?.[item.id] || null);
     for (const lang of ['ja', 'en']) {
       assert.ok(html.includes(`data-site-language="${lang}"`));
@@ -111,6 +167,13 @@ test('each bilingual entry exposes its actual measurement, code, input, tests, f
         assert.ok(markdown.includes(record[field][lang]), item.id + '/' + field + '/' + lang);
       }
       if (record.editorial_note) assert.ok(markdown.includes(record.editorial_note[lang]));
+      for (const figure of item.additional_figures || []) {
+        const path = '/' + base(group) + 'results/' + figure.file;
+        const caption = figure.caption[lang].replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#x27;');
+        assert.ok(html.includes(`data-validation-additional-figure="${figure.file}"`));
+        assert.ok(html.includes(`href="${path}"`) && html.includes(`<figcaption>${caption}</figcaption>`));
+        assert.ok(markdown.includes('https://hrkoyama.github.io' + path) && markdown.includes(figure.caption[lang]));
+      }
       assert.ok(html.includes(`/numerical-methods-atlas/${lang}/read/validation-${group}/#${item.id}`));
     }
     for (const suffix of ['inputs.json', 'results/result.json', 'verification.json', `results/${item.id}.png`])

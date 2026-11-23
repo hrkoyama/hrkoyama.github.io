@@ -68,6 +68,10 @@ Resources explicitly registered to the methods, problems and executions of this 
 
 ## Code and validation
 
+- [Noh shocks: zero-pressure planar, cylindrical and spherical flow](<https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-shock/?lang=en>)
+  availability: run
+
+  An original small 1D finite-volume code solves zero-pressure Noh flow in planar, cylindrical and spherical symmetry. Grids 64/128/256/512 measure full-domain error, origin heating, shock location and budgets, and compare spherical boundary-inflow time-quadrature error with its analytic identity.
 - [Minmod — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/minmod/?lang=en#method-execution-en>)
   availability: source
 

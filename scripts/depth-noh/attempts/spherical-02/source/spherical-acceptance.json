@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "contract_id": "noh-spherical-fixed-01",
+  "target_edition": "2026-11-23-r4",
+  "case_id": "noh-shock",
+  "frozen_before_first_spherical_pde_run_and_unit_tests": true,
+  "policy": "Additive sphere-specific criteria declared before the first spherical PDE run or unit test. Keep the original acceptance.json and its existing names/bounds unchanged. Retain failed runs; do not adjust any threshold after observing results. Neither the solution nor the boundary flux is corrected by the diagnostic bias.",
+  "fixed_input": {
+    "gamma": 1.6666666666666667,
+    "rho0": 1.0,
+    "u0": -1.0,
+    "p0": 0.0,
+    "r_max": 1.0,
+    "final_time": 0.6,
+    "geometries": [
+      "planar",
+      "cylindrical",
+      "spherical"
+    ],
+    "grids": [
+      64,
+      128,
+      256,
+      512
+    ],
+    "cfl": 0.35,
+    "state_floor": null
+  },
+  "checks": {
+    "radial_momentum_balance_relative_max": 2e-12,
+    "mass_temporal_bias_identity_relative_max": 2e-12,
+    "energy_temporal_bias_identity_relative_max": 2e-12,
+    "core_density_l1_finest_max": 0.2,
+    "finite_center_diagnostics_required": true
+  },
+  "check_name_templates": {
+    "per_grid": [
+      "spherical-n{N}: radial momentum balance relative",
+      "spherical-n{N}: mass temporal bias identity relative",
+      "spherical-n{N}: energy temporal bias identity relative",
+      "spherical-n{N}: finite center diagnostics"
+    ],
+    "finest": "spherical: finest core density_l1 (origin included)"
+  },
+  "definitions": {
+    "radial_momentum_balance_relative": "abs(final_m-initial_m-boundary_m-source_m) / max(abs(initial_m)+abs(boundary_m)+abs(source_m)+abs(final_m), float_tiny)",
+    "mass_temporal_bias_identity_relative": "abs(M_num - M_exact - sum(dt^3)/6) / M_exact",
+    "energy_temporal_bias_identity_relative": "abs(E_num - E_exact - sum(dt^3)/12) / E_exact",
+    "bias_reason": "For fixed rho0=|u0|=R=1 in d=3, boundary mass influx is (1+t)^2. The SSPRK2 two-stage trapezoidal integral has a positive excess sum(dt^3)/6. Energy influx is half the mass influx. This is the temporal boundary quadrature bias, not loss of discrete mass/energy conservation.",
+    "core_density_l1": "sum_{r_right<=.70*r_shock} V_i*abs(rho_i-rho_exact_cellavg_i) / sum_{same} V_i*rho_exact_cellavg_i; includes the origin without a center exclusion",
+    "finite_center_diagnostics": "At every N save finite first-cell rho,p,sie and their exact-state ratios; center max sie, min rho, max p and their exact-state ratios. Existing center mask r_right<=.25*r_shock is retained.",
+    "signed_diagnostics": "Keep signed mass/energy differences, signed balance residuals and signed temporal-bias residuals alongside absolute relative gate values."
+  },
+  "expected_spherical_reference": {
+    "density_post": 64.0,
+    "pressure_post": "64/3",
+    "specific_internal_energy_post": 0.5,
+    "shock_radius": 0.2,
+    "total_mass": "512/375",
+    "total_energy": "256/375",
+    "measure": "r^2 dr, common angular factor omitted"
+  },
+  "non_gates": [
+    "L2 and Linf are recorded diagnostics, without monotonicity gates.",
+    "Center maximum heating is recorded, with no zero-error or monotonicity gate.",
+    "The original base gates (including full-domain density L1, shock position, plateau and analytic inflow total errors) apply to d=3 without relaxed bounds."
+  ]
+}

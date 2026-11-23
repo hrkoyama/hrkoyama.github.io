@@ -73,8 +73,8 @@ test('the two methods acquire only the verified dedicated release and the physic
  const registry=json('numerical-methods-atlas/validation/releases.json');
  assert.equal(registry.releases.length,12);assert.equal(registry.case_count,41);
  assert.equal(registry.releases.filter(row=>row.group!=='noh').reduce((sum,row)=>sum+row.tests,0),388);
- assert.equal(registry.releases.find(row=>row.group==='noh').tests,12);
- assert.equal(registry.releases.reduce((sum,row)=>sum+row.tests,0),400);
+ assert.equal(registry.releases.find(row=>row.group==='noh').tests,28);
+ assert.equal(registry.releases.reduce((sum,row)=>sum+row.tests,0),416);
  const problems=json('numerical-methods-atlas/test-cases/index.json').problems;
  assert.equal(problems.length,84);
  assert.deepEqual(problems.filter(p=>(p.supplemental_examples||[]).some(x=>x.id===id)).map(x=>x.id),['turing-schnakenberg']);

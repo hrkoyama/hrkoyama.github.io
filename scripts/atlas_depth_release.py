@@ -5,6 +5,7 @@ import math
 from pathlib import Path, PurePosixPath
 import re
 import zipfile
+import zlib
 
 ORIGIN = 'https://hrkoyama.github.io'
 GROUPS = ('foundations', 'models', 'particles', 'mhd', 'thermostats', 'biology', 'mcmc', 'mhd-convergence', 'foundations-conditioning', 'particle-transport', 'splitting', 'noh')
@@ -49,6 +50,58 @@ def _code_order(names, cases):
     preferred += [name for name in names if '/' not in name]
     preferred += names
     return list(dict.fromkeys(preferred))
+
+
+def depth_additional_figures(directory, manifest, case):
+    """Resolve optional, hash-bound saved PNGs without executing a renderer."""
+    rows = case.get('additional_figures', [])
+    assert isinstance(rows, list), 'Additional figures must be a list'
+    directory = Path(directory).resolve()
+    figures, seen = [], set()
+    for row in rows:
+        assert isinstance(row, dict), 'Additional figure must be a record'
+        name = row.get('file')
+        assert isinstance(name, str) and re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_.-]*\.png', name), \
+            'Additional figure must name a PNG directly inside results/'
+        assert name not in seen and name != case['id']+'.png', 'Repeated additional figure'
+        seen.add(name)
+        caption = row.get('caption')
+        assert isinstance(caption, dict) and all(
+            isinstance(caption.get(language), str) and caption[language].strip()
+            for language in ['ja', 'en']), 'Additional figure needs both captions'
+        relative = 'results/'+name
+        expected = manifest['files'].get(relative)
+        assert isinstance(expected, str) and re.fullmatch(r'[0-9a-f]{64}', expected), \
+            'Additional figure is absent from the source manifest'
+        path = directory/relative
+        assert path.is_file() and not path.is_symlink() and path.resolve().is_relative_to(directory), \
+            'Missing or unsafe additional figure'
+        raw = path.read_bytes()
+        assert hashlib.sha256(raw).hexdigest() == expected, 'Changed additional figure'
+        assert len(raw) >= 24 and raw[:8] == b'\x89PNG\r\n\x1a\n' and raw[12:16] == b'IHDR', \
+            'Additional figure is not a saved PNG'
+        offset, image_data, image_end = 8, False, False
+        while offset < len(raw):
+            assert offset+12 <= len(raw), 'Truncated additional PNG chunk'
+            length = int.from_bytes(raw[offset:offset+4], 'big')
+            end = offset+12+length
+            assert end <= len(raw), 'Truncated additional PNG data'
+            kind = raw[offset+4:offset+8]
+            assert re.fullmatch(rb'[A-Za-z]{4}', kind), 'Invalid additional PNG chunk'
+            assert int.from_bytes(raw[end-4:end], 'big') == zlib.crc32(raw[offset+4:end-4]) & 0xffffffff, \
+                'Invalid additional PNG checksum'
+            assert (offset == 8 and kind == b'IHDR' and length == 13) or (offset > 8 and kind != b'IHDR'), \
+                'Invalid additional PNG header'
+            image_data |= kind == b'IDAT' and length > 0
+            if kind == b'IEND':
+                assert length == 0 and end == len(raw), 'Invalid additional PNG ending'
+                image_end = True
+            offset = end
+        assert image_data and image_end, 'Incomplete additional PNG'
+        width, height = int.from_bytes(raw[16:20], 'big'), int.from_bytes(raw[20:24], 'big')
+        assert width > 0 and height > 0, 'Additional figure has invalid dimensions'
+        figures.append({'file': name, 'caption': dict(caption), 'width': width, 'height': height})
+    return figures
 
 
 def load_depth_group(root, group, edition):
@@ -97,6 +150,7 @@ def load_depth_group(root, group, edition):
                        for language in ['ja', 'en']), (case['id'], field)
         assert case['references'] and all(reference.get('review_level') for reference in case['references'])
         assert 'results/'+case['id']+'.png' in manifest['files'], 'Missing stored figure: '+case['id']
+        depth_additional_figures(directory, manifest, case)
 
     results = read_json(file('results/result.json'))
     _finite(results)

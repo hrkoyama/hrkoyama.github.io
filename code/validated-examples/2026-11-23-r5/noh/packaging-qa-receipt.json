@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "kind": "spherical extension source and metadata review before immutable packaging",
+  "recorded_at_utc": "2026-11-23T02:18:12.134556+00:00",
+  "numerical_solver_unchanged_from_final_run": true,
+  "active_pre_run_contract": "pre-run-contract-spherical-revision03.json",
+  "active_pre_run_contract_sha256": "44f30c618a7df68b803da1f873135f5f38d04859eeb3286311032c7202240352",
+  "pytest_command": "python -m pytest -q -p no:cacheprovider",
+  "pytest_passed": true,
+  "pytest_count": 28,
+  "fixed_pde_run_count": 12,
+  "scientific_gates_passed": 105,
+  "scientific_gate_count": 105,
+  "retained_failed_attempts": [
+    "attempts/spherical-01",
+    "attempts/spherical-02"
+  ],
+  "preservation_receipt": "attempts/spherical-03/preservation-comparison.json",
+  "preservation_receipt_sha256": "1401351858907cfc055ca197c982072c9e941641d67d9ffbd06a89f2838926f7",
+  "known_limitation": "Maximum center internal-energy excess worsens; Cartesian/angular calculations remain unexecuted.",
+  "current_metadata_sha256": {
+    "cases.json": "9501c9cb57617c09a8ceb0aa7e124ba1e2af303144eaa82045e8632fc7c39fc2",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "README.md": "bb98c9516c7f3e25395b75831fced9e35a97472781525b599452d7fc89d4382a",
+    "THIRD_PARTY.md": "37e37fc5c5a4f40cc22cb32eb5dda9bfcaf06d078b24049571a23c119359a1f6"
+  },
+  "packaging_status": "Independent extracted-ZIP tests and all fixed PDE runs are performed separately by package-depth-examples.py and recorded in the new edition verification.json.",
+  "publication_edition": "2026-11-23-r5",
+  "metadata_correction": "Unpublished r4 packaging passed; its inherited README incorrectly said initial failed CSVs were absent. All eight exist. r5 corrects only this prose and edition label; numerical revision03, criteria, inputs and tests remain unchanged.",
+  "unpublished_r4_archive_sha256": "56438f7d6290806b9d569d3ef7026b6bb6e19d3011c70495fc9958800fc5c638"
+}
