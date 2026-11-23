@@ -41,7 +41,7 @@ test('home → search → execution, method filter and mathematical article',asy
  await expect(globalFirst).toHaveAttribute('href',homeHref);
  const context=page.locator('#search-results .search-navigation-context').first();
  await context.locator('summary').click();
- await expect(context.locator('.search-navigation-note')).toContainText(language==='ja'?'固定入力':'fixed');
+ const scopeNote=context.locator('.search-navigation-context-body > p.search-navigation-note');await expect(scopeNote).toHaveCount(1);await expect(scopeNote).toContainText(language==='ja'?'固定入力':'fixed');
  await noOverflow();
  await page.screenshot({path:info.outputPath('search-result.png'),fullPage:true});
  await globalFirst.click();
