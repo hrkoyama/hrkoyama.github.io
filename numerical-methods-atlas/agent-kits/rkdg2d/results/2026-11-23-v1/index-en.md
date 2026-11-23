@@ -31,13 +31,17 @@ NumPy2.0.2 reference-remap matmul warnings were retained and reproduced separate
 
 Supervisor audit v1 incorrectly required bitwise callback-endpoint equality and failed on the repair data. Audit v2 follows the existing solver closure rule of 4eps×max(1,|T|). Both data sets were rechecked, preserving the first audit failure. Scientific criteria and outputs were unchanged.
 
+Linux integrity audit v2 flagged 24 cancellation-dominated, near-zero metrics under a relative-only 64eps comparison (maximum absolute difference below 2.36e-16). Original 48 and waveform 4 scientific evaluators passed. Separate audit v3 adds an absolute 64eps rounding floor for nonzero dimensionless metrics and keeps zeros exact. The original ZIP, arrays, recorded values and scientific thresholds are unchanged; the first failure is retained.
+
+[Portable audit v3](https://hrkoyama.github.io/code/rkdg2d/2026-11-23-pilot-audit3/verify_saved_portable.py) / [SHA256](https://hrkoyama.github.io/code/rkdg2d/2026-11-23-pilot-audit3/verify_saved_portable.py.sha256) / [Linux audit v2 failure](https://hrkoyama.github.io/numerical-methods-atlas/agent-kits/rkdg2d/results/2026-11-23-v1/evidence/linux-audit-v2-failure.json)
+
 ## Saved-data reassessment
 
-SHA-verify and extract base kit r2 and the result ZIP separately. Run these commands from the result folder with NumPy2.0.2 and unused output paths. This reassesses saved arrays, not a fresh full PDE campaign.
+SHA-verify and extract base kit r2 and the result ZIP separately. Run these commands from the result folder with NumPy2.0.2 and unused output paths. This reassesses saved arrays, not a fresh full PDE campaign. Download and SHA-verify the separate audit v3; the original ZIP and its audit v2 remain unchanged.
 
 ```sh
-python verify_saved.py --trial assembly --base /path/to/atlas-rkdg-agent-kit --output /path/to/new-audit
-python verify_saved.py --trial repair --base /path/to/atlas-rkdg-agent-kit --output /path/to/new-audit
+python verify_saved_portable.py --bundle /path/to/atlas-rkdg-agent-pilot --trial assembly --base /path/to/atlas-rkdg-agent-kit --output /path/to/new-audit
+python verify_saved_portable.py --bundle /path/to/atlas-rkdg-agent-pilot --trial repair --base /path/to/atlas-rkdg-agent-kit --output /path/to/new-audit
 ```
 
 [ZIP](https://hrkoyama.github.io/code/rkdg2d/2026-11-23-pilot1/atlas-rkdg-agent-pilot.zip) / [SHA256](https://hrkoyama.github.io/code/rkdg2d/2026-11-23-pilot1/atlas-rkdg-agent-pilot.zip.sha256)
