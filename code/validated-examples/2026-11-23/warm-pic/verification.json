@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "group": "warm-pic",
+  "edition": "2026-11-23",
+  "verified_on": "2026-11-23",
+  "source_manifest_sha256": "c38a3af2f3854853fdfc29033ec482551cf187e76cacf6e85717d26319b98776",
+  "archive": {
+    "file": "atlas-warm-pic-2026-11-23.zip",
+    "sha256": "10661b33b9d36f35721fa1ed55b12b94926fe6fab47b8dd1e5dea52a61415fdb",
+    "bytes": 37126398,
+    "archive_directory": "atlas-warm-pic-2026-11-23"
+  },
+  "archive_sha256": "10661b33b9d36f35721fa1ed55b12b94926fe6fab47b8dd1e5dea52a61415fdb",
+  "returncode": 0,
+  "passed_tests": 31,
+  "tests": 31,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "thermal-landau-damping",
+    "thermal-two-stream"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 6.523519542002759,
+  "independent_rerun_seconds": 6.6361515000025975,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

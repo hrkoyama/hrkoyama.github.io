@@ -167,7 +167,7 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-This command executes every fixed case in the distribution group.
+This command executes every fixed case in the distribution group. Bundled results/ are stored outputs. Rerun into a new output/ directory and use another fresh directory for subsequent runs.
 
 Input and validation protocol history: https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/protocol-history.json
 
@@ -176,9 +176,11 @@ https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/attem
 ### Sources and review scope
 
 - U. Ghia, K. N. Ghia and C. T. Shin (1982). High-Re solutions for incompressible flow using the Navier-Stokes equations and a multigrid method. https://www.sciencedirect.com/science/article/pii/0021999182900584; review_level=primary-original-selected-pages
-  Visually inspected original equations/boundary figure, Re100 columns in TablesI/II and primary vortex in TableV. The public mirror delivers the original paper; its PDF is not redistributed. This independently written solver differs from CSI-MG.
+Visually inspected original equations/boundary figure, Re100 columns in TablesI/II and primary vortex in TableV. The public mirror delivers the original paper; its PDF is not redistributed. This independently written solver differs from CSI-MG.
+
 - Kambiz Salari and Patrick Knupp (2000). Code Verification by the Method of Manufactured Solutions. https://www.sandia.gov/research/publications/details/code-verification-by-the-method-of-manufactured-solutions-2000-06-01/; review_level=primary-selected-section-and-official-abstract
-  Read official Sandia/OSTI metadata/abstract and original report printed12 on MMS together with mesh refinement. The polynomial and pressure field are constructed for this example.
+Read official Sandia/OSTI metadata/abstract and original report printed12 on MMS together with mesh refinement. The polynomial and pressure field are constructed for this example.
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.
 
@@ -412,7 +414,7 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-This command executes every fixed case in the distribution group.
+This command executes every fixed case in the distribution group. Bundled results/ are stored outputs. Rerun into a new output/ directory and use another fresh directory for subsequent runs.
 
 Input and validation protocol history: https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/protocol-history.json
 
@@ -421,8 +423,10 @@ https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/attem
 ### Sources and review scope
 
 - U. Ghia, K. N. Ghia and C. T. Shin (1982). High-Re solutions for incompressible flow using the Navier-Stokes equations and a multigrid method. https://www.sciencedirect.com/science/article/pii/0021999182900584; review_level=primary-original-selected-pages
-  Visually inspected original equations/boundary figure, Re100 columns in TablesI/II and primary vortex in TableV. The public mirror delivers the original paper; its PDF is not redistributed. This independently written solver differs from CSI-MG.
+Visually inspected original equations/boundary figure, Re100 columns in TablesI/II and primary vortex in TableV. The public mirror delivers the original paper; its PDF is not redistributed. This independently written solver differs from CSI-MG.
+
 - Kambiz Salari and Patrick Knupp (2000). Code Verification by the Method of Manufactured Solutions. https://www.sandia.gov/research/publications/details/code-verification-by-the-method-of-manufactured-solutions-2000-06-01/; review_level=primary-selected-section-and-official-abstract
-  Read official Sandia/OSTI metadata/abstract and original report printed12 on MMS together with mesh refinement. The polynomial and pressure field are constructed for this example.
+Read official Sandia/OSTI metadata/abstract and original report printed12 on MMS together with mesh refinement. The polynomial and pressure field are constructed for this example.
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.

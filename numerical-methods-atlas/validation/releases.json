@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "edition": "2026-11-22",
-  "case_count": 71,
+  "case_count": 83,
   "releases": [
     {
       "group": "foundations",
@@ -463,6 +463,122 @@
         "srmhd-alfven"
       ],
       "tests": 25
+    },
+    {
+      "group": "coefficient-diffusion",
+      "edition": "2026-11-23",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/",
+      "archive": "atlas-coefficient-diffusion-2026-11-23.zip",
+      "archive_sha256": "c53624aa03cf7f945297e7bd09d72030e111e035c3ce7174fd2da9e86756b666",
+      "manifest_sha256": "2d927e3042eb221498be0f5f0bf5e7363cdb280247379f92dfaacce47b62b914",
+      "verification_sha256": "49dcdd24f0d90110fb0bbb1f28a8a9bce0c8d4fdd3645d0cd5a79722f3fe39c2",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "checkerboard-diffusion",
+        "rotated-anisotropic-diffusion"
+      ],
+      "tests": 12
+    },
+    {
+      "group": "slab-ewald",
+      "edition": "2026-11-23",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/",
+      "archive": "atlas-slab-ewald-2026-11-23.zip",
+      "archive_sha256": "168b250fd18b209534fe8a767afc689ea11b6b8ca95657a7c0ff0d8803f00414",
+      "manifest_sha256": "94e960898e16b4e2f0c571deb81bad3e3602a7a6333a4beaa43a5272a9366311",
+      "verification_sha256": "1ba388ae7557baa644f6b773811cf78ad23b20b5938db8a5d748fba741bc9684",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "neutral-slab-yb"
+      ],
+      "tests": 17
+    },
+    {
+      "group": "fmm3d",
+      "edition": "2026-11-23",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/",
+      "archive": "atlas-fmm3d-2026-11-23.zip",
+      "archive_sha256": "61861fb2a1d24437175710a09c4afdc934aab49c1c2f2e3e14b5a3c2d466b59c",
+      "manifest_sha256": "bc624983d4b0480538aa873ff2a867491e4384d25ea39930b5bb948b98e59c89",
+      "verification_sha256": "b6cc2a0ad2f31c01ebd833447f7f6d9496db6df5f6c14deb93d4f057d177c175",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "fmm3d-inverse-r"
+      ],
+      "tests": 19
+    },
+    {
+      "group": "gravity-dynamics",
+      "edition": "2026-11-23",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/",
+      "archive": "atlas-gravity-dynamics-2026-11-23.zip",
+      "archive_sha256": "47f1a4bdb8a6a5fdac82e66ffbe8b32c59242ffb7f9f05b418a37bd5913ffacd",
+      "manifest_sha256": "ac07fb7bbb54a8f5ac7e20ceb9ea2ecdbc7ca2fd6d524072f609ef52ee79655b",
+      "verification_sha256": "47839837648f140ffb9696b7974dba4d6858bd15569e0415274a330d6e286ca3",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "gravity-kepler",
+        "gravity-plummer-short"
+      ],
+      "tests": 18
+    },
+    {
+      "group": "warm-pic",
+      "edition": "2026-11-23",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/",
+      "archive": "atlas-warm-pic-2026-11-23.zip",
+      "archive_sha256": "10661b33b9d36f35721fa1ed55b12b94926fe6fab47b8dd1e5dea52a61415fdb",
+      "manifest_sha256": "c38a3af2f3854853fdfc29033ec482551cf187e76cacf6e85717d26319b98776",
+      "verification_sha256": "c8af7a2828d26a884774f3325c9fc64c489855db9a14eab6325b1f510f8953d1",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "thermal-landau-damping",
+        "thermal-two-stream"
+      ],
+      "tests": 31
+    },
+    {
+      "group": "pic-spatial",
+      "edition": "2026-11-23",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/",
+      "archive": "atlas-pic-spatial-2026-11-23.zip",
+      "archive_sha256": "51da779a41f2109fbd22d1628463b8be3770ee93b61e49529b1b48a19f431bc3",
+      "manifest_sha256": "cb2990ccac19fc27ae3c21fbf0fe20d49592dfb1dbedfe25fa808094cbe38b55",
+      "verification_sha256": "8d8a7e9105d39ea8f55a4700e686c074c77930b99a8146130cf2d1a4f58e0edb",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "pic-independent-spatial"
+      ],
+      "tests": 19
+    },
+    {
+      "group": "dsmc-wall",
+      "edition": "2026-11-23",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/",
+      "archive": "atlas-dsmc-wall-2026-11-23.zip",
+      "archive_sha256": "7b6d5a11874a0042ce772df4c241c72ce42f861c43ed0d44164074ba662da0cb",
+      "manifest_sha256": "86b7629e41658327280445b9e0a03e9e3c2894886a06f32c1dafcbeb6a7b811b",
+      "verification_sha256": "c468aabcd27c1d73d44923b83d0d5a2b267f61114c37beb4743bdfcf8b63a048",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "dsmc-couette",
+        "dsmc-fourier"
+      ],
+      "tests": 18
+    },
+    {
+      "group": "dsmc-shock",
+      "edition": "2026-11-23",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/",
+      "archive": "atlas-dsmc-shock-2026-11-23.zip",
+      "archive_sha256": "a0781fe0b577cd65f60489e77672bbfdbc7d1f657c9514ad1c0c862125ba4eda",
+      "manifest_sha256": "2dfb1b6074aec28dddb083cc715c85080be678f39e55b2472c518730ec72c766",
+      "verification_sha256": "fdca2ddb0069b640ef24da3de9766b5ccee5c5a117c7017589bd0de07d003623",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "dsmc-planar-shock"
+      ],
+      "tests": 20
     }
   ]
 }

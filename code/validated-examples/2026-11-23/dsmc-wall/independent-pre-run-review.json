@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "reviewer": "root",
+  "time": "2026-11-23T13:45:24.634062+00:00",
+  "state": "APPROVED_BEFORE_FIRST_PRIMARY_EXECUTION",
+  "contract_sha256": "5d550b3b3712a7a53493b9616f1a20a88ef6aaf87d1ccb91f196b5b2d536893b",
+  "verified_bound_files": 91,
+  "primary_scientific_execution_before_review": false,
+  "independent_reference_previously_executed": true,
+  "reference_checks": 87,
+  "reference_runs": 36,
+  "reviewed": [
+    "Physical-time disjoint matching: even/odd pair-selection probability compensation and speed-dependent HS acceptance; cellwise energy majorant bounds all local subcycles, explicit rejection above declared subcycle cap, no probability clipping.",
+    "Flux-weighted diffuse wall reemission and exact signed gas boundary ledger; open-reservoir Poisson injection with analytic incoming-Maxwell fluxCDF and independently specified far states.",
+    "1Dspace/3Dvelocity,HS sigma1/sqrt2,m=kB=1; same unmodified SPARTA physical model with separately qualified finite-grid reference.",
+    "Fixed-weight mesh and separate particle-weight/time probes; fixed observation bins and whole-seed uncertainty with separate precision and stationarity equivalence gates.",
+    "Shock localdx/lambda and dt/tau limits use downstream density; mass-excess centroid measured in lab frame with no hidden shifting/pinning. RH qualifies far states/flux,not internal profiles.",
+    "Initial-total characteristic budget scale is nonzero; synchronized fullstep physical diagnostics and per-run fields retained before comparisons.",
+    "Runner now rejects existing nonempty output and appends mutable case/checks/records before allruns,with per-run checkpoint; original unexecuted runner/contract retained.",
+    "Bundled qualification is hash-bound and not described as rerun SPARTA in public main. Eighteen tests and every declared run share120seconds pergroup."
+  ],
+  "authorization": "Run18pytest plus all frozen primary inputs within a shared120s outer deadline; retain failures and all states/rows/source contracts. Plot separately."
+}

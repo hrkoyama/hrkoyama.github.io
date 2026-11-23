@@ -1,0 +1,107 @@
+{
+  "status": "FROZEN_COMPONENT_ONLY_PROPOSAL_UNEXECUTED",
+  "created_utc": "2026-11-23T13:57:03.316703+00:00",
+  "before_first_component_execution": true,
+  "PDE_or_main_execution_authorized": false,
+  "combined_timeout_seconds": 30,
+  "enumerated_cell_labels": [
+    [],
+    [
+      0
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1
+    ]
+  ],
+  "sort_particle_counts": [
+    5120,
+    10240
+  ],
+  "sort_cells": 192,
+  "sort_repetitions": 500,
+  "timing_blocks": 3,
+  "maximum_sort_time_ratio": 0.9,
+  "cdf_states": [
+    [
+      2.581988897471611,
+      1
+    ],
+    [
+      -1.12962014264383,
+      2.078125
+    ],
+    [
+      2.58,
+      1
+    ],
+    [
+      -1.13,
+      2.08
+    ],
+    [
+      0,
+      1
+    ]
+  ],
+  "cdf_counts": [
+    0,
+    1,
+    3,
+    8
+  ],
+  "cdf_repetitions": 1000,
+  "maximum_CDF_time_ratio": 1.05,
+  "law_scope": "Exact permutation enumeration conditions on distinct priorities and compares coupled rank order. Ideal within-cell uniform matching probabilities unchanged; finite53bit priority ties and random-stream/trajectory identity are not claimed. CDF target residual guard2e-12 unchanged; optional stop1e-14 stricter, empty batch returns no draws. All timings synthetic components only, no full-main runtime guarantee.",
+  "planned_primary_R3": "If component laws/timing pass and independently reviewed: append next8seeds371005..371012 retaining371001..371004; ensemble12, unchanged3companionseed1/inputtimes/grids/weights/criteria.15runs/129gates,19prior testbytes retained plus1matching-law regression=>20tests. t95 df11 primary versus df3 reference. No primary execution by this component script.",
+  "failure_policy": "Preserve exact component source/protocol/log/result. Record all fixed component diagnostics then fail if any gate fails; timeout/exception stops immediately with driver receipt. No hidden retries or changed tolerance. PrimaryR3 remains unexecuted pending newfreeze/rootapproval.",
+  "files_sha256": {
+    "baseline_dsmc.py": "aa817b4a32c892d72d32d7772165cb7279e31edc2039451b7e716d829a17427b",
+    "check_components.py": "13e1749f71ec11501876a3d4d906c2abffa347106eb21d1b8f2ce79b4edef5d2",
+    "candidate_dsmc.py": "f1efb560e507b5e7b10950dbc461a10f4d8760bbff04207e4dadb95fbfcaf6dc"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "state": "FROZEN_BEFORE_FIRST_EXECUTION",
+  "limits": {
+    "symmetry": 5e-14,
+    "patch": 5e-12,
+    "residual": 2e-08,
+    "forward": 1e-05,
+    "energy": 1e-06,
+    "history": 5e-13,
+    "ledger_roundoff": 1e-11,
+    "reference_fraction": 0.5,
+    "quadrature_fraction": 0.001,
+    "smooth_ratio": 0.55,
+    "finest_l2": 0.02,
+    "cycle_symmetry": 5e-13
+  }
+}

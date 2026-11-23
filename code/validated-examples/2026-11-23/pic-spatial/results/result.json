@@ -1,0 +1,538 @@
+{
+  "schema_version": 1,
+  "group": "pic-spatial",
+  "input_sha256": "8e11e04349f7d8df800b5244b0aa7faf9238ea41d4bcbaf8411885fe70529efa",
+  "passed": true,
+  "termination": "fixed_budget_completed",
+  "failure": null,
+  "checks": {
+    "pic-independent-spatial": true
+  },
+  "cases": [
+    {
+      "id": "pic-independent-spatial",
+      "passed": true,
+      "checks": {
+        "primary analytic charge field electron-sign fixture": true,
+        "independent analytic charge field electron-sign fixture": true,
+        "deliberate wrong electron sign is detected": true,
+        "odd-grid force": true,
+        "odd-grid field": true,
+        "odd-grid charge": true,
+        "positive-weight force": true,
+        "positive-weight field": true,
+        "positive-weight charge": true,
+        "n8-seed35001 all saved arrays finite": true,
+        "n8-seed35001 all-step position": true,
+        "n8-seed35001 all-step velocity": true,
+        "n8-seed35001 all-step field": true,
+        "n8-seed35001 all-step charge": true,
+        "n8-seed35001 independent charge conservation": true,
+        "n8-seed35001 independent momentum conservation": true,
+        "n8-seed35001 own fields at every fixed kick": true,
+        "n8-seed35002 all saved arrays finite": true,
+        "n8-seed35002 all-step position": true,
+        "n8-seed35002 all-step velocity": true,
+        "n8-seed35002 all-step field": true,
+        "n8-seed35002 all-step charge": true,
+        "n8-seed35002 independent charge conservation": true,
+        "n8-seed35002 independent momentum conservation": true,
+        "n8-seed35002 own fields at every fixed kick": true,
+        "n16-seed35001 all saved arrays finite": true,
+        "n16-seed35001 all-step position": true,
+        "n16-seed35001 all-step velocity": true,
+        "n16-seed35001 all-step field": true,
+        "n16-seed35001 all-step charge": true,
+        "n16-seed35001 independent charge conservation": true,
+        "n16-seed35001 independent momentum conservation": true,
+        "n16-seed35001 own fields at every fixed kick": true,
+        "n16-seed35002 all saved arrays finite": true,
+        "n16-seed35002 all-step position": true,
+        "n16-seed35002 all-step velocity": true,
+        "n16-seed35002 all-step field": true,
+        "n16-seed35002 all-step charge": true,
+        "n16-seed35002 independent charge conservation": true,
+        "n16-seed35002 independent momentum conservation": true,
+        "n16-seed35002 own fields at every fixed kick": true,
+        "n32-seed35001 all saved arrays finite": true,
+        "n32-seed35001 all-step position": true,
+        "n32-seed35001 all-step velocity": true,
+        "n32-seed35001 all-step field": true,
+        "n32-seed35001 all-step charge": true,
+        "n32-seed35001 independent charge conservation": true,
+        "n32-seed35001 independent momentum conservation": true,
+        "n32-seed35001 own fields at every fixed kick": true,
+        "n32-seed35002 all saved arrays finite": true,
+        "n32-seed35002 all-step position": true,
+        "n32-seed35002 all-step velocity": true,
+        "n32-seed35002 all-step field": true,
+        "n32-seed35002 all-step charge": true,
+        "n32-seed35002 independent charge conservation": true,
+        "n32-seed35002 independent momentum conservation": true,
+        "n32-seed35002 own fields at every fixed kick": true,
+        "six paired comparisons equal twelve separate trajectories": true
+      },
+      "gates": [
+        {
+          "name": "primary analytic charge field electron-sign fixture",
+          "value": [
+            9.184850993605148e-17,
+            9.184850993605148e-17,
+            2.143131898507868e-16
+          ],
+          "bound": 2e-13,
+          "passed": true
+        },
+        {
+          "name": "independent analytic charge field electron-sign fixture",
+          "value": [
+            1.5837685461206892e-16,
+            1.5837685461206892e-16,
+            2.143131898507868e-16
+          ],
+          "bound": 2e-13,
+          "passed": true
+        },
+        {
+          "name": "deliberate wrong electron sign is detected",
+          "value": 0.5,
+          "bound": 0.4,
+          "passed": true
+        },
+        {
+          "name": "odd-grid force",
+          "value": 2.7755575615628914e-16,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "odd-grid field",
+          "value": 2.498001805406602e-16,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "odd-grid charge",
+          "value": 2.220446049250313e-16,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "positive-weight force",
+          "value": 6.522560269672795e-16,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "positive-weight field",
+          "value": 6.522560269672795e-16,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "positive-weight charge",
+          "value": 6.661338147750939e-16,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "n8-seed35001 all saved arrays finite",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "n8-seed35001 all-step position",
+          "value": 8.881784197001252e-16,
+          "bound": 5e-12,
+          "passed": true
+        },
+        {
+          "name": "n8-seed35001 all-step velocity",
+          "value": 2.220446049250313e-16,
+          "bound": 5e-12,
+          "passed": true
+        },
+        {
+          "name": "n8-seed35001 all-step field",
+          "value": 4.961309141293668e-16,
+          "bound": 5e-12,
+          "passed": true
+        },
+        {
+          "name": "n8-seed35001 all-step charge",
+          "value": 8.881784197001252e-16,
+          "bound": 5e-12,
+          "passed": true
+        },
+        {
+          "name": "n8-seed35001 independent charge conservation",
+          "value": 6.975736996017264e-16,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "n8-seed35001 independent momentum conservation",
+          "value": 1.0408340855860843e-17,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "n8-seed35001 own fields at every fixed kick",
+          "value": 13,
+          "bound": 13,
+          "passed": true
+        },
+        {
+          "name": "n8-seed35002 all saved arrays finite",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "n8-seed35002 all-step position",
+          "value": 4.440892098500626e-16,
+          "bound": 5e-12,
+          "passed": true
+        },
+        {
+          "name": "n8-seed35002 all-step velocity",
+          "value": 2.220446049250313e-16,
+          "bound": 5e-12,
+          "passed": true
+        },
+        {
+          "name": "n8-seed35002 all-step field",
+          "value": 4.3021142204224816e-16,
+          "bound": 5e-12,
+          "passed": true
+        },
+        {
+          "name": "n8-seed35002 all-step charge",
+          "value": 6.661338147750939e-16,
+          "bound": 5e-12,
+          "passed": true
+        },
+        {
+          "name": "n8-seed35002 independent charge conservation",
+          "value": 9.591638369523736e-16,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "n8-seed35002 independent momentum conservation",
+          "value": 5.204170427930421e-18,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "n8-seed35002 own fields at every fixed kick",
+          "value": 13,
+          "bound": 13,
+          "passed": true
+        },
+        {
+          "name": "n16-seed35001 all saved arrays finite",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "n16-seed35001 all-step position",
+          "value": 4.440892098500626e-16,
+          "bound": 5e-12,
+          "passed": true
+        },
+        {
+          "name": "n16-seed35001 all-step velocity",
+          "value": 1.8041124150158794e-16,
+          "bound": 5e-12,
+          "passed": true
+        },
+        {
+          "name": "n16-seed35001 all-step field",
+          "value": 6.557254739192331e-16,
+          "bound": 5e-12,
+          "passed": true
+        },
+        {
+          "name": "n16-seed35001 all-step charge",
+          "value": 1.1102230246251565e-15,
+          "bound": 5e-12,
+          "passed": true
+        },
+        {
+          "name": "n16-seed35001 independent charge conservation",
+          "value": 4.3598356225107897e-16,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "n16-seed35001 independent momentum conservation",
+          "value": 1.0408340855860843e-17,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "n16-seed35001 own fields at every fixed kick",
+          "value": 13,
+          "bound": 13,
+          "passed": true
+        },
+        {
+          "name": "n16-seed35002 all saved arrays finite",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "n16-seed35002 all-step position",
+          "value": 5.551115123125783e-17,
+          "bound": 5e-12,
+          "passed": true
+        },
+        {
+          "name": "n16-seed35002 all-step velocity",
+          "value": 2.220446049250313e-16,
+          "bound": 5e-12,
+          "passed": true
+        },
+        {
+          "name": "n16-seed35002 all-step field",
+          "value": 7.355227538141662e-16,
+          "bound": 5e-12,
+          "passed": true
+        },
+        {
+          "name": "n16-seed35002 all-step charge",
+          "value": 8.881784197001252e-16,
+          "bound": 5e-12,
+          "passed": true
+        },
+        {
+          "name": "n16-seed35002 independent charge conservation",
+          "value": 3.9238520602597107e-16,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "n16-seed35002 independent momentum conservation",
+          "value": 7.806255641895632e-18,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "n16-seed35002 own fields at every fixed kick",
+          "value": 13,
+          "bound": 13,
+          "passed": true
+        },
+        {
+          "name": "n32-seed35001 all saved arrays finite",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "n32-seed35001 all-step position",
+          "value": 8.881784197001252e-16,
+          "bound": 5e-12,
+          "passed": true
+        },
+        {
+          "name": "n32-seed35001 all-step velocity",
+          "value": 2.7755575615628914e-16,
+          "bound": 5e-12,
+          "passed": true
+        },
+        {
+          "name": "n32-seed35001 all-step field",
+          "value": 8.326672684688674e-16,
+          "bound": 5e-12,
+          "passed": true
+        },
+        {
+          "name": "n32-seed35001 all-step charge",
+          "value": 2.886579864025407e-15,
+          "bound": 5e-12,
+          "passed": true
+        },
+        {
+          "name": "n32-seed35001 independent charge conservation",
+          "value": 8.71967124502158e-17,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "n32-seed35001 independent momentum conservation",
+          "value": 3.469446951953614e-18,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "n32-seed35001 own fields at every fixed kick",
+          "value": 13,
+          "bound": 13,
+          "passed": true
+        },
+        {
+          "name": "n32-seed35002 all saved arrays finite",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "n32-seed35002 all-step position",
+          "value": 8.881784197001252e-16,
+          "bound": 5e-12,
+          "passed": true
+        },
+        {
+          "name": "n32-seed35002 all-step velocity",
+          "value": 3.3306690738754696e-16,
+          "bound": 5e-12,
+          "passed": true
+        },
+        {
+          "name": "n32-seed35002 all-step field",
+          "value": 5.48172618408671e-16,
+          "bound": 5e-12,
+          "passed": true
+        },
+        {
+          "name": "n32-seed35002 all-step charge",
+          "value": 2.220446049250313e-15,
+          "bound": 5e-12,
+          "passed": true
+        },
+        {
+          "name": "n32-seed35002 independent charge conservation",
+          "value": 1.743934249004316e-16,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "n32-seed35002 independent momentum conservation",
+          "value": 9.540979117872439e-18,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "n32-seed35002 own fields at every fixed kick",
+          "value": 13,
+          "bound": 13,
+          "passed": true
+        },
+        {
+          "name": "six paired comparisons equal twelve separate trajectories",
+          "value": 12,
+          "bound": 12,
+          "passed": true
+        }
+      ],
+      "records": [
+        {
+          "id": "n8-seed35001",
+          "n": 8,
+          "seed": 35001,
+          "particles": 256,
+          "steps": 12,
+          "file": "n8-seed35001.npz",
+          "sha256": "9f22412dfed37c92776233dc78cf161888b9bc3dadba1a8336ce59ab974fe2b8",
+          "position": 8.881784197001252e-16,
+          "velocity": 2.220446049250313e-16,
+          "field": 4.961309141293668e-16,
+          "charge": 8.881784197001252e-16,
+          "charge_integral": 6.975736996017264e-16,
+          "momentum": 1.0408340855860843e-17
+        },
+        {
+          "id": "n8-seed35002",
+          "n": 8,
+          "seed": 35002,
+          "particles": 256,
+          "steps": 12,
+          "file": "n8-seed35002.npz",
+          "sha256": "ed841e1213846689686e39d9259eb04589762c02bd725cc23365a58c482e1266",
+          "position": 4.440892098500626e-16,
+          "velocity": 2.220446049250313e-16,
+          "field": 4.3021142204224816e-16,
+          "charge": 6.661338147750939e-16,
+          "charge_integral": 9.591638369523736e-16,
+          "momentum": 5.204170427930421e-18
+        },
+        {
+          "id": "n16-seed35001",
+          "n": 16,
+          "seed": 35001,
+          "particles": 256,
+          "steps": 12,
+          "file": "n16-seed35001.npz",
+          "sha256": "4235f169cbddf851cc82a2bbc47084cb6b3e0a5751c6dc9893d738357e5617a4",
+          "position": 4.440892098500626e-16,
+          "velocity": 1.8041124150158794e-16,
+          "field": 6.557254739192331e-16,
+          "charge": 1.1102230246251565e-15,
+          "charge_integral": 4.3598356225107897e-16,
+          "momentum": 1.0408340855860843e-17
+        },
+        {
+          "id": "n16-seed35002",
+          "n": 16,
+          "seed": 35002,
+          "particles": 256,
+          "steps": 12,
+          "file": "n16-seed35002.npz",
+          "sha256": "0967013350fe9906dffe76de3be8900d5ee81f7fe826ec7abc9569e16709f87e",
+          "position": 5.551115123125783e-17,
+          "velocity": 2.220446049250313e-16,
+          "field": 7.355227538141662e-16,
+          "charge": 8.881784197001252e-16,
+          "charge_integral": 3.9238520602597107e-16,
+          "momentum": 7.806255641895632e-18
+        },
+        {
+          "id": "n32-seed35001",
+          "n": 32,
+          "seed": 35001,
+          "particles": 256,
+          "steps": 12,
+          "file": "n32-seed35001.npz",
+          "sha256": "596cdd4c55ab84ad5b12076be75584e924de715afa7952523b9395ca5ee7270a",
+          "position": 8.881784197001252e-16,
+          "velocity": 2.7755575615628914e-16,
+          "field": 8.326672684688674e-16,
+          "charge": 2.886579864025407e-15,
+          "charge_integral": 8.71967124502158e-17,
+          "momentum": 3.469446951953614e-18
+        },
+        {
+          "id": "n32-seed35002",
+          "n": 32,
+          "seed": 35002,
+          "particles": 256,
+          "steps": 12,
+          "file": "n32-seed35002.npz",
+          "sha256": "bd4927c21ef19e52fc7809c9748bd23360ba06e74c97247401da53ca974bd2a6",
+          "position": 8.881784197001252e-16,
+          "velocity": 3.3306690738754696e-16,
+          "field": 5.48172618408671e-16,
+          "charge": 2.220446049250313e-15,
+          "charge_integral": 1.743934249004316e-16,
+          "momentum": 9.540979117872439e-18
+        }
+      ],
+      "metrics": {
+        "comparison_pairs": 6,
+        "separate_trajectories": 12,
+        "saved_states_per_trajectory": 13,
+        "maximum_position_discrepancy": 8.881784197001252e-16,
+        "maximum_velocity_discrepancy": 3.3306690738754696e-16,
+        "maximum_field_discrepancy": 8.326672684688674e-16,
+        "maximum_charge_discrepancy": 2.886579864025407e-15
+      }
+    }
+  ],
+  "duration_seconds": 0.07380849999753991,
+  "created_at_utc": "2026-11-23T13:51:26.652267+00:00"
+}

@@ -189,15 +189,18 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-This command executes every fixed case in the distribution group.
+This command executes every fixed case in the distribution group. Bundled results/ are stored outputs. Rerun into a new output/ directory and use another fresh directory for subsequent runs.
 
 ### Sources and review scope
 
 - Paul Woodward and Phillip Colella (1984). The numerical simulation of two-dimensional fluid flow with strong shocks. https://www.sciencedirect.com/science/article/pii/0021999184901426; review_level=publisher-metadata-and-abstract; official-NASA-setup-cross-check
-  Publisher metadata/abstract and the official NASA setup were checked. No direct full-paper review is claimed; cited for the original strong-shock comparison and benchmark.
+Publisher metadata/abstract and the official NASA setup were checked. No direct full-paper review is claimed; cited for the original strong-shock comparison and benchmark.
+
 - NASA Advanced Supercomputing Division, LAVA team (n.d.). Double Mach Reflection — LAVA tutorial. https://www.nas.nasa.gov/LAVA/unst_docs/tutorials/double_mach/double_mach/; review_level=official-tutorial-selected-setup-and-boundaries
-  Checked Mach10, gamma1.4, domain, shock foot x=1/6, upstream state, boundaries and T=.2. No LAVA execution or figure redistribution.
+Checked Mach10, gamma1.4, domain, shock foot x=1/6, upstream state, boundaries and T=.2. No LAVA execution or figure redistribution.
+
 - Hiroshi Koyama (2026). Independent finite-volume references distributed with the RKDG2D agent kit, 2026-11-23-r2. https://hrkoyama.github.io/code/rkdg2d/2026-11-23-r2/atlas-rkdg-agent-kit.zip; review_level=hash-checked-selected-public-archive-artifacts
-  Selected source, two-grid data and execution records were copied from the immutable archive. No reference PDE, Athena or LAVA was rerun here. The flux family HLL is shared, while the reference is a separate implementation without imports of primary spatial operators.
+Selected source, two-grid data and execution records were copied from the immutable archive. No reference PDE, Athena or LAVA was rerun here. The flux family HLL is shared, while the reference is a separate implementation without imports of primary spatial operators.
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.

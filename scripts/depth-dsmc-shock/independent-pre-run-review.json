@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "reviewer": "root",
+  "time": "2026-11-23T14:01:08.593652+00:00",
+  "state": "APPROVED_SHOCK_R3_FIXED12SEED_PRECISION_STUDY",
+  "contract_sha256": "eb3e4b13ba900b0887ca265089768e178bbfba64eeb4d515aeb3003ef1ccf3ed",
+  "verified_bound_files": 56,
+  "prior_failures": "R1five/R2four statistical gates failed and are retained with all fields; no outcome relabeled.",
+  "component_qualification": {
+    "protocol_sha256": "1f06b091f1f2e82ed359e00081fb26258611952a0dd13327f4c04ba7e1dbb957",
+    "checks": 48,
+    "passed": true,
+    "scope": "Exact small pair laws,CDF residual/equivalence and synthetic timing only; no main speed/precision guarantee."
+  },
+  "change": "Preserve original4seed labels,append next8deterministically,run all12base plus unchanged3companions. Qualified ideal-distribution-equivalent sorting/CDF implementation copied exactly; random stream and trajectory bits differ,not seed substitution.",
+  "preservation": "All numeric acceptance thresholds,grids,weights,time windows,physical reservoir law,old19testbytes and cached independent reference unchanged;20pytest,15runs,129gates (all81old+48new per-run).",
+  "statistics": "SE uses all12independent whole-run estimates,primary t95df11 separated from reference4/df3. sqrt3 reduction is a design forecast only. Adaptive study history prevents a blanket exact95percent repeated-study coverage claim. No early stopping,post-hoc seed selection or pooling incompatible backend runs.",
+  "authorization": "Execute all20pytest and all15fixedruns ONCE under one120s process-group deadline. Preserve failures; no gate relaxation or hidden reruns. Plot separately after scientific completion."
+}

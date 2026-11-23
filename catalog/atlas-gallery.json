@@ -1109,6 +1109,105 @@
         "ja": "最細格子の実際の横磁場Byの1D x–t図。5保存時刻を使い、計算は完全な磁気結合を含みます。",
         "en": "Actual finest-grid transverse By in1D x–t from five stored times; the solver includes full magnetic coupling."
       }
+    },
+    {
+      "id": "checkerboard-diffusion",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-23/coefficient-diffusion/results/checkerboard-diffusion-preview.png",
+      "caption": {
+        "ja": "保存した2D解・誤差・真の残差・格子感度の検証図。",
+        "en": "Saved2D solution, error, true residual and refinement/reference sensitivity."
+      }
+    },
+    {
+      "id": "rotated-anisotropic-diffusion",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-23/coefficient-diffusion/results/rotated-anisotropic-diffusion-preview.png",
+      "caption": {
+        "ja": "保存した2D解・誤差・真の残差・格子感度の検証図。",
+        "en": "Saved2D solution, error, true residual and refinement/reference sensitivity."
+      }
+    },
+    {
+      "id": "neutral-slab-yb",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-23/slab-ewald/results/neutral-slab-yb-preview.png",
+      "caption": {
+        "ja": "固定入力を実際に計算した保存配列からの検証図。",
+        "en": "Validation figure from actual saved fixed-input calculation arrays."
+      }
+    },
+    {
+      "id": "fmm3d-inverse-r",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-23/fmm3d/results/fmm3d-inverse-r-preview.png",
+      "caption": {
+        "ja": "固定入力を実際に計算した保存配列からの検証図。",
+        "en": "Validation figure from actual saved fixed-input calculation arrays."
+      }
+    },
+    {
+      "id": "gravity-kepler",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-kepler-preview.png",
+      "caption": {
+        "ja": "固定入力を実際に計算した保存配列からの検証図。",
+        "en": "Validation figure from actual saved fixed-input calculation arrays."
+      }
+    },
+    {
+      "id": "gravity-plummer-short",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-plummer-short-preview.png",
+      "caption": {
+        "ja": "固定入力を実際に計算した保存配列からの検証図。",
+        "en": "Validation figure from actual saved fixed-input calculation arrays."
+      }
+    },
+    {
+      "id": "thermal-landau-damping",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-23/warm-pic/results/thermal-landau-damping-preview.png",
+      "caption": {
+        "ja": "実際に動かした粒子の初期(x,v)に対する速度変化δv/α。空間2D流体図ではなく1D1V位相空間の応答です。",
+        "en": "Actual evolved particle velocity change delta-v/alpha against initial(x,v); a1D1V phase-space response, not a2D physical-space flow."
+      }
+    },
+    {
+      "id": "thermal-two-stream",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-23/warm-pic/results/thermal-two-stream-preview.png",
+      "caption": {
+        "ja": "実粒子のT40での速度変化δv/αを初期(x,v)に表示。1D1V位相空間の後期診断で、成長率を検証する固定窓[12,20]とは分けます。",
+        "en": "Actual particle delta-v/alpha atT40against initial(x,v). This1D1Vphase-space image is a late diagnostic; growth rates are validated only over[12,20]."
+      }
+    },
+    {
+      "id": "dsmc-couette",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-23/dsmc-wall/results/dsmc-couette-preview.png",
+      "caption": {
+        "ja": "保存した実粒子の位置–速度ヒストグラム。1次元位置と分子速度の位相空間であり、2D物理流れではありません。",
+        "en": "Actual saved particle position-velocity histograms; phase space of1D position and molecular velocity,not2D physical flow."
+      }
+    },
+    {
+      "id": "dsmc-fourier",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-23/dsmc-wall/results/dsmc-fourier-preview.png",
+      "caption": {
+        "ja": "保存した実粒子の位置–速度ヒストグラム。1次元位置と分子速度の位相空間であり、2D物理流れではありません。",
+        "en": "Actual saved particle position-velocity histograms; phase space of1D position and molecular velocity,not2D physical flow."
+      }
+    },
+    {
+      "id": "dsmc-planar-shock",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock-preview.png",
+      "caption": {
+        "ja": "保存した実粒子の位置–速度ヒストグラム。1次元位置と分子速度の位相空間であり、2D物理流れではありません。",
+        "en": "Actual saved particle position-velocity histograms; phase space of1D position and molecular velocity,not2D physical flow."
+      }
     }
   ]
 }

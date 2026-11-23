@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "scope": "Independent static preflight and pre-execution corrections for coefficient-diffusion; no historical acceptance threshold changed.",
+  "original_review": {
+    "schema_version": 1,
+    "reviewer": "batch_shallow",
+    "review_type": "Independent read-only source/algebra review; no numerical import,pytest or solver execution",
+    "verdict": "CONDITIONAL_MATH_PASS_REQUIRES_DIAGNOSTIC_BACKEND_FIXES_BEFORE_EXECUTION",
+    "reviewed_source_sha256": {
+      "DESIGN.md": "7741e0d00b7699a87deb4eab40b1616d4c4baf960a4abdd7e64efbe80938ada0",
+      "acceptance.json": "7eff0985d67c0de3cadff5fb30e94b3e9b1ebd8bb14f481c209cc1ac15ab83a6",
+      "inputs.json": "f826020743e6fa3ba8776806a29e9e60e8feeceb71e821a7f24542a89bc19155",
+      "operators.py": "237e73b3b5d9a9be48aec30104e3390056ab1b3c21e3bc19cac1b7423c249e7f",
+      "multilevel.py": "372b80a9486c7e8b095fe2423f3cbcb8339cedecda49e476a2fd3c6f7ff36346",
+      "references/p1.py": "991479d30ce5498008cf0c0e55da59b72b579a463fa4d95ec3449c00cff66a56",
+      "experiments.py": "e7ab81d42f21589327996f6d55f3a35a30f72a177eb7610cb786fb4d1d792656",
+      "test_diffusion.py": "3fd7f891732215cfb170284d4a84e306bf61643dd4f3be88b3efb35fb0838187",
+      "run.py": "326de4c08dda50169ed8a16212eb6ccafbca5032f4ee57a3afdad937a96627f0"
+    },
+    "science_executed": false,
+    "math_checks_passed": [
+      "ScalarFV harmonic transmissibility,2a Dirichlet half-cell weight,nonzero two-layer patch and x-flux normalization signs correct.",
+      "For checkerboard homogeneous Dirichlet, sum(b)-boundary_flux=sum(b-Au); residual-aware sqrt(N)||r|| budget bound follows Cauchy-Schwarz.",
+      "Q1 physical-gradient scaling2/h,full K tensor,affine andxy patches correct. f_xy=-2Kxy detects cross terms.",
+      "P1 gradients/load/coefficient quadrant assignment and triangular barycentric evaluator correct.128/192 sensitivity is explicitly empirical,not a true error bound.",
+      "Gershgorin bound for D^-1A and omega=.5/bound imply eigenvalues of I-omega D^-1A in[.5,1),hence full-column-rank tentative P remains full rank after smoothing.",
+      "Geometric nodal vs odd-reflected cell-centred prolongation and R=P^T/Galerkin choices consistent.",
+      "Symmetric2pre/2post fixed weighted-Jacobi V-cycle plusSPD Cholesky coarse solve is suitable forPCG. Runtime convergence200iterations is an honest unexecuted gate,not mathematically guaranteed."
+    ],
+    "blocking_findings": [
+      {
+        "id": "E-B1",
+        "severity": "high",
+        "files": [
+          "multilevel.py",
+          "experiments.py"
+        ],
+        "issue": "Long dense real-vector@ contractions match the already independently reproduced macOS backend false FP-warning path under-Werror.",
+        "examples": [
+          "r@z",
+          "p@ap",
+          "d@(A@d)",
+          "direct@(A@direct)"
+        ],
+        "required_fix": "Replace real diagnostic/Krylov scalar contractions by algebraically identical np.sum(a*b) or explicit non-BLAS einsum. Keep all solver equations,inputs,tests and thresholds unchanged. Do not suppress warnings.",
+        "basis": "Earlier current-session instability/annulus saved-array diagnostics reproduced divide/overflow/invalid warnings despite finite matching outputs. This review does not run new diagnostics."
+      },
+      {
+        "id": "E-B2",
+        "severity": "high",
+        "files": [
+          "experiments.py",
+          "run.py"
+        ],
+        "issue": "cases.append occurs after every grid of a case; a midway exception drops completed row/check metadata. Current candidate A,b,direct,u is saved only at the end of a grid. Independent refs are saved only after both reference solves complete.",
+        "required_fix": "Append mutable case record atcase start; checkpoint rows/checks after eachsolver; retain available A/b/direct/u and current stage on exceptions; persist each independent reference field immediately after its solve. Preserve failed attempts and source before revisions.",
+        "basis": "This is a failure-retention defect; it does not alter any numerical acceptance criterion."
+      }
+    ],
+    "nonblocking_notes": [
+      {
+        "issue": "DESIGN phrase smoother eigenvalues in(0,.5] is ambiguous",
+        "clarification": "These are eigenvalues of omega D^-1 A; the error-propagation smoother I-omega D^-1A has eigenvalues in[.5,1). The invertibility argument itself is sound."
+      },
+      {
+        "issue": "PCG fixed inputs are nonzero, but its generic zero-RHS path has scale0 and0/0",
+        "clarification": "Either constrain/document API to these nonzero frozen RHS or handle zero RHS analytically. Add positive/finite rz,pAp guards with candidate retention rather than producing nonfinite output."
+      },
+      {
+        "issue": "Main smallN4 cycle is terminal direct; full nonterminal SPD/linearity is exercised by pytestN8",
+        "clarification": "ExistingN8 tests supply the meaningful multilevel check; do not present the terminal main probe alone as testing multilevel correctness."
+      },
+      {
+        "issue": "Reference-fraction<=.5E64 andbothPCG<=200 remain scientifically uncertain before execution",
+        "clarification": "Do not calibrate or relax after output. Preserve an actual failure and seek predeclared source/reference/physical-input redesign if they fail."
+      }
+    ],
+    "unchanged_by_reviewer": [
+      "No input/source/test/acceptance edits",
+      "No scientific execution or dependency installation",
+      "Only this private review JSON written"
+    ],
+    "authorization_note": "Root decides whether the stated diagnostic-only fixes and their re-frozen hashes satisfy preflight before first execution."
+  },
+  "correction_review": {
+    "verdict": "PASS_STATIC_BLOCKERS_CLOSED",
+    "inspection": "Read actual amended source text; no imports or numerical execution.",
+    "fixes_verified": [
+      "Identified long vector scalar contractions now explicit np.sum; remaining @ are sparse products.",
+      "Case appended before grids; mutable rows/checks retained and solver checkpoints written.",
+      "Each reference persisted immediately; A/b,then direct,then each returned iterate/history persisted before diagnostics.",
+      "Runner exception retains existing cases and traceback."
+    ],
+    "unchanged_input_operator_reference_test_bytes": {
+      "inputs.json": true,
+      "operators.py": true,
+      "references/p1.py": true,
+      "test_diffusion.py": true
+    },
+    "all_original_acceptance_limits_identical": true,
+    "acceptance_byte_difference": "State metadata changed from PRE_RUN_REVIEW_REQUESTED_NO_EXECUTION to FROZEN_BEFORE_FIRST_EXECUTION; all numerical limits unchanged.",
+    "updated_source_sha256": {
+      "multilevel.py": "2ae51a2af3336eb55bcedb33521cb82c1f5e3b97e51077aabfd835ff119f394c",
+      "experiments.py": "c24e6a12f248f7f1fbcbcf7bc2a5ad0dc8934a6a6128393169fd06b5ee87dde7",
+      "run.py": "326de4c08dda50169ed8a16212eb6ccafbca5032f4ee57a3afdad937a96627f0",
+      "acceptance.json": "e873cacd15ca53ee8ec07bcf660fe3c53656120c19a592b71589b826574a7bfb"
+    },
+    "remaining_scope_note": "Generic zero-RHS PCG remains outside frozen nonzero-RHS cases, to be documented. Runtime/convergence/reference-sensitivity are unexecuted; no numerical PASS claim."
+  },
+  "execution": {
+    "started_at_utc": "2026-11-23T13:33:41.553984+00:00",
+    "commands": [
+      {
+        "name": "pytest",
+        "returncode": 0,
+        "seconds": 4.833452582999598
+      },
+      {
+        "name": "main",
+        "returncode": 0,
+        "seconds": 0.6413129590000608
+      }
+    ],
+    "duration_seconds": 5.474845749995438,
+    "ended_at_utc": "2026-11-23T13:33:47.028749+00:00"
+  },
+  "public_contract": {
+    "passed": true,
+    "csv": [
+      {
+        "file": "checkerboard-diffusion.csv",
+        "bytes": 1944,
+        "sha256": "ae8c33fbbb8cd93f5fe388da2d6a09a2dbcfaf24b2c9d022e3edbc1e0e167abe"
+      },
+      {
+        "file": "rotated-anisotropic-diffusion.csv",
+        "bytes": 1524,
+        "sha256": "c27438b8c47034fcea9ea6a65445feb2bf453a127f5df5c145b65e7d0784a7f9"
+      }
+    ],
+    "case_ids": [
+      "checkerboard-diffusion",
+      "rotated-anisotropic-diffusion"
+    ],
+    "gates": 97,
+    "tests": 12
+  },
+  "release_archive_sha256": "c53624aa03cf7f945297e7bd09d72030e111e035c3ce7174fd2da9e86756b666",
+  "passed": true,
+  "checks": {
+    "first_scientific_attempt": true,
+    "actual_public_contract": true
+  }
+}

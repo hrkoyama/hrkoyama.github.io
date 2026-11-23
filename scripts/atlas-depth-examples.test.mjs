@@ -85,10 +85,10 @@ test('forty original cases plus Noh and their independently dated releases stay 
   const index = json('numerical-methods-atlas/validation/index.json');
   assert.deepEqual(actualCases.map(x => x.item.id).sort(), expectedIds);
   assert.deepEqual(index.cases.map(x => x.id).sort(), expectedIds);
-  assert.equal(index.case_count, 71);
-  assert.equal(actualCases.filter(x => !['noh','noh-cartesian','sedov','double-mach','forward-step','low-mach','guderley','euler-positivity','zalesak','weno-critical','shallow-water','wall-flow','level-set', 'instability-growth', 'mhd-transport', 'mesh-boundary', 'moving-waves', 'relativistic', 'sem-fr'].includes(x.group)).length, 40);
+  assert.equal(index.case_count, 83);
+  assert.equal(actualCases.filter(x => !['noh','noh-cartesian','sedov','double-mach','forward-step','low-mach','guderley','euler-positivity','zalesak','weno-critical','shallow-water','wall-flow','level-set', 'instability-growth', 'mhd-transport', 'mesh-boundary', 'moving-waves', 'relativistic', 'sem-fr','coefficient-diffusion','slab-ewald','fmm3d','gravity-dynamics','warm-pic','pic-spatial','dsmc-wall','dsmc-shock'].includes(x.group)).length, 40);
   assert.equal(edition('noh'), '2026-11-23-r5');
-  assert.ok(groupIds.filter(x => !['noh','noh-cartesian','sedov','double-mach','forward-step','low-mach','guderley','euler-positivity','zalesak','weno-critical','shallow-water','wall-flow','level-set', 'instability-growth', 'mhd-transport', 'mesh-boundary', 'moving-waves', 'relativistic', 'sem-fr'].includes(x)).every(x => edition(x) === '2026-11-22'));
+  assert.ok(groupIds.filter(x => !['noh','noh-cartesian','sedov','double-mach','forward-step','low-mach','guderley','euler-positivity','zalesak','weno-critical','shallow-water','wall-flow','level-set', 'instability-growth', 'mhd-transport', 'mesh-boundary', 'moving-waves', 'relativistic', 'sem-fr','coefficient-diffusion','slab-ewald','fmm3d','gravity-dynamics','warm-pic','pic-spatial','dsmc-wall','dsmc-shock'].includes(x)).every(x => edition(x) === '2026-11-22'));
   assert.equal(index.case_problem_ids['noh-shock'], 'noh');
   assert.deepEqual(index.groups.map(x => x.id).sort(), [...groupIds].sort());
   assert.equal(index.common_registry.example_count, 22);

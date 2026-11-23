@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "id": "fmm3d-inverse-r",
+  "name": {
+    "ja": "真3D 1/r FMM：多段変換・力・適応所有権",
+    "en": "Actual3D1/r FMM: multilevel translations, force and ownership"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fmm3d-inverse-r/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fmm3d-inverse-r/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fmm3d-inverse-r/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/results/fmm3d-inverse-r-preview.png",
+    "sha256": "7bd81db0f5de4b811f26cf8e45a13864842509d2d6c9ec57325572b1bb0e43a2",
+    "width": 920,
+    "height": 592,
+    "caption": {
+      "ja": "固定入力を実際に計算した保存配列からの検証図。",
+      "en": "Validation figure from actual saved fixed-input calculation arrays."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-fmm3d/#fmm3d-inverse-r",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-fmm3d/#fmm3d-inverse-r"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#fmm3d-inverse-r",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#fmm3d-inverse-r-en"
+  },
+  "equations": [
+    {
+      "id": "particle-gravity",
+      "name": {
+        "ja": "重力粒子モデル",
+        "en": "Gravitational particle model"
+      },
+      "formula": [
+        "\\boldsymbol a_i=-G\\sum_{j\\ne i}m_j\\frac{\\boldsymbol x_i-\\boldsymbol x_j}{(|\\boldsymbol x_i-\\boldsymbol x_j|^2+\\epsilon^2)^{3/2}}",
+        "\\nabla^2\\phi=4\\pi G(\\rho-\\overline\\rho)\\quad\\text{(periodic)}"
+      ],
+      "note": {
+        "ja": "孤立系のPlummer軟化力と、周期・平均密度除去のPoisson式は異なる境界問題です。公開例は静的な力と境界核の検証で、自己重力流体の時間発展ではありません。",
+        "en": "Isolated Plummer-softened forces and periodic mean-subtracted Poisson are distinct boundary problems. Public examples check static forces and kernels, not coupled self-gravitating flow evolution."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#particle-gravity-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#particle-gravity-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "孤立重力-Gm/r、G1、64等質量、p3/5/7。主木は深さ強制、適応木のみcapacity8/maxdepth3。",
+    "en": "Isolated-Gm/r,G1,64equal masses,p3/5/7. Main levels forced; adaptive case alone usescapacity8/maxdepth3."
+  },
+  "formulations": [
+    {
+      "id": "supplement-fmm3d-inverse-r",
+      "name": {
+        "ja": "真3D 1/r FMM：多段変換・力・適応所有権",
+        "en": "Actual3D1/r FMM: multilevel translations, force and ownership"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "\\Phi_i=-G\\sum_{j\\ne i}m_j/r_{ij},\\quad a_i=-\\nabla\\Phi_i",
+        "K(x,y)\\approx\\sum_{\\ell,m}L_\\ell(x)K(x_\\ell,y_m)L_m(y)",
+        "m=p^3,\\quad {\\rm dense\\ M2L\\ entries}=p^6"
+      ],
+      "note": {
+        "ja": "非圧縮Chebyshev FMMを真の葉レベル2/3と別の適応配置で実行し、独立直接和のポテンシャル・加速度と比較します。",
+        "en": "Run uncompressed Chebyshev FMM at actual leaf levels2/3 and a separate adaptive configuration; compare independent direct potentials and accelerations."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "fmm3d-inverse-r",
+      "kind": "numerical-reference",
+      "kind_label": {
+        "ja": "有限格子の数値参照",
+        "en": "Finite-grid numerical reference"
+      },
+      "title": {
+        "ja": "真3D 1/r FMM：多段変換・力・適応所有権",
+        "en": "Actual3D1/r FMM: multilevel translations, force and ownership"
+      },
+      "formula": "Phi_i=-sum_{j!=i}G*m_j/r_ij; a_i=-sum_{j!=i}G*m_j*(x_i-x_j)/r_ij^3; finite6axis source Phi(0)=-1/a.",
+      "assumptions": {
+        "ja": "孤立重力-Gm/r、G1、64等質量、p3/5/7。主木は深さ強制、適応木のみcapacity8/maxdepth3。 有限6点閉形式、独立Cartesian直接和、次数/実深さ、混合深さ・cap粒子保持、剛体変換を別確認。 小Nの非圧縮教材。p^6 M2Lコストを保存し、SVD圧縮・球調和・Nスケーリング・運動量厳密保存は主張しません。 有限6点閉形式は独立directの資格確認で、FMM本体のgolden-target実行ではありません。",
+        "en": "Isolated-Gm/r,G1,64equal masses,p3/5/7. Main levels forced; adaptive case alone usescapacity8/maxdepth3."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "小Nの非圧縮教材。p^6 M2Lコストを保存し、SVD圧縮・球調和・Nスケーリング・運動量厳密保存は主張しません。 有限6点閉形式は独立directの資格確認で、FMM本体のgolden-target実行ではありません。",
+        "en": "Small-N uncompressed teaching example; reportp^6M2L cost. No SVD/spherical-harmonic/scaling or exact momentum-conservation claim. The finite6source exact probe qualifies the direct reference, not a production-FMM golden-target run."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm3d-inverse-r/?lang=ja#fmm3d-inverse-r-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm3d-inverse-r/?lang=en#fmm3d-inverse-r-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "有限6点閉形式、独立Cartesian直接和、次数/実深さ、混合深さ・cap粒子保持、剛体変換を別確認。",
+    "en": "Separate finite6source exact goldens, independent Cartesian sums, order/actual-depth comparisons, mixed-depth capped ownership and rigid transformation."
+  },
+  "methods": [
+    {
+      "id": "fmm",
+      "name": {
+        "ja": "高速多重極法の移動演算",
+        "en": "Fast multipole translations"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/fmm/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/fmm/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "P2M/M2M/M2L/L2Lと局所基底の物理勾配、近接P2P。全非自己対を一意に割当て、非零の全変換経路を記録。",
+    "en": "Actual upward/downward translations, physical local-basis gradients and near P2P; audit unique nonself ownership and nonzero complete translation contributions."
+  },
+  "executions": [
+    {
+      "id": "fmm3d-inverse-r",
+      "kind": "supplement",
+      "name": {
+        "ja": "真3D 1/r FMM：多段変換・力・適応所有権",
+        "en": "Actual3D1/r FMM: multilevel translations, force and ownership"
+      },
+      "method_ids": [
+        "fmm"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm3d-inverse-r/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm3d-inverse-r/?lang=en"
+      },
+      "scope": {
+        "ja": "非圧縮Chebyshev FMMを真の葉レベル2/3と別の適応配置で実行し、独立直接和のポテンシャル・加速度と比較します。",
+        "en": "Run uncompressed Chebyshev FMM at actual leaf levels2/3 and a separate adaptive configuration; compare independent direct potentials and accelerations."
+      },
+      "assumptions": {
+        "ja": "孤立重力-Gm/r、G1、64等質量、p3/5/7。主木は深さ強制、適応木のみcapacity8/maxdepth3。",
+        "en": "Isolated-Gm/r,G1,64equal masses,p3/5/7. Main levels forced; adaptive case alone usescapacity8/maxdepth3."
+      },
+      "limits": {
+        "ja": "小Nの非圧縮教材。p^6 M2Lコストを保存し、SVD圧縮・球調和・Nスケーリング・運動量厳密保存は主張しません。 有限6点閉形式は独立directの資格確認で、FMM本体のgolden-target実行ではありません。",
+        "en": "Small-N uncompressed teaching example; reportp^6M2L cost. No SVD/spherical-harmonic/scaling or exact momentum-conservation claim. The finite6source exact probe qualifies the direct reference, not a production-FMM golden-target run."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/atlas-fmm3d-2026-11-23.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "有限6点閉形式、独立Cartesian直接和、次数/実深さ、混合深さ・cap粒子保持、剛体変換を別確認。",
+        "en": "Separate finite6source exact goldens, independent Cartesian sums, order/actual-depth comparisons, mixed-depth capped ownership and rigid transformation."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/fmm.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/references/direct.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/test_fmm.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

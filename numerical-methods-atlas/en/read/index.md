@@ -33,6 +33,7 @@ Go from boundary-value problems and sparse solvers to eigenvalues, basis functio
 - [Wavelets](https://hrkoyama.github.io/numerical-methods-atlas/en/read/wavelets/)
 - [AMG, factorizations, eigenvalues and quadrature](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/)
 - [Numerical foundations: conditioning, residuals, convergence and independent references](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/)
+- [MG/AMG for coefficient jumps and rotated anisotropy](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-coefficient-diffusion/)
 
 ## Differentiation, optimization and inverse problems
 
@@ -114,6 +115,12 @@ Explore particle methods, distribution functions, long-range forces and transpor
 - [Radiation transport and moment methods](https://hrkoyama.github.io/numerical-methods-atlas/en/read/radiation-transport/)
 - [Particles, electrostatics, kinetic and radiative transport](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/)
 - [Particles and transport: independent references, conservation and statistical error](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particle-transport/)
+- [3D1/r kernels: expansions,trees and force checks](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-fmm3d/)
+- [Gravitational trajectories: Kepler and softened finite particles](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-gravity-dynamics/)
+- [Warm PIC: Landau damping and two-stream instability](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/)
+- [PIC checks against independent spatial kernels](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-pic-spatial/)
+- [Finite-Knudsen Couette and Fourier flows](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-wall/)
+- [Mach2 planar shock with hard-sphere DSMC](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-shock/)
 
 ## Electromagnetic fields, electrostatics and electronic structure
 
@@ -130,6 +137,7 @@ Follow periodic electrostatics and electromagnetic fields, then atomic, molecula
 - [Closed-shell HF for H₂: independent references, SCF residuals and basis refinement](https://hrkoyama.github.io/numerical-methods-atlas/en/read/h2-hf/)
 - [Periodic DFT: Γ points, k-point integration, basis sets, SCF and an independent reference](https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-dft/)
 - [From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface](https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forces/)
+- [Neutral slabs: corrected3P and genuine2P references](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-slab-ewald/)
 
 ## Stochastic computation, biology and temperature control
 

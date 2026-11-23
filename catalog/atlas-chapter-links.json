@@ -484,6 +484,239 @@
         "ja": "SRHDの対向衝突をTaub関係の二衝撃波解と、全7保存量SRMHDの有限振幅円偏波を独立テンソル式・保存量平均と比較します。空間は1次元で、図のx–t表示は2D流れではありません。",
         "en": "Compare an SRHD head-on collision with a Taub two-shock solution and full7-state finite-amplitude SRMHD wave with independent tensor formulas/conserved means. Space is1D; x–t pictures are not2D flow."
       }
+    },
+    {
+      "id": "validation-coefficient-diffusion",
+      "method_ids": [
+        "multigrid",
+        "amg",
+        "cg",
+        "q1-fem"
+      ],
+      "equation_ids": [
+        "tensor-diffusion"
+      ],
+      "problem_ids": [
+        "checkerboard-diffusion",
+        "rotated-anisotropic-diffusion"
+      ],
+      "execution_ids": [
+        "checkerboard-diffusion",
+        "rotated-anisotropic-diffusion"
+      ],
+      "reference_ids": [
+        "checkerboard-diffusion",
+        "rotated-anisotropic-diffusion"
+      ],
+      "code_problem_ids": [
+        "checkerboard-diffusion",
+        "rotated-anisotropic-diffusion"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "同じ行列の幾何MG・SA-AMG・直接解と、連続問題の解析解・別離散参照を分けて比較します。",
+        "en": "Compare geometric MG,SA-AMG and direct solves of identical matrices, separately from analytic or independently discretized continuum references."
+      }
+    },
+    {
+      "id": "validation-slab-ewald",
+      "method_ids": [
+        "ewald",
+        "slab-ewald"
+      ],
+      "equation_ids": [
+        "coulomb-electrostatics"
+      ],
+      "problem_ids": [
+        "neutral-slab-yb"
+      ],
+      "execution_ids": [
+        "neutral-slab-yb"
+      ],
+      "reference_ids": [
+        "neutral-slab-yb"
+      ],
+      "code_problem_ids": [
+        "neutral-slab-yb"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "長方形の周期箱と非周期zの分枝を固定し、Yeh–Berkowitz補正を真の2周期の自己項・零モード込みの参照と照合します。",
+        "en": "Freeze rectangular boxes and the nonperiodic-z branch; compare the Yeh–Berkowitz correction with a genuine2P reference including self and zero modes."
+      }
+    },
+    {
+      "id": "validation-fmm3d",
+      "method_ids": [
+        "fmm"
+      ],
+      "equation_ids": [
+        "particle-gravity"
+      ],
+      "problem_ids": [
+        "fmm3d-inverse-r"
+      ],
+      "execution_ids": [
+        "fmm3d-inverse-r"
+      ],
+      "reference_ids": [
+        "fmm3d-inverse-r"
+      ],
+      "code_problem_ids": [
+        "fmm3d-inverse-r"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "真の3D展開でM2M・M2L・L2Lを通った非零の最終寄与と一意な相互作用割当てを確かめます。",
+        "en": "Check nonzero final contributions through actual3D M2M,M2L,L2L paths and unique interaction ownership."
+      }
+    },
+    {
+      "id": "validation-gravity-dynamics",
+      "method_ids": [
+        "verlet",
+        "barnes-hut"
+      ],
+      "equation_ids": [
+        "particle-gravity"
+      ],
+      "problem_ids": [
+        "gravity-kepler",
+        "gravity-plummer-short"
+      ],
+      "execution_ids": [
+        "gravity-kepler",
+        "gravity-plummer-short"
+      ],
+      "reference_ids": [
+        "gravity-kepler",
+        "gravity-plummer-short"
+      ],
+      "code_problem_ids": [
+        "gravity-kepler",
+        "gravity-plummer-short"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "厳密なKepler軌道と、同じ軟化核を使う短時間の有限粒子ODE参照を区別します。",
+        "en": "Distinguish exact Kepler trajectories from short-time finite-particle references using the identical softened ODE."
+      }
+    },
+    {
+      "id": "validation-warm-pic",
+      "method_ids": [
+        "pic",
+        "cic",
+        "verlet"
+      ],
+      "equation_ids": [
+        "vlasov-poisson"
+      ],
+      "problem_ids": [
+        "thermal-landau-damping",
+        "thermal-two-stream"
+      ],
+      "execution_ids": [
+        "thermal-landau-damping",
+        "thermal-two-stream"
+      ],
+      "reference_ids": [
+        "thermal-landau-damping",
+        "thermal-two-stream"
+      ],
+      "code_problem_ids": [
+        "thermal-landau-damping",
+        "thermal-two-stream"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "自己無撞着な全分布の重み付きPICを、独立な誘電分散式と線形Volterra初期値問題と比較します。",
+        "en": "Compare self-consistent weighted full-f PIC with independently formulated dielectric dispersion and linear Volterra IVPs."
+      }
+    },
+    {
+      "id": "validation-pic-spatial",
+      "method_ids": [
+        "pic",
+        "cic",
+        "verlet"
+      ],
+      "equation_ids": [
+        "vlasov-poisson"
+      ],
+      "problem_ids": [
+        "cold-plasma-pic"
+      ],
+      "execution_ids": [
+        "pic-independent-spatial"
+      ],
+      "reference_ids": [
+        "pic-independent-spatial"
+      ],
+      "code_problem_ids": [
+        "cold-plasma-pic"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "各kickで独立なCICと明示DFTから場を更新し、同じ時間積分の共有範囲を明示します。",
+        "en": "Update the field at every kick using independent CIC and explicit DFT kernels; state the shared temporal algorithm."
+      }
+    },
+    {
+      "id": "validation-dsmc-wall",
+      "method_ids": [
+        "dsmc"
+      ],
+      "equation_ids": [
+        "hard-sphere-boltzmann"
+      ],
+      "problem_ids": [
+        "dsmc-couette",
+        "dsmc-fourier"
+      ],
+      "execution_ids": [
+        "dsmc-couette",
+        "dsmc-fourier"
+      ],
+      "reference_ids": [
+        "dsmc-couette",
+        "dsmc-fourier"
+      ],
+      "code_problem_ids": [
+        "dsmc-couette",
+        "dsmc-fourier"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "物理時間の剛体球衝突、壁の流束重み付き再放出、保存収支を独立SPARTA参照と比較します。",
+        "en": "Compare physical-time hard-sphere collisions,flux-weighted wall reemission and budgets with independent SPARTA references."
+      }
+    },
+    {
+      "id": "validation-dsmc-shock",
+      "method_ids": [
+        "dsmc"
+      ],
+      "equation_ids": [
+        "hard-sphere-boltzmann"
+      ],
+      "problem_ids": [
+        "dsmc-planar-shock"
+      ],
+      "execution_ids": [
+        "dsmc-planar-shock"
+      ],
+      "reference_ids": [
+        "dsmc-planar-shock"
+      ],
+      "code_problem_ids": [
+        "dsmc-planar-shock"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "流入出を持つ1D空間・3D速度の衝撃波で、RH遠方状態と内部の独立な数値参照を区別します。",
+        "en": "For a1D-space,3D-velocity open-reservoir shock,distinguish RH far states from independent numerical internal-profile references."
+      }
     }
   ]
 }

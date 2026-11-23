@@ -1,0 +1,72 @@
+[
+  {
+    "id": "fmm3d-inverse-r",
+    "title": {
+      "ja": "真3D 1/r FMM：多段変換・力・適応所有権",
+      "en": "Actual3D1/r FMM: multilevel translations, force and ownership"
+    },
+    "method_ids": [
+      "fmm"
+    ],
+    "domains": [
+      "particles"
+    ],
+    "summary": {
+      "ja": "非圧縮Chebyshev FMMを真の葉レベル2/3と別の適応配置で実行し、独立直接和のポテンシャル・加速度と比較します。",
+      "en": "Run uncompressed Chebyshev FMM at actual leaf levels2/3 and a separate adaptive configuration; compare independent direct potentials and accelerations."
+    },
+    "assumptions": {
+      "ja": "孤立重力-Gm/r、G1、64等質量、p3/5/7。主木は深さ強制、適応木のみcapacity8/maxdepth3。",
+      "en": "Isolated-Gm/r,G1,64equal masses,p3/5/7. Main levels forced; adaptive case alone usescapacity8/maxdepth3."
+    },
+    "algorithm": {
+      "ja": "P2M/M2M/M2L/L2Lと局所基底の物理勾配、近接P2P。全非自己対を一意に割当て、非零の全変換経路を記録。",
+      "en": "Actual upward/downward translations, physical local-basis gradients and near P2P; audit unique nonself ownership and nonzero complete translation contributions."
+    },
+    "validation": {
+      "ja": "有限6点閉形式、独立Cartesian直接和、次数/実深さ、混合深さ・cap粒子保持、剛体変換を別確認。",
+      "en": "Separate finite6source exact goldens, independent Cartesian sums, order/actual-depth comparisons, mixed-depth capped ownership and rigid transformation."
+    },
+    "limits": {
+      "ja": "小Nの非圧縮教材。p^6 M2Lコストを保存し、SVD圧縮・球調和・Nスケーリング・運動量厳密保存は主張しません。 有限6点閉形式は独立directの資格確認で、FMM本体のgolden-target実行ではありません。",
+      "en": "Small-N uncompressed teaching example; reportp^6M2L cost. No SVD/spherical-harmonic/scaling or exact momentum-conservation claim. The finite6source exact probe qualifies the direct reference, not a production-FMM golden-target run."
+    },
+    "references": [
+      {
+        "id": "fong2009",
+        "title": "The black-box fast multipole method",
+        "url": "https://mc.stanford.edu/cgi-bin/images/f/fa/Darve_bbfmm_2009.pdf",
+        "doi": "10.1016/j.jcp.2009.08.031",
+        "review_level": "primary-selected-sections",
+        "review_scope": "Tensor interpolation Eq7 and multilevel stages sections2–3 inspected, printed8715–8717; compression is separate. Original uncompressed educational implementation here, no timing reproduction."
+      },
+      {
+        "id": "fmm3d-definition",
+        "title": "FMM3D mathematical definitions",
+        "url": "https://fmm3d.readthedocs.io/en/latest/math.html",
+        "review_level": "official-kernel-normalization",
+        "review_scope": "Official potential+1/(4pi r), gradient and source-self convention inspected. Our gravitational kernel is-1/r; FMM3D is not installed or run."
+      }
+    ],
+    "formulas": [
+      "\\Phi_i=-G\\sum_{j\\ne i}m_j/r_{ij},\\quad a_i=-\\nabla\\Phi_i",
+      "K(x,y)\\approx\\sum_{\\ell,m}L_\\ell(x)K(x_\\ell,y_m)L_m(y)",
+      "m=p^3,\\quad {\\rm dense\\ M2L\\ entries}=p^6"
+    ],
+    "code_files": [
+      "run.py",
+      "fmm.py",
+      "references/direct.py"
+    ],
+    "gallery_figure": "fmm3d-inverse-r-preview.png",
+    "additional_figures": [
+      {
+        "file": "fmm3d-inverse-r-preview.png",
+        "caption": {
+          "ja": "固定入力を実際に計算した保存配列からの検証図。",
+          "en": "Validation figure from actual saved fixed-input calculation arrays."
+        }
+      }
+    ]
+  }
+]

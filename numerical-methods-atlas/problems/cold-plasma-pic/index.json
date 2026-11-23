@@ -48,6 +48,25 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#poisson-laplace-ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#poisson-laplace-en"
       }
+    },
+    {
+      "id": "vlasov-poisson",
+      "name": {
+        "ja": "静電Vlasov–Poisson方程式",
+        "en": "Electrostatic Vlasov–Poisson equations"
+      },
+      "formula": [
+        "\\partial_t f+v\\partial_x f-E\\partial_v f=0",
+        "\\partial_x E=1-\\int f\\,dv,\\quad\\int E\\,dx=0"
+      ],
+      "note": {
+        "ja": "1D1V電子と固定中性化背景。重み付き全分布PICの粒子・格子・時間近似と、線形参照の範囲を分けます。",
+        "en": "1D1V electrons and fixed neutralizing background. Separate weighted full-f particle,mesh and time approximations from the linear-reference scope."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#vlasov-poisson-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#vlasov-poisson-en"
+      }
     }
   ],
   "equation_note": {
@@ -88,9 +107,54 @@
         "ja": "冷たい1次元周期プラズマのquiet-start収束と、独立seedでの初期粒子雑音を分け、電荷・運動量・Gauss則・エネルギー誤差を保存します。",
         "en": "Separate quiet-start refinement of a cold 1D periodic plasma from independent-seed initial particle noise; record charge, momentum, Gauss diagnostics and energy error."
       }
+    },
+    {
+      "id": "supplement-pic-independent-spatial",
+      "name": {
+        "ja": "PIC空間演算の独立実装照合",
+        "en": "Independently coded PIC spatial pipeline"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "\\rho_j=1-\\frac1h\\sum_p w_p S_j(x_p),\\quad a_p=-\\sum_j S_j(x_p)E_j",
+        "\\widehat E_m=\\widehat\\rho_m/(ik_m),\\quad E_0=0,\\quad E_{N/2}=0\\ \\text{(even N)}",
+        "\\rho=-\\tfrac12\\cos2x\\ \\Longrightarrow\\ E=-\\tfrac14\\sin2x,\\quad a=+\\tfrac14\\sin2x"
+      ],
+      "note": {
+        "ja": "ベクトル化CIC/FFTと、別に書いた粒子ループCIC・密なDFTを、それぞれが自己無撞着な場を毎kick計算する軌道全体で照合します。",
+        "en": "Compare vectorized CIC/FFT with separately authored scalar-particle CIC/dense DFT; each trajectory sources its own field at every kick."
+      }
     }
   ],
-  "references": [],
+  "references": [
+    {
+      "id": "pic-independent-spatial",
+      "kind": "numerical-reference",
+      "kind_label": {
+        "ja": "有限格子の数値参照",
+        "en": "Finite-grid numerical reference"
+      },
+      "title": {
+        "ja": "PIC空間演算の独立実装照合",
+        "en": "Independently coded PIC spatial pipeline"
+      },
+      "formula": "rho=-.5cos(2x) => E=-.25sin(2x), electron a=+.25sin(2x); independent scalar CIC + dense DFT owns its self-consistent field every kick.",
+      "assumptions": {
+        "ja": "周期[0,2π]、256粒子、格子8/16/32、シード35001/35002、dt=.02、T=.24。位置は一様乱数、v=.2 Normal+.1 sin x。6組は別々に進めた12軌道です。 19 pytestと58/58固定判定が合格。6組＝12の自己無撞着軌道を13時刻全てで照合し、最大差は位置8.88e−16・速度3.33e−16・電場8.33e−16・電荷2.89e−15。pytest+mainは0.392秒。最初の小pytestは周期端点の添字不具合で17/18となり、元記録を保持して修正後に全計算を実行しました。 離散演算の独立したコーディング照合です。時間積分法や連続方程式を変えた独立エンジン、連続極限の収束、冷たいプラズマの振動参照の再現を意味しません。既存cold-plasma-picの関連補助検証として扱い、温かい初期速度の軌道を冷たい解と同一視しません。",
+        "en": "Periodic[0,2pi],256particles,grids8/16/32,seeds35001/35002,dt.02,T.24. Uniform random positions,v=.2Normal+.1sin(x). Six pairs mean twelve separately evolved trajectories."
+      },
+      "relation": "related-model",
+      "note": {
+        "ja": "周期[0,2π]、256粒子、格子8/16/32、シード35001/35002、dt=.02、T=.24。位置は一様乱数、v=.2 Normal+.1 sin x。6組は別々に進めた12軌道です。",
+        "en": "Periodic[0,2pi],256particles,grids8/16/32,seeds35001/35002,dt.02,T.24. Uniform random positions,v=.2Normal+.1sin(x). Six pairs mean twelve separately evolved trajectories."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pic-independent-spatial/?lang=ja#pic-independent-spatial-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pic-independent-spatial/?lang=en#pic-independent-spatial-en-measurements"
+      }
+    }
+  ],
   "reference_note": {
     "ja": "小振幅の冷たいプラズマの線形変位cos(t)と比較し、電荷整合性・Poisson残差・自己力、格子系列と時間刻み系列を確認します。一般の非線形PIC軌道の厳密解という主張ではありません。 追加版は静止イオン背景のまま、電荷・運動量・粒子と場のエネルギーを軌道誤差と分けます。小振幅線形参照であり、熱的Landau減衰や電磁PICの根拠ではありません。",
     "en": "Compare with linear cold-plasma displacement cos(t); check charge compatibility, Poisson residual, self force, and separate grid/timestep series. This is not an exact reference for general nonlinear PIC trajectories. The companion retains stationary background ions and separates charge, momentum and particle/field-energy diagnostics from trajectory error. Its reference is small-amplitude linear theory, supplying no evidence for thermal Landau damping or electromagnetic PIC."
@@ -107,6 +171,32 @@
       "url": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pic/?lang=ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pic/?lang=en"
+      }
+    },
+    {
+      "id": "cic",
+      "name": {
+        "ja": "Cloud-in-cellの割当てと補間",
+        "en": "Cloud-in-cell assignment and interpolation"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/cic/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/cic/?lang=en"
+      }
+    },
+    {
+      "id": "verlet",
+      "name": {
+        "ja": "速度Verlet／粒子leapfrog法",
+        "en": "Velocity Verlet / particle leapfrog"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/verlet/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/verlet/?lang=en"
       }
     }
   ],
@@ -217,6 +307,61 @@
         "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_kinetics.py",
         "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_longrange.py",
         "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_runner.py"
+      ],
+      "source_scope": "package"
+    },
+    {
+      "id": "pic-independent-spatial",
+      "kind": "supplement",
+      "name": {
+        "ja": "PIC空間演算の独立実装照合",
+        "en": "Independently coded PIC spatial pipeline"
+      },
+      "method_ids": [
+        "pic",
+        "cic",
+        "verlet"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pic-independent-spatial/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pic-independent-spatial/?lang=en"
+      },
+      "scope": {
+        "ja": "ベクトル化CIC/FFTと、別に書いた粒子ループCIC・密なDFTを、それぞれが自己無撞着な場を毎kick計算する軌道全体で照合します。",
+        "en": "Compare vectorized CIC/FFT with separately authored scalar-particle CIC/dense DFT; each trajectory sources its own field at every kick."
+      },
+      "assumptions": {
+        "ja": "周期[0,2π]、256粒子、格子8/16/32、シード35001/35002、dt=.02、T=.24。位置は一様乱数、v=.2 Normal+.1 sin x。6組は別々に進めた12軌道です。",
+        "en": "Periodic[0,2pi],256particles,grids8/16/32,seeds35001/35002,dt.02,T.24. Uniform random positions,v=.2Normal+.1sin(x). Six pairs mean twelve separately evolved trajectories."
+      },
+      "limits": {
+        "ja": "離散演算の独立したコーディング照合です。時間積分法や連続方程式を変えた独立エンジン、連続極限の収束、冷たいプラズマの振動参照の再現を意味しません。既存cold-plasma-picの関連補助検証として扱い、温かい初期速度の軌道を冷たい解と同一視しません。",
+        "en": "Independent coding check of discrete spatial operators. It does not change the time integrator/continuum model, establish continuum convergence, or reproduce the cold-plasma oscillation reference. A related supplement of cold-plasma-pic; the finite warm velocity spread is explicit."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/atlas-pic-spatial-2026-11-23.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "19 pytestと58/58固定判定が合格。6組＝12の自己無撞着軌道を13時刻全てで照合し、最大差は位置8.88e−16・速度3.33e−16・電場8.33e−16・電荷2.89e−15。pytest+mainは0.392秒。最初の小pytestは周期端点の添字不具合で17/18となり、元記録を保持して修正後に全計算を実行しました。",
+        "en": "19pytest and58/58fixed gates passed. Compare six pairs=twelve self-consistent trajectories at all13states; maximum differences:x8.88e-16,v3.33e-16,E8.33e-16,rho2.89e-15. Shared pytest+main.392s. Initial small pytest retained17/18with a periodic-index failure; integer wrapping was corrected before the first fixed main batch."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/primary.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/references/scalar_pic.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/test_spatial.py"
       ],
       "source_scope": "package"
     }

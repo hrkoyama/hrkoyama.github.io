@@ -1,12 +1,12 @@
-# Q1 FEM for mapped-coordinate vector BVP / Q1有限要素法（曲線座標ベクトルBVP）
+# Q1 FEM for scalar diffusion and mapped vector BVPs / Q1有限要素法（スカラー拡散・曲線座標ベクトルBVP）
 
 Status: educational-example
 
-Approximate two Cartesian velocity components with bilinear(r,theta) basis functions for an annular variable-viscosity stress BVP. Assemble the exact polar Jacobian,physical gradients and coupled strain weak form.
+Existing releases: Approximate two Cartesian velocity components with bilinear(r,theta) basis functions for an annular variable-viscosity stress BVP. Assemble the exact polar Jacobian,physical gradients and coupled strain weak form. Additional fixed examples: Rotated diffusion: full-tensor Q1, MG and AMG. See each release for assumptions and checked scope.
 
-極座標(r,θ)の双線形基底でCartesian速度2成分を近似し、円環の可変粘性応力発散BVPを解く。正確なrのJacobian、物理勾配、結合したひずみ弱形式を組み立てる。
+既存配布版：極座標(r,θ)の双線形基底でCartesian速度2成分を近似し、円環の可変粘性応力発散BVPを解く。正確なrのJacobian、物理勾配、結合したひずみ弱形式を組み立てる。 追加固定例：回転異方性拡散：完全テンソルQ1とMG・AMG。条件と検証範囲は各配布版で確認してください。
 
-Mapped Q1 vector BVP on this annulus only; not P1,general quadrilaterals,an r0 axis,pressure/incompressibility or nonlinear Navier–Stokes. FixedNr8/16/32,Ntheta2Nr checks are not broad certification.
+Limits of existing releases: Mapped Q1 vector BVP on this annulus only; not P1,general quadrilaterals,an r0 axis,pressure/incompressibility or nonlinear Navier–Stokes. FixedNr8/16/32,Ntheta2Nr checks are not broad certification. Additional fixed examples: One angle/anisotropy only. Scalar TPFA is not extended to rotated tensors; arbitrary-tensor robustness is not established.
 
 Other names: Q1 FEM, bilinear finite elements, 双線形有限要素法, mapped Q1, Q1有限要素法
 
@@ -29,7 +29,13 @@ Download: https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-bou
 Verification: https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/verification.json
 Results: https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/results/result.json
 
-Common execution records: [{"id": "annular-viscous-mms", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/annular-viscous-mms/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/annular-viscous-mms/?lang=en"}, "kind": "dedicated-supplement"}]
+- Rotated diffusion: full-tensor Q1, MG and AMG: https://hrkoyama.github.io/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/
+
+Download: https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/atlas-coefficient-diffusion-2026-11-23.zip
+Verification: https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/verification.json
+Results: https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/results/result.json
+
+Common execution records: [{"id": "annular-viscous-mms", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/annular-viscous-mms/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/annular-viscous-mms/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "rotated-anisotropic-diffusion", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/?lang=en"}, "kind": "dedicated-supplement"}]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/methods/q1-fem/
 Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/
@@ -43,6 +49,7 @@ Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-d
 問題から導かれた対応です。検証範囲は各問題の入力・境界条件に従います。
 
 - [可変粘性のベクトル応力境界値問題](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#variable-viscosity-vector-ja) (`variable-viscosity-vector`; annular-viscous-mms)
+- [不連続係数・完全テンソル拡散の境界値問題](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#tensor-diffusion-ja) (`tensor-diffusion`; rotated-anisotropic-diffusion)
 
 #### 問題の図 (`method-problems-ja`)
 
@@ -58,6 +65,18 @@ polarのmapped Q1にCartesian速度2成分を置き、r dr dthetaで2mu epsilon�
 
 軸を除く円環で可変粘性の応力発散方程式を実際に解き、速度・歪み・境界tractionと仕事を照合します。
 
+##### [回転異方性拡散：完全テンソルQ1とMG・AMG](https://hrkoyama.github.io/numerical-methods-atlas/problems/rotated-anisotropic-diffusion/?lang=ja) (`rotated-anisotropic-diffusion`)
+
+![保存した2D解・誤差・真の残差・格子感度の検証図。](https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/results/rotated-anisotropic-diffusion-preview.png)
+
+完全2×2テンソルQ1とGauss積分。MG/SA-AMGは対称2/2Jacobi、Galerkin粗行列、粗CholeskyでSPDの固定適用。
+
+[この問題の参照・検証資料](https://hrkoyama.github.io/numerical-methods-atlas/problems/rotated-anisotropic-diffusion/?lang=ja#references-ja) · [この問題のコード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/rotated-anisotropic-diffusion/?lang=ja#code-ja)
+
+- [回転異方性拡散：完全テンソルQ1とMG・AMG](https://hrkoyama.github.io/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/?lang=ja) (`rotated-anisotropic-diffusion`) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/atlas-coefficient-diffusion-2026-11-23.zip)
+
+非零Kxyを保つQ1弱形式で、解析解への収束と同じ行列のMG・AMG収束を比較します。
+
 
 #### 厳密解・参照解 (`method-references-ja`)
 
@@ -68,6 +87,14 @@ polarのmapped Q1にCartesian速度2成分を置き、r dr dthetaで2mu epsilon�
 線形vector粘性BVPです。divfree拘束・圧力・非線形Navier–Stokesは含めません。原点なしのr>0であり、軸stencil検証ではありません。
 
 [既存の参照図](/numerical-methods-atlas/validation/annular-viscous-mms/?lang=ja#annular-viscous-mms-ja-measurements)
+
+##### [回転異方性拡散：完全テンソルQ1とMG・AMG](https://hrkoyama.github.io/numerical-methods-atlas/problems/rotated-anisotropic-diffusion/?lang=ja#references-ja) (`rotated-anisotropic-diffusion`)
+
+- [回転異方性拡散：完全テンソルQ1とMG・AMG](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-rotated-anisotropic-diffusion-ja) (`rotated-anisotropic-diffusion`; 同じ問題の参照; 製造解)
+
+指定した角度・異方性の限定例。スカラーTPFAを回転テンソルへ転用せず、一般テンソルへの頑健性は保証しません。
+
+[既存の参照図](/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/?lang=ja#rotated-anisotropic-diffusion-ja-measurements)
 
 ##### 手法の解説・独立参照・保存結果
 
@@ -92,6 +119,16 @@ polarのmapped Q1にCartesian速度2成分を置き、r dr dthetaで2mu epsilon�
 
 軸を除く円環で可変粘性の応力発散方程式を実際に解き、速度・歪み・境界tractionと仕事を照合します。
 
+##### 回転異方性拡散：完全テンソルQ1とMG・AMG (`rotated-anisotropic-diffusion`)
+
+[回転異方性拡散：完全テンソルQ1とMG・AMG](https://hrkoyama.github.io/numerical-methods-atlas/problems/rotated-anisotropic-diffusion/?lang=ja) · [実行・検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/?lang=ja) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/atlas-coefficient-diffusion-2026-11-23.zip)
+
+[固定入力](https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/inputs.json)
+
+[検証記録](https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/verification.json)
+
+非零Kxyを保つQ1弱形式で、解析解への収束と同じ行列のMG・AMG収束を比較します。
+
 ##### 既存の配布版・関連ソースと検査
 
 共用モジュールや配布版全体の検査を含み、すべてが個々の問題専用とは限りません。
@@ -112,10 +149,16 @@ Scoped fixed-input examples; original method variants and earlier releases remai
 - [/code/validated-examples/2026-11-23/mesh-boundary/fem.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/fem.py)
 - [/code/validated-examples/2026-11-23/mesh-boundary/boundary.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/boundary.py)
 - [/code/validated-examples/2026-11-23/mesh-boundary/experiments.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/experiments.py)
+- [/code/validated-examples/2026-11-23/coefficient-diffusion/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/run.py)
+- [/code/validated-examples/2026-11-23/coefficient-diffusion/operators.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/operators.py)
+- [/code/validated-examples/2026-11-23/coefficient-diffusion/multilevel.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/multilevel.py)
+- [/code/validated-examples/2026-11-23/coefficient-diffusion/references/p1.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/references/p1.py)
+- [/code/validated-examples/2026-11-23/coefficient-diffusion/experiments.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/experiments.py)
 
 ###### 配布版のテスト
 
 - [/code/validated-examples/2026-11-23/mesh-boundary/test_geometry.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/test_geometry.py)
+- [/code/validated-examples/2026-11-23/coefficient-diffusion/test_diffusion.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/test_diffusion.py)
 
 配布版の案内で条件と作業フォルダを確認してください。複数例の検査や図生成を含む場合があります。
 
@@ -132,6 +175,7 @@ python run.py --input inputs.json --output output
 These links are derived through associated problems; checked scope follows their inputs and boundaries.
 
 - [Variable-viscosity vector stress boundary-value problem](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#variable-viscosity-vector-en) (`variable-viscosity-vector`; annular-viscous-mms)
+- [Discontinuous and full-tensor diffusion BVP](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#tensor-diffusion-en) (`tensor-diffusion`; rotated-anisotropic-diffusion)
 
 #### Problem figures (`method-problems-en`)
 
@@ -147,6 +191,18 @@ Mapped polar Q1 with two Cartesian velocity components;4×4 Gauss integration of
 
 Actually solve variable-viscosity stress divergence on an annulus; check velocity, strain, physical traction and work.
 
+##### [Rotated diffusion: full-tensor Q1, MG and AMG](https://hrkoyama.github.io/numerical-methods-atlas/problems/rotated-anisotropic-diffusion/?lang=en) (`rotated-anisotropic-diffusion`)
+
+![Saved2D solution, error, true residual and refinement/reference sensitivity.](https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/results/rotated-anisotropic-diffusion-preview.png)
+
+Full2x2 tensor Q1 and Gauss quadrature. Fixed SPD MG/SA cycles use symmetric2/2Jacobi, Galerkin operators and coarse Cholesky.
+
+[This problem’s references and checks](https://hrkoyama.github.io/numerical-methods-atlas/problems/rotated-anisotropic-diffusion/?lang=en#references-en) · [This problem’s code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/rotated-anisotropic-diffusion/?lang=en#code-en)
+
+- [Rotated diffusion: full-tensor Q1, MG and AMG](https://hrkoyama.github.io/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/?lang=en) (`rotated-anisotropic-diffusion`) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/atlas-coefficient-diffusion-2026-11-23.zip)
+
+Retain nonzero Kxy in the Q1 weak form and compare analytic refinement with MG/AMG convergence for the same matrix.
+
 
 #### Exact / reference solutions (`method-references-en`)
 
@@ -157,6 +213,14 @@ Actually solve variable-viscosity stress divergence on an annulus; check velocit
 A linear vector viscous BVP, without divergence-free constraint, pressure or nonlinear Navier–Stokes. r>0 only; no axis stencil certification.
 
 [Existing reference profile](/numerical-methods-atlas/validation/annular-viscous-mms/?lang=en#annular-viscous-mms-en-measurements)
+
+##### [Rotated diffusion: full-tensor Q1, MG and AMG](https://hrkoyama.github.io/numerical-methods-atlas/problems/rotated-anisotropic-diffusion/?lang=en#references-en) (`rotated-anisotropic-diffusion`)
+
+- [Rotated diffusion: full-tensor Q1, MG and AMG](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-rotated-anisotropic-diffusion-en) (`rotated-anisotropic-diffusion`; Same-problem reference; Manufactured solution)
+
+One angle/anisotropy only. Scalar TPFA is not extended to rotated tensors; arbitrary-tensor robustness is not established.
+
+[Existing reference profile](/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/?lang=en#rotated-anisotropic-diffusion-en-measurements)
 
 ##### Method explanations, independent references and saved results
 
@@ -181,6 +245,16 @@ Matched problem executions are separate from existing editions and related sourc
 
 Actually solve variable-viscosity stress divergence on an annulus; check velocity, strain, physical traction and work.
 
+##### Rotated diffusion: full-tensor Q1, MG and AMG (`rotated-anisotropic-diffusion`)
+
+[Rotated diffusion: full-tensor Q1, MG and AMG](https://hrkoyama.github.io/numerical-methods-atlas/problems/rotated-anisotropic-diffusion/?lang=en) · [Run and validate](https://hrkoyama.github.io/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/?lang=en) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/atlas-coefficient-diffusion-2026-11-23.zip)
+
+[Fixed input](https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/inputs.json)
+
+[Verification receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/verification.json)
+
+Retain nonzero Kxy in the Q1 weak form and compare analytic refinement with MG/AMG convergence for the same matrix.
+
 ##### Existing editions, related source and tests
 
 Includes shared modules and package-wide checks; these resources are not all dedicated to individual problems.
@@ -201,10 +275,16 @@ Scoped fixed-input examples; original method variants and earlier releases remai
 - [/code/validated-examples/2026-11-23/mesh-boundary/fem.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/fem.py)
 - [/code/validated-examples/2026-11-23/mesh-boundary/boundary.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/boundary.py)
 - [/code/validated-examples/2026-11-23/mesh-boundary/experiments.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/experiments.py)
+- [/code/validated-examples/2026-11-23/coefficient-diffusion/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/run.py)
+- [/code/validated-examples/2026-11-23/coefficient-diffusion/operators.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/operators.py)
+- [/code/validated-examples/2026-11-23/coefficient-diffusion/multilevel.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/multilevel.py)
+- [/code/validated-examples/2026-11-23/coefficient-diffusion/references/p1.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/references/p1.py)
+- [/code/validated-examples/2026-11-23/coefficient-diffusion/experiments.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/experiments.py)
 
 ###### Package tests
 
 - [/code/validated-examples/2026-11-23/mesh-boundary/test_geometry.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/test_geometry.py)
+- [/code/validated-examples/2026-11-23/coefficient-diffusion/test_diffusion.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/test_diffusion.py)
 
 Consult the edition’s guide for conditions and working directory; commands may check or generate figures for several cases.
 

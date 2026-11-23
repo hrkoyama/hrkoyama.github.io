@@ -965,11 +965,27 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "validation-coefficient-diffusion": [
+    "ja",
+    "en"
+  ],
   "validation-double-mach": [
     "ja",
     "en"
   ],
+  "validation-dsmc-shock": [
+    "ja",
+    "en"
+  ],
+  "validation-dsmc-wall": [
+    "ja",
+    "en"
+  ],
   "validation-euler-positivity": [
+    "ja",
+    "en"
+  ],
+  "validation-fmm3d": [
     "ja",
     "en"
   ],
@@ -982,6 +998,10 @@ export const homeReadingLanguages = {
     "en"
   ],
   "validation-foundations-conditioning": [
+    "ja",
+    "en"
+  ],
+  "validation-gravity-dynamics": [
     "ja",
     "en"
   ],
@@ -1045,6 +1065,10 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "validation-pic-spatial": [
+    "ja",
+    "en"
+  ],
   "validation-relativistic": [
     "ja",
     "en"
@@ -1061,6 +1085,10 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "validation-slab-ewald": [
+    "ja",
+    "en"
+  ],
   "validation-splitting": [
     "ja",
     "en"
@@ -1070,6 +1098,10 @@ export const homeReadingLanguages = {
     "en"
   ],
   "validation-wall-flow": [
+    "ja",
+    "en"
+  ],
+  "validation-warm-pic": [
     "ja",
     "en"
   ],

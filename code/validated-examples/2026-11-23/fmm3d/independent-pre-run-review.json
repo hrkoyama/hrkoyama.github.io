@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "reviewer": "root",
+  "time": "2026-11-23T13:42:31.817947+00:00",
+  "state": "APPROVED_BEFORE_FIRST_SCIENTIFIC_EXECUTION",
+  "contract_sha256": "79be09de30f30fb4f9c00488d877d09f64d33ca9b49979b21467911a6be7493c",
+  "verified_bound_files": 15,
+  "checks": [
+    "3D1/r gravitational potential and differentiated local force normalization checked; independent unordered Cartesian direct sum and exact finite-octahedron qualifications.",
+    "Chebyshev barycentric weights/derivative including node limits; P2M,M2M and L2L tensor-map orientations checked algebraically.",
+    "Forced actual leaf levels2/3 and pruned empty boxes differ from capacity stopping; adaptive probe preserves overfull capped leaf.",
+    "Depth3 complete nonzero M2M-sourced M2L and actual L2L contribution reaches final chain_potential, not merely operation counts.",
+    "Dual-tree acceptance partitions directed source-target ownership once, excluding self only; no all-direct relabel.",
+    "Potential and force accuracy gates cover balanced,adaptive and rigidly transformed trees; fixed p3/5/7 refinement checks.",
+    "Independent finite-octahedron golden qualifies direct reference only; no claim those targets were evaluated by FMM.",
+    "All6primary+2supplemental FMM runs,pytest and direct qualifications share120s; fields saved before diagnostics."
+  ],
+  "scientific_execution_before_review": false,
+  "authorization": "Proceed with bounded pytest+all fixed main. Preserve each attempt and do not relax thresholds based on outputs."
+}

@@ -1,0 +1,207 @@
+[
+  {
+    "id": "checkerboard-diffusion",
+    "method_ids": [
+      "multigrid",
+      "amg",
+      "cg"
+    ],
+    "title": {
+      "ja": "係数ジャンプ拡散：共有流束とMG・AMG",
+      "en": "Checkerboard diffusion: shared flux, MG and AMG"
+    },
+    "summary": {
+      "ja": "不連続係数のFV解を独立なP1参照と比較し、線形系の残差・前進誤差と連続問題の誤差を分けます。",
+      "en": "Compare discontinuous-coefficient FV with independent P1 reference fields, separating linear-system residual/forward errors from continuum error."
+    },
+    "assumptions": {
+      "ja": "単位正方形、零Dirichlet、f=1、対角2象限100/残り1、N16/32/64。参照P1は128/192。",
+      "en": "Unit square, zero Dirichlet, f=1, diagonal quadrants100/others1, N16/32/64; reference P1 meshes128/192."
+    },
+    "algorithm": {
+      "ja": "直交FVの共有面調和平均。幾何MGと座標を受け取らないSA-AMGの対称Galerkin V-cycleを、同じ行列のPCGへ適用。",
+      "en": "Orthogonal FV with shared harmonic transmissibility. Symmetric Galerkin geometric and coordinate-free SA cycles precondition PCG on identical matrices."
+    },
+    "validation": {
+      "ja": "非零2材料流束パッチ、残差に整合する収支、直接解の前進/energy誤差、独立三角形P1参照の格子感度。",
+      "en": "Nonzero two-material flux patch, residual-aware budget, direct forward/energy errors and independent triangular-P1 grid sensitivity."
+    },
+    "limits": {
+      "ja": "係数比100の固定例。P1格子差は厳密誤差上界ではなく、特異交点の次数や普遍的なMG/AMG優劣は主張しません。",
+      "en": "Fixed contrast100 example. P1 differences are not rigorous error bounds; no singular exponent or universal MG/AMG winner is asserted."
+    },
+    "formulas": [
+      "-\\nabla\\cdot(a\\nabla u)=1,\\quad a\\in\\{1,100\\}",
+      "T_f=|f|/(d_L/a_L+d_R/a_R)"
+    ],
+    "domains": [
+      "pde",
+      "linear-algebra"
+    ],
+    "references": [
+      {
+        "id": "dumux-tpfa",
+        "title": "Two-point flux approximation",
+        "url": "https://dumux.org/docs/doxygen/master/group___c_c_tpfa_discretization.html",
+        "review_level": "selected-official-derivation-read",
+        "review_scope": "Scalar harmonic transmissibility, shared flux and K-orthogonality restriction. No DuMux code executed."
+      },
+      {
+        "id": "hypre-symmetric-smoother",
+        "title": "BoomerAMG: smoother options",
+        "url": "https://hypre.readthedocs.io/en/latest/solvers-boomeramg.html",
+        "review_level": "selected-official-documentation-read",
+        "review_scope": "CG requires a symmetric smoother. Our educational SA code is not hypre and no hypre code was run."
+      },
+      {
+        "id": "vanek1996",
+        "title": "Algebraic multigrid by smoothed aggregation for second and fourth order elliptic problems",
+        "url": "https://link.springer.com/article/10.1007/BF02238511",
+        "review_level": "publisher-abstract-only-full-paper-unread",
+        "review_scope": "Metadata and abstract only. No general robustness theorem claimed for these fixed jumps/tensors."
+      }
+    ],
+    "citations": [
+      {
+        "id": "dumux-tpfa",
+        "title": "Two-point flux approximation",
+        "url": "https://dumux.org/docs/doxygen/master/group___c_c_tpfa_discretization.html",
+        "review_level": "selected-official-derivation-read",
+        "review_scope": "Scalar harmonic transmissibility, shared flux and K-orthogonality restriction. No DuMux code executed."
+      },
+      {
+        "id": "hypre-symmetric-smoother",
+        "title": "BoomerAMG: smoother options",
+        "url": "https://hypre.readthedocs.io/en/latest/solvers-boomeramg.html",
+        "review_level": "selected-official-documentation-read",
+        "review_scope": "CG requires a symmetric smoother. Our educational SA code is not hypre and no hypre code was run."
+      },
+      {
+        "id": "vanek1996",
+        "title": "Algebraic multigrid by smoothed aggregation for second and fourth order elliptic problems",
+        "url": "https://link.springer.com/article/10.1007/BF02238511",
+        "review_level": "publisher-abstract-only-full-paper-unread",
+        "review_scope": "Metadata and abstract only. No general robustness theorem claimed for these fixed jumps/tensors."
+      }
+    ],
+    "code_files": [
+      "run.py",
+      "operators.py",
+      "multilevel.py",
+      "references/p1.py"
+    ],
+    "gallery_figure": "checkerboard-diffusion-preview.png",
+    "additional_figures": [
+      {
+        "file": "checkerboard-diffusion-preview.png",
+        "caption": {
+          "ja": "保存した2D解・誤差・真の残差・格子感度の検証図。",
+          "en": "Saved2D solution, error, true residual and refinement/reference sensitivity."
+        }
+      }
+    ]
+  },
+  {
+    "id": "rotated-anisotropic-diffusion",
+    "method_ids": [
+      "q1-fem",
+      "multigrid",
+      "amg",
+      "cg"
+    ],
+    "title": {
+      "ja": "回転異方性拡散：完全テンソルQ1とMG・AMG",
+      "en": "Rotated diffusion: full-tensor Q1, MG and AMG"
+    },
+    "summary": {
+      "ja": "非零Kxyを保つQ1弱形式で、解析解への収束と同じ行列のMG・AMG収束を比較します。",
+      "en": "Retain nonzero Kxy in the Q1 weak form and compare analytic refinement with MG/AMG convergence for the same matrix."
+    },
+    "assumptions": {
+      "ja": "単位正方形、零Dirichlet、K=R(pi/6)diag(1,.01)Rᵀ、厳密解sin(pi x)sin(pi y)、N16/32/64。",
+      "en": "Unit square, zero Dirichlet, K=R(pi/6)diag(1,.01)R^T, exact sin(pi x)sin(pi y), N16/32/64."
+    },
+    "algorithm": {
+      "ja": "完全2×2テンソルQ1とGauss積分。MG/SA-AMGは対称2/2Jacobi、Galerkin粗行列、粗CholeskyでSPDの固定適用。",
+      "en": "Full2x2 tensor Q1 and Gauss quadrature. Fixed SPD MG/SA cycles use symmetric2/2Jacobi, Galerkin operators and coarse Cholesky."
+    },
+    "validation": {
+      "ja": "u=xy,f=−2Kxyパッチ、解析流束由来のsource、積分L2/energy誤差と4/6点求積感度、直接解との比較。",
+      "en": "u=xy,f=-2Kxy patch, analytic-flux source, integrated L2/energy error,4/6point quadrature sensitivity and direct-solve comparison."
+    },
+    "limits": {
+      "ja": "指定した角度・異方性の限定例。スカラーTPFAを回転テンソルへ転用せず、一般テンソルへの頑健性は保証しません。",
+      "en": "One angle/anisotropy only. Scalar TPFA is not extended to rotated tensors; arbitrary-tensor robustness is not established."
+    },
+    "formulas": [
+      "-\\nabla\\cdot(K\\nabla u)=f,\\quad K=R(\\pi/6)\\operatorname{diag}(1,.01)R^T",
+      "f=\\pi^2(K_{xx}+K_{yy})\\sin\\pi x\\sin\\pi y-2\\pi^2K_{xy}\\cos\\pi x\\cos\\pi y"
+    ],
+    "domains": [
+      "pde",
+      "linear-algebra"
+    ],
+    "references": [
+      {
+        "id": "dumux-tpfa",
+        "title": "Two-point flux approximation",
+        "url": "https://dumux.org/docs/doxygen/master/group___c_c_tpfa_discretization.html",
+        "review_level": "selected-official-derivation-read",
+        "review_scope": "Scalar harmonic transmissibility, shared flux and K-orthogonality restriction. No DuMux code executed."
+      },
+      {
+        "id": "hypre-symmetric-smoother",
+        "title": "BoomerAMG: smoother options",
+        "url": "https://hypre.readthedocs.io/en/latest/solvers-boomeramg.html",
+        "review_level": "selected-official-documentation-read",
+        "review_scope": "CG requires a symmetric smoother. Our educational SA code is not hypre and no hypre code was run."
+      },
+      {
+        "id": "vanek1996",
+        "title": "Algebraic multigrid by smoothed aggregation for second and fourth order elliptic problems",
+        "url": "https://link.springer.com/article/10.1007/BF02238511",
+        "review_level": "publisher-abstract-only-full-paper-unread",
+        "review_scope": "Metadata and abstract only. No general robustness theorem claimed for these fixed jumps/tensors."
+      }
+    ],
+    "citations": [
+      {
+        "id": "dumux-tpfa",
+        "title": "Two-point flux approximation",
+        "url": "https://dumux.org/docs/doxygen/master/group___c_c_tpfa_discretization.html",
+        "review_level": "selected-official-derivation-read",
+        "review_scope": "Scalar harmonic transmissibility, shared flux and K-orthogonality restriction. No DuMux code executed."
+      },
+      {
+        "id": "hypre-symmetric-smoother",
+        "title": "BoomerAMG: smoother options",
+        "url": "https://hypre.readthedocs.io/en/latest/solvers-boomeramg.html",
+        "review_level": "selected-official-documentation-read",
+        "review_scope": "CG requires a symmetric smoother. Our educational SA code is not hypre and no hypre code was run."
+      },
+      {
+        "id": "vanek1996",
+        "title": "Algebraic multigrid by smoothed aggregation for second and fourth order elliptic problems",
+        "url": "https://link.springer.com/article/10.1007/BF02238511",
+        "review_level": "publisher-abstract-only-full-paper-unread",
+        "review_scope": "Metadata and abstract only. No general robustness theorem claimed for these fixed jumps/tensors."
+      }
+    ],
+    "code_files": [
+      "run.py",
+      "operators.py",
+      "multilevel.py",
+      "references/p1.py"
+    ],
+    "gallery_figure": "rotated-anisotropic-diffusion-preview.png",
+    "additional_figures": [
+      {
+        "file": "rotated-anisotropic-diffusion-preview.png",
+        "caption": {
+          "ja": "保存した2D解・誤差・真の残差・格子感度の検証図。",
+          "en": "Saved2D solution, error, true residual and refinement/reference sensitivity."
+        }
+      }
+    ]
+  }
+]

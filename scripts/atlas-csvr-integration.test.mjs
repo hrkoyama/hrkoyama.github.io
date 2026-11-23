@@ -58,14 +58,14 @@ for extra in [dict(m['depth_additional_releases'][0],case_ids=['csvr-kinetic-ker
 
 test('new diagnostic and additional method do not inflate the physical-problem inventory',()=>{
  const index=json('numerical-methods-atlas/validation/index.json');
- assert.equal(index.case_count,71);assert.equal(index.groups.length,30);
+ assert.equal(index.case_count,83);assert.equal(index.groups.length,38);
  assert.equal(sha('code/validated-examples/2026-11-22/thermostats/inputs.json'),'8097b48107f42800ce6883aeaf73f22cf37f01e2269884f2f965d85a315f2a38');
  assert.equal(json('code/validated-examples/2026-11-22/thermostats/verification.json').passed_tests,42);
  assert.equal(index.case_problem_ids['csvr-kinetic-kernel'],null);
  assert.equal(index.case_problem_ids['csvr-langevin-harmonic'],'langevin-harmonic');
  assert.equal(index.case_problem_ids['csvr-langevin-quartic'],'thermostatted-quartic');
  const inventory=json('numerical-methods-atlas/test-cases/index.json');
- assert.equal(inventory.problems.length,102);
+ assert.equal(inventory.problems.length,113);
  assert.ok(!inventory.problems.some(x=>x.id==='csvr-kinetic-kernel'));
  const harmonic=inventory.problems.find(x=>x.id==='langevin-harmonic');
  assert.ok(harmonic.supplemental_examples.some(x=>x.id==='langevin-harmonic'));

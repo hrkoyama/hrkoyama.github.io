@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "reviewer": "root",
+  "time": "2026-11-23T13:43:59.892963+00:00",
+  "state": "APPROVED_BEFORE_FIRST_EXECUTION",
+  "contract_sha256": "45394071e43eefbdad9d9d75988ff4b318387665ea8dee0e112dc82f8b17cd10",
+  "bound_files": 8,
+  "scientific_execution_before_review": false,
+  "reviewed": [
+    "Independent scalar CIC,explicit complex DFT,own interpolation,field updates at every kick; no production spatial imports.",
+    "Same initial arrays and Verlet temporal scheme explicitly shared; not an independent-time or continuum-reference claim.",
+    "Analytic charge-field-electron sign fixture and deliberate wrongsign control; odd-grid,positive-weight,Nyquist and wrap fixtures.",
+    "Six pairs/twelve actual trajectories,all thirteen time states compared with fixed stringent floating-point criteria.",
+    "Related generic spatial validation linked to existing cold-plasma-pic; warm small velocityspread is not the old cold-wave exact solution.",
+    "Strict JSON case decisions,finite CSV,candidate arrays saved before comparisons; fixed inputs retained."
+  ],
+  "authorization": "Execute18pytest and all6pairs within one120s combined deadline; preserve each attempt and every failure. Plot separately."
+}

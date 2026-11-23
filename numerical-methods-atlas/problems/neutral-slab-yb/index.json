@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "id": "neutral-slab-yb",
+  "name": {
+    "ja": "中性長方形スラブ：真2P参照とYB補正",
+    "en": "Neutral rectangular slab: genuine2P reference and YB"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/neutral-slab-yb/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/neutral-slab-yb/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/neutral-slab-yb/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/results/neutral-slab-yb-preview.png",
+    "sha256": "eff9876ae6570ebc5389e65f8a07b774e87e5ebccc7bab97b2e69bdc427c0206",
+    "width": 920,
+    "height": 592,
+    "caption": {
+      "ja": "固定入力を実際に計算した保存配列からの検証図。",
+      "en": "Validation figure from actual saved fixed-input calculation arrays."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-slab-ewald/#neutral-slab-yb",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-slab-ewald/#neutral-slab-yb"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#neutral-slab-yb",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#neutral-slab-yb-en"
+  },
+  "equations": [
+    {
+      "id": "coulomb-electrostatics",
+      "name": {
+        "ja": "Coulomb静電場と混合周期境界",
+        "en": "Coulomb electrostatics with mixed periodic boundaries"
+      },
+      "formula": [
+        "\\phi(\\boldsymbol r)=\\sum_j\\sum_{\\boldsymbol n}^{\\prime}\\frac{q_j}{|\\boldsymbol r-\\boldsymbol r_j+\\boldsymbol L\\boldsymbol n|},\\quad\\boldsymbol F_i=-q_i\\nabla\\phi_i",
+        "E_{\\rm YB}=E_{3P}+2\\pi M_z^2/V,\\quad M_z=\\sum_iq_iz_i"
+      ],
+      "note": {
+        "ja": "中性系・Coulomb定数1。真の2周期の参照と、有限真空厚の3周期＋補正を区別します。",
+        "en": "Neutral system,Coulomb constant1. Distinguish genuine2P references from finite-vacuum3P plus correction."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#coulomb-electrostatics-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#coulomb-electrostatics-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "Coulomb定数1、Lx1,Ly1.25、Lz1.5/3/6、4電荷±1、非周期zのMz=.34、alpha3/4。",
+    "en": "Coulomb1, lateral1×1.25, extendedLz1.5/3/6,4neutral charges±1,physical-z dipole.34 andalpha3/4."
+  },
+  "formulations": [
+    {
+      "id": "supplement-neutral-slab-yb",
+      "name": {
+        "ja": "中性長方形スラブ：真2P参照とYB補正",
+        "en": "Neutral rectangular slab: genuine2P reference and YB"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "E_{\\rm YB}=E_{3P}+2\\pi M_z^2/V",
+        "\\Delta F_{zi}=-4\\pi q_iM_z/V",
+        "\\phi(\\pm\\infty)=\\pm2\\pi M_z/(L_xL_y)"
+      ],
+      "note": {
+        "ja": "4電荷の長方形3P Ewaldに中性スラブ補正を加え、別実装の真2P和のエネルギー・全力成分と照合します。",
+        "en": "Compare corrected orthorhombic3P Ewald energy/all forces against a separately implemented genuine2P series."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "neutral-slab-yb",
+      "kind": "semi-analytic",
+      "kind_label": {
+        "ja": "半解析解",
+        "en": "Semi-analytic reference"
+      },
+      "title": {
+        "ja": "中性長方形スラブ：真2P参照とYB補正",
+        "en": "Neutral rectangular slab: genuine2P reference and YB"
+      },
+      "formula": "phi=real2P+nonzero_modes+zero_mode-2alpha*q/sqrt(pi); E=.5sum(q*phi); F=-q grad(phi); DeltaE=2pi*Mz^2/V; DeltaFz=-4pi*q*Mz/V.",
+      "assumptions": {
+        "ja": "Coulomb定数1、Lx1,Ly1.25、Lz1.5/3/6、4電荷±1、非周期zのMz=.34、alpha3/4。 参照alpha/打切り資格、エネルギー差分、真空厚、全力、零モード負対照・遠方ゲージと中性平行移動を分離。 中性・固定4電荷・Cartesian z法線のみ。YBは有限ギャップ近似で任意真空の厳密2Pではありません。原著YB本文は未読。",
+        "en": "Coulomb1, lateral1×1.25, extendedLz1.5/3/6,4neutral charges±1,physical-z dipole.34 andalpha3/4."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "中性・固定4電荷・Cartesian z法線のみ。YBは有限ギャップ近似で任意真空の厳密2Pではありません。原著YB本文は未読。",
+        "en": "Neutral fixed4charge Cartesian-z slab only. YB is a finite-gap approximation, not exact2P at arbitrary vacuum. Original Yeh full text not inspected."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/neutral-slab-yb/?lang=ja#neutral-slab-yb-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/neutral-slab-yb/?lang=en#neutral-slab-yb-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "参照alpha/打切り資格、エネルギー差分、真空厚、全力、零モード負対照・遠方ゲージと中性平行移動を分離。",
+    "en": "Separate reference cutoff/splitting qualification, energy gradients, vacuum error, all forces, zero-mode control/far gauge and neutral translations."
+  },
+  "methods": [
+    {
+      "id": "ewald",
+      "name": {
+        "ja": "Ewald法",
+        "en": "Ewald summation"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ewald/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ewald/?lang=en"
+      }
+    },
+    {
+      "id": "slab-ewald",
+      "name": {
+        "ja": "スラブ静電場と2次元周期Ewald",
+        "en": "Slab electrostatics and 2D-periodic Ewald"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/slab-ewald/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/slab-ewald/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "全±3D波数、自己項、2pi Mz²/Vとその力。独立2Pには横零モード・自己減算と安定exp–erfcを保持。",
+    "en": "Full±3D reciprocal sum/self term and2pi Mz²/V correction; independent2P retains zero/self terms and stable exp-erfc evaluation."
+  },
+  "executions": [
+    {
+      "id": "neutral-slab-yb",
+      "kind": "supplement",
+      "name": {
+        "ja": "中性長方形スラブ：真2P参照とYB補正",
+        "en": "Neutral rectangular slab: genuine2P reference and YB"
+      },
+      "method_ids": [
+        "ewald",
+        "slab-ewald"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/neutral-slab-yb/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/neutral-slab-yb/?lang=en"
+      },
+      "scope": {
+        "ja": "4電荷の長方形3P Ewaldに中性スラブ補正を加え、別実装の真2P和のエネルギー・全力成分と照合します。",
+        "en": "Compare corrected orthorhombic3P Ewald energy/all forces against a separately implemented genuine2P series."
+      },
+      "assumptions": {
+        "ja": "Coulomb定数1、Lx1,Ly1.25、Lz1.5/3/6、4電荷±1、非周期zのMz=.34、alpha3/4。",
+        "en": "Coulomb1, lateral1×1.25, extendedLz1.5/3/6,4neutral charges±1,physical-z dipole.34 andalpha3/4."
+      },
+      "limits": {
+        "ja": "中性・固定4電荷・Cartesian z法線のみ。YBは有限ギャップ近似で任意真空の厳密2Pではありません。原著YB本文は未読。",
+        "en": "Neutral fixed4charge Cartesian-z slab only. YB is a finite-gap approximation, not exact2P at arbitrary vacuum. Original Yeh full text not inspected."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/atlas-slab-ewald-2026-11-23.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "参照alpha/打切り資格、エネルギー差分、真空厚、全力、零モード負対照・遠方ゲージと中性平行移動を分離。",
+        "en": "Separate reference cutoff/splitting qualification, energy gradients, vacuum error, all forces, zero-mode control/far gauge and neutral translations."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/electrostatics.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/references/twoperiodic.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/test_slab.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

@@ -1,0 +1,49 @@
+{
+  "group": "warm-pic",
+  "contract_sha256": "79614fb565d808cdbab9ded56196ce76c79fa5593e81194d3d53c10a318270fd",
+  "started_at_utc": "2026-11-23T13:49:24.894262+00:00",
+  "combined_deadline_seconds": 120,
+  "commands": [
+    {
+      "phase": "pytest",
+      "command": [
+        "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/bin/python",
+        "-W",
+        "error",
+        "-m",
+        "pytest",
+        "-q",
+        "-o",
+        "cache_dir=/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/pic/warm-pic/pytest-cache",
+        "--junitxml=/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-28-37-2026-11-23/pic/execution-attempts/warm-pic/03/junit.xml"
+      ],
+      "cwd": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-28-37-2026-11-23/pic/warm-pic",
+      "returncode": 0
+    },
+    {
+      "phase": "main",
+      "command": [
+        "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/bin/python",
+        "-W",
+        "error",
+        "run.py",
+        "--input",
+        "inputs.json",
+        "--output",
+        "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-28-37-2026-11-23/pic/warm-pic/results"
+      ],
+      "cwd": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-28-37-2026-11-23/pic/warm-pic",
+      "returncode": 1
+    }
+  ],
+  "passed": false,
+  "pytest": {
+    "tests": 30,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "failure": "main returned failure; source/results preserved without changes",
+  "combined_seconds": 3.752082542,
+  "ended_at_utc": "2026-11-23T13:49:28.646375+00:00"
+}

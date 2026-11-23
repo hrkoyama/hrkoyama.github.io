@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "group": "pic-spatial",
+  "revision": 2,
+  "state": "FROZEN_BEFORE_FIRST_MAIN_AFTER_RETAINED_PYTEST_FIXTURE_FAILURE",
+  "frozen_at_utc": "2026-11-23T13:45:31.085701+00:00",
+  "frozen_before_first_numerical_reference": false,
+  "frozen_before_first_pic_trajectory": false,
+  "numerical_execution_performed": true,
+  "expected_pytest": 19,
+  "expected_case_gates": 58,
+  "expected_separate_reference_qualifiers": 0,
+  "expected_self_consistent_trajectories": 12,
+  "combined_pytest_plus_main_deadline_seconds": 120,
+  "main_internal_budget_seconds": 115,
+  "reference_qualifiers_before_any_pic": false,
+  "files_sha256": {
+    "acceptance.json": "82397a27873a8db17cbc4c006843e39de6ee634a8e95d9f662d343e54f144a64",
+    "inputs.json": "8e11e04349f7d8df800b5244b0aa7faf9238ea41d4bcbaf8411885fe70529efa",
+    "primary.py": "f840bc15b60e3c2a3ee6b956631e2339f4906e132d5524a2cebd87f27a614559",
+    "references/__init__.py": "b48ac1abaf1716b0b530679f8fe65f4ea48cbc3f25a04238c66c159fecbd1cff",
+    "references/scalar_pic.py": "562263012c460989d4ea4e7c2cacc1057543c5128537ddbfe184a447bc7cc65f",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "run.py": "3dc1343fa4164608ddf92bc1babac3bce055656c54ddb12cf7c9e1e5f0ce2209",
+    "test_spatial.py": "ac4ca3cd6c04cd0c4139a4d0de9cb99acaecb20e54dab4b3e1b3925d1c39e5b8"
+  },
+  "direct_pins": [
+    "numpy==2.0.2",
+    "scipy==1.14.1",
+    "pytest==8.3.5"
+  ],
+  "failure_policy": "Preserve exact source/input/criteria/contract, logs and every complete/partial output. Stop and review before revisions; do not relax thresholds after results.",
+  "runtime_status": "UNMEASURED",
+  "review_scope": "Small educational fixed1D1V nonlinear self-consistent PIC; linear continuum reference or separately coded same-discretization spatial pipeline as explicitly scoped in cases.json.",
+  "presentation_files_sha256_at_freeze": {
+    "LICENSE": "e1053200337d037d9d81620956ce49263117c6540b1c1352c030c220bee05f59",
+    "README.md": "a507654ed858aee30403ee0c8bccff7ed77ca2f6c9e66c0b2d68d2ad8f2cc1f3",
+    "cases.json": "dceebffa9b262b36e5d1eac99eab6bfcdd7b1b959b037d493f4c7e05943745da",
+    "plot.py": "bddd99b1caa2388d2c7565cb195bca9e4fa8c44afa33a6a84763a50aa0a5e42e",
+    "references/review.json": "ef196bc5b5118f988e3bff8c9606182b1da465700ecec654830a284aa908532a",
+    "requirements-plotting.txt": "ede4bda3bad02e6f13ce3f9e552f22205fd538846cc2aa34d872e40d706bde43"
+  },
+  "presentation_policy": "Plots/cases/README/provenance may receive honest presentation-only result annotations after execution; numerical inputs, criteria, runner, operators, references and tests remain bound to files_sha256.",
+  "unexecuted_preflight_note": "Initial draft contract had a manually typed future timestamp; corrected to actual UTC before any review/execution. Exact initial bytes preserved in ../preflight-revisions/01-unexecuted. No input/criterion/source changes.",
+  "previous_contract_sha256": "45394071e43eefbdad9d9d75988ff4b318387665ea8dee0e112dc82f8b17cd10",
+  "revision_reason": "First spatial pytest retained17pass/1failure before main. Tiny negative x modulo L rounded to L, yielding index N. Independently wrap the integer deposition index modulo N after computing its fraction; no particle state clipping, physics/input/criteria changes. Add one exact boundary regression per group. Warm candidate-before-fit retention remains unchanged.",
+  "earlier_scientific_execution_scope": "Spatial only: small pytest fixtures ran; fixed spatial main and all warm main/reference/pytest remained unexecuted.",
+  "frozen_before_first_pytest": false,
+  "frozen_before_first_fixed_main_pic_batch": true,
+  "frozen_before_first_main_reference_comparison": true,
+  "earlier_execution": "Attempt01:18small pytest items ran,17passed/1periodic-index failure; fixed main6pairs was not launched. Exact source/contract/logs/JUnit retained."
+}

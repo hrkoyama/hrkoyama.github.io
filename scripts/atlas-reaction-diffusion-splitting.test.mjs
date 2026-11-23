@@ -72,12 +72,12 @@ test('the two methods acquire only the verified dedicated release and the physic
   assert.ok(method.code_urls.every(url=>url.includes('/splitting/')));
  }
  const registry=json('numerical-methods-atlas/validation/releases.json');
- assert.equal(registry.releases.length,30);assert.equal(registry.case_count,71);
- assert.equal(registry.releases.filter(row=>!['noh','noh-cartesian','sedov','double-mach','forward-step','low-mach','guderley','euler-positivity','zalesak','weno-critical','shallow-water','wall-flow','level-set', 'instability-growth', 'mhd-transport', 'mesh-boundary', 'moving-waves', 'relativistic', 'sem-fr'].includes(row.group)).reduce((sum,row)=>sum+row.tests,0),388);
+ assert.equal(registry.releases.length,38);assert.equal(registry.case_count,83);
+ assert.equal(registry.releases.filter(row=>!['noh','noh-cartesian','sedov','double-mach','forward-step','low-mach','guderley','euler-positivity','zalesak','weno-critical','shallow-water','wall-flow','level-set', 'instability-growth', 'mhd-transport', 'mesh-boundary', 'moving-waves', 'relativistic', 'sem-fr','coefficient-diffusion','slab-ewald','fmm3d','gravity-dynamics','warm-pic','pic-spatial','dsmc-wall','dsmc-shock'].includes(row.group)).reduce((sum,row)=>sum+row.tests,0),388);
  assert.equal(registry.releases.find(row=>row.group==='noh').tests,28);
- assert.equal(registry.releases.filter(row=>!['euler-positivity','zalesak','weno-critical','shallow-water','wall-flow','level-set', 'instability-growth', 'mhd-transport', 'mesh-boundary', 'moving-waves', 'relativistic', 'sem-fr'].includes(row.group)).reduce((sum,row)=>sum+row.tests,0),571);
+ assert.equal(registry.releases.filter(row=>!['euler-positivity','zalesak','weno-critical','shallow-water','wall-flow','level-set', 'instability-growth', 'mhd-transport', 'mesh-boundary', 'moving-waves', 'relativistic', 'sem-fr','coefficient-diffusion','slab-ewald','fmm3d','gravity-dynamics','warm-pic','pic-spatial','dsmc-wall','dsmc-shock'].includes(row.group)).reduce((sum,row)=>sum+row.tests,0),571);
  const problems=json('numerical-methods-atlas/test-cases/index.json').problems;
- assert.equal(problems.length,102);
+ assert.equal(problems.length,113);
  assert.deepEqual(problems.filter(p=>(p.supplemental_examples||[]).some(x=>x.id===id)).map(x=>x.id),['turing-schnakenberg']);
  assert.equal(sha('numerical-methods-atlas/code-and-data/examples.json'),'3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7');
  const oldArchive='code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip';

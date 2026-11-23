@@ -10,8 +10,8 @@
     "en": "Particle fields & gravity"
   },
   "summary": {
-    "ja": "孤立した3次元粒子の重力加速度をoctreeで近似する。公開例はG=1のPlummer軟化核に対し、質量単極子または同じ軟化核の完全な二次モーメント項を使い、直接和と比較する。",
-    "en": "Approximate isolated 3D particle gravity with an octree. The public example uses G=1 and a Plummer-softened kernel, with a monopole or the same kernel's full second-moment term, compared with direct summation."
+    "ja": "既存配布版：孤立した3次元粒子の重力加速度をoctreeで近似する。公開例はG=1のPlummer軟化核に対し、質量単極子または同じ軟化核の完全な二次モーメント項を使い、直接和と比較する。 追加固定例：冷たいPlummer密度由来32粒子の短時間力学。条件と検証範囲は各配布版で確認してください。",
+    "en": "Existing releases: Approximate isolated 3D particle gravity with an octree. The public example uses G=1 and a Plummer-softened kernel, with a monopole or the same kernel's full second-moment term, compared with direct summation. Additional fixed examples: Short-time32body dynamics from a cold Plummer-density sample. See each release for assumptions and checked scope."
   },
   "status": "educational-example",
   "origin": "existing-coverage-catalog",
@@ -25,7 +25,7 @@
   "test_files": [
     "test_particle_gravity"
   ],
-  "code_mapping_scope": "Related chapter modules and test files; not a claim that each test covers every named method.",
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct.",
   "references": [
     {
       "url": "https://doi.org/10.1038/324446a0",
@@ -54,12 +54,16 @@
   "units": "Dimensionless G=1. Positions and softening share a length unit and masses use one consistent unit. With scales L₀,M₀, acceleration is restored with GM₀/L₀².",
   "boundary_conditions": "Isolated boundaries without periodic images; the softened potential −Gm/√(r²+ε²) tends to zero at infinity. This is a different boundary problem from periodic PM, Ewald or TreePM.",
   "limitations": {
-    "ja": "静的な力の教育例で、時間積分・宇宙膨張・周期境界・FMMを含まない。thetaは厳密な誤差上限ではなく、order=2がすべての配置で常に改善する保証もない。対象ごとの近似なので厳密な作用反作用・全運動量保存は保証せず、相互作用回数は実時間や全分布でのO(N log N)の実測ではない。",
-    "en": "A static-force educational example without time integration, expansion, periodic images or FMM. theta is not a rigorous error bound, and order=2 need not improve every configuration. Targetwise approximation does not guarantee exact action–reaction/total-momentum conservation. Interaction counts are not timings or empirical complexity guarantees for every distribution."
+    "ja": "既存配布版の制約：静的な力の教育例で、時間積分・宇宙膨張・周期境界・FMMを含まない。thetaは厳密な誤差上限ではなく、order=2がすべての配置で常に改善する保証もない。対象ごとの近似なので厳密な作用反作用・全運動量保存は保証せず、相互作用回数は実時間や全分布でのO(N log N)の実測ではない。 今回の追加固定例：冷たい有限N初期値で平衡Plummer分布/連続球厳密軌道ではありません。BHの一般相反性・大域symplectic性は主張しません。",
+    "en": "Limits of existing releases: A static-force educational example without time integration, expansion, periodic images or FMM. theta is not a rigorous error bound, and order=2 need not improve every configuration. Targetwise approximation does not guarantee exact action–reaction/total-momentum conservation. Interaction counts are not timings or empirical complexity guarantees for every distribution. Additional fixed examples: Cold finite-N initial value,not an equilibrium Plummer DF or exact continuum orbit. No general BH reciprocity/global symplecticity claim."
   },
   "metadata_review": {
     "level": "method-specific sources and implementation inspected; no new numerical rerun",
-    "on": "2026-11-22"
+    "on": "2026-11-22",
+    "supplemental_review": {
+      "on": "2026-11-23",
+      "level": "Frozen fixed-input source,independent review,actual pytest/main and independently extracted ZIP; see each new release for exact reference independence and failed-attempt history."
+    }
   },
   "assumptions_ja": [
     "位置は有限の(N,3)配列、質量は正かつ有限、粒子数は1以上。softening=ε>0、theta≥0、orderは0または2。",
@@ -189,14 +193,325 @@
     "Barnes Hut tree",
     "BH tree"
   ],
+  "batch28_existing_variant_labels": true,
+  "depth_release": {
+    "group": "gravity-dynamics",
+    "case_ids": [
+      "gravity-plummer-short"
+    ],
+    "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/",
+    "code_edition": "2026-11-23",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/dynamics.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/references/exact.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/experiments.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/protocol.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/test_dynamics.py"
+    ],
+    "run_commands": [
+      "python -m pytest -q",
+      "python run.py --input inputs.json --output output"
+    ],
+    "run_from": "atlas-gravity-dynamics-2026-11-23",
+    "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/atlas-gravity-dynamics-2026-11-23.zip",
+    "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/source-manifest.json",
+    "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/verification.json",
+    "code_archive_sha256": "47f1a4bdb8a6a5fdac82e66ffbe8b32c59242ffb7f9f05b418a37bd5913ffacd",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/results/result.json",
+    "passed_tests": 18,
+    "examples": [
+      {
+        "id": "gravity-plummer-short",
+        "title": {
+          "ja": "冷たいPlummer密度由来32粒子の短時間力学",
+          "en": "Short-time32body dynamics from a cold Plummer-density sample"
+        },
+        "method_ids": [
+          "verlet",
+          "barnes-hut"
+        ],
+        "domains": [
+          "particles"
+        ],
+        "summary": {
+          "ja": "同じ軟化有限N ODEで時間誤差と木近似誤差を分け、独立DOP853・直接力と収支を比較。",
+          "en": "Separate time and tree-force errors for the same softened finite-N ODE with independent DOP853/direct-force references and budgets."
+        },
+        "assumptions": {
+          "ja": "固定32等質量・切断r3の密度由来反対称座標、初速0、epsilon.05、T.2。密度尺度a1とは別。",
+          "en": "Fixed32equal masses,antipodal truncatedr3 density-derived positions,zero velocity,epsilon.05,T.2; density scalea1 differs from pair softening."
+        },
+        "algorithm": {
+          "ja": "直接KDK20/40/80steps、最細でtheta0/.35/.6のfull second-moment BH。独立scalar対力+DOP853を2許容値で資格確認。",
+          "en": "Direct KDK20/40/80steps; finest-dt full second-moment BHtheta0/.35/.6; qualify independent scalar-pair DOP853 at two tolerances."
+        },
+        "validation": {
+          "ja": "非零の固定尺度、同一座標上の力、同期E/P/L/COM、theta0対照、非対称静的probe。",
+          "en": "Nonzero fixed scales,same-position force comparison,synchronizedE/P/L/COM,theta0 control and asymmetric static probe."
+        },
+        "limits": {
+          "ja": "冷たい有限N初期値で平衡Plummer分布/連続球厳密軌道ではありません。BHの一般相反性・大域symplectic性は主張しません。",
+          "en": "Cold finite-N initial value,not an equilibrium Plummer DF or exact continuum orbit. No general BH reciprocity/global symplecticity claim."
+        },
+        "references": [
+          {
+            "id": "plummer1911",
+            "title": "On the Problem of Distribution in Globular Star Clusters",
+            "url": "https://academic.oup.com/mnras/article/71/5/460/972150",
+            "review_level": "bibliography-only-original-unaccessed",
+            "review_scope": "Bibliography inherited from prior scoped source review; original full text not read. The finite32-body cold initial condition is density-derived, not an equilibrium Plummer DF or exact continuum flow."
+          },
+          {
+            "id": "galpy-plummer",
+            "title": "galpy official Plummer potential definition",
+            "url": "https://docs.galpy.org/en/v1.11.0/reference/potentialplummer.html",
+            "review_level": "official-potential-definition",
+            "review_scope": "Official potential normalization read in preparatory source review. No galpy execution; density scale1 and pair softening.05 are distinct parameters."
+          },
+          {
+            "id": "scipy-dop853",
+            "title": "SciPy1.14.1 solve_ivp",
+            "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html",
+            "review_level": "official-versioned-method-api",
+            "review_scope": "DOP853 order8, tolerance and t_eval semantics inspected; same softened finite-N ODE with independent scalar pair force. Not an exact analytic N-body solution."
+          },
+          {
+            "id": "hlw2003",
+            "title": "Geometric numerical integration illustrated by the Störmer–Verlet method",
+            "url": "https://doi.org/10.1017/S0962492902000144",
+            "review_level": "bibliography-and-failed-author-pdf",
+            "review_scope": "Author/publisher metadata only; author PDF unavailable. KDK composition and reversibility are independently derived here; no original full-text audit or BH symplecticity claim."
+          }
+        ],
+        "formulas": [
+          "a_i=-\\sum_{j\\ne i}Gm_jr_{ij}/(r_{ij}^2+\\epsilon^2)^{3/2}",
+          "U=-\\sum_{i<j}Gm_im_j/\\sqrt{r_{ij}^2+\\epsilon^2}"
+        ],
+        "code_files": [
+          "run.py",
+          "dynamics.py",
+          "references/exact.py"
+        ],
+        "gallery_figure": "gravity-plummer-short-preview.png",
+        "additional_figures": [
+          {
+            "file": "gravity-plummer-short-preview.png",
+            "caption": {
+              "ja": "固定入力を実際に計算した保存配列からの検証図。",
+              "en": "Validation figure from actual saved fixed-input calculation arrays."
+            }
+          }
+        ],
+        "measured": {
+          "id": "gravity-plummer-short",
+          "passed": true,
+          "checks": {
+            "independent ODE tolerance qualification": true,
+            "independent reference energy": true,
+            "independent reference momentum": true,
+            "independent reference angular momentum": true,
+            "antipodal initial COM": true,
+            "direct-s20 finite synchronized fields": true,
+            "direct-s20 fixed final time": true,
+            "direct-s20 positive pair separation": true,
+            "direct-s20 momentum_drift": true,
+            "direct-s20 angular_drift": true,
+            "direct-s20 com_drift": true,
+            "direct-s40 finite synchronized fields": true,
+            "direct-s40 fixed final time": true,
+            "direct-s40 positive pair separation": true,
+            "direct-s40 momentum_drift": true,
+            "direct-s40 angular_drift": true,
+            "direct-s40 com_drift": true,
+            "direct-s80 finite synchronized fields": true,
+            "direct-s80 fixed final time": true,
+            "direct-s80 positive pair separation": true,
+            "direct-s80 momentum_drift": true,
+            "direct-s80 angular_drift": true,
+            "direct-s80 com_drift": true,
+            "theta0 finite synchronized fields": true,
+            "theta0 fixed final time": true,
+            "theta0 positive pair separation": true,
+            "theta0 momentum_drift": true,
+            "theta0 angular_drift": true,
+            "theta0 com_drift": true,
+            "theta0 trajectory reproduces direct": true,
+            "theta0 same-position force identity": true,
+            "theta0.35 finite synchronized fields": true,
+            "theta0.35 fixed final time": true,
+            "theta0.35 positive pair separation": true,
+            "theta.35 trajectory error": true,
+            "theta.35 same-position force error": true,
+            "theta0.6 finite synchronized fields": true,
+            "theta0.6 fixed final time": true,
+            "theta0.6 positive pair separation": true,
+            "theta.6 actual accepted nodes": true,
+            "theta.6 same-position force error": true,
+            "direct time refinement 1": true,
+            "direct time refinement 2": true,
+            "finest direct state error": true,
+            "finest direct energy": true,
+            "asymmetric diagnostics finite": true,
+            "asymmetric tree approximation exercised": true
+          },
+          "records": [
+            {
+              "id": "direct-s20",
+              "steps": 20,
+              "theta": -1.0,
+              "time": 0.2,
+              "state_rms_error": 1.298679638076546e-07,
+              "energy_drift": 1.3706163080459582e-07,
+              "momentum_drift": 4.3029273720518457e-19,
+              "angular_drift": 4.133520782600986e-18,
+              "com_drift": 0.0,
+              "minimum_separation": 0.36802527116765454,
+              "accepted_nodes": 0,
+              "direct_pairs": 20832
+            },
+            {
+              "id": "direct-s40",
+              "steps": 40,
+              "theta": -1.0,
+              "time": 0.2,
+              "state_rms_error": 3.224247465908488e-08,
+              "energy_drift": 3.426611892071961e-08,
+              "momentum_drift": 4.675621868843738e-19,
+              "angular_drift": 7.006656539687572e-18,
+              "com_drift": 0.0,
+              "minimum_separation": 0.3680251212636239,
+              "accepted_nodes": 0,
+              "direct_pairs": 40672
+            },
+            {
+              "id": "direct-s80",
+              "steps": 80,
+              "theta": -1.0,
+              "time": 0.2,
+              "state_rms_error": 8.032388866139367e-09,
+              "energy_drift": 8.566574106443163e-09,
+              "momentum_drift": 7.589415207398531e-19,
+              "angular_drift": 3.496552006265752e-18,
+              "com_drift": 0.0,
+              "minimum_separation": 0.3680250837844508,
+              "accepted_nodes": 0,
+              "direct_pairs": 80352
+            },
+            {
+              "id": "theta0",
+              "steps": 80,
+              "theta": 0.0,
+              "time": 0.2,
+              "trajectory_gap": 2.827606506328456e-18,
+              "same_position_force_relative": 2.8953583593880737e-16,
+              "energy_drift": 8.566574106443163e-09,
+              "momentum_drift": 1.294266343404571e-18,
+              "angular_drift": 3.767602549387128e-18,
+              "com_drift": 0.0,
+              "minimum_separation": 0.3680250837844508,
+              "accepted_nodes": 0,
+              "direct_pairs": 80352
+            },
+            {
+              "id": "theta0.35",
+              "steps": 80,
+              "theta": 0.35,
+              "time": 0.2,
+              "trajectory_gap": 5.672453506265489e-07,
+              "same_position_force_relative": 3.8450407261828834e-05,
+              "energy_drift": 4.2824982522918386e-08,
+              "momentum_drift": 4.818920304027613e-10,
+              "angular_drift": 3.9074593855226115e-07,
+              "com_drift": 9.637840525655861e-11,
+              "minimum_separation": 0.3680250836420717,
+              "accepted_nodes": 6805,
+              "direct_pairs": 66742
+            },
+            {
+              "id": "theta0.6",
+              "steps": 80,
+              "theta": 0.6,
+              "time": 0.2,
+              "trajectory_gap": 1.494709920629829e-05,
+              "same_position_force_relative": 0.0010505548832736905,
+              "energy_drift": 4.992411043078048e-07,
+              "momentum_drift": 1.3814180109943141e-08,
+              "angular_drift": 6.330394633417906e-06,
+              "com_drift": 2.762803000266878e-09,
+              "minimum_separation": 0.36802094197680457,
+              "accepted_nodes": 14576,
+              "direct_pairs": 47793
+            }
+          ],
+          "metrics": {
+            "reference_tolerance_gap": 1.3339329640871256e-12,
+            "finest_direct_error": 8.032388866139367e-09,
+            "finest_energy_drift": 8.566574106443163e-09,
+            "theta035_trajectory": 5.672453506265489e-07,
+            "asymmetric_net_force": 2.3712429943822043e-05
+          },
+          "data_files": [
+            "gravity-plummer-short-reference-0.npz",
+            "gravity-plummer-short-reference-1.npz",
+            "gravity-plummer-short-direct-s20.npz",
+            "gravity-plummer-short-direct-s40.npz",
+            "gravity-plummer-short-direct-s80.npz",
+            "gravity-plummer-short-theta0.npz",
+            "gravity-plummer-short-theta0.35.npz",
+            "gravity-plummer-short-theta0.6.npz",
+            "gravity-plummer-short-asymmetric-static.npz"
+          ]
+        },
+        "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-plummer-short/",
+        "reading": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-gravity-dynamics/#gravity-plummer-short",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-gravity-dynamics/#gravity-plummer-short"
+        }
+      }
+    ]
+  },
+  "supplemental_scope_profiles": [
+    {
+      "release": {
+        "group": "gravity-dynamics",
+        "edition": "2026-11-23",
+        "case_ids": [
+          "gravity-plummer-short"
+        ]
+      },
+      "scope": {
+        "ja": "追加固定例：冷たいPlummer密度由来32粒子の短時間力学。条件と検証範囲は各配布版で確認してください。",
+        "en": "Additional fixed examples: Short-time32body dynamics from a cold Plummer-density sample. See each release for assumptions and checked scope."
+      },
+      "limits": [
+        {
+          "ja": "冷たい有限N初期値で平衡Plummer分布/連続球厳密軌道ではありません。BHの一般相反性・大域symplectic性は主張しません。",
+          "en": "Cold finite-N initial value,not an equilibrium Plummer DF or exact continuum orbit. No general BH reciprocity/global symplecticity claim."
+        }
+      ]
+    }
+  ],
+  "depth_scope": {
+    "ja": "追加固定例：冷たいPlummer密度由来32粒子の短時間力学。条件と検証範囲は各配布版で確認してください。",
+    "en": "Additional fixed examples: Short-time32body dynamics from a cold Plummer-density sample. See each release for assumptions and checked scope."
+  },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/barnes-hut/",
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/barnes-hut/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/barnes-hut/index.md",
   "code_urls": [
-    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/particle_gravity.py"
+    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/particle_gravity.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/dynamics.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/references/exact.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/experiments.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/protocol.py"
   ],
   "test_urls": [
-    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_particle_gravity.py"
+    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_particle_gravity.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/test_dynamics.py"
   ],
   "run_commands": [
     "python -m pytest -q tests/test_particle_gravity.py"
@@ -212,6 +527,15 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#barnes-hut-ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#barnes-hut-en"
       }
+    },
+    {
+      "id": "gravity-plummer-short",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-plummer-short/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-plummer-short/?lang=en"
+      },
+      "kind": "dedicated-supplement"
     }
   ],
   "problem_navigation": {
@@ -225,7 +549,8 @@
           "en": "Gravitational particle model"
         },
         "problem_ids": [
-          "isolated-particles"
+          "isolated-particles",
+          "gravity-plummer-short"
         ],
         "url": {
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#particle-gravity-ja",
@@ -292,6 +617,66 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isolated-particles/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isolated-particles/?lang=en#references-en"
         }
+      },
+      {
+        "id": "gravity-plummer-short",
+        "name": {
+          "ja": "冷たいPlummer密度由来32粒子の短時間力学",
+          "en": "Short-time32body dynamics from a cold Plummer-density sample"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-plummer-short-preview.png",
+          "sha256": "be518533a4560b5e6a30e2e846c20a782d82624193f5f9f19a6c621cbe8b7f99",
+          "width": 920,
+          "height": 592,
+          "caption": {
+            "ja": "固定入力を実際に計算した保存配列からの検証図。",
+            "en": "Validation figure from actual saved fixed-input calculation arrays."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-plummer-short/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-plummer-short/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-plummer-short/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-plummer-short/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "gravity-plummer-short",
+            "kind": "supplement",
+            "name": {
+              "ja": "冷たいPlummer密度由来32粒子の短時間力学",
+              "en": "Short-time32body dynamics from a cold Plummer-density sample"
+            },
+            "scope": {
+              "ja": "同じ軟化有限N ODEで時間誤差と木近似誤差を分け、独立DOP853・直接力と収支を比較。",
+              "en": "Separate time and tree-force errors for the same softened finite-N ODE with independent DOP853/direct-force references and budgets."
+            },
+            "method_ids": [
+              "verlet",
+              "barnes-hut"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-plummer-short/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-plummer-short/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/atlas-gravity-dynamics-2026-11-23.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "直接KDK20/40/80steps、最細でtheta0/.35/.6のfull second-moment BH。独立scalar対力+DOP853を2許容値で資格確認。",
+          "en": "Direct KDK20/40/80steps; finest-dt full second-moment BHtheta0/.35/.6; qualify independent scalar-pair DOP853 at two tolerances."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-plummer-short/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-plummer-short/?lang=en#references-en"
+        }
       }
     ],
     "references": [
@@ -306,6 +691,40 @@
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isolated-particles/?lang=en#references-en"
         },
         "cases": []
+      },
+      {
+        "problem_id": "gravity-plummer-short",
+        "problem_name": {
+          "ja": "冷たいPlummer密度由来32粒子の短時間力学",
+          "en": "Short-time32body dynamics from a cold Plummer-density sample"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-plummer-short/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-plummer-short/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "gravity-plummer-short",
+            "title": {
+              "ja": "冷たいPlummer密度由来32粒子の短時間力学",
+              "en": "Short-time32body dynamics from a cold Plummer-density sample"
+            },
+            "kind": "numerical-reference",
+            "relation": "same-problem",
+            "note": {
+              "ja": "冷たい有限N初期値で平衡Plummer分布/連続球厳密軌道ではありません。BHの一般相反性・大域symplectic性は主張しません。",
+              "en": "Cold finite-N initial value,not an equilibrium Plummer DF or exact continuum orbit. No general BH reciprocity/global symplecticity claim."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-gravity-plummer-short-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-gravity-plummer-short-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/gravity-plummer-short/?lang=ja#gravity-plummer-short-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/gravity-plummer-short/?lang=en#gravity-plummer-short-en-measurements"
+            }
+          }
+        ]
       }
     ]
   }

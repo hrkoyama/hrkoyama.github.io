@@ -10,8 +10,8 @@
     "en": "Linear & nonlinear solvers"
   },
   "summary": {
-    "ja": "「Thomas法／三重対角消去」の考え方と適用範囲を、解説章・一次文献・関連する教育用コードからたどります。",
-    "en": "Read about Thomas tridiagonal elimination, follow the original references and inspect related educational code and checks."
+    "ja": "Thomas法は三重対角消去。1949年原報は未読で、公式収蔵目録とMolerの1996年通信から書誌を追跡しています。Crank–Nicolsonと多重格子の文献は関連章の背景資料で、Thomas原報やその再録ではありません。",
+    "en": "Thomas is tridiagonal elimination. Its1949 original remains unread; an official archival finding aid and Moler's signed1996 correspondence provide bibliographic leads. Crank–Nicolson and multigrid references are related chapter context, not Thomas originals or reprints."
   },
   "status": "educational-example",
   "origin": "existing-coverage-catalog",
@@ -32,19 +32,44 @@
   "code_mapping_scope": "Related chapter modules and test files; not a claim that each test covers every named method.",
   "references": [
     {
+      "url": "https://www.lib.ncsu.edu/findingaids/mc00210",
+      "label": "NC State University Libraries: Llewellyn Hilleth Thomas Papers,1921–1989, collection MC00210",
+      "role": "archival-finding-aid",
+      "review_level": "selected-official-finding-aid-entries-read",
+      "scope": "Box18/folder13.8 is described as notes and a1949 article with the report title; Box21/folder15.2 contains undated notes. This verifies catalogue descriptions, not the report text, algorithms or priority.",
+      "scope_i18n": {
+        "ja": "公式収蔵目録のBox18/folder13.8は同題のノートと1949年の記事、Box21/folder15.2は日付不明のノート。目録記載を確認したもので、原報本文・算法・優先権の確認ではない。",
+        "en": "Selected official finding-aid entries only: Box18/folder13.8 notes and1949 article; Box21/folder15.2 undated notes. Original report contents and priority remain unverified."
+      }
+    },
+    {
+      "url": "https://netlib.org/na-digest-html/96/v96n09.html",
+      "label": "Cleve Moler (1996), The Thomas Algorithm, NA Digest96(09),4March",
+      "role": "signed-historical-correspondence",
+      "review_level": "signed-correspondence-section-read-original-report-unread",
+      "scope": "Moler reports the attribution and transcribes a1949 Thomas report citation via Ames1977,p52, plus a Bruce et al.1953 lead. The Ames and Bruce original pages were not inspected. This is a history lead, not Thomas's original derivation.",
+      "scope_i18n": {
+        "ja": "署名付き1996年通信の該当節を確認。Ames1977のp52を介したThomas1949報告の書誌とBruceほか1953への手掛かり。Ames/Bruceの実ページとThomas原報は未読。",
+        "en": "Read the signed1996 correspondence section; Ames1977,p52 and Bruce et al.1953 remain uninspected leads. Thomas1949 original unread."
+      }
+    },
+    {
       "url": "https://doi.org/10.1017/S0305004100023197",
       "label": "A practical method for numerical evaluation of solutions of partial differential equations of the heat-conduction type (1947)",
-      "scope": "Cited by the linked chapter; inspect its source-review notes before treating this as a method-specific derivation."
+      "scope": "Crank and Nicolson1947 heat-equation time discretization. Preserve as chapter context, never label as Thomas's original report.",
+      "role": "related-time-discretization-original-not-Thomas"
     },
     {
       "url": "https://doi.org/10.1090/S0025-5718-1977-0431719-X",
       "label": "Multi-level adaptive solutions to boundary-value problems (1977)",
-      "scope": "Cited by the linked chapter; inspect its source-review notes before treating this as a method-specific derivation."
+      "scope": "Retain the existing Brandt context citation. No new full-text review claimed.",
+      "role": "related-multigrid-chapter-context-not-Thomas"
     },
     {
       "url": "https://doi.org/10.1137/1.9780898719505",
       "label": "A Multigrid Tutorial (2000)",
-      "scope": "Cited by the linked chapter; inspect its source-review notes before treating this as a method-specific derivation."
+      "scope": "Retain existing Multigrid Tutorial context. No new full-book reading claimed.",
+      "role": "related-multigrid-textbook-not-Thomas"
     }
   ],
   "assumptions": null,
@@ -55,8 +80,13 @@
     "en": "See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers."
   },
   "metadata_review": {
-    "level": "chapter-linked; detailed method-specific curation in progress",
-    "on": "2026-11-21"
+    "level": "method-specific bibliographic roles curated;1949 original full text unread",
+    "on": "2026-11-23",
+    "source_record": "/numerical-methods-atlas/reading/thomas-provenance.json",
+    "scope": {
+      "ja": "Thomas法は三重対角消去。1949年原報は未読で、公式収蔵目録とMolerの1996年通信から書誌を追跡しています。Crank–Nicolsonと多重格子の文献は関連章の背景資料で、Thomas原報やその再録ではありません。",
+      "en": "Thomas is tridiagonal elimination. Its1949 original remains unread; an official archival finding aid and Moler's signed1996 correspondence provide bibliographic leads. Crank–Nicolson and multigrid references are related chapter context, not Thomas originals or reprints."
+    }
   },
   "aliases": [
     "Thomas algorithm",
@@ -65,6 +95,17 @@
     "三重対角行列算法",
     "TDMA"
   ],
+  "bibliographic_original": {
+    "author": "Llewellyn H. Thomas",
+    "year": 1949,
+    "title": "Elliptic problems in linear difference equations over a network",
+    "institution": "Watson Scientific Computing Laboratory, Columbia University, New York",
+    "doi": null,
+    "report_number": null,
+    "pages": null,
+    "metadata_basis": "Moler's signed1996 correspondence transcribes this historical report citation. The1949 report itself was not accessed; report number, pagination and DOI remain unknown.",
+    "review_level": "original-unread-secondary-bibliographic-lead"
+  },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/thomas/",
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/thomas/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/thomas/index.md",

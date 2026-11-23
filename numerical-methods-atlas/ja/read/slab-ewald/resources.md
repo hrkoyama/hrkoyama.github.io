@@ -24,4 +24,11 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/slab-ewald/
 
 ## コード・検証
 
-章固有の対応は未登録です。全体一覧：[コード・入力・検証](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja)
+- [中性長方形スラブ：真2P参照とYB補正](<https://hrkoyama.github.io/numerical-methods-atlas/validation/neutral-slab-yb/?lang=ja>)
+  availability: run
+
+  4電荷の長方形3P Ewaldに中性スラブ補正を加え、別実装の真2P和のエネルギー・全力成分と照合します。
+- [スラブ静電場と2次元周期Ewald：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/slab-ewald/?lang=ja#method-execution-ja>)
+  availability: source
+
+  手法固有の配布版と関連ソースを案内します。固定入力例は別の項目で区別します。

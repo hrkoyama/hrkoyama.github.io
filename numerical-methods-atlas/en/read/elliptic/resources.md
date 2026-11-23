@@ -283,6 +283,14 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Solve singular2D Poisson with compatibility/gauge and reject incompatible source.
+- [Checkerboard diffusion: shared flux, MG and AMG](<https://hrkoyama.github.io/numerical-methods-atlas/validation/checkerboard-diffusion/?lang=en>)
+  availability: run
+
+  Compare discontinuous-coefficient FV with independent P1 reference fields, separating linear-system residual/forward errors from continuum error.
+- [Rotated diffusion: full-tensor Q1, MG and AMG](<https://hrkoyama.github.io/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/?lang=en>)
+  availability: run
+
+  Retain nonzero Kxy in the Q1 weak form and compare analytic refinement with MG/AMG convergence for the same matrix.
 - [Crank–Nicolson — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/crank-nicolson/?lang=en#method-execution-en>)
   availability: source
 

@@ -28,6 +28,14 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/amg/
   availability: run
 
   正方形Poisson問題から得たSPD行列だけを階層構築へ渡し、平滑化集約AMGのV-cycleを実行します。7²・15²・31²未知数で独立疎行列直接解、解析的な離散正弦モード、連続解への2次収束を分けて検査します。
+- [係数ジャンプ拡散：共有流束とMG・AMG](<https://hrkoyama.github.io/numerical-methods-atlas/validation/checkerboard-diffusion/?lang=ja>)
+  availability: run
+
+  不連続係数のFV解を独立なP1参照と比較し、線形系の残差・前進誤差と連続問題の誤差を分けます。
+- [回転異方性拡散：完全テンソルQ1とMG・AMG](<https://hrkoyama.github.io/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/?lang=ja>)
+  availability: run
+
+  非零Kxyを保つQ1弱形式で、解析解への収束と同じ行列のMG・AMG収束を比較します。
 - [代数的マルチグリッド（AMG）：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/amg/?lang=ja#method-execution-ja>)
   availability: source
 

@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "frozen_before_primary_pytest_and_main": true,
+  "limits": {
+    "boundary_budget_scaled": 1e-09,
+    "dt_over_maxwell_tau": 0.1,
+    "dx_over_lambda": 0.32,
+    "profile_error": 0.1,
+    "primary_profile_3se": 0.1,
+    "reference_profile_3se": 0.05,
+    "stationarity_equivalence": 0.15,
+    "flux_relative_error": 0.15,
+    "flux_relative_3se": 0.25,
+    "wall_flux_relative_3se": 0.3,
+    "half_step_sensitivity": 0.1,
+    "centroid_drift": 0.75,
+    "far_state_relative_error": 0.05,
+    "far_state_3se": 0.05
+  },
+  "statistical_rule": "Error<=fixed tolerance+3combined whole-run SE, with separate precision and equivalence stationarity gates. Report small-sample t95 df3 separately. No iid bins/particles/time assumption.",
+  "sensitivity_scope": "Fixed-weight mesh, separate weight, and half-step probes. Single companion seed yields a paired sensitivity, not spatial order.",
+  "reference_scope": "Independent SPARTA first attempt36runs/87qualifiers already passed; empirical finite-grid stochastic reference, not exact Boltzmann or infinite-domain error bound.",
+  "failure_policy": "No clipping, seed/window selection, hidden retries or relaxed gates; preserve every source/input/failed state and all complete run rows."
+}

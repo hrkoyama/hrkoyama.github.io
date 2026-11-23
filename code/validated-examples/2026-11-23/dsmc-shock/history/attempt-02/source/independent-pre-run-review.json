@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "reviewer": "root",
+  "time": "2026-11-23T13:52:03.940445+00:00",
+  "state": "APPROVED_SHOCK_RESERVOIR_REDESIGN_AFTER_RETAINED_FAILED_FIRST_ATTEMPT",
+  "contract_sha256": "bf663f75e15dc6464a73e62ad56ee49903e6303d1939e8bb1be7c86bd3b322fb",
+  "verified_bound_files": 55,
+  "peer_review_sha256": "b1e5c751ed65c5e0ed3014ec6268449d5d137ea176a0574d2d56966c443bdba6",
+  "prior_failure": "All18pytest and7trajectories retained;5/81primary statistical precision/centroid gates unmet. Other76gates including continuum-reference profile,budgets,RH and resolution passed. No threshold relaxation.",
+  "change": "Shock-only macro arrival count floor(mu)+Bernoulli(frac(mu)) perhalfstream/face: unbiased E[N]=mu and bounded fractional-count variance; physical incoming velocity law and random flight unchanged.",
+  "scope": "Standard variance-reduced DSMC sampling of a deterministic Maxwellian reservoir for mean Boltzmann fields. Does not reproduce Poisson count variance,thermodynamic fluctuations or SPARTA full-step time correlations. Finite-macro-weight agreement is still subject to unchanged measured profile/precision gates.",
+  "preservation": "Previously successful wall kernel and fields unchanged; original18tests,input,seeds,weights,times,windows,acceptance,diagnostics and cached independent reference unchanged. Old source/contract/failed fields retained.",
+  "authorization": "Execute19pytest andall7shockruns within one120s outer deadline. Keep all81scientific gates unchanged. Re-failure must remain a failure; no seed selection,shock pinning or hidden retries."
+}

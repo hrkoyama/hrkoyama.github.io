@@ -283,6 +283,14 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/elliptic/
   availability: run
 
   特異な2D Poissonを互換条件と指定平均込みで解き、不適合な外力を拒否します。
+- [係数ジャンプ拡散：共有流束とMG・AMG](<https://hrkoyama.github.io/numerical-methods-atlas/validation/checkerboard-diffusion/?lang=ja>)
+  availability: run
+
+  不連続係数のFV解を独立なP1参照と比較し、線形系の残差・前進誤差と連続問題の誤差を分けます。
+- [回転異方性拡散：完全テンソルQ1とMG・AMG](<https://hrkoyama.github.io/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/?lang=ja>)
+  availability: run
+
+  非零Kxyを保つQ1弱形式で、解析解への収束と同じ行列のMG・AMG収束を比較します。
 - [Crank–Nicolson法：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/crank-nicolson/?lang=ja#method-execution-ja>)
   availability: source
 

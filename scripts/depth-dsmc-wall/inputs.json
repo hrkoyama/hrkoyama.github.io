@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "group": "dsmc-wall",
+  "cases": {
+    "dsmc-couette": {
+      "seeds": [
+        361001,
+        361002,
+        361003,
+        361004
+      ],
+      "configurations": {
+        "base": {
+          "kind": "wall",
+          "cells": 16,
+          "length": 2,
+          "weight": 0.001953125,
+          "dt": 0.02,
+          "burn_in": 20,
+          "sample_time": 40,
+          "blocks": 5,
+          "bins": 8,
+          "sample_every": 10,
+          "hist_velocity": [
+            -6,
+            6
+          ],
+          "temperatures": [
+            1,
+            1
+          ],
+          "speeds": [
+            -0.5,
+            0.5
+          ]
+        },
+        "fixed_weight_mesh": {
+          "kind": "wall",
+          "cells": 32,
+          "length": 2,
+          "weight": 0.001953125,
+          "dt": 0.02,
+          "burn_in": 20,
+          "sample_time": 40,
+          "blocks": 5,
+          "bins": 8,
+          "sample_every": 10,
+          "hist_velocity": [
+            -6,
+            6
+          ],
+          "temperatures": [
+            1,
+            1
+          ],
+          "speeds": [
+            -0.5,
+            0.5
+          ]
+        },
+        "double_particles": {
+          "kind": "wall",
+          "cells": 16,
+          "length": 2,
+          "weight": 0.0009765625,
+          "dt": 0.02,
+          "burn_in": 20,
+          "sample_time": 40,
+          "blocks": 5,
+          "bins": 8,
+          "sample_every": 10,
+          "hist_velocity": [
+            -6,
+            6
+          ],
+          "temperatures": [
+            1,
+            1
+          ],
+          "speeds": [
+            -0.5,
+            0.5
+          ]
+        },
+        "half_dt": {
+          "kind": "wall",
+          "cells": 16,
+          "length": 2,
+          "weight": 0.001953125,
+          "dt": 0.01,
+          "burn_in": 20,
+          "sample_time": 40,
+          "blocks": 5,
+          "bins": 8,
+          "sample_every": 10,
+          "hist_velocity": [
+            -6,
+            6
+          ],
+          "temperatures": [
+            1,
+            1
+          ],
+          "speeds": [
+            -0.5,
+            0.5
+          ]
+        }
+      }
+    },
+    "dsmc-fourier": {
+      "seeds": [
+        361101,
+        361102,
+        361103,
+        361104
+      ],
+      "configurations": {
+        "base": {
+          "kind": "wall",
+          "cells": 16,
+          "length": 2,
+          "weight": 0.001953125,
+          "dt": 0.02,
+          "burn_in": 20,
+          "sample_time": 40,
+          "blocks": 5,
+          "bins": 8,
+          "sample_every": 10,
+          "hist_velocity": [
+            -6,
+            6
+          ],
+          "temperatures": [
+            1,
+            2
+          ],
+          "speeds": [
+            0,
+            0
+          ]
+        },
+        "fixed_weight_mesh": {
+          "kind": "wall",
+          "cells": 32,
+          "length": 2,
+          "weight": 0.001953125,
+          "dt": 0.02,
+          "burn_in": 20,
+          "sample_time": 40,
+          "blocks": 5,
+          "bins": 8,
+          "sample_every": 10,
+          "hist_velocity": [
+            -6,
+            6
+          ],
+          "temperatures": [
+            1,
+            2
+          ],
+          "speeds": [
+            0,
+            0
+          ]
+        },
+        "double_particles": {
+          "kind": "wall",
+          "cells": 16,
+          "length": 2,
+          "weight": 0.0009765625,
+          "dt": 0.02,
+          "burn_in": 20,
+          "sample_time": 40,
+          "blocks": 5,
+          "bins": 8,
+          "sample_every": 10,
+          "hist_velocity": [
+            -6,
+            6
+          ],
+          "temperatures": [
+            1,
+            2
+          ],
+          "speeds": [
+            0,
+            0
+          ]
+        },
+        "half_dt": {
+          "kind": "wall",
+          "cells": 16,
+          "length": 2,
+          "weight": 0.001953125,
+          "dt": 0.01,
+          "burn_in": 20,
+          "sample_time": 40,
+          "blocks": 5,
+          "bins": 8,
+          "sample_every": 10,
+          "hist_velocity": [
+            -6,
+            6
+          ],
+          "temperatures": [
+            1,
+            2
+          ],
+          "speeds": [
+            0,
+            0
+          ]
+        }
+      }
+    }
+  }
+}

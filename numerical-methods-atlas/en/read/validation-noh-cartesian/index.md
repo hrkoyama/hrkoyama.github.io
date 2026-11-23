@@ -201,13 +201,15 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-This command executes every fixed case in the distribution group.
+This command executes every fixed case in the distribution group. Bundled results/ are stored outputs. Rerun into a new output/ directory and use another fresh directory for subsequent runs.
 
 ### Sources and review scope
 
 - W. F. Noh (1987). Errors for calculations of strong shocks using an artificial viscosity and an artificial heat flux. https://www.sciencedirect.com/science/article/pii/002199918790074X; review_level=publisher-metadata-and-abstract
-  Publisher metadata and abstract checked; full original text was not accessed (403). Cited for the problem and heating-error analysis, not as the source of this particular finite-volume discretization.
+Publisher metadata and abstract checked; full original text was not accessed (403). Cited for the problem and heating-error analysis, not as the source of this particular finite-volume discretization.
+
 - J. Thrussell and J. M. Ferguson (2023). ExactPack: A python library of exact analytic solutions. https://doi.org/10.1016/j.softx.2023.101560; review_level=official-record-and-unmodified-pinned-code-execution
-  Selected pinned official Noh evaluator code checked. Reuse previously independently executed d=2 point values away from the jump; no new ExactPack execution or independent 2D PDE-engine comparison.
+Selected pinned official Noh evaluator code checked. Reuse previously independently executed d=2 point values away from the jump; no new ExactPack execution or independent 2D PDE-engine comparison.
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.

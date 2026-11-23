@@ -1,0 +1,2925 @@
+{
+  "schema_version": 1,
+  "group": "warm-pic",
+  "input_sha256": "e593a8e0308c6aa4de9b92f0887394d65b253ff9f123db726296385d889906c6",
+  "passed": true,
+  "termination": "fixed_budget_completed",
+  "failure": null,
+  "checks": {
+    "thermal-landau-damping": true,
+    "thermal-two-stream": true
+  },
+  "cases": [
+    {
+      "id": "thermal-landau-damping",
+      "passed": true,
+      "checks": {
+        "independent root and fixed-window Volterra qualified": true,
+        "nine fixed full-f calculations": true,
+        "ten declared Landau full-f calculations": true,
+        "thermal-landau-damping-seed33001 all fields and histories finite": true,
+        "thermal-landau-damping-seed33001 fixed time and five snapshots": true,
+        "thermal-landau-damping-seed33001 charge momentum resolvedGauss and energy": true,
+        "thermal-landau-damping-seed33001 positive full-f weights without repair": true,
+        "thermal-landau-damping-seed33001 joint load and Gaussian quadrature qualified": true,
+        "thermal-landau-damping-seed33001 resolved fixed-window rate fit": true,
+        "thermal-landau-damping-seed33002 all fields and histories finite": true,
+        "thermal-landau-damping-seed33002 fixed time and five snapshots": true,
+        "thermal-landau-damping-seed33002 charge momentum resolvedGauss and energy": true,
+        "thermal-landau-damping-seed33002 positive full-f weights without repair": true,
+        "thermal-landau-damping-seed33002 joint load and Gaussian quadrature qualified": true,
+        "thermal-landau-damping-seed33002 resolved fixed-window rate fit": true,
+        "thermal-landau-damping-seed33003 all fields and histories finite": true,
+        "thermal-landau-damping-seed33003 fixed time and five snapshots": true,
+        "thermal-landau-damping-seed33003 charge momentum resolvedGauss and energy": true,
+        "thermal-landau-damping-seed33003 positive full-f weights without repair": true,
+        "thermal-landau-damping-seed33003 joint load and Gaussian quadrature qualified": true,
+        "thermal-landau-damping-seed33003 resolved fixed-window rate fit": true,
+        "thermal-landau-damping-seed33004 all fields and histories finite": true,
+        "thermal-landau-damping-seed33004 fixed time and five snapshots": true,
+        "thermal-landau-damping-seed33004 charge momentum resolvedGauss and energy": true,
+        "thermal-landau-damping-seed33004 positive full-f weights without repair": true,
+        "thermal-landau-damping-seed33004 joint load and Gaussian quadrature qualified": true,
+        "thermal-landau-damping-seed33004 resolved fixed-window rate fit": true,
+        "thermal-landau-damping-mesh all fields and histories finite": true,
+        "thermal-landau-damping-mesh fixed time and five snapshots": true,
+        "thermal-landau-damping-mesh charge momentum resolvedGauss and energy": true,
+        "thermal-landau-damping-mesh positive full-f weights without repair": true,
+        "thermal-landau-damping-mesh joint load and Gaussian quadrature qualified": true,
+        "thermal-landau-damping-mesh resolved fixed-window rate fit": true,
+        "thermal-landau-damping-time-half all fields and histories finite": true,
+        "thermal-landau-damping-time-half fixed time and five snapshots": true,
+        "thermal-landau-damping-time-half charge momentum resolvedGauss and energy": true,
+        "thermal-landau-damping-time-half positive full-f weights without repair": true,
+        "thermal-landau-damping-time-half joint load and Gaussian quadrature qualified": true,
+        "thermal-landau-damping-time-half resolved fixed-window rate fit": true,
+        "thermal-landau-damping-velocity all fields and histories finite": true,
+        "thermal-landau-damping-velocity fixed time and five snapshots": true,
+        "thermal-landau-damping-velocity charge momentum resolvedGauss and energy": true,
+        "thermal-landau-damping-velocity positive full-f weights without repair": true,
+        "thermal-landau-damping-velocity joint load and Gaussian quadrature qualified": true,
+        "thermal-landau-damping-velocity resolved fixed-window rate fit": true,
+        "thermal-landau-damping-amplitude-half all fields and histories finite": true,
+        "thermal-landau-damping-amplitude-half fixed time and five snapshots": true,
+        "thermal-landau-damping-amplitude-half charge momentum resolvedGauss and energy": true,
+        "thermal-landau-damping-amplitude-half positive full-f weights without repair": true,
+        "thermal-landau-damping-amplitude-half joint load and Gaussian quadrature qualified": true,
+        "thermal-landau-damping-amplitude-half resolved fixed-window rate fit": true,
+        "thermal-landau-damping-noise all fields and histories finite": true,
+        "thermal-landau-damping-noise fixed time and five snapshots": true,
+        "thermal-landau-damping-noise charge momentum resolvedGauss and energy": true,
+        "thermal-landau-damping-noise positive full-f weights without repair": true,
+        "thermal-landau-damping-noise joint load and Gaussian quadrature qualified": true,
+        "thermal-landau-damping-spatial-strata all fields and histories finite": true,
+        "thermal-landau-damping-spatial-strata fixed time and five snapshots": true,
+        "thermal-landau-damping-spatial-strata charge momentum resolvedGauss and energy": true,
+        "thermal-landau-damping-spatial-strata positive full-f weights without repair": true,
+        "thermal-landau-damping-spatial-strata joint load and Gaussian quadrature qualified": true,
+        "thermal-landau-damping-spatial-strata resolved fixed-window rate fit": true,
+        "conditional rate precision": true,
+        "mean rate versus dielectric pole": true,
+        "mean rate versus linear IVP fixed-window estimator": true,
+        "mean field curve versus linear continuum": true,
+        "quiet-equilibrium noise versus fitted envelope": true,
+        "mesh separate rate sensitivity": true,
+        "time-half separate rate sensitivity": true,
+        "velocity separate rate sensitivity": true,
+        "amplitude-half separate rate sensitivity": true,
+        "amplitude-halving scaled field linearity": true,
+        "mean frequency versus dielectric pole": true,
+        "spatial-strata separate rate sensitivity": true,
+        "spatial-strata scaled field sensitivity": true
+      },
+      "gates": [
+        {
+          "name": "independent root and fixed-window Volterra qualified",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "nine fixed full-f calculations",
+          "value": 9,
+          "bound": 9,
+          "passed": true
+        },
+        {
+          "name": "ten declared Landau full-f calculations",
+          "value": 10,
+          "bound": 10,
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-seed33001 all fields and histories finite",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-seed33001 fixed time and five snapshots",
+          "value": [
+            0.0,
+            4.0,
+            8.0,
+            12.0,
+            16.0
+          ],
+          "bound": [
+            0.0,
+            4.0,
+            8.0,
+            12.0,
+            16.0
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-seed33001 charge momentum resolvedGauss and energy",
+          "value": [
+            3.705860279134171e-15,
+            2.1203697844509312e-16,
+            5.587850095852341e-20,
+            1.896307359541054e-07
+          ],
+          "bound": [
+            2e-12,
+            2e-11,
+            2e-12,
+            0.01
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-seed33001 positive full-f weights without repair",
+          "value": [
+            4.9824397257431146e-104,
+            0,
+            0
+          ],
+          "bound": "weight>0,clips=retries=0",
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-seed33001 joint load and Gaussian quadrature qualified",
+          "value": {
+            "joint_low_mode_factorization_defect": 2.288774487666669e-16,
+            "mean_velocity": 2.5525189843522304e-19,
+            "thermal_variance": 1.0,
+            "fourth_moment_relative_error": 5.921189464667501e-16,
+            "gaussian_characteristic_defect": 3.3306690738754696e-16,
+            "density_mode_defect": 3.4250361894052986e-17,
+            "minimum_weight": 4.9824397257431146e-104,
+            "maximum_velocity": 21.62589890769055
+          },
+          "bound": "explicit load limits in acceptance.json",
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-seed33001 resolved fixed-window rate fit",
+          "value": [
+            -0.15487404248646777,
+            0.001337314338742206
+          ],
+          "bound": [
+            "physical sign",
+            0.15
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-seed33002 all fields and histories finite",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-seed33002 fixed time and five snapshots",
+          "value": [
+            0.0,
+            4.0,
+            8.0,
+            12.0,
+            16.0
+          ],
+          "bound": [
+            0.0,
+            4.0,
+            8.0,
+            12.0,
+            16.0
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-seed33002 charge momentum resolvedGauss and energy",
+          "value": [
+            4.14184384138525e-15,
+            1.4135798682334316e-16,
+            5.42365719446819e-20,
+            1.7585011065710117e-07
+          ],
+          "bound": [
+            2e-12,
+            2e-11,
+            2e-12,
+            0.01
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-seed33002 positive full-f weights without repair",
+          "value": [
+            4.9824397257431146e-104,
+            0,
+            0
+          ],
+          "bound": "weight>0,clips=retries=0",
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-seed33002 joint load and Gaussian quadrature qualified",
+          "value": {
+            "joint_low_mode_factorization_defect": 2.288774487666669e-16,
+            "mean_velocity": 2.5525189843522304e-19,
+            "thermal_variance": 1.0,
+            "fourth_moment_relative_error": 5.921189464667501e-16,
+            "gaussian_characteristic_defect": 3.3306690738754696e-16,
+            "density_mode_defect": 7.509669588319243e-17,
+            "minimum_weight": 4.9824397257431146e-104,
+            "maximum_velocity": 21.62589890769055
+          },
+          "bound": "explicit load limits in acceptance.json",
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-seed33002 resolved fixed-window rate fit",
+          "value": [
+            -0.15486573914140617,
+            0.0013593977687838192
+          ],
+          "bound": [
+            "physical sign",
+            0.15
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-seed33003 all fields and histories finite",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-seed33003 fixed time and five snapshots",
+          "value": [
+            0.0,
+            4.0,
+            8.0,
+            12.0,
+            16.0
+          ],
+          "bound": [
+            0.0,
+            4.0,
+            8.0,
+            12.0,
+            16.0
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-seed33003 charge momentum resolvedGauss and energy",
+          "value": [
+            4.185442197610358e-15,
+            2.1203697929618724e-16,
+            5.587850095852341e-20,
+            1.9235229836800587e-07
+          ],
+          "bound": [
+            2e-12,
+            2e-11,
+            2e-12,
+            0.01
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-seed33003 positive full-f weights without repair",
+          "value": [
+            4.9824397257431146e-104,
+            0,
+            0
+          ],
+          "bound": "weight>0,clips=retries=0",
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-seed33003 joint load and Gaussian quadrature qualified",
+          "value": {
+            "joint_low_mode_factorization_defect": 2.288774487666669e-16,
+            "mean_velocity": 2.5525189843522304e-19,
+            "thermal_variance": 1.0,
+            "fourth_moment_relative_error": 5.921189464667501e-16,
+            "gaussian_characteristic_defect": 3.3306690738754696e-16,
+            "density_mode_defect": 4.655107768950204e-17,
+            "minimum_weight": 4.9824397257431146e-104,
+            "maximum_velocity": 21.62589890769055
+          },
+          "bound": "explicit load limits in acceptance.json",
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-seed33003 resolved fixed-window rate fit",
+          "value": [
+            -0.15492341003903576,
+            0.001164014497526855
+          ],
+          "bound": [
+            "physical sign",
+            0.15
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-seed33004 all fields and histories finite",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-seed33004 fixed time and five snapshots",
+          "value": [
+            0.0,
+            4.0,
+            8.0,
+            12.0,
+            16.0
+          ],
+          "bound": [
+            0.0,
+            4.0,
+            8.0,
+            12.0,
+            16.0
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-seed33004 charge momentum resolvedGauss and energy",
+          "value": [
+            3.618663566683956e-15,
+            2.120369781731932e-16,
+            5.463198353652111e-20,
+            1.426235038733095e-07
+          ],
+          "bound": [
+            2e-12,
+            2e-11,
+            2e-12,
+            0.01
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-seed33004 positive full-f weights without repair",
+          "value": [
+            4.9824397257431146e-104,
+            0,
+            0
+          ],
+          "bound": "weight>0,clips=retries=0",
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-seed33004 joint load and Gaussian quadrature qualified",
+          "value": {
+            "joint_low_mode_factorization_defect": 2.288774487666669e-16,
+            "mean_velocity": 2.5525189843522304e-19,
+            "thermal_variance": 1.0,
+            "fourth_moment_relative_error": 5.921189464667501e-16,
+            "gaussian_characteristic_defect": 3.3306690738754696e-16,
+            "density_mode_defect": 2.883460234668479e-17,
+            "minimum_weight": 4.9824397257431146e-104,
+            "maximum_velocity": 21.62589890769055
+          },
+          "bound": "explicit load limits in acceptance.json",
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-seed33004 resolved fixed-window rate fit",
+          "value": [
+            -0.15485982313596577,
+            0.0009962365505557323
+          ],
+          "bound": [
+            "physical sign",
+            0.15
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-mesh all fields and histories finite",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-mesh fixed time and five snapshots",
+          "value": [
+            0.0,
+            4.0,
+            8.0,
+            12.0,
+            16.0
+          ],
+          "bound": [
+            0.0,
+            4.0,
+            8.0,
+            12.0,
+            16.0
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-mesh charge momentum resolvedGauss and energy",
+          "value": [
+            1.722135070891762e-15,
+            1.4135798651545476e-16,
+            6.06087439757635e-20,
+            1.9051581779369786e-07
+          ],
+          "bound": [
+            2e-12,
+            2e-11,
+            2e-12,
+            0.01
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-mesh positive full-f weights without repair",
+          "value": [
+            4.9824397257431146e-104,
+            0,
+            0
+          ],
+          "bound": "weight>0,clips=retries=0",
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-mesh joint load and Gaussian quadrature qualified",
+          "value": {
+            "joint_low_mode_factorization_defect": 2.288774487666669e-16,
+            "mean_velocity": 2.5525189843522304e-19,
+            "thermal_variance": 1.0,
+            "fourth_moment_relative_error": 5.921189464667501e-16,
+            "gaussian_characteristic_defect": 3.3306690738754696e-16,
+            "density_mode_defect": 3.4250361894052986e-17,
+            "minimum_weight": 4.9824397257431146e-104,
+            "maximum_velocity": 21.62589890769055
+          },
+          "bound": "explicit load limits in acceptance.json",
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-mesh resolved fixed-window rate fit",
+          "value": [
+            -0.1540478853144545,
+            0.0013120045194692414
+          ],
+          "bound": [
+            "physical sign",
+            0.15
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-time-half all fields and histories finite",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-time-half fixed time and five snapshots",
+          "value": [
+            0.0,
+            4.0,
+            8.0,
+            12.0,
+            16.0
+          ],
+          "bound": [
+            0.0,
+            4.0,
+            8.0,
+            12.0,
+            16.0
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-time-half charge momentum resolvedGauss and energy",
+          "value": [
+            4.490630691186113e-15,
+            2.120369795067992e-16,
+            5.463198353652111e-20,
+            1.5118142125471943e-07
+          ],
+          "bound": [
+            2e-12,
+            2e-11,
+            2e-12,
+            0.01
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-time-half positive full-f weights without repair",
+          "value": [
+            4.9824397257431146e-104,
+            0,
+            0
+          ],
+          "bound": "weight>0,clips=retries=0",
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-time-half joint load and Gaussian quadrature qualified",
+          "value": {
+            "joint_low_mode_factorization_defect": 2.288774487666669e-16,
+            "mean_velocity": 2.5525189843522304e-19,
+            "thermal_variance": 1.0,
+            "fourth_moment_relative_error": 5.921189464667501e-16,
+            "gaussian_characteristic_defect": 3.3306690738754696e-16,
+            "density_mode_defect": 3.4250361894052986e-17,
+            "minimum_weight": 4.9824397257431146e-104,
+            "maximum_velocity": 21.62589890769055
+          },
+          "bound": "explicit load limits in acceptance.json",
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-time-half resolved fixed-window rate fit",
+          "value": [
+            -0.1548880722360173,
+            0.001335866309697039
+          ],
+          "bound": [
+            "physical sign",
+            0.15
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-velocity all fields and histories finite",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-velocity fixed time and five snapshots",
+          "value": [
+            0.0,
+            4.0,
+            8.0,
+            12.0,
+            16.0
+          ],
+          "bound": [
+            0.0,
+            4.0,
+            8.0,
+            12.0,
+            16.0
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-velocity charge momentum resolvedGauss and energy",
+          "value": [
+            7.498917270718558e-15,
+            1.9487929710488265e-16,
+            3.030437198788175e-20,
+            1.6167923339000176e-07
+          ],
+          "bound": [
+            2e-12,
+            2e-11,
+            2e-12,
+            0.01
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-velocity positive full-f weights without repair",
+          "value": [
+            1.4500485196376065e-212,
+            0,
+            0
+          ],
+          "bound": "weight>0,clips=retries=0",
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-velocity joint load and Gaussian quadrature qualified",
+          "value": {
+            "joint_low_mode_factorization_defect": 2.223134568585368e-16,
+            "mean_velocity": 1.1842240341922343e-17,
+            "thermal_variance": 0.9999999999999889,
+            "fourth_moment_relative_error": 1.080617077301819e-14,
+            "gaussian_characteristic_defect": 9.686695889854491e-15,
+            "density_mode_defect": 1.357627096943426e-17,
+            "minimum_weight": 1.4500485196376065e-212,
+            "maximum_velocity": 31.100951037096518
+          },
+          "bound": "explicit load limits in acceptance.json",
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-velocity resolved fixed-window rate fit",
+          "value": [
+            -0.15484379736461404,
+            0.0010384749676978194
+          ],
+          "bound": [
+            "physical sign",
+            0.15
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-amplitude-half all fields and histories finite",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-amplitude-half fixed time and five snapshots",
+          "value": [
+            0.0,
+            4.0,
+            8.0,
+            12.0,
+            16.0
+          ],
+          "bound": [
+            0.0,
+            4.0,
+            8.0,
+            12.0,
+            16.0
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-amplitude-half charge momentum resolvedGauss and energy",
+          "value": [
+            4.316237266285682e-15,
+            1.4135798602449665e-16,
+            2.7939250479261703e-20,
+            8.650019228712843e-08
+          ],
+          "bound": [
+            2e-12,
+            2e-11,
+            2e-12,
+            0.01
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-amplitude-half positive full-f weights without repair",
+          "value": [
+            4.9824397257431146e-104,
+            0,
+            0
+          ],
+          "bound": "weight>0,clips=retries=0",
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-amplitude-half joint load and Gaussian quadrature qualified",
+          "value": {
+            "joint_low_mode_factorization_defect": 2.288774487666669e-16,
+            "mean_velocity": 2.5525189843522304e-19,
+            "thermal_variance": 1.0,
+            "fourth_moment_relative_error": 5.921189464667501e-16,
+            "gaussian_characteristic_defect": 3.3306690738754696e-16,
+            "density_mode_defect": 3.7324005964944454e-17,
+            "minimum_weight": 4.9824397257431146e-104,
+            "maximum_velocity": 21.62589890769055
+          },
+          "bound": "explicit load limits in acceptance.json",
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-amplitude-half resolved fixed-window rate fit",
+          "value": [
+            -0.15473315083328731,
+            0.003899537994010339
+          ],
+          "bound": [
+            "physical sign",
+            0.15
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-noise all fields and histories finite",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-noise fixed time and five snapshots",
+          "value": [
+            0.0,
+            4.0,
+            8.0,
+            12.0,
+            16.0
+          ],
+          "bound": [
+            0.0,
+            4.0,
+            8.0,
+            12.0,
+            16.0
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-noise charge momentum resolvedGauss and energy",
+          "value": [
+            1.451825262296093e-14,
+            9.188269079783492e-16,
+            1.626278418073297e-30,
+            2.82715971685646e-16
+          ],
+          "bound": [
+            2e-12,
+            2e-11,
+            2e-12,
+            0.01
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-noise positive full-f weights without repair",
+          "value": [
+            4.9824397257431146e-104,
+            0,
+            0
+          ],
+          "bound": "weight>0,clips=retries=0",
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-noise joint load and Gaussian quadrature qualified",
+          "value": {
+            "joint_low_mode_factorization_defect": 2.288774487666669e-16,
+            "mean_velocity": 2.5525189843522304e-19,
+            "thermal_variance": 1.0,
+            "fourth_moment_relative_error": 5.921189464667501e-16,
+            "gaussian_characteristic_defect": 3.3306690738754696e-16,
+            "density_mode_defect": 3.4758244027106133e-17,
+            "minimum_weight": 4.9824397257431146e-104,
+            "maximum_velocity": 21.62589890769055
+          },
+          "bound": "explicit load limits in acceptance.json",
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-spatial-strata all fields and histories finite",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-spatial-strata fixed time and five snapshots",
+          "value": [
+            0.0,
+            4.0,
+            8.0,
+            12.0,
+            16.0
+          ],
+          "bound": [
+            0.0,
+            4.0,
+            8.0,
+            12.0,
+            16.0
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-spatial-strata charge momentum resolvedGauss and energy",
+          "value": [
+            5.362597815688271e-15,
+            1.5609859412494928e-16,
+            5.421672566532815e-20,
+            1.0006946894224023e-07
+          ],
+          "bound": [
+            2e-12,
+            2e-11,
+            2e-12,
+            0.01
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-spatial-strata positive full-f weights without repair",
+          "value": [
+            2.4912198628715573e-104,
+            0,
+            0
+          ],
+          "bound": "weight>0,clips=retries=0",
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-spatial-strata joint load and Gaussian quadrature qualified",
+          "value": {
+            "joint_low_mode_factorization_defect": 3.382158102537463e-16,
+            "mean_velocity": 8.684619096215866e-18,
+            "thermal_variance": 1.0,
+            "fourth_moment_relative_error": 5.921189464667501e-16,
+            "gaussian_characteristic_defect": 3.3306690738754696e-16,
+            "density_mode_defect": 1.405934898984759e-17,
+            "minimum_weight": 2.4912198628715573e-104,
+            "maximum_velocity": 21.62589890769055
+          },
+          "bound": "explicit load limits in acceptance.json",
+          "passed": true
+        },
+        {
+          "name": "thermal-landau-damping-spatial-strata resolved fixed-window rate fit",
+          "value": [
+            -0.15486387866464665,
+            0.0007278464371114105
+          ],
+          "bound": [
+            "physical sign",
+            0.15
+          ],
+          "passed": true
+        },
+        {
+          "name": "conditional rate precision",
+          "value": 4.354419416725259e-05,
+          "bound": 0.015335946690960467,
+          "passed": true
+        },
+        {
+          "name": "mean rate versus dielectric pole",
+          "value": 0.0015212867911142125,
+          "bound": 0.030715437576088186,
+          "passed": true
+        },
+        {
+          "name": "mean rate versus linear IVP fixed-window estimator",
+          "value": 0.0012331796790330807,
+          "bound": 0.02304746423060795,
+          "passed": true
+        },
+        {
+          "name": "mean field curve versus linear continuum",
+          "value": 0.02092398393973105,
+          "bound": 0.2,
+          "passed": true
+        },
+        {
+          "name": "quiet-equilibrium noise versus fitted envelope",
+          "value": 5.222378053852797e-12,
+          "bound": 1.0,
+          "passed": true
+        },
+        {
+          "name": "mesh separate rate sensitivity",
+          "value": 0.005387063405092717,
+          "bound": 0.1,
+          "passed": true
+        },
+        {
+          "name": "time-half separate rate sensitivity",
+          "value": 9.14827746356337e-05,
+          "bound": 0.05,
+          "passed": true
+        },
+        {
+          "name": "velocity separate rate sensitivity",
+          "value": 0.0001972171817183033,
+          "bound": 0.1,
+          "passed": true
+        },
+        {
+          "name": "amplitude-half separate rate sensitivity",
+          "value": 0.0009187020274627366,
+          "bound": 0.05,
+          "passed": true
+        },
+        {
+          "name": "amplitude-halving scaled field linearity",
+          "value": 0.004375529905721923,
+          "bound": 0.03,
+          "passed": true
+        },
+        {
+          "name": "mean frequency versus dielectric pole",
+          "value": 0.0029406752583163165,
+          "bound": 0.04258547161297922,
+          "passed": true
+        },
+        {
+          "name": "spatial-strata separate rate sensitivity",
+          "value": 6.62744989007398e-05,
+          "bound": 0.1,
+          "passed": true
+        },
+        {
+          "name": "spatial-strata scaled field sensitivity",
+          "value": 0.001153705277393216,
+          "bound": 0.03,
+          "passed": true
+        }
+      ],
+      "records": [
+        {
+          "spatial_strata": 256,
+          "id": "thermal-landau-damping-seed33001",
+          "family": "ensemble",
+          "seed": 33001,
+          "grid": 32,
+          "nodes": 128,
+          "dt": 0.04,
+          "amplitude": 0.01,
+          "case": "thermal-landau-damping",
+          "particles": 32768,
+          "steps": 400,
+          "time": 16.0,
+          "snapshot_times": [
+            0.0,
+            4.0,
+            8.0,
+            12.0,
+            16.0
+          ],
+          "load": {
+            "joint_low_mode_factorization_defect": 2.288774487666669e-16,
+            "mean_velocity": 2.5525189843522304e-19,
+            "thermal_variance": 1.0,
+            "fourth_moment_relative_error": 5.921189464667501e-16,
+            "gaussian_characteristic_defect": 3.3306690738754696e-16,
+            "density_mode_defect": 3.4250361894052986e-17,
+            "minimum_weight": 4.9824397257431146e-104,
+            "maximum_velocity": 21.62589890769055
+          },
+          "all_finite": true,
+          "maximum_charge_error": 3.705860279134171e-15,
+          "maximum_momentum_drift": 2.1203697844509312e-16,
+          "maximum_resolved_gauss": 5.587850095852341e-20,
+          "maximum_energy_drift": 1.896307359541054e-07,
+          "maximum_nyquist_charge": 0.0005334197188067505,
+          "minimum_weight": 4.9824397257431146e-104,
+          "state_clip_count": 0,
+          "retries": 0,
+          "fit": {
+            "gamma": -0.15487404248646777,
+            "omega": 1.412748023847043,
+            "relative_fit_residual": 0.001337314338742206,
+            "minimum_envelope": 0.11468312192557754,
+            "samples": 201
+          },
+          "linear_curve_relative_rms": 0.020828166718838574,
+          "normalization_field_amplitude": 0.01,
+          "noise_mode_rms": null,
+          "file": "thermal-landau-damping-thermal-landau-damping-seed33001.npz",
+          "sha256": "710f233473fa351bf358e6819c0f5be517de2b07e02e9d28998ca04fa1b71136"
+        },
+        {
+          "spatial_strata": 256,
+          "id": "thermal-landau-damping-seed33002",
+          "family": "ensemble",
+          "seed": 33002,
+          "grid": 32,
+          "nodes": 128,
+          "dt": 0.04,
+          "amplitude": 0.01,
+          "case": "thermal-landau-damping",
+          "particles": 32768,
+          "steps": 400,
+          "time": 16.0,
+          "snapshot_times": [
+            0.0,
+            4.0,
+            8.0,
+            12.0,
+            16.0
+          ],
+          "load": {
+            "joint_low_mode_factorization_defect": 2.288774487666669e-16,
+            "mean_velocity": 2.5525189843522304e-19,
+            "thermal_variance": 1.0,
+            "fourth_moment_relative_error": 5.921189464667501e-16,
+            "gaussian_characteristic_defect": 3.3306690738754696e-16,
+            "density_mode_defect": 7.509669588319243e-17,
+            "minimum_weight": 4.9824397257431146e-104,
+            "maximum_velocity": 21.62589890769055
+          },
+          "all_finite": true,
+          "maximum_charge_error": 4.14184384138525e-15,
+          "maximum_momentum_drift": 1.4135798682334316e-16,
+          "maximum_resolved_gauss": 5.42365719446819e-20,
+          "maximum_energy_drift": 1.7585011065710117e-07,
+          "maximum_nyquist_charge": 0.000464186795612085,
+          "minimum_weight": 4.9824397257431146e-104,
+          "state_clip_count": 0,
+          "retries": 0,
+          "fit": {
+            "gamma": -0.15486573914140617,
+            "omega": 1.412695797607326,
+            "relative_fit_residual": 0.0013593977687838192,
+            "minimum_envelope": 0.11467457157257085,
+            "samples": 201
+          },
+          "linear_curve_relative_rms": 0.021111691792390544,
+          "normalization_field_amplitude": 0.01,
+          "noise_mode_rms": null,
+          "file": "thermal-landau-damping-thermal-landau-damping-seed33002.npz",
+          "sha256": "d3c30bc333fb71c950049066515a8aed2107c754766cddccb5576f2db07df4a2"
+        },
+        {
+          "spatial_strata": 256,
+          "id": "thermal-landau-damping-seed33003",
+          "family": "ensemble",
+          "seed": 33003,
+          "grid": 32,
+          "nodes": 128,
+          "dt": 0.04,
+          "amplitude": 0.01,
+          "case": "thermal-landau-damping",
+          "particles": 32768,
+          "steps": 400,
+          "time": 16.0,
+          "snapshot_times": [
+            0.0,
+            4.0,
+            8.0,
+            12.0,
+            16.0
+          ],
+          "load": {
+            "joint_low_mode_factorization_defect": 2.288774487666669e-16,
+            "mean_velocity": 2.5525189843522304e-19,
+            "thermal_variance": 1.0,
+            "fourth_moment_relative_error": 5.921189464667501e-16,
+            "gaussian_characteristic_defect": 3.3306690738754696e-16,
+            "density_mode_defect": 4.655107768950204e-17,
+            "minimum_weight": 4.9824397257431146e-104,
+            "maximum_velocity": 21.62589890769055
+          },
+          "all_finite": true,
+          "maximum_charge_error": 4.185442197610358e-15,
+          "maximum_momentum_drift": 2.1203697929618724e-16,
+          "maximum_resolved_gauss": 5.587850095852341e-20,
+          "maximum_energy_drift": 1.9235229836800587e-07,
+          "maximum_nyquist_charge": 0.0004561143311481129,
+          "minimum_weight": 4.9824397257431146e-104,
+          "state_clip_count": 0,
+          "retries": 0,
+          "fit": {
+            "gamma": -0.15492341003903576,
+            "omega": 1.4126298057445186,
+            "relative_fit_residual": 0.001164014497526855,
+            "minimum_envelope": 0.1146125286054583,
+            "samples": 201
+          },
+          "linear_curve_relative_rms": 0.02108056764828808,
+          "normalization_field_amplitude": 0.01,
+          "noise_mode_rms": null,
+          "file": "thermal-landau-damping-thermal-landau-damping-seed33003.npz",
+          "sha256": "5ee9321cabbb8506068c2f163a48393e81b06fa1610d3d494b65b529114f2a03"
+        },
+        {
+          "spatial_strata": 256,
+          "id": "thermal-landau-damping-seed33004",
+          "family": "ensemble",
+          "seed": 33004,
+          "grid": 32,
+          "nodes": 128,
+          "dt": 0.04,
+          "amplitude": 0.01,
+          "case": "thermal-landau-damping",
+          "particles": 32768,
+          "steps": 400,
+          "time": 16.0,
+          "snapshot_times": [
+            0.0,
+            4.0,
+            8.0,
+            12.0,
+            16.0
+          ],
+          "load": {
+            "joint_low_mode_factorization_defect": 2.288774487666669e-16,
+            "mean_velocity": 2.5525189843522304e-19,
+            "thermal_variance": 1.0,
+            "fourth_moment_relative_error": 5.921189464667501e-16,
+            "gaussian_characteristic_defect": 3.3306690738754696e-16,
+            "density_mode_defect": 2.883460234668479e-17,
+            "minimum_weight": 4.9824397257431146e-104,
+            "maximum_velocity": 21.62589890769055
+          },
+          "all_finite": true,
+          "maximum_charge_error": 3.618663566683956e-15,
+          "maximum_momentum_drift": 2.120369781731932e-16,
+          "maximum_resolved_gauss": 5.463198353652111e-20,
+          "maximum_energy_drift": 1.426235038733095e-07,
+          "maximum_nyquist_charge": 0.00032858206851415356,
+          "minimum_weight": 4.9824397257431146e-104,
+          "state_clip_count": 0,
+          "retries": 0,
+          "fit": {
+            "gamma": -0.15485982313596577,
+            "omega": 1.4128112261859955,
+            "relative_fit_residual": 0.0009962365505557323,
+            "minimum_envelope": 0.11471939208620051,
+            "samples": 201
+          },
+          "linear_curve_relative_rms": 0.020675509599407012,
+          "normalization_field_amplitude": 0.01,
+          "noise_mode_rms": null,
+          "file": "thermal-landau-damping-thermal-landau-damping-seed33004.npz",
+          "sha256": "1b5d396b386f28aac0d75dbd602381503d916aa69c4be8aee18ef1f0abbe14ac"
+        },
+        {
+          "spatial_strata": 256,
+          "seed": 33001,
+          "grid": 64,
+          "nodes": 128,
+          "dt": 0.04,
+          "amplitude": 0.01,
+          "id": "thermal-landau-damping-mesh",
+          "family": "mesh",
+          "case": "thermal-landau-damping",
+          "particles": 32768,
+          "steps": 400,
+          "time": 16.0,
+          "snapshot_times": [
+            0.0,
+            4.0,
+            8.0,
+            12.0,
+            16.0
+          ],
+          "load": {
+            "joint_low_mode_factorization_defect": 2.288774487666669e-16,
+            "mean_velocity": 2.5525189843522304e-19,
+            "thermal_variance": 1.0,
+            "fourth_moment_relative_error": 5.921189464667501e-16,
+            "gaussian_characteristic_defect": 3.3306690738754696e-16,
+            "density_mode_defect": 3.4250361894052986e-17,
+            "minimum_weight": 4.9824397257431146e-104,
+            "maximum_velocity": 21.62589890769055
+          },
+          "all_finite": true,
+          "maximum_charge_error": 1.722135070891762e-15,
+          "maximum_momentum_drift": 1.4135798651545476e-16,
+          "maximum_resolved_gauss": 6.06087439757635e-20,
+          "maximum_energy_drift": 1.9051581779369786e-07,
+          "maximum_nyquist_charge": 0.00034448831835887095,
+          "minimum_weight": 4.9824397257431146e-104,
+          "state_clip_count": 0,
+          "retries": 0,
+          "fit": {
+            "gamma": -0.1540478853144545,
+            "omega": 1.4146186603852107,
+            "relative_fit_residual": 0.0013120045194692414,
+            "minimum_envelope": 0.11605968774306037,
+            "samples": 201
+          },
+          "linear_curve_relative_rms": 0.005247536188022763,
+          "normalization_field_amplitude": 0.01,
+          "noise_mode_rms": null,
+          "file": "thermal-landau-damping-thermal-landau-damping-mesh.npz",
+          "sha256": "bd3f70b50053c2c6f9549ff30e5b52393ca9b54a5b6cbdd4033ca0c03b421512"
+        },
+        {
+          "spatial_strata": 256,
+          "seed": 33001,
+          "grid": 32,
+          "nodes": 128,
+          "dt": 0.02,
+          "amplitude": 0.01,
+          "id": "thermal-landau-damping-time-half",
+          "family": "time-half",
+          "case": "thermal-landau-damping",
+          "particles": 32768,
+          "steps": 800,
+          "time": 16.0,
+          "snapshot_times": [
+            0.0,
+            4.0,
+            8.0,
+            12.0,
+            16.0
+          ],
+          "load": {
+            "joint_low_mode_factorization_defect": 2.288774487666669e-16,
+            "mean_velocity": 2.5525189843522304e-19,
+            "thermal_variance": 1.0,
+            "fourth_moment_relative_error": 5.921189464667501e-16,
+            "gaussian_characteristic_defect": 3.3306690738754696e-16,
+            "density_mode_defect": 3.4250361894052986e-17,
+            "minimum_weight": 4.9824397257431146e-104,
+            "maximum_velocity": 21.62589890769055
+          },
+          "all_finite": true,
+          "maximum_charge_error": 4.490630691186113e-15,
+          "maximum_momentum_drift": 2.120369795067992e-16,
+          "maximum_resolved_gauss": 5.463198353652111e-20,
+          "maximum_energy_drift": 1.5118142125471943e-07,
+          "maximum_nyquist_charge": 0.0005322735632840546,
+          "minimum_weight": 4.9824397257431146e-104,
+          "state_clip_count": 0,
+          "retries": 0,
+          "fit": {
+            "gamma": -0.1548880722360173,
+            "omega": 1.4127130875395628,
+            "relative_fit_residual": 0.001335866309697039,
+            "minimum_envelope": 0.11467078918347996,
+            "samples": 401
+          },
+          "linear_curve_relative_rms": 0.02103957222790057,
+          "normalization_field_amplitude": 0.01,
+          "noise_mode_rms": null,
+          "file": "thermal-landau-damping-thermal-landau-damping-time-half.npz",
+          "sha256": "1f3314ac4678efa6a94f274849648a925c4b1c5b903d50e938e7673e780c9568"
+        },
+        {
+          "spatial_strata": 256,
+          "seed": 33001,
+          "grid": 32,
+          "nodes": 256,
+          "dt": 0.04,
+          "amplitude": 0.01,
+          "id": "thermal-landau-damping-velocity",
+          "family": "velocity",
+          "case": "thermal-landau-damping",
+          "particles": 65536,
+          "steps": 400,
+          "time": 16.0,
+          "snapshot_times": [
+            0.0,
+            4.0,
+            8.0,
+            12.0,
+            16.0
+          ],
+          "load": {
+            "joint_low_mode_factorization_defect": 2.223134568585368e-16,
+            "mean_velocity": 1.1842240341922343e-17,
+            "thermal_variance": 0.9999999999999889,
+            "fourth_moment_relative_error": 1.080617077301819e-14,
+            "gaussian_characteristic_defect": 9.686695889854491e-15,
+            "density_mode_defect": 1.357627096943426e-17,
+            "minimum_weight": 1.4500485196376065e-212,
+            "maximum_velocity": 31.100951037096518
+          },
+          "all_finite": true,
+          "maximum_charge_error": 7.498917270718558e-15,
+          "maximum_momentum_drift": 1.9487929710488265e-16,
+          "maximum_resolved_gauss": 3.030437198788175e-20,
+          "maximum_energy_drift": 1.6167923339000176e-07,
+          "maximum_nyquist_charge": 0.00029100051714093383,
+          "minimum_weight": 1.4500485196376065e-212,
+          "state_clip_count": 0,
+          "retries": 0,
+          "fit": {
+            "gamma": -0.15484379736461404,
+            "omega": 1.4128003598906524,
+            "relative_fit_residual": 0.0010384749676978194,
+            "minimum_envelope": 0.11472237935752277,
+            "samples": 201
+          },
+          "linear_curve_relative_rms": 0.020698587962497045,
+          "normalization_field_amplitude": 0.01,
+          "noise_mode_rms": null,
+          "file": "thermal-landau-damping-thermal-landau-damping-velocity.npz",
+          "sha256": "468c8ef8a044de8b22507e12fe2f8edff8626e2d16c6bd37437ddeebc841d48d"
+        },
+        {
+          "spatial_strata": 256,
+          "seed": 33001,
+          "grid": 32,
+          "nodes": 128,
+          "dt": 0.04,
+          "amplitude": 0.005,
+          "id": "thermal-landau-damping-amplitude-half",
+          "family": "amplitude-half",
+          "case": "thermal-landau-damping",
+          "particles": 32768,
+          "steps": 400,
+          "time": 16.0,
+          "snapshot_times": [
+            0.0,
+            4.0,
+            8.0,
+            12.0,
+            16.0
+          ],
+          "load": {
+            "joint_low_mode_factorization_defect": 2.288774487666669e-16,
+            "mean_velocity": 2.5525189843522304e-19,
+            "thermal_variance": 1.0,
+            "fourth_moment_relative_error": 5.921189464667501e-16,
+            "gaussian_characteristic_defect": 3.3306690738754696e-16,
+            "density_mode_defect": 3.7324005964944454e-17,
+            "minimum_weight": 4.9824397257431146e-104,
+            "maximum_velocity": 21.62589890769055
+          },
+          "all_finite": true,
+          "maximum_charge_error": 4.316237266285682e-15,
+          "maximum_momentum_drift": 1.4135798602449665e-16,
+          "maximum_resolved_gauss": 2.7939250479261703e-20,
+          "maximum_energy_drift": 8.650019228712843e-08,
+          "maximum_nyquist_charge": 0.00011774156495177393,
+          "minimum_weight": 4.9824397257431146e-104,
+          "state_clip_count": 0,
+          "retries": 0,
+          "fit": {
+            "gamma": -0.15473315083328731,
+            "omega": 1.412680942994998,
+            "relative_fit_residual": 0.003899537994010339,
+            "minimum_envelope": 0.11481982218158883,
+            "samples": 201
+          },
+          "linear_curve_relative_rms": 0.02093837786695293,
+          "normalization_field_amplitude": 0.005,
+          "noise_mode_rms": null,
+          "file": "thermal-landau-damping-thermal-landau-damping-amplitude-half.npz",
+          "sha256": "868d3a2f48f131969f1e5f8eb0702206db60905393c0b9ec27f7c3cc8bf12dbb"
+        },
+        {
+          "spatial_strata": 256,
+          "seed": 33001,
+          "grid": 32,
+          "nodes": 128,
+          "dt": 0.04,
+          "amplitude": 0.0,
+          "id": "thermal-landau-damping-noise",
+          "family": "noise",
+          "case": "thermal-landau-damping",
+          "particles": 32768,
+          "steps": 400,
+          "time": 16.0,
+          "snapshot_times": [
+            0.0,
+            4.0,
+            8.0,
+            12.0,
+            16.0
+          ],
+          "load": {
+            "joint_low_mode_factorization_defect": 2.288774487666669e-16,
+            "mean_velocity": 2.5525189843522304e-19,
+            "thermal_variance": 1.0,
+            "fourth_moment_relative_error": 5.921189464667501e-16,
+            "gaussian_characteristic_defect": 3.3306690738754696e-16,
+            "density_mode_defect": 3.4758244027106133e-17,
+            "minimum_weight": 4.9824397257431146e-104,
+            "maximum_velocity": 21.62589890769055
+          },
+          "all_finite": true,
+          "maximum_charge_error": 1.451825262296093e-14,
+          "maximum_momentum_drift": 9.188269079783492e-16,
+          "maximum_resolved_gauss": 1.626278418073297e-30,
+          "maximum_energy_drift": 2.82715971685646e-16,
+          "maximum_nyquist_charge": 9.974659986866641e-15,
+          "minimum_weight": 4.9824397257431146e-104,
+          "state_clip_count": 0,
+          "retries": 0,
+          "fit": null,
+          "linear_curve_relative_rms": null,
+          "normalization_field_amplitude": 0.01,
+          "noise_mode_rms": 1.995166513619071e-13,
+          "file": "thermal-landau-damping-thermal-landau-damping-noise.npz",
+          "sha256": "2ce52bf4a6498e3d9a82c80818594cd5d9d4b6562c4a35cf665025215c4d20e0"
+        },
+        {
+          "spatial_strata": 512,
+          "seed": 33001,
+          "grid": 32,
+          "nodes": 128,
+          "dt": 0.04,
+          "amplitude": 0.01,
+          "id": "thermal-landau-damping-spatial-strata",
+          "family": "spatial-strata",
+          "case": "thermal-landau-damping",
+          "particles": 65536,
+          "steps": 400,
+          "time": 16.0,
+          "snapshot_times": [
+            0.0,
+            4.0,
+            8.0,
+            12.0,
+            16.0
+          ],
+          "load": {
+            "joint_low_mode_factorization_defect": 3.382158102537463e-16,
+            "mean_velocity": 8.684619096215866e-18,
+            "thermal_variance": 1.0,
+            "fourth_moment_relative_error": 5.921189464667501e-16,
+            "gaussian_characteristic_defect": 3.3306690738754696e-16,
+            "density_mode_defect": 1.405934898984759e-17,
+            "minimum_weight": 2.4912198628715573e-104,
+            "maximum_velocity": 21.62589890769055
+          },
+          "all_finite": true,
+          "maximum_charge_error": 5.362597815688271e-15,
+          "maximum_momentum_drift": 1.5609859412494928e-16,
+          "maximum_resolved_gauss": 5.421672566532815e-20,
+          "maximum_energy_drift": 1.0006946894224023e-07,
+          "maximum_nyquist_charge": 0.000153796931331468,
+          "minimum_weight": 2.4912198628715573e-104,
+          "state_clip_count": 0,
+          "retries": 0,
+          "fit": {
+            "gamma": -0.15486387866464665,
+            "omega": 1.4127505492185088,
+            "relative_fit_residual": 0.0007278464371114105,
+            "minimum_envelope": 0.11469932029280094,
+            "samples": 201
+          },
+          "linear_curve_relative_rms": 0.020815730670070975,
+          "normalization_field_amplitude": 0.01,
+          "noise_mode_rms": null,
+          "file": "thermal-landau-damping-thermal-landau-damping-spatial-strata.npz",
+          "sha256": "ea74e28c40accf87b2d70c3252d07ab6f20ff895ec16c4415309cf2f08be3e2c"
+        }
+      ],
+      "metrics": {
+        "mean_rate": -0.15488075370071888,
+        "seed_standard_error": 1.4514731389084198e-05,
+        "conditional_t95_lower": -0.15492694605400026,
+        "conditional_t95_upper": -0.1548345613474375,
+        "dielectric_rate": -0.15335946690960467,
+        "volterra_fixed_window_rate": -0.1536475740216858,
+        "root_window_relative_bias": 0.0018786392381694443,
+        "mean_linear_curve_relative_rms": 0.02092398393973105,
+        "three_noise_to_minimum_envelope": 5.222378053852797e-12,
+        "mesh_rate_fraction": 0.005387063405092717,
+        "time-half_rate_fraction": 9.14827746356337e-05,
+        "velocity_rate_fraction": 0.0001972171817183033,
+        "amplitude-half_rate_fraction": 0.0009187020274627366,
+        "amplitude_scaled_curve_gap": 0.004375529905721923,
+        "mean_frequency": 1.4127212133462208,
+        "frequency_seed_se": 3.853831828103487e-05,
+        "dielectric_frequency": 1.4156618886045371,
+        "spatial_strata_rate_fraction": 6.62744989007398e-05,
+        "spatial_strata_scaled_curve_gap": 0.001153705277393216
+      }
+    },
+    {
+      "id": "thermal-two-stream",
+      "passed": true,
+      "checks": {
+        "independent root and fixed-window Volterra qualified": true,
+        "nine fixed full-f calculations": true,
+        "thermal-two-stream-seed34001 all fields and histories finite": true,
+        "thermal-two-stream-seed34001 fixed time and five snapshots": true,
+        "thermal-two-stream-seed34001 charge momentum resolvedGauss and energy": true,
+        "thermal-two-stream-seed34001 positive full-f weights without repair": true,
+        "thermal-two-stream-seed34001 joint load and Gaussian quadrature qualified": true,
+        "thermal-two-stream-seed34001 resolved fixed-window rate fit": true,
+        "thermal-two-stream-seed34002 all fields and histories finite": true,
+        "thermal-two-stream-seed34002 fixed time and five snapshots": true,
+        "thermal-two-stream-seed34002 charge momentum resolvedGauss and energy": true,
+        "thermal-two-stream-seed34002 positive full-f weights without repair": true,
+        "thermal-two-stream-seed34002 joint load and Gaussian quadrature qualified": true,
+        "thermal-two-stream-seed34002 resolved fixed-window rate fit": true,
+        "thermal-two-stream-seed34003 all fields and histories finite": true,
+        "thermal-two-stream-seed34003 fixed time and five snapshots": true,
+        "thermal-two-stream-seed34003 charge momentum resolvedGauss and energy": true,
+        "thermal-two-stream-seed34003 positive full-f weights without repair": true,
+        "thermal-two-stream-seed34003 joint load and Gaussian quadrature qualified": true,
+        "thermal-two-stream-seed34003 resolved fixed-window rate fit": true,
+        "thermal-two-stream-seed34004 all fields and histories finite": true,
+        "thermal-two-stream-seed34004 fixed time and five snapshots": true,
+        "thermal-two-stream-seed34004 charge momentum resolvedGauss and energy": true,
+        "thermal-two-stream-seed34004 positive full-f weights without repair": true,
+        "thermal-two-stream-seed34004 joint load and Gaussian quadrature qualified": true,
+        "thermal-two-stream-seed34004 resolved fixed-window rate fit": true,
+        "thermal-two-stream-mesh all fields and histories finite": true,
+        "thermal-two-stream-mesh fixed time and five snapshots": true,
+        "thermal-two-stream-mesh charge momentum resolvedGauss and energy": true,
+        "thermal-two-stream-mesh positive full-f weights without repair": true,
+        "thermal-two-stream-mesh joint load and Gaussian quadrature qualified": true,
+        "thermal-two-stream-mesh resolved fixed-window rate fit": true,
+        "thermal-two-stream-time-half all fields and histories finite": true,
+        "thermal-two-stream-time-half fixed time and five snapshots": true,
+        "thermal-two-stream-time-half charge momentum resolvedGauss and energy": true,
+        "thermal-two-stream-time-half positive full-f weights without repair": true,
+        "thermal-two-stream-time-half joint load and Gaussian quadrature qualified": true,
+        "thermal-two-stream-time-half resolved fixed-window rate fit": true,
+        "thermal-two-stream-velocity all fields and histories finite": true,
+        "thermal-two-stream-velocity fixed time and five snapshots": true,
+        "thermal-two-stream-velocity charge momentum resolvedGauss and energy": true,
+        "thermal-two-stream-velocity positive full-f weights without repair": true,
+        "thermal-two-stream-velocity joint load and Gaussian quadrature qualified": true,
+        "thermal-two-stream-velocity resolved fixed-window rate fit": true,
+        "thermal-two-stream-amplitude-half all fields and histories finite": true,
+        "thermal-two-stream-amplitude-half fixed time and five snapshots": true,
+        "thermal-two-stream-amplitude-half charge momentum resolvedGauss and energy": true,
+        "thermal-two-stream-amplitude-half positive full-f weights without repair": true,
+        "thermal-two-stream-amplitude-half joint load and Gaussian quadrature qualified": true,
+        "thermal-two-stream-amplitude-half resolved fixed-window rate fit": true,
+        "thermal-two-stream-noise all fields and histories finite": true,
+        "thermal-two-stream-noise fixed time and five snapshots": true,
+        "thermal-two-stream-noise charge momentum resolvedGauss and energy": true,
+        "thermal-two-stream-noise positive full-f weights without repair": true,
+        "thermal-two-stream-noise joint load and Gaussian quadrature qualified": true,
+        "conditional rate precision": true,
+        "mean rate versus dielectric pole": true,
+        "mean rate versus linear IVP fixed-window estimator": true,
+        "mean field curve versus linear continuum": true,
+        "quiet-equilibrium noise versus fitted envelope": true,
+        "mesh separate rate sensitivity": true,
+        "time-half separate rate sensitivity": true,
+        "velocity separate rate sensitivity": true,
+        "amplitude-half separate rate sensitivity": true,
+        "amplitude-halving scaled field linearity": true
+      },
+      "gates": [
+        {
+          "name": "independent root and fixed-window Volterra qualified",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "nine fixed full-f calculations",
+          "value": 9,
+          "bound": 9,
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-seed34001 all fields and histories finite",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-seed34001 fixed time and five snapshots",
+          "value": [
+            0.0,
+            10.0,
+            20.0,
+            30.0,
+            40.0
+          ],
+          "bound": [
+            0.0,
+            10.0,
+            20.0,
+            30.0,
+            40.0
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-seed34001 charge momentum resolvedGauss and energy",
+          "value": [
+            8.937663026147119e-15,
+            2.8608844845898055e-16,
+            6.938894731087792e-18,
+            1.0212403856750713e-05
+          ],
+          "bound": [
+            2e-12,
+            2e-11,
+            2e-12,
+            0.01
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-seed34001 positive full-f weights without repair",
+          "value": [
+            7.6654565366894425e-50,
+            0,
+            0
+          ],
+          "bound": "weight>0,clips=retries=0",
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-seed34001 joint load and Gaussian quadrature qualified",
+          "value": {
+            "joint_low_mode_factorization_defect": 1.1102230246251565e-16,
+            "mean_velocity": 0.0,
+            "thermal_variance": 1.0,
+            "fourth_moment_relative_error": 0.0,
+            "gaussian_characteristic_defect": 1.942890293094024e-16,
+            "density_mode_defect": 1.7553933174139736e-17,
+            "minimum_weight": 7.6654565366894425e-50,
+            "maximum_velocity": 17.88618614333945
+          },
+          "bound": "explicit load limits in acceptance.json",
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-seed34001 resolved fixed-window rate fit",
+          "value": [
+            0.2735614285036542,
+            0.032389913079896096
+          ],
+          "bound": [
+            "physical sign",
+            0.15
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-seed34002 all fields and histories finite",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-seed34002 fixed time and five snapshots",
+          "value": [
+            0.0,
+            10.0,
+            20.0,
+            30.0,
+            40.0
+          ],
+          "bound": [
+            0.0,
+            10.0,
+            20.0,
+            30.0,
+            40.0
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-seed34002 charge momentum resolvedGauss and energy",
+          "value": [
+            8.392683573333271e-15,
+            2.145663363442354e-16,
+            6.938894110702378e-18,
+            1.2974079557159405e-05
+          ],
+          "bound": [
+            2e-12,
+            2e-11,
+            2e-12,
+            0.01
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-seed34002 positive full-f weights without repair",
+          "value": [
+            7.6654565366894425e-50,
+            0,
+            0
+          ],
+          "bound": "weight>0,clips=retries=0",
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-seed34002 joint load and Gaussian quadrature qualified",
+          "value": {
+            "joint_low_mode_factorization_defect": 1.1102230246251565e-16,
+            "mean_velocity": 0.0,
+            "thermal_variance": 1.0,
+            "fourth_moment_relative_error": 0.0,
+            "gaussian_characteristic_defect": 1.942890293094024e-16,
+            "density_mode_defect": 2.609642958964506e-17,
+            "minimum_weight": 7.6654565366894425e-50,
+            "maximum_velocity": 17.88618614333945
+          },
+          "bound": "explicit load limits in acceptance.json",
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-seed34002 resolved fixed-window rate fit",
+          "value": [
+            0.2731063593696736,
+            0.033316047122332
+          ],
+          "bound": [
+            "physical sign",
+            0.15
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-seed34003 all fields and histories finite",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-seed34003 fixed time and five snapshots",
+          "value": [
+            0.0,
+            10.0,
+            20.0,
+            30.0,
+            40.0
+          ],
+          "bound": [
+            0.0,
+            10.0,
+            20.0,
+            30.0,
+            40.0
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-seed34003 charge momentum resolvedGauss and energy",
+          "value": [
+            8.71967124502158e-15,
+            2.145663363442354e-16,
+            6.938907138784407e-18,
+            8.657376947642749e-06
+          ],
+          "bound": [
+            2e-12,
+            2e-11,
+            2e-12,
+            0.01
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-seed34003 positive full-f weights without repair",
+          "value": [
+            7.6654565366894425e-50,
+            0,
+            0
+          ],
+          "bound": "weight>0,clips=retries=0",
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-seed34003 joint load and Gaussian quadrature qualified",
+          "value": {
+            "joint_low_mode_factorization_defect": 1.1102230246251565e-16,
+            "mean_velocity": 0.0,
+            "thermal_variance": 1.0,
+            "fourth_moment_relative_error": 0.0,
+            "gaussian_characteristic_defect": 1.942890293094024e-16,
+            "density_mode_defect": 5.688927826543537e-17,
+            "minimum_weight": 7.6654565366894425e-50,
+            "maximum_velocity": 17.88618614333945
+          },
+          "bound": "explicit load limits in acceptance.json",
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-seed34003 resolved fixed-window rate fit",
+          "value": [
+            0.272927779442932,
+            0.03505315026474218
+          ],
+          "bound": [
+            "physical sign",
+            0.15
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-seed34004 all fields and histories finite",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-seed34004 fixed time and five snapshots",
+          "value": [
+            0.0,
+            10.0,
+            20.0,
+            30.0,
+            40.0
+          ],
+          "bound": [
+            0.0,
+            10.0,
+            20.0,
+            30.0,
+            40.0
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-seed34004 charge momentum resolvedGauss and energy",
+          "value": [
+            9.046658916709889e-15,
+            1.4304422422949027e-16,
+            6.93889721262889e-18,
+            1.0946067865431675e-05
+          ],
+          "bound": [
+            2e-12,
+            2e-11,
+            2e-12,
+            0.01
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-seed34004 positive full-f weights without repair",
+          "value": [
+            7.6654565366894425e-50,
+            0,
+            0
+          ],
+          "bound": "weight>0,clips=retries=0",
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-seed34004 joint load and Gaussian quadrature qualified",
+          "value": {
+            "joint_low_mode_factorization_defect": 1.1102230246251565e-16,
+            "mean_velocity": 0.0,
+            "thermal_variance": 1.0,
+            "fourth_moment_relative_error": 0.0,
+            "gaussian_characteristic_defect": 1.942890293094024e-16,
+            "density_mode_defect": 1.5088164133957347e-17,
+            "minimum_weight": 7.6654565366894425e-50,
+            "maximum_velocity": 17.88618614333945
+          },
+          "bound": "explicit load limits in acceptance.json",
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-seed34004 resolved fixed-window rate fit",
+          "value": [
+            0.27284980432322586,
+            0.03423080592250096
+          ],
+          "bound": [
+            "physical sign",
+            0.15
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-mesh all fields and histories finite",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-mesh fixed time and five snapshots",
+          "value": [
+            0.0,
+            10.0,
+            20.0,
+            30.0,
+            40.0
+          ],
+          "bound": [
+            0.0,
+            10.0,
+            20.0,
+            30.0,
+            40.0
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-mesh charge momentum resolvedGauss and energy",
+          "value": [
+            6.9212390507358784e-15,
+            2.145663363442354e-16,
+            6.938894731087792e-18,
+            1.0416627374457911e-05
+          ],
+          "bound": [
+            2e-12,
+            2e-11,
+            2e-12,
+            0.01
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-mesh positive full-f weights without repair",
+          "value": [
+            7.6654565366894425e-50,
+            0,
+            0
+          ],
+          "bound": "weight>0,clips=retries=0",
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-mesh joint load and Gaussian quadrature qualified",
+          "value": {
+            "joint_low_mode_factorization_defect": 1.1102230246251565e-16,
+            "mean_velocity": 0.0,
+            "thermal_variance": 1.0,
+            "fourth_moment_relative_error": 0.0,
+            "gaussian_characteristic_defect": 1.942890293094024e-16,
+            "density_mode_defect": 1.7553933174139736e-17,
+            "minimum_weight": 7.6654565366894425e-50,
+            "maximum_velocity": 17.88618614333945
+          },
+          "bound": "explicit load limits in acceptance.json",
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-mesh resolved fixed-window rate fit",
+          "value": [
+            0.2741344808810438,
+            0.03227679424637816
+          ],
+          "bound": [
+            "physical sign",
+            0.15
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-time-half all fields and histories finite",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-time-half fixed time and five snapshots",
+          "value": [
+            0.0,
+            10.0,
+            20.0,
+            30.0,
+            40.0
+          ],
+          "bound": [
+            0.0,
+            10.0,
+            20.0,
+            30.0,
+            40.0
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-time-half charge momentum resolvedGauss and energy",
+          "value": [
+            9.482642478960968e-15,
+            3.5761056057372567e-16,
+            6.938907138784407e-18,
+            1.0052855199747181e-05
+          ],
+          "bound": [
+            2e-12,
+            2e-11,
+            2e-12,
+            0.01
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-time-half positive full-f weights without repair",
+          "value": [
+            7.6654565366894425e-50,
+            0,
+            0
+          ],
+          "bound": "weight>0,clips=retries=0",
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-time-half joint load and Gaussian quadrature qualified",
+          "value": {
+            "joint_low_mode_factorization_defect": 1.1102230246251565e-16,
+            "mean_velocity": 0.0,
+            "thermal_variance": 1.0,
+            "fourth_moment_relative_error": 0.0,
+            "gaussian_characteristic_defect": 1.942890293094024e-16,
+            "density_mode_defect": 1.7553933174139736e-17,
+            "minimum_weight": 7.6654565366894425e-50,
+            "maximum_velocity": 17.88618614333945
+          },
+          "bound": "explicit load limits in acceptance.json",
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-time-half resolved fixed-window rate fit",
+          "value": [
+            0.2730758742087663,
+            0.03306450460183948
+          ],
+          "bound": [
+            "physical sign",
+            0.15
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-velocity all fields and histories finite",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-velocity fixed time and five snapshots",
+          "value": [
+            0.0,
+            10.0,
+            20.0,
+            30.0,
+            40.0
+          ],
+          "bound": [
+            0.0,
+            10.0,
+            20.0,
+            30.0,
+            40.0
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-velocity charge momentum resolvedGauss and energy",
+          "value": [
+            1.3079506867532369e-14,
+            1.4304422422949027e-16,
+            6.938894110702378e-18,
+            8.217647470470037e-06
+          ],
+          "bound": [
+            2e-12,
+            2e-11,
+            2e-12,
+            0.01
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-velocity positive full-f weights without repair",
+          "value": [
+            2.491219862871557e-103,
+            0,
+            0
+          ],
+          "bound": "weight>0,clips=retries=0",
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-velocity joint load and Gaussian quadrature qualified",
+          "value": {
+            "joint_low_mode_factorization_defect": 2.220446049250313e-16,
+            "mean_velocity": 0.0,
+            "thermal_variance": 1.0,
+            "fourth_moment_relative_error": 0.0,
+            "gaussian_characteristic_defect": 1.942890293094024e-16,
+            "density_mode_defect": 5.847465189941937e-17,
+            "minimum_weight": 2.491219862871557e-103,
+            "maximum_velocity": 24.62589890769055
+          },
+          "bound": "explicit load limits in acceptance.json",
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-velocity resolved fixed-window rate fit",
+          "value": [
+            0.27320189401862177,
+            0.03284053262378875
+          ],
+          "bound": [
+            "physical sign",
+            0.15
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-amplitude-half all fields and histories finite",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-amplitude-half fixed time and five snapshots",
+          "value": [
+            0.0,
+            10.0,
+            20.0,
+            30.0,
+            40.0
+          ],
+          "bound": [
+            0.0,
+            10.0,
+            20.0,
+            30.0,
+            40.0
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-amplitude-half charge momentum resolvedGauss and energy",
+          "value": [
+            8.61067535445881e-15,
+            2.8608844845898055e-16,
+            3.469448606314445e-18,
+            5.3572825339827255e-06
+          ],
+          "bound": [
+            2e-12,
+            2e-11,
+            2e-12,
+            0.01
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-amplitude-half positive full-f weights without repair",
+          "value": [
+            7.6654565366894425e-50,
+            0,
+            0
+          ],
+          "bound": "weight>0,clips=retries=0",
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-amplitude-half joint load and Gaussian quadrature qualified",
+          "value": {
+            "joint_low_mode_factorization_defect": 1.1102230246251565e-16,
+            "mean_velocity": 0.0,
+            "thermal_variance": 1.0,
+            "fourth_moment_relative_error": 0.0,
+            "gaussian_characteristic_defect": 1.942890293094024e-16,
+            "density_mode_defect": 1.7380576689694114e-17,
+            "minimum_weight": 7.6654565366894425e-50,
+            "maximum_velocity": 17.88618614333945
+          },
+          "bound": "explicit load limits in acceptance.json",
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-amplitude-half resolved fixed-window rate fit",
+          "value": [
+            0.2735890237667862,
+            0.03237034696954837
+          ],
+          "bound": [
+            "physical sign",
+            0.15
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-noise all fields and histories finite",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-noise fixed time and five snapshots",
+          "value": [
+            0.0,
+            10.0,
+            20.0,
+            30.0,
+            40.0
+          ],
+          "bound": [
+            0.0,
+            10.0,
+            20.0,
+            30.0,
+            40.0
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-noise charge momentum resolvedGauss and energy",
+          "value": [
+            2.0382231535237943e-14,
+            1.2873980180654124e-15,
+            3.330618200214112e-27,
+            5.4281466563644e-16
+          ],
+          "bound": [
+            2e-12,
+            2e-11,
+            2e-12,
+            0.01
+          ],
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-noise positive full-f weights without repair",
+          "value": [
+            7.6654565366894425e-50,
+            0,
+            0
+          ],
+          "bound": "weight>0,clips=retries=0",
+          "passed": true
+        },
+        {
+          "name": "thermal-two-stream-noise joint load and Gaussian quadrature qualified",
+          "value": {
+            "joint_low_mode_factorization_defect": 1.1102230246251565e-16,
+            "mean_velocity": 0.0,
+            "thermal_variance": 1.0,
+            "fourth_moment_relative_error": 0.0,
+            "gaussian_characteristic_defect": 1.942890293094024e-16,
+            "density_mode_defect": 2.1234735851992038e-17,
+            "minimum_weight": 7.6654565366894425e-50,
+            "maximum_velocity": 17.88618614333945
+          },
+          "bound": "explicit load limits in acceptance.json",
+          "passed": true
+        },
+        {
+          "name": "conditional rate precision",
+          "value": 0.0004780427722257934,
+          "bound": 0.028450968620498243,
+          "passed": true
+        },
+        {
+          "name": "mean rate versus dielectric pole",
+          "value": 0.011398343295110969,
+          "bound": 0.05737998001322228,
+          "passed": true
+        },
+        {
+          "name": "mean rate versus linear IVP fixed-window estimator",
+          "value": 0.00056708486172663,
+          "bound": 0.04315449570297315,
+          "passed": true
+        },
+        {
+          "name": "mean field curve versus linear continuum",
+          "value": 0.02389414539434425,
+          "bound": 0.2,
+          "passed": true
+        },
+        {
+          "name": "quiet-equilibrium noise versus fitted envelope",
+          "value": 5.21270074929847e-09,
+          "bound": 1.0,
+          "passed": true
+        },
+        {
+          "name": "mesh separate rate sensitivity",
+          "value": 0.002014175281809955,
+          "bound": 0.1,
+          "passed": true
+        },
+        {
+          "name": "time-half separate rate sensitivity",
+          "value": 0.0017066353745795366,
+          "bound": 0.05,
+          "passed": true
+        },
+        {
+          "name": "velocity separate rate sensitivity",
+          "value": 0.0012636985750053421,
+          "bound": 0.1,
+          "passed": true
+        },
+        {
+          "name": "amplitude-half separate rate sensitivity",
+          "value": 9.699235024311375e-05,
+          "bound": 0.05,
+          "passed": true
+        },
+        {
+          "name": "amplitude-halving scaled field linearity",
+          "value": 0.0009509378138530034,
+          "bound": 0.03,
+          "passed": true
+        }
+      ],
+      "records": [
+        {
+          "spatial_strata": 64,
+          "id": "thermal-two-stream-seed34001",
+          "family": "ensemble",
+          "seed": 34001,
+          "grid": 32,
+          "nodes": 128,
+          "dt": 0.05,
+          "amplitude": 1e-05,
+          "case": "thermal-two-stream",
+          "particles": 8192,
+          "steps": 800,
+          "time": 40.0,
+          "snapshot_times": [
+            0.0,
+            10.0,
+            20.0,
+            30.0,
+            40.0
+          ],
+          "load": {
+            "joint_low_mode_factorization_defect": 1.1102230246251565e-16,
+            "mean_velocity": 0.0,
+            "thermal_variance": 1.0,
+            "fourth_moment_relative_error": 0.0,
+            "gaussian_characteristic_defect": 1.942890293094024e-16,
+            "density_mode_defect": 1.7553933174139736e-17,
+            "minimum_weight": 7.6654565366894425e-50,
+            "maximum_velocity": 17.88618614333945
+          },
+          "all_finite": true,
+          "maximum_charge_error": 8.937663026147119e-15,
+          "maximum_momentum_drift": 2.8608844845898055e-16,
+          "maximum_resolved_gauss": 6.938894731087792e-18,
+          "maximum_energy_drift": 1.0212403856750713e-05,
+          "maximum_nyquist_charge": 0.0023159374536177654,
+          "minimum_weight": 7.6654565366894425e-50,
+          "state_clip_count": 0,
+          "retries": 0,
+          "fit": {
+            "gamma": 0.2735614285036542,
+            "omega": 0.0,
+            "relative_fit_residual": 0.032389913079896096,
+            "minimum_envelope": 3.3324522574441695,
+            "samples": 161
+          },
+          "linear_curve_relative_rms": 0.0221168573385081,
+          "normalization_field_amplitude": 2.5e-05,
+          "noise_mode_rms": null,
+          "file": "thermal-two-stream-thermal-two-stream-seed34001.npz",
+          "sha256": "d69a1c3dbf4d3485ae354a45afbd13843c563c628bd6feb691ba8ee3704e85bf"
+        },
+        {
+          "spatial_strata": 64,
+          "id": "thermal-two-stream-seed34002",
+          "family": "ensemble",
+          "seed": 34002,
+          "grid": 32,
+          "nodes": 128,
+          "dt": 0.05,
+          "amplitude": 1e-05,
+          "case": "thermal-two-stream",
+          "particles": 8192,
+          "steps": 800,
+          "time": 40.0,
+          "snapshot_times": [
+            0.0,
+            10.0,
+            20.0,
+            30.0,
+            40.0
+          ],
+          "load": {
+            "joint_low_mode_factorization_defect": 1.1102230246251565e-16,
+            "mean_velocity": 0.0,
+            "thermal_variance": 1.0,
+            "fourth_moment_relative_error": 0.0,
+            "gaussian_characteristic_defect": 1.942890293094024e-16,
+            "density_mode_defect": 2.609642958964506e-17,
+            "minimum_weight": 7.6654565366894425e-50,
+            "maximum_velocity": 17.88618614333945
+          },
+          "all_finite": true,
+          "maximum_charge_error": 8.392683573333271e-15,
+          "maximum_momentum_drift": 2.145663363442354e-16,
+          "maximum_resolved_gauss": 6.938894110702378e-18,
+          "maximum_energy_drift": 1.2974079557159405e-05,
+          "maximum_nyquist_charge": 0.002444274275257046,
+          "minimum_weight": 7.6654565366894425e-50,
+          "state_clip_count": 0,
+          "retries": 0,
+          "fit": {
+            "gamma": 0.2731063593696736,
+            "omega": 0.0,
+            "relative_fit_residual": 0.033316047122332,
+            "minimum_envelope": 3.3454291745918026,
+            "samples": 161
+          },
+          "linear_curve_relative_rms": 0.02165542701236188,
+          "normalization_field_amplitude": 2.5e-05,
+          "noise_mode_rms": null,
+          "file": "thermal-two-stream-thermal-two-stream-seed34002.npz",
+          "sha256": "385538bc33eeaf4de33a46c0ca60f944b21b5e810595abca5ce4f64c4f09ae7a"
+        },
+        {
+          "spatial_strata": 64,
+          "id": "thermal-two-stream-seed34003",
+          "family": "ensemble",
+          "seed": 34003,
+          "grid": 32,
+          "nodes": 128,
+          "dt": 0.05,
+          "amplitude": 1e-05,
+          "case": "thermal-two-stream",
+          "particles": 8192,
+          "steps": 800,
+          "time": 40.0,
+          "snapshot_times": [
+            0.0,
+            10.0,
+            20.0,
+            30.0,
+            40.0
+          ],
+          "load": {
+            "joint_low_mode_factorization_defect": 1.1102230246251565e-16,
+            "mean_velocity": 0.0,
+            "thermal_variance": 1.0,
+            "fourth_moment_relative_error": 0.0,
+            "gaussian_characteristic_defect": 1.942890293094024e-16,
+            "density_mode_defect": 5.688927826543537e-17,
+            "minimum_weight": 7.6654565366894425e-50,
+            "maximum_velocity": 17.88618614333945
+          },
+          "all_finite": true,
+          "maximum_charge_error": 8.71967124502158e-15,
+          "maximum_momentum_drift": 2.145663363442354e-16,
+          "maximum_resolved_gauss": 6.938907138784407e-18,
+          "maximum_energy_drift": 8.657376947642749e-06,
+          "maximum_nyquist_charge": 0.0024181154837931117,
+          "minimum_weight": 7.6654565366894425e-50,
+          "state_clip_count": 0,
+          "retries": 0,
+          "fit": {
+            "gamma": 0.272927779442932,
+            "omega": 0.0,
+            "relative_fit_residual": 0.03505315026474218,
+            "minimum_envelope": 3.3353630460194528,
+            "samples": 161
+          },
+          "linear_curve_relative_rms": 0.025804499569443737,
+          "normalization_field_amplitude": 2.5e-05,
+          "noise_mode_rms": null,
+          "file": "thermal-two-stream-thermal-two-stream-seed34003.npz",
+          "sha256": "df60050409388a6e1833212d893e3ad64dfbf5e1b0fb5db5be1c942a46af37a6"
+        },
+        {
+          "spatial_strata": 64,
+          "id": "thermal-two-stream-seed34004",
+          "family": "ensemble",
+          "seed": 34004,
+          "grid": 32,
+          "nodes": 128,
+          "dt": 0.05,
+          "amplitude": 1e-05,
+          "case": "thermal-two-stream",
+          "particles": 8192,
+          "steps": 800,
+          "time": 40.0,
+          "snapshot_times": [
+            0.0,
+            10.0,
+            20.0,
+            30.0,
+            40.0
+          ],
+          "load": {
+            "joint_low_mode_factorization_defect": 1.1102230246251565e-16,
+            "mean_velocity": 0.0,
+            "thermal_variance": 1.0,
+            "fourth_moment_relative_error": 0.0,
+            "gaussian_characteristic_defect": 1.942890293094024e-16,
+            "density_mode_defect": 1.5088164133957347e-17,
+            "minimum_weight": 7.6654565366894425e-50,
+            "maximum_velocity": 17.88618614333945
+          },
+          "all_finite": true,
+          "maximum_charge_error": 9.046658916709889e-15,
+          "maximum_momentum_drift": 1.4304422422949027e-16,
+          "maximum_resolved_gauss": 6.93889721262889e-18,
+          "maximum_energy_drift": 1.0946067865431675e-05,
+          "maximum_nyquist_charge": 0.003171415018502117,
+          "minimum_weight": 7.6654565366894425e-50,
+          "state_clip_count": 0,
+          "retries": 0,
+          "fit": {
+            "gamma": 0.27284980432322586,
+            "omega": 0.0,
+            "relative_fit_residual": 0.03423080592250096,
+            "minimum_envelope": 3.3361292559466658,
+            "samples": 161
+          },
+          "linear_curve_relative_rms": 0.025999797657063284,
+          "normalization_field_amplitude": 2.5e-05,
+          "noise_mode_rms": null,
+          "file": "thermal-two-stream-thermal-two-stream-seed34004.npz",
+          "sha256": "feb81d0e6c7bf2bea105177281c77e6eac8b30b4237af5146f81de628aa399c1"
+        },
+        {
+          "spatial_strata": 64,
+          "seed": 34001,
+          "grid": 64,
+          "nodes": 128,
+          "dt": 0.05,
+          "amplitude": 1e-05,
+          "id": "thermal-two-stream-mesh",
+          "family": "mesh",
+          "case": "thermal-two-stream",
+          "particles": 8192,
+          "steps": 800,
+          "time": 40.0,
+          "snapshot_times": [
+            0.0,
+            10.0,
+            20.0,
+            30.0,
+            40.0
+          ],
+          "load": {
+            "joint_low_mode_factorization_defect": 1.1102230246251565e-16,
+            "mean_velocity": 0.0,
+            "thermal_variance": 1.0,
+            "fourth_moment_relative_error": 0.0,
+            "gaussian_characteristic_defect": 1.942890293094024e-16,
+            "density_mode_defect": 1.7553933174139736e-17,
+            "minimum_weight": 7.6654565366894425e-50,
+            "maximum_velocity": 17.88618614333945
+          },
+          "all_finite": true,
+          "maximum_charge_error": 6.9212390507358784e-15,
+          "maximum_momentum_drift": 2.145663363442354e-16,
+          "maximum_resolved_gauss": 6.938894731087792e-18,
+          "maximum_energy_drift": 1.0416627374457911e-05,
+          "maximum_nyquist_charge": 0.003777116286953432,
+          "minimum_weight": 7.6654565366894425e-50,
+          "state_clip_count": 0,
+          "retries": 0,
+          "fit": {
+            "gamma": 0.2741344808810438,
+            "omega": 0.0,
+            "relative_fit_residual": 0.03227679424637816,
+            "minimum_envelope": 3.362775952437652,
+            "samples": 161
+          },
+          "linear_curve_relative_rms": 0.016422836387705596,
+          "normalization_field_amplitude": 2.5e-05,
+          "noise_mode_rms": null,
+          "file": "thermal-two-stream-thermal-two-stream-mesh.npz",
+          "sha256": "b9bc43f13311d384f0b818f2c19d4171bd11d518bd90e2a83ebb5d311f651a57"
+        },
+        {
+          "spatial_strata": 64,
+          "seed": 34001,
+          "grid": 32,
+          "nodes": 128,
+          "dt": 0.025,
+          "amplitude": 1e-05,
+          "id": "thermal-two-stream-time-half",
+          "family": "time-half",
+          "case": "thermal-two-stream",
+          "particles": 8192,
+          "steps": 1600,
+          "time": 40.0,
+          "snapshot_times": [
+            0.0,
+            10.0,
+            20.0,
+            30.0,
+            40.0
+          ],
+          "load": {
+            "joint_low_mode_factorization_defect": 1.1102230246251565e-16,
+            "mean_velocity": 0.0,
+            "thermal_variance": 1.0,
+            "fourth_moment_relative_error": 0.0,
+            "gaussian_characteristic_defect": 1.942890293094024e-16,
+            "density_mode_defect": 1.7553933174139736e-17,
+            "minimum_weight": 7.6654565366894425e-50,
+            "maximum_velocity": 17.88618614333945
+          },
+          "all_finite": true,
+          "maximum_charge_error": 9.482642478960968e-15,
+          "maximum_momentum_drift": 3.5761056057372567e-16,
+          "maximum_resolved_gauss": 6.938907138784407e-18,
+          "maximum_energy_drift": 1.0052855199747181e-05,
+          "maximum_nyquist_charge": 0.002336867483439229,
+          "minimum_weight": 7.6654565366894425e-50,
+          "state_clip_count": 0,
+          "retries": 0,
+          "fit": {
+            "gamma": 0.2730758742087663,
+            "omega": 0.0,
+            "relative_fit_residual": 0.03306450460183948,
+            "minimum_envelope": 3.3391745103287014,
+            "samples": 321
+          },
+          "linear_curve_relative_rms": 0.023342839748446233,
+          "normalization_field_amplitude": 2.5e-05,
+          "noise_mode_rms": null,
+          "file": "thermal-two-stream-thermal-two-stream-time-half.npz",
+          "sha256": "1309e58fb452b1c91d2965125fc974581d0ceb11d68d05d68677c6e1f94a5cc6"
+        },
+        {
+          "spatial_strata": 64,
+          "seed": 34001,
+          "grid": 32,
+          "nodes": 256,
+          "dt": 0.05,
+          "amplitude": 1e-05,
+          "id": "thermal-two-stream-velocity",
+          "family": "velocity",
+          "case": "thermal-two-stream",
+          "particles": 16384,
+          "steps": 800,
+          "time": 40.0,
+          "snapshot_times": [
+            0.0,
+            10.0,
+            20.0,
+            30.0,
+            40.0
+          ],
+          "load": {
+            "joint_low_mode_factorization_defect": 2.220446049250313e-16,
+            "mean_velocity": 0.0,
+            "thermal_variance": 1.0,
+            "fourth_moment_relative_error": 0.0,
+            "gaussian_characteristic_defect": 1.942890293094024e-16,
+            "density_mode_defect": 5.847465189941937e-17,
+            "minimum_weight": 2.491219862871557e-103,
+            "maximum_velocity": 24.62589890769055
+          },
+          "all_finite": true,
+          "maximum_charge_error": 1.3079506867532369e-14,
+          "maximum_momentum_drift": 1.4304422422949027e-16,
+          "maximum_resolved_gauss": 6.938894110702378e-18,
+          "maximum_energy_drift": 8.217647470470037e-06,
+          "maximum_nyquist_charge": 0.002120087978900516,
+          "minimum_weight": 2.491219862871557e-103,
+          "state_clip_count": 0,
+          "retries": 0,
+          "fit": {
+            "gamma": 0.27320189401862177,
+            "omega": 0.0,
+            "relative_fit_residual": 0.03284053262378875,
+            "minimum_envelope": 3.3379913410821707,
+            "samples": 161
+          },
+          "linear_curve_relative_rms": 0.02220535897777082,
+          "normalization_field_amplitude": 2.5e-05,
+          "noise_mode_rms": null,
+          "file": "thermal-two-stream-thermal-two-stream-velocity.npz",
+          "sha256": "64f5408f56bbd09114bceb263aa1b959f1d72a86fa26ff36a670f244b0111afc"
+        },
+        {
+          "spatial_strata": 64,
+          "seed": 34001,
+          "grid": 32,
+          "nodes": 128,
+          "dt": 0.05,
+          "amplitude": 5e-06,
+          "id": "thermal-two-stream-amplitude-half",
+          "family": "amplitude-half",
+          "case": "thermal-two-stream",
+          "particles": 8192,
+          "steps": 800,
+          "time": 40.0,
+          "snapshot_times": [
+            0.0,
+            10.0,
+            20.0,
+            30.0,
+            40.0
+          ],
+          "load": {
+            "joint_low_mode_factorization_defect": 1.1102230246251565e-16,
+            "mean_velocity": 0.0,
+            "thermal_variance": 1.0,
+            "fourth_moment_relative_error": 0.0,
+            "gaussian_characteristic_defect": 1.942890293094024e-16,
+            "density_mode_defect": 1.7380576689694114e-17,
+            "minimum_weight": 7.6654565366894425e-50,
+            "maximum_velocity": 17.88618614333945
+          },
+          "all_finite": true,
+          "maximum_charge_error": 8.61067535445881e-15,
+          "maximum_momentum_drift": 2.8608844845898055e-16,
+          "maximum_resolved_gauss": 3.469448606314445e-18,
+          "maximum_energy_drift": 5.3572825339827255e-06,
+          "maximum_nyquist_charge": 0.0008509489507191811,
+          "minimum_weight": 7.6654565366894425e-50,
+          "state_clip_count": 0,
+          "retries": 0,
+          "fit": {
+            "gamma": 0.2735890237667862,
+            "omega": 0.0,
+            "relative_fit_residual": 0.03237034696954837,
+            "minimum_envelope": 3.3320966245094805,
+            "samples": 161
+          },
+          "linear_curve_relative_rms": 0.022054372633036612,
+          "normalization_field_amplitude": 1.25e-05,
+          "noise_mode_rms": null,
+          "file": "thermal-two-stream-thermal-two-stream-amplitude-half.npz",
+          "sha256": "22bd875ecbb254143b373e7b9e420b9953b874c8b8f02b33af0f08bab43b21b6"
+        },
+        {
+          "spatial_strata": 64,
+          "seed": 34001,
+          "grid": 32,
+          "nodes": 128,
+          "dt": 0.05,
+          "amplitude": 0.0,
+          "id": "thermal-two-stream-noise",
+          "family": "noise",
+          "case": "thermal-two-stream",
+          "particles": 8192,
+          "steps": 800,
+          "time": 40.0,
+          "snapshot_times": [
+            0.0,
+            10.0,
+            20.0,
+            30.0,
+            40.0
+          ],
+          "load": {
+            "joint_low_mode_factorization_defect": 1.1102230246251565e-16,
+            "mean_velocity": 0.0,
+            "thermal_variance": 1.0,
+            "fourth_moment_relative_error": 0.0,
+            "gaussian_characteristic_defect": 1.942890293094024e-16,
+            "density_mode_defect": 2.1234735851992038e-17,
+            "minimum_weight": 7.6654565366894425e-50,
+            "maximum_velocity": 17.88618614333945
+          },
+          "all_finite": true,
+          "maximum_charge_error": 2.0382231535237943e-14,
+          "maximum_momentum_drift": 1.2873980180654124e-15,
+          "maximum_resolved_gauss": 3.330618200214112e-27,
+          "maximum_energy_drift": 5.4281466563644e-16,
+          "maximum_nyquist_charge": 2.7190055762460474e-14,
+          "minimum_weight": 7.6654565366894425e-50,
+          "state_clip_count": 0,
+          "retries": 0,
+          "fit": null,
+          "linear_curve_relative_rms": null,
+          "normalization_field_amplitude": 2.5e-05,
+          "noise_mode_rms": 5.7903587931268664e-09,
+          "file": "thermal-two-stream-thermal-two-stream-noise.npz",
+          "sha256": "2e07cbbe22a74f26bb02cc5659cf8c8a75eb15d664e2a3b543dbba3f4a6f05f8"
+        }
+      ],
+      "metrics": {
+        "mean_rate": 0.27311134290987144,
+        "seed_standard_error": 0.00015934759074193113,
+        "conditional_t95_lower": 0.27260422775845883,
+        "conditional_t95_upper": 0.27361845806128404,
+        "dielectric_rate": 0.2845096862049824,
+        "volterra_fixed_window_rate": 0.27367842777159807,
+        "root_window_relative_bias": 0.03806991100324323,
+        "mean_linear_curve_relative_rms": 0.02389414539434425,
+        "three_noise_to_minimum_envelope": 5.21270074929847e-09,
+        "mesh_rate_fraction": 0.002014175281809955,
+        "time-half_rate_fraction": 0.0017066353745795366,
+        "velocity_rate_fraction": 0.0012636985750053421,
+        "amplitude-half_rate_fraction": 9.699235024311375e-05,
+        "amplitude_scaled_curve_gap": 0.0009509378138530034
+      }
+    }
+  ],
+  "reference_qualifications": {
+    "thermal-landau-damping": {
+      "passed": true,
+      "checks": {
+        "dielectric root residual": {
+          "value": 8.971813033334811e-16,
+          "bound": 1e-10,
+          "passed": true
+        },
+        "root initial/bracket agreement": {
+          "value": 2.7755575615628914e-16,
+          "bound": 1e-10,
+          "passed": true
+        },
+        "physical selected branch": {
+          "value": [
+            1.4156618886045371,
+            -0.15335946690960467
+          ],
+          "bound": "damped Maxwell branch or positive imaginary symmetric-beam branch",
+          "passed": true
+        },
+        "Volterra time quadrature curve gap": {
+          "value": 9.005874674622071e-06,
+          "bound": 0.0001,
+          "passed": true
+        },
+        "Volterra fitted rate quadrature gap": {
+          "value": 9.273568931655873e-07,
+          "bound": 2e-05,
+          "passed": true
+        },
+        "fixed-window transient bias versus pole": {
+          "value": 0.0018786392381694443,
+          "bound": 0.05,
+          "passed": true
+        },
+        "fixed-window linear fit residual": {
+          "value": 0.0007203832588585692,
+          "bound": 0.05,
+          "passed": true
+        },
+        "fixed-window frequency versus pole": {
+          "value": 0.0003143186946523641,
+          "bound": 0.01,
+          "passed": true
+        }
+      },
+      "omega_real": 1.4156618886045371,
+      "gamma": -0.15335946690960467,
+      "fixed_window_fit": {
+        "gamma": -0.1536475740216858,
+        "omega": 1.4152169196076418,
+        "relative_fit_residual": 0.0007203832588585692,
+        "minimum_envelope": 0.11664686775379018,
+        "samples": 1601
+      },
+      "curve_gap": 9.005874674622071e-06,
+      "rate_gap": 9.273568931655873e-07,
+      "root_window_relative_bias": 0.0018786392381694443
+    },
+    "thermal-two-stream": {
+      "passed": true,
+      "checks": {
+        "dielectric root residual": {
+          "value": 1.4910295220715852e-13,
+          "bound": 1e-10,
+          "passed": true
+        },
+        "root initial/bracket agreement": {
+          "value": 1.9984014443252818e-14,
+          "bound": 1e-10,
+          "passed": true
+        },
+        "physical selected branch": {
+          "value": [
+            0.0,
+            0.2845096862049824
+          ],
+          "bound": "damped Maxwell branch or positive imaginary symmetric-beam branch",
+          "passed": true
+        },
+        "Volterra time quadrature curve gap": {
+          "value": 3.8474077286690094e-05,
+          "bound": 0.0001,
+          "passed": true
+        },
+        "Volterra fitted rate quadrature gap": {
+          "value": 1.644412490475755e-05,
+          "bound": 2e-05,
+          "passed": true
+        },
+        "fixed-window transient bias versus pole": {
+          "value": 0.03806991100324323,
+          "bound": 0.05,
+          "passed": true
+        },
+        "fixed-window linear fit residual": {
+          "value": 0.028533434541299665,
+          "bound": 0.05,
+          "passed": true
+        },
+        "independent velocity integral dielectric residual": {
+          "value": 1.695310558602614e-13,
+          "bound": 2e-09,
+          "passed": true
+        },
+        "independent velocity-tail quadrature gap": {
+          "value": 1.1102230246251565e-16,
+          "bound": 1e-10,
+          "passed": true
+        }
+      },
+      "omega_real": 0.0,
+      "gamma": 0.2845096862049824,
+      "fixed_window_fit": {
+        "gamma": 0.27367842777159807,
+        "omega": 0.0,
+        "relative_fit_residual": 0.028533434541299665,
+        "minimum_envelope": 3.3808506155377183,
+        "samples": 1601
+      },
+      "curve_gap": 3.8474077286690094e-05,
+      "rate_gap": 1.644412490475755e-05,
+      "root_window_relative_bias": 0.03806991100324323
+    }
+  },
+  "completed_run_count": 19,
+  "retained_complete_candidate_count": 19,
+  "duration_seconds": 6.248484166993876,
+  "created_at_utc": "2026-11-23T13:55:14.506072+00:00"
+}

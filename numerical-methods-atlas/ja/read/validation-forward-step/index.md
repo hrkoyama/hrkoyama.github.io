@@ -191,17 +191,21 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-このコマンドは配布グループの全例を実行します。
+このコマンドは配布グループの全例を実行します。同梱のresults/は保存見本です。追試は新規output/へ出力し、繰り返す場合は別の新規フォルダを指定します。
 
 ### 出典と確認範囲
 
 - Paul Woodward and Phillip Colella (1984). The numerical simulation of two-dimensional fluid flow with strong shocks. https://www.sciencedirect.com/science/article/pii/0021999184901426; review_level=previously-reviewed-publisher-metadata; setup cross-checked against Cockburn-Shu1991 primary report
-  強衝撃波の標準比較の原著として引用。今回の出版社ページは取得拒否、原著本文を直接通読したとは主張せず、前向きステップの設定と角処理の区別はCockburn–Shu(1991)の一次資料で確認した。
+強衝撃波の標準比較の原著として引用。今回の出版社ページは取得拒否、原著本文を直接通読したとは主張せず、前向きステップの設定と角処理の区別はCockburn–Shu(1991)の一次資料で確認した。
+
 - Bernardo Cockburn and Chi-Wang Shu (1991). The P¹-RKDG Method for Two-Dimensional Euler Equations of Gas Dynamics. https://ntrs.nasa.gov/citations/19910015505; review_level=selected-text-review: Example2 printedp7/PDFpage11 and Fig3 captions printedp8/PDFpage12
-  Example2の形状、Mach3一様流、流入・流出・反射境界、T=4、および角の特別処理あり/なしを比べるFig3の説明を確認。本文の選択箇所の確認であり、図の転載・RKDGの実行は行わない。
+Example2の形状、Mach3一様流、流入・流出・反射境界、T=4、および角の特別処理あり/なしを比べるFig3の説明を確認。本文の選択箇所の確認であり、図の転載・RKDGの実行は行わない。
+
 - Ralf Deiterding / AMROC project (2004). 2D Euler equations — Forward facing step. https://amroc.sourceforge.net/examples/euler/2d/html/ffstep_n.htm; review_level=official-example-selected-problem-description
-  角セルに特別なエントロピー補正を加えない変種とT=4の公式説明を確認。AMROCの計算・AMR・図をこの例へ取り込んだものではない。
+角セルに特別なエントロピー補正を加えない変種とT=4の公式説明を確認。AMROCの計算・AMR・図をこの例へ取り込んだものではない。
+
 - Hiroshi Koyama (2026). Independent C++17 MUSCL finite-volume reference for the uncorrected Mach-3 forward-facing step. https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/reference.cpp; review_level=source-and-preregistered-new-execution
-  主計算の空間演算をimportしない別実装。HLLとHeunの族は共有し、外部エンジンの実行ではありません。初版の時間切れと診断引数だけの性能改訂を保存し、参照データ・入力・実行履歴・契約を同梱します。
+主計算の空間演算をimportしない別実装。HLLとHeunの族は共有し、外部エンジンの実行ではありません。初版の時間切れと診断引数だけの性能改訂を保存し、参照データ・入力・実行履歴・契約を同梱します。
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.

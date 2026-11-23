@@ -38,7 +38,9 @@ $$
 
 16/32/64格子とdt=.2/.1/.05を別に精密化し、線形cos(t)と時間参照の誤差を分離します。実数奇微分のNyquist零モードはGauss残差から分けて記録。時刻0の64seed・N=256/1024/4096のCICモード電力を解析期待値と比較します。
 
-参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
+- [PIC空間演算の独立実装照合](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-pic-independent-spatial-ja) (`pic-independent-spatial`; 関連モデルの参照 · 有限格子の数値参照)
+
+周期[0,2π]、256粒子、格子8/16/32、シード35001/35002、dt=.02、T=.24。位置は一様乱数、v=.2 Normal+.1 sin x。6組は別々に進めた12軌道です。
 ## 前提・単位・境界
 
 長さ2pi、静止イオン密度1、電子q/m=−1、plasma frequency=1、微小正弦変位0.001、最終時刻1.6。格子系列は同じ2048粒子を使い、時間系列は同じ32格子・256粒子を使います。 w=2pi/Nは粒子重み、nは格子数です。
@@ -117,7 +119,7 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-このコマンドは配布グループの全例を実行します。
+このコマンドは配布グループの全例を実行します。同梱のresults/は保存見本です。追試は新規output/へ出力し、繰り返す場合は別の新規フォルダを指定します。
 
 入力・検証手順の履歴：https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/protocol-history.json
 
@@ -126,7 +128,8 @@ https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport
 ## 出典と確認範囲
 
 - R. W. Hockney and J. W. Eastwood (1988). Computer Simulation Using Particles. https://doi.org/10.1201/9780367806934; review_level=publisher-preview-and-metadata
-  出版社配布プレビューの書誌・粒子モデルの導入と目次を確認。CICや冷たいプラズマの歴史的出典とし、全書の監査は主張しません。
+出版社配布プレビューの書誌・粒子モデルの導入と目次を確認。CICや冷たいプラズマの歴史的出典とし、全書の監査は主張しません。
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.
 
@@ -170,7 +173,9 @@ A saved validation figure for this execution example. Its conditions and accepta
 
 Refine 16/32/64 grids and dt=.2/.1/.05 separately; distinguish continuum cos(t) from time-reference errors. Record the real odd derivative’s Nyquist null mode separately from Gauss residuals. Compare time-zero CIC mode power at 64 seeds and N=256/1024/4096 with its analytic expectation.
 
-No corresponding reference-library card is registered; execution-specific material above documents its reference values and acceptance checks.
+- [Independently coded PIC spatial pipeline](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-pic-independent-spatial-en) (`pic-independent-spatial`; Related-model reference · Finite-grid numerical reference)
+
+Periodic[0,2pi],256particles,grids8/16/32,seeds35001/35002,dt.02,T.24. Uniform random positions,v=.2Normal+.1sin(x). Six pairs mean twelve separately evolved trajectories.
 ## Assumptions, units and boundaries
 
 Length 2pi, stationary unit-density ions, electron q/m=−1, plasma frequency one, sinusoidal displacement 0.001 and final time 1.6. Mesh runs retain 2048 particles; time runs retain a 32-cell mesh and 256 particles. The particle weight is w=2pi/N and n is the grid count.
@@ -249,7 +254,7 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-This command executes every fixed case in the distribution group.
+This command executes every fixed case in the distribution group. Bundled results/ are stored outputs. Rerun into a new output/ directory and use another fresh directory for subsequent runs.
 
 Input and validation protocol history: https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/protocol-history.json
 
@@ -258,6 +263,7 @@ https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport
 ## Sources and review scope
 
 - R. W. Hockney and J. W. Eastwood (1988). Computer Simulation Using Particles. https://doi.org/10.1201/9780367806934; review_level=publisher-preview-and-metadata
-  Publisher preview bibliography, introduction and contents checked; historical source for CIC/cold plasma, not a full-book audit.
+Publisher preview bibliography, introduction and contents checked; historical source for CIC/cold plasma, not a full-book audit.
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.

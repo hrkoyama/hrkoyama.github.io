@@ -72,7 +72,7 @@ s=x*x+y*y; A=(s-1)*(4-s); u=(A*(1+x*y),A*(x*x-y*y)/2); mu=1+.2*s; f=-div(2*mu*ep
 
 polarのmapped Q1にCartesian速度2成分を置き、r dr dthetaで2mu epsilonの弱形式を4×4 Gauss積分してblock疎解法。円周faceにはr dthetaと外向き法線を使う。
 
-- [Q1有限要素法（曲線座標ベクトルBVP）](https://hrkoyama.github.io/numerical-methods-atlas/methods/q1-fem/?lang=ja) — この問題の実行例で使用; 手法台帳の状態：教育用例・関連コードあり
+- [Q1有限要素法（スカラー拡散・曲線座標ベクトルBVP）](https://hrkoyama.github.io/numerical-methods-atlas/methods/q1-fem/?lang=ja) — この問題の実行例で使用; 手法台帳の状態：教育用例・関連コードあり
 
 ### コード・実行
 
@@ -177,7 +177,7 @@ Qualify the derived force by separate Cartesian stress differentiation. Measure 
 
 Mapped polar Q1 with two Cartesian velocity components;4×4 Gauss integration of2mu epsilon uses exact r dr dtheta metric, followed by a block sparse solve. Circular traction uses r dtheta and outward normals.
 
-- [Q1 FEM for mapped-coordinate vector BVP](https://hrkoyama.github.io/numerical-methods-atlas/methods/q1-fem/?lang=en) — Used by this problem’s execution examples; Method-registry status: Educational example / related code
+- [Q1 FEM for scalar diffusion and mapped vector BVPs](https://hrkoyama.github.io/numerical-methods-atlas/methods/q1-fem/?lang=en) — Used by this problem’s execution examples; Method-registry status: Educational example / related code
 
 ### Code and execution
 

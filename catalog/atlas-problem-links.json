@@ -1929,15 +1929,27 @@
     {
       "id": "cold-plasma-pic",
       "equation_ids": [
-        "poisson-laplace"
+        "poisson-laplace",
+        "vlasov-poisson"
       ],
       "reference_note": {
         "ja": "小振幅の冷たいプラズマの線形変位cos(t)と比較し、電荷整合性・Poisson残差・自己力、格子系列と時間刻み系列を確認します。一般の非線形PIC軌道の厳密解という主張ではありません。 追加版は静止イオン背景のまま、電荷・運動量・粒子と場のエネルギーを軌道誤差と分けます。小振幅線形参照であり、熱的Landau減衰や電磁PICの根拠ではありません。",
         "en": "Compare with linear cold-plasma displacement cos(t); check charge compatibility, Poisson residual, self force, and separate grid/timestep series. This is not an exact reference for general nonlinear PIC trajectories. The companion retains stationary background ions and separates charge, momentum and particle/field-energy diagnostics from trajectory error. Its reference is small-amplitude linear theory, supplying no evidence for thermal Landau damping or electromagnetic PIC."
       },
-      "references": [],
+      "references": [
+        {
+          "id": "pic-independent-spatial",
+          "relation": "related-model",
+          "note": {
+            "ja": "周期[0,2π]、256粒子、格子8/16/32、シード35001/35002、dt=.02、T=.24。位置は一様乱数、v=.2 Normal+.1 sin x。6組は別々に進めた12軌道です。",
+            "en": "Periodic[0,2pi],256particles,grids8/16/32,seeds35001/35002,dt.02,T.24. Uniform random positions,v=.2Normal+.1sin(x). Six pairs mean twelve separately evolved trajectories."
+          }
+        }
+      ],
       "method_ids": [
-        "pic"
+        "pic",
+        "cic",
+        "verlet"
       ],
       "method_note": {
         "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
@@ -2691,6 +2703,358 @@
       "method_note": {
         "ja": "D・運動量3成分・全エネルギー・横磁場2成分の全7変数を同じMUSCL/minmod–HLL–SSPRK33で進めます。磁場は動的に結合し、完全なRMHDのZ根で原始変数へ復元します。",
         "en": "Evolve all seven variables D,three momenta,total E and two transverse magnetic fields with the shared MUSCL/minmod–HLL–SSPRK33 operator. Magnetic dynamics are coupled; primitive recovery solves the full RMHD Z root."
+      }
+    },
+    {
+      "id": "checkerboard-diffusion",
+      "equation_ids": [
+        "tensor-diffusion"
+      ],
+      "equation_note": {
+        "ja": "単位正方形、零Dirichlet、f=1、対角2象限100/残り1、N16/32/64。参照P1は128/192。",
+        "en": "Unit square, zero Dirichlet, f=1, diagonal quadrants100/others1, N16/32/64; reference P1 meshes128/192."
+      },
+      "reference_note": {
+        "ja": "非零2材料流束パッチ、残差に整合する収支、直接解の前進/energy誤差、独立三角形P1参照の格子感度。",
+        "en": "Nonzero two-material flux patch, residual-aware budget, direct forward/energy errors and independent triangular-P1 grid sensitivity."
+      },
+      "references": [
+        {
+          "id": "checkerboard-diffusion",
+          "relation": "same-problem",
+          "note": {
+            "ja": "係数比100の固定例。P1格子差は厳密誤差上界ではなく、特異交点の次数や普遍的なMG/AMG優劣は主張しません。",
+            "en": "Fixed contrast100 example. P1 differences are not rigorous error bounds; no singular exponent or universal MG/AMG winner is asserted."
+          }
+        }
+      ],
+      "method_ids": [
+        "multigrid",
+        "amg",
+        "cg"
+      ],
+      "method_note": {
+        "ja": "直交FVの共有面調和平均。幾何MGと座標を受け取らないSA-AMGの対称Galerkin V-cycleを、同じ行列のPCGへ適用。",
+        "en": "Orthogonal FV with shared harmonic transmissibility. Symmetric Galerkin geometric and coordinate-free SA cycles precondition PCG on identical matrices."
+      }
+    },
+    {
+      "id": "rotated-anisotropic-diffusion",
+      "equation_ids": [
+        "tensor-diffusion"
+      ],
+      "equation_note": {
+        "ja": "単位正方形、零Dirichlet、K=R(pi/6)diag(1,.01)Rᵀ、厳密解sin(pi x)sin(pi y)、N16/32/64。",
+        "en": "Unit square, zero Dirichlet, K=R(pi/6)diag(1,.01)R^T, exact sin(pi x)sin(pi y), N16/32/64."
+      },
+      "reference_note": {
+        "ja": "u=xy,f=−2Kxyパッチ、解析流束由来のsource、積分L2/energy誤差と4/6点求積感度、直接解との比較。",
+        "en": "u=xy,f=-2Kxy patch, analytic-flux source, integrated L2/energy error,4/6point quadrature sensitivity and direct-solve comparison."
+      },
+      "references": [
+        {
+          "id": "rotated-anisotropic-diffusion",
+          "relation": "same-problem",
+          "note": {
+            "ja": "指定した角度・異方性の限定例。スカラーTPFAを回転テンソルへ転用せず、一般テンソルへの頑健性は保証しません。",
+            "en": "One angle/anisotropy only. Scalar TPFA is not extended to rotated tensors; arbitrary-tensor robustness is not established."
+          }
+        }
+      ],
+      "method_ids": [
+        "q1-fem",
+        "multigrid",
+        "amg",
+        "cg"
+      ],
+      "method_note": {
+        "ja": "完全2×2テンソルQ1とGauss積分。MG/SA-AMGは対称2/2Jacobi、Galerkin粗行列、粗CholeskyでSPDの固定適用。",
+        "en": "Full2x2 tensor Q1 and Gauss quadrature. Fixed SPD MG/SA cycles use symmetric2/2Jacobi, Galerkin operators and coarse Cholesky."
+      }
+    },
+    {
+      "id": "neutral-slab-yb",
+      "equation_ids": [
+        "coulomb-electrostatics"
+      ],
+      "equation_note": {
+        "ja": "Coulomb定数1、Lx1,Ly1.25、Lz1.5/3/6、4電荷±1、非周期zのMz=.34、alpha3/4。",
+        "en": "Coulomb1, lateral1×1.25, extendedLz1.5/3/6,4neutral charges±1,physical-z dipole.34 andalpha3/4."
+      },
+      "reference_note": {
+        "ja": "参照alpha/打切り資格、エネルギー差分、真空厚、全力、零モード負対照・遠方ゲージと中性平行移動を分離。",
+        "en": "Separate reference cutoff/splitting qualification, energy gradients, vacuum error, all forces, zero-mode control/far gauge and neutral translations."
+      },
+      "references": [
+        {
+          "id": "neutral-slab-yb",
+          "relation": "same-problem",
+          "note": {
+            "ja": "中性・固定4電荷・Cartesian z法線のみ。YBは有限ギャップ近似で任意真空の厳密2Pではありません。原著YB本文は未読。",
+            "en": "Neutral fixed4charge Cartesian-z slab only. YB is a finite-gap approximation, not exact2P at arbitrary vacuum. Original Yeh full text not inspected."
+          }
+        }
+      ],
+      "method_ids": [
+        "ewald",
+        "slab-ewald"
+      ],
+      "method_note": {
+        "ja": "全±3D波数、自己項、2pi Mz²/Vとその力。独立2Pには横零モード・自己減算と安定exp–erfcを保持。",
+        "en": "Full±3D reciprocal sum/self term and2pi Mz²/V correction; independent2P retains zero/self terms and stable exp-erfc evaluation."
+      }
+    },
+    {
+      "id": "fmm3d-inverse-r",
+      "equation_ids": [
+        "particle-gravity"
+      ],
+      "equation_note": {
+        "ja": "孤立重力-Gm/r、G1、64等質量、p3/5/7。主木は深さ強制、適応木のみcapacity8/maxdepth3。",
+        "en": "Isolated-Gm/r,G1,64equal masses,p3/5/7. Main levels forced; adaptive case alone usescapacity8/maxdepth3."
+      },
+      "reference_note": {
+        "ja": "有限6点閉形式、独立Cartesian直接和、次数/実深さ、混合深さ・cap粒子保持、剛体変換を別確認。",
+        "en": "Separate finite6source exact goldens, independent Cartesian sums, order/actual-depth comparisons, mixed-depth capped ownership and rigid transformation."
+      },
+      "references": [
+        {
+          "id": "fmm3d-inverse-r",
+          "relation": "same-problem",
+          "note": {
+            "ja": "小Nの非圧縮教材。p^6 M2Lコストを保存し、SVD圧縮・球調和・Nスケーリング・運動量厳密保存は主張しません。 有限6点閉形式は独立directの資格確認で、FMM本体のgolden-target実行ではありません。",
+            "en": "Small-N uncompressed teaching example; reportp^6M2L cost. No SVD/spherical-harmonic/scaling or exact momentum-conservation claim. The finite6source exact probe qualifies the direct reference, not a production-FMM golden-target run."
+          }
+        }
+      ],
+      "method_ids": [
+        "fmm"
+      ],
+      "method_note": {
+        "ja": "P2M/M2M/M2L/L2Lと局所基底の物理勾配、近接P2P。全非自己対を一意に割当て、非零の全変換経路を記録。",
+        "en": "Actual upward/downward translations, physical local-basis gradients and near P2P; audit unique nonself ownership and nonzero complete translation contributions."
+      }
+    },
+    {
+      "id": "gravity-kepler",
+      "equation_ids": [
+        "particle-gravity"
+      ],
+      "equation_note": {
+        "ja": "G=M=a1,e.4,masses.6/.4、epsilon0、128/256/512steps、初期COM/P0。",
+        "en": "G=M=a1,e.4,masses.6/.4,epsilon0,128/256/512steps,initialCOM/P0."
+      },
+      "reference_note": {
+        "ja": "位相/時間次数、全同期stepエネルギー、P/L/COM、独立pair力とroot残差。",
+        "en": "Time refinement/phase, synchronized all-step energy,P/L/COM,independent pair force and root residuals."
+      },
+      "references": [
+        {
+          "id": "gravity-kepler",
+          "relation": "same-problem",
+          "note": {
+            "ja": "1周期・固定離心率のみ。軟化軌道や長時間安定性はこの参照の範囲外。",
+            "en": "One orbit at fixed eccentricity only; softened binaries and long-time behavior are outside this exact reference."
+          }
+        }
+      ],
+      "method_ids": [
+        "verlet"
+      ],
+      "method_note": {
+        "ja": "位置のみの力でkick半分→drift→kick半分。独立のbracketed Kepler rootと解析速度を使用。",
+        "en": "Position-only kick-half/drift/kick-half; separate bracketed Kepler root and analytic velocities."
+      }
+    },
+    {
+      "id": "gravity-plummer-short",
+      "equation_ids": [
+        "particle-gravity"
+      ],
+      "equation_note": {
+        "ja": "固定32等質量・切断r3の密度由来反対称座標、初速0、epsilon.05、T.2。密度尺度a1とは別。",
+        "en": "Fixed32equal masses,antipodal truncatedr3 density-derived positions,zero velocity,epsilon.05,T.2; density scalea1 differs from pair softening."
+      },
+      "reference_note": {
+        "ja": "非零の固定尺度、同一座標上の力、同期E/P/L/COM、theta0対照、非対称静的probe。",
+        "en": "Nonzero fixed scales,same-position force comparison,synchronizedE/P/L/COM,theta0 control and asymmetric static probe."
+      },
+      "references": [
+        {
+          "id": "gravity-plummer-short",
+          "relation": "same-problem",
+          "note": {
+            "ja": "冷たい有限N初期値で平衡Plummer分布/連続球厳密軌道ではありません。BHの一般相反性・大域symplectic性は主張しません。",
+            "en": "Cold finite-N initial value,not an equilibrium Plummer DF or exact continuum orbit. No general BH reciprocity/global symplecticity claim."
+          }
+        }
+      ],
+      "method_ids": [
+        "verlet",
+        "barnes-hut"
+      ],
+      "method_note": {
+        "ja": "直接KDK20/40/80steps、最細でtheta0/.35/.6のfull second-moment BH。独立scalar対力+DOP853を2許容値で資格確認。",
+        "en": "Direct KDK20/40/80steps; finest-dt full second-moment BHtheta0/.35/.6; qualify independent scalar-pair DOP853 at two tolerances."
+      }
+    },
+    {
+      "id": "thermal-landau-damping",
+      "equation_ids": [
+        "vlasov-poisson"
+      ],
+      "equation_note": {
+        "ja": "vth=ωp=λD=1、k=.5、L=4π、α=.01、格子32、256空間層×128速度節点、dt=.04、T16、固定窓[4,12]。シード33001–33004。 空間粒子層だけ512へ倍増する独立companionも固定します。",
+        "en": "vth=omega_p=lambda_D=1,k.5,L4pi,alpha.01,grid32,256spatial strata×128velocity nodes,dt.04,T16,fit[4,12],seeds33001–33004. A separately evolved512-spatial-strata companion changes only particle-space resolution."
+      },
+      "reference_note": {
+        "ja": "31 pytest・19自己無撞着計算・140/140ケース判定・17/17独立線形参照資格判定が合格。pytest+mainは7.283秒。Landau粒子空間層256/512の曲線差.001154、振幅半減差.004376は固定.03以下。以前の64層版130/131（振幅差.05646>.03）は全データと元契約を保持した未達例です。入力の振幅と全許容値は維持しました。",
+        "en": "31pytest,19self-consistent runs,140/140case gates and17/17independent linear-reference qualifiers passed; shared pytest+main7.283s. Landau256/512particle-space curve gap.001154 and amplitude-half gap.004376 meet the unchanged.03bound. Original64-strata130/131result (.05646>.03) remains an explicitly unmet retained example; amplitudes/all tolerances stayed fixed."
+      },
+      "references": [
+        {
+          "id": "thermal-landau-damping",
+          "relation": "same-problem",
+          "note": {
+            "ja": "1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。",
+            "en": "Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established."
+          }
+        }
+      ],
+      "method_ids": [
+        "pic",
+        "cic",
+        "verlet"
+      ],
+      "method_note": {
+        "ja": "正のGauss速度重みと密度CDF逆写像で共同(x,v)分布を作り、CIC電荷配置→FFT Poisson→同じCIC補間を各kickで再計算するvelocity-Verlet法。Z関数の分散根を枝追跡で確認し、別導出のVolterra初期値問題を刻み半減して固定窓の過渡偏りを検査します。",
+        "en": "Positive Gaussian velocity weights and density-CDF inversion load the joint(x,v) distribution. Recompute CIC deposition, FFT Poisson and matched CIC gathering at every velocity-Verlet kick. Qualify the dielectric root using branch continuation/bracket checks and a separately derived, time-refined Volterra IVP with the same fixed-window estimator."
+      }
+    },
+    {
+      "id": "thermal-two-stream",
+      "equation_ids": [
+        "vlasov-poisson"
+      ],
+      "equation_note": {
+        "ja": "各流の熱速度1、ドリフト±3、k=.2、L=10π、α=1e−5、格子32、64空間層×128総速度節点、dt=.05、T40、固定窓[12,20]。シード34001–34004。",
+        "en": "Each stream thermal speed1,drifts±3,k.2,L10pi,alpha1e-5,grid32,64spatial strata×128total velocity nodes,dt.05,T40,fit[12,20],seeds34001–34004."
+      },
+      "reference_note": {
+        "ja": "31 pytest・19自己無撞着計算・140/140ケース判定・17/17独立線形参照資格判定が合格。pytest+mainは7.283秒。Landau粒子空間層256/512の曲線差.001154、振幅半減差.004376は固定.03以下。以前の64層版130/131（振幅差.05646>.03）は全データと元契約を保持した未達例です。入力の振幅と全許容値は維持しました。",
+        "en": "31pytest,19self-consistent runs,140/140case gates and17/17independent linear-reference qualifiers passed; shared pytest+main7.283s. Landau256/512particle-space curve gap.001154 and amplitude-half gap.004376 meet the unchanged.03bound. Original64-strata130/131result (.05646>.03) remains an explicitly unmet retained example; amplitudes/all tolerances stayed fixed."
+      },
+      "references": [
+        {
+          "id": "thermal-two-stream",
+          "relation": "same-problem",
+          "note": {
+            "ja": "1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。",
+            "en": "Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established."
+          }
+        }
+      ],
+      "method_ids": [
+        "pic",
+        "cic",
+        "verlet"
+      ],
+      "method_note": {
+        "ja": "正のGauss速度重みと密度CDF逆写像で共同(x,v)分布を作り、CIC電荷配置→FFT Poisson→同じCIC補間を各kickで再計算するvelocity-Verlet法。Z関数の分散根を枝追跡で確認し、別導出のVolterra初期値問題を刻み半減して固定窓の過渡偏りを検査します。",
+        "en": "Positive Gaussian velocity weights and density-CDF inversion load the joint(x,v) distribution. Recompute CIC deposition, FFT Poisson and matched CIC gathering at every velocity-Verlet kick. Qualify the dielectric root using branch continuation/bracket checks and a separately derived, time-refined Volterra IVP with the same fixed-window estimator."
+      }
+    },
+    {
+      "id": "dsmc-couette",
+      "equation_ids": [
+        "hard-sphere-boltzmann"
+      ],
+      "equation_note": {
+        "ja": "1次元位置・3次元速度、H=2、Kn0=.5、完全拡散壁。壁温1、壁速度±.5。16セル、N=1024、dt=.02、burn20/sample40、4seed。",
+        "en": "{\"kind\":\"wall\",\"cells\":16,\"length\":2,\"weight\":0.001953125,\"dt\":0.02,\"burn_in\":20,\"sample_time\":40,\"blocks\":5,\"bins\":8,\"sample_every\":10,\"hist_velocity\":[-6,6],\"temperatures\":[1,1],\"speeds\":[-0.5,0.5]} Four independent seeds; primary fixed-weight mesh,particle-weight,and half-step companions each retain seed1."
+      },
+      "reference_note": {
+        "ja": "各群18pytestを事前固定。新しい固定計算は群で14本。境界込みの質量・運動量・エネルギー、局所λ/衝突時間、独立参照への誤差とseed精度、時間block定常性を別に判定します。",
+        "en": "Predeclare18pytest per group and14new fixed primary runs. Separate boundary-inclusive budgets,local lambda/collision-time diagnostics,reference error,whole-seed precision and block stationarity. Reference36runs/87qualifiers already passed; primary results remain pending until the frozen run."
+      },
+      "references": [
+        {
+          "id": "dsmc-couette",
+          "relation": "same-problem",
+          "note": {
+            "ja": "有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。Kn=.5で連続体の直線・no-slip分布を厳密解としません。図は保存した粒子位相空間であり、2D物理流れではありません。",
+            "en": "Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. AtKn.5,continuum straight/no-slip profiles are not exact. Saved phase space is not a2D physical flow."
+          }
+        }
+      ],
+      "method_ids": [
+        "dsmc"
+      ],
+      "method_note": {
+        "ja": "セル内の非重複ランダム対へ、偶数・奇数粒子数を区別した物理時間のσg衝突確率を適用。エネルギーによる安全上界で事前にsubcycle数を定め、確率clipはしません。壁・流入はflux重み付き分布と実際の残り飛行時間を用います。",
+        "en": "Disjoint cell-local random pairs with even/odd finite-N physical-time sigma*g acceptance,energy-based safe majorant and predeclared bounded subcycling; no probability caps. Exact flight-to-wall and flux-conditioned diffuse/reservoir velocities with remaining flight time."
+      }
+    },
+    {
+      "id": "dsmc-fourier",
+      "equation_ids": [
+        "hard-sphere-boltzmann"
+      ],
+      "equation_note": {
+        "ja": "1次元位置・3次元速度、H=2、Kn0=.5、完全拡散壁。静止壁、左温度1・右2。16セル、N=1024、dt=.02、burn20/sample40、4seed。",
+        "en": "{\"kind\":\"wall\",\"cells\":16,\"length\":2,\"weight\":0.001953125,\"dt\":0.02,\"burn_in\":20,\"sample_time\":40,\"blocks\":5,\"bins\":8,\"sample_every\":10,\"hist_velocity\":[-6,6],\"temperatures\":[1,2],\"speeds\":[0,0]} Four independent seeds; primary fixed-weight mesh,particle-weight,and half-step companions each retain seed1."
+      },
+      "reference_note": {
+        "ja": "各群18pytestを事前固定。新しい固定計算は群で14本。境界込みの質量・運動量・エネルギー、局所λ/衝突時間、独立参照への誤差とseed精度、時間block定常性を別に判定します。",
+        "en": "Predeclare18pytest per group and14new fixed primary runs. Separate boundary-inclusive budgets,local lambda/collision-time diagnostics,reference error,whole-seed precision and block stationarity. Reference36runs/87qualifiers already passed; primary results remain pending until the frozen run."
+      },
+      "references": [
+        {
+          "id": "dsmc-fourier",
+          "relation": "same-problem",
+          "note": {
+            "ja": "有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。Kn=.5で連続体の直線・no-slip分布を厳密解としません。図は保存した粒子位相空間であり、2D物理流れではありません。",
+            "en": "Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. AtKn.5,continuum straight/no-slip profiles are not exact. Saved phase space is not a2D physical flow."
+          }
+        }
+      ],
+      "method_ids": [
+        "dsmc"
+      ],
+      "method_note": {
+        "ja": "セル内の非重複ランダム対へ、偶数・奇数粒子数を区別した物理時間のσg衝突確率を適用。エネルギーによる安全上界で事前にsubcycle数を定め、確率clipはしません。壁・流入はflux重み付き分布と実際の残り飛行時間を用います。",
+        "en": "Disjoint cell-local random pairs with even/odd finite-N physical-time sigma*g acceptance,energy-based safe majorant and predeclared bounded subcycling; no probability caps. Exact flight-to-wall and flux-conditioned diffuse/reservoir velocities with remaining flight time."
+      }
+    },
+    {
+      "id": "dsmc-planar-shock",
+      "equation_ids": [
+        "hard-sphere-boltzmann"
+      ],
+      "equation_note": {
+        "ja": "1次元位置・3次元速度、単原子硬球。Mach2、区間[0,16]、RHの開境界reservoir。192セル、粒子重み1/192、dt=.01、burn20/sample20、12seed。",
+        "en": "{\"kind\":\"shock\",\"cells\":192,\"length\":16,\"weight\":0.005208333333333333,\"dt\":0.01,\"burn_in\":20,\"sample_time\":20,\"blocks\":5,\"bins\":64,\"sample_every\":10,\"hist_velocity\":[-4,7]} Twelve independent seeds; primary fixed-weight mesh,particle-weight,and half-step companions each retain seed1."
+      },
+      "reference_note": {
+        "ja": "各群20pytestを事前固定。新しい固定計算は15本。境界込みの質量・運動量・エネルギー、局所λ/衝突時間、独立参照への誤差とseed精度、時間block定常性を別に判定します。 群の判定は既存81項目を保持し、新8計算の48項目を追加した129項目です。primary t95はdf11、独立参照4seedはdf3です。",
+        "en": "Predeclare20pytest per group and15new fixed primary runs. Separate boundary-inclusive budgets,local lambda/collision-time diagnostics,reference error,whole-seed precision and block stationarity. Reference36runs/87qualifiers already passed; primary results remain pending until the frozen run. Preserve all81old gates and add48new-run gates=129. Primary12seed t95 usesdf11,reference4seed usesdf3; descriptive approximate-normal whole-seed intervals,not unconditional adaptive-study coverage."
+      },
+      "references": [
+        {
+          "id": "dsmc-planar-shock",
+          "relation": "same-problem",
+          "note": {
+            "ja": "有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。RHは遠方状態・流束だけの参照で、内部構造の厳密解ではありません。図は保存した粒子位相空間であり、2D物理流れではありません。",
+            "en": "Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. RH validates far states/full fluxes,not an exact internal shock profile. Saved phase space is not a2D physical flow."
+          }
+        }
+      ],
+      "method_ids": [
+        "dsmc"
+      ],
+      "method_note": {
+        "ja": "セル内の非重複ランダム対へ、偶数・奇数粒子数を区別した物理時間のσg衝突確率を適用。エネルギーによる安全上界で事前にsubcycle数を定め、確率clipはしません。壁・流入はflux重み付き分布と実際の残り飛行時間を用います。 開境界のmacro粒子到着数は平均を保つfloor(平均)+Bernoulli(小数部)で分散を下げます。Poisson数揺らぎや熱揺らぎの再現は主張しません。 既存4seedを残して次の8連番seedを追加します。一様順列と安定整数sortは対選択法則を保ちますが、乱数消費と軌道のbit一致は主張しません。",
+        "en": "Disjoint cell-local random pairs with even/odd finite-N physical-time sigma*g acceptance,energy-based safe majorant and predeclared bounded subcycling; no probability caps. Exact flight-to-wall and flux-conditioned diffuse/reservoir velocities with remaining flight time. Open-reservoir macro counts use unbiased floor(mean)+Bernoulli(fraction) per face/species/half-stream to reduce artificial sampling variance; no Poisson number-fluctuation or thermodynamic-fluctuation reproduction claim. Retain the original four seeds and append the next eight consecutive seeds; uniform permutation/stable integer sorting preserves the ideal within-cell matching law,not RNG consumption or bit-identical trajectories."
       }
     }
   ],

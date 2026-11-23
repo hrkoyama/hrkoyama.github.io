@@ -117,7 +117,7 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-このコマンドは配布グループの全例を実行します。
+このコマンドは配布グループの全例を実行します。同梱のresults/は保存見本です。追試は新規output/へ出力し、繰り返す場合は別の新規フォルダを指定します。
 
 入力・検証手順の履歴：https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/protocol-history.json
 
@@ -126,9 +126,11 @@ https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport
 ## 出典と確認範囲
 
 - G. A. Bird (1963). Approach to Translational Equilibrium in a Rigid Sphere Gas. https://doi.org/10.1063/1.1710976; review_level=metadata-only
-  Sandiaの公式DSMC記念文書とDOI書誌を確認。出版社本文は取得できず、原著の剛体球モデルを再現したとは主張しません。
+Sandiaの公式DSMC記念文書とDOI書誌を確認。出版社本文は取得できず、原著の剛体球モデルを再現したとは主張しません。
+
 - E. Scalas, A. T. Gabriel, E. Martin and G. Germano (2015). Velocity and energy distributions in microcanonical ensembles of hard spheres. https://arxiv.org/abs/1207.3505; review_level=primary-abstract-and-selected-theory; separate center-of-mass sphere derivation
-  初期設計は原著抄録を確認し、その後の追加レビューで有限系分布の理論の一部を参照。ここでの運動量0の球面・周辺Beta則は明示的に導出し、原著の分子動力学データを再利用したとはしません。
+初期設計は原著抄録を確認し、その後の追加レビューで有限系分布の理論の一部を参照。ここでの運動量0の球面・周辺Beta則は明示的に導出し、原著の分子動力学データを再利用したとはしません。
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.
 
@@ -251,7 +253,7 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-This command executes every fixed case in the distribution group.
+This command executes every fixed case in the distribution group. Bundled results/ are stored outputs. Rerun into a new output/ directory and use another fresh directory for subsequent runs.
 
 Input and validation protocol history: https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/protocol-history.json
 
@@ -260,8 +262,10 @@ https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport
 ## Sources and review scope
 
 - G. A. Bird (1963). Approach to Translational Equilibrium in a Rigid Sphere Gas. https://doi.org/10.1063/1.1710976; review_level=metadata-only
-  Official Sandia DSMC commemorative document and DOI metadata checked; publisher text unavailable and the original hard-sphere model is not claimed as reproduced.
+Official Sandia DSMC commemorative document and DOI metadata checked; publisher text unavailable and the original hard-sphere model is not claimed as reproduced.
+
 - E. Scalas, A. T. Gabriel, E. Martin and G. Germano (2015). Velocity and energy distributions in microcanonical ensembles of hard spheres. https://arxiv.org/abs/1207.3505; review_level=primary-abstract-and-selected-theory; separate center-of-mass sphere derivation
-  Initial design reviewed the abstract; subsequent additional review consulted selected finite-system theory. Explicitly derive the zero-momentum sphere marginal here; no original molecular-dynamics data are reused.
+Initial design reviewed the abstract; subsequent additional review consulted selected finite-system theory. Explicitly derive the zero-momentum sphere marginal here; no original molecular-dynamics data are reused.
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.

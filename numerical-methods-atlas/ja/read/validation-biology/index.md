@@ -149,7 +149,7 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-このコマンドは配布グループの全例を実行します。
+このコマンドは配布グループの全例を実行します。同梱のresults/は保存見本です。追試は新規output/へ出力し、繰り返す場合は別の新規フォルダを指定します。
 
 入力・検証手順の履歴：https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/protocol-history.json
 
@@ -158,15 +158,20 @@ https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/inputs-ini
 ### 出典と確認範囲
 
 - A. M. Turing (1952). The Chemical Basis of Morphogenesis. https://www.mit.edu/~kardar/research/seminars/EPB/Turing.pdf; review_level=original-paper-selected-sections
-  大学公開の原著スキャン第6–7節（印刷46–50頁）の環状系・線形化と書誌を確認。今回の係数・有限振幅参照・飽和形状の出典とは区別します。
+大学公開の原著スキャン第6–7節（印刷46–50頁）の環状系・線形化と書誌を確認。今回の係数・有限振幅参照・飽和形状の出典とは区別します。
+
 - J. Schnakenberg (1979). Simple chemical reaction systems with limit cycle behaviour. https://pubmed.ncbi.nlm.nih.gov/537379/; review_level=official-bibliography-and-publisher-indexed-abstract
-  PubMedの書誌・DOIと出版社索引の抄録を確認。原著本文は403で未取得。反応系の歴史的出典であり、a=.1,b=.9や今回の空間計算を原著の再現とは呼びません。
+PubMedの書誌・DOIと出版社索引の抄録を確認。原著本文は403で未取得。反応系の歴史的出典であり、a=.1,b=.9や今回の空間計算を原著の再現とは呼びません。
+
 - G. Strang (1968). On the Construction and Comparison of Difference Schemes. https://epubs.siam.org/doi/pdf/10.1137/0705041; review_level=original-paper-selected-nonlinear-composition
-  原著510–512頁の半刻み合成と非線形問題の2次構成を確認。本モデルの正値性や任意刻みでの精度を保証する引用ではありません。
+原著510–512頁の半刻み合成と非線形問題の2次構成を確認。本モデルの正値性や任意刻みでの精度を保証する引用ではありません。
+
 - E. Hairer (2010). Geometric Numerical Integration, Lecture2. https://www.unige.ch/~hairer/poly_geoint/week2.pdf; review_level=author-lecture-selected-midpoint-and-splitting
-  著者公開講義の定理3・第5節でimplicit midpointの式・次数と対称分割を確認。Hamiltonian系のsymplectic性を本化学反応へ転用しません。
+著者公開講義の定理3・第5節でimplicit midpointの式・次数と対称分割を確認。Hamiltonian系のsymplectic性を本化学反応へ転用しません。
+
 - The SciPy community (2024). SciPy1.14.1 solve_ivp and Radau reference. https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html; review_level=official-versioned-api-specification
-  Radau IIAの5次式、rtol/atolの局所誤差制御、analytic Jacobian、終了状態の公式仕様を確認。ODE公差は連続PDEの全域誤差保証ではありません。
+Radau IIAの5次式、rtol/atolの局所誤差制御、analytic Jacobian、終了状態の公式仕様を確認。ODE公差は連続PDEの全域誤差保証ではありません。
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.
 
@@ -323,7 +328,7 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-このコマンドは配布グループの全例を実行します。
+このコマンドは配布グループの全例を実行します。同梱のresults/は保存見本です。追試は新規output/へ出力し、繰り返す場合は別の新規フォルダを指定します。
 
 入力・検証手順の履歴：https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/protocol-history.json
 
@@ -332,14 +337,19 @@ https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/inputs-ini
 ### 出典と確認範囲
 
 - A. M. Turing (1952). The Chemical Basis of Morphogenesis. https://www.mit.edu/~kardar/research/seminars/EPB/Turing.pdf; review_level=original-paper-selected-sections
-  大学公開の原著スキャン第6–7節（印刷46–50頁）の環状系・線形化と書誌を確認。今回の係数・有限振幅参照・飽和形状の出典とは区別します。
+大学公開の原著スキャン第6–7節（印刷46–50頁）の環状系・線形化と書誌を確認。今回の係数・有限振幅参照・飽和形状の出典とは区別します。
+
 - J. Schnakenberg (1979). Simple chemical reaction systems with limit cycle behaviour. https://pubmed.ncbi.nlm.nih.gov/537379/; review_level=official-bibliography-and-publisher-indexed-abstract
-  PubMedの書誌・DOIと出版社索引の抄録を確認。原著本文は403で未取得。反応系の歴史的出典であり、a=.1,b=.9や今回の空間計算を原著の再現とは呼びません。
+PubMedの書誌・DOIと出版社索引の抄録を確認。原著本文は403で未取得。反応系の歴史的出典であり、a=.1,b=.9や今回の空間計算を原著の再現とは呼びません。
+
 - G. Strang (1968). On the Construction and Comparison of Difference Schemes. https://epubs.siam.org/doi/pdf/10.1137/0705041; review_level=original-paper-selected-nonlinear-composition
-  原著510–512頁の半刻み合成と非線形問題の2次構成を確認。本モデルの正値性や任意刻みでの精度を保証する引用ではありません。
+原著510–512頁の半刻み合成と非線形問題の2次構成を確認。本モデルの正値性や任意刻みでの精度を保証する引用ではありません。
+
 - E. Hairer (2010). Geometric Numerical Integration, Lecture2. https://www.unige.ch/~hairer/poly_geoint/week2.pdf; review_level=author-lecture-selected-midpoint-and-splitting
-  著者公開講義の定理3・第5節でimplicit midpointの式・次数と対称分割を確認。Hamiltonian系のsymplectic性を本化学反応へ転用しません。
+著者公開講義の定理3・第5節でimplicit midpointの式・次数と対称分割を確認。Hamiltonian系のsymplectic性を本化学反応へ転用しません。
+
 - The SciPy community (2024). SciPy1.14.1 solve_ivp and Radau reference. https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html; review_level=official-versioned-api-specification
-  Radau IIAの5次式、rtol/atolの局所誤差制御、analytic Jacobian、終了状態の公式仕様を確認。ODE公差は連続PDEの全域誤差保証ではありません。
+Radau IIAの5次式、rtol/atolの局所誤差制御、analytic Jacobian、終了状態の公式仕様を確認。ODE公差は連続PDEの全域誤差保証ではありません。
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.

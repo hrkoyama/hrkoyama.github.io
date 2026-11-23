@@ -117,16 +117,19 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-このコマンドは配布グループの全例を実行します。
+このコマンドは配布グループの全例を実行します。同梱のresults/は保存見本です。追試は新規output/へ出力し、繰り返す場合は別の新規フォルダを指定します。
 
 ### 出典と確認範囲
 
 - N. Metropolis, A. W. Rosenbluth, M. N. Rosenbluth, A. H. Teller and E. Teller (1953). Equation of State Calculations by Fast Computing Machines. https://doi.org/10.1063/1.1699114; review_level=publisher-abstract-and-metadata
-  出版社の書誌・抄録を確認。対称提案のMetropolis受理の原著として引用し、硬い球の原著計算を再現したとは扱いません。
+出版社の書誌・抄録を確認。対称提案のMetropolis受理の原著として引用し、硬い球の原著計算を再現したとは扱いません。
+
 - W. K. Hastings (1970). Monte Carlo sampling methods using Markov chains and their applications. https://probability.ca/hastings/hastings.pdf; review_level=original-paper-excerpt-and-metadata
-  大学で公開された原著の書誌・要約と冒頭を確認。出版社DOIの通常取得はアクセスできませんでした。今回は対称Gaussian提案なので一般の非対称提案比は実装しません。
+大学で公開された原著の書誌・要約と冒頭を確認。出版社DOIの通常取得はアクセスできませんでした。今回は対称Gaussian提案なので一般の非対称提案比は実装しません。
+
 - C. J. Geyer (1992). Practical Markov Chain Monte Carlo. https://projecteuclid.org/journals/statistical-science/volume-7/issue-4/Practical-Markov-Chain-Monte-Carlo/10.1214/ss/1177011137.full; review_level=publisher-abstract-and-selected-original-section
-  出版社側の抄録・書誌と大学公開原著の初期正列・AR(1)に関する検索返却箇所を確認。全文監査や任意の連鎖の収束証明を主張しません。
+出版社側の抄録・書誌と大学公開原著の初期正列・AR(1)に関する検索返却箇所を確認。全文監査や任意の連鎖の収束証明を主張しません。
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.
 
@@ -244,16 +247,19 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-このコマンドは配布グループの全例を実行します。
+このコマンドは配布グループの全例を実行します。同梱のresults/は保存見本です。追試は新規output/へ出力し、繰り返す場合は別の新規フォルダを指定します。
 
 ### 出典と確認範囲
 
 - B. Leimkuhler and C. Matthews (2013). Rational Construction of Stochastic Numerical Methods for Molecular Sampling. https://arxiv.org/abs/1203.5428; review_level=author-manuscript-selected-appendix
-  著者稿の抄録、Langevin式、付録のBAOAB更新式（印刷22ページ）を確認。一般分子の超収束や原著の長時間計算を再現したとは主張しません。
+著者稿の抄録、Langevin式、付録のBAOAB更新式（印刷22ページ）を確認。一般分子の超収束や原著の長時間計算を再現したとは主張しません。
+
 - The SciPy community (2024). SciPy1.14.1 solve_discrete_lyapunov reference. https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.linalg.solve_discrete_lyapunov.html; review_level=official-api-documentation
-  公式の離散Lyapunov方程式AXA^H-X+Q=0の符号と返却仕様を確認。
+公式の離散Lyapunov方程式AXA^H-X+Q=0の符号と返却仕様を確認。
+
 - The SciPy community (2024). SciPy1.14.1 expm reference. https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.linalg.expm.html; review_level=official-api-documentation
-  公式の行列指数APIとPadé/scaling-and-squaring法の記載を確認。
+公式の行列指数APIとPadé/scaling-and-squaring法の記載を確認。
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.
 
@@ -357,12 +363,13 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-このコマンドは配布グループの全例を実行します。
+このコマンドは配布グループの全例を実行します。同梱のresults/は保存見本です。追試は新規output/へ出力し、繰り返す場合は別の新規フォルダを指定します。
 
 ### 出典と確認範囲
 
 - The SciPy community (2024). SciPy1.14.1 expm reference. https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.linalg.expm.html; review_level=official-api-documentation
-  公式の行列指数APIとPadé/scaling-and-squaring法の記載を確認。
+公式の行列指数APIとPadé/scaling-and-squaring法の記載を確認。
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.
 
@@ -474,16 +481,19 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-このコマンドは配布グループの全例を実行します。
+このコマンドは配布グループの全例を実行します。同梱のresults/は保存見本です。追試は新規output/へ出力し、繰り返す場合は別の新規フォルダを指定します。
 
 ### 出典と確認範囲
 
 - A. M. Turing (1952). The Chemical Basis of Morphogenesis. https://royalsocietypublishing.org/doi/10.1098/rstb.1952.0012; review_level=publisher-archive-and-original-first-page-metadata
-  Royal Societyの原稿審査記録と大学公開の原著第1ページの書誌を確認。出版社本文は403でした。拡散誘起不安定性の歴史的原著で、採用したSchnakenberg数値例の出典とは区別します。
+Royal Societyの原稿審査記録と大学公開の原著第1ページの書誌を確認。出版社本文は403でした。拡散誘起不安定性の歴史的原著で、採用したSchnakenberg数値例の出典とは区別します。
+
 - J. Schnakenberg (1979). Simple chemical reaction systems with limit cycle behaviour. https://pubmed.ncbi.nlm.nih.gov/537379/; review_level=official-bibliographic-metadata
-  PubMedの書誌・DOIを確認（抄録なし）。反応系の原典として引用し、採用係数a=0.1,b=0.9や今回の空間パターンを原著から転記したとは扱いません。
+PubMedの書誌・DOIを確認（抄録なし）。反応系の原典として引用し、採用係数a=0.1,b=0.9や今回の空間パターンを原著から転記したとは扱いません。
+
 - The SciPy community (2024). SciPy1.14.1 expm reference. https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.linalg.expm.html; review_level=official-api-documentation
-  公式の行列指数APIとPadé/scaling-and-squaring法の記載を確認。
+公式の行列指数APIとPadé/scaling-and-squaring法の記載を確認。
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.
 
@@ -584,15 +594,18 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-このコマンドは配布グループの全例を実行します。
+このコマンドは配布グループの全例を実行します。同梱のresults/は保存見本です。追試は新規output/へ出力し、繰り返す場合は別の新規フォルダを指定します。
 
 ### 出典と確認範囲
 
 - R. FitzHugh (1961). Impulses and Physiological States in Theoretical Models of Nerve Membrane. https://pubmed.ncbi.nlm.nih.gov/19431309/; review_level=official-abstract-and-metadata
-  PubMedの原著抄録・書誌を確認。2変数の興奮・不応期の縮約という役割を参照し、HH全系や実測膜電位の再現とは区別します。
+PubMedの原著抄録・書誌を確認。2変数の興奮・不応期の縮約という役割を参照し、HH全系や実測膜電位の再現とは区別します。
+
 - J. Nagumo, S. Arimoto and S. Yoshizawa (1962). An Active Pulse Transmission Line Simulating Nerve Axon. https://ieeexplore.ieee.org/abstract/document/4066548; review_level=publisher-abstract-and-metadata
-  IEEE出版社の抄録・巻号・頁・DOIを確認。縮約した膜興奮と回路の歴史的な原著として参照し、空間的な伝送線路や回路実験を今回再現したとは扱いません。
+IEEE出版社の抄録・巻号・頁・DOIを確認。縮約した膜興奮と回路の歴史的な原著として参照し、空間的な伝送線路や回路実験を今回再現したとは扱いません。
+
 - The SciPy community (2024). SciPy1.14.1 solve_ivp reference. https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html; review_level=official-api-documentation
-  公式のDOP853、dense_output、許容誤差、successの仕様を確認。独立数値参照の実装資料です。
+公式のDOP853、dense_output、許容誤差、successの仕様を確認。独立数値参照の実装資料です。
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.

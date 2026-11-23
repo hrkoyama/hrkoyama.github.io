@@ -48,11 +48,11 @@ test('AMG algebraic diagnostics remain outside physical counts and the Poisson g
  assert.equal(note.status,'reading-only');assert.deepEqual(note.code_urls,[]);assert.deepEqual(note.test_urls,[]);assert.deepEqual(note.execution_examples,[]);
  for(const lang of ['ja','en'])assert.equal(note.reading[lang],`/numerical-methods-atlas/${lang}/read/validation-foundations-conditioning/#amg-conditioning`);
  const depth=json('catalog/atlas-depth.json').fields.find(x=>x.id==='foundations');
- assert.deepEqual(depth.supplemental_examples,[...Object.values(cases).map(x=>x[0]),...Object.values(cases).map(x=>x[1])]);
+ assert.deepEqual(depth.supplemental_examples.filter(id=>!['checkerboard-diffusion','rotated-anisotropic-diffusion'].includes(id)),[...Object.values(cases).map(x=>x[0]),...Object.values(cases).map(x=>x[1])]);
  const problemCatalog=json('catalog/atlas-test-problems.json');
  assert.match(problemCatalog.excluded_examples.en.at(-1),/amg-conditioning/);
  const inventory=problemCatalog.problems;
- assert.equal(inventory.length,102);assert.ok(!inventory.some(x=>x.id==='amg-conditioning'));
+ assert.equal(inventory.length,113);assert.ok(!inventory.some(x=>x.id==='amg-conditioning'));
  const methods=json('catalog/atlas-methods.json').methods;
  assert.equal(methods.length,methodCount);assert.equal(methods.filter(x=>x.status==='educational-example').length,methodStatusCounts['educational-example']);
 });
@@ -90,7 +90,7 @@ for lang in ['ja','en']:
 });
 
 test('all 80 historical illustrations, checksums and captions remain unchanged',()=>{
- const items=json('numerical-methods-atlas/gallery/preview-manifest.json').items.filter(x=>!['noh','sedov','double-mach','forward-step','isentropic-vortex','guderley','zalesak','swashes-topography','dry-bed-dam-break','lid-driven-cavity','wall-manufactured','level-set-circle', 'kh-initial-growth', 'rt-initial-growth', 'lshape-fem', 'annular-viscous-mms', 'poisson-neumann', 'poisson-robin', 'ale-nonuniform-transport', 'cgrid-rotating-wave', 'srhd-collision', 'srmhd-alfven'].includes(x.id));
+ const items=json('numerical-methods-atlas/gallery/preview-manifest.json').items.filter(x=>!['noh','sedov','double-mach','forward-step','isentropic-vortex','guderley','zalesak','swashes-topography','dry-bed-dam-break','lid-driven-cavity','wall-manufactured','level-set-circle', 'kh-initial-growth', 'rt-initial-growth', 'lshape-fem', 'annular-viscous-mms', 'poisson-neumann', 'poisson-robin', 'ale-nonuniform-transport', 'cgrid-rotating-wave', 'srhd-collision', 'srmhd-alfven','checkerboard-diffusion','rotated-anisotropic-diffusion','neutral-slab-yb','fmm3d-inverse-r','gravity-kepler','gravity-plummer-short','thermal-landau-damping','thermal-two-stream','dsmc-couette','dsmc-fourier','dsmc-planar-shock'].includes(x.id));
  assert.equal(items.length,80);
  assert.equal(hash(items.map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}))),'25c25a4cb7ad5c54e5788b984d949c44994d3f1706ed36c4ef30a3ce36fa6c2b');
 });

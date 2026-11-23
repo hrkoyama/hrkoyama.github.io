@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "review_type": "author-static-source-and-algebra",
+  "executed": false,
+  "checks": [
+    "Barycentric polynomial and exact-node derivative limits derived",
+    "Separable tensor M2M/L2L contractions derived",
+    "MAC,forced balanced levels and mixed-depth ownership explicit",
+    "Nonzero internal-source/internal-target full translation chain propagated separately",
+    "Direct octahedron golden scope explicitly limited to independent reference",
+    "No dense-BLAS matmul or warning suppression in production"
+  ],
+  "independent_review": "Root preliminary static math review; final frozen SHA pending"
+}

@@ -55,7 +55,8 @@
         "chebyshev",
         "wavelets",
         "validation-foundations",
-        "validation-foundations-conditioning"
+        "validation-foundations-conditioning",
+        "validation-coefficient-diffusion"
       ]
     },
     {
@@ -168,7 +169,13 @@
         "gravity-boundaries",
         "radiation-transport",
         "validation-particles",
-        "validation-particle-transport"
+        "validation-particle-transport",
+        "validation-fmm3d",
+        "validation-gravity-dynamics",
+        "validation-warm-pic",
+        "validation-pic-spatial",
+        "validation-dsmc-wall",
+        "validation-dsmc-shock"
       ]
     },
     {
@@ -192,7 +199,8 @@
         "quantum-atoms",
         "h2-hf",
         "periodic-dft",
-        "periodic-forces"
+        "periodic-forces",
+        "validation-slab-ewald"
       ]
     },
     {

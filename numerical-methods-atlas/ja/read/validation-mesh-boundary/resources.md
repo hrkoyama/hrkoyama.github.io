@@ -8,11 +8,11 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-bound
 
 ## 手法
 
-- [Q1有限要素法（曲線座標ベクトルBVP）](<https://hrkoyama.github.io/numerical-methods-atlas/methods/q1-fem/?lang=ja>)
+- [Q1有限要素法（スカラー拡散・曲線座標ベクトルBVP）](<https://hrkoyama.github.io/numerical-methods-atlas/methods/q1-fem/?lang=ja>)
 - [連続P1 Galerkin有限要素法](<https://hrkoyama.github.io/numerical-methods-atlas/methods/p1-fem/?lang=ja>)
 
   面積と物理勾配からP1剛性を組み、境界を消去して疎直接法で解きます。隅要素は原点をDuffy写像の頂点に移し、Gauss48/96を比較。
-- [Q1有限要素法（曲線座標ベクトルBVP）](<https://hrkoyama.github.io/numerical-methods-atlas/methods/q1-fem/?lang=ja>)
+- [Q1有限要素法（スカラー拡散・曲線座標ベクトルBVP）](<https://hrkoyama.github.io/numerical-methods-atlas/methods/q1-fem/?lang=ja>)
 
   polarのmapped Q1にCartesian速度2成分を置き、r dr dthetaで2mu epsilonの弱形式を4×4 Gauss積分してblock疎解法。円周faceにはr dthetaと外向き法線を使う。
 - [空間中心差分](<https://hrkoyama.github.io/numerical-methods-atlas/methods/centered-difference/?lang=ja>)
@@ -193,6 +193,10 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-bound
   availability: run
 
   軸を除く円環で可変粘性の応力発散方程式を実際に解き、速度・歪み・境界tractionと仕事を照合します。
+- [回転異方性拡散：完全テンソルQ1とMG・AMG](<https://hrkoyama.github.io/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/?lang=ja>)
+  availability: run
+
+  非零Kxyを保つQ1弱形式で、解析解への収束と同じ行列のMG・AMG収束を比較します。
 - [L字領域P1特異解：graded格子と歪みの分離](<https://hrkoyama.github.io/numerical-methods-atlas/validation/lshape-fem/?lang=ja>)
   availability: run
 
@@ -205,7 +209,7 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-bound
   availability: run
 
   2D PoissonのNeumann/Robin面を実際に組み、連続製造解と境界fluxを照合します。
-- [Q1有限要素法（曲線座標ベクトルBVP）：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/q1-fem/?lang=ja#method-execution-ja>)
+- [Q1有限要素法（スカラー拡散・曲線座標ベクトルBVP）：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/q1-fem/?lang=ja#method-execution-ja>)
   availability: source
 
   手法固有の配布版と関連ソースを案内します。固定入力例は別の項目で区別します。

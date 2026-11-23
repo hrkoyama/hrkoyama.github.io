@@ -7843,5 +7843,101 @@
   "reference.batch18-27.e59d657aa10106bb": {
     "ja": "原著の選択節で確認した有限振幅厳密解族を参照し、独立な低次HLL/MUSCL系で進めます。ECHOアルゴリズムや誤差表の再現ではありません。Bx一定の1次元で、x–t図を多次元磁場発散制御・一般RMHD衝撃波・GRへ一般化しません。",
     "en": "Reference the finite-amplitude exact family checked in selected original sections, evolved with an independent lower-order HLL/MUSCL scheme. This does not reproduce ECHO or its error tables. Constant-Bx1D and its x-t picture do not validate multidimensional divergence control,generic RMHD shocks or GR."
+  },
+  "reference.batch28-37.5100499260e8f727": {
+    "ja": "係数ジャンプ拡散：共有流束とMG・AMG",
+    "en": "Checkerboard diffusion: shared flux, MG and AMG"
+  },
+  "reference.batch28-37.1335e41556e2f2f0": {
+    "ja": "単位正方形、零Dirichlet、f=1、対角2象限100/残り1、N16/32/64。参照P1は128/192。 非零2材料流束パッチ、残差に整合する収支、直接解の前進/energy誤差、独立三角形P1参照の格子感度。 係数比100の固定例。P1格子差は厳密誤差上界ではなく、特異交点の次数や普遍的なMG/AMG優劣は主張しません。",
+    "en": "Unit square, zero Dirichlet, f=1, diagonal quadrants100/others1, N16/32/64; reference P1 meshes128/192."
+  },
+  "reference.batch28-37.9a58abf5288c33ed": {
+    "ja": "回転異方性拡散：完全テンソルQ1とMG・AMG",
+    "en": "Rotated diffusion: full-tensor Q1, MG and AMG"
+  },
+  "reference.batch28-37.3455a7e6043b3dfb": {
+    "ja": "単位正方形、零Dirichlet、K=R(pi/6)diag(1,.01)Rᵀ、厳密解sin(pi x)sin(pi y)、N16/32/64。 u=xy,f=−2Kxyパッチ、解析流束由来のsource、積分L2/energy誤差と4/6点求積感度、直接解との比較。 指定した角度・異方性の限定例。スカラーTPFAを回転テンソルへ転用せず、一般テンソルへの頑健性は保証しません。",
+    "en": "Unit square, zero Dirichlet, K=R(pi/6)diag(1,.01)R^T, exact sin(pi x)sin(pi y), N16/32/64."
+  },
+  "reference.batch28-37.f6ef7f25325ccf14": {
+    "ja": "中性長方形スラブ：真2P参照とYB補正",
+    "en": "Neutral rectangular slab: genuine2P reference and YB"
+  },
+  "reference.batch28-37.78967c896142b6b4": {
+    "ja": "Coulomb定数1、Lx1,Ly1.25、Lz1.5/3/6、4電荷±1、非周期zのMz=.34、alpha3/4。 参照alpha/打切り資格、エネルギー差分、真空厚、全力、零モード負対照・遠方ゲージと中性平行移動を分離。 中性・固定4電荷・Cartesian z法線のみ。YBは有限ギャップ近似で任意真空の厳密2Pではありません。原著YB本文は未読。",
+    "en": "Coulomb1, lateral1×1.25, extendedLz1.5/3/6,4neutral charges±1,physical-z dipole.34 andalpha3/4."
+  },
+  "reference.batch28-37.d5d7e2d9d44b232a": {
+    "ja": "真3D 1/r FMM：多段変換・力・適応所有権",
+    "en": "Actual3D1/r FMM: multilevel translations, force and ownership"
+  },
+  "reference.batch28-37.b80c7a742598c5ff": {
+    "ja": "孤立重力-Gm/r、G1、64等質量、p3/5/7。主木は深さ強制、適応木のみcapacity8/maxdepth3。 有限6点閉形式、独立Cartesian直接和、次数/実深さ、混合深さ・cap粒子保持、剛体変換を別確認。 小Nの非圧縮教材。p^6 M2Lコストを保存し、SVD圧縮・球調和・Nスケーリング・運動量厳密保存は主張しません。 有限6点閉形式は独立directの資格確認で、FMM本体のgolden-target実行ではありません。",
+    "en": "Isolated-Gm/r,G1,64equal masses,p3/5/7. Main levels forced; adaptive case alone usescapacity8/maxdepth3."
+  },
+  "reference.batch28-37.1c3e6ba4fa7ca120": {
+    "ja": "無軟化Kepler二体の時間誤差",
+    "en": "Unsoftened Kepler two-body time error"
+  },
+  "reference.batch28-37.586157e15e54cf28": {
+    "ja": "G=M=a1,e.4,masses.6/.4、epsilon0、128/256/512steps、初期COM/P0。 位相/時間次数、全同期stepエネルギー、P/L/COM、独立pair力とroot残差。 1周期・固定離心率のみ。軟化軌道や長時間安定性はこの参照の範囲外。",
+    "en": "G=M=a1,e.4,masses.6/.4,epsilon0,128/256/512steps,initialCOM/P0."
+  },
+  "reference.batch28-37.1adf4aa466e1d170": {
+    "ja": "冷たいPlummer密度由来32粒子の短時間力学",
+    "en": "Short-time32body dynamics from a cold Plummer-density sample"
+  },
+  "reference.batch28-37.d9d7f85e76bf1cd4": {
+    "ja": "固定32等質量・切断r3の密度由来反対称座標、初速0、epsilon.05、T.2。密度尺度a1とは別。 非零の固定尺度、同一座標上の力、同期E/P/L/COM、theta0対照、非対称静的probe。 冷たい有限N初期値で平衡Plummer分布/連続球厳密軌道ではありません。BHの一般相反性・大域symplectic性は主張しません。",
+    "en": "Fixed32equal masses,antipodal truncatedr3 density-derived positions,zero velocity,epsilon.05,T.2; density scalea1 differs from pair softening."
+  },
+  "reference.batch28-37.340ea3bac426b380": {
+    "ja": "温かいPICの線形Landau減衰",
+    "en": "Warm PIC linear Landau damping"
+  },
+  "reference.batch28-37.e6850480abd38ba9": {
+    "ja": "vth=ωp=λD=1、k=.5、L=4π、α=.01、格子32、256空間層×128速度節点、dt=.04、T16、固定窓[4,12]。シード33001–33004。 空間粒子層だけ512へ倍増する独立companionも固定します。 31 pytest・19自己無撞着計算・140/140ケース判定・17/17独立線形参照資格判定が合格。pytest+mainは7.283秒。Landau粒子空間層256/512の曲線差.001154、振幅半減差.004376は固定.03以下。以前の64層版130/131（振幅差.05646>.03）は全データと元契約を保持した未達例です。入力の振幅と全許容値は維持しました。 1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。",
+    "en": "vth=omega_p=lambda_D=1,k.5,L4pi,alpha.01,grid32,256spatial strata×128velocity nodes,dt.04,T16,fit[4,12],seeds33001–33004. A separately evolved512-spatial-strata companion changes only particle-space resolution."
+  },
+  "reference.batch28-37.6259a7c7dd6498b6": {
+    "ja": "温かいPICの二流初期成長",
+    "en": "Warm PIC two-stream initial growth"
+  },
+  "reference.batch28-37.5288bd7ce8454e36": {
+    "ja": "各流の熱速度1、ドリフト±3、k=.2、L=10π、α=1e−5、格子32、64空間層×128総速度節点、dt=.05、T40、固定窓[12,20]。シード34001–34004。 31 pytest・19自己無撞着計算・140/140ケース判定・17/17独立線形参照資格判定が合格。pytest+mainは7.283秒。Landau粒子空間層256/512の曲線差.001154、振幅半減差.004376は固定.03以下。以前の64層版130/131（振幅差.05646>.03）は全データと元契約を保持した未達例です。入力の振幅と全許容値は維持しました。 1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。",
+    "en": "Each stream thermal speed1,drifts±3,k.2,L10pi,alpha1e-5,grid32,64spatial strata×128total velocity nodes,dt.05,T40,fit[12,20],seeds34001–34004."
+  },
+  "reference.batch28-37.3d0896a4909e64a3": {
+    "ja": "PIC空間演算の独立実装照合",
+    "en": "Independently coded PIC spatial pipeline"
+  },
+  "reference.batch28-37.75827df256f5936d": {
+    "ja": "周期[0,2π]、256粒子、格子8/16/32、シード35001/35002、dt=.02、T=.24。位置は一様乱数、v=.2 Normal+.1 sin x。6組は別々に進めた12軌道です。 19 pytestと58/58固定判定が合格。6組＝12の自己無撞着軌道を13時刻全てで照合し、最大差は位置8.88e−16・速度3.33e−16・電場8.33e−16・電荷2.89e−15。pytest+mainは0.392秒。最初の小pytestは周期端点の添字不具合で17/18となり、元記録を保持して修正後に全計算を実行しました。 離散演算の独立したコーディング照合です。時間積分法や連続方程式を変えた独立エンジン、連続極限の収束、冷たいプラズマの振動参照の再現を意味しません。既存cold-plasma-picの関連補助検証として扱い、温かい初期速度の軌道を冷たい解と同一視しません。",
+    "en": "Periodic[0,2pi],256particles,grids8/16/32,seeds35001/35002,dt.02,T.24. Uniform random positions,v=.2Normal+.1sin(x). Six pairs mean twelve separately evolved trajectories."
+  },
+  "reference.batch28-37.80a9d17aac4c22a1": {
+    "ja": "硬球DSMCの有限Kn Couette流",
+    "en": "Finite-Kn hard-sphere Couette flow"
+  },
+  "reference.batch28-37.ae266752384ffa8f": {
+    "ja": "1次元位置・3次元速度、H=2、Kn0=.5、完全拡散壁。壁温1、壁速度±.5。16セル、N=1024、dt=.02、burn20/sample40、4seed。 各群18pytestを事前固定。新しい固定計算は群で14本。境界込みの質量・運動量・エネルギー、局所λ/衝突時間、独立参照への誤差とseed精度、時間block定常性を別に判定します。 有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。Kn=.5で連続体の直線・no-slip分布を厳密解としません。図は保存した粒子位相空間であり、2D物理流れではありません。",
+    "en": "H=2lambda0; diffuse Twalls1, tangential Uwalls+/-0.5; nonlinear viscous heating retained. All velocities3D; physical position1D. Four independent SPARTA seeds per configuration, fixed native inputs."
+  },
+  "reference.batch28-37.0ffd77238ca561ed": {
+    "ja": "硬球DSMCの有限Kn Fourier熱伝導",
+    "en": "Finite-Kn hard-sphere Fourier heat conduction"
+  },
+  "reference.batch28-37.4fa2d11398b05ab7": {
+    "ja": "1次元位置・3次元速度、H=2、Kn0=.5、完全拡散壁。静止壁、左温度1・右2。16セル、N=1024、dt=.02、burn20/sample40、4seed。 各群18pytestを事前固定。新しい固定計算は群で14本。境界込みの質量・運動量・エネルギー、局所λ/衝突時間、独立参照への誤差とseed精度、時間block定常性を別に判定します。 有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。Kn=.5で連続体の直線・no-slip分布を厳密解としません。図は保存した粒子位相空間であり、2D物理流れではありません。",
+    "en": "H=2lambda0; diffuse Tleft1,Tright2; fixed walls; no continuum linear-temperature reference. All velocities3D; physical position1D. Four independent SPARTA seeds per configuration, fixed native inputs."
+  },
+  "reference.batch28-37.83bc45ef07d79140": {
+    "ja": "硬球DSMCのMach2平面衝撃波",
+    "en": "Mach2 planar hard-sphere shock"
+  },
+  "reference.batch28-37.05edfd9cb2e72d01": {
+    "ja": "1次元位置・3次元速度、単原子硬球。Mach2、区間[0,16]、RHの開境界reservoir。192セル、粒子重み1/192、dt=.01、burn20/sample20、12seed。 各群20pytestを事前固定。新しい固定計算は15本。境界込みの質量・運動量・エネルギー、局所λ/衝突時間、独立参照への誤差とseed精度、時間block定常性を別に判定します。 群の判定は既存81項目を保持し、新8計算の48項目を追加した129項目です。primary t95はdf11、独立参照4seedはdf3です。 有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。RHは遠方状態・流束だけの参照で、内部構造の厳密解ではありません。図は保存した粒子位相空間であり、2D物理流れではありません。",
+    "en": "Monatomic gamma5/3,M1=2, RH inflow/outflow reservoirs at x0/16. Reference lambda2/lambda1=7/16; no profile shifting or shock pinning. All velocities3D; physical position1D. Four independent SPARTA seeds per configuration, fixed native inputs."
   }
 }

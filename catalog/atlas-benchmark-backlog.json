@@ -37,7 +37,7 @@
       "ale-geophysical-1",
       "ale-geophysical-2"
     ],
-    "batch_id": "2026-11-23-sequences18-27"
+    "batch_id": "2026-11-23-sequences28-37"
   },
   "priority_labels": {
     "P0": {
@@ -1380,8 +1380,8 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "verified",
-      "current": "22単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。",
+      "state": "published",
+      "current": "固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。",
       "tasks": [
         "滑らかなせん断層・明示した摂動・境界・物理散逸を固定し、KHの初期成長率を比較する。",
         "RTは重力・密度配置・界面厚さと理論の仮定を別に定義する。非線形後期の図を厳密解と扱わず独立数値参照と比較する。"
@@ -1427,7 +1427,8 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-23-r2/instability-growth/README.md",
-          "/code/validated-examples/2026-11-23-r2/instability-growth/references/citations.json"
+          "/code/validated-examples/2026-11-23-r2/instability-growth/references/citations.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#kh-initial-growth-ja",
         "execution": "/numerical-methods-atlas/validation/kh-initial-growth/?lang=ja"
@@ -1445,8 +1446,8 @@
       "priority": "P1",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "verified",
-      "current": "47単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。",
+      "state": "published",
+      "current": "固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。",
       "tasks": [
         "既存保存結果を基準に空間/時間系列を分離し、Alfvén位相誤差・偏波・保存量を解析波で測る。",
         "loopは独立コードと比較し、磁気エネルギー・ループ形状・divergence演算子を揃える。",
@@ -1488,7 +1489,8 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-23/mhd-transport/README.md",
-          "/code/validated-examples/2026-11-23/mhd-transport/references/citations.json"
+          "/code/validated-examples/2026-11-23/mhd-transport/references/citations.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#circular-alfven-ja",
         "execution": "/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=ja"
@@ -1506,8 +1508,8 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "verified",
-      "current": "47単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。",
+      "state": "published",
+      "current": "固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。",
       "tasks": [
         "現行short smooth OTを残し、衝撃波を伴う別時刻/別入力を区別して追加。",
         "熱圧正値性・総エネルギー・native face/common cell divB・参照格子増分を測る。",
@@ -1548,7 +1550,8 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-23/mhd-transport/README.md",
-          "/code/validated-examples/2026-11-23/mhd-transport/references/citations.json"
+          "/code/validated-examples/2026-11-23/mhd-transport/references/citations.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#orszag-tang-ja",
         "execution": "/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=ja"
@@ -1566,8 +1569,8 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "verified",
-      "current": "20単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。",
+      "state": "published",
+      "current": "固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。",
       "tasks": [
         "r^(2/3)sin(2theta/3)型のreentrant corner解などを境界条件とともに自前定義し、L2/H1誤差を要素積分。",
         "一様/局所細分化、要素角度・aspect ratio・条件数の影響を分ける。",
@@ -1613,7 +1616,8 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-23/mesh-boundary/README.md",
-          "/code/validated-examples/2026-11-23/mesh-boundary/references/citations.json"
+          "/code/validated-examples/2026-11-23/mesh-boundary/references/citations.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#lshape-fem-ja",
         "execution": "/numerical-methods-atlas/validation/lshape-fem/?lang=ja"
@@ -1631,8 +1635,8 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "verified",
-      "current": "20単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。",
+      "state": "published",
+      "current": "固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。",
       "tasks": [
         "まずr>0のannulusで粘性応力発散・可変粘性・境界fluxを一組の製造解で離散化検査。",
         "座標の物理/共変/反変成分と体積/面積重みを固定し、格子収束を測る。",
@@ -1673,7 +1677,8 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-23/mesh-boundary/README.md",
-          "/code/validated-examples/2026-11-23/mesh-boundary/references/citations.json"
+          "/code/validated-examples/2026-11-23/mesh-boundary/references/citations.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#annular-viscous-mms-ja",
         "execution": "/numerical-methods-atlas/validation/annular-viscous-mms/?lang=ja"
@@ -1692,7 +1697,7 @@
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
       "state": "in-progress",
-      "current": "19単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。",
+      "current": "固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。",
       "tasks": [
         "最初は既存GCLと同じ移動に非一様scalarの解析輸送を載せ、幾何誤差と輸送誤差を分離。",
         "Lagrange/remapまで拡張する段階でSaltzmanを新規問題として考慮し、格子反転・歪み・保存・衝撃位置を検査。",
@@ -1733,7 +1738,8 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-23/moving-waves/README.md",
-          "/code/validated-examples/2026-11-23/moving-waves/references/citations.json"
+          "/code/validated-examples/2026-11-23/moving-waves/references/citations.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#ale-nonuniform-transport-ja",
         "execution": "/numerical-methods-atlas/validation/ale-nonuniform-transport/?lang=ja"
@@ -1752,7 +1758,7 @@
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
       "state": "in-progress",
-      "current": "19単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。",
+      "current": "固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。",
       "tasks": [
         "まず既存f-planeの一つの固有modeを実際に時間積分し位相・振幅・geostrophic balanceを解析行列指数と比較。",
         "球面拡張時はWilliamsonの固体回転輸送/定常釣合いから段階的に選び、質量/エネルギー/位相と格子向きを比較。",
@@ -1798,7 +1804,8 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-23/moving-waves/README.md",
-          "/code/validated-examples/2026-11-23/moving-waves/references/citations.json"
+          "/code/validated-examples/2026-11-23/moving-waves/references/citations.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#cgrid-rotating-wave-ja",
         "execution": "/numerical-methods-atlas/validation/cgrid-rotating-wave/?lang=ja"
@@ -1816,8 +1823,8 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "解説のみ",
-      "state": "verified",
-      "current": "25単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。",
+      "state": "published",
+      "current": "固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。",
       "tasks": [
         "まずMinkowski・理想気体EOS・法線速度のみの少数固定入力。",
         "原始変数回復の残差、rho/p正値、|v|<1、波位置、中間状態をexact Riemann参照と比較。",
@@ -1853,7 +1860,8 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-23/relativistic/README.md",
-          "/code/validated-examples/2026-11-23/relativistic/references/citations.json"
+          "/code/validated-examples/2026-11-23/relativistic/references/citations.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#srhd-collision-ja",
         "execution": "/numerical-methods-atlas/validation/srhd-collision/?lang=ja"
@@ -1871,8 +1879,8 @@
       "priority": "P3",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "verified",
-      "current": "25単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。",
+      "state": "published",
+      "current": "固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。",
       "tasks": [
         "SRHDの保存・回復が通った後、固定EOSで簡単な磁場配置から開始。",
         "Bx一定、物理的状態、波位置、磁場/流体相互作用を独立exact RMHD参照と照合。",
@@ -1913,7 +1921,8 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-23/relativistic/README.md",
-          "/code/validated-examples/2026-11-23/relativistic/references/citations.json"
+          "/code/validated-examples/2026-11-23/relativistic/references/citations.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#srmhd-alfven-ja",
         "execution": "/numerical-methods-atlas/validation/srmhd-alfven/?lang=ja"
@@ -1931,8 +1940,8 @@
       "priority": "P1",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "verified",
-      "current": "20単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。",
+      "state": "published",
+      "current": "固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。",
       "tasks": [
         "既存1D境界実装と区別し、2Dの零空間・不適合右辺の拒否・平均値指定を検査",
         "2D CG/MGの現状は零Dirichlet。cos型参照解で境界誤差と残差を分ける"
@@ -1976,7 +1985,8 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-23/mesh-boundary/README.md",
-          "/code/validated-examples/2026-11-23/mesh-boundary/references/citations.json"
+          "/code/validated-examples/2026-11-23/mesh-boundary/references/citations.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#poisson-neumann-ja",
         "execution": "/numerical-methods-atlas/validation/poisson-neumann/?lang=ja"
@@ -1994,13 +2004,13 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "planned",
-      "current": "Thomasの1D Dirichlet固定入力、1D Neumann/Robin/周期境界の既存実装、2D正方形のCG/幾何MG/P1 FEMとsin製造解、SA-AMGがある。amg-conditioningは条件数・残差/前進誤差・定係数異方性ストレス・DST/直接解照合まで実施済み。AMGや異方性検査そのものを未実装扱いしない。",
+      "state": "verified",
+      "current": "固定した軽量例を実装し、事前に固定した判定と独立参照の照合、実配列の保存図、ZIPの独立展開追試まで確認しました。実公開と公開ZIPだけのLinux追試は今回の集約公開後に確認します。",
       "tasks": [
         "既存amg-conditioningの定係数異方性を再追加しない",
         "不連続係数の流束整合、真の残差・前進誤差・収束不達を固定ケースで比較"
       ],
-      "scope_note": "",
+      "scope_note": "各例の前提・参照の独立範囲と未達版の履歴を、入力・受入基準・契約・検証記録で区別します。一般条件への認証や厳密解でない数値参照の厳密性は主張しません。",
       "sources": [
         {
           "title": "PETSc公式: Singular systems / Neumann nullspace",
@@ -2018,7 +2028,26 @@
           "id": "multigrid.limitations"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23/coefficient-diffusion/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23/coefficient-diffusion/inputs.json",
+          "/code/validated-examples/2026-11-23/coefficient-diffusion/acceptance.json",
+          "/code/validated-examples/2026-11-23/coefficient-diffusion/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23/coefficient-diffusion/results/checkerboard-diffusion-preview.png",
+          "/code/validated-examples/2026-11-23/coefficient-diffusion/results/rotated-anisotropic-diffusion-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-23/coefficient-diffusion/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-23/coefficient-diffusion/README.md"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#checkerboard-diffusion-ja",
+        "execution": "/numerical-methods-atlas/validation/checkerboard-diffusion/?lang=ja"
+      },
       "sequence": 28
     },
     {
@@ -2032,13 +2061,13 @@
       "priority": "P2",
       "kind": "references",
       "initial_coverage": "出典整備不足",
-      "state": "planned",
-      "current": "Thomasの1D Dirichlet固定入力、1D Neumann/Robin/周期境界の既存実装、2D正方形のCG/幾何MG/P1 FEMとsin製造解、SA-AMGがある。amg-conditioningは条件数・残差/前進誤差・定係数異方性ストレス・DST/直接解照合まで実施済み。AMGや異方性検査そのものを未実装扱いしない。",
+      "state": "verified",
+      "current": "Thomas1949原報は未読のまま、公式収蔵目録・署名付き1996通信・Crank–Nicolson再録・多重格子の関連文献を区別して整理しました。新しい科学計算例には数えません。",
       "tasks": [
         "台帳のThomasリンクはCrank–Nicolson/多重格子文献が中心",
         "既存実行記録の『Thomas原報は未確認』を維持し、原報確認ができたときだけアクセス深度を更新"
       ],
-      "scope_note": "",
+      "scope_note": "目録の確認を原報本文の確認と扱わず、不明なDOI・報告番号・頁はnullのまま。原報未読を維持した文献役割の整理です。",
       "sources": [],
       "baseline_evidence": [
         {
@@ -2050,7 +2079,19 @@
           "id": "poisson-1d-dirichlet.reference_notes"
         }
       ],
-      "completion": null,
+      "completion": {
+        "targets": [
+          "/numerical-methods-atlas/methods/thomas/?lang=ja",
+          "/catalog/atlas-methods.json"
+        ],
+        "proof": [
+          "/numerical-methods-atlas/reading/thomas-provenance.json"
+        ],
+        "note": {
+          "ja": "目録の確認を原報本文の確認と扱わず、不明なDOI・報告番号・頁はnullのまま。原報未読を維持した文献役割の整理です。",
+          "en": "Curation of bibliographic roles only; original1949 full text unread,unknown DOI/report/pages remain null. No new scientific case."
+        }
+      },
       "sequence": 29
     },
     {
@@ -2064,13 +2105,13 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "解説のみ",
-      "state": "planned",
-      "current": "孤立3D Plummer軟化Barnes–Hut（単極/完全2次モーメント）と直接和、3D周期CIC–FFT–CIC、Ewald/SPME、2D対数核FMMのM2M/M2L/L2Lが既存。追加粒子検証でEwaldの独立theta参照、SPME格子/次数/位相、FMM次数/木深さ・保存診断まである。 FMMの古い文献注記の整合は共通P0にまとめた。",
+      "state": "verified",
+      "current": "固定した軽量例を実装し、事前に固定した判定と独立参照の照合、実配列の保存図、ZIPの独立展開追試まで確認しました。実公開と公開ZIPだけのLinux追試は今回の集約公開後に確認します。",
       "tasks": [
         "slab-ewaldはplannedで詳細解説あり、通常の中性立方Ewald実装とは区別",
         "真空層厚依存・双極子補正・力の有限差分・独立2D参照を小ケースで検査"
       ],
-      "scope_note": "",
+      "scope_note": "各例の前提・参照の独立範囲と未達版の履歴を、入力・受入基準・契約・検証記録で区別します。一般条件への認証や厳密解でない数値参照の厳密性は主張しません。",
       "sources": [
         {
           "title": "Yeh & Berkowitz (1999), Ewald summation for systems with slab geometry",
@@ -2088,7 +2129,25 @@
           "id": "ewald-convergence.limits"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23/slab-ewald/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23/slab-ewald/inputs.json",
+          "/code/validated-examples/2026-11-23/slab-ewald/acceptance.json",
+          "/code/validated-examples/2026-11-23/slab-ewald/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23/slab-ewald/results/neutral-slab-yb-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-23/slab-ewald/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-23/slab-ewald/README.md"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#neutral-slab-yb-ja",
+        "execution": "/numerical-methods-atlas/validation/neutral-slab-yb/?lang=ja"
+      },
       "sequence": 30
     },
     {
@@ -2102,13 +2161,13 @@
       "priority": "P3",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "planned",
-      "current": "孤立3D Plummer軟化Barnes–Hut（単極/完全2次モーメント）と直接和、3D周期CIC–FFT–CIC、Ewald/SPME、2D対数核FMMのM2M/M2L/L2Lが既存。追加粒子検証でEwaldの独立theta参照、SPME格子/次数/位相、FMM次数/木深さ・保存診断まである。 FMMの古い文献注記の整合は共通P0にまとめた。",
+      "state": "verified",
+      "current": "固定した軽量例を実装し、事前に固定した判定と独立参照の照合、実配列の保存図、ZIPの独立展開追試まで確認しました。実公開と公開ZIPだけのLinux追試は今回の集約公開後に確認します。",
       "tasks": [
         "既存FMMは2D自由空間log核で、3D重力用FMMではない",
         "一様球など解析配置・直接和・次数/木深さを分け、必要用途が出た時に範囲拡張"
       ],
-      "scope_note": "",
+      "scope_note": "各例の前提・参照の独立範囲と未達版の履歴を、入力・受入基準・契約・検証記録で区別します。一般条件への認証や厳密解でない数値参照の厳密性は主張しません。",
       "sources": [],
       "baseline_evidence": [
         {
@@ -2120,7 +2179,25 @@
           "id": "fmm-convergence"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23/fmm3d/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23/fmm3d/inputs.json",
+          "/code/validated-examples/2026-11-23/fmm3d/acceptance.json",
+          "/code/validated-examples/2026-11-23/fmm3d/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23/fmm3d/results/fmm3d-inverse-r-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-23/fmm3d/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-23/fmm3d/README.md"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#fmm3d-inverse-r-ja",
+        "execution": "/numerical-methods-atlas/validation/fmm3d-inverse-r/?lang=ja"
+      },
       "sequence": 31
     },
     {
@@ -2134,13 +2211,13 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "planned",
-      "current": "孤立3D Plummer軟化Barnes–Hut（単極/完全2次モーメント）と直接和、3D周期CIC–FFT–CIC、Ewald/SPME、2D対数核FMMのM2M/M2L/L2Lが既存。追加粒子検証でEwaldの独立theta参照、SPME格子/次数/位相、FMM次数/木深さ・保存診断まである。 FMMの古い文献注記の整合は共通P0にまとめた。",
+      "state": "verified",
+      "current": "固定した軽量例を実装し、事前に固定した判定と独立参照の照合、実配列の保存図、ZIPの独立展開追試まで確認しました。実公開と公開ZIPだけのLinux追試は今回の集約公開後に確認します。",
       "tasks": [
         "現Barnes–Hut固定例は静的力のみ",
         "同一軟化核で軌道・エネルギー/運動量の時間誤差と木近似誤差を分ける。長時間・大粒子数走査は後段"
       ],
-      "scope_note": "",
+      "scope_note": "各例の前提・参照の独立範囲と未達版の履歴を、入力・受入基準・契約・検証記録で区別します。一般条件への認証や厳密解でない数値参照の厳密性は主張しません。",
       "sources": [
         {
           "title": "Barnes & Hut (1986), A hierarchical O(N log N) force-calculation algorithm",
@@ -2158,7 +2235,26 @@
           "id": "barnes-hut.limitations"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23/gravity-dynamics/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23/gravity-dynamics/inputs.json",
+          "/code/validated-examples/2026-11-23/gravity-dynamics/acceptance.json",
+          "/code/validated-examples/2026-11-23/gravity-dynamics/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-kepler-preview.png",
+          "/code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-plummer-short-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-23/gravity-dynamics/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-23/gravity-dynamics/README.md"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#gravity-kepler-ja",
+        "execution": "/numerical-methods-atlas/validation/gravity-kepler/?lang=ja"
+      },
       "sequence": 32
     },
     {
@@ -2172,13 +2268,13 @@
       "priority": "P1",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "planned",
-      "current": "1D周期・静電CIC PICの冷たいプラズマ振動が既存。格子/時間の独立細分化、電荷・運動量・Gauss/Poisson残差、単粒子自己力、64seedの初期粒子雑音まで保存。暖かい分布や不安定性の検証ではない。",
+      "state": "verified",
+      "current": "固定した軽量例を実装し、事前に固定した判定と独立参照の照合、実配列の保存図、ZIPの独立展開追試まで確認しました。実公開と公開ZIPだけのLinux追試は今回の集約公開後に確認します。",
       "tasks": [
         "1D1Vの弱い摂動で電場振幅の減衰率・周波数を解析分散関係と照合",
         "粒子雑音・速度分布標本化・格子/刻みの誤差を分離"
       ],
-      "scope_note": "",
+      "scope_note": "各例の前提・参照の独立範囲と未達版の履歴を、入力・受入基準・契約・検証記録で区別します。一般条件への認証や厳密解でない数値参照の厳密性は主張しません。",
       "sources": [
         {
           "title": "Kraus et al. (2017), GEMPIC: geometric electromagnetic particle-in-cell methods",
@@ -2196,7 +2292,25 @@
           "id": "pic-conservation.limits"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23/warm-pic/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23/warm-pic/inputs.json",
+          "/code/validated-examples/2026-11-23/warm-pic/acceptance.json",
+          "/code/validated-examples/2026-11-23/warm-pic/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23/warm-pic/results/thermal-landau-damping-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-23/warm-pic/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-23/warm-pic/README.md"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#thermal-landau-damping-ja",
+        "execution": "/numerical-methods-atlas/validation/thermal-landau-damping/?lang=ja"
+      },
       "sequence": 33
     },
     {
@@ -2210,13 +2324,13 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "planned",
-      "current": "1D周期・静電CIC PICの冷たいプラズマ振動が既存。格子/時間の独立細分化、電荷・運動量・Gauss/Poisson残差、単粒子自己力、64seedの初期粒子雑音まで保存。暖かい分布や不安定性の検証ではない。",
+      "state": "verified",
+      "current": "固定した軽量例を実装し、事前に固定した判定と独立参照の照合、実配列の保存図、ZIPの独立展開追試まで確認しました。実公開と公開ZIPだけのLinux追試は今回の集約公開後に確認します。",
       "tasks": [
         "線形成長率と非線形飽和を別指標にし、速度分布・粒子数依存を固定入力化",
         "冷たいcos(t)振動への合格を成長問題の検証に流用しない"
       ],
-      "scope_note": "",
+      "scope_note": "各例の前提・参照の独立範囲と未達版の履歴を、入力・受入基準・契約・検証記録で区別します。一般条件への認証や厳密解でない数値参照の厳密性は主張しません。",
       "sources": [
         {
           "title": "Kraus et al. (2017), GEMPIC: geometric electromagnetic particle-in-cell methods",
@@ -2230,7 +2344,25 @@
           "id": "pic.limits"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23/warm-pic/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23/warm-pic/inputs.json",
+          "/code/validated-examples/2026-11-23/warm-pic/acceptance.json",
+          "/code/validated-examples/2026-11-23/warm-pic/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23/warm-pic/results/thermal-two-stream-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-23/warm-pic/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-23/warm-pic/README.md"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#thermal-two-stream-ja",
+        "execution": "/numerical-methods-atlas/validation/thermal-two-stream/?lang=ja"
+      },
       "sequence": 34
     },
     {
@@ -2244,13 +2376,13 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "planned",
-      "current": "1D周期・静電CIC PICの冷たいプラズマ振動が既存。格子/時間の独立細分化、電荷・運動量・Gauss/Poisson残差、単粒子自己力、64seedの初期粒子雑音まで保存。暖かい分布や不安定性の検証ではない。",
+      "state": "verified",
+      "current": "固定した軽量例を実装し、事前に固定した判定と独立参照の照合、実配列の保存図、ZIPの独立展開追試まで確認しました。実公開と公開ZIPだけのLinux追試は今回の集約公開後に確認します。",
       "tasks": [
         "現DOP853は時間参照であり、独立PIC空間実装ではない",
         "同じ初期粒子・電荷割当・離散Poisson規約をそろえた小ケースを第三者実装または別実装で照合"
       ],
-      "scope_note": "",
+      "scope_note": "既存cold-plasma-picに結び付く空間演算の独立実装検査です。小さい温速度を含む固定入力で、冷たい振動の解析解や連続極限の再検証とは区別します。",
       "sources": [
         {
           "title": "Kraus et al. (2017), GEMPIC: geometric electromagnetic particle-in-cell methods",
@@ -2264,7 +2396,25 @@
           "id": "pic-conservation.limits"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23/pic-spatial/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23/pic-spatial/inputs.json",
+          "/code/validated-examples/2026-11-23/pic-spatial/acceptance.json",
+          "/code/validated-examples/2026-11-23/pic-spatial/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23/pic-spatial/results/pic-independent-spatial-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-23/pic-spatial/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-23/pic-spatial/README.md"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#cold-plasma-pic-ja",
+        "execution": "/numerical-methods-atlas/validation/pic-independent-spatial/?lang=ja"
+      },
       "sequence": 35
     },
     {
@@ -2278,13 +2428,13 @@
       "priority": "P1",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "planned",
-      "current": "均質Maxwell分子の衝突成分・平衡緩和が既存。運動量/エネルギー保存、有限Nのmicrocanonical/beta参照、64seed統計、異方性減衰を検査。空間streaming・衝突セル・物理時間の一般DSMCではない。",
+      "state": "verified",
+      "current": "固定した軽量例を実装し、事前に固定した判定と独立参照の照合、実配列の保存図、ZIPの独立展開追試まで確認しました。実公開と公開ZIPだけのLinux追試は今回の集約公開後に確認します。",
       "tasks": [
         "まず小さい1D空間・3D速度系で壁散乱、Knudsen層、せん断応力/熱流束を確認",
         "セル幅/平均自由行程、刻み/衝突時間、粒子数と独立seed誤差を分ける"
       ],
-      "scope_note": "",
+      "scope_note": "各例の前提・参照の独立範囲と未達版の履歴を、入力・受入基準・契約・検証記録で区別します。一般条件への認証や厳密解でない数値参照の厳密性は主張しません。",
       "sources": [
         {
           "title": "SPARTA公式: Validation and Verification",
@@ -2302,7 +2452,26 @@
           "id": "dsmc.verification"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23/dsmc-wall/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23/dsmc-wall/inputs.json",
+          "/code/validated-examples/2026-11-23/dsmc-wall/acceptance.json",
+          "/code/validated-examples/2026-11-23/dsmc-wall/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23/dsmc-wall/results/dsmc-couette-preview.png",
+          "/code/validated-examples/2026-11-23/dsmc-wall/results/dsmc-fourier-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-23/dsmc-wall/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-23/dsmc-wall/README.md"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#dsmc-couette-ja",
+        "execution": "/numerical-methods-atlas/validation/dsmc-couette/?lang=ja"
+      },
       "sequence": 36
     },
     {
@@ -2316,13 +2485,13 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "planned",
-      "current": "均質Maxwell分子の衝突成分・平衡緩和が既存。運動量/エネルギー保存、有限Nのmicrocanonical/beta参照、64seed統計、異方性減衰を検査。空間streaming・衝突セル・物理時間の一般DSMCではない。",
+      "state": "verified",
+      "current": "固定した軽量例を実装し、事前に固定した判定と独立参照の照合、実配列の保存図、ZIPの独立展開追試まで確認しました。実公開と公開ZIPだけのLinux追試は今回の集約公開後に確認します。",
       "tasks": [
         "現collision roundsを物理時間と読み替えず、速度依存衝突・streaming・流入出を実装してから検証",
         "密度/温度/応力のプロファイルと外部参照を固定し、Maxwell緩和とは別ケースにする"
       ],
-      "scope_note": "",
+      "scope_note": "各例の前提・参照の独立範囲と未達版の履歴を、入力・受入基準・契約・検証記録で区別します。一般条件への認証や厳密解でない数値参照の厳密性は主張しません。",
       "sources": [
         {
           "title": "SPARTA公式: Validation and Verification",
@@ -2340,7 +2509,25 @@
           "id": "dsmc.assumptions"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23/dsmc-shock/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23/dsmc-shock/inputs.json",
+          "/code/validated-examples/2026-11-23/dsmc-shock/acceptance.json",
+          "/code/validated-examples/2026-11-23/dsmc-shock/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-23/dsmc-shock/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-23/dsmc-shock/README.md"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#dsmc-planar-shock-ja",
+        "execution": "/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=ja"
+      },
       "sequence": 37
     },
     {

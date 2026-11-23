@@ -1,0 +1,25 @@
+{
+  "commit": "1ae18f3646e7c89f86e965f0f3c13fcc5f32e399",
+  "archive_url": "https://codeload.github.com/sparta/sparta/tar.gz/1ae18f3646e7c89f86e965f0f3c13fcc5f32e399",
+  "archive_sha256": "d4564a2905ee033a973d8e78d4320d89975329417284e3b456c8ebd07e4ae60e",
+  "reference_binary_sha256_mac": "ebf3af0b289833e6e399b9fdf4b59fc9677234abc233b39628813fc45d1853e1",
+  "build_commands": [
+    [
+      "make",
+      "-C",
+      "STUBS"
+    ],
+    [
+      "make",
+      "-j2",
+      "mac"
+    ]
+  ],
+  "license": "GPL-2.0-or-later; full upstream LICENSE retained",
+  "independent_reference_runs": 36,
+  "reference_gates": 87,
+  "reference_first_attempt_passed": true,
+  "combined_seconds_actual": 28.06192779099365,
+  "normalization": "SI mass=kB=1.380649e-23kg,T0=1K => sqrt(kB*T0/m)=1m/s; sigma=1/sqrt(2)m^2,n0=1/m^3,lambda0=1m",
+  "public_qualify_io_change": "Only sys.path reference parent adjusted to packet root; numerical qualifier arithmetic unchanged. Private raw outputs remain persistent; public cache contains qualified seed fields, not original source archive."
+}

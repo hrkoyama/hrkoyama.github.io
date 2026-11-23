@@ -1,0 +1,135 @@
+[
+  {
+    "case": "thermal-landau-damping",
+    "run_id": "thermal-landau-damping-seed33001",
+    "file": "thermal-landau-damping-thermal-landau-damping-seed33001.npz",
+    "sha256": "710f233473fa351bf358e6819c0f5be517de2b07e02e9d28998ca04fa1b71136",
+    "retained_before_fit": true
+  },
+  {
+    "case": "thermal-landau-damping",
+    "run_id": "thermal-landau-damping-seed33002",
+    "file": "thermal-landau-damping-thermal-landau-damping-seed33002.npz",
+    "sha256": "d3c30bc333fb71c950049066515a8aed2107c754766cddccb5576f2db07df4a2",
+    "retained_before_fit": true
+  },
+  {
+    "case": "thermal-landau-damping",
+    "run_id": "thermal-landau-damping-seed33003",
+    "file": "thermal-landau-damping-thermal-landau-damping-seed33003.npz",
+    "sha256": "5ee9321cabbb8506068c2f163a48393e81b06fa1610d3d494b65b529114f2a03",
+    "retained_before_fit": true
+  },
+  {
+    "case": "thermal-landau-damping",
+    "run_id": "thermal-landau-damping-seed33004",
+    "file": "thermal-landau-damping-thermal-landau-damping-seed33004.npz",
+    "sha256": "1b5d396b386f28aac0d75dbd602381503d916aa69c4be8aee18ef1f0abbe14ac",
+    "retained_before_fit": true
+  },
+  {
+    "case": "thermal-landau-damping",
+    "run_id": "thermal-landau-damping-mesh",
+    "file": "thermal-landau-damping-thermal-landau-damping-mesh.npz",
+    "sha256": "bd3f70b50053c2c6f9549ff30e5b52393ca9b54a5b6cbdd4033ca0c03b421512",
+    "retained_before_fit": true
+  },
+  {
+    "case": "thermal-landau-damping",
+    "run_id": "thermal-landau-damping-time-half",
+    "file": "thermal-landau-damping-thermal-landau-damping-time-half.npz",
+    "sha256": "1f3314ac4678efa6a94f274849648a925c4b1c5b903d50e938e7673e780c9568",
+    "retained_before_fit": true
+  },
+  {
+    "case": "thermal-landau-damping",
+    "run_id": "thermal-landau-damping-velocity",
+    "file": "thermal-landau-damping-thermal-landau-damping-velocity.npz",
+    "sha256": "468c8ef8a044de8b22507e12fe2f8edff8626e2d16c6bd37437ddeebc841d48d",
+    "retained_before_fit": true
+  },
+  {
+    "case": "thermal-landau-damping",
+    "run_id": "thermal-landau-damping-amplitude-half",
+    "file": "thermal-landau-damping-thermal-landau-damping-amplitude-half.npz",
+    "sha256": "868d3a2f48f131969f1e5f8eb0702206db60905393c0b9ec27f7c3cc8bf12dbb",
+    "retained_before_fit": true
+  },
+  {
+    "case": "thermal-landau-damping",
+    "run_id": "thermal-landau-damping-noise",
+    "file": "thermal-landau-damping-thermal-landau-damping-noise.npz",
+    "sha256": "2ce52bf4a6498e3d9a82c80818594cd5d9d4b6562c4a35cf665025215c4d20e0",
+    "retained_before_fit": true
+  },
+  {
+    "case": "thermal-landau-damping",
+    "run_id": "thermal-landau-damping-spatial-strata",
+    "file": "thermal-landau-damping-thermal-landau-damping-spatial-strata.npz",
+    "sha256": "ea74e28c40accf87b2d70c3252d07ab6f20ff895ec16c4415309cf2f08be3e2c",
+    "retained_before_fit": true
+  },
+  {
+    "case": "thermal-two-stream",
+    "run_id": "thermal-two-stream-seed34001",
+    "file": "thermal-two-stream-thermal-two-stream-seed34001.npz",
+    "sha256": "d69a1c3dbf4d3485ae354a45afbd13843c563c628bd6feb691ba8ee3704e85bf",
+    "retained_before_fit": true
+  },
+  {
+    "case": "thermal-two-stream",
+    "run_id": "thermal-two-stream-seed34002",
+    "file": "thermal-two-stream-thermal-two-stream-seed34002.npz",
+    "sha256": "385538bc33eeaf4de33a46c0ca60f944b21b5e810595abca5ce4f64c4f09ae7a",
+    "retained_before_fit": true
+  },
+  {
+    "case": "thermal-two-stream",
+    "run_id": "thermal-two-stream-seed34003",
+    "file": "thermal-two-stream-thermal-two-stream-seed34003.npz",
+    "sha256": "df60050409388a6e1833212d893e3ad64dfbf5e1b0fb5db5be1c942a46af37a6",
+    "retained_before_fit": true
+  },
+  {
+    "case": "thermal-two-stream",
+    "run_id": "thermal-two-stream-seed34004",
+    "file": "thermal-two-stream-thermal-two-stream-seed34004.npz",
+    "sha256": "feb81d0e6c7bf2bea105177281c77e6eac8b30b4237af5146f81de628aa399c1",
+    "retained_before_fit": true
+  },
+  {
+    "case": "thermal-two-stream",
+    "run_id": "thermal-two-stream-mesh",
+    "file": "thermal-two-stream-thermal-two-stream-mesh.npz",
+    "sha256": "b9bc43f13311d384f0b818f2c19d4171bd11d518bd90e2a83ebb5d311f651a57",
+    "retained_before_fit": true
+  },
+  {
+    "case": "thermal-two-stream",
+    "run_id": "thermal-two-stream-time-half",
+    "file": "thermal-two-stream-thermal-two-stream-time-half.npz",
+    "sha256": "1309e58fb452b1c91d2965125fc974581d0ceb11d68d05d68677c6e1f94a5cc6",
+    "retained_before_fit": true
+  },
+  {
+    "case": "thermal-two-stream",
+    "run_id": "thermal-two-stream-velocity",
+    "file": "thermal-two-stream-thermal-two-stream-velocity.npz",
+    "sha256": "64f5408f56bbd09114bceb263aa1b959f1d72a86fa26ff36a670f244b0111afc",
+    "retained_before_fit": true
+  },
+  {
+    "case": "thermal-two-stream",
+    "run_id": "thermal-two-stream-amplitude-half",
+    "file": "thermal-two-stream-thermal-two-stream-amplitude-half.npz",
+    "sha256": "22bd875ecbb254143b373e7b9e420b9953b874c8b8f02b33af0f08bab43b21b6",
+    "retained_before_fit": true
+  },
+  {
+    "case": "thermal-two-stream",
+    "run_id": "thermal-two-stream-noise",
+    "file": "thermal-two-stream-thermal-two-stream-noise.npz",
+    "sha256": "2e07cbbe22a74f26bb02cc5659cf8c8a75eb15d664e2a3b543dbba3f4a6f05f8",
+    "retained_before_fit": true
+  }
+]

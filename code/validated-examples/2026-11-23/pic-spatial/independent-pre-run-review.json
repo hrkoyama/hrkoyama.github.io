@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "reviewer": "root",
+  "time": "2026-11-23T13:46:10.617964+00:00",
+  "state": "APPROVED_FOR_FIRST_FIXED_MAIN_AND_ALL_PYTEST",
+  "contract_sha256": "d1abb7308af2f465583a46aa96a3de5968639be194989ebe8e528fa6ed050fd2",
+  "verified_bound_files": 8,
+  "fixed_physical_main_execution_before_review": false,
+  "prior_operator_fixture_attempt": "17passed/1failed periodic boundary fixture retained; no fixed6pair main launched",
+  "reviewed": [
+    "Periodic deposition uses fractional coordinate from original floor and wraps only integerindex moduloN; independently implemented scalar counterpart, regression covers x=-1e-20 rounded remainderL. It is index periodicity,not physical-state clipping.",
+    "Full-f positive Gaussian velocity weights and moving carriers self-consistently source CIC Poisson fields at every Verlet kick. Conditional spatial-shift seed intervals are not iid particle uncertainty; independent velocity-quadrature sensitivity separate.",
+    "Dielectric Faddeeva continuation and independent Volterra linear IVP,root branch checks,upper-plane velocity integral,temporal/tail quadrature,fixed-window transient/frequency qualifications.",
+    "All17linear qualification gates must precede MAIN18physical PIC runs. Small pytest operator/reversal trajectories are explicitly separate; no global chronology claim across verifier pytest.",
+    "Exact initial joint-density CDF and characteristic/moment gates; fixed linear windows,amplitude/noise/time/mesh/velocity probes,independent precision and curve/rate gates.",
+    "Independent PIC-space scalar CIC/denseDFT/gather owns field at everykick; same temporal algorithm and mathematical Nyquist convention explicitly shared,not continuum validation.",
+    "Warm completed trajectory arrays and finite history CSV now saved through callback BEFORE any rate estimator; deliberate estimator-failure regression ensures retention.",
+    "No original scientific threshold/input/window changed; original unexecuted contracts and failed boundary test attempt retained."
+  ],
+  "authorization": "Execute eachgroup pytest+all frozen main within one120s combined deadline; retain exact attempts/logs/all available fields; do not relax scientific gates. Plot separately."
+}

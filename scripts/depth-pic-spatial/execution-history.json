@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "group": "pic-spatial",
+  "final_contract_sha256": "d1abb7308af2f465583a46aa96a3de5968639be194989ebe8e528fa6ed050fd2",
+  "attempts": [
+    {
+      "attempt": 1,
+      "phase": "pytest",
+      "passed": false,
+      "tests": 18,
+      "passed_tests": 17,
+      "main_launched": false,
+      "reason": "Periodic modulo rounding at tiny negative x yielded unwrapped integer indexN; exact source/contract/logs retained outside the distribution.",
+      "receipt": "execution-receipts/01-receipt.json"
+    },
+    {
+      "attempt": 2,
+      "passed": true,
+      "tests": 19,
+      "case_gates": 58,
+      "separate_trajectories": 12,
+      "receipt": "execution-receipts/02-receipt.json"
+    }
+  ],
+  "input_sha256": "8e11e04349f7d8df800b5244b0aa7faf9238ea41d4bcbaf8411885fe70529efa",
+  "acceptance_sha256": "82397a27873a8db17cbc4c006843e39de6ee634a8e95d9f662d343e54f144a64",
+  "thresholds_relaxed": false,
+  "state_clipping_added": false
+}

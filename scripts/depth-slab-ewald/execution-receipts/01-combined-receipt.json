@@ -1,0 +1,37 @@
+{
+  "group": "slab-ewald",
+  "attempt": "01",
+  "contract_sha256": "3bab176f5c574d377db11af317045f30ff75ee7d1d3e57b07fe26dad38b77c4e",
+  "stages": [
+    {
+      "stage": "pytest",
+      "exit_code": 0,
+      "seconds": 0.48321654200117337
+    },
+    {
+      "stage": "main",
+      "exit_code": 0,
+      "seconds": 0.5833132920015487
+    }
+  ],
+  "budget_seconds": 120,
+  "source_snapshot": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-28-37-2026-11-23/gravity/executions/slab-ewald/attempt-01/source",
+  "combined_seconds": 1.0665684580017114,
+  "pytest": {
+    "tests": 17,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "actual_gates": 42,
+  "actual_cases": 1,
+  "actual_csv_policy": [
+    {
+      "file": "neutral-slab-yb.csv",
+      "bytes": 1137,
+      "sha256": "921b00a6a94e029a939d3e1fa7dd450c0e8c72a574a1d0f50e8bca7883a39600"
+    }
+  ],
+  "actual_public_envelope_passed": true,
+  "passed": true
+}

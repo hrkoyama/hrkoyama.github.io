@@ -84,6 +84,11 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particle-t
 - [PIC：格子・時間収束、保存量と粒子雑音：参照・検証](<https://hrkoyama.github.io/numerical-methods-atlas/validation/pic-conservation/?lang=ja#pic-conservation-ja-validation>)
 
   16/32/64格子とdt=.2/.1/.05を別に精密化し、線形cos(t)と時間参照の誤差を分離します。実数奇微分のNyquist零モードはGauss残差から分けて記録。時刻0の64seed・N=256/1024/4096のCICモード電力を解析期待値と比較します。
+- [PIC空間演算の独立実装照合](<https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-pic-independent-spatial-ja>)
+  relation: related-model
+  reference_kind: numerical-reference
+
+  有限格子の数値参照 周期[0,2π]、256粒子、格子8/16/32、シード35001/35002、dt=.02、T=.24。位置は一様乱数、v=.2 Normal+.1 sin x。6組は別々に進めた12軌道です。 19 pytestと58/58固定判定が合格。6組＝12の自己無撞着軌道を13時刻全てで照合し、最大差は位置8.88e−16・速度3.33e−16・電場8.33e−16・電荷2.89e−15。pytest+mainは0.392秒。最初の小pytestは周期端点の添字不具合で17/18となり、元記録を保持して修正後に全計算を実行しました。 離散演算の独立したコーディング照合です。時間積分法や連続方程式を変えた独立エンジン、連続極限の収束、冷たいプラズマの振動参照の再現を意味しません。既存cold-plasma-picの関連補助検証として扱い、温かい初期速度の軌道を冷たい解と同一視しません。 周期[0,2π]、256粒子、格子8/16/32、シード35001/35002、dt=.02、T=.24。位置は一様乱数、v=.2 Normal+.1 sin x。6組は別々に進めた12軌道です。
 - [DSMC衝突成分：有限N平衡・保存則・統計誤差：参照・検証](<https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-statistics/?lang=ja#dsmc-statistics-ja-validation>)
 
   全roundの運動量・エネルギーの最大保存誤差は決定論的な許容値で検査します。最初の6roundの異方性、4点のエネルギーCDF、4次モーメントと有限NのBeta参照との差は、独立seed間の標準誤差で測ります。NによるCDF標準誤差の減少と、有限NからMaxwellへの偏りを分けます。

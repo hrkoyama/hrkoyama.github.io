@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "group": "warm-pic",
+  "final_contract_sha256": "3b6668be0512cfd9cb445f9b274f0903d12a6e3ab9fa33f84e39c0ab41ade08f",
+  "attempts": [
+    {
+      "attempt": 1,
+      "pytest": 28,
+      "pytest_passed": 28,
+      "passed": false,
+      "physical_main_candidates": 0,
+      "reason": "Runner acceptance document nesting KeyError; exact original retained."
+    },
+    {
+      "attempt": 2,
+      "pytest": 29,
+      "pytest_passed": 29,
+      "references_passed": 17,
+      "passed": false,
+      "physical_main_candidates": 1,
+      "reason": "Duplicate case keyword in completed-row bookkeeping, candidate retained before estimator."
+    },
+    {
+      "attempt": 3,
+      "pytest": 30,
+      "pytest_passed": 30,
+      "references_passed": 17,
+      "main_runs": 18,
+      "case_gates_passed": 130,
+      "case_gates_total": 131,
+      "passed": false,
+      "reason": "Original64strata Landau amplitude-linearity gap.05646>.03; all fields retained, see original64-unmet-evidence.json."
+    },
+    {
+      "attempt": 4,
+      "pytest": 31,
+      "pytest_passed": 31,
+      "references_passed": 17,
+      "main_runs": 19,
+      "case_gates_passed": 140,
+      "case_gates_total": 140,
+      "passed": true,
+      "reason": "Only Landau spatial strata64→256plus512probe; same alpha/windows/seeds/dt/Nv/fieldgrid/criteria."
+    }
+  ],
+  "acceptance_sha256": "06c9c227b1426c7d16e928858a6a9ef9ce40763fdef65cedc22dcf581907089c",
+  "thresholds_relaxed": false,
+  "alpha_reduction_proposal": "Rejected and never executed."
+}

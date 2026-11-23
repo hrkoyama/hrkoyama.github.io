@@ -1,0 +1,44 @@
+{
+  "created_utc": "2026-11-23T14:05:05.040352+00:00",
+  "attempts": [
+    {
+      "attempt": 1,
+      "passed": false,
+      "pytest_tests": 18,
+      "pytest_failures": 0,
+      "pytest_errors": 0,
+      "pytest_skipped": 0,
+      "original_JUnit_sha256": "cd60a24a9ad3049077c69fc2ee986757ed7b98f79bf404f85bdbc4ba6f3db435",
+      "main_runs": 7,
+      "numeric_gates": 81,
+      "failed_gates": [
+        "primary precision/0",
+        "primary precision/1",
+        "primary precision/4",
+        "primary precision/5",
+        "centroid stationarity"
+      ],
+      "scope": "Compact public evidence: exact source text,original input/acceptance/contracts,failed result and execution receipt. Python/native filenames carry .txt to prevent accidental test collection/execution; SHA and pathmap preserve exact bytes. Large original NPZ/CSV,raw logs and complete snapshots retained persistently in private project preparation; no claim those omitted datasets are in this public archive."
+    },
+    {
+      "attempt": 2,
+      "passed": false,
+      "pytest_tests": 19,
+      "pytest_failures": 0,
+      "pytest_errors": 0,
+      "pytest_skipped": 0,
+      "original_JUnit_sha256": "46acde4dc7370d4c2f11fc3d6a10332c437377d473ee30f269090f71954d766c",
+      "main_runs": 7,
+      "numeric_gates": 81,
+      "failed_gates": [
+        "primary precision/0",
+        "primary precision/1",
+        "primary precision/4",
+        "primary precision/5"
+      ],
+      "scope": "Compact public evidence: exact source text,original input/acceptance/contracts,failed result and execution receipt. Python/native filenames carry .txt to prevent accidental test collection/execution; SHA and pathmap preserve exact bytes. Large original NPZ/CSV,raw logs and complete snapshots retained persistently in private project preparation; no claim those omitted datasets are in this public archive."
+    }
+  ],
+  "current_successful_revision": 3,
+  "scientific_criteria_relaxed": false
+}

@@ -165,7 +165,16 @@ test('BOMD and CPMD are searchable reading-only methods with equations and prima
   const section = source.sections.find(s => s.id === 'first-principles-md');
   assert.ok(section);
   assert.equal(methods.length, methodCount);
-  assert.equal(json('numerical-methods-atlas/coverage.json').counts.methods, 136);
+  const coverage = json('numerical-methods-atlas/coverage.json');
+  const coveredMethods = coverage.items.filter(row => row.kind === 'method');
+  // The legacy inventory remains136; the newly executable slab adds one
+  // unrelated method without supplying any first-principles MD trajectory.
+  assert.equal(coveredMethods.filter(row => row.id !== 'slab-ewald').length, 136);
+  assert.equal(coverage.counts.methods, coveredMethods.length);
+  const slab = json('catalog/atlas-methods.json').methods.find(row => row.id === 'slab-ewald');
+  assert.equal(slab.depth_previous_status, 'planned');
+  assert.equal(slab.status, 'educational-example');
+  assert.deepEqual(coveredMethods.filter(row => row.id === 'slab-ewald').map(row => row.chapter), ['validation-slab-ewald']);
   for (const [id, alias] of [['born-oppenheimer-md', 'BOMD'], ['car-parrinello-md', 'CPMD']]) {
     const method = methods.find(m => m.id === id);
     assert.equal(method.status, 'reading-only');
@@ -173,6 +182,17 @@ test('BOMD and CPMD are searchable reading-only methods with equations and prima
     assert.deepEqual(method.test_urls, []);
     assert.deepEqual(method.execution_examples, []);
     assert.ok(!method.periodic_examples?.length);
+    assert.ok(!method.depth_release && !method.depth_additional_releases?.length);
+    assert.ok(!method.force_release && !method.force_examples?.length);
+    const coverageRow = coveredMethods.find(row => row.id === id);
+    assert.equal(coverageRow.status, 'reading');
+    assert.equal(coverageRow.chapter, 'quantum-chemistry');
+    const individual = json(`numerical-methods-atlas/methods/${id}/index.json`);
+    assert.equal(individual.status, 'reading-only');
+    assert.deepEqual(individual.execution_examples, []);
+    assert.deepEqual(individual.code_urls, []);
+    assert.deepEqual(individual.test_urls, []);
+    assert.ok(!individual.depth_release && !individual.force_release);
     for (const lang of ['ja', 'en']) {
       assert.ok(method.reading[lang].endsWith('/read/periodic-dft/#first-principles-md'));
       assert.equal(findMethods(methods, alias, lang)[0]?.method.id, id);
@@ -180,6 +200,14 @@ test('BOMD and CPMD are searchable reading-only methods with equations and prima
       assert.ok(page.includes('id="first-principles-md"'));
       assert.ok(page.includes(lang === 'ja' ? 'この節は解説のみ' : 'This section is reading only'));
     }
+  }
+  const gravity = methods.find(row => row.id === 'verlet').depth_release;
+  assert.equal(gravity.group, 'gravity-dynamics');
+  assert.deepEqual(gravity.case_ids, ['gravity-kepler', 'gravity-plummer-short']);
+  for (const example of gravity.examples) {
+    assert.deepEqual(example.domains, ['particles']);
+    assert.ok(example.method_ids.includes('verlet'));
+    assert.ok(!example.method_ids.some(id => ['born-oppenheimer-md', 'car-parrinello-md'].includes(id)));
   }
   assert.ok(section.formulas.includes('periodic-bo-forces'));
   assert.ok(section.formulas.includes('periodic-cp-lagrangian'));

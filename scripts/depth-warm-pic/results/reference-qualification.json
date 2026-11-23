@@ -1,0 +1,127 @@
+{
+  "thermal-landau-damping": {
+    "passed": true,
+    "checks": {
+      "dielectric root residual": {
+        "value": 8.971813033334811e-16,
+        "bound": 1e-10,
+        "passed": true
+      },
+      "root initial/bracket agreement": {
+        "value": 2.7755575615628914e-16,
+        "bound": 1e-10,
+        "passed": true
+      },
+      "physical selected branch": {
+        "value": [
+          1.4156618886045371,
+          -0.15335946690960467
+        ],
+        "bound": "damped Maxwell branch or positive imaginary symmetric-beam branch",
+        "passed": true
+      },
+      "Volterra time quadrature curve gap": {
+        "value": 9.005874674622071e-06,
+        "bound": 0.0001,
+        "passed": true
+      },
+      "Volterra fitted rate quadrature gap": {
+        "value": 9.273568931655873e-07,
+        "bound": 2e-05,
+        "passed": true
+      },
+      "fixed-window transient bias versus pole": {
+        "value": 0.0018786392381694443,
+        "bound": 0.05,
+        "passed": true
+      },
+      "fixed-window linear fit residual": {
+        "value": 0.0007203832588585692,
+        "bound": 0.05,
+        "passed": true
+      },
+      "fixed-window frequency versus pole": {
+        "value": 0.0003143186946523641,
+        "bound": 0.01,
+        "passed": true
+      }
+    },
+    "omega_real": 1.4156618886045371,
+    "gamma": -0.15335946690960467,
+    "fixed_window_fit": {
+      "gamma": -0.1536475740216858,
+      "omega": 1.4152169196076418,
+      "relative_fit_residual": 0.0007203832588585692,
+      "minimum_envelope": 0.11664686775379018,
+      "samples": 1601
+    },
+    "curve_gap": 9.005874674622071e-06,
+    "rate_gap": 9.273568931655873e-07,
+    "root_window_relative_bias": 0.0018786392381694443
+  },
+  "thermal-two-stream": {
+    "passed": true,
+    "checks": {
+      "dielectric root residual": {
+        "value": 1.4910295220715852e-13,
+        "bound": 1e-10,
+        "passed": true
+      },
+      "root initial/bracket agreement": {
+        "value": 1.9984014443252818e-14,
+        "bound": 1e-10,
+        "passed": true
+      },
+      "physical selected branch": {
+        "value": [
+          0.0,
+          0.2845096862049824
+        ],
+        "bound": "damped Maxwell branch or positive imaginary symmetric-beam branch",
+        "passed": true
+      },
+      "Volterra time quadrature curve gap": {
+        "value": 3.8474077286690094e-05,
+        "bound": 0.0001,
+        "passed": true
+      },
+      "Volterra fitted rate quadrature gap": {
+        "value": 1.644412490475755e-05,
+        "bound": 2e-05,
+        "passed": true
+      },
+      "fixed-window transient bias versus pole": {
+        "value": 0.03806991100324323,
+        "bound": 0.05,
+        "passed": true
+      },
+      "fixed-window linear fit residual": {
+        "value": 0.028533434541299665,
+        "bound": 0.05,
+        "passed": true
+      },
+      "independent velocity integral dielectric residual": {
+        "value": 1.695310558602614e-13,
+        "bound": 2e-09,
+        "passed": true
+      },
+      "independent velocity-tail quadrature gap": {
+        "value": 1.1102230246251565e-16,
+        "bound": 1e-10,
+        "passed": true
+      }
+    },
+    "omega_real": 0.0,
+    "gamma": 0.2845096862049824,
+    "fixed_window_fit": {
+      "gamma": 0.27367842777159807,
+      "omega": 0.0,
+      "relative_fit_residual": 0.028533434541299665,
+      "minimum_envelope": 3.3808506155377183,
+      "samples": 1601
+    },
+    "curve_gap": 3.8474077286690094e-05,
+    "rate_gap": 1.644412490475755e-05,
+    "root_window_relative_bias": 0.03806991100324323
+  }
+}

@@ -8,11 +8,11 @@ Resources explicitly registered to the methods, problems and executions of this 
 
 ## Methods
 
-- [Q1 FEM for mapped-coordinate vector BVP](<https://hrkoyama.github.io/numerical-methods-atlas/methods/q1-fem/?lang=en>)
+- [Q1 FEM for scalar diffusion and mapped vector BVPs](<https://hrkoyama.github.io/numerical-methods-atlas/methods/q1-fem/?lang=en>)
 - [Continuous P1 Galerkin FEM](<https://hrkoyama.github.io/numerical-methods-atlas/methods/p1-fem/?lang=en>)
 
   Assemble physical P1 gradients/areas, eliminate boundary data and solve sparse systems. Corner triangles use origin-based Duffy quadrature48/96.
-- [Q1 FEM for mapped-coordinate vector BVP](<https://hrkoyama.github.io/numerical-methods-atlas/methods/q1-fem/?lang=en>)
+- [Q1 FEM for scalar diffusion and mapped vector BVPs](<https://hrkoyama.github.io/numerical-methods-atlas/methods/q1-fem/?lang=en>)
 
   Mapped polar Q1 with two Cartesian velocity components;4×4 Gauss integration of2mu epsilon uses exact r dr dtheta metric, followed by a block sparse solve. Circular traction uses r dtheta and outward normals.
 - [Centered spatial difference](<https://hrkoyama.github.io/numerical-methods-atlas/methods/centered-difference/?lang=en>)
@@ -193,6 +193,10 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Actually solve variable-viscosity stress divergence on an annulus; check velocity, strain, physical traction and work.
+- [Rotated diffusion: full-tensor Q1, MG and AMG](<https://hrkoyama.github.io/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/?lang=en>)
+  availability: run
+
+  Retain nonzero Kxy in the Q1 weak form and compare analytic refinement with MG/AMG convergence for the same matrix.
 - [L-corner P1 FEM: grading and separate mesh distortion](<https://hrkoyama.github.io/numerical-methods-atlas/validation/lshape-fem/?lang=en>)
   availability: run
 
@@ -205,7 +209,7 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Assemble actual2D Neumann/Robin faces and compare the manufactured field and boundary flux.
-- [Q1 FEM for mapped-coordinate vector BVP — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/q1-fem/?lang=en#method-execution-en>)
+- [Q1 FEM for scalar diffusion and mapped vector BVPs — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/q1-fem/?lang=en#method-execution-en>)
   availability: source
 
   Method-specific editions and related sources; fixed-input runs are listed separately.

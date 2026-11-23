@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "group": "coefficient-diffusion",
+  "edition": "2026-11-23",
+  "verified_on": "2026-11-23",
+  "source_manifest_sha256": "2d927e3042eb221498be0f5f0bf5e7363cdb280247379f92dfaacce47b62b914",
+  "archive": {
+    "file": "atlas-coefficient-diffusion-2026-11-23.zip",
+    "sha256": "c53624aa03cf7f945297e7bd09d72030e111e035c3ce7174fd2da9e86756b666",
+    "bytes": 3815131,
+    "archive_directory": "atlas-coefficient-diffusion-2026-11-23"
+  },
+  "archive_sha256": "c53624aa03cf7f945297e7bd09d72030e111e035c3ce7174fd2da9e86756b666",
+  "returncode": 0,
+  "passed_tests": 12,
+  "tests": 12,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "checkerboard-diffusion",
+    "rotated-anisotropic-diffusion"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 0.744319916004315,
+  "independent_rerun_seconds": 0.6280684590019519,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

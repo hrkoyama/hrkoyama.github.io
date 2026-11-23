@@ -1,0 +1,100 @@
+[
+  {
+    "configuration": "base",
+    "seed": 361101,
+    "fields": "dsmc-fourier-base-361101.npz",
+    "profile_csv": "dsmc-fourier-base-361101-profile.csv",
+    "resolution": {
+      "dx_over_lambda": 0.14235351562499998,
+      "dt_over_maxwell_tau": 0.04056621963241313
+    },
+    "collisions": 58772,
+    "candidates": 1742385,
+    "max_subcycles": 2,
+    "scaled_budget": 3.3482228653620696e-14
+  },
+  {
+    "configuration": "base",
+    "seed": 361102,
+    "fields": "dsmc-fourier-base-361102.npz",
+    "profile_csv": "dsmc-fourier-base-361102-profile.csv",
+    "resolution": {
+      "dx_over_lambda": 0.14365722656250002,
+      "dt_over_maxwell_tau": 0.04088888126433442
+    },
+    "collisions": 58599,
+    "candidates": 1797806,
+    "max_subcycles": 2,
+    "scaled_budget": 8.642234527106301e-14
+  },
+  {
+    "configuration": "base",
+    "seed": 361103,
+    "fields": "dsmc-fourier-base-361103.npz",
+    "profile_csv": "dsmc-fourier-base-361103-profile.csv",
+    "resolution": {
+      "dx_over_lambda": 0.14052734375,
+      "dt_over_maxwell_tau": 0.04000103700169703
+    },
+    "collisions": 58960,
+    "candidates": 1797380,
+    "max_subcycles": 2,
+    "scaled_budget": 4.90051823128415e-14
+  },
+  {
+    "configuration": "base",
+    "seed": 361104,
+    "fields": "dsmc-fourier-base-361104.npz",
+    "profile_csv": "dsmc-fourier-base-361104-profile.csv",
+    "resolution": {
+      "dx_over_lambda": 0.14139648437500002,
+      "dt_over_maxwell_tau": 0.040291171798395586
+    },
+    "collisions": 58671,
+    "candidates": 1800890,
+    "max_subcycles": 2,
+    "scaled_budget": 7.814582062830924e-14
+  },
+  {
+    "configuration": "fixed_weight_mesh",
+    "seed": 361101,
+    "fields": "dsmc-fourier-fixed_weight_mesh-361101.npz",
+    "profile_csv": "dsmc-fourier-fixed_weight_mesh-361101-profile.csv",
+    "resolution": {
+      "dx_over_lambda": 0.071201171875,
+      "dt_over_maxwell_tau": 0.04019865568707311
+    },
+    "collisions": 58706,
+    "candidates": 1533129,
+    "max_subcycles": 2,
+    "scaled_budget": 4.654051920909438e-14
+  },
+  {
+    "configuration": "double_particles",
+    "seed": 361101,
+    "fields": "dsmc-fourier-double_particles-361101.npz",
+    "profile_csv": "dsmc-fourier-double_particles-361101-profile.csv",
+    "resolution": {
+      "dx_over_lambda": 0.14209716796875,
+      "dt_over_maxwell_tau": 0.040416912985859206
+    },
+    "collisions": 117141,
+    "candidates": 6120026,
+    "max_subcycles": 2,
+    "scaled_budget": 4.7190300574581565e-14
+  },
+  {
+    "configuration": "half_dt",
+    "seed": 361101,
+    "fields": "dsmc-fourier-half_dt-361101.npz",
+    "profile_csv": "dsmc-fourier-half_dt-361101-profile.csv",
+    "resolution": {
+      "dx_over_lambda": 0.14479248046874998,
+      "dt_over_maxwell_tau": 0.020507836385439706
+    },
+    "collisions": 58627,
+    "candidates": 3047871,
+    "max_subcycles": 1,
+    "scaled_budget": 5.3346390188842346e-14
+  }
+]

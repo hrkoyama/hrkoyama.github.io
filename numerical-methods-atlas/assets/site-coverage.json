@@ -10,8 +10,8 @@
     "test_problems": "Count independent problems across published atlas results and the verified public code edition. Distinguish governing equations, dimensions, boundary conditions and named initial/source problems; merge solver, mesh, step-size, parameter-sweep, random-seed and presentation variants of the same problem. Repeated Sod exhibits, wedge Mach variants and CT/GLM variants do not add problems. Exclude reference-only evaluations, planned/literature-only entries, diagrams, and local identity/invariant/input-error unit checks. Static-force, boundary-value, approximation and algebraic problems are included; not every entry is a time-evolving simulation."
   },
   "counts": {
-    "equations": 56,
-    "methods": 136,
+    "equations": 60,
+    "methods": 137,
     "papers": 249,
     "references": 310,
     "journal_articles": 242,
@@ -20,16 +20,16 @@
     "chapters": 3,
     "reports": 4,
     "other_sources": 29,
-    "local_equations": 34,
+    "local_equations": 38,
     "reading_equations": 22,
-    "local_methods": 121,
+    "local_methods": 122,
     "reading_methods": 15,
     "biological_entries": 22,
     "gallery_cases": 9,
     "gallery_equations": 7,
-    "reading_chapters": 115,
-    "test_problems": 102,
-    "saved_test_problems": 102,
+    "reading_chapters": 123,
+    "test_problems": 113,
+    "saved_test_problems": 113,
     "code_test_problems": 0
   },
   "items": [
@@ -467,15 +467,6 @@
     },
     {
       "kind": "method",
-      "id": "verlet",
-      "label": "Velocity Verlet / particle leapfrog",
-      "chapter": "symplectic",
-      "status": "local-example",
-      "group": "Time integration",
-      "scope": ""
-    },
-    {
-      "kind": "method",
       "id": "yoshida4",
       "label": "Yoshida fourth-order composition",
       "chapter": "symplectic",
@@ -523,15 +514,6 @@
       "kind": "method",
       "id": "rbgs",
       "label": "Red-black Gauss–Seidel",
-      "chapter": "elliptic",
-      "status": "local-example",
-      "group": "Linear & nonlinear solvers",
-      "scope": ""
-    },
-    {
-      "kind": "method",
-      "id": "multigrid",
-      "label": "Geometric multigrid V-cycle",
       "chapter": "elliptic",
       "status": "local-example",
       "group": "Linear & nonlinear solvers",
@@ -674,26 +656,8 @@
     },
     {
       "kind": "method",
-      "id": "cic",
-      "label": "Cloud-in-cell assignment and interpolation",
-      "chapter": "particle-gravity",
-      "status": "local-example",
-      "group": "Particle fields & gravity",
-      "scope": ""
-    },
-    {
-      "kind": "method",
       "id": "pm",
       "label": "FFT particle–mesh forces",
-      "chapter": "particle-gravity",
-      "status": "local-example",
-      "group": "Particle fields & gravity",
-      "scope": ""
-    },
-    {
-      "kind": "method",
-      "id": "barnes-hut",
-      "label": "Barnes–Hut octree",
       "chapter": "particle-gravity",
       "status": "local-example",
       "group": "Particle fields & gravity",
@@ -1337,6 +1301,46 @@
       "origin": "curated-equation-catalog"
     },
     {
+      "kind": "equation",
+      "id": "tensor-diffusion",
+      "label": "Discontinuous and full-tensor diffusion BVP",
+      "chapter": "validation-coefficient-diffusion",
+      "status": "local-example",
+      "group": "Physics & mathematical models",
+      "scope": "Separate scalar harmonic-flux FV from full-tensor Q1 with nonzero cross terms. MG and AMG solve the same matrix.",
+      "origin": "curated-equation-catalog"
+    },
+    {
+      "kind": "equation",
+      "id": "coulomb-electrostatics",
+      "label": "Coulomb electrostatics with mixed periodic boundaries",
+      "chapter": "validation-slab-ewald",
+      "status": "local-example",
+      "group": "Physics & mathematical models",
+      "scope": "Neutral system,Coulomb constant1. Distinguish genuine2P references from finite-vacuum3P plus correction.",
+      "origin": "curated-equation-catalog"
+    },
+    {
+      "kind": "equation",
+      "id": "vlasov-poisson",
+      "label": "Electrostatic Vlasov–Poisson equations",
+      "chapter": "validation-warm-pic",
+      "status": "local-example",
+      "group": "Physics & mathematical models",
+      "scope": "1D1V electrons and fixed neutralizing background. Separate weighted full-f particle,mesh and time approximations from the linear-reference scope.",
+      "origin": "curated-equation-catalog"
+    },
+    {
+      "kind": "equation",
+      "id": "hard-sphere-boltzmann",
+      "label": "Hard-sphere Boltzmann transport,walls and reservoirs",
+      "chapter": "validation-dsmc-wall",
+      "status": "local-example",
+      "group": "Physics & mathematical models",
+      "scope": "1D space,3D velocity monatomic gas. Physical-time speed-dependent hard-sphere collisions,wall flux distributions and open reservoirs.",
+      "origin": "curated-equation-catalog"
+    },
+    {
       "kind": "method",
       "id": "monte-carlo",
       "label": "Monte Carlo integration",
@@ -1568,12 +1572,32 @@
     },
     {
       "kind": "method",
+      "id": "verlet",
+      "label": "Velocity Verlet / particle leapfrog",
+      "chapter": "validation-gravity-dynamics",
+      "status": "local-example",
+      "group": "Time integration",
+      "scope": "Additional fixed examples: Unsoftened Kepler two-body time error, Short-time32body dynamics from a cold Plummer-density sample. See each release for assumptions and checked scope. Additional fixed examples: Warm PIC linear Landau damping, Warm PIC two-stream initial growth. See each release for assumptions and checked scope. Additional fixed examples: Independently coded PIC spatial pipeline. See each release for assumptions and checked scope.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
       "id": "cg",
       "label": "Conjugate gradients",
       "chapter": "validation-mesh-boundary",
       "status": "local-example",
       "group": "Linear & nonlinear solvers",
       "scope": "Additional compatible pure-Neumann Poisson uses CG from zero on the same singular operator; align only its constant mean gauge and compare a constrained direct solve. Reject incompatible forcing without source projection.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "multigrid",
+      "label": "Geometric multigrid V-cycle",
+      "chapter": "validation-coefficient-diffusion",
+      "status": "local-example",
+      "group": "Linear & nonlinear solvers",
+      "scope": "Additional fixed examples: Checkerboard diffusion: shared flux, MG and AMG, Rotated diffusion: full-tensor Q1, MG and AMG. See each release for assumptions and checked scope.",
       "origin": "curated-depth-example"
     },
     {
@@ -1614,6 +1638,26 @@
       "status": "local-example",
       "group": "Coupling, constraints & particles",
       "scope": "Additional nonuniform1D prescribed moving-grid scalar advances face positions and masses with shared Heun stages. Check actual relative upwind flux,GCL,analytic moving-cell integrals and temporal error.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "cic",
+      "label": "Cloud-in-cell assignment and interpolation",
+      "chapter": "validation-warm-pic",
+      "status": "local-example",
+      "group": "Particle fields & gravity",
+      "scope": "Additional fixed examples: Warm PIC linear Landau damping, Warm PIC two-stream initial growth. See each release for assumptions and checked scope. Additional fixed examples: Independently coded PIC spatial pipeline. See each release for assumptions and checked scope.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "barnes-hut",
+      "label": "Barnes–Hut octree",
+      "chapter": "validation-gravity-dynamics",
+      "status": "local-example",
+      "group": "Particle fields & gravity",
+      "scope": "Additional fixed examples: Short-time32body dynamics from a cold Plummer-density sample. See each release for assumptions and checked scope.",
       "origin": "curated-depth-example"
     },
     {
@@ -1674,6 +1718,16 @@
       "status": "local-example",
       "group": "Particle fields & gravity",
       "scope": "Mesh/order convergence of B-spline smooth PME: A small smooth-PME example assigns charge with B-splines and evaluates the Ewald reciprocal contribution by FFT. SPME: mesh, interpolation order, mesh phase and conservation: Compare B-spline SPME with the same independent theta reference; measure mesh/order/phase effects, charge partition, energy gradients and net force.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "slab-ewald",
+      "label": "Slab electrostatics and 2D-periodic Ewald",
+      "chapter": "validation-slab-ewald",
+      "status": "local-example",
+      "group": "Particle fields & gravity",
+      "scope": "Additional fixed examples: Neutral rectangular slab: genuine2P reference and YB. See each release for assumptions and checked scope.",
       "origin": "curated-depth-example"
     },
     {
@@ -1829,7 +1883,7 @@
     {
       "kind": "method",
       "id": "q1-fem",
-      "label": "Q1 FEM for mapped-coordinate vector BVP",
+      "label": "Q1 FEM for scalar diffusion and mapped vector BVPs",
       "chapter": "validation-mesh-boundary",
       "status": "local-example",
       "group": "Spatial discretization",
@@ -3546,15 +3600,15 @@
   },
   "public_extension_sha256": {
     "catalog/atlas-quantum.json": "415dd98efe103ad5a2d950c22b98980f53539f6243b93e4e193dbca2c67169fe",
-    "catalog/atlas-methods.json": "065a3b34662d245db876b4f35261d0ab080429a80ad4a35300b2676b20d009e7",
-    "catalog/atlas-equations.json": "7cc4e148e7a78c3218727153febf59fc9c19ccb1088f89ca2cd5d94c16bc7e28",
+    "catalog/atlas-methods.json": "0223e48245d78ba1af00cb8713a1fff340e6fbfd99617b446a72cd286be9fe17",
+    "catalog/atlas-equations.json": "28ff2cf7ae26b5ffad16b1c6215e8a496d97bb4541ae726f6fb03f1b4f18f866",
     "catalog/atlas-method-primary-references.json": "1e9de6c042875cb95060bf63386cb051f0dbdbce4d5a63ce5600b52fef2e2082"
   },
   "equation_execution_source_sha256": {
     "numerical-methods-atlas/assets/biological-models.json": "b4432736fdbb32d6ec0be5104585348bfc166663688640f8d99a039dd4e521ab",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "catalog/atlas-equations.json": "7cc4e148e7a78c3218727153febf59fc9c19ccb1088f89ca2cd5d94c16bc7e28",
+    "catalog/atlas-equations.json": "28ff2cf7ae26b5ffad16b1c6215e8a496d97bb4541ae726f6fb03f1b4f18f866",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "code/validated-examples/2026-11-23/weno-critical/source-manifest.json": "abd8b0a29bb81b7d98b897ec0a0eb409f77873857ec8199c3767f1ede11b43a5",
     "code/validated-examples/2026-11-23/weno-critical/verification.json": "ccbf3c6a2fe7055b324a0d98c152da909242f36e0c82ca3281038e4c9b0c165f",
@@ -3581,6 +3635,16 @@
     "code/validated-examples/2026-11-23-r2/wall-flow/cases.json": "ed51f9003bbf5ddfa88602dd579ad962c81f95fb5dd3e7ef32973b17f9844d70",
     "code/validated-examples/2026-11-23-r2/wall-flow/results/result.json": "ce92039a849015c3c3bd1de8e6ef77052f6fc5a9765ff961bc20086180996252",
     "code/validated-examples/2026-11-23-r2/wall-flow/atlas-wall-flow-2026-11-23-r2.zip": "de499fde477a49b1eae10bd6bf04b0800b58105ca5d504ec6eff2ec3272690fd",
+    "code/validated-examples/2026-11-23/fmm3d/source-manifest.json": "bc624983d4b0480538aa873ff2a867491e4384d25ea39930b5bb948b98e59c89",
+    "code/validated-examples/2026-11-23/fmm3d/verification.json": "b6cc2a0ad2f31c01ebd833447f7f6d9496db6df5f6c14deb93d4f057d177c175",
+    "code/validated-examples/2026-11-23/fmm3d/cases.json": "ca113f993ead48117c2678734dbb774a07d7911eab0f3392a4ac897b48f1b5f9",
+    "code/validated-examples/2026-11-23/fmm3d/results/result.json": "ccb60af7e0a8a3f71ca7b36ddfb6b23eb4cefd91709a10ff00ec28d6aa330199",
+    "code/validated-examples/2026-11-23/fmm3d/atlas-fmm3d-2026-11-23.zip": "61861fb2a1d24437175710a09c4afdc934aab49c1c2f2e3e14b5a3c2d466b59c",
+    "code/validated-examples/2026-11-23/gravity-dynamics/source-manifest.json": "ac07fb7bbb54a8f5ac7e20ceb9ea2ecdbc7ca2fd6d524072f609ef52ee79655b",
+    "code/validated-examples/2026-11-23/gravity-dynamics/verification.json": "47839837648f140ffb9696b7974dba4d6858bd15569e0415274a330d6e286ca3",
+    "code/validated-examples/2026-11-23/gravity-dynamics/cases.json": "de18f8a723bdd60efac585abf95e17f125e6f4e68823d147445cb0f3e0f172a7",
+    "code/validated-examples/2026-11-23/gravity-dynamics/results/result.json": "d5129ce2c86fa37b8baa3abd0c9822323768e8ff0915abf86b23ef041bae837b",
+    "code/validated-examples/2026-11-23/gravity-dynamics/atlas-gravity-dynamics-2026-11-23.zip": "47f1a4bdb8a6a5fdac82e66ffbe8b32c59242ffb7f9f05b418a37bd5913ffacd",
     "code/validated-examples/2026-11-23/relativistic/source-manifest.json": "89496dc623ddb7a3c381539d403b1ad657cee8ad772509788f185b7364dd6584",
     "code/validated-examples/2026-11-23/relativistic/verification.json": "d2d62b2d0aa0e5f9f7e3a7e7991f24586fcc7c3baa3a567cd51f0d6f00367737",
     "code/validated-examples/2026-11-23/relativistic/cases.json": "8e0f3c1834cf74a57e20628fcf6580b19b8a7153c6f7c33c9b0b0986ca680a58",
@@ -3615,6 +3679,36 @@
     "code/validated-examples/2026-11-23/moving-waves/verification.json": "29199bb55f03b1167eaa27115c8bb531006a298371f614d8c1397516c5862894",
     "code/validated-examples/2026-11-23/moving-waves/cases.json": "0b7092f12334f3ce018f0f837deb59803b8b14e50999a10e34de452b1038f989",
     "code/validated-examples/2026-11-23/moving-waves/results/result.json": "e53ff99821e9977c975cda2a33d99b00d895901f1e428780ef27c10dd5242426",
-    "code/validated-examples/2026-11-23/moving-waves/atlas-moving-waves-2026-11-23.zip": "d9f2f8bff3bf5d9fa7c1118c0968e9c0374fd5e9a6d3f7f99352abc0841e3b7d"
+    "code/validated-examples/2026-11-23/moving-waves/atlas-moving-waves-2026-11-23.zip": "d9f2f8bff3bf5d9fa7c1118c0968e9c0374fd5e9a6d3f7f99352abc0841e3b7d",
+    "code/validated-examples/2026-11-23/coefficient-diffusion/source-manifest.json": "2d927e3042eb221498be0f5f0bf5e7363cdb280247379f92dfaacce47b62b914",
+    "code/validated-examples/2026-11-23/coefficient-diffusion/verification.json": "49dcdd24f0d90110fb0bbb1f28a8a9bce0c8d4fdd3645d0cd5a79722f3fe39c2",
+    "code/validated-examples/2026-11-23/coefficient-diffusion/cases.json": "c861a45e8f07dbce47bb74c62a57427117cd1e5d20d3d914a588be0a1c26785a",
+    "code/validated-examples/2026-11-23/coefficient-diffusion/results/result.json": "13f91d2a2e927aa59a5a043005d98d267cebc1b6a5c57a7ab966b2670f86635c",
+    "code/validated-examples/2026-11-23/coefficient-diffusion/atlas-coefficient-diffusion-2026-11-23.zip": "c53624aa03cf7f945297e7bd09d72030e111e035c3ce7174fd2da9e86756b666",
+    "code/validated-examples/2026-11-23/slab-ewald/source-manifest.json": "94e960898e16b4e2f0c571deb81bad3e3602a7a6333a4beaa43a5272a9366311",
+    "code/validated-examples/2026-11-23/slab-ewald/verification.json": "1ba388ae7557baa644f6b773811cf78ad23b20b5938db8a5d748fba741bc9684",
+    "code/validated-examples/2026-11-23/slab-ewald/cases.json": "e1533bdaff925ba7f441dd1c719988f6a8cbbecfe32516a9cb573518a39b7875",
+    "code/validated-examples/2026-11-23/slab-ewald/results/result.json": "a81227eaee02508eab1ee1b6bec2a9177131c798191ca2b4338cf7205bb4c8d8",
+    "code/validated-examples/2026-11-23/slab-ewald/atlas-slab-ewald-2026-11-23.zip": "168b250fd18b209534fe8a767afc689ea11b6b8ca95657a7c0ff0d8803f00414",
+    "code/validated-examples/2026-11-23/warm-pic/source-manifest.json": "c38a3af2f3854853fdfc29033ec482551cf187e76cacf6e85717d26319b98776",
+    "code/validated-examples/2026-11-23/warm-pic/verification.json": "c8af7a2828d26a884774f3325c9fc64c489855db9a14eab6325b1f510f8953d1",
+    "code/validated-examples/2026-11-23/warm-pic/cases.json": "34d7e1d14e91f84fb40883ccca8343dd216c7850826a7c6070c6139aee358730",
+    "code/validated-examples/2026-11-23/warm-pic/results/result.json": "055d3a90ef7eb53cb59405884f2a6f9db3bcf9bbb0cec459f39d5e723615b03e",
+    "code/validated-examples/2026-11-23/warm-pic/atlas-warm-pic-2026-11-23.zip": "10661b33b9d36f35721fa1ed55b12b94926fe6fab47b8dd1e5dea52a61415fdb",
+    "code/validated-examples/2026-11-23/pic-spatial/source-manifest.json": "cb2990ccac19fc27ae3c21fbf0fe20d49592dfb1dbedfe25fa808094cbe38b55",
+    "code/validated-examples/2026-11-23/pic-spatial/verification.json": "8d8a7e9105d39ea8f55a4700e686c074c77930b99a8146130cf2d1a4f58e0edb",
+    "code/validated-examples/2026-11-23/pic-spatial/cases.json": "162abe59e4c4e975cfc908543556206a50b372572356dcef5f908be739dd4d67",
+    "code/validated-examples/2026-11-23/pic-spatial/results/result.json": "79fd92b4793f435e9899d9e50cb17fcdec9d5df116f3790ff7222edf2208ae3f",
+    "code/validated-examples/2026-11-23/pic-spatial/atlas-pic-spatial-2026-11-23.zip": "51da779a41f2109fbd22d1628463b8be3770ee93b61e49529b1b48a19f431bc3",
+    "code/validated-examples/2026-11-23/dsmc-wall/source-manifest.json": "86b7629e41658327280445b9e0a03e9e3c2894886a06f32c1dafcbeb6a7b811b",
+    "code/validated-examples/2026-11-23/dsmc-wall/verification.json": "c468aabcd27c1d73d44923b83d0d5a2b267f61114c37beb4743bdfcf8b63a048",
+    "code/validated-examples/2026-11-23/dsmc-wall/cases.json": "0b1fb2514bff09c0dd5e214348a875f15f37cbde756afbf88ea2fcac188e7bb5",
+    "code/validated-examples/2026-11-23/dsmc-wall/results/result.json": "e25dc3114ca3149ec876c88d5cdaf7e1cd8b2639e71e09fd8338f0e488e52824",
+    "code/validated-examples/2026-11-23/dsmc-wall/atlas-dsmc-wall-2026-11-23.zip": "7b6d5a11874a0042ce772df4c241c72ce42f861c43ed0d44164074ba662da0cb",
+    "code/validated-examples/2026-11-23/dsmc-shock/source-manifest.json": "2dfb1b6074aec28dddb083cc715c85080be678f39e55b2472c518730ec72c766",
+    "code/validated-examples/2026-11-23/dsmc-shock/verification.json": "fdca2ddb0069b640ef24da3de9766b5ccee5c5a117c7017589bd0de07d003623",
+    "code/validated-examples/2026-11-23/dsmc-shock/cases.json": "c5055607e9aa3b76824051db6fdf01ffa9e01243f6989f0a348519045eddea22",
+    "code/validated-examples/2026-11-23/dsmc-shock/results/result.json": "5c33c06b72bb7f5f778b21e02e02804df57eb82cad2e15d08e5f06acf8196599",
+    "code/validated-examples/2026-11-23/dsmc-shock/atlas-dsmc-shock-2026-11-23.zip": "a0781fe0b577cd65f60489e77672bbfdbc7d1f657c9514ad1c0c862125ba4eda"
   }
 }

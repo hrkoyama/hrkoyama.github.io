@@ -67,6 +67,26 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/symplectic/
   availability: run
 
   既存の単位質量・単位角振動数の調和振動子をvelocity Verletで進める。20時間単位、200/400/800刻みの解析解比較、元のエネルギー偏差、時間反転を出力。
+- [PIC空間演算の独立実装照合](<https://hrkoyama.github.io/numerical-methods-atlas/validation/pic-independent-spatial/?lang=ja>)
+  availability: run
+
+  ベクトル化CIC/FFTと、別に書いた粒子ループCIC・密なDFTを、それぞれが自己無撞着な場を毎kick計算する軌道全体で照合します。
+- [無軟化Kepler二体の時間誤差](<https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-kepler/?lang=ja>)
+  availability: run
+
+  非等質量二体をKDKで1周し、独立Kepler方程式の位置・速度とエネルギー/角運動量を照合。
+- [冷たいPlummer密度由来32粒子の短時間力学](<https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-plummer-short/?lang=ja>)
+  availability: run
+
+  同じ軟化有限N ODEで時間誤差と木近似誤差を分け、独立DOP853・直接力と収支を比較。
+- [温かいPICの線形Landau減衰](<https://hrkoyama.github.io/numerical-methods-atlas/validation/thermal-landau-damping/?lang=ja>)
+  availability: run
+
+  熱速度1のMaxwell分布を自己無撞着に動かし、減衰率・周波数・符号付き場の履歴を独立した線形参照で調べます。
+- [温かいPICの二流初期成長](<https://hrkoyama.github.io/numerical-methods-atlas/validation/thermal-two-stream/?lang=ja>)
+  availability: run
+
+  温度を持つ対向Maxwell二流を時間発展し、固定した線形窓の成長率と過渡を分散式・Volterra参照から分けて検査します。
 - [シンプレクティックEuler法：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/symplectic-euler/?lang=ja#method-execution-ja>)
   availability: source
 

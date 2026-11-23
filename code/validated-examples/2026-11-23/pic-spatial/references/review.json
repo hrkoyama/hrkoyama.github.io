@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "status": "inspected-before-first-scientific-execution",
+  "whole_paper_claim": false,
+  "inspected_sources": [
+    {
+      "id": "camporeale2013",
+      "author": "Enrico Camporeale, Gian Luca Delzanno, Benjamin K. Bergen and J. David Moulton",
+      "year": 2013,
+      "title": "On the velocity space discretization for the Vlasov–Poisson system: comparison between Hermite spectral and Particle-in-Cell methods. Part 1: semi-implicit scheme",
+      "url": "https://arxiv.org/abs/1311.2098",
+      "type": "preprint",
+      "review_level": "primary-selected-original-pdf-text",
+      "review_scope": "Read selected original arXiv v2 sections2 (normalized1D1V Vlasov–Poisson),4 and5.2/5.4 (recurrence/noise and linear-window distinction). No whole-paper review, copied reference table, or original-run reproduction. Our positive-weight quiet loading and two-stream inputs differ.",
+      "review": {
+        "ja": "原著の規格化方程式、再帰・雑音、Landauと二流の線形窓の議論を選択して確認。原著の計算値は転用しません。",
+        "en": "Selected original equations and diagnostic limitations inspected; independently derived continuum references are evaluated here."
+      },
+      "accessed_on": "2026-11-23"
+    }
+  ],
+  "not_inspected": [
+    "Landau1946original",
+    "Fried–Conte1961monograph"
+  ],
+  "reference_implementation": "Atlas original mathematical derivation; not an external tabulated numeric oracle",
+  "original_paper_or_software_copied": false
+}

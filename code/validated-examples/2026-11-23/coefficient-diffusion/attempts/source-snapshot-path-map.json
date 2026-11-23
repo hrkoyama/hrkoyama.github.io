@@ -1,0 +1,35 @@
+{
+  "reason": "Retain exact original source bytes without pytest collecting historical duplicate modules.",
+  "files": [
+    {
+      "original_path": "attempts/attempt-01/source/run.py",
+      "stored_path": "attempts/attempt-01/source/run.py.txt",
+      "sha256": "326de4c08dda50169ed8a16212eb6ccafbca5032f4ee57a3afdad937a96627f0"
+    },
+    {
+      "original_path": "attempts/attempt-01/source/multilevel.py",
+      "stored_path": "attempts/attempt-01/source/multilevel.py.txt",
+      "sha256": "2ae51a2af3336eb55bcedb33521cb82c1f5e3b97e51077aabfd835ff119f394c"
+    },
+    {
+      "original_path": "attempts/attempt-01/source/experiments.py",
+      "stored_path": "attempts/attempt-01/source/experiments.py.txt",
+      "sha256": "c24e6a12f248f7f1fbcbcf7bc2a5ad0dc8934a6a6128393169fd06b5ee87dde7"
+    },
+    {
+      "original_path": "attempts/attempt-01/source/test_diffusion.py",
+      "stored_path": "attempts/attempt-01/source/test_diffusion.py.txt",
+      "sha256": "3fd7f891732215cfb170284d4a84e306bf61643dd4f3be88b3efb35fb0838187"
+    },
+    {
+      "original_path": "attempts/attempt-01/source/operators.py",
+      "stored_path": "attempts/attempt-01/source/operators.py.txt",
+      "sha256": "237e73b3b5d9a9be48aec30104e3390056ab1b3c21e3bc19cac1b7423c249e7f"
+    },
+    {
+      "original_path": "attempts/attempt-01/source/references/p1.py",
+      "stored_path": "attempts/attempt-01/source/references/p1.py.txt",
+      "sha256": "991479d30ce5498008cf0c0e55da59b72b579a463fa4d95ec3449c00cff66a56"
+    }
+  ]
+}

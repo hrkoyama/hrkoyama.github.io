@@ -119,7 +119,7 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-このコマンドは配布グループの全例を実行します。
+このコマンドは配布グループの全例を実行します。同梱のresults/は保存見本です。追試は新規output/へ出力し、繰り返す場合は別の新規フォルダを指定します。
 
 入力・検証手順の履歴：https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/protocol-history.json
 
@@ -128,11 +128,14 @@ https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport
 ## 出典と確認範囲
 
 - K. Stamnes, S.-C. Tsay, W. Wiscombe and K. Jayaweera (1988). Numerically stable algorithm for discrete-ordinate-method radiative transfer in multiple scattering and emitting layered media. https://doi.org/10.1364/AO.27.002502; review_level=selected-full-text
-  出版社HTMLの書誌・抄録と基本の輸送式を確認。離散座標の背景として引用し、本例はDISORT全機能の実装ではありません。
+出版社HTMLの書誌・抄録と基本の輸送式を確認。離散座標の背景として引用し、本例はDISORT全機能の実装ではありません。
+
 - NIST Digital Library of Mathematical Functions (2026). §8.19 Generalized Exponential Integral. https://dlmf.nist.gov/8.19; review_level=official-documentation
-  一般化指数積分の積分表示を公式資料で確認。年は確認年。
+一般化指数積分の積分表示を公式資料で確認。年は確認年。
+
 - SciPy developers (2024). SciPy 1.14.1: BinomTestResult.proportion_ci. https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.stats._result_classes.BinomTestResult.proportion_ci.html; review_level=official-versioned-documentation
-  公式資料でexactがClopper–Pearson法を使うことと区間APIを確認。1934年原著本文は取得できず、本文閲覧とはしません。
+公式資料でexactがClopper–Pearson法を使うことと区間APIを確認。1934年原著本文は取得できず、本文閲覧とはしません。
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.
 
@@ -257,7 +260,7 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-This command executes every fixed case in the distribution group.
+This command executes every fixed case in the distribution group. Bundled results/ are stored outputs. Rerun into a new output/ directory and use another fresh directory for subsequent runs.
 
 Input and validation protocol history: https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/protocol-history.json
 
@@ -266,10 +269,13 @@ https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport
 ## Sources and review scope
 
 - K. Stamnes, S.-C. Tsay, W. Wiscombe and K. Jayaweera (1988). Numerically stable algorithm for discrete-ordinate-method radiative transfer in multiple scattering and emitting layered media. https://doi.org/10.1364/AO.27.002502; review_level=selected-full-text
-  Publisher HTML bibliography, abstract and base transfer equation checked; cited as discrete-ordinate background, not full DISORT implementation.
+Publisher HTML bibliography, abstract and base transfer equation checked; cited as discrete-ordinate background, not full DISORT implementation.
+
 - NIST Digital Library of Mathematical Functions (2026). §8.19 Generalized Exponential Integral. https://dlmf.nist.gov/8.19; review_level=official-documentation
-  Official integral representation of the generalized exponential integral checked; year denotes access year.
+Official integral representation of the generalized exponential integral checked; year denotes access year.
+
 - SciPy developers (2024). SciPy 1.14.1: BinomTestResult.proportion_ci. https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.stats._result_classes.BinomTestResult.proportion_ci.html; review_level=official-versioned-documentation
-  Official documentation confirms the exact Clopper–Pearson method and interval API. The 1934 publisher text was unavailable; no full-paper reading is claimed.
+Official documentation confirms the exact Clopper–Pearson method and interval API. The 1934 publisher text was unavailable; no full-paper reading is claimed.
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.

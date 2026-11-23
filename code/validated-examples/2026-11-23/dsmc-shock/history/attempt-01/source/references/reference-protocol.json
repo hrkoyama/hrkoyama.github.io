@@ -1,0 +1,149 @@
+{
+  "status": "FROZEN_PROPOSAL_UNEXECUTED",
+  "protocol_revision": 1,
+  "source_commit": "1ae18f3646e7c89f86e965f0f3c13fcc5f32e399",
+  "combined_generation_timeout_seconds": 600,
+  "planned_runs": 36,
+  "seeds": [
+    931001,
+    931002,
+    931003,
+    931004
+  ],
+  "cases": [
+    {
+      "id": "dsmc-couette",
+      "kind": "wall",
+      "length": 2,
+      "weight": 0.0009765625,
+      "burn_in": 24,
+      "sample_time": 40,
+      "blocks": 5,
+      "bins": 8,
+      "configurations": {
+        "base": {
+          "cells": 64,
+          "dt": 0.01
+        },
+        "fine_grid": {
+          "cells": 128,
+          "dt": 0.01
+        },
+        "half_dt": {
+          "cells": 64,
+          "dt": 0.005
+        }
+      },
+      "temperatures": [
+        1,
+        1
+      ],
+      "speeds": [
+        -0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "dsmc-fourier",
+      "kind": "wall",
+      "length": 2,
+      "weight": 0.0009765625,
+      "burn_in": 24,
+      "sample_time": 40,
+      "blocks": 5,
+      "bins": 8,
+      "configurations": {
+        "base": {
+          "cells": 64,
+          "dt": 0.01
+        },
+        "fine_grid": {
+          "cells": 128,
+          "dt": 0.01
+        },
+        "half_dt": {
+          "cells": 64,
+          "dt": 0.005
+        }
+      },
+      "temperatures": [
+        1,
+        2
+      ],
+      "speeds": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "dsmc-planar-shock",
+      "kind": "shock",
+      "length": 16,
+      "weight": 0.0026041666666666665,
+      "burn_in": 30,
+      "sample_time": 30,
+      "blocks": 5,
+      "bins": 64,
+      "configurations": {
+        "base": {
+          "cells": 256,
+          "dt": 0.005
+        },
+        "fine_grid": {
+          "cells": 512,
+          "dt": 0.005
+        },
+        "half_dt": {
+          "cells": 256,
+          "dt": 0.0025
+        }
+      }
+    }
+  ],
+  "unit_mapping": {
+    "SPARTA": "SI with species mass1.380649e-23kg equals SI kB numerically, T0=1K,v0=1m/s,length0=1m,n0=1/m^3",
+    "dimensionless_primary": "m=kB=n0=T0=1, sigma=1/sqrt(2),lambda0=1",
+    "collision": "SPARTA VSS alpha1,omega.5,diam=sqrt[1/(sqrt(2)*pi)],referenceT1 => constant HS cross section; monatomic internal modes0"
+  },
+  "independence": "Unmodified official SPARTA serial mac target versus authored NumPy disjoint-pair physical-time Markov approximation; shared physical model only. No primary functions run by SPARTA. Reference derivation/parser are separately reviewable.",
+  "time_scope": {
+    "wall": "24tau0 burn,40tau0 sampling,five8tau0 blocks; reference initial uniform mean wall temperature/zero flow; only stationary observables compared",
+    "shock": "30tau0 burn,30tau0 sampling,five6tau0 blocks; RH initial jump x8,full incoming drifting-Maxwellian reservoirs,free outflow",
+    "actual_frames": "Retain initial burn-time frame if emitted in raw dump but exclude it from accepted data by exact predeclared time table, not observed field values. Expected sample end times burn+(1..5)*sampleTime/5. All frames/timestamps retained."
+  },
+  "acceptance": {
+    "finite_fields": true,
+    "exact_time_table": true,
+    "reference_precision_3se_over_imposed_profile_scale": 0.05,
+    "reference_stationarity_rms_mean_change_plus_3se_over_profile_scale": 0.15,
+    "reference_mesh_and_dt_sensitivity_rms_mean_over_profile_scale": 0.03,
+    "reference_mesh_and_dt_sensitivity_plus_3se_rule": "RMS(mean change)<=.03*scale+3*RMS(seed SE); require3*RMS(seed SE)<=.05*scale separately; paired whole-seed differences, not bins/timesteps as replicates",
+    "wall_flux_relative_precision_3se": 0.25,
+    "wall_flux_sensitivity_relative": 0.1,
+    "shock_reference_max_dx_over_local_lambda": 0.2,
+    "all_reference_max_dt_over_local_tau": 0.1,
+    "shock_far_state_relative_error_plus_3se": 0.05,
+    "shock_centroid_total_drift_mean_plus_3se_lambda1": 0.75
+  },
+  "profile_scales": {
+    "dsmc-couette": {
+      "uy": 1,
+      "T": 1,
+      "n": 1
+    },
+    "dsmc-fourier": {
+      "T": 1,
+      "n": 1
+    },
+    "dsmc-planar-shock": {
+      "n": 1.2857142857142856,
+      "T": 1.078125,
+      "ux": "U1-U2",
+      "Pxx": 3.75
+    }
+  },
+  "stationarity": "Per-seed last2block minus first2block profiles; RMS ensemble drift+3RMS(seed SE) equivalence gate. Retain all5blocks and seed data. Shock adds unaligned lab-frame centroid drift; no profile shifting/pinning or posthoc window choice.",
+  "precision": "Four independent run seeds; SE from whole seed estimates, t95 df3 separately reported. Spatial-bin/time covariance is retained via per-seed estimators. A large interval cannot make the precision gate pass.",
+  "reference_role": "Finite-grid stochastic independent HS engine with empirical grid/time/noise qualification, not a rigorous exact Boltzmann reference or proof of infinite-domain/zero-step limit. RH only far-state/flux reference.",
+  "failure_policy": "Stop on first failed executable/timeout; retain all inputs/logs/raw outputs and complete per-job receipts. No silent retry/seed replacement or threshold relaxation. Qualification failure blocks primary reference use; any later revision is separately reviewed."
+}

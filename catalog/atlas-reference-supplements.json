@@ -2174,6 +2174,913 @@
           "note": "Official article sections3.1–3.2, tensor49–51 and recovery68–69 actually read. Flat-spacetime use only; no whole-review or complete-GRMHD implementation audit."
         }
       ]
+    },
+    {
+      "id": "checkerboard-diffusion",
+      "model": "tensor-diffusion",
+      "kind": "numerical-reference",
+      "title": "Checkerboard diffusion: shared flux, MG and AMG",
+      "assumptions": "Unit square, zero Dirichlet, f=1, diagonal quadrants100/others1, N16/32/64; reference P1 meshes128/192.",
+      "formula": "-\\nabla\\cdot(a\\nabla u)=1,\\quad a\\in\\{1,100\\}; T_f=|f|/(d_L/a_L+d_R/a_R)",
+      "dimension": 2,
+      "bounds": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "components": [
+        "u",
+        "physical flux"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "primary_grids": [
+          16,
+          32,
+          64
+        ],
+        "reference_grids": [
+          128,
+          192
+        ],
+        "coefficient_values": [
+          1,
+          100
+        ],
+        "reference_evaluation": "Barycentric P1 interpolation at FV cell centres; empirical sensitivity, not exact bound"
+      },
+      "sources": [
+        "https://dumux.org/docs/doxygen/master/group___c_c_tpfa_discretization.html",
+        "https://hypre.readthedocs.io/en/latest/solvers-boomeramg.html",
+        "https://link.springer.com/article/10.1007/BF02238511"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/checkerboard-diffusion/?lang=ja#checkerboard-diffusion-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/checkerboard-diffusion/?lang=en#checkerboard-diffusion-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-coefficient-diffusion/#checkerboard-diffusion",
+        "en": "/numerical-methods-atlas/en/read/validation-coefficient-diffusion/#checkerboard-diffusion"
+      },
+      "reference_scope": "Nonzero two-material flux patch, residual-aware budget, direct forward/energy errors and independent triangular-P1 grid sensitivity. Fixed contrast100 example. P1 differences are not rigorous error bounds; no singular exponent or universal MG/AMG winner is asserted.",
+      "citations": [
+        {
+          "role": "selected-official-formulation-context",
+          "title": "Two-point flux approximation",
+          "url": "https://dumux.org/docs/doxygen/master/group___c_c_tpfa_discretization.html",
+          "note": "Scalar harmonic transmissibility, shared flux and K-orthogonality restriction. No DuMux code executed."
+        },
+        {
+          "role": "selected-official-formulation-context",
+          "title": "BoomerAMG: smoother options",
+          "url": "https://hypre.readthedocs.io/en/latest/solvers-boomeramg.html",
+          "note": "CG requires a symmetric smoother. Our educational SA code is not hypre and no hypre code was run."
+        },
+        {
+          "role": "publisher-abstract-only",
+          "title": "Algebraic multigrid by smoothed aggregation for second and fourth order elliptic problems",
+          "url": "https://link.springer.com/article/10.1007/BF02238511",
+          "note": "Metadata and abstract only. No general robustness theorem claimed for these fixed jumps/tensors."
+        }
+      ]
+    },
+    {
+      "id": "rotated-anisotropic-diffusion",
+      "model": "tensor-diffusion",
+      "kind": "manufactured",
+      "title": "Rotated diffusion: full-tensor Q1, MG and AMG",
+      "assumptions": "Unit square, zero Dirichlet, K=R(pi/6)diag(1,.01)R^T, exact sin(pi x)sin(pi y), N16/32/64.",
+      "formula": "-\\nabla\\cdot(K\\nabla u)=f,\\quad K=R(\\pi/6)\\operatorname{diag}(1,.01)R^T; f=\\pi^2(K_{xx}+K_{yy})\\sin\\pi x\\sin\\pi y-2\\pi^2K_{xy}\\cos\\pi x\\cos\\pi y",
+      "dimension": 2,
+      "bounds": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "components": [
+        "u",
+        "physical flux"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "primary_grids": [
+          16,
+          32,
+          64
+        ],
+        "tensor_eigenvalues": [
+          1,
+          0.01
+        ],
+        "angle_pi_units": 0.16666666666666666
+      },
+      "sources": [
+        "https://dumux.org/docs/doxygen/master/group___c_c_tpfa_discretization.html",
+        "https://hypre.readthedocs.io/en/latest/solvers-boomeramg.html",
+        "https://link.springer.com/article/10.1007/BF02238511"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/?lang=ja#rotated-anisotropic-diffusion-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/?lang=en#rotated-anisotropic-diffusion-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-coefficient-diffusion/#rotated-anisotropic-diffusion",
+        "en": "/numerical-methods-atlas/en/read/validation-coefficient-diffusion/#rotated-anisotropic-diffusion"
+      },
+      "reference_scope": "u=xy,f=-2Kxy patch, analytic-flux source, integrated L2/energy error,4/6point quadrature sensitivity and direct-solve comparison. One angle/anisotropy only. Scalar TPFA is not extended to rotated tensors; arbitrary-tensor robustness is not established.",
+      "citations": [
+        {
+          "role": "selected-official-formulation-context",
+          "title": "Two-point flux approximation",
+          "url": "https://dumux.org/docs/doxygen/master/group___c_c_tpfa_discretization.html",
+          "note": "Scalar harmonic transmissibility, shared flux and K-orthogonality restriction. No DuMux code executed."
+        },
+        {
+          "role": "selected-official-formulation-context",
+          "title": "BoomerAMG: smoother options",
+          "url": "https://hypre.readthedocs.io/en/latest/solvers-boomeramg.html",
+          "note": "CG requires a symmetric smoother. Our educational SA code is not hypre and no hypre code was run."
+        },
+        {
+          "role": "publisher-abstract-only",
+          "title": "Algebraic multigrid by smoothed aggregation for second and fourth order elliptic problems",
+          "url": "https://link.springer.com/article/10.1007/BF02238511",
+          "note": "Metadata and abstract only. No general robustness theorem claimed for these fixed jumps/tensors."
+        }
+      ]
+    },
+    {
+      "id": "neutral-slab-yb",
+      "model": "coulomb-electrostatics",
+      "kind": "semi-analytic",
+      "title": "Neutral rectangular slab: genuine2P reference and YB",
+      "assumptions": "Coulomb1, lateral1×1.25, extendedLz1.5/3/6,4neutral charges±1,physical-z dipole.34 andalpha3/4.",
+      "formula": "phi=real2P+nonzero_modes+zero_mode-2alpha*q/sqrt(pi); E=.5sum(q*phi); F=-q grad(phi); DeltaE=2pi*Mz^2/V; DeltaFz=-4pi*q*Mz/V.",
+      "dimension": 3,
+      "bounds": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1.25
+        ],
+        [
+          -0.15,
+          0.15
+        ]
+      ],
+      "components": [
+        "potential",
+        "Fx",
+        "Fy",
+        "Fz"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "periodic_axes": [
+          "x",
+          "y"
+        ],
+        "free_axis": "z",
+        "lateral_lengths": [
+          1,
+          1.25
+        ],
+        "extended_Lz": [
+          1.5,
+          3,
+          6
+        ],
+        "charges": [
+          1,
+          -1,
+          1,
+          -1
+        ],
+        "coulomb_constant": 1,
+        "physical_dipole_z": 0.34
+      },
+      "sources": [
+        "https://arxiv.org/pdf/1109.1667",
+        "https://doi.org/10.1063/1.479595",
+        "https://docs.lammps.org/kspace_modify.html"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/neutral-slab-yb/?lang=ja#neutral-slab-yb-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/neutral-slab-yb/?lang=en#neutral-slab-yb-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-slab-ewald/#neutral-slab-yb",
+        "en": "/numerical-methods-atlas/en/read/validation-slab-ewald/#neutral-slab-yb"
+      },
+      "reference_scope": "Electrostatic1/r point charges: separately coded2P Ewald with self/zero mode; not3P vacuum extrapolation or an external package. Fixed protocol executed successfully; per-case acceptance and independently scoped reference qualifications are retained in the scientific result.",
+      "citations": [
+        {
+          "role": "reference-formula-or-scoped-context",
+          "title": "Fast and spectrally accurate Ewald summation for2-periodic electrostatic systems",
+          "url": "https://arxiv.org/pdf/1109.1667",
+          "note": "Eq4 and AppendixA Eq41/zero-mode inspected; rendered selected pages requested. No full-paper audit or spectral-PME implementation claimed."
+        },
+        {
+          "role": "reference-formula-or-scoped-context",
+          "title": "Ewald summation for systems with slab geometry",
+          "url": "https://doi.org/10.1063/1.479595",
+          "note": "Original publisher full text unavailable; no original-text review claimed. Neutral correction independently derived and checked against official LAMMPS implementation/documentation."
+        },
+        {
+          "role": "reference-formula-or-scoped-context",
+          "title": "LAMMPS slab Ewald documentation and neutral correction",
+          "url": "https://docs.lammps.org/kspace_modify.html",
+          "note": "Slab geometry restrictions and official Ewald::slabcorr neutral formula inspected. No LAMMPS code copied or executed; mutable stable source is contextual, not a numerical dependency."
+        }
+      ]
+    },
+    {
+      "id": "fmm3d-inverse-r",
+      "model": "particle-gravity",
+      "kind": "numerical-reference",
+      "title": "Actual3D1/r FMM: multilevel translations, force and ownership",
+      "assumptions": "Isolated-Gm/r,G1,64equal masses,p3/5/7. Main levels forced; adaptive case alone usescapacity8/maxdepth3.",
+      "formula": "Phi_i=-sum_{j!=i}G*m_j/r_ij; a_i=-sum_{j!=i}G*m_j*(x_i-x_j)/r_ij^3; finite6axis source Phi(0)=-1/a.",
+      "dimension": 3,
+      "bounds": [
+        [
+          -1,
+          1
+        ],
+        [
+          -1,
+          1
+        ],
+        [
+          -1,
+          1
+        ]
+      ],
+      "components": [
+        "potential",
+        "ax",
+        "ay",
+        "az"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "G": 1,
+        "sources": 64,
+        "masses": "1/64",
+        "softening": 0,
+        "boundary": "isolated",
+        "chebyshev_nodes_per_axis": [
+          3,
+          5,
+          7
+        ],
+        "forced_leaf_levels": [
+          2,
+          3
+        ]
+      },
+      "sources": [
+        "https://mc.stanford.edu/cgi-bin/images/f/fa/Darve_bbfmm_2009.pdf",
+        "https://fmm3d.readthedocs.io/en/latest/math.html"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/fmm3d-inverse-r/?lang=ja#fmm3d-inverse-r-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/fmm3d-inverse-r/?lang=en#fmm3d-inverse-r-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-fmm3d/#fmm3d-inverse-r",
+        "en": "/numerical-methods-atlas/en/read/validation-fmm3d/#fmm3d-inverse-r"
+      },
+      "reference_scope": "Independent unordered Cartesian direct sum plus exact finite6-source probes; genuine3D unsoftened kernel, not a continuum sphere or externalFMM run. Fixed protocol executed successfully; per-case acceptance and independently scoped reference qualifications are retained in the scientific result.",
+      "citations": [
+        {
+          "role": "reference-formula-or-scoped-context",
+          "title": "The black-box fast multipole method",
+          "url": "https://mc.stanford.edu/cgi-bin/images/f/fa/Darve_bbfmm_2009.pdf",
+          "note": "Tensor interpolation Eq7 and multilevel stages sections2–3 inspected, printed8715–8717; compression is separate. Original uncompressed educational implementation here, no timing reproduction."
+        },
+        {
+          "role": "reference-formula-or-scoped-context",
+          "title": "FMM3D mathematical definitions",
+          "url": "https://fmm3d.readthedocs.io/en/latest/math.html",
+          "note": "Official potential+1/(4pi r), gradient and source-self convention inspected. Our gravitational kernel is-1/r; FMM3D is not installed or run."
+        }
+      ]
+    },
+    {
+      "id": "gravity-kepler",
+      "model": "particle-gravity",
+      "kind": "analytic",
+      "title": "Unsoftened Kepler two-body time error",
+      "assumptions": "G=M=a1,e.4,masses.6/.4,epsilon0,128/256/512steps,initialCOM/P0.",
+      "formula": "E-e*sin(E)=n*t; r=a*(cos(E)-e,sqrt(1-e^2)*sin(E),0); v=a*n/(1-e*cos(E))*(-sin(E),sqrt(1-e^2)*cos(E),0).",
+      "dimension": 3,
+      "bounds": [
+        [
+          -1,
+          1
+        ],
+        [
+          -1,
+          1
+        ],
+        [
+          -1,
+          1
+        ]
+      ],
+      "components": [
+        "position",
+        "velocity"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "G": 1,
+        "masses": [
+          0.6,
+          0.4
+        ],
+        "a": 1,
+        "eccentricity": 0.4,
+        "epsilon": 0,
+        "duration": "2pi",
+        "steps": [
+          128,
+          256,
+          512
+        ]
+      },
+      "sources": [
+        "https://ssd.jpl.nasa.gov/planets/approx_pos.html",
+        "https://doi.org/10.1017/S0962492902000144"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/gravity-kepler/?lang=ja#gravity-kepler-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/gravity-kepler/?lang=en#gravity-kepler-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-gravity-dynamics/#gravity-kepler",
+        "en": "/numerical-methods-atlas/en/read/validation-gravity-dynamics/#gravity-kepler"
+      },
+      "reference_scope": "Exact fixed-parameter two-body Kepler ephemeris with independent bracketed scalar root; no planetary element fit and no softening. Fixed protocol executed successfully; per-case acceptance and independently scoped reference qualifications are retained in the scientific result.",
+      "citations": [
+        {
+          "role": "reference-formula-or-scoped-context",
+          "title": "JPL Keplerian-element formulas",
+          "url": "https://ssd.jpl.nasa.gov/planets/approx_pos.html",
+          "note": "Kepler equation and orbital-plane Cartesian conversion inspected only. No planetary fitting coefficients or approximate planetary ephemeris used. Fixed two-body positions/velocities are independently derived."
+        },
+        {
+          "role": "reference-formula-or-scoped-context",
+          "title": "Geometric numerical integration illustrated by the Störmer–Verlet method",
+          "url": "https://doi.org/10.1017/S0962492902000144",
+          "note": "Author/publisher metadata only; author PDF unavailable. KDK composition and reversibility are independently derived here; no original full-text audit or BH symplecticity claim."
+        }
+      ]
+    },
+    {
+      "id": "gravity-plummer-short",
+      "model": "particle-gravity",
+      "kind": "numerical-reference",
+      "title": "Short-time32body dynamics from a cold Plummer-density sample",
+      "assumptions": "Fixed32equal masses,antipodal truncatedr3 density-derived positions,zero velocity,epsilon.05,T.2; density scalea1 differs from pair softening.",
+      "formula": "a_i=-sum_{j!=i}G*m_j*r_ij/(r_ij^2+eps^2)^(3/2); U=-sum_{i<j}G*m_i*m_j/sqrt(r_ij^2+eps^2).",
+      "dimension": 3,
+      "bounds": [
+        [
+          -3,
+          3
+        ],
+        [
+          -3,
+          3
+        ],
+        [
+          -3,
+          3
+        ]
+      ],
+      "components": [
+        "position",
+        "velocity",
+        "acceleration"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "G": 1,
+        "particles": 32,
+        "mass": 1,
+        "density_scale": 1,
+        "pair_softening": 0.05,
+        "radial_truncation": 3,
+        "initial_velocities": "zero",
+        "final_time": 0.2,
+        "steps": [
+          20,
+          40,
+          80
+        ],
+        "theta": [
+          0,
+          0.35,
+          0.6
+        ],
+        "position_scale": 1,
+        "velocity_scale": 1
+      },
+      "sources": [
+        "https://academic.oup.com/mnras/article/71/5/460/972150",
+        "https://docs.galpy.org/en/v1.11.0/reference/potentialplummer.html",
+        "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html",
+        "https://doi.org/10.1017/S0962492902000144"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/gravity-plummer-short/?lang=ja#gravity-plummer-short-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/gravity-plummer-short/?lang=en#gravity-plummer-short-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-gravity-dynamics/#gravity-plummer-short",
+        "en": "/numerical-methods-atlas/en/read/validation-gravity-dynamics/#gravity-plummer-short"
+      },
+      "reference_scope": "Independently coded scalar pair-force+DOP853 on the same softened32body ODE,qualified at two tolerances; cold density-derived finiteN data are not equilibriumPlummer DF or exact continuum dynamics. Fixed protocol executed successfully; per-case acceptance and independently scoped reference qualifications are retained in the scientific result.",
+      "citations": [
+        {
+          "role": "reference-formula-or-scoped-context",
+          "title": "On the Problem of Distribution in Globular Star Clusters",
+          "url": "https://academic.oup.com/mnras/article/71/5/460/972150",
+          "note": "Bibliography inherited from prior scoped source review; original full text not read. The finite32-body cold initial condition is density-derived, not an equilibrium Plummer DF or exact continuum flow."
+        },
+        {
+          "role": "reference-formula-or-scoped-context",
+          "title": "galpy official Plummer potential definition",
+          "url": "https://docs.galpy.org/en/v1.11.0/reference/potentialplummer.html",
+          "note": "Official potential normalization read in preparatory source review. No galpy execution; density scale1 and pair softening.05 are distinct parameters."
+        },
+        {
+          "role": "reference-formula-or-scoped-context",
+          "title": "SciPy1.14.1 solve_ivp",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html",
+          "note": "DOP853 order8, tolerance and t_eval semantics inspected; same softened finite-N ODE with independent scalar pair force. Not an exact analytic N-body solution."
+        },
+        {
+          "role": "reference-formula-or-scoped-context",
+          "title": "Geometric numerical integration illustrated by the Störmer–Verlet method",
+          "url": "https://doi.org/10.1017/S0962492902000144",
+          "note": "Author/publisher metadata only; author PDF unavailable. KDK composition and reversibility are independently derived here; no original full-text audit or BH symplecticity claim."
+        }
+      ]
+    },
+    {
+      "id": "thermal-landau-damping",
+      "model": "vlasov-poisson",
+      "kind": "semi-analytic",
+      "title": "Warm PIC linear Landau damping",
+      "assumptions": "vth=omega_p=lambda_D=1,k.5,L4pi,alpha.01,grid32,256spatial strata×128velocity nodes,dt.04,T16,fit[4,12],seeds33001–33004. A separately evolved512-spatial-strata companion changes only particle-space resolution.",
+      "formula": "D(omega,k)=1+sum_s a_s[1+zeta_s Z(zeta_s)]/k²=0; e(t)=Phi(t)-integral_0^t s Phi(s)e(t-s)ds; Phi=exp[-(kt)²/2]cos(kut).",
+      "dimension": 1,
+      "bounds": [
+        [
+          0,
+          12.566370614359172
+        ]
+      ],
+      "components": [
+        "electron particles",
+        "electric field",
+        "charge density"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "grid": 32,
+        "spatial_strata": 256,
+        "velocity_nodes": 128,
+        "dt": 0.04,
+        "final_time": 16,
+        "k": 0.5,
+        "drift": 0,
+        "amplitude": 0.01,
+        "seeds": [
+          33001,
+          33002,
+          33003,
+          33004
+        ],
+        "fit_window": [
+          4,
+          12
+        ],
+        "reference_dt": 0.01,
+        "spatial_strata_probe": 512,
+        "actual_mean_rate": -0.15488075370071888
+      },
+      "sources": [
+        "https://arxiv.org/abs/1311.2098",
+        "https://docs.plasmapy.org/en/stable/api/plasmapy.dispersion.dispersion_functions.plasma_dispersion_func.html",
+        "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.special.roots_hermitenorm.html"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/thermal-landau-damping/?lang=ja#thermal-landau-damping-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/thermal-landau-damping/?lang=en#thermal-landau-damping-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-landau-damping",
+        "en": "/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-landau-damping"
+      },
+      "reference_scope": "Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established. Fixed-window[4,12] mean gamma−.154881, same-window linear IVP−.153648, dielectric pole−.153359 and mean frequency1.41272.256/512strata rate gap is6.63e-5|gamma|.512is a same-engine sensitivity probe at the baseline amplitude only, not an independent nonlinear engine or an alpha-order proof. Four-shift SE/nominal t intervals exclude discretization bias.",
+      "citations": [
+        {
+          "role": "selected-primary-context",
+          "title": "On the velocity space discretization for the Vlasov–Poisson system: comparison between Hermite spectral and Particle-in-Cell methods. Part 1: semi-implicit scheme",
+          "url": "https://arxiv.org/abs/1311.2098",
+          "note": "Read selected original arXiv v2 sections2 (normalized1D1V Vlasov–Poisson),4 and5.2/5.4 (recurrence/noise and linear-window distinction). No whole-paper review, copied reference table, or original-run reproduction. Our positive-weight quiet loading and two-stream inputs differ."
+        },
+        {
+          "role": "selected-primary-context",
+          "title": "Plasma dispersion function: official API mathematics",
+          "url": "https://docs.plasmapy.org/en/stable/api/plasmapy.dispersion.dispersion_functions.plasma_dispersion_func.html",
+          "note": "Read the displayed integral definition and Maxwellian dispersion role. PlasmaPy is not installed or executed; SciPy Faddeeva is used with an independently derived dielectric."
+        },
+        {
+          "role": "selected-primary-context",
+          "title": "SciPy1.14.1 roots_hermitenorm",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.special.roots_hermitenorm.html",
+          "note": "Read Gauss–Hermite normal quadrature definition, exp(-x²/2) weight and degree2n-1 polynomial exactness. Used only for positive full-f initial particle weights; no Hermite PDE time evolution."
+        }
+      ],
+      "translations": {
+        "Warm PIC linear Landau damping": "温かいPICの線形Landau減衰",
+        "vth=omega_p=lambda_D=1,k.5,L4pi,alpha.01,grid32,256spatial strata×128velocity nodes,dt.04,T16,fit[4,12],seeds33001–33004. A separately evolved512-spatial-strata companion changes only particle-space resolution.": "vth=ωp=λD=1、k=.5、L=4π、α=.01、格子32、256空間層×128速度節点、dt=.04、T16、固定窓[4,12]。シード33001–33004。 空間粒子層だけ512へ倍増する独立companionも固定します。"
+      }
+    },
+    {
+      "id": "thermal-two-stream",
+      "model": "vlasov-poisson",
+      "kind": "semi-analytic",
+      "title": "Warm PIC two-stream initial growth",
+      "assumptions": "Each stream thermal speed1,drifts±3,k.2,L10pi,alpha1e-5,grid32,64spatial strata×128total velocity nodes,dt.05,T40,fit[12,20],seeds34001–34004.",
+      "formula": "D(omega,k)=1+sum_s a_s[1+zeta_s Z(zeta_s)]/k²=0; e(t)=Phi(t)-integral_0^t s Phi(s)e(t-s)ds; Phi=exp[-(kt)²/2]cos(kut).",
+      "dimension": 1,
+      "bounds": [
+        [
+          0,
+          31.41592653589793
+        ]
+      ],
+      "components": [
+        "electron particles",
+        "electric field",
+        "charge density"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "grid": 32,
+        "spatial_strata": 64,
+        "velocity_nodes": 128,
+        "dt": 0.05,
+        "final_time": 40,
+        "k": 0.2,
+        "drift": 3,
+        "amplitude": 1e-05,
+        "seeds": [
+          34001,
+          34002,
+          34003,
+          34004
+        ],
+        "fit_window": [
+          12,
+          20
+        ],
+        "reference_dt": 0.01,
+        "actual_mean_rate": 0.27311134290987144
+      },
+      "sources": [
+        "https://arxiv.org/abs/1311.2098",
+        "https://docs.plasmapy.org/en/stable/api/plasmapy.dispersion.dispersion_functions.plasma_dispersion_func.html",
+        "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.special.roots_hermitenorm.html"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/thermal-two-stream/?lang=ja#thermal-two-stream-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/thermal-two-stream/?lang=en#thermal-two-stream-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-two-stream",
+        "en": "/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-two-stream"
+      },
+      "reference_scope": "Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established. Compare mean growth.273111 over[12,20] with the same-window IVP.273678. The reference itself has3.807%transient bias versus the asymptotic pole.284510, separately gated. The actualT40phase response is diagnostic, without a saturation-accuracy claim.",
+      "citations": [
+        {
+          "role": "selected-primary-context",
+          "title": "On the velocity space discretization for the Vlasov–Poisson system: comparison between Hermite spectral and Particle-in-Cell methods. Part 1: semi-implicit scheme",
+          "url": "https://arxiv.org/abs/1311.2098",
+          "note": "Read selected original arXiv v2 sections2 (normalized1D1V Vlasov–Poisson),4 and5.2/5.4 (recurrence/noise and linear-window distinction). No whole-paper review, copied reference table, or original-run reproduction. Our positive-weight quiet loading and two-stream inputs differ."
+        },
+        {
+          "role": "selected-primary-context",
+          "title": "Plasma dispersion function: official API mathematics",
+          "url": "https://docs.plasmapy.org/en/stable/api/plasmapy.dispersion.dispersion_functions.plasma_dispersion_func.html",
+          "note": "Read the displayed integral definition and Maxwellian dispersion role. PlasmaPy is not installed or executed; SciPy Faddeeva is used with an independently derived dielectric."
+        },
+        {
+          "role": "selected-primary-context",
+          "title": "SciPy1.14.1 roots_hermitenorm",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.special.roots_hermitenorm.html",
+          "note": "Read Gauss–Hermite normal quadrature definition, exp(-x²/2) weight and degree2n-1 polynomial exactness. Used only for positive full-f initial particle weights; no Hermite PDE time evolution."
+        }
+      ],
+      "translations": {
+        "Warm PIC two-stream initial growth": "温かいPICの二流初期成長",
+        "Each stream thermal speed1,drifts±3,k.2,L10pi,alpha1e-5,grid32,64spatial strata×128total velocity nodes,dt.05,T40,fit[12,20],seeds34001–34004.": "各流の熱速度1、ドリフト±3、k=.2、L=10π、α=1e−5、格子32、64空間層×128総速度節点、dt=.05、T40、固定窓[12,20]。シード34001–34004。"
+      }
+    },
+    {
+      "id": "pic-independent-spatial",
+      "model": "vlasov-poisson",
+      "kind": "numerical-reference",
+      "title": "Independently coded PIC spatial pipeline",
+      "assumptions": "Periodic[0,2pi],256particles,grids8/16/32,seeds35001/35002,dt.02,T.24. Uniform random positions,v=.2Normal+.1sin(x). Six pairs mean twelve separately evolved trajectories.",
+      "formula": "rho=-.5cos(2x) => E=-.25sin(2x), electron a=+.25sin(2x); independent scalar CIC + dense DFT owns its self-consistent field every kick.",
+      "dimension": 1,
+      "bounds": [
+        [
+          0,
+          6.283185307179586
+        ]
+      ],
+      "components": [
+        "electron particles",
+        "electric field",
+        "charge density"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "particles": 256,
+        "grids": [
+          8,
+          16,
+          32
+        ],
+        "dt": 0.02,
+        "final_time": 0.24,
+        "seed_count": 2,
+        "trajectories": 12
+      },
+      "sources": [
+        "https://arxiv.org/abs/1311.2098"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/pic-independent-spatial/?lang=ja#pic-independent-spatial-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/pic-independent-spatial/?lang=en#pic-independent-spatial-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-pic-spatial/#pic-independent-spatial",
+        "en": "/numerical-methods-atlas/en/read/validation-pic-spatial/#pic-independent-spatial"
+      },
+      "reference_scope": "Independent discrete spatial implementation; Independent coding check of discrete spatial operators. It does not change the time integrator/continuum model, establish continuum convergence, or reproduce the cold-plasma oscillation reference. A related supplement of cold-plasma-pic; the finite warm velocity spread is explicit.",
+      "citations": [
+        {
+          "role": "selected-primary-context",
+          "title": "On the velocity space discretization for the Vlasov–Poisson system: comparison between Hermite spectral and Particle-in-Cell methods. Part 1: semi-implicit scheme",
+          "url": "https://arxiv.org/abs/1311.2098",
+          "note": "Read selected original arXiv v2 sections2 (normalized1D1V Vlasov–Poisson),4 and5.2/5.4 (recurrence/noise and linear-window distinction). No whole-paper review, copied reference table, or original-run reproduction. Our positive-weight quiet loading and two-stream inputs differ."
+        }
+      ],
+      "translations": {
+        "Independently coded PIC spatial pipeline": "PIC空間演算の独立実装照合",
+        "Periodic[0,2pi],256particles,grids8/16/32,seeds35001/35002,dt.02,T.24. Uniform random positions,v=.2Normal+.1sin(x). Six pairs mean twelve separately evolved trajectories.": "周期[0,2π]、256粒子、格子8/16/32、シード35001/35002、dt=.02、T=.24。位置は一様乱数、v=.2 Normal+.1 sin x。6組は別々に進めた12軌道です。"
+      }
+    },
+    {
+      "id": "dsmc-couette",
+      "model": "hard-sphere-boltzmann",
+      "kind": "numerical-reference",
+      "title": "Finite-Kn hard-sphere Couette flow",
+      "assumptions": "H=2lambda0; diffuse Twalls1, tangential Uwalls+/-0.5; nonlinear viscous heating retained. All velocities3D; physical position1D. Four independent SPARTA seeds per configuration, fixed native inputs.",
+      "formula": "partial_t f+v_x partial_x f=Q_HS(f,f); sigma=pi*d^2=1/sqrt(2); lambda0=1; n,u,T,Pxx,Pxy,qx from pooled molecular moments.",
+      "dimension": 1,
+      "bounds": [
+        [
+          0,
+          2
+        ]
+      ],
+      "components": [
+        "number density",
+        "velocity3",
+        "temperature",
+        "normal/shear molecular stress",
+        "heat flux"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "m": 1,
+        "kB": 1,
+        "n0": 1,
+        "T0": 1,
+        "sigma": "1/sqrt(2)",
+        "SPARTA_commit": "1ae18f3646e7c89f86e965f0f3c13fcc5f32e399",
+        "reference_seeds": [
+          931001,
+          931002,
+          931003,
+          931004
+        ],
+        "reference_configurations": [
+          "base",
+          "fine_grid",
+          "half_dt"
+        ],
+        "primary_independent_seeds": 4,
+        "primary_t95_df": 3,
+        "reference_t95_df": 3
+      },
+      "sources": [
+        "https://github.com/sparta/sparta/tree/1ae18f3646e7c89f86e965f0f3c13fcc5f32e399",
+        "https://sparta.github.io/doc/collide.html",
+        "https://sparta.github.io/doc/surf_collide.html"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/dsmc-couette/?lang=ja#dsmc-couette-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/dsmc-couette/?lang=en#dsmc-couette-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-dsmc-wall/#dsmc-couette",
+        "en": "/numerical-methods-atlas/en/read/validation-dsmc-wall/#dsmc-couette"
+      },
+      "reference_scope": "Genuine independently evolved SPARTA HS finite-grid stochastic fields;36fixed reference runs across3cases and87qualifiers passed on the first attempt. Grid/time/seed precision and stationary block/centroid diagnostics qualified. Moment/statistical arithmetic is shared explicitly; evolution/collision/boundary implementations are independent. Empirical finite-reference qualification is not a rigorous continuum or infinite-domain bound. RH constrains far states/full fluxes,not shock interior. Primary wall packet18pytest/14runs/117gates PASS. This case uses4whole-run seeds plus separate fixed-weight grid,particle-weight and timestep companions. Four-seed t95 df3 is separate from3SE precision gates; no iid particle/time/bin inference or spatial-order claim.",
+      "citations": [
+        {
+          "role": "executed-independent-reference-implementation",
+          "title": "SPARTA official source, pinned commit1ae18f3646e7c89f86e965f0f3c13fcc5f32e399, unmodified serial mac target",
+          "url": "https://github.com/sparta/sparta/tree/1ae18f3646e7c89f86e965f0f3c13fcc5f32e399",
+          "note": "Actual selected source read: collide_vss,update constants,cell moment/flux definitions and boundary commands. Source archive/license/hash/build and all native inputs/raw outputs retained persistently; public cache and reproduction instructions provided."
+        },
+        {
+          "role": "collision-and-boundary-conventions",
+          "title": "SPARTA official collide/surf_collide/fix emit-face documentation",
+          "url": "https://sparta.github.io/doc/collide.html",
+          "note": "Read selected HS/VSS parameter relations, physical collision candidates, diffuse wall and incoming flux conventions. Bird1994 original book was not read; no full-original-book verification claim."
+        }
+      ]
+    },
+    {
+      "id": "dsmc-fourier",
+      "model": "hard-sphere-boltzmann",
+      "kind": "numerical-reference",
+      "title": "Finite-Kn hard-sphere Fourier heat conduction",
+      "assumptions": "H=2lambda0; diffuse Tleft1,Tright2; fixed walls; no continuum linear-temperature reference. All velocities3D; physical position1D. Four independent SPARTA seeds per configuration, fixed native inputs.",
+      "formula": "partial_t f+v_x partial_x f=Q_HS(f,f); sigma=pi*d^2=1/sqrt(2); lambda0=1; n,u,T,Pxx,Pxy,qx from pooled molecular moments.",
+      "dimension": 1,
+      "bounds": [
+        [
+          0,
+          2
+        ]
+      ],
+      "components": [
+        "number density",
+        "velocity3",
+        "temperature",
+        "normal/shear molecular stress",
+        "heat flux"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "m": 1,
+        "kB": 1,
+        "n0": 1,
+        "T0": 1,
+        "sigma": "1/sqrt(2)",
+        "SPARTA_commit": "1ae18f3646e7c89f86e965f0f3c13fcc5f32e399",
+        "reference_seeds": [
+          931001,
+          931002,
+          931003,
+          931004
+        ],
+        "reference_configurations": [
+          "base",
+          "fine_grid",
+          "half_dt"
+        ],
+        "primary_independent_seeds": 4,
+        "primary_t95_df": 3,
+        "reference_t95_df": 3
+      },
+      "sources": [
+        "https://github.com/sparta/sparta/tree/1ae18f3646e7c89f86e965f0f3c13fcc5f32e399",
+        "https://sparta.github.io/doc/collide.html",
+        "https://sparta.github.io/doc/surf_collide.html"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/dsmc-fourier/?lang=ja#dsmc-fourier-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/dsmc-fourier/?lang=en#dsmc-fourier-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-dsmc-wall/#dsmc-fourier",
+        "en": "/numerical-methods-atlas/en/read/validation-dsmc-wall/#dsmc-fourier"
+      },
+      "reference_scope": "Genuine independently evolved SPARTA HS finite-grid stochastic fields;36fixed reference runs across3cases and87qualifiers passed on the first attempt. Grid/time/seed precision and stationary block/centroid diagnostics qualified. Moment/statistical arithmetic is shared explicitly; evolution/collision/boundary implementations are independent. Empirical finite-reference qualification is not a rigorous continuum or infinite-domain bound. RH constrains far states/full fluxes,not shock interior. Primary wall packet18pytest/14runs/117gates PASS. This case uses4whole-run seeds plus separate fixed-weight grid,particle-weight and timestep companions. Four-seed t95 df3 is separate from3SE precision gates; no iid particle/time/bin inference or spatial-order claim.",
+      "citations": [
+        {
+          "role": "executed-independent-reference-implementation",
+          "title": "SPARTA official source, pinned commit1ae18f3646e7c89f86e965f0f3c13fcc5f32e399, unmodified serial mac target",
+          "url": "https://github.com/sparta/sparta/tree/1ae18f3646e7c89f86e965f0f3c13fcc5f32e399",
+          "note": "Actual selected source read: collide_vss,update constants,cell moment/flux definitions and boundary commands. Source archive/license/hash/build and all native inputs/raw outputs retained persistently; public cache and reproduction instructions provided."
+        },
+        {
+          "role": "collision-and-boundary-conventions",
+          "title": "SPARTA official collide/surf_collide/fix emit-face documentation",
+          "url": "https://sparta.github.io/doc/collide.html",
+          "note": "Read selected HS/VSS parameter relations, physical collision candidates, diffuse wall and incoming flux conventions. Bird1994 original book was not read; no full-original-book verification claim."
+        }
+      ]
+    },
+    {
+      "id": "dsmc-planar-shock",
+      "model": "hard-sphere-boltzmann",
+      "kind": "numerical-reference",
+      "title": "Mach2 planar hard-sphere shock",
+      "assumptions": "Monatomic gamma5/3,M1=2, RH inflow/outflow reservoirs at x0/16. Reference lambda2/lambda1=7/16; no profile shifting or shock pinning. All velocities3D; physical position1D. Four independent SPARTA seeds per configuration, fixed native inputs.",
+      "formula": "partial_t f+v_x partial_x f=Q_HS(f,f); sigma=pi*d^2=1/sqrt(2); lambda0=1; n,u,T,Pxx,Pxy,qx from pooled molecular moments.",
+      "dimension": 1,
+      "bounds": [
+        [
+          0,
+          16
+        ]
+      ],
+      "components": [
+        "number density",
+        "velocity3",
+        "temperature",
+        "normal/shear molecular stress",
+        "heat flux"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "m": 1,
+        "kB": 1,
+        "n0": 1,
+        "T0": 1,
+        "sigma": "1/sqrt(2)",
+        "SPARTA_commit": "1ae18f3646e7c89f86e965f0f3c13fcc5f32e399",
+        "reference_seeds": [
+          931001,
+          931002,
+          931003,
+          931004
+        ],
+        "reference_configurations": [
+          "base",
+          "fine_grid",
+          "half_dt"
+        ],
+        "primary_independent_seeds": 12,
+        "primary_t95_df": 11,
+        "reference_t95_df": 3
+      },
+      "sources": [
+        "https://github.com/sparta/sparta/tree/1ae18f3646e7c89f86e965f0f3c13fcc5f32e399",
+        "https://sparta.github.io/doc/collide.html",
+        "https://sparta.github.io/doc/surf_collide.html"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=ja#dsmc-planar-shock-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=en#dsmc-planar-shock-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-dsmc-shock/#dsmc-planar-shock",
+        "en": "/numerical-methods-atlas/en/read/validation-dsmc-shock/#dsmc-planar-shock"
+      },
+      "reference_scope": "Genuine independently evolved SPARTA HS finite-grid stochastic fields;36fixed reference runs across3cases and87qualifiers passed on the first attempt. Grid/time/seed precision and stationary block/centroid diagnostics qualified. Moment/statistical arithmetic is shared explicitly; evolution/collision/boundary implementations are independent. Empirical finite-reference qualification is not a rigorous continuum or infinite-domain bound. RH constrains far states/full fluxes,not shock interior. Primary R3 retains the original4seed labels and adds the next8,12independent runs plus3separate companions.20pytest/15runs/129gates PASS under unchanged numeric criteria; both earlier failed full attempts retained. Uniform-permutation/stable-cell matching has the same ideal pair law,not bit-identical RNG trajectories. Unbiased rounded macro arrivals reduce sampling variance; Poisson number statistics and thermodynamic fluctuations are outside scope. Primary t95 df11 and reference4seed df3 are descriptive intervals,not global adaptive95%coverage.",
+      "citations": [
+        {
+          "role": "executed-independent-reference-implementation",
+          "title": "SPARTA official source, pinned commit1ae18f3646e7c89f86e965f0f3c13fcc5f32e399, unmodified serial mac target",
+          "url": "https://github.com/sparta/sparta/tree/1ae18f3646e7c89f86e965f0f3c13fcc5f32e399",
+          "note": "Actual selected source read: collide_vss,update constants,cell moment/flux definitions and boundary commands. Source archive/license/hash/build and all native inputs/raw outputs retained persistently; public cache and reproduction instructions provided."
+        },
+        {
+          "role": "collision-and-boundary-conventions",
+          "title": "SPARTA official collide/surf_collide/fix emit-face documentation",
+          "url": "https://sparta.github.io/doc/collide.html",
+          "note": "Read selected HS/VSS parameter relations, physical collision candidates, diffuse wall and incoming flux conventions. Bird1994 original book was not read; no full-original-book verification claim."
+        }
+      ]
     }
   ]
 }

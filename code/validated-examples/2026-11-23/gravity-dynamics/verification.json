@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "group": "gravity-dynamics",
+  "edition": "2026-11-23",
+  "verified_on": "2026-11-23",
+  "source_manifest_sha256": "ac07fb7bbb54a8f5ac7e20ceb9ea2ecdbc7ca2fd6d524072f609ef52ee79655b",
+  "archive": {
+    "file": "atlas-gravity-dynamics-2026-11-23.zip",
+    "sha256": "47f1a4bdb8a6a5fdac82e66ffbe8b32c59242ffb7f9f05b418a37bd5913ffacd",
+    "bytes": 1859597,
+    "archive_directory": "atlas-gravity-dynamics-2026-11-23"
+  },
+  "archive_sha256": "47f1a4bdb8a6a5fdac82e66ffbe8b32c59242ffb7f9f05b418a37bd5913ffacd",
+  "returncode": 0,
+  "passed_tests": 18,
+  "tests": 18,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "gravity-kepler",
+    "gravity-plummer-short"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 3.7753058329981286,
+  "independent_rerun_seconds": 3.7139535000023898,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

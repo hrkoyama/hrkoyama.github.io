@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "group": "fmm3d",
+  "edition": "2026-11-23",
+  "verified_on": "2026-11-23",
+  "source_manifest_sha256": "bc624983d4b0480538aa873ff2a867491e4384d25ea39930b5bb948b98e59c89",
+  "archive": {
+    "file": "atlas-fmm3d-2026-11-23.zip",
+    "sha256": "61861fb2a1d24437175710a09c4afdc934aab49c1c2f2e3e14b5a3c2d466b59c",
+    "bytes": 443874,
+    "archive_directory": "atlas-fmm3d-2026-11-23"
+  },
+  "archive_sha256": "61861fb2a1d24437175710a09c4afdc934aab49c1c2f2e3e14b5a3c2d466b59c",
+  "returncode": 0,
+  "passed_tests": 19,
+  "tests": 19,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "fmm3d-inverse-r"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 13.35829762499634,
+  "independent_rerun_seconds": 13.554224250001425,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

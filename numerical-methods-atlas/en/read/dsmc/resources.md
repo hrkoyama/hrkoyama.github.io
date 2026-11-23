@@ -32,6 +32,18 @@ No chapter-specific association is registered. Atlas-wide index: [Exact and refe
   availability: run
 
   Distinguish finite-particle equilibrium from the Maxwell limit; compare independent sphere samples, analytic anisotropy decay and across-seed uncertainty.
+- [Hard-sphere DSMC finite-Kn Couette flow](<https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-couette/?lang=en>)
+  availability: run
+
+  Evolve physical-time hard-sphere collisions and molecular streaming; compare actual moments with qualified independent SPARTA fields.
+- [Hard-sphere DSMC finite-Kn Fourier heat conduction](<https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-fourier/?lang=en>)
+  availability: run
+
+  Evolve physical-time hard-sphere collisions and molecular streaming; compare actual moments with qualified independent SPARTA fields.
+- [Hard-sphere DSMC Mach2 planar shock](<https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=en>)
+  availability: run
+
+  Evolve physical-time hard-sphere collisions and molecular streaming; compare actual moments with qualified independent SPARTA fields.
 - [DSMC and kinetic transport — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/dsmc/?lang=en#method-execution-en>)
   availability: source
 

@@ -2,11 +2,11 @@
 
 Status: educational-example
 
-A second-order reversible symplectic method using half kick, drift and half kick for position-dependent forces. Released unit-mass harmonic/quartic oscillators illustrate why energy error and geometric structure preservation are different properties.
+Existing releases: A second-order reversible symplectic method using half kick, drift and half kick for position-dependent forces. Released unit-mass harmonic/quartic oscillators illustrate why energy error and geometric structure preservation are different properties. Additional fixed examples: Unsoftened Kepler two-body time error, Short-time32body dynamics from a cold Plummer-density sample. See each release for assumptions and checked scope. Additional fixed examples: Warm PIC linear Landau damping, Warm PIC two-stream initial growth. See each release for assumptions and checked scope. Additional fixed examples: Independently coded PIC spatial pipeline. See each release for assumptions and checked scope.
 
-位置だけに依存する力を、半分のkick・drift・半分のkickで進める2次の可逆・シンプレクティック法。公開例は単位質量の調和/四次振動子で、エネルギー誤差と構造保存が同じでないことを確かめる。
+既存配布版：位置だけに依存する力を、半分のkick・drift・半分のkickで進める2次の可逆・シンプレクティック法。公開例は単位質量の調和/四次振動子で、エネルギー誤差と構造保存が同じでないことを確かめる。 追加固定例：無軟化Kepler二体の時間誤差、冷たいPlummer密度由来32粒子の短時間力学。条件と検証範囲は各配布版で確認してください。 追加固定例：温かいPICの線形Landau減衰、温かいPICの二流初期成長。条件と検証範囲は各配布版で確認してください。 追加固定例：PIC空間演算の独立実装照合。条件と検証範囲は各配布版で確認してください。
 
-The original Hamiltonian is not exactly preserved at each step. A symplectic map can still be unstable at large steps; for the ω=1 harmonic oscillator, |h|<2 is the interior stability interval. Velocity-dependent forces, friction/thermostats, constraints, generic variable steps and nonseparable Hamiltonians require different treatment. This function is not a general molecular-dynamics solver.
+Limits of existing releases: The original Hamiltonian is not exactly preserved at each step. A symplectic map can still be unstable at large steps; for the ω=1 harmonic oscillator, |h|<2 is the interior stability interval. Velocity-dependent forces, friction/thermostats, constraints, generic variable steps and nonseparable Hamiltonians require different treatment. This function is not a general molecular-dynamics solver. Additional fixed examples: One orbit at fixed eccentricity only; softened binaries and long-time behavior are outside this exact reference. Cold finite-N initial value,not an equilibrium Plummer DF or exact continuum orbit. No general BH reciprocity/global symplecticity claim. Additional fixed examples: Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established. Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established. Additional fixed examples: Independent coding check of discrete spatial operators. It does not change the time integrator/continuum model, establish continuum convergence, or reproduce the cold-plasma oscillation reference. A related supplement of cold-plasma-pic; the finite warm velocity spread is explicit.
 
 Other names: Verlet法, ベルレ法, 速度ベルレ法, velocity Verlet, particle leapfrog
 
@@ -40,7 +40,7 @@ boundary_conditions [not-applicable]:
 有限次元の振動子写像で境界の入力はない。
 
 limitations [specified]:
-元のHamiltonianを各ステップで厳密保存するわけではない。シンプレクティックでも大刻みは不安定になり得て、ω=1の調和振動子では|h|<2が安定域の内部。速度依存力、摩擦・サーモスタット、拘束、一般の可変刻みや非分離Hamiltonianでは、同じ性質をそのまま保証できない。公開関数は一般分子動力学solverではない。
+既存配布版の制約：元のHamiltonianを各ステップで厳密保存するわけではない。シンプレクティックでも大刻みは不安定になり得て、ω=1の調和振動子では|h|<2が安定域の内部。速度依存力、摩擦・サーモスタット、拘束、一般の可変刻みや非分離Hamiltonianでは、同じ性質をそのまま保証できない。公開関数は一般分子動力学solverではない。 今回の追加固定例：1周期・固定離心率のみ。軟化軌道や長時間安定性はこの参照の範囲外。 冷たい有限N初期値で平衡Plummer分布/連続球厳密軌道ではありません。BHの一般相反性・大域symplectic性は主張しません。 今回の追加固定例：1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。 1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。 今回の追加固定例：離散演算の独立したコーディング照合です。時間積分法や連続方程式を変えた独立エンジン、連続極限の収束、冷たいプラズマの振動参照の再現を意味しません。既存cold-plasma-picの関連補助検証として扱い、温かい初期速度の軌道を冷たい解と同一視しません。
 エネルギー誤差、写像の構造、刻みの安定性を分離。
 
 Review: hamiltonian.pyの_gradient・_verlet・canonical_step・trajectoryを読んだ。既存test_hamiltonian.pyの2次収束、Jacobianのシンプレクティック条件、逆時間、元エネルギーの非厳密保存、大刻み不安定を確認。今回の再実行なし。
@@ -90,7 +90,7 @@ Spatial boundary conditions do not apply to this oscillator phase-space map. It 
 The finite-dimensional oscillator map has no boundary input.
 
 limitations [specified]:
-The original Hamiltonian is not exactly preserved at each step. A symplectic map can still be unstable at large steps; for the ω=1 harmonic oscillator, |h|<2 is the interior stability interval. Velocity-dependent forces, friction/thermostats, constraints, generic variable steps and nonseparable Hamiltonians require different treatment. This function is not a general molecular-dynamics solver.
+Limits of existing releases: The original Hamiltonian is not exactly preserved at each step. A symplectic map can still be unstable at large steps; for the ω=1 harmonic oscillator, |h|<2 is the interior stability interval. Velocity-dependent forces, friction/thermostats, constraints, generic variable steps and nonseparable Hamiltonians require different treatment. This function is not a general molecular-dynamics solver. Additional fixed examples: One orbit at fixed eccentricity only; softened binaries and long-time behavior are outside this exact reference. Cold finite-N initial value,not an equilibrium Plummer DF or exact continuum orbit. No general BH reciprocity/global symplecticity claim. Additional fixed examples: Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established. Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established. Additional fixed examples: Independent coding check of discrete spatial operators. It does not change the time integrator/continuum model, establish continuum convergence, or reproduce the cold-plasma oscillation reference. A related supplement of cold-plasma-pic; the finite warm velocity spread is explicit.
 Separates energy error, map geometry and step stability.
 
 Review: Read _gradient, _verlet, canonical_step and trajectory in hamiltonian.py. Inspected existing tests for second-order convergence, the Jacobian symplectic condition, time reversal, non-exact original energy conservation and large-step instability. No rerun was performed.
@@ -120,7 +120,33 @@ References:
 - Reference: https://doi.org/10.1103/PhysRev.159.98 — Original position-Verlet recurrence in molecular dynamics. The atlas implements its kick–drift–kick phase-space form for a unit-mass oscillator, not the paper's Lennard-Jones simulation.
 - Reference: https://doi.org/10.1017/S0962492902000144 — Research exposition of the method's reversibility, symplecticity and long-time behaviour; no claim that all constrained/manifold extensions are implemented.
 
-Common execution records: [{"id": "harmonic-oscillator", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#harmonic-oscillator-ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#harmonic-oscillator-en"}}]
+## Small fixed-input validation supplements
+
+Additional fixed examples: Unsoftened Kepler two-body time error, Short-time32body dynamics from a cold Plummer-density sample. See each release for assumptions and checked scope. Additional fixed examples: Warm PIC linear Landau damping, Warm PIC two-stream initial growth. See each release for assumptions and checked scope. Additional fixed examples: Independently coded PIC spatial pipeline. See each release for assumptions and checked scope.
+
+追加固定例：無軟化Kepler二体の時間誤差、冷たいPlummer密度由来32粒子の短時間力学。条件と検証範囲は各配布版で確認してください。 追加固定例：温かいPICの線形Landau減衰、温かいPICの二流初期成長。条件と検証範囲は各配布版で確認してください。 追加固定例：PIC空間演算の独立実装照合。条件と検証範囲は各配布版で確認してください。
+
+- Unsoftened Kepler two-body time error: https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-kepler/
+- Short-time32body dynamics from a cold Plummer-density sample: https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-plummer-short/
+
+Download: https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/atlas-gravity-dynamics-2026-11-23.zip
+Verification: https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/verification.json
+Results: https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/results/result.json
+
+- Warm PIC linear Landau damping: https://hrkoyama.github.io/numerical-methods-atlas/validation/thermal-landau-damping/
+- Warm PIC two-stream initial growth: https://hrkoyama.github.io/numerical-methods-atlas/validation/thermal-two-stream/
+
+Download: https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/atlas-warm-pic-2026-11-23.zip
+Verification: https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/verification.json
+Results: https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/results/result.json
+
+- Independently coded PIC spatial pipeline: https://hrkoyama.github.io/numerical-methods-atlas/validation/pic-independent-spatial/
+
+Download: https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/atlas-pic-spatial-2026-11-23.zip
+Verification: https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/verification.json
+Results: https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/results/result.json
+
+Common execution records: [{"id": "harmonic-oscillator", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#harmonic-oscillator-ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#harmonic-oscillator-en"}}, {"id": "gravity-kepler", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-kepler/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-kepler/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "gravity-plummer-short", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-plummer-short/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-plummer-short/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "thermal-landau-damping", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/thermal-landau-damping/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/thermal-landau-damping/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "thermal-two-stream", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/thermal-two-stream/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/thermal-two-stream/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "pic-independent-spatial", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pic-independent-spatial/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pic-independent-spatial/?lang=en"}, "kind": "dedicated-supplement"}]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/methods/verlet/
 Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/
@@ -134,6 +160,9 @@ Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-d
 問題から導かれた対応です。検証範囲は各問題の入力・境界条件に従います。
 
 - [Hamilton系・振動子](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#hamiltonian-ja) (`hamiltonian`; harmonic-oscillator, quartic-oscillator)
+- [Poisson・Laplace方程式](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#poisson-laplace-ja) (`poisson-laplace`; cold-plasma-pic)
+- [静電Vlasov–Poisson方程式](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#vlasov-poisson-ja) (`vlasov-poisson`; cold-plasma-pic, thermal-landau-damping, thermal-two-stream)
+- [重力粒子モデル](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#particle-gravity-ja) (`particle-gravity`; gravity-kepler, gravity-plummer-short)
 
 #### 問題の図 (`method-problems-ja`)
 
@@ -159,6 +188,66 @@ Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-d
 
 この手法でこの問題を解く固定入力実行例は未登録です。
 
+##### [CIC静電PICの冷たいプラズマ振動](https://hrkoyama.github.io/numerical-methods-atlas/problems/cold-plasma-pic/?lang=ja) (`cold-plasma-pic`)
+
+![1次元周期・振幅0.001の冷たい電子プラズマ。CIC静電PICの変位モードとcos(t)、別々の格子・時間刻み走査の保存誤差を表示。](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/pic.png)
+
+この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。
+
+[この問題の参照・検証資料](https://hrkoyama.github.io/numerical-methods-atlas/problems/cold-plasma-pic/?lang=ja#references-ja) · [この問題のコード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/cold-plasma-pic/?lang=ja#code-ja)
+
+- [PIC空間演算の独立実装照合](https://hrkoyama.github.io/numerical-methods-atlas/validation/pic-independent-spatial/?lang=ja) (`pic-independent-spatial`) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/atlas-pic-spatial-2026-11-23.zip)
+
+ベクトル化CIC/FFTと、別に書いた粒子ループCIC・密なDFTを、それぞれが自己無撞着な場を毎kick計算する軌道全体で照合します。
+
+##### [無軟化Kepler二体の時間誤差](https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-kepler/?lang=ja) (`gravity-kepler`)
+
+![固定入力を実際に計算した保存配列からの検証図。](https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-kepler-preview.png)
+
+位置のみの力でkick半分→drift→kick半分。独立のbracketed Kepler rootと解析速度を使用。
+
+[この問題の参照・検証資料](https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-kepler/?lang=ja#references-ja) · [この問題のコード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-kepler/?lang=ja#code-ja)
+
+- [無軟化Kepler二体の時間誤差](https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-kepler/?lang=ja) (`gravity-kepler`) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/atlas-gravity-dynamics-2026-11-23.zip)
+
+非等質量二体をKDKで1周し、独立Kepler方程式の位置・速度とエネルギー/角運動量を照合。
+
+##### [冷たいPlummer密度由来32粒子の短時間力学](https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-plummer-short/?lang=ja) (`gravity-plummer-short`)
+
+![固定入力を実際に計算した保存配列からの検証図。](https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-plummer-short-preview.png)
+
+直接KDK20/40/80steps、最細でtheta0/.35/.6のfull second-moment BH。独立scalar対力+DOP853を2許容値で資格確認。
+
+[この問題の参照・検証資料](https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-plummer-short/?lang=ja#references-ja) · [この問題のコード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-plummer-short/?lang=ja#code-ja)
+
+- [冷たいPlummer密度由来32粒子の短時間力学](https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-plummer-short/?lang=ja) (`gravity-plummer-short`) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/atlas-gravity-dynamics-2026-11-23.zip)
+
+同じ軟化有限N ODEで時間誤差と木近似誤差を分け、独立DOP853・直接力と収支を比較。
+
+##### [温かいPICの線形Landau減衰](https://hrkoyama.github.io/numerical-methods-atlas/problems/thermal-landau-damping/?lang=ja) (`thermal-landau-damping`)
+
+![実際に動かした粒子の初期(x,v)に対する速度変化δv/α。空間2D流体図ではなく1D1V位相空間の応答です。](https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/results/thermal-landau-damping-preview.png)
+
+正のGauss速度重みと密度CDF逆写像で共同(x,v)分布を作り、CIC電荷配置→FFT Poisson→同じCIC補間を各kickで再計算するvelocity-Verlet法。Z関数の分散根を枝追跡で確認し、別導出のVolterra初期値問題を刻み半減して固定窓の過渡偏りを検査します。
+
+[この問題の参照・検証資料](https://hrkoyama.github.io/numerical-methods-atlas/problems/thermal-landau-damping/?lang=ja#references-ja) · [この問題のコード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/thermal-landau-damping/?lang=ja#code-ja)
+
+- [温かいPICの線形Landau減衰](https://hrkoyama.github.io/numerical-methods-atlas/validation/thermal-landau-damping/?lang=ja) (`thermal-landau-damping`) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/atlas-warm-pic-2026-11-23.zip)
+
+熱速度1のMaxwell分布を自己無撞着に動かし、減衰率・周波数・符号付き場の履歴を独立した線形参照で調べます。
+
+##### [温かいPICの二流初期成長](https://hrkoyama.github.io/numerical-methods-atlas/problems/thermal-two-stream/?lang=ja) (`thermal-two-stream`)
+
+![実粒子のT40での速度変化δv/αを初期(x,v)に表示。1D1V位相空間の後期診断で、成長率を検証する固定窓\[12,20\]とは分けます。](https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/results/thermal-two-stream-preview.png)
+
+正のGauss速度重みと密度CDF逆写像で共同(x,v)分布を作り、CIC電荷配置→FFT Poisson→同じCIC補間を各kickで再計算するvelocity-Verlet法。Z関数の分散根を枝追跡で確認し、別導出のVolterra初期値問題を刻み半減して固定窓の過渡偏りを検査します。
+
+[この問題の参照・検証資料](https://hrkoyama.github.io/numerical-methods-atlas/problems/thermal-two-stream/?lang=ja#references-ja) · [この問題のコード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/thermal-two-stream/?lang=ja#code-ja)
+
+- [温かいPICの二流初期成長](https://hrkoyama.github.io/numerical-methods-atlas/validation/thermal-two-stream/?lang=ja) (`thermal-two-stream`) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/atlas-warm-pic-2026-11-23.zip)
+
+温度を持つ対向Maxwell二流を時間発展し、固定した線形窓の成長率と過渡を分散式・Volterra参照から分けて検査します。
+
 
 #### 厳密解・参照解 (`method-references-ja`)
 
@@ -169,6 +258,46 @@ Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-d
 ##### [4次ポテンシャルの非線形振動子](https://hrkoyama.github.io/numerical-methods-atlas/problems/quartic-oscillator/?lang=ja#references-ja) (`quartic-oscillator`)
 
 参照解一覧の対応カードは未登録です。問題ごとの参照・検証資料に、解析的基準・数値参照・保存則などの確認範囲を示します。
+
+##### [CIC静電PICの冷たいプラズマ振動](https://hrkoyama.github.io/numerical-methods-atlas/problems/cold-plasma-pic/?lang=ja#references-ja) (`cold-plasma-pic`)
+
+- [PIC空間演算の独立実装照合](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-pic-independent-spatial-ja) (`pic-independent-spatial`; 関連モデルの参照; 有限格子の数値参照)
+
+周期[0,2π]、256粒子、格子8/16/32、シード35001/35002、dt=.02、T=.24。位置は一様乱数、v=.2 Normal+.1 sin x。6組は別々に進めた12軌道です。
+
+[既存の参照図](/numerical-methods-atlas/validation/pic-independent-spatial/?lang=ja#pic-independent-spatial-ja-measurements)
+
+##### [無軟化Kepler二体の時間誤差](https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-kepler/?lang=ja#references-ja) (`gravity-kepler`)
+
+- [無軟化Kepler二体の時間誤差](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-gravity-kepler-ja) (`gravity-kepler`; 同じ問題の参照; 解析参照)
+
+1周期・固定離心率のみ。軟化軌道や長時間安定性はこの参照の範囲外。
+
+[既存の参照図](/numerical-methods-atlas/validation/gravity-kepler/?lang=ja#gravity-kepler-ja-measurements)
+
+##### [冷たいPlummer密度由来32粒子の短時間力学](https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-plummer-short/?lang=ja#references-ja) (`gravity-plummer-short`)
+
+- [冷たいPlummer密度由来32粒子の短時間力学](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-gravity-plummer-short-ja) (`gravity-plummer-short`; 同じ問題の参照; 有限格子の数値参照)
+
+冷たい有限N初期値で平衡Plummer分布/連続球厳密軌道ではありません。BHの一般相反性・大域symplectic性は主張しません。
+
+[既存の参照図](/numerical-methods-atlas/validation/gravity-plummer-short/?lang=ja#gravity-plummer-short-ja-measurements)
+
+##### [温かいPICの線形Landau減衰](https://hrkoyama.github.io/numerical-methods-atlas/problems/thermal-landau-damping/?lang=ja#references-ja) (`thermal-landau-damping`)
+
+- [温かいPICの線形Landau減衰](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-thermal-landau-damping-ja) (`thermal-landau-damping`; 同じ問題の参照; 半解析参照)
+
+1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。
+
+[既存の参照図](/numerical-methods-atlas/validation/thermal-landau-damping/?lang=ja#thermal-landau-damping-ja-measurements)
+
+##### [温かいPICの二流初期成長](https://hrkoyama.github.io/numerical-methods-atlas/problems/thermal-two-stream/?lang=ja#references-ja) (`thermal-two-stream`)
+
+- [温かいPICの二流初期成長](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-thermal-two-stream-ja) (`thermal-two-stream`; 同じ問題の参照; 半解析参照)
+
+1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。
+
+[既存の参照図](/numerical-methods-atlas/validation/thermal-two-stream/?lang=ja#thermal-two-stream-ja-measurements)
 
 ##### 手法の解説・独立参照・保存結果
 
@@ -191,21 +320,90 @@ Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-d
 
 既存の単位質量・単位角振動数の調和振動子をvelocity Verletで進める。20時間単位、200/400/800刻みの解析解比較、元のエネルギー偏差、時間反転を出力。
 
+##### PIC空間演算の独立実装照合 (`pic-independent-spatial`)
+
+[CIC静電PICの冷たいプラズマ振動](https://hrkoyama.github.io/numerical-methods-atlas/problems/cold-plasma-pic/?lang=ja) · [実行・検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/pic-independent-spatial/?lang=ja) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/atlas-pic-spatial-2026-11-23.zip)
+
+[固定入力](https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/inputs.json)
+
+[検証記録](https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/verification.json)
+
+ベクトル化CIC/FFTと、別に書いた粒子ループCIC・密なDFTを、それぞれが自己無撞着な場を毎kick計算する軌道全体で照合します。
+
+##### 無軟化Kepler二体の時間誤差 (`gravity-kepler`)
+
+[無軟化Kepler二体の時間誤差](https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-kepler/?lang=ja) · [実行・検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-kepler/?lang=ja) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/atlas-gravity-dynamics-2026-11-23.zip)
+
+[固定入力](https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/inputs.json)
+
+[検証記録](https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/verification.json)
+
+非等質量二体をKDKで1周し、独立Kepler方程式の位置・速度とエネルギー/角運動量を照合。
+
+##### 冷たいPlummer密度由来32粒子の短時間力学 (`gravity-plummer-short`)
+
+[冷たいPlummer密度由来32粒子の短時間力学](https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-plummer-short/?lang=ja) · [実行・検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-plummer-short/?lang=ja) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/atlas-gravity-dynamics-2026-11-23.zip)
+
+[固定入力](https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/inputs.json)
+
+[検証記録](https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/verification.json)
+
+同じ軟化有限N ODEで時間誤差と木近似誤差を分け、独立DOP853・直接力と収支を比較。
+
+##### 温かいPICの線形Landau減衰 (`thermal-landau-damping`)
+
+[温かいPICの線形Landau減衰](https://hrkoyama.github.io/numerical-methods-atlas/problems/thermal-landau-damping/?lang=ja) · [実行・検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/thermal-landau-damping/?lang=ja) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/atlas-warm-pic-2026-11-23.zip)
+
+[固定入力](https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/inputs.json)
+
+[検証記録](https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/verification.json)
+
+熱速度1のMaxwell分布を自己無撞着に動かし、減衰率・周波数・符号付き場の履歴を独立した線形参照で調べます。
+
+##### 温かいPICの二流初期成長 (`thermal-two-stream`)
+
+[温かいPICの二流初期成長](https://hrkoyama.github.io/numerical-methods-atlas/problems/thermal-two-stream/?lang=ja) · [実行・検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/thermal-two-stream/?lang=ja) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/atlas-warm-pic-2026-11-23.zip)
+
+[固定入力](https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/inputs.json)
+
+[検証記録](https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/verification.json)
+
+温度を持つ対向Maxwell二流を時間発展し、固定した線形窓の成長率と過渡を分散式・Volterra参照から分けて検査します。
+
 ##### 既存の配布版・関連ソースと検査
 
 共用モジュールや配布版全体の検査を含み、すべてが個々の問題専用とは限りません。
 
-Related chapter modules and test files; not a claim that each test covers every named method.
+追加固定例：無軟化Kepler二体の時間誤差、冷たいPlummer密度由来32粒子の短時間力学。条件と検証範囲は各配布版で確認してください。 追加固定例：温かいPICの線形Landau減衰、温かいPICの二流初期成長。条件と検証範囲は各配布版で確認してください。 追加固定例：PIC空間演算の独立実装照合。条件と検証範囲は各配布版で確認してください。
+
+Scoped fixed-input examples; original method variants and earlier releases remain distinct.
 
 [対応する配布版 / ZIP](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/atlas-code-2026-11-21.zip)
 
 ###### 関連ソース
 
 - [/code/numerical-methods-atlas/2026-11-21/numart/hamiltonian.py](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/hamiltonian.py)
+- [/code/validated-examples/2026-11-23/gravity-dynamics/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/run.py)
+- [/code/validated-examples/2026-11-23/gravity-dynamics/dynamics.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/dynamics.py)
+- [/code/validated-examples/2026-11-23/gravity-dynamics/references/exact.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/references/exact.py)
+- [/code/validated-examples/2026-11-23/gravity-dynamics/experiments.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/experiments.py)
+- [/code/validated-examples/2026-11-23/gravity-dynamics/protocol.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/protocol.py)
+- [/code/validated-examples/2026-11-23/warm-pic/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/run.py)
+- [/code/validated-examples/2026-11-23/warm-pic/primary.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/primary.py)
+- [/code/validated-examples/2026-11-23/warm-pic/loading.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/loading.py)
+- [/code/validated-examples/2026-11-23/warm-pic/references/linear.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/references/linear.py)
+- [/code/validated-examples/2026-11-23/warm-pic/references/estimate.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/references/estimate.py)
+- [/code/validated-examples/2026-11-23/warm-pic/experiments.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/experiments.py)
+- [/code/validated-examples/2026-11-23/pic-spatial/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/run.py)
+- [/code/validated-examples/2026-11-23/pic-spatial/primary.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/primary.py)
+- [/code/validated-examples/2026-11-23/pic-spatial/references/scalar_pic.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/references/scalar_pic.py)
 
 ###### 配布版のテスト
 
 - [/code/numerical-methods-atlas/2026-11-21/tests/test_hamiltonian.py](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_hamiltonian.py)
+- [/code/validated-examples/2026-11-23/gravity-dynamics/test_dynamics.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/test_dynamics.py)
+- [/code/validated-examples/2026-11-23/warm-pic/test_pic.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/test_pic.py)
+- [/code/validated-examples/2026-11-23/pic-spatial/test_spatial.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/test_spatial.py)
 
 配布版の案内で条件と作業フォルダを確認してください。複数例の検査や図生成を含む場合があります。
 
@@ -221,6 +419,9 @@ python -m pytest -q tests/test_hamiltonian.py
 These links are derived through associated problems; checked scope follows their inputs and boundaries.
 
 - [Hamiltonian systems and oscillators](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#hamiltonian-en) (`hamiltonian`; harmonic-oscillator, quartic-oscillator)
+- [Poisson / Laplace equations](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#poisson-laplace-en) (`poisson-laplace`; cold-plasma-pic)
+- [Electrostatic Vlasov–Poisson equations](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#vlasov-poisson-en) (`vlasov-poisson`; cold-plasma-pic, thermal-landau-damping, thermal-two-stream)
+- [Gravitational particle model](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#particle-gravity-en) (`particle-gravity`; gravity-kepler, gravity-plummer-short)
 
 #### Problem figures (`method-problems-en`)
 
@@ -246,6 +447,66 @@ Methods used by this problem’s stored comparison data or corresponding public 
 
 No fixed-input execution of this problem is registered for this method.
 
+##### [Cold-plasma oscillation with electrostatic CIC PIC](https://hrkoyama.github.io/numerical-methods-atlas/problems/cold-plasma-pic/?lang=en) (`cold-plasma-pic`)
+
+![One-dimensional periodic cold electrons, amplitude 0.001: stored CIC electrostatic-PIC displacement versus cos(t), with separate grid and timestep error sweeps.](https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/results/pic.png)
+
+Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed.
+
+[This problem’s references and checks](https://hrkoyama.github.io/numerical-methods-atlas/problems/cold-plasma-pic/?lang=en#references-en) · [This problem’s code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/cold-plasma-pic/?lang=en#code-en)
+
+- [Independently coded PIC spatial pipeline](https://hrkoyama.github.io/numerical-methods-atlas/validation/pic-independent-spatial/?lang=en) (`pic-independent-spatial`) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/atlas-pic-spatial-2026-11-23.zip)
+
+Compare vectorized CIC/FFT with separately authored scalar-particle CIC/dense DFT; each trajectory sources its own field at every kick.
+
+##### [Unsoftened Kepler two-body time error](https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-kepler/?lang=en) (`gravity-kepler`)
+
+![Validation figure from actual saved fixed-input calculation arrays.](https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-kepler-preview.png)
+
+Position-only kick-half/drift/kick-half; separate bracketed Kepler root and analytic velocities.
+
+[This problem’s references and checks](https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-kepler/?lang=en#references-en) · [This problem’s code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-kepler/?lang=en#code-en)
+
+- [Unsoftened Kepler two-body time error](https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-kepler/?lang=en) (`gravity-kepler`) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/atlas-gravity-dynamics-2026-11-23.zip)
+
+Advance an unequal-mass binary for one orbit with KDK and compare independent Kepler positions/velocities and conservation.
+
+##### [Short-time32body dynamics from a cold Plummer-density sample](https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-plummer-short/?lang=en) (`gravity-plummer-short`)
+
+![Validation figure from actual saved fixed-input calculation arrays.](https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-plummer-short-preview.png)
+
+Direct KDK20/40/80steps; finest-dt full second-moment BHtheta0/.35/.6; qualify independent scalar-pair DOP853 at two tolerances.
+
+[This problem’s references and checks](https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-plummer-short/?lang=en#references-en) · [This problem’s code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-plummer-short/?lang=en#code-en)
+
+- [Short-time32body dynamics from a cold Plummer-density sample](https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-plummer-short/?lang=en) (`gravity-plummer-short`) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/atlas-gravity-dynamics-2026-11-23.zip)
+
+Separate time and tree-force errors for the same softened finite-N ODE with independent DOP853/direct-force references and budgets.
+
+##### [Warm PIC linear Landau damping](https://hrkoyama.github.io/numerical-methods-atlas/problems/thermal-landau-damping/?lang=en) (`thermal-landau-damping`)
+
+![Actual evolved particle velocity change delta-v/alpha against initial(x,v); a1D1V phase-space response, not a2D physical-space flow.](https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/results/thermal-landau-damping-preview.png)
+
+Positive Gaussian velocity weights and density-CDF inversion load the joint(x,v) distribution. Recompute CIC deposition, FFT Poisson and matched CIC gathering at every velocity-Verlet kick. Qualify the dielectric root using branch continuation/bracket checks and a separately derived, time-refined Volterra IVP with the same fixed-window estimator.
+
+[This problem’s references and checks](https://hrkoyama.github.io/numerical-methods-atlas/problems/thermal-landau-damping/?lang=en#references-en) · [This problem’s code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/thermal-landau-damping/?lang=en#code-en)
+
+- [Warm PIC linear Landau damping](https://hrkoyama.github.io/numerical-methods-atlas/validation/thermal-landau-damping/?lang=en) (`thermal-landau-damping`) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/atlas-warm-pic-2026-11-23.zip)
+
+Advance thermal Maxwellian full-f particles and compare damping rate, frequency and signed-field history with qualified independent linear references.
+
+##### [Warm PIC two-stream initial growth](https://hrkoyama.github.io/numerical-methods-atlas/problems/thermal-two-stream/?lang=en) (`thermal-two-stream`)
+
+![Actual particle delta-v/alpha atT40against initial(x,v). This1D1Vphase-space image is a late diagnostic; growth rates are validated only over\[12,20\].](https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/results/thermal-two-stream-preview.png)
+
+Positive Gaussian velocity weights and density-CDF inversion load the joint(x,v) distribution. Recompute CIC deposition, FFT Poisson and matched CIC gathering at every velocity-Verlet kick. Qualify the dielectric root using branch continuation/bracket checks and a separately derived, time-refined Volterra IVP with the same fixed-window estimator.
+
+[This problem’s references and checks](https://hrkoyama.github.io/numerical-methods-atlas/problems/thermal-two-stream/?lang=en#references-en) · [This problem’s code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/thermal-two-stream/?lang=en#code-en)
+
+- [Warm PIC two-stream initial growth](https://hrkoyama.github.io/numerical-methods-atlas/validation/thermal-two-stream/?lang=en) (`thermal-two-stream`) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/atlas-warm-pic-2026-11-23.zip)
+
+Evolve counter-streaming warm Maxwellians; distinguish fixed-window growth and transients using dielectric and Volterra references.
+
 
 #### Exact / reference solutions (`method-references-en`)
 
@@ -256,6 +517,46 @@ No corresponding reference-library card is registered. The problem’s reference
 ##### [Nonlinear quartic-potential oscillator](https://hrkoyama.github.io/numerical-methods-atlas/problems/quartic-oscillator/?lang=en#references-en) (`quartic-oscillator`)
 
 No corresponding reference-library card is registered. The problem’s references and checks describe its analytic standards, numerical references or conservation checks.
+
+##### [Cold-plasma oscillation with electrostatic CIC PIC](https://hrkoyama.github.io/numerical-methods-atlas/problems/cold-plasma-pic/?lang=en#references-en) (`cold-plasma-pic`)
+
+- [Independently coded PIC spatial pipeline](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-pic-independent-spatial-en) (`pic-independent-spatial`; Related-model reference; Finite-grid numerical reference)
+
+Periodic[0,2pi],256particles,grids8/16/32,seeds35001/35002,dt.02,T.24. Uniform random positions,v=.2Normal+.1sin(x). Six pairs mean twelve separately evolved trajectories.
+
+[Existing reference profile](/numerical-methods-atlas/validation/pic-independent-spatial/?lang=en#pic-independent-spatial-en-measurements)
+
+##### [Unsoftened Kepler two-body time error](https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-kepler/?lang=en#references-en) (`gravity-kepler`)
+
+- [Unsoftened Kepler two-body time error](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-gravity-kepler-en) (`gravity-kepler`; Same-problem reference; Analytic reference)
+
+One orbit at fixed eccentricity only; softened binaries and long-time behavior are outside this exact reference.
+
+[Existing reference profile](/numerical-methods-atlas/validation/gravity-kepler/?lang=en#gravity-kepler-en-measurements)
+
+##### [Short-time32body dynamics from a cold Plummer-density sample](https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-plummer-short/?lang=en#references-en) (`gravity-plummer-short`)
+
+- [Short-time32body dynamics from a cold Plummer-density sample](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-gravity-plummer-short-en) (`gravity-plummer-short`; Same-problem reference; Finite-grid numerical reference)
+
+Cold finite-N initial value,not an equilibrium Plummer DF or exact continuum orbit. No general BH reciprocity/global symplecticity claim.
+
+[Existing reference profile](/numerical-methods-atlas/validation/gravity-plummer-short/?lang=en#gravity-plummer-short-en-measurements)
+
+##### [Warm PIC linear Landau damping](https://hrkoyama.github.io/numerical-methods-atlas/problems/thermal-landau-damping/?lang=en#references-en) (`thermal-landau-damping`)
+
+- [Warm PIC linear Landau damping](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-thermal-landau-damping-en) (`thermal-landau-damping`; Same-problem reference; Semi-analytic reference)
+
+Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established.
+
+[Existing reference profile](/numerical-methods-atlas/validation/thermal-landau-damping/?lang=en#thermal-landau-damping-en-measurements)
+
+##### [Warm PIC two-stream initial growth](https://hrkoyama.github.io/numerical-methods-atlas/problems/thermal-two-stream/?lang=en#references-en) (`thermal-two-stream`)
+
+- [Warm PIC two-stream initial growth](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-thermal-two-stream-en) (`thermal-two-stream`; Same-problem reference; Semi-analytic reference)
+
+Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established.
+
+[Existing reference profile](/numerical-methods-atlas/validation/thermal-two-stream/?lang=en#thermal-two-stream-en-measurements)
 
 ##### Method explanations, independent references and saved results
 
@@ -278,21 +579,90 @@ Matched problem executions are separate from existing editions and related sourc
 
 Advance the existing unit-mass, unit-frequency harmonic oscillator with velocity Verlet. Compare analytic states over 20 time units at 200/400/800 steps, original-energy deviation and reversal.
 
+##### Independently coded PIC spatial pipeline (`pic-independent-spatial`)
+
+[Cold-plasma oscillation with electrostatic CIC PIC](https://hrkoyama.github.io/numerical-methods-atlas/problems/cold-plasma-pic/?lang=en) · [Run and validate](https://hrkoyama.github.io/numerical-methods-atlas/validation/pic-independent-spatial/?lang=en) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/atlas-pic-spatial-2026-11-23.zip)
+
+[Fixed input](https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/inputs.json)
+
+[Verification receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/verification.json)
+
+Compare vectorized CIC/FFT with separately authored scalar-particle CIC/dense DFT; each trajectory sources its own field at every kick.
+
+##### Unsoftened Kepler two-body time error (`gravity-kepler`)
+
+[Unsoftened Kepler two-body time error](https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-kepler/?lang=en) · [Run and validate](https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-kepler/?lang=en) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/atlas-gravity-dynamics-2026-11-23.zip)
+
+[Fixed input](https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/inputs.json)
+
+[Verification receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/verification.json)
+
+Advance an unequal-mass binary for one orbit with KDK and compare independent Kepler positions/velocities and conservation.
+
+##### Short-time32body dynamics from a cold Plummer-density sample (`gravity-plummer-short`)
+
+[Short-time32body dynamics from a cold Plummer-density sample](https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-plummer-short/?lang=en) · [Run and validate](https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-plummer-short/?lang=en) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/atlas-gravity-dynamics-2026-11-23.zip)
+
+[Fixed input](https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/inputs.json)
+
+[Verification receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/verification.json)
+
+Separate time and tree-force errors for the same softened finite-N ODE with independent DOP853/direct-force references and budgets.
+
+##### Warm PIC linear Landau damping (`thermal-landau-damping`)
+
+[Warm PIC linear Landau damping](https://hrkoyama.github.io/numerical-methods-atlas/problems/thermal-landau-damping/?lang=en) · [Run and validate](https://hrkoyama.github.io/numerical-methods-atlas/validation/thermal-landau-damping/?lang=en) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/atlas-warm-pic-2026-11-23.zip)
+
+[Fixed input](https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/inputs.json)
+
+[Verification receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/verification.json)
+
+Advance thermal Maxwellian full-f particles and compare damping rate, frequency and signed-field history with qualified independent linear references.
+
+##### Warm PIC two-stream initial growth (`thermal-two-stream`)
+
+[Warm PIC two-stream initial growth](https://hrkoyama.github.io/numerical-methods-atlas/problems/thermal-two-stream/?lang=en) · [Run and validate](https://hrkoyama.github.io/numerical-methods-atlas/validation/thermal-two-stream/?lang=en) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/atlas-warm-pic-2026-11-23.zip)
+
+[Fixed input](https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/inputs.json)
+
+[Verification receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/verification.json)
+
+Evolve counter-streaming warm Maxwellians; distinguish fixed-window growth and transients using dielectric and Volterra references.
+
 ##### Existing editions, related source and tests
 
 Includes shared modules and package-wide checks; these resources are not all dedicated to individual problems.
 
-Related chapter modules and test files; not a claim that each test covers every named method.
+Additional fixed examples: Unsoftened Kepler two-body time error, Short-time32body dynamics from a cold Plummer-density sample. See each release for assumptions and checked scope. Additional fixed examples: Warm PIC linear Landau damping, Warm PIC two-stream initial growth. See each release for assumptions and checked scope. Additional fixed examples: Independently coded PIC spatial pipeline. See each release for assumptions and checked scope.
+
+Scoped fixed-input examples; original method variants and earlier releases remain distinct.
 
 [Related code edition / ZIP](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/atlas-code-2026-11-21.zip)
 
 ###### Related source
 
 - [/code/numerical-methods-atlas/2026-11-21/numart/hamiltonian.py](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/hamiltonian.py)
+- [/code/validated-examples/2026-11-23/gravity-dynamics/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/run.py)
+- [/code/validated-examples/2026-11-23/gravity-dynamics/dynamics.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/dynamics.py)
+- [/code/validated-examples/2026-11-23/gravity-dynamics/references/exact.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/references/exact.py)
+- [/code/validated-examples/2026-11-23/gravity-dynamics/experiments.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/experiments.py)
+- [/code/validated-examples/2026-11-23/gravity-dynamics/protocol.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/protocol.py)
+- [/code/validated-examples/2026-11-23/warm-pic/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/run.py)
+- [/code/validated-examples/2026-11-23/warm-pic/primary.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/primary.py)
+- [/code/validated-examples/2026-11-23/warm-pic/loading.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/loading.py)
+- [/code/validated-examples/2026-11-23/warm-pic/references/linear.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/references/linear.py)
+- [/code/validated-examples/2026-11-23/warm-pic/references/estimate.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/references/estimate.py)
+- [/code/validated-examples/2026-11-23/warm-pic/experiments.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/experiments.py)
+- [/code/validated-examples/2026-11-23/pic-spatial/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/run.py)
+- [/code/validated-examples/2026-11-23/pic-spatial/primary.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/primary.py)
+- [/code/validated-examples/2026-11-23/pic-spatial/references/scalar_pic.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/references/scalar_pic.py)
 
 ###### Package tests
 
 - [/code/numerical-methods-atlas/2026-11-21/tests/test_hamiltonian.py](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_hamiltonian.py)
+- [/code/validated-examples/2026-11-23/gravity-dynamics/test_dynamics.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/test_dynamics.py)
+- [/code/validated-examples/2026-11-23/warm-pic/test_pic.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/test_pic.py)
+- [/code/validated-examples/2026-11-23/pic-spatial/test_spatial.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/test_spatial.py)
 
 Consult the edition’s guide for conditions and working directory; commands may check or generate figures for several cases.
 

@@ -202,7 +202,7 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-このコマンドは配布グループの全例を実行します。
+このコマンドは配布グループの全例を実行します。同梱のresults/は保存見本です。追試は新規output/へ出力し、繰り返す場合は別の新規フォルダを指定します。
 
 入力・検証手順の履歴：https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/protocol-history.json
 
@@ -211,7 +211,11 @@ https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/atte
 ### 出典と確認範囲
 
 - Long Chen (n.d.). Introduction to Adaptive Finite Element Methods. https://lyc102.github.io/ifem/afem/; review_level=selected-official-tutorial-equations
+Author documentation: L-shaped harmonic r^(2/3)sin(2theta/3) field and non-quasiuniform refinement motivation inspected. No MATLAB code copied or run; our removed quadrant/angle convention is explicitly defined.
+
 - Joachim Schöberl (n.d.). Interactive FEM: graded meshes around vertex singularities. https://jschoeberl.github.io/iFEM/FEM/erroranalysis.html; review_level=selected-author-teaching-section
+Section24.4 weighted regularity and graded meshes inspected. Our fixed max-norm radial map is independently constructed; no general AMR implementation or universal optimality theorem claimed.
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.
 
@@ -221,7 +225,7 @@ Original code: MIT. Text/figures/inputs/data/third-party material: separate term
 
 **使用手法**
 
-- [Q1有限要素法（曲線座標ベクトルBVP）](https://hrkoyama.github.io/numerical-methods-atlas/methods/q1-fem/?lang=ja) (`q1-fem`)
+- [Q1有限要素法（スカラー拡散・曲線座標ベクトルBVP）](https://hrkoyama.github.io/numerical-methods-atlas/methods/q1-fem/?lang=ja) (`q1-fem`)
 
 **方程式**
 
@@ -381,7 +385,7 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-このコマンドは配布グループの全例を実行します。
+このコマンドは配布グループの全例を実行します。同梱のresults/は保存見本です。追試は新規output/へ出力し、繰り返す場合は別の新規フォルダを指定します。
 
 入力・検証手順の履歴：https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/protocol-history.json
 
@@ -390,6 +394,8 @@ https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/atte
 ### 出典と確認範囲
 
 - MFEM developers (n.d.). Example2: Linear Elasticity. https://mfem.org/examples/; review_level=selected-official-equations
+Example2 stress sigma=lambda div(u)I+mu(grad(u)+grad(u)^T), weak formulation and traction conventions inspected. Use lambda0 as a linear vector viscous BVP; manufactured fields are derived here. MFEM not executed or copied.
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.
 
@@ -537,7 +543,7 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-このコマンドは配布グループの全例を実行します。
+このコマンドは配布グループの全例を実行します。同梱のresults/は保存見本です。追試は新規output/へ出力し、繰り返す場合は別の新規フォルダを指定します。
 
 入力・検証手順の履歴：https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/protocol-history.json
 
@@ -546,6 +552,8 @@ https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/atte
 ### 出典と確認範囲
 
 - PETSc developers (n.d.). KSP: Solving Singular Systems. https://petsc.org/main/manual/ksp/; review_level=selected-official-section
+Solving Singular Systems: constant Neumann nullspace and RHS compatibility inspected. We reject physical incompatibility rather than projecting it away. PETSc is neither a dependency nor executed.
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.
 
@@ -680,7 +688,7 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-このコマンドは配布グループの全例を実行します。
+このコマンドは配布グループの全例を実行します。同梱のresults/は保存見本です。追試は新規output/へ出力し、繰り返す場合は別の新規フォルダを指定します。
 
 入力・検証手順の履歴：https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/protocol-history.json
 
@@ -689,5 +697,7 @@ https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/atte
 ### 出典と確認範囲
 
 - MFEM developers (n.d.). Boundary Conditions: Robin boundary conditions. https://mfem.org/fem_bc/; review_level=selected-official-equations
+Outward normal derivative and Robin weak boundary contribution inspected; Example27 source overview inspected. Our cell-centred face elimination/MMS is separately derived; no MFEM execution.
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.

@@ -322,7 +322,12 @@
       },
       "status": "local-example",
       "group": "physical",
-      "coverage_scope": "Static force evaluations and boundary kernels; no coupled self-gravitating fluid evolution."
+      "coverage_scope": "Static force evaluations and boundary kernels; no coupled self-gravitating fluid evolution.",
+      "supplemental_examples": [
+        "fmm3d-inverse-r",
+        "gravity-kepler",
+        "gravity-plummer-short"
+      ]
     },
     {
       "id": "bratu",
@@ -1538,6 +1543,95 @@
           },
           "accessed_on": "2026-11-23"
         }
+      ]
+    },
+    {
+      "id": "tensor-diffusion",
+      "name": {
+        "ja": "不連続係数・完全テンソル拡散の境界値問題",
+        "en": "Discontinuous and full-tensor diffusion BVP"
+      },
+      "formula": [
+        "-\\nabla\\cdot(K(\\boldsymbol x)\\nabla u)=f,\\quad u|_{\\partial\\Omega}=g",
+        "K=aI\\ (a\\in\\{1,100\\})\\quad\\mathrm{or}\\quad K=R(\\pi/6)\\operatorname{diag}(1,.01)R^T"
+      ],
+      "chapter": "validation-coefficient-diffusion",
+      "note": {
+        "ja": "スカラー調和流束FVと、非零の交差項を持つ完全テンソルQ1を分けます。MGとAMGは同じ行列を解きます。",
+        "en": "Separate scalar harmonic-flux FV from full-tensor Q1 with nonzero cross terms. MG and AMG solve the same matrix."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "supplemental_examples": [
+        "checkerboard-diffusion",
+        "rotated-anisotropic-diffusion"
+      ]
+    },
+    {
+      "id": "coulomb-electrostatics",
+      "name": {
+        "ja": "Coulomb静電場と混合周期境界",
+        "en": "Coulomb electrostatics with mixed periodic boundaries"
+      },
+      "formula": [
+        "\\phi(\\boldsymbol r)=\\sum_j\\sum_{\\boldsymbol n}^{\\prime}\\frac{q_j}{|\\boldsymbol r-\\boldsymbol r_j+\\boldsymbol L\\boldsymbol n|},\\quad\\boldsymbol F_i=-q_i\\nabla\\phi_i",
+        "E_{\\rm YB}=E_{3P}+2\\pi M_z^2/V,\\quad M_z=\\sum_iq_iz_i"
+      ],
+      "chapter": "validation-slab-ewald",
+      "note": {
+        "ja": "中性系・Coulomb定数1。真の2周期の参照と、有限真空厚の3周期＋補正を区別します。",
+        "en": "Neutral system,Coulomb constant1. Distinguish genuine2P references from finite-vacuum3P plus correction."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "supplemental_examples": [
+        "neutral-slab-yb"
+      ]
+    },
+    {
+      "id": "vlasov-poisson",
+      "name": {
+        "ja": "静電Vlasov–Poisson方程式",
+        "en": "Electrostatic Vlasov–Poisson equations"
+      },
+      "formula": [
+        "\\partial_t f+v\\partial_x f-E\\partial_v f=0",
+        "\\partial_x E=1-\\int f\\,dv,\\quad\\int E\\,dx=0"
+      ],
+      "chapter": "validation-warm-pic",
+      "note": {
+        "ja": "1D1V電子と固定中性化背景。重み付き全分布PICの粒子・格子・時間近似と、線形参照の範囲を分けます。",
+        "en": "1D1V electrons and fixed neutralizing background. Separate weighted full-f particle,mesh and time approximations from the linear-reference scope."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "supplemental_examples": [
+        "thermal-landau-damping",
+        "thermal-two-stream",
+        "pic-independent-spatial"
+      ]
+    },
+    {
+      "id": "hard-sphere-boltzmann",
+      "name": {
+        "ja": "剛体球Boltzmann輸送と壁・流入出",
+        "en": "Hard-sphere Boltzmann transport,walls and reservoirs"
+      },
+      "formula": [
+        "\\partial_t f+v_x\\partial_x f=Q_{\\rm HS}(f,f)",
+        "\\sigma=1/\\sqrt2,\\quad\\lambda(n)=1/(\\sqrt2n\\sigma)"
+      ],
+      "chapter": "validation-dsmc-wall",
+      "note": {
+        "ja": "1D空間・3D速度の単原子気体。速度依存の剛体球衝突、壁の流束分布と開境界を実時間で扱います。",
+        "en": "1D space,3D velocity monatomic gas. Physical-time speed-dependent hard-sphere collisions,wall flux distributions and open reservoirs."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "supplemental_examples": [
+        "dsmc-couette",
+        "dsmc-fourier",
+        "dsmc-planar-shock"
       ]
     }
   ]

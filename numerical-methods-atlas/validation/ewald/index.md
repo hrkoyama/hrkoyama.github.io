@@ -108,14 +108,16 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-このコマンドは配布グループの全例を実行します。
+このコマンドは配布グループの全例を実行します。同梱のresults/は保存見本です。追試は新規output/へ出力し、繰り返す場合は別の新規フォルダを指定します。
 
 ## 出典と確認範囲
 
 - P. P. Ewald (1921). Die Berechnung optischer und elektrostatischer Gitterpotentiale. https://doi.org/10.1002/andp.19213690304; review_level=abstract-and-metadata
-  出版社が返した書誌と原著の節見出しを確認。原著全文の監査はしていません。
+出版社が返した書誌と原著の節見出しを確認。原著全文の監査はしていません。
+
 - NIST Digital Library of Mathematical Functions (2026). §20.7(viii) Transformations of Lattice Parameter. https://dlmf.nist.gov/20.7#viii; review_level=official-documentation
-  Jacobi thetaの格子パラメータ変換式を公式資料で確認。年は確認年。
+Jacobi thetaの格子パラメータ変換式を公式資料で確認。年は確認年。
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.
 
@@ -229,13 +231,15 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-This command executes every fixed case in the distribution group.
+This command executes every fixed case in the distribution group. Bundled results/ are stored outputs. Rerun into a new output/ directory and use another fresh directory for subsequent runs.
 
 ## Sources and review scope
 
 - P. P. Ewald (1921). Die Berechnung optischer und elektrostatischer Gitterpotentiale. https://doi.org/10.1002/andp.19213690304; review_level=abstract-and-metadata
-  Publisher metadata and original section headings checked; no full-text audit claimed.
+Publisher metadata and original section headings checked; no full-text audit claimed.
+
 - NIST Digital Library of Mathematical Functions (2026). §20.7(viii) Transformations of Lattice Parameter. https://dlmf.nist.gov/20.7#viii; review_level=official-documentation
-  Official Jacobi-theta lattice-parameter transformations checked; year denotes access year.
+Official Jacobi-theta lattice-parameter transformations checked; year denotes access year.
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.

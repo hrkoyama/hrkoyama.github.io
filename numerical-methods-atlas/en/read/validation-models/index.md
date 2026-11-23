@@ -117,16 +117,19 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-This command executes every fixed case in the distribution group.
+This command executes every fixed case in the distribution group. Bundled results/ are stored outputs. Rerun into a new output/ directory and use another fresh directory for subsequent runs.
 
 ### Sources and review scope
 
 - N. Metropolis, A. W. Rosenbluth, M. N. Rosenbluth, A. H. Teller and E. Teller (1953). Equation of State Calculations by Fast Computing Machines. https://doi.org/10.1063/1.1699114; review_level=publisher-abstract-and-metadata
-  Publisher bibliography and abstract checked. Cited for symmetric-proposal Metropolis acceptance; no reproduction of the original hard-sphere experiment is claimed.
+Publisher bibliography and abstract checked. Cited for symmetric-proposal Metropolis acceptance; no reproduction of the original hard-sphere experiment is claimed.
+
 - W. K. Hastings (1970). Monte Carlo sampling methods using Markov chains and their applications. https://probability.ca/hastings/hastings.pdf; review_level=original-paper-excerpt-and-metadata
-  Bibliography, summary and opening excerpt of the original paper hosted by a university checked; the publisher DOI could not be opened. This example uses symmetric Gaussian proposals and does not implement a general asymmetric proposal ratio.
+Bibliography, summary and opening excerpt of the original paper hosted by a university checked; the publisher DOI could not be opened. This example uses symmetric Gaussian proposals and does not implement a general asymmetric proposal ratio.
+
 - C. J. Geyer (1992). Practical Markov Chain Monte Carlo. https://projecteuclid.org/journals/statistical-science/volume-7/issue-4/Practical-Markov-Chain-Monte-Carlo/10.1214/ss/1177011137.full; review_level=publisher-abstract-and-selected-original-section
-  Publisher-side abstract/metadata and returned original-paper excerpts on initial-positive sequences and AR(1), from a university-hosted copy, checked. No full-text audit or convergence certificate for arbitrary chains is claimed.
+Publisher-side abstract/metadata and returned original-paper excerpts on initial-positive sequences and AR(1), from a university-hosted copy, checked. No full-text audit or convergence certificate for arbitrary chains is claimed.
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.
 
@@ -244,16 +247,19 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-This command executes every fixed case in the distribution group.
+This command executes every fixed case in the distribution group. Bundled results/ are stored outputs. Rerun into a new output/ directory and use another fresh directory for subsequent runs.
 
 ### Sources and review scope
 
 - B. Leimkuhler and C. Matthews (2013). Rational Construction of Stochastic Numerical Methods for Molecular Sampling. https://arxiv.org/abs/1203.5428; review_level=author-manuscript-selected-appendix
-  Author manuscript abstract, Langevin equation and BAOAB update in the appendix (printed page 22) checked. The original long molecular runs and general-system superconvergence are not reproduced here.
+Author manuscript abstract, Langevin equation and BAOAB update in the appendix (printed page 22) checked. The original long molecular runs and general-system superconvergence are not reproduced here.
+
 - The SciPy community (2024). SciPy1.14.1 solve_discrete_lyapunov reference. https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.linalg.solve_discrete_lyapunov.html; review_level=official-api-documentation
-  Official equation AXA^H-X+Q=0, signs and output specification checked.
+Official equation AXA^H-X+Q=0, signs and output specification checked.
+
 - The SciPy community (2024). SciPy1.14.1 expm reference. https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.linalg.expm.html; review_level=official-api-documentation
-  Official matrix-exponential API and description of the Pade/scaling-and-squaring method checked.
+Official matrix-exponential API and description of the Pade/scaling-and-squaring method checked.
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.
 
@@ -357,12 +363,13 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-This command executes every fixed case in the distribution group.
+This command executes every fixed case in the distribution group. Bundled results/ are stored outputs. Rerun into a new output/ directory and use another fresh directory for subsequent runs.
 
 ### Sources and review scope
 
 - The SciPy community (2024). SciPy1.14.1 expm reference. https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.linalg.expm.html; review_level=official-api-documentation
-  Official matrix-exponential API and description of the Pade/scaling-and-squaring method checked.
+Official matrix-exponential API and description of the Pade/scaling-and-squaring method checked.
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.
 
@@ -474,16 +481,19 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-This command executes every fixed case in the distribution group.
+This command executes every fixed case in the distribution group. Bundled results/ are stored outputs. Rerun into a new output/ directory and use another fresh directory for subsequent runs.
 
 ### Sources and review scope
 
 - A. M. Turing (1952). The Chemical Basis of Morphogenesis. https://royalsocietypublishing.org/doi/10.1098/rstb.1952.0012; review_level=publisher-archive-and-original-first-page-metadata
-  Royal Society manuscript-review archive and bibliography on the original first page hosted by a university checked. Publisher text returned 403. Historical source for diffusion-driven instability, distinct from this adopted Schnakenberg example.
+Royal Society manuscript-review archive and bibliography on the original first page hosted by a university checked. Publisher text returned 403. Historical source for diffusion-driven instability, distinct from this adopted Schnakenberg example.
+
 - J. Schnakenberg (1979). Simple chemical reaction systems with limit cycle behaviour. https://pubmed.ncbi.nlm.nih.gov/537379/; review_level=official-bibliographic-metadata
-  PubMed bibliography and DOI checked (no abstract). Cited for the reaction-system family; a=0.1,b=0.9 and this spatial experiment are adopted educational inputs, not a transcription of the original experiment.
+PubMed bibliography and DOI checked (no abstract). Cited for the reaction-system family; a=0.1,b=0.9 and this spatial experiment are adopted educational inputs, not a transcription of the original experiment.
+
 - The SciPy community (2024). SciPy1.14.1 expm reference. https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.linalg.expm.html; review_level=official-api-documentation
-  Official matrix-exponential API and description of the Pade/scaling-and-squaring method checked.
+Official matrix-exponential API and description of the Pade/scaling-and-squaring method checked.
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.
 
@@ -584,15 +594,18 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-This command executes every fixed case in the distribution group.
+This command executes every fixed case in the distribution group. Bundled results/ are stored outputs. Rerun into a new output/ directory and use another fresh directory for subsequent runs.
 
 ### Sources and review scope
 
 - R. FitzHugh (1961). Impulses and Physiological States in Theoretical Models of Nerve Membrane. https://pubmed.ncbi.nlm.nih.gov/19431309/; review_level=official-abstract-and-metadata
-  Original-paper abstract and bibliography in PubMed checked. Supports the two-variable excitable/refractory reduction; no full HH or measured membrane-voltage reproduction is claimed.
+Original-paper abstract and bibliography in PubMed checked. Supports the two-variable excitable/refractory reduction; no full HH or measured membrane-voltage reproduction is claimed.
+
 - J. Nagumo, S. Arimoto and S. Yoshizawa (1962). An Active Pulse Transmission Line Simulating Nerve Axon. https://ieeexplore.ieee.org/abstract/document/4066548; review_level=publisher-abstract-and-metadata
-  IEEE publisher abstract, volume, pages and DOI checked. Historical source for reduced excitation and its circuit analogue; no spatial transmission-line or hardware-experiment reproduction is claimed.
+IEEE publisher abstract, volume, pages and DOI checked. Historical source for reduced excitation and its circuit analogue; no spatial transmission-line or hardware-experiment reproduction is claimed.
+
 - The SciPy community (2024). SciPy1.14.1 solve_ivp reference. https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html; review_level=official-api-documentation
-  Official DOP853, dense output, tolerance and success specifications checked. Implementation documentation for the separate numerical reference.
+Official DOP853, dense output, tolerance and success specifications checked. Implementation documentation for the separate numerical reference.
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.

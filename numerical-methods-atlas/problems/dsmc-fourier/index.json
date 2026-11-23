@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "id": "dsmc-fourier",
+  "name": {
+    "ja": "硬球DSMCの有限Kn Fourier熱伝導",
+    "en": "Hard-sphere DSMC finite-Kn Fourier heat conduction"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-fourier/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-fourier/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-fourier/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/results/dsmc-fourier-preview.png",
+    "sha256": "87bfad63ef3230c67e56fb2c6e252f69075f311e2af565a363584461a2039a2a",
+    "width": 2176,
+    "height": 704,
+    "caption": {
+      "ja": "保存した実粒子の位置–速度ヒストグラム。1次元位置と分子速度の位相空間であり、2D物理流れではありません。",
+      "en": "Actual saved particle position-velocity histograms; phase space of1D position and molecular velocity,not2D physical flow."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-wall/#dsmc-fourier",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-wall/#dsmc-fourier"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#dsmc-fourier",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#dsmc-fourier-en"
+  },
+  "equations": [
+    {
+      "id": "hard-sphere-boltzmann",
+      "name": {
+        "ja": "剛体球Boltzmann輸送と壁・流入出",
+        "en": "Hard-sphere Boltzmann transport,walls and reservoirs"
+      },
+      "formula": [
+        "\\partial_t f+v_x\\partial_x f=Q_{\\rm HS}(f,f)",
+        "\\sigma=1/\\sqrt2,\\quad\\lambda(n)=1/(\\sqrt2n\\sigma)"
+      ],
+      "note": {
+        "ja": "1D空間・3D速度の単原子気体。速度依存の剛体球衝突、壁の流束分布と開境界を実時間で扱います。",
+        "en": "1D space,3D velocity monatomic gas. Physical-time speed-dependent hard-sphere collisions,wall flux distributions and open reservoirs."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#hard-sphere-boltzmann-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#hard-sphere-boltzmann-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "1次元位置・3次元速度、H=2、Kn0=.5、完全拡散壁。静止壁、左温度1・右2。16セル、N=1024、dt=.02、burn20/sample40、4seed。",
+    "en": "{\"kind\":\"wall\",\"cells\":16,\"length\":2,\"weight\":0.001953125,\"dt\":0.02,\"burn_in\":20,\"sample_time\":40,\"blocks\":5,\"bins\":8,\"sample_every\":10,\"hist_velocity\":[-6,6],\"temperatures\":[1,2],\"speeds\":[0,0]} Four independent seeds; primary fixed-weight mesh,particle-weight,and half-step companions each retain seed1."
+  },
+  "formulations": [
+    {
+      "id": "supplement-dsmc-fourier",
+      "name": {
+        "ja": "硬球DSMCの有限Kn Fourier熱伝導",
+        "en": "Hard-sphere DSMC finite-Kn Fourier heat conduction"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "\\partial_t f+v_x\\partial_x f=Q_{\\mathrm{HS}}(f,f),\\quad \\sigma=\\pi d^2=1/\\sqrt{2}",
+        "P_{ij}=n\\langle c_i c_j\\rangle,\\quad q_x=\\frac{n}{2}\\langle c_x|\\mathbf c|^2\\rangle,\\quad\\mathbf c=\\mathbf v-\\mathbf u",
+        "p_{ij}=a_N W\\sigma g_{ij}\\Delta t/V,\\quad a_N=\\begin{cases}N-1&N\\text{ even}\\\\N&N\\text{ odd}\\end{cases}",
+        "g_{ij}\\le\\sqrt{2\\sum_i|\\mathbf v_i-\\mathbf v_{cm}|^2}"
+      ],
+      "note": {
+        "ja": "物理時間の硬球衝突と実際の分子輸送を計算し、独立SPARTAの資格確認済みモーメント場と比較します。",
+        "en": "Evolve physical-time hard-sphere collisions and molecular streaming; compare actual moments with qualified independent SPARTA fields."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "dsmc-fourier",
+      "kind": "numerical-reference",
+      "kind_label": {
+        "ja": "有限格子の数値参照",
+        "en": "Finite-grid numerical reference"
+      },
+      "title": {
+        "ja": "硬球DSMCの有限Kn Fourier熱伝導",
+        "en": "Finite-Kn hard-sphere Fourier heat conduction"
+      },
+      "formula": "partial_t f+v_x partial_x f=Q_HS(f,f); sigma=pi*d^2=1/sqrt(2); lambda0=1; n,u,T,Pxx,Pxy,qx from pooled molecular moments.",
+      "assumptions": {
+        "ja": "1次元位置・3次元速度、H=2、Kn0=.5、完全拡散壁。静止壁、左温度1・右2。16セル、N=1024、dt=.02、burn20/sample40、4seed。 各群18pytestを事前固定。新しい固定計算は群で14本。境界込みの質量・運動量・エネルギー、局所λ/衝突時間、独立参照への誤差とseed精度、時間block定常性を別に判定します。 有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。Kn=.5で連続体の直線・no-slip分布を厳密解としません。図は保存した粒子位相空間であり、2D物理流れではありません。",
+        "en": "H=2lambda0; diffuse Tleft1,Tright2; fixed walls; no continuum linear-temperature reference. All velocities3D; physical position1D. Four independent SPARTA seeds per configuration, fixed native inputs."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。Kn=.5で連続体の直線・no-slip分布を厳密解としません。図は保存した粒子位相空間であり、2D物理流れではありません。",
+        "en": "Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. AtKn.5,continuum straight/no-slip profiles are not exact. Saved phase space is not a2D physical flow."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-fourier/?lang=ja#dsmc-fourier-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-fourier/?lang=en#dsmc-fourier-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "各群18pytestを事前固定。新しい固定計算は群で14本。境界込みの質量・運動量・エネルギー、局所λ/衝突時間、独立参照への誤差とseed精度、時間block定常性を別に判定します。",
+    "en": "Predeclare18pytest per group and14new fixed primary runs. Separate boundary-inclusive budgets,local lambda/collision-time diagnostics,reference error,whole-seed precision and block stationarity. Reference36runs/87qualifiers already passed; primary results remain pending until the frozen run."
+  },
+  "methods": [
+    {
+      "id": "dsmc",
+      "name": {
+        "ja": "DSMC・運動論輸送",
+        "en": "DSMC and kinetic transport"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/dsmc/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/dsmc/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "セル内の非重複ランダム対へ、偶数・奇数粒子数を区別した物理時間のσg衝突確率を適用。エネルギーによる安全上界で事前にsubcycle数を定め、確率clipはしません。壁・流入はflux重み付き分布と実際の残り飛行時間を用います。",
+    "en": "Disjoint cell-local random pairs with even/odd finite-N physical-time sigma*g acceptance,energy-based safe majorant and predeclared bounded subcycling; no probability caps. Exact flight-to-wall and flux-conditioned diffuse/reservoir velocities with remaining flight time."
+  },
+  "executions": [
+    {
+      "id": "dsmc-fourier",
+      "kind": "supplement",
+      "name": {
+        "ja": "硬球DSMCの有限Kn Fourier熱伝導",
+        "en": "Hard-sphere DSMC finite-Kn Fourier heat conduction"
+      },
+      "method_ids": [
+        "dsmc"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-fourier/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-fourier/?lang=en"
+      },
+      "scope": {
+        "ja": "物理時間の硬球衝突と実際の分子輸送を計算し、独立SPARTAの資格確認済みモーメント場と比較します。",
+        "en": "Evolve physical-time hard-sphere collisions and molecular streaming; compare actual moments with qualified independent SPARTA fields."
+      },
+      "assumptions": {
+        "ja": "1次元位置・3次元速度、H=2、Kn0=.5、完全拡散壁。静止壁、左温度1・右2。16セル、N=1024、dt=.02、burn20/sample40、4seed。",
+        "en": "{\"kind\":\"wall\",\"cells\":16,\"length\":2,\"weight\":0.001953125,\"dt\":0.02,\"burn_in\":20,\"sample_time\":40,\"blocks\":5,\"bins\":8,\"sample_every\":10,\"hist_velocity\":[-6,6],\"temperatures\":[1,2],\"speeds\":[0,0]} Four independent seeds; primary fixed-weight mesh,particle-weight,and half-step companions each retain seed1."
+      },
+      "limits": {
+        "ja": "有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。Kn=.5で連続体の直線・no-slip分布を厳密解としません。図は保存した粒子位相空間であり、2D物理流れではありません。",
+        "en": "Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. AtKn.5,continuum straight/no-slip profiles are not exact. Saved phase space is not a2D physical flow."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/atlas-dsmc-wall-2026-11-23.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "各群18pytestを事前固定。新しい固定計算は群で14本。境界込みの質量・運動量・エネルギー、局所λ/衝突時間、独立参照への誤差とseed精度、時間block定常性を別に判定します。",
+        "en": "Predeclare18pytest per group and14new fixed primary runs. Separate boundary-inclusive budgets,local lambda/collision-time diagnostics,reference error,whole-seed precision and block stationarity. Reference36runs/87qualifiers already passed; primary results remain pending until the frozen run."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/dsmc.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/diagnostics.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/test_core.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/test_wall.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

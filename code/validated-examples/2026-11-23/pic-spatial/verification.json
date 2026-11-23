@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "group": "pic-spatial",
+  "edition": "2026-11-23",
+  "verified_on": "2026-11-23",
+  "source_manifest_sha256": "cb2990ccac19fc27ae3c21fbf0fe20d49592dfb1dbedfe25fa808094cbe38b55",
+  "archive": {
+    "file": "atlas-pic-spatial-2026-11-23.zip",
+    "sha256": "51da779a41f2109fbd22d1628463b8be3770ee93b61e49529b1b48a19f431bc3",
+    "bytes": 1131949,
+    "archive_directory": "atlas-pic-spatial-2026-11-23"
+  },
+  "archive_sha256": "51da779a41f2109fbd22d1628463b8be3770ee93b61e49529b1b48a19f431bc3",
+  "returncode": 0,
+  "passed_tests": 19,
+  "tests": 19,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "pic-independent-spatial"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 0.18015670799650252,
+  "independent_rerun_seconds": 0.13672645799670136,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

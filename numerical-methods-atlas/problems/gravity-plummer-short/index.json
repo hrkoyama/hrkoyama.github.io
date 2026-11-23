@@ -1,0 +1,197 @@
+{
+  "schema_version": 1,
+  "id": "gravity-plummer-short",
+  "name": {
+    "ja": "冷たいPlummer密度由来32粒子の短時間力学",
+    "en": "Short-time32body dynamics from a cold Plummer-density sample"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-plummer-short/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-plummer-short/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-plummer-short/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-plummer-short-preview.png",
+    "sha256": "be518533a4560b5e6a30e2e846c20a782d82624193f5f9f19a6c621cbe8b7f99",
+    "width": 920,
+    "height": 592,
+    "caption": {
+      "ja": "固定入力を実際に計算した保存配列からの検証図。",
+      "en": "Validation figure from actual saved fixed-input calculation arrays."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-gravity-dynamics/#gravity-plummer-short",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-gravity-dynamics/#gravity-plummer-short"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#gravity-plummer-short",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#gravity-plummer-short-en"
+  },
+  "equations": [
+    {
+      "id": "particle-gravity",
+      "name": {
+        "ja": "重力粒子モデル",
+        "en": "Gravitational particle model"
+      },
+      "formula": [
+        "\\boldsymbol a_i=-G\\sum_{j\\ne i}m_j\\frac{\\boldsymbol x_i-\\boldsymbol x_j}{(|\\boldsymbol x_i-\\boldsymbol x_j|^2+\\epsilon^2)^{3/2}}",
+        "\\nabla^2\\phi=4\\pi G(\\rho-\\overline\\rho)\\quad\\text{(periodic)}"
+      ],
+      "note": {
+        "ja": "孤立系のPlummer軟化力と、周期・平均密度除去のPoisson式は異なる境界問題です。公開例は静的な力と境界核の検証で、自己重力流体の時間発展ではありません。",
+        "en": "Isolated Plummer-softened forces and periodic mean-subtracted Poisson are distinct boundary problems. Public examples check static forces and kernels, not coupled self-gravitating flow evolution."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#particle-gravity-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#particle-gravity-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "固定32等質量・切断r3の密度由来反対称座標、初速0、epsilon.05、T.2。密度尺度a1とは別。",
+    "en": "Fixed32equal masses,antipodal truncatedr3 density-derived positions,zero velocity,epsilon.05,T.2; density scalea1 differs from pair softening."
+  },
+  "formulations": [
+    {
+      "id": "supplement-gravity-plummer-short",
+      "name": {
+        "ja": "冷たいPlummer密度由来32粒子の短時間力学",
+        "en": "Short-time32body dynamics from a cold Plummer-density sample"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "a_i=-\\sum_{j\\ne i}Gm_jr_{ij}/(r_{ij}^2+\\epsilon^2)^{3/2}",
+        "U=-\\sum_{i<j}Gm_im_j/\\sqrt{r_{ij}^2+\\epsilon^2}"
+      ],
+      "note": {
+        "ja": "同じ軟化有限N ODEで時間誤差と木近似誤差を分け、独立DOP853・直接力と収支を比較。",
+        "en": "Separate time and tree-force errors for the same softened finite-N ODE with independent DOP853/direct-force references and budgets."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "gravity-plummer-short",
+      "kind": "numerical-reference",
+      "kind_label": {
+        "ja": "有限格子の数値参照",
+        "en": "Finite-grid numerical reference"
+      },
+      "title": {
+        "ja": "冷たいPlummer密度由来32粒子の短時間力学",
+        "en": "Short-time32body dynamics from a cold Plummer-density sample"
+      },
+      "formula": "a_i=-sum_{j!=i}G*m_j*r_ij/(r_ij^2+eps^2)^(3/2); U=-sum_{i<j}G*m_i*m_j/sqrt(r_ij^2+eps^2).",
+      "assumptions": {
+        "ja": "固定32等質量・切断r3の密度由来反対称座標、初速0、epsilon.05、T.2。密度尺度a1とは別。 非零の固定尺度、同一座標上の力、同期E/P/L/COM、theta0対照、非対称静的probe。 冷たい有限N初期値で平衡Plummer分布/連続球厳密軌道ではありません。BHの一般相反性・大域symplectic性は主張しません。",
+        "en": "Fixed32equal masses,antipodal truncatedr3 density-derived positions,zero velocity,epsilon.05,T.2; density scalea1 differs from pair softening."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "冷たい有限N初期値で平衡Plummer分布/連続球厳密軌道ではありません。BHの一般相反性・大域symplectic性は主張しません。",
+        "en": "Cold finite-N initial value,not an equilibrium Plummer DF or exact continuum orbit. No general BH reciprocity/global symplecticity claim."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-plummer-short/?lang=ja#gravity-plummer-short-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-plummer-short/?lang=en#gravity-plummer-short-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "非零の固定尺度、同一座標上の力、同期E/P/L/COM、theta0対照、非対称静的probe。",
+    "en": "Nonzero fixed scales,same-position force comparison,synchronizedE/P/L/COM,theta0 control and asymmetric static probe."
+  },
+  "methods": [
+    {
+      "id": "verlet",
+      "name": {
+        "ja": "速度Verlet／粒子leapfrog法",
+        "en": "Velocity Verlet / particle leapfrog"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/verlet/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/verlet/?lang=en"
+      }
+    },
+    {
+      "id": "barnes-hut",
+      "name": {
+        "ja": "Barnes–Hut八分木",
+        "en": "Barnes–Hut octree"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/barnes-hut/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/barnes-hut/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "直接KDK20/40/80steps、最細でtheta0/.35/.6のfull second-moment BH。独立scalar対力+DOP853を2許容値で資格確認。",
+    "en": "Direct KDK20/40/80steps; finest-dt full second-moment BHtheta0/.35/.6; qualify independent scalar-pair DOP853 at two tolerances."
+  },
+  "executions": [
+    {
+      "id": "gravity-plummer-short",
+      "kind": "supplement",
+      "name": {
+        "ja": "冷たいPlummer密度由来32粒子の短時間力学",
+        "en": "Short-time32body dynamics from a cold Plummer-density sample"
+      },
+      "method_ids": [
+        "verlet",
+        "barnes-hut"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-plummer-short/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-plummer-short/?lang=en"
+      },
+      "scope": {
+        "ja": "同じ軟化有限N ODEで時間誤差と木近似誤差を分け、独立DOP853・直接力と収支を比較。",
+        "en": "Separate time and tree-force errors for the same softened finite-N ODE with independent DOP853/direct-force references and budgets."
+      },
+      "assumptions": {
+        "ja": "固定32等質量・切断r3の密度由来反対称座標、初速0、epsilon.05、T.2。密度尺度a1とは別。",
+        "en": "Fixed32equal masses,antipodal truncatedr3 density-derived positions,zero velocity,epsilon.05,T.2; density scalea1 differs from pair softening."
+      },
+      "limits": {
+        "ja": "冷たい有限N初期値で平衡Plummer分布/連続球厳密軌道ではありません。BHの一般相反性・大域symplectic性は主張しません。",
+        "en": "Cold finite-N initial value,not an equilibrium Plummer DF or exact continuum orbit. No general BH reciprocity/global symplecticity claim."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/atlas-gravity-dynamics-2026-11-23.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "非零の固定尺度、同一座標上の力、同期E/P/L/COM、theta0対照、非対称静的probe。",
+        "en": "Nonzero fixed scales,same-position force comparison,synchronizedE/P/L/COM,theta0 control and asymmetric static probe."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/dynamics.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/references/exact.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/test_dynamics.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

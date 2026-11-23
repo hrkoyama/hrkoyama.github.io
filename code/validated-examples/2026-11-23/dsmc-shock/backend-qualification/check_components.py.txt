@@ -1,0 +1,90 @@
+"""Fixed non-PDE law/equivalence/timing study. Never invokes simulate/stream."""
+import hashlib,importlib.util,itertools,json,time
+from collections import Counter
+from fractions import Fraction
+from pathlib import Path
+import numpy as np
+
+HERE=Path(__file__).resolve().parent
+
+
+def module(name):
+    spec=importlib.util.spec_from_file_location(name,HERE/(name+'.py'))
+    obj=importlib.util.module_from_spec(spec);spec.loader.exec_module(obj);return obj
+
+
+def main():
+    start=time.monotonic();protocol=json.loads((HERE/'protocol.json').read_text())
+    for relative,expected in protocol['files_sha256'].items():
+        if hashlib.sha256((HERE/relative).read_bytes()).hexdigest()!=expected:raise ValueError('Changed component source')
+    old,new=module('baseline_dsmc'),module('candidate_dsmc')
+    checks={};metrics={'pair_laws':[],'sort_timing':[],'cdf_timing':[],'cdf_equivalence':[]}
+    class FixedPermutation:
+        def __init__(self,p):self.p=np.array(p,dtype=np.int64)
+        def permutation(self,n):return self.p.copy()
+    class FixedUniform:
+        def __init__(self,p):self.p=np.asarray(p)
+        def random(self,n):
+            if n!=len(self.p):raise ValueError('CDF target count')
+            return self.p.copy()
+    for labels in protocol['enumerated_cell_labels']:
+        index=np.array(labels,dtype=np.int64);n=len(index);counts=Counter();total=0;equal=True;valid=True
+        for permutation in itertools.permutations(range(n)):
+            order=new.matching_order(index,FixedPermutation(permutation))
+            ranks=np.empty(n);ranks[list(permutation)]=np.arange(n)
+            original=np.lexsort((ranks,index))
+            equal=equal and bool(np.array_equal(order,original))
+            valid=valid and bool(np.array_equal(np.sort(order),np.arange(n)))
+            for cell in np.unique(index):
+                members=order[index[order]==cell]
+                for i in range(0,len(members)-1,2):
+                    pair=tuple(sorted([int(members[i]),int(members[i+1])]))
+                    counts[pair]+=1
+            total+=1
+        expected=True;pair_values={}
+        for i in range(n):
+            for j in range(i+1,n):
+                if index[i]!=index[j]:continue
+                population=int(np.sum(index==index[i]));probability=Fraction(counts[(i,j)],total)
+                target=Fraction(1,population if population%2 else population-1)
+                expected=expected and probability==target
+                pair_values[str((i,j))]=str(probability)
+        key='labels'+str(labels)
+        checks[key+'/coupled exact order']=equal;checks[key+'/partition']=valid;checks[key+'/exact pair probabilities']=expected
+        metrics['pair_laws'].append({'cell_labels':labels,'permutations':total,'pair_probabilities':pair_values})
+    targets=np.concatenate((np.array([0,1e-14,1e-10,1e-8,.1,.9,1-1e-10,1-1e-12,1-1e-14]),(np.arange(4097)+.5)/4097))
+    for drift,temperature in protocol['cdf_states']:
+        baseline,candidate=old.FluxSampler(drift,temperature),new.FluxSampler(drift,temperature)
+        a=baseline.sample(FixedUniform(targets),len(targets));b=candidate.sample(FixedUniform(targets),len(targets))
+        residual=float(np.max(np.abs(candidate.cdf(b)-targets)));difference=float(np.max(np.abs(candidate.cdf(b)-baseline.cdf(a))))
+        key='cdf'+str([drift,temperature]);checks[key+'/unchanged final residual']=residual<=2e-12;checks[key+'/CDF law equivalence']=difference<=4e-12
+        checks[key+'/finite physical speeds']=bool(np.all(np.isfinite(b)) and np.all(b>=0))
+        metrics['cdf_equivalence'].append({'drift':drift,'temperature':temperature,'max_CDF_residual':residual,'max_CDF_difference':difference})
+    for n in protocol['sort_particle_counts']:
+        index=np.arange(n,dtype=np.int64)%protocol['sort_cells'];timing=[]
+        for block in range(protocol['timing_blocks']):
+            row={}
+            for name in ['baseline','candidate']:
+                rng=np.random.default_rng(833000+block);tick=time.perf_counter()
+                for _ in range(protocol['sort_repetitions']):
+                    if name=='baseline':np.lexsort((rng.random(n),index))
+                    else:new.matching_order(index,rng)
+                row[name]=time.perf_counter()-tick
+            timing.append(row)
+        ratio=float(np.median([t['candidate'] for t in timing])/np.median([t['baseline'] for t in timing]))
+        checks['sort speed/'+str(n)]=ratio<=protocol['maximum_sort_time_ratio']
+        metrics['sort_timing'].append({'particles':n,'blocks':timing,'median_candidate_over_baseline':ratio})
+    for count in protocol['cdf_counts']:
+        row={};targets=(np.arange(count)+.5)/max(1,count)
+        for name,implementation in [('baseline',old),('candidate',new)]:
+            sampler=implementation.FluxSampler(-1.13,2.08);tick=time.perf_counter()
+            for _ in range(protocol['cdf_repetitions']):sampler.sample(FixedUniform(targets),count)
+            row[name]=time.perf_counter()-tick
+        ratio=row['candidate']/row['baseline'];checks['CDF no slowdown/'+str(count)]=ratio<=protocol['maximum_CDF_time_ratio']
+        metrics['cdf_timing'].append({'count':count,'seconds':row,'candidate_over_baseline':ratio})
+    result={'passed':bool(all(checks.values())),'scope':'Component-only finite law/equivalence/timing; no particle evolution,streaming,collision or PDE main executed. No full-main runtime or statistical-precision guarantee.','checks':checks,'metrics':metrics,'wall_seconds':time.monotonic()-start,'protocol_sha256':hashlib.sha256((HERE/'protocol.json').read_bytes()).hexdigest()}
+    (HERE/'result.json').write_text(json.dumps(result,indent=2,allow_nan=False)+'\n')
+    print(json.dumps({'passed':result['passed'],'checks':len(checks),'failed':[k for k,v in checks.items() if not v],'wall_seconds':result['wall_seconds']}))
+    if not result['passed']:raise SystemExit(1)
+
+if __name__=='__main__':main()

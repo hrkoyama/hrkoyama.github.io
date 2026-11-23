@@ -184,22 +184,28 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-このコマンドは配布グループの全例を実行します。
+このコマンドは配布グループの全例を実行します。同梱のresults/は保存見本です。追試は新規output/へ出力し、繰り返す場合は別の新規フォルダを指定します。
 
 ## 出典と確認範囲
 
 - A. Vehtari, A. Gelman, D. Simpson, B. Carpenter and P.-C. Bürkner (2021). Rank-Normalization, Folding, and Localization: An Improved R-hat for Assessing Convergence of MCMC (with Discussion). https://paulbuerkner.com/publications/pdf/2021__Vehtari_et_al__Bayesian_Analysis.pdf; review_level=corrected-author-paper-selected-sections
-  訂正済み著者公開PDFの第3–4節、式4.1の分母S+1/4への2021-06-22訂正、定数indicatorの注意を確認。原著の全数値実験を再現したものではありません。
+訂正済み著者公開PDFの第3–4節、式4.1の分母S+1/4への2021-06-22訂正、定数indicatorの注意を確認。原著の全数値実験を再現したものではありません。
+
 - C. J. Geyer (1992). Practical Markov Chain Monte Carlo. https://www2.stat.duke.edu/~scs/Courses/Stat376/Papers/GeyerStatSci1992.pdf; review_level=original-selected-paired-sequence-theory
-  原著第3.3節・定理3.1/3.2で可逆性等の条件とinitial-positive/monotone列を確認。本論文473–483頁と合本の討論頁を区別。有限鎖から真のESSが厳密に分かる保証とは扱いません。
+原著第3.3節・定理3.1/3.2で可逆性等の条件とinitial-positive/monotone列を確認。本論文473–483頁と合本の討論頁を区別。有限鎖から真のESSが厳密に分かる保証とは扱いません。
+
 - A. Gelman and D. B. Rubin (1992). Inference from Iterative Simulation Using Multiple Sequences. https://www2.stat.duke.edu/~scs/Courses/Stat376/Papers/ConvergeDiagnostics/GelmanRubinStatSci1992.pdf; review_level=original-selected-multiple-chain-starting-points
-  原著の序論・第2節で複数鎖と分散した初期値を確認。現代のrank/folded Rhatの原典とは区別し、1992年版の全有限標本補正の再現とも呼びません。
+原著の序論・第2節で複数鎖と分散した初期値を確認。現代のrank/folded Rhatの原典とは区別し、1992年版の全有限標本補正の再現とも呼びません。
+
 - The ArviZ developers (2024). ArviZ0.20.0 public diagnostics API and tagged source. https://python.arviz.org/en/v0.20.0/api/generated/arviz.rhat.html; review_level=official-versioned-source-and-actual-independent-execution
-  公式v0.20.0のrhat/ess API、diagnostics.py/stats_utils.pyでsplit・rank・Type7 quantile・端点・定数規約を確認。commit94113176cae99a05ba41d1e93739ee2d5bdbe9b1と導入ソースSHAを照合し、atlas診断をimportしない別環境で同じ62datasetを実計算。元コード本文は転載せず、参照値・版・hash・再生成コードを同梱します。
+公式v0.20.0のrhat/ess API、diagnostics.py/stats_utils.pyでsplit・rank・Type7 quantile・端点・定数規約を確認。commit94113176cae99a05ba41d1e93739ee2d5bdbe9b1と導入ソースSHAを照合し、atlas診断をimportしない別環境で同じ62datasetを実計算。元コード本文は転載せず、参照値・版・hash・再生成コードを同梱します。
+
 - N. Metropolis, A. W. Rosenbluth, M. N. Rosenbluth, A. H. Teller and E. Teller (1953). Equation of State Calculations by Fast Computing Machines. https://doi.org/10.1063/1.1699114; review_level=publisher-abstract-and-metadata
-  出版社の書誌・抄録を確認。対称提案のMetropolis受理の原著として引用し、硬い球の原著計算を再現したとは扱いません。
+出版社の書誌・抄録を確認。対称提案のMetropolis受理の原著として引用し、硬い球の原著計算を再現したとは扱いません。
+
 - W. K. Hastings (1970). Monte Carlo sampling methods using Markov chains and their applications. https://probability.ca/hastings/hastings.pdf; review_level=original-paper-excerpt-and-metadata
-  大学で公開された原著の書誌・要約と冒頭を確認。出版社DOIの通常取得はアクセスできませんでした。今回は対称Gaussian提案なので一般の非対称提案比は実装しません。
+大学で公開された原著の書誌・要約と冒頭を確認。出版社DOIの通常取得はアクセスできませんでした。今回は対称Gaussian提案なので一般の非対称提案比は実装しません。
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.
 
@@ -389,21 +395,27 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-This command executes every fixed case in the distribution group.
+This command executes every fixed case in the distribution group. Bundled results/ are stored outputs. Rerun into a new output/ directory and use another fresh directory for subsequent runs.
 
 ## Sources and review scope
 
 - A. Vehtari, A. Gelman, D. Simpson, B. Carpenter and P.-C. Bürkner (2021). Rank-Normalization, Folding, and Localization: An Improved R-hat for Assessing Convergence of MCMC (with Discussion). https://paulbuerkner.com/publications/pdf/2021__Vehtari_et_al__Bayesian_Analysis.pdf; review_level=corrected-author-paper-selected-sections
-  Checked original sections3–4, the2021-06-22 correction of Eq4.1 to denominator S+1/4, and the constant-indicator warning. This does not reproduce every original numerical experiment.
+Checked original sections3–4, the2021-06-22 correction of Eq4.1 to denominator S+1/4, and the constant-indicator warning. This does not reproduce every original numerical experiment.
+
 - C. J. Geyer (1992). Practical Markov Chain Monte Carlo. https://www2.stat.duke.edu/~scs/Courses/Stat376/Papers/GeyerStatSci1992.pdf; review_level=original-selected-paired-sequence-theory
-  Checked section3.3 and Theorems3.1/3.2 for reversibility assumptions and initial-positive/monotone sequences. Main article pp473–483 are distinguished from combined discussion pagination; no claim gives exact true ESS from finite chains.
+Checked section3.3 and Theorems3.1/3.2 for reversibility assumptions and initial-positive/monotone sequences. Main article pp473–483 are distinguished from combined discussion pagination; no claim gives exact true ESS from finite chains.
+
 - A. Gelman and D. B. Rubin (1992). Inference from Iterative Simulation Using Multiple Sequences. https://www2.stat.duke.edu/~scs/Courses/Stat376/Papers/ConvergeDiagnostics/GelmanRubinStatSci1992.pdf; review_level=original-selected-multiple-chain-starting-points
-  Checked the original introduction/section2 on multiple sequences and overdispersed starts. Distinct from the later rank/folded method, and not a reproduction of every1992 finite-sample correction.
+Checked the original introduction/section2 on multiple sequences and overdispersed starts. Distinct from the later rank/folded method, and not a reproduction of every1992 finite-sample correction.
+
 - The ArviZ developers (2024). ArviZ0.20.0 public diagnostics API and tagged source. https://python.arviz.org/en/v0.20.0/api/generated/arviz.rhat.html; review_level=official-versioned-source-and-actual-independent-execution
-  Checked the official0.20.0 rhat/ess API and tagged source for splitting, ranks, Type7 quantiles, endpoints and constant conventions. Installed source hashes match commit94113176cae99a05ba41d1e93739ee2d5bdbe9b1;62 byte-identical datasets were actually processed in a separate environment without importing Atlas diagnostics. No upstream implementation is reproduced; values, versions, hashes and regeneration code are supplied.
+Checked the official0.20.0 rhat/ess API and tagged source for splitting, ranks, Type7 quantiles, endpoints and constant conventions. Installed source hashes match commit94113176cae99a05ba41d1e93739ee2d5bdbe9b1;62 byte-identical datasets were actually processed in a separate environment without importing Atlas diagnostics. No upstream implementation is reproduced; values, versions, hashes and regeneration code are supplied.
+
 - N. Metropolis, A. W. Rosenbluth, M. N. Rosenbluth, A. H. Teller and E. Teller (1953). Equation of State Calculations by Fast Computing Machines. https://doi.org/10.1063/1.1699114; review_level=publisher-abstract-and-metadata
-  Publisher bibliography and abstract checked. Cited for symmetric-proposal Metropolis acceptance; no reproduction of the original hard-sphere experiment is claimed.
+Publisher bibliography and abstract checked. Cited for symmetric-proposal Metropolis acceptance; no reproduction of the original hard-sphere experiment is claimed.
+
 - W. K. Hastings (1970). Monte Carlo sampling methods using Markov chains and their applications. https://probability.ca/hastings/hastings.pdf; review_level=original-paper-excerpt-and-metadata
-  Bibliography, summary and opening excerpt of the original paper hosted by a university checked; the publisher DOI could not be opened. This example uses symmetric Gaussian proposals and does not implement a general asymmetric proposal ratio.
+Bibliography, summary and opening excerpt of the original paper hosted by a university checked; the publisher DOI could not be opened. This example uses symmetric Gaussian proposals and does not implement a general asymmetric proposal ratio.
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.

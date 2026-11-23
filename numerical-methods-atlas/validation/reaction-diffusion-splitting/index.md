@@ -134,7 +134,7 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-このコマンドは配布グループの全例を実行します。
+このコマンドは配布グループの全例を実行します。同梱のresults/は保存見本です。追試は新規output/へ出力し、繰り返す場合は別の新規フォルダを指定します。
 
 入力・検証手順の履歴：https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/protocol-history.json
 
@@ -143,15 +143,20 @@ https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/inputs-i
 ## 出典と確認範囲
 
 - H. F. Trotter (1959). On the product of semi-groups of operators. https://doi.org/10.1090/S0002-9939-1959-0108732-6; review_level=metadata
-  AMSの書誌を確認。半群の積公式の原著として引用し、非有界作用素の仮定・証明全体は監査していません。有限次元の次数は本章で直接展開します。
+AMSの書誌を確認。半群の積公式の原著として引用し、非有界作用素の仮定・証明全体は監査していません。有限次元の次数は本章で直接展開します。
+
 - G. Strang (1968). On the Construction and Comparison of Difference Schemes. https://doi.org/10.1137/0705041; review_level=metadata
-  今回の追加では出版社の書誌を確認。対称分割の原著と、合成式・次数を参照したHairerの著者公開講義を区別します。原著全体の新たな監査ではありません。
+今回の追加では出版社の書誌を確認。対称分割の原著と、合成式・次数を参照したHairerの著者公開講義を区別します。原著全体の新たな監査ではありません。
+
 - E. Hairer (2010). Geometric Numerical Integration, Lecture2. https://www.unige.ch/~hairer/poly_geoint/week2.pdf; review_level=full-text
-  著者公開Lecture 2第5節、印刷12–14頁、式(23)–(27)と厳密流・数値流の議論を参照。Lie–Trotter、対称な2次合成、分離Hamilton系の例を確認。講義全体の監査ではありません。
+著者公開Lecture 2第5節、印刷12–14頁、式(23)–(27)と厳密流・数値流の議論を参照。Lie–Trotter、対称な2次合成、分離Hamilton系の例を確認。講義全体の監査ではありません。
+
 - J. Schnakenberg (1979). Simple chemical reaction systems with limit cycle behaviour. https://pubmed.ncbi.nlm.nih.gov/537379/; review_level=official-bibliography-and-publisher-indexed-abstract
-  PubMedの書誌・DOIと出版社索引の抄録を確認。原著本文は403で未取得。反応系の歴史的出典であり、a=.1,b=.9や今回の空間計算を原著の再現とは呼びません。
+PubMedの書誌・DOIと出版社索引の抄録を確認。原著本文は403で未取得。反応系の歴史的出典であり、a=.1,b=.9や今回の空間計算を原著の再現とは呼びません。
+
 - The SciPy community (2024). SciPy1.14.1 solve_ivp reference. https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html; review_level=official-versioned-documentation-selected-methods-and-tolerances
-  SciPy 1.14.1公式資料のmethod・rtol/atolを参照。Radau 5次とDOP853 8次は同じ空間離散の独立した時間積分法として用い、連続PDEの厳密解とは呼びません。
+SciPy 1.14.1公式資料のmethod・rtol/atolを参照。Radau 5次とDOP853 8次は同じ空間離散の独立した時間積分法として用い、連続PDEの厳密解とは呼びません。
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.
 
@@ -291,7 +296,7 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-This command executes every fixed case in the distribution group.
+This command executes every fixed case in the distribution group. Bundled results/ are stored outputs. Rerun into a new output/ directory and use another fresh directory for subsequent runs.
 
 Input and validation protocol history: https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/protocol-history.json
 
@@ -300,14 +305,19 @@ https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/inputs-i
 ## Sources and review scope
 
 - H. F. Trotter (1959). On the product of semi-groups of operators. https://doi.org/10.1090/S0002-9939-1959-0108732-6; review_level=metadata
-  AMS bibliographic record checked. Original semigroup product-limit reference; no audit of unbounded-operator hypotheses. Finite-dimensional order calculations are derived in the chapter.
+AMS bibliographic record checked. Original semigroup product-limit reference; no audit of unbounded-operator hypotheses. Finite-dimensional order calculations are derived in the chapter.
+
 - G. Strang (1968). On the Construction and Comparison of Difference Schemes. https://doi.org/10.1137/0705041; review_level=metadata
-  Publisher bibliography checked for this addition. The original symmetric splitting reference is distinct from the Hairer lecture consulted for compositions and order. No fresh full-paper audit.
+Publisher bibliography checked for this addition. The original symmetric splitting reference is distinct from the Hairer lecture consulted for compositions and order. No fresh full-paper audit.
+
 - E. Hairer (2010). Geometric Numerical Integration, Lecture2. https://www.unige.ch/~hairer/poly_geoint/week2.pdf; review_level=full-text
-  Author-hosted Lecture 2, section 5, printed pp.12–14, equations (23)–(27), and exact versus numerical subflows: Lie–Trotter, symmetric second-order composition and separable Hamiltonians. Selected passages, not a full-lecture audit.
+Author-hosted Lecture 2, section 5, printed pp.12–14, equations (23)–(27), and exact versus numerical subflows: Lie–Trotter, symmetric second-order composition and separable Hamiltonians. Selected passages, not a full-lecture audit.
+
 - J. Schnakenberg (1979). Simple chemical reaction systems with limit cycle behaviour. https://pubmed.ncbi.nlm.nih.gov/537379/; review_level=official-bibliography-and-publisher-indexed-abstract
-  Checked official PubMed bibliography/DOI and publisher-indexed abstract. Full text returned403. Historical source for the reaction family, not a claim to reproduce original coefficients or experiments.
+Checked official PubMed bibliography/DOI and publisher-indexed abstract. Full text returned403. Historical source for the reaction family, not a claim to reproduce original coefficients or experiments.
+
 - The SciPy community (2024). SciPy1.14.1 solve_ivp reference. https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html; review_level=official-versioned-documentation-selected-methods-and-tolerances
-  Consulted SciPy 1.14.1 methods and rtol/atol documentation. Radau order five and DOP853 order eight are independent time algorithms for the same spatial system, not exact continuum solutions.
+Consulted SciPy 1.14.1 methods and rtol/atol documentation. Radau order five and DOP853 order eight are independent time algorithms for the same spatial system, not exact continuum solutions.
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.

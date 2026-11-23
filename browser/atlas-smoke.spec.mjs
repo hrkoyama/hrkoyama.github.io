@@ -4,7 +4,7 @@ import {test,expect} from '@playwright/test';
 import {readFileSync} from 'node:fs';
 import {writeFile} from 'node:fs/promises';
 import {gzipSync} from 'node:zlib';
-import {methodCount} from '../scripts/fixtures/atlas-inventory.mjs';
+import {methodCount,methodStatusCounts} from '../scripts/fixtures/atlas-inventory.mjs';
 const budgets=JSON.parse(readFileSync(new URL('../search/budgets.json',import.meta.url)));
 
 test('home → search → execution, method filter and mathematical article',async({page},info)=>{
@@ -57,7 +57,7 @@ test('home → search → execution, method filter and mathematical article',asy
  await map.locator('[data-method-query]').fill('WENO');
  const rows=map.locator('[data-method-id]:visible');await expect(rows).not.toHaveCount(0);
  for(const row of await rows.all())expect((await row.getAttribute('data-search')).toLowerCase()).toContain('weno');
- await map.locator('[data-method-status]').selectOption('planned');for(const row of await map.locator('[data-method-id]:visible').all())expect(await row.getAttribute('data-status')).toBe('planned');
+ await map.locator('[data-method-query]').fill('');await map.locator('[data-method-status]').selectOption('planned');await expect(map.locator('[data-method-id]:visible')).toHaveCount(methodStatusCounts.planned);for(const row of await map.locator('[data-method-id]:visible').all())expect(await row.getAttribute('data-status')).toBe('planned');
  await map.locator('[data-method-reset]').click();await expect(map.locator('[data-method-query]')).toHaveValue('');await expect(map.locator('[data-method-status]')).toHaveValue('all');await expect(map.locator('[data-method-id]:visible')).toHaveCount(methodCount);
  await noOverflow();
 

@@ -64,8 +64,8 @@ test('orientation and sharing retain scientific counts and the already-verified 
   assert.equal(methods.length, methodCount);
   assert.deepEqual(Object.fromEntries(['educational-example', 'reading-only', 'planned'].map(status => [status, methods.filter(method => method.status === status).length])),
     methodStatusCounts);
-  assert.equal(json('catalog/atlas-equations.json').equations.length, 56);
-  assert.equal(json('numerical-methods-atlas/test-cases/index.json').problems.length, 102);
+  assert.equal(json('catalog/atlas-equations.json').equations.length, 60);
+  assert.equal(json('numerical-methods-atlas/test-cases/index.json').problems.length, 113);
   assert.equal(examples.examples.length, 22);
   const receipt = json(new URL(examples.verification_receipt).pathname.slice(1));
   assert.equal(receipt.registry_source_mode, 'public-registry'); assert.equal(receipt.passed, true);

@@ -67,6 +67,26 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Advance the existing unit-mass, unit-frequency harmonic oscillator with velocity Verlet. Compare analytic states over 20 time units at 200/400/800 steps, original-energy deviation and reversal.
+- [Independently coded PIC spatial pipeline](<https://hrkoyama.github.io/numerical-methods-atlas/validation/pic-independent-spatial/?lang=en>)
+  availability: run
+
+  Compare vectorized CIC/FFT with separately authored scalar-particle CIC/dense DFT; each trajectory sources its own field at every kick.
+- [Unsoftened Kepler two-body time error](<https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-kepler/?lang=en>)
+  availability: run
+
+  Advance an unequal-mass binary for one orbit with KDK and compare independent Kepler positions/velocities and conservation.
+- [Short-time32body dynamics from a cold Plummer-density sample](<https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-plummer-short/?lang=en>)
+  availability: run
+
+  Separate time and tree-force errors for the same softened finite-N ODE with independent DOP853/direct-force references and budgets.
+- [Warm PIC linear Landau damping](<https://hrkoyama.github.io/numerical-methods-atlas/validation/thermal-landau-damping/?lang=en>)
+  availability: run
+
+  Advance thermal Maxwellian full-f particles and compare damping rate, frequency and signed-field history with qualified independent linear references.
+- [Warm PIC two-stream initial growth](<https://hrkoyama.github.io/numerical-methods-atlas/validation/thermal-two-stream/?lang=en>)
+  availability: run
+
+  Evolve counter-streaming warm Maxwellians; distinguish fixed-window growth and transients using dielectric and Volterra references.
 - [Symplectic Euler — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/symplectic-euler/?lang=en#method-execution-en>)
   availability: source
 

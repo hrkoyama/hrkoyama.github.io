@@ -191,17 +191,21 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-This command executes every fixed case in the distribution group.
+This command executes every fixed case in the distribution group. Bundled results/ are stored outputs. Rerun into a new output/ directory and use another fresh directory for subsequent runs.
 
 ### Sources and review scope
 
 - Paul Woodward and Phillip Colella (1984). The numerical simulation of two-dimensional fluid flow with strong shocks. https://www.sciencedirect.com/science/article/pii/0021999184901426; review_level=previously-reviewed-publisher-metadata; setup cross-checked against Cockburn-Shu1991 primary report
-  Cited as the original standard strong-shock comparison. The publisher page rejected retrieval in this task; no direct full-paper reading is claimed. Setup and the distinction between corner treatments were checked in the primary Cockburn–Shu(1991) report.
+Cited as the original standard strong-shock comparison. The publisher page rejected retrieval in this task; no direct full-paper reading is claimed. Setup and the distinction between corner treatments were checked in the primary Cockburn–Shu(1991) report.
+
 - Bernardo Cockburn and Chi-Wang Shu (1991). The P¹-RKDG Method for Two-Dimensional Euler Equations of Gas Dynamics. https://ntrs.nasa.gov/citations/19910015505; review_level=selected-text-review: Example2 printedp7/PDFpage11 and Fig3 captions printedp8/PDFpage12
-  Reviewed Example2 setup, Mach3 uniform flow, inlet/outlet/reflection boundaries, T4 and the Fig3 distinction between untreated and specially treated corners. Selected text only; no figure redistribution or RKDG execution.
+Reviewed Example2 setup, Mach3 uniform flow, inlet/outlet/reflection boundaries, T4 and the Fig3 distinction between untreated and specially treated corners. Selected text only; no figure redistribution or RKDG execution.
+
 - Ralf Deiterding / AMROC project (2004). 2D Euler equations — Forward facing step. https://amroc.sourceforge.net/examples/euler/2d/html/ffstep_n.htm; review_level=official-example-selected-problem-description
-  Checked the official example description explicitly omitting special corner entropy corrections and using T4. No AMROC calculation, AMR or figure is imported.
+Checked the official example description explicitly omitting special corner entropy corrections and using T4. No AMROC calculation, AMR or figure is imported.
+
 - Hiroshi Koyama (2026). Independent C++17 MUSCL finite-volume reference for the uncorrected Mach-3 forward-facing step. https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/reference.cpp; review_level=source-and-preregistered-new-execution
-  Separate implementation without primary spatial-operator imports. HLL and Heun families are shared; no external engine execution. The original timeout and diagnostic-argument-only performance revision are retained alongside saved data,inputs,execution history and contracts.
+Separate implementation without primary spatial-operator imports. HLL and Heun families are shared; no external engine execution. The original timeout and diagnostic-argument-only performance revision are retained alongside saved data,inputs,execution history and contracts.
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.

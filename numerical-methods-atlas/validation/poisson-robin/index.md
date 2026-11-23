@@ -129,7 +129,7 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-このコマンドは配布グループの全例を実行します。
+このコマンドは配布グループの全例を実行します。同梱のresults/は保存見本です。追試は新規output/へ出力し、繰り返す場合は別の新規フォルダを指定します。
 
 入力・検証手順の履歴：https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/protocol-history.json
 
@@ -138,6 +138,8 @@ https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/atte
 ## 出典と確認範囲
 
 - MFEM developers (n.d.). Boundary Conditions: Robin boundary conditions. https://mfem.org/fem_bc/; review_level=selected-official-equations
+Outward normal derivative and Robin weak boundary contribution inspected; Example27 source overview inspected. Our cell-centred face elimination/MMS is separately derived; no MFEM execution.
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.
 
@@ -272,7 +274,7 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-This command executes every fixed case in the distribution group.
+This command executes every fixed case in the distribution group. Bundled results/ are stored outputs. Rerun into a new output/ directory and use another fresh directory for subsequent runs.
 
 Input and validation protocol history: https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/protocol-history.json
 
@@ -281,5 +283,7 @@ https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/atte
 ## Sources and review scope
 
 - MFEM developers (n.d.). Boundary Conditions: Robin boundary conditions. https://mfem.org/fem_bc/; review_level=selected-official-equations
+Outward normal derivative and Robin weak boundary contribution inspected; Example27 source overview inspected. Our cell-centred face elimination/MMS is separately derived; no MFEM execution.
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.

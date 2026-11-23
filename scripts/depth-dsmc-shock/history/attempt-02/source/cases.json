@@ -1,0 +1,92 @@
+[
+  {
+    "id": "dsmc-planar-shock",
+    "method_ids": [
+      "dsmc"
+    ],
+    "domains": [
+      "particles",
+      "pde",
+      "time"
+    ],
+    "code_files": [
+      "run.py",
+      "dsmc.py",
+      "diagnostics.py"
+    ],
+    "title": {
+      "ja": "硬球DSMCのMach2平面衝撃波",
+      "en": "Hard-sphere DSMC Mach2 planar shock"
+    },
+    "summary": {
+      "ja": "物理時間の硬球衝突と実際の分子輸送を計算し、独立SPARTAの資格確認済みモーメント場と比較します。",
+      "en": "Evolve physical-time hard-sphere collisions and molecular streaming; compare actual moments with qualified independent SPARTA fields."
+    },
+    "assumptions": {
+      "ja": "1次元位置・3次元速度、単原子硬球。Mach2、区間[0,16]、RHの開境界reservoir。192セル、粒子重み1/192、dt=.01、burn20/sample20、4seed。",
+      "en": "{\"kind\":\"shock\",\"cells\":192,\"length\":16,\"weight\":0.005208333333333333,\"dt\":0.01,\"burn_in\":20,\"sample_time\":20,\"blocks\":5,\"bins\":64,\"sample_every\":10,\"hist_velocity\":[-4,7]} Four independent seeds; primary fixed-weight mesh,particle-weight,and half-step companions each retain seed1."
+    },
+    "algorithm": {
+      "ja": "セル内の非重複ランダム対へ、偶数・奇数粒子数を区別した物理時間のσg衝突確率を適用。エネルギーによる安全上界で事前にsubcycle数を定め、確率clipはしません。壁・流入はflux重み付き分布と実際の残り飛行時間を用います。 開境界のmacro粒子到着数は平均を保つfloor(平均)+Bernoulli(小数部)で分散を下げます。Poisson数揺らぎや熱揺らぎの再現は主張しません。",
+      "en": "Disjoint cell-local random pairs with even/odd finite-N physical-time sigma*g acceptance,energy-based safe majorant and predeclared bounded subcycling; no probability caps. Exact flight-to-wall and flux-conditioned diffuse/reservoir velocities with remaining flight time. Open-reservoir macro counts use unbiased floor(mean)+Bernoulli(fraction) per face/species/half-stream to reduce artificial sampling variance; no Poisson number-fluctuation or thermodynamic-fluctuation reproduction claim."
+    },
+    "validation": {
+      "ja": "各群19pytestを事前固定。新しい固定計算は7本。境界込みの質量・運動量・エネルギー、局所λ/衝突時間、独立参照への誤差とseed精度、時間block定常性を別に判定します。",
+      "en": "Predeclare19pytest per group and7new fixed primary runs. Separate boundary-inclusive budgets,local lambda/collision-time diagnostics,reference error,whole-seed precision and block stationarity. Reference36runs/87qualifiers already passed; primary results remain pending until the frozen run."
+    },
+    "limits": {
+      "ja": "有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。RHは遠方状態・流束だけの参照で、内部構造の厳密解ではありません。図は保存した粒子位相空間であり、2D物理流れではありません。",
+      "en": "Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. RH validates far states/full fluxes,not an exact internal shock profile. Saved phase space is not a2D physical flow."
+    },
+    "formulas": [
+      "\\partial_t f+v_x\\partial_x f=Q_{\\mathrm{HS}}(f,f),\\quad \\sigma=\\pi d^2=1/\\sqrt{2}",
+      "P_{ij}=n\\langle c_i c_j\\rangle,\\quad q_x=\\frac{n}{2}\\langle c_x|\\mathbf c|^2\\rangle,\\quad\\mathbf c=\\mathbf v-\\mathbf u",
+      "p_{ij}=a_N W\\sigma g_{ij}\\Delta t/V,\\quad a_N=\\begin{cases}N-1&N\\text{ even}\\\\N&N\\text{ odd}\\end{cases}",
+      "g_{ij}\\le\\sqrt{2\\sum_i|\\mathbf v_i-\\mathbf v_{cm}|^2}"
+    ],
+    "references": [
+      {
+        "id": "sparta-hs-pinned",
+        "author": "Sandia SPARTA developers",
+        "year": 2026,
+        "title": "SPARTA, pinned official HS collision/boundary implementation and independently evolved fields",
+        "url": "https://github.com/sparta/sparta/tree/1ae18f3646e7c89f86e965f0f3c13fcc5f32e399",
+        "type": "software",
+        "review_level": "primary-source-selected-functions-and-actual-reference-execution",
+        "review_scope": "Selected collide_vss physical-rate/pair scattering, update SI constants, pflux/eflux pooled moments and boundary/inlet docs actually read. Unmodified official mac serial build;36fixed native runs and87qualifiers passed. Bird1994 original book not read; no whole-source audit.",
+        "accessed_on": "2026-11-23",
+        "review": {
+          "ja": "公式固定版のHS衝突率・境界・分子モーメントを選択確認し、独立36計算と87判定を実施。原著書籍全読や全コード監査は主張しません。",
+          "en": "Read selected official HS rate,boundary and moment definitions; execute36independent runs and87qualifiers. No full-original-book or whole-source audit claim."
+        }
+      }
+    ],
+    "citations": [
+      {
+        "id": "sparta-hs-pinned",
+        "author": "Sandia SPARTA developers",
+        "year": 2026,
+        "title": "SPARTA, pinned official HS collision/boundary implementation and independently evolved fields",
+        "url": "https://github.com/sparta/sparta/tree/1ae18f3646e7c89f86e965f0f3c13fcc5f32e399",
+        "type": "software",
+        "review_level": "primary-source-selected-functions-and-actual-reference-execution",
+        "review_scope": "Selected collide_vss physical-rate/pair scattering, update SI constants, pflux/eflux pooled moments and boundary/inlet docs actually read. Unmodified official mac serial build;36fixed native runs and87qualifiers passed. Bird1994 original book not read; no whole-source audit.",
+        "accessed_on": "2026-11-23",
+        "review": {
+          "ja": "公式固定版のHS衝突率・境界・分子モーメントを選択確認し、独立36計算と87判定を実施。原著書籍全読や全コード監査は主張しません。",
+          "en": "Read selected official HS rate,boundary and moment definitions; execute36independent runs and87qualifiers. No full-original-book or whole-source audit claim."
+        }
+      }
+    ],
+    "additional_figures": [
+      {
+        "file": "dsmc-planar-shock-preview.png",
+        "caption": {
+          "ja": "保存した実粒子の位置–速度ヒストグラム。1次元位置と分子速度の位相空間であり、2D物理流れではありません。",
+          "en": "Actual saved particle position-velocity histograms; phase space of1D position and molecular velocity,not2D physical flow."
+        }
+      }
+    ],
+    "gallery_figure": "dsmc-planar-shock-preview.png"
+  }
+]

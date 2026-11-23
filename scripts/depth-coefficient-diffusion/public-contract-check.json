@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "csv": [
+    {
+      "file": "checkerboard-diffusion.csv",
+      "bytes": 1944,
+      "sha256": "ae8c33fbbb8cd93f5fe388da2d6a09a2dbcfaf24b2c9d022e3edbc1e0e167abe"
+    },
+    {
+      "file": "rotated-anisotropic-diffusion.csv",
+      "bytes": 1524,
+      "sha256": "c27438b8c47034fcea9ea6a65445feb2bf453a127f5df5c145b65e7d0784a7f9"
+    }
+  ],
+  "case_ids": [
+    "checkerboard-diffusion",
+    "rotated-anisotropic-diffusion"
+  ],
+  "gates": 97,
+  "tests": 12
+}

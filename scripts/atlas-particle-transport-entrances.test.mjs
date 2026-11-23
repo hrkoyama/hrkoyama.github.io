@@ -98,14 +98,14 @@ test('one scoped goal and two depth fields expose six new checks without changin
  assert.deepEqual(gravity.methods,['barnes-hut','pm']);assert.deepEqual(gravity.examples,['barnes-hut','periodic-particles']);
  assert.equal(gravity.supplemental_examples,undefined);
  const depth=json('catalog/atlas-depth.json').fields;
- assert.deepEqual(depth.find(x=>x.id==='particles').supplemental_examples,['ewald','spme','fmm','pic','dsmc',...added.slice(0,-1)]);
- assert.deepEqual(depth.find(x=>x.id==='transport').supplemental_examples,['radiation-transport','radiation-convergence']);
+ assert.deepEqual(depth.find(x=>x.id==='particles').supplemental_examples.filter(id=>!['checkerboard-diffusion', 'rotated-anisotropic-diffusion', 'neutral-slab-yb', 'fmm3d-inverse-r', 'gravity-kepler', 'gravity-plummer-short', 'thermal-landau-damping', 'thermal-two-stream', 'pic-independent-spatial', 'dsmc-couette', 'dsmc-fourier', 'dsmc-planar-shock'].includes(id)),['ewald','spme','fmm','pic','dsmc',...added.slice(0,-1)]);
+ assert.deepEqual(depth.find(x=>x.id==='transport').supplemental_examples.filter(id=>!['checkerboard-diffusion', 'rotated-anisotropic-diffusion', 'neutral-slab-yb', 'fmm3d-inverse-r', 'gravity-kepler', 'gravity-plummer-short', 'thermal-landau-damping', 'thermal-two-stream', 'pic-independent-spatial', 'dsmc-couette', 'dsmc-fourier', 'dsmc-planar-shock'].includes(id)),['radiation-transport','radiation-convergence']);
  const mapping=json('catalog/atlas-depth-expansion.json').case_problem_ids;
  for(const [id,problem] of Object.entries(physical))assert.equal(mapping[id],problem);
  assert.equal(new Set(Object.values(physical)).size,5);
  assert.equal(Object.values(mapping).filter(x=>x===null).length,5);
  const inventory=json('catalog/atlas-test-problems.json').problems;
- assert.equal(inventory.length,102);assert.ok(!inventory.some(x=>added.includes(x.id)));
+ assert.equal(inventory.length,113);assert.ok(!inventory.some(x=>added.includes(x.id)));
  const ids=json('catalog/atlas-reading-index.json').groups.find(x=>x.id==='particles-transport').chapters;
  assert.equal(ids[ids.indexOf('validation-particles')+1],'validation-particle-transport');
  assert.equal(ids.filter(x=>x==='validation-particle-transport').length,1);
@@ -129,9 +129,9 @@ test('one scoped goal and two depth fields expose six new checks without changin
 });
 
 test('all 80 historical gallery illustrations, image checksums and captions survive the new supplemental evidence',()=>{
- const items=json('numerical-methods-atlas/gallery/preview-manifest.json').items.filter(x=>!['noh','sedov','double-mach','forward-step','isentropic-vortex','guderley','zalesak','swashes-topography','dry-bed-dam-break','lid-driven-cavity','wall-manufactured','level-set-circle', 'kh-initial-growth', 'rt-initial-growth', 'lshape-fem', 'annular-viscous-mms', 'poisson-neumann', 'poisson-robin', 'ale-nonuniform-transport', 'cgrid-rotating-wave', 'srhd-collision', 'srmhd-alfven'].includes(x.id));
+ const items=json('numerical-methods-atlas/gallery/preview-manifest.json').items.filter(x=>!['noh','sedov','double-mach','forward-step','isentropic-vortex','guderley','zalesak','swashes-topography','dry-bed-dam-break','lid-driven-cavity','wall-manufactured','level-set-circle', 'kh-initial-growth', 'rt-initial-growth', 'lshape-fem', 'annular-viscous-mms', 'poisson-neumann', 'poisson-robin', 'ale-nonuniform-transport', 'cgrid-rotating-wave', 'srhd-collision', 'srmhd-alfven','checkerboard-diffusion','rotated-anisotropic-diffusion','neutral-slab-yb','fmm3d-inverse-r','gravity-kepler','gravity-plummer-short','thermal-landau-damping','thermal-two-stream','dsmc-couette','dsmc-fourier','dsmc-planar-shock'].includes(x.id));
  assert.equal(items.length,80);
  assert.equal(hash(items.map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}))),'25c25a4cb7ad5c54e5788b984d949c44994d3f1706ed36c4ef30a3ce36fa6c2b');
  const gallery=json('numerical-methods-atlas/gallery/index.json');
- assert.equal(gallery.items.length,102);assert.equal(gallery.items.filter(x=>x.runnable).length,64);
+ assert.equal(gallery.items.length,113);assert.equal(gallery.items.filter(x=>x.runnable).length,75);
 });

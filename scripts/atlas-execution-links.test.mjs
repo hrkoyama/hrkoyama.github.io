@@ -13,7 +13,7 @@ test('method and problem records lead to the same stable execution examples in b
   const problems=json('numerical-methods-atlas/test-cases/index.json').problems;
   const page=read('numerical-methods-atlas/code-and-data/index.html');
   assert.equal(examples.length,22);
-  assert.equal(problems.length,102);
+  assert.equal(problems.length,113);
   for(const e of examples){
     const records=[problems.find(p=>p.id===e.problem_id),...e.method_ids.map(id=>methods.find(m=>m.id===id))];
     for(const record of records){
@@ -34,7 +34,7 @@ test('method and problem records lead to the same stable execution examples in b
     assert.deepEqual(m.depth_release.case_ids,ids);
     const added=id==='ewald'?'ewald-convergence':'spme-convergence';
     assert.deepEqual(m.depth_additional_releases.find(x=>x.group==='particle-transport').case_ids,[added]);
-    assert.deepEqual(m.execution_examples.map(x=>x.id),[...ids,added]);
+    assert.deepEqual(m.execution_examples.filter(x=>x.id!=='neutral-slab-yb').map(x=>x.id),[...ids,added]);
     for(const entry of m.execution_examples){
       assert.equal(entry.kind,'dedicated-supplement');
       assert.equal(entry.registry_url,'https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json');

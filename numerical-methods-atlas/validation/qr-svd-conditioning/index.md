@@ -123,17 +123,20 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-このコマンドは配布グループの全例を実行します。
+このコマンドは配布グループの全例を実行します。同梱のresults/は保存見本です。追試は新規output/へ出力し、繰り返す場合は別の新規フォルダを指定します。
 
 ## 出典と確認範囲
 
 - A. S. Householder (1958). Unitary Triangularization of a Nonsymmetric Matrix. https://dl.acm.org/doi/10.1145/320941.320947; review_level=publisher-metadata
 - J. Demmel, K. Veselić (1992). Jacobi’s Method is More Accurate than QR. https://epubs.siam.org/doi/abs/10.1137/0613074; review_level=primary publisher abstract and bibliographic metadata
-  適切な停止規準と行列の成分ごとの条件に依存する相対精度の主張を確認しました。一般の高条件数行列における微小特異値の万能な相対精度とはしません。
+適切な停止規準と行列の成分ごとの条件に依存する相対精度の主張を確認しました。一般の高条件数行列における微小特異値の万能な相対精度とはしません。
+
 - LAPACK authors (1999). Further Details: Error Bounds for Linear Least Squares Problems. https://netlib.org/lapack/lug/node83.html; review_level=official implementation documentation, error-analysis and numerical-rank sections
-  小さな後退誤差と前進誤差を区別し、最小二乗では条件数だけでなく残差の角度にも依存すること、RCONDによる切捨ては数値階数の規約であることを確認しました。
+小さな後退誤差と前進誤差を区別し、最小二乗では条件数だけでなく残差の角度にも依存すること、RCONDによる切捨ては数値階数の規約であることを確認しました。
+
 - mpmath developers (2023). mpmath 1.3.0 matrix documentation and installed implementation. https://mpmath.org/doc/1.3.0/matrices.html; review_level=official matrix documentation and selected installed mpmath1.3.0 source (svd_r_raw, qr_solve), plus actual 80/120dps fixed-input execution
-  SVDはHouseholder二重対角化とQR反復、最小二乗は別実装の高精度Householder QRです。後者は教材のQRと同じ数理的手法群であり、別の手法群とは呼びません。実際の二進浮動小数点入力を整数比で読み込み、生成専用環境で実行しました。
+SVDはHouseholder二重対角化とQR反復、最小二乗は別実装の高精度Householder QRです。後者は教材のQRと同じ数理的手法群であり、別の手法群とは呼びません。実際の二進浮動小数点入力を整数比で読み込み、生成専用環境で実行しました。
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.
 
@@ -262,16 +265,19 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-This command executes every fixed case in the distribution group.
+This command executes every fixed case in the distribution group. Bundled results/ are stored outputs. Rerun into a new output/ directory and use another fresh directory for subsequent runs.
 
 ## Sources and review scope
 
 - A. S. Householder (1958). Unitary Triangularization of a Nonsymmetric Matrix. https://dl.acm.org/doi/10.1145/320941.320947; review_level=publisher-metadata
 - J. Demmel, K. Veselić (1992). Jacobi’s Method is More Accurate than QR. https://epubs.siam.org/doi/abs/10.1137/0613074; review_level=primary publisher abstract and bibliographic metadata
-  Checked the dependence of relative-accuracy statements on stopping rules and componentwise sensitivity; not a blanket accuracy guarantee for tiny singular values of arbitrary ill-conditioned matrices.
+Checked the dependence of relative-accuracy statements on stopping rules and componentwise sensitivity; not a blanket accuracy guarantee for tiny singular values of arbitrary ill-conditioned matrices.
+
 - LAPACK authors (1999). Further Details: Error Bounds for Linear Least Squares Problems. https://netlib.org/lapack/lug/node83.html; review_level=official implementation documentation, error-analysis and numerical-rank sections
-  Checked backward versus forward error, the residual-angle dependence of least-squares sensitivity, and numerical-rank truncation controlled by RCOND.
+Checked backward versus forward error, the residual-angle dependence of least-squares sensitivity, and numerical-rank truncation controlled by RCOND.
+
 - mpmath developers (2023). mpmath 1.3.0 matrix documentation and installed implementation. https://mpmath.org/doc/1.3.0/matrices.html; review_level=official matrix documentation and selected installed mpmath1.3.0 source (svd_r_raw, qr_solve), plus actual 80/120dps fixed-input execution
-  SVD uses Householder bidiagonalization and a QR variant; least squares uses a separate high-precision Householder QR implementation. The latter shares the educational QR mathematical family and is not called a different algorithm family. Actual binary floating-point inputs were loaded by integer ratios and executed in a generation-only environment.
+SVD uses Householder bidiagonalization and a QR variant; least squares uses a separate high-precision Householder QR implementation. The latter shares the educational QR mathematical family and is not called a different algorithm family. Actual binary floating-point inputs were loaded by integer ratios and executed in a generation-only environment.
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.

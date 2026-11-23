@@ -24,4 +24,11 @@ No chapter-specific association is registered. Atlas-wide index: [Exact and refe
 
 ## Code and validation
 
-No chapter-specific association is registered. Atlas-wide index: [Code, inputs and validation](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en)
+- [Neutral rectangular slab: genuine2P reference and YB](<https://hrkoyama.github.io/numerical-methods-atlas/validation/neutral-slab-yb/?lang=en>)
+  availability: run
+
+  Compare corrected orthorhombic3P Ewald energy/all forces against a separately implemented genuine2P series.
+- [Slab electrostatics and 2D-periodic Ewald — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/slab-ewald/?lang=en#method-execution-en>)
+  availability: source
+
+  Method-specific editions and related sources; fixed-input runs are listed separately.

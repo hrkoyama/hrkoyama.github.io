@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "id": "checkerboard-diffusion",
+  "name": {
+    "ja": "係数ジャンプ拡散：共有流束とMG・AMG",
+    "en": "Checkerboard diffusion: shared flux, MG and AMG"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/checkerboard-diffusion/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/checkerboard-diffusion/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/checkerboard-diffusion/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/results/checkerboard-diffusion-preview.png",
+    "sha256": "874bbea94425c356ca0881fd0db4da26bccd8be3f0add3bbb0267e78c244eb1b",
+    "width": 990,
+    "height": 720,
+    "caption": {
+      "ja": "保存した2D解・誤差・真の残差・格子感度の検証図。",
+      "en": "Saved2D solution, error, true residual and refinement/reference sensitivity."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-coefficient-diffusion/#checkerboard-diffusion",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-coefficient-diffusion/#checkerboard-diffusion"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#checkerboard-diffusion",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#checkerboard-diffusion-en"
+  },
+  "equations": [
+    {
+      "id": "tensor-diffusion",
+      "name": {
+        "ja": "不連続係数・完全テンソル拡散の境界値問題",
+        "en": "Discontinuous and full-tensor diffusion BVP"
+      },
+      "formula": [
+        "-\\nabla\\cdot(K(\\boldsymbol x)\\nabla u)=f,\\quad u|_{\\partial\\Omega}=g",
+        "K=aI\\ (a\\in\\{1,100\\})\\quad\\mathrm{or}\\quad K=R(\\pi/6)\\operatorname{diag}(1,.01)R^T"
+      ],
+      "note": {
+        "ja": "スカラー調和流束FVと、非零の交差項を持つ完全テンソルQ1を分けます。MGとAMGは同じ行列を解きます。",
+        "en": "Separate scalar harmonic-flux FV from full-tensor Q1 with nonzero cross terms. MG and AMG solve the same matrix."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#tensor-diffusion-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#tensor-diffusion-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "単位正方形、零Dirichlet、f=1、対角2象限100/残り1、N16/32/64。参照P1は128/192。",
+    "en": "Unit square, zero Dirichlet, f=1, diagonal quadrants100/others1, N16/32/64; reference P1 meshes128/192."
+  },
+  "formulations": [
+    {
+      "id": "supplement-checkerboard-diffusion",
+      "name": {
+        "ja": "係数ジャンプ拡散：共有流束とMG・AMG",
+        "en": "Checkerboard diffusion: shared flux, MG and AMG"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "-\\nabla\\cdot(a\\nabla u)=1,\\quad a\\in\\{1,100\\}",
+        "T_f=|f|/(d_L/a_L+d_R/a_R)"
+      ],
+      "note": {
+        "ja": "不連続係数のFV解を独立なP1参照と比較し、線形系の残差・前進誤差と連続問題の誤差を分けます。",
+        "en": "Compare discontinuous-coefficient FV with independent P1 reference fields, separating linear-system residual/forward errors from continuum error."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "checkerboard-diffusion",
+      "kind": "numerical-reference",
+      "kind_label": {
+        "ja": "有限格子の数値参照",
+        "en": "Finite-grid numerical reference"
+      },
+      "title": {
+        "ja": "係数ジャンプ拡散：共有流束とMG・AMG",
+        "en": "Checkerboard diffusion: shared flux, MG and AMG"
+      },
+      "formula": "-\\nabla\\cdot(a\\nabla u)=1,\\quad a\\in\\{1,100\\}; T_f=|f|/(d_L/a_L+d_R/a_R)",
+      "assumptions": {
+        "ja": "単位正方形、零Dirichlet、f=1、対角2象限100/残り1、N16/32/64。参照P1は128/192。 非零2材料流束パッチ、残差に整合する収支、直接解の前進/energy誤差、独立三角形P1参照の格子感度。 係数比100の固定例。P1格子差は厳密誤差上界ではなく、特異交点の次数や普遍的なMG/AMG優劣は主張しません。",
+        "en": "Unit square, zero Dirichlet, f=1, diagonal quadrants100/others1, N16/32/64; reference P1 meshes128/192."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "係数比100の固定例。P1格子差は厳密誤差上界ではなく、特異交点の次数や普遍的なMG/AMG優劣は主張しません。",
+        "en": "Fixed contrast100 example. P1 differences are not rigorous error bounds; no singular exponent or universal MG/AMG winner is asserted."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/checkerboard-diffusion/?lang=ja#checkerboard-diffusion-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/checkerboard-diffusion/?lang=en#checkerboard-diffusion-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "非零2材料流束パッチ、残差に整合する収支、直接解の前進/energy誤差、独立三角形P1参照の格子感度。",
+    "en": "Nonzero two-material flux patch, residual-aware budget, direct forward/energy errors and independent triangular-P1 grid sensitivity."
+  },
+  "methods": [
+    {
+      "id": "multigrid",
+      "name": {
+        "ja": "幾何マルチグリッドVサイクル",
+        "en": "Geometric multigrid V-cycle"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/multigrid/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/multigrid/?lang=en"
+      }
+    },
+    {
+      "id": "amg",
+      "name": {
+        "ja": "代数的マルチグリッド（AMG）",
+        "en": "Algebraic multigrid / AMG"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/amg/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/amg/?lang=en"
+      }
+    },
+    {
+      "id": "cg",
+      "name": {
+        "ja": "共役勾配法",
+        "en": "Conjugate gradients"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/cg/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/cg/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "直交FVの共有面調和平均。幾何MGと座標を受け取らないSA-AMGの対称Galerkin V-cycleを、同じ行列のPCGへ適用。",
+    "en": "Orthogonal FV with shared harmonic transmissibility. Symmetric Galerkin geometric and coordinate-free SA cycles precondition PCG on identical matrices."
+  },
+  "executions": [
+    {
+      "id": "checkerboard-diffusion",
+      "kind": "supplement",
+      "name": {
+        "ja": "係数ジャンプ拡散：共有流束とMG・AMG",
+        "en": "Checkerboard diffusion: shared flux, MG and AMG"
+      },
+      "method_ids": [
+        "multigrid",
+        "amg",
+        "cg"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/checkerboard-diffusion/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/checkerboard-diffusion/?lang=en"
+      },
+      "scope": {
+        "ja": "不連続係数のFV解を独立なP1参照と比較し、線形系の残差・前進誤差と連続問題の誤差を分けます。",
+        "en": "Compare discontinuous-coefficient FV with independent P1 reference fields, separating linear-system residual/forward errors from continuum error."
+      },
+      "assumptions": {
+        "ja": "単位正方形、零Dirichlet、f=1、対角2象限100/残り1、N16/32/64。参照P1は128/192。",
+        "en": "Unit square, zero Dirichlet, f=1, diagonal quadrants100/others1, N16/32/64; reference P1 meshes128/192."
+      },
+      "limits": {
+        "ja": "係数比100の固定例。P1格子差は厳密誤差上界ではなく、特異交点の次数や普遍的なMG/AMG優劣は主張しません。",
+        "en": "Fixed contrast100 example. P1 differences are not rigorous error bounds; no singular exponent or universal MG/AMG winner is asserted."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/atlas-coefficient-diffusion-2026-11-23.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "非零2材料流束パッチ、残差に整合する収支、直接解の前進/energy誤差、独立三角形P1参照の格子感度。",
+        "en": "Nonzero two-material flux patch, residual-aware budget, direct forward/energy errors and independent triangular-P1 grid sensitivity."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/operators.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/multilevel.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/references/p1.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/test_diffusion.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

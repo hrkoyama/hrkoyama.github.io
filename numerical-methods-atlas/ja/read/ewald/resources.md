@@ -32,6 +32,10 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/ewald/
   availability: run
 
   中性8電荷の全エネルギーと24力成分を、別実装のGaussian/theta積分と比較。分割・実空間・逆空間の打切り、保存則と不変性を分けて測定します。
+- [中性長方形スラブ：真2P参照とYB補正](<https://hrkoyama.github.io/numerical-methods-atlas/validation/neutral-slab-yb/?lang=ja>)
+  availability: run
+
+  4電荷の長方形3P Ewaldに中性スラブ補正を加え、別実装の真2P和のエネルギー・全力成分と照合します。
 - [Ewald法：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/ewald/?lang=ja#method-execution-ja>)
   availability: source
 

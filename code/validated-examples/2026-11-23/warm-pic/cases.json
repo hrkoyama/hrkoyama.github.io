@@ -1,0 +1,316 @@
+[
+  {
+    "method_ids": [
+      "pic",
+      "cic",
+      "verlet"
+    ],
+    "domains": [
+      "pde",
+      "coupling",
+      "time"
+    ],
+    "code_files": [
+      "run.py",
+      "primary.py",
+      "loading.py",
+      "references/linear.py",
+      "references/estimate.py"
+    ],
+    "references": [
+      {
+        "id": "camporeale2013",
+        "author": "Enrico Camporeale, Gian Luca Delzanno, Benjamin K. Bergen and J. David Moulton",
+        "year": 2013,
+        "title": "On the velocity space discretization for the Vlasov–Poisson system: comparison between Hermite spectral and Particle-in-Cell methods. Part 1: semi-implicit scheme",
+        "url": "https://arxiv.org/abs/1311.2098",
+        "type": "preprint",
+        "review_level": "primary-selected-original-pdf-text",
+        "review_scope": "Read selected original arXiv v2 sections2 (normalized1D1V Vlasov–Poisson),4 and5.2/5.4 (recurrence/noise and linear-window distinction). No whole-paper review, copied reference table, or original-run reproduction. Our positive-weight quiet loading and two-stream inputs differ.",
+        "review": {
+          "ja": "原著の規格化方程式、再帰・雑音、Landauと二流の線形窓の議論を選択して確認。原著の計算値は転用しません。",
+          "en": "Selected original equations and diagnostic limitations inspected; independently derived continuum references are evaluated here."
+        },
+        "accessed_on": "2026-11-23"
+      },
+      {
+        "id": "plasmapy-z",
+        "author": "PlasmaPy developers",
+        "year": 2026,
+        "title": "Plasma dispersion function: official API mathematics",
+        "url": "https://docs.plasmapy.org/en/stable/api/plasmapy.dispersion.dispersion_functions.plasma_dispersion_func.html",
+        "type": "documentation",
+        "review_level": "official-mathematical-definition-read",
+        "review_scope": "Read the displayed integral definition and Maxwellian dispersion role. PlasmaPy is not installed or executed; SciPy Faddeeva is used with an independently derived dielectric.",
+        "review": {
+          "ja": "公式のZ関数の定義を確認。PlasmaPy実行値を参照したものではありません。",
+          "en": "Official Z definition inspected; no PlasmaPy execution."
+        },
+        "accessed_on": "2026-11-23"
+      },
+      {
+        "id": "scipy-gh",
+        "author": "SciPy developers",
+        "year": 2024,
+        "title": "SciPy1.14.1 roots_hermitenorm",
+        "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.special.roots_hermitenorm.html",
+        "type": "documentation",
+        "review_level": "official-pinned-version-definition-read",
+        "review_scope": "Read Gauss–Hermite normal quadrature definition, exp(-x²/2) weight and degree2n-1 polynomial exactness. Used only for positive full-f initial particle weights; no Hermite PDE time evolution.",
+        "review": {
+          "ja": "公式1.14.1文書の重みと多項式積分次数を確認。初期粒子重みだけに用います。",
+          "en": "Pinned official quadrature definition read; initialization only."
+        },
+        "accessed_on": "2026-11-23"
+      }
+    ],
+    "citations": [
+      {
+        "id": "camporeale2013",
+        "author": "Enrico Camporeale, Gian Luca Delzanno, Benjamin K. Bergen and J. David Moulton",
+        "year": 2013,
+        "title": "On the velocity space discretization for the Vlasov–Poisson system: comparison between Hermite spectral and Particle-in-Cell methods. Part 1: semi-implicit scheme",
+        "url": "https://arxiv.org/abs/1311.2098",
+        "type": "preprint",
+        "review_level": "primary-selected-original-pdf-text",
+        "review_scope": "Read selected original arXiv v2 sections2 (normalized1D1V Vlasov–Poisson),4 and5.2/5.4 (recurrence/noise and linear-window distinction). No whole-paper review, copied reference table, or original-run reproduction. Our positive-weight quiet loading and two-stream inputs differ.",
+        "review": {
+          "ja": "原著の規格化方程式、再帰・雑音、Landauと二流の線形窓の議論を選択して確認。原著の計算値は転用しません。",
+          "en": "Selected original equations and diagnostic limitations inspected; independently derived continuum references are evaluated here."
+        },
+        "accessed_on": "2026-11-23"
+      },
+      {
+        "id": "plasmapy-z",
+        "author": "PlasmaPy developers",
+        "year": 2026,
+        "title": "Plasma dispersion function: official API mathematics",
+        "url": "https://docs.plasmapy.org/en/stable/api/plasmapy.dispersion.dispersion_functions.plasma_dispersion_func.html",
+        "type": "documentation",
+        "review_level": "official-mathematical-definition-read",
+        "review_scope": "Read the displayed integral definition and Maxwellian dispersion role. PlasmaPy is not installed or executed; SciPy Faddeeva is used with an independently derived dielectric.",
+        "review": {
+          "ja": "公式のZ関数の定義を確認。PlasmaPy実行値を参照したものではありません。",
+          "en": "Official Z definition inspected; no PlasmaPy execution."
+        },
+        "accessed_on": "2026-11-23"
+      },
+      {
+        "id": "scipy-gh",
+        "author": "SciPy developers",
+        "year": 2024,
+        "title": "SciPy1.14.1 roots_hermitenorm",
+        "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.special.roots_hermitenorm.html",
+        "type": "documentation",
+        "review_level": "official-pinned-version-definition-read",
+        "review_scope": "Read Gauss–Hermite normal quadrature definition, exp(-x²/2) weight and degree2n-1 polynomial exactness. Used only for positive full-f initial particle weights; no Hermite PDE time evolution.",
+        "review": {
+          "ja": "公式1.14.1文書の重みと多項式積分次数を確認。初期粒子重みだけに用います。",
+          "en": "Pinned official quadrature definition read; initialization only."
+        },
+        "accessed_on": "2026-11-23"
+      }
+    ],
+    "algorithm": {
+      "ja": "正のGauss速度重みと密度CDF逆写像で共同(x,v)分布を作り、CIC電荷配置→FFT Poisson→同じCIC補間を各kickで再計算するvelocity-Verlet法。Z関数の分散根を枝追跡で確認し、別導出のVolterra初期値問題を刻み半減して固定窓の過渡偏りを検査します。",
+      "en": "Positive Gaussian velocity weights and density-CDF inversion load the joint(x,v) distribution. Recompute CIC deposition, FFT Poisson and matched CIC gathering at every velocity-Verlet kick. Qualify the dielectric root using branch continuation/bracket checks and a separately derived, time-refined Volterra IVP with the same fixed-window estimator."
+    },
+    "validation": {
+      "ja": "31 pytest・19自己無撞着計算・140/140ケース判定・17/17独立線形参照資格判定が合格。pytest+mainは7.283秒。Landau粒子空間層256/512の曲線差.001154、振幅半減差.004376は固定.03以下。以前の64層版130/131（振幅差.05646>.03）は全データと元契約を保持した未達例です。入力の振幅と全許容値は維持しました。",
+      "en": "31pytest,19self-consistent runs,140/140case gates and17/17independent linear-reference qualifiers passed; shared pytest+main7.283s. Landau256/512particle-space curve gap.001154 and amplitude-half gap.004376 meet the unchanged.03bound. Original64-strata130/131result (.05646>.03) remains an explicitly unmet retained example; amplitudes/all tolerances stayed fixed."
+    },
+    "limits": {
+      "ja": "1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。",
+      "en": "Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established."
+    },
+    "formulas": [
+      "\\partial_t f+v\\partial_x f-E\\partial_v f=0,\\quad\\partial_x E=1-\\int f\\,dv,\\quad\\langle E\\rangle=0",
+      "D(\\omega,k)=1+\\frac{1}{k^2}\\sum_s a_s[1+\\zeta_s Z(\\zeta_s)],\\quad\\zeta_s=\\frac{\\omega-ku_s}{\\sqrt2 k}",
+      "e(t)=\\Phi(t)-\\int_0^t s\\Phi(s)e(t-s)\\,ds,\\quad\\Phi(t)=e^{-k^2t^2/2}\\cos(kut)"
+    ],
+    "id": "thermal-landau-damping",
+    "title": {
+      "ja": "温かいPICの線形Landau減衰",
+      "en": "Warm PIC linear Landau damping"
+    },
+    "summary": {
+      "ja": "熱速度1のMaxwell分布を自己無撞着に動かし、減衰率・周波数・符号付き場の履歴を独立した線形参照で調べます。",
+      "en": "Advance thermal Maxwellian full-f particles and compare damping rate, frequency and signed-field history with qualified independent linear references."
+    },
+    "assumptions": {
+      "ja": "vth=ωp=λD=1、k=.5、L=4π、α=.01、格子32、256空間層×128速度節点、dt=.04、T16、固定窓[4,12]。シード33001–33004。 空間粒子層だけ512へ倍増する独立companionも固定します。",
+      "en": "vth=omega_p=lambda_D=1,k.5,L4pi,alpha.01,grid32,256spatial strata×128velocity nodes,dt.04,T16,fit[4,12],seeds33001–33004. A separately evolved512-spatial-strata companion changes only particle-space resolution."
+    },
+    "gallery_figure": "thermal-landau-damping-preview.png",
+    "additional_figures": [
+      {
+        "file": "thermal-landau-damping-preview.png",
+        "caption": {
+          "ja": "実際に動かした粒子の初期(x,v)に対する速度変化δv/α。空間2D流体図ではなく1D1V位相空間の応答です。",
+          "en": "Actual evolved particle velocity change delta-v/alpha against initial(x,v); a1D1V phase-space response, not a2D physical-space flow."
+        }
+      }
+    ],
+    "case_notes": {
+      "ja": "固定窓[4,12]の平均減衰率−.154881、線形IVP同窓−.153648、分散根−.153359、平均周波数1.41272。空間粒子層256/512の率差は|gamma|の6.63e−5。512は同じPIC実装の基準振幅だけの感度検査で、独立非線形エンジンや振幅次数の証明ではありません。4シフトのSE/t区間は離散化バイアスを含めない条件付きの要約です。",
+      "en": "Fixed-window[4,12] mean gamma−.154881, same-window linear IVP−.153648, dielectric pole−.153359 and mean frequency1.41272.256/512strata rate gap is6.63e-5|gamma|.512is a same-engine sensitivity probe at the baseline amplitude only, not an independent nonlinear engine or an alpha-order proof. Four-shift SE/nominal t intervals exclude discretization bias."
+    }
+  },
+  {
+    "method_ids": [
+      "pic",
+      "cic",
+      "verlet"
+    ],
+    "domains": [
+      "pde",
+      "coupling",
+      "time"
+    ],
+    "code_files": [
+      "run.py",
+      "primary.py",
+      "loading.py",
+      "references/linear.py",
+      "references/estimate.py"
+    ],
+    "references": [
+      {
+        "id": "camporeale2013",
+        "author": "Enrico Camporeale, Gian Luca Delzanno, Benjamin K. Bergen and J. David Moulton",
+        "year": 2013,
+        "title": "On the velocity space discretization for the Vlasov–Poisson system: comparison between Hermite spectral and Particle-in-Cell methods. Part 1: semi-implicit scheme",
+        "url": "https://arxiv.org/abs/1311.2098",
+        "type": "preprint",
+        "review_level": "primary-selected-original-pdf-text",
+        "review_scope": "Read selected original arXiv v2 sections2 (normalized1D1V Vlasov–Poisson),4 and5.2/5.4 (recurrence/noise and linear-window distinction). No whole-paper review, copied reference table, or original-run reproduction. Our positive-weight quiet loading and two-stream inputs differ.",
+        "review": {
+          "ja": "原著の規格化方程式、再帰・雑音、Landauと二流の線形窓の議論を選択して確認。原著の計算値は転用しません。",
+          "en": "Selected original equations and diagnostic limitations inspected; independently derived continuum references are evaluated here."
+        },
+        "accessed_on": "2026-11-23"
+      },
+      {
+        "id": "plasmapy-z",
+        "author": "PlasmaPy developers",
+        "year": 2026,
+        "title": "Plasma dispersion function: official API mathematics",
+        "url": "https://docs.plasmapy.org/en/stable/api/plasmapy.dispersion.dispersion_functions.plasma_dispersion_func.html",
+        "type": "documentation",
+        "review_level": "official-mathematical-definition-read",
+        "review_scope": "Read the displayed integral definition and Maxwellian dispersion role. PlasmaPy is not installed or executed; SciPy Faddeeva is used with an independently derived dielectric.",
+        "review": {
+          "ja": "公式のZ関数の定義を確認。PlasmaPy実行値を参照したものではありません。",
+          "en": "Official Z definition inspected; no PlasmaPy execution."
+        },
+        "accessed_on": "2026-11-23"
+      },
+      {
+        "id": "scipy-gh",
+        "author": "SciPy developers",
+        "year": 2024,
+        "title": "SciPy1.14.1 roots_hermitenorm",
+        "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.special.roots_hermitenorm.html",
+        "type": "documentation",
+        "review_level": "official-pinned-version-definition-read",
+        "review_scope": "Read Gauss–Hermite normal quadrature definition, exp(-x²/2) weight and degree2n-1 polynomial exactness. Used only for positive full-f initial particle weights; no Hermite PDE time evolution.",
+        "review": {
+          "ja": "公式1.14.1文書の重みと多項式積分次数を確認。初期粒子重みだけに用います。",
+          "en": "Pinned official quadrature definition read; initialization only."
+        },
+        "accessed_on": "2026-11-23"
+      }
+    ],
+    "citations": [
+      {
+        "id": "camporeale2013",
+        "author": "Enrico Camporeale, Gian Luca Delzanno, Benjamin K. Bergen and J. David Moulton",
+        "year": 2013,
+        "title": "On the velocity space discretization for the Vlasov–Poisson system: comparison between Hermite spectral and Particle-in-Cell methods. Part 1: semi-implicit scheme",
+        "url": "https://arxiv.org/abs/1311.2098",
+        "type": "preprint",
+        "review_level": "primary-selected-original-pdf-text",
+        "review_scope": "Read selected original arXiv v2 sections2 (normalized1D1V Vlasov–Poisson),4 and5.2/5.4 (recurrence/noise and linear-window distinction). No whole-paper review, copied reference table, or original-run reproduction. Our positive-weight quiet loading and two-stream inputs differ.",
+        "review": {
+          "ja": "原著の規格化方程式、再帰・雑音、Landauと二流の線形窓の議論を選択して確認。原著の計算値は転用しません。",
+          "en": "Selected original equations and diagnostic limitations inspected; independently derived continuum references are evaluated here."
+        },
+        "accessed_on": "2026-11-23"
+      },
+      {
+        "id": "plasmapy-z",
+        "author": "PlasmaPy developers",
+        "year": 2026,
+        "title": "Plasma dispersion function: official API mathematics",
+        "url": "https://docs.plasmapy.org/en/stable/api/plasmapy.dispersion.dispersion_functions.plasma_dispersion_func.html",
+        "type": "documentation",
+        "review_level": "official-mathematical-definition-read",
+        "review_scope": "Read the displayed integral definition and Maxwellian dispersion role. PlasmaPy is not installed or executed; SciPy Faddeeva is used with an independently derived dielectric.",
+        "review": {
+          "ja": "公式のZ関数の定義を確認。PlasmaPy実行値を参照したものではありません。",
+          "en": "Official Z definition inspected; no PlasmaPy execution."
+        },
+        "accessed_on": "2026-11-23"
+      },
+      {
+        "id": "scipy-gh",
+        "author": "SciPy developers",
+        "year": 2024,
+        "title": "SciPy1.14.1 roots_hermitenorm",
+        "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.special.roots_hermitenorm.html",
+        "type": "documentation",
+        "review_level": "official-pinned-version-definition-read",
+        "review_scope": "Read Gauss–Hermite normal quadrature definition, exp(-x²/2) weight and degree2n-1 polynomial exactness. Used only for positive full-f initial particle weights; no Hermite PDE time evolution.",
+        "review": {
+          "ja": "公式1.14.1文書の重みと多項式積分次数を確認。初期粒子重みだけに用います。",
+          "en": "Pinned official quadrature definition read; initialization only."
+        },
+        "accessed_on": "2026-11-23"
+      }
+    ],
+    "algorithm": {
+      "ja": "正のGauss速度重みと密度CDF逆写像で共同(x,v)分布を作り、CIC電荷配置→FFT Poisson→同じCIC補間を各kickで再計算するvelocity-Verlet法。Z関数の分散根を枝追跡で確認し、別導出のVolterra初期値問題を刻み半減して固定窓の過渡偏りを検査します。",
+      "en": "Positive Gaussian velocity weights and density-CDF inversion load the joint(x,v) distribution. Recompute CIC deposition, FFT Poisson and matched CIC gathering at every velocity-Verlet kick. Qualify the dielectric root using branch continuation/bracket checks and a separately derived, time-refined Volterra IVP with the same fixed-window estimator."
+    },
+    "validation": {
+      "ja": "31 pytest・19自己無撞着計算・140/140ケース判定・17/17独立線形参照資格判定が合格。pytest+mainは7.283秒。Landau粒子空間層256/512の曲線差.001154、振幅半減差.004376は固定.03以下。以前の64層版130/131（振幅差.05646>.03）は全データと元契約を保持した未達例です。入力の振幅と全許容値は維持しました。",
+      "en": "31pytest,19self-consistent runs,140/140case gates and17/17independent linear-reference qualifiers passed; shared pytest+main7.283s. Landau256/512particle-space curve gap.001154 and amplitude-half gap.004376 meet the unchanged.03bound. Original64-strata130/131result (.05646>.03) remains an explicitly unmet retained example; amplitudes/all tolerances stayed fixed."
+    },
+    "limits": {
+      "ja": "1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。",
+      "en": "Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established."
+    },
+    "formulas": [
+      "\\partial_t f+v\\partial_x f-E\\partial_v f=0,\\quad\\partial_x E=1-\\int f\\,dv,\\quad\\langle E\\rangle=0",
+      "D(\\omega,k)=1+\\frac{1}{k^2}\\sum_s a_s[1+\\zeta_s Z(\\zeta_s)],\\quad\\zeta_s=\\frac{\\omega-ku_s}{\\sqrt2 k}",
+      "e(t)=\\Phi(t)-\\int_0^t s\\Phi(s)e(t-s)\\,ds,\\quad\\Phi(t)=e^{-k^2t^2/2}\\cos(kut)"
+    ],
+    "id": "thermal-two-stream",
+    "title": {
+      "ja": "温かいPICの二流初期成長",
+      "en": "Warm PIC two-stream initial growth"
+    },
+    "summary": {
+      "ja": "温度を持つ対向Maxwell二流を時間発展し、固定した線形窓の成長率と過渡を分散式・Volterra参照から分けて検査します。",
+      "en": "Evolve counter-streaming warm Maxwellians; distinguish fixed-window growth and transients using dielectric and Volterra references."
+    },
+    "assumptions": {
+      "ja": "各流の熱速度1、ドリフト±3、k=.2、L=10π、α=1e−5、格子32、64空間層×128総速度節点、dt=.05、T40、固定窓[12,20]。シード34001–34004。",
+      "en": "Each stream thermal speed1,drifts±3,k.2,L10pi,alpha1e-5,grid32,64spatial strata×128total velocity nodes,dt.05,T40,fit[12,20],seeds34001–34004."
+    },
+    "gallery_figure": "thermal-two-stream-preview.png",
+    "additional_figures": [
+      {
+        "file": "thermal-two-stream-preview.png",
+        "caption": {
+          "ja": "実粒子のT40での速度変化δv/αを初期(x,v)に表示。1D1V位相空間の後期診断で、成長率を検証する固定窓[12,20]とは分けます。",
+          "en": "Actual particle delta-v/alpha atT40against initial(x,v). This1D1Vphase-space image is a late diagnostic; growth rates are validated only over[12,20]."
+        }
+      }
+    ],
+    "case_notes": {
+      "ja": "固定窓[12,20]の平均成長率.273111は同窓IVPの.273678と比較します。漸近分散根.284510に対する参照自身の過渡偏りは3.807%で、別判定として保持。T40の位相図は実際の後期応答の診断で、飽和精度の検証ではありません。",
+      "en": "Compare mean growth.273111 over[12,20] with the same-window IVP.273678. The reference itself has3.807%transient bias versus the asymptotic pole.284510, separately gated. The actualT40phase response is diagnostic, without a saturation-accuracy claim."
+    }
+  }
+]

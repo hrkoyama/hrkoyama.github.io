@@ -1,0 +1,212 @@
+{
+  "id": "rotated-anisotropic-diffusion",
+  "passed": true,
+  "checks": {
+    "n16_quadrature": true,
+    "n16_symmetry": true,
+    "n16_geometric_converged": true,
+    "n16_geometric_true_residual": true,
+    "n16_geometric_forward": true,
+    "n16_geometric_energy": true,
+    "n16_geometric_history": true,
+    "n16_amg_converged": true,
+    "n16_amg_true_residual": true,
+    "n16_amg_forward": true,
+    "n16_amg_energy": true,
+    "n16_amg_history": true,
+    "n32_quadrature": true,
+    "n32_symmetry": true,
+    "n32_geometric_converged": true,
+    "n32_geometric_true_residual": true,
+    "n32_geometric_forward": true,
+    "n32_geometric_energy": true,
+    "n32_geometric_history": true,
+    "n32_amg_converged": true,
+    "n32_amg_true_residual": true,
+    "n32_amg_forward": true,
+    "n32_amg_energy": true,
+    "n32_amg_history": true,
+    "n64_quadrature": true,
+    "n64_symmetry": true,
+    "n64_geometric_converged": true,
+    "n64_geometric_true_residual": true,
+    "n64_geometric_forward": true,
+    "n64_geometric_energy": true,
+    "n64_geometric_history": true,
+    "n64_amg_converged": true,
+    "n64_amg_true_residual": true,
+    "n64_amg_forward": true,
+    "n64_amg_energy": true,
+    "n64_amg_history": true,
+    "refinement": true,
+    "l2_refinement_ratios": true,
+    "finest_l2": true,
+    "affine_patch": true,
+    "xy_patch": true,
+    "small_operator_spd": true,
+    "geometric_small_cycle_spd": true,
+    "amg_small_cycle_spd": true,
+    "intentional_budget": true
+  },
+  "metrics": {
+    "continuous_errors": [
+      0.0043094975495807045,
+      0.0010835497491345043,
+      0.0002713461470266456
+    ],
+    "reference_sensitivity": []
+  },
+  "records": [
+    {
+      "n": 16,
+      "solver": "geometric",
+      "iterations": 22,
+      "true_residual": 7.692098102140603e-09,
+      "forward_error": 7.413925270472537e-10,
+      "energy_error": 2.1515280249717924e-09,
+      "continuous_error": 0.0043094975495807045,
+      "setup_seconds": 0.0006322909976006486,
+      "solve_seconds": 0.0015195410014712252,
+      "sizes": [
+        225,
+        49,
+        9
+      ],
+      "nnz": [
+        1849,
+        361,
+        49
+      ],
+      "grid_complexity": 1.2577777777777779,
+      "operator_complexity": 1.2217414818820984
+    },
+    {
+      "n": 16,
+      "solver": "amg",
+      "iterations": 29,
+      "true_residual": 6.983569007436221e-09,
+      "forward_error": 1.273897334441206e-09,
+      "energy_error": 2.204609243448183e-09,
+      "continuous_error": 0.0043094975495807045,
+      "setup_seconds": 0.001687625001068227,
+      "solve_seconds": 0.00196291600150289,
+      "sizes": [
+        225,
+        49,
+        9
+      ],
+      "nnz": [
+        1849,
+        841,
+        81
+      ],
+      "grid_complexity": 1.2577777777777779,
+      "operator_complexity": 1.4986479177934018
+    },
+    {
+      "n": 32,
+      "solver": "geometric",
+      "iterations": 31,
+      "true_residual": 9.03229727779601e-09,
+      "forward_error": 5.446722561055623e-10,
+      "energy_error": 1.7056725490454712e-09,
+      "continuous_error": 0.0010835497491345043,
+      "setup_seconds": 0.0010413749987492338,
+      "solve_seconds": 0.003997749998234212,
+      "sizes": [
+        961,
+        225,
+        49,
+        9
+      ],
+      "nnz": [
+        8281,
+        1849,
+        361,
+        49
+      ],
+      "grid_complexity": 1.2944849115504682,
+      "operator_complexity": 1.272793140925009
+    },
+    {
+      "n": 32,
+      "solver": "amg",
+      "iterations": 43,
+      "true_residual": 9.394626701702734e-09,
+      "forward_error": 1.2390354862883652e-09,
+      "energy_error": 2.0880013112619845e-09,
+      "continuous_error": 0.0010835497491345043,
+      "setup_seconds": 0.005531832997803576,
+      "solve_seconds": 0.005975207997835241,
+      "sizes": [
+        961,
+        225,
+        49,
+        9
+      ],
+      "nnz": [
+        8281,
+        4761,
+        1405,
+        81
+      ],
+      "grid_complexity": 1.2944849115504682,
+      "operator_complexity": 1.7543774906412268
+    },
+    {
+      "n": 64,
+      "solver": "geometric",
+      "iterations": 38,
+      "true_residual": 9.795676385986478e-09,
+      "forward_error": 4.4062492443481157e-10,
+      "energy_error": 1.215295695990534e-09,
+      "continuous_error": 0.0002713461470266456,
+      "setup_seconds": 0.001976334002392832,
+      "solve_seconds": 0.010530582992942072,
+      "sizes": [
+        3969,
+        961,
+        225,
+        49,
+        9
+      ],
+      "nnz": [
+        34969,
+        8281,
+        1849,
+        361,
+        49
+      ],
+      "grid_complexity": 1.3134290753338373,
+      "operator_complexity": 1.3014098201263977
+    },
+    {
+      "n": 64,
+      "solver": "amg",
+      "iterations": 61,
+      "true_residual": 8.112486903550596e-09,
+      "forward_error": 3.461000545706224e-10,
+      "energy_error": 1.0217381010630206e-09,
+      "continuous_error": 0.0002713461470266456,
+      "setup_seconds": 0.02102500000182772,
+      "solve_seconds": 0.019833999998809304,
+      "sizes": [
+        3969,
+        961,
+        225,
+        49,
+        9
+      ],
+      "nnz": [
+        34969,
+        22201,
+        8781,
+        2229,
+        81
+      ],
+      "grid_complexity": 1.3134290753338373,
+      "operator_complexity": 1.9520432382967772
+    }
+  ],
+  "termination": "fixed_budget_completed"
+}
