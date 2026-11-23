@@ -4,6 +4,8 @@ https://hrkoyama.github.io/
 
 GitHub Pages serves the static files on `main` from the repository root. Existing dissertation and Academic Roots pages are retained.
 
+For current atlas counts, editing sources, validation and publication, see [MAINTENANCE.md](MAINTENANCE.md). Earlier maintenance records are preserved in [maintenance history](docs/maintenance-history/README.md).
+
 ## Archives
 
 - `/gordon-bell/`: Gordon Bell Research Archive, including the original research dataset and search/export interface.
