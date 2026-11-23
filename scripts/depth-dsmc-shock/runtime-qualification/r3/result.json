@@ -1,0 +1,4707 @@
+{
+  "status": "PASS",
+  "passed": true,
+  "protocol_sha256": "980326f0665340dffe04dfa6244c5dbf07c81176e7d3ec3b5e81aecd71631c5d",
+  "checks": [
+    {
+      "name": "unchanged function positive_flux",
+      "passed": true
+    },
+    {
+      "name": "unchanged function collision_round",
+      "passed": true
+    },
+    {
+      "name": "unchanged function totals",
+      "passed": true
+    },
+    {
+      "name": "unchanged function stream_wall",
+      "passed": true
+    },
+    {
+      "name": "unchanged function macro_arrival_count",
+      "passed": true
+    },
+    {
+      "name": "unchanged function raw_profile",
+      "passed": true
+    },
+    {
+      "name": "unchanged function profile",
+      "passed": true
+    },
+    {
+      "name": "unchanged function initialize",
+      "passed": true
+    },
+    {
+      "name": "unchanged function simulate",
+      "passed": true
+    },
+    {
+      "name": "baseline original README.md",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged README.md",
+      "passed": true
+    },
+    {
+      "name": "baseline original acceptance.json",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged acceptance.json",
+      "passed": true
+    },
+    {
+      "name": "baseline original cases.json",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged cases.json",
+      "passed": true
+    },
+    {
+      "name": "baseline original diagnostics.py",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged diagnostics.py",
+      "passed": true
+    },
+    {
+      "name": "baseline original dsmc.py",
+      "passed": true
+    },
+    {
+      "name": "baseline original inputs.json",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged inputs.json",
+      "passed": true
+    },
+    {
+      "name": "baseline original plot.py",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged plot.py",
+      "passed": true
+    },
+    {
+      "name": "baseline original pre-run-contract.json",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged pre-run-contract.json",
+      "passed": true
+    },
+    {
+      "name": "baseline original pytest.ini",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged pytest.ini",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/SPARTA-LICENSE.txt",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/SPARTA-LICENSE.txt",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/dsmc-planar-shock.npz",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/dsmc-planar-shock.npz",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/generate.py",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/generate.py",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/base/931001/hs.species",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/base/931001/hs.species",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/base/931001/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/base/931001/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/base/931001/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/base/931001/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/base/931002/hs.species",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/base/931002/hs.species",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/base/931002/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/base/931002/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/base/931002/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/base/931002/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/base/931003/hs.species",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/base/931003/hs.species",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/base/931003/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/base/931003/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/base/931003/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/base/931003/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/base/931004/hs.species",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/base/931004/hs.species",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/base/931004/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/base/931004/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/base/931004/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/base/931004/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/fine_grid/931001/hs.species",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/fine_grid/931001/hs.species",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/fine_grid/931001/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/fine_grid/931001/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/fine_grid/931001/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/fine_grid/931001/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/fine_grid/931002/hs.species",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/fine_grid/931002/hs.species",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/fine_grid/931002/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/fine_grid/931002/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/fine_grid/931002/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/fine_grid/931002/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/fine_grid/931003/hs.species",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/fine_grid/931003/hs.species",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/fine_grid/931003/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/fine_grid/931003/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/fine_grid/931003/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/fine_grid/931003/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/fine_grid/931004/hs.species",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/fine_grid/931004/hs.species",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/fine_grid/931004/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/fine_grid/931004/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/fine_grid/931004/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/fine_grid/931004/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/half_dt/931001/hs.species",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/half_dt/931001/hs.species",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/half_dt/931001/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/half_dt/931001/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/half_dt/931001/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/half_dt/931001/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/half_dt/931002/hs.species",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/half_dt/931002/hs.species",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/half_dt/931002/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/half_dt/931002/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/half_dt/931002/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/half_dt/931002/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/half_dt/931003/hs.species",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/half_dt/931003/hs.species",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/half_dt/931003/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/half_dt/931003/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/half_dt/931003/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/half_dt/931003/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/half_dt/931004/hs.species",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/half_dt/931004/hs.species",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/half_dt/931004/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/half_dt/931004/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/half_dt/931004/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/half_dt/931004/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/provenance.json",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/provenance.json",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/qualification.json",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/qualification.json",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/qualify.py",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/qualify.py",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/reference-protocol.json",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/reference-protocol.json",
+      "passed": true
+    },
+    {
+      "name": "baseline original requirements.txt",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged requirements.txt",
+      "passed": true
+    },
+    {
+      "name": "baseline original run.py",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged run.py",
+      "passed": true
+    },
+    {
+      "name": "baseline original test_arrivals.py",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged test_arrivals.py",
+      "passed": true
+    },
+    {
+      "name": "baseline original test_core.py",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged test_core.py",
+      "passed": true
+    },
+    {
+      "name": "baseline original test_matching.py",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged test_matching.py",
+      "passed": true
+    },
+    {
+      "name": "baseline original test_shock.py",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged test_shock.py",
+      "passed": true
+    },
+    {
+      "name": "cdf and inverse grid 2.581988897471611",
+      "passed": true
+    },
+    {
+      "name": "sample 2.581988897471611 0 371001",
+      "passed": true
+    },
+    {
+      "name": "sample 2.581988897471611 0 371012",
+      "passed": true
+    },
+    {
+      "name": "sample 2.581988897471611 1 371001",
+      "passed": true
+    },
+    {
+      "name": "sample 2.581988897471611 1 371012",
+      "passed": true
+    },
+    {
+      "name": "sample 2.581988897471611 4 371001",
+      "passed": true
+    },
+    {
+      "name": "sample 2.581988897471611 4 371012",
+      "passed": true
+    },
+    {
+      "name": "sample 2.581988897471611 32 371001",
+      "passed": true
+    },
+    {
+      "name": "sample 2.581988897471611 32 371012",
+      "passed": true
+    },
+    {
+      "name": "extreme inverse 2.581988897471611",
+      "passed": true
+    },
+    {
+      "name": "guard six-update-residual 2.581988897471611",
+      "passed": true
+    },
+    {
+      "name": "guard bracket 2.581988897471611",
+      "passed": true
+    },
+    {
+      "name": "cdf and inverse grid -1.12962014264383",
+      "passed": true
+    },
+    {
+      "name": "sample -1.12962014264383 0 371001",
+      "passed": true
+    },
+    {
+      "name": "sample -1.12962014264383 0 371012",
+      "passed": true
+    },
+    {
+      "name": "sample -1.12962014264383 1 371001",
+      "passed": true
+    },
+    {
+      "name": "sample -1.12962014264383 1 371012",
+      "passed": true
+    },
+    {
+      "name": "sample -1.12962014264383 4 371001",
+      "passed": true
+    },
+    {
+      "name": "sample -1.12962014264383 4 371012",
+      "passed": true
+    },
+    {
+      "name": "sample -1.12962014264383 32 371001",
+      "passed": true
+    },
+    {
+      "name": "sample -1.12962014264383 32 371012",
+      "passed": true
+    },
+    {
+      "name": "extreme inverse -1.12962014264383",
+      "passed": true
+    },
+    {
+      "name": "guard six-update-residual -1.12962014264383",
+      "passed": true
+    },
+    {
+      "name": "guard bracket -1.12962014264383",
+      "passed": true
+    },
+    {
+      "name": "stream production-size 371001",
+      "passed": true
+    },
+    {
+      "name": "stream empty-zero-arrivals 371001",
+      "passed": true
+    },
+    {
+      "name": "stream left-only 371001",
+      "passed": true
+    },
+    {
+      "name": "stream right-only 371001",
+      "passed": true
+    },
+    {
+      "name": "stream both-leaving-incoming 371001",
+      "passed": true
+    },
+    {
+      "name": "stream zero-arrivals-leaving 371001",
+      "passed": true
+    },
+    {
+      "name": "stream cross-domain-guard 371001",
+      "passed": true
+    },
+    {
+      "name": "stream production-size 371012",
+      "passed": true
+    },
+    {
+      "name": "stream empty-zero-arrivals 371012",
+      "passed": true
+    },
+    {
+      "name": "stream left-only 371012",
+      "passed": true
+    },
+    {
+      "name": "stream right-only 371012",
+      "passed": true
+    },
+    {
+      "name": "stream both-leaving-incoming 371012",
+      "passed": true
+    },
+    {
+      "name": "stream zero-arrivals-leaving 371012",
+      "passed": true
+    },
+    {
+      "name": "stream cross-domain-guard 371012",
+      "passed": true
+    },
+    {
+      "name": "matching safe-int8 371001",
+      "passed": true
+    },
+    {
+      "name": "matching safe-int8 371012",
+      "passed": true
+    },
+    {
+      "name": "matching safe-int16 371001",
+      "passed": true
+    },
+    {
+      "name": "matching safe-int16 371012",
+      "passed": true
+    },
+    {
+      "name": "matching safe-int32 371001",
+      "passed": true
+    },
+    {
+      "name": "matching safe-int32 371012",
+      "passed": true
+    },
+    {
+      "name": "matching safe-int64 371001",
+      "passed": true
+    },
+    {
+      "name": "matching safe-int64 371012",
+      "passed": true
+    },
+    {
+      "name": "matching safe-uint8 371001",
+      "passed": true
+    },
+    {
+      "name": "matching safe-uint8 371012",
+      "passed": true
+    },
+    {
+      "name": "matching safe-uint16 371001",
+      "passed": true
+    },
+    {
+      "name": "matching safe-uint16 371012",
+      "passed": true
+    },
+    {
+      "name": "matching safe-uint32 371001",
+      "passed": true
+    },
+    {
+      "name": "matching safe-uint32 371012",
+      "passed": true
+    },
+    {
+      "name": "matching safe-uint64 371001",
+      "passed": true
+    },
+    {
+      "name": "matching safe-uint64 371012",
+      "passed": true
+    },
+    {
+      "name": "matching empty-int64 371001",
+      "passed": true
+    },
+    {
+      "name": "matching empty-int64 371012",
+      "passed": true
+    },
+    {
+      "name": "matching negative-int8 371001",
+      "passed": true
+    },
+    {
+      "name": "matching negative-int8 371012",
+      "passed": true
+    },
+    {
+      "name": "matching negative-int16 371001",
+      "passed": true
+    },
+    {
+      "name": "matching negative-int16 371012",
+      "passed": true
+    },
+    {
+      "name": "matching negative-int32 371001",
+      "passed": true
+    },
+    {
+      "name": "matching negative-int32 371012",
+      "passed": true
+    },
+    {
+      "name": "matching negative-int64 371001",
+      "passed": true
+    },
+    {
+      "name": "matching negative-int64 371012",
+      "passed": true
+    },
+    {
+      "name": "matching overflow256-int16 371001",
+      "passed": true
+    },
+    {
+      "name": "matching overflow256-int16 371012",
+      "passed": true
+    },
+    {
+      "name": "matching overflow256-int32 371001",
+      "passed": true
+    },
+    {
+      "name": "matching overflow256-int32 371012",
+      "passed": true
+    },
+    {
+      "name": "matching overflow256-int64 371001",
+      "passed": true
+    },
+    {
+      "name": "matching overflow256-int64 371012",
+      "passed": true
+    },
+    {
+      "name": "matching overflow256-uint16 371001",
+      "passed": true
+    },
+    {
+      "name": "matching overflow256-uint16 371012",
+      "passed": true
+    },
+    {
+      "name": "matching overflow256-uint32 371001",
+      "passed": true
+    },
+    {
+      "name": "matching overflow256-uint32 371012",
+      "passed": true
+    },
+    {
+      "name": "matching overflow256-uint64 371001",
+      "passed": true
+    },
+    {
+      "name": "matching overflow256-uint64 371012",
+      "passed": true
+    },
+    {
+      "name": "matching uint64-full-range 371001",
+      "passed": true
+    },
+    {
+      "name": "matching uint64-full-range 371012",
+      "passed": true
+    },
+    {
+      "name": "matching big-endian-int16 371001",
+      "passed": true
+    },
+    {
+      "name": "matching big-endian-int16 371012",
+      "passed": true
+    },
+    {
+      "name": "matching big-endian-uint64 371001",
+      "passed": true
+    },
+    {
+      "name": "matching big-endian-uint64 371012",
+      "passed": true
+    },
+    {
+      "name": "matching fractional-float 371001",
+      "passed": true
+    },
+    {
+      "name": "matching fractional-float 371012",
+      "passed": true
+    },
+    {
+      "name": "matching signed-zero-float 371001",
+      "passed": true
+    },
+    {
+      "name": "matching signed-zero-float 371012",
+      "passed": true
+    },
+    {
+      "name": "matching bool-fallback 371001",
+      "passed": true
+    },
+    {
+      "name": "matching bool-fallback 371012",
+      "passed": true
+    },
+    {
+      "name": "matching strided-view 371001",
+      "passed": true
+    },
+    {
+      "name": "matching strided-view 371012",
+      "passed": true
+    },
+    {
+      "name": "matching readonly 371001",
+      "passed": true
+    },
+    {
+      "name": "matching readonly 371012",
+      "passed": true
+    },
+    {
+      "name": "matching base-192 371001",
+      "passed": true
+    },
+    {
+      "name": "isolated collision base-192 371001",
+      "passed": true
+    },
+    {
+      "name": "matching base-192 371012",
+      "passed": true
+    },
+    {
+      "name": "isolated collision base-192 371012",
+      "passed": true
+    },
+    {
+      "name": "matching fixed-weight-128 371001",
+      "passed": true
+    },
+    {
+      "name": "isolated collision fixed-weight-128 371001",
+      "passed": true
+    },
+    {
+      "name": "matching fixed-weight-128 371012",
+      "passed": true
+    },
+    {
+      "name": "isolated collision fixed-weight-128 371012",
+      "passed": true
+    },
+    {
+      "name": "matching double-particle-192 371001",
+      "passed": true
+    },
+    {
+      "name": "isolated collision double-particle-192 371001",
+      "passed": true
+    },
+    {
+      "name": "matching double-particle-192 371012",
+      "passed": true
+    },
+    {
+      "name": "isolated collision double-particle-192 371012",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 1, 2, 3, 4)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 1, 2, 4, 3)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 1, 3, 2, 4)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 1, 3, 4, 2)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 1, 4, 2, 3)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 1, 4, 3, 2)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 2, 1, 3, 4)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 2, 1, 4, 3)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 2, 3, 1, 4)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 2, 3, 4, 1)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 2, 4, 1, 3)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 2, 4, 3, 1)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 3, 1, 2, 4)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 3, 1, 4, 2)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 3, 2, 1, 4)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 3, 2, 4, 1)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 3, 4, 1, 2)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 3, 4, 2, 1)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 4, 1, 2, 3)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 4, 1, 3, 2)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 4, 2, 1, 3)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 4, 2, 3, 1)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 4, 3, 1, 2)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 4, 3, 2, 1)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 0, 2, 3, 4)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 0, 2, 4, 3)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 0, 3, 2, 4)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 0, 3, 4, 2)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 0, 4, 2, 3)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 0, 4, 3, 2)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 2, 0, 3, 4)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 2, 0, 4, 3)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 2, 3, 0, 4)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 2, 3, 4, 0)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 2, 4, 0, 3)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 2, 4, 3, 0)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 3, 0, 2, 4)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 3, 0, 4, 2)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 3, 2, 0, 4)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 3, 2, 4, 0)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 3, 4, 0, 2)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 3, 4, 2, 0)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 4, 0, 2, 3)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 4, 0, 3, 2)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 4, 2, 0, 3)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 4, 2, 3, 0)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 4, 3, 0, 2)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 4, 3, 2, 0)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 0, 1, 3, 4)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 0, 1, 4, 3)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 0, 3, 1, 4)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 0, 3, 4, 1)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 0, 4, 1, 3)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 0, 4, 3, 1)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 1, 0, 3, 4)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 1, 0, 4, 3)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 1, 3, 0, 4)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 1, 3, 4, 0)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 1, 4, 0, 3)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 1, 4, 3, 0)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 3, 0, 1, 4)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 3, 0, 4, 1)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 3, 1, 0, 4)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 3, 1, 4, 0)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 3, 4, 0, 1)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 3, 4, 1, 0)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 4, 0, 1, 3)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 4, 0, 3, 1)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 4, 1, 0, 3)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 4, 1, 3, 0)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 4, 3, 0, 1)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 4, 3, 1, 0)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 0, 1, 2, 4)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 0, 1, 4, 2)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 0, 2, 1, 4)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 0, 2, 4, 1)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 0, 4, 1, 2)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 0, 4, 2, 1)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 1, 0, 2, 4)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 1, 0, 4, 2)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 1, 2, 0, 4)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 1, 2, 4, 0)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 1, 4, 0, 2)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 1, 4, 2, 0)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 2, 0, 1, 4)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 2, 0, 4, 1)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 2, 1, 0, 4)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 2, 1, 4, 0)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 2, 4, 0, 1)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 2, 4, 1, 0)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 4, 0, 1, 2)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 4, 0, 2, 1)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 4, 1, 0, 2)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 4, 1, 2, 0)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 4, 2, 0, 1)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 4, 2, 1, 0)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 0, 1, 2, 3)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 0, 1, 3, 2)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 0, 2, 1, 3)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 0, 2, 3, 1)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 0, 3, 1, 2)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 0, 3, 2, 1)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 1, 0, 2, 3)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 1, 0, 3, 2)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 1, 2, 0, 3)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 1, 2, 3, 0)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 1, 3, 0, 2)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 1, 3, 2, 0)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 2, 0, 1, 3)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 2, 0, 3, 1)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 2, 1, 0, 3)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 2, 1, 3, 0)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 2, 3, 0, 1)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 2, 3, 1, 0)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 3, 0, 1, 2)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 3, 0, 2, 1)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 3, 1, 0, 2)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 3, 1, 2, 0)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 3, 2, 0, 1)",
+      "passed": true
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 3, 2, 1, 0)",
+      "passed": true
+    }
+  ],
+  "check_count": 348,
+  "failed_checks": [],
+  "details": [
+    {
+      "name": "guard six-update-residual 2.581988897471611",
+      "detail": {
+        "legacy_cdf_calls": 7,
+        "candidate_cdf_calls": 7,
+        "expected_error": "Flux CDF inversion residual"
+      }
+    },
+    {
+      "name": "guard bracket 2.581988897471611",
+      "detail": {
+        "legacy_cdf_calls": 1,
+        "candidate_cdf_calls": 1,
+        "expected_error": "Flux CDF Newton left physical bracket"
+      }
+    },
+    {
+      "name": "guard six-update-residual -1.12962014264383",
+      "detail": {
+        "legacy_cdf_calls": 7,
+        "candidate_cdf_calls": 7,
+        "expected_error": "Flux CDF inversion residual"
+      }
+    },
+    {
+      "name": "guard bracket -1.12962014264383",
+      "detail": {
+        "legacy_cdf_calls": 1,
+        "candidate_cdf_calls": 1,
+        "expected_error": "Flux CDF Newton left physical bracket"
+      }
+    },
+    {
+      "name": "stream production-size 371001",
+      "detail": {
+        "rng_methods": [
+          "random",
+          "normal",
+          "random",
+          "random",
+          "random",
+          "normal",
+          "random"
+        ],
+        "output_particle_count": 5045
+      }
+    },
+    {
+      "name": "stream empty-zero-arrivals 371001",
+      "detail": {
+        "rng_methods": [
+          "random",
+          "normal",
+          "random",
+          "random",
+          "normal",
+          "random"
+        ],
+        "output_particle_count": 0
+      }
+    },
+    {
+      "name": "stream left-only 371001",
+      "detail": {
+        "rng_methods": [
+          "random",
+          "normal",
+          "random",
+          "random",
+          "random",
+          "normal",
+          "random"
+        ],
+        "output_particle_count": 5045
+      }
+    },
+    {
+      "name": "stream right-only 371001",
+      "detail": {
+        "rng_methods": [
+          "random",
+          "normal",
+          "random",
+          "random",
+          "normal",
+          "random"
+        ],
+        "output_particle_count": 5043
+      }
+    },
+    {
+      "name": "stream both-leaving-incoming 371001",
+      "detail": {
+        "rng_methods": [
+          "random",
+          "normal",
+          "random",
+          "random",
+          "random",
+          "normal",
+          "random",
+          "random"
+        ],
+        "output_particle_count": 277
+      }
+    },
+    {
+      "name": "stream zero-arrivals-leaving 371001",
+      "detail": {
+        "rng_methods": [
+          "random",
+          "normal",
+          "random",
+          "random",
+          "normal",
+          "random"
+        ],
+        "output_particle_count": 1
+      }
+    },
+    {
+      "name": "stream cross-domain-guard 371001",
+      "detail": {
+        "rng_methods": [
+          "random",
+          "normal",
+          "random",
+          "random"
+        ],
+        "output_particle_count": null
+      }
+    },
+    {
+      "name": "stream production-size 371012",
+      "detail": {
+        "rng_methods": [
+          "random",
+          "normal",
+          "random",
+          "random",
+          "random",
+          "normal",
+          "random"
+        ],
+        "output_particle_count": 5046
+      }
+    },
+    {
+      "name": "stream empty-zero-arrivals 371012",
+      "detail": {
+        "rng_methods": [
+          "random",
+          "normal",
+          "random",
+          "random",
+          "normal",
+          "random"
+        ],
+        "output_particle_count": 0
+      }
+    },
+    {
+      "name": "stream left-only 371012",
+      "detail": {
+        "rng_methods": [
+          "random",
+          "normal",
+          "random",
+          "random",
+          "random",
+          "normal",
+          "random"
+        ],
+        "output_particle_count": 5046
+      }
+    },
+    {
+      "name": "stream right-only 371012",
+      "detail": {
+        "rng_methods": [
+          "random",
+          "normal",
+          "random",
+          "random",
+          "normal",
+          "random",
+          "random"
+        ],
+        "output_particle_count": 5045
+      }
+    },
+    {
+      "name": "stream both-leaving-incoming 371012",
+      "detail": {
+        "rng_methods": [
+          "random",
+          "normal",
+          "random",
+          "random",
+          "random",
+          "normal",
+          "random",
+          "random"
+        ],
+        "output_particle_count": 277
+      }
+    },
+    {
+      "name": "stream zero-arrivals-leaving 371012",
+      "detail": {
+        "rng_methods": [
+          "random",
+          "normal",
+          "random",
+          "random",
+          "normal",
+          "random"
+        ],
+        "output_particle_count": 1
+      }
+    },
+    {
+      "name": "stream cross-domain-guard 371012",
+      "detail": {
+        "rng_methods": [
+          "random",
+          "normal",
+          "random",
+          "random"
+        ],
+        "output_particle_count": null
+      }
+    },
+    {
+      "name": "matching safe-int8 371001",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {}
+      }
+    },
+    {
+      "name": "matching safe-int8 371012",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {}
+      }
+    },
+    {
+      "name": "matching safe-int16 371001",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {}
+      }
+    },
+    {
+      "name": "matching safe-int16 371012",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {}
+      }
+    },
+    {
+      "name": "matching safe-int32 371001",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {}
+      }
+    },
+    {
+      "name": "matching safe-int32 371012",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {}
+      }
+    },
+    {
+      "name": "matching safe-int64 371001",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "extra_rng_draw_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching safe-int64 371012",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {}
+      }
+    },
+    {
+      "name": "matching safe-uint8 371001",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {}
+      }
+    },
+    {
+      "name": "matching safe-uint8 371012",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {}
+      }
+    },
+    {
+      "name": "matching safe-uint16 371001",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {}
+      }
+    },
+    {
+      "name": "matching safe-uint16 371012",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {}
+      }
+    },
+    {
+      "name": "matching safe-uint32 371001",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {}
+      }
+    },
+    {
+      "name": "matching safe-uint32 371012",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {}
+      }
+    },
+    {
+      "name": "matching safe-uint64 371001",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {}
+      }
+    },
+    {
+      "name": "matching safe-uint64 371012",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {}
+      }
+    },
+    {
+      "name": "matching empty-int64 371001",
+      "detail": {
+        "expected_branch": "original",
+        "candidate_sort_dtype": "<i8",
+        "negative_controls": {}
+      }
+    },
+    {
+      "name": "matching empty-int64 371012",
+      "detail": {
+        "expected_branch": "original",
+        "candidate_sort_dtype": "<i8",
+        "negative_controls": {}
+      }
+    },
+    {
+      "name": "matching negative-int8 371001",
+      "detail": {
+        "expected_branch": "original",
+        "candidate_sort_dtype": "|i1",
+        "negative_controls": {
+          "unconditional_cast_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching negative-int8 371012",
+      "detail": {
+        "expected_branch": "original",
+        "candidate_sort_dtype": "|i1",
+        "negative_controls": {
+          "unconditional_cast_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching negative-int16 371001",
+      "detail": {
+        "expected_branch": "original",
+        "candidate_sort_dtype": "<i2",
+        "negative_controls": {
+          "unconditional_cast_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching negative-int16 371012",
+      "detail": {
+        "expected_branch": "original",
+        "candidate_sort_dtype": "<i2",
+        "negative_controls": {
+          "unconditional_cast_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching negative-int32 371001",
+      "detail": {
+        "expected_branch": "original",
+        "candidate_sort_dtype": "<i4",
+        "negative_controls": {
+          "unconditional_cast_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching negative-int32 371012",
+      "detail": {
+        "expected_branch": "original",
+        "candidate_sort_dtype": "<i4",
+        "negative_controls": {
+          "unconditional_cast_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching negative-int64 371001",
+      "detail": {
+        "expected_branch": "original",
+        "candidate_sort_dtype": "<i8",
+        "negative_controls": {
+          "unconditional_cast_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching negative-int64 371012",
+      "detail": {
+        "expected_branch": "original",
+        "candidate_sort_dtype": "<i8",
+        "negative_controls": {
+          "unconditional_cast_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching overflow256-int16 371001",
+      "detail": {
+        "expected_branch": "original",
+        "candidate_sort_dtype": "<i2",
+        "negative_controls": {
+          "unconditional_cast_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching overflow256-int16 371012",
+      "detail": {
+        "expected_branch": "original",
+        "candidate_sort_dtype": "<i2",
+        "negative_controls": {
+          "unconditional_cast_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching overflow256-int32 371001",
+      "detail": {
+        "expected_branch": "original",
+        "candidate_sort_dtype": "<i4",
+        "negative_controls": {
+          "unconditional_cast_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching overflow256-int32 371012",
+      "detail": {
+        "expected_branch": "original",
+        "candidate_sort_dtype": "<i4",
+        "negative_controls": {
+          "unconditional_cast_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching overflow256-int64 371001",
+      "detail": {
+        "expected_branch": "original",
+        "candidate_sort_dtype": "<i8",
+        "negative_controls": {
+          "unconditional_cast_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching overflow256-int64 371012",
+      "detail": {
+        "expected_branch": "original",
+        "candidate_sort_dtype": "<i8",
+        "negative_controls": {
+          "unconditional_cast_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching overflow256-uint16 371001",
+      "detail": {
+        "expected_branch": "original",
+        "candidate_sort_dtype": "<u2",
+        "negative_controls": {
+          "unconditional_cast_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching overflow256-uint16 371012",
+      "detail": {
+        "expected_branch": "original",
+        "candidate_sort_dtype": "<u2",
+        "negative_controls": {
+          "unconditional_cast_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching overflow256-uint32 371001",
+      "detail": {
+        "expected_branch": "original",
+        "candidate_sort_dtype": "<u4",
+        "negative_controls": {
+          "unconditional_cast_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching overflow256-uint32 371012",
+      "detail": {
+        "expected_branch": "original",
+        "candidate_sort_dtype": "<u4",
+        "negative_controls": {
+          "unconditional_cast_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching overflow256-uint64 371001",
+      "detail": {
+        "expected_branch": "original",
+        "candidate_sort_dtype": "<u8",
+        "negative_controls": {
+          "unconditional_cast_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching overflow256-uint64 371012",
+      "detail": {
+        "expected_branch": "original",
+        "candidate_sort_dtype": "<u8",
+        "negative_controls": {
+          "unconditional_cast_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching uint64-full-range 371001",
+      "detail": {
+        "expected_branch": "original",
+        "candidate_sort_dtype": "<u8",
+        "negative_controls": {}
+      }
+    },
+    {
+      "name": "matching uint64-full-range 371012",
+      "detail": {
+        "expected_branch": "original",
+        "candidate_sort_dtype": "<u8",
+        "negative_controls": {}
+      }
+    },
+    {
+      "name": "matching big-endian-int16 371001",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {}
+      }
+    },
+    {
+      "name": "matching big-endian-int16 371012",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {}
+      }
+    },
+    {
+      "name": "matching big-endian-uint64 371001",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {}
+      }
+    },
+    {
+      "name": "matching big-endian-uint64 371012",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {}
+      }
+    },
+    {
+      "name": "matching fractional-float 371001",
+      "detail": {
+        "expected_branch": "original",
+        "candidate_sort_dtype": "<f8",
+        "negative_controls": {}
+      }
+    },
+    {
+      "name": "matching fractional-float 371012",
+      "detail": {
+        "expected_branch": "original",
+        "candidate_sort_dtype": "<f8",
+        "negative_controls": {}
+      }
+    },
+    {
+      "name": "matching signed-zero-float 371001",
+      "detail": {
+        "expected_branch": "original",
+        "candidate_sort_dtype": "<f8",
+        "negative_controls": {}
+      }
+    },
+    {
+      "name": "matching signed-zero-float 371012",
+      "detail": {
+        "expected_branch": "original",
+        "candidate_sort_dtype": "<f8",
+        "negative_controls": {}
+      }
+    },
+    {
+      "name": "matching bool-fallback 371001",
+      "detail": {
+        "expected_branch": "original",
+        "candidate_sort_dtype": "|b1",
+        "negative_controls": {}
+      }
+    },
+    {
+      "name": "matching bool-fallback 371012",
+      "detail": {
+        "expected_branch": "original",
+        "candidate_sort_dtype": "|b1",
+        "negative_controls": {}
+      }
+    },
+    {
+      "name": "matching strided-view 371001",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {}
+      }
+    },
+    {
+      "name": "matching strided-view 371012",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {}
+      }
+    },
+    {
+      "name": "matching readonly 371001",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {}
+      }
+    },
+    {
+      "name": "matching readonly 371012",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {}
+      }
+    },
+    {
+      "name": "matching base-192 371001",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {}
+      }
+    },
+    {
+      "name": "matching base-192 371012",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {}
+      }
+    },
+    {
+      "name": "matching fixed-weight-128 371001",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {}
+      }
+    },
+    {
+      "name": "matching fixed-weight-128 371012",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {}
+      }
+    },
+    {
+      "name": "matching double-particle-192 371001",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {}
+      }
+    },
+    {
+      "name": "matching double-particle-192 371012",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {}
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 1, 2, 3, 4)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 1, 2, 4, 3)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 1, 3, 2, 4)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 1, 3, 4, 2)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 1, 4, 2, 3)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 1, 4, 3, 2)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 2, 1, 3, 4)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 2, 1, 4, 3)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 2, 3, 1, 4)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 2, 3, 4, 1)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 2, 4, 1, 3)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 2, 4, 3, 1)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 3, 1, 2, 4)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 3, 1, 4, 2)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 3, 2, 1, 4)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 3, 2, 4, 1)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 3, 4, 1, 2)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 3, 4, 2, 1)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 4, 1, 2, 3)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 4, 1, 3, 2)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 4, 2, 1, 3)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 4, 2, 3, 1)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 4, 3, 1, 2)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (0, 4, 3, 2, 1)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 0, 2, 3, 4)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 0, 2, 4, 3)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 0, 3, 2, 4)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 0, 3, 4, 2)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 0, 4, 2, 3)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 0, 4, 3, 2)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 2, 0, 3, 4)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 2, 0, 4, 3)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 2, 3, 0, 4)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 2, 3, 4, 0)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 2, 4, 0, 3)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 2, 4, 3, 0)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 3, 0, 2, 4)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 3, 0, 4, 2)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 3, 2, 0, 4)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 3, 2, 4, 0)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 3, 4, 0, 2)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 3, 4, 2, 0)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 4, 0, 2, 3)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 4, 0, 3, 2)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 4, 2, 0, 3)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 4, 2, 3, 0)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 4, 3, 0, 2)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (1, 4, 3, 2, 0)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 0, 1, 3, 4)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 0, 1, 4, 3)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 0, 3, 1, 4)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 0, 3, 4, 1)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 0, 4, 1, 3)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 0, 4, 3, 1)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 1, 0, 3, 4)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 1, 0, 4, 3)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 1, 3, 0, 4)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 1, 3, 4, 0)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 1, 4, 0, 3)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 1, 4, 3, 0)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 3, 0, 1, 4)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 3, 0, 4, 1)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 3, 1, 0, 4)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 3, 1, 4, 0)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 3, 4, 0, 1)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 3, 4, 1, 0)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 4, 0, 1, 3)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 4, 0, 3, 1)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 4, 1, 0, 3)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 4, 1, 3, 0)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 4, 3, 0, 1)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (2, 4, 3, 1, 0)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 0, 1, 2, 4)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 0, 1, 4, 2)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 0, 2, 1, 4)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 0, 2, 4, 1)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 0, 4, 1, 2)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 0, 4, 2, 1)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 1, 0, 2, 4)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 1, 0, 4, 2)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 1, 2, 0, 4)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 1, 2, 4, 0)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 1, 4, 0, 2)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 1, 4, 2, 0)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 2, 0, 1, 4)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 2, 0, 4, 1)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 2, 1, 0, 4)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 2, 1, 4, 0)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 2, 4, 0, 1)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 2, 4, 1, 0)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 4, 0, 1, 2)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 4, 0, 2, 1)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 4, 1, 0, 2)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 4, 1, 2, 0)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 4, 2, 0, 1)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (3, 4, 2, 1, 0)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 0, 1, 2, 3)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 0, 1, 3, 2)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 0, 2, 1, 3)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 0, 2, 3, 1)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 0, 3, 1, 2)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 0, 3, 2, 1)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 1, 0, 2, 3)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 1, 0, 3, 2)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 1, 2, 0, 3)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 1, 2, 3, 0)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 1, 3, 0, 2)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 1, 3, 2, 0)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 2, 0, 1, 3)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 2, 0, 3, 1)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 2, 1, 0, 3)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 2, 1, 3, 0)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 2, 3, 0, 1)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 2, 3, 1, 0)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 3, 0, 1, 2)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 3, 0, 2, 1)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 3, 1, 0, 2)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 3, 1, 2, 0)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 3, 2, 0, 1)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    },
+    {
+      "name": "matching exhaustive-stable-golden (4, 3, 2, 1, 0)",
+      "detail": {
+        "expected_branch": "uint8",
+        "candidate_sort_dtype": "|u1",
+        "negative_controls": {
+          "reversed_ties_detected": true
+        }
+      }
+    }
+  ],
+  "timings": [
+    {
+      "repetition": 0,
+      "implementation": "legacy",
+      "kind": "flux",
+      "seconds": 0.0547811670039664
+    },
+    {
+      "repetition": 0,
+      "implementation": "legacy",
+      "kind": "stream",
+      "seconds": 0.04403633400215767
+    },
+    {
+      "repetition": 0,
+      "implementation": "legacy",
+      "kind": "collision",
+      "seconds": 0.09360945799562614
+    },
+    {
+      "repetition": 0,
+      "implementation": "legacy",
+      "kind": "raw-profile",
+      "seconds": 0.02308741599699715
+    },
+    {
+      "repetition": 0,
+      "implementation": "legacy",
+      "kind": "matching/base",
+      "seconds": 0.04642437500297092
+    },
+    {
+      "repetition": 0,
+      "implementation": "legacy",
+      "kind": "matching/fixed_weight_mesh",
+      "seconds": 0.04627574999904027
+    },
+    {
+      "repetition": 0,
+      "implementation": "legacy",
+      "kind": "matching/double_particles",
+      "seconds": 0.10160904200165533
+    },
+    {
+      "repetition": 0,
+      "implementation": "candidate",
+      "kind": "flux",
+      "seconds": 0.05398191700078314
+    },
+    {
+      "repetition": 0,
+      "implementation": "candidate",
+      "kind": "stream",
+      "seconds": 0.043231542003923096
+    },
+    {
+      "repetition": 0,
+      "implementation": "candidate",
+      "kind": "collision",
+      "seconds": 0.06555870800366392
+    },
+    {
+      "repetition": 0,
+      "implementation": "candidate",
+      "kind": "raw-profile",
+      "seconds": 0.022983499999099877
+    },
+    {
+      "repetition": 0,
+      "implementation": "candidate",
+      "kind": "matching/base",
+      "seconds": 0.010511666994716506
+    },
+    {
+      "repetition": 0,
+      "implementation": "candidate",
+      "kind": "matching/fixed_weight_mesh",
+      "seconds": 0.010540874995058402
+    },
+    {
+      "repetition": 0,
+      "implementation": "candidate",
+      "kind": "matching/double_particles",
+      "seconds": 0.020698916996479966
+    },
+    {
+      "repetition": 1,
+      "implementation": "legacy",
+      "kind": "flux",
+      "seconds": 0.05493308400036767
+    },
+    {
+      "repetition": 1,
+      "implementation": "legacy",
+      "kind": "stream",
+      "seconds": 0.043713541999750305
+    },
+    {
+      "repetition": 1,
+      "implementation": "legacy",
+      "kind": "collision",
+      "seconds": 0.0939016249976703
+    },
+    {
+      "repetition": 1,
+      "implementation": "legacy",
+      "kind": "raw-profile",
+      "seconds": 0.02303083299921127
+    },
+    {
+      "repetition": 1,
+      "implementation": "legacy",
+      "kind": "matching/base",
+      "seconds": 0.04652291700040223
+    },
+    {
+      "repetition": 1,
+      "implementation": "legacy",
+      "kind": "matching/fixed_weight_mesh",
+      "seconds": 0.04631612500088522
+    },
+    {
+      "repetition": 1,
+      "implementation": "legacy",
+      "kind": "matching/double_particles",
+      "seconds": 0.10068933299771743
+    },
+    {
+      "repetition": 1,
+      "implementation": "candidate",
+      "kind": "flux",
+      "seconds": 0.054465207998873666
+    },
+    {
+      "repetition": 1,
+      "implementation": "candidate",
+      "kind": "stream",
+      "seconds": 0.04400924999936251
+    },
+    {
+      "repetition": 1,
+      "implementation": "candidate",
+      "kind": "collision",
+      "seconds": 0.0649202080021496
+    },
+    {
+      "repetition": 1,
+      "implementation": "candidate",
+      "kind": "raw-profile",
+      "seconds": 0.022950875005335547
+    },
+    {
+      "repetition": 1,
+      "implementation": "candidate",
+      "kind": "matching/base",
+      "seconds": 0.011157916000229307
+    },
+    {
+      "repetition": 1,
+      "implementation": "candidate",
+      "kind": "matching/fixed_weight_mesh",
+      "seconds": 0.010713625000789762
+    },
+    {
+      "repetition": 1,
+      "implementation": "candidate",
+      "kind": "matching/double_particles",
+      "seconds": 0.020319417002610862
+    },
+    {
+      "repetition": 2,
+      "implementation": "legacy",
+      "kind": "flux",
+      "seconds": 0.05645312500564614
+    },
+    {
+      "repetition": 2,
+      "implementation": "legacy",
+      "kind": "stream",
+      "seconds": 0.045955083005537745
+    },
+    {
+      "repetition": 2,
+      "implementation": "legacy",
+      "kind": "collision",
+      "seconds": 0.09780754100211198
+    },
+    {
+      "repetition": 2,
+      "implementation": "legacy",
+      "kind": "raw-profile",
+      "seconds": 0.02354620899859583
+    },
+    {
+      "repetition": 2,
+      "implementation": "legacy",
+      "kind": "matching/base",
+      "seconds": 0.047485208000580315
+    },
+    {
+      "repetition": 2,
+      "implementation": "legacy",
+      "kind": "matching/fixed_weight_mesh",
+      "seconds": 0.04700704199785832
+    },
+    {
+      "repetition": 2,
+      "implementation": "legacy",
+      "kind": "matching/double_particles",
+      "seconds": 0.1033440840037656
+    },
+    {
+      "repetition": 2,
+      "implementation": "candidate",
+      "kind": "flux",
+      "seconds": 0.05663816699961899
+    },
+    {
+      "repetition": 2,
+      "implementation": "candidate",
+      "kind": "stream",
+      "seconds": 0.04651825000473764
+    },
+    {
+      "repetition": 2,
+      "implementation": "candidate",
+      "kind": "collision",
+      "seconds": 0.0709950829987065
+    },
+    {
+      "repetition": 2,
+      "implementation": "candidate",
+      "kind": "raw-profile",
+      "seconds": 0.023740958000416867
+    },
+    {
+      "repetition": 2,
+      "implementation": "candidate",
+      "kind": "matching/base",
+      "seconds": 0.01087145799829159
+    },
+    {
+      "repetition": 2,
+      "implementation": "candidate",
+      "kind": "matching/fixed_weight_mesh",
+      "seconds": 0.011098374998255167
+    },
+    {
+      "repetition": 2,
+      "implementation": "candidate",
+      "kind": "matching/double_particles",
+      "seconds": 0.021022916000219993
+    }
+  ],
+  "baseline_component_profile": [
+    {
+      "file": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-28-37-2026-11-23/dsmc/linux-runtime-repair/component-r3/check_components.py",
+      "line": 212,
+      "function": "workload",
+      "primitive_calls": 7,
+      "calls": 7,
+      "own_seconds": 0.0014541080000000002,
+      "cumulative_seconds": 0.43752370900000004
+    },
+    {
+      "file": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-28-37-2026-11-23/dsmc/linux-runtime-repair/component-r3/baseline/source/dsmc.py",
+      "line": 97,
+      "function": "matching_order",
+      "primitive_calls": 950,
+      "calls": 950,
+      "own_seconds": 0.039436717,
+      "cumulative_seconds": 0.23215227100000002
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 51,
+      "function": "_wrapfunc",
+      "primitive_calls": 1350,
+      "calls": 1350,
+      "own_seconds": 0.000342362,
+      "cumulative_seconds": 0.192989557
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 1085,
+      "function": "argsort",
+      "primitive_calls": 950,
+      "calls": 950,
+      "own_seconds": 0.000237289,
+      "cumulative_seconds": 0.192531426
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'argsort' of 'numpy.ndarray' objects>",
+      "primitive_calls": 950,
+      "calls": 950,
+      "own_seconds": 0.191995521,
+      "cumulative_seconds": 0.191995521
+    },
+    {
+      "file": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-28-37-2026-11-23/dsmc/linux-runtime-repair/component-r3/baseline/source/dsmc.py",
+      "line": 107,
+      "function": "collision_round",
+      "primitive_calls": 200,
+      "calls": 200,
+      "own_seconds": 0.046894304000000005,
+      "cumulative_seconds": 0.096982544
+    },
+    {
+      "file": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-28-37-2026-11-23/dsmc/linux-runtime-repair/component-r3/baseline/source/dsmc.py",
+      "line": 70,
+      "function": "sample",
+      "primitive_calls": 2100,
+      "calls": 2100,
+      "own_seconds": 0.030083074,
+      "cumulative_seconds": 0.088112046
+    },
+    {
+      "file": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-28-37-2026-11-23/dsmc/linux-runtime-repair/component-r3/baseline/source/dsmc.py",
+      "line": 204,
+      "function": "stream_open",
+      "primitive_calls": 300,
+      "calls": 300,
+      "own_seconds": 0.020461994,
+      "cumulative_seconds": 0.051200256000000006
+    },
+    {
+      "file": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-28-37-2026-11-23/dsmc/linux-runtime-repair/component-r3/baseline/source/dsmc.py",
+      "line": 57,
+      "function": "cdf",
+      "primitive_calls": 5592,
+      "calls": 5592,
+      "own_seconds": 0.025424256000000003,
+      "cumulative_seconds": 0.040327251
+    },
+    {
+      "file": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-28-37-2026-11-23/dsmc/linux-runtime-repair/component-r3/baseline/source/dsmc.py",
+      "line": 227,
+      "function": "raw_profile",
+      "primitive_calls": 100,
+      "calls": 100,
+      "own_seconds": 0.02209552,
+      "cumulative_seconds": 0.023375038
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'reduce' of 'numpy.ufunc' objects>",
+      "primitive_calls": 24904,
+      "calls": 24904,
+      "own_seconds": 0.020137338,
+      "cumulative_seconds": 0.020137338
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 69,
+      "function": "_wrapreduction",
+      "primitive_calls": 9592,
+      "calls": 9592,
+      "own_seconds": 0.0035571580000000004,
+      "cumulative_seconds": 0.016863582000000002
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 2400,
+      "function": "any",
+      "primitive_calls": 15288,
+      "calls": 15288,
+      "own_seconds": 0.003133986,
+      "cumulative_seconds": 0.016388993
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 89,
+      "function": "_wrapreduction_any_all",
+      "primitive_calls": 15288,
+      "calls": 15288,
+      "own_seconds": 0.005165746000000001,
+      "cumulative_seconds": 0.013255007000000001
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 2255,
+      "function": "sum",
+      "primitive_calls": 3408,
+      "calls": 3408,
+      "own_seconds": 0.001117343,
+      "cumulative_seconds": 0.012265952
+    },
+    {
+      "file": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-28-37-2026-11-23/dsmc/linux-runtime-repair/component-r3/baseline/source/dsmc.py",
+      "line": 59,
+      "function": "<lambda>",
+      "primitive_calls": 5592,
+      "calls": 5592,
+      "own_seconds": 0.007786538000000001,
+      "cumulative_seconds": 0.007786538000000001
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 2781,
+      "function": "max",
+      "primitive_calls": 6184,
+      "calls": 6184,
+      "own_seconds": 0.00157843,
+      "cumulative_seconds": 0.007494273
+    },
+    {
+      "file": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-28-37-2026-11-23/dsmc/linux-runtime-repair/component-r3/baseline/source/dsmc.py",
+      "line": 160,
+      "function": "totals",
+      "primitive_calls": 1200,
+      "calls": 1200,
+      "own_seconds": 0.0026352180000000004,
+      "cumulative_seconds": 0.006224367000000001
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/lib/_function_base_impl.py",
+      "line": 1461,
+      "function": "interp",
+      "primitive_calls": 1936,
+      "calls": 1936,
+      "own_seconds": 0.0009189690000000001,
+      "cumulative_seconds": 0.0029187970000000003
+    },
+    {
+      "file": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-28-37-2026-11-23/dsmc/linux-runtime-repair/component-r3/baseline/source/dsmc.py",
+      "line": 38,
+      "function": "__init__",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 5.3126000000000006e-05,
+      "cumulative_seconds": 0.001557666
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy._core._multiarray_umath.interp>",
+      "primitive_calls": 1936,
+      "calls": 1936,
+      "own_seconds": 0.00141496,
+      "cumulative_seconds": 0.00141496
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'items' of 'dict' objects>",
+      "primitive_calls": 24880,
+      "calls": 24880,
+      "own_seconds": 0.0012752220000000001,
+      "cumulative_seconds": 0.0012752220000000001
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/lib/_shape_base_impl.py",
+      "line": 622,
+      "function": "column_stack",
+      "primitive_calls": 300,
+      "calls": 300,
+      "own_seconds": 0.000779382,
+      "cumulative_seconds": 0.001135953
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'copy' of 'numpy.ndarray' objects>",
+      "primitive_calls": 800,
+      "calls": 800,
+      "own_seconds": 0.0011151210000000002,
+      "cumulative_seconds": 0.0011151210000000002
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/polynomial/legendre.py",
+      "line": 1521,
+      "function": "leggauss",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 7.1668e-05,
+      "cumulative_seconds": 0.000903957
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.asarray>",
+      "primitive_calls": 18720,
+      "calls": 18720,
+      "own_seconds": 0.0008851670000000001,
+      "cumulative_seconds": 0.0008851670000000001
+    },
+    {
+      "file": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-28-37-2026-11-23/dsmc/linux-runtime-repair/component-r3/baseline/source/dsmc.py",
+      "line": 191,
+      "function": "macro_arrival_count",
+      "primitive_calls": 600,
+      "calls": 600,
+      "own_seconds": 0.000832397,
+      "cumulative_seconds": 0.000832397
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/numeric.py",
+      "line": 658,
+      "function": "flatnonzero",
+      "primitive_calls": 200,
+      "calls": 200,
+      "own_seconds": 0.00013674,
+      "cumulative_seconds": 0.000759429
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 2395,
+      "function": "_any_dispatcher",
+      "primitive_calls": 15288,
+      "calls": 15288,
+      "own_seconds": 0.000680516,
+      "cumulative_seconds": 0.000680516
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.zeros>",
+      "primitive_calls": 4456,
+      "calls": 4456,
+      "own_seconds": 0.0005730830000000001,
+      "cumulative_seconds": 0.0005730830000000001
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'astype' of 'numpy.ndarray' objects>",
+      "primitive_calls": 340,
+      "calls": 340,
+      "own_seconds": 0.00048629200000000004,
+      "cumulative_seconds": 0.00048629200000000004
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 1959,
+      "function": "nonzero",
+      "primitive_calls": 200,
+      "calls": 200,
+      "own_seconds": 3.5562e-05,
+      "cumulative_seconds": 0.000467675
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/polynomial/legendre.py",
+      "line": 833,
+      "function": "legval",
+      "primitive_calls": 24,
+      "calls": 24,
+      "own_seconds": 0.00042125500000000005,
+      "cumulative_seconds": 0.00044308700000000005
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/lib/_type_check_impl.py",
+      "line": 265,
+      "function": "iscomplexobj",
+      "primitive_calls": 1944,
+      "calls": 1944,
+      "own_seconds": 0.000301992,
+      "cumulative_seconds": 0.000403766
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'nonzero' of 'numpy.ndarray' objects>",
+      "primitive_calls": 200,
+      "calls": 200,
+      "own_seconds": 0.00036862600000000004,
+      "cumulative_seconds": 0.00036862600000000004
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 2609,
+      "function": "cumsum",
+      "primitive_calls": 200,
+      "calls": 200,
+      "own_seconds": 5.4397e-05,
+      "cumulative_seconds": 0.00031770400000000003
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 2776,
+      "function": "_max_dispatcher",
+      "primitive_calls": 6184,
+      "calls": 6184,
+      "own_seconds": 0.000306148,
+      "cumulative_seconds": 0.000306148
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.isinstance>",
+      "primitive_calls": 3664,
+      "calls": 3664,
+      "own_seconds": 0.000222126,
+      "cumulative_seconds": 0.000222126
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.len>",
+      "primitive_calls": 4082,
+      "calls": 4082,
+      "own_seconds": 0.000221379,
+      "cumulative_seconds": 0.000221379
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.arange>",
+      "primitive_calls": 224,
+      "calls": 224,
+      "own_seconds": 0.00021261600000000003,
+      "cumulative_seconds": 0.00021261600000000003
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'append' of 'list' objects>",
+      "primitive_calls": 2800,
+      "calls": 2800,
+      "own_seconds": 0.000193023,
+      "cumulative_seconds": 0.000193023
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'cumsum' of 'numpy.ndarray' objects>",
+      "primitive_calls": 200,
+      "calls": 200,
+      "own_seconds": 0.00018837000000000001,
+      "cumulative_seconds": 0.00018837000000000001
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.array>",
+      "primitive_calls": 1656,
+      "calls": 1656,
+      "own_seconds": 0.000185786,
+      "cumulative_seconds": 0.000185786
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/numeric.py",
+      "line": 143,
+      "function": "ones",
+      "primitive_calls": 100,
+      "calls": 100,
+      "own_seconds": 0.000160029,
+      "cumulative_seconds": 0.000185748
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 2250,
+      "function": "_sum_dispatcher",
+      "primitive_calls": 3408,
+      "calls": 3408,
+      "own_seconds": 0.00016907100000000002,
+      "cumulative_seconds": 0.00016907100000000002
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 1846,
+      "function": "ravel",
+      "primitive_calls": 200,
+      "calls": 200,
+      "own_seconds": 7.5895e-05,
+      "cumulative_seconds": 0.00013663800000000002
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/lib/_shape_base_impl.py",
+      "line": 618,
+      "function": "_column_stack_dispatcher",
+      "primitive_calls": 300,
+      "calls": 300,
+      "own_seconds": 4.9257000000000006e-05,
+      "cumulative_seconds": 0.00013642
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/polynomial/legendre.py",
+      "line": 1416,
+      "function": "legcompanion",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 6.504300000000001e-05,
+      "cumulative_seconds": 0.000133706
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/polynomial/legendre.py",
+      "line": 613,
+      "function": "legder",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 4.2871000000000003e-05,
+      "cumulative_seconds": 0.000121083
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/lib/_function_base_impl.py",
+      "line": 1457,
+      "function": "_interp_dispatcher",
+      "primitive_calls": 1936,
+      "calls": 1936,
+      "own_seconds": 0.000112528,
+      "cumulative_seconds": 0.000112528
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/multiarray.py",
+      "line": 161,
+      "function": "concatenate",
+      "primitive_calls": 2307,
+      "calls": 2307,
+      "own_seconds": 0.000111385,
+      "cumulative_seconds": 0.000111385
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.issubclass>",
+      "primitive_calls": 1976,
+      "calls": 1976,
+      "own_seconds": 0.00010389500000000001,
+      "cumulative_seconds": 0.00010389500000000001
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/linalg/_linalg.py",
+      "line": 1199,
+      "function": "eigvalsh",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 6.1338e-05,
+      "cumulative_seconds": 9.929100000000001e-05
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/lib/_type_check_impl.py",
+      "line": 168,
+      "function": "_is_type_dispatcher",
+      "primitive_calls": 1944,
+      "calls": 1944,
+      "own_seconds": 9.667200000000001e-05,
+      "cumulative_seconds": 9.667200000000001e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.getattr>",
+      "primitive_calls": 1358,
+      "calls": 1358,
+      "own_seconds": 9.5597e-05,
+      "cumulative_seconds": 9.5597e-05
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/shape_base.py",
+      "line": 207,
+      "function": "_arrays_for_stack_dispatcher",
+      "primitive_calls": 300,
+      "calls": 300,
+      "own_seconds": 5.9881000000000005e-05,
+      "cumulative_seconds": 8.7163e-05
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/multiarray.py",
+      "line": 901,
+      "function": "bincount",
+      "primitive_calls": 2000,
+      "calls": 2000,
+      "own_seconds": 8.461800000000001e-05,
+      "cumulative_seconds": 8.461800000000001e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.asanyarray>",
+      "primitive_calls": 1800,
+      "calls": 1800,
+      "own_seconds": 8.368500000000001e-05,
+      "cumulative_seconds": 8.368500000000001e-05
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/function_base.py",
+      "line": 25,
+      "function": "linspace",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 4.8916000000000004e-05,
+      "cumulative_seconds": 7.396e-05
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/numeric.py",
+      "line": 1437,
+      "function": "moveaxis",
+      "primitive_calls": 16,
+      "calls": 16,
+      "own_seconds": 2.3760000000000003e-05,
+      "cumulative_seconds": 6.616900000000001e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.max>",
+      "primitive_calls": 416,
+      "calls": 416,
+      "own_seconds": 5.8158e-05,
+      "cumulative_seconds": 5.8158e-05
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 3267,
+      "function": "ndim",
+      "primitive_calls": 958,
+      "calls": 958,
+      "own_seconds": 5.7784e-05,
+      "cumulative_seconds": 5.7784e-05
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/polynomial/polyutils.py",
+      "line": 66,
+      "function": "as_series",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 1.9245e-05,
+      "cumulative_seconds": 5.4082e-05
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/_ufunc_config.py",
+      "line": 434,
+      "function": "inner",
+      "primitive_calls": 7,
+      "calls": 7,
+      "own_seconds": 3.8248000000000004e-05,
+      "cumulative_seconds": 4.3125000000000005e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.empty>",
+      "primitive_calls": 272,
+      "calls": 272,
+      "own_seconds": 4.1345000000000005e-05,
+      "cumulative_seconds": 4.1345000000000005e-05
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/multiarray.py",
+      "line": 361,
+      "function": "where",
+      "primitive_calls": 700,
+      "calls": 700,
+      "own_seconds": 4.1239e-05,
+      "cumulative_seconds": 4.1239e-05
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 1081,
+      "function": "_argsort_dispatcher",
+      "primitive_calls": 950,
+      "calls": 950,
+      "own_seconds": 4.0675e-05,
+      "cumulative_seconds": 4.0675e-05
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 3263,
+      "function": "_ndim_dispatcher",
+      "primitive_calls": 958,
+      "calls": 958,
+      "own_seconds": 3.9671e-05,
+      "cumulative_seconds": 3.9671e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'ravel' of 'numpy.ndarray' objects>",
+      "primitive_calls": 200,
+      "calls": 200,
+      "own_seconds": 3.1773e-05,
+      "cumulative_seconds": 3.1773e-05
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/numeric.py",
+      "line": 1373,
+      "function": "normalize_axis_tuple",
+      "primitive_calls": 32,
+      "calls": 32,
+      "own_seconds": 2.3744000000000002e-05,
+      "cumulative_seconds": 3.1163e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.hasattr>",
+      "primitive_calls": 300,
+      "calls": 300,
+      "own_seconds": 2.7282e-05,
+      "cumulative_seconds": 2.7282e-05
+    },
+    {
+      "file": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-28-37-2026-11-23/dsmc/linux-runtime-repair/component-r3/baseline/source/dsmc.py",
+      "line": 26,
+      "function": "positive_flux",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 2.1708000000000003e-05,
+      "cumulative_seconds": 2.1708000000000003e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'disable' of '_lsprof.Profiler' objects>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "own_seconds": 2.0917e-05,
+      "cumulative_seconds": 2.0917e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'max' of 'numpy.ndarray' objects>",
+      "primitive_calls": 16,
+      "calls": 16,
+      "own_seconds": 4.167e-06,
+      "cumulative_seconds": 1.8832000000000002e-05
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/_methods.py",
+      "line": 42,
+      "function": "_amax",
+      "primitive_calls": 16,
+      "calls": 16,
+      "own_seconds": 2.8740000000000004e-06,
+      "cumulative_seconds": 1.4665000000000001e-05
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/lib/_type_check_impl.py",
+      "line": 646,
+      "function": "common_type",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 8.456e-06,
+      "cumulative_seconds": 1.3875e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'reshape' of 'numpy.ndarray' objects>",
+      "primitive_calls": 48,
+      "calls": 48,
+      "own_seconds": 1.1963e-05,
+      "cumulative_seconds": 1.1963e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.any>",
+      "primitive_calls": 16,
+      "calls": 16,
+      "own_seconds": 5.628e-06,
+      "cumulative_seconds": 1.1419e-05
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/linalg/_linalg.py",
+      "line": 148,
+      "function": "_commonType",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 5.664e-06,
+      "cumulative_seconds": 1.129e-05
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 2605,
+      "function": "_cumsum_dispatcher",
+      "primitive_calls": 200,
+      "calls": 200,
+      "own_seconds": 1.0794e-05,
+      "cumulative_seconds": 1.0794e-05
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/numeric.py",
+      "line": 654,
+      "function": "_flatnonzero_dispatcher",
+      "primitive_calls": 200,
+      "calls": 200,
+      "own_seconds": 9.426000000000001e-06,
+      "cumulative_seconds": 9.426000000000001e-06
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 1955,
+      "function": "_nonzero_dispatcher",
+      "primitive_calls": 200,
+      "calls": 200,
+      "own_seconds": 9.2e-06,
+      "cumulative_seconds": 9.2e-06
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 1842,
+      "function": "_ravel_dispatcher",
+      "primitive_calls": 200,
+      "calls": 200,
+      "own_seconds": 9.176e-06,
+      "cumulative_seconds": 9.176e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'sum' of 'numpy.ndarray' objects>",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 2.5010000000000003e-06,
+      "cumulative_seconds": 8.916e-06
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/_ufunc_config.py",
+      "line": 410,
+      "function": "__enter__",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 3.4600000000000003e-06,
+      "cumulative_seconds": 7.000000000000001e-06
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/_methods.py",
+      "line": 50,
+      "function": "_sum",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 1.331e-06,
+      "cumulative_seconds": 6.415e-06
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/polynomial/polyutils.py",
+      "line": 699,
+      "function": "_as_int",
+      "primitive_calls": 24,
+      "calls": 24,
+      "own_seconds": 4.581000000000001e-06,
+      "cumulative_seconds": 6.083e-06
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/linalg/_linalg.py",
+      "line": 142,
+      "function": "_realType",
+      "primitive_calls": 16,
+      "calls": 16,
+      "own_seconds": 3.751e-06,
+      "cumulative_seconds": 5.585000000000001e-06
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/multiarray.py",
+      "line": 1089,
+      "function": "copyto",
+      "primitive_calls": 100,
+      "calls": 100,
+      "own_seconds": 5.512000000000001e-06,
+      "cumulative_seconds": 5.512000000000001e-06
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/linalg/_linalg.py",
+      "line": 123,
+      "function": "_makearray",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 3.6220000000000002e-06,
+      "cumulative_seconds": 5.168e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.sorted>",
+      "primitive_calls": 16,
+      "calls": 16,
+      "own_seconds": 5.001e-06,
+      "cumulative_seconds": 5.001e-06
+    },
+    {
+      "file": "<frozen abc>",
+      "line": 117,
+      "function": "__instancecheck__",
+      "primitive_calls": 7,
+      "calls": 7,
+      "own_seconds": 1.9590000000000002e-06,
+      "cumulative_seconds": 4.417e-06
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/polynomial/polyutils.py",
+      "line": 125,
+      "function": "<genexpr>",
+      "primitive_calls": 16,
+      "calls": 16,
+      "own_seconds": 4.292000000000001e-06,
+      "cumulative_seconds": 4.292000000000001e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy._core._multiarray_umath._make_extobj>",
+      "primitive_calls": 15,
+      "calls": 15,
+      "own_seconds": 4.208e-06,
+      "cumulative_seconds": 4.208e-06
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/polynomial/polyutils.py",
+      "line": 37,
+      "function": "trimseq",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 3.3350000000000003e-06,
+      "cumulative_seconds": 4.000000000000001e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.lib.array_utils.normalize_axis_index>",
+      "primitive_calls": 40,
+      "calls": 40,
+      "own_seconds": 3.6700000000000004e-06,
+      "cumulative_seconds": 3.6700000000000004e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method _operator.index>",
+      "primitive_calls": 64,
+      "calls": 64,
+      "own_seconds": 3.5840000000000003e-06,
+      "cumulative_seconds": 3.5840000000000003e-06
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/_ufunc_config.py",
+      "line": 426,
+      "function": "__exit__",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 1.7490000000000001e-06,
+      "cumulative_seconds": 3.249e-06
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/linalg/_linalg.py",
+      "line": 128,
+      "function": "isComplexType",
+      "primitive_calls": 16,
+      "calls": 16,
+      "own_seconds": 2.085e-06,
+      "cumulative_seconds": 3.001e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'reset' of '_contextvars.ContextVar' objects>",
+      "primitive_calls": 15,
+      "calls": 15,
+      "own_seconds": 2.877e-06,
+      "cumulative_seconds": 2.877e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'transpose' of 'numpy.ndarray' objects>",
+      "primitive_calls": 16,
+      "calls": 16,
+      "own_seconds": 2.8340000000000003e-06,
+      "cumulative_seconds": 2.8340000000000003e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'set' of '_contextvars.ContextVar' objects>",
+      "primitive_calls": 15,
+      "calls": 15,
+      "own_seconds": 2.832e-06,
+      "cumulative_seconds": 2.832e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'result_type' of 'numpy._core._multiarray_umath._array_converter' objects>",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 2.459e-06,
+      "cumulative_seconds": 2.459e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method _abc._abc_instancecheck>",
+      "primitive_calls": 7,
+      "calls": 7,
+      "own_seconds": 2.458e-06,
+      "cumulative_seconds": 2.458e-06
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/numeric.py",
+      "line": 1918,
+      "function": "isscalar",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 1.419e-06,
+      "cumulative_seconds": 2.127e-06
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/linalg/_linalg.py",
+      "line": 198,
+      "function": "_assert_stacked_square",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 2.0830000000000002e-06,
+      "cumulative_seconds": 2.0830000000000002e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'insert' of 'list' objects>",
+      "primitive_calls": 16,
+      "calls": 16,
+      "own_seconds": 2.0390000000000003e-06,
+      "cumulative_seconds": 2.0390000000000003e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'startswith' of 'str' objects>",
+      "primitive_calls": 10,
+      "calls": 10,
+      "own_seconds": 1.9990000000000003e-06,
+      "cumulative_seconds": 1.9990000000000003e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'get' of 'dict' objects>",
+      "primitive_calls": 16,
+      "calls": 16,
+      "own_seconds": 1.8340000000000001e-06,
+      "cumulative_seconds": 1.8340000000000001e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'wrap' of 'numpy._core._multiarray_umath._array_converter' objects>",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 1.503e-06,
+      "cumulative_seconds": 1.503e-06
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/polynomial/polyutils.py",
+      "line": 120,
+      "function": "<genexpr>",
+      "primitive_calls": 16,
+      "calls": 16,
+      "own_seconds": 1.4990000000000002e-06,
+      "cumulative_seconds": 1.4990000000000002e-06
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/linalg/_linalg.py",
+      "line": 192,
+      "function": "_assert_stacked_2d",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 1.4560000000000001e-06,
+      "cumulative_seconds": 1.4560000000000001e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'split' of 'str' objects>",
+      "primitive_calls": 3,
+      "calls": 3,
+      "own_seconds": 1.167e-06,
+      "cumulative_seconds": 1.167e-06
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/_ufunc_config.py",
+      "line": 400,
+      "function": "__init__",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 1.1660000000000001e-06,
+      "cumulative_seconds": 1.1660000000000001e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'upper' of 'str' objects>",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 1.125e-06,
+      "cumulative_seconds": 1.125e-06
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/numeric.py",
+      "line": 1433,
+      "function": "_moveaxis_dispatcher",
+      "primitive_calls": 16,
+      "calls": 16,
+      "own_seconds": 1.1240000000000002e-06,
+      "cumulative_seconds": 1.1240000000000002e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'as_arrays' of 'numpy._core._multiarray_umath._array_converter' objects>",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 1.123e-06,
+      "cumulative_seconds": 1.123e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.abs>",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 8.750000000000001e-07,
+      "cumulative_seconds": 8.750000000000001e-07
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/function_base.py",
+      "line": 20,
+      "function": "_linspace_dispatcher",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 6.25e-07,
+      "cumulative_seconds": 6.25e-07
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/lib/_type_check_impl.py",
+      "line": 642,
+      "function": "_common_type_dispatcher",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 5.43e-07,
+      "cumulative_seconds": 5.43e-07
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/linalg/_linalg.py",
+      "line": 1195,
+      "function": "_eigvalsh_dispatcher",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 5.420000000000001e-07,
+      "cumulative_seconds": 5.420000000000001e-07
+    }
+  ],
+  "failure": null,
+  "component_seconds": 2.588639832996705,
+  "PDE_executions": 0,
+  "source_edits_during_execution": 0
+}

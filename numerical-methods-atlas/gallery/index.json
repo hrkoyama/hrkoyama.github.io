@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/",
-  "reviewed_on": "2026-11-23",
+  "reviewed_on": "2026-11-24",
   "scope": "One explicitly mapped visual per atlas test problem. Existing shared figures are identified. Derived plots use stored numerical values; computed previews record fixed inputs and numerical checks.",
   "counts": {
     "test_problems": 113,
@@ -11176,26 +11176,26 @@
       "chapter": "validation-dsmc-shock",
       "reading_section": "dsmc-planar-shock",
       "availability": "saved-output",
-      "code_base": "/code/validated-examples/2026-11-23/dsmc-shock/",
-      "verification": "/code/validated-examples/2026-11-23/dsmc-shock/verification.json",
+      "code_base": "/code/validated-examples/2026-11-24/dsmc-shock/",
+      "verification": "/code/validated-examples/2026-11-24/dsmc-shock/verification.json",
       "commands": [
         "python -W error -m pytest -q -p no:cacheprovider",
         "python -W error run.py --input inputs.json --output output"
       ],
       "evidence": [
         {
-          "path": "code/validated-examples/2026-11-23/dsmc-shock/results/result.json",
+          "path": "code/validated-examples/2026-11-24/dsmc-shock/results/result.json",
           "json_pointer": "/cases",
           "where": {
             "id": "dsmc-planar-shock"
           }
         },
         {
-          "path": "code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock-preview.png",
+          "path": "code/validated-examples/2026-11-24/dsmc-shock/results/dsmc-planar-shock-preview.png",
           "artifact": "image"
         },
         {
-          "path": "code/validated-examples/2026-11-23/dsmc-shock/verification.json",
+          "path": "code/validated-examples/2026-11-24/dsmc-shock/verification.json",
           "json_pointer": "/all_cases_rerun"
         }
       ],
@@ -11213,14 +11213,14 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-shock/#dsmc-planar-shock",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-shock/#dsmc-planar-shock"
       },
-      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/verification.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/verification.json",
       "execution_examples": [],
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#dsmc-planar-shock",
       "run_commands": [
         "python -W error -m pytest -q -p no:cacheprovider",
         "python -W error run.py --input inputs.json --output output"
       ],
-      "image": "/code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock-preview.png",
+      "image": "/code/validated-examples/2026-11-24/dsmc-shock/results/dsmc-planar-shock-preview.png",
       "image_sha256": "89e25d3088c177ac0cb027fe58f02627b049626d0198bda02abc0eb6fec6555c",
       "width": 2176,
       "height": 704,
@@ -11232,7 +11232,7 @@
       "visual_input": {
         "id": "dsmc-planar-shock",
         "kind": "image",
-        "source": "/code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock-preview.png",
+        "source": "/code/validated-examples/2026-11-24/dsmc-shock/results/dsmc-planar-shock-preview.png",
         "caption": {
           "ja": "保存した実粒子の位置–速度ヒストグラム。1次元位置と分子速度の位相空間であり、2D物理流れではありません。",
           "en": "Actual saved particle position-velocity histograms; phase space of1D position and molecular velocity,not2D physical flow."
@@ -11258,21 +11258,21 @@
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=en"
           },
           "code_urls": [
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/run.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/dsmc.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/diagnostics.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/references/generate.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/references/qualify.py"
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/dsmc.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/diagnostics.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/references/generate.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/references/qualify.py"
           ],
           "test_urls": [
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/test_arrivals.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/test_core.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/test_matching.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/test_shock.py"
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/test_arrivals.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/test_core.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/test_matching.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/test_shock.py"
           ],
-          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/atlas-dsmc-shock-2026-11-23.zip",
-          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/results/result.json",
-          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/verification.json",
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/atlas-dsmc-shock-2026-11-24.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/verification.json",
           "preview": {
             "file": "dsmc-planar-shock-preview.png",
             "caption": {
@@ -11282,14 +11282,14 @@
             "width": 2176,
             "height": 704,
             "sha256": "89e25d3088c177ac0cb027fe58f02627b049626d0198bda02abc0eb6fec6555c",
-            "url": "/code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock-preview.png"
+            "url": "/code/validated-examples/2026-11-24/dsmc-shock/results/dsmc-planar-shock-preview.png"
           }
         }
       ]
     }
   ],
   "source_sha256": {
-    "catalog/atlas-gallery.json": "6a6414104521aad29f6c6d60954b6d8e5173a30ea65ddaded9f77e98e3d8689b",
+    "catalog/atlas-gallery.json": "0c65dddf8332c22edd7aa2efb0fbcc521405a6ed594d7f7fcd741eee1ebcebc7",
     "scripts/render-atlas-gallery.py": "62956b5a0ece0c5144ec079bb30f36e44b3ccf97e4b56b677d4de356cdbab04c",
     "code/numerical-methods-atlas/2026-11-21/numart/benchmarks.py": "dc8f83aafea473b5f0e1e7bf82630484dd60aa446859c1f602571adc3c59f019",
     "code/numerical-methods-atlas/2026-11-21/numart/solvers.py": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d",
@@ -11336,8 +11336,8 @@
     "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
     "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
     "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
-    "catalog/atlas-test-problems.json": "afed5c8301d0ce97928d8c47712ecd08c492b34e1ee289c9b7652f382562377b",
-    "catalog/atlas-depth-expansion.json": "bfd3d4d52c78416dc2140beafdf559f8b6e98373d55e7fbb95ec85f7c296d7ee",
+    "catalog/atlas-test-problems.json": "6d18326fa3356b0727e8546444239ea8771472a64ae596de7d0d333175d46a72",
+    "catalog/atlas-depth-expansion.json": "28ed0737a4c15dce04bf7c7f5563d1a7b51fadd44fb8bfa6cbed7d2255ff8efb",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
     "code/validated-examples/2026-11-22/foundations/inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -11670,15 +11670,22 @@
     "code/validated-examples/2026-11-23/dsmc-shock/results/result.json": "5c33c06b72bb7f5f778b21e02e02804df57eb82cad2e15d08e5f06acf8196599",
     "code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock.png": "7e0e1af4543efca816a5b900b2f4c9d4fc3fccacbf1eb3e367e6e4775c2cd92c",
     "code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock-preview.png": "89e25d3088c177ac0cb027fe58f02627b049626d0198bda02abc0eb6fec6555c",
+    "code/validated-examples/2026-11-24/dsmc-shock/cases.json": "d5123d6e0f48145bcf0b25a68cffb2f9250bb019e21ea42760db848aed536b22",
+    "code/validated-examples/2026-11-24/dsmc-shock/inputs.json": "ef53152d7f42f153843ec505116be67377db77336bf14dd724c4f253d4d0f166",
+    "code/validated-examples/2026-11-24/dsmc-shock/source-manifest.json": "cc8ff5afec49e7f1ccffd2cce91bcf85e4e116c7389342304667bc7c9bb5eccf",
+    "code/validated-examples/2026-11-24/dsmc-shock/verification.json": "7e7919032dafc67b5e857acd4464516cb4b742eed89ff8adae7f3c8cf75a96f5",
+    "code/validated-examples/2026-11-24/dsmc-shock/results/result.json": "a4cd1e0092935bccd85bc0cf14086d01c723f05e4ce9474c3563283b3a55562e",
+    "code/validated-examples/2026-11-24/dsmc-shock/results/dsmc-planar-shock.png": "7e0e1af4543efca816a5b900b2f4c9d4fc3fccacbf1eb3e367e6e4775c2cd92c",
+    "code/validated-examples/2026-11-24/dsmc-shock/results/dsmc-planar-shock-preview.png": "89e25d3088c177ac0cb027fe58f02627b049626d0198bda02abc0eb6fec6555c",
     "code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py": "4ad61ac54dfa59d7d61959c5699f290e2386c23bf5b4b930a5d98576feaa54d1",
     "code/numerical-methods-atlas/2026-11-21/tests/test_linear.py": "5e7323f2734fb7328c35706ccd90fc25076bd46d01d32cd9c78c8cd25dd0421f",
     "code/numerical-methods-atlas/2026-11-21/tests/test_sparse_fem.py": "4076e514e0b9b5fd94dead4af33fe7e7548fba6a7b48b3e21a406034f7170afb",
     "code/numerical-methods-atlas/2026-11-21/tests/test_runge_kutta.py": "920a5eb560afe7f560cae8d22f879f125851f4ee0451b24720d0eca0082c31ce",
     "code/numerical-methods-atlas/2026-11-21/tests/test_new_models.py": "2937daf8fa8ad86882ac06e47835a6309ca1df3d0283c7dfb7b9606dc3906b1f",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "d059eabffc63320705c4b10dc4bbc74d338ee123979313b3a106b6edd436b84e",
+    "numerical-methods-atlas/gallery/preview-manifest.json": "5c8e5a8f66946cfe8452cc26089e627103d6a8103f2f61e73fedd2162e984be1",
     "numerical-methods-atlas/gallery/calculations.json": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6",
     "numerical-methods-atlas/gallery/verification.json": "46c39543afa9d943dfef896fadbc8f84d847f1a145d9b1427a2336de7a3a50f9",
-    "numerical-methods-atlas/test-cases/index.json": "60c019ff7eb5a62cb0a35d1b8b909e62056fad0e2b22b06a202f2f94fe5bd952",
+    "numerical-methods-atlas/test-cases/index.json": "87318d4a65ec67af196c1c9e6a7ad243b1e50720951b78e4298be3eeda02eef1",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "scripts/atlas_execution_discovery.py": "3431dae95fb0adc68e1deca07b406b70bd99480f9ad6023a31765cb07ccf84be",
     "scripts/atlas_depth_release.py": "833f2f4153f760072802e01b5dbc160cc14b5474f83ad834bf442c30e1484bba",
@@ -11724,6 +11731,6 @@
     "code/validated-examples/2026-11-23/warm-pic/atlas-warm-pic-2026-11-23.zip": "10661b33b9d36f35721fa1ed55b12b94926fe6fab47b8dd1e5dea52a61415fdb",
     "code/validated-examples/2026-11-23/pic-spatial/atlas-pic-spatial-2026-11-23.zip": "51da779a41f2109fbd22d1628463b8be3770ee93b61e49529b1b48a19f431bc3",
     "code/validated-examples/2026-11-23/dsmc-wall/atlas-dsmc-wall-2026-11-23.zip": "7b6d5a11874a0042ce772df4c241c72ce42f861c43ed0d44164074ba662da0cb",
-    "code/validated-examples/2026-11-23/dsmc-shock/atlas-dsmc-shock-2026-11-23.zip": "a0781fe0b577cd65f60489e77672bbfdbc7d1f657c9514ad1c0c862125ba4eda"
+    "code/validated-examples/2026-11-24/dsmc-shock/atlas-dsmc-shock-2026-11-24.zip": "92794cc568e7857346a24489eddaae113eb60754de7ba717254955ace9d8d961"
   }
 }

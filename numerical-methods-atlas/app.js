@@ -1,6 +1,6 @@
 // Generated from frontend/atlas/app.js by scripts/atlas_runtime_assets.py. Edit the source template.
-import {atlasIntroDescriptions,atlasDocumentVersions} from './atlas-runtime-data.mjs?v=74b980dc484b';
-import {homeOverviewPage,wireHomeOverview} from './home-overview.js?v=e8d10396a0eb';
+import {atlasIntroDescriptions,atlasDocumentVersions} from './atlas-runtime-data.mjs?v=13558ca1e839';
+import {homeOverviewPage,wireHomeOverview} from './home-overview.js?v=70288b59108f';
 import {resolveHomeLegacyURL} from './home-navigation.mjs?v=5f80442a2a90';
 import {readingURL,rewriteReadingLinks} from './reading-urls.js';
 import {chapterEditions} from './chapter-resources.mjs?v=b43dbb301d28';
@@ -330,7 +330,7 @@ async function route(options={}) {
 document.querySelector('.skip-link').addEventListener('click',e=>{e.preventDefault();main.focus();main.scrollIntoView();});
 document.querySelector('#figure-dialog').addEventListener('click',e=>{if(e.target===e.currentTarget)e.currentTarget.close();});
 try {
- [localeCatalog,references,sod,experiments,foundations,coverage,translationStatus,glossary,site]=await Promise.all(['locales/messages.json?v=c6a2bcc46ce8','references.json?v=72233b78dff7','sod.json','experiments.json','foundations.json','coverage.json?v=294d2dcf9aac','translation-status.json','glossary.json','site.json'].map(async file=>{const response=await fetch(file);if(!response.ok)throw Error(`Cannot load ${file}`);return response.json();}));
+ [localeCatalog,references,sod,experiments,foundations,coverage,translationStatus,glossary,site]=await Promise.all(['locales/messages.json?v=c6a2bcc46ce8','references.json?v=72233b78dff7','sod.json','experiments.json','foundations.json','coverage.json?v=63a96b19415d','translation-status.json','glossary.json','site.json'].map(async file=>{const response=await fetch(file);if(!response.ok)throw Error(`Cannot load ${file}`);return response.json();}));
  repo=site.repositoryUrl;
  references.sort((a,b)=>a.year-b.year||a.id.localeCompare(b.id));
  let saved;try{saved=localStorage.getItem('hrkoyama.home.language') || localStorage.getItem('numart-language');}catch{}

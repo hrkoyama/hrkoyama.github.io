@@ -2166,20 +2166,22 @@ ID: dsmc-2 · P2 · 検証済み · 新規実装
 
 ```json
 {
-  "verification": "/code/validated-examples/2026-11-23/dsmc-shock/verification.json",
+  "verification": "/code/validated-examples/2026-11-24/dsmc-shock/verification.json",
   "inputs": [
-    "/code/validated-examples/2026-11-23/dsmc-shock/inputs.json",
-    "/code/validated-examples/2026-11-23/dsmc-shock/acceptance.json",
-    "/code/validated-examples/2026-11-23/dsmc-shock/pre-run-contract.json"
+    "/code/validated-examples/2026-11-24/dsmc-shock/inputs.json",
+    "/code/validated-examples/2026-11-24/dsmc-shock/acceptance.json",
+    "/code/validated-examples/2026-11-24/dsmc-shock/pre-run-contract.json"
   ],
   "plots": [
-    "/code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock-preview.png"
+    "/code/validated-examples/2026-11-24/dsmc-shock/results/dsmc-planar-shock-preview.png"
   ],
   "code": [
-    "/code/validated-examples/2026-11-23/dsmc-shock/run.py"
+    "/code/validated-examples/2026-11-24/dsmc-shock/run.py"
   ],
   "references": [
-    "/code/validated-examples/2026-11-23/dsmc-shock/README.md"
+    "/code/validated-examples/2026-11-24/dsmc-shock/README.md",
+    "/code/validated-examples/2026-11-23/dsmc-shock/README.md",
+    "/code/validated-examples/2026-11-23/dsmc-shock/verification.json"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#dsmc-planar-shock-ja",
   "execution": "/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=ja"

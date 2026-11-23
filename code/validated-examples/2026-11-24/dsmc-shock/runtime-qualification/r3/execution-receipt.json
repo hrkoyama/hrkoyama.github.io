@@ -1,0 +1,15 @@
+{
+  "started_at_utc": "2026-11-23T15:27:28.890387+00:00",
+  "scope": "One component-only checker+fixed profiling; no simulate/main/reference generation",
+  "protocol_sha256": "980326f0665340dffe04dfa6244c5dbf07c81176e7d3ec3b5e81aecd71631c5d",
+  "independent_review_sha256": "6950f4f86d272b898dd0aa193bfac86a81216e983cc9c283e66d12708d65daa8",
+  "deadline_seconds": 30,
+  "source_bindings": 120,
+  "PDE_execution_authorized": false,
+  "returncode": 0,
+  "timed_out": false,
+  "completed_at_utc": "2026-11-23T15:27:31.584434+00:00",
+  "elapsed_seconds": 2.6937950840001577,
+  "passed": true,
+  "checks": 348
+}

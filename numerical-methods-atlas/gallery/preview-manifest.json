@@ -1348,7 +1348,7 @@
     },
     {
       "id": "dsmc-planar-shock",
-      "image": "/code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock-preview.png",
+      "image": "/code/validated-examples/2026-11-24/dsmc-shock/results/dsmc-planar-shock-preview.png",
       "image_sha256": "89e25d3088c177ac0cb027fe58f02627b049626d0198bda02abc0eb6fec6555c",
       "width": 2176,
       "height": 704,
@@ -1360,7 +1360,7 @@
     }
   ],
   "source_sha256": {
-    "catalog/atlas-gallery.json": "6a6414104521aad29f6c6d60954b6d8e5173a30ea65ddaded9f77e98e3d8689b",
+    "catalog/atlas-gallery.json": "0c65dddf8332c22edd7aa2efb0fbcc521405a6ed594d7f7fcd741eee1ebcebc7",
     "scripts/render-atlas-gallery.py": "62956b5a0ece0c5144ec079bb30f36e44b3ccf97e4b56b677d4de356cdbab04c",
     "code/numerical-methods-atlas/2026-11-21/numart/benchmarks.py": "dc8f83aafea473b5f0e1e7bf82630484dd60aa446859c1f602571adc3c59f019",
     "code/numerical-methods-atlas/2026-11-21/numart/solvers.py": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d",
@@ -1407,8 +1407,8 @@
     "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
     "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
     "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
-    "catalog/atlas-test-problems.json": "afed5c8301d0ce97928d8c47712ecd08c492b34e1ee289c9b7652f382562377b",
-    "catalog/atlas-depth-expansion.json": "bfd3d4d52c78416dc2140beafdf559f8b6e98373d55e7fbb95ec85f7c296d7ee",
+    "catalog/atlas-test-problems.json": "6d18326fa3356b0727e8546444239ea8771472a64ae596de7d0d333175d46a72",
+    "catalog/atlas-depth-expansion.json": "28ed0737a4c15dce04bf7c7f5563d1a7b51fadd44fb8bfa6cbed7d2255ff8efb",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
     "code/validated-examples/2026-11-22/foundations/inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -1740,7 +1740,14 @@
     "code/validated-examples/2026-11-23/dsmc-shock/verification.json": "fdca2ddb0069b640ef24da3de9766b5ccee5c5a117c7017589bd0de07d003623",
     "code/validated-examples/2026-11-23/dsmc-shock/results/result.json": "5c33c06b72bb7f5f778b21e02e02804df57eb82cad2e15d08e5f06acf8196599",
     "code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock.png": "7e0e1af4543efca816a5b900b2f4c9d4fc3fccacbf1eb3e367e6e4775c2cd92c",
-    "code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock-preview.png": "89e25d3088c177ac0cb027fe58f02627b049626d0198bda02abc0eb6fec6555c"
+    "code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock-preview.png": "89e25d3088c177ac0cb027fe58f02627b049626d0198bda02abc0eb6fec6555c",
+    "code/validated-examples/2026-11-24/dsmc-shock/cases.json": "d5123d6e0f48145bcf0b25a68cffb2f9250bb019e21ea42760db848aed536b22",
+    "code/validated-examples/2026-11-24/dsmc-shock/inputs.json": "ef53152d7f42f153843ec505116be67377db77336bf14dd724c4f253d4d0f166",
+    "code/validated-examples/2026-11-24/dsmc-shock/source-manifest.json": "cc8ff5afec49e7f1ccffd2cce91bcf85e4e116c7389342304667bc7c9bb5eccf",
+    "code/validated-examples/2026-11-24/dsmc-shock/verification.json": "7e7919032dafc67b5e857acd4464516cb4b742eed89ff8adae7f3c8cf75a96f5",
+    "code/validated-examples/2026-11-24/dsmc-shock/results/result.json": "a4cd1e0092935bccd85bc0cf14086d01c723f05e4ce9474c3563283b3a55562e",
+    "code/validated-examples/2026-11-24/dsmc-shock/results/dsmc-planar-shock.png": "7e0e1af4543efca816a5b900b2f4c9d4fc3fccacbf1eb3e367e6e4775c2cd92c",
+    "code/validated-examples/2026-11-24/dsmc-shock/results/dsmc-planar-shock-preview.png": "89e25d3088c177ac0cb027fe58f02627b049626d0198bda02abc0eb6fec6555c"
   },
   "calculations_sha256": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6",
   "maintenance_updates": [

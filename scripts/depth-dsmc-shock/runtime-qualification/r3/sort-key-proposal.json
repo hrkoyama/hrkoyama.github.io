@@ -1,0 +1,494 @@
+{
+  "schema_version": 1,
+  "status": "PRIVATE_DRAFT_UNEXECUTED_UNAPPLIED",
+  "started_at_utc": "2026-11-23T15:20:31Z",
+  "ended_at_utc": "2026-11-23T15:22:10.993613+00:00",
+  "runtime_status": "UNMEASURED",
+  "acceptance_frozen": false,
+  "component_execution_performed": false,
+  "candidate_import_or_compile_performed": false,
+  "PDE_execution_performed": false,
+  "PUB_or_Git_edits": false,
+  "purpose": "Additional performance-only order-key representation proposal. Root review and a separately frozen component contract required before any execution. Do not apply over the frozen R2/component or three-change main proposal.",
+  "baseline": {
+    "path": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-28-37-2026-11-23/dsmc/linux-runtime-repair/candidate/source/dsmc.py",
+    "sha256": "a101a0a2b909900cf85b803a88e27f32389b60eda635a1e38fd76ea2f49a48eb",
+    "scope": "R2 three-change component-qualified candidate; all three existing changes retained as-is."
+  },
+  "candidate": {
+    "path": "candidate-r3-dsmc.py.txt",
+    "sha256": "16a88083bfcae16c105886d5cc2c2415cf3f5bf86b3adf9b4552904d19052eec"
+  },
+  "patch_sha256": "e736b3fcfb793f8ffbb8dfd6160dbfa99bba47e9920706f637182010052a9fb5",
+  "only_new_change": "matching_order keeps its exact single rng.permutation call, forms the existing permuted key copy once, and casts only nonempty integer keys with exact Python-int min/max in [0,255] to uint8 before the same stable argsort. Empty, negative, >=256 and noninteger keys retain their original dtype and sort path.",
+  "static_equivalence_argument": [
+    "The permutation array and random draw count/order are unchanged. Let k[j]=index[permutation[j]]. On guarded integer values the uint8 map is exact, injective and order-preserving: k[i]<k[j] and equality are identical before/after conversion.",
+    "A stable ascending argsort is uniquely determined by key ordering plus original position for ties. Therefore stable argsort of the exact uint8 embedding returns exactly the same index permutation; mapping through the unchanged random permutation yields identical matching order and disjoint pairs.",
+    "dtype narrowing affects only a sorting key copy, never cell indices, particle data or floating-point calculations. keys=index[permutation] is advanced-indexed storage, and astype/argsort do not mutate index or the permutation. Output remains indices with the RNG permutation dtype, not uint8.",
+    "int(np.min/max(keys)) converts signed/unsigned scalar extrema to arbitrary-precision Python integers. This avoids relying on NumPy2 promotion of Python255 against int8 or another narrow scalar and exactly handles uint64 maximum. No integer wrap, clipping or float cast is allowed.",
+    "Production collision_round already validates integer indices in [0,cells). Current cells192/128 therefore qualify. Other callers with invalid physical cells still follow unchanged collision_round rejection before matching_order. The fallback is deliberately wider than the production range.",
+    "No floating expression tree, thresholds, collision majorant/probability, RNG matching law, seed, timestep, source/outflow ledger, sampling cadence or diagnostic changes. Arbitrary ndarray subclass overrides, external monkeypatching/concurrent mutation and memory-allocation failure ordering are outside the ordinary numeric ndarray equivalence claim."
+  ],
+  "official_sources_actually_inspected": [
+    {
+      "url": "https://numpy.org/doc/2.0/reference/generated/numpy.argsort.html",
+      "role": "Pinned-version official API behavior",
+      "scope": "Parameters kind/stable and return semantics: stable preserves relative order of equal elements, output is index array. No performance measurements or full source audit."
+    },
+    {
+      "url": "https://numpy.org/doc/2.0/reference/generated/numpy.sort.html",
+      "role": "Pinned-version official algorithm notes",
+      "scope": "Stable-sort definition and dtype-dependent timsort/radix implementation notes. Internal algorithm/speed is not a portable API guarantee."
+    }
+  ],
+  "exception_and_alias_review": {
+    "empty": "Check keys.size before min/max, preserving empty sorting without reduction errors.",
+    "noninteger": "Skip extrema/cast entirely for float/bool/object/structured/complex and let original argsort determine semantics; proposed focused fixtures cover float and bool, not a blanket arbitrary-object guarantee.",
+    "integer": "Finite exact integer reductions/casts create no floating warnings; Python-int comparisons avoid narrow overflow.",
+    "public_mutation": "No write to index, input views/backing storage, cell counts, permutation or particle arrays. Readonly/noncontiguous inputs included in proposal.",
+    "ordering": "The only added work is dtype/range validation and exact cast between permutation and argsort; no RNG draws are inserted. Memory-exhaustion timing and stack locations are not equivalence claims."
+  },
+  "proposed_qualification": {
+    "status": "UNFROZEN_UNEXECUTED",
+    "baseline_vs_candidate": "Compare copied R2 source against R3; preserve R2 full163 qualification and original public23 source. A future new-edition contract must explicitly unprotect matching_order text and replace its textual invariance with these exact branch/order tests; all remaining scientific functions protected.",
+    "fixtures": [
+      {
+        "id": "safe-int8",
+        "dtype": "int8",
+        "values": [
+          0,
+          127,
+          0,
+          1,
+          127
+        ],
+        "expected_branch": "uint8",
+        "layout": "contiguous"
+      },
+      {
+        "id": "safe-int16",
+        "dtype": "int16",
+        "values": [
+          0,
+          255,
+          0,
+          127,
+          255,
+          1
+        ],
+        "expected_branch": "uint8",
+        "layout": "contiguous"
+      },
+      {
+        "id": "safe-int32",
+        "dtype": "int32",
+        "values": [
+          0,
+          255,
+          0,
+          127,
+          255,
+          1
+        ],
+        "expected_branch": "uint8",
+        "layout": "contiguous"
+      },
+      {
+        "id": "safe-int64",
+        "dtype": "int64",
+        "values": [
+          0,
+          255,
+          0,
+          127,
+          255,
+          1
+        ],
+        "expected_branch": "uint8",
+        "layout": "contiguous"
+      },
+      {
+        "id": "safe-uint8",
+        "dtype": "uint8",
+        "values": [
+          0,
+          255,
+          0,
+          127,
+          255,
+          1
+        ],
+        "expected_branch": "uint8",
+        "layout": "contiguous"
+      },
+      {
+        "id": "safe-uint16",
+        "dtype": "uint16",
+        "values": [
+          0,
+          255,
+          0,
+          127,
+          255,
+          1
+        ],
+        "expected_branch": "uint8",
+        "layout": "contiguous"
+      },
+      {
+        "id": "safe-uint32",
+        "dtype": "uint32",
+        "values": [
+          0,
+          255,
+          0,
+          127,
+          255,
+          1
+        ],
+        "expected_branch": "uint8",
+        "layout": "contiguous"
+      },
+      {
+        "id": "safe-uint64",
+        "dtype": "uint64",
+        "values": [
+          0,
+          255,
+          0,
+          127,
+          255,
+          1
+        ],
+        "expected_branch": "uint8",
+        "layout": "contiguous"
+      },
+      {
+        "id": "empty-int64",
+        "dtype": "int64",
+        "values": [],
+        "expected_branch": "original",
+        "layout": "contiguous"
+      },
+      {
+        "id": "negative-int8",
+        "dtype": "int8",
+        "values": [
+          0,
+          -1,
+          127,
+          -1,
+          0
+        ],
+        "expected_branch": "original",
+        "layout": "contiguous"
+      },
+      {
+        "id": "negative-int16",
+        "dtype": "int16",
+        "values": [
+          0,
+          -1,
+          127,
+          -1,
+          0
+        ],
+        "expected_branch": "original",
+        "layout": "contiguous"
+      },
+      {
+        "id": "negative-int32",
+        "dtype": "int32",
+        "values": [
+          0,
+          -1,
+          127,
+          -1,
+          0
+        ],
+        "expected_branch": "original",
+        "layout": "contiguous"
+      },
+      {
+        "id": "negative-int64",
+        "dtype": "int64",
+        "values": [
+          0,
+          -1,
+          127,
+          -1,
+          0
+        ],
+        "expected_branch": "original",
+        "layout": "contiguous"
+      },
+      {
+        "id": "overflow256-int16",
+        "dtype": "int16",
+        "values": [
+          255,
+          256,
+          0,
+          255,
+          256
+        ],
+        "expected_branch": "original",
+        "layout": "contiguous"
+      },
+      {
+        "id": "overflow256-int32",
+        "dtype": "int32",
+        "values": [
+          255,
+          256,
+          0,
+          255,
+          256
+        ],
+        "expected_branch": "original",
+        "layout": "contiguous"
+      },
+      {
+        "id": "overflow256-int64",
+        "dtype": "int64",
+        "values": [
+          255,
+          256,
+          0,
+          255,
+          256
+        ],
+        "expected_branch": "original",
+        "layout": "contiguous"
+      },
+      {
+        "id": "overflow256-uint16",
+        "dtype": "uint16",
+        "values": [
+          255,
+          256,
+          0,
+          255,
+          256
+        ],
+        "expected_branch": "original",
+        "layout": "contiguous"
+      },
+      {
+        "id": "overflow256-uint32",
+        "dtype": "uint32",
+        "values": [
+          255,
+          256,
+          0,
+          255,
+          256
+        ],
+        "expected_branch": "original",
+        "layout": "contiguous"
+      },
+      {
+        "id": "overflow256-uint64",
+        "dtype": "uint64",
+        "values": [
+          255,
+          256,
+          0,
+          255,
+          256
+        ],
+        "expected_branch": "original",
+        "layout": "contiguous"
+      },
+      {
+        "id": "uint64-full-range",
+        "dtype": "uint64",
+        "values": [
+          0,
+          18446744073709551615,
+          255,
+          256,
+          1
+        ],
+        "expected_branch": "original",
+        "layout": "contiguous"
+      },
+      {
+        "id": "big-endian-int16",
+        "dtype": ">i2",
+        "values": [
+          0,
+          255,
+          1,
+          255,
+          0
+        ],
+        "expected_branch": "uint8",
+        "layout": "contiguous"
+      },
+      {
+        "id": "big-endian-uint64",
+        "dtype": ">u8",
+        "values": [
+          0,
+          255,
+          1,
+          255,
+          0
+        ],
+        "expected_branch": "uint8",
+        "layout": "contiguous"
+      },
+      {
+        "id": "fractional-float",
+        "dtype": "float64",
+        "values": [
+          0.8,
+          0.2,
+          0.8,
+          0.1,
+          255.5
+        ],
+        "expected_branch": "original",
+        "layout": "contiguous"
+      },
+      {
+        "id": "signed-zero-float",
+        "dtype": "float64",
+        "values": [
+          -0.0,
+          0.0,
+          255.0,
+          256.0,
+          -1.0
+        ],
+        "expected_branch": "original",
+        "layout": "contiguous"
+      },
+      {
+        "id": "bool-fallback",
+        "dtype": "bool",
+        "values": [
+          true,
+          false,
+          true,
+          false,
+          true
+        ],
+        "expected_branch": "original",
+        "layout": "contiguous"
+      },
+      {
+        "id": "strided-view",
+        "dtype": "int64",
+        "values": [
+          0,
+          255,
+          2,
+          255,
+          0
+        ],
+        "expected_branch": "uint8",
+        "layout": "Construct values interleaved with a sentinel and take [::2]; compare complete backing array before/after."
+      },
+      {
+        "id": "readonly",
+        "dtype": "uint16",
+        "values": [
+          0,
+          255,
+          2,
+          255,
+          0
+        ],
+        "expected_branch": "uint8",
+        "layout": "Mark array non-writeable; calls must succeed without mutation."
+      }
+    ],
+    "ordinary_fixture_count": 27,
+    "production_fixtures": [
+      {
+        "id": "base-192",
+        "configuration": "base",
+        "cells": 192,
+        "nominal_initial_particle_count": 5047
+      },
+      {
+        "id": "fixed-weight-128",
+        "configuration": "fixed_weight_mesh",
+        "cells": 128,
+        "nominal_initial_particle_count": 5047
+      },
+      {
+        "id": "double-particle-192",
+        "configuration": "double_particles",
+        "cells": 192,
+        "nominal_initial_particle_count": 10094
+      }
+    ],
+    "production_fixture_construction": "Use unmodified old initialize with frozen configuration and seed, construct the actual collision cell-index expression without evolving. Nominal counts are algebraic load estimates, not measured states. Call matching_order with separate reset RecordedRNG for each implementation.",
+    "fixed_seeds": [
+      371001,
+      371012
+    ],
+    "exhaustive_stability": {
+      "dtype": "int16",
+      "labels": [
+        0,
+        1,
+        0,
+        255,
+        1
+      ],
+      "permutations": 120,
+      "method": "FixedPermutation emits each itertools.permutations(range(5)) exactly once in lexicographic iteration order. Compare full results to Python sorted(permutation,key=lambda i:int(labels[i])) as an independent stable-order golden. No NumPy argsort in that golden."
+    },
+    "checks_for_each_ordinary_and_production_case": [
+      "Require successful completion in both copies; equal dtype/shape/C-order bytes for output order arrays.",
+      "Record permutation method/arguments/returned bytes and final bit-generator state; require exact equality.",
+      "Require input dtype/shape/bytes and complete strided backing array unchanged; readonly input must succeed.",
+      "Compare integer-case output also to independent Python stable golden based on that recorded permutation. Float fallback compares with unmodified R2; do not invent Python NaN ordering equivalence."
+    ],
+    "inventory_derivation": {
+      "ordinary_cases_times_two_seeds": 54,
+      "production_cases_times_two_seeds": 6,
+      "exhaustive_fixed_permutations": 120,
+      "matching_outcome_comparisons": 180,
+      "additional_collision_comparisons_proposed": 6
+    },
+    "negative_controls_to_freeze": [
+      "Always uint8-cast mutant must fail mixed [255,256,0] and [-1,0,127] fixtures, proving fallback boundaries matter.",
+      "Stable-golden must detect a deliberately reversed tie group on the exhaustive fixed-permutation fixture.",
+      "Particle/RNG equality must fail if the proposed mutant inserts an extra random draw; do not select seeds after measuring."
+    ],
+    "collision_composition_control": "For each of three production-sized initial states and two fixed seeds, compare one collision_round on reset x/v, complete velocity arrays, all collision/candidate/subcycle/probability diagnostics, exact RNG call/output trace/final state and unchanged x. This is an isolated component, not simulate/PDE. All preexisting cap/invalid-position negative tests remain byte protected.",
+    "stop_policy": "Any nonidentical order/RNG/velocity/diagnostic, missing intended branch, unexpected exception, wrong count or negative-control escape fails qualification before profiling. Retain full source/input/state/unequal arrays/logs, no auto-retry or weaker tolerance. Exact future checker inventory must be frozen and independently reviewed."
+  },
+  "proposed_fixed_timing": {
+    "status": "UNMEASURED_UNFROZEN",
+    "outer_shared_seconds": 30,
+    "execution_requires_parent_authorization": true,
+    "runs": 1,
+    "profile": "After all exact component checks pass, one fixed R2-only cProfile of the matching workloads; save full .prof and statistics.",
+    "workloads": [
+      "base-192 actual initial keys",
+      "fixed-weight-128 actual initial keys",
+      "double-particle-192 actual initial keys"
+    ],
+    "matching_calls_per_workload": 250,
+    "timing_repetitions": 3,
+    "order": "Every fixed repetition uses R2 then R3, workloads in the listed order; reset same RNG seed20261124 per implementation/workload. No adaptive repeats or early stop for favorable timings.",
+    "included_work": "Time complete matching_order including permutation, permuted gather, dtype/range checks, cast, stable argsort and final indexing. Preparation of keys from saved initialization is outside timer.",
+    "excluded_work": "No simulate/main/reference generation or new physical trajectory. No previous component/source modification.",
+    "interpretation": "Report all repetitions and allocation/check overhead. Narrow keys may reduce dtype-dependent sorting traffic, but an elapsed-time speedup and complete120s Linux margin are not guaranteed by the stable-sort proof. No performance value has been fabricated."
+  },
+  "future_main_requirements": {
+    "existing_tests": 20,
+    "base_seeds": 12,
+    "prescribed_runs": 15,
+    "scientific_gates": 129,
+    "shared_pytest_plus_main_seconds": 120,
+    "unchanged": "All inputs, original 2026-11-23 source/ZIP/references/results and failures, stochastic law and random trajectories, scientific acceptance limits and original output cadence. New revision/source contract and parent review before main.",
+    "requires": "Complete same-environment scientific array/history/particle/diagnostic/decision equality, not distribution-only agreement. No threshold relaxation, seed replacement or fewer particles/steps."
+  }
+}

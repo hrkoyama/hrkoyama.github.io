@@ -16,7 +16,7 @@
 
 [この実行例の式と条件](https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=ja#dsmc-planar-shock-ja-algorithm)
 
-セル内の非重複ランダム対へ、偶数・奇数粒子数を区別した物理時間のσg衝突確率を適用。エネルギーによる安全上界で事前にsubcycle数を定め、確率clipはしません。壁・流入はflux重み付き分布と実際の残り飛行時間を用います。 開境界のmacro粒子到着数は平均を保つfloor(平均)+Bernoulli(小数部)で分散を下げます。Poisson数揺らぎや熱揺らぎの再現は主張しません。 既存4seedを残して次の8連番seedを追加します。一様順列と安定整数sortは対選択法則を保ちますが、乱数消費と軌道のbit一致は主張しません。
+セル内の非重複ランダム対へ、偶数・奇数粒子数を区別した物理時間のσg衝突確率を適用。エネルギーによる安全上界で事前にsubcycle数を定め、確率clipはしません。壁・流入はflux重み付き分布と実際の残り飛行時間を用います。 開境界のmacro粒子到着数は平均を保つfloor(平均)+Bernoulli(小数部)で分散を下げます。Poisson数揺らぎや熱揺らぎの再現は主張しません。 既存4seedを残して次の8連番seedを追加します。一様順列と安定整数sortは対選択法則を保ちますが、乱数消費と軌道のbit一致は主張しません。 2026-11-24版は固定reservoir係数、同一vで既評価の逆CDF残差、keep→left→right順の連結の再利用と、範囲確認した整数sort keyだけの可逆uint8圧縮を行う性能修正版です。元の乱数呼出順・安定sortの同値粒子順位・衝突対・科学設定を保ち、前3点の成分資格163項目に加え、sort keyを含む別348項目でbit/RNG一致を確認しました。いずれも成分検査であり、新mainと全保存科学値の一致はまだ未判定です。
 
 $$
 \partial_t f+v_x\partial_x f=Q_{\mathrm{HS}}(f,f),\quad \sigma=\pi d^2=1/\sqrt{2}
@@ -41,7 +41,7 @@ $$
 
 **問題の図**
 
-![硬球DSMCのMach2平面衝撃波：この実行例の保存済み検証図。](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock.png)
+![硬球DSMCのMach2平面衝撃波：この実行例の保存済み検証図。](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/results/dsmc-planar-shock.png)
 
 この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
 
@@ -53,7 +53,7 @@ $$
 
 [この実行例の参照・検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=ja#dsmc-planar-shock-ja-validation)
 
-各群20pytestを事前固定。新しい固定計算は15本。境界込みの質量・運動量・エネルギー、局所λ/衝突時間、独立参照への誤差とseed精度、時間block定常性を別に判定します。 群の判定は既存81項目を保持し、新8計算の48項目を追加した129項目です。primary t95はdf11、独立参照4seedはdf3です。
+各群20pytestを事前固定。新しい固定計算は15本。境界込みの質量・運動量・エネルギー、局所λ/衝突時間、独立参照への誤差とseed精度、時間block定常性を別に判定します。 群の判定は既存81項目を保持し、新8計算の48項目を追加した129項目です。primary t95はdf11、独立参照4seedはdf3です。 Nov23保存成功と全15計算・129判定の厳密比較を行う新mainは、本契約の時点で未実行です。20pytestと全mainの外部共有上限120秒、全診断・NPZ・CSVを維持します。
 
 - [硬球DSMCのMach2平面衝撃波](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-dsmc-planar-shock-ja) (`dsmc-planar-shock`; 同じ問題の参照 · 有限格子の数値参照)
 
@@ -68,7 +68,7 @@ $$
 
 ### 採用した計算法
 
-セル内の非重複ランダム対へ、偶数・奇数粒子数を区別した物理時間のσg衝突確率を適用。エネルギーによる安全上界で事前にsubcycle数を定め、確率clipはしません。壁・流入はflux重み付き分布と実際の残り飛行時間を用います。 開境界のmacro粒子到着数は平均を保つfloor(平均)+Bernoulli(小数部)で分散を下げます。Poisson数揺らぎや熱揺らぎの再現は主張しません。 既存4seedを残して次の8連番seedを追加します。一様順列と安定整数sortは対選択法則を保ちますが、乱数消費と軌道のbit一致は主張しません。
+セル内の非重複ランダム対へ、偶数・奇数粒子数を区別した物理時間のσg衝突確率を適用。エネルギーによる安全上界で事前にsubcycle数を定め、確率clipはしません。壁・流入はflux重み付き分布と実際の残り飛行時間を用います。 開境界のmacro粒子到着数は平均を保つfloor(平均)+Bernoulli(小数部)で分散を下げます。Poisson数揺らぎや熱揺らぎの再現は主張しません。 既存4seedを残して次の8連番seedを追加します。一様順列と安定整数sortは対選択法則を保ちますが、乱数消費と軌道のbit一致は主張しません。 2026-11-24版は固定reservoir係数、同一vで既評価の逆CDF残差、keep→left→right順の連結の再利用と、範囲確認した整数sort keyだけの可逆uint8圧縮を行う性能修正版です。元の乱数呼出順・安定sortの同値粒子順位・衝突対・科学設定を保ち、前3点の成分資格163項目に加え、sort keyを含む別348項目でbit/RNG一致を確認しました。いずれも成分検査であり、新mainと全保存科学値の一致はまだ未判定です。
 
 $$
 \partial_t f+v_x\partial_x f=Q_{\mathrm{HS}}(f,f),\quad \sigma=\pi d^2=1/\sqrt{2}
@@ -88,7 +88,7 @@ $$
 
 ### 比較・検証
 
-各群20pytestを事前固定。新しい固定計算は15本。境界込みの質量・運動量・エネルギー、局所λ/衝突時間、独立参照への誤差とseed精度、時間block定常性を別に判定します。 群の判定は既存81項目を保持し、新8計算の48項目を追加した129項目です。primary t95はdf11、独立参照4seedはdf3です。
+各群20pytestを事前固定。新しい固定計算は15本。境界込みの質量・運動量・エネルギー、局所λ/衝突時間、独立参照への誤差とseed精度、時間block定常性を別に判定します。 群の判定は既存81項目を保持し、新8計算の48項目を追加した129項目です。primary t95はdf11、独立参照4seedはdf3です。 Nov23保存成功と全15計算・129判定の厳密比較を行う新mainは、本契約の時点で未実行です。20pytestと全mainの外部共有上限120秒、全診断・NPZ・CSVを維持します。
 
 ### 確認の限界
 
@@ -421,16 +421,16 @@ $$
 
 全recordsとreference_records：https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-planar-shock/index.json
 
-![保存した実粒子の位置–速度ヒストグラム。1次元位置と分子速度の位相空間であり、2D物理流れではありません。](https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock-preview.png)
+![保存した実粒子の位置–速度ヒストグラム。1次元位置と分子速度の位相空間であり、2D物理流れではありません。](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/results/dsmc-planar-shock-preview.png)
 
 保存した実粒子の位置–速度ヒストグラム。1次元位置と分子速度の位相空間であり、2D物理流れではありません。
 
 ### 取得・実行
 
-ZIP: https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/atlas-dsmc-shock-2026-11-23.zip
-Input: https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/inputs.json
-Results: https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/results/result.json
-Receipt: https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/verification.json
+ZIP: https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/atlas-dsmc-shock-2026-11-24.zip
+Input: https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/inputs.json
+Results: https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/results/result.json
+Receipt: https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/verification.json
 
 ```sh
 python -m pip install -r requirements.txt

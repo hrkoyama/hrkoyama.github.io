@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "group": "dsmc-shock",
+  "edition": "2026-11-24",
+  "verified_on": "2026-11-24",
+  "source_manifest_sha256": "cc8ff5afec49e7f1ccffd2cce91bcf85e4e116c7389342304667bc7c9bb5eccf",
+  "archive": {
+    "file": "atlas-dsmc-shock-2026-11-24.zip",
+    "sha256": "92794cc568e7857346a24489eddaae113eb60754de7ba717254955ace9d8d961",
+    "bytes": 6032639,
+    "archive_directory": "atlas-dsmc-shock-2026-11-24"
+  },
+  "archive_sha256": "92794cc568e7857346a24489eddaae113eb60754de7ba717254955ace9d8d961",
+  "returncode": 0,
+  "passed_tests": 20,
+  "tests": 20,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "dsmc-planar-shock"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 52.21774458300206,
+  "independent_rerun_seconds": 52.50588783299463,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

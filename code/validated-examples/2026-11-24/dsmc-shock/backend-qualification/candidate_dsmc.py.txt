@@ -1,0 +1,315 @@
+"""Authored 1Dx3V hard-sphere DSMC; no external solver imports.
+
+Disjoint random pairs approximate the physical collision Markov generator.
+For N even a given pair is selected with probability 1/(N-1); for N odd
+it is 1/N. Acceptance is respectively (N-1) or N times W*sigma*g*dt/V.
+All pairs in one round are disjoint. Subcycles are chosen *before* a round
+from the energy bound g <= sqrt(2*sum_i |v_i-vcm|**2); no clipping/retry.
+"""
+from __future__ import annotations
+import numpy as np
+from scipy.special import ndtr
+
+SIGMA = 1 / np.sqrt(2.0)  # lambda=1 at number density1
+RHO2, TEMP2 = 16/7, 133/64
+U1 = 2*np.sqrt(5/3)
+U2 = U1*7/16
+PROFILE_NAMES = ['n','ux','uy','uz','T','Pxx','Pxy','qx','Jm','Jp','Je']
+
+
+class PhysicalFailure(RuntimeError):
+    def __init__(self, message, position=None, velocity=None):
+        super().__init__(message)
+        self.position, self.velocity = position, velocity
+
+
+def positive_flux(drift, temperature):
+    """Integral_0^infty v Maxwell(v;drift,T)dv, mass=kB=1."""
+    a = drift/np.sqrt(temperature)
+    return np.sqrt(temperature)*np.exp(-a*a/2)/np.sqrt(2*np.pi)+drift*ndtr(a)
+
+
+class FluxSampler:
+    """Analytic incoming-flux CDF, tabulated initial inverse + Newton.
+
+    The finite bracket is max(u,0)+12sigma; omitted probability is checked.
+    Newton is an algebraic inversion, not a particle velocity repair.
+    """
+    def __init__(self, drift, temperature):
+        self.u, self.t = float(drift), float(temperature)
+        if self.t <= 0:
+            raise ValueError('Positive reservoir temperature required')
+        self.s = np.sqrt(self.t)
+        self.flux = positive_flux(self.u, self.t)
+        self.nodes,self.weights=np.polynomial.legendre.leggauss(8)
+        self.grid = np.linspace(0, max(0,self.u)+12*self.s, 4097)
+        self.cdf_grid = self.cdf(self.grid)
+        if abs(self.cdf_grid[-1]-1)>2e-13:
+            raise ValueError('Unresolved reservoir tail')
+
+    def cdf(self, v):
+        a, z = self.u/self.s, (np.asarray(v)-self.u)/self.s
+        phi = lambda x: np.exp(-x*x/2)/np.sqrt(2*np.pi)
+        value=np.asarray((self.s*(phi(a)-phi(z))+self.u*(ndtr(z)-ndtr(-a)))/self.flux)
+        # Positive quadrature avoids cancellation of two O(1) terms near v=0.
+        v=np.asarray(v);small=(v>=0)&(v<.02*self.s)
+        if np.any(small):
+            upper=v[small]
+            point=.5*upper[:,None]*(self.nodes[None,:]+1)
+            integrand=point*np.exp(-.5*((point-self.u)/self.s)**2)/(self.s*np.sqrt(2*np.pi)*self.flux)
+            value[small]=.5*upper*np.sum(self.weights[None,:]*integrand,axis=1)
+        return value
+
+    def sample(self, rng, count):
+        if count==0:return np.empty(0)
+        target = rng.random(count)
+        v = np.interp(target, self.cdf_grid, self.grid)
+        near_zero=target<self.cdf_grid[1]
+        v[near_zero]=self.grid[1]*np.sqrt(target[near_zero]/self.cdf_grid[1])
+        for _ in range(6):
+            residual = self.cdf(v)-target
+            if np.max(np.abs(residual))<=1e-14:break
+            pdf = v*np.exp(-.5*((v-self.u)/self.s)**2)/(self.s*np.sqrt(2*np.pi)*self.flux)
+            moving = (target>0) & (pdf>0)
+            delta = np.zeros(count)
+            np.divide(residual,pdf,out=delta,where=moving)
+            proposed = v-delta
+            if np.any(proposed < 0) or np.any(proposed > self.grid[-1]):
+                raise PhysicalFailure('Flux CDF Newton left physical bracket')
+            v = proposed
+        if count and np.max(np.abs(self.cdf(v)-target))>2e-12:
+            raise PhysicalFailure('Flux CDF inversion residual')
+        return v
+
+
+def matching_order(index,rng):
+    """Uniform within-cell order from a uniform permutation + stable cell sort.
+
+    Same ideal continuous-priority ordering law as the original lexsort;
+    random-number consumption/trajectories and finite-priority ties differ.
+    """
+    permutation=rng.permutation(len(index))
+    return permutation[np.argsort(index[permutation],kind='stable')]
+
+
+def collision_round(x, v, cells, length, weight, dt, rng, max_subcycles=8):
+    n = len(x)
+    index = np.floor(x*cells/length).astype(int)
+    index = np.where(x==length,cells-1,index)
+    if np.any(index<0) or np.any(index>=cells):
+        raise PhysicalFailure('Collision position outside domain',x.copy(),v.copy())
+    count = np.bincount(index,minlength=cells)
+    mean = np.zeros((cells,3))
+    occupied = count>0
+    for j in range(3):
+        np.divide(np.bincount(index,weights=v[:,j],minlength=cells),count,
+                  out=mean[:,j],where=occupied)
+    centered = v-mean[index]
+    energy = np.bincount(index,weights=np.sum(centered*centered,axis=1),minlength=cells)
+    majorant = np.sqrt(2*energy)
+    factor = np.where(count%2==0,count-1,count)
+    factor = np.where(count>=2,factor,0)
+    q = factor*weight*SIGMA*majorant*dt/(length/cells)
+    subcycles = max(1,int(np.ceil(np.max(q)/.5)))
+    if subcycles>max_subcycles:
+        raise PhysicalFailure('Declared collision subcycle cap exceeded',x.copy(),v.copy())
+    offset = np.concatenate(([0],np.cumsum(count)[:-1]))
+    accepted = candidates = 0
+    max_probability = 0.
+    for _ in range(subcycles):
+        order = matching_order(index,rng)
+        sorted_index = index[order]
+        local = np.arange(n)-offset[sorted_index]
+        left = np.flatnonzero((local%2==0)&(local+1<count[sorted_index]))
+        p, r = order[left], order[left+1]
+        cell = index[p]
+        relative = v[p]-v[r]
+        speed = np.sqrt(np.sum(relative*relative,axis=1))
+        if len(speed) and np.any(speed>majorant[cell]*(1+2e-13)):
+            raise PhysicalFailure('Energy majorant violated',x.copy(),v.copy())
+        probability = factor[cell]*weight*SIGMA*speed*(dt/subcycles)/(length/cells)
+        if np.any(probability<0) or np.any(probability>.5*(1+2e-13)):
+            raise PhysicalFailure('Collision probability outside declared bound',x.copy(),v.copy())
+        if len(probability): max_probability=max(max_probability,float(np.max(probability)))
+        choose = rng.random(len(p))<probability
+        p,r,speed = p[choose],r[choose],speed[choose]
+        center = .5*(v[p]+v[r])
+        azimuth = 2*np.pi*rng.random(len(p))
+        cosine = 2*rng.random(len(p))-1
+        sine = np.sqrt(1-cosine*cosine)
+        direction = np.column_stack((cosine,sine*np.cos(azimuth),sine*np.sin(azimuth)))
+        v[p] = center+.5*speed[:,None]*direction
+        v[r] = center-.5*speed[:,None]*direction
+        accepted += len(p); candidates += len(left)
+    return {'collisions':accepted,'candidates':candidates,'subcycles':subcycles,
+            'max_probability':max_probability,'max_majorant_q':float(np.max(q))}
+
+
+def totals(v,weight):
+    return np.concatenate(([len(v)*weight],weight*np.sum(v,axis=0),
+                           [.5*weight*np.sum(v*v)]))
+
+
+def stream_wall(x,v,dt,length,temperatures,speeds,rng,weight):
+    remaining=np.full(len(x),dt)
+    ledger=np.zeros((2,5));hits=np.zeros(2,dtype=int)
+    for _ in range(8):
+        positive=v[:,0]>0
+        boundary=np.where(positive,length,0.)
+        flight=np.full(len(x),np.inf)
+        np.divide(boundary-x,v[:,0],out=flight,where=v[:,0]!=0)
+        collides=(flight>=0)&(flight<=remaining)&(remaining>0)
+        free=~collides
+        x[free]+=v[free,0]*remaining[free];remaining[free]=0
+        if not np.any(collides):return ledger,hits
+        for side in (0,1):
+            ii=np.flatnonzero(collides&(positive==(side==1)))
+            if not len(ii):continue
+            before=totals(v[ii],weight)
+            x[ii]=side*length
+            remaining[ii]-=flight[ii]
+            v[ii]=rng.normal(size=(len(ii),3))*np.sqrt(temperatures[side])
+            v[ii,1]+=speeds[side]
+            v[ii,0]=(1 if side==0 else -1)*np.sqrt(-2*temperatures[side]*np.log1p(-rng.random(len(ii))))
+            ledger[side]+=totals(v[ii],weight)-before
+            hits[side]+=len(ii)
+    raise PhysicalFailure('Wall multiple-hit cap exceeded',x.copy(),v.copy())
+
+
+def macro_arrival_count(mean,rng):
+    """Unbiased variance-reduced DSMC count, not Poisson thermodynamic noise.
+
+    One draw per face/species/half-stream. E[count]=mean and
+    Var[count]=fraction*(1-fraction), independently of the integer part.
+    This standard macro-particle estimator matches SPARTA emit/face's
+    integer rounding of mean+Uniform; conditional velocities remain physical.
+    """
+    if not np.isfinite(mean) or mean<0:raise ValueError('Nonnegative finite incoming mean required')
+    integer=int(np.floor(mean))
+    return integer+int(rng.random()<mean-integer)
+
+
+def stream_open(x,v,dt,length,weight,reservoirs,samplers,rng):
+    x=x+dt*v[:,0]
+    ledger=np.zeros((2,5));crossings=np.zeros((2,2),dtype=int)
+    for side in (0,1):
+        leaving=(x<0) if side==0 else (x>=length)
+        ledger[side]-=totals(v[leaving],weight)
+        crossings[side,1]+=int(np.sum(leaving))
+    keep=(x>=0)&(x<length);x,v=x[keep],v[keep]
+    for side in (0,1):
+        density,temperature,drift=reservoirs[side]
+        amount=macro_arrival_count(density*samplers[side].flux*dt/weight,rng)
+        incoming=rng.normal(size=(amount,3))*np.sqrt(temperature)
+        incoming[:,0]=(1 if side==0 else -1)*samplers[side].sample(rng,amount)
+        positions=side*length+incoming[:,0]*(dt*rng.random(amount))
+        if np.any(positions<0) or np.any(positions>=length):
+            raise PhysicalFailure('Injected particle crossed entire domain',positions,incoming)
+        ledger[side]+=totals(incoming,weight);crossings[side,0]+=amount
+        x=np.concatenate((x,positions));v=np.concatenate((v,incoming))
+    return x,v,ledger,crossings
+
+
+def raw_profile(x,v,bins,length,weight):
+    cell=np.floor(x*bins/length).astype(int)
+    cell=np.where(x==length,bins-1,cell)
+    if np.any(cell<0) or np.any(cell>=bins):raise PhysicalFailure('Profile domain')
+    vx,vy,vz=v.T
+    columns=[np.ones(len(x)),vx,vy,vz,vx*vx,vy*vy,vz*vz,vx*vy,vx*vz,vx*(vx*vx+vy*vy+vz*vz)]
+    return np.column_stack([np.bincount(cell,weights=a,minlength=bins) for a in columns])*weight/(length/bins)
+
+
+def profile(raw):
+    n=raw[:,0]
+    if np.any(n<=0):raise PhysicalFailure('Empty time-averaged profile bin')
+    u=raw[:,1:4]/n[:,None]
+    second=raw[:,4:7]/n[:,None]
+    t=np.sum(second-u*u,axis=1)/3
+    pxx=raw[:,4]-n*u[:,0]**2
+    pxy=raw[:,7]-n*u[:,0]*u[:,1]
+    energy_second=np.sum(raw[:,4:7],axis=1)
+    crossdot=u[:,0]*raw[:,4]+u[:,1]*raw[:,7]+u[:,2]*raw[:,8]
+    qx=.5*(raw[:,9]-u[:,0]*energy_second-2*crossdot+2*n*u[:,0]*np.sum(u*u,axis=1))
+    return np.column_stack((n,u,t,pxx,pxy,qx,raw[:,1],raw[:,4],.5*raw[:,9]))
+
+
+def initialize(config,seed):
+    rng=np.random.default_rng(seed)
+    length,weight=config['length'],config['weight']
+    shock=config['kind']=='shock'
+    # Saved load depends on physical regions and W, never collision-cell count.
+    # Thus fixed-W mesh companions start with identical particles, not only N.
+    if shock:
+        left_count=round(length/2/weight);right_count=round(RHO2*length/2/weight)
+        x=np.concatenate(((np.arange(left_count)+rng.random(left_count))*length/2/left_count,
+                          length/2+(np.arange(right_count)+rng.random(right_count))*length/2/right_count))
+    else:
+        count=round(length/weight)
+        x=(np.arange(count)+rng.random(count))*length/count
+    if shock:
+        left=x<length/2
+        temp=np.where(left,1.,TEMP2)
+        v=rng.normal(size=(len(x),3))*np.sqrt(temp[:,None]);v[:,0]+=np.where(left,U1,U2)
+    else:
+        fraction=x/length
+        temp=(1-fraction)*config['temperatures'][0]+fraction*config['temperatures'][1]
+        v=rng.normal(size=(len(x),3))*np.sqrt(temp[:,None])
+        v[:,1]+=(1-fraction)*config['speeds'][0]+fraction*config['speeds'][1]
+    return x,v,rng
+
+
+def simulate(config,seed,partial=None):
+    x,v,rng=initialize(config,seed)
+    initial=totals(v,config['weight'])
+    length,weight,dt=config['length'],config['weight'],config['dt']
+    burn_steps=round(config['burn_in']/dt);sample_steps=round(config['sample_time']/dt)
+    if abs(burn_steps*dt-config['burn_in'])>1e-10 or abs(sample_steps*dt-config['sample_time'])>1e-10:
+        raise ValueError('Times must be integral fixed steps')
+    blocks=config['blocks'];per_block=sample_steps//blocks
+    if sample_steps%blocks or per_block%config['sample_every']:raise ValueError('Integral sample blocks required')
+    raw=np.zeros((blocks,config['bins'],10));counts=np.zeros(blocks,int)
+    wall=np.zeros((blocks,2,5));all_ledger=np.zeros((2,5))
+    collisions=candidates=0;max_probability=0.;max_subcycles=0;max_budget=0.
+    histories=[];histograms=[];times=[]
+    reservoirs=[(1.,1.,U1),(RHO2,TEMP2,U2)]
+    samplers=[FluxSampler(U1,1.),FluxSampler(-U2,TEMP2)] if config['kind']=='shock' else None
+    total_steps=burn_steps+sample_steps
+    save_steps=set(np.linspace(0,total_steps,5,dtype=int).tolist())
+    for step in range(total_steps+1):
+        time=step*dt
+        if step in save_steps:
+            histograms.append(np.histogram2d(x,v[:,0] if config['kind']=='shock' else v[:,1],bins=(config['bins'],48),range=((0,length),config['hist_velocity']))[0])
+            times.append(time)
+        if step==total_steps:break
+        this_ledger=np.zeros((2,5))
+        try:
+            for phase in range(2):
+                if config['kind']=='shock':
+                    x,v,change,_=stream_open(x,v,.5*dt,length,weight,reservoirs,samplers,rng)
+                else:change,_=stream_wall(x,v,.5*dt,length,config['temperatures'],config['speeds'],rng,weight)
+                this_ledger+=change
+                if phase==0:
+                    c=collision_round(x,v,config['cells'],length,weight,dt,rng)
+                    collisions+=c['collisions'];candidates+=c['candidates']
+                    max_probability=max(max_probability,c['max_probability']);max_subcycles=max(max_subcycles,c['subcycles'])
+            all_ledger+=this_ledger
+            balance=totals(v,weight)-initial-np.sum(all_ledger,axis=0)
+            max_budget=max(max_budget,float(np.max(np.abs(balance))))
+            if not np.all(np.isfinite(x)) or not np.all(np.isfinite(v)):raise PhysicalFailure('Nonfinite particle state',x.copy(),v.copy())
+            if step>=burn_steps:
+                block=(step-burn_steps)//per_block
+                wall[block]+=this_ledger
+                if (step-burn_steps+1)%config['sample_every']==0:
+                    raw[block]+=raw_profile(x,v,config['bins'],length,weight);counts[block]+=1
+            if (step+1)%max(1,total_steps//20)==0:
+                histories.append([time+dt,len(x),*totals(v,weight),*balance])
+        except Exception as error:
+            if partial is not None:
+                np.savez(partial,position=x,velocity=v,time=time,step=step,phase=phase,seed=seed,raw_blocks=raw,block_counts=counts,ledger=all_ledger,initial_totals=initial)
+            raise PhysicalFailure(str(error),x.copy(),v.copy()) from error
+    raw/=counts[:,None,None]
+    return dict(raw_blocks=raw,profiles=np.stack([profile(a) for a in raw]),profile=profile(np.mean(raw,axis=0)),
+                wall_blocks=wall,position=x,velocity=v,histograms=np.stack(histograms),snapshot_times=np.array(times),
+                history=np.array(histories),ledger=all_ledger,initial_totals=initial,
+                collisions=np.array(collisions),candidates=np.array(candidates),max_probability=np.array(max_probability),
+                max_subcycles=np.array(max_subcycles),max_budget=np.array(max_budget))

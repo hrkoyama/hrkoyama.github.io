@@ -1,0 +1,679 @@
+{
+  "schema_version": 1,
+  "status": "FROZEN_R3_COMPONENT_PROPOSAL_AWAITING_INDEPENDENT_REVIEW_AND_ROOT_AUTHORIZATION",
+  "created_at_utc": "2026-11-23T15:24:44.937444+00:00",
+  "component_execution_performed": false,
+  "PDE_executions": 0,
+  "reference_regeneration": false,
+  "timing_status": "UNMEASURED",
+  "public_or_Git_edits": 0,
+  "scope": "Compare the exact previously qualified three-change R2candidate against R3 with only reversible uint8 stable-sort key compression added. Keep the entire R2 source/checker/protocol and frozen main tree unchanged. Original Nov23->R2 exact qualification remains preserved; this study adds R2->R3 exact order/RNG/collision qualification.",
+  "proposed_new_edition": "2026-11-24",
+  "immutable_old_edition": "2026-11-23, preserved without modification",
+  "main_execution_authorized": false,
+  "main_contract_frozen": false,
+  "files_sha256": {
+    "baseline/source/README.md": "62c01dce2e0a9f01afb7d0c6ff11102305e06bef8d9fb97e73e1c2641f05bd69",
+    "baseline/source/acceptance.json": "ca835b4e4606640d6da9cc49b1332fed4c44c5e47c3b49e547a8687f0881986b",
+    "baseline/source/cases.json": "c5055607e9aa3b76824051db6fdf01ffa9e01243f6989f0a348519045eddea22",
+    "baseline/source/diagnostics.py": "5ddca83507a57797a1b3b46141aed579136711c76aa0dac6bd5a6750a32b3f13",
+    "baseline/source/dsmc.py": "a101a0a2b909900cf85b803a88e27f32389b60eda635a1e38fd76ea2f49a48eb",
+    "baseline/source/inputs.json": "ef53152d7f42f153843ec505116be67377db77336bf14dd724c4f253d4d0f166",
+    "baseline/source/plot.py": "a04fa34ec340925ab7f7bf92cce99e217be669f386527859508517451c86f408",
+    "baseline/source/pre-run-contract.json": "62e0f1debf50ff00d434ad4d240a14ba291128444bc1b85c0be559ca8b7f01cf",
+    "baseline/source/pytest.ini": "9f309ec4b3e4ae626f051b4f5ca52d64a8e48fab8c92c9b9fefcfd4ba45cf76e",
+    "baseline/source/references/SPARTA-LICENSE.txt": "c5186abe32a9221088c8a87e9a762e7cd6f1f38a888943325e43b9d666035b29",
+    "baseline/source/references/dsmc-planar-shock.npz": "2594abf9afc9161f968540695a222b61890425193dd02258a503fcc3a462f0f5",
+    "baseline/source/references/generate.py": "c5ec562feb04f506e6bac7ca7ee29ed6fdf9560f95de4bec1898401c560e5647",
+    "baseline/source/references/native-inputs/dsmc-planar-shock/base/931001/hs.species": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+    "baseline/source/references/native-inputs/dsmc-planar-shock/base/931001/hs.vss": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+    "baseline/source/references/native-inputs/dsmc-planar-shock/base/931001/input.sparta": "3a3b2179af72459c88e571e37c3698872806c32b2fd27a8f488fd52c28555499",
+    "baseline/source/references/native-inputs/dsmc-planar-shock/base/931002/hs.species": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+    "baseline/source/references/native-inputs/dsmc-planar-shock/base/931002/hs.vss": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+    "baseline/source/references/native-inputs/dsmc-planar-shock/base/931002/input.sparta": "5f24c33f84bd967e906cea5c2726091e495fc9d87c2be2b9063706b65902e42a",
+    "baseline/source/references/native-inputs/dsmc-planar-shock/base/931003/hs.species": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+    "baseline/source/references/native-inputs/dsmc-planar-shock/base/931003/hs.vss": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+    "baseline/source/references/native-inputs/dsmc-planar-shock/base/931003/input.sparta": "29ce712c943764274b9a4ef69d4d02eb0b6880d1c2d54b90b5122711f6bf4d4b",
+    "baseline/source/references/native-inputs/dsmc-planar-shock/base/931004/hs.species": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+    "baseline/source/references/native-inputs/dsmc-planar-shock/base/931004/hs.vss": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+    "baseline/source/references/native-inputs/dsmc-planar-shock/base/931004/input.sparta": "3e74bd0818f6839e728d4bf05c376d1dbae2655c2caaf199e5de040b8f996ec5",
+    "baseline/source/references/native-inputs/dsmc-planar-shock/fine_grid/931001/hs.species": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+    "baseline/source/references/native-inputs/dsmc-planar-shock/fine_grid/931001/hs.vss": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+    "baseline/source/references/native-inputs/dsmc-planar-shock/fine_grid/931001/input.sparta": "ee0b141b7261c31f48c5a526d638b4c455445fac104c58564fbcd54419ad1e3e",
+    "baseline/source/references/native-inputs/dsmc-planar-shock/fine_grid/931002/hs.species": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+    "baseline/source/references/native-inputs/dsmc-planar-shock/fine_grid/931002/hs.vss": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+    "baseline/source/references/native-inputs/dsmc-planar-shock/fine_grid/931002/input.sparta": "daa3ba34837246385000708da1d1854180e92a4c7368bf2e99245d93fb90144d",
+    "baseline/source/references/native-inputs/dsmc-planar-shock/fine_grid/931003/hs.species": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+    "baseline/source/references/native-inputs/dsmc-planar-shock/fine_grid/931003/hs.vss": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+    "baseline/source/references/native-inputs/dsmc-planar-shock/fine_grid/931003/input.sparta": "77ac36128bc2c41d6923024c24ed6480d51569cf02aab1630636a72add71a2af",
+    "baseline/source/references/native-inputs/dsmc-planar-shock/fine_grid/931004/hs.species": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+    "baseline/source/references/native-inputs/dsmc-planar-shock/fine_grid/931004/hs.vss": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+    "baseline/source/references/native-inputs/dsmc-planar-shock/fine_grid/931004/input.sparta": "94f5e94452fed0ebccbc49c132782d1ee1411641a5a5ab05ba4573b95e303b14",
+    "baseline/source/references/native-inputs/dsmc-planar-shock/half_dt/931001/hs.species": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+    "baseline/source/references/native-inputs/dsmc-planar-shock/half_dt/931001/hs.vss": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+    "baseline/source/references/native-inputs/dsmc-planar-shock/half_dt/931001/input.sparta": "25407376dcf07c708876011dbabb319a2dbf80576258b00bf04d1c151bbbb8ff",
+    "baseline/source/references/native-inputs/dsmc-planar-shock/half_dt/931002/hs.species": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+    "baseline/source/references/native-inputs/dsmc-planar-shock/half_dt/931002/hs.vss": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+    "baseline/source/references/native-inputs/dsmc-planar-shock/half_dt/931002/input.sparta": "e48ed7b6d9049a3c864015c9b0601af8247113a89985d31348de91228487c503",
+    "baseline/source/references/native-inputs/dsmc-planar-shock/half_dt/931003/hs.species": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+    "baseline/source/references/native-inputs/dsmc-planar-shock/half_dt/931003/hs.vss": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+    "baseline/source/references/native-inputs/dsmc-planar-shock/half_dt/931003/input.sparta": "b752b7c9f1a286d6ee820a3e6cc009eeb900f694ab25b7ba496c97f0706b2df7",
+    "baseline/source/references/native-inputs/dsmc-planar-shock/half_dt/931004/hs.species": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+    "baseline/source/references/native-inputs/dsmc-planar-shock/half_dt/931004/hs.vss": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+    "baseline/source/references/native-inputs/dsmc-planar-shock/half_dt/931004/input.sparta": "9ab58b0db7ad83bb7655539279ae781ecce8602ed1b6e15740fb699c70db8b7b",
+    "baseline/source/references/provenance.json": "f75ba585d7126df0e1e3c521eeac301b0824599105a9fcc05cda43d9dabd3651",
+    "baseline/source/references/qualification.json": "a170ccfbeb47c5bb61c986796836b97a9d9c86ed1386b8acff33214243efdcbf",
+    "baseline/source/references/qualify.py": "20e5463812b1a2082f155ca7284454acda462123f400b3af30bd4e24ea51cc6c",
+    "baseline/source/references/reference-protocol.json": "b50fb8a2ec4abe4e856fd25ad0f9e033d42ffad0edb01966b458cbdb444bc1eb",
+    "baseline/source/requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "baseline/source/run.py": "badd9a284810dcfba7467726a6e042be6766dde1b7cea65dd3e856e39c9addec",
+    "baseline/source/test_arrivals.py": "0d06ae1c2e782b6cf889a4a64a7deee09c72a86c07c5b9c3abdf5ebb63db58f4",
+    "baseline/source/test_core.py": "15766596ba1663b91ee0c75e17cdf7392ba10ad8d800dc33c7b1aaec01899417",
+    "baseline/source/test_matching.py": "e83d31d93c346c5297e1dca4a85c310b499550ed0a793abb0110ce3ae36627be",
+    "baseline/source/test_shock.py": "9c3a093af7b7dfff13b516ea2d81043f19c40486d525989f5b26f0ceb40cd917",
+    "candidate/source/README.md": "62c01dce2e0a9f01afb7d0c6ff11102305e06bef8d9fb97e73e1c2641f05bd69",
+    "candidate/source/acceptance.json": "ca835b4e4606640d6da9cc49b1332fed4c44c5e47c3b49e547a8687f0881986b",
+    "candidate/source/cases.json": "c5055607e9aa3b76824051db6fdf01ffa9e01243f6989f0a348519045eddea22",
+    "candidate/source/diagnostics.py": "5ddca83507a57797a1b3b46141aed579136711c76aa0dac6bd5a6750a32b3f13",
+    "candidate/source/dsmc.py": "16a88083bfcae16c105886d5cc2c2415cf3f5bf86b3adf9b4552904d19052eec",
+    "candidate/source/inputs.json": "ef53152d7f42f153843ec505116be67377db77336bf14dd724c4f253d4d0f166",
+    "candidate/source/plot.py": "a04fa34ec340925ab7f7bf92cce99e217be669f386527859508517451c86f408",
+    "candidate/source/pre-run-contract.json": "62e0f1debf50ff00d434ad4d240a14ba291128444bc1b85c0be559ca8b7f01cf",
+    "candidate/source/pytest.ini": "9f309ec4b3e4ae626f051b4f5ca52d64a8e48fab8c92c9b9fefcfd4ba45cf76e",
+    "candidate/source/references/SPARTA-LICENSE.txt": "c5186abe32a9221088c8a87e9a762e7cd6f1f38a888943325e43b9d666035b29",
+    "candidate/source/references/dsmc-planar-shock.npz": "2594abf9afc9161f968540695a222b61890425193dd02258a503fcc3a462f0f5",
+    "candidate/source/references/generate.py": "c5ec562feb04f506e6bac7ca7ee29ed6fdf9560f95de4bec1898401c560e5647",
+    "candidate/source/references/native-inputs/dsmc-planar-shock/base/931001/hs.species": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+    "candidate/source/references/native-inputs/dsmc-planar-shock/base/931001/hs.vss": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+    "candidate/source/references/native-inputs/dsmc-planar-shock/base/931001/input.sparta": "3a3b2179af72459c88e571e37c3698872806c32b2fd27a8f488fd52c28555499",
+    "candidate/source/references/native-inputs/dsmc-planar-shock/base/931002/hs.species": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+    "candidate/source/references/native-inputs/dsmc-planar-shock/base/931002/hs.vss": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+    "candidate/source/references/native-inputs/dsmc-planar-shock/base/931002/input.sparta": "5f24c33f84bd967e906cea5c2726091e495fc9d87c2be2b9063706b65902e42a",
+    "candidate/source/references/native-inputs/dsmc-planar-shock/base/931003/hs.species": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+    "candidate/source/references/native-inputs/dsmc-planar-shock/base/931003/hs.vss": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+    "candidate/source/references/native-inputs/dsmc-planar-shock/base/931003/input.sparta": "29ce712c943764274b9a4ef69d4d02eb0b6880d1c2d54b90b5122711f6bf4d4b",
+    "candidate/source/references/native-inputs/dsmc-planar-shock/base/931004/hs.species": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+    "candidate/source/references/native-inputs/dsmc-planar-shock/base/931004/hs.vss": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+    "candidate/source/references/native-inputs/dsmc-planar-shock/base/931004/input.sparta": "3e74bd0818f6839e728d4bf05c376d1dbae2655c2caaf199e5de040b8f996ec5",
+    "candidate/source/references/native-inputs/dsmc-planar-shock/fine_grid/931001/hs.species": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+    "candidate/source/references/native-inputs/dsmc-planar-shock/fine_grid/931001/hs.vss": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+    "candidate/source/references/native-inputs/dsmc-planar-shock/fine_grid/931001/input.sparta": "ee0b141b7261c31f48c5a526d638b4c455445fac104c58564fbcd54419ad1e3e",
+    "candidate/source/references/native-inputs/dsmc-planar-shock/fine_grid/931002/hs.species": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+    "candidate/source/references/native-inputs/dsmc-planar-shock/fine_grid/931002/hs.vss": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+    "candidate/source/references/native-inputs/dsmc-planar-shock/fine_grid/931002/input.sparta": "daa3ba34837246385000708da1d1854180e92a4c7368bf2e99245d93fb90144d",
+    "candidate/source/references/native-inputs/dsmc-planar-shock/fine_grid/931003/hs.species": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+    "candidate/source/references/native-inputs/dsmc-planar-shock/fine_grid/931003/hs.vss": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+    "candidate/source/references/native-inputs/dsmc-planar-shock/fine_grid/931003/input.sparta": "77ac36128bc2c41d6923024c24ed6480d51569cf02aab1630636a72add71a2af",
+    "candidate/source/references/native-inputs/dsmc-planar-shock/fine_grid/931004/hs.species": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+    "candidate/source/references/native-inputs/dsmc-planar-shock/fine_grid/931004/hs.vss": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+    "candidate/source/references/native-inputs/dsmc-planar-shock/fine_grid/931004/input.sparta": "94f5e94452fed0ebccbc49c132782d1ee1411641a5a5ab05ba4573b95e303b14",
+    "candidate/source/references/native-inputs/dsmc-planar-shock/half_dt/931001/hs.species": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+    "candidate/source/references/native-inputs/dsmc-planar-shock/half_dt/931001/hs.vss": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+    "candidate/source/references/native-inputs/dsmc-planar-shock/half_dt/931001/input.sparta": "25407376dcf07c708876011dbabb319a2dbf80576258b00bf04d1c151bbbb8ff",
+    "candidate/source/references/native-inputs/dsmc-planar-shock/half_dt/931002/hs.species": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+    "candidate/source/references/native-inputs/dsmc-planar-shock/half_dt/931002/hs.vss": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+    "candidate/source/references/native-inputs/dsmc-planar-shock/half_dt/931002/input.sparta": "e48ed7b6d9049a3c864015c9b0601af8247113a89985d31348de91228487c503",
+    "candidate/source/references/native-inputs/dsmc-planar-shock/half_dt/931003/hs.species": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+    "candidate/source/references/native-inputs/dsmc-planar-shock/half_dt/931003/hs.vss": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+    "candidate/source/references/native-inputs/dsmc-planar-shock/half_dt/931003/input.sparta": "b752b7c9f1a286d6ee820a3e6cc009eeb900f694ab25b7ba496c97f0706b2df7",
+    "candidate/source/references/native-inputs/dsmc-planar-shock/half_dt/931004/hs.species": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+    "candidate/source/references/native-inputs/dsmc-planar-shock/half_dt/931004/hs.vss": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+    "candidate/source/references/native-inputs/dsmc-planar-shock/half_dt/931004/input.sparta": "9ab58b0db7ad83bb7655539279ae781ecce8602ed1b6e15740fb699c70db8b7b",
+    "candidate/source/references/provenance.json": "f75ba585d7126df0e1e3c521eeac301b0824599105a9fcc05cda43d9dabd3651",
+    "candidate/source/references/qualification.json": "a170ccfbeb47c5bb61c986796836b97a9d9c86ed1386b8acff33214243efdcbf",
+    "candidate/source/references/qualify.py": "20e5463812b1a2082f155ca7284454acda462123f400b3af30bd4e24ea51cc6c",
+    "candidate/source/references/reference-protocol.json": "b50fb8a2ec4abe4e856fd25ad0f9e033d42ffad0edb01966b458cbdb444bc1eb",
+    "candidate/source/requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "candidate/source/run.py": "badd9a284810dcfba7467726a6e042be6766dde1b7cea65dd3e856e39c9addec",
+    "candidate/source/test_arrivals.py": "0d06ae1c2e782b6cf889a4a64a7deee09c72a86c07c5b9c3abdf5ebb63db58f4",
+    "candidate/source/test_core.py": "15766596ba1663b91ee0c75e17cdf7392ba10ad8d800dc33c7b1aaec01899417",
+    "candidate/source/test_matching.py": "e83d31d93c346c5297e1dca4a85c310b499550ed0a793abb0110ce3ae36627be",
+    "candidate/source/test_shock.py": "9c3a093af7b7dfff13b516ea2d81043f19c40486d525989f5b26f0ceb40cd917",
+    "baseline/source-manifest.json": "97eb0a09fc0977bc8cbed0d8df0dfbf9bfa50b686372d9c2c95cc3fd082caaa2",
+    "candidate.patch": "e736b3fcfb793f8ffbb8dfd6160dbfa99bba47e9920706f637182010052a9fb5",
+    "check_components.py": "48a03cc3dc0cb8215d7cb9b2255c07ae03b0b11718d0367d6a5d5ddda44d5a16",
+    "sort-key-proposal.json": "3b08f5bb24c0f88253453a565712c126c5a2e8cc432ab12be73e6ff497f8e214"
+  },
+  "original_dsmc_sha256": "a101a0a2b909900cf85b803a88e27f32389b60eda635a1e38fd76ea2f49a48eb",
+  "candidate_dsmc_sha256": "16a88083bfcae16c105886d5cc2c2415cf3f5bf86b3adf9b4552904d19052eec",
+  "protected_functions": [
+    "positive_flux",
+    "collision_round",
+    "totals",
+    "stream_wall",
+    "macro_arrival_count",
+    "raw_profile",
+    "profile",
+    "initialize",
+    "simulate"
+  ],
+  "seeds": [
+    371001,
+    371012
+  ],
+  "sample_counts": [
+    0,
+    1,
+    4,
+    32
+  ],
+  "planned_checks": 348,
+  "planned_check_derivation": {
+    "retained_R2_checks": 163,
+    "matching_order_textual_protection_replaced": -1,
+    "small_fixture27_times2seeds": 54,
+    "production_fixture3_times2seeds": 6,
+    "five_element_all_permutations": 120,
+    "isolated_collision3_times2seeds": 6,
+    "total": 348
+  },
+  "qualification": {
+    "rule": "Exact dtype/shape/C-order bytes for all returned particle arrays, ledgers, crossings, sampled velocities, CDF/inverse tables; exact exception class-name/message and saved error position/velocity; exact RNG method/argument/output-byte trace and final bit-generator state; stream inputs must remain unchanged.",
+    "CDF_reference": "Unmodified old source from immutable Nov23 is the bit-equivalence oracle. This is backend equivalence, not a new independent Boltzmann reference. The already qualified SPARTA field and all acceptance limits remain unchanged.",
+    "reservoir_scope": "self.u/t/s/flux are immutable during actual simulate. Cache equivalence does not promise behavior after arbitrary external mutations of these public attributes.",
+    "early_break_and_exhaustion": "Natural count/quantile fixtures include count0 and near-zero inverse initialization. Two pure artificial CDFs test guard control only: a discontinuous +/-1e-8 residual around the initial median forces all six Newton updates and final residual failure; constant CDF10 forces bracket rejection. No stateful CDF mock or relaxed precision is allowed. Full-six completion must make seven CDF calls in both implementations.",
+    "stream_scenarios": [
+      "actual initialized production-size state",
+      "empty input and both incoming means0",
+      "upstream arrivals only",
+      "downstream arrivals only",
+      "both sides leaving/incoming including x==length",
+      "zero arrivals and leaving particles",
+      "cross-entire-domain rejection"
+    ],
+    "particle_order": "Full arrays must equal the original kept particles, then left arrivals, then right arrivals, including within-part order. Equal moments/distributions alone are insufficient.",
+    "RNG_invariance": "Matching still makes exactly one permutation call at the same position; only the sorting-key copy may narrow after an exact integer range check. Require exact calls/arguments/random bytes/final state,complete matching indices and complete collision velocity/diagnostic arrays. macro_arrival_count/collision_round remain textually protected.",
+    "guard_invariance": "No CDF tolerance, six-iteration limit, finite tail or physical bracket criterion is changed; exhausted loops recompute the residual of the final updated v. Collision majorant, cap, finite and conservation diagnostics are byte-identical source.",
+    "failure_policy": "Record all prescribed equivalence checks, save full unequal component arrays/RNG evidence, then fail before any timings. Exception/outer timeout stops immediately; retain source/protocol/log/partial outputs and receipt. No automatic retry or fixture selection.",
+    "normal_case_success_requirement": "All original ordinary samples/extreme inverses/normalstream scenarios require error None in both copies. All180matching and6collision comparisons require error None. Existing guard fixtures retain expected errors. Exactly348 recorded checks before profiling.",
+    "matching_branch_coverage": "A temporary NumPy forwarding proxy records the actual argsort key dtype/values and stable keyword for each matching-only fixture,then is restored in finally. Require uint8 for exact guarded integer values and original dtype for empty/negative/>255/float/bool. Compare against uninstrumented original operation via exact outputs and unchanged input/backing storage. No production source instrumentation.",
+    "matching_python_golden": "For integer/bool fixtures and all120five-element permutations,independent Python sorted of the same permutation and exact integer keys must match both complete result arrays. Do not substitute distribution/moment agreement.",
+    "negative_controls": "Fold explicit negative controls into existing matching-outcome gates: unconditional uint8 mutant must differ on negative/256fixtures; reversed equal-key groups must differ in every exhaustive permutation; an extra RNG draw on safe-int64/seed371001 must be detected. These are not extra counted checks or new production behavior.",
+    "collision_composition": "For each base/fixed_weight_mesh/double_particles initialization and both fixed seeds,one isolated collision_round on reset x/v must give exact velocity/position/dictionary diagnostics and RNG trace/state. This is a component,not a time evolution or short simulate. No snapshots or profile claims."
+  },
+  "profiling": {
+    "allowed_only_after_all_component_checks_pass": true,
+    "PDE_or_short_simulate_allowed": false,
+    "cProfile": "One fixed R2-only cProfile of original flux/stream/collision/raw-profile workloads plus the three matching workloads; save complete profile/statistics. No main/short simulate.",
+    "timing_repetitions": 3,
+    "ordering": "Three fixed repetitions; each does R2 then R3,original four kernels then base/fixed-weight/double-particle matching. Each matching workload makes250complete matching_order calls including permutation,gather,guard/cast,stable argsort and final gather. Keys prepared from fixed initialization outside timing. No adaptive repeats.",
+    "particle_state": "Use original initialize(base,371001), then reset x/v for every stream or collision call; no coupled time evolution and no physics/profile conclusion from these kernels.",
+    "interpretation": "R2/R3 include the same three qualified CDF/concat changes. Matching and isolated collision timing may reveal the additional sort-key effect; all values are unmeasured until this authorized component run. No full-main/Linux timing prediction."
+  },
+  "timing_seed": 20261124,
+  "timing_sample_counts": [
+    1,
+    4,
+    32
+  ],
+  "timing_repeats": {
+    "flux_per_count": 500,
+    "stream": 300,
+    "collision": 200,
+    "raw_profile": 100
+  },
+  "timing_repetitions": 3,
+  "timing_kinds": [
+    "flux",
+    "stream",
+    "collision",
+    "raw-profile",
+    "matching/base",
+    "matching/fixed_weight_mesh",
+    "matching/double_particles"
+  ],
+  "component_shared_deadline_seconds": 30,
+  "execution_envelope": {
+    "requires": "Independent source/protocol review and root authorization before launch. A parent driver must wrap the entire one checker invocation with an actual shared30s timeout and preserve stdout/stderr/receipt even on timeout.",
+    "python": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/bin/python",
+    "arguments": [
+      "-B",
+      "-W",
+      "error",
+      "check_components.py",
+      "--output",
+      "NEW_FRESH_COMPONENT_OUTPUT"
+    ],
+    "environment": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "TMPDIR": "TASK_SCRATCH_ONLY"
+    },
+    "source_mutation_during_run": false,
+    "runs": 1,
+    "maximum_seconds": 30
+  },
+  "later_main_requirements": {
+    "status": "NOT_AUTHORIZED_BY_THIS_COMPONENT_PROTOCOL",
+    "unchanged_existing_pytest_tests": 20,
+    "prescribed_runs": 15,
+    "base_seeds": [
+      371001,
+      371002,
+      371003,
+      371004,
+      371005,
+      371006,
+      371007,
+      371008,
+      371009,
+      371010,
+      371011,
+      371012
+    ],
+    "unchanged_companions": [
+      "fixed_weight_mesh seed371001",
+      "double_particles seed371001",
+      "half_dt seed371001"
+    ],
+    "scientific_gates": 129,
+    "shared_pytest_plus_main_deadline_seconds": 120,
+    "new_115s_inner_deadline": false,
+    "retain": [
+      "all burn/sample times,dt,grid,weight and particle input parameters",
+      "pair law and all RNG calls/order",
+      "all finite/majorant/probability/budget checks at original cadence",
+      "all histories/snapshots/final particles/NPZ/CSV",
+      "all scientific thresholds and original failed histories"
+    ],
+    "requires": "New-edition contract and independent/root pre-run review; one combined20pytest+all15main under120s. Then compare every trajectory/saved scientific array/history/collision/acceptance value with the unchanged saved successful Nov23 output, excluding only explicitly listed source metadata and elapsed timing. No new reference generation."
+  },
+  "decision_policy": "Profile/bit findings inform parent review. If extra optimization is needed, freeze and review a separate source revision before any further component execution. No publication by this proposal.",
+  "revision": 3,
+  "previous_protocol_sha256": "f49a86e1d54e143eab762e944f819bc208bc2159c81b3d57e3308ec66d5f0aaa",
+  "revision_created_at_utc": "2026-11-23T15:14:47.840578+00:00",
+  "revision_reason": "Additional performance-only exact order embedding for nonempty integer sort keys in0..255. No physical/RNG/float operation/threshold/input change. Replace matching_order textual identity with180complete exact matching comparisons and6isolatedcollision composition controls.",
+  "prior_unexecuted_proposal": "R2 source/checker/protocol and all main/source files remain in their original sibling paths without changes.",
+  "previous_qualified_component": {
+    "protocol_sha256": "f49a86e1d54e143eab762e944f819bc208bc2159c81b3d57e3308ec66d5f0aaa",
+    "result_sha256": "19b6dd6fef76a6c810be2cbb43ba70d499ff8197e80b47dbdf63515e11a3175b",
+    "receipt_sha256": "724669bdd31366fe0314714ca4d585fefb1ad34354151f0be608703417101c5d",
+    "checks": 163,
+    "passed": true,
+    "original_source_retained": true
+  },
+  "matching_fixtures": [
+    {
+      "id": "safe-int8",
+      "dtype": "int8",
+      "values": [
+        0,
+        127,
+        0,
+        1,
+        127
+      ],
+      "expected_branch": "uint8",
+      "layout": "contiguous"
+    },
+    {
+      "id": "safe-int16",
+      "dtype": "int16",
+      "values": [
+        0,
+        255,
+        0,
+        127,
+        255,
+        1
+      ],
+      "expected_branch": "uint8",
+      "layout": "contiguous"
+    },
+    {
+      "id": "safe-int32",
+      "dtype": "int32",
+      "values": [
+        0,
+        255,
+        0,
+        127,
+        255,
+        1
+      ],
+      "expected_branch": "uint8",
+      "layout": "contiguous"
+    },
+    {
+      "id": "safe-int64",
+      "dtype": "int64",
+      "values": [
+        0,
+        255,
+        0,
+        127,
+        255,
+        1
+      ],
+      "expected_branch": "uint8",
+      "layout": "contiguous"
+    },
+    {
+      "id": "safe-uint8",
+      "dtype": "uint8",
+      "values": [
+        0,
+        255,
+        0,
+        127,
+        255,
+        1
+      ],
+      "expected_branch": "uint8",
+      "layout": "contiguous"
+    },
+    {
+      "id": "safe-uint16",
+      "dtype": "uint16",
+      "values": [
+        0,
+        255,
+        0,
+        127,
+        255,
+        1
+      ],
+      "expected_branch": "uint8",
+      "layout": "contiguous"
+    },
+    {
+      "id": "safe-uint32",
+      "dtype": "uint32",
+      "values": [
+        0,
+        255,
+        0,
+        127,
+        255,
+        1
+      ],
+      "expected_branch": "uint8",
+      "layout": "contiguous"
+    },
+    {
+      "id": "safe-uint64",
+      "dtype": "uint64",
+      "values": [
+        0,
+        255,
+        0,
+        127,
+        255,
+        1
+      ],
+      "expected_branch": "uint8",
+      "layout": "contiguous"
+    },
+    {
+      "id": "empty-int64",
+      "dtype": "int64",
+      "values": [],
+      "expected_branch": "original",
+      "layout": "contiguous"
+    },
+    {
+      "id": "negative-int8",
+      "dtype": "int8",
+      "values": [
+        0,
+        -1,
+        127,
+        -1,
+        0
+      ],
+      "expected_branch": "original",
+      "layout": "contiguous"
+    },
+    {
+      "id": "negative-int16",
+      "dtype": "int16",
+      "values": [
+        0,
+        -1,
+        127,
+        -1,
+        0
+      ],
+      "expected_branch": "original",
+      "layout": "contiguous"
+    },
+    {
+      "id": "negative-int32",
+      "dtype": "int32",
+      "values": [
+        0,
+        -1,
+        127,
+        -1,
+        0
+      ],
+      "expected_branch": "original",
+      "layout": "contiguous"
+    },
+    {
+      "id": "negative-int64",
+      "dtype": "int64",
+      "values": [
+        0,
+        -1,
+        127,
+        -1,
+        0
+      ],
+      "expected_branch": "original",
+      "layout": "contiguous"
+    },
+    {
+      "id": "overflow256-int16",
+      "dtype": "int16",
+      "values": [
+        255,
+        256,
+        0,
+        255,
+        256
+      ],
+      "expected_branch": "original",
+      "layout": "contiguous"
+    },
+    {
+      "id": "overflow256-int32",
+      "dtype": "int32",
+      "values": [
+        255,
+        256,
+        0,
+        255,
+        256
+      ],
+      "expected_branch": "original",
+      "layout": "contiguous"
+    },
+    {
+      "id": "overflow256-int64",
+      "dtype": "int64",
+      "values": [
+        255,
+        256,
+        0,
+        255,
+        256
+      ],
+      "expected_branch": "original",
+      "layout": "contiguous"
+    },
+    {
+      "id": "overflow256-uint16",
+      "dtype": "uint16",
+      "values": [
+        255,
+        256,
+        0,
+        255,
+        256
+      ],
+      "expected_branch": "original",
+      "layout": "contiguous"
+    },
+    {
+      "id": "overflow256-uint32",
+      "dtype": "uint32",
+      "values": [
+        255,
+        256,
+        0,
+        255,
+        256
+      ],
+      "expected_branch": "original",
+      "layout": "contiguous"
+    },
+    {
+      "id": "overflow256-uint64",
+      "dtype": "uint64",
+      "values": [
+        255,
+        256,
+        0,
+        255,
+        256
+      ],
+      "expected_branch": "original",
+      "layout": "contiguous"
+    },
+    {
+      "id": "uint64-full-range",
+      "dtype": "uint64",
+      "values": [
+        0,
+        18446744073709551615,
+        255,
+        256,
+        1
+      ],
+      "expected_branch": "original",
+      "layout": "contiguous"
+    },
+    {
+      "id": "big-endian-int16",
+      "dtype": ">i2",
+      "values": [
+        0,
+        255,
+        1,
+        255,
+        0
+      ],
+      "expected_branch": "uint8",
+      "layout": "contiguous"
+    },
+    {
+      "id": "big-endian-uint64",
+      "dtype": ">u8",
+      "values": [
+        0,
+        255,
+        1,
+        255,
+        0
+      ],
+      "expected_branch": "uint8",
+      "layout": "contiguous"
+    },
+    {
+      "id": "fractional-float",
+      "dtype": "float64",
+      "values": [
+        0.8,
+        0.2,
+        0.8,
+        0.1,
+        255.5
+      ],
+      "expected_branch": "original",
+      "layout": "contiguous"
+    },
+    {
+      "id": "signed-zero-float",
+      "dtype": "float64",
+      "values": [
+        -0.0,
+        0.0,
+        255.0,
+        256.0,
+        -1.0
+      ],
+      "expected_branch": "original",
+      "layout": "contiguous"
+    },
+    {
+      "id": "bool-fallback",
+      "dtype": "bool",
+      "values": [
+        true,
+        false,
+        true,
+        false,
+        true
+      ],
+      "expected_branch": "original",
+      "layout": "contiguous"
+    },
+    {
+      "id": "strided-view",
+      "dtype": "int64",
+      "values": [
+        0,
+        255,
+        2,
+        255,
+        0
+      ],
+      "expected_branch": "uint8",
+      "layout": "Construct values interleaved with a sentinel and take [::2]; compare complete backing array before/after."
+    },
+    {
+      "id": "readonly",
+      "dtype": "uint16",
+      "values": [
+        0,
+        255,
+        2,
+        255,
+        0
+      ],
+      "expected_branch": "uint8",
+      "layout": "Mark array non-writeable; calls must succeed without mutation."
+    }
+  ],
+  "production_matching_fixtures": [
+    {
+      "id": "base-192",
+      "configuration": "base",
+      "cells": 192,
+      "nominal_initial_particle_count": 5047
+    },
+    {
+      "id": "fixed-weight-128",
+      "configuration": "fixed_weight_mesh",
+      "cells": 128,
+      "nominal_initial_particle_count": 5047
+    },
+    {
+      "id": "double-particle-192",
+      "configuration": "double_particles",
+      "cells": 192,
+      "nominal_initial_particle_count": 10094
+    }
+  ],
+  "exhaustive_labels": [
+    0,
+    1,
+    0,
+    255,
+    1
+  ],
+  "matching_timing_calls_per_key": 250
+}

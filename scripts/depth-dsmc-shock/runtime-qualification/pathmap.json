@@ -1,0 +1,774 @@
+{
+  "schema_version": 1,
+  "files": [
+    {
+      "original_component_relative_path": "baseline/source/README.md",
+      "bundled_relative_path": "baseline/source/README.md",
+      "sha256": "62c01dce2e0a9f01afb7d0c6ff11102305e06bef8d9fb97e73e1c2641f05bd69",
+      "bytes": 9789
+    },
+    {
+      "original_component_relative_path": "baseline/source/acceptance.json",
+      "bundled_relative_path": "baseline/source/acceptance.json",
+      "sha256": "ca835b4e4606640d6da9cc49b1332fed4c44c5e47c3b49e547a8687f0881986b",
+      "bytes": 1261
+    },
+    {
+      "original_component_relative_path": "baseline/source/cases.json",
+      "bundled_relative_path": "baseline/source/cases.json",
+      "sha256": "c5055607e9aa3b76824051db6fdf01ffa9e01243f6989f0a348519045eddea22",
+      "bytes": 7668
+    },
+    {
+      "original_component_relative_path": "baseline/source/diagnostics.py",
+      "bundled_relative_path": "baseline/source/diagnostics.py.txt",
+      "sha256": "5ddca83507a57797a1b3b46141aed579136711c76aa0dac6bd5a6750a32b3f13",
+      "bytes": 3484
+    },
+    {
+      "original_component_relative_path": "baseline/source/dsmc.py",
+      "bundled_relative_path": "baseline/source/dsmc.py.txt",
+      "sha256": "f1efb560e507b5e7b10950dbc461a10f4d8760bbff04207e4dadb95fbfcaf6dc",
+      "bytes": 15451
+    },
+    {
+      "original_component_relative_path": "baseline/source/inputs.json",
+      "bundled_relative_path": "baseline/source/inputs.json",
+      "sha256": "ef53152d7f42f153843ec505116be67377db77336bf14dd724c4f253d4d0f166",
+      "bytes": 1854
+    },
+    {
+      "original_component_relative_path": "baseline/source/plot.py",
+      "bundled_relative_path": "baseline/source/plot.py.txt",
+      "sha256": "a04fa34ec340925ab7f7bf92cce99e217be669f386527859508517451c86f408",
+      "bytes": 4275
+    },
+    {
+      "original_component_relative_path": "baseline/source/pre-run-contract.json",
+      "bundled_relative_path": "baseline/source/pre-run-contract.json",
+      "sha256": "62e0f1debf50ff00d434ad4d240a14ba291128444bc1b85c0be559ca8b7f01cf",
+      "bytes": 10148
+    },
+    {
+      "original_component_relative_path": "baseline/source/pytest.ini",
+      "bundled_relative_path": "baseline/source/pytest.ini",
+      "sha256": "9f309ec4b3e4ae626f051b4f5ca52d64a8e48fab8c92c9b9fefcfd4ba45cf76e",
+      "bytes": 32
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/SPARTA-LICENSE.txt",
+      "bundled_relative_path": "baseline/source/references/SPARTA-LICENSE.txt",
+      "sha256": "c5186abe32a9221088c8a87e9a762e7cd6f1f38a888943325e43b9d666035b29",
+      "bytes": 17771
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/dsmc-planar-shock.npz",
+      "bundled_relative_path": "baseline/source/references/dsmc-planar-shock.npz",
+      "sha256": "2594abf9afc9161f968540695a222b61890425193dd02258a503fcc3a462f0f5",
+      "bytes": 181596
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/generate.py",
+      "bundled_relative_path": "baseline/source/references/generate.py.txt",
+      "sha256": "c5ec562feb04f506e6bac7ca7ee29ed6fdf9560f95de4bec1898401c560e5647",
+      "bytes": 6846
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/base/931001/hs.species",
+      "bundled_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/base/931001/hs.species.txt",
+      "sha256": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+      "bytes": 47
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/base/931001/hs.vss",
+      "bundled_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/base/931001/hs.vss.txt",
+      "sha256": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+      "bytes": 30
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/base/931001/input.sparta",
+      "bundled_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/base/931001/input.sparta.txt",
+      "sha256": "3a3b2179af72459c88e571e37c3698872806c32b2fd27a8f488fd52c28555499",
+      "bytes": 994
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/base/931002/hs.species",
+      "bundled_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/base/931002/hs.species.txt",
+      "sha256": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+      "bytes": 47
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/base/931002/hs.vss",
+      "bundled_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/base/931002/hs.vss.txt",
+      "sha256": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+      "bytes": 30
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/base/931002/input.sparta",
+      "bundled_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/base/931002/input.sparta.txt",
+      "sha256": "5f24c33f84bd967e906cea5c2726091e495fc9d87c2be2b9063706b65902e42a",
+      "bytes": 994
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/base/931003/hs.species",
+      "bundled_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/base/931003/hs.species.txt",
+      "sha256": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+      "bytes": 47
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/base/931003/hs.vss",
+      "bundled_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/base/931003/hs.vss.txt",
+      "sha256": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+      "bytes": 30
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/base/931003/input.sparta",
+      "bundled_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/base/931003/input.sparta.txt",
+      "sha256": "29ce712c943764274b9a4ef69d4d02eb0b6880d1c2d54b90b5122711f6bf4d4b",
+      "bytes": 994
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/base/931004/hs.species",
+      "bundled_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/base/931004/hs.species.txt",
+      "sha256": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+      "bytes": 47
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/base/931004/hs.vss",
+      "bundled_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/base/931004/hs.vss.txt",
+      "sha256": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+      "bytes": 30
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/base/931004/input.sparta",
+      "bundled_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/base/931004/input.sparta.txt",
+      "sha256": "3e74bd0818f6839e728d4bf05c376d1dbae2655c2caaf199e5de040b8f996ec5",
+      "bytes": 994
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/fine_grid/931001/hs.species",
+      "bundled_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/fine_grid/931001/hs.species.txt",
+      "sha256": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+      "bytes": 47
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/fine_grid/931001/hs.vss",
+      "bundled_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/fine_grid/931001/hs.vss.txt",
+      "sha256": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+      "bytes": 30
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/fine_grid/931001/input.sparta",
+      "bundled_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/fine_grid/931001/input.sparta.txt",
+      "sha256": "ee0b141b7261c31f48c5a526d638b4c455445fac104c58564fbcd54419ad1e3e",
+      "bytes": 994
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/fine_grid/931002/hs.species",
+      "bundled_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/fine_grid/931002/hs.species.txt",
+      "sha256": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+      "bytes": 47
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/fine_grid/931002/hs.vss",
+      "bundled_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/fine_grid/931002/hs.vss.txt",
+      "sha256": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+      "bytes": 30
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/fine_grid/931002/input.sparta",
+      "bundled_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/fine_grid/931002/input.sparta.txt",
+      "sha256": "daa3ba34837246385000708da1d1854180e92a4c7368bf2e99245d93fb90144d",
+      "bytes": 994
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/fine_grid/931003/hs.species",
+      "bundled_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/fine_grid/931003/hs.species.txt",
+      "sha256": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+      "bytes": 47
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/fine_grid/931003/hs.vss",
+      "bundled_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/fine_grid/931003/hs.vss.txt",
+      "sha256": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+      "bytes": 30
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/fine_grid/931003/input.sparta",
+      "bundled_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/fine_grid/931003/input.sparta.txt",
+      "sha256": "77ac36128bc2c41d6923024c24ed6480d51569cf02aab1630636a72add71a2af",
+      "bytes": 994
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/fine_grid/931004/hs.species",
+      "bundled_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/fine_grid/931004/hs.species.txt",
+      "sha256": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+      "bytes": 47
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/fine_grid/931004/hs.vss",
+      "bundled_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/fine_grid/931004/hs.vss.txt",
+      "sha256": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+      "bytes": 30
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/fine_grid/931004/input.sparta",
+      "bundled_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/fine_grid/931004/input.sparta.txt",
+      "sha256": "94f5e94452fed0ebccbc49c132782d1ee1411641a5a5ab05ba4573b95e303b14",
+      "bytes": 994
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/half_dt/931001/hs.species",
+      "bundled_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/half_dt/931001/hs.species.txt",
+      "sha256": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+      "bytes": 47
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/half_dt/931001/hs.vss",
+      "bundled_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/half_dt/931001/hs.vss.txt",
+      "sha256": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+      "bytes": 30
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/half_dt/931001/input.sparta",
+      "bundled_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/half_dt/931001/input.sparta.txt",
+      "sha256": "25407376dcf07c708876011dbabb319a2dbf80576258b00bf04d1c151bbbb8ff",
+      "bytes": 996
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/half_dt/931002/hs.species",
+      "bundled_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/half_dt/931002/hs.species.txt",
+      "sha256": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+      "bytes": 47
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/half_dt/931002/hs.vss",
+      "bundled_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/half_dt/931002/hs.vss.txt",
+      "sha256": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+      "bytes": 30
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/half_dt/931002/input.sparta",
+      "bundled_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/half_dt/931002/input.sparta.txt",
+      "sha256": "e48ed7b6d9049a3c864015c9b0601af8247113a89985d31348de91228487c503",
+      "bytes": 996
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/half_dt/931003/hs.species",
+      "bundled_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/half_dt/931003/hs.species.txt",
+      "sha256": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+      "bytes": 47
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/half_dt/931003/hs.vss",
+      "bundled_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/half_dt/931003/hs.vss.txt",
+      "sha256": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+      "bytes": 30
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/half_dt/931003/input.sparta",
+      "bundled_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/half_dt/931003/input.sparta.txt",
+      "sha256": "b752b7c9f1a286d6ee820a3e6cc009eeb900f694ab25b7ba496c97f0706b2df7",
+      "bytes": 996
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/half_dt/931004/hs.species",
+      "bundled_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/half_dt/931004/hs.species.txt",
+      "sha256": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+      "bytes": 47
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/half_dt/931004/hs.vss",
+      "bundled_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/half_dt/931004/hs.vss.txt",
+      "sha256": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+      "bytes": 30
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/half_dt/931004/input.sparta",
+      "bundled_relative_path": "baseline/source/references/native-inputs/dsmc-planar-shock/half_dt/931004/input.sparta.txt",
+      "sha256": "9ab58b0db7ad83bb7655539279ae781ecce8602ed1b6e15740fb699c70db8b7b",
+      "bytes": 996
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/provenance.json",
+      "bundled_relative_path": "baseline/source/references/provenance.json",
+      "sha256": "f75ba585d7126df0e1e3c521eeac301b0824599105a9fcc05cda43d9dabd3651",
+      "bytes": 1065
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/qualification.json",
+      "bundled_relative_path": "baseline/source/references/qualification.json",
+      "sha256": "a170ccfbeb47c5bb61c986796836b97a9d9c86ed1386b8acff33214243efdcbf",
+      "bytes": 75093
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/qualify.py",
+      "bundled_relative_path": "baseline/source/references/qualify.py.txt",
+      "sha256": "20e5463812b1a2082f155ca7284454acda462123f400b3af30bd4e24ea51cc6c",
+      "bytes": 5419
+    },
+    {
+      "original_component_relative_path": "baseline/source/references/reference-protocol.json",
+      "bundled_relative_path": "baseline/source/references/reference-protocol.json",
+      "sha256": "b50fb8a2ec4abe4e856fd25ad0f9e033d42ffad0edb01966b458cbdb444bc1eb",
+      "bytes": 5149
+    },
+    {
+      "original_component_relative_path": "baseline/source/requirements.txt",
+      "bundled_relative_path": "baseline/source/requirements.txt",
+      "sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "bytes": 41
+    },
+    {
+      "original_component_relative_path": "baseline/source/run.py",
+      "bundled_relative_path": "baseline/source/run.py.txt",
+      "sha256": "badd9a284810dcfba7467726a6e042be6766dde1b7cea65dd3e856e39c9addec",
+      "bytes": 9899
+    },
+    {
+      "original_component_relative_path": "baseline/source/test_arrivals.py",
+      "bundled_relative_path": "baseline/source/test_arrivals.py.txt",
+      "sha256": "0d06ae1c2e782b6cf889a4a64a7deee09c72a86c07c5b9c3abdf5ebb63db58f4",
+      "bytes": 768
+    },
+    {
+      "original_component_relative_path": "baseline/source/test_core.py",
+      "bundled_relative_path": "baseline/source/test_core.py.txt",
+      "sha256": "15766596ba1663b91ee0c75e17cdf7392ba10ad8d800dc33c7b1aaec01899417",
+      "bytes": 4747
+    },
+    {
+      "original_component_relative_path": "baseline/source/test_matching.py",
+      "bundled_relative_path": "baseline/source/test_matching.py.txt",
+      "sha256": "e83d31d93c346c5297e1dca4a85c310b499550ed0a793abb0110ce3ae36627be",
+      "bytes": 623
+    },
+    {
+      "original_component_relative_path": "baseline/source/test_shock.py",
+      "bundled_relative_path": "baseline/source/test_shock.py.txt",
+      "sha256": "9c3a093af7b7dfff13b516ea2d81043f19c40486d525989f5b26f0ceb40cd917",
+      "bytes": 1028
+    },
+    {
+      "original_component_relative_path": "candidate/source/README.md",
+      "bundled_relative_path": "candidate/source/README.md",
+      "sha256": "62c01dce2e0a9f01afb7d0c6ff11102305e06bef8d9fb97e73e1c2641f05bd69",
+      "bytes": 9789
+    },
+    {
+      "original_component_relative_path": "candidate/source/acceptance.json",
+      "bundled_relative_path": "candidate/source/acceptance.json",
+      "sha256": "ca835b4e4606640d6da9cc49b1332fed4c44c5e47c3b49e547a8687f0881986b",
+      "bytes": 1261
+    },
+    {
+      "original_component_relative_path": "candidate/source/cases.json",
+      "bundled_relative_path": "candidate/source/cases.json",
+      "sha256": "c5055607e9aa3b76824051db6fdf01ffa9e01243f6989f0a348519045eddea22",
+      "bytes": 7668
+    },
+    {
+      "original_component_relative_path": "candidate/source/diagnostics.py",
+      "bundled_relative_path": "candidate/source/diagnostics.py.txt",
+      "sha256": "5ddca83507a57797a1b3b46141aed579136711c76aa0dac6bd5a6750a32b3f13",
+      "bytes": 3484
+    },
+    {
+      "original_component_relative_path": "candidate/source/dsmc.py",
+      "bundled_relative_path": "candidate/source/dsmc.py.txt",
+      "sha256": "a101a0a2b909900cf85b803a88e27f32389b60eda635a1e38fd76ea2f49a48eb",
+      "bytes": 16205
+    },
+    {
+      "original_component_relative_path": "candidate/source/inputs.json",
+      "bundled_relative_path": "candidate/source/inputs.json",
+      "sha256": "ef53152d7f42f153843ec505116be67377db77336bf14dd724c4f253d4d0f166",
+      "bytes": 1854
+    },
+    {
+      "original_component_relative_path": "candidate/source/plot.py",
+      "bundled_relative_path": "candidate/source/plot.py.txt",
+      "sha256": "a04fa34ec340925ab7f7bf92cce99e217be669f386527859508517451c86f408",
+      "bytes": 4275
+    },
+    {
+      "original_component_relative_path": "candidate/source/pre-run-contract.json",
+      "bundled_relative_path": "candidate/source/pre-run-contract.json",
+      "sha256": "62e0f1debf50ff00d434ad4d240a14ba291128444bc1b85c0be559ca8b7f01cf",
+      "bytes": 10148
+    },
+    {
+      "original_component_relative_path": "candidate/source/pytest.ini",
+      "bundled_relative_path": "candidate/source/pytest.ini",
+      "sha256": "9f309ec4b3e4ae626f051b4f5ca52d64a8e48fab8c92c9b9fefcfd4ba45cf76e",
+      "bytes": 32
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/SPARTA-LICENSE.txt",
+      "bundled_relative_path": "candidate/source/references/SPARTA-LICENSE.txt",
+      "sha256": "c5186abe32a9221088c8a87e9a762e7cd6f1f38a888943325e43b9d666035b29",
+      "bytes": 17771
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/dsmc-planar-shock.npz",
+      "bundled_relative_path": "candidate/source/references/dsmc-planar-shock.npz",
+      "sha256": "2594abf9afc9161f968540695a222b61890425193dd02258a503fcc3a462f0f5",
+      "bytes": 181596
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/generate.py",
+      "bundled_relative_path": "candidate/source/references/generate.py.txt",
+      "sha256": "c5ec562feb04f506e6bac7ca7ee29ed6fdf9560f95de4bec1898401c560e5647",
+      "bytes": 6846
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/base/931001/hs.species",
+      "bundled_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/base/931001/hs.species.txt",
+      "sha256": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+      "bytes": 47
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/base/931001/hs.vss",
+      "bundled_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/base/931001/hs.vss.txt",
+      "sha256": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+      "bytes": 30
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/base/931001/input.sparta",
+      "bundled_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/base/931001/input.sparta.txt",
+      "sha256": "3a3b2179af72459c88e571e37c3698872806c32b2fd27a8f488fd52c28555499",
+      "bytes": 994
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/base/931002/hs.species",
+      "bundled_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/base/931002/hs.species.txt",
+      "sha256": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+      "bytes": 47
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/base/931002/hs.vss",
+      "bundled_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/base/931002/hs.vss.txt",
+      "sha256": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+      "bytes": 30
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/base/931002/input.sparta",
+      "bundled_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/base/931002/input.sparta.txt",
+      "sha256": "5f24c33f84bd967e906cea5c2726091e495fc9d87c2be2b9063706b65902e42a",
+      "bytes": 994
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/base/931003/hs.species",
+      "bundled_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/base/931003/hs.species.txt",
+      "sha256": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+      "bytes": 47
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/base/931003/hs.vss",
+      "bundled_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/base/931003/hs.vss.txt",
+      "sha256": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+      "bytes": 30
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/base/931003/input.sparta",
+      "bundled_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/base/931003/input.sparta.txt",
+      "sha256": "29ce712c943764274b9a4ef69d4d02eb0b6880d1c2d54b90b5122711f6bf4d4b",
+      "bytes": 994
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/base/931004/hs.species",
+      "bundled_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/base/931004/hs.species.txt",
+      "sha256": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+      "bytes": 47
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/base/931004/hs.vss",
+      "bundled_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/base/931004/hs.vss.txt",
+      "sha256": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+      "bytes": 30
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/base/931004/input.sparta",
+      "bundled_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/base/931004/input.sparta.txt",
+      "sha256": "3e74bd0818f6839e728d4bf05c376d1dbae2655c2caaf199e5de040b8f996ec5",
+      "bytes": 994
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/fine_grid/931001/hs.species",
+      "bundled_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/fine_grid/931001/hs.species.txt",
+      "sha256": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+      "bytes": 47
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/fine_grid/931001/hs.vss",
+      "bundled_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/fine_grid/931001/hs.vss.txt",
+      "sha256": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+      "bytes": 30
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/fine_grid/931001/input.sparta",
+      "bundled_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/fine_grid/931001/input.sparta.txt",
+      "sha256": "ee0b141b7261c31f48c5a526d638b4c455445fac104c58564fbcd54419ad1e3e",
+      "bytes": 994
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/fine_grid/931002/hs.species",
+      "bundled_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/fine_grid/931002/hs.species.txt",
+      "sha256": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+      "bytes": 47
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/fine_grid/931002/hs.vss",
+      "bundled_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/fine_grid/931002/hs.vss.txt",
+      "sha256": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+      "bytes": 30
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/fine_grid/931002/input.sparta",
+      "bundled_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/fine_grid/931002/input.sparta.txt",
+      "sha256": "daa3ba34837246385000708da1d1854180e92a4c7368bf2e99245d93fb90144d",
+      "bytes": 994
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/fine_grid/931003/hs.species",
+      "bundled_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/fine_grid/931003/hs.species.txt",
+      "sha256": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+      "bytes": 47
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/fine_grid/931003/hs.vss",
+      "bundled_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/fine_grid/931003/hs.vss.txt",
+      "sha256": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+      "bytes": 30
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/fine_grid/931003/input.sparta",
+      "bundled_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/fine_grid/931003/input.sparta.txt",
+      "sha256": "77ac36128bc2c41d6923024c24ed6480d51569cf02aab1630636a72add71a2af",
+      "bytes": 994
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/fine_grid/931004/hs.species",
+      "bundled_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/fine_grid/931004/hs.species.txt",
+      "sha256": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+      "bytes": 47
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/fine_grid/931004/hs.vss",
+      "bundled_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/fine_grid/931004/hs.vss.txt",
+      "sha256": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+      "bytes": 30
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/fine_grid/931004/input.sparta",
+      "bundled_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/fine_grid/931004/input.sparta.txt",
+      "sha256": "94f5e94452fed0ebccbc49c132782d1ee1411641a5a5ab05ba4573b95e303b14",
+      "bytes": 994
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/half_dt/931001/hs.species",
+      "bundled_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/half_dt/931001/hs.species.txt",
+      "sha256": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+      "bytes": 47
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/half_dt/931001/hs.vss",
+      "bundled_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/half_dt/931001/hs.vss.txt",
+      "sha256": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+      "bytes": 30
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/half_dt/931001/input.sparta",
+      "bundled_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/half_dt/931001/input.sparta.txt",
+      "sha256": "25407376dcf07c708876011dbabb319a2dbf80576258b00bf04d1c151bbbb8ff",
+      "bytes": 996
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/half_dt/931002/hs.species",
+      "bundled_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/half_dt/931002/hs.species.txt",
+      "sha256": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+      "bytes": 47
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/half_dt/931002/hs.vss",
+      "bundled_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/half_dt/931002/hs.vss.txt",
+      "sha256": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+      "bytes": 30
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/half_dt/931002/input.sparta",
+      "bundled_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/half_dt/931002/input.sparta.txt",
+      "sha256": "e48ed7b6d9049a3c864015c9b0601af8247113a89985d31348de91228487c503",
+      "bytes": 996
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/half_dt/931003/hs.species",
+      "bundled_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/half_dt/931003/hs.species.txt",
+      "sha256": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+      "bytes": 47
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/half_dt/931003/hs.vss",
+      "bundled_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/half_dt/931003/hs.vss.txt",
+      "sha256": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+      "bytes": 30
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/half_dt/931003/input.sparta",
+      "bundled_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/half_dt/931003/input.sparta.txt",
+      "sha256": "b752b7c9f1a286d6ee820a3e6cc009eeb900f694ab25b7ba496c97f0706b2df7",
+      "bytes": 996
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/half_dt/931004/hs.species",
+      "bundled_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/half_dt/931004/hs.species.txt",
+      "sha256": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+      "bytes": 47
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/half_dt/931004/hs.vss",
+      "bundled_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/half_dt/931004/hs.vss.txt",
+      "sha256": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+      "bytes": 30
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/half_dt/931004/input.sparta",
+      "bundled_relative_path": "candidate/source/references/native-inputs/dsmc-planar-shock/half_dt/931004/input.sparta.txt",
+      "sha256": "9ab58b0db7ad83bb7655539279ae781ecce8602ed1b6e15740fb699c70db8b7b",
+      "bytes": 996
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/provenance.json",
+      "bundled_relative_path": "candidate/source/references/provenance.json",
+      "sha256": "f75ba585d7126df0e1e3c521eeac301b0824599105a9fcc05cda43d9dabd3651",
+      "bytes": 1065
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/qualification.json",
+      "bundled_relative_path": "candidate/source/references/qualification.json",
+      "sha256": "a170ccfbeb47c5bb61c986796836b97a9d9c86ed1386b8acff33214243efdcbf",
+      "bytes": 75093
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/qualify.py",
+      "bundled_relative_path": "candidate/source/references/qualify.py.txt",
+      "sha256": "20e5463812b1a2082f155ca7284454acda462123f400b3af30bd4e24ea51cc6c",
+      "bytes": 5419
+    },
+    {
+      "original_component_relative_path": "candidate/source/references/reference-protocol.json",
+      "bundled_relative_path": "candidate/source/references/reference-protocol.json",
+      "sha256": "b50fb8a2ec4abe4e856fd25ad0f9e033d42ffad0edb01966b458cbdb444bc1eb",
+      "bytes": 5149
+    },
+    {
+      "original_component_relative_path": "candidate/source/requirements.txt",
+      "bundled_relative_path": "candidate/source/requirements.txt",
+      "sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "bytes": 41
+    },
+    {
+      "original_component_relative_path": "candidate/source/run.py",
+      "bundled_relative_path": "candidate/source/run.py.txt",
+      "sha256": "badd9a284810dcfba7467726a6e042be6766dde1b7cea65dd3e856e39c9addec",
+      "bytes": 9899
+    },
+    {
+      "original_component_relative_path": "candidate/source/test_arrivals.py",
+      "bundled_relative_path": "candidate/source/test_arrivals.py.txt",
+      "sha256": "0d06ae1c2e782b6cf889a4a64a7deee09c72a86c07c5b9c3abdf5ebb63db58f4",
+      "bytes": 768
+    },
+    {
+      "original_component_relative_path": "candidate/source/test_core.py",
+      "bundled_relative_path": "candidate/source/test_core.py.txt",
+      "sha256": "15766596ba1663b91ee0c75e17cdf7392ba10ad8d800dc33c7b1aaec01899417",
+      "bytes": 4747
+    },
+    {
+      "original_component_relative_path": "candidate/source/test_matching.py",
+      "bundled_relative_path": "candidate/source/test_matching.py.txt",
+      "sha256": "e83d31d93c346c5297e1dca4a85c310b499550ed0a793abb0110ce3ae36627be",
+      "bytes": 623
+    },
+    {
+      "original_component_relative_path": "candidate/source/test_shock.py",
+      "bundled_relative_path": "candidate/source/test_shock.py.txt",
+      "sha256": "9c3a093af7b7dfff13b516ea2d81043f19c40486d525989f5b26f0ceb40cd917",
+      "bytes": 1028
+    },
+    {
+      "original_component_relative_path": "baseline/source-manifest.json",
+      "bundled_relative_path": "baseline/source-manifest.json",
+      "sha256": "b49fb1a3407cc73d8192f02279f4de1705660c8936f26ef668eda0154f229c64",
+      "bytes": 7745
+    },
+    {
+      "original_component_relative_path": "candidate.patch",
+      "bundled_relative_path": "candidate.patch",
+      "sha256": "5dd39a89b36c403e750aef1b31f851c7fcf3e707ada8fde227f32d90173ebc16",
+      "bytes": 3995
+    },
+    {
+      "original_component_relative_path": "check_components.py",
+      "bundled_relative_path": "check_components.py.txt",
+      "sha256": "cbd23009d3d2aedf25d3cecbfbd1d2312a4327615cea86c8a2c7e8e18044710e",
+      "bytes": 13843
+    },
+    {
+      "original_component_relative_path": "protocol.json",
+      "bundled_relative_path": "protocol.json",
+      "sha256": "f49a86e1d54e143eab762e944f819bc208bc2159c81b3d57e3308ec66d5f0aaa",
+      "bytes": 25550
+    },
+    {
+      "original_component_relative_path": "independent-component-review.json",
+      "bundled_relative_path": "independent-component-review.json",
+      "sha256": "71129d01be64435bada50d1c4ddd08123068d1ca119ea2ebc273d6726348e55b",
+      "bytes": 11964
+    },
+    {
+      "original_component_relative_path": "component-attempt-01/root-authorization.json",
+      "bundled_relative_path": "component-attempt-01/root-authorization.json",
+      "sha256": "b4aa63535a0d671a03a113e984a40feec104f5c4a42693d59173c3ff103f968a",
+      "bytes": 432
+    },
+    {
+      "original_component_relative_path": "component-attempt-01/receipt.json",
+      "bundled_relative_path": "component-attempt-01/receipt.json",
+      "sha256": "724669bdd31366fe0314714ca4d585fefb1ad34354151f0be608703417101c5d",
+      "bytes": 607
+    },
+    {
+      "original_component_relative_path": "component-attempt-01/results/result.json",
+      "bundled_relative_path": "component-attempt-01/results/result.json",
+      "sha256": "19b6dd6fef76a6c810be2cbb43ba70d499ff8197e80b47dbdf63515e11a3175b",
+      "bytes": 65441
+    },
+    {
+      "original_component_relative_path": "component-attempt-01/stdout.log",
+      "bundled_relative_path": "component-attempt-01/stdout.log",
+      "sha256": "1f50a5585769d6237f9c13b5a7ccb2bec5a5d97087063b44f9265a4e5838458e",
+      "bytes": 94
+    },
+    {
+      "original_component_relative_path": "component-attempt-01/stderr.log",
+      "bundled_relative_path": "component-attempt-01/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "original_component_relative_path": "history/component-proposal-r1/protocol.json",
+      "bundled_relative_path": "history/component-proposal-r1/protocol.json",
+      "sha256": "8a7ca3c05caa1eb5afd0a43d5ac6df7a4537c7a2f7ccf902dd0aa40a6d3441ec",
+      "bytes": 24454
+    },
+    {
+      "original_component_relative_path": "history/component-proposal-r1/check_components.py.txt",
+      "bundled_relative_path": "history/component-proposal-r1/check_components.py.txt",
+      "sha256": "285f13426569a69357867537ab78fb557d248636f8b6fbc652dad1b21174b0de",
+      "bytes": 13502
+    }
+  ],
+  "rule": "Exact bytes; only Python/native text filenames gain .txt. Use this pathmap to resolve original protocol bindings. No archived checker or test is executed by public main."
+}

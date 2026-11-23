@@ -11,7 +11,7 @@
     "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-planar-shock/?lang=en"
   },
   "image": {
-    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock-preview.png",
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/results/dsmc-planar-shock-preview.png",
     "sha256": "89e25d3088c177ac0cb027fe58f02627b049626d0198bda02abc0eb6fec6555c",
     "width": 2176,
     "height": 704,
@@ -153,33 +153,33 @@
         "ja": "有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。RHは遠方状態・流束だけの参照で、内部構造の厳密解ではありません。図は保存した粒子位相空間であり、2D物理流れではありません。",
         "en": "Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. RH validates far states/full fluxes,not an exact internal shock profile. Saved phase space is not a2D physical flow."
       },
-      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/inputs.json",
-      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/atlas-dsmc-shock-2026-11-23.zip",
-      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/verification.json",
-      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/source-manifest.json",
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/atlas-dsmc-shock-2026-11-24.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/source-manifest.json",
       "commands": [
         "python -m pip install -r requirements.txt",
         "python -m pytest -q",
         "python run.py --input inputs.json --output output"
       ],
       "reference_note": {
-        "ja": "各群20pytestを事前固定。新しい固定計算は15本。境界込みの質量・運動量・エネルギー、局所λ/衝突時間、独立参照への誤差とseed精度、時間block定常性を別に判定します。 群の判定は既存81項目を保持し、新8計算の48項目を追加した129項目です。primary t95はdf11、独立参照4seedはdf3です。",
-        "en": "Predeclare20pytest per group and15new fixed primary runs. Separate boundary-inclusive budgets,local lambda/collision-time diagnostics,reference error,whole-seed precision and block stationarity. Reference36runs/87qualifiers already passed; primary results remain pending until the frozen run. Preserve all81old gates and add48new-run gates=129. Primary12seed t95 usesdf11,reference4seed usesdf3; descriptive approximate-normal whole-seed intervals,not unconditional adaptive-study coverage."
+        "ja": "各群20pytestを事前固定。新しい固定計算は15本。境界込みの質量・運動量・エネルギー、局所λ/衝突時間、独立参照への誤差とseed精度、時間block定常性を別に判定します。 群の判定は既存81項目を保持し、新8計算の48項目を追加した129項目です。primary t95はdf11、独立参照4seedはdf3です。 Nov23保存成功と全15計算・129判定の厳密比較を行う新mainは、本契約の時点で未実行です。20pytestと全mainの外部共有上限120秒、全診断・NPZ・CSVを維持します。",
+        "en": "Predeclare20pytest per group and15new fixed primary runs. Separate boundary-inclusive budgets,local lambda/collision-time diagnostics,reference error,whole-seed precision and block stationarity. Reference36runs/87qualifiers already passed; primary results remain pending until the frozen run. Preserve all81old gates and add48new-run gates=129. Primary12seed t95 usesdf11,reference4seed usesdf3; descriptive approximate-normal whole-seed intervals,not unconditional adaptive-study coverage. This new edition main has not run at contract freeze. Retain all20pytest,15runs,129gates and the original shared120s outer deadline,then compare every saved scientific array/history/metric with the immutable successful Nov23baseline. No independent reference is regenerated."
       },
       "reference_data": [],
       "results": [
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/results/result.json"
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/results/result.json"
       ],
       "code_urls": [
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/run.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/dsmc.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/diagnostics.py"
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/dsmc.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/diagnostics.py"
       ],
       "test_urls": [
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/test_arrivals.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/test_core.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/test_matching.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/test_shock.py"
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/test_arrivals.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/test_core.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/test_matching.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/test_shock.py"
       ],
       "source_scope": "package"
     }

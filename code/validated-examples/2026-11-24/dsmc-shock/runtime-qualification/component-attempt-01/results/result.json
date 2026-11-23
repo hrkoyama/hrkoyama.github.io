@@ -1,0 +1,2119 @@
+{
+  "status": "PASS",
+  "passed": true,
+  "protocol_sha256": "f49a86e1d54e143eab762e944f819bc208bc2159c81b3d57e3308ec66d5f0aaa",
+  "checks": [
+    {
+      "name": "unchanged function positive_flux",
+      "passed": true
+    },
+    {
+      "name": "unchanged function matching_order",
+      "passed": true
+    },
+    {
+      "name": "unchanged function collision_round",
+      "passed": true
+    },
+    {
+      "name": "unchanged function totals",
+      "passed": true
+    },
+    {
+      "name": "unchanged function stream_wall",
+      "passed": true
+    },
+    {
+      "name": "unchanged function macro_arrival_count",
+      "passed": true
+    },
+    {
+      "name": "unchanged function raw_profile",
+      "passed": true
+    },
+    {
+      "name": "unchanged function profile",
+      "passed": true
+    },
+    {
+      "name": "unchanged function initialize",
+      "passed": true
+    },
+    {
+      "name": "unchanged function simulate",
+      "passed": true
+    },
+    {
+      "name": "baseline original README.md",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged README.md",
+      "passed": true
+    },
+    {
+      "name": "baseline original acceptance.json",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged acceptance.json",
+      "passed": true
+    },
+    {
+      "name": "baseline original cases.json",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged cases.json",
+      "passed": true
+    },
+    {
+      "name": "baseline original diagnostics.py",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged diagnostics.py",
+      "passed": true
+    },
+    {
+      "name": "baseline original dsmc.py",
+      "passed": true
+    },
+    {
+      "name": "baseline original inputs.json",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged inputs.json",
+      "passed": true
+    },
+    {
+      "name": "baseline original plot.py",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged plot.py",
+      "passed": true
+    },
+    {
+      "name": "baseline original pre-run-contract.json",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged pre-run-contract.json",
+      "passed": true
+    },
+    {
+      "name": "baseline original pytest.ini",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged pytest.ini",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/SPARTA-LICENSE.txt",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/SPARTA-LICENSE.txt",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/dsmc-planar-shock.npz",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/dsmc-planar-shock.npz",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/generate.py",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/generate.py",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/base/931001/hs.species",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/base/931001/hs.species",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/base/931001/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/base/931001/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/base/931001/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/base/931001/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/base/931002/hs.species",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/base/931002/hs.species",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/base/931002/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/base/931002/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/base/931002/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/base/931002/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/base/931003/hs.species",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/base/931003/hs.species",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/base/931003/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/base/931003/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/base/931003/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/base/931003/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/base/931004/hs.species",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/base/931004/hs.species",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/base/931004/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/base/931004/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/base/931004/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/base/931004/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/fine_grid/931001/hs.species",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/fine_grid/931001/hs.species",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/fine_grid/931001/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/fine_grid/931001/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/fine_grid/931001/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/fine_grid/931001/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/fine_grid/931002/hs.species",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/fine_grid/931002/hs.species",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/fine_grid/931002/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/fine_grid/931002/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/fine_grid/931002/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/fine_grid/931002/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/fine_grid/931003/hs.species",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/fine_grid/931003/hs.species",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/fine_grid/931003/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/fine_grid/931003/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/fine_grid/931003/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/fine_grid/931003/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/fine_grid/931004/hs.species",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/fine_grid/931004/hs.species",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/fine_grid/931004/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/fine_grid/931004/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/fine_grid/931004/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/fine_grid/931004/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/half_dt/931001/hs.species",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/half_dt/931001/hs.species",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/half_dt/931001/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/half_dt/931001/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/half_dt/931001/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/half_dt/931001/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/half_dt/931002/hs.species",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/half_dt/931002/hs.species",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/half_dt/931002/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/half_dt/931002/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/half_dt/931002/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/half_dt/931002/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/half_dt/931003/hs.species",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/half_dt/931003/hs.species",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/half_dt/931003/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/half_dt/931003/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/half_dt/931003/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/half_dt/931003/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/half_dt/931004/hs.species",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/half_dt/931004/hs.species",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/half_dt/931004/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/half_dt/931004/hs.vss",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/native-inputs/dsmc-planar-shock/half_dt/931004/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/native-inputs/dsmc-planar-shock/half_dt/931004/input.sparta",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/provenance.json",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/provenance.json",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/qualification.json",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/qualification.json",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/qualify.py",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/qualify.py",
+      "passed": true
+    },
+    {
+      "name": "baseline original references/reference-protocol.json",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged references/reference-protocol.json",
+      "passed": true
+    },
+    {
+      "name": "baseline original requirements.txt",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged requirements.txt",
+      "passed": true
+    },
+    {
+      "name": "baseline original run.py",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged run.py",
+      "passed": true
+    },
+    {
+      "name": "baseline original test_arrivals.py",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged test_arrivals.py",
+      "passed": true
+    },
+    {
+      "name": "baseline original test_core.py",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged test_core.py",
+      "passed": true
+    },
+    {
+      "name": "baseline original test_matching.py",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged test_matching.py",
+      "passed": true
+    },
+    {
+      "name": "baseline original test_shock.py",
+      "passed": true
+    },
+    {
+      "name": "candidate unchanged test_shock.py",
+      "passed": true
+    },
+    {
+      "name": "cdf and inverse grid 2.581988897471611",
+      "passed": true
+    },
+    {
+      "name": "sample 2.581988897471611 0 371001",
+      "passed": true
+    },
+    {
+      "name": "sample 2.581988897471611 0 371012",
+      "passed": true
+    },
+    {
+      "name": "sample 2.581988897471611 1 371001",
+      "passed": true
+    },
+    {
+      "name": "sample 2.581988897471611 1 371012",
+      "passed": true
+    },
+    {
+      "name": "sample 2.581988897471611 4 371001",
+      "passed": true
+    },
+    {
+      "name": "sample 2.581988897471611 4 371012",
+      "passed": true
+    },
+    {
+      "name": "sample 2.581988897471611 32 371001",
+      "passed": true
+    },
+    {
+      "name": "sample 2.581988897471611 32 371012",
+      "passed": true
+    },
+    {
+      "name": "extreme inverse 2.581988897471611",
+      "passed": true
+    },
+    {
+      "name": "guard six-update-residual 2.581988897471611",
+      "passed": true
+    },
+    {
+      "name": "guard bracket 2.581988897471611",
+      "passed": true
+    },
+    {
+      "name": "cdf and inverse grid -1.12962014264383",
+      "passed": true
+    },
+    {
+      "name": "sample -1.12962014264383 0 371001",
+      "passed": true
+    },
+    {
+      "name": "sample -1.12962014264383 0 371012",
+      "passed": true
+    },
+    {
+      "name": "sample -1.12962014264383 1 371001",
+      "passed": true
+    },
+    {
+      "name": "sample -1.12962014264383 1 371012",
+      "passed": true
+    },
+    {
+      "name": "sample -1.12962014264383 4 371001",
+      "passed": true
+    },
+    {
+      "name": "sample -1.12962014264383 4 371012",
+      "passed": true
+    },
+    {
+      "name": "sample -1.12962014264383 32 371001",
+      "passed": true
+    },
+    {
+      "name": "sample -1.12962014264383 32 371012",
+      "passed": true
+    },
+    {
+      "name": "extreme inverse -1.12962014264383",
+      "passed": true
+    },
+    {
+      "name": "guard six-update-residual -1.12962014264383",
+      "passed": true
+    },
+    {
+      "name": "guard bracket -1.12962014264383",
+      "passed": true
+    },
+    {
+      "name": "stream production-size 371001",
+      "passed": true
+    },
+    {
+      "name": "stream empty-zero-arrivals 371001",
+      "passed": true
+    },
+    {
+      "name": "stream left-only 371001",
+      "passed": true
+    },
+    {
+      "name": "stream right-only 371001",
+      "passed": true
+    },
+    {
+      "name": "stream both-leaving-incoming 371001",
+      "passed": true
+    },
+    {
+      "name": "stream zero-arrivals-leaving 371001",
+      "passed": true
+    },
+    {
+      "name": "stream cross-domain-guard 371001",
+      "passed": true
+    },
+    {
+      "name": "stream production-size 371012",
+      "passed": true
+    },
+    {
+      "name": "stream empty-zero-arrivals 371012",
+      "passed": true
+    },
+    {
+      "name": "stream left-only 371012",
+      "passed": true
+    },
+    {
+      "name": "stream right-only 371012",
+      "passed": true
+    },
+    {
+      "name": "stream both-leaving-incoming 371012",
+      "passed": true
+    },
+    {
+      "name": "stream zero-arrivals-leaving 371012",
+      "passed": true
+    },
+    {
+      "name": "stream cross-domain-guard 371012",
+      "passed": true
+    }
+  ],
+  "check_count": 163,
+  "failed_checks": [],
+  "details": [
+    {
+      "name": "guard six-update-residual 2.581988897471611",
+      "detail": {
+        "legacy_cdf_calls": 7,
+        "candidate_cdf_calls": 7,
+        "expected_error": "Flux CDF inversion residual"
+      }
+    },
+    {
+      "name": "guard bracket 2.581988897471611",
+      "detail": {
+        "legacy_cdf_calls": 1,
+        "candidate_cdf_calls": 1,
+        "expected_error": "Flux CDF Newton left physical bracket"
+      }
+    },
+    {
+      "name": "guard six-update-residual -1.12962014264383",
+      "detail": {
+        "legacy_cdf_calls": 7,
+        "candidate_cdf_calls": 7,
+        "expected_error": "Flux CDF inversion residual"
+      }
+    },
+    {
+      "name": "guard bracket -1.12962014264383",
+      "detail": {
+        "legacy_cdf_calls": 1,
+        "candidate_cdf_calls": 1,
+        "expected_error": "Flux CDF Newton left physical bracket"
+      }
+    },
+    {
+      "name": "stream production-size 371001",
+      "detail": {
+        "rng_methods": [
+          "random",
+          "normal",
+          "random",
+          "random",
+          "random",
+          "normal",
+          "random"
+        ],
+        "output_particle_count": 5045
+      }
+    },
+    {
+      "name": "stream empty-zero-arrivals 371001",
+      "detail": {
+        "rng_methods": [
+          "random",
+          "normal",
+          "random",
+          "random",
+          "normal",
+          "random"
+        ],
+        "output_particle_count": 0
+      }
+    },
+    {
+      "name": "stream left-only 371001",
+      "detail": {
+        "rng_methods": [
+          "random",
+          "normal",
+          "random",
+          "random",
+          "random",
+          "normal",
+          "random"
+        ],
+        "output_particle_count": 5045
+      }
+    },
+    {
+      "name": "stream right-only 371001",
+      "detail": {
+        "rng_methods": [
+          "random",
+          "normal",
+          "random",
+          "random",
+          "normal",
+          "random"
+        ],
+        "output_particle_count": 5043
+      }
+    },
+    {
+      "name": "stream both-leaving-incoming 371001",
+      "detail": {
+        "rng_methods": [
+          "random",
+          "normal",
+          "random",
+          "random",
+          "random",
+          "normal",
+          "random",
+          "random"
+        ],
+        "output_particle_count": 277
+      }
+    },
+    {
+      "name": "stream zero-arrivals-leaving 371001",
+      "detail": {
+        "rng_methods": [
+          "random",
+          "normal",
+          "random",
+          "random",
+          "normal",
+          "random"
+        ],
+        "output_particle_count": 1
+      }
+    },
+    {
+      "name": "stream cross-domain-guard 371001",
+      "detail": {
+        "rng_methods": [
+          "random",
+          "normal",
+          "random",
+          "random"
+        ],
+        "output_particle_count": null
+      }
+    },
+    {
+      "name": "stream production-size 371012",
+      "detail": {
+        "rng_methods": [
+          "random",
+          "normal",
+          "random",
+          "random",
+          "random",
+          "normal",
+          "random"
+        ],
+        "output_particle_count": 5046
+      }
+    },
+    {
+      "name": "stream empty-zero-arrivals 371012",
+      "detail": {
+        "rng_methods": [
+          "random",
+          "normal",
+          "random",
+          "random",
+          "normal",
+          "random"
+        ],
+        "output_particle_count": 0
+      }
+    },
+    {
+      "name": "stream left-only 371012",
+      "detail": {
+        "rng_methods": [
+          "random",
+          "normal",
+          "random",
+          "random",
+          "random",
+          "normal",
+          "random"
+        ],
+        "output_particle_count": 5046
+      }
+    },
+    {
+      "name": "stream right-only 371012",
+      "detail": {
+        "rng_methods": [
+          "random",
+          "normal",
+          "random",
+          "random",
+          "normal",
+          "random",
+          "random"
+        ],
+        "output_particle_count": 5045
+      }
+    },
+    {
+      "name": "stream both-leaving-incoming 371012",
+      "detail": {
+        "rng_methods": [
+          "random",
+          "normal",
+          "random",
+          "random",
+          "random",
+          "normal",
+          "random",
+          "random"
+        ],
+        "output_particle_count": 277
+      }
+    },
+    {
+      "name": "stream zero-arrivals-leaving 371012",
+      "detail": {
+        "rng_methods": [
+          "random",
+          "normal",
+          "random",
+          "random",
+          "normal",
+          "random"
+        ],
+        "output_particle_count": 1
+      }
+    },
+    {
+      "name": "stream cross-domain-guard 371012",
+      "detail": {
+        "rng_methods": [
+          "random",
+          "normal",
+          "random",
+          "random"
+        ],
+        "output_particle_count": null
+      }
+    }
+  ],
+  "timings": [
+    {
+      "repetition": 0,
+      "implementation": "legacy",
+      "kind": "flux",
+      "seconds": 0.07488895799906459
+    },
+    {
+      "repetition": 0,
+      "implementation": "legacy",
+      "kind": "stream",
+      "seconds": 0.05048379200161435
+    },
+    {
+      "repetition": 0,
+      "implementation": "legacy",
+      "kind": "collision",
+      "seconds": 0.09415116700256476
+    },
+    {
+      "repetition": 0,
+      "implementation": "legacy",
+      "kind": "raw-profile",
+      "seconds": 0.02287945799616864
+    },
+    {
+      "repetition": 0,
+      "implementation": "candidate",
+      "kind": "flux",
+      "seconds": 0.05470766699727392
+    },
+    {
+      "repetition": 0,
+      "implementation": "candidate",
+      "kind": "stream",
+      "seconds": 0.043558874996961094
+    },
+    {
+      "repetition": 0,
+      "implementation": "candidate",
+      "kind": "collision",
+      "seconds": 0.09364520799863385
+    },
+    {
+      "repetition": 0,
+      "implementation": "candidate",
+      "kind": "raw-profile",
+      "seconds": 0.022981374997470994
+    },
+    {
+      "repetition": 1,
+      "implementation": "legacy",
+      "kind": "flux",
+      "seconds": 0.07511962500575464
+    },
+    {
+      "repetition": 1,
+      "implementation": "legacy",
+      "kind": "stream",
+      "seconds": 0.049983917000645306
+    },
+    {
+      "repetition": 1,
+      "implementation": "legacy",
+      "kind": "collision",
+      "seconds": 0.09374087500327732
+    },
+    {
+      "repetition": 1,
+      "implementation": "legacy",
+      "kind": "raw-profile",
+      "seconds": 0.022946292003325652
+    },
+    {
+      "repetition": 1,
+      "implementation": "candidate",
+      "kind": "flux",
+      "seconds": 0.05615616599970963
+    },
+    {
+      "repetition": 1,
+      "implementation": "candidate",
+      "kind": "stream",
+      "seconds": 0.04334949999611126
+    },
+    {
+      "repetition": 1,
+      "implementation": "candidate",
+      "kind": "collision",
+      "seconds": 0.09349741699406877
+    },
+    {
+      "repetition": 1,
+      "implementation": "candidate",
+      "kind": "raw-profile",
+      "seconds": 0.02295291699556401
+    },
+    {
+      "repetition": 2,
+      "implementation": "legacy",
+      "kind": "flux",
+      "seconds": 0.07487199999741279
+    },
+    {
+      "repetition": 2,
+      "implementation": "legacy",
+      "kind": "stream",
+      "seconds": 0.05020508400048129
+    },
+    {
+      "repetition": 2,
+      "implementation": "legacy",
+      "kind": "collision",
+      "seconds": 0.09405058300035307
+    },
+    {
+      "repetition": 2,
+      "implementation": "legacy",
+      "kind": "raw-profile",
+      "seconds": 0.023054459001286887
+    },
+    {
+      "repetition": 2,
+      "implementation": "candidate",
+      "kind": "flux",
+      "seconds": 0.05523337500198977
+    },
+    {
+      "repetition": 2,
+      "implementation": "candidate",
+      "kind": "stream",
+      "seconds": 0.04324066599656362
+    },
+    {
+      "repetition": 2,
+      "implementation": "candidate",
+      "kind": "collision",
+      "seconds": 0.09394662499835249
+    },
+    {
+      "repetition": 2,
+      "implementation": "candidate",
+      "kind": "raw-profile",
+      "seconds": 0.023040125000989065
+    }
+  ],
+  "baseline_component_profile": [
+    {
+      "file": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-28-37-2026-11-23/dsmc/linux-runtime-repair/check_components.py",
+      "line": 140,
+      "function": "workload",
+      "primitive_calls": 4,
+      "calls": 4,
+      "own_seconds": 0.001194697,
+      "cumulative_seconds": 0.27590633400000003
+    },
+    {
+      "file": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-28-37-2026-11-23/dsmc/linux-runtime-repair/baseline/source/dsmc.py",
+      "line": 63,
+      "function": "sample",
+      "primitive_calls": 2100,
+      "calls": 2100,
+      "own_seconds": 0.033567396,
+      "cumulative_seconds": 0.11938995100000001
+    },
+    {
+      "file": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-28-37-2026-11-23/dsmc/linux-runtime-repair/baseline/source/dsmc.py",
+      "line": 95,
+      "function": "collision_round",
+      "primitive_calls": 200,
+      "calls": 200,
+      "own_seconds": 0.047217771000000006,
+      "cumulative_seconds": 0.098764161
+    },
+    {
+      "file": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-28-37-2026-11-23/dsmc/linux-runtime-repair/baseline/source/dsmc.py",
+      "line": 50,
+      "function": "cdf",
+      "primitive_calls": 7528,
+      "calls": 7528,
+      "own_seconds": 0.037326416,
+      "cumulative_seconds": 0.065644558
+    },
+    {
+      "file": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-28-37-2026-11-23/dsmc/linux-runtime-repair/baseline/source/dsmc.py",
+      "line": 192,
+      "function": "stream_open",
+      "primitive_calls": 300,
+      "calls": 300,
+      "own_seconds": 0.020530455000000003,
+      "cumulative_seconds": 0.058486434000000004
+    },
+    {
+      "file": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-28-37-2026-11-23/dsmc/linux-runtime-repair/baseline/source/dsmc.py",
+      "line": 85,
+      "function": "matching_order",
+      "primitive_calls": 200,
+      "calls": 200,
+      "own_seconds": 0.007119455,
+      "cumulative_seconds": 0.039141085
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 51,
+      "function": "_wrapfunc",
+      "primitive_calls": 600,
+      "calls": 600,
+      "own_seconds": 0.00016958700000000001,
+      "cumulative_seconds": 0.032629789
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 1085,
+      "function": "argsort",
+      "primitive_calls": 200,
+      "calls": 200,
+      "own_seconds": 5.4752e-05,
+      "cumulative_seconds": 0.031976378
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'argsort' of 'numpy.ndarray' objects>",
+      "primitive_calls": 200,
+      "calls": 200,
+      "own_seconds": 0.031841207,
+      "cumulative_seconds": 0.031841207
+    },
+    {
+      "file": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-28-37-2026-11-23/dsmc/linux-runtime-repair/baseline/source/dsmc.py",
+      "line": 213,
+      "function": "raw_profile",
+      "primitive_calls": 100,
+      "calls": 100,
+      "own_seconds": 0.022021424,
+      "cumulative_seconds": 0.023289709000000002
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'reduce' of 'numpy.ufunc' objects>",
+      "primitive_calls": 28776,
+      "calls": 28776,
+      "own_seconds": 0.022211019000000002,
+      "cumulative_seconds": 0.022211019000000002
+    },
+    {
+      "file": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-28-37-2026-11-23/dsmc/linux-runtime-repair/baseline/source/dsmc.py",
+      "line": 52,
+      "function": "<lambda>",
+      "primitive_calls": 15056,
+      "calls": 15056,
+      "own_seconds": 0.018840142,
+      "cumulative_seconds": 0.018840142
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 69,
+      "function": "_wrapreduction",
+      "primitive_calls": 11528,
+      "calls": 11528,
+      "own_seconds": 0.00413903,
+      "cumulative_seconds": 0.018716917
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 2400,
+      "function": "any",
+      "primitive_calls": 17224,
+      "calls": 17224,
+      "own_seconds": 0.0035193810000000002,
+      "cumulative_seconds": 0.018346119
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 89,
+      "function": "_wrapreduction_any_all",
+      "primitive_calls": 17224,
+      "calls": 17224,
+      "own_seconds": 0.005684767,
+      "cumulative_seconds": 0.014826738
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 2255,
+      "function": "sum",
+      "primitive_calls": 3408,
+      "calls": 3408,
+      "own_seconds": 0.0011284090000000001,
+      "cumulative_seconds": 0.012346837000000001
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 2781,
+      "function": "max",
+      "primitive_calls": 8120,
+      "calls": 8120,
+      "own_seconds": 0.002056126,
+      "cumulative_seconds": 0.009763066
+    },
+    {
+      "file": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-28-37-2026-11-23/dsmc/linux-runtime-repair/baseline/source/dsmc.py",
+      "line": 148,
+      "function": "totals",
+      "primitive_calls": 1200,
+      "calls": 1200,
+      "own_seconds": 0.00265906,
+      "cumulative_seconds": 0.006238592
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/lib/_function_base_impl.py",
+      "line": 1461,
+      "function": "interp",
+      "primitive_calls": 1936,
+      "calls": 1936,
+      "own_seconds": 0.0009373830000000001,
+      "cumulative_seconds": 0.003099398
+    },
+    {
+      "file": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-28-37-2026-11-23/dsmc/linux-runtime-repair/baseline/source/dsmc.py",
+      "line": 38,
+      "function": "__init__",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 4.2713e-05,
+      "cumulative_seconds": 0.0015907920000000002
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy._core._multiarray_umath.interp>",
+      "primitive_calls": 1936,
+      "calls": 1936,
+      "own_seconds": 0.001531428,
+      "cumulative_seconds": 0.001531428
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'items' of 'dict' objects>",
+      "primitive_calls": 28752,
+      "calls": 28752,
+      "own_seconds": 0.0015250460000000002,
+      "cumulative_seconds": 0.0015250460000000002
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/lib/_shape_base_impl.py",
+      "line": 622,
+      "function": "column_stack",
+      "primitive_calls": 300,
+      "calls": 300,
+      "own_seconds": 0.000782962,
+      "cumulative_seconds": 0.001130661
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'copy' of 'numpy.ndarray' objects>",
+      "primitive_calls": 800,
+      "calls": 800,
+      "own_seconds": 0.0011129030000000002,
+      "cumulative_seconds": 0.0011129030000000002
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.asarray>",
+      "primitive_calls": 24528,
+      "calls": 24528,
+      "own_seconds": 0.001111226,
+      "cumulative_seconds": 0.001111226
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/polynomial/legendre.py",
+      "line": 1521,
+      "function": "leggauss",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 7.359200000000001e-05,
+      "cumulative_seconds": 0.0009172500000000001
+    },
+    {
+      "file": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-28-37-2026-11-23/dsmc/linux-runtime-repair/baseline/source/dsmc.py",
+      "line": 179,
+      "function": "macro_arrival_count",
+      "primitive_calls": 600,
+      "calls": 600,
+      "own_seconds": 0.00087533,
+      "cumulative_seconds": 0.00087533
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/numeric.py",
+      "line": 658,
+      "function": "flatnonzero",
+      "primitive_calls": 200,
+      "calls": 200,
+      "own_seconds": 0.00014192800000000001,
+      "cumulative_seconds": 0.0007718810000000001
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 2395,
+      "function": "_any_dispatcher",
+      "primitive_calls": 17224,
+      "calls": 17224,
+      "own_seconds": 0.000767821,
+      "cumulative_seconds": 0.000767821
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.zeros>",
+      "primitive_calls": 4456,
+      "calls": 4456,
+      "own_seconds": 0.000576353,
+      "cumulative_seconds": 0.000576353
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'astype' of 'numpy.ndarray' objects>",
+      "primitive_calls": 340,
+      "calls": 340,
+      "own_seconds": 0.0005111720000000001,
+      "cumulative_seconds": 0.0005111720000000001
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 1959,
+      "function": "nonzero",
+      "primitive_calls": 200,
+      "calls": 200,
+      "own_seconds": 3.4557e-05,
+      "cumulative_seconds": 0.00046876000000000003
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/lib/_type_check_impl.py",
+      "line": 265,
+      "function": "iscomplexobj",
+      "primitive_calls": 1944,
+      "calls": 1944,
+      "own_seconds": 0.000332052,
+      "cumulative_seconds": 0.00043925
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/polynomial/legendre.py",
+      "line": 833,
+      "function": "legval",
+      "primitive_calls": 24,
+      "calls": 24,
+      "own_seconds": 0.000413785,
+      "cumulative_seconds": 0.000434914
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 2776,
+      "function": "_max_dispatcher",
+      "primitive_calls": 8120,
+      "calls": 8120,
+      "own_seconds": 0.00038107200000000004,
+      "cumulative_seconds": 0.00038107200000000004
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'nonzero' of 'numpy.ndarray' objects>",
+      "primitive_calls": 200,
+      "calls": 200,
+      "own_seconds": 0.00037099100000000004,
+      "cumulative_seconds": 0.00037099100000000004
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 2609,
+      "function": "cumsum",
+      "primitive_calls": 200,
+      "calls": 200,
+      "own_seconds": 5.2422e-05,
+      "cumulative_seconds": 0.000326382
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.isinstance>",
+      "primitive_calls": 3664,
+      "calls": 3664,
+      "own_seconds": 0.000228965,
+      "cumulative_seconds": 0.000228965
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.arange>",
+      "primitive_calls": 224,
+      "calls": 224,
+      "own_seconds": 0.00022512700000000001,
+      "cumulative_seconds": 0.00022512700000000001
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'cumsum' of 'numpy.ndarray' objects>",
+      "primitive_calls": 200,
+      "calls": 200,
+      "own_seconds": 0.000199909,
+      "cumulative_seconds": 0.000199909
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/numeric.py",
+      "line": 143,
+      "function": "ones",
+      "primitive_calls": 100,
+      "calls": 100,
+      "own_seconds": 0.00016107800000000002,
+      "cumulative_seconds": 0.00018470700000000002
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.array>",
+      "primitive_calls": 1656,
+      "calls": 1656,
+      "own_seconds": 0.000177416,
+      "cumulative_seconds": 0.000177416
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.len>",
+      "primitive_calls": 3332,
+      "calls": 3332,
+      "own_seconds": 0.000174942,
+      "cumulative_seconds": 0.000174942
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 2250,
+      "function": "_sum_dispatcher",
+      "primitive_calls": 3408,
+      "calls": 3408,
+      "own_seconds": 0.000168023,
+      "cumulative_seconds": 0.000168023
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/polynomial/legendre.py",
+      "line": 1416,
+      "function": "legcompanion",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 6.5919e-05,
+      "cumulative_seconds": 0.00014079
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 1846,
+      "function": "ravel",
+      "primitive_calls": 200,
+      "calls": 200,
+      "own_seconds": 8.063100000000001e-05,
+      "cumulative_seconds": 0.00013976800000000002
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/lib/_shape_base_impl.py",
+      "line": 618,
+      "function": "_column_stack_dispatcher",
+      "primitive_calls": 300,
+      "calls": 300,
+      "own_seconds": 4.8854000000000004e-05,
+      "cumulative_seconds": 0.000136054
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/multiarray.py",
+      "line": 161,
+      "function": "concatenate",
+      "primitive_calls": 2904,
+      "calls": 2904,
+      "own_seconds": 0.00012709100000000002,
+      "cumulative_seconds": 0.00012709100000000002
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/polynomial/legendre.py",
+      "line": 613,
+      "function": "legder",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 4.333e-05,
+      "cumulative_seconds": 0.000124416
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/lib/_function_base_impl.py",
+      "line": 1457,
+      "function": "_interp_dispatcher",
+      "primitive_calls": 1936,
+      "calls": 1936,
+      "own_seconds": 0.00011095600000000001,
+      "cumulative_seconds": 0.00011095600000000001
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.issubclass>",
+      "primitive_calls": 1976,
+      "calls": 1976,
+      "own_seconds": 0.000109158,
+      "cumulative_seconds": 0.000109158
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/linalg/_linalg.py",
+      "line": 1199,
+      "function": "eigvalsh",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 6.833200000000001e-05,
+      "cumulative_seconds": 0.00010808200000000001
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/lib/_type_check_impl.py",
+      "line": 168,
+      "function": "_is_type_dispatcher",
+      "primitive_calls": 1944,
+      "calls": 1944,
+      "own_seconds": 0.00010433600000000001,
+      "cumulative_seconds": 0.00010433600000000001
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'append' of 'list' objects>",
+      "primitive_calls": 1600,
+      "calls": 1600,
+      "own_seconds": 9.8678e-05,
+      "cumulative_seconds": 9.8678e-05
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/shape_base.py",
+      "line": 207,
+      "function": "_arrays_for_stack_dispatcher",
+      "primitive_calls": 300,
+      "calls": 300,
+      "own_seconds": 5.8332e-05,
+      "cumulative_seconds": 8.72e-05
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/multiarray.py",
+      "line": 901,
+      "function": "bincount",
+      "primitive_calls": 2000,
+      "calls": 2000,
+      "own_seconds": 8.277000000000001e-05,
+      "cumulative_seconds": 8.277000000000001e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.asanyarray>",
+      "primitive_calls": 1800,
+      "calls": 1800,
+      "own_seconds": 8.2342e-05,
+      "cumulative_seconds": 8.2342e-05
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/function_base.py",
+      "line": 25,
+      "function": "linspace",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 4.8921e-05,
+      "cumulative_seconds": 7.995700000000001e-05
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/numeric.py",
+      "line": 1437,
+      "function": "moveaxis",
+      "primitive_calls": 16,
+      "calls": 16,
+      "own_seconds": 2.654e-05,
+      "cumulative_seconds": 6.954400000000001e-05
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/polynomial/polyutils.py",
+      "line": 66,
+      "function": "as_series",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 2.0621e-05,
+      "cumulative_seconds": 5.8832e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.max>",
+      "primitive_calls": 416,
+      "calls": 416,
+      "own_seconds": 5.790400000000001e-05,
+      "cumulative_seconds": 5.790400000000001e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.getattr>",
+      "primitive_calls": 608,
+      "calls": 608,
+      "own_seconds": 4.9054e-05,
+      "cumulative_seconds": 4.9054e-05
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/multiarray.py",
+      "line": 361,
+      "function": "where",
+      "primitive_calls": 700,
+      "calls": 700,
+      "own_seconds": 4.0924e-05,
+      "cumulative_seconds": 4.0924e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.empty>",
+      "primitive_calls": 272,
+      "calls": 272,
+      "own_seconds": 3.9487e-05,
+      "cumulative_seconds": 3.9487e-05
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/_ufunc_config.py",
+      "line": 434,
+      "function": "inner",
+      "primitive_calls": 4,
+      "calls": 4,
+      "own_seconds": 3.4374e-05,
+      "cumulative_seconds": 3.8959000000000004e-05
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/numeric.py",
+      "line": 1373,
+      "function": "normalize_axis_tuple",
+      "primitive_calls": 32,
+      "calls": 32,
+      "own_seconds": 2.4418000000000002e-05,
+      "cumulative_seconds": 3.1672000000000004e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'ravel' of 'numpy.ndarray' objects>",
+      "primitive_calls": 200,
+      "calls": 200,
+      "own_seconds": 3.0946000000000005e-05,
+      "cumulative_seconds": 3.0946000000000005e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.hasattr>",
+      "primitive_calls": 300,
+      "calls": 300,
+      "own_seconds": 2.8868000000000002e-05,
+      "cumulative_seconds": 2.8868000000000002e-05
+    },
+    {
+      "file": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-28-37-2026-11-23/dsmc/linux-runtime-repair/baseline/source/dsmc.py",
+      "line": 26,
+      "function": "positive_flux",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 1.9582e-05,
+      "cumulative_seconds": 1.9582e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'max' of 'numpy.ndarray' objects>",
+      "primitive_calls": 16,
+      "calls": 16,
+      "own_seconds": 4.167e-06,
+      "cumulative_seconds": 1.9e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'disable' of '_lsprof.Profiler' objects>",
+      "primitive_calls": 1,
+      "calls": 1,
+      "own_seconds": 1.8167e-05,
+      "cumulative_seconds": 1.8167e-05
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 3267,
+      "function": "ndim",
+      "primitive_calls": 208,
+      "calls": 208,
+      "own_seconds": 1.6720000000000003e-05,
+      "cumulative_seconds": 1.6720000000000003e-05
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/_methods.py",
+      "line": 42,
+      "function": "_amax",
+      "primitive_calls": 16,
+      "calls": 16,
+      "own_seconds": 3.334e-06,
+      "cumulative_seconds": 1.4833e-05
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/lib/_type_check_impl.py",
+      "line": 646,
+      "function": "common_type",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 8.708e-06,
+      "cumulative_seconds": 1.4499000000000001e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.any>",
+      "primitive_calls": 16,
+      "calls": 16,
+      "own_seconds": 6.1280000000000005e-06,
+      "cumulative_seconds": 1.3126000000000001e-05
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/linalg/_linalg.py",
+      "line": 148,
+      "function": "_commonType",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 6.290000000000001e-06,
+      "cumulative_seconds": 1.2167e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'reshape' of 'numpy.ndarray' objects>",
+      "primitive_calls": 48,
+      "calls": 48,
+      "own_seconds": 1.1959e-05,
+      "cumulative_seconds": 1.1959e-05
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 3263,
+      "function": "_ndim_dispatcher",
+      "primitive_calls": 208,
+      "calls": 208,
+      "own_seconds": 1.1457e-05,
+      "cumulative_seconds": 1.1457e-05
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/numeric.py",
+      "line": 654,
+      "function": "_flatnonzero_dispatcher",
+      "primitive_calls": 200,
+      "calls": 200,
+      "own_seconds": 1.0842e-05,
+      "cumulative_seconds": 1.0842e-05
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 1955,
+      "function": "_nonzero_dispatcher",
+      "primitive_calls": 200,
+      "calls": 200,
+      "own_seconds": 1.0717000000000001e-05,
+      "cumulative_seconds": 1.0717000000000001e-05
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 1842,
+      "function": "_ravel_dispatcher",
+      "primitive_calls": 200,
+      "calls": 200,
+      "own_seconds": 1.0708000000000001e-05,
+      "cumulative_seconds": 1.0708000000000001e-05
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 1081,
+      "function": "_argsort_dispatcher",
+      "primitive_calls": 200,
+      "calls": 200,
+      "own_seconds": 1.0628e-05,
+      "cumulative_seconds": 1.0628e-05
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+      "line": 2605,
+      "function": "_cumsum_dispatcher",
+      "primitive_calls": 200,
+      "calls": 200,
+      "own_seconds": 1.0451e-05,
+      "cumulative_seconds": 1.0451e-05
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'sum' of 'numpy.ndarray' objects>",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 2.376e-06,
+      "cumulative_seconds": 8.501e-06
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/_ufunc_config.py",
+      "line": 410,
+      "function": "__enter__",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 3.627e-06,
+      "cumulative_seconds": 7.461e-06
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/polynomial/polyutils.py",
+      "line": 699,
+      "function": "_as_int",
+      "primitive_calls": 24,
+      "calls": 24,
+      "own_seconds": 4.416000000000001e-06,
+      "cumulative_seconds": 6.290000000000001e-06
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/_methods.py",
+      "line": 50,
+      "function": "_sum",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 1.4170000000000002e-06,
+      "cumulative_seconds": 6.125000000000001e-06
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/linalg/_linalg.py",
+      "line": 142,
+      "function": "_realType",
+      "primitive_calls": 16,
+      "calls": 16,
+      "own_seconds": 3.999e-06,
+      "cumulative_seconds": 5.833000000000001e-06
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/linalg/_linalg.py",
+      "line": 123,
+      "function": "_makearray",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 4.248000000000001e-06,
+      "cumulative_seconds": 5.6660000000000005e-06
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/multiarray.py",
+      "line": 1089,
+      "function": "copyto",
+      "primitive_calls": 100,
+      "calls": 100,
+      "own_seconds": 5.18e-06,
+      "cumulative_seconds": 5.18e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.sorted>",
+      "primitive_calls": 16,
+      "calls": 16,
+      "own_seconds": 5.083e-06,
+      "cumulative_seconds": 5.083e-06
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/polynomial/polyutils.py",
+      "line": 125,
+      "function": "<genexpr>",
+      "primitive_calls": 16,
+      "calls": 16,
+      "own_seconds": 4.997000000000001e-06,
+      "cumulative_seconds": 4.997000000000001e-06
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/polynomial/polyutils.py",
+      "line": 37,
+      "function": "trimseq",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 3.958e-06,
+      "cumulative_seconds": 4.624e-06
+    },
+    {
+      "file": "<frozen abc>",
+      "line": 117,
+      "function": "__instancecheck__",
+      "primitive_calls": 4,
+      "calls": 4,
+      "own_seconds": 1.9590000000000002e-06,
+      "cumulative_seconds": 4.418e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy._core._multiarray_umath._make_extobj>",
+      "primitive_calls": 12,
+      "calls": 12,
+      "own_seconds": 4.001e-06,
+      "cumulative_seconds": 4.001e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method _operator.index>",
+      "primitive_calls": 64,
+      "calls": 64,
+      "own_seconds": 3.9180000000000004e-06,
+      "cumulative_seconds": 3.9180000000000004e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.lib.array_utils.normalize_axis_index>",
+      "primitive_calls": 40,
+      "calls": 40,
+      "own_seconds": 3.6680000000000003e-06,
+      "cumulative_seconds": 3.6680000000000003e-06
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/_ufunc_config.py",
+      "line": 426,
+      "function": "__exit__",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 1.7920000000000002e-06,
+      "cumulative_seconds": 3.208e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'transpose' of 'numpy.ndarray' objects>",
+      "primitive_calls": 16,
+      "calls": 16,
+      "own_seconds": 3.1260000000000002e-06,
+      "cumulative_seconds": 3.1260000000000002e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'set' of '_contextvars.ContextVar' objects>",
+      "primitive_calls": 12,
+      "calls": 12,
+      "own_seconds": 3.0430000000000003e-06,
+      "cumulative_seconds": 3.0430000000000003e-06
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/linalg/_linalg.py",
+      "line": 128,
+      "function": "isComplexType",
+      "primitive_calls": 16,
+      "calls": 16,
+      "own_seconds": 2.088e-06,
+      "cumulative_seconds": 2.962e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'result_type' of 'numpy._core._multiarray_umath._array_converter' objects>",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 2.8740000000000004e-06,
+      "cumulative_seconds": 2.8740000000000004e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'reset' of '_contextvars.ContextVar' objects>",
+      "primitive_calls": 12,
+      "calls": 12,
+      "own_seconds": 2.791e-06,
+      "cumulative_seconds": 2.791e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method _abc._abc_instancecheck>",
+      "primitive_calls": 4,
+      "calls": 4,
+      "own_seconds": 2.459e-06,
+      "cumulative_seconds": 2.459e-06
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/linalg/_linalg.py",
+      "line": 198,
+      "function": "_assert_stacked_square",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 2.2080000000000003e-06,
+      "cumulative_seconds": 2.2080000000000003e-06
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/numeric.py",
+      "line": 1918,
+      "function": "isscalar",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 1.4170000000000002e-06,
+      "cumulative_seconds": 2.043e-06
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/polynomial/polyutils.py",
+      "line": 120,
+      "function": "<genexpr>",
+      "primitive_calls": 16,
+      "calls": 16,
+      "own_seconds": 2.001e-06,
+      "cumulative_seconds": 2.001e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'insert' of 'list' objects>",
+      "primitive_calls": 16,
+      "calls": 16,
+      "own_seconds": 1.917e-06,
+      "cumulative_seconds": 1.917e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'get' of 'dict' objects>",
+      "primitive_calls": 16,
+      "calls": 16,
+      "own_seconds": 1.8340000000000001e-06,
+      "cumulative_seconds": 1.8340000000000001e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'wrap' of 'numpy._core._multiarray_umath._array_converter' objects>",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 1.584e-06,
+      "cumulative_seconds": 1.584e-06
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/linalg/_linalg.py",
+      "line": 192,
+      "function": "_assert_stacked_2d",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 1.415e-06,
+      "cumulative_seconds": 1.415e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'upper' of 'str' objects>",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 1.373e-06,
+      "cumulative_seconds": 1.373e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'as_arrays' of 'numpy._core._multiarray_umath._array_converter' objects>",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 1.2900000000000001e-06,
+      "cumulative_seconds": 1.2900000000000001e-06
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/_ufunc_config.py",
+      "line": 400,
+      "function": "__init__",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 1.083e-06,
+      "cumulative_seconds": 1.083e-06
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method builtins.abs>",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 1.001e-06,
+      "cumulative_seconds": 1.001e-06
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/numeric.py",
+      "line": 1433,
+      "function": "_moveaxis_dispatcher",
+      "primitive_calls": 16,
+      "calls": 16,
+      "own_seconds": 8.780000000000001e-07,
+      "cumulative_seconds": 8.780000000000001e-07
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/_core/function_base.py",
+      "line": 20,
+      "function": "_linspace_dispatcher",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 7.100000000000001e-07,
+      "cumulative_seconds": 7.100000000000001e-07
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/lib/_type_check_impl.py",
+      "line": 642,
+      "function": "_common_type_dispatcher",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 4.61e-07,
+      "cumulative_seconds": 4.61e-07
+    },
+    {
+      "file": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/numpy/linalg/_linalg.py",
+      "line": 1195,
+      "function": "_eigvalsh_dispatcher",
+      "primitive_calls": 8,
+      "calls": 8,
+      "own_seconds": 3.75e-07,
+      "cumulative_seconds": 3.75e-07
+    }
+  ],
+  "failure": null,
+  "component_seconds": 1.9141297500027576,
+  "PDE_executions": 0,
+  "source_edits_during_execution": 0
+}

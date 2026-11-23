@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "status": "STATIC_R3_COMPONENT_PREFLIGHT_PASS_AWAITING_ROOT_AUTHORIZATION",
+  "reviewer": "/root/batch_weno",
+  "started_at_utc": "2026-11-23T15:25:27Z",
+  "ended_at_utc": "2026-11-23T15:27:12.438758+00:00",
+  "protocol_sha256": "980326f0665340dffe04dfa6244c5dbf07c81176e7d3ec3b5e81aecd71631c5d",
+  "checker_sha256": "48a03cc3dc0cb8215d7cb9b2255c07ae03b0b11718d0367d6a5d5ddda44d5a16",
+  "baseline_R2_dsmc_sha256": "a101a0a2b909900cf85b803a88e27f32389b60eda635a1e38fd76ea2f49a48eb",
+  "candidate_R3_dsmc_sha256": "16a88083bfcae16c105886d5cc2c2415cf3f5bf86b3adf9b4552904d19052eec",
+  "binding_count": 120,
+  "all_120_bindings_match": true,
+  "mismatches": [],
+  "baseline_is_exact_qualified_R2_candidate": true,
+  "candidate_is_exact_prepared_sort_key_proposal": true,
+  "method": "Read complete checker/protocol and exact source diff as text; inspect forwarding proxy/finally; hash all120 bindings. No target import, compilation, component/timing/PDE execution, source edit or Git operation.",
+  "candidate_imported_or_compiled": false,
+  "component_executed_by_reviewer": false,
+  "PDE_executions": 0,
+  "PUB_edits": 0,
+  "Git_mutations": 0,
+  "execution_authorized_by_this_review": false,
+  "main_authorized": false,
+  "runtime_status": "UNMEASURED_FOR_R3",
+  "source_static_findings": [
+    "Only matching_order changes from the qualified R2 baseline. It keeps one identical rng.permutation call. On nonempty integer keys0..255, uint8 conversion is exact and preserves strict order and equality. Stable argsort therefore uniquely retains identical within-tie order and complete matching indices. No probability law, seed, RNG consumption or particle pairing change.",
+    "keys.size protects empty min/max. np.issubdtype excludes noninteger keys; exact Python-int extrema avoid narrow NumPy scalar promotion/overflow and cover uint64 maximum. Negative and >=256 keys retain original dtype and ordering. No floating expression tree is changed.",
+    "Advanced indexing creates a key copy; cast and argsort do not mutate the original index/particle arrays. Output remains the RNG permutation index dtype. Strided backing and readonly fixtures explicitly test nonmutation.",
+    "The forwarding SortRecorder replaces only a private loaded module np binding. argsort snapshots keys then invokes real NumPy argsort. finally restores the real binding on success or captured exception. It neither changes the shared NumPy module nor adds a RNG call.",
+    "Nine other numerical functions remain text-protected, including collision_round, macro_arrival_count and simulate. All existing physical cell-position, cap, majorant, probability, finite and conservation guards remain. Ordinary numeric ndarray scope excludes arbitrary subclass/monkeypatch/concurrent mutation and memory-exhaustion ordering claims."
+  ],
+  "inventory_audit": {
+    "retained_R2": 163,
+    "remove_changed_matching_text": -1,
+    "small_matching": 54,
+    "production_matching": 6,
+    "exhaustive_five_labels": 120,
+    "isolated_collision": 6,
+    "total": 348,
+    "sum_verified": true,
+    "pre_timing_gate": "Exact len(checks)==planned_checks required, then every check must pass before cProfile/timing. Normal sample/extreme/six normalstream fixtures still require no errors; dedicated failure controls require expected errors."
+  },
+  "control_review": [
+    "27fixed fixtures cover all eight native signed/unsigned integer types, empty, negatives,255/256boundary, uint64 maximum, big-endian keys, fractional/signedzero float and bool fallback, noncontiguous backing, readonly arrays; each uses both fixed seeds.",
+    "Three configurations initialize actual production-sized keys at192/128/192cells and5047/5047/10094particles, with explicit expected count checks, for both seeds; no trajectory evolves.",
+    "All180 matching comparisons require successful old/new completion, exact output dtype/shape/bytes, input/backing nonmutation, exact RNG call/argument/output/final-state equality, one argsort with kind=stable and the intended candidate key dtype. Integer/bool cases also match independent Python stable sorted from the same permutation.",
+    "All120permutations of five fixed labels test equal-key stability. Reversed-tie-group mutants must differ for every permutation. Unconditional-cast mutants must fail negative/256fixtures. A predeclared extra-RNG-draw mutant must be detected. Controls fold into existing outcomes without changing348 count.",
+    "Six uninstrumented isolated collision_round comparisons require successful completion and complete position/velocity/diagnostic/RNG equality; positions remain unchanged. This protects composition beyond sorting outputs without a short simulate/PDE.",
+    "Original pure artificial CDF controls still verify physical bracket rejection and six updates followed by seventh residual evaluation. Cross-domain stream rejection retains expected error and payload comparisons."
+  ],
+  "execution_envelope": {
+    "checker_invocations": 1,
+    "required_external_shared_deadline_seconds": 30,
+    "PDE_main_simulate_reference_generation_allowed": false,
+    "profiling_after_348_pass_only": true,
+    "profile": "One fixed R2-only cProfile of four original kernels plus three matching workloads.",
+    "timing": "Exactly three repetitions R2 thenR3; original four kernels plus250complete matching calls for each of three actual key sets. Complete matching includes permutation/gather/guard/cast/argsort/output; no adaptive repeat.",
+    "failure_retention": "Full unequal evidence/log/receipt retained and no timing after any failed/incomplete check. Parent driver must enforce30s and preserve timeout evidence.",
+    "claim_limit": "A component timing improvement is not proof of complete120s Linux main margin. No R3 measurement has occurred in this review."
+  },
+  "prior_qualification_chain": {
+    "R2_protocol_sha256": "f49a86e1d54e143eab762e944f819bc208bc2159c81b3d57e3308ec66d5f0aaa",
+    "R2_checker_sha256": "cbd23009d3d2aedf25d3cecbfbd1d2312a4327615cea86c8a2c7e8e18044710e",
+    "R2_result_sha256": "19b6dd6fef76a6c810be2cbb43ba70d499ff8197e80b47dbdf63515e11a3175b",
+    "R2_actual_passed": true,
+    "R2_actual_check_count": 163,
+    "source_preservation": "R2 source/checker/protocol/receipt and frozen three-change main tree remain separate. This review writes only this new private JSON."
+  },
+  "nonblocking_documentary_limits": [
+    "Immediate oracle is the exact R2 candidate, not literal original Nov23. The top-level scope and verified load/source hashes are correct; inherited CDF_reference prose names the retained Nov23-to-R2 qualification chain.",
+    "Small matching outputs are compared with forwarding instrumentation. The checker does not separately run uninstrumented matching for every small fixture; transparent forwarding, independent Python stable goldens and uninstrumented full collision controls support the scoped evidence. Do not claim an exhaustive empirical instrumented/uninstrumented comparison."
+  ],
+  "must_fix_before_component_execution": [],
+  "later_main_requirements": {
+    "state": "NOT_AUTHORIZED",
+    "original_pytest": 20,
+    "base_seeds": 12,
+    "complete_runs": 15,
+    "scientific_gates": 129,
+    "shared_seconds": 120,
+    "retain": "Old public source/ZIP/result/reference and failed histories, all inputs/particles/steps/seeds, random stream/order, physical law and finite/budget/majorant diagnostics. Separate new source contract/root review plus full scientific array/history/decision equivalence; no reference regeneration or criterion relaxation."
+  },
+  "summary_ja": "独立静的preflight PASS。120bindings一致、R2対R3の比較先正確、matching変更のみ。348件算出、型/境界/全順序/Python stable golden/RNG/3負例/6collision/proxy finally復元/計時前全件gateを確認。成分も未実行、親の別認可と外部共有30秒単回が条件。main認可・科学合格・速度保証を意味しない。"
+}

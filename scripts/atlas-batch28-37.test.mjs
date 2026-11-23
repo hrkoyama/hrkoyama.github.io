@@ -11,6 +11,7 @@ const json=p=>JSON.parse(bytes(p));
 const sha=p=>createHash('sha256').update(bytes(p)).digest('hex');
 const baseline=json('scripts/fixtures/atlas-batch28-37-baseline.json');
 const concurrent=json('scripts/fixtures/atlas-batch28-37-concurrent.json');
+const beforeRuntimeRepair=json('scripts/fixtures/atlas-batch28-37-pre-repair.json');
 const expected={
  'coefficient-diffusion':['checkerboard-diffusion','rotated-anisotropic-diffusion'],
  'slab-ewald':['neutral-slab-yb'],
@@ -56,6 +57,7 @@ assert 'None' not in html
 });
 
 test('batch28–37 preserves every prior scientific distribution and reference identity',()=>{
+ for(const [p,h] of Object.entries(beforeRuntimeRepair.immutable_files))assert.equal(sha(p),h,p+'/published-batch-preserved');
  for(const [p,h] of Object.entries(baseline.immutable_files)) assert.equal(sha(p),h,p);
  const methods=json('catalog/atlas-methods.json').methods;
  for(const [id,status] of Object.entries(baseline.method_statuses)) assert.equal(methods.find(x=>x.id===id)?.status,id==='slab-ewald'?'educational-example':status,id);
@@ -78,6 +80,7 @@ test('batch28–37 preserves all primary gallery records and prior release metad
  const previews=json('numerical-methods-atlas/gallery/preview-manifest.json').items;
  for(const old of baseline.preview_manifest_items) assert.deepEqual(previews.find(x=>x.id===old.id),old,old.id);
  const registry=json('numerical-methods-atlas/validation/releases.json');
+ for(const release of beforeRuntimeRepair.release_registry.releases.filter(x=>x.group!=='dsmc-shock'))assert.deepEqual(registry.releases.find(x=>x.group===release.group),release,release.group+'/unmodified-active-release');
  assert.deepEqual(registry.releases.filter(x=>!Object.hasOwn(expected,x.group)),baseline.release_registry.releases);
  assert.equal(registry.case_count,baseline.release_registry.case_count+newIds.length);
  assert.deepEqual(registry.releases.filter(x=>Object.hasOwn(expected,x.group)).map(x=>x.group),Object.keys(expected));
@@ -95,6 +98,13 @@ test('new fixed-input packets expose verified booleans, finite CSV and reviewed 
   assert.deepEqual(Object.keys(result.checks).sort(),[...ids].sort());assert.ok(Object.values(result.checks).every(x=>x===true));
   for(const c of result.cases){assert.equal(c.passed,true);assert.ok(c.records.length);assert.ok(Object.keys(c.checks).length);assert.ok(Object.values(c.checks).every(x=>x===true));}
   const manifest=json(base+'source-manifest.json');
+  if(group==='dsmc-shock'){
+   const oldBase='code/validated-examples/2026-11-23/dsmc-shock/';
+   assert.equal(release.edition,'2026-11-24');assert.notEqual(sha(base+'dsmc.py'),beforeRuntimeRepair.immutable_files[oldBase+'dsmc.py']);
+   for(const name of ['inputs.json','acceptance.json','requirements.txt','diagnostics.py','plot.py','run.py','test_arrivals.py','test_core.py','test_matching.py','test_shock.py',...Object.keys(manifest.files).filter(n=>n.startsWith('references/'))])assert.equal(sha(base+name),beforeRuntimeRepair.immutable_files[oldBase+name],name+'/same-science-and-reference');
+   const oldCases=json(oldBase+'cases.json'),currentCases=json(base+'cases.json');
+   for(let i=0;i<oldCases.length;i++)for(const [key,value] of Object.entries(oldCases[i])){if(['algorithm','validation'].includes(key)){for(const lang of ['ja','en'])assert.ok(currentCases[i][key][lang].startsWith(value[lang]),key+'/'+lang+'/retain-original-scope');}else assert.deepEqual(currentCases[i][key],value,key);}
+  }
   for(const id of ids){assert.ok(Object.keys(manifest.files).some(p=>p.startsWith(`results/${id}`)&&p.endsWith('.csv')),id);assert.ok(manifest.files[`results/${id}.png`],id);assert.ok(manifest.files[`results/${id}-preview.png`],id);}
   assert.ok(manifest.files['pre-run-contract.json']);assert.ok(manifest.files['acceptance.json']);
   for(const key of ['archive','manifest','verification','requirements']){

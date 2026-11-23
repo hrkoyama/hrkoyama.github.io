@@ -1,0 +1,30 @@
+seed 931003
+units si
+dimension 3
+global gridcut 0.0
+boundary o p p
+create_box 0 16 0 1 0 1
+create_grid 256 1 1
+global fnum 0.0026041666666666665 nrho 1 temp 1
+species hs.species HS
+mixture gas HS nrho 1 temp 1
+collide vss all hs.vss
+timestep 0.0025000000000000001
+region left block 0 8.0 INF INF INF INF
+region right block 8.0 16 INF INF INF INF
+mixture up HS nrho 1 temp 1 vstream 2.5819888974716112 0 0
+mixture down HS nrho 2.2857142857142856 temp 2.078125 vstream 1.1296201426438299 0 0
+create_particles up n 0 region left
+create_particles down n 0 region right
+fix inletL emit/face up xlo
+fix inletR emit/face down xhi
+stats 1000
+stats_style step cpu np nattempt ncoll
+run 12000
+compute basic grid all all nrho u v w usq vsq wsq
+compute tensor pflux/grid all all momxx momxy momxz
+compute heat eflux/grid all all heatx
+fix avg ave/grid all 10 240 2400 c_basic[*] c_tensor[*] c_heat[*]
+dump profiles grid all 2400 profiles.grid id xc f_avg[*]
+dump_modify profiles format float %.17g
+run 12000
