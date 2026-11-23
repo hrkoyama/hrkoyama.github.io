@@ -15,7 +15,7 @@
 Python 3.10以上とNode.js 22以上を使う。以下はPython標準ライブラリとNode標準機能だけで実行でき、ChatGPTやEnterpriseへの接続、推論APIキーは不要。
 
 1. 対象の本文・データを編集する。
-2. `python3 scripts/refresh-site.py` を実行する。公開用の進捗と取得案内、共通ナビゲーション、サイトマップ、研究相談索引、サイト内検索を順に更新する。
+2. 公開前は必要な修正をステージし、`python3 scripts/prepare-indexes.py` を明示的に一度実行する。隔離コピー内の通常refreshで、公開用の進捗と取得案内、共通ナビゲーション、サイトマップ、研究相談索引、サイト内検索を更新する。作業中の更新は1日1回程度にまとめ、通常コミットごとの全再生成は行わない。
 3. `node --test scripts/*.test.mjs` を実行する。`python3 scripts/check-site.py` は更新コマンド内でも実行される。
 4. `python3 -m http.server 4180 --bind 127.0.0.1` で見本を開き、日本語・英語と狭い画面を確認する。終了時はサーバーを停止する。
 5. `git diff --check` と差分を確認してコミットする。`git remote get-url --push origin` が `hrkoyama/hrkoyama.github.io` を指すことを確認してから、`git push origin main` で公開する。
@@ -367,13 +367,15 @@ rank正規化split/folded Rhat、bulk ESS、5%/95% tail ESSと、x・峰指示�
 
 既存MCMC章の節ID・式・URLを保ち、日英の理論・測定範囲・旧Gaussianと新配布版へのリンクを同じ正本から生成する。目的・分野・確率数理の読書リンク・統一目次・ギャラリーも同期する。既存81図を保ち、新しい物理目標1件だけで82問題・実行入口38とする。通常の軽量CIは7補助配布版・26補助ケース、共通22例と量子を含む詳細CIは必要時の手動実行を維持する。公開後にhrkoyama.github.ioの日英本文・図・ZIP・診断参照とLinux実追試を確認する。
 
-## 索引の自動更新と鮮度確認
+## 索引のまとめ更新と公開前の鮮度確認
 
-公開用の新しい作業コピーでは、最初にPython 3.10以上（通常は3.12）で `python3 scripts/install-index-hooks.py` を実行する。Gitの `extensions.worktreeConfig` が未設定の新規クローンでは先に `git config extensions.worktreeConfig true` を設定する。インストーラは実際のoriginと全push先がhrkoyama/hrkoyama.github.ioであることを確認し、その作業コピーだけに `.githooks` とビルド用Pythonを設定する。既存の独自フックがある場合は上書きしない。
+2026年11月23日の指示により、索引更新は作業のまとめとして1日1回程度に集約し、公開前には必要な変更をステージして `python3 scripts/prepare-indexes.py` を明示的に一度実行する。通常のコミットごとに全再生成しない。「1日1回」は作業のまとめ方であり、定時ジョブやMacの常駐・背景処理は新設しない。過去の節にある「コミット前の自動生成」は、この運用に置き換える。
 
-以後は `git add` で選んだ修正をコミットすると、pre-commitがステージされた内容の隔離コピーで通常refreshを実行する。目次、章ナビゲーション、手法・実行例の一覧、検索、サイトマップ、AI向けJSON・Markdownまで再生成し、差分になった生成物だけを元の作業コピーとコミットへ反映する。別の未ステージ修正を取り込まない。生成先に未ステージ修正や同名の未追跡ファイルがあれば自動上書きせず終了する。数値計算の全面再実行や自動pushは行わない。
+任意のコミットフックを使う新しい公開作業コピーでは、Python 3.10以上（通常は3.12）で `python3 scripts/install-index-hooks.py` を実行する。Gitの `extensions.worktreeConfig` が未設定の新規クローンでは先に `git config extensions.worktreeConfig true` を設定する。インストーラは実際のoriginと全push先がhrkoyama/hrkoyama.github.ioであることを確認し、その作業コピーだけに `.githooks` とビルド用Pythonを設定する。既存の独自フックがある場合は上書きしない。
 
-`python3 scripts/prepare-indexes.py --check` は同じ隔離再生成で、ステージ済み索引の更新漏れを検査する。変更・追加・削除された生成物があれば失敗し、元のファイルやGitインデックスは変更しない。Public site checksも毎回この検査を実行してから通常の参照検査とNode検査を行う。CIを通さずにPages配信設定だけで更新する手順を、鮮度検査の代わりにしない。
+通常のpre-commitは短い案内だけを表示して終了する。`ATLAS_REFRESH_INDEXES_ON_COMMIT=1 git commit ...` と明示した場合に限り、従来どおりステージされた内容の隔離コピーで通常refreshを実行する。明示的な `prepare-indexes.py` も同じ処理で、目次、章ナビゲーション、手法・実行例の一覧、検索、サイトマップ、AI向けJSON・Markdownを再生成し、差分になった生成物だけを元の作業コピーとステージへ反映する。別の未ステージ修正を取り込まない。生成先に未ステージ修正や同名の未追跡ファイルがあれば自動上書きせず終了する。数値計算の全面再実行や自動pushは行わない。
+
+`python3 scripts/prepare-indexes.py --check` は同じ隔離再生成で、ステージ済み索引の更新漏れを検査する。変更・追加・削除された生成物があれば失敗し、元のファイルやGitインデックスは変更しない。この検査も全再生成を伴うため通常コミットには付けず、Public site checksでは従来どおり毎回実行してから通常の参照検査とNode検査を行う。公開前の明示更新とCIの厳密な鮮度検査は省略しない。CIを通さずにPages配信設定だけで更新する手順を、鮮度検査の代わりにしない。
 
 アトラス内検索は以前の索引へ追記せず、実在する日英の各章・公開資料の題名と節見出し・本文から再構築する。統一目次の題名は現在の公開H1を優先する。rootとアトラスのサイトマップも現在のcanonical HTMLから作り直し、削除されたページを残さない。`check-atlas-indexes.py` は実ページと目次HTML/JSON/Markdown・言語対応・章検索・サイトマップの章名と収録範囲を独立に照合する。新章は目次の正本にも一度だけ分類し、未登録や重複を黙って落とさない。
 
@@ -385,11 +387,11 @@ rank正規化split/folded Rhat、bulk ESS、5%/95% tail ESSと、x・峰指示�
 
 `scripts/build-atlas-solutions.py` は保存済み `assets/reference-solutions.json` の全ケースから `/numerical-methods-atlas/solutions/` のHTML・JSON・Markdownを生成する。解析解、非線形方程式の数値解を含む半解析参照、製造解を区別する。多次元問題の断面を全2次元場の保存データと呼ばない。問題の図は既存の検証済みギャラリー、方程式は正本の式一覧へ接続し、新しい数値結果や架空の図を作らない。
 
-これらも通常refresh、コミット前の自動生成、CIの鮮度確認に含める。図のない新問題や保存根拠の不一致は不足として検出し、既存の図示・検証手順で整えた後に索引へ反映する。
+これらも通常refresh、作業のまとめ・公開前の明示生成、CIの鮮度確認に含める。図のない新問題や保存根拠の不一致は不足として検出し、既存の図示・検証手順で整えた後に索引へ反映する。
 
 ## 図から問題別の方程式・参照・コードへ進む
 
-全テスト問題の図と問題名は `/numerical-methods-atlas/problems/{id}/` の問題別ページへ接続する。`catalog/atlas-problem-links.json` は、既存の問題IDと方程式・参照解・関連手法の対応および日英の条件説明の正本。`atlas_problem_links.py` が実在する公開資料と保存済みの成功記録を照合し、`build-atlas-problems.py` が四つの区画を持つHTML・JSON・Markdownと全件JSONを生成する。図・方程式・解の索引を生成した後、検索とサイトマップの生成前に実行する。通常refresh、コミット前の自動更新、CIの鮮度確認に含め、生成物への手作業の追記を避ける。
+全テスト問題の図と問題名は `/numerical-methods-atlas/problems/{id}/` の問題別ページへ接続する。`catalog/atlas-problem-links.json` は、既存の問題IDと方程式・参照解・関連手法の対応および日英の条件説明の正本。`atlas_problem_links.py` が実在する公開資料と保存済みの成功記録を照合し、`build-atlas-problems.py` が四つの区画を持つHTML・JSON・Markdownと全件JSONを生成する。図・方程式・解の索引を生成した後、検索とサイトマップの生成前に実行する。通常refresh、公開前の明示更新、CIの鮮度確認に含め、生成物への手作業の追記を避ける。
 
 同じ方程式でもパラメータ・初期値・次元・標本化が違えば、対応が分かる注記と「関連モデルの参照」の区別を保つ。図の断面を全多次元場と呼ばない。厳密解のライブラリにない参照も、実行例に保存された解析解・独立計算・統計診断の根拠へ直接つなぐ。未登録の解や実行例を作ったことにしない。
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Install the automatic index hook in this authorized public worktree only."""
+"""Install the opt-in index hook in this authorized public worktree only."""
 from pathlib import Path
 import os
 import re
@@ -39,7 +39,9 @@ def install():
         raise RuntimeError('Existing default hooks were preserved ('+', '.join(active)+'). Integrate them before installing.')
     git('config', '--worktree', 'atlas.indexPython', sys.executable)
     git('config', '--worktree', 'core.hooksPath', '.githooks')
-    print('Installed automatic index generation for this hrkoyama public worktree.')
+    print('Installed the opt-in index hook for this hrkoyama public worktree.')
+    print('Normal commits skip refresh. Before publishing run scripts/prepare-indexes.py explicitly.')
+    print('Optional commit-time refresh: ATLAS_REFRESH_INDEXES_ON_COMMIT=1 git commit ...')
     print('Build interpreter: '+sys.executable)
 
 

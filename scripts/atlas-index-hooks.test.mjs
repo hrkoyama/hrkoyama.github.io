@@ -19,6 +19,7 @@ function fixture(t,script=builder){
   mkdirSync(join(cwd,'scripts'),{recursive:true});mkdirSync(scratch);
   const env={...process.env,ATLAS_INDEX_SCRATCH:scratch,PYTHONDONTWRITEBYTECODE:'1'};
   for(const key of Object.keys(env))if(key.startsWith('GIT_'))delete env[key];
+  delete env.ATLAS_REFRESH_INDEXES_ON_COMMIT;
   const git=(args,extra={})=>execFileSync('git',args,{cwd,env:{...env,...extra},encoding:'utf8'}).trim();
   const write=(path,value)=>writeFileSync(join(cwd,path),value);
   const read=path=>readFileSync(join(cwd,path),'utf8');
@@ -33,7 +34,7 @@ function fixture(t,script=builder){
 }
 const succeeded=result=>assert.equal(result.status,0,result.stdout+'\n'+result.stderr);
 
-test('automatic preparation uses staged inputs and preserves partial and unrelated edits',t=>{
+test('explicit preparation uses staged inputs and preserves partial and unrelated edits',t=>{
   const f=fixture(t);
   f.write('source.txt','unstaged source\n');f.write('unrelated.txt','unstaged unrelated\n');f.write('private-note.txt','leave untracked\n');
   succeeded(f.run());
@@ -147,13 +148,37 @@ test('a split active index is supported and an existing index lock prevents all 
   assert.equal(f.read('.git/index.lock'),'owned by another Git operation');
 });
 
-test('installed hooks run automatically for a path-limited commit using its temporary active index',t=>{
+test('normal commits skip preparation and preserve partial, unrelated and untracked edits',t=>{
+  const f=fixture(t,"raise SystemExit('The default commit must not run the generator')\n");
+  succeeded(install(f));
+  f.git(['-c','core.hooksPath=/dev/null','commit','-qm','initial']);
+  const trap="raise SystemExit('The default commit must not invoke index preparation')\n";
+  f.write('scripts/prepare-indexes.py',trap);
+  f.write('source.txt','committed source\n');f.git(['add','source.txt']);
+  f.write('source.txt','partially staged working edit\n');
+  f.write('unrelated.txt','leave this unstaged\n');f.write('private-note.txt','leave untracked\n');
+  const result=spawnSync('git',['commit','-qm','source only'],{cwd:f.cwd,env:f.env,encoding:'utf8'});
+  succeeded(result);
+  assert.match(result.stdout+'\n'+result.stderr,/Index refresh skipped/);
+  assert.equal(f.git(['show','HEAD:source.txt']),'committed source');
+  assert.equal(f.git(['show','HEAD:index.txt']),'old index');
+  assert.equal(f.git(['show',':source.txt']),'committed source');
+  assert.equal(f.read('source.txt'),'partially staged working edit\n');
+  assert.equal(f.git(['show','HEAD:unrelated.txt']),'unrelated');
+  assert.equal(f.read('unrelated.txt'),'leave this unstaged\n');
+  assert.equal(f.read('private-note.txt'),'leave untracked\n');
+  assert.ok(!f.git(['ls-files']).includes('private-note.txt'));
+  assert.equal(f.read('scripts/prepare-indexes.py'),trap);
+  assert.deepEqual(readdirSync(f.scratch),[],'normal commits do not export a build snapshot');
+});
+
+test('opted-in hooks refresh a path-limited commit using its temporary active index',t=>{
   const f=fixture(t);succeeded(install(f));
   assert.equal(f.git(['config','--worktree','--get','core.hooksPath']),'.githooks');
   assert.ok(f.git(['config','--worktree','--get','atlas.indexPython']).includes('python'));
   f.git(['-c','core.hooksPath=/dev/null','commit','-qm','initial']);
   f.write('source.txt','committed source\n');f.write('unrelated.txt','leave this unstaged\n');
-  const result=spawnSync('git',['commit','-qm','source only','--','source.txt'],{cwd:f.cwd,env:f.env,encoding:'utf8'});
+  const result=spawnSync('git',['commit','-qm','source only','--','source.txt'],{cwd:f.cwd,env:{...f.env,ATLAS_REFRESH_INDEXES_ON_COMMIT:'1'},encoding:'utf8'});
   succeeded(result);
   assert.equal(f.git(['show','HEAD:index.txt']),'index: committed source');
   assert.equal(f.git(['show','HEAD:source.txt']),'committed source');
