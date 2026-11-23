@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "edition": "2026-11-24",
+  "input_sha256": "b2d28aafbee770461b77dd6402995b46e16f65a9ec358469ae22ddf1534c034e",
+  "metrics": {
+    "derivative": {
+      "orders": [
+        1.997835828747401,
+        1.9994589813151908,
+        1.9998647468123867
+      ],
+      "best_h": 1e-05
+    },
+    "conditioning": {
+      "condition_inf": 40004.000100000005,
+      "forward_relative_inf": 0.010000000000000009,
+      "residual_relative_inf": 4.999750010977895e-07,
+      "amplification": 20001.00000608655,
+      "backward_error": 2.4874378164069127e-07
+    },
+    "ode": {
+      "forward": {
+        "orders": [
+          1.0314439396217934,
+          1.0153656417866046,
+          1.0075973087463028
+        ],
+        "fine_error": 0.002311297124324041
+      },
+      "backward": {
+        "orders": [
+          0.9711939953058653,
+          0.9852923362130247,
+          0.9925670920184255
+        ],
+        "fine_error": 0.0022873455888585137
+      },
+      "trapezoidal": {
+        "orders": [
+          2.0011734866147397,
+          2.0002931285172743,
+          2.000073266567393
+        ],
+        "fine_error": 4.790177975166898e-06
+      }
+    },
+    "advection": {
+      "upwind": {
+        "orders": [
+          0.7500718440703358,
+          0.8563206173383353
+        ],
+        "fine_l2": 0.04623130591904053
+      },
+      "lax-wendroff": {
+        "orders": [
+          1.9503223084833978,
+          1.9921321833200447
+        ],
+        "fine_l2": 0.002988513658398907
+      }
+    },
+    "heat": {
+      "joint_orders": [
+        2.0049236901234715,
+        2.0012274170819926
+      ],
+      "time_orders": [
+        1.0010998342133979,
+        1.0005495125887942,
+        1.0002746553233806
+      ]
+    },
+    "boundary": {
+      "dirichlet": {
+        "orders": [
+          2.008366739526131,
+          2.002087242827693,
+          2.0005215338771842
+        ],
+        "fine_error": 0.0002008218096865022
+      },
+      "neumann": {
+        "orders": [
+          2.033754081756254,
+          2.0083667395241402,
+          2.0020872428062626
+        ],
+        "fine_error": 0.0008035776793782201
+      },
+      "robin": {
+        "orders": [
+          1.9995355456256039,
+          1.9998838533187053,
+          1.999970960334451
+        ],
+        "fine_error": 2.6935165625907587e-05
+      },
+      "mixed-good": {
+        "orders": [
+          1.9993622175054964,
+          1.9998405117823952,
+          1.9999601252703174
+        ],
+        "fine_error": 5.530307585832617e-05
+      },
+      "mixed-naive": {
+        "orders": [
+          1.039148875685394,
+          1.0199957339664463,
+          1.010104725877808
+        ],
+        "fine_error": 0.007867803075858326
+      }
+    },
+    "splitting": {
+      "lie": {
+        "orders": [
+          1.0081045661484391,
+          1.0035299628121332,
+          1.0016340528332213
+        ],
+        "fine_error": 0.005264834607158231
+      },
+      "strang": {
+        "orders": [
+          2.001050317579188,
+          2.000262356677102,
+          2.000065575345669
+        ],
+        "fine_error": 1.4031283507218073e-05
+      },
+      "commuting_error": 1.2212453270876722e-15
+    },
+    "oscillator": {
+      "forward": {
+        "max_energy_relative_error": 8.477010007367888e+25,
+        "max_modified_energy_drift": 8.477010007367888e+25,
+        "final_energy_fraction": 8.477010007367888e+25,
+        "final_phase_error": -1.988085053016107
+      },
+      "backward": {
+        "max_energy_relative_error": 1.0,
+        "max_modified_energy_drift": 1.0,
+        "final_energy_fraction": 1.1796612238639944e-26,
+        "final_phase_error": -1.988085053016107
+      },
+      "symplectic": {
+        "max_energy_relative_error": 0.052631575867839064,
+        "max_modified_energy_drift": 3.219646771412954e-15,
+        "final_energy_fraction": 0.9801548939967529,
+        "final_phase_error": 0.25265243429419115
+      },
+      "verlet": {
+        "max_energy_relative_error": 0.0024999999258304983,
+        "max_modified_energy_drift": 9.992007221626409e-15,
+        "final_energy_fraction": 0.9998953172690934,
+        "final_phase_error": 0.2500311255478209
+      }
+    }
+  },
+  "checks": {
+    "derivative_order": true,
+    "roundoff_floor_visible": true,
+    "norms_match_cell_integrals": true,
+    "conditioned_solution_matches_decimal": true,
+    "small_residual_large_error": true,
+    "condition_bound": true,
+    "ode_forward": true,
+    "ode_backward": true,
+    "ode_trapezoidal": true,
+    "stiff_expected_behavior": true,
+    "advection_upwind": false,
+    "advection_mass_upwind": true,
+    "advection_lax-wendroff": true,
+    "advection_mass_lax-wendroff": true,
+    "measured_fourier_symbol": true,
+    "intentional_unstable_examples_grow": true,
+    "heat_joint_order": true,
+    "heat_time_order": true,
+    "boundary_dirichlet": true,
+    "boundary_neumann": true,
+    "boundary_robin": true,
+    "boundary_mixed-good": true,
+    "boundary_mixed-naive": true,
+    "boundary_equation_residual": true,
+    "splitting_lie": true,
+    "splitting_strang": true,
+    "commuting_control": true,
+    "oscillator_forward_expected_growth": true,
+    "oscillator_backward_expected_decay": true,
+    "symplectic_energy_band": true,
+    "verlet_energy_band": true,
+    "modified_oscillator_invariants": true,
+    "one_dof_symplectic_defect": true
+  },
+  "passed": false,
+  "scope": "Fixed small educational exercises; intentional unstable/low-order controls are checked as diagnostics, not accepted as accurate algorithms."
+}

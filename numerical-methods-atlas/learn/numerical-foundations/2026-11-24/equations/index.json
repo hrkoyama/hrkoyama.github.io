@@ -1,0 +1,182 @@
+{
+  "01-1": {
+    "file": "equation-01-1.svg",
+    "tex": "e=U-u,\\qquad E_{\\rm abs}=|e|,\\qquad E_{\\rm rel}=\\frac{|e|}{|u|}\\quad(u\\ne0).",
+    "plain": "e=U-u; absolute error=|e|; relative error=|e|/|u| (u≠0)."
+  },
+  "01-2": {
+    "file": "equation-01-2.svg",
+    "tex": "D_h\\sin x=\\frac{\\sin(x+h)-\\sin(x-h)}{2h},\\qquad E(h)\\approx C_1h^2+C_2\\frac{\\epsilon_{\\rm mach}}h.",
+    "plain": "D_h sin x=[sin(x+h)-sin(x-h)]/(2h); E(h)≈C₁h²+C₂ εmach/h."
+  },
+  "02-1": {
+    "file": "equation-02-1.svg",
+    "tex": "\\|e\\|_1=\\int_\\Omega|e|\\,dx,\\quad\\|e\\|_2=\\left(\\int_\\Omega|e|^2\\,dx\\right)^{1/2},\\quad\\|e\\|_\\infty=\\mathop{\\rm ess\\,sup}_{\\Omega}|e|.",
+    "plain": "||e||₁=∫Ω |e| dx; ||e||₂=√(∫Ω |e|² dx); ||e||∞=ess supΩ |e|."
+  },
+  "02-2": {
+    "file": "equation-02-2.svg",
+    "tex": "\\|e\\|_{1,h}=\\sum_jw_j|e_j|,\\quad\\|e\\|_{2,h}=\\sqrt{\\sum_jw_j|e_j|^2},\\quad\\|e\\|_{\\infty,h}=\\max_j|e_j|.",
+    "plain": "||e||₁,h=Σwⱼ|eⱼ|; ||e||₂,h=√(Σwⱼ|eⱼ|²); ||e||∞,h=max|eⱼ|."
+  },
+  "02-3": {
+    "file": "equation-02-3.svg",
+    "tex": "\\|e\\|_{2,h}=\\sqrt{L}\\,\\sqrt{\\frac1N\\sum_j|e_j|^2}.",
+    "plain": "L=Nh のとき ||e||₂,h=√L × RMS(e)."
+  },
+  "03-1": {
+    "file": "equation-03-1.svg",
+    "tex": "r=b-A\\widehat x,\\quad x-\\widehat x=A^{-1}r,\\quad\\frac{\\|x-\\widehat x\\|}{\\|x\\|}\\le\\kappa(A)\\frac{\\|r\\|}{\\|b\\|}.",
+    "plain": "r=b-Ax̂; x-x̂=A⁻¹r; ||x-x̂||/||x|| ≤ κ(A)||r||/||b||."
+  },
+  "03-2": {
+    "file": "equation-03-2.svg",
+    "tex": "\\eta=\\frac{\\|b-A\\widehat x\\|}{\\|A\\|\\,\\|\\widehat x\\|+\\|b\\|}.",
+    "plain": "規格化した後退誤差の指標 η=||b-Ax̂||/(||A||||x̂||+||b||)."
+  },
+  "04-1": {
+    "file": "equation-04-1.svg",
+    "tex": "E(h)\\approx Ch^p,\\qquad p_{\\rm obs}=\\frac{\\log(E(h)/E(h/2))}{\\log2}.",
+    "plain": "E(h)≈Chᵖ; p_obs=log(E(h)/E(h/2))/log 2."
+  },
+  "05-1": {
+    "file": "equation-05-1.svg",
+    "tex": "U^{n+1}=B_hU^n+b^n,\\qquad\\|B_h^n\\|\\le C_T\\quad(n\\Delta t\\le T).",
+    "plain": "Uⁿ⁺¹=B_h Uⁿ+bⁿ; ||B_hⁿ||≤C_T for nΔt≤T, with C_T independent of h,Δt."
+  },
+  "05-2": {
+    "file": "equation-05-2.svg",
+    "tex": "e^N=B_h^Ne^0+\\sum_{j=0}^{N-1}B_h^{N-1-j}\\delta^j,\\quad\\|e^N\\|\\le C_T\\left(\\|e^0\\|+T\\max_j\\frac{\\|\\delta^j\\|}{\\Delta t}\\right).",
+    "plain": "eᴺ=B_hᴺe⁰+ΣB_hᴺ⁻¹⁻ʲδʲ; ||eᴺ||≤C_T (||e⁰||+T max||δʲ||/Δt)."
+  },
+  "06-1": {
+    "file": "equation-06-1.svg",
+    "tex": "y_{n+1}=R(z)y_n,\\qquad z=\\lambda\\Delta t,\\qquad\\mathcal S=\\{z:|R(z)|\\le1\\}.",
+    "plain": "yₙ₊₁=R(z)yₙ; z=λΔt; absolute stability region S={z:|R(z)|≤1}."
+  },
+  "06-2": {
+    "file": "equation-06-2.svg",
+    "tex": "R_{\\rm FE}=1+z,\\quad R_{\\rm BE}=\\frac1{1-z},\\quad R_{\\rm TR}=\\frac{1+z/2}{1-z/2}.",
+    "plain": "R_FE=1+z; R_BE=1/(1-z); R_TR=(1+z/2)/(1-z/2)."
+  },
+  "07-1": {
+    "file": "equation-07-1.svg",
+    "tex": "\\Re z\\le0\\ \\Longrightarrow\\ |R(z)|\\le1.",
+    "plain": "A-stability: Re z≤0 implies |R(z)|≤1."
+  },
+  "07-2": {
+    "file": "equation-07-2.svg",
+    "tex": "R_{\\rm BE}(z)\\to0,\\qquad R_{\\rm TR}(z)\\to-1\\quad(z\\to-\\infty).",
+    "plain": "As z→-∞: R_BE→0 but R_TR→-1. L-stability also requires A-stability."
+  },
+  "08-1": {
+    "file": "equation-08-1.svg",
+    "tex": "U_j^n=\\widehat U^n e^{ij\\theta},\\qquad\\widehat U^{n+1}=G(\\theta)\\widehat U^n.",
+    "plain": "Uⱼⁿ=Ûⁿ exp(i jθ); Ûⁿ⁺¹=G(θ)Ûⁿ."
+  },
+  "08-2": {
+    "file": "equation-08-2.svg",
+    "tex": "G_{\\rm up}=1-\\nu+\\nu e^{-i\\theta},\\qquad G_{\\rm LW}=1-i\\nu\\sin\\theta+\\nu^2(\\cos\\theta-1).",
+    "plain": "G_up=1-ν+ν exp(-iθ); G_LW=1-iν sinθ+ν²(cosθ-1)."
+  },
+  "09-1": {
+    "file": "equation-09-1.svg",
+    "tex": "u_t+a u_x=0,\\quad u(x,t)=u_0(x-at),\\qquad U_j^{n+1}=(1-\\nu)U_j^n+\\nu U_{j-1}^n.",
+    "plain": "u_t+a u_x=0; u(x,t)=u₀(x-at); Uⱼⁿ⁺¹=(1-ν)Uⱼⁿ+νUⱼ₋₁ⁿ."
+  },
+  "09-2": {
+    "file": "equation-09-2.svg",
+    "tex": "\\nu=\\frac{a\\Delta t}{h},\\qquad r=\\frac{\\kappa\\Delta t}{h^2}\\le\\frac12\\quad\\text{(1D explicit heat scheme)}.",
+    "plain": "ν=aΔt/h; explicit 1D heat scheme: r=κΔt/h²≤1/2."
+  },
+  "10-1": {
+    "file": "equation-10-1.svg",
+    "tex": "A_n=|G|^nA_0,\\qquad\\alpha_{\\rm num}=-\\frac{\\log|G|}{\\Delta t}\\quad(|G|>0).",
+    "plain": "Aₙ=|G|ⁿ A₀; numerical damping rate αnum=-log|G|/Δt for |G|>0."
+  },
+  "10-2": {
+    "file": "equation-10-2.svg",
+    "tex": "u_t+a u_x\\approx\\mu_{\\rm num}u_{xx},\\qquad\\mu_{\\rm num}=\\frac{a h}{2}(1-\\nu)\\quad(a>0).",
+    "plain": "Modified-equation leading term: u_t+a u_x≈μnum u_xx, μnum=a h(1-ν)/2 (a>0)."
+  },
+  "11-1": {
+    "file": "equation-11-1.svg",
+    "tex": "\\omega_{\\rm num}=-\\frac{\\phi(\\theta)}{\\Delta t},\\quad c_{\\rm ph}=\\frac{\\omega_{\\rm num}}k,\\quad c_{\\rm gr}=\\frac{d\\omega_{\\rm num}}{dk},\\quad\\theta=kh.",
+    "plain": "ωnum=-φ(θ)/Δt; phase speed=ωnum/k; group speed=dωnum/dk; θ=kh."
+  },
+  "11-2": {
+    "file": "equation-11-2.svg",
+    "tex": "\\frac{c_{\\rm ph}}a=-\\frac{\\phi}{\\nu\\theta},\\qquad\\frac{c_{\\rm gr}}a=-\\frac1\\nu\\frac{d\\phi}{d\\theta}.",
+    "plain": "c_ph/a=-φ/(νθ); c_gr/a=-(dφ/dθ)/ν."
+  },
+  "12-1": {
+    "file": "equation-12-1.svg",
+    "tex": "U_j^{n+1}=\\tfrac12\\nu(1+\\nu)U_{j-1}^n+(1-\\nu^2)U_j^n+\\tfrac12\\nu(\\nu-1)U_{j+1}^n.",
+    "plain": "L-W: Uⱼⁿ⁺¹=ν(1+ν)Uⱼ₋₁ⁿ/2+(1-ν²)Uⱼⁿ+ν(ν-1)Uⱼ₊₁ⁿ/2."
+  },
+  "13-1": {
+    "file": "equation-13-1.svg",
+    "tex": "u=g_D,\\qquad\\partial_nu=g_N,\\qquad\\alpha u+\\beta\\partial_nu=g_R.",
+    "plain": "Dirichlet: u=g_D; Neumann: ∂ₙu=g_N; Robin: αu+β∂ₙu=g_R."
+  },
+  "13-2": {
+    "file": "equation-13-2.svg",
+    "tex": "\\partial_nu(0)=-u_x(0),\\qquad\\partial_nu(1)=u_x(1).",
+    "plain": "On [0,1]: ∂ₙu(0)=-u_x(0), ∂ₙu(1)=u_x(1)."
+  },
+  "14-1": {
+    "file": "equation-14-1.svg",
+    "tex": "u_0-u_1=h g_L+\\frac{h^2}{2}f_0.",
+    "plain": "Left Neumann closure for -u″=f: u₀-u₁=h g_L+h²f₀/2."
+  },
+  "14-2": {
+    "file": "equation-14-2.svg",
+    "tex": "(1+h\\alpha/\\beta)u_0-u_1=\\frac{h^2}{2}f_0+\\frac h\\beta g_R.",
+    "plain": "Robin left row: (1+hα/β)u₀-u₁=h²f₀/2+h g_R/β."
+  },
+  "15-1": {
+    "file": "equation-15-1.svg",
+    "tex": "\\int_0^1f(x)\\,dx+g_L+g_R=0,\\qquad h\\sum_jw_jf_j+g_L+g_R=0,\\quad w_0=w_N=\\tfrac12.",
+    "plain": "Compatibility: ∫₀¹ f dx+g_L+g_R=0. Discrete: h Σwⱼfⱼ+g_L+g_R=0; endpoint weights=1/2."
+  },
+  "15-2": {
+    "file": "equation-15-2.svg",
+    "tex": "K\\mathbf1=0,\\qquad\\sum_jh w_jU_j=0.",
+    "plain": "Pure Neumann: K·1=0. Choose the gauge Σh wⱼ Uⱼ=0."
+  },
+  "16-1": {
+    "file": "equation-16-1.svg",
+    "tex": "\\frac{d u_h}{dt}=A_hu_h,\\qquad U-u=(U-u_h)+(u_h-u).",
+    "plain": "Semidiscrete: du_h/dt=A_hu_h. Total error U-u=(U-u_h)+(u_h-u)."
+  },
+  "16-2": {
+    "file": "equation-16-2.svg",
+    "tex": "\\lambda=-\\kappa\\pi^2,\\qquad\\lambda_h=-\\frac{4\\kappa}{h^2}\\sin^2\\frac{\\pi h}{2},\\qquad u_{h,j}(t)=e^{\\lambda_h t}\\sin(\\pi x_j).",
+    "plain": "λ=-κπ²; λ_h=-(4κ/h²)sin²(πh/2); u_h,j(t)=exp(λ_h t)sin(πxⱼ)."
+  },
+  "17-1": {
+    "file": "equation-17-1.svg",
+    "tex": "\\Phi_{\\rm Lie}^h=\\varphi_A^h\\circ\\varphi_B^h,\\qquad[A,B]=AB-BA.",
+    "plain": "Lie step Φ_Lie(h)=φ_A(h)∘φ_B(h), rightmost first. Linear commutator [A,B]=AB-BA."
+  },
+  "17-2": {
+    "file": "equation-17-2.svg",
+    "tex": "\\Phi_{\\rm Strang}^h=\\varphi_B^{h/2}\\circ\\varphi_A^h\\circ\\varphi_B^{h/2}.",
+    "plain": "Strang step Φ_Strang(h)=φ_B(h/2)∘φ_A(h)∘φ_B(h/2)."
+  },
+  "18-1": {
+    "file": "equation-18-1.svg",
+    "tex": "\\dot q=\\partial_pH,\\quad\\dot p=-\\partial_qH,\\qquad(D\\Phi_h)^T J(D\\Phi_h)=J,\\quad J=\\begin{pmatrix}0&I\\\\-I&0\\end{pmatrix}.",
+    "plain": "q̇=∂H/∂p, ṗ=-∂H/∂q; (DΦ_h)ᵀJ(DΦ_h)=J; J=[[0,I],[-I,0]]."
+  },
+  "18-2": {
+    "file": "equation-18-2.svg",
+    "tex": "H=\\tfrac12(q^2+p^2),\\quad\\widetilde H_{\\rm SE}=\\tfrac12(q^2+p^2-hqp),\\quad\\widetilde H_{\\rm VV}=\\tfrac12\\left[(1-h^2/4)q^2+p^2\\right].",
+    "plain": "Unit oscillator: H=(q²+p²)/2; H̃_SE=(q²+p²-hqp)/2; H̃_VV=[(1-h²/4)q²+p²]/2."
+  },
+  "19-1": {
+    "file": "equation-19-1.svg",
+    "tex": "\\text{model/input}\\ \\longrightarrow\\ \\text{reference}\\ \\longrightarrow\\ \\text{error/budget}\\ \\longrightarrow\\ \\text{refinement}.",
+    "plain": "Problem and inputs → reference → error and budgets → refinement and reproduction."
+  }
+}

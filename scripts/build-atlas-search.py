@@ -212,6 +212,11 @@ def main(root=ROOT, navigation=None):
             entry['text']={language:edition['text'] for language,edition in editions.items()}
             entry['routes']={language:routes[language] for language in editions}
         index['entries'].append(entry)
+    course=read_json(ROOT/'catalog/atlas-foundations-course.json')
+    if course:
+        add('foundations-course',{},['初学者','基礎','19章','beginner numerical foundations'],{'ja':course['base']})
+        for chapter in course['chapters']:
+            add('foundations-course-'+chapter['id'],{},[chapter['title'],'初学者','基礎'],{'ja':course['base']+chapter['id']+'/'})
     for x in catalog['methods']:
         review=x.get('method_review',{})
         extra=[]

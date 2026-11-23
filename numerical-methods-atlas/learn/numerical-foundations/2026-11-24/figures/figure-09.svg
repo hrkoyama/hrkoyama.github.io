@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="760" height="350" preserveAspectRatio="xMinYMin meet" viewBox="0 0 760 350" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="760" height="350"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-350)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="0" width="760" height="350" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<path d="M 82,66 L 82,288 Z" style="stroke: rgb(85%,88%,87%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<path d="M 82,66 L 728,66 Z" style="stroke: rgb(85%,88%,87%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<text x="69.502" y="45" style="font-family: Times-Roman; font-size: 12px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,90) scale(1,-1)">-0.75</text>
+			<text x="52.0" y="62.0" style="font-family: Times-Roman; font-size: 12px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,124) scale(1,-1)">0.62</text>
+			<path d="M 211.2,66 L 211.2,288 Z" style="stroke: rgb(85%,88%,87%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<path d="M 82,110.4 L 728,110.4 Z" style="stroke: rgb(85%,88%,87%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<text x="203.7" y="45" style="font-family: Times-Roman; font-size: 12px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,90) scale(1,-1)">5.5</text>
+			<text x="58.0" y="106.4" style="font-family: Times-Roman; font-size: 12px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,212) scale(1,-1)">2.4</text>
+			<path d="M 340.4,66 L 340.4,288 Z" style="stroke: rgb(85%,88%,87%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<path d="M 82,154.8 L 728,154.8 Z" style="stroke: rgb(85%,88%,87%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<text x="334.4" y="45" style="font-family: Times-Roman; font-size: 12px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,90) scale(1,-1)">12</text>
+			<text x="58.0" y="150.8" style="font-family: Times-Roman; font-size: 12px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,301) scale(1,-1)">9.6</text>
+			<path d="M 469.6,66 L 469.6,288 Z" style="stroke: rgb(85%,88%,87%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<path d="M 82,199.2 L 728,199.2 Z" style="stroke: rgb(85%,88%,87%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<text x="463.6" y="45" style="font-family: Times-Roman; font-size: 12px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,90) scale(1,-1)">18</text>
+			<text x="61.0" y="195.2" style="font-family: Times-Roman; font-size: 12px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,390) scale(1,-1)">37</text>
+			<path d="M 598.8,66 L 598.8,288 Z" style="stroke: rgb(85%,88%,87%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<path d="M 82,243.6 L 728,243.6 Z" style="stroke: rgb(85%,88%,87%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<text x="592.8" y="45" style="font-family: Times-Roman; font-size: 12px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,90) scale(1,-1)">24</text>
+			<text x="33.903999999999996" y="239.6" style="font-family: Times-Roman; font-size: 12px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,479) scale(1,-1)">1.5e+02</text>
+			<path d="M 728,66 L 728,288 Z" style="stroke: rgb(85%,88%,87%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<path d="M 82,288 L 728,288 Z" style="stroke: rgb(85%,88%,87%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<text x="722.0" y="45" style="font-family: Times-Roman; font-size: 12px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,90) scale(1,-1)">31</text>
+			<text x="33.903999999999996" y="284.0" style="font-family: Times-Roman; font-size: 12px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,568) scale(1,-1)">5.7e+02</text>
+			<rect x="82" y="66" width="646" height="222" style="stroke: rgb(14%,20%,21%); stroke-linecap: butt; stroke-width: 0.9; fill: none; fill-rule: evenodd;"/>
+			<text x="201.665" y="327" style="font-family: Times-Roman; font-size: 18px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,654) scale(1,-1)">CFL is not sufficient: FTCS also grows at nu=0.6</text>
+			<text x="360.284" y="15" style="font-family: Times-Roman; font-size: 14px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,30) scale(1,-1)">number of steps</text>
+			<text x="8" y="310" style="font-family: Times-Roman; font-size: 12px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,620) scale(1,-1)">norm / initial norm (log)</text>
+			<polyline points="97.38095 81.31034, 117.8889 87.68966, 138.3968 94.06897, 158.9048 100.4483, 179.4127 106.8276, 199.9206 113.2069, 220.4286 119.5862, 240.9365 125.9655, 261.4444 132.3448, 281.9524 138.7241, 302.4603 145.1034, 322.9683 151.4828, 343.4762 157.8621, 363.9841 164.2414, 384.4921 170.6207, 405 177, 425.5079 183.3793, 446.0159 189.7586, 466.5238 196.1379, 487.0317 202.5172, 507.5397 208.8966, 528.0476 215.2759, 548.5556 221.6552, 569.0635 228.0345, 589.5714 234.4138, 610.0794 240.7931, 630.5873 247.1724, 651.0952 253.5517, 671.6032 259.931, 692.1111 266.3103, 712.619 272.6897" style="stroke: rgb(9%,42%,47%); stroke-linecap: butt; stroke-width: 1.8; fill: None; fill-rule: evenodd;"/>
+			<path d="M 94,273 L 119,273 Z" style="stroke: rgb(9%,42%,47%); stroke-linecap: butt; stroke-width: 2;"/>
+			<text x="125" y="269" style="font-family: Times-Roman; font-size: 12px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,538) scale(1,-1)">upwind-CFL-1.2</text>
+			<polyline points="97.38095 81.31034, 117.8889 86.31374, 138.3968 91.31713, 158.9048 96.32052, 179.4127 101.3239, 199.9206 106.3273, 220.4286 111.3307, 240.9365 116.3341, 261.4444 121.3375, 281.9524 126.3409, 302.4603 131.3443, 322.9683 136.3477, 343.4762 141.3511, 363.9841 146.3544, 384.4921 151.3578, 405 156.3612, 425.5079 161.3646, 446.0159 166.368, 466.5238 171.3714, 487.0317 176.3748, 507.5397 181.3782, 528.0476 186.3816, 548.5556 191.385, 569.0635 196.3884, 589.5714 201.3918, 610.0794 206.3951, 630.5873 211.3985, 651.0952 216.4019, 671.6032 221.4053, 692.1111 226.4087, 712.619 231.4121" style="stroke: rgb(73%,35%,19%); stroke-linecap: butt; stroke-width: 1.8; fill: None; fill-rule: evenodd;"/>
+			<path d="M 94,256 L 119,256 Z" style="stroke: rgb(73%,35%,19%); stroke-linecap: butt; stroke-width: 2;"/>
+			<text x="125" y="252" style="font-family: Times-Roman; font-size: 12px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,504) scale(1,-1)">FTCS-CFL-0.6</text>
+		</g>
+	</g>
+</svg>

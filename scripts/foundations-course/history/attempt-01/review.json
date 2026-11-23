@@ -1,0 +1,17 @@
+{
+  "reviewed_on":"2026-11-24",
+  "reviewer":"Codex root; self-review, not an independent human or agent sign-off",
+  "execution_before_freeze":false,
+  "references":"Continuum sine modes, analytic scalar ODE and 2x2 inverse, exact oscillator rotation, discrete sine eigenvalue, manufactured Poisson fields and weighted compatibility. The source bibliography and access scope are in the course catalog.",
+  "checks_before_execution":[
+    "Scalar R(z): 1+z, 1/(1-z), (1+z/2)/(1-z/2). A-stability and accuracy are distinct; unstable examples are deliberate diagnostics.",
+    "Periodic advection G_up=1-nu+nu exp(-i theta); G_LW=1-i nu sin(theta)+nu^2(cos(theta)-1). c_num/a=-arg(G)/(nu theta). No phase claim at the Nyquist ambiguity.",
+    "Heat: nodal Dirichlet sine mode, lambda_h=-4*kappa*sin(pi/(2N))^2/h^2; compare time refinement against exp(lambda_h*T), joint refinement against the continuum separately.",
+    "Poisson -u''=f. Outward derivatives g_left=-u'(0), g_right=u'(1). Discrete compatibility h*sum(w_i*f_i)+g_left+g_right=0. Robin alpha*u+beta*partial_n(u)=g; beta positive and alpha positive here.",
+    "Half-node boundary equation u0-u1=h*g_left+h^2*f0/2; dropping the f0 term deliberately demonstrates first-order global error with an otherwise second-order interior.",
+    "Kick then drift preserves (q^2+p^2-h*q*p)/2. KDK Verlet preserves ((1-h^2/4)*q^2+p^2)/2 for this unit oscillator. Both modified quadratics are positive for |h|<2. This is not exact physical-H conservation for general Hamiltonian systems.",
+    "Long-time oscillator checks cover this fixed linear problem and step only. Small energy error does not certify phase accuracy. No general nonlinear or adaptive-step theorem is numerically validated."
+  ],
+  "preservation":"No existing atlas release/input/reference/tolerance/result is changed. All present acceptance bounds are fixed before the first course numerical run; any failure remains recorded.",
+  "interpretation":"A passed diagnostic may mean an intentionally unstable or low-order method was correctly detected. It is not an endorsement of that method for production."
+}

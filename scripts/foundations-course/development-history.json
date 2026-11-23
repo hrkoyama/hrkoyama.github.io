@@ -1,0 +1,22 @@
+{
+  "initial_attempt_passed": false,
+  "initial_failed_check": "advection_upwind",
+  "initial_observed_orders": [
+    0.7500718440703358,
+    0.8563206173383353
+  ],
+  "initial_meshes": [
+    40,
+    80,
+    160
+  ],
+  "revision_meshes": [
+    80,
+    160,
+    320
+  ],
+  "unchanged_minimum_order": 0.85,
+  "unchanged_all_acceptance_tolerances": true,
+  "reason": "Coarse-grid amplitude damping is pre-asymptotic. Add a finer grid rather than lower the order threshold. Preserve the original failed input/result/source.",
+  "historical_files": "history/attempt-01/"
+}
