@@ -10,8 +10,8 @@
     "en": "Particle fields & gravity"
   },
   "summary": {
-    "ja": "中性周期セルのEwald和と独立theta積分: 3次元周期Coulomb相互作用の実空間和・逆空間和・自己項を実装し、分割パラメータと打切りを変えて検証します。 Ewald：非対称周期セルのエネルギー・力と独立theta積分: 中性8電荷の全エネルギーと24力成分を、別実装のGaussian/theta積分と比較。分割・実空間・逆空間の打切り、保存則と不変性を分けて測定します。",
-    "en": "Neutral-cell Ewald sums and an independent theta integral: Implement real-space, reciprocal-space and self Ewald terms for neutral 3D periodic Coulomb charges; vary splitting and cutoffs. Ewald: asymmetric-cell energies and forces versus independent theta integration: Compare a neutral eight-charge cell energy and all 24 force components with a separately coded Gaussian/theta integral. Separate splitting and real/reciprocal truncation from invariants and conservation."
+    "ja": "既存配布版：中性周期セルのEwald和と独立theta積分: 3次元周期Coulomb相互作用の実空間和・逆空間和・自己項を実装し、分割パラメータと打切りを変えて検証します。 Ewald：非対称周期セルのエネルギー・力と独立theta積分: 中性8電荷の全エネルギーと24力成分を、別実装のGaussian/theta積分と比較。分割・実空間・逆空間の打切り、保存則と不変性を分けて測定します。 追加固定例：中性長方形スラブ：真2P参照とYB補正。条件と検証範囲は各配布版で確認してください。",
+    "en": "Existing releases: Neutral-cell Ewald sums and an independent theta integral: Implement real-space, reciprocal-space and self Ewald terms for neutral 3D periodic Coulomb charges; vary splitting and cutoffs. Ewald: asymmetric-cell energies and forces versus independent theta integration: Compare a neutral eight-charge cell energy and all 24 force components with a separately coded Gaussian/theta integral. Separate splitting and real/reciprocal truncation from invariants and conservation. Additional fixed examples: Neutral rectangular slab: genuine2P reference and YB. See each release for assumptions and checked scope."
   },
   "status": "educational-example",
   "origin": "development-candidate",
@@ -71,12 +71,16 @@
     "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
   },
   "limitations": {
-    "ja": "中性周期セルのEwald和と独立theta積分: 非中性セル、背景補正、非直交セル、誘電率が有限の表面項、スラブ補正、応力、物質固有の力場は扱いません。 Ewald：非対称周期セルのエネルギー・力と独立theta積分: 固定した中性立方セルだけです。上限感度は厳密な全配置の裾誤差保証ではありません。theta参照は別定式化の自作実装であり、第三者計算パッケージや公表された参照数表ではありません。非中性・非直交・スラブ・応力・長時間MDは対象外です。",
-    "en": "Neutral-cell Ewald sums and an independent theta integral: No charged-cell/background correction, triclinic cell, finite-dielectric surface term, slab correction, stress or material-specific force field. Ewald: asymmetric-cell energies and forces versus independent theta integration: One fixed neutral cubic cell. Upper-limit sensitivity is not a rigorous tail bound for arbitrary configurations. The theta reference is an independently formulated original implementation, not an external package or published numerical table. Charged/triclinic/slab cells, stress and long MD are outside scope."
+    "ja": "既存配布版の制約：中性周期セルのEwald和と独立theta積分: 非中性セル、背景補正、非直交セル、誘電率が有限の表面項、スラブ補正、応力、物質固有の力場は扱いません。 Ewald：非対称周期セルのエネルギー・力と独立theta積分: 固定した中性立方セルだけです。上限感度は厳密な全配置の裾誤差保証ではありません。theta参照は別定式化の自作実装であり、第三者計算パッケージや公表された参照数表ではありません。非中性・非直交・スラブ・応力・長時間MDは対象外です。 今回の追加固定例：中性・固定4電荷・Cartesian z法線のみ。YBは有限ギャップ近似で任意真空の厳密2Pではありません。原著YB本文は未読。",
+    "en": "Limits of existing releases: Neutral-cell Ewald sums and an independent theta integral: No charged-cell/background correction, triclinic cell, finite-dielectric surface term, slab correction, stress or material-specific force field. Ewald: asymmetric-cell energies and forces versus independent theta integration: One fixed neutral cubic cell. Upper-limit sensitivity is not a rigorous tail bound for arbitrary configurations. The theta reference is an independently formulated original implementation, not an external package or published numerical table. Charged/triclinic/slab cells, stress and long MD are outside scope. Additional fixed examples: Neutral fixed4charge Cartesian-z slab only. YB is a finite-gap approximation, not exact2P at arbitrary vacuum. Original Yeh full text not inspected."
   },
   "metadata_review": {
     "level": "method-specific source curation plus independently extracted dedicated supplement; fixed inputs, numerical checks and scope verified",
-    "on": "2026-11-22"
+    "on": "2026-11-22",
+    "supplemental_review": {
+      "on": "2026-11-23",
+      "level": "Frozen fixed-input source,independent review,actual pytest/main and independently extracted ZIP; see each new release for exact reference independence and failed-attempt history."
+    }
   },
   "assumptions_ja": [
     "最初の検証仕様は、立方体セル内の重なりのない点電荷と3次元周期Coulomb相互作用です。総電荷はゼロとし、一様中和背景は含めません。",
@@ -909,6 +913,288 @@
           }
         }
       ]
+    },
+    {
+      "group": "slab-ewald",
+      "case_ids": [
+        "neutral-slab-yb"
+      ],
+      "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/",
+      "code_edition": "2026-11-23",
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/electrostatics.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/references/twoperiodic.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/experiments.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/protocol.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/test_slab.py"
+      ],
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "run_from": "atlas-slab-ewald-2026-11-23",
+      "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/atlas-slab-ewald-2026-11-23.zip",
+      "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/source-manifest.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/verification.json",
+      "code_archive_sha256": "168b250fd18b209534fe8a767afc689ea11b6b8ca95657a7c0ff0d8803f00414",
+      "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/results/result.json",
+      "passed_tests": 17,
+      "examples": [
+        {
+          "id": "neutral-slab-yb",
+          "title": {
+            "ja": "中性長方形スラブ：真2P参照とYB補正",
+            "en": "Neutral rectangular slab: genuine2P reference and YB"
+          },
+          "method_ids": [
+            "ewald",
+            "slab-ewald"
+          ],
+          "domains": [
+            "particles"
+          ],
+          "summary": {
+            "ja": "4電荷の長方形3P Ewaldに中性スラブ補正を加え、別実装の真2P和のエネルギー・全力成分と照合します。",
+            "en": "Compare corrected orthorhombic3P Ewald energy/all forces against a separately implemented genuine2P series."
+          },
+          "assumptions": {
+            "ja": "Coulomb定数1、Lx1,Ly1.25、Lz1.5/3/6、4電荷±1、非周期zのMz=.34、alpha3/4。",
+            "en": "Coulomb1, lateral1×1.25, extendedLz1.5/3/6,4neutral charges±1,physical-z dipole.34 andalpha3/4."
+          },
+          "algorithm": {
+            "ja": "全±3D波数、自己項、2pi Mz²/Vとその力。独立2Pには横零モード・自己減算と安定exp–erfcを保持。",
+            "en": "Full±3D reciprocal sum/self term and2pi Mz²/V correction; independent2P retains zero/self terms and stable exp-erfc evaluation."
+          },
+          "validation": {
+            "ja": "参照alpha/打切り資格、エネルギー差分、真空厚、全力、零モード負対照・遠方ゲージと中性平行移動を分離。",
+            "en": "Separate reference cutoff/splitting qualification, energy gradients, vacuum error, all forces, zero-mode control/far gauge and neutral translations."
+          },
+          "limits": {
+            "ja": "中性・固定4電荷・Cartesian z法線のみ。YBは有限ギャップ近似で任意真空の厳密2Pではありません。原著YB本文は未読。",
+            "en": "Neutral fixed4charge Cartesian-z slab only. YB is a finite-gap approximation, not exact2P at arbitrary vacuum. Original Yeh full text not inspected."
+          },
+          "references": [
+            {
+              "id": "lindbo2011",
+              "title": "Fast and spectrally accurate Ewald summation for2-periodic electrostatic systems",
+              "url": "https://arxiv.org/pdf/1109.1667",
+              "review_level": "primary-selected-equations",
+              "review_scope": "Eq4 and AppendixA Eq41/zero-mode inspected; rendered selected pages requested. No full-paper audit or spectral-PME implementation claimed."
+            },
+            {
+              "id": "yeh1999",
+              "title": "Ewald summation for systems with slab geometry",
+              "url": "https://doi.org/10.1063/1.479595",
+              "review_level": "bibliography-original-unaccessed",
+              "review_scope": "Original publisher full text unavailable; no original-text review claimed. Neutral correction independently derived and checked against official LAMMPS implementation/documentation."
+            },
+            {
+              "id": "lammps-slab",
+              "title": "LAMMPS slab Ewald documentation and neutral correction",
+              "url": "https://docs.lammps.org/kspace_modify.html",
+              "review_level": "official-selected-docs-and-formulas",
+              "review_scope": "Slab geometry restrictions and official Ewald::slabcorr neutral formula inspected. No LAMMPS code copied or executed; mutable stable source is contextual, not a numerical dependency."
+            }
+          ],
+          "formulas": [
+            "E_{\\rm YB}=E_{3P}+2\\pi M_z^2/V",
+            "\\Delta F_{zi}=-4\\pi q_iM_z/V",
+            "\\phi(\\pm\\infty)=\\pm2\\pi M_z/(L_xL_y)"
+          ],
+          "code_files": [
+            "run.py",
+            "electrostatics.py",
+            "references/twoperiodic.py"
+          ],
+          "gallery_figure": "neutral-slab-yb-preview.png",
+          "additional_figures": [
+            {
+              "file": "neutral-slab-yb-preview.png",
+              "caption": {
+                "ja": "固定入力を実際に計算した保存配列からの検証図。",
+                "en": "Validation figure from actual saved fixed-input calculation arrays."
+              }
+            }
+          ],
+          "measured": {
+            "id": "neutral-slab-yb",
+            "passed": true,
+            "checks": {
+              "reference splitting energy": true,
+              "reference splitting force": true,
+              "reference cutoff energy": true,
+              "reference cutoff force": true,
+              "z1.5-a3 finite saved fields": true,
+              "z1.5-a3 neutral net force": true,
+              "z1.5-a4 finite saved fields": true,
+              "z1.5-a4 neutral net force": true,
+              "z3-a3 finite saved fields": true,
+              "z3-a3 neutral net force": true,
+              "z3-a4 finite saved fields": true,
+              "z3-a4 neutral net force": true,
+              "z6-a3 finite saved fields": true,
+              "z6-a3 neutral net force": true,
+              "z6-a4 finite saved fields": true,
+              "z6-a4 neutral net force": true,
+              "z1.5 alpha energy": true,
+              "z1.5 alpha force": true,
+              "z3 alpha energy": true,
+              "z3 alpha force": true,
+              "z6 alpha energy": true,
+              "z6 alpha force": true,
+              "z6-a3 finest energy": true,
+              "z6-a3 finest force": true,
+              "z6-a3 correction improves energy": true,
+              "z6-a3 correction improves force": true,
+              "z6-a4 finest energy": true,
+              "z6-a4 finest force": true,
+              "z6-a4 correction improves energy": true,
+              "z6-a4 correction improves force": true,
+              "neutral translation energy": true,
+              "neutral translation force": true,
+              "production energy gradient h1e-05": true,
+              "reference energy gradient h1e-05": true,
+              "production energy gradient h5e-06": true,
+              "reference energy gradient h5e-06": true,
+              "omitted zero mode is detected": true,
+              "far-z potential step": true,
+              "far-z zero field": true,
+              "source permutation energy": true,
+              "source permutation force": true,
+              "charged cell rejected": true
+            },
+            "records": [
+              {
+                "id": "z1.5-a3",
+                "Lz": 1.5,
+                "alpha": 3.0,
+                "energy": -4.457868346331461,
+                "reference_energy": -4.45950558164492,
+                "corrected_energy_error": 0.0016372353134590512,
+                "uncorrected_energy_error": 0.3857420828251863,
+                "corrected_force_error": 0.006079810007076247,
+                "uncorrected_force_error": 2.2820469551636537,
+                "net_force": 1.2212453270876722e-15,
+                "reciprocal_count": 8326
+              },
+              {
+                "id": "z1.5-a4",
+                "Lz": 1.5,
+                "alpha": 4.0,
+                "energy": -4.45786834633146,
+                "reference_energy": -4.45950558164492,
+                "corrected_energy_error": 0.0016372353134599393,
+                "uncorrected_energy_error": 0.3857420828251854,
+                "corrected_force_error": 0.006079810007075359,
+                "uncorrected_force_error": 2.2820469551636573,
+                "net_force": 8.881784197001252e-15,
+                "reciprocal_count": 8326
+              },
+              {
+                "id": "z3-a3",
+                "Lz": 3.0,
+                "alpha": 3.0,
+                "energy": -4.459505596928185,
+                "reference_energy": -4.45950558164492,
+                "corrected_energy_error": 1.5283265319965267e-08,
+                "uncorrected_energy_error": 0.193689674352588,
+                "corrected_force_error": 3.288665204159713e-06,
+                "uncorrected_force_error": 1.1393542243671027,
+                "net_force": 1.2434497875801753e-14,
+                "reciprocal_count": 16608
+              },
+              {
+                "id": "z3-a4",
+                "Lz": 3.0,
+                "alpha": 4.0,
+                "energy": -4.459505596928185,
+                "reference_energy": -4.45950558164492,
+                "corrected_energy_error": 1.5283265319965267e-08,
+                "uncorrected_energy_error": 0.193689674352588,
+                "corrected_force_error": 3.2886651748498252e-06,
+                "uncorrected_force_error": 1.1393542243670733,
+                "net_force": 1.9539925233402755e-14,
+                "reciprocal_count": 16608
+              },
+              {
+                "id": "z6-a3",
+                "Lz": 6.0,
+                "alpha": 3.0,
+                "energy": -4.459505581644966,
+                "reference_energy": -4.45950558164492,
+                "corrected_energy_error": 4.618527782440651e-14,
+                "uncorrected_energy_error": 0.09684482953470752,
+                "corrected_force_error": 1.0027534358414414e-12,
+                "uncorrected_force_error": 0.569675467851952,
+                "net_force": 2.3092638912203256e-14,
+                "reciprocal_count": 33246
+              },
+              {
+                "id": "z6-a4",
+                "Lz": 6.0,
+                "alpha": 4.0,
+                "energy": -4.459505581644966,
+                "reference_energy": -4.45950558164492,
+                "corrected_energy_error": 4.618527782440651e-14,
+                "uncorrected_energy_error": 0.09684482953470752,
+                "corrected_force_error": 1.0009770790020411e-12,
+                "uncorrected_force_error": 0.5696754678519502,
+                "net_force": 5.684341886080802e-14,
+                "reciprocal_count": 33246
+              }
+            ],
+            "metrics": {
+              "reference_energy": -4.45950558164492,
+              "maximum_reference_force": 5.484895963941495,
+              "dipole_z": 0.33999999999999997,
+              "finest_energy_error": 4.618527782440651e-14,
+              "finest_force_error": 1.0009770790020411e-12
+            },
+            "data_files": [
+              "neutral-slab-yb-reference-fine.npz",
+              "neutral-slab-yb-reference-split.npz",
+              "neutral-slab-yb-reference-cut.npz",
+              "neutral-slab-yb-z1.5-a3.npz",
+              "neutral-slab-yb-z1.5-a4.npz",
+              "neutral-slab-yb-z3-a3.npz",
+              "neutral-slab-yb-z3-a4.npz",
+              "neutral-slab-yb-z6-a3.npz",
+              "neutral-slab-yb-z6-a4.npz",
+              "neutral-slab-yb-far-zero-mode.npz"
+            ]
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/neutral-slab-yb/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-slab-ewald/#neutral-slab-yb",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-slab-ewald/#neutral-slab-yb"
+          }
+        }
+      ]
+    }
+  ],
+  "batch28_existing_variant_labels": true,
+  "supplemental_scope_profiles": [
+    {
+      "release": {
+        "group": "slab-ewald",
+        "edition": "2026-11-23",
+        "case_ids": [
+          "neutral-slab-yb"
+        ]
+      },
+      "scope": {
+        "ja": "追加固定例：中性長方形スラブ：真2P参照とYB補正。条件と検証範囲は各配布版で確認してください。",
+        "en": "Additional fixed examples: Neutral rectangular slab: genuine2P reference and YB. See each release for assumptions and checked scope."
+      },
+      "limits": [
+        {
+          "ja": "中性・固定4電荷・Cartesian z法線のみ。YBは有限ギャップ近似で任意真空の厳密2Pではありません。原著YB本文は未読。",
+          "en": "Neutral fixed4charge Cartesian-z slab only. YB is a finite-gap approximation, not exact2P at arbitrary vacuum. Original Yeh full text not inspected."
+        }
+      ]
     }
   ],
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ewald/",
@@ -924,13 +1210,19 @@
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/electrostatics.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/fmm.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/kinetic_experiments.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/kinetics.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/kinetics.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/electrostatics.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/references/twoperiodic.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/experiments.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/protocol.py"
   ],
   "test_urls": [
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/test_particles.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_kinetics.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_longrange.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_runner.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_runner.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/test_slab.py"
   ],
   "run_commands": [
     "python -m pytest -q",
@@ -957,6 +1249,15 @@
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ewald-convergence/?lang=en"
       },
       "kind": "dedicated-supplement"
+    },
+    {
+      "id": "neutral-slab-yb",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/neutral-slab-yb/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/neutral-slab-yb/?lang=en"
+      },
+      "kind": "dedicated-supplement"
     }
   ],
   "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
@@ -981,6 +1282,20 @@
         "url": {
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#poisson-laplace-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#poisson-laplace-en"
+        }
+      },
+      {
+        "id": "coulomb-electrostatics",
+        "name": {
+          "ja": "Coulomb静電場と混合周期境界",
+          "en": "Coulomb electrostatics with mixed periodic boundaries"
+        },
+        "problem_ids": [
+          "neutral-slab-yb"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#coulomb-electrostatics-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#coulomb-electrostatics-en"
         }
       }
     ],
@@ -1065,6 +1380,66 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/neutral-periodic-charges/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/neutral-periodic-charges/?lang=en#references-en"
         }
+      },
+      {
+        "id": "neutral-slab-yb",
+        "name": {
+          "ja": "中性長方形スラブ：真2P参照とYB補正",
+          "en": "Neutral rectangular slab: genuine2P reference and YB"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/results/neutral-slab-yb-preview.png",
+          "sha256": "eff9876ae6570ebc5389e65f8a07b774e87e5ebccc7bab97b2e69bdc427c0206",
+          "width": 920,
+          "height": 592,
+          "caption": {
+            "ja": "固定入力を実際に計算した保存配列からの検証図。",
+            "en": "Validation figure from actual saved fixed-input calculation arrays."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/neutral-slab-yb/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/neutral-slab-yb/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/neutral-slab-yb/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/neutral-slab-yb/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "neutral-slab-yb",
+            "kind": "supplement",
+            "name": {
+              "ja": "中性長方形スラブ：真2P参照とYB補正",
+              "en": "Neutral rectangular slab: genuine2P reference and YB"
+            },
+            "scope": {
+              "ja": "4電荷の長方形3P Ewaldに中性スラブ補正を加え、別実装の真2P和のエネルギー・全力成分と照合します。",
+              "en": "Compare corrected orthorhombic3P Ewald energy/all forces against a separately implemented genuine2P series."
+            },
+            "method_ids": [
+              "ewald",
+              "slab-ewald"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/neutral-slab-yb/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/neutral-slab-yb/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/atlas-slab-ewald-2026-11-23.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "全±3D波数、自己項、2pi Mz²/Vとその力。独立2Pには横零モード・自己減算と安定exp–erfcを保持。",
+          "en": "Full±3D reciprocal sum/self term and2pi Mz²/V correction; independent2P retains zero/self terms and stable exp-erfc evaluation."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/neutral-slab-yb/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/neutral-slab-yb/?lang=en#references-en"
+        }
       }
     ],
     "references": [
@@ -1079,6 +1454,40 @@
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/neutral-periodic-charges/?lang=en#references-en"
         },
         "cases": []
+      },
+      {
+        "problem_id": "neutral-slab-yb",
+        "problem_name": {
+          "ja": "中性長方形スラブ：真2P参照とYB補正",
+          "en": "Neutral rectangular slab: genuine2P reference and YB"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/neutral-slab-yb/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/neutral-slab-yb/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "neutral-slab-yb",
+            "title": {
+              "ja": "中性長方形スラブ：真2P参照とYB補正",
+              "en": "Neutral rectangular slab: genuine2P reference and YB"
+            },
+            "kind": "semi-analytic",
+            "relation": "same-problem",
+            "note": {
+              "ja": "中性・固定4電荷・Cartesian z法線のみ。YBは有限ギャップ近似で任意真空の厳密2Pではありません。原著YB本文は未読。",
+              "en": "Neutral fixed4charge Cartesian-z slab only. YB is a finite-gap approximation, not exact2P at arbitrary vacuum. Original Yeh full text not inspected."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-neutral-slab-yb-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-neutral-slab-yb-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/neutral-slab-yb/?lang=ja#neutral-slab-yb-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/neutral-slab-yb/?lang=en#neutral-slab-yb-en-measurements"
+            }
+          }
+        ]
       }
     ]
   }

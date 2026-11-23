@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "id": "rotated-anisotropic-diffusion",
+  "name": {
+    "ja": "回転異方性拡散：完全テンソルQ1とMG・AMG",
+    "en": "Rotated diffusion: full-tensor Q1, MG and AMG"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rotated-anisotropic-diffusion/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rotated-anisotropic-diffusion/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rotated-anisotropic-diffusion/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/results/rotated-anisotropic-diffusion-preview.png",
+    "sha256": "07d3edeeefee73b8d77b6322833feb33972ae5138093da04c3f414d974e55ee4",
+    "width": 990,
+    "height": 720,
+    "caption": {
+      "ja": "保存した2D解・誤差・真の残差・格子感度の検証図。",
+      "en": "Saved2D solution, error, true residual and refinement/reference sensitivity."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-coefficient-diffusion/#rotated-anisotropic-diffusion",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-coefficient-diffusion/#rotated-anisotropic-diffusion"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#rotated-anisotropic-diffusion",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#rotated-anisotropic-diffusion-en"
+  },
+  "equations": [
+    {
+      "id": "tensor-diffusion",
+      "name": {
+        "ja": "不連続係数・完全テンソル拡散の境界値問題",
+        "en": "Discontinuous and full-tensor diffusion BVP"
+      },
+      "formula": [
+        "-\\nabla\\cdot(K(\\boldsymbol x)\\nabla u)=f,\\quad u|_{\\partial\\Omega}=g",
+        "K=aI\\ (a\\in\\{1,100\\})\\quad\\mathrm{or}\\quad K=R(\\pi/6)\\operatorname{diag}(1,.01)R^T"
+      ],
+      "note": {
+        "ja": "スカラー調和流束FVと、非零の交差項を持つ完全テンソルQ1を分けます。MGとAMGは同じ行列を解きます。",
+        "en": "Separate scalar harmonic-flux FV from full-tensor Q1 with nonzero cross terms. MG and AMG solve the same matrix."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#tensor-diffusion-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#tensor-diffusion-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "単位正方形、零Dirichlet、K=R(pi/6)diag(1,.01)Rᵀ、厳密解sin(pi x)sin(pi y)、N16/32/64。",
+    "en": "Unit square, zero Dirichlet, K=R(pi/6)diag(1,.01)R^T, exact sin(pi x)sin(pi y), N16/32/64."
+  },
+  "formulations": [
+    {
+      "id": "supplement-rotated-anisotropic-diffusion",
+      "name": {
+        "ja": "回転異方性拡散：完全テンソルQ1とMG・AMG",
+        "en": "Rotated diffusion: full-tensor Q1, MG and AMG"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "-\\nabla\\cdot(K\\nabla u)=f,\\quad K=R(\\pi/6)\\operatorname{diag}(1,.01)R^T",
+        "f=\\pi^2(K_{xx}+K_{yy})\\sin\\pi x\\sin\\pi y-2\\pi^2K_{xy}\\cos\\pi x\\cos\\pi y"
+      ],
+      "note": {
+        "ja": "非零Kxyを保つQ1弱形式で、解析解への収束と同じ行列のMG・AMG収束を比較します。",
+        "en": "Retain nonzero Kxy in the Q1 weak form and compare analytic refinement with MG/AMG convergence for the same matrix."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "rotated-anisotropic-diffusion",
+      "kind": "manufactured",
+      "kind_label": {
+        "ja": "製造解",
+        "en": "Manufactured solution"
+      },
+      "title": {
+        "ja": "回転異方性拡散：完全テンソルQ1とMG・AMG",
+        "en": "Rotated diffusion: full-tensor Q1, MG and AMG"
+      },
+      "formula": "-\\nabla\\cdot(K\\nabla u)=f,\\quad K=R(\\pi/6)\\operatorname{diag}(1,.01)R^T; f=\\pi^2(K_{xx}+K_{yy})\\sin\\pi x\\sin\\pi y-2\\pi^2K_{xy}\\cos\\pi x\\cos\\pi y",
+      "assumptions": {
+        "ja": "単位正方形、零Dirichlet、K=R(pi/6)diag(1,.01)Rᵀ、厳密解sin(pi x)sin(pi y)、N16/32/64。 u=xy,f=−2Kxyパッチ、解析流束由来のsource、積分L2/energy誤差と4/6点求積感度、直接解との比較。 指定した角度・異方性の限定例。スカラーTPFAを回転テンソルへ転用せず、一般テンソルへの頑健性は保証しません。",
+        "en": "Unit square, zero Dirichlet, K=R(pi/6)diag(1,.01)R^T, exact sin(pi x)sin(pi y), N16/32/64."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "指定した角度・異方性の限定例。スカラーTPFAを回転テンソルへ転用せず、一般テンソルへの頑健性は保証しません。",
+        "en": "One angle/anisotropy only. Scalar TPFA is not extended to rotated tensors; arbitrary-tensor robustness is not established."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/?lang=ja#rotated-anisotropic-diffusion-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/?lang=en#rotated-anisotropic-diffusion-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "u=xy,f=−2Kxyパッチ、解析流束由来のsource、積分L2/energy誤差と4/6点求積感度、直接解との比較。",
+    "en": "u=xy,f=-2Kxy patch, analytic-flux source, integrated L2/energy error,4/6point quadrature sensitivity and direct-solve comparison."
+  },
+  "methods": [
+    {
+      "id": "q1-fem",
+      "name": {
+        "ja": "Q1有限要素法（スカラー拡散・曲線座標ベクトルBVP）",
+        "en": "Q1 FEM for scalar diffusion and mapped vector BVPs"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/q1-fem/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/q1-fem/?lang=en"
+      }
+    },
+    {
+      "id": "multigrid",
+      "name": {
+        "ja": "幾何マルチグリッドVサイクル",
+        "en": "Geometric multigrid V-cycle"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/multigrid/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/multigrid/?lang=en"
+      }
+    },
+    {
+      "id": "amg",
+      "name": {
+        "ja": "代数的マルチグリッド（AMG）",
+        "en": "Algebraic multigrid / AMG"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/amg/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/amg/?lang=en"
+      }
+    },
+    {
+      "id": "cg",
+      "name": {
+        "ja": "共役勾配法",
+        "en": "Conjugate gradients"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/cg/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/cg/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "完全2×2テンソルQ1とGauss積分。MG/SA-AMGは対称2/2Jacobi、Galerkin粗行列、粗CholeskyでSPDの固定適用。",
+    "en": "Full2x2 tensor Q1 and Gauss quadrature. Fixed SPD MG/SA cycles use symmetric2/2Jacobi, Galerkin operators and coarse Cholesky."
+  },
+  "executions": [
+    {
+      "id": "rotated-anisotropic-diffusion",
+      "kind": "supplement",
+      "name": {
+        "ja": "回転異方性拡散：完全テンソルQ1とMG・AMG",
+        "en": "Rotated diffusion: full-tensor Q1, MG and AMG"
+      },
+      "method_ids": [
+        "q1-fem",
+        "multigrid",
+        "amg",
+        "cg"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/?lang=en"
+      },
+      "scope": {
+        "ja": "非零Kxyを保つQ1弱形式で、解析解への収束と同じ行列のMG・AMG収束を比較します。",
+        "en": "Retain nonzero Kxy in the Q1 weak form and compare analytic refinement with MG/AMG convergence for the same matrix."
+      },
+      "assumptions": {
+        "ja": "単位正方形、零Dirichlet、K=R(pi/6)diag(1,.01)Rᵀ、厳密解sin(pi x)sin(pi y)、N16/32/64。",
+        "en": "Unit square, zero Dirichlet, K=R(pi/6)diag(1,.01)R^T, exact sin(pi x)sin(pi y), N16/32/64."
+      },
+      "limits": {
+        "ja": "指定した角度・異方性の限定例。スカラーTPFAを回転テンソルへ転用せず、一般テンソルへの頑健性は保証しません。",
+        "en": "One angle/anisotropy only. Scalar TPFA is not extended to rotated tensors; arbitrary-tensor robustness is not established."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/atlas-coefficient-diffusion-2026-11-23.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "u=xy,f=−2Kxyパッチ、解析流束由来のsource、積分L2/energy誤差と4/6点求積感度、直接解との比較。",
+        "en": "u=xy,f=-2Kxy patch, analytic-flux source, integrated L2/energy error,4/6point quadrature sensitivity and direct-solve comparison."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/operators.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/multilevel.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/references/p1.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/test_diffusion.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

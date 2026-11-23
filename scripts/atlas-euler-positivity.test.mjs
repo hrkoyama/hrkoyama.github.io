@@ -132,7 +132,7 @@ v=importlib.util.module_from_spec(v_spec);v_spec.loader.exec_module(v)
 assert p.REVIEWED_REQUIREMENTS=={name+'=='+version for name,version in v.DIRECT_PINS.items()}
 with tempfile.TemporaryDirectory(prefix='atlas-incomplete-pins-') as directory:
  p.ROOT=Path(directory);source=p.ROOT/'scripts/depth-euler-positivity';source.mkdir(parents=True)
- case={'id':'fixture','method_ids':['lax-friedrichs'],'references':[{'review_level':'source inspected'}]}
+ case={'id':'fixture','method_ids':['lax-friedrichs'],'references':[{'id':'fixture-reference','title':'Fixture formulation','url':'https://example.org/formulation','review_level':'source inspected'}]}
  case.update({key:{'ja':'固定入力の条件','en':'Fixed-input conditions'} for key in ['title','summary','assumptions','algorithm','validation','limits']})
  for name in ['run.py','inputs.json','README.md','LICENSE']:(source/name).write_text('fixture')
  (source/'cases.json').write_text(json.dumps([case]))

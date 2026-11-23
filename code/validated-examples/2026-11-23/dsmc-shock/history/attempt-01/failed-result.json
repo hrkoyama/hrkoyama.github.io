@@ -1,0 +1,387 @@
+{
+  "schema_version": 1,
+  "passed": false,
+  "checks": {
+    "dsmc-planar-shock": false
+  },
+  "cases": [
+    {
+      "id": "dsmc-planar-shock",
+      "passed": false,
+      "checks": {
+        "dsmc-planar-shock-base-371001/finite": true,
+        "dsmc-planar-shock-base-371001/boundary budget": true,
+        "dsmc-planar-shock-base-371001/physical collisions": true,
+        "dsmc-planar-shock-base-371001/collision probability": true,
+        "dsmc-planar-shock-base-371001/maxwell time resolution": true,
+        "dsmc-planar-shock-base-371001/mean free path resolution": true,
+        "dsmc-planar-shock-base-371002/finite": true,
+        "dsmc-planar-shock-base-371002/boundary budget": true,
+        "dsmc-planar-shock-base-371002/physical collisions": true,
+        "dsmc-planar-shock-base-371002/collision probability": true,
+        "dsmc-planar-shock-base-371002/maxwell time resolution": true,
+        "dsmc-planar-shock-base-371002/mean free path resolution": true,
+        "dsmc-planar-shock-base-371003/finite": true,
+        "dsmc-planar-shock-base-371003/boundary budget": true,
+        "dsmc-planar-shock-base-371003/physical collisions": true,
+        "dsmc-planar-shock-base-371003/collision probability": true,
+        "dsmc-planar-shock-base-371003/maxwell time resolution": true,
+        "dsmc-planar-shock-base-371003/mean free path resolution": true,
+        "dsmc-planar-shock-base-371004/finite": true,
+        "dsmc-planar-shock-base-371004/boundary budget": true,
+        "dsmc-planar-shock-base-371004/physical collisions": true,
+        "dsmc-planar-shock-base-371004/collision probability": true,
+        "dsmc-planar-shock-base-371004/maxwell time resolution": true,
+        "dsmc-planar-shock-base-371004/mean free path resolution": true,
+        "dsmc-planar-shock-fixed_weight_mesh-371001/finite": true,
+        "dsmc-planar-shock-fixed_weight_mesh-371001/boundary budget": true,
+        "dsmc-planar-shock-fixed_weight_mesh-371001/physical collisions": true,
+        "dsmc-planar-shock-fixed_weight_mesh-371001/collision probability": true,
+        "dsmc-planar-shock-fixed_weight_mesh-371001/maxwell time resolution": true,
+        "dsmc-planar-shock-fixed_weight_mesh-371001/mean free path resolution": true,
+        "dsmc-planar-shock-double_particles-371001/finite": true,
+        "dsmc-planar-shock-double_particles-371001/boundary budget": true,
+        "dsmc-planar-shock-double_particles-371001/physical collisions": true,
+        "dsmc-planar-shock-double_particles-371001/collision probability": true,
+        "dsmc-planar-shock-double_particles-371001/maxwell time resolution": true,
+        "dsmc-planar-shock-double_particles-371001/mean free path resolution": true,
+        "dsmc-planar-shock-half_dt-371001/finite": true,
+        "dsmc-planar-shock-half_dt-371001/boundary budget": true,
+        "dsmc-planar-shock-half_dt-371001/physical collisions": true,
+        "dsmc-planar-shock-half_dt-371001/collision probability": true,
+        "dsmc-planar-shock-half_dt-371001/maxwell time resolution": true,
+        "dsmc-planar-shock-half_dt-371001/mean free path resolution": true,
+        "profile error/0": true,
+        "primary precision/0": false,
+        "reference precision/0": true,
+        "profile error/1": true,
+        "primary precision/1": false,
+        "reference precision/1": true,
+        "profile error/4": true,
+        "primary precision/4": false,
+        "reference precision/4": true,
+        "profile error/5": true,
+        "primary precision/5": false,
+        "reference precision/5": true,
+        "stationarity/0": true,
+        "stationarity/1": true,
+        "stationarity/4": true,
+        "stationarity/5": true,
+        "centroid stationarity": false,
+        "RH far or full flux/upstream_n": true,
+        "RH precision/upstream_n": true,
+        "RH far or full flux/upstream_ux": true,
+        "RH precision/upstream_ux": true,
+        "RH far or full flux/upstream_T": true,
+        "RH precision/upstream_T": true,
+        "RH far or full flux/downstream_n": true,
+        "RH precision/downstream_n": true,
+        "RH far or full flux/downstream_ux": true,
+        "RH precision/downstream_ux": true,
+        "RH far or full flux/downstream_T": true,
+        "RH precision/downstream_T": true,
+        "RH far or full flux/flux_mass": true,
+        "RH precision/flux_mass": true,
+        "RH far or full flux/flux_momentum": true,
+        "RH precision/flux_momentum": true,
+        "RH far or full flux/flux_energy": true,
+        "RH precision/flux_energy": true,
+        "half step sensitivity/0": true,
+        "half step sensitivity/1": true,
+        "half step sensitivity/4": true,
+        "half step sensitivity/5": true
+      },
+      "metrics": {
+        "profile_comparison": {
+          "0": {
+            "error": 0.025478528102410438,
+            "combined_3se": 0.06543012880640507,
+            "primary_3se": 0.05313985471277404,
+            "reference_3se": 0.038174043494605424
+          },
+          "1": {
+            "error": 0.02441598852300699,
+            "combined_3se": 0.06482898682651687,
+            "primary_3se": 0.05469981693459207,
+            "reference_3se": 0.03479551063391386
+          },
+          "4": {
+            "error": 0.027054163382627977,
+            "combined_3se": 0.07037562884209782,
+            "primary_3se": 0.06112362951756272,
+            "reference_3se": 0.03488023866776783
+          },
+          "5": {
+            "error": 0.026055032247084463,
+            "combined_3se": 0.06489424717923627,
+            "primary_3se": 0.05516231404087201,
+            "reference_3se": 0.034181609479602165
+          }
+        },
+        "stationarity": {
+          "profile_equivalence": {
+            "0": 0.11271372713427719,
+            "1": 0.06521252229317169,
+            "4": 0.08696874692488368,
+            "5": 0.08554027277578621
+          },
+          "centroid_blocks": [
+            [
+              8.13796296296296,
+              8.559866898148147,
+              8.245717592592593,
+              7.503993055555556,
+              7.533159722222221
+            ],
+            [
+              7.9408854166666645,
+              7.8688802083333345,
+              8.130063657407405,
+              8.278327546296296,
+              8.23974247685185
+            ],
+            [
+              8.25402199074074,
+              8.10190972222222,
+              7.65661168981481,
+              7.960026041666668,
+              7.770746527777776
+            ],
+            [
+              7.687094907407404,
+              7.679398148148149,
+              7.748263888888888,
+              7.770543981481483,
+              7.467635995370369
+            ]
+          ],
+          "centroid_drift_bound": 0.9556112836859435
+        },
+        "sensitivities": {
+          "fixed_weight_mesh": {
+            "0": 0.054185680002498036,
+            "1": 0.05685485382161021,
+            "4": 0.06256851732327494,
+            "5": 0.06040260179537646
+          },
+          "double_particles": {
+            "0": 0.02744659778831941,
+            "1": 0.018592429606274954,
+            "4": 0.029944538469833342,
+            "5": 0.016959884937089713
+          },
+          "half_dt": {
+            "0": 0.04125125281654613,
+            "1": 0.04969549599250684,
+            "4": 0.06559663978530793,
+            "5": 0.052736402687422274
+          }
+        },
+        "t95_multiplier_df3": 3.182446305284263,
+        "far_states": {
+          "upstream_n": {
+            "relative_error": 0.006510416666666741,
+            "relative_3se": 0.030891057872167237
+          },
+          "upstream_ux": {
+            "relative_error": 0.006223935332484045,
+            "relative_3se": 0.010176598297537505
+          },
+          "upstream_T": {
+            "relative_error": 0.01605392720812837,
+            "relative_3se": 0.004304651019935959
+          },
+          "downstream_n": {
+            "relative_error": 0.009609374999999976,
+            "relative_3se": 0.02565414577749907
+          },
+          "downstream_ux": {
+            "relative_error": 0.004237360363579748,
+            "relative_3se": 0.045038832638307526
+          },
+          "downstream_T": {
+            "relative_error": 0.001906737909162776,
+            "relative_3se": 0.018553498211707917
+          },
+          "flux_mass": {
+            "relative_error": 0.0024070774857472034,
+            "relative_3se": 0.019227094067718793
+          },
+          "flux_momentum": {
+            "relative_error": 0.00078031325515157,
+            "relative_3se": 0.00993345578096233
+          },
+          "flux_energy": {
+            "relative_error": 0.0013690013518424923,
+            "relative_3se": 0.01269796832260334
+          }
+        }
+      },
+      "records": [
+        {
+          "configuration": "base",
+          "seed": 371001,
+          "fields": "dsmc-planar-shock-base-371001.npz",
+          "profile_csv": "dsmc-planar-shock-base-371001-profile.csv",
+          "resolution": {
+            "dx_over_lambda": 0.19500868055555554,
+            "dt_over_maxwell_tau": 0.0539208556083294
+          },
+          "collisions": 408285,
+          "candidates": 19424293,
+          "max_subcycles": 2,
+          "scaled_budget": 2.1331936222605258e-14
+        },
+        {
+          "configuration": "base",
+          "seed": 371002,
+          "fields": "dsmc-planar-shock-base-371002.npz",
+          "profile_csv": "dsmc-planar-shock-base-371002-profile.csv",
+          "resolution": {
+            "dx_over_lambda": 0.19366319444444446,
+            "dt_over_maxwell_tau": 0.05301846463949094
+          },
+          "collisions": 398002,
+          "candidates": 19103742,
+          "max_subcycles": 2,
+          "scaled_budget": 1.1951815938149243e-14
+        },
+        {
+          "configuration": "base",
+          "seed": 371003,
+          "fields": "dsmc-planar-shock-base-371003.npz",
+          "profile_csv": "dsmc-planar-shock-base-371003-profile.csv",
+          "resolution": {
+            "dx_over_lambda": 0.193828125,
+            "dt_over_maxwell_tau": 0.054077534431941666
+          },
+          "collisions": 402925,
+          "candidates": 19408459,
+          "max_subcycles": 2,
+          "scaled_budget": 2.1209250376688278e-14
+        },
+        {
+          "configuration": "base",
+          "seed": 371004,
+          "fields": "dsmc-planar-shock-base-371004.npz",
+          "profile_csv": "dsmc-planar-shock-base-371004-profile.csv",
+          "resolution": {
+            "dx_over_lambda": 0.1890625,
+            "dt_over_maxwell_tau": 0.05223020700703991
+          },
+          "collisions": 412751,
+          "candidates": 19553346,
+          "max_subcycles": 2,
+          "scaled_budget": 1.1754929557100148e-14
+        },
+        {
+          "configuration": "fixed_weight_mesh",
+          "seed": 371001,
+          "fields": "dsmc-planar-shock-fixed_weight_mesh-371001.npz",
+          "profile_csv": "dsmc-planar-shock-fixed_weight_mesh-371001-profile.csv",
+          "resolution": {
+            "dx_over_lambda": 0.2854166666666667,
+            "dt_over_maxwell_tau": 0.05247895888434569
+          },
+          "collisions": 390723,
+          "candidates": 19571045,
+          "max_subcycles": 2,
+          "scaled_budget": 2.1060191812126213e-14
+        },
+        {
+          "configuration": "double_particles",
+          "seed": 371001,
+          "fields": "dsmc-planar-shock-double_particles-371001.npz",
+          "profile_csv": "dsmc-planar-shock-double_particles-371001-profile.csv",
+          "resolution": {
+            "dx_over_lambda": 0.19267795138888885,
+            "dt_over_maxwell_tau": 0.05332681539209042
+          },
+          "collisions": 820377,
+          "candidates": 40184414,
+          "max_subcycles": 2,
+          "scaled_budget": 1.2732165731945578e-14
+        },
+        {
+          "configuration": "half_dt",
+          "seed": 371001,
+          "fields": "dsmc-planar-shock-half_dt-371001.npz",
+          "profile_csv": "dsmc-planar-shock-half_dt-371001-profile.csv",
+          "resolution": {
+            "dx_over_lambda": 0.1943142361111111,
+            "dt_over_maxwell_tau": 0.026808292590681945
+          },
+          "collisions": 399364,
+          "candidates": 19679516,
+          "max_subcycles": 1,
+          "scaled_budget": 1.4945942576347634e-14
+        }
+      ],
+      "completed_primary_runs": 7,
+      "termination": "fixed_budget_completed"
+    }
+  ],
+  "termination": "fixed_budget_completed",
+  "failure": null,
+  "input_sha256": "1b1bf088995b464fc9bc0b01bf8f9befa44cb5069505bf5c5e47fe4c6b25e86a",
+  "source_sha256": {
+    "acceptance.json": "ca835b4e4606640d6da9cc49b1332fed4c44c5e47c3b49e547a8687f0881986b",
+    "cases.json": "2a3ceaa9007a799bd38957a8eaa05a6b852bd5725057174808c2b4b252eb7a59",
+    "diagnostics.py": "5ddca83507a57797a1b3b46141aed579136711c76aa0dac6bd5a6750a32b3f13",
+    "dsmc.py": "9f370380655c05f0cb71928c87d0aca59c6a278f67056488d2b218d0c2110840",
+    "inputs.json": "1b1bf088995b464fc9bc0b01bf8f9befa44cb5069505bf5c5e47fe4c6b25e86a",
+    "plot.py": "4a0ae168abb2aca19e5960d4e6aca306b0928319499f720476b18995f49e9503",
+    "pytest.ini": "9f309ec4b3e4ae626f051b4f5ca52d64a8e48fab8c92c9b9fefcfd4ba45cf76e",
+    "references/SPARTA-LICENSE.txt": "c5186abe32a9221088c8a87e9a762e7cd6f1f38a888943325e43b9d666035b29",
+    "references/dsmc-planar-shock.npz": "2594abf9afc9161f968540695a222b61890425193dd02258a503fcc3a462f0f5",
+    "references/generate.py": "c5ec562feb04f506e6bac7ca7ee29ed6fdf9560f95de4bec1898401c560e5647",
+    "references/native-inputs/dsmc-planar-shock/base/931001/hs.species": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+    "references/native-inputs/dsmc-planar-shock/base/931001/hs.vss": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+    "references/native-inputs/dsmc-planar-shock/base/931001/input.sparta": "3a3b2179af72459c88e571e37c3698872806c32b2fd27a8f488fd52c28555499",
+    "references/native-inputs/dsmc-planar-shock/base/931002/hs.species": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+    "references/native-inputs/dsmc-planar-shock/base/931002/hs.vss": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+    "references/native-inputs/dsmc-planar-shock/base/931002/input.sparta": "5f24c33f84bd967e906cea5c2726091e495fc9d87c2be2b9063706b65902e42a",
+    "references/native-inputs/dsmc-planar-shock/base/931003/hs.species": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+    "references/native-inputs/dsmc-planar-shock/base/931003/hs.vss": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+    "references/native-inputs/dsmc-planar-shock/base/931003/input.sparta": "29ce712c943764274b9a4ef69d4d02eb0b6880d1c2d54b90b5122711f6bf4d4b",
+    "references/native-inputs/dsmc-planar-shock/base/931004/hs.species": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+    "references/native-inputs/dsmc-planar-shock/base/931004/hs.vss": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+    "references/native-inputs/dsmc-planar-shock/base/931004/input.sparta": "3e74bd0818f6839e728d4bf05c376d1dbae2655c2caaf199e5de040b8f996ec5",
+    "references/native-inputs/dsmc-planar-shock/fine_grid/931001/hs.species": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+    "references/native-inputs/dsmc-planar-shock/fine_grid/931001/hs.vss": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+    "references/native-inputs/dsmc-planar-shock/fine_grid/931001/input.sparta": "ee0b141b7261c31f48c5a526d638b4c455445fac104c58564fbcd54419ad1e3e",
+    "references/native-inputs/dsmc-planar-shock/fine_grid/931002/hs.species": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+    "references/native-inputs/dsmc-planar-shock/fine_grid/931002/hs.vss": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+    "references/native-inputs/dsmc-planar-shock/fine_grid/931002/input.sparta": "daa3ba34837246385000708da1d1854180e92a4c7368bf2e99245d93fb90144d",
+    "references/native-inputs/dsmc-planar-shock/fine_grid/931003/hs.species": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+    "references/native-inputs/dsmc-planar-shock/fine_grid/931003/hs.vss": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+    "references/native-inputs/dsmc-planar-shock/fine_grid/931003/input.sparta": "77ac36128bc2c41d6923024c24ed6480d51569cf02aab1630636a72add71a2af",
+    "references/native-inputs/dsmc-planar-shock/fine_grid/931004/hs.species": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+    "references/native-inputs/dsmc-planar-shock/fine_grid/931004/hs.vss": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+    "references/native-inputs/dsmc-planar-shock/fine_grid/931004/input.sparta": "94f5e94452fed0ebccbc49c132782d1ee1411641a5a5ab05ba4573b95e303b14",
+    "references/native-inputs/dsmc-planar-shock/half_dt/931001/hs.species": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+    "references/native-inputs/dsmc-planar-shock/half_dt/931001/hs.vss": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+    "references/native-inputs/dsmc-planar-shock/half_dt/931001/input.sparta": "25407376dcf07c708876011dbabb319a2dbf80576258b00bf04d1c151bbbb8ff",
+    "references/native-inputs/dsmc-planar-shock/half_dt/931002/hs.species": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+    "references/native-inputs/dsmc-planar-shock/half_dt/931002/hs.vss": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+    "references/native-inputs/dsmc-planar-shock/half_dt/931002/input.sparta": "e48ed7b6d9049a3c864015c9b0601af8247113a89985d31348de91228487c503",
+    "references/native-inputs/dsmc-planar-shock/half_dt/931003/hs.species": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+    "references/native-inputs/dsmc-planar-shock/half_dt/931003/hs.vss": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+    "references/native-inputs/dsmc-planar-shock/half_dt/931003/input.sparta": "b752b7c9f1a286d6ee820a3e6cc009eeb900f694ab25b7ba496c97f0706b2df7",
+    "references/native-inputs/dsmc-planar-shock/half_dt/931004/hs.species": "2e96427830eca1608cd331709871445b6230e7f65690fd5129161eb447f24325",
+    "references/native-inputs/dsmc-planar-shock/half_dt/931004/hs.vss": "240c19f1c1e22586a19b69e0994cd96be272e5e228e5825445b76382a9ab5401",
+    "references/native-inputs/dsmc-planar-shock/half_dt/931004/input.sparta": "9ab58b0db7ad83bb7655539279ae781ecce8602ed1b6e15740fb699c70db8b7b",
+    "references/provenance.json": "f75ba585d7126df0e1e3c521eeac301b0824599105a9fcc05cda43d9dabd3651",
+    "references/qualification.json": "a170ccfbeb47c5bb61c986796836b97a9d9c86ed1386b8acff33214243efdcbf",
+    "references/qualify.py": "20e5463812b1a2082f155ca7284454acda462123f400b3af30bd4e24ea51cc6c",
+    "references/reference-protocol.json": "b50fb8a2ec4abe4e856fd25ad0f9e033d42ffad0edb01966b458cbdb444bc1eb",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "run.py": "fcc4434a2db23714ccd9ee25b9224feb46a43f31541b541e907a471fe35c386e",
+    "test_core.py": "15766596ba1663b91ee0c75e17cdf7392ba10ad8d800dc33c7b1aaec01899417",
+    "test_shock.py": "9c3a093af7b7dfff13b516ea2d81043f19c40486d525989f5b26f0ceb40cd917",
+    "pre-run-contract.json": "45895291827a66ee82cabba0695f41e95443276ba780013e633ff03ed1bc8b93"
+  },
+  "wall_seconds": 61.80204383400269,
+  "numerical_gate_count": 81,
+  "reference_scope": "Compare every new primary case with immutable independently evolved SPARTA finite-grid HS seed fields. Reference qualification is cached and hash-bound; no SPARTA simulation in public main."
+}

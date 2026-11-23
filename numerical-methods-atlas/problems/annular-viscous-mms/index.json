@@ -111,8 +111,8 @@
     {
       "id": "q1-fem",
       "name": {
-        "ja": "Q1有限要素法（曲線座標ベクトルBVP）",
-        "en": "Q1 FEM for mapped-coordinate vector BVP"
+        "ja": "Q1有限要素法（スカラー拡散・曲線座標ベクトルBVP）",
+        "en": "Q1 FEM for scalar diffusion and mapped vector BVPs"
       },
       "status": "educational-example",
       "role": "execution",

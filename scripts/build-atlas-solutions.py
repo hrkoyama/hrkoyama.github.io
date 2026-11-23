@@ -44,7 +44,7 @@ def load(root=ROOT):
         ident, kind = source_case['id'], source_case['kind']
         if not re.fullmatch(r'[a-z0-9-]+', ident) or kind not in KIND_NAMES:
             raise ValueError('Unknown reference-solution identity or kind: ' + ident)
-        if not source_case['formula'].strip() or source_case['dimension'] not in (1, 2):
+        if not source_case['formula'].strip() or source_case['dimension'] not in (1, 2, 3):
             raise ValueError('Missing reference formula or dimension: ' + ident)
         case = {key: source_case[key] for key in ['id', 'model', 'kind', 'formula', 'dimension', 'bounds', 'components', 'field_type', 'parameters', 'sources']}
         case.update(title=localized(source_case['title']), assumptions=localized(source_case['assumptions']),

@@ -323,19 +323,24 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-このコマンドは配布グループの全例を実行します。
+このコマンドは配布グループの全例を実行します。同梱のresults/は保存見本です。追試は新規output/へ出力し、繰り返す場合は別の新規フォルダを指定します。
 
 ### 出典と確認範囲
 
 - W. F. Noh (1987). Errors for calculations of strong shocks using an artificial viscosity and an artificial heat flux. https://www.sciencedirect.com/science/article/pii/002199918790074X; review_level=publisher-metadata-and-abstract
-  出版社書誌・抄録を確認。原著本文の直接取得は403のため全文未読。Noh問題・過熱誤差の原著として引用し、今回の有限体積離散化そのものの出典とは呼びません。
+出版社書誌・抄録を確認。原著本文の直接取得は403のため全文未読。Noh問題・過熱誤差の原著として引用し、今回の有限体積離散化そのものの出典とは呼びません。
+
 - J. Thrussell and J. M. Ferguson (2023). ExactPack: A python library of exact analytic solutions. https://doi.org/10.1016/j.softx.2023.101560; review_level=official-record-and-unmodified-pinned-code-execution
-  LANL公式書誌と固定commit 9bacc477eb791e959c9621e771fc7a725db755faのNohコードを確認・別実行。gamma=5/3,rho0=|u0|=1に限定し、点値と衝撃を分割したGauss積分で参照保存量平均を照合。このd=3解析照合の既存receiptを保持し、本版の球対称PDE系列は別途実行します。
+LANL公式書誌と固定commit 9bacc477eb791e959c9621e771fc7a725db755faのNohコードを確認・別実行。gamma=5/3,rho0=|u0|=1に限定し、点値と衝撃を分割したGauss積分で参照保存量平均を照合。このd=3解析照合の既存receiptを保持し、本版の球対称PDE系列は別途実行します。
+
 - van Leer, Bram (1979). Towards the ultimate conservative difference scheme. V. A second-order sequel to Godunov's method. https://www.sciencedirect.com/science/article/pii/0021999179901451; review_level=existing-atlas-publisher-record-and-abstract
-  既存アトラスの書誌参照。制限線形再構築とlimiterの背景として引用し、原論文の全アルゴリズムや一般の幾何源付き零圧Eulerに対する正値性定理を再現したとは主張しません。
+既存アトラスの書誌参照。制限線形再構築とlimiterの背景として引用し、原論文の全アルゴリズムや一般の幾何源付き零圧Eulerに対する正値性定理を再現したとは主張しません。
+
 - Sweby, P. K. (1984). High Resolution Schemes Using Flux Limiters for Hyperbolic Conservation Laws. https://epubs.siam.org/doi/10.1137/0721062; review_level=existing-atlas-publisher-record-and-abstract
-  既存アトラスの書誌参照。制限線形再構築とlimiterの背景として引用し、原論文の全アルゴリズムや一般の幾何源付き零圧Eulerに対する正値性定理を再現したとは主張しません。
+既存アトラスの書誌参照。制限線形再構築とlimiterの背景として引用し、原論文の全アルゴリズムや一般の幾何源付き零圧Eulerに対する正値性定理を再現したとは主張しません。
+
 - Mignone, Andrea (2014). High-order conservative reconstruction schemes for finite volume methods in cylindrical and spherical coordinates. https://arxiv.org/abs/1404.0537; review_level=original-arxiv-selected-sections-2.2-3.1-4.2
-  原著arXivの§2.2・3.1・4.2を選択確認。体積重心と保存的な線形再構築・幾何源積分の背景です。本実装は限定したminmod/Rusanov/Heunと独自の数値応力源を使い、論文全体の方式の再現とは区別します。
+原著arXivの§2.2・3.1・4.2を選択確認。体積重心と保存的な線形再構築・幾何源積分の背景です。本実装は限定したminmod/Rusanov/Heunと独自の数値応力源を使い、論文全体の方式の再現とは区別します。
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.

@@ -116,8 +116,8 @@
         "en": "Elliptic problems and gravity"
       },
       "scope": {
-        "ja": "Poisson・Bratu・粒子重力に固定入力例があります。 単位正方形の正弦製造解をGLLスペクトル要素法と既存P1三角形FEMで解きます。自由未知数を揃えたh細分化と、固定要素数でのp=1〜6を分けて測ります。 今回の固定例：L字領域P1特異解：graded格子と歪みの分離, 環状領域の可変粘性・真2DベクトルMMS, 純Neumannの互換条件と平均値ゲージ, 2D混合Robinの製造解と境界流束.",
-        "en": "Poisson, Bratu and particle-gravity fixed-input examples. Solve a sine manufactured solution on the unit square with GLL spectral elements and the existing triangle P1 FEM. Compare matched free-unknown counts under h refinement and p=1..6 at fixed elements. Additional fixed examples: L-corner P1 FEM: grading and separate mesh distortion, Annular variable-viscosity vector PDE MMS, Pure Neumann compatibility and mean gauge, 2D mixed Robin MMS and boundary flux."
+        "ja": "Poisson・Bratu・粒子重力に固定入力例があります。 単位正方形の正弦製造解をGLLスペクトル要素法と既存P1三角形FEMで解きます。自由未知数を揃えたh細分化と、固定要素数でのp=1〜6を分けて測ります。 今回の固定例：L字領域P1特異解：graded格子と歪みの分離, 環状領域の可変粘性・真2DベクトルMMS, 純Neumannの互換条件と平均値ゲージ, 2D混合Robinの製造解と境界流束. 係数ジャンプの共有流束FVと、完全テンソル回転拡散Q1をMG・SA-AMGで比較する固定例もあります。",
+        "en": "Poisson, Bratu and particle-gravity fixed-input examples. Solve a sine manufactured solution on the unit square with GLL spectral elements and the existing triangle P1 FEM. Compare matched free-unknown counts under h refinement and p=1..6 at fixed elements. Additional fixed examples: L-corner P1 FEM: grading and separate mesh distortion, Annular variable-viscosity vector PDE MMS, Pure Neumann compatibility and mean gauge, 2D mixed Robin MMS and boundary flux. Fixed coefficient-jump shared-flux FV and full-tensor rotated-diffusion Q1 also compare geometric MG and SA-AMG."
       },
       "examples": [
         "poisson-1d-dirichlet",
@@ -147,7 +147,9 @@
         "lshape-fem",
         "annular-viscous-mms",
         "poisson-neumann",
-        "poisson-robin"
+        "poisson-robin",
+        "checkerboard-diffusion",
+        "rotated-anisotropic-diffusion"
       ]
     },
     {
@@ -412,11 +414,21 @@
         "spme-convergence",
         "fmm-convergence",
         "pic-conservation",
-        "dsmc-statistics"
+        "dsmc-statistics",
+        "neutral-slab-yb",
+        "fmm3d-inverse-r",
+        "gravity-kepler",
+        "gravity-plummer-short",
+        "thermal-landau-damping",
+        "thermal-two-stream",
+        "pic-independent-spatial",
+        "dsmc-couette",
+        "dsmc-fourier",
+        "dsmc-planar-shock"
       ],
       "scope": {
-        "ja": "中性周期電荷のEwald／B-spline SPME、2次元自由空間対数核の真のFMM、1次元cold-plasma PIC、均質Maxwell分子のDSMC衝突成分を小規模検証。 旧5例に加え、同じ問題の独立参照・打切り・格子・時間・保存量・統計診断を別配布版で比較します。",
-        "en": "Small validations of neutral-periodic Ewald/B-spline SPME, a genuine 2D free-space logarithmic FMM, 1D cold-plasma PIC and a homogeneous Maxwell-molecule DSMC collision component. A separate companion retains the five historical cases and compares independent references, cutoffs, meshes, time steps, conservation and statistical diagnostics for the same targets."
+        "ja": "中性周期電荷のEwald／B-spline SPME、2次元自由空間対数核の真のFMM、1次元cold-plasma PIC、均質Maxwell分子のDSMC衝突成分を小規模検証。 旧5例に加え、同じ問題の独立参照・打切り・格子・時間・保存量・統計診断を別配布版で比較します。 追加固定例は真の2周期スラブ、3D1/r FMM、重力軌道、熱的PICと独立空間演算、物理時間の剛体球壁面流・Mach2衝撃波。",
+        "en": "Small validations of neutral-periodic Ewald/B-spline SPME, a genuine 2D free-space logarithmic FMM, 1D cold-plasma PIC and a homogeneous Maxwell-molecule DSMC collision component. A separate companion retains the five historical cases and compares independent references, cutoffs, meshes, time steps, conservation and statistical diagnostics for the same targets. Additional fixed cases cover genuine2P slabs,3D1/r FMM,gravity trajectories,warm PIC and independent spatial kernels,and physical-time hard-sphere wall flows/Mach2shocks."
       },
       "reference": {
         "ja": "Ewaldの別級数・直接和、SPMEと収束Ewald、FMMの直接粒子和、PICの線形振動、DSMCの保存量・分布診断を区別。 追加版は独立theta積分、2次元対数核のCartesian直接和・解析配置、線形cold-plasma参照、固定運動量・エネルギー球面の解析モーメントと独立標本を役割別に用います。",
@@ -427,8 +439,8 @@
         "en": "Check case-specific cutoffs, meshes, multipole order and PIC step refinement. SPME is not the original 1993 Lagrange-interpolation PME. DSMC collision rounds are not interpreted as physical time. Record finite-mesh SPME net force, FMM depth versus expansion order, PIC particle count/mesh/time step and DSMC seed uncertainty separately. Passing conservation diagnostics is no general guarantee of trajectories or distributions."
       },
       "next": {
-        "ja": "一般3D Coulomb FMM、複雑なプラズマ、空間輸送を含む物理時間DSMC、実在気体は未検証。",
-        "en": "General 3D Coulomb FMM, complex plasmas, physical-time DSMC with spatial transport and real gases remain unvalidated."
+        "ja": "任意符号・一般境界の3D Coulomb FMM、電磁・多種プラズマ、反応・多原子・実在気体DSMCは別検証です。",
+        "en": "Arbitrary-sign/general-boundary3D Coulomb FMM,electromagnetic/multispecies plasmas,and reactive/polyatomic/real-gas DSMC require separate validation."
       },
       "examples": [],
       "reading": {

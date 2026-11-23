@@ -145,6 +145,11 @@ def group_commands(data, language):
             '<pre><code>'+escape(commands)+'</code></pre>'+paragraph('Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。' if ja else 'Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.'))
 
 
+def reference_label(reference):
+    author = reference.get('author')
+    return (author+' ('+str(reference.get('year', 'n.d.'))+'). ' if author else '')+reference['title']
+
+
 def reference_html(case, language, anchor):
     ja = language == 'ja'
     result = paragraph('原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。'
@@ -152,11 +157,11 @@ def reference_html(case, language, anchor):
     for reference in case['references']:
         url = reference.get('url') or reference.get('source') or 'https://doi.org/'+reference['doi']
         assert url.startswith(('https://', 'http://'))
-        result += '<li id="'+anchor+'-source-'+escape(reference['id'], quote=True)+'">'+link(url, reference['author']+' ('+str(reference.get('year', 'n.d.'))+'). '+reference['title'])
+        result += '<li id="'+anchor+'-source-'+escape(reference['id'], quote=True)+'">'+link(url, reference_label(reference))
         if reference.get('doi'):
             result += ' · '+link('https://doi.org/'+reference['doi'], 'DOI: '+reference['doi'])
         result += paragraph(('確認範囲 / review_level: ' if ja else 'Review scope / review_level: ')+reference['review_level'])
-        note = reference.get('review') or reference.get('review_note')
+        note = reference.get('review') or reference.get('review_note') or reference.get('review_scope')
         if note:
             result += paragraph(localized(note, language))
         result += '</li>'
@@ -246,10 +251,10 @@ def markdown_case(case, measured, data, language, heading_level=1, editorial_not
     out += subheading+' '+('出典と確認範囲' if language == 'ja' else 'Sources and review scope')+'\n\n'
     for reference in case['references']:
         url = reference.get('url') or reference.get('source') or 'https://doi.org/'+reference['doi']
-        out += '- '+reference['author']+' ('+str(reference.get('year', 'n.d.'))+'). '+reference['title']+'. '+url+'; review_level='+reference['review_level']+'\n'
-        note = reference.get('review') or reference.get('review_note')
+        out += '- '+reference_label(reference)+'. '+url+'; review_level='+reference['review_level']+'\n'
+        note = reference.get('review') or reference.get('review_note') or reference.get('review_scope')
         if note:
-            out += '  '+localized(note, language)+'\n'
+            out += localized(note, language)+'\n\n'
     return out+'\nOriginal code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.\n'
 
 

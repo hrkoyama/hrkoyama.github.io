@@ -42,6 +42,19 @@ for path in ['random.sparta','random.species','references/other/hs.vss','spa_mac
 `],{cwd:root,timeout:30_000});
 });
 
+test('reference rendering accepts titled official sources without inventing author metadata',()=>{
+ execFileSync('python3',['-B','-c',String.raw`
+import importlib.util,sys
+sys.path.insert(0,'scripts')
+s=importlib.util.spec_from_file_location('builder','scripts/build-atlas-depth-examples.py');m=importlib.util.module_from_spec(s);s.loader.exec_module(m)
+c={'references':[{'id':'official-doc','title':'Official formulation','url':'https://example.org/formulation','review_level':'selected-official','review_scope':'Selected derivation only; no solver run.'}]}
+html=m.reference_html(c,'ja','fixture')
+assert m.reference_label(c['references'][0])=='Official formulation'
+assert 'Official formulation' in html and 'Selected derivation only; no solver run.' in html
+assert 'None' not in html
+`],{cwd:root,timeout:30_000});
+});
+
 test('batch28–37 preserves every prior scientific distribution and reference identity',()=>{
  for(const [p,h] of Object.entries(baseline.immutable_files)) assert.equal(sha(p),h,p);
  const methods=json('catalog/atlas-methods.json').methods;
@@ -91,14 +104,17 @@ test('new fixed-input packets expose verified booleans, finite CSV and reviewed 
 });
 
 test('each new case connects equations, methods, reference, gallery and bilingual executable pages',()=>{
+ const galleryHtml=bytes('numerical-methods-atlas/gallery/index.html').toString();
  const expansion=json('catalog/atlas-depth-expansion.json');const refs=json('catalog/atlas-reference-supplements.json').cases;const problems=json('catalog/atlas-test-problems.json').problems;const links=json('catalog/atlas-problem-links.json').problems;const gallery=json('catalog/atlas-gallery.json').items;const equations=json('catalog/atlas-equations.json').equations;
  for(const id of newIds){
   const pid=expansion.case_problem_ids[id];assert.ok(problems.some(x=>x.id===pid),id);assert.ok(gallery.some(x=>x.id===pid),id);
+  if(pid===id)for(const lang of ['ja','en']){const tile=galleryHtml.match(new RegExp(`<li class="gallery-tile" id="${id}-${lang}"[\\s\\S]*?</li>`))?.[0];assert.ok(tile,id+'/'+lang);assert.equal((tile.match(/<img /g)||[]).length,1,id+'/'+lang+'/one-primary-preview');assert.ok(tile.includes(`data-supplemental-execution="${id}"`),id);}
   const link=links.find(x=>x.id===pid);assert.ok(link.references.some(x=>x.id===id),id);
   const reference=refs.find(x=>x.id===id);assert.ok(reference,id);assert.ok(reference.citations.every(x=>x.role&&x.title&&x.url));
+  if(['neutral-slab-yb','fmm3d-inverse-r','gravity-kepler','gravity-plummer-short'].includes(id))assert.equal(reference.dimension,3,id);
   for(const model of expansion.case_equations[id].ids){assert.ok(link.equation_ids.includes(model));assert.ok(equations.find(x=>x.id===model).supplemental_examples.includes(id));}
   const html=bytes(`numerical-methods-atlas/validation/${id}/index.html`).toString();
-  for(const lang of ['ja','en']){assert.ok(html.includes(`${id}-${lang}`),id+'/'+lang);assert.ok(reference.view[lang]);assert.ok(reference.reading[lang]);}
+  for(const lang of ['ja','en']){assert.ok(html.includes(`id="${id}-${lang}-measurements"`),id+'/'+lang);assert.equal(reference.view[lang],`/numerical-methods-atlas/validation/${id}/?lang=${lang}#${id}-${lang}-measurements`);assert.ok(reference.reading[lang]);}
  }
 });
 

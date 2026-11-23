@@ -76,10 +76,23 @@ test('particle and transport checks extend five existing targets while keeping k
   ];
   for(const [id,previous,added,methodIds] of bindings){
     const source=mapping.problems.find(row=>row.id===id),problem=index.problems.find(row=>row.id===id);
-    assert.deepEqual(source.method_ids,methodIds);
-    assert.deepEqual(source.references,[],'no different physical reference-library case is borrowed');
-    assert.deepEqual(problem.executions.map(row=>row.id),[...previous,...added]);
-    assert.deepEqual(problem.formulations.map(row=>row.id),[...previous,...added].map(value=>'supplement-'+value));
+    const laterCases=id==='cold-plasma-pic'?['pic-independent-spatial']:[];
+    const laterMethods=id==='cold-plasma-pic'?['cic','verlet']:[];
+    assert.deepEqual(source.method_ids.filter(value=>!laterMethods.includes(value)),methodIds,'historical particle methods remain exact');
+    assert.deepEqual(source.method_ids.filter(value=>laterMethods.includes(value)),laterMethods,'only the independently implemented spatial PIC methods are appended');
+    assert.deepEqual(source.references.filter(row=>!laterCases.includes(row.id)),[],'historical cases still borrow no different physical reference-library case');
+    assert.deepEqual(source.references.filter(row=>laterCases.includes(row.id)).map(row=>({id:row.id,relation:row.relation})),laterCases.map(value=>({id:value,relation:'related-model'})));
+    const executions=problem.executions.map(row=>row.id),formulations=problem.formulations.map(row=>row.id);
+    assert.deepEqual(executions.filter(value=>!laterCases.includes(value)),[...previous,...added]);
+    assert.deepEqual(executions.filter(value=>laterCases.includes(value)),laterCases);
+    assert.deepEqual(formulations.filter(value=>!laterCases.map(id=>'supplement-'+id).includes(value)),[...previous,...added].map(value=>'supplement-'+value));
+    assert.deepEqual(formulations.filter(value=>laterCases.map(id=>'supplement-'+id).includes(value)),laterCases.map(value=>'supplement-'+value));
+    if(laterCases.length){
+      const spatial=json('code/validated-examples/2026-11-23/pic-spatial/cases.json').find(row=>row.id==='pic-independent-spatial');
+      assert.deepEqual(source.equation_ids,['poisson-laplace','vlasov-poisson']);
+      assert.deepEqual(source.references[0].note,spatial.assumptions,'the related finite-temperature coding check retains its own assumptions');
+      assert.deepEqual(problem.executions.find(row=>row.id===spatial.id).method_ids,spatial.method_ids);
+    }
     for(const addedId of added){
       assert.equal(supplements[addedId],id);
       const execution=problem.executions.find(row=>row.id===addedId);

@@ -106,16 +106,19 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-このコマンドは配布グループの全例を実行します。
+このコマンドは配布グループの全例を実行します。同梱のresults/は保存見本です。追試は新規output/へ出力し、繰り返す場合は別の新規フォルダを指定します。
 
 ## 出典と確認範囲
 
 - A. M. Turing (1952). The Chemical Basis of Morphogenesis. https://royalsocietypublishing.org/doi/10.1098/rstb.1952.0012; review_level=publisher-archive-and-original-first-page-metadata
-  Royal Societyの原稿審査記録と大学公開の原著第1ページの書誌を確認。出版社本文は403でした。拡散誘起不安定性の歴史的原著で、採用したSchnakenberg数値例の出典とは区別します。
+Royal Societyの原稿審査記録と大学公開の原著第1ページの書誌を確認。出版社本文は403でした。拡散誘起不安定性の歴史的原著で、採用したSchnakenberg数値例の出典とは区別します。
+
 - J. Schnakenberg (1979). Simple chemical reaction systems with limit cycle behaviour. https://pubmed.ncbi.nlm.nih.gov/537379/; review_level=official-bibliographic-metadata
-  PubMedの書誌・DOIを確認（抄録なし）。反応系の原典として引用し、採用係数a=0.1,b=0.9や今回の空間パターンを原著から転記したとは扱いません。
+PubMedの書誌・DOIを確認（抄録なし）。反応系の原典として引用し、採用係数a=0.1,b=0.9や今回の空間パターンを原著から転記したとは扱いません。
+
 - The SciPy community (2024). SciPy1.14.1 expm reference. https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.linalg.expm.html; review_level=official-api-documentation
-  公式の行列指数APIとPadé/scaling-and-squaring法の記載を確認。
+公式の行列指数APIとPadé/scaling-and-squaring法の記載を確認。
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.
 
@@ -227,15 +230,18 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-This command executes every fixed case in the distribution group.
+This command executes every fixed case in the distribution group. Bundled results/ are stored outputs. Rerun into a new output/ directory and use another fresh directory for subsequent runs.
 
 ## Sources and review scope
 
 - A. M. Turing (1952). The Chemical Basis of Morphogenesis. https://royalsocietypublishing.org/doi/10.1098/rstb.1952.0012; review_level=publisher-archive-and-original-first-page-metadata
-  Royal Society manuscript-review archive and bibliography on the original first page hosted by a university checked. Publisher text returned 403. Historical source for diffusion-driven instability, distinct from this adopted Schnakenberg example.
+Royal Society manuscript-review archive and bibliography on the original first page hosted by a university checked. Publisher text returned 403. Historical source for diffusion-driven instability, distinct from this adopted Schnakenberg example.
+
 - J. Schnakenberg (1979). Simple chemical reaction systems with limit cycle behaviour. https://pubmed.ncbi.nlm.nih.gov/537379/; review_level=official-bibliographic-metadata
-  PubMed bibliography and DOI checked (no abstract). Cited for the reaction-system family; a=0.1,b=0.9 and this spatial experiment are adopted educational inputs, not a transcription of the original experiment.
+PubMed bibliography and DOI checked (no abstract). Cited for the reaction-system family; a=0.1,b=0.9 and this spatial experiment are adopted educational inputs, not a transcription of the original experiment.
+
 - The SciPy community (2024). SciPy1.14.1 expm reference. https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.linalg.expm.html; review_level=official-api-documentation
-  Official matrix-exponential API and description of the Pade/scaling-and-squaring method checked.
+Official matrix-exponential API and description of the Pade/scaling-and-squaring method checked.
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.

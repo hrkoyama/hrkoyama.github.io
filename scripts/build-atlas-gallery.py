@@ -135,9 +135,11 @@ for lang in ['ja', 'en']:
         if example:
             body += '<p class="gallery-execution-badge">' + link(destination, '実行・検証例あり →' if ja else 'Run and validate →') + '</p>'
         for extra in extras:
-            body += '<p class="gallery-execution-badge gallery-supplemental-badge" data-supplemental-execution="' + extra['id'] + '">' + link(extra['url'][lang], ('補助実行例：' if ja else 'Supplementary run: ') + extra['title'][lang]) + '</p>'
-            if 'preview' in extra:
-                preview = extra['preview']
+            preview = extra.get('preview')
+            shared_preview = preview is not None and preview['url'] == x['image']
+            badge = ('実行・検証例あり →' if ja else 'Run and validate →') if shared_preview else ('補助実行例：' if ja else 'Supplementary run: ') + extra['title'][lang]
+            body += '<p class="gallery-execution-badge gallery-supplemental-badge" data-supplemental-execution="' + extra['id'] + '">' + link(extra['url'][lang], badge) + '</p>'
+            if preview and not shared_preview:
                 body += '<figure class="gallery-supplement-preview" data-supplemental-preview="' + esc(extra['id']) + '"><a href="' + esc(extra['url'][lang]) + '"><img src="' + esc(preview['url']) + '" alt="' + esc(preview['caption'][lang]) + '" width="' + str(preview['width']) + '" height="' + str(preview['height']) + '" loading="lazy" decoding="async"></a><figcaption>' + esc(preview['caption'][lang]) + '</figcaption></figure>'
 
         body += '<h2>' + link(hub, x['name'][lang]) + '</h2><p>' + esc(x['caption'][lang]) + '</p><p class="gallery-meta">' + source_labels[x['source_kind']][lang] + (' · 英語の解説（日本語版未公開）' if fallback else '') + '</p><nav class="gallery-card-links">'

@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-23-504b14f22d
-Captured (UTC): 2026-11-23T13:45:05+00:00
+Snapshot: 2026-11-23-123a8ca3d3
+Captured (UTC): 2026-11-23T14:26:06+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -9153,7 +9153,7 @@ R. Car; M. Parrinello (1985)
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/#verification
 Coverage: reading
 
-Two hydrogenic/He problem families were executed, independently compared and added to the 102-problem inventory. A scoped H₂ finite-basis RHF example now adds independent-reference, SCF and basis checks. A scoped periodic-He DFT workflow is now added; molecular DFT, FCI and other periodic materials are not validated.
+Two hydrogenic/He problem families were executed, independently compared and added to the 113-problem inventory. A scoped H₂ finite-basis RHF example now adds independent-reference, SCF and basis checks. A scoped periodic-He DFT workflow is now added; molecular DFT, FCI and other periodic materials are not validated.
 Runnable and checked
 
 ## Quantum chemistry and DFT: approximations and equations — One electron: hydrogenic atoms [en]
@@ -12874,8 +12874,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Published web edition, counted 2026-11-23. These are counts of catalog entries and documented examples, not a claim that every entry is a verified end-to-end solver.
-56 equation/model entries · 136 methods and building blocks · 249 journal/conference papers · 310 total sources.
-There are 9 saved-profile equation-gallery cases across 7 equation families, and 115 reading chapters including this inventory.
+60 equation/model entries · 137 methods and building blocks · 249 journal/conference papers · 310 total sources.
+There are 9 saved-profile equation-gallery cases across 7 equation families, and 123 reading chapters including this inventory.
 
 ## Site coverage and counting rules — Equations and models# [en]
 
@@ -12883,7 +12883,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Named equation/model entries, not scalar component equations or mathematically disjoint families. Includes frameworks and auxiliary formulations; variants share one entry except the three separately explained SR/GR fluid systems. Biological entries are imported once from their own catalog.
-34 entries have scoped local examples; 22 are reading-only, including all 22 biological survey entries. A coupled system is one entry; its individual component equations do not increase the count. Poisson/Laplace and dimensional variants share entries. Named frameworks and specialized kinetic laws can both appear, so this is not a count of mathematically disjoint families.
+38 entries have scoped local examples; 22 are reading-only, including all 22 biological survey entries. A coupled system is one entry; its individual component equations do not increase the count. Poisson/Laplace and dimensional variants share entries. Named frameworks and specialized kinetic laws can both appear, so this is not a count of mathematically disjoint families.
 
 ## Site coverage and counting rules — Physics & mathematical models# [en]
 
@@ -12969,7 +12969,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Named numerical methods and building blocks with a reading chapter. Aliases count once; RK stages, dimensions, parameter combinations, mesh layouts and theoretical conditions do not add methods. A family and a separately explained algorithm may both appear. Not a count of mutually exclusive end-to-end solvers.
-121 entries have scoped local examples; 15 are reading-only. Reconstruction limiters, preconditioners and coupling operators are building blocks, not complete PDE solvers. Mesh layouts, CFL conditions and theorems are not counted as numerical methods.
+122 entries have scoped local examples; 15 are reading-only. Reconstruction limiters, preconditioners and coupling operators are building blocks, not complete PDE solvers. Mesh layouts, CFL conditions and theorems are not counted as numerical methods.
 
 ## Site coverage and counting rules — Spatial discretization# [en]
 
@@ -13213,7 +13213,7 @@ Use neutral charge pairs or a dipole layer and vary vacuum height independently 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/slab-ewald/#publication-scope
 Coverage: reading
 
-Reading, representative equations and sources are published. Dedicated code and numerical verification remain planned. The suggested checks above are not measured results, and code/results of other methods are not presented as validation of this method.
+Links lead to existing educational code and dated verification records. This reading/translation update changes no scientific code or historical measurements and does not claim reproduction of an entire paper.
 Slab electrostatics and 2D-periodic Ewald
 
 ## Slab electrostatics and 2D-periodic Ewald — Primary publications, supporting sources and review scope [en]
@@ -14813,7 +14813,7 @@ Follow a 1D periodic Schnakenberg system from finite-amplitude transients to pos
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/#run-all
 Coverage: reading
 
-Run inside atlas-biology-2026-11-22 from the ZIP. This command executes all 2 fixed cases in the supplement. Choose a new or empty output directory.
+Run inside atlas-biology-2026-11-22 from the ZIP. This command executes all 2 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -15361,6 +15361,332 @@ The SciPy community (2024). SciPy1.14.1 solve_ivp and Radau reference
 Review scope / review_level: official-versioned-api-specification
 Checked official Radau IIA order5, local rtol/atol scaling, analytic Jacobians and termination status. ODE tolerances do not certify global continuum-PDE accuracy.
 
+## MG/AMG for coefficient jumps and rotated anisotropy — MG/AMG for coefficient jumps and rotated anisotropy [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-coefficient-diffusion/
+Coverage: reading
+
+Compare geometric MG,SA-AMG and direct solves of identical matrices, separately from analytic or independently discretized continuum references.
+
+## MG/AMG for coefficient jumps and rotated anisotropy — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-coefficient-diffusion/#run-all
+Coverage: reading
+
+Run inside atlas-coefficient-diffusion-2026-11-23 from the ZIP. This command executes all 2 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## MG/AMG for coefficient jumps and rotated anisotropy — Checkerboard diffusion: shared flux, MG and AMG [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-coefficient-diffusion/
+Coverage: reading
+
+Compare discontinuous-coefficient FV with independent P1 reference fields, separating linear-system residual/forward errors from continuum error.
+Methods, equations, figures and references
+Methods used
+Geometric multigrid V-cycle
+Algebraic multigrid / AMG
+Conjugate gradients
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Orthogonal FV with shared harmonic transmissibility. Symmetric Galerkin geometric and coordinate-free SA cycles precondition PCG on identical matrices.
+Discontinuous and full-tensor diffusion BVP
+Unit square, zero Dirichlet, f=1, diagonal quadrants100/others1, N16/32/64; reference P1 meshes128/192.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Checkerboard diffusion: shared flux, MG and AMG
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Nonzero two-material flux patch, residual-aware budget, direct forward/energy errors and independent triangular-P1 grid sensitivity.
+Same-problem reference · Finite-grid numerical reference
+Checkerboard diffusion: shared flux, MG and AMG
+
+## MG/AMG for coefficient jumps and rotated anisotropy — Checkerboard diffusion: shared flux, MG and AMG [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-coefficient-diffusion/
+Coverage: reading
+
+Fixed contrast100 example. P1 differences are not rigorous error bounds; no singular exponent or universal MG/AMG winner is asserted.
+
+## MG/AMG for coefficient jumps and rotated anisotropy — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-coefficient-diffusion/#checkerboard-diffusion-assumptions
+Coverage: reading
+
+Unit square, zero Dirichlet, f=1, diagonal quadrants100/others1, N16/32/64; reference P1 meshes128/192.
+
+## MG/AMG for coefficient jumps and rotated anisotropy — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-coefficient-diffusion/#checkerboard-diffusion-algorithm
+Coverage: reading
+
+Orthogonal FV with shared harmonic transmissibility. Symmetric Galerkin geometric and coordinate-free SA cycles precondition PCG on identical matrices.
+-\nabla\cdot(a\nabla u)=1,\quad a\in\{1,100\}T_f=|f|/(d_L/a_L+d_R/a_R)
+
+## MG/AMG for coefficient jumps and rotated anisotropy — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-coefficient-diffusion/#checkerboard-diffusion-validation
+Coverage: reading
+
+Nonzero two-material flux patch, residual-aware budget, direct forward/energy errors and independent triangular-P1 grid sensitivity.
+
+## MG/AMG for coefficient jumps and rotated anisotropy — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-coefficient-diffusion/#checkerboard-diffusion-limits
+Coverage: reading
+
+Fixed contrast100 example. P1 differences are not rigorous error bounds; no singular exponent or universal MG/AMG winner is asserted.
+
+## MG/AMG for coefficient jumps and rotated anisotropy — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-coefficient-diffusion/#checkerboard-diffusion-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+continuous_errors[0.03320269631288309,0.008587452847326224,0.002547591920168387]
+reference_sensitivity[0.00010935677943053456,0.0001088242415134897,0.00034850805399045157]
+判定 / checkPassed
+n16_symmetrytrue
+n16_geometric_convergedtrue
+n16_geometric_true_residualtrue
+n16_geometric_forwardtrue
+n16_geometric_energytrue
+n16_geometric_historytrue
+n16_geometric_flux_ledgertrue
+n16_geometric_budget_residual_boundtrue
+n16_amg_convergedtrue
+n16_amg_true_residualtrue
+n16_amg_forwardtrue
+n16_amg_energytrue
+n16_amg_historytrue
+n16_amg_flux_ledgertrue
+n16_amg_budget_residual_boundtrue
+n32_symmetrytrue
+n32_geometric_convergedtrue
+n32_geometric_true_residualtrue
+n32_geometric_forwardtrue
+n32_geometric_energytrue
+n32_geometric_historytrue
+n32_geometric_flux_ledgertrue
+n32_geometric_budget_residual_boundtrue
+n32_amg_convergedtrue
+n32_amg_true_residualtrue
+n32_amg_forwardtrue
+n32_amg_energytrue
+n32_amg_historytrue
+n32_amg_flux_ledgertrue
+n32_amg_budget_residual_boundtrue
+n64_symmetrytrue
+n64_geometric_convergedtrue
+n64_geometric_true_residualtrue
+n64_geometric_forwardtrue
+n64_geometric_energytrue
+n64_geometric_historytrue
+n64_geometric_flux_ledgertrue
+n64_geometric_budget_residual_boundtrue
+n64_amg_convergedtrue
+
+## MG/AMG for coefficient jumps and rotated anisotropy — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-coefficient-diffusion/#checkerboard-diffusion-measurements
+Coverage: reading
+
+n64_amg_true_residualtrue
+n64_amg_forwardtrue
+n64_amg_energytrue
+n64_amg_historytrue
+n64_amg_flux_ledgertrue
+n64_amg_budget_residual_boundtrue
+refinementtrue
+reference_sensitivitytrue
+nonzero_harmonic_patchtrue
+small_operator_spdtrue
+geometric_small_cycle_spdtrue
+amg_small_cycle_spdtrue
+intentional_budgettrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Saved2D solution, error, true residual and refinement/reference sensitivity.Read every stored record
+nsolveriterationstrue_residualforward_errorenergy_errorcontinuous_errorsetup_secondssolve_secondssizesnnzgrid_complexityoperator_complexityboundary_fluxsourcebudget_defectresidual_sum
+16geometric145.94498259785e-096.4880886536e-113.47130978064e-100.03320269631290.001744249995680.00107166700036[256,64,16][1216,980,196]1.31251.967105263161.000000000041-3.81383813419e-11-3.81379810545e-11
+16amg204.41874537171e-091.29413412751e-103.63179517261e-100.03320269631290.002669959001650.00133533400367[256,90,15][1216,1434,209]1.410156252.351151315791.000000000021-1.51803014603e-11-1.51797047154e-11
+32geometric182.9756803399e-091.73628351279e-119.93230862933e-110.008587452847330.001152459000880.00235154200345[1024,256,64,16][4992,4596,1156,196]1.3281252.191506410260.99999999998611.42039713324e-111.42050846997e-11
+
+## MG/AMG for coefficient jumps and rotated anisotropy — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-coefficient-diffusion/#checkerboard-diffusion-measurements
+Coverage: reading
+
+32amg266.75996406121e-091.59310020475e-104.39600392622e-100.008587452847330.008310917000930.00378191700293[1024,426,83,16][4992,8378,2645,256]1.51269531253.25941506410.99999999993516.45424824697e-116.45438445529e-11
+64geometric213.07902407635e-099.58908492419e-127.23012329849e-110.002547591920170.002228625002320.00608254100371[4096,1024,256,64,16][20224,19892,5476,1156,196]1.332031252.321202531651.000000000021-2.29731789148e-11-2.29710618203e-11
+64amg337.63241064578e-097.78807008053e-113.21094007816e-100.002547591920170.03040825000060.0128097500055[4096,1866,411,80,14][20224,39930,16569,4136,196]1.578857421884.00786194621.000000000041-3.85020904048e-11-3.8500195382e-11
+Measurements and complete records / JSON
+
+## MG/AMG for coefficient jumps and rotated anisotropy — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-coefficient-diffusion/#checkerboard-diffusion-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Two-point flux approximation
+Review scope / review_level: selected-official-derivation-read
+Scalar harmonic transmissibility, shared flux and K-orthogonality restriction. No DuMux code executed.
+BoomerAMG: smoother options
+Review scope / review_level: selected-official-documentation-read
+CG requires a symmetric smoother. Our educational SA code is not hypre and no hypre code was run.
+Algebraic multigrid by smoothed aggregation for second and fourth order elliptic problems
+Review scope / review_level: publisher-abstract-only-full-paper-unread
+Metadata and abstract only. No general robustness theorem claimed for these fixed jumps/tensors.
+
+## MG/AMG for coefficient jumps and rotated anisotropy — Rotated diffusion: full-tensor Q1, MG and AMG [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-coefficient-diffusion/
+Coverage: reading
+
+Retain nonzero Kxy in the Q1 weak form and compare analytic refinement with MG/AMG convergence for the same matrix.
+Methods, equations, figures and references
+Methods used
+Q1 FEM for scalar diffusion and mapped vector BVPs
+Geometric multigrid V-cycle
+Algebraic multigrid / AMG
+Conjugate gradients
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Full2x2 tensor Q1 and Gauss quadrature. Fixed SPD MG/SA cycles use symmetric2/2Jacobi, Galerkin operators and coarse Cholesky.
+Discontinuous and full-tensor diffusion BVP
+Unit square, zero Dirichlet, K=R(pi/6)diag(1,.01)R^T, exact sin(pi x)sin(pi y), N16/32/64.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Rotated diffusion: full-tensor Q1, MG and AMG
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+u=xy,f=-2Kxy patch, analytic-flux source, integrated L2/energy error,4/6point quadrature sensitivity and direct-solve comparison.
+Same-problem reference · Manufactured solution
+Rotated diffusion: full-tensor Q1, MG and AMG
+One angle/anisotropy only. Scalar TPFA is not extended to rotated tensors; arbitrary-tensor robustness is not established.
+
+## MG/AMG for coefficient jumps and rotated anisotropy — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-coefficient-diffusion/#rotated-anisotropic-diffusion-assumptions
+Coverage: reading
+
+Unit square, zero Dirichlet, K=R(pi/6)diag(1,.01)R^T, exact sin(pi x)sin(pi y), N16/32/64.
+
+## MG/AMG for coefficient jumps and rotated anisotropy — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-coefficient-diffusion/#rotated-anisotropic-diffusion-algorithm
+Coverage: reading
+
+Full2x2 tensor Q1 and Gauss quadrature. Fixed SPD MG/SA cycles use symmetric2/2Jacobi, Galerkin operators and coarse Cholesky.
+-\nabla\cdot(K\nabla u)=f,\quad K=R(\pi/6)\operatorname{diag}(1,.01)R^Tf=\pi^2(K_{xx}+K_{yy})\sin\pi x\sin\pi y-2\pi^2K_{xy}\cos\pi x\cos\pi y
+
+## MG/AMG for coefficient jumps and rotated anisotropy — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-coefficient-diffusion/#rotated-anisotropic-diffusion-validation
+Coverage: reading
+
+u=xy,f=-2Kxy patch, analytic-flux source, integrated L2/energy error,4/6point quadrature sensitivity and direct-solve comparison.
+
+## MG/AMG for coefficient jumps and rotated anisotropy — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-coefficient-diffusion/#rotated-anisotropic-diffusion-limits
+Coverage: reading
+
+One angle/anisotropy only. Scalar TPFA is not extended to rotated tensors; arbitrary-tensor robustness is not established.
+
+## MG/AMG for coefficient jumps and rotated anisotropy — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-coefficient-diffusion/#rotated-anisotropic-diffusion-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+continuous_errors[0.0043094975495807045,0.0010835497491345043,0.0002713461470266456]
+reference_sensitivity[]
+判定 / checkPassed
+n16_quadraturetrue
+n16_symmetrytrue
+n16_geometric_convergedtrue
+n16_geometric_true_residualtrue
+n16_geometric_forwardtrue
+n16_geometric_energytrue
+n16_geometric_historytrue
+n16_amg_convergedtrue
+n16_amg_true_residualtrue
+n16_amg_forwardtrue
+n16_amg_energytrue
+n16_amg_historytrue
+n32_quadraturetrue
+n32_symmetrytrue
+n32_geometric_convergedtrue
+n32_geometric_true_residualtrue
+n32_geometric_forwardtrue
+n32_geometric_energytrue
+n32_geometric_historytrue
+n32_amg_convergedtrue
+n32_amg_true_residualtrue
+n32_amg_forwardtrue
+n32_amg_energytrue
+n32_amg_historytrue
+n64_quadraturetrue
+n64_symmetrytrue
+n64_geometric_convergedtrue
+n64_geometric_true_residualtrue
+n64_geometric_forwardtrue
+n64_geometric_energytrue
+n64_geometric_historytrue
+n64_amg_convergedtrue
+n64_amg_true_residualtrue
+n64_amg_forwardtrue
+n64_amg_energytrue
+n64_amg_historytrue
+refinementtrue
+l2_refinement_ratiostrue
+finest_l2true
+affine_patchtrue
+xy_patchtrue
+small_operator_spdtrue
+geometric_small_cycle_spdtrue
+amg_small_cycle_spdtrue
+intentional_budgettrue
+
+## MG/AMG for coefficient jumps and rotated anisotropy — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-coefficient-diffusion/#rotated-anisotropic-diffusion-measurements
+Coverage: reading
+
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Saved2D solution, error, true residual and refinement/reference sensitivity.Read every stored record
+nsolveriterationstrue_residualforward_errorenergy_errorcontinuous_errorsetup_secondssolve_secondssizesnnzgrid_complexityoperator_complexity
+16geometric227.69209810214e-097.41392527047e-102.15152802497e-090.004309497549580.0006322909976010.00151954100147[225,49,9][1849,361,49]1.257777777781.22174148188
+16amg296.98356900744e-091.27389733444e-092.20460924345e-090.004309497549580.001687625001070.0019629160015[225,49,9][1849,841,81]1.257777777781.49864791779
+32geometric319.0322972778e-095.44672256106e-101.70567254905e-090.001083549749130.001041374998750.00399774999823[961,225,49,9][8281,1849,361,49]1.294484911551.27279314093
+32amg439.3946267017e-091.23903548629e-092.08800131126e-090.001083549749130.00553183299780.00597520799784[961,225,49,9][8281,4761,1405,81]1.294484911551.75437749064
+64geometric389.79567638599e-094.40624924435e-101.21529569599e-090.0002713461470270.001976334002390.0105305829929[3969,961,225,49,9][34969,8281,1849,361,49]1.313429075331.30140982013
+64amg618.11248690355e-093.46100054571e-101.02173810106e-090.0002713461470270.02102500000180.0198339999988[3969,961,225,49,9][34969,22201,8781,2229,81]1.313429075331.9520432383
+Measurements and complete records / JSON
+
+## MG/AMG for coefficient jumps and rotated anisotropy — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-coefficient-diffusion/#rotated-anisotropic-diffusion-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Two-point flux approximation
+Review scope / review_level: selected-official-derivation-read
+Scalar harmonic transmissibility, shared flux and K-orthogonality restriction. No DuMux code executed.
+BoomerAMG: smoother options
+Review scope / review_level: selected-official-documentation-read
+CG requires a symmetric smoother. Our educational SA code is not hypre and no hypre code was run.
+Algebraic multigrid by smoothed aggregation for second and fourth order elliptic problems
+Review scope / review_level: publisher-abstract-only-full-paper-unread
+Metadata and abstract only. No general robustness theorem claimed for these fixed jumps/tensors.
+
 ## Double Mach reflection: lightweight grid verification — Double Mach reflection: lightweight grid verification [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-double-mach/
@@ -15373,7 +15699,7 @@ Full 2D Euler finite volumes evolve the existing Double Mach initial/boundary da
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-double-mach/#run-all
 Coverage: reading
 
-Run inside atlas-double-mach-2026-11-23 from the ZIP. This command executes all 1 fixed cases in the supplement. Choose a new or empty output directory.
+Run inside atlas-double-mach-2026-11-23 from the ZIP. This command executes all 1 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -15560,6 +15886,700 @@ Hiroshi Koyama (2026). Independent finite-volume references distributed with the
 Review scope / review_level: hash-checked-selected-public-archive-artifacts
 Selected source, two-grid data and execution records were copied from the immutable archive. No reference PDE, Athena or LAVA was rerun here. The flux family HLL is shared, while the reference is a separate implementation without imports of primary spatial operators.
 
+## Mach2 planar shock with hard-sphere DSMC — Mach2 planar shock with hard-sphere DSMC [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-shock/
+Coverage: reading
+
+For a1D-space,3D-velocity open-reservoir shock,distinguish RH far states from independent numerical internal-profile references.
+
+## Mach2 planar shock with hard-sphere DSMC — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-shock/#run-all
+Coverage: reading
+
+Run inside atlas-dsmc-shock-2026-11-23 from the ZIP. This command executes all 1 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Mach2 planar shock with hard-sphere DSMC — Hard-sphere DSMC Mach2 planar shock [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-shock/
+Coverage: reading
+
+Evolve physical-time hard-sphere collisions and molecular streaming; compare actual moments with qualified independent SPARTA fields.
+Methods, equations, figures and references
+Methods used
+DSMC and kinetic transport
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Disjoint cell-local random pairs with even/odd finite-N physical-time sigma*g acceptance,energy-based safe majorant and predeclared bounded subcycling; no probability caps. Exact flight-to-wall and flux-conditioned diffuse/reservoir velocities with remaining flight time. Open-reservoir macro counts use unbiased floor(mean)+Bernoulli(fraction) per face/species/half-stream to reduce artificial sampling variance; no Poisson number-fluctuation or thermodynamic-fluctuation reproduction claim. Retain the original four seeds and append the next eight consecutive seeds; uniform permutation/stable integer sorting preserves the ideal within-cell matching law,not RNG consumption or bit-identical trajectories.
+Hard-sphere Boltzmann transport,walls and reservoirs
+
+## Mach2 planar shock with hard-sphere DSMC — Hard-sphere DSMC Mach2 planar shock [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-shock/
+Coverage: reading
+
+{"kind":"shock","cells":192,"length":16,"weight":0.005208333333333333,"dt":0.01,"burn_in":20,"sample_time":20,"blocks":5,"bins":64,"sample_every":10,"hist_velocity":[-4,7]} Twelve independent seeds; primary fixed-weight mesh,particle-weight,and half-step companions each retain seed1.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Hard-sphere DSMC Mach2 planar shock
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+Predeclare20pytest per group and15new fixed primary runs. Separate boundary-inclusive budgets,local lambda/collision-time diagnostics,reference error,whole-seed precision and block stationarity. Reference36runs/87qualifiers already passed; primary results remain pending until the frozen run. Preserve all81old gates and add48new-run gates=129. Primary12seed t95 usesdf11,reference4seed usesdf3; descriptive approximate-normal whole-seed intervals,not unconditional adaptive-study coverage.
+Same-problem reference · Finite-grid numerical reference
+Mach2 planar hard-sphere shock
+
+## Mach2 planar shock with hard-sphere DSMC — Hard-sphere DSMC Mach2 planar shock [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-shock/
+Coverage: reading
+
+Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. RH validates far states/full fluxes,not an exact internal shock profile. Saved phase space is not a2D physical flow.
+
+## Mach2 planar shock with hard-sphere DSMC — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-shock/#dsmc-planar-shock-assumptions
+Coverage: reading
+
+{"kind":"shock","cells":192,"length":16,"weight":0.005208333333333333,"dt":0.01,"burn_in":20,"sample_time":20,"blocks":5,"bins":64,"sample_every":10,"hist_velocity":[-4,7]} Twelve independent seeds; primary fixed-weight mesh,particle-weight,and half-step companions each retain seed1.
+
+## Mach2 planar shock with hard-sphere DSMC — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-shock/#dsmc-planar-shock-algorithm
+Coverage: reading
+
+Disjoint cell-local random pairs with even/odd finite-N physical-time sigma*g acceptance,energy-based safe majorant and predeclared bounded subcycling; no probability caps. Exact flight-to-wall and flux-conditioned diffuse/reservoir velocities with remaining flight time. Open-reservoir macro counts use unbiased floor(mean)+Bernoulli(fraction) per face/species/half-stream to reduce artificial sampling variance; no Poisson number-fluctuation or thermodynamic-fluctuation reproduction claim. Retain the original four seeds and append the next eight consecutive seeds; uniform permutation/stable integer sorting preserves the ideal within-cell matching law,not RNG consumption or bit-identical trajectories.
+\partial_t f+v_x\partial_x f=Q_{\mathrm{HS}}(f,f),\quad \sigma=\pi d^2=1/\sqrt{2}P_{ij}=n\langle c_i c_j\rangle,\quad q_x=\frac{n}{2}\langle c_x|\mathbf c|^2\rangle,\quad\mathbf c=\mathbf v-\mathbf up_{ij}=a_N W\sigma g_{ij}\Delta t/V,\quad a_N=\begin{cases}N-1&N\text{ even}\\N&N\text{ odd}\end{cases}g_{ij}\le\sqrt{2\sum_i|\mathbf v_i-\mathbf v_{cm}|^2}
+
+## Mach2 planar shock with hard-sphere DSMC — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-shock/#dsmc-planar-shock-validation
+Coverage: reading
+
+Predeclare20pytest per group and15new fixed primary runs. Separate boundary-inclusive budgets,local lambda/collision-time diagnostics,reference error,whole-seed precision and block stationarity. Reference36runs/87qualifiers already passed; primary results remain pending until the frozen run. Preserve all81old gates and add48new-run gates=129. Primary12seed t95 usesdf11,reference4seed usesdf3; descriptive approximate-normal whole-seed intervals,not unconditional adaptive-study coverage.
+
+## Mach2 planar shock with hard-sphere DSMC — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-shock/#dsmc-planar-shock-limits
+Coverage: reading
+
+Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. RH validates far states/full fluxes,not an exact internal shock profile. Saved phase space is not a2D physical flow.
+
+## Mach2 planar shock with hard-sphere DSMC — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-shock/#dsmc-planar-shock-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+profile_comparison{"0":{"error":0.009874127472267416,"combined_3se":0.04946478705678961,"primary_3se":0.03145643911579176,"reference_3se":0.038174043494605424},"1":{"error":0.006192836083404945,"combined_3se":0.04640157562693747,"primary_3se":0.03069818659770613,"reference_3se":0.03479551063391386},"4":{"error":0.008787013676147464,"combined_3se":0.04976037231809162,"primary_3se":0.035488922267584475,"reference_3se":0.03488023866776783},"5":{"error":0.008767734324833546,"combined_3se":0.04646188409882251,"primary_3se":0.03146941765264155,"reference_3se":0.034181609479602165}}
+
+## Mach2 planar shock with hard-sphere DSMC — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-shock/#dsmc-planar-shock-measurements
+Coverage: reading
+
+stationarity{"profile_equivalence":{"0":0.051237907861461617,"1":0.042550439680933805,"4":0.052530861424159206,"5":0.04623394154519991},"centroid_blocks":[[8.215335648148148,8.242578124999998,8.37534722222222,8.264756944444443,8.092187500000001],[7.8806278935185174,7.732971643518519,7.8655381944444445,7.8228009259259235,7.707146990740742],[8.088237847222222,8.194574652777776,8.386284722222221,8.335546875,8.221412037037037],[7.609114583333332,7.680005787037035,7.577416087962962,7.347829861111112,7.23622685185185],[7.620153356481483,7.693475115740742,7.670992476851854,7.572149884259257,7.589872685185185],[8.473075810185184,8.567361111111111,8.567766203703703,8.53627025462963,8.390943287037034],[8.005295138888886,8.019574652777777,7.905338541666666,7.990509259259259,7.868880208333332],[8.190827546296296,8.03587962962963,8.154369212962964,8.220095486111111,8.337774884259257],[8.411805555555553,8.436414930555557,8.455353009259259,8.48381076388889,8.650708912037034],[8.18292824074074,8.153153935185184,8.265668402777775,8.268706597222222,8.303443287037037],[7.841840277777777,7.737731481481482,7.718084490740742,7.826649305555556,7.872829861111111],[7.868981481481481,7.905135995370369,7.91607349537037,8.006915509259258,7.7184895833333345]],"centroid_drift_bound":0.1299701694340089}
+
+## Mach2 planar shock with hard-sphere DSMC — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-shock/#dsmc-planar-shock-measurements
+Coverage: reading
+
+sensitivities{"fixed_weight_mesh":{"0":0.04919268505889352,"1":0.052838812527762305,"4":0.0623901833211318,"5":0.05359743514641371},"double_particles":{"0":0.06216354691255698,"1":0.06013078079263267,"4":0.06006763400021631,"5":0.06186520180345716},"half_dt":{"0":0.03506052657485229,"1":0.034593071784548436,"4":0.0371459702067488,"5":0.03752041004610139}}
+primary_independent_seeds12
+primary_t95_degrees_of_freedom11
+primary_t95_multiplier2.20098516008
+reference_independent_seeds4
+reference_t95_degrees_of_freedom3
+reference_t95_multiplier3.18244630528
+far_states{"upstream_n":{"relative_error":0.0027311197916668473,"relative_3se":0.004734773179813632},"upstream_ux":{"relative_error":0.00226178222693619,"relative_3se":0.004417322646908852},"upstream_T":{"relative_error":0.00856692867855613,"relative_3se":0.00919577401692969},"downstream_n":{"relative_error":0.0007166883680555791,"relative_3se":0.008778472486905992},"downstream_ux":{"relative_error":0.0006619790814905539,"relative_3se":0.011133999868080233},"downstream_T":{"relative_error":0.0006120131785834495,"relative_3se":0.0057144250470660685},"flux_mass":{"relative_error":0.0009975883698689597,"relative_3se":0.0029103940695329165},"flux_momentum":{"relative_error":0.0013333838218918732,"relative_3se":0.0028882793828942516},"flux_energy":{"relative_error":0.0009104591488130677,"relative_3se":0.00428618985183569}}
+
+## Mach2 planar shock with hard-sphere DSMC — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-shock/#dsmc-planar-shock-measurements
+Coverage: reading
+
+判定 / checkPassed
+dsmc-planar-shock-base-371001/finitetrue
+dsmc-planar-shock-base-371001/boundary budgettrue
+dsmc-planar-shock-base-371001/physical collisionstrue
+dsmc-planar-shock-base-371001/collision probabilitytrue
+dsmc-planar-shock-base-371001/maxwell time resolutiontrue
+dsmc-planar-shock-base-371001/mean free path resolutiontrue
+dsmc-planar-shock-base-371002/finitetrue
+dsmc-planar-shock-base-371002/boundary budgettrue
+dsmc-planar-shock-base-371002/physical collisionstrue
+dsmc-planar-shock-base-371002/collision probabilitytrue
+dsmc-planar-shock-base-371002/maxwell time resolutiontrue
+dsmc-planar-shock-base-371002/mean free path resolutiontrue
+dsmc-planar-shock-base-371003/finitetrue
+dsmc-planar-shock-base-371003/boundary budgettrue
+dsmc-planar-shock-base-371003/physical collisionstrue
+dsmc-planar-shock-base-371003/collision probabilitytrue
+dsmc-planar-shock-base-371003/maxwell time resolutiontrue
+dsmc-planar-shock-base-371003/mean free path resolutiontrue
+dsmc-planar-shock-base-371004/finitetrue
+dsmc-planar-shock-base-371004/boundary budgettrue
+dsmc-planar-shock-base-371004/physical collisionstrue
+dsmc-planar-shock-base-371004/collision probabilitytrue
+dsmc-planar-shock-base-371004/maxwell time resolutiontrue
+dsmc-planar-shock-base-371004/mean free path resolutiontrue
+dsmc-planar-shock-base-371005/finitetrue
+dsmc-planar-shock-base-371005/boundary budgettrue
+
+## Mach2 planar shock with hard-sphere DSMC — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-shock/#dsmc-planar-shock-measurements
+Coverage: reading
+
+dsmc-planar-shock-base-371005/physical collisionstrue
+dsmc-planar-shock-base-371005/collision probabilitytrue
+dsmc-planar-shock-base-371005/maxwell time resolutiontrue
+dsmc-planar-shock-base-371005/mean free path resolutiontrue
+dsmc-planar-shock-base-371006/finitetrue
+dsmc-planar-shock-base-371006/boundary budgettrue
+dsmc-planar-shock-base-371006/physical collisionstrue
+dsmc-planar-shock-base-371006/collision probabilitytrue
+dsmc-planar-shock-base-371006/maxwell time resolutiontrue
+dsmc-planar-shock-base-371006/mean free path resolutiontrue
+dsmc-planar-shock-base-371007/finitetrue
+dsmc-planar-shock-base-371007/boundary budgettrue
+dsmc-planar-shock-base-371007/physical collisionstrue
+dsmc-planar-shock-base-371007/collision probabilitytrue
+dsmc-planar-shock-base-371007/maxwell time resolutiontrue
+dsmc-planar-shock-base-371007/mean free path resolutiontrue
+dsmc-planar-shock-base-371008/finitetrue
+dsmc-planar-shock-base-371008/boundary budgettrue
+dsmc-planar-shock-base-371008/physical collisionstrue
+dsmc-planar-shock-base-371008/collision probabilitytrue
+dsmc-planar-shock-base-371008/maxwell time resolutiontrue
+dsmc-planar-shock-base-371008/mean free path resolutiontrue
+dsmc-planar-shock-base-371009/finitetrue
+dsmc-planar-shock-base-371009/boundary budgettrue
+dsmc-planar-shock-base-371009/physical collisionstrue
+dsmc-planar-shock-base-371009/collision probabilitytrue
+
+## Mach2 planar shock with hard-sphere DSMC — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-shock/#dsmc-planar-shock-measurements
+Coverage: reading
+
+dsmc-planar-shock-base-371009/maxwell time resolutiontrue
+dsmc-planar-shock-base-371009/mean free path resolutiontrue
+dsmc-planar-shock-base-371010/finitetrue
+dsmc-planar-shock-base-371010/boundary budgettrue
+dsmc-planar-shock-base-371010/physical collisionstrue
+dsmc-planar-shock-base-371010/collision probabilitytrue
+dsmc-planar-shock-base-371010/maxwell time resolutiontrue
+dsmc-planar-shock-base-371010/mean free path resolutiontrue
+dsmc-planar-shock-base-371011/finitetrue
+dsmc-planar-shock-base-371011/boundary budgettrue
+dsmc-planar-shock-base-371011/physical collisionstrue
+dsmc-planar-shock-base-371011/collision probabilitytrue
+dsmc-planar-shock-base-371011/maxwell time resolutiontrue
+dsmc-planar-shock-base-371011/mean free path resolutiontrue
+dsmc-planar-shock-base-371012/finitetrue
+dsmc-planar-shock-base-371012/boundary budgettrue
+dsmc-planar-shock-base-371012/physical collisionstrue
+dsmc-planar-shock-base-371012/collision probabilitytrue
+dsmc-planar-shock-base-371012/maxwell time resolutiontrue
+dsmc-planar-shock-base-371012/mean free path resolutiontrue
+dsmc-planar-shock-fixed_weight_mesh-371001/finitetrue
+dsmc-planar-shock-fixed_weight_mesh-371001/boundary budgettrue
+dsmc-planar-shock-fixed_weight_mesh-371001/physical collisionstrue
+dsmc-planar-shock-fixed_weight_mesh-371001/collision probabilitytrue
+dsmc-planar-shock-fixed_weight_mesh-371001/maxwell time resolutiontrue
+
+## Mach2 planar shock with hard-sphere DSMC — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-shock/#dsmc-planar-shock-measurements
+Coverage: reading
+
+dsmc-planar-shock-fixed_weight_mesh-371001/mean free path resolutiontrue
+dsmc-planar-shock-double_particles-371001/finitetrue
+dsmc-planar-shock-double_particles-371001/boundary budgettrue
+dsmc-planar-shock-double_particles-371001/physical collisionstrue
+dsmc-planar-shock-double_particles-371001/collision probabilitytrue
+dsmc-planar-shock-double_particles-371001/maxwell time resolutiontrue
+dsmc-planar-shock-double_particles-371001/mean free path resolutiontrue
+dsmc-planar-shock-half_dt-371001/finitetrue
+dsmc-planar-shock-half_dt-371001/boundary budgettrue
+dsmc-planar-shock-half_dt-371001/physical collisionstrue
+dsmc-planar-shock-half_dt-371001/collision probabilitytrue
+dsmc-planar-shock-half_dt-371001/maxwell time resolutiontrue
+dsmc-planar-shock-half_dt-371001/mean free path resolutiontrue
+profile error/0true
+primary precision/0true
+reference precision/0true
+profile error/1true
+primary precision/1true
+reference precision/1true
+profile error/4true
+primary precision/4true
+reference precision/4true
+profile error/5true
+primary precision/5true
+reference precision/5true
+stationarity/0true
+stationarity/1true
+stationarity/4true
+stationarity/5true
+centroid stationaritytrue
+RH far or full flux/upstream_ntrue
+RH precision/upstream_ntrue
+RH far or full flux/upstream_uxtrue
+RH precision/upstream_uxtrue
+RH far or full flux/upstream_Ttrue
+RH precision/upstream_Ttrue
+
+## Mach2 planar shock with hard-sphere DSMC — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-shock/#dsmc-planar-shock-measurements
+Coverage: reading
+
+RH far or full flux/downstream_ntrue
+RH precision/downstream_ntrue
+RH far or full flux/downstream_uxtrue
+RH precision/downstream_uxtrue
+RH far or full flux/downstream_Ttrue
+RH precision/downstream_Ttrue
+RH far or full flux/flux_masstrue
+RH precision/flux_masstrue
+RH far or full flux/flux_momentumtrue
+RH precision/flux_momentumtrue
+RH far or full flux/flux_energytrue
+RH precision/flux_energytrue
+half step sensitivity/0true
+half step sensitivity/1true
+half step sensitivity/4true
+half step sensitivity/5true
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Actual saved particle position-velocity histograms; phase space of1D position and molecular velocity,not2D physical flow.Read every stored record
+configurationseedfieldsprofile_csvresolutioncollisionscandidatesmax_subcyclesscaled_budget
+base371001dsmc-planar-shock-base-371001.npzdsmc-planar-shock-base-371001-profile.csv{"dx_over_lambda":0.19328125,"dt_over_maxwell_tau":0.05340168257623221}3951621900152321.29418275491e-14
+base371002dsmc-planar-shock-base-371002.npzdsmc-planar-shock-base-371002-profile.csv{"dx_over_lambda":0.19442708333333336,"dt_over_maxwell_tau":0.053351757570926}4059041931920821.54979591286e-14
+
+## Mach2 planar shock with hard-sphere DSMC — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-shock/#dsmc-planar-shock-measurements
+Coverage: reading
+
+base371003dsmc-planar-shock-base-371003.npzdsmc-planar-shock-base-371003-profile.csv{"dx_over_lambda":0.19369791666666666,"dt_over_maxwell_tau":0.053233960240091215}3982361911711721.33883393003e-14
+base371004dsmc-planar-shock-base-371004.npzdsmc-planar-shock-base-371004-profile.csv{"dx_over_lambda":0.19538194444444446,"dt_over_maxwell_tau":0.054170162759724576}4202561987009221.84909004269e-14
+base371005dsmc-planar-shock-base-371005.npzdsmc-planar-shock-base-371005-profile.csv{"dx_over_lambda":0.19375868055555556,"dt_over_maxwell_tau":0.05389362808292988}4194721976743721.66193245039e-14
+base371006dsmc-planar-shock-base-371006.npzdsmc-planar-shock-base-371006-profile.csv{"dx_over_lambda":0.19381076388888888,"dt_over_maxwell_tau":0.05338462197331667}3908871890538221.36733379304e-14
+base371007dsmc-planar-shock-base-371007.npzdsmc-planar-shock-base-371007-profile.csv{"dx_over_lambda":0.19390624999999997,"dt_over_maxwell_tau":0.05395761268348778}4076931951275521.05388734681e-14
+base371008dsmc-planar-shock-base-371008.npzdsmc-planar-shock-base-371008-profile.csv{"dx_over_lambda":0.1928819444444444,"dt_over_maxwell_tau":0.053216327436915026}4010981930444821.15225235309e-14
+base371009dsmc-planar-shock-base-371009.npzdsmc-planar-shock-base-371009-profile.csv{"dx_over_lambda":0.1932986111111111,"dt_over_maxwell_tau":0.05321562802115528}3950931909317021.04142056941e-14
+
+## Mach2 planar shock with hard-sphere DSMC — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-shock/#dsmc-planar-shock-measurements
+Coverage: reading
+
+base371010dsmc-planar-shock-base-371010.npzdsmc-planar-shock-base-371010-profile.csv{"dx_over_lambda":0.19600694444444444,"dt_over_maxwell_tau":0.05410218321274896}3950741896805221.04708020764e-14
+base371011dsmc-planar-shock-base-371011.npzdsmc-planar-shock-base-371011-profile.csv{"dx_over_lambda":0.1955642361111111,"dt_over_maxwell_tau":0.05417051688718669}4124671967096922.17536823684e-14
+base371012dsmc-planar-shock-base-371012.npzdsmc-planar-shock-base-371012-profile.csv{"dx_over_lambda":0.19194444444444447,"dt_over_maxwell_tau":0.052865931393740226}4079301929651422.20842636593e-14
+fixed_weight_mesh371001dsmc-planar-shock-fixed_weight_mesh-371001.npzdsmc-planar-shock-fixed_weight_mesh-371001-profile.csv{"dx_over_lambda":0.29423177083333335,"dt_over_maxwell_tau":0.05425343052401819}4106352004706224.00823005457e-14
+double_particles371001dsmc-planar-shock-double_particles-371001.npzdsmc-planar-shock-double_particles-371001-profile.csv{"dx_over_lambda":0.19350694444444447,"dt_over_maxwell_tau":0.0532112690968283}8219154030583224.26324379163e-14
+half_dt371001dsmc-planar-shock-half_dt-371001.npzdsmc-planar-shock-half_dt-371001-profile.csv{"dx_over_lambda":0.19496527777777775,"dt_over_maxwell_tau":0.026920551411043006}4051361975890514.81327287061e-14
+Measurements and complete records / JSON
+
+## Mach2 planar shock with hard-sphere DSMC — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-shock/#dsmc-planar-shock-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Sandia SPARTA developers (2026). SPARTA, pinned official HS collision/boundary implementation and independently evolved fields
+Review scope / review_level: primary-source-selected-functions-and-actual-reference-execution
+Read selected official HS rate,boundary and moment definitions; execute36independent runs and87qualifiers. No full-original-book or whole-source audit claim.
+
+## Finite-Knudsen Couette and Fourier flows — Finite-Knudsen Couette and Fourier flows [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-wall/
+Coverage: reading
+
+Compare physical-time hard-sphere collisions,flux-weighted wall reemission and budgets with independent SPARTA references.
+
+## Finite-Knudsen Couette and Fourier flows — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-wall/#run-all
+Coverage: reading
+
+Run inside atlas-dsmc-wall-2026-11-23 from the ZIP. This command executes all 2 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Finite-Knudsen Couette and Fourier flows — Hard-sphere DSMC finite-Kn Couette flow [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-wall/
+Coverage: reading
+
+Evolve physical-time hard-sphere collisions and molecular streaming; compare actual moments with qualified independent SPARTA fields.
+Methods, equations, figures and references
+Methods used
+DSMC and kinetic transport
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Disjoint cell-local random pairs with even/odd finite-N physical-time sigma*g acceptance,energy-based safe majorant and predeclared bounded subcycling; no probability caps. Exact flight-to-wall and flux-conditioned diffuse/reservoir velocities with remaining flight time.
+Hard-sphere Boltzmann transport,walls and reservoirs
+{"kind":"wall","cells":16,"length":2,"weight":0.001953125,"dt":0.02,"burn_in":20,"sample_time":40,"blocks":5,"bins":8,"sample_every":10,"hist_velocity":[-6,6],"temperatures":[1,1],"speeds":[-0.5,0.5]} Four independent seeds; primary fixed-weight mesh,particle-weight,and half-step companions each retain seed1.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Hard-sphere DSMC finite-Kn Couette flow
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## Finite-Knudsen Couette and Fourier flows — Hard-sphere DSMC finite-Kn Couette flow [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-wall/
+Coverage: reading
+
+Predeclare18pytest per group and14new fixed primary runs. Separate boundary-inclusive budgets,local lambda/collision-time diagnostics,reference error,whole-seed precision and block stationarity. Reference36runs/87qualifiers already passed; primary results remain pending until the frozen run.
+Same-problem reference · Finite-grid numerical reference
+Finite-Kn hard-sphere Couette flow
+Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. AtKn.5,continuum straight/no-slip profiles are not exact. Saved phase space is not a2D physical flow.
+
+## Finite-Knudsen Couette and Fourier flows — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-wall/#dsmc-couette-assumptions
+Coverage: reading
+
+{"kind":"wall","cells":16,"length":2,"weight":0.001953125,"dt":0.02,"burn_in":20,"sample_time":40,"blocks":5,"bins":8,"sample_every":10,"hist_velocity":[-6,6],"temperatures":[1,1],"speeds":[-0.5,0.5]} Four independent seeds; primary fixed-weight mesh,particle-weight,and half-step companions each retain seed1.
+
+## Finite-Knudsen Couette and Fourier flows — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-wall/#dsmc-couette-algorithm
+Coverage: reading
+
+Disjoint cell-local random pairs with even/odd finite-N physical-time sigma*g acceptance,energy-based safe majorant and predeclared bounded subcycling; no probability caps. Exact flight-to-wall and flux-conditioned diffuse/reservoir velocities with remaining flight time.
+\partial_t f+v_x\partial_x f=Q_{\mathrm{HS}}(f,f),\quad \sigma=\pi d^2=1/\sqrt{2}P_{ij}=n\langle c_i c_j\rangle,\quad q_x=\frac{n}{2}\langle c_x|\mathbf c|^2\rangle,\quad\mathbf c=\mathbf v-\mathbf up_{ij}=a_N W\sigma g_{ij}\Delta t/V,\quad a_N=\begin{cases}N-1&N\text{ even}\\N&N\text{ odd}\end{cases}g_{ij}\le\sqrt{2\sum_i|\mathbf v_i-\mathbf v_{cm}|^2}
+
+## Finite-Knudsen Couette and Fourier flows — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-wall/#dsmc-couette-validation
+Coverage: reading
+
+Predeclare18pytest per group and14new fixed primary runs. Separate boundary-inclusive budgets,local lambda/collision-time diagnostics,reference error,whole-seed precision and block stationarity. Reference36runs/87qualifiers already passed; primary results remain pending until the frozen run.
+
+## Finite-Knudsen Couette and Fourier flows — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-wall/#dsmc-couette-limits
+Coverage: reading
+
+Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. AtKn.5,continuum straight/no-slip profiles are not exact. Saved phase space is not a2D physical flow.
+
+## Finite-Knudsen Couette and Fourier flows — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-wall/#dsmc-couette-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+profile_comparison{"2":{"error":0.010200733750517737,"combined_3se":0.018203904455731997,"primary_3se":0.014988812559766168,"reference_3se":0.01033042281233518},"4":{"error":0.005173765945320263,"combined_3se":0.01850394361570742,"primary_3se":0.01567511391545536,"reference_3se":0.009832941221769668},"0":{"error":0.007959057017737909,"combined_3se":0.013616367466408597,"primary_3se":0.010491175758283632,"reference_3se":0.008679901738445676}}
+stationarity{"profile_equivalence":{"2":0.05759942531501381,"4":0.0630869754804384,"0":0.03964355800443746}}
+sensitivities{"fixed_weight_mesh":{"2":0.006638448502787946,"4":0.009141483700374766,"0":0.007863505375904245},"double_particles":{"2":0.02339932210675679,"4":0.015641909218002674,"0":0.01126054904988147},"half_dt":{"2":0.029829998439110297,"4":0.01349752351058444,"0":0.012398286891856694}}
+t95_multiplier_df33.18244630528
+flux{"bulk_mean":-0.18636773527698747,"bulk_se":0.0011643950494832711,"reference_mean":-0.19013665992789913,"reference_se":0.0011647729920369507,"wall_mean":-0.18735052877662584,"wall_se":0.001156037275432719,"wall_minus_bulk":-0.0009827934996383542,"wall_minus_bulk_se":0.00010232411461678913}
+判定 / checkPassed
+
+## Finite-Knudsen Couette and Fourier flows — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-wall/#dsmc-couette-measurements
+Coverage: reading
+
+dsmc-couette-base-361001/finitetrue
+dsmc-couette-base-361001/boundary budgettrue
+dsmc-couette-base-361001/physical collisionstrue
+dsmc-couette-base-361001/collision probabilitytrue
+dsmc-couette-base-361001/maxwell time resolutiontrue
+dsmc-couette-base-361001/mean free path resolutiontrue
+dsmc-couette-base-361002/finitetrue
+dsmc-couette-base-361002/boundary budgettrue
+dsmc-couette-base-361002/physical collisionstrue
+dsmc-couette-base-361002/collision probabilitytrue
+dsmc-couette-base-361002/maxwell time resolutiontrue
+dsmc-couette-base-361002/mean free path resolutiontrue
+dsmc-couette-base-361003/finitetrue
+dsmc-couette-base-361003/boundary budgettrue
+dsmc-couette-base-361003/physical collisionstrue
+dsmc-couette-base-361003/collision probabilitytrue
+dsmc-couette-base-361003/maxwell time resolutiontrue
+dsmc-couette-base-361003/mean free path resolutiontrue
+dsmc-couette-base-361004/finitetrue
+dsmc-couette-base-361004/boundary budgettrue
+dsmc-couette-base-361004/physical collisionstrue
+dsmc-couette-base-361004/collision probabilitytrue
+dsmc-couette-base-361004/maxwell time resolutiontrue
+dsmc-couette-base-361004/mean free path resolutiontrue
+dsmc-couette-fixed_weight_mesh-361001/finitetrue
+dsmc-couette-fixed_weight_mesh-361001/boundary budgettrue
+dsmc-couette-fixed_weight_mesh-361001/physical collisionstrue
+dsmc-couette-fixed_weight_mesh-361001/collision probabilitytrue
+
+## Finite-Knudsen Couette and Fourier flows — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-wall/#dsmc-couette-measurements
+Coverage: reading
+
+dsmc-couette-fixed_weight_mesh-361001/maxwell time resolutiontrue
+dsmc-couette-fixed_weight_mesh-361001/mean free path resolutiontrue
+dsmc-couette-double_particles-361001/finitetrue
+dsmc-couette-double_particles-361001/boundary budgettrue
+dsmc-couette-double_particles-361001/physical collisionstrue
+dsmc-couette-double_particles-361001/collision probabilitytrue
+dsmc-couette-double_particles-361001/maxwell time resolutiontrue
+dsmc-couette-double_particles-361001/mean free path resolutiontrue
+dsmc-couette-half_dt-361001/finitetrue
+dsmc-couette-half_dt-361001/boundary budgettrue
+dsmc-couette-half_dt-361001/physical collisionstrue
+dsmc-couette-half_dt-361001/collision probabilitytrue
+dsmc-couette-half_dt-361001/maxwell time resolutiontrue
+dsmc-couette-half_dt-361001/mean free path resolutiontrue
+profile error/2true
+primary precision/2true
+reference precision/2true
+profile error/4true
+primary precision/4true
+reference precision/4true
+profile error/0true
+primary precision/0true
+reference precision/0true
+stationarity/2true
+stationarity/4true
+stationarity/0true
+bulk molecular flux agreementtrue
+bulk molecular flux precisiontrue
+wall versus bulk molecular fluxtrue
+wall molecular flux precisiontrue
+half step sensitivity/2true
+half step sensitivity/4true
+half step sensitivity/0true
+
+## Finite-Knudsen Couette and Fourier flows — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-wall/#dsmc-couette-measurements
+Coverage: reading
+
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Actual saved particle position-velocity histograms; phase space of1D position and molecular velocity,not2D physical flow.Read every stored record
+configurationseedfieldsprofile_csvresolutioncollisionscandidatesmax_subcyclesscaled_budget
+base361001dsmc-couette-base-361001.npzdsmc-couette-base-361001-profile.csv{"dx_over_lambda":0.1259423828125,"dt_over_maxwell_tau":0.032841575600797986}50453152907824.21045076624e-14
+base361002dsmc-couette-base-361002.npzdsmc-couette-base-361002-profile.csv{"dx_over_lambda":0.1272705078125,"dt_over_maxwell_tau":0.03313602904998533}50223153412926.81011511917e-14
+base361003dsmc-couette-base-361003.npzdsmc-couette-base-361003-profile.csv{"dx_over_lambda":0.12621582031249998,"dt_over_maxwell_tau":0.03318234110382709}49885152712523.75616097816e-14
+base361004dsmc-couette-base-361004.npzdsmc-couette-base-361004-profile.csv{"dx_over_lambda":0.12680175781250003,"dt_over_maxwell_tau":0.03335070948876898}50626152852125.04951305534e-14
+fixed_weight_mesh361001dsmc-couette-fixed_weight_mesh-361001.npzdsmc-couette-fixed_weight_mesh-361001-profile.csv{"dx_over_lambda":0.06310546875,"dt_over_maxwell_tau":0.03298467633549061}50458151320022.10928087154e-14
+
+## Finite-Knudsen Couette and Fourier flows — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-wall/#dsmc-couette-measurements
+Coverage: reading
+
+double_particles361001dsmc-couette-double_particles-361001.npzdsmc-couette-double_particles-361001-profile.csv{"dx_over_lambda":0.1258056640625,"dt_over_maxwell_tau":0.03312461161995578}100668470922525.30039503297e-14
+half_dt361001dsmc-couette-half_dt-361001.npzdsmc-couette-half_dt-361001-profile.csv{"dx_over_lambda":0.12651611328125,"dt_over_maxwell_tau":0.01657786033971498}50393304799517.34256850647e-14
+Measurements and complete records / JSON
+
+## Finite-Knudsen Couette and Fourier flows — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-wall/#dsmc-couette-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Sandia SPARTA developers (2026). SPARTA, pinned official HS collision/boundary implementation and independently evolved fields
+Review scope / review_level: primary-source-selected-functions-and-actual-reference-execution
+Read selected official HS rate,boundary and moment definitions; execute36independent runs and87qualifiers. No full-original-book or whole-source audit claim.
+
+## Finite-Knudsen Couette and Fourier flows — Hard-sphere DSMC finite-Kn Fourier heat conduction [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-wall/
+Coverage: reading
+
+Evolve physical-time hard-sphere collisions and molecular streaming; compare actual moments with qualified independent SPARTA fields.
+Methods, equations, figures and references
+Methods used
+DSMC and kinetic transport
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Disjoint cell-local random pairs with even/odd finite-N physical-time sigma*g acceptance,energy-based safe majorant and predeclared bounded subcycling; no probability caps. Exact flight-to-wall and flux-conditioned diffuse/reservoir velocities with remaining flight time.
+Hard-sphere Boltzmann transport,walls and reservoirs
+{"kind":"wall","cells":16,"length":2,"weight":0.001953125,"dt":0.02,"burn_in":20,"sample_time":40,"blocks":5,"bins":8,"sample_every":10,"hist_velocity":[-6,6],"temperatures":[1,2],"speeds":[0,0]} Four independent seeds; primary fixed-weight mesh,particle-weight,and half-step companions each retain seed1.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Hard-sphere DSMC finite-Kn Fourier heat conduction
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## Finite-Knudsen Couette and Fourier flows — Hard-sphere DSMC finite-Kn Fourier heat conduction [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-wall/
+Coverage: reading
+
+Predeclare18pytest per group and14new fixed primary runs. Separate boundary-inclusive budgets,local lambda/collision-time diagnostics,reference error,whole-seed precision and block stationarity. Reference36runs/87qualifiers already passed; primary results remain pending until the frozen run.
+Same-problem reference · Finite-grid numerical reference
+Finite-Kn hard-sphere Fourier heat conduction
+Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. AtKn.5,continuum straight/no-slip profiles are not exact. Saved phase space is not a2D physical flow.
+
+## Finite-Knudsen Couette and Fourier flows — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-wall/#dsmc-fourier-assumptions
+Coverage: reading
+
+{"kind":"wall","cells":16,"length":2,"weight":0.001953125,"dt":0.02,"burn_in":20,"sample_time":40,"blocks":5,"bins":8,"sample_every":10,"hist_velocity":[-6,6],"temperatures":[1,2],"speeds":[0,0]} Four independent seeds; primary fixed-weight mesh,particle-weight,and half-step companions each retain seed1.
+
+## Finite-Knudsen Couette and Fourier flows — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-wall/#dsmc-fourier-algorithm
+Coverage: reading
+
+Disjoint cell-local random pairs with even/odd finite-N physical-time sigma*g acceptance,energy-based safe majorant and predeclared bounded subcycling; no probability caps. Exact flight-to-wall and flux-conditioned diffuse/reservoir velocities with remaining flight time.
+\partial_t f+v_x\partial_x f=Q_{\mathrm{HS}}(f,f),\quad \sigma=\pi d^2=1/\sqrt{2}P_{ij}=n\langle c_i c_j\rangle,\quad q_x=\frac{n}{2}\langle c_x|\mathbf c|^2\rangle,\quad\mathbf c=\mathbf v-\mathbf up_{ij}=a_N W\sigma g_{ij}\Delta t/V,\quad a_N=\begin{cases}N-1&N\text{ even}\\N&N\text{ odd}\end{cases}g_{ij}\le\sqrt{2\sum_i|\mathbf v_i-\mathbf v_{cm}|^2}
+
+## Finite-Knudsen Couette and Fourier flows — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-wall/#dsmc-fourier-validation
+Coverage: reading
+
+Predeclare18pytest per group and14new fixed primary runs. Separate boundary-inclusive budgets,local lambda/collision-time diagnostics,reference error,whole-seed precision and block stationarity. Reference36runs/87qualifiers already passed; primary results remain pending until the frozen run.
+
+## Finite-Knudsen Couette and Fourier flows — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-wall/#dsmc-fourier-limits
+Coverage: reading
+
+Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. AtKn.5,continuum straight/no-slip profiles are not exact. Saved phase space is not a2D physical flow.
+
+## Finite-Knudsen Couette and Fourier flows — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-wall/#dsmc-fourier-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+profile_comparison{"4":{"error":0.0046350333567375225,"combined_3se":0.01986770882165603,"primary_3se":0.018610142257145208,"reference_3se":0.006956181351210389},"0":{"error":0.006206560932103681,"combined_3se":0.014725327832097481,"primary_3se":0.012851725754092255,"reference_3se":0.007188075187722132}}
+stationarity{"profile_equivalence":{"4":0.06340714719603799,"0":0.03983352063527729}}
+sensitivities{"fixed_weight_mesh":{"4":0.02668632575679284,"0":0.013283289135740131},"double_particles":{"4":0.012688404465360077,"0":0.009002412684556585},"half_dt":{"4":0.008201282077196198,"0":0.010766498591131742}}
+t95_multiplier_df33.18244630528
+flux{"bulk_mean":-0.5644605772254152,"bulk_se":0.0023868795505760263,"reference_mean":-0.5756964840332293,"reference_se":0.005479198503847574,"wall_mean":-0.566381423471522,"wall_se":0.00224129249203519,"wall_minus_bulk":-0.00192084624610675,"wall_minus_bulk_se":0.00029712049609058333}
+判定 / checkPassed
+dsmc-fourier-base-361101/finitetrue
+dsmc-fourier-base-361101/boundary budgettrue
+dsmc-fourier-base-361101/physical collisionstrue
+dsmc-fourier-base-361101/collision probabilitytrue
+dsmc-fourier-base-361101/maxwell time resolutiontrue
+
+## Finite-Knudsen Couette and Fourier flows — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-wall/#dsmc-fourier-measurements
+Coverage: reading
+
+dsmc-fourier-base-361101/mean free path resolutiontrue
+dsmc-fourier-base-361102/finitetrue
+dsmc-fourier-base-361102/boundary budgettrue
+dsmc-fourier-base-361102/physical collisionstrue
+dsmc-fourier-base-361102/collision probabilitytrue
+dsmc-fourier-base-361102/maxwell time resolutiontrue
+dsmc-fourier-base-361102/mean free path resolutiontrue
+dsmc-fourier-base-361103/finitetrue
+dsmc-fourier-base-361103/boundary budgettrue
+dsmc-fourier-base-361103/physical collisionstrue
+dsmc-fourier-base-361103/collision probabilitytrue
+dsmc-fourier-base-361103/maxwell time resolutiontrue
+dsmc-fourier-base-361103/mean free path resolutiontrue
+dsmc-fourier-base-361104/finitetrue
+dsmc-fourier-base-361104/boundary budgettrue
+dsmc-fourier-base-361104/physical collisionstrue
+dsmc-fourier-base-361104/collision probabilitytrue
+dsmc-fourier-base-361104/maxwell time resolutiontrue
+dsmc-fourier-base-361104/mean free path resolutiontrue
+dsmc-fourier-fixed_weight_mesh-361101/finitetrue
+dsmc-fourier-fixed_weight_mesh-361101/boundary budgettrue
+dsmc-fourier-fixed_weight_mesh-361101/physical collisionstrue
+dsmc-fourier-fixed_weight_mesh-361101/collision probabilitytrue
+dsmc-fourier-fixed_weight_mesh-361101/maxwell time resolutiontrue
+dsmc-fourier-fixed_weight_mesh-361101/mean free path resolutiontrue
+dsmc-fourier-double_particles-361101/finitetrue
+dsmc-fourier-double_particles-361101/boundary budgettrue
+
+## Finite-Knudsen Couette and Fourier flows — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-wall/#dsmc-fourier-measurements
+Coverage: reading
+
+dsmc-fourier-double_particles-361101/physical collisionstrue
+dsmc-fourier-double_particles-361101/collision probabilitytrue
+dsmc-fourier-double_particles-361101/maxwell time resolutiontrue
+dsmc-fourier-double_particles-361101/mean free path resolutiontrue
+dsmc-fourier-half_dt-361101/finitetrue
+dsmc-fourier-half_dt-361101/boundary budgettrue
+dsmc-fourier-half_dt-361101/physical collisionstrue
+dsmc-fourier-half_dt-361101/collision probabilitytrue
+dsmc-fourier-half_dt-361101/maxwell time resolutiontrue
+dsmc-fourier-half_dt-361101/mean free path resolutiontrue
+profile error/4true
+primary precision/4true
+reference precision/4true
+profile error/0true
+primary precision/0true
+reference precision/0true
+stationarity/4true
+stationarity/0true
+bulk molecular flux agreementtrue
+bulk molecular flux precisiontrue
+wall versus bulk molecular fluxtrue
+wall molecular flux precisiontrue
+half step sensitivity/4true
+half step sensitivity/0true
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Actual saved particle position-velocity histograms; phase space of1D position and molecular velocity,not2D physical flow.Read every stored record
+configurationseedfieldsprofile_csvresolutioncollisionscandidatesmax_subcyclesscaled_budget
+
+## Finite-Knudsen Couette and Fourier flows — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-wall/#dsmc-fourier-measurements
+Coverage: reading
+
+base361101dsmc-fourier-base-361101.npzdsmc-fourier-base-361101-profile.csv{"dx_over_lambda":0.14235351562499998,"dt_over_maxwell_tau":0.04056621963241313}58772174238523.34822286536e-14
+base361102dsmc-fourier-base-361102.npzdsmc-fourier-base-361102-profile.csv{"dx_over_lambda":0.14365722656250002,"dt_over_maxwell_tau":0.04088888126433442}58599179780628.64223452711e-14
+base361103dsmc-fourier-base-361103.npzdsmc-fourier-base-361103-profile.csv{"dx_over_lambda":0.14052734375,"dt_over_maxwell_tau":0.04000103700169703}58960179738024.90051823128e-14
+base361104dsmc-fourier-base-361104.npzdsmc-fourier-base-361104-profile.csv{"dx_over_lambda":0.14139648437500002,"dt_over_maxwell_tau":0.040291171798395586}58671180089027.81458206283e-14
+fixed_weight_mesh361101dsmc-fourier-fixed_weight_mesh-361101.npzdsmc-fourier-fixed_weight_mesh-361101-profile.csv{"dx_over_lambda":0.071201171875,"dt_over_maxwell_tau":0.04019865568707311}58706153312924.65405192091e-14
+double_particles361101dsmc-fourier-double_particles-361101.npzdsmc-fourier-double_particles-361101-profile.csv{"dx_over_lambda":0.14209716796875,"dt_over_maxwell_tau":0.040416912985859206}117141612002624.71903005746e-14
+half_dt361101dsmc-fourier-half_dt-361101.npzdsmc-fourier-half_dt-361101-profile.csv{"dx_over_lambda":0.14479248046874998,"dt_over_maxwell_tau":0.020507836385439706}58627304787115.33463901888e-14
+
+## Finite-Knudsen Couette and Fourier flows — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-wall/#dsmc-fourier-measurements
+Coverage: reading
+
+Measurements and complete records / JSON
+
+## Finite-Knudsen Couette and Fourier flows — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-wall/#dsmc-fourier-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Sandia SPARTA developers (2026). SPARTA, pinned official HS collision/boundary implementation and independently evolved fields
+Review scope / review_level: primary-source-selected-functions-and-actual-reference-execution
+Read selected official HS rate,boundary and moment definitions; execute36independent runs and87qualifiers. No full-original-book or whole-source audit claim.
+
 ## Euler double rarefaction: positivity at every stage — Euler double rarefaction: positivity at every stage [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-euler-positivity/
@@ -15572,7 +16592,7 @@ A one-dimensional MUSCL finite-volume Euler double rarefaction combines Lax–Fr
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-euler-positivity/#run-all
 Coverage: reading
 
-Run inside atlas-euler-positivity-2026-11-23-r2 from the ZIP. This command executes all 1 fixed cases in the supplement. Choose a new or empty output directory.
+Run inside atlas-euler-positivity-2026-11-23-r2 from the ZIP. This command executes all 1 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -15813,6 +16833,182 @@ Hiroshi Koyama (2026). Numerical Methods Atlas: released independent Euler Riema
 Review scope / review_level: local immutable source inspected; copied without changes with SHA and MIT license; execution recorded by tests, not presumed
 The prior logarithmic-pressure root and fan evaluator provide a separate algebraic check, with SHA and MIT terms. It is not a different PDE engine; execution is established by test receipts.
 
+## 3D1/r kernels: expansions,trees and force checks — 3D1/r kernels: expansions,trees and force checks [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-fmm3d/
+Coverage: reading
+
+Check nonzero final contributions through actual3D M2M,M2L,L2L paths and unique interaction ownership.
+
+## 3D1/r kernels: expansions,trees and force checks — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-fmm3d/#run-all
+Coverage: reading
+
+Run inside atlas-fmm3d-2026-11-23 from the ZIP. This command executes all 1 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## 3D1/r kernels: expansions,trees and force checks — Actual3D1/r FMM: multilevel translations, force and ownership [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-fmm3d/
+Coverage: reading
+
+Run uncompressed Chebyshev FMM at actual leaf levels2/3 and a separate adaptive configuration; compare independent direct potentials and accelerations.
+Methods, equations, figures and references
+Methods used
+Fast multipole translations
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Actual upward/downward translations, physical local-basis gradients and near P2P; audit unique nonself ownership and nonzero complete translation contributions.
+Gravitational particle model
+Isolated-Gm/r,G1,64equal masses,p3/5/7. Main levels forced; adaptive case alone usescapacity8/maxdepth3.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Actual3D1/r FMM: multilevel translations, force and ownership
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Separate finite6source exact goldens, independent Cartesian sums, order/actual-depth comparisons, mixed-depth capped ownership and rigid transformation.
+Same-problem reference · Finite-grid numerical reference
+Actual3D1/r FMM: multilevel translations, force and ownership
+
+## 3D1/r kernels: expansions,trees and force checks — Actual3D1/r FMM: multilevel translations, force and ownership [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-fmm3d/
+Coverage: reading
+
+Small-N uncompressed teaching example; reportp^6M2L cost. No SVD/spherical-harmonic/scaling or exact momentum-conservation claim. The finite6source exact probe qualifies the direct reference, not a production-FMM golden-target run.
+
+## 3D1/r kernels: expansions,trees and force checks — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-fmm3d/#fmm3d-inverse-r-assumptions
+Coverage: reading
+
+Isolated-Gm/r,G1,64equal masses,p3/5/7. Main levels forced; adaptive case alone usescapacity8/maxdepth3.
+
+## 3D1/r kernels: expansions,trees and force checks — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-fmm3d/#fmm3d-inverse-r-algorithm
+Coverage: reading
+
+Actual upward/downward translations, physical local-basis gradients and near P2P; audit unique nonself ownership and nonzero complete translation contributions.
+\Phi_i=-G\sum_{j\ne i}m_j/r_{ij},\quad a_i=-\nabla\Phi_iK(x,y)\approx\sum_{\ell,m}L_\ell(x)K(x_\ell,y_m)L_m(y)m=p^3,\quad {\rm dense\ M2L\ entries}=p^6
+
+## 3D1/r kernels: expansions,trees and force checks — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-fmm3d/#fmm3d-inverse-r-validation
+Coverage: reading
+
+Separate finite6source exact goldens, independent Cartesian sums, order/actual-depth comparisons, mixed-depth capped ownership and rigid transformation.
+
+## 3D1/r kernels: expansions,trees and force checks — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-fmm3d/#fmm3d-inverse-r-limits
+Coverage: reading
+
+Small-N uncompressed teaching example; reportp^6M2L cost. No SVD/spherical-harmonic/scaling or exact momentum-conservation claim. The finite6source exact probe qualifies the direct reference, not a production-FMM golden-target run.
+
+## 3D1/r kernels: expansions,trees and force checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-fmm3d/#fmm3d-inverse-r-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+finest_potential_error2.82552601942e-09
+finest_acceleration_error3.9236249161e-07
+primary_runs6
+additional_fixed_evaluations2
+判定 / checkPassed
+p3-d2 finite potential and forcetrue
+p3-d2 exact interaction ownershiptrue
+p3-d2 far path exercisedtrue
+p3-d2 actual forced depthtrue
+p5-d2 finite potential and forcetrue
+p5-d2 exact interaction ownershiptrue
+p5-d2 far path exercisedtrue
+p5-d2 actual forced depthtrue
+p7-d2 finite potential and forcetrue
+p7-d2 exact interaction ownershiptrue
+p7-d2 far path exercisedtrue
+p7-d2 actual forced depthtrue
+p3-d3 finite potential and forcetrue
+p3-d3 exact interaction ownershiptrue
+p3-d3 far path exercisedtrue
+p3-d3 actual forced depthtrue
+p3-d3 nonzero complete translation chaintrue
+p5-d3 finite potential and forcetrue
+p5-d3 exact interaction ownershiptrue
+p5-d3 far path exercisedtrue
+p5-d3 actual forced depthtrue
+p5-d3 nonzero complete translation chaintrue
+p7-d3 finite potential and forcetrue
+p7-d3 exact interaction ownershiptrue
+p7-d3 far path exercisedtrue
+p7-d3 actual forced depthtrue
+p7-d3 nonzero complete translation chaintrue
+adaptive finite fieldstrue
+adaptive exact ownershiptrue
+adaptive far pathtrue
+adaptive unequal actual levelstrue
+
+## 3D1/r kernels: expansions,trees and force checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-fmm3d/#fmm3d-inverse-r-measurements
+Coverage: reading
+
+adaptive capped bucket retainedtrue
+adaptive potential accuracytrue
+adaptive force accuracytrue
+d2 finest potential_errortrue
+d2 order refinement potential_errortrue
+d2 finest acceleration_errortrue
+d2 order refinement acceleration_errortrue
+d3 finest potential_errortrue
+d3 order refinement potential_errortrue
+d3 finest acceleration_errortrue
+d3 order refinement acceleration_errortrue
+direct octahedron potential goldentrue
+direct octahedron acceleration goldentrue
+rigid transformed potentialtrue
+rigid transformed accelerationtrue
+rigid transformed ownershiptrue
+rigid transformed actual leveltrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Validation figure from actual saved fixed-input calculation arrays.Read every stored record
+idpdepthpotential_erroracceleration_errorfar_fractionchain_potential_normrelative_net_forcep2mm2mm2ll2lnonzero_l2lchain_pairsp2p_pairsfar_pairsmaximum_kernel_entriesoverfull_leavesmaximum_leaf_depthminimum_leaf_depth
+p3-d2323.66601838773e-060.0005447242546610.20238095238105.17167548853e-07647281672003216816729022
+p5-d2522.07983524431e-082.81050075484e-060.20238095238101.39285904115e-0864728167200321681615625022
+p7-d2721.2101204564e-101.1931897652e-080.20238095238104.0547792675e-11647281672003216816117649022
+
+## 3D1/r kernels: expansions,trees and force checks — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-fmm3d/#fmm3d-inverse-r-measurements
+Coverage: reading
+
+p3-d3331.79665678227e-050.003286559242480.8110119047620.9451824731667.64508998713e-05641363270136648167623270729033
+p5-d3531.93426543309e-072.67250385353e-050.8110119047620.9451833334257.68685457858e-0764136327013664816762327015625033
+p7-d3732.82552601942e-093.9236249161e-070.8110119047620.945183340072.75012964357e-08641363270136648167623270117649033
+adaptive737.46822762929e-119.13508013246e-11———91216121024961536117649132
+rigid-transform731.28855037674e-091.88870464953e-07———641333156133647147523280117649033
+Measurements and complete records / JSON
+
+## 3D1/r kernels: expansions,trees and force checks — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-fmm3d/#fmm3d-inverse-r-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+The black-box fast multipole method · DOI: 10.1016/j.jcp.2009.08.031
+Review scope / review_level: primary-selected-sections
+Tensor interpolation Eq7 and multilevel stages sections2–3 inspected, printed8715–8717; compression is separate. Original uncompressed educational implementation here, no timing reproduction.
+FMM3D mathematical definitions
+Review scope / review_level: official-kernel-normalization
+Official potential+1/(4pi r), gradient and source-self convention inspected. Our gravitational kernel is-1/r; FMM3D is not installed or run.
+
 ## Mach-3 forward-facing step: lightweight 2D verification — Mach-3 forward-facing step: lightweight 2D verification [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-forward-step/
@@ -15825,7 +17021,7 @@ Evolve uniform Mach-3 flow with gamma=1.4 to T=4 in [0,3]×[0,1] excluding the s
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-forward-step/#run-all
 Coverage: reading
 
-Run inside atlas-forward-step-2026-11-23 from the ZIP. This command executes all 1 fixed cases in the supplement. Choose a new or empty output directory.
+Run inside atlas-forward-step-2026-11-23 from the ZIP. This command executes all 1 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -16067,7 +17263,7 @@ Compare AMG, QR/SVD, Krylov eigenvalue methods and quadrature across fixed condi
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/#run-all
 Coverage: reading
 
-Run inside atlas-foundations-conditioning-2026-11-22 from the ZIP. This command executes all 4 fixed cases in the supplement. Choose a new or empty output directory.
+Run inside atlas-foundations-conditioning-2026-11-22 from the ZIP. This command executes all 4 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -16742,7 +17938,7 @@ Small fixed inputs connect numerical methods, references, errors, refinement and
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/#run-all
 Coverage: reading
 
-Run inside atlas-foundations-2026-11-22 from the ZIP. This command executes all 4 fixed cases in the supplement. Choose a new or empty output directory.
+Run inside atlas-foundations-2026-11-22 from the ZIP. This command executes all 4 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -17174,6 +18370,304 @@ J. N. Lyness (1969). Notes on the Adaptive Simpson Quadrature Routine · DOI: 10
 Review scope / review_level: publisher-metadata
 Official reference-implementation documentation: scipy.special.roots_legendre.html · scipy.integrate.quad.html
 
+## Gravitational trajectories: Kepler and softened finite particles — Gravitational trajectories: Kepler and softened finite particles [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-gravity-dynamics/
+Coverage: reading
+
+Distinguish exact Kepler trajectories from short-time finite-particle references using the identical softened ODE.
+
+## Gravitational trajectories: Kepler and softened finite particles — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-gravity-dynamics/#run-all
+Coverage: reading
+
+Run inside atlas-gravity-dynamics-2026-11-23 from the ZIP. This command executes all 2 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Gravitational trajectories: Kepler and softened finite particles — Unsoftened Kepler two-body time error [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-gravity-dynamics/
+Coverage: reading
+
+Advance an unequal-mass binary for one orbit with KDK and compare independent Kepler positions/velocities and conservation.
+Methods, equations, figures and references
+Methods used
+Velocity Verlet / particle leapfrog
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Position-only kick-half/drift/kick-half; separate bracketed Kepler root and analytic velocities.
+Gravitational particle model
+G=M=a1,e.4,masses.6/.4,epsilon0,128/256/512steps,initialCOM/P0.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Unsoftened Kepler two-body time error
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Time refinement/phase, synchronized all-step energy,P/L/COM,independent pair force and root residuals.
+Same-problem reference · Analytic reference
+Unsoftened Kepler two-body time error
+One orbit at fixed eccentricity only; softened binaries and long-time behavior are outside this exact reference.
+
+## Gravitational trajectories: Kepler and softened finite particles — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-gravity-dynamics/#gravity-kepler-assumptions
+Coverage: reading
+
+G=M=a1,e.4,masses.6/.4,epsilon0,128/256/512steps,initialCOM/P0.
+
+## Gravitational trajectories: Kepler and softened finite particles — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-gravity-dynamics/#gravity-kepler-algorithm
+Coverage: reading
+
+Position-only kick-half/drift/kick-half; separate bracketed Kepler root and analytic velocities.
+E-e\sin E=ntr=a(\cos E-e,\sqrt{1-e^2}\sin E,0)v^{n+1/2}=v^n+\tfrac12\Delta t\,a(x^n)
+
+## Gravitational trajectories: Kepler and softened finite particles — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-gravity-dynamics/#gravity-kepler-validation
+Coverage: reading
+
+Time refinement/phase, synchronized all-step energy,P/L/COM,independent pair force and root residuals.
+
+## Gravitational trajectories: Kepler and softened finite particles — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-gravity-dynamics/#gravity-kepler-limits
+Coverage: reading
+
+One orbit at fixed eccentricity only; softened binaries and long-time behavior are outside this exact reference.
+
+## Gravitational trajectories: Kepler and softened finite particles — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-gravity-dynamics/#gravity-kepler-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+finest_position_error0.00161204992586
+finest_energy_drift0.000174504919259
+period6.28318530718
+判定 / checkPassed
+s128 finite synchronized fieldstrue
+s128 fixed final timetrue
+s128 positive pair separationtrue
+s128 momentum_drifttrue
+s128 angular_drifttrue
+s128 com_drifttrue
+s128 Kepler root residualtrue
+s128 independent final pair forcetrue
+s256 finite synchronized fieldstrue
+s256 fixed final timetrue
+s256 positive pair separationtrue
+s256 momentum_drifttrue
+s256 angular_drifttrue
+s256 com_drifttrue
+s256 Kepler root residualtrue
+s256 independent final pair forcetrue
+s512 finite synchronized fieldstrue
+s512 fixed final timetrue
+s512 positive pair separationtrue
+s512 momentum_drifttrue
+s512 angular_drifttrue
+s512 com_drifttrue
+s512 Kepler root residualtrue
+s512 independent final pair forcetrue
+analytic reference energy identitytrue
+analytic reference angular identitytrue
+analytic reference COM identitytrue
+time refinement 1true
+time refinement 2true
+finest Kepler positiontrue
+finest Kepler energytrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Validation figure from actual saved fixed-input calculation arrays.Read every stored record
+
+## Gravitational trajectories: Kepler and softened finite particles — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-gravity-dynamics/#gravity-kepler-measurements
+Coverage: reading
+
+idstepstimeposition_errorstate_rms_errorenergy_driftmomentum_driftangular_driftcom_driftminimum_separationaccepted_nodesdirect_pairs
+s1281286.283185307180.0259547352980.007063523977490.002801810109374.99600361081e-163.60822483003e-161.4155343564e-150.60258
+s2562566.283185307180.006456154414140.001760430924790.0006985040542688.32667268469e-164.71844785466e-162.53432356727e-150.60514
+s5125126.283185307180.001612049925860.000439185254880.0001745049192595.13478148889e-164.16333634234e-161.93747027132e-150.601026
+Measurements and complete records / JSON
+
+## Gravitational trajectories: Kepler and softened finite particles — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-gravity-dynamics/#gravity-kepler-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+JPL Keplerian-element formulas
+Review scope / review_level: official-selected-kepler-equation
+Kepler equation and orbital-plane Cartesian conversion inspected only. No planetary fitting coefficients or approximate planetary ephemeris used. Fixed two-body positions/velocities are independently derived.
+Geometric numerical integration illustrated by the Störmer–Verlet method
+Review scope / review_level: bibliography-and-failed-author-pdf
+Author/publisher metadata only; author PDF unavailable. KDK composition and reversibility are independently derived here; no original full-text audit or BH symplecticity claim.
+
+## Gravitational trajectories: Kepler and softened finite particles — Short-time32body dynamics from a cold Plummer-density sample [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-gravity-dynamics/
+Coverage: reading
+
+Separate time and tree-force errors for the same softened finite-N ODE with independent DOP853/direct-force references and budgets.
+Methods, equations, figures and references
+Methods used
+Velocity Verlet / particle leapfrog
+Barnes–Hut octree
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Direct KDK20/40/80steps; finest-dt full second-moment BHtheta0/.35/.6; qualify independent scalar-pair DOP853 at two tolerances.
+Gravitational particle model
+Fixed32equal masses,antipodal truncatedr3 density-derived positions,zero velocity,epsilon.05,T.2; density scalea1 differs from pair softening.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Short-time32body dynamics from a cold Plummer-density sample
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Nonzero fixed scales,same-position force comparison,synchronizedE/P/L/COM,theta0 control and asymmetric static probe.
+Same-problem reference · Finite-grid numerical reference
+Short-time32body dynamics from a cold Plummer-density sample
+Cold finite-N initial value,not an equilibrium Plummer DF or exact continuum orbit. No general BH reciprocity/global symplecticity claim.
+
+## Gravitational trajectories: Kepler and softened finite particles — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-gravity-dynamics/#gravity-plummer-short-assumptions
+Coverage: reading
+
+Fixed32equal masses,antipodal truncatedr3 density-derived positions,zero velocity,epsilon.05,T.2; density scalea1 differs from pair softening.
+
+## Gravitational trajectories: Kepler and softened finite particles — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-gravity-dynamics/#gravity-plummer-short-algorithm
+Coverage: reading
+
+Direct KDK20/40/80steps; finest-dt full second-moment BHtheta0/.35/.6; qualify independent scalar-pair DOP853 at two tolerances.
+a_i=-\sum_{j\ne i}Gm_jr_{ij}/(r_{ij}^2+\epsilon^2)^{3/2}U=-\sum_{i<j}Gm_im_j/\sqrt{r_{ij}^2+\epsilon^2}
+
+## Gravitational trajectories: Kepler and softened finite particles — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-gravity-dynamics/#gravity-plummer-short-validation
+Coverage: reading
+
+Nonzero fixed scales,same-position force comparison,synchronizedE/P/L/COM,theta0 control and asymmetric static probe.
+
+## Gravitational trajectories: Kepler and softened finite particles — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-gravity-dynamics/#gravity-plummer-short-limits
+Coverage: reading
+
+Cold finite-N initial value,not an equilibrium Plummer DF or exact continuum orbit. No general BH reciprocity/global symplecticity claim.
+
+## Gravitational trajectories: Kepler and softened finite particles — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-gravity-dynamics/#gravity-plummer-short-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+reference_tolerance_gap1.33393296409e-12
+finest_direct_error8.03238886614e-09
+finest_energy_drift8.56657410644e-09
+theta035_trajectory5.67245350627e-07
+asymmetric_net_force2.37124299438e-05
+判定 / checkPassed
+independent ODE tolerance qualificationtrue
+independent reference energytrue
+independent reference momentumtrue
+independent reference angular momentumtrue
+antipodal initial COMtrue
+direct-s20 finite synchronized fieldstrue
+direct-s20 fixed final timetrue
+direct-s20 positive pair separationtrue
+direct-s20 momentum_drifttrue
+direct-s20 angular_drifttrue
+direct-s20 com_drifttrue
+direct-s40 finite synchronized fieldstrue
+direct-s40 fixed final timetrue
+direct-s40 positive pair separationtrue
+direct-s40 momentum_drifttrue
+direct-s40 angular_drifttrue
+direct-s40 com_drifttrue
+direct-s80 finite synchronized fieldstrue
+direct-s80 fixed final timetrue
+direct-s80 positive pair separationtrue
+direct-s80 momentum_drifttrue
+direct-s80 angular_drifttrue
+direct-s80 com_drifttrue
+theta0 finite synchronized fieldstrue
+theta0 fixed final timetrue
+theta0 positive pair separationtrue
+theta0 momentum_drifttrue
+theta0 angular_drifttrue
+theta0 com_drifttrue
+theta0 trajectory reproduces directtrue
+
+## Gravitational trajectories: Kepler and softened finite particles — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-gravity-dynamics/#gravity-plummer-short-measurements
+Coverage: reading
+
+theta0 same-position force identitytrue
+theta0.35 finite synchronized fieldstrue
+theta0.35 fixed final timetrue
+theta0.35 positive pair separationtrue
+theta.35 trajectory errortrue
+theta.35 same-position force errortrue
+theta0.6 finite synchronized fieldstrue
+theta0.6 fixed final timetrue
+theta0.6 positive pair separationtrue
+theta.6 actual accepted nodestrue
+theta.6 same-position force errortrue
+direct time refinement 1true
+direct time refinement 2true
+finest direct state errortrue
+finest direct energytrue
+asymmetric diagnostics finitetrue
+asymmetric tree approximation exercisedtrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Validation figure from actual saved fixed-input calculation arrays.Read every stored record
+idstepsthetatimestate_rms_errorenergy_driftmomentum_driftangular_driftcom_driftminimum_separationaccepted_nodesdirect_pairstrajectory_gapsame_position_force_relative
+direct-s2020-10.21.29867963808e-071.37061630805e-074.30292737205e-194.1335207826e-1800.368025271168020832——
+direct-s4040-10.23.22424746591e-083.42661189207e-084.67562186884e-197.00665653969e-1800.368025121264040672——
+direct-s8080-10.28.03238886614e-098.56657410644e-097.5894152074e-193.49655200627e-1800.368025083784080352——
+theta08000.2—8.56657410644e-091.2942663434e-183.76760254939e-1800.3680250837840803522.82760650633e-182.89535835939e-16
+
+## Gravitational trajectories: Kepler and softened finite particles — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-gravity-dynamics/#gravity-plummer-short-measurements
+Coverage: reading
+
+theta0.35800.350.2—4.28249825229e-084.81892030403e-103.90745938552e-079.63784052566e-110.3680250836426805667425.67245350627e-073.84504072618e-05
+theta0.6800.60.2—4.99241104308e-071.38141801099e-086.33039463342e-062.76280300027e-090.36802094197714576477931.49470992063e-050.00105055488327
+Measurements and complete records / JSON
+
+## Gravitational trajectories: Kepler and softened finite particles — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-gravity-dynamics/#gravity-plummer-short-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+On the Problem of Distribution in Globular Star Clusters
+Review scope / review_level: bibliography-only-original-unaccessed
+Bibliography inherited from prior scoped source review; original full text not read. The finite32-body cold initial condition is density-derived, not an equilibrium Plummer DF or exact continuum flow.
+galpy official Plummer potential definition
+Review scope / review_level: official-potential-definition
+Official potential normalization read in preparatory source review. No galpy execution; density scale1 and pair softening.05 are distinct parameters.
+SciPy1.14.1 solve_ivp
+Review scope / review_level: official-versioned-method-api
+DOP853 order8, tolerance and t_eval semantics inspected; same softened finite-N ODE with independent scalar pair force. Not an exact analytic N-body solution.
+Geometric numerical integration illustrated by the Störmer–Verlet method
+Review scope / review_level: bibliography-and-failed-author-pdf
+Author/publisher metadata only; author PDF unavailable. KDK composition and reversibility are independently derived here; no original full-text audit or BH symplecticity claim.
+
 ## Guderley converging shock: lightweight spherical-radial verification — Guderley converging shock: lightweight spherical-radial verification [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-guderley/
@@ -17186,7 +18680,7 @@ HLL plus Heun follows a Guderley shock into stationary zero-pressure upstream ga
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-guderley/#run-all
 Coverage: reading
 
-Run inside atlas-guderley-2026-11-23-r3 from the ZIP. This command executes all 1 fixed cases in the supplement. Choose a new or empty output directory.
+Run inside atlas-guderley-2026-11-23-r3 from the ZIP. This command executes all 1 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -17501,7 +18995,7 @@ Compare actual small-amplitude nonlinear2D runs with separately derived continuo
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-instability-growth/#run-all
 Coverage: reading
 
-Run inside atlas-instability-growth-2026-11-23-r2 from the ZIP. This command executes all 2 fixed cases in the supplement. Choose a new or empty output directory.
+Run inside atlas-instability-growth-2026-11-23-r2 from the ZIP. This command executes all 2 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -17815,7 +19309,7 @@ Numerically transport the signed-distance zero contour on32²/64²/128² grids, 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-level-set/#run-all
 Coverage: reading
 
-Run inside atlas-level-set-2026-11-23 from the ZIP. This command executes all 2 fixed cases in the supplement. Choose a new or empty output directory.
+Run inside atlas-level-set-2026-11-23 from the ZIP. This command executes all 2 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -19129,7 +20623,7 @@ The same 2D Euler isentropic-vortex family is evolved at background Mach numbers
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-low-mach/#run-all
 Coverage: reading
 
-Run inside atlas-low-mach-2026-11-23 from the ZIP. This command executes all 1 fixed cases in the supplement. Choose a new or empty output directory.
+Run inside atlas-low-mach-2026-11-23 from the ZIP. This command executes all 1 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -19545,7 +21039,7 @@ Compare local trapping and between-mode movement on a bimodal target. Check auto
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mcmc/#run-all
 Coverage: reading
 
-Run inside atlas-mcmc-2026-11-22 from the ZIP. This command executes all 2 fixed cases in the supplement. Choose a new or empty output directory.
+Run inside atlas-mcmc-2026-11-22 from the ZIP. This command executes all 2 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -21127,7 +22621,7 @@ Actually solve singular L-corner P1 FEM, annular variable-viscosity vector Q1 PD
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/#run-all
 Coverage: reading
 
-Run inside atlas-mesh-boundary-2026-11-23 from the ZIP. This command executes all 4 fixed cases in the supplement. Choose a new or empty output directory.
+Run inside atlas-mesh-boundary-2026-11-23 from the ZIP. This command executes all 4 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -21339,8 +22833,10 @@ Coverage: reading
 Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
 Long Chen (n.d.). Introduction to Adaptive Finite Element Methods
 Review scope / review_level: selected-official-tutorial-equations
+Author documentation: L-shaped harmonic r^(2/3)sin(2theta/3) field and non-quasiuniform refinement motivation inspected. No MATLAB code copied or run; our removed quadrant/angle convention is explicitly defined.
 Joachim Schöberl (n.d.). Interactive FEM: graded meshes around vertex singularities
 Review scope / review_level: selected-author-teaching-section
+Section24.4 weighted regularity and graded meshes inspected. Our fixed max-norm radial map is independently constructed; no general AMR implementation or universal optimality theorem claimed.
 
 ## Corner singularities, curved coordinates and Neumann/Robin boundaries — Annular variable-viscosity vector PDE MMS [en]
 
@@ -21350,7 +22846,7 @@ Coverage: reading
 Actually solve variable-viscosity stress divergence on an annulus; check velocity, strain, physical traction and work.
 Methods, equations, figures and references
 Methods used
-Q1 FEM for mapped-coordinate vector BVP
+Q1 FEM for scalar diffusion and mapped vector BVPs
 Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
 Equations
 This example’s formulation and conditions
@@ -21494,6 +22990,7 @@ Coverage: reading
 Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
 MFEM developers (n.d.). Example2: Linear Elasticity
 Review scope / review_level: selected-official-equations
+Example2 stress sigma=lambda div(u)I+mu(grad(u)+grad(u)^T), weak formulation and traction conventions inspected. Use lambda0 as a linear vector viscous BVP; manufactured fields are derived here. MFEM not executed or copied.
 
 ## Corner singularities, curved coordinates and Neumann/Robin boundaries — Pure Neumann compatibility and mean gauge [en]
 
@@ -21628,6 +23125,7 @@ Coverage: reading
 Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
 PETSc developers (n.d.). KSP: Solving Singular Systems
 Review scope / review_level: selected-official-section
+Solving Singular Systems: constant Neumann nullspace and RHS compatibility inspected. We reject physical incompatibility rather than projecting it away. PETSc is neither a dependency nor executed.
 
 ## Corner singularities, curved coordinates and Neumann/Robin boundaries — 2D mixed Robin MMS and boundary flux [en]
 
@@ -21749,6 +23247,7 @@ Coverage: reading
 Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
 MFEM developers (n.d.). Boundary Conditions: Robin boundary conditions
 Review scope / review_level: selected-official-equations
+Outward normal derivative and Robin weak boundary contribution inspected; Example27 source overview inspected. Our cell-centred face elimination/MMS is separately derived; no MFEM execution.
 
 ## CT and GLM: matched controls, independent checks and grid/time convergence — CT and GLM: matched controls, independent checks and grid/time convergence [en]
 
@@ -21762,7 +23261,7 @@ Compare CT and GLM discretizations with a matched flux family, LLF coefficient, 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/#run-all
 Coverage: reading
 
-Run inside atlas-mhd-convergence-2026-11-22 from the ZIP. This command executes all 3 fixed cases in the supplement. Choose a new or empty output directory.
+Run inside atlas-mhd-convergence-2026-11-22 from the ZIP. This command executes all 3 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -22236,7 +23735,7 @@ Evolve all8conserved components with HLLD/MUSCL/Heun and2D CT. Compare wave mean
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/#run-all
 Coverage: reading
 
-Run inside atlas-mhd-transport-2026-11-23 from the ZIP. This command executes all 3 fixed cases in the supplement. Choose a new or empty output directory.
+Run inside atlas-mhd-transport-2026-11-23 from the ZIP. This command executes all 3 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -22761,7 +24260,7 @@ Small fixed inputs connect numerical methods, references, errors, refinement and
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd/#run-all
 Coverage: reading
 
-Run inside atlas-mhd-2026-11-22 from the ZIP. This command executes all 4 fixed cases in the supplement. Choose a new or empty output directory.
+Run inside atlas-mhd-2026-11-22 from the ZIP. This command executes all 4 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -23147,7 +24646,7 @@ Small fixed inputs connect numerical methods, references, errors, refinement and
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/#run-all
 Coverage: reading
 
-Run inside atlas-models-2026-11-22 from the ZIP. This command executes all 5 fixed cases in the supplement. Choose a new or empty output directory.
+Run inside atlas-models-2026-11-22 from the ZIP. This command executes all 5 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -24858,7 +26357,7 @@ Time-advance conservative ALE transport on genuinely nonuniform moving cells wit
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-moving-waves/#run-all
 Coverage: reading
 
-Run inside atlas-moving-waves-2026-11-23 from the ZIP. This command executes all 2 fixed cases in the supplement. Choose a new or empty output directory.
+Run inside atlas-moving-waves-2026-11-23 from the ZIP. This command executes all 2 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -25032,6 +26531,7 @@ Coverage: reading
 Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
 Dennis L. Huff (1987). Numerical Simulations of Unsteady, Viscous, Transonic Flow Over Isolated and Cascaded Airfoils Using a Deforming Grid
 Review scope / review_level: selected-primary-report-grid-treatment
+NASA TM89890 grid-velocity and GCL discussion around equation11/printedp5 inspected. It attributes GCL to Thomas/Lombard. Original1979 paper not read; no airfoil algorithm or code reproduced. Our 1D scalar moving-volume/Heun derivation is independent.
 
 ## Nonuniform ALE transport and2D rotating shallow-water waves — Actual2D C-grid rotating shallow-water time advance [en]
 
@@ -25188,6 +26688,7 @@ Coverage: reading
 Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
 P. Korn and S. Danilov (n.d.). Elementary dispersion analysis of some mimetic discretizations on triangular C-grids
 Review scope / review_level: selected-primary-author-manuscript
+Governing linear equations, energy adjoints and AppendixB quadrilateral standard-C symbols/eq19–21 inspected. Use standard square C-grid only, not the paper triangular mimetic schemes. No global Williamson test or original code run.
 
 ## Noh:2D Cartesian flow and grid orientation error — Noh:2D Cartesian flow and grid orientation error [en]
 
@@ -25201,7 +26702,7 @@ A small 2D Euler finite-volume calculation evolves density, both momenta and tot
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh-cartesian/#run-all
 Coverage: reading
 
-Run inside atlas-noh-cartesian-2026-11-23-r2 from the ZIP. This command executes all 1 fixed cases in the supplement. Choose a new or empty output directory.
+Run inside atlas-noh-cartesian-2026-11-23-r2 from the ZIP. This command executes all 1 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -25411,7 +26912,7 @@ Solve zero-pressure planar, cylindrical and spherical Noh flow with 1D finite vo
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh/#run-all
 Coverage: reading
 
-Run inside atlas-noh-2026-11-23-r5 from the ZIP. This command executes all 1 fixed cases in the supplement. Choose a new or empty output directory.
+Run inside atlas-noh-2026-11-23-r5 from the ZIP. This command executes all 1 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -25765,7 +27266,7 @@ Extend existing periodic-force, FMM, PIC, collision and radiation problems in a 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particle-transport/#run-all
 Coverage: reading
 
-Run inside atlas-particle-transport-2026-11-22 from the ZIP. This command executes all 6 fixed cases in the supplement. Choose a new or empty output directory.
+Run inside atlas-particle-transport-2026-11-22 from the ZIP. This command executes all 6 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -26260,7 +27761,9 @@ Refine 16/32/64 grids and dt=.2/.1/.05 separately; distinguish continuum cos(t) 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particle-transport/
 Coverage: reading
 
-No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
+Related-model reference · Finite-grid numerical reference
+Independently coded PIC spatial pipeline
+Periodic[0,2pi],256particles,grids8/16/32,seeds35001/35002,dt.02,T.24. Uniform random positions,v=.2Normal+.1sin(x). Six pairs mean twelve separately evolved trajectories.
 Input and validation protocol history · Initial input
 
 ## Particles and transport: independent references, conservation and statistical error — Assumptions, units and boundaries [en]
@@ -29890,7 +31393,7 @@ Small fixed inputs connect numerical methods, references, errors, refinement and
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/#run-all
 Coverage: reading
 
-Run inside atlas-particles-2026-11-22 from the ZIP. This command executes all 6 fixed cases in the supplement. Choose a new or empty output directory.
+Run inside atlas-particles-2026-11-22 from the ZIP. This command executes all 6 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -30212,7 +31715,15 @@ This problem’s code and validation status
 Exact / reference solutions
 References and checks for this execution
 Separate a 32/64/128-grid sweep from timestep refinement on a 512 grid. Compare displacement amplitude with continuum linear cos(t), and check charge compatibility, potential-Poisson residual and single-particle self force.
-No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
+Related-model reference · Finite-grid numerical reference
+Independently coded PIC spatial pipeline
+
+## Particles, electrostatics, kinetic and radiative transport — Cold-plasma oscillation with electrostatic CIC PIC [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particles/
+Coverage: reading
+
+Periodic[0,2pi],256particles,grids8/16/32,seeds35001/35002,dt.02,T.24. Uniform random positions,v=.2Normal+.1sin(x). Six pairs mean twelve separately evolved trajectories.
 
 ## Particles, electrostatics, kinetic and radiative transport — Assumptions, units and boundaries [en]
 
@@ -30690,6 +32201,199 @@ NIST Digital Library of Mathematical Functions (2026). §8.19 Generalized Expone
 Review scope / review_level: official-documentation
 Official integral representation of the generalized exponential integral checked; year denotes access year.
 
+## PIC checks against independent spatial kernels — PIC checks against independent spatial kernels [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-pic-spatial/
+Coverage: reading
+
+Update the field at every kick using independent CIC and explicit DFT kernels; state the shared temporal algorithm.
+
+## PIC checks against independent spatial kernels — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-pic-spatial/#run-all
+Coverage: reading
+
+Run inside atlas-pic-spatial-2026-11-23 from the ZIP. This command executes all 1 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## PIC checks against independent spatial kernels — Independently coded PIC spatial pipeline [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-pic-spatial/
+Coverage: reading
+
+Compare vectorized CIC/FFT with separately authored scalar-particle CIC/dense DFT; each trajectory sources its own field at every kick.
+Methods, equations, figures and references
+Methods used
+Particle-in-cell / PIC
+Cloud-in-cell assignment and interpolation
+Velocity Verlet / particle leapfrog
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+The independent path owns scalar deposition, explicit complex DFT sums and scalar gathering; it imports no primary spatial routines. Mathematical CIC, Nyquist convention, velocity-Verlet and initial arrays are intentionally shared.
+Electrostatic Vlasov–Poisson equations
+Periodic[0,2pi],256particles,grids8/16/32,seeds35001/35002,dt.02,T.24. Uniform random positions,v=.2Normal+.1sin(x). Six pairs mean twelve separately evolved trajectories.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Cold-plasma oscillation with electrostatic CIC PIC
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## PIC checks against independent spatial kernels — Independently coded PIC spatial pipeline [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-pic-spatial/
+Coverage: reading
+
+19pytest and58/58fixed gates passed. Compare six pairs=twelve self-consistent trajectories at all13states; maximum differences:x8.88e-16,v3.33e-16,E8.33e-16,rho2.89e-15. Shared pytest+main.392s. Initial small pytest retained17/18with a periodic-index failure; integer wrapping was corrected before the first fixed main batch.
+Related-model reference · Finite-grid numerical reference
+Independently coded PIC spatial pipeline
+Periodic[0,2pi],256particles,grids8/16/32,seeds35001/35002,dt.02,T.24. Uniform random positions,v=.2Normal+.1sin(x). Six pairs mean twelve separately evolved trajectories.
+
+## PIC checks against independent spatial kernels — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-pic-spatial/#pic-independent-spatial-assumptions
+Coverage: reading
+
+Periodic[0,2pi],256particles,grids8/16/32,seeds35001/35002,dt.02,T.24. Uniform random positions,v=.2Normal+.1sin(x). Six pairs mean twelve separately evolved trajectories.
+
+## PIC checks against independent spatial kernels — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-pic-spatial/#pic-independent-spatial-algorithm
+Coverage: reading
+
+The independent path owns scalar deposition, explicit complex DFT sums and scalar gathering; it imports no primary spatial routines. Mathematical CIC, Nyquist convention, velocity-Verlet and initial arrays are intentionally shared.
+\rho_j=1-\frac1h\sum_p w_p S_j(x_p),\quad a_p=-\sum_j S_j(x_p)E_j\widehat E_m=\widehat\rho_m/(ik_m),\quad E_0=0,\quad E_{N/2}=0\ \text{(even N)}\rho=-\tfrac12\cos2x\ \Longrightarrow\ E=-\tfrac14\sin2x,\quad a=+\tfrac14\sin2x
+
+## PIC checks against independent spatial kernels — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-pic-spatial/#pic-independent-spatial-validation
+Coverage: reading
+
+19pytest and58/58fixed gates passed. Compare six pairs=twelve self-consistent trajectories at all13states; maximum differences:x8.88e-16,v3.33e-16,E8.33e-16,rho2.89e-15. Shared pytest+main.392s. Initial small pytest retained17/18with a periodic-index failure; integer wrapping was corrected before the first fixed main batch.
+
+## PIC checks against independent spatial kernels — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-pic-spatial/#pic-independent-spatial-limits
+Coverage: reading
+
+Independent coding check of discrete spatial operators. It does not change the time integrator/continuum model, establish continuum convergence, or reproduce the cold-plasma oscillation reference. A related supplement of cold-plasma-pic; the finite warm velocity spread is explicit.
+
+## PIC checks against independent spatial kernels — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-pic-spatial/#pic-independent-spatial-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+comparison_pairs6
+separate_trajectories12
+saved_states_per_trajectory13
+maximum_position_discrepancy8.881784197e-16
+maximum_velocity_discrepancy3.33066907388e-16
+maximum_field_discrepancy8.32667268469e-16
+maximum_charge_discrepancy2.88657986403e-15
+判定 / checkPassed
+primary analytic charge field electron-sign fixturetrue
+independent analytic charge field electron-sign fixturetrue
+deliberate wrong electron sign is detectedtrue
+odd-grid forcetrue
+odd-grid fieldtrue
+odd-grid chargetrue
+positive-weight forcetrue
+positive-weight fieldtrue
+positive-weight chargetrue
+n8-seed35001 all saved arrays finitetrue
+n8-seed35001 all-step positiontrue
+n8-seed35001 all-step velocitytrue
+n8-seed35001 all-step fieldtrue
+n8-seed35001 all-step chargetrue
+n8-seed35001 independent charge conservationtrue
+n8-seed35001 independent momentum conservationtrue
+n8-seed35001 own fields at every fixed kicktrue
+n8-seed35002 all saved arrays finitetrue
+n8-seed35002 all-step positiontrue
+n8-seed35002 all-step velocitytrue
+n8-seed35002 all-step fieldtrue
+n8-seed35002 all-step chargetrue
+n8-seed35002 independent charge conservationtrue
+n8-seed35002 independent momentum conservationtrue
+n8-seed35002 own fields at every fixed kicktrue
+
+## PIC checks against independent spatial kernels — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-pic-spatial/#pic-independent-spatial-measurements
+Coverage: reading
+
+n16-seed35001 all saved arrays finitetrue
+n16-seed35001 all-step positiontrue
+n16-seed35001 all-step velocitytrue
+n16-seed35001 all-step fieldtrue
+n16-seed35001 all-step chargetrue
+n16-seed35001 independent charge conservationtrue
+n16-seed35001 independent momentum conservationtrue
+n16-seed35001 own fields at every fixed kicktrue
+n16-seed35002 all saved arrays finitetrue
+n16-seed35002 all-step positiontrue
+n16-seed35002 all-step velocitytrue
+n16-seed35002 all-step fieldtrue
+n16-seed35002 all-step chargetrue
+n16-seed35002 independent charge conservationtrue
+n16-seed35002 independent momentum conservationtrue
+n16-seed35002 own fields at every fixed kicktrue
+n32-seed35001 all saved arrays finitetrue
+n32-seed35001 all-step positiontrue
+n32-seed35001 all-step velocitytrue
+n32-seed35001 all-step fieldtrue
+n32-seed35001 all-step chargetrue
+n32-seed35001 independent charge conservationtrue
+n32-seed35001 independent momentum conservationtrue
+n32-seed35001 own fields at every fixed kicktrue
+n32-seed35002 all saved arrays finitetrue
+n32-seed35002 all-step positiontrue
+n32-seed35002 all-step velocitytrue
+n32-seed35002 all-step fieldtrue
+n32-seed35002 all-step chargetrue
+n32-seed35002 independent charge conservationtrue
+n32-seed35002 independent momentum conservationtrue
+n32-seed35002 own fields at every fixed kicktrue
+six paired comparisons equal twelve separate trajectoriestrue
+
+## PIC checks against independent spatial kernels — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-pic-spatial/#pic-independent-spatial-measurements
+Coverage: reading
+
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Actual saved phase space from one of twelve evolutions; color is the self-consistent velocity increment.Read every stored record
+idnseedparticlesstepsfilesha256positionvelocityfieldchargecharge_integralmomentum
+n8-seed3500183500125612n8-seed35001.npz9f22412dfed37c92776233dc78cf161888b9bc3dadba1a8336ce59ab974fe2b88.881784197e-162.22044604925e-164.96130914129e-168.881784197e-166.97573699602e-161.04083408559e-17
+n8-seed3500283500225612n8-seed35002.npzed841e1213846689686e39d9259eb04589762c02bd725cc23365a58c482e12664.4408920985e-162.22044604925e-164.30211422042e-166.66133814775e-169.59163836952e-165.20417042793e-18
+n16-seed35001163500125612n16-seed35001.npz4235f169cbddf851cc82a2bbc47084cb6b3e0a5751c6dc9893d738357e5617a44.4408920985e-161.80411241502e-166.55725473919e-161.11022302463e-154.35983562251e-161.04083408559e-17
+n16-seed35002163500225612n16-seed35002.npz0967013350fe9906dffe76de3be8900d5ee81f7fe826ec7abc9569e16709f87e5.55111512313e-172.22044604925e-167.35522753814e-168.881784197e-163.92385206026e-167.8062556419e-18
+n32-seed35001323500125612n32-seed35001.npz596cdd4c55ab84ad5b12076be75584e924de715afa7952523b9395ca5ee7270a8.881784197e-162.77555756156e-168.32667268469e-162.88657986403e-158.71967124502e-173.46944695195e-18
+
+## PIC checks against independent spatial kernels — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-pic-spatial/#pic-independent-spatial-measurements
+Coverage: reading
+
+n32-seed35002323500225612n32-seed35002.npzbd4927c21ef19e52fc7809c9748bd23360ba06e74c97247401da53ca974bd2a68.881784197e-163.33066907388e-165.48172618409e-162.22044604925e-151.743934249e-169.54097911787e-18
+Measurements and complete records / JSON
+
+## PIC checks against independent spatial kernels — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-pic-spatial/#pic-independent-spatial-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Enrico Camporeale, Gian Luca Delzanno, Benjamin K. Bergen and J. David Moulton (2013). On the velocity space discretization for the Vlasov–Poisson system: comparison between Hermite spectral and Particle-in-Cell methods. Part 1: semi-implicit scheme
+Review scope / review_level: primary-selected-original-pdf-text
+Selected original equations and diagnostic limitations inspected; independently derived continuum references are evaluated here.
+
 ## SRHD collision and nonlinear SRMHD Alfven wave — SRHD collision and nonlinear SRMHD Alfven wave [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-relativistic/
@@ -30702,7 +32406,7 @@ Compare an SRHD head-on collision with a Taub two-shock solution and full7-state
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-relativistic/#run-all
 Coverage: reading
 
-Run inside atlas-relativistic-2026-11-23 from the ZIP. This command executes all 2 fixed cases in the supplement. Choose a new or empty output directory.
+Run inside atlas-relativistic-2026-11-23 from the ZIP. This command executes all 2 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -31061,7 +32765,7 @@ A lightweight spherical-radial Euler finite-volume example deposits unit energy 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sedov/#run-all
 Coverage: reading
 
-Run inside atlas-sedov-2026-11-23-r2 from the ZIP. This command executes all 1 fixed cases in the supplement. Choose a new or empty output directory.
+Run inside atlas-sedov-2026-11-23-r2 from the ZIP. This command executes all 1 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -31283,7 +32987,7 @@ Compare2D SEM Poisson and1D periodic FR advection with the existing P1 FEM/modal
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/#run-all
 Coverage: reading
 
-Run inside atlas-sem-fr-2026-11-23 from the ZIP. This command executes all 2 fixed cases in the supplement. Choose a new or empty output directory.
+Run inside atlas-sem-fr-2026-11-23 from the ZIP. This command executes all 2 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -31570,7 +33274,7 @@ Check shallow-water bed sources and hydrostatic reconstruction with wet/emerged 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/#run-all
 Coverage: reading
 
-Run inside atlas-shallow-water-2026-11-23 from the ZIP. This command executes all 2 fixed cases in the supplement. Choose a new or empty output directory.
+Run inside atlas-shallow-water-2026-11-23 from the ZIP. This command executes all 2 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -31784,12 +33488,22 @@ Coverage: reading
 Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
 O. Delestre et al. (2013). SWASHES: a compilation of shallow water analytic solutions for hydraulic and environmental studies · DOI: 10.1002/fld.3741
 Review scope / review_level: selected-equations-and-fixed-inputs
+Author arXiv v3: sections2,3.1.1-3.1.3,4.1.2. Bump, lakes, Bernoulli and Ritter formulas inspected; no full-library audit or SWASHES execution/source reuse.
 E. Audusse, F. Bouchut, M.-O. Bristeau, R. Klein, B. Perthame (2004). A Fast and Stable Well-Balanced Scheme with Hydrostatic Reconstruction for Shallow Water Flows · DOI: 10.1137/S1064827503431090
 Review scope / review_level: bibliography-and-author-follow-up
+Publisher/author bibliography checked. Author-linked original PDF retrieval timed out; HR algebra read in author follow-up arXiv1409.3825. No full original-paper audit.
 E. Audusse, F. Bouchut, M.-O. Bristeau, J. Sainte-Marie (2016). Kinetic entropy inequality and hydrostatic reconstruction scheme for the Saint-Venant system
 Review scope / review_level: selected-scheme-equations
+arXiv v2 section1 model/entropy caveat; section3.1 equations3.1-3.5 face states and pressure corrections. Full kinetic proof not audited or claimed for this HLL solver.
+
+## Shallow water: topography, lakes and dry beds — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/#swashes-topography-references
+Coverage: reading
+
 Institut Denis Poisson / SWASHES authors (n.d.). SWASHES project page
 Review scope / review_level: official-project-scope-and-rights
+Official project/library purpose, CeCILL-v2 licensing and corrected-paper/addendum notice inspected. No library code copied or executed.
 
 ## Shallow water: topography, lakes and dry beds — Dry-bed dam break: actual wetting and dry states [en]
 
@@ -31989,12 +33703,183 @@ Coverage: reading
 Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
 O. Delestre et al. (2013). SWASHES: a compilation of shallow water analytic solutions for hydraulic and environmental studies · DOI: 10.1002/fld.3741
 Review scope / review_level: selected-equations-and-fixed-inputs
+Author arXiv v3: sections2,3.1.1-3.1.3,4.1.2. Bump, lakes, Bernoulli and Ritter formulas inspected; no full-library audit or SWASHES execution/source reuse.
 E. Audusse, F. Bouchut, M.-O. Bristeau, R. Klein, B. Perthame (2004). A Fast and Stable Well-Balanced Scheme with Hydrostatic Reconstruction for Shallow Water Flows · DOI: 10.1137/S1064827503431090
 Review scope / review_level: bibliography-and-author-follow-up
+Publisher/author bibliography checked. Author-linked original PDF retrieval timed out; HR algebra read in author follow-up arXiv1409.3825. No full original-paper audit.
 E. Audusse, F. Bouchut, M.-O. Bristeau, J. Sainte-Marie (2016). Kinetic entropy inequality and hydrostatic reconstruction scheme for the Saint-Venant system
 Review scope / review_level: selected-scheme-equations
+arXiv v2 section1 model/entropy caveat; section3.1 equations3.1-3.5 face states and pressure corrections. Full kinetic proof not audited or claimed for this HLL solver.
+
+## Shallow water: topography, lakes and dry beds — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/#dry-bed-dam-break-references
+Coverage: reading
+
 Institut Denis Poisson / SWASHES authors (n.d.). SWASHES project page
 Review scope / review_level: official-project-scope-and-rights
+Official project/library purpose, CeCILL-v2 licensing and corrected-paper/addendum notice inspected. No library code copied or executed.
+
+## Neutral slabs: corrected3P and genuine2P references — Neutral slabs: corrected3P and genuine2P references [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-slab-ewald/
+Coverage: reading
+
+Freeze rectangular boxes and the nonperiodic-z branch; compare the Yeh–Berkowitz correction with a genuine2P reference including self and zero modes.
+
+## Neutral slabs: corrected3P and genuine2P references — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-slab-ewald/#run-all
+Coverage: reading
+
+Run inside atlas-slab-ewald-2026-11-23 from the ZIP. This command executes all 1 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Neutral slabs: corrected3P and genuine2P references — Neutral rectangular slab: genuine2P reference and YB [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-slab-ewald/
+Coverage: reading
+
+Compare corrected orthorhombic3P Ewald energy/all forces against a separately implemented genuine2P series.
+Methods, equations, figures and references
+Methods used
+Ewald summation
+Slab electrostatics and 2D-periodic Ewald
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Full±3D reciprocal sum/self term and2pi Mz²/V correction; independent2P retains zero/self terms and stable exp-erfc evaluation.
+Coulomb electrostatics with mixed periodic boundaries
+Coulomb1, lateral1×1.25, extendedLz1.5/3/6,4neutral charges±1,physical-z dipole.34 andalpha3/4.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Neutral rectangular slab: genuine2P reference and YB
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Separate reference cutoff/splitting qualification, energy gradients, vacuum error, all forces, zero-mode control/far gauge and neutral translations.
+Same-problem reference · Semi-analytic reference
+Neutral rectangular slab: genuine2P reference and YB
+Neutral fixed4charge Cartesian-z slab only. YB is a finite-gap approximation, not exact2P at arbitrary vacuum. Original Yeh full text not inspected.
+
+## Neutral slabs: corrected3P and genuine2P references — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-slab-ewald/#neutral-slab-yb-assumptions
+Coverage: reading
+
+Coulomb1, lateral1×1.25, extendedLz1.5/3/6,4neutral charges±1,physical-z dipole.34 andalpha3/4.
+
+## Neutral slabs: corrected3P and genuine2P references — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-slab-ewald/#neutral-slab-yb-algorithm
+Coverage: reading
+
+Full±3D reciprocal sum/self term and2pi Mz²/V correction; independent2P retains zero/self terms and stable exp-erfc evaluation.
+E_{\rm YB}=E_{3P}+2\pi M_z^2/V\Delta F_{zi}=-4\pi q_iM_z/V\phi(\pm\infty)=\pm2\pi M_z/(L_xL_y)
+
+## Neutral slabs: corrected3P and genuine2P references — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-slab-ewald/#neutral-slab-yb-validation
+Coverage: reading
+
+Separate reference cutoff/splitting qualification, energy gradients, vacuum error, all forces, zero-mode control/far gauge and neutral translations.
+
+## Neutral slabs: corrected3P and genuine2P references — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-slab-ewald/#neutral-slab-yb-limits
+Coverage: reading
+
+Neutral fixed4charge Cartesian-z slab only. YB is a finite-gap approximation, not exact2P at arbitrary vacuum. Original Yeh full text not inspected.
+
+## Neutral slabs: corrected3P and genuine2P references — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-slab-ewald/#neutral-slab-yb-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+reference_energy-4.45950558164
+maximum_reference_force5.48489596394
+dipole_z0.34
+finest_energy_error4.61852778244e-14
+finest_force_error1.000977079e-12
+判定 / checkPassed
+reference splitting energytrue
+reference splitting forcetrue
+reference cutoff energytrue
+reference cutoff forcetrue
+z1.5-a3 finite saved fieldstrue
+z1.5-a3 neutral net forcetrue
+z1.5-a4 finite saved fieldstrue
+z1.5-a4 neutral net forcetrue
+z3-a3 finite saved fieldstrue
+z3-a3 neutral net forcetrue
+z3-a4 finite saved fieldstrue
+z3-a4 neutral net forcetrue
+z6-a3 finite saved fieldstrue
+z6-a3 neutral net forcetrue
+z6-a4 finite saved fieldstrue
+z6-a4 neutral net forcetrue
+z1.5 alpha energytrue
+z1.5 alpha forcetrue
+z3 alpha energytrue
+z3 alpha forcetrue
+z6 alpha energytrue
+z6 alpha forcetrue
+z6-a3 finest energytrue
+z6-a3 finest forcetrue
+z6-a3 correction improves energytrue
+z6-a3 correction improves forcetrue
+z6-a4 finest energytrue
+z6-a4 finest forcetrue
+z6-a4 correction improves energytrue
+z6-a4 correction improves forcetrue
+neutral translation energytrue
+neutral translation forcetrue
+production energy gradient h1e-05true
+reference energy gradient h1e-05true
+production energy gradient h5e-06true
+reference energy gradient h5e-06true
+
+## Neutral slabs: corrected3P and genuine2P references — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-slab-ewald/#neutral-slab-yb-measurements
+Coverage: reading
+
+omitted zero mode is detectedtrue
+far-z potential steptrue
+far-z zero fieldtrue
+source permutation energytrue
+source permutation forcetrue
+charged cell rejectedtrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Validation figure from actual saved fixed-input calculation arrays.Read every stored record
+idLzalphaenergyreference_energycorrected_energy_erroruncorrected_energy_errorcorrected_force_erroruncorrected_force_errornet_forcereciprocal_count
+z1.5-a31.53-4.45786834633-4.459505581640.001637235313460.3857420828250.006079810007082.282046955161.22124532709e-158326
+z1.5-a41.54-4.45786834633-4.459505581640.001637235313460.3857420828250.006079810007082.282046955168.881784197e-158326
+z3-a333-4.45950559693-4.459505581641.528326532e-080.1936896743533.28866520416e-061.139354224371.24344978758e-1416608
+z3-a434-4.45950559693-4.459505581641.528326532e-080.1936896743533.28866517485e-061.139354224371.95399252334e-1416608
+z6-a363-4.45950558164-4.459505581644.61852778244e-140.09684482953471.00275343584e-120.5696754678522.30926389122e-1433246
+z6-a464-4.45950558164-4.459505581644.61852778244e-140.09684482953471.000977079e-120.5696754678525.68434188608e-1433246
+Measurements and complete records / JSON
+
+## Neutral slabs: corrected3P and genuine2P references — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-slab-ewald/#neutral-slab-yb-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Fast and spectrally accurate Ewald summation for2-periodic electrostatic systems
+Review scope / review_level: primary-selected-equations
+Eq4 and AppendixA Eq41/zero-mode inspected; rendered selected pages requested. No full-paper audit or spectral-PME implementation claimed.
+Ewald summation for systems with slab geometry
+Review scope / review_level: bibliography-original-unaccessed
+Original publisher full text unavailable; no original-text review claimed. Neutral correction independently derived and checked against official LAMMPS implementation/documentation.
+LAMMPS slab Ewald documentation and neutral correction
+Review scope / review_level: official-selected-docs-and-formulas
+Slab geometry restrictions and official Ewald::slabcorr neutral formula inspected. No LAMMPS code copied or executed; mutable stable source is contextual, not a numerical dependency.
 
 ## Operator splitting: Lie–Trotter and Strang on the same reaction–diffusion problem — Operator splitting: Lie–Trotter and Strang on the same reaction–diffusion problem [en]
 
@@ -32008,7 +33893,7 @@ Compare short-time nonlinear Schnakenberg reaction–diffusion with the same ini
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-splitting/#run-all
 Coverage: reading
 
-Run inside atlas-splitting-2026-11-22 from the ZIP. This command executes all 1 fixed cases in the supplement. Choose a new or empty output directory.
+Run inside atlas-splitting-2026-11-22 from the ZIP. This command executes all 1 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -32175,7 +34060,7 @@ Small fixed inputs connect numerical methods, references, errors, refinement and
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#run-all
 Coverage: reading
 
-Run inside atlas-thermostats-2026-11-22 from the ZIP. This command executes all 3 fixed cases in the supplement. Choose a new or empty output directory.
+Run inside atlas-thermostats-2026-11-22 from the ZIP. This command executes all 3 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -32987,7 +34872,7 @@ Solve a Re100 lid-driven cavity and manufactured flow with a nonperiodic wall-bo
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-wall-flow/#run-all
 Coverage: reading
 
-Run inside atlas-wall-flow-2026-11-23-r2 from the ZIP. This command executes all 2 fixed cases in the supplement. Choose a new or empty output directory.
+Run inside atlas-wall-flow-2026-11-23-r2 from the ZIP. This command executes all 2 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -33306,6 +35191,558 @@ Kambiz Salari and Patrick Knupp (2000). Code Verification by the Method of Manuf
 Review scope / review_level: primary-selected-section-and-official-abstract
 Read official Sandia/OSTI metadata/abstract and original report printed12 on MMS together with mesh refinement. The polynomial and pressure field are constructed for this example.
 
+## Warm PIC: Landau damping and two-stream instability — Warm PIC: Landau damping and two-stream instability [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/
+Coverage: reading
+
+Compare self-consistent weighted full-f PIC with independently formulated dielectric dispersion and linear Volterra IVPs.
+
+## Warm PIC: Landau damping and two-stream instability — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#run-all
+Coverage: reading
+
+Run inside atlas-warm-pic-2026-11-23 from the ZIP. This command executes all 2 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Warm PIC: Landau damping and two-stream instability — Warm PIC linear Landau damping [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/
+Coverage: reading
+
+Advance thermal Maxwellian full-f particles and compare damping rate, frequency and signed-field history with qualified independent linear references.
+Methods, equations, figures and references
+Methods used
+Particle-in-cell / PIC
+Cloud-in-cell assignment and interpolation
+Velocity Verlet / particle leapfrog
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Positive Gaussian velocity weights and density-CDF inversion load the joint(x,v) distribution. Recompute CIC deposition, FFT Poisson and matched CIC gathering at every velocity-Verlet kick. Qualify the dielectric root using branch continuation/bracket checks and a separately derived, time-refined Volterra IVP with the same fixed-window estimator.
+Electrostatic Vlasov–Poisson equations
+vth=omega_p=lambda_D=1,k.5,L4pi,alpha.01,grid32,256spatial strata×128velocity nodes,dt.04,T16,fit[4,12],seeds33001–33004. A separately evolved512-spatial-strata companion changes only particle-space resolution.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Warm PIC linear Landau damping
+This problem’s code and validation status
+Exact / reference solutions
+
+## Warm PIC: Landau damping and two-stream instability — Warm PIC linear Landau damping [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/
+Coverage: reading
+
+References and checks for this execution
+Reference and validation scope
+31pytest,19self-consistent runs,140/140case gates and17/17independent linear-reference qualifiers passed; shared pytest+main7.283s. Landau256/512particle-space curve gap.001154 and amplitude-half gap.004376 meet the unchanged.03bound. Original64-strata130/131result (.05646>.03) remains an explicitly unmet retained example; amplitudes/all tolerances stayed fixed.
+Same-problem reference · Semi-analytic reference
+Warm PIC linear Landau damping
+Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established.
+
+## Warm PIC: Landau damping and two-stream instability — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-landau-damping-assumptions
+Coverage: reading
+
+vth=omega_p=lambda_D=1,k.5,L4pi,alpha.01,grid32,256spatial strata×128velocity nodes,dt.04,T16,fit[4,12],seeds33001–33004. A separately evolved512-spatial-strata companion changes only particle-space resolution.
+
+## Warm PIC: Landau damping and two-stream instability — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-landau-damping-algorithm
+Coverage: reading
+
+Positive Gaussian velocity weights and density-CDF inversion load the joint(x,v) distribution. Recompute CIC deposition, FFT Poisson and matched CIC gathering at every velocity-Verlet kick. Qualify the dielectric root using branch continuation/bracket checks and a separately derived, time-refined Volterra IVP with the same fixed-window estimator.
+\partial_t f+v\partial_x f-E\partial_v f=0,\quad\partial_x E=1-\int f\,dv,\quad\langle E\rangle=0D(\omega,k)=1+\frac{1}{k^2}\sum_s a_s[1+\zeta_s Z(\zeta_s)],\quad\zeta_s=\frac{\omega-ku_s}{\sqrt2 k}e(t)=\Phi(t)-\int_0^t s\Phi(s)e(t-s)\,ds,\quad\Phi(t)=e^{-k^2t^2/2}\cos(kut)
+
+## Warm PIC: Landau damping and two-stream instability — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-landau-damping-validation
+Coverage: reading
+
+31pytest,19self-consistent runs,140/140case gates and17/17independent linear-reference qualifiers passed; shared pytest+main7.283s. Landau256/512particle-space curve gap.001154 and amplitude-half gap.004376 meet the unchanged.03bound. Original64-strata130/131result (.05646>.03) remains an explicitly unmet retained example; amplitudes/all tolerances stayed fixed.
+
+## Warm PIC: Landau damping and two-stream instability — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-landau-damping-limits
+Coverage: reading
+
+Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established.
+
+## Warm PIC: Landau damping and two-stream instability — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-landau-damping-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+mean_rate-0.154880753701
+seed_standard_error1.45147313891e-05
+conditional_t95_lower-0.154926946054
+conditional_t95_upper-0.154834561347
+dielectric_rate-0.15335946691
+volterra_fixed_window_rate-0.153647574022
+root_window_relative_bias0.00187863923817
+mean_linear_curve_relative_rms0.0209239839397
+three_noise_to_minimum_envelope5.22237805385e-12
+mesh_rate_fraction0.00538706340509
+time-half_rate_fraction9.14827746356e-05
+velocity_rate_fraction0.000197217181718
+amplitude-half_rate_fraction0.000918702027463
+amplitude_scaled_curve_gap0.00437552990572
+mean_frequency1.41272121335
+frequency_seed_se3.8538318281e-05
+dielectric_frequency1.4156618886
+spatial_strata_rate_fraction6.62744989007e-05
+spatial_strata_scaled_curve_gap0.00115370527739
+判定 / checkPassed
+independent root and fixed-window Volterra qualifiedtrue
+nine fixed full-f calculationstrue
+ten declared Landau full-f calculationstrue
+thermal-landau-damping-seed33001 all fields and histories finitetrue
+thermal-landau-damping-seed33001 fixed time and five snapshotstrue
+thermal-landau-damping-seed33001 charge momentum resolvedGauss and energytrue
+thermal-landau-damping-seed33001 positive full-f weights without repairtrue
+
+## Warm PIC: Landau damping and two-stream instability — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-landau-damping-measurements
+Coverage: reading
+
+thermal-landau-damping-seed33001 joint load and Gaussian quadrature qualifiedtrue
+thermal-landau-damping-seed33001 resolved fixed-window rate fittrue
+thermal-landau-damping-seed33002 all fields and histories finitetrue
+thermal-landau-damping-seed33002 fixed time and five snapshotstrue
+thermal-landau-damping-seed33002 charge momentum resolvedGauss and energytrue
+thermal-landau-damping-seed33002 positive full-f weights without repairtrue
+thermal-landau-damping-seed33002 joint load and Gaussian quadrature qualifiedtrue
+thermal-landau-damping-seed33002 resolved fixed-window rate fittrue
+thermal-landau-damping-seed33003 all fields and histories finitetrue
+thermal-landau-damping-seed33003 fixed time and five snapshotstrue
+thermal-landau-damping-seed33003 charge momentum resolvedGauss and energytrue
+thermal-landau-damping-seed33003 positive full-f weights without repairtrue
+thermal-landau-damping-seed33003 joint load and Gaussian quadrature qualifiedtrue
+thermal-landau-damping-seed33003 resolved fixed-window rate fittrue
+thermal-landau-damping-seed33004 all fields and histories finitetrue
+thermal-landau-damping-seed33004 fixed time and five snapshotstrue
+thermal-landau-damping-seed33004 charge momentum resolvedGauss and energytrue
+thermal-landau-damping-seed33004 positive full-f weights without repairtrue
+thermal-landau-damping-seed33004 joint load and Gaussian quadrature qualifiedtrue
+
+## Warm PIC: Landau damping and two-stream instability — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-landau-damping-measurements
+Coverage: reading
+
+thermal-landau-damping-seed33004 resolved fixed-window rate fittrue
+thermal-landau-damping-mesh all fields and histories finitetrue
+thermal-landau-damping-mesh fixed time and five snapshotstrue
+thermal-landau-damping-mesh charge momentum resolvedGauss and energytrue
+thermal-landau-damping-mesh positive full-f weights without repairtrue
+thermal-landau-damping-mesh joint load and Gaussian quadrature qualifiedtrue
+thermal-landau-damping-mesh resolved fixed-window rate fittrue
+thermal-landau-damping-time-half all fields and histories finitetrue
+thermal-landau-damping-time-half fixed time and five snapshotstrue
+thermal-landau-damping-time-half charge momentum resolvedGauss and energytrue
+thermal-landau-damping-time-half positive full-f weights without repairtrue
+thermal-landau-damping-time-half joint load and Gaussian quadrature qualifiedtrue
+thermal-landau-damping-time-half resolved fixed-window rate fittrue
+thermal-landau-damping-velocity all fields and histories finitetrue
+thermal-landau-damping-velocity fixed time and five snapshotstrue
+thermal-landau-damping-velocity charge momentum resolvedGauss and energytrue
+thermal-landau-damping-velocity positive full-f weights without repairtrue
+thermal-landau-damping-velocity joint load and Gaussian quadrature qualifiedtrue
+thermal-landau-damping-velocity resolved fixed-window rate fittrue
+
+## Warm PIC: Landau damping and two-stream instability — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-landau-damping-measurements
+Coverage: reading
+
+thermal-landau-damping-amplitude-half all fields and histories finitetrue
+thermal-landau-damping-amplitude-half fixed time and five snapshotstrue
+thermal-landau-damping-amplitude-half charge momentum resolvedGauss and energytrue
+thermal-landau-damping-amplitude-half positive full-f weights without repairtrue
+thermal-landau-damping-amplitude-half joint load and Gaussian quadrature qualifiedtrue
+thermal-landau-damping-amplitude-half resolved fixed-window rate fittrue
+thermal-landau-damping-noise all fields and histories finitetrue
+thermal-landau-damping-noise fixed time and five snapshotstrue
+thermal-landau-damping-noise charge momentum resolvedGauss and energytrue
+thermal-landau-damping-noise positive full-f weights without repairtrue
+thermal-landau-damping-noise joint load and Gaussian quadrature qualifiedtrue
+thermal-landau-damping-spatial-strata all fields and histories finitetrue
+thermal-landau-damping-spatial-strata fixed time and five snapshotstrue
+thermal-landau-damping-spatial-strata charge momentum resolvedGauss and energytrue
+thermal-landau-damping-spatial-strata positive full-f weights without repairtrue
+thermal-landau-damping-spatial-strata joint load and Gaussian quadrature qualifiedtrue
+thermal-landau-damping-spatial-strata resolved fixed-window rate fittrue
+conditional rate precisiontrue
+mean rate versus dielectric poletrue
+
+## Warm PIC: Landau damping and two-stream instability — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-landau-damping-measurements
+Coverage: reading
+
+mean rate versus linear IVP fixed-window estimatortrue
+mean field curve versus linear continuumtrue
+quiet-equilibrium noise versus fitted envelopetrue
+mesh separate rate sensitivitytrue
+time-half separate rate sensitivitytrue
+velocity separate rate sensitivitytrue
+amplitude-half separate rate sensitivitytrue
+amplitude-halving scaled field linearitytrue
+mean frequency versus dielectric poletrue
+spatial-strata separate rate sensitivitytrue
+spatial-strata scaled field sensitivitytrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Actual evolved particle velocity change delta-v/alpha against initial(x,v); a1D1V phase-space response, not a2D physical-space flow.Read every stored record
+spatial_strataidfamilyseedgridnodesdtamplitudecaseparticlesstepstimesnapshot_timesloadall_finitemaximum_charge_errormaximum_momentum_driftmaximum_resolved_gaussmaximum_energy_driftmaximum_nyquist_chargeminimum_weightstate_clip_countretriesfitlinear_curve_relative_rmsnormalization_field_amplitudenoise_mode_rmsfilesha256
+
+## Warm PIC: Landau damping and two-stream instability — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-landau-damping-measurements
+Coverage: reading
+
+256thermal-landau-damping-seed33001ensemble33001321280.040.01thermal-landau-damping3276840016[0.0,4.0,8.0,12.0,16.0]{"joint_low_mode_factorization_defect":2.288774487666669e-16,"mean_velocity":2.5525189843522304e-19,"thermal_variance":1.0,"fourth_moment_relative_error":5.921189464667501e-16,"gaussian_characteristic_defect":3.3306690738754696e-16,"density_mode_defect":3.4250361894052986e-17,"minimum_weight":4.9824397257431146e-104,"maximum_velocity":21.62589890769055}true3.70586027913e-152.12036978445e-165.58785009585e-201.89630735954e-070.0005334197188074.98243972574e-10400{"gamma":-0.15487404248646777,"omega":1.412748023847043,"relative_fit_residual":0.001337314338742206,"minimum_envelope":0.11468312192557754,"samples":201}0.02082816671880.01—thermal-landau-damping-thermal-landau-damping-seed33001.npz710f233473fa351bf358e6819c0f5be517de2b07e02e9d28998ca04fa1b71136
+
+## Warm PIC: Landau damping and two-stream instability — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-landau-damping-measurements
+Coverage: reading
+
+256thermal-landau-damping-seed33002ensemble33002321280.040.01thermal-landau-damping3276840016[0.0,4.0,8.0,12.0,16.0]{"joint_low_mode_factorization_defect":2.288774487666669e-16,"mean_velocity":2.5525189843522304e-19,"thermal_variance":1.0,"fourth_moment_relative_error":5.921189464667501e-16,"gaussian_characteristic_defect":3.3306690738754696e-16,"density_mode_defect":7.509669588319243e-17,"minimum_weight":4.9824397257431146e-104,"maximum_velocity":21.62589890769055}true4.14184384139e-151.41357986823e-165.42365719447e-201.75850110657e-070.0004641867956124.98243972574e-10400{"gamma":-0.15486573914140617,"omega":1.412695797607326,"relative_fit_residual":0.0013593977687838192,"minimum_envelope":0.11467457157257085,"samples":201}0.02111169179240.01—thermal-landau-damping-thermal-landau-damping-seed33002.npzd3c30bc333fb71c950049066515a8aed2107c754766cddccb5576f2db07df4a2
+
+## Warm PIC: Landau damping and two-stream instability — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-landau-damping-measurements
+Coverage: reading
+
+256thermal-landau-damping-seed33003ensemble33003321280.040.01thermal-landau-damping3276840016[0.0,4.0,8.0,12.0,16.0]{"joint_low_mode_factorization_defect":2.288774487666669e-16,"mean_velocity":2.5525189843522304e-19,"thermal_variance":1.0,"fourth_moment_relative_error":5.921189464667501e-16,"gaussian_characteristic_defect":3.3306690738754696e-16,"density_mode_defect":4.655107768950204e-17,"minimum_weight":4.9824397257431146e-104,"maximum_velocity":21.62589890769055}true4.18544219761e-152.12036979296e-165.58785009585e-201.92352298368e-070.0004561143311484.98243972574e-10400{"gamma":-0.15492341003903576,"omega":1.4126298057445186,"relative_fit_residual":0.001164014497526855,"minimum_envelope":0.1146125286054583,"samples":201}0.02108056764830.01—thermal-landau-damping-thermal-landau-damping-seed33003.npz5ee9321cabbb8506068c2f163a48393e81b06fa1610d3d494b65b529114f2a03
+
+## Warm PIC: Landau damping and two-stream instability — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-landau-damping-measurements
+Coverage: reading
+
+256thermal-landau-damping-seed33004ensemble33004321280.040.01thermal-landau-damping3276840016[0.0,4.0,8.0,12.0,16.0]{"joint_low_mode_factorization_defect":2.288774487666669e-16,"mean_velocity":2.5525189843522304e-19,"thermal_variance":1.0,"fourth_moment_relative_error":5.921189464667501e-16,"gaussian_characteristic_defect":3.3306690738754696e-16,"density_mode_defect":2.883460234668479e-17,"minimum_weight":4.9824397257431146e-104,"maximum_velocity":21.62589890769055}true3.61866356668e-152.12036978173e-165.46319835365e-201.42623503873e-070.0003285820685144.98243972574e-10400{"gamma":-0.15485982313596577,"omega":1.4128112261859955,"relative_fit_residual":0.0009962365505557323,"minimum_envelope":0.11471939208620051,"samples":201}0.02067550959940.01—thermal-landau-damping-thermal-landau-damping-seed33004.npz1b5d396b386f28aac0d75dbd602381503d916aa69c4be8aee18ef1f0abbe14ac
+
+## Warm PIC: Landau damping and two-stream instability — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-landau-damping-measurements
+Coverage: reading
+
+256thermal-landau-damping-meshmesh33001641280.040.01thermal-landau-damping3276840016[0.0,4.0,8.0,12.0,16.0]{"joint_low_mode_factorization_defect":2.288774487666669e-16,"mean_velocity":2.5525189843522304e-19,"thermal_variance":1.0,"fourth_moment_relative_error":5.921189464667501e-16,"gaussian_characteristic_defect":3.3306690738754696e-16,"density_mode_defect":3.4250361894052986e-17,"minimum_weight":4.9824397257431146e-104,"maximum_velocity":21.62589890769055}true1.72213507089e-151.41357986515e-166.06087439758e-201.90515817794e-070.0003444883183594.98243972574e-10400{"gamma":-0.1540478853144545,"omega":1.4146186603852107,"relative_fit_residual":0.0013120045194692414,"minimum_envelope":0.11605968774306037,"samples":201}0.005247536188020.01—thermal-landau-damping-thermal-landau-damping-mesh.npzbd3f70b50053c2c6f9549ff30e5b52393ca9b54a5b6cbdd4033ca0c03b421512
+
+## Warm PIC: Landau damping and two-stream instability — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-landau-damping-measurements
+Coverage: reading
+
+256thermal-landau-damping-time-halftime-half33001321280.020.01thermal-landau-damping3276880016[0.0,4.0,8.0,12.0,16.0]{"joint_low_mode_factorization_defect":2.288774487666669e-16,"mean_velocity":2.5525189843522304e-19,"thermal_variance":1.0,"fourth_moment_relative_error":5.921189464667501e-16,"gaussian_characteristic_defect":3.3306690738754696e-16,"density_mode_defect":3.4250361894052986e-17,"minimum_weight":4.9824397257431146e-104,"maximum_velocity":21.62589890769055}true4.49063069119e-152.12036979507e-165.46319835365e-201.51181421255e-070.0005322735632844.98243972574e-10400{"gamma":-0.1548880722360173,"omega":1.4127130875395628,"relative_fit_residual":0.001335866309697039,"minimum_envelope":0.11467078918347996,"samples":401}0.02103957222790.01—thermal-landau-damping-thermal-landau-damping-time-half.npz1f3314ac4678efa6a94f274849648a925c4b1c5b903d50e938e7673e780c9568
+
+## Warm PIC: Landau damping and two-stream instability — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-landau-damping-measurements
+Coverage: reading
+
+256thermal-landau-damping-velocityvelocity33001322560.040.01thermal-landau-damping6553640016[0.0,4.0,8.0,12.0,16.0]{"joint_low_mode_factorization_defect":2.223134568585368e-16,"mean_velocity":1.1842240341922343e-17,"thermal_variance":0.9999999999999889,"fourth_moment_relative_error":1.080617077301819e-14,"gaussian_characteristic_defect":9.686695889854491e-15,"density_mode_defect":1.357627096943426e-17,"minimum_weight":1.4500485196376065e-212,"maximum_velocity":31.100951037096518}true7.49891727072e-151.94879297105e-163.03043719879e-201.6167923339e-070.0002910005171411.45004851964e-21200{"gamma":-0.15484379736461404,"omega":1.4128003598906524,"relative_fit_residual":0.0010384749676978194,"minimum_envelope":0.11472237935752277,"samples":201}0.02069858796250.01—thermal-landau-damping-thermal-landau-damping-velocity.npz468c8ef8a044de8b22507e12fe2f8edff8626e2d16c6bd37437ddeebc841d48d
+
+## Warm PIC: Landau damping and two-stream instability — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-landau-damping-measurements
+Coverage: reading
+
+256thermal-landau-damping-amplitude-halfamplitude-half33001321280.040.005thermal-landau-damping3276840016[0.0,4.0,8.0,12.0,16.0]{"joint_low_mode_factorization_defect":2.288774487666669e-16,"mean_velocity":2.5525189843522304e-19,"thermal_variance":1.0,"fourth_moment_relative_error":5.921189464667501e-16,"gaussian_characteristic_defect":3.3306690738754696e-16,"density_mode_defect":3.7324005964944454e-17,"minimum_weight":4.9824397257431146e-104,"maximum_velocity":21.62589890769055}true4.31623726629e-151.41357986024e-162.79392504793e-208.65001922871e-080.0001177415649524.98243972574e-10400{"gamma":-0.15473315083328731,"omega":1.412680942994998,"relative_fit_residual":0.003899537994010339,"minimum_envelope":0.11481982218158883,"samples":201}0.0209383778670.005—thermal-landau-damping-thermal-landau-damping-amplitude-half.npz868d3a2f48f131969f1e5f8eb0702206db60905393c0b9ec27f7c3cc8bf12dbb
+
+## Warm PIC: Landau damping and two-stream instability — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-landau-damping-measurements
+Coverage: reading
+
+256thermal-landau-damping-noisenoise33001321280.040thermal-landau-damping3276840016[0.0,4.0,8.0,12.0,16.0]{"joint_low_mode_factorization_defect":2.288774487666669e-16,"mean_velocity":2.5525189843522304e-19,"thermal_variance":1.0,"fourth_moment_relative_error":5.921189464667501e-16,"gaussian_characteristic_defect":3.3306690738754696e-16,"density_mode_defect":3.4758244027106133e-17,"minimum_weight":4.9824397257431146e-104,"maximum_velocity":21.62589890769055}true1.4518252623e-149.18826907978e-161.62627841807e-302.82715971686e-169.97465998687e-154.98243972574e-10400——0.011.99516651362e-13thermal-landau-damping-thermal-landau-damping-noise.npz2ce52bf4a6498e3d9a82c80818594cd5d9d4b6562c4a35cf665025215c4d20e0
+
+## Warm PIC: Landau damping and two-stream instability — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-landau-damping-measurements
+Coverage: reading
+
+512thermal-landau-damping-spatial-strataspatial-strata33001321280.040.01thermal-landau-damping6553640016[0.0,4.0,8.0,12.0,16.0]{"joint_low_mode_factorization_defect":3.382158102537463e-16,"mean_velocity":8.684619096215866e-18,"thermal_variance":1.0,"fourth_moment_relative_error":5.921189464667501e-16,"gaussian_characteristic_defect":3.3306690738754696e-16,"density_mode_defect":1.405934898984759e-17,"minimum_weight":2.4912198628715573e-104,"maximum_velocity":21.62589890769055}true5.36259781569e-151.56098594125e-165.42167256653e-201.00069468942e-070.0001537969313312.49121986287e-10400{"gamma":-0.15486387866464665,"omega":1.4127505492185088,"relative_fit_residual":0.0007278464371114105,"minimum_envelope":0.11469932029280094,"samples":201}0.02081573067010.01—thermal-landau-damping-thermal-landau-damping-spatial-strata.npzea74e28c40accf87b2d70c3252d07ab6f20ff895ec16c4415309cf2f08be3e2c
+Measurements and complete records / JSON
+
+## Warm PIC: Landau damping and two-stream instability — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-landau-damping-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Enrico Camporeale, Gian Luca Delzanno, Benjamin K. Bergen and J. David Moulton (2013). On the velocity space discretization for the Vlasov–Poisson system: comparison between Hermite spectral and Particle-in-Cell methods. Part 1: semi-implicit scheme
+Review scope / review_level: primary-selected-original-pdf-text
+Selected original equations and diagnostic limitations inspected; independently derived continuum references are evaluated here.
+PlasmaPy developers (2026). Plasma dispersion function: official API mathematics
+Review scope / review_level: official-mathematical-definition-read
+Official Z definition inspected; no PlasmaPy execution.
+SciPy developers (2024). SciPy1.14.1 roots_hermitenorm
+Review scope / review_level: official-pinned-version-definition-read
+Pinned official quadrature definition read; initialization only.
+
+## Warm PIC: Landau damping and two-stream instability — Warm PIC two-stream initial growth [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/
+Coverage: reading
+
+Evolve counter-streaming warm Maxwellians; distinguish fixed-window growth and transients using dielectric and Volterra references.
+Methods, equations, figures and references
+Methods used
+Particle-in-cell / PIC
+Cloud-in-cell assignment and interpolation
+Velocity Verlet / particle leapfrog
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Positive Gaussian velocity weights and density-CDF inversion load the joint(x,v) distribution. Recompute CIC deposition, FFT Poisson and matched CIC gathering at every velocity-Verlet kick. Qualify the dielectric root using branch continuation/bracket checks and a separately derived, time-refined Volterra IVP with the same fixed-window estimator.
+Electrostatic Vlasov–Poisson equations
+Each stream thermal speed1,drifts±3,k.2,L10pi,alpha1e-5,grid32,64spatial strata×128total velocity nodes,dt.05,T40,fit[12,20],seeds34001–34004.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Warm PIC two-stream initial growth
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## Warm PIC: Landau damping and two-stream instability — Warm PIC two-stream initial growth [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/
+Coverage: reading
+
+31pytest,19self-consistent runs,140/140case gates and17/17independent linear-reference qualifiers passed; shared pytest+main7.283s. Landau256/512particle-space curve gap.001154 and amplitude-half gap.004376 meet the unchanged.03bound. Original64-strata130/131result (.05646>.03) remains an explicitly unmet retained example; amplitudes/all tolerances stayed fixed.
+Same-problem reference · Semi-analytic reference
+Warm PIC two-stream initial growth
+Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established.
+
+## Warm PIC: Landau damping and two-stream instability — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-two-stream-assumptions
+Coverage: reading
+
+Each stream thermal speed1,drifts±3,k.2,L10pi,alpha1e-5,grid32,64spatial strata×128total velocity nodes,dt.05,T40,fit[12,20],seeds34001–34004.
+
+## Warm PIC: Landau damping and two-stream instability — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-two-stream-algorithm
+Coverage: reading
+
+Positive Gaussian velocity weights and density-CDF inversion load the joint(x,v) distribution. Recompute CIC deposition, FFT Poisson and matched CIC gathering at every velocity-Verlet kick. Qualify the dielectric root using branch continuation/bracket checks and a separately derived, time-refined Volterra IVP with the same fixed-window estimator.
+\partial_t f+v\partial_x f-E\partial_v f=0,\quad\partial_x E=1-\int f\,dv,\quad\langle E\rangle=0D(\omega,k)=1+\frac{1}{k^2}\sum_s a_s[1+\zeta_s Z(\zeta_s)],\quad\zeta_s=\frac{\omega-ku_s}{\sqrt2 k}e(t)=\Phi(t)-\int_0^t s\Phi(s)e(t-s)\,ds,\quad\Phi(t)=e^{-k^2t^2/2}\cos(kut)
+
+## Warm PIC: Landau damping and two-stream instability — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-two-stream-validation
+Coverage: reading
+
+31pytest,19self-consistent runs,140/140case gates and17/17independent linear-reference qualifiers passed; shared pytest+main7.283s. Landau256/512particle-space curve gap.001154 and amplitude-half gap.004376 meet the unchanged.03bound. Original64-strata130/131result (.05646>.03) remains an explicitly unmet retained example; amplitudes/all tolerances stayed fixed.
+
+## Warm PIC: Landau damping and two-stream instability — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-two-stream-limits
+Coverage: reading
+
+Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established.
+
+## Warm PIC: Landau damping and two-stream instability — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-two-stream-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+mean_rate0.27311134291
+seed_standard_error0.000159347590742
+conditional_t95_lower0.272604227758
+conditional_t95_upper0.273618458061
+dielectric_rate0.284509686205
+volterra_fixed_window_rate0.273678427772
+root_window_relative_bias0.0380699110032
+mean_linear_curve_relative_rms0.0238941453943
+three_noise_to_minimum_envelope5.2127007493e-09
+mesh_rate_fraction0.00201417528181
+time-half_rate_fraction0.00170663537458
+velocity_rate_fraction0.00126369857501
+amplitude-half_rate_fraction9.69923502431e-05
+amplitude_scaled_curve_gap0.000950937813853
+判定 / checkPassed
+independent root and fixed-window Volterra qualifiedtrue
+nine fixed full-f calculationstrue
+thermal-two-stream-seed34001 all fields and histories finitetrue
+thermal-two-stream-seed34001 fixed time and five snapshotstrue
+thermal-two-stream-seed34001 charge momentum resolvedGauss and energytrue
+thermal-two-stream-seed34001 positive full-f weights without repairtrue
+thermal-two-stream-seed34001 joint load and Gaussian quadrature qualifiedtrue
+thermal-two-stream-seed34001 resolved fixed-window rate fittrue
+thermal-two-stream-seed34002 all fields and histories finitetrue
+thermal-two-stream-seed34002 fixed time and five snapshotstrue
+
+## Warm PIC: Landau damping and two-stream instability — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-two-stream-measurements
+Coverage: reading
+
+thermal-two-stream-seed34002 charge momentum resolvedGauss and energytrue
+thermal-two-stream-seed34002 positive full-f weights without repairtrue
+thermal-two-stream-seed34002 joint load and Gaussian quadrature qualifiedtrue
+thermal-two-stream-seed34002 resolved fixed-window rate fittrue
+thermal-two-stream-seed34003 all fields and histories finitetrue
+thermal-two-stream-seed34003 fixed time and five snapshotstrue
+thermal-two-stream-seed34003 charge momentum resolvedGauss and energytrue
+thermal-two-stream-seed34003 positive full-f weights without repairtrue
+thermal-two-stream-seed34003 joint load and Gaussian quadrature qualifiedtrue
+thermal-two-stream-seed34003 resolved fixed-window rate fittrue
+thermal-two-stream-seed34004 all fields and histories finitetrue
+thermal-two-stream-seed34004 fixed time and five snapshotstrue
+thermal-two-stream-seed34004 charge momentum resolvedGauss and energytrue
+thermal-two-stream-seed34004 positive full-f weights without repairtrue
+thermal-two-stream-seed34004 joint load and Gaussian quadrature qualifiedtrue
+thermal-two-stream-seed34004 resolved fixed-window rate fittrue
+thermal-two-stream-mesh all fields and histories finitetrue
+thermal-two-stream-mesh fixed time and five snapshotstrue
+thermal-two-stream-mesh charge momentum resolvedGauss and energytrue
+thermal-two-stream-mesh positive full-f weights without repairtrue
+
+## Warm PIC: Landau damping and two-stream instability — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-two-stream-measurements
+Coverage: reading
+
+thermal-two-stream-mesh joint load and Gaussian quadrature qualifiedtrue
+thermal-two-stream-mesh resolved fixed-window rate fittrue
+thermal-two-stream-time-half all fields and histories finitetrue
+thermal-two-stream-time-half fixed time and five snapshotstrue
+thermal-two-stream-time-half charge momentum resolvedGauss and energytrue
+thermal-two-stream-time-half positive full-f weights without repairtrue
+thermal-two-stream-time-half joint load and Gaussian quadrature qualifiedtrue
+thermal-two-stream-time-half resolved fixed-window rate fittrue
+thermal-two-stream-velocity all fields and histories finitetrue
+thermal-two-stream-velocity fixed time and five snapshotstrue
+thermal-two-stream-velocity charge momentum resolvedGauss and energytrue
+thermal-two-stream-velocity positive full-f weights without repairtrue
+thermal-two-stream-velocity joint load and Gaussian quadrature qualifiedtrue
+thermal-two-stream-velocity resolved fixed-window rate fittrue
+thermal-two-stream-amplitude-half all fields and histories finitetrue
+thermal-two-stream-amplitude-half fixed time and five snapshotstrue
+thermal-two-stream-amplitude-half charge momentum resolvedGauss and energytrue
+thermal-two-stream-amplitude-half positive full-f weights without repairtrue
+thermal-two-stream-amplitude-half joint load and Gaussian quadrature qualifiedtrue
+
+## Warm PIC: Landau damping and two-stream instability — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-two-stream-measurements
+Coverage: reading
+
+thermal-two-stream-amplitude-half resolved fixed-window rate fittrue
+thermal-two-stream-noise all fields and histories finitetrue
+thermal-two-stream-noise fixed time and five snapshotstrue
+thermal-two-stream-noise charge momentum resolvedGauss and energytrue
+thermal-two-stream-noise positive full-f weights without repairtrue
+thermal-two-stream-noise joint load and Gaussian quadrature qualifiedtrue
+conditional rate precisiontrue
+mean rate versus dielectric poletrue
+mean rate versus linear IVP fixed-window estimatortrue
+mean field curve versus linear continuumtrue
+quiet-equilibrium noise versus fitted envelopetrue
+mesh separate rate sensitivitytrue
+time-half separate rate sensitivitytrue
+velocity separate rate sensitivitytrue
+amplitude-half separate rate sensitivitytrue
+amplitude-halving scaled field linearitytrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Actual particle delta-v/alpha atT40against initial(x,v). This1D1Vphase-space image is a late diagnostic; growth rates are validated only over[12,20].Read every stored record
+
+## Warm PIC: Landau damping and two-stream instability — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-two-stream-measurements
+Coverage: reading
+
+spatial_strataidfamilyseedgridnodesdtamplitudecaseparticlesstepstimesnapshot_timesloadall_finitemaximum_charge_errormaximum_momentum_driftmaximum_resolved_gaussmaximum_energy_driftmaximum_nyquist_chargeminimum_weightstate_clip_countretriesfitlinear_curve_relative_rmsnormalization_field_amplitudenoise_mode_rmsfilesha256
+64thermal-two-stream-seed34001ensemble34001321280.051e-05thermal-two-stream819280040[0.0,10.0,20.0,30.0,40.0]{"joint_low_mode_factorization_defect":1.1102230246251565e-16,"mean_velocity":0.0,"thermal_variance":1.0,"fourth_moment_relative_error":0.0,"gaussian_characteristic_defect":1.942890293094024e-16,"density_mode_defect":1.7553933174139736e-17,"minimum_weight":7.6654565366894425e-50,"maximum_velocity":17.88618614333945}true8.93766302615e-152.86088448459e-166.93889473109e-181.02124038568e-050.002315937453627.66545653669e-5000{"gamma":0.2735614285036542,"omega":0.0,"relative_fit_residual":0.032389913079896096,"minimum_envelope":3.3324522574441695,"samples":161}0.02211685733852.5e-05—thermal-two-stream-thermal-two-stream-seed34001.npzd69a1c3dbf4d3485ae354a45afbd13843c563c628bd6feb691ba8ee3704e85bf
+
+## Warm PIC: Landau damping and two-stream instability — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-two-stream-measurements
+Coverage: reading
+
+64thermal-two-stream-seed34002ensemble34002321280.051e-05thermal-two-stream819280040[0.0,10.0,20.0,30.0,40.0]{"joint_low_mode_factorization_defect":1.1102230246251565e-16,"mean_velocity":0.0,"thermal_variance":1.0,"fourth_moment_relative_error":0.0,"gaussian_characteristic_defect":1.942890293094024e-16,"density_mode_defect":2.609642958964506e-17,"minimum_weight":7.6654565366894425e-50,"maximum_velocity":17.88618614333945}true8.39268357333e-152.14566336344e-166.9388941107e-181.29740795572e-050.002444274275267.66545653669e-5000{"gamma":0.2731063593696736,"omega":0.0,"relative_fit_residual":0.033316047122332,"minimum_envelope":3.3454291745918026,"samples":161}0.02165542701242.5e-05—thermal-two-stream-thermal-two-stream-seed34002.npz385538bc33eeaf4de33a46c0ca60f944b21b5e810595abca5ce4f64c4f09ae7a
+
+## Warm PIC: Landau damping and two-stream instability — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-two-stream-measurements
+Coverage: reading
+
+64thermal-two-stream-seed34003ensemble34003321280.051e-05thermal-two-stream819280040[0.0,10.0,20.0,30.0,40.0]{"joint_low_mode_factorization_defect":1.1102230246251565e-16,"mean_velocity":0.0,"thermal_variance":1.0,"fourth_moment_relative_error":0.0,"gaussian_characteristic_defect":1.942890293094024e-16,"density_mode_defect":5.688927826543537e-17,"minimum_weight":7.6654565366894425e-50,"maximum_velocity":17.88618614333945}true8.71967124502e-152.14566336344e-166.93890713878e-188.65737694764e-060.002418115483797.66545653669e-5000{"gamma":0.272927779442932,"omega":0.0,"relative_fit_residual":0.03505315026474218,"minimum_envelope":3.3353630460194528,"samples":161}0.02580449956942.5e-05—thermal-two-stream-thermal-two-stream-seed34003.npzdf60050409388a6e1833212d893e3ad64dfbf5e1b0fb5db5be1c942a46af37a6
+
+## Warm PIC: Landau damping and two-stream instability — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-two-stream-measurements
+Coverage: reading
+
+64thermal-two-stream-seed34004ensemble34004321280.051e-05thermal-two-stream819280040[0.0,10.0,20.0,30.0,40.0]{"joint_low_mode_factorization_defect":1.1102230246251565e-16,"mean_velocity":0.0,"thermal_variance":1.0,"fourth_moment_relative_error":0.0,"gaussian_characteristic_defect":1.942890293094024e-16,"density_mode_defect":1.5088164133957347e-17,"minimum_weight":7.6654565366894425e-50,"maximum_velocity":17.88618614333945}true9.04665891671e-151.43044224229e-166.93889721263e-181.09460678654e-050.00317141501857.66545653669e-5000{"gamma":0.27284980432322586,"omega":0.0,"relative_fit_residual":0.03423080592250096,"minimum_envelope":3.3361292559466658,"samples":161}0.02599979765712.5e-05—thermal-two-stream-thermal-two-stream-seed34004.npzfeb81d0e6c7bf2bea105177281c77e6eac8b30b4237af5146f81de628aa399c1
+
+## Warm PIC: Landau damping and two-stream instability — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-two-stream-measurements
+Coverage: reading
+
+64thermal-two-stream-meshmesh34001641280.051e-05thermal-two-stream819280040[0.0,10.0,20.0,30.0,40.0]{"joint_low_mode_factorization_defect":1.1102230246251565e-16,"mean_velocity":0.0,"thermal_variance":1.0,"fourth_moment_relative_error":0.0,"gaussian_characteristic_defect":1.942890293094024e-16,"density_mode_defect":1.7553933174139736e-17,"minimum_weight":7.6654565366894425e-50,"maximum_velocity":17.88618614333945}true6.92123905074e-152.14566336344e-166.93889473109e-181.04166273745e-050.003777116286957.66545653669e-5000{"gamma":0.2741344808810438,"omega":0.0,"relative_fit_residual":0.03227679424637816,"minimum_envelope":3.362775952437652,"samples":161}0.01642283638772.5e-05—thermal-two-stream-thermal-two-stream-mesh.npzb9bc43f13311d384f0b818f2c19d4171bd11d518bd90e2a83ebb5d311f651a57
+
+## Warm PIC: Landau damping and two-stream instability — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-two-stream-measurements
+Coverage: reading
+
+64thermal-two-stream-time-halftime-half34001321280.0251e-05thermal-two-stream8192160040[0.0,10.0,20.0,30.0,40.0]{"joint_low_mode_factorization_defect":1.1102230246251565e-16,"mean_velocity":0.0,"thermal_variance":1.0,"fourth_moment_relative_error":0.0,"gaussian_characteristic_defect":1.942890293094024e-16,"density_mode_defect":1.7553933174139736e-17,"minimum_weight":7.6654565366894425e-50,"maximum_velocity":17.88618614333945}true9.48264247896e-153.57610560574e-166.93890713878e-181.00528551997e-050.002336867483447.66545653669e-5000{"gamma":0.2730758742087663,"omega":0.0,"relative_fit_residual":0.03306450460183948,"minimum_envelope":3.3391745103287014,"samples":321}0.02334283974842.5e-05—thermal-two-stream-thermal-two-stream-time-half.npz1309e58fb452b1c91d2965125fc974581d0ceb11d68d05d68677c6e1f94a5cc6
+
+## Warm PIC: Landau damping and two-stream instability — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-two-stream-measurements
+Coverage: reading
+
+64thermal-two-stream-velocityvelocity34001322560.051e-05thermal-two-stream1638480040[0.0,10.0,20.0,30.0,40.0]{"joint_low_mode_factorization_defect":2.220446049250313e-16,"mean_velocity":0.0,"thermal_variance":1.0,"fourth_moment_relative_error":0.0,"gaussian_characteristic_defect":1.942890293094024e-16,"density_mode_defect":5.847465189941937e-17,"minimum_weight":2.491219862871557e-103,"maximum_velocity":24.62589890769055}true1.30795068675e-141.43044224229e-166.9388941107e-188.21764747047e-060.00212008797892.49121986287e-10300{"gamma":0.27320189401862177,"omega":0.0,"relative_fit_residual":0.03284053262378875,"minimum_envelope":3.3379913410821707,"samples":161}0.02220535897782.5e-05—thermal-two-stream-thermal-two-stream-velocity.npz64f5408f56bbd09114bceb263aa1b959f1d72a86fa26ff36a670f244b0111afc
+
+## Warm PIC: Landau damping and two-stream instability — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-two-stream-measurements
+Coverage: reading
+
+64thermal-two-stream-amplitude-halfamplitude-half34001321280.055e-06thermal-two-stream819280040[0.0,10.0,20.0,30.0,40.0]{"joint_low_mode_factorization_defect":1.1102230246251565e-16,"mean_velocity":0.0,"thermal_variance":1.0,"fourth_moment_relative_error":0.0,"gaussian_characteristic_defect":1.942890293094024e-16,"density_mode_defect":1.7380576689694114e-17,"minimum_weight":7.6654565366894425e-50,"maximum_velocity":17.88618614333945}true8.61067535446e-152.86088448459e-163.46944860631e-185.35728253398e-060.0008509489507197.66545653669e-5000{"gamma":0.2735890237667862,"omega":0.0,"relative_fit_residual":0.03237034696954837,"minimum_envelope":3.3320966245094805,"samples":161}0.0220543726331.25e-05—thermal-two-stream-thermal-two-stream-amplitude-half.npz22bd875ecbb254143b373e7b9e420b9953b874c8b8f02b33af0f08bab43b21b6
+
+## Warm PIC: Landau damping and two-stream instability — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-two-stream-measurements
+Coverage: reading
+
+64thermal-two-stream-noisenoise34001321280.050thermal-two-stream819280040[0.0,10.0,20.0,30.0,40.0]{"joint_low_mode_factorization_defect":1.1102230246251565e-16,"mean_velocity":0.0,"thermal_variance":1.0,"fourth_moment_relative_error":0.0,"gaussian_characteristic_defect":1.942890293094024e-16,"density_mode_defect":2.1234735851992038e-17,"minimum_weight":7.6654565366894425e-50,"maximum_velocity":17.88618614333945}true2.03822315352e-141.28739801807e-153.33061820021e-275.42814665636e-162.71900557625e-147.66545653669e-5000——2.5e-055.79035879313e-09thermal-two-stream-thermal-two-stream-noise.npz2e07cbbe22a74f26bb02cc5659cf8c8a75eb15d664e2a3b543dbba3f4a6f05f8
+Measurements and complete records / JSON
+
+## Warm PIC: Landau damping and two-stream instability — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-two-stream-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Enrico Camporeale, Gian Luca Delzanno, Benjamin K. Bergen and J. David Moulton (2013). On the velocity space discretization for the Vlasov–Poisson system: comparison between Hermite spectral and Particle-in-Cell methods. Part 1: semi-implicit scheme
+Review scope / review_level: primary-selected-original-pdf-text
+Selected original equations and diagnostic limitations inspected; independently derived continuum references are evaluated here.
+PlasmaPy developers (2026). Plasma dispersion function: official API mathematics
+Review scope / review_level: official-mathematical-definition-read
+Official Z definition inspected; no PlasmaPy execution.
+SciPy developers (2024). SciPy1.14.1 roots_hermitenorm
+Review scope / review_level: official-pinned-version-definition-read
+Pinned official quadrature definition read; initialization only.
+
 ## WENO critical points and epsilon dependence — WENO critical points and epsilon dependence [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-weno-critical/
@@ -33318,7 +35755,7 @@ Compare critical-point reconstruction from cell means using WENO-JS/Z power-two 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-weno-critical/#run-all
 Coverage: reading
 
-Run inside atlas-weno-critical-2026-11-23 from the ZIP. This command executes all 1 fixed cases in the supplement. Choose a new or empty output directory.
+Run inside atlas-weno-critical-2026-11-23 from the ZIP. This command executes all 1 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -33769,7 +36206,7 @@ A two-dimensional scalar conservation law transports a slotted disk in a prescri
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-zalesak/#run-all
 Coverage: reading
 
-Run inside atlas-zalesak-2026-11-23 from the ZIP. This command executes all 1 fixed cases in the supplement. Choose a new or empty output directory.
+Run inside atlas-zalesak-2026-11-23 from the ZIP. This command executes all 1 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -41404,7 +43841,7 @@ R. Car; M. Parrinello (1985)
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemistry/#verification
 Coverage: reading
 
-水素型原子・Heの2問題群を実行し、独立参照と比較して全102問題の台帳へ加えました。さらにH₂の有限基底RHFを独立参照・SCFと基底の収束で検証しました。周期Heセルの限定DFTも追加。分子DFT・FCIや他の周期物質へ検証を拡張していません。
+水素型原子・Heの2問題群を実行し、独立参照と比較して全113問題の台帳へ加えました。さらにH₂の有限基底RHFを独立参照・SCFと基底の収束で検証しました。周期Heセルの限定DFTも追加。分子DFT・FCIや他の周期物質へ検証を拡張していません。
 実行・検証例あり
 
 ## 量子化学・DFT：何を近似し、何を解くか — 1電子：水素型原子 [ja]
@@ -44557,8 +46994,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 公開Web版、集計日2026-11-23。数えるのはカタログ項目と記載した実験例です。すべての項目が検証済みの完全なソルバーであるという意味ではありません。
-方程式・モデル56項目・計算法と構成要素136項目・学術誌／会議論文249件・全参考資料310件。
-保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め115章です。
+方程式・モデル60項目・計算法と構成要素137項目・学術誌／会議論文249件・全参考資料310件。
+保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め123章です。
 
 ## 収録範囲と数え方 — 方程式とモデル# [ja]
 
@@ -44566,7 +47003,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 名前付きの方程式・モデルを数えます。スカラー成分や数学的に互いに独立な系統の数ではありません。枠組みや補助定式化を含み、通常は派生形を一つにまとめます。ただし個別に説明するSR／GRの流体系3種類は分けます。生物モデルは専用カタログから一度だけ取り込みます。
-ローカル実験のある項目は34、文献解説のみは22で、後者には生物調査22項目すべてを含みます。連成系は一項目とし、成分方程式では増やしません。Poisson／Laplaceや次元の違いもまとめます。枠組みと個別反応則が並ぶため、数学的に独立した系統数ではありません。
+ローカル実験のある項目は38、文献解説のみは22で、後者には生物調査22項目すべてを含みます。連成系は一項目とし、成分方程式では増やしません。Poisson／Laplaceや次元の違いもまとめます。枠組みと個別反応則が並ぶため、数学的に独立した系統数ではありません。
 一覧の詳細な範囲注記は原文（英語）を保持します。各章の日本語本文も併せて参照できます。
 
 ## 収録範囲と数え方 — 物理・数学モデル# [ja]
@@ -44653,7 +47090,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 名前付きの離散化法、積分法、線形・非線形解法、連成演算子を数えます。パラメータの違いでは増やしません。
-ローカル実験のある項目は121、文献解説のみは15です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。
+ローカル実験のある項目は122、文献解説のみは15です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。
 
 ## 収録範囲と数え方 — 空間離散化# [ja]
 
@@ -44889,7 +47326,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/slab-ewald/#publication-scope
 Coverage: reading
 
-解説・代表式・文献を公開しています。専用コードと数値検証結果は実装予定です。上記の検証案は未実施で、他の手法のコードや計算結果をこの手法の検証として流用しません。
+既存の教育用コードと版を固定した検証記録への案内です。今回の本文・翻訳の追加でコードや過去の測定結果を変更せず、原論文全体の再現を主張しません。
 スラブ静電場と2次元周期Ewald
 
 ## スラブ静電場と2次元周期Ewald — 一次文献・関連資料と確認範囲 [ja]
@@ -46347,7 +48784,7 @@ Schnakenbergの1次元周期系で、有限振幅の過渡から成長後のパ�
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/#run-all
 Coverage: reading
 
-ZIPの atlas-biology-2026-11-22 フォルダで実行します。このコマンドは配布版の全2例を実行します。新規または空の出力先を指定してください。
+ZIPの atlas-biology-2026-11-22 フォルダで実行します。このコマンドは配布版の全2例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -46869,6 +49306,326 @@ The SciPy community (2024). SciPy1.14.1 solve_ivp and Radau reference
 確認範囲 / review_level: official-versioned-api-specification
 Radau IIAの5次式、rtol/atolの局所誤差制御、analytic Jacobian、終了状態の公式仕様を確認。ODE公差は連続PDEの全域誤差保証ではありません。
 
+## 係数ジャンプ・回転異方性のMG／AMG — 係数ジャンプ・回転異方性のMG／AMG [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-coefficient-diffusion/
+Coverage: reading
+
+同じ行列の幾何MG・SA-AMG・直接解と、連続問題の解析解・別離散参照を分けて比較します。
+
+## 係数ジャンプ・回転異方性のMG／AMG — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-coefficient-diffusion/#run-all
+Coverage: reading
+
+ZIPの atlas-coefficient-diffusion-2026-11-23 フォルダで実行します。このコマンドは配布版の全2例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## 係数ジャンプ・回転異方性のMG／AMG — 係数ジャンプ拡散：共有流束とMG・AMG [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-coefficient-diffusion/
+Coverage: reading
+
+不連続係数のFV解を独立なP1参照と比較し、線形系の残差・前進誤差と連続問題の誤差を分けます。
+手法・式・図・参照解
+使用手法
+幾何マルチグリッドVサイクル
+代数的マルチグリッド（AMG）
+共役勾配法
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+直交FVの共有面調和平均。幾何MGと座標を受け取らないSA-AMGの対称Galerkin V-cycleを、同じ行列のPCGへ適用。
+不連続係数・完全テンソル拡散の境界値問題
+単位正方形、零Dirichlet、f=1、対角2象限100/残り1、N16/32/64。参照P1は128/192。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+係数ジャンプ拡散：共有流束とMG・AMG
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+非零2材料流束パッチ、残差に整合する収支、直接解の前進/energy誤差、独立三角形P1参照の格子感度。
+同じ問題の参照 · 有限格子の数値参照
+係数ジャンプ拡散：共有流束とMG・AMG
+係数比100の固定例。P1格子差は厳密誤差上界ではなく、特異交点の次数や普遍的なMG/AMG優劣は主張しません。
+
+## 係数ジャンプ・回転異方性のMG／AMG — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-coefficient-diffusion/#checkerboard-diffusion-assumptions
+Coverage: reading
+
+単位正方形、零Dirichlet、f=1、対角2象限100/残り1、N16/32/64。参照P1は128/192。
+
+## 係数ジャンプ・回転異方性のMG／AMG — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-coefficient-diffusion/#checkerboard-diffusion-algorithm
+Coverage: reading
+
+直交FVの共有面調和平均。幾何MGと座標を受け取らないSA-AMGの対称Galerkin V-cycleを、同じ行列のPCGへ適用。
+-\nabla\cdot(a\nabla u)=1,\quad a\in\{1,100\}T_f=|f|/(d_L/a_L+d_R/a_R)
+
+## 係数ジャンプ・回転異方性のMG／AMG — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-coefficient-diffusion/#checkerboard-diffusion-validation
+Coverage: reading
+
+非零2材料流束パッチ、残差に整合する収支、直接解の前進/energy誤差、独立三角形P1参照の格子感度。
+
+## 係数ジャンプ・回転異方性のMG／AMG — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-coefficient-diffusion/#checkerboard-diffusion-limits
+Coverage: reading
+
+係数比100の固定例。P1格子差は厳密誤差上界ではなく、特異交点の次数や普遍的なMG/AMG優劣は主張しません。
+
+## 係数ジャンプ・回転異方性のMG／AMG — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-coefficient-diffusion/#checkerboard-diffusion-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+continuous_errors[0.03320269631288309,0.008587452847326224,0.002547591920168387]
+reference_sensitivity[0.00010935677943053456,0.0001088242415134897,0.00034850805399045157]
+判定 / check合格
+n16_symmetrytrue
+n16_geometric_convergedtrue
+n16_geometric_true_residualtrue
+n16_geometric_forwardtrue
+n16_geometric_energytrue
+n16_geometric_historytrue
+n16_geometric_flux_ledgertrue
+n16_geometric_budget_residual_boundtrue
+n16_amg_convergedtrue
+n16_amg_true_residualtrue
+n16_amg_forwardtrue
+n16_amg_energytrue
+n16_amg_historytrue
+n16_amg_flux_ledgertrue
+n16_amg_budget_residual_boundtrue
+n32_symmetrytrue
+n32_geometric_convergedtrue
+n32_geometric_true_residualtrue
+n32_geometric_forwardtrue
+n32_geometric_energytrue
+n32_geometric_historytrue
+n32_geometric_flux_ledgertrue
+n32_geometric_budget_residual_boundtrue
+n32_amg_convergedtrue
+n32_amg_true_residualtrue
+n32_amg_forwardtrue
+n32_amg_energytrue
+n32_amg_historytrue
+n32_amg_flux_ledgertrue
+n32_amg_budget_residual_boundtrue
+n64_symmetrytrue
+n64_geometric_convergedtrue
+n64_geometric_true_residualtrue
+n64_geometric_forwardtrue
+n64_geometric_energytrue
+n64_geometric_historytrue
+n64_geometric_flux_ledgertrue
+n64_geometric_budget_residual_boundtrue
+n64_amg_convergedtrue
+n64_amg_true_residualtrue
+n64_amg_forwardtrue
+n64_amg_energytrue
+n64_amg_historytrue
+n64_amg_flux_ledgertrue
+
+## 係数ジャンプ・回転異方性のMG／AMG — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-coefficient-diffusion/#checkerboard-diffusion-measurements
+Coverage: reading
+
+n64_amg_budget_residual_boundtrue
+refinementtrue
+reference_sensitivitytrue
+nonzero_harmonic_patchtrue
+small_operator_spdtrue
+geometric_small_cycle_spdtrue
+amg_small_cycle_spdtrue
+intentional_budgettrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存した2D解・誤差・真の残差・格子感度の検証図。全記録を表で読む
+nsolveriterationstrue_residualforward_errorenergy_errorcontinuous_errorsetup_secondssolve_secondssizesnnzgrid_complexityoperator_complexityboundary_fluxsourcebudget_defectresidual_sum
+16geometric145.94498259785e-096.4880886536e-113.47130978064e-100.03320269631290.001744249995680.00107166700036[256,64,16][1216,980,196]1.31251.967105263161.000000000041-3.81383813419e-11-3.81379810545e-11
+16amg204.41874537171e-091.29413412751e-103.63179517261e-100.03320269631290.002669959001650.00133533400367[256,90,15][1216,1434,209]1.410156252.351151315791.000000000021-1.51803014603e-11-1.51797047154e-11
+32geometric182.9756803399e-091.73628351279e-119.93230862933e-110.008587452847330.001152459000880.00235154200345[1024,256,64,16][4992,4596,1156,196]1.3281252.191506410260.99999999998611.42039713324e-111.42050846997e-11
+32amg266.75996406121e-091.59310020475e-104.39600392622e-100.008587452847330.008310917000930.00378191700293[1024,426,83,16][4992,8378,2645,256]1.51269531253.25941506410.99999999993516.45424824697e-116.45438445529e-11
+
+## 係数ジャンプ・回転異方性のMG／AMG — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-coefficient-diffusion/#checkerboard-diffusion-measurements
+Coverage: reading
+
+64geometric213.07902407635e-099.58908492419e-127.23012329849e-110.002547591920170.002228625002320.00608254100371[4096,1024,256,64,16][20224,19892,5476,1156,196]1.332031252.321202531651.000000000021-2.29731789148e-11-2.29710618203e-11
+64amg337.63241064578e-097.78807008053e-113.21094007816e-100.002547591920170.03040825000060.0128097500055[4096,1866,411,80,14][20224,39930,16569,4136,196]1.578857421884.00786194621.000000000041-3.85020904048e-11-3.8500195382e-11
+この例の実測値・全記録 / JSON
+
+## 係数ジャンプ・回転異方性のMG／AMG — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-coefficient-diffusion/#checkerboard-diffusion-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Two-point flux approximation
+確認範囲 / review_level: selected-official-derivation-read
+Scalar harmonic transmissibility, shared flux and K-orthogonality restriction. No DuMux code executed.
+BoomerAMG: smoother options
+確認範囲 / review_level: selected-official-documentation-read
+CG requires a symmetric smoother. Our educational SA code is not hypre and no hypre code was run.
+Algebraic multigrid by smoothed aggregation for second and fourth order elliptic problems
+確認範囲 / review_level: publisher-abstract-only-full-paper-unread
+Metadata and abstract only. No general robustness theorem claimed for these fixed jumps/tensors.
+
+## 係数ジャンプ・回転異方性のMG／AMG — 回転異方性拡散：完全テンソルQ1とMG・AMG [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-coefficient-diffusion/
+Coverage: reading
+
+非零Kxyを保つQ1弱形式で、解析解への収束と同じ行列のMG・AMG収束を比較します。
+手法・式・図・参照解
+使用手法
+Q1有限要素法（スカラー拡散・曲線座標ベクトルBVP）
+幾何マルチグリッドVサイクル
+代数的マルチグリッド（AMG）
+共役勾配法
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+完全2×2テンソルQ1とGauss積分。MG/SA-AMGは対称2/2Jacobi、Galerkin粗行列、粗CholeskyでSPDの固定適用。
+不連続係数・完全テンソル拡散の境界値問題
+単位正方形、零Dirichlet、K=R(pi/6)diag(1,.01)Rᵀ、厳密解sin(pi x)sin(pi y)、N16/32/64。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+回転異方性拡散：完全テンソルQ1とMG・AMG
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+u=xy,f=−2Kxyパッチ、解析流束由来のsource、積分L2/energy誤差と4/6点求積感度、直接解との比較。
+同じ問題の参照 · 製造解
+回転異方性拡散：完全テンソルQ1とMG・AMG
+指定した角度・異方性の限定例。スカラーTPFAを回転テンソルへ転用せず、一般テンソルへの頑健性は保証しません。
+
+## 係数ジャンプ・回転異方性のMG／AMG — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-coefficient-diffusion/#rotated-anisotropic-diffusion-assumptions
+Coverage: reading
+
+単位正方形、零Dirichlet、K=R(pi/6)diag(1,.01)Rᵀ、厳密解sin(pi x)sin(pi y)、N16/32/64。
+
+## 係数ジャンプ・回転異方性のMG／AMG — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-coefficient-diffusion/#rotated-anisotropic-diffusion-algorithm
+Coverage: reading
+
+完全2×2テンソルQ1とGauss積分。MG/SA-AMGは対称2/2Jacobi、Galerkin粗行列、粗CholeskyでSPDの固定適用。
+-\nabla\cdot(K\nabla u)=f,\quad K=R(\pi/6)\operatorname{diag}(1,.01)R^Tf=\pi^2(K_{xx}+K_{yy})\sin\pi x\sin\pi y-2\pi^2K_{xy}\cos\pi x\cos\pi y
+
+## 係数ジャンプ・回転異方性のMG／AMG — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-coefficient-diffusion/#rotated-anisotropic-diffusion-validation
+Coverage: reading
+
+u=xy,f=−2Kxyパッチ、解析流束由来のsource、積分L2/energy誤差と4/6点求積感度、直接解との比較。
+
+## 係数ジャンプ・回転異方性のMG／AMG — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-coefficient-diffusion/#rotated-anisotropic-diffusion-limits
+Coverage: reading
+
+指定した角度・異方性の限定例。スカラーTPFAを回転テンソルへ転用せず、一般テンソルへの頑健性は保証しません。
+
+## 係数ジャンプ・回転異方性のMG／AMG — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-coefficient-diffusion/#rotated-anisotropic-diffusion-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+continuous_errors[0.0043094975495807045,0.0010835497491345043,0.0002713461470266456]
+reference_sensitivity[]
+判定 / check合格
+n16_quadraturetrue
+n16_symmetrytrue
+n16_geometric_convergedtrue
+n16_geometric_true_residualtrue
+n16_geometric_forwardtrue
+n16_geometric_energytrue
+n16_geometric_historytrue
+n16_amg_convergedtrue
+n16_amg_true_residualtrue
+n16_amg_forwardtrue
+n16_amg_energytrue
+n16_amg_historytrue
+n32_quadraturetrue
+n32_symmetrytrue
+n32_geometric_convergedtrue
+n32_geometric_true_residualtrue
+n32_geometric_forwardtrue
+n32_geometric_energytrue
+n32_geometric_historytrue
+n32_amg_convergedtrue
+n32_amg_true_residualtrue
+n32_amg_forwardtrue
+n32_amg_energytrue
+n32_amg_historytrue
+n64_quadraturetrue
+n64_symmetrytrue
+n64_geometric_convergedtrue
+n64_geometric_true_residualtrue
+n64_geometric_forwardtrue
+n64_geometric_energytrue
+n64_geometric_historytrue
+n64_amg_convergedtrue
+n64_amg_true_residualtrue
+n64_amg_forwardtrue
+n64_amg_energytrue
+n64_amg_historytrue
+refinementtrue
+l2_refinement_ratiostrue
+finest_l2true
+affine_patchtrue
+xy_patchtrue
+small_operator_spdtrue
+geometric_small_cycle_spdtrue
+amg_small_cycle_spdtrue
+intentional_budgettrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存した2D解・誤差・真の残差・格子感度の検証図。全記録を表で読む
+
+## 係数ジャンプ・回転異方性のMG／AMG — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-coefficient-diffusion/#rotated-anisotropic-diffusion-measurements
+Coverage: reading
+
+nsolveriterationstrue_residualforward_errorenergy_errorcontinuous_errorsetup_secondssolve_secondssizesnnzgrid_complexityoperator_complexity
+16geometric227.69209810214e-097.41392527047e-102.15152802497e-090.004309497549580.0006322909976010.00151954100147[225,49,9][1849,361,49]1.257777777781.22174148188
+16amg296.98356900744e-091.27389733444e-092.20460924345e-090.004309497549580.001687625001070.0019629160015[225,49,9][1849,841,81]1.257777777781.49864791779
+32geometric319.0322972778e-095.44672256106e-101.70567254905e-090.001083549749130.001041374998750.00399774999823[961,225,49,9][8281,1849,361,49]1.294484911551.27279314093
+32amg439.3946267017e-091.23903548629e-092.08800131126e-090.001083549749130.00553183299780.00597520799784[961,225,49,9][8281,4761,1405,81]1.294484911551.75437749064
+64geometric389.79567638599e-094.40624924435e-101.21529569599e-090.0002713461470270.001976334002390.0105305829929[3969,961,225,49,9][34969,8281,1849,361,49]1.313429075331.30140982013
+64amg618.11248690355e-093.46100054571e-101.02173810106e-090.0002713461470270.02102500000180.0198339999988[3969,961,225,49,9][34969,22201,8781,2229,81]1.313429075331.9520432383
+この例の実測値・全記録 / JSON
+
+## 係数ジャンプ・回転異方性のMG／AMG — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-coefficient-diffusion/#rotated-anisotropic-diffusion-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Two-point flux approximation
+確認範囲 / review_level: selected-official-derivation-read
+Scalar harmonic transmissibility, shared flux and K-orthogonality restriction. No DuMux code executed.
+BoomerAMG: smoother options
+確認範囲 / review_level: selected-official-documentation-read
+CG requires a symmetric smoother. Our educational SA code is not hypre and no hypre code was run.
+Algebraic multigrid by smoothed aggregation for second and fourth order elliptic problems
+確認範囲 / review_level: publisher-abstract-only-full-paper-unread
+Metadata and abstract only. No general robustness theorem claimed for these fixed jumps/tensors.
+
 ## Double Mach反射：多格子の軽量検証 — Double Mach反射：多格子の軽量検証 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-double-mach/
@@ -46881,7 +49638,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-double-mach/#run-all
 Coverage: reading
 
-ZIPの atlas-double-mach-2026-11-23 フォルダで実行します。このコマンドは配布版の全1例を実行します。新規または空の出力先を指定してください。
+ZIPの atlas-double-mach-2026-11-23 フォルダで実行します。このコマンドは配布版の全1例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -47061,6 +49818,659 @@ Hiroshi Koyama (2026). Independent finite-volume references distributed with the
 確認範囲 / review_level: hash-checked-selected-public-archive-artifacts
 保存済みの独立2D FV-MUSCL/HLL/Heun参照のソース・2格子データ・実行記録を不変ZIPから選択取得。今回の参照PDE再実行や別のAthena/LAVA実行ではありません。主計算とHLLという流束族は共有しますが、参照は主計算の空間演算をimportしない別実装です。
 
+## 剛体球DSMCのMach2平面衝撃波 — 剛体球DSMCのMach2平面衝撃波 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-shock/
+Coverage: reading
+
+流入出を持つ1D空間・3D速度の衝撃波で、RH遠方状態と内部の独立な数値参照を区別します。
+
+## 剛体球DSMCのMach2平面衝撃波 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-shock/#run-all
+Coverage: reading
+
+ZIPの atlas-dsmc-shock-2026-11-23 フォルダで実行します。このコマンドは配布版の全1例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## 剛体球DSMCのMach2平面衝撃波 — 硬球DSMCのMach2平面衝撃波 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-shock/
+Coverage: reading
+
+物理時間の硬球衝突と実際の分子輸送を計算し、独立SPARTAの資格確認済みモーメント場と比較します。
+手法・式・図・参照解
+使用手法
+DSMC・運動論輸送
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+式・近似・診断の範囲
+セル内の非重複ランダム対へ、偶数・奇数粒子数を区別した物理時間のσg衝突確率を適用。エネルギーによる安全上界で事前にsubcycle数を定め、確率clipはしません。壁・流入はflux重み付き分布と実際の残り飛行時間を用います。 開境界のmacro粒子到着数は平均を保つfloor(平均)+Bernoulli(小数部)で分散を下げます。Poisson数揺らぎや熱揺らぎの再現は主張しません。 既存4seedを残して次の8連番seedを追加します。一様順列と安定整数sortは対選択法則を保ちますが、乱数消費と軌道のbit一致は主張しません。
+剛体球Boltzmann輸送と壁・流入出
+1次元位置・3次元速度、単原子硬球。Mach2、区間[0,16]、RHの開境界reservoir。192セル、粒子重み1/192、dt=.01、burn20/sample20、12seed。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+硬球DSMCのMach2平面衝撃波
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+各群20pytestを事前固定。新しい固定計算は15本。境界込みの質量・運動量・エネルギー、局所λ/衝突時間、独立参照への誤差とseed精度、時間block定常性を別に判定します。 群の判定は既存81項目を保持し、新8計算の48項目を追加した129項目です。primary t95はdf11、独立参照4seedはdf3です。
+同じ問題の参照 · 有限格子の数値参照
+硬球DSMCのMach2平面衝撃波
+有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。RHは遠方状態・流束だけの参照で、内部構造の厳密解ではありません。図は保存した粒子位相空間であり、2D物理流れではありません。
+
+## 剛体球DSMCのMach2平面衝撃波 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-shock/#dsmc-planar-shock-assumptions
+Coverage: reading
+
+1次元位置・3次元速度、単原子硬球。Mach2、区間[0,16]、RHの開境界reservoir。192セル、粒子重み1/192、dt=.01、burn20/sample20、12seed。
+
+## 剛体球DSMCのMach2平面衝撃波 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-shock/#dsmc-planar-shock-algorithm
+Coverage: reading
+
+セル内の非重複ランダム対へ、偶数・奇数粒子数を区別した物理時間のσg衝突確率を適用。エネルギーによる安全上界で事前にsubcycle数を定め、確率clipはしません。壁・流入はflux重み付き分布と実際の残り飛行時間を用います。 開境界のmacro粒子到着数は平均を保つfloor(平均)+Bernoulli(小数部)で分散を下げます。Poisson数揺らぎや熱揺らぎの再現は主張しません。 既存4seedを残して次の8連番seedを追加します。一様順列と安定整数sortは対選択法則を保ちますが、乱数消費と軌道のbit一致は主張しません。
+\partial_t f+v_x\partial_x f=Q_{\mathrm{HS}}(f,f),\quad \sigma=\pi d^2=1/\sqrt{2}P_{ij}=n\langle c_i c_j\rangle,\quad q_x=\frac{n}{2}\langle c_x|\mathbf c|^2\rangle,\quad\mathbf c=\mathbf v-\mathbf up_{ij}=a_N W\sigma g_{ij}\Delta t/V,\quad a_N=\begin{cases}N-1&N\text{ even}\\N&N\text{ odd}\end{cases}g_{ij}\le\sqrt{2\sum_i|\mathbf v_i-\mathbf v_{cm}|^2}
+
+## 剛体球DSMCのMach2平面衝撃波 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-shock/#dsmc-planar-shock-validation
+Coverage: reading
+
+各群20pytestを事前固定。新しい固定計算は15本。境界込みの質量・運動量・エネルギー、局所λ/衝突時間、独立参照への誤差とseed精度、時間block定常性を別に判定します。 群の判定は既存81項目を保持し、新8計算の48項目を追加した129項目です。primary t95はdf11、独立参照4seedはdf3です。
+
+## 剛体球DSMCのMach2平面衝撃波 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-shock/#dsmc-planar-shock-limits
+Coverage: reading
+
+有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。RHは遠方状態・流束だけの参照で、内部構造の厳密解ではありません。図は保存した粒子位相空間であり、2D物理流れではありません。
+
+## 剛体球DSMCのMach2平面衝撃波 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-shock/#dsmc-planar-shock-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+profile_comparison{"0":{"error":0.009874127472267416,"combined_3se":0.04946478705678961,"primary_3se":0.03145643911579176,"reference_3se":0.038174043494605424},"1":{"error":0.006192836083404945,"combined_3se":0.04640157562693747,"primary_3se":0.03069818659770613,"reference_3se":0.03479551063391386},"4":{"error":0.008787013676147464,"combined_3se":0.04976037231809162,"primary_3se":0.035488922267584475,"reference_3se":0.03488023866776783},"5":{"error":0.008767734324833546,"combined_3se":0.04646188409882251,"primary_3se":0.03146941765264155,"reference_3se":0.034181609479602165}}
+
+## 剛体球DSMCのMach2平面衝撃波 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-shock/#dsmc-planar-shock-measurements
+Coverage: reading
+
+stationarity{"profile_equivalence":{"0":0.051237907861461617,"1":0.042550439680933805,"4":0.052530861424159206,"5":0.04623394154519991},"centroid_blocks":[[8.215335648148148,8.242578124999998,8.37534722222222,8.264756944444443,8.092187500000001],[7.8806278935185174,7.732971643518519,7.8655381944444445,7.8228009259259235,7.707146990740742],[8.088237847222222,8.194574652777776,8.386284722222221,8.335546875,8.221412037037037],[7.609114583333332,7.680005787037035,7.577416087962962,7.347829861111112,7.23622685185185],[7.620153356481483,7.693475115740742,7.670992476851854,7.572149884259257,7.589872685185185],[8.473075810185184,8.567361111111111,8.567766203703703,8.53627025462963,8.390943287037034],[8.005295138888886,8.019574652777777,7.905338541666666,7.990509259259259,7.868880208333332],[8.190827546296296,8.03587962962963,8.154369212962964,8.220095486111111,8.337774884259257],[8.411805555555553,8.436414930555557,8.455353009259259,8.48381076388889,8.650708912037034],[8.18292824074074,8.153153935185184,8.265668402777775,8.268706597222222,8.303443287037037],[7.841840277777777,7.737731481481482,7.718084490740742,7.826649305555556,7.872829861111111],[7.868981481481481,7.905135995370369,7.91607349537037,8.006915509259258,7.7184895833333345]],"centroid_drift_bound":0.1299701694340089}
+
+## 剛体球DSMCのMach2平面衝撃波 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-shock/#dsmc-planar-shock-measurements
+Coverage: reading
+
+sensitivities{"fixed_weight_mesh":{"0":0.04919268505889352,"1":0.052838812527762305,"4":0.0623901833211318,"5":0.05359743514641371},"double_particles":{"0":0.06216354691255698,"1":0.06013078079263267,"4":0.06006763400021631,"5":0.06186520180345716},"half_dt":{"0":0.03506052657485229,"1":0.034593071784548436,"4":0.0371459702067488,"5":0.03752041004610139}}
+primary_independent_seeds12
+primary_t95_degrees_of_freedom11
+primary_t95_multiplier2.20098516008
+reference_independent_seeds4
+reference_t95_degrees_of_freedom3
+reference_t95_multiplier3.18244630528
+far_states{"upstream_n":{"relative_error":0.0027311197916668473,"relative_3se":0.004734773179813632},"upstream_ux":{"relative_error":0.00226178222693619,"relative_3se":0.004417322646908852},"upstream_T":{"relative_error":0.00856692867855613,"relative_3se":0.00919577401692969},"downstream_n":{"relative_error":0.0007166883680555791,"relative_3se":0.008778472486905992},"downstream_ux":{"relative_error":0.0006619790814905539,"relative_3se":0.011133999868080233},"downstream_T":{"relative_error":0.0006120131785834495,"relative_3se":0.0057144250470660685},"flux_mass":{"relative_error":0.0009975883698689597,"relative_3se":0.0029103940695329165},"flux_momentum":{"relative_error":0.0013333838218918732,"relative_3se":0.0028882793828942516},"flux_energy":{"relative_error":0.0009104591488130677,"relative_3se":0.00428618985183569}}
+判定 / check合格
+
+## 剛体球DSMCのMach2平面衝撃波 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-shock/#dsmc-planar-shock-measurements
+Coverage: reading
+
+dsmc-planar-shock-base-371001/finitetrue
+dsmc-planar-shock-base-371001/boundary budgettrue
+dsmc-planar-shock-base-371001/physical collisionstrue
+dsmc-planar-shock-base-371001/collision probabilitytrue
+dsmc-planar-shock-base-371001/maxwell time resolutiontrue
+dsmc-planar-shock-base-371001/mean free path resolutiontrue
+dsmc-planar-shock-base-371002/finitetrue
+dsmc-planar-shock-base-371002/boundary budgettrue
+dsmc-planar-shock-base-371002/physical collisionstrue
+dsmc-planar-shock-base-371002/collision probabilitytrue
+dsmc-planar-shock-base-371002/maxwell time resolutiontrue
+dsmc-planar-shock-base-371002/mean free path resolutiontrue
+dsmc-planar-shock-base-371003/finitetrue
+dsmc-planar-shock-base-371003/boundary budgettrue
+dsmc-planar-shock-base-371003/physical collisionstrue
+dsmc-planar-shock-base-371003/collision probabilitytrue
+dsmc-planar-shock-base-371003/maxwell time resolutiontrue
+dsmc-planar-shock-base-371003/mean free path resolutiontrue
+dsmc-planar-shock-base-371004/finitetrue
+dsmc-planar-shock-base-371004/boundary budgettrue
+dsmc-planar-shock-base-371004/physical collisionstrue
+dsmc-planar-shock-base-371004/collision probabilitytrue
+dsmc-planar-shock-base-371004/maxwell time resolutiontrue
+dsmc-planar-shock-base-371004/mean free path resolutiontrue
+dsmc-planar-shock-base-371005/finitetrue
+dsmc-planar-shock-base-371005/boundary budgettrue
+
+## 剛体球DSMCのMach2平面衝撃波 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-shock/#dsmc-planar-shock-measurements
+Coverage: reading
+
+dsmc-planar-shock-base-371005/physical collisionstrue
+dsmc-planar-shock-base-371005/collision probabilitytrue
+dsmc-planar-shock-base-371005/maxwell time resolutiontrue
+dsmc-planar-shock-base-371005/mean free path resolutiontrue
+dsmc-planar-shock-base-371006/finitetrue
+dsmc-planar-shock-base-371006/boundary budgettrue
+dsmc-planar-shock-base-371006/physical collisionstrue
+dsmc-planar-shock-base-371006/collision probabilitytrue
+dsmc-planar-shock-base-371006/maxwell time resolutiontrue
+dsmc-planar-shock-base-371006/mean free path resolutiontrue
+dsmc-planar-shock-base-371007/finitetrue
+dsmc-planar-shock-base-371007/boundary budgettrue
+dsmc-planar-shock-base-371007/physical collisionstrue
+dsmc-planar-shock-base-371007/collision probabilitytrue
+dsmc-planar-shock-base-371007/maxwell time resolutiontrue
+dsmc-planar-shock-base-371007/mean free path resolutiontrue
+dsmc-planar-shock-base-371008/finitetrue
+dsmc-planar-shock-base-371008/boundary budgettrue
+dsmc-planar-shock-base-371008/physical collisionstrue
+dsmc-planar-shock-base-371008/collision probabilitytrue
+dsmc-planar-shock-base-371008/maxwell time resolutiontrue
+dsmc-planar-shock-base-371008/mean free path resolutiontrue
+dsmc-planar-shock-base-371009/finitetrue
+dsmc-planar-shock-base-371009/boundary budgettrue
+dsmc-planar-shock-base-371009/physical collisionstrue
+dsmc-planar-shock-base-371009/collision probabilitytrue
+
+## 剛体球DSMCのMach2平面衝撃波 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-shock/#dsmc-planar-shock-measurements
+Coverage: reading
+
+dsmc-planar-shock-base-371009/maxwell time resolutiontrue
+dsmc-planar-shock-base-371009/mean free path resolutiontrue
+dsmc-planar-shock-base-371010/finitetrue
+dsmc-planar-shock-base-371010/boundary budgettrue
+dsmc-planar-shock-base-371010/physical collisionstrue
+dsmc-planar-shock-base-371010/collision probabilitytrue
+dsmc-planar-shock-base-371010/maxwell time resolutiontrue
+dsmc-planar-shock-base-371010/mean free path resolutiontrue
+dsmc-planar-shock-base-371011/finitetrue
+dsmc-planar-shock-base-371011/boundary budgettrue
+dsmc-planar-shock-base-371011/physical collisionstrue
+dsmc-planar-shock-base-371011/collision probabilitytrue
+dsmc-planar-shock-base-371011/maxwell time resolutiontrue
+dsmc-planar-shock-base-371011/mean free path resolutiontrue
+dsmc-planar-shock-base-371012/finitetrue
+dsmc-planar-shock-base-371012/boundary budgettrue
+dsmc-planar-shock-base-371012/physical collisionstrue
+dsmc-planar-shock-base-371012/collision probabilitytrue
+dsmc-planar-shock-base-371012/maxwell time resolutiontrue
+dsmc-planar-shock-base-371012/mean free path resolutiontrue
+dsmc-planar-shock-fixed_weight_mesh-371001/finitetrue
+dsmc-planar-shock-fixed_weight_mesh-371001/boundary budgettrue
+dsmc-planar-shock-fixed_weight_mesh-371001/physical collisionstrue
+dsmc-planar-shock-fixed_weight_mesh-371001/collision probabilitytrue
+dsmc-planar-shock-fixed_weight_mesh-371001/maxwell time resolutiontrue
+
+## 剛体球DSMCのMach2平面衝撃波 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-shock/#dsmc-planar-shock-measurements
+Coverage: reading
+
+dsmc-planar-shock-fixed_weight_mesh-371001/mean free path resolutiontrue
+dsmc-planar-shock-double_particles-371001/finitetrue
+dsmc-planar-shock-double_particles-371001/boundary budgettrue
+dsmc-planar-shock-double_particles-371001/physical collisionstrue
+dsmc-planar-shock-double_particles-371001/collision probabilitytrue
+dsmc-planar-shock-double_particles-371001/maxwell time resolutiontrue
+dsmc-planar-shock-double_particles-371001/mean free path resolutiontrue
+dsmc-planar-shock-half_dt-371001/finitetrue
+dsmc-planar-shock-half_dt-371001/boundary budgettrue
+dsmc-planar-shock-half_dt-371001/physical collisionstrue
+dsmc-planar-shock-half_dt-371001/collision probabilitytrue
+dsmc-planar-shock-half_dt-371001/maxwell time resolutiontrue
+dsmc-planar-shock-half_dt-371001/mean free path resolutiontrue
+profile error/0true
+primary precision/0true
+reference precision/0true
+profile error/1true
+primary precision/1true
+reference precision/1true
+profile error/4true
+primary precision/4true
+reference precision/4true
+profile error/5true
+primary precision/5true
+reference precision/5true
+stationarity/0true
+stationarity/1true
+stationarity/4true
+stationarity/5true
+centroid stationaritytrue
+RH far or full flux/upstream_ntrue
+RH precision/upstream_ntrue
+RH far or full flux/upstream_uxtrue
+RH precision/upstream_uxtrue
+RH far or full flux/upstream_Ttrue
+RH precision/upstream_Ttrue
+
+## 剛体球DSMCのMach2平面衝撃波 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-shock/#dsmc-planar-shock-measurements
+Coverage: reading
+
+RH far or full flux/downstream_ntrue
+RH precision/downstream_ntrue
+RH far or full flux/downstream_uxtrue
+RH precision/downstream_uxtrue
+RH far or full flux/downstream_Ttrue
+RH precision/downstream_Ttrue
+RH far or full flux/flux_masstrue
+RH precision/flux_masstrue
+RH far or full flux/flux_momentumtrue
+RH precision/flux_momentumtrue
+RH far or full flux/flux_energytrue
+RH precision/flux_energytrue
+half step sensitivity/0true
+half step sensitivity/1true
+half step sensitivity/4true
+half step sensitivity/5true
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存した実粒子の位置–速度ヒストグラム。1次元位置と分子速度の位相空間であり、2D物理流れではありません。全記録を表で読む
+configurationseedfieldsprofile_csvresolutioncollisionscandidatesmax_subcyclesscaled_budget
+base371001dsmc-planar-shock-base-371001.npzdsmc-planar-shock-base-371001-profile.csv{"dx_over_lambda":0.19328125,"dt_over_maxwell_tau":0.05340168257623221}3951621900152321.29418275491e-14
+base371002dsmc-planar-shock-base-371002.npzdsmc-planar-shock-base-371002-profile.csv{"dx_over_lambda":0.19442708333333336,"dt_over_maxwell_tau":0.053351757570926}4059041931920821.54979591286e-14
+base371003dsmc-planar-shock-base-371003.npzdsmc-planar-shock-base-371003-profile.csv{"dx_over_lambda":0.19369791666666666,"dt_over_maxwell_tau":0.053233960240091215}3982361911711721.33883393003e-14
+
+## 剛体球DSMCのMach2平面衝撃波 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-shock/#dsmc-planar-shock-measurements
+Coverage: reading
+
+base371004dsmc-planar-shock-base-371004.npzdsmc-planar-shock-base-371004-profile.csv{"dx_over_lambda":0.19538194444444446,"dt_over_maxwell_tau":0.054170162759724576}4202561987009221.84909004269e-14
+base371005dsmc-planar-shock-base-371005.npzdsmc-planar-shock-base-371005-profile.csv{"dx_over_lambda":0.19375868055555556,"dt_over_maxwell_tau":0.05389362808292988}4194721976743721.66193245039e-14
+base371006dsmc-planar-shock-base-371006.npzdsmc-planar-shock-base-371006-profile.csv{"dx_over_lambda":0.19381076388888888,"dt_over_maxwell_tau":0.05338462197331667}3908871890538221.36733379304e-14
+base371007dsmc-planar-shock-base-371007.npzdsmc-planar-shock-base-371007-profile.csv{"dx_over_lambda":0.19390624999999997,"dt_over_maxwell_tau":0.05395761268348778}4076931951275521.05388734681e-14
+base371008dsmc-planar-shock-base-371008.npzdsmc-planar-shock-base-371008-profile.csv{"dx_over_lambda":0.1928819444444444,"dt_over_maxwell_tau":0.053216327436915026}4010981930444821.15225235309e-14
+base371009dsmc-planar-shock-base-371009.npzdsmc-planar-shock-base-371009-profile.csv{"dx_over_lambda":0.1932986111111111,"dt_over_maxwell_tau":0.05321562802115528}3950931909317021.04142056941e-14
+base371010dsmc-planar-shock-base-371010.npzdsmc-planar-shock-base-371010-profile.csv{"dx_over_lambda":0.19600694444444444,"dt_over_maxwell_tau":0.05410218321274896}3950741896805221.04708020764e-14
+
+## 剛体球DSMCのMach2平面衝撃波 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-shock/#dsmc-planar-shock-measurements
+Coverage: reading
+
+base371011dsmc-planar-shock-base-371011.npzdsmc-planar-shock-base-371011-profile.csv{"dx_over_lambda":0.1955642361111111,"dt_over_maxwell_tau":0.05417051688718669}4124671967096922.17536823684e-14
+base371012dsmc-planar-shock-base-371012.npzdsmc-planar-shock-base-371012-profile.csv{"dx_over_lambda":0.19194444444444447,"dt_over_maxwell_tau":0.052865931393740226}4079301929651422.20842636593e-14
+fixed_weight_mesh371001dsmc-planar-shock-fixed_weight_mesh-371001.npzdsmc-planar-shock-fixed_weight_mesh-371001-profile.csv{"dx_over_lambda":0.29423177083333335,"dt_over_maxwell_tau":0.05425343052401819}4106352004706224.00823005457e-14
+double_particles371001dsmc-planar-shock-double_particles-371001.npzdsmc-planar-shock-double_particles-371001-profile.csv{"dx_over_lambda":0.19350694444444447,"dt_over_maxwell_tau":0.0532112690968283}8219154030583224.26324379163e-14
+half_dt371001dsmc-planar-shock-half_dt-371001.npzdsmc-planar-shock-half_dt-371001-profile.csv{"dx_over_lambda":0.19496527777777775,"dt_over_maxwell_tau":0.026920551411043006}4051361975890514.81327287061e-14
+この例の実測値・全記録 / JSON
+
+## 剛体球DSMCのMach2平面衝撃波 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-shock/#dsmc-planar-shock-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Sandia SPARTA developers (2026). SPARTA, pinned official HS collision/boundary implementation and independently evolved fields
+確認範囲 / review_level: primary-source-selected-functions-and-actual-reference-execution
+公式固定版のHS衝突率・境界・分子モーメントを選択確認し、独立36計算と87判定を実施。原著書籍全読や全コード監査は主張しません。
+
+## 有限Knudsen数のCouette・Fourier流 — 有限Knudsen数のCouette・Fourier流 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-wall/
+Coverage: reading
+
+物理時間の剛体球衝突、壁の流束重み付き再放出、保存収支を独立SPARTA参照と比較します。
+
+## 有限Knudsen数のCouette・Fourier流 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-wall/#run-all
+Coverage: reading
+
+ZIPの atlas-dsmc-wall-2026-11-23 フォルダで実行します。このコマンドは配布版の全2例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## 有限Knudsen数のCouette・Fourier流 — 硬球DSMCの有限Kn Couette流 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-wall/
+Coverage: reading
+
+物理時間の硬球衝突と実際の分子輸送を計算し、独立SPARTAの資格確認済みモーメント場と比較します。
+手法・式・図・参照解
+使用手法
+DSMC・運動論輸送
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+セル内の非重複ランダム対へ、偶数・奇数粒子数を区別した物理時間のσg衝突確率を適用。エネルギーによる安全上界で事前にsubcycle数を定め、確率clipはしません。壁・流入はflux重み付き分布と実際の残り飛行時間を用います。
+剛体球Boltzmann輸送と壁・流入出
+1次元位置・3次元速度、H=2、Kn0=.5、完全拡散壁。壁温1、壁速度±.5。16セル、N=1024、dt=.02、burn20/sample40、4seed。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+硬球DSMCの有限Kn Couette流
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+各群18pytestを事前固定。新しい固定計算は群で14本。境界込みの質量・運動量・エネルギー、局所λ/衝突時間、独立参照への誤差とseed精度、時間block定常性を別に判定します。
+同じ問題の参照 · 有限格子の数値参照
+硬球DSMCの有限Kn Couette流
+有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。Kn=.5で連続体の直線・no-slip分布を厳密解としません。図は保存した粒子位相空間であり、2D物理流れではありません。
+
+## 有限Knudsen数のCouette・Fourier流 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-wall/#dsmc-couette-assumptions
+Coverage: reading
+
+1次元位置・3次元速度、H=2、Kn0=.5、完全拡散壁。壁温1、壁速度±.5。16セル、N=1024、dt=.02、burn20/sample40、4seed。
+
+## 有限Knudsen数のCouette・Fourier流 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-wall/#dsmc-couette-algorithm
+Coverage: reading
+
+セル内の非重複ランダム対へ、偶数・奇数粒子数を区別した物理時間のσg衝突確率を適用。エネルギーによる安全上界で事前にsubcycle数を定め、確率clipはしません。壁・流入はflux重み付き分布と実際の残り飛行時間を用います。
+\partial_t f+v_x\partial_x f=Q_{\mathrm{HS}}(f,f),\quad \sigma=\pi d^2=1/\sqrt{2}P_{ij}=n\langle c_i c_j\rangle,\quad q_x=\frac{n}{2}\langle c_x|\mathbf c|^2\rangle,\quad\mathbf c=\mathbf v-\mathbf up_{ij}=a_N W\sigma g_{ij}\Delta t/V,\quad a_N=\begin{cases}N-1&N\text{ even}\\N&N\text{ odd}\end{cases}g_{ij}\le\sqrt{2\sum_i|\mathbf v_i-\mathbf v_{cm}|^2}
+
+## 有限Knudsen数のCouette・Fourier流 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-wall/#dsmc-couette-validation
+Coverage: reading
+
+各群18pytestを事前固定。新しい固定計算は群で14本。境界込みの質量・運動量・エネルギー、局所λ/衝突時間、独立参照への誤差とseed精度、時間block定常性を別に判定します。
+
+## 有限Knudsen数のCouette・Fourier流 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-wall/#dsmc-couette-limits
+Coverage: reading
+
+有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。Kn=.5で連続体の直線・no-slip分布を厳密解としません。図は保存した粒子位相空間であり、2D物理流れではありません。
+
+## 有限Knudsen数のCouette・Fourier流 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-wall/#dsmc-couette-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+profile_comparison{"2":{"error":0.010200733750517737,"combined_3se":0.018203904455731997,"primary_3se":0.014988812559766168,"reference_3se":0.01033042281233518},"4":{"error":0.005173765945320263,"combined_3se":0.01850394361570742,"primary_3se":0.01567511391545536,"reference_3se":0.009832941221769668},"0":{"error":0.007959057017737909,"combined_3se":0.013616367466408597,"primary_3se":0.010491175758283632,"reference_3se":0.008679901738445676}}
+stationarity{"profile_equivalence":{"2":0.05759942531501381,"4":0.0630869754804384,"0":0.03964355800443746}}
+sensitivities{"fixed_weight_mesh":{"2":0.006638448502787946,"4":0.009141483700374766,"0":0.007863505375904245},"double_particles":{"2":0.02339932210675679,"4":0.015641909218002674,"0":0.01126054904988147},"half_dt":{"2":0.029829998439110297,"4":0.01349752351058444,"0":0.012398286891856694}}
+t95_multiplier_df33.18244630528
+flux{"bulk_mean":-0.18636773527698747,"bulk_se":0.0011643950494832711,"reference_mean":-0.19013665992789913,"reference_se":0.0011647729920369507,"wall_mean":-0.18735052877662584,"wall_se":0.001156037275432719,"wall_minus_bulk":-0.0009827934996383542,"wall_minus_bulk_se":0.00010232411461678913}
+判定 / check合格
+dsmc-couette-base-361001/finitetrue
+dsmc-couette-base-361001/boundary budgettrue
+dsmc-couette-base-361001/physical collisionstrue
+
+## 有限Knudsen数のCouette・Fourier流 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-wall/#dsmc-couette-measurements
+Coverage: reading
+
+dsmc-couette-base-361001/collision probabilitytrue
+dsmc-couette-base-361001/maxwell time resolutiontrue
+dsmc-couette-base-361001/mean free path resolutiontrue
+dsmc-couette-base-361002/finitetrue
+dsmc-couette-base-361002/boundary budgettrue
+dsmc-couette-base-361002/physical collisionstrue
+dsmc-couette-base-361002/collision probabilitytrue
+dsmc-couette-base-361002/maxwell time resolutiontrue
+dsmc-couette-base-361002/mean free path resolutiontrue
+dsmc-couette-base-361003/finitetrue
+dsmc-couette-base-361003/boundary budgettrue
+dsmc-couette-base-361003/physical collisionstrue
+dsmc-couette-base-361003/collision probabilitytrue
+dsmc-couette-base-361003/maxwell time resolutiontrue
+dsmc-couette-base-361003/mean free path resolutiontrue
+dsmc-couette-base-361004/finitetrue
+dsmc-couette-base-361004/boundary budgettrue
+dsmc-couette-base-361004/physical collisionstrue
+dsmc-couette-base-361004/collision probabilitytrue
+dsmc-couette-base-361004/maxwell time resolutiontrue
+dsmc-couette-base-361004/mean free path resolutiontrue
+dsmc-couette-fixed_weight_mesh-361001/finitetrue
+dsmc-couette-fixed_weight_mesh-361001/boundary budgettrue
+dsmc-couette-fixed_weight_mesh-361001/physical collisionstrue
+dsmc-couette-fixed_weight_mesh-361001/collision probabilitytrue
+dsmc-couette-fixed_weight_mesh-361001/maxwell time resolutiontrue
+dsmc-couette-fixed_weight_mesh-361001/mean free path resolutiontrue
+
+## 有限Knudsen数のCouette・Fourier流 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-wall/#dsmc-couette-measurements
+Coverage: reading
+
+dsmc-couette-double_particles-361001/finitetrue
+dsmc-couette-double_particles-361001/boundary budgettrue
+dsmc-couette-double_particles-361001/physical collisionstrue
+dsmc-couette-double_particles-361001/collision probabilitytrue
+dsmc-couette-double_particles-361001/maxwell time resolutiontrue
+dsmc-couette-double_particles-361001/mean free path resolutiontrue
+dsmc-couette-half_dt-361001/finitetrue
+dsmc-couette-half_dt-361001/boundary budgettrue
+dsmc-couette-half_dt-361001/physical collisionstrue
+dsmc-couette-half_dt-361001/collision probabilitytrue
+dsmc-couette-half_dt-361001/maxwell time resolutiontrue
+dsmc-couette-half_dt-361001/mean free path resolutiontrue
+profile error/2true
+primary precision/2true
+reference precision/2true
+profile error/4true
+primary precision/4true
+reference precision/4true
+profile error/0true
+primary precision/0true
+reference precision/0true
+stationarity/2true
+stationarity/4true
+stationarity/0true
+bulk molecular flux agreementtrue
+bulk molecular flux precisiontrue
+wall versus bulk molecular fluxtrue
+wall molecular flux precisiontrue
+half step sensitivity/2true
+half step sensitivity/4true
+half step sensitivity/0true
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存した実粒子の位置–速度ヒストグラム。1次元位置と分子速度の位相空間であり、2D物理流れではありません。全記録を表で読む
+configurationseedfieldsprofile_csvresolutioncollisionscandidatesmax_subcyclesscaled_budget
+
+## 有限Knudsen数のCouette・Fourier流 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-wall/#dsmc-couette-measurements
+Coverage: reading
+
+base361001dsmc-couette-base-361001.npzdsmc-couette-base-361001-profile.csv{"dx_over_lambda":0.1259423828125,"dt_over_maxwell_tau":0.032841575600797986}50453152907824.21045076624e-14
+base361002dsmc-couette-base-361002.npzdsmc-couette-base-361002-profile.csv{"dx_over_lambda":0.1272705078125,"dt_over_maxwell_tau":0.03313602904998533}50223153412926.81011511917e-14
+base361003dsmc-couette-base-361003.npzdsmc-couette-base-361003-profile.csv{"dx_over_lambda":0.12621582031249998,"dt_over_maxwell_tau":0.03318234110382709}49885152712523.75616097816e-14
+base361004dsmc-couette-base-361004.npzdsmc-couette-base-361004-profile.csv{"dx_over_lambda":0.12680175781250003,"dt_over_maxwell_tau":0.03335070948876898}50626152852125.04951305534e-14
+fixed_weight_mesh361001dsmc-couette-fixed_weight_mesh-361001.npzdsmc-couette-fixed_weight_mesh-361001-profile.csv{"dx_over_lambda":0.06310546875,"dt_over_maxwell_tau":0.03298467633549061}50458151320022.10928087154e-14
+double_particles361001dsmc-couette-double_particles-361001.npzdsmc-couette-double_particles-361001-profile.csv{"dx_over_lambda":0.1258056640625,"dt_over_maxwell_tau":0.03312461161995578}100668470922525.30039503297e-14
+half_dt361001dsmc-couette-half_dt-361001.npzdsmc-couette-half_dt-361001-profile.csv{"dx_over_lambda":0.12651611328125,"dt_over_maxwell_tau":0.01657786033971498}50393304799517.34256850647e-14
+この例の実測値・全記録 / JSON
+
+## 有限Knudsen数のCouette・Fourier流 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-wall/#dsmc-couette-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Sandia SPARTA developers (2026). SPARTA, pinned official HS collision/boundary implementation and independently evolved fields
+確認範囲 / review_level: primary-source-selected-functions-and-actual-reference-execution
+公式固定版のHS衝突率・境界・分子モーメントを選択確認し、独立36計算と87判定を実施。原著書籍全読や全コード監査は主張しません。
+
+## 有限Knudsen数のCouette・Fourier流 — 硬球DSMCの有限Kn Fourier熱伝導 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-wall/
+Coverage: reading
+
+物理時間の硬球衝突と実際の分子輸送を計算し、独立SPARTAの資格確認済みモーメント場と比較します。
+手法・式・図・参照解
+使用手法
+DSMC・運動論輸送
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+セル内の非重複ランダム対へ、偶数・奇数粒子数を区別した物理時間のσg衝突確率を適用。エネルギーによる安全上界で事前にsubcycle数を定め、確率clipはしません。壁・流入はflux重み付き分布と実際の残り飛行時間を用います。
+剛体球Boltzmann輸送と壁・流入出
+1次元位置・3次元速度、H=2、Kn0=.5、完全拡散壁。静止壁、左温度1・右2。16セル、N=1024、dt=.02、burn20/sample40、4seed。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+硬球DSMCの有限Kn Fourier熱伝導
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+各群18pytestを事前固定。新しい固定計算は群で14本。境界込みの質量・運動量・エネルギー、局所λ/衝突時間、独立参照への誤差とseed精度、時間block定常性を別に判定します。
+同じ問題の参照 · 有限格子の数値参照
+硬球DSMCの有限Kn Fourier熱伝導
+有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。Kn=.5で連続体の直線・no-slip分布を厳密解としません。図は保存した粒子位相空間であり、2D物理流れではありません。
+
+## 有限Knudsen数のCouette・Fourier流 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-wall/#dsmc-fourier-assumptions
+Coverage: reading
+
+1次元位置・3次元速度、H=2、Kn0=.5、完全拡散壁。静止壁、左温度1・右2。16セル、N=1024、dt=.02、burn20/sample40、4seed。
+
+## 有限Knudsen数のCouette・Fourier流 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-wall/#dsmc-fourier-algorithm
+Coverage: reading
+
+セル内の非重複ランダム対へ、偶数・奇数粒子数を区別した物理時間のσg衝突確率を適用。エネルギーによる安全上界で事前にsubcycle数を定め、確率clipはしません。壁・流入はflux重み付き分布と実際の残り飛行時間を用います。
+\partial_t f+v_x\partial_x f=Q_{\mathrm{HS}}(f,f),\quad \sigma=\pi d^2=1/\sqrt{2}P_{ij}=n\langle c_i c_j\rangle,\quad q_x=\frac{n}{2}\langle c_x|\mathbf c|^2\rangle,\quad\mathbf c=\mathbf v-\mathbf up_{ij}=a_N W\sigma g_{ij}\Delta t/V,\quad a_N=\begin{cases}N-1&N\text{ even}\\N&N\text{ odd}\end{cases}g_{ij}\le\sqrt{2\sum_i|\mathbf v_i-\mathbf v_{cm}|^2}
+
+## 有限Knudsen数のCouette・Fourier流 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-wall/#dsmc-fourier-validation
+Coverage: reading
+
+各群18pytestを事前固定。新しい固定計算は群で14本。境界込みの質量・運動量・エネルギー、局所λ/衝突時間、独立参照への誤差とseed精度、時間block定常性を別に判定します。
+
+## 有限Knudsen数のCouette・Fourier流 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-wall/#dsmc-fourier-limits
+Coverage: reading
+
+有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。Kn=.5で連続体の直線・no-slip分布を厳密解としません。図は保存した粒子位相空間であり、2D物理流れではありません。
+
+## 有限Knudsen数のCouette・Fourier流 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-wall/#dsmc-fourier-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+profile_comparison{"4":{"error":0.0046350333567375225,"combined_3se":0.01986770882165603,"primary_3se":0.018610142257145208,"reference_3se":0.006956181351210389},"0":{"error":0.006206560932103681,"combined_3se":0.014725327832097481,"primary_3se":0.012851725754092255,"reference_3se":0.007188075187722132}}
+stationarity{"profile_equivalence":{"4":0.06340714719603799,"0":0.03983352063527729}}
+sensitivities{"fixed_weight_mesh":{"4":0.02668632575679284,"0":0.013283289135740131},"double_particles":{"4":0.012688404465360077,"0":0.009002412684556585},"half_dt":{"4":0.008201282077196198,"0":0.010766498591131742}}
+t95_multiplier_df33.18244630528
+flux{"bulk_mean":-0.5644605772254152,"bulk_se":0.0023868795505760263,"reference_mean":-0.5756964840332293,"reference_se":0.005479198503847574,"wall_mean":-0.566381423471522,"wall_se":0.00224129249203519,"wall_minus_bulk":-0.00192084624610675,"wall_minus_bulk_se":0.00029712049609058333}
+判定 / check合格
+dsmc-fourier-base-361101/finitetrue
+dsmc-fourier-base-361101/boundary budgettrue
+dsmc-fourier-base-361101/physical collisionstrue
+dsmc-fourier-base-361101/collision probabilitytrue
+dsmc-fourier-base-361101/maxwell time resolutiontrue
+dsmc-fourier-base-361101/mean free path resolutiontrue
+dsmc-fourier-base-361102/finitetrue
+dsmc-fourier-base-361102/boundary budgettrue
+
+## 有限Knudsen数のCouette・Fourier流 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-wall/#dsmc-fourier-measurements
+Coverage: reading
+
+dsmc-fourier-base-361102/physical collisionstrue
+dsmc-fourier-base-361102/collision probabilitytrue
+dsmc-fourier-base-361102/maxwell time resolutiontrue
+dsmc-fourier-base-361102/mean free path resolutiontrue
+dsmc-fourier-base-361103/finitetrue
+dsmc-fourier-base-361103/boundary budgettrue
+dsmc-fourier-base-361103/physical collisionstrue
+dsmc-fourier-base-361103/collision probabilitytrue
+dsmc-fourier-base-361103/maxwell time resolutiontrue
+dsmc-fourier-base-361103/mean free path resolutiontrue
+dsmc-fourier-base-361104/finitetrue
+dsmc-fourier-base-361104/boundary budgettrue
+dsmc-fourier-base-361104/physical collisionstrue
+dsmc-fourier-base-361104/collision probabilitytrue
+dsmc-fourier-base-361104/maxwell time resolutiontrue
+dsmc-fourier-base-361104/mean free path resolutiontrue
+dsmc-fourier-fixed_weight_mesh-361101/finitetrue
+dsmc-fourier-fixed_weight_mesh-361101/boundary budgettrue
+dsmc-fourier-fixed_weight_mesh-361101/physical collisionstrue
+dsmc-fourier-fixed_weight_mesh-361101/collision probabilitytrue
+dsmc-fourier-fixed_weight_mesh-361101/maxwell time resolutiontrue
+dsmc-fourier-fixed_weight_mesh-361101/mean free path resolutiontrue
+dsmc-fourier-double_particles-361101/finitetrue
+dsmc-fourier-double_particles-361101/boundary budgettrue
+dsmc-fourier-double_particles-361101/physical collisionstrue
+dsmc-fourier-double_particles-361101/collision probabilitytrue
+
+## 有限Knudsen数のCouette・Fourier流 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-wall/#dsmc-fourier-measurements
+Coverage: reading
+
+dsmc-fourier-double_particles-361101/maxwell time resolutiontrue
+dsmc-fourier-double_particles-361101/mean free path resolutiontrue
+dsmc-fourier-half_dt-361101/finitetrue
+dsmc-fourier-half_dt-361101/boundary budgettrue
+dsmc-fourier-half_dt-361101/physical collisionstrue
+dsmc-fourier-half_dt-361101/collision probabilitytrue
+dsmc-fourier-half_dt-361101/maxwell time resolutiontrue
+dsmc-fourier-half_dt-361101/mean free path resolutiontrue
+profile error/4true
+primary precision/4true
+reference precision/4true
+profile error/0true
+primary precision/0true
+reference precision/0true
+stationarity/4true
+stationarity/0true
+bulk molecular flux agreementtrue
+bulk molecular flux precisiontrue
+wall versus bulk molecular fluxtrue
+wall molecular flux precisiontrue
+half step sensitivity/4true
+half step sensitivity/0true
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存した実粒子の位置–速度ヒストグラム。1次元位置と分子速度の位相空間であり、2D物理流れではありません。全記録を表で読む
+configurationseedfieldsprofile_csvresolutioncollisionscandidatesmax_subcyclesscaled_budget
+base361101dsmc-fourier-base-361101.npzdsmc-fourier-base-361101-profile.csv{"dx_over_lambda":0.14235351562499998,"dt_over_maxwell_tau":0.04056621963241313}58772174238523.34822286536e-14
+base361102dsmc-fourier-base-361102.npzdsmc-fourier-base-361102-profile.csv{"dx_over_lambda":0.14365722656250002,"dt_over_maxwell_tau":0.04088888126433442}58599179780628.64223452711e-14
+
+## 有限Knudsen数のCouette・Fourier流 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-wall/#dsmc-fourier-measurements
+Coverage: reading
+
+base361103dsmc-fourier-base-361103.npzdsmc-fourier-base-361103-profile.csv{"dx_over_lambda":0.14052734375,"dt_over_maxwell_tau":0.04000103700169703}58960179738024.90051823128e-14
+base361104dsmc-fourier-base-361104.npzdsmc-fourier-base-361104-profile.csv{"dx_over_lambda":0.14139648437500002,"dt_over_maxwell_tau":0.040291171798395586}58671180089027.81458206283e-14
+fixed_weight_mesh361101dsmc-fourier-fixed_weight_mesh-361101.npzdsmc-fourier-fixed_weight_mesh-361101-profile.csv{"dx_over_lambda":0.071201171875,"dt_over_maxwell_tau":0.04019865568707311}58706153312924.65405192091e-14
+double_particles361101dsmc-fourier-double_particles-361101.npzdsmc-fourier-double_particles-361101-profile.csv{"dx_over_lambda":0.14209716796875,"dt_over_maxwell_tau":0.040416912985859206}117141612002624.71903005746e-14
+half_dt361101dsmc-fourier-half_dt-361101.npzdsmc-fourier-half_dt-361101-profile.csv{"dx_over_lambda":0.14479248046874998,"dt_over_maxwell_tau":0.020507836385439706}58627304787115.33463901888e-14
+この例の実測値・全記録 / JSON
+
+## 有限Knudsen数のCouette・Fourier流 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-wall/#dsmc-fourier-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Sandia SPARTA developers (2026). SPARTA, pinned official HS collision/boundary implementation and independently evolved fields
+確認範囲 / review_level: primary-source-selected-functions-and-actual-reference-execution
+公式固定版のHS衝突率・境界・分子モーメントを選択確認し、独立36計算と87判定を実施。原著書籍全読や全コード監査は主張しません。
+
 ## Euler二重膨張波：段階ごとの正値性 — Euler二重膨張波：段階ごとの正値性 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-euler-positivity/
@@ -47073,7 +50483,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-euler-positivity/#run-all
 Coverage: reading
 
-ZIPの atlas-euler-positivity-2026-11-23-r2 フォルダで実行します。このコマンドは配布版の全1例を実行します。新規または空の出力先を指定してください。
+ZIPの atlas-euler-positivity-2026-11-23-r2 フォルダで実行します。このコマンドは配布版の全1例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -47306,6 +50716,176 @@ Hiroshi Koyama (2026). Numerical Methods Atlas: released independent Euler Riema
 確認範囲 / review_level: local immutable source inspected; copied without changes with SHA and MIT license; execution recorded by tests, not presumed
 既存の対数圧力根探索と希薄波評価を独立な式経路の照合に使います。実行記録とSHA・MIT条項を別に保存し、異なるPDE計算エンジンの検証とは表示しません。
 
+## 3Dの1/r核：展開・木・力の検証 — 3Dの1/r核：展開・木・力の検証 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-fmm3d/
+Coverage: reading
+
+真の3D展開でM2M・M2L・L2Lを通った非零の最終寄与と一意な相互作用割当てを確かめます。
+
+## 3Dの1/r核：展開・木・力の検証 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-fmm3d/#run-all
+Coverage: reading
+
+ZIPの atlas-fmm3d-2026-11-23 フォルダで実行します。このコマンドは配布版の全1例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## 3Dの1/r核：展開・木・力の検証 — 真3D 1/r FMM：多段変換・力・適応所有権 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-fmm3d/
+Coverage: reading
+
+非圧縮Chebyshev FMMを真の葉レベル2/3と別の適応配置で実行し、独立直接和のポテンシャル・加速度と比較します。
+手法・式・図・参照解
+使用手法
+高速多重極法の移動演算
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+P2M/M2M/M2L/L2Lと局所基底の物理勾配、近接P2P。全非自己対を一意に割当て、非零の全変換経路を記録。
+重力粒子モデル
+孤立重力-Gm/r、G1、64等質量、p3/5/7。主木は深さ強制、適応木のみcapacity8/maxdepth3。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+真3D 1/r FMM：多段変換・力・適応所有権
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+有限6点閉形式、独立Cartesian直接和、次数/実深さ、混合深さ・cap粒子保持、剛体変換を別確認。
+同じ問題の参照 · 有限格子の数値参照
+真3D 1/r FMM：多段変換・力・適応所有権
+小Nの非圧縮教材。p^6 M2Lコストを保存し、SVD圧縮・球調和・Nスケーリング・運動量厳密保存は主張しません。 有限6点閉形式は独立directの資格確認で、FMM本体のgolden-target実行ではありません。
+
+## 3Dの1/r核：展開・木・力の検証 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-fmm3d/#fmm3d-inverse-r-assumptions
+Coverage: reading
+
+孤立重力-Gm/r、G1、64等質量、p3/5/7。主木は深さ強制、適応木のみcapacity8/maxdepth3。
+
+## 3Dの1/r核：展開・木・力の検証 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-fmm3d/#fmm3d-inverse-r-algorithm
+Coverage: reading
+
+P2M/M2M/M2L/L2Lと局所基底の物理勾配、近接P2P。全非自己対を一意に割当て、非零の全変換経路を記録。
+\Phi_i=-G\sum_{j\ne i}m_j/r_{ij},\quad a_i=-\nabla\Phi_iK(x,y)\approx\sum_{\ell,m}L_\ell(x)K(x_\ell,y_m)L_m(y)m=p^3,\quad {\rm dense\ M2L\ entries}=p^6
+
+## 3Dの1/r核：展開・木・力の検証 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-fmm3d/#fmm3d-inverse-r-validation
+Coverage: reading
+
+有限6点閉形式、独立Cartesian直接和、次数/実深さ、混合深さ・cap粒子保持、剛体変換を別確認。
+
+## 3Dの1/r核：展開・木・力の検証 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-fmm3d/#fmm3d-inverse-r-limits
+Coverage: reading
+
+小Nの非圧縮教材。p^6 M2Lコストを保存し、SVD圧縮・球調和・Nスケーリング・運動量厳密保存は主張しません。 有限6点閉形式は独立directの資格確認で、FMM本体のgolden-target実行ではありません。
+
+## 3Dの1/r核：展開・木・力の検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-fmm3d/#fmm3d-inverse-r-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+finest_potential_error2.82552601942e-09
+finest_acceleration_error3.9236249161e-07
+primary_runs6
+additional_fixed_evaluations2
+判定 / check合格
+p3-d2 finite potential and forcetrue
+p3-d2 exact interaction ownershiptrue
+p3-d2 far path exercisedtrue
+p3-d2 actual forced depthtrue
+p5-d2 finite potential and forcetrue
+p5-d2 exact interaction ownershiptrue
+p5-d2 far path exercisedtrue
+p5-d2 actual forced depthtrue
+p7-d2 finite potential and forcetrue
+p7-d2 exact interaction ownershiptrue
+p7-d2 far path exercisedtrue
+p7-d2 actual forced depthtrue
+p3-d3 finite potential and forcetrue
+p3-d3 exact interaction ownershiptrue
+p3-d3 far path exercisedtrue
+p3-d3 actual forced depthtrue
+p3-d3 nonzero complete translation chaintrue
+p5-d3 finite potential and forcetrue
+p5-d3 exact interaction ownershiptrue
+p5-d3 far path exercisedtrue
+p5-d3 actual forced depthtrue
+p5-d3 nonzero complete translation chaintrue
+p7-d3 finite potential and forcetrue
+p7-d3 exact interaction ownershiptrue
+p7-d3 far path exercisedtrue
+p7-d3 actual forced depthtrue
+p7-d3 nonzero complete translation chaintrue
+adaptive finite fieldstrue
+adaptive exact ownershiptrue
+adaptive far pathtrue
+adaptive unequal actual levelstrue
+adaptive capped bucket retainedtrue
+adaptive potential accuracytrue
+adaptive force accuracytrue
+d2 finest potential_errortrue
+
+## 3Dの1/r核：展開・木・力の検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-fmm3d/#fmm3d-inverse-r-measurements
+Coverage: reading
+
+d2 order refinement potential_errortrue
+d2 finest acceleration_errortrue
+d2 order refinement acceleration_errortrue
+d3 finest potential_errortrue
+d3 order refinement potential_errortrue
+d3 finest acceleration_errortrue
+d3 order refinement acceleration_errortrue
+direct octahedron potential goldentrue
+direct octahedron acceleration goldentrue
+rigid transformed potentialtrue
+rigid transformed accelerationtrue
+rigid transformed ownershiptrue
+rigid transformed actual leveltrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。固定入力を実際に計算した保存配列からの検証図。全記録を表で読む
+idpdepthpotential_erroracceleration_errorfar_fractionchain_potential_normrelative_net_forcep2mm2mm2ll2lnonzero_l2lchain_pairsp2p_pairsfar_pairsmaximum_kernel_entriesoverfull_leavesmaximum_leaf_depthminimum_leaf_depth
+p3-d2323.66601838773e-060.0005447242546610.20238095238105.17167548853e-07647281672003216816729022
+p5-d2522.07983524431e-082.81050075484e-060.20238095238101.39285904115e-0864728167200321681615625022
+p7-d2721.2101204564e-101.1931897652e-080.20238095238104.0547792675e-11647281672003216816117649022
+p3-d3331.79665678227e-050.003286559242480.8110119047620.9451824731667.64508998713e-05641363270136648167623270729033
+p5-d3531.93426543309e-072.67250385353e-050.8110119047620.9451833334257.68685457858e-0764136327013664816762327015625033
+
+## 3Dの1/r核：展開・木・力の検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-fmm3d/#fmm3d-inverse-r-measurements
+Coverage: reading
+
+p7-d3732.82552601942e-093.9236249161e-070.8110119047620.945183340072.75012964357e-08641363270136648167623270117649033
+adaptive737.46822762929e-119.13508013246e-11———91216121024961536117649132
+rigid-transform731.28855037674e-091.88870464953e-07———641333156133647147523280117649033
+この例の実測値・全記録 / JSON
+
+## 3Dの1/r核：展開・木・力の検証 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-fmm3d/#fmm3d-inverse-r-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+The black-box fast multipole method · DOI: 10.1016/j.jcp.2009.08.031
+確認範囲 / review_level: primary-selected-sections
+Tensor interpolation Eq7 and multilevel stages sections2–3 inspected, printed8715–8717; compression is separate. Original uncompressed educational implementation here, no timing reproduction.
+FMM3D mathematical definitions
+確認範囲 / review_level: official-kernel-normalization
+Official potential+1/(4pi r), gradient and source-self convention inspected. Our gravitational kernel is-1/r; FMM3D is not installed or run.
+
 ## Mach 3前向きステップ：軽量な2次元検証 — Mach 3前向きステップ：軽量な2次元検証 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-forward-step/
@@ -47318,7 +50898,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-forward-step/#run-all
 Coverage: reading
 
-ZIPの atlas-forward-step-2026-11-23 フォルダで実行します。このコマンドは配布版の全1例を実行します。新規または空の出力先を指定してください。
+ZIPの atlas-forward-step-2026-11-23 フォルダで実行します。このコマンドは配布版の全1例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -47527,7 +51107,7 @@ AMG、QR／SVD、Krylov固有値解法、求積を固定した条件系列で比
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/#run-all
 Coverage: reading
 
-ZIPの atlas-foundations-conditioning-2026-11-22 フォルダで実行します。このコマンドは配布版の全4例を実行します。新規または空の出力先を指定してください。
+ZIPの atlas-foundations-conditioning-2026-11-22 フォルダで実行します。このコマンドは配布版の全4例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -48161,7 +51741,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/#run-all
 Coverage: reading
 
-ZIPの atlas-foundations-2026-11-22 フォルダで実行します。このコマンドは配布版の全4例を実行します。新規または空の出力先を指定してください。
+ZIPの atlas-foundations-2026-11-22 フォルダで実行します。このコマンドは配布版の全4例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -48561,6 +52141,304 @@ J. N. Lyness (1969). Notes on the Adaptive Simpson Quadrature Routine · DOI: 10
 確認範囲 / review_level: publisher-metadata
 独立参照の公式資料：scipy.special.roots_legendre.html · scipy.integrate.quad.html
 
+## 重力軌道：Keplerと軟化有限粒子 — 重力軌道：Keplerと軟化有限粒子 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-gravity-dynamics/
+Coverage: reading
+
+厳密なKepler軌道と、同じ軟化核を使う短時間の有限粒子ODE参照を区別します。
+
+## 重力軌道：Keplerと軟化有限粒子 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-gravity-dynamics/#run-all
+Coverage: reading
+
+ZIPの atlas-gravity-dynamics-2026-11-23 フォルダで実行します。このコマンドは配布版の全2例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## 重力軌道：Keplerと軟化有限粒子 — 無軟化Kepler二体の時間誤差 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-gravity-dynamics/
+Coverage: reading
+
+非等質量二体をKDKで1周し、独立Kepler方程式の位置・速度とエネルギー/角運動量を照合。
+手法・式・図・参照解
+使用手法
+速度Verlet／粒子leapfrog法
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+位置のみの力でkick半分→drift→kick半分。独立のbracketed Kepler rootと解析速度を使用。
+重力粒子モデル
+G=M=a1,e.4,masses.6/.4、epsilon0、128/256/512steps、初期COM/P0。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+無軟化Kepler二体の時間誤差
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+位相/時間次数、全同期stepエネルギー、P/L/COM、独立pair力とroot残差。
+同じ問題の参照 · 解析参照
+無軟化Kepler二体の時間誤差
+1周期・固定離心率のみ。軟化軌道や長時間安定性はこの参照の範囲外。
+
+## 重力軌道：Keplerと軟化有限粒子 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-gravity-dynamics/#gravity-kepler-assumptions
+Coverage: reading
+
+G=M=a1,e.4,masses.6/.4、epsilon0、128/256/512steps、初期COM/P0。
+
+## 重力軌道：Keplerと軟化有限粒子 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-gravity-dynamics/#gravity-kepler-algorithm
+Coverage: reading
+
+位置のみの力でkick半分→drift→kick半分。独立のbracketed Kepler rootと解析速度を使用。
+E-e\sin E=ntr=a(\cos E-e,\sqrt{1-e^2}\sin E,0)v^{n+1/2}=v^n+\tfrac12\Delta t\,a(x^n)
+
+## 重力軌道：Keplerと軟化有限粒子 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-gravity-dynamics/#gravity-kepler-validation
+Coverage: reading
+
+位相/時間次数、全同期stepエネルギー、P/L/COM、独立pair力とroot残差。
+
+## 重力軌道：Keplerと軟化有限粒子 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-gravity-dynamics/#gravity-kepler-limits
+Coverage: reading
+
+1周期・固定離心率のみ。軟化軌道や長時間安定性はこの参照の範囲外。
+
+## 重力軌道：Keplerと軟化有限粒子 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-gravity-dynamics/#gravity-kepler-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+finest_position_error0.00161204992586
+finest_energy_drift0.000174504919259
+period6.28318530718
+判定 / check合格
+s128 finite synchronized fieldstrue
+s128 fixed final timetrue
+s128 positive pair separationtrue
+s128 momentum_drifttrue
+s128 angular_drifttrue
+s128 com_drifttrue
+s128 Kepler root residualtrue
+s128 independent final pair forcetrue
+s256 finite synchronized fieldstrue
+s256 fixed final timetrue
+s256 positive pair separationtrue
+s256 momentum_drifttrue
+s256 angular_drifttrue
+s256 com_drifttrue
+s256 Kepler root residualtrue
+s256 independent final pair forcetrue
+s512 finite synchronized fieldstrue
+s512 fixed final timetrue
+s512 positive pair separationtrue
+s512 momentum_drifttrue
+s512 angular_drifttrue
+s512 com_drifttrue
+s512 Kepler root residualtrue
+s512 independent final pair forcetrue
+analytic reference energy identitytrue
+analytic reference angular identitytrue
+analytic reference COM identitytrue
+time refinement 1true
+time refinement 2true
+finest Kepler positiontrue
+finest Kepler energytrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。固定入力を実際に計算した保存配列からの検証図。全記録を表で読む
+idstepstimeposition_errorstate_rms_errorenergy_driftmomentum_driftangular_driftcom_driftminimum_separationaccepted_nodesdirect_pairs
+
+## 重力軌道：Keplerと軟化有限粒子 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-gravity-dynamics/#gravity-kepler-measurements
+Coverage: reading
+
+s1281286.283185307180.0259547352980.007063523977490.002801810109374.99600361081e-163.60822483003e-161.4155343564e-150.60258
+s2562566.283185307180.006456154414140.001760430924790.0006985040542688.32667268469e-164.71844785466e-162.53432356727e-150.60514
+s5125126.283185307180.001612049925860.000439185254880.0001745049192595.13478148889e-164.16333634234e-161.93747027132e-150.601026
+この例の実測値・全記録 / JSON
+
+## 重力軌道：Keplerと軟化有限粒子 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-gravity-dynamics/#gravity-kepler-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+JPL Keplerian-element formulas
+確認範囲 / review_level: official-selected-kepler-equation
+Kepler equation and orbital-plane Cartesian conversion inspected only. No planetary fitting coefficients or approximate planetary ephemeris used. Fixed two-body positions/velocities are independently derived.
+Geometric numerical integration illustrated by the Störmer–Verlet method
+確認範囲 / review_level: bibliography-and-failed-author-pdf
+Author/publisher metadata only; author PDF unavailable. KDK composition and reversibility are independently derived here; no original full-text audit or BH symplecticity claim.
+
+## 重力軌道：Keplerと軟化有限粒子 — 冷たいPlummer密度由来32粒子の短時間力学 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-gravity-dynamics/
+Coverage: reading
+
+同じ軟化有限N ODEで時間誤差と木近似誤差を分け、独立DOP853・直接力と収支を比較。
+手法・式・図・参照解
+使用手法
+速度Verlet／粒子leapfrog法
+Barnes–Hut八分木
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+直接KDK20/40/80steps、最細でtheta0/.35/.6のfull second-moment BH。独立scalar対力+DOP853を2許容値で資格確認。
+重力粒子モデル
+固定32等質量・切断r3の密度由来反対称座標、初速0、epsilon.05、T.2。密度尺度a1とは別。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+冷たいPlummer密度由来32粒子の短時間力学
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+非零の固定尺度、同一座標上の力、同期E/P/L/COM、theta0対照、非対称静的probe。
+同じ問題の参照 · 有限格子の数値参照
+冷たいPlummer密度由来32粒子の短時間力学
+冷たい有限N初期値で平衡Plummer分布/連続球厳密軌道ではありません。BHの一般相反性・大域symplectic性は主張しません。
+
+## 重力軌道：Keplerと軟化有限粒子 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-gravity-dynamics/#gravity-plummer-short-assumptions
+Coverage: reading
+
+固定32等質量・切断r3の密度由来反対称座標、初速0、epsilon.05、T.2。密度尺度a1とは別。
+
+## 重力軌道：Keplerと軟化有限粒子 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-gravity-dynamics/#gravity-plummer-short-algorithm
+Coverage: reading
+
+直接KDK20/40/80steps、最細でtheta0/.35/.6のfull second-moment BH。独立scalar対力+DOP853を2許容値で資格確認。
+a_i=-\sum_{j\ne i}Gm_jr_{ij}/(r_{ij}^2+\epsilon^2)^{3/2}U=-\sum_{i<j}Gm_im_j/\sqrt{r_{ij}^2+\epsilon^2}
+
+## 重力軌道：Keplerと軟化有限粒子 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-gravity-dynamics/#gravity-plummer-short-validation
+Coverage: reading
+
+非零の固定尺度、同一座標上の力、同期E/P/L/COM、theta0対照、非対称静的probe。
+
+## 重力軌道：Keplerと軟化有限粒子 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-gravity-dynamics/#gravity-plummer-short-limits
+Coverage: reading
+
+冷たい有限N初期値で平衡Plummer分布/連続球厳密軌道ではありません。BHの一般相反性・大域symplectic性は主張しません。
+
+## 重力軌道：Keplerと軟化有限粒子 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-gravity-dynamics/#gravity-plummer-short-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+reference_tolerance_gap1.33393296409e-12
+finest_direct_error8.03238886614e-09
+finest_energy_drift8.56657410644e-09
+theta035_trajectory5.67245350627e-07
+asymmetric_net_force2.37124299438e-05
+判定 / check合格
+independent ODE tolerance qualificationtrue
+independent reference energytrue
+independent reference momentumtrue
+independent reference angular momentumtrue
+antipodal initial COMtrue
+direct-s20 finite synchronized fieldstrue
+direct-s20 fixed final timetrue
+direct-s20 positive pair separationtrue
+direct-s20 momentum_drifttrue
+direct-s20 angular_drifttrue
+direct-s20 com_drifttrue
+direct-s40 finite synchronized fieldstrue
+direct-s40 fixed final timetrue
+direct-s40 positive pair separationtrue
+direct-s40 momentum_drifttrue
+direct-s40 angular_drifttrue
+direct-s40 com_drifttrue
+direct-s80 finite synchronized fieldstrue
+direct-s80 fixed final timetrue
+direct-s80 positive pair separationtrue
+direct-s80 momentum_drifttrue
+direct-s80 angular_drifttrue
+direct-s80 com_drifttrue
+theta0 finite synchronized fieldstrue
+theta0 fixed final timetrue
+theta0 positive pair separationtrue
+theta0 momentum_drifttrue
+theta0 angular_drifttrue
+theta0 com_drifttrue
+theta0 trajectory reproduces directtrue
+theta0 same-position force identitytrue
+theta0.35 finite synchronized fieldstrue
+theta0.35 fixed final timetrue
+
+## 重力軌道：Keplerと軟化有限粒子 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-gravity-dynamics/#gravity-plummer-short-measurements
+Coverage: reading
+
+theta0.35 positive pair separationtrue
+theta.35 trajectory errortrue
+theta.35 same-position force errortrue
+theta0.6 finite synchronized fieldstrue
+theta0.6 fixed final timetrue
+theta0.6 positive pair separationtrue
+theta.6 actual accepted nodestrue
+theta.6 same-position force errortrue
+direct time refinement 1true
+direct time refinement 2true
+finest direct state errortrue
+finest direct energytrue
+asymmetric diagnostics finitetrue
+asymmetric tree approximation exercisedtrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。固定入力を実際に計算した保存配列からの検証図。全記録を表で読む
+idstepsthetatimestate_rms_errorenergy_driftmomentum_driftangular_driftcom_driftminimum_separationaccepted_nodesdirect_pairstrajectory_gapsame_position_force_relative
+direct-s2020-10.21.29867963808e-071.37061630805e-074.30292737205e-194.1335207826e-1800.368025271168020832——
+direct-s4040-10.23.22424746591e-083.42661189207e-084.67562186884e-197.00665653969e-1800.368025121264040672——
+direct-s8080-10.28.03238886614e-098.56657410644e-097.5894152074e-193.49655200627e-1800.368025083784080352——
+theta08000.2—8.56657410644e-091.2942663434e-183.76760254939e-1800.3680250837840803522.82760650633e-182.89535835939e-16
+theta0.35800.350.2—4.28249825229e-084.81892030403e-103.90745938552e-079.63784052566e-110.3680250836426805667425.67245350627e-073.84504072618e-05
+
+## 重力軌道：Keplerと軟化有限粒子 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-gravity-dynamics/#gravity-plummer-short-measurements
+Coverage: reading
+
+theta0.6800.60.2—4.99241104308e-071.38141801099e-086.33039463342e-062.76280300027e-090.36802094197714576477931.49470992063e-050.00105055488327
+この例の実測値・全記録 / JSON
+
+## 重力軌道：Keplerと軟化有限粒子 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-gravity-dynamics/#gravity-plummer-short-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+On the Problem of Distribution in Globular Star Clusters
+確認範囲 / review_level: bibliography-only-original-unaccessed
+Bibliography inherited from prior scoped source review; original full text not read. The finite32-body cold initial condition is density-derived, not an equilibrium Plummer DF or exact continuum flow.
+galpy official Plummer potential definition
+確認範囲 / review_level: official-potential-definition
+Official potential normalization read in preparatory source review. No galpy execution; density scale1 and pair softening.05 are distinct parameters.
+SciPy1.14.1 solve_ivp
+確認範囲 / review_level: official-versioned-method-api
+DOP853 order8, tolerance and t_eval semantics inspected; same softened finite-N ODE with independent scalar pair force. Not an exact analytic N-body solution.
+Geometric numerical integration illustrated by the Störmer–Verlet method
+確認範囲 / review_level: bibliography-and-failed-author-pdf
+Author/publisher metadata only; author PDF unavailable. KDK composition and reversibility are independently derived here; no original full-text audit or BH symplecticity claim.
+
 ## Guderley収束衝撃波：球対称の軽量検証 — Guderley収束衝撃波：球対称の軽量検証 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-guderley/
@@ -48573,7 +52451,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-guderley/#run-all
 Coverage: reading
 
-ZIPの atlas-guderley-2026-11-23-r3 フォルダで実行します。このコマンドは配布版の全1例を実行します。新規または空の出力先を指定してください。
+ZIPの atlas-guderley-2026-11-23-r3 フォルダで実行します。このコマンドは配布版の全1例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -48849,7 +52727,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-instability-growth/#run-all
 Coverage: reading
 
-ZIPの atlas-instability-growth-2026-11-23-r2 フォルダで実行します。このコマンドは配布版の全2例を実行します。新規または空の出力先を指定してください。
+ZIPの atlas-instability-growth-2026-11-23-r2 フォルダで実行します。このコマンドは配布版の全2例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -49149,7 +53027,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-level-set/#run-all
 Coverage: reading
 
-ZIPの atlas-level-set-2026-11-23 フォルダで実行します。このコマンドは配布版の全2例を実行します。新規または空の出力先を指定してください。
+ZIPの atlas-level-set-2026-11-23 フォルダで実行します。このコマンドは配布版の全2例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -50435,7 +54313,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-low-mach/#run-all
 Coverage: reading
 
-ZIPの atlas-low-mach-2026-11-23 フォルダで実行します。このコマンドは配布版の全1例を実行します。新規または空の出力先を指定してください。
+ZIPの atlas-low-mach-2026-11-23 フォルダで実行します。このコマンドは配布版の全1例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -50819,7 +54697,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mcmc/#run-all
 Coverage: reading
 
-ZIPの atlas-mcmc-2026-11-22 フォルダで実行します。このコマンドは配布版の全2例を実行します。新規または空の出力先を指定してください。
+ZIPの atlas-mcmc-2026-11-22 フォルダで実行します。このコマンドは配布版の全2例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -52374,7 +56252,7 @@ L字特異解のP1 FEM、環状領域の可変粘性ベクトルQ1 PDE、純Neum
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/#run-all
 Coverage: reading
 
-ZIPの atlas-mesh-boundary-2026-11-23 フォルダで実行します。このコマンドは配布版の全4例を実行します。新規または空の出力先を指定してください。
+ZIPの atlas-mesh-boundary-2026-11-23 フォルダで実行します。このコマンドは配布版の全4例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -52580,8 +56458,10 @@ Coverage: reading
 原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
 Long Chen (n.d.). Introduction to Adaptive Finite Element Methods
 確認範囲 / review_level: selected-official-tutorial-equations
+Author documentation: L-shaped harmonic r^(2/3)sin(2theta/3) field and non-quasiuniform refinement motivation inspected. No MATLAB code copied or run; our removed quadrant/angle convention is explicitly defined.
 Joachim Schöberl (n.d.). Interactive FEM: graded meshes around vertex singularities
 確認範囲 / review_level: selected-author-teaching-section
+Section24.4 weighted regularity and graded meshes inspected. Our fixed max-norm radial map is independently constructed; no general AMR implementation or universal optimality theorem claimed.
 
 ## 角特異性・曲線座標・Neumann／Robin境界 — 環状領域の可変粘性・真2DベクトルMMS [ja]
 
@@ -52591,7 +56471,7 @@ Coverage: reading
 軸を除く円環で可変粘性の応力発散方程式を実際に解き、速度・歪み・境界tractionと仕事を照合します。
 手法・式・図・参照解
 使用手法
-Q1有限要素法（曲線座標ベクトルBVP）
+Q1有限要素法（スカラー拡散・曲線座標ベクトルBVP）
 この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
 方程式
 この実行例の式と条件
@@ -52722,6 +56602,7 @@ Coverage: reading
 原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
 MFEM developers (n.d.). Example2: Linear Elasticity
 確認範囲 / review_level: selected-official-equations
+Example2 stress sigma=lambda div(u)I+mu(grad(u)+grad(u)^T), weak formulation and traction conventions inspected. Use lambda0 as a linear vector viscous BVP; manufactured fields are derived here. MFEM not executed or copied.
 
 ## 角特異性・曲線座標・Neumann／Robin境界 — 純Neumannの互換条件と平均値ゲージ [ja]
 
@@ -52856,6 +56737,7 @@ Coverage: reading
 原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
 PETSc developers (n.d.). KSP: Solving Singular Systems
 確認範囲 / review_level: selected-official-section
+Solving Singular Systems: constant Neumann nullspace and RHS compatibility inspected. We reject physical incompatibility rather than projecting it away. PETSc is neither a dependency nor executed.
 
 ## 角特異性・曲線座標・Neumann／Robin境界 — 2D混合Robinの製造解と境界流束 [ja]
 
@@ -52977,6 +56859,7 @@ Coverage: reading
 原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
 MFEM developers (n.d.). Boundary Conditions: Robin boundary conditions
 確認範囲 / review_level: selected-official-equations
+Outward normal derivative and Robin weak boundary contribution inspected; Example27 source overview inspected. Our cell-centred face elimination/MMS is separately derived; no MFEM execution.
 
 ## CTとGLM：同条件の独立照合・格子・時間収束 — CTとGLM：同条件の独立照合・格子・時間収束 [ja]
 
@@ -52990,7 +56873,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/#run-all
 Coverage: reading
 
-ZIPの atlas-mhd-convergence-2026-11-22 フォルダで実行します。このコマンドは配布版の全3例を実行します。新規または空の出力先を指定してください。
+ZIPの atlas-mhd-convergence-2026-11-22 フォルダで実行します。このコマンドは配布版の全3例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -53435,7 +57318,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transport/#run-all
 Coverage: reading
 
-ZIPの atlas-mhd-transport-2026-11-23 フォルダで実行します。このコマンドは配布版の全3例を実行します。新規または空の出力先を指定してください。
+ZIPの atlas-mhd-transport-2026-11-23 フォルダで実行します。このコマンドは配布版の全3例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -53925,7 +57808,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd/#run-all
 Coverage: reading
 
-ZIPの atlas-mhd-2026-11-22 フォルダで実行します。このコマンドは配布版の全4例を実行します。新規または空の出力先を指定してください。
+ZIPの atlas-mhd-2026-11-22 フォルダで実行します。このコマンドは配布版の全4例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -54305,7 +58188,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/#run-all
 Coverage: reading
 
-ZIPの atlas-models-2026-11-22 フォルダで実行します。このコマンドは配布版の全5例を実行します。新規または空の出力先を指定してください。
+ZIPの atlas-models-2026-11-22 フォルダで実行します。このコマンドは配布版の全5例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -55990,7 +59873,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-moving-waves/#run-all
 Coverage: reading
 
-ZIPの atlas-moving-waves-2026-11-23 フォルダで実行します。このコマンドは配布版の全2例を実行します。新規または空の出力先を指定してください。
+ZIPの atlas-moving-waves-2026-11-23 フォルダで実行します。このコマンドは配布版の全2例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -56158,6 +60041,7 @@ Coverage: reading
 原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
 Dennis L. Huff (1987). Numerical Simulations of Unsteady, Viscous, Transonic Flow Over Isolated and Cascaded Airfoils Using a Deforming Grid
 確認範囲 / review_level: selected-primary-report-grid-treatment
+NASA TM89890 grid-velocity and GCL discussion around equation11/printedp5 inspected. It attributes GCL to Thomas/Lombard. Original1979 paper not read; no airfoil algorithm or code reproduced. Our 1D scalar moving-volume/Heun derivation is independent.
 
 ## 非一様ALE輸送・2次元回転浅水波 — 2D C-grid回転浅水波の実時間発展 [ja]
 
@@ -56308,6 +60192,7 @@ Coverage: reading
 原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
 P. Korn and S. Danilov (n.d.). Elementary dispersion analysis of some mimetic discretizations on triangular C-grids
 確認範囲 / review_level: selected-primary-author-manuscript
+Governing linear equations, energy adjoints and AppendixB quadrilateral standard-C symbols/eq19–21 inspected. Use standard square C-grid only, not the paper triangular mimetic schemes. No global Williamson test or original code run.
 
 ## Noh問題：2次元Cartesianと格子方向の誤差 — Noh問題：2次元Cartesianと格子方向の誤差 [ja]
 
@@ -56321,7 +60206,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh-cartesian/#run-all
 Coverage: reading
 
-ZIPの atlas-noh-cartesian-2026-11-23-r2 フォルダで実行します。このコマンドは配布版の全1例を実行します。新規または空の出力先を指定してください。
+ZIPの atlas-noh-cartesian-2026-11-23-r2 フォルダで実行します。このコマンドは配布版の全1例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -56524,7 +60409,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh/#run-all
 Coverage: reading
 
-ZIPの atlas-noh-2026-11-23-r5 フォルダで実行します。このコマンドは配布版の全1例を実行します。新規または空の出力先を指定してください。
+ZIPの atlas-noh-2026-11-23-r5 フォルダで実行します。このコマンドは配布版の全1例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -56846,7 +60731,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particle-transport/#run-all
 Coverage: reading
 
-ZIPの atlas-particle-transport-2026-11-22 フォルダで実行します。このコマンドは配布版の全6例を実行します。新規または空の出力先を指定してください。
+ZIPの atlas-particle-transport-2026-11-22 フォルダで実行します。このコマンドは配布版の全6例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -57307,7 +61192,9 @@ CIC静電PICの冷たいプラズマ振動
 厳密解・参照解
 この実行例の参照・検証
 16/32/64格子とdt=.2/.1/.05を別に精密化し、線形cos(t)と時間参照の誤差を分離します。実数奇微分のNyquist零モードはGauss残差から分けて記録。時刻0の64seed・N=256/1024/4096のCICモード電力を解析期待値と比較します。
-参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
+関連モデルの参照 · 有限格子の数値参照
+PIC空間演算の独立実装照合
+周期[0,2π]、256粒子、格子8/16/32、シード35001/35002、dt=.02、T=.24。位置は一様乱数、v=.2 Normal+.1 sin x。6組は別々に進めた12軌道です。
 入力・検証手順の履歴 · 初回の入力
 
 ## 粒子・輸送：独立参照・保存則・統計誤差 — 前提・単位・境界 [ja]
@@ -60917,7 +64804,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/#run-all
 Coverage: reading
 
-ZIPの atlas-particles-2026-11-22 フォルダで実行します。このコマンドは配布版の全6例を実行します。新規または空の出力先を指定してください。
+ZIPの atlas-particles-2026-11-22 フォルダで実行します。このコマンドは配布版の全6例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -61233,7 +65120,9 @@ CIC静電PICの冷たいプラズマ振動
 厳密解・参照解
 この実行例の参照・検証
 32・64・128格子の系列と、別の512格子上の時間刻み系列を分けます。変位モードを連続線形理論のcos(t)と比較し、全電荷・Poissonポテンシャル残差・単一粒子の自己力を検査します。
-参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
+関連モデルの参照 · 有限格子の数値参照
+PIC空間演算の独立実装照合
+周期[0,2π]、256粒子、格子8/16/32、シード35001/35002、dt=.02、T=.24。位置は一様乱数、v=.2 Normal+.1 sin x。6組は別々に進めた12軌道です。
 
 ## 粒子・静電場・運動論・放射輸送 — 前提・単位・境界 [ja]
 
@@ -61703,6 +65592,186 @@ NIST Digital Library of Mathematical Functions (2026). §8.19 Generalized Expone
 確認範囲 / review_level: official-documentation
 一般化指数積分の積分表示を公式資料で確認。年は確認年。
 
+## PICの独立空間実装との照合 — PICの独立空間実装との照合 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-pic-spatial/
+Coverage: reading
+
+各kickで独立なCICと明示DFTから場を更新し、同じ時間積分の共有範囲を明示します。
+
+## PICの独立空間実装との照合 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-pic-spatial/#run-all
+Coverage: reading
+
+ZIPの atlas-pic-spatial-2026-11-23 フォルダで実行します。このコマンドは配布版の全1例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## PICの独立空間実装との照合 — PIC空間演算の独立実装照合 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-pic-spatial/
+Coverage: reading
+
+ベクトル化CIC/FFTと、別に書いた粒子ループCIC・密なDFTを、それぞれが自己無撞着な場を毎kick計算する軌道全体で照合します。
+手法・式・図・参照解
+使用手法
+Particle-in-Cell（PIC）
+Cloud-in-cellの割当てと補間
+速度Verlet／粒子leapfrog法
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+独立側はPythonスカラー配置、明示的な複素DFT和、独自の補間ループを所有します。主側のFFT・配置・補間を呼びません。数学上のCIC、Nyquist規約、velocity-Verlet法、初期配列は共通です。
+静電Vlasov–Poisson方程式
+周期[0,2π]、256粒子、格子8/16/32、シード35001/35002、dt=.02、T=.24。位置は一様乱数、v=.2 Normal+.1 sin x。6組は別々に進めた12軌道です。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+CIC静電PICの冷たいプラズマ振動
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+19 pytestと58/58固定判定が合格。6組＝12の自己無撞着軌道を13時刻全てで照合し、最大差は位置8.88e−16・速度3.33e−16・電場8.33e−16・電荷2.89e−15。pytest+mainは0.392秒。最初の小pytestは周期端点の添字不具合で17/18となり、元記録を保持して修正後に全計算を実行しました。
+関連モデルの参照 · 有限格子の数値参照
+PIC空間演算の独立実装照合
+周期[0,2π]、256粒子、格子8/16/32、シード35001/35002、dt=.02、T=.24。位置は一様乱数、v=.2 Normal+.1 sin x。6組は別々に進めた12軌道です。
+
+## PICの独立空間実装との照合 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-pic-spatial/#pic-independent-spatial-assumptions
+Coverage: reading
+
+周期[0,2π]、256粒子、格子8/16/32、シード35001/35002、dt=.02、T=.24。位置は一様乱数、v=.2 Normal+.1 sin x。6組は別々に進めた12軌道です。
+
+## PICの独立空間実装との照合 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-pic-spatial/#pic-independent-spatial-algorithm
+Coverage: reading
+
+独立側はPythonスカラー配置、明示的な複素DFT和、独自の補間ループを所有します。主側のFFT・配置・補間を呼びません。数学上のCIC、Nyquist規約、velocity-Verlet法、初期配列は共通です。
+\rho_j=1-\frac1h\sum_p w_p S_j(x_p),\quad a_p=-\sum_j S_j(x_p)E_j\widehat E_m=\widehat\rho_m/(ik_m),\quad E_0=0,\quad E_{N/2}=0\ \text{(even N)}\rho=-\tfrac12\cos2x\ \Longrightarrow\ E=-\tfrac14\sin2x,\quad a=+\tfrac14\sin2x
+
+## PICの独立空間実装との照合 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-pic-spatial/#pic-independent-spatial-validation
+Coverage: reading
+
+19 pytestと58/58固定判定が合格。6組＝12の自己無撞着軌道を13時刻全てで照合し、最大差は位置8.88e−16・速度3.33e−16・電場8.33e−16・電荷2.89e−15。pytest+mainは0.392秒。最初の小pytestは周期端点の添字不具合で17/18となり、元記録を保持して修正後に全計算を実行しました。
+
+## PICの独立空間実装との照合 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-pic-spatial/#pic-independent-spatial-limits
+Coverage: reading
+
+離散演算の独立したコーディング照合です。時間積分法や連続方程式を変えた独立エンジン、連続極限の収束、冷たいプラズマの振動参照の再現を意味しません。既存cold-plasma-picの関連補助検証として扱い、温かい初期速度の軌道を冷たい解と同一視しません。
+
+## PICの独立空間実装との照合 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-pic-spatial/#pic-independent-spatial-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+comparison_pairs6
+separate_trajectories12
+saved_states_per_trajectory13
+maximum_position_discrepancy8.881784197e-16
+maximum_velocity_discrepancy3.33066907388e-16
+maximum_field_discrepancy8.32667268469e-16
+maximum_charge_discrepancy2.88657986403e-15
+判定 / check合格
+primary analytic charge field electron-sign fixturetrue
+independent analytic charge field electron-sign fixturetrue
+deliberate wrong electron sign is detectedtrue
+odd-grid forcetrue
+odd-grid fieldtrue
+odd-grid chargetrue
+positive-weight forcetrue
+positive-weight fieldtrue
+positive-weight chargetrue
+n8-seed35001 all saved arrays finitetrue
+n8-seed35001 all-step positiontrue
+n8-seed35001 all-step velocitytrue
+n8-seed35001 all-step fieldtrue
+n8-seed35001 all-step chargetrue
+n8-seed35001 independent charge conservationtrue
+n8-seed35001 independent momentum conservationtrue
+n8-seed35001 own fields at every fixed kicktrue
+n8-seed35002 all saved arrays finitetrue
+n8-seed35002 all-step positiontrue
+n8-seed35002 all-step velocitytrue
+n8-seed35002 all-step fieldtrue
+n8-seed35002 all-step chargetrue
+n8-seed35002 independent charge conservationtrue
+n8-seed35002 independent momentum conservationtrue
+n8-seed35002 own fields at every fixed kicktrue
+n16-seed35001 all saved arrays finitetrue
+n16-seed35001 all-step positiontrue
+n16-seed35001 all-step velocitytrue
+
+## PICの独立空間実装との照合 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-pic-spatial/#pic-independent-spatial-measurements
+Coverage: reading
+
+n16-seed35001 all-step fieldtrue
+n16-seed35001 all-step chargetrue
+n16-seed35001 independent charge conservationtrue
+n16-seed35001 independent momentum conservationtrue
+n16-seed35001 own fields at every fixed kicktrue
+n16-seed35002 all saved arrays finitetrue
+n16-seed35002 all-step positiontrue
+n16-seed35002 all-step velocitytrue
+n16-seed35002 all-step fieldtrue
+n16-seed35002 all-step chargetrue
+n16-seed35002 independent charge conservationtrue
+n16-seed35002 independent momentum conservationtrue
+n16-seed35002 own fields at every fixed kicktrue
+n32-seed35001 all saved arrays finitetrue
+n32-seed35001 all-step positiontrue
+n32-seed35001 all-step velocitytrue
+n32-seed35001 all-step fieldtrue
+n32-seed35001 all-step chargetrue
+n32-seed35001 independent charge conservationtrue
+n32-seed35001 independent momentum conservationtrue
+n32-seed35001 own fields at every fixed kicktrue
+n32-seed35002 all saved arrays finitetrue
+n32-seed35002 all-step positiontrue
+n32-seed35002 all-step velocitytrue
+n32-seed35002 all-step fieldtrue
+n32-seed35002 all-step chargetrue
+n32-seed35002 independent charge conservationtrue
+n32-seed35002 independent momentum conservationtrue
+n32-seed35002 own fields at every fixed kicktrue
+six paired comparisons equal twelve separate trajectoriestrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。12独立軌道の1つから保存した実際の位相空間。色は自己無撞着電場による速度変化です。全記録を表で読む
+
+## PICの独立空間実装との照合 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-pic-spatial/#pic-independent-spatial-measurements
+Coverage: reading
+
+idnseedparticlesstepsfilesha256positionvelocityfieldchargecharge_integralmomentum
+n8-seed3500183500125612n8-seed35001.npz9f22412dfed37c92776233dc78cf161888b9bc3dadba1a8336ce59ab974fe2b88.881784197e-162.22044604925e-164.96130914129e-168.881784197e-166.97573699602e-161.04083408559e-17
+n8-seed3500283500225612n8-seed35002.npzed841e1213846689686e39d9259eb04589762c02bd725cc23365a58c482e12664.4408920985e-162.22044604925e-164.30211422042e-166.66133814775e-169.59163836952e-165.20417042793e-18
+n16-seed35001163500125612n16-seed35001.npz4235f169cbddf851cc82a2bbc47084cb6b3e0a5751c6dc9893d738357e5617a44.4408920985e-161.80411241502e-166.55725473919e-161.11022302463e-154.35983562251e-161.04083408559e-17
+n16-seed35002163500225612n16-seed35002.npz0967013350fe9906dffe76de3be8900d5ee81f7fe826ec7abc9569e16709f87e5.55111512313e-172.22044604925e-167.35522753814e-168.881784197e-163.92385206026e-167.8062556419e-18
+n32-seed35001323500125612n32-seed35001.npz596cdd4c55ab84ad5b12076be75584e924de715afa7952523b9395ca5ee7270a8.881784197e-162.77555756156e-168.32667268469e-162.88657986403e-158.71967124502e-173.46944695195e-18
+n32-seed35002323500225612n32-seed35002.npzbd4927c21ef19e52fc7809c9748bd23360ba06e74c97247401da53ca974bd2a68.881784197e-163.33066907388e-165.48172618409e-162.22044604925e-151.743934249e-169.54097911787e-18
+この例の実測値・全記録 / JSON
+
+## PICの独立空間実装との照合 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-pic-spatial/#pic-independent-spatial-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Enrico Camporeale, Gian Luca Delzanno, Benjamin K. Bergen and J. David Moulton (2013). On the velocity space discretization for the Vlasov–Poisson system: comparison between Hermite spectral and Particle-in-Cell methods. Part 1: semi-implicit scheme
+確認範囲 / review_level: primary-selected-original-pdf-text
+原著の規格化方程式、再帰・雑音、Landauと二流の線形窓の議論を選択して確認。原著の計算値は転用しません。
+
 ## SRHD衝突・SRMHD非線形Alfvén波 — SRHD衝突・SRMHD非線形Alfvén波 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-relativistic/
@@ -61715,7 +65784,7 @@ SRHDの対向衝突をTaub関係の二衝撃波解と、全7保存量SRMHDの有
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-relativistic/#run-all
 Coverage: reading
 
-ZIPの atlas-relativistic-2026-11-23 フォルダで実行します。このコマンドは配布版の全2例を実行します。新規または空の出力先を指定してください。
+ZIPの atlas-relativistic-2026-11-23 フォルダで実行します。このコマンドは配布版の全2例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -62048,7 +66117,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sedov/#run-all
 Coverage: reading
 
-ZIPの atlas-sedov-2026-11-23-r2 フォルダで実行します。このコマンドは配布版の全1例を実行します。新規または空の出力先を指定してください。
+ZIPの atlas-sedov-2026-11-23-r2 フォルダで実行します。このコマンドは配布版の全1例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -62257,7 +66326,7 @@ SEMの2D PoissonとFRの1D周期移流を、既存P1 FEM・modal DGと同じ方�
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/#run-all
 Coverage: reading
 
-ZIPの atlas-sem-fr-2026-11-23 フォルダで実行します。このコマンドは配布版の全2例を実行します。新規または空の出力先を指定してください。
+ZIPの atlas-sem-fr-2026-11-23 フォルダで実行します。このコマンドは配布版の全2例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -62528,7 +66597,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-shallow-water/#run-all
 Coverage: reading
 
-ZIPの atlas-shallow-water-2026-11-23 フォルダで実行します。このコマンドは配布版の全2例を実行します。新規または空の出力先を指定してください。
+ZIPの atlas-shallow-water-2026-11-23 フォルダで実行します。このコマンドは配布版の全2例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -62734,12 +66803,22 @@ Coverage: reading
 原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
 O. Delestre et al. (2013). SWASHES: a compilation of shallow water analytic solutions for hydraulic and environmental studies · DOI: 10.1002/fld.3741
 確認範囲 / review_level: selected-equations-and-fixed-inputs
+Author arXiv v3: sections2,3.1.1-3.1.3,4.1.2. Bump, lakes, Bernoulli and Ritter formulas inspected; no full-library audit or SWASHES execution/source reuse.
 E. Audusse, F. Bouchut, M.-O. Bristeau, R. Klein, B. Perthame (2004). A Fast and Stable Well-Balanced Scheme with Hydrostatic Reconstruction for Shallow Water Flows · DOI: 10.1137/S1064827503431090
 確認範囲 / review_level: bibliography-and-author-follow-up
+Publisher/author bibliography checked. Author-linked original PDF retrieval timed out; HR algebra read in author follow-up arXiv1409.3825. No full original-paper audit.
 E. Audusse, F. Bouchut, M.-O. Bristeau, J. Sainte-Marie (2016). Kinetic entropy inequality and hydrostatic reconstruction scheme for the Saint-Venant system
 確認範囲 / review_level: selected-scheme-equations
+arXiv v2 section1 model/entropy caveat; section3.1 equations3.1-3.5 face states and pressure corrections. Full kinetic proof not audited or claimed for this HLL solver.
 Institut Denis Poisson / SWASHES authors (n.d.). SWASHES project page
 確認範囲 / review_level: official-project-scope-and-rights
+
+## 浅水流：地形・静止湖・乾燥床 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-shallow-water/#swashes-topography-references
+Coverage: reading
+
+Official project/library purpose, CeCILL-v2 licensing and corrected-paper/addendum notice inspected. No library code copied or executed.
 
 ## 浅水流：地形・静止湖・乾燥床 — 乾いた河床のダム破壊：実際のwetting/drying [ja]
 
@@ -62925,12 +67004,183 @@ Coverage: reading
 原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
 O. Delestre et al. (2013). SWASHES: a compilation of shallow water analytic solutions for hydraulic and environmental studies · DOI: 10.1002/fld.3741
 確認範囲 / review_level: selected-equations-and-fixed-inputs
+Author arXiv v3: sections2,3.1.1-3.1.3,4.1.2. Bump, lakes, Bernoulli and Ritter formulas inspected; no full-library audit or SWASHES execution/source reuse.
 E. Audusse, F. Bouchut, M.-O. Bristeau, R. Klein, B. Perthame (2004). A Fast and Stable Well-Balanced Scheme with Hydrostatic Reconstruction for Shallow Water Flows · DOI: 10.1137/S1064827503431090
 確認範囲 / review_level: bibliography-and-author-follow-up
+Publisher/author bibliography checked. Author-linked original PDF retrieval timed out; HR algebra read in author follow-up arXiv1409.3825. No full original-paper audit.
 E. Audusse, F. Bouchut, M.-O. Bristeau, J. Sainte-Marie (2016). Kinetic entropy inequality and hydrostatic reconstruction scheme for the Saint-Venant system
 確認範囲 / review_level: selected-scheme-equations
+arXiv v2 section1 model/entropy caveat; section3.1 equations3.1-3.5 face states and pressure corrections. Full kinetic proof not audited or claimed for this HLL solver.
 Institut Denis Poisson / SWASHES authors (n.d.). SWASHES project page
 確認範囲 / review_level: official-project-scope-and-rights
+
+## 浅水流：地形・静止湖・乾燥床 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-shallow-water/#dry-bed-dam-break-references
+Coverage: reading
+
+Official project/library purpose, CeCILL-v2 licensing and corrected-paper/addendum notice inspected. No library code copied or executed.
+
+## 中性スラブ：3周期補正と真の2周期参照 — 中性スラブ：3周期補正と真の2周期参照 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-slab-ewald/
+Coverage: reading
+
+長方形の周期箱と非周期zの分枝を固定し、Yeh–Berkowitz補正を真の2周期の自己項・零モード込みの参照と照合します。
+
+## 中性スラブ：3周期補正と真の2周期参照 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-slab-ewald/#run-all
+Coverage: reading
+
+ZIPの atlas-slab-ewald-2026-11-23 フォルダで実行します。このコマンドは配布版の全1例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## 中性スラブ：3周期補正と真の2周期参照 — 中性長方形スラブ：真2P参照とYB補正 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-slab-ewald/
+Coverage: reading
+
+4電荷の長方形3P Ewaldに中性スラブ補正を加え、別実装の真2P和のエネルギー・全力成分と照合します。
+手法・式・図・参照解
+使用手法
+Ewald法
+スラブ静電場と2次元周期Ewald
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+全±3D波数、自己項、2pi Mz²/Vとその力。独立2Pには横零モード・自己減算と安定exp–erfcを保持。
+Coulomb静電場と混合周期境界
+Coulomb定数1、Lx1,Ly1.25、Lz1.5/3/6、4電荷±1、非周期zのMz=.34、alpha3/4。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+中性長方形スラブ：真2P参照とYB補正
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+参照alpha/打切り資格、エネルギー差分、真空厚、全力、零モード負対照・遠方ゲージと中性平行移動を分離。
+同じ問題の参照 · 半解析参照
+中性長方形スラブ：真2P参照とYB補正
+中性・固定4電荷・Cartesian z法線のみ。YBは有限ギャップ近似で任意真空の厳密2Pではありません。原著YB本文は未読。
+
+## 中性スラブ：3周期補正と真の2周期参照 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-slab-ewald/#neutral-slab-yb-assumptions
+Coverage: reading
+
+Coulomb定数1、Lx1,Ly1.25、Lz1.5/3/6、4電荷±1、非周期zのMz=.34、alpha3/4。
+
+## 中性スラブ：3周期補正と真の2周期参照 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-slab-ewald/#neutral-slab-yb-algorithm
+Coverage: reading
+
+全±3D波数、自己項、2pi Mz²/Vとその力。独立2Pには横零モード・自己減算と安定exp–erfcを保持。
+E_{\rm YB}=E_{3P}+2\pi M_z^2/V\Delta F_{zi}=-4\pi q_iM_z/V\phi(\pm\infty)=\pm2\pi M_z/(L_xL_y)
+
+## 中性スラブ：3周期補正と真の2周期参照 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-slab-ewald/#neutral-slab-yb-validation
+Coverage: reading
+
+参照alpha/打切り資格、エネルギー差分、真空厚、全力、零モード負対照・遠方ゲージと中性平行移動を分離。
+
+## 中性スラブ：3周期補正と真の2周期参照 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-slab-ewald/#neutral-slab-yb-limits
+Coverage: reading
+
+中性・固定4電荷・Cartesian z法線のみ。YBは有限ギャップ近似で任意真空の厳密2Pではありません。原著YB本文は未読。
+
+## 中性スラブ：3周期補正と真の2周期参照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-slab-ewald/#neutral-slab-yb-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+reference_energy-4.45950558164
+maximum_reference_force5.48489596394
+dipole_z0.34
+finest_energy_error4.61852778244e-14
+finest_force_error1.000977079e-12
+判定 / check合格
+reference splitting energytrue
+reference splitting forcetrue
+reference cutoff energytrue
+reference cutoff forcetrue
+z1.5-a3 finite saved fieldstrue
+z1.5-a3 neutral net forcetrue
+z1.5-a4 finite saved fieldstrue
+z1.5-a4 neutral net forcetrue
+z3-a3 finite saved fieldstrue
+z3-a3 neutral net forcetrue
+z3-a4 finite saved fieldstrue
+z3-a4 neutral net forcetrue
+z6-a3 finite saved fieldstrue
+z6-a3 neutral net forcetrue
+z6-a4 finite saved fieldstrue
+z6-a4 neutral net forcetrue
+z1.5 alpha energytrue
+z1.5 alpha forcetrue
+z3 alpha energytrue
+z3 alpha forcetrue
+z6 alpha energytrue
+z6 alpha forcetrue
+z6-a3 finest energytrue
+z6-a3 finest forcetrue
+z6-a3 correction improves energytrue
+z6-a3 correction improves forcetrue
+z6-a4 finest energytrue
+z6-a4 finest forcetrue
+z6-a4 correction improves energytrue
+z6-a4 correction improves forcetrue
+neutral translation energytrue
+neutral translation forcetrue
+production energy gradient h1e-05true
+reference energy gradient h1e-05true
+production energy gradient h5e-06true
+reference energy gradient h5e-06true
+omitted zero mode is detectedtrue
+far-z potential steptrue
+far-z zero fieldtrue
+source permutation energytrue
+
+## 中性スラブ：3周期補正と真の2周期参照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-slab-ewald/#neutral-slab-yb-measurements
+Coverage: reading
+
+source permutation forcetrue
+charged cell rejectedtrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。固定入力を実際に計算した保存配列からの検証図。全記録を表で読む
+idLzalphaenergyreference_energycorrected_energy_erroruncorrected_energy_errorcorrected_force_erroruncorrected_force_errornet_forcereciprocal_count
+z1.5-a31.53-4.45786834633-4.459505581640.001637235313460.3857420828250.006079810007082.282046955161.22124532709e-158326
+z1.5-a41.54-4.45786834633-4.459505581640.001637235313460.3857420828250.006079810007082.282046955168.881784197e-158326
+z3-a333-4.45950559693-4.459505581641.528326532e-080.1936896743533.28866520416e-061.139354224371.24344978758e-1416608
+z3-a434-4.45950559693-4.459505581641.528326532e-080.1936896743533.28866517485e-061.139354224371.95399252334e-1416608
+z6-a363-4.45950558164-4.459505581644.61852778244e-140.09684482953471.00275343584e-120.5696754678522.30926389122e-1433246
+z6-a464-4.45950558164-4.459505581644.61852778244e-140.09684482953471.000977079e-120.5696754678525.68434188608e-1433246
+この例の実測値・全記録 / JSON
+
+## 中性スラブ：3周期補正と真の2周期参照 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-slab-ewald/#neutral-slab-yb-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Fast and spectrally accurate Ewald summation for2-periodic electrostatic systems
+確認範囲 / review_level: primary-selected-equations
+Eq4 and AppendixA Eq41/zero-mode inspected; rendered selected pages requested. No full-paper audit or spectral-PME implementation claimed.
+Ewald summation for systems with slab geometry
+確認範囲 / review_level: bibliography-original-unaccessed
+Original publisher full text unavailable; no original-text review claimed. Neutral correction independently derived and checked against official LAMMPS implementation/documentation.
+LAMMPS slab Ewald documentation and neutral correction
+確認範囲 / review_level: official-selected-docs-and-formulas
+Slab geometry restrictions and official Ewald::slabcorr neutral formula inspected. No LAMMPS code copied or executed; mutable stable source is contextual, not a numerical dependency.
 
 ## 作用素分割：同じ反応拡散でLie–TrotterとStrangを比較 — 作用素分割：同じ反応拡散でLie–TrotterとStrangを比較 [ja]
 
@@ -62944,7 +67194,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-splitting/#run-all
 Coverage: reading
 
-ZIPの atlas-splitting-2026-11-22 フォルダで実行します。このコマンドは配布版の全1例を実行します。新規または空の出力先を指定してください。
+ZIPの atlas-splitting-2026-11-22 フォルダで実行します。このコマンドは配布版の全1例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -63097,7 +67347,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#run-all
 Coverage: reading
 
-ZIPの atlas-thermostats-2026-11-22 フォルダで実行します。このコマンドは配布版の全3例を実行します。新規または空の出力先を指定してください。
+ZIPの atlas-thermostats-2026-11-22 フォルダで実行します。このコマンドは配布版の全3例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -63856,7 +68106,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-wall-flow/#run-all
 Coverage: reading
 
-ZIPの atlas-wall-flow-2026-11-23-r2 フォルダで実行します。このコマンドは配布版の全2例を実行します。新規または空の出力先を指定してください。
+ZIPの atlas-wall-flow-2026-11-23-r2 フォルダで実行します。このコマンドは配布版の全2例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -64159,6 +68409,542 @@ Kambiz Salari and Patrick Knupp (2000). Code Verification by the Method of Manuf
 確認範囲 / review_level: primary-selected-section-and-official-abstract
 Sandia/OSTI公式書誌・抄録と、原著報告の印刷12頁で製造解と格子細分化の併用を確認。本例の多項式と圧力場は独自に構成しました。
 
+## 熱的PIC：Landau減衰と二流不安定性 — 熱的PIC：Landau減衰と二流不安定性 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/
+Coverage: reading
+
+自己無撞着な全分布の重み付きPICを、独立な誘電分散式と線形Volterra初期値問題と比較します。
+
+## 熱的PIC：Landau減衰と二流不安定性 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#run-all
+Coverage: reading
+
+ZIPの atlas-warm-pic-2026-11-23 フォルダで実行します。このコマンドは配布版の全2例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## 熱的PIC：Landau減衰と二流不安定性 — 温かいPICの線形Landau減衰 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/
+Coverage: reading
+
+熱速度1のMaxwell分布を自己無撞着に動かし、減衰率・周波数・符号付き場の履歴を独立した線形参照で調べます。
+手法・式・図・参照解
+使用手法
+Particle-in-Cell（PIC）
+Cloud-in-cellの割当てと補間
+速度Verlet／粒子leapfrog法
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+正のGauss速度重みと密度CDF逆写像で共同(x,v)分布を作り、CIC電荷配置→FFT Poisson→同じCIC補間を各kickで再計算するvelocity-Verlet法。Z関数の分散根を枝追跡で確認し、別導出のVolterra初期値問題を刻み半減して固定窓の過渡偏りを検査します。
+静電Vlasov–Poisson方程式
+vth=ωp=λD=1、k=.5、L=4π、α=.01、格子32、256空間層×128速度節点、dt=.04、T16、固定窓[4,12]。シード33001–33004。 空間粒子層だけ512へ倍増する独立companionも固定します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+温かいPICの線形Landau減衰
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+31 pytest・19自己無撞着計算・140/140ケース判定・17/17独立線形参照資格判定が合格。pytest+mainは7.283秒。Landau粒子空間層256/512の曲線差.001154、振幅半減差.004376は固定.03以下。以前の64層版130/131（振幅差.05646>.03）は全データと元契約を保持した未達例です。入力の振幅と全許容値は維持しました。
+同じ問題の参照 · 半解析参照
+温かいPICの線形Landau減衰
+1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。
+
+## 熱的PIC：Landau減衰と二流不安定性 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-landau-damping-assumptions
+Coverage: reading
+
+vth=ωp=λD=1、k=.5、L=4π、α=.01、格子32、256空間層×128速度節点、dt=.04、T16、固定窓[4,12]。シード33001–33004。 空間粒子層だけ512へ倍増する独立companionも固定します。
+
+## 熱的PIC：Landau減衰と二流不安定性 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-landau-damping-algorithm
+Coverage: reading
+
+正のGauss速度重みと密度CDF逆写像で共同(x,v)分布を作り、CIC電荷配置→FFT Poisson→同じCIC補間を各kickで再計算するvelocity-Verlet法。Z関数の分散根を枝追跡で確認し、別導出のVolterra初期値問題を刻み半減して固定窓の過渡偏りを検査します。
+\partial_t f+v\partial_x f-E\partial_v f=0,\quad\partial_x E=1-\int f\,dv,\quad\langle E\rangle=0D(\omega,k)=1+\frac{1}{k^2}\sum_s a_s[1+\zeta_s Z(\zeta_s)],\quad\zeta_s=\frac{\omega-ku_s}{\sqrt2 k}e(t)=\Phi(t)-\int_0^t s\Phi(s)e(t-s)\,ds,\quad\Phi(t)=e^{-k^2t^2/2}\cos(kut)
+
+## 熱的PIC：Landau減衰と二流不安定性 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-landau-damping-validation
+Coverage: reading
+
+31 pytest・19自己無撞着計算・140/140ケース判定・17/17独立線形参照資格判定が合格。pytest+mainは7.283秒。Landau粒子空間層256/512の曲線差.001154、振幅半減差.004376は固定.03以下。以前の64層版130/131（振幅差.05646>.03）は全データと元契約を保持した未達例です。入力の振幅と全許容値は維持しました。
+
+## 熱的PIC：Landau減衰と二流不安定性 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-landau-damping-limits
+Coverage: reading
+
+1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。
+
+## 熱的PIC：Landau減衰と二流不安定性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-landau-damping-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+mean_rate-0.154880753701
+seed_standard_error1.45147313891e-05
+conditional_t95_lower-0.154926946054
+conditional_t95_upper-0.154834561347
+dielectric_rate-0.15335946691
+volterra_fixed_window_rate-0.153647574022
+root_window_relative_bias0.00187863923817
+mean_linear_curve_relative_rms0.0209239839397
+three_noise_to_minimum_envelope5.22237805385e-12
+mesh_rate_fraction0.00538706340509
+time-half_rate_fraction9.14827746356e-05
+velocity_rate_fraction0.000197217181718
+amplitude-half_rate_fraction0.000918702027463
+amplitude_scaled_curve_gap0.00437552990572
+mean_frequency1.41272121335
+frequency_seed_se3.8538318281e-05
+dielectric_frequency1.4156618886
+spatial_strata_rate_fraction6.62744989007e-05
+spatial_strata_scaled_curve_gap0.00115370527739
+判定 / check合格
+independent root and fixed-window Volterra qualifiedtrue
+nine fixed full-f calculationstrue
+ten declared Landau full-f calculationstrue
+thermal-landau-damping-seed33001 all fields and histories finitetrue
+thermal-landau-damping-seed33001 fixed time and five snapshotstrue
+thermal-landau-damping-seed33001 charge momentum resolvedGauss and energytrue
+thermal-landau-damping-seed33001 positive full-f weights without repairtrue
+thermal-landau-damping-seed33001 joint load and Gaussian quadrature qualifiedtrue
+thermal-landau-damping-seed33001 resolved fixed-window rate fittrue
+
+## 熱的PIC：Landau減衰と二流不安定性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-landau-damping-measurements
+Coverage: reading
+
+thermal-landau-damping-seed33002 all fields and histories finitetrue
+thermal-landau-damping-seed33002 fixed time and five snapshotstrue
+thermal-landau-damping-seed33002 charge momentum resolvedGauss and energytrue
+thermal-landau-damping-seed33002 positive full-f weights without repairtrue
+thermal-landau-damping-seed33002 joint load and Gaussian quadrature qualifiedtrue
+thermal-landau-damping-seed33002 resolved fixed-window rate fittrue
+thermal-landau-damping-seed33003 all fields and histories finitetrue
+thermal-landau-damping-seed33003 fixed time and five snapshotstrue
+thermal-landau-damping-seed33003 charge momentum resolvedGauss and energytrue
+thermal-landau-damping-seed33003 positive full-f weights without repairtrue
+thermal-landau-damping-seed33003 joint load and Gaussian quadrature qualifiedtrue
+thermal-landau-damping-seed33003 resolved fixed-window rate fittrue
+thermal-landau-damping-seed33004 all fields and histories finitetrue
+thermal-landau-damping-seed33004 fixed time and five snapshotstrue
+thermal-landau-damping-seed33004 charge momentum resolvedGauss and energytrue
+thermal-landau-damping-seed33004 positive full-f weights without repairtrue
+thermal-landau-damping-seed33004 joint load and Gaussian quadrature qualifiedtrue
+thermal-landau-damping-seed33004 resolved fixed-window rate fittrue
+thermal-landau-damping-mesh all fields and histories finitetrue
+
+## 熱的PIC：Landau減衰と二流不安定性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-landau-damping-measurements
+Coverage: reading
+
+thermal-landau-damping-mesh fixed time and five snapshotstrue
+thermal-landau-damping-mesh charge momentum resolvedGauss and energytrue
+thermal-landau-damping-mesh positive full-f weights without repairtrue
+thermal-landau-damping-mesh joint load and Gaussian quadrature qualifiedtrue
+thermal-landau-damping-mesh resolved fixed-window rate fittrue
+thermal-landau-damping-time-half all fields and histories finitetrue
+thermal-landau-damping-time-half fixed time and five snapshotstrue
+thermal-landau-damping-time-half charge momentum resolvedGauss and energytrue
+thermal-landau-damping-time-half positive full-f weights without repairtrue
+thermal-landau-damping-time-half joint load and Gaussian quadrature qualifiedtrue
+thermal-landau-damping-time-half resolved fixed-window rate fittrue
+thermal-landau-damping-velocity all fields and histories finitetrue
+thermal-landau-damping-velocity fixed time and five snapshotstrue
+thermal-landau-damping-velocity charge momentum resolvedGauss and energytrue
+thermal-landau-damping-velocity positive full-f weights without repairtrue
+thermal-landau-damping-velocity joint load and Gaussian quadrature qualifiedtrue
+thermal-landau-damping-velocity resolved fixed-window rate fittrue
+thermal-landau-damping-amplitude-half all fields and histories finitetrue
+thermal-landau-damping-amplitude-half fixed time and five snapshotstrue
+
+## 熱的PIC：Landau減衰と二流不安定性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-landau-damping-measurements
+Coverage: reading
+
+thermal-landau-damping-amplitude-half charge momentum resolvedGauss and energytrue
+thermal-landau-damping-amplitude-half positive full-f weights without repairtrue
+thermal-landau-damping-amplitude-half joint load and Gaussian quadrature qualifiedtrue
+thermal-landau-damping-amplitude-half resolved fixed-window rate fittrue
+thermal-landau-damping-noise all fields and histories finitetrue
+thermal-landau-damping-noise fixed time and five snapshotstrue
+thermal-landau-damping-noise charge momentum resolvedGauss and energytrue
+thermal-landau-damping-noise positive full-f weights without repairtrue
+thermal-landau-damping-noise joint load and Gaussian quadrature qualifiedtrue
+thermal-landau-damping-spatial-strata all fields and histories finitetrue
+thermal-landau-damping-spatial-strata fixed time and five snapshotstrue
+thermal-landau-damping-spatial-strata charge momentum resolvedGauss and energytrue
+thermal-landau-damping-spatial-strata positive full-f weights without repairtrue
+thermal-landau-damping-spatial-strata joint load and Gaussian quadrature qualifiedtrue
+thermal-landau-damping-spatial-strata resolved fixed-window rate fittrue
+conditional rate precisiontrue
+mean rate versus dielectric poletrue
+mean rate versus linear IVP fixed-window estimatortrue
+mean field curve versus linear continuumtrue
+quiet-equilibrium noise versus fitted envelopetrue
+mesh separate rate sensitivitytrue
+
+## 熱的PIC：Landau減衰と二流不安定性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-landau-damping-measurements
+Coverage: reading
+
+time-half separate rate sensitivitytrue
+velocity separate rate sensitivitytrue
+amplitude-half separate rate sensitivitytrue
+amplitude-halving scaled field linearitytrue
+mean frequency versus dielectric poletrue
+spatial-strata separate rate sensitivitytrue
+spatial-strata scaled field sensitivitytrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。実際に動かした粒子の初期(x,v)に対する速度変化δv/α。空間2D流体図ではなく1D1V位相空間の応答です。全記録を表で読む
+spatial_strataidfamilyseedgridnodesdtamplitudecaseparticlesstepstimesnapshot_timesloadall_finitemaximum_charge_errormaximum_momentum_driftmaximum_resolved_gaussmaximum_energy_driftmaximum_nyquist_chargeminimum_weightstate_clip_countretriesfitlinear_curve_relative_rmsnormalization_field_amplitudenoise_mode_rmsfilesha256
+
+## 熱的PIC：Landau減衰と二流不安定性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-landau-damping-measurements
+Coverage: reading
+
+256thermal-landau-damping-seed33001ensemble33001321280.040.01thermal-landau-damping3276840016[0.0,4.0,8.0,12.0,16.0]{"joint_low_mode_factorization_defect":2.288774487666669e-16,"mean_velocity":2.5525189843522304e-19,"thermal_variance":1.0,"fourth_moment_relative_error":5.921189464667501e-16,"gaussian_characteristic_defect":3.3306690738754696e-16,"density_mode_defect":3.4250361894052986e-17,"minimum_weight":4.9824397257431146e-104,"maximum_velocity":21.62589890769055}true3.70586027913e-152.12036978445e-165.58785009585e-201.89630735954e-070.0005334197188074.98243972574e-10400{"gamma":-0.15487404248646777,"omega":1.412748023847043,"relative_fit_residual":0.001337314338742206,"minimum_envelope":0.11468312192557754,"samples":201}0.02082816671880.01—thermal-landau-damping-thermal-landau-damping-seed33001.npz710f233473fa351bf358e6819c0f5be517de2b07e02e9d28998ca04fa1b71136
+
+## 熱的PIC：Landau減衰と二流不安定性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-landau-damping-measurements
+Coverage: reading
+
+256thermal-landau-damping-seed33002ensemble33002321280.040.01thermal-landau-damping3276840016[0.0,4.0,8.0,12.0,16.0]{"joint_low_mode_factorization_defect":2.288774487666669e-16,"mean_velocity":2.5525189843522304e-19,"thermal_variance":1.0,"fourth_moment_relative_error":5.921189464667501e-16,"gaussian_characteristic_defect":3.3306690738754696e-16,"density_mode_defect":7.509669588319243e-17,"minimum_weight":4.9824397257431146e-104,"maximum_velocity":21.62589890769055}true4.14184384139e-151.41357986823e-165.42365719447e-201.75850110657e-070.0004641867956124.98243972574e-10400{"gamma":-0.15486573914140617,"omega":1.412695797607326,"relative_fit_residual":0.0013593977687838192,"minimum_envelope":0.11467457157257085,"samples":201}0.02111169179240.01—thermal-landau-damping-thermal-landau-damping-seed33002.npzd3c30bc333fb71c950049066515a8aed2107c754766cddccb5576f2db07df4a2
+
+## 熱的PIC：Landau減衰と二流不安定性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-landau-damping-measurements
+Coverage: reading
+
+256thermal-landau-damping-seed33003ensemble33003321280.040.01thermal-landau-damping3276840016[0.0,4.0,8.0,12.0,16.0]{"joint_low_mode_factorization_defect":2.288774487666669e-16,"mean_velocity":2.5525189843522304e-19,"thermal_variance":1.0,"fourth_moment_relative_error":5.921189464667501e-16,"gaussian_characteristic_defect":3.3306690738754696e-16,"density_mode_defect":4.655107768950204e-17,"minimum_weight":4.9824397257431146e-104,"maximum_velocity":21.62589890769055}true4.18544219761e-152.12036979296e-165.58785009585e-201.92352298368e-070.0004561143311484.98243972574e-10400{"gamma":-0.15492341003903576,"omega":1.4126298057445186,"relative_fit_residual":0.001164014497526855,"minimum_envelope":0.1146125286054583,"samples":201}0.02108056764830.01—thermal-landau-damping-thermal-landau-damping-seed33003.npz5ee9321cabbb8506068c2f163a48393e81b06fa1610d3d494b65b529114f2a03
+
+## 熱的PIC：Landau減衰と二流不安定性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-landau-damping-measurements
+Coverage: reading
+
+256thermal-landau-damping-seed33004ensemble33004321280.040.01thermal-landau-damping3276840016[0.0,4.0,8.0,12.0,16.0]{"joint_low_mode_factorization_defect":2.288774487666669e-16,"mean_velocity":2.5525189843522304e-19,"thermal_variance":1.0,"fourth_moment_relative_error":5.921189464667501e-16,"gaussian_characteristic_defect":3.3306690738754696e-16,"density_mode_defect":2.883460234668479e-17,"minimum_weight":4.9824397257431146e-104,"maximum_velocity":21.62589890769055}true3.61866356668e-152.12036978173e-165.46319835365e-201.42623503873e-070.0003285820685144.98243972574e-10400{"gamma":-0.15485982313596577,"omega":1.4128112261859955,"relative_fit_residual":0.0009962365505557323,"minimum_envelope":0.11471939208620051,"samples":201}0.02067550959940.01—thermal-landau-damping-thermal-landau-damping-seed33004.npz1b5d396b386f28aac0d75dbd602381503d916aa69c4be8aee18ef1f0abbe14ac
+
+## 熱的PIC：Landau減衰と二流不安定性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-landau-damping-measurements
+Coverage: reading
+
+256thermal-landau-damping-meshmesh33001641280.040.01thermal-landau-damping3276840016[0.0,4.0,8.0,12.0,16.0]{"joint_low_mode_factorization_defect":2.288774487666669e-16,"mean_velocity":2.5525189843522304e-19,"thermal_variance":1.0,"fourth_moment_relative_error":5.921189464667501e-16,"gaussian_characteristic_defect":3.3306690738754696e-16,"density_mode_defect":3.4250361894052986e-17,"minimum_weight":4.9824397257431146e-104,"maximum_velocity":21.62589890769055}true1.72213507089e-151.41357986515e-166.06087439758e-201.90515817794e-070.0003444883183594.98243972574e-10400{"gamma":-0.1540478853144545,"omega":1.4146186603852107,"relative_fit_residual":0.0013120045194692414,"minimum_envelope":0.11605968774306037,"samples":201}0.005247536188020.01—thermal-landau-damping-thermal-landau-damping-mesh.npzbd3f70b50053c2c6f9549ff30e5b52393ca9b54a5b6cbdd4033ca0c03b421512
+
+## 熱的PIC：Landau減衰と二流不安定性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-landau-damping-measurements
+Coverage: reading
+
+256thermal-landau-damping-time-halftime-half33001321280.020.01thermal-landau-damping3276880016[0.0,4.0,8.0,12.0,16.0]{"joint_low_mode_factorization_defect":2.288774487666669e-16,"mean_velocity":2.5525189843522304e-19,"thermal_variance":1.0,"fourth_moment_relative_error":5.921189464667501e-16,"gaussian_characteristic_defect":3.3306690738754696e-16,"density_mode_defect":3.4250361894052986e-17,"minimum_weight":4.9824397257431146e-104,"maximum_velocity":21.62589890769055}true4.49063069119e-152.12036979507e-165.46319835365e-201.51181421255e-070.0005322735632844.98243972574e-10400{"gamma":-0.1548880722360173,"omega":1.4127130875395628,"relative_fit_residual":0.001335866309697039,"minimum_envelope":0.11467078918347996,"samples":401}0.02103957222790.01—thermal-landau-damping-thermal-landau-damping-time-half.npz1f3314ac4678efa6a94f274849648a925c4b1c5b903d50e938e7673e780c9568
+
+## 熱的PIC：Landau減衰と二流不安定性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-landau-damping-measurements
+Coverage: reading
+
+256thermal-landau-damping-velocityvelocity33001322560.040.01thermal-landau-damping6553640016[0.0,4.0,8.0,12.0,16.0]{"joint_low_mode_factorization_defect":2.223134568585368e-16,"mean_velocity":1.1842240341922343e-17,"thermal_variance":0.9999999999999889,"fourth_moment_relative_error":1.080617077301819e-14,"gaussian_characteristic_defect":9.686695889854491e-15,"density_mode_defect":1.357627096943426e-17,"minimum_weight":1.4500485196376065e-212,"maximum_velocity":31.100951037096518}true7.49891727072e-151.94879297105e-163.03043719879e-201.6167923339e-070.0002910005171411.45004851964e-21200{"gamma":-0.15484379736461404,"omega":1.4128003598906524,"relative_fit_residual":0.0010384749676978194,"minimum_envelope":0.11472237935752277,"samples":201}0.02069858796250.01—thermal-landau-damping-thermal-landau-damping-velocity.npz468c8ef8a044de8b22507e12fe2f8edff8626e2d16c6bd37437ddeebc841d48d
+
+## 熱的PIC：Landau減衰と二流不安定性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-landau-damping-measurements
+Coverage: reading
+
+256thermal-landau-damping-amplitude-halfamplitude-half33001321280.040.005thermal-landau-damping3276840016[0.0,4.0,8.0,12.0,16.0]{"joint_low_mode_factorization_defect":2.288774487666669e-16,"mean_velocity":2.5525189843522304e-19,"thermal_variance":1.0,"fourth_moment_relative_error":5.921189464667501e-16,"gaussian_characteristic_defect":3.3306690738754696e-16,"density_mode_defect":3.7324005964944454e-17,"minimum_weight":4.9824397257431146e-104,"maximum_velocity":21.62589890769055}true4.31623726629e-151.41357986024e-162.79392504793e-208.65001922871e-080.0001177415649524.98243972574e-10400{"gamma":-0.15473315083328731,"omega":1.412680942994998,"relative_fit_residual":0.003899537994010339,"minimum_envelope":0.11481982218158883,"samples":201}0.0209383778670.005—thermal-landau-damping-thermal-landau-damping-amplitude-half.npz868d3a2f48f131969f1e5f8eb0702206db60905393c0b9ec27f7c3cc8bf12dbb
+
+## 熱的PIC：Landau減衰と二流不安定性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-landau-damping-measurements
+Coverage: reading
+
+256thermal-landau-damping-noisenoise33001321280.040thermal-landau-damping3276840016[0.0,4.0,8.0,12.0,16.0]{"joint_low_mode_factorization_defect":2.288774487666669e-16,"mean_velocity":2.5525189843522304e-19,"thermal_variance":1.0,"fourth_moment_relative_error":5.921189464667501e-16,"gaussian_characteristic_defect":3.3306690738754696e-16,"density_mode_defect":3.4758244027106133e-17,"minimum_weight":4.9824397257431146e-104,"maximum_velocity":21.62589890769055}true1.4518252623e-149.18826907978e-161.62627841807e-302.82715971686e-169.97465998687e-154.98243972574e-10400——0.011.99516651362e-13thermal-landau-damping-thermal-landau-damping-noise.npz2ce52bf4a6498e3d9a82c80818594cd5d9d4b6562c4a35cf665025215c4d20e0
+
+## 熱的PIC：Landau減衰と二流不安定性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-landau-damping-measurements
+Coverage: reading
+
+512thermal-landau-damping-spatial-strataspatial-strata33001321280.040.01thermal-landau-damping6553640016[0.0,4.0,8.0,12.0,16.0]{"joint_low_mode_factorization_defect":3.382158102537463e-16,"mean_velocity":8.684619096215866e-18,"thermal_variance":1.0,"fourth_moment_relative_error":5.921189464667501e-16,"gaussian_characteristic_defect":3.3306690738754696e-16,"density_mode_defect":1.405934898984759e-17,"minimum_weight":2.4912198628715573e-104,"maximum_velocity":21.62589890769055}true5.36259781569e-151.56098594125e-165.42167256653e-201.00069468942e-070.0001537969313312.49121986287e-10400{"gamma":-0.15486387866464665,"omega":1.4127505492185088,"relative_fit_residual":0.0007278464371114105,"minimum_envelope":0.11469932029280094,"samples":201}0.02081573067010.01—thermal-landau-damping-thermal-landau-damping-spatial-strata.npzea74e28c40accf87b2d70c3252d07ab6f20ff895ec16c4415309cf2f08be3e2c
+この例の実測値・全記録 / JSON
+
+## 熱的PIC：Landau減衰と二流不安定性 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-landau-damping-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Enrico Camporeale, Gian Luca Delzanno, Benjamin K. Bergen and J. David Moulton (2013). On the velocity space discretization for the Vlasov–Poisson system: comparison between Hermite spectral and Particle-in-Cell methods. Part 1: semi-implicit scheme
+確認範囲 / review_level: primary-selected-original-pdf-text
+原著の規格化方程式、再帰・雑音、Landauと二流の線形窓の議論を選択して確認。原著の計算値は転用しません。
+PlasmaPy developers (2026). Plasma dispersion function: official API mathematics
+確認範囲 / review_level: official-mathematical-definition-read
+公式のZ関数の定義を確認。PlasmaPy実行値を参照したものではありません。
+SciPy developers (2024). SciPy1.14.1 roots_hermitenorm
+確認範囲 / review_level: official-pinned-version-definition-read
+公式1.14.1文書の重みと多項式積分次数を確認。初期粒子重みだけに用います。
+
+## 熱的PIC：Landau減衰と二流不安定性 — 温かいPICの二流初期成長 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/
+Coverage: reading
+
+温度を持つ対向Maxwell二流を時間発展し、固定した線形窓の成長率と過渡を分散式・Volterra参照から分けて検査します。
+手法・式・図・参照解
+使用手法
+Particle-in-Cell（PIC）
+Cloud-in-cellの割当てと補間
+速度Verlet／粒子leapfrog法
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+正のGauss速度重みと密度CDF逆写像で共同(x,v)分布を作り、CIC電荷配置→FFT Poisson→同じCIC補間を各kickで再計算するvelocity-Verlet法。Z関数の分散根を枝追跡で確認し、別導出のVolterra初期値問題を刻み半減して固定窓の過渡偏りを検査します。
+静電Vlasov–Poisson方程式
+各流の熱速度1、ドリフト±3、k=.2、L=10π、α=1e−5、格子32、64空間層×128総速度節点、dt=.05、T40、固定窓[12,20]。シード34001–34004。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+温かいPICの二流初期成長
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+31 pytest・19自己無撞着計算・140/140ケース判定・17/17独立線形参照資格判定が合格。pytest+mainは7.283秒。Landau粒子空間層256/512の曲線差.001154、振幅半減差.004376は固定.03以下。以前の64層版130/131（振幅差.05646>.03）は全データと元契約を保持した未達例です。入力の振幅と全許容値は維持しました。
+同じ問題の参照 · 半解析参照
+温かいPICの二流初期成長
+1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。
+
+## 熱的PIC：Landau減衰と二流不安定性 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-two-stream-assumptions
+Coverage: reading
+
+各流の熱速度1、ドリフト±3、k=.2、L=10π、α=1e−5、格子32、64空間層×128総速度節点、dt=.05、T40、固定窓[12,20]。シード34001–34004。
+
+## 熱的PIC：Landau減衰と二流不安定性 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-two-stream-algorithm
+Coverage: reading
+
+正のGauss速度重みと密度CDF逆写像で共同(x,v)分布を作り、CIC電荷配置→FFT Poisson→同じCIC補間を各kickで再計算するvelocity-Verlet法。Z関数の分散根を枝追跡で確認し、別導出のVolterra初期値問題を刻み半減して固定窓の過渡偏りを検査します。
+\partial_t f+v\partial_x f-E\partial_v f=0,\quad\partial_x E=1-\int f\,dv,\quad\langle E\rangle=0D(\omega,k)=1+\frac{1}{k^2}\sum_s a_s[1+\zeta_s Z(\zeta_s)],\quad\zeta_s=\frac{\omega-ku_s}{\sqrt2 k}e(t)=\Phi(t)-\int_0^t s\Phi(s)e(t-s)\,ds,\quad\Phi(t)=e^{-k^2t^2/2}\cos(kut)
+
+## 熱的PIC：Landau減衰と二流不安定性 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-two-stream-validation
+Coverage: reading
+
+31 pytest・19自己無撞着計算・140/140ケース判定・17/17独立線形参照資格判定が合格。pytest+mainは7.283秒。Landau粒子空間層256/512の曲線差.001154、振幅半減差.004376は固定.03以下。以前の64層版130/131（振幅差.05646>.03）は全データと元契約を保持した未達例です。入力の振幅と全許容値は維持しました。
+
+## 熱的PIC：Landau減衰と二流不安定性 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-two-stream-limits
+Coverage: reading
+
+1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。
+
+## 熱的PIC：Landau減衰と二流不安定性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-two-stream-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+mean_rate0.27311134291
+seed_standard_error0.000159347590742
+conditional_t95_lower0.272604227758
+conditional_t95_upper0.273618458061
+dielectric_rate0.284509686205
+volterra_fixed_window_rate0.273678427772
+root_window_relative_bias0.0380699110032
+mean_linear_curve_relative_rms0.0238941453943
+three_noise_to_minimum_envelope5.2127007493e-09
+mesh_rate_fraction0.00201417528181
+time-half_rate_fraction0.00170663537458
+velocity_rate_fraction0.00126369857501
+amplitude-half_rate_fraction9.69923502431e-05
+amplitude_scaled_curve_gap0.000950937813853
+判定 / check合格
+independent root and fixed-window Volterra qualifiedtrue
+nine fixed full-f calculationstrue
+thermal-two-stream-seed34001 all fields and histories finitetrue
+thermal-two-stream-seed34001 fixed time and five snapshotstrue
+thermal-two-stream-seed34001 charge momentum resolvedGauss and energytrue
+thermal-two-stream-seed34001 positive full-f weights without repairtrue
+thermal-two-stream-seed34001 joint load and Gaussian quadrature qualifiedtrue
+thermal-two-stream-seed34001 resolved fixed-window rate fittrue
+thermal-two-stream-seed34002 all fields and histories finitetrue
+thermal-two-stream-seed34002 fixed time and five snapshotstrue
+thermal-two-stream-seed34002 charge momentum resolvedGauss and energytrue
+
+## 熱的PIC：Landau減衰と二流不安定性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-two-stream-measurements
+Coverage: reading
+
+thermal-two-stream-seed34002 positive full-f weights without repairtrue
+thermal-two-stream-seed34002 joint load and Gaussian quadrature qualifiedtrue
+thermal-two-stream-seed34002 resolved fixed-window rate fittrue
+thermal-two-stream-seed34003 all fields and histories finitetrue
+thermal-two-stream-seed34003 fixed time and five snapshotstrue
+thermal-two-stream-seed34003 charge momentum resolvedGauss and energytrue
+thermal-two-stream-seed34003 positive full-f weights without repairtrue
+thermal-two-stream-seed34003 joint load and Gaussian quadrature qualifiedtrue
+thermal-two-stream-seed34003 resolved fixed-window rate fittrue
+thermal-two-stream-seed34004 all fields and histories finitetrue
+thermal-two-stream-seed34004 fixed time and five snapshotstrue
+thermal-two-stream-seed34004 charge momentum resolvedGauss and energytrue
+thermal-two-stream-seed34004 positive full-f weights without repairtrue
+thermal-two-stream-seed34004 joint load and Gaussian quadrature qualifiedtrue
+thermal-two-stream-seed34004 resolved fixed-window rate fittrue
+thermal-two-stream-mesh all fields and histories finitetrue
+thermal-two-stream-mesh fixed time and five snapshotstrue
+thermal-two-stream-mesh charge momentum resolvedGauss and energytrue
+thermal-two-stream-mesh positive full-f weights without repairtrue
+thermal-two-stream-mesh joint load and Gaussian quadrature qualifiedtrue
+
+## 熱的PIC：Landau減衰と二流不安定性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-two-stream-measurements
+Coverage: reading
+
+thermal-two-stream-mesh resolved fixed-window rate fittrue
+thermal-two-stream-time-half all fields and histories finitetrue
+thermal-two-stream-time-half fixed time and five snapshotstrue
+thermal-two-stream-time-half charge momentum resolvedGauss and energytrue
+thermal-two-stream-time-half positive full-f weights without repairtrue
+thermal-two-stream-time-half joint load and Gaussian quadrature qualifiedtrue
+thermal-two-stream-time-half resolved fixed-window rate fittrue
+thermal-two-stream-velocity all fields and histories finitetrue
+thermal-two-stream-velocity fixed time and five snapshotstrue
+thermal-two-stream-velocity charge momentum resolvedGauss and energytrue
+thermal-two-stream-velocity positive full-f weights without repairtrue
+thermal-two-stream-velocity joint load and Gaussian quadrature qualifiedtrue
+thermal-two-stream-velocity resolved fixed-window rate fittrue
+thermal-two-stream-amplitude-half all fields and histories finitetrue
+thermal-two-stream-amplitude-half fixed time and five snapshotstrue
+thermal-two-stream-amplitude-half charge momentum resolvedGauss and energytrue
+thermal-two-stream-amplitude-half positive full-f weights without repairtrue
+thermal-two-stream-amplitude-half joint load and Gaussian quadrature qualifiedtrue
+thermal-two-stream-amplitude-half resolved fixed-window rate fittrue
+thermal-two-stream-noise all fields and histories finitetrue
+
+## 熱的PIC：Landau減衰と二流不安定性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-two-stream-measurements
+Coverage: reading
+
+thermal-two-stream-noise fixed time and five snapshotstrue
+thermal-two-stream-noise charge momentum resolvedGauss and energytrue
+thermal-two-stream-noise positive full-f weights without repairtrue
+thermal-two-stream-noise joint load and Gaussian quadrature qualifiedtrue
+conditional rate precisiontrue
+mean rate versus dielectric poletrue
+mean rate versus linear IVP fixed-window estimatortrue
+mean field curve versus linear continuumtrue
+quiet-equilibrium noise versus fitted envelopetrue
+mesh separate rate sensitivitytrue
+time-half separate rate sensitivitytrue
+velocity separate rate sensitivitytrue
+amplitude-half separate rate sensitivitytrue
+amplitude-halving scaled field linearitytrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。実粒子のT40での速度変化δv/αを初期(x,v)に表示。1D1V位相空間の後期診断で、成長率を検証する固定窓[12,20]とは分けます。全記録を表で読む
+spatial_strataidfamilyseedgridnodesdtamplitudecaseparticlesstepstimesnapshot_timesloadall_finitemaximum_charge_errormaximum_momentum_driftmaximum_resolved_gaussmaximum_energy_driftmaximum_nyquist_chargeminimum_weightstate_clip_countretriesfitlinear_curve_relative_rmsnormalization_field_amplitudenoise_mode_rmsfilesha256
+
+## 熱的PIC：Landau減衰と二流不安定性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-two-stream-measurements
+Coverage: reading
+
+64thermal-two-stream-seed34001ensemble34001321280.051e-05thermal-two-stream819280040[0.0,10.0,20.0,30.0,40.0]{"joint_low_mode_factorization_defect":1.1102230246251565e-16,"mean_velocity":0.0,"thermal_variance":1.0,"fourth_moment_relative_error":0.0,"gaussian_characteristic_defect":1.942890293094024e-16,"density_mode_defect":1.7553933174139736e-17,"minimum_weight":7.6654565366894425e-50,"maximum_velocity":17.88618614333945}true8.93766302615e-152.86088448459e-166.93889473109e-181.02124038568e-050.002315937453627.66545653669e-5000{"gamma":0.2735614285036542,"omega":0.0,"relative_fit_residual":0.032389913079896096,"minimum_envelope":3.3324522574441695,"samples":161}0.02211685733852.5e-05—thermal-two-stream-thermal-two-stream-seed34001.npzd69a1c3dbf4d3485ae354a45afbd13843c563c628bd6feb691ba8ee3704e85bf
+
+## 熱的PIC：Landau減衰と二流不安定性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-two-stream-measurements
+Coverage: reading
+
+64thermal-two-stream-seed34002ensemble34002321280.051e-05thermal-two-stream819280040[0.0,10.0,20.0,30.0,40.0]{"joint_low_mode_factorization_defect":1.1102230246251565e-16,"mean_velocity":0.0,"thermal_variance":1.0,"fourth_moment_relative_error":0.0,"gaussian_characteristic_defect":1.942890293094024e-16,"density_mode_defect":2.609642958964506e-17,"minimum_weight":7.6654565366894425e-50,"maximum_velocity":17.88618614333945}true8.39268357333e-152.14566336344e-166.9388941107e-181.29740795572e-050.002444274275267.66545653669e-5000{"gamma":0.2731063593696736,"omega":0.0,"relative_fit_residual":0.033316047122332,"minimum_envelope":3.3454291745918026,"samples":161}0.02165542701242.5e-05—thermal-two-stream-thermal-two-stream-seed34002.npz385538bc33eeaf4de33a46c0ca60f944b21b5e810595abca5ce4f64c4f09ae7a
+
+## 熱的PIC：Landau減衰と二流不安定性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-two-stream-measurements
+Coverage: reading
+
+64thermal-two-stream-seed34003ensemble34003321280.051e-05thermal-two-stream819280040[0.0,10.0,20.0,30.0,40.0]{"joint_low_mode_factorization_defect":1.1102230246251565e-16,"mean_velocity":0.0,"thermal_variance":1.0,"fourth_moment_relative_error":0.0,"gaussian_characteristic_defect":1.942890293094024e-16,"density_mode_defect":5.688927826543537e-17,"minimum_weight":7.6654565366894425e-50,"maximum_velocity":17.88618614333945}true8.71967124502e-152.14566336344e-166.93890713878e-188.65737694764e-060.002418115483797.66545653669e-5000{"gamma":0.272927779442932,"omega":0.0,"relative_fit_residual":0.03505315026474218,"minimum_envelope":3.3353630460194528,"samples":161}0.02580449956942.5e-05—thermal-two-stream-thermal-two-stream-seed34003.npzdf60050409388a6e1833212d893e3ad64dfbf5e1b0fb5db5be1c942a46af37a6
+
+## 熱的PIC：Landau減衰と二流不安定性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-two-stream-measurements
+Coverage: reading
+
+64thermal-two-stream-seed34004ensemble34004321280.051e-05thermal-two-stream819280040[0.0,10.0,20.0,30.0,40.0]{"joint_low_mode_factorization_defect":1.1102230246251565e-16,"mean_velocity":0.0,"thermal_variance":1.0,"fourth_moment_relative_error":0.0,"gaussian_characteristic_defect":1.942890293094024e-16,"density_mode_defect":1.5088164133957347e-17,"minimum_weight":7.6654565366894425e-50,"maximum_velocity":17.88618614333945}true9.04665891671e-151.43044224229e-166.93889721263e-181.09460678654e-050.00317141501857.66545653669e-5000{"gamma":0.27284980432322586,"omega":0.0,"relative_fit_residual":0.03423080592250096,"minimum_envelope":3.3361292559466658,"samples":161}0.02599979765712.5e-05—thermal-two-stream-thermal-two-stream-seed34004.npzfeb81d0e6c7bf2bea105177281c77e6eac8b30b4237af5146f81de628aa399c1
+
+## 熱的PIC：Landau減衰と二流不安定性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-two-stream-measurements
+Coverage: reading
+
+64thermal-two-stream-meshmesh34001641280.051e-05thermal-two-stream819280040[0.0,10.0,20.0,30.0,40.0]{"joint_low_mode_factorization_defect":1.1102230246251565e-16,"mean_velocity":0.0,"thermal_variance":1.0,"fourth_moment_relative_error":0.0,"gaussian_characteristic_defect":1.942890293094024e-16,"density_mode_defect":1.7553933174139736e-17,"minimum_weight":7.6654565366894425e-50,"maximum_velocity":17.88618614333945}true6.92123905074e-152.14566336344e-166.93889473109e-181.04166273745e-050.003777116286957.66545653669e-5000{"gamma":0.2741344808810438,"omega":0.0,"relative_fit_residual":0.03227679424637816,"minimum_envelope":3.362775952437652,"samples":161}0.01642283638772.5e-05—thermal-two-stream-thermal-two-stream-mesh.npzb9bc43f13311d384f0b818f2c19d4171bd11d518bd90e2a83ebb5d311f651a57
+
+## 熱的PIC：Landau減衰と二流不安定性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-two-stream-measurements
+Coverage: reading
+
+64thermal-two-stream-time-halftime-half34001321280.0251e-05thermal-two-stream8192160040[0.0,10.0,20.0,30.0,40.0]{"joint_low_mode_factorization_defect":1.1102230246251565e-16,"mean_velocity":0.0,"thermal_variance":1.0,"fourth_moment_relative_error":0.0,"gaussian_characteristic_defect":1.942890293094024e-16,"density_mode_defect":1.7553933174139736e-17,"minimum_weight":7.6654565366894425e-50,"maximum_velocity":17.88618614333945}true9.48264247896e-153.57610560574e-166.93890713878e-181.00528551997e-050.002336867483447.66545653669e-5000{"gamma":0.2730758742087663,"omega":0.0,"relative_fit_residual":0.03306450460183948,"minimum_envelope":3.3391745103287014,"samples":321}0.02334283974842.5e-05—thermal-two-stream-thermal-two-stream-time-half.npz1309e58fb452b1c91d2965125fc974581d0ceb11d68d05d68677c6e1f94a5cc6
+
+## 熱的PIC：Landau減衰と二流不安定性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-two-stream-measurements
+Coverage: reading
+
+64thermal-two-stream-velocityvelocity34001322560.051e-05thermal-two-stream1638480040[0.0,10.0,20.0,30.0,40.0]{"joint_low_mode_factorization_defect":2.220446049250313e-16,"mean_velocity":0.0,"thermal_variance":1.0,"fourth_moment_relative_error":0.0,"gaussian_characteristic_defect":1.942890293094024e-16,"density_mode_defect":5.847465189941937e-17,"minimum_weight":2.491219862871557e-103,"maximum_velocity":24.62589890769055}true1.30795068675e-141.43044224229e-166.9388941107e-188.21764747047e-060.00212008797892.49121986287e-10300{"gamma":0.27320189401862177,"omega":0.0,"relative_fit_residual":0.03284053262378875,"minimum_envelope":3.3379913410821707,"samples":161}0.02220535897782.5e-05—thermal-two-stream-thermal-two-stream-velocity.npz64f5408f56bbd09114bceb263aa1b959f1d72a86fa26ff36a670f244b0111afc
+
+## 熱的PIC：Landau減衰と二流不安定性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-two-stream-measurements
+Coverage: reading
+
+64thermal-two-stream-amplitude-halfamplitude-half34001321280.055e-06thermal-two-stream819280040[0.0,10.0,20.0,30.0,40.0]{"joint_low_mode_factorization_defect":1.1102230246251565e-16,"mean_velocity":0.0,"thermal_variance":1.0,"fourth_moment_relative_error":0.0,"gaussian_characteristic_defect":1.942890293094024e-16,"density_mode_defect":1.7380576689694114e-17,"minimum_weight":7.6654565366894425e-50,"maximum_velocity":17.88618614333945}true8.61067535446e-152.86088448459e-163.46944860631e-185.35728253398e-060.0008509489507197.66545653669e-5000{"gamma":0.2735890237667862,"omega":0.0,"relative_fit_residual":0.03237034696954837,"minimum_envelope":3.3320966245094805,"samples":161}0.0220543726331.25e-05—thermal-two-stream-thermal-two-stream-amplitude-half.npz22bd875ecbb254143b373e7b9e420b9953b874c8b8f02b33af0f08bab43b21b6
+
+## 熱的PIC：Landau減衰と二流不安定性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-two-stream-measurements
+Coverage: reading
+
+64thermal-two-stream-noisenoise34001321280.050thermal-two-stream819280040[0.0,10.0,20.0,30.0,40.0]{"joint_low_mode_factorization_defect":1.1102230246251565e-16,"mean_velocity":0.0,"thermal_variance":1.0,"fourth_moment_relative_error":0.0,"gaussian_characteristic_defect":1.942890293094024e-16,"density_mode_defect":2.1234735851992038e-17,"minimum_weight":7.6654565366894425e-50,"maximum_velocity":17.88618614333945}true2.03822315352e-141.28739801807e-153.33061820021e-275.42814665636e-162.71900557625e-147.66545653669e-5000——2.5e-055.79035879313e-09thermal-two-stream-thermal-two-stream-noise.npz2e07cbbe22a74f26bb02cc5659cf8c8a75eb15d664e2a3b543dbba3f4a6f05f8
+この例の実測値・全記録 / JSON
+
+## 熱的PIC：Landau減衰と二流不安定性 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-two-stream-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Enrico Camporeale, Gian Luca Delzanno, Benjamin K. Bergen and J. David Moulton (2013). On the velocity space discretization for the Vlasov–Poisson system: comparison between Hermite spectral and Particle-in-Cell methods. Part 1: semi-implicit scheme
+確認範囲 / review_level: primary-selected-original-pdf-text
+原著の規格化方程式、再帰・雑音、Landauと二流の線形窓の議論を選択して確認。原著の計算値は転用しません。
+PlasmaPy developers (2026). Plasma dispersion function: official API mathematics
+確認範囲 / review_level: official-mathematical-definition-read
+公式のZ関数の定義を確認。PlasmaPy実行値を参照したものではありません。
+SciPy developers (2024). SciPy1.14.1 roots_hermitenorm
+確認範囲 / review_level: official-pinned-version-definition-read
+公式1.14.1文書の重みと多項式積分次数を確認。初期粒子重みだけに用います。
+
 ## WENOの臨界点・ε依存性 — WENOの臨界点・ε依存性 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-weno-critical/
@@ -64171,7 +68957,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-weno-critical/#run-all
 Coverage: reading
 
-ZIPの atlas-weno-critical-2026-11-23 フォルダで実行します。このコマンドは配布版の全1例を実行します。新規または空の出力先を指定してください。
+ZIPの atlas-weno-critical-2026-11-23 フォルダで実行します。このコマンドは配布版の全1例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -64614,7 +69400,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-zalesak/#run-all
 Coverage: reading
 
-ZIPの atlas-zalesak-2026-11-23 フォルダで実行します。このコマンドは配布版の全1例を実行します。新規または空の出力先を指定してください。
+ZIPの atlas-zalesak-2026-11-23 フォルダで実行します。このコマンドは配布版の全1例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output

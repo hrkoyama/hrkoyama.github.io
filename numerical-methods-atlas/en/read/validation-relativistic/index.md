@@ -194,14 +194,16 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-This command executes every fixed case in the distribution group.
+This command executes every fixed case in the distribution group. Bundled results/ are stored outputs. Rerun into a new output/ directory and use another fresh directory for subsequent runs.
 
 ### Sources and review scope
 
 - Luciano Rezzolla and Olindo Zanotti (2001). An Improved Exact Riemann Solver for Relativistic Hydrodynamics. https://arxiv.org/abs/gr-qc/0103005; review_level=primary-selected-mathematical-sections
-  Read original preprint sections2–4: EOS, relative-velocity equation3.1 and Taub quadratic4.5. Restricted symmetric two-shock specialization.
+Read original preprint sections2–4: EOS, relative-velocity equation3.1 and Taub quadratic4.5. Restricted symmetric two-shock specialization.
+
 - José A. Font (2008). Numerical Hydrodynamics and Magnetohydrodynamics in General Relativity. https://link.springer.com/article/10.12942/lrr-2008-7; review_level=primary-author-review-selected-equations
-  Read official author-review sections3.1–3.2, stress tensor49–51 and recovery68–69; flat-spacetime use only.
+Read official author-review sections3.1–3.2, stress tensor49–51 and recovery68–69; flat-spacetime use only.
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.
 
@@ -398,13 +400,15 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-This command executes every fixed case in the distribution group.
+This command executes every fixed case in the distribution group. Bundled results/ are stored outputs. Rerun into a new output/ directory and use another fresh directory for subsequent runs.
 
 ### Sources and review scope
 
 - L. Del Zanna, O. Zanotti, N. Bucciantini and P. Londrillo (2007). ECHO: a Eulerian Conservative High Order scheme for general relativistic magnetohydrodynamics and magnetodynamics. https://arxiv.org/abs/0704.3206; review_level=primary-original-selected-section-and-rendered-pages
-  Read original journal section4.1 equations82–85 via the university repository; rendered and visually inspected original preprint pages9–10, including normalization and period. No ECHO-algorithm reproduction.
+Read original journal section4.1 equations82–85 via the university repository; rendered and visually inspected original preprint pages9–10, including normalization and period. No ECHO-algorithm reproduction.
+
 - José A. Font (2008). Numerical Hydrodynamics and Magnetohydrodynamics in General Relativity. https://link.springer.com/article/10.12942/lrr-2008-7; review_level=primary-author-review-selected-equations
-  Read official author-review sections3.1–3.2, stress tensor49–51 and recovery68–69; flat-spacetime use only.
+Read official author-review sections3.1–3.2, stress tensor49–51 and recovery68–69; flat-spacetime use only.
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.

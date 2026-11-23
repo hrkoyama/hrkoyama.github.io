@@ -97,10 +97,26 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/particle-gravity/
   availability: run
 
   入力JSONに保存した19粒子の周期CIC–FFT–CIC計算。質量、内力和、単粒子自己力、整数箱長移動を確認し、別の正弦密度の解析的周期Poisson場と照合。
+- [PIC空間演算の独立実装照合](<https://hrkoyama.github.io/numerical-methods-atlas/validation/pic-independent-spatial/?lang=ja>)
+  availability: run
+
+  ベクトル化CIC/FFTと、別に書いた粒子ループCIC・密なDFTを、それぞれが自己無撞着な場を毎kick計算する軌道全体で照合します。
+- [温かいPICの線形Landau減衰](<https://hrkoyama.github.io/numerical-methods-atlas/validation/thermal-landau-damping/?lang=ja>)
+  availability: run
+
+  熱速度1のMaxwell分布を自己無撞着に動かし、減衰率・周波数・符号付き場の履歴を独立した線形参照で調べます。
+- [温かいPICの二流初期成長](<https://hrkoyama.github.io/numerical-methods-atlas/validation/thermal-two-stream/?lang=ja>)
+  availability: run
+
+  温度を持つ対向Maxwell二流を時間発展し、固定した線形窓の成長率と過渡を分散式・Volterra参照から分けて検査します。
 - [Barnes–Hut：192粒子と直接和の比較](<https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/barnes-hut/?lang=ja>)
   availability: run
 
   孤立・軟化重力の静的な力の比較。軌道計算・周期系・実行速度の比較ではありません。
+- [冷たいPlummer密度由来32粒子の短時間力学](<https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-plummer-short/?lang=ja>)
+  availability: run
+
+  同じ軟化有限N ODEで時間誤差と木近似誤差を分け、独立DOP853・直接力と収支を比較。
 - [2次元対数核のM2M・M2L・L2Lを持つFMM](<https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm/?lang=ja>)
   availability: run
 
@@ -109,6 +125,10 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/particle-gravity/
   availability: run
 
   96粒子の2次元対数核を別の全対直接和と照合し、展開次数・木の深さ、回転・平行移動、合力の近似誤差を測ります。
+- [真3D 1/r FMM：多段変換・力・適応所有権](<https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm3d-inverse-r/?lang=ja>)
+  availability: run
+
+  非圧縮Chebyshev FMMを真の葉レベル2/3と別の適応配置で実行し、独立直接和のポテンシャル・加速度と比較します。
 - [Cloud-in-cellの割当てと補間：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/cic/?lang=ja#method-execution-ja>)
   availability: source
 

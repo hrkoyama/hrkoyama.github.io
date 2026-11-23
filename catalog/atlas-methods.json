@@ -4175,8 +4175,8 @@
         "en": "Time integration"
       },
       "summary": {
-        "ja": "位置だけに依存する力を、半分のkick・drift・半分のkickで進める2次の可逆・シンプレクティック法。公開例は単位質量の調和/四次振動子で、エネルギー誤差と構造保存が同じでないことを確かめる。",
-        "en": "A second-order reversible symplectic method using half kick, drift and half kick for position-dependent forces. Released unit-mass harmonic/quartic oscillators illustrate why energy error and geometric structure preservation are different properties."
+        "ja": "既存配布版：位置だけに依存する力を、半分のkick・drift・半分のkickで進める2次の可逆・シンプレクティック法。公開例は単位質量の調和/四次振動子で、エネルギー誤差と構造保存が同じでないことを確かめる。 追加固定例：無軟化Kepler二体の時間誤差、冷たいPlummer密度由来32粒子の短時間力学。条件と検証範囲は各配布版で確認してください。 追加固定例：温かいPICの線形Landau減衰、温かいPICの二流初期成長。条件と検証範囲は各配布版で確認してください。 追加固定例：PIC空間演算の独立実装照合。条件と検証範囲は各配布版で確認してください。",
+        "en": "Existing releases: A second-order reversible symplectic method using half kick, drift and half kick for position-dependent forces. Released unit-mass harmonic/quartic oscillators illustrate why energy error and geometric structure preservation are different properties. Additional fixed examples: Unsoftened Kepler two-body time error, Short-time32body dynamics from a cold Plummer-density sample. See each release for assumptions and checked scope. Additional fixed examples: Warm PIC linear Landau damping, Warm PIC two-stream initial growth. See each release for assumptions and checked scope. Additional fixed examples: Independently coded PIC spatial pipeline. See each release for assumptions and checked scope."
       },
       "status": "educational-example",
       "origin": "existing-coverage-catalog",
@@ -4237,12 +4237,16 @@
       "units": "The released oscillator is nondimensional with m=1 and harmonic ω=1. A general-mass formulation would require drift h p/m and consistent position, momentum, force and time scales; that generalization is not an input feature of this released function.",
       "boundary_conditions": "Spatial boundary conditions do not apply to this oscillator phase-space map. It is a different problem from the original periodic Lennard-Jones fluid; particle periodicity, walls and constraints are not implemented here.",
       "limitations": {
-        "ja": "元のHamiltonianを各ステップで厳密保存するわけではない。シンプレクティックでも大刻みは不安定になり得て、ω=1の調和振動子では|h|<2が安定域の内部。速度依存力、摩擦・サーモスタット、拘束、一般の可変刻みや非分離Hamiltonianでは、同じ性質をそのまま保証できない。公開関数は一般分子動力学solverではない。",
-        "en": "The original Hamiltonian is not exactly preserved at each step. A symplectic map can still be unstable at large steps; for the ω=1 harmonic oscillator, |h|<2 is the interior stability interval. Velocity-dependent forces, friction/thermostats, constraints, generic variable steps and nonseparable Hamiltonians require different treatment. This function is not a general molecular-dynamics solver."
+        "ja": "既存配布版の制約：元のHamiltonianを各ステップで厳密保存するわけではない。シンプレクティックでも大刻みは不安定になり得て、ω=1の調和振動子では|h|<2が安定域の内部。速度依存力、摩擦・サーモスタット、拘束、一般の可変刻みや非分離Hamiltonianでは、同じ性質をそのまま保証できない。公開関数は一般分子動力学solverではない。 今回の追加固定例：1周期・固定離心率のみ。軟化軌道や長時間安定性はこの参照の範囲外。 冷たい有限N初期値で平衡Plummer分布/連続球厳密軌道ではありません。BHの一般相反性・大域symplectic性は主張しません。 今回の追加固定例：1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。 1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。 今回の追加固定例：離散演算の独立したコーディング照合です。時間積分法や連続方程式を変えた独立エンジン、連続極限の収束、冷たいプラズマの振動参照の再現を意味しません。既存cold-plasma-picの関連補助検証として扱い、温かい初期速度の軌道を冷たい解と同一視しません。",
+        "en": "Limits of existing releases: The original Hamiltonian is not exactly preserved at each step. A symplectic map can still be unstable at large steps; for the ω=1 harmonic oscillator, |h|<2 is the interior stability interval. Velocity-dependent forces, friction/thermostats, constraints, generic variable steps and nonseparable Hamiltonians require different treatment. This function is not a general molecular-dynamics solver. Additional fixed examples: One orbit at fixed eccentricity only; softened binaries and long-time behavior are outside this exact reference. Cold finite-N initial value,not an equilibrium Plummer DF or exact continuum orbit. No general BH reciprocity/global symplecticity claim. Additional fixed examples: Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established. Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established. Additional fixed examples: Independent coding check of discrete spatial operators. It does not change the time integrator/continuum model, establish continuum convergence, or reproduce the cold-plasma oscillation reference. A related supplement of cold-plasma-pic; the finite warm velocity spread is explicit."
       },
       "metadata_review": {
         "level": "method-specific source-and-code inspection; no numerical rerun; reference access recorded individually",
-        "on": "2026-11-22"
+        "on": "2026-11-22",
+        "supplemental_review": {
+          "on": "2026-11-23",
+          "level": "Frozen fixed-input source,independent review,actual pytest/main and independently extracted ZIP; see each new release for exact reference independence and failed-attempt history."
+        }
       },
       "assumptions_ja": [
         "公開例は1自由度、単位質量の自律・分離Hamiltonian H(q,p)=p²/2+V(q)。V=q²/2またはq²/2+q⁴/4。",
@@ -4348,7 +4352,106 @@
         "速度ベルレ法",
         "velocity Verlet",
         "particle leapfrog"
-      ]
+      ],
+      "batch28_existing_variant_labels": true,
+      "depth_release": {
+        "group": "gravity-dynamics",
+        "edition": "2026-11-23",
+        "case_ids": [
+          "gravity-kepler",
+          "gravity-plummer-short"
+        ]
+      },
+      "supplemental_scope_profiles": [
+        {
+          "release": {
+            "group": "gravity-dynamics",
+            "edition": "2026-11-23",
+            "case_ids": [
+              "gravity-kepler",
+              "gravity-plummer-short"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：無軟化Kepler二体の時間誤差、冷たいPlummer密度由来32粒子の短時間力学。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Unsoftened Kepler two-body time error, Short-time32body dynamics from a cold Plummer-density sample. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "1周期・固定離心率のみ。軟化軌道や長時間安定性はこの参照の範囲外。",
+              "en": "One orbit at fixed eccentricity only; softened binaries and long-time behavior are outside this exact reference."
+            },
+            {
+              "ja": "冷たい有限N初期値で平衡Plummer分布/連続球厳密軌道ではありません。BHの一般相反性・大域symplectic性は主張しません。",
+              "en": "Cold finite-N initial value,not an equilibrium Plummer DF or exact continuum orbit. No general BH reciprocity/global symplecticity claim."
+            }
+          ]
+        },
+        {
+          "release": {
+            "group": "warm-pic",
+            "edition": "2026-11-23",
+            "case_ids": [
+              "thermal-landau-damping",
+              "thermal-two-stream"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：温かいPICの線形Landau減衰、温かいPICの二流初期成長。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Warm PIC linear Landau damping, Warm PIC two-stream initial growth. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。",
+              "en": "Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established."
+            },
+            {
+              "ja": "1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。",
+              "en": "Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established."
+            }
+          ]
+        },
+        {
+          "release": {
+            "group": "pic-spatial",
+            "edition": "2026-11-23",
+            "case_ids": [
+              "pic-independent-spatial"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：PIC空間演算の独立実装照合。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Independently coded PIC spatial pipeline. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "離散演算の独立したコーディング照合です。時間積分法や連続方程式を変えた独立エンジン、連続極限の収束、冷たいプラズマの振動参照の再現を意味しません。既存cold-plasma-picの関連補助検証として扱い、温かい初期速度の軌道を冷たい解と同一視しません。",
+              "en": "Independent coding check of discrete spatial operators. It does not change the time integrator/continuum model, establish continuum convergence, or reproduce the cold-plasma oscillation reference. A related supplement of cold-plasma-pic; the finite warm velocity spread is explicit."
+            }
+          ]
+        }
+      ],
+      "depth_additional_releases": [
+        {
+          "group": "warm-pic",
+          "edition": "2026-11-23",
+          "case_ids": [
+            "thermal-landau-damping",
+            "thermal-two-stream"
+          ]
+        },
+        {
+          "group": "pic-spatial",
+          "edition": "2026-11-23",
+          "case_ids": [
+            "pic-independent-spatial"
+          ]
+        }
+      ],
+      "depth_scope": {
+        "ja": "追加固定例：無軟化Kepler二体の時間誤差、冷たいPlummer密度由来32粒子の短時間力学。条件と検証範囲は各配布版で確認してください。 追加固定例：温かいPICの線形Landau減衰、温かいPICの二流初期成長。条件と検証範囲は各配布版で確認してください。 追加固定例：PIC空間演算の独立実装照合。条件と検証範囲は各配布版で確認してください。",
+        "en": "Additional fixed examples: Unsoftened Kepler two-body time error, Short-time32body dynamics from a cold Plummer-density sample. See each release for assumptions and checked scope. Additional fixed examples: Warm PIC linear Landau damping, Warm PIC two-stream initial growth. See each release for assumptions and checked scope. Additional fixed examples: Independently coded PIC spatial pipeline. See each release for assumptions and checked scope."
+      }
     },
     {
       "id": "yoshida4",
@@ -4732,8 +4835,8 @@
         "en": "Linear & nonlinear solvers"
       },
       "summary": {
-        "ja": "実対称正定値な連立一次方程式を共役方向で反復的に解く。公開例は単位正方形・零Dirichlet Poisson方程式の五点差分を、行列を組み立てずに扱う前処理なしCG。",
-        "en": "Solve real SPD linear systems by conjugate directions. The public example is unpreconditioned matrix-free CG for the five-point zero-Dirichlet Poisson operator on a unit square."
+        "ja": "既存配布版：実対称正定値な連立一次方程式を共役方向で反復的に解く。公開例は単位正方形・零Dirichlet Poisson方程式の五点差分を、行列を組み立てずに扱う前処理なしCG。 追加固定例：係数ジャンプ拡散：共有流束とMG・AMG、回転異方性拡散：完全テンソルQ1とMG・AMG。条件と検証範囲は各配布版で確認してください。",
+        "en": "Existing releases: Solve real SPD linear systems by conjugate directions. The public example is unpreconditioned matrix-free CG for the five-point zero-Dirichlet Poisson operator on a unit square. Additional fixed examples: Checkerboard diffusion: shared flux, MG and AMG, Rotated diffusion: full-tensor Q1, MG and AMG. See each release for assumptions and checked scope."
       },
       "status": "educational-example",
       "origin": "existing-coverage-catalog",
@@ -4780,12 +4883,16 @@
       "units": "CG has no intrinsic physical unit. The public Poisson coordinates have unit dimensionless length; dimensionally [f]=[u]/[length]². Residual norms are unweighted array norms.",
       "boundary_conditions": "CG itself supplies no physical boundary condition. The public 2D Poisson examples impose u=0 on every side of [0,1]² by zero padding.",
       "limitations": {
-        "ja": "非対称・不定・特異な系にそのまま適用しない。前処理、一般疎行列入力、純Neumannの零空間処理はこのCG例にはない。小さい残差は離散化誤差の保証ではなく、単一固有モードの速い終了を一般的性能と解釈しない。",
-        "en": "Do not apply this variant directly to nonsymmetric, indefinite or singular systems. This CG example has no preconditioner, general sparse-matrix interface or pure-Neumann nullspace handling. A small residual does not certify discretization accuracy; rapid termination for one eigenmode is not a general performance result."
+        "ja": "既存配布版の制約：非対称・不定・特異な系にそのまま適用しない。前処理、一般疎行列入力、純Neumannの零空間処理はこのCG例にはない。小さい残差は離散化誤差の保証ではなく、単一固有モードの速い終了を一般的性能と解釈しない。 今回の追加固定例：係数比100の固定例。P1格子差は厳密誤差上界ではなく、特異交点の次数や普遍的なMG/AMG優劣は主張しません。 指定した角度・異方性の限定例。スカラーTPFAを回転テンソルへ転用せず、一般テンソルへの頑健性は保証しません。",
+        "en": "Limits of existing releases: Do not apply this variant directly to nonsymmetric, indefinite or singular systems. This CG example has no preconditioner, general sparse-matrix interface or pure-Neumann nullspace handling. A small residual does not certify discretization accuracy; rapid termination for one eigenmode is not a general performance result. Additional fixed examples: Fixed contrast100 example. P1 differences are not rigorous error bounds; no singular exponent or universal MG/AMG winner is asserted. One angle/anisotropy only. Scalar TPFA is not extended to rotated tensors; arbitrary-tensor robustness is not established."
       },
       "metadata_review": {
         "level": "method-specific sources and implementation inspected; no new numerical rerun",
-        "on": "2026-11-22"
+        "on": "2026-11-22",
+        "supplemental_review": {
+          "on": "2026-11-23",
+          "level": "Frozen fixed-input source,independent review,actual pytest/main and independently extracted ZIP; see each new release for exact reference independence and failed-attempt history."
+        }
       },
       "assumptions_ja": [
         "作用素は実対称正定値で、右辺は有限。ここでは定係数の −Δu=f を一様正方格子で離散化する。",
@@ -4912,7 +5019,44 @@
       "depth_scope": {
         "ja": "追加は適合した純Neumann Poisson系。同じ特異作用素で零からCGを実行し、定数分だけ平均ゲージを合わせ、平均拘束付き直接解と比較します。不適合な右辺は射影せず棄却します。",
         "en": "Additional compatible pure-Neumann Poisson uses CG from zero on the same singular operator; align only its constant mean gauge and compare a constrained direct solve. Reject incompatible forcing without source projection."
-      }
+      },
+      "batch28_existing_variant_labels": true,
+      "depth_additional_releases": [
+        {
+          "group": "coefficient-diffusion",
+          "edition": "2026-11-23",
+          "case_ids": [
+            "checkerboard-diffusion",
+            "rotated-anisotropic-diffusion"
+          ]
+        }
+      ],
+      "supplemental_scope_profiles": [
+        {
+          "release": {
+            "group": "coefficient-diffusion",
+            "edition": "2026-11-23",
+            "case_ids": [
+              "checkerboard-diffusion",
+              "rotated-anisotropic-diffusion"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：係数ジャンプ拡散：共有流束とMG・AMG、回転異方性拡散：完全テンソルQ1とMG・AMG。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Checkerboard diffusion: shared flux, MG and AMG, Rotated diffusion: full-tensor Q1, MG and AMG. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "係数比100の固定例。P1格子差は厳密誤差上界ではなく、特異交点の次数や普遍的なMG/AMG優劣は主張しません。",
+              "en": "Fixed contrast100 example. P1 differences are not rigorous error bounds; no singular exponent or universal MG/AMG winner is asserted."
+            },
+            {
+              "ja": "指定した角度・異方性の限定例。スカラーTPFAを回転テンソルへ転用せず、一般テンソルへの頑健性は保証しません。",
+              "en": "One angle/anisotropy only. Scalar TPFA is not extended to rotated tensors; arbitrary-tensor robustness is not established."
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "rbgs",
@@ -4994,8 +5138,8 @@
         "en": "Linear & nonlinear solvers"
       },
       "summary": {
-        "ja": "細格子で平滑化し、粗格子で滑らかな誤差を補正する幾何学的多重格子法。公開実装は単位正方形の零Dirichlet Poisson問題に対する固定階層のV-cycle。",
-        "en": "Geometric multigrid combines fine-grid smoothing with coarse-grid correction of smooth error. The public implementation is a fixed-hierarchy V-cycle for zero-Dirichlet Poisson on the unit square."
+        "ja": "既存配布版：細格子で平滑化し、粗格子で滑らかな誤差を補正する幾何学的多重格子法。公開実装は単位正方形の零Dirichlet Poisson問題に対する固定階層のV-cycle。 追加固定例：係数ジャンプ拡散：共有流束とMG・AMG、回転異方性拡散：完全テンソルQ1とMG・AMG。条件と検証範囲は各配布版で確認してください。",
+        "en": "Existing releases: Geometric multigrid combines fine-grid smoothing with coarse-grid correction of smooth error. The public implementation is a fixed-hierarchy V-cycle for zero-Dirichlet Poisson on the unit square. Additional fixed examples: Checkerboard diffusion: shared flux, MG and AMG, Rotated diffusion: full-tensor Q1, MG and AMG. See each release for assumptions and checked scope."
       },
       "status": "educational-example",
       "origin": "existing-coverage-catalog",
@@ -5042,12 +5186,16 @@
       "units": "The public problem uses dimensionless [0,1]² and h=1/(n+1). Dimensionally [f]=[u]/[length]²; residual norms have no mesh weights.",
       "boundary_conditions": "u=0 on all sides of [0,1]². Error corrections also have homogeneous Dirichlet boundaries, implemented by zero padding.",
       "limitations": {
-        "ja": "固定された正方形・定係数・入れ子格子の教育例。AMG、不規則格子、適応細分化、強い異方性や不連続係数用の特別な平滑化は実装しない。Brandt論文の全機能や任意問題での最適計算量を示すものではない。",
-        "en": "An educational fixed-square, constant-coefficient nested-grid example. It does not implement AMG, irregular meshes, adaptive refinement or specialized smoothing for strong anisotropy/discontinuous coefficients. It does not establish all capabilities of Brandt's paper or optimal work for arbitrary problems."
+        "ja": "既存配布版の制約：固定された正方形・定係数・入れ子格子の教育例。AMG、不規則格子、適応細分化、強い異方性や不連続係数用の特別な平滑化は実装しない。Brandt論文の全機能や任意問題での最適計算量を示すものではない。 今回の追加固定例：係数比100の固定例。P1格子差は厳密誤差上界ではなく、特異交点の次数や普遍的なMG/AMG優劣は主張しません。 指定した角度・異方性の限定例。スカラーTPFAを回転テンソルへ転用せず、一般テンソルへの頑健性は保証しません。",
+        "en": "Limits of existing releases: An educational fixed-square, constant-coefficient nested-grid example. It does not implement AMG, irregular meshes, adaptive refinement or specialized smoothing for strong anisotropy/discontinuous coefficients. It does not establish all capabilities of Brandt's paper or optimal work for arbitrary problems. Additional fixed examples: Fixed contrast100 example. P1 differences are not rigorous error bounds; no singular exponent or universal MG/AMG winner is asserted. One angle/anisotropy only. Scalar TPFA is not extended to rotated tensors; arbitrary-tensor robustness is not established."
       },
       "metadata_review": {
         "level": "method-specific sources and implementation inspected; no new numerical rerun",
-        "on": "2026-11-22"
+        "on": "2026-11-22",
+        "supplemental_review": {
+          "on": "2026-11-23",
+          "level": "Frozen fixed-input source,independent review,actual pytest/main and independently extracted ZIP; see each new release for exact reference independence and failed-attempt history."
+        }
       },
       "assumptions_ja": [
         "定係数の −Δu=f、正方形の一様内部格子、各軸 n=2^k−1 の入れ子格子を仮定する。",
@@ -5160,7 +5308,46 @@
         "GMG",
         "V-cycle",
         "Vサイクル"
-      ]
+      ],
+      "batch28_existing_variant_labels": true,
+      "depth_release": {
+        "group": "coefficient-diffusion",
+        "edition": "2026-11-23",
+        "case_ids": [
+          "checkerboard-diffusion",
+          "rotated-anisotropic-diffusion"
+        ]
+      },
+      "supplemental_scope_profiles": [
+        {
+          "release": {
+            "group": "coefficient-diffusion",
+            "edition": "2026-11-23",
+            "case_ids": [
+              "checkerboard-diffusion",
+              "rotated-anisotropic-diffusion"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：係数ジャンプ拡散：共有流束とMG・AMG、回転異方性拡散：完全テンソルQ1とMG・AMG。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Checkerboard diffusion: shared flux, MG and AMG, Rotated diffusion: full-tensor Q1, MG and AMG. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "係数比100の固定例。P1格子差は厳密誤差上界ではなく、特異交点の次数や普遍的なMG/AMG優劣は主張しません。",
+              "en": "Fixed contrast100 example. P1 differences are not rigorous error bounds; no singular exponent or universal MG/AMG winner is asserted."
+            },
+            {
+              "ja": "指定した角度・異方性の限定例。スカラーTPFAを回転テンソルへ転用せず、一般テンソルへの頑健性は保証しません。",
+              "en": "One angle/anisotropy only. Scalar TPFA is not extended to rotated tensors; arbitrary-tensor robustness is not established."
+            }
+          ]
+        }
+      ],
+      "depth_scope": {
+        "ja": "追加固定例：係数ジャンプ拡散：共有流束とMG・AMG、回転異方性拡散：完全テンソルQ1とMG・AMG。条件と検証範囲は各配布版で確認してください。",
+        "en": "Additional fixed examples: Checkerboard diffusion: shared flux, MG and AMG, Rotated diffusion: full-tensor Q1, MG and AMG. See each release for assumptions and checked scope."
+      }
     },
     {
       "id": "gmres",
@@ -6650,8 +6837,8 @@
         "en": "Particle fields & gravity"
       },
       "summary": {
-        "ja": "「Cloud-in-cellの割当てと補間」の考え方と適用範囲を、解説章・一次文献・関連する教育用コードからたどります。",
-        "en": "Read about Cloud-in-cell assignment and interpolation, follow the original references and inspect related educational code and checks."
+        "ja": "既存配布版：「Cloud-in-cellの割当てと補間」の考え方と適用範囲を、解説章・一次文献・関連する教育用コードからたどります。 追加固定例：温かいPICの線形Landau減衰、温かいPICの二流初期成長。条件と検証範囲は各配布版で確認してください。 追加固定例：PIC空間演算の独立実装照合。条件と検証範囲は各配布版で確認してください。",
+        "en": "Existing releases: Read about Cloud-in-cell assignment and interpolation, follow the original references and inspect related educational code and checks. Additional fixed examples: Warm PIC linear Landau damping, Warm PIC two-stream initial growth. See each release for assumptions and checked scope. Additional fixed examples: Independently coded PIC spatial pipeline. See each release for assumptions and checked scope."
       },
       "status": "educational-example",
       "origin": "existing-coverage-catalog",
@@ -6687,17 +6874,88 @@
       "units": null,
       "boundary_conditions": null,
       "limitations": {
-        "ja": "対象方程式・境界条件・検証の範囲は解説章と各コードを確認してください。教育用例は汎用ソルバーの完成を意味しません。",
-        "en": "See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers."
+        "ja": "既存配布版の制約：対象方程式・境界条件・検証の範囲は解説章と各コードを確認してください。教育用例は汎用ソルバーの完成を意味しません。 今回の追加固定例：1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。 1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。 今回の追加固定例：離散演算の独立したコーディング照合です。時間積分法や連続方程式を変えた独立エンジン、連続極限の収束、冷たいプラズマの振動参照の再現を意味しません。既存cold-plasma-picの関連補助検証として扱い、温かい初期速度の軌道を冷たい解と同一視しません。",
+        "en": "Limits of existing releases: See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers. Additional fixed examples: Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established. Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established. Additional fixed examples: Independent coding check of discrete spatial operators. It does not change the time integrator/continuum model, establish continuum convergence, or reproduce the cold-plasma oscillation reference. A related supplement of cold-plasma-pic; the finite warm velocity spread is explicit."
       },
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
-        "on": "2026-11-21"
+        "on": "2026-11-21",
+        "supplemental_review": {
+          "on": "2026-11-23",
+          "level": "Frozen fixed-input source,independent review,actual pytest/main and independently extracted ZIP; see each new release for exact reference independence and failed-attempt history."
+        }
       },
       "aliases": [
         "CIC法",
         "cloud in cell"
-      ]
+      ],
+      "batch28_existing_variant_labels": true,
+      "depth_release": {
+        "group": "warm-pic",
+        "edition": "2026-11-23",
+        "case_ids": [
+          "thermal-landau-damping",
+          "thermal-two-stream"
+        ]
+      },
+      "supplemental_scope_profiles": [
+        {
+          "release": {
+            "group": "warm-pic",
+            "edition": "2026-11-23",
+            "case_ids": [
+              "thermal-landau-damping",
+              "thermal-two-stream"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：温かいPICの線形Landau減衰、温かいPICの二流初期成長。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Warm PIC linear Landau damping, Warm PIC two-stream initial growth. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。",
+              "en": "Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established."
+            },
+            {
+              "ja": "1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。",
+              "en": "Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established."
+            }
+          ]
+        },
+        {
+          "release": {
+            "group": "pic-spatial",
+            "edition": "2026-11-23",
+            "case_ids": [
+              "pic-independent-spatial"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：PIC空間演算の独立実装照合。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Independently coded PIC spatial pipeline. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "離散演算の独立したコーディング照合です。時間積分法や連続方程式を変えた独立エンジン、連続極限の収束、冷たいプラズマの振動参照の再現を意味しません。既存cold-plasma-picの関連補助検証として扱い、温かい初期速度の軌道を冷たい解と同一視しません。",
+              "en": "Independent coding check of discrete spatial operators. It does not change the time integrator/continuum model, establish continuum convergence, or reproduce the cold-plasma oscillation reference. A related supplement of cold-plasma-pic; the finite warm velocity spread is explicit."
+            }
+          ]
+        }
+      ],
+      "depth_additional_releases": [
+        {
+          "group": "pic-spatial",
+          "edition": "2026-11-23",
+          "case_ids": [
+            "pic-independent-spatial"
+          ]
+        }
+      ],
+      "depth_scope": {
+        "ja": "追加固定例：温かいPICの線形Landau減衰、温かいPICの二流初期成長。条件と検証範囲は各配布版で確認してください。 追加固定例：PIC空間演算の独立実装照合。条件と検証範囲は各配布版で確認してください。",
+        "en": "Additional fixed examples: Warm PIC linear Landau damping, Warm PIC two-stream initial growth. See each release for assumptions and checked scope. Additional fixed examples: Independently coded PIC spatial pipeline. See each release for assumptions and checked scope."
+      }
     },
     {
       "id": "pm",
@@ -6879,8 +7137,8 @@
         "en": "Particle fields & gravity"
       },
       "summary": {
-        "ja": "孤立した3次元粒子の重力加速度をoctreeで近似する。公開例はG=1のPlummer軟化核に対し、質量単極子または同じ軟化核の完全な二次モーメント項を使い、直接和と比較する。",
-        "en": "Approximate isolated 3D particle gravity with an octree. The public example uses G=1 and a Plummer-softened kernel, with a monopole or the same kernel's full second-moment term, compared with direct summation."
+        "ja": "既存配布版：孤立した3次元粒子の重力加速度をoctreeで近似する。公開例はG=1のPlummer軟化核に対し、質量単極子または同じ軟化核の完全な二次モーメント項を使い、直接和と比較する。 追加固定例：冷たいPlummer密度由来32粒子の短時間力学。条件と検証範囲は各配布版で確認してください。",
+        "en": "Existing releases: Approximate isolated 3D particle gravity with an octree. The public example uses G=1 and a Plummer-softened kernel, with a monopole or the same kernel's full second-moment term, compared with direct summation. Additional fixed examples: Short-time32body dynamics from a cold Plummer-density sample. See each release for assumptions and checked scope."
       },
       "status": "educational-example",
       "origin": "existing-coverage-catalog",
@@ -6923,12 +7181,16 @@
       "units": "Dimensionless G=1. Positions and softening share a length unit and masses use one consistent unit. With scales L₀,M₀, acceleration is restored with GM₀/L₀².",
       "boundary_conditions": "Isolated boundaries without periodic images; the softened potential −Gm/√(r²+ε²) tends to zero at infinity. This is a different boundary problem from periodic PM, Ewald or TreePM.",
       "limitations": {
-        "ja": "静的な力の教育例で、時間積分・宇宙膨張・周期境界・FMMを含まない。thetaは厳密な誤差上限ではなく、order=2がすべての配置で常に改善する保証もない。対象ごとの近似なので厳密な作用反作用・全運動量保存は保証せず、相互作用回数は実時間や全分布でのO(N log N)の実測ではない。",
-        "en": "A static-force educational example without time integration, expansion, periodic images or FMM. theta is not a rigorous error bound, and order=2 need not improve every configuration. Targetwise approximation does not guarantee exact action–reaction/total-momentum conservation. Interaction counts are not timings or empirical complexity guarantees for every distribution."
+        "ja": "既存配布版の制約：静的な力の教育例で、時間積分・宇宙膨張・周期境界・FMMを含まない。thetaは厳密な誤差上限ではなく、order=2がすべての配置で常に改善する保証もない。対象ごとの近似なので厳密な作用反作用・全運動量保存は保証せず、相互作用回数は実時間や全分布でのO(N log N)の実測ではない。 今回の追加固定例：冷たい有限N初期値で平衡Plummer分布/連続球厳密軌道ではありません。BHの一般相反性・大域symplectic性は主張しません。",
+        "en": "Limits of existing releases: A static-force educational example without time integration, expansion, periodic images or FMM. theta is not a rigorous error bound, and order=2 need not improve every configuration. Targetwise approximation does not guarantee exact action–reaction/total-momentum conservation. Interaction counts are not timings or empirical complexity guarantees for every distribution. Additional fixed examples: Cold finite-N initial value,not an equilibrium Plummer DF or exact continuum orbit. No general BH reciprocity/global symplecticity claim."
       },
       "metadata_review": {
         "level": "method-specific sources and implementation inspected; no new numerical rerun",
-        "on": "2026-11-22"
+        "on": "2026-11-22",
+        "supplemental_review": {
+          "on": "2026-11-23",
+          "level": "Frozen fixed-input source,independent review,actual pytest/main and independently extracted ZIP; see each new release for exact reference independence and failed-attempt history."
+        }
       },
       "assumptions_ja": [
         "位置は有限の(N,3)配列、質量は正かつ有限、粒子数は1以上。softening=ε>0、theta≥0、orderは0または2。",
@@ -7057,7 +7319,40 @@
         "バーンズ・ハット法",
         "Barnes Hut tree",
         "BH tree"
-      ]
+      ],
+      "batch28_existing_variant_labels": true,
+      "depth_release": {
+        "group": "gravity-dynamics",
+        "edition": "2026-11-23",
+        "case_ids": [
+          "gravity-plummer-short"
+        ]
+      },
+      "supplemental_scope_profiles": [
+        {
+          "release": {
+            "group": "gravity-dynamics",
+            "edition": "2026-11-23",
+            "case_ids": [
+              "gravity-plummer-short"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：冷たいPlummer密度由来32粒子の短時間力学。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Short-time32body dynamics from a cold Plummer-density sample. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "冷たい有限N初期値で平衡Plummer分布/連続球厳密軌道ではありません。BHの一般相反性・大域symplectic性は主張しません。",
+              "en": "Cold finite-N initial value,not an equilibrium Plummer DF or exact continuum orbit. No general BH reciprocity/global symplecticity claim."
+            }
+          ]
+        }
+      ],
+      "depth_scope": {
+        "ja": "追加固定例：冷たいPlummer密度由来32粒子の短時間力学。条件と検証範囲は各配布版で確認してください。",
+        "en": "Additional fixed examples: Short-time32body dynamics from a cold Plummer-density sample. See each release for assumptions and checked scope."
+      }
     },
     {
       "id": "multipole",
@@ -7360,8 +7655,8 @@
         "en": "Particle fields & gravity"
       },
       "summary": {
-        "ja": "2次元対数核のM2M・M2L・L2Lを持つFMM: 自由空間の対数ポテンシャルを一様四分木の多重極・局所展開で評価し、直接和と比較します。 FMM：直接和・解析配置と展開次数・木の深さ: 96粒子の2次元対数核を別の全対直接和と照合し、展開次数・木の深さ、回転・平行移動、合力の近似誤差を測ります。",
-        "en": "2D logarithmic FMM with M2M, M2L and L2L: Evaluate a free-space log potential with uniform-quadtree multipole and local expansions and compare with direct sums. FMM: direct and analytic references, order and tree depth: Compare a 96-particle 2D logarithmic kernel with independent all-pairs sums; measure order/depth, rotation/translation and approximate net-force errors."
+        "ja": "既存配布版：2次元対数核のM2M・M2L・L2Lを持つFMM: 自由空間の対数ポテンシャルを一様四分木の多重極・局所展開で評価し、直接和と比較します。 FMM：直接和・解析配置と展開次数・木の深さ: 96粒子の2次元対数核を別の全対直接和と照合し、展開次数・木の深さ、回転・平行移動、合力の近似誤差を測ります。 追加固定例：真3D 1/r FMM：多段変換・力・適応所有権。条件と検証範囲は各配布版で確認してください。",
+        "en": "Existing releases: 2D logarithmic FMM with M2M, M2L and L2L: Evaluate a free-space log potential with uniform-quadtree multipole and local expansions and compare with direct sums. FMM: direct and analytic references, order and tree depth: Compare a 96-particle 2D logarithmic kernel with independent all-pairs sums; measure order/depth, rotation/translation and approximate net-force errors. Additional fixed examples: Actual3D1/r FMM: multilevel translations, force and ownership. See each release for assumptions and checked scope."
       },
       "status": "educational-example",
       "origin": "existing-coverage-catalog",
@@ -7383,12 +7678,16 @@
       "units": null,
       "boundary_conditions": null,
       "limitations": {
-        "ja": "2次元対数核のM2M・M2L・L2Lを持つFMM: 3次元1/r核、適応木、周期FMM、特異積分、実測の計算量スケーリングは未検証です。2次元自由空間の教育用実装として表示します。 FMM：直接和・解析配置と展開次数・木の深さ: 木の深さによる相互作用の分割は変わるので、一定次数で深さに対する単調収束は要求しません。対象粒子ごとの展開は厳密な作用反作用を保証せず、3次元・適応木・周期FMM・計算量スケーリングは未検証です。",
-        "en": "2D logarithmic FMM with M2M, M2L and L2L: No 3D 1/r kernel, adaptive tree, periodic FMM, singular quadrature or empirical complexity/scaling study. Evidence applies to this 2D free-space educational implementation. FMM: direct and analytic references, order and tree depth: Interaction repartition changes with depth, so fixed-order depth refinement is not assumed monotone. Target-wise expansions need not preserve exact action/reaction. No 3D, adaptive/periodic FMM or complexity-scaling claim."
+        "ja": "既存配布版の制約：2次元対数核のM2M・M2L・L2Lを持つFMM: 3次元1/r核、適応木、周期FMM、特異積分、実測の計算量スケーリングは未検証です。2次元自由空間の教育用実装として表示します。 FMM：直接和・解析配置と展開次数・木の深さ: 木の深さによる相互作用の分割は変わるので、一定次数で深さに対する単調収束は要求しません。対象粒子ごとの展開は厳密な作用反作用を保証せず、3次元・適応木・周期FMM・計算量スケーリングは未検証です。 今回の追加固定例：小Nの非圧縮教材。p^6 M2Lコストを保存し、SVD圧縮・球調和・Nスケーリング・運動量厳密保存は主張しません。 有限6点閉形式は独立directの資格確認で、FMM本体のgolden-target実行ではありません。",
+        "en": "Limits of existing releases: 2D logarithmic FMM with M2M, M2L and L2L: No 3D 1/r kernel, adaptive tree, periodic FMM, singular quadrature or empirical complexity/scaling study. Evidence applies to this 2D free-space educational implementation. FMM: direct and analytic references, order and tree depth: Interaction repartition changes with depth, so fixed-order depth refinement is not assumed monotone. Target-wise expansions need not preserve exact action/reaction. No 3D, adaptive/periodic FMM or complexity-scaling claim. Additional fixed examples: Small-N uncompressed teaching example; reportp^6M2L cost. No SVD/spherical-harmonic/scaling or exact momentum-conservation claim. The finite6source exact probe qualifies the direct reference, not a production-FMM golden-target run."
       },
       "metadata_review": {
         "level": "scoped deterministic and statistical convergence; independent theta/direct/analytic/reference-integration comparisons, conservation diagnostics and independent-seed uncertainty with explicit limits",
-        "on": "2026-11-22"
+        "on": "2026-11-22",
+        "supplemental_review": {
+          "on": "2026-11-23",
+          "level": "Frozen fixed-input source,independent review,actual pytest/main and independently extracted ZIP; see each new release for exact reference independence and failed-attempt history."
+        }
       },
       "aliases": [
         "FMM法",
@@ -7418,6 +7717,35 @@
           "edition": "2026-11-22",
           "case_ids": [
             "fmm-convergence"
+          ]
+        },
+        {
+          "group": "fmm3d",
+          "edition": "2026-11-23",
+          "case_ids": [
+            "fmm3d-inverse-r"
+          ]
+        }
+      ],
+      "batch28_existing_variant_labels": true,
+      "supplemental_scope_profiles": [
+        {
+          "release": {
+            "group": "fmm3d",
+            "edition": "2026-11-23",
+            "case_ids": [
+              "fmm3d-inverse-r"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：真3D 1/r FMM：多段変換・力・適応所有権。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Actual3D1/r FMM: multilevel translations, force and ownership. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "小Nの非圧縮教材。p^6 M2Lコストを保存し、SVD圧縮・球調和・Nスケーリング・運動量厳密保存は主張しません。 有限6点閉形式は独立directの資格確認で、FMM本体のgolden-target実行ではありません。",
+              "en": "Small-N uncompressed teaching example; reportp^6M2L cost. No SVD/spherical-harmonic/scaling or exact momentum-conservation claim. The finite6source exact probe qualifies the direct reference, not a production-FMM golden-target run."
+            }
           ]
         }
       ]
@@ -8402,8 +8730,8 @@
         "en": "Particle fields & gravity"
       },
       "summary": {
-        "ja": "中性周期セルのEwald和と独立theta積分: 3次元周期Coulomb相互作用の実空間和・逆空間和・自己項を実装し、分割パラメータと打切りを変えて検証します。 Ewald：非対称周期セルのエネルギー・力と独立theta積分: 中性8電荷の全エネルギーと24力成分を、別実装のGaussian/theta積分と比較。分割・実空間・逆空間の打切り、保存則と不変性を分けて測定します。",
-        "en": "Neutral-cell Ewald sums and an independent theta integral: Implement real-space, reciprocal-space and self Ewald terms for neutral 3D periodic Coulomb charges; vary splitting and cutoffs. Ewald: asymmetric-cell energies and forces versus independent theta integration: Compare a neutral eight-charge cell energy and all 24 force components with a separately coded Gaussian/theta integral. Separate splitting and real/reciprocal truncation from invariants and conservation."
+        "ja": "既存配布版：中性周期セルのEwald和と独立theta積分: 3次元周期Coulomb相互作用の実空間和・逆空間和・自己項を実装し、分割パラメータと打切りを変えて検証します。 Ewald：非対称周期セルのエネルギー・力と独立theta積分: 中性8電荷の全エネルギーと24力成分を、別実装のGaussian/theta積分と比較。分割・実空間・逆空間の打切り、保存則と不変性を分けて測定します。 追加固定例：中性長方形スラブ：真2P参照とYB補正。条件と検証範囲は各配布版で確認してください。",
+        "en": "Existing releases: Neutral-cell Ewald sums and an independent theta integral: Implement real-space, reciprocal-space and self Ewald terms for neutral 3D periodic Coulomb charges; vary splitting and cutoffs. Ewald: asymmetric-cell energies and forces versus independent theta integration: Compare a neutral eight-charge cell energy and all 24 force components with a separately coded Gaussian/theta integral. Separate splitting and real/reciprocal truncation from invariants and conservation. Additional fixed examples: Neutral rectangular slab: genuine2P reference and YB. See each release for assumptions and checked scope."
       },
       "status": "educational-example",
       "origin": "development-candidate",
@@ -8463,12 +8791,16 @@
         "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
       },
       "limitations": {
-        "ja": "中性周期セルのEwald和と独立theta積分: 非中性セル、背景補正、非直交セル、誘電率が有限の表面項、スラブ補正、応力、物質固有の力場は扱いません。 Ewald：非対称周期セルのエネルギー・力と独立theta積分: 固定した中性立方セルだけです。上限感度は厳密な全配置の裾誤差保証ではありません。theta参照は別定式化の自作実装であり、第三者計算パッケージや公表された参照数表ではありません。非中性・非直交・スラブ・応力・長時間MDは対象外です。",
-        "en": "Neutral-cell Ewald sums and an independent theta integral: No charged-cell/background correction, triclinic cell, finite-dielectric surface term, slab correction, stress or material-specific force field. Ewald: asymmetric-cell energies and forces versus independent theta integration: One fixed neutral cubic cell. Upper-limit sensitivity is not a rigorous tail bound for arbitrary configurations. The theta reference is an independently formulated original implementation, not an external package or published numerical table. Charged/triclinic/slab cells, stress and long MD are outside scope."
+        "ja": "既存配布版の制約：中性周期セルのEwald和と独立theta積分: 非中性セル、背景補正、非直交セル、誘電率が有限の表面項、スラブ補正、応力、物質固有の力場は扱いません。 Ewald：非対称周期セルのエネルギー・力と独立theta積分: 固定した中性立方セルだけです。上限感度は厳密な全配置の裾誤差保証ではありません。theta参照は別定式化の自作実装であり、第三者計算パッケージや公表された参照数表ではありません。非中性・非直交・スラブ・応力・長時間MDは対象外です。 今回の追加固定例：中性・固定4電荷・Cartesian z法線のみ。YBは有限ギャップ近似で任意真空の厳密2Pではありません。原著YB本文は未読。",
+        "en": "Limits of existing releases: Neutral-cell Ewald sums and an independent theta integral: No charged-cell/background correction, triclinic cell, finite-dielectric surface term, slab correction, stress or material-specific force field. Ewald: asymmetric-cell energies and forces versus independent theta integration: One fixed neutral cubic cell. Upper-limit sensitivity is not a rigorous tail bound for arbitrary configurations. The theta reference is an independently formulated original implementation, not an external package or published numerical table. Charged/triclinic/slab cells, stress and long MD are outside scope. Additional fixed examples: Neutral fixed4charge Cartesian-z slab only. YB is a finite-gap approximation, not exact2P at arbitrary vacuum. Original Yeh full text not inspected."
       },
       "metadata_review": {
         "level": "method-specific source curation plus independently extracted dedicated supplement; fixed inputs, numerical checks and scope verified",
-        "on": "2026-11-22"
+        "on": "2026-11-22",
+        "supplemental_review": {
+          "on": "2026-11-23",
+          "level": "Frozen fixed-input source,independent review,actual pytest/main and independently extracted ZIP; see each new release for exact reference independence and failed-attempt history."
+        }
       },
       "assumptions_ja": [
         "最初の検証仕様は、立方体セル内の重なりのない点電荷と3次元周期Coulomb相互作用です。総電荷はゼロとし、一様中和背景は含めません。",
@@ -8592,6 +8924,35 @@
           "edition": "2026-11-22",
           "case_ids": [
             "ewald-convergence"
+          ]
+        },
+        {
+          "group": "slab-ewald",
+          "edition": "2026-11-23",
+          "case_ids": [
+            "neutral-slab-yb"
+          ]
+        }
+      ],
+      "batch28_existing_variant_labels": true,
+      "supplemental_scope_profiles": [
+        {
+          "release": {
+            "group": "slab-ewald",
+            "edition": "2026-11-23",
+            "case_ids": [
+              "neutral-slab-yb"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：中性長方形スラブ：真2P参照とYB補正。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Neutral rectangular slab: genuine2P reference and YB. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "中性・固定4電荷・Cartesian z法線のみ。YBは有限ギャップ近似で任意真空の厳密2Pではありません。原著YB本文は未読。",
+              "en": "Neutral fixed4charge Cartesian-z slab only. YB is a finite-gap approximation, not exact2P at arbitrary vacuum. Original Yeh full text not inspected."
+            }
           ]
         }
       ]
@@ -9026,10 +9387,10 @@
         "en": "Particle fields & gravity"
       },
       "summary": {
-        "ja": "平面周期・垂直開放の境界条件と、3次元周期の補正を区別する。",
-        "en": "Separate plane-periodic open-normal boundaries from corrections to 3D periodicity."
+        "ja": "4電荷の長方形3P Ewaldに中性スラブ補正を加え、別実装の真2P和のエネルギー・全力成分と照合します。 追加固定例：中性長方形スラブ：真2P参照とYB補正。条件と検証範囲は各配布版で確認してください。",
+        "en": "Compare corrected orthorhombic3P Ewald energy/all forces against a separately implemented genuine2P series. Additional fixed examples: Neutral rectangular slab: genuine2P reference and YB. See each release for assumptions and checked scope."
       },
-      "status": "planned",
+      "status": "educational-example",
       "origin": "development-candidate",
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/slab-ewald/",
@@ -9053,23 +9414,71 @@
       "units": null,
       "boundary_conditions": null,
       "next_deliverable": {
-        "ja": "中性条件と境界を明記した文献・検証系の選定。",
-        "en": "Select references and a neutral benchmark with explicit boundaries."
+        "ja": "中性の固定スラブ例を検証済み。拡張時は新たな条件・参照・判定を別に確認します。",
+        "en": "The fixed neutral slab is verified. Validate new conditions,references and criteria separately when extending it."
       },
       "limitations": {
-        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
-        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
+        "ja": "中性・固定4電荷・Cartesian z法線のみ。YBは有限ギャップ近似で任意真空の厳密2Pではありません。原著YB本文は未読。 今回の追加固定例：中性・固定4電荷・Cartesian z法線のみ。YBは有限ギャップ近似で任意真空の厳密2Pではありません。原著YB本文は未読。",
+        "en": "Neutral fixed4charge Cartesian-z slab only. YB is a finite-gap approximation, not exact2P at arbitrary vacuum. Original Yeh full text not inspected. Additional fixed examples: Neutral fixed4charge Cartesian-z slab only. YB is a finite-gap approximation, not exact2P at arbitrary vacuum. Original Yeh full text not inspected."
       },
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
-        "on": "2026-11-21"
+        "on": "2026-11-21",
+        "supplemental_review": {
+          "on": "2026-11-23",
+          "level": "Frozen fixed-input source,independent review,actual pytest/main and independently extracted ZIP; see each new release for exact reference independence and failed-attempt history."
+        }
       },
       "aliases": [
         "2D periodic Ewald",
         "2次元周期Ewald",
         "slab Ewald",
         "スラブEwald法"
-      ]
+      ],
+      "depth_previous_status": "planned",
+      "previous_planned_description": {
+        "summary": {
+          "ja": "平面周期・垂直開放の境界条件と、3次元周期の補正を区別する。",
+          "en": "Separate plane-periodic open-normal boundaries from corrections to 3D periodicity."
+        },
+        "limitations": {
+          "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
+          "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
+        }
+      },
+      "batch28_existing_variant_labels": true,
+      "depth_release": {
+        "group": "slab-ewald",
+        "edition": "2026-11-23",
+        "case_ids": [
+          "neutral-slab-yb"
+        ]
+      },
+      "supplemental_scope_profiles": [
+        {
+          "release": {
+            "group": "slab-ewald",
+            "edition": "2026-11-23",
+            "case_ids": [
+              "neutral-slab-yb"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：中性長方形スラブ：真2P参照とYB補正。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Neutral rectangular slab: genuine2P reference and YB. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "中性・固定4電荷・Cartesian z法線のみ。YBは有限ギャップ近似で任意真空の厳密2Pではありません。原著YB本文は未読。",
+              "en": "Neutral fixed4charge Cartesian-z slab only. YB is a finite-gap approximation, not exact2P at arbitrary vacuum. Original Yeh full text not inspected."
+            }
+          ]
+        }
+      ],
+      "depth_scope": {
+        "ja": "追加固定例：中性長方形スラブ：真2P参照とYB補正。条件と検証範囲は各配布版で確認してください。",
+        "en": "Additional fixed examples: Neutral rectangular slab: genuine2P reference and YB. See each release for assumptions and checked scope."
+      }
     },
     {
       "id": "schrodinger",
@@ -11590,8 +11999,8 @@
         "en": "Coupling, constraints & particles"
       },
       "summary": {
-        "ja": "CIC静電PICの冷たいプラズマ振動: 1次元周期セルの電子をCICで格子と結び、Poisson方程式と粒子運動を自洽に進めます。 PIC：格子・時間収束、保存量と粒子雑音: 冷たい1次元周期プラズマのquiet-start収束と、独立seedでの初期粒子雑音を分け、電荷・運動量・Gauss則・エネルギー誤差を保存します。",
-        "en": "Cold-plasma oscillation with electrostatic CIC PIC: Couple electrons to a 1D periodic grid by CIC, solving Poisson and particle motion self-consistently. PIC: mesh/time convergence, invariants and particle noise: Separate quiet-start refinement of a cold 1D periodic plasma from independent-seed initial particle noise; record charge, momentum, Gauss diagnostics and energy error."
+        "ja": "既存配布版：CIC静電PICの冷たいプラズマ振動: 1次元周期セルの電子をCICで格子と結び、Poisson方程式と粒子運動を自洽に進めます。 PIC：格子・時間収束、保存量と粒子雑音: 冷たい1次元周期プラズマのquiet-start収束と、独立seedでの初期粒子雑音を分け、電荷・運動量・Gauss則・エネルギー誤差を保存します。 追加固定例：温かいPICの線形Landau減衰、温かいPICの二流初期成長。条件と検証範囲は各配布版で確認してください。 追加固定例：PIC空間演算の独立実装照合。条件と検証範囲は各配布版で確認してください。",
+        "en": "Existing releases: Cold-plasma oscillation with electrostatic CIC PIC: Couple electrons to a 1D periodic grid by CIC, solving Poisson and particle motion self-consistently. PIC: mesh/time convergence, invariants and particle noise: Separate quiet-start refinement of a cold 1D periodic plasma from independent-seed initial particle noise; record charge, momentum, Gauss diagnostics and energy error. Additional fixed examples: Warm PIC linear Landau damping, Warm PIC two-stream initial growth. See each release for assumptions and checked scope. Additional fixed examples: Independently coded PIC spatial pipeline. See each release for assumptions and checked scope."
       },
       "status": "educational-example",
       "origin": "development-candidate",
@@ -11621,12 +12030,16 @@
         "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
       },
       "limitations": {
-        "ja": "CIC静電PICの冷たいプラズマ振動: 有限振幅・有限粒子数の誤差床があります。非線形不安定性、Landau減衰、衝突、電磁PIC、相対論粒子、境界流入出の検証ではありません。 PIC：格子・時間収束、保存量と粒子雑音: DOP853は独立PIC空間実装ではありません。電荷・運動量の保持とエネルギーの近似保存を区別し、初期雑音のNスケーリングを時間発展した熱プラズマの保証としません。Landau減衰・電磁PIC・相対論・衝突は未検証です。",
-        "en": "Cold-plasma oscillation with electrostatic CIC PIC: Finite amplitude and finite particles leave an error floor. Nonlinear instabilities, Landau damping, collisions, electromagnetic/relativistic PIC and open particle boundaries are unvalidated. PIC: mesh/time convergence, invariants and particle noise: DOP853 is not an independent PIC spatial implementation. Distinguish charge/momentum preservation from approximate energy conservation. Initial-noise N scaling does not validate evolved warm plasmas. Landau damping, electromagnetic/relativistic PIC and collisions remain unvalidated."
+        "ja": "既存配布版の制約：CIC静電PICの冷たいプラズマ振動: 有限振幅・有限粒子数の誤差床があります。非線形不安定性、Landau減衰、衝突、電磁PIC、相対論粒子、境界流入出の検証ではありません。 PIC：格子・時間収束、保存量と粒子雑音: DOP853は独立PIC空間実装ではありません。電荷・運動量の保持とエネルギーの近似保存を区別し、初期雑音のNスケーリングを時間発展した熱プラズマの保証としません。Landau減衰・電磁PIC・相対論・衝突は未検証です。 今回の追加固定例：1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。 1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。 今回の追加固定例：離散演算の独立したコーディング照合です。時間積分法や連続方程式を変えた独立エンジン、連続極限の収束、冷たいプラズマの振動参照の再現を意味しません。既存cold-plasma-picの関連補助検証として扱い、温かい初期速度の軌道を冷たい解と同一視しません。",
+        "en": "Limits of existing releases: Cold-plasma oscillation with electrostatic CIC PIC: Finite amplitude and finite particles leave an error floor. Nonlinear instabilities, Landau damping, collisions, electromagnetic/relativistic PIC and open particle boundaries are unvalidated. PIC: mesh/time convergence, invariants and particle noise: DOP853 is not an independent PIC spatial implementation. Distinguish charge/momentum preservation from approximate energy conservation. Initial-noise N scaling does not validate evolved warm plasmas. Landau damping, electromagnetic/relativistic PIC and collisions remain unvalidated. Additional fixed examples: Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established. Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established. Additional fixed examples: Independent coding check of discrete spatial operators. It does not change the time integrator/continuum model, establish continuum convergence, or reproduce the cold-plasma oscillation reference. A related supplement of cold-plasma-pic; the finite warm velocity spread is explicit."
       },
       "metadata_review": {
         "level": "scoped deterministic and statistical convergence; independent theta/direct/analytic/reference-integration comparisons, conservation diagnostics and independent-seed uncertainty with explicit limits",
-        "on": "2026-11-22"
+        "on": "2026-11-22",
+        "supplemental_review": {
+          "on": "2026-11-23",
+          "level": "Frozen fixed-input source,independent review,actual pytest/main and independently extracted ZIP; see each new release for exact reference independence and failed-attempt history."
+        }
       },
       "aliases": [
         "PIC法",
@@ -11653,6 +12066,67 @@
           "case_ids": [
             "pic-conservation"
           ]
+        },
+        {
+          "group": "warm-pic",
+          "edition": "2026-11-23",
+          "case_ids": [
+            "thermal-landau-damping",
+            "thermal-two-stream"
+          ]
+        },
+        {
+          "group": "pic-spatial",
+          "edition": "2026-11-23",
+          "case_ids": [
+            "pic-independent-spatial"
+          ]
+        }
+      ],
+      "batch28_existing_variant_labels": true,
+      "supplemental_scope_profiles": [
+        {
+          "release": {
+            "group": "warm-pic",
+            "edition": "2026-11-23",
+            "case_ids": [
+              "thermal-landau-damping",
+              "thermal-two-stream"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：温かいPICの線形Landau減衰、温かいPICの二流初期成長。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Warm PIC linear Landau damping, Warm PIC two-stream initial growth. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。",
+              "en": "Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established."
+            },
+            {
+              "ja": "1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。",
+              "en": "Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established."
+            }
+          ]
+        },
+        {
+          "release": {
+            "group": "pic-spatial",
+            "edition": "2026-11-23",
+            "case_ids": [
+              "pic-independent-spatial"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：PIC空間演算の独立実装照合。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Independently coded PIC spatial pipeline. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "離散演算の独立したコーディング照合です。時間積分法や連続方程式を変えた独立エンジン、連続極限の収束、冷たいプラズマの振動参照の再現を意味しません。既存cold-plasma-picの関連補助検証として扱い、温かい初期速度の軌道を冷たい解と同一視しません。",
+              "en": "Independent coding check of discrete spatial operators. It does not change the time integrator/continuum model, establish continuum convergence, or reproduce the cold-plasma oscillation reference. A related supplement of cold-plasma-pic; the finite warm velocity spread is explicit."
+            }
+          ]
         }
       ]
     },
@@ -11668,8 +12142,8 @@
         "en": "Linear & nonlinear solvers"
       },
       "summary": {
-        "ja": "行列から粗視化するAMG：残差と解誤差を分ける: 正方形Poisson問題から得たSPD行列だけを階層構築へ渡し、平滑化集約AMGのV-cycleを実行します。7²・15²・31²未知数で独立疎行列直接解、解析的な離散正弦モード、連続解への2次収束を分けて検査します。 AMGの条件数・異方性・残差と前進誤差: 49・225・961未知数のSPD行列で、条件数と異方性を別々に変えます。解析スペクトル、独立疎行列直接解、DST対角化を比較し、同じ残差でも解誤差が条件数に依存することを確かめます。",
-        "en": "Matrix-based AMG: distinguish residual and solution error: Build a smoothed-aggregation hierarchy from an SPD matrix alone and run V-cycles. Problems with 7², 15² and 31² unknowns distinguish independent sparse direct solutions, analytic discrete sine modes and second-order convergence to the continuum solution. AMG: conditioning, anisotropy, residual and forward error: Separate condition number from anisotropy on SPD systems of 49, 225 and 961 unknowns. Compare analytic spectra, independent sparse direct solutions and DST diagonalization, and measure how residual translates to forward error."
+        "ja": "既存配布版：行列から粗視化するAMG：残差と解誤差を分ける: 正方形Poisson問題から得たSPD行列だけを階層構築へ渡し、平滑化集約AMGのV-cycleを実行します。7²・15²・31²未知数で独立疎行列直接解、解析的な離散正弦モード、連続解への2次収束を分けて検査します。 AMGの条件数・異方性・残差と前進誤差: 49・225・961未知数のSPD行列で、条件数と異方性を別々に変えます。解析スペクトル、独立疎行列直接解、DST対角化を比較し、同じ残差でも解誤差が条件数に依存することを確かめます。 追加固定例：係数ジャンプ拡散：共有流束とMG・AMG、回転異方性拡散：完全テンソルQ1とMG・AMG。条件と検証範囲は各配布版で確認してください。",
+        "en": "Existing releases: Matrix-based AMG: distinguish residual and solution error: Build a smoothed-aggregation hierarchy from an SPD matrix alone and run V-cycles. Problems with 7², 15² and 31² unknowns distinguish independent sparse direct solutions, analytic discrete sine modes and second-order convergence to the continuum solution. AMG: conditioning, anisotropy, residual and forward error: Separate condition number from anisotropy on SPD systems of 49, 225 and 961 unknowns. Compare analytic spectra, independent sparse direct solutions and DST diagonalization, and measure how residual translates to forward error. Additional fixed examples: Checkerboard diffusion: shared flux, MG and AMG, Rotated diffusion: full-tensor Q1, MG and AMG. See each release for assumptions and checked scope."
       },
       "status": "educational-example",
       "origin": "development-candidate",
@@ -11694,12 +12168,16 @@
         "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
       },
       "limitations": {
-        "ja": "行列から粗視化するAMG：残差と解誤差を分ける: 3格子の固定スカラー問題だけの確認です。係数の大きな不連続、強い異方性、弾性系、任意の非構造格子、最適計算量・格子独立収束を保証しません。小さい残差だけを小さい解誤差の証明としません。 AMGの条件数・異方性・残差と前進誤差: 固定した小規模な一定係数系列のみです。任意の係数ジャンプ、非構造格子、不定値系、最適計算量・一様収束を保証しません。異方性が常にκ₂を増やす、あるいは単調に収束を悪化させるとは主張しません。",
-        "en": "Matrix-based AMG: distinguish residual and solution error: Only three fixed scalar grids are checked. Large coefficient jumps, strong anisotropy, elasticity, arbitrary unstructured meshes, optimal complexity and mesh-independent convergence are not certified. A small residual alone does not prove a small solution error. AMG: conditioning, anisotropy, residual and forward error: Only a small constant-coefficient family is checked. Arbitrary coefficient jumps, unstructured grids, indefinite systems, optimal complexity and uniform convergence are outside scope. No claim that anisotropy necessarily increases κ₂ or monotonically worsens convergence."
+        "ja": "既存配布版の制約：行列から粗視化するAMG：残差と解誤差を分ける: 3格子の固定スカラー問題だけの確認です。係数の大きな不連続、強い異方性、弾性系、任意の非構造格子、最適計算量・格子独立収束を保証しません。小さい残差だけを小さい解誤差の証明としません。 AMGの条件数・異方性・残差と前進誤差: 固定した小規模な一定係数系列のみです。任意の係数ジャンプ、非構造格子、不定値系、最適計算量・一様収束を保証しません。異方性が常にκ₂を増やす、あるいは単調に収束を悪化させるとは主張しません。 今回の追加固定例：係数比100の固定例。P1格子差は厳密誤差上界ではなく、特異交点の次数や普遍的なMG/AMG優劣は主張しません。 指定した角度・異方性の限定例。スカラーTPFAを回転テンソルへ転用せず、一般テンソルへの頑健性は保証しません。",
+        "en": "Limits of existing releases: Matrix-based AMG: distinguish residual and solution error: Only three fixed scalar grids are checked. Large coefficient jumps, strong anisotropy, elasticity, arbitrary unstructured meshes, optimal complexity and mesh-independent convergence are not certified. A small residual alone does not prove a small solution error. AMG: conditioning, anisotropy, residual and forward error: Only a small constant-coefficient family is checked. Arbitrary coefficient jumps, unstructured grids, indefinite systems, optimal complexity and uniform convergence are outside scope. No claim that anisotropy necessarily increases κ₂ or monotonically worsens convergence. Additional fixed examples: Fixed contrast100 example. P1 differences are not rigorous error bounds; no singular exponent or universal MG/AMG winner is asserted. One angle/anisotropy only. Scalar TPFA is not extended to rotated tensors; arbitrary-tensor robustness is not established."
       },
       "metadata_review": {
         "level": "scoped conditioned matrix/integral families with analytic or independently computed references; residual versus forward error, convergence and explicit failure controls",
-        "on": "2026-11-22"
+        "on": "2026-11-22",
+        "supplemental_review": {
+          "on": "2026-11-23",
+          "level": "Frozen fixed-input source,independent review,actual pytest/main and independently extracted ZIP; see each new release for exact reference independence and failed-attempt history."
+        }
       },
       "aliases": [
         "AMG法",
@@ -11725,6 +12203,41 @@
           "edition": "2026-11-22",
           "case_ids": [
             "amg-conditioning"
+          ]
+        },
+        {
+          "group": "coefficient-diffusion",
+          "edition": "2026-11-23",
+          "case_ids": [
+            "checkerboard-diffusion",
+            "rotated-anisotropic-diffusion"
+          ]
+        }
+      ],
+      "batch28_existing_variant_labels": true,
+      "supplemental_scope_profiles": [
+        {
+          "release": {
+            "group": "coefficient-diffusion",
+            "edition": "2026-11-23",
+            "case_ids": [
+              "checkerboard-diffusion",
+              "rotated-anisotropic-diffusion"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：係数ジャンプ拡散：共有流束とMG・AMG、回転異方性拡散：完全テンソルQ1とMG・AMG。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Checkerboard diffusion: shared flux, MG and AMG, Rotated diffusion: full-tensor Q1, MG and AMG. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "係数比100の固定例。P1格子差は厳密誤差上界ではなく、特異交点の次数や普遍的なMG/AMG優劣は主張しません。",
+              "en": "Fixed contrast100 example. P1 differences are not rigorous error bounds; no singular exponent or universal MG/AMG winner is asserted."
+            },
+            {
+              "ja": "指定した角度・異方性の限定例。スカラーTPFAを回転テンソルへ転用せず、一般テンソルへの頑健性は保証しません。",
+              "en": "One angle/anisotropy only. Scalar TPFA is not extended to rotated tensors; arbitrary-tensor robustness is not established."
+            }
           ]
         }
       ]
@@ -12614,8 +13127,8 @@
         "en": "Coupling, constraints & particles"
       },
       "summary": {
-        "ja": "等質DSMC衝突成分の保存則・Maxwell分布: 等質なMaxwell分子のランダム二体衝突で、保存則と平衡分布への緩和を検証します。 DSMC衝突成分：有限N平衡・保存則・統計誤差: 有限粒子数の平衡をMaxwell極限と区別し、独立な球面標本、解析的異方性減衰、seed間誤差と比較します。",
-        "en": "Conservation and Maxwell relaxation in a homogeneous DSMC collision component: Test conservation and relaxation toward equilibrium through randomized pair collisions of homogeneous Maxwell molecules. DSMC collision component: finite-N equilibrium, invariants and statistical error: Distinguish finite-particle equilibrium from the Maxwell limit; compare independent sphere samples, analytic anisotropy decay and across-seed uncertainty."
+        "ja": "既存配布版：等質DSMC衝突成分の保存則・Maxwell分布: 等質なMaxwell分子のランダム二体衝突で、保存則と平衡分布への緩和を検証します。 DSMC衝突成分：有限N平衡・保存則・統計誤差: 有限粒子数の平衡をMaxwell極限と区別し、独立な球面標本、解析的異方性減衰、seed間誤差と比較します。 追加固定例：硬球DSMCの有限Kn Couette流、硬球DSMCの有限Kn Fourier熱伝導。条件と検証範囲は各配布版で確認してください。 追加固定例：硬球DSMCのMach2平面衝撃波。条件と検証範囲は各配布版で確認してください。",
+        "en": "Existing releases: Conservation and Maxwell relaxation in a homogeneous DSMC collision component: Test conservation and relaxation toward equilibrium through randomized pair collisions of homogeneous Maxwell molecules. DSMC collision component: finite-N equilibrium, invariants and statistical error: Distinguish finite-particle equilibrium from the Maxwell limit; compare independent sphere samples, analytic anisotropy decay and across-seed uncertainty. Additional fixed examples: Hard-sphere DSMC finite-Kn Couette flow, Hard-sphere DSMC finite-Kn Fourier heat conduction. See each release for assumptions and checked scope. Additional fixed examples: Hard-sphere DSMC Mach2 planar shock. See each release for assumptions and checked scope."
       },
       "status": "educational-example",
       "origin": "development-candidate",
@@ -12645,12 +13158,16 @@
         "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
       },
       "limitations": {
-        "ja": "等質DSMC衝突成分の保存則・Maxwell分布: DSMCの衝突部分の教育例です。空間輸送、衝突セル、剛体球の速度依存の衝突選択、実際の輸送係数・流れ場・全seedでの保証は含みません。Bird原著の剛体球条件を再現したとは主張しません。 DSMC衝突成分：有限N平衡・保存則・統計誤差: 固定した64seedの統計的診断であり、全seedの保証ではありません。同一seed内の粒子は保存量で相関し、IIDのKS p値へ読み替えません。空間輸送、衝突セル、剛体球の速度依存衝突選択・輸送係数は含みません。",
-        "en": "Conservation and Maxwell relaxation in a homogeneous DSMC collision component: This is an educational DSMC collision component. No spatial streaming, collision cells, speed-dependent hard-sphere selection, measured transport coefficients/flow fields or every-seed guarantee. Bird’s original hard-sphere conditions are not reproduced. DSMC collision component: finite-N equilibrium, invariants and statistical error: Statistical diagnostics cover fixed 64-seed ensembles, not every seed. Conservation correlates particles within a seed; do not use IID KS p-values. No spatial streaming, collision cells, speed-dependent hard-sphere selection or transport coefficients."
+        "ja": "既存配布版の制約：等質DSMC衝突成分の保存則・Maxwell分布: DSMCの衝突部分の教育例です。空間輸送、衝突セル、剛体球の速度依存の衝突選択、実際の輸送係数・流れ場・全seedでの保証は含みません。Bird原著の剛体球条件を再現したとは主張しません。 DSMC衝突成分：有限N平衡・保存則・統計誤差: 固定した64seedの統計的診断であり、全seedの保証ではありません。同一seed内の粒子は保存量で相関し、IIDのKS p値へ読み替えません。空間輸送、衝突セル、剛体球の速度依存衝突選択・輸送係数は含みません。 今回の追加固定例：有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。Kn=.5で連続体の直線・no-slip分布を厳密解としません。図は保存した粒子位相空間であり、2D物理流れではありません。 有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。Kn=.5で連続体の直線・no-slip分布を厳密解としません。図は保存した粒子位相空間であり、2D物理流れではありません。 今回の追加固定例：有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。RHは遠方状態・流束だけの参照で、内部構造の厳密解ではありません。図は保存した粒子位相空間であり、2D物理流れではありません。",
+        "en": "Limits of existing releases: Conservation and Maxwell relaxation in a homogeneous DSMC collision component: This is an educational DSMC collision component. No spatial streaming, collision cells, speed-dependent hard-sphere selection, measured transport coefficients/flow fields or every-seed guarantee. Bird’s original hard-sphere conditions are not reproduced. DSMC collision component: finite-N equilibrium, invariants and statistical error: Statistical diagnostics cover fixed 64-seed ensembles, not every seed. Conservation correlates particles within a seed; do not use IID KS p-values. No spatial streaming, collision cells, speed-dependent hard-sphere selection or transport coefficients. Additional fixed examples: Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. AtKn.5,continuum straight/no-slip profiles are not exact. Saved phase space is not a2D physical flow. Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. AtKn.5,continuum straight/no-slip profiles are not exact. Saved phase space is not a2D physical flow. Additional fixed examples: Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. RH validates far states/full fluxes,not an exact internal shock profile. Saved phase space is not a2D physical flow."
       },
       "metadata_review": {
         "level": "scoped deterministic and statistical convergence; independent theta/direct/analytic/reference-integration comparisons, conservation diagnostics and independent-seed uncertainty with explicit limits",
-        "on": "2026-11-22"
+        "on": "2026-11-22",
+        "supplemental_review": {
+          "on": "2026-11-23",
+          "level": "Frozen fixed-input source,independent review,actual pytest/main and independently extracted ZIP; see each new release for exact reference independence and failed-attempt history."
+        }
       },
       "aliases": [
         "DSMC法",
@@ -12675,6 +13192,67 @@
           "edition": "2026-11-22",
           "case_ids": [
             "dsmc-statistics"
+          ]
+        },
+        {
+          "group": "dsmc-wall",
+          "edition": "2026-11-23",
+          "case_ids": [
+            "dsmc-couette",
+            "dsmc-fourier"
+          ]
+        },
+        {
+          "group": "dsmc-shock",
+          "edition": "2026-11-23",
+          "case_ids": [
+            "dsmc-planar-shock"
+          ]
+        }
+      ],
+      "batch28_existing_variant_labels": true,
+      "supplemental_scope_profiles": [
+        {
+          "release": {
+            "group": "dsmc-wall",
+            "edition": "2026-11-23",
+            "case_ids": [
+              "dsmc-couette",
+              "dsmc-fourier"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：硬球DSMCの有限Kn Couette流、硬球DSMCの有限Kn Fourier熱伝導。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Hard-sphere DSMC finite-Kn Couette flow, Hard-sphere DSMC finite-Kn Fourier heat conduction. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。Kn=.5で連続体の直線・no-slip分布を厳密解としません。図は保存した粒子位相空間であり、2D物理流れではありません。",
+              "en": "Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. AtKn.5,continuum straight/no-slip profiles are not exact. Saved phase space is not a2D physical flow."
+            },
+            {
+              "ja": "有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。Kn=.5で連続体の直線・no-slip分布を厳密解としません。図は保存した粒子位相空間であり、2D物理流れではありません。",
+              "en": "Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. AtKn.5,continuum straight/no-slip profiles are not exact. Saved phase space is not a2D physical flow."
+            }
+          ]
+        },
+        {
+          "release": {
+            "group": "dsmc-shock",
+            "edition": "2026-11-23",
+            "case_ids": [
+              "dsmc-planar-shock"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：硬球DSMCのMach2平面衝撃波。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Hard-sphere DSMC Mach2 planar shock. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。RHは遠方状態・流束だけの参照で、内部構造の厳密解ではありません。図は保存した粒子位相空間であり、2D物理流れではありません。",
+              "en": "Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. RH validates far states/full fluxes,not an exact internal shock profile. Saved phase space is not a2D physical flow."
+            }
           ]
         }
       ]
@@ -14342,8 +14920,8 @@
     {
       "id": "q1-fem",
       "name": {
-        "ja": "Q1有限要素法（曲線座標ベクトルBVP）",
-        "en": "Q1 FEM for mapped-coordinate vector BVP"
+        "ja": "Q1有限要素法（スカラー拡散・曲線座標ベクトルBVP）",
+        "en": "Q1 FEM for scalar diffusion and mapped vector BVPs"
       },
       "group": {
         "id": "space",
@@ -14351,8 +14929,8 @@
         "en": "Spatial discretization"
       },
       "summary": {
-        "ja": "極座標(r,θ)の双線形基底でCartesian速度2成分を近似し、円環の可変粘性応力発散BVPを解く。正確なrのJacobian、物理勾配、結合したひずみ弱形式を組み立てる。",
-        "en": "Approximate two Cartesian velocity components with bilinear(r,theta) basis functions for an annular variable-viscosity stress BVP. Assemble the exact polar Jacobian,physical gradients and coupled strain weak form."
+        "ja": "既存配布版：極座標(r,θ)の双線形基底でCartesian速度2成分を近似し、円環の可変粘性応力発散BVPを解く。正確なrのJacobian、物理勾配、結合したひずみ弱形式を組み立てる。 追加固定例：回転異方性拡散：完全テンソルQ1とMG・AMG。条件と検証範囲は各配布版で確認してください。",
+        "en": "Existing releases: Approximate two Cartesian velocity components with bilinear(r,theta) basis functions for an annular variable-viscosity stress BVP. Assemble the exact polar Jacobian,physical gradients and coupled strain weak form. Additional fixed examples: Rotated diffusion: full-tensor Q1, MG and AMG. See each release for assumptions and checked scope."
       },
       "status": "educational-example",
       "origin": "curated-mapped-q1-vector-bvp",
@@ -14362,7 +14940,7 @@
       },
       "code_modules": [],
       "test_files": [],
-      "code_mapping_scope": "Supplemental annular-viscous-mms release only; no claim that the common P1 module implements Q1.",
+      "code_mapping_scope": "Supplemental annular-viscous-mms release only; no claim that the common P1 module implements Q1. Additional scalar full-tensor Cartesian Q1 is supplied separately by coefficient-diffusion; all original annular assumptions remain scoped to the original release.",
       "references": [
         {
           "url": "https://mfem.org/examples/",
@@ -14397,12 +14975,16 @@
       "boundary_conditions": "Zero Cartesian Dirichlet data on r1 and r2; periodic theta. Physical outward traction is measured,not prescribed.",
       "boundary_conditions_ja": "r1/r2でCartesian速度を零Dirichlet、θ周期。外向きの物理牽引力は測定し、境界値として課していない。",
       "limitations": {
-        "ja": "指定円環のmapped Q1ベクトルBVPだけ。P1、一般四辺形・軸r0・圧力/非圧縮拘束・非線形Navier–Stokesではない。Nr8/16/32,Nθ2Nrの固定検査を一般認証へ拡張しない。",
-        "en": "Mapped Q1 vector BVP on this annulus only; not P1,general quadrilaterals,an r0 axis,pressure/incompressibility or nonlinear Navier–Stokes. FixedNr8/16/32,Ntheta2Nr checks are not broad certification."
+        "ja": "既存配布版の制約：指定円環のmapped Q1ベクトルBVPだけ。P1、一般四辺形・軸r0・圧力/非圧縮拘束・非線形Navier–Stokesではない。Nr8/16/32,Nθ2Nrの固定検査を一般認証へ拡張しない。 今回の追加固定例：指定した角度・異方性の限定例。スカラーTPFAを回転テンソルへ転用せず、一般テンソルへの頑健性は保証しません。",
+        "en": "Limits of existing releases: Mapped Q1 vector BVP on this annulus only; not P1,general quadrilaterals,an r0 axis,pressure/incompressibility or nonlinear Navier–Stokes. FixedNr8/16/32,Ntheta2Nr checks are not broad certification. Additional fixed examples: One angle/anisotropy only. Scalar TPFA is not extended to rotated tensors; arbitrary-tensor robustness is not established."
       },
       "metadata_review": {
         "on": "2026-11-23",
-        "level": "Actual mapped Q1 source and engineering-strain weak form independently inspected; numerical execution/receipts remain attached to the supplemental release."
+        "level": "Actual mapped Q1 source and engineering-strain weak form independently inspected; numerical execution/receipts remain attached to the supplemental release.",
+        "supplemental_review": {
+          "on": "2026-11-23",
+          "level": "Frozen fixed-input source,independent review,actual pytest/main and independently extracted ZIP; see each new release for exact reference independence and failed-attempt history."
+        }
       },
       "aliases": [
         "Q1 FEM",
@@ -14421,7 +15003,38 @@
       "depth_scope": {
         "ja": "円環の極座標Q1でCartesian2成分の可変粘性応力を結合。正確な曲線Jacobian、内外の物理牽引力、非零全境界力、仕事と製造解誤差を固定入力で比較します。",
         "en": "Mapped polarQ1 couples both Cartesian components of variable-viscosity stress. Fixed cases check exact curved geometry,inner/outer physical traction,nonzero net force,work and MMS errors."
-      }
+      },
+      "batch28_existing_variant_labels": true,
+      "depth_additional_releases": [
+        {
+          "group": "coefficient-diffusion",
+          "edition": "2026-11-23",
+          "case_ids": [
+            "rotated-anisotropic-diffusion"
+          ]
+        }
+      ],
+      "supplemental_scope_profiles": [
+        {
+          "release": {
+            "group": "coefficient-diffusion",
+            "edition": "2026-11-23",
+            "case_ids": [
+              "rotated-anisotropic-diffusion"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：回転異方性拡散：完全テンソルQ1とMG・AMG。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Rotated diffusion: full-tensor Q1, MG and AMG. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "指定した角度・異方性の限定例。スカラーTPFAを回転テンソルへ転用せず、一般テンソルへの頑健性は保証しません。",
+              "en": "One angle/anisotropy only. Scalar TPFA is not extended to rotated tensors; arbitrary-tensor robustness is not established."
+            }
+          ]
+        }
+      ]
     }
   ],
   "editorial_policy": {

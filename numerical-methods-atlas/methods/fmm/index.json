@@ -10,8 +10,8 @@
     "en": "Particle fields & gravity"
   },
   "summary": {
-    "ja": "2次元対数核のM2M・M2L・L2Lを持つFMM: 自由空間の対数ポテンシャルを一様四分木の多重極・局所展開で評価し、直接和と比較します。 FMM：直接和・解析配置と展開次数・木の深さ: 96粒子の2次元対数核を別の全対直接和と照合し、展開次数・木の深さ、回転・平行移動、合力の近似誤差を測ります。",
-    "en": "2D logarithmic FMM with M2M, M2L and L2L: Evaluate a free-space log potential with uniform-quadtree multipole and local expansions and compare with direct sums. FMM: direct and analytic references, order and tree depth: Compare a 96-particle 2D logarithmic kernel with independent all-pairs sums; measure order/depth, rotation/translation and approximate net-force errors."
+    "ja": "既存配布版：2次元対数核のM2M・M2L・L2Lを持つFMM: 自由空間の対数ポテンシャルを一様四分木の多重極・局所展開で評価し、直接和と比較します。 FMM：直接和・解析配置と展開次数・木の深さ: 96粒子の2次元対数核を別の全対直接和と照合し、展開次数・木の深さ、回転・平行移動、合力の近似誤差を測ります。 追加固定例：真3D 1/r FMM：多段変換・力・適応所有権。条件と検証範囲は各配布版で確認してください。",
+    "en": "Existing releases: 2D logarithmic FMM with M2M, M2L and L2L: Evaluate a free-space log potential with uniform-quadtree multipole and local expansions and compare with direct sums. FMM: direct and analytic references, order and tree depth: Compare a 96-particle 2D logarithmic kernel with independent all-pairs sums; measure order/depth, rotation/translation and approximate net-force errors. Additional fixed examples: Actual3D1/r FMM: multilevel translations, force and ownership. See each release for assumptions and checked scope."
   },
   "status": "educational-example",
   "origin": "existing-coverage-catalog",
@@ -33,12 +33,16 @@
   "units": null,
   "boundary_conditions": null,
   "limitations": {
-    "ja": "2次元対数核のM2M・M2L・L2Lを持つFMM: 3次元1/r核、適応木、周期FMM、特異積分、実測の計算量スケーリングは未検証です。2次元自由空間の教育用実装として表示します。 FMM：直接和・解析配置と展開次数・木の深さ: 木の深さによる相互作用の分割は変わるので、一定次数で深さに対する単調収束は要求しません。対象粒子ごとの展開は厳密な作用反作用を保証せず、3次元・適応木・周期FMM・計算量スケーリングは未検証です。",
-    "en": "2D logarithmic FMM with M2M, M2L and L2L: No 3D 1/r kernel, adaptive tree, periodic FMM, singular quadrature or empirical complexity/scaling study. Evidence applies to this 2D free-space educational implementation. FMM: direct and analytic references, order and tree depth: Interaction repartition changes with depth, so fixed-order depth refinement is not assumed monotone. Target-wise expansions need not preserve exact action/reaction. No 3D, adaptive/periodic FMM or complexity-scaling claim."
+    "ja": "既存配布版の制約：2次元対数核のM2M・M2L・L2Lを持つFMM: 3次元1/r核、適応木、周期FMM、特異積分、実測の計算量スケーリングは未検証です。2次元自由空間の教育用実装として表示します。 FMM：直接和・解析配置と展開次数・木の深さ: 木の深さによる相互作用の分割は変わるので、一定次数で深さに対する単調収束は要求しません。対象粒子ごとの展開は厳密な作用反作用を保証せず、3次元・適応木・周期FMM・計算量スケーリングは未検証です。 今回の追加固定例：小Nの非圧縮教材。p^6 M2Lコストを保存し、SVD圧縮・球調和・Nスケーリング・運動量厳密保存は主張しません。 有限6点閉形式は独立directの資格確認で、FMM本体のgolden-target実行ではありません。",
+    "en": "Limits of existing releases: 2D logarithmic FMM with M2M, M2L and L2L: No 3D 1/r kernel, adaptive tree, periodic FMM, singular quadrature or empirical complexity/scaling study. Evidence applies to this 2D free-space educational implementation. FMM: direct and analytic references, order and tree depth: Interaction repartition changes with depth, so fixed-order depth refinement is not assumed monotone. Target-wise expansions need not preserve exact action/reaction. No 3D, adaptive/periodic FMM or complexity-scaling claim. Additional fixed examples: Small-N uncompressed teaching example; reportp^6M2L cost. No SVD/spherical-harmonic/scaling or exact momentum-conservation claim. The finite6source exact probe qualifies the direct reference, not a production-FMM golden-target run."
   },
   "metadata_review": {
     "level": "scoped deterministic and statistical convergence; independent theta/direct/analytic/reference-integration comparisons, conservation diagnostics and independent-seed uncertainty with explicit limits",
-    "on": "2026-11-22"
+    "on": "2026-11-22",
+    "supplemental_review": {
+      "on": "2026-11-23",
+      "level": "Frozen fixed-input source,independent review,actual pytest/main and independently extracted ZIP; see each new release for exact reference independence and failed-attempt history."
+    }
   },
   "aliases": [
     "FMM法",
@@ -492,6 +496,377 @@
           }
         }
       ]
+    },
+    {
+      "group": "fmm3d",
+      "case_ids": [
+        "fmm3d-inverse-r"
+      ],
+      "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/",
+      "code_edition": "2026-11-23",
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/fmm.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/references/direct.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/experiments.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/protocol.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/test_fmm.py"
+      ],
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "run_from": "atlas-fmm3d-2026-11-23",
+      "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/atlas-fmm3d-2026-11-23.zip",
+      "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/source-manifest.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/verification.json",
+      "code_archive_sha256": "61861fb2a1d24437175710a09c4afdc934aab49c1c2f2e3e14b5a3c2d466b59c",
+      "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/results/result.json",
+      "passed_tests": 19,
+      "examples": [
+        {
+          "id": "fmm3d-inverse-r",
+          "title": {
+            "ja": "真3D 1/r FMM：多段変換・力・適応所有権",
+            "en": "Actual3D1/r FMM: multilevel translations, force and ownership"
+          },
+          "method_ids": [
+            "fmm"
+          ],
+          "domains": [
+            "particles"
+          ],
+          "summary": {
+            "ja": "非圧縮Chebyshev FMMを真の葉レベル2/3と別の適応配置で実行し、独立直接和のポテンシャル・加速度と比較します。",
+            "en": "Run uncompressed Chebyshev FMM at actual leaf levels2/3 and a separate adaptive configuration; compare independent direct potentials and accelerations."
+          },
+          "assumptions": {
+            "ja": "孤立重力-Gm/r、G1、64等質量、p3/5/7。主木は深さ強制、適応木のみcapacity8/maxdepth3。",
+            "en": "Isolated-Gm/r,G1,64equal masses,p3/5/7. Main levels forced; adaptive case alone usescapacity8/maxdepth3."
+          },
+          "algorithm": {
+            "ja": "P2M/M2M/M2L/L2Lと局所基底の物理勾配、近接P2P。全非自己対を一意に割当て、非零の全変換経路を記録。",
+            "en": "Actual upward/downward translations, physical local-basis gradients and near P2P; audit unique nonself ownership and nonzero complete translation contributions."
+          },
+          "validation": {
+            "ja": "有限6点閉形式、独立Cartesian直接和、次数/実深さ、混合深さ・cap粒子保持、剛体変換を別確認。",
+            "en": "Separate finite6source exact goldens, independent Cartesian sums, order/actual-depth comparisons, mixed-depth capped ownership and rigid transformation."
+          },
+          "limits": {
+            "ja": "小Nの非圧縮教材。p^6 M2Lコストを保存し、SVD圧縮・球調和・Nスケーリング・運動量厳密保存は主張しません。 有限6点閉形式は独立directの資格確認で、FMM本体のgolden-target実行ではありません。",
+            "en": "Small-N uncompressed teaching example; reportp^6M2L cost. No SVD/spherical-harmonic/scaling or exact momentum-conservation claim. The finite6source exact probe qualifies the direct reference, not a production-FMM golden-target run."
+          },
+          "references": [
+            {
+              "id": "fong2009",
+              "title": "The black-box fast multipole method",
+              "url": "https://mc.stanford.edu/cgi-bin/images/f/fa/Darve_bbfmm_2009.pdf",
+              "doi": "10.1016/j.jcp.2009.08.031",
+              "review_level": "primary-selected-sections",
+              "review_scope": "Tensor interpolation Eq7 and multilevel stages sections2–3 inspected, printed8715–8717; compression is separate. Original uncompressed educational implementation here, no timing reproduction."
+            },
+            {
+              "id": "fmm3d-definition",
+              "title": "FMM3D mathematical definitions",
+              "url": "https://fmm3d.readthedocs.io/en/latest/math.html",
+              "review_level": "official-kernel-normalization",
+              "review_scope": "Official potential+1/(4pi r), gradient and source-self convention inspected. Our gravitational kernel is-1/r; FMM3D is not installed or run."
+            }
+          ],
+          "formulas": [
+            "\\Phi_i=-G\\sum_{j\\ne i}m_j/r_{ij},\\quad a_i=-\\nabla\\Phi_i",
+            "K(x,y)\\approx\\sum_{\\ell,m}L_\\ell(x)K(x_\\ell,y_m)L_m(y)",
+            "m=p^3,\\quad {\\rm dense\\ M2L\\ entries}=p^6"
+          ],
+          "code_files": [
+            "run.py",
+            "fmm.py",
+            "references/direct.py"
+          ],
+          "gallery_figure": "fmm3d-inverse-r-preview.png",
+          "additional_figures": [
+            {
+              "file": "fmm3d-inverse-r-preview.png",
+              "caption": {
+                "ja": "固定入力を実際に計算した保存配列からの検証図。",
+                "en": "Validation figure from actual saved fixed-input calculation arrays."
+              }
+            }
+          ],
+          "measured": {
+            "id": "fmm3d-inverse-r",
+            "passed": true,
+            "checks": {
+              "p3-d2 finite potential and force": true,
+              "p3-d2 exact interaction ownership": true,
+              "p3-d2 far path exercised": true,
+              "p3-d2 actual forced depth": true,
+              "p5-d2 finite potential and force": true,
+              "p5-d2 exact interaction ownership": true,
+              "p5-d2 far path exercised": true,
+              "p5-d2 actual forced depth": true,
+              "p7-d2 finite potential and force": true,
+              "p7-d2 exact interaction ownership": true,
+              "p7-d2 far path exercised": true,
+              "p7-d2 actual forced depth": true,
+              "p3-d3 finite potential and force": true,
+              "p3-d3 exact interaction ownership": true,
+              "p3-d3 far path exercised": true,
+              "p3-d3 actual forced depth": true,
+              "p3-d3 nonzero complete translation chain": true,
+              "p5-d3 finite potential and force": true,
+              "p5-d3 exact interaction ownership": true,
+              "p5-d3 far path exercised": true,
+              "p5-d3 actual forced depth": true,
+              "p5-d3 nonzero complete translation chain": true,
+              "p7-d3 finite potential and force": true,
+              "p7-d3 exact interaction ownership": true,
+              "p7-d3 far path exercised": true,
+              "p7-d3 actual forced depth": true,
+              "p7-d3 nonzero complete translation chain": true,
+              "adaptive finite fields": true,
+              "adaptive exact ownership": true,
+              "adaptive far path": true,
+              "adaptive unequal actual levels": true,
+              "adaptive capped bucket retained": true,
+              "adaptive potential accuracy": true,
+              "adaptive force accuracy": true,
+              "d2 finest potential_error": true,
+              "d2 order refinement potential_error": true,
+              "d2 finest acceleration_error": true,
+              "d2 order refinement acceleration_error": true,
+              "d3 finest potential_error": true,
+              "d3 order refinement potential_error": true,
+              "d3 finest acceleration_error": true,
+              "d3 order refinement acceleration_error": true,
+              "direct octahedron potential golden": true,
+              "direct octahedron acceleration golden": true,
+              "rigid transformed potential": true,
+              "rigid transformed acceleration": true,
+              "rigid transformed ownership": true,
+              "rigid transformed actual level": true
+            },
+            "records": [
+              {
+                "id": "p3-d2",
+                "p": 3,
+                "depth": 2,
+                "potential_error": 3.666018387726229e-06,
+                "acceleration_error": 0.0005447242546614096,
+                "far_fraction": 0.20238095238095238,
+                "chain_potential_norm": 0.0,
+                "relative_net_force": 5.171675488531713e-07,
+                "p2m": 64,
+                "m2m": 72,
+                "m2l": 816,
+                "l2l": 72,
+                "nonzero_l2l": 0,
+                "chain_pairs": 0,
+                "p2p_pairs": 3216,
+                "far_pairs": 816,
+                "maximum_kernel_entries": 729,
+                "overfull_leaves": 0,
+                "maximum_leaf_depth": 2,
+                "minimum_leaf_depth": 2
+              },
+              {
+                "id": "p5-d2",
+                "p": 5,
+                "depth": 2,
+                "potential_error": 2.0798352443138172e-08,
+                "acceleration_error": 2.810500754843859e-06,
+                "far_fraction": 0.20238095238095238,
+                "chain_potential_norm": 0.0,
+                "relative_net_force": 1.3928590411531618e-08,
+                "p2m": 64,
+                "m2m": 72,
+                "m2l": 816,
+                "l2l": 72,
+                "nonzero_l2l": 0,
+                "chain_pairs": 0,
+                "p2p_pairs": 3216,
+                "far_pairs": 816,
+                "maximum_kernel_entries": 15625,
+                "overfull_leaves": 0,
+                "maximum_leaf_depth": 2,
+                "minimum_leaf_depth": 2
+              },
+              {
+                "id": "p7-d2",
+                "p": 7,
+                "depth": 2,
+                "potential_error": 1.2101204564014015e-10,
+                "acceleration_error": 1.1931897652038067e-08,
+                "far_fraction": 0.20238095238095238,
+                "chain_potential_norm": 0.0,
+                "relative_net_force": 4.0547792675002964e-11,
+                "p2m": 64,
+                "m2m": 72,
+                "m2l": 816,
+                "l2l": 72,
+                "nonzero_l2l": 0,
+                "chain_pairs": 0,
+                "p2p_pairs": 3216,
+                "far_pairs": 816,
+                "maximum_kernel_entries": 117649,
+                "overfull_leaves": 0,
+                "maximum_leaf_depth": 2,
+                "minimum_leaf_depth": 2
+              },
+              {
+                "id": "p3-d3",
+                "p": 3,
+                "depth": 3,
+                "potential_error": 1.796656782268343e-05,
+                "acceleration_error": 0.0032865592424841552,
+                "far_fraction": 0.8110119047619048,
+                "chain_potential_norm": 0.945182473165656,
+                "relative_net_force": 7.645089987128316e-05,
+                "p2m": 64,
+                "m2m": 136,
+                "m2l": 3270,
+                "l2l": 136,
+                "nonzero_l2l": 64,
+                "chain_pairs": 816,
+                "p2p_pairs": 762,
+                "far_pairs": 3270,
+                "maximum_kernel_entries": 729,
+                "overfull_leaves": 0,
+                "maximum_leaf_depth": 3,
+                "minimum_leaf_depth": 3
+              },
+              {
+                "id": "p5-d3",
+                "p": 5,
+                "depth": 3,
+                "potential_error": 1.9342654330932803e-07,
+                "acceleration_error": 2.672503853525523e-05,
+                "far_fraction": 0.8110119047619048,
+                "chain_potential_norm": 0.9451833334249895,
+                "relative_net_force": 7.686854578583276e-07,
+                "p2m": 64,
+                "m2m": 136,
+                "m2l": 3270,
+                "l2l": 136,
+                "nonzero_l2l": 64,
+                "chain_pairs": 816,
+                "p2p_pairs": 762,
+                "far_pairs": 3270,
+                "maximum_kernel_entries": 15625,
+                "overfull_leaves": 0,
+                "maximum_leaf_depth": 3,
+                "minimum_leaf_depth": 3
+              },
+              {
+                "id": "p7-d3",
+                "p": 7,
+                "depth": 3,
+                "potential_error": 2.8255260194168475e-09,
+                "acceleration_error": 3.9236249160985455e-07,
+                "far_fraction": 0.8110119047619048,
+                "chain_potential_norm": 0.9451833400696313,
+                "relative_net_force": 2.7501296435745867e-08,
+                "p2m": 64,
+                "m2m": 136,
+                "m2l": 3270,
+                "l2l": 136,
+                "nonzero_l2l": 64,
+                "chain_pairs": 816,
+                "p2p_pairs": 762,
+                "far_pairs": 3270,
+                "maximum_kernel_entries": 117649,
+                "overfull_leaves": 0,
+                "maximum_leaf_depth": 3,
+                "minimum_leaf_depth": 3
+              },
+              {
+                "id": "adaptive",
+                "p": 7,
+                "depth": 3,
+                "potential_error": 7.468227629292395e-11,
+                "acceleration_error": 9.135080132463485e-11,
+                "p2m": 9,
+                "m2m": 12,
+                "m2l": 16,
+                "l2l": 12,
+                "nonzero_l2l": 1,
+                "chain_pairs": 0,
+                "p2p_pairs": 2496,
+                "far_pairs": 1536,
+                "maximum_kernel_entries": 117649,
+                "overfull_leaves": 1,
+                "maximum_leaf_depth": 3,
+                "minimum_leaf_depth": 2
+              },
+              {
+                "id": "rigid-transform",
+                "p": 7,
+                "depth": 3,
+                "potential_error": 1.288550376741593e-09,
+                "acceleration_error": 1.8887046495299498e-07,
+                "p2m": 64,
+                "m2m": 133,
+                "m2l": 3156,
+                "l2l": 133,
+                "nonzero_l2l": 64,
+                "chain_pairs": 714,
+                "p2p_pairs": 752,
+                "far_pairs": 3280,
+                "maximum_kernel_entries": 117649,
+                "overfull_leaves": 0,
+                "maximum_leaf_depth": 3,
+                "minimum_leaf_depth": 3
+              }
+            ],
+            "metrics": {
+              "finest_potential_error": 2.8255260194168475e-09,
+              "finest_acceleration_error": 3.9236249160985455e-07,
+              "primary_runs": 6,
+              "additional_fixed_evaluations": 2
+            },
+            "data_files": [
+              "fmm3d-inverse-r-p3-d2.npz",
+              "fmm3d-inverse-r-p5-d2.npz",
+              "fmm3d-inverse-r-p7-d2.npz",
+              "fmm3d-inverse-r-p3-d3.npz",
+              "fmm3d-inverse-r-p5-d3.npz",
+              "fmm3d-inverse-r-p7-d3.npz",
+              "fmm3d-inverse-r-adaptive.npz",
+              "fmm3d-inverse-r-analytic-reference.npz",
+              "fmm3d-inverse-r-rigid-transform.npz"
+            ]
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm3d-inverse-r/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-fmm3d/#fmm3d-inverse-r",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-fmm3d/#fmm3d-inverse-r"
+          }
+        }
+      ]
+    }
+  ],
+  "batch28_existing_variant_labels": true,
+  "supplemental_scope_profiles": [
+    {
+      "release": {
+        "group": "fmm3d",
+        "edition": "2026-11-23",
+        "case_ids": [
+          "fmm3d-inverse-r"
+        ]
+      },
+      "scope": {
+        "ja": "追加固定例：真3D 1/r FMM：多段変換・力・適応所有権。条件と検証範囲は各配布版で確認してください。",
+        "en": "Additional fixed examples: Actual3D1/r FMM: multilevel translations, force and ownership. See each release for assumptions and checked scope."
+      },
+      "limits": [
+        {
+          "ja": "小Nの非圧縮教材。p^6 M2Lコストを保存し、SVD圧縮・球調和・Nスケーリング・運動量厳密保存は主張しません。 有限6点閉形式は独立directの資格確認で、FMM本体のgolden-target実行ではありません。",
+          "en": "Small-N uncompressed teaching example; reportp^6M2L cost. No SVD/spherical-harmonic/scaling or exact momentum-conservation claim. The finite6source exact probe qualifies the direct reference, not a production-FMM golden-target run."
+        }
+      ]
     }
   ],
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/fmm/",
@@ -507,13 +882,19 @@
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/fmm.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/electrostatics.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/kinetic_experiments.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/kinetics.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/kinetics.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/fmm.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/references/direct.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/experiments.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/protocol.py"
   ],
   "test_urls": [
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/test_particles.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_kinetics.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_longrange.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_runner.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_runner.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/test_fmm.py"
   ],
   "run_commands": [
     "python -m pytest -q",
@@ -540,6 +921,15 @@
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm-convergence/?lang=en"
       },
       "kind": "dedicated-supplement"
+    },
+    {
+      "id": "fmm3d-inverse-r",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm3d-inverse-r/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm3d-inverse-r/?lang=en"
+      },
+      "kind": "dedicated-supplement"
     }
   ],
   "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
@@ -563,6 +953,20 @@
         "url": {
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#poisson-laplace-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#poisson-laplace-en"
+        }
+      },
+      {
+        "id": "particle-gravity",
+        "name": {
+          "ja": "重力粒子モデル",
+          "en": "Gravitational particle model"
+        },
+        "problem_ids": [
+          "fmm3d-inverse-r"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#particle-gravity-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#particle-gravity-en"
         }
       }
     ],
@@ -647,6 +1051,65 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/logarithmic-particles/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/logarithmic-particles/?lang=en#references-en"
         }
+      },
+      {
+        "id": "fmm3d-inverse-r",
+        "name": {
+          "ja": "真3D 1/r FMM：多段変換・力・適応所有権",
+          "en": "Actual3D1/r FMM: multilevel translations, force and ownership"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/results/fmm3d-inverse-r-preview.png",
+          "sha256": "7bd81db0f5de4b811f26cf8e45a13864842509d2d6c9ec57325572b1bb0e43a2",
+          "width": 920,
+          "height": 592,
+          "caption": {
+            "ja": "固定入力を実際に計算した保存配列からの検証図。",
+            "en": "Validation figure from actual saved fixed-input calculation arrays."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fmm3d-inverse-r/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fmm3d-inverse-r/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fmm3d-inverse-r/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fmm3d-inverse-r/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "fmm3d-inverse-r",
+            "kind": "supplement",
+            "name": {
+              "ja": "真3D 1/r FMM：多段変換・力・適応所有権",
+              "en": "Actual3D1/r FMM: multilevel translations, force and ownership"
+            },
+            "scope": {
+              "ja": "非圧縮Chebyshev FMMを真の葉レベル2/3と別の適応配置で実行し、独立直接和のポテンシャル・加速度と比較します。",
+              "en": "Run uncompressed Chebyshev FMM at actual leaf levels2/3 and a separate adaptive configuration; compare independent direct potentials and accelerations."
+            },
+            "method_ids": [
+              "fmm"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm3d-inverse-r/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm3d-inverse-r/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/atlas-fmm3d-2026-11-23.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "P2M/M2M/M2L/L2Lと局所基底の物理勾配、近接P2P。全非自己対を一意に割当て、非零の全変換経路を記録。",
+          "en": "Actual upward/downward translations, physical local-basis gradients and near P2P; audit unique nonself ownership and nonzero complete translation contributions."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fmm3d-inverse-r/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fmm3d-inverse-r/?lang=en#references-en"
+        }
       }
     ],
     "references": [
@@ -661,6 +1124,40 @@
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/logarithmic-particles/?lang=en#references-en"
         },
         "cases": []
+      },
+      {
+        "problem_id": "fmm3d-inverse-r",
+        "problem_name": {
+          "ja": "真3D 1/r FMM：多段変換・力・適応所有権",
+          "en": "Actual3D1/r FMM: multilevel translations, force and ownership"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fmm3d-inverse-r/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fmm3d-inverse-r/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "fmm3d-inverse-r",
+            "title": {
+              "ja": "真3D 1/r FMM：多段変換・力・適応所有権",
+              "en": "Actual3D1/r FMM: multilevel translations, force and ownership"
+            },
+            "kind": "numerical-reference",
+            "relation": "same-problem",
+            "note": {
+              "ja": "小Nの非圧縮教材。p^6 M2Lコストを保存し、SVD圧縮・球調和・Nスケーリング・運動量厳密保存は主張しません。 有限6点閉形式は独立directの資格確認で、FMM本体のgolden-target実行ではありません。",
+              "en": "Small-N uncompressed teaching example; reportp^6M2L cost. No SVD/spherical-harmonic/scaling or exact momentum-conservation claim. The finite6source exact probe qualifies the direct reference, not a production-FMM golden-target run."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-fmm3d-inverse-r-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-fmm3d-inverse-r-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/fmm3d-inverse-r/?lang=ja#fmm3d-inverse-r-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/fmm3d-inverse-r/?lang=en#fmm3d-inverse-r-en-measurements"
+            }
+          }
+        ]
       }
     ]
   }

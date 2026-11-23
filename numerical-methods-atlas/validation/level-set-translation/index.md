@@ -125,7 +125,7 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-このコマンドは配布グループの全例を実行します。
+このコマンドは配布グループの全例を実行します。同梱のresults/は保存見本です。追試は新規output/へ出力し、繰り返す場合は別の新規フォルダを指定します。
 
 入力・検証手順の履歴：https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/protocol-history.json
 
@@ -134,13 +134,17 @@ https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/inputs-i
 ## 出典と確認範囲
 
 - S. Osher and J. A. Sethian (1988). Fronts propagating with curvature-dependent speed: Algorithms based on Hamilton-Jacobi formulations. https://math.berkeley.edu/~sethian/Papers/sethian.osher.88.pdf; review_level=full-text
-  著者公開の原著から抄録・陰的な界面表現・Hamilton–Jacobi型の移流と法線運動の該当箇所を参照。論文全体の監査や原著の全計算の再現ではありません。
+著者公開の原著から抄録・陰的な界面表現・Hamilton–Jacobi型の移流と法線運動の該当箇所を参照。論文全体の監査や原著の全計算の再現ではありません。
+
 - C. W. Hirt and B. D. Nichols (1981). Volume of fluid (VOF) method for the dynamics of free boundaries. https://www.sciencedirect.com/science/article/pii/0021999181901455; review_level=abstract-and-metadata
-  出版社の書誌・抄録を確認し、体積率による表現の原著として引用。原著全体やdonor–acceptor法の実装を監査・再現したとは主張しません。
+出版社の書誌・抄録を確認し、体積率による表現の原著として引用。原著全体やdonor–acceptor法の実装を監査・再現したとは主張しません。
+
 - M. Sussman and E. Fatemi (1999). An Efficient, Interface-Preserving Level Set Redistancing Algorithm and Its Application to Interfacial Incompressible Fluid Flow. https://epubs.siam.org/doi/10.1137/S1064827596298245; review_level=abstract-and-metadata
-  公式の抄録・書誌を確認。距離関数の再構成とゼロ界面の保持を区別する資料であり、原著の制約付き高次法を今回の単純なGodunov反復と同一視しません。
+公式の抄録・書誌を確認。距離関数の再構成とゼロ界面の保持を区別する資料であり、原著の制約付き高次法を今回の単純なGodunov反復と同一視しません。
+
 - M. Sussman and E. G. Puckett (2000). A Coupled Level Set and Volume-of-Fluid Method for Computing 3D and Axisymmetric Incompressible Two-Phase Flows. https://www.math.ucdavis.edu/~egp/PUBLICATIONS/JOURNAL_ARTICLES/APPEARED/2000/MSS-EGP_2000.pdf; review_level=full-text
-  著者公開PDFの302–305頁、式(1)–(6),(9),(12),(15)の界面幾何・囲まれた質量の誤差・体積率の保存を参照。本教材は内部を負とするため符号規約を反転。CLSVOFや二相流の原著実験は実行していません。
+著者公開PDFの302–305頁、式(1)–(6),(9),(12),(15)の界面幾何・囲まれた質量の誤差・体積率の保存を参照。本教材は内部を負とするため符号規約を反転。CLSVOFや二相流の原著実験は実行していません。
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.
 
@@ -271,7 +275,7 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-This command executes every fixed case in the distribution group.
+This command executes every fixed case in the distribution group. Bundled results/ are stored outputs. Rerun into a new output/ directory and use another fresh directory for subsequent runs.
 
 Input and validation protocol history: https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/protocol-history.json
 
@@ -280,12 +284,16 @@ https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/inputs-i
 ## Sources and review scope
 
 - S. Osher and J. A. Sethian (1988). Fronts propagating with curvature-dependent speed: Algorithms based on Hamilton-Jacobi formulations. https://math.berkeley.edu/~sethian/Papers/sethian.osher.88.pdf; review_level=full-text
-  Selected author-hosted original passages: abstract, implicit front representation and Hamilton–Jacobi transport/normal-motion formulation. No full-paper audit or reproduction of its full experiment suite.
+Selected author-hosted original passages: abstract, implicit front representation and Hamilton–Jacobi transport/normal-motion formulation. No full-paper audit or reproduction of its full experiment suite.
+
 - C. W. Hirt and B. D. Nichols (1981). Volume of fluid (VOF) method for the dynamics of free boundaries. https://www.sciencedirect.com/science/article/pii/0021999181901455; review_level=abstract-and-metadata
-  Publisher bibliography and abstract for the original volume-fraction formulation. No full-text algorithm audit or implementation of its donor–acceptor scheme.
+Publisher bibliography and abstract for the original volume-fraction formulation. No full-text algorithm audit or implementation of its donor–acceptor scheme.
+
 - M. Sussman and E. Fatemi (1999). An Efficient, Interface-Preserving Level Set Redistancing Algorithm and Its Application to Interfacial Incompressible Fluid Flow. https://epubs.siam.org/doi/10.1137/S1064827596298245; review_level=abstract-and-metadata
-  Official abstract and bibliography: redistancing quality includes retaining the zero interface; its constrained higher-order algorithm is not the simple Godunov auxiliary iteration implemented here.
+Official abstract and bibliography: redistancing quality includes retaining the zero interface; its constrained higher-order algorithm is not the simple Godunov auxiliary iteration implemented here.
+
 - M. Sussman and E. G. Puckett (2000). A Coupled Level Set and Volume-of-Fluid Method for Computing 3D and Axisymmetric Incompressible Two-Phase Flows. https://www.math.ucdavis.edu/~egp/PUBLICATIONS/JOURNAL_ARTICLES/APPEARED/2000/MSS-EGP_2000.pdf; review_level=full-text
-  Author-hosted pp.302–305, equations(1)–(6),(9),(12),(15): signed-distance geometry, enclosed-mass issue and volume-fraction conservation. Sign is reversed here to make phi negative inside. No CLSVOF or two-phase fluid experiment executed.
+Author-hosted pp.302–305, equations(1)–(6),(9),(12),(15): signed-distance geometry, enclosed-mass issue and volume-fraction conservation. Sign is reversed here to make phi negative inside. No CLSVOF or two-phase fluid experiment executed.
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.

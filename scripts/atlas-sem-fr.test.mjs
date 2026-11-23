@@ -23,6 +23,7 @@ const batch28HistoricalMethod=method=>{
   if(Object.hasOwn(prior,'supplemental_review'))review.supplemental_review=prior.supplemental_review;else delete review.supplemental_review;
   if(Object.hasOwn(old,'metadata_review')||Object.keys(review).length)copy.metadata_review=review;else delete copy.metadata_review;
  }
+ if(['verlet','multigrid','cic','barnes-hut','slab-ewald'].includes(method.id))restore('depth_scope');
  if(method.id==='slab-ewald')for(const key of ['status','depth_previous_status','previous_planned_description','next_deliverable'])restore(key);
  if(method.id==='q1-fem')for(const key of ['name','code_mapping_scope'])restore(key);
  if(method.id==='thomas')for(const key of ['summary','references','metadata_review','bibliographic_original'])restore(key);
@@ -43,7 +44,7 @@ test('SEM/FR preserve the previous149 method records,24 releases,92 primary pict
  assert.equal(registry.releases.length,38);assert.equal(registry.case_count,83);assert.equal(registry.releases.filter(r=>!['coefficient-diffusion', 'slab-ewald', 'fmm3d', 'gravity-dynamics', 'warm-pic', 'pic-spatial', 'dsmc-wall', 'dsmc-shock'].includes(r.group)).reduce((n,r)=>n+r.tests,0),893);
  assert.equal(hash(registry.releases.filter(r=>!['sem-fr','instability-growth','mhd-transport','mesh-boundary','moving-waves','relativistic','coefficient-diffusion','slab-ewald','fmm3d','gravity-dynamics','warm-pic','pic-spatial','dsmc-wall','dsmc-shock'].includes(r.group))),baseline.release_records_sha256);
  const pictures=json('numerical-methods-atlas/gallery/preview-manifest.json').items;
- assert.equal(pictures.length,113);assert.equal(hash(pictures.filter(p=>!["kh-initial-growth","rt-initial-growth","lshape-fem","annular-viscous-mms","poisson-neumann","poisson-robin","ale-nonuniform-transport","cgrid-rotating-wave","srhd-collision","srmhd-alfven"].includes(p.id))),baseline.primary_records_sha256);
+ assert.equal(pictures.length,113);assert.equal(hash(pictures.filter(p=>!["kh-initial-growth","rt-initial-growth","lshape-fem","annular-viscous-mms","poisson-neumann","poisson-robin","ale-nonuniform-transport","cgrid-rotating-wave","srhd-collision","srmhd-alfven","checkerboard-diffusion","rotated-anisotropic-diffusion","neutral-slab-yb","fmm3d-inverse-r","gravity-kepler","gravity-plummer-short","thermal-landau-damping","thermal-two-stream","dsmc-couette","dsmc-fourier","dsmc-planar-shock"].includes(p.id))),baseline.primary_records_sha256);
  for(const p of pictures)assert.equal(sha(p.image.replace(/^\//,'')),p.image_sha256);
  assert.equal(sha('numerical-methods-atlas/code-and-data/examples.json'),baseline.common_registry_sha256);
 });

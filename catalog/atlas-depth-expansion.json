@@ -438,6 +438,126 @@
         "ja": "SRHDの対向衝突をTaub関係の二衝撃波解と、全7保存量SRMHDの有限振幅円偏波を独立テンソル式・保存量平均と比較します。空間は1次元で、図のx–t表示は2D流れではありません。",
         "en": "Compare an SRHD head-on collision with a Taub two-shock solution and full7-state finite-amplitude SRMHD wave with independent tensor formulas/conserved means. Space is1D; x–t pictures are not2D flow."
       }
+    },
+    {
+      "id": "coefficient-diffusion",
+      "edition": "2026-11-23",
+      "title": {
+        "ja": "係数ジャンプ・回転異方性のMG／AMG",
+        "en": "MG/AMG for coefficient jumps and rotated anisotropy"
+      },
+      "fields": [
+        "elliptic"
+      ],
+      "intro": {
+        "ja": "同じ行列の幾何MG・SA-AMG・直接解と、連続問題の解析解・別離散参照を分けて比較します。",
+        "en": "Compare geometric MG,SA-AMG and direct solves of identical matrices, separately from analytic or independently discretized continuum references."
+      }
+    },
+    {
+      "id": "slab-ewald",
+      "edition": "2026-11-23",
+      "title": {
+        "ja": "中性スラブ：3周期補正と真の2周期参照",
+        "en": "Neutral slabs: corrected3P and genuine2P references"
+      },
+      "fields": [
+        "particles"
+      ],
+      "intro": {
+        "ja": "長方形の周期箱と非周期zの分枝を固定し、Yeh–Berkowitz補正を真の2周期の自己項・零モード込みの参照と照合します。",
+        "en": "Freeze rectangular boxes and the nonperiodic-z branch; compare the Yeh–Berkowitz correction with a genuine2P reference including self and zero modes."
+      }
+    },
+    {
+      "id": "fmm3d",
+      "edition": "2026-11-23",
+      "title": {
+        "ja": "3Dの1/r核：展開・木・力の検証",
+        "en": "3D1/r kernels: expansions,trees and force checks"
+      },
+      "fields": [
+        "particles"
+      ],
+      "intro": {
+        "ja": "真の3D展開でM2M・M2L・L2Lを通った非零の最終寄与と一意な相互作用割当てを確かめます。",
+        "en": "Check nonzero final contributions through actual3D M2M,M2L,L2L paths and unique interaction ownership."
+      }
+    },
+    {
+      "id": "gravity-dynamics",
+      "edition": "2026-11-23",
+      "title": {
+        "ja": "重力軌道：Keplerと軟化有限粒子",
+        "en": "Gravitational trajectories: Kepler and softened finite particles"
+      },
+      "fields": [
+        "particles"
+      ],
+      "intro": {
+        "ja": "厳密なKepler軌道と、同じ軟化核を使う短時間の有限粒子ODE参照を区別します。",
+        "en": "Distinguish exact Kepler trajectories from short-time finite-particle references using the identical softened ODE."
+      }
+    },
+    {
+      "id": "warm-pic",
+      "edition": "2026-11-23",
+      "title": {
+        "ja": "熱的PIC：Landau減衰と二流不安定性",
+        "en": "Warm PIC: Landau damping and two-stream instability"
+      },
+      "fields": [
+        "particles"
+      ],
+      "intro": {
+        "ja": "自己無撞着な全分布の重み付きPICを、独立な誘電分散式と線形Volterra初期値問題と比較します。",
+        "en": "Compare self-consistent weighted full-f PIC with independently formulated dielectric dispersion and linear Volterra IVPs."
+      }
+    },
+    {
+      "id": "pic-spatial",
+      "edition": "2026-11-23",
+      "title": {
+        "ja": "PICの独立空間実装との照合",
+        "en": "PIC checks against independent spatial kernels"
+      },
+      "fields": [
+        "particles"
+      ],
+      "intro": {
+        "ja": "各kickで独立なCICと明示DFTから場を更新し、同じ時間積分の共有範囲を明示します。",
+        "en": "Update the field at every kick using independent CIC and explicit DFT kernels; state the shared temporal algorithm."
+      }
+    },
+    {
+      "id": "dsmc-wall",
+      "edition": "2026-11-23",
+      "title": {
+        "ja": "有限Knudsen数のCouette・Fourier流",
+        "en": "Finite-Knudsen Couette and Fourier flows"
+      },
+      "fields": [
+        "particles"
+      ],
+      "intro": {
+        "ja": "物理時間の剛体球衝突、壁の流束重み付き再放出、保存収支を独立SPARTA参照と比較します。",
+        "en": "Compare physical-time hard-sphere collisions,flux-weighted wall reemission and budgets with independent SPARTA references."
+      }
+    },
+    {
+      "id": "dsmc-shock",
+      "edition": "2026-11-23",
+      "title": {
+        "ja": "剛体球DSMCのMach2平面衝撃波",
+        "en": "Mach2 planar shock with hard-sphere DSMC"
+      },
+      "fields": [
+        "particles"
+      ],
+      "intro": {
+        "ja": "流入出を持つ1D空間・3D速度の衝撃波で、RH遠方状態と内部の独立な数値参照を区別します。",
+        "en": "For a1D-space,3D-velocity open-reservoir shock,distinguish RH far states from independent numerical internal-profile references."
+      }
     }
   ],
   "case_problem_ids": {
@@ -511,7 +631,19 @@
     "ale-nonuniform-transport": "ale-nonuniform-transport",
     "cgrid-rotating-wave": "cgrid-rotating-wave",
     "srhd-collision": "srhd-collision",
-    "srmhd-alfven": "srmhd-alfven"
+    "srmhd-alfven": "srmhd-alfven",
+    "checkerboard-diffusion": "checkerboard-diffusion",
+    "rotated-anisotropic-diffusion": "rotated-anisotropic-diffusion",
+    "neutral-slab-yb": "neutral-slab-yb",
+    "fmm3d-inverse-r": "fmm3d-inverse-r",
+    "gravity-kepler": "gravity-kepler",
+    "gravity-plummer-short": "gravity-plummer-short",
+    "thermal-landau-damping": "thermal-landau-damping",
+    "thermal-two-stream": "thermal-two-stream",
+    "pic-independent-spatial": "cold-plasma-pic",
+    "dsmc-couette": "dsmc-couette",
+    "dsmc-fourier": "dsmc-fourier",
+    "dsmc-planar-shock": "dsmc-planar-shock"
   },
   "routine_policy": {
     "ja": "通常の補助例CIは、公開レジストリに登録した補助配布グループをNumPy・SciPy・pytestで実行します。保存済みの独立参照は版・入力・実行記録を照合し、新規の参照計算と区別します。量子収束を含む従来の共通22例は必要時の手動実行とし、既存の配布物・公差・履歴を保持します。",
@@ -693,6 +825,54 @@
     "srmhd-alfven": {
       "ja": "原著の厳密解族を独立な低次法で計算し、ECHO法や原著誤差表は再現しません。一般RMHD衝撃波、極端な磁化・Lorentz因子、GR、抵抗MHD、多次元磁場発散制御は対象外。図は実際の1D時空間場です。",
       "en": "Use the original exact family with an independent lower-order operator; no ECHO-algorithm or error-table reproduction. Generic RMHD shocks,extreme magnetization/Lorentz factors,GR,resistive MHD and multidimensional divergence control are outside scope. Figures show actual1D x–t fields."
+    },
+    "checkerboard-diffusion": {
+      "ja": "係数比100の固定例。P1格子差は厳密誤差上界ではなく、特異交点の次数や普遍的なMG/AMG優劣は主張しません。",
+      "en": "Fixed contrast100 example. P1 differences are not rigorous error bounds; no singular exponent or universal MG/AMG winner is asserted."
+    },
+    "rotated-anisotropic-diffusion": {
+      "ja": "指定した角度・異方性の限定例。スカラーTPFAを回転テンソルへ転用せず、一般テンソルへの頑健性は保証しません。",
+      "en": "One angle/anisotropy only. Scalar TPFA is not extended to rotated tensors; arbitrary-tensor robustness is not established."
+    },
+    "neutral-slab-yb": {
+      "ja": "中性・固定4電荷・Cartesian z法線のみ。YBは有限ギャップ近似で任意真空の厳密2Pではありません。原著YB本文は未読。",
+      "en": "Neutral fixed4charge Cartesian-z slab only. YB is a finite-gap approximation, not exact2P at arbitrary vacuum. Original Yeh full text not inspected."
+    },
+    "fmm3d-inverse-r": {
+      "ja": "小Nの非圧縮教材。p^6 M2Lコストを保存し、SVD圧縮・球調和・Nスケーリング・運動量厳密保存は主張しません。 有限6点閉形式は独立directの資格確認で、FMM本体のgolden-target実行ではありません。",
+      "en": "Small-N uncompressed teaching example; reportp^6M2L cost. No SVD/spherical-harmonic/scaling or exact momentum-conservation claim. The finite6source exact probe qualifies the direct reference, not a production-FMM golden-target run."
+    },
+    "gravity-kepler": {
+      "ja": "1周期・固定離心率のみ。軟化軌道や長時間安定性はこの参照の範囲外。",
+      "en": "One orbit at fixed eccentricity only; softened binaries and long-time behavior are outside this exact reference."
+    },
+    "gravity-plummer-short": {
+      "ja": "冷たい有限N初期値で平衡Plummer分布/連続球厳密軌道ではありません。BHの一般相反性・大域symplectic性は主張しません。",
+      "en": "Cold finite-N initial value,not an equilibrium Plummer DF or exact continuum orbit. No general BH reciprocity/global symplecticity claim."
+    },
+    "thermal-landau-damping": {
+      "ja": "1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。",
+      "en": "Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established."
+    },
+    "thermal-two-stream": {
+      "ja": "1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。",
+      "en": "Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established."
+    },
+    "pic-independent-spatial": {
+      "ja": "離散演算の独立したコーディング照合です。時間積分法や連続方程式を変えた独立エンジン、連続極限の収束、冷たいプラズマの振動参照の再現を意味しません。既存cold-plasma-picの関連補助検証として扱い、温かい初期速度の軌道を冷たい解と同一視しません。",
+      "en": "Independent coding check of discrete spatial operators. It does not change the time integrator/continuum model, establish continuum convergence, or reproduce the cold-plasma oscillation reference. A related supplement of cold-plasma-pic; the finite warm velocity spread is explicit."
+    },
+    "dsmc-couette": {
+      "ja": "有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。Kn=.5で連続体の直線・no-slip分布を厳密解としません。図は保存した粒子位相空間であり、2D物理流れではありません。",
+      "en": "Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. AtKn.5,continuum straight/no-slip profiles are not exact. Saved phase space is not a2D physical flow."
+    },
+    "dsmc-fourier": {
+      "ja": "有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。Kn=.5で連続体の直線・no-slip分布を厳密解としません。図は保存した粒子位相空間であり、2D物理流れではありません。",
+      "en": "Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. AtKn.5,continuum straight/no-slip profiles are not exact. Saved phase space is not a2D physical flow."
+    },
+    "dsmc-planar-shock": {
+      "ja": "有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。RHは遠方状態・流束だけの参照で、内部構造の厳密解ではありません。図は保存した粒子位相空間であり、2D物理流れではありません。",
+      "en": "Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. RH validates far states/full fluxes,not an exact internal shock profile. Saved phase space is not a2D physical flow."
     }
   },
   "case_equations": {
@@ -973,6 +1153,114 @@
       "note": {
         "ja": "平坦時空、c=4π=1、γ=4/3、ρ=p=Bx=η=1、vx=0の厳密族。原著2π周期を単位区間へ写し、64/128/256セル、周期境界、t=1/vA。Bxは1次元で固定します。",
         "en": "Flat spacetime,c=4pi=1,gamma4/3,rho=p=Bx=eta1, exact-family vx0. Rescale the original2pi period to a unit domain;64/128/256 cells,periodic,t=1/vA. Normal Bx is fixed in1D."
+      }
+    },
+    "checkerboard-diffusion": {
+      "ids": [
+        "tensor-diffusion"
+      ],
+      "note": {
+        "ja": "単位正方形、零Dirichlet、f=1、対角2象限100/残り1、N16/32/64。参照P1は128/192。",
+        "en": "Unit square, zero Dirichlet, f=1, diagonal quadrants100/others1, N16/32/64; reference P1 meshes128/192."
+      }
+    },
+    "rotated-anisotropic-diffusion": {
+      "ids": [
+        "tensor-diffusion"
+      ],
+      "note": {
+        "ja": "単位正方形、零Dirichlet、K=R(pi/6)diag(1,.01)Rᵀ、厳密解sin(pi x)sin(pi y)、N16/32/64。",
+        "en": "Unit square, zero Dirichlet, K=R(pi/6)diag(1,.01)R^T, exact sin(pi x)sin(pi y), N16/32/64."
+      }
+    },
+    "neutral-slab-yb": {
+      "ids": [
+        "coulomb-electrostatics"
+      ],
+      "note": {
+        "ja": "Coulomb定数1、Lx1,Ly1.25、Lz1.5/3/6、4電荷±1、非周期zのMz=.34、alpha3/4。",
+        "en": "Coulomb1, lateral1×1.25, extendedLz1.5/3/6,4neutral charges±1,physical-z dipole.34 andalpha3/4."
+      }
+    },
+    "fmm3d-inverse-r": {
+      "ids": [
+        "particle-gravity"
+      ],
+      "note": {
+        "ja": "孤立重力-Gm/r、G1、64等質量、p3/5/7。主木は深さ強制、適応木のみcapacity8/maxdepth3。",
+        "en": "Isolated-Gm/r,G1,64equal masses,p3/5/7. Main levels forced; adaptive case alone usescapacity8/maxdepth3."
+      }
+    },
+    "gravity-kepler": {
+      "ids": [
+        "particle-gravity"
+      ],
+      "note": {
+        "ja": "G=M=a1,e.4,masses.6/.4、epsilon0、128/256/512steps、初期COM/P0。",
+        "en": "G=M=a1,e.4,masses.6/.4,epsilon0,128/256/512steps,initialCOM/P0."
+      }
+    },
+    "gravity-plummer-short": {
+      "ids": [
+        "particle-gravity"
+      ],
+      "note": {
+        "ja": "固定32等質量・切断r3の密度由来反対称座標、初速0、epsilon.05、T.2。密度尺度a1とは別。",
+        "en": "Fixed32equal masses,antipodal truncatedr3 density-derived positions,zero velocity,epsilon.05,T.2; density scalea1 differs from pair softening."
+      }
+    },
+    "thermal-landau-damping": {
+      "ids": [
+        "vlasov-poisson"
+      ],
+      "note": {
+        "ja": "vth=ωp=λD=1、k=.5、L=4π、α=.01、格子32、256空間層×128速度節点、dt=.04、T16、固定窓[4,12]。シード33001–33004。 空間粒子層だけ512へ倍増する独立companionも固定します。",
+        "en": "vth=omega_p=lambda_D=1,k.5,L4pi,alpha.01,grid32,256spatial strata×128velocity nodes,dt.04,T16,fit[4,12],seeds33001–33004. A separately evolved512-spatial-strata companion changes only particle-space resolution."
+      }
+    },
+    "thermal-two-stream": {
+      "ids": [
+        "vlasov-poisson"
+      ],
+      "note": {
+        "ja": "各流の熱速度1、ドリフト±3、k=.2、L=10π、α=1e−5、格子32、64空間層×128総速度節点、dt=.05、T40、固定窓[12,20]。シード34001–34004。",
+        "en": "Each stream thermal speed1,drifts±3,k.2,L10pi,alpha1e-5,grid32,64spatial strata×128total velocity nodes,dt.05,T40,fit[12,20],seeds34001–34004."
+      }
+    },
+    "pic-independent-spatial": {
+      "ids": [
+        "vlasov-poisson"
+      ],
+      "note": {
+        "ja": "周期[0,2π]、256粒子、格子8/16/32、シード35001/35002、dt=.02、T=.24。位置は一様乱数、v=.2 Normal+.1 sin x。6組は別々に進めた12軌道です。",
+        "en": "Periodic[0,2pi],256particles,grids8/16/32,seeds35001/35002,dt.02,T.24. Uniform random positions,v=.2Normal+.1sin(x). Six pairs mean twelve separately evolved trajectories."
+      }
+    },
+    "dsmc-couette": {
+      "ids": [
+        "hard-sphere-boltzmann"
+      ],
+      "note": {
+        "ja": "1次元位置・3次元速度、H=2、Kn0=.5、完全拡散壁。壁温1、壁速度±.5。16セル、N=1024、dt=.02、burn20/sample40、4seed。",
+        "en": "{\"kind\":\"wall\",\"cells\":16,\"length\":2,\"weight\":0.001953125,\"dt\":0.02,\"burn_in\":20,\"sample_time\":40,\"blocks\":5,\"bins\":8,\"sample_every\":10,\"hist_velocity\":[-6,6],\"temperatures\":[1,1],\"speeds\":[-0.5,0.5]} Four independent seeds; primary fixed-weight mesh,particle-weight,and half-step companions each retain seed1."
+      }
+    },
+    "dsmc-fourier": {
+      "ids": [
+        "hard-sphere-boltzmann"
+      ],
+      "note": {
+        "ja": "1次元位置・3次元速度、H=2、Kn0=.5、完全拡散壁。静止壁、左温度1・右2。16セル、N=1024、dt=.02、burn20/sample40、4seed。",
+        "en": "{\"kind\":\"wall\",\"cells\":16,\"length\":2,\"weight\":0.001953125,\"dt\":0.02,\"burn_in\":20,\"sample_time\":40,\"blocks\":5,\"bins\":8,\"sample_every\":10,\"hist_velocity\":[-6,6],\"temperatures\":[1,2],\"speeds\":[0,0]} Four independent seeds; primary fixed-weight mesh,particle-weight,and half-step companions each retain seed1."
+      }
+    },
+    "dsmc-planar-shock": {
+      "ids": [
+        "hard-sphere-boltzmann"
+      ],
+      "note": {
+        "ja": "1次元位置・3次元速度、単原子硬球。Mach2、区間[0,16]、RHの開境界reservoir。192セル、粒子重み1/192、dt=.01、burn20/sample20、12seed。",
+        "en": "{\"kind\":\"shock\",\"cells\":192,\"length\":16,\"weight\":0.005208333333333333,\"dt\":0.01,\"burn_in\":20,\"sample_time\":20,\"blocks\":5,\"bins\":64,\"sample_every\":10,\"hist_velocity\":[-4,7]} Twelve independent seeds; primary fixed-weight mesh,particle-weight,and half-step companions each retain seed1."
       }
     }
   }

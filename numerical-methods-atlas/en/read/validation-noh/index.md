@@ -323,19 +323,24 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-This command executes every fixed case in the distribution group.
+This command executes every fixed case in the distribution group. Bundled results/ are stored outputs. Rerun into a new output/ directory and use another fresh directory for subsequent runs.
 
 ### Sources and review scope
 
 - W. F. Noh (1987). Errors for calculations of strong shocks using an artificial viscosity and an artificial heat flux. https://www.sciencedirect.com/science/article/pii/002199918790074X; review_level=publisher-metadata-and-abstract
-  Publisher metadata and abstract checked; full original text was not accessed (403). Cited for the problem and heating-error analysis, not as the source of this particular finite-volume discretization.
+Publisher metadata and abstract checked; full original text was not accessed (403). Cited for the problem and heating-error analysis, not as the source of this particular finite-volume discretization.
+
 - J. Thrussell and J. M. Ferguson (2023). ExactPack: A python library of exact analytic solutions. https://doi.org/10.1016/j.softx.2023.101560; review_level=official-record-and-unmodified-pinned-code-execution
-  Checked the LANL software record and separately executed unmodified Noh code at commit 9bacc477eb791e959c9621e771fc7a725db755fa. Cross-checks use only gamma=5/3 and rho0=|u0|=1: points and shock-split Gauss integration of conservative means. Retain that d=3 analytic-comparison receipt; this edition separately executes its spherical PDE series.
+Checked the LANL software record and separately executed unmodified Noh code at commit 9bacc477eb791e959c9621e771fc7a725db755fa. Cross-checks use only gamma=5/3 and rho0=|u0|=1: points and shock-split Gauss integration of conservative means. Retain that d=3 analytic-comparison receipt; this edition separately executes its spherical PDE series.
+
 - van Leer, Bram (1979). Towards the ultimate conservative difference scheme. V. A second-order sequel to Godunov's method. https://www.sciencedirect.com/science/article/pii/0021999179901451; review_level=existing-atlas-publisher-record-and-abstract
-  Existing Atlas bibliography record. Background for limited linear reconstruction and limiters, not a claim to reproduce the full original algorithm or a general positivity theorem for geometric-source zero-pressure Euler.
+Existing Atlas bibliography record. Background for limited linear reconstruction and limiters, not a claim to reproduce the full original algorithm or a general positivity theorem for geometric-source zero-pressure Euler.
+
 - Sweby, P. K. (1984). High Resolution Schemes Using Flux Limiters for Hyperbolic Conservation Laws. https://epubs.siam.org/doi/10.1137/0721062; review_level=existing-atlas-publisher-record-and-abstract
-  Existing Atlas bibliography record. Background for limited linear reconstruction and limiters, not a claim to reproduce the full original algorithm or a general positivity theorem for geometric-source zero-pressure Euler.
+Existing Atlas bibliography record. Background for limited linear reconstruction and limiters, not a claim to reproduce the full original algorithm or a general positivity theorem for geometric-source zero-pressure Euler.
+
 - Mignone, Andrea (2014). High-order conservative reconstruction schemes for finite volume methods in cylindrical and spherical coordinates. https://arxiv.org/abs/1404.0537; review_level=original-arxiv-selected-sections-2.2-3.1-4.2
-  Selected original arXiv sections 2.2, 3.1 and 4.2 checked for volume centroids, conservative linear reconstruction and source integration. The restricted minmod/Rusanov/Heun and numerical-stress source are Atlas choices, distinct from reproducing the full paper scheme.
+Selected original arXiv sections 2.2, 3.1 and 4.2 checked for volume centroids, conservative linear reconstruction and source integration. The restricted minmod/Rusanov/Heun and numerical-stress source are Atlas choices, distinct from reproducing the full paper scheme.
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.

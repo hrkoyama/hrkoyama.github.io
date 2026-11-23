@@ -4,8 +4,8 @@
   "title": "Learn by field",
   "description": "Read the theory, derivations and worked examples by field, from foundations to related methods and verification.",
   "source": "/catalog/atlas-reading-index.json",
-  "source_sha256": "bd46027a0501f08d08accff0cd302198dd1365d1519b779fa24bb15c6cd01377",
-  "chapter_count": 115,
+  "source_sha256": "60506e1eafb91f899f2bfc73d5c2911b0b2939ffb03c6bdd48bc601befc0bd53",
+  "chapter_count": 123,
   "groups": [
     {
       "id": "foundations-time",
@@ -260,6 +260,17 @@
             "en"
           ],
           "search_text": "validation-foundations-conditioning 基盤手法：条件数・残差・収束と独立参照 Numerical foundations: conditioning, residuals, convergence and independent references 楕円型問題・線形代数・近似 Elliptic problems, linear algebra and approximation"
+        },
+        {
+          "id": "validation-coefficient-diffusion",
+          "title": "MG/AMG for coefficient jumps and rotated anisotropy",
+          "url": "/numerical-methods-atlas/en/read/validation-coefficient-diffusion/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-coefficient-diffusion 係数ジャンプ・回転異方性のMG／AMG MG/AMG for coefficient jumps and rotated anisotropy 楕円型問題・線形代数・近似 Elliptic problems, linear algebra and approximation"
         }
       ]
     },
@@ -959,6 +970,72 @@
             "en"
           ],
           "search_text": "validation-particle-transport 粒子・輸送：独立参照・保存則・統計誤差 Particles and transport: independent references, conservation and statistical error 粒子・運動論・輸送 Particles, kinetic methods and transport"
+        },
+        {
+          "id": "validation-fmm3d",
+          "title": "3D1/r kernels: expansions,trees and force checks",
+          "url": "/numerical-methods-atlas/en/read/validation-fmm3d/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-fmm3d 3Dの1/r核：展開・木・力の検証 3D1/r kernels: expansions,trees and force checks 粒子・運動論・輸送 Particles, kinetic methods and transport"
+        },
+        {
+          "id": "validation-gravity-dynamics",
+          "title": "Gravitational trajectories: Kepler and softened finite particles",
+          "url": "/numerical-methods-atlas/en/read/validation-gravity-dynamics/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-gravity-dynamics 重力軌道：Keplerと軟化有限粒子 Gravitational trajectories: Kepler and softened finite particles 粒子・運動論・輸送 Particles, kinetic methods and transport"
+        },
+        {
+          "id": "validation-warm-pic",
+          "title": "Warm PIC: Landau damping and two-stream instability",
+          "url": "/numerical-methods-atlas/en/read/validation-warm-pic/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-warm-pic 熱的PIC：Landau減衰と二流不安定性 Warm PIC: Landau damping and two-stream instability 粒子・運動論・輸送 Particles, kinetic methods and transport"
+        },
+        {
+          "id": "validation-pic-spatial",
+          "title": "PIC checks against independent spatial kernels",
+          "url": "/numerical-methods-atlas/en/read/validation-pic-spatial/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-pic-spatial PICの独立空間実装との照合 PIC checks against independent spatial kernels 粒子・運動論・輸送 Particles, kinetic methods and transport"
+        },
+        {
+          "id": "validation-dsmc-wall",
+          "title": "Finite-Knudsen Couette and Fourier flows",
+          "url": "/numerical-methods-atlas/en/read/validation-dsmc-wall/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-dsmc-wall 有限Knudsen数のCouette・Fourier流 Finite-Knudsen Couette and Fourier flows 粒子・運動論・輸送 Particles, kinetic methods and transport"
+        },
+        {
+          "id": "validation-dsmc-shock",
+          "title": "Mach2 planar shock with hard-sphere DSMC",
+          "url": "/numerical-methods-atlas/en/read/validation-dsmc-shock/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-dsmc-shock 剛体球DSMCのMach2平面衝撃波 Mach2 planar shock with hard-sphere DSMC 粒子・運動論・輸送 Particles, kinetic methods and transport"
         }
       ]
     },
@@ -1087,6 +1164,17 @@
             "en"
           ],
           "search_text": "periodic-forces DFTから原子間力へ：有限差分・独立参照・力の収束とBOMDへの接続 From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface 電磁場・静電場・電子状態 Electromagnetic fields, electrostatics and electronic structure"
+        },
+        {
+          "id": "validation-slab-ewald",
+          "title": "Neutral slabs: corrected3P and genuine2P references",
+          "url": "/numerical-methods-atlas/en/read/validation-slab-ewald/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-slab-ewald 中性スラブ：3周期補正と真の2周期参照 Neutral slabs: corrected3P and genuine2P references 電磁場・静電場・電子状態 Electromagnetic fields, electrostatics and electronic structure"
         }
       ]
     },

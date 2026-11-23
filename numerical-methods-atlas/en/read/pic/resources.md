@@ -32,6 +32,18 @@ No chapter-specific association is registered. Atlas-wide index: [Exact and refe
   availability: run
 
   Separate quiet-start refinement of a cold 1D periodic plasma from independent-seed initial particle noise; record charge, momentum, Gauss diagnostics and energy error.
+- [Independently coded PIC spatial pipeline](<https://hrkoyama.github.io/numerical-methods-atlas/validation/pic-independent-spatial/?lang=en>)
+  availability: run
+
+  Compare vectorized CIC/FFT with separately authored scalar-particle CIC/dense DFT; each trajectory sources its own field at every kick.
+- [Warm PIC linear Landau damping](<https://hrkoyama.github.io/numerical-methods-atlas/validation/thermal-landau-damping/?lang=en>)
+  availability: run
+
+  Advance thermal Maxwellian full-f particles and compare damping rate, frequency and signed-field history with qualified independent linear references.
+- [Warm PIC two-stream initial growth](<https://hrkoyama.github.io/numerical-methods-atlas/validation/thermal-two-stream/?lang=en>)
+  availability: run
+
+  Evolve counter-streaming warm Maxwellians; distinguish fixed-window growth and transients using dielectric and Volterra references.
 - [Particle-in-cell / PIC — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/pic/?lang=en#method-execution-en>)
   availability: source
 

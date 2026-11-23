@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "checked_at_utc": "2026-11-23T14:10:59.894868+00:00",
+  "baseline_commit": "408a2279cc6ed1f4b9325888a66c496e937cbde9",
+  "concurrent_commit": "fa5cb21d5a91b48d5b7fc7363449b2d7002897cd",
+  "immutable_files_checked": 3324,
+  "existing_primary_images_checked": 102,
+  "new_primary_images": 11,
+  "new_related_previews": 1,
+  "old_distributions_recomputed_for_navigation": false,
+  "scope": "Actual byte checks; full named baseline hashes and old records remain in scripts/fixtures/atlas-batch28-37-baseline.json. All former physical inputs,tolerances,formula arrays and reference identities preserved; new slab method scope is separately verified."
+}

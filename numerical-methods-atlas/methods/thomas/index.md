@@ -2,9 +2,9 @@
 
 Status: educational-example
 
-Read about Thomas tridiagonal elimination, follow the original references and inspect related educational code and checks.
+Thomas is tridiagonal elimination. Its1949 original remains unread; an official archival finding aid and Moler's signed1996 correspondence provide bibliographic leads. Crank–Nicolson and multigrid references are related chapter context, not Thomas originals or reprints.
 
-「Thomas法／三重対角消去」の考え方と適用範囲を、解説章・一次文献・関連する教育用コードからたどります。
+Thomas法は三重対角消去。1949年原報は未読で、公式収蔵目録とMolerの1996年通信から書誌を追跡しています。Crank–Nicolsonと多重格子の文献は関連章の背景資料で、Thomas原報やその再録ではありません。
 
 See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers.
 
@@ -17,9 +17,11 @@ Other names: Thomas algorithm, トーマス法, トーマスアルゴリズム, 
 - Code: https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/multigrid.py
 - Code: https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/poisson_comparison.py
 
-- Reference: https://doi.org/10.1017/S0305004100023197 — Cited by the linked chapter; inspect its source-review notes before treating this as a method-specific derivation.
-- Reference: https://doi.org/10.1090/S0025-5718-1977-0431719-X — Cited by the linked chapter; inspect its source-review notes before treating this as a method-specific derivation.
-- Reference: https://doi.org/10.1137/1.9780898719505 — Cited by the linked chapter; inspect its source-review notes before treating this as a method-specific derivation.
+- Reference: https://www.lib.ncsu.edu/findingaids/mc00210 — Box18/folder13.8 is described as notes and a1949 article with the report title; Box21/folder15.2 contains undated notes. This verifies catalogue descriptions, not the report text, algorithms or priority.
+- Reference: https://netlib.org/na-digest-html/96/v96n09.html — Moler reports the attribution and transcribes a1949 Thomas report citation via Ames1977,p52, plus a Bruce et al.1953 lead. The Ames and Bruce original pages were not inspected. This is a history lead, not Thomas's original derivation.
+- Reference: https://doi.org/10.1017/S0305004100023197 — Crank and Nicolson1947 heat-equation time discretization. Preserve as chapter context, never label as Thomas's original report.
+- Reference: https://doi.org/10.1090/S0025-5718-1977-0431719-X — Retain the existing Brandt context citation. No new full-text review claimed.
+- Reference: https://doi.org/10.1137/1.9780898719505 — Retain existing Multigrid Tutorial context. No new full-book reading claimed.
 
 Common execution records: [{"id": "poisson-1d-dirichlet", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#poisson-1d-dirichlet-ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#poisson-1d-dirichlet-en"}}]
 

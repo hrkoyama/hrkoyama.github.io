@@ -97,10 +97,26 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Periodic CIC–FFT–CIC calculation for 19 particles stored explicitly in input JSON. Check mass, net internal force, single-particle self-force and integer-box translation; separately compare a sinusoidal density with analytic periodic Poisson fields.
+- [Independently coded PIC spatial pipeline](<https://hrkoyama.github.io/numerical-methods-atlas/validation/pic-independent-spatial/?lang=en>)
+  availability: run
+
+  Compare vectorized CIC/FFT with separately authored scalar-particle CIC/dense DFT; each trajectory sources its own field at every kick.
+- [Warm PIC linear Landau damping](<https://hrkoyama.github.io/numerical-methods-atlas/validation/thermal-landau-damping/?lang=en>)
+  availability: run
+
+  Advance thermal Maxwellian full-f particles and compare damping rate, frequency and signed-field history with qualified independent linear references.
+- [Warm PIC two-stream initial growth](<https://hrkoyama.github.io/numerical-methods-atlas/validation/thermal-two-stream/?lang=en>)
+  availability: run
+
+  Evolve counter-streaming warm Maxwellians; distinguish fixed-window growth and transients using dielectric and Volterra references.
 - [Barnes–Hut: 192 particles against direct summation](<https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/barnes-hut/?lang=en>)
   availability: run
 
   Static isolated softened-gravity force comparison, not orbital integration, periodic gravity or a timing benchmark.
+- [Short-time32body dynamics from a cold Plummer-density sample](<https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-plummer-short/?lang=en>)
+  availability: run
+
+  Separate time and tree-force errors for the same softened finite-N ODE with independent DOP853/direct-force references and budgets.
 - [2D logarithmic FMM with M2M, M2L and L2L](<https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm/?lang=en>)
   availability: run
 
@@ -109,6 +125,10 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Compare a 96-particle 2D logarithmic kernel with independent all-pairs sums; measure order/depth, rotation/translation and approximate net-force errors.
+- [Actual3D1/r FMM: multilevel translations, force and ownership](<https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm3d-inverse-r/?lang=en>)
+  availability: run
+
+  Run uncompressed Chebyshev FMM at actual leaf levels2/3 and a separate adaptive configuration; compare independent direct potentials and accelerations.
 - [Cloud-in-cell assignment and interpolation — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/cic/?lang=en#method-execution-en>)
   availability: source
 

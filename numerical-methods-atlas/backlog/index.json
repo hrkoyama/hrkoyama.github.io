@@ -37,7 +37,7 @@
       "ale-geophysical-1",
       "ale-geophysical-2"
     ],
-    "batch_id": "2026-11-23-sequences18-27"
+    "batch_id": "2026-11-23-sequences28-37"
   },
   "priority_labels": {
     "P0": {
@@ -1807,8 +1807,8 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "verified",
-      "current": "22単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。",
+      "state": "published",
+      "current": "固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。",
       "tasks": [
         "滑らかなせん断層・明示した摂動・境界・物理散逸を固定し、KHの初期成長率を比較する。",
         "RTは重力・密度配置・界面厚さと理論の仮定を別に定義する。非線形後期の図を厳密解と扱わず独立数値参照と比較する。"
@@ -1854,7 +1854,8 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-23-r2/instability-growth/README.md",
-          "/code/validated-examples/2026-11-23-r2/instability-growth/references/citations.json"
+          "/code/validated-examples/2026-11-23-r2/instability-growth/references/citations.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#kh-initial-growth-ja",
         "execution": "/numerical-methods-atlas/validation/kh-initial-growth/?lang=ja"
@@ -1881,7 +1882,8 @@
           ],
           "references": [
             "/code/validated-examples/2026-11-23-r2/instability-growth/README.md",
-            "/code/validated-examples/2026-11-23-r2/instability-growth/references/citations.json"
+            "/code/validated-examples/2026-11-23-r2/instability-growth/references/citations.json",
+            "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#kh-initial-growth-ja",
           "execution": "/numerical-methods-atlas/validation/kh-initial-growth/?lang=ja"
@@ -1899,8 +1901,8 @@
       "priority": "P1",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "verified",
-      "current": "47単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。",
+      "state": "published",
+      "current": "固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。",
       "tasks": [
         "既存保存結果を基準に空間/時間系列を分離し、Alfvén位相誤差・偏波・保存量を解析波で測る。",
         "loopは独立コードと比較し、磁気エネルギー・ループ形状・divergence演算子を揃える。",
@@ -1942,7 +1944,8 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-23/mhd-transport/README.md",
-          "/code/validated-examples/2026-11-23/mhd-transport/references/citations.json"
+          "/code/validated-examples/2026-11-23/mhd-transport/references/citations.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#circular-alfven-ja",
         "execution": "/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=ja"
@@ -1969,7 +1972,8 @@
           ],
           "references": [
             "/code/validated-examples/2026-11-23/mhd-transport/README.md",
-            "/code/validated-examples/2026-11-23/mhd-transport/references/citations.json"
+            "/code/validated-examples/2026-11-23/mhd-transport/references/citations.json",
+            "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#circular-alfven-ja",
           "execution": "/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=ja"
@@ -1987,8 +1991,8 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "verified",
-      "current": "47単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。",
+      "state": "published",
+      "current": "固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。",
       "tasks": [
         "現行short smooth OTを残し、衝撃波を伴う別時刻/別入力を区別して追加。",
         "熱圧正値性・総エネルギー・native face/common cell divB・参照格子増分を測る。",
@@ -2029,7 +2033,8 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-23/mhd-transport/README.md",
-          "/code/validated-examples/2026-11-23/mhd-transport/references/citations.json"
+          "/code/validated-examples/2026-11-23/mhd-transport/references/citations.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#orszag-tang-ja",
         "execution": "/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=ja"
@@ -2055,7 +2060,8 @@
           ],
           "references": [
             "/code/validated-examples/2026-11-23/mhd-transport/README.md",
-            "/code/validated-examples/2026-11-23/mhd-transport/references/citations.json"
+            "/code/validated-examples/2026-11-23/mhd-transport/references/citations.json",
+            "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#orszag-tang-ja",
           "execution": "/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=ja"
@@ -2073,8 +2079,8 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "verified",
-      "current": "20単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。",
+      "state": "published",
+      "current": "固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。",
       "tasks": [
         "r^(2/3)sin(2theta/3)型のreentrant corner解などを境界条件とともに自前定義し、L2/H1誤差を要素積分。",
         "一様/局所細分化、要素角度・aspect ratio・条件数の影響を分ける。",
@@ -2120,7 +2126,8 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-23/mesh-boundary/README.md",
-          "/code/validated-examples/2026-11-23/mesh-boundary/references/citations.json"
+          "/code/validated-examples/2026-11-23/mesh-boundary/references/citations.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#lshape-fem-ja",
         "execution": "/numerical-methods-atlas/validation/lshape-fem/?lang=ja"
@@ -2146,7 +2153,8 @@
           ],
           "references": [
             "/code/validated-examples/2026-11-23/mesh-boundary/README.md",
-            "/code/validated-examples/2026-11-23/mesh-boundary/references/citations.json"
+            "/code/validated-examples/2026-11-23/mesh-boundary/references/citations.json",
+            "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#lshape-fem-ja",
           "execution": "/numerical-methods-atlas/validation/lshape-fem/?lang=ja"
@@ -2164,8 +2172,8 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "verified",
-      "current": "20単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。",
+      "state": "published",
+      "current": "固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。",
       "tasks": [
         "まずr>0のannulusで粘性応力発散・可変粘性・境界fluxを一組の製造解で離散化検査。",
         "座標の物理/共変/反変成分と体積/面積重みを固定し、格子収束を測る。",
@@ -2206,7 +2214,8 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-23/mesh-boundary/README.md",
-          "/code/validated-examples/2026-11-23/mesh-boundary/references/citations.json"
+          "/code/validated-examples/2026-11-23/mesh-boundary/references/citations.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#annular-viscous-mms-ja",
         "execution": "/numerical-methods-atlas/validation/annular-viscous-mms/?lang=ja"
@@ -2232,7 +2241,8 @@
           ],
           "references": [
             "/code/validated-examples/2026-11-23/mesh-boundary/README.md",
-            "/code/validated-examples/2026-11-23/mesh-boundary/references/citations.json"
+            "/code/validated-examples/2026-11-23/mesh-boundary/references/citations.json",
+            "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#annular-viscous-mms-ja",
           "execution": "/numerical-methods-atlas/validation/annular-viscous-mms/?lang=ja"
@@ -2251,7 +2261,7 @@
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
       "state": "in-progress",
-      "current": "19単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。",
+      "current": "固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。",
       "tasks": [
         "最初は既存GCLと同じ移動に非一様scalarの解析輸送を載せ、幾何誤差と輸送誤差を分離。",
         "Lagrange/remapまで拡張する段階でSaltzmanを新規問題として考慮し、格子反転・歪み・保存・衝撃位置を検査。",
@@ -2292,7 +2302,8 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-23/moving-waves/README.md",
-          "/code/validated-examples/2026-11-23/moving-waves/references/citations.json"
+          "/code/validated-examples/2026-11-23/moving-waves/references/citations.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#ale-nonuniform-transport-ja",
         "execution": "/numerical-methods-atlas/validation/ale-nonuniform-transport/?lang=ja"
@@ -2318,7 +2329,8 @@
           ],
           "references": [
             "/code/validated-examples/2026-11-23/moving-waves/README.md",
-            "/code/validated-examples/2026-11-23/moving-waves/references/citations.json"
+            "/code/validated-examples/2026-11-23/moving-waves/references/citations.json",
+            "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#ale-nonuniform-transport-ja",
           "execution": "/numerical-methods-atlas/validation/ale-nonuniform-transport/?lang=ja"
@@ -2337,7 +2349,7 @@
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
       "state": "in-progress",
-      "current": "19単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。",
+      "current": "固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。",
       "tasks": [
         "まず既存f-planeの一つの固有modeを実際に時間積分し位相・振幅・geostrophic balanceを解析行列指数と比較。",
         "球面拡張時はWilliamsonの固体回転輸送/定常釣合いから段階的に選び、質量/エネルギー/位相と格子向きを比較。",
@@ -2383,7 +2395,8 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-23/moving-waves/README.md",
-          "/code/validated-examples/2026-11-23/moving-waves/references/citations.json"
+          "/code/validated-examples/2026-11-23/moving-waves/references/citations.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#cgrid-rotating-wave-ja",
         "execution": "/numerical-methods-atlas/validation/cgrid-rotating-wave/?lang=ja"
@@ -2409,7 +2422,8 @@
           ],
           "references": [
             "/code/validated-examples/2026-11-23/moving-waves/README.md",
-            "/code/validated-examples/2026-11-23/moving-waves/references/citations.json"
+            "/code/validated-examples/2026-11-23/moving-waves/references/citations.json",
+            "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#cgrid-rotating-wave-ja",
           "execution": "/numerical-methods-atlas/validation/cgrid-rotating-wave/?lang=ja"
@@ -2427,8 +2441,8 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "解説のみ",
-      "state": "verified",
-      "current": "25単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。",
+      "state": "published",
+      "current": "固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。",
       "tasks": [
         "まずMinkowski・理想気体EOS・法線速度のみの少数固定入力。",
         "原始変数回復の残差、rho/p正値、|v|<1、波位置、中間状態をexact Riemann参照と比較。",
@@ -2464,7 +2478,8 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-23/relativistic/README.md",
-          "/code/validated-examples/2026-11-23/relativistic/references/citations.json"
+          "/code/validated-examples/2026-11-23/relativistic/references/citations.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#srhd-collision-ja",
         "execution": "/numerical-methods-atlas/validation/srhd-collision/?lang=ja"
@@ -2490,7 +2505,8 @@
           ],
           "references": [
             "/code/validated-examples/2026-11-23/relativistic/README.md",
-            "/code/validated-examples/2026-11-23/relativistic/references/citations.json"
+            "/code/validated-examples/2026-11-23/relativistic/references/citations.json",
+            "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#srhd-collision-ja",
           "execution": "/numerical-methods-atlas/validation/srhd-collision/?lang=ja"
@@ -2508,8 +2524,8 @@
       "priority": "P3",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "verified",
-      "current": "25単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。",
+      "state": "published",
+      "current": "固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。",
       "tasks": [
         "SRHDの保存・回復が通った後、固定EOSで簡単な磁場配置から開始。",
         "Bx一定、物理的状態、波位置、磁場/流体相互作用を独立exact RMHD参照と照合。",
@@ -2550,7 +2566,8 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-23/relativistic/README.md",
-          "/code/validated-examples/2026-11-23/relativistic/references/citations.json"
+          "/code/validated-examples/2026-11-23/relativistic/references/citations.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#srmhd-alfven-ja",
         "execution": "/numerical-methods-atlas/validation/srmhd-alfven/?lang=ja"
@@ -2576,7 +2593,8 @@
           ],
           "references": [
             "/code/validated-examples/2026-11-23/relativistic/README.md",
-            "/code/validated-examples/2026-11-23/relativistic/references/citations.json"
+            "/code/validated-examples/2026-11-23/relativistic/references/citations.json",
+            "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#srmhd-alfven-ja",
           "execution": "/numerical-methods-atlas/validation/srmhd-alfven/?lang=ja"
@@ -2594,8 +2612,8 @@
       "priority": "P1",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "verified",
-      "current": "20単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。",
+      "state": "published",
+      "current": "固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。",
       "tasks": [
         "既存1D境界実装と区別し、2Dの零空間・不適合右辺の拒否・平均値指定を検査",
         "2D CG/MGの現状は零Dirichlet。cos型参照解で境界誤差と残差を分ける"
@@ -2639,7 +2657,8 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-23/mesh-boundary/README.md",
-          "/code/validated-examples/2026-11-23/mesh-boundary/references/citations.json"
+          "/code/validated-examples/2026-11-23/mesh-boundary/references/citations.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#poisson-neumann-ja",
         "execution": "/numerical-methods-atlas/validation/poisson-neumann/?lang=ja"
@@ -2666,7 +2685,8 @@
           ],
           "references": [
             "/code/validated-examples/2026-11-23/mesh-boundary/README.md",
-            "/code/validated-examples/2026-11-23/mesh-boundary/references/citations.json"
+            "/code/validated-examples/2026-11-23/mesh-boundary/references/citations.json",
+            "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#poisson-neumann-ja",
           "execution": "/numerical-methods-atlas/validation/poisson-neumann/?lang=ja"
@@ -2684,13 +2704,13 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "planned",
-      "current": "Thomasの1D Dirichlet固定入力、1D Neumann/Robin/周期境界の既存実装、2D正方形のCG/幾何MG/P1 FEMとsin製造解、SA-AMGがある。amg-conditioningは条件数・残差/前進誤差・定係数異方性ストレス・DST/直接解照合まで実施済み。AMGや異方性検査そのものを未実装扱いしない。",
+      "state": "verified",
+      "current": "固定した軽量例を実装し、事前に固定した判定と独立参照の照合、実配列の保存図、ZIPの独立展開追試まで確認しました。実公開と公開ZIPだけのLinux追試は今回の集約公開後に確認します。",
       "tasks": [
         "既存amg-conditioningの定係数異方性を再追加しない",
         "不連続係数の流束整合、真の残差・前進誤差・収束不達を固定ケースで比較"
       ],
-      "scope_note": "",
+      "scope_note": "各例の前提・参照の独立範囲と未達版の履歴を、入力・受入基準・契約・検証記録で区別します。一般条件への認証や厳密解でない数値参照の厳密性は主張しません。",
       "sources": [
         {
           "title": "PETSc公式: Singular systems / Neumann nullspace",
@@ -2708,9 +2728,53 @@
           "id": "multigrid.limitations"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23/coefficient-diffusion/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23/coefficient-diffusion/inputs.json",
+          "/code/validated-examples/2026-11-23/coefficient-diffusion/acceptance.json",
+          "/code/validated-examples/2026-11-23/coefficient-diffusion/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23/coefficient-diffusion/results/checkerboard-diffusion-preview.png",
+          "/code/validated-examples/2026-11-23/coefficient-diffusion/results/rotated-anisotropic-diffusion-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-23/coefficient-diffusion/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-23/coefficient-diffusion/README.md"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#checkerboard-diffusion-ja",
+        "execution": "/numerical-methods-atlas/validation/checkerboard-diffusion/?lang=ja"
+      },
       "sequence": 28,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-23/coefficient-diffusion/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-23/coefficient-diffusion/inputs.json",
+            "/code/validated-examples/2026-11-23/coefficient-diffusion/acceptance.json",
+            "/code/validated-examples/2026-11-23/coefficient-diffusion/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-23/coefficient-diffusion/results/checkerboard-diffusion-preview.png",
+            "/code/validated-examples/2026-11-23/coefficient-diffusion/results/rotated-anisotropic-diffusion-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-23/coefficient-diffusion/run.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-23/coefficient-diffusion/README.md"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#checkerboard-diffusion-ja",
+          "execution": "/numerical-methods-atlas/validation/checkerboard-diffusion/?lang=ja"
+        }
+      }
     },
     {
       "id": "elliptic-poisson-4",
@@ -2723,13 +2787,13 @@
       "priority": "P2",
       "kind": "references",
       "initial_coverage": "出典整備不足",
-      "state": "planned",
-      "current": "Thomasの1D Dirichlet固定入力、1D Neumann/Robin/周期境界の既存実装、2D正方形のCG/幾何MG/P1 FEMとsin製造解、SA-AMGがある。amg-conditioningは条件数・残差/前進誤差・定係数異方性ストレス・DST/直接解照合まで実施済み。AMGや異方性検査そのものを未実装扱いしない。",
+      "state": "verified",
+      "current": "Thomas1949原報は未読のまま、公式収蔵目録・署名付き1996通信・Crank–Nicolson再録・多重格子の関連文献を区別して整理しました。新しい科学計算例には数えません。",
       "tasks": [
         "台帳のThomasリンクはCrank–Nicolson/多重格子文献が中心",
         "既存実行記録の『Thomas原報は未確認』を維持し、原報確認ができたときだけアクセス深度を更新"
       ],
-      "scope_note": "",
+      "scope_note": "目録の確認を原報本文の確認と扱わず、不明なDOI・報告番号・頁はnullのまま。原報未読を維持した文献役割の整理です。",
       "sources": [],
       "baseline_evidence": [
         {
@@ -2741,9 +2805,38 @@
           "id": "poisson-1d-dirichlet.reference_notes"
         }
       ],
-      "completion": null,
+      "completion": {
+        "targets": [
+          "/numerical-methods-atlas/methods/thomas/?lang=ja",
+          "/catalog/atlas-methods.json"
+        ],
+        "proof": [
+          "/numerical-methods-atlas/reading/thomas-provenance.json"
+        ],
+        "note": {
+          "ja": "目録の確認を原報本文の確認と扱わず、不明なDOI・報告番号・頁はnullのまま。原報未読を維持した文献役割の整理です。",
+          "en": "Curation of bibliographic roles only; original1949 full text unread,unknown DOI/report/pages remain null. No new scientific case."
+        }
+      },
       "sequence": 29,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "curation",
+        "partial": false,
+        "local_evidence_checked": true,
+        "links": {
+          "targets": [
+            "/numerical-methods-atlas/methods/thomas/?lang=ja",
+            "/catalog/atlas-methods.json"
+          ],
+          "proof": [
+            "/numerical-methods-atlas/reading/thomas-provenance.json"
+          ],
+          "note": {
+            "ja": "目録の確認を原報本文の確認と扱わず、不明なDOI・報告番号・頁はnullのまま。原報未読を維持した文献役割の整理です。",
+            "en": "Curation of bibliographic roles only; original1949 full text unread,unknown DOI/report/pages remain null. No new scientific case."
+          }
+        }
+      }
     },
     {
       "id": "gravity-electrostatics-multipole-1",
@@ -2756,13 +2849,13 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "解説のみ",
-      "state": "planned",
-      "current": "孤立3D Plummer軟化Barnes–Hut（単極/完全2次モーメント）と直接和、3D周期CIC–FFT–CIC、Ewald/SPME、2D対数核FMMのM2M/M2L/L2Lが既存。追加粒子検証でEwaldの独立theta参照、SPME格子/次数/位相、FMM次数/木深さ・保存診断まである。 FMMの古い文献注記の整合は共通P0にまとめた。",
+      "state": "verified",
+      "current": "固定した軽量例を実装し、事前に固定した判定と独立参照の照合、実配列の保存図、ZIPの独立展開追試まで確認しました。実公開と公開ZIPだけのLinux追試は今回の集約公開後に確認します。",
       "tasks": [
         "slab-ewaldはplannedで詳細解説あり、通常の中性立方Ewald実装とは区別",
         "真空層厚依存・双極子補正・力の有限差分・独立2D参照を小ケースで検査"
       ],
-      "scope_note": "",
+      "scope_note": "各例の前提・参照の独立範囲と未達版の履歴を、入力・受入基準・契約・検証記録で区別します。一般条件への認証や厳密解でない数値参照の厳密性は主張しません。",
       "sources": [
         {
           "title": "Yeh & Berkowitz (1999), Ewald summation for systems with slab geometry",
@@ -2780,9 +2873,51 @@
           "id": "ewald-convergence.limits"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23/slab-ewald/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23/slab-ewald/inputs.json",
+          "/code/validated-examples/2026-11-23/slab-ewald/acceptance.json",
+          "/code/validated-examples/2026-11-23/slab-ewald/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23/slab-ewald/results/neutral-slab-yb-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-23/slab-ewald/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-23/slab-ewald/README.md"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#neutral-slab-yb-ja",
+        "execution": "/numerical-methods-atlas/validation/neutral-slab-yb/?lang=ja"
+      },
       "sequence": 30,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-23/slab-ewald/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-23/slab-ewald/inputs.json",
+            "/code/validated-examples/2026-11-23/slab-ewald/acceptance.json",
+            "/code/validated-examples/2026-11-23/slab-ewald/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-23/slab-ewald/results/neutral-slab-yb-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-23/slab-ewald/run.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-23/slab-ewald/README.md"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#neutral-slab-yb-ja",
+          "execution": "/numerical-methods-atlas/validation/neutral-slab-yb/?lang=ja"
+        }
+      }
     },
     {
       "id": "gravity-electrostatics-multipole-2",
@@ -2795,13 +2930,13 @@
       "priority": "P3",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "planned",
-      "current": "孤立3D Plummer軟化Barnes–Hut（単極/完全2次モーメント）と直接和、3D周期CIC–FFT–CIC、Ewald/SPME、2D対数核FMMのM2M/M2L/L2Lが既存。追加粒子検証でEwaldの独立theta参照、SPME格子/次数/位相、FMM次数/木深さ・保存診断まである。 FMMの古い文献注記の整合は共通P0にまとめた。",
+      "state": "verified",
+      "current": "固定した軽量例を実装し、事前に固定した判定と独立参照の照合、実配列の保存図、ZIPの独立展開追試まで確認しました。実公開と公開ZIPだけのLinux追試は今回の集約公開後に確認します。",
       "tasks": [
         "既存FMMは2D自由空間log核で、3D重力用FMMではない",
         "一様球など解析配置・直接和・次数/木深さを分け、必要用途が出た時に範囲拡張"
       ],
-      "scope_note": "",
+      "scope_note": "各例の前提・参照の独立範囲と未達版の履歴を、入力・受入基準・契約・検証記録で区別します。一般条件への認証や厳密解でない数値参照の厳密性は主張しません。",
       "sources": [],
       "baseline_evidence": [
         {
@@ -2813,9 +2948,51 @@
           "id": "fmm-convergence"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23/fmm3d/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23/fmm3d/inputs.json",
+          "/code/validated-examples/2026-11-23/fmm3d/acceptance.json",
+          "/code/validated-examples/2026-11-23/fmm3d/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23/fmm3d/results/fmm3d-inverse-r-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-23/fmm3d/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-23/fmm3d/README.md"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#fmm3d-inverse-r-ja",
+        "execution": "/numerical-methods-atlas/validation/fmm3d-inverse-r/?lang=ja"
+      },
       "sequence": 31,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-23/fmm3d/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-23/fmm3d/inputs.json",
+            "/code/validated-examples/2026-11-23/fmm3d/acceptance.json",
+            "/code/validated-examples/2026-11-23/fmm3d/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-23/fmm3d/results/fmm3d-inverse-r-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-23/fmm3d/run.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-23/fmm3d/README.md"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#fmm3d-inverse-r-ja",
+          "execution": "/numerical-methods-atlas/validation/fmm3d-inverse-r/?lang=ja"
+        }
+      }
     },
     {
       "id": "gravity-electrostatics-multipole-3",
@@ -2828,13 +3005,13 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "planned",
-      "current": "孤立3D Plummer軟化Barnes–Hut（単極/完全2次モーメント）と直接和、3D周期CIC–FFT–CIC、Ewald/SPME、2D対数核FMMのM2M/M2L/L2Lが既存。追加粒子検証でEwaldの独立theta参照、SPME格子/次数/位相、FMM次数/木深さ・保存診断まである。 FMMの古い文献注記の整合は共通P0にまとめた。",
+      "state": "verified",
+      "current": "固定した軽量例を実装し、事前に固定した判定と独立参照の照合、実配列の保存図、ZIPの独立展開追試まで確認しました。実公開と公開ZIPだけのLinux追試は今回の集約公開後に確認します。",
       "tasks": [
         "現Barnes–Hut固定例は静的力のみ",
         "同一軟化核で軌道・エネルギー/運動量の時間誤差と木近似誤差を分ける。長時間・大粒子数走査は後段"
       ],
-      "scope_note": "",
+      "scope_note": "各例の前提・参照の独立範囲と未達版の履歴を、入力・受入基準・契約・検証記録で区別します。一般条件への認証や厳密解でない数値参照の厳密性は主張しません。",
       "sources": [
         {
           "title": "Barnes & Hut (1986), A hierarchical O(N log N) force-calculation algorithm",
@@ -2852,9 +3029,53 @@
           "id": "barnes-hut.limitations"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23/gravity-dynamics/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23/gravity-dynamics/inputs.json",
+          "/code/validated-examples/2026-11-23/gravity-dynamics/acceptance.json",
+          "/code/validated-examples/2026-11-23/gravity-dynamics/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-kepler-preview.png",
+          "/code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-plummer-short-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-23/gravity-dynamics/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-23/gravity-dynamics/README.md"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#gravity-kepler-ja",
+        "execution": "/numerical-methods-atlas/validation/gravity-kepler/?lang=ja"
+      },
       "sequence": 32,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-23/gravity-dynamics/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-23/gravity-dynamics/inputs.json",
+            "/code/validated-examples/2026-11-23/gravity-dynamics/acceptance.json",
+            "/code/validated-examples/2026-11-23/gravity-dynamics/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-kepler-preview.png",
+            "/code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-plummer-short-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-23/gravity-dynamics/run.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-23/gravity-dynamics/README.md"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#gravity-kepler-ja",
+          "execution": "/numerical-methods-atlas/validation/gravity-kepler/?lang=ja"
+        }
+      }
     },
     {
       "id": "pic-1",
@@ -2867,13 +3088,13 @@
       "priority": "P1",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "planned",
-      "current": "1D周期・静電CIC PICの冷たいプラズマ振動が既存。格子/時間の独立細分化、電荷・運動量・Gauss/Poisson残差、単粒子自己力、64seedの初期粒子雑音まで保存。暖かい分布や不安定性の検証ではない。",
+      "state": "verified",
+      "current": "固定した軽量例を実装し、事前に固定した判定と独立参照の照合、実配列の保存図、ZIPの独立展開追試まで確認しました。実公開と公開ZIPだけのLinux追試は今回の集約公開後に確認します。",
       "tasks": [
         "1D1Vの弱い摂動で電場振幅の減衰率・周波数を解析分散関係と照合",
         "粒子雑音・速度分布標本化・格子/刻みの誤差を分離"
       ],
-      "scope_note": "",
+      "scope_note": "各例の前提・参照の独立範囲と未達版の履歴を、入力・受入基準・契約・検証記録で区別します。一般条件への認証や厳密解でない数値参照の厳密性は主張しません。",
       "sources": [
         {
           "title": "Kraus et al. (2017), GEMPIC: geometric electromagnetic particle-in-cell methods",
@@ -2891,9 +3112,51 @@
           "id": "pic-conservation.limits"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23/warm-pic/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23/warm-pic/inputs.json",
+          "/code/validated-examples/2026-11-23/warm-pic/acceptance.json",
+          "/code/validated-examples/2026-11-23/warm-pic/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23/warm-pic/results/thermal-landau-damping-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-23/warm-pic/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-23/warm-pic/README.md"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#thermal-landau-damping-ja",
+        "execution": "/numerical-methods-atlas/validation/thermal-landau-damping/?lang=ja"
+      },
       "sequence": 33,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-23/warm-pic/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-23/warm-pic/inputs.json",
+            "/code/validated-examples/2026-11-23/warm-pic/acceptance.json",
+            "/code/validated-examples/2026-11-23/warm-pic/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-23/warm-pic/results/thermal-landau-damping-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-23/warm-pic/run.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-23/warm-pic/README.md"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#thermal-landau-damping-ja",
+          "execution": "/numerical-methods-atlas/validation/thermal-landau-damping/?lang=ja"
+        }
+      }
     },
     {
       "id": "pic-2",
@@ -2906,13 +3169,13 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "planned",
-      "current": "1D周期・静電CIC PICの冷たいプラズマ振動が既存。格子/時間の独立細分化、電荷・運動量・Gauss/Poisson残差、単粒子自己力、64seedの初期粒子雑音まで保存。暖かい分布や不安定性の検証ではない。",
+      "state": "verified",
+      "current": "固定した軽量例を実装し、事前に固定した判定と独立参照の照合、実配列の保存図、ZIPの独立展開追試まで確認しました。実公開と公開ZIPだけのLinux追試は今回の集約公開後に確認します。",
       "tasks": [
         "線形成長率と非線形飽和を別指標にし、速度分布・粒子数依存を固定入力化",
         "冷たいcos(t)振動への合格を成長問題の検証に流用しない"
       ],
-      "scope_note": "",
+      "scope_note": "各例の前提・参照の独立範囲と未達版の履歴を、入力・受入基準・契約・検証記録で区別します。一般条件への認証や厳密解でない数値参照の厳密性は主張しません。",
       "sources": [
         {
           "title": "Kraus et al. (2017), GEMPIC: geometric electromagnetic particle-in-cell methods",
@@ -2926,9 +3189,51 @@
           "id": "pic.limits"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23/warm-pic/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23/warm-pic/inputs.json",
+          "/code/validated-examples/2026-11-23/warm-pic/acceptance.json",
+          "/code/validated-examples/2026-11-23/warm-pic/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23/warm-pic/results/thermal-two-stream-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-23/warm-pic/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-23/warm-pic/README.md"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#thermal-two-stream-ja",
+        "execution": "/numerical-methods-atlas/validation/thermal-two-stream/?lang=ja"
+      },
       "sequence": 34,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-23/warm-pic/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-23/warm-pic/inputs.json",
+            "/code/validated-examples/2026-11-23/warm-pic/acceptance.json",
+            "/code/validated-examples/2026-11-23/warm-pic/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-23/warm-pic/results/thermal-two-stream-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-23/warm-pic/run.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-23/warm-pic/README.md"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#thermal-two-stream-ja",
+          "execution": "/numerical-methods-atlas/validation/thermal-two-stream/?lang=ja"
+        }
+      }
     },
     {
       "id": "pic-3",
@@ -2941,13 +3246,13 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "planned",
-      "current": "1D周期・静電CIC PICの冷たいプラズマ振動が既存。格子/時間の独立細分化、電荷・運動量・Gauss/Poisson残差、単粒子自己力、64seedの初期粒子雑音まで保存。暖かい分布や不安定性の検証ではない。",
+      "state": "verified",
+      "current": "固定した軽量例を実装し、事前に固定した判定と独立参照の照合、実配列の保存図、ZIPの独立展開追試まで確認しました。実公開と公開ZIPだけのLinux追試は今回の集約公開後に確認します。",
       "tasks": [
         "現DOP853は時間参照であり、独立PIC空間実装ではない",
         "同じ初期粒子・電荷割当・離散Poisson規約をそろえた小ケースを第三者実装または別実装で照合"
       ],
-      "scope_note": "",
+      "scope_note": "既存cold-plasma-picに結び付く空間演算の独立実装検査です。小さい温速度を含む固定入力で、冷たい振動の解析解や連続極限の再検証とは区別します。",
       "sources": [
         {
           "title": "Kraus et al. (2017), GEMPIC: geometric electromagnetic particle-in-cell methods",
@@ -2961,9 +3266,51 @@
           "id": "pic-conservation.limits"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23/pic-spatial/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23/pic-spatial/inputs.json",
+          "/code/validated-examples/2026-11-23/pic-spatial/acceptance.json",
+          "/code/validated-examples/2026-11-23/pic-spatial/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23/pic-spatial/results/pic-independent-spatial-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-23/pic-spatial/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-23/pic-spatial/README.md"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#cold-plasma-pic-ja",
+        "execution": "/numerical-methods-atlas/validation/pic-independent-spatial/?lang=ja"
+      },
       "sequence": 35,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-23/pic-spatial/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-23/pic-spatial/inputs.json",
+            "/code/validated-examples/2026-11-23/pic-spatial/acceptance.json",
+            "/code/validated-examples/2026-11-23/pic-spatial/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-23/pic-spatial/results/pic-independent-spatial-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-23/pic-spatial/run.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-23/pic-spatial/README.md"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#cold-plasma-pic-ja",
+          "execution": "/numerical-methods-atlas/validation/pic-independent-spatial/?lang=ja"
+        }
+      }
     },
     {
       "id": "dsmc-1",
@@ -2976,13 +3323,13 @@
       "priority": "P1",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "planned",
-      "current": "均質Maxwell分子の衝突成分・平衡緩和が既存。運動量/エネルギー保存、有限Nのmicrocanonical/beta参照、64seed統計、異方性減衰を検査。空間streaming・衝突セル・物理時間の一般DSMCではない。",
+      "state": "verified",
+      "current": "固定した軽量例を実装し、事前に固定した判定と独立参照の照合、実配列の保存図、ZIPの独立展開追試まで確認しました。実公開と公開ZIPだけのLinux追試は今回の集約公開後に確認します。",
       "tasks": [
         "まず小さい1D空間・3D速度系で壁散乱、Knudsen層、せん断応力/熱流束を確認",
         "セル幅/平均自由行程、刻み/衝突時間、粒子数と独立seed誤差を分ける"
       ],
-      "scope_note": "",
+      "scope_note": "各例の前提・参照の独立範囲と未達版の履歴を、入力・受入基準・契約・検証記録で区別します。一般条件への認証や厳密解でない数値参照の厳密性は主張しません。",
       "sources": [
         {
           "title": "SPARTA公式: Validation and Verification",
@@ -3000,9 +3347,53 @@
           "id": "dsmc.verification"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23/dsmc-wall/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23/dsmc-wall/inputs.json",
+          "/code/validated-examples/2026-11-23/dsmc-wall/acceptance.json",
+          "/code/validated-examples/2026-11-23/dsmc-wall/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23/dsmc-wall/results/dsmc-couette-preview.png",
+          "/code/validated-examples/2026-11-23/dsmc-wall/results/dsmc-fourier-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-23/dsmc-wall/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-23/dsmc-wall/README.md"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#dsmc-couette-ja",
+        "execution": "/numerical-methods-atlas/validation/dsmc-couette/?lang=ja"
+      },
       "sequence": 36,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-23/dsmc-wall/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-23/dsmc-wall/inputs.json",
+            "/code/validated-examples/2026-11-23/dsmc-wall/acceptance.json",
+            "/code/validated-examples/2026-11-23/dsmc-wall/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-23/dsmc-wall/results/dsmc-couette-preview.png",
+            "/code/validated-examples/2026-11-23/dsmc-wall/results/dsmc-fourier-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-23/dsmc-wall/run.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-23/dsmc-wall/README.md"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#dsmc-couette-ja",
+          "execution": "/numerical-methods-atlas/validation/dsmc-couette/?lang=ja"
+        }
+      }
     },
     {
       "id": "dsmc-2",
@@ -3015,13 +3406,13 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "planned",
-      "current": "均質Maxwell分子の衝突成分・平衡緩和が既存。運動量/エネルギー保存、有限Nのmicrocanonical/beta参照、64seed統計、異方性減衰を検査。空間streaming・衝突セル・物理時間の一般DSMCではない。",
+      "state": "verified",
+      "current": "固定した軽量例を実装し、事前に固定した判定と独立参照の照合、実配列の保存図、ZIPの独立展開追試まで確認しました。実公開と公開ZIPだけのLinux追試は今回の集約公開後に確認します。",
       "tasks": [
         "現collision roundsを物理時間と読み替えず、速度依存衝突・streaming・流入出を実装してから検証",
         "密度/温度/応力のプロファイルと外部参照を固定し、Maxwell緩和とは別ケースにする"
       ],
-      "scope_note": "",
+      "scope_note": "各例の前提・参照の独立範囲と未達版の履歴を、入力・受入基準・契約・検証記録で区別します。一般条件への認証や厳密解でない数値参照の厳密性は主張しません。",
       "sources": [
         {
           "title": "SPARTA公式: Validation and Verification",
@@ -3039,9 +3430,51 @@
           "id": "dsmc.assumptions"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23/dsmc-shock/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23/dsmc-shock/inputs.json",
+          "/code/validated-examples/2026-11-23/dsmc-shock/acceptance.json",
+          "/code/validated-examples/2026-11-23/dsmc-shock/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-23/dsmc-shock/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-23/dsmc-shock/README.md"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#dsmc-planar-shock-ja",
+        "execution": "/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=ja"
+      },
       "sequence": 37,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-23/dsmc-shock/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-23/dsmc-shock/inputs.json",
+            "/code/validated-examples/2026-11-23/dsmc-shock/acceptance.json",
+            "/code/validated-examples/2026-11-23/dsmc-shock/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-23/dsmc-shock/run.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-23/dsmc-shock/README.md"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#dsmc-planar-shock-ja",
+          "execution": "/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=ja"
+        }
+      }
     },
     {
       "id": "lbm-1",
@@ -5896,10 +6329,10 @@
     "total": 103,
     "fields": 36,
     "states": {
-      "planned": 81,
+      "planned": 71,
       "in-progress": 2,
-      "verified": 8,
-      "published": 12
+      "verified": 10,
+      "published": 20
     },
     "kinds": {
       "implementation": 58,
@@ -5914,7 +6347,8 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-benchmark-backlog.json": "c52c4b1353db6e7e1fb46bc9f7ff08c752961c882981fc2774e492b56bff892d",
+    "catalog/atlas-benchmark-backlog.json": "88c94c622d0faecfb337cb2ad999e662e3501e859c235e9f4ff3043a683cc07d",
+    "catalog/atlas-methods.json": "0223e48245d78ba1af00cb8713a1fff340e6fbfd99617b446a72cd286be9fe17",
     "code/validated-examples/2026-11-23-r2/euler-positivity/acceptance.json": "f08558b2703369a2260db1252dc40272f76556a2f6205688faa88a4c37c79050",
     "code/validated-examples/2026-11-23-r2/euler-positivity/euler_positivity.py": "c22015d9435095b3f08189d1b09be4a040c79062b1cc76fd15648cca00f73a58",
     "code/validated-examples/2026-11-23-r2/euler-positivity/inputs.json": "a1185e4b8be0f49f8f3f551f934614110c227d39b2bb0dc4438c5301428d751b",
@@ -6009,6 +6443,14 @@
     "code/validated-examples/2026-11-23-r5/noh/results/noh-spherical-budget.png": "7b7672b50bdeefb62c50d10fd150a075eee2657cc3ec18e146dc24d261807f42",
     "code/validated-examples/2026-11-23-r5/noh/spherical-acceptance.json": "bb1c8d14feb07a8876f04711aa81780642d5f6a547f6754ccafd2eaf223530a2",
     "code/validated-examples/2026-11-23-r5/noh/verification.json": "48545a33ab2c19e9071616a15a1fcbf90c716096aa1a12550d3cb872ed8d9e36",
+    "code/validated-examples/2026-11-23/coefficient-diffusion/README.md": "18176e7aac1b62231ad2d675de1f75884d3baa3f55dfbc5d573ef4a6866d31ac",
+    "code/validated-examples/2026-11-23/coefficient-diffusion/acceptance.json": "e873cacd15ca53ee8ec07bcf660fe3c53656120c19a592b71589b826574a7bfb",
+    "code/validated-examples/2026-11-23/coefficient-diffusion/inputs.json": "f826020743e6fa3ba8776806a29e9e60e8feeceb71e821a7f24542a89bc19155",
+    "code/validated-examples/2026-11-23/coefficient-diffusion/pre-run-contract.json": "38ab39750ce5e614463ee844ad533cd302dc3a1d75fad788859019e273e5366e",
+    "code/validated-examples/2026-11-23/coefficient-diffusion/results/checkerboard-diffusion-preview.png": "874bbea94425c356ca0881fd0db4da26bccd8be3f0add3bbb0267e78c244eb1b",
+    "code/validated-examples/2026-11-23/coefficient-diffusion/results/rotated-anisotropic-diffusion-preview.png": "07d3edeeefee73b8d77b6322833feb33972ae5138093da04c3f414d974e55ee4",
+    "code/validated-examples/2026-11-23/coefficient-diffusion/run.py": "326de4c08dda50169ed8a16212eb6ccafbca5032f4ee57a3afdad937a96627f0",
+    "code/validated-examples/2026-11-23/coefficient-diffusion/verification.json": "49dcdd24f0d90110fb0bbb1f28a8a9bce0c8d4fdd3645d0cd5a79722f3fe39c2",
     "code/validated-examples/2026-11-23/double-mach/acceptance.json": "9fbcd74dfcd990b1b7b70181ea2d4ed7480e227fa6c6cd0e48a42e8a5fc2c2d2",
     "code/validated-examples/2026-11-23/double-mach/dm_solver.py": "9de89afac1960c1a4217e83a20ef5a98d6205c6217b11cea2608a0da3c88694e",
     "code/validated-examples/2026-11-23/double-mach/inputs.json": "636a7713665a5e8679452d420d042e685db03275e6140f05a286e586c81c5e76",
@@ -6019,6 +6461,28 @@
     "code/validated-examples/2026-11-23/double-mach/results/double-mach-reflection.png": "564ab5c372e1c4ce5e468876142858830f6425eca79a7dc34a18568ecc89edff",
     "code/validated-examples/2026-11-23/double-mach/run.py": "ab357547a4168cd9a7149f5318f12f3b44408e7934fdf34468d38d333343afa6",
     "code/validated-examples/2026-11-23/double-mach/verification.json": "c588b4ce7f539d53b1d5eec4413ce3a1dc104eff975e4adddf0c544460dbb49e",
+    "code/validated-examples/2026-11-23/dsmc-shock/README.md": "62c01dce2e0a9f01afb7d0c6ff11102305e06bef8d9fb97e73e1c2641f05bd69",
+    "code/validated-examples/2026-11-23/dsmc-shock/acceptance.json": "ca835b4e4606640d6da9cc49b1332fed4c44c5e47c3b49e547a8687f0881986b",
+    "code/validated-examples/2026-11-23/dsmc-shock/inputs.json": "ef53152d7f42f153843ec505116be67377db77336bf14dd724c4f253d4d0f166",
+    "code/validated-examples/2026-11-23/dsmc-shock/pre-run-contract.json": "62e0f1debf50ff00d434ad4d240a14ba291128444bc1b85c0be559ca8b7f01cf",
+    "code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock-preview.png": "89e25d3088c177ac0cb027fe58f02627b049626d0198bda02abc0eb6fec6555c",
+    "code/validated-examples/2026-11-23/dsmc-shock/run.py": "badd9a284810dcfba7467726a6e042be6766dde1b7cea65dd3e856e39c9addec",
+    "code/validated-examples/2026-11-23/dsmc-shock/verification.json": "fdca2ddb0069b640ef24da3de9766b5ccee5c5a117c7017589bd0de07d003623",
+    "code/validated-examples/2026-11-23/dsmc-wall/README.md": "d26a7f037fa4f0888e4ca629a2d9aa693a85f25e7496359bb0dcd9336f5eb9fb",
+    "code/validated-examples/2026-11-23/dsmc-wall/acceptance.json": "604489392d946f6d6d13c896b32f2154de5f5d8d523753b6a26895754441c207",
+    "code/validated-examples/2026-11-23/dsmc-wall/inputs.json": "622f9833fba4eab8362b77c0fee95140f8009606a45ba77a695dd2d9ec7dcecb",
+    "code/validated-examples/2026-11-23/dsmc-wall/pre-run-contract.json": "7c7bf35a116b38f1dc78cc4414dfe5a2d7cf2d945c88439f9bf6bd9033db7c46",
+    "code/validated-examples/2026-11-23/dsmc-wall/results/dsmc-couette-preview.png": "cbb25893cb6b520b4516aa8efe0faa863b48460ff18e5b5d2cca0141cc28f439",
+    "code/validated-examples/2026-11-23/dsmc-wall/results/dsmc-fourier-preview.png": "87bfad63ef3230c67e56fb2c6e252f69075f311e2af565a363584461a2039a2a",
+    "code/validated-examples/2026-11-23/dsmc-wall/run.py": "fcc4434a2db23714ccd9ee25b9224feb46a43f31541b541e907a471fe35c386e",
+    "code/validated-examples/2026-11-23/dsmc-wall/verification.json": "c468aabcd27c1d73d44923b83d0d5a2b267f61114c37beb4743bdfcf8b63a048",
+    "code/validated-examples/2026-11-23/fmm3d/README.md": "a17d2cd473dac08e60249df63ec401e99e95dd528a9ffd97a855c8362546aab0",
+    "code/validated-examples/2026-11-23/fmm3d/acceptance.json": "4eb5ac69033d431ef909ebb9ac23bfc151be16fbabac2d3eeff5012ccb52699a",
+    "code/validated-examples/2026-11-23/fmm3d/inputs.json": "98737ca72d6c5221165bcbf8da2fd1b3ef58f9979276eb9a33c51bac9460a185",
+    "code/validated-examples/2026-11-23/fmm3d/pre-run-contract.json": "79be09de30f30fb4f9c00488d877d09f64d33ca9b49979b21467911a6be7493c",
+    "code/validated-examples/2026-11-23/fmm3d/results/fmm3d-inverse-r-preview.png": "7bd81db0f5de4b811f26cf8e45a13864842509d2d6c9ec57325572b1bb0e43a2",
+    "code/validated-examples/2026-11-23/fmm3d/run.py": "5d0daaff8087f7dd13f38ffc42848ab79543fdfe436890bd0e7957a16725de59",
+    "code/validated-examples/2026-11-23/fmm3d/verification.json": "b6cc2a0ad2f31c01ebd833447f7f6d9496db6df5f6c14deb93d4f057d177c175",
     "code/validated-examples/2026-11-23/forward-step/acceptance.json": "eb895555dedeec88021dd38e1689c80e3bb80090b4ba1ed1469b34baa9be4a53",
     "code/validated-examples/2026-11-23/forward-step/contract-before-reference-performance.json": "d4cc36d39f5469c7fdd6051cdeee590d170f566f0876a3bcda5274d48f219b39",
     "code/validated-examples/2026-11-23/forward-step/fs_solver.py": "2765dc4c370b9bb4c3f3fea5b0f59501983dfde2e75ef4322970e91e1ce0469e",
@@ -6034,6 +6498,14 @@
     "code/validated-examples/2026-11-23/forward-step/results/forward-step-m3.png": "8f4ad22c5af00347914f9dfee7a84f9a07fdf9da5394674937013fad5f94bf16",
     "code/validated-examples/2026-11-23/forward-step/run.py": "b514eb5523bb198199ba4ed057d0807fcc47e81f19b9288d1199f68614fcc413",
     "code/validated-examples/2026-11-23/forward-step/verification.json": "f40317a2721c2048c6174bf41c03adf5e3eddae07e19ae95e6ed5210a9b01914",
+    "code/validated-examples/2026-11-23/gravity-dynamics/README.md": "7a39db9ae2defe9f6f135ceacd441ea8317a878e7ede518d628e5bd070cbf497",
+    "code/validated-examples/2026-11-23/gravity-dynamics/acceptance.json": "fb34d802d3c694945f0b97a59d8815a4c154c0d683c6a4e591a51eb3cf6854ac",
+    "code/validated-examples/2026-11-23/gravity-dynamics/inputs.json": "ff5e6fe829f7efec19348300f37b47d4897ce57a516ff52153d74652154bd4e4",
+    "code/validated-examples/2026-11-23/gravity-dynamics/pre-run-contract.json": "83f7cc528bbbbbc688851308aabfbbc19bcb81f0c3d2f5aac83b44a21264d36a",
+    "code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-kepler-preview.png": "12b3902c4f90faa30226cf0ca1c14e35c9f1de85339c09acbb7818a47a8ae758",
+    "code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-plummer-short-preview.png": "be518533a4560b5e6a30e2e846c20a782d82624193f5f9f19a6c621cbe8b7f99",
+    "code/validated-examples/2026-11-23/gravity-dynamics/run.py": "5d0daaff8087f7dd13f38ffc42848ab79543fdfe436890bd0e7957a16725de59",
+    "code/validated-examples/2026-11-23/gravity-dynamics/verification.json": "47839837648f140ffb9696b7974dba4d6858bd15569e0415274a330d6e286ca3",
     "code/validated-examples/2026-11-23/low-mach/acceptance.json": "5ab3845b4bf18433bca96980112357723ebf0c2846d65ee74941f1f82cf82d75",
     "code/validated-examples/2026-11-23/low-mach/attempts/01/acceptance.json": "5ab3845b4bf18433bca96980112357723ebf0c2846d65ee74941f1f82cf82d75",
     "code/validated-examples/2026-11-23/low-mach/attempts/01/results/result.json": "ac28859e15d35d96aaaf87e3b1a851a1e0b823316721e84ff800153ea034a130",
@@ -6081,6 +6553,13 @@
     "code/validated-examples/2026-11-23/moving-waves/results/cgrid-rotating-wave-preview.png": "363d1ee6a1c02f5fbfff257511b85cc00ef5cf80817cc265eb866847f5609a4c",
     "code/validated-examples/2026-11-23/moving-waves/run.py": "326de4c08dda50169ed8a16212eb6ccafbca5032f4ee57a3afdad937a96627f0",
     "code/validated-examples/2026-11-23/moving-waves/verification.json": "29199bb55f03b1167eaa27115c8bb531006a298371f614d8c1397516c5862894",
+    "code/validated-examples/2026-11-23/pic-spatial/README.md": "87ecd73dde30fb8e048915ee4bb825075a5e870ab6f2a3e7ce437d7f38a5e985",
+    "code/validated-examples/2026-11-23/pic-spatial/acceptance.json": "82397a27873a8db17cbc4c006843e39de6ee634a8e95d9f662d343e54f144a64",
+    "code/validated-examples/2026-11-23/pic-spatial/inputs.json": "8e11e04349f7d8df800b5244b0aa7faf9238ea41d4bcbaf8411885fe70529efa",
+    "code/validated-examples/2026-11-23/pic-spatial/pre-run-contract.json": "d1abb7308af2f465583a46aa96a3de5968639be194989ebe8e528fa6ed050fd2",
+    "code/validated-examples/2026-11-23/pic-spatial/results/pic-independent-spatial-preview.png": "a04e6b6cb2e4e0f8498eee4f268e23044ced33a273423435e01554eab82b338d",
+    "code/validated-examples/2026-11-23/pic-spatial/run.py": "3dc1343fa4164608ddf92bc1babac3bce055656c54ddb12cf7c9e1e5f0ce2209",
+    "code/validated-examples/2026-11-23/pic-spatial/verification.json": "8d8a7e9105d39ea8f55a4700e686c074c77930b99a8146130cf2d1a4f58e0edb",
     "code/validated-examples/2026-11-23/relativistic/README.md": "65bb3b646c08db312cff7ff6c7c8bf2ab2367e61f3b4aa7f84bcfa77b499b0ab",
     "code/validated-examples/2026-11-23/relativistic/acceptance.json": "2108ca541722e48fb5af581c71ce4c98009cc8c6fb0331f18585f0548a33f8f2",
     "code/validated-examples/2026-11-23/relativistic/inputs.json": "74aa7224e0c7682b1563b9dda911eda1890d535465328f136801211638370ac5",
@@ -6103,6 +6582,21 @@
     "code/validated-examples/2026-11-23/shallow-water/results/swashes-topography.png": "3b91bc40a354bebf41dfae5658f077c4a2eb8ffcbfd537a6211c9c96a52dce2c",
     "code/validated-examples/2026-11-23/shallow-water/run.py": "5a4054b09e046f92e83cf5b9bc906bdcabea28b12a8b7d7c89dded3bcdae9c3d",
     "code/validated-examples/2026-11-23/shallow-water/verification.json": "e342321ddc1f7692e08dcc7a63478912956f63637c855f2f85eaf0999c4d22cc",
+    "code/validated-examples/2026-11-23/slab-ewald/README.md": "bc2547d21352cacc372a507989e6e5711258182165b87afaeb352ebd3d3dc880",
+    "code/validated-examples/2026-11-23/slab-ewald/acceptance.json": "de3e36a499cdeb5e3d871fbae8af25d64de3701d3dce7b6431298c51712c1dbe",
+    "code/validated-examples/2026-11-23/slab-ewald/inputs.json": "138a6b185ce7a33c4bd55c2939db51c455b331033a7775bdf7c5048fe4d16d36",
+    "code/validated-examples/2026-11-23/slab-ewald/pre-run-contract.json": "3bab176f5c574d377db11af317045f30ff75ee7d1d3e57b07fe26dad38b77c4e",
+    "code/validated-examples/2026-11-23/slab-ewald/results/neutral-slab-yb-preview.png": "eff9876ae6570ebc5389e65f8a07b774e87e5ebccc7bab97b2e69bdc427c0206",
+    "code/validated-examples/2026-11-23/slab-ewald/run.py": "5d0daaff8087f7dd13f38ffc42848ab79543fdfe436890bd0e7957a16725de59",
+    "code/validated-examples/2026-11-23/slab-ewald/verification.json": "1ba388ae7557baa644f6b773811cf78ad23b20b5938db8a5d748fba741bc9684",
+    "code/validated-examples/2026-11-23/warm-pic/README.md": "bdb8eb75939bf1ad10235f62a2d017dac034e7dc6cacd1ca44f361e5d4602b92",
+    "code/validated-examples/2026-11-23/warm-pic/acceptance.json": "06c9c227b1426c7d16e928858a6a9ef9ce40763fdef65cedc22dcf581907089c",
+    "code/validated-examples/2026-11-23/warm-pic/inputs.json": "e593a8e0308c6aa4de9b92f0887394d65b253ff9f123db726296385d889906c6",
+    "code/validated-examples/2026-11-23/warm-pic/pre-run-contract.json": "3b6668be0512cfd9cb445f9b274f0903d12a6e3ab9fa33f84e39c0ab41ade08f",
+    "code/validated-examples/2026-11-23/warm-pic/results/thermal-landau-damping-preview.png": "133e293e074869a96b622d2c3cf420805aaac9b489c7cd3781e128b7073c8583",
+    "code/validated-examples/2026-11-23/warm-pic/results/thermal-two-stream-preview.png": "d0cc625131eeda306e2e79c9e8c24f19995ebea315c06218a7c97506edc35584",
+    "code/validated-examples/2026-11-23/warm-pic/run.py": "1de599f8ae0649d3ce948239ba00b68b5ce7638b0a672ad8ef106ea773eb96ee",
+    "code/validated-examples/2026-11-23/warm-pic/verification.json": "c8af7a2828d26a884774f3325c9fc64c489855db9a14eab6325b1f510f8953d1",
     "code/validated-examples/2026-11-23/weno-critical/README.md": "6ffae0110e66209bbc3598457850c0d3b3269f6faef89302e25649cf8786f0c0",
     "code/validated-examples/2026-11-23/weno-critical/acceptance.json": "a9cff61c3b803a51a148058eab8eb2e11ce7f3aba86a394a063d7fa1cddddbe9",
     "code/validated-examples/2026-11-23/weno-critical/inputs.json": "1236a9d75c55a9cc9dfbdcb4f184c57e82b06e45948422e4ca75b750295860a0",
@@ -6130,33 +6624,45 @@
     "code/validated-examples/2026-11-23/zalesak/run.py": "eb80d86d24904f12971f6cca407bd2b289576810491701aa82ff1698ca82c01f",
     "code/validated-examples/2026-11-23/zalesak/source-provenance.json": "6a435417d628c17e5caf742ddc01799f953bc1e66e9fa59a3834d6a22647d1ed",
     "code/validated-examples/2026-11-23/zalesak/verification.json": "aad9b39c23d83e967588361edfdb05724f1ea3fade93843ebb05b5fd829ba44e",
-    "numerical-methods-atlas/gallery/index.html": "5c4c5cea566aa78f5b3991cf37e47706f33ed4055333d83fe1f623e9fef301ad",
-    "numerical-methods-atlas/solutions/index.html": "339109523fd66170f8aff33e8536549be9bce5a81af9cefe73076a2d53b29c3a",
-    "numerical-methods-atlas/validation/ale-nonuniform-transport/index.html": "d26356e4c938023646b74cc956c2a6ce4c8e6ba58cd9c38af0f4d6fb83e6c7c2",
-    "numerical-methods-atlas/validation/annular-viscous-mms/index.html": "5a91ee552ad28d287f610ce4baf3589ceb138ff149059b053a30ad3cce16b8cc",
-    "numerical-methods-atlas/validation/cavity-ghia-re100/index.html": "604b68f4cf81a1349722d658e644774546957b9fcbd390e17aba9074af3a9c86",
-    "numerical-methods-atlas/validation/cgrid-rotating-wave/index.html": "6be65a9adc63bd6f61363da9cb3c9ea8c1c918758fd11d683cd0d3898d09fa82",
-    "numerical-methods-atlas/validation/circular-alfven-refinement/index.html": "518724a1b993486a324cc96ddbb0e1ee7910924b1f4147668ab04cf0abbc60ea",
-    "numerical-methods-atlas/validation/double-mach-reflection/index.html": "a97c707de665870d0897a0cdaddda7b7b455e0beb56778061c2d8a02ba3f4979",
-    "numerical-methods-atlas/validation/dry-bed-dam-break/index.html": "057492e1eab605f95e11414f0bfbc07052bd214ee33dabd71353fbfd9e713761",
-    "numerical-methods-atlas/validation/euler-double-rarefaction-positivity/index.html": "258ca38fb35c74927604e37433023b5ead4a20dc9a7f970565def08c7eb21fc2",
-    "numerical-methods-atlas/validation/forward-step-m3/index.html": "708a4748a1108bc66d709800ff2ae21b4cad482fe6e470dfdbd30484149e08a0",
-    "numerical-methods-atlas/validation/guderley-implosion/index.html": "267f7a62dc4509301181934bfa05f2fcb501d14c94bbf362ae98624fbcf126ae",
-    "numerical-methods-atlas/validation/kh-initial-growth/index.html": "33d6ac421c9134df6cc089ef7451ef82ba6478f59373d4894121d51c538edc6f",
-    "numerical-methods-atlas/validation/low-mach-vortex/index.html": "2744e0d480dc86de863edef6de5ced0fc0c3cf3f7bec0eda8581a5589c774d53",
-    "numerical-methods-atlas/validation/lshape-fem/index.html": "84956623d51c762c373769da550dcbcdd30e1d87d584dd1be644c556bdebeee8",
-    "numerical-methods-atlas/validation/noh-cartesian-2d/index.html": "484592fde6dbf3f4b5da68a363d9907e9deda9ea1883525c40762d405d64e2e1",
-    "numerical-methods-atlas/validation/poisson-neumann/index.html": "898599b6440ed92443dedb550349295f0ec59a7620cea19c83981be36f02adc2",
-    "numerical-methods-atlas/validation/postshock-orszag-tang/index.html": "fe0450b684b23443dd12b6fdaa2966bb493ac5f7a1c12329f8332f3eae14d45f",
-    "numerical-methods-atlas/validation/sedov-blast/index.html": "3b23469cd17837f105df30961020a8c4ff8b47efe937bf45430b8720a6e440ed",
-    "numerical-methods-atlas/validation/srhd-collision/index.html": "26035f5e924761ffc9d36319c4c9b04c3bd022e0b5b031d4ed23ed374bfa468f",
-    "numerical-methods-atlas/validation/srmhd-alfven/index.html": "499954f670fc1fd7b73e18ceb13afe0e26871e7ccd9c5b07c1e91645f31d279d",
-    "numerical-methods-atlas/validation/swashes-topography/index.html": "9ec07690436b309d7c990868e0e7b76576fa57d047c61edd0be985d91f18a019",
+    "numerical-methods-atlas/gallery/index.html": "f31d62dc93290c101bb2784bbc21ee64ab0806cf41529f88c0fddffce39c6412",
+    "numerical-methods-atlas/methods/thomas/index.html": "cf92964a5b2eab9c90daf72376e94298f9d780fec46c632d28b3ff7642e2de2e",
+    "numerical-methods-atlas/reading/thomas-provenance.json": "a9eff54993f6f992bcddbb01ddf306adf59a234c8745a7a86557d38a3ab65ee2",
+    "numerical-methods-atlas/solutions/index.html": "1b8f14206510836b8715285f459526622d21d0c39b7bbdd57a6821de23cc08f6",
+    "numerical-methods-atlas/validation/ale-nonuniform-transport/index.html": "7aa6c5eb188f78d0dfe31500b2fbc2e029abb79f844d658ce3a35afd68004a46",
+    "numerical-methods-atlas/validation/annular-viscous-mms/index.html": "fcd250bb18308ab5934e70fa6c15f2d810d6544459dd5c38adb6914d00be1024",
+    "numerical-methods-atlas/validation/cavity-ghia-re100/index.html": "95926835f80913ba43e6c471a4384b01bea6af082c9f607349f3f4aeacb8eb78",
+    "numerical-methods-atlas/validation/cgrid-rotating-wave/index.html": "d897197c371bc70ab9ace6a9c752b0c3bfd0e965076fd74e9fad40a97a23432f",
+    "numerical-methods-atlas/validation/checkerboard-diffusion/index.html": "b8b16dfdbb4c6b5f9db2d4f1a0fb704f5f220c876faa1314efa7802e93213158",
+    "numerical-methods-atlas/validation/circular-alfven-refinement/index.html": "32958278475edcfdcb07f54ab20c7c572b1cb6fae6cadbe64f6d6f4bb624ecca",
+    "numerical-methods-atlas/validation/double-mach-reflection/index.html": "2ab935a6cb4710b7eea6d72d54db00a0b475b1e07f54530d3dd33cf7f5a2fd37",
+    "numerical-methods-atlas/validation/dry-bed-dam-break/index.html": "bb98e74ec14bdec09a7c804752f2c2cd35fc69f3d9eba3ec34bbe42a3369859a",
+    "numerical-methods-atlas/validation/dsmc-couette/index.html": "c5c40ac4f238e57549672403759e21395f56f3058bf791f0b9961e87e51381b5",
+    "numerical-methods-atlas/validation/dsmc-planar-shock/index.html": "c3440b3814bf1dc2ec760e7af2a8b60df73a132cba6b24d47be4325cc879bc1a",
+    "numerical-methods-atlas/validation/euler-double-rarefaction-positivity/index.html": "4d466052eefedc32d8ba2d5719f03631042701c2b0ca09ec1a7f6c539c4bb5ca",
+    "numerical-methods-atlas/validation/fmm3d-inverse-r/index.html": "3f08ba996f5682e7df3187dd0d3243e58ac33ace110ddd7f77536e4dea2a3e32",
+    "numerical-methods-atlas/validation/forward-step-m3/index.html": "ca49671c5b742c52c6df00924b61fb0de1eefed1f31b9933480b8f7668147d69",
+    "numerical-methods-atlas/validation/gravity-kepler/index.html": "3ba3f565f2ce101dc36afff6765692e9edb449b87440da4689d6915495bd6172",
+    "numerical-methods-atlas/validation/guderley-implosion/index.html": "5d235bdc78c35cad1b0d7ab01aa070638a5b92192f044c54af2df43a02bbe62c",
+    "numerical-methods-atlas/validation/kh-initial-growth/index.html": "b895b864d9971e2992228bd417128856301a8776c84b5147d9d84e5c1168569d",
+    "numerical-methods-atlas/validation/low-mach-vortex/index.html": "0740a77cfe2b12fb90c4a44b477ab2d49064439dd2e601e8f07094f7495ee43d",
+    "numerical-methods-atlas/validation/lshape-fem/index.html": "ee9a88feef70afb1227ff3472510f8c696c3626eafed9872333ad3cf832ebbfe",
+    "numerical-methods-atlas/validation/neutral-slab-yb/index.html": "957250d32b8b37ae555ec7c3e66943dd8e9da3408bcb120c0194448d72437353",
+    "numerical-methods-atlas/validation/noh-cartesian-2d/index.html": "0037c7d552ba9c7b88b35a2011132d20a11c687b6a5baba1dcaa2241055de0d2",
+    "numerical-methods-atlas/validation/pic-independent-spatial/index.html": "0ebaa890f492ca77e553542c8b14802e2f74e4ecc1ba1c2c545abb06f21d6f19",
+    "numerical-methods-atlas/validation/poisson-neumann/index.html": "2c7e2c603960726cbfdbd90cb6bc457d9786b8175a99b09f34b1daf2503beec4",
+    "numerical-methods-atlas/validation/postshock-orszag-tang/index.html": "07f56b022c4e790fc7bc4314896f2a0778776446c014bceeb9e9658f5aacc161",
+    "numerical-methods-atlas/validation/sedov-blast/index.html": "28f10d4721bf48266e595e278e09a99d404e90659825e9055d8ba62d44cf1285",
+    "numerical-methods-atlas/validation/srhd-collision/index.html": "53076190f9543908daa82943d7fe52c26da5e9037d8e698626d7b49c1f27a003",
+    "numerical-methods-atlas/validation/srmhd-alfven/index.html": "75347ecc18de50265b11205cbb0352329a68b695c203d8db5ee567474d24abda",
+    "numerical-methods-atlas/validation/swashes-topography/index.html": "eadbd0c32d58f2200dfc55b309aa0ac20424dd83f0919b28586ff1f435009f10",
+    "numerical-methods-atlas/validation/thermal-landau-damping/index.html": "3ab9f5a401c23374e26e7aca49e3b6f36b224fdacab50cca947fe57444c61122",
+    "numerical-methods-atlas/validation/thermal-two-stream/index.html": "ec881b0ce5cfa7c2e1ccae172d3469f111e6c91fdc4def9973e6921f90b830c7",
     "numerical-methods-atlas/validation/verification/2026-11-23-batch13-17-public.json": "d84d08cb4d25c00250a273cdf3c200da4c16d1958948701f2cc957ffcf74f48d",
+    "numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json": "cc6cdf4f041243e21657d56ead41d8ccf0c78bc13861fa9d20407e1e58ed8b2b",
     "numerical-methods-atlas/validation/verification/2026-11-23-euler-positivity-public.json": "6d219b1fe34353e9a6634d64c8379d3a7dab6b324b538b35ecb695f5a584e757",
     "numerical-methods-atlas/validation/verification/2026-11-23-zalesak-public.json": "85da729371ecceeb80953fabe8c4932d6b476bcdacd492f9102c08c8fa09a3dc",
-    "numerical-methods-atlas/validation/wall-manufactured/index.html": "3b8c19be2a14feb8eff5e9cd990db0711e94747bd358b87d43beefad5cf213db",
-    "numerical-methods-atlas/validation/weno-critical-epsilon/index.html": "4867798ed4bf5ba02ea16889094567d22575fb3a4249ee00bf718326a4f2d8e8",
-    "numerical-methods-atlas/validation/zalesak-rotation/index.html": "2f2287fd37a8a620bcd82a64c8952b6ed852d864321cd3114872c883f5a4e3ed"
+    "numerical-methods-atlas/validation/wall-manufactured/index.html": "59dead432f0c90dd079f8bb4c1f29fc04d2fff15cf26bc35d3f56c5caa58c47f",
+    "numerical-methods-atlas/validation/weno-critical-epsilon/index.html": "8aaa09ba22a6771fe10376c84af4587852486c07d2cf706ba1058d26ee0a8533",
+    "numerical-methods-atlas/validation/zalesak-rotation/index.html": "76293734bdec6e065d5d66251076ba1f81edfba1b951cdf20ece015975418ed9"
   }
 }

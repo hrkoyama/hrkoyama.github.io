@@ -11,11 +11,11 @@
 <!-- /site-top -->
 <a class="skip-link" href="#main">本文へ</a><header class="site-header"><a class="brand" href="/numerical-methods-atlas/?lang=ja"><span class="brand-symbol" aria-hidden="true">∑</span><span>数値計算法アトラス</span></a><button class="mobile-menu" aria-label="ナビゲーションを開く" aria-expanded="false">Menu</button><nav aria-label="メインナビゲーション"><a href="/numerical-methods-atlas/?lang=ja#/methods">数値計算法</a><a href="/numerical-methods-atlas/?lang=ja#/experiments">数値実験</a><a href="/numerical-methods-atlas/ja/read/">分野別に解説を読む</a></nav><div class="language-switch" role="group" aria-label="Language"><a href="/numerical-methods-atlas/en/read/site-coverage/" lang="en" hreflang="en">English</a><a href="/numerical-methods-atlas/ja/read/site-coverage/" lang="ja" hreflang="ja" aria-current="page">日本語</a></div></header><main id="main" tabindex="-1"><div class="reading-shell page-width"><aside class="reading-nav atlas-reading-nav" aria-label="アトラスの案内"><nav data-reading-navigation-group="learn" aria-label="学ぶ・調べる"><h2>学ぶ・調べる</h2><ul><li><a href="/numerical-methods-atlas/ja/read/">分野別に解説を読む</a></li><li><a href="/numerical-methods-atlas/methods/?lang=ja">手法・コードの対応表</a></li></ul></nav><nav data-reading-navigation-group="resources" aria-label="教科書・文献"><h2>教科書・文献</h2><ul><li><a href="/numerical-methods-atlas/ja/read/textbooks/">教科書案内</a></li><li><a href="/numerical-methods-atlas/ja/read/references/">原著・参考文献</a></li></ul></nav></aside><div class="chapter-wrap"><div class="chapter-topline"><span>解説章</span><a href="/numerical-methods-atlas/code-and-data/">公開コード・データ / Public code and data</a></div><p class="translation-notice">英語原文が更新されています。この日本語訳は旧版に対応します。</p><!-- chapter-resource-jump --><nav class="chapter-resource-jump" data-chapter-resource-jump="site-coverage" aria-label="この章からたどる · 全体一覧"><p>この章からたどる · 全体一覧</p><ul><li><a href="#chapter-resources-methods" data-chapter-resource-jump-category="methods">手法</a></li><li><a href="#chapter-resources-equations" data-chapter-resource-jump-category="equations">方程式</a></li><li><a href="#chapter-resources-figures" data-chapter-resource-jump-category="figures">問題の図</a></li><li><a href="#chapter-resources-references" data-chapter-resource-jump-category="references">厳密解・参照解</a></li><li><a href="#chapter-resources-code" data-chapter-resource-jump-category="code">実行コード</a></li></ul></nav><!-- /chapter-resource-jump --><article class="prose" lang="ja"><h1>収録範囲と数え方</h1>
 <p>公開Web版、集計日2026-11-23。数えるのはカタログ項目と記載した実験例です。すべての項目が検証済みの完全なソルバーであるという意味ではありません。</p>
-<p><strong>方程式・モデル56項目・計算法と構成要素136項目・学術誌／会議論文249件・全参考資料310件。</strong></p>
-<p>保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め115章です。</p>
+<p><strong>方程式・モデル60項目・計算法と構成要素137項目・学術誌／会議論文249件・全参考資料310件。</strong></p>
+<p>保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め123章です。</p>
 <h2 id="equations-and-models">方程式とモデル<a class="heading-anchor" href="#equations-and-models" aria-label="この節へのリンク">#</a></h2>
 <p>名前付きの方程式・モデルを数えます。スカラー成分や数学的に互いに独立な系統の数ではありません。枠組みや補助定式化を含み、通常は派生形を一つにまとめます。ただし個別に説明するSR／GRの流体系3種類は分けます。生物モデルは専用カタログから一度だけ取り込みます。</p>
-<p>ローカル実験のある項目は34、文献解説のみは22で、後者には生物調査22項目すべてを含みます。連成系は一項目とし、成分方程式では増やしません。Poisson／Laplaceや次元の違いもまとめます。枠組みと個別反応則が並ぶため、数学的に独立した系統数ではありません。</p>
+<p>ローカル実験のある項目は38、文献解説のみは22で、後者には生物調査22項目すべてを含みます。連成系は一項目とし、成分方程式では増やしません。Poisson／Laplaceや次元の違いもまとめます。枠組みと個別反応則が並ぶため、数学的に独立した系統数ではありません。</p>
 <p>一覧の詳細な範囲注記は原文（英語）を保持します。各章の日本語本文も併せて参照できます。</p>
 <h2 id="equationmodel-inventory">方程式・モデルの一覧<a class="heading-anchor" href="#equationmodel-inventory" aria-label="この節へのリンク">#</a></h2>
 <h3 id="physics-amp-mathematical-models">物理・数学モデル<a class="heading-anchor" href="#physics-amp-mathematical-models" aria-label="この節へのリンク">#</a></h3>
@@ -71,7 +71,7 @@
 </ul>
 <h2 id="numerical-method-inventory">計算法の一覧<a class="heading-anchor" href="#numerical-method-inventory" aria-label="この節へのリンク">#</a></h2>
 <p>名前付きの離散化法、積分法、線形・非線形解法、連成演算子を数えます。パラメータの違いでは増やしません。</p>
-<p>ローカル実験のある項目は121、文献解説のみは15です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。</p>
+<p>ローカル実験のある項目は122、文献解説のみは15です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。</p>
 <h3 id="spatial-discretization">空間離散化<a class="heading-anchor" href="#spatial-discretization" aria-label="この節へのリンク">#</a></h3>
 <ul>
 <li><a href="/numerical-methods-atlas/ja/read/stability/">空間前進差分（Forward spatial difference）</a> — ローカル実験あり。</li>

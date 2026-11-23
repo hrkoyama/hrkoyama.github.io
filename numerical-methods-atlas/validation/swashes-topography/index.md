@@ -214,7 +214,7 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-このコマンドは配布グループの全例を実行します。
+このコマンドは配布グループの全例を実行します。同梱のresults/は保存見本です。追試は新規output/へ出力し、繰り返す場合は別の新規フォルダを指定します。
 
 入力・検証手順の履歴：https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/protocol-history.json
 
@@ -223,9 +223,17 @@ https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/atte
 ## 出典と確認範囲
 
 - O. Delestre et al. (2013). SWASHES: a compilation of shallow water analytic solutions for hydraulic and environmental studies. https://arxiv.org/pdf/1110.0288; review_level=selected-equations-and-fixed-inputs
+Author arXiv v3: sections2,3.1.1-3.1.3,4.1.2. Bump, lakes, Bernoulli and Ritter formulas inspected; no full-library audit or SWASHES execution/source reuse.
+
 - E. Audusse, F. Bouchut, M.-O. Bristeau, R. Klein, B. Perthame (2004). A Fast and Stable Well-Balanced Scheme with Hydrostatic Reconstruction for Shallow Water Flows. https://epubs.siam.org/doi/abs/10.1137/S1064827503431090; review_level=bibliography-and-author-follow-up
+Publisher/author bibliography checked. Author-linked original PDF retrieval timed out; HR algebra read in author follow-up arXiv1409.3825. No full original-paper audit.
+
 - E. Audusse, F. Bouchut, M.-O. Bristeau, J. Sainte-Marie (2016). Kinetic entropy inequality and hydrostatic reconstruction scheme for the Saint-Venant system. https://arxiv.org/pdf/1409.3825; review_level=selected-scheme-equations
+arXiv v2 section1 model/entropy caveat; section3.1 equations3.1-3.5 face states and pressure corrections. Full kinetic proof not audited or claimed for this HLL solver.
+
 - Institut Denis Poisson / SWASHES authors (n.d.). SWASHES project page. https://www.idpoisson.fr/en/swashes-es/; review_level=official-project-scope-and-rights
+Official project/library purpose, CeCILL-v2 licensing and corrected-paper/addendum notice inspected. No library code copied or executed.
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.
 
@@ -445,7 +453,7 @@ python -m pytest -q
 python run.py --input inputs.json --output output
 ```
 
-This command executes every fixed case in the distribution group.
+This command executes every fixed case in the distribution group. Bundled results/ are stored outputs. Rerun into a new output/ directory and use another fresh directory for subsequent runs.
 
 Input and validation protocol history: https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/protocol-history.json
 
@@ -454,8 +462,16 @@ https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/atte
 ## Sources and review scope
 
 - O. Delestre et al. (2013). SWASHES: a compilation of shallow water analytic solutions for hydraulic and environmental studies. https://arxiv.org/pdf/1110.0288; review_level=selected-equations-and-fixed-inputs
+Author arXiv v3: sections2,3.1.1-3.1.3,4.1.2. Bump, lakes, Bernoulli and Ritter formulas inspected; no full-library audit or SWASHES execution/source reuse.
+
 - E. Audusse, F. Bouchut, M.-O. Bristeau, R. Klein, B. Perthame (2004). A Fast and Stable Well-Balanced Scheme with Hydrostatic Reconstruction for Shallow Water Flows. https://epubs.siam.org/doi/abs/10.1137/S1064827503431090; review_level=bibliography-and-author-follow-up
+Publisher/author bibliography checked. Author-linked original PDF retrieval timed out; HR algebra read in author follow-up arXiv1409.3825. No full original-paper audit.
+
 - E. Audusse, F. Bouchut, M.-O. Bristeau, J. Sainte-Marie (2016). Kinetic entropy inequality and hydrostatic reconstruction scheme for the Saint-Venant system. https://arxiv.org/pdf/1409.3825; review_level=selected-scheme-equations
+arXiv v2 section1 model/entropy caveat; section3.1 equations3.1-3.5 face states and pressure corrections. Full kinetic proof not audited or claimed for this HLL solver.
+
 - Institut Denis Poisson / SWASHES authors (n.d.). SWASHES project page. https://www.idpoisson.fr/en/swashes-es/; review_level=official-project-scope-and-rights
+Official project/library purpose, CeCILL-v2 licensing and corrected-paper/addendum notice inspected. No library code copied or executed.
+
 
 Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.

@@ -32,6 +32,18 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/dsmc/
   availability: run
 
   有限粒子数の平衡をMaxwell極限と区別し、独立な球面標本、解析的異方性減衰、seed間誤差と比較します。
+- [硬球DSMCの有限Kn Couette流](<https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-couette/?lang=ja>)
+  availability: run
+
+  物理時間の硬球衝突と実際の分子輸送を計算し、独立SPARTAの資格確認済みモーメント場と比較します。
+- [硬球DSMCの有限Kn Fourier熱伝導](<https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-fourier/?lang=ja>)
+  availability: run
+
+  物理時間の硬球衝突と実際の分子輸送を計算し、独立SPARTAの資格確認済みモーメント場と比較します。
+- [硬球DSMCのMach2平面衝撃波](<https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=ja>)
+  availability: run
+
+  物理時間の硬球衝突と実際の分子輸送を計算し、独立SPARTAの資格確認済みモーメント場と比較します。
 - [DSMC・運動論輸送：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/dsmc/?lang=ja#method-execution-ja>)
   availability: source
 

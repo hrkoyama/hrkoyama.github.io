@@ -51,6 +51,9 @@ def package(group,edition):
             assert all(isinstance(case[field][language],str) and case[field][language].strip()
                        for language in ['ja','en']), (case['id'],field)
         assert case['references'] and all(reference.get('review_level') for reference in case['references'])
+        for reference in case['references']:
+            assert all(isinstance(reference.get(key),str) and reference[key].strip() for key in ['id','title','review_level'])
+            assert reference.get('url') or reference.get('source') or reference.get('doi'), 'Reference needs a source location'
     validate_requirements((source/'requirements.txt').read_bytes())
     with tempfile.TemporaryDirectory(prefix='atlas-validation-') as tmp:
         tmp=Path(tmp);stage=tmp/prefix;stage.mkdir()

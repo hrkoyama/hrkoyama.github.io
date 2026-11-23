@@ -28,6 +28,7 @@ const batch28HistoricalMethod=method=>{
   if(Object.hasOwn(prior,'supplemental_review'))review.supplemental_review=prior.supplemental_review;else delete review.supplemental_review;
   if(Object.hasOwn(old,'metadata_review')||Object.keys(review).length)copy.metadata_review=review;else delete copy.metadata_review;
  }
+ if(['verlet','multigrid','cic','barnes-hut','slab-ewald'].includes(method.id))restore('depth_scope');
  if(method.id==='slab-ewald')for(const key of ['status','depth_previous_status','previous_planned_description','next_deliverable'])restore(key);
  if(method.id==='q1-fem')for(const key of ['name','code_mapping_scope'])restore(key);
  if(method.id==='thomas')for(const key of ['summary','references','metadata_review','bibliographic_original'])restore(key);

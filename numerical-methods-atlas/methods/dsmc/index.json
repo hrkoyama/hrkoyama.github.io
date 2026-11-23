@@ -10,8 +10,8 @@
     "en": "Coupling, constraints & particles"
   },
   "summary": {
-    "ja": "等質DSMC衝突成分の保存則・Maxwell分布: 等質なMaxwell分子のランダム二体衝突で、保存則と平衡分布への緩和を検証します。 DSMC衝突成分：有限N平衡・保存則・統計誤差: 有限粒子数の平衡をMaxwell極限と区別し、独立な球面標本、解析的異方性減衰、seed間誤差と比較します。",
-    "en": "Conservation and Maxwell relaxation in a homogeneous DSMC collision component: Test conservation and relaxation toward equilibrium through randomized pair collisions of homogeneous Maxwell molecules. DSMC collision component: finite-N equilibrium, invariants and statistical error: Distinguish finite-particle equilibrium from the Maxwell limit; compare independent sphere samples, analytic anisotropy decay and across-seed uncertainty."
+    "ja": "既存配布版：等質DSMC衝突成分の保存則・Maxwell分布: 等質なMaxwell分子のランダム二体衝突で、保存則と平衡分布への緩和を検証します。 DSMC衝突成分：有限N平衡・保存則・統計誤差: 有限粒子数の平衡をMaxwell極限と区別し、独立な球面標本、解析的異方性減衰、seed間誤差と比較します。 追加固定例：硬球DSMCの有限Kn Couette流、硬球DSMCの有限Kn Fourier熱伝導。条件と検証範囲は各配布版で確認してください。 追加固定例：硬球DSMCのMach2平面衝撃波。条件と検証範囲は各配布版で確認してください。",
+    "en": "Existing releases: Conservation and Maxwell relaxation in a homogeneous DSMC collision component: Test conservation and relaxation toward equilibrium through randomized pair collisions of homogeneous Maxwell molecules. DSMC collision component: finite-N equilibrium, invariants and statistical error: Distinguish finite-particle equilibrium from the Maxwell limit; compare independent sphere samples, analytic anisotropy decay and across-seed uncertainty. Additional fixed examples: Hard-sphere DSMC finite-Kn Couette flow, Hard-sphere DSMC finite-Kn Fourier heat conduction. See each release for assumptions and checked scope. Additional fixed examples: Hard-sphere DSMC Mach2 planar shock. See each release for assumptions and checked scope."
   },
   "status": "educational-example",
   "origin": "development-candidate",
@@ -41,12 +41,16 @@
     "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
   },
   "limitations": {
-    "ja": "等質DSMC衝突成分の保存則・Maxwell分布: DSMCの衝突部分の教育例です。空間輸送、衝突セル、剛体球の速度依存の衝突選択、実際の輸送係数・流れ場・全seedでの保証は含みません。Bird原著の剛体球条件を再現したとは主張しません。 DSMC衝突成分：有限N平衡・保存則・統計誤差: 固定した64seedの統計的診断であり、全seedの保証ではありません。同一seed内の粒子は保存量で相関し、IIDのKS p値へ読み替えません。空間輸送、衝突セル、剛体球の速度依存衝突選択・輸送係数は含みません。",
-    "en": "Conservation and Maxwell relaxation in a homogeneous DSMC collision component: This is an educational DSMC collision component. No spatial streaming, collision cells, speed-dependent hard-sphere selection, measured transport coefficients/flow fields or every-seed guarantee. Bird’s original hard-sphere conditions are not reproduced. DSMC collision component: finite-N equilibrium, invariants and statistical error: Statistical diagnostics cover fixed 64-seed ensembles, not every seed. Conservation correlates particles within a seed; do not use IID KS p-values. No spatial streaming, collision cells, speed-dependent hard-sphere selection or transport coefficients."
+    "ja": "既存配布版の制約：等質DSMC衝突成分の保存則・Maxwell分布: DSMCの衝突部分の教育例です。空間輸送、衝突セル、剛体球の速度依存の衝突選択、実際の輸送係数・流れ場・全seedでの保証は含みません。Bird原著の剛体球条件を再現したとは主張しません。 DSMC衝突成分：有限N平衡・保存則・統計誤差: 固定した64seedの統計的診断であり、全seedの保証ではありません。同一seed内の粒子は保存量で相関し、IIDのKS p値へ読み替えません。空間輸送、衝突セル、剛体球の速度依存衝突選択・輸送係数は含みません。 今回の追加固定例：有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。Kn=.5で連続体の直線・no-slip分布を厳密解としません。図は保存した粒子位相空間であり、2D物理流れではありません。 有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。Kn=.5で連続体の直線・no-slip分布を厳密解としません。図は保存した粒子位相空間であり、2D物理流れではありません。 今回の追加固定例：有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。RHは遠方状態・流束だけの参照で、内部構造の厳密解ではありません。図は保存した粒子位相空間であり、2D物理流れではありません。",
+    "en": "Limits of existing releases: Conservation and Maxwell relaxation in a homogeneous DSMC collision component: This is an educational DSMC collision component. No spatial streaming, collision cells, speed-dependent hard-sphere selection, measured transport coefficients/flow fields or every-seed guarantee. Bird’s original hard-sphere conditions are not reproduced. DSMC collision component: finite-N equilibrium, invariants and statistical error: Statistical diagnostics cover fixed 64-seed ensembles, not every seed. Conservation correlates particles within a seed; do not use IID KS p-values. No spatial streaming, collision cells, speed-dependent hard-sphere selection or transport coefficients. Additional fixed examples: Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. AtKn.5,continuum straight/no-slip profiles are not exact. Saved phase space is not a2D physical flow. Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. AtKn.5,continuum straight/no-slip profiles are not exact. Saved phase space is not a2D physical flow. Additional fixed examples: Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. RH validates far states/full fluxes,not an exact internal shock profile. Saved phase space is not a2D physical flow."
   },
   "metadata_review": {
     "level": "scoped deterministic and statistical convergence; independent theta/direct/analytic/reference-integration comparisons, conservation diagnostics and independent-seed uncertainty with explicit limits",
-    "on": "2026-11-22"
+    "on": "2026-11-22",
+    "supplemental_review": {
+      "on": "2026-11-23",
+      "level": "Frozen fixed-input source,independent review,actual pytest/main and independently extracted ZIP; see each new release for exact reference independence and failed-attempt history."
+    }
   },
   "aliases": [
     "DSMC法",
@@ -9304,6 +9308,1377 @@
           }
         }
       ]
+    },
+    {
+      "group": "dsmc-wall",
+      "case_ids": [
+        "dsmc-couette",
+        "dsmc-fourier"
+      ],
+      "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/",
+      "code_edition": "2026-11-23",
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/dsmc.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/diagnostics.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/references/generate.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/references/qualify.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/test_core.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/test_wall.py"
+      ],
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "run_from": "atlas-dsmc-wall-2026-11-23",
+      "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/atlas-dsmc-wall-2026-11-23.zip",
+      "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/source-manifest.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/verification.json",
+      "code_archive_sha256": "7b6d5a11874a0042ce772df4c241c72ce42f861c43ed0d44164074ba662da0cb",
+      "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/results/result.json",
+      "passed_tests": 18,
+      "examples": [
+        {
+          "id": "dsmc-couette",
+          "method_ids": [
+            "dsmc"
+          ],
+          "domains": [
+            "particles",
+            "pde",
+            "time"
+          ],
+          "code_files": [
+            "run.py",
+            "dsmc.py",
+            "diagnostics.py"
+          ],
+          "title": {
+            "ja": "硬球DSMCの有限Kn Couette流",
+            "en": "Hard-sphere DSMC finite-Kn Couette flow"
+          },
+          "summary": {
+            "ja": "物理時間の硬球衝突と実際の分子輸送を計算し、独立SPARTAの資格確認済みモーメント場と比較します。",
+            "en": "Evolve physical-time hard-sphere collisions and molecular streaming; compare actual moments with qualified independent SPARTA fields."
+          },
+          "assumptions": {
+            "ja": "1次元位置・3次元速度、H=2、Kn0=.5、完全拡散壁。壁温1、壁速度±.5。16セル、N=1024、dt=.02、burn20/sample40、4seed。",
+            "en": "{\"kind\":\"wall\",\"cells\":16,\"length\":2,\"weight\":0.001953125,\"dt\":0.02,\"burn_in\":20,\"sample_time\":40,\"blocks\":5,\"bins\":8,\"sample_every\":10,\"hist_velocity\":[-6,6],\"temperatures\":[1,1],\"speeds\":[-0.5,0.5]} Four independent seeds; primary fixed-weight mesh,particle-weight,and half-step companions each retain seed1."
+          },
+          "algorithm": {
+            "ja": "セル内の非重複ランダム対へ、偶数・奇数粒子数を区別した物理時間のσg衝突確率を適用。エネルギーによる安全上界で事前にsubcycle数を定め、確率clipはしません。壁・流入はflux重み付き分布と実際の残り飛行時間を用います。",
+            "en": "Disjoint cell-local random pairs with even/odd finite-N physical-time sigma*g acceptance,energy-based safe majorant and predeclared bounded subcycling; no probability caps. Exact flight-to-wall and flux-conditioned diffuse/reservoir velocities with remaining flight time."
+          },
+          "validation": {
+            "ja": "各群18pytestを事前固定。新しい固定計算は群で14本。境界込みの質量・運動量・エネルギー、局所λ/衝突時間、独立参照への誤差とseed精度、時間block定常性を別に判定します。",
+            "en": "Predeclare18pytest per group and14new fixed primary runs. Separate boundary-inclusive budgets,local lambda/collision-time diagnostics,reference error,whole-seed precision and block stationarity. Reference36runs/87qualifiers already passed; primary results remain pending until the frozen run."
+          },
+          "limits": {
+            "ja": "有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。Kn=.5で連続体の直線・no-slip分布を厳密解としません。図は保存した粒子位相空間であり、2D物理流れではありません。",
+            "en": "Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. AtKn.5,continuum straight/no-slip profiles are not exact. Saved phase space is not a2D physical flow."
+          },
+          "formulas": [
+            "\\partial_t f+v_x\\partial_x f=Q_{\\mathrm{HS}}(f,f),\\quad \\sigma=\\pi d^2=1/\\sqrt{2}",
+            "P_{ij}=n\\langle c_i c_j\\rangle,\\quad q_x=\\frac{n}{2}\\langle c_x|\\mathbf c|^2\\rangle,\\quad\\mathbf c=\\mathbf v-\\mathbf u",
+            "p_{ij}=a_N W\\sigma g_{ij}\\Delta t/V,\\quad a_N=\\begin{cases}N-1&N\\text{ even}\\\\N&N\\text{ odd}\\end{cases}",
+            "g_{ij}\\le\\sqrt{2\\sum_i|\\mathbf v_i-\\mathbf v_{cm}|^2}"
+          ],
+          "references": [
+            {
+              "id": "sparta-hs-pinned",
+              "author": "Sandia SPARTA developers",
+              "year": 2026,
+              "title": "SPARTA, pinned official HS collision/boundary implementation and independently evolved fields",
+              "url": "https://github.com/sparta/sparta/tree/1ae18f3646e7c89f86e965f0f3c13fcc5f32e399",
+              "type": "software",
+              "review_level": "primary-source-selected-functions-and-actual-reference-execution",
+              "review_scope": "Selected collide_vss physical-rate/pair scattering, update SI constants, pflux/eflux pooled moments and boundary/inlet docs actually read. Unmodified official mac serial build;36fixed native runs and87qualifiers passed. Bird1994 original book not read; no whole-source audit.",
+              "accessed_on": "2026-11-23",
+              "review": {
+                "ja": "公式固定版のHS衝突率・境界・分子モーメントを選択確認し、独立36計算と87判定を実施。原著書籍全読や全コード監査は主張しません。",
+                "en": "Read selected official HS rate,boundary and moment definitions; execute36independent runs and87qualifiers. No full-original-book or whole-source audit claim."
+              }
+            }
+          ],
+          "citations": [
+            {
+              "id": "sparta-hs-pinned",
+              "author": "Sandia SPARTA developers",
+              "year": 2026,
+              "title": "SPARTA, pinned official HS collision/boundary implementation and independently evolved fields",
+              "url": "https://github.com/sparta/sparta/tree/1ae18f3646e7c89f86e965f0f3c13fcc5f32e399",
+              "type": "software",
+              "review_level": "primary-source-selected-functions-and-actual-reference-execution",
+              "review_scope": "Selected collide_vss physical-rate/pair scattering, update SI constants, pflux/eflux pooled moments and boundary/inlet docs actually read. Unmodified official mac serial build;36fixed native runs and87qualifiers passed. Bird1994 original book not read; no whole-source audit.",
+              "accessed_on": "2026-11-23",
+              "review": {
+                "ja": "公式固定版のHS衝突率・境界・分子モーメントを選択確認し、独立36計算と87判定を実施。原著書籍全読や全コード監査は主張しません。",
+                "en": "Read selected official HS rate,boundary and moment definitions; execute36independent runs and87qualifiers. No full-original-book or whole-source audit claim."
+              }
+            }
+          ],
+          "additional_figures": [
+            {
+              "file": "dsmc-couette-preview.png",
+              "caption": {
+                "ja": "保存した実粒子の位置–速度ヒストグラム。1次元位置と分子速度の位相空間であり、2D物理流れではありません。",
+                "en": "Actual saved particle position-velocity histograms; phase space of1D position and molecular velocity,not2D physical flow."
+              }
+            }
+          ],
+          "gallery_figure": "dsmc-couette-preview.png",
+          "measured": {
+            "id": "dsmc-couette",
+            "passed": true,
+            "checks": {
+              "dsmc-couette-base-361001/finite": true,
+              "dsmc-couette-base-361001/boundary budget": true,
+              "dsmc-couette-base-361001/physical collisions": true,
+              "dsmc-couette-base-361001/collision probability": true,
+              "dsmc-couette-base-361001/maxwell time resolution": true,
+              "dsmc-couette-base-361001/mean free path resolution": true,
+              "dsmc-couette-base-361002/finite": true,
+              "dsmc-couette-base-361002/boundary budget": true,
+              "dsmc-couette-base-361002/physical collisions": true,
+              "dsmc-couette-base-361002/collision probability": true,
+              "dsmc-couette-base-361002/maxwell time resolution": true,
+              "dsmc-couette-base-361002/mean free path resolution": true,
+              "dsmc-couette-base-361003/finite": true,
+              "dsmc-couette-base-361003/boundary budget": true,
+              "dsmc-couette-base-361003/physical collisions": true,
+              "dsmc-couette-base-361003/collision probability": true,
+              "dsmc-couette-base-361003/maxwell time resolution": true,
+              "dsmc-couette-base-361003/mean free path resolution": true,
+              "dsmc-couette-base-361004/finite": true,
+              "dsmc-couette-base-361004/boundary budget": true,
+              "dsmc-couette-base-361004/physical collisions": true,
+              "dsmc-couette-base-361004/collision probability": true,
+              "dsmc-couette-base-361004/maxwell time resolution": true,
+              "dsmc-couette-base-361004/mean free path resolution": true,
+              "dsmc-couette-fixed_weight_mesh-361001/finite": true,
+              "dsmc-couette-fixed_weight_mesh-361001/boundary budget": true,
+              "dsmc-couette-fixed_weight_mesh-361001/physical collisions": true,
+              "dsmc-couette-fixed_weight_mesh-361001/collision probability": true,
+              "dsmc-couette-fixed_weight_mesh-361001/maxwell time resolution": true,
+              "dsmc-couette-fixed_weight_mesh-361001/mean free path resolution": true,
+              "dsmc-couette-double_particles-361001/finite": true,
+              "dsmc-couette-double_particles-361001/boundary budget": true,
+              "dsmc-couette-double_particles-361001/physical collisions": true,
+              "dsmc-couette-double_particles-361001/collision probability": true,
+              "dsmc-couette-double_particles-361001/maxwell time resolution": true,
+              "dsmc-couette-double_particles-361001/mean free path resolution": true,
+              "dsmc-couette-half_dt-361001/finite": true,
+              "dsmc-couette-half_dt-361001/boundary budget": true,
+              "dsmc-couette-half_dt-361001/physical collisions": true,
+              "dsmc-couette-half_dt-361001/collision probability": true,
+              "dsmc-couette-half_dt-361001/maxwell time resolution": true,
+              "dsmc-couette-half_dt-361001/mean free path resolution": true,
+              "profile error/2": true,
+              "primary precision/2": true,
+              "reference precision/2": true,
+              "profile error/4": true,
+              "primary precision/4": true,
+              "reference precision/4": true,
+              "profile error/0": true,
+              "primary precision/0": true,
+              "reference precision/0": true,
+              "stationarity/2": true,
+              "stationarity/4": true,
+              "stationarity/0": true,
+              "bulk molecular flux agreement": true,
+              "bulk molecular flux precision": true,
+              "wall versus bulk molecular flux": true,
+              "wall molecular flux precision": true,
+              "half step sensitivity/2": true,
+              "half step sensitivity/4": true,
+              "half step sensitivity/0": true
+            },
+            "metrics": {
+              "profile_comparison": {
+                "2": {
+                  "error": 0.010200733750517737,
+                  "combined_3se": 0.018203904455731997,
+                  "primary_3se": 0.014988812559766168,
+                  "reference_3se": 0.01033042281233518
+                },
+                "4": {
+                  "error": 0.005173765945320263,
+                  "combined_3se": 0.01850394361570742,
+                  "primary_3se": 0.01567511391545536,
+                  "reference_3se": 0.009832941221769668
+                },
+                "0": {
+                  "error": 0.007959057017737909,
+                  "combined_3se": 0.013616367466408597,
+                  "primary_3se": 0.010491175758283632,
+                  "reference_3se": 0.008679901738445676
+                }
+              },
+              "stationarity": {
+                "profile_equivalence": {
+                  "2": 0.05759942531501381,
+                  "4": 0.0630869754804384,
+                  "0": 0.03964355800443746
+                }
+              },
+              "sensitivities": {
+                "fixed_weight_mesh": {
+                  "2": 0.006638448502787946,
+                  "4": 0.009141483700374766,
+                  "0": 0.007863505375904245
+                },
+                "double_particles": {
+                  "2": 0.02339932210675679,
+                  "4": 0.015641909218002674,
+                  "0": 0.01126054904988147
+                },
+                "half_dt": {
+                  "2": 0.029829998439110297,
+                  "4": 0.01349752351058444,
+                  "0": 0.012398286891856694
+                }
+              },
+              "t95_multiplier_df3": 3.182446305284263,
+              "flux": {
+                "bulk_mean": -0.18636773527698747,
+                "bulk_se": 0.0011643950494832711,
+                "reference_mean": -0.19013665992789913,
+                "reference_se": 0.0011647729920369507,
+                "wall_mean": -0.18735052877662584,
+                "wall_se": 0.001156037275432719,
+                "wall_minus_bulk": -0.0009827934996383542,
+                "wall_minus_bulk_se": 0.00010232411461678913
+              }
+            },
+            "records": [
+              {
+                "configuration": "base",
+                "seed": 361001,
+                "fields": "dsmc-couette-base-361001.npz",
+                "profile_csv": "dsmc-couette-base-361001-profile.csv",
+                "resolution": {
+                  "dx_over_lambda": 0.1259423828125,
+                  "dt_over_maxwell_tau": 0.032841575600797986
+                },
+                "collisions": 50453,
+                "candidates": 1529078,
+                "max_subcycles": 2,
+                "scaled_budget": 4.2104507662420084e-14
+              },
+              {
+                "configuration": "base",
+                "seed": 361002,
+                "fields": "dsmc-couette-base-361002.npz",
+                "profile_csv": "dsmc-couette-base-361002-profile.csv",
+                "resolution": {
+                  "dx_over_lambda": 0.1272705078125,
+                  "dt_over_maxwell_tau": 0.03313602904998533
+                },
+                "collisions": 50223,
+                "candidates": 1534129,
+                "max_subcycles": 2,
+                "scaled_budget": 6.810115119168773e-14
+              },
+              {
+                "configuration": "base",
+                "seed": 361003,
+                "fields": "dsmc-couette-base-361003.npz",
+                "profile_csv": "dsmc-couette-base-361003-profile.csv",
+                "resolution": {
+                  "dx_over_lambda": 0.12621582031249998,
+                  "dt_over_maxwell_tau": 0.03318234110382709
+                },
+                "collisions": 49885,
+                "candidates": 1527125,
+                "max_subcycles": 2,
+                "scaled_budget": 3.75616097815571e-14
+              },
+              {
+                "configuration": "base",
+                "seed": 361004,
+                "fields": "dsmc-couette-base-361004.npz",
+                "profile_csv": "dsmc-couette-base-361004-profile.csv",
+                "resolution": {
+                  "dx_over_lambda": 0.12680175781250003,
+                  "dt_over_maxwell_tau": 0.03335070948876898
+                },
+                "collisions": 50626,
+                "candidates": 1528521,
+                "max_subcycles": 2,
+                "scaled_budget": 5.049513055343569e-14
+              },
+              {
+                "configuration": "fixed_weight_mesh",
+                "seed": 361001,
+                "fields": "dsmc-couette-fixed_weight_mesh-361001.npz",
+                "profile_csv": "dsmc-couette-fixed_weight_mesh-361001-profile.csv",
+                "resolution": {
+                  "dx_over_lambda": 0.06310546875,
+                  "dt_over_maxwell_tau": 0.03298467633549061
+                },
+                "collisions": 50458,
+                "candidates": 1513200,
+                "max_subcycles": 2,
+                "scaled_budget": 2.109280871540278e-14
+              },
+              {
+                "configuration": "double_particles",
+                "seed": 361001,
+                "fields": "dsmc-couette-double_particles-361001.npz",
+                "profile_csv": "dsmc-couette-double_particles-361001-profile.csv",
+                "resolution": {
+                  "dx_over_lambda": 0.1258056640625,
+                  "dt_over_maxwell_tau": 0.03312461161995578
+                },
+                "collisions": 100668,
+                "candidates": 4709225,
+                "max_subcycles": 2,
+                "scaled_budget": 5.300395032969901e-14
+              },
+              {
+                "configuration": "half_dt",
+                "seed": 361001,
+                "fields": "dsmc-couette-half_dt-361001.npz",
+                "profile_csv": "dsmc-couette-half_dt-361001-profile.csv",
+                "resolution": {
+                  "dx_over_lambda": 0.12651611328125,
+                  "dt_over_maxwell_tau": 0.01657786033971498
+                },
+                "collisions": 50393,
+                "candidates": 3047995,
+                "max_subcycles": 1,
+                "scaled_budget": 7.342568506474961e-14
+              }
+            ],
+            "completed_primary_runs": 7,
+            "termination": "fixed_budget_completed"
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-couette/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-wall/#dsmc-couette",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-wall/#dsmc-couette"
+          }
+        },
+        {
+          "id": "dsmc-fourier",
+          "method_ids": [
+            "dsmc"
+          ],
+          "domains": [
+            "particles",
+            "pde",
+            "time"
+          ],
+          "code_files": [
+            "run.py",
+            "dsmc.py",
+            "diagnostics.py"
+          ],
+          "title": {
+            "ja": "硬球DSMCの有限Kn Fourier熱伝導",
+            "en": "Hard-sphere DSMC finite-Kn Fourier heat conduction"
+          },
+          "summary": {
+            "ja": "物理時間の硬球衝突と実際の分子輸送を計算し、独立SPARTAの資格確認済みモーメント場と比較します。",
+            "en": "Evolve physical-time hard-sphere collisions and molecular streaming; compare actual moments with qualified independent SPARTA fields."
+          },
+          "assumptions": {
+            "ja": "1次元位置・3次元速度、H=2、Kn0=.5、完全拡散壁。静止壁、左温度1・右2。16セル、N=1024、dt=.02、burn20/sample40、4seed。",
+            "en": "{\"kind\":\"wall\",\"cells\":16,\"length\":2,\"weight\":0.001953125,\"dt\":0.02,\"burn_in\":20,\"sample_time\":40,\"blocks\":5,\"bins\":8,\"sample_every\":10,\"hist_velocity\":[-6,6],\"temperatures\":[1,2],\"speeds\":[0,0]} Four independent seeds; primary fixed-weight mesh,particle-weight,and half-step companions each retain seed1."
+          },
+          "algorithm": {
+            "ja": "セル内の非重複ランダム対へ、偶数・奇数粒子数を区別した物理時間のσg衝突確率を適用。エネルギーによる安全上界で事前にsubcycle数を定め、確率clipはしません。壁・流入はflux重み付き分布と実際の残り飛行時間を用います。",
+            "en": "Disjoint cell-local random pairs with even/odd finite-N physical-time sigma*g acceptance,energy-based safe majorant and predeclared bounded subcycling; no probability caps. Exact flight-to-wall and flux-conditioned diffuse/reservoir velocities with remaining flight time."
+          },
+          "validation": {
+            "ja": "各群18pytestを事前固定。新しい固定計算は群で14本。境界込みの質量・運動量・エネルギー、局所λ/衝突時間、独立参照への誤差とseed精度、時間block定常性を別に判定します。",
+            "en": "Predeclare18pytest per group and14new fixed primary runs. Separate boundary-inclusive budgets,local lambda/collision-time diagnostics,reference error,whole-seed precision and block stationarity. Reference36runs/87qualifiers already passed; primary results remain pending until the frozen run."
+          },
+          "limits": {
+            "ja": "有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。Kn=.5で連続体の直線・no-slip分布を厳密解としません。図は保存した粒子位相空間であり、2D物理流れではありません。",
+            "en": "Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. AtKn.5,continuum straight/no-slip profiles are not exact. Saved phase space is not a2D physical flow."
+          },
+          "formulas": [
+            "\\partial_t f+v_x\\partial_x f=Q_{\\mathrm{HS}}(f,f),\\quad \\sigma=\\pi d^2=1/\\sqrt{2}",
+            "P_{ij}=n\\langle c_i c_j\\rangle,\\quad q_x=\\frac{n}{2}\\langle c_x|\\mathbf c|^2\\rangle,\\quad\\mathbf c=\\mathbf v-\\mathbf u",
+            "p_{ij}=a_N W\\sigma g_{ij}\\Delta t/V,\\quad a_N=\\begin{cases}N-1&N\\text{ even}\\\\N&N\\text{ odd}\\end{cases}",
+            "g_{ij}\\le\\sqrt{2\\sum_i|\\mathbf v_i-\\mathbf v_{cm}|^2}"
+          ],
+          "references": [
+            {
+              "id": "sparta-hs-pinned",
+              "author": "Sandia SPARTA developers",
+              "year": 2026,
+              "title": "SPARTA, pinned official HS collision/boundary implementation and independently evolved fields",
+              "url": "https://github.com/sparta/sparta/tree/1ae18f3646e7c89f86e965f0f3c13fcc5f32e399",
+              "type": "software",
+              "review_level": "primary-source-selected-functions-and-actual-reference-execution",
+              "review_scope": "Selected collide_vss physical-rate/pair scattering, update SI constants, pflux/eflux pooled moments and boundary/inlet docs actually read. Unmodified official mac serial build;36fixed native runs and87qualifiers passed. Bird1994 original book not read; no whole-source audit.",
+              "accessed_on": "2026-11-23",
+              "review": {
+                "ja": "公式固定版のHS衝突率・境界・分子モーメントを選択確認し、独立36計算と87判定を実施。原著書籍全読や全コード監査は主張しません。",
+                "en": "Read selected official HS rate,boundary and moment definitions; execute36independent runs and87qualifiers. No full-original-book or whole-source audit claim."
+              }
+            }
+          ],
+          "citations": [
+            {
+              "id": "sparta-hs-pinned",
+              "author": "Sandia SPARTA developers",
+              "year": 2026,
+              "title": "SPARTA, pinned official HS collision/boundary implementation and independently evolved fields",
+              "url": "https://github.com/sparta/sparta/tree/1ae18f3646e7c89f86e965f0f3c13fcc5f32e399",
+              "type": "software",
+              "review_level": "primary-source-selected-functions-and-actual-reference-execution",
+              "review_scope": "Selected collide_vss physical-rate/pair scattering, update SI constants, pflux/eflux pooled moments and boundary/inlet docs actually read. Unmodified official mac serial build;36fixed native runs and87qualifiers passed. Bird1994 original book not read; no whole-source audit.",
+              "accessed_on": "2026-11-23",
+              "review": {
+                "ja": "公式固定版のHS衝突率・境界・分子モーメントを選択確認し、独立36計算と87判定を実施。原著書籍全読や全コード監査は主張しません。",
+                "en": "Read selected official HS rate,boundary and moment definitions; execute36independent runs and87qualifiers. No full-original-book or whole-source audit claim."
+              }
+            }
+          ],
+          "additional_figures": [
+            {
+              "file": "dsmc-fourier-preview.png",
+              "caption": {
+                "ja": "保存した実粒子の位置–速度ヒストグラム。1次元位置と分子速度の位相空間であり、2D物理流れではありません。",
+                "en": "Actual saved particle position-velocity histograms; phase space of1D position and molecular velocity,not2D physical flow."
+              }
+            }
+          ],
+          "gallery_figure": "dsmc-fourier-preview.png",
+          "measured": {
+            "id": "dsmc-fourier",
+            "passed": true,
+            "checks": {
+              "dsmc-fourier-base-361101/finite": true,
+              "dsmc-fourier-base-361101/boundary budget": true,
+              "dsmc-fourier-base-361101/physical collisions": true,
+              "dsmc-fourier-base-361101/collision probability": true,
+              "dsmc-fourier-base-361101/maxwell time resolution": true,
+              "dsmc-fourier-base-361101/mean free path resolution": true,
+              "dsmc-fourier-base-361102/finite": true,
+              "dsmc-fourier-base-361102/boundary budget": true,
+              "dsmc-fourier-base-361102/physical collisions": true,
+              "dsmc-fourier-base-361102/collision probability": true,
+              "dsmc-fourier-base-361102/maxwell time resolution": true,
+              "dsmc-fourier-base-361102/mean free path resolution": true,
+              "dsmc-fourier-base-361103/finite": true,
+              "dsmc-fourier-base-361103/boundary budget": true,
+              "dsmc-fourier-base-361103/physical collisions": true,
+              "dsmc-fourier-base-361103/collision probability": true,
+              "dsmc-fourier-base-361103/maxwell time resolution": true,
+              "dsmc-fourier-base-361103/mean free path resolution": true,
+              "dsmc-fourier-base-361104/finite": true,
+              "dsmc-fourier-base-361104/boundary budget": true,
+              "dsmc-fourier-base-361104/physical collisions": true,
+              "dsmc-fourier-base-361104/collision probability": true,
+              "dsmc-fourier-base-361104/maxwell time resolution": true,
+              "dsmc-fourier-base-361104/mean free path resolution": true,
+              "dsmc-fourier-fixed_weight_mesh-361101/finite": true,
+              "dsmc-fourier-fixed_weight_mesh-361101/boundary budget": true,
+              "dsmc-fourier-fixed_weight_mesh-361101/physical collisions": true,
+              "dsmc-fourier-fixed_weight_mesh-361101/collision probability": true,
+              "dsmc-fourier-fixed_weight_mesh-361101/maxwell time resolution": true,
+              "dsmc-fourier-fixed_weight_mesh-361101/mean free path resolution": true,
+              "dsmc-fourier-double_particles-361101/finite": true,
+              "dsmc-fourier-double_particles-361101/boundary budget": true,
+              "dsmc-fourier-double_particles-361101/physical collisions": true,
+              "dsmc-fourier-double_particles-361101/collision probability": true,
+              "dsmc-fourier-double_particles-361101/maxwell time resolution": true,
+              "dsmc-fourier-double_particles-361101/mean free path resolution": true,
+              "dsmc-fourier-half_dt-361101/finite": true,
+              "dsmc-fourier-half_dt-361101/boundary budget": true,
+              "dsmc-fourier-half_dt-361101/physical collisions": true,
+              "dsmc-fourier-half_dt-361101/collision probability": true,
+              "dsmc-fourier-half_dt-361101/maxwell time resolution": true,
+              "dsmc-fourier-half_dt-361101/mean free path resolution": true,
+              "profile error/4": true,
+              "primary precision/4": true,
+              "reference precision/4": true,
+              "profile error/0": true,
+              "primary precision/0": true,
+              "reference precision/0": true,
+              "stationarity/4": true,
+              "stationarity/0": true,
+              "bulk molecular flux agreement": true,
+              "bulk molecular flux precision": true,
+              "wall versus bulk molecular flux": true,
+              "wall molecular flux precision": true,
+              "half step sensitivity/4": true,
+              "half step sensitivity/0": true
+            },
+            "metrics": {
+              "profile_comparison": {
+                "4": {
+                  "error": 0.0046350333567375225,
+                  "combined_3se": 0.01986770882165603,
+                  "primary_3se": 0.018610142257145208,
+                  "reference_3se": 0.006956181351210389
+                },
+                "0": {
+                  "error": 0.006206560932103681,
+                  "combined_3se": 0.014725327832097481,
+                  "primary_3se": 0.012851725754092255,
+                  "reference_3se": 0.007188075187722132
+                }
+              },
+              "stationarity": {
+                "profile_equivalence": {
+                  "4": 0.06340714719603799,
+                  "0": 0.03983352063527729
+                }
+              },
+              "sensitivities": {
+                "fixed_weight_mesh": {
+                  "4": 0.02668632575679284,
+                  "0": 0.013283289135740131
+                },
+                "double_particles": {
+                  "4": 0.012688404465360077,
+                  "0": 0.009002412684556585
+                },
+                "half_dt": {
+                  "4": 0.008201282077196198,
+                  "0": 0.010766498591131742
+                }
+              },
+              "t95_multiplier_df3": 3.182446305284263,
+              "flux": {
+                "bulk_mean": -0.5644605772254152,
+                "bulk_se": 0.0023868795505760263,
+                "reference_mean": -0.5756964840332293,
+                "reference_se": 0.005479198503847574,
+                "wall_mean": -0.566381423471522,
+                "wall_se": 0.00224129249203519,
+                "wall_minus_bulk": -0.00192084624610675,
+                "wall_minus_bulk_se": 0.00029712049609058333
+              }
+            },
+            "records": [
+              {
+                "configuration": "base",
+                "seed": 361101,
+                "fields": "dsmc-fourier-base-361101.npz",
+                "profile_csv": "dsmc-fourier-base-361101-profile.csv",
+                "resolution": {
+                  "dx_over_lambda": 0.14235351562499998,
+                  "dt_over_maxwell_tau": 0.04056621963241313
+                },
+                "collisions": 58772,
+                "candidates": 1742385,
+                "max_subcycles": 2,
+                "scaled_budget": 3.3482228653620696e-14
+              },
+              {
+                "configuration": "base",
+                "seed": 361102,
+                "fields": "dsmc-fourier-base-361102.npz",
+                "profile_csv": "dsmc-fourier-base-361102-profile.csv",
+                "resolution": {
+                  "dx_over_lambda": 0.14365722656250002,
+                  "dt_over_maxwell_tau": 0.04088888126433442
+                },
+                "collisions": 58599,
+                "candidates": 1797806,
+                "max_subcycles": 2,
+                "scaled_budget": 8.642234527106301e-14
+              },
+              {
+                "configuration": "base",
+                "seed": 361103,
+                "fields": "dsmc-fourier-base-361103.npz",
+                "profile_csv": "dsmc-fourier-base-361103-profile.csv",
+                "resolution": {
+                  "dx_over_lambda": 0.14052734375,
+                  "dt_over_maxwell_tau": 0.04000103700169703
+                },
+                "collisions": 58960,
+                "candidates": 1797380,
+                "max_subcycles": 2,
+                "scaled_budget": 4.90051823128415e-14
+              },
+              {
+                "configuration": "base",
+                "seed": 361104,
+                "fields": "dsmc-fourier-base-361104.npz",
+                "profile_csv": "dsmc-fourier-base-361104-profile.csv",
+                "resolution": {
+                  "dx_over_lambda": 0.14139648437500002,
+                  "dt_over_maxwell_tau": 0.040291171798395586
+                },
+                "collisions": 58671,
+                "candidates": 1800890,
+                "max_subcycles": 2,
+                "scaled_budget": 7.814582062830924e-14
+              },
+              {
+                "configuration": "fixed_weight_mesh",
+                "seed": 361101,
+                "fields": "dsmc-fourier-fixed_weight_mesh-361101.npz",
+                "profile_csv": "dsmc-fourier-fixed_weight_mesh-361101-profile.csv",
+                "resolution": {
+                  "dx_over_lambda": 0.071201171875,
+                  "dt_over_maxwell_tau": 0.04019865568707311
+                },
+                "collisions": 58706,
+                "candidates": 1533129,
+                "max_subcycles": 2,
+                "scaled_budget": 4.654051920909438e-14
+              },
+              {
+                "configuration": "double_particles",
+                "seed": 361101,
+                "fields": "dsmc-fourier-double_particles-361101.npz",
+                "profile_csv": "dsmc-fourier-double_particles-361101-profile.csv",
+                "resolution": {
+                  "dx_over_lambda": 0.14209716796875,
+                  "dt_over_maxwell_tau": 0.040416912985859206
+                },
+                "collisions": 117141,
+                "candidates": 6120026,
+                "max_subcycles": 2,
+                "scaled_budget": 4.7190300574581565e-14
+              },
+              {
+                "configuration": "half_dt",
+                "seed": 361101,
+                "fields": "dsmc-fourier-half_dt-361101.npz",
+                "profile_csv": "dsmc-fourier-half_dt-361101-profile.csv",
+                "resolution": {
+                  "dx_over_lambda": 0.14479248046874998,
+                  "dt_over_maxwell_tau": 0.020507836385439706
+                },
+                "collisions": 58627,
+                "candidates": 3047871,
+                "max_subcycles": 1,
+                "scaled_budget": 5.3346390188842346e-14
+              }
+            ],
+            "completed_primary_runs": 7,
+            "termination": "fixed_budget_completed"
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-fourier/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-wall/#dsmc-fourier",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-wall/#dsmc-fourier"
+          }
+        }
+      ]
+    },
+    {
+      "group": "dsmc-shock",
+      "case_ids": [
+        "dsmc-planar-shock"
+      ],
+      "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/",
+      "code_edition": "2026-11-23",
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/dsmc.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/diagnostics.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/references/generate.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/references/qualify.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/test_arrivals.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/test_core.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/test_matching.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/test_shock.py"
+      ],
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "run_from": "atlas-dsmc-shock-2026-11-23",
+      "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/atlas-dsmc-shock-2026-11-23.zip",
+      "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/source-manifest.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/verification.json",
+      "code_archive_sha256": "a0781fe0b577cd65f60489e77672bbfdbc7d1f657c9514ad1c0c862125ba4eda",
+      "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/results/result.json",
+      "passed_tests": 20,
+      "examples": [
+        {
+          "id": "dsmc-planar-shock",
+          "method_ids": [
+            "dsmc"
+          ],
+          "domains": [
+            "particles",
+            "pde",
+            "time"
+          ],
+          "code_files": [
+            "run.py",
+            "dsmc.py",
+            "diagnostics.py"
+          ],
+          "title": {
+            "ja": "硬球DSMCのMach2平面衝撃波",
+            "en": "Hard-sphere DSMC Mach2 planar shock"
+          },
+          "summary": {
+            "ja": "物理時間の硬球衝突と実際の分子輸送を計算し、独立SPARTAの資格確認済みモーメント場と比較します。",
+            "en": "Evolve physical-time hard-sphere collisions and molecular streaming; compare actual moments with qualified independent SPARTA fields."
+          },
+          "assumptions": {
+            "ja": "1次元位置・3次元速度、単原子硬球。Mach2、区間[0,16]、RHの開境界reservoir。192セル、粒子重み1/192、dt=.01、burn20/sample20、12seed。",
+            "en": "{\"kind\":\"shock\",\"cells\":192,\"length\":16,\"weight\":0.005208333333333333,\"dt\":0.01,\"burn_in\":20,\"sample_time\":20,\"blocks\":5,\"bins\":64,\"sample_every\":10,\"hist_velocity\":[-4,7]} Twelve independent seeds; primary fixed-weight mesh,particle-weight,and half-step companions each retain seed1."
+          },
+          "algorithm": {
+            "ja": "セル内の非重複ランダム対へ、偶数・奇数粒子数を区別した物理時間のσg衝突確率を適用。エネルギーによる安全上界で事前にsubcycle数を定め、確率clipはしません。壁・流入はflux重み付き分布と実際の残り飛行時間を用います。 開境界のmacro粒子到着数は平均を保つfloor(平均)+Bernoulli(小数部)で分散を下げます。Poisson数揺らぎや熱揺らぎの再現は主張しません。 既存4seedを残して次の8連番seedを追加します。一様順列と安定整数sortは対選択法則を保ちますが、乱数消費と軌道のbit一致は主張しません。",
+            "en": "Disjoint cell-local random pairs with even/odd finite-N physical-time sigma*g acceptance,energy-based safe majorant and predeclared bounded subcycling; no probability caps. Exact flight-to-wall and flux-conditioned diffuse/reservoir velocities with remaining flight time. Open-reservoir macro counts use unbiased floor(mean)+Bernoulli(fraction) per face/species/half-stream to reduce artificial sampling variance; no Poisson number-fluctuation or thermodynamic-fluctuation reproduction claim. Retain the original four seeds and append the next eight consecutive seeds; uniform permutation/stable integer sorting preserves the ideal within-cell matching law,not RNG consumption or bit-identical trajectories."
+          },
+          "validation": {
+            "ja": "各群20pytestを事前固定。新しい固定計算は15本。境界込みの質量・運動量・エネルギー、局所λ/衝突時間、独立参照への誤差とseed精度、時間block定常性を別に判定します。 群の判定は既存81項目を保持し、新8計算の48項目を追加した129項目です。primary t95はdf11、独立参照4seedはdf3です。",
+            "en": "Predeclare20pytest per group and15new fixed primary runs. Separate boundary-inclusive budgets,local lambda/collision-time diagnostics,reference error,whole-seed precision and block stationarity. Reference36runs/87qualifiers already passed; primary results remain pending until the frozen run. Preserve all81old gates and add48new-run gates=129. Primary12seed t95 usesdf11,reference4seed usesdf3; descriptive approximate-normal whole-seed intervals,not unconditional adaptive-study coverage."
+          },
+          "limits": {
+            "ja": "有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。RHは遠方状態・流束だけの参照で、内部構造の厳密解ではありません。図は保存した粒子位相空間であり、2D物理流れではありません。",
+            "en": "Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. RH validates far states/full fluxes,not an exact internal shock profile. Saved phase space is not a2D physical flow."
+          },
+          "formulas": [
+            "\\partial_t f+v_x\\partial_x f=Q_{\\mathrm{HS}}(f,f),\\quad \\sigma=\\pi d^2=1/\\sqrt{2}",
+            "P_{ij}=n\\langle c_i c_j\\rangle,\\quad q_x=\\frac{n}{2}\\langle c_x|\\mathbf c|^2\\rangle,\\quad\\mathbf c=\\mathbf v-\\mathbf u",
+            "p_{ij}=a_N W\\sigma g_{ij}\\Delta t/V,\\quad a_N=\\begin{cases}N-1&N\\text{ even}\\\\N&N\\text{ odd}\\end{cases}",
+            "g_{ij}\\le\\sqrt{2\\sum_i|\\mathbf v_i-\\mathbf v_{cm}|^2}"
+          ],
+          "references": [
+            {
+              "id": "sparta-hs-pinned",
+              "author": "Sandia SPARTA developers",
+              "year": 2026,
+              "title": "SPARTA, pinned official HS collision/boundary implementation and independently evolved fields",
+              "url": "https://github.com/sparta/sparta/tree/1ae18f3646e7c89f86e965f0f3c13fcc5f32e399",
+              "type": "software",
+              "review_level": "primary-source-selected-functions-and-actual-reference-execution",
+              "review_scope": "Selected collide_vss physical-rate/pair scattering, update SI constants, pflux/eflux pooled moments and boundary/inlet docs actually read. Unmodified official mac serial build;36fixed native runs and87qualifiers passed. Bird1994 original book not read; no whole-source audit.",
+              "accessed_on": "2026-11-23",
+              "review": {
+                "ja": "公式固定版のHS衝突率・境界・分子モーメントを選択確認し、独立36計算と87判定を実施。原著書籍全読や全コード監査は主張しません。",
+                "en": "Read selected official HS rate,boundary and moment definitions; execute36independent runs and87qualifiers. No full-original-book or whole-source audit claim."
+              }
+            }
+          ],
+          "citations": [
+            {
+              "id": "sparta-hs-pinned",
+              "author": "Sandia SPARTA developers",
+              "year": 2026,
+              "title": "SPARTA, pinned official HS collision/boundary implementation and independently evolved fields",
+              "url": "https://github.com/sparta/sparta/tree/1ae18f3646e7c89f86e965f0f3c13fcc5f32e399",
+              "type": "software",
+              "review_level": "primary-source-selected-functions-and-actual-reference-execution",
+              "review_scope": "Selected collide_vss physical-rate/pair scattering, update SI constants, pflux/eflux pooled moments and boundary/inlet docs actually read. Unmodified official mac serial build;36fixed native runs and87qualifiers passed. Bird1994 original book not read; no whole-source audit.",
+              "accessed_on": "2026-11-23",
+              "review": {
+                "ja": "公式固定版のHS衝突率・境界・分子モーメントを選択確認し、独立36計算と87判定を実施。原著書籍全読や全コード監査は主張しません。",
+                "en": "Read selected official HS rate,boundary and moment definitions; execute36independent runs and87qualifiers. No full-original-book or whole-source audit claim."
+              }
+            }
+          ],
+          "additional_figures": [
+            {
+              "file": "dsmc-planar-shock-preview.png",
+              "caption": {
+                "ja": "保存した実粒子の位置–速度ヒストグラム。1次元位置と分子速度の位相空間であり、2D物理流れではありません。",
+                "en": "Actual saved particle position-velocity histograms; phase space of1D position and molecular velocity,not2D physical flow."
+              }
+            }
+          ],
+          "gallery_figure": "dsmc-planar-shock-preview.png",
+          "measured": {
+            "id": "dsmc-planar-shock",
+            "passed": true,
+            "checks": {
+              "dsmc-planar-shock-base-371001/finite": true,
+              "dsmc-planar-shock-base-371001/boundary budget": true,
+              "dsmc-planar-shock-base-371001/physical collisions": true,
+              "dsmc-planar-shock-base-371001/collision probability": true,
+              "dsmc-planar-shock-base-371001/maxwell time resolution": true,
+              "dsmc-planar-shock-base-371001/mean free path resolution": true,
+              "dsmc-planar-shock-base-371002/finite": true,
+              "dsmc-planar-shock-base-371002/boundary budget": true,
+              "dsmc-planar-shock-base-371002/physical collisions": true,
+              "dsmc-planar-shock-base-371002/collision probability": true,
+              "dsmc-planar-shock-base-371002/maxwell time resolution": true,
+              "dsmc-planar-shock-base-371002/mean free path resolution": true,
+              "dsmc-planar-shock-base-371003/finite": true,
+              "dsmc-planar-shock-base-371003/boundary budget": true,
+              "dsmc-planar-shock-base-371003/physical collisions": true,
+              "dsmc-planar-shock-base-371003/collision probability": true,
+              "dsmc-planar-shock-base-371003/maxwell time resolution": true,
+              "dsmc-planar-shock-base-371003/mean free path resolution": true,
+              "dsmc-planar-shock-base-371004/finite": true,
+              "dsmc-planar-shock-base-371004/boundary budget": true,
+              "dsmc-planar-shock-base-371004/physical collisions": true,
+              "dsmc-planar-shock-base-371004/collision probability": true,
+              "dsmc-planar-shock-base-371004/maxwell time resolution": true,
+              "dsmc-planar-shock-base-371004/mean free path resolution": true,
+              "dsmc-planar-shock-base-371005/finite": true,
+              "dsmc-planar-shock-base-371005/boundary budget": true,
+              "dsmc-planar-shock-base-371005/physical collisions": true,
+              "dsmc-planar-shock-base-371005/collision probability": true,
+              "dsmc-planar-shock-base-371005/maxwell time resolution": true,
+              "dsmc-planar-shock-base-371005/mean free path resolution": true,
+              "dsmc-planar-shock-base-371006/finite": true,
+              "dsmc-planar-shock-base-371006/boundary budget": true,
+              "dsmc-planar-shock-base-371006/physical collisions": true,
+              "dsmc-planar-shock-base-371006/collision probability": true,
+              "dsmc-planar-shock-base-371006/maxwell time resolution": true,
+              "dsmc-planar-shock-base-371006/mean free path resolution": true,
+              "dsmc-planar-shock-base-371007/finite": true,
+              "dsmc-planar-shock-base-371007/boundary budget": true,
+              "dsmc-planar-shock-base-371007/physical collisions": true,
+              "dsmc-planar-shock-base-371007/collision probability": true,
+              "dsmc-planar-shock-base-371007/maxwell time resolution": true,
+              "dsmc-planar-shock-base-371007/mean free path resolution": true,
+              "dsmc-planar-shock-base-371008/finite": true,
+              "dsmc-planar-shock-base-371008/boundary budget": true,
+              "dsmc-planar-shock-base-371008/physical collisions": true,
+              "dsmc-planar-shock-base-371008/collision probability": true,
+              "dsmc-planar-shock-base-371008/maxwell time resolution": true,
+              "dsmc-planar-shock-base-371008/mean free path resolution": true,
+              "dsmc-planar-shock-base-371009/finite": true,
+              "dsmc-planar-shock-base-371009/boundary budget": true,
+              "dsmc-planar-shock-base-371009/physical collisions": true,
+              "dsmc-planar-shock-base-371009/collision probability": true,
+              "dsmc-planar-shock-base-371009/maxwell time resolution": true,
+              "dsmc-planar-shock-base-371009/mean free path resolution": true,
+              "dsmc-planar-shock-base-371010/finite": true,
+              "dsmc-planar-shock-base-371010/boundary budget": true,
+              "dsmc-planar-shock-base-371010/physical collisions": true,
+              "dsmc-planar-shock-base-371010/collision probability": true,
+              "dsmc-planar-shock-base-371010/maxwell time resolution": true,
+              "dsmc-planar-shock-base-371010/mean free path resolution": true,
+              "dsmc-planar-shock-base-371011/finite": true,
+              "dsmc-planar-shock-base-371011/boundary budget": true,
+              "dsmc-planar-shock-base-371011/physical collisions": true,
+              "dsmc-planar-shock-base-371011/collision probability": true,
+              "dsmc-planar-shock-base-371011/maxwell time resolution": true,
+              "dsmc-planar-shock-base-371011/mean free path resolution": true,
+              "dsmc-planar-shock-base-371012/finite": true,
+              "dsmc-planar-shock-base-371012/boundary budget": true,
+              "dsmc-planar-shock-base-371012/physical collisions": true,
+              "dsmc-planar-shock-base-371012/collision probability": true,
+              "dsmc-planar-shock-base-371012/maxwell time resolution": true,
+              "dsmc-planar-shock-base-371012/mean free path resolution": true,
+              "dsmc-planar-shock-fixed_weight_mesh-371001/finite": true,
+              "dsmc-planar-shock-fixed_weight_mesh-371001/boundary budget": true,
+              "dsmc-planar-shock-fixed_weight_mesh-371001/physical collisions": true,
+              "dsmc-planar-shock-fixed_weight_mesh-371001/collision probability": true,
+              "dsmc-planar-shock-fixed_weight_mesh-371001/maxwell time resolution": true,
+              "dsmc-planar-shock-fixed_weight_mesh-371001/mean free path resolution": true,
+              "dsmc-planar-shock-double_particles-371001/finite": true,
+              "dsmc-planar-shock-double_particles-371001/boundary budget": true,
+              "dsmc-planar-shock-double_particles-371001/physical collisions": true,
+              "dsmc-planar-shock-double_particles-371001/collision probability": true,
+              "dsmc-planar-shock-double_particles-371001/maxwell time resolution": true,
+              "dsmc-planar-shock-double_particles-371001/mean free path resolution": true,
+              "dsmc-planar-shock-half_dt-371001/finite": true,
+              "dsmc-planar-shock-half_dt-371001/boundary budget": true,
+              "dsmc-planar-shock-half_dt-371001/physical collisions": true,
+              "dsmc-planar-shock-half_dt-371001/collision probability": true,
+              "dsmc-planar-shock-half_dt-371001/maxwell time resolution": true,
+              "dsmc-planar-shock-half_dt-371001/mean free path resolution": true,
+              "profile error/0": true,
+              "primary precision/0": true,
+              "reference precision/0": true,
+              "profile error/1": true,
+              "primary precision/1": true,
+              "reference precision/1": true,
+              "profile error/4": true,
+              "primary precision/4": true,
+              "reference precision/4": true,
+              "profile error/5": true,
+              "primary precision/5": true,
+              "reference precision/5": true,
+              "stationarity/0": true,
+              "stationarity/1": true,
+              "stationarity/4": true,
+              "stationarity/5": true,
+              "centroid stationarity": true,
+              "RH far or full flux/upstream_n": true,
+              "RH precision/upstream_n": true,
+              "RH far or full flux/upstream_ux": true,
+              "RH precision/upstream_ux": true,
+              "RH far or full flux/upstream_T": true,
+              "RH precision/upstream_T": true,
+              "RH far or full flux/downstream_n": true,
+              "RH precision/downstream_n": true,
+              "RH far or full flux/downstream_ux": true,
+              "RH precision/downstream_ux": true,
+              "RH far or full flux/downstream_T": true,
+              "RH precision/downstream_T": true,
+              "RH far or full flux/flux_mass": true,
+              "RH precision/flux_mass": true,
+              "RH far or full flux/flux_momentum": true,
+              "RH precision/flux_momentum": true,
+              "RH far or full flux/flux_energy": true,
+              "RH precision/flux_energy": true,
+              "half step sensitivity/0": true,
+              "half step sensitivity/1": true,
+              "half step sensitivity/4": true,
+              "half step sensitivity/5": true
+            },
+            "metrics": {
+              "profile_comparison": {
+                "0": {
+                  "error": 0.009874127472267416,
+                  "combined_3se": 0.04946478705678961,
+                  "primary_3se": 0.03145643911579176,
+                  "reference_3se": 0.038174043494605424
+                },
+                "1": {
+                  "error": 0.006192836083404945,
+                  "combined_3se": 0.04640157562693747,
+                  "primary_3se": 0.03069818659770613,
+                  "reference_3se": 0.03479551063391386
+                },
+                "4": {
+                  "error": 0.008787013676147464,
+                  "combined_3se": 0.04976037231809162,
+                  "primary_3se": 0.035488922267584475,
+                  "reference_3se": 0.03488023866776783
+                },
+                "5": {
+                  "error": 0.008767734324833546,
+                  "combined_3se": 0.04646188409882251,
+                  "primary_3se": 0.03146941765264155,
+                  "reference_3se": 0.034181609479602165
+                }
+              },
+              "stationarity": {
+                "profile_equivalence": {
+                  "0": 0.051237907861461617,
+                  "1": 0.042550439680933805,
+                  "4": 0.052530861424159206,
+                  "5": 0.04623394154519991
+                },
+                "centroid_blocks": [
+                  [
+                    8.215335648148148,
+                    8.242578124999998,
+                    8.37534722222222,
+                    8.264756944444443,
+                    8.092187500000001
+                  ],
+                  [
+                    7.8806278935185174,
+                    7.732971643518519,
+                    7.8655381944444445,
+                    7.8228009259259235,
+                    7.707146990740742
+                  ],
+                  [
+                    8.088237847222222,
+                    8.194574652777776,
+                    8.386284722222221,
+                    8.335546875,
+                    8.221412037037037
+                  ],
+                  [
+                    7.609114583333332,
+                    7.680005787037035,
+                    7.577416087962962,
+                    7.347829861111112,
+                    7.23622685185185
+                  ],
+                  [
+                    7.620153356481483,
+                    7.693475115740742,
+                    7.670992476851854,
+                    7.572149884259257,
+                    7.589872685185185
+                  ],
+                  [
+                    8.473075810185184,
+                    8.567361111111111,
+                    8.567766203703703,
+                    8.53627025462963,
+                    8.390943287037034
+                  ],
+                  [
+                    8.005295138888886,
+                    8.019574652777777,
+                    7.905338541666666,
+                    7.990509259259259,
+                    7.868880208333332
+                  ],
+                  [
+                    8.190827546296296,
+                    8.03587962962963,
+                    8.154369212962964,
+                    8.220095486111111,
+                    8.337774884259257
+                  ],
+                  [
+                    8.411805555555553,
+                    8.436414930555557,
+                    8.455353009259259,
+                    8.48381076388889,
+                    8.650708912037034
+                  ],
+                  [
+                    8.18292824074074,
+                    8.153153935185184,
+                    8.265668402777775,
+                    8.268706597222222,
+                    8.303443287037037
+                  ],
+                  [
+                    7.841840277777777,
+                    7.737731481481482,
+                    7.718084490740742,
+                    7.826649305555556,
+                    7.872829861111111
+                  ],
+                  [
+                    7.868981481481481,
+                    7.905135995370369,
+                    7.91607349537037,
+                    8.006915509259258,
+                    7.7184895833333345
+                  ]
+                ],
+                "centroid_drift_bound": 0.1299701694340089
+              },
+              "sensitivities": {
+                "fixed_weight_mesh": {
+                  "0": 0.04919268505889352,
+                  "1": 0.052838812527762305,
+                  "4": 0.0623901833211318,
+                  "5": 0.05359743514641371
+                },
+                "double_particles": {
+                  "0": 0.06216354691255698,
+                  "1": 0.06013078079263267,
+                  "4": 0.06006763400021631,
+                  "5": 0.06186520180345716
+                },
+                "half_dt": {
+                  "0": 0.03506052657485229,
+                  "1": 0.034593071784548436,
+                  "4": 0.0371459702067488,
+                  "5": 0.03752041004610139
+                }
+              },
+              "primary_independent_seeds": 12,
+              "primary_t95_degrees_of_freedom": 11,
+              "primary_t95_multiplier": 2.200985160082949,
+              "reference_independent_seeds": 4,
+              "reference_t95_degrees_of_freedom": 3,
+              "reference_t95_multiplier": 3.182446305284263,
+              "far_states": {
+                "upstream_n": {
+                  "relative_error": 0.0027311197916668473,
+                  "relative_3se": 0.004734773179813632
+                },
+                "upstream_ux": {
+                  "relative_error": 0.00226178222693619,
+                  "relative_3se": 0.004417322646908852
+                },
+                "upstream_T": {
+                  "relative_error": 0.00856692867855613,
+                  "relative_3se": 0.00919577401692969
+                },
+                "downstream_n": {
+                  "relative_error": 0.0007166883680555791,
+                  "relative_3se": 0.008778472486905992
+                },
+                "downstream_ux": {
+                  "relative_error": 0.0006619790814905539,
+                  "relative_3se": 0.011133999868080233
+                },
+                "downstream_T": {
+                  "relative_error": 0.0006120131785834495,
+                  "relative_3se": 0.0057144250470660685
+                },
+                "flux_mass": {
+                  "relative_error": 0.0009975883698689597,
+                  "relative_3se": 0.0029103940695329165
+                },
+                "flux_momentum": {
+                  "relative_error": 0.0013333838218918732,
+                  "relative_3se": 0.0028882793828942516
+                },
+                "flux_energy": {
+                  "relative_error": 0.0009104591488130677,
+                  "relative_3se": 0.00428618985183569
+                }
+              }
+            },
+            "records": [
+              {
+                "configuration": "base",
+                "seed": 371001,
+                "fields": "dsmc-planar-shock-base-371001.npz",
+                "profile_csv": "dsmc-planar-shock-base-371001-profile.csv",
+                "resolution": {
+                  "dx_over_lambda": 0.19328125,
+                  "dt_over_maxwell_tau": 0.05340168257623221
+                },
+                "collisions": 395162,
+                "candidates": 19001523,
+                "max_subcycles": 2,
+                "scaled_budget": 1.2941827549064656e-14
+              },
+              {
+                "configuration": "base",
+                "seed": 371002,
+                "fields": "dsmc-planar-shock-base-371002.npz",
+                "profile_csv": "dsmc-planar-shock-base-371002-profile.csv",
+                "resolution": {
+                  "dx_over_lambda": 0.19442708333333336,
+                  "dt_over_maxwell_tau": 0.053351757570926
+                },
+                "collisions": 405904,
+                "candidates": 19319208,
+                "max_subcycles": 2,
+                "scaled_budget": 1.549795912858913e-14
+              },
+              {
+                "configuration": "base",
+                "seed": 371003,
+                "fields": "dsmc-planar-shock-base-371003.npz",
+                "profile_csv": "dsmc-planar-shock-base-371003-profile.csv",
+                "resolution": {
+                  "dx_over_lambda": 0.19369791666666666,
+                  "dt_over_maxwell_tau": 0.053233960240091215
+                },
+                "collisions": 398236,
+                "candidates": 19117117,
+                "max_subcycles": 2,
+                "scaled_budget": 1.3388339300284474e-14
+              },
+              {
+                "configuration": "base",
+                "seed": 371004,
+                "fields": "dsmc-planar-shock-base-371004.npz",
+                "profile_csv": "dsmc-planar-shock-base-371004-profile.csv",
+                "resolution": {
+                  "dx_over_lambda": 0.19538194444444446,
+                  "dt_over_maxwell_tau": 0.054170162759724576
+                },
+                "collisions": 420256,
+                "candidates": 19870092,
+                "max_subcycles": 2,
+                "scaled_budget": 1.849090042689911e-14
+              },
+              {
+                "configuration": "base",
+                "seed": 371005,
+                "fields": "dsmc-planar-shock-base-371005.npz",
+                "profile_csv": "dsmc-planar-shock-base-371005-profile.csv",
+                "resolution": {
+                  "dx_over_lambda": 0.19375868055555556,
+                  "dt_over_maxwell_tau": 0.05389362808292988
+                },
+                "collisions": 419472,
+                "candidates": 19767437,
+                "max_subcycles": 2,
+                "scaled_budget": 1.6619324503929696e-14
+              },
+              {
+                "configuration": "base",
+                "seed": 371006,
+                "fields": "dsmc-planar-shock-base-371006.npz",
+                "profile_csv": "dsmc-planar-shock-base-371006-profile.csv",
+                "resolution": {
+                  "dx_over_lambda": 0.19381076388888888,
+                  "dt_over_maxwell_tau": 0.05338462197331667
+                },
+                "collisions": 390887,
+                "candidates": 18905382,
+                "max_subcycles": 2,
+                "scaled_budget": 1.3673337930377997e-14
+              },
+              {
+                "configuration": "base",
+                "seed": 371007,
+                "fields": "dsmc-planar-shock-base-371007.npz",
+                "profile_csv": "dsmc-planar-shock-base-371007-profile.csv",
+                "resolution": {
+                  "dx_over_lambda": 0.19390624999999997,
+                  "dt_over_maxwell_tau": 0.05395761268348778
+                },
+                "collisions": 407693,
+                "candidates": 19512755,
+                "max_subcycles": 2,
+                "scaled_budget": 1.0538873468062088e-14
+              },
+              {
+                "configuration": "base",
+                "seed": 371008,
+                "fields": "dsmc-planar-shock-base-371008.npz",
+                "profile_csv": "dsmc-planar-shock-base-371008-profile.csv",
+                "resolution": {
+                  "dx_over_lambda": 0.1928819444444444,
+                  "dt_over_maxwell_tau": 0.053216327436915026
+                },
+                "collisions": 401098,
+                "candidates": 19304448,
+                "max_subcycles": 2,
+                "scaled_budget": 1.1522523530868128e-14
+              },
+              {
+                "configuration": "base",
+                "seed": 371009,
+                "fields": "dsmc-planar-shock-base-371009.npz",
+                "profile_csv": "dsmc-planar-shock-base-371009-profile.csv",
+                "resolution": {
+                  "dx_over_lambda": 0.1932986111111111,
+                  "dt_over_maxwell_tau": 0.05321562802115528
+                },
+                "collisions": 395093,
+                "candidates": 19093170,
+                "max_subcycles": 2,
+                "scaled_budget": 1.0414205694117952e-14
+              },
+              {
+                "configuration": "base",
+                "seed": 371010,
+                "fields": "dsmc-planar-shock-base-371010.npz",
+                "profile_csv": "dsmc-planar-shock-base-371010-profile.csv",
+                "resolution": {
+                  "dx_over_lambda": 0.19600694444444444,
+                  "dt_over_maxwell_tau": 0.05410218321274896
+                },
+                "collisions": 395074,
+                "candidates": 18968052,
+                "max_subcycles": 2,
+                "scaled_budget": 1.0470802076357759e-14
+              },
+              {
+                "configuration": "base",
+                "seed": 371011,
+                "fields": "dsmc-planar-shock-base-371011.npz",
+                "profile_csv": "dsmc-planar-shock-base-371011-profile.csv",
+                "resolution": {
+                  "dx_over_lambda": 0.1955642361111111,
+                  "dt_over_maxwell_tau": 0.05417051688718669
+                },
+                "collisions": 412467,
+                "candidates": 19670969,
+                "max_subcycles": 2,
+                "scaled_budget": 2.1753682368397076e-14
+              },
+              {
+                "configuration": "base",
+                "seed": 371012,
+                "fields": "dsmc-planar-shock-base-371012.npz",
+                "profile_csv": "dsmc-planar-shock-base-371012-profile.csv",
+                "resolution": {
+                  "dx_over_lambda": 0.19194444444444447,
+                  "dt_over_maxwell_tau": 0.052865931393740226
+                },
+                "collisions": 407930,
+                "candidates": 19296514,
+                "max_subcycles": 2,
+                "scaled_budget": 2.2084263659336765e-14
+              },
+              {
+                "configuration": "fixed_weight_mesh",
+                "seed": 371001,
+                "fields": "dsmc-planar-shock-fixed_weight_mesh-371001.npz",
+                "profile_csv": "dsmc-planar-shock-fixed_weight_mesh-371001-profile.csv",
+                "resolution": {
+                  "dx_over_lambda": 0.29423177083333335,
+                  "dt_over_maxwell_tau": 0.05425343052401819
+                },
+                "collisions": 410635,
+                "candidates": 20047062,
+                "max_subcycles": 2,
+                "scaled_budget": 4.008230054565956e-14
+              },
+              {
+                "configuration": "double_particles",
+                "seed": 371001,
+                "fields": "dsmc-planar-shock-double_particles-371001.npz",
+                "profile_csv": "dsmc-planar-shock-double_particles-371001-profile.csv",
+                "resolution": {
+                  "dx_over_lambda": 0.19350694444444447,
+                  "dt_over_maxwell_tau": 0.0532112690968283
+                },
+                "collisions": 821915,
+                "candidates": 40305832,
+                "max_subcycles": 2,
+                "scaled_budget": 4.263243791627522e-14
+              },
+              {
+                "configuration": "half_dt",
+                "seed": 371001,
+                "fields": "dsmc-planar-shock-half_dt-371001.npz",
+                "profile_csv": "dsmc-planar-shock-half_dt-371001-profile.csv",
+                "resolution": {
+                  "dx_over_lambda": 0.19496527777777775,
+                  "dt_over_maxwell_tau": 0.026920551411043006
+                },
+                "collisions": 405136,
+                "candidates": 19758905,
+                "max_subcycles": 1,
+                "scaled_budget": 4.8132728706101356e-14
+              }
+            ],
+            "completed_primary_runs": 15,
+            "termination": "fixed_budget_completed"
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-planar-shock/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-shock/#dsmc-planar-shock",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-shock/#dsmc-planar-shock"
+          }
+        }
+      ]
+    }
+  ],
+  "batch28_existing_variant_labels": true,
+  "supplemental_scope_profiles": [
+    {
+      "release": {
+        "group": "dsmc-wall",
+        "edition": "2026-11-23",
+        "case_ids": [
+          "dsmc-couette",
+          "dsmc-fourier"
+        ]
+      },
+      "scope": {
+        "ja": "追加固定例：硬球DSMCの有限Kn Couette流、硬球DSMCの有限Kn Fourier熱伝導。条件と検証範囲は各配布版で確認してください。",
+        "en": "Additional fixed examples: Hard-sphere DSMC finite-Kn Couette flow, Hard-sphere DSMC finite-Kn Fourier heat conduction. See each release for assumptions and checked scope."
+      },
+      "limits": [
+        {
+          "ja": "有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。Kn=.5で連続体の直線・no-slip分布を厳密解としません。図は保存した粒子位相空間であり、2D物理流れではありません。",
+          "en": "Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. AtKn.5,continuum straight/no-slip profiles are not exact. Saved phase space is not a2D physical flow."
+        },
+        {
+          "ja": "有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。Kn=.5で連続体の直線・no-slip分布を厳密解としません。図は保存した粒子位相空間であり、2D物理流れではありません。",
+          "en": "Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. AtKn.5,continuum straight/no-slip profiles are not exact. Saved phase space is not a2D physical flow."
+        }
+      ]
+    },
+    {
+      "release": {
+        "group": "dsmc-shock",
+        "edition": "2026-11-23",
+        "case_ids": [
+          "dsmc-planar-shock"
+        ]
+      },
+      "scope": {
+        "ja": "追加固定例：硬球DSMCのMach2平面衝撃波。条件と検証範囲は各配布版で確認してください。",
+        "en": "Additional fixed examples: Hard-sphere DSMC Mach2 planar shock. See each release for assumptions and checked scope."
+      },
+      "limits": [
+        {
+          "ja": "有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。RHは遠方状態・流束だけの参照で、内部構造の厳密解ではありません。図は保存した粒子位相空間であり、2D物理流れではありません。",
+          "en": "Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. RH validates far states/full fluxes,not an exact internal shock profile. Saved phase space is not a2D physical flow."
+        }
+      ]
     }
   ],
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/dsmc/",
@@ -9319,13 +10694,29 @@
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/kinetics.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/longrange_experiments.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/electrostatics.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/fmm.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/fmm.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/dsmc.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/diagnostics.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/references/generate.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/references/qualify.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/dsmc.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/diagnostics.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/references/generate.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/references/qualify.py"
   ],
   "test_urls": [
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/test_particles.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_kinetics.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_longrange.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_runner.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_runner.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/test_core.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/test_wall.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/test_arrivals.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/test_core.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/test_matching.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/test_shock.py"
   ],
   "run_commands": [
     "python -m pytest -q",
@@ -9352,6 +10743,33 @@
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-statistics/?lang=en"
       },
       "kind": "dedicated-supplement"
+    },
+    {
+      "id": "dsmc-couette",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-couette/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-couette/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    },
+    {
+      "id": "dsmc-fourier",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-fourier/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-fourier/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    },
+    {
+      "id": "dsmc-planar-shock",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=en"
+      },
+      "kind": "dedicated-supplement"
     }
   ],
   "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip",
@@ -9363,7 +10781,24 @@
   "problem_navigation": {
     "method_id": "dsmc",
     "status": "educational-example",
-    "equations": [],
+    "equations": [
+      {
+        "id": "hard-sphere-boltzmann",
+        "name": {
+          "ja": "剛体球Boltzmann輸送と壁・流入出",
+          "en": "Hard-sphere Boltzmann transport,walls and reservoirs"
+        },
+        "problem_ids": [
+          "dsmc-couette",
+          "dsmc-fourier",
+          "dsmc-planar-shock"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#hard-sphere-boltzmann-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#hard-sphere-boltzmann-en"
+        }
+      }
+    ],
     "problems": [
       {
         "id": "maxwell-collisions",
@@ -9445,6 +10880,183 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/maxwell-collisions/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/maxwell-collisions/?lang=en#references-en"
         }
+      },
+      {
+        "id": "dsmc-couette",
+        "name": {
+          "ja": "硬球DSMCの有限Kn Couette流",
+          "en": "Hard-sphere DSMC finite-Kn Couette flow"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/results/dsmc-couette-preview.png",
+          "sha256": "cbb25893cb6b520b4516aa8efe0faa863b48460ff18e5b5d2cca0141cc28f439",
+          "width": 2176,
+          "height": 704,
+          "caption": {
+            "ja": "保存した実粒子の位置–速度ヒストグラム。1次元位置と分子速度の位相空間であり、2D物理流れではありません。",
+            "en": "Actual saved particle position-velocity histograms; phase space of1D position and molecular velocity,not2D physical flow."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-couette/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-couette/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-couette/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-couette/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "dsmc-couette",
+            "kind": "supplement",
+            "name": {
+              "ja": "硬球DSMCの有限Kn Couette流",
+              "en": "Hard-sphere DSMC finite-Kn Couette flow"
+            },
+            "scope": {
+              "ja": "物理時間の硬球衝突と実際の分子輸送を計算し、独立SPARTAの資格確認済みモーメント場と比較します。",
+              "en": "Evolve physical-time hard-sphere collisions and molecular streaming; compare actual moments with qualified independent SPARTA fields."
+            },
+            "method_ids": [
+              "dsmc"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-couette/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-couette/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/atlas-dsmc-wall-2026-11-23.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "セル内の非重複ランダム対へ、偶数・奇数粒子数を区別した物理時間のσg衝突確率を適用。エネルギーによる安全上界で事前にsubcycle数を定め、確率clipはしません。壁・流入はflux重み付き分布と実際の残り飛行時間を用います。",
+          "en": "Disjoint cell-local random pairs with even/odd finite-N physical-time sigma*g acceptance,energy-based safe majorant and predeclared bounded subcycling; no probability caps. Exact flight-to-wall and flux-conditioned diffuse/reservoir velocities with remaining flight time."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-couette/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-couette/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "dsmc-fourier",
+        "name": {
+          "ja": "硬球DSMCの有限Kn Fourier熱伝導",
+          "en": "Hard-sphere DSMC finite-Kn Fourier heat conduction"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/results/dsmc-fourier-preview.png",
+          "sha256": "87bfad63ef3230c67e56fb2c6e252f69075f311e2af565a363584461a2039a2a",
+          "width": 2176,
+          "height": 704,
+          "caption": {
+            "ja": "保存した実粒子の位置–速度ヒストグラム。1次元位置と分子速度の位相空間であり、2D物理流れではありません。",
+            "en": "Actual saved particle position-velocity histograms; phase space of1D position and molecular velocity,not2D physical flow."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-fourier/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-fourier/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-fourier/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-fourier/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "dsmc-fourier",
+            "kind": "supplement",
+            "name": {
+              "ja": "硬球DSMCの有限Kn Fourier熱伝導",
+              "en": "Hard-sphere DSMC finite-Kn Fourier heat conduction"
+            },
+            "scope": {
+              "ja": "物理時間の硬球衝突と実際の分子輸送を計算し、独立SPARTAの資格確認済みモーメント場と比較します。",
+              "en": "Evolve physical-time hard-sphere collisions and molecular streaming; compare actual moments with qualified independent SPARTA fields."
+            },
+            "method_ids": [
+              "dsmc"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-fourier/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-fourier/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/atlas-dsmc-wall-2026-11-23.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "セル内の非重複ランダム対へ、偶数・奇数粒子数を区別した物理時間のσg衝突確率を適用。エネルギーによる安全上界で事前にsubcycle数を定め、確率clipはしません。壁・流入はflux重み付き分布と実際の残り飛行時間を用います。",
+          "en": "Disjoint cell-local random pairs with even/odd finite-N physical-time sigma*g acceptance,energy-based safe majorant and predeclared bounded subcycling; no probability caps. Exact flight-to-wall and flux-conditioned diffuse/reservoir velocities with remaining flight time."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-fourier/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-fourier/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "dsmc-planar-shock",
+        "name": {
+          "ja": "硬球DSMCのMach2平面衝撃波",
+          "en": "Hard-sphere DSMC Mach2 planar shock"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock-preview.png",
+          "sha256": "89e25d3088c177ac0cb027fe58f02627b049626d0198bda02abc0eb6fec6555c",
+          "width": 2176,
+          "height": 704,
+          "caption": {
+            "ja": "保存した実粒子の位置–速度ヒストグラム。1次元位置と分子速度の位相空間であり、2D物理流れではありません。",
+            "en": "Actual saved particle position-velocity histograms; phase space of1D position and molecular velocity,not2D physical flow."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-planar-shock/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-planar-shock/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-planar-shock/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-planar-shock/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "dsmc-planar-shock",
+            "kind": "supplement",
+            "name": {
+              "ja": "硬球DSMCのMach2平面衝撃波",
+              "en": "Hard-sphere DSMC Mach2 planar shock"
+            },
+            "scope": {
+              "ja": "物理時間の硬球衝突と実際の分子輸送を計算し、独立SPARTAの資格確認済みモーメント場と比較します。",
+              "en": "Evolve physical-time hard-sphere collisions and molecular streaming; compare actual moments with qualified independent SPARTA fields."
+            },
+            "method_ids": [
+              "dsmc"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/atlas-dsmc-shock-2026-11-23.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "セル内の非重複ランダム対へ、偶数・奇数粒子数を区別した物理時間のσg衝突確率を適用。エネルギーによる安全上界で事前にsubcycle数を定め、確率clipはしません。壁・流入はflux重み付き分布と実際の残り飛行時間を用います。 開境界のmacro粒子到着数は平均を保つfloor(平均)+Bernoulli(小数部)で分散を下げます。Poisson数揺らぎや熱揺らぎの再現は主張しません。 既存4seedを残して次の8連番seedを追加します。一様順列と安定整数sortは対選択法則を保ちますが、乱数消費と軌道のbit一致は主張しません。",
+          "en": "Disjoint cell-local random pairs with even/odd finite-N physical-time sigma*g acceptance,energy-based safe majorant and predeclared bounded subcycling; no probability caps. Exact flight-to-wall and flux-conditioned diffuse/reservoir velocities with remaining flight time. Open-reservoir macro counts use unbiased floor(mean)+Bernoulli(fraction) per face/species/half-stream to reduce artificial sampling variance; no Poisson number-fluctuation or thermodynamic-fluctuation reproduction claim. Retain the original four seeds and append the next eight consecutive seeds; uniform permutation/stable integer sorting preserves the ideal within-cell matching law,not RNG consumption or bit-identical trajectories."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-planar-shock/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-planar-shock/?lang=en#references-en"
+        }
       }
     ],
     "references": [
@@ -9459,6 +11071,108 @@
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/maxwell-collisions/?lang=en#references-en"
         },
         "cases": []
+      },
+      {
+        "problem_id": "dsmc-couette",
+        "problem_name": {
+          "ja": "硬球DSMCの有限Kn Couette流",
+          "en": "Hard-sphere DSMC finite-Kn Couette flow"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-couette/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-couette/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "dsmc-couette",
+            "title": {
+              "ja": "硬球DSMCの有限Kn Couette流",
+              "en": "Finite-Kn hard-sphere Couette flow"
+            },
+            "kind": "numerical-reference",
+            "relation": "same-problem",
+            "note": {
+              "ja": "有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。Kn=.5で連続体の直線・no-slip分布を厳密解としません。図は保存した粒子位相空間であり、2D物理流れではありません。",
+              "en": "Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. AtKn.5,continuum straight/no-slip profiles are not exact. Saved phase space is not a2D physical flow."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-dsmc-couette-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-dsmc-couette-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/dsmc-couette/?lang=ja#dsmc-couette-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/dsmc-couette/?lang=en#dsmc-couette-en-measurements"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "dsmc-fourier",
+        "problem_name": {
+          "ja": "硬球DSMCの有限Kn Fourier熱伝導",
+          "en": "Hard-sphere DSMC finite-Kn Fourier heat conduction"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-fourier/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-fourier/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "dsmc-fourier",
+            "title": {
+              "ja": "硬球DSMCの有限Kn Fourier熱伝導",
+              "en": "Finite-Kn hard-sphere Fourier heat conduction"
+            },
+            "kind": "numerical-reference",
+            "relation": "same-problem",
+            "note": {
+              "ja": "有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。Kn=.5で連続体の直線・no-slip分布を厳密解としません。図は保存した粒子位相空間であり、2D物理流れではありません。",
+              "en": "Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. AtKn.5,continuum straight/no-slip profiles are not exact. Saved phase space is not a2D physical flow."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-dsmc-fourier-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-dsmc-fourier-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/dsmc-fourier/?lang=ja#dsmc-fourier-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/dsmc-fourier/?lang=en#dsmc-fourier-en-measurements"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "dsmc-planar-shock",
+        "problem_name": {
+          "ja": "硬球DSMCのMach2平面衝撃波",
+          "en": "Hard-sphere DSMC Mach2 planar shock"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-planar-shock/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-planar-shock/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "dsmc-planar-shock",
+            "title": {
+              "ja": "硬球DSMCのMach2平面衝撃波",
+              "en": "Mach2 planar hard-sphere shock"
+            },
+            "kind": "numerical-reference",
+            "relation": "same-problem",
+            "note": {
+              "ja": "有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。RHは遠方状態・流束だけの参照で、内部構造の厳密解ではありません。図は保存した粒子位相空間であり、2D物理流れではありません。",
+              "en": "Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. RH validates far states/full fluxes,not an exact internal shock profile. Saved phase space is not a2D physical flow."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-dsmc-planar-shock-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-dsmc-planar-shock-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=ja#dsmc-planar-shock-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=en#dsmc-planar-shock-en-measurements"
+            }
+          }
+        ]
       }
     ]
   }

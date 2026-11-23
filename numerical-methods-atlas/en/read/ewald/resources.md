@@ -32,6 +32,10 @@ No chapter-specific association is registered. Atlas-wide index: [Exact and refe
   availability: run
 
   Compare a neutral eight-charge cell energy and all 24 force components with a separately coded Gaussian/theta integral. Separate splitting and real/reciprocal truncation from invariants and conservation.
+- [Neutral rectangular slab: genuine2P reference and YB](<https://hrkoyama.github.io/numerical-methods-atlas/validation/neutral-slab-yb/?lang=en>)
+  availability: run
+
+  Compare corrected orthorhombic3P Ewald energy/all forces against a separately implemented genuine2P series.
 - [Ewald summation — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/ewald/?lang=en#method-execution-en>)
   availability: source
 

@@ -2590,6 +2590,14 @@
             "ja": "PIC：格子・時間収束、保存量と粒子雑音",
             "en": "PIC: mesh/time convergence, invariants and particle noise"
           }
+        },
+        {
+          "id": "pic-independent-spatial",
+          "url": "/numerical-methods-atlas/validation/pic-independent-spatial/",
+          "name": {
+            "ja": "PIC空間演算の独立実装照合",
+            "en": "Independently coded PIC spatial pipeline"
+          }
         }
       ]
     },
@@ -3811,6 +3819,490 @@
           "name": {
             "ja": "SRMHDの有限振幅円偏極Alfvén波",
             "en": "SRMHD finite-amplitude circularly polarized Alfvén wave"
+          }
+        }
+      ]
+    },
+    {
+      "id": "checkerboard-diffusion",
+      "group": "elliptic",
+      "name": {
+        "ja": "係数ジャンプ拡散：共有流束とMG・AMG",
+        "en": "Checkerboard diffusion: shared flux, MG and AMG"
+      },
+      "chapter": "validation-coefficient-diffusion",
+      "reading_section": "checkerboard-diffusion",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/coefficient-diffusion/",
+      "verification": "/code/validated-examples/2026-11-23/coefficient-diffusion/verification.json",
+      "commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/coefficient-diffusion/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "checkerboard-diffusion"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/coefficient-diffusion/results/checkerboard-diffusion-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/coefficient-diffusion/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "checkerboard-diffusion",
+          "url": "/numerical-methods-atlas/validation/checkerboard-diffusion/",
+          "name": {
+            "ja": "係数ジャンプ拡散：共有流束とMG・AMG",
+            "en": "Checkerboard diffusion: shared flux, MG and AMG"
+          }
+        }
+      ]
+    },
+    {
+      "id": "rotated-anisotropic-diffusion",
+      "group": "elliptic",
+      "name": {
+        "ja": "回転異方性拡散：完全テンソルQ1とMG・AMG",
+        "en": "Rotated diffusion: full-tensor Q1, MG and AMG"
+      },
+      "chapter": "validation-coefficient-diffusion",
+      "reading_section": "rotated-anisotropic-diffusion",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/coefficient-diffusion/",
+      "verification": "/code/validated-examples/2026-11-23/coefficient-diffusion/verification.json",
+      "commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/coefficient-diffusion/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "rotated-anisotropic-diffusion"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/coefficient-diffusion/results/rotated-anisotropic-diffusion-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/coefficient-diffusion/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "rotated-anisotropic-diffusion",
+          "url": "/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/",
+          "name": {
+            "ja": "回転異方性拡散：完全テンソルQ1とMG・AMG",
+            "en": "Rotated diffusion: full-tensor Q1, MG and AMG"
+          }
+        }
+      ]
+    },
+    {
+      "id": "neutral-slab-yb",
+      "group": "gravity",
+      "name": {
+        "ja": "中性長方形スラブ：真2P参照とYB補正",
+        "en": "Neutral rectangular slab: genuine2P reference and YB"
+      },
+      "chapter": "validation-slab-ewald",
+      "reading_section": "neutral-slab-yb",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/slab-ewald/",
+      "verification": "/code/validated-examples/2026-11-23/slab-ewald/verification.json",
+      "commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/slab-ewald/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "neutral-slab-yb"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/slab-ewald/results/neutral-slab-yb-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/slab-ewald/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "neutral-slab-yb",
+          "url": "/numerical-methods-atlas/validation/neutral-slab-yb/",
+          "name": {
+            "ja": "中性長方形スラブ：真2P参照とYB補正",
+            "en": "Neutral rectangular slab: genuine2P reference and YB"
+          }
+        }
+      ]
+    },
+    {
+      "id": "fmm3d-inverse-r",
+      "group": "gravity",
+      "name": {
+        "ja": "真3D 1/r FMM：多段変換・力・適応所有権",
+        "en": "Actual3D1/r FMM: multilevel translations, force and ownership"
+      },
+      "chapter": "validation-fmm3d",
+      "reading_section": "fmm3d-inverse-r",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/fmm3d/",
+      "verification": "/code/validated-examples/2026-11-23/fmm3d/verification.json",
+      "commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/fmm3d/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "fmm3d-inverse-r"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/fmm3d/results/fmm3d-inverse-r-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/fmm3d/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "fmm3d-inverse-r",
+          "url": "/numerical-methods-atlas/validation/fmm3d-inverse-r/",
+          "name": {
+            "ja": "真3D 1/r FMM：多段変換・力・適応所有権",
+            "en": "Actual3D1/r FMM: multilevel translations, force and ownership"
+          }
+        }
+      ]
+    },
+    {
+      "id": "gravity-kepler",
+      "group": "gravity",
+      "name": {
+        "ja": "無軟化Kepler二体の時間誤差",
+        "en": "Unsoftened Kepler two-body time error"
+      },
+      "chapter": "validation-gravity-dynamics",
+      "reading_section": "gravity-kepler",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/gravity-dynamics/",
+      "verification": "/code/validated-examples/2026-11-23/gravity-dynamics/verification.json",
+      "commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/gravity-dynamics/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "gravity-kepler"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-kepler-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/gravity-dynamics/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "gravity-kepler",
+          "url": "/numerical-methods-atlas/validation/gravity-kepler/",
+          "name": {
+            "ja": "無軟化Kepler二体の時間誤差",
+            "en": "Unsoftened Kepler two-body time error"
+          }
+        }
+      ]
+    },
+    {
+      "id": "gravity-plummer-short",
+      "group": "gravity",
+      "name": {
+        "ja": "冷たいPlummer密度由来32粒子の短時間力学",
+        "en": "Short-time32body dynamics from a cold Plummer-density sample"
+      },
+      "chapter": "validation-gravity-dynamics",
+      "reading_section": "gravity-plummer-short",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/gravity-dynamics/",
+      "verification": "/code/validated-examples/2026-11-23/gravity-dynamics/verification.json",
+      "commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/gravity-dynamics/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "gravity-plummer-short"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-plummer-short-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/gravity-dynamics/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "gravity-plummer-short",
+          "url": "/numerical-methods-atlas/validation/gravity-plummer-short/",
+          "name": {
+            "ja": "冷たいPlummer密度由来32粒子の短時間力学",
+            "en": "Short-time32body dynamics from a cold Plummer-density sample"
+          }
+        }
+      ]
+    },
+    {
+      "id": "thermal-landau-damping",
+      "group": "kinetic",
+      "name": {
+        "ja": "温かいPICの線形Landau減衰",
+        "en": "Warm PIC linear Landau damping"
+      },
+      "chapter": "validation-warm-pic",
+      "reading_section": "thermal-landau-damping",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/warm-pic/",
+      "verification": "/code/validated-examples/2026-11-23/warm-pic/verification.json",
+      "commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/warm-pic/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "thermal-landau-damping"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/warm-pic/results/thermal-landau-damping-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/warm-pic/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "thermal-landau-damping",
+          "url": "/numerical-methods-atlas/validation/thermal-landau-damping/",
+          "name": {
+            "ja": "温かいPICの線形Landau減衰",
+            "en": "Warm PIC linear Landau damping"
+          }
+        }
+      ]
+    },
+    {
+      "id": "thermal-two-stream",
+      "group": "kinetic",
+      "name": {
+        "ja": "温かいPICの二流初期成長",
+        "en": "Warm PIC two-stream initial growth"
+      },
+      "chapter": "validation-warm-pic",
+      "reading_section": "thermal-two-stream",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/warm-pic/",
+      "verification": "/code/validated-examples/2026-11-23/warm-pic/verification.json",
+      "commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/warm-pic/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "thermal-two-stream"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/warm-pic/results/thermal-two-stream-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/warm-pic/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "thermal-two-stream",
+          "url": "/numerical-methods-atlas/validation/thermal-two-stream/",
+          "name": {
+            "ja": "温かいPICの二流初期成長",
+            "en": "Warm PIC two-stream initial growth"
+          }
+        }
+      ]
+    },
+    {
+      "id": "dsmc-couette",
+      "group": "kinetic",
+      "name": {
+        "ja": "硬球DSMCの有限Kn Couette流",
+        "en": "Hard-sphere DSMC finite-Kn Couette flow"
+      },
+      "chapter": "validation-dsmc-wall",
+      "reading_section": "dsmc-couette",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/dsmc-wall/",
+      "verification": "/code/validated-examples/2026-11-23/dsmc-wall/verification.json",
+      "commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/dsmc-wall/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "dsmc-couette"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/dsmc-wall/results/dsmc-couette-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/dsmc-wall/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "dsmc-couette",
+          "url": "/numerical-methods-atlas/validation/dsmc-couette/",
+          "name": {
+            "ja": "硬球DSMCの有限Kn Couette流",
+            "en": "Hard-sphere DSMC finite-Kn Couette flow"
+          }
+        }
+      ]
+    },
+    {
+      "id": "dsmc-fourier",
+      "group": "kinetic",
+      "name": {
+        "ja": "硬球DSMCの有限Kn Fourier熱伝導",
+        "en": "Hard-sphere DSMC finite-Kn Fourier heat conduction"
+      },
+      "chapter": "validation-dsmc-wall",
+      "reading_section": "dsmc-fourier",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/dsmc-wall/",
+      "verification": "/code/validated-examples/2026-11-23/dsmc-wall/verification.json",
+      "commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/dsmc-wall/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "dsmc-fourier"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/dsmc-wall/results/dsmc-fourier-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/dsmc-wall/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "dsmc-fourier",
+          "url": "/numerical-methods-atlas/validation/dsmc-fourier/",
+          "name": {
+            "ja": "硬球DSMCの有限Kn Fourier熱伝導",
+            "en": "Hard-sphere DSMC finite-Kn Fourier heat conduction"
+          }
+        }
+      ]
+    },
+    {
+      "id": "dsmc-planar-shock",
+      "group": "kinetic",
+      "name": {
+        "ja": "硬球DSMCのMach2平面衝撃波",
+        "en": "Hard-sphere DSMC Mach2 planar shock"
+      },
+      "chapter": "validation-dsmc-shock",
+      "reading_section": "dsmc-planar-shock",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/dsmc-shock/",
+      "verification": "/code/validated-examples/2026-11-23/dsmc-shock/verification.json",
+      "commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/dsmc-shock/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "dsmc-planar-shock"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/dsmc-shock/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "dsmc-planar-shock",
+          "url": "/numerical-methods-atlas/validation/dsmc-planar-shock/",
+          "name": {
+            "ja": "硬球DSMCのMach2平面衝撃波",
+            "en": "Hard-sphere DSMC Mach2 planar shock"
           }
         }
       ]

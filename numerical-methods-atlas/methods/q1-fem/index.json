@@ -1,8 +1,8 @@
 {
   "id": "q1-fem",
   "name": {
-    "ja": "Q1有限要素法（曲線座標ベクトルBVP）",
-    "en": "Q1 FEM for mapped-coordinate vector BVP"
+    "ja": "Q1有限要素法（スカラー拡散・曲線座標ベクトルBVP）",
+    "en": "Q1 FEM for scalar diffusion and mapped vector BVPs"
   },
   "group": {
     "id": "space",
@@ -10,8 +10,8 @@
     "en": "Spatial discretization"
   },
   "summary": {
-    "ja": "極座標(r,θ)の双線形基底でCartesian速度2成分を近似し、円環の可変粘性応力発散BVPを解く。正確なrのJacobian、物理勾配、結合したひずみ弱形式を組み立てる。",
-    "en": "Approximate two Cartesian velocity components with bilinear(r,theta) basis functions for an annular variable-viscosity stress BVP. Assemble the exact polar Jacobian,physical gradients and coupled strain weak form."
+    "ja": "既存配布版：極座標(r,θ)の双線形基底でCartesian速度2成分を近似し、円環の可変粘性応力発散BVPを解く。正確なrのJacobian、物理勾配、結合したひずみ弱形式を組み立てる。 追加固定例：回転異方性拡散：完全テンソルQ1とMG・AMG。条件と検証範囲は各配布版で確認してください。",
+    "en": "Existing releases: Approximate two Cartesian velocity components with bilinear(r,theta) basis functions for an annular variable-viscosity stress BVP. Assemble the exact polar Jacobian,physical gradients and coupled strain weak form. Additional fixed examples: Rotated diffusion: full-tensor Q1, MG and AMG. See each release for assumptions and checked scope."
   },
   "status": "educational-example",
   "origin": "curated-mapped-q1-vector-bvp",
@@ -56,12 +56,16 @@
   "boundary_conditions": "Zero Cartesian Dirichlet data on r1 and r2; periodic theta. Physical outward traction is measured,not prescribed.",
   "boundary_conditions_ja": "r1/r2でCartesian速度を零Dirichlet、θ周期。外向きの物理牽引力は測定し、境界値として課していない。",
   "limitations": {
-    "ja": "指定円環のmapped Q1ベクトルBVPだけ。P1、一般四辺形・軸r0・圧力/非圧縮拘束・非線形Navier–Stokesではない。Nr8/16/32,Nθ2Nrの固定検査を一般認証へ拡張しない。",
-    "en": "Mapped Q1 vector BVP on this annulus only; not P1,general quadrilaterals,an r0 axis,pressure/incompressibility or nonlinear Navier–Stokes. FixedNr8/16/32,Ntheta2Nr checks are not broad certification."
+    "ja": "既存配布版の制約：指定円環のmapped Q1ベクトルBVPだけ。P1、一般四辺形・軸r0・圧力/非圧縮拘束・非線形Navier–Stokesではない。Nr8/16/32,Nθ2Nrの固定検査を一般認証へ拡張しない。 今回の追加固定例：指定した角度・異方性の限定例。スカラーTPFAを回転テンソルへ転用せず、一般テンソルへの頑健性は保証しません。",
+    "en": "Limits of existing releases: Mapped Q1 vector BVP on this annulus only; not P1,general quadrilaterals,an r0 axis,pressure/incompressibility or nonlinear Navier–Stokes. FixedNr8/16/32,Ntheta2Nr checks are not broad certification. Additional fixed examples: One angle/anisotropy only. Scalar TPFA is not extended to rotated tensors; arbitrary-tensor robustness is not established."
   },
   "metadata_review": {
     "on": "2026-11-23",
-    "level": "Actual mapped Q1 source and engineering-strain weak form independently inspected; numerical execution/receipts remain attached to the supplemental release."
+    "level": "Actual mapped Q1 source and engineering-strain weak form independently inspected; numerical execution/receipts remain attached to the supplemental release.",
+    "supplemental_review": {
+      "on": "2026-11-23",
+      "level": "Frozen fixed-input source,independent review,actual pytest/main and independently extracted ZIP; see each new release for exact reference independence and failed-attempt history."
+    }
   },
   "aliases": [
     "Q1 FEM",
@@ -320,6 +324,381 @@
     "ja": "円環の極座標Q1でCartesian2成分の可変粘性応力を結合。正確な曲線Jacobian、内外の物理牽引力、非零全境界力、仕事と製造解誤差を固定入力で比較します。",
     "en": "Mapped polarQ1 couples both Cartesian components of variable-viscosity stress. Fixed cases check exact curved geometry,inner/outer physical traction,nonzero net force,work and MMS errors."
   },
+  "batch28_existing_variant_labels": true,
+  "depth_additional_releases": [
+    {
+      "group": "coefficient-diffusion",
+      "case_ids": [
+        "rotated-anisotropic-diffusion"
+      ],
+      "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/",
+      "code_edition": "2026-11-23",
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/operators.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/multilevel.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/references/p1.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/experiments.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/test_diffusion.py"
+      ],
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "run_from": "atlas-coefficient-diffusion-2026-11-23",
+      "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/atlas-coefficient-diffusion-2026-11-23.zip",
+      "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/source-manifest.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/verification.json",
+      "code_archive_sha256": "c53624aa03cf7f945297e7bd09d72030e111e035c3ce7174fd2da9e86756b666",
+      "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/results/result.json",
+      "passed_tests": 12,
+      "examples": [
+        {
+          "id": "rotated-anisotropic-diffusion",
+          "method_ids": [
+            "q1-fem",
+            "multigrid",
+            "amg",
+            "cg"
+          ],
+          "title": {
+            "ja": "回転異方性拡散：完全テンソルQ1とMG・AMG",
+            "en": "Rotated diffusion: full-tensor Q1, MG and AMG"
+          },
+          "summary": {
+            "ja": "非零Kxyを保つQ1弱形式で、解析解への収束と同じ行列のMG・AMG収束を比較します。",
+            "en": "Retain nonzero Kxy in the Q1 weak form and compare analytic refinement with MG/AMG convergence for the same matrix."
+          },
+          "assumptions": {
+            "ja": "単位正方形、零Dirichlet、K=R(pi/6)diag(1,.01)Rᵀ、厳密解sin(pi x)sin(pi y)、N16/32/64。",
+            "en": "Unit square, zero Dirichlet, K=R(pi/6)diag(1,.01)R^T, exact sin(pi x)sin(pi y), N16/32/64."
+          },
+          "algorithm": {
+            "ja": "完全2×2テンソルQ1とGauss積分。MG/SA-AMGは対称2/2Jacobi、Galerkin粗行列、粗CholeskyでSPDの固定適用。",
+            "en": "Full2x2 tensor Q1 and Gauss quadrature. Fixed SPD MG/SA cycles use symmetric2/2Jacobi, Galerkin operators and coarse Cholesky."
+          },
+          "validation": {
+            "ja": "u=xy,f=−2Kxyパッチ、解析流束由来のsource、積分L2/energy誤差と4/6点求積感度、直接解との比較。",
+            "en": "u=xy,f=-2Kxy patch, analytic-flux source, integrated L2/energy error,4/6point quadrature sensitivity and direct-solve comparison."
+          },
+          "limits": {
+            "ja": "指定した角度・異方性の限定例。スカラーTPFAを回転テンソルへ転用せず、一般テンソルへの頑健性は保証しません。",
+            "en": "One angle/anisotropy only. Scalar TPFA is not extended to rotated tensors; arbitrary-tensor robustness is not established."
+          },
+          "formulas": [
+            "-\\nabla\\cdot(K\\nabla u)=f,\\quad K=R(\\pi/6)\\operatorname{diag}(1,.01)R^T",
+            "f=\\pi^2(K_{xx}+K_{yy})\\sin\\pi x\\sin\\pi y-2\\pi^2K_{xy}\\cos\\pi x\\cos\\pi y"
+          ],
+          "domains": [
+            "pde",
+            "linear-algebra"
+          ],
+          "references": [
+            {
+              "id": "dumux-tpfa",
+              "title": "Two-point flux approximation",
+              "url": "https://dumux.org/docs/doxygen/master/group___c_c_tpfa_discretization.html",
+              "review_level": "selected-official-derivation-read",
+              "review_scope": "Scalar harmonic transmissibility, shared flux and K-orthogonality restriction. No DuMux code executed."
+            },
+            {
+              "id": "hypre-symmetric-smoother",
+              "title": "BoomerAMG: smoother options",
+              "url": "https://hypre.readthedocs.io/en/latest/solvers-boomeramg.html",
+              "review_level": "selected-official-documentation-read",
+              "review_scope": "CG requires a symmetric smoother. Our educational SA code is not hypre and no hypre code was run."
+            },
+            {
+              "id": "vanek1996",
+              "title": "Algebraic multigrid by smoothed aggregation for second and fourth order elliptic problems",
+              "url": "https://link.springer.com/article/10.1007/BF02238511",
+              "review_level": "publisher-abstract-only-full-paper-unread",
+              "review_scope": "Metadata and abstract only. No general robustness theorem claimed for these fixed jumps/tensors."
+            }
+          ],
+          "citations": [
+            {
+              "id": "dumux-tpfa",
+              "title": "Two-point flux approximation",
+              "url": "https://dumux.org/docs/doxygen/master/group___c_c_tpfa_discretization.html",
+              "review_level": "selected-official-derivation-read",
+              "review_scope": "Scalar harmonic transmissibility, shared flux and K-orthogonality restriction. No DuMux code executed."
+            },
+            {
+              "id": "hypre-symmetric-smoother",
+              "title": "BoomerAMG: smoother options",
+              "url": "https://hypre.readthedocs.io/en/latest/solvers-boomeramg.html",
+              "review_level": "selected-official-documentation-read",
+              "review_scope": "CG requires a symmetric smoother. Our educational SA code is not hypre and no hypre code was run."
+            },
+            {
+              "id": "vanek1996",
+              "title": "Algebraic multigrid by smoothed aggregation for second and fourth order elliptic problems",
+              "url": "https://link.springer.com/article/10.1007/BF02238511",
+              "review_level": "publisher-abstract-only-full-paper-unread",
+              "review_scope": "Metadata and abstract only. No general robustness theorem claimed for these fixed jumps/tensors."
+            }
+          ],
+          "code_files": [
+            "run.py",
+            "operators.py",
+            "multilevel.py",
+            "references/p1.py"
+          ],
+          "gallery_figure": "rotated-anisotropic-diffusion-preview.png",
+          "additional_figures": [
+            {
+              "file": "rotated-anisotropic-diffusion-preview.png",
+              "caption": {
+                "ja": "保存した2D解・誤差・真の残差・格子感度の検証図。",
+                "en": "Saved2D solution, error, true residual and refinement/reference sensitivity."
+              }
+            }
+          ],
+          "measured": {
+            "id": "rotated-anisotropic-diffusion",
+            "passed": true,
+            "checks": {
+              "n16_quadrature": true,
+              "n16_symmetry": true,
+              "n16_geometric_converged": true,
+              "n16_geometric_true_residual": true,
+              "n16_geometric_forward": true,
+              "n16_geometric_energy": true,
+              "n16_geometric_history": true,
+              "n16_amg_converged": true,
+              "n16_amg_true_residual": true,
+              "n16_amg_forward": true,
+              "n16_amg_energy": true,
+              "n16_amg_history": true,
+              "n32_quadrature": true,
+              "n32_symmetry": true,
+              "n32_geometric_converged": true,
+              "n32_geometric_true_residual": true,
+              "n32_geometric_forward": true,
+              "n32_geometric_energy": true,
+              "n32_geometric_history": true,
+              "n32_amg_converged": true,
+              "n32_amg_true_residual": true,
+              "n32_amg_forward": true,
+              "n32_amg_energy": true,
+              "n32_amg_history": true,
+              "n64_quadrature": true,
+              "n64_symmetry": true,
+              "n64_geometric_converged": true,
+              "n64_geometric_true_residual": true,
+              "n64_geometric_forward": true,
+              "n64_geometric_energy": true,
+              "n64_geometric_history": true,
+              "n64_amg_converged": true,
+              "n64_amg_true_residual": true,
+              "n64_amg_forward": true,
+              "n64_amg_energy": true,
+              "n64_amg_history": true,
+              "refinement": true,
+              "l2_refinement_ratios": true,
+              "finest_l2": true,
+              "affine_patch": true,
+              "xy_patch": true,
+              "small_operator_spd": true,
+              "geometric_small_cycle_spd": true,
+              "amg_small_cycle_spd": true,
+              "intentional_budget": true
+            },
+            "metrics": {
+              "continuous_errors": [
+                0.0043094975495807045,
+                0.0010835497491345043,
+                0.0002713461470266456
+              ],
+              "reference_sensitivity": []
+            },
+            "records": [
+              {
+                "n": 16,
+                "solver": "geometric",
+                "iterations": 22,
+                "true_residual": 7.692098102140603e-09,
+                "forward_error": 7.413925270472537e-10,
+                "energy_error": 2.1515280249717924e-09,
+                "continuous_error": 0.0043094975495807045,
+                "setup_seconds": 0.0006322909976006486,
+                "solve_seconds": 0.0015195410014712252,
+                "sizes": [
+                  225,
+                  49,
+                  9
+                ],
+                "nnz": [
+                  1849,
+                  361,
+                  49
+                ],
+                "grid_complexity": 1.2577777777777779,
+                "operator_complexity": 1.2217414818820984
+              },
+              {
+                "n": 16,
+                "solver": "amg",
+                "iterations": 29,
+                "true_residual": 6.983569007436221e-09,
+                "forward_error": 1.273897334441206e-09,
+                "energy_error": 2.204609243448183e-09,
+                "continuous_error": 0.0043094975495807045,
+                "setup_seconds": 0.001687625001068227,
+                "solve_seconds": 0.00196291600150289,
+                "sizes": [
+                  225,
+                  49,
+                  9
+                ],
+                "nnz": [
+                  1849,
+                  841,
+                  81
+                ],
+                "grid_complexity": 1.2577777777777779,
+                "operator_complexity": 1.4986479177934018
+              },
+              {
+                "n": 32,
+                "solver": "geometric",
+                "iterations": 31,
+                "true_residual": 9.03229727779601e-09,
+                "forward_error": 5.446722561055623e-10,
+                "energy_error": 1.7056725490454712e-09,
+                "continuous_error": 0.0010835497491345043,
+                "setup_seconds": 0.0010413749987492338,
+                "solve_seconds": 0.003997749998234212,
+                "sizes": [
+                  961,
+                  225,
+                  49,
+                  9
+                ],
+                "nnz": [
+                  8281,
+                  1849,
+                  361,
+                  49
+                ],
+                "grid_complexity": 1.2944849115504682,
+                "operator_complexity": 1.272793140925009
+              },
+              {
+                "n": 32,
+                "solver": "amg",
+                "iterations": 43,
+                "true_residual": 9.394626701702734e-09,
+                "forward_error": 1.2390354862883652e-09,
+                "energy_error": 2.0880013112619845e-09,
+                "continuous_error": 0.0010835497491345043,
+                "setup_seconds": 0.005531832997803576,
+                "solve_seconds": 0.005975207997835241,
+                "sizes": [
+                  961,
+                  225,
+                  49,
+                  9
+                ],
+                "nnz": [
+                  8281,
+                  4761,
+                  1405,
+                  81
+                ],
+                "grid_complexity": 1.2944849115504682,
+                "operator_complexity": 1.7543774906412268
+              },
+              {
+                "n": 64,
+                "solver": "geometric",
+                "iterations": 38,
+                "true_residual": 9.795676385986478e-09,
+                "forward_error": 4.4062492443481157e-10,
+                "energy_error": 1.215295695990534e-09,
+                "continuous_error": 0.0002713461470266456,
+                "setup_seconds": 0.001976334002392832,
+                "solve_seconds": 0.010530582992942072,
+                "sizes": [
+                  3969,
+                  961,
+                  225,
+                  49,
+                  9
+                ],
+                "nnz": [
+                  34969,
+                  8281,
+                  1849,
+                  361,
+                  49
+                ],
+                "grid_complexity": 1.3134290753338373,
+                "operator_complexity": 1.3014098201263977
+              },
+              {
+                "n": 64,
+                "solver": "amg",
+                "iterations": 61,
+                "true_residual": 8.112486903550596e-09,
+                "forward_error": 3.461000545706224e-10,
+                "energy_error": 1.0217381010630206e-09,
+                "continuous_error": 0.0002713461470266456,
+                "setup_seconds": 0.02102500000182772,
+                "solve_seconds": 0.019833999998809304,
+                "sizes": [
+                  3969,
+                  961,
+                  225,
+                  49,
+                  9
+                ],
+                "nnz": [
+                  34969,
+                  22201,
+                  8781,
+                  2229,
+                  81
+                ],
+                "grid_complexity": 1.3134290753338373,
+                "operator_complexity": 1.9520432382967772
+              }
+            ],
+            "termination": "fixed_budget_completed"
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-coefficient-diffusion/#rotated-anisotropic-diffusion",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-coefficient-diffusion/#rotated-anisotropic-diffusion"
+          }
+        }
+      ]
+    }
+  ],
+  "supplemental_scope_profiles": [
+    {
+      "release": {
+        "group": "coefficient-diffusion",
+        "edition": "2026-11-23",
+        "case_ids": [
+          "rotated-anisotropic-diffusion"
+        ]
+      },
+      "scope": {
+        "ja": "追加固定例：回転異方性拡散：完全テンソルQ1とMG・AMG。条件と検証範囲は各配布版で確認してください。",
+        "en": "Additional fixed examples: Rotated diffusion: full-tensor Q1, MG and AMG. See each release for assumptions and checked scope."
+      },
+      "limits": [
+        {
+          "ja": "指定した角度・異方性の限定例。スカラーTPFAを回転テンソルへ転用せず、一般テンソルへの頑健性は保証しません。",
+          "en": "One angle/anisotropy only. Scalar TPFA is not extended to rotated tensors; arbitrary-tensor robustness is not established."
+        }
+      ]
+    }
+  ],
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/q1-fem/",
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/q1-fem/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/q1-fem/index.md",
@@ -329,10 +708,16 @@
     "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/references/fields.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/fem.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/boundary.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/experiments.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/experiments.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/operators.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/multilevel.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/references/p1.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/experiments.py"
   ],
   "test_urls": [
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/test_geometry.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/test_geometry.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/test_diffusion.py"
   ],
   "run_commands": [
     "python -m pytest -q",
@@ -348,6 +733,15 @@
       "guide": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/annular-viscous-mms/?lang=ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/annular-viscous-mms/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    },
+    {
+      "id": "rotated-anisotropic-diffusion",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/?lang=en"
       },
       "kind": "dedicated-supplement"
     }
@@ -373,6 +767,20 @@
         "url": {
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#variable-viscosity-vector-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#variable-viscosity-vector-en"
+        }
+      },
+      {
+        "id": "tensor-diffusion",
+        "name": {
+          "ja": "不連続係数・完全テンソル拡散の境界値問題",
+          "en": "Discontinuous and full-tensor diffusion BVP"
+        },
+        "problem_ids": [
+          "rotated-anisotropic-diffusion"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#tensor-diffusion-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#tensor-diffusion-en"
         }
       }
     ],
@@ -435,6 +843,68 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/annular-viscous-mms/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/annular-viscous-mms/?lang=en#references-en"
         }
+      },
+      {
+        "id": "rotated-anisotropic-diffusion",
+        "name": {
+          "ja": "回転異方性拡散：完全テンソルQ1とMG・AMG",
+          "en": "Rotated diffusion: full-tensor Q1, MG and AMG"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/results/rotated-anisotropic-diffusion-preview.png",
+          "sha256": "07d3edeeefee73b8d77b6322833feb33972ae5138093da04c3f414d974e55ee4",
+          "width": 990,
+          "height": 720,
+          "caption": {
+            "ja": "保存した2D解・誤差・真の残差・格子感度の検証図。",
+            "en": "Saved2D solution, error, true residual and refinement/reference sensitivity."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rotated-anisotropic-diffusion/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rotated-anisotropic-diffusion/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rotated-anisotropic-diffusion/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rotated-anisotropic-diffusion/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "rotated-anisotropic-diffusion",
+            "kind": "supplement",
+            "name": {
+              "ja": "回転異方性拡散：完全テンソルQ1とMG・AMG",
+              "en": "Rotated diffusion: full-tensor Q1, MG and AMG"
+            },
+            "scope": {
+              "ja": "非零Kxyを保つQ1弱形式で、解析解への収束と同じ行列のMG・AMG収束を比較します。",
+              "en": "Retain nonzero Kxy in the Q1 weak form and compare analytic refinement with MG/AMG convergence for the same matrix."
+            },
+            "method_ids": [
+              "q1-fem",
+              "multigrid",
+              "amg",
+              "cg"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/atlas-coefficient-diffusion-2026-11-23.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "完全2×2テンソルQ1とGauss積分。MG/SA-AMGは対称2/2Jacobi、Galerkin粗行列、粗CholeskyでSPDの固定適用。",
+          "en": "Full2x2 tensor Q1 and Gauss quadrature. Fixed SPD MG/SA cycles use symmetric2/2Jacobi, Galerkin operators and coarse Cholesky."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rotated-anisotropic-diffusion/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rotated-anisotropic-diffusion/?lang=en#references-en"
+        }
       }
     ],
     "references": [
@@ -468,6 +938,40 @@
             "view": {
               "ja": "/numerical-methods-atlas/validation/annular-viscous-mms/?lang=ja#annular-viscous-mms-ja-measurements",
               "en": "/numerical-methods-atlas/validation/annular-viscous-mms/?lang=en#annular-viscous-mms-en-measurements"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "rotated-anisotropic-diffusion",
+        "problem_name": {
+          "ja": "回転異方性拡散：完全テンソルQ1とMG・AMG",
+          "en": "Rotated diffusion: full-tensor Q1, MG and AMG"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rotated-anisotropic-diffusion/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rotated-anisotropic-diffusion/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "rotated-anisotropic-diffusion",
+            "title": {
+              "ja": "回転異方性拡散：完全テンソルQ1とMG・AMG",
+              "en": "Rotated diffusion: full-tensor Q1, MG and AMG"
+            },
+            "kind": "manufactured",
+            "relation": "same-problem",
+            "note": {
+              "ja": "指定した角度・異方性の限定例。スカラーTPFAを回転テンソルへ転用せず、一般テンソルへの頑健性は保証しません。",
+              "en": "One angle/anisotropy only. Scalar TPFA is not extended to rotated tensors; arbitrary-tensor robustness is not established."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-rotated-anisotropic-diffusion-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-rotated-anisotropic-diffusion-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/?lang=ja#rotated-anisotropic-diffusion-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/?lang=en#rotated-anisotropic-diffusion-en-measurements"
             }
           }
         ]

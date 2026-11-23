@@ -4,29 +4,29 @@
   "reviewed_on": "2026-11-23",
   "scope": "One explicitly mapped visual per atlas test problem. Existing shared figures are identified. Derived plots use stored numerical values; computed previews record fixed inputs and numerical checks.",
   "counts": {
-    "test_problems": 102,
-    "runnable_problems": 64,
+    "test_problems": 113,
+    "runnable_problems": 75,
     "common_runnable_problems": 22,
-    "supplemental_runnable_problems": 46,
-    "supplemental_case_count": 66,
-    "supplemental_release_case_count": 71,
+    "supplemental_runnable_problems": 57,
+    "supplemental_case_count": 78,
+    "supplemental_release_case_count": 83,
     "groups": {
       "transport": 12,
       "fluid": 23,
       "mhd": 6,
       "viscous": 7,
-      "elliptic": 17,
-      "gravity": 7,
+      "elliptic": 19,
+      "gravity": 11,
       "time": 8,
       "approximation": 6,
       "quantum": 5,
       "biology": 5,
       "probability": 4,
-      "kinetic": 2
+      "kinetic": 7
     },
     "visual_sources": {
       "stored-data-plot": 27,
-      "existing-figure": 66,
+      "existing-figure": 77,
       "computed-preview": 9
     }
   },
@@ -6768,6 +6768,14 @@
             "ja": "PIC：格子・時間収束、保存量と粒子雑音",
             "en": "PIC: mesh/time convergence, invariants and particle noise"
           }
+        },
+        {
+          "id": "pic-independent-spatial",
+          "url": "/numerical-methods-atlas/validation/pic-independent-spatial/",
+          "name": {
+            "ja": "PIC空間演算の独立実装照合",
+            "en": "Independently coded PIC spatial pipeline"
+          }
         }
       ],
       "reading": {
@@ -6886,6 +6894,40 @@
           "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip",
           "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/results/result.json",
           "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/verification.json"
+        },
+        {
+          "id": "pic-independent-spatial",
+          "title": {
+            "ja": "PIC空間演算の独立実装照合",
+            "en": "Independently coded PIC spatial pipeline"
+          },
+          "group": "pic-spatial",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pic-independent-spatial/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pic-independent-spatial/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/primary.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/references/scalar_pic.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/test_spatial.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/atlas-pic-spatial-2026-11-23.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/verification.json",
+          "preview": {
+            "file": "pic-independent-spatial-preview.png",
+            "caption": {
+              "ja": "12独立軌道の1つから保存した実際の位相空間。色は自己無撞着電場による速度変化です。",
+              "en": "Actual saved phase space from one of twelve evolutions; color is the self-consistent velocity increment."
+            },
+            "width": 1152,
+            "height": 672,
+            "sha256": "a04e6b6cb2e4e0f8498eee4f268e23044ced33a273423435e01554eab82b338d",
+            "url": "/code/validated-examples/2026-11-23/pic-spatial/results/pic-independent-spatial-preview.png"
+          }
         }
       ]
     },
@@ -9939,10 +9981,1315 @@
           }
         }
       ]
+    },
+    {
+      "id": "checkerboard-diffusion",
+      "group": "elliptic",
+      "name": {
+        "ja": "係数ジャンプ拡散：共有流束とMG・AMG",
+        "en": "Checkerboard diffusion: shared flux, MG and AMG"
+      },
+      "chapter": "validation-coefficient-diffusion",
+      "reading_section": "checkerboard-diffusion",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/coefficient-diffusion/",
+      "verification": "/code/validated-examples/2026-11-23/coefficient-diffusion/verification.json",
+      "commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/coefficient-diffusion/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "checkerboard-diffusion"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/coefficient-diffusion/results/checkerboard-diffusion-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/coefficient-diffusion/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "checkerboard-diffusion",
+          "url": "/numerical-methods-atlas/validation/checkerboard-diffusion/",
+          "name": {
+            "ja": "係数ジャンプ拡散：共有流束とMG・AMG",
+            "en": "Checkerboard diffusion: shared flux, MG and AMG"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-coefficient-diffusion/#checkerboard-diffusion",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-coefficient-diffusion/#checkerboard-diffusion"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#checkerboard-diffusion",
+      "run_commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "image": "/code/validated-examples/2026-11-23/coefficient-diffusion/results/checkerboard-diffusion-preview.png",
+      "image_sha256": "874bbea94425c356ca0881fd0db4da26bccd8be3f0add3bbb0267e78c244eb1b",
+      "width": 990,
+      "height": 720,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "保存した2D解・誤差・真の残差・格子感度の検証図。",
+        "en": "Saved2D solution, error, true residual and refinement/reference sensitivity."
+      },
+      "visual_input": {
+        "id": "checkerboard-diffusion",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-23/coefficient-diffusion/results/checkerboard-diffusion-preview.png",
+        "caption": {
+          "ja": "保存した2D解・誤差・真の残差・格子感度の検証図。",
+          "en": "Saved2D solution, error, true residual and refinement/reference sensitivity."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#checkerboard-diffusion-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/checkerboard-diffusion/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/checkerboard-diffusion/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "checkerboard-diffusion",
+          "title": {
+            "ja": "係数ジャンプ拡散：共有流束とMG・AMG",
+            "en": "Checkerboard diffusion: shared flux, MG and AMG"
+          },
+          "group": "coefficient-diffusion",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/checkerboard-diffusion/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/checkerboard-diffusion/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/operators.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/multilevel.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/references/p1.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/experiments.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/test_diffusion.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/atlas-coefficient-diffusion-2026-11-23.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/verification.json",
+          "preview": {
+            "file": "checkerboard-diffusion-preview.png",
+            "caption": {
+              "ja": "保存した2D解・誤差・真の残差・格子感度の検証図。",
+              "en": "Saved2D solution, error, true residual and refinement/reference sensitivity."
+            },
+            "width": 990,
+            "height": 720,
+            "sha256": "874bbea94425c356ca0881fd0db4da26bccd8be3f0add3bbb0267e78c244eb1b",
+            "url": "/code/validated-examples/2026-11-23/coefficient-diffusion/results/checkerboard-diffusion-preview.png"
+          }
+        }
+      ]
+    },
+    {
+      "id": "rotated-anisotropic-diffusion",
+      "group": "elliptic",
+      "name": {
+        "ja": "回転異方性拡散：完全テンソルQ1とMG・AMG",
+        "en": "Rotated diffusion: full-tensor Q1, MG and AMG"
+      },
+      "chapter": "validation-coefficient-diffusion",
+      "reading_section": "rotated-anisotropic-diffusion",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/coefficient-diffusion/",
+      "verification": "/code/validated-examples/2026-11-23/coefficient-diffusion/verification.json",
+      "commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/coefficient-diffusion/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "rotated-anisotropic-diffusion"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/coefficient-diffusion/results/rotated-anisotropic-diffusion-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/coefficient-diffusion/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "rotated-anisotropic-diffusion",
+          "url": "/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/",
+          "name": {
+            "ja": "回転異方性拡散：完全テンソルQ1とMG・AMG",
+            "en": "Rotated diffusion: full-tensor Q1, MG and AMG"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-coefficient-diffusion/#rotated-anisotropic-diffusion",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-coefficient-diffusion/#rotated-anisotropic-diffusion"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#rotated-anisotropic-diffusion",
+      "run_commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "image": "/code/validated-examples/2026-11-23/coefficient-diffusion/results/rotated-anisotropic-diffusion-preview.png",
+      "image_sha256": "07d3edeeefee73b8d77b6322833feb33972ae5138093da04c3f414d974e55ee4",
+      "width": 990,
+      "height": 720,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "保存した2D解・誤差・真の残差・格子感度の検証図。",
+        "en": "Saved2D solution, error, true residual and refinement/reference sensitivity."
+      },
+      "visual_input": {
+        "id": "rotated-anisotropic-diffusion",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-23/coefficient-diffusion/results/rotated-anisotropic-diffusion-preview.png",
+        "caption": {
+          "ja": "保存した2D解・誤差・真の残差・格子感度の検証図。",
+          "en": "Saved2D solution, error, true residual and refinement/reference sensitivity."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#rotated-anisotropic-diffusion-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rotated-anisotropic-diffusion/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rotated-anisotropic-diffusion/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "rotated-anisotropic-diffusion",
+          "title": {
+            "ja": "回転異方性拡散：完全テンソルQ1とMG・AMG",
+            "en": "Rotated diffusion: full-tensor Q1, MG and AMG"
+          },
+          "group": "coefficient-diffusion",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/operators.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/multilevel.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/references/p1.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/experiments.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/test_diffusion.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/atlas-coefficient-diffusion-2026-11-23.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/verification.json",
+          "preview": {
+            "file": "rotated-anisotropic-diffusion-preview.png",
+            "caption": {
+              "ja": "保存した2D解・誤差・真の残差・格子感度の検証図。",
+              "en": "Saved2D solution, error, true residual and refinement/reference sensitivity."
+            },
+            "width": 990,
+            "height": 720,
+            "sha256": "07d3edeeefee73b8d77b6322833feb33972ae5138093da04c3f414d974e55ee4",
+            "url": "/code/validated-examples/2026-11-23/coefficient-diffusion/results/rotated-anisotropic-diffusion-preview.png"
+          }
+        }
+      ]
+    },
+    {
+      "id": "neutral-slab-yb",
+      "group": "gravity",
+      "name": {
+        "ja": "中性長方形スラブ：真2P参照とYB補正",
+        "en": "Neutral rectangular slab: genuine2P reference and YB"
+      },
+      "chapter": "validation-slab-ewald",
+      "reading_section": "neutral-slab-yb",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/slab-ewald/",
+      "verification": "/code/validated-examples/2026-11-23/slab-ewald/verification.json",
+      "commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/slab-ewald/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "neutral-slab-yb"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/slab-ewald/results/neutral-slab-yb-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/slab-ewald/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "neutral-slab-yb",
+          "url": "/numerical-methods-atlas/validation/neutral-slab-yb/",
+          "name": {
+            "ja": "中性長方形スラブ：真2P参照とYB補正",
+            "en": "Neutral rectangular slab: genuine2P reference and YB"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-slab-ewald/#neutral-slab-yb",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-slab-ewald/#neutral-slab-yb"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#neutral-slab-yb",
+      "run_commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "image": "/code/validated-examples/2026-11-23/slab-ewald/results/neutral-slab-yb-preview.png",
+      "image_sha256": "eff9876ae6570ebc5389e65f8a07b774e87e5ebccc7bab97b2e69bdc427c0206",
+      "width": 920,
+      "height": 592,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "固定入力を実際に計算した保存配列からの検証図。",
+        "en": "Validation figure from actual saved fixed-input calculation arrays."
+      },
+      "visual_input": {
+        "id": "neutral-slab-yb",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-23/slab-ewald/results/neutral-slab-yb-preview.png",
+        "caption": {
+          "ja": "固定入力を実際に計算した保存配列からの検証図。",
+          "en": "Validation figure from actual saved fixed-input calculation arrays."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#neutral-slab-yb-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/neutral-slab-yb/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/neutral-slab-yb/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "neutral-slab-yb",
+          "title": {
+            "ja": "中性長方形スラブ：真2P参照とYB補正",
+            "en": "Neutral rectangular slab: genuine2P reference and YB"
+          },
+          "group": "slab-ewald",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/neutral-slab-yb/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/neutral-slab-yb/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/electrostatics.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/references/twoperiodic.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/experiments.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/protocol.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/test_slab.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/atlas-slab-ewald-2026-11-23.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/verification.json",
+          "preview": {
+            "file": "neutral-slab-yb-preview.png",
+            "caption": {
+              "ja": "固定入力を実際に計算した保存配列からの検証図。",
+              "en": "Validation figure from actual saved fixed-input calculation arrays."
+            },
+            "width": 920,
+            "height": 592,
+            "sha256": "eff9876ae6570ebc5389e65f8a07b774e87e5ebccc7bab97b2e69bdc427c0206",
+            "url": "/code/validated-examples/2026-11-23/slab-ewald/results/neutral-slab-yb-preview.png"
+          }
+        }
+      ]
+    },
+    {
+      "id": "fmm3d-inverse-r",
+      "group": "gravity",
+      "name": {
+        "ja": "真3D 1/r FMM：多段変換・力・適応所有権",
+        "en": "Actual3D1/r FMM: multilevel translations, force and ownership"
+      },
+      "chapter": "validation-fmm3d",
+      "reading_section": "fmm3d-inverse-r",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/fmm3d/",
+      "verification": "/code/validated-examples/2026-11-23/fmm3d/verification.json",
+      "commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/fmm3d/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "fmm3d-inverse-r"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/fmm3d/results/fmm3d-inverse-r-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/fmm3d/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "fmm3d-inverse-r",
+          "url": "/numerical-methods-atlas/validation/fmm3d-inverse-r/",
+          "name": {
+            "ja": "真3D 1/r FMM：多段変換・力・適応所有権",
+            "en": "Actual3D1/r FMM: multilevel translations, force and ownership"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-fmm3d/#fmm3d-inverse-r",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-fmm3d/#fmm3d-inverse-r"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#fmm3d-inverse-r",
+      "run_commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "image": "/code/validated-examples/2026-11-23/fmm3d/results/fmm3d-inverse-r-preview.png",
+      "image_sha256": "7bd81db0f5de4b811f26cf8e45a13864842509d2d6c9ec57325572b1bb0e43a2",
+      "width": 920,
+      "height": 592,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "固定入力を実際に計算した保存配列からの検証図。",
+        "en": "Validation figure from actual saved fixed-input calculation arrays."
+      },
+      "visual_input": {
+        "id": "fmm3d-inverse-r",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-23/fmm3d/results/fmm3d-inverse-r-preview.png",
+        "caption": {
+          "ja": "固定入力を実際に計算した保存配列からの検証図。",
+          "en": "Validation figure from actual saved fixed-input calculation arrays."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#fmm3d-inverse-r-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fmm3d-inverse-r/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fmm3d-inverse-r/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "fmm3d-inverse-r",
+          "title": {
+            "ja": "真3D 1/r FMM：多段変換・力・適応所有権",
+            "en": "Actual3D1/r FMM: multilevel translations, force and ownership"
+          },
+          "group": "fmm3d",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm3d-inverse-r/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm3d-inverse-r/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/fmm.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/references/direct.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/experiments.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/protocol.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/test_fmm.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/atlas-fmm3d-2026-11-23.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/verification.json",
+          "preview": {
+            "file": "fmm3d-inverse-r-preview.png",
+            "caption": {
+              "ja": "固定入力を実際に計算した保存配列からの検証図。",
+              "en": "Validation figure from actual saved fixed-input calculation arrays."
+            },
+            "width": 920,
+            "height": 592,
+            "sha256": "7bd81db0f5de4b811f26cf8e45a13864842509d2d6c9ec57325572b1bb0e43a2",
+            "url": "/code/validated-examples/2026-11-23/fmm3d/results/fmm3d-inverse-r-preview.png"
+          }
+        }
+      ]
+    },
+    {
+      "id": "gravity-kepler",
+      "group": "gravity",
+      "name": {
+        "ja": "無軟化Kepler二体の時間誤差",
+        "en": "Unsoftened Kepler two-body time error"
+      },
+      "chapter": "validation-gravity-dynamics",
+      "reading_section": "gravity-kepler",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/gravity-dynamics/",
+      "verification": "/code/validated-examples/2026-11-23/gravity-dynamics/verification.json",
+      "commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/gravity-dynamics/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "gravity-kepler"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-kepler-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/gravity-dynamics/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "gravity-kepler",
+          "url": "/numerical-methods-atlas/validation/gravity-kepler/",
+          "name": {
+            "ja": "無軟化Kepler二体の時間誤差",
+            "en": "Unsoftened Kepler two-body time error"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-gravity-dynamics/#gravity-kepler",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-gravity-dynamics/#gravity-kepler"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#gravity-kepler",
+      "run_commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "image": "/code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-kepler-preview.png",
+      "image_sha256": "12b3902c4f90faa30226cf0ca1c14e35c9f1de85339c09acbb7818a47a8ae758",
+      "width": 920,
+      "height": 592,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "固定入力を実際に計算した保存配列からの検証図。",
+        "en": "Validation figure from actual saved fixed-input calculation arrays."
+      },
+      "visual_input": {
+        "id": "gravity-kepler",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-kepler-preview.png",
+        "caption": {
+          "ja": "固定入力を実際に計算した保存配列からの検証図。",
+          "en": "Validation figure from actual saved fixed-input calculation arrays."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#gravity-kepler-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-kepler/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-kepler/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "gravity-kepler",
+          "title": {
+            "ja": "無軟化Kepler二体の時間誤差",
+            "en": "Unsoftened Kepler two-body time error"
+          },
+          "group": "gravity-dynamics",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-kepler/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-kepler/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/dynamics.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/references/exact.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/experiments.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/protocol.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/test_dynamics.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/atlas-gravity-dynamics-2026-11-23.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/verification.json",
+          "preview": {
+            "file": "gravity-kepler-preview.png",
+            "caption": {
+              "ja": "固定入力を実際に計算した保存配列からの検証図。",
+              "en": "Validation figure from actual saved fixed-input calculation arrays."
+            },
+            "width": 920,
+            "height": 592,
+            "sha256": "12b3902c4f90faa30226cf0ca1c14e35c9f1de85339c09acbb7818a47a8ae758",
+            "url": "/code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-kepler-preview.png"
+          }
+        }
+      ]
+    },
+    {
+      "id": "gravity-plummer-short",
+      "group": "gravity",
+      "name": {
+        "ja": "冷たいPlummer密度由来32粒子の短時間力学",
+        "en": "Short-time32body dynamics from a cold Plummer-density sample"
+      },
+      "chapter": "validation-gravity-dynamics",
+      "reading_section": "gravity-plummer-short",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/gravity-dynamics/",
+      "verification": "/code/validated-examples/2026-11-23/gravity-dynamics/verification.json",
+      "commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/gravity-dynamics/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "gravity-plummer-short"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-plummer-short-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/gravity-dynamics/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "gravity-plummer-short",
+          "url": "/numerical-methods-atlas/validation/gravity-plummer-short/",
+          "name": {
+            "ja": "冷たいPlummer密度由来32粒子の短時間力学",
+            "en": "Short-time32body dynamics from a cold Plummer-density sample"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-gravity-dynamics/#gravity-plummer-short",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-gravity-dynamics/#gravity-plummer-short"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#gravity-plummer-short",
+      "run_commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "image": "/code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-plummer-short-preview.png",
+      "image_sha256": "be518533a4560b5e6a30e2e846c20a782d82624193f5f9f19a6c621cbe8b7f99",
+      "width": 920,
+      "height": 592,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "固定入力を実際に計算した保存配列からの検証図。",
+        "en": "Validation figure from actual saved fixed-input calculation arrays."
+      },
+      "visual_input": {
+        "id": "gravity-plummer-short",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-plummer-short-preview.png",
+        "caption": {
+          "ja": "固定入力を実際に計算した保存配列からの検証図。",
+          "en": "Validation figure from actual saved fixed-input calculation arrays."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#gravity-plummer-short-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-plummer-short/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-plummer-short/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "gravity-plummer-short",
+          "title": {
+            "ja": "冷たいPlummer密度由来32粒子の短時間力学",
+            "en": "Short-time32body dynamics from a cold Plummer-density sample"
+          },
+          "group": "gravity-dynamics",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-plummer-short/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-plummer-short/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/dynamics.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/references/exact.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/experiments.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/protocol.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/test_dynamics.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/atlas-gravity-dynamics-2026-11-23.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/verification.json",
+          "preview": {
+            "file": "gravity-plummer-short-preview.png",
+            "caption": {
+              "ja": "固定入力を実際に計算した保存配列からの検証図。",
+              "en": "Validation figure from actual saved fixed-input calculation arrays."
+            },
+            "width": 920,
+            "height": 592,
+            "sha256": "be518533a4560b5e6a30e2e846c20a782d82624193f5f9f19a6c621cbe8b7f99",
+            "url": "/code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-plummer-short-preview.png"
+          }
+        }
+      ]
+    },
+    {
+      "id": "thermal-landau-damping",
+      "group": "kinetic",
+      "name": {
+        "ja": "温かいPICの線形Landau減衰",
+        "en": "Warm PIC linear Landau damping"
+      },
+      "chapter": "validation-warm-pic",
+      "reading_section": "thermal-landau-damping",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/warm-pic/",
+      "verification": "/code/validated-examples/2026-11-23/warm-pic/verification.json",
+      "commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/warm-pic/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "thermal-landau-damping"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/warm-pic/results/thermal-landau-damping-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/warm-pic/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "thermal-landau-damping",
+          "url": "/numerical-methods-atlas/validation/thermal-landau-damping/",
+          "name": {
+            "ja": "温かいPICの線形Landau減衰",
+            "en": "Warm PIC linear Landau damping"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-landau-damping",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-landau-damping"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#thermal-landau-damping",
+      "run_commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "image": "/code/validated-examples/2026-11-23/warm-pic/results/thermal-landau-damping-preview.png",
+      "image_sha256": "133e293e074869a96b622d2c3cf420805aaac9b489c7cd3781e128b7073c8583",
+      "width": 1152,
+      "height": 672,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "実際に動かした粒子の初期(x,v)に対する速度変化δv/α。空間2D流体図ではなく1D1V位相空間の応答です。",
+        "en": "Actual evolved particle velocity change delta-v/alpha against initial(x,v); a1D1V phase-space response, not a2D physical-space flow."
+      },
+      "visual_input": {
+        "id": "thermal-landau-damping",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-23/warm-pic/results/thermal-landau-damping-preview.png",
+        "caption": {
+          "ja": "実際に動かした粒子の初期(x,v)に対する速度変化δv/α。空間2D流体図ではなく1D1V位相空間の応答です。",
+          "en": "Actual evolved particle velocity change delta-v/alpha against initial(x,v); a1D1V phase-space response, not a2D physical-space flow."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#thermal-landau-damping-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/thermal-landau-damping/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/thermal-landau-damping/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "thermal-landau-damping",
+          "title": {
+            "ja": "温かいPICの線形Landau減衰",
+            "en": "Warm PIC linear Landau damping"
+          },
+          "group": "warm-pic",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/thermal-landau-damping/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/thermal-landau-damping/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/primary.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/loading.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/references/linear.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/references/estimate.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/experiments.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/test_pic.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/atlas-warm-pic-2026-11-23.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/verification.json",
+          "preview": {
+            "file": "thermal-landau-damping-preview.png",
+            "caption": {
+              "ja": "実際に動かした粒子の初期(x,v)に対する速度変化δv/α。空間2D流体図ではなく1D1V位相空間の応答です。",
+              "en": "Actual evolved particle velocity change delta-v/alpha against initial(x,v); a1D1V phase-space response, not a2D physical-space flow."
+            },
+            "width": 1152,
+            "height": 672,
+            "sha256": "133e293e074869a96b622d2c3cf420805aaac9b489c7cd3781e128b7073c8583",
+            "url": "/code/validated-examples/2026-11-23/warm-pic/results/thermal-landau-damping-preview.png"
+          }
+        }
+      ]
+    },
+    {
+      "id": "thermal-two-stream",
+      "group": "kinetic",
+      "name": {
+        "ja": "温かいPICの二流初期成長",
+        "en": "Warm PIC two-stream initial growth"
+      },
+      "chapter": "validation-warm-pic",
+      "reading_section": "thermal-two-stream",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/warm-pic/",
+      "verification": "/code/validated-examples/2026-11-23/warm-pic/verification.json",
+      "commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/warm-pic/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "thermal-two-stream"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/warm-pic/results/thermal-two-stream-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/warm-pic/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "thermal-two-stream",
+          "url": "/numerical-methods-atlas/validation/thermal-two-stream/",
+          "name": {
+            "ja": "温かいPICの二流初期成長",
+            "en": "Warm PIC two-stream initial growth"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-two-stream",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-two-stream"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#thermal-two-stream",
+      "run_commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "image": "/code/validated-examples/2026-11-23/warm-pic/results/thermal-two-stream-preview.png",
+      "image_sha256": "d0cc625131eeda306e2e79c9e8c24f19995ebea315c06218a7c97506edc35584",
+      "width": 1152,
+      "height": 672,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "実粒子のT40での速度変化δv/αを初期(x,v)に表示。1D1V位相空間の後期診断で、成長率を検証する固定窓[12,20]とは分けます。",
+        "en": "Actual particle delta-v/alpha atT40against initial(x,v). This1D1Vphase-space image is a late diagnostic; growth rates are validated only over[12,20]."
+      },
+      "visual_input": {
+        "id": "thermal-two-stream",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-23/warm-pic/results/thermal-two-stream-preview.png",
+        "caption": {
+          "ja": "実粒子のT40での速度変化δv/αを初期(x,v)に表示。1D1V位相空間の後期診断で、成長率を検証する固定窓[12,20]とは分けます。",
+          "en": "Actual particle delta-v/alpha atT40against initial(x,v). This1D1Vphase-space image is a late diagnostic; growth rates are validated only over[12,20]."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#thermal-two-stream-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/thermal-two-stream/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/thermal-two-stream/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "thermal-two-stream",
+          "title": {
+            "ja": "温かいPICの二流初期成長",
+            "en": "Warm PIC two-stream initial growth"
+          },
+          "group": "warm-pic",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/thermal-two-stream/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/thermal-two-stream/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/primary.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/loading.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/references/linear.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/references/estimate.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/experiments.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/test_pic.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/atlas-warm-pic-2026-11-23.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/verification.json",
+          "preview": {
+            "file": "thermal-two-stream-preview.png",
+            "caption": {
+              "ja": "実粒子のT40での速度変化δv/αを初期(x,v)に表示。1D1V位相空間の後期診断で、成長率を検証する固定窓[12,20]とは分けます。",
+              "en": "Actual particle delta-v/alpha atT40against initial(x,v). This1D1Vphase-space image is a late diagnostic; growth rates are validated only over[12,20]."
+            },
+            "width": 1152,
+            "height": 672,
+            "sha256": "d0cc625131eeda306e2e79c9e8c24f19995ebea315c06218a7c97506edc35584",
+            "url": "/code/validated-examples/2026-11-23/warm-pic/results/thermal-two-stream-preview.png"
+          }
+        }
+      ]
+    },
+    {
+      "id": "dsmc-couette",
+      "group": "kinetic",
+      "name": {
+        "ja": "硬球DSMCの有限Kn Couette流",
+        "en": "Hard-sphere DSMC finite-Kn Couette flow"
+      },
+      "chapter": "validation-dsmc-wall",
+      "reading_section": "dsmc-couette",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/dsmc-wall/",
+      "verification": "/code/validated-examples/2026-11-23/dsmc-wall/verification.json",
+      "commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/dsmc-wall/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "dsmc-couette"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/dsmc-wall/results/dsmc-couette-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/dsmc-wall/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "dsmc-couette",
+          "url": "/numerical-methods-atlas/validation/dsmc-couette/",
+          "name": {
+            "ja": "硬球DSMCの有限Kn Couette流",
+            "en": "Hard-sphere DSMC finite-Kn Couette flow"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-wall/#dsmc-couette",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-wall/#dsmc-couette"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#dsmc-couette",
+      "run_commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "image": "/code/validated-examples/2026-11-23/dsmc-wall/results/dsmc-couette-preview.png",
+      "image_sha256": "cbb25893cb6b520b4516aa8efe0faa863b48460ff18e5b5d2cca0141cc28f439",
+      "width": 2176,
+      "height": 704,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "保存した実粒子の位置–速度ヒストグラム。1次元位置と分子速度の位相空間であり、2D物理流れではありません。",
+        "en": "Actual saved particle position-velocity histograms; phase space of1D position and molecular velocity,not2D physical flow."
+      },
+      "visual_input": {
+        "id": "dsmc-couette",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-23/dsmc-wall/results/dsmc-couette-preview.png",
+        "caption": {
+          "ja": "保存した実粒子の位置–速度ヒストグラム。1次元位置と分子速度の位相空間であり、2D物理流れではありません。",
+          "en": "Actual saved particle position-velocity histograms; phase space of1D position and molecular velocity,not2D physical flow."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#dsmc-couette-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-couette/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-couette/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "dsmc-couette",
+          "title": {
+            "ja": "硬球DSMCの有限Kn Couette流",
+            "en": "Hard-sphere DSMC finite-Kn Couette flow"
+          },
+          "group": "dsmc-wall",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-couette/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-couette/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/dsmc.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/diagnostics.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/references/generate.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/references/qualify.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/test_core.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/test_wall.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/atlas-dsmc-wall-2026-11-23.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/verification.json",
+          "preview": {
+            "file": "dsmc-couette-preview.png",
+            "caption": {
+              "ja": "保存した実粒子の位置–速度ヒストグラム。1次元位置と分子速度の位相空間であり、2D物理流れではありません。",
+              "en": "Actual saved particle position-velocity histograms; phase space of1D position and molecular velocity,not2D physical flow."
+            },
+            "width": 2176,
+            "height": 704,
+            "sha256": "cbb25893cb6b520b4516aa8efe0faa863b48460ff18e5b5d2cca0141cc28f439",
+            "url": "/code/validated-examples/2026-11-23/dsmc-wall/results/dsmc-couette-preview.png"
+          }
+        }
+      ]
+    },
+    {
+      "id": "dsmc-fourier",
+      "group": "kinetic",
+      "name": {
+        "ja": "硬球DSMCの有限Kn Fourier熱伝導",
+        "en": "Hard-sphere DSMC finite-Kn Fourier heat conduction"
+      },
+      "chapter": "validation-dsmc-wall",
+      "reading_section": "dsmc-fourier",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/dsmc-wall/",
+      "verification": "/code/validated-examples/2026-11-23/dsmc-wall/verification.json",
+      "commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/dsmc-wall/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "dsmc-fourier"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/dsmc-wall/results/dsmc-fourier-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/dsmc-wall/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "dsmc-fourier",
+          "url": "/numerical-methods-atlas/validation/dsmc-fourier/",
+          "name": {
+            "ja": "硬球DSMCの有限Kn Fourier熱伝導",
+            "en": "Hard-sphere DSMC finite-Kn Fourier heat conduction"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-wall/#dsmc-fourier",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-wall/#dsmc-fourier"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#dsmc-fourier",
+      "run_commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "image": "/code/validated-examples/2026-11-23/dsmc-wall/results/dsmc-fourier-preview.png",
+      "image_sha256": "87bfad63ef3230c67e56fb2c6e252f69075f311e2af565a363584461a2039a2a",
+      "width": 2176,
+      "height": 704,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "保存した実粒子の位置–速度ヒストグラム。1次元位置と分子速度の位相空間であり、2D物理流れではありません。",
+        "en": "Actual saved particle position-velocity histograms; phase space of1D position and molecular velocity,not2D physical flow."
+      },
+      "visual_input": {
+        "id": "dsmc-fourier",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-23/dsmc-wall/results/dsmc-fourier-preview.png",
+        "caption": {
+          "ja": "保存した実粒子の位置–速度ヒストグラム。1次元位置と分子速度の位相空間であり、2D物理流れではありません。",
+          "en": "Actual saved particle position-velocity histograms; phase space of1D position and molecular velocity,not2D physical flow."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#dsmc-fourier-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-fourier/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-fourier/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "dsmc-fourier",
+          "title": {
+            "ja": "硬球DSMCの有限Kn Fourier熱伝導",
+            "en": "Hard-sphere DSMC finite-Kn Fourier heat conduction"
+          },
+          "group": "dsmc-wall",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-fourier/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-fourier/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/dsmc.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/diagnostics.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/references/generate.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/references/qualify.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/test_core.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/test_wall.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/atlas-dsmc-wall-2026-11-23.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/verification.json",
+          "preview": {
+            "file": "dsmc-fourier-preview.png",
+            "caption": {
+              "ja": "保存した実粒子の位置–速度ヒストグラム。1次元位置と分子速度の位相空間であり、2D物理流れではありません。",
+              "en": "Actual saved particle position-velocity histograms; phase space of1D position and molecular velocity,not2D physical flow."
+            },
+            "width": 2176,
+            "height": 704,
+            "sha256": "87bfad63ef3230c67e56fb2c6e252f69075f311e2af565a363584461a2039a2a",
+            "url": "/code/validated-examples/2026-11-23/dsmc-wall/results/dsmc-fourier-preview.png"
+          }
+        }
+      ]
+    },
+    {
+      "id": "dsmc-planar-shock",
+      "group": "kinetic",
+      "name": {
+        "ja": "硬球DSMCのMach2平面衝撃波",
+        "en": "Hard-sphere DSMC Mach2 planar shock"
+      },
+      "chapter": "validation-dsmc-shock",
+      "reading_section": "dsmc-planar-shock",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/dsmc-shock/",
+      "verification": "/code/validated-examples/2026-11-23/dsmc-shock/verification.json",
+      "commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/dsmc-shock/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "dsmc-planar-shock"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/dsmc-shock/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "dsmc-planar-shock",
+          "url": "/numerical-methods-atlas/validation/dsmc-planar-shock/",
+          "name": {
+            "ja": "硬球DSMCのMach2平面衝撃波",
+            "en": "Hard-sphere DSMC Mach2 planar shock"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-shock/#dsmc-planar-shock",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-shock/#dsmc-planar-shock"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#dsmc-planar-shock",
+      "run_commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "image": "/code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock-preview.png",
+      "image_sha256": "89e25d3088c177ac0cb027fe58f02627b049626d0198bda02abc0eb6fec6555c",
+      "width": 2176,
+      "height": 704,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "保存した実粒子の位置–速度ヒストグラム。1次元位置と分子速度の位相空間であり、2D物理流れではありません。",
+        "en": "Actual saved particle position-velocity histograms; phase space of1D position and molecular velocity,not2D physical flow."
+      },
+      "visual_input": {
+        "id": "dsmc-planar-shock",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock-preview.png",
+        "caption": {
+          "ja": "保存した実粒子の位置–速度ヒストグラム。1次元位置と分子速度の位相空間であり、2D物理流れではありません。",
+          "en": "Actual saved particle position-velocity histograms; phase space of1D position and molecular velocity,not2D physical flow."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#dsmc-planar-shock-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-planar-shock/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-planar-shock/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "dsmc-planar-shock",
+          "title": {
+            "ja": "硬球DSMCのMach2平面衝撃波",
+            "en": "Hard-sphere DSMC Mach2 planar shock"
+          },
+          "group": "dsmc-shock",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/dsmc.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/diagnostics.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/references/generate.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/references/qualify.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/test_arrivals.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/test_core.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/test_matching.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/test_shock.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/atlas-dsmc-shock-2026-11-23.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/verification.json",
+          "preview": {
+            "file": "dsmc-planar-shock-preview.png",
+            "caption": {
+              "ja": "保存した実粒子の位置–速度ヒストグラム。1次元位置と分子速度の位相空間であり、2D物理流れではありません。",
+              "en": "Actual saved particle position-velocity histograms; phase space of1D position and molecular velocity,not2D physical flow."
+            },
+            "width": 2176,
+            "height": 704,
+            "sha256": "89e25d3088c177ac0cb027fe58f02627b049626d0198bda02abc0eb6fec6555c",
+            "url": "/code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock-preview.png"
+          }
+        }
+      ]
     }
   ],
   "source_sha256": {
-    "catalog/atlas-gallery.json": "5d5db4f912d118e9084c0f5dbbbfa175de51ef385ab05ec5a44e01186a1ec411",
+    "catalog/atlas-gallery.json": "6a6414104521aad29f6c6d60954b6d8e5173a30ea65ddaded9f77e98e3d8689b",
     "scripts/render-atlas-gallery.py": "62956b5a0ece0c5144ec079bb30f36e44b3ccf97e4b56b677d4de356cdbab04c",
     "code/numerical-methods-atlas/2026-11-21/numart/benchmarks.py": "dc8f83aafea473b5f0e1e7bf82630484dd60aa446859c1f602571adc3c59f019",
     "code/numerical-methods-atlas/2026-11-21/numart/solvers.py": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d",
@@ -9989,8 +11336,8 @@
     "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
     "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
     "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
-    "catalog/atlas-test-problems.json": "a6a2e764bf990e33073c55a271f884df9ecd5c4d0f216fa8aaad1e83d7f00124",
-    "catalog/atlas-depth-expansion.json": "25b030e85b4313197b9d98802270ffb65507ea0f8915bab9cbf64dabbf7fa47e",
+    "catalog/atlas-test-problems.json": "afed5c8301d0ce97928d8c47712ecd08c492b34e1ee289c9b7652f382562377b",
+    "catalog/atlas-depth-expansion.json": "bfd3d4d52c78416dc2140beafdf559f8b6e98373d55e7fbb95ec85f7c296d7ee",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
     "code/validated-examples/2026-11-22/foundations/inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -10259,18 +11606,82 @@
     "code/validated-examples/2026-11-23-r2/instability-growth/results/kh-initial-growth-preview.png": "eccd098101115bcf7a933ddc47a47974e715d92e285a73be87f9e0e9d611ca13",
     "code/validated-examples/2026-11-23-r2/instability-growth/results/rt-initial-growth.png": "349f1c7cb35695180088bb3b66c4b0c8a26407ee0a4c9bccf4de48b37f160bbf",
     "code/validated-examples/2026-11-23-r2/instability-growth/results/rt-initial-growth-preview.png": "846b71c11b1112ff71e8d000a0793190ecde8a345b482426a6fde6894e8cca18",
+    "code/validated-examples/2026-11-23/coefficient-diffusion/cases.json": "c861a45e8f07dbce47bb74c62a57427117cd1e5d20d3d914a588be0a1c26785a",
+    "code/validated-examples/2026-11-23/coefficient-diffusion/inputs.json": "f826020743e6fa3ba8776806a29e9e60e8feeceb71e821a7f24542a89bc19155",
+    "code/validated-examples/2026-11-23/coefficient-diffusion/source-manifest.json": "2d927e3042eb221498be0f5f0bf5e7363cdb280247379f92dfaacce47b62b914",
+    "code/validated-examples/2026-11-23/coefficient-diffusion/verification.json": "49dcdd24f0d90110fb0bbb1f28a8a9bce0c8d4fdd3645d0cd5a79722f3fe39c2",
+    "code/validated-examples/2026-11-23/coefficient-diffusion/results/result.json": "13f91d2a2e927aa59a5a043005d98d267cebc1b6a5c57a7ab966b2670f86635c",
+    "code/validated-examples/2026-11-23/coefficient-diffusion/results/checkerboard-diffusion.png": "d64eec93ced27bb3f052e58368a528812aa073d093008d7424cedb8491e34bb0",
+    "code/validated-examples/2026-11-23/coefficient-diffusion/results/checkerboard-diffusion-preview.png": "874bbea94425c356ca0881fd0db4da26bccd8be3f0add3bbb0267e78c244eb1b",
+    "code/validated-examples/2026-11-23/coefficient-diffusion/results/rotated-anisotropic-diffusion.png": "4ed33ed27a1e4f31f1c7dd980ca117f62b8327acb8c227e848b5f8b08755724a",
+    "code/validated-examples/2026-11-23/coefficient-diffusion/results/rotated-anisotropic-diffusion-preview.png": "07d3edeeefee73b8d77b6322833feb33972ae5138093da04c3f414d974e55ee4",
+    "code/validated-examples/2026-11-23/slab-ewald/cases.json": "e1533bdaff925ba7f441dd1c719988f6a8cbbecfe32516a9cb573518a39b7875",
+    "code/validated-examples/2026-11-23/slab-ewald/inputs.json": "138a6b185ce7a33c4bd55c2939db51c455b331033a7775bdf7c5048fe4d16d36",
+    "code/validated-examples/2026-11-23/slab-ewald/source-manifest.json": "94e960898e16b4e2f0c571deb81bad3e3602a7a6333a4beaa43a5272a9366311",
+    "code/validated-examples/2026-11-23/slab-ewald/verification.json": "1ba388ae7557baa644f6b773811cf78ad23b20b5938db8a5d748fba741bc9684",
+    "code/validated-examples/2026-11-23/slab-ewald/results/result.json": "a81227eaee02508eab1ee1b6bec2a9177131c798191ca2b4338cf7205bb4c8d8",
+    "code/validated-examples/2026-11-23/slab-ewald/results/neutral-slab-yb.png": "3eba6d26a3bf4cdde1ed6586f9a740199e73afbaf708e5d706fa3e48aa1e5f2e",
+    "code/validated-examples/2026-11-23/slab-ewald/results/neutral-slab-yb-preview.png": "eff9876ae6570ebc5389e65f8a07b774e87e5ebccc7bab97b2e69bdc427c0206",
+    "code/validated-examples/2026-11-23/fmm3d/cases.json": "ca113f993ead48117c2678734dbb774a07d7911eab0f3392a4ac897b48f1b5f9",
+    "code/validated-examples/2026-11-23/fmm3d/inputs.json": "98737ca72d6c5221165bcbf8da2fd1b3ef58f9979276eb9a33c51bac9460a185",
+    "code/validated-examples/2026-11-23/fmm3d/source-manifest.json": "bc624983d4b0480538aa873ff2a867491e4384d25ea39930b5bb948b98e59c89",
+    "code/validated-examples/2026-11-23/fmm3d/verification.json": "b6cc2a0ad2f31c01ebd833447f7f6d9496db6df5f6c14deb93d4f057d177c175",
+    "code/validated-examples/2026-11-23/fmm3d/results/result.json": "ccb60af7e0a8a3f71ca7b36ddfb6b23eb4cefd91709a10ff00ec28d6aa330199",
+    "code/validated-examples/2026-11-23/fmm3d/results/fmm3d-inverse-r.png": "0ee54214dba1b696efca45dcbf0749c4ddc7c1c031d473632cb8083c2e9f0eaa",
+    "code/validated-examples/2026-11-23/fmm3d/results/fmm3d-inverse-r-preview.png": "7bd81db0f5de4b811f26cf8e45a13864842509d2d6c9ec57325572b1bb0e43a2",
+    "code/validated-examples/2026-11-23/gravity-dynamics/cases.json": "de18f8a723bdd60efac585abf95e17f125e6f4e68823d147445cb0f3e0f172a7",
+    "code/validated-examples/2026-11-23/gravity-dynamics/inputs.json": "ff5e6fe829f7efec19348300f37b47d4897ce57a516ff52153d74652154bd4e4",
+    "code/validated-examples/2026-11-23/gravity-dynamics/source-manifest.json": "ac07fb7bbb54a8f5ac7e20ceb9ea2ecdbc7ca2fd6d524072f609ef52ee79655b",
+    "code/validated-examples/2026-11-23/gravity-dynamics/verification.json": "47839837648f140ffb9696b7974dba4d6858bd15569e0415274a330d6e286ca3",
+    "code/validated-examples/2026-11-23/gravity-dynamics/results/result.json": "d5129ce2c86fa37b8baa3abd0c9822323768e8ff0915abf86b23ef041bae837b",
+    "code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-kepler.png": "9f19e5bd2d2cc822fb0933f883f39255d3cbd4b7c60de2e57e65c51e1f25b026",
+    "code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-kepler-preview.png": "12b3902c4f90faa30226cf0ca1c14e35c9f1de85339c09acbb7818a47a8ae758",
+    "code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-plummer-short.png": "0c66cdfc63ca13037d6c9f1938c3acd7be577a824c13229d46b88fe020b89821",
+    "code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-plummer-short-preview.png": "be518533a4560b5e6a30e2e846c20a782d82624193f5f9f19a6c621cbe8b7f99",
+    "code/validated-examples/2026-11-23/warm-pic/cases.json": "34d7e1d14e91f84fb40883ccca8343dd216c7850826a7c6070c6139aee358730",
+    "code/validated-examples/2026-11-23/warm-pic/inputs.json": "e593a8e0308c6aa4de9b92f0887394d65b253ff9f123db726296385d889906c6",
+    "code/validated-examples/2026-11-23/warm-pic/source-manifest.json": "c38a3af2f3854853fdfc29033ec482551cf187e76cacf6e85717d26319b98776",
+    "code/validated-examples/2026-11-23/warm-pic/verification.json": "c8af7a2828d26a884774f3325c9fc64c489855db9a14eab6325b1f510f8953d1",
+    "code/validated-examples/2026-11-23/warm-pic/results/result.json": "055d3a90ef7eb53cb59405884f2a6f9db3bcf9bbb0cec459f39d5e723615b03e",
+    "code/validated-examples/2026-11-23/warm-pic/results/thermal-landau-damping.png": "a6f87bd3c015fffe2ae1c1496e5648aa67bc3fb81d14c0dac3c41f19f84acc01",
+    "code/validated-examples/2026-11-23/warm-pic/results/thermal-landau-damping-preview.png": "133e293e074869a96b622d2c3cf420805aaac9b489c7cd3781e128b7073c8583",
+    "code/validated-examples/2026-11-23/warm-pic/results/thermal-two-stream.png": "e732225e4276913e1764258dda3fa43b7be3e0fc7dbe47bace295c5a007f1736",
+    "code/validated-examples/2026-11-23/warm-pic/results/thermal-two-stream-preview.png": "d0cc625131eeda306e2e79c9e8c24f19995ebea315c06218a7c97506edc35584",
+    "code/validated-examples/2026-11-23/pic-spatial/cases.json": "162abe59e4c4e975cfc908543556206a50b372572356dcef5f908be739dd4d67",
+    "code/validated-examples/2026-11-23/pic-spatial/inputs.json": "8e11e04349f7d8df800b5244b0aa7faf9238ea41d4bcbaf8411885fe70529efa",
+    "code/validated-examples/2026-11-23/pic-spatial/source-manifest.json": "cb2990ccac19fc27ae3c21fbf0fe20d49592dfb1dbedfe25fa808094cbe38b55",
+    "code/validated-examples/2026-11-23/pic-spatial/verification.json": "8d8a7e9105d39ea8f55a4700e686c074c77930b99a8146130cf2d1a4f58e0edb",
+    "code/validated-examples/2026-11-23/pic-spatial/results/result.json": "79fd92b4793f435e9899d9e50cb17fcdec9d5df116f3790ff7222edf2208ae3f",
+    "code/validated-examples/2026-11-23/pic-spatial/results/pic-independent-spatial.png": "de8677583f27524c02fa336f64f31346092274ef880931f5b84f96f0ec2862f6",
+    "code/validated-examples/2026-11-23/pic-spatial/results/pic-independent-spatial-preview.png": "a04e6b6cb2e4e0f8498eee4f268e23044ced33a273423435e01554eab82b338d",
+    "code/validated-examples/2026-11-23/dsmc-wall/cases.json": "0b1fb2514bff09c0dd5e214348a875f15f37cbde756afbf88ea2fcac188e7bb5",
+    "code/validated-examples/2026-11-23/dsmc-wall/inputs.json": "622f9833fba4eab8362b77c0fee95140f8009606a45ba77a695dd2d9ec7dcecb",
+    "code/validated-examples/2026-11-23/dsmc-wall/source-manifest.json": "86b7629e41658327280445b9e0a03e9e3c2894886a06f32c1dafcbeb6a7b811b",
+    "code/validated-examples/2026-11-23/dsmc-wall/verification.json": "c468aabcd27c1d73d44923b83d0d5a2b267f61114c37beb4743bdfcf8b63a048",
+    "code/validated-examples/2026-11-23/dsmc-wall/results/result.json": "e25dc3114ca3149ec876c88d5cdaf7e1cd8b2639e71e09fd8338f0e488e52824",
+    "code/validated-examples/2026-11-23/dsmc-wall/results/dsmc-couette.png": "d122d7866e7a6d2b6d61e11c1d6401d2d9cea4a16a183d65b1e98d3fcf36bcd9",
+    "code/validated-examples/2026-11-23/dsmc-wall/results/dsmc-couette-preview.png": "cbb25893cb6b520b4516aa8efe0faa863b48460ff18e5b5d2cca0141cc28f439",
+    "code/validated-examples/2026-11-23/dsmc-wall/results/dsmc-fourier.png": "1c8a01a81e2bb848e188aae3d6bb27183ea779f03ca53cd8a355a01dc72aa980",
+    "code/validated-examples/2026-11-23/dsmc-wall/results/dsmc-fourier-preview.png": "87bfad63ef3230c67e56fb2c6e252f69075f311e2af565a363584461a2039a2a",
+    "code/validated-examples/2026-11-23/dsmc-shock/cases.json": "c5055607e9aa3b76824051db6fdf01ffa9e01243f6989f0a348519045eddea22",
+    "code/validated-examples/2026-11-23/dsmc-shock/inputs.json": "ef53152d7f42f153843ec505116be67377db77336bf14dd724c4f253d4d0f166",
+    "code/validated-examples/2026-11-23/dsmc-shock/source-manifest.json": "2dfb1b6074aec28dddb083cc715c85080be678f39e55b2472c518730ec72c766",
+    "code/validated-examples/2026-11-23/dsmc-shock/verification.json": "fdca2ddb0069b640ef24da3de9766b5ccee5c5a117c7017589bd0de07d003623",
+    "code/validated-examples/2026-11-23/dsmc-shock/results/result.json": "5c33c06b72bb7f5f778b21e02e02804df57eb82cad2e15d08e5f06acf8196599",
+    "code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock.png": "7e0e1af4543efca816a5b900b2f4c9d4fc3fccacbf1eb3e367e6e4775c2cd92c",
+    "code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock-preview.png": "89e25d3088c177ac0cb027fe58f02627b049626d0198bda02abc0eb6fec6555c",
     "code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py": "4ad61ac54dfa59d7d61959c5699f290e2386c23bf5b4b930a5d98576feaa54d1",
     "code/numerical-methods-atlas/2026-11-21/tests/test_linear.py": "5e7323f2734fb7328c35706ccd90fc25076bd46d01d32cd9c78c8cd25dd0421f",
     "code/numerical-methods-atlas/2026-11-21/tests/test_sparse_fem.py": "4076e514e0b9b5fd94dead4af33fe7e7548fba6a7b48b3e21a406034f7170afb",
     "code/numerical-methods-atlas/2026-11-21/tests/test_runge_kutta.py": "920a5eb560afe7f560cae8d22f879f125851f4ee0451b24720d0eca0082c31ce",
     "code/numerical-methods-atlas/2026-11-21/tests/test_new_models.py": "2937daf8fa8ad86882ac06e47835a6309ca1df3d0283c7dfb7b9606dc3906b1f",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "73396f2b5c9f8b58bf3b4dc0ba200fe473d08c5e2688cf6aa3f775a76517eb46",
+    "numerical-methods-atlas/gallery/preview-manifest.json": "d059eabffc63320705c4b10dc4bbc74d338ee123979313b3a106b6edd436b84e",
     "numerical-methods-atlas/gallery/calculations.json": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6",
     "numerical-methods-atlas/gallery/verification.json": "46c39543afa9d943dfef896fadbc8f84d847f1a145d9b1427a2336de7a3a50f9",
-    "numerical-methods-atlas/test-cases/index.json": "05dc0c443ec9b16bf09c325a8f2a79dc62f05c9390e5e568c3d70cc6794236b3",
+    "numerical-methods-atlas/test-cases/index.json": "60c019ff7eb5a62cb0a35d1b8b909e62056fad0e2b22b06a202f2f94fe5bd952",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "scripts/atlas_execution_discovery.py": "3431dae95fb0adc68e1deca07b406b70bd99480f9ad6023a31765cb07ccf84be",
-    "scripts/atlas_depth_release.py": "a8214ed38acbac2bba35129a0027903af0eea663f788d347ec4c5cb74fa880da",
+    "scripts/atlas_depth_release.py": "b1405b9a051f894358e076264945372c0e036f7f223376af4a5cbc80cda413d7",
     "scripts/atlas_goal_availability.py": "110f9026c13acbba1c02bfc6dd3234ba3e7ead631a5fefd129cee9d9ec30721b",
     "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
     "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
@@ -10305,6 +11716,14 @@
     "code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip": "8b6d4d9d30c9ed12fd29b7b91a11c16dc183b9aea49234966a66c376713ebf90",
     "code/validated-examples/2026-11-23/mesh-boundary/atlas-mesh-boundary-2026-11-23.zip": "51032054029345b8f187ebb12e1a0d8d4473b70312f29585a160fc3b0fdca315",
     "code/validated-examples/2026-11-23/moving-waves/atlas-moving-waves-2026-11-23.zip": "d9f2f8bff3bf5d9fa7c1118c0968e9c0374fd5e9a6d3f7f99352abc0841e3b7d",
-    "code/validated-examples/2026-11-23/relativistic/atlas-relativistic-2026-11-23.zip": "c80b18e40f259d72aae6375d59faa0bd3c6c1b00b50da06538004bb6462a7185"
+    "code/validated-examples/2026-11-23/relativistic/atlas-relativistic-2026-11-23.zip": "c80b18e40f259d72aae6375d59faa0bd3c6c1b00b50da06538004bb6462a7185",
+    "code/validated-examples/2026-11-23/coefficient-diffusion/atlas-coefficient-diffusion-2026-11-23.zip": "c53624aa03cf7f945297e7bd09d72030e111e035c3ce7174fd2da9e86756b666",
+    "code/validated-examples/2026-11-23/slab-ewald/atlas-slab-ewald-2026-11-23.zip": "168b250fd18b209534fe8a767afc689ea11b6b8ca95657a7c0ff0d8803f00414",
+    "code/validated-examples/2026-11-23/fmm3d/atlas-fmm3d-2026-11-23.zip": "61861fb2a1d24437175710a09c4afdc934aab49c1c2f2e3e14b5a3c2d466b59c",
+    "code/validated-examples/2026-11-23/gravity-dynamics/atlas-gravity-dynamics-2026-11-23.zip": "47f1a4bdb8a6a5fdac82e66ffbe8b32c59242ffb7f9f05b418a37bd5913ffacd",
+    "code/validated-examples/2026-11-23/warm-pic/atlas-warm-pic-2026-11-23.zip": "10661b33b9d36f35721fa1ed55b12b94926fe6fab47b8dd1e5dea52a61415fdb",
+    "code/validated-examples/2026-11-23/pic-spatial/atlas-pic-spatial-2026-11-23.zip": "51da779a41f2109fbd22d1628463b8be3770ee93b61e49529b1b48a19f431bc3",
+    "code/validated-examples/2026-11-23/dsmc-wall/atlas-dsmc-wall-2026-11-23.zip": "7b6d5a11874a0042ce772df4c241c72ce42f861c43ed0d44164074ba662da0cb",
+    "code/validated-examples/2026-11-23/dsmc-shock/atlas-dsmc-shock-2026-11-23.zip": "a0781fe0b577cd65f60489e77672bbfdbc7d1f657c9514ad1c0c862125ba4eda"
   }
 }

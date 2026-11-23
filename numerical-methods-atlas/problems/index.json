@@ -14210,6 +14210,25 @@
             "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#poisson-laplace-ja",
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#poisson-laplace-en"
           }
+        },
+        {
+          "id": "vlasov-poisson",
+          "name": {
+            "ja": "静電Vlasov–Poisson方程式",
+            "en": "Electrostatic Vlasov–Poisson equations"
+          },
+          "formula": [
+            "\\partial_t f+v\\partial_x f-E\\partial_v f=0",
+            "\\partial_x E=1-\\int f\\,dv,\\quad\\int E\\,dx=0"
+          ],
+          "note": {
+            "ja": "1D1V電子と固定中性化背景。重み付き全分布PICの粒子・格子・時間近似と、線形参照の範囲を分けます。",
+            "en": "1D1V electrons and fixed neutralizing background. Separate weighted full-f particle,mesh and time approximations from the linear-reference scope."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#vlasov-poisson-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#vlasov-poisson-en"
+          }
         }
       ],
       "equation_note": {
@@ -14250,9 +14269,54 @@
             "ja": "冷たい1次元周期プラズマのquiet-start収束と、独立seedでの初期粒子雑音を分け、電荷・運動量・Gauss則・エネルギー誤差を保存します。",
             "en": "Separate quiet-start refinement of a cold 1D periodic plasma from independent-seed initial particle noise; record charge, momentum, Gauss diagnostics and energy error."
           }
+        },
+        {
+          "id": "supplement-pic-independent-spatial",
+          "name": {
+            "ja": "PIC空間演算の独立実装照合",
+            "en": "Independently coded PIC spatial pipeline"
+          },
+          "source": "supplement",
+          "role": "example-definition",
+          "latex": [
+            "\\rho_j=1-\\frac1h\\sum_p w_p S_j(x_p),\\quad a_p=-\\sum_j S_j(x_p)E_j",
+            "\\widehat E_m=\\widehat\\rho_m/(ik_m),\\quad E_0=0,\\quad E_{N/2}=0\\ \\text{(even N)}",
+            "\\rho=-\\tfrac12\\cos2x\\ \\Longrightarrow\\ E=-\\tfrac14\\sin2x,\\quad a=+\\tfrac14\\sin2x"
+          ],
+          "note": {
+            "ja": "ベクトル化CIC/FFTと、別に書いた粒子ループCIC・密なDFTを、それぞれが自己無撞着な場を毎kick計算する軌道全体で照合します。",
+            "en": "Compare vectorized CIC/FFT with separately authored scalar-particle CIC/dense DFT; each trajectory sources its own field at every kick."
+          }
         }
       ],
-      "references": [],
+      "references": [
+        {
+          "id": "pic-independent-spatial",
+          "kind": "numerical-reference",
+          "kind_label": {
+            "ja": "有限格子の数値参照",
+            "en": "Finite-grid numerical reference"
+          },
+          "title": {
+            "ja": "PIC空間演算の独立実装照合",
+            "en": "Independently coded PIC spatial pipeline"
+          },
+          "formula": "rho=-.5cos(2x) => E=-.25sin(2x), electron a=+.25sin(2x); independent scalar CIC + dense DFT owns its self-consistent field every kick.",
+          "assumptions": {
+            "ja": "周期[0,2π]、256粒子、格子8/16/32、シード35001/35002、dt=.02、T=.24。位置は一様乱数、v=.2 Normal+.1 sin x。6組は別々に進めた12軌道です。 19 pytestと58/58固定判定が合格。6組＝12の自己無撞着軌道を13時刻全てで照合し、最大差は位置8.88e−16・速度3.33e−16・電場8.33e−16・電荷2.89e−15。pytest+mainは0.392秒。最初の小pytestは周期端点の添字不具合で17/18となり、元記録を保持して修正後に全計算を実行しました。 離散演算の独立したコーディング照合です。時間積分法や連続方程式を変えた独立エンジン、連続極限の収束、冷たいプラズマの振動参照の再現を意味しません。既存cold-plasma-picの関連補助検証として扱い、温かい初期速度の軌道を冷たい解と同一視しません。",
+            "en": "Periodic[0,2pi],256particles,grids8/16/32,seeds35001/35002,dt.02,T.24. Uniform random positions,v=.2Normal+.1sin(x). Six pairs mean twelve separately evolved trajectories."
+          },
+          "relation": "related-model",
+          "note": {
+            "ja": "周期[0,2π]、256粒子、格子8/16/32、シード35001/35002、dt=.02、T=.24。位置は一様乱数、v=.2 Normal+.1 sin x。6組は別々に進めた12軌道です。",
+            "en": "Periodic[0,2pi],256particles,grids8/16/32,seeds35001/35002,dt.02,T.24. Uniform random positions,v=.2Normal+.1sin(x). Six pairs mean twelve separately evolved trajectories."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pic-independent-spatial/?lang=ja#pic-independent-spatial-ja-measurements",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pic-independent-spatial/?lang=en#pic-independent-spatial-en-measurements"
+          }
+        }
+      ],
       "reference_note": {
         "ja": "小振幅の冷たいプラズマの線形変位cos(t)と比較し、電荷整合性・Poisson残差・自己力、格子系列と時間刻み系列を確認します。一般の非線形PIC軌道の厳密解という主張ではありません。 追加版は静止イオン背景のまま、電荷・運動量・粒子と場のエネルギーを軌道誤差と分けます。小振幅線形参照であり、熱的Landau減衰や電磁PICの根拠ではありません。",
         "en": "Compare with linear cold-plasma displacement cos(t); check charge compatibility, Poisson residual, self force, and separate grid/timestep series. This is not an exact reference for general nonlinear PIC trajectories. The companion retains stationary background ions and separates charge, momentum and particle/field-energy diagnostics from trajectory error. Its reference is small-amplitude linear theory, supplying no evidence for thermal Landau damping or electromagnetic PIC."
@@ -14269,6 +14333,32 @@
           "url": {
             "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pic/?lang=ja",
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pic/?lang=en"
+          }
+        },
+        {
+          "id": "cic",
+          "name": {
+            "ja": "Cloud-in-cellの割当てと補間",
+            "en": "Cloud-in-cell assignment and interpolation"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/cic/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/cic/?lang=en"
+          }
+        },
+        {
+          "id": "verlet",
+          "name": {
+            "ja": "速度Verlet／粒子leapfrog法",
+            "en": "Velocity Verlet / particle leapfrog"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/verlet/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/verlet/?lang=en"
           }
         }
       ],
@@ -14379,6 +14469,61 @@
             "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_kinetics.py",
             "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_longrange.py",
             "https://hrkoyama.github.io/code/validated-examples/2026-11-22/particle-transport/test_runner.py"
+          ],
+          "source_scope": "package"
+        },
+        {
+          "id": "pic-independent-spatial",
+          "kind": "supplement",
+          "name": {
+            "ja": "PIC空間演算の独立実装照合",
+            "en": "Independently coded PIC spatial pipeline"
+          },
+          "method_ids": [
+            "pic",
+            "cic",
+            "verlet"
+          ],
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pic-independent-spatial/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pic-independent-spatial/?lang=en"
+          },
+          "scope": {
+            "ja": "ベクトル化CIC/FFTと、別に書いた粒子ループCIC・密なDFTを、それぞれが自己無撞着な場を毎kick計算する軌道全体で照合します。",
+            "en": "Compare vectorized CIC/FFT with separately authored scalar-particle CIC/dense DFT; each trajectory sources its own field at every kick."
+          },
+          "assumptions": {
+            "ja": "周期[0,2π]、256粒子、格子8/16/32、シード35001/35002、dt=.02、T=.24。位置は一様乱数、v=.2 Normal+.1 sin x。6組は別々に進めた12軌道です。",
+            "en": "Periodic[0,2pi],256particles,grids8/16/32,seeds35001/35002,dt.02,T.24. Uniform random positions,v=.2Normal+.1sin(x). Six pairs mean twelve separately evolved trajectories."
+          },
+          "limits": {
+            "ja": "離散演算の独立したコーディング照合です。時間積分法や連続方程式を変えた独立エンジン、連続極限の収束、冷たいプラズマの振動参照の再現を意味しません。既存cold-plasma-picの関連補助検証として扱い、温かい初期速度の軌道を冷たい解と同一視しません。",
+            "en": "Independent coding check of discrete spatial operators. It does not change the time integrator/continuum model, establish continuum convergence, or reproduce the cold-plasma oscillation reference. A related supplement of cold-plasma-pic; the finite warm velocity spread is explicit."
+          },
+          "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/inputs.json",
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/atlas-pic-spatial-2026-11-23.zip",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/verification.json",
+          "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/source-manifest.json",
+          "commands": [
+            "python -m pip install -r requirements.txt",
+            "python -m pytest -q",
+            "python run.py --input inputs.json --output output"
+          ],
+          "reference_note": {
+            "ja": "19 pytestと58/58固定判定が合格。6組＝12の自己無撞着軌道を13時刻全てで照合し、最大差は位置8.88e−16・速度3.33e−16・電場8.33e−16・電荷2.89e−15。pytest+mainは0.392秒。最初の小pytestは周期端点の添字不具合で17/18となり、元記録を保持して修正後に全計算を実行しました。",
+            "en": "19pytest and58/58fixed gates passed. Compare six pairs=twelve self-consistent trajectories at all13states; maximum differences:x8.88e-16,v3.33e-16,E8.33e-16,rho2.89e-15. Shared pytest+main.392s. Initial small pytest retained17/18with a periodic-index failure; integer wrapping was corrected before the first fixed main batch."
+          },
+          "reference_data": [],
+          "results": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/results/result.json"
+          ],
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/primary.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/references/scalar_pic.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/test_spatial.py"
           ],
           "source_scope": "package"
         }
@@ -18080,8 +18225,8 @@
         {
           "id": "q1-fem",
           "name": {
-            "ja": "Q1有限要素法（曲線座標ベクトルBVP）",
-            "en": "Q1 FEM for mapped-coordinate vector BVP"
+            "ja": "Q1有限要素法（スカラー拡散・曲線座標ベクトルBVP）",
+            "en": "Q1 FEM for scalar diffusion and mapped vector BVPs"
           },
           "status": "educational-example",
           "role": "execution",
@@ -19394,14 +19539,2203 @@
         }
       ],
       "code_checks": []
+    },
+    {
+      "schema_version": 1,
+      "id": "checkerboard-diffusion",
+      "name": {
+        "ja": "係数ジャンプ拡散：共有流束とMG・AMG",
+        "en": "Checkerboard diffusion: shared flux, MG and AMG"
+      },
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/checkerboard-diffusion/",
+      "hub": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/checkerboard-diffusion/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/checkerboard-diffusion/?lang=en"
+      },
+      "image": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/results/checkerboard-diffusion-preview.png",
+        "sha256": "874bbea94425c356ca0881fd0db4da26bccd8be3f0add3bbb0267e78c244eb1b",
+        "width": 990,
+        "height": 720,
+        "caption": {
+          "ja": "保存した2D解・誤差・真の残差・格子感度の検証図。",
+          "en": "Saved2D solution, error, true residual and refinement/reference sensitivity."
+        },
+        "source_kind": "existing-figure"
+      },
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-coefficient-diffusion/#checkerboard-diffusion",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-coefficient-diffusion/#checkerboard-diffusion"
+      },
+      "conditions": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#checkerboard-diffusion",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#checkerboard-diffusion-en"
+      },
+      "equations": [
+        {
+          "id": "tensor-diffusion",
+          "name": {
+            "ja": "不連続係数・完全テンソル拡散の境界値問題",
+            "en": "Discontinuous and full-tensor diffusion BVP"
+          },
+          "formula": [
+            "-\\nabla\\cdot(K(\\boldsymbol x)\\nabla u)=f,\\quad u|_{\\partial\\Omega}=g",
+            "K=aI\\ (a\\in\\{1,100\\})\\quad\\mathrm{or}\\quad K=R(\\pi/6)\\operatorname{diag}(1,.01)R^T"
+          ],
+          "note": {
+            "ja": "スカラー調和流束FVと、非零の交差項を持つ完全テンソルQ1を分けます。MGとAMGは同じ行列を解きます。",
+            "en": "Separate scalar harmonic-flux FV from full-tensor Q1 with nonzero cross terms. MG and AMG solve the same matrix."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#tensor-diffusion-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#tensor-diffusion-en"
+          }
+        }
+      ],
+      "equation_note": {
+        "ja": "単位正方形、零Dirichlet、f=1、対角2象限100/残り1、N16/32/64。参照P1は128/192。",
+        "en": "Unit square, zero Dirichlet, f=1, diagonal quadrants100/others1, N16/32/64; reference P1 meshes128/192."
+      },
+      "formulations": [
+        {
+          "id": "supplement-checkerboard-diffusion",
+          "name": {
+            "ja": "係数ジャンプ拡散：共有流束とMG・AMG",
+            "en": "Checkerboard diffusion: shared flux, MG and AMG"
+          },
+          "source": "supplement",
+          "role": "example-definition",
+          "latex": [
+            "-\\nabla\\cdot(a\\nabla u)=1,\\quad a\\in\\{1,100\\}",
+            "T_f=|f|/(d_L/a_L+d_R/a_R)"
+          ],
+          "note": {
+            "ja": "不連続係数のFV解を独立なP1参照と比較し、線形系の残差・前進誤差と連続問題の誤差を分けます。",
+            "en": "Compare discontinuous-coefficient FV with independent P1 reference fields, separating linear-system residual/forward errors from continuum error."
+          }
+        }
+      ],
+      "references": [
+        {
+          "id": "checkerboard-diffusion",
+          "kind": "numerical-reference",
+          "kind_label": {
+            "ja": "有限格子の数値参照",
+            "en": "Finite-grid numerical reference"
+          },
+          "title": {
+            "ja": "係数ジャンプ拡散：共有流束とMG・AMG",
+            "en": "Checkerboard diffusion: shared flux, MG and AMG"
+          },
+          "formula": "-\\nabla\\cdot(a\\nabla u)=1,\\quad a\\in\\{1,100\\}; T_f=|f|/(d_L/a_L+d_R/a_R)",
+          "assumptions": {
+            "ja": "単位正方形、零Dirichlet、f=1、対角2象限100/残り1、N16/32/64。参照P1は128/192。 非零2材料流束パッチ、残差に整合する収支、直接解の前進/energy誤差、独立三角形P1参照の格子感度。 係数比100の固定例。P1格子差は厳密誤差上界ではなく、特異交点の次数や普遍的なMG/AMG優劣は主張しません。",
+            "en": "Unit square, zero Dirichlet, f=1, diagonal quadrants100/others1, N16/32/64; reference P1 meshes128/192."
+          },
+          "relation": "same-problem",
+          "note": {
+            "ja": "係数比100の固定例。P1格子差は厳密誤差上界ではなく、特異交点の次数や普遍的なMG/AMG優劣は主張しません。",
+            "en": "Fixed contrast100 example. P1 differences are not rigorous error bounds; no singular exponent or universal MG/AMG winner is asserted."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/checkerboard-diffusion/?lang=ja#checkerboard-diffusion-ja-measurements",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/checkerboard-diffusion/?lang=en#checkerboard-diffusion-en-measurements"
+          }
+        }
+      ],
+      "reference_note": {
+        "ja": "非零2材料流束パッチ、残差に整合する収支、直接解の前進/energy誤差、独立三角形P1参照の格子感度。",
+        "en": "Nonzero two-material flux patch, residual-aware budget, direct forward/energy errors and independent triangular-P1 grid sensitivity."
+      },
+      "methods": [
+        {
+          "id": "multigrid",
+          "name": {
+            "ja": "幾何マルチグリッドVサイクル",
+            "en": "Geometric multigrid V-cycle"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/multigrid/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/multigrid/?lang=en"
+          }
+        },
+        {
+          "id": "amg",
+          "name": {
+            "ja": "代数的マルチグリッド（AMG）",
+            "en": "Algebraic multigrid / AMG"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/amg/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/amg/?lang=en"
+          }
+        },
+        {
+          "id": "cg",
+          "name": {
+            "ja": "共役勾配法",
+            "en": "Conjugate gradients"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/cg/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/cg/?lang=en"
+          }
+        }
+      ],
+      "method_note": {
+        "ja": "直交FVの共有面調和平均。幾何MGと座標を受け取らないSA-AMGの対称Galerkin V-cycleを、同じ行列のPCGへ適用。",
+        "en": "Orthogonal FV with shared harmonic transmissibility. Symmetric Galerkin geometric and coordinate-free SA cycles precondition PCG on identical matrices."
+      },
+      "executions": [
+        {
+          "id": "checkerboard-diffusion",
+          "kind": "supplement",
+          "name": {
+            "ja": "係数ジャンプ拡散：共有流束とMG・AMG",
+            "en": "Checkerboard diffusion: shared flux, MG and AMG"
+          },
+          "method_ids": [
+            "multigrid",
+            "amg",
+            "cg"
+          ],
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/checkerboard-diffusion/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/checkerboard-diffusion/?lang=en"
+          },
+          "scope": {
+            "ja": "不連続係数のFV解を独立なP1参照と比較し、線形系の残差・前進誤差と連続問題の誤差を分けます。",
+            "en": "Compare discontinuous-coefficient FV with independent P1 reference fields, separating linear-system residual/forward errors from continuum error."
+          },
+          "assumptions": {
+            "ja": "単位正方形、零Dirichlet、f=1、対角2象限100/残り1、N16/32/64。参照P1は128/192。",
+            "en": "Unit square, zero Dirichlet, f=1, diagonal quadrants100/others1, N16/32/64; reference P1 meshes128/192."
+          },
+          "limits": {
+            "ja": "係数比100の固定例。P1格子差は厳密誤差上界ではなく、特異交点の次数や普遍的なMG/AMG優劣は主張しません。",
+            "en": "Fixed contrast100 example. P1 differences are not rigorous error bounds; no singular exponent or universal MG/AMG winner is asserted."
+          },
+          "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/inputs.json",
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/atlas-coefficient-diffusion-2026-11-23.zip",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/verification.json",
+          "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/source-manifest.json",
+          "commands": [
+            "python -m pip install -r requirements.txt",
+            "python -m pytest -q",
+            "python run.py --input inputs.json --output output"
+          ],
+          "reference_note": {
+            "ja": "非零2材料流束パッチ、残差に整合する収支、直接解の前進/energy誤差、独立三角形P1参照の格子感度。",
+            "en": "Nonzero two-material flux patch, residual-aware budget, direct forward/energy errors and independent triangular-P1 grid sensitivity."
+          },
+          "reference_data": [],
+          "results": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/results/result.json"
+          ],
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/operators.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/multilevel.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/references/p1.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/test_diffusion.py"
+          ],
+          "source_scope": "package"
+        }
+      ],
+      "code_checks": []
+    },
+    {
+      "schema_version": 1,
+      "id": "rotated-anisotropic-diffusion",
+      "name": {
+        "ja": "回転異方性拡散：完全テンソルQ1とMG・AMG",
+        "en": "Rotated diffusion: full-tensor Q1, MG and AMG"
+      },
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rotated-anisotropic-diffusion/",
+      "hub": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rotated-anisotropic-diffusion/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rotated-anisotropic-diffusion/?lang=en"
+      },
+      "image": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/results/rotated-anisotropic-diffusion-preview.png",
+        "sha256": "07d3edeeefee73b8d77b6322833feb33972ae5138093da04c3f414d974e55ee4",
+        "width": 990,
+        "height": 720,
+        "caption": {
+          "ja": "保存した2D解・誤差・真の残差・格子感度の検証図。",
+          "en": "Saved2D solution, error, true residual and refinement/reference sensitivity."
+        },
+        "source_kind": "existing-figure"
+      },
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-coefficient-diffusion/#rotated-anisotropic-diffusion",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-coefficient-diffusion/#rotated-anisotropic-diffusion"
+      },
+      "conditions": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#rotated-anisotropic-diffusion",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#rotated-anisotropic-diffusion-en"
+      },
+      "equations": [
+        {
+          "id": "tensor-diffusion",
+          "name": {
+            "ja": "不連続係数・完全テンソル拡散の境界値問題",
+            "en": "Discontinuous and full-tensor diffusion BVP"
+          },
+          "formula": [
+            "-\\nabla\\cdot(K(\\boldsymbol x)\\nabla u)=f,\\quad u|_{\\partial\\Omega}=g",
+            "K=aI\\ (a\\in\\{1,100\\})\\quad\\mathrm{or}\\quad K=R(\\pi/6)\\operatorname{diag}(1,.01)R^T"
+          ],
+          "note": {
+            "ja": "スカラー調和流束FVと、非零の交差項を持つ完全テンソルQ1を分けます。MGとAMGは同じ行列を解きます。",
+            "en": "Separate scalar harmonic-flux FV from full-tensor Q1 with nonzero cross terms. MG and AMG solve the same matrix."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#tensor-diffusion-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#tensor-diffusion-en"
+          }
+        }
+      ],
+      "equation_note": {
+        "ja": "単位正方形、零Dirichlet、K=R(pi/6)diag(1,.01)Rᵀ、厳密解sin(pi x)sin(pi y)、N16/32/64。",
+        "en": "Unit square, zero Dirichlet, K=R(pi/6)diag(1,.01)R^T, exact sin(pi x)sin(pi y), N16/32/64."
+      },
+      "formulations": [
+        {
+          "id": "supplement-rotated-anisotropic-diffusion",
+          "name": {
+            "ja": "回転異方性拡散：完全テンソルQ1とMG・AMG",
+            "en": "Rotated diffusion: full-tensor Q1, MG and AMG"
+          },
+          "source": "supplement",
+          "role": "example-definition",
+          "latex": [
+            "-\\nabla\\cdot(K\\nabla u)=f,\\quad K=R(\\pi/6)\\operatorname{diag}(1,.01)R^T",
+            "f=\\pi^2(K_{xx}+K_{yy})\\sin\\pi x\\sin\\pi y-2\\pi^2K_{xy}\\cos\\pi x\\cos\\pi y"
+          ],
+          "note": {
+            "ja": "非零Kxyを保つQ1弱形式で、解析解への収束と同じ行列のMG・AMG収束を比較します。",
+            "en": "Retain nonzero Kxy in the Q1 weak form and compare analytic refinement with MG/AMG convergence for the same matrix."
+          }
+        }
+      ],
+      "references": [
+        {
+          "id": "rotated-anisotropic-diffusion",
+          "kind": "manufactured",
+          "kind_label": {
+            "ja": "製造解",
+            "en": "Manufactured solution"
+          },
+          "title": {
+            "ja": "回転異方性拡散：完全テンソルQ1とMG・AMG",
+            "en": "Rotated diffusion: full-tensor Q1, MG and AMG"
+          },
+          "formula": "-\\nabla\\cdot(K\\nabla u)=f,\\quad K=R(\\pi/6)\\operatorname{diag}(1,.01)R^T; f=\\pi^2(K_{xx}+K_{yy})\\sin\\pi x\\sin\\pi y-2\\pi^2K_{xy}\\cos\\pi x\\cos\\pi y",
+          "assumptions": {
+            "ja": "単位正方形、零Dirichlet、K=R(pi/6)diag(1,.01)Rᵀ、厳密解sin(pi x)sin(pi y)、N16/32/64。 u=xy,f=−2Kxyパッチ、解析流束由来のsource、積分L2/energy誤差と4/6点求積感度、直接解との比較。 指定した角度・異方性の限定例。スカラーTPFAを回転テンソルへ転用せず、一般テンソルへの頑健性は保証しません。",
+            "en": "Unit square, zero Dirichlet, K=R(pi/6)diag(1,.01)R^T, exact sin(pi x)sin(pi y), N16/32/64."
+          },
+          "relation": "same-problem",
+          "note": {
+            "ja": "指定した角度・異方性の限定例。スカラーTPFAを回転テンソルへ転用せず、一般テンソルへの頑健性は保証しません。",
+            "en": "One angle/anisotropy only. Scalar TPFA is not extended to rotated tensors; arbitrary-tensor robustness is not established."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/?lang=ja#rotated-anisotropic-diffusion-ja-measurements",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/?lang=en#rotated-anisotropic-diffusion-en-measurements"
+          }
+        }
+      ],
+      "reference_note": {
+        "ja": "u=xy,f=−2Kxyパッチ、解析流束由来のsource、積分L2/energy誤差と4/6点求積感度、直接解との比較。",
+        "en": "u=xy,f=-2Kxy patch, analytic-flux source, integrated L2/energy error,4/6point quadrature sensitivity and direct-solve comparison."
+      },
+      "methods": [
+        {
+          "id": "q1-fem",
+          "name": {
+            "ja": "Q1有限要素法（スカラー拡散・曲線座標ベクトルBVP）",
+            "en": "Q1 FEM for scalar diffusion and mapped vector BVPs"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/q1-fem/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/q1-fem/?lang=en"
+          }
+        },
+        {
+          "id": "multigrid",
+          "name": {
+            "ja": "幾何マルチグリッドVサイクル",
+            "en": "Geometric multigrid V-cycle"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/multigrid/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/multigrid/?lang=en"
+          }
+        },
+        {
+          "id": "amg",
+          "name": {
+            "ja": "代数的マルチグリッド（AMG）",
+            "en": "Algebraic multigrid / AMG"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/amg/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/amg/?lang=en"
+          }
+        },
+        {
+          "id": "cg",
+          "name": {
+            "ja": "共役勾配法",
+            "en": "Conjugate gradients"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/cg/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/cg/?lang=en"
+          }
+        }
+      ],
+      "method_note": {
+        "ja": "完全2×2テンソルQ1とGauss積分。MG/SA-AMGは対称2/2Jacobi、Galerkin粗行列、粗CholeskyでSPDの固定適用。",
+        "en": "Full2x2 tensor Q1 and Gauss quadrature. Fixed SPD MG/SA cycles use symmetric2/2Jacobi, Galerkin operators and coarse Cholesky."
+      },
+      "executions": [
+        {
+          "id": "rotated-anisotropic-diffusion",
+          "kind": "supplement",
+          "name": {
+            "ja": "回転異方性拡散：完全テンソルQ1とMG・AMG",
+            "en": "Rotated diffusion: full-tensor Q1, MG and AMG"
+          },
+          "method_ids": [
+            "q1-fem",
+            "multigrid",
+            "amg",
+            "cg"
+          ],
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/?lang=en"
+          },
+          "scope": {
+            "ja": "非零Kxyを保つQ1弱形式で、解析解への収束と同じ行列のMG・AMG収束を比較します。",
+            "en": "Retain nonzero Kxy in the Q1 weak form and compare analytic refinement with MG/AMG convergence for the same matrix."
+          },
+          "assumptions": {
+            "ja": "単位正方形、零Dirichlet、K=R(pi/6)diag(1,.01)Rᵀ、厳密解sin(pi x)sin(pi y)、N16/32/64。",
+            "en": "Unit square, zero Dirichlet, K=R(pi/6)diag(1,.01)R^T, exact sin(pi x)sin(pi y), N16/32/64."
+          },
+          "limits": {
+            "ja": "指定した角度・異方性の限定例。スカラーTPFAを回転テンソルへ転用せず、一般テンソルへの頑健性は保証しません。",
+            "en": "One angle/anisotropy only. Scalar TPFA is not extended to rotated tensors; arbitrary-tensor robustness is not established."
+          },
+          "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/inputs.json",
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/atlas-coefficient-diffusion-2026-11-23.zip",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/verification.json",
+          "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/source-manifest.json",
+          "commands": [
+            "python -m pip install -r requirements.txt",
+            "python -m pytest -q",
+            "python run.py --input inputs.json --output output"
+          ],
+          "reference_note": {
+            "ja": "u=xy,f=−2Kxyパッチ、解析流束由来のsource、積分L2/energy誤差と4/6点求積感度、直接解との比較。",
+            "en": "u=xy,f=-2Kxy patch, analytic-flux source, integrated L2/energy error,4/6point quadrature sensitivity and direct-solve comparison."
+          },
+          "reference_data": [],
+          "results": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/results/result.json"
+          ],
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/operators.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/multilevel.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/references/p1.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/test_diffusion.py"
+          ],
+          "source_scope": "package"
+        }
+      ],
+      "code_checks": []
+    },
+    {
+      "schema_version": 1,
+      "id": "neutral-slab-yb",
+      "name": {
+        "ja": "中性長方形スラブ：真2P参照とYB補正",
+        "en": "Neutral rectangular slab: genuine2P reference and YB"
+      },
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/neutral-slab-yb/",
+      "hub": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/neutral-slab-yb/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/neutral-slab-yb/?lang=en"
+      },
+      "image": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/results/neutral-slab-yb-preview.png",
+        "sha256": "eff9876ae6570ebc5389e65f8a07b774e87e5ebccc7bab97b2e69bdc427c0206",
+        "width": 920,
+        "height": 592,
+        "caption": {
+          "ja": "固定入力を実際に計算した保存配列からの検証図。",
+          "en": "Validation figure from actual saved fixed-input calculation arrays."
+        },
+        "source_kind": "existing-figure"
+      },
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-slab-ewald/#neutral-slab-yb",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-slab-ewald/#neutral-slab-yb"
+      },
+      "conditions": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#neutral-slab-yb",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#neutral-slab-yb-en"
+      },
+      "equations": [
+        {
+          "id": "coulomb-electrostatics",
+          "name": {
+            "ja": "Coulomb静電場と混合周期境界",
+            "en": "Coulomb electrostatics with mixed periodic boundaries"
+          },
+          "formula": [
+            "\\phi(\\boldsymbol r)=\\sum_j\\sum_{\\boldsymbol n}^{\\prime}\\frac{q_j}{|\\boldsymbol r-\\boldsymbol r_j+\\boldsymbol L\\boldsymbol n|},\\quad\\boldsymbol F_i=-q_i\\nabla\\phi_i",
+            "E_{\\rm YB}=E_{3P}+2\\pi M_z^2/V,\\quad M_z=\\sum_iq_iz_i"
+          ],
+          "note": {
+            "ja": "中性系・Coulomb定数1。真の2周期の参照と、有限真空厚の3周期＋補正を区別します。",
+            "en": "Neutral system,Coulomb constant1. Distinguish genuine2P references from finite-vacuum3P plus correction."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#coulomb-electrostatics-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#coulomb-electrostatics-en"
+          }
+        }
+      ],
+      "equation_note": {
+        "ja": "Coulomb定数1、Lx1,Ly1.25、Lz1.5/3/6、4電荷±1、非周期zのMz=.34、alpha3/4。",
+        "en": "Coulomb1, lateral1×1.25, extendedLz1.5/3/6,4neutral charges±1,physical-z dipole.34 andalpha3/4."
+      },
+      "formulations": [
+        {
+          "id": "supplement-neutral-slab-yb",
+          "name": {
+            "ja": "中性長方形スラブ：真2P参照とYB補正",
+            "en": "Neutral rectangular slab: genuine2P reference and YB"
+          },
+          "source": "supplement",
+          "role": "example-definition",
+          "latex": [
+            "E_{\\rm YB}=E_{3P}+2\\pi M_z^2/V",
+            "\\Delta F_{zi}=-4\\pi q_iM_z/V",
+            "\\phi(\\pm\\infty)=\\pm2\\pi M_z/(L_xL_y)"
+          ],
+          "note": {
+            "ja": "4電荷の長方形3P Ewaldに中性スラブ補正を加え、別実装の真2P和のエネルギー・全力成分と照合します。",
+            "en": "Compare corrected orthorhombic3P Ewald energy/all forces against a separately implemented genuine2P series."
+          }
+        }
+      ],
+      "references": [
+        {
+          "id": "neutral-slab-yb",
+          "kind": "semi-analytic",
+          "kind_label": {
+            "ja": "半解析解",
+            "en": "Semi-analytic reference"
+          },
+          "title": {
+            "ja": "中性長方形スラブ：真2P参照とYB補正",
+            "en": "Neutral rectangular slab: genuine2P reference and YB"
+          },
+          "formula": "phi=real2P+nonzero_modes+zero_mode-2alpha*q/sqrt(pi); E=.5sum(q*phi); F=-q grad(phi); DeltaE=2pi*Mz^2/V; DeltaFz=-4pi*q*Mz/V.",
+          "assumptions": {
+            "ja": "Coulomb定数1、Lx1,Ly1.25、Lz1.5/3/6、4電荷±1、非周期zのMz=.34、alpha3/4。 参照alpha/打切り資格、エネルギー差分、真空厚、全力、零モード負対照・遠方ゲージと中性平行移動を分離。 中性・固定4電荷・Cartesian z法線のみ。YBは有限ギャップ近似で任意真空の厳密2Pではありません。原著YB本文は未読。",
+            "en": "Coulomb1, lateral1×1.25, extendedLz1.5/3/6,4neutral charges±1,physical-z dipole.34 andalpha3/4."
+          },
+          "relation": "same-problem",
+          "note": {
+            "ja": "中性・固定4電荷・Cartesian z法線のみ。YBは有限ギャップ近似で任意真空の厳密2Pではありません。原著YB本文は未読。",
+            "en": "Neutral fixed4charge Cartesian-z slab only. YB is a finite-gap approximation, not exact2P at arbitrary vacuum. Original Yeh full text not inspected."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/neutral-slab-yb/?lang=ja#neutral-slab-yb-ja-measurements",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/neutral-slab-yb/?lang=en#neutral-slab-yb-en-measurements"
+          }
+        }
+      ],
+      "reference_note": {
+        "ja": "参照alpha/打切り資格、エネルギー差分、真空厚、全力、零モード負対照・遠方ゲージと中性平行移動を分離。",
+        "en": "Separate reference cutoff/splitting qualification, energy gradients, vacuum error, all forces, zero-mode control/far gauge and neutral translations."
+      },
+      "methods": [
+        {
+          "id": "ewald",
+          "name": {
+            "ja": "Ewald法",
+            "en": "Ewald summation"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ewald/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ewald/?lang=en"
+          }
+        },
+        {
+          "id": "slab-ewald",
+          "name": {
+            "ja": "スラブ静電場と2次元周期Ewald",
+            "en": "Slab electrostatics and 2D-periodic Ewald"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/slab-ewald/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/slab-ewald/?lang=en"
+          }
+        }
+      ],
+      "method_note": {
+        "ja": "全±3D波数、自己項、2pi Mz²/Vとその力。独立2Pには横零モード・自己減算と安定exp–erfcを保持。",
+        "en": "Full±3D reciprocal sum/self term and2pi Mz²/V correction; independent2P retains zero/self terms and stable exp-erfc evaluation."
+      },
+      "executions": [
+        {
+          "id": "neutral-slab-yb",
+          "kind": "supplement",
+          "name": {
+            "ja": "中性長方形スラブ：真2P参照とYB補正",
+            "en": "Neutral rectangular slab: genuine2P reference and YB"
+          },
+          "method_ids": [
+            "ewald",
+            "slab-ewald"
+          ],
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/neutral-slab-yb/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/neutral-slab-yb/?lang=en"
+          },
+          "scope": {
+            "ja": "4電荷の長方形3P Ewaldに中性スラブ補正を加え、別実装の真2P和のエネルギー・全力成分と照合します。",
+            "en": "Compare corrected orthorhombic3P Ewald energy/all forces against a separately implemented genuine2P series."
+          },
+          "assumptions": {
+            "ja": "Coulomb定数1、Lx1,Ly1.25、Lz1.5/3/6、4電荷±1、非周期zのMz=.34、alpha3/4。",
+            "en": "Coulomb1, lateral1×1.25, extendedLz1.5/3/6,4neutral charges±1,physical-z dipole.34 andalpha3/4."
+          },
+          "limits": {
+            "ja": "中性・固定4電荷・Cartesian z法線のみ。YBは有限ギャップ近似で任意真空の厳密2Pではありません。原著YB本文は未読。",
+            "en": "Neutral fixed4charge Cartesian-z slab only. YB is a finite-gap approximation, not exact2P at arbitrary vacuum. Original Yeh full text not inspected."
+          },
+          "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/inputs.json",
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/atlas-slab-ewald-2026-11-23.zip",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/verification.json",
+          "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/source-manifest.json",
+          "commands": [
+            "python -m pip install -r requirements.txt",
+            "python -m pytest -q",
+            "python run.py --input inputs.json --output output"
+          ],
+          "reference_note": {
+            "ja": "参照alpha/打切り資格、エネルギー差分、真空厚、全力、零モード負対照・遠方ゲージと中性平行移動を分離。",
+            "en": "Separate reference cutoff/splitting qualification, energy gradients, vacuum error, all forces, zero-mode control/far gauge and neutral translations."
+          },
+          "reference_data": [],
+          "results": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/results/result.json"
+          ],
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/electrostatics.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/references/twoperiodic.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/test_slab.py"
+          ],
+          "source_scope": "package"
+        }
+      ],
+      "code_checks": []
+    },
+    {
+      "schema_version": 1,
+      "id": "fmm3d-inverse-r",
+      "name": {
+        "ja": "真3D 1/r FMM：多段変換・力・適応所有権",
+        "en": "Actual3D1/r FMM: multilevel translations, force and ownership"
+      },
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fmm3d-inverse-r/",
+      "hub": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fmm3d-inverse-r/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fmm3d-inverse-r/?lang=en"
+      },
+      "image": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/results/fmm3d-inverse-r-preview.png",
+        "sha256": "7bd81db0f5de4b811f26cf8e45a13864842509d2d6c9ec57325572b1bb0e43a2",
+        "width": 920,
+        "height": 592,
+        "caption": {
+          "ja": "固定入力を実際に計算した保存配列からの検証図。",
+          "en": "Validation figure from actual saved fixed-input calculation arrays."
+        },
+        "source_kind": "existing-figure"
+      },
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-fmm3d/#fmm3d-inverse-r",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-fmm3d/#fmm3d-inverse-r"
+      },
+      "conditions": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#fmm3d-inverse-r",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#fmm3d-inverse-r-en"
+      },
+      "equations": [
+        {
+          "id": "particle-gravity",
+          "name": {
+            "ja": "重力粒子モデル",
+            "en": "Gravitational particle model"
+          },
+          "formula": [
+            "\\boldsymbol a_i=-G\\sum_{j\\ne i}m_j\\frac{\\boldsymbol x_i-\\boldsymbol x_j}{(|\\boldsymbol x_i-\\boldsymbol x_j|^2+\\epsilon^2)^{3/2}}",
+            "\\nabla^2\\phi=4\\pi G(\\rho-\\overline\\rho)\\quad\\text{(periodic)}"
+          ],
+          "note": {
+            "ja": "孤立系のPlummer軟化力と、周期・平均密度除去のPoisson式は異なる境界問題です。公開例は静的な力と境界核の検証で、自己重力流体の時間発展ではありません。",
+            "en": "Isolated Plummer-softened forces and periodic mean-subtracted Poisson are distinct boundary problems. Public examples check static forces and kernels, not coupled self-gravitating flow evolution."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#particle-gravity-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#particle-gravity-en"
+          }
+        }
+      ],
+      "equation_note": {
+        "ja": "孤立重力-Gm/r、G1、64等質量、p3/5/7。主木は深さ強制、適応木のみcapacity8/maxdepth3。",
+        "en": "Isolated-Gm/r,G1,64equal masses,p3/5/7. Main levels forced; adaptive case alone usescapacity8/maxdepth3."
+      },
+      "formulations": [
+        {
+          "id": "supplement-fmm3d-inverse-r",
+          "name": {
+            "ja": "真3D 1/r FMM：多段変換・力・適応所有権",
+            "en": "Actual3D1/r FMM: multilevel translations, force and ownership"
+          },
+          "source": "supplement",
+          "role": "example-definition",
+          "latex": [
+            "\\Phi_i=-G\\sum_{j\\ne i}m_j/r_{ij},\\quad a_i=-\\nabla\\Phi_i",
+            "K(x,y)\\approx\\sum_{\\ell,m}L_\\ell(x)K(x_\\ell,y_m)L_m(y)",
+            "m=p^3,\\quad {\\rm dense\\ M2L\\ entries}=p^6"
+          ],
+          "note": {
+            "ja": "非圧縮Chebyshev FMMを真の葉レベル2/3と別の適応配置で実行し、独立直接和のポテンシャル・加速度と比較します。",
+            "en": "Run uncompressed Chebyshev FMM at actual leaf levels2/3 and a separate adaptive configuration; compare independent direct potentials and accelerations."
+          }
+        }
+      ],
+      "references": [
+        {
+          "id": "fmm3d-inverse-r",
+          "kind": "numerical-reference",
+          "kind_label": {
+            "ja": "有限格子の数値参照",
+            "en": "Finite-grid numerical reference"
+          },
+          "title": {
+            "ja": "真3D 1/r FMM：多段変換・力・適応所有権",
+            "en": "Actual3D1/r FMM: multilevel translations, force and ownership"
+          },
+          "formula": "Phi_i=-sum_{j!=i}G*m_j/r_ij; a_i=-sum_{j!=i}G*m_j*(x_i-x_j)/r_ij^3; finite6axis source Phi(0)=-1/a.",
+          "assumptions": {
+            "ja": "孤立重力-Gm/r、G1、64等質量、p3/5/7。主木は深さ強制、適応木のみcapacity8/maxdepth3。 有限6点閉形式、独立Cartesian直接和、次数/実深さ、混合深さ・cap粒子保持、剛体変換を別確認。 小Nの非圧縮教材。p^6 M2Lコストを保存し、SVD圧縮・球調和・Nスケーリング・運動量厳密保存は主張しません。 有限6点閉形式は独立directの資格確認で、FMM本体のgolden-target実行ではありません。",
+            "en": "Isolated-Gm/r,G1,64equal masses,p3/5/7. Main levels forced; adaptive case alone usescapacity8/maxdepth3."
+          },
+          "relation": "same-problem",
+          "note": {
+            "ja": "小Nの非圧縮教材。p^6 M2Lコストを保存し、SVD圧縮・球調和・Nスケーリング・運動量厳密保存は主張しません。 有限6点閉形式は独立directの資格確認で、FMM本体のgolden-target実行ではありません。",
+            "en": "Small-N uncompressed teaching example; reportp^6M2L cost. No SVD/spherical-harmonic/scaling or exact momentum-conservation claim. The finite6source exact probe qualifies the direct reference, not a production-FMM golden-target run."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm3d-inverse-r/?lang=ja#fmm3d-inverse-r-ja-measurements",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm3d-inverse-r/?lang=en#fmm3d-inverse-r-en-measurements"
+          }
+        }
+      ],
+      "reference_note": {
+        "ja": "有限6点閉形式、独立Cartesian直接和、次数/実深さ、混合深さ・cap粒子保持、剛体変換を別確認。",
+        "en": "Separate finite6source exact goldens, independent Cartesian sums, order/actual-depth comparisons, mixed-depth capped ownership and rigid transformation."
+      },
+      "methods": [
+        {
+          "id": "fmm",
+          "name": {
+            "ja": "高速多重極法の移動演算",
+            "en": "Fast multipole translations"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/fmm/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/fmm/?lang=en"
+          }
+        }
+      ],
+      "method_note": {
+        "ja": "P2M/M2M/M2L/L2Lと局所基底の物理勾配、近接P2P。全非自己対を一意に割当て、非零の全変換経路を記録。",
+        "en": "Actual upward/downward translations, physical local-basis gradients and near P2P; audit unique nonself ownership and nonzero complete translation contributions."
+      },
+      "executions": [
+        {
+          "id": "fmm3d-inverse-r",
+          "kind": "supplement",
+          "name": {
+            "ja": "真3D 1/r FMM：多段変換・力・適応所有権",
+            "en": "Actual3D1/r FMM: multilevel translations, force and ownership"
+          },
+          "method_ids": [
+            "fmm"
+          ],
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm3d-inverse-r/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fmm3d-inverse-r/?lang=en"
+          },
+          "scope": {
+            "ja": "非圧縮Chebyshev FMMを真の葉レベル2/3と別の適応配置で実行し、独立直接和のポテンシャル・加速度と比較します。",
+            "en": "Run uncompressed Chebyshev FMM at actual leaf levels2/3 and a separate adaptive configuration; compare independent direct potentials and accelerations."
+          },
+          "assumptions": {
+            "ja": "孤立重力-Gm/r、G1、64等質量、p3/5/7。主木は深さ強制、適応木のみcapacity8/maxdepth3。",
+            "en": "Isolated-Gm/r,G1,64equal masses,p3/5/7. Main levels forced; adaptive case alone usescapacity8/maxdepth3."
+          },
+          "limits": {
+            "ja": "小Nの非圧縮教材。p^6 M2Lコストを保存し、SVD圧縮・球調和・Nスケーリング・運動量厳密保存は主張しません。 有限6点閉形式は独立directの資格確認で、FMM本体のgolden-target実行ではありません。",
+            "en": "Small-N uncompressed teaching example; reportp^6M2L cost. No SVD/spherical-harmonic/scaling or exact momentum-conservation claim. The finite6source exact probe qualifies the direct reference, not a production-FMM golden-target run."
+          },
+          "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/inputs.json",
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/atlas-fmm3d-2026-11-23.zip",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/verification.json",
+          "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/source-manifest.json",
+          "commands": [
+            "python -m pip install -r requirements.txt",
+            "python -m pytest -q",
+            "python run.py --input inputs.json --output output"
+          ],
+          "reference_note": {
+            "ja": "有限6点閉形式、独立Cartesian直接和、次数/実深さ、混合深さ・cap粒子保持、剛体変換を別確認。",
+            "en": "Separate finite6source exact goldens, independent Cartesian sums, order/actual-depth comparisons, mixed-depth capped ownership and rigid transformation."
+          },
+          "reference_data": [],
+          "results": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/results/result.json"
+          ],
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/fmm.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/references/direct.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/test_fmm.py"
+          ],
+          "source_scope": "package"
+        }
+      ],
+      "code_checks": []
+    },
+    {
+      "schema_version": 1,
+      "id": "gravity-kepler",
+      "name": {
+        "ja": "無軟化Kepler二体の時間誤差",
+        "en": "Unsoftened Kepler two-body time error"
+      },
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-kepler/",
+      "hub": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-kepler/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-kepler/?lang=en"
+      },
+      "image": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-kepler-preview.png",
+        "sha256": "12b3902c4f90faa30226cf0ca1c14e35c9f1de85339c09acbb7818a47a8ae758",
+        "width": 920,
+        "height": 592,
+        "caption": {
+          "ja": "固定入力を実際に計算した保存配列からの検証図。",
+          "en": "Validation figure from actual saved fixed-input calculation arrays."
+        },
+        "source_kind": "existing-figure"
+      },
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-gravity-dynamics/#gravity-kepler",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-gravity-dynamics/#gravity-kepler"
+      },
+      "conditions": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#gravity-kepler",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#gravity-kepler-en"
+      },
+      "equations": [
+        {
+          "id": "particle-gravity",
+          "name": {
+            "ja": "重力粒子モデル",
+            "en": "Gravitational particle model"
+          },
+          "formula": [
+            "\\boldsymbol a_i=-G\\sum_{j\\ne i}m_j\\frac{\\boldsymbol x_i-\\boldsymbol x_j}{(|\\boldsymbol x_i-\\boldsymbol x_j|^2+\\epsilon^2)^{3/2}}",
+            "\\nabla^2\\phi=4\\pi G(\\rho-\\overline\\rho)\\quad\\text{(periodic)}"
+          ],
+          "note": {
+            "ja": "孤立系のPlummer軟化力と、周期・平均密度除去のPoisson式は異なる境界問題です。公開例は静的な力と境界核の検証で、自己重力流体の時間発展ではありません。",
+            "en": "Isolated Plummer-softened forces and periodic mean-subtracted Poisson are distinct boundary problems. Public examples check static forces and kernels, not coupled self-gravitating flow evolution."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#particle-gravity-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#particle-gravity-en"
+          }
+        }
+      ],
+      "equation_note": {
+        "ja": "G=M=a1,e.4,masses.6/.4、epsilon0、128/256/512steps、初期COM/P0。",
+        "en": "G=M=a1,e.4,masses.6/.4,epsilon0,128/256/512steps,initialCOM/P0."
+      },
+      "formulations": [
+        {
+          "id": "supplement-gravity-kepler",
+          "name": {
+            "ja": "無軟化Kepler二体の時間誤差",
+            "en": "Unsoftened Kepler two-body time error"
+          },
+          "source": "supplement",
+          "role": "example-definition",
+          "latex": [
+            "E-e\\sin E=nt",
+            "r=a(\\cos E-e,\\sqrt{1-e^2}\\sin E,0)",
+            "v^{n+1/2}=v^n+\\tfrac12\\Delta t\\,a(x^n)"
+          ],
+          "note": {
+            "ja": "非等質量二体をKDKで1周し、独立Kepler方程式の位置・速度とエネルギー/角運動量を照合。",
+            "en": "Advance an unequal-mass binary for one orbit with KDK and compare independent Kepler positions/velocities and conservation."
+          }
+        }
+      ],
+      "references": [
+        {
+          "id": "gravity-kepler",
+          "kind": "analytic",
+          "kind_label": {
+            "ja": "解析解",
+            "en": "Analytic reference"
+          },
+          "title": {
+            "ja": "無軟化Kepler二体の時間誤差",
+            "en": "Unsoftened Kepler two-body time error"
+          },
+          "formula": "E-e*sin(E)=n*t; r=a*(cos(E)-e,sqrt(1-e^2)*sin(E),0); v=a*n/(1-e*cos(E))*(-sin(E),sqrt(1-e^2)*cos(E),0).",
+          "assumptions": {
+            "ja": "G=M=a1,e.4,masses.6/.4、epsilon0、128/256/512steps、初期COM/P0。 位相/時間次数、全同期stepエネルギー、P/L/COM、独立pair力とroot残差。 1周期・固定離心率のみ。軟化軌道や長時間安定性はこの参照の範囲外。",
+            "en": "G=M=a1,e.4,masses.6/.4,epsilon0,128/256/512steps,initialCOM/P0."
+          },
+          "relation": "same-problem",
+          "note": {
+            "ja": "1周期・固定離心率のみ。軟化軌道や長時間安定性はこの参照の範囲外。",
+            "en": "One orbit at fixed eccentricity only; softened binaries and long-time behavior are outside this exact reference."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-kepler/?lang=ja#gravity-kepler-ja-measurements",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-kepler/?lang=en#gravity-kepler-en-measurements"
+          }
+        }
+      ],
+      "reference_note": {
+        "ja": "位相/時間次数、全同期stepエネルギー、P/L/COM、独立pair力とroot残差。",
+        "en": "Time refinement/phase, synchronized all-step energy,P/L/COM,independent pair force and root residuals."
+      },
+      "methods": [
+        {
+          "id": "verlet",
+          "name": {
+            "ja": "速度Verlet／粒子leapfrog法",
+            "en": "Velocity Verlet / particle leapfrog"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/verlet/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/verlet/?lang=en"
+          }
+        }
+      ],
+      "method_note": {
+        "ja": "位置のみの力でkick半分→drift→kick半分。独立のbracketed Kepler rootと解析速度を使用。",
+        "en": "Position-only kick-half/drift/kick-half; separate bracketed Kepler root and analytic velocities."
+      },
+      "executions": [
+        {
+          "id": "gravity-kepler",
+          "kind": "supplement",
+          "name": {
+            "ja": "無軟化Kepler二体の時間誤差",
+            "en": "Unsoftened Kepler two-body time error"
+          },
+          "method_ids": [
+            "verlet"
+          ],
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-kepler/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-kepler/?lang=en"
+          },
+          "scope": {
+            "ja": "非等質量二体をKDKで1周し、独立Kepler方程式の位置・速度とエネルギー/角運動量を照合。",
+            "en": "Advance an unequal-mass binary for one orbit with KDK and compare independent Kepler positions/velocities and conservation."
+          },
+          "assumptions": {
+            "ja": "G=M=a1,e.4,masses.6/.4、epsilon0、128/256/512steps、初期COM/P0。",
+            "en": "G=M=a1,e.4,masses.6/.4,epsilon0,128/256/512steps,initialCOM/P0."
+          },
+          "limits": {
+            "ja": "1周期・固定離心率のみ。軟化軌道や長時間安定性はこの参照の範囲外。",
+            "en": "One orbit at fixed eccentricity only; softened binaries and long-time behavior are outside this exact reference."
+          },
+          "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/inputs.json",
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/atlas-gravity-dynamics-2026-11-23.zip",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/verification.json",
+          "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/source-manifest.json",
+          "commands": [
+            "python -m pip install -r requirements.txt",
+            "python -m pytest -q",
+            "python run.py --input inputs.json --output output"
+          ],
+          "reference_note": {
+            "ja": "位相/時間次数、全同期stepエネルギー、P/L/COM、独立pair力とroot残差。",
+            "en": "Time refinement/phase, synchronized all-step energy,P/L/COM,independent pair force and root residuals."
+          },
+          "reference_data": [],
+          "results": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/results/result.json"
+          ],
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/dynamics.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/references/exact.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/test_dynamics.py"
+          ],
+          "source_scope": "package"
+        }
+      ],
+      "code_checks": []
+    },
+    {
+      "schema_version": 1,
+      "id": "gravity-plummer-short",
+      "name": {
+        "ja": "冷たいPlummer密度由来32粒子の短時間力学",
+        "en": "Short-time32body dynamics from a cold Plummer-density sample"
+      },
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-plummer-short/",
+      "hub": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-plummer-short/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-plummer-short/?lang=en"
+      },
+      "image": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-plummer-short-preview.png",
+        "sha256": "be518533a4560b5e6a30e2e846c20a782d82624193f5f9f19a6c621cbe8b7f99",
+        "width": 920,
+        "height": 592,
+        "caption": {
+          "ja": "固定入力を実際に計算した保存配列からの検証図。",
+          "en": "Validation figure from actual saved fixed-input calculation arrays."
+        },
+        "source_kind": "existing-figure"
+      },
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-gravity-dynamics/#gravity-plummer-short",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-gravity-dynamics/#gravity-plummer-short"
+      },
+      "conditions": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#gravity-plummer-short",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#gravity-plummer-short-en"
+      },
+      "equations": [
+        {
+          "id": "particle-gravity",
+          "name": {
+            "ja": "重力粒子モデル",
+            "en": "Gravitational particle model"
+          },
+          "formula": [
+            "\\boldsymbol a_i=-G\\sum_{j\\ne i}m_j\\frac{\\boldsymbol x_i-\\boldsymbol x_j}{(|\\boldsymbol x_i-\\boldsymbol x_j|^2+\\epsilon^2)^{3/2}}",
+            "\\nabla^2\\phi=4\\pi G(\\rho-\\overline\\rho)\\quad\\text{(periodic)}"
+          ],
+          "note": {
+            "ja": "孤立系のPlummer軟化力と、周期・平均密度除去のPoisson式は異なる境界問題です。公開例は静的な力と境界核の検証で、自己重力流体の時間発展ではありません。",
+            "en": "Isolated Plummer-softened forces and periodic mean-subtracted Poisson are distinct boundary problems. Public examples check static forces and kernels, not coupled self-gravitating flow evolution."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#particle-gravity-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#particle-gravity-en"
+          }
+        }
+      ],
+      "equation_note": {
+        "ja": "固定32等質量・切断r3の密度由来反対称座標、初速0、epsilon.05、T.2。密度尺度a1とは別。",
+        "en": "Fixed32equal masses,antipodal truncatedr3 density-derived positions,zero velocity,epsilon.05,T.2; density scalea1 differs from pair softening."
+      },
+      "formulations": [
+        {
+          "id": "supplement-gravity-plummer-short",
+          "name": {
+            "ja": "冷たいPlummer密度由来32粒子の短時間力学",
+            "en": "Short-time32body dynamics from a cold Plummer-density sample"
+          },
+          "source": "supplement",
+          "role": "example-definition",
+          "latex": [
+            "a_i=-\\sum_{j\\ne i}Gm_jr_{ij}/(r_{ij}^2+\\epsilon^2)^{3/2}",
+            "U=-\\sum_{i<j}Gm_im_j/\\sqrt{r_{ij}^2+\\epsilon^2}"
+          ],
+          "note": {
+            "ja": "同じ軟化有限N ODEで時間誤差と木近似誤差を分け、独立DOP853・直接力と収支を比較。",
+            "en": "Separate time and tree-force errors for the same softened finite-N ODE with independent DOP853/direct-force references and budgets."
+          }
+        }
+      ],
+      "references": [
+        {
+          "id": "gravity-plummer-short",
+          "kind": "numerical-reference",
+          "kind_label": {
+            "ja": "有限格子の数値参照",
+            "en": "Finite-grid numerical reference"
+          },
+          "title": {
+            "ja": "冷たいPlummer密度由来32粒子の短時間力学",
+            "en": "Short-time32body dynamics from a cold Plummer-density sample"
+          },
+          "formula": "a_i=-sum_{j!=i}G*m_j*r_ij/(r_ij^2+eps^2)^(3/2); U=-sum_{i<j}G*m_i*m_j/sqrt(r_ij^2+eps^2).",
+          "assumptions": {
+            "ja": "固定32等質量・切断r3の密度由来反対称座標、初速0、epsilon.05、T.2。密度尺度a1とは別。 非零の固定尺度、同一座標上の力、同期E/P/L/COM、theta0対照、非対称静的probe。 冷たい有限N初期値で平衡Plummer分布/連続球厳密軌道ではありません。BHの一般相反性・大域symplectic性は主張しません。",
+            "en": "Fixed32equal masses,antipodal truncatedr3 density-derived positions,zero velocity,epsilon.05,T.2; density scalea1 differs from pair softening."
+          },
+          "relation": "same-problem",
+          "note": {
+            "ja": "冷たい有限N初期値で平衡Plummer分布/連続球厳密軌道ではありません。BHの一般相反性・大域symplectic性は主張しません。",
+            "en": "Cold finite-N initial value,not an equilibrium Plummer DF or exact continuum orbit. No general BH reciprocity/global symplecticity claim."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-plummer-short/?lang=ja#gravity-plummer-short-ja-measurements",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-plummer-short/?lang=en#gravity-plummer-short-en-measurements"
+          }
+        }
+      ],
+      "reference_note": {
+        "ja": "非零の固定尺度、同一座標上の力、同期E/P/L/COM、theta0対照、非対称静的probe。",
+        "en": "Nonzero fixed scales,same-position force comparison,synchronizedE/P/L/COM,theta0 control and asymmetric static probe."
+      },
+      "methods": [
+        {
+          "id": "verlet",
+          "name": {
+            "ja": "速度Verlet／粒子leapfrog法",
+            "en": "Velocity Verlet / particle leapfrog"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/verlet/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/verlet/?lang=en"
+          }
+        },
+        {
+          "id": "barnes-hut",
+          "name": {
+            "ja": "Barnes–Hut八分木",
+            "en": "Barnes–Hut octree"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/barnes-hut/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/barnes-hut/?lang=en"
+          }
+        }
+      ],
+      "method_note": {
+        "ja": "直接KDK20/40/80steps、最細でtheta0/.35/.6のfull second-moment BH。独立scalar対力+DOP853を2許容値で資格確認。",
+        "en": "Direct KDK20/40/80steps; finest-dt full second-moment BHtheta0/.35/.6; qualify independent scalar-pair DOP853 at two tolerances."
+      },
+      "executions": [
+        {
+          "id": "gravity-plummer-short",
+          "kind": "supplement",
+          "name": {
+            "ja": "冷たいPlummer密度由来32粒子の短時間力学",
+            "en": "Short-time32body dynamics from a cold Plummer-density sample"
+          },
+          "method_ids": [
+            "verlet",
+            "barnes-hut"
+          ],
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-plummer-short/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-plummer-short/?lang=en"
+          },
+          "scope": {
+            "ja": "同じ軟化有限N ODEで時間誤差と木近似誤差を分け、独立DOP853・直接力と収支を比較。",
+            "en": "Separate time and tree-force errors for the same softened finite-N ODE with independent DOP853/direct-force references and budgets."
+          },
+          "assumptions": {
+            "ja": "固定32等質量・切断r3の密度由来反対称座標、初速0、epsilon.05、T.2。密度尺度a1とは別。",
+            "en": "Fixed32equal masses,antipodal truncatedr3 density-derived positions,zero velocity,epsilon.05,T.2; density scalea1 differs from pair softening."
+          },
+          "limits": {
+            "ja": "冷たい有限N初期値で平衡Plummer分布/連続球厳密軌道ではありません。BHの一般相反性・大域symplectic性は主張しません。",
+            "en": "Cold finite-N initial value,not an equilibrium Plummer DF or exact continuum orbit. No general BH reciprocity/global symplecticity claim."
+          },
+          "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/inputs.json",
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/atlas-gravity-dynamics-2026-11-23.zip",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/verification.json",
+          "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/source-manifest.json",
+          "commands": [
+            "python -m pip install -r requirements.txt",
+            "python -m pytest -q",
+            "python run.py --input inputs.json --output output"
+          ],
+          "reference_note": {
+            "ja": "非零の固定尺度、同一座標上の力、同期E/P/L/COM、theta0対照、非対称静的probe。",
+            "en": "Nonzero fixed scales,same-position force comparison,synchronizedE/P/L/COM,theta0 control and asymmetric static probe."
+          },
+          "reference_data": [],
+          "results": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/results/result.json"
+          ],
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/dynamics.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/references/exact.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/test_dynamics.py"
+          ],
+          "source_scope": "package"
+        }
+      ],
+      "code_checks": []
+    },
+    {
+      "schema_version": 1,
+      "id": "thermal-landau-damping",
+      "name": {
+        "ja": "温かいPICの線形Landau減衰",
+        "en": "Warm PIC linear Landau damping"
+      },
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/thermal-landau-damping/",
+      "hub": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/thermal-landau-damping/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/thermal-landau-damping/?lang=en"
+      },
+      "image": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/results/thermal-landau-damping-preview.png",
+        "sha256": "133e293e074869a96b622d2c3cf420805aaac9b489c7cd3781e128b7073c8583",
+        "width": 1152,
+        "height": 672,
+        "caption": {
+          "ja": "実際に動かした粒子の初期(x,v)に対する速度変化δv/α。空間2D流体図ではなく1D1V位相空間の応答です。",
+          "en": "Actual evolved particle velocity change delta-v/alpha against initial(x,v); a1D1V phase-space response, not a2D physical-space flow."
+        },
+        "source_kind": "existing-figure"
+      },
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-landau-damping",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-landau-damping"
+      },
+      "conditions": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#thermal-landau-damping",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#thermal-landau-damping-en"
+      },
+      "equations": [
+        {
+          "id": "vlasov-poisson",
+          "name": {
+            "ja": "静電Vlasov–Poisson方程式",
+            "en": "Electrostatic Vlasov–Poisson equations"
+          },
+          "formula": [
+            "\\partial_t f+v\\partial_x f-E\\partial_v f=0",
+            "\\partial_x E=1-\\int f\\,dv,\\quad\\int E\\,dx=0"
+          ],
+          "note": {
+            "ja": "1D1V電子と固定中性化背景。重み付き全分布PICの粒子・格子・時間近似と、線形参照の範囲を分けます。",
+            "en": "1D1V electrons and fixed neutralizing background. Separate weighted full-f particle,mesh and time approximations from the linear-reference scope."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#vlasov-poisson-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#vlasov-poisson-en"
+          }
+        }
+      ],
+      "equation_note": {
+        "ja": "vth=ωp=λD=1、k=.5、L=4π、α=.01、格子32、256空間層×128速度節点、dt=.04、T16、固定窓[4,12]。シード33001–33004。 空間粒子層だけ512へ倍増する独立companionも固定します。",
+        "en": "vth=omega_p=lambda_D=1,k.5,L4pi,alpha.01,grid32,256spatial strata×128velocity nodes,dt.04,T16,fit[4,12],seeds33001–33004. A separately evolved512-spatial-strata companion changes only particle-space resolution."
+      },
+      "formulations": [
+        {
+          "id": "supplement-thermal-landau-damping",
+          "name": {
+            "ja": "温かいPICの線形Landau減衰",
+            "en": "Warm PIC linear Landau damping"
+          },
+          "source": "supplement",
+          "role": "example-definition",
+          "latex": [
+            "\\partial_t f+v\\partial_x f-E\\partial_v f=0,\\quad\\partial_x E=1-\\int f\\,dv,\\quad\\langle E\\rangle=0",
+            "D(\\omega,k)=1+\\frac{1}{k^2}\\sum_s a_s[1+\\zeta_s Z(\\zeta_s)],\\quad\\zeta_s=\\frac{\\omega-ku_s}{\\sqrt2 k}",
+            "e(t)=\\Phi(t)-\\int_0^t s\\Phi(s)e(t-s)\\,ds,\\quad\\Phi(t)=e^{-k^2t^2/2}\\cos(kut)"
+          ],
+          "note": {
+            "ja": "熱速度1のMaxwell分布を自己無撞着に動かし、減衰率・周波数・符号付き場の履歴を独立した線形参照で調べます。",
+            "en": "Advance thermal Maxwellian full-f particles and compare damping rate, frequency and signed-field history with qualified independent linear references."
+          }
+        }
+      ],
+      "references": [
+        {
+          "id": "thermal-landau-damping",
+          "kind": "semi-analytic",
+          "kind_label": {
+            "ja": "半解析解",
+            "en": "Semi-analytic reference"
+          },
+          "title": {
+            "ja": "温かいPICの線形Landau減衰",
+            "en": "Warm PIC linear Landau damping"
+          },
+          "formula": "D(omega,k)=1+sum_s a_s[1+zeta_s Z(zeta_s)]/k²=0; e(t)=Phi(t)-integral_0^t s Phi(s)e(t-s)ds; Phi=exp[-(kt)²/2]cos(kut).",
+          "assumptions": {
+            "ja": "vth=ωp=λD=1、k=.5、L=4π、α=.01、格子32、256空間層×128速度節点、dt=.04、T16、固定窓[4,12]。シード33001–33004。 空間粒子層だけ512へ倍増する独立companionも固定します。 31 pytest・19自己無撞着計算・140/140ケース判定・17/17独立線形参照資格判定が合格。pytest+mainは7.283秒。Landau粒子空間層256/512の曲線差.001154、振幅半減差.004376は固定.03以下。以前の64層版130/131（振幅差.05646>.03）は全データと元契約を保持した未達例です。入力の振幅と全許容値は維持しました。 1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。",
+            "en": "vth=omega_p=lambda_D=1,k.5,L4pi,alpha.01,grid32,256spatial strata×128velocity nodes,dt.04,T16,fit[4,12],seeds33001–33004. A separately evolved512-spatial-strata companion changes only particle-space resolution."
+          },
+          "relation": "same-problem",
+          "note": {
+            "ja": "1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。",
+            "en": "Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/thermal-landau-damping/?lang=ja#thermal-landau-damping-ja-measurements",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/thermal-landau-damping/?lang=en#thermal-landau-damping-en-measurements"
+          }
+        }
+      ],
+      "reference_note": {
+        "ja": "31 pytest・19自己無撞着計算・140/140ケース判定・17/17独立線形参照資格判定が合格。pytest+mainは7.283秒。Landau粒子空間層256/512の曲線差.001154、振幅半減差.004376は固定.03以下。以前の64層版130/131（振幅差.05646>.03）は全データと元契約を保持した未達例です。入力の振幅と全許容値は維持しました。",
+        "en": "31pytest,19self-consistent runs,140/140case gates and17/17independent linear-reference qualifiers passed; shared pytest+main7.283s. Landau256/512particle-space curve gap.001154 and amplitude-half gap.004376 meet the unchanged.03bound. Original64-strata130/131result (.05646>.03) remains an explicitly unmet retained example; amplitudes/all tolerances stayed fixed."
+      },
+      "methods": [
+        {
+          "id": "pic",
+          "name": {
+            "ja": "Particle-in-Cell（PIC）",
+            "en": "Particle-in-cell / PIC"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pic/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pic/?lang=en"
+          }
+        },
+        {
+          "id": "cic",
+          "name": {
+            "ja": "Cloud-in-cellの割当てと補間",
+            "en": "Cloud-in-cell assignment and interpolation"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/cic/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/cic/?lang=en"
+          }
+        },
+        {
+          "id": "verlet",
+          "name": {
+            "ja": "速度Verlet／粒子leapfrog法",
+            "en": "Velocity Verlet / particle leapfrog"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/verlet/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/verlet/?lang=en"
+          }
+        }
+      ],
+      "method_note": {
+        "ja": "正のGauss速度重みと密度CDF逆写像で共同(x,v)分布を作り、CIC電荷配置→FFT Poisson→同じCIC補間を各kickで再計算するvelocity-Verlet法。Z関数の分散根を枝追跡で確認し、別導出のVolterra初期値問題を刻み半減して固定窓の過渡偏りを検査します。",
+        "en": "Positive Gaussian velocity weights and density-CDF inversion load the joint(x,v) distribution. Recompute CIC deposition, FFT Poisson and matched CIC gathering at every velocity-Verlet kick. Qualify the dielectric root using branch continuation/bracket checks and a separately derived, time-refined Volterra IVP with the same fixed-window estimator."
+      },
+      "executions": [
+        {
+          "id": "thermal-landau-damping",
+          "kind": "supplement",
+          "name": {
+            "ja": "温かいPICの線形Landau減衰",
+            "en": "Warm PIC linear Landau damping"
+          },
+          "method_ids": [
+            "pic",
+            "cic",
+            "verlet"
+          ],
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/thermal-landau-damping/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/thermal-landau-damping/?lang=en"
+          },
+          "scope": {
+            "ja": "熱速度1のMaxwell分布を自己無撞着に動かし、減衰率・周波数・符号付き場の履歴を独立した線形参照で調べます。",
+            "en": "Advance thermal Maxwellian full-f particles and compare damping rate, frequency and signed-field history with qualified independent linear references."
+          },
+          "assumptions": {
+            "ja": "vth=ωp=λD=1、k=.5、L=4π、α=.01、格子32、256空間層×128速度節点、dt=.04、T16、固定窓[4,12]。シード33001–33004。 空間粒子層だけ512へ倍増する独立companionも固定します。",
+            "en": "vth=omega_p=lambda_D=1,k.5,L4pi,alpha.01,grid32,256spatial strata×128velocity nodes,dt.04,T16,fit[4,12],seeds33001–33004. A separately evolved512-spatial-strata companion changes only particle-space resolution."
+          },
+          "limits": {
+            "ja": "1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。",
+            "en": "Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established."
+          },
+          "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/inputs.json",
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/atlas-warm-pic-2026-11-23.zip",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/verification.json",
+          "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/source-manifest.json",
+          "commands": [
+            "python -m pip install -r requirements.txt",
+            "python -m pytest -q",
+            "python run.py --input inputs.json --output output"
+          ],
+          "reference_note": {
+            "ja": "31 pytest・19自己無撞着計算・140/140ケース判定・17/17独立線形参照資格判定が合格。pytest+mainは7.283秒。Landau粒子空間層256/512の曲線差.001154、振幅半減差.004376は固定.03以下。以前の64層版130/131（振幅差.05646>.03）は全データと元契約を保持した未達例です。入力の振幅と全許容値は維持しました。",
+            "en": "31pytest,19self-consistent runs,140/140case gates and17/17independent linear-reference qualifiers passed; shared pytest+main7.283s. Landau256/512particle-space curve gap.001154 and amplitude-half gap.004376 meet the unchanged.03bound. Original64-strata130/131result (.05646>.03) remains an explicitly unmet retained example; amplitudes/all tolerances stayed fixed."
+          },
+          "reference_data": [],
+          "results": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/results/result.json"
+          ],
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/primary.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/loading.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/references/linear.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/references/estimate.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/test_pic.py"
+          ],
+          "source_scope": "package"
+        }
+      ],
+      "code_checks": []
+    },
+    {
+      "schema_version": 1,
+      "id": "thermal-two-stream",
+      "name": {
+        "ja": "温かいPICの二流初期成長",
+        "en": "Warm PIC two-stream initial growth"
+      },
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/thermal-two-stream/",
+      "hub": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/thermal-two-stream/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/thermal-two-stream/?lang=en"
+      },
+      "image": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/results/thermal-two-stream-preview.png",
+        "sha256": "d0cc625131eeda306e2e79c9e8c24f19995ebea315c06218a7c97506edc35584",
+        "width": 1152,
+        "height": 672,
+        "caption": {
+          "ja": "実粒子のT40での速度変化δv/αを初期(x,v)に表示。1D1V位相空間の後期診断で、成長率を検証する固定窓[12,20]とは分けます。",
+          "en": "Actual particle delta-v/alpha atT40against initial(x,v). This1D1Vphase-space image is a late diagnostic; growth rates are validated only over[12,20]."
+        },
+        "source_kind": "existing-figure"
+      },
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-two-stream",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-two-stream"
+      },
+      "conditions": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#thermal-two-stream",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#thermal-two-stream-en"
+      },
+      "equations": [
+        {
+          "id": "vlasov-poisson",
+          "name": {
+            "ja": "静電Vlasov–Poisson方程式",
+            "en": "Electrostatic Vlasov–Poisson equations"
+          },
+          "formula": [
+            "\\partial_t f+v\\partial_x f-E\\partial_v f=0",
+            "\\partial_x E=1-\\int f\\,dv,\\quad\\int E\\,dx=0"
+          ],
+          "note": {
+            "ja": "1D1V電子と固定中性化背景。重み付き全分布PICの粒子・格子・時間近似と、線形参照の範囲を分けます。",
+            "en": "1D1V electrons and fixed neutralizing background. Separate weighted full-f particle,mesh and time approximations from the linear-reference scope."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#vlasov-poisson-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#vlasov-poisson-en"
+          }
+        }
+      ],
+      "equation_note": {
+        "ja": "各流の熱速度1、ドリフト±3、k=.2、L=10π、α=1e−5、格子32、64空間層×128総速度節点、dt=.05、T40、固定窓[12,20]。シード34001–34004。",
+        "en": "Each stream thermal speed1,drifts±3,k.2,L10pi,alpha1e-5,grid32,64spatial strata×128total velocity nodes,dt.05,T40,fit[12,20],seeds34001–34004."
+      },
+      "formulations": [
+        {
+          "id": "supplement-thermal-two-stream",
+          "name": {
+            "ja": "温かいPICの二流初期成長",
+            "en": "Warm PIC two-stream initial growth"
+          },
+          "source": "supplement",
+          "role": "example-definition",
+          "latex": [
+            "\\partial_t f+v\\partial_x f-E\\partial_v f=0,\\quad\\partial_x E=1-\\int f\\,dv,\\quad\\langle E\\rangle=0",
+            "D(\\omega,k)=1+\\frac{1}{k^2}\\sum_s a_s[1+\\zeta_s Z(\\zeta_s)],\\quad\\zeta_s=\\frac{\\omega-ku_s}{\\sqrt2 k}",
+            "e(t)=\\Phi(t)-\\int_0^t s\\Phi(s)e(t-s)\\,ds,\\quad\\Phi(t)=e^{-k^2t^2/2}\\cos(kut)"
+          ],
+          "note": {
+            "ja": "温度を持つ対向Maxwell二流を時間発展し、固定した線形窓の成長率と過渡を分散式・Volterra参照から分けて検査します。",
+            "en": "Evolve counter-streaming warm Maxwellians; distinguish fixed-window growth and transients using dielectric and Volterra references."
+          }
+        }
+      ],
+      "references": [
+        {
+          "id": "thermal-two-stream",
+          "kind": "semi-analytic",
+          "kind_label": {
+            "ja": "半解析解",
+            "en": "Semi-analytic reference"
+          },
+          "title": {
+            "ja": "温かいPICの二流初期成長",
+            "en": "Warm PIC two-stream initial growth"
+          },
+          "formula": "D(omega,k)=1+sum_s a_s[1+zeta_s Z(zeta_s)]/k²=0; e(t)=Phi(t)-integral_0^t s Phi(s)e(t-s)ds; Phi=exp[-(kt)²/2]cos(kut).",
+          "assumptions": {
+            "ja": "各流の熱速度1、ドリフト±3、k=.2、L=10π、α=1e−5、格子32、64空間層×128総速度節点、dt=.05、T40、固定窓[12,20]。シード34001–34004。 31 pytest・19自己無撞着計算・140/140ケース判定・17/17独立線形参照資格判定が合格。pytest+mainは7.283秒。Landau粒子空間層256/512の曲線差.001154、振幅半減差.004376は固定.03以下。以前の64層版130/131（振幅差.05646>.03）は全データと元契約を保持した未達例です。入力の振幅と全許容値は維持しました。 1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。",
+            "en": "Each stream thermal speed1,drifts±3,k.2,L10pi,alpha1e-5,grid32,64spatial strata×128total velocity nodes,dt.05,T40,fit[12,20],seeds34001–34004."
+          },
+          "relation": "same-problem",
+          "note": {
+            "ja": "1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。",
+            "en": "Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/thermal-two-stream/?lang=ja#thermal-two-stream-ja-measurements",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/thermal-two-stream/?lang=en#thermal-two-stream-en-measurements"
+          }
+        }
+      ],
+      "reference_note": {
+        "ja": "31 pytest・19自己無撞着計算・140/140ケース判定・17/17独立線形参照資格判定が合格。pytest+mainは7.283秒。Landau粒子空間層256/512の曲線差.001154、振幅半減差.004376は固定.03以下。以前の64層版130/131（振幅差.05646>.03）は全データと元契約を保持した未達例です。入力の振幅と全許容値は維持しました。",
+        "en": "31pytest,19self-consistent runs,140/140case gates and17/17independent linear-reference qualifiers passed; shared pytest+main7.283s. Landau256/512particle-space curve gap.001154 and amplitude-half gap.004376 meet the unchanged.03bound. Original64-strata130/131result (.05646>.03) remains an explicitly unmet retained example; amplitudes/all tolerances stayed fixed."
+      },
+      "methods": [
+        {
+          "id": "pic",
+          "name": {
+            "ja": "Particle-in-Cell（PIC）",
+            "en": "Particle-in-cell / PIC"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pic/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pic/?lang=en"
+          }
+        },
+        {
+          "id": "cic",
+          "name": {
+            "ja": "Cloud-in-cellの割当てと補間",
+            "en": "Cloud-in-cell assignment and interpolation"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/cic/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/cic/?lang=en"
+          }
+        },
+        {
+          "id": "verlet",
+          "name": {
+            "ja": "速度Verlet／粒子leapfrog法",
+            "en": "Velocity Verlet / particle leapfrog"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/verlet/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/verlet/?lang=en"
+          }
+        }
+      ],
+      "method_note": {
+        "ja": "正のGauss速度重みと密度CDF逆写像で共同(x,v)分布を作り、CIC電荷配置→FFT Poisson→同じCIC補間を各kickで再計算するvelocity-Verlet法。Z関数の分散根を枝追跡で確認し、別導出のVolterra初期値問題を刻み半減して固定窓の過渡偏りを検査します。",
+        "en": "Positive Gaussian velocity weights and density-CDF inversion load the joint(x,v) distribution. Recompute CIC deposition, FFT Poisson and matched CIC gathering at every velocity-Verlet kick. Qualify the dielectric root using branch continuation/bracket checks and a separately derived, time-refined Volterra IVP with the same fixed-window estimator."
+      },
+      "executions": [
+        {
+          "id": "thermal-two-stream",
+          "kind": "supplement",
+          "name": {
+            "ja": "温かいPICの二流初期成長",
+            "en": "Warm PIC two-stream initial growth"
+          },
+          "method_ids": [
+            "pic",
+            "cic",
+            "verlet"
+          ],
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/thermal-two-stream/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/thermal-two-stream/?lang=en"
+          },
+          "scope": {
+            "ja": "温度を持つ対向Maxwell二流を時間発展し、固定した線形窓の成長率と過渡を分散式・Volterra参照から分けて検査します。",
+            "en": "Evolve counter-streaming warm Maxwellians; distinguish fixed-window growth and transients using dielectric and Volterra references."
+          },
+          "assumptions": {
+            "ja": "各流の熱速度1、ドリフト±3、k=.2、L=10π、α=1e−5、格子32、64空間層×128総速度節点、dt=.05、T40、固定窓[12,20]。シード34001–34004。",
+            "en": "Each stream thermal speed1,drifts±3,k.2,L10pi,alpha1e-5,grid32,64spatial strata×128total velocity nodes,dt.05,T40,fit[12,20],seeds34001–34004."
+          },
+          "limits": {
+            "ja": "1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。",
+            "en": "Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established."
+          },
+          "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/inputs.json",
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/atlas-warm-pic-2026-11-23.zip",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/verification.json",
+          "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/source-manifest.json",
+          "commands": [
+            "python -m pip install -r requirements.txt",
+            "python -m pytest -q",
+            "python run.py --input inputs.json --output output"
+          ],
+          "reference_note": {
+            "ja": "31 pytest・19自己無撞着計算・140/140ケース判定・17/17独立線形参照資格判定が合格。pytest+mainは7.283秒。Landau粒子空間層256/512の曲線差.001154、振幅半減差.004376は固定.03以下。以前の64層版130/131（振幅差.05646>.03）は全データと元契約を保持した未達例です。入力の振幅と全許容値は維持しました。",
+            "en": "31pytest,19self-consistent runs,140/140case gates and17/17independent linear-reference qualifiers passed; shared pytest+main7.283s. Landau256/512particle-space curve gap.001154 and amplitude-half gap.004376 meet the unchanged.03bound. Original64-strata130/131result (.05646>.03) remains an explicitly unmet retained example; amplitudes/all tolerances stayed fixed."
+          },
+          "reference_data": [],
+          "results": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/results/result.json"
+          ],
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/primary.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/loading.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/references/linear.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/references/estimate.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/test_pic.py"
+          ],
+          "source_scope": "package"
+        }
+      ],
+      "code_checks": []
+    },
+    {
+      "schema_version": 1,
+      "id": "dsmc-couette",
+      "name": {
+        "ja": "硬球DSMCの有限Kn Couette流",
+        "en": "Hard-sphere DSMC finite-Kn Couette flow"
+      },
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-couette/",
+      "hub": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-couette/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-couette/?lang=en"
+      },
+      "image": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/results/dsmc-couette-preview.png",
+        "sha256": "cbb25893cb6b520b4516aa8efe0faa863b48460ff18e5b5d2cca0141cc28f439",
+        "width": 2176,
+        "height": 704,
+        "caption": {
+          "ja": "保存した実粒子の位置–速度ヒストグラム。1次元位置と分子速度の位相空間であり、2D物理流れではありません。",
+          "en": "Actual saved particle position-velocity histograms; phase space of1D position and molecular velocity,not2D physical flow."
+        },
+        "source_kind": "existing-figure"
+      },
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-wall/#dsmc-couette",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-wall/#dsmc-couette"
+      },
+      "conditions": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#dsmc-couette",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#dsmc-couette-en"
+      },
+      "equations": [
+        {
+          "id": "hard-sphere-boltzmann",
+          "name": {
+            "ja": "剛体球Boltzmann輸送と壁・流入出",
+            "en": "Hard-sphere Boltzmann transport,walls and reservoirs"
+          },
+          "formula": [
+            "\\partial_t f+v_x\\partial_x f=Q_{\\rm HS}(f,f)",
+            "\\sigma=1/\\sqrt2,\\quad\\lambda(n)=1/(\\sqrt2n\\sigma)"
+          ],
+          "note": {
+            "ja": "1D空間・3D速度の単原子気体。速度依存の剛体球衝突、壁の流束分布と開境界を実時間で扱います。",
+            "en": "1D space,3D velocity monatomic gas. Physical-time speed-dependent hard-sphere collisions,wall flux distributions and open reservoirs."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#hard-sphere-boltzmann-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#hard-sphere-boltzmann-en"
+          }
+        }
+      ],
+      "equation_note": {
+        "ja": "1次元位置・3次元速度、H=2、Kn0=.5、完全拡散壁。壁温1、壁速度±.5。16セル、N=1024、dt=.02、burn20/sample40、4seed。",
+        "en": "{\"kind\":\"wall\",\"cells\":16,\"length\":2,\"weight\":0.001953125,\"dt\":0.02,\"burn_in\":20,\"sample_time\":40,\"blocks\":5,\"bins\":8,\"sample_every\":10,\"hist_velocity\":[-6,6],\"temperatures\":[1,1],\"speeds\":[-0.5,0.5]} Four independent seeds; primary fixed-weight mesh,particle-weight,and half-step companions each retain seed1."
+      },
+      "formulations": [
+        {
+          "id": "supplement-dsmc-couette",
+          "name": {
+            "ja": "硬球DSMCの有限Kn Couette流",
+            "en": "Hard-sphere DSMC finite-Kn Couette flow"
+          },
+          "source": "supplement",
+          "role": "example-definition",
+          "latex": [
+            "\\partial_t f+v_x\\partial_x f=Q_{\\mathrm{HS}}(f,f),\\quad \\sigma=\\pi d^2=1/\\sqrt{2}",
+            "P_{ij}=n\\langle c_i c_j\\rangle,\\quad q_x=\\frac{n}{2}\\langle c_x|\\mathbf c|^2\\rangle,\\quad\\mathbf c=\\mathbf v-\\mathbf u",
+            "p_{ij}=a_N W\\sigma g_{ij}\\Delta t/V,\\quad a_N=\\begin{cases}N-1&N\\text{ even}\\\\N&N\\text{ odd}\\end{cases}",
+            "g_{ij}\\le\\sqrt{2\\sum_i|\\mathbf v_i-\\mathbf v_{cm}|^2}"
+          ],
+          "note": {
+            "ja": "物理時間の硬球衝突と実際の分子輸送を計算し、独立SPARTAの資格確認済みモーメント場と比較します。",
+            "en": "Evolve physical-time hard-sphere collisions and molecular streaming; compare actual moments with qualified independent SPARTA fields."
+          }
+        }
+      ],
+      "references": [
+        {
+          "id": "dsmc-couette",
+          "kind": "numerical-reference",
+          "kind_label": {
+            "ja": "有限格子の数値参照",
+            "en": "Finite-grid numerical reference"
+          },
+          "title": {
+            "ja": "硬球DSMCの有限Kn Couette流",
+            "en": "Finite-Kn hard-sphere Couette flow"
+          },
+          "formula": "partial_t f+v_x partial_x f=Q_HS(f,f); sigma=pi*d^2=1/sqrt(2); lambda0=1; n,u,T,Pxx,Pxy,qx from pooled molecular moments.",
+          "assumptions": {
+            "ja": "1次元位置・3次元速度、H=2、Kn0=.5、完全拡散壁。壁温1、壁速度±.5。16セル、N=1024、dt=.02、burn20/sample40、4seed。 各群18pytestを事前固定。新しい固定計算は群で14本。境界込みの質量・運動量・エネルギー、局所λ/衝突時間、独立参照への誤差とseed精度、時間block定常性を別に判定します。 有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。Kn=.5で連続体の直線・no-slip分布を厳密解としません。図は保存した粒子位相空間であり、2D物理流れではありません。",
+            "en": "H=2lambda0; diffuse Twalls1, tangential Uwalls+/-0.5; nonlinear viscous heating retained. All velocities3D; physical position1D. Four independent SPARTA seeds per configuration, fixed native inputs."
+          },
+          "relation": "same-problem",
+          "note": {
+            "ja": "有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。Kn=.5で連続体の直線・no-slip分布を厳密解としません。図は保存した粒子位相空間であり、2D物理流れではありません。",
+            "en": "Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. AtKn.5,continuum straight/no-slip profiles are not exact. Saved phase space is not a2D physical flow."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-couette/?lang=ja#dsmc-couette-ja-measurements",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-couette/?lang=en#dsmc-couette-en-measurements"
+          }
+        }
+      ],
+      "reference_note": {
+        "ja": "各群18pytestを事前固定。新しい固定計算は群で14本。境界込みの質量・運動量・エネルギー、局所λ/衝突時間、独立参照への誤差とseed精度、時間block定常性を別に判定します。",
+        "en": "Predeclare18pytest per group and14new fixed primary runs. Separate boundary-inclusive budgets,local lambda/collision-time diagnostics,reference error,whole-seed precision and block stationarity. Reference36runs/87qualifiers already passed; primary results remain pending until the frozen run."
+      },
+      "methods": [
+        {
+          "id": "dsmc",
+          "name": {
+            "ja": "DSMC・運動論輸送",
+            "en": "DSMC and kinetic transport"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/dsmc/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/dsmc/?lang=en"
+          }
+        }
+      ],
+      "method_note": {
+        "ja": "セル内の非重複ランダム対へ、偶数・奇数粒子数を区別した物理時間のσg衝突確率を適用。エネルギーによる安全上界で事前にsubcycle数を定め、確率clipはしません。壁・流入はflux重み付き分布と実際の残り飛行時間を用います。",
+        "en": "Disjoint cell-local random pairs with even/odd finite-N physical-time sigma*g acceptance,energy-based safe majorant and predeclared bounded subcycling; no probability caps. Exact flight-to-wall and flux-conditioned diffuse/reservoir velocities with remaining flight time."
+      },
+      "executions": [
+        {
+          "id": "dsmc-couette",
+          "kind": "supplement",
+          "name": {
+            "ja": "硬球DSMCの有限Kn Couette流",
+            "en": "Hard-sphere DSMC finite-Kn Couette flow"
+          },
+          "method_ids": [
+            "dsmc"
+          ],
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-couette/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-couette/?lang=en"
+          },
+          "scope": {
+            "ja": "物理時間の硬球衝突と実際の分子輸送を計算し、独立SPARTAの資格確認済みモーメント場と比較します。",
+            "en": "Evolve physical-time hard-sphere collisions and molecular streaming; compare actual moments with qualified independent SPARTA fields."
+          },
+          "assumptions": {
+            "ja": "1次元位置・3次元速度、H=2、Kn0=.5、完全拡散壁。壁温1、壁速度±.5。16セル、N=1024、dt=.02、burn20/sample40、4seed。",
+            "en": "{\"kind\":\"wall\",\"cells\":16,\"length\":2,\"weight\":0.001953125,\"dt\":0.02,\"burn_in\":20,\"sample_time\":40,\"blocks\":5,\"bins\":8,\"sample_every\":10,\"hist_velocity\":[-6,6],\"temperatures\":[1,1],\"speeds\":[-0.5,0.5]} Four independent seeds; primary fixed-weight mesh,particle-weight,and half-step companions each retain seed1."
+          },
+          "limits": {
+            "ja": "有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。Kn=.5で連続体の直線・no-slip分布を厳密解としません。図は保存した粒子位相空間であり、2D物理流れではありません。",
+            "en": "Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. AtKn.5,continuum straight/no-slip profiles are not exact. Saved phase space is not a2D physical flow."
+          },
+          "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/inputs.json",
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/atlas-dsmc-wall-2026-11-23.zip",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/verification.json",
+          "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/source-manifest.json",
+          "commands": [
+            "python -m pip install -r requirements.txt",
+            "python -m pytest -q",
+            "python run.py --input inputs.json --output output"
+          ],
+          "reference_note": {
+            "ja": "各群18pytestを事前固定。新しい固定計算は群で14本。境界込みの質量・運動量・エネルギー、局所λ/衝突時間、独立参照への誤差とseed精度、時間block定常性を別に判定します。",
+            "en": "Predeclare18pytest per group and14new fixed primary runs. Separate boundary-inclusive budgets,local lambda/collision-time diagnostics,reference error,whole-seed precision and block stationarity. Reference36runs/87qualifiers already passed; primary results remain pending until the frozen run."
+          },
+          "reference_data": [],
+          "results": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/results/result.json"
+          ],
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/dsmc.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/diagnostics.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/test_core.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/test_wall.py"
+          ],
+          "source_scope": "package"
+        }
+      ],
+      "code_checks": []
+    },
+    {
+      "schema_version": 1,
+      "id": "dsmc-fourier",
+      "name": {
+        "ja": "硬球DSMCの有限Kn Fourier熱伝導",
+        "en": "Hard-sphere DSMC finite-Kn Fourier heat conduction"
+      },
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-fourier/",
+      "hub": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-fourier/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-fourier/?lang=en"
+      },
+      "image": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/results/dsmc-fourier-preview.png",
+        "sha256": "87bfad63ef3230c67e56fb2c6e252f69075f311e2af565a363584461a2039a2a",
+        "width": 2176,
+        "height": 704,
+        "caption": {
+          "ja": "保存した実粒子の位置–速度ヒストグラム。1次元位置と分子速度の位相空間であり、2D物理流れではありません。",
+          "en": "Actual saved particle position-velocity histograms; phase space of1D position and molecular velocity,not2D physical flow."
+        },
+        "source_kind": "existing-figure"
+      },
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-wall/#dsmc-fourier",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-wall/#dsmc-fourier"
+      },
+      "conditions": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#dsmc-fourier",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#dsmc-fourier-en"
+      },
+      "equations": [
+        {
+          "id": "hard-sphere-boltzmann",
+          "name": {
+            "ja": "剛体球Boltzmann輸送と壁・流入出",
+            "en": "Hard-sphere Boltzmann transport,walls and reservoirs"
+          },
+          "formula": [
+            "\\partial_t f+v_x\\partial_x f=Q_{\\rm HS}(f,f)",
+            "\\sigma=1/\\sqrt2,\\quad\\lambda(n)=1/(\\sqrt2n\\sigma)"
+          ],
+          "note": {
+            "ja": "1D空間・3D速度の単原子気体。速度依存の剛体球衝突、壁の流束分布と開境界を実時間で扱います。",
+            "en": "1D space,3D velocity monatomic gas. Physical-time speed-dependent hard-sphere collisions,wall flux distributions and open reservoirs."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#hard-sphere-boltzmann-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#hard-sphere-boltzmann-en"
+          }
+        }
+      ],
+      "equation_note": {
+        "ja": "1次元位置・3次元速度、H=2、Kn0=.5、完全拡散壁。静止壁、左温度1・右2。16セル、N=1024、dt=.02、burn20/sample40、4seed。",
+        "en": "{\"kind\":\"wall\",\"cells\":16,\"length\":2,\"weight\":0.001953125,\"dt\":0.02,\"burn_in\":20,\"sample_time\":40,\"blocks\":5,\"bins\":8,\"sample_every\":10,\"hist_velocity\":[-6,6],\"temperatures\":[1,2],\"speeds\":[0,0]} Four independent seeds; primary fixed-weight mesh,particle-weight,and half-step companions each retain seed1."
+      },
+      "formulations": [
+        {
+          "id": "supplement-dsmc-fourier",
+          "name": {
+            "ja": "硬球DSMCの有限Kn Fourier熱伝導",
+            "en": "Hard-sphere DSMC finite-Kn Fourier heat conduction"
+          },
+          "source": "supplement",
+          "role": "example-definition",
+          "latex": [
+            "\\partial_t f+v_x\\partial_x f=Q_{\\mathrm{HS}}(f,f),\\quad \\sigma=\\pi d^2=1/\\sqrt{2}",
+            "P_{ij}=n\\langle c_i c_j\\rangle,\\quad q_x=\\frac{n}{2}\\langle c_x|\\mathbf c|^2\\rangle,\\quad\\mathbf c=\\mathbf v-\\mathbf u",
+            "p_{ij}=a_N W\\sigma g_{ij}\\Delta t/V,\\quad a_N=\\begin{cases}N-1&N\\text{ even}\\\\N&N\\text{ odd}\\end{cases}",
+            "g_{ij}\\le\\sqrt{2\\sum_i|\\mathbf v_i-\\mathbf v_{cm}|^2}"
+          ],
+          "note": {
+            "ja": "物理時間の硬球衝突と実際の分子輸送を計算し、独立SPARTAの資格確認済みモーメント場と比較します。",
+            "en": "Evolve physical-time hard-sphere collisions and molecular streaming; compare actual moments with qualified independent SPARTA fields."
+          }
+        }
+      ],
+      "references": [
+        {
+          "id": "dsmc-fourier",
+          "kind": "numerical-reference",
+          "kind_label": {
+            "ja": "有限格子の数値参照",
+            "en": "Finite-grid numerical reference"
+          },
+          "title": {
+            "ja": "硬球DSMCの有限Kn Fourier熱伝導",
+            "en": "Finite-Kn hard-sphere Fourier heat conduction"
+          },
+          "formula": "partial_t f+v_x partial_x f=Q_HS(f,f); sigma=pi*d^2=1/sqrt(2); lambda0=1; n,u,T,Pxx,Pxy,qx from pooled molecular moments.",
+          "assumptions": {
+            "ja": "1次元位置・3次元速度、H=2、Kn0=.5、完全拡散壁。静止壁、左温度1・右2。16セル、N=1024、dt=.02、burn20/sample40、4seed。 各群18pytestを事前固定。新しい固定計算は群で14本。境界込みの質量・運動量・エネルギー、局所λ/衝突時間、独立参照への誤差とseed精度、時間block定常性を別に判定します。 有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。Kn=.5で連続体の直線・no-slip分布を厳密解としません。図は保存した粒子位相空間であり、2D物理流れではありません。",
+            "en": "H=2lambda0; diffuse Tleft1,Tright2; fixed walls; no continuum linear-temperature reference. All velocities3D; physical position1D. Four independent SPARTA seeds per configuration, fixed native inputs."
+          },
+          "relation": "same-problem",
+          "note": {
+            "ja": "有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。Kn=.5で連続体の直線・no-slip分布を厳密解としません。図は保存した粒子位相空間であり、2D物理流れではありません。",
+            "en": "Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. AtKn.5,continuum straight/no-slip profiles are not exact. Saved phase space is not a2D physical flow."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-fourier/?lang=ja#dsmc-fourier-ja-measurements",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-fourier/?lang=en#dsmc-fourier-en-measurements"
+          }
+        }
+      ],
+      "reference_note": {
+        "ja": "各群18pytestを事前固定。新しい固定計算は群で14本。境界込みの質量・運動量・エネルギー、局所λ/衝突時間、独立参照への誤差とseed精度、時間block定常性を別に判定します。",
+        "en": "Predeclare18pytest per group and14new fixed primary runs. Separate boundary-inclusive budgets,local lambda/collision-time diagnostics,reference error,whole-seed precision and block stationarity. Reference36runs/87qualifiers already passed; primary results remain pending until the frozen run."
+      },
+      "methods": [
+        {
+          "id": "dsmc",
+          "name": {
+            "ja": "DSMC・運動論輸送",
+            "en": "DSMC and kinetic transport"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/dsmc/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/dsmc/?lang=en"
+          }
+        }
+      ],
+      "method_note": {
+        "ja": "セル内の非重複ランダム対へ、偶数・奇数粒子数を区別した物理時間のσg衝突確率を適用。エネルギーによる安全上界で事前にsubcycle数を定め、確率clipはしません。壁・流入はflux重み付き分布と実際の残り飛行時間を用います。",
+        "en": "Disjoint cell-local random pairs with even/odd finite-N physical-time sigma*g acceptance,energy-based safe majorant and predeclared bounded subcycling; no probability caps. Exact flight-to-wall and flux-conditioned diffuse/reservoir velocities with remaining flight time."
+      },
+      "executions": [
+        {
+          "id": "dsmc-fourier",
+          "kind": "supplement",
+          "name": {
+            "ja": "硬球DSMCの有限Kn Fourier熱伝導",
+            "en": "Hard-sphere DSMC finite-Kn Fourier heat conduction"
+          },
+          "method_ids": [
+            "dsmc"
+          ],
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-fourier/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-fourier/?lang=en"
+          },
+          "scope": {
+            "ja": "物理時間の硬球衝突と実際の分子輸送を計算し、独立SPARTAの資格確認済みモーメント場と比較します。",
+            "en": "Evolve physical-time hard-sphere collisions and molecular streaming; compare actual moments with qualified independent SPARTA fields."
+          },
+          "assumptions": {
+            "ja": "1次元位置・3次元速度、H=2、Kn0=.5、完全拡散壁。静止壁、左温度1・右2。16セル、N=1024、dt=.02、burn20/sample40、4seed。",
+            "en": "{\"kind\":\"wall\",\"cells\":16,\"length\":2,\"weight\":0.001953125,\"dt\":0.02,\"burn_in\":20,\"sample_time\":40,\"blocks\":5,\"bins\":8,\"sample_every\":10,\"hist_velocity\":[-6,6],\"temperatures\":[1,2],\"speeds\":[0,0]} Four independent seeds; primary fixed-weight mesh,particle-weight,and half-step companions each retain seed1."
+          },
+          "limits": {
+            "ja": "有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。Kn=.5で連続体の直線・no-slip分布を厳密解としません。図は保存した粒子位相空間であり、2D物理流れではありません。",
+            "en": "Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. AtKn.5,continuum straight/no-slip profiles are not exact. Saved phase space is not a2D physical flow."
+          },
+          "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/inputs.json",
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/atlas-dsmc-wall-2026-11-23.zip",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/verification.json",
+          "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/source-manifest.json",
+          "commands": [
+            "python -m pip install -r requirements.txt",
+            "python -m pytest -q",
+            "python run.py --input inputs.json --output output"
+          ],
+          "reference_note": {
+            "ja": "各群18pytestを事前固定。新しい固定計算は群で14本。境界込みの質量・運動量・エネルギー、局所λ/衝突時間、独立参照への誤差とseed精度、時間block定常性を別に判定します。",
+            "en": "Predeclare18pytest per group and14new fixed primary runs. Separate boundary-inclusive budgets,local lambda/collision-time diagnostics,reference error,whole-seed precision and block stationarity. Reference36runs/87qualifiers already passed; primary results remain pending until the frozen run."
+          },
+          "reference_data": [],
+          "results": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/results/result.json"
+          ],
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/dsmc.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/diagnostics.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/test_core.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/test_wall.py"
+          ],
+          "source_scope": "package"
+        }
+      ],
+      "code_checks": []
+    },
+    {
+      "schema_version": 1,
+      "id": "dsmc-planar-shock",
+      "name": {
+        "ja": "硬球DSMCのMach2平面衝撃波",
+        "en": "Hard-sphere DSMC Mach2 planar shock"
+      },
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-planar-shock/",
+      "hub": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-planar-shock/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dsmc-planar-shock/?lang=en"
+      },
+      "image": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock-preview.png",
+        "sha256": "89e25d3088c177ac0cb027fe58f02627b049626d0198bda02abc0eb6fec6555c",
+        "width": 2176,
+        "height": 704,
+        "caption": {
+          "ja": "保存した実粒子の位置–速度ヒストグラム。1次元位置と分子速度の位相空間であり、2D物理流れではありません。",
+          "en": "Actual saved particle position-velocity histograms; phase space of1D position and molecular velocity,not2D physical flow."
+        },
+        "source_kind": "existing-figure"
+      },
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-shock/#dsmc-planar-shock",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-shock/#dsmc-planar-shock"
+      },
+      "conditions": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#dsmc-planar-shock",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#dsmc-planar-shock-en"
+      },
+      "equations": [
+        {
+          "id": "hard-sphere-boltzmann",
+          "name": {
+            "ja": "剛体球Boltzmann輸送と壁・流入出",
+            "en": "Hard-sphere Boltzmann transport,walls and reservoirs"
+          },
+          "formula": [
+            "\\partial_t f+v_x\\partial_x f=Q_{\\rm HS}(f,f)",
+            "\\sigma=1/\\sqrt2,\\quad\\lambda(n)=1/(\\sqrt2n\\sigma)"
+          ],
+          "note": {
+            "ja": "1D空間・3D速度の単原子気体。速度依存の剛体球衝突、壁の流束分布と開境界を実時間で扱います。",
+            "en": "1D space,3D velocity monatomic gas. Physical-time speed-dependent hard-sphere collisions,wall flux distributions and open reservoirs."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#hard-sphere-boltzmann-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#hard-sphere-boltzmann-en"
+          }
+        }
+      ],
+      "equation_note": {
+        "ja": "1次元位置・3次元速度、単原子硬球。Mach2、区間[0,16]、RHの開境界reservoir。192セル、粒子重み1/192、dt=.01、burn20/sample20、12seed。",
+        "en": "{\"kind\":\"shock\",\"cells\":192,\"length\":16,\"weight\":0.005208333333333333,\"dt\":0.01,\"burn_in\":20,\"sample_time\":20,\"blocks\":5,\"bins\":64,\"sample_every\":10,\"hist_velocity\":[-4,7]} Twelve independent seeds; primary fixed-weight mesh,particle-weight,and half-step companions each retain seed1."
+      },
+      "formulations": [
+        {
+          "id": "supplement-dsmc-planar-shock",
+          "name": {
+            "ja": "硬球DSMCのMach2平面衝撃波",
+            "en": "Hard-sphere DSMC Mach2 planar shock"
+          },
+          "source": "supplement",
+          "role": "example-definition",
+          "latex": [
+            "\\partial_t f+v_x\\partial_x f=Q_{\\mathrm{HS}}(f,f),\\quad \\sigma=\\pi d^2=1/\\sqrt{2}",
+            "P_{ij}=n\\langle c_i c_j\\rangle,\\quad q_x=\\frac{n}{2}\\langle c_x|\\mathbf c|^2\\rangle,\\quad\\mathbf c=\\mathbf v-\\mathbf u",
+            "p_{ij}=a_N W\\sigma g_{ij}\\Delta t/V,\\quad a_N=\\begin{cases}N-1&N\\text{ even}\\\\N&N\\text{ odd}\\end{cases}",
+            "g_{ij}\\le\\sqrt{2\\sum_i|\\mathbf v_i-\\mathbf v_{cm}|^2}"
+          ],
+          "note": {
+            "ja": "物理時間の硬球衝突と実際の分子輸送を計算し、独立SPARTAの資格確認済みモーメント場と比較します。",
+            "en": "Evolve physical-time hard-sphere collisions and molecular streaming; compare actual moments with qualified independent SPARTA fields."
+          }
+        }
+      ],
+      "references": [
+        {
+          "id": "dsmc-planar-shock",
+          "kind": "numerical-reference",
+          "kind_label": {
+            "ja": "有限格子の数値参照",
+            "en": "Finite-grid numerical reference"
+          },
+          "title": {
+            "ja": "硬球DSMCのMach2平面衝撃波",
+            "en": "Mach2 planar hard-sphere shock"
+          },
+          "formula": "partial_t f+v_x partial_x f=Q_HS(f,f); sigma=pi*d^2=1/sqrt(2); lambda0=1; n,u,T,Pxx,Pxy,qx from pooled molecular moments.",
+          "assumptions": {
+            "ja": "1次元位置・3次元速度、単原子硬球。Mach2、区間[0,16]、RHの開境界reservoir。192セル、粒子重み1/192、dt=.01、burn20/sample20、12seed。 各群20pytestを事前固定。新しい固定計算は15本。境界込みの質量・運動量・エネルギー、局所λ/衝突時間、独立参照への誤差とseed精度、時間block定常性を別に判定します。 群の判定は既存81項目を保持し、新8計算の48項目を追加した129項目です。primary t95はdf11、独立参照4seedはdf3です。 有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。RHは遠方状態・流束だけの参照で、内部構造の厳密解ではありません。図は保存した粒子位相空間であり、2D物理流れではありません。",
+            "en": "Monatomic gamma5/3,M1=2, RH inflow/outflow reservoirs at x0/16. Reference lambda2/lambda1=7/16; no profile shifting or shock pinning. All velocities3D; physical position1D. Four independent SPARTA seeds per configuration, fixed native inputs."
+          },
+          "relation": "same-problem",
+          "note": {
+            "ja": "有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。RHは遠方状態・流束だけの参照で、内部構造の厳密解ではありません。図は保存した粒子位相空間であり、2D物理流れではありません。",
+            "en": "Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. RH validates far states/full fluxes,not an exact internal shock profile. Saved phase space is not a2D physical flow."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=ja#dsmc-planar-shock-ja-measurements",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=en#dsmc-planar-shock-en-measurements"
+          }
+        }
+      ],
+      "reference_note": {
+        "ja": "各群20pytestを事前固定。新しい固定計算は15本。境界込みの質量・運動量・エネルギー、局所λ/衝突時間、独立参照への誤差とseed精度、時間block定常性を別に判定します。 群の判定は既存81項目を保持し、新8計算の48項目を追加した129項目です。primary t95はdf11、独立参照4seedはdf3です。",
+        "en": "Predeclare20pytest per group and15new fixed primary runs. Separate boundary-inclusive budgets,local lambda/collision-time diagnostics,reference error,whole-seed precision and block stationarity. Reference36runs/87qualifiers already passed; primary results remain pending until the frozen run. Preserve all81old gates and add48new-run gates=129. Primary12seed t95 usesdf11,reference4seed usesdf3; descriptive approximate-normal whole-seed intervals,not unconditional adaptive-study coverage."
+      },
+      "methods": [
+        {
+          "id": "dsmc",
+          "name": {
+            "ja": "DSMC・運動論輸送",
+            "en": "DSMC and kinetic transport"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/dsmc/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/dsmc/?lang=en"
+          }
+        }
+      ],
+      "method_note": {
+        "ja": "セル内の非重複ランダム対へ、偶数・奇数粒子数を区別した物理時間のσg衝突確率を適用。エネルギーによる安全上界で事前にsubcycle数を定め、確率clipはしません。壁・流入はflux重み付き分布と実際の残り飛行時間を用います。 開境界のmacro粒子到着数は平均を保つfloor(平均)+Bernoulli(小数部)で分散を下げます。Poisson数揺らぎや熱揺らぎの再現は主張しません。 既存4seedを残して次の8連番seedを追加します。一様順列と安定整数sortは対選択法則を保ちますが、乱数消費と軌道のbit一致は主張しません。",
+        "en": "Disjoint cell-local random pairs with even/odd finite-N physical-time sigma*g acceptance,energy-based safe majorant and predeclared bounded subcycling; no probability caps. Exact flight-to-wall and flux-conditioned diffuse/reservoir velocities with remaining flight time. Open-reservoir macro counts use unbiased floor(mean)+Bernoulli(fraction) per face/species/half-stream to reduce artificial sampling variance; no Poisson number-fluctuation or thermodynamic-fluctuation reproduction claim. Retain the original four seeds and append the next eight consecutive seeds; uniform permutation/stable integer sorting preserves the ideal within-cell matching law,not RNG consumption or bit-identical trajectories."
+      },
+      "executions": [
+        {
+          "id": "dsmc-planar-shock",
+          "kind": "supplement",
+          "name": {
+            "ja": "硬球DSMCのMach2平面衝撃波",
+            "en": "Hard-sphere DSMC Mach2 planar shock"
+          },
+          "method_ids": [
+            "dsmc"
+          ],
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=en"
+          },
+          "scope": {
+            "ja": "物理時間の硬球衝突と実際の分子輸送を計算し、独立SPARTAの資格確認済みモーメント場と比較します。",
+            "en": "Evolve physical-time hard-sphere collisions and molecular streaming; compare actual moments with qualified independent SPARTA fields."
+          },
+          "assumptions": {
+            "ja": "1次元位置・3次元速度、単原子硬球。Mach2、区間[0,16]、RHの開境界reservoir。192セル、粒子重み1/192、dt=.01、burn20/sample20、12seed。",
+            "en": "{\"kind\":\"shock\",\"cells\":192,\"length\":16,\"weight\":0.005208333333333333,\"dt\":0.01,\"burn_in\":20,\"sample_time\":20,\"blocks\":5,\"bins\":64,\"sample_every\":10,\"hist_velocity\":[-4,7]} Twelve independent seeds; primary fixed-weight mesh,particle-weight,and half-step companions each retain seed1."
+          },
+          "limits": {
+            "ja": "有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。RHは遠方状態・流束だけの参照で、内部構造の厳密解ではありません。図は保存した粒子位相空間であり、2D物理流れではありません。",
+            "en": "Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. RH validates far states/full fluxes,not an exact internal shock profile. Saved phase space is not a2D physical flow."
+          },
+          "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/inputs.json",
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/atlas-dsmc-shock-2026-11-23.zip",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/verification.json",
+          "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/source-manifest.json",
+          "commands": [
+            "python -m pip install -r requirements.txt",
+            "python -m pytest -q",
+            "python run.py --input inputs.json --output output"
+          ],
+          "reference_note": {
+            "ja": "各群20pytestを事前固定。新しい固定計算は15本。境界込みの質量・運動量・エネルギー、局所λ/衝突時間、独立参照への誤差とseed精度、時間block定常性を別に判定します。 群の判定は既存81項目を保持し、新8計算の48項目を追加した129項目です。primary t95はdf11、独立参照4seedはdf3です。",
+            "en": "Predeclare20pytest per group and15new fixed primary runs. Separate boundary-inclusive budgets,local lambda/collision-time diagnostics,reference error,whole-seed precision and block stationarity. Reference36runs/87qualifiers already passed; primary results remain pending until the frozen run. Preserve all81old gates and add48new-run gates=129. Primary12seed t95 usesdf11,reference4seed usesdf3; descriptive approximate-normal whole-seed intervals,not unconditional adaptive-study coverage."
+          },
+          "reference_data": [],
+          "results": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/results/result.json"
+          ],
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/dsmc.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/diagnostics.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/test_arrivals.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/test_core.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/test_matching.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-shock/test_shock.py"
+          ],
+          "source_scope": "package"
+        }
+      ],
+      "code_checks": []
     }
   ],
   "source_sha256": {
-    "catalog/atlas-depth-expansion.json": "25b030e85b4313197b9d98802270ffb65507ea0f8915bab9cbf64dabbf7fa47e",
-    "catalog/atlas-equations.json": "7cc4e148e7a78c3218727153febf59fc9c19ccb1088f89ca2cd5d94c16bc7e28",
+    "catalog/atlas-depth-expansion.json": "bfd3d4d52c78416dc2140beafdf559f8b6e98373d55e7fbb95ec85f7c296d7ee",
+    "catalog/atlas-equations.json": "28ff2cf7ae26b5ffad16b1c6215e8a496d97bb4541ae726f6fb03f1b4f18f866",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
-    "catalog/atlas-problem-links.json": "70892664d662db9c5422fd52a18f540be3a5b67bfe5804ca36de656f26c1120a",
-    "catalog/atlas-reference-supplements.json": "bc848ad33eefba5e1e2818b45bcb5130f60057cebba0596c0f64c47c40fef637",
+    "catalog/atlas-problem-links.json": "e56eeddac0252a43556095457252c048c7348de7c2aafdc8c9753cd4c44c498c",
+    "catalog/atlas-reference-supplements.json": "bd8b2e7c5b133ae449f3841ba3bc4abb9d910d4fd58d5d0414b87e4a3334dbb2",
     "code/model-benchmarks/2026-11-22/model-benchmarks-2026-11-22.zip": "8c9c70c4577de3737d739dfd39e11beecd37006808ffd79c3dfcda7f3ced1db5",
     "code/molecular-hf/2026-11-22/molecular-hf-2026-11-22.zip": "293988ec209a867491cf8356f12ce5cb8484a51d5c1d444acd5f217062b5ba79",
     "code/numerical-methods-atlas/2026-11-21/atlas-code-2026-11-21.zip": "f17c0cfcf6956a2677dcdc874235806ae9c5453514be02e6d3274732bcdebe4f",
@@ -19498,16 +21832,41 @@
     "code/validated-examples/2026-11-23-r5/noh/results/result.json": "4e92acb911d505b3f7e74e39f01acf77e59fbe15577f321ac759f1315e487724",
     "code/validated-examples/2026-11-23-r5/noh/source-manifest.json": "8597cbc7b841502f4e7eca154e86fe8893402c1167614952de682d7307c5595d",
     "code/validated-examples/2026-11-23-r5/noh/verification.json": "48545a33ab2c19e9071616a15a1fcbf90c716096aa1a12550d3cb872ed8d9e36",
+    "code/validated-examples/2026-11-23/coefficient-diffusion/atlas-coefficient-diffusion-2026-11-23.zip": "c53624aa03cf7f945297e7bd09d72030e111e035c3ce7174fd2da9e86756b666",
+    "code/validated-examples/2026-11-23/coefficient-diffusion/cases.json": "c861a45e8f07dbce47bb74c62a57427117cd1e5d20d3d914a588be0a1c26785a",
+    "code/validated-examples/2026-11-23/coefficient-diffusion/results/result.json": "13f91d2a2e927aa59a5a043005d98d267cebc1b6a5c57a7ab966b2670f86635c",
+    "code/validated-examples/2026-11-23/coefficient-diffusion/source-manifest.json": "2d927e3042eb221498be0f5f0bf5e7363cdb280247379f92dfaacce47b62b914",
+    "code/validated-examples/2026-11-23/coefficient-diffusion/verification.json": "49dcdd24f0d90110fb0bbb1f28a8a9bce0c8d4fdd3645d0cd5a79722f3fe39c2",
     "code/validated-examples/2026-11-23/double-mach/atlas-double-mach-2026-11-23.zip": "0a68d19746c508e0ac0cf9b5bebe9375c797a87ade1a9fbfbef87d6e5fa63347",
     "code/validated-examples/2026-11-23/double-mach/cases.json": "38eb6a6fb4af35cdd3ca8834b9f3e5c80be22a50615f03aef712bc67b11b85e3",
     "code/validated-examples/2026-11-23/double-mach/results/result.json": "3b4a36b9b3e10e7a6984130ee24bb7d5707de0fe24facff3a49b8eabd71ea5fe",
     "code/validated-examples/2026-11-23/double-mach/source-manifest.json": "32ba5521149368b729b31796dcc0006c8fd743e840e1e36533a867a47170d8c8",
     "code/validated-examples/2026-11-23/double-mach/verification.json": "c588b4ce7f539d53b1d5eec4413ce3a1dc104eff975e4adddf0c544460dbb49e",
+    "code/validated-examples/2026-11-23/dsmc-shock/atlas-dsmc-shock-2026-11-23.zip": "a0781fe0b577cd65f60489e77672bbfdbc7d1f657c9514ad1c0c862125ba4eda",
+    "code/validated-examples/2026-11-23/dsmc-shock/cases.json": "c5055607e9aa3b76824051db6fdf01ffa9e01243f6989f0a348519045eddea22",
+    "code/validated-examples/2026-11-23/dsmc-shock/results/result.json": "5c33c06b72bb7f5f778b21e02e02804df57eb82cad2e15d08e5f06acf8196599",
+    "code/validated-examples/2026-11-23/dsmc-shock/source-manifest.json": "2dfb1b6074aec28dddb083cc715c85080be678f39e55b2472c518730ec72c766",
+    "code/validated-examples/2026-11-23/dsmc-shock/verification.json": "fdca2ddb0069b640ef24da3de9766b5ccee5c5a117c7017589bd0de07d003623",
+    "code/validated-examples/2026-11-23/dsmc-wall/atlas-dsmc-wall-2026-11-23.zip": "7b6d5a11874a0042ce772df4c241c72ce42f861c43ed0d44164074ba662da0cb",
+    "code/validated-examples/2026-11-23/dsmc-wall/cases.json": "0b1fb2514bff09c0dd5e214348a875f15f37cbde756afbf88ea2fcac188e7bb5",
+    "code/validated-examples/2026-11-23/dsmc-wall/results/result.json": "e25dc3114ca3149ec876c88d5cdaf7e1cd8b2639e71e09fd8338f0e488e52824",
+    "code/validated-examples/2026-11-23/dsmc-wall/source-manifest.json": "86b7629e41658327280445b9e0a03e9e3c2894886a06f32c1dafcbeb6a7b811b",
+    "code/validated-examples/2026-11-23/dsmc-wall/verification.json": "c468aabcd27c1d73d44923b83d0d5a2b267f61114c37beb4743bdfcf8b63a048",
+    "code/validated-examples/2026-11-23/fmm3d/atlas-fmm3d-2026-11-23.zip": "61861fb2a1d24437175710a09c4afdc934aab49c1c2f2e3e14b5a3c2d466b59c",
+    "code/validated-examples/2026-11-23/fmm3d/cases.json": "ca113f993ead48117c2678734dbb774a07d7911eab0f3392a4ac897b48f1b5f9",
+    "code/validated-examples/2026-11-23/fmm3d/results/result.json": "ccb60af7e0a8a3f71ca7b36ddfb6b23eb4cefd91709a10ff00ec28d6aa330199",
+    "code/validated-examples/2026-11-23/fmm3d/source-manifest.json": "bc624983d4b0480538aa873ff2a867491e4384d25ea39930b5bb948b98e59c89",
+    "code/validated-examples/2026-11-23/fmm3d/verification.json": "b6cc2a0ad2f31c01ebd833447f7f6d9496db6df5f6c14deb93d4f057d177c175",
     "code/validated-examples/2026-11-23/forward-step/atlas-forward-step-2026-11-23.zip": "ae69647a4e63c75c0888a6daf15835d348e9d74de58b5e59926e359e9ffc52cd",
     "code/validated-examples/2026-11-23/forward-step/cases.json": "e7397c94e5d170170b09a6baa4fdf9276d83419118e456cc172ad6c5cf63b363",
     "code/validated-examples/2026-11-23/forward-step/results/result.json": "636e179813165fbe620caadd825ac699973ea2dde897d13aed8b2d22102e6704",
     "code/validated-examples/2026-11-23/forward-step/source-manifest.json": "77546e263d8e08266cedb57ef5e128a3bee68d7b9597fb56bed2eee5dcbec6dc",
     "code/validated-examples/2026-11-23/forward-step/verification.json": "f40317a2721c2048c6174bf41c03adf5e3eddae07e19ae95e6ed5210a9b01914",
+    "code/validated-examples/2026-11-23/gravity-dynamics/atlas-gravity-dynamics-2026-11-23.zip": "47f1a4bdb8a6a5fdac82e66ffbe8b32c59242ffb7f9f05b418a37bd5913ffacd",
+    "code/validated-examples/2026-11-23/gravity-dynamics/cases.json": "de18f8a723bdd60efac585abf95e17f125e6f4e68823d147445cb0f3e0f172a7",
+    "code/validated-examples/2026-11-23/gravity-dynamics/results/result.json": "d5129ce2c86fa37b8baa3abd0c9822323768e8ff0915abf86b23ef041bae837b",
+    "code/validated-examples/2026-11-23/gravity-dynamics/source-manifest.json": "ac07fb7bbb54a8f5ac7e20ceb9ea2ecdbc7ca2fd6d524072f609ef52ee79655b",
+    "code/validated-examples/2026-11-23/gravity-dynamics/verification.json": "47839837648f140ffb9696b7974dba4d6858bd15569e0415274a330d6e286ca3",
     "code/validated-examples/2026-11-23/level-set/atlas-level-set-2026-11-23.zip": "46c2c2fd0aea98eb4cc4facef8d30cc81ebd6b1b9e0d965f7ef79167a06c048b",
     "code/validated-examples/2026-11-23/level-set/cases.json": "b077db49bb69055b9612a2153f7d9ea4d9c1025f0bf13b0c94157d2e9235e655",
     "code/validated-examples/2026-11-23/level-set/results/result.json": "7108491721386902c6adaa5ea5c1c709b31a204060346d0c93a06efd4a4a5a31",
@@ -19533,6 +21892,11 @@
     "code/validated-examples/2026-11-23/moving-waves/results/result.json": "e53ff99821e9977c975cda2a33d99b00d895901f1e428780ef27c10dd5242426",
     "code/validated-examples/2026-11-23/moving-waves/source-manifest.json": "8cf67dddc182fe3519eb33f89deddd711a9ecb639f3760e1edc0c88505eb8be1",
     "code/validated-examples/2026-11-23/moving-waves/verification.json": "29199bb55f03b1167eaa27115c8bb531006a298371f614d8c1397516c5862894",
+    "code/validated-examples/2026-11-23/pic-spatial/atlas-pic-spatial-2026-11-23.zip": "51da779a41f2109fbd22d1628463b8be3770ee93b61e49529b1b48a19f431bc3",
+    "code/validated-examples/2026-11-23/pic-spatial/cases.json": "162abe59e4c4e975cfc908543556206a50b372572356dcef5f908be739dd4d67",
+    "code/validated-examples/2026-11-23/pic-spatial/results/result.json": "79fd92b4793f435e9899d9e50cb17fcdec9d5df116f3790ff7222edf2208ae3f",
+    "code/validated-examples/2026-11-23/pic-spatial/source-manifest.json": "cb2990ccac19fc27ae3c21fbf0fe20d49592dfb1dbedfe25fa808094cbe38b55",
+    "code/validated-examples/2026-11-23/pic-spatial/verification.json": "8d8a7e9105d39ea8f55a4700e686c074c77930b99a8146130cf2d1a4f58e0edb",
     "code/validated-examples/2026-11-23/relativistic/atlas-relativistic-2026-11-23.zip": "c80b18e40f259d72aae6375d59faa0bd3c6c1b00b50da06538004bb6462a7185",
     "code/validated-examples/2026-11-23/relativistic/cases.json": "8e0f3c1834cf74a57e20628fcf6580b19b8a7153c6f7c33c9b0b0986ca680a58",
     "code/validated-examples/2026-11-23/relativistic/results/result.json": "30f709ac0ea4dac4819fbfca0c94ff045ca2b566d1245914d1a6aecc5bf86548",
@@ -19548,6 +21912,16 @@
     "code/validated-examples/2026-11-23/shallow-water/results/result.json": "49a56493e429dd3b4c9d6f8eba72c53ddd3469689699217157b9823a392c015f",
     "code/validated-examples/2026-11-23/shallow-water/source-manifest.json": "0fdab6190462f91176fa2eb4eb452d6fb66c2066b0e07d115b8ea789231614da",
     "code/validated-examples/2026-11-23/shallow-water/verification.json": "e342321ddc1f7692e08dcc7a63478912956f63637c855f2f85eaf0999c4d22cc",
+    "code/validated-examples/2026-11-23/slab-ewald/atlas-slab-ewald-2026-11-23.zip": "168b250fd18b209534fe8a767afc689ea11b6b8ca95657a7c0ff0d8803f00414",
+    "code/validated-examples/2026-11-23/slab-ewald/cases.json": "e1533bdaff925ba7f441dd1c719988f6a8cbbecfe32516a9cb573518a39b7875",
+    "code/validated-examples/2026-11-23/slab-ewald/results/result.json": "a81227eaee02508eab1ee1b6bec2a9177131c798191ca2b4338cf7205bb4c8d8",
+    "code/validated-examples/2026-11-23/slab-ewald/source-manifest.json": "94e960898e16b4e2f0c571deb81bad3e3602a7a6333a4beaa43a5272a9366311",
+    "code/validated-examples/2026-11-23/slab-ewald/verification.json": "1ba388ae7557baa644f6b773811cf78ad23b20b5938db8a5d748fba741bc9684",
+    "code/validated-examples/2026-11-23/warm-pic/atlas-warm-pic-2026-11-23.zip": "10661b33b9d36f35721fa1ed55b12b94926fe6fab47b8dd1e5dea52a61415fdb",
+    "code/validated-examples/2026-11-23/warm-pic/cases.json": "34d7e1d14e91f84fb40883ccca8343dd216c7850826a7c6070c6139aee358730",
+    "code/validated-examples/2026-11-23/warm-pic/results/result.json": "055d3a90ef7eb53cb59405884f2a6f9db3bcf9bbb0cec459f39d5e723615b03e",
+    "code/validated-examples/2026-11-23/warm-pic/source-manifest.json": "c38a3af2f3854853fdfc29033ec482551cf187e76cacf6e85717d26319b98776",
+    "code/validated-examples/2026-11-23/warm-pic/verification.json": "c8af7a2828d26a884774f3325c9fc64c489855db9a14eab6325b1f510f8953d1",
     "code/validated-examples/2026-11-23/weno-critical/atlas-weno-critical-2026-11-23.zip": "9c119480261013ef8ed0c58716c45af5b9fb9d3e891aef56b95b66fbd8415491",
     "code/validated-examples/2026-11-23/weno-critical/cases.json": "6b68c525e99fe15adbdce97a5d078289e5df0ff5f63cd9c790784a29b979440b",
     "code/validated-examples/2026-11-23/weno-critical/results/result.json": "c4150a350d0854b3b815bd820790711ecdbcc7594690c0ad8c15e23f6aa3d05d",
@@ -19561,9 +21935,9 @@
     "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/gallery/index.json": "c33f663b81cc05c4e8016cb02be797e97e18f647330629bd0a9191051861f453",
-    "numerical-methods-atlas/methods/index.json": "750aa1445c6698d2baa4f5da39c6fe8537acae50878aae538877f950968c2156",
-    "numerical-methods-atlas/solutions/index.json": "886c2d4d8a1b15392c7d106737fb5651b3fc546dc6a77b6146db5c5825ebc661",
-    "numerical-methods-atlas/test-cases/index.json": "05dc0c443ec9b16bf09c325a8f2a79dc62f05c9390e5e568c3d70cc6794236b3"
+    "numerical-methods-atlas/gallery/index.json": "872fbaca0eb3bd21e369b50c37b789941a2af3f37a3a931662e5fbf614559ddf",
+    "numerical-methods-atlas/methods/index.json": "1fe8f8c542d76970483d6f4ce7c5e3d0b1b98a2764b3ba4156057c50862bc7c0",
+    "numerical-methods-atlas/solutions/index.json": "4fb7d78db7f72a67c8aec3e22d06b5deb6675f8a3a07ef8a3b2488667e461f43",
+    "numerical-methods-atlas/test-cases/index.json": "60c019ff7eb5a62cb0a35d1b8b909e62056fad0e2b22b06a202f2f94fe5bd952"
   }
 }

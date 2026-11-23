@@ -1003,13 +1003,13 @@ ID: incompressible-2 · P2 · 公開済み · 新規実装
 
 ### Kelvin–Helmholtz／Rayleigh–Taylorの初期成長と独立参照
 
-ID: incompressible-additional · P2 · 検証済み · 新規実装
+ID: incompressible-additional · P2 · 公開済み · 新規実装
 
 調査時の範囲：未収録
 
 調査時の現状：
 
-22単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。
+固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。
 
 追加内容・最小の検証：
 
@@ -1056,7 +1056,8 @@ ID: incompressible-additional · P2 · 検証済み · 新規実装
   ],
   "references": [
     "/code/validated-examples/2026-11-23-r2/instability-growth/README.md",
-    "/code/validated-examples/2026-11-23-r2/instability-growth/references/citations.json"
+    "/code/validated-examples/2026-11-23-r2/instability-growth/references/citations.json",
+    "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#kh-initial-growth-ja",
   "execution": "/numerical-methods-atlas/validation/kh-initial-growth/?lang=ja"
@@ -1067,13 +1068,13 @@ ID: incompressible-additional · P2 · 検証済み · 新規実装
 
 ### 円偏波Alfvén波・磁場ループの独立比較と収束
 
-ID: mhd-1 · P1 · 検証済み · 検証の拡充
+ID: mhd-1 · P1 · 公開済み · 検証の拡充
 
 調査時の範囲：検証範囲不足
 
 調査時の現状：
 
-47単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。
+固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。
 
 追加内容・最小の検証：
 
@@ -1119,7 +1120,8 @@ ID: mhd-1 · P1 · 検証済み · 検証の拡充
   ],
   "references": [
     "/code/validated-examples/2026-11-23/mhd-transport/README.md",
-    "/code/validated-examples/2026-11-23/mhd-transport/references/citations.json"
+    "/code/validated-examples/2026-11-23/mhd-transport/references/citations.json",
+    "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#circular-alfven-ja",
   "execution": "/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=ja"
@@ -1128,13 +1130,13 @@ ID: mhd-1 · P1 · 検証済み · 検証の拡充
 
 ### 衝撃波後OTまたは標準rotorの限定検証
 
-ID: mhd-2 · P2 · 検証済み · 検証の拡充
+ID: mhd-2 · P2 · 公開済み · 検証の拡充
 
 調査時の範囲：検証範囲不足
 
 調査時の現状：
 
-47単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。
+固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。
 
 追加内容・最小の検証：
 
@@ -1179,7 +1181,8 @@ ID: mhd-2 · P2 · 検証済み · 検証の拡充
   ],
   "references": [
     "/code/validated-examples/2026-11-23/mhd-transport/README.md",
-    "/code/validated-examples/2026-11-23/mhd-transport/references/citations.json"
+    "/code/validated-examples/2026-11-23/mhd-transport/references/citations.json",
+    "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#orszag-tang-ja",
   "execution": "/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=ja"
@@ -1190,13 +1193,13 @@ ID: mhd-2 · P2 · 検証済み · 検証の拡充
 
 ### L字領域Poisson特異解と歪んだ三角形FEM
 
-ID: mesh-coordinate-1 · P2 · 検証済み · 新規実装
+ID: mesh-coordinate-1 · P2 · 公開済み · 新規実装
 
 調査時の範囲：未収録
 
 調査時の現状：
 
-20単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。
+固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。
 
 追加内容・最小の検証：
 
@@ -1243,7 +1246,8 @@ ID: mesh-coordinate-1 · P2 · 検証済み · 新規実装
   ],
   "references": [
     "/code/validated-examples/2026-11-23/mesh-boundary/README.md",
-    "/code/validated-examples/2026-11-23/mesh-boundary/references/citations.json"
+    "/code/validated-examples/2026-11-23/mesh-boundary/references/citations.json",
+    "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#lshape-fem-ja",
   "execution": "/numerical-methods-atlas/validation/lshape-fem/?lang=ja"
@@ -1252,13 +1256,13 @@ ID: mesh-coordinate-1 · P2 · 検証済み · 新規実装
 
 ### 円筒・曲線座標の環状領域PDE製造解
 
-ID: mesh-coordinate-2 · P2 · 検証済み · 検証の拡充
+ID: mesh-coordinate-2 · P2 · 公開済み · 検証の拡充
 
 調査時の範囲：検証範囲不足
 
 調査時の現状：
 
-20単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。
+固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。
 
 追加内容・最小の検証：
 
@@ -1303,7 +1307,8 @@ ID: mesh-coordinate-2 · P2 · 検証済み · 検証の拡充
   ],
   "references": [
     "/code/validated-examples/2026-11-23/mesh-boundary/README.md",
-    "/code/validated-examples/2026-11-23/mesh-boundary/references/citations.json"
+    "/code/validated-examples/2026-11-23/mesh-boundary/references/citations.json",
+    "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#annular-viscous-mms-ja",
   "execution": "/numerical-methods-atlas/validation/annular-viscous-mms/?lang=ja"
@@ -1320,7 +1325,7 @@ ID: ale-geophysical-1 · P2 · 作業中 · 検証の拡充
 
 調査時の現状：
 
-19単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。
+固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。
 
 追加内容・最小の検証：
 
@@ -1367,7 +1372,8 @@ ID: ale-geophysical-1 · P2 · 作業中 · 検証の拡充
   ],
   "references": [
     "/code/validated-examples/2026-11-23/moving-waves/README.md",
-    "/code/validated-examples/2026-11-23/moving-waves/references/citations.json"
+    "/code/validated-examples/2026-11-23/moving-waves/references/citations.json",
+    "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#ale-nonuniform-transport-ja",
   "execution": "/numerical-methods-atlas/validation/ale-nonuniform-transport/?lang=ja"
@@ -1382,7 +1388,7 @@ ID: ale-geophysical-2 · P2 · 作業中 · 検証の拡充
 
 調査時の現状：
 
-19単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。
+固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。
 
 追加内容・最小の検証：
 
@@ -1431,7 +1437,8 @@ ID: ale-geophysical-2 · P2 · 作業中 · 検証の拡充
   ],
   "references": [
     "/code/validated-examples/2026-11-23/moving-waves/README.md",
-    "/code/validated-examples/2026-11-23/moving-waves/references/citations.json"
+    "/code/validated-examples/2026-11-23/moving-waves/references/citations.json",
+    "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#cgrid-rotating-wave-ja",
   "execution": "/numerical-methods-atlas/validation/cgrid-rotating-wave/?lang=ja"
@@ -1442,13 +1449,13 @@ ID: ale-geophysical-2 · P2 · 作業中 · 検証の拡充
 
 ### Martí–Müller型1D相対論衝撃管
 
-ID: relativistic-fluid-1 · P2 · 検証済み · 新規実装
+ID: relativistic-fluid-1 · P2 · 公開済み · 新規実装
 
 調査時の範囲：解説のみ
 
 調査時の現状：
 
-25単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。
+固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。
 
 追加内容・最小の検証：
 
@@ -1491,7 +1498,8 @@ ID: relativistic-fluid-1 · P2 · 検証済み · 新規実装
   ],
   "references": [
     "/code/validated-examples/2026-11-23/relativistic/README.md",
-    "/code/validated-examples/2026-11-23/relativistic/references/citations.json"
+    "/code/validated-examples/2026-11-23/relativistic/references/citations.json",
+    "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#srhd-collision-ja",
   "execution": "/numerical-methods-atlas/validation/srhd-collision/?lang=ja"
@@ -1500,13 +1508,13 @@ ID: relativistic-fluid-1 · P2 · 検証済み · 新規実装
 
 ### SRMHDの固定Riemann/Alfvénケース
 
-ID: relativistic-fluid-2 · P3 · 検証済み · 新規実装
+ID: relativistic-fluid-2 · P3 · 公開済み · 新規実装
 
 調査時の範囲：未収録
 
 調査時の現状：
 
-25単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。
+固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。
 
 追加内容・最小の検証：
 
@@ -1551,7 +1559,8 @@ ID: relativistic-fluid-2 · P3 · 検証済み · 新規実装
   ],
   "references": [
     "/code/validated-examples/2026-11-23/relativistic/README.md",
-    "/code/validated-examples/2026-11-23/relativistic/references/citations.json"
+    "/code/validated-examples/2026-11-23/relativistic/references/citations.json",
+    "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#srmhd-alfven-ja",
   "execution": "/numerical-methods-atlas/validation/srmhd-alfven/?lang=ja"
@@ -1562,13 +1571,13 @@ ID: relativistic-fluid-2 · P3 · 検証済み · 新規実装
 
 ### 2Dの純Neumann・混合Robin製造解を、互換条件と平均値ゲージ込みで固定入力化
 
-ID: elliptic-poisson-1 · P1 · 検証済み · 検証の拡充
+ID: elliptic-poisson-1 · P1 · 公開済み · 検証の拡充
 
 調査時の範囲：検証範囲不足
 
 調査時の現状：
 
-20単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。
+固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。
 
 追加内容・最小の検証：
 
@@ -1613,7 +1622,8 @@ ID: elliptic-poisson-1 · P1 · 検証済み · 検証の拡充
   ],
   "references": [
     "/code/validated-examples/2026-11-23/mesh-boundary/README.md",
-    "/code/validated-examples/2026-11-23/mesh-boundary/references/citations.json"
+    "/code/validated-examples/2026-11-23/mesh-boundary/references/citations.json",
+    "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#poisson-neumann-ja",
   "execution": "/numerical-methods-atlas/validation/poisson-neumann/?lang=ja"
@@ -1622,13 +1632,13 @@ ID: elliptic-poisson-1 · P1 · 検証済み · 検証の拡充
 
 ### checkerboard係数ジャンプ／回転異方性拡散のMG・AMG比較
 
-ID: elliptic-poisson-3 · P2 · 未着手 · 検証の拡充
+ID: elliptic-poisson-3 · P2 · 検証済み · 検証の拡充
 
 調査時の範囲：検証範囲不足
 
 調査時の現状：
 
-Thomasの1D Dirichlet固定入力、1D Neumann/Robin/周期境界の既存実装、2D正方形のCG/幾何MG/P1 FEMとsin製造解、SA-AMGがある。amg-conditioningは条件数・残差/前進誤差・定係数異方性ストレス・DST/直接解照合まで実施済み。AMGや異方性検査そのものを未実装扱いしない。
+固定した軽量例を実装し、事前に固定した判定と独立参照の照合、実配列の保存図、ZIPの独立展開追試まで確認しました。実公開と公開ZIPだけのLinux追試は今回の集約公開後に確認します。
 
 追加内容・最小の検証：
 
@@ -1642,6 +1652,8 @@ Thomasの1D Dirichlet固定入力、1D Neumann/Robin/周期境界の既存実装
 - 誤差・収束と制約が分かる図を保存する。
 - 実在する問題ギャラリー・実行入口・入力・図への対応を確認する。
 
+各例の前提・参照の独立範囲と未達版の履歴を、入力・受入基準・契約・検証記録で区別します。一般条件への認証や厳密解でない数値参照の厳密性は主張しません。
+
 調査時の根拠：
 
 - `code/validated-examples/2026-11-22/foundations-conditioning/cases.json` · amg-conditioning.limits
@@ -1650,15 +1662,40 @@ Thomasの1D Dirichlet固定入力、1D Neumann/Robin/周期境界の既存実装
 - [PETSc公式: Singular systems / Neumann nullspace](<https://petsc.org/release/manual/ksp/>)
   一次論文の出版社ページまたは公式資料を検索・確認。全文監査や数値再現ではない。
 
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-23/coefficient-diffusion/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-23/coefficient-diffusion/inputs.json",
+    "/code/validated-examples/2026-11-23/coefficient-diffusion/acceptance.json",
+    "/code/validated-examples/2026-11-23/coefficient-diffusion/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-23/coefficient-diffusion/results/checkerboard-diffusion-preview.png",
+    "/code/validated-examples/2026-11-23/coefficient-diffusion/results/rotated-anisotropic-diffusion-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-23/coefficient-diffusion/run.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-23/coefficient-diffusion/README.md"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#checkerboard-diffusion-ja",
+  "execution": "/numerical-methods-atlas/validation/checkerboard-diffusion/?lang=ja"
+}
+```
+
 ### Thomas法の原報と再録・関連章文献の役割整理
 
-ID: elliptic-poisson-4 · P2 · 未着手 · 参照・出典の整備
+ID: elliptic-poisson-4 · P2 · 検証済み · 参照・出典の整備
 
 調査時の範囲：出典整備不足
 
 調査時の現状：
 
-Thomasの1D Dirichlet固定入力、1D Neumann/Robin/周期境界の既存実装、2D正方形のCG/幾何MG/P1 FEMとsin製造解、SA-AMGがある。amg-conditioningは条件数・残差/前進誤差・定係数異方性ストレス・DST/直接解照合まで実施済み。AMGや異方性検査そのものを未実装扱いしない。
+Thomas1949原報は未読のまま、公式収蔵目録・署名付き1996通信・Crank–Nicolson再録・多重格子の関連文献を区別して整理しました。新しい科学計算例には数えません。
 
 追加内容・最小の検証：
 
@@ -1671,23 +1708,43 @@ Thomasの1D Dirichlet固定入力、1D Neumann/Robin/周期境界の既存実装
 - 出典・書誌・適用範囲の修正根拠と確認記録を残す。
 - 実在する対象と根拠を照合してから完了にする。
 
+目録の確認を原報本文の確認と扱わず、不明なDOI・報告番号・頁はnullのまま。原報未読を維持した文献役割の整理です。
+
 調査時の根拠：
 
 - `catalog/atlas-methods.json` · thomas.references
 - `catalog/atlas-execution-examples.json` · poisson-1d-dirichlet.reference_notes
 
 
+完了の根拠：
+
+```json
+{
+  "targets": [
+    "/numerical-methods-atlas/methods/thomas/?lang=ja",
+    "/catalog/atlas-methods.json"
+  ],
+  "proof": [
+    "/numerical-methods-atlas/reading/thomas-provenance.json"
+  ],
+  "note": {
+    "ja": "目録の確認を原報本文の確認と扱わず、不明なDOI・報告番号・頁はnullのまま。原報未読を維持した文献役割の整理です。",
+    "en": "Curation of bibliographic roles only; original1949 full text unread,unknown DOI/report/pages remain null. No new scientific case."
+  }
+}
+```
+
 ## 重力・周期静電場・多重極
 
 ### 中性スラブのYeh–Berkowitz補正／2D周期境界ベンチマーク
 
-ID: gravity-electrostatics-multipole-1 · P2 · 未着手 · 新規実装
+ID: gravity-electrostatics-multipole-1 · P2 · 検証済み · 新規実装
 
 調査時の範囲：解説のみ
 
 調査時の現状：
 
-孤立3D Plummer軟化Barnes–Hut（単極/完全2次モーメント）と直接和、3D周期CIC–FFT–CIC、Ewald/SPME、2D対数核FMMのM2M/M2L/L2Lが既存。追加粒子検証でEwaldの独立theta参照、SPME格子/次数/位相、FMM次数/木深さ・保存診断まである。 FMMの古い文献注記の整合は共通P0にまとめた。
+固定した軽量例を実装し、事前に固定した判定と独立参照の照合、実配列の保存図、ZIPの独立展開追試まで確認しました。実公開と公開ZIPだけのLinux追試は今回の集約公開後に確認します。
 
 追加内容・最小の検証：
 
@@ -1701,6 +1758,8 @@ ID: gravity-electrostatics-multipole-1 · P2 · 未着手 · 新規実装
 - 誤差・収束と制約が分かる図を保存する。
 - 実在する問題ギャラリー・実行入口・入力・図への対応を確認する。
 
+各例の前提・参照の独立範囲と未達版の履歴を、入力・受入基準・契約・検証記録で区別します。一般条件への認証や厳密解でない数値参照の厳密性は主張しません。
+
 調査時の根拠：
 
 - `catalog/atlas-methods.json` · slab-ewald
@@ -1709,15 +1768,39 @@ ID: gravity-electrostatics-multipole-1 · P2 · 未着手 · 新規実装
 - [Yeh & Berkowitz (1999), Ewald summation for systems with slab geometry](<https://pubs.aip.org/jcp/article/111/7/3155/294442/Ewald-summation-for-systems-with-slab-geometry>)
   DOI 10.1063/1.479595と出版社への解決先を確認。本文取得はツールで失敗。既存原著台帳yeh1999にも書誌情報あり。
 
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-23/slab-ewald/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-23/slab-ewald/inputs.json",
+    "/code/validated-examples/2026-11-23/slab-ewald/acceptance.json",
+    "/code/validated-examples/2026-11-23/slab-ewald/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-23/slab-ewald/results/neutral-slab-yb-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-23/slab-ewald/run.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-23/slab-ewald/README.md"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#neutral-slab-yb-ja",
+  "execution": "/numerical-methods-atlas/validation/neutral-slab-yb/?lang=ja"
+}
+```
+
 ### 3D 1/r核／適応木のFMM
 
-ID: gravity-electrostatics-multipole-2 · P3 · 未着手 · 検証の拡充
+ID: gravity-electrostatics-multipole-2 · P3 · 検証済み · 検証の拡充
 
 調査時の範囲：検証範囲不足
 
 調査時の現状：
 
-孤立3D Plummer軟化Barnes–Hut（単極/完全2次モーメント）と直接和、3D周期CIC–FFT–CIC、Ewald/SPME、2D対数核FMMのM2M/M2L/L2Lが既存。追加粒子検証でEwaldの独立theta参照、SPME格子/次数/位相、FMM次数/木深さ・保存診断まである。 FMMの古い文献注記の整合は共通P0にまとめた。
+固定した軽量例を実装し、事前に固定した判定と独立参照の照合、実配列の保存図、ZIPの独立展開追試まで確認しました。実公開と公開ZIPだけのLinux追試は今回の集約公開後に確認します。
 
 追加内容・最小の検証：
 
@@ -1731,21 +1814,47 @@ ID: gravity-electrostatics-multipole-2 · P3 · 未着手 · 検証の拡充
 - 誤差・収束と制約が分かる図を保存する。
 - 実在する問題ギャラリー・実行入口・入力・図への対応を確認する。
 
+各例の前提・参照の独立範囲と未達版の履歴を、入力・受入基準・契約・検証記録で区別します。一般条件への認証や厳密解でない数値参照の厳密性は主張しません。
+
 調査時の根拠：
 
 - `catalog/atlas-methods.json` · fmm.limitations
 - `code/validated-examples/2026-11-22/particle-transport/cases.json` · fmm-convergence
 
 
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-23/fmm3d/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-23/fmm3d/inputs.json",
+    "/code/validated-examples/2026-11-23/fmm3d/acceptance.json",
+    "/code/validated-examples/2026-11-23/fmm3d/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-23/fmm3d/results/fmm3d-inverse-r-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-23/fmm3d/run.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-23/fmm3d/README.md"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#fmm3d-inverse-r-ja",
+  "execution": "/numerical-methods-atlas/validation/fmm3d-inverse-r/?lang=ja"
+}
+```
+
 ### Plummer球の短時間力学／2体軌道の重力時間積分
 
-ID: gravity-electrostatics-multipole-3 · P2 · 未着手 · 検証の拡充
+ID: gravity-electrostatics-multipole-3 · P2 · 検証済み · 検証の拡充
 
 調査時の範囲：検証範囲不足
 
 調査時の現状：
 
-孤立3D Plummer軟化Barnes–Hut（単極/完全2次モーメント）と直接和、3D周期CIC–FFT–CIC、Ewald/SPME、2D対数核FMMのM2M/M2L/L2Lが既存。追加粒子検証でEwaldの独立theta参照、SPME格子/次数/位相、FMM次数/木深さ・保存診断まである。 FMMの古い文献注記の整合は共通P0にまとめた。
+固定した軽量例を実装し、事前に固定した判定と独立参照の照合、実配列の保存図、ZIPの独立展開追試まで確認しました。実公開と公開ZIPだけのLinux追試は今回の集約公開後に確認します。
 
 追加内容・最小の検証：
 
@@ -1759,6 +1868,8 @@ ID: gravity-electrostatics-multipole-3 · P2 · 未着手 · 検証の拡充
 - 誤差・収束と制約が分かる図を保存する。
 - 実在する問題ギャラリー・実行入口・入力・図への対応を確認する。
 
+各例の前提・参照の独立範囲と未達版の履歴を、入力・受入基準・契約・検証記録で区別します。一般条件への認証や厳密解でない数値参照の厳密性は主張しません。
+
 調査時の根拠：
 
 - `catalog/atlas-execution-examples.json` · barnes-hut.scope
@@ -1767,17 +1878,42 @@ ID: gravity-electrostatics-multipole-3 · P2 · 未着手 · 検証の拡充
 - [Barnes & Hut (1986), A hierarchical O(N log N) force-calculation algorithm](<https://www.nature.com/articles/324446a0>)
   出版社の検索結果・抄録を確認。直接openは認証リダイレクトのため失敗。
 
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-23/gravity-dynamics/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-23/gravity-dynamics/inputs.json",
+    "/code/validated-examples/2026-11-23/gravity-dynamics/acceptance.json",
+    "/code/validated-examples/2026-11-23/gravity-dynamics/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-kepler-preview.png",
+    "/code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-plummer-short-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-23/gravity-dynamics/run.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-23/gravity-dynamics/README.md"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#gravity-kepler-ja",
+  "execution": "/numerical-methods-atlas/validation/gravity-kepler/?lang=ja"
+}
+```
+
 ## PIC・プラズマ
 
 ### 線形Landau減衰
 
-ID: pic-1 · P1 · 未着手 · 新規実装
+ID: pic-1 · P1 · 検証済み · 新規実装
 
 調査時の範囲：未収録
 
 調査時の現状：
 
-1D周期・静電CIC PICの冷たいプラズマ振動が既存。格子/時間の独立細分化、電荷・運動量・Gauss/Poisson残差、単粒子自己力、64seedの初期粒子雑音まで保存。暖かい分布や不安定性の検証ではない。
+固定した軽量例を実装し、事前に固定した判定と独立参照の照合、実配列の保存図、ZIPの独立展開追試まで確認しました。実公開と公開ZIPだけのLinux追試は今回の集約公開後に確認します。
 
 追加内容・最小の検証：
 
@@ -1791,6 +1927,8 @@ ID: pic-1 · P1 · 未着手 · 新規実装
 - 誤差・収束と制約が分かる図を保存する。
 - 実在する問題ギャラリー・実行入口・入力・図への対応を確認する。
 
+各例の前提・参照の独立範囲と未達版の履歴を、入力・受入基準・契約・検証記録で区別します。一般条件への認証や厳密解でない数値参照の厳密性は主張しません。
+
 調査時の根拠：
 
 - `catalog/atlas-methods.json` · pic.limitations
@@ -1799,15 +1937,39 @@ ID: pic-1 · P1 · 未着手 · 新規実装
 - [Kraus et al. (2017), GEMPIC: geometric electromagnetic particle-in-cell methods](<https://www.cambridge.org/core/journals/journal-of-plasma-physics/article/gempic-geometric-electromagnetic-particleincell-methods/C32D97F1B5281878F094B7E5075D291A>)
   出版社本文のLandau damping・Weibel検証節を確認。掲載された大規模設定の再現を推奨する意味ではない。
 
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-23/warm-pic/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-23/warm-pic/inputs.json",
+    "/code/validated-examples/2026-11-23/warm-pic/acceptance.json",
+    "/code/validated-examples/2026-11-23/warm-pic/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-23/warm-pic/results/thermal-landau-damping-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-23/warm-pic/run.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-23/warm-pic/README.md"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#thermal-landau-damping-ja",
+  "execution": "/numerical-methods-atlas/validation/thermal-landau-damping/?lang=ja"
+}
+```
+
 ### two-stream不安定性
 
-ID: pic-2 · P2 · 未着手 · 新規実装
+ID: pic-2 · P2 · 検証済み · 新規実装
 
 調査時の範囲：未収録
 
 調査時の現状：
 
-1D周期・静電CIC PICの冷たいプラズマ振動が既存。格子/時間の独立細分化、電荷・運動量・Gauss/Poisson残差、単粒子自己力、64seedの初期粒子雑音まで保存。暖かい分布や不安定性の検証ではない。
+固定した軽量例を実装し、事前に固定した判定と独立参照の照合、実配列の保存図、ZIPの独立展開追試まで確認しました。実公開と公開ZIPだけのLinux追試は今回の集約公開後に確認します。
 
 追加内容・最小の検証：
 
@@ -1821,6 +1983,8 @@ ID: pic-2 · P2 · 未着手 · 新規実装
 - 誤差・収束と制約が分かる図を保存する。
 - 実在する問題ギャラリー・実行入口・入力・図への対応を確認する。
 
+各例の前提・参照の独立範囲と未達版の履歴を、入力・受入基準・契約・検証記録で区別します。一般条件への認証や厳密解でない数値参照の厳密性は主張しません。
+
 調査時の根拠：
 
 - `code/validated-examples/2026-11-22/particles/cases.json` · pic.limits
@@ -1828,15 +1992,39 @@ ID: pic-2 · P2 · 未着手 · 新規実装
 - [Kraus et al. (2017), GEMPIC: geometric electromagnetic particle-in-cell methods](<https://www.cambridge.org/core/journals/journal-of-plasma-physics/article/gempic-geometric-electromagnetic-particleincell-methods/C32D97F1B5281878F094B7E5075D291A>)
   出版社本文のLandau damping・Weibel検証節を確認。掲載された大規模設定の再現を推奨する意味ではない。
 
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-23/warm-pic/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-23/warm-pic/inputs.json",
+    "/code/validated-examples/2026-11-23/warm-pic/acceptance.json",
+    "/code/validated-examples/2026-11-23/warm-pic/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-23/warm-pic/results/thermal-two-stream-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-23/warm-pic/run.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-23/warm-pic/README.md"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#thermal-two-stream-ja",
+  "execution": "/numerical-methods-atlas/validation/thermal-two-stream/?lang=ja"
+}
+```
+
 ### PIC空間離散そのものの独立実装照合
 
-ID: pic-3 · P2 · 未着手 · 検証の拡充
+ID: pic-3 · P2 · 検証済み · 検証の拡充
 
 調査時の範囲：検証範囲不足
 
 調査時の現状：
 
-1D周期・静電CIC PICの冷たいプラズマ振動が既存。格子/時間の独立細分化、電荷・運動量・Gauss/Poisson残差、単粒子自己力、64seedの初期粒子雑音まで保存。暖かい分布や不安定性の検証ではない。
+固定した軽量例を実装し、事前に固定した判定と独立参照の照合、実配列の保存図、ZIPの独立展開追試まで確認しました。実公開と公開ZIPだけのLinux追試は今回の集約公開後に確認します。
 
 追加内容・最小の検証：
 
@@ -1850,6 +2038,8 @@ ID: pic-3 · P2 · 未着手 · 検証の拡充
 - 誤差・収束と制約が分かる図を保存する。
 - 実在する問題ギャラリー・実行入口・入力・図への対応を確認する。
 
+既存cold-plasma-picに結び付く空間演算の独立実装検査です。小さい温速度を含む固定入力で、冷たい振動の解析解や連続極限の再検証とは区別します。
+
 調査時の根拠：
 
 - `code/validated-examples/2026-11-22/particle-transport/cases.json` · pic-conservation.limits
@@ -1857,17 +2047,41 @@ ID: pic-3 · P2 · 未着手 · 検証の拡充
 - [Kraus et al. (2017), GEMPIC: geometric electromagnetic particle-in-cell methods](<https://www.cambridge.org/core/journals/journal-of-plasma-physics/article/gempic-geometric-electromagnetic-particleincell-methods/C32D97F1B5281878F094B7E5075D291A>)
   出版社本文のLandau damping・Weibel検証節を確認。掲載された大規模設定の再現を推奨する意味ではない。
 
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-23/pic-spatial/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-23/pic-spatial/inputs.json",
+    "/code/validated-examples/2026-11-23/pic-spatial/acceptance.json",
+    "/code/validated-examples/2026-11-23/pic-spatial/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-23/pic-spatial/results/pic-independent-spatial-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-23/pic-spatial/run.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-23/pic-spatial/README.md"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#cold-plasma-pic-ja",
+  "execution": "/numerical-methods-atlas/validation/pic-independent-spatial/?lang=ja"
+}
+```
+
 ## DSMC・希薄気体
 
 ### 平板Couette流／Fourier熱伝導の希薄気体ベンチマーク
 
-ID: dsmc-1 · P1 · 未着手 · 新規実装
+ID: dsmc-1 · P1 · 検証済み · 新規実装
 
 調査時の範囲：未収録
 
 調査時の現状：
 
-均質Maxwell分子の衝突成分・平衡緩和が既存。運動量/エネルギー保存、有限Nのmicrocanonical/beta参照、64seed統計、異方性減衰を検査。空間streaming・衝突セル・物理時間の一般DSMCではない。
+固定した軽量例を実装し、事前に固定した判定と独立参照の照合、実配列の保存図、ZIPの独立展開追試まで確認しました。実公開と公開ZIPだけのLinux追試は今回の集約公開後に確認します。
 
 追加内容・最小の検証：
 
@@ -1881,6 +2095,8 @@ ID: dsmc-1 · P1 · 未着手 · 新規実装
 - 誤差・収束と制約が分かる図を保存する。
 - 実在する問題ギャラリー・実行入口・入力・図への対応を確認する。
 
+各例の前提・参照の独立範囲と未達版の履歴を、入力・受入基準・契約・検証記録で区別します。一般条件への認証や厳密解でない数値参照の厳密性は主張しません。
+
 調査時の根拠：
 
 - `code/validated-examples/2026-11-22/particle-transport/cases.json` · dsmc-statistics.limits
@@ -1889,15 +2105,40 @@ ID: dsmc-1 · P1 · 未着手 · 新規実装
 - [SPARTA公式: Validation and Verification](<https://sparta.github.io/pdf/sparta_2015_validation_verification.pdf>)
   Sandia開発者の公式講習資料。Fourier/Couette流による熱流束・せん断応力検証の説明を確認。
 
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-23/dsmc-wall/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-23/dsmc-wall/inputs.json",
+    "/code/validated-examples/2026-11-23/dsmc-wall/acceptance.json",
+    "/code/validated-examples/2026-11-23/dsmc-wall/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-23/dsmc-wall/results/dsmc-couette-preview.png",
+    "/code/validated-examples/2026-11-23/dsmc-wall/results/dsmc-fourier-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-23/dsmc-wall/run.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-23/dsmc-wall/README.md"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#dsmc-couette-ja",
+  "execution": "/numerical-methods-atlas/validation/dsmc-couette/?lang=ja"
+}
+```
+
 ### 平面定常衝撃波の構造（hard-sphere/VHS）
 
-ID: dsmc-2 · P2 · 未着手 · 新規実装
+ID: dsmc-2 · P2 · 検証済み · 新規実装
 
 調査時の範囲：未収録
 
 調査時の現状：
 
-均質Maxwell分子の衝突成分・平衡緩和が既存。運動量/エネルギー保存、有限Nのmicrocanonical/beta参照、64seed統計、異方性減衰を検査。空間streaming・衝突セル・物理時間の一般DSMCではない。
+固定した軽量例を実装し、事前に固定した判定と独立参照の照合、実配列の保存図、ZIPの独立展開追試まで確認しました。実公開と公開ZIPだけのLinux追試は今回の集約公開後に確認します。
 
 追加内容・最小の検証：
 
@@ -1911,6 +2152,8 @@ ID: dsmc-2 · P2 · 未着手 · 新規実装
 - 誤差・収束と制約が分かる図を保存する。
 - 実在する問題ギャラリー・実行入口・入力・図への対応を確認する。
 
+各例の前提・参照の独立範囲と未達版の履歴を、入力・受入基準・契約・検証記録で区別します。一般条件への認証や厳密解でない数値参照の厳密性は主張しません。
+
 調査時の根拠：
 
 - `catalog/atlas-methods.json` · dsmc.limitations
@@ -1918,6 +2161,30 @@ ID: dsmc-2 · P2 · 未着手 · 新規実装
 
 - [SPARTA公式: Validation and Verification](<https://sparta.github.io/pdf/sparta_2015_validation_verification.pdf>)
   Sandia開発者の公式講習資料。Fourier/Couette流による熱流束・せん断応力検証の説明を確認。
+
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-23/dsmc-shock/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-23/dsmc-shock/inputs.json",
+    "/code/validated-examples/2026-11-23/dsmc-shock/acceptance.json",
+    "/code/validated-examples/2026-11-23/dsmc-shock/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-23/dsmc-shock/run.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-23/dsmc-shock/README.md"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#dsmc-planar-shock-ja",
+  "execution": "/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=ja"
+}
+```
 
 ## LBM・格子Boltzmann
 

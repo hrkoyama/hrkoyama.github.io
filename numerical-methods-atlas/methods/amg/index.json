@@ -10,8 +10,8 @@
     "en": "Linear & nonlinear solvers"
   },
   "summary": {
-    "ja": "行列から粗視化するAMG：残差と解誤差を分ける: 正方形Poisson問題から得たSPD行列だけを階層構築へ渡し、平滑化集約AMGのV-cycleを実行します。7²・15²・31²未知数で独立疎行列直接解、解析的な離散正弦モード、連続解への2次収束を分けて検査します。 AMGの条件数・異方性・残差と前進誤差: 49・225・961未知数のSPD行列で、条件数と異方性を別々に変えます。解析スペクトル、独立疎行列直接解、DST対角化を比較し、同じ残差でも解誤差が条件数に依存することを確かめます。",
-    "en": "Matrix-based AMG: distinguish residual and solution error: Build a smoothed-aggregation hierarchy from an SPD matrix alone and run V-cycles. Problems with 7², 15² and 31² unknowns distinguish independent sparse direct solutions, analytic discrete sine modes and second-order convergence to the continuum solution. AMG: conditioning, anisotropy, residual and forward error: Separate condition number from anisotropy on SPD systems of 49, 225 and 961 unknowns. Compare analytic spectra, independent sparse direct solutions and DST diagonalization, and measure how residual translates to forward error."
+    "ja": "既存配布版：行列から粗視化するAMG：残差と解誤差を分ける: 正方形Poisson問題から得たSPD行列だけを階層構築へ渡し、平滑化集約AMGのV-cycleを実行します。7²・15²・31²未知数で独立疎行列直接解、解析的な離散正弦モード、連続解への2次収束を分けて検査します。 AMGの条件数・異方性・残差と前進誤差: 49・225・961未知数のSPD行列で、条件数と異方性を別々に変えます。解析スペクトル、独立疎行列直接解、DST対角化を比較し、同じ残差でも解誤差が条件数に依存することを確かめます。 追加固定例：係数ジャンプ拡散：共有流束とMG・AMG、回転異方性拡散：完全テンソルQ1とMG・AMG。条件と検証範囲は各配布版で確認してください。",
+    "en": "Existing releases: Matrix-based AMG: distinguish residual and solution error: Build a smoothed-aggregation hierarchy from an SPD matrix alone and run V-cycles. Problems with 7², 15² and 31² unknowns distinguish independent sparse direct solutions, analytic discrete sine modes and second-order convergence to the continuum solution. AMG: conditioning, anisotropy, residual and forward error: Separate condition number from anisotropy on SPD systems of 49, 225 and 961 unknowns. Compare analytic spectra, independent sparse direct solutions and DST diagonalization, and measure how residual translates to forward error. Additional fixed examples: Checkerboard diffusion: shared flux, MG and AMG, Rotated diffusion: full-tensor Q1, MG and AMG. See each release for assumptions and checked scope."
   },
   "status": "educational-example",
   "origin": "development-candidate",
@@ -36,12 +36,16 @@
     "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
   },
   "limitations": {
-    "ja": "行列から粗視化するAMG：残差と解誤差を分ける: 3格子の固定スカラー問題だけの確認です。係数の大きな不連続、強い異方性、弾性系、任意の非構造格子、最適計算量・格子独立収束を保証しません。小さい残差だけを小さい解誤差の証明としません。 AMGの条件数・異方性・残差と前進誤差: 固定した小規模な一定係数系列のみです。任意の係数ジャンプ、非構造格子、不定値系、最適計算量・一様収束を保証しません。異方性が常にκ₂を増やす、あるいは単調に収束を悪化させるとは主張しません。",
-    "en": "Matrix-based AMG: distinguish residual and solution error: Only three fixed scalar grids are checked. Large coefficient jumps, strong anisotropy, elasticity, arbitrary unstructured meshes, optimal complexity and mesh-independent convergence are not certified. A small residual alone does not prove a small solution error. AMG: conditioning, anisotropy, residual and forward error: Only a small constant-coefficient family is checked. Arbitrary coefficient jumps, unstructured grids, indefinite systems, optimal complexity and uniform convergence are outside scope. No claim that anisotropy necessarily increases κ₂ or monotonically worsens convergence."
+    "ja": "既存配布版の制約：行列から粗視化するAMG：残差と解誤差を分ける: 3格子の固定スカラー問題だけの確認です。係数の大きな不連続、強い異方性、弾性系、任意の非構造格子、最適計算量・格子独立収束を保証しません。小さい残差だけを小さい解誤差の証明としません。 AMGの条件数・異方性・残差と前進誤差: 固定した小規模な一定係数系列のみです。任意の係数ジャンプ、非構造格子、不定値系、最適計算量・一様収束を保証しません。異方性が常にκ₂を増やす、あるいは単調に収束を悪化させるとは主張しません。 今回の追加固定例：係数比100の固定例。P1格子差は厳密誤差上界ではなく、特異交点の次数や普遍的なMG/AMG優劣は主張しません。 指定した角度・異方性の限定例。スカラーTPFAを回転テンソルへ転用せず、一般テンソルへの頑健性は保証しません。",
+    "en": "Limits of existing releases: Matrix-based AMG: distinguish residual and solution error: Only three fixed scalar grids are checked. Large coefficient jumps, strong anisotropy, elasticity, arbitrary unstructured meshes, optimal complexity and mesh-independent convergence are not certified. A small residual alone does not prove a small solution error. AMG: conditioning, anisotropy, residual and forward error: Only a small constant-coefficient family is checked. Arbitrary coefficient jumps, unstructured grids, indefinite systems, optimal complexity and uniform convergence are outside scope. No claim that anisotropy necessarily increases κ₂ or monotonically worsens convergence. Additional fixed examples: Fixed contrast100 example. P1 differences are not rigorous error bounds; no singular exponent or universal MG/AMG winner is asserted. One angle/anisotropy only. Scalar TPFA is not extended to rotated tensors; arbitrary-tensor robustness is not established."
   },
   "metadata_review": {
     "level": "scoped conditioned matrix/integral families with analytic or independently computed references; residual versus forward error, convergence and explicit failure controls",
-    "on": "2026-11-22"
+    "on": "2026-11-22",
+    "supplemental_review": {
+      "on": "2026-11-23",
+      "level": "Frozen fixed-input source,independent review,actual pytest/main and independently extracted ZIP; see each new release for exact reference independence and failed-attempt history."
+    }
   },
   "aliases": [
     "AMG法",
@@ -2180,6 +2184,739 @@
           }
         }
       ]
+    },
+    {
+      "group": "coefficient-diffusion",
+      "case_ids": [
+        "checkerboard-diffusion",
+        "rotated-anisotropic-diffusion"
+      ],
+      "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/",
+      "code_edition": "2026-11-23",
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/operators.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/multilevel.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/references/p1.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/experiments.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/test_diffusion.py"
+      ],
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "run_from": "atlas-coefficient-diffusion-2026-11-23",
+      "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/atlas-coefficient-diffusion-2026-11-23.zip",
+      "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/source-manifest.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/verification.json",
+      "code_archive_sha256": "c53624aa03cf7f945297e7bd09d72030e111e035c3ce7174fd2da9e86756b666",
+      "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/results/result.json",
+      "passed_tests": 12,
+      "examples": [
+        {
+          "id": "checkerboard-diffusion",
+          "method_ids": [
+            "multigrid",
+            "amg",
+            "cg"
+          ],
+          "title": {
+            "ja": "係数ジャンプ拡散：共有流束とMG・AMG",
+            "en": "Checkerboard diffusion: shared flux, MG and AMG"
+          },
+          "summary": {
+            "ja": "不連続係数のFV解を独立なP1参照と比較し、線形系の残差・前進誤差と連続問題の誤差を分けます。",
+            "en": "Compare discontinuous-coefficient FV with independent P1 reference fields, separating linear-system residual/forward errors from continuum error."
+          },
+          "assumptions": {
+            "ja": "単位正方形、零Dirichlet、f=1、対角2象限100/残り1、N16/32/64。参照P1は128/192。",
+            "en": "Unit square, zero Dirichlet, f=1, diagonal quadrants100/others1, N16/32/64; reference P1 meshes128/192."
+          },
+          "algorithm": {
+            "ja": "直交FVの共有面調和平均。幾何MGと座標を受け取らないSA-AMGの対称Galerkin V-cycleを、同じ行列のPCGへ適用。",
+            "en": "Orthogonal FV with shared harmonic transmissibility. Symmetric Galerkin geometric and coordinate-free SA cycles precondition PCG on identical matrices."
+          },
+          "validation": {
+            "ja": "非零2材料流束パッチ、残差に整合する収支、直接解の前進/energy誤差、独立三角形P1参照の格子感度。",
+            "en": "Nonzero two-material flux patch, residual-aware budget, direct forward/energy errors and independent triangular-P1 grid sensitivity."
+          },
+          "limits": {
+            "ja": "係数比100の固定例。P1格子差は厳密誤差上界ではなく、特異交点の次数や普遍的なMG/AMG優劣は主張しません。",
+            "en": "Fixed contrast100 example. P1 differences are not rigorous error bounds; no singular exponent or universal MG/AMG winner is asserted."
+          },
+          "formulas": [
+            "-\\nabla\\cdot(a\\nabla u)=1,\\quad a\\in\\{1,100\\}",
+            "T_f=|f|/(d_L/a_L+d_R/a_R)"
+          ],
+          "domains": [
+            "pde",
+            "linear-algebra"
+          ],
+          "references": [
+            {
+              "id": "dumux-tpfa",
+              "title": "Two-point flux approximation",
+              "url": "https://dumux.org/docs/doxygen/master/group___c_c_tpfa_discretization.html",
+              "review_level": "selected-official-derivation-read",
+              "review_scope": "Scalar harmonic transmissibility, shared flux and K-orthogonality restriction. No DuMux code executed."
+            },
+            {
+              "id": "hypre-symmetric-smoother",
+              "title": "BoomerAMG: smoother options",
+              "url": "https://hypre.readthedocs.io/en/latest/solvers-boomeramg.html",
+              "review_level": "selected-official-documentation-read",
+              "review_scope": "CG requires a symmetric smoother. Our educational SA code is not hypre and no hypre code was run."
+            },
+            {
+              "id": "vanek1996",
+              "title": "Algebraic multigrid by smoothed aggregation for second and fourth order elliptic problems",
+              "url": "https://link.springer.com/article/10.1007/BF02238511",
+              "review_level": "publisher-abstract-only-full-paper-unread",
+              "review_scope": "Metadata and abstract only. No general robustness theorem claimed for these fixed jumps/tensors."
+            }
+          ],
+          "citations": [
+            {
+              "id": "dumux-tpfa",
+              "title": "Two-point flux approximation",
+              "url": "https://dumux.org/docs/doxygen/master/group___c_c_tpfa_discretization.html",
+              "review_level": "selected-official-derivation-read",
+              "review_scope": "Scalar harmonic transmissibility, shared flux and K-orthogonality restriction. No DuMux code executed."
+            },
+            {
+              "id": "hypre-symmetric-smoother",
+              "title": "BoomerAMG: smoother options",
+              "url": "https://hypre.readthedocs.io/en/latest/solvers-boomeramg.html",
+              "review_level": "selected-official-documentation-read",
+              "review_scope": "CG requires a symmetric smoother. Our educational SA code is not hypre and no hypre code was run."
+            },
+            {
+              "id": "vanek1996",
+              "title": "Algebraic multigrid by smoothed aggregation for second and fourth order elliptic problems",
+              "url": "https://link.springer.com/article/10.1007/BF02238511",
+              "review_level": "publisher-abstract-only-full-paper-unread",
+              "review_scope": "Metadata and abstract only. No general robustness theorem claimed for these fixed jumps/tensors."
+            }
+          ],
+          "code_files": [
+            "run.py",
+            "operators.py",
+            "multilevel.py",
+            "references/p1.py"
+          ],
+          "gallery_figure": "checkerboard-diffusion-preview.png",
+          "additional_figures": [
+            {
+              "file": "checkerboard-diffusion-preview.png",
+              "caption": {
+                "ja": "保存した2D解・誤差・真の残差・格子感度の検証図。",
+                "en": "Saved2D solution, error, true residual and refinement/reference sensitivity."
+              }
+            }
+          ],
+          "measured": {
+            "id": "checkerboard-diffusion",
+            "passed": true,
+            "checks": {
+              "n16_symmetry": true,
+              "n16_geometric_converged": true,
+              "n16_geometric_true_residual": true,
+              "n16_geometric_forward": true,
+              "n16_geometric_energy": true,
+              "n16_geometric_history": true,
+              "n16_geometric_flux_ledger": true,
+              "n16_geometric_budget_residual_bound": true,
+              "n16_amg_converged": true,
+              "n16_amg_true_residual": true,
+              "n16_amg_forward": true,
+              "n16_amg_energy": true,
+              "n16_amg_history": true,
+              "n16_amg_flux_ledger": true,
+              "n16_amg_budget_residual_bound": true,
+              "n32_symmetry": true,
+              "n32_geometric_converged": true,
+              "n32_geometric_true_residual": true,
+              "n32_geometric_forward": true,
+              "n32_geometric_energy": true,
+              "n32_geometric_history": true,
+              "n32_geometric_flux_ledger": true,
+              "n32_geometric_budget_residual_bound": true,
+              "n32_amg_converged": true,
+              "n32_amg_true_residual": true,
+              "n32_amg_forward": true,
+              "n32_amg_energy": true,
+              "n32_amg_history": true,
+              "n32_amg_flux_ledger": true,
+              "n32_amg_budget_residual_bound": true,
+              "n64_symmetry": true,
+              "n64_geometric_converged": true,
+              "n64_geometric_true_residual": true,
+              "n64_geometric_forward": true,
+              "n64_geometric_energy": true,
+              "n64_geometric_history": true,
+              "n64_geometric_flux_ledger": true,
+              "n64_geometric_budget_residual_bound": true,
+              "n64_amg_converged": true,
+              "n64_amg_true_residual": true,
+              "n64_amg_forward": true,
+              "n64_amg_energy": true,
+              "n64_amg_history": true,
+              "n64_amg_flux_ledger": true,
+              "n64_amg_budget_residual_bound": true,
+              "refinement": true,
+              "reference_sensitivity": true,
+              "nonzero_harmonic_patch": true,
+              "small_operator_spd": true,
+              "geometric_small_cycle_spd": true,
+              "amg_small_cycle_spd": true,
+              "intentional_budget": true
+            },
+            "metrics": {
+              "continuous_errors": [
+                0.03320269631288309,
+                0.008587452847326224,
+                0.002547591920168387
+              ],
+              "reference_sensitivity": [
+                0.00010935677943053456,
+                0.0001088242415134897,
+                0.00034850805399045157
+              ]
+            },
+            "records": [
+              {
+                "n": 16,
+                "solver": "geometric",
+                "iterations": 14,
+                "true_residual": 5.9449825978540725e-09,
+                "forward_error": 6.488088653598851e-11,
+                "energy_error": 3.4713097806395244e-10,
+                "continuous_error": 0.03320269631288309,
+                "setup_seconds": 0.0017442499956814572,
+                "solve_seconds": 0.0010716670003603213,
+                "sizes": [
+                  256,
+                  64,
+                  16
+                ],
+                "nnz": [
+                  1216,
+                  980,
+                  196
+                ],
+                "grid_complexity": 1.3125,
+                "operator_complexity": 1.9671052631578947,
+                "boundary_flux": 1.0000000000381384,
+                "source": 1.0,
+                "budget_defect": -3.813838134192338e-11,
+                "residual_sum": -3.8137981054481296e-11
+              },
+              {
+                "n": 16,
+                "solver": "amg",
+                "iterations": 20,
+                "true_residual": 4.418745371705508e-09,
+                "forward_error": 1.2941341275097818e-10,
+                "energy_error": 3.63179517261008e-10,
+                "continuous_error": 0.03320269631288309,
+                "setup_seconds": 0.002669959001650568,
+                "solve_seconds": 0.001335334003670141,
+                "sizes": [
+                  256,
+                  90,
+                  15
+                ],
+                "nnz": [
+                  1216,
+                  1434,
+                  209
+                ],
+                "grid_complexity": 1.41015625,
+                "operator_complexity": 2.351151315789474,
+                "boundary_flux": 1.0000000000151803,
+                "source": 1.0,
+                "budget_defect": -1.518030146030469e-11,
+                "residual_sum": -1.5179704715428954e-11
+              },
+              {
+                "n": 32,
+                "solver": "geometric",
+                "iterations": 18,
+                "true_residual": 2.975680339900577e-09,
+                "forward_error": 1.7362835127916664e-11,
+                "energy_error": 9.932308629331667e-11,
+                "continuous_error": 0.008587452847326224,
+                "setup_seconds": 0.0011524590008775704,
+                "solve_seconds": 0.002351542003452778,
+                "sizes": [
+                  1024,
+                  256,
+                  64,
+                  16
+                ],
+                "nnz": [
+                  4992,
+                  4596,
+                  1156,
+                  196
+                ],
+                "grid_complexity": 1.328125,
+                "operator_complexity": 2.19150641025641,
+                "boundary_flux": 0.999999999985796,
+                "source": 1.0,
+                "budget_defect": 1.4203971332449328e-11,
+                "residual_sum": 1.4205084699660253e-11
+              },
+              {
+                "n": 32,
+                "solver": "amg",
+                "iterations": 26,
+                "true_residual": 6.759964061209292e-09,
+                "forward_error": 1.5931002047518874e-10,
+                "energy_error": 4.3960039262169306e-10,
+                "continuous_error": 0.008587452847326224,
+                "setup_seconds": 0.008310917000926565,
+                "solve_seconds": 0.0037819170029251836,
+                "sizes": [
+                  1024,
+                  426,
+                  83,
+                  16
+                ],
+                "nnz": [
+                  4992,
+                  8378,
+                  2645,
+                  256
+                ],
+                "grid_complexity": 1.5126953125,
+                "operator_complexity": 3.2594150641025643,
+                "boundary_flux": 0.9999999999354575,
+                "source": 1.0,
+                "budget_defect": 6.454248246967609e-11,
+                "residual_sum": 6.454384455286538e-11
+              },
+              {
+                "n": 64,
+                "solver": "geometric",
+                "iterations": 21,
+                "true_residual": 3.079024076345865e-09,
+                "forward_error": 9.589084924185735e-12,
+                "energy_error": 7.2301232984859e-11,
+                "continuous_error": 0.002547591920168387,
+                "setup_seconds": 0.0022286250023171306,
+                "solve_seconds": 0.006082541003706865,
+                "sizes": [
+                  4096,
+                  1024,
+                  256,
+                  64,
+                  16
+                ],
+                "nnz": [
+                  20224,
+                  19892,
+                  5476,
+                  1156,
+                  196
+                ],
+                "grid_complexity": 1.33203125,
+                "operator_complexity": 2.3212025316455698,
+                "boundary_flux": 1.0000000000229732,
+                "source": 1.0,
+                "budget_defect": -2.297317891475359e-11,
+                "residual_sum": -2.297106182027643e-11
+              },
+              {
+                "n": 64,
+                "solver": "amg",
+                "iterations": 33,
+                "true_residual": 7.632410645781231e-09,
+                "forward_error": 7.788070080526963e-11,
+                "energy_error": 3.2109400781577893e-10,
+                "continuous_error": 0.002547591920168387,
+                "setup_seconds": 0.030408250000618864,
+                "solve_seconds": 0.012809750005544629,
+                "sizes": [
+                  4096,
+                  1866,
+                  411,
+                  80,
+                  14
+                ],
+                "nnz": [
+                  20224,
+                  39930,
+                  16569,
+                  4136,
+                  196
+                ],
+                "grid_complexity": 1.578857421875,
+                "operator_complexity": 4.0078619462025316,
+                "boundary_flux": 1.000000000038502,
+                "source": 1.0,
+                "budget_defect": -3.850209040479058e-11,
+                "residual_sum": -3.85001953820234e-11
+              }
+            ],
+            "termination": "fixed_budget_completed"
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/checkerboard-diffusion/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-coefficient-diffusion/#checkerboard-diffusion",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-coefficient-diffusion/#checkerboard-diffusion"
+          }
+        },
+        {
+          "id": "rotated-anisotropic-diffusion",
+          "method_ids": [
+            "q1-fem",
+            "multigrid",
+            "amg",
+            "cg"
+          ],
+          "title": {
+            "ja": "回転異方性拡散：完全テンソルQ1とMG・AMG",
+            "en": "Rotated diffusion: full-tensor Q1, MG and AMG"
+          },
+          "summary": {
+            "ja": "非零Kxyを保つQ1弱形式で、解析解への収束と同じ行列のMG・AMG収束を比較します。",
+            "en": "Retain nonzero Kxy in the Q1 weak form and compare analytic refinement with MG/AMG convergence for the same matrix."
+          },
+          "assumptions": {
+            "ja": "単位正方形、零Dirichlet、K=R(pi/6)diag(1,.01)Rᵀ、厳密解sin(pi x)sin(pi y)、N16/32/64。",
+            "en": "Unit square, zero Dirichlet, K=R(pi/6)diag(1,.01)R^T, exact sin(pi x)sin(pi y), N16/32/64."
+          },
+          "algorithm": {
+            "ja": "完全2×2テンソルQ1とGauss積分。MG/SA-AMGは対称2/2Jacobi、Galerkin粗行列、粗CholeskyでSPDの固定適用。",
+            "en": "Full2x2 tensor Q1 and Gauss quadrature. Fixed SPD MG/SA cycles use symmetric2/2Jacobi, Galerkin operators and coarse Cholesky."
+          },
+          "validation": {
+            "ja": "u=xy,f=−2Kxyパッチ、解析流束由来のsource、積分L2/energy誤差と4/6点求積感度、直接解との比較。",
+            "en": "u=xy,f=-2Kxy patch, analytic-flux source, integrated L2/energy error,4/6point quadrature sensitivity and direct-solve comparison."
+          },
+          "limits": {
+            "ja": "指定した角度・異方性の限定例。スカラーTPFAを回転テンソルへ転用せず、一般テンソルへの頑健性は保証しません。",
+            "en": "One angle/anisotropy only. Scalar TPFA is not extended to rotated tensors; arbitrary-tensor robustness is not established."
+          },
+          "formulas": [
+            "-\\nabla\\cdot(K\\nabla u)=f,\\quad K=R(\\pi/6)\\operatorname{diag}(1,.01)R^T",
+            "f=\\pi^2(K_{xx}+K_{yy})\\sin\\pi x\\sin\\pi y-2\\pi^2K_{xy}\\cos\\pi x\\cos\\pi y"
+          ],
+          "domains": [
+            "pde",
+            "linear-algebra"
+          ],
+          "references": [
+            {
+              "id": "dumux-tpfa",
+              "title": "Two-point flux approximation",
+              "url": "https://dumux.org/docs/doxygen/master/group___c_c_tpfa_discretization.html",
+              "review_level": "selected-official-derivation-read",
+              "review_scope": "Scalar harmonic transmissibility, shared flux and K-orthogonality restriction. No DuMux code executed."
+            },
+            {
+              "id": "hypre-symmetric-smoother",
+              "title": "BoomerAMG: smoother options",
+              "url": "https://hypre.readthedocs.io/en/latest/solvers-boomeramg.html",
+              "review_level": "selected-official-documentation-read",
+              "review_scope": "CG requires a symmetric smoother. Our educational SA code is not hypre and no hypre code was run."
+            },
+            {
+              "id": "vanek1996",
+              "title": "Algebraic multigrid by smoothed aggregation for second and fourth order elliptic problems",
+              "url": "https://link.springer.com/article/10.1007/BF02238511",
+              "review_level": "publisher-abstract-only-full-paper-unread",
+              "review_scope": "Metadata and abstract only. No general robustness theorem claimed for these fixed jumps/tensors."
+            }
+          ],
+          "citations": [
+            {
+              "id": "dumux-tpfa",
+              "title": "Two-point flux approximation",
+              "url": "https://dumux.org/docs/doxygen/master/group___c_c_tpfa_discretization.html",
+              "review_level": "selected-official-derivation-read",
+              "review_scope": "Scalar harmonic transmissibility, shared flux and K-orthogonality restriction. No DuMux code executed."
+            },
+            {
+              "id": "hypre-symmetric-smoother",
+              "title": "BoomerAMG: smoother options",
+              "url": "https://hypre.readthedocs.io/en/latest/solvers-boomeramg.html",
+              "review_level": "selected-official-documentation-read",
+              "review_scope": "CG requires a symmetric smoother. Our educational SA code is not hypre and no hypre code was run."
+            },
+            {
+              "id": "vanek1996",
+              "title": "Algebraic multigrid by smoothed aggregation for second and fourth order elliptic problems",
+              "url": "https://link.springer.com/article/10.1007/BF02238511",
+              "review_level": "publisher-abstract-only-full-paper-unread",
+              "review_scope": "Metadata and abstract only. No general robustness theorem claimed for these fixed jumps/tensors."
+            }
+          ],
+          "code_files": [
+            "run.py",
+            "operators.py",
+            "multilevel.py",
+            "references/p1.py"
+          ],
+          "gallery_figure": "rotated-anisotropic-diffusion-preview.png",
+          "additional_figures": [
+            {
+              "file": "rotated-anisotropic-diffusion-preview.png",
+              "caption": {
+                "ja": "保存した2D解・誤差・真の残差・格子感度の検証図。",
+                "en": "Saved2D solution, error, true residual and refinement/reference sensitivity."
+              }
+            }
+          ],
+          "measured": {
+            "id": "rotated-anisotropic-diffusion",
+            "passed": true,
+            "checks": {
+              "n16_quadrature": true,
+              "n16_symmetry": true,
+              "n16_geometric_converged": true,
+              "n16_geometric_true_residual": true,
+              "n16_geometric_forward": true,
+              "n16_geometric_energy": true,
+              "n16_geometric_history": true,
+              "n16_amg_converged": true,
+              "n16_amg_true_residual": true,
+              "n16_amg_forward": true,
+              "n16_amg_energy": true,
+              "n16_amg_history": true,
+              "n32_quadrature": true,
+              "n32_symmetry": true,
+              "n32_geometric_converged": true,
+              "n32_geometric_true_residual": true,
+              "n32_geometric_forward": true,
+              "n32_geometric_energy": true,
+              "n32_geometric_history": true,
+              "n32_amg_converged": true,
+              "n32_amg_true_residual": true,
+              "n32_amg_forward": true,
+              "n32_amg_energy": true,
+              "n32_amg_history": true,
+              "n64_quadrature": true,
+              "n64_symmetry": true,
+              "n64_geometric_converged": true,
+              "n64_geometric_true_residual": true,
+              "n64_geometric_forward": true,
+              "n64_geometric_energy": true,
+              "n64_geometric_history": true,
+              "n64_amg_converged": true,
+              "n64_amg_true_residual": true,
+              "n64_amg_forward": true,
+              "n64_amg_energy": true,
+              "n64_amg_history": true,
+              "refinement": true,
+              "l2_refinement_ratios": true,
+              "finest_l2": true,
+              "affine_patch": true,
+              "xy_patch": true,
+              "small_operator_spd": true,
+              "geometric_small_cycle_spd": true,
+              "amg_small_cycle_spd": true,
+              "intentional_budget": true
+            },
+            "metrics": {
+              "continuous_errors": [
+                0.0043094975495807045,
+                0.0010835497491345043,
+                0.0002713461470266456
+              ],
+              "reference_sensitivity": []
+            },
+            "records": [
+              {
+                "n": 16,
+                "solver": "geometric",
+                "iterations": 22,
+                "true_residual": 7.692098102140603e-09,
+                "forward_error": 7.413925270472537e-10,
+                "energy_error": 2.1515280249717924e-09,
+                "continuous_error": 0.0043094975495807045,
+                "setup_seconds": 0.0006322909976006486,
+                "solve_seconds": 0.0015195410014712252,
+                "sizes": [
+                  225,
+                  49,
+                  9
+                ],
+                "nnz": [
+                  1849,
+                  361,
+                  49
+                ],
+                "grid_complexity": 1.2577777777777779,
+                "operator_complexity": 1.2217414818820984
+              },
+              {
+                "n": 16,
+                "solver": "amg",
+                "iterations": 29,
+                "true_residual": 6.983569007436221e-09,
+                "forward_error": 1.273897334441206e-09,
+                "energy_error": 2.204609243448183e-09,
+                "continuous_error": 0.0043094975495807045,
+                "setup_seconds": 0.001687625001068227,
+                "solve_seconds": 0.00196291600150289,
+                "sizes": [
+                  225,
+                  49,
+                  9
+                ],
+                "nnz": [
+                  1849,
+                  841,
+                  81
+                ],
+                "grid_complexity": 1.2577777777777779,
+                "operator_complexity": 1.4986479177934018
+              },
+              {
+                "n": 32,
+                "solver": "geometric",
+                "iterations": 31,
+                "true_residual": 9.03229727779601e-09,
+                "forward_error": 5.446722561055623e-10,
+                "energy_error": 1.7056725490454712e-09,
+                "continuous_error": 0.0010835497491345043,
+                "setup_seconds": 0.0010413749987492338,
+                "solve_seconds": 0.003997749998234212,
+                "sizes": [
+                  961,
+                  225,
+                  49,
+                  9
+                ],
+                "nnz": [
+                  8281,
+                  1849,
+                  361,
+                  49
+                ],
+                "grid_complexity": 1.2944849115504682,
+                "operator_complexity": 1.272793140925009
+              },
+              {
+                "n": 32,
+                "solver": "amg",
+                "iterations": 43,
+                "true_residual": 9.394626701702734e-09,
+                "forward_error": 1.2390354862883652e-09,
+                "energy_error": 2.0880013112619845e-09,
+                "continuous_error": 0.0010835497491345043,
+                "setup_seconds": 0.005531832997803576,
+                "solve_seconds": 0.005975207997835241,
+                "sizes": [
+                  961,
+                  225,
+                  49,
+                  9
+                ],
+                "nnz": [
+                  8281,
+                  4761,
+                  1405,
+                  81
+                ],
+                "grid_complexity": 1.2944849115504682,
+                "operator_complexity": 1.7543774906412268
+              },
+              {
+                "n": 64,
+                "solver": "geometric",
+                "iterations": 38,
+                "true_residual": 9.795676385986478e-09,
+                "forward_error": 4.4062492443481157e-10,
+                "energy_error": 1.215295695990534e-09,
+                "continuous_error": 0.0002713461470266456,
+                "setup_seconds": 0.001976334002392832,
+                "solve_seconds": 0.010530582992942072,
+                "sizes": [
+                  3969,
+                  961,
+                  225,
+                  49,
+                  9
+                ],
+                "nnz": [
+                  34969,
+                  8281,
+                  1849,
+                  361,
+                  49
+                ],
+                "grid_complexity": 1.3134290753338373,
+                "operator_complexity": 1.3014098201263977
+              },
+              {
+                "n": 64,
+                "solver": "amg",
+                "iterations": 61,
+                "true_residual": 8.112486903550596e-09,
+                "forward_error": 3.461000545706224e-10,
+                "energy_error": 1.0217381010630206e-09,
+                "continuous_error": 0.0002713461470266456,
+                "setup_seconds": 0.02102500000182772,
+                "solve_seconds": 0.019833999998809304,
+                "sizes": [
+                  3969,
+                  961,
+                  225,
+                  49,
+                  9
+                ],
+                "nnz": [
+                  34969,
+                  22201,
+                  8781,
+                  2229,
+                  81
+                ],
+                "grid_complexity": 1.3134290753338373,
+                "operator_complexity": 1.9520432382967772
+              }
+            ],
+            "termination": "fixed_budget_completed"
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-coefficient-diffusion/#rotated-anisotropic-diffusion",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-coefficient-diffusion/#rotated-anisotropic-diffusion"
+          }
+        }
+      ]
+    }
+  ],
+  "batch28_existing_variant_labels": true,
+  "supplemental_scope_profiles": [
+    {
+      "release": {
+        "group": "coefficient-diffusion",
+        "edition": "2026-11-23",
+        "case_ids": [
+          "checkerboard-diffusion",
+          "rotated-anisotropic-diffusion"
+        ]
+      },
+      "scope": {
+        "ja": "追加固定例：係数ジャンプ拡散：共有流束とMG・AMG、回転異方性拡散：完全テンソルQ1とMG・AMG。条件と検証範囲は各配布版で確認してください。",
+        "en": "Additional fixed examples: Checkerboard diffusion: shared flux, MG and AMG, Rotated diffusion: full-tensor Q1, MG and AMG. See each release for assumptions and checked scope."
+      },
+      "limits": [
+        {
+          "ja": "係数比100の固定例。P1格子差は厳密誤差上界ではなく、特異交点の次数や普遍的なMG/AMG優劣は主張しません。",
+          "en": "Fixed contrast100 example. P1 differences are not rigorous error bounds; no singular exponent or universal MG/AMG winner is asserted."
+        },
+        {
+          "ja": "指定した角度・異方性の限定例。スカラーTPFAを回転テンソルへ転用せず、一般テンソルへの頑健性は保証しません。",
+          "en": "One angle/anisotropy only. Scalar TPFA is not extended to rotated tensors; arbitrary-tensor robustness is not established."
+        }
+      ]
     }
   ],
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/amg/",
@@ -2192,11 +2929,17 @@
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/experiments.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/fixtures.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/mpmath_reference.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/solvers.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/solvers.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/operators.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/multilevel.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/references/p1.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/experiments.py"
   ],
   "test_urls": [
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/test_foundations.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/test_conditioning.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/test_conditioning.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/test_diffusion.py"
   ],
   "run_commands": [
     "python -m pytest -q",
@@ -2223,6 +2966,24 @@
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/amg-conditioning/?lang=en"
       },
       "kind": "dedicated-supplement"
+    },
+    {
+      "id": "checkerboard-diffusion",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/checkerboard-diffusion/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/checkerboard-diffusion/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    },
+    {
+      "id": "rotated-anisotropic-diffusion",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/?lang=en"
+      },
+      "kind": "dedicated-supplement"
     }
   ],
   "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip",
@@ -2247,6 +3008,21 @@
         "url": {
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#poisson-laplace-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#poisson-laplace-en"
+        }
+      },
+      {
+        "id": "tensor-diffusion",
+        "name": {
+          "ja": "不連続係数・完全テンソル拡散の境界値問題",
+          "en": "Discontinuous and full-tensor diffusion BVP"
+        },
+        "problem_ids": [
+          "checkerboard-diffusion",
+          "rotated-anisotropic-diffusion"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#tensor-diffusion-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#tensor-diffusion-en"
         }
       }
     ],
@@ -2309,6 +3085,129 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=en#references-en"
         }
+      },
+      {
+        "id": "checkerboard-diffusion",
+        "name": {
+          "ja": "係数ジャンプ拡散：共有流束とMG・AMG",
+          "en": "Checkerboard diffusion: shared flux, MG and AMG"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/results/checkerboard-diffusion-preview.png",
+          "sha256": "874bbea94425c356ca0881fd0db4da26bccd8be3f0add3bbb0267e78c244eb1b",
+          "width": 990,
+          "height": 720,
+          "caption": {
+            "ja": "保存した2D解・誤差・真の残差・格子感度の検証図。",
+            "en": "Saved2D solution, error, true residual and refinement/reference sensitivity."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/checkerboard-diffusion/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/checkerboard-diffusion/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/checkerboard-diffusion/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/checkerboard-diffusion/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "checkerboard-diffusion",
+            "kind": "supplement",
+            "name": {
+              "ja": "係数ジャンプ拡散：共有流束とMG・AMG",
+              "en": "Checkerboard diffusion: shared flux, MG and AMG"
+            },
+            "scope": {
+              "ja": "不連続係数のFV解を独立なP1参照と比較し、線形系の残差・前進誤差と連続問題の誤差を分けます。",
+              "en": "Compare discontinuous-coefficient FV with independent P1 reference fields, separating linear-system residual/forward errors from continuum error."
+            },
+            "method_ids": [
+              "multigrid",
+              "amg",
+              "cg"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/checkerboard-diffusion/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/checkerboard-diffusion/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/atlas-coefficient-diffusion-2026-11-23.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "直交FVの共有面調和平均。幾何MGと座標を受け取らないSA-AMGの対称Galerkin V-cycleを、同じ行列のPCGへ適用。",
+          "en": "Orthogonal FV with shared harmonic transmissibility. Symmetric Galerkin geometric and coordinate-free SA cycles precondition PCG on identical matrices."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/checkerboard-diffusion/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/checkerboard-diffusion/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "rotated-anisotropic-diffusion",
+        "name": {
+          "ja": "回転異方性拡散：完全テンソルQ1とMG・AMG",
+          "en": "Rotated diffusion: full-tensor Q1, MG and AMG"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/results/rotated-anisotropic-diffusion-preview.png",
+          "sha256": "07d3edeeefee73b8d77b6322833feb33972ae5138093da04c3f414d974e55ee4",
+          "width": 990,
+          "height": 720,
+          "caption": {
+            "ja": "保存した2D解・誤差・真の残差・格子感度の検証図。",
+            "en": "Saved2D solution, error, true residual and refinement/reference sensitivity."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rotated-anisotropic-diffusion/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rotated-anisotropic-diffusion/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rotated-anisotropic-diffusion/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rotated-anisotropic-diffusion/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "rotated-anisotropic-diffusion",
+            "kind": "supplement",
+            "name": {
+              "ja": "回転異方性拡散：完全テンソルQ1とMG・AMG",
+              "en": "Rotated diffusion: full-tensor Q1, MG and AMG"
+            },
+            "scope": {
+              "ja": "非零Kxyを保つQ1弱形式で、解析解への収束と同じ行列のMG・AMG収束を比較します。",
+              "en": "Retain nonzero Kxy in the Q1 weak form and compare analytic refinement with MG/AMG convergence for the same matrix."
+            },
+            "method_ids": [
+              "q1-fem",
+              "multigrid",
+              "amg",
+              "cg"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/atlas-coefficient-diffusion-2026-11-23.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "完全2×2テンソルQ1とGauss積分。MG/SA-AMGは対称2/2Jacobi、Galerkin粗行列、粗CholeskyでSPDの固定適用。",
+          "en": "Full2x2 tensor Q1 and Gauss quadrature. Fixed SPD MG/SA cycles use symmetric2/2Jacobi, Galerkin operators and coarse Cholesky."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rotated-anisotropic-diffusion/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rotated-anisotropic-diffusion/?lang=en#references-en"
+        }
       }
     ],
     "references": [
@@ -2363,6 +3262,74 @@
             "view": {
               "ja": "/numerical-methods-atlas/validation/sem-poisson-2d/?lang=ja",
               "en": "/numerical-methods-atlas/validation/sem-poisson-2d/?lang=en"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "checkerboard-diffusion",
+        "problem_name": {
+          "ja": "係数ジャンプ拡散：共有流束とMG・AMG",
+          "en": "Checkerboard diffusion: shared flux, MG and AMG"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/checkerboard-diffusion/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/checkerboard-diffusion/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "checkerboard-diffusion",
+            "title": {
+              "ja": "係数ジャンプ拡散：共有流束とMG・AMG",
+              "en": "Checkerboard diffusion: shared flux, MG and AMG"
+            },
+            "kind": "numerical-reference",
+            "relation": "same-problem",
+            "note": {
+              "ja": "係数比100の固定例。P1格子差は厳密誤差上界ではなく、特異交点の次数や普遍的なMG/AMG優劣は主張しません。",
+              "en": "Fixed contrast100 example. P1 differences are not rigorous error bounds; no singular exponent or universal MG/AMG winner is asserted."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-checkerboard-diffusion-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-checkerboard-diffusion-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/checkerboard-diffusion/?lang=ja#checkerboard-diffusion-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/checkerboard-diffusion/?lang=en#checkerboard-diffusion-en-measurements"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "rotated-anisotropic-diffusion",
+        "problem_name": {
+          "ja": "回転異方性拡散：完全テンソルQ1とMG・AMG",
+          "en": "Rotated diffusion: full-tensor Q1, MG and AMG"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rotated-anisotropic-diffusion/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rotated-anisotropic-diffusion/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "rotated-anisotropic-diffusion",
+            "title": {
+              "ja": "回転異方性拡散：完全テンソルQ1とMG・AMG",
+              "en": "Rotated diffusion: full-tensor Q1, MG and AMG"
+            },
+            "kind": "manufactured",
+            "relation": "same-problem",
+            "note": {
+              "ja": "指定した角度・異方性の限定例。スカラーTPFAを回転テンソルへ転用せず、一般テンソルへの頑健性は保証しません。",
+              "en": "One angle/anisotropy only. Scalar TPFA is not extended to rotated tensors; arbitrary-tensor robustness is not established."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-rotated-anisotropic-diffusion-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-rotated-anisotropic-diffusion-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/?lang=ja#rotated-anisotropic-diffusion-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/?lang=en#rotated-anisotropic-diffusion-en-measurements"
             }
           }
         ]

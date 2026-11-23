@@ -23,6 +23,12 @@ Resources explicitly registered to the methods, problems and executions of this 
 - [Particle-in-cell / PIC](<https://hrkoyama.github.io/numerical-methods-atlas/methods/pic/?lang=en>)
 
   Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed.
+- [Cloud-in-cell assignment and interpolation](<https://hrkoyama.github.io/numerical-methods-atlas/methods/cic/?lang=en>)
+
+  Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed.
+- [Velocity Verlet / particle leapfrog](<https://hrkoyama.github.io/numerical-methods-atlas/methods/verlet/?lang=en>)
+
+  Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed.
 - [DSMC and kinetic transport](<https://hrkoyama.github.io/numerical-methods-atlas/methods/dsmc/?lang=en>)
 
   Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed.
@@ -48,6 +54,9 @@ Resources explicitly registered to the methods, problems and executions of this 
 - [Poisson / Laplace equations](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#poisson-laplace-en>)
 
   Elliptic boundary-value problems: check sign conventions, iterative solvers, sparse matrices and boundaries. Poisson identifies the self-consistent electrostatic field; the registry does not list the complete coupled particle-motion/CIC PIC system.
+- [Electrostatic Vlasov–Poisson equations](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#vlasov-poisson-en>)
+
+  1D1V electrons and fixed neutralizing background. Separate weighted full-f particle,mesh and time approximations from the linear-reference scope. Poisson identifies the self-consistent electrostatic field; the registry does not list the complete coupled particle-motion/CIC PIC system.
 - [This execution’s formulation and conditions](<https://hrkoyama.github.io/numerical-methods-atlas/validation/ewald/?lang=en#ewald-en-algorithm>)
 
   Combine an erfc-screened image sum, Gaussian-damped reciprocal structure factors and the self correction. Differentiate each term and check all 24 force components against central energy differences.
@@ -136,6 +145,11 @@ Resources explicitly registered to the methods, problems and executions of this 
 - [Cold-plasma oscillation with electrostatic CIC PIC — references and comparison conditions](<https://hrkoyama.github.io/numerical-methods-atlas/problems/cold-plasma-pic/?lang=en#references-en>)
 
   Compare with linear cold-plasma displacement cos(t); check charge compatibility, Poisson residual, self force, and separate grid/timestep series. This is not an exact reference for general nonlinear PIC trajectories. The companion retains stationary background ions and separates charge, momentum and particle/field-energy diagnostics from trajectory error. Its reference is small-amplitude linear theory, supplying no evidence for thermal Landau damping or electromagnetic PIC.
+- [Independently coded PIC spatial pipeline](<https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-pic-independent-spatial-en>)
+  relation: related-model
+  reference_kind: numerical-reference
+
+  Finite-grid numerical reference Periodic[0,2pi],256particles,grids8/16/32,seeds35001/35002,dt.02,T.24. Uniform random positions,v=.2Normal+.1sin(x). Six pairs mean twelve separately evolved trajectories. Periodic[0,2pi],256particles,grids8/16/32,seeds35001/35002,dt.02,T.24. Uniform random positions,v=.2Normal+.1sin(x). Six pairs mean twelve separately evolved trajectories.
 - [Conservation and Maxwell relaxation in a homogeneous DSMC collision component — references and comparison conditions](<https://hrkoyama.github.io/numerical-methods-atlas/problems/maxwell-collisions/?lang=en#references-en>)
 
   Check momentum/energy conservation, anisotropy relaxation and distribution moments for the homogeneous collision component. Finite-particle equilibrium is microcanonical; Maxwell/Gamma distributions are large-N standards. This does not validate an exact solution of the full spatial Boltzmann equation. The companion derives finite-particle moments on a fixed-momentum/energy sphere and compares independent projected-Gaussian samples across seeds. Collision rounds are not physical time, and the correspondence does not extend to spatial hard-sphere transport.
@@ -154,6 +168,11 @@ Resources explicitly registered to the methods, problems and executions of this 
 - [Cold-plasma oscillation with electrostatic CIC PIC — references and checks](<https://hrkoyama.github.io/numerical-methods-atlas/validation/pic/?lang=en#pic-en-validation>)
 
   Separate a 32/64/128-grid sweep from timestep refinement on a 512 grid. Compare displacement amplitude with continuum linear cos(t), and check charge compatibility, potential-Poisson residual and single-particle self force.
+- [Independently coded PIC spatial pipeline](<https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-pic-independent-spatial-en>)
+  relation: related-model
+  reference_kind: numerical-reference
+
+  Finite-grid numerical reference Periodic[0,2pi],256particles,grids8/16/32,seeds35001/35002,dt.02,T.24. Uniform random positions,v=.2Normal+.1sin(x). Six pairs mean twelve separately evolved trajectories. Periodic[0,2pi],256particles,grids8/16/32,seeds35001/35002,dt.02,T.24. Uniform random positions,v=.2Normal+.1sin(x). Six pairs mean twelve separately evolved trajectories.
 - [Conservation and Maxwell relaxation in a homogeneous DSMC collision component — references and checks](<https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc/?lang=en#dsmc-en-validation>)
 
   Use 512/2048/8192 particles and sixteen seeds to check momentum/energy, Maxwell second/fourth moments and the Gamma(3/2,1) energy CDF. Independently check the expected per-round anisotropy factor (N−2)/(2(N−1)). The finite-N component fourth moment is 3−6/(3N−1); distinguish that finite-particle offset from the across-seed sampling uncertainty.
@@ -195,6 +214,10 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Separate quiet-start refinement of a cold 1D periodic plasma from independent-seed initial particle noise; record charge, momentum, Gauss diagnostics and energy error.
+- [Independently coded PIC spatial pipeline](<https://hrkoyama.github.io/numerical-methods-atlas/validation/pic-independent-spatial/?lang=en>)
+  availability: run
+
+  Compare vectorized CIC/FFT with separately authored scalar-particle CIC/dense DFT; each trajectory sources its own field at every kick.
 - [Conservation and Maxwell relaxation in a homogeneous DSMC collision component](<https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc/?lang=en>)
   availability: run
 

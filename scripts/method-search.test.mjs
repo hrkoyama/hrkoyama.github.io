@@ -180,9 +180,22 @@ test('untrusted method labels stay text and hostile destinations never become ac
   assert.ok(created.every(node=>!['script','img','iframe'].includes(node.tag)));
 }));
 
-test('planned methods with new detailed reading advertise reading without implying available code',()=>withDOM(({render})=>{
- for(const id of ['slab-ewald','splines']){
-  const m=published.find(m=>m.id===id),card=render(m,'ja');assert.ok(card.textContent.includes('解説あり・実装予定'));assert.ok(links(card).some(a=>a.textContent==='解説'));assert.ok(!links(card).some(a=>a.href.startsWith('/code/')));
+test('remaining plans retain reading-only actions while the neutral slab exposes only its verified supplement',()=>withDOM(({render})=>{
+ for(const id of ['splines']){
+  const m=published.find(m=>m.id===id),card=render(m,'ja');assert.equal(m.status,'planned');assert.ok(card.textContent.includes('解説あり・実装予定'));assert.ok(links(card).some(a=>a.textContent==='解説'));assert.ok(!links(card).some(a=>a.href.startsWith('/code/')));
+ }
+ const slab=byId('slab-ewald'),release=json('numerical-methods-atlas/validation/releases.json').releases.find(row=>row.group==='slab-ewald');
+ assert.equal(slab.status,'educational-example');assert.equal(slab.depth_release.group,'slab-ewald');
+ assert.deepEqual(slab.depth_release.case_ids,['neutral-slab-yb']);assert.deepEqual(slab.execution_examples.map(row=>row.id),['neutral-slab-yb']);
+ assert.equal(slab.depth_release.code_archive_sha256,release.archive_sha256);
+ assert.ok(slab.code_urls.length&&slab.test_urls.length);
+ assert.ok([...slab.code_urls,...slab.test_urls].every(url=>new URL(url,origin).pathname.startsWith('/code/validated-examples/'+release.edition+'/slab-ewald/')));
+ for(const lang of ['ja','en']){
+  const card=render(slab,lang),targets=links(card).map(link=>new URL(link.href,origin).href);
+  assert.ok(card.textContent.includes(lang==='ja'?'教育用例あり':'Educational example'));
+  for(const url of [...slab.code_urls,...slab.test_urls])assert.ok(targets.includes(new URL(url,origin).href),url);
+  const guide=origin+'/numerical-methods-atlas/validation/neutral-slab-yb/?lang='+lang;
+  assert.equal(slab.execution_examples[0].guide[lang],guide);assert.ok(targets.includes(guide));
  }
 }));
 

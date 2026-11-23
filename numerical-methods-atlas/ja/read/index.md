@@ -33,6 +33,7 @@
 - [ウェーブレット](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/wavelets/)
 - [AMG・行列分解・固有値・求積](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/)
 - [基盤手法：条件数・残差・収束と独立参照](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/)
+- [係数ジャンプ・回転異方性のMG／AMG](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-coefficient-diffusion/)
 
 ## 自動微分・最適化・逆問題
 
@@ -114,6 +115,12 @@
 - [放射輸送・モーメント法](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/radiation-transport/)
 - [粒子・静電場・運動論・放射輸送](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particles/)
 - [粒子・輸送：独立参照・保存則・統計誤差](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particle-transport/)
+- [3Dの1/r核：展開・木・力の検証](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-fmm3d/)
+- [重力軌道：Keplerと軟化有限粒子](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-gravity-dynamics/)
+- [熱的PIC：Landau減衰と二流不安定性](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/)
+- [PICの独立空間実装との照合](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-pic-spatial/)
+- [有限Knudsen数のCouette・Fourier流](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-wall/)
+- [剛体球DSMCのMach2平面衝撃波](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-shock/)
 
 ## 電磁場・静電場・電子状態
 
@@ -130,6 +137,7 @@
 - [H₂分子の閉殻HF：独立参照・SCF残差・基底の収束](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/h2-hf/)
 - [周期DFT：Γ点・k点積分・基底・SCFと独立参照](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-dft/)
 - [DFTから原子間力へ：有限差分・独立参照・力の収束とBOMDへの接続](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-forces/)
+- [中性スラブ：3周期補正と真の2周期参照](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-slab-ewald/)
 
 ## 確率計算・生物・温度制御
 

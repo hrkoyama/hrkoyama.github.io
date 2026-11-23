@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "id": "thermal-landau-damping",
+  "name": {
+    "ja": "温かいPICの線形Landau減衰",
+    "en": "Warm PIC linear Landau damping"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/thermal-landau-damping/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/thermal-landau-damping/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/thermal-landau-damping/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/results/thermal-landau-damping-preview.png",
+    "sha256": "133e293e074869a96b622d2c3cf420805aaac9b489c7cd3781e128b7073c8583",
+    "width": 1152,
+    "height": 672,
+    "caption": {
+      "ja": "実際に動かした粒子の初期(x,v)に対する速度変化δv/α。空間2D流体図ではなく1D1V位相空間の応答です。",
+      "en": "Actual evolved particle velocity change delta-v/alpha against initial(x,v); a1D1V phase-space response, not a2D physical-space flow."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-warm-pic/#thermal-landau-damping",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-warm-pic/#thermal-landau-damping"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#thermal-landau-damping",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#thermal-landau-damping-en"
+  },
+  "equations": [
+    {
+      "id": "vlasov-poisson",
+      "name": {
+        "ja": "静電Vlasov–Poisson方程式",
+        "en": "Electrostatic Vlasov–Poisson equations"
+      },
+      "formula": [
+        "\\partial_t f+v\\partial_x f-E\\partial_v f=0",
+        "\\partial_x E=1-\\int f\\,dv,\\quad\\int E\\,dx=0"
+      ],
+      "note": {
+        "ja": "1D1V電子と固定中性化背景。重み付き全分布PICの粒子・格子・時間近似と、線形参照の範囲を分けます。",
+        "en": "1D1V electrons and fixed neutralizing background. Separate weighted full-f particle,mesh and time approximations from the linear-reference scope."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#vlasov-poisson-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#vlasov-poisson-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "vth=ωp=λD=1、k=.5、L=4π、α=.01、格子32、256空間層×128速度節点、dt=.04、T16、固定窓[4,12]。シード33001–33004。 空間粒子層だけ512へ倍増する独立companionも固定します。",
+    "en": "vth=omega_p=lambda_D=1,k.5,L4pi,alpha.01,grid32,256spatial strata×128velocity nodes,dt.04,T16,fit[4,12],seeds33001–33004. A separately evolved512-spatial-strata companion changes only particle-space resolution."
+  },
+  "formulations": [
+    {
+      "id": "supplement-thermal-landau-damping",
+      "name": {
+        "ja": "温かいPICの線形Landau減衰",
+        "en": "Warm PIC linear Landau damping"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "\\partial_t f+v\\partial_x f-E\\partial_v f=0,\\quad\\partial_x E=1-\\int f\\,dv,\\quad\\langle E\\rangle=0",
+        "D(\\omega,k)=1+\\frac{1}{k^2}\\sum_s a_s[1+\\zeta_s Z(\\zeta_s)],\\quad\\zeta_s=\\frac{\\omega-ku_s}{\\sqrt2 k}",
+        "e(t)=\\Phi(t)-\\int_0^t s\\Phi(s)e(t-s)\\,ds,\\quad\\Phi(t)=e^{-k^2t^2/2}\\cos(kut)"
+      ],
+      "note": {
+        "ja": "熱速度1のMaxwell分布を自己無撞着に動かし、減衰率・周波数・符号付き場の履歴を独立した線形参照で調べます。",
+        "en": "Advance thermal Maxwellian full-f particles and compare damping rate, frequency and signed-field history with qualified independent linear references."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "thermal-landau-damping",
+      "kind": "semi-analytic",
+      "kind_label": {
+        "ja": "半解析解",
+        "en": "Semi-analytic reference"
+      },
+      "title": {
+        "ja": "温かいPICの線形Landau減衰",
+        "en": "Warm PIC linear Landau damping"
+      },
+      "formula": "D(omega,k)=1+sum_s a_s[1+zeta_s Z(zeta_s)]/k²=0; e(t)=Phi(t)-integral_0^t s Phi(s)e(t-s)ds; Phi=exp[-(kt)²/2]cos(kut).",
+      "assumptions": {
+        "ja": "vth=ωp=λD=1、k=.5、L=4π、α=.01、格子32、256空間層×128速度節点、dt=.04、T16、固定窓[4,12]。シード33001–33004。 空間粒子層だけ512へ倍増する独立companionも固定します。 31 pytest・19自己無撞着計算・140/140ケース判定・17/17独立線形参照資格判定が合格。pytest+mainは7.283秒。Landau粒子空間層256/512の曲線差.001154、振幅半減差.004376は固定.03以下。以前の64層版130/131（振幅差.05646>.03）は全データと元契約を保持した未達例です。入力の振幅と全許容値は維持しました。 1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。",
+        "en": "vth=omega_p=lambda_D=1,k.5,L4pi,alpha.01,grid32,256spatial strata×128velocity nodes,dt.04,T16,fit[4,12],seeds33001–33004. A separately evolved512-spatial-strata companion changes only particle-space resolution."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。",
+        "en": "Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/thermal-landau-damping/?lang=ja#thermal-landau-damping-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/thermal-landau-damping/?lang=en#thermal-landau-damping-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "31 pytest・19自己無撞着計算・140/140ケース判定・17/17独立線形参照資格判定が合格。pytest+mainは7.283秒。Landau粒子空間層256/512の曲線差.001154、振幅半減差.004376は固定.03以下。以前の64層版130/131（振幅差.05646>.03）は全データと元契約を保持した未達例です。入力の振幅と全許容値は維持しました。",
+    "en": "31pytest,19self-consistent runs,140/140case gates and17/17independent linear-reference qualifiers passed; shared pytest+main7.283s. Landau256/512particle-space curve gap.001154 and amplitude-half gap.004376 meet the unchanged.03bound. Original64-strata130/131result (.05646>.03) remains an explicitly unmet retained example; amplitudes/all tolerances stayed fixed."
+  },
+  "methods": [
+    {
+      "id": "pic",
+      "name": {
+        "ja": "Particle-in-Cell（PIC）",
+        "en": "Particle-in-cell / PIC"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pic/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pic/?lang=en"
+      }
+    },
+    {
+      "id": "cic",
+      "name": {
+        "ja": "Cloud-in-cellの割当てと補間",
+        "en": "Cloud-in-cell assignment and interpolation"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/cic/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/cic/?lang=en"
+      }
+    },
+    {
+      "id": "verlet",
+      "name": {
+        "ja": "速度Verlet／粒子leapfrog法",
+        "en": "Velocity Verlet / particle leapfrog"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/verlet/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/verlet/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "正のGauss速度重みと密度CDF逆写像で共同(x,v)分布を作り、CIC電荷配置→FFT Poisson→同じCIC補間を各kickで再計算するvelocity-Verlet法。Z関数の分散根を枝追跡で確認し、別導出のVolterra初期値問題を刻み半減して固定窓の過渡偏りを検査します。",
+    "en": "Positive Gaussian velocity weights and density-CDF inversion load the joint(x,v) distribution. Recompute CIC deposition, FFT Poisson and matched CIC gathering at every velocity-Verlet kick. Qualify the dielectric root using branch continuation/bracket checks and a separately derived, time-refined Volterra IVP with the same fixed-window estimator."
+  },
+  "executions": [
+    {
+      "id": "thermal-landau-damping",
+      "kind": "supplement",
+      "name": {
+        "ja": "温かいPICの線形Landau減衰",
+        "en": "Warm PIC linear Landau damping"
+      },
+      "method_ids": [
+        "pic",
+        "cic",
+        "verlet"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/thermal-landau-damping/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/thermal-landau-damping/?lang=en"
+      },
+      "scope": {
+        "ja": "熱速度1のMaxwell分布を自己無撞着に動かし、減衰率・周波数・符号付き場の履歴を独立した線形参照で調べます。",
+        "en": "Advance thermal Maxwellian full-f particles and compare damping rate, frequency and signed-field history with qualified independent linear references."
+      },
+      "assumptions": {
+        "ja": "vth=ωp=λD=1、k=.5、L=4π、α=.01、格子32、256空間層×128速度節点、dt=.04、T16、固定窓[4,12]。シード33001–33004。 空間粒子層だけ512へ倍増する独立companionも固定します。",
+        "en": "vth=omega_p=lambda_D=1,k.5,L4pi,alpha.01,grid32,256spatial strata×128velocity nodes,dt.04,T16,fit[4,12],seeds33001–33004. A separately evolved512-spatial-strata companion changes only particle-space resolution."
+      },
+      "limits": {
+        "ja": "1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。",
+        "en": "Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/atlas-warm-pic-2026-11-23.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "31 pytest・19自己無撞着計算・140/140ケース判定・17/17独立線形参照資格判定が合格。pytest+mainは7.283秒。Landau粒子空間層256/512の曲線差.001154、振幅半減差.004376は固定.03以下。以前の64層版130/131（振幅差.05646>.03）は全データと元契約を保持した未達例です。入力の振幅と全許容値は維持しました。",
+        "en": "31pytest,19self-consistent runs,140/140case gates and17/17independent linear-reference qualifiers passed; shared pytest+main7.283s. Landau256/512particle-space curve gap.001154 and amplitude-half gap.004376 meet the unchanged.03bound. Original64-strata130/131result (.05646>.03) remains an explicitly unmet retained example; amplitudes/all tolerances stayed fixed."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/primary.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/loading.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/references/linear.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/references/estimate.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/test_pic.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}
