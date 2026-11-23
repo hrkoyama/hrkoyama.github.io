@@ -18,7 +18,7 @@ test('report is bilingual, scoped, searchable and reachable from the prompt page
  const html=read(base+'index.html');
  for(const text of ['data-site-language="ja"','data-site-language="en"','49配列','240','約49分','約48分','About 49 min','About 48 min','NumPy2.0.2','OS-enforced','4eps','未取得','不合格','5/6'])assert.ok(html.includes(text),text);
  assert.ok(read('numerical-methods-atlas/agent-kits/rkdg2d/index.html').includes(cfg.route+'?lang=ja'));
- assert.ok(read('llms.txt').includes(cfg.route));for(const f of ['index.md','index-en.md'])assert.ok(read(base+f).includes('verify_saved.py'));
+ assert.ok(read('llms.txt').includes(cfg.route));for(const f of ['index.md','index-en.md'])assert.ok(read(base+f).includes('verify_saved_portable.py'));
  assert.doesNotMatch(html,/\/Users\/|\/private\/|manuscript-private|library-file:/);
 });
 test('result ZIP preserves source/data hashes, includes all49 arrays and no private poster material',()=>{
@@ -39,4 +39,12 @@ with zipfile.ZipFile(sys.argv[1]) as z:
  print(json.dumps(counts))
 `,fileURLToPath(new URL(cfg.archive.slice(1),root))],{encoding:'utf8'}));
  assert.deepEqual(result,{assembly:49,repair:49});
+});
+test('portable replay is separately hash-pinned and preserves the first Linux failure',()=>{
+ assert.equal(hash(readFileSync(new URL(cfg.portable_audit.slice(1),root))),cfg.portable_audit_sha256);
+ const failed=json(base+'evidence/linux-audit-v2-failure.json');
+ assert.equal(failed.passed,false);assert.equal(failed.original_48_passed,true);assert.equal(failed.waveform_4_passed,true);
+ assert.equal(failed.failures.length,24);assert.equal(failed.comparisons.length,240);
+ assert.ok(failed.max_absolute_metric_difference<2.36e-16);
+ const page=read(base+'index.html');assert.ok(page.includes(cfg.portable_audit));assert.ok(page.includes('24 cancellation-dominated'));
 });

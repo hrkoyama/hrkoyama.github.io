@@ -31,13 +31,17 @@ NumPy2.0.2の参照remap行列積で警告を保存。別プロセスでも再�
 
 監督側の追加照合v1はcallback時刻を完全一致とし、修正候補で失敗しました。配布ソルバー既存の終端処理（4eps×max(1,|T|)以内を最終時刻へ丸める）に合わせたv2で両候補を再照合。初回失敗を保持し、科学計算の基準や出力は変えていません。
 
+Linuxの追加照合v2は、ほぼゼロの誤差ノルムを相対64epsだけで比較して24指標が不一致となりました（最大絶対差2.36×10⁻¹⁶未満）。元48・波形4の科学判定は合格です。別配布のv3は非ゼロの無次元指標に絶対64epsの丸め誤差床を加え、ゼロは完全一致を維持します。元ZIP・配列・記録値・科学判定基準は変更せず、初回失敗を保存しています。
+
+[Portable audit v3](https://hrkoyama.github.io/code/rkdg2d/2026-11-23-pilot-audit3/verify_saved_portable.py) / [SHA256](https://hrkoyama.github.io/code/rkdg2d/2026-11-23-pilot-audit3/verify_saved_portable.py.sha256) / [Linux audit v2 failure](https://hrkoyama.github.io/numerical-methods-atlas/agent-kits/rkdg2d/results/2026-11-23-v1/evidence/linux-audit-v2-failure.json)
+
 ## 保存データの再判定
 
-baseキットr2と結果ZIPをそれぞれSHA256確認後に展開し、結果フォルダで次を実行します。NumPy2.0.2を使い、出力先は未使用フォルダにします。これは保存配列の再判定で、新しい全PDE計算ではありません。
+baseキットr2と結果ZIPをそれぞれSHA256確認後に展開し、結果フォルダで次を実行します。NumPy2.0.2を使い、出力先は未使用フォルダにします。これは保存配列の再判定で、新しい全PDE計算ではありません。 別配布の照合v3を取得しSHA256を確認してください。元ZIPのv2は変更せず保持しています。
 
 ```sh
-python verify_saved.py --trial assembly --base /path/to/atlas-rkdg-agent-kit --output /path/to/new-audit
-python verify_saved.py --trial repair --base /path/to/atlas-rkdg-agent-kit --output /path/to/new-audit
+python verify_saved_portable.py --bundle /path/to/atlas-rkdg-agent-pilot --trial assembly --base /path/to/atlas-rkdg-agent-kit --output /path/to/new-audit
+python verify_saved_portable.py --bundle /path/to/atlas-rkdg-agent-pilot --trial repair --base /path/to/atlas-rkdg-agent-kit --output /path/to/new-audit
 ```
 
 [ZIP](https://hrkoyama.github.io/code/rkdg2d/2026-11-23-pilot1/atlas-rkdg-agent-pilot.zip) / [SHA256](https://hrkoyama.github.io/code/rkdg2d/2026-11-23-pilot1/atlas-rkdg-agent-pilot.zip.sha256)

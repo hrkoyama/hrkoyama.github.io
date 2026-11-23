@@ -29,12 +29,16 @@ def main():
  for line in (bundle/'SHA256SUMS.txt').read_text().splitlines():
   digest,name=line.split(maxsplit=1);rel=PurePosixPath(name);assert not rel.is_absolute() and '..' not in rel.parts;assert sha((bundle/name).read_bytes())==digest
  assert sha((a.base/'SHA256SUMS.txt').read_bytes())==cfg['base_sha256sums_sha256']
+ audit_bytes=fetch(ORIGIN+cfg['portable_audit'],1000000);assert sha(audit_bytes)==cfg['portable_audit_sha256']
+ audit_script=a.output/'verify_saved_portable.py';audit_script.write_bytes(audit_bytes)
  results=[]
  for trial in ['assembly','repair']:
-  cmd=[sys.executable,str(bundle/'verify_saved.py'),'--trial',trial,'--base',str(a.base.resolve()),'--output',str((a.output/'audit').resolve())]
+  cmd=[sys.executable,str(audit_script.resolve()),'--bundle',str(bundle.resolve()),'--trial',trial,'--base',str(a.base.resolve()),'--output',str((a.output/'audit').resolve())]
   r=subprocess.run(cmd,capture_output=True,text=True)
   (a.output/(trial+'.stdout')).write_text(r.stdout);(a.output/(trial+'.stderr')).write_text(r.stderr)
-  result={'trial':trial,'exit_code':r.returncode};results.append(result);assert r.returncode==0,r.stderr
- report={'passed':True,'archive_sha256':sha(b),'new_pde_runs':0,'trials':results,'scope':'Published saved-data reassessment, not new AI generation or a fresh full PDE campaign.'}
+  result={'trial':trial,'exit_code':r.returncode};results.append(result)
+  if r.returncode:print(trial+' audit failed: '+r.stdout+'\n'+r.stderr,file=sys.stderr)
+ report={'passed':all(r['exit_code']==0 for r in results),'archive_sha256':sha(b),'audit_sha256':sha(audit_bytes),'new_pde_runs':0,'trials':results,'scope':'Published saved-data reassessment, not new AI generation or a fresh full PDE campaign.'}
  (a.output/'report.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report))
+ assert report['passed'],'See preserved trial logs and audit reports'
 if __name__=='__main__':main()

@@ -62,15 +62,21 @@ def build_pilot(root):
    ('監督側の追加照合v1はcallback時刻を完全一致とし、修正候補で失敗しました。配布ソルバー既存の終端処理（4eps×max(1,|T|)以内を最終時刻へ丸める）に合わせたv2で両候補を再照合。初回失敗を保持し、科学計算の基準や出力は変えていません。','Supervisor audit v1 incorrectly required bitwise callback-endpoint equality and failed on the repair data. Audit v2 follows the existing solver closure rule of 4eps×max(1,|T|). Both data sets were rechecked, preserving the first audit failure. Scientific criteria and outputs were unchanged.'),
   ]
   for jp,en in observations:html+='<p>'+esc(jp if ja else en)+'</p>';md+='\n'+(jp if ja else en)+'\n'
+  linux_note=('Linuxの追加照合v2は、ほぼゼロの誤差ノルムを相対64epsだけで比較して24指標が不一致となりました（最大絶対差2.36×10⁻¹⁶未満）。元48・波形4の科学判定は合格です。別配布のv3は非ゼロの無次元指標に絶対64epsの丸め誤差床を加え、ゼロは完全一致を維持します。元ZIP・配列・記録値・科学判定基準は変更せず、初回失敗を保存しています。' if ja else 'Linux integrity audit v2 flagged 24 cancellation-dominated, near-zero metrics under a relative-only 64eps comparison (maximum absolute difference below 2.36e-16). Original 48 and waveform 4 scientific evaluators passed. Separate audit v3 adds an absolute 64eps rounding floor for nonzero dimensionless metrics and keeps zeros exact. The original ZIP, arrays, recorded values and scientific thresholds are unchanged; the first failure is retained.')
+  html+='<p>'+esc(linux_note)+'</p>';md+='\n'+linux_note+'\n'
   html+='</details><h2>'+('保存データを追試する' if ja else 'Reassess the saved evidence')+'</h2>'
   how='baseキットr2と結果ZIPをそれぞれSHA256確認後に展開し、結果フォルダで次を実行します。NumPy2.0.2を使い、出力先は未使用フォルダにします。これは保存配列の再判定で、新しい全PDE計算ではありません。' if ja else 'SHA-verify and extract base kit r2 and the result ZIP separately. Run these commands from the result folder with NumPy2.0.2 and unused output paths. This reassesses saved arrays, not a fresh full PDE campaign.'
-  command='python verify_saved.py --trial assembly --base /path/to/atlas-rkdg-agent-kit --output /path/to/new-audit\npython verify_saved.py --trial repair --base /path/to/atlas-rkdg-agent-kit --output /path/to/new-audit'
-  html+='<p>'+how+'</p><pre tabindex="0"><code>'+esc(command)+'</code></pre>'
+  command='python verify_saved_portable.py --bundle /path/to/atlas-rkdg-agent-pilot --trial assembly --base /path/to/atlas-rkdg-agent-kit --output /path/to/new-audit\npython verify_saved_portable.py --bundle /path/to/atlas-rkdg-agent-pilot --trial repair --base /path/to/atlas-rkdg-agent-kit --output /path/to/new-audit'
+  portable=('別配布の照合v3を取得しSHA256を確認してください。元ZIPのv2は変更せず保持しています。' if ja else 'Download and SHA-verify the separate audit v3; the original ZIP and its audit v2 remain unchanged.')
+  how+=' '+portable
+  audit_links=link(cfg['portable_audit'],'Portable audit v3 / Python')+' · '+link(cfg['portable_audit']+'.sha256','SHA256')+' · '+link(cfg['route']+'evidence/linux-audit-v2-failure.json','Linux audit v2 failure / JSON')
+  html+='<p>'+how+'</p><nav class="kit-actions">'+audit_links+'</nav><pre tabindex="0"><code>'+esc(command)+'</code></pre>'
   html+='<p class="kit-hash">SHA256 <code>'+cfg['archive_sha256']+'</code> · '+format(cfg['archive_bytes']/1e6,'.1f')+' MB · '+link(cfg['archive']+'.sha256','SHA256 file')+'</p>'
   for t in data['trials']:
    html+='<nav class="resource-nav">'+link(cfg['route']+'evidence/'+t['trial']+'/original-verdict.json',t['trial']+' original 48 / JSON')+link(cfg['route']+'evidence/'+t['trial']+'/waveform-verdict.json',t['trial']+' waveform 4 / JSON')+'</nav>'
   html+='<p>'+('実装コードは同梱MIT。論文・手法の一次文献と元の数式は' if ja else 'Code uses the bundled MIT license. Primary numerical-method references and equations are linked from the ')+link('/numerical-methods-atlas/agent-kits/rkdg2d/?lang='+lang,'RKDG開発キット' if ja else 'RKDG code kit')+('を参照してください。' if ja else '.')+'</p></section>'
   sections.append(html)
+  md+='\n[Portable audit v3]('+ORIGIN+cfg['portable_audit']+') / [SHA256]('+ORIGIN+cfg['portable_audit']+'.sha256) / [Linux audit v2 failure]('+ORIGIN+cfg['route']+'evidence/linux-audit-v2-failure.json)\n'
   md+='\n## '+('保存データの再判定' if ja else 'Saved-data reassessment')+'\n\n'+how+'\n\n```sh\n'+command+'\n```\n\n[ZIP]('+ORIGIN+cfg['archive']+') / [SHA256]('+ORIGIN+cfg['archive']+'.sha256)\n\n[Source kit / primary references]('+ORIGIN+'/numerical-methods-atlas/agent-kits/rkdg2d/?lang='+lang+')\n'
   (dest/('index.md' if ja else 'index-en.md')).write_text(md)
  css='/styles/atlas-agent-kits.css';version=hashlib.sha256((root/css.lstrip('/')).read_bytes()).hexdigest()[:12]
