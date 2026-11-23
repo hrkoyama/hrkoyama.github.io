@@ -1,0 +1,37 @@
+{
+  "group": "fmm3d",
+  "attempt": "01",
+  "contract_sha256": "79be09de30f30fb4f9c00488d877d09f64d33ca9b49979b21467911a6be7493c",
+  "stages": [
+    {
+      "stage": "pytest",
+      "exit_code": 0,
+      "seconds": 0.8040223749994766
+    },
+    {
+      "stage": "main",
+      "exit_code": 0,
+      "seconds": 12.617117083995254
+    }
+  ],
+  "budget_seconds": 120,
+  "source_snapshot": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-28-37-2026-11-23/gravity/executions/fmm3d/attempt-01/source",
+  "combined_seconds": 13.421181999998225,
+  "pytest": {
+    "tests": 19,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "actual_gates": 48,
+  "actual_cases": 1,
+  "actual_csv_policy": [
+    {
+      "file": "fmm3d-inverse-r.csv",
+      "bytes": 1350,
+      "sha256": "06c04bcf519ec469a11ade3073fae36abfac60cd9e7c27f6c2035843deccd559"
+    }
+  ],
+  "actual_public_envelope_passed": true,
+  "passed": true
+}

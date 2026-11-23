@@ -62,9 +62,9 @@ function formatCopy(value) {
 test('orientation and sharing retain scientific counts and the already-verified execution registry', () => {
   assert.equal(methods.length, 152);
   assert.deepEqual(Object.fromEntries(['educational-example', 'reading-only', 'planned'].map(status => [status, methods.filter(method => method.status === status).length])),
-    {'educational-example': 121, 'reading-only': 15, planned: 16});
-  assert.equal(json('catalog/atlas-equations.json').equations.length, 56);
-  assert.equal(json('numerical-methods-atlas/test-cases/index.json').problems.length, 102);
+    {'educational-example': 122, 'reading-only': 15, planned: 15});
+  assert.equal(json('catalog/atlas-equations.json').equations.length, 60);
+  assert.equal(json('numerical-methods-atlas/test-cases/index.json').problems.length, 113);
   assert.equal(examples.examples.length, 22);
   const receipt = json(new URL(examples.verification_receipt).pathname.slice(1));
   assert.equal(receipt.registry_source_mode, 'public-registry'); assert.equal(receipt.passed, true);
@@ -162,7 +162,7 @@ test('sharing provides real 1200 by 630 PNG/SVG artwork and matching localized s
   const catalog = json('catalog/atlas-sharing.json');
   const published = json(shareBase + 'sharing.json');
   const build = json(shareBase + 'build.json');
-  const expectedCounts = {...coverage.counts, method_records: 152, educational_examples: 121, reading_only: 15, planned: 16, execution_examples: 22};
+  const expectedCounts = {...coverage.counts, method_records: 152, educational_examples: 122, reading_only: 15, planned: 15, execution_examples: 22};
   for (const [key, value] of Object.entries(expectedCounts)) assert.equal(published.counts[key], value, key);
   assert.deepEqual(published.sources, build.sources);
   for (const [path, sha256] of Object.entries(build.sources)) assert.equal(digest(path), sha256, path);

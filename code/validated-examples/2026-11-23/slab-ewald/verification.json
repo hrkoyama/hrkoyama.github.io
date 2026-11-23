@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "group": "slab-ewald",
+  "edition": "2026-11-23",
+  "verified_on": "2026-11-23",
+  "source_manifest_sha256": "94e960898e16b4e2f0c571deb81bad3e3602a7a6333a4beaa43a5272a9366311",
+  "archive": {
+    "file": "atlas-slab-ewald-2026-11-23.zip",
+    "sha256": "168b250fd18b209534fe8a767afc689ea11b6b8ca95657a7c0ff0d8803f00414",
+    "bytes": 338817,
+    "archive_directory": "atlas-slab-ewald-2026-11-23"
+  },
+  "archive_sha256": "168b250fd18b209534fe8a767afc689ea11b6b8ca95657a7c0ff0d8803f00414",
+  "returncode": 0,
+  "passed_tests": 17,
+  "tests": 17,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "neutral-slab-yb"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 0.750890374998562,
+  "independent_rerun_seconds": 0.6205603339985828,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

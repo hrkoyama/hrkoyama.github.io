@@ -8,7 +8,7 @@ import zipfile
 import zlib
 
 ORIGIN = 'https://hrkoyama.github.io'
-GROUPS = ('foundations', 'models', 'particles', 'mhd', 'thermostats', 'biology', 'mcmc', 'mhd-convergence', 'foundations-conditioning', 'particle-transport', 'splitting', 'noh', 'noh-cartesian', 'sedov', 'double-mach', 'forward-step', 'low-mach', 'guderley', 'euler-positivity', 'zalesak', 'weno-critical', 'shallow-water', 'wall-flow', 'level-set', 'sem-fr', 'instability-growth', 'mhd-transport', 'mesh-boundary', 'moving-waves', 'relativistic')
+GROUPS = ('foundations', 'models', 'particles', 'mhd', 'thermostats', 'biology', 'mcmc', 'mhd-convergence', 'foundations-conditioning', 'particle-transport', 'splitting', 'noh', 'noh-cartesian', 'sedov', 'double-mach', 'forward-step', 'low-mach', 'guderley', 'euler-positivity', 'zalesak', 'weno-critical', 'shallow-water', 'wall-flow', 'level-set', 'sem-fr', 'instability-growth', 'mhd-transport', 'mesh-boundary', 'moving-waves', 'relativistic', 'coefficient-diffusion', 'slab-ewald', 'fmm3d', 'gravity-dynamics', 'warm-pic', 'pic-spatial', 'dsmc-wall', 'dsmc-shock')
 EDITION_PATTERN = r'\d{4}-\d{2}-\d{2}(?:-r\d+)?'
 
 

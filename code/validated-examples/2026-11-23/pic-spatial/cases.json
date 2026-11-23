@@ -1,0 +1,97 @@
+[
+  {
+    "id": "pic-independent-spatial",
+    "title": {
+      "ja": "PIC空間演算の独立実装照合",
+      "en": "Independently coded PIC spatial pipeline"
+    },
+    "summary": {
+      "ja": "ベクトル化CIC/FFTと、別に書いた粒子ループCIC・密なDFTを、それぞれが自己無撞着な場を毎kick計算する軌道全体で照合します。",
+      "en": "Compare vectorized CIC/FFT with separately authored scalar-particle CIC/dense DFT; each trajectory sources its own field at every kick."
+    },
+    "assumptions": {
+      "ja": "周期[0,2π]、256粒子、格子8/16/32、シード35001/35002、dt=.02、T=.24。位置は一様乱数、v=.2 Normal+.1 sin x。6組は別々に進めた12軌道です。",
+      "en": "Periodic[0,2pi],256particles,grids8/16/32,seeds35001/35002,dt.02,T.24. Uniform random positions,v=.2Normal+.1sin(x). Six pairs mean twelve separately evolved trajectories."
+    },
+    "algorithm": {
+      "ja": "独立側はPythonスカラー配置、明示的な複素DFT和、独自の補間ループを所有します。主側のFFT・配置・補間を呼びません。数学上のCIC、Nyquist規約、velocity-Verlet法、初期配列は共通です。",
+      "en": "The independent path owns scalar deposition, explicit complex DFT sums and scalar gathering; it imports no primary spatial routines. Mathematical CIC, Nyquist convention, velocity-Verlet and initial arrays are intentionally shared."
+    },
+    "validation": {
+      "ja": "19 pytestと58/58固定判定が合格。6組＝12の自己無撞着軌道を13時刻全てで照合し、最大差は位置8.88e−16・速度3.33e−16・電場8.33e−16・電荷2.89e−15。pytest+mainは0.392秒。最初の小pytestは周期端点の添字不具合で17/18となり、元記録を保持して修正後に全計算を実行しました。",
+      "en": "19pytest and58/58fixed gates passed. Compare six pairs=twelve self-consistent trajectories at all13states; maximum differences:x8.88e-16,v3.33e-16,E8.33e-16,rho2.89e-15. Shared pytest+main.392s. Initial small pytest retained17/18with a periodic-index failure; integer wrapping was corrected before the first fixed main batch."
+    },
+    "limits": {
+      "ja": "離散演算の独立したコーディング照合です。時間積分法や連続方程式を変えた独立エンジン、連続極限の収束、冷たいプラズマの振動参照の再現を意味しません。既存cold-plasma-picの関連補助検証として扱い、温かい初期速度の軌道を冷たい解と同一視しません。",
+      "en": "Independent coding check of discrete spatial operators. It does not change the time integrator/continuum model, establish continuum convergence, or reproduce the cold-plasma oscillation reference. A related supplement of cold-plasma-pic; the finite warm velocity spread is explicit."
+    },
+    "method_ids": [
+      "pic",
+      "cic",
+      "verlet"
+    ],
+    "domains": [
+      "pde",
+      "coupling",
+      "time"
+    ],
+    "code_files": [
+      "run.py",
+      "primary.py",
+      "references/scalar_pic.py"
+    ],
+    "references": [
+      {
+        "id": "camporeale2013",
+        "author": "Enrico Camporeale, Gian Luca Delzanno, Benjamin K. Bergen and J. David Moulton",
+        "year": 2013,
+        "title": "On the velocity space discretization for the Vlasov–Poisson system: comparison between Hermite spectral and Particle-in-Cell methods. Part 1: semi-implicit scheme",
+        "url": "https://arxiv.org/abs/1311.2098",
+        "type": "preprint",
+        "review_level": "primary-selected-original-pdf-text",
+        "review_scope": "Read selected original arXiv v2 sections2 (normalized1D1V Vlasov–Poisson),4 and5.2/5.4 (recurrence/noise and linear-window distinction). No whole-paper review, copied reference table, or original-run reproduction. Our positive-weight quiet loading and two-stream inputs differ.",
+        "review": {
+          "ja": "原著の規格化方程式、再帰・雑音、Landauと二流の線形窓の議論を選択して確認。原著の計算値は転用しません。",
+          "en": "Selected original equations and diagnostic limitations inspected; independently derived continuum references are evaluated here."
+        },
+        "accessed_on": "2026-11-23"
+      }
+    ],
+    "citations": [
+      {
+        "id": "camporeale2013",
+        "author": "Enrico Camporeale, Gian Luca Delzanno, Benjamin K. Bergen and J. David Moulton",
+        "year": 2013,
+        "title": "On the velocity space discretization for the Vlasov–Poisson system: comparison between Hermite spectral and Particle-in-Cell methods. Part 1: semi-implicit scheme",
+        "url": "https://arxiv.org/abs/1311.2098",
+        "type": "preprint",
+        "review_level": "primary-selected-original-pdf-text",
+        "review_scope": "Read selected original arXiv v2 sections2 (normalized1D1V Vlasov–Poisson),4 and5.2/5.4 (recurrence/noise and linear-window distinction). No whole-paper review, copied reference table, or original-run reproduction. Our positive-weight quiet loading and two-stream inputs differ.",
+        "review": {
+          "ja": "原著の規格化方程式、再帰・雑音、Landauと二流の線形窓の議論を選択して確認。原著の計算値は転用しません。",
+          "en": "Selected original equations and diagnostic limitations inspected; independently derived continuum references are evaluated here."
+        },
+        "accessed_on": "2026-11-23"
+      }
+    ],
+    "formulas": [
+      "\\rho_j=1-\\frac1h\\sum_p w_p S_j(x_p),\\quad a_p=-\\sum_j S_j(x_p)E_j",
+      "\\widehat E_m=\\widehat\\rho_m/(ik_m),\\quad E_0=0,\\quad E_{N/2}=0\\ \\text{(even N)}",
+      "\\rho=-\\tfrac12\\cos2x\\ \\Longrightarrow\\ E=-\\tfrac14\\sin2x,\\quad a=+\\tfrac14\\sin2x"
+    ],
+    "gallery_figure": "pic-independent-spatial-preview.png",
+    "additional_figures": [
+      {
+        "file": "pic-independent-spatial-preview.png",
+        "caption": {
+          "ja": "12独立軌道の1つから保存した実際の位相空間。色は自己無撞着電場による速度変化です。",
+          "en": "Actual saved phase space from one of twelve evolutions; color is the self-consistent velocity increment."
+        }
+      }
+    ],
+    "case_notes": {
+      "ja": "主側FFTと独立側スカラーDFTの数学的な空間規約・時間法は共通です。浮動小数点精度の一致はこの固定離散問題のコーディング照合を支えます。連続極限の収束や別時間積分法を検証した値ではありません。",
+      "en": "The two paths intentionally share mathematical spatial/time conventions. Roundoff-level agreement supports coding equivalence for these fixed discrete problems, not continuum convergence or a different time integrator."
+    }
+  }
+]

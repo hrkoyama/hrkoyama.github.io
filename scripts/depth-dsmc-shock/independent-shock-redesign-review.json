@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "reviewer": "/root/batch_shallow",
+  "review_type": "INDEPENDENT_STATIC_REDESIGN_REVIEW_NO_SCIENTIFIC_EXECUTION",
+  "detailed_source_review_started_at_utc": "2026-11-23T13:49:28Z",
+  "completed_at_utc": "2026-11-23T13:51:31.325941+00:00",
+  "verdict": "PASS_FOR_NEW_FROZEN_MEAN_FIELD_ALGORITHM_REVISION",
+  "scientific_execution_performed": false,
+  "scientific_source_modified_by_reviewer": false,
+  "reviewed_contract_sha256": "bf663f75e15dc6464a73e62ad56ee49903e6303d1939e8bb1be7c86bd3b322fb",
+  "reviewed_revision": "FROZEN_PRIMARY_REVISION2_AWAITING_INDEPENDENT_REVIEW",
+  "r1_failure": {
+    "preserved_attempt": "primary-attempts/dsmc-shock/01",
+    "contract_sha256": "45895291827a66ee82cabba0695f41e95443276ba780013e633ff03ed1bc8b93",
+    "all_54_original_bound_source_files_retained_and_hash_verified": true,
+    "whole_run_pytest_passed": 18,
+    "primary_runs_completed": 7,
+    "passed_gates": 76,
+    "total_gates": 81,
+    "failed_primary_profile_3se": {
+      "n": 0.05313985471277404,
+      "ux": 0.05469981693459207,
+      "T": 0.06112362951756272,
+      "Pxx": 0.05516231404087201
+    },
+    "precision_limit": 0.05,
+    "centroid_drift_bound": 0.9556112836859435,
+    "centroid_limit": 0.75,
+    "combined_pytest_main_seconds": 62.39533116700477,
+    "interpretation_ja": "初回Poisson流入版は失敗のまま保持する。今回の設計変更は初回結果の再分類、判定の緩和、同じ実装の単なる再試行ではない。"
+  },
+  "pinned_primary_sources_read": [
+    {
+      "url": "https://github.com/sparta/sparta/blob/1ae18f3646e7c89f86e965f0f3c13fcc5f32e399/src/fix_emit_face.cpp",
+      "local_source_sha256": "6dda196692dc210af02d6cb5d300aade383920096803bc7be292a79553e30e68",
+      "scope": "Selected task face areas/ntarget lines415-450; ordinary and two-pass insertion lines540-860; subsonic normalization lines958-985. Ordinary default perspecies branch is relevant; no subsonic keyword in actual shock input.",
+      "retrieval": "Read pinned extracted upstream file directly. Browser raw URL fetch returned cache miss; no claim that failed web fetch supplied source."
+    },
+    {
+      "url": "https://github.com/sparta/sparta/blob/1ae18f3646e7c89f86e965f0f3c13fcc5f32e399/src/fix_emit.cpp",
+      "local_source_sha256": "5fd6135007e2da3de2c33a4d04c8fe41f9567cd9cf7d3abc9ff6a2f3c33e3bb0",
+      "scope": "mol_inflow lines165-185 and default perspecies flag. Read selected code, not whole codebase."
+    },
+    {
+      "url": "https://sparta.github.io/doc/fix_emit_face.html",
+      "scope": "Official live documentation inspected: description, fractional counts, random remaining first flight, perspecies and defaults, lines45-88/116-118. The live docs are contextual; pinned code determines the cached reference behavior."
+    }
+  ],
+  "mathematical_review": {
+    "expected_flux": {
+      "formula": "J(n,u,T)=n*[sqrt(T/(2*pi))*exp(-u*u/(2*T)) + u*Phi(u/sqrt(T))], inward-oriented u, m=kB=1; mu=J*A*Delta_t/W.",
+      "source_equivalence": "SPARTA vscale=sqrt(2*T), scosine=u/vscale gives the same J/n in mol_inflow; its target multiplies by nrho*A*dt/(fnum*cellweight). Actual geometry is 256x1x1 with unit transverse face area, one species, no cell weighting, region restriction, modulation or subsonic correction. Fixed inward drifts are above the SPARTA scosine<-3 cutoff.",
+      "primary_application": "Each of two physical boundary faces, one HS species, independently at each Strang half-stream: Delta_t=dt/2, area=1, unchanged W/density/temperature/drift."
+    },
+    "count_law": {
+      "definition": "N=floor(mu)+I[U<r], r=mu-floor(mu), U uniform[0,1).",
+      "expectation": "E[N]=mu exactly for fixed mu under ideal uniform draws.",
+      "variance": "Var[N]=r*(1-r)<=1/4, versus Var[N_Poisson]=mu. This is random rounding, not a Poisson arrival process.",
+      "marked_flux": "With unchanged independent flux-conditioned velocity marks and uniform within-half-step remaining flight time, expected injected number/momentum/energy equal mu times the corresponding incoming mark means. Outflow bookkeeping still records every actual crossing.",
+      "important_limit": "Unbiased boundary estimators do not prove that a finite-W nonlinear collision simulation has an exactly unbiased continuum Boltzmann solution. Existing finite-weight, dx, dt, reference-error and stationarity checks remain necessary."
+    },
+    "independent_reference_scope": {
+      "observed": "Actual saved SPARTA input uses separate emit/face up xlo and down xhi with default perspecies=yes/nevery=1. Its per-face per-full-step integer rounding is the same class of mean-preserving macro estimator, rather than Poisson.",
+      "not_identical_stochastic_process": "Two independent half-step rounded counts have full-step variance 2*frac(mu_full/2)*(1-frac(mu_full/2)); one SPARTA full-step rounded count has variance frac(mu_full)*(1-frac(mu_full)). They agree in mean, not generally in count variance or temporal noise. Do not describe the solvers as identical stochastic boundary processes.",
+      "velocity_scope": "Both target the incoming flux-weighted drifting Maxwellian and uniform arrival times. The inspected SPARTA rejection implementation has beta proposal in [-3,3] and an extreme backflow cutoff; the authored primary CDF has its own checked finite 12-sigma bracket. These are finite-tail implementations of the same reservoir model, not bit-identical unbounded samplers.",
+      "independence": "Independent SPARTA collision/transport/sampler implementation and independent seeds remain independent references even when a standard boundary estimator class is shared. Reference87 qualifiers remain empirical finite-grid evidence, not an exact Boltzmann error bound."
+    },
+    "statistical_interpretation": {
+      "centroid": "diagnostics.centroid is an unaligned mass-excess position. Gate is abs(mean of per-seed late-minus-early centroid drift)+3*whole-seed SE, not maximum absolute shock displacement and not recentered profiles.",
+      "uncertainty": "Four independent whole runs remain replicate units; bins/particles/timeblocks are not promoted to independent replicates. Lower injection noise can reduce SE while retaining the same precision/equivalence criteria.",
+      "limitations_ja": "この版はBoltzmann平均場の教育用検証に限定する。Poisson到着数統計・熱揺らぎ・正しい粒子数分散やshock wanderingの揺動スペクトルの再現を主張してはならない。分散削減は平均流束を保つが、5つの失敗ゲートの合格は保証しない。固定seedでも乱数消費が変わり、その後の衝突履歴は同一ではない。"
+    }
+  },
+  "source_change_review": {
+    "observed_evolution_diff": "Only addition of macro_arrival_count and replacement of rng.poisson(mu) at stream_open; conditional velocities, uniform remaining flight, collision routine, budgets and diagnostics are unchanged.",
+    "unchanged_by_hash": [
+      "inputs.json",
+      "acceptance.json",
+      "diagnostics.py",
+      "run.py",
+      "test_core.py",
+      "test_shock.py"
+    ],
+    "all_current_55_contract_bindings_match": true,
+    "new_regression": "test_arrivals.py statically reviewed only. Deterministic midpoint uniforms exercise means0,.25,4.25,1000 and verify exact mean, fractional variance and support; negative mean rejected. Original18test bytes retained; total planned19.",
+    "shared_wall_safety": {
+      "recommendation": "Keep R2 change in the shock packet only. Preserve the already validated separate dsmc-wall source/package/contract/results byte-for-byte. Do not refactor both copies into a newly modified shared module in this release.",
+      "wall_dsmc_sha256": "9f370380655c05f0cb71928c87d0aca59c6a278f67056488d2b218d0c2110840",
+      "wall_dsmc_matches_passed_attempt01": true
+    }
+  },
+  "blocking_mathematical_findings": [],
+  "pre_execution_requirements": [
+    "Root independently binds and authorizes the final R2 contract; all7runs and19pytest share the same120s wall deadline.",
+    "Keep all seeds, macro weights, physical inputs, windows, time steps, original81gate identities/thresholds and independent reference cache unchanged.",
+    "Preserve R1 failed data/history; document R2 as a variance-reduced solver redesign after failure. No shock pinning, alignment, recentering, seed selection, hidden retries, projections or threshold relaxation.",
+    "Any R2 pass requires actual execution evidence. This static review authorizes no scientific success claim."
+  ],
+  "scope_of_read_only_review": "Read source, metadata, archived receipt/result JSON and hashes; performed only file/hash/JSON inspection and analytic reasoning. No imports of the numerical solver, no pytest, no particle simulation, no dependency installation, no publisher/Git/index edits.",
+  "resolved_review_notes": [
+    "Initially observed execution_policy said18pytest while planned count was19; author corrected prose before final contract bf663f75e15dc6464a73e62ad56ee49903e6303d1939e8bb1be7c86bd3b322fb. Scientific files/criteria unchanged."
+  ]
+}

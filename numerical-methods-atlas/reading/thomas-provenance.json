@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "sequence": 29,
+  "state": "curated-documentary-review",
+  "new_scientific_cases": 0,
+  "reviewed_on": "2026-11-23",
+  "original_full_text_read": false,
+  "original": {
+    "author": "Llewellyn H. Thomas",
+    "year": 1949,
+    "title": "Elliptic problems in linear difference equations over a network",
+    "institution": "Watson Scientific Computing Laboratory, Columbia University, New York",
+    "doi": null,
+    "report_number": null,
+    "pages": null,
+    "metadata_basis": "Moler's signed1996 correspondence transcribes this historical report citation. The1949 report itself was not accessed; report number, pagination and DOI remain unknown.",
+    "review_level": "original-unread-secondary-bibliographic-lead"
+  },
+  "references": [
+    {
+      "url": "https://www.lib.ncsu.edu/findingaids/mc00210",
+      "label": "NC State University Libraries: Llewellyn Hilleth Thomas Papers,1921–1989, collection MC00210",
+      "role": "archival-finding-aid",
+      "review_level": "selected-official-finding-aid-entries-read",
+      "scope": "Box18/folder13.8 is described as notes and a1949 article with the report title; Box21/folder15.2 contains undated notes. This verifies catalogue descriptions, not the report text, algorithms or priority.",
+      "scope_i18n": {
+        "ja": "公式収蔵目録のBox18/folder13.8は同題のノートと1949年の記事、Box21/folder15.2は日付不明のノート。目録記載を確認したもので、原報本文・算法・優先権の確認ではない。",
+        "en": "Selected official finding-aid entries only: Box18/folder13.8 notes and1949 article; Box21/folder15.2 undated notes. Original report contents and priority remain unverified."
+      }
+    },
+    {
+      "url": "https://netlib.org/na-digest-html/96/v96n09.html",
+      "label": "Cleve Moler (1996), The Thomas Algorithm, NA Digest96(09),4March",
+      "role": "signed-historical-correspondence",
+      "review_level": "signed-correspondence-section-read-original-report-unread",
+      "scope": "Moler reports the attribution and transcribes a1949 Thomas report citation via Ames1977,p52, plus a Bruce et al.1953 lead. The Ames and Bruce original pages were not inspected. This is a history lead, not Thomas's original derivation.",
+      "scope_i18n": {
+        "ja": "署名付き1996年通信の該当節を確認。Ames1977のp52を介したThomas1949報告の書誌とBruceほか1953への手掛かり。Ames/Bruceの実ページとThomas原報は未読。",
+        "en": "Read the signed1996 correspondence section; Ames1977,p52 and Bruce et al.1953 remain uninspected leads. Thomas1949 original unread."
+      }
+    }
+  ],
+  "chapter_context_roles": [
+    {
+      "url": "https://doi.org/10.1017/S0305004100023197",
+      "role": "related-time-discretization-original-not-Thomas",
+      "note": "Crank and Nicolson1947 heat-equation time discretization. Preserve as chapter context, never label as Thomas's original report."
+    },
+    {
+      "url": "https://link.springer.com/article/10.1007/BF02127704",
+      "role": "Crank-Nicolson-reprint-not-Thomas",
+      "review_level": "publisher-metadata-only",
+      "note": "Publisher lists J.Crank and P.Nicolson,1996,vol6,pp207–226. It is a reprint record of their work, not a Thomas reprint; full text not read."
+    },
+    {
+      "url": "https://doi.org/10.1090/S0025-5718-1977-0431719-X",
+      "role": "related-multigrid-chapter-context-not-Thomas",
+      "note": "Retain the existing Brandt context citation. No new full-text review claimed."
+    },
+    {
+      "url": "https://doi.org/10.1137/1.9780898719505",
+      "role": "related-multigrid-textbook-not-Thomas",
+      "note": "Retain existing Multigrid Tutorial context. No new full-book reading claimed."
+    }
+  ],
+  "public_summary": {
+    "ja": "Thomas法は三重対角消去。1949年原報は未読で、公式収蔵目録とMolerの1996年通信から書誌を追跡しています。Crank–Nicolsonと多重格子の文献は関連章の背景資料で、Thomas原報やその再録ではありません。",
+    "en": "Thomas is tridiagonal elimination. Its1949 original remains unread; an official archival finding aid and Moler's signed1996 correspondence provide bibliographic leads. Crank–Nicolson and multigrid references are related chapter context, not Thomas originals or reprints."
+  },
+  "no_contact_or_third_party_fulltext_publication": true
+}

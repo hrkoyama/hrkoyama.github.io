@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "group": "warm-pic",
+  "main_budget_seconds": 115,
+  "sampling": "positive-weight Gauss-normal velocity quadrature x independently shifted spatial lattices; full-f nonlinear carriers, conditional seed spread",
+  "cases": {
+    "thermal-landau-damping": {
+      "grid": 32,
+      "spatial_strata": 256,
+      "velocity_nodes": 128,
+      "dt": 0.04,
+      "final_time": 16,
+      "k": 0.5,
+      "drift": 0,
+      "amplitude": 0.01,
+      "seeds": [
+        33001,
+        33002,
+        33003,
+        33004
+      ],
+      "fit_window": [
+        4,
+        12
+      ],
+      "reference_dt": 0.01,
+      "spatial_strata_probe": 512
+    },
+    "thermal-two-stream": {
+      "grid": 32,
+      "spatial_strata": 64,
+      "velocity_nodes": 128,
+      "dt": 0.05,
+      "final_time": 40,
+      "k": 0.2,
+      "drift": 3,
+      "amplitude": 1e-05,
+      "seeds": [
+        34001,
+        34002,
+        34003,
+        34004
+      ],
+      "fit_window": [
+        12,
+        20
+      ],
+      "reference_dt": 0.01
+    }
+  },
+  "companions": [
+    "mesh64 same saved particle arrays",
+    "time-half same saved arrays",
+    "velocity-nodes256 with each case's unchanged spatial_strata",
+    "amplitude-half same spatial shifts and velocity quadrature",
+    "amplitude0 quiet-equilibrium field-floor control",
+    "Landau only: spatial_strata512 at unchanged grid32/velocity128/dt/amplitude/seed; primary spatial_strata256"
+  ]
+}

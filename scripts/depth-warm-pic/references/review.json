@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "status": "inspected-before-first-scientific-execution",
+  "whole_paper_claim": false,
+  "inspected_sources": [
+    {
+      "id": "camporeale2013",
+      "author": "Enrico Camporeale, Gian Luca Delzanno, Benjamin K. Bergen and J. David Moulton",
+      "year": 2013,
+      "title": "On the velocity space discretization for the Vlasov–Poisson system: comparison between Hermite spectral and Particle-in-Cell methods. Part 1: semi-implicit scheme",
+      "url": "https://arxiv.org/abs/1311.2098",
+      "type": "preprint",
+      "review_level": "primary-selected-original-pdf-text",
+      "review_scope": "Read selected original arXiv v2 sections2 (normalized1D1V Vlasov–Poisson),4 and5.2/5.4 (recurrence/noise and linear-window distinction). No whole-paper review, copied reference table, or original-run reproduction. Our positive-weight quiet loading and two-stream inputs differ.",
+      "review": {
+        "ja": "原著の規格化方程式、再帰・雑音、Landauと二流の線形窓の議論を選択して確認。原著の計算値は転用しません。",
+        "en": "Selected original equations and diagnostic limitations inspected; independently derived continuum references are evaluated here."
+      },
+      "accessed_on": "2026-11-23"
+    },
+    {
+      "id": "plasmapy-z",
+      "author": "PlasmaPy developers",
+      "year": 2026,
+      "title": "Plasma dispersion function: official API mathematics",
+      "url": "https://docs.plasmapy.org/en/stable/api/plasmapy.dispersion.dispersion_functions.plasma_dispersion_func.html",
+      "type": "documentation",
+      "review_level": "official-mathematical-definition-read",
+      "review_scope": "Read the displayed integral definition and Maxwellian dispersion role. PlasmaPy is not installed or executed; SciPy Faddeeva is used with an independently derived dielectric.",
+      "review": {
+        "ja": "公式のZ関数の定義を確認。PlasmaPy実行値を参照したものではありません。",
+        "en": "Official Z definition inspected; no PlasmaPy execution."
+      },
+      "accessed_on": "2026-11-23"
+    },
+    {
+      "id": "scipy-gh",
+      "author": "SciPy developers",
+      "year": 2024,
+      "title": "SciPy1.14.1 roots_hermitenorm",
+      "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.special.roots_hermitenorm.html",
+      "type": "documentation",
+      "review_level": "official-pinned-version-definition-read",
+      "review_scope": "Read Gauss–Hermite normal quadrature definition, exp(-x²/2) weight and degree2n-1 polynomial exactness. Used only for positive full-f initial particle weights; no Hermite PDE time evolution.",
+      "review": {
+        "ja": "公式1.14.1文書の重みと多項式積分次数を確認。初期粒子重みだけに用います。",
+        "en": "Pinned official quadrature definition read; initialization only."
+      },
+      "accessed_on": "2026-11-23"
+    }
+  ],
+  "not_inspected": [
+    "Landau1946original",
+    "Fried–Conte1961monograph"
+  ],
+  "reference_implementation": "Atlas original mathematical derivation; not an external tabulated numeric oracle",
+  "original_paper_or_software_copied": false
+}

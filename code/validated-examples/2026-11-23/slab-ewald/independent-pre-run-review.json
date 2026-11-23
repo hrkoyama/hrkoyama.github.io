@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "time": "2026-11-23T13:39:23.379446+00:00",
+  "reviewer": "root",
+  "state": "APPROVED_BEFORE_FIRST_SCIENTIFIC_EXECUTION",
+  "contract_sha256": "3bab176f5c574d377db11af317045f30ff75ee7d1d3e57b07fe26dad38b77c4e",
+  "verified_bound_files": 15,
+  "science_executed_before_review": false,
+  "checks": [
+    "Coulomb1/r full+/-reciprocal coefficient4pi/V potential and2pi/V energy; distinct self subtraction.",
+    "Genuine2P real and reciprocal sums with pi/A fullwave convention; -2pi/A horizontal zero mode and matching analytic z field.",
+    "Stable exp-erfc branches avoid growing exponentials; force signs verified analytically.",
+    "Neutral YB2piMz^2/V energy,-4piqiMz/V force with common unwrapped physicalz; rectangular1x1.25 lateral scope.",
+    "Independent2P alpha/cutoff qualification, finite-difference energy/force at twoh, net force and translation/permutation controls.",
+    "Far gauge +/-2piMz/A and omitted-zero negative control.",
+    "Finestvacuum mandatory error gates; no claim thinbox is exact.",
+    "Partial rows and source fields retained; actual public JSON/CSV contract and test/gate counts required."
+  ],
+  "authorization": "Run pytest plus every fixed main input within one120s deadline, preserve attempts and exact inputs/source before revisions. Plot separately."
+}

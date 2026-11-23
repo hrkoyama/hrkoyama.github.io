@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "title": "Actual public verification of backlog18–27 lightweight stages",
+  "verified_on": "2026-11-23",
+  "passed": true,
+  "content_commit": "eccf88dffa59ae96d7c037dab74a597845dbd055",
+  "final_commit": "408a2279cc6ed1f4b9325888a66c496e937cbde9",
+  "backlog_sequences": [
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27
+  ],
+  "scope": "Thirteen actual lightweight examples for ten backlog items. Full public ZIP Linux verification is separate from local independent ZIP reruns. Saltzman piston and global Williamson follow-ups remain unimplemented.",
+  "new_groups": [
+    {
+      "group": "instability-growth",
+      "edition": "2026-11-23-r2",
+      "tests": 22,
+      "case_ids": [
+        "kh-initial-growth",
+        "rt-initial-growth"
+      ],
+      "case_gates": {
+        "kh-initial-growth": 37,
+        "rt-initial-growth": 37
+      },
+      "numerical_gates": 74,
+      "archive": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/instability-growth/atlas-instability-growth-2026-11-23-r2.zip",
+        "sha256": "731bf5ce375327daba93014990053ffc52b38626f132f94303a6d061aca7a7e7"
+      }
+    },
+    {
+      "group": "mhd-transport",
+      "edition": "2026-11-23",
+      "tests": 47,
+      "case_ids": [
+        "circular-alfven-refinement",
+        "magnetic-loop-independent",
+        "postshock-orszag-tang"
+      ],
+      "case_gates": {
+        "circular-alfven-refinement": 41,
+        "magnetic-loop-independent": 39,
+        "postshock-orszag-tang": 45
+      },
+      "numerical_gates": 125,
+      "archive": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip",
+        "sha256": "8b6d4d9d30c9ed12fd29b7b91a11c16dc183b9aea49234966a66c376713ebf90"
+      }
+    },
+    {
+      "group": "mesh-boundary",
+      "edition": "2026-11-23",
+      "tests": 20,
+      "case_ids": [
+        "annular-viscous-mms",
+        "lshape-fem",
+        "poisson-neumann",
+        "poisson-robin"
+      ],
+      "case_gates": {
+        "lshape-fem": 82,
+        "annular-viscous-mms": 39,
+        "poisson-neumann": 32,
+        "poisson-robin": 21
+      },
+      "numerical_gates": 174,
+      "archive": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/atlas-mesh-boundary-2026-11-23.zip",
+        "sha256": "51032054029345b8f187ebb12e1a0d8d4473b70312f29585a160fc3b0fdca315"
+      }
+    },
+    {
+      "group": "moving-waves",
+      "edition": "2026-11-23",
+      "tests": 19,
+      "case_ids": [
+        "ale-nonuniform-transport",
+        "cgrid-rotating-wave"
+      ],
+      "case_gates": {
+        "ale-nonuniform-transport": 54,
+        "cgrid-rotating-wave": 44
+      },
+      "numerical_gates": 98,
+      "archive": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/atlas-moving-waves-2026-11-23.zip",
+        "sha256": "d9f2f8bff3bf5d9fa7c1118c0968e9c0374fd5e9a6d3f7f99352abc0841e3b7d"
+      }
+    },
+    {
+      "group": "relativistic",
+      "edition": "2026-11-23",
+      "tests": 25,
+      "case_ids": [
+        "srhd-collision",
+        "srmhd-alfven"
+      ],
+      "case_gates": {
+        "srhd-collision": 56,
+        "srmhd-alfven": 54
+      },
+      "numerical_gates": 110,
+      "archive": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/atlas-relativistic-2026-11-23.zip",
+        "sha256": "c80b18e40f259d72aae6375d59faa0bd3c6c1b00b50da06538004bb6462a7185"
+      }
+    }
+  ],
+  "new_group_count": 5,
+  "new_case_count": 13,
+  "new_pytest": 133,
+  "new_numerical_gates": 581,
+  "public_http": {
+    "matched_files": 1200,
+    "matched_bytes": 376949279,
+    "anonymous": true,
+    "full_receipt_sha256": "fc143e63d22ea6ee5460364736d7d4b1161636c867c6c5370b7b826499ddd22a",
+    "test_only_repair_live_checks": 3,
+    "after_repair_receipt_sha256": "8eda51b022b645a262e89f04df4f8413994c482434425620bd571f29681d7356"
+  },
+  "linux": {
+    "run_id": 45181107275,
+    "url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45181107275",
+    "groups": 30,
+    "cases": 71,
+    "tests": 893,
+    "source_checkout": false,
+    "report_sha256": "32a20c7a3f79701dcc30b4380e4bc318dc881daf3c4d5fe7e027fe8951f3f235"
+  },
+  "workflows": {
+    "pages": 45181037431,
+    "site_checks": 45181038194,
+    "site_node_tests": 530,
+    "linux": 45181107275,
+    "redundant_automatic_linux": 45182256895,
+    "redundant_automatic_conclusion": "cancelled"
+  },
+  "artifact_acquisition": {
+    "artifact_id": 14821722688,
+    "artifact_total_bytes": 341153395,
+    "selected_transfer_bytes": 1080127,
+    "range_only": true,
+    "archive_written": false
+  },
+  "first_site_ci_failure": {
+    "run_id": 45178928985,
+    "reason": "Whole-registry mocked host subprocess30s timeout; only its bound became120s. Scientific budgets, inputs, criteria and distributions unchanged."
+  },
+  "evidence_sha256": {
+    "linux-report.json": "32a20c7a3f79701dcc30b4380e4bc318dc881daf3c4d5fe7e027fe8951f3f235",
+    "linux-workflow-context.json": "02e2a20f77b0db7848103dc4269bdcf5441d90b555cb556f665b4187e4e336d7",
+    "linux-publication-checks.json": "09a38cc7679fede0eac0a4f2297ae0e07b2fc63e769dfc8cb68a1678dced1350",
+    "public-delivery-after-ci-repair.json": "8eda51b022b645a262e89f04df4f8413994c482434425620bd571f29681d7356",
+    "site-checks-success.summary.json": "db03a3cb2ab06ada06a1efc8141fd99871c13d710d972c271a7a6739a9395b31"
+  }
+}

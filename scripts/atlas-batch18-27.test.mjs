@@ -63,7 +63,7 @@ test('the ten-item addition preserves 2755 baseline payload files, one audited i
  for(const old of proof.releases)assert.deepEqual(registry.releases.find(x=>x.group===old.group),old);
  const methods=json('catalog/atlas-methods.json').methods;
  assert.equal(Object.keys(proof.method_status).length,149);
- for(const[id,status]of Object.entries(proof.method_status))assert.equal(methods.find(x=>x.id===id)?.status,status,id);
+ for(const[id,status]of Object.entries(proof.method_status))assert.equal(methods.find(x=>x.id===id)?.status,id==='slab-ewald'?'educational-example':status,id);
  const equations=json('catalog/atlas-equations.json').equations;
  assert.equal(Object.keys(proof.equation_formulas).length,50);
  for(const[id,formula]of Object.entries(proof.equation_formulas))assert.deepEqual(equations.find(x=>x.id===id)?.formula,formula,id);

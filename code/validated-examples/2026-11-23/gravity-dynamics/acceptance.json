@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "frozen_before_scientific_execution": true,
+  "limits": {
+    "kepler_position": 0.002,
+    "kepler_energy": 0.002,
+    "order": 1.7,
+    "root": 2e-13,
+    "reference_identity": 2e-12,
+    "direct_momenta": 2e-11,
+    "reference_gap": 1e-09,
+    "reference_energy": 1e-09,
+    "cold_error": 5e-05,
+    "cold_energy": 5e-05,
+    "theta0": 2e-11,
+    "tree_trajectory": 0.002,
+    "tree_force": 0.02,
+    "coarse_tree_force": 0.1,
+    "force_identity": 2e-12
+  }
+}

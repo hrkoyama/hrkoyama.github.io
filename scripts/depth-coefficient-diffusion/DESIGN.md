@@ -1,0 +1,9 @@
+# Pre-run design: candidate28 (unexecuted)
+
+FV checkerboard1/100 and full-tensor Q1: grids16/32/64. Each solver receives the identical A,b. Independent conforming triangular P1 grids128/192 are evaluated by barycentric interpolation at FV centres; relative vector RMS. The reference-grid difference is empirical sensitivity, not a rigorous error bound. Require it below half the finest FV/reference discrepancy; require E64<E16 without assuming a singularity exponent.
+
+Geometric prolongation distinguishes odd-reflected cell ghosts and zero-boundary nodal Q1. Every level uses R=P^T, Galerkin A, zero initial correction, symmetric2pre/2post weighted Jacobi, terminal Cholesky. Omega=.5/||D^-1 A||infinity: smoother eigenvalues in(0,.5], so I-omega D^-1 A is invertible. Tentative disjoint nonempty aggregates have independent columns, retained by this invertible smoothing. Positive symmetric Jacobi sweeps and SPD coarse correction yield an SPD fixed V-cycle. Explicit small B symmetry/eigenvalue tests are implementation checks, not a general proof. This pre-execution choice differs from the old implementation's4/(3bound) factor.
+
+Nonzero two-layer harmonic-flux patch; full-tensor u=xy,f=-2Kxy patch detects cross terms. Budget defect equals sum(r) to roundoff; the physical approximate-solution budget is bounded by sqrt(N)||r|| plus roundoff. PCG true residual, direct forward and energy error are separate gates. Both solvers must converge within200 iterations. No universal speed winner. One-iteration exhaustion is separately required.
+
+All thresholds in acceptance.json precede numerical/reference/pytest execution. Main must save finite CSV, fields/fluxes, histories, JSON native booleans, actual termination and input/source hashes. Pytest+main120seconds. Plotting separately. On failure retain original contract/source/available fields; never loosen a scientific tolerance based on output.

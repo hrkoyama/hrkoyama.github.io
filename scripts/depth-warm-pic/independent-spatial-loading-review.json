@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "reviewer": "/root/batch_shallow",
+  "review_type": "INDEPENDENT_STATIC_PARTICLE_SPACE_REDESIGN_REVIEW",
+  "started_at_utc": "2026-11-23T13:52:23Z",
+  "completed_at_utc": "2026-11-23T13:53:55.223748+00:00",
+  "verdict": "PASS_FOR_FROZEN_SPATIAL_LOADING_REFINEMENT",
+  "blocking_findings": [],
+  "scientific_execution_performed": false,
+  "scientific_source_modified_by_reviewer": false,
+  "reviewed_contract_sha256": "3b6668be0512cfd9cb445f9b274f0903d12a6e3ab9fa33f84e39c0ab41ade08f",
+  "reviewed_contract_revision": 6,
+  "input_sha256": "e593a8e0308c6aa4de9b92f0887394d65b253ff9f123db726296385d889906c6",
+  "acceptance_sha256": "06c9c227b1426c7d16e928858a6a9ef9ce40763fdef65cedc22dcf581907089c",
+  "hash_audit": {
+    "all_scientific_bindings_match": true,
+    "scientific_binding_count": 11,
+    "all_presentation_bindings_match": true,
+    "presentation_binding_count": 6,
+    "archived_attempt03_all_bound_science_intact": true,
+    "byte_identical_to_attempt03": {
+      "acceptance.json": true,
+      "loading.py": true,
+      "primary.py": true,
+      "references/linear.py": true,
+      "references/estimate.py": true
+    },
+    "original_30_tests_bytes_retained_as_exact_prefix": true
+  },
+  "retained_evidence_reviewed": {
+    "attempt_path": "execution-attempts/warm-pic/03",
+    "saved_analysis_path": "warm-attempt03-saved-field-analysis.json",
+    "attempt_contract_sha256": "79614fb565d808cdbab9ded56196ce76c79fa5593e81194d3d53c10a318270fd",
+    "actual_tests": 30,
+    "actual_trajectories": 18,
+    "actual_reference_qualifiers": 17,
+    "case_gates_passed": 130,
+    "case_gates_total": 131,
+    "two_stream": "65/65 passed",
+    "landau": "65/66 passed",
+    "only_failed_gate": "amplitude-halving scaled field linearity",
+    "observed_gap": 0.056459448754107175,
+    "unchanged_limit": 0.03,
+    "base_alpha": 0.01,
+    "half_alpha": 0.005,
+    "base_seed33001_linear_curve_relative_rms": 0.04869728946048345,
+    "half_alpha_linear_curve_relative_rms": 0.09001445236566581,
+    "interpretation_ja": "振幅半減側が線形参照からより遠く、有限粒子空間積分・粒子形状・位相誤差と連続非線形性をこの一対で分離できない。旧64層版の未達はそのまま保持する。保存値から原因や普遍的α次数を断定しない。"
+  },
+  "mathematical_review": {
+    "quiet_joint_loading": {
+      "target": "For each Gaussian velocity node j with normalized positive weight w_j, a shifted uniform phase lattice q_m=2*pi*(m+s_j)/M is mapped through theta+alpha*sin(theta)=q_m. Thus dq/dtheta=1+alpha*cos(theta)>0; it is a quadrature for the same separable initial density (1+alpha*cos(k*x))*f0(v), not a different temperature/alpha model.",
+      "weights": "Carrier weight=L*w_j/M; increasing M leaves total weight L and deterministic velocity marginal unchanged. Every positive-weight carrier advances and deposits its own evolving self-consistent field.",
+      "cic_effect": "CIC deposition/gather weights are continuous piecewise linear functions of particle position with grid-knot slope changes. Their composition with the density map and subsequent characteristics is sampled by the finite shifted lattice. Raising M can improve this spatial integration while leaving field mesh, shape order, velocity nodes and time step fixed.",
+      "limits": "The low-mode load qualification does not establish exact CIC deposition at all grid modes/times. A small alpha=0 quiet-lattice floor does not bound perturbation-dependent alias/quadrature error. No exponential convergence, monotone reduction or particular algebraic order is proved here."
+    },
+    "approved_input_delta": {
+      "landau": "spatial_strata64 to256 for all original9Landau study rows; add one512-strata base-amplitude row. All alpha.01/.005, finalTime16, fit[4,12], k.5, fieldgrid32, dt.04, velocity128, seeds33001-33004 and linear references unchanged.",
+      "companions": "The existing mesh64/time-half/velocity256/amplitude-half/noise rows retain their stated single-parameter changes relative to the newly fixed256-strata baseline. The512 row changes only particle-space resolution at first seed33001, grid32, velocity128, dt.04, alpha.01.",
+      "two_stream": "All controls unchanged, including64spatial strata and9rows. No selective seed/window/alpha replacement.",
+      "same_seed_scope": "The same random shift fractions are reused; lattices of256 and512 points are not asserted to be nested identical particle sets. They are controlled distinct quadratures, not two independent codes."
+    },
+    "reference_independence": "The unchanged dielectric/Volterra code is an independently derived continuum linear IVP qualification. The512 companion uses the same nonlinear PIC implementation and is a resolution sensitivity, not an independent nonlinear Vlasov reference.",
+    "added_gate_audit": {
+      "original_case_gate_count": 131,
+      "original_thresholds_and_formulas_retained": true,
+      "new_gate_count": 9,
+      "breakdown": {
+        "declared10LandauRuns": 1,
+        "new_run_finite_snapshots_budgets_positive_weights_jointload_fit": 6,
+        "spatial_rate_sensitivity": 1,
+        "spatial_scaled_curve_sensitivity": 1
+      },
+      "rate_bound": "Existing mesh_rate_fraction=.1 times absolute dielectric rate, same fixed window.",
+      "curve_bound": "Existing amplitude_curve_fraction=.03 applied to normalized base/probe field curves in unchanged fit[4,12].",
+      "baseline_count": "The original nine-run gate counts non-spatial-probe rows, so its original study set is preserved; a separate new gate enforces the total10Landau rows.",
+      "total_case_gates": 140,
+      "landau_case_gates": 75,
+      "two_stream_case_gates": 65,
+      "additional_test": "A single appended study-table regression verifies10+9rows,256/512strata and identical seed/grid/nodes/dt/alpha for the probe; original30test bytes unchanged."
+    },
+    "implementation_delta": "loading.py,primary.py and reference/estimator kernels are byte-identical. experiments.py carries per-row strata, adds the512 row and its diagnostics; run.py adds the spatial_strata CSV column only. No field correction, clipping, smoothing, artificial collision, prescribed field or posthoc phase alignment is introduced.",
+    "metadata_and_history": "Current bilingual cases/README retain130/131 initial unmet result and .05645945>.03, explicitly state revised input unexecuted and runtime unmeasured, distinguish conditional spatial-shift SE from iid noise, and do not claim universal amplitude error scaling."
+  },
+  "limitations_required_after_execution": [
+    "Even if revised input passes, it is a fixed-case spatial-resolution sensitivity study, not proof of the exclusive cause of the64-strata failure or universal alpha/nonlinear-error scaling.",
+    "Only one512-strata base-alpha trajectory is planned. It does not establish512-strata convergence of the alpha-half member, an asymptotic convergence order or a rigorous continuum error bound.",
+    "Four-seed SE/t intervals remain conditional on deterministic velocity quadrature and the selected spatial-loading construction; they exclude discretization bias and do not justify iid N^(-1/2) scaling.",
+    "Linear reference qualifications do not validate nonlinear saturation/trapping amplitudes. Saved late two-stream dynamics remain diagnostic.",
+    "No predicted PASS or measured revised runtime is implied. All31pytest+19PIC runs+17reference qualifiers must fit the one real120s group budget and satisfy the unchanged131plus9gates."
+  ],
+  "primary_sources_actually_inspected": [
+    {
+      "url": "https://arxiv.org/pdf/1311.2098",
+      "title": "Camporeale et al., arXiv1311.2098v2",
+      "scope": "Selected introduction and pp8-10, discussion of finite particle noise/low signal amplitudes and CIC linear interpolation/unchanged mesh/time comparisons. Not a whole-paper read and not this custom quiet-quadrature reference. Its Monte Carlo scaling statements are not transferred to the present loading."
+    },
+    {
+      "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.special.roots_hermitenorm.html",
+      "title": "SciPy1.14.1 roots_hermitenorm",
+      "scope": "Official quadrature definition: exp(-x^2/2) Gaussian weight and polynomial exactness. It qualifies the meaning of velocity nodes; it supplies no theorem of spatial PIC convergence."
+    }
+  ],
+  "pre_execution_conditions": [
+    "Parent independently authorizes this exact frozen source/contract before execution; retain attempt03 and earlier driver failures unchanged.",
+    "Keep acceptance file, alpha pair, time/window, seeds, Gaussian velocity nodes, field grid and solver mathematics fixed. Any failure requires preserving new state/results before further reviewed revisions.",
+    "Report actual31tests,19trajectories,17reference qualifiers and140case gates; do not infer success from this static review."
+  ],
+  "inspection_scope": "Read source/diffs/contracts/old result and receipt JSON; verify file hashes and archived prefixes using standard-library file inspection. No solver imports, pytest, PIC evolution, numerical fitting/recomputation, source writes, Git/index/publication operations or dependency installs by reviewer."
+}

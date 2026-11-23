@@ -1,0 +1,79 @@
+[
+  {
+    "id": "neutral-slab-yb",
+    "title": {
+      "ja": "中性長方形スラブ：真2P参照とYB補正",
+      "en": "Neutral rectangular slab: genuine2P reference and YB"
+    },
+    "method_ids": [
+      "ewald",
+      "slab-ewald"
+    ],
+    "domains": [
+      "particles"
+    ],
+    "summary": {
+      "ja": "4電荷の長方形3P Ewaldに中性スラブ補正を加え、別実装の真2P和のエネルギー・全力成分と照合します。",
+      "en": "Compare corrected orthorhombic3P Ewald energy/all forces against a separately implemented genuine2P series."
+    },
+    "assumptions": {
+      "ja": "Coulomb定数1、Lx1,Ly1.25、Lz1.5/3/6、4電荷±1、非周期zのMz=.34、alpha3/4。",
+      "en": "Coulomb1, lateral1×1.25, extendedLz1.5/3/6,4neutral charges±1,physical-z dipole.34 andalpha3/4."
+    },
+    "algorithm": {
+      "ja": "全±3D波数、自己項、2pi Mz²/Vとその力。独立2Pには横零モード・自己減算と安定exp–erfcを保持。",
+      "en": "Full±3D reciprocal sum/self term and2pi Mz²/V correction; independent2P retains zero/self terms and stable exp-erfc evaluation."
+    },
+    "validation": {
+      "ja": "参照alpha/打切り資格、エネルギー差分、真空厚、全力、零モード負対照・遠方ゲージと中性平行移動を分離。",
+      "en": "Separate reference cutoff/splitting qualification, energy gradients, vacuum error, all forces, zero-mode control/far gauge and neutral translations."
+    },
+    "limits": {
+      "ja": "中性・固定4電荷・Cartesian z法線のみ。YBは有限ギャップ近似で任意真空の厳密2Pではありません。原著YB本文は未読。",
+      "en": "Neutral fixed4charge Cartesian-z slab only. YB is a finite-gap approximation, not exact2P at arbitrary vacuum. Original Yeh full text not inspected."
+    },
+    "references": [
+      {
+        "id": "lindbo2011",
+        "title": "Fast and spectrally accurate Ewald summation for2-periodic electrostatic systems",
+        "url": "https://arxiv.org/pdf/1109.1667",
+        "review_level": "primary-selected-equations",
+        "review_scope": "Eq4 and AppendixA Eq41/zero-mode inspected; rendered selected pages requested. No full-paper audit or spectral-PME implementation claimed."
+      },
+      {
+        "id": "yeh1999",
+        "title": "Ewald summation for systems with slab geometry",
+        "url": "https://doi.org/10.1063/1.479595",
+        "review_level": "bibliography-original-unaccessed",
+        "review_scope": "Original publisher full text unavailable; no original-text review claimed. Neutral correction independently derived and checked against official LAMMPS implementation/documentation."
+      },
+      {
+        "id": "lammps-slab",
+        "title": "LAMMPS slab Ewald documentation and neutral correction",
+        "url": "https://docs.lammps.org/kspace_modify.html",
+        "review_level": "official-selected-docs-and-formulas",
+        "review_scope": "Slab geometry restrictions and official Ewald::slabcorr neutral formula inspected. No LAMMPS code copied or executed; mutable stable source is contextual, not a numerical dependency."
+      }
+    ],
+    "formulas": [
+      "E_{\\rm YB}=E_{3P}+2\\pi M_z^2/V",
+      "\\Delta F_{zi}=-4\\pi q_iM_z/V",
+      "\\phi(\\pm\\infty)=\\pm2\\pi M_z/(L_xL_y)"
+    ],
+    "code_files": [
+      "run.py",
+      "electrostatics.py",
+      "references/twoperiodic.py"
+    ],
+    "gallery_figure": "neutral-slab-yb-preview.png",
+    "additional_figures": [
+      {
+        "file": "neutral-slab-yb-preview.png",
+        "caption": {
+          "ja": "固定入力を実際に計算した保存配列からの検証図。",
+          "en": "Validation figure from actual saved fixed-input calculation arrays."
+        }
+      }
+    ]
+  }
+]

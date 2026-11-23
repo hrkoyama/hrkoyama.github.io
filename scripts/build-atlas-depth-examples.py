@@ -140,8 +140,8 @@ def document(url, title, description, body, language=None, alternates=None):
 def group_commands(data, language):
     ja = language == 'ja'
     commands = 'python -m pip install -r requirements.txt\npython -m pytest -q\npython run.py --input inputs.json --output output'
-    return (paragraph(('ZIPの '+data['verification']['archive']['archive_directory']+' フォルダで実行します。このコマンドは配布版の全'+str(len(data['metadata']))+'例を実行します。新規または空の出力先を指定してください。'
-                       if ja else 'Run inside '+data['verification']['archive']['archive_directory']+' from the ZIP. This command executes all '+str(len(data['metadata']))+' fixed cases in the supplement. Choose a new or empty output directory.'))+
+    return (paragraph(('ZIPの '+data['verification']['archive']['archive_directory']+' フォルダで実行します。このコマンドは配布版の全'+str(len(data['metadata']))+'例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。'
+                       if ja else 'Run inside '+data['verification']['archive']['archive_directory']+' from the ZIP. This command executes all '+str(len(data['metadata']))+' fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.'))+
             '<pre><code>'+escape(commands)+'</code></pre>'+paragraph('Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。' if ja else 'Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.'))
 
 
@@ -239,7 +239,7 @@ def markdown_case(case, measured, data, language, heading_level=1, editorial_not
             alt = caption.replace('\\', '\\\\').replace('[', '\\[').replace(']', '\\]')
             out += '!['+alt+']('+ORIGIN+data['base']+'results/'+figure['file']+')\n\n'+caption+'\n\n'
     out += subheading+' '+('取得・実行' if language == 'ja' else 'Download and run')+'\n\nZIP: '+ORIGIN+data['base']+data['verification']['archive']['file']+'\nInput: '+ORIGIN+data['base']+'inputs.json\nResults: '+ORIGIN+data['base']+'results/result.json\nReceipt: '+ORIGIN+data['base']+'verification.json\n\n```sh\npython -m pip install -r requirements.txt\npython -m pytest -q\npython run.py --input inputs.json --output output\n```\n\n'
-    out += ('このコマンドは配布グループの全例を実行します。\n\n' if language == 'ja' else 'This command executes every fixed case in the distribution group.\n\n')
+    out += ('このコマンドは配布グループの全例を実行します。同梱のresults/は保存見本です。追試は新規output/へ出力し、繰り返す場合は別の新規フォルダを指定します。\n\n' if language == 'ja' else 'This command executes every fixed case in the distribution group. Bundled results/ are stored outputs. Rerun into a new output/ directory and use another fresh directory for subsequent runs.\n\n')
     initial = initial_input_name(data)
     if initial:
         out += ('入力・検証手順の履歴：' if language == 'ja' else 'Input and validation protocol history: ')+ORIGIN+data['base']+'protocol-history.json\n\n'+ORIGIN+data['base']+initial+'\n\n'

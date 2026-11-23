@@ -24,11 +24,11 @@ test('time refinement preserves the initially declared numerical acceptance crit
 
 test('nonlinear biological comparisons reuse one physical problem and preserve the earlier linear-onset release',()=>{
  const index=json('numerical-methods-atlas/validation/index.json');
- assert.equal(index.case_count,71);
- assert.equal(index.groups.length,30);
+ assert.equal(index.case_count,83);
+ assert.equal(index.groups.length,38);
  for(const id of cases)assert.equal(index.case_problem_ids[id],'turing-schnakenberg');
  const inventory=json('numerical-methods-atlas/test-cases/index.json').problems;
- assert.equal(inventory.length,102);
+ assert.equal(inventory.length,113);
  assert.equal(inventory.filter(x=>x.id==='turing-schnakenberg').length,1);
  const problem=inventory.find(x=>x.id==='turing-schnakenberg');
  assert.deepEqual(new Set(problem.supplemental_examples.map(x=>x.id)),new Set(['turing-schnakenberg',...cases,'reaction-diffusion-splitting']));
@@ -48,7 +48,7 @@ test('five earlier supplement archives, the common registry and unrelated availa
  for(const [group,hash] of Object.entries(hashes))assert.equal(sha(`code/validated-examples/2026-11-22/${group}/atlas-${group}-2026-11-22.zip`),hash);
  assert.equal(sha('numerical-methods-atlas/code-and-data/examples.json'),'3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7');
  assert.equal(methods.length,152);
- assert.deepEqual(Object.fromEntries(['educational-example','reading-only','planned'].map(s=>[s,methods.filter(m=>m.status===s).length])),{'educational-example':121,'reading-only':15,'planned':16});
+ assert.deepEqual(Object.fromEntries(['educational-example','reading-only','planned'].map(s=>[s,methods.filter(m=>m.status===s).length])),{'educational-example':122,'reading-only':15,'planned':15});
  const bio=json('numerical-methods-atlas/assets/biological-models.json').models;
  assert.deepEqual(new Set(bio.filter(x=>x.status==='scoped-educational-example').map(x=>x.id)),new Set(['logistic','sir','turing','schnakenberg','fitzhugh-nagumo']));
  const detailed=read('.github/workflows/atlas-public-linux.yml').toString();

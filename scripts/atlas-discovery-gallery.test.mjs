@@ -14,16 +14,16 @@ const supplemental = new Map(json('catalog/atlas-test-problems.json').problems.f
 
 test('the shared22 and separate supplements have distinct runnable entrances; all86 retain images and readings', () => {
   const previews = new Map(json('numerical-methods-atlas/gallery/preview-manifest.json').items.map(x => [x.id, x]));
-  assert.equal(gallery.items.length, 102);
+  assert.equal(gallery.items.length, 113);
   assert.equal(runnable.size, 22);
-  assert.equal(gallery.counts.runnable_problems, 64);
+  assert.equal(gallery.counts.runnable_problems, 75);
   assert.equal(gallery.counts.common_runnable_problems, 22);
-  assert.equal(gallery.counts.supplemental_runnable_problems, 46);
-  assert.equal(gallery.counts.supplemental_case_count, 66);
-  assert.equal(gallery.counts.supplemental_release_case_count, 71);
-  assert.equal(gallery.items.filter(x => x.runnable).length, 64);
+  assert.equal(gallery.counts.supplemental_runnable_problems, 57);
+  assert.equal(gallery.counts.supplemental_case_count, 78);
+  assert.equal(gallery.counts.supplemental_release_case_count, 83);
+  assert.equal(gallery.items.filter(x => x.runnable).length, 75);
   assert.equal((html.match(/class="gallery-execution-badge"/g) || []).length, 44);
-  assert.equal((html.match(/data-supplemental-execution=/g) || []).length, 132);
+  assert.equal((html.match(/data-supplemental-execution=/g) || []).length, 156);
   for (const item of gallery.items) {
     const example = runnable.get(item.id);
     const extra = supplemental.get(item.id) || [];
@@ -70,8 +70,8 @@ test('runnable filtering combines with domain and normalized bilingual AND searc
     group: item.group, runnable: item.runnable,
     search: [item.id, ...Object.values(item.name), ...(runnable.get(item.id)?.keywords || [])].join(' ')
   }));
-  assert.equal(records.filter(x => galleryMatches(x, 'all', '')).length, 102);
-  assert.equal(records.filter(x => galleryMatches(x, 'all', '', true)).length, 64);
+  assert.equal(records.filter(x => galleryMatches(x, 'all', '')).length, 113);
+  assert.equal(records.filter(x => galleryMatches(x, 'all', '', true)).length, 75);
   for (const group of new Set(records.map(x => x.group))) {
     assert.equal(records.filter(x => galleryMatches(x, group, '', true)).length,
       gallery.items.filter(x => x.group === group && x.runnable).length);
@@ -87,8 +87,8 @@ test('native toggle controls announce state and captions distinguish saved illus
     assert.ok(html.includes(`id="gallery-illustration-note-${lang}"`));
   }
   assert.equal((html.match(/<button type="button" data-gallery-runnable/g) || []).length, 2);
-  assert.ok(html.includes('実行・検証例あり 64'));
-  assert.ok(html.includes('Runnable and validated: 64'));
+  assert.ok(html.includes('実行・検証例あり 75'));
+  assert.ok(html.includes('Runnable and validated: 75'));
   assert.ok(html.includes('画像と固定入力の条件は一致するとは限りません'));
   assert.ok(html.includes('these need not match'));
   assert.ok(html.includes('data-gallery-count role="status" aria-live="polite"'));
@@ -125,9 +125,9 @@ test('toggle, group, search, no-results and reset interactions preserve independ
   }
   const visible = section => section.tiles.filter(tile => !tile.hidden).length;
   const [ja, en] = sections;
-  assert.equal(visible(ja), 102); assert.equal(visible(en), 102);
+  assert.equal(visible(ja), 113); assert.equal(visible(en), 113);
   ja.toggle.handlers.click();
-  assert.equal(visible(ja), 64); assert.equal(visible(en), 102);
+  assert.equal(visible(ja), 75); assert.equal(visible(en), 113);
   assert.equal(ja.toggle.attributes['aria-pressed'], 'true');
   ja.buttons.find(button => button.dataset.galleryGroup === 'gravity').handlers.click();
   assert.equal(visible(ja), gallery.items.filter(x => x.group === 'gravity' && x.runnable).length);
@@ -135,14 +135,14 @@ test('toggle, group, search, no-results and reset interactions preserve independ
   assert.equal(visible(ja), gallery.items.filter(x => x.group === 'gravity' && x.runnable && Object.values(x.name).join(' ').includes('周期')).length);
   ja.input.value = '__no_matching_problem__'; ja.input.handlers.input();
   assert.equal(visible(ja), 0); assert.equal(ja.empty.hidden, false);
-  assert.ok(ja.status.textContent.includes('0 / 102'));
+  assert.ok(ja.status.textContent.includes('0 / 113'));
   ja.reset.handlers.click();
-  assert.equal(visible(ja), 102); assert.equal(ja.empty.hidden, true);
+  assert.equal(visible(ja), 113); assert.equal(ja.empty.hidden, true);
   assert.equal(ja.input.value, ''); assert.equal(ja.input.focused, true);
   assert.equal(ja.toggle.attributes['aria-pressed'], 'false');
   assert.equal(ja.buttons[0].attributes['aria-pressed'], 'true');
-  assert.equal(visible(en), 102);
+  assert.equal(visible(en), 113);
   en.toggle.handlers.click();
-  assert.equal(visible(en), 64); assert.ok(en.status.textContent.includes('Showing 64 of 102'));
-  assert.equal(visible(ja), 102);
+  assert.equal(visible(en), 75); assert.ok(en.status.textContent.includes('Showing 75 of 113'));
+  assert.equal(visible(ja), 113);
 });

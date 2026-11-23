@@ -1,0 +1,28 @@
+{
+  "group": "pic-spatial",
+  "contract_sha256": "45394071e43eefbdad9d9d75988ff4b318387665ea8dee0e112dc82f8b17cd10",
+  "started_at_utc": "2026-11-23T13:44:50.793022+00:00",
+  "combined_deadline_seconds": 120,
+  "commands": [
+    {
+      "phase": "pytest",
+      "command": [
+        "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/bin/python",
+        "-W",
+        "error",
+        "-m",
+        "pytest",
+        "-q",
+        "-o",
+        "cache_dir=/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/pic/pic-spatial/pytest-cache",
+        "--junitxml=/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-28-37-2026-11-23/pic/execution-attempts/pic-spatial/01/junit.xml"
+      ],
+      "cwd": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-28-37-2026-11-23/pic/pic-spatial",
+      "returncode": 1
+    }
+  ],
+  "passed": false,
+  "failure": "pytest returned failure; source/results preserved without changes",
+  "combined_seconds": 0.23682670899999997,
+  "ended_at_utc": "2026-11-23T13:44:51.029849+00:00"
+}

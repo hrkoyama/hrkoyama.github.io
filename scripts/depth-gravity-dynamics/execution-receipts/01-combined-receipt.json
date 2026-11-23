@@ -1,0 +1,42 @@
+{
+  "group": "gravity-dynamics",
+  "attempt": "01",
+  "contract_sha256": "83f7cc528bbbbbc688851308aabfbbc19bcb81f0c3d2f5aac83b44a21264d36a",
+  "stages": [
+    {
+      "stage": "pytest",
+      "exit_code": 0,
+      "seconds": 0.550984208995942
+    },
+    {
+      "stage": "main",
+      "exit_code": 0,
+      "seconds": 3.858138499999768
+    }
+  ],
+  "budget_seconds": 120,
+  "source_snapshot": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-28-37-2026-11-23/gravity/executions/gravity-dynamics/attempt-01/source",
+  "combined_seconds": 4.409165916003985,
+  "pytest": {
+    "tests": 18,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "actual_gates": 78,
+  "actual_cases": 2,
+  "actual_csv_policy": [
+    {
+      "file": "gravity-kepler.csv",
+      "bytes": 655,
+      "sha256": "f14ce41e2592436348813c8518ba7025bcc4e88fdc831620aacb912fa299210f"
+    },
+    {
+      "file": "gravity-plummer-short.csv",
+      "bytes": 1156,
+      "sha256": "3bbd16c140acaad8a731b946b893a897b2e3bd16e1eda7a68659b209c8c2ce2b"
+    }
+  ],
+  "actual_public_envelope_passed": true,
+  "passed": true
+}

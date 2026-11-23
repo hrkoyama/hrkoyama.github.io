@@ -22,12 +22,12 @@ test('seven methods retain original particle releases and expose precisely their
   for(const [path,hash] of Object.entries(entry.source_sha256))assert.equal(sha(path),hash,path);
   for(const lang of ['ja','en'])assert.ok(entry.assumptions[lang]&&entry.validation[lang]&&entry.limits[lang]);
  }
- assert.equal(methods.length,152);assert.deepEqual(Object.fromEntries(['educational-example','reading-only','planned'].map(s=>[s,methods.filter(x=>x.status===s).length])),{'educational-example':121,'reading-only':15,'planned':16});
+ assert.equal(methods.length,152);assert.deepEqual(Object.fromEntries(['educational-example','reading-only','planned'].map(s=>[s,methods.filter(x=>x.status===s).length])),{'educational-example':122,'reading-only':15,'planned':15});
 });
 
 test('six refinements reuse five physical families without changing diagnostic or problem totals',()=>{
- const index=json('numerical-methods-atlas/validation/index.json');assert.equal(index.case_count,71);assert.equal(index.groups.length,30);assert.equal(Object.values(index.case_problem_ids).filter(x=>x===null).length,5);
- const problems=json('numerical-methods-atlas/test-cases/index.json').problems;assert.equal(problems.length,102);
+ const index=json('numerical-methods-atlas/validation/index.json');assert.equal(index.case_count,83);assert.equal(index.groups.length,38);assert.equal(Object.values(index.case_problem_ids).filter(x=>x===null).length,5);
+ const problems=json('numerical-methods-atlas/test-cases/index.json').problems;assert.equal(problems.length,113);
  for(const [,caseId,problemId] of Object.values(mapping)){
   assert.equal(index.case_problem_ids[caseId],problemId);
   assert.deepEqual(problems.filter(p=>(p.supplemental_examples||[]).some(x=>x.id===caseId)).map(x=>x.id),[problemId]);

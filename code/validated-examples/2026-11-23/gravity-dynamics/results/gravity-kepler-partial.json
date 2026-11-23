@@ -1,0 +1,80 @@
+{
+  "id": "gravity-kepler",
+  "passed": false,
+  "checks": {
+    "s128 finite synchronized fields": true,
+    "s128 fixed final time": true,
+    "s128 positive pair separation": true,
+    "s128 momentum_drift": true,
+    "s128 angular_drift": true,
+    "s128 com_drift": true,
+    "s128 Kepler root residual": true,
+    "s128 independent final pair force": true,
+    "s256 finite synchronized fields": true,
+    "s256 fixed final time": true,
+    "s256 positive pair separation": true,
+    "s256 momentum_drift": true,
+    "s256 angular_drift": true,
+    "s256 com_drift": true,
+    "s256 Kepler root residual": true,
+    "s256 independent final pair force": true,
+    "s512 finite synchronized fields": true,
+    "s512 fixed final time": true,
+    "s512 positive pair separation": true,
+    "s512 momentum_drift": true,
+    "s512 angular_drift": true,
+    "s512 com_drift": true,
+    "s512 Kepler root residual": true,
+    "s512 independent final pair force": true
+  },
+  "records": [
+    {
+      "id": "s128",
+      "steps": 128,
+      "time": 6.283185307179586,
+      "position_error": 0.025954735297995534,
+      "state_rms_error": 0.007063523977486531,
+      "energy_drift": 0.0028018101093694784,
+      "momentum_drift": 4.996003610813204e-16,
+      "angular_drift": 3.608224830031759e-16,
+      "com_drift": 1.4155343563970746e-15,
+      "minimum_separation": 0.6,
+      "accepted_nodes": 0,
+      "direct_pairs": 258
+    },
+    {
+      "id": "s256",
+      "steps": 256,
+      "time": 6.283185307179586,
+      "position_error": 0.006456154414139544,
+      "state_rms_error": 0.0017604309247921468,
+      "energy_drift": 0.0006985040542680186,
+      "momentum_drift": 8.326672684688674e-16,
+      "angular_drift": 4.718447854656915e-16,
+      "com_drift": 2.5343235672725902e-15,
+      "minimum_separation": 0.6,
+      "accepted_nodes": 0,
+      "direct_pairs": 514
+    },
+    {
+      "id": "s512",
+      "steps": 512,
+      "time": 6.283185307179586,
+      "position_error": 0.0016120499258598436,
+      "state_rms_error": 0.0004391852548798123,
+      "energy_drift": 0.00017450491925918854,
+      "momentum_drift": 5.134781488891349e-16,
+      "angular_drift": 4.163336342344337e-16,
+      "com_drift": 1.93747027131932e-15,
+      "minimum_separation": 0.6,
+      "accepted_nodes": 0,
+      "direct_pairs": 1026
+    }
+  ],
+  "metrics": {},
+  "data_files": [
+    "gravity-kepler-s128.npz",
+    "gravity-kepler-s256.npz",
+    "gravity-kepler-s512.npz"
+  ]
+}

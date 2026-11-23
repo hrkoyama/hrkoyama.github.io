@@ -1,0 +1,28 @@
+seed 931001
+units si
+dimension 3
+global gridcut 0.0
+boundary s p p
+create_box 0 2 0 1 0 1
+create_grid 128 1 1
+global fnum 0.0009765625 nrho 1 temp 1
+species hs.species HS
+mixture gas HS nrho 1 temp 1
+collide vss all hs.vss
+timestep 0.01
+mixture gas temp 1.5
+create_particles gas n 0
+surf_collide cold diffuse 1 1 translate 0 0 0
+surf_collide hot diffuse 2 1 translate 0 0 0
+bound_modify xlo collide cold
+bound_modify xhi collide hot
+stats 1000
+stats_style step cpu np nattempt ncoll
+run 2400
+compute basic grid all all nrho u v w usq vsq wsq
+compute tensor pflux/grid all all momxx momxy momxz
+compute heat eflux/grid all all heatx
+fix avg ave/grid all 10 80 800 c_basic[*] c_tensor[*] c_heat[*]
+dump profiles grid all 800 profiles.grid id xc f_avg[*]
+dump_modify profiles format float %.17g
+run 4000

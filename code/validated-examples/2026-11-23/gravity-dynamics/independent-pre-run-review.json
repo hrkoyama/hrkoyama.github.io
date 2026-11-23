@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "reviewer": "root",
+  "time": "2026-11-23T13:45:49.390314+00:00",
+  "state": "APPROVED_BEFORE_FIRST_EXECUTION",
+  "contract_sha256": "83f7cc528bbbbbc688851308aabfbbc19bcb81f0c3d2f5aac83b44a21264d36a",
+  "verified_bound_files": 15,
+  "scientific_execution_before_review": false,
+  "reviewed": [
+    "Unsoftened binary ellipse,Kepler equation and barycentric positions/velocities; independent energy/angular/COM identities with unequal masses.",
+    "Synchronized KDK diagnostics and three fixed step sizes; no momentum,energy or position repair.",
+    "Cold32particle Plummer-density-derived finite configuration at T.2 with epsilon.05,not an equilibrium continuum Plummer trajectory.",
+    "Independent unordered scalar softened pair ODE solved by DOP853 at two frozen tolerance pairs; exact same softened kernel as primary.",
+    "Full second central-moment BH force expansion including softened trace term checked analytically from derivatives of1/s.",
+    "Separate held-position force comparisons from trajectory/time errors; theta0 identity,actual accepted-node probe and non-antipodal static asymmetry diagnostic.",
+    "Nonzero initial energy and unit characteristic momentum/angular/velocity scales avoid division by zero; no general momentum-conservation claim from antipodal data.",
+    "Nineprimarydynamics plus two independent reference IVPs and all18pytest share120s. Candidate and reference fields saved; fixed scientific thresholds not output-tuned."
+  ],
+  "authorization": "Proceed with bounded18pytest+all fixed main,retain attempt/source/partial states,plot separately."
+}

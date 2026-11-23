@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "review_type": "author-static-algebra-and-source-review",
+  "executed": false,
+  "checks": [
+    "Orthorhombic reciprocal/full-lattice energy/force signs derived",
+    "Neutral YB derivative,unwrapped Mz and exact gauge derived",
+    "Independent2P zero/self/nonzero-mode coefficient and analytic forces reviewed",
+    "Stable exp-erfc branches avoid production warning suppression",
+    "Producer writes strict result/checks/termination and finite nonempty CSV"
+  ],
+  "not_claimed": [
+    "Original Yeh full text read",
+    "LAMMPS or any third-party numerical engine run",
+    "Any numerical performance/calibration/test execution"
+  ]
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "id": "fong2009",
+    "title": "The black-box fast multipole method",
+    "url": "https://mc.stanford.edu/cgi-bin/images/f/fa/Darve_bbfmm_2009.pdf",
+    "doi": "10.1016/j.jcp.2009.08.031",
+    "review_level": "primary-selected-sections",
+    "review_scope": "Tensor interpolation Eq7 and multilevel stages sections2–3 inspected, printed8715–8717; compression is separate. Original uncompressed educational implementation here, no timing reproduction."
+  },
+  {
+    "id": "fmm3d-definition",
+    "title": "FMM3D mathematical definitions",
+    "url": "https://fmm3d.readthedocs.io/en/latest/math.html",
+    "review_level": "official-kernel-normalization",
+    "review_scope": "Official potential+1/(4pi r), gradient and source-self convention inspected. Our gravitational kernel is-1/r; FMM3D is not installed or run."
+  }
+]

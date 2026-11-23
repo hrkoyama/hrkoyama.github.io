@@ -1,0 +1,439 @@
+[
+  {
+    "id": "dsmc-couette",
+    "passed": true,
+    "checks": {
+      "dsmc-couette-base-361001/finite": true,
+      "dsmc-couette-base-361001/boundary budget": true,
+      "dsmc-couette-base-361001/physical collisions": true,
+      "dsmc-couette-base-361001/collision probability": true,
+      "dsmc-couette-base-361001/maxwell time resolution": true,
+      "dsmc-couette-base-361001/mean free path resolution": true,
+      "dsmc-couette-base-361002/finite": true,
+      "dsmc-couette-base-361002/boundary budget": true,
+      "dsmc-couette-base-361002/physical collisions": true,
+      "dsmc-couette-base-361002/collision probability": true,
+      "dsmc-couette-base-361002/maxwell time resolution": true,
+      "dsmc-couette-base-361002/mean free path resolution": true,
+      "dsmc-couette-base-361003/finite": true,
+      "dsmc-couette-base-361003/boundary budget": true,
+      "dsmc-couette-base-361003/physical collisions": true,
+      "dsmc-couette-base-361003/collision probability": true,
+      "dsmc-couette-base-361003/maxwell time resolution": true,
+      "dsmc-couette-base-361003/mean free path resolution": true,
+      "dsmc-couette-base-361004/finite": true,
+      "dsmc-couette-base-361004/boundary budget": true,
+      "dsmc-couette-base-361004/physical collisions": true,
+      "dsmc-couette-base-361004/collision probability": true,
+      "dsmc-couette-base-361004/maxwell time resolution": true,
+      "dsmc-couette-base-361004/mean free path resolution": true,
+      "dsmc-couette-fixed_weight_mesh-361001/finite": true,
+      "dsmc-couette-fixed_weight_mesh-361001/boundary budget": true,
+      "dsmc-couette-fixed_weight_mesh-361001/physical collisions": true,
+      "dsmc-couette-fixed_weight_mesh-361001/collision probability": true,
+      "dsmc-couette-fixed_weight_mesh-361001/maxwell time resolution": true,
+      "dsmc-couette-fixed_weight_mesh-361001/mean free path resolution": true,
+      "dsmc-couette-double_particles-361001/finite": true,
+      "dsmc-couette-double_particles-361001/boundary budget": true,
+      "dsmc-couette-double_particles-361001/physical collisions": true,
+      "dsmc-couette-double_particles-361001/collision probability": true,
+      "dsmc-couette-double_particles-361001/maxwell time resolution": true,
+      "dsmc-couette-double_particles-361001/mean free path resolution": true,
+      "dsmc-couette-half_dt-361001/finite": true,
+      "dsmc-couette-half_dt-361001/boundary budget": true,
+      "dsmc-couette-half_dt-361001/physical collisions": true,
+      "dsmc-couette-half_dt-361001/collision probability": true,
+      "dsmc-couette-half_dt-361001/maxwell time resolution": true,
+      "dsmc-couette-half_dt-361001/mean free path resolution": true,
+      "profile error/2": true,
+      "primary precision/2": true,
+      "reference precision/2": true,
+      "profile error/4": true,
+      "primary precision/4": true,
+      "reference precision/4": true,
+      "profile error/0": true,
+      "primary precision/0": true,
+      "reference precision/0": true,
+      "stationarity/2": true,
+      "stationarity/4": true,
+      "stationarity/0": true,
+      "bulk molecular flux agreement": true,
+      "bulk molecular flux precision": true,
+      "wall versus bulk molecular flux": true,
+      "wall molecular flux precision": true,
+      "half step sensitivity/2": true,
+      "half step sensitivity/4": true,
+      "half step sensitivity/0": true
+    },
+    "metrics": {
+      "profile_comparison": {
+        "2": {
+          "error": 0.010200733750517737,
+          "combined_3se": 0.018203904455731997,
+          "primary_3se": 0.014988812559766168,
+          "reference_3se": 0.01033042281233518
+        },
+        "4": {
+          "error": 0.005173765945320263,
+          "combined_3se": 0.01850394361570742,
+          "primary_3se": 0.01567511391545536,
+          "reference_3se": 0.009832941221769668
+        },
+        "0": {
+          "error": 0.007959057017737909,
+          "combined_3se": 0.013616367466408597,
+          "primary_3se": 0.010491175758283632,
+          "reference_3se": 0.008679901738445676
+        }
+      },
+      "stationarity": {
+        "profile_equivalence": {
+          "2": 0.05759942531501381,
+          "4": 0.0630869754804384,
+          "0": 0.03964355800443746
+        }
+      },
+      "sensitivities": {
+        "fixed_weight_mesh": {
+          "2": 0.006638448502787946,
+          "4": 0.009141483700374766,
+          "0": 0.007863505375904245
+        },
+        "double_particles": {
+          "2": 0.02339932210675679,
+          "4": 0.015641909218002674,
+          "0": 0.01126054904988147
+        },
+        "half_dt": {
+          "2": 0.029829998439110297,
+          "4": 0.01349752351058444,
+          "0": 0.012398286891856694
+        }
+      },
+      "t95_multiplier_df3": 3.182446305284263,
+      "flux": {
+        "bulk_mean": -0.18636773527698747,
+        "bulk_se": 0.0011643950494832711,
+        "reference_mean": -0.19013665992789913,
+        "reference_se": 0.0011647729920369507,
+        "wall_mean": -0.18735052877662584,
+        "wall_se": 0.001156037275432719,
+        "wall_minus_bulk": -0.0009827934996383542,
+        "wall_minus_bulk_se": 0.00010232411461678913
+      }
+    },
+    "records": [
+      {
+        "configuration": "base",
+        "seed": 361001,
+        "fields": "dsmc-couette-base-361001.npz",
+        "profile_csv": "dsmc-couette-base-361001-profile.csv",
+        "resolution": {
+          "dx_over_lambda": 0.1259423828125,
+          "dt_over_maxwell_tau": 0.032841575600797986
+        },
+        "collisions": 50453,
+        "candidates": 1529078,
+        "max_subcycles": 2,
+        "scaled_budget": 4.2104507662420084e-14
+      },
+      {
+        "configuration": "base",
+        "seed": 361002,
+        "fields": "dsmc-couette-base-361002.npz",
+        "profile_csv": "dsmc-couette-base-361002-profile.csv",
+        "resolution": {
+          "dx_over_lambda": 0.1272705078125,
+          "dt_over_maxwell_tau": 0.03313602904998533
+        },
+        "collisions": 50223,
+        "candidates": 1534129,
+        "max_subcycles": 2,
+        "scaled_budget": 6.810115119168773e-14
+      },
+      {
+        "configuration": "base",
+        "seed": 361003,
+        "fields": "dsmc-couette-base-361003.npz",
+        "profile_csv": "dsmc-couette-base-361003-profile.csv",
+        "resolution": {
+          "dx_over_lambda": 0.12621582031249998,
+          "dt_over_maxwell_tau": 0.03318234110382709
+        },
+        "collisions": 49885,
+        "candidates": 1527125,
+        "max_subcycles": 2,
+        "scaled_budget": 3.75616097815571e-14
+      },
+      {
+        "configuration": "base",
+        "seed": 361004,
+        "fields": "dsmc-couette-base-361004.npz",
+        "profile_csv": "dsmc-couette-base-361004-profile.csv",
+        "resolution": {
+          "dx_over_lambda": 0.12680175781250003,
+          "dt_over_maxwell_tau": 0.03335070948876898
+        },
+        "collisions": 50626,
+        "candidates": 1528521,
+        "max_subcycles": 2,
+        "scaled_budget": 5.049513055343569e-14
+      },
+      {
+        "configuration": "fixed_weight_mesh",
+        "seed": 361001,
+        "fields": "dsmc-couette-fixed_weight_mesh-361001.npz",
+        "profile_csv": "dsmc-couette-fixed_weight_mesh-361001-profile.csv",
+        "resolution": {
+          "dx_over_lambda": 0.06310546875,
+          "dt_over_maxwell_tau": 0.03298467633549061
+        },
+        "collisions": 50458,
+        "candidates": 1513200,
+        "max_subcycles": 2,
+        "scaled_budget": 2.109280871540278e-14
+      },
+      {
+        "configuration": "double_particles",
+        "seed": 361001,
+        "fields": "dsmc-couette-double_particles-361001.npz",
+        "profile_csv": "dsmc-couette-double_particles-361001-profile.csv",
+        "resolution": {
+          "dx_over_lambda": 0.1258056640625,
+          "dt_over_maxwell_tau": 0.03312461161995578
+        },
+        "collisions": 100668,
+        "candidates": 4709225,
+        "max_subcycles": 2,
+        "scaled_budget": 5.300395032969901e-14
+      },
+      {
+        "configuration": "half_dt",
+        "seed": 361001,
+        "fields": "dsmc-couette-half_dt-361001.npz",
+        "profile_csv": "dsmc-couette-half_dt-361001-profile.csv",
+        "resolution": {
+          "dx_over_lambda": 0.12651611328125,
+          "dt_over_maxwell_tau": 0.01657786033971498
+        },
+        "collisions": 50393,
+        "candidates": 3047995,
+        "max_subcycles": 1,
+        "scaled_budget": 7.342568506474961e-14
+      }
+    ],
+    "completed_primary_runs": 7,
+    "termination": "fixed_budget_completed"
+  },
+  {
+    "id": "dsmc-fourier",
+    "passed": true,
+    "checks": {
+      "dsmc-fourier-base-361101/finite": true,
+      "dsmc-fourier-base-361101/boundary budget": true,
+      "dsmc-fourier-base-361101/physical collisions": true,
+      "dsmc-fourier-base-361101/collision probability": true,
+      "dsmc-fourier-base-361101/maxwell time resolution": true,
+      "dsmc-fourier-base-361101/mean free path resolution": true,
+      "dsmc-fourier-base-361102/finite": true,
+      "dsmc-fourier-base-361102/boundary budget": true,
+      "dsmc-fourier-base-361102/physical collisions": true,
+      "dsmc-fourier-base-361102/collision probability": true,
+      "dsmc-fourier-base-361102/maxwell time resolution": true,
+      "dsmc-fourier-base-361102/mean free path resolution": true,
+      "dsmc-fourier-base-361103/finite": true,
+      "dsmc-fourier-base-361103/boundary budget": true,
+      "dsmc-fourier-base-361103/physical collisions": true,
+      "dsmc-fourier-base-361103/collision probability": true,
+      "dsmc-fourier-base-361103/maxwell time resolution": true,
+      "dsmc-fourier-base-361103/mean free path resolution": true,
+      "dsmc-fourier-base-361104/finite": true,
+      "dsmc-fourier-base-361104/boundary budget": true,
+      "dsmc-fourier-base-361104/physical collisions": true,
+      "dsmc-fourier-base-361104/collision probability": true,
+      "dsmc-fourier-base-361104/maxwell time resolution": true,
+      "dsmc-fourier-base-361104/mean free path resolution": true,
+      "dsmc-fourier-fixed_weight_mesh-361101/finite": true,
+      "dsmc-fourier-fixed_weight_mesh-361101/boundary budget": true,
+      "dsmc-fourier-fixed_weight_mesh-361101/physical collisions": true,
+      "dsmc-fourier-fixed_weight_mesh-361101/collision probability": true,
+      "dsmc-fourier-fixed_weight_mesh-361101/maxwell time resolution": true,
+      "dsmc-fourier-fixed_weight_mesh-361101/mean free path resolution": true,
+      "dsmc-fourier-double_particles-361101/finite": true,
+      "dsmc-fourier-double_particles-361101/boundary budget": true,
+      "dsmc-fourier-double_particles-361101/physical collisions": true,
+      "dsmc-fourier-double_particles-361101/collision probability": true,
+      "dsmc-fourier-double_particles-361101/maxwell time resolution": true,
+      "dsmc-fourier-double_particles-361101/mean free path resolution": true,
+      "dsmc-fourier-half_dt-361101/finite": true,
+      "dsmc-fourier-half_dt-361101/boundary budget": true,
+      "dsmc-fourier-half_dt-361101/physical collisions": true,
+      "dsmc-fourier-half_dt-361101/collision probability": true,
+      "dsmc-fourier-half_dt-361101/maxwell time resolution": true,
+      "dsmc-fourier-half_dt-361101/mean free path resolution": true,
+      "profile error/4": true,
+      "primary precision/4": true,
+      "reference precision/4": true,
+      "profile error/0": true,
+      "primary precision/0": true,
+      "reference precision/0": true,
+      "stationarity/4": true,
+      "stationarity/0": true,
+      "bulk molecular flux agreement": true,
+      "bulk molecular flux precision": true,
+      "wall versus bulk molecular flux": true,
+      "wall molecular flux precision": true,
+      "half step sensitivity/4": true,
+      "half step sensitivity/0": true
+    },
+    "metrics": {
+      "profile_comparison": {
+        "4": {
+          "error": 0.0046350333567375225,
+          "combined_3se": 0.01986770882165603,
+          "primary_3se": 0.018610142257145208,
+          "reference_3se": 0.006956181351210389
+        },
+        "0": {
+          "error": 0.006206560932103681,
+          "combined_3se": 0.014725327832097481,
+          "primary_3se": 0.012851725754092255,
+          "reference_3se": 0.007188075187722132
+        }
+      },
+      "stationarity": {
+        "profile_equivalence": {
+          "4": 0.06340714719603799,
+          "0": 0.03983352063527729
+        }
+      },
+      "sensitivities": {
+        "fixed_weight_mesh": {
+          "4": 0.02668632575679284,
+          "0": 0.013283289135740131
+        },
+        "double_particles": {
+          "4": 0.012688404465360077,
+          "0": 0.009002412684556585
+        },
+        "half_dt": {
+          "4": 0.008201282077196198,
+          "0": 0.010766498591131742
+        }
+      },
+      "t95_multiplier_df3": 3.182446305284263,
+      "flux": {
+        "bulk_mean": -0.5644605772254152,
+        "bulk_se": 0.0023868795505760263,
+        "reference_mean": -0.5756964840332293,
+        "reference_se": 0.005479198503847574,
+        "wall_mean": -0.566381423471522,
+        "wall_se": 0.00224129249203519,
+        "wall_minus_bulk": -0.00192084624610675,
+        "wall_minus_bulk_se": 0.00029712049609058333
+      }
+    },
+    "records": [
+      {
+        "configuration": "base",
+        "seed": 361101,
+        "fields": "dsmc-fourier-base-361101.npz",
+        "profile_csv": "dsmc-fourier-base-361101-profile.csv",
+        "resolution": {
+          "dx_over_lambda": 0.14235351562499998,
+          "dt_over_maxwell_tau": 0.04056621963241313
+        },
+        "collisions": 58772,
+        "candidates": 1742385,
+        "max_subcycles": 2,
+        "scaled_budget": 3.3482228653620696e-14
+      },
+      {
+        "configuration": "base",
+        "seed": 361102,
+        "fields": "dsmc-fourier-base-361102.npz",
+        "profile_csv": "dsmc-fourier-base-361102-profile.csv",
+        "resolution": {
+          "dx_over_lambda": 0.14365722656250002,
+          "dt_over_maxwell_tau": 0.04088888126433442
+        },
+        "collisions": 58599,
+        "candidates": 1797806,
+        "max_subcycles": 2,
+        "scaled_budget": 8.642234527106301e-14
+      },
+      {
+        "configuration": "base",
+        "seed": 361103,
+        "fields": "dsmc-fourier-base-361103.npz",
+        "profile_csv": "dsmc-fourier-base-361103-profile.csv",
+        "resolution": {
+          "dx_over_lambda": 0.14052734375,
+          "dt_over_maxwell_tau": 0.04000103700169703
+        },
+        "collisions": 58960,
+        "candidates": 1797380,
+        "max_subcycles": 2,
+        "scaled_budget": 4.90051823128415e-14
+      },
+      {
+        "configuration": "base",
+        "seed": 361104,
+        "fields": "dsmc-fourier-base-361104.npz",
+        "profile_csv": "dsmc-fourier-base-361104-profile.csv",
+        "resolution": {
+          "dx_over_lambda": 0.14139648437500002,
+          "dt_over_maxwell_tau": 0.040291171798395586
+        },
+        "collisions": 58671,
+        "candidates": 1800890,
+        "max_subcycles": 2,
+        "scaled_budget": 7.814582062830924e-14
+      },
+      {
+        "configuration": "fixed_weight_mesh",
+        "seed": 361101,
+        "fields": "dsmc-fourier-fixed_weight_mesh-361101.npz",
+        "profile_csv": "dsmc-fourier-fixed_weight_mesh-361101-profile.csv",
+        "resolution": {
+          "dx_over_lambda": 0.071201171875,
+          "dt_over_maxwell_tau": 0.04019865568707311
+        },
+        "collisions": 58706,
+        "candidates": 1533129,
+        "max_subcycles": 2,
+        "scaled_budget": 4.654051920909438e-14
+      },
+      {
+        "configuration": "double_particles",
+        "seed": 361101,
+        "fields": "dsmc-fourier-double_particles-361101.npz",
+        "profile_csv": "dsmc-fourier-double_particles-361101-profile.csv",
+        "resolution": {
+          "dx_over_lambda": 0.14209716796875,
+          "dt_over_maxwell_tau": 0.040416912985859206
+        },
+        "collisions": 117141,
+        "candidates": 6120026,
+        "max_subcycles": 2,
+        "scaled_budget": 4.7190300574581565e-14
+      },
+      {
+        "configuration": "half_dt",
+        "seed": 361101,
+        "fields": "dsmc-fourier-half_dt-361101.npz",
+        "profile_csv": "dsmc-fourier-half_dt-361101-profile.csv",
+        "resolution": {
+          "dx_over_lambda": 0.14479248046874998,
+          "dt_over_maxwell_tau": 0.020507836385439706
+        },
+        "collisions": 58627,
+        "candidates": 3047871,
+        "max_subcycles": 1,
+        "scaled_budget": 5.3346390188842346e-14
+      }
+    ],
+    "completed_primary_runs": 7,
+    "termination": "fixed_budget_completed"
+  }
+]

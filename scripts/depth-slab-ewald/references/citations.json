@@ -1,0 +1,23 @@
+[
+  {
+    "id": "lindbo2011",
+    "title": "Fast and spectrally accurate Ewald summation for2-periodic electrostatic systems",
+    "url": "https://arxiv.org/pdf/1109.1667",
+    "review_level": "primary-selected-equations",
+    "review_scope": "Eq4 and AppendixA Eq41/zero-mode inspected; rendered selected pages requested. No full-paper audit or spectral-PME implementation claimed."
+  },
+  {
+    "id": "yeh1999",
+    "title": "Ewald summation for systems with slab geometry",
+    "url": "https://doi.org/10.1063/1.479595",
+    "review_level": "bibliography-original-unaccessed",
+    "review_scope": "Original publisher full text unavailable; no original-text review claimed. Neutral correction independently derived and checked against official LAMMPS implementation/documentation."
+  },
+  {
+    "id": "lammps-slab",
+    "title": "LAMMPS slab Ewald documentation and neutral correction",
+    "url": "https://docs.lammps.org/kspace_modify.html",
+    "review_level": "official-selected-docs-and-formulas",
+    "review_scope": "Slab geometry restrictions and official Ewald::slabcorr neutral formula inspected. No LAMMPS code copied or executed; mutable stable source is contextual, not a numerical dependency."
+  }
+]

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "review_type": "author-static-source-and-algebra",
+  "executed": false,
+  "checks": [
+    "Unequal-mass Kepler COM split/analytic velocity/energy/angular identity derived",
+    "Cold explicitcoordinates reflect density-derived truncated profile only,no equilibrium DF claim",
+    "KDK uses synchronized full-step velocities,same soft kernel and no repairs",
+    "Independent scalar-pair DOP853 two reference runs share sameODE and fixed81times",
+    "Held force error uses identical direct-path coordinates and positive checked reference force norm",
+    "Cold state/P/L/COM norms use fixed nonzero units,not zero initialvalues",
+    "Asymmetric static probe and exact-opening tree0 avoid pure symmetry claims",
+    "Available candidate state persists on force/finite/budget failures; no dense@ or warning suppression"
+  ]
+}

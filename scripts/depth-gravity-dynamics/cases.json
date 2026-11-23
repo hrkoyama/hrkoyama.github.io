@@ -1,0 +1,154 @@
+[
+  {
+    "id": "gravity-kepler",
+    "title": {
+      "ja": "無軟化Kepler二体の時間誤差",
+      "en": "Unsoftened Kepler two-body time error"
+    },
+    "method_ids": [
+      "verlet"
+    ],
+    "domains": [
+      "particles"
+    ],
+    "summary": {
+      "ja": "非等質量二体をKDKで1周し、独立Kepler方程式の位置・速度とエネルギー/角運動量を照合。",
+      "en": "Advance an unequal-mass binary for one orbit with KDK and compare independent Kepler positions/velocities and conservation."
+    },
+    "assumptions": {
+      "ja": "G=M=a1,e.4,masses.6/.4、epsilon0、128/256/512steps、初期COM/P0。",
+      "en": "G=M=a1,e.4,masses.6/.4,epsilon0,128/256/512steps,initialCOM/P0."
+    },
+    "algorithm": {
+      "ja": "位置のみの力でkick半分→drift→kick半分。独立のbracketed Kepler rootと解析速度を使用。",
+      "en": "Position-only kick-half/drift/kick-half; separate bracketed Kepler root and analytic velocities."
+    },
+    "validation": {
+      "ja": "位相/時間次数、全同期stepエネルギー、P/L/COM、独立pair力とroot残差。",
+      "en": "Time refinement/phase, synchronized all-step energy,P/L/COM,independent pair force and root residuals."
+    },
+    "limits": {
+      "ja": "1周期・固定離心率のみ。軟化軌道や長時間安定性はこの参照の範囲外。",
+      "en": "One orbit at fixed eccentricity only; softened binaries and long-time behavior are outside this exact reference."
+    },
+    "references": [
+      {
+        "id": "jpl-kepler",
+        "title": "JPL Keplerian-element formulas",
+        "url": "https://ssd.jpl.nasa.gov/planets/approx_pos.html",
+        "review_level": "official-selected-kepler-equation",
+        "review_scope": "Kepler equation and orbital-plane Cartesian conversion inspected only. No planetary fitting coefficients or approximate planetary ephemeris used. Fixed two-body positions/velocities are independently derived."
+      },
+      {
+        "id": "hlw2003",
+        "title": "Geometric numerical integration illustrated by the Störmer–Verlet method",
+        "url": "https://doi.org/10.1017/S0962492902000144",
+        "review_level": "bibliography-and-failed-author-pdf",
+        "review_scope": "Author/publisher metadata only; author PDF unavailable. KDK composition and reversibility are independently derived here; no original full-text audit or BH symplecticity claim."
+      }
+    ],
+    "formulas": [
+      "E-e\\sin E=nt",
+      "r=a(\\cos E-e,\\sqrt{1-e^2}\\sin E,0)",
+      "v^{n+1/2}=v^n+\\tfrac12\\Delta t\\,a(x^n)"
+    ],
+    "code_files": [
+      "run.py",
+      "dynamics.py",
+      "references/exact.py"
+    ],
+    "gallery_figure": "gravity-kepler-preview.png",
+    "additional_figures": [
+      {
+        "file": "gravity-kepler-preview.png",
+        "caption": {
+          "ja": "固定入力を実際に計算した保存配列からの検証図。",
+          "en": "Validation figure from actual saved fixed-input calculation arrays."
+        }
+      }
+    ]
+  },
+  {
+    "id": "gravity-plummer-short",
+    "title": {
+      "ja": "冷たいPlummer密度由来32粒子の短時間力学",
+      "en": "Short-time32body dynamics from a cold Plummer-density sample"
+    },
+    "method_ids": [
+      "verlet",
+      "barnes-hut"
+    ],
+    "domains": [
+      "particles"
+    ],
+    "summary": {
+      "ja": "同じ軟化有限N ODEで時間誤差と木近似誤差を分け、独立DOP853・直接力と収支を比較。",
+      "en": "Separate time and tree-force errors for the same softened finite-N ODE with independent DOP853/direct-force references and budgets."
+    },
+    "assumptions": {
+      "ja": "固定32等質量・切断r3の密度由来反対称座標、初速0、epsilon.05、T.2。密度尺度a1とは別。",
+      "en": "Fixed32equal masses,antipodal truncatedr3 density-derived positions,zero velocity,epsilon.05,T.2; density scalea1 differs from pair softening."
+    },
+    "algorithm": {
+      "ja": "直接KDK20/40/80steps、最細でtheta0/.35/.6のfull second-moment BH。独立scalar対力+DOP853を2許容値で資格確認。",
+      "en": "Direct KDK20/40/80steps; finest-dt full second-moment BHtheta0/.35/.6; qualify independent scalar-pair DOP853 at two tolerances."
+    },
+    "validation": {
+      "ja": "非零の固定尺度、同一座標上の力、同期E/P/L/COM、theta0対照、非対称静的probe。",
+      "en": "Nonzero fixed scales,same-position force comparison,synchronizedE/P/L/COM,theta0 control and asymmetric static probe."
+    },
+    "limits": {
+      "ja": "冷たい有限N初期値で平衡Plummer分布/連続球厳密軌道ではありません。BHの一般相反性・大域symplectic性は主張しません。",
+      "en": "Cold finite-N initial value,not an equilibrium Plummer DF or exact continuum orbit. No general BH reciprocity/global symplecticity claim."
+    },
+    "references": [
+      {
+        "id": "plummer1911",
+        "title": "On the Problem of Distribution in Globular Star Clusters",
+        "url": "https://academic.oup.com/mnras/article/71/5/460/972150",
+        "review_level": "bibliography-only-original-unaccessed",
+        "review_scope": "Bibliography inherited from prior scoped source review; original full text not read. The finite32-body cold initial condition is density-derived, not an equilibrium Plummer DF or exact continuum flow."
+      },
+      {
+        "id": "galpy-plummer",
+        "title": "galpy official Plummer potential definition",
+        "url": "https://docs.galpy.org/en/v1.11.0/reference/potentialplummer.html",
+        "review_level": "official-potential-definition",
+        "review_scope": "Official potential normalization read in preparatory source review. No galpy execution; density scale1 and pair softening.05 are distinct parameters."
+      },
+      {
+        "id": "scipy-dop853",
+        "title": "SciPy1.14.1 solve_ivp",
+        "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html",
+        "review_level": "official-versioned-method-api",
+        "review_scope": "DOP853 order8, tolerance and t_eval semantics inspected; same softened finite-N ODE with independent scalar pair force. Not an exact analytic N-body solution."
+      },
+      {
+        "id": "hlw2003",
+        "title": "Geometric numerical integration illustrated by the Störmer–Verlet method",
+        "url": "https://doi.org/10.1017/S0962492902000144",
+        "review_level": "bibliography-and-failed-author-pdf",
+        "review_scope": "Author/publisher metadata only; author PDF unavailable. KDK composition and reversibility are independently derived here; no original full-text audit or BH symplecticity claim."
+      }
+    ],
+    "formulas": [
+      "a_i=-\\sum_{j\\ne i}Gm_jr_{ij}/(r_{ij}^2+\\epsilon^2)^{3/2}",
+      "U=-\\sum_{i<j}Gm_im_j/\\sqrt{r_{ij}^2+\\epsilon^2}"
+    ],
+    "code_files": [
+      "run.py",
+      "dynamics.py",
+      "references/exact.py"
+    ],
+    "gallery_figure": "gravity-plummer-short-preview.png",
+    "additional_figures": [
+      {
+        "file": "gravity-plummer-short-preview.png",
+        "caption": {
+          "ja": "固定入力を実際に計算した保存配列からの検証図。",
+          "en": "Validation figure from actual saved fixed-input calculation arrays."
+        }
+      }
+    ]
+  }
+]

@@ -42,7 +42,7 @@ function localTarget(href) {
 test('crossovers preserve the scientific inventory and canonical availability', () => {
   const coverage = json('numerical-methods-atlas/coverage.json');
   assert.equal(methods.length, 152);
-  assert.equal(json('catalog/atlas-equations.json').equations.length, 56);
+  assert.equal(json('catalog/atlas-equations.json').equations.length, 60);
   assert.equal(coverage.counts.papers, coverage.publications.filter(row => ['article', 'inproceedings'].includes(row.type)).length);
   assert.equal(coverage.counts.references, coverage.publications.length);
   assert.equal(json('catalog/atlas-test-problems.json').problems.length, coverage.counts.test_problems);
@@ -340,9 +340,9 @@ test('search permits exact connection fragments while retaining legacy navigatio
     '/numerical-methods-atlas/connections/?lang=ja#dft-md-ja',
     '/numerical-methods-atlas/connections/#dft-md-en',
     '/numerical-methods-atlas/code-and-data/examples/sod/?lang=en#dft-md-en',
-  ]) assert.equal(searchChapters({entries: [row(url)]}, 'needle', 'en')[0].url, null, url);
+  ]) assert.deepEqual(searchChapters({entries: [row(url)]}, 'needle', 'en'), [], url);
   const connectionURL = '/numerical-methods-atlas/connections/?lang=en#dft-md-en';
-  assert.equal(searchChapters({entries: [row(connectionURL, 'execution-example')]}, 'needle', 'en')[0].url, null);
+  assert.deepEqual(searchChapters({entries: [row(connectionURL, 'execution-example')]}, 'needle', 'en'), []);
 });
 
 test('published connections distinguish fixed force evidence and a local MD interface from unexecuted full routes', () => {

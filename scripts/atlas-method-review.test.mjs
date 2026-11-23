@@ -14,7 +14,7 @@ const cohort=[
   'scf','hartree-poisson','xc-functionals','ewald','pme','spme',
 ];
 const implementedLongRange={ewald:['ewald'],pme:['spme'],spme:['spme']};
-const planned=['slab-ewald','splines'];
+const planned=['splines'];
 const languages=['ja','en'];
 const fields=['assumptions','units','boundary_conditions','limitations'];
 const states=['specified','not-applicable','unknown'];
@@ -204,7 +204,7 @@ test('each localized HTML and Markdown exposes its own conditions, reasons, evid
   }
 });
 
-test('scoped Ewald and smooth-PME examples expose their dedicated evidence without validating the original PME or slab variants',()=>{
+test('scoped Ewald and smooth-PME examples expose their dedicated evidence without attributing the separately added slab evidence to their earlier review',()=>{
   const collection=JSON.parse(read('numerical-methods-atlas/methods/reviewed.json'));
   const common=JSON.parse(read('catalog/atlas-execution-examples.json')).examples;
   for(const [id,caseIDs] of Object.entries(implementedLongRange)){
@@ -215,7 +215,7 @@ test('scoped Ewald and smooth-PME examples expose their dedicated evidence witho
     assert.deepEqual(source.depth_release,{group:'particles',edition:'2026-11-22',case_ids:caseIDs});
     const added=id==='ewald'?'ewald-convergence':'spme-convergence';
     assert.deepEqual(source.depth_additional_releases.find(x=>x.group==='particle-transport').case_ids,[added]);
-    assert.deepEqual(record.execution_examples.map(example=>example.id),[...caseIDs,added],id+' scoped independent supplements');
+    assert.deepEqual(record.execution_examples.filter(example=>example.id!=='neutral-slab-yb').map(example=>example.id),[...caseIDs,added],id+' scoped independent supplements');
     assert.equal(record.code_edition,'2026-11-22',id);
     assert.ok(record.code_urls.some(url=>url.endsWith('/particles/electrostatics.py')),id+' dedicated algorithm');
     assert.ok(record.test_urls.length>0&&record.run_commands.length>0,id+' actual tests and commands');
@@ -285,7 +285,7 @@ test('the validation API rejects dropped translations, inflated access claims an
     '    if case=="reason-language": method["method_review"]["fields"]["units"]["reason"].pop("en")',
     '    elif case=="source-role": method["references"][0]["role"]="everything-verified"',
     '    elif case=="source-depth": method["references"][0]["verification"]["level"]="independently-proved"',
-    // A hypothetical review of the still-planned slab method exercises the
+    // A hypothetical planned copy of the now implemented slab method exercises the
     // same API guard, without reverting the implemented 3D Ewald record.
     '    elif case=="planned-code":',
     '        plan=copy.deepcopy(rows["ewald"])',

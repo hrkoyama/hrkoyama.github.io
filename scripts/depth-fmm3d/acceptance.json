@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "frozen_before_scientific_execution": true,
+  "limits": {
+    "potential": 5e-05,
+    "acceleration": 0.001,
+    "far_fraction": 0.1,
+    "chain_signal": 1e-10,
+    "order_ratio": 0.25,
+    "noise": 1e-13,
+    "analytic": 1e-12
+  }
+}

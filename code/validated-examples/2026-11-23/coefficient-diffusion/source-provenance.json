@@ -1,0 +1,13 @@
+{
+  "copied_runner": {
+    "source": "scripts/depth-mesh-boundary/run.py",
+    "sha256": "a9d3dd2b3af59daa170951821b3ed8943b6faedf5c87bbadb6b1105d82d0ceea",
+    "change": "Expected case count4 to2 only; new independent numerical modules."
+  },
+  "adapted_aggregation": {
+    "source": "scripts/depth-foundations-conditioning/solvers.py",
+    "sha256": "425d46f888d82f301eb741a7c957f70da7a4d7af5b948acfa2bf63bf97ab731b",
+    "scope": "Greedy graph-star aggregate algorithm; new symmetric-cycle implementation and pre-run invertible smoother omega=.5/bound."
+  },
+  "primary_and_reference": "FV/Q1 and independent triangularP1 separately authored in this batch; no third-party source copied."
+}

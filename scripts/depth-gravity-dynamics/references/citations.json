@@ -1,0 +1,37 @@
+[
+  {
+    "id": "jpl-kepler",
+    "title": "JPL Keplerian-element formulas",
+    "url": "https://ssd.jpl.nasa.gov/planets/approx_pos.html",
+    "review_level": "official-selected-kepler-equation",
+    "review_scope": "Kepler equation and orbital-plane Cartesian conversion inspected only. No planetary fitting coefficients or approximate planetary ephemeris used. Fixed two-body positions/velocities are independently derived."
+  },
+  {
+    "id": "hlw2003",
+    "title": "Geometric numerical integration illustrated by the Störmer–Verlet method",
+    "url": "https://doi.org/10.1017/S0962492902000144",
+    "review_level": "bibliography-and-failed-author-pdf",
+    "review_scope": "Author/publisher metadata only; author PDF unavailable. KDK composition and reversibility are independently derived here; no original full-text audit or BH symplecticity claim."
+  },
+  {
+    "id": "plummer1911",
+    "title": "On the Problem of Distribution in Globular Star Clusters",
+    "url": "https://academic.oup.com/mnras/article/71/5/460/972150",
+    "review_level": "bibliography-only-original-unaccessed",
+    "review_scope": "Bibliography inherited from prior scoped source review; original full text not read. The finite32-body cold initial condition is density-derived, not an equilibrium Plummer DF or exact continuum flow."
+  },
+  {
+    "id": "galpy-plummer",
+    "title": "galpy official Plummer potential definition",
+    "url": "https://docs.galpy.org/en/v1.11.0/reference/potentialplummer.html",
+    "review_level": "official-potential-definition",
+    "review_scope": "Official potential normalization read in preparatory source review. No galpy execution; density scale1 and pair softening.05 are distinct parameters."
+  },
+  {
+    "id": "scipy-dop853",
+    "title": "SciPy1.14.1 solve_ivp",
+    "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html",
+    "review_level": "official-versioned-method-api",
+    "review_scope": "DOP853 order8, tolerance and t_eval semantics inspected; same softened finite-N ODE with independent scalar pair force. Not an exact analytic N-body solution."
+  }
+]

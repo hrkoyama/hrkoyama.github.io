@@ -1,0 +1,35 @@
+{
+  "scope": "Exact frozen component-only sources,not automatically executed in public main; Python text renamed to prevent accidental collection. Rename according to map in a separate directory to reproduce the optional non-PDE component study.",
+  "files": [
+    {
+      "original": "protocol.json",
+      "archived": "protocol.json",
+      "sha256": "1f06b091f1f2e82ed359e00081fb26258611952a0dd13327f4c04ba7e1dbb957"
+    },
+    {
+      "original": "result.json",
+      "archived": "result.json",
+      "sha256": "a8905518ffd2aacca23600774fbb541ec880e2a26551068a6bb356a2d7c9653a"
+    },
+    {
+      "original": "check_components.py",
+      "archived": "check_components.py.txt",
+      "sha256": "13e1749f71ec11501876a3d4d906c2abffa347106eb21d1b8f2ce79b4edef5d2"
+    },
+    {
+      "original": "baseline_dsmc.py",
+      "archived": "baseline_dsmc.py.txt",
+      "sha256": "aa817b4a32c892d72d32d7772165cb7279e31edc2039451b7e716d829a17427b"
+    },
+    {
+      "original": "candidate_dsmc.py",
+      "archived": "candidate_dsmc.py.txt",
+      "sha256": "f1efb560e507b5e7b10950dbc461a10f4d8760bbff04207e4dadb95fbfcaf6dc"
+    },
+    {
+      "original": "root-pre-run-review.json",
+      "archived": "root-pre-run-review.json",
+      "sha256": "74e5aa704b62009249124b2f73f91b167f6386055adc52c02288d182313f74a9"
+    }
+  ]
+}

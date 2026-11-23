@@ -83,25 +83,27 @@ test('execution intent does not promote examples for generic or unrelated querie
   assert.equal(searchChapters(synthetic,'spectral methods')[0].id,'spectral');
   assert.equal(searchChapters(synthetic,'code')[0].id,'guide');
   assert.equal(searchChapters(synthetic,'Poisson code')[0].id,'poisson');
-  for(const query of ['PBE code','UHF code','slab-ewald code','AMR code','mixed precision code']){
+  for(const query of ['PBE code','UHF code','AMR code','mixed precision code']){
     assert.ok(!searchChapters(index,query).some(row=>row.kind==='execution-example'),query+' unsupported execution claim');
   }
   assert.deepEqual(searchChapters(index,'zxqvnotfound123456789'),[]);
 });
 
-test('periodic Ewald and smooth-PME queries lead to their independent supplemental entries while slab corrections remain planned',()=>{
+test('periodic Ewald and smooth-PME queries lead to their independent supplemental entries while the new slab correction retains its own scoped entry',()=>{
   for(const lang of ['ja','en'])for(const [query,id] of [['Ewald code','ewald'],['SPME code','spme']]){
-    const result=searchChapters(index,query,lang)[0];
+    const result=searchChapters(index,query,lang).find(row=>row.url===`/numerical-methods-atlas/validation/${id}/?lang=${lang}`);
+    assert.ok(result,query+' original periodic entry remains discoverable');
     assert.equal(result.kind,'execution-example');
     assert.equal(result.url,`/numerical-methods-atlas/validation/${id}/?lang=${lang}`);
     assert.equal(index.entries.find(entry=>entry.id===result.id).origin,'public-depth-validation');
     assert.ok(!registry.examples.some(example=>example.id===id),'supplement does not change the common22 registry');
   }
   const slab=searchChapters(index,'slab Ewald code','en');
-  assert.equal(slab[0].method?.id,'slab-ewald');
-  assert.equal(slab[0].method.status,'planned');
-  assert.deepEqual(slab[0].method.code_urls,[]);
-  assert.deepEqual(slab[0].method.execution_examples,[]);
+  const method=slab.find(row=>row.method?.id==='slab-ewald')?.method;
+  assert.equal(method.status,'educational-example');
+  assert.ok(method.code_urls.length);
+  assert.deepEqual(method.execution_examples.map(row=>row.id),['neutral-slab-yb']);
+  assert.ok(slab.some(row=>row.kind==='execution-example'&&row.url==='/numerical-methods-atlas/validation/neutral-slab-yb/?lang=en'));
 });
 
 test('the global site index discovers all detail pages and surfaces specific execution searches',()=>{
@@ -127,7 +129,7 @@ test('execution search retains same-site path validation and renders untrusted l
     '/numerical-methods-atlas/../rights/','/numerical-methods-atlas/examples/x/#unsafe',
     '/numerical-methods-atlas/examples/x/?lang=en&next=https://evil.example/'];
   const item=url=>({id:'needle',title:{en:'needle <img src=x onerror=alert(1)>',ja:null},headings:{en:[],ja:[]},keywords:['needle','run'],focus_keywords:['needle'],snippet:{en:'Expected <script>alert(2)</script> result'},kind:'execution-example',routes:{en:url}});
-  for(const url of unsafe)assert.equal(searchChapters({entries:[item(url)]},'needle run')[0].url,null,url);
+  for(const url of unsafe)assert.deepEqual(searchChapters({entries:[item(url)]},'needle run'),[],url+' is rejected before ranking');
   const valid=route('sod','en');
   assert.equal(searchChapters({entries:[item(valid)]},'needle run')[0].url,valid);
 

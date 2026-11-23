@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "revision": 1,
+  "created_at_utc": "2026-11-23T13:38:35.481267+00:00",
+  "declared_before_first_scientific_execution": true,
+  "declared_before_first_pytest_execution": true,
+  "planned_tests": 17,
+  "planned_numerical_gates": 42,
+  "planned_gates_by_case": {
+    "neutral-slab-yb": 42
+  },
+  "planned_primary_runs": 6,
+  "planned_fixed_runs": 6,
+  "additional_fixed_evaluations": {
+    "independent_reference_source_fields": 3,
+    "finite_difference_energy_evaluations": 24,
+    "invariance_source_evaluations": 2,
+    "external_far_field_evaluation": 1,
+    "omitted_zero_mode_control": 1
+  },
+  "shared_pytest_plus_main_budget_seconds": 120,
+  "runtime_limit_seconds": 120,
+  "presentation_files_excluded": [
+    "cases.json",
+    "README.md",
+    "LICENSE",
+    "plot.py",
+    "requirements-plot.txt"
+  ],
+  "files_sha256": {
+    "acceptance.json": "de3e36a499cdeb5e3d871fbae8af25d64de3701d3dce7b6431298c51712c1dbe",
+    "electrostatics.py": "e76c43e7033efb19bbcbf6a50309a48297da4d4d07e9cb7a1ed51695143a60ef",
+    "experiments.py": "97970027c0cecd7d4940898fa61d28f7013f9b458a7b9b028f66be89e971c393",
+    "inputs.json": "138a6b185ce7a33c4bd55c2939db51c455b331033a7775bdf7c5048fe4d16d36",
+    "pre-run-review.json": "065afbed55ca9d86c7da1db41750439b76e8cbda65b8e694fdb6c04c25157035",
+    "protocol.py": "a361540e7e8b842b0f0c58a086d9befa3622f44fe914a38006deee3663400cbc",
+    "references/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "references/citations.json": "5c1953e8cbbe355b552555a8bbeafba76757bc248a930016b5fb53bb7e9f4007",
+    "references/source-review.json": "72d1eebddc4b47d72112092b1349fb54a085662580bbbd9a452dd7c48312e69c",
+    "references/twoperiodic.py": "c6835f23233e69bcb2802413f12b41a1a64a120515d9e340f4544cb4fae66128",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "run.py": "5d0daaff8087f7dd13f38ffc42848ab79543fdfe436890bd0e7957a16725de59",
+    "source-provenance.json": "a22c385ac6734c47c43298580e3aa7b8e8495c9ae1cd551353019fc6a45af194",
+    "test_slab.py": "af71a7710d29c9da7e3d28bbf2c4d378c6161f4817d16b9acdfca0ae9a5704b6",
+    "references/README.md": "8fb8d814def2bdc4854c650edab9a12e6e2a2a5c4877ea2b7f1d543ea31a3edf"
+  }
+}

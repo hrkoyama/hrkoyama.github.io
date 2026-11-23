@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "frozen_before_scientific_execution": true,
+  "limits": {
+    "reference_energy": 1e-10,
+    "reference_force": 1e-09,
+    "alpha_energy": 1e-09,
+    "alpha_force": 1e-08,
+    "energy": 1e-07,
+    "force": 1e-06,
+    "difference": 2e-06,
+    "net_force": 1e-10,
+    "translation_energy": 1e-09,
+    "translation_force": 1e-08,
+    "far": 1e-10,
+    "permutation": 1e-10,
+    "negative_control": 0.001
+  }
+}

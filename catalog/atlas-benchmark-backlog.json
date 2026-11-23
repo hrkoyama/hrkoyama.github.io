@@ -1380,8 +1380,8 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "verified",
-      "current": "22単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。",
+      "state": "published",
+      "current": "固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。",
       "tasks": [
         "滑らかなせん断層・明示した摂動・境界・物理散逸を固定し、KHの初期成長率を比較する。",
         "RTは重力・密度配置・界面厚さと理論の仮定を別に定義する。非線形後期の図を厳密解と扱わず独立数値参照と比較する。"
@@ -1427,7 +1427,8 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-23-r2/instability-growth/README.md",
-          "/code/validated-examples/2026-11-23-r2/instability-growth/references/citations.json"
+          "/code/validated-examples/2026-11-23-r2/instability-growth/references/citations.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#kh-initial-growth-ja",
         "execution": "/numerical-methods-atlas/validation/kh-initial-growth/?lang=ja"
@@ -1445,8 +1446,8 @@
       "priority": "P1",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "verified",
-      "current": "47単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。",
+      "state": "published",
+      "current": "固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。",
       "tasks": [
         "既存保存結果を基準に空間/時間系列を分離し、Alfvén位相誤差・偏波・保存量を解析波で測る。",
         "loopは独立コードと比較し、磁気エネルギー・ループ形状・divergence演算子を揃える。",
@@ -1488,7 +1489,8 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-23/mhd-transport/README.md",
-          "/code/validated-examples/2026-11-23/mhd-transport/references/citations.json"
+          "/code/validated-examples/2026-11-23/mhd-transport/references/citations.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#circular-alfven-ja",
         "execution": "/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=ja"
@@ -1506,8 +1508,8 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "verified",
-      "current": "47単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。",
+      "state": "published",
+      "current": "固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。",
       "tasks": [
         "現行short smooth OTを残し、衝撃波を伴う別時刻/別入力を区別して追加。",
         "熱圧正値性・総エネルギー・native face/common cell divB・参照格子増分を測る。",
@@ -1548,7 +1550,8 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-23/mhd-transport/README.md",
-          "/code/validated-examples/2026-11-23/mhd-transport/references/citations.json"
+          "/code/validated-examples/2026-11-23/mhd-transport/references/citations.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#orszag-tang-ja",
         "execution": "/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=ja"
@@ -1566,8 +1569,8 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "verified",
-      "current": "20単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。",
+      "state": "published",
+      "current": "固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。",
       "tasks": [
         "r^(2/3)sin(2theta/3)型のreentrant corner解などを境界条件とともに自前定義し、L2/H1誤差を要素積分。",
         "一様/局所細分化、要素角度・aspect ratio・条件数の影響を分ける。",
@@ -1613,7 +1616,8 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-23/mesh-boundary/README.md",
-          "/code/validated-examples/2026-11-23/mesh-boundary/references/citations.json"
+          "/code/validated-examples/2026-11-23/mesh-boundary/references/citations.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#lshape-fem-ja",
         "execution": "/numerical-methods-atlas/validation/lshape-fem/?lang=ja"
@@ -1631,8 +1635,8 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "verified",
-      "current": "20単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。",
+      "state": "published",
+      "current": "固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。",
       "tasks": [
         "まずr>0のannulusで粘性応力発散・可変粘性・境界fluxを一組の製造解で離散化検査。",
         "座標の物理/共変/反変成分と体積/面積重みを固定し、格子収束を測る。",
@@ -1673,7 +1677,8 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-23/mesh-boundary/README.md",
-          "/code/validated-examples/2026-11-23/mesh-boundary/references/citations.json"
+          "/code/validated-examples/2026-11-23/mesh-boundary/references/citations.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#annular-viscous-mms-ja",
         "execution": "/numerical-methods-atlas/validation/annular-viscous-mms/?lang=ja"
@@ -1692,7 +1697,7 @@
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
       "state": "in-progress",
-      "current": "19単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。",
+      "current": "固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。",
       "tasks": [
         "最初は既存GCLと同じ移動に非一様scalarの解析輸送を載せ、幾何誤差と輸送誤差を分離。",
         "Lagrange/remapまで拡張する段階でSaltzmanを新規問題として考慮し、格子反転・歪み・保存・衝撃位置を検査。",
@@ -1733,7 +1738,8 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-23/moving-waves/README.md",
-          "/code/validated-examples/2026-11-23/moving-waves/references/citations.json"
+          "/code/validated-examples/2026-11-23/moving-waves/references/citations.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#ale-nonuniform-transport-ja",
         "execution": "/numerical-methods-atlas/validation/ale-nonuniform-transport/?lang=ja"
@@ -1752,7 +1758,7 @@
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
       "state": "in-progress",
-      "current": "19単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。",
+      "current": "固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。",
       "tasks": [
         "まず既存f-planeの一つの固有modeを実際に時間積分し位相・振幅・geostrophic balanceを解析行列指数と比較。",
         "球面拡張時はWilliamsonの固体回転輸送/定常釣合いから段階的に選び、質量/エネルギー/位相と格子向きを比較。",
@@ -1798,7 +1804,8 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-23/moving-waves/README.md",
-          "/code/validated-examples/2026-11-23/moving-waves/references/citations.json"
+          "/code/validated-examples/2026-11-23/moving-waves/references/citations.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#cgrid-rotating-wave-ja",
         "execution": "/numerical-methods-atlas/validation/cgrid-rotating-wave/?lang=ja"
@@ -1816,8 +1823,8 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "解説のみ",
-      "state": "verified",
-      "current": "25単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。",
+      "state": "published",
+      "current": "固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。",
       "tasks": [
         "まずMinkowski・理想気体EOS・法線速度のみの少数固定入力。",
         "原始変数回復の残差、rho/p正値、|v|<1、波位置、中間状態をexact Riemann参照と比較。",
@@ -1853,7 +1860,8 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-23/relativistic/README.md",
-          "/code/validated-examples/2026-11-23/relativistic/references/citations.json"
+          "/code/validated-examples/2026-11-23/relativistic/references/citations.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#srhd-collision-ja",
         "execution": "/numerical-methods-atlas/validation/srhd-collision/?lang=ja"
@@ -1871,8 +1879,8 @@
       "priority": "P3",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "verified",
-      "current": "25単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。",
+      "state": "published",
+      "current": "固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。",
       "tasks": [
         "SRHDの保存・回復が通った後、固定EOSで簡単な磁場配置から開始。",
         "Bx一定、物理的状態、波位置、磁場/流体相互作用を独立exact RMHD参照と照合。",
@@ -1913,7 +1921,8 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-23/relativistic/README.md",
-          "/code/validated-examples/2026-11-23/relativistic/references/citations.json"
+          "/code/validated-examples/2026-11-23/relativistic/references/citations.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#srmhd-alfven-ja",
         "execution": "/numerical-methods-atlas/validation/srmhd-alfven/?lang=ja"
@@ -1931,8 +1940,8 @@
       "priority": "P1",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "verified",
-      "current": "20単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。",
+      "state": "published",
+      "current": "固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。",
       "tasks": [
         "既存1D境界実装と区別し、2Dの零空間・不適合右辺の拒否・平均値指定を検査",
         "2D CG/MGの現状は零Dirichlet。cos型参照解で境界誤差と残差を分ける"
@@ -1976,7 +1985,8 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-23/mesh-boundary/README.md",
-          "/code/validated-examples/2026-11-23/mesh-boundary/references/citations.json"
+          "/code/validated-examples/2026-11-23/mesh-boundary/references/citations.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#poisson-neumann-ja",
         "execution": "/numerical-methods-atlas/validation/poisson-neumann/?lang=ja"

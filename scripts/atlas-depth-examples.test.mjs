@@ -16,7 +16,7 @@ const catalog = json('catalog/atlas-depth-expansion.json');
 const edition = group => catalog.groups.find(x => x.id === group).edition || catalog.edition;
 const base = group => `code/validated-examples/${edition(group)}/${group}/`;
 const entry = id => `numerical-methods-atlas/validation/${id}/`;
-const groupIds = ["foundations","models","particles","mhd","thermostats","biology","mcmc","mhd-convergence","foundations-conditioning","particle-transport","splitting","noh","noh-cartesian","sedov","double-mach","forward-step","low-mach","guderley","euler-positivity","zalesak","weno-critical","shallow-water","wall-flow","level-set","sem-fr","instability-growth","mhd-transport","mesh-boundary","moving-waves","relativistic"];
+const groupIds = ["foundations","models","particles","mhd","thermostats","biology","mcmc","mhd-convergence","foundations-conditioning","particle-transport","splitting","noh","noh-cartesian","sedov","double-mach","forward-step","low-mach","guderley","euler-positivity","zalesak","weno-critical","shallow-water","wall-flow","level-set","sem-fr","instability-growth","mhd-transport","mesh-boundary","moving-waves","relativistic",'coefficient-diffusion','slab-ewald','fmm3d','gravity-dynamics','warm-pic','pic-spatial','dsmc-wall','dsmc-shock'];
 const expectedIds = [
   'kh-initial-growth','rt-initial-growth','circular-alfven-refinement','magnetic-loop-independent','postshock-orszag-tang','lshape-fem','annular-viscous-mms','poisson-neumann','poisson-robin','ale-nonuniform-transport','cgrid-rotating-wave','srhd-collision','srmhd-alfven',
   'sem-poisson-2d','fr-periodic-advection',
@@ -31,8 +31,7 @@ const expectedIds = [
   'amg-conditioning', 'qr-svd-conditioning', 'krylov-eigen-conditioning', 'quadrature-conditioning',
   'ewald-convergence', 'spme-convergence', 'fmm-convergence', 'pic-conservation', 'dsmc-statistics', 'radiation-convergence',
   'reaction-diffusion-splitting', 'noh-shock', 'noh-cartesian-2d', 'sedov-blast', 'double-mach-reflection', 'forward-step-m3', 'low-mach-vortex', 'guderley-implosion', 'euler-double-rarefaction-positivity', 'zalesak-rotation',
-  'weno-critical-epsilon', 'swashes-topography', 'dry-bed-dam-break', 'cavity-ghia-re100', 'wall-manufactured', 'level-set-translation', 'level-set-rotation',
-].sort();
+  'weno-critical-epsilon', 'swashes-topography', 'dry-bed-dam-break', 'cavity-ghia-re100', 'wall-manufactured', 'level-set-translation', 'level-set-rotation','checkerboard-diffusion','rotated-anisotropic-diffusion','neutral-slab-yb','fmm3d-inverse-r','gravity-kepler','gravity-plummer-short','thermal-landau-damping','thermal-two-stream','pic-independent-spatial','dsmc-couette','dsmc-fourier','dsmc-planar-shock'].sort();
 const metadata = group => {
   const value = json(base(group) + 'cases.json');
   return Array.isArray(value) ? value : value.cases;
@@ -99,10 +98,10 @@ test('forty original cases plus Noh and their independently dated releases stay 
   const index = json('numerical-methods-atlas/validation/index.json');
   assert.deepEqual(actualCases.map(x => x.item.id).sort(), expectedIds);
   assert.deepEqual(index.cases.map(x => x.id).sort(), expectedIds);
-  assert.equal(index.case_count, 71);
-  assert.equal(actualCases.filter(x => !['noh','noh-cartesian','sedov','double-mach','forward-step','low-mach','guderley','euler-positivity','zalesak','weno-critical','shallow-water','wall-flow','level-set', 'instability-growth', 'mhd-transport', 'mesh-boundary', 'moving-waves', 'relativistic', 'sem-fr'].includes(x.group)).length, 40);
+  assert.equal(index.case_count, 83);
+  assert.equal(actualCases.filter(x => !['noh','noh-cartesian','sedov','double-mach','forward-step','low-mach','guderley','euler-positivity','zalesak','weno-critical','shallow-water','wall-flow','level-set', 'instability-growth', 'mhd-transport', 'mesh-boundary', 'moving-waves', 'relativistic', 'sem-fr','coefficient-diffusion','slab-ewald','fmm3d','gravity-dynamics','warm-pic','pic-spatial','dsmc-wall','dsmc-shock'].includes(x.group)).length, 40);
   assert.equal(edition('noh'), '2026-11-23-r5');
-  assert.ok(groupIds.filter(x => !['noh','noh-cartesian','sedov','double-mach','forward-step','low-mach','guderley','euler-positivity','zalesak','weno-critical','shallow-water','wall-flow','level-set', 'instability-growth', 'mhd-transport', 'mesh-boundary', 'moving-waves', 'relativistic', 'sem-fr'].includes(x)).every(x => edition(x) === '2026-11-22'));
+  assert.ok(groupIds.filter(x => !['noh','noh-cartesian','sedov','double-mach','forward-step','low-mach','guderley','euler-positivity','zalesak','weno-critical','shallow-water','wall-flow','level-set', 'instability-growth', 'mhd-transport', 'mesh-boundary', 'moving-waves', 'relativistic', 'sem-fr','coefficient-diffusion','slab-ewald','fmm3d','gravity-dynamics','warm-pic','pic-spatial','dsmc-wall','dsmc-shock'].includes(x)).every(x => edition(x) === '2026-11-22'));
   assert.equal(index.case_problem_ids['noh-shock'], 'noh');
   assert.deepEqual(index.groups.map(x => x.id).sort(), [...groupIds].sort());
   assert.equal(index.common_registry.example_count, 22);

@@ -3,7 +3,7 @@
 import argparse,hashlib,importlib.metadata,importlib.util,json,os,re,shutil,subprocess,sys,tempfile,time,xml.etree.ElementTree as ET,zipfile
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
-GROUPS=['foundations','models','particles','mhd','thermostats','biology','mcmc','mhd-convergence','foundations-conditioning','particle-transport', 'splitting', 'noh', 'noh-cartesian', 'sedov', 'double-mach', 'forward-step', 'low-mach', 'guderley', 'euler-positivity', 'zalesak', 'weno-critical', 'shallow-water', 'wall-flow', 'level-set', 'sem-fr', 'instability-growth', 'mhd-transport', 'mesh-boundary', 'moving-waves', 'relativistic']
+GROUPS=['foundations','models','particles','mhd','thermostats','biology','mcmc','mhd-convergence','foundations-conditioning','particle-transport', 'splitting', 'noh', 'noh-cartesian', 'sedov', 'double-mach', 'forward-step', 'low-mach', 'guderley', 'euler-positivity', 'zalesak', 'weno-critical', 'shallow-water', 'wall-flow', 'level-set', 'sem-fr', 'instability-growth', 'mhd-transport', 'mesh-boundary', 'moving-waves', 'relativistic', 'coefficient-diffusion', 'slab-ewald', 'fmm3d', 'gravity-dynamics', 'warm-pic', 'pic-spatial', 'dsmc-wall', 'dsmc-shock']
 
 # Keep this self-contained preflight equal to the public-only verifier's
 # reviewed DIRECT_PINS policy; packaging must fail before running science.
@@ -28,6 +28,11 @@ def validate_generated_csv(directory):
 
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def dump(p,x):p.write_text(json.dumps(x,ensure_ascii=False,indent=2,allow_nan=False)+'\n')
+def source_member_allowed(relative):
+    """Scientific source, configuration and pinned native SPARTA text inputs."""
+    relative=Path(relative)
+    native_sparta=relative.parts[:2]==('references','native-inputs') and relative.suffix in ['.sparta','.species','.vss']
+    return relative.name in ['LICENSE','pytest.ini'] or relative.name.startswith('athinput-') or native_sparta or relative.suffix in ['.py','.json','.md','.txt','.npz','.cpp','.patch','.csv','.log','.xml']
 def package(group,edition):
     assert group in GROUPS
     if not re.fullmatch(r'\d{4}-\d{2}-\d{2}(?:-r\d+)?',edition):raise ValueError('Use YYYY-MM-DD[-rN]')
@@ -52,7 +57,7 @@ def package(group,edition):
         for p in source.rglob('*'):
             rel=p.relative_to(source)
             if not p.is_file() or any(x in rel.parts for x in ['__pycache__','.pytest_cache']) or rel.parts[0] in ['results','output','outputs']:continue
-            if p.name!='LICENSE' and not p.name.startswith('athinput-') and p.suffix not in ['.py','.json','.md','.txt','.npz','.cpp','.patch','.csv','.log','.xml']:raise ValueError('Unexpected source file '+str(rel))
+            if not source_member_allowed(rel):raise ValueError('Unexpected source file '+str(rel))
             (stage/rel).parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(p,stage/rel)
         env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1','OPENBLAS_NUM_THREADS':'1','OMP_NUM_THREADS':'1','MKL_NUM_THREADS':'1','MPLBACKEND':'Agg','MPLCONFIGDIR':str(tmp/'mpl')}
         def execute(cwd,out):
