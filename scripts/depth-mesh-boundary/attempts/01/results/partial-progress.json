@@ -1,0 +1,36 @@
+{
+  "current_case": "annular-viscous-mms",
+  "records": [
+    {
+      "n": 8,
+      "theta_cells": 16,
+      "dofs": 224,
+      "relative_l2": 0.03647315605869028,
+      "relative_strain_l2": 0.20676255863809184,
+      "relative_traction_l2": 0.2649537560990175,
+      "residual": 3.552713678800501e-14,
+      "boundary_error": 0.0,
+      "area_error": 5.329070518200751e-15,
+      "reaction_balance": 2.7996905974342586e-16,
+      "traction_flux_balance": 0.16251559918719788,
+      "exact_flux_balance": 1.4754006045516202e-17,
+      "analytic_force_error": 1.824947473034508e-16,
+      "work_identity": 0.0,
+      "symmetry": 3.552713678800501e-15,
+      "id": "annulus-n8"
+    }
+  ],
+  "checks": {
+    "annulus-n8 residual": true,
+    "annulus-n8 boundary_error": true,
+    "annulus-n8 area_error": true,
+    "annulus-n8 reaction_balance": true,
+    "annulus-n8 exact_flux_balance": true,
+    "annulus-n8 analytic_force_error": true,
+    "annulus-n8 work_identity": true,
+    "annulus-n8 symmetry": true
+  },
+  "data_files": [
+    "annular-viscous-mms-annulus-n8.npz"
+  ]
+}

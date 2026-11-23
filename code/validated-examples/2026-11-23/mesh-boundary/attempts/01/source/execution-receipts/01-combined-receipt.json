@@ -1,0 +1,54 @@
+{
+  "passed": false,
+  "group": "mesh-boundary",
+  "attempt": "01",
+  "contract_sha256": "c25ad479668beb4b168fb61112c92e03ae482456db393e1845a3f329e2791097",
+  "combined_seconds": 0.9295213329969556,
+  "budget_seconds": 120,
+  "stages": [
+    {
+      "stage": "pytest",
+      "command": [
+        "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch18-27/env/bin/python",
+        "-W",
+        "error",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--junitxml=/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-18-27-2026-11-23/geometry/mesh-boundary/attempt-01/pytest.xml"
+      ],
+      "exit_code": 0,
+      "seconds": 0.273873416997958
+    },
+    {
+      "stage": "main",
+      "command": [
+        "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch18-27/env/bin/python",
+        "-W",
+        "error",
+        "run.py",
+        "--input",
+        "inputs.json",
+        "--output",
+        "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-18-27-2026-11-23/geometry/mesh-boundary/attempt-01/results"
+      ],
+      "exit_code": 1,
+      "seconds": 0.6555200000002515
+    }
+  ],
+  "planned_tests": 20,
+  "planned_gates": 174,
+  "planned_runs": 23,
+  "pytest": {
+    "tests": 20,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "actual_cases": 1,
+  "actual_gates": 82,
+  "actual_passed": false,
+  "actual_records": 12
+}

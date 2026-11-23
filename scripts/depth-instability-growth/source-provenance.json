@@ -1,0 +1,5 @@
+{
+  "implementation": "New NumPy periodic vorticity/active-scalar solver; compatible five-point FFT Poisson construction follows the existing Atlas mathematical pattern, without changing old code.",
+  "reference": "Independent continuous Fourier-Galerkin matrix and exponential IVPs, no import from primary flow.py. Profile derivatives obtained from Fourier coefficients, not the primary analytic derivative function.",
+  "bibliographic_scope": "Primary selected original text and arXiv bibliography; no original external data or original-code execution is claimed."
+}

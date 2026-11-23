@@ -127,7 +127,7 @@ function links(html){
 }
 
 test('the reviewed problem links and generated hub inventory cover every physical problem exactly once',()=>{
-  assert.equal(inventory.length,92);
+  assert.equal(inventory.length,102);
   const expected=inventory.map(row=>row.id);
   for(const rows of [mapping.problems,index.problems]){
     assert.deepEqual(rows.map(row=>row.id),expected);

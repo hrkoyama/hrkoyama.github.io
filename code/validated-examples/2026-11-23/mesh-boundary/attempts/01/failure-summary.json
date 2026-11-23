@@ -1,0 +1,9 @@
+{
+  "passed": false,
+  "contract_sha256": "c25ad479668beb4b168fb61112c92e03ae482456db393e1845a3f329e2791097",
+  "pytest_passed": 20,
+  "completed_cases": 1,
+  "completed_gates_passed": 82,
+  "failure": "RuntimeWarning: divide by zero encountered in matmul",
+  "preserved": "Full original source, all12 completed P1 NPZs/CSV/partial-progress/result/traceback/JUnit/logs; no criteria or source changes made."
+}

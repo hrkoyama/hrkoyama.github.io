@@ -1,0 +1,112 @@
+{
+  "kh-initial-growth": {
+    "passed": true,
+    "checks": {
+      "reference_state_sensitivity": true,
+      "reference_growth_sensitivity": true,
+      "reference_positive_eigen_growth": true
+    },
+    "records": [
+      {
+        "truncation": 24,
+        "amplitudes": [
+          7.603453162872775e-06,
+          7.860017805701238e-06,
+          8.611148834398717e-06,
+          9.781761081673663e-06,
+          1.1318200054093202e-05
+        ],
+        "maximum_real_eigenvalue": 0.5858623245670571
+      },
+      {
+        "truncation": 40,
+        "amplitudes": [
+          7.603453162872775e-06,
+          7.860018152729302e-06,
+          8.61115013667048e-06,
+          9.781764397364174e-06,
+          1.1318206814937674e-05
+        ],
+        "maximum_real_eigenvalue": 0.5858641640322129,
+        "field_relative_increment": 0.00036961967039571985,
+        "growth_relative_increment": 5.973427257277564e-07
+      },
+      {
+        "truncation": 56,
+        "amplitudes": [
+          7.603453162872775e-06,
+          7.86001815273194e-06,
+          8.611150136682367e-06,
+          9.781764397395089e-06,
+          1.1318206814998453e-05
+        ],
+        "maximum_real_eigenvalue": 0.5858641640461411,
+        "field_relative_increment": 5.074244744290696e-07,
+        "growth_relative_increment": 5.370148770111882e-12
+      }
+    ],
+    "times": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "scope": "Continuous linearized Fourier-Galerkin IVPs. Linearization and finite truncation errors are separately controlled; no nonlinear independent-engine or sharp-interface formula claim."
+  },
+  "rt-initial-growth": {
+    "passed": true,
+    "checks": {
+      "reference_state_sensitivity": true,
+      "reference_growth_sensitivity": true,
+      "reference_positive_eigen_growth": true
+    },
+    "records": [
+      {
+        "truncation": 24,
+        "amplitudes": [
+          8.660254037844388e-06,
+          8.644820882937402e-06,
+          8.656375378910467e-06,
+          8.695577456976542e-06,
+          8.76365052084404e-06
+        ],
+        "maximum_real_eigenvalue": 0.11294010706272593
+      },
+      {
+        "truncation": 40,
+        "amplitudes": [
+          8.660254037844388e-06,
+          8.644820882950883e-06,
+          8.656375379014119e-06,
+          8.695577457272892e-06,
+          8.763650521435007e-06
+        ],
+        "maximum_real_eigenvalue": 0.11294010706316132,
+        "field_relative_increment": 1.1603827926829668e-05,
+        "growth_relative_increment": 6.743405833731231e-11
+      },
+      {
+        "truncation": 56,
+        "amplitudes": [
+          8.660254037844388e-06,
+          8.644820882950885e-06,
+          8.656375379014117e-06,
+          8.69557745727289e-06,
+          8.763650521435006e-06
+        ],
+        "maximum_real_eigenvalue": 0.11294010706315265,
+        "field_relative_increment": 1.728149271651794e-08,
+        "growth_relative_increment": 2.220446049250313e-16
+      }
+    ],
+    "times": [
+      0.0,
+      0.5,
+      1.0,
+      1.5,
+      2.0
+    ],
+    "scope": "Continuous linearized Fourier-Galerkin IVPs. Linearization and finite truncation errors are separately controlled; no nonlinear independent-engine or sharp-interface formula claim."
+  }
+}

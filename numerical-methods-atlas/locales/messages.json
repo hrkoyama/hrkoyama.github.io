@@ -7607,5 +7607,225 @@
   "ref-level-set-rotation-assumptions": {
     "ja": "全て無次元、領域[0,1]²、内部φ<0。与えた非圧縮の剛体運動だけを解き、円は境界から離れます。外側2層のゴースト値は各RK段階で解析解を指定します。周期境界ではなく、内部のφは数値更新します。出力時刻0/.25/.5/.75/1、物理Courant数max(|u|+|v|)Δt/Δx≤.35。",
     "en": "All quantities are nondimensional on[0,1]², with phi<0 inside. The prescribed divergence-free rigid motion keeps the circle away from the boundary. Two exterior ghost layers receive analytic data at each RK stage; this is not a periodic boundary. Every interior value is numerically advanced. Observe0/.25/.5/.75/1; max(|u|+|v|)dt/dx<=.35."
+  },
+  "coverage.forced-vorticity.title": {
+    "ja": "維持されたせん断層の強制渦度系",
+    "en": "Forced vorticity about a maintained shear layer"
+  },
+  "coverage.forced-vorticity.scope": {
+    "ja": "周期[0,2π]²、δ=.25、ν=.005、ε=1e−5、32²/64²/128²、T1の初期成長。独立Fourier–Galerkin線形IVPと、刻み・振幅変更を照合する限定例です。",
+    "en": "Fixed periodic[0,2pi]² initial-growth case,delta.25,nu.005,epsilon1e-5,32²/64²/128²,T1. Compare an independent Fourier–Galerkin linear IVP and separate timestep/amplitude probes; no late roll-up certification."
+  },
+  "coverage.boussinesq-buoyancy.title": {
+    "ja": "能動浮力を伴うBoussinesq渦度系",
+    "en": "Boussinesq vorticity with active buoyancy"
+  },
+  "coverage.boussinesq-buoyancy.scope": {
+    "ja": "周期[0,2π]²、ν=κ=.005、δ=.25、ε=1e−5、32²/64²/128²、T2。滑らかな二層の初期成長を独立線形参照と比較し、RT乱流や鋭い密度界面を検証したとはしません。",
+    "en": "Periodic[0,2pi]²,nu=kappa.005,delta.25,epsilon1e-5,32²/64²/128²,T2. Smooth double-layer initial growth is compared with an independent linear reference; no RT-turbulence or sharp-density-interface claim."
+  },
+  "coverage.ale-scalar-transport.title": {
+    "ja": "移動セル上のALEスカラー保存式",
+    "en": "ALE scalar conservation on moving cells"
+  },
+  "coverage.ale-scalar-transport.scope": {
+    "ja": "周期単位区間、q0=1+.2sin(2πx)、N40/80/160、T1。一定場GCLと固定Nの時間細分化も検査します。1D指定運動だけで、Saltzmanや一般移動メッシュ流体は対象外です。",
+    "en": "Periodic unit interval,q0=1+.2sin(2pi x),N40/80/160,T1, plus constant-state GCL and fixed-N temporal refinement. Prescribed1D motion only; no Saltzman or general moving-mesh fluid claim."
+  },
+  "coverage.linear-rotating-shallow-water.title": {
+    "ja": "線形回転浅水方程式",
+    "en": "Linear rotating shallow-water equations"
+  },
+  "coverage.linear-rotating-shallow-water.scope": {
+    "ja": "周期単位正方形、モード(1,2)、高さ振幅.01、N16/32/64、T.5。独立時間系列を備えます。非線形浅水、球面・全球Williamson試験を実装したとはしません。",
+    "en": "Periodic unit square,mode(1,2),height amplitude.01,N16/32/64,T.5, plus separate time refinement. No nonlinear shallow-water,spherical/global dynamics or Williamson test claim."
+  },
+  "coverage.variable-viscosity-vector.title": {
+    "ja": "可変粘性のベクトル応力境界値問題",
+    "en": "Variable-viscosity vector stress boundary-value problem"
+  },
+  "coverage.variable-viscosity-vector.scope": {
+    "ja": "円環1≤r≤2、両円上で零Dirichlet、θ周期、Nr8/16/32・Nθ=2Nr。速度・ひずみ・物理牽引力・仕事・非零の全境界力を別々に検査します。Navier–Stokesや一般四辺形メッシュの検証ではありません。",
+    "en": "Annulus1≤r≤2,zero Dirichlet on both circles,periodic theta,Nr8/16/32,Ntheta2Nr. Separately check velocity,strain,physical traction,work and nonzero net boundary force. No Navier–Stokes or general-quadrilateral certification."
+  },
+  "coverage.srmhd.title": {
+    "ja": "特殊相対論的理想MHD（SRMHD）",
+    "en": "Special-relativistic ideal MHD (SRMHD)"
+  },
+  "coverage.srmhd.scope": {
+    "ja": "ρ=p=Bx=ηA=1、γ4/3の非線形円偏極厳密族、周期単位区間、N64/128/256、1周期。保存量セル平均・位相・振幅・全段の物理性を検査。一般RMHD衝撃波、極端な磁化/速度、多次元発散制御は対象外です。",
+    "en": "Nonlinear CP exact family rho=p=Bx=etaA1,gamma4/3,periodic unit interval,N64/128/256,one period. Check conserved means,phase,amplitude and stage physicality; no generic RMHD shocks,extreme magnetization/speeds or multidimensional divergence-control claim."
+  },
+  "coverage.srhd.scope": {
+    "ja": "軽量な固定対称二衝撃波の1D衝突。厳密保存量セル平均と比較し、一般相対論的Riemann解法やGRを認証しません。",
+    "en": "Mild fixed symmetric two-shock1D collision with exact conserved cell means; not a generic relativistic Riemann or GR solver."
+  },
+  "coverage.poisson-laplace.scope": {
+    "ja": "追加例はL字特異解と同じ自由度のgraded三角形、warped正方形、および純Neumannの適合条件・平均ゲージと混合Robin境界。旧Poisson例を保持し、残差と連続誤差を区別します。",
+    "en": "Additional cases cover an L-shaped singularity with matched-DOF grading,warped squares,pure-Neumann compatibility/mean gauge and mixed Robin conditions. Existing Poisson examples remain; distinguish residuals from continuous error."
+  },
+  "coverage.mhd.scope": {
+    "ja": "従来のMHD例を保持。追加は全8量の1D整列円偏波と、実際の2D磁場ループ・衝撃波形成後Orszag–Tang。後二者の独立Athena参照は有限格子数値解であり、厳密解や任意問題の検証とはしません。",
+    "en": "Retain existing MHD examples. Add a full-eight-state1D aligned CP wave and actual2D magnetic-loop/postshock Orszag–Tang cases. Independent Athena references for the latter two are finite-grid numerical solutions,not exact or generic validation."
+  },
+  "term.method.q1-fem": {
+    "ja": "Q1有限要素法（曲線座標ベクトルBVP）",
+    "en": "Q1 FEM for mapped-coordinate vector BVP"
+  },
+  "reference.batch18-27.8cf6cf44d2e4df1b": {
+    "ja": "KH初期成長：独立した線形Fourier–Galerkin参照",
+    "en": "KH initial growth: independent linear Fourier-Galerkin reference"
+  },
+  "reference.batch18-27.b626ed5f70f8ce14": {
+    "ja": "[0,2π]²周期、層厚δ=.25、ν=κ=.005、摂動ε=1e−5。32²/64²/128²格子。基底層は明示した外力で定常維持します。U=tanh(sin y/δ)、T=1。主計算は非線形2次元の点サンプルで、参照はkx=1の連続線形化IVPです。K24/40/56の切断を比較し、基底の微分は独立Fourier係数から評価します。鋭い界面の分散式を流用しません。",
+    "en": "Periodic[0,2pi]², layer width.25, nu=kappa=.005, epsilon1e-5 and32²/64²/128² grids. Explicit forcing maintains the base. U=tanh(sin y/delta),T1. The nonlinear primary evolves actual2D point samples. The reference solves the continuous linearized IVP at kx1 with truncationsK24/40/56 and independently Fourier-differentiated base profiles; it does not substitute a sharp-interface dispersion formula."
+  },
+  "reference.batch18-27.b78549c8ef59ed03": {
+    "ja": "独立した空間表現による線形化参照で、独立非線形PDEエンジンではありません。5時刻の有限窓成長と場を比較し、振幅半減で線形化の適用を検査します。文献の可圧縮入力や非線形巻上がりの再現とは区別します。",
+    "en": "Independent spatial representation of a linearized reference, not a second nonlinear PDE engine. Compare fields and finite-window growth at five times; amplitude halving probes linearization validity. This is distinct from the cited compressible inputs and late nonlinear roll-up."
+  },
+  "reference.batch18-27.40234a4eaab4a393": {
+    "ja": "RT初期成長：Boussinesq二層の線形IVP参照",
+    "en": "RT initial growth: linear Boussinesq double-layer IVP reference"
+  },
+  "reference.batch18-27.e64f080aaec0cffe": {
+    "ja": "[0,2π]²周期、層厚δ=.25、ν=κ=.005、摂動ε=1e−5。32²/64²/128²格子。基底層は明示した外力で定常維持します。g=1、b0=.02 tanh(sin y/δ)、ρ/ρ0=1−b/g、T=2。慣性密度は一定で、密度跳躍の可変密度Euler系ではありません。参照は同じ滑らかな基底のkx=1連続線形化をFourier–Galerkin K24/40/56で解きます。慣性密度は一定、浮力偏差θだけが鉛直力へ入り、周期二層の一方が不安定です。",
+    "en": "Periodic[0,2pi]², layer width.25, nu=kappa=.005, epsilon1e-5 and32²/64²/128² grids. Explicit forcing maintains the base. g1,b0=.02tanh(sin y/delta),rho/rho0=1-b/g,T2. Density enters buoyancy only; this is not variable-density Euler. The reference uses the same smooth base, kx1 continuous linearization and Fourier-Galerkin truncationsK24/40/56. Inertial density is constant; buoyancy perturbation theta supplies vertical forcing, with one unstable interface in the periodic double layer."
+  },
+  "reference.batch18-27.5d281c216cd8eac8": {
+    "ja": "点サンプルの2次元非線形主計算に対する、小振幅線形化IVPの独立参照です。有限領域・粘性・拡散・基底維持外力を一致させ、鋭い界面の成長率や後期乱流へ一般化しません。",
+    "en": "Independent small-amplitude linearized IVP reference for a2D point-sampled nonlinear primary. Match finite periodic domain, viscosity, diffusion and maintained base; no sharp-interface growth-rate or late-turbulence generalization."
+  },
+  "reference.batch18-27.3fd14895eab07e8e": {
+    "ja": "円偏波Alfvén波：全保存変数の解析セル平均",
+    "en": "Circular Alfven wave: analytic full-state conserved cell means"
+  },
+  "reference.batch18-27.e6f33352fc05e784": {
+    "ja": "γ=5/3、[0,1]周期、ρ=1、p=.1、Bx=1、振幅.1、速度1、T=1、32/64/128セル。初期値と参照は保存変数の解析セル平均であり、セル平均から復元する圧力は点の定圧と区別します。横磁場と横運動量にはsinc(h)を掛け、E=.66を保ちます。独立Gauss16求積と照合します。図のx–tは1次元空間と保存時刻であり、斜め2次元伝播ではありません。",
+    "en": "gamma5/3, periodic[0,1], rho1,p.1,Bx1,amplitude.1, speed1,T1,32/64/128 cells. Initialize/reference conserved analytic cell means; pressure recovered from means differs from constant pointwise pressure. Apply sinc(h) to transverse magnetic fields and momenta, retaining E=.66, and qualify against independent Gauss16 quadrature. The x-t picture shows one spatial dimension and saved times, not oblique2D propagation."
+  },
+  "reference.batch18-27.9c46f2342528ec94": {
+    "ja": "解析的な保存変数セル平均と独立点関数求積の照合です。p(平均U)は点の定圧.1と異なります。選んだ整列波の最終観測次数は1.62943で、厳密な2次収束・一般MHDの次数保証ではありません。",
+    "en": "Analytic conserved means qualified by independent point-function quadrature. Pressure recovered from averaged U differs from constant pointwise p.1. The selected aligned wave has last observed order1.62943; no exact second-order or general-MHD order claim."
+  },
+  "reference.batch18-27.f15e8dc61cf3de56": {
+    "ja": "磁場ループ：固定Athena++の独立終端参照",
+    "en": "Magnetic loop: pinned independent Athena++ final-field reference"
+  },
+  "reference.batch18-27.21f2f10c2c22105a": {
+    "ja": "[-1,1]×[-.5,.5]周期、ρ=p=1、Az=.001max(.3−r,0)、T=1、(Nx,Ny)=(16,8),(32,16),(64,32)。変更していない公式生成器と同じv=(2,1,2)で、古いvz=0設定とは区別します。未変更の公式生成器を固定コミット1395e2f…で実行し、Ny64/128と最細格子CFL半減で参照感度を確認します。比較は終端保存場のみで、保守的な粗視化後に評価します。",
+    "en": "Periodic[-1,1]x[-.5,.5],rho=p1,Az=.001max(.3-r,0),T1,(Nx,Ny)=(16,8),(32,16),(64,32). Use unchanged official-generator v=(2,1,2), explicitly distinct from old vz0 inputs. Execute the unchanged official generator at pinned commit1395e2f…; qualify Ny64/128 and finest-grid half-CFL sensitivity. Compare final conserved fields only after conservative restriction."
+  },
+  "reference.batch18-27.2a2fc794000af79c": {
+    "ja": "別実装HLLD/PLM/RK2/native-CTの実計算による有限格子参照です。主計算誤差.253088に対し参照差.120074は47.44%あり、精密な厳密解とは表示しません。Athena中間時刻は整列せず、固有面発散は未出力。共通セル発散だけを同じ演算子で比較します。",
+    "en": "Actually executed independent HLLD/PLM/RK2/native-CT finite-grid reference. Reference increment.120074 is47.44% of primary error.253088, not a precision exact-solution bound. Athena intermediate times are not aligned and native-face divergence was not exported; only common-cell divergence uses the same operator."
+  },
+  "reference.batch18-27.8105f4a9d91af8c6": {
+    "ja": "後期Orszag–Tang：独立有限格子の密度・圧力参照",
+    "en": "Late Orszag-Tang: independent finite-grid density/pressure reference"
+  },
+  "reference.batch18-27.77f4b48c3b1e4be7": {
+    "ja": "γ=5/3、[-.5,.5]²周期、ρ=25/(36π)、p=5/(12π)、vx=sin2πy、vy=−sin2πx、Az=(cos4πx−2cos2πy)/(4π√(4π))、16/32/64²セル。原著の非圧縮・粘性抵抗モデルの再現ではありません。公式Athena++を128²/256²と最細CFL半減でT=.2まで進めます。終端保存変数を保守的に粗視化し、その後で圧力を計算します。参照圧力の平均を先に作る規約ではありません。",
+    "en": "gamma5/3,periodic[-.5,.5]²,rho25/(36pi),p5/(12pi),vx=sin2piy,vy=-sin2pix,Az=(cos4pix-2cos2piy)/(4pi sqrt4pi),16/32/64² cells. This does not reproduce the original incompressible viscous/resistive model. Run official Athena++ at128²/256² and finest-grid half CFL to T.2. Conservatively restrict final conserved variables before computing pressure; pressure is not averaged separately."
+  },
+  "reference.batch18-27.c9901171e71e85ce": {
+    "ja": "実行した独立MHDエンジンの有限格子参照で、原著1979の非圧縮・粘性抵抗モデルや厳密解とは異なります。密度/圧力の参照差は主誤差の30.81%/29.83%。密度比7.14315は後期圧縮の診断で、数学的な衝撃波の証明ではありません。参照の固有面発散は測定していません。",
+    "en": "Executed independent MHD-engine finite-grid reference, distinct from the1979 incompressible viscous/resistive model and an exact solution. Reference increments are30.81%/29.83% of primary density/pressure error. Contrast7.14315 diagnoses late compression, not mathematical shock formation. Reference native-face divergence was not measured."
+  },
+  "reference.batch18-27.7d37adb0b657cf02": {
+    "ja": "ALE：実際の移動セル上の解析積分と時間参照",
+    "en": "ALE: analytic moving-cell integrals and separate time reference"
+  },
+  "reference.batch18-27.96ccb42812d5b15e": {
+    "ja": "周期[0,1]、速度.7、q0=1+.2sin(2pi x)、面速度w=.2sin(2pi xi)cos(2pi t)、N40/80/160、T1。時間比較N40,T.25,32/64/128step。解析解q(x,t)=1+.2sin[2π(x−.7t)]を、主計算が保存した実際の面位置の間で積分します。解析面位置との幾何誤差を別記し、時間検査は同じFV ODEを二公差の独立DOP853で解きます。",
+    "en": "Periodic unit interval, speed.7,q0=1+.2sin(2pi x), grid speed .2sin(2pi xi)cos(2pi t),N40/80/160,T1. Separate N40,T.25 time series32/64/128steps. Integrate q(x,t)=1+.2sin[2pi(x-.7t)] between the actual saved primary faces. Separately record geometry error against analytic face positions. Time checks use independent DOP853 at two tolerances for the same FV ODE."
+  },
+  "reference.batch18-27.dc67a14dd2092ed7": {
+    "ja": "連続輸送の解析的な移動セル積分と、同じ半離散系の時間だけ独立な参照を区別します。非一様移動体積を実際に進めますが、1次元スカラーであり、x–t図を2次元流体やEuler/remapの検証とは表示しません。",
+    "en": "Distinguish analytic continuous moving-cell integrals from a time-only independent reference of the same semidiscrete system. Actual nonuniform moving volumes evolve, but this remains a1D scalar problem; its x-t image does not validate2D fluid dynamics or Euler/remap."
+  },
+  "reference.batch18-27.6da1d6284276d826": {
+    "ja": "C-grid：連続Fourier解と離散記号の行列指数",
+    "en": "C-grid: continuous Fourier solution and discrete-symbol exponential"
+  },
+  "reference.batch18-27.fe9bf2d7b32fdeda": {
+    "ja": "線形f-plane、g=H=f=1、周期単位正方形、(k,l)=(1,2)、eta振幅.01、N16/32/64,T.5。別の固定N16時間系列、zero-modeと離散geostrophic診断。η₀=.01cos[2π(x+2y)]、u₀=v₀=0を、連続3×3 Fourier作用素と離散3×3記号の行列指数で別々に発展させます。主計算は実際の2次元staggered場を時間更新します。",
+    "en": "Linear f-plane,g=H=f=1, periodic unit square, mode(1,2),height amplitude.01,N16/32/64,T.5. Separate N16 time refinement, zero-mode and discrete geostrophic probes. Evolve eta0=.01cos[2pi(x+2y)],u0=v0=0 with separate continuous3x3 Fourier-operator and discrete3x3-symbol exponentials. The primary actually advances2D staggered fields."
+  },
+  "reference.batch18-27.0e5ec3a7a00a4495": {
+    "ja": "連続PDEの空間誤差と、離散演算子の時間誤差を分離する解析・線形代数参照です。同じ離散行列の指数は独立空間PDEエンジンではありません。zero-mode慣性振動と離散地衡釣合いは別診断で、非線形・球面・Williamson全地球課題へ一般化しません。",
+    "en": "Analytic/linear-algebra references separate continuous-PDE spatial error from discrete-operator time error. Exponentiating the same discrete matrix is not a second spatial PDE engine. Zero-mode inertia and discrete geostrophic balance are separate diagnostics; no nonlinear, spherical or global Williamson claim."
+  },
+  "reference.batch18-27.2f64ba4c028dd5d1": {
+    "ja": "L字角の特異解：調和場と別の滑らかな製造解",
+    "en": "L-corner singularity: harmonic field and separate smooth MMS"
+  },
+  "reference.batch18-27.4d9610062ca3d867": {
+    "ja": "第4象限を除いた[-1,1]²、theta∈[0,3pi/2]、u=r^(2/3)sin(2theta/3)、解析Dirichlet。N8/16/32、graded map x→x max(|x|,|y|)。正方形sin(pi x)sin(pi y)を同Nのregular/warpedで別検査。角の解析解と勾配を要素求積し、一様格子と事前graded格子を同じ自由度で比べます。別の単位正方形でsin(πx)sin(πy)をregular/warped格子へ置き、特異性と歪みを分けます。",
+    "en": "L-shaped[-1,1]² minus quadrantIV, theta0..3pi/2, analytic Dirichlet harmonic corner field. N8/16/32, fixed map x→x max(|x|,|y|). Separate unit-square sine MMS uses regular/warped grids. Integrate the analytic corner field and gradient over elements, comparing uniform and a-priori graded meshes at matched DOFs. A separate unit-square sine MMS on regular/warped meshes separates singularity from distortion."
+  },
+  "reference.batch18-27.018486187cdc50a9": {
+    "ja": "独立な解析場・勾配と求積の資格検査で、外部FEMソフトは実行していません。角の弱い正則性に滑らかな正方形のL2二次を要求せず、固定graded写像を一般AMR・普遍的最適性と混同しません。",
+    "en": "Independent analytic fields/gradients and quadrature qualification; no external FEM software executed. Do not impose smooth-square L2 order on the corner singularity or identify the fixed graded map with general AMR/universal optimality."
+  },
+  "reference.batch18-27.32953fb497e46480": {
+    "ja": "環状粘性ベクトルMMS：独立応力微分で外力を確認",
+    "en": "Annular vector-viscous MMS: force qualified by independent stress differentiation"
+  },
+  "reference.batch18-27.ebbc12bc057e55c4": {
+    "ja": "1≤r≤2、theta周期、mu=1+.2r²、lambda=0、両円でu=0。A(s)=(s−1)(4−s)、u=(A(1+xy),A(x²−y²)/2)。Nr8/16/32、Ntheta=2Nr。s=x²+y²、A=(s−1)(4−s)のCartesianベクトル場から応力と外力を解析的に導き、別のCartesian差分応力微分で確認します。体積外力の独立積分(756π/5,0)も照合します。",
+    "en": "1≤r≤2, periodic angle, mu=1+.2r², lambda0 and zero velocity on both circles. A(s)=(s−1)(4−s), u=(A(1+xy),A(x²−y²)/2). Nr8/16/32,Ntheta2Nr. Derive stress/force from the Cartesian vector field with s=x²+y²,A=(s-1)(4-s), then qualify force by separate Cartesian stress finite differentiation. Also check independent integrated body force(756pi/5,0)."
+  },
+  "reference.batch18-27.a5df2277fe6c5627": {
+    "ja": "製造解と外力の独立な解析・差分確認で、MFEMを実行した参照ではありません。r重み・円境界の物理traction・反力・散逸/仕事を別検査。圧力や非圧縮拘束はなく、原点を含まない環状線形ベクトルBVPです。",
+    "en": "Manufactured solution with independent analytic/finite-difference force checks, not an executed MFEM reference. Separate radial weights, physical circular traction, reactions and dissipation/work. This annular linear vector BVP has no pressure/incompressibility constraint and excludes the axis."
+  },
+  "reference.batch18-27.199e570be2570a6a": {
+    "ja": "純Neumann：解析場・互換条件・平均値ゲージ",
+    "en": "Pure Neumann: analytic field, compatibility and mean gauge"
+  },
+  "reference.batch18-27.9678551eca9a7174": {
+    "ja": "単位正方形N16/32/64、セル中心の点DOF。cos(2pi x)cos(2pi y)、全壁Neumann0、平均0とN32の平均.25診断。u=cos(2πx)cos(2πy)、f=8π²u、外向き法線流束0を点DOFで比較します。平均0と平均.25を分け、source+1の物理的不適合を投影で隠さず拒否します。",
+    "en": "Unit square N16/32/64, cell-centred point DOFs, cosine exact field, homogeneous Neumann; mean0 andN32 mean.25 probe. Use point DOFs for u=cos(2pi*x)cos(2pi*y),f=8pi²u and zero outward normal flux. Distinguish means0/.25 and explicitly reject incompatible source+1 rather than projecting it away."
+  },
+  "reference.batch18-27.85744ba452806f9b": {
+    "ja": "製造解析場と物理的な積分互換条件の参照です。同じ離散行列を別の線形法で解く比較は独立PDEエンジンではありません。Neumannの零空間と平均ゲージを扱い、既存Dirichlet MGの成功を借用しません。",
+    "en": "Manufactured analytic field and physical integral-compatibility reference. Solving the same matrix with another linear solver is not a second PDE engine. Test Neumann nullspace/mean gauge without borrowing previous Dirichlet multigrid evidence."
+  },
+  "reference.batch18-27.fd691ce35dcedbec": {
+    "ja": "混合Robin：2次元解析場と独立な法線流束",
+    "en": "Mixed Robin: 2D analytic field and independent normal flux"
+  },
+  "reference.batch18-27.3189c4fe1e8c298c": {
+    "ja": "単位正方形N16/32/64、u=cos(pi x)cos(2pi y)+x+y。x壁Neumann±1、y壁alpha1,beta.5の解析Robin。f=5π²cos(πx)cos(2πy)を使い、x壁は外向きNeumann±1、y壁はαu+β∂nu=gの解析値です。境界条件の代数残差と、解析的な物理法線流束の誤差を別々に測ります。",
+    "en": "Unit square N16/32/64; cosine-plus-linear exact field. x walls Neumann±1; y walls analytic Robin alpha1,beta.5. Use f=5pi²cos(pi*x)cos(2pi*y),outward Neumann±1 on x walls and analytic alpha*u+beta*dn(u)=g on y walls. Distinguish algebraic boundary-relation residual from analytic physical-normal-flux error."
+  },
+  "reference.batch18-27.fe43d7393ba5349c": {
+    "ja": "解析的な製造解・外向き法線流束と体積/境界収支の参照です。Robin項が一意性を与えるため、純Neumann用の平均ゲージを課しません。外部MFEMの実行や一般境界に対する保証ではありません。",
+    "en": "Analytic manufactured solution/outward-normal flux and volume/boundary-budget reference. Robin terms make the problem unique, so no pure-Neumann mean gauge is imposed. No MFEM execution or general-boundary guarantee."
+  },
+  "reference.batch18-27.ab433d2578a5496a": {
+    "ja": "相対論的対称衝突：特殊化した二衝撃波Taub参照",
+    "en": "Relativistic symmetric collision: specialized two-shock Taub reference"
+  },
+  "reference.batch18-27.b8e2678fa0792259": {
+    "ja": "c=1、γ=5/3、ρ=1、p=.1、左右v=±.3、B=0。区間[0,1]、初期不連続x=.5、t=.3、96/192/384セル。衝撃波が端へ届く前の外挿境界です。Taub断熱式と相対速度式の圧力根から静止した同一星状態と衝撃波速度を求め、保存変数の区分一定厳密場をセル積分します。接触面は退化し、一般三波Riemannソルバーではありません。",
+    "en": "c=1,gamma5/3,rho1,p.1,opposite normal v±.3,B0. Domain[0,1], initial jump .5,t=.3,96/192/384 cells. Constant extrapolation boundaries before shocks reach endpoints. Solve the pressure root from Taub adiabat and relative-velocity relations for the identical resting star states and shock speeds, then integrate the piecewise-constant exact conserved field over cells. The contact degenerates; this is not a general three-wave Riemann solver."
+  },
+  "reference.batch18-27.1f27b947841efac7": {
+    "ja": "独立に記述した対称二衝撃波の半解析参照と、実際の最終状態に対する別のSRHD圧力根回復・流束を区別します。Eは静止質量を含みます。穏やかな固定入力で、一般RMHD衝撃波・極端なLorentz因子・原著数値表の再現は対象外。図は1次元の時空間場です。",
+    "en": "Distinguish the independently written specialized semi-analytic two-shock reference from separate scalar-pressure SRHD recovery/flux checks of actual final states. E includes rest mass. Mild fixed inputs do not validate generic RMHD shocks,extreme Lorentz factors or original numerical tables. Pictures show1D space-time fields."
+  },
+  "reference.batch18-27.6aabb16bbd765c61": {
+    "ja": "SRMHD円偏波：有限振幅厳密族と独立テンソル積分",
+    "en": "SRMHD circular wave: finite-amplitude exact family and independent tensor integration"
+  },
+  "reference.batch18-27.9f7a55f4f9388b0c": {
+    "ja": "平坦時空、c=4π=1、γ=4/3、ρ=p=Bx=η=1、vx=0の厳密族。原著2π周期を単位区間へ写し、64/128/256セル、周期境界、t=1/vA。Bxは1次元で固定します。非線形Alfvén速度の閉じた式を使い、点の原始変数から独立なストレステンソルで保存量と流束を作り、Gauss積分と複素段階PDE残差で確認します。原著の2π周期を単位区間へ移しています。",
+    "en": "Flat spacetime,c=4pi=1,gamma4/3,rho=p=Bx=eta1, exact-family vx0. Rescale the original2pi period to a unit domain;64/128/256 cells,periodic,t=1/vA. Normal Bx is fixed in1D. Use the closed nonlinear Alfven-speed formula. Independently form conserved quantities/fluxes from point primitives through the stress tensor; qualify Gauss integration and complex-step PDE residuals. Rescale the original2pi period to the unit interval."
+  },
+  "reference.batch18-27.e59d657aa10106bb": {
+    "ja": "原著の選択節で確認した有限振幅厳密解族を参照し、独立な低次HLL/MUSCL系で進めます。ECHOアルゴリズムや誤差表の再現ではありません。Bx一定の1次元で、x–t図を多次元磁場発散制御・一般RMHD衝撃波・GRへ一般化しません。",
+    "en": "Reference the finite-amplitude exact family checked in selected original sections, evolved with an independent lower-order HLL/MUSCL scheme. This does not reproduce ECHO or its error tables. Constant-Bx1D and its x-t picture do not validate multidimensional divergence control,generic RMHD shocks or GR."
   }
 }

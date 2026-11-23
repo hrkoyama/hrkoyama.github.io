@@ -1,0 +1,554 @@
+{
+  "schema_version": 1,
+  "actually_executed": true,
+  "passed": false,
+  "created_at_utc": "2026-11-23T12:13:32.329317+00:00",
+  "reference_contract_sha256": "6b525e503a9091adfb84116fca2d44c1a8cc420a101dfc4b1c77bb04d55392de",
+  "source_commit": "1395e2f543f4368d448cb1a2cf92ba1f910e3416",
+  "source_archive_sha256": "8a6cd8658217349fd913c03b549df8b88c2a2fe96cb4ea1b8ba4bf747c6af896",
+  "records": [
+    {
+      "id": "loop-n64-cfl0p3",
+      "kind": "loop",
+      "n": 64,
+      "nx": 128,
+      "cfl": 0.3,
+      "final_time": 1.0,
+      "input": "athinput-loop-n64-cfl0p3.txt",
+      "expected_velocity": [
+        2.0,
+        1.0,
+        2.0
+      ],
+      "snapshots": [
+        0,
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ],
+      "command": [
+        "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch18-27/mhd/athena-loop",
+        "-i",
+        "athinput"
+      ],
+      "input_sha256": "9269aed5caa27c33e5bb611fd59b0bbaf6f2002bfa72865ea6ac67ee6fa8eee4",
+      "binary_sha256": "a5b7ade55799e74d571e7b91c0bf38b09f7862ba55ee2baba9c0080f1a97ad61",
+      "completed": true,
+      "returncode": 0,
+      "seconds": 1.2639087080024183,
+      "file": "loop-n64-cfl0p3.npz",
+      "sha256": "d3a36f5e10664a1006a1ca42b2c610d0c0586fb1d7fe0c17a8a25bc1475d5b51",
+      "raw_table_sha256": {
+        "loop-n64-cfl0p3.block0.out1.00000.tab": "2578d9ad334d248ad903360af124417c260f60f37d1b26c6f76b6e8d547f667c",
+        "loop-n64-cfl0p3.block0.out1.00001.tab": "feb64cce5876713119941a5c1ca002d714291758b1170f51d83800399714cdbf",
+        "loop-n64-cfl0p3.block0.out1.00002.tab": "d8a73803b9aa5be63532a060fdc82409803053ecddbb3dcbeeee869c6ae09c8f",
+        "loop-n64-cfl0p3.block0.out1.00003.tab": "28557eff69764cb5ac1767a2af1fcb4c4ff3428e6d2d811d1e7c8e944a166126",
+        "loop-n64-cfl0p3.block0.out1.00004.tab": "d8e647ede4f351ebda95895ce54c69ced2c78f190f9d1d3c091149cb2e3e0c8d"
+      },
+      "common_cell_divergence_history": [
+        0.009731633151221275,
+        0.00043821307087814863,
+        0.00028029209693002793,
+        0.00027718349383761345,
+        0.00024362321632814994
+      ],
+      "native_face_divergence_measured": false
+    },
+    {
+      "id": "loop-n128-cfl0p3",
+      "kind": "loop",
+      "n": 128,
+      "nx": 256,
+      "cfl": 0.3,
+      "final_time": 1.0,
+      "input": "athinput-loop-n128-cfl0p3.txt",
+      "expected_velocity": [
+        2.0,
+        1.0,
+        2.0
+      ],
+      "snapshots": [
+        0,
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ],
+      "command": [
+        "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch18-27/mhd/athena-loop",
+        "-i",
+        "athinput"
+      ],
+      "input_sha256": "3f4b1233bd6ece2cb74067104964cde9f592219916085319f94f92b9d9b1463f",
+      "binary_sha256": "a5b7ade55799e74d571e7b91c0bf38b09f7862ba55ee2baba9c0080f1a97ad61",
+      "completed": true,
+      "returncode": 0,
+      "seconds": 8.849245582998265,
+      "file": "loop-n128-cfl0p3.npz",
+      "sha256": "112c12064c8f558c7b055ee0cb0732e2d44109fcf30c9d5d067813f15b1bfb7b",
+      "raw_table_sha256": {
+        "loop-n128-cfl0p3.block0.out1.00000.tab": "bf158bf03b7297929ff2633fb875c94f59cb0df050514ee8130aec77f72b7a34",
+        "loop-n128-cfl0p3.block0.out1.00001.tab": "678f64aa6f1b5c44b2fad474df32928428e01219dbb27422b36cf9d111a59234",
+        "loop-n128-cfl0p3.block0.out1.00002.tab": "06bca376ab2691405742d7b8d105d35fded0ec40d5945c89d8f95ce42adbe1a9",
+        "loop-n128-cfl0p3.block0.out1.00003.tab": "785f0e2c5f0d35f6bd22918bc9af1be2b5c3c26360ea1e12b58808f526e8f56f",
+        "loop-n128-cfl0p3.block0.out1.00004.tab": "4d5d5f40067bf510b81e93c180c083ff6291d6597a9642b95e366a4242478512"
+      },
+      "common_cell_divergence_history": [
+        0.019463266302441884,
+        0.0006036505574504511,
+        0.0004117254340501586,
+        0.0003321716027815287,
+        0.0002958253035683471
+      ],
+      "native_face_divergence_measured": false
+    },
+    {
+      "id": "loop-n128-cfl0p15",
+      "kind": "loop",
+      "n": 128,
+      "nx": 256,
+      "cfl": 0.15,
+      "final_time": 1.0,
+      "input": "athinput-loop-n128-cfl0p15.txt",
+      "expected_velocity": [
+        2.0,
+        1.0,
+        2.0
+      ],
+      "snapshots": [
+        0,
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ],
+      "command": [
+        "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch18-27/mhd/athena-loop",
+        "-i",
+        "athinput"
+      ],
+      "input_sha256": "39ac7df73261ee9e624d784bb97b2b29b01222fab7f59ba34e734e2d0b8e88d4",
+      "binary_sha256": "a5b7ade55799e74d571e7b91c0bf38b09f7862ba55ee2baba9c0080f1a97ad61",
+      "completed": true,
+      "returncode": 0,
+      "seconds": 17.687588875000074,
+      "file": "loop-n128-cfl0p15.npz",
+      "sha256": "e19cefc831c0f350528c4064d34c719db50735ab6176e9b18b8179b1b63af124",
+      "raw_table_sha256": {
+        "loop-n128-cfl0p15.block0.out1.00000.tab": "bf158bf03b7297929ff2633fb875c94f59cb0df050514ee8130aec77f72b7a34",
+        "loop-n128-cfl0p15.block0.out1.00001.tab": "52ed5b86d666aaa27e2c51e058301f8d798ec59bc6cfb6741d76e08777cf0495",
+        "loop-n128-cfl0p15.block0.out1.00002.tab": "a1ca1d864fca8b7a365a4f728777921aa77cf896f8d51a2d4cda702ff0ef5d5c",
+        "loop-n128-cfl0p15.block0.out1.00003.tab": "260361e6ee18c08e40ff45fe42c4bb034d5a476d819b986b4f4777cd78007748",
+        "loop-n128-cfl0p15.block0.out1.00004.tab": "d37168fbbb534ab5164e72faf5115529617ce8117d4fd8e2f6f6a2b135858322"
+      },
+      "common_cell_divergence_history": [
+        0.019463266302441884,
+        0.0006050047247580289,
+        0.00040817870962166214,
+        0.0003308607117152064,
+        0.00029405111239142606
+      ],
+      "native_face_divergence_measured": false
+    },
+    {
+      "id": "ot-n128-cfl0p3",
+      "kind": "ot",
+      "n": 128,
+      "nx": 128,
+      "cfl": 0.3,
+      "final_time": 0.2,
+      "input": "athinput-ot-n128-cfl0p3.txt",
+      "expected_velocity": "official Orszag-Tang sine velocities",
+      "snapshots": [
+        0,
+        0.05,
+        0.1,
+        0.15000000000000002,
+        0.2
+      ],
+      "command": [
+        "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch18-27/mhd/athena-ot",
+        "-i",
+        "athinput"
+      ],
+      "input_sha256": "4b4ae68b0a3635006ca2f398451fd5095b56eac4bc4f3b09b7567a07385a5d3b",
+      "binary_sha256": "a2b8e9ecc0329c24975c8874e1aef5457523dc698bff58a2be8e414453a4e76e",
+      "completed": true,
+      "returncode": 0,
+      "seconds": 1.3283895000058692,
+      "file": "ot-n128-cfl0p3.npz",
+      "sha256": "7170f5287c02d577af033d786073b2150f33b121c5812bb5356a2c5f1d3ccf68",
+      "raw_table_sha256": {
+        "ot-n128-cfl0p3.block0.out1.00000.tab": "38d2edc2b5d0f124c41d6d5c77301d761840d0f85d177dbbb136deeb9a7b9995",
+        "ot-n128-cfl0p3.block0.out1.00001.tab": "58cfb257dcdd9bf8465d262f4dd2b09be1c813a58db7c3c33a50cbc963d08dab",
+        "ot-n128-cfl0p3.block0.out1.00002.tab": "b0bb8779b4bb76d07b53f7d8f7d527cf22bc13a63bb765091c93ea1fea418629",
+        "ot-n128-cfl0p3.block0.out1.00003.tab": "497b87eaf232267a9bfa197d2c831870af4ee6f2d385ef322d2490c67751d345",
+        "ot-n128-cfl0p3.block0.out1.00004.tab": "1b9dc3c0cd80e39923de845c404d081a1917516e15cbf8e3fc4d29ecd8d12089"
+      },
+      "common_cell_divergence_history": [
+        1.7053025658242404e-13,
+        0.24890053673783052,
+        0.5827739259203568,
+        1.1055835221592236,
+        5.9004820271429885
+      ],
+      "native_face_divergence_measured": false
+    },
+    {
+      "id": "ot-n256-cfl0p3",
+      "kind": "ot",
+      "n": 256,
+      "nx": 256,
+      "cfl": 0.3,
+      "final_time": 0.2,
+      "input": "athinput-ot-n256-cfl0p3.txt",
+      "expected_velocity": "official Orszag-Tang sine velocities",
+      "snapshots": [
+        0,
+        0.05,
+        0.1,
+        0.15000000000000002,
+        0.2
+      ],
+      "command": [
+        "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch18-27/mhd/athena-ot",
+        "-i",
+        "athinput"
+      ],
+      "input_sha256": "0d60f88f910dda7cdc57a8e4d2f63f988a5d3fbffb08d280c6d16c995f85dfd1",
+      "binary_sha256": "a2b8e9ecc0329c24975c8874e1aef5457523dc698bff58a2be8e414453a4e76e",
+      "completed": true,
+      "returncode": 0,
+      "seconds": 8.602463582996279,
+      "file": "ot-n256-cfl0p3.npz",
+      "sha256": "44d621ee753cb234137b487385dbc123225b58f84ff37c222e3f282f5999cfb1",
+      "raw_table_sha256": {
+        "ot-n256-cfl0p3.block0.out1.00000.tab": "ea09b7b0924cf06192ec16f649c4ecd140bfebd9b91c3c2c54ebdab29ee73baa",
+        "ot-n256-cfl0p3.block0.out1.00001.tab": "b37c95976a75240b79bd1e70697932c6f4018703e6333979339c2d9af8c598e2",
+        "ot-n256-cfl0p3.block0.out1.00002.tab": "455ac6cdb614d38b80e60e941c641de9503a1e2d95061ef6e8b0923fdd8fc101",
+        "ot-n256-cfl0p3.block0.out1.00003.tab": "bbda2193ea7754a288de8b6e062c2f5dd88383230aa8e9b32e1bc058e50e7139",
+        "ot-n256-cfl0p3.block0.out1.00004.tab": "60f978b4f958fcaa9a72f7044d3e89ff48b4e6a8d2ccc63b2fc86d5d7368a03a"
+      },
+      "common_cell_divergence_history": [
+        9.094947017729282e-13,
+        0.22525820393582308,
+        0.5649487623376785,
+        1.470766244248292,
+        5.328440378224471
+      ],
+      "native_face_divergence_measured": false
+    },
+    {
+      "id": "ot-n256-cfl0p15",
+      "kind": "ot",
+      "n": 256,
+      "nx": 256,
+      "cfl": 0.15,
+      "final_time": 0.2,
+      "input": "athinput-ot-n256-cfl0p15.txt",
+      "expected_velocity": "official Orszag-Tang sine velocities",
+      "snapshots": [
+        0,
+        0.05,
+        0.1,
+        0.15000000000000002,
+        0.2
+      ],
+      "command": [
+        "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch18-27/mhd/athena-ot",
+        "-i",
+        "athinput"
+      ],
+      "input_sha256": "bacae46fc451c60eb759cf2e7d6eeb0bd775950cc1d51ba034c1c9e3f2e48788",
+      "binary_sha256": "a2b8e9ecc0329c24975c8874e1aef5457523dc698bff58a2be8e414453a4e76e",
+      "completed": true,
+      "returncode": 0,
+      "seconds": 15.389948000003642,
+      "file": "ot-n256-cfl0p15.npz",
+      "sha256": "6438dc45d4fa5d7542df2ba24379f00e1437f929e61539ca9385c1ce79f77c41",
+      "raw_table_sha256": {
+        "ot-n256-cfl0p15.block0.out1.00000.tab": "ea09b7b0924cf06192ec16f649c4ecd140bfebd9b91c3c2c54ebdab29ee73baa",
+        "ot-n256-cfl0p15.block0.out1.00001.tab": "bcd01203ba75fdc721e3b99c81375ee29e220dc38de86738bded57c8d988a3fe",
+        "ot-n256-cfl0p15.block0.out1.00002.tab": "aea8480cec968a606ed7e22793fcc1b6a70e1915beb9e87ba7f2cf3ca29453e4",
+        "ot-n256-cfl0p15.block0.out1.00003.tab": "d7b6364b71f2f880e4d25d69230cf36db5c0cc70cc85dddafb2a14adaf8b923a",
+        "ot-n256-cfl0p15.block0.out1.00004.tab": "9b04d1a329ab21017a4ce586152a2517cb00fc7fa4bc153f32f569133c8049db"
+      },
+      "common_cell_divergence_history": [
+        9.094947017729282e-13,
+        0.1953073542095929,
+        0.4898539793330805,
+        1.4920796566642025,
+        5.330565266543363
+      ],
+      "native_face_divergence_measured": false
+    }
+  ],
+  "qualification": {
+    "passed": false,
+    "checks": [
+      {
+        "name": "loop-n64-cfl0p3 inspected generator initialization",
+        "value": 8.881784197001252e-16,
+        "bound": 2e-12,
+        "passed": true
+      },
+      {
+        "name": "loop-n64-cfl0p3 finite positive states",
+        "value": true,
+        "bound": true,
+        "passed": true
+      },
+      {
+        "name": "loop-n64-cfl0p3 exact requested output times",
+        "value": [
+          0.0,
+          0.250684,
+          0.5013681,
+          0.7506278,
+          1.0
+        ],
+        "bound": [
+          0,
+          0.25,
+          0.5,
+          0.75,
+          1.0
+        ],
+        "passed": false
+      },
+      {
+        "name": "loop-n64-cfl0p3 conserved fluid integrals",
+        "value": 3.700743372733756e-15,
+        "bound": 2e-11,
+        "passed": true
+      },
+      {
+        "name": "loop-n128-cfl0p3 inspected generator initialization",
+        "value": 8.881784197001252e-16,
+        "bound": 2e-12,
+        "passed": true
+      },
+      {
+        "name": "loop-n128-cfl0p3 finite positive states",
+        "value": true,
+        "bound": true,
+        "passed": true
+      },
+      {
+        "name": "loop-n128-cfl0p3 exact requested output times",
+        "value": [
+          0.0,
+          0.250684,
+          0.5006559,
+          0.7506277,
+          1.0
+        ],
+        "bound": [
+          0,
+          0.25,
+          0.5,
+          0.75,
+          1.0
+        ],
+        "passed": false
+      },
+      {
+        "name": "loop-n128-cfl0p3 conserved fluid integrals",
+        "value": 1.1324274851176597e-14,
+        "bound": 2e-11,
+        "passed": true
+      },
+      {
+        "name": "loop-n128-cfl0p15 inspected generator initialization",
+        "value": 8.881784197001252e-16,
+        "bound": 2e-12,
+        "passed": true
+      },
+      {
+        "name": "loop-n128-cfl0p15 finite positive states",
+        "value": true,
+        "bound": true,
+        "passed": true
+      },
+      {
+        "name": "loop-n128-cfl0p15 exact requested output times",
+        "value": [
+          0.0,
+          0.2503279,
+          0.5002998,
+          0.7502716,
+          1.0
+        ],
+        "bound": [
+          0,
+          0.25,
+          0.5,
+          0.75,
+          1.0
+        ],
+        "passed": false
+      },
+      {
+        "name": "loop-n128-cfl0p15 conserved fluid integrals",
+        "value": 1.9539925005776054e-14,
+        "bound": 2e-11,
+        "passed": true
+      },
+      {
+        "name": "ot-n128-cfl0p3 inspected generator initialization",
+        "value": 1.7763568394002505e-15,
+        "bound": 2e-12,
+        "passed": true
+      },
+      {
+        "name": "ot-n128-cfl0p3 finite positive states",
+        "value": true,
+        "bound": true,
+        "passed": true
+      },
+      {
+        "name": "ot-n128-cfl0p3 exact requested output times",
+        "value": [
+          0.0,
+          0.05029611,
+          0.1000451,
+          0.1505036,
+          0.2
+        ],
+        "bound": [
+          0,
+          0.05,
+          0.1,
+          0.15000000000000002,
+          0.2
+        ],
+        "passed": false
+      },
+      {
+        "name": "ot-n128-cfl0p3 conserved fluid integrals",
+        "value": 3.447242491461111e-14,
+        "bound": 2e-11,
+        "passed": true
+      },
+      {
+        "name": "ot-n256-cfl0p3 inspected generator initialization",
+        "value": 3.552713678800501e-15,
+        "bound": 2e-12,
+        "passed": true
+      },
+      {
+        "name": "ot-n256-cfl0p3 finite positive states",
+        "value": true,
+        "bound": true,
+        "passed": true
+      },
+      {
+        "name": "ot-n256-cfl0p3 exact requested output times",
+        "value": [
+          0.0,
+          0.05026416,
+          0.1004607,
+          0.1504323,
+          0.2
+        ],
+        "bound": [
+          0,
+          0.05,
+          0.1,
+          0.15000000000000002,
+          0.2
+        ],
+        "passed": false
+      },
+      {
+        "name": "ot-n256-cfl0p3 conserved fluid integrals",
+        "value": 5.2208237732997986e-14,
+        "bound": 2e-11,
+        "passed": true
+      },
+      {
+        "name": "ot-n256-cfl0p15 inspected generator initialization",
+        "value": 3.552713678800501e-15,
+        "bound": 2e-12,
+        "passed": true
+      },
+      {
+        "name": "ot-n256-cfl0p15 finite positive states",
+        "value": true,
+        "bound": true,
+        "passed": true
+      },
+      {
+        "name": "ot-n256-cfl0p15 exact requested output times",
+        "value": [
+          0.0,
+          0.05000923,
+          0.1002117,
+          0.1501794,
+          0.2
+        ],
+        "bound": [
+          0,
+          0.05,
+          0.1,
+          0.15000000000000002,
+          0.2
+        ],
+        "passed": false
+      },
+      {
+        "name": "ot-n256-cfl0p15 conserved fluid integrals",
+        "value": 5.334621633323877e-14,
+        "bound": 2e-11,
+        "passed": true
+      },
+      {
+        "name": "loop space reference increment",
+        "value": 0.12372449093127584,
+        "bound": 0.35,
+        "passed": true
+      },
+      {
+        "name": "loop time reference increment",
+        "value": 0.0025578336208150355,
+        "bound": 0.03,
+        "passed": true
+      },
+      {
+        "name": "ot space density reference increment",
+        "value": 0.004167205456234775,
+        "bound": 0.15,
+        "passed": true
+      },
+      {
+        "name": "ot space pressure reference increment",
+        "value": 0.006945593419112317,
+        "bound": 0.2,
+        "passed": true
+      },
+      {
+        "name": "ot time density reference increment",
+        "value": 5.7187256424709266e-05,
+        "bound": 0.03,
+        "passed": true
+      },
+      {
+        "name": "ot time pressure reference increment",
+        "value": 0.0001075991180399452,
+        "bound": 0.03,
+        "passed": true
+      },
+      {
+        "name": "finite-grid late OT density contrast",
+        "value": 7.182915709302142,
+        "bound": 2.0,
+        "passed": true
+      }
+    ],
+    "scope": "Actual independent Athena++ finite-grid calculations; two spatial grids and a halved-CFL companion for each problem. Density contrast is a compression diagnostic, not a proof of a continuum shock or an error bound."
+  },
+  "failure": null,
+  "duration_seconds": 53.31505804100016,
+  "divergence_scope": "Only Bcc is exported: report the same centered common-cell divergence used for primary cell fields. No Athena native-face divergence measurement or zero-native-divergence claim."
+}

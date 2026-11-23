@@ -199,7 +199,7 @@ assert all(next(row for row in valid['items'] if row['id']==i)['completion_evide
 html=m.section(valid,'en');assert '5 active items' in html and all('#'+i+'-en' in html for i in ids)
 for mutation in ['excess','duplicate','missing','unlisted','no-batch','legacy-conflict']:
  bad=copy.deepcopy(data);w=bad['workflow']
- if mutation=='excess':w['max_active']=6
+ if mutation=='excess':w['max_active']=11
  elif mutation=='duplicate':w['active_items']=[ids[0]]*5
  elif mutation=='missing':w['active_items']=ids[:-1]
  elif mutation=='unlisted':w['active_items']=ids[:-1]+['unknown-item']
@@ -211,4 +211,42 @@ for mutation in ['excess','duplicate','missing','unlisted','no-batch','legacy-co
 print('five-item batches are explicit and evidence remains independent')
 `;
  assert.match(execFileSync(process.env.ATLAS_INDEX_PYTHON||'python3',['-B','-c',code,fileURLToPath(root)],{encoding:'utf8'}),/five-item batches are explicit/);
+});
+
+test('ten-item publication batches preserve explicit membership and reject overflow or ambiguous slots',()=>{
+ const code=String.raw`
+import copy,importlib.util,json,pathlib,sys
+from unittest.mock import patch
+root=pathlib.Path(sys.argv[1]).resolve()
+spec=importlib.util.spec_from_file_location('backlog',root/'scripts/build-atlas-benchmark-backlog.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
+data=json.loads((root/m.SOURCE).read_text())
+for row in data['items']:
+ if row['state']=='in-progress':row.update(state='planned',completion=None)
+chosen=[row for row in data['items'] if 18<=row['sequence']<=27]
+assert len(chosen)==10
+for row in chosen:row.update(state='in-progress',completion=None)
+ids=[row['id'] for row in chosen]
+data['workflow'].update(max_active=10,active_item=None,active_items=ids,batch_id='fixture-ten')
+original=pathlib.Path.read_text
+def load(value):
+ def read(path,*a,**kw):
+  return json.dumps(value) if path.resolve()==(root/m.SOURCE).resolve() else original(path,*a,**kw)
+ with patch.object(pathlib.Path,'read_text',read):return m.load(root)
+valid=load(data);assert valid['counts']['states']['in-progress']==10
+html=m.section(valid,'en');assert '10 active items' in html and all('#'+i+'-en' in html for i in ids)
+for mutation in ['overflow','excess-cap','boolean-cap','missing','duplicate','reordered','legacy-conflict']:
+ bad=copy.deepcopy(data);w=bad['workflow']
+ if mutation=='overflow':w['max_active']=9
+ elif mutation=='excess-cap':w['max_active']=11
+ elif mutation=='boolean-cap':w['max_active']=True
+ elif mutation=='missing':w['active_items']=ids[:-1]
+ elif mutation=='duplicate':w['active_items']=ids[:-1]+[ids[0]]
+ elif mutation=='reordered':w['active_items']=list(reversed(ids))
+ else:w['active_item']=ids[0]
+ try:load(bad)
+ except ValueError:pass
+ else:raise AssertionError('invalid ten-item batch accepted: '+mutation)
+print('ten-item batches retain individual completion requirements')
+`;
+ assert.match(execFileSync(process.env.ATLAS_INDEX_PYTHON||'python3',['-B','-c',code,fileURLToPath(root)],{encoding:'utf8'}),/ten-item batches retain/);
 });

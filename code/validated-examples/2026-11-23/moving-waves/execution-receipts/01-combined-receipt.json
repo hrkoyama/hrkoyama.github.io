@@ -1,0 +1,54 @@
+{
+  "passed": true,
+  "group": "moving-waves",
+  "attempt": "01",
+  "contract_sha256": "75688d812d8e1658c4b6e4e0139a31c116ca2bf542ebecb46f8cd86472dc92fc",
+  "combined_seconds": 1.5269363749976037,
+  "budget_seconds": 120,
+  "stages": [
+    {
+      "stage": "pytest",
+      "command": [
+        "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch18-27/env/bin/python",
+        "-W",
+        "error",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--junitxml=/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-18-27-2026-11-23/geometry/moving-waves/attempt-01/pytest.xml"
+      ],
+      "exit_code": 0,
+      "seconds": 1.0337312080009724
+    },
+    {
+      "stage": "main",
+      "command": [
+        "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch18-27/env/bin/python",
+        "-W",
+        "error",
+        "run.py",
+        "--input",
+        "inputs.json",
+        "--output",
+        "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-18-27-2026-11-23/geometry/moving-waves/attempt-01/results"
+      ],
+      "exit_code": 0,
+      "seconds": 0.49306033300672425
+    }
+  ],
+  "planned_tests": 19,
+  "planned_gates": 98,
+  "planned_runs": 15,
+  "pytest": {
+    "tests": 19,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "actual_cases": 2,
+  "actual_gates": 98,
+  "actual_passed": true,
+  "actual_records": 15
+}

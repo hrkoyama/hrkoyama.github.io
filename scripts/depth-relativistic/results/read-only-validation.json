@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "actual_public_validate_result_called": true,
+  "five_shared_grid_arrays_bit_identical": {
+    "srmhd-alfven-n64.npz": true,
+    "srhd-collision-n96.npz": true,
+    "srhd-collision-n384.npz": true,
+    "srhd-collision-n192.npz": true,
+    "srmhd-alfven-n128.npz": true
+  },
+  "first_attempt": "attempts/01",
+  "current_contract_sha256": "68267d1a204f35ee710e5021b77a2ad051b09e8668ec7111bc336ee50055801d",
+  "science_rerun": false
+}

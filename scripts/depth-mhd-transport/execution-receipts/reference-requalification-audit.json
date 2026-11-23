@@ -1,0 +1,20 @@
+{
+  "main_executed": false,
+  "pytest_executed": false,
+  "main_contract_sha256": "295cffb4e7d6cf09d7412b3f5405d544c42ca487376b296e848ada55aabdaad8",
+  "main_source_hashes_match": true,
+  "original_reference_contract_source_hashes_match": true,
+  "reference_requalification_passed": true,
+  "reference_checks": 31,
+  "pde_rerun_performed": false,
+  "six_NPZ_hashes_identical_to_failed_attempt": true,
+  "original_failed_qualification_retained": true,
+  "failed_gates": [
+    "loop-n64-cfl0p3 exact requested output times",
+    "loop-n128-cfl0p3 exact requested output times",
+    "loop-n128-cfl0p15 exact requested output times",
+    "ot-n128-cfl0p3 exact requested output times",
+    "ot-n256-cfl0p3 exact requested output times",
+    "ot-n256-cfl0p15 exact requested output times"
+  ]
+}

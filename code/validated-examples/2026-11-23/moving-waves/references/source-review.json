@@ -1,0 +1,28 @@
+{
+  "reviewed_on": "2026-11-23",
+  "execution_performed": false,
+  "read_scope": [
+    {
+      "id": "huff1987-moving-grid",
+      "author": "Dennis L. Huff",
+      "year": 1987,
+      "title": "Numerical Simulations of Unsteady, Viscous, Transonic Flow Over Isolated and Cascaded Airfoils Using a Deforming Grid",
+      "url": "https://ntrs.nasa.gov/api/citations/19870015002/downloads/19870015002.pdf",
+      "review_level": "selected-primary-report-grid-treatment",
+      "review_scope": "NASA TM89890 grid-velocity and GCL discussion around equation11/printedp5 inspected. It attributes GCL to Thomas/Lombard. Original1979 paper not read; no airfoil algorithm or code reproduced. Our 1D scalar moving-volume/Heun derivation is independent."
+    },
+    {
+      "id": "korn-danilov-cgrid",
+      "author": "P. Korn and S. Danilov",
+      "title": "Elementary dispersion analysis of some mimetic discretizations on triangular C-grids",
+      "url": "https://epic.awi.de/id/eprint/42760/1/c-grid_jcp_v5-1.pdf",
+      "review_level": "selected-primary-author-manuscript",
+      "review_scope": "Governing linear equations, energy adjoints and AppendixB quadrilateral standard-C symbols/eq19–21 inspected. Use standard square C-grid only, not the paper triangular mimetic schemes. No global Williamson test or original code run."
+    }
+  ],
+  "not_performed": [
+    "No third-party numerical package executed or copied",
+    "No full-paper audit beyond selected scopes",
+    "No prior immutable result or tolerance changed"
+  ]
+}

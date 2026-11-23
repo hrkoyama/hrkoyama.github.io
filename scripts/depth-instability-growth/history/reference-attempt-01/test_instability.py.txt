@@ -1,0 +1,125 @@
+"""Independent operator identities, nonlinear terms and analytic initial data."""
+import json
+from pathlib import Path
+import numpy as np
+import pytest
+from flow import (profiles, derivative, laplacian, streamfunction, velocity,
+                  conservative_advection, initial, rhs, solve)
+from references.linear import operator, initial_coefficients, fields
+
+CONTROLS = json.loads(Path(__file__).with_name('inputs.json').read_text())
+CASES = ['kh-initial-growth', 'rt-initial-growth']
+
+
+@pytest.mark.parametrize('width', [.25, .4])
+def test_layer_derivatives_against_independent_five_point_differences(width):
+    y = np.array([.13, .72, 1.47, 2.51, 3.36, 5.87])
+    h = .0003
+    f = lambda z: np.tanh(np.sin(z)/width)
+    first = (f(y-2*h)-8*f(y-h)+8*f(y+h)-f(y+2*h))/(12*h)
+    second = (-f(y-2*h)+16*f(y-h)-30*f(y)+16*f(y+h)-f(y+2*h))/(12*h*h)
+    u, analytic_second, b, gradient = profiles(y, width, .02)
+    np.testing.assert_allclose(gradient/.02, first, atol=2e-9, rtol=2e-9)
+    np.testing.assert_allclose(analytic_second, second, atol=2e-8, rtol=2e-8)
+
+
+@pytest.mark.parametrize('n', [16, 32, 64])
+def test_poisson_matches_exact_discrete_fourier_symbol(n):
+    h = 2*np.pi/n
+    x = np.arange(n)*h
+    psi = np.cos(2*x[:, None])*np.sin(3*x[None, :])
+    eigenvalue = 4/h**2*(np.sin(h)**2+np.sin(1.5*h)**2)
+    measured = streamfunction(eigenvalue*psi, h)
+    np.testing.assert_allclose(measured, psi, atol=2e-14)
+    assert np.max(abs(-laplacian(measured, h)-eigenvalue*psi)) < 2e-12
+
+
+@pytest.mark.parametrize('n', [16, 32])
+def test_native_centered_velocity_is_divergence_free(n):
+    h = 2*np.pi/n
+    x = np.arange(n)*h
+    psi = np.cos(3*x[:, None])*np.sin(2*x[None, :])+.2*np.sin(2*x[:, None])*np.cos(4*x[None, :])
+    u, v = velocity(psi, h)
+    assert np.max(abs(derivative(u, h, 0)+derivative(v, h, 1))) < 2e-14
+
+
+@pytest.mark.parametrize('seed', [19, 43])
+def test_shared_face_fluxes_telescope_for_arbitrary_scalar(seed):
+    rng = np.random.default_rng(seed)
+    q, psi = rng.normal(size=(2, 16, 16))
+    u, v = velocity(psi, .2)
+    assert abs(conservative_advection(q, u, v, .2).sum()) < 2e-12
+
+
+@pytest.mark.parametrize('case', CASES)
+def test_analytic_base_subtraction_preserves_zero_perturbation(case):
+    zero = np.zeros((16, 16))
+    a, b = rhs(zero, zero, 2*np.pi/16, CONTROLS, case)
+    assert np.count_nonzero(a) == np.count_nonzero(b) == 0
+
+
+@pytest.mark.parametrize('case', CASES)
+def test_reference_initial_field_reconstructs_the_fixed_physical_input(case):
+    modes = np.arange(-8, 9)
+    state = initial_coefficients(case, modes, CONTROLS['epsilon'])
+    exact = fields(case, modes, state, 32)
+    w, q = initial(32, CONTROLS['epsilon'], case)
+    np.testing.assert_allclose(exact['omega'], w, atol=2e-19)
+    np.testing.assert_allclose(exact['theta'], q, atol=2e-19)
+
+
+@pytest.mark.parametrize('case', CASES)
+def test_galerkin_products_match_independent_physical_derivatives(case):
+    modes, matrix = operator(case, 16, CONTROLS)
+    state = initial_coefficients(case, modes, 1.)
+    size = len(modes)
+    n = 1024
+    y = 2*np.pi*np.arange(n)/n
+    basis = np.exp(1j*modes[:, None]*y[None, :])
+    w = state[:size]@basis
+    psi = (state[:size]/(1+modes*modes))@basis
+    shear, second, b0, gradient = profiles(y, CONTROLS['width'], CONTROLS['buoyancy'])
+    if case == 'kh-initial-growth':
+        viscous = (-CONTROLS['viscosity']*(1+modes*modes)*state)@basis
+        physical = -1j*shear*w-1j*second*psi+viscous
+        projected = (np.fft.fft(physical)/n)[modes % n]
+    else:
+        theta = state[size:]@basis
+        physical_w = 1j*theta+(-CONTROLS['viscosity']*(1+modes*modes)*state[:size])@basis
+        physical_q = 1j*gradient*psi+(-CONTROLS['diffusivity']*(1+modes*modes)*state[size:])@basis
+        projected = np.concatenate([(np.fft.fft(physical_w)/n)[modes % n],
+                                    (np.fft.fft(physical_q)/n)[modes % n]])
+    np.testing.assert_allclose(matrix@state, projected, atol=3e-13, rtol=3e-13)
+
+
+@pytest.mark.parametrize('case', CASES)
+def test_real_nonlinear_advection_has_quadratic_amplitude_scaling(case):
+    h = 2*np.pi/16
+    x = np.arange(16)*h
+    w = .01*np.cos(x[:, None])*(1+.3*np.cos(2*x[None, :]))
+    q = .012*np.cos(2*x[:, None])*np.sin(x[None, :])
+    def even(scale):
+        a = rhs(scale*w, scale*q, h, CONTROLS, case)
+        b = rhs(-scale*w, -scale*q, h, CONTROLS, case)
+        return np.array([.5*(aa+bb) for aa, bb in zip(a, b)])
+    full, half = even(1.), even(.5)
+    assert np.linalg.norm(full) > 1e-6
+    np.testing.assert_allclose(full, 4*half, atol=4e-18, rtol=2e-12)
+
+
+def test_incompatible_periodic_poisson_mean_is_rejected():
+    with pytest.raises(ValueError, match='zero mean'):
+        streamfunction(np.ones((16, 16)), .1)
+
+
+@pytest.mark.parametrize('n,epsilon,factor', [(15, 1e-5, 1.), (16, 0., 1.), (16, 1e-5, 2.)])
+def test_invalid_controls_are_rejected_before_evolution(n, epsilon, factor):
+    with pytest.raises(ValueError):
+        solve(n, epsilon, CASES[0], CONTROLS, factor)
+
+
+def test_constant_scalar_is_preserved_by_the_divergence_free_face_flux():
+    h = 2*np.pi/32
+    x = np.arange(32)*h
+    u, v = velocity(np.cos(3*x[:, None])*np.sin(2*x[None, :]), h)
+    assert np.max(abs(conservative_advection(np.ones_like(u), u, v, h))) < 3e-14

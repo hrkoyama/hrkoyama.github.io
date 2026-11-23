@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "reviewer": "Independent mathematics: batch_walls; backend revision authorization: root",
+  "reviewed_math_contract_sha256": "b8d32bb037d4274f65636f2ac4fd5f829c64cf389fd109132bcc65066c9344c0",
+  "contract_sha256": "d9ac90cf6a312924c1ddb6b9df336e75404285a7759a845885941ae76ed7cadc",
+  "before_this_revision_main_and_pytest": true,
+  "previous_attempt_executed": true,
+  "checks": {
+    "original_sparse_solve_and_equations_unchanged": true,
+    "inputs_acceptance20tests_byte_identical": true,
+    "root_authorized_backend_diagnostic_fix": true,
+    "no_warning_suppression": true,
+    "failed_attempt_preserved": true
+  }
+}

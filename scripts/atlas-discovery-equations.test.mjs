@@ -37,7 +37,7 @@ test('all execution families have scoped bilingual formula and outcome metadata'
 
 test('twenty-two execution formulas stay separate from the unchanged model inventory',()=>{
   assert.equal(published.counts.total,coverage.counts.equations);
-  assert.equal(published.counts.total,50);
+  assert.equal(published.counts.total,56);
   assert.equal(published.equations.length,source.equations.length);
   assert.equal(published.counts.local_example,coverage.counts.local_equations);
   assert.equal(published.counts.reading_only,coverage.counts.reading_equations);

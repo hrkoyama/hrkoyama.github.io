@@ -1,0 +1,80 @@
+[
+  {
+    "case": "kh-initial-growth",
+    "K": 24,
+    "seconds": 0.0037529159963014536,
+    "finite": true,
+    "difference": 2.0328790734103208e-20,
+    "relative": 5.268497943080632e-16,
+    "dense_warning_counts": {
+      "divide by zero encountered in matmul": 106,
+      "invalid value encountered in matmul": 106,
+      "overflow encountered in matmul": 106
+    }
+  },
+  {
+    "case": "kh-initial-growth",
+    "K": 40,
+    "seconds": 0.0035586660014814697,
+    "finite": true,
+    "difference": 1.6940658945086007e-20,
+    "relative": 7.103585875335327e-16,
+    "dense_warning_counts": {
+      "divide by zero encountered in matmul": 132,
+      "invalid value encountered in matmul": 132,
+      "overflow encountered in matmul": 132
+    }
+  },
+  {
+    "case": "kh-initial-growth",
+    "K": 56,
+    "seconds": 0.005556332995183766,
+    "finite": true,
+    "difference": 3.3881317890172014e-20,
+    "relative": 8.680184963525639e-16,
+    "dense_warning_counts": {
+      "divide by zero encountered in matmul": 133,
+      "invalid value encountered in matmul": 133,
+      "overflow encountered in matmul": 133
+    }
+  },
+  {
+    "case": "rt-initial-growth",
+    "K": 24,
+    "seconds": 0.003619167000579182,
+    "finite": true,
+    "difference": 1.0164395367051604e-20,
+    "relative": 3.2632260084090065e-16,
+    "dense_warning_counts": {
+      "divide by zero encountered in matmul": 121,
+      "invalid value encountered in matmul": 121,
+      "overflow encountered in matmul": 121
+    }
+  },
+  {
+    "case": "rt-initial-growth",
+    "K": 40,
+    "seconds": 0.009597290998499375,
+    "finite": true,
+    "difference": 1.8634724839594607e-20,
+    "relative": 6.799794080023734e-16,
+    "dense_warning_counts": {
+      "divide by zero encountered in matmul": 136,
+      "invalid value encountered in matmul": 136,
+      "overflow encountered in matmul": 136
+    }
+  },
+  {
+    "case": "rt-initial-growth",
+    "K": 56,
+    "seconds": 0.022029583997209556,
+    "finite": true,
+    "difference": 2.0328790734103208e-20,
+    "relative": 7.391698895100814e-16,
+    "dense_warning_counts": {
+      "divide by zero encountered in matmul": 137,
+      "invalid value encountered in matmul": 137,
+      "overflow encountered in matmul": 137
+    }
+  }
+]

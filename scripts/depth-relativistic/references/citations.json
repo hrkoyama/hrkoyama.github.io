@@ -1,0 +1,55 @@
+[
+  {
+    "id": "rezzolla-zanotti2001",
+    "author": "Luciano Rezzolla and Olindo Zanotti",
+    "year": 2001,
+    "title": "An Improved Exact Riemann Solver for Relativistic Hydrodynamics",
+    "url": "https://arxiv.org/abs/gr-qc/0103005",
+    "type": "preprint",
+    "review_level": "primary-selected-mathematical-sections",
+    "review_scope": "Original arxiv v2 read: sections2–4, equations2.3/2.4,3.1 and4.5; restricted two-shock specialization. No whole-paper or generic Riemann implementation audit.",
+    "review": {
+      "ja": "原著プレプリントの2–4節、状態方程式、相対速度式3.1とTaub二次式4.5を直接確認。対称二衝撃波への特殊化です。",
+      "en": "Read original preprint sections2–4: EOS, relative-velocity equation3.1 and Taub quadratic4.5. Restricted symmetric two-shock specialization."
+    },
+    "accessed_on": "2026-11-23"
+  },
+  {
+    "id": "delzanna2007",
+    "author": "L. Del Zanna, O. Zanotti, N. Bucciantini and P. Londrillo",
+    "year": 2007,
+    "title": "ECHO: a Eulerian Conservative High Order scheme for general relativistic magnetohydrodynamics and magnetodynamics",
+    "journal": "Astronomy & Astrophysics",
+    "volume": "473",
+    "pages": "11–30",
+    "doi": "10.1051/0004-6361:20077093",
+    "url": "https://arxiv.org/abs/0704.3206",
+    "type": "article",
+    "review_level": "primary-original-selected-section-and-rendered-pages",
+    "review_scope": "University-hosted original journal PDF section4.1 equations82–85 read; original arxiv preprint pages9–10 rendered and visually inspected, including normalization and period. Publisher PDF403. No whole-paper or ECHO-algorithm reproduction claim.",
+    "review": {
+      "ja": "大学リポジトリの原著4.1節・式82–85を読み、原著プレプリント9–10頁の式・規格化・周期を描画して目視確認。ECHO法自体の再現ではありません。",
+      "en": "Read original journal section4.1 equations82–85 via the university repository; rendered and visually inspected original preprint pages9–10, including normalization and period. No ECHO-algorithm reproduction."
+    },
+    "accessed_on": "2026-11-23"
+  },
+  {
+    "id": "font2008",
+    "author": "José A. Font",
+    "year": 2008,
+    "title": "Numerical Hydrodynamics and Magnetohydrodynamics in General Relativity",
+    "journal": "Living Reviews in Relativity",
+    "volume": "11",
+    "number": "7",
+    "doi": "10.12942/lrr-2008-7",
+    "url": "https://link.springer.com/article/10.12942/lrr-2008-7",
+    "type": "review",
+    "review_level": "primary-author-review-selected-equations",
+    "review_scope": "Official article sections3.1–3.2, tensor49–51 and recovery68–69 actually read. Flat-spacetime use only; no whole-review or complete-GRMHD implementation audit.",
+    "review": {
+      "ja": "公式の著者レビュー3.1–3.2節、テンソル式49–51と変換式68–69を直接確認。平坦時空の実装に使用します。",
+      "en": "Read official author-review sections3.1–3.2, stress tensor49–51 and recovery68–69; flat-spacetime use only."
+    },
+    "accessed_on": "2026-11-23"
+  }
+]

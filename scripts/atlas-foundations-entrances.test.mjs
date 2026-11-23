@@ -51,9 +51,9 @@ test('AMG algebraic diagnostics remain outside physical counts and the Poisson g
  const problemCatalog=json('catalog/atlas-test-problems.json');
  assert.match(problemCatalog.excluded_examples.en.at(-1),/amg-conditioning/);
  const inventory=problemCatalog.problems;
- assert.equal(inventory.length,92);assert.ok(!inventory.some(x=>x.id==='amg-conditioning'));
+ assert.equal(inventory.length,102);assert.ok(!inventory.some(x=>x.id==='amg-conditioning'));
  const methods=json('catalog/atlas-methods.json').methods;
- assert.equal(methods.length,149);assert.equal(methods.filter(x=>x.status==='educational-example').length,118);
+ assert.equal(methods.length,150);assert.equal(methods.filter(x=>x.status==='educational-example').length,119);
 });
 
 test('conditioning readings enter contents and crossovers without borrowing evidence for coupled applications',()=>{
@@ -89,7 +89,7 @@ for lang in ['ja','en']:
 });
 
 test('all 80 historical illustrations, checksums and captions remain unchanged',()=>{
- const items=json('numerical-methods-atlas/gallery/preview-manifest.json').items.filter(x=>!['noh','sedov','double-mach','forward-step','isentropic-vortex','guderley','zalesak','swashes-topography','dry-bed-dam-break','lid-driven-cavity','wall-manufactured','level-set-circle'].includes(x.id));
+ const items=json('numerical-methods-atlas/gallery/preview-manifest.json').items.filter(x=>!['noh','sedov','double-mach','forward-step','isentropic-vortex','guderley','zalesak','swashes-topography','dry-bed-dam-break','lid-driven-cavity','wall-manufactured','level-set-circle', 'kh-initial-growth', 'rt-initial-growth', 'lshape-fem', 'annular-viscous-mms', 'poisson-neumann', 'poisson-robin', 'ale-nonuniform-transport', 'cgrid-rotating-wave', 'srhd-collision', 'srmhd-alfven'].includes(x.id));
  assert.equal(items.length,80);
  assert.equal(hash(items.map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}))),'25c25a4cb7ad5c54e5788b984d949c44994d3f1706ed36c4ef30a3ce36fa6c2b');
 });

@@ -1,0 +1,82 @@
+{
+  "reviewed_on": "2026-11-23",
+  "primary_source_review_scope": [
+    {
+      "id": "athena-pinned-2026",
+      "author": "Athena++ collaboration",
+      "year": 2026,
+      "title": "Athena++ official field_loop and orszag_tang problem generators, pinned source",
+      "url": "https://github.com/PrincetonUniversity/athena/tree/1395e2f543f4368d448cb1a2cf92ba1f910e3416",
+      "type": "software",
+      "role": "Actually inspected independent engine and fixed initial conditions; finite-grid numerical reference only",
+      "review_level": "Official archive SHA verified; selected src/pgen/field_loop.cpp and orszag_tang.cpp, PLM/RK2/output configuration and actual conserved tab headers inspected; not a full Athena code audit",
+      "review": {
+        "ja": "固定コミットの公式アーカイブSHAを照合し、2初期値生成器と設定・保存列を確認。別実装を実行して参照場を作成し、空間・時間感度を検査。全ソース監査や厳密解とは表示しません。",
+        "en": "Verified the official pinned archive SHA and inspected both generators, configuration and saved columns. Executed the independent engine and checked spatial/time sensitivity. No complete code audit or exact-solution claim."
+      },
+      "accessed_on": "2026-11-23"
+    },
+    {
+      "id": "gardiner-stone2005",
+      "author": "Thomas A. Gardiner and James M. Stone",
+      "year": 2005,
+      "title": "An unsplit Godunov method for ideal MHD via constrained transport",
+      "journal": "Journal of Computational Physics",
+      "volume": "205",
+      "pages": "509–539",
+      "doi": "10.1016/j.jcp.2004.11.016",
+      "url": "https://arxiv.org/abs/astro-ph/0501557",
+      "type": "article",
+      "role": "Primary CT-contact, magnetic-loop and circular-polarization background; selected sections only",
+      "review_level": "Author arXiv PDF selected section2.2 equations13–20,3.3.1–3.3.2 and5.1–5.2 inspected; not the full paper or original experiment replication",
+      "review": {
+        "ja": "著者公開PDFのCT節・磁場ループ・円偏波の定義を確認。論文のCTU/PPMや斜め伝播実験を再現したとは主張しません。今回の円偏波は1次元整列、公式磁場ループはvz=2の明示的変更です。",
+        "en": "Inspected the author PDF CT section and loop/polarized-wave definitions. Original CTU/PPM and oblique-wave experiments are not replicated. Our wave is 1D aligned; the official loop generator explicitly has vz=2."
+      },
+      "accessed_on": "2026-11-23"
+    },
+    {
+      "id": "miyoshi-kusano2005",
+      "author": "Takahiro Miyoshi and Kanya Kusano",
+      "year": 2005,
+      "title": "A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics",
+      "journal": "Journal of Computational Physics",
+      "volume": "208",
+      "pages": "315–344",
+      "doi": "10.1016/j.jcp.2005.02.017",
+      "url": "https://doi.org/10.1016/j.jcp.2005.02.017",
+      "type": "article",
+      "role": "Original HLLD attribution; implementation inherited from previously validated Atlas source",
+      "review_level": "Bibliographic metadata checked; publisher full text returned403. This addition did not newly audit original equations or experiments",
+      "review": {
+        "ja": "書誌を確認。出版社本文は取得できず、今回新たに原著の式や実験を監査したとは表示しません。全8変数HLLDコードは過去の公開検証済みAtlasから同一バイトで継承します。",
+        "en": "Bibliographic metadata checked; full publisher text unavailable. No new original-equation/experiment audit is claimed. Full-state HLLD is inherited byte-for-byte from the prior public validated Atlas."
+      },
+      "accessed_on": "2026-11-23"
+    },
+    {
+      "id": "orszag-tang1979",
+      "author": "Steven A. Orszag and Ching-Mao Tang",
+      "year": 1979,
+      "title": "Small-scale structure of two-dimensional magnetohydrodynamic turbulence",
+      "journal": "Journal of Fluid Mechanics",
+      "volume": "90",
+      "pages": "129–143",
+      "doi": "10.1017/S002211207900210X",
+      "url": "https://doi.org/10.1017/S002211207900210X",
+      "type": "article",
+      "role": "Historical attribution, not a reference table for this compressible ideal-MHD calculation",
+      "review_level": "Original publisher abstract/bibliography inspected only; original incompressible viscous/resistive setup differs from the official compressible ideal-MHD generator used here",
+      "review": {
+        "ja": "出版社の抄録と書誌のみ確認。原著の非圧縮・粘性抵抗モデルと、今回の圧縮性理想MHDの公式初期値を区別します。",
+        "en": "Inspected publisher abstract and bibliography only. Distinguish the original incompressible viscous/resistive study from the official compressible ideal-MHD setup used here."
+      },
+      "accessed_on": "2026-11-23"
+    }
+  ],
+  "source_archive_sha256": "8a6cd8658217349fd913c03b549df8b88c2a2fe96cb4ea1b8ba4bf747c6af896",
+  "reference_source_run_contract": "reference-contract.json",
+  "reference_qualification_contract": "qualification-contract.json",
+  "reference_failure_history": "history/attempt-01-failed-qualification.json",
+  "scope": "No paper PDFs redistributed. Official BSD3 generators/license only; no full-paper review claim. Independent Athena fields contain only Bcc; common-cell divergence comparable, native Athena face divergence not measured."
+}

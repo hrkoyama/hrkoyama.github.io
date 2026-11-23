@@ -666,3 +666,14 @@ Zalesak科学内容commit c1398c0eafe5511741cebc44d14ac324a6bf0429のPages・Pub
 公開mainの`11ba7a20076f052a569091ef976217f07341c3ba`が持つLevel Setの2ケース・22検査と、候補13〜17の5ケース・89検査をともに保持する。統合後は補助24群・56ケース・735 pytest、物理92問題（実行入口52）、50モデル・33参照・149手法となる。今回5候補の固定数値判定は420項目。旧2328保護ファイル・87主画像に加え、同時期のLevel Set配布版と実装45ファイル・主画像のレコードも保持する。保存図は再計算せず、プレビューは92件・248出典ハッシュへ接続する。
 
 ローカルの`8f069f5913a70d0b0222e58b4064ff262c4ebffc`は非fast-forwardでpushが拒否されており、公開成功の根拠にしない。統合後の科学内容commitに対し実際のPages・サイト検査・匿名HTTP・公開ZIPのLinux結果を確認してから候補13〜17を公開済みにする。統合による索引再生成は別の入力状態に対する公開前更新であり、同一状態の定期的な再生成とは区別する。
+
+候補13〜17の最初の科学内容commit a51543e8b54129e70670e184290c9b50b5bc0645について、同じSHAのPages・Public site checks・公開配布物のみLinux run45167465669（https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45167465669）が実際に成功。匿名HTTPで1048ファイルをSHA照合し、Linuxの24群56ケース735pytestを確認した。追加3群はweno-critical36検査/217判定、shallow-water31検査/109判定（静水・地形定常62、乾床47）、wall-flow22検査/94判定（キャビティ35、MMS59）、合計89検査/420判定。3ZIPのSHA・実際のLinux report SHA・run URL・HTTP件数を`numerical-methods-atlas/validation/verification/2026-11-23-batch13-17-public.json`に固定し、確認後にsequence13〜17だけをpublishedへ進めた。元の配布版verificationはreferencesに保持する。この記録は当該科学内容commitの実績であり、後続の台帳・索引更新コミットのCI成功を予告するものではない。現在の5件単位と次回10件の利用者指定を分け、progress.jsonのnext_batch_size=10を保持した。
+
+
+## 候補18〜27の10項目をまとめる運用（2026-11-23）
+
+今回の10項目は5配布群・13実行例。固定入力・参照・受入基準を実行前に記録し、問題ごとの検証と保存図を揃えてから索引・全体テスト・公開を一度にまとめる。共通の22実行例、旧24補助版の56ケース・735pytest、旧92主画像と全既存配布物を保持する。追加はinstability-growth22pytest/74判定、mhd-transport47/125、mesh-boundary20/174、moving-waves19/98、relativistic25/110。追加計133pytest/581判定、全29群69ケース868pytestとなる。
+
+非一様ALEスカラー輸送と平面C格子の回転浅水波は今回の公開段階。Saltzman圧縮性ピストンとWilliamson球面問題は未実装として台帳に残す。相対論は1Dで、保存場のx–t図を2D流れと呼ばない。初期成長率の独立線形参照を完全非線形厳密解と混同しない。MHDの独立Athena++参照は最終時刻で比較し、実際の途中出力時刻と資格判定の訂正履歴を保持する。macOSのBLAS警告による失敗は、警告抑制を使わない同値な演算経路の比較・改訂履歴として保持する。SRMHDの最粗格子不足は閾値を維持した格子細分化で区別する。
+
+公開用の版・SHAを固定し、外部Linuxの公開ZIP追試中は次セットの設計・出典確認・準備を非公開キューと別作業場所で進める。Linux追試・公開URL検査が終わるまで次の公開と索引更新を重ねない。公開確認だけのラベル変更・取得証明の反映案は非公開に記録し、次回の集約更新へ繰り越す。進行中の実装・次回候補の記録を公開サイトへ同期しない。公開先は引き続きhrkoyama/hrkoyama.github.io mainだけ。

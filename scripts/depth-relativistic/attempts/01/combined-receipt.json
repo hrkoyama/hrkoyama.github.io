@@ -1,0 +1,46 @@
+{
+  "shared_deadline_seconds": 120,
+  "attempt": 1,
+  "stages": [
+    {
+      "name": "pytest",
+      "command": [
+        "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch18-27/env/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-W",
+        "error",
+        "--junitxml=/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-18-27-2026-11-23/relativistic/attempt01/pytest.xml"
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "seconds": 13.20480687500094
+    },
+    {
+      "name": "main",
+      "command": [
+        "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch18-27/env/bin/python",
+        "run.py",
+        "--input",
+        "inputs.json",
+        "--output",
+        "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-18-27-2026-11-23/relativistic/attempt01/results"
+      ],
+      "returncode": 1,
+      "timed_out": false,
+      "seconds": 3.5511389589955797
+    }
+  ],
+  "pre_run_contract_sha256": "81ee3fe63e387730621af362b53da3147d30d1e2078f7ff446bf33585674e69e",
+  "combined_seconds": 16.756165250000777,
+  "pytest_counts": {
+    "tests": 25,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "numerical_gates": 110,
+  "scientific_passed": false,
+  "passed": false
+}

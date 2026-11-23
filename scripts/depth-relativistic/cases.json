@@ -1,0 +1,273 @@
+[
+  {
+    "method_ids": [
+      "hll",
+      "muscl",
+      "minmod",
+      "ssprk33"
+    ],
+    "domains": [
+      "pde",
+      "coupling",
+      "time"
+    ],
+    "code_files": [
+      "run.py",
+      "relativistic.py",
+      "references/exact.py"
+    ],
+    "id": "srhd-collision",
+    "title": {
+      "ja": "SRHDの対称二衝撃波衝突",
+      "en": "SRHD symmetric two-shock collision"
+    },
+    "summary": {
+      "ja": "相対論的な対称衝突を、独立なTaub関係から得る厳密な保存量セル平均と比較し、実際の1D時空間場を保存します。",
+      "en": "Compare a relativistic symmetric collision with independent exact Taub-based conserved cell means; save actual1D x–t fields."
+    },
+    "assumptions": {
+      "ja": "c=1、γ=5/3、ρ=1、p=.1、左右v=±.3、B=0。区間[0,1]、初期不連続x=.5、t=.3、96/192/384セル。衝撃波が端へ届く前の外挿境界です。",
+      "en": "c=1,gamma5/3,rho1,p.1,opposite normal v±.3,B0. Domain[0,1], initial jump .5,t=.3,96/192/384 cells. Constant extrapolation boundaries before shocks reach endpoints."
+    },
+    "algorithm": {
+      "ja": "同じ7保存量RMHD演算子をB=0で使い、MUSCL/minmod・因果的HLL波速±1・SSPRK33で進めます。Z=ρhW²の物理根を保護付きNewton法で復元し、残差と保存量往復を確認します。",
+      "en": "Use the shared seven-component RMHD operator at B=0 with primitive MUSCL/minmod, causal HLL bounds±1 and SSPRK33. Safeguarded Newton recovers the physical Z=rho h W² root; check residual and full conserved-state roundtrip."
+    },
+    "validation": {
+      "ja": "群全体25pytest、6固定計算、110判定と参照6検査を事前固定。全量境界収支、各段・再構築面の正値と亜光速、D/E細分化、星領域圧力、衝撃波位置、反射対称性を検査。実際の最終状態を独立なSRHD圧力根と流束でも照合します。",
+      "en": "Predeclare25 pytest tests,six runs,110 group gates and six reference qualifiers. Check all-component boundary budgets, stage/face admissibility,D/E refinement,star pressure,shock positions and reflection. Compare actual final states with independent scalar-pressure SRHD recovery and flux."
+    },
+    "limits": {
+      "ja": "独自の穏やかな対称入力で、接触面は同じ静止状態へ退化します。一般三波Riemann解、高Lorentz因子、原著の数値入力は検証しません。Eは静止質量を含み、保存量の厳密セル平均と比較します。",
+      "en": "Custom mild symmetric input; contact degenerates to identical resting states. No general three-wave Riemann,extreme-Lorentz-factor or original-paper numerical-input reproduction claim. E includes rest mass; compare exact conserved cell means."
+    },
+    "formulas": [
+      "U=(D,S_x,S_y,S_z,E,B_y,B_z)^T,\\quad D=\\rho W,\\quad W=(1-v^2)^{-1/2}",
+      "h_b^2-h_a^2=(p_b-p_a)(h_b/\\rho_b+h_a/\\rho_a)",
+      "v_0^2=\\frac{(p_b-p_a)(e_b-e_a)}{(e_a+p_b)(e_b+p_a)},\\quad e=\\rho+\\frac{p}{\\Gamma-1}",
+      "j^2=-\\frac{p_b-p_a}{h_b/\\rho_b-h_a/\\rho_a},\\quad V_s^2=\\frac{j^2}{\\rho_b^2+j^2}"
+    ],
+    "references": [
+      {
+        "id": "rezzolla-zanotti2001",
+        "author": "Luciano Rezzolla and Olindo Zanotti",
+        "year": 2001,
+        "title": "An Improved Exact Riemann Solver for Relativistic Hydrodynamics",
+        "url": "https://arxiv.org/abs/gr-qc/0103005",
+        "type": "preprint",
+        "review_level": "primary-selected-mathematical-sections",
+        "review_scope": "Original arxiv v2 read: sections2–4, equations2.3/2.4,3.1 and4.5; restricted two-shock specialization. No whole-paper or generic Riemann implementation audit.",
+        "review": {
+          "ja": "原著プレプリントの2–4節、状態方程式、相対速度式3.1とTaub二次式4.5を直接確認。対称二衝撃波への特殊化です。",
+          "en": "Read original preprint sections2–4: EOS, relative-velocity equation3.1 and Taub quadratic4.5. Restricted symmetric two-shock specialization."
+        },
+        "accessed_on": "2026-11-23"
+      },
+      {
+        "id": "font2008",
+        "author": "José A. Font",
+        "year": 2008,
+        "title": "Numerical Hydrodynamics and Magnetohydrodynamics in General Relativity",
+        "journal": "Living Reviews in Relativity",
+        "volume": "11",
+        "number": "7",
+        "doi": "10.12942/lrr-2008-7",
+        "url": "https://link.springer.com/article/10.12942/lrr-2008-7",
+        "type": "review",
+        "review_level": "primary-author-review-selected-equations",
+        "review_scope": "Official article sections3.1–3.2, tensor49–51 and recovery68–69 actually read. Flat-spacetime use only; no whole-review or complete-GRMHD implementation audit.",
+        "review": {
+          "ja": "公式の著者レビュー3.1–3.2節、テンソル式49–51と変換式68–69を直接確認。平坦時空の実装に使用します。",
+          "en": "Read official author-review sections3.1–3.2, stress tensor49–51 and recovery68–69; flat-spacetime use only."
+        },
+        "accessed_on": "2026-11-23"
+      }
+    ],
+    "citations": [
+      {
+        "id": "rezzolla-zanotti2001",
+        "author": "Luciano Rezzolla and Olindo Zanotti",
+        "year": 2001,
+        "title": "An Improved Exact Riemann Solver for Relativistic Hydrodynamics",
+        "url": "https://arxiv.org/abs/gr-qc/0103005",
+        "type": "preprint",
+        "review_level": "primary-selected-mathematical-sections",
+        "review_scope": "Original arxiv v2 read: sections2–4, equations2.3/2.4,3.1 and4.5; restricted two-shock specialization. No whole-paper or generic Riemann implementation audit.",
+        "review": {
+          "ja": "原著プレプリントの2–4節、状態方程式、相対速度式3.1とTaub二次式4.5を直接確認。対称二衝撃波への特殊化です。",
+          "en": "Read original preprint sections2–4: EOS, relative-velocity equation3.1 and Taub quadratic4.5. Restricted symmetric two-shock specialization."
+        },
+        "accessed_on": "2026-11-23"
+      },
+      {
+        "id": "font2008",
+        "author": "José A. Font",
+        "year": 2008,
+        "title": "Numerical Hydrodynamics and Magnetohydrodynamics in General Relativity",
+        "journal": "Living Reviews in Relativity",
+        "volume": "11",
+        "number": "7",
+        "doi": "10.12942/lrr-2008-7",
+        "url": "https://link.springer.com/article/10.12942/lrr-2008-7",
+        "type": "review",
+        "review_level": "primary-author-review-selected-equations",
+        "review_scope": "Official article sections3.1–3.2, tensor49–51 and recovery68–69 actually read. Flat-spacetime use only; no whole-review or complete-GRMHD implementation audit.",
+        "review": {
+          "ja": "公式の著者レビュー3.1–3.2節、テンソル式49–51と変換式68–69を直接確認。平坦時空の実装に使用します。",
+          "en": "Read official author-review sections3.1–3.2, stress tensor49–51 and recovery68–69; flat-spacetime use only."
+        },
+        "accessed_on": "2026-11-23"
+      }
+    ],
+    "additional_figures": [
+      {
+        "file": "srhd-collision-preview.png",
+        "caption": {
+          "ja": "最細格子の実際の保存密度Dの1D x–t図。5保存時刻を使用し、2D流れではありません。",
+          "en": "Actual finest-grid1D x–t conserved-density field from five stored times; not a two-dimensional flow."
+        }
+      }
+    ],
+    "gallery_figure": "srhd-collision-preview.png"
+  },
+  {
+    "method_ids": [
+      "hll",
+      "muscl",
+      "minmod",
+      "ssprk33"
+    ],
+    "domains": [
+      "pde",
+      "coupling",
+      "time"
+    ],
+    "code_files": [
+      "run.py",
+      "relativistic.py",
+      "references/exact.py"
+    ],
+    "id": "srmhd-alfven",
+    "title": {
+      "ja": "SRMHDの有限振幅円偏極Alfvén波",
+      "en": "SRMHD finite-amplitude circularly polarized Alfvén wave"
+    },
+    "summary": {
+      "ja": "完全な磁気応力と誘導を含むSRMHDで非線形有限振幅波を1周期進め、厳密セル平均、位相、振幅と細分化を検査します。",
+      "en": "Evolve a nonlinear finite-amplitude wave for one period with full SRMHD magnetic stress and induction; check exact cell means,phase,amplitude and refinement."
+    },
+    "assumptions": {
+      "ja": "平坦時空、c=4π=1、γ=4/3、ρ=p=Bx=η=1、vx=0の厳密族。原著2π周期を単位区間へ写し、64/128/256セル、周期境界、t=1/vA。Bxは1次元で固定します。",
+      "en": "Flat spacetime,c=4pi=1,gamma4/3,rho=p=Bx=eta1, exact-family vx0. Rescale the original2pi period to a unit domain;64/128/256 cells,periodic,t=1/vA. Normal Bx is fixed in1D."
+    },
+    "algorithm": {
+      "ja": "D・運動量3成分・全エネルギー・横磁場2成分の全7変数を同じMUSCL/minmod–HLL–SSPRK33で進めます。磁場は動的に結合し、完全なRMHDのZ根で原始変数へ復元します。",
+      "en": "Evolve all seven variables D,three momenta,total E and two transverse magnetic fields with the shared MUSCL/minmod–HLL–SSPRK33 operator. Magnetic dynamics are coupled; primitive recovery solves the full RMHD Z root."
+    },
+    "validation": {
+      "ja": "非線形分散式、独立テンソルのGauss積分と複素段階PDE残差で参照を確認。全7量保存と全段物理性、途中誤差、最細相対L1≤.04、位相≤.03、振幅≤.04、観測次数≥1.5を事前固定します。",
+      "en": "Qualify nonlinear dispersion,independent tensor Gauss means and complex-step PDE residuals. Predeclare all-seven-component conservation,stage admissibility,intermediate errors,finest relative L1≤.04,phase≤.03,amplitude≤.04 and observed order≥1.5."
+    },
+    "limits": {
+      "ja": "原著の厳密解族を独立な低次法で計算し、ECHO法や原著誤差表は再現しません。一般RMHD衝撃波、極端な磁化・Lorentz因子、GR、抵抗MHD、多次元磁場発散制御は対象外。図は実際の1D時空間場です。",
+      "en": "Use the original exact family with an independent lower-order operator; no ECHO-algorithm or error-table reproduction. Generic RMHD shocks,extreme magnetization/Lorentz factors,GR,resistive MHD and multidimensional divergence control are outside scope. Figures show actual1D x–t fields."
+    },
+    "formulas": [
+      "B_y=\\eta B_0\\cos[2\\pi(x-v_At)],\\quad B_z=\\eta B_0\\sin[2\\pi(x-v_At)]",
+      "v_x=0,\\quad (v_y,v_z)=-v_A(B_y,B_z)/B_0",
+      "K=\\rho h+B_0^2(1+\\eta^2),\\quad v_A^2=\\frac{2B_0^2}{K+\\sqrt{K^2-4\\eta^2B_0^4}}",
+      "\\mathbf v=\\frac{\\mathbf S+(\\mathbf S\\cdot\\mathbf B)\\mathbf B/Z}{Z+B^2},\\quad p=\\frac{\\Gamma-1}{\\Gamma}(Z/W^2-\\rho)",
+      "E=Z-p+\\frac12\\left[B^2(1+v^2)-\\frac{(\\mathbf S\\cdot\\mathbf B)^2}{Z^2}\\right]"
+    ],
+    "references": [
+      {
+        "id": "delzanna2007",
+        "author": "L. Del Zanna, O. Zanotti, N. Bucciantini and P. Londrillo",
+        "year": 2007,
+        "title": "ECHO: a Eulerian Conservative High Order scheme for general relativistic magnetohydrodynamics and magnetodynamics",
+        "journal": "Astronomy & Astrophysics",
+        "volume": "473",
+        "pages": "11–30",
+        "doi": "10.1051/0004-6361:20077093",
+        "url": "https://arxiv.org/abs/0704.3206",
+        "type": "article",
+        "review_level": "primary-original-selected-section-and-rendered-pages",
+        "review_scope": "University-hosted original journal PDF section4.1 equations82–85 read; original arxiv preprint pages9–10 rendered and visually inspected, including normalization and period. Publisher PDF403. No whole-paper or ECHO-algorithm reproduction claim.",
+        "review": {
+          "ja": "大学リポジトリの原著4.1節・式82–85を読み、原著プレプリント9–10頁の式・規格化・周期を描画して目視確認。ECHO法自体の再現ではありません。",
+          "en": "Read original journal section4.1 equations82–85 via the university repository; rendered and visually inspected original preprint pages9–10, including normalization and period. No ECHO-algorithm reproduction."
+        },
+        "accessed_on": "2026-11-23"
+      },
+      {
+        "id": "font2008",
+        "author": "José A. Font",
+        "year": 2008,
+        "title": "Numerical Hydrodynamics and Magnetohydrodynamics in General Relativity",
+        "journal": "Living Reviews in Relativity",
+        "volume": "11",
+        "number": "7",
+        "doi": "10.12942/lrr-2008-7",
+        "url": "https://link.springer.com/article/10.12942/lrr-2008-7",
+        "type": "review",
+        "review_level": "primary-author-review-selected-equations",
+        "review_scope": "Official article sections3.1–3.2, tensor49–51 and recovery68–69 actually read. Flat-spacetime use only; no whole-review or complete-GRMHD implementation audit.",
+        "review": {
+          "ja": "公式の著者レビュー3.1–3.2節、テンソル式49–51と変換式68–69を直接確認。平坦時空の実装に使用します。",
+          "en": "Read official author-review sections3.1–3.2, stress tensor49–51 and recovery68–69; flat-spacetime use only."
+        },
+        "accessed_on": "2026-11-23"
+      }
+    ],
+    "citations": [
+      {
+        "id": "delzanna2007",
+        "author": "L. Del Zanna, O. Zanotti, N. Bucciantini and P. Londrillo",
+        "year": 2007,
+        "title": "ECHO: a Eulerian Conservative High Order scheme for general relativistic magnetohydrodynamics and magnetodynamics",
+        "journal": "Astronomy & Astrophysics",
+        "volume": "473",
+        "pages": "11–30",
+        "doi": "10.1051/0004-6361:20077093",
+        "url": "https://arxiv.org/abs/0704.3206",
+        "type": "article",
+        "review_level": "primary-original-selected-section-and-rendered-pages",
+        "review_scope": "University-hosted original journal PDF section4.1 equations82–85 read; original arxiv preprint pages9–10 rendered and visually inspected, including normalization and period. Publisher PDF403. No whole-paper or ECHO-algorithm reproduction claim.",
+        "review": {
+          "ja": "大学リポジトリの原著4.1節・式82–85を読み、原著プレプリント9–10頁の式・規格化・周期を描画して目視確認。ECHO法自体の再現ではありません。",
+          "en": "Read original journal section4.1 equations82–85 via the university repository; rendered and visually inspected original preprint pages9–10, including normalization and period. No ECHO-algorithm reproduction."
+        },
+        "accessed_on": "2026-11-23"
+      },
+      {
+        "id": "font2008",
+        "author": "José A. Font",
+        "year": 2008,
+        "title": "Numerical Hydrodynamics and Magnetohydrodynamics in General Relativity",
+        "journal": "Living Reviews in Relativity",
+        "volume": "11",
+        "number": "7",
+        "doi": "10.12942/lrr-2008-7",
+        "url": "https://link.springer.com/article/10.12942/lrr-2008-7",
+        "type": "review",
+        "review_level": "primary-author-review-selected-equations",
+        "review_scope": "Official article sections3.1–3.2, tensor49–51 and recovery68–69 actually read. Flat-spacetime use only; no whole-review or complete-GRMHD implementation audit.",
+        "review": {
+          "ja": "公式の著者レビュー3.1–3.2節、テンソル式49–51と変換式68–69を直接確認。平坦時空の実装に使用します。",
+          "en": "Read official author-review sections3.1–3.2, stress tensor49–51 and recovery68–69; flat-spacetime use only."
+        },
+        "accessed_on": "2026-11-23"
+      }
+    ],
+    "additional_figures": [
+      {
+        "file": "srmhd-alfven-preview.png",
+        "caption": {
+          "ja": "最細格子の実際の横磁場Byの1D x–t図。5保存時刻を使い、計算は完全な磁気結合を含みます。",
+          "en": "Actual finest-grid transverse By in1D x–t from five stored times; the solver includes full magnetic coupling."
+        }
+      }
+    ],
+    "gallery_figure": "srmhd-alfven-preview.png"
+  }
+]

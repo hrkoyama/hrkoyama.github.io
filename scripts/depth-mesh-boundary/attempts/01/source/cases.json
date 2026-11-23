@@ -1,0 +1,308 @@
+[
+  {
+    "id": "lshape-fem",
+    "title": {
+      "ja": "L字領域P1特異解：graded格子と歪みの分離",
+      "en": "L-corner P1 FEM: grading and separate mesh distortion"
+    },
+    "method_ids": [
+      "p1-fem"
+    ],
+    "domains": [
+      "pde",
+      "geometry"
+    ],
+    "summary": {
+      "ja": "再入隅の調和特異解を真の2D P1で解き、同じ未知数の一様/graded格子と、独立した滑らかな正方形の歪みを比較します。",
+      "en": "Solve a harmonic reentrant-corner field with actual2D P1 FEM; compare matched-DOF uniform/grading and separate smooth-square mesh distortion."
+    },
+    "assumptions": {
+      "ja": "第4象限を除いた[-1,1]²、theta∈[0,3pi/2]、u=r^(2/3)sin(2theta/3)、解析Dirichlet。N8/16/32、graded map x→x max(|x|,|y|)。正方形sin(pi x)sin(pi y)を同Nのregular/warpedで別検査。",
+      "en": "L-shaped[-1,1]² minus quadrantIV, theta0..3pi/2, analytic Dirichlet harmonic corner field. N8/16/32, fixed map x→x max(|x|,|y|). Separate unit-square sine MMS uses regular/warped grids."
+    },
+    "algorithm": {
+      "ja": "面積と物理勾配からP1剛性を組み、境界を消去して疎直接法で解きます。隅要素は原点をDuffy写像の頂点に移し、Gauss48/96を比較。",
+      "en": "Assemble physical P1 gradients/areas, eliminate boundary data and solve sparse systems. Corner triangles use origin-based Duffy quadrature48/96."
+    },
+    "validation": {
+      "ja": "L2/H1積分誤差・求積差、一様/gradedの同DOF改善、別のsquare/warped系列、最小角・aspect・1ノルム条件数推定・真の線形残差を保存。",
+      "en": "Retain integrated L2/H1 errors, quadrature gaps, matched-DOF grading improvement, separate square/warp errors, minimum angle/aspect, estimated1-norm conditioning and true residuals."
+    },
+    "limits": {
+      "ja": "特異解に正方形のL2二次を要求しません。固定の事前graded写像でありAMRソフトではありません。条件数は推定で、任意歪みへの保証はしません。",
+      "en": "No smooth-square L2 order is imposed on the singular field. Fixed a-priori grading is not an AMR engine. Conditioning is estimated; arbitrary distortion is not certified."
+    },
+    "references": [
+      {
+        "id": "ifem-corner",
+        "author": "Long Chen",
+        "title": "Introduction to Adaptive Finite Element Methods",
+        "url": "https://lyc102.github.io/ifem/afem/",
+        "review_level": "selected-official-tutorial-equations",
+        "review_scope": "Author documentation: L-shaped harmonic r^(2/3)sin(2theta/3) field and non-quasiuniform refinement motivation inspected. No MATLAB code copied or run; our removed quadrant/angle convention is explicitly defined."
+      },
+      {
+        "id": "schoeberl-graded",
+        "author": "Joachim Schöberl",
+        "title": "Interactive FEM: graded meshes around vertex singularities",
+        "url": "https://jschoeberl.github.io/iFEM/FEM/erroranalysis.html",
+        "review_level": "selected-author-teaching-section",
+        "review_scope": "Section24.4 weighted regularity and graded meshes inspected. Our fixed max-norm radial map is independently constructed; no general AMR implementation or universal optimality theorem claimed."
+      }
+    ],
+    "citations": [
+      {
+        "id": "ifem-corner",
+        "author": "Long Chen",
+        "title": "Introduction to Adaptive Finite Element Methods",
+        "url": "https://lyc102.github.io/ifem/afem/",
+        "review_level": "selected-official-tutorial-equations",
+        "review_scope": "Author documentation: L-shaped harmonic r^(2/3)sin(2theta/3) field and non-quasiuniform refinement motivation inspected. No MATLAB code copied or run; our removed quadrant/angle convention is explicitly defined."
+      },
+      {
+        "id": "schoeberl-graded",
+        "author": "Joachim Schöberl",
+        "title": "Interactive FEM: graded meshes around vertex singularities",
+        "url": "https://jschoeberl.github.io/iFEM/FEM/erroranalysis.html",
+        "review_level": "selected-author-teaching-section",
+        "review_scope": "Section24.4 weighted regularity and graded meshes inspected. Our fixed max-norm radial map is independently constructed; no general AMR implementation or universal optimality theorem claimed."
+      }
+    ],
+    "formulas": [
+      "-\\Delta u=0,\\quad u=r^{2/3}\\sin(2\\theta/3)",
+      "K_{ab}=\\sum_T |T|\\nabla N_a\\cdot\\nabla N_b,\\quad x_{graded}=x\\|x\\|_\\infty"
+    ],
+    "code_files": [
+      "run.py",
+      "fem.py",
+      "references/fields.py"
+    ],
+    "gallery_figure": "lshape-fem-preview.png",
+    "additional_figures": [
+      {
+        "file": "lshape-fem-preview.png",
+        "caption": {
+          "ja": "実際に保存した計算配列と固定入力の収束指標から描いた検証図。",
+          "en": "Validation preview from actual saved PDE arrays and fixed-input refinement measurements."
+        }
+      }
+    ]
+  },
+  {
+    "id": "annular-viscous-mms",
+    "title": {
+      "ja": "環状領域の可変粘性・真2DベクトルMMS",
+      "en": "Annular variable-viscosity vector PDE MMS"
+    },
+    "method_ids": [
+      "q1-fem"
+    ],
+    "domains": [
+      "pde",
+      "geometry"
+    ],
+    "summary": {
+      "ja": "軸を除く円環で可変粘性の応力発散方程式を実際に解き、速度・歪み・境界tractionと仕事を照合します。",
+      "en": "Actually solve variable-viscosity stress divergence on an annulus; check velocity, strain, physical traction and work."
+    },
+    "assumptions": {
+      "ja": "1≤r≤2、theta周期、mu=1+.2r²、lambda=0、両円でu=0。A(s)=(s−1)(4−s)、u=(A(1+xy),A(x²−y²)/2)。Nr8/16/32、Ntheta=2Nr。",
+      "en": "1≤r≤2, periodic angle, mu=1+.2r², lambda0 and zero velocity on both circles. A(s)=(s−1)(4−s), u=(A(1+xy),A(x²−y²)/2). Nr8/16/32,Ntheta2Nr."
+    },
+    "algorithm": {
+      "ja": "polarのmapped Q1にCartesian速度2成分を置き、r dr dthetaで2mu epsilonの弱形式を4×4 Gauss積分してblock疎解法。円周faceにはr dthetaと外向き法線を使う。",
+      "en": "Mapped polar Q1 with two Cartesian velocity components;4×4 Gauss integration of2mu epsilon uses exact r dr dtheta metric, followed by a block sparse solve. Circular traction uses r dtheta and outward normals."
+    },
+    "validation": {
+      "ja": "独自解析外力を別のCartesian応力差分で資格確認。L2速度/歪み/traction細分化、反力/体積外力と物理tractionの収支、粘性散逸と外力仕事を別々に測定。 体積外力の解析積分(756pi/5,0)も別に照合。",
+      "en": "Qualify the derived force by separate Cartesian stress differentiation. Measure velocity/strain/traction refinement, reactions versus volume-force/physical traction budgets, and viscous dissipation versus force work. Also check the independently integrated body force (756pi/5,0)."
+    },
+    "limits": {
+      "ja": "線形vector粘性BVPです。divfree拘束・圧力・非線形Navier–Stokesは含めません。原点なしのr>0であり、軸stencil検証ではありません。",
+      "en": "A linear vector viscous BVP, without divergence-free constraint, pressure or nonlinear Navier–Stokes. r>0 only; no axis stencil certification."
+    },
+    "references": [
+      {
+        "id": "mfem-stress",
+        "author": "MFEM developers",
+        "title": "Example2: Linear Elasticity",
+        "url": "https://mfem.org/examples/",
+        "review_level": "selected-official-equations",
+        "review_scope": "Example2 stress sigma=lambda div(u)I+mu(grad(u)+grad(u)^T), weak formulation and traction conventions inspected. Use lambda0 as a linear vector viscous BVP; manufactured fields are derived here. MFEM not executed or copied."
+      }
+    ],
+    "citations": [
+      {
+        "id": "mfem-stress",
+        "author": "MFEM developers",
+        "title": "Example2: Linear Elasticity",
+        "url": "https://mfem.org/examples/",
+        "review_level": "selected-official-equations",
+        "review_scope": "Example2 stress sigma=lambda div(u)I+mu(grad(u)+grad(u)^T), weak formulation and traction conventions inspected. Use lambda0 as a linear vector viscous BVP; manufactured fields are derived here. MFEM not executed or copied."
+      }
+    ],
+    "formulas": [
+      "-\\nabla\\cdot(2\\mu\\epsilon(u))=f,\\quad\\mu=1+0.2r^2",
+      "\\int 2\\mu\\epsilon(u):\\epsilon(v)\\,r\\,dr\\,d\\theta=\\int f\\cdot v\\,r\\,dr\\,d\\theta",
+      "dS=r\\,d\\theta,\\quad t=(2\\mu\\epsilon(u))n"
+    ],
+    "code_files": [
+      "run.py",
+      "annulus.py",
+      "references/fields.py"
+    ],
+    "gallery_figure": "annular-viscous-mms-preview.png",
+    "additional_figures": [
+      {
+        "file": "annular-viscous-mms-preview.png",
+        "caption": {
+          "ja": "実際に保存した計算配列と固定入力の収束指標から描いた検証図。",
+          "en": "Validation preview from actual saved PDE arrays and fixed-input refinement measurements."
+        }
+      }
+    ]
+  },
+  {
+    "id": "poisson-neumann",
+    "title": {
+      "ja": "純Neumannの互換条件と平均値ゲージ",
+      "en": "Pure Neumann compatibility and mean gauge"
+    },
+    "method_ids": [
+      "centered-difference",
+      "cg"
+    ],
+    "domains": [
+      "pde",
+      "geometry"
+    ],
+    "summary": {
+      "ja": "特異な2D Poissonを互換条件と指定平均込みで解き、不適合な外力を拒否します。",
+      "en": "Solve singular2D Poisson with compatibility/gauge and reject incompatible source."
+    },
+    "assumptions": {
+      "ja": "単位正方形N16/32/64、セル中心の点DOF。cos(2pi x)cos(2pi y)、全壁Neumann0、平均0とN32の平均.25診断。",
+      "en": "Unit square N16/32/64, cell-centred point DOFs, cosine exact field, homogeneous Neumann; mean0 andN32 mean.25 probe."
+    },
+    "algorithm": {
+      "ja": "共有面差分で特異行列を組み、体積重み平均のLagrange拘束付き疎直接法とcompatible CGを照合。物理的な不適合外力の平均を勝手に引かない。",
+      "en": "Shared-face differences, weighted-mean augmented solve and compatible CG comparison; no physical RHS mean projection."
+    },
+    "validation": {
+      "ja": "L2細分化、零空間、平均、CG差、source+1拒否、境界流束/体積源の収支を保存。",
+      "en": "Retain L2 refinement, nullspace/gauge/CG gap, source+1 rejection and boundary/source budget."
+    },
+    "limits": {
+      "ja": "同じ半離散系の別線形解法は独立PDE参照ではありません。既存Dirichlet MGの成功や2D任意境界へ一般化しません。",
+      "en": "A different linear solver of the same matrix is not an independent PDE discretization; no general boundary/MG claim."
+    },
+    "references": [
+      {
+        "id": "petsc-nullspace",
+        "author": "PETSc developers",
+        "title": "KSP: Solving Singular Systems",
+        "url": "https://petsc.org/main/manual/ksp/",
+        "review_level": "selected-official-section",
+        "review_scope": "Solving Singular Systems: constant Neumann nullspace and RHS compatibility inspected. We reject physical incompatibility rather than projecting it away. PETSc is neither a dependency nor executed."
+      }
+    ],
+    "citations": [
+      {
+        "id": "petsc-nullspace",
+        "author": "PETSc developers",
+        "title": "KSP: Solving Singular Systems",
+        "url": "https://petsc.org/main/manual/ksp/",
+        "review_level": "selected-official-section",
+        "review_scope": "Solving Singular Systems: constant Neumann nullspace and RHS compatibility inspected. We reject physical incompatibility rather than projecting it away. PETSc is neither a dependency nor executed."
+      }
+    ],
+    "formulas": [
+      "-\\Delta u=f,\\quad\\partial_nu=g_N,\\quad\\int f=-\\oint g_N"
+    ],
+    "code_files": [
+      "run.py",
+      "boundary.py"
+    ],
+    "gallery_figure": "poisson-neumann-preview.png",
+    "additional_figures": [
+      {
+        "file": "poisson-neumann-preview.png",
+        "caption": {
+          "ja": "実際に保存した計算配列と固定入力の収束指標から描いた検証図。",
+          "en": "Validation preview from actual saved PDE arrays and fixed-input refinement measurements."
+        }
+      }
+    ]
+  },
+  {
+    "id": "poisson-robin",
+    "title": {
+      "ja": "2D混合Robinの製造解と境界流束",
+      "en": "2D mixed Robin MMS and boundary flux"
+    },
+    "method_ids": [
+      "centered-difference"
+    ],
+    "domains": [
+      "pde",
+      "geometry"
+    ],
+    "summary": {
+      "ja": "2D PoissonのNeumann/Robin面を実際に組み、連続製造解と境界fluxを照合します。",
+      "en": "Assemble actual2D Neumann/Robin faces and compare the manufactured field and boundary flux."
+    },
+    "assumptions": {
+      "ja": "単位正方形N16/32/64、u=cos(pi x)cos(2pi y)+x+y。x壁Neumann±1、y壁alpha1,beta.5の解析Robin。",
+      "en": "Unit square N16/32/64; cosine-plus-linear exact field. x walls Neumann±1; y walls analytic Robin alpha1,beta.5."
+    },
+    "algorithm": {
+      "ja": "半セル距離を用いてRobin境界値を消去し、外向きgradientの面積積分を離散式と同じ重みで評価。",
+      "en": "Eliminate Robin trace at half-cell distance, using the same outward-gradient face weights in the discrete PDE and budget."
+    },
+    "validation": {
+      "ja": "2D解/誤差、真の残差、Robin関係残差と解析法線flux誤差、3格子細分化と積分収支を保存。",
+      "en": "Save2D solution/errors, true residuals, Robin relation and analytic normal-flux errors, three-grid refinement and integral budget."
+    },
+    "limits": {
+      "ja": "Robin問題は一意なので平均ゲージを重ねません。境界条件の代数残差と物理flux精度を区別します。",
+      "en": "The unique Robin problem has no additional mean gauge. Algebraic boundary satisfaction differs from physical flux accuracy."
+    },
+    "references": [
+      {
+        "id": "mfem-robin",
+        "author": "MFEM developers",
+        "title": "Boundary Conditions: Robin boundary conditions",
+        "url": "https://mfem.org/fem_bc/",
+        "review_level": "selected-official-equations",
+        "review_scope": "Outward normal derivative and Robin weak boundary contribution inspected; Example27 source overview inspected. Our cell-centred face elimination/MMS is separately derived; no MFEM execution."
+      }
+    ],
+    "citations": [
+      {
+        "id": "mfem-robin",
+        "author": "MFEM developers",
+        "title": "Boundary Conditions: Robin boundary conditions",
+        "url": "https://mfem.org/fem_bc/",
+        "review_level": "selected-official-equations",
+        "review_scope": "Outward normal derivative and Robin weak boundary contribution inspected; Example27 source overview inspected. Our cell-centred face elimination/MMS is separately derived; no MFEM execution."
+      }
+    ],
+    "formulas": [
+      "\\alpha u_b+\\beta\\partial_nu=g,\\quad\\partial_nu=(g-\\alpha u_i)/(\\beta+\\alpha h/2)"
+    ],
+    "code_files": [
+      "run.py",
+      "boundary.py"
+    ],
+    "gallery_figure": "poisson-robin-preview.png",
+    "additional_figures": [
+      {
+        "file": "poisson-robin-preview.png",
+        "caption": {
+          "ja": "実際に保存した計算配列と固定入力の収束指標から描いた検証図。",
+          "en": "Validation preview from actual saved PDE arrays and fixed-input refinement measurements."
+        }
+      }
+    ]
+  }
+]

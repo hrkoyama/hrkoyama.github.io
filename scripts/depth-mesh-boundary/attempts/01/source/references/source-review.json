@@ -1,0 +1,51 @@
+{
+  "reviewed_on": "2026-11-23",
+  "execution_performed": false,
+  "read_scope": [
+    {
+      "id": "ifem-corner",
+      "author": "Long Chen",
+      "title": "Introduction to Adaptive Finite Element Methods",
+      "url": "https://lyc102.github.io/ifem/afem/",
+      "review_level": "selected-official-tutorial-equations",
+      "review_scope": "Author documentation: L-shaped harmonic r^(2/3)sin(2theta/3) field and non-quasiuniform refinement motivation inspected. No MATLAB code copied or run; our removed quadrant/angle convention is explicitly defined."
+    },
+    {
+      "id": "schoeberl-graded",
+      "author": "Joachim Schöberl",
+      "title": "Interactive FEM: graded meshes around vertex singularities",
+      "url": "https://jschoeberl.github.io/iFEM/FEM/erroranalysis.html",
+      "review_level": "selected-author-teaching-section",
+      "review_scope": "Section24.4 weighted regularity and graded meshes inspected. Our fixed max-norm radial map is independently constructed; no general AMR implementation or universal optimality theorem claimed."
+    },
+    {
+      "id": "mfem-stress",
+      "author": "MFEM developers",
+      "title": "Example2: Linear Elasticity",
+      "url": "https://mfem.org/examples/",
+      "review_level": "selected-official-equations",
+      "review_scope": "Example2 stress sigma=lambda div(u)I+mu(grad(u)+grad(u)^T), weak formulation and traction conventions inspected. Use lambda0 as a linear vector viscous BVP; manufactured fields are derived here. MFEM not executed or copied."
+    },
+    {
+      "id": "petsc-nullspace",
+      "author": "PETSc developers",
+      "title": "KSP: Solving Singular Systems",
+      "url": "https://petsc.org/main/manual/ksp/",
+      "review_level": "selected-official-section",
+      "review_scope": "Solving Singular Systems: constant Neumann nullspace and RHS compatibility inspected. We reject physical incompatibility rather than projecting it away. PETSc is neither a dependency nor executed."
+    },
+    {
+      "id": "mfem-robin",
+      "author": "MFEM developers",
+      "title": "Boundary Conditions: Robin boundary conditions",
+      "url": "https://mfem.org/fem_bc/",
+      "review_level": "selected-official-equations",
+      "review_scope": "Outward normal derivative and Robin weak boundary contribution inspected; Example27 source overview inspected. Our cell-centred face elimination/MMS is separately derived; no MFEM execution."
+    }
+  ],
+  "not_performed": [
+    "No third-party numerical package executed or copied",
+    "No full-paper audit beyond selected scopes",
+    "No prior immutable result or tolerance changed"
+  ]
+}

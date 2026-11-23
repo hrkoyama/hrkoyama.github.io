@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "scientific_source_unchanged": true,
+  "public_result_envelope_passed": true,
+  "main_contract_sha256": "295cffb4e7d6cf09d7412b3f5405d544c42ca487376b296e848ada55aabdaad8",
+  "plot_review": "Three main scientific PNGs, three gallery previews and all three PDF-to-PNG renders visually inspected; shortened long titles, fixed colorbar clipping, rasterized snapshot heatmaps in PDF; only presentation source changed.",
+  "figures_sha256": {
+    "circular-alfven-refinement-preview.png": "465bcb429d86aab1fa08b0096b263a4aeefc0a6a3885c57ea6fdce3d74715550",
+    "circular-alfven-refinement.pdf": "8a2fee1b6500151d0fb1d604673536e1cbdb115dc637f754fea73e122c068fac",
+    "circular-alfven-refinement.png": "912e84a14005ad39654a6af4f60d6ad1332cea79aac1d3db62acdf42a2d9a77e",
+    "circular-alfven-refinement.svg": "b4a1c8f3bb0ed0f58c9753e6daacf381fe73caacc161348482eb4618d9187e57",
+    "magnetic-loop-independent-preview.png": "00049623bb35c15f699a9dc81d94ead1e744c7d09c5bf4db3ece677db769f3a6",
+    "magnetic-loop-independent.pdf": "7f05262328eef8cbef48d302bfb054cddb6fc4857eac6e9f1699f78142687daf",
+    "magnetic-loop-independent.png": "0dbe625cefb48f305a884209bc7c1a1083d7473ff25ce29dd51990409505d2fb",
+    "magnetic-loop-independent.svg": "9c665ad8192b905396fc7d352424481e36489cd5728039e31261038034097796",
+    "postshock-orszag-tang-preview.png": "bda8eeef077b2d0e0ce634dcf73e65544a520e8d1c78d65786832ce5eefe434d",
+    "postshock-orszag-tang.pdf": "ec0461b7e05c7a3c6143ee650416996444162fe39b357f17578932b8ad3652df",
+    "postshock-orszag-tang.png": "8bd8a6fc206ce3031c036a00cb9a1af12277e2fa0c934aa2c478de2429c33412",
+    "postshock-orszag-tang.svg": "d568f68f99470921f8eadf1f1feacd4999b33dc6ed4eba858bbab715f398bc52"
+  },
+  "scope": "Saved fields only; no solver or independent PDE execution during plotting. CPAW1D x-time distinguished from genuine2D loop/OT; independent numerical comparison final-only."
+}

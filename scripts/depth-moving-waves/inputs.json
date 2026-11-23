@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "ale_grids": [
+    40,
+    80,
+    160
+  ],
+  "ale_t": 1.0,
+  "ale_cfl": 0.4,
+  "time_n": 40,
+  "time_t": 0.25,
+  "ale_time_steps": [
+    32,
+    64,
+    128
+  ],
+  "wave_grids": [
+    16,
+    32,
+    64
+  ],
+  "wave_t": 0.5,
+  "wave_time_n": 16,
+  "wave_time_steps": [
+    16,
+    32,
+    64
+  ]
+}

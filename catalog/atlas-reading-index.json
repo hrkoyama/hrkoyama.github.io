@@ -111,7 +111,10 @@
         "validation-noh-cartesian",
         "validation-sedov",
         "validation-guderley",
-        "validation-weno-critical"
+        "validation-weno-critical",
+        "validation-instability-growth",
+        "validation-mhd-transport",
+        "validation-relativistic"
       ]
     },
     {
@@ -137,7 +140,9 @@
         "validation-mhd",
         "validation-mhd-convergence",
         "validation-shallow-water",
-        "validation-wall-flow"
+        "validation-wall-flow",
+        "validation-mesh-boundary",
+        "validation-moving-waves"
       ]
     },
     {

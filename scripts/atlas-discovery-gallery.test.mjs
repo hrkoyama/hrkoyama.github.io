@@ -14,14 +14,14 @@ const supplemental = new Map(json('catalog/atlas-test-problems.json').problems.f
 
 test('the shared22 and separate supplements have distinct runnable entrances; all86 retain images and readings', () => {
   const previews = new Map(json('numerical-methods-atlas/gallery/preview-manifest.json').items.map(x => [x.id, x]));
-  assert.equal(gallery.items.length, 92);
+  assert.equal(gallery.items.length, 102);
   assert.equal(runnable.size, 22);
-  assert.equal(gallery.counts.runnable_problems, 52);
+  assert.equal(gallery.counts.runnable_problems, 62);
   assert.equal(gallery.counts.common_runnable_problems, 22);
   assert.equal(gallery.counts.supplemental_runnable_problems, 34);
-  assert.equal(gallery.counts.supplemental_case_count, 51);
-  assert.equal(gallery.counts.supplemental_release_case_count, 56);
-  assert.equal(gallery.items.filter(x => x.runnable).length, 52);
+  assert.equal(gallery.counts.supplemental_case_count, 64);
+  assert.equal(gallery.counts.supplemental_release_case_count, 69);
+  assert.equal(gallery.items.filter(x => x.runnable).length, 62);
   assert.equal((html.match(/class="gallery-execution-badge"/g) || []).length, 44);
   assert.equal((html.match(/data-supplemental-execution=/g) || []).length, 102);
   for (const item of gallery.items) {
@@ -125,9 +125,9 @@ test('toggle, group, search, no-results and reset interactions preserve independ
   }
   const visible = section => section.tiles.filter(tile => !tile.hidden).length;
   const [ja, en] = sections;
-  assert.equal(visible(ja), 92); assert.equal(visible(en), 92);
+  assert.equal(visible(ja), 102); assert.equal(visible(en), 102);
   ja.toggle.handlers.click();
-  assert.equal(visible(ja), 52); assert.equal(visible(en), 92);
+  assert.equal(visible(ja), 62); assert.equal(visible(en), 102);
   assert.equal(ja.toggle.attributes['aria-pressed'], 'true');
   ja.buttons.find(button => button.dataset.galleryGroup === 'gravity').handlers.click();
   assert.equal(visible(ja), gallery.items.filter(x => x.group === 'gravity' && x.runnable).length);
@@ -135,14 +135,14 @@ test('toggle, group, search, no-results and reset interactions preserve independ
   assert.equal(visible(ja), gallery.items.filter(x => x.group === 'gravity' && x.runnable && Object.values(x.name).join(' ').includes('周期')).length);
   ja.input.value = '__no_matching_problem__'; ja.input.handlers.input();
   assert.equal(visible(ja), 0); assert.equal(ja.empty.hidden, false);
-  assert.ok(ja.status.textContent.includes('0 / 92'));
+  assert.ok(ja.status.textContent.includes('0 / 102'));
   ja.reset.handlers.click();
-  assert.equal(visible(ja), 92); assert.equal(ja.empty.hidden, true);
+  assert.equal(visible(ja), 102); assert.equal(ja.empty.hidden, true);
   assert.equal(ja.input.value, ''); assert.equal(ja.input.focused, true);
   assert.equal(ja.toggle.attributes['aria-pressed'], 'false');
   assert.equal(ja.buttons[0].attributes['aria-pressed'], 'true');
-  assert.equal(visible(en), 92);
+  assert.equal(visible(en), 102);
   en.toggle.handlers.click();
-  assert.equal(visible(en), 52); assert.ok(en.status.textContent.includes('Showing 52 of 92'));
-  assert.equal(visible(ja), 92);
+  assert.equal(visible(en), 62); assert.ok(en.status.textContent.includes('Showing 62 of 102'));
+  assert.equal(visible(ja), 102);
 });

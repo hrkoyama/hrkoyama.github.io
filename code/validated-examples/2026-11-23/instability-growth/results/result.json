@@ -1,0 +1,424 @@
+{
+  "schema_version": 1,
+  "group": "instability-growth",
+  "input_sha256": "05d178c8f48df0c8819ab863e5448a0573144f69b0a64b59381f5109b757042a",
+  "passed": true,
+  "termination": "fixed_budget_completed",
+  "failure": null,
+  "checks": {
+    "kh-initial-growth": true,
+    "rt-initial-growth": true
+  },
+  "cases": [
+    {
+      "id": "kh-initial-growth",
+      "passed": true,
+      "checks": {
+        "reference_state_sensitivity": true,
+        "reference_growth_sensitivity": true,
+        "reference_positive_eigen_growth": true,
+        "n32_finite": true,
+        "n32_divergence": true,
+        "n32_poisson": true,
+        "n32_mean_omega": true,
+        "n32_mean_theta": true,
+        "n64_finite": true,
+        "n64_divergence": true,
+        "n64_poisson": true,
+        "n64_mean_omega": true,
+        "n64_mean_theta": true,
+        "n128_finite": true,
+        "n128_divergence": true,
+        "n128_poisson": true,
+        "n128_mean_omega": true,
+        "n128_mean_theta": true,
+        "time-half_finite": true,
+        "time-half_divergence": true,
+        "time-half_poisson": true,
+        "time-half_mean_omega": true,
+        "time-half_mean_theta": true,
+        "epsilon-half_finite": true,
+        "epsilon-half_divergence": true,
+        "epsilon-half_poisson": true,
+        "epsilon-half_mean_omega": true,
+        "epsilon-half_mean_theta": true,
+        "spatial_decrease_1": true,
+        "spatial_decrease_2": true,
+        "minimum_spatial_order": true,
+        "finest_field_error": true,
+        "growth_curve": true,
+        "finite_window_growth_rate": true,
+        "observable_growth": true,
+        "time_contamination": true,
+        "amplitude_linearity": true
+      },
+      "records": [
+        {
+          "id": "n32",
+          "n": 32,
+          "epsilon": 1e-05,
+          "cfl_factor": 1.0,
+          "steps": 36,
+          "relative_field_error": 0.0832693106538785,
+          "amplitudes": [
+            7.571133935436482e-06,
+            7.782362929282533e-06,
+            8.41346745252849e-06,
+            9.410858494395259e-06,
+            1.0731036167334186e-05
+          ],
+          "reference_amplitudes": [
+            7.603453162872775e-06,
+            7.86001815273194e-06,
+            8.611150136682367e-06,
+            9.781764397395089e-06,
+            1.1318206814998453e-05
+          ],
+          "file": "kh-initial-growth-n32.npz",
+          "sha256": "ae25727d05326c76d77e593979ac4bf5740d16691e4a7c092b2bb6d7365d2398",
+          "finite": true,
+          "max_divergence": 1.6940658945086007e-20,
+          "max_poisson_residual": 5.21772295508649e-19,
+          "max_mean_omega": 1.2705494208814505e-21,
+          "max_mean_theta": 0.0
+        },
+        {
+          "id": "n64",
+          "n": 64,
+          "epsilon": 1e-05,
+          "cfl_factor": 1.0,
+          "steps": 68,
+          "relative_field_error": 0.01739695762138018,
+          "amplitudes": [
+            7.595367435186987e-06,
+            7.840648927426591e-06,
+            8.562300548520147e-06,
+            9.690657995543658e-06,
+            1.1174198473241866e-05
+          ],
+          "reference_amplitudes": [
+            7.603453162872775e-06,
+            7.86001815273194e-06,
+            8.611150136682367e-06,
+            9.781764397395089e-06,
+            1.1318206814998453e-05
+          ],
+          "file": "kh-initial-growth-n64.npz",
+          "sha256": "eb418472bb4dcf3c8fcb97428d8674a604a5a187c1c3f8e78d330ff5253435b4",
+          "finite": true,
+          "max_divergence": 4.404571325722362e-20,
+          "max_poisson_residual": 2.778268066994105e-18,
+          "max_mean_omega": 1.2705494208814505e-21,
+          "max_mean_theta": 0.0
+        },
+        {
+          "id": "n128",
+          "n": 128,
+          "epsilon": 1e-05,
+          "cfl_factor": 1.0,
+          "steps": 152,
+          "relative_field_error": 0.00425645160443949,
+          "amplitudes": [
+            7.601431365252137e-06,
+            7.855183180822999e-06,
+            8.599003112070968e-06,
+            9.759184173475732e-06,
+            1.128260344303824e-05
+          ],
+          "reference_amplitudes": [
+            7.603453162872775e-06,
+            7.86001815273194e-06,
+            8.611150136682367e-06,
+            9.781764397395089e-06,
+            1.1318206814998453e-05
+          ],
+          "file": "kh-initial-growth-n128.npz",
+          "sha256": "4795c793ed258b06d6f3ac9aebe42fb15c4253a8114e06d6d486d17e0e8957f2",
+          "finite": true,
+          "max_divergence": 8.639736061993863e-20,
+          "max_poisson_residual": 1.2434443665693129e-17,
+          "max_mean_omega": 1.0587911840678754e-21,
+          "max_mean_theta": 0.0
+        },
+        {
+          "id": "time-half",
+          "n": 64,
+          "epsilon": 1e-05,
+          "cfl_factor": 0.5,
+          "steps": 136,
+          "relative_field_error": 0.01739198234949979,
+          "amplitudes": [
+            7.595367435186987e-06,
+            7.840654126276043e-06,
+            8.562321179686481e-06,
+            9.69070063482987e-06,
+            1.1174267810079785e-05
+          ],
+          "reference_amplitudes": [
+            7.603453162872775e-06,
+            7.86001815273194e-06,
+            8.611150136682367e-06,
+            9.781764397395089e-06,
+            1.1318206814998453e-05
+          ],
+          "file": "kh-initial-growth-time-half.npz",
+          "sha256": "19f31eafb66bad56fec1c6e1f932372c554ec511c9b4f4ea8c031e1711c8ae80",
+          "finite": true,
+          "max_divergence": 4.319868030996932e-20,
+          "max_poisson_residual": 3.0137432263308006e-18,
+          "max_mean_omega": 1.2705494208814505e-21,
+          "max_mean_theta": 0.0
+        },
+        {
+          "id": "epsilon-half",
+          "n": 64,
+          "epsilon": 5e-06,
+          "cfl_factor": 1.0,
+          "steps": 68,
+          "relative_field_error": 0.017396953941301977,
+          "amplitudes": [
+            3.7976837175934933e-06,
+            3.9203244636673306e-06,
+            4.2811502740558e-06,
+            4.845328997301374e-06,
+            5.587099235786818e-06
+          ],
+          "reference_amplitudes": [
+            3.8017265814363877e-06,
+            3.93000907636597e-06,
+            4.305575068341184e-06,
+            4.890882198697544e-06,
+            5.659103407499227e-06
+          ],
+          "file": "kh-initial-growth-epsilon-half.npz",
+          "sha256": "42d8b9917c8aafd529e7acbb7b82660b7dd78102adc8656a160e363000f51ccd",
+          "finite": true,
+          "max_divergence": 2.159934015498466e-20,
+          "max_poisson_residual": 1.4094628242311558e-18,
+          "max_mean_omega": 5.293955920339377e-22,
+          "max_mean_theta": 0.0
+        }
+      ],
+      "metrics": {
+        "spatial_orders": [
+          2.2589498509059927,
+          2.031111897437912
+        ],
+        "finest_relative_field_error": 0.00425645160443949,
+        "finite_window_growth_rate": 0.39492545403491336,
+        "reference_finite_window_growth_rate": 0.3978101440217111,
+        "finest_growth_factor": 1.4842735401931764,
+        "maximum_growth_curve_error": 0.0028805332665482204,
+        "time_contamination_fraction": 0.00045118656465393327,
+        "amplitude_scaled_difference": 6.588689979924076e-06,
+        "linear_operator_maximum_real_eigenvalue": 0.5858641640461411
+      }
+    },
+    {
+      "id": "rt-initial-growth",
+      "passed": true,
+      "checks": {
+        "reference_state_sensitivity": true,
+        "reference_growth_sensitivity": true,
+        "reference_positive_eigen_growth": true,
+        "n32_finite": true,
+        "n32_divergence": true,
+        "n32_poisson": true,
+        "n32_mean_omega": true,
+        "n32_mean_theta": true,
+        "n64_finite": true,
+        "n64_divergence": true,
+        "n64_poisson": true,
+        "n64_mean_omega": true,
+        "n64_mean_theta": true,
+        "n128_finite": true,
+        "n128_divergence": true,
+        "n128_poisson": true,
+        "n128_mean_omega": true,
+        "n128_mean_theta": true,
+        "time-half_finite": true,
+        "time-half_divergence": true,
+        "time-half_poisson": true,
+        "time-half_mean_omega": true,
+        "time-half_mean_theta": true,
+        "epsilon-half_finite": true,
+        "epsilon-half_divergence": true,
+        "epsilon-half_poisson": true,
+        "epsilon-half_mean_omega": true,
+        "epsilon-half_mean_theta": true,
+        "spatial_decrease_1": true,
+        "spatial_decrease_2": true,
+        "minimum_spatial_order": true,
+        "finest_field_error": true,
+        "growth_curve": true,
+        "finite_window_growth_rate": true,
+        "observable_growth": true,
+        "time_contamination": true,
+        "amplitude_linearity": true
+      },
+      "records": [
+        {
+          "id": "n32",
+          "n": 32,
+          "epsilon": 1e-05,
+          "cfl_factor": 1.0,
+          "steps": 16,
+          "relative_field_error": 0.009658093548670957,
+          "amplitudes": [
+            8.660254037844388e-06,
+            8.64479017514243e-06,
+            8.656060892155223e-06,
+            8.694725433245985e-06,
+            8.762008312385106e-06
+          ],
+          "reference_amplitudes": [
+            8.660254037844388e-06,
+            8.644820882950885e-06,
+            8.656375379014117e-06,
+            8.69557745727289e-06,
+            8.763650521435006e-06
+          ],
+          "file": "rt-initial-growth-n32.npz",
+          "sha256": "d6fdb280bffcc3d485e5d44c1314cca95592f85e49668219f611c1c7e434fca3",
+          "finite": true,
+          "max_divergence": 1.9481757786848908e-20,
+          "max_poisson_residual": 8.893845946170154e-19,
+          "max_mean_omega": 8.470329472543003e-22,
+          "max_mean_theta": 1.0587911840678754e-21
+        },
+        {
+          "id": "n64",
+          "n": 64,
+          "epsilon": 1e-05,
+          "cfl_factor": 1.0,
+          "steps": 32,
+          "relative_field_error": 0.0024209248217765267,
+          "amplitudes": [
+            8.660254037844387e-06,
+            8.644812308685322e-06,
+            8.65629287504494e-06,
+            8.695354785233646e-06,
+            8.763220713550922e-06
+          ],
+          "reference_amplitudes": [
+            8.660254037844388e-06,
+            8.644820882950885e-06,
+            8.656375379014117e-06,
+            8.69557745727289e-06,
+            8.763650521435006e-06
+          ],
+          "file": "rt-initial-growth-n64.npz",
+          "sha256": "84025a93b1a9fffdc3b020080cb88c25bd815278f1a20d1c0972e66acd62deae",
+          "finite": true,
+          "max_divergence": 3.8963515573697816e-20,
+          "max_poisson_residual": 5.732718987017105e-18,
+          "max_mean_omega": 1.6940658945086007e-21,
+          "max_mean_theta": 8.470329472543003e-22
+        },
+        {
+          "id": "n128",
+          "n": 128,
+          "epsilon": 1e-05,
+          "cfl_factor": 1.0,
+          "steps": 96,
+          "relative_field_error": 0.0006046946397847546,
+          "amplitudes": [
+            8.660254037844387e-06,
+            8.64481866060881e-06,
+            8.65635465370854e-06,
+            8.695521724787933e-06,
+            8.763543093241356e-06
+          ],
+          "reference_amplitudes": [
+            8.660254037844388e-06,
+            8.644820882950885e-06,
+            8.656375379014117e-06,
+            8.69557745727289e-06,
+            8.763650521435006e-06
+          ],
+          "file": "rt-initial-growth-n128.npz",
+          "sha256": "c58ef589a323e37b6509e902f2a7ef1ca6fbab7587377068040c42043573dbf3",
+          "finite": true,
+          "max_divergence": 7.835054762102278e-20,
+          "max_poisson_residual": 2.3615278569449893e-17,
+          "max_mean_omega": 1.6940658945086007e-21,
+          "max_mean_theta": 1.0587911840678754e-21
+        },
+        {
+          "id": "time-half",
+          "n": 64,
+          "epsilon": 1e-05,
+          "cfl_factor": 0.5,
+          "steps": 64,
+          "relative_field_error": 0.0024159767636106146,
+          "amplitudes": [
+            8.660254037844387e-06,
+            8.644811904755306e-06,
+            8.656292430772538e-06,
+            8.695354639994936e-06,
+            8.763221209066592e-06
+          ],
+          "reference_amplitudes": [
+            8.660254037844388e-06,
+            8.644820882950885e-06,
+            8.656375379014117e-06,
+            8.69557745727289e-06,
+            8.763650521435006e-06
+          ],
+          "file": "rt-initial-growth-time-half.npz",
+          "sha256": "9c494fea6c95e637e86a76edc9352747f4199ab1e8664eeea47d55165f38ac6d",
+          "finite": true,
+          "max_divergence": 3.8963515573697816e-20,
+          "max_poisson_residual": 4.950060543754131e-18,
+          "max_mean_omega": 8.470329472543003e-22,
+          "max_mean_theta": 1.2705494208814505e-21
+        },
+        {
+          "id": "epsilon-half",
+          "n": 64,
+          "epsilon": 5e-06,
+          "cfl_factor": 1.0,
+          "steps": 32,
+          "relative_field_error": 0.0024209245860166767,
+          "amplitudes": [
+            4.330127018922193e-06,
+            4.322406154345375e-06,
+            4.328146437529506e-06,
+            4.347677392622142e-06,
+            4.381610356768535e-06
+          ],
+          "reference_amplitudes": [
+            4.330127018922194e-06,
+            4.3224104414754425e-06,
+            4.3281876895070585e-06,
+            4.347788728636445e-06,
+            4.381825260717503e-06
+          ],
+          "file": "rt-initial-growth-epsilon-half.npz",
+          "sha256": "5a770de9626e0fb9897d36ca2e9b7beda34daec8f9939b064df37d21f8a58651",
+          "finite": true,
+          "max_divergence": 1.9269999550035333e-20,
+          "max_poisson_residual": 2.7206698265808127e-18,
+          "max_mean_omega": 8.470329472543003e-22,
+          "max_mean_theta": 6.352747104407253e-22
+        }
+      ],
+      "metrics": {
+        "spatial_orders": [
+          1.9961801582972816,
+          2.001279583653318
+        ],
+        "finest_relative_field_error": 0.0006046946397847546,
+        "finite_window_growth_rate": 0.005928114552970485,
+        "reference_finite_window_growth_rate": 0.005934243782555812,
+        "finest_growth_factor": 1.0119267927875564,
+        "maximum_growth_curve_error": 1.2258384036050356e-05,
+        "time_contamination_fraction": 0.0026807715949025237,
+        "amplitude_scaled_difference": 6.607861425190432e-06,
+        "linear_operator_maximum_real_eigenvalue": 0.11294010706315265
+      }
+    }
+  ],
+  "duration_seconds": 1.2908048750032322,
+  "created_at_utc": "2026-11-23T12:29:13.112225+00:00"
+}

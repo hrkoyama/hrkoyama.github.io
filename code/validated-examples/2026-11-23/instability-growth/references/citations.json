@@ -1,0 +1,40 @@
+[
+  {
+    "id": "mcnally2012",
+    "author": "Colin P. McNally, Wladimir Lyra and Jean-Claude Passy",
+    "year": 2012,
+    "title": "A Well-Posed Kelvin-Helmholtz Instability Test and Comparison",
+    "journal": "The Astrophysical Journal Supplement Series",
+    "volume": "201",
+    "pages": "18",
+    "doi": "10.1088/0067-0049/201/2/18",
+    "url": "https://arxiv.org/abs/1111.1764",
+    "type": "article",
+    "review_level": "primary-selected-original-pdf-text",
+    "review_scope": "Read original sections1–3 on matching smooth finite-domain models and growth diagnostics; arXiv journal metadata checked. Our forced incompressible model is distinct.",
+    "review": {
+      "ja": "原著の滑らかな層・有限領域・成長測定の議論を確認。本例は独自の強制非圧縮系です。",
+      "en": "Selected original methodology read; our incompressible forced inputs differ from its compressible benchmark."
+    },
+    "accessed_on": "2026-11-23"
+  },
+  {
+    "id": "celani2006",
+    "author": "Antonio Celani, Andrea Mazzino and Lara Vozella",
+    "year": 2006,
+    "title": "Rayleigh–Taylor turbulence in two dimensions",
+    "journal": "Physical Review Letters",
+    "volume": "96",
+    "pages": "134504",
+    "doi": "10.1103/PhysRevLett.96.134504",
+    "url": "https://arxiv.org/abs/nlin/0510067",
+    "type": "article",
+    "review_level": "primary-selected-original-pdf-text",
+    "review_scope": "Read original pp1–2 governing equations1–2 and doubly periodic Boussinesq setup. No original turbulent-run reproduction.",
+    "review": {
+      "ja": "原著のBoussinesq方程式と周期設定を確認。本例の滑らかな定常維持二層と線形参照は独自です。",
+      "en": "Original Boussinesq equations and periodic setup read; our smooth maintained layers and linear reference are constructed here."
+    },
+    "accessed_on": "2026-11-23"
+  }
+]

@@ -1,0 +1,15 @@
+{
+  "schema_version":1,
+  "declared_before_first_scientific_execution":true,
+  "limits":{
+    "balance":3e-11,"root_residual":3e-13,"roundtrip_residual":3e-11,
+    "collision_finest_D_l1":0.04,"collision_finest_E_l1":0.04,
+    "collision_refinement_ratio":0.9,"collision_star_pressure_relative":0.04,
+    "collision_shock_location":0.025,"collision_symmetry":3e-11,
+    "wave_finest_transverse_relative_l1":0.04,"wave_refinement_ratio":0.65,
+    "wave_minimum_observed_order":1.5,"wave_intermediate_relative_l1":0.08,
+    "wave_finest_phase_error":0.03,"wave_finest_amplitude_error":0.04,
+    "independent_zero_B":3e-11
+  },
+  "scope":"Fixed mild symmetric two-shock SRHD and finite-amplitude exact CP Alfvén RMHD. No generic exact SRHD/RMHD Riemann solver, GR, extreme Lorentz factors, atmosphere or arbitrary-EOS claim. No state floors, clipping or PDE step retries. Root-bracket safeguarding changes only trial algebra, not evolved states."
+}

@@ -95,7 +95,16 @@
       ],
       "status": "local-example",
       "group": "physical",
-      "coverage_scope": ""
+      "coverage_scope": "Additional cases cover an L-shaped singularity with matched-DOF grading,warped squares,pure-Neumann compatibility/mean gauge and mixed Robin conditions. Existing Poisson examples remain; distinguish residuals from continuous error.",
+      "supplemental_examples": [
+        "lshape-fem",
+        "poisson-neumann",
+        "poisson-robin"
+      ],
+      "execution_scope": {
+        "ja": "追加例はL字特異解と同じ自由度のgraded三角形、warped正方形、および純Neumannの適合条件・平均ゲージと混合Robin境界。旧Poisson例を保持し、残差と連続誤差を区別します。",
+        "en": "Additional cases cover an L-shaped singularity with matched-DOF grading,warped squares,pure-Neumann compatibility/mean gauge and mixed Robin conditions. Existing Poisson examples remain; distinguish residuals from continuous error."
+      }
     },
     {
       "id": "burgers",
@@ -222,7 +231,16 @@
       },
       "status": "local-example",
       "group": "physical",
-      "coverage_scope": ""
+      "coverage_scope": "Retain existing MHD examples. Add a full-eight-state1D aligned CP wave and actual2D magnetic-loop/postshock Orszag–Tang cases. Independent Athena references for the latter two are finite-grid numerical solutions,not exact or generic validation.",
+      "supplemental_examples": [
+        "circular-alfven-refinement",
+        "magnetic-loop-independent",
+        "postshock-orszag-tang"
+      ],
+      "execution_scope": {
+        "ja": "従来のMHD例を保持。追加は全8量の1D整列円偏波と、実際の2D磁場ループ・衝撃波形成後Orszag–Tang。後二者の独立Athena参照は有限格子数値解であり、厳密解や任意問題の検証とはしません。",
+        "en": "Retain existing MHD examples. Add a full-eight-state1D aligned CP wave and actual2D magnetic-loop/postshock Orszag–Tang cases. Independent Athena references for the latter two are finite-grid numerical solutions,not exact or generic validation."
+      }
     },
     {
       "id": "navier-stokes",
@@ -356,13 +374,56 @@
       ],
       "chapter": "relativistic-hydrodynamics",
       "note": {
-        "ja": "c=1、平坦なCartesian時空での理想流体の代表形。状態方程式と原始変数の回復が必要です。アトラスでは文献解説のみ。",
-        "en": "Representative ideal fluid in flat Cartesian spacetime, c=1. An equation of state and primitive recovery are required. Atlas coverage is literature-only."
+        "ja": "c=1、平坦なCartesian時空の理想流体。γ則EOSと原始変数回復を使う穏やかな対称二衝撃波の固定例を追加。一般三波Riemann解、極端なLorentz因子、一般相対論を検証したとはしません。",
+        "en": "Ideal fluid in flat Cartesian spacetime,c=1. Add a mild fixed symmetric two-shock example with gamma-law EOS and primitive recovery; no general three-wave Riemann,extreme-Lorentz-factor or GR claim."
       },
       "section": "what-changes-from-the-existing-euler-examples",
-      "status": "reading",
+      "status": "local-example",
       "group": "relativistic",
-      "coverage_scope": "Literature review; no local relativistic solver."
+      "coverage_scope": "Mild fixed symmetric two-shock1D collision with exact conserved cell means; not a generic relativistic Riemann or GR solver.",
+      "execution_scope": {
+        "ja": "ρ1,p.1,v±.3,γ5/3、96/192/384セル、T.3、境界外挿。独立Taub解、圧力根SRHD回復/流束、保存量の境界収支と全段物理性を照合します。",
+        "en": "rho1,p.1,v±.3,gamma5/3,96/192/384 cells,T.3,extrapolation boundaries. Compare independent Taub exact means,pressure-root SRHD recovery/flux,boundary budgets and all-stage admissibility."
+      },
+      "supplemental_examples": [
+        "srhd-collision"
+      ],
+      "references": [
+        {
+          "id": "rezzolla-zanotti2001",
+          "author": "Luciano Rezzolla and Olindo Zanotti",
+          "year": 2001,
+          "title": "An Improved Exact Riemann Solver for Relativistic Hydrodynamics",
+          "url": "https://arxiv.org/abs/gr-qc/0103005",
+          "type": "preprint",
+          "review_level": "primary-selected-mathematical-sections",
+          "review_scope": "Original arxiv v2 read: sections2–4, equations2.3/2.4,3.1 and4.5; restricted two-shock specialization. No whole-paper or generic Riemann implementation audit.",
+          "review": {
+            "ja": "原著プレプリントの2–4節、状態方程式、相対速度式3.1とTaub二次式4.5を直接確認。対称二衝撃波への特殊化です。",
+            "en": "Read original preprint sections2–4: EOS, relative-velocity equation3.1 and Taub quadratic4.5. Restricted symmetric two-shock specialization."
+          },
+          "accessed_on": "2026-11-23"
+        },
+        {
+          "id": "font2008",
+          "author": "José A. Font",
+          "year": 2008,
+          "title": "Numerical Hydrodynamics and Magnetohydrodynamics in General Relativity",
+          "journal": "Living Reviews in Relativity",
+          "volume": "11",
+          "number": "7",
+          "doi": "10.12942/lrr-2008-7",
+          "url": "https://link.springer.com/article/10.12942/lrr-2008-7",
+          "type": "review",
+          "review_level": "primary-author-review-selected-equations",
+          "review_scope": "Official article sections3.1–3.2, tensor49–51 and recovery68–69 actually read. Flat-spacetime use only; no whole-review or complete-GRMHD implementation audit.",
+          "review": {
+            "ja": "公式の著者レビュー3.1–3.2節、テンソル式49–51と変換式68–69を直接確認。平坦時空の実装に使用します。",
+            "en": "Read official author-review sections3.1–3.2, stress tensor49–51 and recovery68–69; flat-spacetime use only."
+          },
+          "accessed_on": "2026-11-23"
+        }
+      ]
     },
     {
       "id": "grhd",
@@ -1201,6 +1262,282 @@
       "supplemental_examples": [
         "level-set-translation",
         "level-set-rotation"
+      ]
+    },
+    {
+      "id": "forced-vorticity",
+      "name": {
+        "ja": "維持されたせん断層の強制渦度系",
+        "en": "Forced vorticity about a maintained shear layer"
+      },
+      "formula": [
+        "-\\Delta\\psi=\\omega,\\qquad (u,v)=(\\psi_y,-\\psi_x)",
+        "\\omega_t+U(y)\\omega_x+U^{\\prime\\prime}(y)\\psi_x+u\\omega_x+v\\omega_y=\\nu\\Delta\\omega",
+        "U(y)=\\tanh(\\sin y/\\delta),\\qquad \\Omega_{\\mathrm{total}}=-U^{\\prime}(y)+\\omega"
+      ],
+      "chapter": "validation-instability-growth",
+      "note": {
+        "ja": "解析的な基底せん断を明示的外力で維持し、微小摂動を実際の非線形2D渦度系で進めます。圧力は消去され、鋭い界面・無限領域・可圧縮KHの分散式とは区別します。",
+        "en": "Explicit forcing maintains the analytic base shear; actual nonlinear2D dynamics evolve its perturbations. Pressure is eliminated. Distinguish this from sharp-interface infinite-domain or compressible KH dispersion."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "coverage_scope": "Fixed periodic[0,2pi]² initial-growth case,delta.25,nu.005,epsilon1e-5,32²/64²/128²,T1. Compare an independent Fourier–Galerkin linear IVP and separate timestep/amplitude probes; no late roll-up certification.",
+      "execution_scope": {
+        "ja": "周期[0,2π]²、δ=.25、ν=.005、ε=1e−5、32²/64²/128²、T1の初期成長。独立Fourier–Galerkin線形IVPと、刻み・振幅変更を照合する限定例です。",
+        "en": "Fixed periodic[0,2pi]² initial-growth case,delta.25,nu.005,epsilon1e-5,32²/64²/128²,T1. Compare an independent Fourier–Galerkin linear IVP and separate timestep/amplitude probes; no late roll-up certification."
+      },
+      "supplemental_examples": [
+        "kh-initial-growth"
+      ],
+      "references": [
+        {
+          "id": "mcnally2012",
+          "author": "Colin P. McNally, Wladimir Lyra and Jean-Claude Passy",
+          "year": 2012,
+          "title": "A Well-Posed Kelvin-Helmholtz Instability Test and Comparison",
+          "journal": "The Astrophysical Journal Supplement Series",
+          "volume": "201",
+          "pages": "18",
+          "doi": "10.1088/0067-0049/201/2/18",
+          "url": "https://arxiv.org/abs/1111.1764",
+          "type": "article",
+          "review_level": "primary-selected-original-pdf-text",
+          "review_scope": "Read original sections1–3 on matching smooth finite-domain models and growth diagnostics; arXiv journal metadata checked. Our forced incompressible model is distinct.",
+          "review": {
+            "ja": "原著の滑らかな層・有限領域・成長測定の議論を確認。本例は独自の強制非圧縮系です。",
+            "en": "Selected original methodology read; our incompressible forced inputs differ from its compressible benchmark."
+          },
+          "accessed_on": "2026-11-23"
+        }
+      ]
+    },
+    {
+      "id": "boussinesq-buoyancy",
+      "name": {
+        "ja": "能動浮力を伴うBoussinesq渦度系",
+        "en": "Boussinesq vorticity with active buoyancy"
+      },
+      "formula": [
+        "-\\Delta\\psi=\\omega,\\quad (u,v)=(\\psi_y,-\\psi_x),\\quad b=b_0(y)+\\theta",
+        "\\omega_t+u\\omega_x+v\\omega_y=\\nu\\Delta\\omega+\\theta_x",
+        "\\theta_t+u\\theta_x+v\\theta_y+v b_0^{\\prime}=\\kappa\\Delta\\theta,\\qquad b_0=.02\\tanh(\\sin y/\\delta)"
+      ],
+      "chapter": "validation-instability-growth",
+      "note": {
+        "ja": "慣性密度を一定とし、密度差は浮力だけに残します。基底浮力を外力で維持した摂動形です。全浮力bの鉛直力のcurlがθxを与え、可変密度Euler系とは異なります。",
+        "en": "Inertial density is constant; density contrast enters buoyancy only. Forcing maintains the base profile. The curl of vertical buoyancy yields theta_x; this is a perturbation Boussinesq system rather than variable-density Euler."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "coverage_scope": "Periodic[0,2pi]²,nu=kappa.005,delta.25,epsilon1e-5,32²/64²/128²,T2. Smooth double-layer initial growth is compared with an independent linear reference; no RT-turbulence or sharp-density-interface claim.",
+      "execution_scope": {
+        "ja": "周期[0,2π]²、ν=κ=.005、δ=.25、ε=1e−5、32²/64²/128²、T2。滑らかな二層の初期成長を独立線形参照と比較し、RT乱流や鋭い密度界面を検証したとはしません。",
+        "en": "Periodic[0,2pi]²,nu=kappa.005,delta.25,epsilon1e-5,32²/64²/128²,T2. Smooth double-layer initial growth is compared with an independent linear reference; no RT-turbulence or sharp-density-interface claim."
+      },
+      "supplemental_examples": [
+        "rt-initial-growth"
+      ],
+      "references": [
+        {
+          "id": "celani2006",
+          "author": "Antonio Celani, Andrea Mazzino and Lara Vozella",
+          "year": 2006,
+          "title": "Rayleigh–Taylor turbulence in two dimensions",
+          "journal": "Physical Review Letters",
+          "volume": "96",
+          "pages": "134504",
+          "doi": "10.1103/PhysRevLett.96.134504",
+          "url": "https://arxiv.org/abs/nlin/0510067",
+          "type": "article",
+          "review_level": "primary-selected-original-pdf-text",
+          "review_scope": "Read original pp1–2 governing equations1–2 and doubly periodic Boussinesq setup. No original turbulent-run reproduction.",
+          "review": {
+            "ja": "原著のBoussinesq方程式と周期設定を確認。本例の滑らかな定常維持二層と線形参照は独自です。",
+            "en": "Original Boussinesq equations and periodic setup read; our smooth maintained layers and linear reference are constructed here."
+          },
+          "accessed_on": "2026-11-23"
+        }
+      ]
+    },
+    {
+      "id": "ale-scalar-transport",
+      "name": {
+        "ja": "移動セル上のALEスカラー保存式",
+        "en": "ALE scalar conservation on moving cells"
+      },
+      "formula": [
+        "q_t+a q_x=0,\\quad m_i(t)=\\int_{x_{i-1/2}(t)}^{x_{i+1/2}(t)}q(x,t)\\,dx",
+        "\\dot m_i=-[(a-w)q]_{i-1/2}^{i+1/2},\\qquad \\dot V_i=w_{i+1/2}-w_{i-1/2}",
+        "x(\\xi,t)=\\xi+\\frac{.2}{2\\pi}\\sin(2\\pi\\xi)\\sin(2\\pi t),\\quad a=.7"
+      ],
+      "chapter": "validation-moving-waves",
+      "note": {
+        "ja": "指定した非一様格子の面位置とセル質量を同じHeun段で更新し、幾何保存則と非一様な波の輸送を別々に評価します。Euler流体のLagrange/remap法ではありません。",
+        "en": "Prescribed nonuniform face positions and cell masses share Heun stages. Evaluate geometric conservation and nonuniform-wave transport separately; this is not an Euler-fluid Lagrange/remap scheme."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "coverage_scope": "Periodic unit interval,q0=1+.2sin(2pi x),N40/80/160,T1, plus constant-state GCL and fixed-N temporal refinement. Prescribed1D motion only; no Saltzman or general moving-mesh fluid claim.",
+      "execution_scope": {
+        "ja": "周期単位区間、q0=1+.2sin(2πx)、N40/80/160、T1。一定場GCLと固定Nの時間細分化も検査します。1D指定運動だけで、Saltzmanや一般移動メッシュ流体は対象外です。",
+        "en": "Periodic unit interval,q0=1+.2sin(2pi x),N40/80/160,T1, plus constant-state GCL and fixed-N temporal refinement. Prescribed1D motion only; no Saltzman or general moving-mesh fluid claim."
+      },
+      "supplemental_examples": [
+        "ale-nonuniform-transport"
+      ],
+      "references": [
+        {
+          "id": "huff1987-moving-grid",
+          "author": "Dennis L. Huff",
+          "year": 1987,
+          "title": "Numerical Simulations of Unsteady, Viscous, Transonic Flow Over Isolated and Cascaded Airfoils Using a Deforming Grid",
+          "url": "https://ntrs.nasa.gov/api/citations/19870015002/downloads/19870015002.pdf",
+          "review_level": "selected-primary-report-grid-treatment",
+          "review_scope": "NASA TM89890 grid-velocity and GCL discussion around equation11/printedp5 inspected. It attributes GCL to Thomas/Lombard. Original1979 paper not read; no airfoil algorithm or code reproduced. Our 1D scalar moving-volume/Heun derivation is independent."
+        }
+      ]
+    },
+    {
+      "id": "linear-rotating-shallow-water",
+      "name": {
+        "ja": "線形回転浅水方程式",
+        "en": "Linear rotating shallow-water equations"
+      },
+      "formula": [
+        "\\eta_t+H(u_x+v_y)=0,\\qquad u_t-fv=-g\\eta_x,\\qquad v_t+fu=-g\\eta_y",
+        "g=H=f=1,\\quad \\widetilde k=2\\sin(kh/2)/h,\\quad C=\\cos(kh/2)\\cos(lh/2)",
+        "\\omega_h^2=f^2C^2+gH(\\widetilde k^2+\\widetilde l^2)"
+      ],
+      "chapter": "validation-moving-waves",
+      "note": {
+        "ja": "平面f-planeの線形波を実際の2D staggered C-gridでRK4時間発展します。連続分散と離散記号の参照を分け、質量・エネルギー・慣性振動・離散定常釣合いを確認します。",
+        "en": "Actual2D staggered C-grid fields use RK4 on a planar linear f-plane. Separate continuous and semidiscrete references, checking mass,energy,inertial oscillation and discrete geostrophic balance."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "coverage_scope": "Periodic unit square,mode(1,2),height amplitude.01,N16/32/64,T.5, plus separate time refinement. No nonlinear shallow-water,spherical/global dynamics or Williamson test claim.",
+      "execution_scope": {
+        "ja": "周期単位正方形、モード(1,2)、高さ振幅.01、N16/32/64、T.5。独立時間系列を備えます。非線形浅水、球面・全球Williamson試験を実装したとはしません。",
+        "en": "Periodic unit square,mode(1,2),height amplitude.01,N16/32/64,T.5, plus separate time refinement. No nonlinear shallow-water,spherical/global dynamics or Williamson test claim."
+      },
+      "supplemental_examples": [
+        "cgrid-rotating-wave"
+      ],
+      "references": [
+        {
+          "id": "korn-danilov-cgrid",
+          "author": "P. Korn and S. Danilov",
+          "title": "Elementary dispersion analysis of some mimetic discretizations on triangular C-grids",
+          "url": "https://epic.awi.de/id/eprint/42760/1/c-grid_jcp_v5-1.pdf",
+          "review_level": "selected-primary-author-manuscript",
+          "review_scope": "Governing linear equations, energy adjoints and AppendixB quadrilateral standard-C symbols/eq19–21 inspected. Use standard square C-grid only, not the paper triangular mimetic schemes. No global Williamson test or original code run."
+        }
+      ]
+    },
+    {
+      "id": "variable-viscosity-vector",
+      "name": {
+        "ja": "可変粘性のベクトル応力境界値問題",
+        "en": "Variable-viscosity vector stress boundary-value problem"
+      },
+      "formula": [
+        "-\\nabla\\cdot\\boldsymbol\\tau=\\boldsymbol f,\\quad \\boldsymbol\\tau=2\\mu\\boldsymbol\\varepsilon(\\boldsymbol u),\\quad \\boldsymbol\\varepsilon(\\boldsymbol u)=\\tfrac12(\\nabla\\boldsymbol u+\\nabla\\boldsymbol u^T)",
+        "1<r<2,\\quad \\mu=1+r^2/5,\\quad A=(r^2-1)(4-r^2),\\quad \\boldsymbol u_\\star=A(1+xy,(x^2-y^2)/2)^T",
+        "\\int_\\Omega2\\mu\\,\\boldsymbol\\varepsilon(\\boldsymbol u_h):\\boldsymbol\\varepsilon(\\boldsymbol v_h)\\,dA=\\int_\\Omega\\boldsymbol f\\cdot\\boldsymbol v_h\\,dA"
+      ],
+      "chapter": "validation-mesh-boundary",
+      "note": {
+        "ja": "Cartesianの2成分を結合した線形応力発散BVPです。極座標内のQ1基底と正確な曲線Jacobianを使い、可変μの勾配と剪断応力を含みます。圧力・非圧縮拘束・対流項はありません。",
+        "en": "Linear stress-divergence BVP coupling two Cartesian components. Q1 basis functions in polar coordinates use the exact curved Jacobian and include variable-mu gradients and shear. There is no pressure,incompressibility constraint or advective term."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "coverage_scope": "Annulus1≤r≤2,zero Dirichlet on both circles,periodic theta,Nr8/16/32,Ntheta2Nr. Separately check velocity,strain,physical traction,work and nonzero net boundary force. No Navier–Stokes or general-quadrilateral certification.",
+      "execution_scope": {
+        "ja": "円環1≤r≤2、両円上で零Dirichlet、θ周期、Nr8/16/32・Nθ=2Nr。速度・ひずみ・物理牽引力・仕事・非零の全境界力を別々に検査します。Navier–Stokesや一般四辺形メッシュの検証ではありません。",
+        "en": "Annulus1≤r≤2,zero Dirichlet on both circles,periodic theta,Nr8/16/32,Ntheta2Nr. Separately check velocity,strain,physical traction,work and nonzero net boundary force. No Navier–Stokes or general-quadrilateral certification."
+      },
+      "supplemental_examples": [
+        "annular-viscous-mms"
+      ],
+      "references": [
+        {
+          "id": "mfem-stress",
+          "author": "MFEM developers",
+          "title": "Example2: Linear Elasticity",
+          "url": "https://mfem.org/examples/",
+          "review_level": "selected-official-equations",
+          "review_scope": "Example2 stress sigma=lambda div(u)I+mu(grad(u)+grad(u)^T), weak formulation and traction conventions inspected. Use lambda0 as a linear vector viscous BVP; manufactured fields are derived here. MFEM not executed or copied."
+        }
+      ]
+    },
+    {
+      "id": "srmhd",
+      "name": {
+        "ja": "特殊相対論的理想MHD（SRMHD）",
+        "en": "Special-relativistic ideal MHD (SRMHD)"
+      },
+      "formula": [
+        "\\partial_\\mu(\\rho u^\\mu)=0,\\qquad \\partial_\\mu T^{\\mu\\nu}=0",
+        "T^{\\mu\\nu}=(\\rho h+b^2)u^\\mu u^\\nu+(p+b^2/2)\\eta^{\\mu\\nu}-b^\\mu b^\\nu",
+        "\\partial_t\\boldsymbol B-\\nabla\\times(\\boldsymbol v\\times\\boldsymbol B)=0,\\quad \\nabla\\cdot\\boldsymbol B=0,\\quad h=1+\\frac{\\Gamma p}{(\\Gamma-1)\\rho}",
+        "K=\\rho h+B_0^2(1+\\eta_A^2),\\quad v_A^2=\\frac{2B_0^2}{K+\\sqrt{K^2-4\\eta_A^2B_0^4}}"
+      ],
+      "chapter": "validation-relativistic",
+      "note": {
+        "ja": "c=4π=1、平坦時空・理想電気伝導・γ則EOSです。bμは流体静止系磁場4ベクトル。全磁気応力と誘導を含む7保存量を1Dで進め、原始変数は完全なRMHDのZ根で復元します。GRMHDとは区別します。",
+        "en": "Flat spacetime,ideal conductivity,gamma-law EOS,c=4pi=1; b^mu is the comoving magnetic four-vector. The1D solver evolves seven conserved variables with full magnetic stress and induction, using coupled RMHD Z recovery. Distinguish it from GRMHD."
+      },
+      "status": "local-example",
+      "group": "relativistic",
+      "coverage_scope": "Nonlinear CP exact family rho=p=Bx=etaA1,gamma4/3,periodic unit interval,N64/128/256,one period. Check conserved means,phase,amplitude and stage physicality; no generic RMHD shocks,extreme magnetization/speeds or multidimensional divergence-control claim.",
+      "execution_scope": {
+        "ja": "ρ=p=Bx=ηA=1、γ4/3の非線形円偏極厳密族、周期単位区間、N64/128/256、1周期。保存量セル平均・位相・振幅・全段の物理性を検査。一般RMHD衝撃波、極端な磁化/速度、多次元発散制御は対象外です。",
+        "en": "Nonlinear CP exact family rho=p=Bx=etaA1,gamma4/3,periodic unit interval,N64/128/256,one period. Check conserved means,phase,amplitude and stage physicality; no generic RMHD shocks,extreme magnetization/speeds or multidimensional divergence-control claim."
+      },
+      "supplemental_examples": [
+        "srmhd-alfven"
+      ],
+      "references": [
+        {
+          "id": "delzanna2007",
+          "author": "L. Del Zanna, O. Zanotti, N. Bucciantini and P. Londrillo",
+          "year": 2007,
+          "title": "ECHO: a Eulerian Conservative High Order scheme for general relativistic magnetohydrodynamics and magnetodynamics",
+          "journal": "Astronomy & Astrophysics",
+          "volume": "473",
+          "pages": "11–30",
+          "doi": "10.1051/0004-6361:20077093",
+          "url": "https://arxiv.org/abs/0704.3206",
+          "type": "article",
+          "review_level": "primary-original-selected-section-and-rendered-pages",
+          "review_scope": "University-hosted original journal PDF section4.1 equations82–85 read; original arxiv preprint pages9–10 rendered and visually inspected, including normalization and period. Publisher PDF403. No whole-paper or ECHO-algorithm reproduction claim.",
+          "review": {
+            "ja": "大学リポジトリの原著4.1節・式82–85を読み、原著プレプリント9–10頁の式・規格化・周期を描画して目視確認。ECHO法自体の再現ではありません。",
+            "en": "Read original journal section4.1 equations82–85 via the university repository; rendered and visually inspected original preprint pages9–10, including normalization and period. No ECHO-algorithm reproduction."
+          },
+          "accessed_on": "2026-11-23"
+        },
+        {
+          "id": "font2008",
+          "author": "José A. Font",
+          "year": 2008,
+          "title": "Numerical Hydrodynamics and Magnetohydrodynamics in General Relativity",
+          "journal": "Living Reviews in Relativity",
+          "volume": "11",
+          "number": "7",
+          "doi": "10.12942/lrr-2008-7",
+          "url": "https://link.springer.com/article/10.12942/lrr-2008-7",
+          "type": "review",
+          "review_level": "primary-author-review-selected-equations",
+          "review_scope": "Official article sections3.1–3.2, tensor49–51 and recovery68–69 actually read. Flat-spacetime use only; no whole-review or complete-GRMHD implementation audit.",
+          "review": {
+            "ja": "公式の著者レビュー3.1–3.2節、テンソル式49–51と変換式68–69を直接確認。平坦時空の実装に使用します。",
+            "en": "Read official author-review sections3.1–3.2, stress tensor49–51 and recovery68–69; flat-spacetime use only."
+          },
+          "accessed_on": "2026-11-23"
+        }
       ]
     }
   ]

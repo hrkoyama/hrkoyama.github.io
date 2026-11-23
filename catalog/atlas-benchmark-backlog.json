@@ -21,7 +21,7 @@
     "en": "Work on a user-selected batch of up to five items. Keep each problem’s inputs, references, acceptance, saved figures and history independent; combine index refresh, whole-site checks and publication verification. Unverified items remain incomplete."
   },
   "workflow": {
-    "max_active": 5,
+    "max_active": 10,
     "active_item": null,
     "states": [
       "planned",
@@ -33,8 +33,11 @@
       "ja": "科学計算の項目は入力・参照と出典・コード・検査・誤差/収束・保存図・実行入口・検証記録を確認して完了にします。出典整理は対象箇所と修正根拠を確認します。",
       "en": "Scientific items require inputs, cited reference, code, tests, error/refinement evidence, saved figure, execution entry and verification receipt. Curation items require checked target passages and evidence for the correction."
     },
-    "active_items": [],
-    "batch_id": "2026-11-23-sequences13-17"
+    "active_items": [
+      "ale-geophysical-1",
+      "ale-geophysical-2"
+    ],
+    "batch_id": "2026-11-23-sequences18-27"
   },
   "priority_labels": {
     "P0": {
@@ -1059,14 +1062,14 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "verified",
-      "current": "36単体検査と当該例の217判定、独立ZIPの全固定入力追試が合格。5件一括の公開URL/Linux確認は公開後に別記録へ保存します。",
+      "state": "published",
+      "current": "配布群weno-criticalの36単体検査と当該例の217判定、独立ZIPの全固定入力追試、公開URLの図・コード・配布物1048ファイル照合、公開配布物のみのLinux全735検査（24群56ケース）が合格。実際の科学内容commit a51543e8の成功を公開記録に保存しました。",
       "tasks": [
         "既存p=2・epsilon=1e-6版を凍結し、比較版を追加して極値/高階臨界点の空間誤差を測る。",
         "時間誤差を小さくした系列と固定格子の刻み系列を分離する。",
         "原著最終版と前稿で異なる重み規約、特性/成分投影、FD点値を明記。"
       ],
-      "scope_note": "2026-11-23の候補13〜17を一括公開する限定検証。入力・受入基準・保存配列・失敗履歴は各不変配布版に保持。詳細な条件と適用範囲は実行入口を参照。",
+      "scope_note": "2026-11-23の候補13〜17を一括公開する限定検証。入力・受入基準・保存配列・失敗履歴は各不変配布版に保持。詳細な条件と適用範囲は実行入口を参照。 科学内容commit a51543e8b54129e70670e184290c9b50b5bc0645とLinux run 45167465669の実績を別記録に保持。後続の台帳更新コミットのCI成功は予告しません。",
       "sources": [],
       "baseline_evidence": [
         {
@@ -1086,7 +1089,7 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-23/weno-critical/verification.json",
+        "verification": "/numerical-methods-atlas/validation/verification/2026-11-23-batch13-17-public.json",
         "inputs": [
           "/code/validated-examples/2026-11-23/weno-critical/inputs.json",
           "/code/validated-examples/2026-11-23/weno-critical/acceptance.json",
@@ -1102,7 +1105,8 @@
         "references": [
           "/code/validated-examples/2026-11-23/weno-critical/references/citations.json",
           "/code/validated-examples/2026-11-23/weno-critical/references/source-review.json",
-          "/code/validated-examples/2026-11-23/weno-critical/README.md"
+          "/code/validated-examples/2026-11-23/weno-critical/README.md",
+          "/code/validated-examples/2026-11-23/weno-critical/verification.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#advection-sine-ja",
         "execution": "/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=ja"
@@ -1120,14 +1124,14 @@
       "priority": "P1",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "verified",
-      "current": "31単体検査と当該例の62判定、独立ZIPの全固定入力追試が合格。5件一括の公開URL/Linux確認は公開後に別記録へ保存します。",
+      "state": "published",
+      "current": "配布群shallow-waterの31単体検査と当該例の62判定、独立ZIPの全固定入力追試、公開URLの図・コード・配布物1048ファイル照合、公開配布物のみのLinux全735検査（24群56ケース）が合格。実際の科学内容commit a51543e8の成功を公開記録に保存しました。",
       "tasks": [
         "地形圧力ソースとfluxの釣合い、静止水面の保持、質量を測る。",
         "一つのsmooth bump定常ケースから始め、境界条件と水頭/流量を固定。",
         "平坦底ダム崩壊の成功をwell-balanced性の証拠にしない。"
       ],
-      "scope_note": "2026-11-23の候補13〜17を一括公開する限定検証。入力・受入基準・保存配列・失敗履歴は各不変配布版に保持。詳細な条件と適用範囲は実行入口を参照。",
+      "scope_note": "2026-11-23の候補13〜17を一括公開する限定検証。入力・受入基準・保存配列・失敗履歴は各不変配布版に保持。詳細な条件と適用範囲は実行入口を参照。 科学内容commit a51543e8b54129e70670e184290c9b50b5bc0645とLinux run 45167465669の実績を別記録に保持。後続の台帳更新コミットのCI成功は予告しません。",
       "sources": [
         {
           "title": "Delestre et al., SWASHES",
@@ -1148,7 +1152,7 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-23/shallow-water/verification.json",
+        "verification": "/numerical-methods-atlas/validation/verification/2026-11-23-batch13-17-public.json",
         "inputs": [
           "/code/validated-examples/2026-11-23/shallow-water/inputs.json",
           "/code/validated-examples/2026-11-23/shallow-water/acceptance.json",
@@ -1165,7 +1169,8 @@
           "/code/validated-examples/2026-11-23/shallow-water/references/citations.json",
           "/code/validated-examples/2026-11-23/shallow-water/references/source-review.json",
           "/code/validated-examples/2026-11-23/shallow-water/README.md",
-          "/code/validated-examples/2026-11-23/shallow-water/protocol-history.json"
+          "/code/validated-examples/2026-11-23/shallow-water/protocol-history.json",
+          "/code/validated-examples/2026-11-23/shallow-water/verification.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#swashes-topography-ja",
         "execution": "/numerical-methods-atlas/validation/swashes-topography/?lang=ja"
@@ -1183,14 +1188,14 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "verified",
-      "current": "31単体検査と当該例の47判定、独立ZIPの全固定入力追試が合格。5件一括の公開URL/Linux確認は公開後に別記録へ保存します。",
+      "state": "published",
+      "current": "配布群shallow-waterの31単体検査と当該例の47判定、独立ZIPの全固定入力追試、公開URLの図・コード・配布物1048ファイル照合、公開配布物のみのLinux全735検査（24群56ケース）が合格。実際の科学内容commit a51543e8の成功を公開記録に保存しました。",
       "tasks": [
         "既存解析乾床解とfront位置、乾湿遷移、非負水深、質量を照合。",
         "dry toleranceと運動量処理、dry-cell速度の定義を公開。",
         "既存の参照カードを実行済みと数えず、solver拡張後に新規固定入力を登録。"
       ],
-      "scope_note": "2026-11-23の候補13〜17を一括公開する限定検証。入力・受入基準・保存配列・失敗履歴は各不変配布版に保持。詳細な条件と適用範囲は実行入口を参照。",
+      "scope_note": "2026-11-23の候補13〜17を一括公開する限定検証。入力・受入基準・保存配列・失敗履歴は各不変配布版に保持。詳細な条件と適用範囲は実行入口を参照。 科学内容commit a51543e8b54129e70670e184290c9b50b5bc0645とLinux run 45167465669の実績を別記録に保持。後続の台帳更新コミットのCI成功は予告しません。",
       "sources": [
         {
           "title": "Delestre et al., SWASHES",
@@ -1211,7 +1216,7 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-23/shallow-water/verification.json",
+        "verification": "/numerical-methods-atlas/validation/verification/2026-11-23-batch13-17-public.json",
         "inputs": [
           "/code/validated-examples/2026-11-23/shallow-water/inputs.json",
           "/code/validated-examples/2026-11-23/shallow-water/acceptance.json",
@@ -1228,7 +1233,8 @@
           "/code/validated-examples/2026-11-23/shallow-water/references/citations.json",
           "/code/validated-examples/2026-11-23/shallow-water/references/source-review.json",
           "/code/validated-examples/2026-11-23/shallow-water/README.md",
-          "/code/validated-examples/2026-11-23/shallow-water/protocol-history.json"
+          "/code/validated-examples/2026-11-23/shallow-water/protocol-history.json",
+          "/code/validated-examples/2026-11-23/shallow-water/verification.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#dry-bed-dam-break-ja",
         "execution": "/numerical-methods-atlas/validation/dry-bed-dam-break/?lang=ja"
@@ -1246,14 +1252,14 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "verified",
-      "current": "22単体検査と当該例の35判定、独立ZIPの全固定入力追試が合格。5件一括の公開URL/Linux確認は公開後に別記録へ保存します。",
+      "state": "published",
+      "current": "配布群wall-flowの22単体検査と当該例の35判定、独立ZIPの全固定入力追試、公開URLの図・コード・配布物1048ファイル照合、公開配布物のみのLinux全735検査（24群56ケース）が合格。実際の科学内容commit a51543e8の成功を公開記録に保存しました。",
       "tasks": [
         "まずRe=100等の固定した少数条件で壁速度・角点処理・圧力基準を定義。",
         "中心線u/v、渦中心、divergenceと定常残差を格子ごとに比較。",
         "Ghia表は高精度数値参照であり厳密解ではない。原表転記・出典ページと独立参照の差も保存。"
       ],
-      "scope_note": "2026-11-23の候補13〜17を一括公開する限定検証。入力・受入基準・保存配列・失敗履歴は各不変配布版に保持。詳細な条件と適用範囲は実行入口を参照。",
+      "scope_note": "2026-11-23の候補13〜17を一括公開する限定検証。入力・受入基準・保存配列・失敗履歴は各不変配布版に保持。詳細な条件と適用範囲は実行入口を参照。 科学内容commit a51543e8b54129e70670e184290c9b50b5bc0645とLinux run 45167465669の実績を別記録に保持。後続の台帳更新コミットのCI成功は予告しません。",
       "sources": [
         {
           "title": "Ghia, Ghia & Shin (1982), High-Re solutions for incompressible flow",
@@ -1274,7 +1280,7 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-23-r2/wall-flow/verification.json",
+        "verification": "/numerical-methods-atlas/validation/verification/2026-11-23-batch13-17-public.json",
         "inputs": [
           "/code/validated-examples/2026-11-23-r2/wall-flow/inputs.json",
           "/code/validated-examples/2026-11-23-r2/wall-flow/acceptance.json",
@@ -1291,7 +1297,8 @@
           "/code/validated-examples/2026-11-23-r2/wall-flow/references/citations.json",
           "/code/validated-examples/2026-11-23-r2/wall-flow/references/source-review.json",
           "/code/validated-examples/2026-11-23-r2/wall-flow/README.md",
-          "/code/validated-examples/2026-11-23-r2/wall-flow/protocol-history.json"
+          "/code/validated-examples/2026-11-23-r2/wall-flow/protocol-history.json",
+          "/code/validated-examples/2026-11-23-r2/wall-flow/verification.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#lid-driven-cavity-ja",
         "execution": "/numerical-methods-atlas/validation/cavity-ghia-re100/?lang=ja"
@@ -1309,14 +1316,14 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "verified",
-      "current": "22単体検査と当該例の59判定、独立ZIPの全固定入力追試が合格。5件一括の公開URL/Linux確認は公開後に別記録へ保存します。",
+      "state": "published",
+      "current": "配布群wall-flowの22単体検査と当該例の59判定、独立ZIPの全固定入力追試、公開URLの図・コード・配布物1048ファイル照合、公開配布物のみのLinux全735検査（24群56ケース）が合格。実際の科学内容commit a51543e8の成功を公開記録に保存しました。",
       "tasks": [
         "軽い非周期MMSで速度/圧力の境界と次数を先に検査。",
         "Blasius追加時は境界層近似の相似ODE解と、有限Re Navier–Stokes/有限計算領域の差を区別。",
         "壁面せん断・排除厚さ・領域依存を測り、全NSの厳密解と表示しない。"
       ],
-      "scope_note": "2026-11-23の候補13〜17を一括公開する限定検証。入力・受入基準・保存配列・失敗履歴は各不変配布版に保持。詳細な条件と適用範囲は実行入口を参照。",
+      "scope_note": "2026-11-23の候補13〜17を一括公開する限定検証。入力・受入基準・保存配列・失敗履歴は各不変配布版に保持。詳細な条件と適用範囲は実行入口を参照。 科学内容commit a51543e8b54129e70670e184290c9b50b5bc0645とLinux run 45167465669の実績を別記録に保持。後続の台帳更新コミットのCI成功は予告しません。",
       "sources": [
         {
           "title": "Salari & Knupp, Code Verification by the Method of Manufactured Solutions, SAND2000-1444",
@@ -1337,7 +1344,7 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-23-r2/wall-flow/verification.json",
+        "verification": "/numerical-methods-atlas/validation/verification/2026-11-23-batch13-17-public.json",
         "inputs": [
           "/code/validated-examples/2026-11-23-r2/wall-flow/inputs.json",
           "/code/validated-examples/2026-11-23-r2/wall-flow/acceptance.json",
@@ -1354,7 +1361,8 @@
           "/code/validated-examples/2026-11-23-r2/wall-flow/references/citations.json",
           "/code/validated-examples/2026-11-23-r2/wall-flow/references/source-review.json",
           "/code/validated-examples/2026-11-23-r2/wall-flow/README.md",
-          "/code/validated-examples/2026-11-23-r2/wall-flow/protocol-history.json"
+          "/code/validated-examples/2026-11-23-r2/wall-flow/protocol-history.json",
+          "/code/validated-examples/2026-11-23-r2/wall-flow/verification.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#wall-manufactured-ja",
         "execution": "/numerical-methods-atlas/validation/wall-manufactured/?lang=ja"
@@ -1372,13 +1380,13 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "planned",
-      "current": "周期2D MAC射影法とTaylor–Greenの16/32/64格子、圧力・divergence・保存診断、共通固定入力はある。壁境界や境界層の検証はない。",
+      "state": "verified",
+      "current": "22単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。",
       "tasks": [
         "滑らかなせん断層・明示した摂動・境界・物理散逸を固定し、KHの初期成長率を比較する。",
         "RTは重力・密度配置・界面厚さと理論の仮定を別に定義する。非線形後期の図を厳密解と扱わず独立数値参照と比較する。"
       ],
-      "scope_note": "",
+      "scope_note": "固定した軽量ケースの実装・検証・保存図を追加。各不変配布版に入力・判定・保存配列・改訂と失敗の履歴を保持し、条件と対象外は各実行入口に明記します。",
       "sources": [
         {
           "title": "McNally–Lyra–Passy: A Well-Posed Kelvin-Helmholtz Instability Test and Comparison",
@@ -1403,7 +1411,27 @@
           "observation": "既存2次収束・圧力検査。"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23/instability-growth/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23/instability-growth/inputs.json",
+          "/code/validated-examples/2026-11-23/instability-growth/acceptance.json",
+          "/code/validated-examples/2026-11-23/instability-growth/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23/instability-growth/results/kh-initial-growth-preview.png",
+          "/code/validated-examples/2026-11-23/instability-growth/results/rt-initial-growth-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-23/instability-growth/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-23/instability-growth/README.md",
+          "/code/validated-examples/2026-11-23/instability-growth/references/citations.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#kh-initial-growth-ja",
+        "execution": "/numerical-methods-atlas/validation/kh-initial-growth/?lang=ja"
+      },
       "sequence": 18
     },
     {
@@ -1417,14 +1445,14 @@
       "priority": "P1",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "planned",
-      "current": "Brio–Wuは共通実行と独立Athena++追補があり、Orszag–Tangには独立比較と格子/時間感度を分離した追補がある。GLM解析モード・滑らかな移動平衡・非物理制約対照も既に実行済み。",
+      "state": "verified",
+      "current": "47単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。",
       "tasks": [
         "既存保存結果を基準に空間/時間系列を分離し、Alfvén位相誤差・偏波・保存量を解析波で測る。",
         "loopは独立コードと比較し、磁気エネルギー・ループ形状・divergence演算子を揃える。",
         "他のOT追補の独立照合を旧loopの検証に流用しない。"
       ],
-      "scope_note": "",
+      "scope_note": "固定した軽量ケースの実装・検証・保存図を追加。各不変配布版に入力・判定・保存配列・改訂と失敗の履歴を保持し、条件と対象外は各実行入口に明記します。",
       "sources": [
         {
           "title": "Gardiner & Stone (2005), An Unsplit Godunov Method for Ideal MHD via CT",
@@ -1444,7 +1472,27 @@
           "observation": "旧loopの独立照合、強磁場、UCT-HLLDは未検証と明記。"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23/mhd-transport/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23/mhd-transport/inputs.json",
+          "/code/validated-examples/2026-11-23/mhd-transport/acceptance.json",
+          "/code/validated-examples/2026-11-23/mhd-transport/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23/mhd-transport/results/circular-alfven-refinement-preview.png",
+          "/code/validated-examples/2026-11-23/mhd-transport/results/magnetic-loop-independent-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-23/mhd-transport/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-23/mhd-transport/README.md",
+          "/code/validated-examples/2026-11-23/mhd-transport/references/citations.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#circular-alfven-ja",
+        "execution": "/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=ja"
+      },
       "sequence": 19
     },
     {
@@ -1458,14 +1506,14 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "planned",
-      "current": "Brio–Wuは共通実行と独立Athena++追補があり、Orszag–Tangには独立比較と格子/時間感度を分離した追補がある。GLM解析モード・滑らかな移動平衡・非物理制約対照も既に実行済み。",
+      "state": "verified",
+      "current": "47単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。",
       "tasks": [
         "現行short smooth OTを残し、衝撃波を伴う別時刻/別入力を区別して追加。",
         "熱圧正値性・総エネルギー・native face/common cell divB・参照格子増分を測る。",
         "rotorを採るなら新規問題として初期回転/磁場/境界を固定し、既存CTU/UCT実装の再現とは呼ばない。"
       ],
-      "scope_note": "",
+      "scope_note": "固定した軽量ケースの実装・検証・保存図を追加。各不変配布版に入力・判定・保存配列・改訂と失敗の履歴を保持し、条件と対象外は各実行入口に明記します。",
       "sources": [
         {
           "title": "Gardiner & Stone (2005), An Unsplit Godunov Method for Ideal MHD via CT",
@@ -1485,7 +1533,26 @@
           "observation": "現行独立実行はある。rotor固有IDは未登録。"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23/mhd-transport/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23/mhd-transport/inputs.json",
+          "/code/validated-examples/2026-11-23/mhd-transport/acceptance.json",
+          "/code/validated-examples/2026-11-23/mhd-transport/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23/mhd-transport/results/postshock-orszag-tang-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-23/mhd-transport/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-23/mhd-transport/README.md",
+          "/code/validated-examples/2026-11-23/mhd-transport/references/citations.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#orszag-tang-ja",
+        "execution": "/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=ja"
+      },
       "sequence": 20
     },
     {
@@ -1499,14 +1566,14 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "planned",
-      "current": "幾何接続の正面積/閉包/隣接検査、球面格子の面積と被覆、円筒物理成分のテンソル恒等式は実装済み。P1 FEMは単位正方形の製造解を解く。",
+      "state": "verified",
+      "current": "20単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。",
       "tasks": [
         "r^(2/3)sin(2theta/3)型のreentrant corner解などを境界条件とともに自前定義し、L2/H1誤差を要素積分。",
         "一様/局所細分化、要素角度・aspect ratio・条件数の影響を分ける。",
         "単位正方形の滑らかな2次L2収束を特異解や不規則格子に一般化しない。"
       ],
-      "scope_note": "",
+      "scope_note": "固定した軽量ケースの実装・検証・保存図を追加。各不変配布版に入力・判定・保存配列・改訂と失敗の履歴を保持し、条件と対象外は各実行入口に明記します。",
       "sources": [
         {
           "title": "Shewchuk (1996), Triangle: Engineering a 2D Quality Mesh Generator",
@@ -1531,7 +1598,26 @@
           "observation": "Matplotlib三角形分割と幾何展示で、Triangle/一般非構造flow solverではない。"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23/mesh-boundary/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23/mesh-boundary/inputs.json",
+          "/code/validated-examples/2026-11-23/mesh-boundary/acceptance.json",
+          "/code/validated-examples/2026-11-23/mesh-boundary/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23/mesh-boundary/results/lshape-fem-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-23/mesh-boundary/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-23/mesh-boundary/README.md",
+          "/code/validated-examples/2026-11-23/mesh-boundary/references/citations.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#lshape-fem-ja",
+        "execution": "/numerical-methods-atlas/validation/lshape-fem/?lang=ja"
+      },
       "sequence": 21
     },
     {
@@ -1545,14 +1631,14 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "planned",
-      "current": "幾何接続の正面積/閉包/隣接検査、球面格子の面積と被覆、円筒物理成分のテンソル恒等式は実装済み。P1 FEMは単位正方形の製造解を解く。",
+      "state": "verified",
+      "current": "20単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。",
       "tasks": [
         "まずr>0のannulusで粘性応力発散・可変粘性・境界fluxを一組の製造解で離散化検査。",
         "座標の物理/共変/反変成分と体積/面積重みを固定し、格子収束を測る。",
         "軸を含む場合は正則性とaxis stencilを別テストにする。平面Poiseuille/Couetteを円筒問題の同一参照にしない。"
       ],
-      "scope_note": "",
+      "scope_note": "固定した軽量ケースの実装・検証・保存図を追加。各不変配布版に入力・判定・保存配列・改訂と失敗の履歴を保持し、条件と対象外は各実行入口に明記します。",
       "sources": [
         {
           "title": "Salari & Knupp, Code Verification by the Method of Manufactured Solutions, SAND2000-1444",
@@ -1572,7 +1658,26 @@
           "observation": "現対応はソース/恒等式検査のみ。"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23/mesh-boundary/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23/mesh-boundary/inputs.json",
+          "/code/validated-examples/2026-11-23/mesh-boundary/acceptance.json",
+          "/code/validated-examples/2026-11-23/mesh-boundary/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23/mesh-boundary/results/annular-viscous-mms-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-23/mesh-boundary/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-23/mesh-boundary/README.md",
+          "/code/validated-examples/2026-11-23/mesh-boundary/references/citations.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#annular-viscous-mms-ja",
+        "execution": "/numerical-methods-atlas/validation/annular-viscous-mms/?lang=ja"
+      },
       "sequence": 22
     },
     {
@@ -1586,14 +1691,14 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "planned",
-      "current": "ALEは一様状態の1D moving-volume/GCL検査。A/B/C-gridはperiodic f-planeの半離散Fourier symbolと独立stencil照合。球面格子の幾何は実装済みで全球SWEの時間発展ではない。",
+      "state": "in-progress",
+      "current": "19単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。",
       "tasks": [
         "最初は既存GCLと同じ移動に非一様scalarの解析輸送を載せ、幾何誤差と輸送誤差を分離。",
         "Lagrange/remapまで拡張する段階でSaltzmanを新規問題として考慮し、格子反転・歪み・保存・衝撃位置を検査。",
         "現在のALE一様状態チェックを完全Euler/remap実装と呼ばない。Saltzman原典/入力は別途照合が必要。"
       ],
-      "scope_note": "",
+      "scope_note": "今回完了：非一様セルのALEスカラー輸送・GCL。残る未実装：Saltzman歪み格子ピストンの圧縮性Euler計算。",
       "sources": [
         {
           "title": "Salari & Knupp, Code Verification by the Method of Manufactured Solutions, SAND2000-1444",
@@ -1613,7 +1718,26 @@
           "observation": "Saltzman登録なし。"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23/moving-waves/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23/moving-waves/inputs.json",
+          "/code/validated-examples/2026-11-23/moving-waves/acceptance.json",
+          "/code/validated-examples/2026-11-23/moving-waves/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23/moving-waves/results/ale-nonuniform-transport-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-23/moving-waves/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-23/moving-waves/README.md",
+          "/code/validated-examples/2026-11-23/moving-waves/references/citations.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#ale-nonuniform-transport-ja",
+        "execution": "/numerical-methods-atlas/validation/ale-nonuniform-transport/?lang=ja"
+      },
       "sequence": 23
     },
     {
@@ -1627,14 +1751,14 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "planned",
-      "current": "ALEは一様状態の1D moving-volume/GCL検査。A/B/C-gridはperiodic f-planeの半離散Fourier symbolと独立stencil照合。球面格子の幾何は実装済みで全球SWEの時間発展ではない。",
+      "state": "in-progress",
+      "current": "19単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。",
       "tasks": [
         "まず既存f-planeの一つの固有modeを実際に時間積分し位相・振幅・geostrophic balanceを解析行列指数と比較。",
         "球面拡張時はWilliamsonの固体回転輸送/定常釣合いから段階的に選び、質量/エネルギー/位相と格子向きを比較。",
         "A/B/C配置だけで時間精度・PV保存・全球dynamical coreの完成を主張しない。"
       ],
-      "scope_note": "",
+      "scope_note": "今回完了：平面2D C格子の線形回転浅水波・時間積分。残る未実装：Williamsonの球面浅水ケース。",
       "sources": [
         {
           "title": "MITgcm official documentation, C grid staggering of variables",
@@ -1659,7 +1783,26 @@
           "observation": "現有の独立空間演算子照合を保持。"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23/moving-waves/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23/moving-waves/inputs.json",
+          "/code/validated-examples/2026-11-23/moving-waves/acceptance.json",
+          "/code/validated-examples/2026-11-23/moving-waves/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23/moving-waves/results/cgrid-rotating-wave-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-23/moving-waves/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-23/moving-waves/README.md",
+          "/code/validated-examples/2026-11-23/moving-waves/references/citations.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#cgrid-rotating-wave-ja",
+        "execution": "/numerical-methods-atlas/validation/cgrid-rotating-wave/?lang=ja"
+      },
       "sequence": 24
     },
     {
@@ -1673,14 +1816,14 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "解説のみ",
-      "state": "planned",
-      "current": "相対論的流体章とsrhd/grhd/grmhd方程式カードは文献解説のみ。対応する83物理問題、22共通実行、40追補、配布solverは見当たらない。非相対論的HLLD/CT/GLMは代用にならない。",
+      "state": "verified",
+      "current": "25単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。",
       "tasks": [
         "まずMinkowski・理想気体EOS・法線速度のみの少数固定入力。",
         "原始変数回復の残差、rho/p正値、|v|<1、波位置、中間状態をexact Riemann参照と比較。",
         "物理/保存変数とセル平均/点値を明示し、GR時空や任意EOSの検証へ拡張解釈しない。"
       ],
-      "scope_note": "",
+      "scope_note": "固定した軽量ケースの実装・検証・保存図を追加。各不変配布版に入力・判定・保存配列・改訂と失敗の履歴を保持し、条件と対象外は各実行入口に明記します。",
       "sources": [
         {
           "title": "Martí & Müller (1994), The analytical solution of the Riemann problem in relativistic hydrodynamics",
@@ -1695,7 +1838,26 @@
           "observation": "代表式はあるが実行なし。"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23/relativistic/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23/relativistic/inputs.json",
+          "/code/validated-examples/2026-11-23/relativistic/acceptance.json",
+          "/code/validated-examples/2026-11-23/relativistic/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23/relativistic/results/srhd-collision-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-23/relativistic/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-23/relativistic/README.md",
+          "/code/validated-examples/2026-11-23/relativistic/references/citations.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#srhd-collision-ja",
+        "execution": "/numerical-methods-atlas/validation/srhd-collision/?lang=ja"
+      },
       "sequence": 25
     },
     {
@@ -1709,14 +1871,14 @@
       "priority": "P3",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "planned",
-      "current": "相対論的流体章とsrhd/grhd/grmhd方程式カードは文献解説のみ。対応する83物理問題、22共通実行、40追補、配布solverは見当たらない。非相対論的HLLD/CT/GLMは代用にならない。",
+      "state": "verified",
+      "current": "25単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。",
       "tasks": [
         "SRHDの保存・回復が通った後、固定EOSで簡単な磁場配置から開始。",
         "Bx一定、物理的状態、波位置、磁場/流体相互作用を独立exact RMHD参照と照合。",
         "B→0極限はSRHDと整合を検査し、非相対論HLLD実装の名前をそのままSRMHD実装扱いしない。"
       ],
-      "scope_note": "",
+      "scope_note": "固定した軽量ケースの実装・検証・保存図を追加。各不変配布版に入力・判定・保存配列・改訂と失敗の履歴を保持し、条件と対象外は各実行入口に明記します。",
       "sources": [
         {
           "title": "Giacomazzo & Rezzolla (2006), Exact Riemann solution in relativistic MHD",
@@ -1736,7 +1898,26 @@
           "observation": "既存はideal nonrelativistic MHD。"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23/relativistic/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23/relativistic/inputs.json",
+          "/code/validated-examples/2026-11-23/relativistic/acceptance.json",
+          "/code/validated-examples/2026-11-23/relativistic/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23/relativistic/results/srmhd-alfven-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-23/relativistic/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-23/relativistic/README.md",
+          "/code/validated-examples/2026-11-23/relativistic/references/citations.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#srmhd-alfven-ja",
+        "execution": "/numerical-methods-atlas/validation/srmhd-alfven/?lang=ja"
+      },
       "sequence": 26
     },
     {
@@ -1750,13 +1931,13 @@
       "priority": "P1",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "planned",
-      "current": "Thomasの1D Dirichlet固定入力、1D Neumann/Robin/周期境界の既存実装、2D正方形のCG/幾何MG/P1 FEMとsin製造解、SA-AMGがある。amg-conditioningは条件数・残差/前進誤差・定係数異方性ストレス・DST/直接解照合まで実施済み。AMGや異方性検査そのものを未実装扱いしない。",
+      "state": "verified",
+      "current": "20単体検査と全固定入力の独立ZIP追試が合格。今回の保存図・コード・参照への導線を追加。公開URL/Linux確認は一括公開後に別の非公開キューへ記録します。",
       "tasks": [
         "既存1D境界実装と区別し、2Dの零空間・不適合右辺の拒否・平均値指定を検査",
         "2D CG/MGの現状は零Dirichlet。cos型参照解で境界誤差と残差を分ける"
       ],
-      "scope_note": "",
+      "scope_note": "固定した軽量ケースの実装・検証・保存図を追加。各不変配布版に入力・判定・保存配列・改訂と失敗の履歴を保持し、条件と対象外は各実行入口に明記します。",
       "sources": [
         {
           "title": "PETSc公式: Singular systems / Neumann nullspace",
@@ -1779,7 +1960,27 @@
           "id": "poisson_boundary_1d"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23/mesh-boundary/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23/mesh-boundary/inputs.json",
+          "/code/validated-examples/2026-11-23/mesh-boundary/acceptance.json",
+          "/code/validated-examples/2026-11-23/mesh-boundary/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23/mesh-boundary/results/poisson-neumann-preview.png",
+          "/code/validated-examples/2026-11-23/mesh-boundary/results/poisson-robin-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-23/mesh-boundary/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-23/mesh-boundary/README.md",
+          "/code/validated-examples/2026-11-23/mesh-boundary/references/citations.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#poisson-neumann-ja",
+        "execution": "/numerical-methods-atlas/validation/poisson-neumann/?lang=ja"
+      },
       "sequence": 27
     },
     {

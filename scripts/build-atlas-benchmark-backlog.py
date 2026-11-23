@@ -183,8 +183,8 @@ def load(root=ROOT):
     active = [item['id'] for item in data['items'] if item['state'] == 'in-progress']
     workflow = data['workflow']
     maximum = workflow.get('max_active')
-    if isinstance(maximum, bool) or not isinstance(maximum, int) or not 1 <= maximum <= 5 or len(active) > maximum:
-        raise ValueError('Backlog must have one to five permitted active slots')
+    if isinstance(maximum, bool) or not isinstance(maximum, int) or not 1 <= maximum <= 10 or len(active) > maximum:
+        raise ValueError('Backlog must have one to ten permitted active slots')
     if maximum == 1:
         if workflow.get('active_item') != (active[0] if active else None) or workflow.get('active_items', active) != active:
             raise ValueError('Backlog must correctly identify its active item')

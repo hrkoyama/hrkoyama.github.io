@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/atlas-search-publisher/scripts/depth-instability-growth/run.py", line 187, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/atlas-search-publisher/scripts/depth-instability-growth/run.py", line 83, in main
+    references[case], qualifications[case] = qualify(case, controls, limits)
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/atlas-search-publisher/scripts/depth-instability-growth/run.py", line 37, in qualify
+    series = [trajectory(case, k, controls, controls['epsilon'], times)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/atlas-search-publisher/scripts/depth-instability-growth/references/linear.py", line 45, in trajectory
+    states = np.array([expm(matrix*t)@start for t in times])
+                       ~~~~~~~~~~~~~~^~~~~~
+RuntimeWarning: divide by zero encountered in matmul

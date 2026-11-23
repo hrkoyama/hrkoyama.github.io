@@ -1,0 +1,7 @@
+srhd-collision 96 steps 84 balance 2.0261570199409107e-15
+srhd-collision 192 steps 168 balance 1.6930901125533637e-15
+srhd-collision 384 steps 332 balance 5.079270337660091e-15
+srmhd-alfven 32 steps 240 balance 4.440892098500626e-15
+srmhd-alfven 64 steps 480 balance 4.440892098500626e-15
+srmhd-alfven 128 steps 960 balance 2.5757174171303632e-14
+{"passed": false, "gates": 110, "seconds": 3.0981577499987907}

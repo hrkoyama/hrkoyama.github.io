@@ -60,16 +60,16 @@ const pythonBlocks = shellBlocks().flatMap(block => [...block.matchAll(/python(?
 
 test('registry preserves eleven frozen releases and adds the separately dated Noh release with two workflow pins', () => {
   const registry = json(registryPath);
-  assert.equal(registry.case_count, 56);
-  const previous = registry.releases.filter(x => !['noh','noh-cartesian','sedov','double-mach','forward-step','low-mach','guderley','euler-positivity','zalesak','weno-critical','shallow-water','wall-flow','level-set'].includes(x.group));
+  assert.equal(registry.case_count, 69);
+  const previous = registry.releases.filter(x => !['noh','noh-cartesian','sedov','double-mach','forward-step','low-mach','guderley','euler-positivity','zalesak','weno-critical','shallow-water','wall-flow','level-set', 'instability-growth', 'mhd-transport', 'mesh-boundary', 'moving-waves', 'relativistic'].includes(x.group));
   assert.equal(createHash('sha256').update(JSON.stringify(previous)).digest('hex'), 'b2e03aeb8798240a38d00bbe2491a5fc50109f2020078decf419f7276eb3241f', 'old eleven release metadata and hashes are immutable');
   assert.ok(previous.every(x => x.edition === '2026-11-22'));
   const noh = registry.releases.find(x => x.group === 'noh');
   assert.equal(noh.edition, '2026-11-23-r5');
   assert.deepEqual(noh.case_ids, ['noh-shock']);
   assert.equal(noh.tests,28);
-  assert.equal(registry.releases.filter(row=>!['euler-positivity','zalesak','weno-critical','shallow-water','wall-flow','level-set'].includes(row.group)).reduce((sum,row)=>sum+row.tests,0),571);
-  assert.deepEqual(registry.releases.map(x => x.group), ['foundations', 'models', 'particles', 'mhd', 'thermostats', 'biology', 'mcmc', 'mhd-convergence', 'foundations-conditioning', 'particle-transport', 'splitting', 'noh', 'noh-cartesian', 'sedov', 'double-mach', 'forward-step','low-mach','guderley','euler-positivity','zalesak','weno-critical','shallow-water','wall-flow','level-set']);
+  assert.equal(registry.releases.filter(row=>!['euler-positivity','zalesak','weno-critical','shallow-water','wall-flow','level-set', 'instability-growth', 'mhd-transport', 'mesh-boundary', 'moving-waves', 'relativistic'].includes(row.group)).reduce((sum,row)=>sum+row.tests,0),571);
+  assert.deepEqual(registry.releases.map(x => x.group), ['foundations', 'models', 'particles', 'mhd', 'thermostats', 'biology', 'mcmc', 'mhd-convergence', 'foundations-conditioning', 'particle-transport', 'splitting', 'noh', 'noh-cartesian', 'sedov', 'double-mach', 'forward-step','low-mach','guderley','euler-positivity','zalesak','weno-critical','shallow-water','wall-flow','level-set', 'instability-growth', 'mhd-transport', 'mesh-boundary', 'moving-waves', 'relativistic']);
   assert.deepEqual(registry.releases.slice(0,4).map(x => x.tests), [29, 26, 27, 11]);
   assert.equal(registry.releases[4].tests,42);
   assert.equal(registry.releases[5].tests,28);

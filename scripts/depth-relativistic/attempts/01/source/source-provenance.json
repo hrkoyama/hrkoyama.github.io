@@ -1,0 +1,16 @@
+{
+  "implementation": "New independently written Python ideal-RMHD finite-volume educational solver; no third-party numerical source copied.",
+  "production": "Three-vector RMHD flux + scalar Z recovery; causal HLL(-1,+1),primitive minmod MUSCL,SSPRK33.",
+  "reference": "Independent4-tensor algebra,restricted Taub collision,exact sinusoidal conserved integrals; no production-solver import.",
+  "energy_convention": "Total E includes rest mass; tau=E-D when comparing Font68–69.",
+  "scope": "Mild special-relativistic1D cases only; shared7-component operator with B=0 hydro specialization.",
+  "boundary": "Collision constant extrapolation and actual integrated boundary influx; periodic wave,fixed Bx.",
+  "dependency_pins": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "optional_plot_pin": {
+    "matplotlib": "3.9.4"
+  }
+}

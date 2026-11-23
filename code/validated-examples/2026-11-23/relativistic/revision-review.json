@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "revision": "Only refine wave grids32/64/128 to64/128/256; samephysicalinput,period,CFL,solver,tests,independentreference and acceptance bytes. No criteria relaxed.",
+  "execution_of_this_revision_performed": false,
+  "previous_contract_sha256": "81ee3fe63e387730621af362b53da3147d30d1e2078f7ff446bf33585674e69e",
+  "previous_attempt": "attempts/01",
+  "previous_tests": 25,
+  "previous_gates_passed": 109,
+  "previous_gates_total": 110,
+  "failed_criterion": "Intermediate transverse relativeL1 must be<=.08 at allgrids. N32 savedintermediate errors [.05198076099902463,.08795950571546261,.1331835331245619].",
+  "chronology": "Created after actualattempt01 execution and before revision2 execution.",
+  "preservation": "Original input/contract/source,all6fields,partialgridmetrics,CSVs,result/logs/JUnit/combinedreceipt copied byte-for-byte; historical test onlyrenamed with archive-path-map.json."
+}

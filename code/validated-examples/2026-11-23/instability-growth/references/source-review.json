@@ -1,0 +1,49 @@
+{
+  "reviewed_on": "2026-11-23",
+  "references": [
+    {
+      "id": "mcnally2012",
+      "author": "Colin P. McNally, Wladimir Lyra and Jean-Claude Passy",
+      "year": 2012,
+      "title": "A Well-Posed Kelvin-Helmholtz Instability Test and Comparison",
+      "journal": "The Astrophysical Journal Supplement Series",
+      "volume": "201",
+      "pages": "18",
+      "doi": "10.1088/0067-0049/201/2/18",
+      "url": "https://arxiv.org/abs/1111.1764",
+      "type": "article",
+      "review_level": "primary-selected-original-pdf-text",
+      "review_scope": "Read original sections1–3 on matching smooth finite-domain models and growth diagnostics; arXiv journal metadata checked. Our forced incompressible model is distinct.",
+      "review": {
+        "ja": "原著の滑らかな層・有限領域・成長測定の議論を確認。本例は独自の強制非圧縮系です。",
+        "en": "Selected original methodology read; our incompressible forced inputs differ from its compressible benchmark."
+      },
+      "accessed_on": "2026-11-23"
+    },
+    {
+      "id": "celani2006",
+      "author": "Antonio Celani, Andrea Mazzino and Lara Vozella",
+      "year": 2006,
+      "title": "Rayleigh–Taylor turbulence in two dimensions",
+      "journal": "Physical Review Letters",
+      "volume": "96",
+      "pages": "134504",
+      "doi": "10.1103/PhysRevLett.96.134504",
+      "url": "https://arxiv.org/abs/nlin/0510067",
+      "type": "article",
+      "review_level": "primary-selected-original-pdf-text",
+      "review_scope": "Read original pp1–2 governing equations1–2 and doubly periodic Boussinesq setup. No original turbulent-run reproduction.",
+      "review": {
+        "ja": "原著のBoussinesq方程式と周期設定を確認。本例の滑らかな定常維持二層と線形参照は独自です。",
+        "en": "Original Boussinesq equations and periodic setup read; our smooth maintained layers and linear reference are constructed here."
+      },
+      "accessed_on": "2026-11-23"
+    }
+  ],
+  "read_scope": "Selected primary PDF text; no full-paper audit or claim that original input data were reproduced. Author KH download page served an anti-bot response; no author dataset was acquired.",
+  "original_model_derivation": {
+    "kh": "Omega=-Delta psi; base U=tanh(sin(y)/delta), Uprimeprime analytic. Perturbation omega_t=-U omega_x-Uprimeprime psi_x-adv(omega)+nu Delta omega. Full steady base is maintained by explicit body force -nu Uprimeprime.",
+    "rt": "Buoyancy b=b0(y)+theta, b0=B tanh(sin(y)/delta), rho/rho0=1-b/g in Boussinesq approximation. Explicit source -kappa b0_second maintains the smooth two-interface base; hydrostatic pressure removes b0 vertical force. omega_t=-adv(omega)+nu Delta omega+theta_x; theta_t=-adv(theta)-v b0prime+kappa Delta theta.",
+    "reference": "Independently derived continuous Fourier-Galerkin equations at kx=1 with matrix exponentials; physical-space primary uses nonlinear centered shared-face fluxes/Heun. Linearization controlled by amplitude halving; never called an independent nonlinear engine."
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "revision": 2,
+  "created_at_utc": "2026-11-23T12:21:11.665839+00:00",
+  "declared_before_first_scientific_execution": true,
+  "declared_before_first_pde_run": true,
+  "declared_before_first_pytest_execution": true,
+  "planned_tests": 19,
+  "planned_numerical_gates": 98,
+  "planned_fixed_runs": 15,
+  "planned_gates_by_case": {
+    "ale-nonuniform-transport": 54,
+    "cgrid-rotating-wave": 44
+  },
+  "intentional_non_solve_rejections": 0,
+  "runtime_limit_seconds": 120,
+  "shared_pytest_plus_main_budget_seconds": 120,
+  "scoped_update": "Moving-face1D conservative scalar FV/Heun with GCL and nonuniform geometry; actual2D rotating linear SWE C-grid/RK4 with distinct continuous/discrete references.",
+  "presentation_files_excluded": [
+    "cases.json",
+    "README.md",
+    "LICENSE",
+    "plot.py",
+    "requirements-plot.txt"
+  ],
+  "files_sha256": {
+    "acceptance.json": "a59654e76f21e7e5bf6591a6635233e97ccfb0d6502673f846e74f8d5f74a57e",
+    "experiments.py": "e080027bfc649c467036fa2b332f845d406deb8300bd0786350545dea8bcae32",
+    "inputs.json": "f1591358d7d6e9d85b7197b5058d80d40cdee563fa66bec05cfd56fbfdeadca3",
+    "pre-run-review.json": "5b2805bef3c8afc2d7532fb57f1ddca30b1c60fe7d64d58001b29a6272496961",
+    "references/__init__.py": "9a9f8e2529365de7fb8060eff9fee3e76bfacf3ba73632dc477de3e4800fd77c",
+    "references/citations.json": "475d1b34e7b432d6ba4d124fe19d884270398ef5da334542b6c0e83095c2df55",
+    "references/exact.py": "688859ff68bdbc99d0a55c6f81a7a9e2863e7818b21bc66db0293984a3494e43",
+    "references/source-review.json": "abb32799777b049a8833b4e695394f4f64c1b8da292449c2f92714fb6b5a9769",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "run.py": "326de4c08dda50169ed8a16212eb6ccafbca5032f4ee57a3afdad937a96627f0",
+    "source-provenance.json": "99660aae3ab496aeff2c1c9a6080254f035779812d4943114e2184e10cd5dda9",
+    "test_moving.py": "b21524e1fc0d375c7dba4c176b8e40dc059c20364926eadaa9b5b825fd29a58a",
+    "transport.py": "156747f5906246c7aa8096233b8d1eb41e212a6bb589423207e974354e8c7842",
+    "references/README.md": "070ef0bb5522448f3e480e02804c8dfc8b98eb05a18bc7cfb658cf78bb2d42e7"
+  },
+  "previous_unexecuted_contract_sha256": "bcae29bd5fd8910a7373070944dfb7cefdaf10cc80b4c6fbf0e358da994b243d",
+  "revision_reason": "Pre-first-execution peer review: outgoing positive-advection CFL uses right face at both Heun stages; retain failed numerical candidate NPZ and partial rows/completed cases. No inputs, acceptance, numerical update or test bytes changed."
+}

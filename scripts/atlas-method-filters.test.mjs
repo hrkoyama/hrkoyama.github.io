@@ -40,7 +40,7 @@ const recordsFor = lang => mapFor(lang).rows.map(row => ({
 }));
 
 test('all 149 canonical records retain exact IDs, statuses, scientific metadata and bilingual static membership', () => {
-  assert.equal(catalog.methods.length, 149);
+  assert.equal(catalog.methods.length, 150);
   assert.deepEqual(Object.fromEntries(Object.keys(expectedCounts).map(status => [status, catalog.methods.filter(method => method.status === status).length])), expectedCounts);
   assert.deepEqual(published.methods.map(method => method.id), catalog.methods.map(method => method.id));
   for (const original of catalog.methods) {
@@ -74,7 +74,7 @@ test('all 149 canonical records retain exact IDs, statuses, scientific metadata 
     assert.equal(map.attributes['data-site-language'], lang);
     const groupedIds = catalog.groups.flatMap(group => catalog.methods.filter(method => method.group.id === group.id).map(method => method.id));
     assert.deepEqual(map.rows.map(row => row.id), groupedIds);
-    assert.equal(new Set(map.rows.map(row => row.id)).size, 149);
+    assert.equal(new Set(map.rows.map(row => row.id)).size, 150);
     for (const row of map.rows) {
       const method = byId.get(row.id);
       assert.equal(row.attributes['data-status'], method.status, row.id);
@@ -92,7 +92,7 @@ test('all 149 canonical records retain exact IDs, statuses, scientific metadata 
     }
     assert.equal((map.source.match(/<details\b[^>]*class="reviewed-methods"/g) || []).length, 1);
     const reviewed = map.source.match(/<details\b[^>]*class="reviewed-methods"[^>]*>([\s\S]*?)<\/details>/)[1];
-    assert.equal((reviewed.match(/<li>/g) || []).length, 24);
+    assert.equal((reviewed.match(/<li>/g) || []).length, 25);
     assert.ok(!reviewed.includes('data-method-id'), 'The reviewed subset is not counted as duplicate method rows');
   }
 });
@@ -299,6 +299,6 @@ test('query text remains inert, preserves all source rows and never invokes HTML
   assertVisible(fixture, []);
   assert.equal(fixture.ja.input.value, payload); assert.equal(fixture.en.input.value, payload);
   assert.equal(globalThis.__methodFilterInjected, undefined);
-  for (const section of fixture.sections) assert.equal(section.items.length, 149);
+  for (const section of fixture.sections) assert.equal(section.items.length, 150);
   fixture.ja.reset.dispatch('click'); assertVisible(fixture, catalog.methods.map(method => method.id));
 });

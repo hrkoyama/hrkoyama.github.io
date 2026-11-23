@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "revision": 2,
+  "created_at_utc": "2026-11-23T12:20:29.764200+00:00",
+  "declared_before_first_scientific_execution": false,
+  "declared_before_first_pde_run": false,
+  "declared_before_first_pytest_execution": false,
+  "planned_tests": 25,
+  "planned_numerical_gates": 110,
+  "planned_reference_qualifiers": 6,
+  "planned_fixed_runs": 6,
+  "runtime_limit_seconds": 120,
+  "shared_pytest_plus_main_budget_seconds": 120,
+  "cases": [
+    "srhd-collision",
+    "srmhd-alfven"
+  ],
+  "scoped_update": "Two restricted1D special-relativistic problems with shared full7-variable RMHD finite volumes,MUSCLminmod,causalHLL±1,SSPRK33; independent stress-energy tensor reference and zero-B SRHD pressure root/flux. Fixed mild inputs, no generic Riemann or GR claim.",
+  "presentation_files_excluded": [
+    "cases.json",
+    "README.md",
+    "LICENSE",
+    "plot.py",
+    "requirements-plot.txt"
+  ],
+  "files_sha256": {
+    "acceptance.json": "2108ca541722e48fb5af581c71ce4c98009cc8c6fb0331f18585f0548a33f8f2",
+    "inputs.json": "74aa7224e0c7682b1563b9dda911eda1890d535465328f136801211638370ac5",
+    "pre-run-review.json": "dcc7bb2fb7ba31f95ce07097f8a24ece51a83e6fb6032d93e208ff470a9d3776",
+    "source-provenance.json": "8a1bdf96f2ee577526faca31000f717ab6e537413cf0df245d38b7fc56773a36",
+    "references/README.md": "000d02ef59cb4d49052a1035d0bd088cfd0ae729cc65330ee3a6d26ff1e9cd49",
+    "references/__init__.py": "64b61650889401af46faba2a6e9e0e7abd50832be6e1d85c2f0d888faddf626d",
+    "references/citations.json": "6b334cd20c9d015b73254b10ef253fd99b3b0882f761ef57aaf1c74f51b368ab",
+    "references/source-review.json": "e5788ddc22f4b288cf8993cc557c4af4f9c50460e0e483eaa61a6232d5ebcdab",
+    "references/exact.py": "5a8b497ab2a5bf529699a2213ae483df660d7a5798fbdfeaaf265469e449d996",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "relativistic.py": "2e0c1d42151148e03df999bd2f71e0e1b6d957fe2c621abb853a8adda105e026",
+    "run.py": "88efd8963d1daa58e78469743bfe36da0a404df60bd5e2845af9ce24234f6e61",
+    "test_relativistic.py": "4d8b32b51b5dd4cdaa524963ee93f7fce621960a48101af649700d397b841037",
+    "revision-review.json": "e7c5cbdaa58fc6ad653186d72534a903e51ec2c7cac3142dc8038a6821939f45"
+  },
+  "unexecuted_draft_contract_sha256": "3e73b3501f1f8efb81439fb4d69d616ac127c3f81526875f8aeb8d687a4f4075",
+  "diagnostic_revision_before_first_execution": "Preserved unexecuted draft in private O/unexecuted-draft01. Add failed-candidate/available-face/last-completed-state/time/step/stage diagnostics and per-completed-grid metrics. Strengthen existing tests for injected cell/face failures; still25. No input,acceptance or numerical equations changed.",
+  "declared_before_this_revision_scientific_execution": true,
+  "declared_before_this_revision_pde_execution": true,
+  "declared_before_this_revision_pytest_execution": true,
+  "previous_contract_sha256": "81ee3fe63e387730621af362b53da3147d30d1e2078f7ff446bf33585674e69e",
+  "original_acceptance_sha256": "2108ca541722e48fb5af581c71ce4c98009cc8c6fb0331f18585f0548a33f8f2",
+  "revision_reason": "Only refine wave grids32/64/128 to64/128/256; samephysicalinput,period,CFL,solver,tests,independentreference and acceptance bytes. No criteria relaxed.",
+  "previous_execution_summary": {
+    "pytest_passed": 25,
+    "gates_passed": 109,
+    "gates_total": 110,
+    "combined_seconds": 16.756165250000777,
+    "archive": "attempts/01"
+  },
+  "wave_grid_change": {
+    "previous": [
+      32,
+      64,
+      128
+    ],
+    "current": [
+      64,
+      128,
+      256
+    ]
+  }
+}

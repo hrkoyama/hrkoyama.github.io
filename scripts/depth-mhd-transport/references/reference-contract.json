@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "revision": 2,
+  "created_at_utc": "2026-11-23T12:12:21.632235+00:00",
+  "declared_before_first_reference_pde_execution": true,
+  "reference_runs": 6,
+  "planned_reference_gates": 31,
+  "reference_batch_budget_seconds": 120,
+  "scope": "Official pinned Athena++ HLLD/PLM/RK2/native upwindCT; loop64/128Ny plus128halfCFL throughT1; OT128/256 plus256halfCFL throughT.2; fiveconservedfieldoutputs. Loop uses official generator vz2 variant. Not the oldAtlasvz0loop nor original1979incompressibleOT.",
+  "source_commit": "1395e2f543f4368d448cb1a2cf92ba1f910e3416",
+  "source_archive_sha256": "8a6cd8658217349fd913c03b549df8b88c2a2fe96cb4ea1b8ba4bf747c6af896",
+  "binary_sha256": {
+    "loop": "a5b7ade55799e74d571e7b91c0bf38b09f7862ba55ee2baba9c0080f1a97ad61",
+    "ot": "a2b8e9ecc0329c24975c8874e1aef5457523dc698bff58a2be8e414453a4e76e"
+  },
+  "compiler": "Apple clang++ -O3 -std=c++11; --cxx=clang++-apple; noOMP/MPI/HDF5; source unmodified",
+  "files_sha256": {
+    "ATHENA-LICENSE.txt": "31194975612df51ccb646ed5d43d3eeb5f7996e8a1725b409fb3e34f93059d32",
+    "athena-field_loop.cpp": "2412733ab6930b454ffcd82d68f24bb5bd5ddc88ad83656c3edca452b0b7848e",
+    "athena-orszag_tang.cpp": "175447ac35633f1c6c69e9d6922d39c5bf0867051c4a7dc051cafbf201533b4c",
+    "athinput-loop-n128-cfl0p15.txt": "39ac7df73261ee9e624d784bb97b2b29b01222fab7f59ba34e734e2d0b8e88d4",
+    "athinput-loop-n128-cfl0p3.txt": "3f4b1233bd6ece2cb74067104964cde9f592219916085319f94f92b9d9b1463f",
+    "athinput-loop-n64-cfl0p3.txt": "9269aed5caa27c33e5bb611fd59b0bbaf6f2002bfa72865ea6ac67ee6fa8eee4",
+    "athinput-ot-n128-cfl0p3.txt": "4b4ae68b0a3635006ca2f398451fd5095b56eac4bc4f3b09b7567a07385a5d3b",
+    "athinput-ot-n256-cfl0p15.txt": "bacae46fc451c60eb759cf2e7d6eeb0bd775950cc1d51ba034c1c9e3f2e48788",
+    "athinput-ot-n256-cfl0p3.txt": "0d60f88f910dda7cdc57a8e4d2f63f988a5d3fbffb08d280c6d16c995f85dfd1",
+    "generate.py": "5d8b2981d9d6d3f51b50c81dd7fc5a3ca2f7f830152140a2cb2ecd5ef6fc29dd",
+    "qualify.py": "f1eda04ee2beabaccfed9c7485a6c02584feb5019b7d0f2630a69231ce022a75",
+    "reference-input-plan.json": "d03bdc949d38ed08bcb03f3cd4bb2940d351fd10afcf7e29c00920bb92310026"
+  },
+  "qualification": "Finite positive full savedfields, independent initialgeneratoralgebra<=2e-12, actualoutputs/physicaltimes, fluidconservation2e-11; spatialandtimeincrementgates explicit inreference-input-plan.json; OTdensitycontrast>=2 diagnostic, not a mathematicalshockproof.",
+  "previous_revision_executed": false,
+  "revision_reason": "Before first reference PDE execution, independently reviewed failure capture now retains timeout stdout/stderr, failed config/runID and all partial table hashes; report only common-cell Bcc divergence, never Athena native-face divergence. Numerical inputs and acceptance unchanged."
+}

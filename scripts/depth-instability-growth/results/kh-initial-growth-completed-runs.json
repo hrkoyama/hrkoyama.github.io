@@ -1,0 +1,147 @@
+[
+  {
+    "id": "n32",
+    "n": 32,
+    "epsilon": 1e-05,
+    "cfl_factor": 1.0,
+    "steps": 36,
+    "relative_field_error": 0.0832693106538785,
+    "amplitudes": [
+      7.571133935436482e-06,
+      7.782362929282533e-06,
+      8.41346745252849e-06,
+      9.410858494395259e-06,
+      1.0731036167334186e-05
+    ],
+    "reference_amplitudes": [
+      7.603453162872775e-06,
+      7.86001815273194e-06,
+      8.611150136682367e-06,
+      9.781764397395089e-06,
+      1.1318206814998453e-05
+    ],
+    "file": "kh-initial-growth-n32.npz",
+    "sha256": "ae25727d05326c76d77e593979ac4bf5740d16691e4a7c092b2bb6d7365d2398",
+    "finite": true,
+    "max_divergence": 1.6940658945086007e-20,
+    "max_poisson_residual": 5.21772295508649e-19,
+    "max_mean_omega": 1.2705494208814505e-21,
+    "max_mean_theta": 0.0
+  },
+  {
+    "id": "n64",
+    "n": 64,
+    "epsilon": 1e-05,
+    "cfl_factor": 1.0,
+    "steps": 68,
+    "relative_field_error": 0.01739695762138018,
+    "amplitudes": [
+      7.595367435186987e-06,
+      7.840648927426591e-06,
+      8.562300548520147e-06,
+      9.690657995543658e-06,
+      1.1174198473241866e-05
+    ],
+    "reference_amplitudes": [
+      7.603453162872775e-06,
+      7.86001815273194e-06,
+      8.611150136682367e-06,
+      9.781764397395089e-06,
+      1.1318206814998453e-05
+    ],
+    "file": "kh-initial-growth-n64.npz",
+    "sha256": "eb418472bb4dcf3c8fcb97428d8674a604a5a187c1c3f8e78d330ff5253435b4",
+    "finite": true,
+    "max_divergence": 4.404571325722362e-20,
+    "max_poisson_residual": 2.778268066994105e-18,
+    "max_mean_omega": 1.2705494208814505e-21,
+    "max_mean_theta": 0.0
+  },
+  {
+    "id": "n128",
+    "n": 128,
+    "epsilon": 1e-05,
+    "cfl_factor": 1.0,
+    "steps": 152,
+    "relative_field_error": 0.00425645160443949,
+    "amplitudes": [
+      7.601431365252137e-06,
+      7.855183180822999e-06,
+      8.599003112070968e-06,
+      9.759184173475732e-06,
+      1.128260344303824e-05
+    ],
+    "reference_amplitudes": [
+      7.603453162872775e-06,
+      7.86001815273194e-06,
+      8.611150136682367e-06,
+      9.781764397395089e-06,
+      1.1318206814998453e-05
+    ],
+    "file": "kh-initial-growth-n128.npz",
+    "sha256": "4795c793ed258b06d6f3ac9aebe42fb15c4253a8114e06d6d486d17e0e8957f2",
+    "finite": true,
+    "max_divergence": 8.639736061993863e-20,
+    "max_poisson_residual": 1.2434443665693129e-17,
+    "max_mean_omega": 1.0587911840678754e-21,
+    "max_mean_theta": 0.0
+  },
+  {
+    "id": "time-half",
+    "n": 64,
+    "epsilon": 1e-05,
+    "cfl_factor": 0.5,
+    "steps": 136,
+    "relative_field_error": 0.01739198234949979,
+    "amplitudes": [
+      7.595367435186987e-06,
+      7.840654126276043e-06,
+      8.562321179686481e-06,
+      9.69070063482987e-06,
+      1.1174267810079785e-05
+    ],
+    "reference_amplitudes": [
+      7.603453162872775e-06,
+      7.86001815273194e-06,
+      8.611150136682367e-06,
+      9.781764397395089e-06,
+      1.1318206814998453e-05
+    ],
+    "file": "kh-initial-growth-time-half.npz",
+    "sha256": "19f31eafb66bad56fec1c6e1f932372c554ec511c9b4f4ea8c031e1711c8ae80",
+    "finite": true,
+    "max_divergence": 4.319868030996932e-20,
+    "max_poisson_residual": 3.0137432263308006e-18,
+    "max_mean_omega": 1.2705494208814505e-21,
+    "max_mean_theta": 0.0
+  },
+  {
+    "id": "epsilon-half",
+    "n": 64,
+    "epsilon": 5e-06,
+    "cfl_factor": 1.0,
+    "steps": 68,
+    "relative_field_error": 0.017396953941301977,
+    "amplitudes": [
+      3.7976837175934933e-06,
+      3.9203244636673306e-06,
+      4.2811502740558e-06,
+      4.845328997301374e-06,
+      5.587099235786818e-06
+    ],
+    "reference_amplitudes": [
+      3.8017265814363877e-06,
+      3.93000907636597e-06,
+      4.305575068341184e-06,
+      4.890882198697544e-06,
+      5.659103407499227e-06
+    ],
+    "file": "kh-initial-growth-epsilon-half.npz",
+    "sha256": "42d8b9917c8aafd529e7acbb7b82660b7dd78102adc8656a160e363000f51ccd",
+    "finite": true,
+    "max_divergence": 2.159934015498466e-20,
+    "max_poisson_residual": 1.4094628242311558e-18,
+    "max_mean_omega": 5.293955920339377e-22,
+    "max_mean_theta": 0.0
+  }
+]

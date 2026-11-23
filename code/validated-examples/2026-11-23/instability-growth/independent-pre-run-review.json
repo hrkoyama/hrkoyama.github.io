@@ -1,0 +1,14 @@
+{
+  "contract_sha256": "d15bf7635169c34756aca0515e546434d3344473179559b4377d8299c17febdc",
+  "reviewed_before_first_reference_pde_pytest": true,
+  "reviewer": "independent batch_weno agent; root applied non-numerical operational comments before first execution",
+  "checks": [
+    "KH curl/shear source signs agree with independent Galerkin block",
+    "RT buoyancy curl and base scalar-gradient signs agree",
+    "Finite Fourier initial modes match point-sampled primary input",
+    "22 actual parameterized tests and74case gates statically counted",
+    "Matched physical bases have explicit forcing and no sharp-interface or nonlinear-independent-reference claim",
+    "Fields are point samples; centered native divergence and five-point Poisson are separately defined"
+  ],
+  "authorization": "One fixed reference qualification, then one shared120s pytest+main execution if reference qualifies. Failures retained before any revision."
+}

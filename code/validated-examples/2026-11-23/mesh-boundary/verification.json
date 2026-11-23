@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "group": "mesh-boundary",
+  "edition": "2026-11-23",
+  "verified_on": "2026-11-23",
+  "source_manifest_sha256": "96e55d4c564baf804d3ae7feb86a36c7d7a3d4079f5e47180326fd2c09ee675a",
+  "archive": {
+    "file": "atlas-mesh-boundary-2026-11-23.zip",
+    "sha256": "51032054029345b8f187ebb12e1a0d8d4473b70312f29585a160fc3b0fdca315",
+    "bytes": 6177648,
+    "archive_directory": "atlas-mesh-boundary-2026-11-23"
+  },
+  "archive_sha256": "51032054029345b8f187ebb12e1a0d8d4473b70312f29585a160fc3b0fdca315",
+  "returncode": 0,
+  "passed_tests": 20,
+  "tests": 20,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "annular-viscous-mms",
+    "lshape-fem",
+    "poisson-neumann",
+    "poisson-robin"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 0.8819043749972479,
+  "independent_rerun_seconds": 0.893176500001573,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

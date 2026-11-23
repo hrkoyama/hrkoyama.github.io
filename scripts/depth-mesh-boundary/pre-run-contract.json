@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "revision": 3,
+  "created_at_utc": "2026-11-23T12:29:15.970181+00:00",
+  "declared_before_first_scientific_execution": false,
+  "declared_before_first_pde_run": false,
+  "declared_before_first_pytest_execution": false,
+  "planned_tests": 20,
+  "planned_numerical_gates": 174,
+  "planned_fixed_runs": 23,
+  "planned_gates_by_case": {
+    "lshape-fem": 82,
+    "annular-viscous-mms": 39,
+    "poisson-neumann": 32,
+    "poisson-robin": 21
+  },
+  "intentional_non_solve_rejections": 1,
+  "runtime_limit_seconds": 120,
+  "shared_pytest_plus_main_budget_seconds": 120,
+  "scoped_update": "Actual2D P1 reentrant-corner and warped-square solves; curved polar Q1 Cartesian vector stress-divergence BVP; singular Neumann and mixed-Robin2D Poisson.",
+  "presentation_files_excluded": [
+    "cases.json",
+    "README.md",
+    "LICENSE",
+    "plot.py",
+    "requirements-plot.txt"
+  ],
+  "files_sha256": {
+    "acceptance.json": "071a9497f058007c408d61d83e4ea6352418c6a5c46fda59c7656db6c032a4f5",
+    "annulus.py": "61e10c48fd8e9ebfb9ce1a613f37c5437313b9b119d6157e59e653cf552e04bf",
+    "boundary.py": "877c88f9a0fe88c7190a19e817f52c8d8b209a4172c943719a3ef0043ddb37bb",
+    "experiments.py": "0a58609fac6f1ecb5ec06f7116765455c42bace12c6d949a596cc34b05c53711",
+    "fem.py": "e6a198dcc258bf3282ae9fe0d5c252d3cc35b0009c8558a43b6f607738aa1009",
+    "inputs.json": "eab97df002461c3a58d984cca96db0f6cf07ff4f6e15c451775b383882a7a4b3",
+    "pre-run-review.json": "32f8919dd29c33edaab32f7d4c06d0a914e79ce4673806d0eb8ea0ff182a8169",
+    "references/__init__.py": "705fd0cdaa1c0a3b7f16af1342cb94c5595afc84af8223e62d5e761f85e440e9",
+    "references/citations.json": "c13563b7364a005ce7b33f9e60ba15234b5a514fc90ec13b0bc1d19dc4b47de1",
+    "references/fields.py": "7b78557768ce26d1930d4a7c3756af0bd2cc01e5bf725b43f788287f2948d9f7",
+    "references/source-review.json": "2c0cfd76cfa01d3f3a68e390f1518b66dd34e6d56a4fb1a4bd7d24d73dd18a96",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "run.py": "a9d3dd2b3af59daa170951821b3ed8943b6faedf5c87bbadb6b1105d82d0ceea",
+    "source-provenance.json": "99660aae3ab496aeff2c1c9a6080254f035779812d4943114e2184e10cd5dda9",
+    "test_geometry.py": "09e44d4893ea07733922e2a2ab7cc1c4c1fb0d5fcb7af01d66211e600c78dcc7",
+    "references/README.md": "a0cf4a958364fc400a40267624e63bc9d50834a619d35a858e85a27619de474d",
+    "protocol-history.json": "e0d0b4e9dcc3ea6d9ddb5c06cc1b80754e62c8d52cbb8582e63c96ce97911dd8"
+  },
+  "previous_unexecuted_contract_sha256": "b8d32bb037d4274f65636f2ac4fd5f829c64cf389fd109132bcc65066c9344c0",
+  "revision_reason": "Preserved first failed attempt. Backend/diagnostic fix only: real sum(u*F) replaces dense real dot; retain u/F candidate and assert finite before work diagnostics. No solver/input/acceptance/test changes or warning suppression.",
+  "declared_before_this_revision_scientific_execution": true,
+  "declared_before_this_revision_pde_execution": true,
+  "declared_before_this_revision_pytest_execution": true,
+  "previous_contract_sha256": "c25ad479668beb4b168fb61112c92e03ae482456db393e1845a3f329e2791097"
+}

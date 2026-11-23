@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "group": "moving-waves",
+  "edition": "2026-11-23",
+  "verified_on": "2026-11-23",
+  "source_manifest_sha256": "8cf67dddc182fe3519eb33f89deddd711a9ecb639f3760e1edc0c88505eb8be1",
+  "archive": {
+    "file": "atlas-moving-waves-2026-11-23.zip",
+    "sha256": "d9f2f8bff3bf5d9fa7c1118c0968e9c0374fd5e9a6d3f7f99352abc0841e3b7d",
+    "bytes": 959392,
+    "archive_directory": "atlas-moving-waves-2026-11-23"
+  },
+  "archive_sha256": "d9f2f8bff3bf5d9fa7c1118c0968e9c0374fd5e9a6d3f7f99352abc0841e3b7d",
+  "returncode": 0,
+  "passed_tests": 19,
+  "tests": 19,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "ale-nonuniform-transport",
+    "cgrid-rotating-wave"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 0.6612157089984976,
+  "independent_rerun_seconds": 0.6574270830024034,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

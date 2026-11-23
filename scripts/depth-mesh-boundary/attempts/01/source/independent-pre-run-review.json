@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "reviewer": "Independent peer: batch_walls; authorization: root",
+  "reviewed_math_contract_sha256": "b8d32bb037d4274f65636f2ac4fd5f829c64cf389fd109132bcc65066c9344c0",
+  "contract_sha256": "c25ad479668beb4b168fb61112c92e03ae482456db393e1845a3f329e2791097",
+  "review_before_first_main_and_pytest": true,
+  "scientific_execution_performed": false,
+  "scope": "Static algebra/source review; root conditionally authorized only diagnostic retention revision and one combined execution.",
+  "checks": {
+    "mathematics": true,
+    "original_solver_input_acceptance_tests_unchanged": true,
+    "planned20tests174gates23solves1reject": true,
+    "root_authorized_first_execution": true
+  }
+}

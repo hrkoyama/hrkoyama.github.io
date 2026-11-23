@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "review_type": "author-static-algebra-and-source-scope-review",
+  "performed_before_any_scientific_or_pytest_execution": true,
+  "execution_performed": false,
+  "checks": [
+    "Moving geometry and transported cell integrals share both Heun stages; flux/GCL identities derived with no projection or floors.",
+    "Spatial reference is exact analytic moving-cell mass; adaptive DOP853 is same FV ODE temporal reference, not an independent spatial engine.",
+    "Actual C-grid roll stencil and adjoint four-point Coriolis terms compared algebraically with independent staggered Fourier symbol.",
+    "Continuous and discrete dispersion references explicitly separate; RK4 time advance is on full2D arrays.",
+    "Zero frequency mode and discrete geostrophic vector independently derived; energy and volume/mass diagnostics retained."
+  ],
+  "limits": [
+    "Scalar1D prescribed motion only, no Saltzman claim.",
+    "Planar linear C-grid only, no nonlinear/global Williamson claim.",
+    "No pre-run empirical calibration; all fixed tests/gates remain to execute."
+  ],
+  "independent_review": "Awaiting root static preflight; this author review is not independent verification.",
+  "peer_review": "Independent Walls mathematical review PASS19tests/15evolutions/98gates. Root requested correct right-face outgoing CFL diagnostic and explicit candidate/progress retention before the first execution."
+}

@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "title": "Actual public-distribution verification of backlog13–17: WENO, shallow water and wall flow",
+  "verified_on": "2026-11-23",
+  "passed": true,
+  "content_commit": "a51543e8b54129e70670e184290c9b50b5bc0645",
+  "backlog_sequences": [
+    13,
+    14,
+    15,
+    16,
+    17
+  ],
+  "scope": "Actual first scientific-content publication proof for these five items. Three immutable archives were checked anonymously and rerun on Linux from public distributions, without a source checkout. Original local ZIP verification remains a separate linked record. Later publication-status or index commits are not predicted or substituted for this content proof.",
+  "new_groups": [
+    {
+      "group": "weno-critical",
+      "edition": "2026-11-23",
+      "tests": 36,
+      "case_ids": [
+        "weno-critical-epsilon"
+      ],
+      "case_gates": {
+        "weno-critical-epsilon": 217
+      },
+      "numerical_gates": 217,
+      "archive": {
+        "file": "atlas-weno-critical-2026-11-23.zip",
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/atlas-weno-critical-2026-11-23.zip",
+        "sha256": "9c119480261013ef8ed0c58716c45af5b9fb9d3e891aef56b95b66fbd8415491",
+        "bytes": 1454591
+      },
+      "manifest_sha256": "abd8b0a29bb81b7d98b897ec0a0eb409f77873857ec8199c3767f1ede11b43a5",
+      "local_independent_zip": {
+        "passed": true,
+        "all_cases_rerun": true,
+        "tests": 36,
+        "verification_url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/verification.json",
+        "verification_sha256": "ccbf3c6a2fe7055b324a0d98c152da909242f36e0c82ca3281038e4c9b0c165f"
+      },
+      "actual_public_linux": {
+        "passed": true,
+        "tests": 36,
+        "case_ids": [
+          "weno-critical-epsilon"
+        ],
+        "numerical_gates": 217
+      }
+    },
+    {
+      "group": "shallow-water",
+      "edition": "2026-11-23",
+      "tests": 31,
+      "case_ids": [
+        "swashes-topography",
+        "dry-bed-dam-break"
+      ],
+      "case_gates": {
+        "swashes-topography": 62,
+        "dry-bed-dam-break": 47
+      },
+      "numerical_gates": 109,
+      "archive": {
+        "file": "atlas-shallow-water-2026-11-23.zip",
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/atlas-shallow-water-2026-11-23.zip",
+        "sha256": "259244fc5c237542ba577df62308fd2a3191979dd43717d58df33d8abb902644",
+        "bytes": 3195040
+      },
+      "manifest_sha256": "0fdab6190462f91176fa2eb4eb452d6fb66c2066b0e07d115b8ea789231614da",
+      "local_independent_zip": {
+        "passed": true,
+        "all_cases_rerun": true,
+        "tests": 31,
+        "verification_url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/verification.json",
+        "verification_sha256": "e342321ddc1f7692e08dcc7a63478912956f63637c855f2f85eaf0999c4d22cc"
+      },
+      "actual_public_linux": {
+        "passed": true,
+        "tests": 31,
+        "case_ids": [
+          "swashes-topography",
+          "dry-bed-dam-break"
+        ],
+        "numerical_gates": 109
+      }
+    },
+    {
+      "group": "wall-flow",
+      "edition": "2026-11-23-r2",
+      "tests": 22,
+      "case_ids": [
+        "cavity-ghia-re100",
+        "wall-manufactured"
+      ],
+      "case_gates": {
+        "cavity-ghia-re100": 35,
+        "wall-manufactured": 59
+      },
+      "numerical_gates": 94,
+      "archive": {
+        "file": "atlas-wall-flow-2026-11-23-r2.zip",
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/atlas-wall-flow-2026-11-23-r2.zip",
+        "sha256": "de499fde477a49b1eae10bd6bf04b0800b58105ca5d504ec6eff2ec3272690fd",
+        "bytes": 3382663
+      },
+      "manifest_sha256": "5defc88a20d06c6806f1aa18c5a5a9f027c7891d8a237bb5fe980169d1bbdfe4",
+      "local_independent_zip": {
+        "passed": true,
+        "all_cases_rerun": true,
+        "tests": 22,
+        "verification_url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/verification.json",
+        "verification_sha256": "6daf2fa12cf2e7f604bb54413b82e36bbe72891132e1846abf598f9c9600b096"
+      },
+      "actual_public_linux": {
+        "passed": true,
+        "tests": 22,
+        "case_ids": [
+          "cavity-ghia-re100",
+          "wall-manufactured"
+        ],
+        "numerical_gates": 94
+      }
+    }
+  ],
+  "new_group_count": 3,
+  "new_case_count": 5,
+  "new_pytest": 89,
+  "new_numerical_gates": 420,
+  "concurrent_incoming_preservation": {
+    "incoming_commit": "11ba7a20076f052a569091ef976217f07341c3ba",
+    "group": "level-set",
+    "edition": "2026-11-23",
+    "tests": 22,
+    "case_ids": [
+      "level-set-rotation",
+      "level-set-translation"
+    ],
+    "protected_files_unchanged": 45,
+    "archive_sha256": "46c2c2fd0aea98eb4cc4facef8d30cc81ebd6b1b9e0d965f7ef79167a06c048b",
+    "fixture_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/verification/2026-11-23-batch13-17-concurrent-preservation.json",
+    "fixture_sha256": "616c1f12471621a669e0bef27d15943ee41454a0e8bb3a7a848baf326d9cb94f"
+  },
+  "archive_sha256": {
+    "weno-critical": "9c119480261013ef8ed0c58716c45af5b9fb9d3e891aef56b95b66fbd8415491",
+    "shallow-water": "259244fc5c237542ba577df62308fd2a3191979dd43717d58df33d8abb902644",
+    "wall-flow": "de499fde477a49b1eae10bd6bf04b0800b58105ca5d504ec6eff2ec3272690fd"
+  },
+  "public_http": {
+    "matched_files": 1048,
+    "passed": true,
+    "inventory": {
+      "files": 1048,
+      "bytes": 188893069
+    },
+    "body_files_saved": false,
+    "commit": "a51543e8b54129e70670e184290c9b50b5bc0645"
+  },
+  "linux": {
+    "passed": true,
+    "source_checkout": false,
+    "tests": 735,
+    "case_count": 56,
+    "group_count": 24,
+    "run_id": "45167465669",
+    "url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45167465669",
+    "report_sha256": "598d8f52434984b5c5db02d1fd0aad4013a4b8756b7b8f8547b54c8e590dded2",
+    "workflow_context_sha256": "d2b2a6da8a19c8f542f10099d970d950c3ddd6dedd6a13c30e26425cf1a0d155",
+    "new_group_pytest": {
+      "weno-critical": 36,
+      "shallow-water": 31,
+      "wall-flow": 22
+    }
+  },
+  "workflows": {
+    "pages build and deployment": {
+      "id": 45166380725,
+      "name": "pages build and deployment",
+      "head_sha": "a51543e8b54129e70670e184290c9b50b5bc0645",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45166380725",
+      "run_attempt": 1
+    },
+    "Atlas lightweight public Linux verification": {
+      "id": 45167465669,
+      "name": "Atlas lightweight public Linux verification",
+      "head_sha": "a51543e8b54129e70670e184290c9b50b5bc0645",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45167465669",
+      "run_attempt": 1
+    },
+    "Public site checks": {
+      "id": 45166381591,
+      "name": "Public site checks",
+      "head_sha": "a51543e8b54129e70670e184290c9b50b5bc0645",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45166381591",
+      "run_attempt": 1
+    }
+  },
+  "artifact_acquisition": {
+    "artifact_total_bytes": 195182183,
+    "selected_transfer_bytes": 944326,
+    "range_only": true,
+    "archive_written": false
+  },
+  "evidence_sha256": {
+    "public-http-verification.json": "1be56cc09b60cd912a160b2e855d73729f2e3ddd83f4e81d95fe4938c37accd0",
+    "ci-verification.json": "1eb182ea63b8172c23ca58c3cdf4ce3886679c93f15f01c0a3157735ba11eb58",
+    "ci-status.json": "a5603be1213f998ef3701075ffc84ba7589ec7fb3cbddafe0e543f363516c172",
+    "linux-report.json": "598d8f52434984b5c5db02d1fd0aad4013a4b8756b7b8f8547b54c8e590dded2"
+  }
+}

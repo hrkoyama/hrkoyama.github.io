@@ -1,0 +1,78 @@
+{
+  "current_case": "poisson-robin",
+  "records": [
+    {
+      "n": 16,
+      "family": "robin",
+      "mean": 0.0,
+      "l2": 0.00606550364464404,
+      "linf": 0.013872219564703192,
+      "residual": 1.734723475976807e-15,
+      "compatibility": 3.7647058823529416,
+      "mean_error": 0.0,
+      "nullspace_defect": 0.0,
+      "solver_gap": 0.0,
+      "lagrange_multiplier": 0.0,
+      "boundary_residual": 2.220446049250313e-16,
+      "boundary_flux_error": 0.009882307586435268,
+      "flux_balance": 4.4651782271643015e-15,
+      "symmetry": 0.0,
+      "id": "robin-n16"
+    },
+    {
+      "n": 32,
+      "family": "robin",
+      "mean": 0.0,
+      "l2": 0.001509866626204207,
+      "linf": 0.0035376090825222084,
+      "residual": 2.6020852139652106e-15,
+      "compatibility": 3.8787878787878785,
+      "mean_error": 0.0,
+      "nullspace_defect": 0.0,
+      "solver_gap": 0.0,
+      "lagrange_multiplier": 0.0,
+      "boundary_residual": 4.440892098500626e-16,
+      "boundary_flux_error": 0.002466645406486112,
+      "flux_balance": 8.612555113529652e-14,
+      "symmetry": 0.0,
+      "id": "robin-n32"
+    },
+    {
+      "n": 64,
+      "family": "robin",
+      "mean": 0.0,
+      "l2": 0.00037706113250587296,
+      "linf": 0.0008911573863470412,
+      "residual": 5.729791641151394e-15,
+      "compatibility": 3.9384615384615382,
+      "mean_error": 0.0,
+      "nullspace_defect": 0.0,
+      "solver_gap": 0.0,
+      "lagrange_multiplier": 0.0,
+      "boundary_residual": 4.440892098500626e-16,
+      "boundary_flux_error": 0.0006164157489298994,
+      "flux_balance": 1.6335890973273592e-13,
+      "symmetry": 0.0,
+      "id": "robin-n64"
+    }
+  ],
+  "checks": {
+    "robin-n16 residual": true,
+    "robin-n16 boundary_residual": true,
+    "robin-n16 flux_balance": true,
+    "robin-n16 symmetry": true,
+    "robin-n32 residual": true,
+    "robin-n32 boundary_residual": true,
+    "robin-n32 flux_balance": true,
+    "robin-n32 symmetry": true,
+    "robin-n64 residual": true,
+    "robin-n64 boundary_residual": true,
+    "robin-n64 flux_balance": true,
+    "robin-n64 symmetry": true
+  },
+  "data_files": [
+    "poisson-robin-robin-n16.npz",
+    "poisson-robin-robin-n32.npz",
+    "poisson-robin-robin-n64.npz"
+  ]
+}

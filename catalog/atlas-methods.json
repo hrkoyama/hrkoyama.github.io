@@ -274,8 +274,8 @@
         ]
       },
       "depth_scope": {
-        "ja": "反応拡散：空間2次と時間4次を分けて測る: 線形の拡散・反応演算子を、連続と半離散のFourier厳密解を用いて小規模に検証します。 Turing不安定性：線形成長率と小振幅パターン: Schnakenberg型反応拡散で、一様平衡の安定性と拡散による選択モードの成長を行列指数で検証します。 Schnakenberg有限振幅過渡：非線形性と独立参照: t=8までの有限振幅反応拡散を、独立なFourier–Galerkin参照・格子と時間刻み収束・新しい高調波で検証します。 Schnakenberg飽和パターン：近定常性と格子・時間収束: t=100の1D選択パターンを独立参照で照合。参照の90→100の変化・全PDE残差と、有限刻みprimaryのFD残差を分けて測ります。 非周期壁面の2D渦度・流れ関数法でRe100蓋駆動キャビティと製造流れを解きます。Ghia原著の有限格子数値表、壁剪断と格子収束を比較し、独立した圧力Poisson・勾配製造問題を区別します。",
-        "en": "Reaction-diffusion: separate second-order space and fourth-order time: Validate a small linear diffusion-reaction operator against continuous and semidiscrete Fourier solutions. Turing instability: linear growth and small-amplitude patterns: Use a matrix exponential to validate stable homogeneous kinetics and diffusion-driven growth of a selected Schnakenberg mode. Finite-amplitude Schnakenberg transient: nonlinearity and independent reference: Validate a finite-amplitude reaction-diffusion transient to t=8 with an independent Fourier–Galerkin reference, grid/time convergence and newly generated harmonics. Near-saturated Schnakenberg pattern: near-stationarity and grid/time convergence: Compare the selected1D pattern at t=100 with an independent reference. Separate reference90→100 change/full-PDE residual from the finite-step primary FD residual. Solve a Re100 lid-driven cavity and manufactured flow with a nonperiodic wall-bounded2D vorticity/streamfunction method. Compare original finite-grid Ghia tables, wall shear and grid refinement, keeping a separate pressure-Poisson/gradient manufactured problem distinct."
+        "ja": "反応拡散：空間2次と時間4次を分けて測る: 線形の拡散・反応演算子を、連続と半離散のFourier厳密解を用いて小規模に検証します。 Turing不安定性：線形成長率と小振幅パターン: Schnakenberg型反応拡散で、一様平衡の安定性と拡散による選択モードの成長を行列指数で検証します。 Schnakenberg有限振幅過渡：非線形性と独立参照: t=8までの有限振幅反応拡散を、独立なFourier–Galerkin参照・格子と時間刻み収束・新しい高調波で検証します。 Schnakenberg飽和パターン：近定常性と格子・時間収束: t=100の1D選択パターンを独立参照で照合。参照の90→100の変化・全PDE残差と、有限刻みprimaryのFD残差を分けて測ります。 非周期壁面の2D渦度・流れ関数法でRe100蓋駆動キャビティと製造流れを解きます。Ghia原著の有限格子数値表、壁剪断と格子収束を比較し、独立した圧力Poisson・勾配製造問題を区別します。 追加の周期2D KH/RT初期成長は、維持した滑らかな基底と独立線形IVPを使用。中央の保存面流束とHeunで渦度/浮力を実際に進め、圧力は消去します。 追加は2Dセル中心PoissonのNeumann/Robin境界。実際の五点面流束と半セルRobin消去、適合条件・平均ゲージ・境界流束誤差を確認します。 追加は実際の2D線形回転浅水C-grid。staggered勾配・発散・随伴な4点Coriolis補間を使い、連続波と離散記号を分けて比較します。",
+        "en": "Reaction-diffusion: separate second-order space and fourth-order time: Validate a small linear diffusion-reaction operator against continuous and semidiscrete Fourier solutions. Turing instability: linear growth and small-amplitude patterns: Use a matrix exponential to validate stable homogeneous kinetics and diffusion-driven growth of a selected Schnakenberg mode. Finite-amplitude Schnakenberg transient: nonlinearity and independent reference: Validate a finite-amplitude reaction-diffusion transient to t=8 with an independent Fourier–Galerkin reference, grid/time convergence and newly generated harmonics. Near-saturated Schnakenberg pattern: near-stationarity and grid/time convergence: Compare the selected1D pattern at t=100 with an independent reference. Separate reference90→100 change/full-PDE residual from the finite-step primary FD residual. Solve a Re100 lid-driven cavity and manufactured flow with a nonperiodic wall-bounded2D vorticity/streamfunction method. Compare original finite-grid Ghia tables, wall shear and grid refinement, keeping a separate pressure-Poisson/gradient manufactured problem distinct. Additional periodic2D KH/RT initial growth uses maintained smooth bases and independent linear IVPs; actual centered conservative face fluxes and Heun evolve vorticity/buoyancy with pressure eliminated. Additional2D cell-centered Poisson uses actual five-point face differences and half-cell Robin elimination; check Neumann compatibility/mean gauge and continuous boundary-flux error. Additional actual2D linear rotating-SWE C-grid uses staggered gradients/divergence and adjoint four-point Coriolis interpolation; separate continuous and discrete-symbol references."
       },
       "depth_additional_releases": [
         {
@@ -292,6 +292,29 @@
           "case_ids": [
             "cavity-ghia-re100",
             "wall-manufactured"
+          ]
+        },
+        {
+          "group": "instability-growth",
+          "edition": "2026-11-23",
+          "case_ids": [
+            "kh-initial-growth",
+            "rt-initial-growth"
+          ]
+        },
+        {
+          "group": "mesh-boundary",
+          "edition": "2026-11-23",
+          "case_ids": [
+            "poisson-neumann",
+            "poisson-robin"
+          ]
+        },
+        {
+          "group": "moving-waves",
+          "edition": "2026-11-23",
+          "case_ids": [
+            "cgrid-rotating-wave"
           ]
         }
       ]
@@ -473,9 +496,18 @@
         ]
       },
       "depth_scope": {
-        "ja": "追加のZalesak型例は与えた発散ゼロ速度による2次元スカラー回転輸送です。同一の周期格子・SSPRK(3,3)で一次風上とminmod MUSCLを比較し、各段の範囲・保存量と一回転後の形状誤差を調べます。FCT法や多次元Euler全般の有界性を認証しません。",
-        "en": "The additional Zalesak-type example is two-dimensional scalar rotation in a prescribed divergence-free velocity. Compare donor-cell upwinding and minmod MUSCL with the same periodic grid and SSPRK(3,3), measuring stage bounds, conservation and full-turn shape errors. It does not certify FCT or general multidimensional Euler bounds."
-      }
+        "ja": "追加のZalesak型例は与えた発散ゼロ速度による2次元スカラー回転輸送です。同一の周期格子・SSPRK(3,3)で一次風上とminmod MUSCLを比較し、各段の範囲・保存量と一回転後の形状誤差を調べます。FCT法や多次元Euler全般の有界性を認証しません。 追加は非一様な移動セルの1Dスカラー輸送で、正の物理速度−面速度を用いる実際の相対上流流束です。Euler流体やremap法ではありません。",
+        "en": "The additional Zalesak-type example is two-dimensional scalar rotation in a prescribed divergence-free velocity. Compare donor-cell upwinding and minmod MUSCL with the same periodic grid and SSPRK(3,3), measuring stage bounds, conservation and full-turn shape errors. It does not certify FCT or general multidimensional Euler bounds. Additional1D scalar transport on nonuniform moving cells uses actual upwind flux with positive physical-minus-face speed; not Euler fluid or remapping."
+      },
+      "depth_additional_releases": [
+        {
+          "group": "moving-waves",
+          "edition": "2026-11-23",
+          "case_ids": [
+            "ale-nonuniform-transport"
+          ]
+        }
+      ]
     },
     {
       "id": "lax-friedrichs",
@@ -947,8 +979,8 @@
         ]
       },
       "depth_scope": {
-        "ja": "衝撃波と密度正弦波の相互作用を、同じPython実装の細格子ではなく、別に実行したAthena++の参照と照合します。 追加Noh版では球対称系列だけに体積重心を用いる保存量MUSCL/minmod＋Heunを実装し、平面・円筒は区分定数のままです。 低Mach渦の追加例は、両Roe流束に同じ無制限の中心primitive再構築を用います。勾配制限付きMUSCL全般やTVDの保証ではありません。 追加の二重膨張波は1次元保存量MUSCL・共有Lax–Friedrichs流束・平均を保つ正値状態スケーリング・SSPRK(3,3)を接続した限定例です。許容CFLと波速条件、各前進Euler候補・SSP段の平均と面状態、保存収支を測り、一般のEuler・WENO・DG・MHDの正値性保証へ拡張しません。 追加のZalesak型例は与えた発散ゼロ速度による2次元スカラー回転輸送です。同一の周期格子・SSPRK(3,3)で一次風上とminmod MUSCLを比較し、各段の範囲・保存量と一回転後の形状誤差を調べます。FCT法や多次元Euler全般の有界性を認証しません。",
-        "en": "Compare shock–density-wave interaction against separately executed Athena++ reference data rather than a finer grid of the same Python code. The additional Noh edition uses volume-centroid conservative MUSCL/minmod with Heun only in spherical runs; planar/cylindrical states stay piecewise constant. The additional low-Mach vortex uses the same unlimited central primitive reconstruction for both Roe variants. It does not verify general limited MUSCL or a TVD guarantee. The additional double rarefaction connects one-dimensional conservative MUSCL, shared Lax–Friedrichs fluxes, mean-preserving positive-state scaling and SSPRK(3,3). Check the admissible CFL/wave-speed conditions, means and faces at each forward-Euler candidate/SSP stage, and conservation budgets; this does not certify general Euler, WENO, DG or MHD positivity. The additional Zalesak-type example is two-dimensional scalar rotation in a prescribed divergence-free velocity. Compare donor-cell upwinding and minmod MUSCL with the same periodic grid and SSPRK(3,3), measuring stage bounds, conservation and full-turn shape errors. It does not certify FCT or general multidimensional Euler bounds."
+        "ja": "衝撃波と密度正弦波の相互作用を、同じPython実装の細格子ではなく、別に実行したAthena++の参照と照合します。 追加Noh版では球対称系列だけに体積重心を用いる保存量MUSCL/minmod＋Heunを実装し、平面・円筒は区分定数のままです。 低Mach渦の追加例は、両Roe流束に同じ無制限の中心primitive再構築を用います。勾配制限付きMUSCL全般やTVDの保証ではありません。 追加の二重膨張波は1次元保存量MUSCL・共有Lax–Friedrichs流束・平均を保つ正値状態スケーリング・SSPRK(3,3)を接続した限定例です。許容CFLと波速条件、各前進Euler候補・SSP段の平均と面状態、保存収支を測り、一般のEuler・WENO・DG・MHDの正値性保証へ拡張しません。 追加のZalesak型例は与えた発散ゼロ速度による2次元スカラー回転輸送です。同一の周期格子・SSPRK(3,3)で一次風上とminmod MUSCLを比較し、各段の範囲・保存量と一回転後の形状誤差を調べます。FCT法や多次元Euler全般の有界性を認証しません。 追加の全成分1D円偏波と実際の2D磁場ループ/Orszag–TangでHLLD・MC-MUSCL・Heunを使用。HLLD→HLLE代替と面の正値性スケーリングを数え、セルfloorや再試行は行いません。 追加の軽量1D SRHD対称衝突/SRMHD有限振幅円偏極波は、同じ完全7量の応力/誘導、MUSCL-minmod、因果的HLL±1、SSPRK33とZ回復を使用。一般Riemann・GR・極端速度の認証ではありません。",
+        "en": "Compare shock–density-wave interaction against separately executed Athena++ reference data rather than a finer grid of the same Python code. The additional Noh edition uses volume-centroid conservative MUSCL/minmod with Heun only in spherical runs; planar/cylindrical states stay piecewise constant. The additional low-Mach vortex uses the same unlimited central primitive reconstruction for both Roe variants. It does not verify general limited MUSCL or a TVD guarantee. The additional double rarefaction connects one-dimensional conservative MUSCL, shared Lax–Friedrichs fluxes, mean-preserving positive-state scaling and SSPRK(3,3). Check the admissible CFL/wave-speed conditions, means and faces at each forward-Euler candidate/SSP stage, and conservation budgets; this does not certify general Euler, WENO, DG or MHD positivity. The additional Zalesak-type example is two-dimensional scalar rotation in a prescribed divergence-free velocity. Compare donor-cell upwinding and minmod MUSCL with the same periodic grid and SSPRK(3,3), measuring stage bounds, conservation and full-turn shape errors. It does not certify FCT or general multidimensional Euler bounds. Additional full-state1D CP wave and actual2D magnetic-loop/Orszag–Tang use HLLD,MC-MUSCL and Heun. Count HLLD-to-HLLE fallback and face positivity scaling,with no cell floor or PDE retry. Additional lightweight1D SRHD symmetric collision/SRMHD finite-amplitude CP wave use the shared full7-variable stress/induction,MUSCL-minmod,causalHLL±1,SSPRK33 and Z recovery; no generic Riemann,GR or extreme-speed claim."
       },
       "depth_additional_releases": [
         {
@@ -977,6 +1009,23 @@
           "edition": "2026-11-23",
           "case_ids": [
             "zalesak-rotation"
+          ]
+        },
+        {
+          "group": "mhd-transport",
+          "edition": "2026-11-23",
+          "case_ids": [
+            "circular-alfven-refinement",
+            "magnetic-loop-independent",
+            "postshock-orszag-tang"
+          ]
+        },
+        {
+          "group": "relativistic",
+          "edition": "2026-11-23",
+          "case_ids": [
+            "srhd-collision",
+            "srmhd-alfven"
           ]
         }
       ]
@@ -1451,7 +1500,18 @@
         "P1 FEM",
         "連続Galerkin法",
         "continuous Galerkin"
-      ]
+      ],
+      "depth_release": {
+        "group": "mesh-boundary",
+        "edition": "2026-11-23",
+        "case_ids": [
+          "lshape-fem"
+        ]
+      },
+      "depth_scope": {
+        "ja": "追加のP1例はL字領域の特異解と同じ未知数数のgraded格子、正方形/warped三角形。角に接するDuffy積分を別次数で確認し、L2/H1誤差と格子品質を比較します。",
+        "en": "AdditionalP1 cases compare an Lshape singularity on uniform/matched-DOF graded meshes and square/warped triangles. Independently increase corner-Duffy quadrature and compare L2/H1 errors and mesh quality."
+      }
     },
     {
       "id": "rusanov",
@@ -1636,8 +1696,8 @@
       },
       "depth_previous_status": "educational-example",
       "depth_scope": {
-        "ja": "既存のHLL流束・Heunによる2D Double Mach反射を3格子で検証し、別実装の有限格子数値参照との差、境界流束収支、衝撃位置と未解像の壁近傍構造を示します。 追加の前向きステップ例は段差面を含む反射壁境界の実2D有限体積計算を検証します。 追加のGuderley例は、圧力ゼロの上流へ進む球対称収束衝撃波を原点到達前だけ計算し、半解析的な相似参照と比較します。 浅水系の地形源項と静水再構成を、全湿潤・露出床の静止湖とSWASHESの定常Bernoulli流で検査します。別の平坦床Ritter破堤は、真の乾燥状態・保存収支・固定水深の前縁を確認します。",
-        "en": "Three-grid 2D Double Mach verification using HLL and Heun compares a separately written finite-grid numerical reference, boundary-flux budgets, shock position and unresolved near-wall structure. The additional forward-step example verifies actual 2D finite-volume flow with reflecting walls including the step faces. The additional Guderley example evolves a zero-upstream-pressure spherical converging shock only before collapse and compares a semi-analytic similarity reference. Check shallow-water bed sources and hydrostatic reconstruction with wet/emerged lakes and a SWASHES steady Bernoulli flow. A separate flat-bed Ritter dam break tests genuinely dry states, conservation budgets and a fixed-depth front."
+        "ja": "既存のHLL流束・Heunによる2D Double Mach反射を3格子で検証し、別実装の有限格子数値参照との差、境界流束収支、衝撃位置と未解像の壁近傍構造を示します。 追加の前向きステップ例は段差面を含む反射壁境界の実2D有限体積計算を検証します。 追加のGuderley例は、圧力ゼロの上流へ進む球対称収束衝撃波を原点到達前だけ計算し、半解析的な相似参照と比較します。 浅水系の地形源項と静水再構成を、全湿潤・露出床の静止湖とSWASHESの定常Bernoulli流で検査します。別の平坦床Ritter破堤は、真の乾燥状態・保存収支・固定水深の前縁を確認します。 追加の軽量1D SRHD対称衝突/SRMHD有限振幅円偏極波は、同じ完全7量の応力/誘導、MUSCL-minmod、因果的HLL±1、SSPRK33とZ回復を使用。一般Riemann・GR・極端速度の認証ではありません。",
+        "en": "Three-grid 2D Double Mach verification using HLL and Heun compares a separately written finite-grid numerical reference, boundary-flux budgets, shock position and unresolved near-wall structure. The additional forward-step example verifies actual 2D finite-volume flow with reflecting walls including the step faces. The additional Guderley example evolves a zero-upstream-pressure spherical converging shock only before collapse and compares a semi-analytic similarity reference. Check shallow-water bed sources and hydrostatic reconstruction with wet/emerged lakes and a SWASHES steady Bernoulli flow. A separate flat-bed Ritter dam break tests genuinely dry states, conservation budgets and a fixed-depth front. Additional lightweight1D SRHD symmetric collision/SRMHD finite-amplitude CP wave use the shared full7-variable stress/induction,MUSCL-minmod,causalHLL±1,SSPRK33 and Z recovery; no generic Riemann,GR or extreme-speed claim."
       },
       "depth_additional_releases": [
         {
@@ -1660,6 +1720,14 @@
           "case_ids": [
             "swashes-topography",
             "dry-bed-dam-break"
+          ]
+        },
+        {
+          "group": "relativistic",
+          "edition": "2026-11-23",
+          "case_ids": [
+            "srhd-collision",
+            "srmhd-alfven"
           ]
         }
       ]
@@ -2262,8 +2330,8 @@
       },
       "depth_previous_status": "educational-example",
       "depth_scope": {
-        "ja": "このNoh配布の球対称系列で、保存量のMUSCL型再構築の傾きをminmodで制限します。平面・円筒は区分定数のままです。 追加のZalesak型例は与えた発散ゼロ速度による2次元スカラー回転輸送です。同一の周期格子・SSPRK(3,3)で一次風上とminmod MUSCLを比較し、各段の範囲・保存量と一回転後の形状誤差を調べます。FCT法や多次元Euler全般の有界性を認証しません。",
-        "en": "Minmod limits conserved-variable MUSCL slopes in this Noh edition's spherical series. Planar/cylindrical runs retain piecewise-constant states. The additional Zalesak-type example is two-dimensional scalar rotation in a prescribed divergence-free velocity. Compare donor-cell upwinding and minmod MUSCL with the same periodic grid and SSPRK(3,3), measuring stage bounds, conservation and full-turn shape errors. It does not certify FCT or general multidimensional Euler bounds."
+        "ja": "このNoh配布の球対称系列で、保存量のMUSCL型再構築の傾きをminmodで制限します。平面・円筒は区分定数のままです。 追加のZalesak型例は与えた発散ゼロ速度による2次元スカラー回転輸送です。同一の周期格子・SSPRK(3,3)で一次風上とminmod MUSCLを比較し、各段の範囲・保存量と一回転後の形状誤差を調べます。FCT法や多次元Euler全般の有界性を認証しません。 追加の軽量1D SRHD対称衝突/SRMHD有限振幅円偏極波は、同じ完全7量の応力/誘導、MUSCL-minmod、因果的HLL±1、SSPRK33とZ回復を使用。一般Riemann・GR・極端速度の認証ではありません。",
+        "en": "Minmod limits conserved-variable MUSCL slopes in this Noh edition's spherical series. Planar/cylindrical runs retain piecewise-constant states. The additional Zalesak-type example is two-dimensional scalar rotation in a prescribed divergence-free velocity. Compare donor-cell upwinding and minmod MUSCL with the same periodic grid and SSPRK(3,3), measuring stage bounds, conservation and full-turn shape errors. It does not certify FCT or general multidimensional Euler bounds. Additional lightweight1D SRHD symmetric collision/SRMHD finite-amplitude CP wave use the shared full7-variable stress/induction,MUSCL-minmod,causalHLL±1,SSPRK33 and Z recovery; no generic Riemann,GR or extreme-speed claim."
       },
       "depth_additional_releases": [
         {
@@ -2271,6 +2339,14 @@
           "edition": "2026-11-23",
           "case_ids": [
             "zalesak-rotation"
+          ]
+        },
+        {
+          "group": "relativistic",
+          "edition": "2026-11-23",
+          "case_ids": [
+            "srhd-collision",
+            "srmhd-alfven"
           ]
         }
       ]
@@ -2816,8 +2892,8 @@
       },
       "depth_previous_status": "educational-example",
       "depth_scope": {
-        "ja": "初期圧力ゼロのNoh問題を、独自の小型1D有限体積コードで平面・円筒・球対称に計算します。64/128/256/512格子の全域誤差、原点過熱、衝撃位置、保存収支を測り、球で現れる境界流入の時間積分誤差を解析式と照合します。 追加の2D Cartesian Noh版は正方形全域のx/y流束と2成分運動量を更新する軽量例です。 Sedov球対称爆発の追加例では、有限半径へのエネルギー投入と格子の影響を分けて測ります。 追加の前向きステップ例は段差面を含む反射壁境界の実2D有限体積計算を検証します。 追加のGuderley例は、圧力ゼロの上流へ進む球対称収束衝撃波を原点到達前だけ計算し、半解析的な相似参照と比較します。 非周期壁面の2D渦度・流れ関数法でRe100蓋駆動キャビティと製造流れを解きます。Ghia原著の有限格子数値表、壁剪断と格子収束を比較し、独立した圧力Poisson・勾配製造問題を区別します。",
-        "en": "An original small 1D finite-volume code solves zero-pressure Noh flow in planar, cylindrical and spherical symmetry. Grids 64/128/256/512 measure full-domain error, origin heating, shock location and budgets, and compare spherical boundary-inflow time-quadrature error with its analytic identity. The additional2D Cartesian Noh edition updates both x/y fluxes and both momenta on a full square. The additional spherical Sedov blast measures grid and finite deposition-radius effects separately. The additional forward-step example verifies actual 2D finite-volume flow with reflecting walls including the step faces. The additional Guderley example evolves a zero-upstream-pressure spherical converging shock only before collapse and compares a semi-analytic similarity reference. Solve a Re100 lid-driven cavity and manufactured flow with a nonperiodic wall-bounded2D vorticity/streamfunction method. Compare original finite-grid Ghia tables, wall shear and grid refinement, keeping a separate pressure-Poisson/gradient manufactured problem distinct."
+        "ja": "初期圧力ゼロのNoh問題を、独自の小型1D有限体積コードで平面・円筒・球対称に計算します。64/128/256/512格子の全域誤差、原点過熱、衝撃位置、保存収支を測り、球で現れる境界流入の時間積分誤差を解析式と照合します。 追加の2D Cartesian Noh版は正方形全域のx/y流束と2成分運動量を更新する軽量例です。 Sedov球対称爆発の追加例では、有限半径へのエネルギー投入と格子の影響を分けて測ります。 追加の前向きステップ例は段差面を含む反射壁境界の実2D有限体積計算を検証します。 追加のGuderley例は、圧力ゼロの上流へ進む球対称収束衝撃波を原点到達前だけ計算し、半解析的な相似参照と比較します。 非周期壁面の2D渦度・流れ関数法でRe100蓋駆動キャビティと製造流れを解きます。Ghia原著の有限格子数値表、壁剪断と格子収束を比較し、独立した圧力Poisson・勾配製造問題を区別します。 追加の周期2D KH/RT初期成長は、維持した滑らかな基底と独立線形IVPを使用。中央の保存面流束とHeunで渦度/浮力を実際に進め、圧力は消去します。 追加の全成分1D円偏波と実際の2D磁場ループ/Orszag–TangでHLLD・MC-MUSCL・Heunを使用。HLLD→HLLE代替と面の正値性スケーリングを数え、セルfloorや再試行は行いません。 追加ALEスカラーは面位置と質量を同じ2段Heunで更新し、同じ段重みの境界収支・GCLと独立時間参照を比較します。",
+        "en": "An original small 1D finite-volume code solves zero-pressure Noh flow in planar, cylindrical and spherical symmetry. Grids 64/128/256/512 measure full-domain error, origin heating, shock location and budgets, and compare spherical boundary-inflow time-quadrature error with its analytic identity. The additional2D Cartesian Noh edition updates both x/y fluxes and both momenta on a full square. The additional spherical Sedov blast measures grid and finite deposition-radius effects separately. The additional forward-step example verifies actual 2D finite-volume flow with reflecting walls including the step faces. The additional Guderley example evolves a zero-upstream-pressure spherical converging shock only before collapse and compares a semi-analytic similarity reference. Solve a Re100 lid-driven cavity and manufactured flow with a nonperiodic wall-bounded2D vorticity/streamfunction method. Compare original finite-grid Ghia tables, wall shear and grid refinement, keeping a separate pressure-Poisson/gradient manufactured problem distinct. Additional periodic2D KH/RT initial growth uses maintained smooth bases and independent linear IVPs; actual centered conservative face fluxes and Heun evolve vorticity/buoyancy with pressure eliminated. Additional full-state1D CP wave and actual2D magnetic-loop/Orszag–Tang use HLLD,MC-MUSCL and Heun. Count HLLD-to-HLLE fallback and face positivity scaling,with no cell floor or PDE retry. Additional ALE scalar advances face positions and mass with the same two-stage Heun weights,checking boundary budgets,GCL and an independent time reference."
       },
       "depth_additional_releases": [
         {
@@ -2861,6 +2937,30 @@
           "case_ids": [
             "cavity-ghia-re100",
             "wall-manufactured"
+          ]
+        },
+        {
+          "group": "instability-growth",
+          "edition": "2026-11-23",
+          "case_ids": [
+            "kh-initial-growth",
+            "rt-initial-growth"
+          ]
+        },
+        {
+          "group": "mhd-transport",
+          "edition": "2026-11-23",
+          "case_ids": [
+            "circular-alfven-refinement",
+            "magnetic-loop-independent",
+            "postshock-orszag-tang"
+          ]
+        },
+        {
+          "group": "moving-waves",
+          "edition": "2026-11-23",
+          "case_ids": [
+            "ale-nonuniform-transport"
           ]
         }
       ]
@@ -3104,8 +3204,8 @@
         ]
       },
       "depth_scope": {
-        "ja": "背景Mach数.1/.01の滑らかな2D Euler等エントロピー渦で、両流束に無制限の中心primitive MUSCL再構築を用い、通常RoeとMiczek系の数値散逸行列前処理D=P⁻¹|PA|を比較します。SSPRK(3,3)で元の物理時間項と音響CFLを保ち、速度誤差・動圧規格化した圧力誤差・周期保存収支・標本Fourier診断を分けて評価します。擬似時間・二重時間積分の定常加速や、勾配制限・TVDの保証は扱いません。 追加の二重膨張波は1次元保存量MUSCL・共有Lax–Friedrichs流束・平均を保つ正値状態スケーリング・SSPRK(3,3)を接続した限定例です。許容CFLと波速条件、各前進Euler候補・SSP段の平均と面状態、保存収支を測り、一般のEuler・WENO・DG・MHDの正値性保証へ拡張しません。 追加のZalesak型例は与えた発散ゼロ速度による2次元スカラー回転輸送です。同一の周期格子・SSPRK(3,3)で一次風上とminmod MUSCLを比較し、各段の範囲・保存量と一回転後の形状誤差を調べます。FCT法や多次元Euler全般の有界性を認証しません。",
-        "en": "A fixed smooth 2D Euler isentropic vortex at background Mach numbers .1 and .01 compares ordinary Roe and Miczek-type dissipation-matrix preconditioning D=P⁻¹|PA|, with unlimited central primitive-variable MUSCL reconstruction for both. SSPRK(3,3) retains physical time and the acoustic CFL. Velocity error, dynamically normalized pressure error, periodic conservation and sampled Fourier diagnostics are evaluated separately. Pseudo-time or dual-time steady acceleration, slope limiting and TVD guarantees remain outside this example. The additional double rarefaction connects one-dimensional conservative MUSCL, shared Lax–Friedrichs fluxes, mean-preserving positive-state scaling and SSPRK(3,3). Check the admissible CFL/wave-speed conditions, means and faces at each forward-Euler candidate/SSP stage, and conservation budgets; this does not certify general Euler, WENO, DG or MHD positivity. The additional Zalesak-type example is two-dimensional scalar rotation in a prescribed divergence-free velocity. Compare donor-cell upwinding and minmod MUSCL with the same periodic grid and SSPRK(3,3), measuring stage bounds, conservation and full-turn shape errors. It does not certify FCT or general multidimensional Euler bounds."
+        "ja": "背景Mach数.1/.01の滑らかな2D Euler等エントロピー渦で、両流束に無制限の中心primitive MUSCL再構築を用い、通常RoeとMiczek系の数値散逸行列前処理D=P⁻¹|PA|を比較します。SSPRK(3,3)で元の物理時間項と音響CFLを保ち、速度誤差・動圧規格化した圧力誤差・周期保存収支・標本Fourier診断を分けて評価します。擬似時間・二重時間積分の定常加速や、勾配制限・TVDの保証は扱いません。 追加の二重膨張波は1次元保存量MUSCL・共有Lax–Friedrichs流束・平均を保つ正値状態スケーリング・SSPRK(3,3)を接続した限定例です。許容CFLと波速条件、各前進Euler候補・SSP段の平均と面状態、保存収支を測り、一般のEuler・WENO・DG・MHDの正値性保証へ拡張しません。 追加のZalesak型例は与えた発散ゼロ速度による2次元スカラー回転輸送です。同一の周期格子・SSPRK(3,3)で一次風上とminmod MUSCLを比較し、各段の範囲・保存量と一回転後の形状誤差を調べます。FCT法や多次元Euler全般の有界性を認証しません。 追加の軽量1D SRHD対称衝突/SRMHD有限振幅円偏極波は、同じ完全7量の応力/誘導、MUSCL-minmod、因果的HLL±1、SSPRK33とZ回復を使用。一般Riemann・GR・極端速度の認証ではありません。",
+        "en": "A fixed smooth 2D Euler isentropic vortex at background Mach numbers .1 and .01 compares ordinary Roe and Miczek-type dissipation-matrix preconditioning D=P⁻¹|PA|, with unlimited central primitive-variable MUSCL reconstruction for both. SSPRK(3,3) retains physical time and the acoustic CFL. Velocity error, dynamically normalized pressure error, periodic conservation and sampled Fourier diagnostics are evaluated separately. Pseudo-time or dual-time steady acceleration, slope limiting and TVD guarantees remain outside this example. The additional double rarefaction connects one-dimensional conservative MUSCL, shared Lax–Friedrichs fluxes, mean-preserving positive-state scaling and SSPRK(3,3). Check the admissible CFL/wave-speed conditions, means and faces at each forward-Euler candidate/SSP stage, and conservation budgets; this does not certify general Euler, WENO, DG or MHD positivity. The additional Zalesak-type example is two-dimensional scalar rotation in a prescribed divergence-free velocity. Compare donor-cell upwinding and minmod MUSCL with the same periodic grid and SSPRK(3,3), measuring stage bounds, conservation and full-turn shape errors. It does not certify FCT or general multidimensional Euler bounds. Additional lightweight1D SRHD symmetric collision/SRMHD finite-amplitude CP wave use the shared full7-variable stress/induction,MUSCL-minmod,causalHLL±1,SSPRK33 and Z recovery; no generic Riemann,GR or extreme-speed claim."
       },
       "depth_additional_releases": [
         {
@@ -3120,6 +3220,14 @@
           "edition": "2026-11-23",
           "case_ids": [
             "zalesak-rotation"
+          ]
+        },
+        {
+          "group": "relativistic",
+          "edition": "2026-11-23",
+          "case_ids": [
+            "srhd-collision",
+            "srmhd-alfven"
           ]
         }
       ]
@@ -3373,8 +3481,8 @@
         ]
       },
       "depth_scope": {
-        "ja": "反応拡散：空間2次と時間4次を分けて測る: 線形の拡散・反応演算子を、連続と半離散のFourier厳密解を用いて小規模に検証します。 Turing不安定性：線形成長率と小振幅パターン: Schnakenberg型反応拡散で、一様平衡の安定性と拡散による選択モードの成長を行列指数で検証します。 FitzHugh–Nagumo：パルス興奮・回復と独立ODE参照: 2変数の膜興奮縮約ODEを電流パルスで励起し、DOP853との全出力時刻の誤差・時間収束・回復を確認します。 セル平均からのWENO-JS／Z二乗重みの臨界点再構成と、実際の周期スカラー輸送を比較します。εの違い、解析セル平均と点値、空間誤差と時間刻みの影響を分けます。",
-        "en": "Reaction-diffusion: separate second-order space and fourth-order time: Validate a small linear diffusion-reaction operator against continuous and semidiscrete Fourier solutions. Turing instability: linear growth and small-amplitude patterns: Use a matrix exponential to validate stable homogeneous kinetics and diffusion-driven growth of a selected Schnakenberg mode. FitzHugh-Nagumo: pulse excitation, recovery and an independent ODE reference: Excite a two-variable reduced membrane ODE with a current pulse; check all-output-time errors, temporal refinement and recovery against DOP853. Compare critical-point reconstruction from cell means using WENO-JS/Z power-two weights and actual periodic scalar transport. Separate epsilon choices, analytic cell means versus point values, and spatial error versus time-step effects."
+        "ja": "反応拡散：空間2次と時間4次を分けて測る: 線形の拡散・反応演算子を、連続と半離散のFourier厳密解を用いて小規模に検証します。 Turing不安定性：線形成長率と小振幅パターン: Schnakenberg型反応拡散で、一様平衡の安定性と拡散による選択モードの成長を行列指数で検証します。 FitzHugh–Nagumo：パルス興奮・回復と独立ODE参照: 2変数の膜興奮縮約ODEを電流パルスで励起し、DOP853との全出力時刻の誤差・時間収束・回復を確認します。 セル平均からのWENO-JS／Z二乗重みの臨界点再構成と、実際の周期スカラー輸送を比較します。εの違い、解析セル平均と点値、空間誤差と時間刻みの影響を分けます。 追加は実際の2D C-grid線形回転浅水場をRK4で時間発展。同じ離散作用素の行列指数を参照にし、連続波の空間誤差と固定N時間細分化を区別します。",
+        "en": "Reaction-diffusion: separate second-order space and fourth-order time: Validate a small linear diffusion-reaction operator against continuous and semidiscrete Fourier solutions. Turing instability: linear growth and small-amplitude patterns: Use a matrix exponential to validate stable homogeneous kinetics and diffusion-driven growth of a selected Schnakenberg mode. FitzHugh-Nagumo: pulse excitation, recovery and an independent ODE reference: Excite a two-variable reduced membrane ODE with a current pulse; check all-output-time errors, temporal refinement and recovery against DOP853. Compare critical-point reconstruction from cell means using WENO-JS/Z power-two weights and actual periodic scalar transport. Separate epsilon choices, analytic cell means versus point values, and spatial error versus time-step effects. Additional actual2D C-grid linear rotating-SWE fields use RK4. A matrix exponential of the same semidiscrete operator is reference-only; separate continuous spatial and fixed-N temporal errors."
       },
       "depth_additional_releases": [
         {
@@ -3382,6 +3490,13 @@
           "edition": "2026-11-23",
           "case_ids": [
             "weno-critical-epsilon"
+          ]
+        },
+        {
+          "group": "moving-waves",
+          "edition": "2026-11-23",
+          "case_ids": [
+            "cgrid-rotating-wave"
           ]
         }
       ]
@@ -4745,7 +4860,18 @@
         "conjugate gradient method",
         "共役勾配",
         "共役勾配法"
-      ]
+      ],
+      "depth_release": {
+        "group": "mesh-boundary",
+        "edition": "2026-11-23",
+        "case_ids": [
+          "poisson-neumann"
+        ]
+      },
+      "depth_scope": {
+        "ja": "追加は適合した純Neumann Poisson系。同じ特異作用素で零からCGを実行し、定数分だけ平均ゲージを合わせ、平均拘束付き直接解と比較します。不適合な右辺は射影せず棄却します。",
+        "en": "Additional compatible pure-Neumann Poisson uses CG from zero on the same singular operator; align only its constant mean gauge and compare a constrained direct solve. Reject incompatible forcing without source projection."
+      }
     },
     {
       "id": "rbgs",
@@ -5834,8 +5960,8 @@
         ]
       },
       "depth_scope": {
-        "ja": "Orszag–Tang：CT・GLMと独立Athena++比較: 同じ周期Orszag–Tang初期値で、CTとGLMの密度・磁場、保存量、div Bを測り、別に実行したAthena++と比較します。 CT・GLM：移動する磁気静力学平衡の格子・時間収束: 非零の磁気力と圧力勾配が釣り合う構成厳密解を使い、同じ初期セル状態・流束の速度上界・刻み列でCT/GLMを比較します。 Orszag–Tang：条件を揃えたCT・GLMと独立参照の収束: 同じOT初期セル平均と同じdt列でCT/GLMを計算し、別に実行したAthena++の格子・時間感度を分離した参照と比較します。 CTの初期制約保持とGLMの能動的cleaning：非物理診断対照: 故意にdiv B≠0とした同じcell磁場で、CTが初期違反を除去しないこととGLMのB/ψ応答を確認します。物理問題数へ加算しない診断対照です。",
-        "en": "Orszag–Tang: CT, GLM and independent Athena++: Compare CT and GLM density, magnetic field, conservation and div B for the same periodic Orszag–Tang data, against separately executed Athena++. CT and GLM: mesh/time convergence of a moving magnetostatic equilibrium: Use a constructed exact equilibrium with nonzero magnetic force balanced by a pressure gradient, matching CT/GLM initial cell states, flux speed bound and time-step sequence. Orszag–Tang: matched CT/GLM and converged independent references: Run CT/GLM with the same OT initial cell averages and dt sequence, comparing with separately executed Athena++ references whose mesh/time sensitivities are separated. Initial-constraint preservation by CT and active GLM cleaning: nonphysical control: Intentionally begin with the same non-solenoidal cell B, checking that CT does not remove the initial defect and calibrating GLM’s B/psi response. This diagnostic adds no physical problem."
+        "ja": "Orszag–Tang：CT・GLMと独立Athena++比較: 同じ周期Orszag–Tang初期値で、CTとGLMの密度・磁場、保存量、div Bを測り、別に実行したAthena++と比較します。 CT・GLM：移動する磁気静力学平衡の格子・時間収束: 非零の磁気力と圧力勾配が釣り合う構成厳密解を使い、同じ初期セル状態・流束の速度上界・刻み列でCT/GLMを比較します。 Orszag–Tang：条件を揃えたCT・GLMと独立参照の収束: 同じOT初期セル平均と同じdt列でCT/GLMを計算し、別に実行したAthena++の格子・時間感度を分離した参照と比較します。 CTの初期制約保持とGLMの能動的cleaning：非物理診断対照: 故意にdiv B≠0とした同じcell磁場で、CTが初期違反を除去しないこととGLMのB/ψ応答を確認します。物理問題数へ加算しない診断対照です。 追加の実際の2D磁場ループと衝撃波形成後Orszag–Tangで、edge EMFとface磁場のCT更新を使用。独立Athenaの有限格子参照と発散・エネルギーを別々に確認します。",
+        "en": "Orszag–Tang: CT, GLM and independent Athena++: Compare CT and GLM density, magnetic field, conservation and div B for the same periodic Orszag–Tang data, against separately executed Athena++. CT and GLM: mesh/time convergence of a moving magnetostatic equilibrium: Use a constructed exact equilibrium with nonzero magnetic force balanced by a pressure gradient, matching CT/GLM initial cell states, flux speed bound and time-step sequence. Orszag–Tang: matched CT/GLM and converged independent references: Run CT/GLM with the same OT initial cell averages and dt sequence, comparing with separately executed Athena++ references whose mesh/time sensitivities are separated. Initial-constraint preservation by CT and active GLM cleaning: nonphysical control: Intentionally begin with the same non-solenoidal cell B, checking that CT does not remove the initial defect and calibrating GLM’s B/psi response. This diagnostic adds no physical problem. Additional actual2D magnetic-loop and postshock Orszag–Tang use edge EMFs and face-field CT updates. Separately check divergence/energy against finite-grid independent Athena references."
       },
       "depth_additional_releases": [
         {
@@ -5845,6 +5971,14 @@
             "ct-glm-smooth-convergence",
             "ct-glm-ot-convergence",
             "ct-glm-constraint-control"
+          ]
+        },
+        {
+          "group": "mhd-transport",
+          "edition": "2026-11-23",
+          "case_ids": [
+            "magnetic-loop-independent",
+            "postshock-orszag-tang"
           ]
         }
       ]
@@ -6383,7 +6517,18 @@
         "任意ラグランジュオイラー法",
         "Arbitrary Lagrangian Eulerian",
         "arbitrary Lagrangian Eulerian method"
-      ]
+      ],
+      "depth_release": {
+        "group": "moving-waves",
+        "edition": "2026-11-23",
+        "case_ids": [
+          "ale-nonuniform-transport"
+        ]
+      },
+      "depth_scope": {
+        "ja": "追加は非一様な1D指定移動格子上のスカラー輸送。面位置とセル質量を同じHeun段で更新し、実際の相対上流流束、GCL、解析的移動セル積分と時間誤差を検査します。",
+        "en": "Additional nonuniform1D prescribed moving-grid scalar advances face positions and masses with shared Heun stages. Check actual relative upwind flux,GCL,analytic moving-cell integrals and temporal error."
+      }
     },
     {
       "id": "gsph",
@@ -7745,9 +7890,20 @@
         ]
       },
       "depth_scope": {
-        "ja": "公開HLLD-MC有限体積コードを、固定コミットから別に構築したAthena++のBrio–Wu参照と比較します。",
-        "en": "Compare the published HLLD-MC finite-volume code with Brio–Wu reference data independently produced by Athena++ at a pinned commit."
-      }
+        "ja": "公開HLLD-MC有限体積コードを、固定コミットから別に構築したAthena++のBrio–Wu参照と比較します。 追加の全成分1D円偏波と実際の2D磁場ループ/Orszag–TangでHLLD・MC-MUSCL・Heunを使用。HLLD→HLLE代替と面の正値性スケーリングを数え、セルfloorや再試行は行いません。",
+        "en": "Compare the published HLLD-MC finite-volume code with Brio–Wu reference data independently produced by Athena++ at a pinned commit. Additional full-state1D CP wave and actual2D magnetic-loop/Orszag–Tang use HLLD,MC-MUSCL and Heun. Count HLLD-to-HLLE fallback and face positivity scaling,with no cell floor or PDE retry."
+      },
+      "depth_additional_releases": [
+        {
+          "group": "mhd-transport",
+          "edition": "2026-11-23",
+          "case_ids": [
+            "circular-alfven-refinement",
+            "magnetic-loop-independent",
+            "postshock-orszag-tang"
+          ]
+        }
+      ]
     },
     {
       "id": "ppm",
@@ -13911,6 +14067,175 @@
       "metadata_review": {
         "on": "2026-11-23",
         "level": "Selected original-source passages and explicit implementation boundary; dedicated level-set release independently extracted and rerun with22 tests."
+      }
+    },
+    {
+      "id": "q1-fem",
+      "name": {
+        "ja": "Q1有限要素法（曲線座標ベクトルBVP）",
+        "en": "Q1 FEM for mapped-coordinate vector BVP"
+      },
+      "group": {
+        "id": "space",
+        "ja": "空間離散化",
+        "en": "Spatial discretization"
+      },
+      "summary": {
+        "ja": "極座標(r,θ)の双線形基底でCartesian速度2成分を近似し、円環の可変粘性応力発散BVPを解く。正確なrのJacobian、物理勾配、結合したひずみ弱形式を組み立てる。",
+        "en": "Approximate two Cartesian velocity components with bilinear(r,theta) basis functions for an annular variable-viscosity stress BVP. Assemble the exact polar Jacobian,physical gradients and coupled strain weak form."
+      },
+      "status": "educational-example",
+      "origin": "curated-mapped-q1-vector-bvp",
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-mesh-boundary/",
+        "en": "/numerical-methods-atlas/en/read/validation-mesh-boundary/"
+      },
+      "code_modules": [],
+      "test_files": [],
+      "code_mapping_scope": "Supplemental annular-viscous-mms release only; no claim that the common P1 module implements Q1.",
+      "references": [
+        {
+          "url": "https://mfem.org/examples/",
+          "label": "MFEM developers. Example2: Linear Elasticity.",
+          "scope": "Example2 stress sigma=lambda div(u)I+mu(grad(u)+grad(u)^T), weak formulation and traction conventions inspected. Use lambda0 as a linear vector viscous BVP; manufactured fields are derived here. MFEM not executed or copied.",
+          "role": "stress-and-weak-form",
+          "kind": "official-documentation",
+          "supports": {
+            "ja": "σ=λdiv(u)I+μ(∇u+∇uᵀ)のλ=0で応力弱形式を確認。本例のQ1写像と製造場は独自に導出し、MFEMは実行していません。",
+            "en": "Supports the lambda0 symmetric-stress weak form. The mapped Q1 discretization and MMS are independently derived; MFEM was not run."
+          },
+          "verification": {
+            "checked_on": "2026-11-23",
+            "level": "selected-official-equations",
+            "url": "https://mfem.org/examples/",
+            "locator": "Example2 governing stress,weak form and traction conventions; selected equations only."
+          }
+        }
+      ],
+      "assumptions": [
+        "Bilinear basis in(r,theta) with exact polar geometry Jacobian r,1<=r<=2,periodic theta.",
+        "Unknowns are two Cartesian velocity components; lambda0 variable-mu linear stress-divergence BVP.",
+        "Physical-gradient transform and engineering-strain block weak form explicitly derived in references/README.md."
+      ],
+      "assumptions_ja": [
+        "1≤r≤2の円環、θ周期。基底は(r,θ)でQ1、正確な極座標Jacobian rを使う。",
+        "未知数はCartesian速度2成分。λ=0、μ=1+r²/5の線形応力発散BVP。",
+        "物理勾配とengineering strainの結合弱形式をreferences/README.mdで明示。"
+      ],
+      "units": "Dimensionless fixed annulus. In dimensional form traction has scale mu*U/L and body force mu*U/L².",
+      "units_ja": "固定円環は無次元。次元を与えるなら牽引力の尺度はμU/L、体積力はμU/L²。",
+      "boundary_conditions": "Zero Cartesian Dirichlet data on r1 and r2; periodic theta. Physical outward traction is measured,not prescribed.",
+      "boundary_conditions_ja": "r1/r2でCartesian速度を零Dirichlet、θ周期。外向きの物理牽引力は測定し、境界値として課していない。",
+      "limitations": {
+        "ja": "指定円環のmapped Q1ベクトルBVPだけ。P1、一般四辺形・軸r0・圧力/非圧縮拘束・非線形Navier–Stokesではない。Nr8/16/32,Nθ2Nrの固定検査を一般認証へ拡張しない。",
+        "en": "Mapped Q1 vector BVP on this annulus only; not P1,general quadrilaterals,an r0 axis,pressure/incompressibility or nonlinear Navier–Stokes. FixedNr8/16/32,Ntheta2Nr checks are not broad certification."
+      },
+      "metadata_review": {
+        "on": "2026-11-23",
+        "level": "Actual mapped Q1 source and engineering-strain weak form independently inspected; numerical execution/receipts remain attached to the supplemental release."
+      },
+      "aliases": [
+        "Q1 FEM",
+        "bilinear finite elements",
+        "双線形有限要素法",
+        "mapped Q1",
+        "Q1有限要素法"
+      ],
+      "method_review": {
+        "version": 1,
+        "on": "2026-11-23",
+        "problem": {
+          "ja": "円環の−div[2με(u)]=f。",
+          "en": "Annular -div[2mu epsilon(u)]=f."
+        },
+        "variant": {
+          "ja": "極座標Q1、Cartesian2成分、正確な曲線Jacobianと結合ひずみ弱形式。",
+          "en": "Polar-coordinate Q1,Cartesian components,exact curved Jacobian and coupled strain weak form."
+        },
+        "use_when": {
+          "ja": [
+            "弱形式・写像勾配・物理牽引力の整合を学ぶ固定円環。"
+          ],
+          "en": [
+            "Studying weak forms,mapped gradients and physical traction on a fixed annulus."
+          ]
+        },
+        "avoid_when": {
+          "ja": [
+            "一般メッシュの汎用認証、圧力や非線形流れを必要とする場合。"
+          ],
+          "en": [
+            "General-mesh certification,pressure constraints or nonlinear flow."
+          ]
+        },
+        "fields": {
+          "assumptions": {
+            "state": "specified",
+            "reason": {
+              "ja": "実際の円環ソースと独立な静的弱形式確認に基づく。",
+              "en": "Based on the actual annular source and independent static weak-form review."
+            }
+          },
+          "units": {
+            "state": "specified",
+            "reason": {
+              "ja": "実際の円環ソースと独立な静的弱形式確認に基づく。",
+              "en": "Based on the actual annular source and independent static weak-form review."
+            }
+          },
+          "boundary_conditions": {
+            "state": "specified",
+            "reason": {
+              "ja": "実際の円環ソースと独立な静的弱形式確認に基づく。",
+              "en": "Based on the actual annular source and independent static weak-form review."
+            }
+          },
+          "limitations": {
+            "state": "specified",
+            "reason": {
+              "ja": "実際の円環ソースと独立な静的弱形式確認に基づく。",
+              "en": "Based on the actual annular source and independent static weak-form review."
+            }
+          }
+        },
+        "verification": {
+          "kind": "source-and-code-inspection",
+          "summary": {
+            "ja": "annulus.pyのpolar Q1写像・BᵀCB組立て・円上の物理牽引力とfields.pyの導関数を独立に確認。数値成功は配布版の実行記録で確認します。",
+            "en": "Independently inspected annulus.py polar Q1 map,BᵀCB assembly,circular physical traction and fields.py derivatives. Numerical success is evidenced separately by release receipts."
+          },
+          "evidence": [
+            {
+              "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/annulus.py",
+              "kind": "implementation",
+              "label": "mapped Q1 vector strain assembly"
+            },
+            {
+              "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/test_geometry.py",
+              "kind": "test",
+              "label": "polar shape/gradient and actual block solve"
+            }
+          ],
+          "not_checked": {
+            "ja": [
+              "一般曲線四辺形、軸、非圧縮流れ。"
+            ],
+            "en": [
+              "General curved quadrilaterals,axis or incompressible flow."
+            ]
+          }
+        }
+      },
+      "depth_release": {
+        "group": "mesh-boundary",
+        "edition": "2026-11-23",
+        "case_ids": [
+          "annular-viscous-mms"
+        ]
+      },
+      "depth_scope": {
+        "ja": "円環の極座標Q1でCartesian2成分の可変粘性応力を結合。正確な曲線Jacobian、内外の物理牽引力、非零全境界力、仕事と製造解誤差を固定入力で比較します。",
+        "en": "Mapped polarQ1 couples both Cartesian components of variable-viscosity stress. Fixed cases check exact curved geometry,inner/outer physical traction,nonzero net force,work and MMS errors."
       }
     }
   ],

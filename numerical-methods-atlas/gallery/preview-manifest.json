@@ -1105,6 +1105,126 @@
         "ja": "実際の128²レベルセット場から抽出した円のゼロ等値線。左は平行移動、右は偏心円の一周回転。解析界面と移流単独・単純な再初期化ありを比較します。VOF計算ではなく、面積保存を補正していません。",
         "en": "Zero contours extracted from actual128² level-set fields: translation(left) and an off-center full rotation(right). Compare analytic interfaces against advection alone and simple redistancing. This is not a VOF calculation, and no area correction is applied."
       }
+    },
+    {
+      "id": "kh-initial-growth",
+      "image": "/code/validated-examples/2026-11-23/instability-growth/results/kh-initial-growth-preview.png",
+      "image_sha256": "eccd098101115bcf7a933ddc47a47974e715d92e285a73be87f9e0e9d611ca13",
+      "width": 1192,
+      "height": 512,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "保存した2D摂動渦度をεで規格化。色の尺度を明記し、線形参照と成長を比較します。",
+        "en": "Saved actual2D perturbation vorticity normalized by epsilon; color scale and linear-reference growth are explicit."
+      }
+    },
+    {
+      "id": "rt-initial-growth",
+      "image": "/code/validated-examples/2026-11-23/instability-growth/results/rt-initial-growth-preview.png",
+      "image_sha256": "846b71c11b1112ff71e8d000a0793190ecde8a345b482426a6fde6894e8cca18",
+      "width": 1198,
+      "height": 512,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "保存した2D浮力摂動をεで規格化。滑らかな二層の初期変位で、乱流混合の図ではありません。",
+        "en": "Saved actual2D buoyancy perturbation normalized by epsilon; an early smooth-layer displacement, not turbulent mixing."
+      }
+    },
+    {
+      "id": "lshape-fem",
+      "image": "/code/validated-examples/2026-11-23/mesh-boundary/results/lshape-fem-preview.png",
+      "image_sha256": "c83b1fe941f1df00a73cd99913be0a67a91890e10a4af808168c8fdcfde88ff5",
+      "width": 960,
+      "height": 624,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "実際に保存した計算配列と固定入力の収束指標から描いた検証図。",
+        "en": "Validation preview from actual saved PDE arrays and fixed-input refinement measurements."
+      }
+    },
+    {
+      "id": "annular-viscous-mms",
+      "image": "/code/validated-examples/2026-11-23/mesh-boundary/results/annular-viscous-mms-preview.png",
+      "image_sha256": "0943e0abeb936550b0b89e6d3d8b792226626a4a4e25fa9566d2228f0ea7bfcd",
+      "width": 960,
+      "height": 624,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "実際に保存した計算配列と固定入力の収束指標から描いた検証図。",
+        "en": "Validation preview from actual saved PDE arrays and fixed-input refinement measurements."
+      }
+    },
+    {
+      "id": "poisson-neumann",
+      "image": "/code/validated-examples/2026-11-23/mesh-boundary/results/poisson-neumann-preview.png",
+      "image_sha256": "3b86e5b5ce513745f61f18ef155f3b4a1fee902cef02106516f1ca8aa4e7aebc",
+      "width": 960,
+      "height": 624,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "実際に保存した計算配列と固定入力の収束指標から描いた検証図。",
+        "en": "Validation preview from actual saved PDE arrays and fixed-input refinement measurements."
+      }
+    },
+    {
+      "id": "poisson-robin",
+      "image": "/code/validated-examples/2026-11-23/mesh-boundary/results/poisson-robin-preview.png",
+      "image_sha256": "d494bf03a58a591abda50c502b49da900e0066bdb19f64411560f41bd886d10b",
+      "width": 960,
+      "height": 624,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "実際に保存した計算配列と固定入力の収束指標から描いた検証図。",
+        "en": "Validation preview from actual saved PDE arrays and fixed-input refinement measurements."
+      }
+    },
+    {
+      "id": "ale-nonuniform-transport",
+      "image": "/code/validated-examples/2026-11-23/moving-waves/results/ale-nonuniform-transport-preview.png",
+      "image_sha256": "9d478cec0c80d34b7ea186af511711f8d0fff239eb9e2db18b3b6027563766be",
+      "width": 960,
+      "height": 608,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "実際に保存した計算配列と固定入力の収束指標から描いた検証図。",
+        "en": "Validation preview from actual saved PDE arrays and fixed-input refinement measurements."
+      }
+    },
+    {
+      "id": "cgrid-rotating-wave",
+      "image": "/code/validated-examples/2026-11-23/moving-waves/results/cgrid-rotating-wave-preview.png",
+      "image_sha256": "363d1ee6a1c02f5fbfff257511b85cc00ef5cf80817cc265eb866847f5609a4c",
+      "width": 960,
+      "height": 608,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "実際に保存した計算配列と固定入力の収束指標から描いた検証図。",
+        "en": "Validation preview from actual saved PDE arrays and fixed-input refinement measurements."
+      }
+    },
+    {
+      "id": "srhd-collision",
+      "image": "/code/validated-examples/2026-11-23/relativistic/results/srhd-collision-preview.png",
+      "image_sha256": "ef2df95f225e1a80e231c91b85518a4dd007e85f3e6408e9ccbf29aaac386d3f",
+      "width": 1270,
+      "height": 761,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "最細格子の実際の保存密度Dの1D x–t図。5保存時刻を使用し、2D流れではありません。",
+        "en": "Actual finest-grid1D x–t conserved-density field from five stored times; not a two-dimensional flow."
+      }
+    },
+    {
+      "id": "srmhd-alfven",
+      "image": "/code/validated-examples/2026-11-23/relativistic/results/srmhd-alfven-preview.png",
+      "image_sha256": "23a1cf1258b81f383dd59132738d6f7cc1d37284752f3b4678ef3251c5d3f7a7",
+      "width": 1270,
+      "height": 761,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "最細格子の実際の横磁場Byの1D x–t図。5保存時刻を使い、計算は完全な磁気結合を含みます。",
+        "en": "Actual finest-grid transverse By in1D x–t from five stored times; the solver includes full magnetic coupling."
+      }
     }
   ],
   "source_sha256": {

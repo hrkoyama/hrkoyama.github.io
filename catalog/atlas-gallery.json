@@ -1019,6 +1019,96 @@
         "ja": "実際の128²レベルセット場から抽出した円のゼロ等値線。左は平行移動、右は偏心円の一周回転。解析界面と移流単独・単純な再初期化ありを比較します。VOF計算ではなく、面積保存を補正していません。",
         "en": "Zero contours extracted from actual128² level-set fields: translation(left) and an off-center full rotation(right). Compare analytic interfaces against advection alone and simple redistancing. This is not a VOF calculation, and no area correction is applied."
       }
+    },
+    {
+      "id": "kh-initial-growth",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-23/instability-growth/results/kh-initial-growth-preview.png",
+      "caption": {
+        "ja": "保存した2D摂動渦度をεで規格化。色の尺度を明記し、線形参照と成長を比較します。",
+        "en": "Saved actual2D perturbation vorticity normalized by epsilon; color scale and linear-reference growth are explicit."
+      }
+    },
+    {
+      "id": "rt-initial-growth",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-23/instability-growth/results/rt-initial-growth-preview.png",
+      "caption": {
+        "ja": "保存した2D浮力摂動をεで規格化。滑らかな二層の初期変位で、乱流混合の図ではありません。",
+        "en": "Saved actual2D buoyancy perturbation normalized by epsilon; an early smooth-layer displacement, not turbulent mixing."
+      }
+    },
+    {
+      "id": "lshape-fem",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-23/mesh-boundary/results/lshape-fem-preview.png",
+      "caption": {
+        "ja": "実際に保存した計算配列と固定入力の収束指標から描いた検証図。",
+        "en": "Validation preview from actual saved PDE arrays and fixed-input refinement measurements."
+      }
+    },
+    {
+      "id": "annular-viscous-mms",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-23/mesh-boundary/results/annular-viscous-mms-preview.png",
+      "caption": {
+        "ja": "実際に保存した計算配列と固定入力の収束指標から描いた検証図。",
+        "en": "Validation preview from actual saved PDE arrays and fixed-input refinement measurements."
+      }
+    },
+    {
+      "id": "poisson-neumann",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-23/mesh-boundary/results/poisson-neumann-preview.png",
+      "caption": {
+        "ja": "実際に保存した計算配列と固定入力の収束指標から描いた検証図。",
+        "en": "Validation preview from actual saved PDE arrays and fixed-input refinement measurements."
+      }
+    },
+    {
+      "id": "poisson-robin",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-23/mesh-boundary/results/poisson-robin-preview.png",
+      "caption": {
+        "ja": "実際に保存した計算配列と固定入力の収束指標から描いた検証図。",
+        "en": "Validation preview from actual saved PDE arrays and fixed-input refinement measurements."
+      }
+    },
+    {
+      "id": "ale-nonuniform-transport",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-23/moving-waves/results/ale-nonuniform-transport-preview.png",
+      "caption": {
+        "ja": "実際に保存した計算配列と固定入力の収束指標から描いた検証図。",
+        "en": "Validation preview from actual saved PDE arrays and fixed-input refinement measurements."
+      }
+    },
+    {
+      "id": "cgrid-rotating-wave",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-23/moving-waves/results/cgrid-rotating-wave-preview.png",
+      "caption": {
+        "ja": "実際に保存した計算配列と固定入力の収束指標から描いた検証図。",
+        "en": "Validation preview from actual saved PDE arrays and fixed-input refinement measurements."
+      }
+    },
+    {
+      "id": "srhd-collision",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-23/relativistic/results/srhd-collision-preview.png",
+      "caption": {
+        "ja": "最細格子の実際の保存密度Dの1D x–t図。5保存時刻を使用し、2D流れではありません。",
+        "en": "Actual finest-grid1D x–t conserved-density field from five stored times; not a two-dimensional flow."
+      }
+    },
+    {
+      "id": "srmhd-alfven",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-23/relativistic/results/srmhd-alfven-preview.png",
+      "caption": {
+        "ja": "最細格子の実際の横磁場Byの1D x–t図。5保存時刻を使い、計算は完全な磁気結合を含みます。",
+        "en": "Actual finest-grid transverse By in1D x–t from five stored times; the solver includes full magnetic coupling."
+      }
     }
   ]
 }

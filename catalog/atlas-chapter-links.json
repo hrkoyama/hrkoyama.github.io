@@ -223,6 +223,186 @@
         "ja": "円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。",
         "en": "Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution."
       }
+    },
+    {
+      "id": "validation-instability-growth",
+      "method_ids": [
+        "centered-difference",
+        "heun"
+      ],
+      "equation_ids": [
+        "forced-vorticity",
+        "boussinesq-buoyancy"
+      ],
+      "problem_ids": [
+        "kh-initial-growth",
+        "rt-initial-growth"
+      ],
+      "execution_ids": [
+        "kh-initial-growth",
+        "rt-initial-growth"
+      ],
+      "reference_ids": [
+        "kh-initial-growth",
+        "rt-initial-growth"
+      ],
+      "code_problem_ids": [
+        "kh-initial-growth",
+        "rt-initial-growth"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "小振幅の非線形2D計算を、別に導出した連続Fourier–Galerkin線形初期値問題と比較します。有限時間の成長、格子・時間・振幅の影響を分けます。",
+        "en": "Compare actual small-amplitude nonlinear2D runs with separately derived continuous Fourier–Galerkin linear IVPs. Separate finite-time growth, spatial, temporal and amplitude effects."
+      }
+    },
+    {
+      "id": "validation-mhd-transport",
+      "method_ids": [
+        "hlld",
+        "muscl",
+        "heun",
+        "ct"
+      ],
+      "equation_ids": [
+        "mhd"
+      ],
+      "problem_ids": [
+        "circular-alfven",
+        "magnetic-loop",
+        "orszag-tang"
+      ],
+      "execution_ids": [
+        "circular-alfven-refinement",
+        "magnetic-loop-independent",
+        "postshock-orszag-tang"
+      ],
+      "reference_ids": [
+        "circular-alfven-refinement",
+        "magnetic-loop-independent",
+        "postshock-orszag-tang"
+      ],
+      "code_problem_ids": [
+        "circular-alfven",
+        "magnetic-loop",
+        "orszag-tang"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "全8保存量のHLLD・MUSCL・Heunと2D CTで、円偏波・磁場ループ・圧縮後OTを計算します。解析平均または未改変Athena++の保存場を、独立参照の格子・時間誤差を区別して比較します。",
+        "en": "Evolve all8conserved components with HLLD/MUSCL/Heun and2D CT. Compare wave means or unmodified Athena++ loop/late-OT fields, separating independent reference spatial/time increments."
+      }
+    },
+    {
+      "id": "validation-mesh-boundary",
+      "method_ids": [
+        "p1-fem",
+        "q1-fem",
+        "centered-difference",
+        "cg"
+      ],
+      "equation_ids": [
+        "poisson-laplace",
+        "variable-viscosity-vector"
+      ],
+      "problem_ids": [
+        "lshape-fem",
+        "annular-viscous-mms",
+        "poisson-neumann",
+        "poisson-robin"
+      ],
+      "execution_ids": [
+        "lshape-fem",
+        "annular-viscous-mms",
+        "poisson-neumann",
+        "poisson-robin"
+      ],
+      "reference_ids": [
+        "lshape-fem",
+        "annular-viscous-mms",
+        "poisson-neumann",
+        "poisson-robin"
+      ],
+      "code_problem_ids": [
+        "lshape-fem",
+        "annular-viscous-mms",
+        "poisson-neumann",
+        "poisson-robin"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "L字特異解のP1 FEM、環状領域の可変粘性ベクトルQ1 PDE、純Neumannの互換条件・平均ゲージ、混合Robinの製造解を実際に解きます。",
+        "en": "Actually solve singular L-corner P1 FEM, annular variable-viscosity vector Q1 PDE, pure-Neumann compatibility/mean-gauge and mixed-Robin manufactured problems."
+      }
+    },
+    {
+      "id": "validation-moving-waves",
+      "method_ids": [
+        "ale",
+        "upwind",
+        "heun",
+        "centered-difference",
+        "rk4"
+      ],
+      "equation_ids": [
+        "ale-scalar-transport",
+        "linear-rotating-shallow-water"
+      ],
+      "problem_ids": [
+        "ale-nonuniform-transport",
+        "cgrid-rotating-wave"
+      ],
+      "execution_ids": [
+        "ale-nonuniform-transport",
+        "cgrid-rotating-wave"
+      ],
+      "reference_ids": [
+        "ale-nonuniform-transport",
+        "cgrid-rotating-wave"
+      ],
+      "code_problem_ids": [
+        "ale-nonuniform-transport",
+        "cgrid-rotating-wave"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "非一様に動くセルの保存的ALE輸送とGCL、および2次元C格子の線形回転浅水波を時間発展させます。SaltzmanピストンとWilliamson球面問題は次段階の未実装項目です。",
+        "en": "Time-advance conservative ALE transport on genuinely nonuniform moving cells with GCL, and2D linear rotating C-grid shallow-water waves. Saltzman pistons and global Williamson problems remain future work."
+      }
+    },
+    {
+      "id": "validation-relativistic",
+      "method_ids": [
+        "hll",
+        "muscl",
+        "minmod",
+        "ssprk33"
+      ],
+      "equation_ids": [
+        "srhd",
+        "srmhd"
+      ],
+      "problem_ids": [
+        "srhd-collision",
+        "srmhd-alfven"
+      ],
+      "execution_ids": [
+        "srhd-collision",
+        "srmhd-alfven"
+      ],
+      "reference_ids": [
+        "srhd-collision",
+        "srmhd-alfven"
+      ],
+      "code_problem_ids": [
+        "srhd-collision",
+        "srmhd-alfven"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "SRHDの対向衝突をTaub関係の二衝撃波解と、全7保存量SRMHDの有限振幅円偏波を独立テンソル式・保存量平均と比較します。空間は1次元で、図のx–t表示は2D流れではありません。",
+        "en": "Compare an SRHD head-on collision with a Taub two-shock solution and full7-state finite-amplitude SRMHD wave with independent tensor formulas/conserved means. Space is1D; x–t pictures are not2D flow."
+      }
     }
   ]
 }

@@ -1,0 +1,1764 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "cases": [
+    {
+      "id": "circular-alfven-refinement",
+      "passed": true,
+      "checks": {
+        "four prescribed fixed runs": true,
+        "qualified independent reference": true,
+        "independent analytic conserved quadrature": true,
+        "circular-alfven-refinement-n32 all stages finite positive": true,
+        "circular-alfven-refinement-n32 final time": true,
+        "circular-alfven-refinement-n32 five exact snapshots": true,
+        "circular-alfven-refinement-n32 fluid integral conservation": true,
+        "circular-alfven-refinement-n32 native face divergence": true,
+        "circular-alfven-refinement-n32 measured Courant sum": true,
+        "circular-alfven-refinement-n32 no cell clips or retries": true,
+        "circular-alfven-refinement-n32 explicit fallback accounting": true,
+        "circular-alfven-refinement-n64 all stages finite positive": true,
+        "circular-alfven-refinement-n64 final time": true,
+        "circular-alfven-refinement-n64 five exact snapshots": true,
+        "circular-alfven-refinement-n64 fluid integral conservation": true,
+        "circular-alfven-refinement-n64 native face divergence": true,
+        "circular-alfven-refinement-n64 measured Courant sum": true,
+        "circular-alfven-refinement-n64 no cell clips or retries": true,
+        "circular-alfven-refinement-n64 explicit fallback accounting": true,
+        "circular-alfven-refinement-n128 all stages finite positive": true,
+        "circular-alfven-refinement-n128 final time": true,
+        "circular-alfven-refinement-n128 five exact snapshots": true,
+        "circular-alfven-refinement-n128 fluid integral conservation": true,
+        "circular-alfven-refinement-n128 native face divergence": true,
+        "circular-alfven-refinement-n128 measured Courant sum": true,
+        "circular-alfven-refinement-n128 no cell clips or retries": true,
+        "circular-alfven-refinement-n128 explicit fallback accounting": true,
+        "circular-alfven-refinement-half-dt all stages finite positive": true,
+        "circular-alfven-refinement-half-dt final time": true,
+        "circular-alfven-refinement-half-dt five exact snapshots": true,
+        "circular-alfven-refinement-half-dt fluid integral conservation": true,
+        "circular-alfven-refinement-half-dt native face divergence": true,
+        "circular-alfven-refinement-half-dt measured Courant sum": true,
+        "circular-alfven-refinement-half-dt no cell clips or retries": true,
+        "circular-alfven-refinement-half-dt explicit fallback accounting": true,
+        "transverse refinement n64": true,
+        "transverse refinement n128": true,
+        "transverse finest error": true,
+        "transverse separate time contamination fraction": true,
+        "selected wave last observed order": true,
+        "selected wave phase error": true
+      },
+      "check_details": [
+        {
+          "name": "four prescribed fixed runs",
+          "value": 4,
+          "bound": 4,
+          "passed": true
+        },
+        {
+          "name": "qualified independent reference",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "independent analytic conserved quadrature",
+          "value": 3.3306690738754696e-16,
+          "bound": 2e-14,
+          "passed": true
+        },
+        {
+          "name": "circular-alfven-refinement-n32 all stages finite positive",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "circular-alfven-refinement-n32 final time",
+          "value": 1.0,
+          "bound": 1.0,
+          "passed": true
+        },
+        {
+          "name": "circular-alfven-refinement-n32 five exact snapshots",
+          "value": [
+            0.0,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+          ],
+          "bound": [
+            0.0,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+          ],
+          "passed": true
+        },
+        {
+          "name": "circular-alfven-refinement-n32 fluid integral conservation",
+          "value": 6.661338147750939e-16,
+          "bound": 3e-11,
+          "passed": true
+        },
+        {
+          "name": "circular-alfven-refinement-n32 native face divergence",
+          "value": 0.0,
+          "bound": 5e-11,
+          "passed": true
+        },
+        {
+          "name": "circular-alfven-refinement-n32 measured Courant sum",
+          "value": 0.06293377129533279,
+          "bound": 0.4,
+          "passed": true
+        },
+        {
+          "name": "circular-alfven-refinement-n32 no cell clips or retries",
+          "value": [
+            0,
+            0
+          ],
+          "bound": [
+            0,
+            0
+          ],
+          "passed": true
+        },
+        {
+          "name": "circular-alfven-refinement-n32 explicit fallback accounting",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "circular-alfven-refinement-n64 all stages finite positive",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "circular-alfven-refinement-n64 final time",
+          "value": 1.0,
+          "bound": 1.0,
+          "passed": true
+        },
+        {
+          "name": "circular-alfven-refinement-n64 five exact snapshots",
+          "value": [
+            0.0,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+          ],
+          "bound": [
+            0.0,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+          ],
+          "passed": true
+        },
+        {
+          "name": "circular-alfven-refinement-n64 fluid integral conservation",
+          "value": 1.3322676295501878e-15,
+          "bound": 3e-11,
+          "passed": true
+        },
+        {
+          "name": "circular-alfven-refinement-n64 native face divergence",
+          "value": 0.0,
+          "bound": 5e-11,
+          "passed": true
+        },
+        {
+          "name": "circular-alfven-refinement-n64 measured Courant sum",
+          "value": 0.12579727613900005,
+          "bound": 0.4,
+          "passed": true
+        },
+        {
+          "name": "circular-alfven-refinement-n64 no cell clips or retries",
+          "value": [
+            0,
+            0
+          ],
+          "bound": [
+            0,
+            0
+          ],
+          "passed": true
+        },
+        {
+          "name": "circular-alfven-refinement-n64 explicit fallback accounting",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "circular-alfven-refinement-n128 all stages finite positive",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "circular-alfven-refinement-n128 final time",
+          "value": 1.0,
+          "bound": 1.0,
+          "passed": true
+        },
+        {
+          "name": "circular-alfven-refinement-n128 five exact snapshots",
+          "value": [
+            0.0,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+          ],
+          "bound": [
+            0.0,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+          ],
+          "passed": true
+        },
+        {
+          "name": "circular-alfven-refinement-n128 fluid integral conservation",
+          "value": 2.886579864025407e-15,
+          "bound": 3e-11,
+          "passed": true
+        },
+        {
+          "name": "circular-alfven-refinement-n128 native face divergence",
+          "value": 0.0,
+          "bound": 5e-11,
+          "passed": true
+        },
+        {
+          "name": "circular-alfven-refinement-n128 measured Courant sum",
+          "value": 0.25153650810517625,
+          "bound": 0.4,
+          "passed": true
+        },
+        {
+          "name": "circular-alfven-refinement-n128 no cell clips or retries",
+          "value": [
+            0,
+            0
+          ],
+          "bound": [
+            0,
+            0
+          ],
+          "passed": true
+        },
+        {
+          "name": "circular-alfven-refinement-n128 explicit fallback accounting",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "circular-alfven-refinement-half-dt all stages finite positive",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "circular-alfven-refinement-half-dt final time",
+          "value": 1.0,
+          "bound": 1.0,
+          "passed": true
+        },
+        {
+          "name": "circular-alfven-refinement-half-dt five exact snapshots",
+          "value": [
+            0.0,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+          ],
+          "bound": [
+            0.0,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+          ],
+          "passed": true
+        },
+        {
+          "name": "circular-alfven-refinement-half-dt fluid integral conservation",
+          "value": 2.886579864025407e-15,
+          "bound": 3e-11,
+          "passed": true
+        },
+        {
+          "name": "circular-alfven-refinement-half-dt native face divergence",
+          "value": 0.0,
+          "bound": 5e-11,
+          "passed": true
+        },
+        {
+          "name": "circular-alfven-refinement-half-dt measured Courant sum",
+          "value": 0.12576613109264426,
+          "bound": 0.4,
+          "passed": true
+        },
+        {
+          "name": "circular-alfven-refinement-half-dt no cell clips or retries",
+          "value": [
+            0,
+            0
+          ],
+          "bound": [
+            0,
+            0
+          ],
+          "passed": true
+        },
+        {
+          "name": "circular-alfven-refinement-half-dt explicit fallback accounting",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "transverse refinement n64",
+          "value": 0.31311396135822045,
+          "bound": 0.92,
+          "passed": true
+        },
+        {
+          "name": "transverse refinement n128",
+          "value": 0.3232158054693312,
+          "bound": 0.92,
+          "passed": true
+        },
+        {
+          "name": "transverse finest error",
+          "value": 0.0030405937596538713,
+          "bound": 0.04,
+          "passed": true
+        },
+        {
+          "name": "transverse separate time contamination fraction",
+          "value": 0.07770799711280377,
+          "bound": 0.2,
+          "passed": true
+        },
+        {
+          "name": "selected wave last observed order",
+          "value": 1.6294303463190474,
+          "bound": 1.3,
+          "passed": true
+        },
+        {
+          "name": "selected wave phase error",
+          "value": 0.0012148660662640027,
+          "bound": 0.03,
+          "passed": true
+        }
+      ],
+      "records": [
+        {
+          "id": "circular-alfven-refinement-n32",
+          "case": "circular-alfven-refinement",
+          "n": 32,
+          "steps": 512,
+          "time": 1.0,
+          "family": "refinement",
+          "field": "circular-alfven-refinement-n32.npz",
+          "snapshot_times": [
+            0.0,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+          ],
+          "errors": {
+            "transverse": {
+              "relative_l1": 0.029709742332415977,
+              "relative_l2": 0.03004438905970163,
+              "absolute_linf": 0.004024848367444947
+            }
+          },
+          "finite_positive": true,
+          "maximum_fluid_integral_defect": 6.661338147750939e-16,
+          "maximum_native_divergence": 0.0,
+          "maximum_common_cell_divergence": 0.0,
+          "reference_common_cell_divergence": 0.0,
+          "maximum_courant_sum": 0.06293377129533279,
+          "fallback_faces": 0,
+          "fallback_count_from_history": 0,
+          "degenerate_faces": 0,
+          "reconstruction_scalings": 0,
+          "minimum_theta": 1.0,
+          "minimum_density": 0.9995957053682155,
+          "minimum_pressure": 0.10000469017628323,
+          "state_clip_count": 0,
+          "retries": 0,
+          "maximum_abs_bz": 0.09936060060394131,
+          "phase_error_radians": 0.012867804635094822
+        },
+        {
+          "id": "circular-alfven-refinement-n64",
+          "case": "circular-alfven-refinement",
+          "n": 64,
+          "steps": 512,
+          "time": 1.0,
+          "family": "refinement",
+          "field": "circular-alfven-refinement-n64.npz",
+          "snapshot_times": [
+            0.0,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+          ],
+          "errors": {
+            "transverse": {
+              "relative_l1": 0.008840362722738273,
+              "relative_l2": 0.009407317675070758,
+              "absolute_linf": 0.001471597179273948
+            }
+          },
+          "finite_positive": true,
+          "maximum_fluid_integral_defect": 1.3322676295501878e-15,
+          "maximum_native_divergence": 0.0,
+          "maximum_common_cell_divergence": 0.0,
+          "reference_common_cell_divergence": 0.0,
+          "maximum_courant_sum": 0.12579727613900005,
+          "fallback_faces": 0,
+          "fallback_count_from_history": 0,
+          "degenerate_faces": 0,
+          "reconstruction_scalings": 0,
+          "minimum_theta": 1.0,
+          "minimum_density": 0.9998527014820967,
+          "minimum_pressure": 0.09998864682978356,
+          "state_clip_count": 0,
+          "retries": 0,
+          "maximum_abs_bz": 0.09983983960489295,
+          "phase_error_radians": 0.004011845788727793
+        },
+        {
+          "id": "circular-alfven-refinement-n128",
+          "case": "circular-alfven-refinement",
+          "n": 128,
+          "steps": 512,
+          "time": 1.0,
+          "family": "refinement",
+          "field": "circular-alfven-refinement-n128.npz",
+          "snapshot_times": [
+            0.0,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+          ],
+          "errors": {
+            "transverse": {
+              "relative_l1": 0.002577399748901837,
+              "relative_l2": 0.0030405937596538713,
+              "absolute_linf": 0.0007730094539430826
+            }
+          },
+          "finite_positive": true,
+          "maximum_fluid_integral_defect": 2.886579864025407e-15,
+          "maximum_native_divergence": 0.0,
+          "maximum_common_cell_divergence": 0.0,
+          "reference_common_cell_divergence": 0.0,
+          "maximum_courant_sum": 0.25153650810517625,
+          "fallback_faces": 0,
+          "fallback_count_from_history": 0,
+          "degenerate_faces": 0,
+          "reconstruction_scalings": 0,
+          "minimum_theta": 1.0,
+          "minimum_density": 0.9999393276470712,
+          "minimum_pressure": 0.0999906427022946,
+          "state_clip_count": 0,
+          "retries": 0,
+          "maximum_abs_bz": 0.09995995635788436,
+          "phase_error_radians": 0.0012148660662640027
+        },
+        {
+          "id": "circular-alfven-refinement-half-dt",
+          "case": "circular-alfven-refinement",
+          "n": 128,
+          "steps": 1024,
+          "time": 1.0,
+          "family": "time-probe",
+          "field": "circular-alfven-refinement-half-dt.npz",
+          "snapshot_times": [
+            0.0,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+          ],
+          "errors": {
+            "transverse": {
+              "relative_l1": 0.0023849017486046345,
+              "relative_l2": 0.0028370308610534373,
+              "absolute_linf": 0.0007169901609374446
+            }
+          },
+          "finite_positive": true,
+          "maximum_fluid_integral_defect": 2.886579864025407e-15,
+          "maximum_native_divergence": 0.0,
+          "maximum_common_cell_divergence": 0.0,
+          "reference_common_cell_divergence": 0.0,
+          "maximum_courant_sum": 0.12576613109264426,
+          "fallback_faces": 0,
+          "fallback_count_from_history": 0,
+          "degenerate_faces": 0,
+          "reconstruction_scalings": 0,
+          "minimum_theta": 1.0,
+          "minimum_density": 0.9999436353124888,
+          "minimum_pressure": 0.09999285220938367,
+          "state_clip_count": 0,
+          "retries": 0,
+          "maximum_abs_bz": 0.09995994572748287,
+          "phase_error_radians": 0.0011136515189123545,
+          "time_half_difference": {
+            "transverse": 0.0002002845722462051
+          }
+        }
+      ],
+      "metrics": {
+        "completed_pde_runs": 4,
+        "reference_qualification_passed": true,
+        "analytic_quadrature_difference": 3.3306690738754696e-16
+      }
+    },
+    {
+      "id": "magnetic-loop-independent",
+      "passed": true,
+      "checks": {
+        "four prescribed fixed runs": true,
+        "qualified independent reference": true,
+        "magnetic-loop-independent-n8 all stages finite positive": true,
+        "magnetic-loop-independent-n8 final time": true,
+        "magnetic-loop-independent-n8 five exact snapshots": true,
+        "magnetic-loop-independent-n8 fluid integral conservation": true,
+        "magnetic-loop-independent-n8 native face divergence": true,
+        "magnetic-loop-independent-n8 measured Courant sum": true,
+        "magnetic-loop-independent-n8 no cell clips or retries": true,
+        "magnetic-loop-independent-n8 explicit fallback accounting": true,
+        "magnetic-loop-independent-n16 all stages finite positive": true,
+        "magnetic-loop-independent-n16 final time": true,
+        "magnetic-loop-independent-n16 five exact snapshots": true,
+        "magnetic-loop-independent-n16 fluid integral conservation": true,
+        "magnetic-loop-independent-n16 native face divergence": true,
+        "magnetic-loop-independent-n16 measured Courant sum": true,
+        "magnetic-loop-independent-n16 no cell clips or retries": true,
+        "magnetic-loop-independent-n16 explicit fallback accounting": true,
+        "magnetic-loop-independent-n32 all stages finite positive": true,
+        "magnetic-loop-independent-n32 final time": true,
+        "magnetic-loop-independent-n32 five exact snapshots": true,
+        "magnetic-loop-independent-n32 fluid integral conservation": true,
+        "magnetic-loop-independent-n32 native face divergence": true,
+        "magnetic-loop-independent-n32 measured Courant sum": true,
+        "magnetic-loop-independent-n32 no cell clips or retries": true,
+        "magnetic-loop-independent-n32 explicit fallback accounting": true,
+        "magnetic-loop-independent-half-dt all stages finite positive": true,
+        "magnetic-loop-independent-half-dt final time": true,
+        "magnetic-loop-independent-half-dt five exact snapshots": true,
+        "magnetic-loop-independent-half-dt fluid integral conservation": true,
+        "magnetic-loop-independent-half-dt native face divergence": true,
+        "magnetic-loop-independent-half-dt measured Courant sum": true,
+        "magnetic-loop-independent-half-dt no cell clips or retries": true,
+        "magnetic-loop-independent-half-dt explicit fallback accounting": true,
+        "magnetic refinement n16": true,
+        "magnetic refinement n32": true,
+        "magnetic finest error": true,
+        "magnetic separate time contamination fraction": true,
+        "magnetic reference increment/error": true
+      },
+      "check_details": [
+        {
+          "name": "four prescribed fixed runs",
+          "value": 4,
+          "bound": 4,
+          "passed": true
+        },
+        {
+          "name": "qualified independent reference",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "magnetic-loop-independent-n8 all stages finite positive",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "magnetic-loop-independent-n8 final time",
+          "value": 1.0,
+          "bound": 1.0,
+          "passed": true
+        },
+        {
+          "name": "magnetic-loop-independent-n8 five exact snapshots",
+          "value": [
+            0.0,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+          ],
+          "bound": [
+            0.0,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+          ],
+          "passed": true
+        },
+        {
+          "name": "magnetic-loop-independent-n8 fluid integral conservation",
+          "value": 1.4802973524022512e-15,
+          "bound": 3e-11,
+          "passed": true
+        },
+        {
+          "name": "magnetic-loop-independent-n8 native face divergence",
+          "value": 1.8214596497756474e-17,
+          "bound": 5e-11,
+          "passed": true
+        },
+        {
+          "name": "magnetic-loop-independent-n8 measured Courant sum",
+          "value": 0.04360929703016027,
+          "bound": 0.4,
+          "passed": true
+        },
+        {
+          "name": "magnetic-loop-independent-n8 no cell clips or retries",
+          "value": [
+            0,
+            0
+          ],
+          "bound": [
+            0,
+            0
+          ],
+          "passed": true
+        },
+        {
+          "name": "magnetic-loop-independent-n8 explicit fallback accounting",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "magnetic-loop-independent-n16 all stages finite positive",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "magnetic-loop-independent-n16 final time",
+          "value": 1.0,
+          "bound": 1.0,
+          "passed": true
+        },
+        {
+          "name": "magnetic-loop-independent-n16 five exact snapshots",
+          "value": [
+            0.0,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+          ],
+          "bound": [
+            0.0,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+          ],
+          "passed": true
+        },
+        {
+          "name": "magnetic-loop-independent-n16 fluid integral conservation",
+          "value": 2.664535231092865e-15,
+          "bound": 3e-11,
+          "passed": true
+        },
+        {
+          "name": "magnetic-loop-independent-n16 native face divergence",
+          "value": 6.635317295611287e-17,
+          "bound": 5e-11,
+          "passed": true
+        },
+        {
+          "name": "magnetic-loop-independent-n16 measured Courant sum",
+          "value": 0.08721860600546785,
+          "bound": 0.4,
+          "passed": true
+        },
+        {
+          "name": "magnetic-loop-independent-n16 no cell clips or retries",
+          "value": [
+            0,
+            0
+          ],
+          "bound": [
+            0,
+            0
+          ],
+          "passed": true
+        },
+        {
+          "name": "magnetic-loop-independent-n16 explicit fallback accounting",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "magnetic-loop-independent-n32 all stages finite positive",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "magnetic-loop-independent-n32 final time",
+          "value": 1.0,
+          "bound": 1.0,
+          "passed": true
+        },
+        {
+          "name": "magnetic-loop-independent-n32 five exact snapshots",
+          "value": [
+            0.0,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+          ],
+          "bound": [
+            0.0,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+          ],
+          "passed": true
+        },
+        {
+          "name": "magnetic-loop-independent-n32 fluid integral conservation",
+          "value": 5.329070518200751e-15,
+          "bound": 3e-11,
+          "passed": true
+        },
+        {
+          "name": "magnetic-loop-independent-n32 native face divergence",
+          "value": 1.4474099002681484e-16,
+          "bound": 5e-11,
+          "passed": true
+        },
+        {
+          "name": "magnetic-loop-independent-n32 measured Courant sum",
+          "value": 0.17443721787706684,
+          "bound": 0.4,
+          "passed": true
+        },
+        {
+          "name": "magnetic-loop-independent-n32 no cell clips or retries",
+          "value": [
+            0,
+            0
+          ],
+          "bound": [
+            0,
+            0
+          ],
+          "passed": true
+        },
+        {
+          "name": "magnetic-loop-independent-n32 explicit fallback accounting",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "magnetic-loop-independent-half-dt all stages finite positive",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "magnetic-loop-independent-half-dt final time",
+          "value": 1.0,
+          "bound": 1.0,
+          "passed": true
+        },
+        {
+          "name": "magnetic-loop-independent-half-dt five exact snapshots",
+          "value": [
+            0.0,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+          ],
+          "bound": [
+            0.0,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+          ],
+          "passed": true
+        },
+        {
+          "name": "magnetic-loop-independent-half-dt fluid integral conservation",
+          "value": 4.8849812538444305e-15,
+          "bound": 3e-11,
+          "passed": true
+        },
+        {
+          "name": "magnetic-loop-independent-half-dt native face divergence",
+          "value": 2.4340338772299575e-16,
+          "bound": 5e-11,
+          "passed": true
+        },
+        {
+          "name": "magnetic-loop-independent-half-dt measured Courant sum",
+          "value": 0.08721860892530799,
+          "bound": 0.4,
+          "passed": true
+        },
+        {
+          "name": "magnetic-loop-independent-half-dt no cell clips or retries",
+          "value": [
+            0,
+            0
+          ],
+          "bound": [
+            0,
+            0
+          ],
+          "passed": true
+        },
+        {
+          "name": "magnetic-loop-independent-half-dt explicit fallback accounting",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "magnetic refinement n16",
+          "value": 0.6554932917671942,
+          "bound": 0.92,
+          "passed": true
+        },
+        {
+          "name": "magnetic refinement n32",
+          "value": 0.37849017351902015,
+          "bound": 0.92,
+          "passed": true
+        },
+        {
+          "name": "magnetic finest error",
+          "value": 0.2530875146425678,
+          "bound": 0.65,
+          "passed": true
+        },
+        {
+          "name": "magnetic separate time contamination fraction",
+          "value": 0.003165190329184915,
+          "bound": 0.2,
+          "passed": true
+        },
+        {
+          "name": "magnetic reference increment/error",
+          "value": 0.4744348754801365,
+          "bound": 0.75,
+          "passed": true
+        }
+      ],
+      "records": [
+        {
+          "id": "magnetic-loop-independent-n8",
+          "case": "magnetic-loop-independent",
+          "n": 8,
+          "steps": 1024,
+          "time": 1.0,
+          "family": "refinement",
+          "field": "magnetic-loop-independent-n8.npz",
+          "snapshot_times": [
+            0.0,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+          ],
+          "errors": {
+            "magnetic": {
+              "relative_l1": 1.0201120103024197,
+              "relative_l2": 0.8405195518649691,
+              "absolute_linf": 0.0008159155417839306
+            }
+          },
+          "finite_positive": true,
+          "maximum_fluid_integral_defect": 1.4802973524022512e-15,
+          "maximum_native_divergence": 1.8214596497756474e-17,
+          "maximum_common_cell_divergence": 0.0008558607041798696,
+          "reference_common_cell_divergence": 0.0008776373177767475,
+          "maximum_courant_sum": 0.04360929703016027,
+          "fallback_faces": 0,
+          "fallback_count_from_history": 0,
+          "degenerate_faces": 6023,
+          "reconstruction_scalings": 0,
+          "minimum_theta": 1.0,
+          "minimum_density": 0.9999998929953716,
+          "minimum_pressure": 0.999999927065606,
+          "state_clip_count": 0,
+          "retries": 0,
+          "maximum_abs_bz": 1.1229187746463552e-18,
+          "reference_increment": {
+            "magnetic": 0.07681463629903337
+          }
+        },
+        {
+          "id": "magnetic-loop-independent-n16",
+          "case": "magnetic-loop-independent",
+          "n": 16,
+          "steps": 1024,
+          "time": 1.0,
+          "family": "refinement",
+          "field": "magnetic-loop-independent-n16.npz",
+          "snapshot_times": [
+            0.0,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+          ],
+          "errors": {
+            "magnetic": {
+              "relative_l1": 0.668676579604383,
+              "relative_l2": 0.5211776406502052,
+              "absolute_linf": 0.0005706710838436806
+            }
+          },
+          "finite_positive": true,
+          "maximum_fluid_integral_defect": 2.664535231092865e-15,
+          "maximum_native_divergence": 6.635317295611287e-17,
+          "maximum_common_cell_divergence": 0.0023673555594734682,
+          "reference_common_cell_divergence": 0.0011615334487890712,
+          "maximum_courant_sum": 0.08721860600546785,
+          "fallback_faces": 0,
+          "fallback_count_from_history": 0,
+          "degenerate_faces": 158890,
+          "reconstruction_scalings": 0,
+          "minimum_theta": 1.0,
+          "minimum_density": 0.9999997123296424,
+          "minimum_pressure": 0.9999995728881617,
+          "state_clip_count": 0,
+          "retries": 0,
+          "maximum_abs_bz": 2.942099906633994e-18,
+          "reference_increment": {
+            "magnetic": 0.10660222586710934
+          }
+        },
+        {
+          "id": "magnetic-loop-independent-n32",
+          "case": "magnetic-loop-independent",
+          "n": 32,
+          "steps": 1024,
+          "time": 1.0,
+          "family": "refinement",
+          "field": "magnetic-loop-independent-n32.npz",
+          "snapshot_times": [
+            0.0,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+          ],
+          "errors": {
+            "magnetic": {
+              "relative_l1": 0.2530875146425678,
+              "relative_l2": 0.21987860576660073,
+              "absolute_linf": 0.0004883506353483678
+            }
+          },
+          "finite_positive": true,
+          "maximum_fluid_integral_defect": 5.329070518200751e-15,
+          "maximum_native_divergence": 1.4474099002681484e-16,
+          "maximum_common_cell_divergence": 0.004578634841297174,
+          "reference_common_cell_divergence": 0.0010611346828048535,
+          "maximum_courant_sum": 0.17443721787706684,
+          "fallback_faces": 0,
+          "fallback_count_from_history": 0,
+          "degenerate_faces": 2888347,
+          "reconstruction_scalings": 0,
+          "minimum_theta": 1.0,
+          "minimum_density": 0.9999995984899958,
+          "minimum_pressure": 0.999999355016882,
+          "state_clip_count": 0,
+          "retries": 0,
+          "maximum_abs_bz": 3.637133108151499e-18,
+          "reference_increment": {
+            "magnetic": 0.12007354349502387
+          }
+        },
+        {
+          "id": "magnetic-loop-independent-half-dt",
+          "case": "magnetic-loop-independent",
+          "n": 32,
+          "steps": 2048,
+          "time": 1.0,
+          "family": "time-probe",
+          "field": "magnetic-loop-independent-half-dt.npz",
+          "snapshot_times": [
+            0.0,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+          ],
+          "errors": {
+            "magnetic": {
+              "relative_l1": 0.25282584988507095,
+              "relative_l2": 0.21966338068429772,
+              "absolute_linf": 0.00048750772481418684
+            }
+          },
+          "finite_positive": true,
+          "maximum_fluid_integral_defect": 4.8849812538444305e-15,
+          "maximum_native_divergence": 2.4340338772299575e-16,
+          "maximum_common_cell_divergence": 0.00472223323124636,
+          "reference_common_cell_divergence": 0.0010611346828048535,
+          "maximum_courant_sum": 0.08721860892530799,
+          "fallback_faces": 0,
+          "fallback_count_from_history": 0,
+          "degenerate_faces": 5769952,
+          "reconstruction_scalings": 0,
+          "minimum_theta": 1.0,
+          "minimum_density": 0.9999995987290128,
+          "minimum_pressure": 0.9999993552455431,
+          "state_clip_count": 0,
+          "retries": 0,
+          "maximum_abs_bz": 5.299494213885735e-18,
+          "reference_increment": {
+            "magnetic": 0.12007354349502387
+          },
+          "time_half_difference": {
+            "magnetic": 0.0008010701537841011
+          }
+        }
+      ],
+      "metrics": {
+        "completed_pde_runs": 4,
+        "reference_qualification_passed": true,
+        "analytic_quadrature_difference": null
+      }
+    },
+    {
+      "id": "postshock-orszag-tang",
+      "passed": true,
+      "checks": {
+        "four prescribed fixed runs": true,
+        "qualified independent reference": true,
+        "postshock-orszag-tang-n16 all stages finite positive": true,
+        "postshock-orszag-tang-n16 final time": true,
+        "postshock-orszag-tang-n16 five exact snapshots": true,
+        "postshock-orszag-tang-n16 fluid integral conservation": true,
+        "postshock-orszag-tang-n16 native face divergence": true,
+        "postshock-orszag-tang-n16 measured Courant sum": true,
+        "postshock-orszag-tang-n16 no cell clips or retries": true,
+        "postshock-orszag-tang-n16 explicit fallback accounting": true,
+        "postshock-orszag-tang-n32 all stages finite positive": true,
+        "postshock-orszag-tang-n32 final time": true,
+        "postshock-orszag-tang-n32 five exact snapshots": true,
+        "postshock-orszag-tang-n32 fluid integral conservation": true,
+        "postshock-orszag-tang-n32 native face divergence": true,
+        "postshock-orszag-tang-n32 measured Courant sum": true,
+        "postshock-orszag-tang-n32 no cell clips or retries": true,
+        "postshock-orszag-tang-n32 explicit fallback accounting": true,
+        "postshock-orszag-tang-n64 all stages finite positive": true,
+        "postshock-orszag-tang-n64 final time": true,
+        "postshock-orszag-tang-n64 five exact snapshots": true,
+        "postshock-orszag-tang-n64 fluid integral conservation": true,
+        "postshock-orszag-tang-n64 native face divergence": true,
+        "postshock-orszag-tang-n64 measured Courant sum": true,
+        "postshock-orszag-tang-n64 no cell clips or retries": true,
+        "postshock-orszag-tang-n64 explicit fallback accounting": true,
+        "postshock-orszag-tang-half-dt all stages finite positive": true,
+        "postshock-orszag-tang-half-dt final time": true,
+        "postshock-orszag-tang-half-dt five exact snapshots": true,
+        "postshock-orszag-tang-half-dt fluid integral conservation": true,
+        "postshock-orszag-tang-half-dt native face divergence": true,
+        "postshock-orszag-tang-half-dt measured Courant sum": true,
+        "postshock-orszag-tang-half-dt no cell clips or retries": true,
+        "postshock-orszag-tang-half-dt explicit fallback accounting": true,
+        "density refinement n32": true,
+        "density refinement n64": true,
+        "density finest error": true,
+        "density separate time contamination fraction": true,
+        "density reference increment/error": true,
+        "pressure refinement n32": true,
+        "pressure refinement n64": true,
+        "pressure finest error": true,
+        "pressure separate time contamination fraction": true,
+        "pressure reference increment/error": true,
+        "late density compression diagnostic": true
+      },
+      "check_details": [
+        {
+          "name": "four prescribed fixed runs",
+          "value": 4,
+          "bound": 4,
+          "passed": true
+        },
+        {
+          "name": "qualified independent reference",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "postshock-orszag-tang-n16 all stages finite positive",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "postshock-orszag-tang-n16 final time",
+          "value": 0.2,
+          "bound": 0.2,
+          "passed": true
+        },
+        {
+          "name": "postshock-orszag-tang-n16 five exact snapshots",
+          "value": [
+            0.0,
+            0.05,
+            0.1,
+            0.15000000000000002,
+            0.2
+          ],
+          "bound": [
+            0.0,
+            0.05,
+            0.1,
+            0.15000000000000002,
+            0.2
+          ],
+          "passed": true
+        },
+        {
+          "name": "postshock-orszag-tang-n16 fluid integral conservation",
+          "value": 7.494005416219807e-16,
+          "bound": 3e-11,
+          "passed": true
+        },
+        {
+          "name": "postshock-orszag-tang-n16 native face divergence",
+          "value": 3.2862601528904634e-14,
+          "bound": 5e-11,
+          "passed": true
+        },
+        {
+          "name": "postshock-orszag-tang-n16 measured Courant sum",
+          "value": 0.029019406864796267,
+          "bound": 0.4,
+          "passed": true
+        },
+        {
+          "name": "postshock-orszag-tang-n16 no cell clips or retries",
+          "value": [
+            0,
+            0
+          ],
+          "bound": [
+            0,
+            0
+          ],
+          "passed": true
+        },
+        {
+          "name": "postshock-orszag-tang-n16 explicit fallback accounting",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "postshock-orszag-tang-n32 all stages finite positive",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "postshock-orszag-tang-n32 final time",
+          "value": 0.2,
+          "bound": 0.2,
+          "passed": true
+        },
+        {
+          "name": "postshock-orszag-tang-n32 five exact snapshots",
+          "value": [
+            0.0,
+            0.05,
+            0.1,
+            0.15000000000000002,
+            0.2
+          ],
+          "bound": [
+            0.0,
+            0.05,
+            0.1,
+            0.15000000000000002,
+            0.2
+          ],
+          "passed": true
+        },
+        {
+          "name": "postshock-orszag-tang-n32 fluid integral conservation",
+          "value": 2.1094237467877974e-15,
+          "bound": 3e-11,
+          "passed": true
+        },
+        {
+          "name": "postshock-orszag-tang-n32 native face divergence",
+          "value": 9.769962616701378e-14,
+          "bound": 5e-11,
+          "passed": true
+        },
+        {
+          "name": "postshock-orszag-tang-n32 measured Courant sum",
+          "value": 0.05900749682480342,
+          "bound": 0.4,
+          "passed": true
+        },
+        {
+          "name": "postshock-orszag-tang-n32 no cell clips or retries",
+          "value": [
+            0,
+            0
+          ],
+          "bound": [
+            0,
+            0
+          ],
+          "passed": true
+        },
+        {
+          "name": "postshock-orszag-tang-n32 explicit fallback accounting",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "postshock-orszag-tang-n64 all stages finite positive",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "postshock-orszag-tang-n64 final time",
+          "value": 0.2,
+          "bound": 0.2,
+          "passed": true
+        },
+        {
+          "name": "postshock-orszag-tang-n64 five exact snapshots",
+          "value": [
+            0.0,
+            0.05,
+            0.1,
+            0.15000000000000002,
+            0.2
+          ],
+          "bound": [
+            0.0,
+            0.05,
+            0.1,
+            0.15000000000000002,
+            0.2
+          ],
+          "passed": true
+        },
+        {
+          "name": "postshock-orszag-tang-n64 fluid integral conservation",
+          "value": 2.4175106361212784e-14,
+          "bound": 3e-11,
+          "passed": true
+        },
+        {
+          "name": "postshock-orszag-tang-n64 native face divergence",
+          "value": 2.7355895326763857e-13,
+          "bound": 5e-11,
+          "passed": true
+        },
+        {
+          "name": "postshock-orszag-tang-n64 measured Courant sum",
+          "value": 0.11926677165677568,
+          "bound": 0.4,
+          "passed": true
+        },
+        {
+          "name": "postshock-orszag-tang-n64 no cell clips or retries",
+          "value": [
+            0,
+            0
+          ],
+          "bound": [
+            0,
+            0
+          ],
+          "passed": true
+        },
+        {
+          "name": "postshock-orszag-tang-n64 explicit fallback accounting",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "postshock-orszag-tang-half-dt all stages finite positive",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "postshock-orszag-tang-half-dt final time",
+          "value": 0.2,
+          "bound": 0.2,
+          "passed": true
+        },
+        {
+          "name": "postshock-orszag-tang-half-dt five exact snapshots",
+          "value": [
+            0.0,
+            0.05,
+            0.1,
+            0.15000000000000002,
+            0.2
+          ],
+          "bound": [
+            0.0,
+            0.05,
+            0.1,
+            0.15000000000000002,
+            0.2
+          ],
+          "passed": true
+        },
+        {
+          "name": "postshock-orszag-tang-half-dt fluid integral conservation",
+          "value": 2.4147350785597155e-14,
+          "bound": 3e-11,
+          "passed": true
+        },
+        {
+          "name": "postshock-orszag-tang-half-dt native face divergence",
+          "value": 3.161915174132446e-13,
+          "bound": 5e-11,
+          "passed": true
+        },
+        {
+          "name": "postshock-orszag-tang-half-dt measured Courant sum",
+          "value": 0.059633588557742805,
+          "bound": 0.4,
+          "passed": true
+        },
+        {
+          "name": "postshock-orszag-tang-half-dt no cell clips or retries",
+          "value": [
+            0,
+            0
+          ],
+          "bound": [
+            0,
+            0
+          ],
+          "passed": true
+        },
+        {
+          "name": "postshock-orszag-tang-half-dt explicit fallback accounting",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "density refinement n32",
+          "value": 0.520748747023636,
+          "bound": 0.92,
+          "passed": true
+        },
+        {
+          "name": "density refinement n64",
+          "value": 0.386370538966805,
+          "bound": 0.92,
+          "passed": true
+        },
+        {
+          "name": "density finest error",
+          "value": 0.01108063471130391,
+          "bound": 0.2,
+          "passed": true
+        },
+        {
+          "name": "density separate time contamination fraction",
+          "value": 0.0018954610379415288,
+          "bound": 0.2,
+          "passed": true
+        },
+        {
+          "name": "density reference increment/error",
+          "value": 0.3080771744349148,
+          "bound": 0.75,
+          "passed": true
+        },
+        {
+          "name": "pressure refinement n32",
+          "value": 0.45651132085342,
+          "bound": 0.92,
+          "passed": true
+        },
+        {
+          "name": "pressure refinement n64",
+          "value": 0.37485151664065225,
+          "bound": 0.92,
+          "passed": true
+        },
+        {
+          "name": "pressure finest error",
+          "value": 0.018222741247481397,
+          "bound": 0.3,
+          "passed": true
+        },
+        {
+          "name": "pressure separate time contamination fraction",
+          "value": 0.002064090828076365,
+          "bound": 0.2,
+          "passed": true
+        },
+        {
+          "name": "pressure reference increment/error",
+          "value": 0.29834902751013465,
+          "bound": 0.75,
+          "passed": true
+        },
+        {
+          "name": "late density compression diagnostic",
+          "value": 7.1431480281176105,
+          "bound": 2.0,
+          "passed": true
+        }
+      ],
+      "records": [
+        {
+          "id": "postshock-orszag-tang-n16",
+          "case": "postshock-orszag-tang",
+          "n": 16,
+          "steps": 512,
+          "time": 0.2,
+          "family": "refinement",
+          "field": "postshock-orszag-tang-n16.npz",
+          "snapshot_times": [
+            0.0,
+            0.05,
+            0.1,
+            0.15000000000000002,
+            0.2
+          ],
+          "errors": {
+            "density": {
+              "relative_l1": 0.055072196798329816,
+              "relative_l2": 0.07215164461273015,
+              "absolute_linf": 0.08852719739822207
+            },
+            "pressure": {
+              "relative_l1": 0.10648854282318818,
+              "relative_l2": 0.13723151727368416,
+              "absolute_linf": 0.09628047510345739
+            }
+          },
+          "finite_positive": true,
+          "maximum_fluid_integral_defect": 7.494005416219807e-16,
+          "maximum_native_divergence": 3.2862601528904634e-14,
+          "maximum_common_cell_divergence": 1.2985168395905102,
+          "reference_common_cell_divergence": 1.5343474157534,
+          "maximum_courant_sum": 0.029019406864796267,
+          "fallback_faces": 0,
+          "fallback_count_from_history": 0,
+          "degenerate_faces": 0,
+          "reconstruction_scalings": 0,
+          "minimum_theta": 1.0,
+          "minimum_density": 0.08721400217712513,
+          "minimum_pressure": 0.027847918315013032,
+          "state_clip_count": 0,
+          "retries": 0,
+          "maximum_abs_bz": 0.0,
+          "reference_increment": {
+            "density": 0.0017096329230723328,
+            "pressure": 0.002288814999333477
+          },
+          "density_contrast": 6.196506628642336
+        },
+        {
+          "id": "postshock-orszag-tang-n32",
+          "case": "postshock-orszag-tang",
+          "n": 32,
+          "steps": 512,
+          "time": 0.2,
+          "family": "refinement",
+          "field": "postshock-orszag-tang-n32.npz",
+          "snapshot_times": [
+            0.0,
+            0.05,
+            0.1,
+            0.15000000000000002,
+            0.2
+          ],
+          "errors": {
+            "density": {
+              "relative_l1": 0.028678777478569353,
+              "relative_l2": 0.041137398858486336,
+              "absolute_linf": 0.05823726324242218
+            },
+            "pressure": {
+              "relative_l1": 0.04861322533996961,
+              "relative_l2": 0.06533475806083373,
+              "absolute_linf": 0.058642030300098846
+            }
+          },
+          "finite_positive": true,
+          "maximum_fluid_integral_defect": 2.1094237467877974e-15,
+          "maximum_native_divergence": 9.769962616701378e-14,
+          "maximum_common_cell_divergence": 2.0572818169027682,
+          "reference_common_cell_divergence": 3.3345933132260797,
+          "maximum_courant_sum": 0.05900749682480342,
+          "fallback_faces": 0,
+          "fallback_count_from_history": 0,
+          "degenerate_faces": 0,
+          "reconstruction_scalings": 0,
+          "minimum_theta": 1.0,
+          "minimum_density": 0.08303698949468566,
+          "minimum_pressure": 0.025782110771771942,
+          "state_clip_count": 0,
+          "retries": 0,
+          "maximum_abs_bz": 0.0,
+          "reference_increment": {
+            "density": 0.002604331788270814,
+            "pressure": 0.003866435243131421
+          },
+          "density_contrast": 6.992604401202709
+        },
+        {
+          "id": "postshock-orszag-tang-n64",
+          "case": "postshock-orszag-tang",
+          "n": 64,
+          "steps": 512,
+          "time": 0.2,
+          "family": "refinement",
+          "field": "postshock-orszag-tang-n64.npz",
+          "snapshot_times": [
+            0.0,
+            0.05,
+            0.1,
+            0.15000000000000002,
+            0.2
+          ],
+          "errors": {
+            "density": {
+              "relative_l1": 0.01108063471130391,
+              "relative_l2": 0.0198769886772933,
+              "absolute_linf": 0.031319933531365696
+            },
+            "pressure": {
+              "relative_l1": 0.018222741247481397,
+              "relative_l2": 0.030445318968789176,
+              "absolute_linf": 0.044566838585124946
+            }
+          },
+          "finite_positive": true,
+          "maximum_fluid_integral_defect": 2.4175106361212784e-14,
+          "maximum_native_divergence": 2.7355895326763857e-13,
+          "maximum_common_cell_divergence": 4.205127934514264,
+          "reference_common_cell_divergence": 4.888384800094839,
+          "maximum_courant_sum": 0.11926677165677568,
+          "fallback_faces": 0,
+          "fallback_count_from_history": 0,
+          "degenerate_faces": 0,
+          "reconstruction_scalings": 0,
+          "minimum_theta": 1.0,
+          "minimum_density": 0.08326940161705368,
+          "minimum_pressure": 0.02601257759195898,
+          "state_clip_count": 0,
+          "retries": 0,
+          "maximum_abs_bz": 0.0,
+          "reference_increment": {
+            "density": 0.0034136906328039464,
+            "pressure": 0.005436737129754892
+          },
+          "density_contrast": 7.1431480281176105
+        },
+        {
+          "id": "postshock-orszag-tang-half-dt",
+          "case": "postshock-orszag-tang",
+          "n": 64,
+          "steps": 1024,
+          "time": 0.2,
+          "family": "time-probe",
+          "field": "postshock-orszag-tang-half-dt.npz",
+          "snapshot_times": [
+            0.0,
+            0.05,
+            0.1,
+            0.15000000000000002,
+            0.2
+          ],
+          "errors": {
+            "density": {
+              "relative_l1": 0.011074410943847774,
+              "relative_l2": 0.019861741110300944,
+              "absolute_linf": 0.03128885270239748
+            },
+            "pressure": {
+              "relative_l1": 0.018217777823514525,
+              "relative_l2": 0.03043031230662544,
+              "absolute_linf": 0.04453503710572004
+            }
+          },
+          "finite_positive": true,
+          "maximum_fluid_integral_defect": 2.4147350785597155e-14,
+          "maximum_native_divergence": 3.161915174132446e-13,
+          "maximum_common_cell_divergence": 4.20507219690591,
+          "reference_common_cell_divergence": 4.888384800094839,
+          "maximum_courant_sum": 0.059633588557742805,
+          "fallback_faces": 0,
+          "fallback_count_from_history": 0,
+          "degenerate_faces": 0,
+          "reconstruction_scalings": 0,
+          "minimum_theta": 1.0,
+          "minimum_density": 0.08336238174574556,
+          "minimum_pressure": 0.026061106082809305,
+          "state_clip_count": 0,
+          "retries": 0,
+          "maximum_abs_bz": 0.0,
+          "reference_increment": {
+            "density": 0.0034136906328039464,
+            "pressure": 0.005436737129754892
+          },
+          "density_contrast": 7.143395530795526,
+          "time_half_difference": {
+            "density": 2.1002911370939043e-05,
+            "pressure": 3.761339307133521e-05
+          }
+        }
+      ],
+      "metrics": {
+        "completed_pde_runs": 4,
+        "reference_qualification_passed": true,
+        "analytic_quadrature_difference": null
+      }
+    }
+  ],
+  "checks": {
+    "circular-alfven-refinement": true,
+    "magnetic-loop-independent": true,
+    "postshock-orszag-tang": true
+  },
+  "termination": "fixed_budget_completed",
+  "failure": null,
+  "input_sha256": "8a1b3bc9932f0cf9b620953d53294f2fc781f7999b7922a5d54f685e6044004e",
+  "files_sha256": {
+    "circular-alfven-refinement-n32.npz": "24a2758f39677ff6c3a1bf257f2d3196dfea0d02582ea21e21f2e6c98213b085",
+    "circular-alfven-refinement-n32-history.csv": "876f0c3bf69ab08b4cb557bb94ea3a9859fa665555ecd3caedbbb19bf62ab5c6",
+    "circular-alfven-refinement-n32-final-fields.csv": "66c5a9feafe0f235741a575c00c21cdc895d7471f51a0bb97c2adc026556b749",
+    "circular-alfven-refinement-n64.npz": "d55b3a1910d19439abff62845f6b4235441356504abebfd890ab5d8e5559e047",
+    "circular-alfven-refinement-n64-history.csv": "8ff9b366604a6a5e6dfcf97bad50672fbf5b6533fb4efc04127807c6e02c394a",
+    "circular-alfven-refinement-n64-final-fields.csv": "d6dfaea1b44c009bc130eebe2c35b535278c303cf4704f39b6c0dbbf066c69e1",
+    "circular-alfven-refinement-n128.npz": "d9b5eefd31c3ec8c6b59fc8c3c6acefd999305cee1bde4fe282a1317cda2e9a8",
+    "circular-alfven-refinement-n128-history.csv": "c7bc035b8b85789f5de852d11f8248fbec58e11d376846dbf244bb2f1700e016",
+    "circular-alfven-refinement-n128-final-fields.csv": "12b5101b6a59d95425ad772a4e275b196891135e02d9307d5988c1258d5687d7",
+    "magnetic-loop-independent-n8.npz": "ad5c7ae5b16f6e8eff19bca9383e1e589cac505d9a6cbee18ab7856ffae5dd56",
+    "magnetic-loop-independent-n8-history.csv": "6f416c61bd14571929d7d2189725ada131fd52270c8bb62af58819acee570f65",
+    "magnetic-loop-independent-n8-final-fields.csv": "5ffebf7f92a641fdddd3cce64f5a22f5b2f288ea20766f057b2a9c96392be806",
+    "magnetic-loop-independent-n16.npz": "23ca5da5d0518296fc81e789edbd81110f026fa6174500f474c5442ee3624d32",
+    "magnetic-loop-independent-n16-history.csv": "68e207287d233601a436f138b0efb6fcae9d915c76fd1968b608834bfbc7b97c",
+    "magnetic-loop-independent-n16-final-fields.csv": "200212fc1dc5146bd0fc640ec236446289c63f4ede86c638cbfc78daa320f5c9",
+    "magnetic-loop-independent-n32.npz": "a02c02caa33e83023d360a47b36dacb972358e2aa74a4f56755f506c27b0eb69",
+    "magnetic-loop-independent-n32-history.csv": "96f70eab5c439490187e79eb57275fc48cd54fca9c9724de506c585f00ea5ae7",
+    "magnetic-loop-independent-n32-final-fields.csv": "b608e0176fd0c1f5d59819bae705d506be49570e76b06943a69a2a6a091c647e",
+    "postshock-orszag-tang-n16.npz": "501324c46ae3244944d19c0c9a7ce27ea1dd3698049012a4d6e70fcfd5344d88",
+    "postshock-orszag-tang-n16-history.csv": "f01da5ee8a204e1d4221678923632ad71950fdd9bcc8a790035de3f6c7c9ef29",
+    "postshock-orszag-tang-n16-final-fields.csv": "d0d73c91e7a83e4dc46a8f7141ad00049bc94d0419571d6c730fffeaf1b09c66",
+    "postshock-orszag-tang-n32.npz": "c613d07c29e3218847bfd5ecbf62bcda5d1e3692ee4433b98851077108b0584b",
+    "postshock-orszag-tang-n32-history.csv": "bfed6cae5995d81efcaff57d9066bbacc7ae26bd3c9033e0aac4e1ec6278f28c",
+    "postshock-orszag-tang-n32-final-fields.csv": "4c82e4a3805a4d69dd0af0d74b14992c3b74a0893ac3f17041ae159eda30448c",
+    "postshock-orszag-tang-n64.npz": "4911f66cda302e21d494dae236b458d6f912abf6390d1da0eaf82ef77e16bf2e",
+    "postshock-orszag-tang-n64-history.csv": "baa2b328efc22862d1023cf678b2cfa6b2be7f9a130df22e99c9a7db3508b30c",
+    "postshock-orszag-tang-n64-final-fields.csv": "036ac1ec67ee3ef06130bc4e70c7cc5d4ff81a9db9f976f334453321491a69aa",
+    "circular-alfven-refinement-half-dt.npz": "724f6b1cd5da30c90d1e27a57c06fd6a56b6c34d2d709dbbeab9e64af7d76a8e",
+    "circular-alfven-refinement-half-dt-history.csv": "8427f2ecb704f904d74757c409f746d3ee5764a23847a44904b9bf8989d78c61",
+    "circular-alfven-refinement-half-dt-final-fields.csv": "81c46e8e41ce25f33e91b9af0b224390a98bc6be242832cbb8e22fe04a005d8a",
+    "magnetic-loop-independent-half-dt.npz": "3b3c5d3aa66c11c42833924e1c5613a9e0ba1a6ea98ea0aa77793bfdc099bd5a",
+    "magnetic-loop-independent-half-dt-history.csv": "146e3a2a10e460fe9fbadc85bb6cbd89cc68ce1983e4a7ca0cb652a8bf791354",
+    "magnetic-loop-independent-half-dt-final-fields.csv": "702f75c0dc7b0404374f8318fe90b31e78f22477b12090deaa18ccb6391603a5",
+    "postshock-orszag-tang-half-dt.npz": "6a209366876ae5766c924e6bbc1773b58e295affba178e3a2d39a9108f992111",
+    "postshock-orszag-tang-half-dt-history.csv": "8e73d54c61784c16b5debdbc2b7346a74d5c3e47408d7f9f44b778820780190f",
+    "postshock-orszag-tang-half-dt-final-fields.csv": "66264ce4e68f3cc25db5822f6cbee502523bcf2b53152e7e9003c704a5a800e5",
+    "circular-alfven-refinement.csv": "866bb11a17cff4577a8476118ffb7817aead607434fd9d967b506c49085638e7",
+    "magnetic-loop-independent.csv": "0d90e95e31c3cbbba0a3943f864d872722f8e4bc75552b60b05589ad3c188249",
+    "postshock-orszag-tang.csv": "7e071c7ac3c88e1048632b34062ebae86d49069c3d06f97cd522b6b8115e55b0"
+  },
+  "source_sha256": {
+    "acceptance.json": "36d79fa7704da8a29061ec7d1ccb63761bfb562c9daf39d1328075065d66747f",
+    "hlld.py": "5615a1fbe08d236a8ac3ab7f48ef9c50f6a859a48af36797e03a5940b8384af5",
+    "inputs.json": "8a1b3bc9932f0cf9b620953d53294f2fc781f7999b7922a5d54f685e6044004e",
+    "references/ATHENA-LICENSE.txt": "31194975612df51ccb646ed5d43d3eeb5f7996e8a1725b409fb3e34f93059d32",
+    "references/analytic.py": "1fa660bf1d748bd5a18275ef2026494e9f765f58f8769a8de62b977f7165fc29",
+    "references/athena-field_loop.cpp": "2412733ab6930b454ffcd82d68f24bb5bd5ddc88ad83656c3edca452b0b7848e",
+    "references/athena-orszag_tang.cpp": "175447ac35633f1c6c69e9d6922d39c5bf0867051c4a7dc051cafbf201533b4c",
+    "references/athinput-loop-n128-cfl0p15.txt": "39ac7df73261ee9e624d784bb97b2b29b01222fab7f59ba34e734e2d0b8e88d4",
+    "references/athinput-loop-n128-cfl0p3.txt": "3f4b1233bd6ece2cb74067104964cde9f592219916085319f94f92b9d9b1463f",
+    "references/athinput-loop-n64-cfl0p3.txt": "9269aed5caa27c33e5bb611fd59b0bbaf6f2002bfa72865ea6ac67ee6fa8eee4",
+    "references/athinput-ot-n128-cfl0p3.txt": "4b4ae68b0a3635006ca2f398451fd5095b56eac4bc4f3b09b7567a07385a5d3b",
+    "references/athinput-ot-n256-cfl0p15.txt": "bacae46fc451c60eb759cf2e7d6eeb0bd775950cc1d51ba034c1c9e3f2e48788",
+    "references/athinput-ot-n256-cfl0p3.txt": "0d60f88f910dda7cdc57a8e4d2f63f988a5d3fbffb08d280c6d16c995f85dfd1",
+    "references/citations.json": "23d6dfb8485ea88cffff265bf3bda2847375db94f6a0d211d6d8814c0613a806",
+    "references/generate.py": "5d8b2981d9d6d3f51b50c81dd7fc5a3ca2f7f830152140a2cb2ecd5ef6fc29dd",
+    "references/history/attempt-01-failed-qualification.json": "3b95109d2d26280c1ab3cb215dd2960708a7218f3bb1a0887d7bde86f576c626",
+    "references/history/source-run-contract-r2.json": "6b525e503a9091adfb84116fca2d44c1a8cc420a101dfc4b1c77bb04d55392de",
+    "references/loop-n128-cfl0p15.npz": "e19cefc831c0f350528c4064d34c719db50735ab6176e9b18b8179b1b63af124",
+    "references/loop-n128-cfl0p3.npz": "112c12064c8f558c7b055ee0cb0732e2d44109fcf30c9d5d067813f15b1bfb7b",
+    "references/loop-n64-cfl0p3.npz": "d3a36f5e10664a1006a1ca42b2c610d0c0586fb1d7fe0c17a8a25bc1475d5b51",
+    "references/ot-n128-cfl0p3.npz": "7170f5287c02d577af033d786073b2150f33b121c5812bb5356a2c5f1d3ccf68",
+    "references/ot-n256-cfl0p15.npz": "6438dc45d4fa5d7542df2ba24379f00e1437f929e61539ca9385c1ce79f77c41",
+    "references/ot-n256-cfl0p3.npz": "44d621ee753cb234137b487385dbc123225b58f84ff37c222e3f282f5999cfb1",
+    "references/qualification-contract.json": "925e43be56b689e86a8757f36944c30235e160afa67733b94db58ea1db93ec5a",
+    "references/qualify.py": "f1eda04ee2beabaccfed9c7485a6c02584feb5019b7d0f2630a69231ce022a75",
+    "references/qualify_saved.py": "bfeae16aad1dc092f694e90e6e9dc5e59bb2ea92af81f7b076cf08e4cf39bfb4",
+    "references/reference-contract.json": "6b525e503a9091adfb84116fca2d44c1a8cc420a101dfc4b1c77bb04d55392de",
+    "references/reference-input-plan.json": "d03bdc949d38ed08bcb03f3cd4bb2940d351fd10afcf7e29c00920bb92310026",
+    "references/reference-qualification.json": "9a3b2f46fee6ae66b504b9e1ba1d9fa056ceaeab7290230198f5d345c9830645",
+    "references/source-review.json": "f3012016e3531882bf5966e8cd1380166ee5b4428a0b0cec4629b799dcd23451",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "run.py": "da117c1975ea8d8c4177df4668faa2f6e114d5ad324e85457c094a603ade21d9",
+    "solver.py": "56654eccb57ea88242eb02877fd9019065882c416f9cff49ea19fbc6321dbded",
+    "source-provenance.json": "b88a14f09e78660d0736f8c0b976210e5dade4f28679c9a3991b1da728632ffe",
+    "test_mhd.py": "4f6d275868822638029ab41a2d0b25b9349053089778c1a41524a4c32258085a",
+    "pre-run-contract.json": "295cffb4e7d6cf09d7412b3f5405d544c42ca487376b296e848ada55aabdaad8"
+  },
+  "duration_seconds": 43.24497474999953
+}

@@ -60,11 +60,11 @@ function formatCopy(value) {
 }
 
 test('orientation and sharing retain scientific counts and the already-verified execution registry', () => {
-  assert.equal(methods.length, 149);
+  assert.equal(methods.length, 150);
   assert.deepEqual(Object.fromEntries(['educational-example', 'reading-only', 'planned'].map(status => [status, methods.filter(method => method.status === status).length])),
     {'educational-example': 118, 'reading-only': 15, planned: 16});
-  assert.equal(json('catalog/atlas-equations.json').equations.length, 50);
-  assert.equal(json('numerical-methods-atlas/test-cases/index.json').problems.length, 92);
+  assert.equal(json('catalog/atlas-equations.json').equations.length, 56);
+  assert.equal(json('numerical-methods-atlas/test-cases/index.json').problems.length, 102);
   assert.equal(examples.examples.length, 22);
   const receipt = json(new URL(examples.verification_receipt).pathname.slice(1));
   assert.equal(receipt.registry_source_mode, 'public-registry'); assert.equal(receipt.passed, true);

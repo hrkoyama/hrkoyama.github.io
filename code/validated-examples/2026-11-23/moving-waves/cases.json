@@ -1,0 +1,153 @@
+[
+  {
+    "id": "ale-nonuniform-transport",
+    "title": {
+      "ja": "非一様移動格子で実際に運ぶALEスカラー",
+      "en": "ALE scalar transport on genuinely nonuniform moving cells"
+    },
+    "method_ids": [
+      "ale",
+      "upwind",
+      "heun"
+    ],
+    "domains": [
+      "pde",
+      "geometry"
+    ],
+    "summary": {
+      "ja": "質量と格子面位置を同じHeun段で更新し、一様GCLだけでなく非一様な解析波を運びます。",
+      "en": "Advance cell integrals and face positions with identical Heun stages, transporting a nonuniform analytic wave beyond a uniform GCL check."
+    },
+    "assumptions": {
+      "ja": "周期[0,1]、速度.7、q0=1+.2sin(2pi x)、面速度w=.2sin(2pi xi)cos(2pi t)、N40/80/160、T1。時間比較N40,T.25,32/64/128step。",
+      "en": "Periodic unit interval, speed.7,q0=1+.2sin(2pi x), grid speed .2sin(2pi xi)cos(2pi t),N40/80/160,T1. Separate N40,T.25 time series32/64/128steps."
+    },
+    "algorithm": {
+      "ja": "実セル質量の上流相対流束(a−w)qと実面位置を同じHeun predictor/correctorで進め、各段体積・面Courant数を記録。",
+      "en": "Upwind relative flux(a-w)q advances actual masses with identical predictor/corrector face geometry; record stage volumes and Courant numbers."
+    },
+    "validation": {
+      "ja": "解析的移動セル積分、全体/段の質量、GCLconstant、格子幾何誤差を分離。独立DOP853による同じFV ODEの時間参照を二公差で確認。",
+      "en": "Separate analytic moving-cell-integral error, global/stage mass, constant GCL and geometry error. Qualify an independent DOP853 integration of the same FV ODE with two tolerances."
+    },
+    "limits": {
+      "ja": "1D指定格子運動の第一段階です。図のx–tは2D物理計算ではなく、Euler Lagrange/remapやSaltzmanピストンは未実装の後続課題。",
+      "en": "First-stage1D prescribed mesh motion. The x–t image is not2D physics; Euler Lagrange/remap and Saltzman piston remain future work."
+    },
+    "references": [
+      {
+        "id": "huff1987-moving-grid",
+        "author": "Dennis L. Huff",
+        "year": 1987,
+        "title": "Numerical Simulations of Unsteady, Viscous, Transonic Flow Over Isolated and Cascaded Airfoils Using a Deforming Grid",
+        "url": "https://ntrs.nasa.gov/api/citations/19870015002/downloads/19870015002.pdf",
+        "review_level": "selected-primary-report-grid-treatment",
+        "review_scope": "NASA TM89890 grid-velocity and GCL discussion around equation11/printedp5 inspected. It attributes GCL to Thomas/Lombard. Original1979 paper not read; no airfoil algorithm or code reproduced. Our 1D scalar moving-volume/Heun derivation is independent."
+      }
+    ],
+    "citations": [
+      {
+        "id": "huff1987-moving-grid",
+        "author": "Dennis L. Huff",
+        "year": 1987,
+        "title": "Numerical Simulations of Unsteady, Viscous, Transonic Flow Over Isolated and Cascaded Airfoils Using a Deforming Grid",
+        "url": "https://ntrs.nasa.gov/api/citations/19870015002/downloads/19870015002.pdf",
+        "review_level": "selected-primary-report-grid-treatment",
+        "review_scope": "NASA TM89890 grid-velocity and GCL discussion around equation11/printedp5 inspected. It attributes GCL to Thomas/Lombard. Original1979 paper not read; no airfoil algorithm or code reproduced. Our 1D scalar moving-volume/Heun derivation is independent."
+      }
+    ],
+    "formulas": [
+      "\\dot m_i=-[(a-w)q]_{i+1/2}+[(a-w)q]_{i-1/2},\\quad V_i=x_{i+1/2}-x_{i-1/2}",
+      "x(\\xi,t)=\\xi+0.2\\sin(2\\pi\\xi)\\sin(2\\pi t)/(2\\pi)"
+    ],
+    "code_files": [
+      "run.py",
+      "transport.py",
+      "references/exact.py"
+    ],
+    "gallery_figure": "ale-nonuniform-transport-preview.png",
+    "additional_figures": [
+      {
+        "file": "ale-nonuniform-transport-preview.png",
+        "caption": {
+          "ja": "実際に保存した計算配列と固定入力の収束指標から描いた検証図。",
+          "en": "Validation preview from actual saved PDE arrays and fixed-input refinement measurements."
+        }
+      }
+    ]
+  },
+  {
+    "id": "cgrid-rotating-wave",
+    "title": {
+      "ja": "2D C-grid回転浅水波の実時間発展",
+      "en": "Actual2D C-grid rotating shallow-water time advance"
+    },
+    "method_ids": [
+      "centered-difference",
+      "rk4"
+    ],
+    "domains": [
+      "pde",
+      "geometry"
+    ],
+    "summary": {
+      "ja": "実際の2D staggered場を時間積分し、連続波と離散symbolの参照を分けて比較します。",
+      "en": "Time-advance actual2D staggered fields and distinguish continuous-wave references from semidiscrete symbols."
+    },
+    "assumptions": {
+      "ja": "線形f-plane、g=H=f=1、周期単位正方形、(k,l)=(1,2)、eta振幅.01、N16/32/64,T.5。別の固定N16時間系列、zero-modeと離散geostrophic診断。",
+      "en": "Linear f-plane,g=H=f=1, periodic unit square, mode(1,2),height amplitude.01,N16/32/64,T.5. Separate N16 time refinement, zero-mode and discrete geostrophic probes."
+    },
+    "algorithm": {
+      "ja": "セルeta・法線face u/vの差分と4点Coriolis補間を2Dで評価しRK4更新。3×3行列指数は参照だけで、PDE場の更新には使いません。",
+      "en": "Actual2D cell-height/face-velocity differences and four-point Coriolis interpolation use RK4. The3×3 matrix exponential is reference-only, never the PDE update."
+    },
+    "validation": {
+      "ja": "連続PDE空間誤差と離散symbol時間誤差、mass/energy、stencil-symbol一致、zero-mode慣性振動と離散定常釣合いを保存。",
+      "en": "Retain continuous-PDE spatial and discrete-symbol temporal errors, mass/energy, stencil-symbol identity, zero-mode inertia and discrete steady balance."
+    },
+    "limits": {
+      "ja": "線形・平面・周期squareの限定例。非線形浅水、PV・球面格子・全球dynamical coreやWilliamsonは未実装の後続課題。",
+      "en": "Linear planar periodic square only. Nonlinear SWE,PV,spherical dynamics and Williamson tests remain future work."
+    },
+    "references": [
+      {
+        "id": "korn-danilov-cgrid",
+        "author": "P. Korn and S. Danilov",
+        "title": "Elementary dispersion analysis of some mimetic discretizations on triangular C-grids",
+        "url": "https://epic.awi.de/id/eprint/42760/1/c-grid_jcp_v5-1.pdf",
+        "review_level": "selected-primary-author-manuscript",
+        "review_scope": "Governing linear equations, energy adjoints and AppendixB quadrilateral standard-C symbols/eq19–21 inspected. Use standard square C-grid only, not the paper triangular mimetic schemes. No global Williamson test or original code run."
+      }
+    ],
+    "citations": [
+      {
+        "id": "korn-danilov-cgrid",
+        "author": "P. Korn and S. Danilov",
+        "title": "Elementary dispersion analysis of some mimetic discretizations on triangular C-grids",
+        "url": "https://epic.awi.de/id/eprint/42760/1/c-grid_jcp_v5-1.pdf",
+        "review_level": "selected-primary-author-manuscript",
+        "review_scope": "Governing linear equations, energy adjoints and AppendixB quadrilateral standard-C symbols/eq19–21 inspected. Use standard square C-grid only, not the paper triangular mimetic schemes. No global Williamson test or original code run."
+      }
+    ],
+    "formulas": [
+      "\\eta_t+u_x+v_y=0,\\quad u_t=v-\\eta_x,\\quad v_t=-u-\\eta_y",
+      "\\tilde k=2\\sin(kh/2)/h,\\quad C=\\cos(kh/2)\\cos(lh/2),\\quad U_h(t)=e^{tL_h}U_h(0)"
+    ],
+    "code_files": [
+      "run.py",
+      "transport.py",
+      "references/exact.py"
+    ],
+    "gallery_figure": "cgrid-rotating-wave-preview.png",
+    "additional_figures": [
+      {
+        "file": "cgrid-rotating-wave-preview.png",
+        "caption": {
+          "ja": "実際に保存した計算配列と固定入力の収束指標から描いた検証図。",
+          "en": "Validation preview from actual saved PDE arrays and fixed-input refinement measurements."
+        }
+      }
+    ]
+  }
+]

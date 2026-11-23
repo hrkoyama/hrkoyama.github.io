@@ -1,0 +1,5 @@
+id,n,steps,time,family,minimum_density,minimum_pressure,maximum_fluid_integral_defect,maximum_native_divergence,maximum_common_cell_divergence,reference_common_cell_divergence,maximum_courant_sum,fallback_faces,degenerate_faces,reconstruction_scalings,minimum_theta,state_clip_count,retries
+circular-alfven-refinement-n32,32,512,1.0,refinement,0.9995957053682155,0.10000469017628323,6.661338147750939e-16,0.0,0.0,0.0,0.06293377129533279,0,0,0,1.0,0,0
+circular-alfven-refinement-n64,64,512,1.0,refinement,0.9998527014820967,0.09998864682978356,1.3322676295501878e-15,0.0,0.0,0.0,0.12579727613900005,0,0,0,1.0,0,0
+circular-alfven-refinement-n128,128,512,1.0,refinement,0.9999393276470712,0.0999906427022946,2.886579864025407e-15,0.0,0.0,0.0,0.25153650810517625,0,0,0,1.0,0,0
+circular-alfven-refinement-half-dt,128,1024,1.0,time-probe,0.9999436353124888,0.09999285220938367,2.886579864025407e-15,0.0,0.0,0.0,0.12576613109264426,0,0,0,1.0,0,0

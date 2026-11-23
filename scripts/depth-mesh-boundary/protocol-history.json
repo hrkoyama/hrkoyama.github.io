@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "attempts": [
+    {
+      "attempt": "01",
+      "executed": true,
+      "contract_sha256": "c25ad479668beb4b168fb61112c92e03ae482456db393e1845a3f329e2791097",
+      "pytest": {
+        "passed": 20,
+        "failed": 0,
+        "skipped": 0
+      },
+      "main": {
+        "passed": false,
+        "completed_case": "lshape-fem",
+        "completed_records": 12,
+        "completed_gates_passed": 82,
+        "failure": "RuntimeWarning: divide by zero encountered in matmul at annulus work=u@F; annular u/F not retained in that failed process"
+      },
+      "archive": "attempts/01",
+      "revision": "Backend/diagnostic only: explicit real sum(u*F), finite solution/load assertion, and always save annular u/F before diagnostics. Sparse solve, all inputs/20tests/174criteria unchanged. No warnings suppression. Root approved exact fix; original failure retained."
+    }
+  ],
+  "notes": [
+    "Initial b8d32 pre-run fullsource was unexecuted; R2 c25ad was the first executed packet.",
+    "No post-output threshold relaxation or calibration; R3 repeats the fixed protocol after a backend warning.",
+    "Independent root instability diagnostic reports finite BLAS outputs with spurious FP warnings; annular own comparison will use retained new-run arrays without another PDE solve."
+  ]
+}

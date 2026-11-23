@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "before_first_scientific_execution": true,
+  "before_first_pytest_execution": true,
+  "checks": {
+    "conserved_energy_includes_rest_mass": true,
+    "full_RMHD_momentum_stress_and_induction": true,
+    "same_operator_for_hydro_B_zero": true,
+    "independent_tensor_reference_does_not_import_solver": true,
+    "exact_conserved_cell_means_not_primitive_point_values": true,
+    "no_floor_clipping_or_PDE_retry": true,
+    "causal_HLL_speed_bound_is_one": true,
+    "boundary_flux_uses_actual_SSP33_weights": [
+      0.16666666666666666,
+      0.16666666666666666,
+      0.6666666666666666
+    ],
+    "three_operator_records_plus_completed_state": true,
+    "zero_field_pressure_root_and_flux_independent": true,
+    "reference_source_reading_scope_explicit": true,
+    "two_cases_and_six_light_fixed_runs": true
+  },
+  "mathematical_scope": "Restricted symmetric two-shock solution and nonlinear circularly polarized exact wave; no generic Riemann,extreme-W,GR or multidimensional-divergence claim. SSP convex-stage formulas are implemented, but no unconditional positivity theorem is claimed for primitive reconstruction."
+}

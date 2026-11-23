@@ -1,0 +1,200 @@
+{
+  "passed": true,
+  "scope": "Saved arrays only: no PDE execution. Diagnostic warning capture is isolated here, never production suppression.",
+  "lshape_files": 12,
+  "lshape": [
+    {
+      "file": "lshape-fem-graded-n16.npz",
+      "all_arrays_bitwise_equal": true,
+      "arrays": {
+        "points": true,
+        "cells": true,
+        "u": true,
+        "reference": true,
+        "boundary": true
+      }
+    },
+    {
+      "file": "lshape-fem-graded-n32.npz",
+      "all_arrays_bitwise_equal": true,
+      "arrays": {
+        "points": true,
+        "cells": true,
+        "u": true,
+        "reference": true,
+        "boundary": true
+      }
+    },
+    {
+      "file": "lshape-fem-graded-n8.npz",
+      "all_arrays_bitwise_equal": true,
+      "arrays": {
+        "points": true,
+        "cells": true,
+        "u": true,
+        "reference": true,
+        "boundary": true
+      }
+    },
+    {
+      "file": "lshape-fem-square-n16.npz",
+      "all_arrays_bitwise_equal": true,
+      "arrays": {
+        "points": true,
+        "cells": true,
+        "u": true,
+        "reference": true,
+        "boundary": true
+      }
+    },
+    {
+      "file": "lshape-fem-square-n32.npz",
+      "all_arrays_bitwise_equal": true,
+      "arrays": {
+        "points": true,
+        "cells": true,
+        "u": true,
+        "reference": true,
+        "boundary": true
+      }
+    },
+    {
+      "file": "lshape-fem-square-n8.npz",
+      "all_arrays_bitwise_equal": true,
+      "arrays": {
+        "points": true,
+        "cells": true,
+        "u": true,
+        "reference": true,
+        "boundary": true
+      }
+    },
+    {
+      "file": "lshape-fem-uniform-n16.npz",
+      "all_arrays_bitwise_equal": true,
+      "arrays": {
+        "points": true,
+        "cells": true,
+        "u": true,
+        "reference": true,
+        "boundary": true
+      }
+    },
+    {
+      "file": "lshape-fem-uniform-n32.npz",
+      "all_arrays_bitwise_equal": true,
+      "arrays": {
+        "points": true,
+        "cells": true,
+        "u": true,
+        "reference": true,
+        "boundary": true
+      }
+    },
+    {
+      "file": "lshape-fem-uniform-n8.npz",
+      "all_arrays_bitwise_equal": true,
+      "arrays": {
+        "points": true,
+        "cells": true,
+        "u": true,
+        "reference": true,
+        "boundary": true
+      }
+    },
+    {
+      "file": "lshape-fem-warped-n16.npz",
+      "all_arrays_bitwise_equal": true,
+      "arrays": {
+        "points": true,
+        "cells": true,
+        "u": true,
+        "reference": true,
+        "boundary": true
+      }
+    },
+    {
+      "file": "lshape-fem-warped-n32.npz",
+      "all_arrays_bitwise_equal": true,
+      "arrays": {
+        "points": true,
+        "cells": true,
+        "u": true,
+        "reference": true,
+        "boundary": true
+      }
+    },
+    {
+      "file": "lshape-fem-warped-n8.npz",
+      "all_arrays_bitwise_equal": true,
+      "arrays": {
+        "points": true,
+        "cells": true,
+        "u": true,
+        "reference": true,
+        "boundary": true
+      }
+    }
+  ],
+  "annulus_work": [
+    {
+      "file": "annular-viscous-mms-annulus-n16-diagnostic-candidate.npz",
+      "length": 1088,
+      "all_inputs_finite": true,
+      "explicit_sum": 2458.875786855543,
+      "einsum": 2458.875786855542,
+      "scalar_fsum": 2458.875786855543,
+      "dense_blas_value": 2458.875786855543,
+      "dense_blas_finite": true,
+      "strict_dense_blas": {
+        "passed": false,
+        "warning": "divide by zero encountered in matmul"
+      },
+      "diagnostic_only_captured_warnings": [
+        "divide by zero encountered in matmul",
+        "overflow encountered in matmul",
+        "invalid value encountered in matmul"
+      ],
+      "relative_sum_vs_scalar": 0.0,
+      "relative_sum_vs_blas": 0.0
+    },
+    {
+      "file": "annular-viscous-mms-annulus-n32-diagnostic-candidate.npz",
+      "length": 4224,
+      "all_inputs_finite": true,
+      "explicit_sum": 2479.462960212619,
+      "einsum": 2479.462960212623,
+      "scalar_fsum": 2479.4629602126183,
+      "dense_blas_value": 2479.462960212619,
+      "dense_blas_finite": true,
+      "strict_dense_blas": {
+        "passed": false,
+        "warning": "divide by zero encountered in matmul"
+      },
+      "diagnostic_only_captured_warnings": [
+        "divide by zero encountered in matmul",
+        "overflow encountered in matmul",
+        "invalid value encountered in matmul"
+      ],
+      "relative_sum_vs_scalar": 1.8340558346048804e-16,
+      "relative_sum_vs_blas": 0.0
+    },
+    {
+      "file": "annular-viscous-mms-annulus-n8-diagnostic-candidate.npz",
+      "length": 288,
+      "all_inputs_finite": true,
+      "explicit_sum": 2377.280926764834,
+      "einsum": 2377.2809267648345,
+      "scalar_fsum": 2377.2809267648345,
+      "dense_blas_value": 2377.2809267648345,
+      "dense_blas_finite": true,
+      "strict_dense_blas": {
+        "passed": true,
+        "value": 2377.2809267648345
+      },
+      "diagnostic_only_captured_warnings": [],
+      "relative_sum_vs_scalar": 1.9128885684760666e-16,
+      "relative_sum_vs_blas": 1.912888568476067e-16
+    }
+  ]
+}

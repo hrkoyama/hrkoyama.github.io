@@ -1127,6 +1127,908 @@
           "note": "Author-hosted pp.302–305, equations(1)–(6),(9),(12),(15): signed-distance geometry, enclosed-mass issue and volume-fraction conservation. Sign is reversed here to make phi negative inside. No CLSVOF or two-phase fluid experiment executed."
         }
       ]
+    },
+    {
+      "id": "kh-initial-growth",
+      "model": "forced-vorticity",
+      "kind": "numerical-reference",
+      "title": "KH initial growth: independent linear Fourier-Galerkin reference",
+      "assumptions": "Periodic[0,2pi]², layer width.25, nu=kappa=.005, epsilon1e-5 and32²/64²/128² grids. Explicit forcing maintains the base. U=tanh(sin y/delta),T1. The nonlinear primary evolves actual2D point samples. The reference solves the continuous linearized IVP at kx1 with truncationsK24/40/56 and independently Fourier-differentiated base profiles; it does not substitute a sharp-interface dispersion formula.",
+      "formula": "U=tanh(sin(y)/delta); omega_t=-U*omega_x-Uyy*psi_x+nu*Delta(omega); -Delta(psi)=omega; qhat(t)=exp(t*L_K)qhat(0).",
+      "dimension": 2,
+      "bounds": [
+        [
+          0,
+          6.283185307179586
+        ],
+        [
+          0,
+          6.283185307179586
+        ]
+      ],
+      "components": [
+        "perturbation u",
+        "perturbation v",
+        "omega"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "width": 0.25,
+        "viscosity": 0.005,
+        "epsilon": 1e-05,
+        "time": 1,
+        "grids": [
+          32,
+          64,
+          128
+        ],
+        "reference_truncations": [
+          24,
+          40,
+          56
+        ],
+        "representation": "point samples",
+        "base_maintaining_forcing": true
+      },
+      "sources": [
+        "https://arxiv.org/abs/1111.1764"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/kh-initial-growth/?lang=ja#kh-initial-growth-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/kh-initial-growth/?lang=en#kh-initial-growth-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-instability-growth/#kh-initial-growth",
+        "en": "/numerical-methods-atlas/en/read/validation-instability-growth/#kh-initial-growth"
+      },
+      "reference_scope": "Independent spatial representation of a linearized reference, not a second nonlinear PDE engine. Compare fields and finite-window growth at five times; amplitude halving probes linearization validity. This is distinct from the cited compressible inputs and late nonlinear roll-up.",
+      "citations": [
+        {
+          "role": "selected-primary-reference-context",
+          "title": "Colin P. McNally, Wladimir Lyra and Jean-Claude Passy (2012), A Well-Posed Kelvin-Helmholtz Instability Test and Comparison",
+          "url": "https://arxiv.org/abs/1111.1764",
+          "note": "Read original sections1–3 on matching smooth finite-domain models and growth diagnostics; arXiv journal metadata checked. Our forced incompressible model is distinct."
+        }
+      ]
+    },
+    {
+      "id": "rt-initial-growth",
+      "model": "boussinesq-buoyancy",
+      "kind": "numerical-reference",
+      "title": "RT initial growth: linear Boussinesq double-layer IVP reference",
+      "assumptions": "Periodic[0,2pi]², layer width.25, nu=kappa=.005, epsilon1e-5 and32²/64²/128² grids. Explicit forcing maintains the base. g1,b0=.02tanh(sin y/delta),rho/rho0=1-b/g,T2. Density enters buoyancy only; this is not variable-density Euler. The reference uses the same smooth base, kx1 continuous linearization and Fourier-Galerkin truncationsK24/40/56. Inertial density is constant; buoyancy perturbation theta supplies vertical forcing, with one unstable interface in the periodic double layer.",
+      "formula": "b0=.02*tanh(sin(y)/delta); omega_t=nu*Delta(omega)+theta_x; theta_t=kappa*Delta(theta)+psi_x*b0prime; -Delta(psi)=omega.",
+      "dimension": 2,
+      "bounds": [
+        [
+          0,
+          6.283185307179586
+        ],
+        [
+          0,
+          6.283185307179586
+        ]
+      ],
+      "components": [
+        "perturbation u",
+        "perturbation v",
+        "theta"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "width": 0.25,
+        "viscosity": 0.005,
+        "diffusivity": 0.005,
+        "gravity": 1,
+        "base_buoyancy": 0.02,
+        "epsilon": 1e-05,
+        "time": 2,
+        "grids": [
+          32,
+          64,
+          128
+        ],
+        "reference_truncations": [
+          24,
+          40,
+          56
+        ],
+        "representation": "point samples",
+        "base_maintaining_forcing": true
+      },
+      "sources": [
+        "https://arxiv.org/abs/nlin/0510067"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/rt-initial-growth/?lang=ja#rt-initial-growth-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/rt-initial-growth/?lang=en#rt-initial-growth-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-instability-growth/#rt-initial-growth",
+        "en": "/numerical-methods-atlas/en/read/validation-instability-growth/#rt-initial-growth"
+      },
+      "reference_scope": "Independent small-amplitude linearized IVP reference for a2D point-sampled nonlinear primary. Match finite periodic domain, viscosity, diffusion and maintained base; no sharp-interface growth-rate or late-turbulence generalization.",
+      "citations": [
+        {
+          "role": "selected-primary-reference-context",
+          "title": "Antonio Celani, Andrea Mazzino and Lara Vozella (2006), Rayleigh–Taylor turbulence in two dimensions",
+          "url": "https://arxiv.org/abs/nlin/0510067",
+          "note": "Read original pp1–2 governing equations1–2 and doubly periodic Boussinesq setup. No original turbulent-run reproduction."
+        }
+      ]
+    },
+    {
+      "id": "circular-alfven-refinement",
+      "model": "mhd",
+      "kind": "analytic",
+      "title": "Circular Alfven wave: analytic full-state conserved cell means",
+      "assumptions": "gamma5/3, periodic[0,1], rho1,p.1,Bx1,amplitude.1, speed1,T1,32/64/128 cells. Initialize/reference conserved analytic cell means; pressure recovered from means differs from constant pointwise pressure. Apply sinc(h) to transverse magnetic fields and momenta, retaining E=.66, and qualify against independent Gauss16 quadrature. The x-t picture shows one spatial dimension and saved times, not oblique2D propagation.",
+      "formula": "sinc(h)=sin(pi*h)/(pi*h); theta=2*pi*(x-t); (Bybar,Bzbar)=.1*sinc(h)*(cos(theta),sin(theta)); (mybar,mzbar)=-(Bybar,Bzbar); rhobar=Bxbar=1; Ebar=.66.",
+      "dimension": 1,
+      "bounds": [
+        [
+          0,
+          1
+        ]
+      ],
+      "components": [
+        "rho",
+        "mx",
+        "my",
+        "mz",
+        "E",
+        "Bx",
+        "By",
+        "Bz"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "gamma": 1.6666666666666667,
+        "amplitude": 0.1,
+        "time": 1,
+        "grids": [
+          32,
+          64,
+          128
+        ],
+        "steps": 512,
+        "finest_time_probe_steps": 1024,
+        "representation": "analytic conserved cell means",
+        "spatial_dimension": 1
+      },
+      "sources": [
+        "https://github.com/PrincetonUniversity/athena/tree/1395e2f543f4368d448cb1a2cf92ba1f910e3416",
+        "https://arxiv.org/abs/astro-ph/0501557",
+        "https://doi.org/10.1016/j.jcp.2005.02.017"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=ja#circular-alfven-refinement-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=en#circular-alfven-refinement-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-mhd-transport/#circular-alfven-refinement",
+        "en": "/numerical-methods-atlas/en/read/validation-mhd-transport/#circular-alfven-refinement"
+      },
+      "reference_scope": "Analytic conserved means qualified by independent point-function quadrature. Pressure recovered from averaged U differs from constant pointwise p.1. The selected aligned wave has last observed order1.62943; no exact second-order or general-MHD order claim.",
+      "citations": [
+        {
+          "role": "Actually inspected independent engine and fixed initial conditions; finite-grid numerical reference only",
+          "title": "Athena++ collaboration (2026), Athena++ official field_loop and orszag_tang problem generators, pinned source",
+          "url": "https://github.com/PrincetonUniversity/athena/tree/1395e2f543f4368d448cb1a2cf92ba1f910e3416",
+          "note": "Official archive SHA verified; selected src/pgen/field_loop.cpp and orszag_tang.cpp, PLM/RK2/output configuration and actual conserved tab headers inspected; not a full Athena code audit"
+        },
+        {
+          "role": "Primary CT-contact, magnetic-loop and circular-polarization background; selected sections only",
+          "title": "Thomas A. Gardiner and James M. Stone (2005), An unsplit Godunov method for ideal MHD via constrained transport",
+          "url": "https://arxiv.org/abs/astro-ph/0501557",
+          "note": "Author arXiv PDF selected section2.2 equations13–20,3.3.1–3.3.2 and5.1–5.2 inspected; not the full paper or original experiment replication"
+        },
+        {
+          "role": "Original HLLD attribution; implementation inherited from previously validated Atlas source",
+          "title": "Takahiro Miyoshi and Kanya Kusano (2005), A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics",
+          "url": "https://doi.org/10.1016/j.jcp.2005.02.017",
+          "note": "Bibliographic metadata checked; publisher full text returned403. This addition did not newly audit original equations or experiments"
+        }
+      ]
+    },
+    {
+      "id": "magnetic-loop-independent",
+      "model": "mhd",
+      "kind": "numerical-reference",
+      "title": "Magnetic loop: pinned independent Athena++ final-field reference",
+      "assumptions": "Periodic[-1,1]x[-.5,.5],rho=p1,Az=.001max(.3-r,0),T1,(Nx,Ny)=(16,8),(32,16),(64,32). Use unchanged official-generator v=(2,1,2), explicitly distinct from old vz0 inputs. Execute the unchanged official generator at pinned commit1395e2f…; qualify Ny64/128 and finest-grid half-CFL sensitivity. Compare final conserved fields only after conservative restriction.",
+      "formula": "Az=.001*max(.3-sqrt(x*x+y*y),0); rho=p=1; v=(2,1,2); T=1; Uref_coarse=conservative_block_average(Uref_fine).",
+      "dimension": 2,
+      "bounds": [
+        [
+          -1,
+          1
+        ],
+        [
+          -0.5,
+          0.5
+        ]
+      ],
+      "components": [
+        "rho",
+        "mx",
+        "my",
+        "mz",
+        "E",
+        "Bx",
+        "By",
+        "Bz"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "gamma": 1.6666666666666667,
+        "velocity": [
+          2,
+          1,
+          2
+        ],
+        "time": 1,
+        "primary_ny": [
+          8,
+          16,
+          32
+        ],
+        "reference_ny": [
+          64,
+          128
+        ],
+        "reference_cfl": [
+          0.3,
+          0.15
+        ],
+        "nx_factor": 2,
+        "reference_commit": "1395e2f543f4368d448cb1a2cf92ba1f910e3416",
+        "reference_comparison_times": [
+          1
+        ],
+        "reference_requalification_pde_rerun": false
+      },
+      "sources": [
+        "https://github.com/PrincetonUniversity/athena/tree/1395e2f543f4368d448cb1a2cf92ba1f910e3416",
+        "https://arxiv.org/abs/astro-ph/0501557",
+        "https://doi.org/10.1016/j.jcp.2005.02.017"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=ja#magnetic-loop-independent-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=en#magnetic-loop-independent-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-mhd-transport/#magnetic-loop-independent",
+        "en": "/numerical-methods-atlas/en/read/validation-mhd-transport/#magnetic-loop-independent"
+      },
+      "reference_scope": "Actually executed independent HLLD/PLM/RK2/native-CT finite-grid reference. Reference increment.120074 is47.44% of primary error.253088, not a precision exact-solution bound. Athena intermediate times are not aligned and native-face divergence was not exported; only common-cell divergence uses the same operator.",
+      "citations": [
+        {
+          "role": "Actually inspected independent engine and fixed initial conditions; finite-grid numerical reference only",
+          "title": "Athena++ collaboration (2026), Athena++ official field_loop and orszag_tang problem generators, pinned source",
+          "url": "https://github.com/PrincetonUniversity/athena/tree/1395e2f543f4368d448cb1a2cf92ba1f910e3416",
+          "note": "Official archive SHA verified; selected src/pgen/field_loop.cpp and orszag_tang.cpp, PLM/RK2/output configuration and actual conserved tab headers inspected; not a full Athena code audit"
+        },
+        {
+          "role": "Primary CT-contact, magnetic-loop and circular-polarization background; selected sections only",
+          "title": "Thomas A. Gardiner and James M. Stone (2005), An unsplit Godunov method for ideal MHD via constrained transport",
+          "url": "https://arxiv.org/abs/astro-ph/0501557",
+          "note": "Author arXiv PDF selected section2.2 equations13–20,3.3.1–3.3.2 and5.1–5.2 inspected; not the full paper or original experiment replication"
+        },
+        {
+          "role": "Original HLLD attribution; implementation inherited from previously validated Atlas source",
+          "title": "Takahiro Miyoshi and Kanya Kusano (2005), A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics",
+          "url": "https://doi.org/10.1016/j.jcp.2005.02.017",
+          "note": "Bibliographic metadata checked; publisher full text returned403. This addition did not newly audit original equations or experiments"
+        }
+      ]
+    },
+    {
+      "id": "postshock-orszag-tang",
+      "model": "mhd",
+      "kind": "numerical-reference",
+      "title": "Late Orszag-Tang: independent finite-grid density/pressure reference",
+      "assumptions": "gamma5/3,periodic[-.5,.5]²,rho25/(36pi),p5/(12pi),vx=sin2piy,vy=-sin2pix,Az=(cos4pix-2cos2piy)/(4pi sqrt4pi),16/32/64² cells. This does not reproduce the original incompressible viscous/resistive model. Run official Athena++ at128²/256² and finest-grid half CFL to T.2. Conservatively restrict final conserved variables before computing pressure; pressure is not averaged separately.",
+      "formula": "rho0=25/(36*pi); p0=5/(12*pi); v=(sin(2*pi*y),-sin(2*pi*x),0); Az=(cos(4*pi*x)-2*cos(2*pi*y))/(4*pi*sqrt(4*pi)); T=.2.",
+      "dimension": 2,
+      "bounds": [
+        [
+          -0.5,
+          0.5
+        ],
+        [
+          -0.5,
+          0.5
+        ]
+      ],
+      "components": [
+        "rho",
+        "mx",
+        "my",
+        "mz",
+        "E",
+        "Bx",
+        "By",
+        "Bz"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "gamma": 1.6666666666666667,
+        "time": 0.2,
+        "primary_grids": [
+          16,
+          32,
+          64
+        ],
+        "reference_grids": [
+          128,
+          256
+        ],
+        "reference_cfl": [
+          0.3,
+          0.15
+        ],
+        "reference_commit": "1395e2f543f4368d448cb1a2cf92ba1f910e3416",
+        "reference_comparison_times": [
+          0.2
+        ]
+      },
+      "sources": [
+        "https://github.com/PrincetonUniversity/athena/tree/1395e2f543f4368d448cb1a2cf92ba1f910e3416",
+        "https://arxiv.org/abs/astro-ph/0501557",
+        "https://doi.org/10.1016/j.jcp.2005.02.017",
+        "https://doi.org/10.1017/S002211207900210X"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=ja#postshock-orszag-tang-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=en#postshock-orszag-tang-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-mhd-transport/#postshock-orszag-tang",
+        "en": "/numerical-methods-atlas/en/read/validation-mhd-transport/#postshock-orszag-tang"
+      },
+      "reference_scope": "Executed independent MHD-engine finite-grid reference, distinct from the1979 incompressible viscous/resistive model and an exact solution. Reference increments are30.81%/29.83% of primary density/pressure error. Contrast7.14315 diagnoses late compression, not mathematical shock formation. Reference native-face divergence was not measured.",
+      "citations": [
+        {
+          "role": "Actually inspected independent engine and fixed initial conditions; finite-grid numerical reference only",
+          "title": "Athena++ collaboration (2026), Athena++ official field_loop and orszag_tang problem generators, pinned source",
+          "url": "https://github.com/PrincetonUniversity/athena/tree/1395e2f543f4368d448cb1a2cf92ba1f910e3416",
+          "note": "Official archive SHA verified; selected src/pgen/field_loop.cpp and orszag_tang.cpp, PLM/RK2/output configuration and actual conserved tab headers inspected; not a full Athena code audit"
+        },
+        {
+          "role": "Primary CT-contact, magnetic-loop and circular-polarization background; selected sections only",
+          "title": "Thomas A. Gardiner and James M. Stone (2005), An unsplit Godunov method for ideal MHD via constrained transport",
+          "url": "https://arxiv.org/abs/astro-ph/0501557",
+          "note": "Author arXiv PDF selected section2.2 equations13–20,3.3.1–3.3.2 and5.1–5.2 inspected; not the full paper or original experiment replication"
+        },
+        {
+          "role": "Original HLLD attribution; implementation inherited from previously validated Atlas source",
+          "title": "Takahiro Miyoshi and Kanya Kusano (2005), A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics",
+          "url": "https://doi.org/10.1016/j.jcp.2005.02.017",
+          "note": "Bibliographic metadata checked; publisher full text returned403. This addition did not newly audit original equations or experiments"
+        },
+        {
+          "role": "Historical attribution, not a reference table for this compressible ideal-MHD calculation",
+          "title": "Steven A. Orszag and Ching-Mao Tang (1979), Small-scale structure of two-dimensional magnetohydrodynamic turbulence",
+          "url": "https://doi.org/10.1017/S002211207900210X",
+          "note": "Original publisher abstract/bibliography inspected only; original incompressible viscous/resistive setup differs from the official compressible ideal-MHD generator used here"
+        }
+      ]
+    },
+    {
+      "id": "ale-nonuniform-transport",
+      "model": "ale-scalar-transport",
+      "kind": "analytic",
+      "title": "ALE: analytic moving-cell integrals and separate time reference",
+      "assumptions": "Periodic unit interval, speed.7,q0=1+.2sin(2pi x), grid speed .2sin(2pi xi)cos(2pi t),N40/80/160,T1. Separate N40,T.25 time series32/64/128steps. Integrate q(x,t)=1+.2sin[2pi(x-.7t)] between the actual saved primary faces. Separately record geometry error against analytic face positions. Time checks use independent DOP853 at two tolerances for the same FV ODE.",
+      "formula": "x(xi,t)=xi+.2*sin(2*pi*xi)*sin(2*pi*t)/(2*pi); m_i=integral_[x_i,x_(i+1)](1+.2*sin(2*pi*(x-.7*t)))dx.",
+      "dimension": 1,
+      "bounds": [
+        [
+          0,
+          1
+        ]
+      ],
+      "components": [
+        "q",
+        "cell mass",
+        "moving face position"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "speed": 0.7,
+        "mesh_motion_amplitude": 0.2,
+        "time": 1,
+        "grids": [
+          40,
+          80,
+          160
+        ],
+        "time_probe_grid": 40,
+        "time_probe_final_time": 0.25,
+        "time_probe_steps": [
+          32,
+          64,
+          128
+        ],
+        "spatial_dimension": 1
+      },
+      "sources": [
+        "https://ntrs.nasa.gov/api/citations/19870015002/downloads/19870015002.pdf"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/ale-nonuniform-transport/?lang=ja#ale-nonuniform-transport-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/ale-nonuniform-transport/?lang=en#ale-nonuniform-transport-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-moving-waves/#ale-nonuniform-transport",
+        "en": "/numerical-methods-atlas/en/read/validation-moving-waves/#ale-nonuniform-transport"
+      },
+      "reference_scope": "Distinguish analytic continuous moving-cell integrals from a time-only independent reference of the same semidiscrete system. Actual nonuniform moving volumes evolve, but this remains a1D scalar problem; its x-t image does not validate2D fluid dynamics or Euler/remap.",
+      "citations": [
+        {
+          "role": "selected-primary-reference-context",
+          "title": "Dennis L. Huff (1987), Numerical Simulations of Unsteady, Viscous, Transonic Flow Over Isolated and Cascaded Airfoils Using a Deforming Grid",
+          "url": "https://ntrs.nasa.gov/api/citations/19870015002/downloads/19870015002.pdf",
+          "note": "NASA TM89890 grid-velocity and GCL discussion around equation11/printedp5 inspected. It attributes GCL to Thomas/Lombard. Original1979 paper not read; no airfoil algorithm or code reproduced. Our 1D scalar moving-volume/Heun derivation is independent."
+        }
+      ]
+    },
+    {
+      "id": "cgrid-rotating-wave",
+      "model": "linear-rotating-shallow-water",
+      "kind": "analytic",
+      "title": "C-grid: continuous Fourier solution and discrete-symbol exponential",
+      "assumptions": "Linear f-plane,g=H=f=1, periodic unit square, mode(1,2),height amplitude.01,N16/32/64,T.5. Separate N16 time refinement, zero-mode and discrete geostrophic probes. Evolve eta0=.01cos[2pi(x+2y)],u0=v0=0 with separate continuous3x3 Fourier-operator and discrete3x3-symbol exponentials. The primary actually advances2D staggered fields.",
+      "formula": "Q(t)=exp(t*L)Q0; ktilde=2*sin(k*h/2)/h; ltilde=2*sin(l*h/2)/h; C=cos(k*h/2)*cos(l*h/2); g=H=f=1.",
+      "dimension": 2,
+      "bounds": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "components": [
+        "eta",
+        "staggered u",
+        "staggered v"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "gravity": 1,
+        "mean_depth": 1,
+        "coriolis": 1,
+        "integer_mode": [
+          1,
+          2
+        ],
+        "height_amplitude": 0.01,
+        "time": 0.5,
+        "grids": [
+          16,
+          32,
+          64
+        ],
+        "time_probe_grid": 16,
+        "time_probe_steps": [
+          16,
+          32,
+          64
+        ]
+      },
+      "sources": [
+        "https://epic.awi.de/id/eprint/42760/1/c-grid_jcp_v5-1.pdf"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/cgrid-rotating-wave/?lang=ja#cgrid-rotating-wave-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/cgrid-rotating-wave/?lang=en#cgrid-rotating-wave-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-moving-waves/#cgrid-rotating-wave",
+        "en": "/numerical-methods-atlas/en/read/validation-moving-waves/#cgrid-rotating-wave"
+      },
+      "reference_scope": "Analytic/linear-algebra references separate continuous-PDE spatial error from discrete-operator time error. Exponentiating the same discrete matrix is not a second spatial PDE engine. Zero-mode inertia and discrete geostrophic balance are separate diagnostics; no nonlinear, spherical or global Williamson claim.",
+      "citations": [
+        {
+          "role": "selected-primary-reference-context",
+          "title": "P. Korn and S. Danilov, Elementary dispersion analysis of some mimetic discretizations on triangular C-grids",
+          "url": "https://epic.awi.de/id/eprint/42760/1/c-grid_jcp_v5-1.pdf",
+          "note": "Governing linear equations, energy adjoints and AppendixB quadrilateral standard-C symbols/eq19–21 inspected. Use standard square C-grid only, not the paper triangular mimetic schemes. No global Williamson test or original code run."
+        }
+      ]
+    },
+    {
+      "id": "lshape-fem",
+      "model": "poisson-laplace",
+      "kind": "analytic",
+      "title": "L-corner singularity: harmonic field and separate smooth MMS",
+      "assumptions": "L-shaped[-1,1]² minus quadrantIV, theta0..3pi/2, analytic Dirichlet harmonic corner field. N8/16/32, fixed map x→x max(|x|,|y|). Separate unit-square sine MMS uses regular/warped grids. Integrate the analytic corner field and gradient over elements, comparing uniform and a-priori graded meshes at matched DOFs. A separate unit-square sine MMS on regular/warped meshes separates singularity from distortion.",
+      "formula": "u=r^(2/3)*sin(2*theta/3); -Delta(u)=0; theta in[0,3*pi/2]; separate square MMS u=sin(pi*x)*sin(pi*y).",
+      "dimension": 2,
+      "bounds": [
+        [
+          -1,
+          1
+        ],
+        [
+          -1,
+          1
+        ]
+      ],
+      "components": [
+        "u",
+        "gradient u"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "grids": [
+          8,
+          16,
+          32
+        ],
+        "removed_region": "quadrantIV",
+        "angle_range": [
+          0,
+          4.71238898038469
+        ],
+        "singular_exponent": 0.6666666666666666,
+        "grading_map": "x -> x*max(abs(x),abs(y))",
+        "separate_distortion_domain": "unit square"
+      },
+      "sources": [
+        "https://lyc102.github.io/ifem/afem/",
+        "https://jschoeberl.github.io/iFEM/FEM/erroranalysis.html"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/lshape-fem/?lang=ja#lshape-fem-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/lshape-fem/?lang=en#lshape-fem-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-mesh-boundary/#lshape-fem",
+        "en": "/numerical-methods-atlas/en/read/validation-mesh-boundary/#lshape-fem"
+      },
+      "reference_scope": "Independent analytic fields/gradients and quadrature qualification; no external FEM software executed. Do not impose smooth-square L2 order on the corner singularity or identify the fixed graded map with general AMR/universal optimality.",
+      "citations": [
+        {
+          "role": "selected-primary-reference-context",
+          "title": "Long Chen, Introduction to Adaptive Finite Element Methods",
+          "url": "https://lyc102.github.io/ifem/afem/",
+          "note": "Author documentation: L-shaped harmonic r^(2/3)sin(2theta/3) field and non-quasiuniform refinement motivation inspected. No MATLAB code copied or run; our removed quadrant/angle convention is explicitly defined."
+        },
+        {
+          "role": "selected-primary-reference-context",
+          "title": "Joachim Schöberl, Interactive FEM: graded meshes around vertex singularities",
+          "url": "https://jschoeberl.github.io/iFEM/FEM/erroranalysis.html",
+          "note": "Section24.4 weighted regularity and graded meshes inspected. Our fixed max-norm radial map is independently constructed; no general AMR implementation or universal optimality theorem claimed."
+        }
+      ]
+    },
+    {
+      "id": "annular-viscous-mms",
+      "model": "variable-viscosity-vector",
+      "kind": "manufactured",
+      "title": "Annular vector-viscous MMS: force qualified by independent stress differentiation",
+      "assumptions": "1≤r≤2, periodic angle, mu=1+.2r², lambda0 and zero velocity on both circles. A(s)=(s−1)(4−s), u=(A(1+xy),A(x²−y²)/2). Nr8/16/32,Ntheta2Nr. Derive stress/force from the Cartesian vector field with s=x²+y²,A=(s-1)(4-s), then qualify force by separate Cartesian stress finite differentiation. Also check independent integrated body force(756pi/5,0).",
+      "formula": "s=x*x+y*y; A=(s-1)*(4-s); u=(A*(1+x*y),A*(x*x-y*y)/2); mu=1+.2*s; f=-div(2*mu*epsilon(u)).",
+      "dimension": 2,
+      "bounds": [
+        [
+          -2,
+          2
+        ],
+        [
+          -2,
+          2
+        ]
+      ],
+      "components": [
+        "Cartesian ux",
+        "Cartesian uy",
+        "strain",
+        "traction"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "radial_bounds": [
+          1,
+          2
+        ],
+        "angle_period": 6.283185307179586,
+        "excluded_region": "r<1 or r>2",
+        "mu": "1+.2*r^2",
+        "lambda": 0,
+        "radial_grids": [
+          8,
+          16,
+          32
+        ],
+        "angular_factor": 2,
+        "integrated_body_force": [
+          "756*pi/5",
+          0
+        ],
+        "axis_included": false
+      },
+      "sources": [
+        "https://mfem.org/examples/"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/annular-viscous-mms/?lang=ja#annular-viscous-mms-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/annular-viscous-mms/?lang=en#annular-viscous-mms-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-mesh-boundary/#annular-viscous-mms",
+        "en": "/numerical-methods-atlas/en/read/validation-mesh-boundary/#annular-viscous-mms"
+      },
+      "reference_scope": "Manufactured solution with independent analytic/finite-difference force checks, not an executed MFEM reference. Separate radial weights, physical circular traction, reactions and dissipation/work. This annular linear vector BVP has no pressure/incompressibility constraint and excludes the axis.",
+      "citations": [
+        {
+          "role": "selected-primary-reference-context",
+          "title": "MFEM developers, Example2: Linear Elasticity",
+          "url": "https://mfem.org/examples/",
+          "note": "Example2 stress sigma=lambda div(u)I+mu(grad(u)+grad(u)^T), weak formulation and traction conventions inspected. Use lambda0 as a linear vector viscous BVP; manufactured fields are derived here. MFEM not executed or copied."
+        }
+      ]
+    },
+    {
+      "id": "poisson-neumann",
+      "model": "poisson-laplace",
+      "kind": "manufactured",
+      "title": "Pure Neumann: analytic field, compatibility and mean gauge",
+      "assumptions": "Unit square N16/32/64, cell-centred point DOFs, cosine exact field, homogeneous Neumann; mean0 andN32 mean.25 probe. Use point DOFs for u=cos(2pi*x)cos(2pi*y),f=8pi²u and zero outward normal flux. Distinguish means0/.25 and explicitly reject incompatible source+1 rather than projecting it away.",
+      "formula": "u=cos(2*pi*x)*cos(2*pi*y)+mean; f=8*pi^2*cos(2*pi*x)*cos(2*pi*y); dn(u)=0; integral(f)=-integral_boundary(dn(u)).",
+      "dimension": 2,
+      "bounds": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "components": [
+        "u",
+        "normal flux"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "grids": [
+          16,
+          32,
+          64
+        ],
+        "mean_values": [
+          0,
+          0.25
+        ],
+        "nonzero_gauge_grid": 32,
+        "incompatible_source_offset": 1,
+        "representation": "cell-centered point degrees of freedom"
+      },
+      "sources": [
+        "https://petsc.org/main/manual/ksp/"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/poisson-neumann/?lang=ja#poisson-neumann-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/poisson-neumann/?lang=en#poisson-neumann-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-mesh-boundary/#poisson-neumann",
+        "en": "/numerical-methods-atlas/en/read/validation-mesh-boundary/#poisson-neumann"
+      },
+      "reference_scope": "Manufactured analytic field and physical integral-compatibility reference. Solving the same matrix with another linear solver is not a second PDE engine. Test Neumann nullspace/mean gauge without borrowing previous Dirichlet multigrid evidence.",
+      "citations": [
+        {
+          "role": "selected-primary-reference-context",
+          "title": "PETSc developers, KSP: Solving Singular Systems",
+          "url": "https://petsc.org/main/manual/ksp/",
+          "note": "Solving Singular Systems: constant Neumann nullspace and RHS compatibility inspected. We reject physical incompatibility rather than projecting it away. PETSc is neither a dependency nor executed."
+        }
+      ]
+    },
+    {
+      "id": "poisson-robin",
+      "model": "poisson-laplace",
+      "kind": "manufactured",
+      "title": "Mixed Robin: 2D analytic field and independent normal flux",
+      "assumptions": "Unit square N16/32/64; cosine-plus-linear exact field. x walls Neumann±1; y walls analytic Robin alpha1,beta.5. Use f=5pi²cos(pi*x)cos(2pi*y),outward Neumann±1 on x walls and analytic alpha*u+beta*dn(u)=g on y walls. Distinguish algebraic boundary-relation residual from analytic physical-normal-flux error.",
+      "formula": "u=cos(pi*x)*cos(2*pi*y)+x+y; -Delta(u)=5*pi^2*cos(pi*x)*cos(2*pi*y); alpha*u+beta*dn(u)=g.",
+      "dimension": 2,
+      "bounds": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "components": [
+        "u",
+        "normal flux"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "grids": [
+          16,
+          32,
+          64
+        ],
+        "robin_alpha": 1,
+        "robin_beta": 0.5,
+        "robin_sides": [
+          "y=0",
+          "y=1"
+        ],
+        "neumann_sides": [
+          "x=0",
+          "x=1"
+        ],
+        "mean_gauge_imposed": false
+      },
+      "sources": [
+        "https://mfem.org/fem_bc/"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/poisson-robin/?lang=ja#poisson-robin-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/poisson-robin/?lang=en#poisson-robin-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-mesh-boundary/#poisson-robin",
+        "en": "/numerical-methods-atlas/en/read/validation-mesh-boundary/#poisson-robin"
+      },
+      "reference_scope": "Analytic manufactured solution/outward-normal flux and volume/boundary-budget reference. Robin terms make the problem unique, so no pure-Neumann mean gauge is imposed. No MFEM execution or general-boundary guarantee.",
+      "citations": [
+        {
+          "role": "selected-primary-reference-context",
+          "title": "MFEM developers, Boundary Conditions: Robin boundary conditions",
+          "url": "https://mfem.org/fem_bc/",
+          "note": "Outward normal derivative and Robin weak boundary contribution inspected; Example27 source overview inspected. Our cell-centred face elimination/MMS is separately derived; no MFEM execution."
+        }
+      ]
+    },
+    {
+      "id": "srhd-collision",
+      "model": "srhd",
+      "kind": "semi-analytic",
+      "title": "Relativistic symmetric collision: specialized two-shock Taub reference",
+      "assumptions": "c=1,gamma5/3,rho1,p.1,opposite normal v±.3,B0. Domain[0,1], initial jump .5,t=.3,96/192/384 cells. Constant extrapolation boundaries before shocks reach endpoints. Solve the pressure root from Taub adiabat and relative-velocity relations for the identical resting star states and shock speeds, then integrate the piecewise-constant exact conserved field over cells. The contact degenerates; this is not a general three-wave Riemann solver.",
+      "formula": "h_b^2-h_a^2=(p_b-p_a)*(h_b/rho_b+h_a/rho_a); v0^2=(p_b-p_a)*(e_b-e_a)/((e_a+p_b)*(e_b+p_a)); shock positions=.5 +/- Vs*t.",
+      "dimension": 1,
+      "bounds": [
+        [
+          0,
+          1
+        ]
+      ],
+      "components": [
+        "D",
+        "Sx",
+        "Sy",
+        "Sz",
+        "E",
+        "By",
+        "Bz"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "gamma": 1.6666666666666667,
+        "rho": 1,
+        "pressure": 0.1,
+        "opposite_speed": 0.3,
+        "Bx": 0,
+        "jump_position": 0.5,
+        "time": 0.3,
+        "grids": [
+          96,
+          192,
+          384
+        ],
+        "energy_includes_rest_mass": true,
+        "spatial_dimension": 1
+      },
+      "sources": [
+        "https://arxiv.org/abs/gr-qc/0103005",
+        "https://link.springer.com/article/10.12942/lrr-2008-7"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/srhd-collision/?lang=ja#srhd-collision-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/srhd-collision/?lang=en#srhd-collision-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-relativistic/#srhd-collision",
+        "en": "/numerical-methods-atlas/en/read/validation-relativistic/#srhd-collision"
+      },
+      "reference_scope": "Distinguish the independently written specialized semi-analytic two-shock reference from separate scalar-pressure SRHD recovery/flux checks of actual final states. E includes rest mass. Mild fixed inputs do not validate generic RMHD shocks,extreme Lorentz factors or original numerical tables. Pictures show1D space-time fields.",
+      "citations": [
+        {
+          "role": "selected-primary-reference-context",
+          "title": "Luciano Rezzolla and Olindo Zanotti (2001), An Improved Exact Riemann Solver for Relativistic Hydrodynamics",
+          "url": "https://arxiv.org/abs/gr-qc/0103005",
+          "note": "Original arxiv v2 read: sections2–4, equations2.3/2.4,3.1 and4.5; restricted two-shock specialization. No whole-paper or generic Riemann implementation audit."
+        },
+        {
+          "role": "selected-primary-reference-context",
+          "title": "José A. Font (2008), Numerical Hydrodynamics and Magnetohydrodynamics in General Relativity",
+          "url": "https://link.springer.com/article/10.12942/lrr-2008-7",
+          "note": "Official article sections3.1–3.2, tensor49–51 and recovery68–69 actually read. Flat-spacetime use only; no whole-review or complete-GRMHD implementation audit."
+        }
+      ]
+    },
+    {
+      "id": "srmhd-alfven",
+      "model": "srmhd",
+      "kind": "analytic",
+      "title": "SRMHD circular wave: finite-amplitude exact family and independent tensor integration",
+      "assumptions": "Flat spacetime,c=4pi=1,gamma4/3,rho=p=Bx=eta1, exact-family vx0. Rescale the original2pi period to a unit domain;64/128/256 cells,periodic,t=1/vA. Normal Bx is fixed in1D. Use the closed nonlinear Alfven-speed formula. Independently form conserved quantities/fluxes from point primitives through the stress tensor; qualify Gauss integration and complex-step PDE residuals. Rescale the original2pi period to the unit interval.",
+      "formula": "K=rho*h+B0^2*(1+eta^2); vA^2=2*B0^2/(K+sqrt(K^2-4*eta^2*B0^4)); (By,Bz)=eta*B0*(cos(2*pi*(x-vA*t)),sin(2*pi*(x-vA*t))); (vy,vz)=-vA*(By,Bz)/B0.",
+      "dimension": 1,
+      "bounds": [
+        [
+          0,
+          1
+        ]
+      ],
+      "components": [
+        "D",
+        "Sx",
+        "Sy",
+        "Sz",
+        "E",
+        "By",
+        "Bz"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "gamma": 1.3333333333333333,
+        "rho": 1,
+        "pressure": 1,
+        "eta": 1,
+        "Bx": 1,
+        "periods": 1,
+        "time": "1/vA",
+        "grids": [
+          64,
+          128,
+          256
+        ],
+        "normal_B_fixed_in_1D": true,
+        "spatial_dimension": 1
+      },
+      "sources": [
+        "https://arxiv.org/abs/0704.3206",
+        "https://link.springer.com/article/10.12942/lrr-2008-7"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/srmhd-alfven/?lang=ja#srmhd-alfven-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/srmhd-alfven/?lang=en#srmhd-alfven-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-relativistic/#srmhd-alfven",
+        "en": "/numerical-methods-atlas/en/read/validation-relativistic/#srmhd-alfven"
+      },
+      "reference_scope": "Reference the finite-amplitude exact family checked in selected original sections, evolved with an independent lower-order HLL/MUSCL scheme. This does not reproduce ECHO or its error tables. Constant-Bx1D and its x-t picture do not validate multidimensional divergence control,generic RMHD shocks or GR.",
+      "citations": [
+        {
+          "role": "selected-primary-reference-context",
+          "title": "L. Del Zanna, O. Zanotti, N. Bucciantini and P. Londrillo (2007), ECHO: a Eulerian Conservative High Order scheme for general relativistic magnetohydrodynamics and magnetodynamics",
+          "url": "https://arxiv.org/abs/0704.3206",
+          "note": "University-hosted original journal PDF section4.1 equations82–85 read; original arxiv preprint pages9–10 rendered and visually inspected, including normalization and period. Publisher PDF403. No whole-paper or ECHO-algorithm reproduction claim."
+        },
+        {
+          "role": "selected-primary-reference-context",
+          "title": "José A. Font (2008), Numerical Hydrodynamics and Magnetohydrodynamics in General Relativity",
+          "url": "https://link.springer.com/article/10.12942/lrr-2008-7",
+          "note": "Official article sections3.1–3.2, tensor49–51 and recovery68–69 actually read. Flat-spacetime use only; no whole-review or complete-GRMHD implementation audit."
+        }
+      ]
     }
   ]
 }

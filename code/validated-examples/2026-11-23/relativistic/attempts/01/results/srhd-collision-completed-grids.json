@@ -1,0 +1,119 @@
+{
+  "case_id": "srhd-collision",
+  "completed_grids": [
+    {
+      "n": 96,
+      "time": 0.3,
+      "steps": 84,
+      "component_l1": [
+        0.0240310024838554,
+        0.007681512259446612,
+        0.0,
+        0.0,
+        0.02373901735135442,
+        0.0,
+        0.0
+      ],
+      "maximum_balance": 2.0261570199409107e-15,
+      "minimum_density": 0.9999999999999974,
+      "minimum_pressure": 0.09999999999998557,
+      "maximum_speed": 0.3000000000000076,
+      "maximum_root_residual": 1.9641574189808435e-13,
+      "maximum_roundtrip_residual": 2.0427622688174485e-13,
+      "maximum_recovery_iterations": 4,
+      "safeguarded_root_steps": 0,
+      "minimum_face_density": 0.9999999999999974,
+      "minimum_face_pressure": 0.09999999999998557,
+      "maximum_face_speed": 0.3000000000000076,
+      "recorded_stages": 336,
+      "state_floor_count": 0,
+      "retries": 0,
+      "rejected_steps": 0,
+      "star_pressure_relative": 0.002892582293960908,
+      "shock_location_error": 0.008717004107129334,
+      "shock_locations": [
+        0.3958333333333333,
+        0.6041666666666666
+      ],
+      "symmetry_error": 0.0,
+      "independent_zero_B_error": 1.4085954624931674e-14,
+      "field_file": "srhd-collision-n96.npz"
+    },
+    {
+      "n": 192,
+      "time": 0.3,
+      "steps": 168,
+      "component_l1": [
+        0.01218239223203395,
+        0.003693731268063759,
+        0.0,
+        0.0,
+        0.011923340221103114,
+        0.0,
+        0.0
+      ],
+      "maximum_balance": 1.6930901125533637e-15,
+      "minimum_density": 0.9999999999999973,
+      "minimum_pressure": 0.09999999999998557,
+      "maximum_speed": 0.30000000000000765,
+      "maximum_root_residual": 1.993262960925041e-13,
+      "maximum_roundtrip_residual": 2.0689670103526644e-13,
+      "maximum_recovery_iterations": 4,
+      "safeguarded_root_steps": 0,
+      "minimum_face_density": 0.9999999999999973,
+      "minimum_face_pressure": 0.09999999999998557,
+      "maximum_face_speed": 0.30000000000000765,
+      "recorded_stages": 672,
+      "state_floor_count": 0,
+      "retries": 0,
+      "rejected_steps": 0,
+      "star_pressure_relative": 0.00045666100702619915,
+      "shock_location_error": 0.0035086707737960188,
+      "shock_locations": [
+        0.40104166666666663,
+        0.5989583333333333
+      ],
+      "symmetry_error": 0.0,
+      "independent_zero_B_error": 1.4030443473700416e-14,
+      "field_file": "srhd-collision-n192.npz"
+    },
+    {
+      "n": 384,
+      "time": 0.3,
+      "steps": 332,
+      "component_l1": [
+        0.0054242304454669415,
+        0.0017778403670735898,
+        0.0,
+        0.0,
+        0.005207375513692991,
+        0.0,
+        0.0
+      ],
+      "maximum_balance": 5.079270337660091e-15,
+      "minimum_density": 0.9999999999999973,
+      "minimum_pressure": 0.09999999999998557,
+      "maximum_speed": 0.30000000000000765,
+      "maximum_root_residual": 1.998710445658288e-13,
+      "maximum_roundtrip_residual": 2.0734936498682292e-13,
+      "maximum_recovery_iterations": 4,
+      "safeguarded_root_steps": 0,
+      "minimum_face_density": 0.9999999999999973,
+      "minimum_face_pressure": 0.09999999999998557,
+      "maximum_face_speed": 0.30000000000000765,
+      "recorded_stages": 1328,
+      "state_floor_count": 0,
+      "retries": 0,
+      "rejected_steps": 0,
+      "star_pressure_relative": 5.143580439648156e-05,
+      "shock_location_error": 0.0009045041071293336,
+      "shock_locations": [
+        0.4036458333333333,
+        0.5963541666666666
+      ],
+      "symmetry_error": 0.0,
+      "independent_zero_B_error": 4.413136522884997e-14,
+      "field_file": "srhd-collision-n384.npz"
+    }
+  ]
+}

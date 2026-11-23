@@ -866,6 +866,14 @@
             "ja": "Orszag–Tang：条件を揃えたCT・GLMと独立参照の収束",
             "en": "Orszag–Tang: matched CT/GLM and converged independent references"
           }
+        },
+        {
+          "id": "postshock-orszag-tang",
+          "url": "/numerical-methods-atlas/validation/postshock-orszag-tang/",
+          "name": {
+            "ja": "後期Orszag–Tang：独立参照と圧縮構造",
+            "en": "Late Orszag-Tang: independent reference and compression structure"
+          }
         }
       ]
     },
@@ -924,7 +932,17 @@
           "json_pointer": "/alfven"
         }
       ],
-      "availability": "saved-output"
+      "availability": "saved-output",
+      "supplemental_examples": [
+        {
+          "id": "circular-alfven-refinement",
+          "url": "/numerical-methods-atlas/validation/circular-alfven-refinement/",
+          "name": {
+            "ja": "円偏波Alfvén波：全成分の格子収束",
+            "en": "Circular Alfven wave: full-state refinement"
+          }
+        }
+      ]
     },
     {
       "id": "magnetic-loop",
@@ -940,7 +958,17 @@
           "json_pointer": "/field_loop"
         }
       ],
-      "availability": "saved-output"
+      "availability": "saved-output",
+      "supplemental_examples": [
+        {
+          "id": "magnetic-loop-independent",
+          "url": "/numerical-methods-atlas/validation/magnetic-loop-independent/",
+          "name": {
+            "ja": "磁場ループ：独立2次元参照と細分化",
+            "en": "Magnetic loop: independent 2D reference and refinement"
+          }
+        }
+      ]
     },
     {
       "id": "taylor-green",
@@ -3289,6 +3317,446 @@
           "name": {
             "ja": "偏心したレベルセット円の2D剛体回転",
             "en": "2D rigid rotation of an off-center level-set circle"
+          }
+        }
+      ]
+    },
+    {
+      "id": "kh-initial-growth",
+      "group": "viscous",
+      "name": {
+        "ja": "KHの初期成長：滑らかな周期せん断層",
+        "en": "KH initial growth in a smooth periodic shear layer"
+      },
+      "chapter": "validation-instability-growth",
+      "reading_section": "kh-initial-growth",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/instability-growth/",
+      "verification": "/code/validated-examples/2026-11-23/instability-growth/verification.json",
+      "commands": [
+        "python -W error -m pytest -q",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/instability-growth/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "kh-initial-growth"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/instability-growth/results/kh-initial-growth-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/instability-growth/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "kh-initial-growth",
+          "url": "/numerical-methods-atlas/validation/kh-initial-growth/",
+          "name": {
+            "ja": "KHの初期成長：滑らかな周期せん断層",
+            "en": "KH initial growth in a smooth periodic shear layer"
+          }
+        }
+      ]
+    },
+    {
+      "id": "rt-initial-growth",
+      "group": "viscous",
+      "name": {
+        "ja": "RTの初期成長：滑らかなBoussinesq二層",
+        "en": "RT initial growth in smooth Boussinesq double layers"
+      },
+      "chapter": "validation-instability-growth",
+      "reading_section": "rt-initial-growth",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/instability-growth/",
+      "verification": "/code/validated-examples/2026-11-23/instability-growth/verification.json",
+      "commands": [
+        "python -W error -m pytest -q",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/instability-growth/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "rt-initial-growth"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/instability-growth/results/rt-initial-growth-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/instability-growth/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "rt-initial-growth",
+          "url": "/numerical-methods-atlas/validation/rt-initial-growth/",
+          "name": {
+            "ja": "RTの初期成長：滑らかなBoussinesq二層",
+            "en": "RT initial growth in smooth Boussinesq double layers"
+          }
+        }
+      ]
+    },
+    {
+      "id": "lshape-fem",
+      "group": "elliptic",
+      "name": {
+        "ja": "L字領域P1特異解：graded格子と歪みの分離",
+        "en": "L-corner P1 FEM: grading and separate mesh distortion"
+      },
+      "chapter": "validation-mesh-boundary",
+      "reading_section": "lshape-fem",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/mesh-boundary/",
+      "verification": "/code/validated-examples/2026-11-23/mesh-boundary/verification.json",
+      "commands": [
+        "python -W error -m pytest -q",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/mesh-boundary/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "lshape-fem"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/mesh-boundary/results/lshape-fem-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/mesh-boundary/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "lshape-fem",
+          "url": "/numerical-methods-atlas/validation/lshape-fem/",
+          "name": {
+            "ja": "L字領域P1特異解：graded格子と歪みの分離",
+            "en": "L-corner P1 FEM: grading and separate mesh distortion"
+          }
+        }
+      ]
+    },
+    {
+      "id": "annular-viscous-mms",
+      "group": "elliptic",
+      "name": {
+        "ja": "環状領域の可変粘性・真2DベクトルMMS",
+        "en": "Annular variable-viscosity vector PDE MMS"
+      },
+      "chapter": "validation-mesh-boundary",
+      "reading_section": "annular-viscous-mms",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/mesh-boundary/",
+      "verification": "/code/validated-examples/2026-11-23/mesh-boundary/verification.json",
+      "commands": [
+        "python -W error -m pytest -q",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/mesh-boundary/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "annular-viscous-mms"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/mesh-boundary/results/annular-viscous-mms-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/mesh-boundary/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "annular-viscous-mms",
+          "url": "/numerical-methods-atlas/validation/annular-viscous-mms/",
+          "name": {
+            "ja": "環状領域の可変粘性・真2DベクトルMMS",
+            "en": "Annular variable-viscosity vector PDE MMS"
+          }
+        }
+      ]
+    },
+    {
+      "id": "poisson-neumann",
+      "group": "elliptic",
+      "name": {
+        "ja": "純Neumannの互換条件と平均値ゲージ",
+        "en": "Pure Neumann compatibility and mean gauge"
+      },
+      "chapter": "validation-mesh-boundary",
+      "reading_section": "poisson-neumann",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/mesh-boundary/",
+      "verification": "/code/validated-examples/2026-11-23/mesh-boundary/verification.json",
+      "commands": [
+        "python -W error -m pytest -q",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/mesh-boundary/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "poisson-neumann"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/mesh-boundary/results/poisson-neumann-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/mesh-boundary/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "poisson-neumann",
+          "url": "/numerical-methods-atlas/validation/poisson-neumann/",
+          "name": {
+            "ja": "純Neumannの互換条件と平均値ゲージ",
+            "en": "Pure Neumann compatibility and mean gauge"
+          }
+        }
+      ]
+    },
+    {
+      "id": "poisson-robin",
+      "group": "elliptic",
+      "name": {
+        "ja": "2D混合Robinの製造解と境界流束",
+        "en": "2D mixed Robin MMS and boundary flux"
+      },
+      "chapter": "validation-mesh-boundary",
+      "reading_section": "poisson-robin",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/mesh-boundary/",
+      "verification": "/code/validated-examples/2026-11-23/mesh-boundary/verification.json",
+      "commands": [
+        "python -W error -m pytest -q",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/mesh-boundary/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "poisson-robin"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/mesh-boundary/results/poisson-robin-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/mesh-boundary/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "poisson-robin",
+          "url": "/numerical-methods-atlas/validation/poisson-robin/",
+          "name": {
+            "ja": "2D混合Robinの製造解と境界流束",
+            "en": "2D mixed Robin MMS and boundary flux"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ale-nonuniform-transport",
+      "group": "transport",
+      "name": {
+        "ja": "非一様移動格子で実際に運ぶALEスカラー",
+        "en": "ALE scalar transport on genuinely nonuniform moving cells"
+      },
+      "chapter": "validation-moving-waves",
+      "reading_section": "ale-nonuniform-transport",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/moving-waves/",
+      "verification": "/code/validated-examples/2026-11-23/moving-waves/verification.json",
+      "commands": [
+        "python -W error -m pytest -q",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/moving-waves/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "ale-nonuniform-transport"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/moving-waves/results/ale-nonuniform-transport-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/moving-waves/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "ale-nonuniform-transport",
+          "url": "/numerical-methods-atlas/validation/ale-nonuniform-transport/",
+          "name": {
+            "ja": "非一様移動格子で実際に運ぶALEスカラー",
+            "en": "ALE scalar transport on genuinely nonuniform moving cells"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cgrid-rotating-wave",
+      "group": "fluid",
+      "name": {
+        "ja": "2D C-grid回転浅水波の実時間発展",
+        "en": "Actual2D C-grid rotating shallow-water time advance"
+      },
+      "chapter": "validation-moving-waves",
+      "reading_section": "cgrid-rotating-wave",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/moving-waves/",
+      "verification": "/code/validated-examples/2026-11-23/moving-waves/verification.json",
+      "commands": [
+        "python -W error -m pytest -q",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/moving-waves/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "cgrid-rotating-wave"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/moving-waves/results/cgrid-rotating-wave-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/moving-waves/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "cgrid-rotating-wave",
+          "url": "/numerical-methods-atlas/validation/cgrid-rotating-wave/",
+          "name": {
+            "ja": "2D C-grid回転浅水波の実時間発展",
+            "en": "Actual2D C-grid rotating shallow-water time advance"
+          }
+        }
+      ]
+    },
+    {
+      "id": "srhd-collision",
+      "group": "fluid",
+      "name": {
+        "ja": "SRHDの対称二衝撃波衝突",
+        "en": "SRHD symmetric two-shock collision"
+      },
+      "chapter": "validation-relativistic",
+      "reading_section": "srhd-collision",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/relativistic/",
+      "verification": "/code/validated-examples/2026-11-23/relativistic/verification.json",
+      "commands": [
+        "python -W error -m pytest -q",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/relativistic/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "srhd-collision"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/relativistic/results/srhd-collision-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/relativistic/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "srhd-collision",
+          "url": "/numerical-methods-atlas/validation/srhd-collision/",
+          "name": {
+            "ja": "SRHDの対称二衝撃波衝突",
+            "en": "SRHD symmetric two-shock collision"
+          }
+        }
+      ]
+    },
+    {
+      "id": "srmhd-alfven",
+      "group": "mhd",
+      "name": {
+        "ja": "SRMHDの有限振幅円偏極Alfvén波",
+        "en": "SRMHD finite-amplitude circularly polarized Alfvén wave"
+      },
+      "chapter": "validation-relativistic",
+      "reading_section": "srmhd-alfven",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/relativistic/",
+      "verification": "/code/validated-examples/2026-11-23/relativistic/verification.json",
+      "commands": [
+        "python -W error -m pytest -q",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/relativistic/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "srmhd-alfven"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/relativistic/results/srmhd-alfven-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/relativistic/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "srmhd-alfven",
+          "url": "/numerical-methods-atlas/validation/srmhd-alfven/",
+          "name": {
+            "ja": "SRMHDの有限振幅円偏極Alfvén波",
+            "en": "SRMHD finite-amplitude circularly polarized Alfvén wave"
           }
         }
       ]

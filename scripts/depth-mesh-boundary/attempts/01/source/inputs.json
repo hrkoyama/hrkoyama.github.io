@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "fem_grids": [
+    8,
+    16,
+    32
+  ],
+  "annulus_grids": [
+    8,
+    16,
+    32
+  ],
+  "poisson_grids": [
+    16,
+    32,
+    64
+  ],
+  "gauge_grid": 32
+}

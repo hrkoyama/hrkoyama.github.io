@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "group": "instability-growth",
+  "input_sha256": "05d178c8f48df0c8819ab863e5448a0573144f69b0a64b59381f5109b757042a",
+  "passed": false,
+  "termination": "reference_failure",
+  "failure": {
+    "type": "RuntimeWarning",
+    "message": "divide by zero encountered in matmul"
+  },
+  "checks": {
+    "kh-initial-growth": false,
+    "rt-initial-growth": false
+  },
+  "cases": [],
+  "partial_reference_qualifications": {}
+}

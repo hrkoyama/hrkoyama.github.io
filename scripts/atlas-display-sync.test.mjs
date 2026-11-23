@@ -27,8 +27,8 @@ discovery=load_discovery(ROOT)
 const python=source=>execFileSync('python3',['-B','-c',prelude+source],{cwd:root,encoding:'utf8',timeout:30000});
 
 test('five biology labels expose only their verified common or supplemental scope, without adding equations or physical problems',()=>{
- assert.equal(equations.length,50);
- assert.equal(equations.filter(x=>!['rotational-advection','shallow-water-bed','forced-incompressible','level-set-advection'].includes(x.id)&&x.status==='local-example').length,23);
+ assert.equal(equations.length,56);
+ assert.equal(equations.filter(x=>!['rotational-advection','shallow-water-bed','forced-incompressible','level-set-advection', 'forced-vorticity', 'boussinesq-buoyancy', 'ale-scalar-transport', 'linear-rotating-shallow-water', 'variable-viscosity-vector', 'srmhd', 'srhd'].includes(x.id)&&x.status==='local-example').length,23);
  assert.equal(equations.filter(x=>x.status==='reading').length,23);
  const discovery=json('catalog/atlas-execution-discovery.json').examples;
  for(const [id,wanted] of Object.entries(expected)){

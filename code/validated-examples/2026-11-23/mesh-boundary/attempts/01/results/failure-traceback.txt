@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/atlas-search-publisher/scripts/depth-mesh-boundary/run.py", line 17, in main
+    try:experiments.execute(json.loads(a.input.read_text()),a.output,json.loads((ROOT/'acceptance.json').read_text())['limits'],cases)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/atlas-search-publisher/scripts/depth-mesh-boundary/experiments.py", line 33, in execute
+    row,arrays=annulus.solve(n);row['id']='annulus-n'+str(n);rows.append(row)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/atlas-search-publisher/scripts/depth-mesh-boundary/annulus.py", line 56, in solve
+    reaction=(K@u-F).reshape(-1,2).sum(axis=0);force_scale=max(1.,np.linalg.norm(volume_force));work=float(u@F)
+                                                                                                           ~^~
+RuntimeWarning: divide by zero encountered in matmul

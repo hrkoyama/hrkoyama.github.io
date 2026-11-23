@@ -163,7 +163,7 @@ test('BOMD and CPMD are searchable reading-only methods with equations and prima
   const source = json('catalog/atlas-periodic-reading.json');
   const section = source.sections.find(s => s.id === 'first-principles-md');
   assert.ok(section);
-  assert.equal(methods.length, 149);
+  assert.equal(methods.length, 150);
   assert.equal(json('numerical-methods-atlas/coverage.json').counts.methods, 133);
   for (const [id, alias] of [['born-oppenheimer-md', 'BOMD'], ['car-parrinello-md', 'CPMD']]) {
     const method = methods.find(m => m.id === id);

@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "frozen_before_scientific_execution": true,
+  "limits": {
+    "linear_residual": 2e-09,
+    "boundary": 2e-12,
+    "symmetry": 2e-11,
+    "quadrature_gap": 0.01,
+    "minimum_angle": 10.0,
+    "corner_ratio": 0.9,
+    "smooth_ratio": 0.65,
+    "graded_improvement": 0.85,
+    "corner_h1": 0.2,
+    "area": 2e-11,
+    "reaction_balance": 2e-10,
+    "exact_flux_balance": 2e-09,
+    "work": 2e-10,
+    "annulus_ratio": 0.8,
+    "annulus_l2": 0.02,
+    "annulus_strain": 0.12,
+    "annulus_traction": 0.2,
+    "annulus_flux": 0.2,
+    "poisson_flux": 2e-10,
+    "compatibility": 2e-11,
+    "gauge": 2e-12,
+    "solver_gap": 2e-09,
+    "poisson_ratio": 0.4,
+    "poisson_l2": 0.005,
+    "robin_flux": 0.02,
+    "gauge_shift": 2e-10
+  }
+}

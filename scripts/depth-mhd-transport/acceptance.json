@@ -1,0 +1,21 @@
+{
+  "schema_version":1,
+  "frozen_before_main_execution":true,
+  "limits": {
+    "analytic_quadrature":2e-14,
+    "conservation":3e-11,
+    "native_divergence":5e-11,
+    "maximum_courant_sum":0.4,
+    "refinement_error_ratio":0.92,
+    "time_contamination_fraction":0.2,
+    "reference_increment_error_fraction":0.75,
+    "wave_finest_relative_l2":0.04,
+    "wave_last_order_minimum":1.3,
+    "wave_finest_phase_error_radians":0.03,
+    "loop_finest_relative_magnetic_l1":0.65,
+    "ot_finest_relative_density_l1":0.2,
+    "ot_finest_relative_pressure_l1":0.3,
+    "ot_density_contrast_minimum":2.0
+  },
+  "scope":"Small educational fixed inputs. Observed refinement and finite-grid independent-reference sensitivity do not establish a universal MHD convergence theorem or an exact postshock solution. Original stage/cell positivity is measured; face slope scaling and Riemann fallbacks are counted, never hidden. No cell clipping or retry."
+}

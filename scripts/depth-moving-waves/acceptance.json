@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "frozen_before_scientific_execution": true,
+  "limits": {
+    "ode_qualification": 1e-08,
+    "mass": 2e-12,
+    "gcl": 2e-13,
+    "gcl_constant": 2e-12,
+    "ale_refinement": 0.8,
+    "ale_time_ratio": 0.35,
+    "ale_error": 0.03,
+    "ale_time_error": 0.0001,
+    "energy": 0.001,
+    "energy_rhs": 2e-13,
+    "wave_space_ratio": 0.4,
+    "wave_time_ratio": 0.12,
+    "wave_error": 0.03,
+    "wave_discrete_error": 1e-06,
+    "zero_error": 1e-10,
+    "balance": 2e-12
+  }
+}

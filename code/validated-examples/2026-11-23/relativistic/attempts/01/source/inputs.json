@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "cfl": 0.35,
+  "snapshots": 5,
+  "cases": {
+    "srhd-collision": {"grids": [96,192,384], "rho":1.0,"pressure":0.1,"speed":0.3,"gamma":1.6666666666666667,"bx":0.0,"final_time":0.3,"boundary":"constant extrapolation before shocks reach endpoints"},
+    "srmhd-alfven": {"grids":[32,64,128],"rho":1.0,"pressure":1.0,"eta":1.0,"gamma":1.3333333333333333,"bx":1.0,"periods":1,"boundary":"periodic"}
+  }
+}

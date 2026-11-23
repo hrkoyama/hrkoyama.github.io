@@ -1,0 +1,11 @@
+{
+  "hlld": {
+    "source": "code/numerical-methods-atlas/2026-11-21/numart/hlld.py",
+    "sha256": "5615a1fbe08d236a8ac3ab7f48ef9c50f6a859a48af36797e03a5940b8384af5",
+    "current_identical": true,
+    "license": "existing Atlas MIT implementation; mathematical citations retain original roles"
+  },
+  "ct_contact": "Reimplemented periodic driver with CT-contact stencil from existing public numart/mhd_tests.py, without adaptive retries or grid-dependent GLM damping. Original full-vector HLLD retained.",
+  "representation": "CPAW: analytic conserved finite-volume means. Two-dimensional initial states match official generator discrete vector-potential curl, arithmetic Bcc and center-sampled fluid primitives, not an exact continuum-cell-mean initialization. Final numerical-reference conservative restriction is explicit.",
+  "scope": "No state floors/clipping/retries. Positivity-preserving reconstruction slope scaling threshold1e-12 affects faces only and is counted. HLLD invalid-star HLLE fallback and degeneracy counts retained."
+}

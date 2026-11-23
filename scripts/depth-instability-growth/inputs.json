@@ -1,0 +1,20 @@
+{
+  "case_ids": ["kh-initial-growth", "rt-initial-growth"],
+  "grid_sizes": [32, 64, 128],
+  "probe_grid": 64,
+  "epsilon": 0.00001,
+  "width": 0.25,
+  "buoyancy": 0.02,
+  "gravity": 1.0,
+  "reference_density": 1.0,
+  "viscosity": 0.005,
+  "diffusivity": 0.005,
+  "cfl": 0.2,
+  "snapshots": 5,
+  "final_time": {"kh-initial-growth": 1.0, "rt-initial-growth": 2.0},
+  "reference_truncations": [24, 40, 56],
+  "base_maintaining_forcing": true,
+  "periodic_domain": [6.283185307179586, 6.283185307179586],
+  "representation": "Point samples on a 2D periodic centered finite-difference grid; not finite-volume cell averages.",
+  "scope": "Smooth forced steady shear and small-Atwood smooth double-interface Boussinesq RT. Finite-time growth against independent linearized Fourier-Galerkin IVPs, not sharp-interface dispersion or nonlinear turbulent mixing."
+}

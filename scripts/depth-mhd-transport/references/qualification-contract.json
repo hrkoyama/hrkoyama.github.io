@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "revision": 3,
+  "created_at_utc": "2026-11-23T12:17:42.637025+00:00",
+  "declared_after_six_reference_pde_executions": true,
+  "declared_before_requalification_and_main": true,
+  "pde_rerun_performed": false,
+  "source_run_contract_sha256": "6b525e503a9091adfb84116fca2d44c1a8cc420a101dfc4b1c77bb04d55392de",
+  "original_reference_executions": 6,
+  "planned_qualification_gates": 31,
+  "physical_error_bounds_unchanged": true,
+  "physical_input_plan_sha256": "d03bdc949d38ed08bcb03f3cd4bb2940d351fd10afcf7e29c00920bb92310026",
+  "field_path_map": [
+    {
+      "original_retained_output": "reference-attempt-01/results/loop-n64-cfl0p3.npz",
+      "single_public_copy": "loop-n64-cfl0p3.npz",
+      "sha256": "d3a36f5e10664a1006a1ca42b2c610d0c0586fb1d7fe0c17a8a25bc1475d5b51"
+    },
+    {
+      "original_retained_output": "reference-attempt-01/results/loop-n128-cfl0p3.npz",
+      "single_public_copy": "loop-n128-cfl0p3.npz",
+      "sha256": "112c12064c8f558c7b055ee0cb0732e2d44109fcf30c9d5d067813f15b1bfb7b"
+    },
+    {
+      "original_retained_output": "reference-attempt-01/results/loop-n128-cfl0p15.npz",
+      "single_public_copy": "loop-n128-cfl0p15.npz",
+      "sha256": "e19cefc831c0f350528c4064d34c719db50735ab6176e9b18b8179b1b63af124"
+    },
+    {
+      "original_retained_output": "reference-attempt-01/results/ot-n128-cfl0p3.npz",
+      "single_public_copy": "ot-n128-cfl0p3.npz",
+      "sha256": "7170f5287c02d577af033d786073b2150f33b121c5812bb5356a2c5f1d3ccf68"
+    },
+    {
+      "original_retained_output": "reference-attempt-01/results/ot-n256-cfl0p3.npz",
+      "single_public_copy": "ot-n256-cfl0p3.npz",
+      "sha256": "44d621ee753cb234137b487385dbc123225b58f84ff37c222e3f282f5999cfb1"
+    },
+    {
+      "original_retained_output": "reference-attempt-01/results/ot-n256-cfl0p15.npz",
+      "single_public_copy": "ot-n256-cfl0p15.npz",
+      "sha256": "6438dc45d4fa5d7542df2ba24379f00e1437f929e61539ca9385c1ce79f77c41"
+    }
+  ],
+  "revision_reason": "Attempt01 completed6 PDEs but failed6 exact-intermediate-time gates (25/31). Official scheduler writes first step after requested intermediate time. With independent root approval, retain all5 actual field snapshots bit-for-bit; timing gates now require5 strictly ordered finite times in[0,T] and exact0/T under unchanged1e-14 tolerance. Record actual/requested offsets as diagnostics. All quantitative field comparisons are final-only. Numerical inputs, physical/spatial/time sensitivity criteria, source-run contract and failed qualification remain unchanged. No PDE rerun.",
+  "files_sha256": {
+    "qualify_saved.py": "bfeae16aad1dc092f694e90e6e9dc5e59bb2ea92af81f7b076cf08e4cf39bfb4",
+    "qualify.py": "f1eda04ee2beabaccfed9c7485a6c02584feb5019b7d0f2630a69231ce022a75",
+    "reference-input-plan.json": "d03bdc949d38ed08bcb03f3cd4bb2940d351fd10afcf7e29c00920bb92310026",
+    "reference-contract.json": "6b525e503a9091adfb84116fca2d44c1a8cc420a101dfc4b1c77bb04d55392de",
+    "history/attempt-01-failed-qualification.json": "3b95109d2d26280c1ab3cb215dd2960708a7218f3bb1a0887d7bde86f576c626",
+    "history/source-run-contract-r2.json": "6b525e503a9091adfb84116fca2d44c1a8cc420a101dfc4b1c77bb04d55392de",
+    "loop-n64-cfl0p3.npz": "d3a36f5e10664a1006a1ca42b2c610d0c0586fb1d7fe0c17a8a25bc1475d5b51",
+    "loop-n128-cfl0p3.npz": "112c12064c8f558c7b055ee0cb0732e2d44109fcf30c9d5d067813f15b1bfb7b",
+    "loop-n128-cfl0p15.npz": "e19cefc831c0f350528c4064d34c719db50735ab6176e9b18b8179b1b63af124",
+    "ot-n128-cfl0p3.npz": "7170f5287c02d577af033d786073b2150f33b121c5812bb5356a2c5f1d3ccf68",
+    "ot-n256-cfl0p3.npz": "44d621ee753cb234137b487385dbc123225b58f84ff37c222e3f282f5999cfb1",
+    "ot-n256-cfl0p15.npz": "6438dc45d4fa5d7542df2ba24379f00e1437f929e61539ca9385c1ce79f77c41"
+  }
+}

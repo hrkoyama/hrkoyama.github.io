@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "checks": {
+    "Taub adiabat": true,
+    "invariant relative velocity": true,
+    "tensor Rankine Hugoniot": true,
+    "nonlinear Alfven dispersion": true,
+    "independent tensor Gauss means": true,
+    "tensor complex step PDE residual": true
+  },
+  "collision_star": {
+    "pressure": 0.35473854747189193,
+    "density": 2.036718245233174,
+    "enthalpy": 1.4354290883166312,
+    "speed": 0.3181655418651244,
+    "relative_velocity": 0.3,
+    "taub_residual": -3.3306690738754696e-16
+  },
+  "alfven_speed": 0.3819660112501051,
+  "rh_maximum": 5.551115123125783e-17,
+  "quadrature_maximum": 1.1102230246251565e-15,
+  "pde_maximum": 1.7763568394002505e-15
+}

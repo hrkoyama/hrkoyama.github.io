@@ -25,16 +25,16 @@ test('four conditioning examples extend their own methods while retaining the or
   for(const [path,hash] of Object.entries(entry.source_sha256))assert.equal(sha(path),hash,path);
   for(const lang of ['ja','en'])assert.ok(entry.assumptions[lang]&&entry.validation[lang]&&entry.limits[lang]);
  }
- assert.equal(methods.length,149);
+ assert.equal(methods.length,150);
  assert.deepEqual(Object.fromEntries(['educational-example','reading-only','planned'].map(s=>[s,methods.filter(m=>m.status===s).length])),{'educational-example':118,'reading-only':15,'planned':16});
 });
 
 test('algebraic AMG controls borrow no Poisson validation and the remaining refinements add no problem families',()=>{
  const index=json('numerical-methods-atlas/validation/index.json');
- assert.equal(index.case_count,56);assert.equal(index.groups.length,24);
+ assert.equal(index.case_count,69);assert.equal(index.groups.length,29);
  assert.equal(Object.values(index.case_problem_ids).filter(x=>x===null).length,5);
  const problems=json('numerical-methods-atlas/test-cases/index.json').problems;
- assert.equal(problems.length,92);
+ assert.equal(problems.length,102);
  for(const [,caseId,problemId] of Object.values(cases)){
   assert.equal(index.case_problem_ids[caseId],problemId);
   const linked=problems.filter(p=>(p.supplemental_examples||[]).some(x=>x.id===caseId));
