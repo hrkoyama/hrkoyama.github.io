@@ -73,6 +73,9 @@
 - [Sedov–Taylor点爆発：球対称の軽量検証](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sedov/)
 - [Guderley収束衝撃波：球対称の軽量検証](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-guderley/)
 - [WENOの臨界点・ε依存性](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-weno-critical/)
+- [KH・RTの初期成長と独立線形参照](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-instability-growth/)
+- [MHD輸送・波・圧縮構造の独立比較](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transport/)
+- [SRHD衝突・SRMHD非線形Alfvén波](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-relativistic/)
 
 ## 格子・有限要素・連成方程式
 
@@ -80,6 +83,9 @@
 
 - [構造格子、非構造格子、三角形格子](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/meshes/)
 - [連続有限要素法：弱形式から疎行列の組立てへ](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fem/)
+- [スペクトル要素法：高次の有限要素と2D Poisson](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/spectral-element/)
+- [Flux Reconstruction法：流束補正とDG・1D周期移流](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/flux-reconstruction/)
+- [スペクトル要素法とFR：既存FEM・DGとの軽量比較](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/)
 - [任意Lagrange–Euler法](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/ale/)
 - [極・円筒座標：テンソルと粘性](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/coordinates-viscosity/)
 - [球面メッシュとArakawa A・B・C格子](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/geophysical-grids/)
@@ -91,6 +97,8 @@
 - [CTとGLM：同条件の独立照合・格子・時間収束](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/)
 - [浅水流：地形・静止湖・乾燥床](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-shallow-water/)
 - [非周期壁面：キャビティと製造解](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-wall-flow/)
+- [角特異性・曲線座標・Neumann／Robin境界](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/)
+- [非一様ALE輸送・2次元回転浅水波](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-moving-waves/)
 
 ## 粒子・運動論・輸送
 

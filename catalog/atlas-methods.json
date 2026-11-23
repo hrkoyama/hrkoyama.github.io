@@ -296,7 +296,7 @@
         },
         {
           "group": "instability-growth",
-          "edition": "2026-11-23",
+          "edition": "2026-11-23-r2",
           "case_ids": [
             "kh-initial-growth",
             "rt-initial-growth"
@@ -2941,7 +2941,7 @@
         },
         {
           "group": "instability-growth",
-          "edition": "2026-11-23",
+          "edition": "2026-11-23-r2",
           "case_ids": [
             "kh-initial-growth",
             "rt-initial-growth"
@@ -14070,6 +14070,235 @@
       }
     },
     {
+      "id": "spectral-element",
+      "name": {
+        "ja": "スペクトル要素法（SEM）",
+        "en": "Spectral element method (SEM)"
+      },
+      "group": {
+        "id": "space",
+        "ja": "空間離散化",
+        "en": "Spatial discretization"
+      },
+      "summary": {
+        "ja": "要素内の高次多項式とGLL求積を用いる連続Galerkin型の方法。2D Poissonのh/p収束と既存P1 FEMを軽量例で比較する。Nek5000・nekRSを関連実装として紹介。",
+        "en": "Continuous Galerkin elements with high-order local polynomials and GLL quadrature. A small2D Poisson example compares h/p refinement with the existing P1 FEM; related implementations include Nek5000 and nekRS."
+      },
+      "status": "educational-example",
+      "origin": "dedicated-sem-fr-addition",
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/spectral-element/",
+        "en": "/numerical-methods-atlas/en/read/spectral-element/"
+      },
+      "code_modules": [],
+      "test_files": [],
+      "aliases": [
+        "SEM",
+        "スペクトル要素",
+        "スペクトルエレメント法",
+        "spectral element",
+        "spectral-element method",
+        "spectral element method"
+      ],
+      "code_mapping_scope": "Dedicated sem-fr supplement; case-specific algorithms plus a shared experiment driver and test file. External PyFR/Nek implementations are documentation links, not executed software.",
+      "references": [
+        {
+          "url": "https://nek5000.github.io/NekDoc/references.html",
+          "label": "A. T. Patera (1984). A spectral element method for fluid dynamics: Laminar flow in a channel expansion",
+          "scope": "Bibliographic identity from the official Nek5000 reference list; publisher full text was not retrieved. No original-paper audit/reproduction. This example is a Legendre GLL variant.",
+          "role": "original-or-adopted-formulation",
+          "kind": "primary-research",
+          "supports": {
+            "ja": "Nek5000公式参考文献の題名・巻・頁・DOIを照合。出版社の原文は未取得で、原報全体の監査・数値再現とはしない。今回の実装はLegendre GLL変種。",
+            "en": "Bibliographic identity from the official Nek5000 reference list; publisher full text was not retrieved. No original-paper audit/reproduction. This example is a Legendre GLL variant."
+          },
+          "verification": {
+            "checked_on": "2026-11-23",
+            "level": "metadata",
+            "url": "https://nek5000.github.io/NekDoc/references.html",
+            "locator": "Bibliographic identity from the official Nek5000 reference list; publisher full text was not retrieved. No original-paper audit/reproduction. This example is a Legendre GLL variant."
+          },
+          "bibliography_id": "patera1984"
+        },
+        {
+          "url": "https://nek5000.github.io/NekDoc/theory.html",
+          "label": "Nek5000 development team (2026). Nek5000 documentation: Theory and spectral-element basis (accessed 2026-11-23)",
+          "scope": "Official Theory and FAQ: element-local polynomials, GLL/GL nodes and C0 continuity. No installation, execution or full-code audit of Nek5000.",
+          "role": "official-implementation-context",
+          "kind": "official-documentation",
+          "supports": {
+            "ja": "公式TheoryとFAQの要素局所の多項式、GLL/GL点・C0連続性を確認。教育用Poissonの実装とNek5000の流体ソルバー全体を同一視しない。",
+            "en": "Official Theory and FAQ: element-local polynomials, GLL/GL nodes and C0 continuity. No installation, execution or full-code audit of Nek5000."
+          },
+          "verification": {
+            "checked_on": "2026-11-23",
+            "level": "full-text",
+            "url": "https://nek5000.github.io/NekDoc/theory.html",
+            "locator": "Official Theory and FAQ: element-local polynomials, GLL/GL nodes and C0 continuity. No installation, execution or full-code audit of Nek5000."
+          },
+          "bibliography_id": "nek5000-sem-docs"
+        },
+        {
+          "url": "https://nek5000.github.io/",
+          "label": "Nek5000/RS development team (2026). Nek5000/RS project: spectral-element solvers and related implementations (accessed 2026-11-23)",
+          "scope": "Official project overview: SEM, CPU/GPU nekRS and its relationship to Nek5000. No external solver installation, execution or performance comparison.",
+          "role": "official-implementation-context",
+          "kind": "official-documentation",
+          "supports": {
+            "ja": "公式プロジェクトのSEM、nekRSのCPU/GPU対応、Nek5000との関係を確認。外部ソルバーの導入・実行・性能比較は未実施。",
+            "en": "Official project overview: SEM, CPU/GPU nekRS and its relationship to Nek5000. No external solver installation, execution or performance comparison."
+          },
+          "verification": {
+            "checked_on": "2026-11-23",
+            "level": "full-text",
+            "url": "https://nek5000.github.io/",
+            "locator": "Official project overview: SEM, CPU/GPU nekRS and its relationship to Nek5000. No external solver installation, execution or performance comparison."
+          },
+          "bibliography_id": "nekrs-implementation"
+        }
+      ],
+      "assumptions": "Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM.",
+      "assumptions_ja": "全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。",
+      "units": "Dimensionless educational example.",
+      "units_ja": "無次元の教育用例。",
+      "boundary_conditions": "Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM.",
+      "boundary_conditions_ja": "全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。",
+      "limitations": {
+        "ja": "滑らかな固定問題だけの結果。要素・求積・代数ソルバーが異なるので、速度・計算量・汎用的優位性の比較ではありません。GLLの対角求積質量は一般の積の厳密な質量行列ではない。曲線格子・特異解・非圧縮流体・Nek5000/nekRS本体は未実行。",
+        "en": "One smooth fixed problem only. Meshes, quadrature and algebraic solvers differ: no speed, complexity or universal-accuracy ranking. The diagonal GLL quadrature mass is not the exactly integrated mass of every product. No curved mesh, singular solution, incompressible flow or Nek5000/nekRS run."
+      },
+      "metadata_review": {
+        "on": "2026-11-23",
+        "level": "Method-specific derivation and scoped dedicated fixed inputs; 25 tests and full independent ZIP rerun. Related external implementations reviewed from official documentation only."
+      },
+      "depth_release": {
+        "group": "sem-fr",
+        "edition": "2026-11-23",
+        "case_ids": [
+          "sem-poisson-2d"
+        ]
+      },
+      "depth_scope": {
+        "ja": "単位正方形の正弦製造解をGLLスペクトル要素法と既存P1三角形FEMで解きます。自由未知数を揃えたh細分化と、固定要素数でのp=1〜6を分けて測ります。",
+        "en": "Solve a sine manufactured solution on the unit square with GLL spectral elements and the existing triangle P1 FEM. Compare matched free-unknown counts under h refinement and p=1..6 at fixed elements."
+      }
+    },
+    {
+      "id": "flux-reconstruction",
+      "name": {
+        "ja": "Flux Reconstruction法（FR法）",
+        "en": "Flux reconstruction (FR)"
+      },
+      "group": {
+        "id": "space",
+        "ja": "空間離散化",
+        "en": "Spatial discretization"
+      },
+      "summary": {
+        "ja": "要素内の流束に界面補正を加える高次離散化の枠組み。1D周期移流のRadau補正と既存DGの一致・保存・収束を軽量例で確かめ、PyFRを関連実装として紹介。",
+        "en": "A high-order framework correcting element-local fluxes at interfaces. A small1D periodic-advection example checks Radau/DG agreement, conservation and convergence; PyFR is a related implementation."
+      },
+      "status": "educational-example",
+      "origin": "dedicated-sem-fr-addition",
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/flux-reconstruction/",
+        "en": "/numerical-methods-atlas/en/read/flux-reconstruction/"
+      },
+      "code_modules": [],
+      "test_files": [],
+      "aliases": [
+        "FR",
+        "FR法",
+        "Flux Reconstruction",
+        "flux reconstruction method",
+        "流束再構成法",
+        "CPR",
+        "correction procedure via reconstruction"
+      ],
+      "code_mapping_scope": "Dedicated sem-fr supplement; case-specific algorithms plus a shared experiment driver and test file. External PyFR/Nek implementations are documentation links, not executed software.",
+      "references": [
+        {
+          "url": "https://ntrs.nasa.gov/api/citations/20140009969/downloads/20140009969.pdf",
+          "label": "H. T. Huynh (2007). A Flux Reconstruction Approach to High-Order Schemes Including Discontinuous Galerkin Methods",
+          "scope": "Original 2007 title/author/AIAA number checked in the author's 2014 NASA report, printed p.27. The original AIAA text was not retrieved; correction formulas use the separately cited 2014 report.",
+          "role": "original-or-adopted-formulation",
+          "kind": "primary-research",
+          "supports": {
+            "ja": "著者の2014年NASA報告の参考文献（本文27頁）で2007年原報の題名・著者・会議番号を確認。AIAA原文は未取得。補正式は別記の2014年本文を参照。",
+            "en": "Original 2007 title/author/AIAA number checked in the author's 2014 NASA report, printed p.27. The original AIAA text was not retrieved; correction formulas use the separately cited 2014 report."
+          },
+          "verification": {
+            "checked_on": "2026-11-23",
+            "level": "metadata",
+            "url": "https://ntrs.nasa.gov/api/citations/20140009969/downloads/20140009969.pdf",
+            "locator": "Original 2007 title/author/AIAA number checked in the author's 2014 NASA report, printed p.27. The original AIAA text was not retrieved; correction formulas use the separately cited 2014 report."
+          },
+          "bibliography_id": "huynh2007-fr"
+        },
+        {
+          "url": "https://ntrs.nasa.gov/api/citations/20140009969/downloads/20140009969.pdf",
+          "label": "H. T. Huynh (2014). On Formulations of Discontinuous Galerkin and Related Methods for Conservation Laws",
+          "scope": "Selected original NASA passages: abstract, differential form/interface correction, printed pp.19–21 equations(6.2)–(6.13) for Radau/DG, and p.27 bibliography. No full-report audit or nonlinear experiment reproduction.",
+          "role": "original-or-adopted-formulation",
+          "kind": "primary-research",
+          "supports": {
+            "ja": "NASA原文の抄録、微分形と界面補正、本文19–21頁の式(6.2)–(6.13)のRadau補正とDG対応、27頁の書誌を確認。全報告の監査や非線形実験の再現ではない。",
+            "en": "Selected original NASA passages: abstract, differential form/interface correction, printed pp.19–21 equations(6.2)–(6.13) for Radau/DG, and p.27 bibliography. No full-report audit or nonlinear experiment reproduction."
+          },
+          "verification": {
+            "checked_on": "2026-11-23",
+            "level": "full-text",
+            "url": "https://ntrs.nasa.gov/api/citations/20140009969/downloads/20140009969.pdf",
+            "locator": "Selected original NASA passages: abstract, differential form/interface correction, printed pp.19–21 equations(6.2)–(6.13) for Radau/DG, and p.27 bibliography. No full-report audit or nonlinear experiment reproduction."
+          },
+          "bibliography_id": "huynh2014-fr"
+        },
+        {
+          "url": "https://www.pyfr.org/",
+          "label": "PyFR development team (2026). PyFR: Flux Reconstruction and supported implementation platforms (accessed 2026-11-23)",
+          "scope": "Official overview: FR spatial discretization, unstructured meshes and CPU/GPU platforms. PyFR is not installed, invoked or validated by this small Python example.",
+          "role": "official-implementation-context",
+          "kind": "official-documentation",
+          "supports": {
+            "ja": "公式サイトのFRによる空間離散化・非構造格子・CPU/GPUの紹介を確認。今回の軽量Python例でPyFRを導入・実行・検証したとはしない。",
+            "en": "Official overview: FR spatial discretization, unstructured meshes and CPU/GPU platforms. PyFR is not installed, invoked or validated by this small Python example."
+          },
+          "verification": {
+            "checked_on": "2026-11-23",
+            "level": "full-text",
+            "url": "https://www.pyfr.org/",
+            "locator": "Official overview: FR spatial discretization, unstructured meshes and CPU/GPU platforms. PyFR is not installed, invoked or validated by this small Python example."
+          },
+          "bibliography_id": "pyfr-implementation"
+        }
+      ],
+      "assumptions": "Dimensionless u_t+u_x=0 on[0,1), periodic boundary, initial0.4+sin(2pi x), analytic0.4+sin(2pi(x-t)). Constant positive speed1 and uniform affine intervals.",
+      "assumptions_ja": "全て無次元。u_t+u_x=0、区間[0,1)、周期境界、初期値0.4+sin(2πx)。解析解は0.4+sin(2π(x−t))。一定の正速度1、均一なアフィン区間要素。",
+      "units": "Dimensionless educational example.",
+      "units_ja": "無次元の教育用例。",
+      "boundary_conditions": "Dimensionless u_t+u_x=0 on[0,1), periodic boundary, initial0.4+sin(2pi x), analytic0.4+sin(2pi(x-t)). Constant positive speed1 and uniform affine intervals.",
+      "boundary_conditions_ja": "全て無次元。u_t+u_x=0、区間[0,1)、周期境界、初期値0.4+sin(2πx)。解析解は0.4+sin(2π(x−t))。一定の正速度1、均一なアフィン区間要素。",
+      "limitations": {
+        "ja": "このRadau/Gauss・線形一定流束・アフィン要素の設定がDGに対応します。全FRと全DGの同値性、非線形流束・衝撃波・制限器・多次元FRは保証しません。hとΔtの同時細分化と行列指数による空間誤差を分け、行列指数を独立した空間PDEソルバーとは呼びません。PyFR本体は未実行。",
+        "en": "DG correspondence is for these Radau/Gauss choices, a constant linear flux and affine elements. No all-FR/all-DG equivalence, nonlinear flux, shock, limiter or multidimensional FR claim. Distinguish coupled h/dt refinement from the exponential spatial result; the exponential is not an independent spatial PDE solver. PyFR itself is not run."
+      },
+      "metadata_review": {
+        "on": "2026-11-23",
+        "level": "Method-specific derivation and scoped dedicated fixed inputs; 25 tests and full independent ZIP rerun. Related external implementations reviewed from official documentation only."
+      },
+      "depth_release": {
+        "group": "sem-fr",
+        "edition": "2026-11-23",
+        "case_ids": [
+          "fr-periodic-advection"
+        ]
+      },
+      "depth_scope": {
+        "ja": "0.4+sin(2πx)をT=.25まで移流。Gauss点・Radau補正のFRと既存のmodal DGをp=1/2、8/16/32セルで実行し、誤差・質量・時間積分誤差を測ります。",
+        "en": "Transport0.4+sin(2pi x) toT=.25. Execute Gauss-node/Radau FR and the existing modal DG for p=1/2 and8/16/32 cells; measure analytic error, mass and time-integration error."
+      }
+    },
+    {
       "id": "q1-fem",
       "name": {
         "ja": "Q1有限要素法（曲線座標ベクトルBVP）",
@@ -14141,91 +14370,6 @@
         "mapped Q1",
         "Q1有限要素法"
       ],
-      "method_review": {
-        "version": 1,
-        "on": "2026-11-23",
-        "problem": {
-          "ja": "円環の−div[2με(u)]=f。",
-          "en": "Annular -div[2mu epsilon(u)]=f."
-        },
-        "variant": {
-          "ja": "極座標Q1、Cartesian2成分、正確な曲線Jacobianと結合ひずみ弱形式。",
-          "en": "Polar-coordinate Q1,Cartesian components,exact curved Jacobian and coupled strain weak form."
-        },
-        "use_when": {
-          "ja": [
-            "弱形式・写像勾配・物理牽引力の整合を学ぶ固定円環。"
-          ],
-          "en": [
-            "Studying weak forms,mapped gradients and physical traction on a fixed annulus."
-          ]
-        },
-        "avoid_when": {
-          "ja": [
-            "一般メッシュの汎用認証、圧力や非線形流れを必要とする場合。"
-          ],
-          "en": [
-            "General-mesh certification,pressure constraints or nonlinear flow."
-          ]
-        },
-        "fields": {
-          "assumptions": {
-            "state": "specified",
-            "reason": {
-              "ja": "実際の円環ソースと独立な静的弱形式確認に基づく。",
-              "en": "Based on the actual annular source and independent static weak-form review."
-            }
-          },
-          "units": {
-            "state": "specified",
-            "reason": {
-              "ja": "実際の円環ソースと独立な静的弱形式確認に基づく。",
-              "en": "Based on the actual annular source and independent static weak-form review."
-            }
-          },
-          "boundary_conditions": {
-            "state": "specified",
-            "reason": {
-              "ja": "実際の円環ソースと独立な静的弱形式確認に基づく。",
-              "en": "Based on the actual annular source and independent static weak-form review."
-            }
-          },
-          "limitations": {
-            "state": "specified",
-            "reason": {
-              "ja": "実際の円環ソースと独立な静的弱形式確認に基づく。",
-              "en": "Based on the actual annular source and independent static weak-form review."
-            }
-          }
-        },
-        "verification": {
-          "kind": "source-and-code-inspection",
-          "summary": {
-            "ja": "annulus.pyのpolar Q1写像・BᵀCB組立て・円上の物理牽引力とfields.pyの導関数を独立に確認。数値成功は配布版の実行記録で確認します。",
-            "en": "Independently inspected annulus.py polar Q1 map,BᵀCB assembly,circular physical traction and fields.py derivatives. Numerical success is evidenced separately by release receipts."
-          },
-          "evidence": [
-            {
-              "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/annulus.py",
-              "kind": "implementation",
-              "label": "mapped Q1 vector strain assembly"
-            },
-            {
-              "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/test_geometry.py",
-              "kind": "test",
-              "label": "polar shape/gradient and actual block solve"
-            }
-          ],
-          "not_checked": {
-            "ja": [
-              "一般曲線四辺形、軸、非圧縮流れ。"
-            ],
-            "en": [
-              "General curved quadrilaterals,axis or incompressible flow."
-            ]
-          }
-        }
-      },
       "depth_release": {
         "group": "mesh-boundary",
         "edition": "2026-11-23",

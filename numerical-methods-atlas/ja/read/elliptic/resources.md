@@ -279,6 +279,10 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/elliptic/
   availability: run
 
   単位正方形のsin(πx)sin(πy)を参照し、CG/MGは15/31/63内部点、P1 FEMは4/8/16分割で細分化。FDの最大誤差と真の残差、FEMの要素内L2誤差とH1半ノルムを独立に評価する。
+- [純Neumannの互換条件と平均値ゲージ](<https://hrkoyama.github.io/numerical-methods-atlas/validation/poisson-neumann/?lang=ja>)
+  availability: run
+
+  特異な2D Poissonを互換条件と指定平均込みで解き、不適合な外力を拒否します。
 - [Crank–Nicolson法：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/crank-nicolson/?lang=ja#method-execution-ja>)
   availability: source
 

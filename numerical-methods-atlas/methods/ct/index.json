@@ -291,8 +291,8 @@
     ]
   },
   "depth_scope": {
-    "ja": "Orszag–Tang：CT・GLMと独立Athena++比較: 同じ周期Orszag–Tang初期値で、CTとGLMの密度・磁場、保存量、div Bを測り、別に実行したAthena++と比較します。 CT・GLM：移動する磁気静力学平衡の格子・時間収束: 非零の磁気力と圧力勾配が釣り合う構成厳密解を使い、同じ初期セル状態・流束の速度上界・刻み列でCT/GLMを比較します。 Orszag–Tang：条件を揃えたCT・GLMと独立参照の収束: 同じOT初期セル平均と同じdt列でCT/GLMを計算し、別に実行したAthena++の格子・時間感度を分離した参照と比較します。 CTの初期制約保持とGLMの能動的cleaning：非物理診断対照: 故意にdiv B≠0とした同じcell磁場で、CTが初期違反を除去しないこととGLMのB/ψ応答を確認します。物理問題数へ加算しない診断対照です。",
-    "en": "Orszag–Tang: CT, GLM and independent Athena++: Compare CT and GLM density, magnetic field, conservation and div B for the same periodic Orszag–Tang data, against separately executed Athena++. CT and GLM: mesh/time convergence of a moving magnetostatic equilibrium: Use a constructed exact equilibrium with nonzero magnetic force balanced by a pressure gradient, matching CT/GLM initial cell states, flux speed bound and time-step sequence. Orszag–Tang: matched CT/GLM and converged independent references: Run CT/GLM with the same OT initial cell averages and dt sequence, comparing with separately executed Athena++ references whose mesh/time sensitivities are separated. Initial-constraint preservation by CT and active GLM cleaning: nonphysical control: Intentionally begin with the same non-solenoidal cell B, checking that CT does not remove the initial defect and calibrating GLM’s B/psi response. This diagnostic adds no physical problem."
+    "ja": "Orszag–Tang：CT・GLMと独立Athena++比較: 同じ周期Orszag–Tang初期値で、CTとGLMの密度・磁場、保存量、div Bを測り、別に実行したAthena++と比較します。 CT・GLM：移動する磁気静力学平衡の格子・時間収束: 非零の磁気力と圧力勾配が釣り合う構成厳密解を使い、同じ初期セル状態・流束の速度上界・刻み列でCT/GLMを比較します。 Orszag–Tang：条件を揃えたCT・GLMと独立参照の収束: 同じOT初期セル平均と同じdt列でCT/GLMを計算し、別に実行したAthena++の格子・時間感度を分離した参照と比較します。 CTの初期制約保持とGLMの能動的cleaning：非物理診断対照: 故意にdiv B≠0とした同じcell磁場で、CTが初期違反を除去しないこととGLMのB/ψ応答を確認します。物理問題数へ加算しない診断対照です。 追加の実際の2D磁場ループと衝撃波形成後Orszag–Tangで、edge EMFとface磁場のCT更新を使用。独立Athenaの有限格子参照と発散・エネルギーを別々に確認します。",
+    "en": "Orszag–Tang: CT, GLM and independent Athena++: Compare CT and GLM density, magnetic field, conservation and div B for the same periodic Orszag–Tang data, against separately executed Athena++. CT and GLM: mesh/time convergence of a moving magnetostatic equilibrium: Use a constructed exact equilibrium with nonzero magnetic force balanced by a pressure gradient, matching CT/GLM initial cell states, flux speed bound and time-step sequence. Orszag–Tang: matched CT/GLM and converged independent references: Run CT/GLM with the same OT initial cell averages and dt sequence, comparing with separately executed Athena++ references whose mesh/time sensitivities are separated. Initial-constraint preservation by CT and active GLM cleaning: nonphysical control: Intentionally begin with the same non-solenoidal cell B, checking that CT does not remove the initial defect and calibrating GLM’s B/psi response. This diagnostic adds no physical problem. Additional actual2D magnetic-loop and postshock Orszag–Tang use edge EMFs and face-field CT updates. Separately check divergence/energy against finite-grid independent Athena references."
   },
   "depth_additional_releases": [
     {
@@ -1844,6 +1844,1569 @@
           }
         }
       ]
+    },
+    {
+      "group": "mhd-transport",
+      "case_ids": [
+        "magnetic-loop-independent",
+        "postshock-orszag-tang"
+      ],
+      "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/",
+      "code_edition": "2026-11-23",
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/solver.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/hlld.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/qualify_saved.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/analytic.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/generate.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/qualify.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/test_mhd.py"
+      ],
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "run_from": "atlas-mhd-transport-2026-11-23",
+      "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip",
+      "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/source-manifest.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/verification.json",
+      "code_archive_sha256": "8b6d4d9d30c9ed12fd29b7b91a11c16dc183b9aea49234966a66c376713ebf90",
+      "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/results/result.json",
+      "passed_tests": 47,
+      "examples": [
+        {
+          "id": "magnetic-loop-independent",
+          "title": {
+            "ja": "磁場ループ：独立2次元参照と細分化",
+            "en": "Magnetic loop: independent 2D reference and refinement"
+          },
+          "method_ids": [
+            "hlld",
+            "muscl",
+            "heun",
+            "ct"
+          ],
+          "domains": [
+            "fluid",
+            "pde"
+          ],
+          "code_files": [
+            "run.py",
+            "solver.py",
+            "hlld.py",
+            "references/qualify_saved.py"
+          ],
+          "summary": {
+            "ja": "実際の2次元磁場ループ輸送を、別実装Athena++の空間・時間感度を検査した終端保存場と比較します。",
+            "en": "Compare genuine 2D magnetic-loop transport with final conserved fields from independent Athena++, qualified in space and time."
+          },
+          "assumptions": {
+            "ja": "[-1,1]×[-.5,.5]周期、ρ=p=1、Az=.001max(.3−r,0)、T=1、(Nx,Ny)=(16,8),(32,16),(64,32)。変更していない公式生成器と同じv=(2,1,2)で、古いvz=0設定とは区別します。",
+            "en": "Periodic[-1,1]x[-.5,.5],rho=p1,Az=.001max(.3-r,0),T1,(Nx,Ny)=(16,8),(32,16),(64,32). Use unchanged official-generator v=(2,1,2), explicitly distinct from old vz0 inputs."
+          },
+          "algorithm": {
+            "ja": "全8変数HLLD流束、MC-MUSCL再構成、固定刻みHeun。共有面流束とCT-contact角電場から面磁場を更新し、セル磁場は隣接面平均。初期状態は公式生成器の離散ベクトルポテンシャルと中心流体値に一致させます。",
+            "en": "Full-eight-state HLLD fluxes, MC-MUSCL reconstruction and fixed-step Heun. Shared face fluxes and CT-contact corner EMFs update native face B; cell B is adjacent-face averaged. Initial discrete vector-potential curl and sampled fluid states match the official generator."
+          },
+          "validation": {
+            "ja": "実行前契約で47pytest・全12計算を固定。3格子と最細格子の時間刻み半減を分離し、全段の正値性・有限性、保存量、Courant数、5時刻の実場を保存します。Athena++の2格子と刻み半減で参照を検定。終端保存変数を保守的に粗視化し、誤差と参照感度を分離します。共通セル発散と主計算の固有面発散は別の検査です。",
+            "en": "Freeze 47 pytest checks and12 primary runs before execution. Separate three grids and a finest-grid half-dt probe; retain stage positivity/finiteness, conservation, Courant number and five actual field snapshots. Qualify Athena++ with two grids and a half-CFL probe. Conservatively restrict final conserved states and separate reference sensitivity from primary error. Common-cell divergence and primary native-face divergence are distinct checks."
+          },
+          "limits": {
+            "ja": "少数の固定入力に対する教育用検証です。HLLDのHLLE代替と再構成の正値性スケーリングを数え、セル状態の床・クリップ・再試行は行いません。有限格子参照は厳密解ではなく、任意問題の安定性・正値性や普遍的次数を保証しません。独立比較は終端のみ。中間Athena時刻は指定四半時刻直後で、正確に整列した場とは表示しません。Athenaの固有面発散は出力しておらず測定を主張しません。密度比は圧縮の診断であり数学的衝撃波の証明ではありません。",
+            "en": "Educational fixed inputs only. Count HLLD-to-HLLE fallbacks and face reconstruction positivity scaling; no cell floor/clipping/retry. Finite-grid references are not exact solutions; no universal stability, positivity or order guarantee. Independent comparisons are final-only. Intermediate Athena outputs occur just after requested quarter times and are not matched frames. Athena native-face divergence is not exported/measured. Density contrast diagnoses compression, not a mathematical proof of shock formation."
+          },
+          "formulas": [
+            "\\partial_tU+\\partial_xF_x(U)+\\partial_yF_y(U)=0,\\quad U=(\\rho,\\rho\\mathbf v,E,\\mathbf B)",
+            "E=\\frac{p}{\\gamma-1}+\\frac12\\rho|\\mathbf v|^2+\\frac12|\\mathbf B|^2,\\quad\\gamma=5/3",
+            "\\frac{dB_x}{dt}=-D_y\\mathcal E_z,\\quad\\frac{dB_y}{dt}=D_x\\mathcal E_z,\\quad D_xB_x+D_yB_y=\\mathrm{constant}",
+            "\\bar U_i^{\\mathrm{ref}}=\\frac1{N_i}\\sum_{j\\in i}\\bar U_j^{\\mathrm{fine}},\\qquad e_1=\\frac{\\sum|U-U^{\\mathrm{ref}}|}{\\sum|U^{\\mathrm{ref}}|}",
+            "A_z=.001\\max(.3-\\sqrt{x^2+y^2},0),\\qquad\\mathbf v=(2,1,2)"
+          ],
+          "references": [
+            {
+              "id": "athena-pinned-2026",
+              "author": "Athena++ collaboration",
+              "year": 2026,
+              "title": "Athena++ official field_loop and orszag_tang problem generators, pinned source",
+              "url": "https://github.com/PrincetonUniversity/athena/tree/1395e2f543f4368d448cb1a2cf92ba1f910e3416",
+              "type": "software",
+              "role": "Actually inspected independent engine and fixed initial conditions; finite-grid numerical reference only",
+              "review_level": "Official archive SHA verified; selected src/pgen/field_loop.cpp and orszag_tang.cpp, PLM/RK2/output configuration and actual conserved tab headers inspected; not a full Athena code audit",
+              "review": {
+                "ja": "固定コミットの公式アーカイブSHAを照合し、2初期値生成器と設定・保存列を確認。別実装を実行して参照場を作成し、空間・時間感度を検査。全ソース監査や厳密解とは表示しません。",
+                "en": "Verified the official pinned archive SHA and inspected both generators, configuration and saved columns. Executed the independent engine and checked spatial/time sensitivity. No complete code audit or exact-solution claim."
+              },
+              "accessed_on": "2026-11-23"
+            },
+            {
+              "id": "gardiner-stone2005",
+              "author": "Thomas A. Gardiner and James M. Stone",
+              "year": 2005,
+              "title": "An unsplit Godunov method for ideal MHD via constrained transport",
+              "journal": "Journal of Computational Physics",
+              "volume": "205",
+              "pages": "509–539",
+              "doi": "10.1016/j.jcp.2004.11.016",
+              "url": "https://arxiv.org/abs/astro-ph/0501557",
+              "type": "article",
+              "role": "Primary CT-contact, magnetic-loop and circular-polarization background; selected sections only",
+              "review_level": "Author arXiv PDF selected section2.2 equations13–20,3.3.1–3.3.2 and5.1–5.2 inspected; not the full paper or original experiment replication",
+              "review": {
+                "ja": "著者公開PDFのCT節・磁場ループ・円偏波の定義を確認。論文のCTU/PPMや斜め伝播実験を再現したとは主張しません。今回の円偏波は1次元整列、公式磁場ループはvz=2の明示的変更です。",
+                "en": "Inspected the author PDF CT section and loop/polarized-wave definitions. Original CTU/PPM and oblique-wave experiments are not replicated. Our wave is 1D aligned; the official loop generator explicitly has vz=2."
+              },
+              "accessed_on": "2026-11-23"
+            },
+            {
+              "id": "miyoshi-kusano2005",
+              "author": "Takahiro Miyoshi and Kanya Kusano",
+              "year": 2005,
+              "title": "A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics",
+              "journal": "Journal of Computational Physics",
+              "volume": "208",
+              "pages": "315–344",
+              "doi": "10.1016/j.jcp.2005.02.017",
+              "url": "https://doi.org/10.1016/j.jcp.2005.02.017",
+              "type": "article",
+              "role": "Original HLLD attribution; implementation inherited from previously validated Atlas source",
+              "review_level": "Bibliographic metadata checked; publisher full text returned403. This addition did not newly audit original equations or experiments",
+              "review": {
+                "ja": "書誌を確認。出版社本文は取得できず、今回新たに原著の式や実験を監査したとは表示しません。全8変数HLLDコードは過去の公開検証済みAtlasから同一バイトで継承します。",
+                "en": "Bibliographic metadata checked; full publisher text unavailable. No new original-equation/experiment audit is claimed. Full-state HLLD is inherited byte-for-byte from the prior public validated Atlas."
+              },
+              "accessed_on": "2026-11-23"
+            }
+          ],
+          "citations": [
+            {
+              "id": "athena-pinned-2026",
+              "author": "Athena++ collaboration",
+              "year": 2026,
+              "title": "Athena++ official field_loop and orszag_tang problem generators, pinned source",
+              "url": "https://github.com/PrincetonUniversity/athena/tree/1395e2f543f4368d448cb1a2cf92ba1f910e3416",
+              "type": "software",
+              "role": "Actually inspected independent engine and fixed initial conditions; finite-grid numerical reference only",
+              "review_level": "Official archive SHA verified; selected src/pgen/field_loop.cpp and orszag_tang.cpp, PLM/RK2/output configuration and actual conserved tab headers inspected; not a full Athena code audit",
+              "review": {
+                "ja": "固定コミットの公式アーカイブSHAを照合し、2初期値生成器と設定・保存列を確認。別実装を実行して参照場を作成し、空間・時間感度を検査。全ソース監査や厳密解とは表示しません。",
+                "en": "Verified the official pinned archive SHA and inspected both generators, configuration and saved columns. Executed the independent engine and checked spatial/time sensitivity. No complete code audit or exact-solution claim."
+              },
+              "accessed_on": "2026-11-23"
+            },
+            {
+              "id": "gardiner-stone2005",
+              "author": "Thomas A. Gardiner and James M. Stone",
+              "year": 2005,
+              "title": "An unsplit Godunov method for ideal MHD via constrained transport",
+              "journal": "Journal of Computational Physics",
+              "volume": "205",
+              "pages": "509–539",
+              "doi": "10.1016/j.jcp.2004.11.016",
+              "url": "https://arxiv.org/abs/astro-ph/0501557",
+              "type": "article",
+              "role": "Primary CT-contact, magnetic-loop and circular-polarization background; selected sections only",
+              "review_level": "Author arXiv PDF selected section2.2 equations13–20,3.3.1–3.3.2 and5.1–5.2 inspected; not the full paper or original experiment replication",
+              "review": {
+                "ja": "著者公開PDFのCT節・磁場ループ・円偏波の定義を確認。論文のCTU/PPMや斜め伝播実験を再現したとは主張しません。今回の円偏波は1次元整列、公式磁場ループはvz=2の明示的変更です。",
+                "en": "Inspected the author PDF CT section and loop/polarized-wave definitions. Original CTU/PPM and oblique-wave experiments are not replicated. Our wave is 1D aligned; the official loop generator explicitly has vz=2."
+              },
+              "accessed_on": "2026-11-23"
+            },
+            {
+              "id": "miyoshi-kusano2005",
+              "author": "Takahiro Miyoshi and Kanya Kusano",
+              "year": 2005,
+              "title": "A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics",
+              "journal": "Journal of Computational Physics",
+              "volume": "208",
+              "pages": "315–344",
+              "doi": "10.1016/j.jcp.2005.02.017",
+              "url": "https://doi.org/10.1016/j.jcp.2005.02.017",
+              "type": "article",
+              "role": "Original HLLD attribution; implementation inherited from previously validated Atlas source",
+              "review_level": "Bibliographic metadata checked; publisher full text returned403. This addition did not newly audit original equations or experiments",
+              "review": {
+                "ja": "書誌を確認。出版社本文は取得できず、今回新たに原著の式や実験を監査したとは表示しません。全8変数HLLDコードは過去の公開検証済みAtlasから同一バイトで継承します。",
+                "en": "Bibliographic metadata checked; full publisher text unavailable. No new original-equation/experiment audit is claimed. Full-state HLLD is inherited byte-for-byte from the prior public validated Atlas."
+              },
+              "accessed_on": "2026-11-23"
+            }
+          ],
+          "gallery_figure": "magnetic-loop-independent-preview.png",
+          "additional_figures": [
+            {
+              "file": "magnetic-loop-independent-preview.png",
+              "caption": {
+                "ja": "保存した主計算の実際の2次元面内磁気エネルギー、T=1。",
+                "en": "Actual saved primary 2D in-plane magnetic energy at T1."
+              }
+            }
+          ],
+          "case_notes": {
+            "ja": "最細64×32格子の独立終端磁場に対する相対L1=.253088。参照自身の格子・刻み感度を合わせた差=.120074で、主誤差の47.44%です。従って精密な厳密解誤差ではなく、有限格子参照との差と細分化を示します。主計算の固有面発散は1.45×10⁻¹⁶以下、共通セル演算子では非零です。",
+            "en": "At64x32 the final independent-field magnetic relative L1 is.253088. Combined coarse/fine-and-CFL reference increment is.120074,47.44% of primary error. This demonstrates refinement against a finite-grid reference, not a precision exact-solution error. Primary native-face divergence is at most1.45e-16; the common cell operator is nonzero."
+          },
+          "measured": {
+            "id": "magnetic-loop-independent",
+            "passed": true,
+            "checks": {
+              "four prescribed fixed runs": true,
+              "qualified independent reference": true,
+              "magnetic-loop-independent-n8 all stages finite positive": true,
+              "magnetic-loop-independent-n8 final time": true,
+              "magnetic-loop-independent-n8 five exact snapshots": true,
+              "magnetic-loop-independent-n8 fluid integral conservation": true,
+              "magnetic-loop-independent-n8 native face divergence": true,
+              "magnetic-loop-independent-n8 measured Courant sum": true,
+              "magnetic-loop-independent-n8 no cell clips or retries": true,
+              "magnetic-loop-independent-n8 explicit fallback accounting": true,
+              "magnetic-loop-independent-n16 all stages finite positive": true,
+              "magnetic-loop-independent-n16 final time": true,
+              "magnetic-loop-independent-n16 five exact snapshots": true,
+              "magnetic-loop-independent-n16 fluid integral conservation": true,
+              "magnetic-loop-independent-n16 native face divergence": true,
+              "magnetic-loop-independent-n16 measured Courant sum": true,
+              "magnetic-loop-independent-n16 no cell clips or retries": true,
+              "magnetic-loop-independent-n16 explicit fallback accounting": true,
+              "magnetic-loop-independent-n32 all stages finite positive": true,
+              "magnetic-loop-independent-n32 final time": true,
+              "magnetic-loop-independent-n32 five exact snapshots": true,
+              "magnetic-loop-independent-n32 fluid integral conservation": true,
+              "magnetic-loop-independent-n32 native face divergence": true,
+              "magnetic-loop-independent-n32 measured Courant sum": true,
+              "magnetic-loop-independent-n32 no cell clips or retries": true,
+              "magnetic-loop-independent-n32 explicit fallback accounting": true,
+              "magnetic-loop-independent-half-dt all stages finite positive": true,
+              "magnetic-loop-independent-half-dt final time": true,
+              "magnetic-loop-independent-half-dt five exact snapshots": true,
+              "magnetic-loop-independent-half-dt fluid integral conservation": true,
+              "magnetic-loop-independent-half-dt native face divergence": true,
+              "magnetic-loop-independent-half-dt measured Courant sum": true,
+              "magnetic-loop-independent-half-dt no cell clips or retries": true,
+              "magnetic-loop-independent-half-dt explicit fallback accounting": true,
+              "magnetic refinement n16": true,
+              "magnetic refinement n32": true,
+              "magnetic finest error": true,
+              "magnetic separate time contamination fraction": true,
+              "magnetic reference increment/error": true
+            },
+            "check_details": [
+              {
+                "name": "four prescribed fixed runs",
+                "value": 4,
+                "bound": 4,
+                "passed": true
+              },
+              {
+                "name": "qualified independent reference",
+                "value": true,
+                "bound": true,
+                "passed": true
+              },
+              {
+                "name": "magnetic-loop-independent-n8 all stages finite positive",
+                "value": true,
+                "bound": true,
+                "passed": true
+              },
+              {
+                "name": "magnetic-loop-independent-n8 final time",
+                "value": 1.0,
+                "bound": 1.0,
+                "passed": true
+              },
+              {
+                "name": "magnetic-loop-independent-n8 five exact snapshots",
+                "value": [
+                  0.0,
+                  0.25,
+                  0.5,
+                  0.75,
+                  1.0
+                ],
+                "bound": [
+                  0.0,
+                  0.25,
+                  0.5,
+                  0.75,
+                  1.0
+                ],
+                "passed": true
+              },
+              {
+                "name": "magnetic-loop-independent-n8 fluid integral conservation",
+                "value": 1.4802973524022512e-15,
+                "bound": 3e-11,
+                "passed": true
+              },
+              {
+                "name": "magnetic-loop-independent-n8 native face divergence",
+                "value": 1.8214596497756474e-17,
+                "bound": 5e-11,
+                "passed": true
+              },
+              {
+                "name": "magnetic-loop-independent-n8 measured Courant sum",
+                "value": 0.04360929703016027,
+                "bound": 0.4,
+                "passed": true
+              },
+              {
+                "name": "magnetic-loop-independent-n8 no cell clips or retries",
+                "value": [
+                  0,
+                  0
+                ],
+                "bound": [
+                  0,
+                  0
+                ],
+                "passed": true
+              },
+              {
+                "name": "magnetic-loop-independent-n8 explicit fallback accounting",
+                "value": 0,
+                "bound": 0,
+                "passed": true
+              },
+              {
+                "name": "magnetic-loop-independent-n16 all stages finite positive",
+                "value": true,
+                "bound": true,
+                "passed": true
+              },
+              {
+                "name": "magnetic-loop-independent-n16 final time",
+                "value": 1.0,
+                "bound": 1.0,
+                "passed": true
+              },
+              {
+                "name": "magnetic-loop-independent-n16 five exact snapshots",
+                "value": [
+                  0.0,
+                  0.25,
+                  0.5,
+                  0.75,
+                  1.0
+                ],
+                "bound": [
+                  0.0,
+                  0.25,
+                  0.5,
+                  0.75,
+                  1.0
+                ],
+                "passed": true
+              },
+              {
+                "name": "magnetic-loop-independent-n16 fluid integral conservation",
+                "value": 2.664535231092865e-15,
+                "bound": 3e-11,
+                "passed": true
+              },
+              {
+                "name": "magnetic-loop-independent-n16 native face divergence",
+                "value": 6.635317295611287e-17,
+                "bound": 5e-11,
+                "passed": true
+              },
+              {
+                "name": "magnetic-loop-independent-n16 measured Courant sum",
+                "value": 0.08721860600546785,
+                "bound": 0.4,
+                "passed": true
+              },
+              {
+                "name": "magnetic-loop-independent-n16 no cell clips or retries",
+                "value": [
+                  0,
+                  0
+                ],
+                "bound": [
+                  0,
+                  0
+                ],
+                "passed": true
+              },
+              {
+                "name": "magnetic-loop-independent-n16 explicit fallback accounting",
+                "value": 0,
+                "bound": 0,
+                "passed": true
+              },
+              {
+                "name": "magnetic-loop-independent-n32 all stages finite positive",
+                "value": true,
+                "bound": true,
+                "passed": true
+              },
+              {
+                "name": "magnetic-loop-independent-n32 final time",
+                "value": 1.0,
+                "bound": 1.0,
+                "passed": true
+              },
+              {
+                "name": "magnetic-loop-independent-n32 five exact snapshots",
+                "value": [
+                  0.0,
+                  0.25,
+                  0.5,
+                  0.75,
+                  1.0
+                ],
+                "bound": [
+                  0.0,
+                  0.25,
+                  0.5,
+                  0.75,
+                  1.0
+                ],
+                "passed": true
+              },
+              {
+                "name": "magnetic-loop-independent-n32 fluid integral conservation",
+                "value": 5.329070518200751e-15,
+                "bound": 3e-11,
+                "passed": true
+              },
+              {
+                "name": "magnetic-loop-independent-n32 native face divergence",
+                "value": 1.4474099002681484e-16,
+                "bound": 5e-11,
+                "passed": true
+              },
+              {
+                "name": "magnetic-loop-independent-n32 measured Courant sum",
+                "value": 0.17443721787706684,
+                "bound": 0.4,
+                "passed": true
+              },
+              {
+                "name": "magnetic-loop-independent-n32 no cell clips or retries",
+                "value": [
+                  0,
+                  0
+                ],
+                "bound": [
+                  0,
+                  0
+                ],
+                "passed": true
+              },
+              {
+                "name": "magnetic-loop-independent-n32 explicit fallback accounting",
+                "value": 0,
+                "bound": 0,
+                "passed": true
+              },
+              {
+                "name": "magnetic-loop-independent-half-dt all stages finite positive",
+                "value": true,
+                "bound": true,
+                "passed": true
+              },
+              {
+                "name": "magnetic-loop-independent-half-dt final time",
+                "value": 1.0,
+                "bound": 1.0,
+                "passed": true
+              },
+              {
+                "name": "magnetic-loop-independent-half-dt five exact snapshots",
+                "value": [
+                  0.0,
+                  0.25,
+                  0.5,
+                  0.75,
+                  1.0
+                ],
+                "bound": [
+                  0.0,
+                  0.25,
+                  0.5,
+                  0.75,
+                  1.0
+                ],
+                "passed": true
+              },
+              {
+                "name": "magnetic-loop-independent-half-dt fluid integral conservation",
+                "value": 4.8849812538444305e-15,
+                "bound": 3e-11,
+                "passed": true
+              },
+              {
+                "name": "magnetic-loop-independent-half-dt native face divergence",
+                "value": 2.4340338772299575e-16,
+                "bound": 5e-11,
+                "passed": true
+              },
+              {
+                "name": "magnetic-loop-independent-half-dt measured Courant sum",
+                "value": 0.08721860892530799,
+                "bound": 0.4,
+                "passed": true
+              },
+              {
+                "name": "magnetic-loop-independent-half-dt no cell clips or retries",
+                "value": [
+                  0,
+                  0
+                ],
+                "bound": [
+                  0,
+                  0
+                ],
+                "passed": true
+              },
+              {
+                "name": "magnetic-loop-independent-half-dt explicit fallback accounting",
+                "value": 0,
+                "bound": 0,
+                "passed": true
+              },
+              {
+                "name": "magnetic refinement n16",
+                "value": 0.6554932917671942,
+                "bound": 0.92,
+                "passed": true
+              },
+              {
+                "name": "magnetic refinement n32",
+                "value": 0.37849017351902015,
+                "bound": 0.92,
+                "passed": true
+              },
+              {
+                "name": "magnetic finest error",
+                "value": 0.2530875146425678,
+                "bound": 0.65,
+                "passed": true
+              },
+              {
+                "name": "magnetic separate time contamination fraction",
+                "value": 0.003165190329184915,
+                "bound": 0.2,
+                "passed": true
+              },
+              {
+                "name": "magnetic reference increment/error",
+                "value": 0.4744348754801365,
+                "bound": 0.75,
+                "passed": true
+              }
+            ],
+            "records": [
+              {
+                "id": "magnetic-loop-independent-n8",
+                "case": "magnetic-loop-independent",
+                "n": 8,
+                "steps": 1024,
+                "time": 1.0,
+                "family": "refinement",
+                "field": "magnetic-loop-independent-n8.npz",
+                "snapshot_times": [
+                  0.0,
+                  0.25,
+                  0.5,
+                  0.75,
+                  1.0
+                ],
+                "errors": {
+                  "magnetic": {
+                    "relative_l1": 1.0201120103024197,
+                    "relative_l2": 0.8405195518649691,
+                    "absolute_linf": 0.0008159155417839306
+                  }
+                },
+                "finite_positive": true,
+                "maximum_fluid_integral_defect": 1.4802973524022512e-15,
+                "maximum_native_divergence": 1.8214596497756474e-17,
+                "maximum_common_cell_divergence": 0.0008558607041798696,
+                "reference_common_cell_divergence": 0.0008776373177767475,
+                "maximum_courant_sum": 0.04360929703016027,
+                "fallback_faces": 0,
+                "fallback_count_from_history": 0,
+                "degenerate_faces": 6023,
+                "reconstruction_scalings": 0,
+                "minimum_theta": 1.0,
+                "minimum_density": 0.9999998929953716,
+                "minimum_pressure": 0.999999927065606,
+                "state_clip_count": 0,
+                "retries": 0,
+                "maximum_abs_bz": 1.1229187746463552e-18,
+                "reference_increment": {
+                  "magnetic": 0.07681463629903337
+                }
+              },
+              {
+                "id": "magnetic-loop-independent-n16",
+                "case": "magnetic-loop-independent",
+                "n": 16,
+                "steps": 1024,
+                "time": 1.0,
+                "family": "refinement",
+                "field": "magnetic-loop-independent-n16.npz",
+                "snapshot_times": [
+                  0.0,
+                  0.25,
+                  0.5,
+                  0.75,
+                  1.0
+                ],
+                "errors": {
+                  "magnetic": {
+                    "relative_l1": 0.668676579604383,
+                    "relative_l2": 0.5211776406502052,
+                    "absolute_linf": 0.0005706710838436806
+                  }
+                },
+                "finite_positive": true,
+                "maximum_fluid_integral_defect": 2.664535231092865e-15,
+                "maximum_native_divergence": 6.635317295611287e-17,
+                "maximum_common_cell_divergence": 0.0023673555594734682,
+                "reference_common_cell_divergence": 0.0011615334487890712,
+                "maximum_courant_sum": 0.08721860600546785,
+                "fallback_faces": 0,
+                "fallback_count_from_history": 0,
+                "degenerate_faces": 158890,
+                "reconstruction_scalings": 0,
+                "minimum_theta": 1.0,
+                "minimum_density": 0.9999997123296424,
+                "minimum_pressure": 0.9999995728881617,
+                "state_clip_count": 0,
+                "retries": 0,
+                "maximum_abs_bz": 2.942099906633994e-18,
+                "reference_increment": {
+                  "magnetic": 0.10660222586710934
+                }
+              },
+              {
+                "id": "magnetic-loop-independent-n32",
+                "case": "magnetic-loop-independent",
+                "n": 32,
+                "steps": 1024,
+                "time": 1.0,
+                "family": "refinement",
+                "field": "magnetic-loop-independent-n32.npz",
+                "snapshot_times": [
+                  0.0,
+                  0.25,
+                  0.5,
+                  0.75,
+                  1.0
+                ],
+                "errors": {
+                  "magnetic": {
+                    "relative_l1": 0.2530875146425678,
+                    "relative_l2": 0.21987860576660073,
+                    "absolute_linf": 0.0004883506353483678
+                  }
+                },
+                "finite_positive": true,
+                "maximum_fluid_integral_defect": 5.329070518200751e-15,
+                "maximum_native_divergence": 1.4474099002681484e-16,
+                "maximum_common_cell_divergence": 0.004578634841297174,
+                "reference_common_cell_divergence": 0.0010611346828048535,
+                "maximum_courant_sum": 0.17443721787706684,
+                "fallback_faces": 0,
+                "fallback_count_from_history": 0,
+                "degenerate_faces": 2888347,
+                "reconstruction_scalings": 0,
+                "minimum_theta": 1.0,
+                "minimum_density": 0.9999995984899958,
+                "minimum_pressure": 0.999999355016882,
+                "state_clip_count": 0,
+                "retries": 0,
+                "maximum_abs_bz": 3.637133108151499e-18,
+                "reference_increment": {
+                  "magnetic": 0.12007354349502387
+                }
+              },
+              {
+                "id": "magnetic-loop-independent-half-dt",
+                "case": "magnetic-loop-independent",
+                "n": 32,
+                "steps": 2048,
+                "time": 1.0,
+                "family": "time-probe",
+                "field": "magnetic-loop-independent-half-dt.npz",
+                "snapshot_times": [
+                  0.0,
+                  0.25,
+                  0.5,
+                  0.75,
+                  1.0
+                ],
+                "errors": {
+                  "magnetic": {
+                    "relative_l1": 0.25282584988507095,
+                    "relative_l2": 0.21966338068429772,
+                    "absolute_linf": 0.00048750772481418684
+                  }
+                },
+                "finite_positive": true,
+                "maximum_fluid_integral_defect": 4.8849812538444305e-15,
+                "maximum_native_divergence": 2.4340338772299575e-16,
+                "maximum_common_cell_divergence": 0.00472223323124636,
+                "reference_common_cell_divergence": 0.0010611346828048535,
+                "maximum_courant_sum": 0.08721860892530799,
+                "fallback_faces": 0,
+                "fallback_count_from_history": 0,
+                "degenerate_faces": 5769952,
+                "reconstruction_scalings": 0,
+                "minimum_theta": 1.0,
+                "minimum_density": 0.9999995987290128,
+                "minimum_pressure": 0.9999993552455431,
+                "state_clip_count": 0,
+                "retries": 0,
+                "maximum_abs_bz": 5.299494213885735e-18,
+                "reference_increment": {
+                  "magnetic": 0.12007354349502387
+                },
+                "time_half_difference": {
+                  "magnetic": 0.0008010701537841011
+                }
+              }
+            ],
+            "metrics": {
+              "completed_pde_runs": 4,
+              "reference_qualification_passed": true,
+              "analytic_quadrature_difference": null
+            }
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/magnetic-loop-independent/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transport/#magnetic-loop-independent",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/#magnetic-loop-independent"
+          }
+        },
+        {
+          "id": "postshock-orszag-tang",
+          "title": {
+            "ja": "後期Orszag–Tang：独立参照と圧縮構造",
+            "en": "Late Orszag-Tang: independent reference and compression structure"
+          },
+          "method_ids": [
+            "hlld",
+            "muscl",
+            "heun",
+            "ct"
+          ],
+          "domains": [
+            "fluid",
+            "pde"
+          ],
+          "code_files": [
+            "run.py",
+            "solver.py",
+            "hlld.py",
+            "references/qualify_saved.py"
+          ],
+          "summary": {
+            "ja": "圧縮性理想MHDのOrszag–TangをT=.2まで進め、相互作用する圧縮・衝撃波構造の密度と圧力を独立有限格子参照で検査します。",
+            "en": "Evolve compressible ideal-MHD Orszag-Tang to T.2 and check density/pressure in interacting compression/shock structure against an independent finite-grid reference."
+          },
+          "assumptions": {
+            "ja": "γ=5/3、[-.5,.5]²周期、ρ=25/(36π)、p=5/(12π)、vx=sin2πy、vy=−sin2πx、Az=(cos4πx−2cos2πy)/(4π√(4π))、16/32/64²セル。原著の非圧縮・粘性抵抗モデルの再現ではありません。",
+            "en": "gamma5/3,periodic[-.5,.5]²,rho25/(36pi),p5/(12pi),vx=sin2piy,vy=-sin2pix,Az=(cos4pix-2cos2piy)/(4pi sqrt4pi),16/32/64² cells. This does not reproduce the original incompressible viscous/resistive model."
+          },
+          "algorithm": {
+            "ja": "全8変数HLLD流束、MC-MUSCL再構成、固定刻みHeun。共有面流束とCT-contact角電場から面磁場を更新し、セル磁場は隣接面平均。初期状態は公式生成器の離散ベクトルポテンシャルと中心流体値に一致させます。",
+            "en": "Full-eight-state HLLD fluxes, MC-MUSCL reconstruction and fixed-step Heun. Shared face fluxes and CT-contact corner EMFs update native face B; cell B is adjacent-face averaged. Initial discrete vector-potential curl and sampled fluid states match the official generator."
+          },
+          "validation": {
+            "ja": "実行前契約で47pytest・全12計算を固定。3格子と最細格子の時間刻み半減を分離し、全段の正値性・有限性、保存量、Courant数、5時刻の実場を保存します。Athena++の2格子と刻み半減で参照を検定。終端保存変数を保守的に粗視化し、誤差と参照感度を分離します。共通セル発散と主計算の固有面発散は別の検査です。",
+            "en": "Freeze 47 pytest checks and12 primary runs before execution. Separate three grids and a finest-grid half-dt probe; retain stage positivity/finiteness, conservation, Courant number and five actual field snapshots. Qualify Athena++ with two grids and a half-CFL probe. Conservatively restrict final conserved states and separate reference sensitivity from primary error. Common-cell divergence and primary native-face divergence are distinct checks."
+          },
+          "limits": {
+            "ja": "少数の固定入力に対する教育用検証です。HLLDのHLLE代替と再構成の正値性スケーリングを数え、セル状態の床・クリップ・再試行は行いません。有限格子参照は厳密解ではなく、任意問題の安定性・正値性や普遍的次数を保証しません。独立比較は終端のみ。中間Athena時刻は指定四半時刻直後で、正確に整列した場とは表示しません。Athenaの固有面発散は出力しておらず測定を主張しません。密度比は圧縮の診断であり数学的衝撃波の証明ではありません。",
+            "en": "Educational fixed inputs only. Count HLLD-to-HLLE fallbacks and face reconstruction positivity scaling; no cell floor/clipping/retry. Finite-grid references are not exact solutions; no universal stability, positivity or order guarantee. Independent comparisons are final-only. Intermediate Athena outputs occur just after requested quarter times and are not matched frames. Athena native-face divergence is not exported/measured. Density contrast diagnoses compression, not a mathematical proof of shock formation."
+          },
+          "formulas": [
+            "\\partial_tU+\\partial_xF_x(U)+\\partial_yF_y(U)=0,\\quad U=(\\rho,\\rho\\mathbf v,E,\\mathbf B)",
+            "E=\\frac{p}{\\gamma-1}+\\frac12\\rho|\\mathbf v|^2+\\frac12|\\mathbf B|^2,\\quad\\gamma=5/3",
+            "\\frac{dB_x}{dt}=-D_y\\mathcal E_z,\\quad\\frac{dB_y}{dt}=D_x\\mathcal E_z,\\quad D_xB_x+D_yB_y=\\mathrm{constant}",
+            "\\bar U_i^{\\mathrm{ref}}=\\frac1{N_i}\\sum_{j\\in i}\\bar U_j^{\\mathrm{fine}},\\qquad e_1=\\frac{\\sum|U-U^{\\mathrm{ref}}|}{\\sum|U^{\\mathrm{ref}}|}",
+            "\\rho_0=\\frac{25}{36\\pi},\\quad p_0=\\frac5{12\\pi},\\quad\\mathbf v_0=(\\sin2\\pi y,-\\sin2\\pi x,0)"
+          ],
+          "references": [
+            {
+              "id": "athena-pinned-2026",
+              "author": "Athena++ collaboration",
+              "year": 2026,
+              "title": "Athena++ official field_loop and orszag_tang problem generators, pinned source",
+              "url": "https://github.com/PrincetonUniversity/athena/tree/1395e2f543f4368d448cb1a2cf92ba1f910e3416",
+              "type": "software",
+              "role": "Actually inspected independent engine and fixed initial conditions; finite-grid numerical reference only",
+              "review_level": "Official archive SHA verified; selected src/pgen/field_loop.cpp and orszag_tang.cpp, PLM/RK2/output configuration and actual conserved tab headers inspected; not a full Athena code audit",
+              "review": {
+                "ja": "固定コミットの公式アーカイブSHAを照合し、2初期値生成器と設定・保存列を確認。別実装を実行して参照場を作成し、空間・時間感度を検査。全ソース監査や厳密解とは表示しません。",
+                "en": "Verified the official pinned archive SHA and inspected both generators, configuration and saved columns. Executed the independent engine and checked spatial/time sensitivity. No complete code audit or exact-solution claim."
+              },
+              "accessed_on": "2026-11-23"
+            },
+            {
+              "id": "gardiner-stone2005",
+              "author": "Thomas A. Gardiner and James M. Stone",
+              "year": 2005,
+              "title": "An unsplit Godunov method for ideal MHD via constrained transport",
+              "journal": "Journal of Computational Physics",
+              "volume": "205",
+              "pages": "509–539",
+              "doi": "10.1016/j.jcp.2004.11.016",
+              "url": "https://arxiv.org/abs/astro-ph/0501557",
+              "type": "article",
+              "role": "Primary CT-contact, magnetic-loop and circular-polarization background; selected sections only",
+              "review_level": "Author arXiv PDF selected section2.2 equations13–20,3.3.1–3.3.2 and5.1–5.2 inspected; not the full paper or original experiment replication",
+              "review": {
+                "ja": "著者公開PDFのCT節・磁場ループ・円偏波の定義を確認。論文のCTU/PPMや斜め伝播実験を再現したとは主張しません。今回の円偏波は1次元整列、公式磁場ループはvz=2の明示的変更です。",
+                "en": "Inspected the author PDF CT section and loop/polarized-wave definitions. Original CTU/PPM and oblique-wave experiments are not replicated. Our wave is 1D aligned; the official loop generator explicitly has vz=2."
+              },
+              "accessed_on": "2026-11-23"
+            },
+            {
+              "id": "miyoshi-kusano2005",
+              "author": "Takahiro Miyoshi and Kanya Kusano",
+              "year": 2005,
+              "title": "A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics",
+              "journal": "Journal of Computational Physics",
+              "volume": "208",
+              "pages": "315–344",
+              "doi": "10.1016/j.jcp.2005.02.017",
+              "url": "https://doi.org/10.1016/j.jcp.2005.02.017",
+              "type": "article",
+              "role": "Original HLLD attribution; implementation inherited from previously validated Atlas source",
+              "review_level": "Bibliographic metadata checked; publisher full text returned403. This addition did not newly audit original equations or experiments",
+              "review": {
+                "ja": "書誌を確認。出版社本文は取得できず、今回新たに原著の式や実験を監査したとは表示しません。全8変数HLLDコードは過去の公開検証済みAtlasから同一バイトで継承します。",
+                "en": "Bibliographic metadata checked; full publisher text unavailable. No new original-equation/experiment audit is claimed. Full-state HLLD is inherited byte-for-byte from the prior public validated Atlas."
+              },
+              "accessed_on": "2026-11-23"
+            },
+            {
+              "id": "orszag-tang1979",
+              "author": "Steven A. Orszag and Ching-Mao Tang",
+              "year": 1979,
+              "title": "Small-scale structure of two-dimensional magnetohydrodynamic turbulence",
+              "journal": "Journal of Fluid Mechanics",
+              "volume": "90",
+              "pages": "129–143",
+              "doi": "10.1017/S002211207900210X",
+              "url": "https://doi.org/10.1017/S002211207900210X",
+              "type": "article",
+              "role": "Historical attribution, not a reference table for this compressible ideal-MHD calculation",
+              "review_level": "Original publisher abstract/bibliography inspected only; original incompressible viscous/resistive setup differs from the official compressible ideal-MHD generator used here",
+              "review": {
+                "ja": "出版社の抄録と書誌のみ確認。原著の非圧縮・粘性抵抗モデルと、今回の圧縮性理想MHDの公式初期値を区別します。",
+                "en": "Inspected publisher abstract and bibliography only. Distinguish the original incompressible viscous/resistive study from the official compressible ideal-MHD setup used here."
+              },
+              "accessed_on": "2026-11-23"
+            }
+          ],
+          "citations": [
+            {
+              "id": "athena-pinned-2026",
+              "author": "Athena++ collaboration",
+              "year": 2026,
+              "title": "Athena++ official field_loop and orszag_tang problem generators, pinned source",
+              "url": "https://github.com/PrincetonUniversity/athena/tree/1395e2f543f4368d448cb1a2cf92ba1f910e3416",
+              "type": "software",
+              "role": "Actually inspected independent engine and fixed initial conditions; finite-grid numerical reference only",
+              "review_level": "Official archive SHA verified; selected src/pgen/field_loop.cpp and orszag_tang.cpp, PLM/RK2/output configuration and actual conserved tab headers inspected; not a full Athena code audit",
+              "review": {
+                "ja": "固定コミットの公式アーカイブSHAを照合し、2初期値生成器と設定・保存列を確認。別実装を実行して参照場を作成し、空間・時間感度を検査。全ソース監査や厳密解とは表示しません。",
+                "en": "Verified the official pinned archive SHA and inspected both generators, configuration and saved columns. Executed the independent engine and checked spatial/time sensitivity. No complete code audit or exact-solution claim."
+              },
+              "accessed_on": "2026-11-23"
+            },
+            {
+              "id": "gardiner-stone2005",
+              "author": "Thomas A. Gardiner and James M. Stone",
+              "year": 2005,
+              "title": "An unsplit Godunov method for ideal MHD via constrained transport",
+              "journal": "Journal of Computational Physics",
+              "volume": "205",
+              "pages": "509–539",
+              "doi": "10.1016/j.jcp.2004.11.016",
+              "url": "https://arxiv.org/abs/astro-ph/0501557",
+              "type": "article",
+              "role": "Primary CT-contact, magnetic-loop and circular-polarization background; selected sections only",
+              "review_level": "Author arXiv PDF selected section2.2 equations13–20,3.3.1–3.3.2 and5.1–5.2 inspected; not the full paper or original experiment replication",
+              "review": {
+                "ja": "著者公開PDFのCT節・磁場ループ・円偏波の定義を確認。論文のCTU/PPMや斜め伝播実験を再現したとは主張しません。今回の円偏波は1次元整列、公式磁場ループはvz=2の明示的変更です。",
+                "en": "Inspected the author PDF CT section and loop/polarized-wave definitions. Original CTU/PPM and oblique-wave experiments are not replicated. Our wave is 1D aligned; the official loop generator explicitly has vz=2."
+              },
+              "accessed_on": "2026-11-23"
+            },
+            {
+              "id": "miyoshi-kusano2005",
+              "author": "Takahiro Miyoshi and Kanya Kusano",
+              "year": 2005,
+              "title": "A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics",
+              "journal": "Journal of Computational Physics",
+              "volume": "208",
+              "pages": "315–344",
+              "doi": "10.1016/j.jcp.2005.02.017",
+              "url": "https://doi.org/10.1016/j.jcp.2005.02.017",
+              "type": "article",
+              "role": "Original HLLD attribution; implementation inherited from previously validated Atlas source",
+              "review_level": "Bibliographic metadata checked; publisher full text returned403. This addition did not newly audit original equations or experiments",
+              "review": {
+                "ja": "書誌を確認。出版社本文は取得できず、今回新たに原著の式や実験を監査したとは表示しません。全8変数HLLDコードは過去の公開検証済みAtlasから同一バイトで継承します。",
+                "en": "Bibliographic metadata checked; full publisher text unavailable. No new original-equation/experiment audit is claimed. Full-state HLLD is inherited byte-for-byte from the prior public validated Atlas."
+              },
+              "accessed_on": "2026-11-23"
+            },
+            {
+              "id": "orszag-tang1979",
+              "author": "Steven A. Orszag and Ching-Mao Tang",
+              "year": 1979,
+              "title": "Small-scale structure of two-dimensional magnetohydrodynamic turbulence",
+              "journal": "Journal of Fluid Mechanics",
+              "volume": "90",
+              "pages": "129–143",
+              "doi": "10.1017/S002211207900210X",
+              "url": "https://doi.org/10.1017/S002211207900210X",
+              "type": "article",
+              "role": "Historical attribution, not a reference table for this compressible ideal-MHD calculation",
+              "review_level": "Original publisher abstract/bibliography inspected only; original incompressible viscous/resistive setup differs from the official compressible ideal-MHD generator used here",
+              "review": {
+                "ja": "出版社の抄録と書誌のみ確認。原著の非圧縮・粘性抵抗モデルと、今回の圧縮性理想MHDの公式初期値を区別します。",
+                "en": "Inspected publisher abstract and bibliography only. Distinguish the original incompressible viscous/resistive study from the official compressible ideal-MHD setup used here."
+              },
+              "accessed_on": "2026-11-23"
+            }
+          ],
+          "gallery_figure": "postshock-orszag-tang-preview.png",
+          "additional_figures": [
+            {
+              "file": "postshock-orszag-tang-preview.png",
+              "caption": {
+                "ja": "保存した主計算の実際の2次元密度場、T=.2。",
+                "en": "Actual saved primary 2D density field at T.2."
+              }
+            }
+          ],
+          "case_notes": {
+            "ja": "最細64²の独立終端参照に対する密度/圧力の相対L1=.0110806/.0182227。参照差/主誤差=.30808/.29835、時間半減差/主誤差=.0018955/.0020641、密度比7.14315です。固有面発散は2.74×10⁻¹³以下ですが、共通セル発散は非零です。後期の圧縮構造を調べ、数学的衝撃波・厳密解・原著1979の再現を保証しません。",
+            "en": "At64² density/pressure relative L1 versus final independent reference are.0110806/.0182227. Reference increment/error=.30808/.29835,half-dt/error=.0018955/.0020641,and density contrast7.14315. Native-face divergence is at most2.74e-13; common-cell divergence is nonzero. This checks late compression structure, not a mathematical shock proof, exact solution or reproduction of the1979 model."
+          },
+          "measured": {
+            "id": "postshock-orszag-tang",
+            "passed": true,
+            "checks": {
+              "four prescribed fixed runs": true,
+              "qualified independent reference": true,
+              "postshock-orszag-tang-n16 all stages finite positive": true,
+              "postshock-orszag-tang-n16 final time": true,
+              "postshock-orszag-tang-n16 five exact snapshots": true,
+              "postshock-orszag-tang-n16 fluid integral conservation": true,
+              "postshock-orszag-tang-n16 native face divergence": true,
+              "postshock-orszag-tang-n16 measured Courant sum": true,
+              "postshock-orszag-tang-n16 no cell clips or retries": true,
+              "postshock-orszag-tang-n16 explicit fallback accounting": true,
+              "postshock-orszag-tang-n32 all stages finite positive": true,
+              "postshock-orszag-tang-n32 final time": true,
+              "postshock-orszag-tang-n32 five exact snapshots": true,
+              "postshock-orszag-tang-n32 fluid integral conservation": true,
+              "postshock-orszag-tang-n32 native face divergence": true,
+              "postshock-orszag-tang-n32 measured Courant sum": true,
+              "postshock-orszag-tang-n32 no cell clips or retries": true,
+              "postshock-orszag-tang-n32 explicit fallback accounting": true,
+              "postshock-orszag-tang-n64 all stages finite positive": true,
+              "postshock-orszag-tang-n64 final time": true,
+              "postshock-orszag-tang-n64 five exact snapshots": true,
+              "postshock-orszag-tang-n64 fluid integral conservation": true,
+              "postshock-orszag-tang-n64 native face divergence": true,
+              "postshock-orszag-tang-n64 measured Courant sum": true,
+              "postshock-orszag-tang-n64 no cell clips or retries": true,
+              "postshock-orszag-tang-n64 explicit fallback accounting": true,
+              "postshock-orszag-tang-half-dt all stages finite positive": true,
+              "postshock-orszag-tang-half-dt final time": true,
+              "postshock-orszag-tang-half-dt five exact snapshots": true,
+              "postshock-orszag-tang-half-dt fluid integral conservation": true,
+              "postshock-orszag-tang-half-dt native face divergence": true,
+              "postshock-orszag-tang-half-dt measured Courant sum": true,
+              "postshock-orszag-tang-half-dt no cell clips or retries": true,
+              "postshock-orszag-tang-half-dt explicit fallback accounting": true,
+              "density refinement n32": true,
+              "density refinement n64": true,
+              "density finest error": true,
+              "density separate time contamination fraction": true,
+              "density reference increment/error": true,
+              "pressure refinement n32": true,
+              "pressure refinement n64": true,
+              "pressure finest error": true,
+              "pressure separate time contamination fraction": true,
+              "pressure reference increment/error": true,
+              "late density compression diagnostic": true
+            },
+            "check_details": [
+              {
+                "name": "four prescribed fixed runs",
+                "value": 4,
+                "bound": 4,
+                "passed": true
+              },
+              {
+                "name": "qualified independent reference",
+                "value": true,
+                "bound": true,
+                "passed": true
+              },
+              {
+                "name": "postshock-orszag-tang-n16 all stages finite positive",
+                "value": true,
+                "bound": true,
+                "passed": true
+              },
+              {
+                "name": "postshock-orszag-tang-n16 final time",
+                "value": 0.2,
+                "bound": 0.2,
+                "passed": true
+              },
+              {
+                "name": "postshock-orszag-tang-n16 five exact snapshots",
+                "value": [
+                  0.0,
+                  0.05,
+                  0.1,
+                  0.15000000000000002,
+                  0.2
+                ],
+                "bound": [
+                  0.0,
+                  0.05,
+                  0.1,
+                  0.15000000000000002,
+                  0.2
+                ],
+                "passed": true
+              },
+              {
+                "name": "postshock-orszag-tang-n16 fluid integral conservation",
+                "value": 7.494005416219807e-16,
+                "bound": 3e-11,
+                "passed": true
+              },
+              {
+                "name": "postshock-orszag-tang-n16 native face divergence",
+                "value": 3.2862601528904634e-14,
+                "bound": 5e-11,
+                "passed": true
+              },
+              {
+                "name": "postshock-orszag-tang-n16 measured Courant sum",
+                "value": 0.029019406864796267,
+                "bound": 0.4,
+                "passed": true
+              },
+              {
+                "name": "postshock-orszag-tang-n16 no cell clips or retries",
+                "value": [
+                  0,
+                  0
+                ],
+                "bound": [
+                  0,
+                  0
+                ],
+                "passed": true
+              },
+              {
+                "name": "postshock-orszag-tang-n16 explicit fallback accounting",
+                "value": 0,
+                "bound": 0,
+                "passed": true
+              },
+              {
+                "name": "postshock-orszag-tang-n32 all stages finite positive",
+                "value": true,
+                "bound": true,
+                "passed": true
+              },
+              {
+                "name": "postshock-orszag-tang-n32 final time",
+                "value": 0.2,
+                "bound": 0.2,
+                "passed": true
+              },
+              {
+                "name": "postshock-orszag-tang-n32 five exact snapshots",
+                "value": [
+                  0.0,
+                  0.05,
+                  0.1,
+                  0.15000000000000002,
+                  0.2
+                ],
+                "bound": [
+                  0.0,
+                  0.05,
+                  0.1,
+                  0.15000000000000002,
+                  0.2
+                ],
+                "passed": true
+              },
+              {
+                "name": "postshock-orszag-tang-n32 fluid integral conservation",
+                "value": 2.1094237467877974e-15,
+                "bound": 3e-11,
+                "passed": true
+              },
+              {
+                "name": "postshock-orszag-tang-n32 native face divergence",
+                "value": 9.769962616701378e-14,
+                "bound": 5e-11,
+                "passed": true
+              },
+              {
+                "name": "postshock-orszag-tang-n32 measured Courant sum",
+                "value": 0.05900749682480342,
+                "bound": 0.4,
+                "passed": true
+              },
+              {
+                "name": "postshock-orszag-tang-n32 no cell clips or retries",
+                "value": [
+                  0,
+                  0
+                ],
+                "bound": [
+                  0,
+                  0
+                ],
+                "passed": true
+              },
+              {
+                "name": "postshock-orszag-tang-n32 explicit fallback accounting",
+                "value": 0,
+                "bound": 0,
+                "passed": true
+              },
+              {
+                "name": "postshock-orszag-tang-n64 all stages finite positive",
+                "value": true,
+                "bound": true,
+                "passed": true
+              },
+              {
+                "name": "postshock-orszag-tang-n64 final time",
+                "value": 0.2,
+                "bound": 0.2,
+                "passed": true
+              },
+              {
+                "name": "postshock-orszag-tang-n64 five exact snapshots",
+                "value": [
+                  0.0,
+                  0.05,
+                  0.1,
+                  0.15000000000000002,
+                  0.2
+                ],
+                "bound": [
+                  0.0,
+                  0.05,
+                  0.1,
+                  0.15000000000000002,
+                  0.2
+                ],
+                "passed": true
+              },
+              {
+                "name": "postshock-orszag-tang-n64 fluid integral conservation",
+                "value": 2.4175106361212784e-14,
+                "bound": 3e-11,
+                "passed": true
+              },
+              {
+                "name": "postshock-orszag-tang-n64 native face divergence",
+                "value": 2.7355895326763857e-13,
+                "bound": 5e-11,
+                "passed": true
+              },
+              {
+                "name": "postshock-orszag-tang-n64 measured Courant sum",
+                "value": 0.11926677165677568,
+                "bound": 0.4,
+                "passed": true
+              },
+              {
+                "name": "postshock-orszag-tang-n64 no cell clips or retries",
+                "value": [
+                  0,
+                  0
+                ],
+                "bound": [
+                  0,
+                  0
+                ],
+                "passed": true
+              },
+              {
+                "name": "postshock-orszag-tang-n64 explicit fallback accounting",
+                "value": 0,
+                "bound": 0,
+                "passed": true
+              },
+              {
+                "name": "postshock-orszag-tang-half-dt all stages finite positive",
+                "value": true,
+                "bound": true,
+                "passed": true
+              },
+              {
+                "name": "postshock-orszag-tang-half-dt final time",
+                "value": 0.2,
+                "bound": 0.2,
+                "passed": true
+              },
+              {
+                "name": "postshock-orszag-tang-half-dt five exact snapshots",
+                "value": [
+                  0.0,
+                  0.05,
+                  0.1,
+                  0.15000000000000002,
+                  0.2
+                ],
+                "bound": [
+                  0.0,
+                  0.05,
+                  0.1,
+                  0.15000000000000002,
+                  0.2
+                ],
+                "passed": true
+              },
+              {
+                "name": "postshock-orszag-tang-half-dt fluid integral conservation",
+                "value": 2.4147350785597155e-14,
+                "bound": 3e-11,
+                "passed": true
+              },
+              {
+                "name": "postshock-orszag-tang-half-dt native face divergence",
+                "value": 3.161915174132446e-13,
+                "bound": 5e-11,
+                "passed": true
+              },
+              {
+                "name": "postshock-orszag-tang-half-dt measured Courant sum",
+                "value": 0.059633588557742805,
+                "bound": 0.4,
+                "passed": true
+              },
+              {
+                "name": "postshock-orszag-tang-half-dt no cell clips or retries",
+                "value": [
+                  0,
+                  0
+                ],
+                "bound": [
+                  0,
+                  0
+                ],
+                "passed": true
+              },
+              {
+                "name": "postshock-orszag-tang-half-dt explicit fallback accounting",
+                "value": 0,
+                "bound": 0,
+                "passed": true
+              },
+              {
+                "name": "density refinement n32",
+                "value": 0.520748747023636,
+                "bound": 0.92,
+                "passed": true
+              },
+              {
+                "name": "density refinement n64",
+                "value": 0.386370538966805,
+                "bound": 0.92,
+                "passed": true
+              },
+              {
+                "name": "density finest error",
+                "value": 0.01108063471130391,
+                "bound": 0.2,
+                "passed": true
+              },
+              {
+                "name": "density separate time contamination fraction",
+                "value": 0.0018954610379415288,
+                "bound": 0.2,
+                "passed": true
+              },
+              {
+                "name": "density reference increment/error",
+                "value": 0.3080771744349148,
+                "bound": 0.75,
+                "passed": true
+              },
+              {
+                "name": "pressure refinement n32",
+                "value": 0.45651132085342,
+                "bound": 0.92,
+                "passed": true
+              },
+              {
+                "name": "pressure refinement n64",
+                "value": 0.37485151664065225,
+                "bound": 0.92,
+                "passed": true
+              },
+              {
+                "name": "pressure finest error",
+                "value": 0.018222741247481397,
+                "bound": 0.3,
+                "passed": true
+              },
+              {
+                "name": "pressure separate time contamination fraction",
+                "value": 0.002064090828076365,
+                "bound": 0.2,
+                "passed": true
+              },
+              {
+                "name": "pressure reference increment/error",
+                "value": 0.29834902751013465,
+                "bound": 0.75,
+                "passed": true
+              },
+              {
+                "name": "late density compression diagnostic",
+                "value": 7.1431480281176105,
+                "bound": 2.0,
+                "passed": true
+              }
+            ],
+            "records": [
+              {
+                "id": "postshock-orszag-tang-n16",
+                "case": "postshock-orszag-tang",
+                "n": 16,
+                "steps": 512,
+                "time": 0.2,
+                "family": "refinement",
+                "field": "postshock-orszag-tang-n16.npz",
+                "snapshot_times": [
+                  0.0,
+                  0.05,
+                  0.1,
+                  0.15000000000000002,
+                  0.2
+                ],
+                "errors": {
+                  "density": {
+                    "relative_l1": 0.055072196798329816,
+                    "relative_l2": 0.07215164461273015,
+                    "absolute_linf": 0.08852719739822207
+                  },
+                  "pressure": {
+                    "relative_l1": 0.10648854282318818,
+                    "relative_l2": 0.13723151727368416,
+                    "absolute_linf": 0.09628047510345739
+                  }
+                },
+                "finite_positive": true,
+                "maximum_fluid_integral_defect": 7.494005416219807e-16,
+                "maximum_native_divergence": 3.2862601528904634e-14,
+                "maximum_common_cell_divergence": 1.2985168395905102,
+                "reference_common_cell_divergence": 1.5343474157534,
+                "maximum_courant_sum": 0.029019406864796267,
+                "fallback_faces": 0,
+                "fallback_count_from_history": 0,
+                "degenerate_faces": 0,
+                "reconstruction_scalings": 0,
+                "minimum_theta": 1.0,
+                "minimum_density": 0.08721400217712513,
+                "minimum_pressure": 0.027847918315013032,
+                "state_clip_count": 0,
+                "retries": 0,
+                "maximum_abs_bz": 0.0,
+                "reference_increment": {
+                  "density": 0.0017096329230723328,
+                  "pressure": 0.002288814999333477
+                },
+                "density_contrast": 6.196506628642336
+              },
+              {
+                "id": "postshock-orszag-tang-n32",
+                "case": "postshock-orszag-tang",
+                "n": 32,
+                "steps": 512,
+                "time": 0.2,
+                "family": "refinement",
+                "field": "postshock-orszag-tang-n32.npz",
+                "snapshot_times": [
+                  0.0,
+                  0.05,
+                  0.1,
+                  0.15000000000000002,
+                  0.2
+                ],
+                "errors": {
+                  "density": {
+                    "relative_l1": 0.028678777478569353,
+                    "relative_l2": 0.041137398858486336,
+                    "absolute_linf": 0.05823726324242218
+                  },
+                  "pressure": {
+                    "relative_l1": 0.04861322533996961,
+                    "relative_l2": 0.06533475806083373,
+                    "absolute_linf": 0.058642030300098846
+                  }
+                },
+                "finite_positive": true,
+                "maximum_fluid_integral_defect": 2.1094237467877974e-15,
+                "maximum_native_divergence": 9.769962616701378e-14,
+                "maximum_common_cell_divergence": 2.0572818169027682,
+                "reference_common_cell_divergence": 3.3345933132260797,
+                "maximum_courant_sum": 0.05900749682480342,
+                "fallback_faces": 0,
+                "fallback_count_from_history": 0,
+                "degenerate_faces": 0,
+                "reconstruction_scalings": 0,
+                "minimum_theta": 1.0,
+                "minimum_density": 0.08303698949468566,
+                "minimum_pressure": 0.025782110771771942,
+                "state_clip_count": 0,
+                "retries": 0,
+                "maximum_abs_bz": 0.0,
+                "reference_increment": {
+                  "density": 0.002604331788270814,
+                  "pressure": 0.003866435243131421
+                },
+                "density_contrast": 6.992604401202709
+              },
+              {
+                "id": "postshock-orszag-tang-n64",
+                "case": "postshock-orszag-tang",
+                "n": 64,
+                "steps": 512,
+                "time": 0.2,
+                "family": "refinement",
+                "field": "postshock-orszag-tang-n64.npz",
+                "snapshot_times": [
+                  0.0,
+                  0.05,
+                  0.1,
+                  0.15000000000000002,
+                  0.2
+                ],
+                "errors": {
+                  "density": {
+                    "relative_l1": 0.01108063471130391,
+                    "relative_l2": 0.0198769886772933,
+                    "absolute_linf": 0.031319933531365696
+                  },
+                  "pressure": {
+                    "relative_l1": 0.018222741247481397,
+                    "relative_l2": 0.030445318968789176,
+                    "absolute_linf": 0.044566838585124946
+                  }
+                },
+                "finite_positive": true,
+                "maximum_fluid_integral_defect": 2.4175106361212784e-14,
+                "maximum_native_divergence": 2.7355895326763857e-13,
+                "maximum_common_cell_divergence": 4.205127934514264,
+                "reference_common_cell_divergence": 4.888384800094839,
+                "maximum_courant_sum": 0.11926677165677568,
+                "fallback_faces": 0,
+                "fallback_count_from_history": 0,
+                "degenerate_faces": 0,
+                "reconstruction_scalings": 0,
+                "minimum_theta": 1.0,
+                "minimum_density": 0.08326940161705368,
+                "minimum_pressure": 0.02601257759195898,
+                "state_clip_count": 0,
+                "retries": 0,
+                "maximum_abs_bz": 0.0,
+                "reference_increment": {
+                  "density": 0.0034136906328039464,
+                  "pressure": 0.005436737129754892
+                },
+                "density_contrast": 7.1431480281176105
+              },
+              {
+                "id": "postshock-orszag-tang-half-dt",
+                "case": "postshock-orszag-tang",
+                "n": 64,
+                "steps": 1024,
+                "time": 0.2,
+                "family": "time-probe",
+                "field": "postshock-orszag-tang-half-dt.npz",
+                "snapshot_times": [
+                  0.0,
+                  0.05,
+                  0.1,
+                  0.15000000000000002,
+                  0.2
+                ],
+                "errors": {
+                  "density": {
+                    "relative_l1": 0.011074410943847774,
+                    "relative_l2": 0.019861741110300944,
+                    "absolute_linf": 0.03128885270239748
+                  },
+                  "pressure": {
+                    "relative_l1": 0.018217777823514525,
+                    "relative_l2": 0.03043031230662544,
+                    "absolute_linf": 0.04453503710572004
+                  }
+                },
+                "finite_positive": true,
+                "maximum_fluid_integral_defect": 2.4147350785597155e-14,
+                "maximum_native_divergence": 3.161915174132446e-13,
+                "maximum_common_cell_divergence": 4.20507219690591,
+                "reference_common_cell_divergence": 4.888384800094839,
+                "maximum_courant_sum": 0.059633588557742805,
+                "fallback_faces": 0,
+                "fallback_count_from_history": 0,
+                "degenerate_faces": 0,
+                "reconstruction_scalings": 0,
+                "minimum_theta": 1.0,
+                "minimum_density": 0.08336238174574556,
+                "minimum_pressure": 0.026061106082809305,
+                "state_clip_count": 0,
+                "retries": 0,
+                "maximum_abs_bz": 0.0,
+                "reference_increment": {
+                  "density": 0.0034136906328039464,
+                  "pressure": 0.005436737129754892
+                },
+                "density_contrast": 7.143395530795526,
+                "time_half_difference": {
+                  "density": 2.1002911370939043e-05,
+                  "pressure": 3.761339307133521e-05
+                }
+              }
+            ],
+            "metrics": {
+              "completed_pde_runs": 4,
+              "reference_qualification_passed": true,
+              "analytic_quadrature_difference": null
+            }
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/postshock-orszag-tang/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transport/#postshock-orszag-tang",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/#postshock-orszag-tang"
+          }
+        }
+      ]
     }
   ],
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ct/",
@@ -1866,12 +3429,20 @@
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/snapshots.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/run.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/solver.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/experiments.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/experiments.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/solver.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/hlld.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/qualify_saved.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/analytic.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/generate.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/qualify.py"
   ],
   "test_urls": [
     "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_hlld.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/test_validation.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/test_convergence.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/test_convergence.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/test_mhd.py"
   ],
   "run_commands": [
     "python -m pytest -q tests/test_hlld.py"
@@ -1913,6 +3484,24 @@
       "guide": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-constraint-control/?lang=ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-constraint-control/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    },
+    {
+      "id": "magnetic-loop-independent",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    },
+    {
+      "id": "postshock-orszag-tang",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=en"
       },
       "kind": "dedicated-supplement"
     }
@@ -2010,6 +3599,31 @@
             "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/inputs.json",
             "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/atlas-mhd-convergence-2026-11-22.zip",
             "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/verification.json"
+          },
+          {
+            "id": "postshock-orszag-tang",
+            "kind": "supplement",
+            "name": {
+              "ja": "後期Orszag–Tang：独立参照と圧縮構造",
+              "en": "Late Orszag-Tang: independent reference and compression structure"
+            },
+            "scope": {
+              "ja": "圧縮性理想MHDのOrszag–TangをT=.2まで進め、相互作用する圧縮・衝撃波構造の密度と圧力を独立有限格子参照で検査します。",
+              "en": "Evolve compressible ideal-MHD Orszag-Tang to T.2 and check density/pressure in interacting compression/shock structure against an independent finite-grid reference."
+            },
+            "method_ids": [
+              "hlld",
+              "muscl",
+              "heun",
+              "ct"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/verification.json"
           }
         ],
         "role": "execution",
@@ -2047,8 +3661,34 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/magnetic-loop/?lang=ja#code-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/magnetic-loop/?lang=en#code-en"
         },
-        "executions": [],
-        "role": "related",
+        "executions": [
+          {
+            "id": "magnetic-loop-independent",
+            "kind": "supplement",
+            "name": {
+              "ja": "磁場ループ：独立2次元参照と細分化",
+              "en": "Magnetic loop: independent 2D reference and refinement"
+            },
+            "scope": {
+              "ja": "実際の2次元磁場ループ輸送を、別実装Athena++の空間・時間感度を検査した終端保存場と比較します。",
+              "en": "Compare genuine 2D magnetic-loop transport with final conserved fields from independent Athena++, qualified in space and time."
+            },
+            "method_ids": [
+              "hlld",
+              "muscl",
+              "heun",
+              "ct"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/verification.json"
+          }
+        ],
+        "role": "execution",
         "method_note": {
           "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
           "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
@@ -2130,7 +3770,29 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/orszag-tang/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/orszag-tang/?lang=en#references-en"
         },
-        "cases": []
+        "cases": [
+          {
+            "id": "postshock-orszag-tang",
+            "title": {
+              "ja": "後期Orszag–Tang：独立有限格子の密度・圧力参照",
+              "en": "Late Orszag-Tang: independent finite-grid density/pressure reference"
+            },
+            "kind": "numerical-reference",
+            "relation": "related-model",
+            "note": {
+              "ja": "γ=5/3、[-.5,.5]²周期、ρ=25/(36π)、p=5/(12π)、vx=sin2πy、vy=−sin2πx、Az=(cos4πx−2cos2πy)/(4π√(4π))、16/32/64²セル。原著の非圧縮・粘性抵抗モデルの再現ではありません。",
+              "en": "gamma5/3,periodic[-.5,.5]²,rho25/(36pi),p5/(12pi),vx=sin2piy,vy=-sin2pix,Az=(cos4pix-2cos2piy)/(4pi sqrt4pi),16/32/64² cells. This does not reproduce the original incompressible viscous/resistive model."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-postshock-orszag-tang-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-postshock-orszag-tang-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=ja#postshock-orszag-tang-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=en#postshock-orszag-tang-en-measurements"
+            }
+          }
+        ]
       },
       {
         "problem_id": "magnetic-loop",
@@ -2142,7 +3804,29 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/magnetic-loop/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/magnetic-loop/?lang=en#references-en"
         },
-        "cases": []
+        "cases": [
+          {
+            "id": "magnetic-loop-independent",
+            "title": {
+              "ja": "磁場ループ：固定Athena++の独立終端参照",
+              "en": "Magnetic loop: pinned independent Athena++ final-field reference"
+            },
+            "kind": "numerical-reference",
+            "relation": "related-model",
+            "note": {
+              "ja": "[-1,1]×[-.5,.5]周期、ρ=p=1、Az=.001max(.3−r,0)、T=1、(Nx,Ny)=(16,8),(32,16),(64,32)。変更していない公式生成器と同じv=(2,1,2)で、古いvz=0設定とは区別します。",
+              "en": "Periodic[-1,1]x[-.5,.5],rho=p1,Az=.001max(.3-r,0),T1,(Nx,Ny)=(16,8),(32,16),(64,32). Use unchanged official-generator v=(2,1,2), explicitly distinct from old vz0 inputs."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-magnetic-loop-independent-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-magnetic-loop-independent-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=ja#magnetic-loop-independent-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=en#magnetic-loop-independent-en-measurements"
+            }
+          }
+        ]
       },
       {
         "problem_id": "advected-magnetostatic-equilibrium",

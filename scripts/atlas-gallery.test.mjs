@@ -19,8 +19,8 @@ test('new MHD accuracy and active-cleaning evidence preserve the earlier OT illu
  const cases=json(base+'cases.json');
  const item=gallery.items.find(x=>x.id==='advected-magnetostatic-equilibrium');
  const metadata=cases.find(x=>x.id==='ct-glm-smooth-convergence');
- assert.equal(gallery.items.length,102);assert.equal(gallery.counts.runnable_problems,62);
- assert.equal(gallery.counts.supplemental_release_case_count,69);
+ assert.equal(gallery.items.length,102);assert.equal(gallery.counts.runnable_problems,64);
+ assert.equal(gallery.counts.supplemental_release_case_count,71);
  assert.equal(item.image,'/'+base+'results/ct-glm-smooth-convergence.png');
  assert.equal(item.image_sha256,digest(base+'results/ct-glm-smooth-convergence.png'));
  assert.deepEqual(item.caption,metadata.summary);
@@ -28,7 +28,9 @@ test('new MHD accuracy and active-cleaning evidence preserve the earlier OT illu
  const ot=gallery.items.find(x=>x.id==='orszag-tang');
  assert.equal(ot.image,'/numerical-methods-atlas/assets/movies/orszag-tang-ct/frame-080.webp');
  assert.equal(ot.image_sha256,'38c260ae5d3a5031e733b365eb00c6ea04c9182a059a317bd1735e0c3dc0e6af');
- assert.deepEqual(ot.supplemental_execution_entries.map(x=>x.id),['ct-glm-independent','ct-glm-ot-convergence']);
+ const otExecutions=ot.supplemental_execution_entries.map(x=>x.id);
+ assert.deepEqual(otExecutions.filter(id=>id!=='postshock-orszag-tang'),['ct-glm-independent','ct-glm-ot-convergence']);
+ assert.deepEqual(otExecutions.filter(id=>id==='postshock-orszag-tang'),['postshock-orszag-tang']);
  assert.ok(!gallery.items.some(x=>x.id==='ct-glm-constraint-control'));
  const manifest=json('numerical-methods-atlas/gallery/preview-manifest.json');
  const addedSources=['particle-transport'].flatMap(group=>{
@@ -39,7 +41,7 @@ test('new MHD accuracy and active-cleaning evidence preserve the earlier OT illu
  const nohBase='code/validated-examples/2026-11-23-r3/noh/';
  const nohSources=['cases.json','inputs.json','source-manifest.json','verification.json','results/result.json','results/noh-shock.png','results/noh-shock-preview.png'].map(name=>nohBase+name);
  const currentNohSources=nohSources.map(path=>path.replace('2026-11-23-r3/noh/','2026-11-23-r5/noh/'));
- assert.equal(Object.keys(manifest.source_sha256).filter(path=>!['/weno-critical/','/shallow-water/','/wall-flow/','/level-set/'].some(group=>path.includes(group))).length,127+new Set(addedSources).size+nohSources.length+currentNohSources.length+49+7+7);
+ assert.equal(Object.keys(manifest.source_sha256).filter(path=>!['/weno-critical/','/shallow-water/','/wall-flow/','/level-set/','/sem-fr/','/instability-growth/','/mhd-transport/','/mesh-boundary/','/moving-waves/','/relativistic/'].some(group=>path.includes(group))).length,127+new Set(addedSources).size+nohSources.length+currentNohSources.length+49+7+7);
  for(const path of nohSources)assert.equal(manifest.source_sha256[path],digest(path),path);
  for(const path of currentNohSources)assert.equal(manifest.source_sha256[path],digest(path),path);
  for(const path of addedSources)assert.equal(manifest.source_sha256[path],digest(path),path);
@@ -78,9 +80,9 @@ test('six particle/transport checks retain all five historical images and add on
   }
  }
  for(const name of ['cases.json','inputs.json','source-manifest.json','verification.json','results/result.json',...cases.map(x=>'results/'+x.id+'.png')])assert.equal(manifest.source_sha256[base+name],digest(base+name));
- assert.equal(gallery.counts.supplemental_case_count,64);
- assert.equal(gallery.counts.supplemental_release_case_count,69);
- assert.equal(gallery.counts.runnable_problems,62);
+ assert.equal(gallery.counts.supplemental_case_count,66);
+ assert.equal(gallery.counts.supplemental_release_case_count,71);
+ assert.equal(gallery.counts.runnable_problems,64);
 });
 
 test('optional domain buttons and image policies start collapsed while names, reset and current count remain visible', () => {
@@ -202,7 +204,7 @@ test('nonlinear Schnakenberg runs are additional entrances and retain the saved 
   const identifiers=['schnakenberg-nonlinear','schnakenberg-pattern'];
   const item=gallery.items.find(x=>x.id==='turing-schnakenberg');
   assert.equal(gallery.items.length,102);
-  assert.equal(gallery.counts.runnable_problems,62);
+  assert.equal(gallery.counts.runnable_problems,64);
   assert.equal(item.image,'/code/validated-examples/2026-11-22/models/results/turing-schnakenberg.png');
   assert.equal(item.image_sha256,'d960e2701881dcd027d21d7d17f2a43c9e14157f1ab8a401e4cb69d95be88893');
   assert.deepEqual(item.supplemental_execution_entries.map(x=>x.id),['turing-schnakenberg',...identifiers,'reaction-diffusion-splitting']);
@@ -216,7 +218,7 @@ test('the bimodal MCMC visual is one new physical target and preserves the old s
   const base='code/validated-examples/2026-11-22/mcmc/';
   const metadata=json(base+'cases.json').find(x=>x.id==='mcmc-multimodal-mixing');
   const problem=gallery.items.find(x=>x.id==='mcmc-bimodal-mixture');
-  assert.equal(gallery.items.length,102);assert.equal(gallery.counts.runnable_problems,62);
+  assert.equal(gallery.items.length,102);assert.equal(gallery.counts.runnable_problems,64);
   assert.equal(problem.image,'/'+base+'results/mcmc-multimodal-mixing.png');
   assert.equal(problem.image_sha256,digest(base+'results/mcmc-multimodal-mixing.png'));
   assert.deepEqual(problem.caption,metadata.summary);

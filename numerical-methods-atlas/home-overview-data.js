@@ -733,6 +733,10 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "flux-reconstruction": [
+    "ja",
+    "en"
+  ],
   "geophysical-grids": [
     "ja",
     "en"
@@ -917,6 +921,10 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "spectral-element": [
+    "ja",
+    "en"
+  ],
   "splines": [
     "ja",
     "en"
@@ -981,6 +989,10 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "validation-instability-growth": [
+    "ja",
+    "en"
+  ],
   "validation-level-set": [
     "ja",
     "en"
@@ -993,6 +1005,10 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "validation-mesh-boundary": [
+    "ja",
+    "en"
+  ],
   "validation-mhd": [
     "ja",
     "en"
@@ -1001,7 +1017,15 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "validation-mhd-transport": [
+    "ja",
+    "en"
+  ],
   "validation-models": [
+    "ja",
+    "en"
+  ],
+  "validation-moving-waves": [
     "ja",
     "en"
   ],
@@ -1021,7 +1045,15 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "validation-relativistic": [
+    "ja",
+    "en"
+  ],
   "validation-sedov": [
+    "ja",
+    "en"
+  ],
+  "validation-sem-fr": [
     "ja",
     "en"
   ],

@@ -56,11 +56,58 @@
     "ja": "この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。",
     "en": "Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters."
   },
-  "formulations": [],
-  "references": [],
+  "formulations": [
+    {
+      "id": "supplement-circular-alfven-refinement",
+      "name": {
+        "ja": "円偏波Alfvén波：全成分の格子収束",
+        "en": "Circular Alfven wave: full-state refinement"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "\\partial_tU+\\partial_xF_x(U)=0,\\quad U=(\\rho,\\rho\\mathbf v,E,\\mathbf B),\\quad\\gamma=5/3",
+        "\\theta_i=2\\pi(x_i-t),\\quad(\\bar B_y,\\bar B_z)=.1\\frac{\\sin(\\pi h)}{\\pi h}(\\cos\\theta_i,\\sin\\theta_i)",
+        "\\bar\\rho=1,\\quad\\bar B_x=1,\\quad(\\bar m_y,\\bar m_z)=-(\\bar B_y,\\bar B_z),\\quad\\bar E=.66",
+        "e_2=\\frac{\\|U-U^{\\mathrm{exact}}\\|_2}{\\|U^{\\mathrm{exact}}\\|_2},\\qquad p_{\\mathrm{obs}}=\\log_2(e_h/e_{h/2})"
+      ],
+      "note": {
+        "ja": "全8保存変数を進め、非零のBz・vzを含む円偏波を解析セル平均と比較します。",
+        "en": "Evolve all eight conserved variables and compare circular polarization, including nonzero Bz/vz, against analytic cell means."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "circular-alfven-refinement",
+      "kind": "analytic",
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "title": {
+        "ja": "円偏波Alfvén波：全保存変数の解析セル平均",
+        "en": "Circular Alfven wave: analytic full-state conserved cell means"
+      },
+      "formula": "sinc(h)=sin(pi*h)/(pi*h); theta=2*pi*(x-t); (Bybar,Bzbar)=.1*sinc(h)*(cos(theta),sin(theta)); (mybar,mzbar)=-(Bybar,Bzbar); rhobar=Bxbar=1; Ebar=.66.",
+      "assumptions": {
+        "ja": "γ=5/3、[0,1]周期、ρ=1、p=.1、Bx=1、振幅.1、速度1、T=1、32/64/128セル。初期値と参照は保存変数の解析セル平均であり、セル平均から復元する圧力は点の定圧と区別します。横磁場と横運動量にはsinc(h)を掛け、E=.66を保ちます。独立Gauss16求積と照合します。図のx–tは1次元空間と保存時刻であり、斜め2次元伝播ではありません。",
+        "en": "gamma5/3, periodic[0,1], rho1,p.1,Bx1,amplitude.1, speed1,T1,32/64/128 cells. Initialize/reference conserved analytic cell means; pressure recovered from means differs from constant pointwise pressure. Apply sinc(h) to transverse magnetic fields and momenta, retaining E=.66, and qualify against independent Gauss16 quadrature. The x-t picture shows one spatial dimension and saved times, not oblique2D propagation."
+      },
+      "relation": "related-model",
+      "note": {
+        "ja": "γ=5/3、[0,1]周期、ρ=1、p=.1、Bx=1、振幅.1、速度1、T=1、32/64/128セル。初期値と参照は保存変数の解析セル平均であり、セル平均から復元する圧力は点の定圧と区別します。",
+        "en": "gamma5/3, periodic[0,1], rho1,p.1,Bx1,amplitude.1, speed1,T1,32/64/128 cells. Initialize/reference conserved analytic cell means; pressure recovered from means differs from constant pointwise pressure."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=ja#circular-alfven-refinement-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=en#circular-alfven-refinement-en-measurements"
+      }
+    }
+  ],
   "reference_note": {
-    "ja": "円偏光Alfvén波の解析解を、一定の全エネルギーを含む保存変数セル平均で評価します。",
-    "en": "Evaluate the analytic circularly polarized Alfvén wave using conserved cell averages, including its constant total energy."
+    "ja": "円偏光Alfvén波の解析解を、一定の全エネルギーを含む保存変数セル平均で評価します。 実行前契約で47pytest・全12計算を固定。3格子と最細格子の時間刻み半減を分離し、全段の正値性・有限性、保存量、Courant数、5時刻の実場を保存します。解析保存平均を独立Gauss16求積と照合し、横成分誤差・位相・観測次数を検査します。",
+    "en": "Evaluate the analytic circularly polarized Alfvén wave using conserved cell averages, including its constant total energy. Freeze 47 pytest checks and12 primary runs before execution. Separate three grids and a finest-grid half-dt probe; retain stage positivity/finiteness, conservation, Courant number and five actual field snapshots. Qualify conserved analytic means by independent Gauss16 quadrature; measure transverse errors, phase and observed order."
   },
   "methods": [
     {
@@ -70,7 +117,7 @@
         "en": "HLLD MHD Riemann solver"
       },
       "status": "educational-example",
-      "role": "related",
+      "role": "execution",
       "url": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hlld/?lang=ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hlld/?lang=en"
@@ -96,10 +143,23 @@
         "en": "MUSCL reconstruction"
       },
       "status": "educational-example",
-      "role": "related",
+      "role": "execution",
       "url": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=en"
+      }
+    },
+    {
+      "id": "heun",
+      "name": {
+        "ja": "Heun法／SSPRK(2,2)",
+        "en": "Heun / SSPRK(2,2)"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/heun/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/heun/?lang=en"
       }
     }
   ],
@@ -107,6 +167,63 @@
     "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
     "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
   },
-  "executions": [],
+  "executions": [
+    {
+      "id": "circular-alfven-refinement",
+      "kind": "supplement",
+      "name": {
+        "ja": "円偏波Alfvén波：全成分の格子収束",
+        "en": "Circular Alfven wave: full-state refinement"
+      },
+      "method_ids": [
+        "hlld",
+        "muscl",
+        "heun"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=en"
+      },
+      "scope": {
+        "ja": "全8保存変数を進め、非零のBz・vzを含む円偏波を解析セル平均と比較します。",
+        "en": "Evolve all eight conserved variables and compare circular polarization, including nonzero Bz/vz, against analytic cell means."
+      },
+      "assumptions": {
+        "ja": "γ=5/3、[0,1]周期、ρ=1、p=.1、Bx=1、振幅.1、速度1、T=1、32/64/128セル。初期値と参照は保存変数の解析セル平均であり、セル平均から復元する圧力は点の定圧と区別します。",
+        "en": "gamma5/3, periodic[0,1], rho1,p.1,Bx1,amplitude.1, speed1,T1,32/64/128 cells. Initialize/reference conserved analytic cell means; pressure recovered from means differs from constant pointwise pressure."
+      },
+      "limits": {
+        "ja": "少数の固定入力に対する教育用検証です。HLLDのHLLE代替と再構成の正値性スケーリングを数え、セル状態の床・クリップ・再試行は行いません。有限格子参照は厳密解ではなく、任意問題の安定性・正値性や普遍的次数を保証しません。1次元整列波の次数であり、斜め2次元伝播の検証ではありません。",
+        "en": "Educational fixed inputs only. Count HLLD-to-HLLE fallbacks and face reconstruction positivity scaling; no cell floor/clipping/retry. Finite-grid references are not exact solutions; no universal stability, positivity or order guarantee. The observed order is for a 1D aligned wave, not oblique 2D propagation."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "実行前契約で47pytest・全12計算を固定。3格子と最細格子の時間刻み半減を分離し、全段の正値性・有限性、保存量、Courant数、5時刻の実場を保存します。解析保存平均を独立Gauss16求積と照合し、横成分誤差・位相・観測次数を検査します。",
+        "en": "Freeze 47 pytest checks and12 primary runs before execution. Separate three grids and a finest-grid half-dt probe; retain stage positivity/finiteness, conservation, Courant number and five actual field snapshots. Qualify conserved analytic means by independent Gauss16 quadrature; measure transverse errors, phase and observed order."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/solver.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/hlld.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/analytic.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/test_mhd.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
   "code_checks": []
 }

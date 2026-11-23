@@ -14,7 +14,7 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/relativistic-hydrodyn
 
 - [特殊相対論的流体（SRHD）](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#srhd-ja>)
 
-  c=1、平坦なCartesian時空での理想流体の代表形。状態方程式と原始変数の回復が必要です。アトラスでは文献解説のみ。
+  c=1、平坦なCartesian時空の理想流体。γ則EOSと原始変数回復を使う穏やかな対称二衝撃波の固定例を追加。一般三波Riemann解、極端なLorentz因子、一般相対論を検証したとはしません。
 - [一般相対論的流体（GRHD）](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#grhd-ja>)
 
   c=G=1、計量符号(−,+,+,+)の理想流体。背景計量を固定する場合と、Einstein方程式も解く場合を区別します。文献解説のみ。

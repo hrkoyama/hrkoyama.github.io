@@ -25,7 +25,7 @@
   "test_files": [
     "test_time_geometry"
   ],
-  "code_mapping_scope": "Related chapter modules and test files; not a claim that each test covers every named method.",
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct.",
   "references": [
     {
       "url": "https://doi.org/10.1016/0021-9991(74)90051-5",
@@ -51,14 +51,329 @@
     "Arbitrary Lagrangian Eulerian",
     "arbitrary Lagrangian Eulerian method"
   ],
+  "depth_release": {
+    "group": "moving-waves",
+    "case_ids": [
+      "ale-nonuniform-transport"
+    ],
+    "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/",
+    "code_edition": "2026-11-23",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/transport.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/references/exact.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/experiments.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/test_moving.py"
+    ],
+    "run_commands": [
+      "python -m pytest -q",
+      "python run.py --input inputs.json --output output"
+    ],
+    "run_from": "atlas-moving-waves-2026-11-23",
+    "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/atlas-moving-waves-2026-11-23.zip",
+    "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/source-manifest.json",
+    "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/verification.json",
+    "code_archive_sha256": "d9f2f8bff3bf5d9fa7c1118c0968e9c0374fd5e9a6d3f7f99352abc0841e3b7d",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/results/result.json",
+    "passed_tests": 19,
+    "examples": [
+      {
+        "id": "ale-nonuniform-transport",
+        "title": {
+          "ja": "非一様移動格子で実際に運ぶALEスカラー",
+          "en": "ALE scalar transport on genuinely nonuniform moving cells"
+        },
+        "method_ids": [
+          "ale",
+          "upwind",
+          "heun"
+        ],
+        "domains": [
+          "pde",
+          "geometry"
+        ],
+        "summary": {
+          "ja": "質量と格子面位置を同じHeun段で更新し、一様GCLだけでなく非一様な解析波を運びます。",
+          "en": "Advance cell integrals and face positions with identical Heun stages, transporting a nonuniform analytic wave beyond a uniform GCL check."
+        },
+        "assumptions": {
+          "ja": "周期[0,1]、速度.7、q0=1+.2sin(2pi x)、面速度w=.2sin(2pi xi)cos(2pi t)、N40/80/160、T1。時間比較N40,T.25,32/64/128step。",
+          "en": "Periodic unit interval, speed.7,q0=1+.2sin(2pi x), grid speed .2sin(2pi xi)cos(2pi t),N40/80/160,T1. Separate N40,T.25 time series32/64/128steps."
+        },
+        "algorithm": {
+          "ja": "実セル質量の上流相対流束(a−w)qと実面位置を同じHeun predictor/correctorで進め、各段体積・面Courant数を記録。",
+          "en": "Upwind relative flux(a-w)q advances actual masses with identical predictor/corrector face geometry; record stage volumes and Courant numbers."
+        },
+        "validation": {
+          "ja": "解析的移動セル積分、全体/段の質量、GCLconstant、格子幾何誤差を分離。独立DOP853による同じFV ODEの時間参照を二公差で確認。",
+          "en": "Separate analytic moving-cell-integral error, global/stage mass, constant GCL and geometry error. Qualify an independent DOP853 integration of the same FV ODE with two tolerances."
+        },
+        "limits": {
+          "ja": "1D指定格子運動の第一段階です。図のx–tは2D物理計算ではなく、Euler Lagrange/remapやSaltzmanピストンは未実装の後続課題。",
+          "en": "First-stage1D prescribed mesh motion. The x–t image is not2D physics; Euler Lagrange/remap and Saltzman piston remain future work."
+        },
+        "references": [
+          {
+            "id": "huff1987-moving-grid",
+            "author": "Dennis L. Huff",
+            "year": 1987,
+            "title": "Numerical Simulations of Unsteady, Viscous, Transonic Flow Over Isolated and Cascaded Airfoils Using a Deforming Grid",
+            "url": "https://ntrs.nasa.gov/api/citations/19870015002/downloads/19870015002.pdf",
+            "review_level": "selected-primary-report-grid-treatment",
+            "review_scope": "NASA TM89890 grid-velocity and GCL discussion around equation11/printedp5 inspected. It attributes GCL to Thomas/Lombard. Original1979 paper not read; no airfoil algorithm or code reproduced. Our 1D scalar moving-volume/Heun derivation is independent."
+          }
+        ],
+        "citations": [
+          {
+            "id": "huff1987-moving-grid",
+            "author": "Dennis L. Huff",
+            "year": 1987,
+            "title": "Numerical Simulations of Unsteady, Viscous, Transonic Flow Over Isolated and Cascaded Airfoils Using a Deforming Grid",
+            "url": "https://ntrs.nasa.gov/api/citations/19870015002/downloads/19870015002.pdf",
+            "review_level": "selected-primary-report-grid-treatment",
+            "review_scope": "NASA TM89890 grid-velocity and GCL discussion around equation11/printedp5 inspected. It attributes GCL to Thomas/Lombard. Original1979 paper not read; no airfoil algorithm or code reproduced. Our 1D scalar moving-volume/Heun derivation is independent."
+          }
+        ],
+        "formulas": [
+          "\\dot m_i=-[(a-w)q]_{i+1/2}+[(a-w)q]_{i-1/2},\\quad V_i=x_{i+1/2}-x_{i-1/2}",
+          "x(\\xi,t)=\\xi+0.2\\sin(2\\pi\\xi)\\sin(2\\pi t)/(2\\pi)"
+        ],
+        "code_files": [
+          "run.py",
+          "transport.py",
+          "references/exact.py"
+        ],
+        "gallery_figure": "ale-nonuniform-transport-preview.png",
+        "additional_figures": [
+          {
+            "file": "ale-nonuniform-transport-preview.png",
+            "caption": {
+              "ja": "実際に保存した計算配列と固定入力の収束指標から描いた検証図。",
+              "en": "Validation preview from actual saved PDE arrays and fixed-input refinement measurements."
+            }
+          }
+        ],
+        "measured": {
+          "id": "ale-nonuniform-transport",
+          "passed": true,
+          "checks": {
+            "adaptive-time reference qualification": true,
+            "space-n40 mass_defect": true,
+            "space-n40 step_mass_defect": true,
+            "space-n40 gcl_defect": true,
+            "space-n40 maximum_cfl": true,
+            "space-n40 positive volumes and values": true,
+            "space-n40 five saved times": true,
+            "space-n80 mass_defect": true,
+            "space-n80 step_mass_defect": true,
+            "space-n80 gcl_defect": true,
+            "space-n80 maximum_cfl": true,
+            "space-n80 positive volumes and values": true,
+            "space-n80 five saved times": true,
+            "space-n160 mass_defect": true,
+            "space-n160 step_mass_defect": true,
+            "space-n160 gcl_defect": true,
+            "space-n160 maximum_cfl": true,
+            "space-n160 positive volumes and values": true,
+            "space-n160 five saved times": true,
+            "gcl-n40 mass_defect": true,
+            "gcl-n40 step_mass_defect": true,
+            "gcl-n40 gcl_defect": true,
+            "gcl-n40 maximum_cfl": true,
+            "gcl-n40 positive volumes and values": true,
+            "gcl-n40 five saved times": true,
+            "time-n40-s32 mass_defect": true,
+            "time-n40-s32 step_mass_defect": true,
+            "time-n40-s32 gcl_defect": true,
+            "time-n40-s32 maximum_cfl": true,
+            "time-n40-s32 positive volumes and values": true,
+            "time-n40-s32 five saved times": true,
+            "time-n40-s64 mass_defect": true,
+            "time-n40-s64 step_mass_defect": true,
+            "time-n40-s64 gcl_defect": true,
+            "time-n40-s64 maximum_cfl": true,
+            "time-n40-s64 positive volumes and values": true,
+            "time-n40-s64 five saved times": true,
+            "time-n40-s128 mass_defect": true,
+            "time-n40-s128 step_mass_defect": true,
+            "time-n40-s128 gcl_defect": true,
+            "time-n40-s128 maximum_cfl": true,
+            "time-n40-s128 positive volumes and values": true,
+            "time-n40-s128 five saved times": true,
+            "space refinement 1": true,
+            "space refinement 2": true,
+            "time refinement 1": true,
+            "time refinement 2": true,
+            "finest transport error": true,
+            "constant-state GCL preservation": true,
+            "finest time error": true,
+            "reference analytic moving-face velocity": true,
+            "reference periodic analytic mass": true,
+            "reference skew-Hermitian discrete symbol": true,
+            "reference continuous wave frequency": true
+          },
+          "records": [
+            {
+              "id": "space-n40",
+              "family": "space",
+              "n": 40,
+              "steps": 104,
+              "time": 1.0,
+              "error": 0.03727643110501025,
+              "minimum_volume": 0.02002216429895609,
+              "minimum_value": 0.8012125236266773,
+              "maximum_cfl": 0.40022146138479203,
+              "mass_defect": 0.0,
+              "step_mass_defect": 2.220446049250313e-16,
+              "gcl_defect": 1.6428373418586606e-16,
+              "geometry_error": 1.0642315648956568e-05
+            },
+            {
+              "id": "space-n80",
+              "family": "space",
+              "n": 80,
+              "steps": 208,
+              "time": 1.0,
+              "error": 0.02033805346735697,
+              "minimum_volume": 0.010002773292569156,
+              "minimum_value": 0.8003040164648898,
+              "maximum_cfl": 0.40005547240255473,
+              "mass_defect": 0.0,
+              "step_mass_defect": 3.3306690738754696e-16,
+              "gcl_defect": 1.9821756811876784e-16,
+              "geometry_error": 2.6441724713111014e-06
+            },
+            {
+              "id": "space-n160",
+              "family": "space",
+              "n": 160,
+              "steps": 416,
+              "time": 1.0,
+              "error": 0.010651659780584348,
+              "minimum_volume": 0.005000346796789845,
+              "minimum_value": 0.800076059665958,
+              "maximum_cfl": 0.4000138747872927,
+              "mass_defect": 2.220446049250313e-16,
+              "step_mass_defect": 2.220446049250313e-16,
+              "gcl_defect": 2.0303210339096128e-16,
+              "geometry_error": 6.590885828217097e-07
+            },
+            {
+              "id": "gcl-n40",
+              "family": "gcl",
+              "n": 40,
+              "steps": 41,
+              "time": 0.37,
+              "error": 2.6367796834847468e-15,
+              "minimum_volume": 0.02002262868686666,
+              "minimum_value": 0.9999999999999882,
+              "maximum_cfl": 0.40022146138479203,
+              "mass_defect": 0.0,
+              "step_mass_defect": 2.220446049250313e-16,
+              "gcl_defect": 1.5937771935536915e-16,
+              "geometry_error": 1.0303289143531735e-05,
+              "constant_error": 1.2212453270876722e-14
+            },
+            {
+              "id": "time-n40-s32",
+              "family": "time",
+              "n": 40,
+              "steps": 32,
+              "time": 0.25,
+              "error": 0.01079396806470475,
+              "minimum_volume": 0.020021536228371217,
+              "minimum_value": 0.8010148449855962,
+              "maximum_cfl": 0.28198642721516354,
+              "mass_defect": 0.0,
+              "step_mass_defect": 1.1102230246251565e-16,
+              "gcl_defect": 1.6544925152128798e-16,
+              "geometry_error": 6.391843314079715e-06,
+              "temporal_error": 3.2924461025701885e-06
+            },
+            {
+              "id": "time-n40-s64",
+              "family": "time",
+              "n": 40,
+              "steps": 64,
+              "time": 0.25,
+              "error": 0.010791012551804587,
+              "minimum_volume": 0.02002078629239945,
+              "minimum_value": 0.8008698106271271,
+              "maximum_cfl": 0.14099067787503686,
+              "mass_defect": 2.220446049250313e-16,
+              "step_mass_defect": 2.220446049250313e-16,
+              "gcl_defect": 1.689186984732416e-16,
+              "geometry_error": 1.5979126976040092e-06,
+              "temporal_error": 8.227872188062227e-07
+            },
+            {
+              "id": "time-n40-s128",
+              "family": "time",
+              "n": 40,
+              "steps": 128,
+              "time": 0.25,
+              "error": 0.01079017856620466,
+              "minimum_volume": 0.02002059881546564,
+              "minimum_value": 0.8008335429751757,
+              "maximum_cfl": 0.07049500497645084,
+              "mass_defect": 0.0,
+              "step_mass_defect": 2.220446049250313e-16,
+              "gcl_defect": 1.9786689647860456e-16,
+              "geometry_error": 3.9947516627947266e-07,
+              "temporal_error": 2.0565741803957238e-07
+            }
+          ],
+          "metrics": {
+            "n": 40,
+            "steps": 128,
+            "time": 0.25,
+            "error": 0.01079017856620466,
+            "minimum_volume": 0.02002059881546564,
+            "minimum_value": 0.8008335429751757,
+            "maximum_cfl": 0.07049500497645084,
+            "mass_defect": 0.0,
+            "step_mass_defect": 2.220446049250313e-16,
+            "gcl_defect": 1.9786689647860456e-16,
+            "geometry_error": 3.9947516627947266e-07,
+            "temporal_error": 2.0565741803957238e-07
+          },
+          "data_files": [
+            "ale-nonuniform-transport-space-n40.npz",
+            "ale-nonuniform-transport-space-n80.npz",
+            "ale-nonuniform-transport-space-n160.npz",
+            "ale-nonuniform-transport-gcl-n40.npz",
+            "ale-nonuniform-transport-time-n40-s32.npz",
+            "ale-nonuniform-transport-time-n40-s64.npz",
+            "ale-nonuniform-transport-time-n40-s128.npz"
+          ]
+        },
+        "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ale-nonuniform-transport/",
+        "reading": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-moving-waves/#ale-nonuniform-transport",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-moving-waves/#ale-nonuniform-transport"
+        }
+      }
+    ]
+  },
+  "depth_scope": {
+    "ja": "追加は非一様な1D指定移動格子上のスカラー輸送。面位置とセル質量を同じHeun段で更新し、実際の相対上流流束、GCL、解析的移動セル積分と時間誤差を検査します。",
+    "en": "Additional nonuniform1D prescribed moving-grid scalar advances face positions and masses with shared Heun stages. Check actual relative upwind flux,GCL,analytic moving-cell integrals and temporal error."
+  },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ale/",
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ale/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ale/index.md",
   "code_urls": [
-    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/geometry.py"
+    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/geometry.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/transport.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/references/exact.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/experiments.py"
   ],
   "test_urls": [
-    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py"
+    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/test_moving.py"
   ],
   "run_commands": [
     "python -m pytest -q tests/test_time_geometry.py"
@@ -66,12 +381,134 @@
   "run_from": "Extracted code edition directory",
   "code_base": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/",
   "code_edition": "2026-11-21",
-  "execution_examples": [],
+  "execution_examples": [
+    {
+      "id": "ale-nonuniform-transport",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ale-nonuniform-transport/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ale-nonuniform-transport/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    }
+  ],
   "problem_navigation": {
     "method_id": "ale",
     "status": "educational-example",
-    "equations": [],
-    "problems": [],
-    "references": []
+    "equations": [
+      {
+        "id": "ale-scalar-transport",
+        "name": {
+          "ja": "移動セル上のALEスカラー保存式",
+          "en": "ALE scalar conservation on moving cells"
+        },
+        "problem_ids": [
+          "ale-nonuniform-transport"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#ale-scalar-transport-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#ale-scalar-transport-en"
+        }
+      }
+    ],
+    "problems": [
+      {
+        "id": "ale-nonuniform-transport",
+        "name": {
+          "ja": "非一様移動格子で実際に運ぶALEスカラー",
+          "en": "ALE scalar transport on genuinely nonuniform moving cells"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/results/ale-nonuniform-transport-preview.png",
+          "sha256": "9d478cec0c80d34b7ea186af511711f8d0fff239eb9e2db18b3b6027563766be",
+          "width": 960,
+          "height": 608,
+          "caption": {
+            "ja": "実際に保存した計算配列と固定入力の収束指標から描いた検証図。",
+            "en": "Validation preview from actual saved PDE arrays and fixed-input refinement measurements."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/ale-nonuniform-transport/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/ale-nonuniform-transport/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/ale-nonuniform-transport/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/ale-nonuniform-transport/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "ale-nonuniform-transport",
+            "kind": "supplement",
+            "name": {
+              "ja": "非一様移動格子で実際に運ぶALEスカラー",
+              "en": "ALE scalar transport on genuinely nonuniform moving cells"
+            },
+            "scope": {
+              "ja": "質量と格子面位置を同じHeun段で更新し、一様GCLだけでなく非一様な解析波を運びます。",
+              "en": "Advance cell integrals and face positions with identical Heun stages, transporting a nonuniform analytic wave beyond a uniform GCL check."
+            },
+            "method_ids": [
+              "ale",
+              "upwind",
+              "heun"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ale-nonuniform-transport/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ale-nonuniform-transport/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/atlas-moving-waves-2026-11-23.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "実セル質量の上流相対流束(a−w)qと実面位置を同じHeun predictor/correctorで進め、各段体積・面Courant数を記録。",
+          "en": "Upwind relative flux(a-w)q advances actual masses with identical predictor/corrector face geometry; record stage volumes and Courant numbers."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/ale-nonuniform-transport/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/ale-nonuniform-transport/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "ale-nonuniform-transport",
+        "problem_name": {
+          "ja": "非一様移動格子で実際に運ぶALEスカラー",
+          "en": "ALE scalar transport on genuinely nonuniform moving cells"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/ale-nonuniform-transport/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/ale-nonuniform-transport/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "ale-nonuniform-transport",
+            "title": {
+              "ja": "ALE：実際の移動セル上の解析積分と時間参照",
+              "en": "ALE: analytic moving-cell integrals and separate time reference"
+            },
+            "kind": "analytic",
+            "relation": "same-problem",
+            "note": {
+              "ja": "1D指定格子運動の第一段階です。図のx–tは2D物理計算ではなく、Euler Lagrange/remapやSaltzmanピストンは未実装の後続課題。",
+              "en": "First-stage1D prescribed mesh motion. The x–t image is not2D physics; Euler Lagrange/remap and Saltzman piston remain future work."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-ale-nonuniform-transport-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-ale-nonuniform-transport-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/ale-nonuniform-transport/?lang=ja#ale-nonuniform-transport-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/ale-nonuniform-transport/?lang=en#ale-nonuniform-transport-en-measurements"
+            }
+          }
+        ]
+      }
+    ]
   }
 }

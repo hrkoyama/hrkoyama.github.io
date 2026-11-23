@@ -26,6 +26,9 @@ v = module('verifier', 'scripts/verify-depth-public.py')
 u = module('updater', 'scripts/update-depth-ci-pins.py')
 registry_bytes = (ROOT/u.REGISTRY_PATH).read_bytes()
 registry = v.strict_json(registry_bytes)
+def brief_report(report):
+    return {'phase': report.get('phase'), 'error': str(report.get('error'))[:1200],
+            'active_group': report.get('active_group')}
 def rejects(call):
     try:
         call()
@@ -60,16 +63,16 @@ const pythonBlocks = shellBlocks().flatMap(block => [...block.matchAll(/python(?
 
 test('registry preserves eleven frozen releases and adds the separately dated Noh release with two workflow pins', () => {
   const registry = json(registryPath);
-  assert.equal(registry.case_count, 69);
-  const previous = registry.releases.filter(x => !['noh','noh-cartesian','sedov','double-mach','forward-step','low-mach','guderley','euler-positivity','zalesak','weno-critical','shallow-water','wall-flow','level-set', 'instability-growth', 'mhd-transport', 'mesh-boundary', 'moving-waves', 'relativistic'].includes(x.group));
+  assert.equal(registry.case_count, 71);
+  const previous = registry.releases.filter(x => !['noh','noh-cartesian','sedov','double-mach','forward-step','low-mach','guderley','euler-positivity','zalesak','weno-critical','shallow-water','wall-flow','level-set', 'instability-growth', 'mhd-transport', 'mesh-boundary', 'moving-waves', 'relativistic', 'sem-fr'].includes(x.group));
   assert.equal(createHash('sha256').update(JSON.stringify(previous)).digest('hex'), 'b2e03aeb8798240a38d00bbe2491a5fc50109f2020078decf419f7276eb3241f', 'old eleven release metadata and hashes are immutable');
   assert.ok(previous.every(x => x.edition === '2026-11-22'));
   const noh = registry.releases.find(x => x.group === 'noh');
   assert.equal(noh.edition, '2026-11-23-r5');
   assert.deepEqual(noh.case_ids, ['noh-shock']);
   assert.equal(noh.tests,28);
-  assert.equal(registry.releases.filter(row=>!['euler-positivity','zalesak','weno-critical','shallow-water','wall-flow','level-set', 'instability-growth', 'mhd-transport', 'mesh-boundary', 'moving-waves', 'relativistic'].includes(row.group)).reduce((sum,row)=>sum+row.tests,0),571);
-  assert.deepEqual(registry.releases.map(x => x.group), ['foundations', 'models', 'particles', 'mhd', 'thermostats', 'biology', 'mcmc', 'mhd-convergence', 'foundations-conditioning', 'particle-transport', 'splitting', 'noh', 'noh-cartesian', 'sedov', 'double-mach', 'forward-step','low-mach','guderley','euler-positivity','zalesak','weno-critical','shallow-water','wall-flow','level-set', 'instability-growth', 'mhd-transport', 'mesh-boundary', 'moving-waves', 'relativistic']);
+  assert.equal(registry.releases.filter(row=>!['euler-positivity','zalesak','weno-critical','shallow-water','wall-flow','level-set', 'instability-growth', 'mhd-transport', 'mesh-boundary', 'moving-waves', 'relativistic', 'sem-fr'].includes(row.group)).reduce((sum,row)=>sum+row.tests,0),571);
+  assert.deepEqual(registry.releases.map(x => x.group), ["foundations","models","particles","mhd","thermostats","biology","mcmc","mhd-convergence","foundations-conditioning","particle-transport","splitting","noh","noh-cartesian","sedov","double-mach","forward-step","low-mach","guderley","euler-positivity","zalesak","weno-critical","shallow-water","wall-flow","level-set","sem-fr","instability-growth","mhd-transport","mesh-boundary","moving-waves","relativistic"]);
   assert.deepEqual(registry.releases.slice(0,4).map(x => x.tests), [29, 26, 27, 11]);
   assert.equal(registry.releases[4].tests,42);
   assert.equal(registry.releases[5].tests,28);
@@ -80,7 +83,7 @@ test('registry preserves eleven frozen releases and adds the separately dated No
   assert.equal(registry.releases[10].tests,16);
   assert.equal(previous.reduce((sum,release)=>sum+release.tests,0),388);
   assert.deepEqual(previous.map(x => x.case_ids.length), [4, 5, 6, 4, 3, 2, 2, 3, 4, 6, 1]);
-  assert.equal(new Set(registry.releases.flatMap(x => x.case_ids)).size, 56);
+  assert.equal(new Set(registry.releases.flatMap(x => x.case_ids)).size, 71);
   for (const release of registry.releases) {
     const base = `code/validated-examples/${release.edition}/${release.group}/`;
     assert.equal(release.base, 'https://hrkoyama.github.io/' + base);
@@ -324,7 +327,7 @@ test('full verifier state machine accepts every mixed-edition saved fixture case
   python(mockedPipeline + String.raw`
 with tempfile.TemporaryDirectory() as temporary:
     report = v.verify(v.REGISTRY_URL, v.digest(registry_bytes), Path(temporary)/'run')
-    assert report['passed'] is True, report
+    assert report['passed'] is True, brief_report(report)
     assert report['phase']=='complete' and report['case_count']==registry['case_count'] and report['tests']==sum(g['tests'] for g in registry['releases'])
     assert len(report['acquisitions'])==1+4*len(registry['releases']) and all(r['passed'] for r in report['acquisitions'])
     assert all(g['pytest']['skipped']==0 and g['passed'] and g['generated_csv'] for g in report['groups'])
@@ -344,8 +347,8 @@ for mode, phase in [('run-failed', 'execution'), ('timeout', 'execution'), ('num
     with tempfile.TemporaryDirectory() as temporary:
         output = Path(temporary)/'run'
         report = v.verify(v.REGISTRY_URL, v.digest(registry_bytes), output)
-        assert report['passed'] is False and report['status']=='failed', (mode, report)
-        assert report['error']['phase']==phase, (mode, report['error'])
+        assert report['passed'] is False and report['status']=='failed', (mode, brief_report(report))
+        assert report['error']['phase']==phase, (mode, brief_report(report))
         assert report['environment']['dependencies']==v.DIRECT_PINS
         assert (output/'report.json').is_file() and (output/'groups/foundations/pytest.stdout.log').is_file()
         if mode in ['run-failed', 'timeout', 'numerical-failed', 'omitted-check']:

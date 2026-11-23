@@ -41,7 +41,7 @@ function localTarget(href) {
 
 test('crossovers preserve the scientific inventory and canonical availability', () => {
   const coverage = json('numerical-methods-atlas/coverage.json');
-  assert.equal(methods.length, 150);
+  assert.equal(methods.length, 152);
   assert.equal(json('catalog/atlas-equations.json').equations.length, 56);
   assert.equal(coverage.counts.papers, coverage.publications.filter(row => ['article', 'inproceedings'].includes(row.type)).length);
   assert.equal(coverage.counts.references, coverage.publications.length);

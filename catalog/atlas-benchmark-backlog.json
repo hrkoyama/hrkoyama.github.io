@@ -1412,22 +1412,22 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-23/instability-growth/verification.json",
+        "verification": "/code/validated-examples/2026-11-23-r2/instability-growth/verification.json",
         "inputs": [
-          "/code/validated-examples/2026-11-23/instability-growth/inputs.json",
-          "/code/validated-examples/2026-11-23/instability-growth/acceptance.json",
-          "/code/validated-examples/2026-11-23/instability-growth/pre-run-contract.json"
+          "/code/validated-examples/2026-11-23-r2/instability-growth/inputs.json",
+          "/code/validated-examples/2026-11-23-r2/instability-growth/acceptance.json",
+          "/code/validated-examples/2026-11-23-r2/instability-growth/pre-run-contract.json"
         ],
         "plots": [
-          "/code/validated-examples/2026-11-23/instability-growth/results/kh-initial-growth-preview.png",
-          "/code/validated-examples/2026-11-23/instability-growth/results/rt-initial-growth-preview.png"
+          "/code/validated-examples/2026-11-23-r2/instability-growth/results/kh-initial-growth-preview.png",
+          "/code/validated-examples/2026-11-23-r2/instability-growth/results/rt-initial-growth-preview.png"
         ],
         "code": [
-          "/code/validated-examples/2026-11-23/instability-growth/run.py"
+          "/code/validated-examples/2026-11-23-r2/instability-growth/run.py"
         ],
         "references": [
-          "/code/validated-examples/2026-11-23/instability-growth/README.md",
-          "/code/validated-examples/2026-11-23/instability-growth/references/citations.json"
+          "/code/validated-examples/2026-11-23-r2/instability-growth/README.md",
+          "/code/validated-examples/2026-11-23-r2/instability-growth/references/citations.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#kh-initial-growth-ja",
         "execution": "/numerical-methods-atlas/validation/kh-initial-growth/?lang=ja"

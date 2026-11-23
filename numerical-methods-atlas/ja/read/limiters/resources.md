@@ -76,6 +76,14 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/limiters/
   availability: run
 
   スロット付き円盤を実際の2次元有限体積法で一回転させ、donor-cellとminmod MUSCLを比較します。3格子と、半セルの中心ずらし・45度の初期向きを含む8計算で、保存・各SSP段の有界性・形状誤差とスロットの埋まりを測ります。
+- [SRHDの対称二衝撃波衝突](<https://hrkoyama.github.io/numerical-methods-atlas/validation/srhd-collision/?lang=ja>)
+  availability: run
+
+  相対論的な対称衝突を、独立なTaub関係から得る厳密な保存量セル平均と比較し、実際の1D時空間場を保存します。
+- [SRMHDの有限振幅円偏極Alfvén波](<https://hrkoyama.github.io/numerical-methods-atlas/validation/srmhd-alfven/?lang=ja>)
+  availability: run
+
+  完全な磁気応力と誘導を含むSRMHDで非線形有限振幅波を1周期進め、厳密セル平均、位相、振幅と細分化を検査します。
 - [Minmod：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/minmod/?lang=ja#method-execution-ja>)
   availability: source
 

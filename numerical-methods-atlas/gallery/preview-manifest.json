@@ -1108,7 +1108,7 @@
     },
     {
       "id": "kh-initial-growth",
-      "image": "/code/validated-examples/2026-11-23/instability-growth/results/kh-initial-growth-preview.png",
+      "image": "/code/validated-examples/2026-11-23-r2/instability-growth/results/kh-initial-growth-preview.png",
       "image_sha256": "eccd098101115bcf7a933ddc47a47974e715d92e285a73be87f9e0e9d611ca13",
       "width": 1192,
       "height": 512,
@@ -1120,7 +1120,7 @@
     },
     {
       "id": "rt-initial-growth",
-      "image": "/code/validated-examples/2026-11-23/instability-growth/results/rt-initial-growth-preview.png",
+      "image": "/code/validated-examples/2026-11-23-r2/instability-growth/results/rt-initial-growth-preview.png",
       "image_sha256": "846b71c11b1112ff71e8d000a0793190ecde8a345b482426a6fde6894e8cca18",
       "width": 1198,
       "height": 512,
@@ -1228,7 +1228,7 @@
     }
   ],
   "source_sha256": {
-    "catalog/atlas-gallery.json": "bdef45139d9c067bf5002c7ed2ecd2b94b12806b4b5338a315ead1301445a030",
+    "catalog/atlas-gallery.json": "5d5db4f912d118e9084c0f5dbbbfa175de51ef385ab05ec5a44e01186a1ec411",
     "scripts/render-atlas-gallery.py": "62956b5a0ece0c5144ec079bb30f36e44b3ccf97e4b56b677d4de356cdbab04c",
     "code/numerical-methods-atlas/2026-11-21/numart/benchmarks.py": "dc8f83aafea473b5f0e1e7bf82630484dd60aa446859c1f602571adc3c59f019",
     "code/numerical-methods-atlas/2026-11-21/numart/solvers.py": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d",
@@ -1275,8 +1275,8 @@
     "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
     "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
     "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
-    "catalog/atlas-test-problems.json": "8c2198ce3cf88056b9b5a78b796f676f2e64c773882eb8e911c178a0578fb79b",
-    "catalog/atlas-depth-expansion.json": "b5c4fcb308e4627460f59b96428960b22b508d3a593d480c4c2bee1b60373aeb",
+    "catalog/atlas-test-problems.json": "a6a2e764bf990e33073c55a271f884df9ecd5c4d0f216fa8aaad1e83d7f00124",
+    "catalog/atlas-depth-expansion.json": "25b030e85b4313197b9d98802270ffb65507ea0f8915bab9cbf64dabbf7fa47e",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
     "code/validated-examples/2026-11-22/foundations/inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -1475,7 +1475,76 @@
     "code/validated-examples/2026-11-23/level-set/results/result.json": "7108491721386902c6adaa5ea5c1c709b31a204060346d0c93a06efd4a4a5a31",
     "code/validated-examples/2026-11-23/level-set/results/level-set-translation.png": "4e99dec1449e65944b246b2280dd5439a5dbc59a99633b201f57e5cd0453507e",
     "code/validated-examples/2026-11-23/level-set/results/level-set-rotation.png": "54c6d02fd40c0bf702f413f8ce12aaefc43a5f911d681b42ad7634d6a26ebdde",
-    "code/validated-examples/2026-11-23/level-set/results/level-set-overview.png": "88f72aed9b862da17107f9f1c07c1ca10b3f43e61342de01e03f55379723f730"
+    "code/validated-examples/2026-11-23/level-set/results/level-set-overview.png": "88f72aed9b862da17107f9f1c07c1ca10b3f43e61342de01e03f55379723f730",
+    "code/validated-examples/2026-11-23/sem-fr/cases.json": "b1005680e6bd36a330dd178f9eac2c39444dc40c98f5dbf5bfd3ad01ca2c751d",
+    "code/validated-examples/2026-11-23/sem-fr/inputs.json": "c10e0ef3737b81f8e088d43d411067aaa00b7b42e197f8f2a43b19b6852f0525",
+    "code/validated-examples/2026-11-23/sem-fr/source-manifest.json": "800461c1ae226cc1f4350d4fce65a0c24ef2bce851ad862ad55394b47fc321d1",
+    "code/validated-examples/2026-11-23/sem-fr/verification.json": "63de17e91ba54215e7de815df931b8b2c6f04c65d5d43037b9c921c14ca75b54",
+    "code/validated-examples/2026-11-23/sem-fr/results/result.json": "f934329701c57bd4eb41cec04c0bbf374812ec0372739c3c2d869e9829b54a96",
+    "code/validated-examples/2026-11-23/sem-fr/results/sem-poisson-2d.png": "fdad68cc85073ba5d51bc9b48b34c116896d2c99cf497bdda32faa2d27481ef7",
+    "code/validated-examples/2026-11-23/sem-fr/results/fr-periodic-advection.png": "d4afeebdf38e32dcaf3a2c58288ef4ed2f1f79c7c32e89c80f40d71199a11c37",
+    "code/validated-examples/2026-11-23/sem-fr/results/sem-poisson-2d-preview.png": "6f1e1d026f03c64656de459078757c9862a29ee0de68816f2aa9802be5bec6da",
+    "code/validated-examples/2026-11-23/sem-fr/results/fr-periodic-advection-preview.png": "30674c0de38a4c3507602ec895fdb37d7a72d6290a36bca97ae931e3bdcd5bd1",
+    "code/validated-examples/2026-11-23/instability-growth/cases.json": "a313678254c42e664fe47d65bc1a5e22ffde0c7824be09e63dd90a665b1a2665",
+    "code/validated-examples/2026-11-23/instability-growth/inputs.json": "05d178c8f48df0c8819ab863e5448a0573144f69b0a64b59381f5109b757042a",
+    "code/validated-examples/2026-11-23/instability-growth/source-manifest.json": "78121e23239fb43efe1347c64749c4439cd0549d82f8d30a1c0d8593efdb8afd",
+    "code/validated-examples/2026-11-23/instability-growth/verification.json": "6bcb411b1d4ae1a5f403572fb712ca6f11f4f3013bf560bfc1f489f449e79c7c",
+    "code/validated-examples/2026-11-23/instability-growth/results/result.json": "c84d4632e7691d0016551b01b160f1beb6c066a28d06dde7a60949da7be23dce",
+    "code/validated-examples/2026-11-23/instability-growth/results/kh-initial-growth.png": "a3684897868cbe355eac802f7d232dca8b5cc69b8ac55fd7a1ef90faad37fb73",
+    "code/validated-examples/2026-11-23/instability-growth/results/kh-initial-growth-preview.png": "eccd098101115bcf7a933ddc47a47974e715d92e285a73be87f9e0e9d611ca13",
+    "code/validated-examples/2026-11-23/instability-growth/results/rt-initial-growth.png": "349f1c7cb35695180088bb3b66c4b0c8a26407ee0a4c9bccf4de48b37f160bbf",
+    "code/validated-examples/2026-11-23/instability-growth/results/rt-initial-growth-preview.png": "846b71c11b1112ff71e8d000a0793190ecde8a345b482426a6fde6894e8cca18",
+    "code/validated-examples/2026-11-23/mhd-transport/cases.json": "351ec0540ab5aea5c75aebfd90c9800d7e7fc8eb742dbbd534d80f61437a3914",
+    "code/validated-examples/2026-11-23/mhd-transport/inputs.json": "8a1b3bc9932f0cf9b620953d53294f2fc781f7999b7922a5d54f685e6044004e",
+    "code/validated-examples/2026-11-23/mhd-transport/source-manifest.json": "c7d853b1b958f830ac30f45b076410ba55045ddedc88006cf8dda2c3e7dfee8d",
+    "code/validated-examples/2026-11-23/mhd-transport/verification.json": "56767d3b24b0c2fd9e6e660db523be8f8565876b38867f819c57ed983d468752",
+    "code/validated-examples/2026-11-23/mhd-transport/results/result.json": "c43acea7e89a837e34b2e171bc292c75bc68766b98614697ec755f05ce944ba4",
+    "code/validated-examples/2026-11-23/mhd-transport/results/circular-alfven-refinement.png": "912e84a14005ad39654a6af4f60d6ad1332cea79aac1d3db62acdf42a2d9a77e",
+    "code/validated-examples/2026-11-23/mhd-transport/results/circular-alfven-refinement-preview.png": "465bcb429d86aab1fa08b0096b263a4aeefc0a6a3885c57ea6fdce3d74715550",
+    "code/validated-examples/2026-11-23/mhd-transport/results/magnetic-loop-independent.png": "0dbe625cefb48f305a884209bc7c1a1083d7473ff25ce29dd51990409505d2fb",
+    "code/validated-examples/2026-11-23/mhd-transport/results/magnetic-loop-independent-preview.png": "00049623bb35c15f699a9dc81d94ead1e744c7d09c5bf4db3ece677db769f3a6",
+    "code/validated-examples/2026-11-23/mhd-transport/results/postshock-orszag-tang.png": "8bd8a6fc206ce3031c036a00cb9a1af12277e2fa0c934aa2c478de2429c33412",
+    "code/validated-examples/2026-11-23/mhd-transport/results/postshock-orszag-tang-preview.png": "bda8eeef077b2d0e0ce634dcf73e65544a520e8d1c78d65786832ce5eefe434d",
+    "code/validated-examples/2026-11-23/mesh-boundary/cases.json": "30c7d39639f74d4f263a045cccc8ced3e14a466e4e279c4c156fc21ce176f796",
+    "code/validated-examples/2026-11-23/mesh-boundary/inputs.json": "eab97df002461c3a58d984cca96db0f6cf07ff4f6e15c451775b383882a7a4b3",
+    "code/validated-examples/2026-11-23/mesh-boundary/source-manifest.json": "96e55d4c564baf804d3ae7feb86a36c7d7a3d4079f5e47180326fd2c09ee675a",
+    "code/validated-examples/2026-11-23/mesh-boundary/verification.json": "1191781061a2ec3339d26d8e9e4db605e9c40e8d5d5dfa6433712b38f43f7d01",
+    "code/validated-examples/2026-11-23/mesh-boundary/results/result.json": "fd91eff20f607bd816815f8458f6e5b1017139d5c2b6a7521bff3a38287a6402",
+    "code/validated-examples/2026-11-23/mesh-boundary/results/lshape-fem.png": "4ba5c9954fea288c712fcf996e80b0d1a71ed89b627389487540bfedeaeee89a",
+    "code/validated-examples/2026-11-23/mesh-boundary/results/lshape-fem-preview.png": "c83b1fe941f1df00a73cd99913be0a67a91890e10a4af808168c8fdcfde88ff5",
+    "code/validated-examples/2026-11-23/mesh-boundary/results/annular-viscous-mms.png": "97721e553477917db10427c66a808671bab2ceeff3453f611bd9c01fdd1745bb",
+    "code/validated-examples/2026-11-23/mesh-boundary/results/annular-viscous-mms-preview.png": "0943e0abeb936550b0b89e6d3d8b792226626a4a4e25fa9566d2228f0ea7bfcd",
+    "code/validated-examples/2026-11-23/mesh-boundary/results/poisson-neumann.png": "ab54df460dfcd7f3d4490154ed981f95e6c534405a8fbeaf79bc7030875c7412",
+    "code/validated-examples/2026-11-23/mesh-boundary/results/poisson-neumann-preview.png": "3b86e5b5ce513745f61f18ef155f3b4a1fee902cef02106516f1ca8aa4e7aebc",
+    "code/validated-examples/2026-11-23/mesh-boundary/results/poisson-robin.png": "74ff75f2f29fa9ebb1fdac5f682d9ec25abb45d1599edb0ae7e917d0f2b3b63b",
+    "code/validated-examples/2026-11-23/mesh-boundary/results/poisson-robin-preview.png": "d494bf03a58a591abda50c502b49da900e0066bdb19f64411560f41bd886d10b",
+    "code/validated-examples/2026-11-23/moving-waves/cases.json": "0b7092f12334f3ce018f0f837deb59803b8b14e50999a10e34de452b1038f989",
+    "code/validated-examples/2026-11-23/moving-waves/inputs.json": "f1591358d7d6e9d85b7197b5058d80d40cdee563fa66bec05cfd56fbfdeadca3",
+    "code/validated-examples/2026-11-23/moving-waves/source-manifest.json": "8cf67dddc182fe3519eb33f89deddd711a9ecb639f3760e1edc0c88505eb8be1",
+    "code/validated-examples/2026-11-23/moving-waves/verification.json": "29199bb55f03b1167eaa27115c8bb531006a298371f614d8c1397516c5862894",
+    "code/validated-examples/2026-11-23/moving-waves/results/result.json": "e53ff99821e9977c975cda2a33d99b00d895901f1e428780ef27c10dd5242426",
+    "code/validated-examples/2026-11-23/moving-waves/results/ale-nonuniform-transport.png": "890de149235b3b4eb59127eb2fa19821f8edf2aada5ee42c35ca901db4719d8d",
+    "code/validated-examples/2026-11-23/moving-waves/results/ale-nonuniform-transport-preview.png": "9d478cec0c80d34b7ea186af511711f8d0fff239eb9e2db18b3b6027563766be",
+    "code/validated-examples/2026-11-23/moving-waves/results/cgrid-rotating-wave.png": "6cbefd032d2e6324686e5ad43cb9d12687a6b65fe45f0f1b729c879e80ed9f6c",
+    "code/validated-examples/2026-11-23/moving-waves/results/cgrid-rotating-wave-preview.png": "363d1ee6a1c02f5fbfff257511b85cc00ef5cf80817cc265eb866847f5609a4c",
+    "code/validated-examples/2026-11-23/relativistic/cases.json": "8e0f3c1834cf74a57e20628fcf6580b19b8a7153c6f7c33c9b0b0986ca680a58",
+    "code/validated-examples/2026-11-23/relativistic/inputs.json": "74aa7224e0c7682b1563b9dda911eda1890d535465328f136801211638370ac5",
+    "code/validated-examples/2026-11-23/relativistic/source-manifest.json": "89496dc623ddb7a3c381539d403b1ad657cee8ad772509788f185b7364dd6584",
+    "code/validated-examples/2026-11-23/relativistic/verification.json": "d2d62b2d0aa0e5f9f7e3a7e7991f24586fcc7c3baa3a567cd51f0d6f00367737",
+    "code/validated-examples/2026-11-23/relativistic/results/result.json": "30f709ac0ea4dac4819fbfca0c94ff045ca2b566d1245914d1a6aecc5bf86548",
+    "code/validated-examples/2026-11-23/relativistic/results/srhd-collision.png": "7d8f6efe75187a64c54f399009f1b26ef8c6ffb9305ff5a33fd1573b9426f7e2",
+    "code/validated-examples/2026-11-23/relativistic/results/srhd-collision-preview.png": "ef2df95f225e1a80e231c91b85518a4dd007e85f3e6408e9ccbf29aaac386d3f",
+    "code/validated-examples/2026-11-23/relativistic/results/srmhd-alfven.png": "30955aa6ac1cf89f451811a1050fb3f696fec928512e77b355fd2af340fe9f8a",
+    "code/validated-examples/2026-11-23/relativistic/results/srmhd-alfven-preview.png": "23a1cf1258b81f383dd59132738d6f7cc1d37284752f3b4678ef3251c5d3f7a7",
+    "code/validated-examples/2026-11-23-r2/instability-growth/cases.json": "a313678254c42e664fe47d65bc1a5e22ffde0c7824be09e63dd90a665b1a2665",
+    "code/validated-examples/2026-11-23-r2/instability-growth/inputs.json": "05d178c8f48df0c8819ab863e5448a0573144f69b0a64b59381f5109b757042a",
+    "code/validated-examples/2026-11-23-r2/instability-growth/source-manifest.json": "e9e27e0d2911bdafb09f2280eef3eaad7d602510cdd7f1b0282db740a137c69f",
+    "code/validated-examples/2026-11-23-r2/instability-growth/verification.json": "c604289f94d71ea4540a9128763590708c484dc840ea4464178719ee5eea3a3d",
+    "code/validated-examples/2026-11-23-r2/instability-growth/results/result.json": "a86f27c415bd6e10ae5e1135351f9282e05b6126f100f49dd9306ea9bc35e36f",
+    "code/validated-examples/2026-11-23-r2/instability-growth/results/kh-initial-growth.png": "a3684897868cbe355eac802f7d232dca8b5cc69b8ac55fd7a1ef90faad37fb73",
+    "code/validated-examples/2026-11-23-r2/instability-growth/results/kh-initial-growth-preview.png": "eccd098101115bcf7a933ddc47a47974e715d92e285a73be87f9e0e9d611ca13",
+    "code/validated-examples/2026-11-23-r2/instability-growth/results/rt-initial-growth.png": "349f1c7cb35695180088bb3b66c4b0c8a26407ee0a4c9bccf4de48b37f160bbf",
+    "code/validated-examples/2026-11-23-r2/instability-growth/results/rt-initial-growth-preview.png": "846b71c11b1112ff71e8d000a0793190ecde8a345b482426a6fde6894e8cca18"
   },
   "calculations_sha256": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6",
   "maintenance_updates": [
@@ -1659,6 +1728,125 @@
         "code/validated-examples/2026-11-23/level-set/results/level-set-translation.png": "4e99dec1449e65944b246b2280dd5439a5dbc59a99633b201f57e5cd0453507e",
         "code/validated-examples/2026-11-23/level-set/results/level-set-rotation.png": "54c6d02fd40c0bf702f413f8ce12aaefc43a5f911d681b42ad7634d6a26ebdde",
         "code/validated-examples/2026-11-23/level-set/results/level-set-overview.png": "88f72aed9b862da17107f9f1c07c1ca10b3f43e61342de01e03f55379723f730"
+      },
+      "numerical_previews_executed": false
+    },
+    {
+      "reviewed_on": "2026-11-23",
+      "operation": "Link the independently packaged SEM/FR results and saved-data previews to two existing physical problems. Preserve every one of the92 primary pictures and all prior calculations.",
+      "changed_catalog_bindings": {
+        "catalog/atlas-test-problems.json": {
+          "before": "8c2198ce3cf88056b9b5a78b796f676f2e64c773882eb8e911c178a0578fb79b",
+          "after": "990a6813ec502fa317ba45d4d339b27f87aad6b463f17f07dc1bb75f16d38083"
+        },
+        "catalog/atlas-depth-expansion.json": {
+          "before": "b5c4fcb308e4627460f59b96428960b22b508d3a593d480c4c2bee1b60373aeb",
+          "after": "2adadc1abbd338bad24bf31415fc91fb3a5b72894aeca3afb031d185a2d40035"
+        }
+      },
+      "new_sem_fr_bindings": {
+        "code/validated-examples/2026-11-23/sem-fr/cases.json": "b1005680e6bd36a330dd178f9eac2c39444dc40c98f5dbf5bfd3ad01ca2c751d",
+        "code/validated-examples/2026-11-23/sem-fr/inputs.json": "c10e0ef3737b81f8e088d43d411067aaa00b7b42e197f8f2a43b19b6852f0525",
+        "code/validated-examples/2026-11-23/sem-fr/source-manifest.json": "800461c1ae226cc1f4350d4fce65a0c24ef2bce851ad862ad55394b47fc321d1",
+        "code/validated-examples/2026-11-23/sem-fr/verification.json": "63de17e91ba54215e7de815df931b8b2c6f04c65d5d43037b9c921c14ca75b54",
+        "code/validated-examples/2026-11-23/sem-fr/results/result.json": "f934329701c57bd4eb41cec04c0bbf374812ec0372739c3c2d869e9829b54a96",
+        "code/validated-examples/2026-11-23/sem-fr/results/sem-poisson-2d.png": "fdad68cc85073ba5d51bc9b48b34c116896d2c99cf497bdda32faa2d27481ef7",
+        "code/validated-examples/2026-11-23/sem-fr/results/fr-periodic-advection.png": "d4afeebdf38e32dcaf3a2c58288ef4ed2f1f79c7c32e89c80f40d71199a11c37",
+        "code/validated-examples/2026-11-23/sem-fr/results/sem-poisson-2d-preview.png": "6f1e1d026f03c64656de459078757c9862a29ee0de68816f2aa9802be5bec6da",
+        "code/validated-examples/2026-11-23/sem-fr/results/fr-periodic-advection-preview.png": "30674c0de38a4c3507602ec895fdb37d7a72d6290a36bca97ae931e3bdcd5bd1"
+      },
+      "numerical_previews_executed": false,
+      "new_release_plots_from_saved_fields": true
+    },
+    {
+      "reviewed_on": "2026-11-23",
+      "operation": "Bind10newprimarypictures and13savedexecutionpreviews; retain92previousprimaryrecords andconcurrentSEMFRrelease.",
+      "historical_figures_rerendered": false,
+      "historical_numerical_previews_executed": false,
+      "changed_catalog_bindings": {
+        "catalog/atlas-gallery.json": {
+          "before": "bdef45139d9c067bf5002c7ed2ecd2b94b12806b4b5338a315ead1301445a030",
+          "after": "c6f74fc3003e927141d0928d5648fab64edf5502d0d91af496e4960b3b676243"
+        },
+        "catalog/atlas-test-problems.json": {
+          "before": "990a6813ec502fa317ba45d4d339b27f87aad6b463f17f07dc1bb75f16d38083",
+          "after": "bf3a3fce483c2347bb8bdfaf739d22d06f9686a1b894c8a13c50492b7e378b1d"
+        },
+        "catalog/atlas-depth-expansion.json": {
+          "before": "2adadc1abbd338bad24bf31415fc91fb3a5b72894aeca3afb031d185a2d40035",
+          "after": "6e5e547b1a45d1b5d7cb3f4d898650de090cfcab31a7f2a71af1661555f2c827"
+        }
+      },
+      "new_release_bindings": {
+        "code/validated-examples/2026-11-23/instability-growth/cases.json": "a313678254c42e664fe47d65bc1a5e22ffde0c7824be09e63dd90a665b1a2665",
+        "code/validated-examples/2026-11-23/instability-growth/inputs.json": "05d178c8f48df0c8819ab863e5448a0573144f69b0a64b59381f5109b757042a",
+        "code/validated-examples/2026-11-23/instability-growth/source-manifest.json": "78121e23239fb43efe1347c64749c4439cd0549d82f8d30a1c0d8593efdb8afd",
+        "code/validated-examples/2026-11-23/instability-growth/verification.json": "6bcb411b1d4ae1a5f403572fb712ca6f11f4f3013bf560bfc1f489f449e79c7c",
+        "code/validated-examples/2026-11-23/instability-growth/results/result.json": "c84d4632e7691d0016551b01b160f1beb6c066a28d06dde7a60949da7be23dce",
+        "code/validated-examples/2026-11-23/instability-growth/results/kh-initial-growth.png": "a3684897868cbe355eac802f7d232dca8b5cc69b8ac55fd7a1ef90faad37fb73",
+        "code/validated-examples/2026-11-23/instability-growth/results/kh-initial-growth-preview.png": "eccd098101115bcf7a933ddc47a47974e715d92e285a73be87f9e0e9d611ca13",
+        "code/validated-examples/2026-11-23/instability-growth/results/rt-initial-growth.png": "349f1c7cb35695180088bb3b66c4b0c8a26407ee0a4c9bccf4de48b37f160bbf",
+        "code/validated-examples/2026-11-23/instability-growth/results/rt-initial-growth-preview.png": "846b71c11b1112ff71e8d000a0793190ecde8a345b482426a6fde6894e8cca18",
+        "code/validated-examples/2026-11-23/mhd-transport/cases.json": "351ec0540ab5aea5c75aebfd90c9800d7e7fc8eb742dbbd534d80f61437a3914",
+        "code/validated-examples/2026-11-23/mhd-transport/inputs.json": "8a1b3bc9932f0cf9b620953d53294f2fc781f7999b7922a5d54f685e6044004e",
+        "code/validated-examples/2026-11-23/mhd-transport/source-manifest.json": "c7d853b1b958f830ac30f45b076410ba55045ddedc88006cf8dda2c3e7dfee8d",
+        "code/validated-examples/2026-11-23/mhd-transport/verification.json": "56767d3b24b0c2fd9e6e660db523be8f8565876b38867f819c57ed983d468752",
+        "code/validated-examples/2026-11-23/mhd-transport/results/result.json": "c43acea7e89a837e34b2e171bc292c75bc68766b98614697ec755f05ce944ba4",
+        "code/validated-examples/2026-11-23/mhd-transport/results/circular-alfven-refinement.png": "912e84a14005ad39654a6af4f60d6ad1332cea79aac1d3db62acdf42a2d9a77e",
+        "code/validated-examples/2026-11-23/mhd-transport/results/circular-alfven-refinement-preview.png": "465bcb429d86aab1fa08b0096b263a4aeefc0a6a3885c57ea6fdce3d74715550",
+        "code/validated-examples/2026-11-23/mhd-transport/results/magnetic-loop-independent.png": "0dbe625cefb48f305a884209bc7c1a1083d7473ff25ce29dd51990409505d2fb",
+        "code/validated-examples/2026-11-23/mhd-transport/results/magnetic-loop-independent-preview.png": "00049623bb35c15f699a9dc81d94ead1e744c7d09c5bf4db3ece677db769f3a6",
+        "code/validated-examples/2026-11-23/mhd-transport/results/postshock-orszag-tang.png": "8bd8a6fc206ce3031c036a00cb9a1af12277e2fa0c934aa2c478de2429c33412",
+        "code/validated-examples/2026-11-23/mhd-transport/results/postshock-orszag-tang-preview.png": "bda8eeef077b2d0e0ce634dcf73e65544a520e8d1c78d65786832ce5eefe434d",
+        "code/validated-examples/2026-11-23/mesh-boundary/cases.json": "30c7d39639f74d4f263a045cccc8ced3e14a466e4e279c4c156fc21ce176f796",
+        "code/validated-examples/2026-11-23/mesh-boundary/inputs.json": "eab97df002461c3a58d984cca96db0f6cf07ff4f6e15c451775b383882a7a4b3",
+        "code/validated-examples/2026-11-23/mesh-boundary/source-manifest.json": "96e55d4c564baf804d3ae7feb86a36c7d7a3d4079f5e47180326fd2c09ee675a",
+        "code/validated-examples/2026-11-23/mesh-boundary/verification.json": "1191781061a2ec3339d26d8e9e4db605e9c40e8d5d5dfa6433712b38f43f7d01",
+        "code/validated-examples/2026-11-23/mesh-boundary/results/result.json": "fd91eff20f607bd816815f8458f6e5b1017139d5c2b6a7521bff3a38287a6402",
+        "code/validated-examples/2026-11-23/mesh-boundary/results/lshape-fem.png": "4ba5c9954fea288c712fcf996e80b0d1a71ed89b627389487540bfedeaeee89a",
+        "code/validated-examples/2026-11-23/mesh-boundary/results/lshape-fem-preview.png": "c83b1fe941f1df00a73cd99913be0a67a91890e10a4af808168c8fdcfde88ff5",
+        "code/validated-examples/2026-11-23/mesh-boundary/results/annular-viscous-mms.png": "97721e553477917db10427c66a808671bab2ceeff3453f611bd9c01fdd1745bb",
+        "code/validated-examples/2026-11-23/mesh-boundary/results/annular-viscous-mms-preview.png": "0943e0abeb936550b0b89e6d3d8b792226626a4a4e25fa9566d2228f0ea7bfcd",
+        "code/validated-examples/2026-11-23/mesh-boundary/results/poisson-neumann.png": "ab54df460dfcd7f3d4490154ed981f95e6c534405a8fbeaf79bc7030875c7412",
+        "code/validated-examples/2026-11-23/mesh-boundary/results/poisson-neumann-preview.png": "3b86e5b5ce513745f61f18ef155f3b4a1fee902cef02106516f1ca8aa4e7aebc",
+        "code/validated-examples/2026-11-23/mesh-boundary/results/poisson-robin.png": "74ff75f2f29fa9ebb1fdac5f682d9ec25abb45d1599edb0ae7e917d0f2b3b63b",
+        "code/validated-examples/2026-11-23/mesh-boundary/results/poisson-robin-preview.png": "d494bf03a58a591abda50c502b49da900e0066bdb19f64411560f41bd886d10b",
+        "code/validated-examples/2026-11-23/moving-waves/cases.json": "0b7092f12334f3ce018f0f837deb59803b8b14e50999a10e34de452b1038f989",
+        "code/validated-examples/2026-11-23/moving-waves/inputs.json": "f1591358d7d6e9d85b7197b5058d80d40cdee563fa66bec05cfd56fbfdeadca3",
+        "code/validated-examples/2026-11-23/moving-waves/source-manifest.json": "8cf67dddc182fe3519eb33f89deddd711a9ecb639f3760e1edc0c88505eb8be1",
+        "code/validated-examples/2026-11-23/moving-waves/verification.json": "29199bb55f03b1167eaa27115c8bb531006a298371f614d8c1397516c5862894",
+        "code/validated-examples/2026-11-23/moving-waves/results/result.json": "e53ff99821e9977c975cda2a33d99b00d895901f1e428780ef27c10dd5242426",
+        "code/validated-examples/2026-11-23/moving-waves/results/ale-nonuniform-transport.png": "890de149235b3b4eb59127eb2fa19821f8edf2aada5ee42c35ca901db4719d8d",
+        "code/validated-examples/2026-11-23/moving-waves/results/ale-nonuniform-transport-preview.png": "9d478cec0c80d34b7ea186af511711f8d0fff239eb9e2db18b3b6027563766be",
+        "code/validated-examples/2026-11-23/moving-waves/results/cgrid-rotating-wave.png": "6cbefd032d2e6324686e5ad43cb9d12687a6b65fe45f0f1b729c879e80ed9f6c",
+        "code/validated-examples/2026-11-23/moving-waves/results/cgrid-rotating-wave-preview.png": "363d1ee6a1c02f5fbfff257511b85cc00ef5cf80817cc265eb866847f5609a4c",
+        "code/validated-examples/2026-11-23/relativistic/cases.json": "8e0f3c1834cf74a57e20628fcf6580b19b8a7153c6f7c33c9b0b0986ca680a58",
+        "code/validated-examples/2026-11-23/relativistic/inputs.json": "74aa7224e0c7682b1563b9dda911eda1890d535465328f136801211638370ac5",
+        "code/validated-examples/2026-11-23/relativistic/source-manifest.json": "89496dc623ddb7a3c381539d403b1ad657cee8ad772509788f185b7364dd6584",
+        "code/validated-examples/2026-11-23/relativistic/verification.json": "d2d62b2d0aa0e5f9f7e3a7e7991f24586fcc7c3baa3a567cd51f0d6f00367737",
+        "code/validated-examples/2026-11-23/relativistic/results/result.json": "30f709ac0ea4dac4819fbfca0c94ff045ca2b566d1245914d1a6aecc5bf86548",
+        "code/validated-examples/2026-11-23/relativistic/results/srhd-collision.png": "7d8f6efe75187a64c54f399009f1b26ef8c6ffb9305ff5a33fd1573b9426f7e2",
+        "code/validated-examples/2026-11-23/relativistic/results/srhd-collision-preview.png": "ef2df95f225e1a80e231c91b85518a4dd007e85f3e6408e9ccbf29aaac386d3f",
+        "code/validated-examples/2026-11-23/relativistic/results/srmhd-alfven.png": "30955aa6ac1cf89f451811a1050fb3f696fec928512e77b355fd2af340fe9f8a",
+        "code/validated-examples/2026-11-23/relativistic/results/srmhd-alfven-preview.png": "23a1cf1258b81f383dd59132738d6f7cc1d37284752f3b4678ef3251c5d3f7a7"
+      }
+    },
+    {
+      "reviewed_on": "2026-11-23",
+      "operation": "Point KH/RT to additiveCSV revisionr2; keepallpriorNPZbytes/110arrays/74decisions andoriginalr1 release unchanged.",
+      "changed_catalog_bindings": {
+        "catalog/atlas-gallery.json": {
+          "before": "c6f74fc3003e927141d0928d5648fab64edf5502d0d91af496e4960b3b676243",
+          "after": "5d5db4f912d118e9084c0f5dbbbfa175de51ef385ab05ec5a44e01186a1ec411"
+        },
+        "catalog/atlas-test-problems.json": {
+          "before": "bf3a3fce483c2347bb8bdfaf739d22d06f9686a1b894c8a13c50492b7e378b1d",
+          "after": "a6a2e764bf990e33073c55a271f884df9ecd5c4d0f216fa8aaad1e83d7f00124"
+        },
+        "catalog/atlas-depth-expansion.json": {
+          "before": "6e5e547b1a45d1b5d7cb3f4d898650de090cfcab31a7f2a71af1661555f2c827",
+          "after": "25b030e85b4313197b9d98802270ffb65507ea0f8915bab9cbf64dabbf7fa47e"
+        }
       },
       "numerical_previews_executed": false
     }

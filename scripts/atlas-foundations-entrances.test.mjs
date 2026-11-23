@@ -53,7 +53,7 @@ test('AMG algebraic diagnostics remain outside physical counts and the Poisson g
  const inventory=problemCatalog.problems;
  assert.equal(inventory.length,102);assert.ok(!inventory.some(x=>x.id==='amg-conditioning'));
  const methods=json('catalog/atlas-methods.json').methods;
- assert.equal(methods.length,150);assert.equal(methods.filter(x=>x.status==='educational-example').length,119);
+ assert.equal(methods.length,152);assert.equal(methods.filter(x=>x.status==='educational-example').length,121);
 });
 
 test('conditioning readings enter contents and crossovers without borrowing evidence for coupled applications',()=>{

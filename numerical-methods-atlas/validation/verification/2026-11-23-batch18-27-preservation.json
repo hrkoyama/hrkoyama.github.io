@@ -2751,7 +2751,7 @@
     "numerical-methods-atlas/agent-kits/rkdg2d/figures/convergence.png": "41dbeb8132171eb43643f9bba76c1d93b470f2b51e53ba4f7eee19c160353d9e",
     "numerical-methods-atlas/agent-kits/rkdg2d/figures/directional-forward-reverse-x.png": "a3f0b334af0af75020fa15a5a2fc3d701f1fc279f9213c60717f8b79c222158b",
     "numerical-methods-atlas/agent-kits/rkdg2d/figures/double-mach.png": "1027b12e7c88576525a9871e9679b2079547937327cff1251e70ed97f8182ba4",
-    "numerical-methods-atlas/agent-kits/rkdg2d/index.html": "00d490af888c1505fa30c1705cf5b62681c777b454e6286dc5fcb7e4d7a0296a",
+    "numerical-methods-atlas/agent-kits/rkdg2d/index.html": "e25a90a20e07265648fb37a94a51cbdfb7a7e043f05ae42a4704e6b5e5736458",
     "numerical-methods-atlas/agent-kits/rkdg2d/index.json": "5e111da3210b767be3573612eabcada6576c00bf202eca22c6e6cdc71dbca4a1",
     "numerical-methods-atlas/agent-kits/rkdg2d/manifest.json": "24c6cd2525224939f7dd2f1110a51a85b0d105d704354358a67582bd15146828",
     "numerical-methods-atlas/agent-kits/rkdg2d/prompts/2026-11-23-v1/development-en.md": "97958ea30455c02d6e89fa9f725f406c76f01ddef8f62c037b7a64bef14106a9",
@@ -2760,7 +2760,6 @@
     "numerical-methods-atlas/agent-kits/rkdg2d/prompts/2026-11-23-v1/repair-en.md": "1ee26696f73e150a68391ee0289aa177ddef6b5089d37d56c132b98df8a95d8c",
     "numerical-methods-atlas/agent-kits/rkdg2d/prompts/2026-11-23-v1/repair-ja.md": "8324a2d0ebada5c4626744b73f147dfbf3a95acdf2961905395942955651e992"
   },
-  "unchanged_data_files": {},
   "primary_figures": [
     {
       "id": "advection-sine",
@@ -5721,5 +5720,15 @@
         }
       ]
     }
-  ]
+  ],
+  "baseline_exceptions": [
+    {
+      "path": "numerical-methods-atlas/agent-kits/rkdg2d/index.html",
+      "baseline_sha256": "00d490af888c1505fa30c1705cf5b62681c777b454e6286dc5fcb7e4d7a0296a",
+      "incoming_sha256": "e25a90a20e07265648fb37a94a51cbdfb7a7e043f05ae42a4704e6b5e5736458",
+      "incoming_commit": "d43c5cab378bc053b908148d4c53f232ca9cb786",
+      "reason": "Authorized concurrent RKDG measured-agent-pilot publication; preserve incoming page rather than restore the older page."
+    }
+  ],
+  "original_unchanged_files": 2755
 }

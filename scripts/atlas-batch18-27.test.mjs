@@ -34,11 +34,25 @@ const mapping={
 const editions=Object.fromEntries(json('catalog/atlas-depth-expansion.json').groups.map(g=>[g.id,g.edition]));
 const base=g=>{assert.ok(editions[g],`Missing immutable edition for ${g}`);return `code/validated-examples/${editions[g]}/${g}/`;};
 const sorted=x=>[...x].sort();
+const incomingAudit={
+ path:'numerical-methods-atlas/agent-kits/rkdg2d/index.html',
+ baseline_sha256:'00d490af888c1505fa30c1705cf5b62681c777b454e6286dc5fcb7e4d7a0296a',
+ incoming_sha256:'e25a90a20e07265648fb37a94a51cbdfb7a7e043f05ae42a4704e6b5e5736458',
+ incoming_commit:'d43c5cab378bc053b908148d4c53f232ca9cb786',
+};
 
-test('the ten-item addition preserves all 2756 prior payload files and the complete old primary/reference/model/method records',()=>{
+test('the ten-item addition preserves 2755 baseline payload files, one audited incoming HTML replacement and all old primary/reference/model/method records',()=>{
  const proof=json('numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-preservation.json');
  assert.equal(proof.passed,true);
+ assert.equal(proof.baseline_commit,'a51543e8b54129e70670e184290c9b50b5bc0645');
  assert.equal(Object.keys(proof.protected_files).length,2756);
+ assert.equal(proof.original_unchanged_files,2755);
+ assert.equal(proof.baseline_exceptions.length,1);
+ const exception=proof.baseline_exceptions[0];
+ for(const[key,value]of Object.entries(incomingAudit))assert.equal(exception[key],value,key);
+ assert.ok(typeof exception.reason==='string'&&exception.reason.trim());
+ assert.notEqual(exception.baseline_sha256,exception.incoming_sha256);
+ assert.equal(proof.protected_files[exception.path],exception.incoming_sha256);
  for(const[p,h]of Object.entries(proof.protected_files))assert.equal(sha(p),h,p);
  if(proof.unchanged_data_files!==undefined)assert.deepEqual(proof.unchanged_data_files,[]);
  assert.equal(proof.primary_figures.length,92);
@@ -56,6 +70,23 @@ test('the ten-item addition preserves all 2756 prior payload files and the compl
  const references=json('catalog/atlas-reference-supplements.json').cases;
  assert.equal(proof.reference_supplements.length,15);
  for(const old of proof.reference_supplements)assert.deepEqual(references.find(x=>x.id===old.id),old);
+ const concurrent=json('numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-concurrent-preservation.json');
+ assert.equal(concurrent.incoming_commit,incomingAudit.incoming_commit);
+ assert.equal(concurrent.protected_files[exception.path],exception.incoming_sha256);
+ const requiredIncoming=[
+  'code/validated-examples/2026-11-23/sem-fr/atlas-sem-fr-2026-11-23.zip',
+  'code/validated-examples/2026-11-23/sem-fr/source-manifest.json',
+  'code/validated-examples/2026-11-23/sem-fr/verification.json',
+  'code/rkdg2d/2026-11-23-pilot1/atlas-rkdg-agent-pilot.zip',
+  'code/rkdg2d/2026-11-23-pilot-audit3/verify_saved_portable.py',
+  'numerical-methods-atlas/agent-kits/rkdg2d/results/2026-11-23-v1/manifest.json',
+  'numerical-methods-atlas/agent-kits/rkdg2d/results/2026-11-23-v1/summary.json',
+ ];
+ for(const p of requiredIncoming)assert.match(concurrent.protected_files[p]??'',/^[0-9a-f]{64}$/,p);
+ for(const[p,h]of Object.entries(concurrent.protected_files))assert.equal(sha(p),h,p);
+ assert.equal(concurrent.release.group,'sem-fr');assert.equal(concurrent.release.tests,25);
+ assert.deepEqual(sorted(concurrent.release.case_ids),['fr-periodic-advection','sem-poisson-2d']);
+ assert.deepEqual(registry.releases.find(x=>x.group==='sem-fr'),concurrent.release);
 });
 
 test('all thirteen examples connect bilingual explanations, actual methods, models, reference cards, gallery previews and immutable code',()=>{
@@ -135,18 +166,20 @@ test('the archived backend, reference-timestamp and resolution failures remain v
  for(const field of qc.field_path_map){assert.equal(sha(h+field.single_public_copy),field.sha256);const original=failed.records.find(x=>x.file===field.single_public_copy);assert.equal(original.sha256,field.sha256);}
 });
 
-test('the public envelope validator rejects missing completion, incomplete decisions and empty measured records before any new freeze',()=>{
+test('the public output policy rejects incomplete envelopes and the retained real missing-CSV release before any new freeze',()=>{
  const code=String.raw`
 import copy,importlib.util,json,pathlib
 p=pathlib.Path('scripts/package-depth-examples.py');s=importlib.util.spec_from_file_location('packager',p);m=importlib.util.module_from_spec(s);s.loader.exec_module(m)
 registry=json.loads(pathlib.Path('numerical-methods-atlas/validation/releases.json').read_text())
 groups=['instability-growth','mhd-transport','mesh-boundary','moving-waves','relativistic']
-rejected=0
+rejected=0;csv_groups=0
 for group in groups:
  release=next(r for r in registry['releases'] if r['group']==group)
  base=pathlib.Path('code/validated-examples')/release['edition']/group
  good=json.loads((base/'results/result.json').read_text());ids=release['case_ids'];digest=good['input_sha256']
  m.validate_result_envelope(good,ids,digest)
+ assert m.validate_generated_csv(base/'results'),group+' has no policy-qualified generated CSV'
+ csv_groups+=1
  variants=[]
  for key in ['termination','checks']:
   bad=copy.deepcopy(good);del bad[key];variants.append(bad)
@@ -157,8 +190,16 @@ for group in groups:
   try:m.validate_result_envelope(bad,ids,digest)
   except ValueError:rejected+=1
   else:raise AssertionError('incomplete/failed result accepted for '+group)
-assert rejected==25
-print('five actual envelopes accepted;25 incomplete/failed variants rejected without executing PDEs')
+assert rejected==25 and csv_groups==5
+# This was a complete scientific result whose original immutable packet lacked
+# CSV output. Keep exercising the actual retained failure, not an empty mock.
+retained=pathlib.Path('code/validated-examples/2026-11-23/instability-growth/results')
+assert (retained/'result.json').is_file() and json.loads((retained/'result.json').read_text())['passed'] is True
+assert not list(retained.glob('*.csv'))
+try:m.validate_generated_csv(retained)
+except ValueError as error:assert 'No generated CSV outputs' in str(error)
+else:raise AssertionError('retained original missing-CSV packet would be frozen again')
+print('five actual envelopes and CSV sets accepted;25 incomplete/failed variants and retained missing-CSV release rejected without executing PDEs')
 `;
- assert.match(execFileSync('python3',['-B','-c',code],{cwd:root,encoding:'utf8'}),/25 incomplete\/failed variants rejected/);
+ assert.match(execFileSync('python3',['-B','-c',code],{cwd:root,encoding:'utf8'}),/five actual envelopes and CSV sets accepted;25 incomplete\/failed variants and retained missing-CSV release rejected/);
 });

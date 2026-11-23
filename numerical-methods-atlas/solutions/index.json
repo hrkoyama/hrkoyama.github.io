@@ -1,18 +1,18 @@
 {
   "supplements_source": "/catalog/atlas-reference-supplements.json",
-  "supplements_source_sha256": "b356e31d1df63c45aca440754d0a179767a5b1e4ae7ae879ddc4fa51c3f9f6f0",
+  "supplements_source_sha256": "bc848ad33eefba5e1e2818b45bcb5130f60057cebba0596c0f64c47c40fef637",
   "schema_version": 1,
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/",
   "source": "/numerical-methods-atlas/assets/reference-solutions.json",
   "source_sha256": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
   "translations_source": "/numerical-methods-atlas/locales/messages.json",
-  "translations_source_sha256": "4784e17e3dc4bcfebca46d86b9664fc71578e90061aacc0f10c1e5d976404640",
-  "count": 33,
+  "translations_source_sha256": "4beb45452dbc7569b6ab5f57fc476b755f451af3b3eecc9bffa276bc811efcb9",
+  "count": 48,
   "counts": {
-    "analytic": 20,
-    "semi-analytic": 8,
-    "manufactured": 2,
-    "numerical-reference": 3
+    "analytic": 26,
+    "semi-analytic": 9,
+    "manufactured": 6,
+    "numerical-reference": 7
   },
   "cases": [
     {
@@ -127,6 +127,29 @@
               "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/inputs.json",
               "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/atlas-weno-critical-2026-11-23.zip",
               "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/verification.json"
+            },
+            {
+              "id": "fr-periodic-advection",
+              "kind": "supplement",
+              "name": {
+                "ja": "FR法の1D周期移流：Radau補正と既存DGの比較",
+                "en": "1D periodic FR advection: Radau correction and published DG comparison"
+              },
+              "scope": {
+                "ja": "0.4+sin(2πx)をT=.25まで移流。Gauss点・Radau補正のFRと既存のmodal DGをp=1/2、8/16/32セルで実行し、誤差・質量・時間積分誤差を測ります。",
+                "en": "Transport0.4+sin(2pi x) toT=.25. Execute Gauss-node/Radau FR and the existing modal DG for p=1/2 and8/16/32 cells; measure analytic error, mass and time-integration error."
+              },
+              "method_ids": [
+                "flux-reconstruction",
+                "dg"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fr-periodic-advection/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fr-periodic-advection/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/atlas-sem-fr-2026-11-23.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/verification.json"
             }
           ],
           "relation": "related-model",
@@ -1636,6 +1659,29 @@
               "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/inputs.json",
               "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip",
               "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/verification.json"
+            },
+            {
+              "id": "sem-poisson-2d",
+              "kind": "supplement",
+              "name": {
+                "ja": "スペクトル要素法の2D Poisson：P1 FEMとh/p収束を比較",
+                "en": "2D spectral-element Poisson: P1 FEM comparison and h/p refinement"
+              },
+              "scope": {
+                "ja": "単位正方形の正弦製造解をGLLスペクトル要素法と既存P1三角形FEMで解きます。自由未知数を揃えたh細分化と、固定要素数でのp=1〜6を分けて測ります。",
+                "en": "Solve a sine manufactured solution on the unit square with GLL spectral elements and the existing triangle P1 FEM. Compare matched free-unknown counts under h refinement and p=1..6 at fixed elements."
+              },
+              "method_ids": [
+                "spectral-element",
+                "p1-fem"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sem-poisson-2d/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sem-poisson-2d/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/atlas-sem-fr-2026-11-23.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/verification.json"
             }
           ],
           "relation": "related-model",
@@ -3084,6 +3130,29 @@
               "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/inputs.json",
               "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/atlas-weno-critical-2026-11-23.zip",
               "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/verification.json"
+            },
+            {
+              "id": "fr-periodic-advection",
+              "kind": "supplement",
+              "name": {
+                "ja": "FR法の1D周期移流：Radau補正と既存DGの比較",
+                "en": "1D periodic FR advection: Radau correction and published DG comparison"
+              },
+              "scope": {
+                "ja": "0.4+sin(2πx)をT=.25まで移流。Gauss点・Radau補正のFRと既存のmodal DGをp=1/2、8/16/32セルで実行し、誤差・質量・時間積分誤差を測ります。",
+                "en": "Transport0.4+sin(2pi x) toT=.25. Execute Gauss-node/Radau FR and the existing modal DG for p=1/2 and8/16/32 cells; measure analytic error, mass and time-integration error."
+              },
+              "method_ids": [
+                "flux-reconstruction",
+                "dg"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fr-periodic-advection/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fr-periodic-advection/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/atlas-sem-fr-2026-11-23.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/verification.json"
             }
           ],
           "relation": "related-model",
@@ -4114,16 +4183,2228 @@
           }
         }
       ]
+    },
+    {
+      "id": "sem-poisson-2d",
+      "model": "poisson-laplace",
+      "kind": "manufactured",
+      "formula": "u(x,y)=sin(pi*x)*sin(pi*y); f=2*pi^2*u; grad u=(pi*cos(pi*x)*sin(pi*y),pi*sin(pi*x)*cos(pi*y)).",
+      "dimension": 2,
+      "bounds": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "components": [
+        "u"
+      ],
+      "field_type": "scalar",
+      "parameters": {
+        "elements": [
+          2,
+          4,
+          8
+        ],
+        "h_degree": 2,
+        "p_elements": 2,
+        "degrees": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "p1_grids": [
+          4,
+          8,
+          16
+        ],
+        "acceptance": {
+          "sem_l2_order_min": 2.5,
+          "sem_l2_order_max": 3.5,
+          "sem_h1_order_min": 1.6,
+          "sem_h1_order_max": 2.6,
+          "p1_l2_order_min": 1.7,
+          "p1_l2_order_max": 2.3,
+          "p1_h1_order_min": 0.8,
+          "p1_h1_order_max": 1.2,
+          "p_reduction_min": 1000,
+          "p6_l2_max": 2e-05,
+          "same_dof_ratio_max": 0.3333333333333333,
+          "relative_residual_max": 1e-11
+        }
+      },
+      "sources": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/sem.py"
+      ],
+      "title": {
+        "ja": "2D Poisson正弦製造解：SEMとP1 FEMの共通参照",
+        "en": "2D Poisson sine manufactured solution: shared SEM/P1 FEM reference"
+      },
+      "assumptions": {
+        "ja": "全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。",
+        "en": "Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM."
+      },
+      "kind_label": {
+        "ja": "製造解",
+        "en": "Manufactured solution"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/sem-poisson-2d/?lang=ja",
+        "en": "/numerical-methods-atlas/validation/sem-poisson-2d/?lang=en"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/spectral-element/",
+        "en": "/numerical-methods-atlas/en/read/spectral-element/"
+      },
+      "citations": [
+        {
+          "role": "executed-reference-implementation",
+          "title": "Atlas sem.py: sine value and gradient",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/sem.py",
+          "note": "Locally chosen exact field evaluated in every fixed-input run; not an external Nek/PyFR execution."
+        }
+      ],
+      "reference_scope": "Compare with the analytic manufactured sine solution/gradient. Integrate continuous L2/H1-seminorm errors at independent higher-order Gauss points. Check h/p refinement, matched-unknown errors, boundary data and true residuals; save actual2D SEM fields and P1 vertices/triangles/values in NPZ.",
+      "related_problems": [
+        {
+          "id": "poisson-2d-sine",
+          "name": {
+            "ja": "2次元Poisson・正弦単一モード（FEMを含む）",
+            "en": "2D Poisson / single sine mode, including FEM"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/field-fem-poisson.png",
+            "sha256": "5cb31b1cb182fa6509de11f0cafcc2368b9136b46d625bc6183df2a648f9af29",
+            "width": 1575,
+            "height": 690,
+            "caption": {
+              "ja": "同じ正弦製造解を解く、三角形有限要素の保存解と誤差。",
+              "en": "Stored triangular-FEM solution and error for the same sine manufactured problem."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "poisson-2d-sine",
+              "kind": "common",
+              "name": {
+                "ja": "2次元Poisson：CG・多重格子とP1 FEM",
+                "en": "2D Poisson: CG, multigrid and P1 FEM"
+              },
+              "scope": {
+                "ja": "単位正方形のsin(πx)sin(πy)を参照し、CG/MGは15/31/63内部点、P1 FEMは4/8/16分割で細分化。FDの最大誤差と真の残差、FEMの要素内L2誤差とH1半ノルムを独立に評価する。",
+                "en": "Reference sin(πx)sin(πy) on the unit square; refine CG/MG through 15/31/63 interior nodes and P1 FEM through 4/8/16 subdivisions. Independently evaluate FD maximum errors/true residuals and FEM element-interior L2/H1-seminorm errors."
+              },
+              "method_ids": [
+                "cg",
+                "multigrid",
+                "p1-fem"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-2d-sine/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-2d-sine/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/poisson-2d-sine.json",
+              "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+              "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json"
+            },
+            {
+              "id": "sa-amg",
+              "kind": "supplement",
+              "name": {
+                "ja": "行列から粗視化するAMG：残差と解誤差を分ける",
+                "en": "Matrix-based AMG: distinguish residual and solution error"
+              },
+              "scope": {
+                "ja": "正方形Poisson問題から得たSPD行列だけを階層構築へ渡し、平滑化集約AMGのV-cycleを実行します。7²・15²・31²未知数で独立疎行列直接解、解析的な離散正弦モード、連続解への2次収束を分けて検査します。",
+                "en": "Build a smoothed-aggregation hierarchy from an SPD matrix alone and run V-cycles. Problems with 7², 15² and 31² unknowns distinguish independent sparse direct solutions, analytic discrete sine modes and second-order convergence to the continuum solution."
+              },
+              "method_ids": [
+                "amg"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sa-amg/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sa-amg/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/verification.json"
+            },
+            {
+              "id": "sem-poisson-2d",
+              "kind": "supplement",
+              "name": {
+                "ja": "スペクトル要素法の2D Poisson：P1 FEMとh/p収束を比較",
+                "en": "2D spectral-element Poisson: P1 FEM comparison and h/p refinement"
+              },
+              "scope": {
+                "ja": "単位正方形の正弦製造解をGLLスペクトル要素法と既存P1三角形FEMで解きます。自由未知数を揃えたh細分化と、固定要素数でのp=1〜6を分けて測ります。",
+                "en": "Solve a sine manufactured solution on the unit square with GLL spectral elements and the existing triangle P1 FEM. Compare matched free-unknown counts under h refinement and p=1..6 at fixed elements."
+              },
+              "method_ids": [
+                "spectral-element",
+                "p1-fem"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sem-poisson-2d/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sem-poisson-2d/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/atlas-sem-fr-2026-11-23.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/verification.json"
+            }
+          ],
+          "relation": "same-problem",
+          "note": {
+            "ja": "全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。",
+            "en": "Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM."
+          }
+        }
+      ]
+    },
+    {
+      "id": "fr-periodic-advection",
+      "model": "linear-advection",
+      "kind": "analytic",
+      "formula": "u(x,t)=0.4+sin(2*pi*(x-t)); speed1, period1, T=.25.",
+      "dimension": 1,
+      "bounds": [
+        [
+          0,
+          1
+        ]
+      ],
+      "components": [
+        "u"
+      ],
+      "field_type": "scalar",
+      "parameters": {
+        "grids": [
+          8,
+          16,
+          32
+        ],
+        "degrees": [
+          1,
+          2
+        ],
+        "speed": 1,
+        "time": 0.25,
+        "cfl": 0.15,
+        "acceptance": {
+          "p1_order_min": 1.7,
+          "p1_order_max": 2.5,
+          "p2_order_min": 2.6,
+          "p2_order_max": 3.5,
+          "finest_l2_max": 0.0002,
+          "dg_difference_max": 2e-10,
+          "mass_drift_max": 2e-12,
+          "energy_increase_max": 2e-12,
+          "time_error_max": 1e-06,
+          "halving_ratio_max": 0.3,
+          "transport_change_min": 0.5
+        }
+      },
+      "sources": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/fr.py"
+      ],
+      "title": {
+        "ja": "FRとDGの周期正弦移流：平均0.4・T=.25の解析参照",
+        "en": "FR/DG periodic sine advection: analytic reference at mean0.4 andT=.25"
+      },
+      "assumptions": {
+        "ja": "全て無次元。u_t+u_x=0、区間[0,1)、周期境界、初期値0.4+sin(2πx)。解析解は0.4+sin(2π(x−t))。一定の正速度1、均一なアフィン区間要素。",
+        "en": "Dimensionless u_t+u_x=0 on[0,1), periodic boundary, initial0.4+sin(2pi x), analytic0.4+sin(2pi(x-t)). Constant positive speed1 and uniform affine intervals."
+      },
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/fr-periodic-advection/?lang=ja",
+        "en": "/numerical-methods-atlas/validation/fr-periodic-advection/?lang=en"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/flux-reconstruction/",
+        "en": "/numerical-methods-atlas/en/read/flux-reconstruction/"
+      },
+      "citations": [
+        {
+          "role": "executed-reference-implementation",
+          "title": "Atlas fr.py: analytic translation",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/fr.py",
+          "note": "Locally chosen exact field evaluated in every fixed-input run; not an external Nek/PyFR execution."
+        }
+      ],
+      "reference_scope": "Integrate continuous L2 error at additional Gauss points and compare final polynomials with the actual published DG at common points. Check weighted mass at every RK stage and quadratic energy at each completed step. A matrix exponential of the same FR operator separately measures RK3 time error and its timestep-halving response.",
+      "related_problems": [
+        {
+          "id": "advection-sine",
+          "name": {
+            "ja": "周期正弦波の線形移流",
+            "en": "Periodic sine-wave advection"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/advection-sine.png",
+            "sha256": "dbb022150fee1472e54b24dfd3f01363bcfd3998f7e21da9dad6f30e4d224f0a",
+            "width": 832,
+            "height": 494,
+            "caption": {
+              "ja": "保存済みのCIP・線形補間・厳密な移流波形。",
+              "en": "Stored CIP, linear-interpolation and exact advection profiles."
+            },
+            "source_kind": "stored-data-plot"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "advection-sine",
+              "kind": "common",
+              "name": {
+                "ja": "周期正弦波の線形移流：風上法と解析解",
+                "en": "Periodic sine advection: upwind and analytic transport"
+              },
+              "scope": {
+                "ja": "長さ1の周期区間でq_t+a q_x=0を1周期進め、64/128点の1次風上法を平行移動した正弦波と比較する。計算値、解析値、誤差をCSVへ出す。",
+                "en": "Advance q_t+a q_x=0 for one period on a unit periodic interval. Compare first-order upwind on 64/128 points with an analytically translated sine, exporting computed, analytic and error values."
+              },
+              "method_ids": [
+                "upwind"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/advection-sine/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/advection-sine/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/advection-sine.json",
+              "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+              "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json"
+            },
+            {
+              "id": "weno-critical-epsilon",
+              "kind": "supplement",
+              "name": {
+                "ja": "WENO-JS／Z：臨界点とεの固定比較",
+                "en": "WENO-JS/Z: fixed critical-point and epsilon comparison"
+              },
+              "scope": {
+                "ja": "同じセル平均からのWENO5再構成と実際の周期輸送で、JS重みとZ二乗重みを比較します。3種類の臨界性、3種類のε、固定格子と時間刻み半減を分けて保存します。",
+                "en": "Compare WENO5 JS and Z power-two weights from the same cell means, then evolve actual periodic transport. Retain three regularity classes, three epsilon choices, fixed grids and separate halved-time-step diagnostics."
+              },
+              "method_ids": [
+                "weno-js",
+                "weno-z",
+                "rk4"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/atlas-weno-critical-2026-11-23.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/verification.json"
+            },
+            {
+              "id": "fr-periodic-advection",
+              "kind": "supplement",
+              "name": {
+                "ja": "FR法の1D周期移流：Radau補正と既存DGの比較",
+                "en": "1D periodic FR advection: Radau correction and published DG comparison"
+              },
+              "scope": {
+                "ja": "0.4+sin(2πx)をT=.25まで移流。Gauss点・Radau補正のFRと既存のmodal DGをp=1/2、8/16/32セルで実行し、誤差・質量・時間積分誤差を測ります。",
+                "en": "Transport0.4+sin(2pi x) toT=.25. Execute Gauss-node/Radau FR and the existing modal DG for p=1/2 and8/16/32 cells; measure analytic error, mass and time-integration error."
+              },
+              "method_ids": [
+                "flux-reconstruction",
+                "dg"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fr-periodic-advection/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fr-periodic-advection/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/atlas-sem-fr-2026-11-23.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/verification.json"
+            }
+          ],
+          "relation": "same-problem",
+          "note": {
+            "ja": "全て無次元。u_t+u_x=0、区間[0,1)、周期境界、初期値0.4+sin(2πx)。解析解は0.4+sin(2π(x−t))。一定の正速度1、均一なアフィン区間要素。",
+            "en": "Dimensionless u_t+u_x=0 on[0,1), periodic boundary, initial0.4+sin(2pi x), analytic0.4+sin(2pi(x-t)). Constant positive speed1 and uniform affine intervals."
+          }
+        }
+      ]
+    },
+    {
+      "id": "kh-initial-growth",
+      "model": "forced-vorticity",
+      "kind": "numerical-reference",
+      "formula": "U=tanh(sin(y)/delta); omega_t=-U*omega_x-Uyy*psi_x+nu*Delta(omega); -Delta(psi)=omega; qhat(t)=exp(t*L_K)qhat(0).",
+      "dimension": 2,
+      "bounds": [
+        [
+          0,
+          6.283185307179586
+        ],
+        [
+          0,
+          6.283185307179586
+        ]
+      ],
+      "components": [
+        "perturbation u",
+        "perturbation v",
+        "omega"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "width": 0.25,
+        "viscosity": 0.005,
+        "epsilon": 1e-05,
+        "time": 1,
+        "grids": [
+          32,
+          64,
+          128
+        ],
+        "reference_truncations": [
+          24,
+          40,
+          56
+        ],
+        "representation": "point samples",
+        "base_maintaining_forcing": true
+      },
+      "sources": [
+        "https://arxiv.org/abs/1111.1764"
+      ],
+      "title": {
+        "ja": "KH初期成長：独立した線形Fourier–Galerkin参照",
+        "en": "KH initial growth: independent linear Fourier-Galerkin reference"
+      },
+      "assumptions": {
+        "ja": "[0,2π]²周期、層厚δ=.25、ν=κ=.005、摂動ε=1e−5。32²/64²/128²格子。基底層は明示した外力で定常維持します。U=tanh(sin y/δ)、T=1。主計算は非線形2次元の点サンプルで、参照はkx=1の連続線形化IVPです。K24/40/56の切断を比較し、基底の微分は独立Fourier係数から評価します。鋭い界面の分散式を流用しません。",
+        "en": "Periodic[0,2pi]², layer width.25, nu=kappa=.005, epsilon1e-5 and32²/64²/128² grids. Explicit forcing maintains the base. U=tanh(sin y/delta),T1. The nonlinear primary evolves actual2D point samples. The reference solves the continuous linearized IVP at kx1 with truncationsK24/40/56 and independently Fourier-differentiated base profiles; it does not substitute a sharp-interface dispersion formula."
+      },
+      "kind_label": {
+        "ja": "有限格子の数値参照",
+        "en": "Finite-grid numerical reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/kh-initial-growth/?lang=ja#kh-initial-growth-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/kh-initial-growth/?lang=en#kh-initial-growth-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-instability-growth/#kh-initial-growth",
+        "en": "/numerical-methods-atlas/en/read/validation-instability-growth/#kh-initial-growth"
+      },
+      "citations": [
+        {
+          "role": "selected-primary-reference-context",
+          "title": "Colin P. McNally, Wladimir Lyra and Jean-Claude Passy (2012), A Well-Posed Kelvin-Helmholtz Instability Test and Comparison",
+          "url": "https://arxiv.org/abs/1111.1764",
+          "note": "Read original sections1–3 on matching smooth finite-domain models and growth diagnostics; arXiv journal metadata checked. Our forced incompressible model is distinct."
+        }
+      ],
+      "reference_scope": "Independent spatial representation of a linearized reference, not a second nonlinear PDE engine. Compare fields and finite-window growth at five times; amplitude halving probes linearization validity. This is distinct from the cited compressible inputs and late nonlinear roll-up.",
+      "related_problems": [
+        {
+          "id": "kh-initial-growth",
+          "name": {
+            "ja": "KHの初期成長：滑らかな周期せん断層",
+            "en": "KH initial growth in a smooth periodic shear layer"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/instability-growth/results/kh-initial-growth-preview.png",
+            "sha256": "eccd098101115bcf7a933ddc47a47974e715d92e285a73be87f9e0e9d611ca13",
+            "width": 1192,
+            "height": 512,
+            "caption": {
+              "ja": "保存した2D摂動渦度をεで規格化。色の尺度を明記し、線形参照と成長を比較します。",
+              "en": "Saved actual2D perturbation vorticity normalized by epsilon; color scale and linear-reference growth are explicit."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/kh-initial-growth/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/kh-initial-growth/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/kh-initial-growth/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/kh-initial-growth/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "kh-initial-growth",
+              "kind": "supplement",
+              "name": {
+                "ja": "KHの初期成長：滑らかな周期せん断層",
+                "en": "KH initial growth in a smooth periodic shear layer"
+              },
+              "scope": {
+                "ja": "実際の非線形2D渦度方程式を解き、独立Fourier–Galerkin線形初期値問題と有限時間の成長・格子誤差を比較します。",
+                "en": "Evolve the actual nonlinear2D vorticity PDE and compare finite-time growth and spatial errors with an independent continuous Fourier–Galerkin linear IVP."
+              },
+              "method_ids": [
+                "centered-difference",
+                "heun"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/kh-initial-growth/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/kh-initial-growth/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/instability-growth/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/instability-growth/atlas-instability-growth-2026-11-23-r2.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/instability-growth/verification.json"
+            }
+          ],
+          "relation": "same-problem",
+          "note": {
+            "ja": "線形範囲の教育用固定入力です。線形参照は独立した空間表現であり、独立非線形PDEエンジンではありません。鋭い無限領域界面の分散式、McNallyの可圧縮入力、非線形後期の巻上がりやRT乱流を再現したとは表示しません。図の摂動はεで規格化した実計算値です。",
+            "en": "Small-amplitude fixed educational cases. The independent reference changes spatial representation but linearizes the PDE; it is not a second nonlinear engine. No sharp-interface infinite-domain dispersion, original compressible McNally inputs, late roll-up or RT turbulence claim. Figures explicitly normalize computed perturbations by epsilon."
+          }
+        }
+      ]
+    },
+    {
+      "id": "rt-initial-growth",
+      "model": "boussinesq-buoyancy",
+      "kind": "numerical-reference",
+      "formula": "b0=.02*tanh(sin(y)/delta); omega_t=nu*Delta(omega)+theta_x; theta_t=kappa*Delta(theta)+psi_x*b0prime; -Delta(psi)=omega.",
+      "dimension": 2,
+      "bounds": [
+        [
+          0,
+          6.283185307179586
+        ],
+        [
+          0,
+          6.283185307179586
+        ]
+      ],
+      "components": [
+        "perturbation u",
+        "perturbation v",
+        "theta"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "width": 0.25,
+        "viscosity": 0.005,
+        "diffusivity": 0.005,
+        "gravity": 1,
+        "base_buoyancy": 0.02,
+        "epsilon": 1e-05,
+        "time": 2,
+        "grids": [
+          32,
+          64,
+          128
+        ],
+        "reference_truncations": [
+          24,
+          40,
+          56
+        ],
+        "representation": "point samples",
+        "base_maintaining_forcing": true
+      },
+      "sources": [
+        "https://arxiv.org/abs/nlin/0510067"
+      ],
+      "title": {
+        "ja": "RT初期成長：Boussinesq二層の線形IVP参照",
+        "en": "RT initial growth: linear Boussinesq double-layer IVP reference"
+      },
+      "assumptions": {
+        "ja": "[0,2π]²周期、層厚δ=.25、ν=κ=.005、摂動ε=1e−5。32²/64²/128²格子。基底層は明示した外力で定常維持します。g=1、b0=.02 tanh(sin y/δ)、ρ/ρ0=1−b/g、T=2。慣性密度は一定で、密度跳躍の可変密度Euler系ではありません。参照は同じ滑らかな基底のkx=1連続線形化をFourier–Galerkin K24/40/56で解きます。慣性密度は一定、浮力偏差θだけが鉛直力へ入り、周期二層の一方が不安定です。",
+        "en": "Periodic[0,2pi]², layer width.25, nu=kappa=.005, epsilon1e-5 and32²/64²/128² grids. Explicit forcing maintains the base. g1,b0=.02tanh(sin y/delta),rho/rho0=1-b/g,T2. Density enters buoyancy only; this is not variable-density Euler. The reference uses the same smooth base, kx1 continuous linearization and Fourier-Galerkin truncationsK24/40/56. Inertial density is constant; buoyancy perturbation theta supplies vertical forcing, with one unstable interface in the periodic double layer."
+      },
+      "kind_label": {
+        "ja": "有限格子の数値参照",
+        "en": "Finite-grid numerical reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/rt-initial-growth/?lang=ja#rt-initial-growth-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/rt-initial-growth/?lang=en#rt-initial-growth-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-instability-growth/#rt-initial-growth",
+        "en": "/numerical-methods-atlas/en/read/validation-instability-growth/#rt-initial-growth"
+      },
+      "citations": [
+        {
+          "role": "selected-primary-reference-context",
+          "title": "Antonio Celani, Andrea Mazzino and Lara Vozella (2006), Rayleigh–Taylor turbulence in two dimensions",
+          "url": "https://arxiv.org/abs/nlin/0510067",
+          "note": "Read original pp1–2 governing equations1–2 and doubly periodic Boussinesq setup. No original turbulent-run reproduction."
+        }
+      ],
+      "reference_scope": "Independent small-amplitude linearized IVP reference for a2D point-sampled nonlinear primary. Match finite periodic domain, viscosity, diffusion and maintained base; no sharp-interface growth-rate or late-turbulence generalization.",
+      "related_problems": [
+        {
+          "id": "rt-initial-growth",
+          "name": {
+            "ja": "RTの初期成長：滑らかなBoussinesq二層",
+            "en": "RT initial growth in smooth Boussinesq double layers"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/instability-growth/results/rt-initial-growth-preview.png",
+            "sha256": "846b71c11b1112ff71e8d000a0793190ecde8a345b482426a6fde6894e8cca18",
+            "width": 1198,
+            "height": 512,
+            "caption": {
+              "ja": "保存した2D浮力摂動をεで規格化。滑らかな二層の初期変位で、乱流混合の図ではありません。",
+              "en": "Saved actual2D buoyancy perturbation normalized by epsilon; an early smooth-layer displacement, not turbulent mixing."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rt-initial-growth/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rt-initial-growth/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rt-initial-growth/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rt-initial-growth/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "rt-initial-growth",
+              "kind": "supplement",
+              "name": {
+                "ja": "RTの初期成長：滑らかなBoussinesq二層",
+                "en": "RT initial growth in smooth Boussinesq double layers"
+              },
+              "scope": {
+                "ja": "密度差を浮力だけに残す2D Boussinesq系を時間発展し、不安定な滑らかな層の初期成長を独立線形参照で調べます。",
+                "en": "Advance the actual2D Boussinesq vorticity/active-buoyancy system and compare smooth unstable-layer growth with a separately derived linear IVP."
+              },
+              "method_ids": [
+                "centered-difference",
+                "heun"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rt-initial-growth/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rt-initial-growth/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/instability-growth/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/instability-growth/atlas-instability-growth-2026-11-23-r2.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/instability-growth/verification.json"
+            }
+          ],
+          "relation": "same-problem",
+          "note": {
+            "ja": "線形範囲の教育用固定入力です。線形参照は独立した空間表現であり、独立非線形PDEエンジンではありません。鋭い無限領域界面の分散式、McNallyの可圧縮入力、非線形後期の巻上がりやRT乱流を再現したとは表示しません。図の摂動はεで規格化した実計算値です。",
+            "en": "Small-amplitude fixed educational cases. The independent reference changes spatial representation but linearizes the PDE; it is not a second nonlinear engine. No sharp-interface infinite-domain dispersion, original compressible McNally inputs, late roll-up or RT turbulence claim. Figures explicitly normalize computed perturbations by epsilon."
+          }
+        }
+      ]
+    },
+    {
+      "id": "circular-alfven-refinement",
+      "model": "mhd",
+      "kind": "analytic",
+      "formula": "sinc(h)=sin(pi*h)/(pi*h); theta=2*pi*(x-t); (Bybar,Bzbar)=.1*sinc(h)*(cos(theta),sin(theta)); (mybar,mzbar)=-(Bybar,Bzbar); rhobar=Bxbar=1; Ebar=.66.",
+      "dimension": 1,
+      "bounds": [
+        [
+          0,
+          1
+        ]
+      ],
+      "components": [
+        "rho",
+        "mx",
+        "my",
+        "mz",
+        "E",
+        "Bx",
+        "By",
+        "Bz"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "gamma": 1.6666666666666667,
+        "amplitude": 0.1,
+        "time": 1,
+        "grids": [
+          32,
+          64,
+          128
+        ],
+        "steps": 512,
+        "finest_time_probe_steps": 1024,
+        "representation": "analytic conserved cell means",
+        "spatial_dimension": 1
+      },
+      "sources": [
+        "https://github.com/PrincetonUniversity/athena/tree/1395e2f543f4368d448cb1a2cf92ba1f910e3416",
+        "https://arxiv.org/abs/astro-ph/0501557",
+        "https://doi.org/10.1016/j.jcp.2005.02.017"
+      ],
+      "title": {
+        "ja": "円偏波Alfvén波：全保存変数の解析セル平均",
+        "en": "Circular Alfven wave: analytic full-state conserved cell means"
+      },
+      "assumptions": {
+        "ja": "γ=5/3、[0,1]周期、ρ=1、p=.1、Bx=1、振幅.1、速度1、T=1、32/64/128セル。初期値と参照は保存変数の解析セル平均であり、セル平均から復元する圧力は点の定圧と区別します。横磁場と横運動量にはsinc(h)を掛け、E=.66を保ちます。独立Gauss16求積と照合します。図のx–tは1次元空間と保存時刻であり、斜め2次元伝播ではありません。",
+        "en": "gamma5/3, periodic[0,1], rho1,p.1,Bx1,amplitude.1, speed1,T1,32/64/128 cells. Initialize/reference conserved analytic cell means; pressure recovered from means differs from constant pointwise pressure. Apply sinc(h) to transverse magnetic fields and momenta, retaining E=.66, and qualify against independent Gauss16 quadrature. The x-t picture shows one spatial dimension and saved times, not oblique2D propagation."
+      },
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=ja#circular-alfven-refinement-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=en#circular-alfven-refinement-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-mhd-transport/#circular-alfven-refinement",
+        "en": "/numerical-methods-atlas/en/read/validation-mhd-transport/#circular-alfven-refinement"
+      },
+      "citations": [
+        {
+          "role": "Actually inspected independent engine and fixed initial conditions; finite-grid numerical reference only",
+          "title": "Athena++ collaboration (2026), Athena++ official field_loop and orszag_tang problem generators, pinned source",
+          "url": "https://github.com/PrincetonUniversity/athena/tree/1395e2f543f4368d448cb1a2cf92ba1f910e3416",
+          "note": "Official archive SHA verified; selected src/pgen/field_loop.cpp and orszag_tang.cpp, PLM/RK2/output configuration and actual conserved tab headers inspected; not a full Athena code audit"
+        },
+        {
+          "role": "Primary CT-contact, magnetic-loop and circular-polarization background; selected sections only",
+          "title": "Thomas A. Gardiner and James M. Stone (2005), An unsplit Godunov method for ideal MHD via constrained transport",
+          "url": "https://arxiv.org/abs/astro-ph/0501557",
+          "note": "Author arXiv PDF selected section2.2 equations13–20,3.3.1–3.3.2 and5.1–5.2 inspected; not the full paper or original experiment replication"
+        },
+        {
+          "role": "Original HLLD attribution; implementation inherited from previously validated Atlas source",
+          "title": "Takahiro Miyoshi and Kanya Kusano (2005), A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics",
+          "url": "https://doi.org/10.1016/j.jcp.2005.02.017",
+          "note": "Bibliographic metadata checked; publisher full text returned403. This addition did not newly audit original equations or experiments"
+        }
+      ],
+      "reference_scope": "Analytic conserved means qualified by independent point-function quadrature. Pressure recovered from averaged U differs from constant pointwise p.1. The selected aligned wave has last observed order1.62943; no exact second-order or general-MHD order claim.",
+      "related_problems": [
+        {
+          "id": "circular-alfven",
+          "name": {
+            "ja": "円偏波Alfvén波",
+            "en": "Circularly polarized Alfvén wave"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/mhd-tests/alfven.png",
+            "sha256": "59a8cd9131e3b5ea278b3bda97b9995f7324315c11c9a6606eb411cca3917e9e",
+            "width": 1400,
+            "height": 630,
+            "caption": {
+              "ja": "保存済み円偏波Alfvén波の誤差・収束比較。",
+              "en": "Stored circularly polarized Alfvén-wave comparison."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/circular-alfven/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/circular-alfven/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/circular-alfven/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/circular-alfven/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "circular-alfven-refinement",
+              "kind": "supplement",
+              "name": {
+                "ja": "円偏波Alfvén波：全成分の格子収束",
+                "en": "Circular Alfven wave: full-state refinement"
+              },
+              "scope": {
+                "ja": "全8保存変数を進め、非零のBz・vzを含む円偏波を解析セル平均と比較します。",
+                "en": "Evolve all eight conserved variables and compare circular polarization, including nonzero Bz/vz, against analytic cell means."
+              },
+              "method_ids": [
+                "hlld",
+                "muscl",
+                "heun"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/verification.json"
+            }
+          ],
+          "relation": "related-model",
+          "note": {
+            "ja": "γ=5/3、[0,1]周期、ρ=1、p=.1、Bx=1、振幅.1、速度1、T=1、32/64/128セル。初期値と参照は保存変数の解析セル平均であり、セル平均から復元する圧力は点の定圧と区別します。",
+            "en": "gamma5/3, periodic[0,1], rho1,p.1,Bx1,amplitude.1, speed1,T1,32/64/128 cells. Initialize/reference conserved analytic cell means; pressure recovered from means differs from constant pointwise pressure."
+          }
+        }
+      ]
+    },
+    {
+      "id": "magnetic-loop-independent",
+      "model": "mhd",
+      "kind": "numerical-reference",
+      "formula": "Az=.001*max(.3-sqrt(x*x+y*y),0); rho=p=1; v=(2,1,2); T=1; Uref_coarse=conservative_block_average(Uref_fine).",
+      "dimension": 2,
+      "bounds": [
+        [
+          -1,
+          1
+        ],
+        [
+          -0.5,
+          0.5
+        ]
+      ],
+      "components": [
+        "rho",
+        "mx",
+        "my",
+        "mz",
+        "E",
+        "Bx",
+        "By",
+        "Bz"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "gamma": 1.6666666666666667,
+        "velocity": [
+          2,
+          1,
+          2
+        ],
+        "time": 1,
+        "primary_ny": [
+          8,
+          16,
+          32
+        ],
+        "reference_ny": [
+          64,
+          128
+        ],
+        "reference_cfl": [
+          0.3,
+          0.15
+        ],
+        "nx_factor": 2,
+        "reference_commit": "1395e2f543f4368d448cb1a2cf92ba1f910e3416",
+        "reference_comparison_times": [
+          1
+        ],
+        "reference_requalification_pde_rerun": false
+      },
+      "sources": [
+        "https://github.com/PrincetonUniversity/athena/tree/1395e2f543f4368d448cb1a2cf92ba1f910e3416",
+        "https://arxiv.org/abs/astro-ph/0501557",
+        "https://doi.org/10.1016/j.jcp.2005.02.017"
+      ],
+      "title": {
+        "ja": "磁場ループ：固定Athena++の独立終端参照",
+        "en": "Magnetic loop: pinned independent Athena++ final-field reference"
+      },
+      "assumptions": {
+        "ja": "[-1,1]×[-.5,.5]周期、ρ=p=1、Az=.001max(.3−r,0)、T=1、(Nx,Ny)=(16,8),(32,16),(64,32)。変更していない公式生成器と同じv=(2,1,2)で、古いvz=0設定とは区別します。未変更の公式生成器を固定コミット1395e2f…で実行し、Ny64/128と最細格子CFL半減で参照感度を確認します。比較は終端保存場のみで、保守的な粗視化後に評価します。",
+        "en": "Periodic[-1,1]x[-.5,.5],rho=p1,Az=.001max(.3-r,0),T1,(Nx,Ny)=(16,8),(32,16),(64,32). Use unchanged official-generator v=(2,1,2), explicitly distinct from old vz0 inputs. Execute the unchanged official generator at pinned commit1395e2f…; qualify Ny64/128 and finest-grid half-CFL sensitivity. Compare final conserved fields only after conservative restriction."
+      },
+      "kind_label": {
+        "ja": "有限格子の数値参照",
+        "en": "Finite-grid numerical reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=ja#magnetic-loop-independent-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=en#magnetic-loop-independent-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-mhd-transport/#magnetic-loop-independent",
+        "en": "/numerical-methods-atlas/en/read/validation-mhd-transport/#magnetic-loop-independent"
+      },
+      "citations": [
+        {
+          "role": "Actually inspected independent engine and fixed initial conditions; finite-grid numerical reference only",
+          "title": "Athena++ collaboration (2026), Athena++ official field_loop and orszag_tang problem generators, pinned source",
+          "url": "https://github.com/PrincetonUniversity/athena/tree/1395e2f543f4368d448cb1a2cf92ba1f910e3416",
+          "note": "Official archive SHA verified; selected src/pgen/field_loop.cpp and orszag_tang.cpp, PLM/RK2/output configuration and actual conserved tab headers inspected; not a full Athena code audit"
+        },
+        {
+          "role": "Primary CT-contact, magnetic-loop and circular-polarization background; selected sections only",
+          "title": "Thomas A. Gardiner and James M. Stone (2005), An unsplit Godunov method for ideal MHD via constrained transport",
+          "url": "https://arxiv.org/abs/astro-ph/0501557",
+          "note": "Author arXiv PDF selected section2.2 equations13–20,3.3.1–3.3.2 and5.1–5.2 inspected; not the full paper or original experiment replication"
+        },
+        {
+          "role": "Original HLLD attribution; implementation inherited from previously validated Atlas source",
+          "title": "Takahiro Miyoshi and Kanya Kusano (2005), A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics",
+          "url": "https://doi.org/10.1016/j.jcp.2005.02.017",
+          "note": "Bibliographic metadata checked; publisher full text returned403. This addition did not newly audit original equations or experiments"
+        }
+      ],
+      "reference_scope": "Actually executed independent HLLD/PLM/RK2/native-CT finite-grid reference. Reference increment.120074 is47.44% of primary error.253088, not a precision exact-solution bound. Athena intermediate times are not aligned and native-face divergence was not exported; only common-cell divergence uses the same operator.",
+      "related_problems": [
+        {
+          "id": "magnetic-loop",
+          "name": {
+            "ja": "磁場ループの移流",
+            "en": "Magnetic field-loop advection"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/mhd-tests/field-loop.png",
+            "sha256": "ae99ce992228c257747d74ebbcbea8c1ecf61acf64185bb7fc1718e2857c9655",
+            "width": 1540,
+            "height": 896,
+            "caption": {
+              "ja": "保存済み磁場ループ移流の計算場。",
+              "en": "Stored computed fields for magnetic-loop advection."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/magnetic-loop/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/magnetic-loop/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/magnetic-loop/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/magnetic-loop/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "magnetic-loop-independent",
+              "kind": "supplement",
+              "name": {
+                "ja": "磁場ループ：独立2次元参照と細分化",
+                "en": "Magnetic loop: independent 2D reference and refinement"
+              },
+              "scope": {
+                "ja": "実際の2次元磁場ループ輸送を、別実装Athena++の空間・時間感度を検査した終端保存場と比較します。",
+                "en": "Compare genuine 2D magnetic-loop transport with final conserved fields from independent Athena++, qualified in space and time."
+              },
+              "method_ids": [
+                "hlld",
+                "muscl",
+                "heun",
+                "ct"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/verification.json"
+            }
+          ],
+          "relation": "related-model",
+          "note": {
+            "ja": "[-1,1]×[-.5,.5]周期、ρ=p=1、Az=.001max(.3−r,0)、T=1、(Nx,Ny)=(16,8),(32,16),(64,32)。変更していない公式生成器と同じv=(2,1,2)で、古いvz=0設定とは区別します。",
+            "en": "Periodic[-1,1]x[-.5,.5],rho=p1,Az=.001max(.3-r,0),T1,(Nx,Ny)=(16,8),(32,16),(64,32). Use unchanged official-generator v=(2,1,2), explicitly distinct from old vz0 inputs."
+          }
+        }
+      ]
+    },
+    {
+      "id": "postshock-orszag-tang",
+      "model": "mhd",
+      "kind": "numerical-reference",
+      "formula": "rho0=25/(36*pi); p0=5/(12*pi); v=(sin(2*pi*y),-sin(2*pi*x),0); Az=(cos(4*pi*x)-2*cos(2*pi*y))/(4*pi*sqrt(4*pi)); T=.2.",
+      "dimension": 2,
+      "bounds": [
+        [
+          -0.5,
+          0.5
+        ],
+        [
+          -0.5,
+          0.5
+        ]
+      ],
+      "components": [
+        "rho",
+        "mx",
+        "my",
+        "mz",
+        "E",
+        "Bx",
+        "By",
+        "Bz"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "gamma": 1.6666666666666667,
+        "time": 0.2,
+        "primary_grids": [
+          16,
+          32,
+          64
+        ],
+        "reference_grids": [
+          128,
+          256
+        ],
+        "reference_cfl": [
+          0.3,
+          0.15
+        ],
+        "reference_commit": "1395e2f543f4368d448cb1a2cf92ba1f910e3416",
+        "reference_comparison_times": [
+          0.2
+        ]
+      },
+      "sources": [
+        "https://github.com/PrincetonUniversity/athena/tree/1395e2f543f4368d448cb1a2cf92ba1f910e3416",
+        "https://arxiv.org/abs/astro-ph/0501557",
+        "https://doi.org/10.1016/j.jcp.2005.02.017",
+        "https://doi.org/10.1017/S002211207900210X"
+      ],
+      "title": {
+        "ja": "後期Orszag–Tang：独立有限格子の密度・圧力参照",
+        "en": "Late Orszag-Tang: independent finite-grid density/pressure reference"
+      },
+      "assumptions": {
+        "ja": "γ=5/3、[-.5,.5]²周期、ρ=25/(36π)、p=5/(12π)、vx=sin2πy、vy=−sin2πx、Az=(cos4πx−2cos2πy)/(4π√(4π))、16/32/64²セル。原著の非圧縮・粘性抵抗モデルの再現ではありません。公式Athena++を128²/256²と最細CFL半減でT=.2まで進めます。終端保存変数を保守的に粗視化し、その後で圧力を計算します。参照圧力の平均を先に作る規約ではありません。",
+        "en": "gamma5/3,periodic[-.5,.5]²,rho25/(36pi),p5/(12pi),vx=sin2piy,vy=-sin2pix,Az=(cos4pix-2cos2piy)/(4pi sqrt4pi),16/32/64² cells. This does not reproduce the original incompressible viscous/resistive model. Run official Athena++ at128²/256² and finest-grid half CFL to T.2. Conservatively restrict final conserved variables before computing pressure; pressure is not averaged separately."
+      },
+      "kind_label": {
+        "ja": "有限格子の数値参照",
+        "en": "Finite-grid numerical reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=ja#postshock-orszag-tang-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=en#postshock-orszag-tang-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-mhd-transport/#postshock-orszag-tang",
+        "en": "/numerical-methods-atlas/en/read/validation-mhd-transport/#postshock-orszag-tang"
+      },
+      "citations": [
+        {
+          "role": "Actually inspected independent engine and fixed initial conditions; finite-grid numerical reference only",
+          "title": "Athena++ collaboration (2026), Athena++ official field_loop and orszag_tang problem generators, pinned source",
+          "url": "https://github.com/PrincetonUniversity/athena/tree/1395e2f543f4368d448cb1a2cf92ba1f910e3416",
+          "note": "Official archive SHA verified; selected src/pgen/field_loop.cpp and orszag_tang.cpp, PLM/RK2/output configuration and actual conserved tab headers inspected; not a full Athena code audit"
+        },
+        {
+          "role": "Primary CT-contact, magnetic-loop and circular-polarization background; selected sections only",
+          "title": "Thomas A. Gardiner and James M. Stone (2005), An unsplit Godunov method for ideal MHD via constrained transport",
+          "url": "https://arxiv.org/abs/astro-ph/0501557",
+          "note": "Author arXiv PDF selected section2.2 equations13–20,3.3.1–3.3.2 and5.1–5.2 inspected; not the full paper or original experiment replication"
+        },
+        {
+          "role": "Original HLLD attribution; implementation inherited from previously validated Atlas source",
+          "title": "Takahiro Miyoshi and Kanya Kusano (2005), A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics",
+          "url": "https://doi.org/10.1016/j.jcp.2005.02.017",
+          "note": "Bibliographic metadata checked; publisher full text returned403. This addition did not newly audit original equations or experiments"
+        },
+        {
+          "role": "Historical attribution, not a reference table for this compressible ideal-MHD calculation",
+          "title": "Steven A. Orszag and Ching-Mao Tang (1979), Small-scale structure of two-dimensional magnetohydrodynamic turbulence",
+          "url": "https://doi.org/10.1017/S002211207900210X",
+          "note": "Original publisher abstract/bibliography inspected only; original incompressible viscous/resistive setup differs from the official compressible ideal-MHD generator used here"
+        }
+      ],
+      "reference_scope": "Executed independent MHD-engine finite-grid reference, distinct from the1979 incompressible viscous/resistive model and an exact solution. Reference increments are30.81%/29.83% of primary density/pressure error. Contrast7.14315 diagnoses late compression, not mathematical shock formation. Reference native-face divergence was not measured.",
+      "related_problems": [
+        {
+          "id": "orszag-tang",
+          "name": {
+            "ja": "Orszag–Tang渦（CT・GLM・発散誤差摂動を統合）",
+            "en": "Orszag–Tang vortex (CT/GLM/error variants merged)"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/movies/orszag-tang-ct/frame-080.webp",
+            "sha256": "38c260ae5d3a5031e733b365eb00c6ea04c9182a059a317bd1735e0c3dc0e6af",
+            "width": 960,
+            "height": 640,
+            "caption": {
+              "ja": "CT・GLMを統合した1問題のうち、CTの保存フレームを代表表示。",
+              "en": "Stored CT frame representing the merged CT/GLM problem."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/orszag-tang/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/orszag-tang/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/orszag-tang/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/orszag-tang/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "ct-glm-independent",
+              "kind": "supplement",
+              "name": {
+                "ja": "Orszag–Tang：CT・GLMと独立Athena++比較",
+                "en": "Orszag–Tang: CT, GLM and independent Athena++"
+              },
+              "scope": {
+                "ja": "同じ周期Orszag–Tang初期値で、CTとGLMの密度・磁場、保存量、div Bを測り、別に実行したAthena++と比較します。",
+                "en": "Compare CT and GLM density, magnetic field, conservation and div B for the same periodic Orszag–Tang data, against separately executed Athena++."
+              },
+              "method_ids": [
+                "ct",
+                "glm"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-independent/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-independent/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/verification.json"
+            },
+            {
+              "id": "ct-glm-ot-convergence",
+              "kind": "supplement",
+              "name": {
+                "ja": "Orszag–Tang：条件を揃えたCT・GLMと独立参照の収束",
+                "en": "Orszag–Tang: matched CT/GLM and converged independent references"
+              },
+              "scope": {
+                "ja": "同じOT初期セル平均と同じdt列でCT/GLMを計算し、別に実行したAthena++の格子・時間感度を分離した参照と比較します。",
+                "en": "Run CT/GLM with the same OT initial cell averages and dt sequence, comparing with separately executed Athena++ references whose mesh/time sensitivities are separated."
+              },
+              "method_ids": [
+                "ct",
+                "glm"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-ot-convergence/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ct-glm-ot-convergence/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/atlas-mhd-convergence-2026-11-22.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/verification.json"
+            },
+            {
+              "id": "postshock-orszag-tang",
+              "kind": "supplement",
+              "name": {
+                "ja": "後期Orszag–Tang：独立参照と圧縮構造",
+                "en": "Late Orszag-Tang: independent reference and compression structure"
+              },
+              "scope": {
+                "ja": "圧縮性理想MHDのOrszag–TangをT=.2まで進め、相互作用する圧縮・衝撃波構造の密度と圧力を独立有限格子参照で検査します。",
+                "en": "Evolve compressible ideal-MHD Orszag-Tang to T.2 and check density/pressure in interacting compression/shock structure against an independent finite-grid reference."
+              },
+              "method_ids": [
+                "hlld",
+                "muscl",
+                "heun",
+                "ct"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/verification.json"
+            }
+          ],
+          "relation": "related-model",
+          "note": {
+            "ja": "γ=5/3、[-.5,.5]²周期、ρ=25/(36π)、p=5/(12π)、vx=sin2πy、vy=−sin2πx、Az=(cos4πx−2cos2πy)/(4π√(4π))、16/32/64²セル。原著の非圧縮・粘性抵抗モデルの再現ではありません。",
+            "en": "gamma5/3,periodic[-.5,.5]²,rho25/(36pi),p5/(12pi),vx=sin2piy,vy=-sin2pix,Az=(cos4pix-2cos2piy)/(4pi sqrt4pi),16/32/64² cells. This does not reproduce the original incompressible viscous/resistive model."
+          }
+        }
+      ]
+    },
+    {
+      "id": "ale-nonuniform-transport",
+      "model": "ale-scalar-transport",
+      "kind": "analytic",
+      "formula": "x(xi,t)=xi+.2*sin(2*pi*xi)*sin(2*pi*t)/(2*pi); m_i=integral_[x_i,x_(i+1)](1+.2*sin(2*pi*(x-.7*t)))dx.",
+      "dimension": 1,
+      "bounds": [
+        [
+          0,
+          1
+        ]
+      ],
+      "components": [
+        "q",
+        "cell mass",
+        "moving face position"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "speed": 0.7,
+        "mesh_motion_amplitude": 0.2,
+        "time": 1,
+        "grids": [
+          40,
+          80,
+          160
+        ],
+        "time_probe_grid": 40,
+        "time_probe_final_time": 0.25,
+        "time_probe_steps": [
+          32,
+          64,
+          128
+        ],
+        "spatial_dimension": 1
+      },
+      "sources": [
+        "https://ntrs.nasa.gov/api/citations/19870015002/downloads/19870015002.pdf"
+      ],
+      "title": {
+        "ja": "ALE：実際の移動セル上の解析積分と時間参照",
+        "en": "ALE: analytic moving-cell integrals and separate time reference"
+      },
+      "assumptions": {
+        "ja": "周期[0,1]、速度.7、q0=1+.2sin(2pi x)、面速度w=.2sin(2pi xi)cos(2pi t)、N40/80/160、T1。時間比較N40,T.25,32/64/128step。解析解q(x,t)=1+.2sin[2π(x−.7t)]を、主計算が保存した実際の面位置の間で積分します。解析面位置との幾何誤差を別記し、時間検査は同じFV ODEを二公差の独立DOP853で解きます。",
+        "en": "Periodic unit interval, speed.7,q0=1+.2sin(2pi x), grid speed .2sin(2pi xi)cos(2pi t),N40/80/160,T1. Separate N40,T.25 time series32/64/128steps. Integrate q(x,t)=1+.2sin[2pi(x-.7t)] between the actual saved primary faces. Separately record geometry error against analytic face positions. Time checks use independent DOP853 at two tolerances for the same FV ODE."
+      },
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/ale-nonuniform-transport/?lang=ja#ale-nonuniform-transport-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/ale-nonuniform-transport/?lang=en#ale-nonuniform-transport-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-moving-waves/#ale-nonuniform-transport",
+        "en": "/numerical-methods-atlas/en/read/validation-moving-waves/#ale-nonuniform-transport"
+      },
+      "citations": [
+        {
+          "role": "selected-primary-reference-context",
+          "title": "Dennis L. Huff (1987), Numerical Simulations of Unsteady, Viscous, Transonic Flow Over Isolated and Cascaded Airfoils Using a Deforming Grid",
+          "url": "https://ntrs.nasa.gov/api/citations/19870015002/downloads/19870015002.pdf",
+          "note": "NASA TM89890 grid-velocity and GCL discussion around equation11/printedp5 inspected. It attributes GCL to Thomas/Lombard. Original1979 paper not read; no airfoil algorithm or code reproduced. Our 1D scalar moving-volume/Heun derivation is independent."
+        }
+      ],
+      "reference_scope": "Distinguish analytic continuous moving-cell integrals from a time-only independent reference of the same semidiscrete system. Actual nonuniform moving volumes evolve, but this remains a1D scalar problem; its x-t image does not validate2D fluid dynamics or Euler/remap.",
+      "related_problems": [
+        {
+          "id": "ale-nonuniform-transport",
+          "name": {
+            "ja": "非一様移動格子で実際に運ぶALEスカラー",
+            "en": "ALE scalar transport on genuinely nonuniform moving cells"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/results/ale-nonuniform-transport-preview.png",
+            "sha256": "9d478cec0c80d34b7ea186af511711f8d0fff239eb9e2db18b3b6027563766be",
+            "width": 960,
+            "height": 608,
+            "caption": {
+              "ja": "実際に保存した計算配列と固定入力の収束指標から描いた検証図。",
+              "en": "Validation preview from actual saved PDE arrays and fixed-input refinement measurements."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/ale-nonuniform-transport/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/ale-nonuniform-transport/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/ale-nonuniform-transport/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/ale-nonuniform-transport/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "ale-nonuniform-transport",
+              "kind": "supplement",
+              "name": {
+                "ja": "非一様移動格子で実際に運ぶALEスカラー",
+                "en": "ALE scalar transport on genuinely nonuniform moving cells"
+              },
+              "scope": {
+                "ja": "質量と格子面位置を同じHeun段で更新し、一様GCLだけでなく非一様な解析波を運びます。",
+                "en": "Advance cell integrals and face positions with identical Heun stages, transporting a nonuniform analytic wave beyond a uniform GCL check."
+              },
+              "method_ids": [
+                "ale",
+                "upwind",
+                "heun"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ale-nonuniform-transport/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ale-nonuniform-transport/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/atlas-moving-waves-2026-11-23.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/verification.json"
+            }
+          ],
+          "relation": "same-problem",
+          "note": {
+            "ja": "1D指定格子運動の第一段階です。図のx–tは2D物理計算ではなく、Euler Lagrange/remapやSaltzmanピストンは未実装の後続課題。",
+            "en": "First-stage1D prescribed mesh motion. The x–t image is not2D physics; Euler Lagrange/remap and Saltzman piston remain future work."
+          }
+        }
+      ]
+    },
+    {
+      "id": "cgrid-rotating-wave",
+      "model": "linear-rotating-shallow-water",
+      "kind": "analytic",
+      "formula": "Q(t)=exp(t*L)Q0; ktilde=2*sin(k*h/2)/h; ltilde=2*sin(l*h/2)/h; C=cos(k*h/2)*cos(l*h/2); g=H=f=1.",
+      "dimension": 2,
+      "bounds": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "components": [
+        "eta",
+        "staggered u",
+        "staggered v"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "gravity": 1,
+        "mean_depth": 1,
+        "coriolis": 1,
+        "integer_mode": [
+          1,
+          2
+        ],
+        "height_amplitude": 0.01,
+        "time": 0.5,
+        "grids": [
+          16,
+          32,
+          64
+        ],
+        "time_probe_grid": 16,
+        "time_probe_steps": [
+          16,
+          32,
+          64
+        ]
+      },
+      "sources": [
+        "https://epic.awi.de/id/eprint/42760/1/c-grid_jcp_v5-1.pdf"
+      ],
+      "title": {
+        "ja": "C-grid：連続Fourier解と離散記号の行列指数",
+        "en": "C-grid: continuous Fourier solution and discrete-symbol exponential"
+      },
+      "assumptions": {
+        "ja": "線形f-plane、g=H=f=1、周期単位正方形、(k,l)=(1,2)、eta振幅.01、N16/32/64,T.5。別の固定N16時間系列、zero-modeと離散geostrophic診断。η₀=.01cos[2π(x+2y)]、u₀=v₀=0を、連続3×3 Fourier作用素と離散3×3記号の行列指数で別々に発展させます。主計算は実際の2次元staggered場を時間更新します。",
+        "en": "Linear f-plane,g=H=f=1, periodic unit square, mode(1,2),height amplitude.01,N16/32/64,T.5. Separate N16 time refinement, zero-mode and discrete geostrophic probes. Evolve eta0=.01cos[2pi(x+2y)],u0=v0=0 with separate continuous3x3 Fourier-operator and discrete3x3-symbol exponentials. The primary actually advances2D staggered fields."
+      },
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/cgrid-rotating-wave/?lang=ja#cgrid-rotating-wave-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/cgrid-rotating-wave/?lang=en#cgrid-rotating-wave-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-moving-waves/#cgrid-rotating-wave",
+        "en": "/numerical-methods-atlas/en/read/validation-moving-waves/#cgrid-rotating-wave"
+      },
+      "citations": [
+        {
+          "role": "selected-primary-reference-context",
+          "title": "P. Korn and S. Danilov, Elementary dispersion analysis of some mimetic discretizations on triangular C-grids",
+          "url": "https://epic.awi.de/id/eprint/42760/1/c-grid_jcp_v5-1.pdf",
+          "note": "Governing linear equations, energy adjoints and AppendixB quadrilateral standard-C symbols/eq19–21 inspected. Use standard square C-grid only, not the paper triangular mimetic schemes. No global Williamson test or original code run."
+        }
+      ],
+      "reference_scope": "Analytic/linear-algebra references separate continuous-PDE spatial error from discrete-operator time error. Exponentiating the same discrete matrix is not a second spatial PDE engine. Zero-mode inertia and discrete geostrophic balance are separate diagnostics; no nonlinear, spherical or global Williamson claim.",
+      "related_problems": [
+        {
+          "id": "cgrid-rotating-wave",
+          "name": {
+            "ja": "2D C-grid回転浅水波の実時間発展",
+            "en": "Actual2D C-grid rotating shallow-water time advance"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/results/cgrid-rotating-wave-preview.png",
+            "sha256": "363d1ee6a1c02f5fbfff257511b85cc00ef5cf80817cc265eb866847f5609a4c",
+            "width": 960,
+            "height": 608,
+            "caption": {
+              "ja": "実際に保存した計算配列と固定入力の収束指標から描いた検証図。",
+              "en": "Validation preview from actual saved PDE arrays and fixed-input refinement measurements."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cgrid-rotating-wave/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cgrid-rotating-wave/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cgrid-rotating-wave/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cgrid-rotating-wave/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "cgrid-rotating-wave",
+              "kind": "supplement",
+              "name": {
+                "ja": "2D C-grid回転浅水波の実時間発展",
+                "en": "Actual2D C-grid rotating shallow-water time advance"
+              },
+              "scope": {
+                "ja": "実際の2D staggered場を時間積分し、連続波と離散symbolの参照を分けて比較します。",
+                "en": "Time-advance actual2D staggered fields and distinguish continuous-wave references from semidiscrete symbols."
+              },
+              "method_ids": [
+                "centered-difference",
+                "rk4"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/cgrid-rotating-wave/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/cgrid-rotating-wave/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/atlas-moving-waves-2026-11-23.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/verification.json"
+            }
+          ],
+          "relation": "same-problem",
+          "note": {
+            "ja": "線形・平面・周期squareの限定例。非線形浅水、PV・球面格子・全球dynamical coreやWilliamsonは未実装の後続課題。",
+            "en": "Linear planar periodic square only. Nonlinear SWE,PV,spherical dynamics and Williamson tests remain future work."
+          }
+        }
+      ]
+    },
+    {
+      "id": "lshape-fem",
+      "model": "poisson-laplace",
+      "kind": "analytic",
+      "formula": "u=r^(2/3)*sin(2*theta/3); -Delta(u)=0; theta in[0,3*pi/2]; separate square MMS u=sin(pi*x)*sin(pi*y).",
+      "dimension": 2,
+      "bounds": [
+        [
+          -1,
+          1
+        ],
+        [
+          -1,
+          1
+        ]
+      ],
+      "components": [
+        "u",
+        "gradient u"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "grids": [
+          8,
+          16,
+          32
+        ],
+        "removed_region": "quadrantIV",
+        "angle_range": [
+          0,
+          4.71238898038469
+        ],
+        "singular_exponent": 0.6666666666666666,
+        "grading_map": "x -> x*max(abs(x),abs(y))",
+        "separate_distortion_domain": "unit square"
+      },
+      "sources": [
+        "https://lyc102.github.io/ifem/afem/",
+        "https://jschoeberl.github.io/iFEM/FEM/erroranalysis.html"
+      ],
+      "title": {
+        "ja": "L字角の特異解：調和場と別の滑らかな製造解",
+        "en": "L-corner singularity: harmonic field and separate smooth MMS"
+      },
+      "assumptions": {
+        "ja": "第4象限を除いた[-1,1]²、theta∈[0,3pi/2]、u=r^(2/3)sin(2theta/3)、解析Dirichlet。N8/16/32、graded map x→x max(|x|,|y|)。正方形sin(pi x)sin(pi y)を同Nのregular/warpedで別検査。角の解析解と勾配を要素求積し、一様格子と事前graded格子を同じ自由度で比べます。別の単位正方形でsin(πx)sin(πy)をregular/warped格子へ置き、特異性と歪みを分けます。",
+        "en": "L-shaped[-1,1]² minus quadrantIV, theta0..3pi/2, analytic Dirichlet harmonic corner field. N8/16/32, fixed map x→x max(|x|,|y|). Separate unit-square sine MMS uses regular/warped grids. Integrate the analytic corner field and gradient over elements, comparing uniform and a-priori graded meshes at matched DOFs. A separate unit-square sine MMS on regular/warped meshes separates singularity from distortion."
+      },
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/lshape-fem/?lang=ja#lshape-fem-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/lshape-fem/?lang=en#lshape-fem-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-mesh-boundary/#lshape-fem",
+        "en": "/numerical-methods-atlas/en/read/validation-mesh-boundary/#lshape-fem"
+      },
+      "citations": [
+        {
+          "role": "selected-primary-reference-context",
+          "title": "Long Chen, Introduction to Adaptive Finite Element Methods",
+          "url": "https://lyc102.github.io/ifem/afem/",
+          "note": "Author documentation: L-shaped harmonic r^(2/3)sin(2theta/3) field and non-quasiuniform refinement motivation inspected. No MATLAB code copied or run; our removed quadrant/angle convention is explicitly defined."
+        },
+        {
+          "role": "selected-primary-reference-context",
+          "title": "Joachim Schöberl, Interactive FEM: graded meshes around vertex singularities",
+          "url": "https://jschoeberl.github.io/iFEM/FEM/erroranalysis.html",
+          "note": "Section24.4 weighted regularity and graded meshes inspected. Our fixed max-norm radial map is independently constructed; no general AMR implementation or universal optimality theorem claimed."
+        }
+      ],
+      "reference_scope": "Independent analytic fields/gradients and quadrature qualification; no external FEM software executed. Do not impose smooth-square L2 order on the corner singularity or identify the fixed graded map with general AMR/universal optimality.",
+      "related_problems": [
+        {
+          "id": "lshape-fem",
+          "name": {
+            "ja": "L字領域P1特異解：graded格子と歪みの分離",
+            "en": "L-corner P1 FEM: grading and separate mesh distortion"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/results/lshape-fem-preview.png",
+            "sha256": "c83b1fe941f1df00a73cd99913be0a67a91890e10a4af808168c8fdcfde88ff5",
+            "width": 960,
+            "height": 624,
+            "caption": {
+              "ja": "実際に保存した計算配列と固定入力の収束指標から描いた検証図。",
+              "en": "Validation preview from actual saved PDE arrays and fixed-input refinement measurements."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lshape-fem/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lshape-fem/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lshape-fem/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lshape-fem/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "lshape-fem",
+              "kind": "supplement",
+              "name": {
+                "ja": "L字領域P1特異解：graded格子と歪みの分離",
+                "en": "L-corner P1 FEM: grading and separate mesh distortion"
+              },
+              "scope": {
+                "ja": "再入隅の調和特異解を真の2D P1で解き、同じ未知数の一様/graded格子と、独立した滑らかな正方形の歪みを比較します。",
+                "en": "Solve a harmonic reentrant-corner field with actual2D P1 FEM; compare matched-DOF uniform/grading and separate smooth-square mesh distortion."
+              },
+              "method_ids": [
+                "p1-fem"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lshape-fem/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lshape-fem/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/atlas-mesh-boundary-2026-11-23.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/verification.json"
+            }
+          ],
+          "relation": "same-problem",
+          "note": {
+            "ja": "特異解に正方形のL2二次を要求しません。固定の事前graded写像でありAMRソフトではありません。条件数は推定で、任意歪みへの保証はしません。",
+            "en": "No smooth-square L2 order is imposed on the singular field. Fixed a-priori grading is not an AMR engine. Conditioning is estimated; arbitrary distortion is not certified."
+          }
+        }
+      ]
+    },
+    {
+      "id": "annular-viscous-mms",
+      "model": "variable-viscosity-vector",
+      "kind": "manufactured",
+      "formula": "s=x*x+y*y; A=(s-1)*(4-s); u=(A*(1+x*y),A*(x*x-y*y)/2); mu=1+.2*s; f=-div(2*mu*epsilon(u)).",
+      "dimension": 2,
+      "bounds": [
+        [
+          -2,
+          2
+        ],
+        [
+          -2,
+          2
+        ]
+      ],
+      "components": [
+        "Cartesian ux",
+        "Cartesian uy",
+        "strain",
+        "traction"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "radial_bounds": [
+          1,
+          2
+        ],
+        "angle_period": 6.283185307179586,
+        "excluded_region": "r<1 or r>2",
+        "mu": "1+.2*r^2",
+        "lambda": 0,
+        "radial_grids": [
+          8,
+          16,
+          32
+        ],
+        "angular_factor": 2,
+        "integrated_body_force": [
+          "756*pi/5",
+          0
+        ],
+        "axis_included": false
+      },
+      "sources": [
+        "https://mfem.org/examples/"
+      ],
+      "title": {
+        "ja": "環状粘性ベクトルMMS：独立応力微分で外力を確認",
+        "en": "Annular vector-viscous MMS: force qualified by independent stress differentiation"
+      },
+      "assumptions": {
+        "ja": "1≤r≤2、theta周期、mu=1+.2r²、lambda=0、両円でu=0。A(s)=(s−1)(4−s)、u=(A(1+xy),A(x²−y²)/2)。Nr8/16/32、Ntheta=2Nr。s=x²+y²、A=(s−1)(4−s)のCartesianベクトル場から応力と外力を解析的に導き、別のCartesian差分応力微分で確認します。体積外力の独立積分(756π/5,0)も照合します。",
+        "en": "1≤r≤2, periodic angle, mu=1+.2r², lambda0 and zero velocity on both circles. A(s)=(s−1)(4−s), u=(A(1+xy),A(x²−y²)/2). Nr8/16/32,Ntheta2Nr. Derive stress/force from the Cartesian vector field with s=x²+y²,A=(s-1)(4-s), then qualify force by separate Cartesian stress finite differentiation. Also check independent integrated body force(756pi/5,0)."
+      },
+      "kind_label": {
+        "ja": "製造解",
+        "en": "Manufactured solution"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/annular-viscous-mms/?lang=ja#annular-viscous-mms-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/annular-viscous-mms/?lang=en#annular-viscous-mms-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-mesh-boundary/#annular-viscous-mms",
+        "en": "/numerical-methods-atlas/en/read/validation-mesh-boundary/#annular-viscous-mms"
+      },
+      "citations": [
+        {
+          "role": "selected-primary-reference-context",
+          "title": "MFEM developers, Example2: Linear Elasticity",
+          "url": "https://mfem.org/examples/",
+          "note": "Example2 stress sigma=lambda div(u)I+mu(grad(u)+grad(u)^T), weak formulation and traction conventions inspected. Use lambda0 as a linear vector viscous BVP; manufactured fields are derived here. MFEM not executed or copied."
+        }
+      ],
+      "reference_scope": "Manufactured solution with independent analytic/finite-difference force checks, not an executed MFEM reference. Separate radial weights, physical circular traction, reactions and dissipation/work. This annular linear vector BVP has no pressure/incompressibility constraint and excludes the axis.",
+      "related_problems": [
+        {
+          "id": "annular-viscous-mms",
+          "name": {
+            "ja": "環状領域の可変粘性・真2DベクトルMMS",
+            "en": "Annular variable-viscosity vector PDE MMS"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/results/annular-viscous-mms-preview.png",
+            "sha256": "0943e0abeb936550b0b89e6d3d8b792226626a4a4e25fa9566d2228f0ea7bfcd",
+            "width": 960,
+            "height": 624,
+            "caption": {
+              "ja": "実際に保存した計算配列と固定入力の収束指標から描いた検証図。",
+              "en": "Validation preview from actual saved PDE arrays and fixed-input refinement measurements."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/annular-viscous-mms/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/annular-viscous-mms/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/annular-viscous-mms/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/annular-viscous-mms/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "annular-viscous-mms",
+              "kind": "supplement",
+              "name": {
+                "ja": "環状領域の可変粘性・真2DベクトルMMS",
+                "en": "Annular variable-viscosity vector PDE MMS"
+              },
+              "scope": {
+                "ja": "軸を除く円環で可変粘性の応力発散方程式を実際に解き、速度・歪み・境界tractionと仕事を照合します。",
+                "en": "Actually solve variable-viscosity stress divergence on an annulus; check velocity, strain, physical traction and work."
+              },
+              "method_ids": [
+                "q1-fem"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/annular-viscous-mms/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/annular-viscous-mms/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/atlas-mesh-boundary-2026-11-23.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/verification.json"
+            }
+          ],
+          "relation": "same-problem",
+          "note": {
+            "ja": "線形vector粘性BVPです。divfree拘束・圧力・非線形Navier–Stokesは含めません。原点なしのr>0であり、軸stencil検証ではありません。",
+            "en": "A linear vector viscous BVP, without divergence-free constraint, pressure or nonlinear Navier–Stokes. r>0 only; no axis stencil certification."
+          }
+        }
+      ]
+    },
+    {
+      "id": "poisson-neumann",
+      "model": "poisson-laplace",
+      "kind": "manufactured",
+      "formula": "u=cos(2*pi*x)*cos(2*pi*y)+mean; f=8*pi^2*cos(2*pi*x)*cos(2*pi*y); dn(u)=0; integral(f)=-integral_boundary(dn(u)).",
+      "dimension": 2,
+      "bounds": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "components": [
+        "u",
+        "normal flux"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "grids": [
+          16,
+          32,
+          64
+        ],
+        "mean_values": [
+          0,
+          0.25
+        ],
+        "nonzero_gauge_grid": 32,
+        "incompatible_source_offset": 1,
+        "representation": "cell-centered point degrees of freedom"
+      },
+      "sources": [
+        "https://petsc.org/main/manual/ksp/"
+      ],
+      "title": {
+        "ja": "純Neumann：解析場・互換条件・平均値ゲージ",
+        "en": "Pure Neumann: analytic field, compatibility and mean gauge"
+      },
+      "assumptions": {
+        "ja": "単位正方形N16/32/64、セル中心の点DOF。cos(2pi x)cos(2pi y)、全壁Neumann0、平均0とN32の平均.25診断。u=cos(2πx)cos(2πy)、f=8π²u、外向き法線流束0を点DOFで比較します。平均0と平均.25を分け、source+1の物理的不適合を投影で隠さず拒否します。",
+        "en": "Unit square N16/32/64, cell-centred point DOFs, cosine exact field, homogeneous Neumann; mean0 andN32 mean.25 probe. Use point DOFs for u=cos(2pi*x)cos(2pi*y),f=8pi²u and zero outward normal flux. Distinguish means0/.25 and explicitly reject incompatible source+1 rather than projecting it away."
+      },
+      "kind_label": {
+        "ja": "製造解",
+        "en": "Manufactured solution"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/poisson-neumann/?lang=ja#poisson-neumann-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/poisson-neumann/?lang=en#poisson-neumann-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-mesh-boundary/#poisson-neumann",
+        "en": "/numerical-methods-atlas/en/read/validation-mesh-boundary/#poisson-neumann"
+      },
+      "citations": [
+        {
+          "role": "selected-primary-reference-context",
+          "title": "PETSc developers, KSP: Solving Singular Systems",
+          "url": "https://petsc.org/main/manual/ksp/",
+          "note": "Solving Singular Systems: constant Neumann nullspace and RHS compatibility inspected. We reject physical incompatibility rather than projecting it away. PETSc is neither a dependency nor executed."
+        }
+      ],
+      "reference_scope": "Manufactured analytic field and physical integral-compatibility reference. Solving the same matrix with another linear solver is not a second PDE engine. Test Neumann nullspace/mean gauge without borrowing previous Dirichlet multigrid evidence.",
+      "related_problems": [
+        {
+          "id": "poisson-neumann",
+          "name": {
+            "ja": "純Neumannの互換条件と平均値ゲージ",
+            "en": "Pure Neumann compatibility and mean gauge"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/results/poisson-neumann-preview.png",
+            "sha256": "3b86e5b5ce513745f61f18ef155f3b4a1fee902cef02106516f1ca8aa4e7aebc",
+            "width": 960,
+            "height": 624,
+            "caption": {
+              "ja": "実際に保存した計算配列と固定入力の収束指標から描いた検証図。",
+              "en": "Validation preview from actual saved PDE arrays and fixed-input refinement measurements."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-neumann/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-neumann/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-neumann/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-neumann/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "poisson-neumann",
+              "kind": "supplement",
+              "name": {
+                "ja": "純Neumannの互換条件と平均値ゲージ",
+                "en": "Pure Neumann compatibility and mean gauge"
+              },
+              "scope": {
+                "ja": "特異な2D Poissonを互換条件と指定平均込みで解き、不適合な外力を拒否します。",
+                "en": "Solve singular2D Poisson with compatibility/gauge and reject incompatible source."
+              },
+              "method_ids": [
+                "centered-difference",
+                "cg"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/poisson-neumann/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/poisson-neumann/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/atlas-mesh-boundary-2026-11-23.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/verification.json"
+            }
+          ],
+          "relation": "same-problem",
+          "note": {
+            "ja": "同じ半離散系の別線形解法は独立PDE参照ではありません。既存Dirichlet MGの成功や2D任意境界へ一般化しません。",
+            "en": "A different linear solver of the same matrix is not an independent PDE discretization; no general boundary/MG claim."
+          }
+        }
+      ]
+    },
+    {
+      "id": "poisson-robin",
+      "model": "poisson-laplace",
+      "kind": "manufactured",
+      "formula": "u=cos(pi*x)*cos(2*pi*y)+x+y; -Delta(u)=5*pi^2*cos(pi*x)*cos(2*pi*y); alpha*u+beta*dn(u)=g.",
+      "dimension": 2,
+      "bounds": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "components": [
+        "u",
+        "normal flux"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "grids": [
+          16,
+          32,
+          64
+        ],
+        "robin_alpha": 1,
+        "robin_beta": 0.5,
+        "robin_sides": [
+          "y=0",
+          "y=1"
+        ],
+        "neumann_sides": [
+          "x=0",
+          "x=1"
+        ],
+        "mean_gauge_imposed": false
+      },
+      "sources": [
+        "https://mfem.org/fem_bc/"
+      ],
+      "title": {
+        "ja": "混合Robin：2次元解析場と独立な法線流束",
+        "en": "Mixed Robin: 2D analytic field and independent normal flux"
+      },
+      "assumptions": {
+        "ja": "単位正方形N16/32/64、u=cos(pi x)cos(2pi y)+x+y。x壁Neumann±1、y壁alpha1,beta.5の解析Robin。f=5π²cos(πx)cos(2πy)を使い、x壁は外向きNeumann±1、y壁はαu+β∂nu=gの解析値です。境界条件の代数残差と、解析的な物理法線流束の誤差を別々に測ります。",
+        "en": "Unit square N16/32/64; cosine-plus-linear exact field. x walls Neumann±1; y walls analytic Robin alpha1,beta.5. Use f=5pi²cos(pi*x)cos(2pi*y),outward Neumann±1 on x walls and analytic alpha*u+beta*dn(u)=g on y walls. Distinguish algebraic boundary-relation residual from analytic physical-normal-flux error."
+      },
+      "kind_label": {
+        "ja": "製造解",
+        "en": "Manufactured solution"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/poisson-robin/?lang=ja#poisson-robin-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/poisson-robin/?lang=en#poisson-robin-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-mesh-boundary/#poisson-robin",
+        "en": "/numerical-methods-atlas/en/read/validation-mesh-boundary/#poisson-robin"
+      },
+      "citations": [
+        {
+          "role": "selected-primary-reference-context",
+          "title": "MFEM developers, Boundary Conditions: Robin boundary conditions",
+          "url": "https://mfem.org/fem_bc/",
+          "note": "Outward normal derivative and Robin weak boundary contribution inspected; Example27 source overview inspected. Our cell-centred face elimination/MMS is separately derived; no MFEM execution."
+        }
+      ],
+      "reference_scope": "Analytic manufactured solution/outward-normal flux and volume/boundary-budget reference. Robin terms make the problem unique, so no pure-Neumann mean gauge is imposed. No MFEM execution or general-boundary guarantee.",
+      "related_problems": [
+        {
+          "id": "poisson-robin",
+          "name": {
+            "ja": "2D混合Robinの製造解と境界流束",
+            "en": "2D mixed Robin MMS and boundary flux"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/results/poisson-robin-preview.png",
+            "sha256": "d494bf03a58a591abda50c502b49da900e0066bdb19f64411560f41bd886d10b",
+            "width": 960,
+            "height": 624,
+            "caption": {
+              "ja": "実際に保存した計算配列と固定入力の収束指標から描いた検証図。",
+              "en": "Validation preview from actual saved PDE arrays and fixed-input refinement measurements."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-robin/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-robin/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-robin/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-robin/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "poisson-robin",
+              "kind": "supplement",
+              "name": {
+                "ja": "2D混合Robinの製造解と境界流束",
+                "en": "2D mixed Robin MMS and boundary flux"
+              },
+              "scope": {
+                "ja": "2D PoissonのNeumann/Robin面を実際に組み、連続製造解と境界fluxを照合します。",
+                "en": "Assemble actual2D Neumann/Robin faces and compare the manufactured field and boundary flux."
+              },
+              "method_ids": [
+                "centered-difference"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/poisson-robin/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/poisson-robin/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/atlas-mesh-boundary-2026-11-23.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/verification.json"
+            }
+          ],
+          "relation": "same-problem",
+          "note": {
+            "ja": "Robin問題は一意なので平均ゲージを重ねません。境界条件の代数残差と物理flux精度を区別します。",
+            "en": "The unique Robin problem has no additional mean gauge. Algebraic boundary satisfaction differs from physical flux accuracy."
+          }
+        }
+      ]
+    },
+    {
+      "id": "srhd-collision",
+      "model": "srhd",
+      "kind": "semi-analytic",
+      "formula": "h_b^2-h_a^2=(p_b-p_a)*(h_b/rho_b+h_a/rho_a); v0^2=(p_b-p_a)*(e_b-e_a)/((e_a+p_b)*(e_b+p_a)); shock positions=.5 +/- Vs*t.",
+      "dimension": 1,
+      "bounds": [
+        [
+          0,
+          1
+        ]
+      ],
+      "components": [
+        "D",
+        "Sx",
+        "Sy",
+        "Sz",
+        "E",
+        "By",
+        "Bz"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "gamma": 1.6666666666666667,
+        "rho": 1,
+        "pressure": 0.1,
+        "opposite_speed": 0.3,
+        "Bx": 0,
+        "jump_position": 0.5,
+        "time": 0.3,
+        "grids": [
+          96,
+          192,
+          384
+        ],
+        "energy_includes_rest_mass": true,
+        "spatial_dimension": 1
+      },
+      "sources": [
+        "https://arxiv.org/abs/gr-qc/0103005",
+        "https://link.springer.com/article/10.12942/lrr-2008-7"
+      ],
+      "title": {
+        "ja": "相対論的対称衝突：特殊化した二衝撃波Taub参照",
+        "en": "Relativistic symmetric collision: specialized two-shock Taub reference"
+      },
+      "assumptions": {
+        "ja": "c=1、γ=5/3、ρ=1、p=.1、左右v=±.3、B=0。区間[0,1]、初期不連続x=.5、t=.3、96/192/384セル。衝撃波が端へ届く前の外挿境界です。Taub断熱式と相対速度式の圧力根から静止した同一星状態と衝撃波速度を求め、保存変数の区分一定厳密場をセル積分します。接触面は退化し、一般三波Riemannソルバーではありません。",
+        "en": "c=1,gamma5/3,rho1,p.1,opposite normal v±.3,B0. Domain[0,1], initial jump .5,t=.3,96/192/384 cells. Constant extrapolation boundaries before shocks reach endpoints. Solve the pressure root from Taub adiabat and relative-velocity relations for the identical resting star states and shock speeds, then integrate the piecewise-constant exact conserved field over cells. The contact degenerates; this is not a general three-wave Riemann solver."
+      },
+      "kind_label": {
+        "ja": "半解析解",
+        "en": "Semi-analytic reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/srhd-collision/?lang=ja#srhd-collision-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/srhd-collision/?lang=en#srhd-collision-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-relativistic/#srhd-collision",
+        "en": "/numerical-methods-atlas/en/read/validation-relativistic/#srhd-collision"
+      },
+      "citations": [
+        {
+          "role": "selected-primary-reference-context",
+          "title": "Luciano Rezzolla and Olindo Zanotti (2001), An Improved Exact Riemann Solver for Relativistic Hydrodynamics",
+          "url": "https://arxiv.org/abs/gr-qc/0103005",
+          "note": "Original arxiv v2 read: sections2–4, equations2.3/2.4,3.1 and4.5; restricted two-shock specialization. No whole-paper or generic Riemann implementation audit."
+        },
+        {
+          "role": "selected-primary-reference-context",
+          "title": "José A. Font (2008), Numerical Hydrodynamics and Magnetohydrodynamics in General Relativity",
+          "url": "https://link.springer.com/article/10.12942/lrr-2008-7",
+          "note": "Official article sections3.1–3.2, tensor49–51 and recovery68–69 actually read. Flat-spacetime use only; no whole-review or complete-GRMHD implementation audit."
+        }
+      ],
+      "reference_scope": "Distinguish the independently written specialized semi-analytic two-shock reference from separate scalar-pressure SRHD recovery/flux checks of actual final states. E includes rest mass. Mild fixed inputs do not validate generic RMHD shocks,extreme Lorentz factors or original numerical tables. Pictures show1D space-time fields.",
+      "related_problems": [
+        {
+          "id": "srhd-collision",
+          "name": {
+            "ja": "SRHDの対称二衝撃波衝突",
+            "en": "SRHD symmetric two-shock collision"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/results/srhd-collision-preview.png",
+            "sha256": "ef2df95f225e1a80e231c91b85518a4dd007e85f3e6408e9ccbf29aaac386d3f",
+            "width": 1270,
+            "height": 761,
+            "caption": {
+              "ja": "最細格子の実際の保存密度Dの1D x–t図。5保存時刻を使用し、2D流れではありません。",
+              "en": "Actual finest-grid1D x–t conserved-density field from five stored times; not a two-dimensional flow."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/srhd-collision/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/srhd-collision/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/srhd-collision/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/srhd-collision/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "srhd-collision",
+              "kind": "supplement",
+              "name": {
+                "ja": "SRHDの対称二衝撃波衝突",
+                "en": "SRHD symmetric two-shock collision"
+              },
+              "scope": {
+                "ja": "相対論的な対称衝突を、独立なTaub関係から得る厳密な保存量セル平均と比較し、実際の1D時空間場を保存します。",
+                "en": "Compare a relativistic symmetric collision with independent exact Taub-based conserved cell means; save actual1D x–t fields."
+              },
+              "method_ids": [
+                "hll",
+                "muscl",
+                "minmod",
+                "ssprk33"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/srhd-collision/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/srhd-collision/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/atlas-relativistic-2026-11-23.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/verification.json"
+            }
+          ],
+          "relation": "same-problem",
+          "note": {
+            "ja": "独自の穏やかな対称入力で、接触面は同じ静止状態へ退化します。一般三波Riemann解、高Lorentz因子、原著の数値入力は検証しません。Eは静止質量を含み、保存量の厳密セル平均と比較します。",
+            "en": "Custom mild symmetric input; contact degenerates to identical resting states. No general three-wave Riemann,extreme-Lorentz-factor or original-paper numerical-input reproduction claim. E includes rest mass; compare exact conserved cell means."
+          }
+        }
+      ]
+    },
+    {
+      "id": "srmhd-alfven",
+      "model": "srmhd",
+      "kind": "analytic",
+      "formula": "K=rho*h+B0^2*(1+eta^2); vA^2=2*B0^2/(K+sqrt(K^2-4*eta^2*B0^4)); (By,Bz)=eta*B0*(cos(2*pi*(x-vA*t)),sin(2*pi*(x-vA*t))); (vy,vz)=-vA*(By,Bz)/B0.",
+      "dimension": 1,
+      "bounds": [
+        [
+          0,
+          1
+        ]
+      ],
+      "components": [
+        "D",
+        "Sx",
+        "Sy",
+        "Sz",
+        "E",
+        "By",
+        "Bz"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "gamma": 1.3333333333333333,
+        "rho": 1,
+        "pressure": 1,
+        "eta": 1,
+        "Bx": 1,
+        "periods": 1,
+        "time": "1/vA",
+        "grids": [
+          64,
+          128,
+          256
+        ],
+        "normal_B_fixed_in_1D": true,
+        "spatial_dimension": 1
+      },
+      "sources": [
+        "https://arxiv.org/abs/0704.3206",
+        "https://link.springer.com/article/10.12942/lrr-2008-7"
+      ],
+      "title": {
+        "ja": "SRMHD円偏波：有限振幅厳密族と独立テンソル積分",
+        "en": "SRMHD circular wave: finite-amplitude exact family and independent tensor integration"
+      },
+      "assumptions": {
+        "ja": "平坦時空、c=4π=1、γ=4/3、ρ=p=Bx=η=1、vx=0の厳密族。原著2π周期を単位区間へ写し、64/128/256セル、周期境界、t=1/vA。Bxは1次元で固定します。非線形Alfvén速度の閉じた式を使い、点の原始変数から独立なストレステンソルで保存量と流束を作り、Gauss積分と複素段階PDE残差で確認します。原著の2π周期を単位区間へ移しています。",
+        "en": "Flat spacetime,c=4pi=1,gamma4/3,rho=p=Bx=eta1, exact-family vx0. Rescale the original2pi period to a unit domain;64/128/256 cells,periodic,t=1/vA. Normal Bx is fixed in1D. Use the closed nonlinear Alfven-speed formula. Independently form conserved quantities/fluxes from point primitives through the stress tensor; qualify Gauss integration and complex-step PDE residuals. Rescale the original2pi period to the unit interval."
+      },
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/srmhd-alfven/?lang=ja#srmhd-alfven-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/srmhd-alfven/?lang=en#srmhd-alfven-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-relativistic/#srmhd-alfven",
+        "en": "/numerical-methods-atlas/en/read/validation-relativistic/#srmhd-alfven"
+      },
+      "citations": [
+        {
+          "role": "selected-primary-reference-context",
+          "title": "L. Del Zanna, O. Zanotti, N. Bucciantini and P. Londrillo (2007), ECHO: a Eulerian Conservative High Order scheme for general relativistic magnetohydrodynamics and magnetodynamics",
+          "url": "https://arxiv.org/abs/0704.3206",
+          "note": "University-hosted original journal PDF section4.1 equations82–85 read; original arxiv preprint pages9–10 rendered and visually inspected, including normalization and period. Publisher PDF403. No whole-paper or ECHO-algorithm reproduction claim."
+        },
+        {
+          "role": "selected-primary-reference-context",
+          "title": "José A. Font (2008), Numerical Hydrodynamics and Magnetohydrodynamics in General Relativity",
+          "url": "https://link.springer.com/article/10.12942/lrr-2008-7",
+          "note": "Official article sections3.1–3.2, tensor49–51 and recovery68–69 actually read. Flat-spacetime use only; no whole-review or complete-GRMHD implementation audit."
+        }
+      ],
+      "reference_scope": "Reference the finite-amplitude exact family checked in selected original sections, evolved with an independent lower-order HLL/MUSCL scheme. This does not reproduce ECHO or its error tables. Constant-Bx1D and its x-t picture do not validate multidimensional divergence control,generic RMHD shocks or GR.",
+      "related_problems": [
+        {
+          "id": "srmhd-alfven",
+          "name": {
+            "ja": "SRMHDの有限振幅円偏極Alfvén波",
+            "en": "SRMHD finite-amplitude circularly polarized Alfvén wave"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/results/srmhd-alfven-preview.png",
+            "sha256": "23a1cf1258b81f383dd59132738d6f7cc1d37284752f3b4678ef3251c5d3f7a7",
+            "width": 1270,
+            "height": 761,
+            "caption": {
+              "ja": "最細格子の実際の横磁場Byの1D x–t図。5保存時刻を使い、計算は完全な磁気結合を含みます。",
+              "en": "Actual finest-grid transverse By in1D x–t from five stored times; the solver includes full magnetic coupling."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/srmhd-alfven/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/srmhd-alfven/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/srmhd-alfven/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/srmhd-alfven/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "srmhd-alfven",
+              "kind": "supplement",
+              "name": {
+                "ja": "SRMHDの有限振幅円偏極Alfvén波",
+                "en": "SRMHD finite-amplitude circularly polarized Alfvén wave"
+              },
+              "scope": {
+                "ja": "完全な磁気応力と誘導を含むSRMHDで非線形有限振幅波を1周期進め、厳密セル平均、位相、振幅と細分化を検査します。",
+                "en": "Evolve a nonlinear finite-amplitude wave for one period with full SRMHD magnetic stress and induction; check exact cell means,phase,amplitude and refinement."
+              },
+              "method_ids": [
+                "hll",
+                "muscl",
+                "minmod",
+                "ssprk33"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/srmhd-alfven/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/srmhd-alfven/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/atlas-relativistic-2026-11-23.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/verification.json"
+            }
+          ],
+          "relation": "same-problem",
+          "note": {
+            "ja": "原著の厳密解族を独立な低次法で計算し、ECHO法や原著誤差表は再現しません。一般RMHD衝撃波、極端な磁化・Lorentz因子、GR、抵抗MHD、多次元磁場発散制御は対象外。図は実際の1D時空間場です。",
+            "en": "Use the original exact family with an independent lower-order operator; no ECHO-algorithm or error-table reproduction. Generic RMHD shocks,extreme magnetization/Lorentz factors,GR,resistive MHD and multidimensional divergence control are outside scope. Figures show actual1D x–t fields."
+          }
+        }
+      ]
     }
   ],
   "problem_routes_source_sha256": {
-    "catalog/atlas-depth-expansion.json": "b5c4fcb308e4627460f59b96428960b22b508d3a593d480c4c2bee1b60373aeb",
-    "catalog/atlas-equations.json": "d8e02f24bdff318fa82d98349dbb8cca828bac2ac9e502473349d28d6a982a86",
+    "catalog/atlas-depth-expansion.json": "25b030e85b4313197b9d98802270ffb65507ea0f8915bab9cbf64dabbf7fa47e",
+    "catalog/atlas-equations.json": "ff35400b4add4d9cf37561c483a25b798a83d229e96d396f5622bb3cd17f10b6",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
-    "catalog/atlas-methods.json": "90c03bcde9b6a77ec07835aba8cce6b64b07389d8d0a7c643f8c24289ab54bb6",
-    "catalog/atlas-problem-links.json": "3314d935ba123b50c27000e2241083d929e74f11edde2960a18c763fb16190bf",
-    "catalog/atlas-reference-supplements.json": "b356e31d1df63c45aca440754d0a179767a5b1e4ae7ae879ddc4fa51c3f9f6f0",
-    "catalog/atlas-test-problems.json": "8c2198ce3cf88056b9b5a78b796f676f2e64c773882eb8e911c178a0578fb79b",
+    "catalog/atlas-methods.json": "065a3b34662d245db876b4f35261d0ab080429a80ad4a35300b2676b20d009e7",
+    "catalog/atlas-problem-links.json": "70892664d662db9c5422fd52a18f540be3a5b67bfe5804ca36de656f26c1120a",
+    "catalog/atlas-reference-supplements.json": "bc848ad33eefba5e1e2818b45bcb5130f60057cebba0596c0f64c47c40fef637",
+    "catalog/atlas-test-problems.json": "a6a2e764bf990e33073c55a271f884df9ecd5c4d0f216fa8aaad1e83d7f00124",
     "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
     "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
     "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
@@ -4184,6 +6465,11 @@
     "code/validated-examples/2026-11-23-r2/euler-positivity/results/result.json": "bee593154817e7a6339cee14fa7c029000002f42ade8ccd6d568119d375fdddc",
     "code/validated-examples/2026-11-23-r2/euler-positivity/source-manifest.json": "86eef08f81c19d211d9908ba195f6fbbdcd4af54dcfaf8df59ebbe9df73b34b9",
     "code/validated-examples/2026-11-23-r2/euler-positivity/verification.json": "4c205d9d21d1ea7efbf3d56e881c8c740f26a983576415a69e95490393af4f3d",
+    "code/validated-examples/2026-11-23-r2/instability-growth/atlas-instability-growth-2026-11-23-r2.zip": "731bf5ce375327daba93014990053ffc52b38626f132f94303a6d061aca7a7e7",
+    "code/validated-examples/2026-11-23-r2/instability-growth/cases.json": "a313678254c42e664fe47d65bc1a5e22ffde0c7824be09e63dd90a665b1a2665",
+    "code/validated-examples/2026-11-23-r2/instability-growth/results/result.json": "a86f27c415bd6e10ae5e1135351f9282e05b6126f100f49dd9306ea9bc35e36f",
+    "code/validated-examples/2026-11-23-r2/instability-growth/source-manifest.json": "e9e27e0d2911bdafb09f2280eef3eaad7d602510cdd7f1b0282db740a137c69f",
+    "code/validated-examples/2026-11-23-r2/instability-growth/verification.json": "c604289f94d71ea4540a9128763590708c484dc840ea4464178719ee5eea3a3d",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/atlas-noh-cartesian-2026-11-23-r2.zip": "2145beb161f993c1608fc5ac167af5278d58e10f92e74ed37e5fb9c35243b918",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/cases.json": "49b94c1f65e269d4a878be3a4d8778375b88b767f5dd01998ae5fe6b8fc2b3ee",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/results/result.json": "e121c2f5171ee53491b492019311d002ceb44213f6f7cd43051a3ca68f74c694",
@@ -4229,6 +6515,31 @@
     "code/validated-examples/2026-11-23/low-mach/results/result.json": "5e1fdfa86dc57b13857bd571de1070d00ac5237400e0fc9ee9875fae9824d9f5",
     "code/validated-examples/2026-11-23/low-mach/source-manifest.json": "ff359786cf6efff8e5e61f842ae63a866cb7655a4151b2d33ac12501eed98124",
     "code/validated-examples/2026-11-23/low-mach/verification.json": "f747210e1d46900c4f56b01e989696c3feaee35361fe42be11428fd280bacf84",
+    "code/validated-examples/2026-11-23/mesh-boundary/atlas-mesh-boundary-2026-11-23.zip": "51032054029345b8f187ebb12e1a0d8d4473b70312f29585a160fc3b0fdca315",
+    "code/validated-examples/2026-11-23/mesh-boundary/cases.json": "30c7d39639f74d4f263a045cccc8ced3e14a466e4e279c4c156fc21ce176f796",
+    "code/validated-examples/2026-11-23/mesh-boundary/results/result.json": "fd91eff20f607bd816815f8458f6e5b1017139d5c2b6a7521bff3a38287a6402",
+    "code/validated-examples/2026-11-23/mesh-boundary/source-manifest.json": "96e55d4c564baf804d3ae7feb86a36c7d7a3d4079f5e47180326fd2c09ee675a",
+    "code/validated-examples/2026-11-23/mesh-boundary/verification.json": "1191781061a2ec3339d26d8e9e4db605e9c40e8d5d5dfa6433712b38f43f7d01",
+    "code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip": "8b6d4d9d30c9ed12fd29b7b91a11c16dc183b9aea49234966a66c376713ebf90",
+    "code/validated-examples/2026-11-23/mhd-transport/cases.json": "351ec0540ab5aea5c75aebfd90c9800d7e7fc8eb742dbbd534d80f61437a3914",
+    "code/validated-examples/2026-11-23/mhd-transport/results/result.json": "c43acea7e89a837e34b2e171bc292c75bc68766b98614697ec755f05ce944ba4",
+    "code/validated-examples/2026-11-23/mhd-transport/source-manifest.json": "c7d853b1b958f830ac30f45b076410ba55045ddedc88006cf8dda2c3e7dfee8d",
+    "code/validated-examples/2026-11-23/mhd-transport/verification.json": "56767d3b24b0c2fd9e6e660db523be8f8565876b38867f819c57ed983d468752",
+    "code/validated-examples/2026-11-23/moving-waves/atlas-moving-waves-2026-11-23.zip": "d9f2f8bff3bf5d9fa7c1118c0968e9c0374fd5e9a6d3f7f99352abc0841e3b7d",
+    "code/validated-examples/2026-11-23/moving-waves/cases.json": "0b7092f12334f3ce018f0f837deb59803b8b14e50999a10e34de452b1038f989",
+    "code/validated-examples/2026-11-23/moving-waves/results/result.json": "e53ff99821e9977c975cda2a33d99b00d895901f1e428780ef27c10dd5242426",
+    "code/validated-examples/2026-11-23/moving-waves/source-manifest.json": "8cf67dddc182fe3519eb33f89deddd711a9ecb639f3760e1edc0c88505eb8be1",
+    "code/validated-examples/2026-11-23/moving-waves/verification.json": "29199bb55f03b1167eaa27115c8bb531006a298371f614d8c1397516c5862894",
+    "code/validated-examples/2026-11-23/relativistic/atlas-relativistic-2026-11-23.zip": "c80b18e40f259d72aae6375d59faa0bd3c6c1b00b50da06538004bb6462a7185",
+    "code/validated-examples/2026-11-23/relativistic/cases.json": "8e0f3c1834cf74a57e20628fcf6580b19b8a7153c6f7c33c9b0b0986ca680a58",
+    "code/validated-examples/2026-11-23/relativistic/results/result.json": "30f709ac0ea4dac4819fbfca0c94ff045ca2b566d1245914d1a6aecc5bf86548",
+    "code/validated-examples/2026-11-23/relativistic/source-manifest.json": "89496dc623ddb7a3c381539d403b1ad657cee8ad772509788f185b7364dd6584",
+    "code/validated-examples/2026-11-23/relativistic/verification.json": "d2d62b2d0aa0e5f9f7e3a7e7991f24586fcc7c3baa3a567cd51f0d6f00367737",
+    "code/validated-examples/2026-11-23/sem-fr/atlas-sem-fr-2026-11-23.zip": "f7e852c18571791492fa4b804cba1fdd744909e690a90d2708a422a4b5e99d66",
+    "code/validated-examples/2026-11-23/sem-fr/cases.json": "b1005680e6bd36a330dd178f9eac2c39444dc40c98f5dbf5bfd3ad01ca2c751d",
+    "code/validated-examples/2026-11-23/sem-fr/results/result.json": "f934329701c57bd4eb41cec04c0bbf374812ec0372739c3c2d869e9829b54a96",
+    "code/validated-examples/2026-11-23/sem-fr/source-manifest.json": "800461c1ae226cc1f4350d4fce65a0c24ef2bce851ad862ad55394b47fc321d1",
+    "code/validated-examples/2026-11-23/sem-fr/verification.json": "63de17e91ba54215e7de815df931b8b2c6f04c65d5d43037b9c921c14ca75b54",
     "code/validated-examples/2026-11-23/shallow-water/atlas-shallow-water-2026-11-23.zip": "259244fc5c237542ba577df62308fd2a3191979dd43717d58df33d8abb902644",
     "code/validated-examples/2026-11-23/shallow-water/cases.json": "9296c20b7609cb4acdcd5a0ce437781dcd2e7635dbfea0a924f8468a3e5a5792",
     "code/validated-examples/2026-11-23/shallow-water/results/result.json": "49a56493e429dd3b4c9d6f8eba72c53ddd3469689699217157b9823a392c015f",
@@ -4247,6 +6558,6 @@
     "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "2ce7e000d21e5d4497616b5c3a991069abbdb59c9dabb796b7e5689a20a3e7cf"
+    "numerical-methods-atlas/gallery/preview-manifest.json": "73396f2b5c9f8b58bf3b4dc0ba200fe473d08c5e2688cf6aa3f775a76517eb46"
   }
 }

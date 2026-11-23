@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Fixed, independently referenced nonlinear KH/RT initial-growth experiments."""
 import argparse
+import csv
 from datetime import datetime, timezone
 import hashlib
 import json
@@ -166,6 +167,13 @@ def main():
                     'time_contamination_fraction': time_fraction, 'amplitude_scaled_difference': linearity,
                     'linear_operator_maximum_real_eigenvalue': eigenvalue}}
             results.append(item)
+            columns = ['id', 'n', 'epsilon', 'cfl_factor', 'steps',
+                       'relative_field_error', 'max_divergence',
+                       'max_poisson_residual', 'max_mean_omega', 'max_mean_theta']
+            with (args.output/(case+'.csv')).open('w', newline='') as handle:
+                writer = csv.DictWriter(handle, fieldnames=columns, extrasaction='ignore')
+                writer.writeheader()
+                writer.writerows(rows)
     except Exception as error:
         failure = {'type': type(error).__name__, 'message': str(error)}
         if isinstance(error, StageFailure):

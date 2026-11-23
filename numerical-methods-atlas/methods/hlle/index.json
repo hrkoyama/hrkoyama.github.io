@@ -427,7 +427,29 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/circular-alfven/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/circular-alfven/?lang=en#references-en"
         },
-        "cases": []
+        "cases": [
+          {
+            "id": "circular-alfven-refinement",
+            "title": {
+              "ja": "円偏波Alfvén波：全保存変数の解析セル平均",
+              "en": "Circular Alfven wave: analytic full-state conserved cell means"
+            },
+            "kind": "analytic",
+            "relation": "related-model",
+            "note": {
+              "ja": "γ=5/3、[0,1]周期、ρ=1、p=.1、Bx=1、振幅.1、速度1、T=1、32/64/128セル。初期値と参照は保存変数の解析セル平均であり、セル平均から復元する圧力は点の定圧と区別します。",
+              "en": "gamma5/3, periodic[0,1], rho1,p.1,Bx1,amplitude.1, speed1,T1,32/64/128 cells. Initialize/reference conserved analytic cell means; pressure recovered from means differs from constant pointwise pressure."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-circular-alfven-refinement-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-circular-alfven-refinement-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=ja#circular-alfven-refinement-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=en#circular-alfven-refinement-en-measurements"
+            }
+          }
+        ]
       },
       {
         "problem_id": "magnetic-loop",
@@ -439,7 +461,29 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/magnetic-loop/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/magnetic-loop/?lang=en#references-en"
         },
-        "cases": []
+        "cases": [
+          {
+            "id": "magnetic-loop-independent",
+            "title": {
+              "ja": "磁場ループ：固定Athena++の独立終端参照",
+              "en": "Magnetic loop: pinned independent Athena++ final-field reference"
+            },
+            "kind": "numerical-reference",
+            "relation": "related-model",
+            "note": {
+              "ja": "[-1,1]×[-.5,.5]周期、ρ=p=1、Az=.001max(.3−r,0)、T=1、(Nx,Ny)=(16,8),(32,16),(64,32)。変更していない公式生成器と同じv=(2,1,2)で、古いvz=0設定とは区別します。",
+              "en": "Periodic[-1,1]x[-.5,.5],rho=p1,Az=.001max(.3-r,0),T1,(Nx,Ny)=(16,8),(32,16),(64,32). Use unchanged official-generator v=(2,1,2), explicitly distinct from old vz0 inputs."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-magnetic-loop-independent-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-magnetic-loop-independent-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=ja#magnetic-loop-independent-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=en#magnetic-loop-independent-en-measurements"
+            }
+          }
+        ]
       }
     ]
   }

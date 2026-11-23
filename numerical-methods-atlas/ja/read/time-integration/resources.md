@@ -62,6 +62,18 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/time-integration/
   availability: run
 
   実際の2次元Euler有限体積計算を60×20・120×40・240×80でT=4まで行い、別実装のMUSCL有限格子参照と比較します。段差の垂直面・上面を含む実際の数値流束から4保存量の収支を評価し、角のエントロピー補正を加えない変種として図とコードを公開します。
+- [後期Orszag–Tang：独立参照と圧縮構造](<https://hrkoyama.github.io/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=ja>)
+  availability: run
+
+  圧縮性理想MHDのOrszag–TangをT=.2まで進め、相互作用する圧縮・衝撃波構造の密度と圧力を独立有限格子参照で検査します。
+- [円偏波Alfvén波：全成分の格子収束](<https://hrkoyama.github.io/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=ja>)
+  availability: run
+
+  全8保存変数を進め、非零のBz・vzを含む円偏波を解析セル平均と比較します。
+- [磁場ループ：独立2次元参照と細分化](<https://hrkoyama.github.io/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=ja>)
+  availability: run
+
+  実際の2次元磁場ループ輸送を、別実装Athena++の空間・時間感度を検査した終端保存場と比較します。
 - [Noh衝撃波：初期圧力ゼロの平面・円筒・球対称計算](<https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-shock/?lang=ja>)
   availability: run
 
@@ -86,6 +98,18 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/time-integration/
   availability: run
 
   キャビティと同じ壁条件付き2Dソルバーに解析外力を与え、速度と流れ関数の格子収束、壁渦度・壁剪断の誤差を測ります。別の非零Dirichlet圧力製造解でPoisson・勾配の境界演算子も検査します。
+- [KHの初期成長：滑らかな周期せん断層](<https://hrkoyama.github.io/numerical-methods-atlas/validation/kh-initial-growth/?lang=ja>)
+  availability: run
+
+  実際の非線形2D渦度方程式を解き、独立Fourier–Galerkin線形初期値問題と有限時間の成長・格子誤差を比較します。
+- [RTの初期成長：滑らかなBoussinesq二層](<https://hrkoyama.github.io/numerical-methods-atlas/validation/rt-initial-growth/?lang=ja>)
+  availability: run
+
+  密度差を浮力だけに残す2D Boussinesq系を時間発展し、不安定な滑らかな層の初期成長を独立線形参照で調べます。
+- [非一様移動格子で実際に運ぶALEスカラー](<https://hrkoyama.github.io/numerical-methods-atlas/validation/ale-nonuniform-transport/?lang=ja>)
+  availability: run
+
+  質量と格子面位置を同じHeun段で更新し、一様GCLだけでなく非一様な解析波を運びます。
 - [Euler二重膨張波：段階ごとの正値性](<https://hrkoyama.github.io/numerical-methods-atlas/validation/euler-double-rarefaction-positivity/?lang=ja>)
   availability: run
 
@@ -98,6 +122,14 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/time-integration/
   availability: run
 
   スロット付き円盤を実際の2次元有限体積法で一回転させ、donor-cellとminmod MUSCLを比較します。3格子と、半セルの中心ずらし・45度の初期向きを含む8計算で、保存・各SSP段の有界性・形状誤差とスロットの埋まりを測ります。
+- [SRHDの対称二衝撃波衝突](<https://hrkoyama.github.io/numerical-methods-atlas/validation/srhd-collision/?lang=ja>)
+  availability: run
+
+  相対論的な対称衝突を、独立なTaub関係から得る厳密な保存量セル平均と比較し、実際の1D時空間場を保存します。
+- [SRMHDの有限振幅円偏極Alfvén波](<https://hrkoyama.github.io/numerical-methods-atlas/validation/srmhd-alfven/?lang=ja>)
+  availability: run
+
+  完全な磁気応力と誘導を含むSRMHDで非線形有限振幅波を1周期進め、厳密セル平均、位相、振幅と細分化を検査します。
 - [WENO-JS／Z：臨界点とεの固定比較](<https://hrkoyama.github.io/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=ja>)
   availability: run
 
@@ -122,6 +154,10 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/time-integration/
   availability: run
 
   2変数の膜興奮縮約ODEを電流パルスで励起し、DOP853との全出力時刻の誤差・時間収束・回復を確認します。
+- [2D C-grid回転浅水波の実時間発展](<https://hrkoyama.github.io/numerical-methods-atlas/validation/cgrid-rotating-wave/?lang=ja>)
+  availability: run
+
+  実際の2D staggered場を時間積分し、連続波と離散symbolの参照を分けて比較します。
 - [Schnakenberg有限振幅過渡：非線形性と独立参照](<https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-nonlinear/?lang=ja>)
   availability: run
 

@@ -1,0 +1,195 @@
+{
+  "schema_version": 1,
+  "id": "poisson-neumann",
+  "name": {
+    "ja": "純Neumannの互換条件と平均値ゲージ",
+    "en": "Pure Neumann compatibility and mean gauge"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-neumann/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-neumann/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-neumann/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/results/poisson-neumann-preview.png",
+    "sha256": "3b86e5b5ce513745f61f18ef155f3b4a1fee902cef02106516f1ca8aa4e7aebc",
+    "width": 960,
+    "height": 624,
+    "caption": {
+      "ja": "実際に保存した計算配列と固定入力の収束指標から描いた検証図。",
+      "en": "Validation preview from actual saved PDE arrays and fixed-input refinement measurements."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/#poisson-neumann",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/#poisson-neumann"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#poisson-neumann",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#poisson-neumann-en"
+  },
+  "equations": [
+    {
+      "id": "poisson-laplace",
+      "name": {
+        "ja": "Poisson・Laplace方程式",
+        "en": "Poisson / Laplace equations"
+      },
+      "formula": [
+        "-\\nabla^2u=f",
+        "f=0\\quad\\Longrightarrow\\quad\\nabla^2u=0"
+      ],
+      "note": {
+        "ja": "楕円型境界値問題。符号規約を確認し、反復解法・疎行列・境界条件をたどる。",
+        "en": "Elliptic boundary-value problems: check sign conventions, iterative solvers, sparse matrices and boundaries."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#poisson-laplace-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#poisson-laplace-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "単位正方形N16/32/64、セル中心の点DOF。cos(2pi x)cos(2pi y)、全壁Neumann0、平均0とN32の平均.25診断。",
+    "en": "Unit square N16/32/64, cell-centred point DOFs, cosine exact field, homogeneous Neumann; mean0 andN32 mean.25 probe."
+  },
+  "formulations": [
+    {
+      "id": "supplement-poisson-neumann",
+      "name": {
+        "ja": "純Neumannの互換条件と平均値ゲージ",
+        "en": "Pure Neumann compatibility and mean gauge"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "-\\Delta u=f,\\quad\\partial_nu=g_N,\\quad\\int f=-\\oint g_N"
+      ],
+      "note": {
+        "ja": "特異な2D Poissonを互換条件と指定平均込みで解き、不適合な外力を拒否します。",
+        "en": "Solve singular2D Poisson with compatibility/gauge and reject incompatible source."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "poisson-neumann",
+      "kind": "manufactured",
+      "kind_label": {
+        "ja": "製造解",
+        "en": "Manufactured solution"
+      },
+      "title": {
+        "ja": "純Neumann：解析場・互換条件・平均値ゲージ",
+        "en": "Pure Neumann: analytic field, compatibility and mean gauge"
+      },
+      "formula": "u=cos(2*pi*x)*cos(2*pi*y)+mean; f=8*pi^2*cos(2*pi*x)*cos(2*pi*y); dn(u)=0; integral(f)=-integral_boundary(dn(u)).",
+      "assumptions": {
+        "ja": "単位正方形N16/32/64、セル中心の点DOF。cos(2pi x)cos(2pi y)、全壁Neumann0、平均0とN32の平均.25診断。u=cos(2πx)cos(2πy)、f=8π²u、外向き法線流束0を点DOFで比較します。平均0と平均.25を分け、source+1の物理的不適合を投影で隠さず拒否します。",
+        "en": "Unit square N16/32/64, cell-centred point DOFs, cosine exact field, homogeneous Neumann; mean0 andN32 mean.25 probe. Use point DOFs for u=cos(2pi*x)cos(2pi*y),f=8pi²u and zero outward normal flux. Distinguish means0/.25 and explicitly reject incompatible source+1 rather than projecting it away."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "同じ半離散系の別線形解法は独立PDE参照ではありません。既存Dirichlet MGの成功や2D任意境界へ一般化しません。",
+        "en": "A different linear solver of the same matrix is not an independent PDE discretization; no general boundary/MG claim."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/poisson-neumann/?lang=ja#poisson-neumann-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/poisson-neumann/?lang=en#poisson-neumann-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "L2細分化、零空間、平均、CG差、source+1拒否、境界流束/体積源の収支を保存。",
+    "en": "Retain L2 refinement, nullspace/gauge/CG gap, source+1 rejection and boundary/source budget."
+  },
+  "methods": [
+    {
+      "id": "centered-difference",
+      "name": {
+        "ja": "空間中心差分",
+        "en": "Centered spatial difference"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/centered-difference/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/centered-difference/?lang=en"
+      }
+    },
+    {
+      "id": "cg",
+      "name": {
+        "ja": "共役勾配法",
+        "en": "Conjugate gradients"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/cg/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/cg/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "共有面差分で特異行列を組み、体積重み平均のLagrange拘束付き疎直接法とcompatible CGを照合。物理的な不適合外力の平均を勝手に引かない。",
+    "en": "Shared-face differences, weighted-mean augmented solve and compatible CG comparison; no physical RHS mean projection."
+  },
+  "executions": [
+    {
+      "id": "poisson-neumann",
+      "kind": "supplement",
+      "name": {
+        "ja": "純Neumannの互換条件と平均値ゲージ",
+        "en": "Pure Neumann compatibility and mean gauge"
+      },
+      "method_ids": [
+        "centered-difference",
+        "cg"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/poisson-neumann/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/poisson-neumann/?lang=en"
+      },
+      "scope": {
+        "ja": "特異な2D Poissonを互換条件と指定平均込みで解き、不適合な外力を拒否します。",
+        "en": "Solve singular2D Poisson with compatibility/gauge and reject incompatible source."
+      },
+      "assumptions": {
+        "ja": "単位正方形N16/32/64、セル中心の点DOF。cos(2pi x)cos(2pi y)、全壁Neumann0、平均0とN32の平均.25診断。",
+        "en": "Unit square N16/32/64, cell-centred point DOFs, cosine exact field, homogeneous Neumann; mean0 andN32 mean.25 probe."
+      },
+      "limits": {
+        "ja": "同じ半離散系の別線形解法は独立PDE参照ではありません。既存Dirichlet MGの成功や2D任意境界へ一般化しません。",
+        "en": "A different linear solver of the same matrix is not an independent PDE discretization; no general boundary/MG claim."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/atlas-mesh-boundary-2026-11-23.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "L2細分化、零空間、平均、CG差、source+1拒否、境界流束/体積源の収支を保存。",
+        "en": "Retain L2 refinement, nullspace/gauge/CG gap, source+1 rejection and boundary/source budget."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/boundary.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/test_geometry.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

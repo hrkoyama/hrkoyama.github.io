@@ -17,8 +17,8 @@
         "en": "Fluid dynamics"
       },
       "scope": {
-        "ja": "Euler衝撃波・滑らかな渦などに複数の教育用コードと保存結果があります。固定入力での検証内容は問題ごとに異なります。 追加の固定例はWENOのε、浅水の地形・乾燥床、Re100壁面流と製造解を扱います。 円のレベルセット移流は指定した速度による界面輸送の別検証です。",
-        "en": "Several educational codes and saved results cover Euler shocks and smooth vortices. Fixed-input validation differs by problem. Additional fixed cases cover WENO epsilon, shallow-water bed/dry states, and Re100 wall flow with manufactured verification. Level-set circle transport is separate interface evidence in a prescribed velocity."
+        "ja": "Euler衝撃波・滑らかな渦などに複数の教育用コードと保存結果があります。固定入力での検証内容は問題ごとに異なります。 追加の固定例はWENOのε、浅水の地形・乾燥床、Re100壁面流と製造解を扱います。 円のレベルセット移流は指定した速度による界面輸送の別検証です。 0.4+sin(2πx)をT=.25まで移流。Gauss点・Radau補正のFRと既存のmodal DGをp=1/2、8/16/32セルで実行し、誤差・質量・時間積分誤差を測ります。 今回の固定例：KHの初期成長：滑らかな周期せん断層, RTの初期成長：滑らかなBoussinesq二層, 非一様移動格子で実際に運ぶALEスカラー, 2D C-grid回転浅水波の実時間発展, SRHDの対称二衝撃波衝突.",
+        "en": "Several educational codes and saved results cover Euler shocks and smooth vortices. Fixed-input validation differs by problem. Additional fixed cases cover WENO epsilon, shallow-water bed/dry states, and Re100 wall flow with manufactured verification. Level-set circle transport is separate interface evidence in a prescribed velocity. Transport0.4+sin(2pi x) toT=.25. Execute Gauss-node/Radau FR and the existing modal DG for p=1/2 and8/16/32 cells; measure analytic error, mass and time-integration error. Additional fixed examples: KH initial growth in a smooth periodic shear layer, RT initial growth in smooth Boussinesq double layers, ALE scalar transport on genuinely nonuniform moving cells, Actual2D C-grid rotating shallow-water time advance, SRHD symmetric two-shock collision."
       },
       "examples": [
         "sod",
@@ -58,7 +58,13 @@
         "cavity-ghia-re100",
         "wall-manufactured",
         "level-set-translation",
-        "level-set-rotation"
+        "level-set-rotation",
+        "fr-periodic-advection",
+        "kh-initial-growth",
+        "rt-initial-growth",
+        "ale-nonuniform-transport",
+        "cgrid-rotating-wave",
+        "srhd-collision"
       ]
     },
     {
@@ -68,8 +74,8 @@
         "en": "MHD"
       },
       "scope": {
-        "ja": "旧Brio–Wu・Orszag–Tangと独立Athena++照合を保持し、移流する磁気流体静力学的平衡の構成厳密解と、同じOT初期場を使うCT／GLM比較を追加します。連続初期条件・最終時刻・実際の時間刻みを揃えた限定比較です。 物理2例の精度と、非ゼロ発散を与える制約対照での能動的なGLM輸送・減衰を分けます。",
-        "en": "Preserve the earlier Brio–Wu/Orszag–Tang independent Athena++ comparisons and add CT/GLM comparisons of a constructed exact advected magnetostatic equilibrium and the same OT data. The scoped comparisons match continuous initial conditions, final time and actual time steps. Separate accuracy in the two physical cases from active GLM transport/damping in an initially nonzero-divergence constraint control."
+        "ja": "旧Brio–Wu・Orszag–Tangと独立Athena++照合を保持し、移流する磁気流体静力学的平衡の構成厳密解と、同じOT初期場を使うCT／GLM比較を追加します。連続初期条件・最終時刻・実際の時間刻みを揃えた限定比較です。 物理2例の精度と、非ゼロ発散を与える制約対照での能動的なGLM輸送・減衰を分けます。 今回の固定例：円偏波Alfvén波：全成分の格子収束, 磁場ループ：独立2次元参照と細分化, 後期Orszag–Tang：独立参照と圧縮構造, SRMHDの有限振幅円偏極Alfvén波.",
+        "en": "Preserve the earlier Brio–Wu/Orszag–Tang independent Athena++ comparisons and add CT/GLM comparisons of a constructed exact advected magnetostatic equilibrium and the same OT data. The scoped comparisons match continuous initial conditions, final time and actual time steps. Separate accuracy in the two physical cases from active GLM transport/damping in an initially nonzero-divergence constraint control. Additional fixed examples: Circular Alfven wave: full-state refinement, Magnetic loop: independent 2D reference and refinement, Late Orszag-Tang: independent reference and compression structure, SRMHD finite-amplitude circularly polarized Alfvén wave."
       },
       "examples": [
         "brio-wu"
@@ -96,7 +102,11 @@
         "glm-fourier-mode",
         "ct-glm-smooth-convergence",
         "ct-glm-ot-convergence",
-        "ct-glm-constraint-control"
+        "ct-glm-constraint-control",
+        "circular-alfven-refinement",
+        "magnetic-loop-independent",
+        "postshock-orszag-tang",
+        "srmhd-alfven"
       ]
     },
     {
@@ -106,8 +116,8 @@
         "en": "Elliptic problems and gravity"
       },
       "scope": {
-        "ja": "Poisson・Bratu・粒子重力に固定入力例があります。",
-        "en": "Poisson, Bratu and particle-gravity fixed-input examples."
+        "ja": "Poisson・Bratu・粒子重力に固定入力例があります。 単位正方形の正弦製造解をGLLスペクトル要素法と既存P1三角形FEMで解きます。自由未知数を揃えたh細分化と、固定要素数でのp=1〜6を分けて測ります。 今回の固定例：L字領域P1特異解：graded格子と歪みの分離, 環状領域の可変粘性・真2DベクトルMMS, 純Neumannの互換条件と平均値ゲージ, 2D混合Robinの製造解と境界流束.",
+        "en": "Poisson, Bratu and particle-gravity fixed-input examples. Solve a sine manufactured solution on the unit square with GLL spectral elements and the existing triangle P1 FEM. Compare matched free-unknown counts under h refinement and p=1..6 at fixed elements. Additional fixed examples: L-corner P1 FEM: grading and separate mesh distortion, Annular variable-viscosity vector PDE MMS, Pure Neumann compatibility and mean gauge, 2D mixed Robin MMS and boundary flux."
       },
       "examples": [
         "poisson-1d-dirichlet",
@@ -132,7 +142,13 @@
         "ja": "境界条件と離散化をそろえ、残差と解誤差を比較する。",
         "en": "Match boundary conditions and discretizations when comparing residual and solution errors."
       },
-      "supplemental_examples": []
+      "supplemental_examples": [
+        "sem-poisson-2d",
+        "lshape-fem",
+        "annular-viscous-mms",
+        "poisson-neumann",
+        "poisson-robin"
+      ]
     },
     {
       "id": "quantum-atoms",
@@ -457,10 +473,10 @@
   "registry": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
   "verification_receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
   "source_sha256": {
-    "catalog/atlas-depth.json": "e69990d3ae07d5c804a1d58468af52d864e9e143cdf694ba235d0286579bd5f4",
+    "catalog/atlas-depth.json": "64b1b613122eb24991b326575b052fd94f413ef1b5c1b59694c832b7c38a3ae9",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "catalog/atlas-depth-expansion.json": "b5c4fcb308e4627460f59b96428960b22b508d3a593d480c4c2bee1b60373aeb",
+    "catalog/atlas-depth-expansion.json": "25b030e85b4313197b9d98802270ffb65507ea0f8915bab9cbf64dabbf7fa47e",
     "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
     "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
     "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
@@ -531,11 +547,41 @@
     "code/validated-examples/2026-11-23/level-set/cases.json": "b077db49bb69055b9612a2153f7d9ea4d9c1025f0bf13b0c94157d2e9235e655",
     "code/validated-examples/2026-11-23/level-set/results/result.json": "7108491721386902c6adaa5ea5c1c709b31a204060346d0c93a06efd4a4a5a31",
     "code/validated-examples/2026-11-23/level-set/atlas-level-set-2026-11-23.zip": "46c2c2fd0aea98eb4cc4facef8d30cc81ebd6b1b9e0d965f7ef79167a06c048b",
+    "code/validated-examples/2026-11-23/sem-fr/source-manifest.json": "800461c1ae226cc1f4350d4fce65a0c24ef2bce851ad862ad55394b47fc321d1",
+    "code/validated-examples/2026-11-23/sem-fr/verification.json": "63de17e91ba54215e7de815df931b8b2c6f04c65d5d43037b9c921c14ca75b54",
+    "code/validated-examples/2026-11-23/sem-fr/cases.json": "b1005680e6bd36a330dd178f9eac2c39444dc40c98f5dbf5bfd3ad01ca2c751d",
+    "code/validated-examples/2026-11-23/sem-fr/results/result.json": "f934329701c57bd4eb41cec04c0bbf374812ec0372739c3c2d869e9829b54a96",
+    "code/validated-examples/2026-11-23/sem-fr/atlas-sem-fr-2026-11-23.zip": "f7e852c18571791492fa4b804cba1fdd744909e690a90d2708a422a4b5e99d66",
+    "code/validated-examples/2026-11-23-r2/instability-growth/source-manifest.json": "e9e27e0d2911bdafb09f2280eef3eaad7d602510cdd7f1b0282db740a137c69f",
+    "code/validated-examples/2026-11-23-r2/instability-growth/verification.json": "c604289f94d71ea4540a9128763590708c484dc840ea4464178719ee5eea3a3d",
+    "code/validated-examples/2026-11-23-r2/instability-growth/cases.json": "a313678254c42e664fe47d65bc1a5e22ffde0c7824be09e63dd90a665b1a2665",
+    "code/validated-examples/2026-11-23-r2/instability-growth/results/result.json": "a86f27c415bd6e10ae5e1135351f9282e05b6126f100f49dd9306ea9bc35e36f",
+    "code/validated-examples/2026-11-23-r2/instability-growth/atlas-instability-growth-2026-11-23-r2.zip": "731bf5ce375327daba93014990053ffc52b38626f132f94303a6d061aca7a7e7",
+    "code/validated-examples/2026-11-23/moving-waves/source-manifest.json": "8cf67dddc182fe3519eb33f89deddd711a9ecb639f3760e1edc0c88505eb8be1",
+    "code/validated-examples/2026-11-23/moving-waves/verification.json": "29199bb55f03b1167eaa27115c8bb531006a298371f614d8c1397516c5862894",
+    "code/validated-examples/2026-11-23/moving-waves/cases.json": "0b7092f12334f3ce018f0f837deb59803b8b14e50999a10e34de452b1038f989",
+    "code/validated-examples/2026-11-23/moving-waves/results/result.json": "e53ff99821e9977c975cda2a33d99b00d895901f1e428780ef27c10dd5242426",
+    "code/validated-examples/2026-11-23/moving-waves/atlas-moving-waves-2026-11-23.zip": "d9f2f8bff3bf5d9fa7c1118c0968e9c0374fd5e9a6d3f7f99352abc0841e3b7d",
+    "code/validated-examples/2026-11-23/relativistic/source-manifest.json": "89496dc623ddb7a3c381539d403b1ad657cee8ad772509788f185b7364dd6584",
+    "code/validated-examples/2026-11-23/relativistic/verification.json": "d2d62b2d0aa0e5f9f7e3a7e7991f24586fcc7c3baa3a567cd51f0d6f00367737",
+    "code/validated-examples/2026-11-23/relativistic/cases.json": "8e0f3c1834cf74a57e20628fcf6580b19b8a7153c6f7c33c9b0b0986ca680a58",
+    "code/validated-examples/2026-11-23/relativistic/results/result.json": "30f709ac0ea4dac4819fbfca0c94ff045ca2b566d1245914d1a6aecc5bf86548",
+    "code/validated-examples/2026-11-23/relativistic/atlas-relativistic-2026-11-23.zip": "c80b18e40f259d72aae6375d59faa0bd3c6c1b00b50da06538004bb6462a7185",
     "code/validated-examples/2026-11-22/mhd-convergence/source-manifest.json": "9d5fd8eb67ed3d4ac3965596bbd12152bdc1ae2e03a3a4f060573175d00caf67",
     "code/validated-examples/2026-11-22/mhd-convergence/verification.json": "ddf51e803eb94ca7dc419d0b9fc4aa6ec7204c319e448f7d4b120f5342a319d8",
     "code/validated-examples/2026-11-22/mhd-convergence/cases.json": "a1ebd3a1344c90cc49e11dd790a522434f7fdec27f77d8621a2197a7be738434",
     "code/validated-examples/2026-11-22/mhd-convergence/results/result.json": "7b1ddd177a96b1ede21b568b0f8e72e4b23d970d96ace3ab2441b0df0efbfe6b",
     "code/validated-examples/2026-11-22/mhd-convergence/atlas-mhd-convergence-2026-11-22.zip": "5db2fc202014a576145e98c84e1802540df7d8e26353d469fbd55c8e393fd866",
+    "code/validated-examples/2026-11-23/mhd-transport/source-manifest.json": "c7d853b1b958f830ac30f45b076410ba55045ddedc88006cf8dda2c3e7dfee8d",
+    "code/validated-examples/2026-11-23/mhd-transport/verification.json": "56767d3b24b0c2fd9e6e660db523be8f8565876b38867f819c57ed983d468752",
+    "code/validated-examples/2026-11-23/mhd-transport/cases.json": "351ec0540ab5aea5c75aebfd90c9800d7e7fc8eb742dbbd534d80f61437a3914",
+    "code/validated-examples/2026-11-23/mhd-transport/results/result.json": "c43acea7e89a837e34b2e171bc292c75bc68766b98614697ec755f05ce944ba4",
+    "code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip": "8b6d4d9d30c9ed12fd29b7b91a11c16dc183b9aea49234966a66c376713ebf90",
+    "code/validated-examples/2026-11-23/mesh-boundary/source-manifest.json": "96e55d4c564baf804d3ae7feb86a36c7d7a3d4079f5e47180326fd2c09ee675a",
+    "code/validated-examples/2026-11-23/mesh-boundary/verification.json": "1191781061a2ec3339d26d8e9e4db605e9c40e8d5d5dfa6433712b38f43f7d01",
+    "code/validated-examples/2026-11-23/mesh-boundary/cases.json": "30c7d39639f74d4f263a045cccc8ced3e14a466e4e279c4c156fc21ce176f796",
+    "code/validated-examples/2026-11-23/mesh-boundary/results/result.json": "fd91eff20f607bd816815f8458f6e5b1017139d5c2b6a7521bff3a38287a6402",
+    "code/validated-examples/2026-11-23/mesh-boundary/atlas-mesh-boundary-2026-11-23.zip": "51032054029345b8f187ebb12e1a0d8d4473b70312f29585a160fc3b0fdca315",
     "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
     "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
     "code/validated-examples/2026-11-22/models/cases.json": "09b670a3462f7f1395dcdf12b507786b69616c0ea165d2678efe780ddb0cf0e6",

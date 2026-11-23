@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "id": "annular-viscous-mms",
+  "name": {
+    "ja": "環状領域の可変粘性・真2DベクトルMMS",
+    "en": "Annular variable-viscosity vector PDE MMS"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/annular-viscous-mms/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/annular-viscous-mms/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/annular-viscous-mms/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/results/annular-viscous-mms-preview.png",
+    "sha256": "0943e0abeb936550b0b89e6d3d8b792226626a4a4e25fa9566d2228f0ea7bfcd",
+    "width": 960,
+    "height": 624,
+    "caption": {
+      "ja": "実際に保存した計算配列と固定入力の収束指標から描いた検証図。",
+      "en": "Validation preview from actual saved PDE arrays and fixed-input refinement measurements."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/#annular-viscous-mms",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/#annular-viscous-mms"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#annular-viscous-mms",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#annular-viscous-mms-en"
+  },
+  "equations": [
+    {
+      "id": "variable-viscosity-vector",
+      "name": {
+        "ja": "可変粘性のベクトル応力境界値問題",
+        "en": "Variable-viscosity vector stress boundary-value problem"
+      },
+      "formula": [
+        "-\\nabla\\cdot\\boldsymbol\\tau=\\boldsymbol f,\\quad \\boldsymbol\\tau=2\\mu\\boldsymbol\\varepsilon(\\boldsymbol u),\\quad \\boldsymbol\\varepsilon(\\boldsymbol u)=\\tfrac12(\\nabla\\boldsymbol u+\\nabla\\boldsymbol u^T)",
+        "1<r<2,\\quad \\mu=1+r^2/5,\\quad A=(r^2-1)(4-r^2),\\quad \\boldsymbol u_\\star=A(1+xy,(x^2-y^2)/2)^T",
+        "\\int_\\Omega2\\mu\\,\\boldsymbol\\varepsilon(\\boldsymbol u_h):\\boldsymbol\\varepsilon(\\boldsymbol v_h)\\,dA=\\int_\\Omega\\boldsymbol f\\cdot\\boldsymbol v_h\\,dA"
+      ],
+      "note": {
+        "ja": "Cartesianの2成分を結合した線形応力発散BVPです。極座標内のQ1基底と正確な曲線Jacobianを使い、可変μの勾配と剪断応力を含みます。圧力・非圧縮拘束・対流項はありません。",
+        "en": "Linear stress-divergence BVP coupling two Cartesian components. Q1 basis functions in polar coordinates use the exact curved Jacobian and include variable-mu gradients and shear. There is no pressure,incompressibility constraint or advective term."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#variable-viscosity-vector-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#variable-viscosity-vector-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "1≤r≤2、theta周期、mu=1+.2r²、lambda=0、両円でu=0。A(s)=(s−1)(4−s)、u=(A(1+xy),A(x²−y²)/2)。Nr8/16/32、Ntheta=2Nr。",
+    "en": "1≤r≤2, periodic angle, mu=1+.2r², lambda0 and zero velocity on both circles. A(s)=(s−1)(4−s), u=(A(1+xy),A(x²−y²)/2). Nr8/16/32,Ntheta2Nr."
+  },
+  "formulations": [
+    {
+      "id": "supplement-annular-viscous-mms",
+      "name": {
+        "ja": "環状領域の可変粘性・真2DベクトルMMS",
+        "en": "Annular variable-viscosity vector PDE MMS"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "-\\nabla\\cdot(2\\mu\\epsilon(u))=f,\\quad\\mu=1+0.2r^2",
+        "\\int 2\\mu\\epsilon(u):\\epsilon(v)\\,r\\,dr\\,d\\theta=\\int f\\cdot v\\,r\\,dr\\,d\\theta",
+        "dS=r\\,d\\theta,\\quad t=(2\\mu\\epsilon(u))n"
+      ],
+      "note": {
+        "ja": "軸を除く円環で可変粘性の応力発散方程式を実際に解き、速度・歪み・境界tractionと仕事を照合します。",
+        "en": "Actually solve variable-viscosity stress divergence on an annulus; check velocity, strain, physical traction and work."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "annular-viscous-mms",
+      "kind": "manufactured",
+      "kind_label": {
+        "ja": "製造解",
+        "en": "Manufactured solution"
+      },
+      "title": {
+        "ja": "環状粘性ベクトルMMS：独立応力微分で外力を確認",
+        "en": "Annular vector-viscous MMS: force qualified by independent stress differentiation"
+      },
+      "formula": "s=x*x+y*y; A=(s-1)*(4-s); u=(A*(1+x*y),A*(x*x-y*y)/2); mu=1+.2*s; f=-div(2*mu*epsilon(u)).",
+      "assumptions": {
+        "ja": "1≤r≤2、theta周期、mu=1+.2r²、lambda=0、両円でu=0。A(s)=(s−1)(4−s)、u=(A(1+xy),A(x²−y²)/2)。Nr8/16/32、Ntheta=2Nr。s=x²+y²、A=(s−1)(4−s)のCartesianベクトル場から応力と外力を解析的に導き、別のCartesian差分応力微分で確認します。体積外力の独立積分(756π/5,0)も照合します。",
+        "en": "1≤r≤2, periodic angle, mu=1+.2r², lambda0 and zero velocity on both circles. A(s)=(s−1)(4−s), u=(A(1+xy),A(x²−y²)/2). Nr8/16/32,Ntheta2Nr. Derive stress/force from the Cartesian vector field with s=x²+y²,A=(s-1)(4-s), then qualify force by separate Cartesian stress finite differentiation. Also check independent integrated body force(756pi/5,0)."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "線形vector粘性BVPです。divfree拘束・圧力・非線形Navier–Stokesは含めません。原点なしのr>0であり、軸stencil検証ではありません。",
+        "en": "A linear vector viscous BVP, without divergence-free constraint, pressure or nonlinear Navier–Stokes. r>0 only; no axis stencil certification."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/annular-viscous-mms/?lang=ja#annular-viscous-mms-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/annular-viscous-mms/?lang=en#annular-viscous-mms-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "独自解析外力を別のCartesian応力差分で資格確認。L2速度/歪み/traction細分化、反力/体積外力と物理tractionの収支、粘性散逸と外力仕事を別々に測定。 体積外力の解析積分(756pi/5,0)も別に照合。",
+    "en": "Qualify the derived force by separate Cartesian stress differentiation. Measure velocity/strain/traction refinement, reactions versus volume-force/physical traction budgets, and viscous dissipation versus force work. Also check the independently integrated body force (756pi/5,0)."
+  },
+  "methods": [
+    {
+      "id": "q1-fem",
+      "name": {
+        "ja": "Q1有限要素法（曲線座標ベクトルBVP）",
+        "en": "Q1 FEM for mapped-coordinate vector BVP"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/q1-fem/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/q1-fem/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "polarのmapped Q1にCartesian速度2成分を置き、r dr dthetaで2mu epsilonの弱形式を4×4 Gauss積分してblock疎解法。円周faceにはr dthetaと外向き法線を使う。",
+    "en": "Mapped polar Q1 with two Cartesian velocity components;4×4 Gauss integration of2mu epsilon uses exact r dr dtheta metric, followed by a block sparse solve. Circular traction uses r dtheta and outward normals."
+  },
+  "executions": [
+    {
+      "id": "annular-viscous-mms",
+      "kind": "supplement",
+      "name": {
+        "ja": "環状領域の可変粘性・真2DベクトルMMS",
+        "en": "Annular variable-viscosity vector PDE MMS"
+      },
+      "method_ids": [
+        "q1-fem"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/annular-viscous-mms/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/annular-viscous-mms/?lang=en"
+      },
+      "scope": {
+        "ja": "軸を除く円環で可変粘性の応力発散方程式を実際に解き、速度・歪み・境界tractionと仕事を照合します。",
+        "en": "Actually solve variable-viscosity stress divergence on an annulus; check velocity, strain, physical traction and work."
+      },
+      "assumptions": {
+        "ja": "1≤r≤2、theta周期、mu=1+.2r²、lambda=0、両円でu=0。A(s)=(s−1)(4−s)、u=(A(1+xy),A(x²−y²)/2)。Nr8/16/32、Ntheta=2Nr。",
+        "en": "1≤r≤2, periodic angle, mu=1+.2r², lambda0 and zero velocity on both circles. A(s)=(s−1)(4−s), u=(A(1+xy),A(x²−y²)/2). Nr8/16/32,Ntheta2Nr."
+      },
+      "limits": {
+        "ja": "線形vector粘性BVPです。divfree拘束・圧力・非線形Navier–Stokesは含めません。原点なしのr>0であり、軸stencil検証ではありません。",
+        "en": "A linear vector viscous BVP, without divergence-free constraint, pressure or nonlinear Navier–Stokes. r>0 only; no axis stencil certification."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/atlas-mesh-boundary-2026-11-23.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "独自解析外力を別のCartesian応力差分で資格確認。L2速度/歪み/traction細分化、反力/体積外力と物理tractionの収支、粘性散逸と外力仕事を別々に測定。 体積外力の解析積分(756pi/5,0)も別に照合。",
+        "en": "Qualify the derived force by separate Cartesian stress differentiation. Measure velocity/strain/traction refinement, reactions versus volume-force/physical traction budgets, and viscous dissipation versus force work. Also check the independently integrated body force (756pi/5,0)."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/annulus.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/references/fields.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/test_geometry.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

@@ -17,7 +17,7 @@ test('all 22 runnable representative problems have one reproduction record withi
   assert.equal(registry.examples.length,22);
   assert.deepEqual(registry.examples.map(x=>x.problem_id).sort(),[...targets].sort());
   assert.equal(json('catalog/atlas-test-problems.json').problems.length,102);
-  assert.equal(json('numerical-methods-atlas/coverage.json').counts.test_problems,92);
+  assert.equal(json('numerical-methods-atlas/coverage.json').counts.test_problems,102);
   assert.equal(registry.examples.filter(x=>x.release.family==='numerical-methods-atlas'&&x.release.version==='2026-11-22').length,12);
   for(const id of ['barnes-hut','hydrogenic-atoms','helium-ground-state'])assert.equal(registry.examples.find(x=>x.id===id).release.version,'2026-11-21');
 });

@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "id": "ale-nonuniform-transport",
+  "name": {
+    "ja": "非一様移動格子で実際に運ぶALEスカラー",
+    "en": "ALE scalar transport on genuinely nonuniform moving cells"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/ale-nonuniform-transport/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/ale-nonuniform-transport/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/ale-nonuniform-transport/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/results/ale-nonuniform-transport-preview.png",
+    "sha256": "9d478cec0c80d34b7ea186af511711f8d0fff239eb9e2db18b3b6027563766be",
+    "width": 960,
+    "height": 608,
+    "caption": {
+      "ja": "実際に保存した計算配列と固定入力の収束指標から描いた検証図。",
+      "en": "Validation preview from actual saved PDE arrays and fixed-input refinement measurements."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-moving-waves/#ale-nonuniform-transport",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-moving-waves/#ale-nonuniform-transport"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#ale-nonuniform-transport",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#ale-nonuniform-transport-en"
+  },
+  "equations": [
+    {
+      "id": "ale-scalar-transport",
+      "name": {
+        "ja": "移動セル上のALEスカラー保存式",
+        "en": "ALE scalar conservation on moving cells"
+      },
+      "formula": [
+        "q_t+a q_x=0,\\quad m_i(t)=\\int_{x_{i-1/2}(t)}^{x_{i+1/2}(t)}q(x,t)\\,dx",
+        "\\dot m_i=-[(a-w)q]_{i-1/2}^{i+1/2},\\qquad \\dot V_i=w_{i+1/2}-w_{i-1/2}",
+        "x(\\xi,t)=\\xi+\\frac{.2}{2\\pi}\\sin(2\\pi\\xi)\\sin(2\\pi t),\\quad a=.7"
+      ],
+      "note": {
+        "ja": "指定した非一様格子の面位置とセル質量を同じHeun段で更新し、幾何保存則と非一様な波の輸送を別々に評価します。Euler流体のLagrange/remap法ではありません。",
+        "en": "Prescribed nonuniform face positions and cell masses share Heun stages. Evaluate geometric conservation and nonuniform-wave transport separately; this is not an Euler-fluid Lagrange/remap scheme."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#ale-scalar-transport-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#ale-scalar-transport-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "周期[0,1]、速度.7、q0=1+.2sin(2pi x)、面速度w=.2sin(2pi xi)cos(2pi t)、N40/80/160、T1。時間比較N40,T.25,32/64/128step。",
+    "en": "Periodic unit interval, speed.7,q0=1+.2sin(2pi x), grid speed .2sin(2pi xi)cos(2pi t),N40/80/160,T1. Separate N40,T.25 time series32/64/128steps."
+  },
+  "formulations": [
+    {
+      "id": "supplement-ale-nonuniform-transport",
+      "name": {
+        "ja": "非一様移動格子で実際に運ぶALEスカラー",
+        "en": "ALE scalar transport on genuinely nonuniform moving cells"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "\\dot m_i=-[(a-w)q]_{i+1/2}+[(a-w)q]_{i-1/2},\\quad V_i=x_{i+1/2}-x_{i-1/2}",
+        "x(\\xi,t)=\\xi+0.2\\sin(2\\pi\\xi)\\sin(2\\pi t)/(2\\pi)"
+      ],
+      "note": {
+        "ja": "質量と格子面位置を同じHeun段で更新し、一様GCLだけでなく非一様な解析波を運びます。",
+        "en": "Advance cell integrals and face positions with identical Heun stages, transporting a nonuniform analytic wave beyond a uniform GCL check."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "ale-nonuniform-transport",
+      "kind": "analytic",
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "title": {
+        "ja": "ALE：実際の移動セル上の解析積分と時間参照",
+        "en": "ALE: analytic moving-cell integrals and separate time reference"
+      },
+      "formula": "x(xi,t)=xi+.2*sin(2*pi*xi)*sin(2*pi*t)/(2*pi); m_i=integral_[x_i,x_(i+1)](1+.2*sin(2*pi*(x-.7*t)))dx.",
+      "assumptions": {
+        "ja": "周期[0,1]、速度.7、q0=1+.2sin(2pi x)、面速度w=.2sin(2pi xi)cos(2pi t)、N40/80/160、T1。時間比較N40,T.25,32/64/128step。解析解q(x,t)=1+.2sin[2π(x−.7t)]を、主計算が保存した実際の面位置の間で積分します。解析面位置との幾何誤差を別記し、時間検査は同じFV ODEを二公差の独立DOP853で解きます。",
+        "en": "Periodic unit interval, speed.7,q0=1+.2sin(2pi x), grid speed .2sin(2pi xi)cos(2pi t),N40/80/160,T1. Separate N40,T.25 time series32/64/128steps. Integrate q(x,t)=1+.2sin[2pi(x-.7t)] between the actual saved primary faces. Separately record geometry error against analytic face positions. Time checks use independent DOP853 at two tolerances for the same FV ODE."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "1D指定格子運動の第一段階です。図のx–tは2D物理計算ではなく、Euler Lagrange/remapやSaltzmanピストンは未実装の後続課題。",
+        "en": "First-stage1D prescribed mesh motion. The x–t image is not2D physics; Euler Lagrange/remap and Saltzman piston remain future work."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ale-nonuniform-transport/?lang=ja#ale-nonuniform-transport-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ale-nonuniform-transport/?lang=en#ale-nonuniform-transport-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "解析的移動セル積分、全体/段の質量、GCLconstant、格子幾何誤差を分離。独立DOP853による同じFV ODEの時間参照を二公差で確認。",
+    "en": "Separate analytic moving-cell-integral error, global/stage mass, constant GCL and geometry error. Qualify an independent DOP853 integration of the same FV ODE with two tolerances."
+  },
+  "methods": [
+    {
+      "id": "ale",
+      "name": {
+        "ja": "ALE一様状態・幾何保存モデル",
+        "en": "ALE uniform-state / geometric-conservation model"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ale/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ale/?lang=en"
+      }
+    },
+    {
+      "id": "upwind",
+      "name": {
+        "ja": "風上差分（upwind）",
+        "en": "Upwind finite differences"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/upwind/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/upwind/?lang=en"
+      }
+    },
+    {
+      "id": "heun",
+      "name": {
+        "ja": "Heun法／SSPRK(2,2)",
+        "en": "Heun / SSPRK(2,2)"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/heun/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/heun/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "実セル質量の上流相対流束(a−w)qと実面位置を同じHeun predictor/correctorで進め、各段体積・面Courant数を記録。",
+    "en": "Upwind relative flux(a-w)q advances actual masses with identical predictor/corrector face geometry; record stage volumes and Courant numbers."
+  },
+  "executions": [
+    {
+      "id": "ale-nonuniform-transport",
+      "kind": "supplement",
+      "name": {
+        "ja": "非一様移動格子で実際に運ぶALEスカラー",
+        "en": "ALE scalar transport on genuinely nonuniform moving cells"
+      },
+      "method_ids": [
+        "ale",
+        "upwind",
+        "heun"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ale-nonuniform-transport/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ale-nonuniform-transport/?lang=en"
+      },
+      "scope": {
+        "ja": "質量と格子面位置を同じHeun段で更新し、一様GCLだけでなく非一様な解析波を運びます。",
+        "en": "Advance cell integrals and face positions with identical Heun stages, transporting a nonuniform analytic wave beyond a uniform GCL check."
+      },
+      "assumptions": {
+        "ja": "周期[0,1]、速度.7、q0=1+.2sin(2pi x)、面速度w=.2sin(2pi xi)cos(2pi t)、N40/80/160、T1。時間比較N40,T.25,32/64/128step。",
+        "en": "Periodic unit interval, speed.7,q0=1+.2sin(2pi x), grid speed .2sin(2pi xi)cos(2pi t),N40/80/160,T1. Separate N40,T.25 time series32/64/128steps."
+      },
+      "limits": {
+        "ja": "1D指定格子運動の第一段階です。図のx–tは2D物理計算ではなく、Euler Lagrange/remapやSaltzmanピストンは未実装の後続課題。",
+        "en": "First-stage1D prescribed mesh motion. The x–t image is not2D physics; Euler Lagrange/remap and Saltzman piston remain future work."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/atlas-moving-waves-2026-11-23.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "解析的移動セル積分、全体/段の質量、GCLconstant、格子幾何誤差を分離。独立DOP853による同じFV ODEの時間参照を二公差で確認。",
+        "en": "Separate analytic moving-cell-integral error, global/stage mass, constant GCL and geometry error. Qualify an independent DOP853 integration of the same FV ODE with two tolerances."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/transport.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/references/exact.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/test_moving.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

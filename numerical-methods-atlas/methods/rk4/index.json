@@ -7410,8 +7410,8 @@
     ]
   },
   "depth_scope": {
-    "ja": "反応拡散：空間2次と時間4次を分けて測る: 線形の拡散・反応演算子を、連続と半離散のFourier厳密解を用いて小規模に検証します。 Turing不安定性：線形成長率と小振幅パターン: Schnakenberg型反応拡散で、一様平衡の安定性と拡散による選択モードの成長を行列指数で検証します。 FitzHugh–Nagumo：パルス興奮・回復と独立ODE参照: 2変数の膜興奮縮約ODEを電流パルスで励起し、DOP853との全出力時刻の誤差・時間収束・回復を確認します。 セル平均からのWENO-JS／Z二乗重みの臨界点再構成と、実際の周期スカラー輸送を比較します。εの違い、解析セル平均と点値、空間誤差と時間刻みの影響を分けます。",
-    "en": "Reaction-diffusion: separate second-order space and fourth-order time: Validate a small linear diffusion-reaction operator against continuous and semidiscrete Fourier solutions. Turing instability: linear growth and small-amplitude patterns: Use a matrix exponential to validate stable homogeneous kinetics and diffusion-driven growth of a selected Schnakenberg mode. FitzHugh-Nagumo: pulse excitation, recovery and an independent ODE reference: Excite a two-variable reduced membrane ODE with a current pulse; check all-output-time errors, temporal refinement and recovery against DOP853. Compare critical-point reconstruction from cell means using WENO-JS/Z power-two weights and actual periodic scalar transport. Separate epsilon choices, analytic cell means versus point values, and spatial error versus time-step effects."
+    "ja": "反応拡散：空間2次と時間4次を分けて測る: 線形の拡散・反応演算子を、連続と半離散のFourier厳密解を用いて小規模に検証します。 Turing不安定性：線形成長率と小振幅パターン: Schnakenberg型反応拡散で、一様平衡の安定性と拡散による選択モードの成長を行列指数で検証します。 FitzHugh–Nagumo：パルス興奮・回復と独立ODE参照: 2変数の膜興奮縮約ODEを電流パルスで励起し、DOP853との全出力時刻の誤差・時間収束・回復を確認します。 セル平均からのWENO-JS／Z二乗重みの臨界点再構成と、実際の周期スカラー輸送を比較します。εの違い、解析セル平均と点値、空間誤差と時間刻みの影響を分けます。 追加は実際の2D C-grid線形回転浅水場をRK4で時間発展。同じ離散作用素の行列指数を参照にし、連続波の空間誤差と固定N時間細分化を区別します。",
+    "en": "Reaction-diffusion: separate second-order space and fourth-order time: Validate a small linear diffusion-reaction operator against continuous and semidiscrete Fourier solutions. Turing instability: linear growth and small-amplitude patterns: Use a matrix exponential to validate stable homogeneous kinetics and diffusion-driven growth of a selected Schnakenberg mode. FitzHugh-Nagumo: pulse excitation, recovery and an independent ODE reference: Excite a two-variable reduced membrane ODE with a current pulse; check all-output-time errors, temporal refinement and recovery against DOP853. Compare critical-point reconstruction from cell means using WENO-JS/Z power-two weights and actual periodic scalar transport. Separate epsilon choices, analytic cell means versus point values, and spatial error versus time-step effects. Additional actual2D C-grid linear rotating-SWE fields use RK4. A matrix exponential of the same semidiscrete operator is reference-only; separate continuous spatial and fixed-N temporal errors."
   },
   "depth_additional_releases": [
     {
@@ -11492,6 +11492,292 @@
           }
         }
       ]
+    },
+    {
+      "group": "moving-waves",
+      "case_ids": [
+        "cgrid-rotating-wave"
+      ],
+      "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/",
+      "code_edition": "2026-11-23",
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/transport.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/references/exact.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/experiments.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/test_moving.py"
+      ],
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "run_from": "atlas-moving-waves-2026-11-23",
+      "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/atlas-moving-waves-2026-11-23.zip",
+      "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/source-manifest.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/verification.json",
+      "code_archive_sha256": "d9f2f8bff3bf5d9fa7c1118c0968e9c0374fd5e9a6d3f7f99352abc0841e3b7d",
+      "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/results/result.json",
+      "passed_tests": 19,
+      "examples": [
+        {
+          "id": "cgrid-rotating-wave",
+          "title": {
+            "ja": "2D C-grid回転浅水波の実時間発展",
+            "en": "Actual2D C-grid rotating shallow-water time advance"
+          },
+          "method_ids": [
+            "centered-difference",
+            "rk4"
+          ],
+          "domains": [
+            "pde",
+            "geometry"
+          ],
+          "summary": {
+            "ja": "実際の2D staggered場を時間積分し、連続波と離散symbolの参照を分けて比較します。",
+            "en": "Time-advance actual2D staggered fields and distinguish continuous-wave references from semidiscrete symbols."
+          },
+          "assumptions": {
+            "ja": "線形f-plane、g=H=f=1、周期単位正方形、(k,l)=(1,2)、eta振幅.01、N16/32/64,T.5。別の固定N16時間系列、zero-modeと離散geostrophic診断。",
+            "en": "Linear f-plane,g=H=f=1, periodic unit square, mode(1,2),height amplitude.01,N16/32/64,T.5. Separate N16 time refinement, zero-mode and discrete geostrophic probes."
+          },
+          "algorithm": {
+            "ja": "セルeta・法線face u/vの差分と4点Coriolis補間を2Dで評価しRK4更新。3×3行列指数は参照だけで、PDE場の更新には使いません。",
+            "en": "Actual2D cell-height/face-velocity differences and four-point Coriolis interpolation use RK4. The3×3 matrix exponential is reference-only, never the PDE update."
+          },
+          "validation": {
+            "ja": "連続PDE空間誤差と離散symbol時間誤差、mass/energy、stencil-symbol一致、zero-mode慣性振動と離散定常釣合いを保存。",
+            "en": "Retain continuous-PDE spatial and discrete-symbol temporal errors, mass/energy, stencil-symbol identity, zero-mode inertia and discrete steady balance."
+          },
+          "limits": {
+            "ja": "線形・平面・周期squareの限定例。非線形浅水、PV・球面格子・全球dynamical coreやWilliamsonは未実装の後続課題。",
+            "en": "Linear planar periodic square only. Nonlinear SWE,PV,spherical dynamics and Williamson tests remain future work."
+          },
+          "references": [
+            {
+              "id": "korn-danilov-cgrid",
+              "author": "P. Korn and S. Danilov",
+              "title": "Elementary dispersion analysis of some mimetic discretizations on triangular C-grids",
+              "url": "https://epic.awi.de/id/eprint/42760/1/c-grid_jcp_v5-1.pdf",
+              "review_level": "selected-primary-author-manuscript",
+              "review_scope": "Governing linear equations, energy adjoints and AppendixB quadrilateral standard-C symbols/eq19–21 inspected. Use standard square C-grid only, not the paper triangular mimetic schemes. No global Williamson test or original code run."
+            }
+          ],
+          "citations": [
+            {
+              "id": "korn-danilov-cgrid",
+              "author": "P. Korn and S. Danilov",
+              "title": "Elementary dispersion analysis of some mimetic discretizations on triangular C-grids",
+              "url": "https://epic.awi.de/id/eprint/42760/1/c-grid_jcp_v5-1.pdf",
+              "review_level": "selected-primary-author-manuscript",
+              "review_scope": "Governing linear equations, energy adjoints and AppendixB quadrilateral standard-C symbols/eq19–21 inspected. Use standard square C-grid only, not the paper triangular mimetic schemes. No global Williamson test or original code run."
+            }
+          ],
+          "formulas": [
+            "\\eta_t+u_x+v_y=0,\\quad u_t=v-\\eta_x,\\quad v_t=-u-\\eta_y",
+            "\\tilde k=2\\sin(kh/2)/h,\\quad C=\\cos(kh/2)\\cos(lh/2),\\quad U_h(t)=e^{tL_h}U_h(0)"
+          ],
+          "code_files": [
+            "run.py",
+            "transport.py",
+            "references/exact.py"
+          ],
+          "gallery_figure": "cgrid-rotating-wave-preview.png",
+          "additional_figures": [
+            {
+              "file": "cgrid-rotating-wave-preview.png",
+              "caption": {
+                "ja": "実際に保存した計算配列と固定入力の収束指標から描いた検証図。",
+                "en": "Validation preview from actual saved PDE arrays and fixed-input refinement measurements."
+              }
+            }
+          ],
+          "measured": {
+            "id": "cgrid-rotating-wave",
+            "passed": true,
+            "checks": {
+              "space-n16-s64 mean_height_change": true,
+              "space-n16-s64 relative_energy_change": true,
+              "space-n16-s64 energy_rhs_defect": true,
+              "space-n16-s64 finite actual 2D RK arrays": true,
+              "space-n32-s128 mean_height_change": true,
+              "space-n32-s128 relative_energy_change": true,
+              "space-n32-s128 energy_rhs_defect": true,
+              "space-n32-s128 finite actual 2D RK arrays": true,
+              "space-n64-s256 mean_height_change": true,
+              "space-n64-s256 relative_energy_change": true,
+              "space-n64-s256 energy_rhs_defect": true,
+              "space-n64-s256 finite actual 2D RK arrays": true,
+              "time-n16-s16 mean_height_change": true,
+              "time-n16-s16 relative_energy_change": true,
+              "time-n16-s16 energy_rhs_defect": true,
+              "time-n16-s16 finite actual 2D RK arrays": true,
+              "time-n16-s32 mean_height_change": true,
+              "time-n16-s32 relative_energy_change": true,
+              "time-n16-s32 energy_rhs_defect": true,
+              "time-n16-s32 finite actual 2D RK arrays": true,
+              "time-n16-s64 mean_height_change": true,
+              "time-n16-s64 relative_energy_change": true,
+              "time-n16-s64 energy_rhs_defect": true,
+              "time-n16-s64 finite actual 2D RK arrays": true,
+              "zero-n8-s64 mean_height_change": true,
+              "zero-n8-s64 relative_energy_change": true,
+              "zero-n8-s64 energy_rhs_defect": true,
+              "zero-n8-s64 finite actual 2D RK arrays": true,
+              "balance-n16-s64 mean_height_change": true,
+              "balance-n16-s64 relative_energy_change": true,
+              "balance-n16-s64 energy_rhs_defect": true,
+              "balance-n16-s64 finite actual 2D RK arrays": true,
+              "continuous spatial refinement 1": true,
+              "continuous spatial refinement 2": true,
+              "semidiscrete temporal refinement 1": true,
+              "semidiscrete temporal refinement 2": true,
+              "finest continuous error": true,
+              "finest semidiscrete error": true,
+              "zero-mode temporal accuracy": true,
+              "discrete geostrophic stationarity": true,
+              "reference analytic moving-face velocity": true,
+              "reference periodic analytic mass": true,
+              "reference skew-Hermitian discrete symbol": true,
+              "reference continuous wave frequency": true
+            },
+            "records": [
+              {
+                "id": "space-n16-s64",
+                "family": "space",
+                "n": 16,
+                "steps": 64,
+                "time": 0.5,
+                "semidiscrete_error": 7.68150690579356e-06,
+                "continuous_error": 0.15417853614302424,
+                "mean_height_change": 1.3721933745519665e-19,
+                "relative_energy_change": 1.3729729466671614e-06,
+                "energy_rhs_defect": 1.2176098616780567e-20,
+                "steady_change": 0.01908828820764388
+              },
+              {
+                "id": "space-n32-s128",
+                "family": "space",
+                "n": 32,
+                "steps": 128,
+                "time": 0.5,
+                "semidiscrete_error": 5.217973559752588e-07,
+                "continuous_error": 0.03884600898557307,
+                "mean_height_change": 1.7872395187065737e-19,
+                "relative_energy_change": 4.745178860954269e-08,
+                "energy_rhs_defect": 1.0190865146653301e-20,
+                "steady_change": 0.019171554262511624
+              },
+              {
+                "id": "space-n64-s256",
+                "family": "space",
+                "n": 64,
+                "steps": 256,
+                "time": 0.5,
+                "semidiscrete_error": 3.329761867125272e-08,
+                "continuous_error": 0.009728687776819789,
+                "mean_height_change": 2.3478694506705138e-19,
+                "relative_energy_change": 1.5206387260491283e-09,
+                "energy_rhs_defect": 1.020410003645415e-20,
+                "steady_change": 0.019186211823829964
+              },
+              {
+                "id": "time-n16-s16",
+                "family": "time",
+                "n": 16,
+                "steps": 16,
+                "time": 0.25,
+                "semidiscrete_error": 6.143058359357696e-05,
+                "continuous_error": 0.07749468414779062,
+                "mean_height_change": 1.0418505251227894e-19,
+                "relative_energy_change": 2.1871809533391406e-05,
+                "energy_rhs_defect": 1.6093625997831706e-20,
+                "steady_change": 0.0190883539259612
+              },
+              {
+                "id": "time-n16-s32",
+                "family": "time",
+                "n": 16,
+                "steps": 32,
+                "time": 0.25,
+                "semidiscrete_error": 3.84075411496773e-06,
+                "continuous_error": 0.0774394587018255,
+                "mean_height_change": 8.555032767268433e-20,
+                "relative_energy_change": 6.864867099221073e-07,
+                "energy_rhs_defect": 1.2176098616780567e-20,
+                "steady_change": 0.01908828820764388
+              },
+              {
+                "id": "time-n16-s64",
+                "family": "time",
+                "n": 16,
+                "steps": 64,
+                "time": 0.25,
+                "semidiscrete_error": 2.4006785754581883e-07,
+                "continuous_error": 0.07743594470506802,
+                "mean_height_change": 7.453889935837843e-20,
+                "relative_energy_change": 2.1476043610135775e-08,
+                "energy_rhs_defect": 1.7999450129153882e-20,
+                "steady_change": 0.019088280877386378
+              },
+              {
+                "id": "zero-n8-s64",
+                "family": "zero",
+                "n": 8,
+                "steps": 64,
+                "time": 0.5,
+                "semidiscrete_error": 9.276115767423519e-12,
+                "continuous_error": 9.276115767423519e-12,
+                "mean_height_change": 0.0,
+                "relative_energy_change": 7.205347429817266e-14,
+                "energy_rhs_defect": 0.0,
+                "steady_change": 0.008364336390787914
+              },
+              {
+                "id": "balance-n16-s64",
+                "family": "balance",
+                "n": 16,
+                "steps": 64,
+                "time": 0.5,
+                "semidiscrete_error": 6.989513057798398e-16,
+                "continuous_error": 0.0069533426306616995,
+                "mean_height_change": 1.2705494208814505e-20,
+                "relative_energy_change": 2.220446049250313e-16,
+                "energy_rhs_defect": 2.1352767681718556e-19,
+                "steady_change": 1.8041124150158794e-16
+              }
+            ],
+            "metrics": {
+              "n": 16,
+              "steps": 64,
+              "time": 0.5,
+              "semidiscrete_error": 6.989513057798398e-16,
+              "continuous_error": 0.0069533426306616995,
+              "mean_height_change": 1.2705494208814505e-20,
+              "relative_energy_change": 2.220446049250313e-16,
+              "energy_rhs_defect": 2.1352767681718556e-19,
+              "steady_change": 1.8041124150158794e-16
+            },
+            "data_files": [
+              "cgrid-rotating-wave-space-n16-s64.npz",
+              "cgrid-rotating-wave-space-n32-s128.npz",
+              "cgrid-rotating-wave-space-n64-s256.npz",
+              "cgrid-rotating-wave-time-n16-s16.npz",
+              "cgrid-rotating-wave-time-n16-s32.npz",
+              "cgrid-rotating-wave-time-n16-s64.npz",
+              "cgrid-rotating-wave-zero-n8-s64.npz",
+              "cgrid-rotating-wave-balance-n16-s64.npz"
+            ]
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/cgrid-rotating-wave/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-moving-waves/#cgrid-rotating-wave",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-moving-waves/#cgrid-rotating-wave"
+          }
+        }
+      ]
     }
   ],
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/",
@@ -11505,14 +11791,19 @@
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/run.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/weno.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/references/analytic.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/references/analytic.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/transport.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/references/exact.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/experiments.py"
   ],
   "test_urls": [
     "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
     "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_runge_kutta.py",
     "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_hamiltonian.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/test_weno.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/test_weno.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/test_moving.py"
   ],
   "run_commands": [
     "python -m pytest -q tests/test_time_geometry.py tests/test_runge_kutta.py tests/test_hamiltonian.py"
@@ -11570,6 +11861,15 @@
       "guide": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    },
+    {
+      "id": "cgrid-rotating-wave",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/cgrid-rotating-wave/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/cgrid-rotating-wave/?lang=en"
       },
       "kind": "dedicated-supplement"
     }
@@ -11703,6 +12003,20 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-fitzhugh-nagumo-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bio-fitzhugh-nagumo-en"
         }
+      },
+      {
+        "id": "linear-rotating-shallow-water",
+        "name": {
+          "ja": "線形回転浅水方程式",
+          "en": "Linear rotating shallow-water equations"
+        },
+        "problem_ids": [
+          "cgrid-rotating-wave"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#linear-rotating-shallow-water-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#linear-rotating-shallow-water-en"
+        }
       }
     ],
     "problems": [
@@ -11759,8 +12073,8 @@
         ],
         "role": "execution",
         "method_note": {
-          "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。 セル平均からのWENO-JS／Z二乗重みの臨界点再構成と、実際の周期スカラー輸送を比較します。εの違い、解析セル平均と点値、空間誤差と時間刻みの影響を分けます。",
-          "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions. Compare critical-point reconstruction from cell means using WENO-JS/Z power-two weights and actual periodic scalar transport. Separate epsilon choices, analytic cell means versus point values, and spatial error versus time-step effects."
+          "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。 セル平均からのWENO-JS／Z二乗重みの臨界点再構成と、実際の周期スカラー輸送を比較します。εの違い、解析セル平均と点値、空間誤差と時間刻みの影響を分けます。 p+1個のGauss解点、上流数値流束、Legendre多項式によるRadau左右補正、SSPRK(3,3)。初期L2射影・上流流束・時間刻み規約をバイト一致の既存modal DGと揃えます。スケールしたCourant数(2p+1)|a|Δt/h≤.15。最後にp2/N32で刻みを半減。",
+          "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions. Compare critical-point reconstruction from cell means using WENO-JS/Z power-two weights and actual periodic scalar transport. Separate epsilon choices, analytic cell means versus point values, and spatial error versus time-step effects. p+1 Gauss solution points, upwind interface flux, Legendre Radau corrections and SSPRK(3,3). Match initial L2 projection, upwind flux and timestep policy to the unchanged published modal DG. Scaled Courant(2p+1)|a|dt/h<=.15; separately halve the timestep at p2/N32."
         },
         "reference_url": {
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=ja#references-ja",
@@ -12207,6 +12521,66 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fitzhugh-nagumo/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fitzhugh-nagumo/?lang=en#references-en"
         }
+      },
+      {
+        "id": "cgrid-rotating-wave",
+        "name": {
+          "ja": "2D C-grid回転浅水波の実時間発展",
+          "en": "Actual2D C-grid rotating shallow-water time advance"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/results/cgrid-rotating-wave-preview.png",
+          "sha256": "363d1ee6a1c02f5fbfff257511b85cc00ef5cf80817cc265eb866847f5609a4c",
+          "width": 960,
+          "height": 608,
+          "caption": {
+            "ja": "実際に保存した計算配列と固定入力の収束指標から描いた検証図。",
+            "en": "Validation preview from actual saved PDE arrays and fixed-input refinement measurements."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cgrid-rotating-wave/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cgrid-rotating-wave/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cgrid-rotating-wave/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cgrid-rotating-wave/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "cgrid-rotating-wave",
+            "kind": "supplement",
+            "name": {
+              "ja": "2D C-grid回転浅水波の実時間発展",
+              "en": "Actual2D C-grid rotating shallow-water time advance"
+            },
+            "scope": {
+              "ja": "実際の2D staggered場を時間積分し、連続波と離散symbolの参照を分けて比較します。",
+              "en": "Time-advance actual2D staggered fields and distinguish continuous-wave references from semidiscrete symbols."
+            },
+            "method_ids": [
+              "centered-difference",
+              "rk4"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/cgrid-rotating-wave/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/cgrid-rotating-wave/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/atlas-moving-waves-2026-11-23.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "セルeta・法線face u/vの差分と4点Coriolis補間を2Dで評価しRK4更新。3×3行列指数は参照だけで、PDE場の更新には使いません。",
+          "en": "Actual2D cell-height/face-velocity differences and four-point Coriolis interpolation use RK4. The3×3 matrix exponential is reference-only, never the PDE update."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cgrid-rotating-wave/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cgrid-rotating-wave/?lang=en#references-en"
+        }
       }
     ],
     "references": [
@@ -12261,6 +12635,27 @@
             "view": {
               "ja": "/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=ja#weno-critical-epsilon-ja-measurements",
               "en": "/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=en#weno-critical-epsilon-en-measurements"
+            }
+          },
+          {
+            "id": "fr-periodic-advection",
+            "title": {
+              "ja": "FRとDGの周期正弦移流：平均0.4・T=.25の解析参照",
+              "en": "FR/DG periodic sine advection: analytic reference at mean0.4 andT=.25"
+            },
+            "kind": "analytic",
+            "relation": "same-problem",
+            "note": {
+              "ja": "全て無次元。u_t+u_x=0、区間[0,1)、周期境界、初期値0.4+sin(2πx)。解析解は0.4+sin(2π(x−t))。一定の正速度1、均一なアフィン区間要素。",
+              "en": "Dimensionless u_t+u_x=0 on[0,1), periodic boundary, initial0.4+sin(2pi x), analytic0.4+sin(2pi(x-t)). Constant positive speed1 and uniform affine intervals."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-fr-periodic-advection-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-fr-periodic-advection-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/fr-periodic-advection/?lang=ja",
+              "en": "/numerical-methods-atlas/validation/fr-periodic-advection/?lang=en"
             }
           }
         ]
@@ -12394,6 +12789,40 @@
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fitzhugh-nagumo/?lang=en#references-en"
         },
         "cases": []
+      },
+      {
+        "problem_id": "cgrid-rotating-wave",
+        "problem_name": {
+          "ja": "2D C-grid回転浅水波の実時間発展",
+          "en": "Actual2D C-grid rotating shallow-water time advance"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cgrid-rotating-wave/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cgrid-rotating-wave/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "cgrid-rotating-wave",
+            "title": {
+              "ja": "C-grid：連続Fourier解と離散記号の行列指数",
+              "en": "C-grid: continuous Fourier solution and discrete-symbol exponential"
+            },
+            "kind": "analytic",
+            "relation": "same-problem",
+            "note": {
+              "ja": "線形・平面・周期squareの限定例。非線形浅水、PV・球面格子・全球dynamical coreやWilliamsonは未実装の後続課題。",
+              "en": "Linear planar periodic square only. Nonlinear SWE,PV,spherical dynamics and Williamson tests remain future work."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-cgrid-rotating-wave-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-cgrid-rotating-wave-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/cgrid-rotating-wave/?lang=ja#cgrid-rotating-wave-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/cgrid-rotating-wave/?lang=en#cgrid-rotating-wave-en-measurements"
+            }
+          }
+        ]
       }
     ]
   }

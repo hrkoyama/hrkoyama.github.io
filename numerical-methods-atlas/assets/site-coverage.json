@@ -10,26 +10,26 @@
     "test_problems": "Count independent problems across published atlas results and the verified public code edition. Distinguish governing equations, dimensions, boundary conditions and named initial/source problems; merge solver, mesh, step-size, parameter-sweep, random-seed and presentation variants of the same problem. Repeated Sod exhibits, wedge Mach variants and CT/GLM variants do not add problems. Exclude reference-only evaluations, planned/literature-only entries, diagrams, and local identity/invariant/input-error unit checks. Static-force, boundary-value, approximation and algebraic problems are included; not every entry is a time-evolving simulation."
   },
   "counts": {
-    "equations": 50,
-    "methods": 133,
-    "papers": 247,
-    "references": 304,
-    "journal_articles": 241,
-    "conference_papers": 6,
+    "equations": 56,
+    "methods": 136,
+    "papers": 249,
+    "references": 310,
+    "journal_articles": 242,
+    "conference_papers": 7,
     "books": 25,
     "chapters": 3,
-    "reports": 3,
-    "other_sources": 26,
-    "local_equations": 27,
-    "reading_equations": 23,
-    "local_methods": 118,
+    "reports": 4,
+    "other_sources": 29,
+    "local_equations": 34,
+    "reading_equations": 22,
+    "local_methods": 121,
     "reading_methods": 15,
     "biological_entries": 22,
     "gallery_cases": 9,
     "gallery_equations": 7,
-    "reading_chapters": 107,
-    "test_problems": 92,
-    "saved_test_problems": 92,
+    "reading_chapters": 115,
+    "test_problems": 102,
+    "saved_test_problems": 102,
     "code_test_problems": 0
   },
   "items": [
@@ -58,7 +58,7 @@
       "chapter": "elliptic",
       "status": "local-example",
       "group": "Physics & mathematical models",
-      "scope": ""
+      "scope": "Additional cases cover an L-shaped singularity with matched-DOF grading,warped squares,pure-Neumann compatibility/mean gauge and mixed Robin conditions. Existing Poisson examples remain; distinguish residuals from continuous error."
     },
     {
       "kind": "equation",
@@ -112,7 +112,7 @@
       "chapter": "mhd",
       "status": "local-example",
       "group": "Physics & mathematical models",
-      "scope": ""
+      "scope": "Retain existing MHD examples. Add a full-eight-state1D aligned CP wave and actual2D magnetic-loop/postshock Orszag–Tang cases. Independent Athena references for the latter two are finite-grid numerical solutions,not exact or generic validation."
     },
     {
       "kind": "equation",
@@ -173,9 +173,9 @@
       "id": "srhd",
       "label": "Special-relativistic hydrodynamics",
       "chapter": "relativistic-hydrodynamics",
-      "status": "reading",
+      "status": "local-example",
       "group": "Relativistic models",
-      "scope": "Literature review; no local relativistic solver."
+      "scope": "Mild fixed symmetric two-shock1D collision with exact conserved cell means; not a generic relativistic Riemann or GR solver."
     },
     {
       "kind": "equation",
@@ -263,15 +263,6 @@
       "id": "cip",
       "label": "Cubic-Hermite CIP",
       "chapter": "cip",
-      "status": "local-example",
-      "group": "Spatial discretization",
-      "scope": ""
-    },
-    {
-      "kind": "method",
-      "id": "p1-fem",
-      "label": "Continuous P1 Galerkin FEM",
-      "chapter": "fem",
       "status": "local-example",
       "group": "Spatial discretization",
       "scope": ""
@@ -530,15 +521,6 @@
     },
     {
       "kind": "method",
-      "id": "cg",
-      "label": "Conjugate gradients",
-      "chapter": "elliptic",
-      "status": "local-example",
-      "group": "Linear & nonlinear solvers",
-      "scope": ""
-    },
-    {
-      "kind": "method",
       "id": "rbgs",
       "label": "Red-black Gauss–Seidel",
       "chapter": "elliptic",
@@ -680,15 +662,6 @@
       "status": "local-example",
       "group": "Coupling, constraints & particles",
       "scope": ""
-    },
-    {
-      "kind": "method",
-      "id": "ale",
-      "label": "ALE uniform-state / geometric-conservation model",
-      "chapter": "ale",
-      "status": "local-example",
-      "group": "Coupling, constraints & particles",
-      "scope": "Moving-volume scalar check; no complete ALE Euler solver."
     },
     {
       "kind": "method",
@@ -1304,6 +1277,66 @@
       "origin": "curated-equation-catalog"
     },
     {
+      "kind": "equation",
+      "id": "forced-vorticity",
+      "label": "Forced vorticity about a maintained shear layer",
+      "chapter": "validation-instability-growth",
+      "status": "local-example",
+      "group": "Physics & mathematical models",
+      "scope": "Fixed periodic[0,2pi]² initial-growth case,delta.25,nu.005,epsilon1e-5,32²/64²/128²,T1. Compare an independent Fourier–Galerkin linear IVP and separate timestep/amplitude probes; no late roll-up certification.",
+      "origin": "curated-equation-catalog"
+    },
+    {
+      "kind": "equation",
+      "id": "boussinesq-buoyancy",
+      "label": "Boussinesq vorticity with active buoyancy",
+      "chapter": "validation-instability-growth",
+      "status": "local-example",
+      "group": "Physics & mathematical models",
+      "scope": "Periodic[0,2pi]²,nu=kappa.005,delta.25,epsilon1e-5,32²/64²/128²,T2. Smooth double-layer initial growth is compared with an independent linear reference; no RT-turbulence or sharp-density-interface claim.",
+      "origin": "curated-equation-catalog"
+    },
+    {
+      "kind": "equation",
+      "id": "ale-scalar-transport",
+      "label": "ALE scalar conservation on moving cells",
+      "chapter": "validation-moving-waves",
+      "status": "local-example",
+      "group": "Physics & mathematical models",
+      "scope": "Periodic unit interval,q0=1+.2sin(2pi x),N40/80/160,T1, plus constant-state GCL and fixed-N temporal refinement. Prescribed1D motion only; no Saltzman or general moving-mesh fluid claim.",
+      "origin": "curated-equation-catalog"
+    },
+    {
+      "kind": "equation",
+      "id": "linear-rotating-shallow-water",
+      "label": "Linear rotating shallow-water equations",
+      "chapter": "validation-moving-waves",
+      "status": "local-example",
+      "group": "Physics & mathematical models",
+      "scope": "Periodic unit square,mode(1,2),height amplitude.01,N16/32/64,T.5, plus separate time refinement. No nonlinear shallow-water,spherical/global dynamics or Williamson test claim.",
+      "origin": "curated-equation-catalog"
+    },
+    {
+      "kind": "equation",
+      "id": "variable-viscosity-vector",
+      "label": "Variable-viscosity vector stress boundary-value problem",
+      "chapter": "validation-mesh-boundary",
+      "status": "local-example",
+      "group": "Physics & mathematical models",
+      "scope": "Annulus1≤r≤2,zero Dirichlet on both circles,periodic theta,Nr8/16/32,Ntheta2Nr. Separately check velocity,strain,physical traction,work and nonzero net boundary force. No Navier–Stokes or general-quadrilateral certification.",
+      "origin": "curated-equation-catalog"
+    },
+    {
+      "kind": "equation",
+      "id": "srmhd",
+      "label": "Special-relativistic ideal MHD (SRMHD)",
+      "chapter": "validation-relativistic",
+      "status": "local-example",
+      "group": "Physics & mathematical models",
+      "scope": "Nonlinear CP exact family rho=p=Bx=etaA1,gamma4/3,periodic unit interval,N64/128/256,one period. Check conserved means,phase,amplitude and stage physicality; no generic RMHD shocks,extreme magnetization/speeds or multidimensional divergence-control claim.",
+      "origin": "curated-equation-catalog"
+    },
+    {
       "kind": "method",
       "id": "monte-carlo",
       "label": "Monte Carlo integration",
@@ -1370,7 +1403,7 @@
       "chapter": "validation-models",
       "status": "local-example",
       "group": "Spatial discretization",
-      "scope": "Reaction-diffusion: separate second-order space and fourth-order time: Validate a small linear diffusion-reaction operator against continuous and semidiscrete Fourier solutions. Turing instability: linear growth and small-amplitude patterns: Use a matrix exponential to validate stable homogeneous kinetics and diffusion-driven growth of a selected Schnakenberg mode. Finite-amplitude Schnakenberg transient: nonlinearity and independent reference: Validate a finite-amplitude reaction-diffusion transient to t=8 with an independent Fourier–Galerkin reference, grid/time convergence and newly generated harmonics. Near-saturated Schnakenberg pattern: near-stationarity and grid/time convergence: Compare the selected1D pattern at t=100 with an independent reference. Separate reference90→100 change/full-PDE residual from the finite-step primary FD residual. Solve a Re100 lid-driven cavity and manufactured flow with a nonperiodic wall-bounded2D vorticity/streamfunction method. Compare original finite-grid Ghia tables, wall shear and grid refinement, keeping a separate pressure-Poisson/gradient manufactured problem distinct.",
+      "scope": "Reaction-diffusion: separate second-order space and fourth-order time: Validate a small linear diffusion-reaction operator against continuous and semidiscrete Fourier solutions. Turing instability: linear growth and small-amplitude patterns: Use a matrix exponential to validate stable homogeneous kinetics and diffusion-driven growth of a selected Schnakenberg mode. Finite-amplitude Schnakenberg transient: nonlinearity and independent reference: Validate a finite-amplitude reaction-diffusion transient to t=8 with an independent Fourier–Galerkin reference, grid/time convergence and newly generated harmonics. Near-saturated Schnakenberg pattern: near-stationarity and grid/time convergence: Compare the selected1D pattern at t=100 with an independent reference. Separate reference90→100 change/full-PDE residual from the finite-step primary FD residual. Solve a Re100 lid-driven cavity and manufactured flow with a nonperiodic wall-bounded2D vorticity/streamfunction method. Compare original finite-grid Ghia tables, wall shear and grid refinement, keeping a separate pressure-Poisson/gradient manufactured problem distinct. Additional periodic2D KH/RT initial growth uses maintained smooth bases and independent linear IVPs; actual centered conservative face fluxes and Heun evolve vorticity/buoyancy with pressure eliminated. Additional2D cell-centered Poisson uses actual five-point face differences and half-cell Robin elimination; check Neumann compatibility/mean gauge and continuous boundary-flux error. Additional actual2D linear rotating-SWE C-grid uses staggered gradients/divergence and adjoint four-point Coriolis interpolation; separate continuous and discrete-symbol references.",
       "origin": "curated-depth-example"
     },
     {
@@ -1380,7 +1413,7 @@
       "chapter": "validation-zalesak",
       "status": "local-example",
       "group": "Spatial discretization",
-      "scope": "The additional Zalesak-type example is two-dimensional scalar rotation in a prescribed divergence-free velocity. Compare donor-cell upwinding and minmod MUSCL with the same periodic grid and SSPRK(3,3), measuring stage bounds, conservation and full-turn shape errors. It does not certify FCT or general multidimensional Euler bounds.",
+      "scope": "The additional Zalesak-type example is two-dimensional scalar rotation in a prescribed divergence-free velocity. Compare donor-cell upwinding and minmod MUSCL with the same periodic grid and SSPRK(3,3), measuring stage bounds, conservation and full-turn shape errors. It does not certify FCT or general multidimensional Euler bounds. Additional1D scalar transport on nonuniform moving cells uses actual upwind flux with positive physical-minus-face speed; not Euler fluid or remapping.",
       "origin": "curated-depth-example"
     },
     {
@@ -1410,7 +1443,7 @@
       "chapter": "validation-mhd",
       "status": "local-example",
       "group": "Spatial discretization",
-      "scope": "Compare shock–density-wave interaction against separately executed Athena++ reference data rather than a finer grid of the same Python code. The additional Noh edition uses volume-centroid conservative MUSCL/minmod with Heun only in spherical runs; planar/cylindrical states stay piecewise constant. The additional low-Mach vortex uses the same unlimited central primitive reconstruction for both Roe variants. It does not verify general limited MUSCL or a TVD guarantee. The additional double rarefaction connects one-dimensional conservative MUSCL, shared Lax–Friedrichs fluxes, mean-preserving positive-state scaling and SSPRK(3,3). Check the admissible CFL/wave-speed conditions, means and faces at each forward-Euler candidate/SSP stage, and conservation budgets; this does not certify general Euler, WENO, DG or MHD positivity. The additional Zalesak-type example is two-dimensional scalar rotation in a prescribed divergence-free velocity. Compare donor-cell upwinding and minmod MUSCL with the same periodic grid and SSPRK(3,3), measuring stage bounds, conservation and full-turn shape errors. It does not certify FCT or general multidimensional Euler bounds.",
+      "scope": "Compare shock–density-wave interaction against separately executed Athena++ reference data rather than a finer grid of the same Python code. The additional Noh edition uses volume-centroid conservative MUSCL/minmod with Heun only in spherical runs; planar/cylindrical states stay piecewise constant. The additional low-Mach vortex uses the same unlimited central primitive reconstruction for both Roe variants. It does not verify general limited MUSCL or a TVD guarantee. The additional double rarefaction connects one-dimensional conservative MUSCL, shared Lax–Friedrichs fluxes, mean-preserving positive-state scaling and SSPRK(3,3). Check the admissible CFL/wave-speed conditions, means and faces at each forward-Euler candidate/SSP stage, and conservation budgets; this does not certify general Euler, WENO, DG or MHD positivity. The additional Zalesak-type example is two-dimensional scalar rotation in a prescribed divergence-free velocity. Compare donor-cell upwinding and minmod MUSCL with the same periodic grid and SSPRK(3,3), measuring stage bounds, conservation and full-turn shape errors. It does not certify FCT or general multidimensional Euler bounds. Additional full-state1D CP wave and actual2D magnetic-loop/Orszag–Tang use HLLD,MC-MUSCL and Heun. Count HLLD-to-HLLE fallback and face positivity scaling,with no cell floor or PDE retry. Additional lightweight1D SRHD symmetric collision/SRMHD finite-amplitude CP wave use the shared full7-variable stress/induction,MUSCL-minmod,causalHLL±1,SSPRK33 and Z recovery; no generic Riemann,GR or extreme-speed claim.",
       "origin": "curated-depth-example"
     },
     {
@@ -1421,6 +1454,16 @@
       "status": "local-example",
       "group": "Spatial discretization",
       "scope": "Compare critical-point reconstruction from cell means using WENO-JS/Z power-two weights and actual periodic scalar transport. Separate epsilon choices, analytic cell means versus point values, and spatial error versus time-step effects.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "p1-fem",
+      "label": "Continuous P1 Galerkin FEM",
+      "chapter": "validation-mesh-boundary",
+      "status": "local-example",
+      "group": "Spatial discretization",
+      "scope": "AdditionalP1 cases compare an Lshape singularity on uniform/matched-DOF graded meshes and square/warped triangles. Independently increase corner-Duffy quadrature and compare L2/H1 errors and mesh quality.",
       "origin": "curated-depth-example"
     },
     {
@@ -1440,7 +1483,7 @@
       "chapter": "validation-double-mach",
       "status": "local-example",
       "group": "Riemann fluxes & corrections",
-      "scope": "Three-grid 2D Double Mach verification using HLL and Heun compares a separately written finite-grid numerical reference, boundary-flux budgets, shock position and unresolved near-wall structure. The additional forward-step example verifies actual 2D finite-volume flow with reflecting walls including the step faces. The additional Guderley example evolves a zero-upstream-pressure spherical converging shock only before collapse and compares a semi-analytic similarity reference. Check shallow-water bed sources and hydrostatic reconstruction with wet/emerged lakes and a SWASHES steady Bernoulli flow. A separate flat-bed Ritter dam break tests genuinely dry states, conservation budgets and a fixed-depth front.",
+      "scope": "Three-grid 2D Double Mach verification using HLL and Heun compares a separately written finite-grid numerical reference, boundary-flux budgets, shock position and unresolved near-wall structure. The additional forward-step example verifies actual 2D finite-volume flow with reflecting walls including the step faces. The additional Guderley example evolves a zero-upstream-pressure spherical converging shock only before collapse and compares a semi-analytic similarity reference. Check shallow-water bed sources and hydrostatic reconstruction with wet/emerged lakes and a SWASHES steady Bernoulli flow. A separate flat-bed Ritter dam break tests genuinely dry states, conservation budgets and a fixed-depth front. Additional lightweight1D SRHD symmetric collision/SRMHD finite-amplitude CP wave use the shared full7-variable stress/induction,MUSCL-minmod,causalHLL±1,SSPRK33 and Z recovery; no generic Riemann,GR or extreme-speed claim.",
       "origin": "curated-depth-example"
     },
     {
@@ -1460,7 +1503,7 @@
       "chapter": "validation-noh",
       "status": "local-example",
       "group": "Limiters & admissibility",
-      "scope": "Minmod limits conserved-variable MUSCL slopes in this Noh edition's spherical series. Planar/cylindrical runs retain piecewise-constant states. The additional Zalesak-type example is two-dimensional scalar rotation in a prescribed divergence-free velocity. Compare donor-cell upwinding and minmod MUSCL with the same periodic grid and SSPRK(3,3), measuring stage bounds, conservation and full-turn shape errors. It does not certify FCT or general multidimensional Euler bounds.",
+      "scope": "Minmod limits conserved-variable MUSCL slopes in this Noh edition's spherical series. Planar/cylindrical runs retain piecewise-constant states. The additional Zalesak-type example is two-dimensional scalar rotation in a prescribed divergence-free velocity. Compare donor-cell upwinding and minmod MUSCL with the same periodic grid and SSPRK(3,3), measuring stage bounds, conservation and full-turn shape errors. It does not certify FCT or general multidimensional Euler bounds. Additional lightweight1D SRHD symmetric collision/SRMHD finite-amplitude CP wave use the shared full7-variable stress/induction,MUSCL-minmod,causalHLL±1,SSPRK33 and Z recovery; no generic Riemann,GR or extreme-speed claim.",
       "origin": "curated-depth-example"
     },
     {
@@ -1490,7 +1533,7 @@
       "chapter": "validation-noh",
       "status": "local-example",
       "group": "Time integration",
-      "scope": "An original small 1D finite-volume code solves zero-pressure Noh flow in planar, cylindrical and spherical symmetry. Grids 64/128/256/512 measure full-domain error, origin heating, shock location and budgets, and compare spherical boundary-inflow time-quadrature error with its analytic identity. The additional2D Cartesian Noh edition updates both x/y fluxes and both momenta on a full square. The additional spherical Sedov blast measures grid and finite deposition-radius effects separately. The additional forward-step example verifies actual 2D finite-volume flow with reflecting walls including the step faces. The additional Guderley example evolves a zero-upstream-pressure spherical converging shock only before collapse and compares a semi-analytic similarity reference. Solve a Re100 lid-driven cavity and manufactured flow with a nonperiodic wall-bounded2D vorticity/streamfunction method. Compare original finite-grid Ghia tables, wall shear and grid refinement, keeping a separate pressure-Poisson/gradient manufactured problem distinct.",
+      "scope": "An original small 1D finite-volume code solves zero-pressure Noh flow in planar, cylindrical and spherical symmetry. Grids 64/128/256/512 measure full-domain error, origin heating, shock location and budgets, and compare spherical boundary-inflow time-quadrature error with its analytic identity. The additional2D Cartesian Noh edition updates both x/y fluxes and both momenta on a full square. The additional spherical Sedov blast measures grid and finite deposition-radius effects separately. The additional forward-step example verifies actual 2D finite-volume flow with reflecting walls including the step faces. The additional Guderley example evolves a zero-upstream-pressure spherical converging shock only before collapse and compares a semi-analytic similarity reference. Solve a Re100 lid-driven cavity and manufactured flow with a nonperiodic wall-bounded2D vorticity/streamfunction method. Compare original finite-grid Ghia tables, wall shear and grid refinement, keeping a separate pressure-Poisson/gradient manufactured problem distinct. Additional periodic2D KH/RT initial growth uses maintained smooth bases and independent linear IVPs; actual centered conservative face fluxes and Heun evolve vorticity/buoyancy with pressure eliminated. Additional full-state1D CP wave and actual2D magnetic-loop/Orszag–Tang use HLLD,MC-MUSCL and Heun. Count HLLD-to-HLLE fallback and face positivity scaling,with no cell floor or PDE retry. Additional ALE scalar advances face positions and mass with the same two-stage Heun weights,checking boundary budgets,GCL and an independent time reference.",
       "origin": "curated-depth-example"
     },
     {
@@ -1500,7 +1543,7 @@
       "chapter": "validation-low-mach",
       "status": "local-example",
       "group": "Time integration",
-      "scope": "A fixed smooth 2D Euler isentropic vortex at background Mach numbers .1 and .01 compares ordinary Roe and Miczek-type dissipation-matrix preconditioning D=P⁻¹|PA|, with unlimited central primitive-variable MUSCL reconstruction for both. SSPRK(3,3) retains physical time and the acoustic CFL. Velocity error, dynamically normalized pressure error, periodic conservation and sampled Fourier diagnostics are evaluated separately. Pseudo-time or dual-time steady acceleration, slope limiting and TVD guarantees remain outside this example. The additional double rarefaction connects one-dimensional conservative MUSCL, shared Lax–Friedrichs fluxes, mean-preserving positive-state scaling and SSPRK(3,3). Check the admissible CFL/wave-speed conditions, means and faces at each forward-Euler candidate/SSP stage, and conservation budgets; this does not certify general Euler, WENO, DG or MHD positivity. The additional Zalesak-type example is two-dimensional scalar rotation in a prescribed divergence-free velocity. Compare donor-cell upwinding and minmod MUSCL with the same periodic grid and SSPRK(3,3), measuring stage bounds, conservation and full-turn shape errors. It does not certify FCT or general multidimensional Euler bounds.",
+      "scope": "A fixed smooth 2D Euler isentropic vortex at background Mach numbers .1 and .01 compares ordinary Roe and Miczek-type dissipation-matrix preconditioning D=P⁻¹|PA|, with unlimited central primitive-variable MUSCL reconstruction for both. SSPRK(3,3) retains physical time and the acoustic CFL. Velocity error, dynamically normalized pressure error, periodic conservation and sampled Fourier diagnostics are evaluated separately. Pseudo-time or dual-time steady acceleration, slope limiting and TVD guarantees remain outside this example. The additional double rarefaction connects one-dimensional conservative MUSCL, shared Lax–Friedrichs fluxes, mean-preserving positive-state scaling and SSPRK(3,3). Check the admissible CFL/wave-speed conditions, means and faces at each forward-Euler candidate/SSP stage, and conservation budgets; this does not certify general Euler, WENO, DG or MHD positivity. The additional Zalesak-type example is two-dimensional scalar rotation in a prescribed divergence-free velocity. Compare donor-cell upwinding and minmod MUSCL with the same periodic grid and SSPRK(3,3), measuring stage bounds, conservation and full-turn shape errors. It does not certify FCT or general multidimensional Euler bounds. Additional lightweight1D SRHD symmetric collision/SRMHD finite-amplitude CP wave use the shared full7-variable stress/induction,MUSCL-minmod,causalHLL±1,SSPRK33 and Z recovery; no generic Riemann,GR or extreme-speed claim.",
       "origin": "curated-depth-example"
     },
     {
@@ -1510,7 +1553,7 @@
       "chapter": "validation-models",
       "status": "local-example",
       "group": "Time integration",
-      "scope": "Reaction-diffusion: separate second-order space and fourth-order time: Validate a small linear diffusion-reaction operator against continuous and semidiscrete Fourier solutions. Turing instability: linear growth and small-amplitude patterns: Use a matrix exponential to validate stable homogeneous kinetics and diffusion-driven growth of a selected Schnakenberg mode. FitzHugh-Nagumo: pulse excitation, recovery and an independent ODE reference: Excite a two-variable reduced membrane ODE with a current pulse; check all-output-time errors, temporal refinement and recovery against DOP853. Compare critical-point reconstruction from cell means using WENO-JS/Z power-two weights and actual periodic scalar transport. Separate epsilon choices, analytic cell means versus point values, and spatial error versus time-step effects.",
+      "scope": "Reaction-diffusion: separate second-order space and fourth-order time: Validate a small linear diffusion-reaction operator against continuous and semidiscrete Fourier solutions. Turing instability: linear growth and small-amplitude patterns: Use a matrix exponential to validate stable homogeneous kinetics and diffusion-driven growth of a selected Schnakenberg mode. FitzHugh-Nagumo: pulse excitation, recovery and an independent ODE reference: Excite a two-variable reduced membrane ODE with a current pulse; check all-output-time errors, temporal refinement and recovery against DOP853. Compare critical-point reconstruction from cell means using WENO-JS/Z power-two weights and actual periodic scalar transport. Separate epsilon choices, analytic cell means versus point values, and spatial error versus time-step effects. Additional actual2D C-grid linear rotating-SWE fields use RK4. A matrix exponential of the same semidiscrete operator is reference-only; separate continuous spatial and fixed-N temporal errors.",
       "origin": "curated-depth-example"
     },
     {
@@ -1521,6 +1564,16 @@
       "status": "local-example",
       "group": "Time integration",
       "scope": "Finite-amplitude Schnakenberg transient: nonlinearity and independent reference: Validate a finite-amplitude reaction-diffusion transient to t=8 with an independent Fourier–Galerkin reference, grid/time convergence and newly generated harmonics. Near-saturated Schnakenberg pattern: near-stationarity and grid/time convergence: Compare the selected1D pattern at t=100 with an independent reference. Separate reference90→100 change/full-PDE residual from the finite-step primary FD residual.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "cg",
+      "label": "Conjugate gradients",
+      "chapter": "validation-mesh-boundary",
+      "status": "local-example",
+      "group": "Linear & nonlinear solvers",
+      "scope": "Additional compatible pure-Neumann Poisson uses CG from zero on the same singular operator; align only its constant mean gauge and compare a constrained direct solve. Reject incompatible forcing without source projection.",
       "origin": "curated-depth-example"
     },
     {
@@ -1540,7 +1593,7 @@
       "chapter": "validation-mhd",
       "status": "local-example",
       "group": "Coupling, constraints & particles",
-      "scope": "Orszag–Tang: CT, GLM and independent Athena++: Compare CT and GLM density, magnetic field, conservation and div B for the same periodic Orszag–Tang data, against separately executed Athena++. CT and GLM: mesh/time convergence of a moving magnetostatic equilibrium: Use a constructed exact equilibrium with nonzero magnetic force balanced by a pressure gradient, matching CT/GLM initial cell states, flux speed bound and time-step sequence. Orszag–Tang: matched CT/GLM and converged independent references: Run CT/GLM with the same OT initial cell averages and dt sequence, comparing with separately executed Athena++ references whose mesh/time sensitivities are separated. Initial-constraint preservation by CT and active GLM cleaning: nonphysical control: Intentionally begin with the same non-solenoidal cell B, checking that CT does not remove the initial defect and calibrating GLM’s B/psi response. This diagnostic adds no physical problem.",
+      "scope": "Orszag–Tang: CT, GLM and independent Athena++: Compare CT and GLM density, magnetic field, conservation and div B for the same periodic Orszag–Tang data, against separately executed Athena++. CT and GLM: mesh/time convergence of a moving magnetostatic equilibrium: Use a constructed exact equilibrium with nonzero magnetic force balanced by a pressure gradient, matching CT/GLM initial cell states, flux speed bound and time-step sequence. Orszag–Tang: matched CT/GLM and converged independent references: Run CT/GLM with the same OT initial cell averages and dt sequence, comparing with separately executed Athena++ references whose mesh/time sensitivities are separated. Initial-constraint preservation by CT and active GLM cleaning: nonphysical control: Intentionally begin with the same non-solenoidal cell B, checking that CT does not remove the initial defect and calibrating GLM’s B/psi response. This diagnostic adds no physical problem. Additional actual2D magnetic-loop and postshock Orszag–Tang use edge EMFs and face-field CT updates. Separately check divergence/energy against finite-grid independent Athena references.",
       "origin": "curated-depth-example"
     },
     {
@@ -1551,6 +1604,16 @@
       "status": "local-example",
       "group": "Coupling, constraints & particles",
       "scope": "Orszag–Tang: CT, GLM and independent Athena++: Compare CT and GLM density, magnetic field, conservation and div B for the same periodic Orszag–Tang data, against separately executed Athena++. GLM longitudinal mode: analytic damping: Compare a longitudinal magnetic Fourier mode of GLM cleaning with the continuous linear matrix-exponential solution. CT and GLM: mesh/time convergence of a moving magnetostatic equilibrium: Use a constructed exact equilibrium with nonzero magnetic force balanced by a pressure gradient, matching CT/GLM initial cell states, flux speed bound and time-step sequence. Orszag–Tang: matched CT/GLM and converged independent references: Run CT/GLM with the same OT initial cell averages and dt sequence, comparing with separately executed Athena++ references whose mesh/time sensitivities are separated. Initial-constraint preservation by CT and active GLM cleaning: nonphysical control: Intentionally begin with the same non-solenoidal cell B, checking that CT does not remove the initial defect and calibrating GLM’s B/psi response. This diagnostic adds no physical problem.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "ale",
+      "label": "ALE uniform-state / geometric-conservation model",
+      "chapter": "validation-moving-waves",
+      "status": "local-example",
+      "group": "Coupling, constraints & particles",
+      "scope": "Additional nonuniform1D prescribed moving-grid scalar advances face positions and masses with shared Heun stages. Check actual relative upwind flux,GCL,analytic moving-cell integrals and temporal error.",
       "origin": "curated-depth-example"
     },
     {
@@ -1570,7 +1633,7 @@
       "chapter": "validation-mhd",
       "status": "local-example",
       "group": "Riemann fluxes & corrections",
-      "scope": "Compare the published HLLD-MC finite-volume code with Brio–Wu reference data independently produced by Athena++ at a pinned commit.",
+      "scope": "Compare the published HLLD-MC finite-volume code with Brio–Wu reference data independently produced by Athena++ at a pinned commit. Additional full-state1D CP wave and actual2D magnetic-loop/Orszag–Tang use HLLD,MC-MUSCL and Heun. Count HLLD-to-HLLE fallback and face positivity scaling,with no cell floor or PDE retry.",
       "origin": "curated-depth-example"
     },
     {
@@ -1741,6 +1804,36 @@
       "status": "local-example",
       "group": "Coupling, constraints & particles",
       "scope": "Prescribed circle translation and off-center full rotation only: 2D ENO2/Heun,32²/64²/128²,T1, optional redistancing, five common observations and anN64 CFL-halving sensitivity.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "spectral-element",
+      "label": "Spectral element method (SEM)",
+      "chapter": "validation-sem-fr",
+      "status": "local-example",
+      "group": "Spatial discretization",
+      "scope": "Solve a sine manufactured solution on the unit square with GLL spectral elements and the existing triangle P1 FEM. Compare matched free-unknown counts under h refinement and p=1..6 at fixed elements.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "flux-reconstruction",
+      "label": "Flux reconstruction (FR)",
+      "chapter": "validation-sem-fr",
+      "status": "local-example",
+      "group": "Spatial discretization",
+      "scope": "Transport0.4+sin(2pi x) toT=.25. Execute Gauss-node/Radau FR and the existing modal DG for p=1/2 and8/16/32 cells; measure analytic error, mass and time-integration error.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "q1-fem",
+      "label": "Q1 FEM for mapped-coordinate vector BVP",
+      "chapter": "validation-mesh-boundary",
+      "status": "local-example",
+      "group": "Spatial discretization",
+      "scope": "Mapped polarQ1 couples both Cartesian components of variable-viscosity stress. Fixed cases check exact curved geometry,inner/outer physical traction,nonzero net force,work and MMS errors.",
       "origin": "curated-depth-example"
     },
     {
@@ -3187,6 +3280,42 @@
       "origin": "curated-method-metadata"
     },
     {
+      "id": "patera1984",
+      "type": "article",
+      "identity": "doi:10.1016/0021-9991(84)90128-1",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "nek5000-sem-docs",
+      "type": "misc",
+      "identity": "url:https://nek5000.github.io/NekDoc/theory.html",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "nekrs-implementation",
+      "type": "misc",
+      "identity": "url:https://nek5000.github.io/",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "huynh2007-fr",
+      "type": "inproceedings",
+      "identity": "doi:10.2514/6.2007-4079",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "huynh2014-fr",
+      "type": "techreport",
+      "identity": "url:https://ntrs.nasa.gov/api/citations/20140009969/downloads/20140009969.pdf",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "pyfr-implementation",
+      "type": "misc",
+      "identity": "url:https://www.pyfr.org/",
+      "origin": "curated-method-metadata"
+    },
+    {
       "id": "schrodinger1926",
       "type": "article",
       "identity": "doi:10.1002/andp.19263840404",
@@ -3417,31 +3546,46 @@
   },
   "public_extension_sha256": {
     "catalog/atlas-quantum.json": "415dd98efe103ad5a2d950c22b98980f53539f6243b93e4e193dbca2c67169fe",
-    "catalog/atlas-methods.json": "90c03bcde9b6a77ec07835aba8cce6b64b07389d8d0a7c643f8c24289ab54bb6",
-    "catalog/atlas-equations.json": "d8e02f24bdff318fa82d98349dbb8cca828bac2ac9e502473349d28d6a982a86",
-    "catalog/atlas-method-primary-references.json": "81781bcd44c25473182a83403a8e450dad93df70461c679fb3dc7934f61d5581"
+    "catalog/atlas-methods.json": "065a3b34662d245db876b4f35261d0ab080429a80ad4a35300b2676b20d009e7",
+    "catalog/atlas-equations.json": "ff35400b4add4d9cf37561c483a25b798a83d229e96d396f5622bb3cd17f10b6",
+    "catalog/atlas-method-primary-references.json": "1e9de6c042875cb95060bf63386cb051f0dbdbce4d5a63ce5600b52fef2e2082"
   },
   "equation_execution_source_sha256": {
     "numerical-methods-atlas/assets/biological-models.json": "b4432736fdbb32d6ec0be5104585348bfc166663688640f8d99a039dd4e521ab",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "catalog/atlas-equations.json": "d8e02f24bdff318fa82d98349dbb8cca828bac2ac9e502473349d28d6a982a86",
+    "catalog/atlas-equations.json": "ff35400b4add4d9cf37561c483a25b798a83d229e96d396f5622bb3cd17f10b6",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "code/validated-examples/2026-11-23/weno-critical/source-manifest.json": "abd8b0a29bb81b7d98b897ec0a0eb409f77873857ec8199c3767f1ede11b43a5",
     "code/validated-examples/2026-11-23/weno-critical/verification.json": "ccbf3c6a2fe7055b324a0d98c152da909242f36e0c82ca3281038e4c9b0c165f",
     "code/validated-examples/2026-11-23/weno-critical/cases.json": "6b68c525e99fe15adbdce97a5d078289e5df0ff5f63cd9c790784a29b979440b",
     "code/validated-examples/2026-11-23/weno-critical/results/result.json": "c4150a350d0854b3b815bd820790711ecdbcc7594690c0ad8c15e23f6aa3d05d",
     "code/validated-examples/2026-11-23/weno-critical/atlas-weno-critical-2026-11-23.zip": "9c119480261013ef8ed0c58716c45af5b9fb9d3e891aef56b95b66fbd8415491",
+    "code/validated-examples/2026-11-23/mesh-boundary/source-manifest.json": "96e55d4c564baf804d3ae7feb86a36c7d7a3d4079f5e47180326fd2c09ee675a",
+    "code/validated-examples/2026-11-23/mesh-boundary/verification.json": "1191781061a2ec3339d26d8e9e4db605e9c40e8d5d5dfa6433712b38f43f7d01",
+    "code/validated-examples/2026-11-23/mesh-boundary/cases.json": "30c7d39639f74d4f263a045cccc8ced3e14a466e4e279c4c156fc21ce176f796",
+    "code/validated-examples/2026-11-23/mesh-boundary/results/result.json": "fd91eff20f607bd816815f8458f6e5b1017139d5c2b6a7521bff3a38287a6402",
+    "code/validated-examples/2026-11-23/mesh-boundary/atlas-mesh-boundary-2026-11-23.zip": "51032054029345b8f187ebb12e1a0d8d4473b70312f29585a160fc3b0fdca315",
     "code/validated-examples/2026-11-23/shallow-water/source-manifest.json": "0fdab6190462f91176fa2eb4eb452d6fb66c2066b0e07d115b8ea789231614da",
     "code/validated-examples/2026-11-23/shallow-water/verification.json": "e342321ddc1f7692e08dcc7a63478912956f63637c855f2f85eaf0999c4d22cc",
     "code/validated-examples/2026-11-23/shallow-water/cases.json": "9296c20b7609cb4acdcd5a0ce437781dcd2e7635dbfea0a924f8468a3e5a5792",
     "code/validated-examples/2026-11-23/shallow-water/results/result.json": "49a56493e429dd3b4c9d6f8eba72c53ddd3469689699217157b9823a392c015f",
     "code/validated-examples/2026-11-23/shallow-water/atlas-shallow-water-2026-11-23.zip": "259244fc5c237542ba577df62308fd2a3191979dd43717d58df33d8abb902644",
+    "code/validated-examples/2026-11-23/mhd-transport/source-manifest.json": "c7d853b1b958f830ac30f45b076410ba55045ddedc88006cf8dda2c3e7dfee8d",
+    "code/validated-examples/2026-11-23/mhd-transport/verification.json": "56767d3b24b0c2fd9e6e660db523be8f8565876b38867f819c57ed983d468752",
+    "code/validated-examples/2026-11-23/mhd-transport/cases.json": "351ec0540ab5aea5c75aebfd90c9800d7e7fc8eb742dbbd534d80f61437a3914",
+    "code/validated-examples/2026-11-23/mhd-transport/results/result.json": "c43acea7e89a837e34b2e171bc292c75bc68766b98614697ec755f05ce944ba4",
+    "code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip": "8b6d4d9d30c9ed12fd29b7b91a11c16dc183b9aea49234966a66c376713ebf90",
     "code/validated-examples/2026-11-23-r2/wall-flow/source-manifest.json": "5defc88a20d06c6806f1aa18c5a5a9f027c7891d8a237bb5fe980169d1bbdfe4",
     "code/validated-examples/2026-11-23-r2/wall-flow/verification.json": "6daf2fa12cf2e7f604bb54413b82e36bbe72891132e1846abf598f9c9600b096",
     "code/validated-examples/2026-11-23-r2/wall-flow/cases.json": "ed51f9003bbf5ddfa88602dd579ad962c81f95fb5dd3e7ef32973b17f9844d70",
     "code/validated-examples/2026-11-23-r2/wall-flow/results/result.json": "ce92039a849015c3c3bd1de8e6ef77052f6fc5a9765ff961bc20086180996252",
     "code/validated-examples/2026-11-23-r2/wall-flow/atlas-wall-flow-2026-11-23-r2.zip": "de499fde477a49b1eae10bd6bf04b0800b58105ca5d504ec6eff2ec3272690fd",
+    "code/validated-examples/2026-11-23/relativistic/source-manifest.json": "89496dc623ddb7a3c381539d403b1ad657cee8ad772509788f185b7364dd6584",
+    "code/validated-examples/2026-11-23/relativistic/verification.json": "d2d62b2d0aa0e5f9f7e3a7e7991f24586fcc7c3baa3a567cd51f0d6f00367737",
+    "code/validated-examples/2026-11-23/relativistic/cases.json": "8e0f3c1834cf74a57e20628fcf6580b19b8a7153c6f7c33c9b0b0986ca680a58",
+    "code/validated-examples/2026-11-23/relativistic/results/result.json": "30f709ac0ea4dac4819fbfca0c94ff045ca2b566d1245914d1a6aecc5bf86548",
+    "code/validated-examples/2026-11-23/relativistic/atlas-relativistic-2026-11-23.zip": "c80b18e40f259d72aae6375d59faa0bd3c6c1b00b50da06538004bb6462a7185",
     "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
     "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
     "code/validated-examples/2026-11-22/models/cases.json": "09b670a3462f7f1395dcdf12b507786b69616c0ea165d2678efe780ddb0cf0e6",
@@ -3461,6 +3605,16 @@
     "code/validated-examples/2026-11-23/level-set/verification.json": "d70c2ed415b9e61bac769c0060a7ee1e7a4cf4b0b8ce1a6beabd4bca09ef7042",
     "code/validated-examples/2026-11-23/level-set/cases.json": "b077db49bb69055b9612a2153f7d9ea4d9c1025f0bf13b0c94157d2e9235e655",
     "code/validated-examples/2026-11-23/level-set/results/result.json": "7108491721386902c6adaa5ea5c1c709b31a204060346d0c93a06efd4a4a5a31",
-    "code/validated-examples/2026-11-23/level-set/atlas-level-set-2026-11-23.zip": "46c2c2fd0aea98eb4cc4facef8d30cc81ebd6b1b9e0d965f7ef79167a06c048b"
+    "code/validated-examples/2026-11-23/level-set/atlas-level-set-2026-11-23.zip": "46c2c2fd0aea98eb4cc4facef8d30cc81ebd6b1b9e0d965f7ef79167a06c048b",
+    "code/validated-examples/2026-11-23-r2/instability-growth/source-manifest.json": "e9e27e0d2911bdafb09f2280eef3eaad7d602510cdd7f1b0282db740a137c69f",
+    "code/validated-examples/2026-11-23-r2/instability-growth/verification.json": "c604289f94d71ea4540a9128763590708c484dc840ea4464178719ee5eea3a3d",
+    "code/validated-examples/2026-11-23-r2/instability-growth/cases.json": "a313678254c42e664fe47d65bc1a5e22ffde0c7824be09e63dd90a665b1a2665",
+    "code/validated-examples/2026-11-23-r2/instability-growth/results/result.json": "a86f27c415bd6e10ae5e1135351f9282e05b6126f100f49dd9306ea9bc35e36f",
+    "code/validated-examples/2026-11-23-r2/instability-growth/atlas-instability-growth-2026-11-23-r2.zip": "731bf5ce375327daba93014990053ffc52b38626f132f94303a6d061aca7a7e7",
+    "code/validated-examples/2026-11-23/moving-waves/source-manifest.json": "8cf67dddc182fe3519eb33f89deddd711a9ecb639f3760e1edc0c88505eb8be1",
+    "code/validated-examples/2026-11-23/moving-waves/verification.json": "29199bb55f03b1167eaa27115c8bb531006a298371f614d8c1397516c5862894",
+    "code/validated-examples/2026-11-23/moving-waves/cases.json": "0b7092f12334f3ce018f0f837deb59803b8b14e50999a10e34de452b1038f989",
+    "code/validated-examples/2026-11-23/moving-waves/results/result.json": "e53ff99821e9977c975cda2a33d99b00d895901f1e428780ef27c10dd5242426",
+    "code/validated-examples/2026-11-23/moving-waves/atlas-moving-waves-2026-11-23.zip": "d9f2f8bff3bf5d9fa7c1118c0968e9c0374fd5e9a6d3f7f99352abc0841e3b7d"
   }
 }

@@ -39,7 +39,9 @@ test('the constructed MHD equilibrium has its own hub and keeps active-cleaning 
   assert.equal(supplements['ct-glm-constraint-control'],null);
   assert.ok(!index.problems.some(row=>row.id==='ct-glm-constraint-control'));
   const ot=index.problems.find(row=>row.id==='orszag-tang');
-  assert.deepEqual(ot.executions.map(row=>row.id),['ct-glm-independent','ct-glm-ot-convergence']);
+  const otExecutions=ot.executions.map(row=>row.id);
+  assert.deepEqual(otExecutions.filter(id=>id!=='postshock-orszag-tang'),['ct-glm-independent','ct-glm-ot-convergence']);
+  assert.deepEqual(otExecutions.filter(id=>id==='postshock-orszag-tang'),['postshock-orszag-tang']);
 });
 
 test('conditioning releases extend only their three algebraic or integral families and keep AMG diagnostics outside PDE evidence',()=>{

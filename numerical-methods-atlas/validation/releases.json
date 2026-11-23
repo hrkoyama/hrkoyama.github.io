@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "edition": "2026-11-22",
-  "case_count": 56,
+  "case_count": 71,
   "releases": [
     {
       "group": "foundations",
@@ -370,6 +370,99 @@
         "level-set-translation"
       ],
       "tests": 22
+    },
+    {
+      "group": "sem-fr",
+      "edition": "2026-11-23",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/",
+      "archive": "atlas-sem-fr-2026-11-23.zip",
+      "archive_sha256": "f7e852c18571791492fa4b804cba1fdd744909e690a90d2708a422a4b5e99d66",
+      "manifest_sha256": "800461c1ae226cc1f4350d4fce65a0c24ef2bce851ad862ad55394b47fc321d1",
+      "verification_sha256": "63de17e91ba54215e7de815df931b8b2c6f04c65d5d43037b9c921c14ca75b54",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "fr-periodic-advection",
+        "sem-poisson-2d"
+      ],
+      "tests": 25
+    },
+    {
+      "group": "instability-growth",
+      "edition": "2026-11-23-r2",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/instability-growth/",
+      "archive": "atlas-instability-growth-2026-11-23-r2.zip",
+      "archive_sha256": "731bf5ce375327daba93014990053ffc52b38626f132f94303a6d061aca7a7e7",
+      "manifest_sha256": "e9e27e0d2911bdafb09f2280eef3eaad7d602510cdd7f1b0282db740a137c69f",
+      "verification_sha256": "c604289f94d71ea4540a9128763590708c484dc840ea4464178719ee5eea3a3d",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "kh-initial-growth",
+        "rt-initial-growth"
+      ],
+      "tests": 22
+    },
+    {
+      "group": "mhd-transport",
+      "edition": "2026-11-23",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/",
+      "archive": "atlas-mhd-transport-2026-11-23.zip",
+      "archive_sha256": "8b6d4d9d30c9ed12fd29b7b91a11c16dc183b9aea49234966a66c376713ebf90",
+      "manifest_sha256": "c7d853b1b958f830ac30f45b076410ba55045ddedc88006cf8dda2c3e7dfee8d",
+      "verification_sha256": "56767d3b24b0c2fd9e6e660db523be8f8565876b38867f819c57ed983d468752",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "circular-alfven-refinement",
+        "magnetic-loop-independent",
+        "postshock-orszag-tang"
+      ],
+      "tests": 47
+    },
+    {
+      "group": "mesh-boundary",
+      "edition": "2026-11-23",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/",
+      "archive": "atlas-mesh-boundary-2026-11-23.zip",
+      "archive_sha256": "51032054029345b8f187ebb12e1a0d8d4473b70312f29585a160fc3b0fdca315",
+      "manifest_sha256": "96e55d4c564baf804d3ae7feb86a36c7d7a3d4079f5e47180326fd2c09ee675a",
+      "verification_sha256": "1191781061a2ec3339d26d8e9e4db605e9c40e8d5d5dfa6433712b38f43f7d01",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "annular-viscous-mms",
+        "lshape-fem",
+        "poisson-neumann",
+        "poisson-robin"
+      ],
+      "tests": 20
+    },
+    {
+      "group": "moving-waves",
+      "edition": "2026-11-23",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/",
+      "archive": "atlas-moving-waves-2026-11-23.zip",
+      "archive_sha256": "d9f2f8bff3bf5d9fa7c1118c0968e9c0374fd5e9a6d3f7f99352abc0841e3b7d",
+      "manifest_sha256": "8cf67dddc182fe3519eb33f89deddd711a9ecb639f3760e1edc0c88505eb8be1",
+      "verification_sha256": "29199bb55f03b1167eaa27115c8bb531006a298371f614d8c1397516c5862894",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "ale-nonuniform-transport",
+        "cgrid-rotating-wave"
+      ],
+      "tests": 19
+    },
+    {
+      "group": "relativistic",
+      "edition": "2026-11-23",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/",
+      "archive": "atlas-relativistic-2026-11-23.zip",
+      "archive_sha256": "c80b18e40f259d72aae6375d59faa0bd3c6c1b00b50da06538004bb6462a7185",
+      "manifest_sha256": "89496dc623ddb7a3c381539d403b1ad657cee8ad772509788f185b7364dd6584",
+      "verification_sha256": "d2d62b2d0aa0e5f9f7e3a7e7991f24586fcc7c3baa3a567cd51f0d6f00367737",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "srhd-collision",
+        "srmhd-alfven"
+      ],
+      "tests": 25
     }
   ]
 }

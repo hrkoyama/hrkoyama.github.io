@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "group": "sem-fr",
+  "edition": "2026-11-23",
+  "revision": 4,
+  "fixed_before_revised_numerical_execution": true,
+  "created_at_utc": "2026-11-23T11:52:06.312426+00:00",
+  "planned_tests": 25,
+  "case_ids": [
+    "sem-poisson-2d",
+    "fr-periodic-advection"
+  ],
+  "files_sha256": {
+    "LICENSE": "e1053200337d037d9d81620956ce49263117c6540b1c1352c030c220bee05f59",
+    "README.md": "242f61d8dab4f85252fe6b897e9041dde88bdc487436b3881e3855be42647778",
+    "baseline-provenance.json": "70001473d8ee048971fb9c348392ec86747f73478731eb6b323c01f1b08d4c9d",
+    "cases.json": "b1005680e6bd36a330dd178f9eac2c39444dc40c98f5dbf5bfd3ad01ca2c751d",
+    "experiments.py": "3db26bbd169368d345bd7990684de8b5d8a79f7c032605a47bf0d53dd86189ac",
+    "fr.py": "775ed8b7398ecfdfc8529f438294f768c265f48938b67fd07e516d0a8e98f3f4",
+    "inputs-initial.json": "c10e0ef3737b81f8e088d43d411067aaa00b7b42e197f8f2a43b19b6852f0525",
+    "inputs.json": "c10e0ef3737b81f8e088d43d411067aaa00b7b42e197f8f2a43b19b6852f0525",
+    "legacy/__init__.py": "dfada9f38d087f379b0231579d9a8ec231b2f9a9f16a252daef4f25772ae7881",
+    "legacy/advection.py": "27128109c8a6f416eabce891d912436505cbc09fea460c30d71dcd44829504bd",
+    "legacy/equations.py": "d1b589ad4b8a31d316c20926ef7104664609d789f31f6fb239c1d74bb310b619",
+    "legacy/fem.py": "def8018fcf5b3c0c5ffa763b978a2cd47b62f54be240ec831e5f49613790f740",
+    "legacy/krylov.py": "3241dc174c3e0cf496723152ec92f81e1b741cb4d826c02f88395621b965ae2d",
+    "legacy/limiters.py": "f9e7fc43fcf4c77c030faf1495ec0d1573b272637284be70c2a4d62ba113f287",
+    "legacy/riemann.py": "702ce9e08fbef67ed77363e8603e64f2da8a979d3b5abd6ffa62ab78344c95cf",
+    "legacy/solvers.py": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d",
+    "plot.py": "db9ca27eb84a8ae183926fb36edc73239a81c804d8455e902fadb3260cac5271",
+    "polynomials.py": "0f2dfe354eae6ffbb77910337b888671d2d062af34a101b2ec90b08174c4e2f7",
+    "protocol-history.json": "851865d9cfc6e261f62ca5c3dfb15a1bb719ee2df5922f9f747435b5ec8e2dff",
+    "references.json": "3bbf5802f21b0c96b022a42e294681ce85042c4f2dc314cbcfc3e46d220cea09",
+    "requirements-plotting.txt": "86f7db4dea91de3b948d9c441bfe0a95bf497909529bbeeddc349c6cee9621bc",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "run.py": "59b273fdc64ef145abe3fa1568357a69ce75b606185f17853336fe0b26b4f055",
+    "sem.py": "ab93c3acc60631b54881fd4106e7a33793b028d842722a32e0ef87ab58e1ab43",
+    "test_sem_fr.py": "5f801022e6dcbcf7c67b8deb8713111461b3790f1937dfdccb0ba5d3d022fa94"
+  },
+  "archived_attempts": [
+    "attempts/01-dense-exponential",
+    "attempts/02-json-bool"
+  ],
+  "acceptance_modified": false,
+  "input_modified": false,
+  "execution_budget_seconds": 90
+}

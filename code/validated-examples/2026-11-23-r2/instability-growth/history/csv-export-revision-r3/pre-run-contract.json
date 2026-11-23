@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "revision": 3,
+  "created_at_utc": "2026-11-23T12:19:26.038660+00:00",
+  "declared_before_first_scientific_execution": false,
+  "declared_before_first_pde_run": true,
+  "declared_before_first_pytest_execution": true,
+  "planned_tests": 22,
+  "planned_numerical_gates": 74,
+  "planned_reference_qualifiers": 6,
+  "planned_fixed_runs": 10,
+  "runtime_limit_seconds": 120,
+  "shared_pytest_plus_main_budget_seconds": 120,
+  "presentation_files_excluded": [
+    "LICENSE",
+    "README.md",
+    "cases.json",
+    "independent-pre-run-review.json",
+    "plot.py",
+    "pre-run-contract.json",
+    "requirements-plot.txt"
+  ],
+  "files_sha256": {
+    "acceptance.json": "b8ff967462307f2ff31cd1721dfae69aa9c9314cb0bc420c28f44a6367ed0646",
+    "flow.py": "40b71b5d425a7d99f8e9a73695d4487899b22a9aa7e003927c8e4be505ef7706",
+    "inputs.json": "05d178c8f48df0c8819ab863e5448a0573144f69b0a64b59381f5109b757042a",
+    "pre-run-review.json": "7d66728d8d81057608e1f4340bee3aa89813243b93115898d17736225aa44df6",
+    "references/citations.json": "b51f2e3bb1a27b825160a6c8e2c6920ab476dba2386b2873cf417be8aa0bfa48",
+    "references/linear.py": "31e640aae25b7f59213c21fa73de23072d3c1b0decdf6dad04fe1c111c805e41",
+    "references/source-review.json": "928fbb018831f797f1317587d8ee05cec802bdbe476c215415e35e3470e3c791",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "run.py": "a4c9022adf43fd9735440c5083421355cbc7f8544973058df5bbc11d56ca04a1",
+    "source-provenance.json": "7412449dc0231d5cec32c475095910287f733c2e3151beb950c6e160a7b8e412",
+    "test_instability.py": "9478a1b8507341796f4c25ccd71af9910a24a3133836e9d671e9f2b25b18162c"
+  },
+  "scope": "Two actual nonlinear2D small-amplitude initial-growth problems; independent continuous linear-Galerkin references, actual grid/time/amplitude separation.",
+  "revision_created_at_utc": "2026-11-23T12:26:49.760002+00:00",
+  "previous_contract_sha256": "d15bf7635169c34756aca0515e546434d3344473179559b4377d8299c17febdc",
+  "revision_reason": "Reference-only attempt01 failed on macOS complex BLAS matmul warnings, before any nonlinear PDE or pytest. Six retained backend diagnostics show finite dense results and sparse expm_multiply agreement <9e-16 relative without warnings under -W error. Replace dense matrix exponential application with mathematically equivalent sparse action and contractions with explicit einsum. Equations/inputs/criteria/22 assertions scenarios unchanged; no warning suppression. Original failed attempt and code retained history/reference-attempt-01.",
+  "declared_before_this_revision_scientific_execution": true,
+  "previous_reference_only_attempts": 1
+}

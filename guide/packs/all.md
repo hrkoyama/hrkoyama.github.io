@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-23-28a7cccfdd
-Captured (UTC): 2026-11-23T11:26:13+00:00
+Snapshot: 2026-11-23-504b14f22d
+Captured (UTC): 2026-11-23T12:49:45+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -4355,6 +4355,127 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fem/#inspect-
 Coverage: reading
 
 Historical atlas →Computed gallery →
+
+## Flux reconstruction: flux correction, DG and 1D periodic advection — Flux reconstruction: flux correction, DG and 1D periodic advection [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/flux-reconstruction/
+Coverage: reading
+
+Flux reconstruction (FR) builds high-order conservation-law discretizations by correcting a polynomial flux inside each element with shared interface fluxes. Elements exchange information through numerical fluxes rather than enforcing a continuous solution. The correction function is part of the method definition; the name FR alone specifies neither accuracy nor stability.
+
+## Flux reconstruction: flux correction, DG and 1D periodic advection — Separate solution points from numerical interface fluxes [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/flux-reconstruction/#local-flux
+Coverage: reading
+
+u_t+a u_x=0,\quad x\in[0,1),\quad u(x+1,t)=u(x,t),\quad u_*(x,t)=0.4+\sin(2\pi(x-at))u_h(\xi)=\sum_{j=0}^{p}u_j\ell_j(\xi),\qquad f^D(\xi)=\sum_{j=0}^{p}f(u_j)\ell_j(\xi)
+Map each interval to ξ in [−1,1] and store values at p+1 solution points. Extrapolation to a face gives two traces from neighboring elements. For this constant-speed problem choose the left state when a>0 and the right state when a<0, giving one shared upwind flux per face.
+
+## Flux reconstruction: flux correction, DG and 1D periodic advection — Connect face fluxes with correction functions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/flux-reconstruction/#corrected-flux
+Coverage: reading
+
+f^C(\xi)=f^D(\xi)+(f_L^*-f_L^D)g_L(\xi)+(f_R^*-f_R^D)g_R(\xi)g_L(-1)=1,\ g_L(1)=0,\qquad g_R(-1)=0,\ g_R(1)=1,\qquad\dot u_i=-\frac{2}{h}\partial_\xi f^C(\xi_i)
+Here fD is the element-local flux polynomial and f* is the shared numerical flux. Distribute their face differences using gL/gR so that the corrected flux matches f* at the endpoints. Differentiate it at the solution points to evolve the state. Distinguish these unknowns and flux corrections from the different reconstruction procedures in MUSCL/WENO.
+
+## Flux reconstruction: flux correction, DG and 1D periodic advection — A Radau choice that recovers DG [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/flux-reconstruction/#dg-connection
+Coverage: reading
+
+g_L=\frac{(-1)^p}{2}(P_p-P_{p+1}),\qquad g_R=\frac12(P_p+P_{p+1})M\dot{\mathbf u}=\frac{2}{h}\left[aD^TM\mathbf u-\mathbf t_R f_R^*+\mathbf t_L f_L^*\right],\qquad M=\operatorname{diag}(w_i)
+Use Gauss solution points and the displayed Radau corrections. M is the diagonal Gauss-weight matrix, tL/tR extrapolate to faces and D differentiates on the reference interval. For a constant linear flux on affine intervals, this FR formulation corresponds to nodal DG. Modal Legendre coefficients represent the same polynomial when initial projection, flux and time stepping match. Nonlinear flux aliasing, other quadratures and other corrections require separate conditions.
+
+## Flux reconstruction: flux correction, DG and 1D periodic advection — Comparison with the existing modal DG [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/flux-reconstruction/#dg-comparison
+Coverage: reading
+
+Comparison with the existing modal DG
+AspectThis FRPublished modal DG
+Unknownsp+1 Gauss-point valuesp+1 Legendre coefficients
+CouplingRadau corrections of face-flux differencesWeak-form volume and face fluxes
+InitializationCommon Gauss L2 projectionSame projection rule
+Time integrationSSPRK(3,3)Same SSPRK(3,3) and timestep rule
+Meaning of this comparisonCheck a specified linear correspondenceActually execute the existing implementation
+LimitsNot all corrections or nonlinear FRNot equivalence with every DG variant
+
+## Flux reconstruction: flux correction, DG and 1D periodic advection — Small example: translate a sine by a quarter period [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/flux-reconstruction/#example
+Coverage: reading
+
+Initial 0.4+sin(2pi x), speed 1, T=.25; execute p=1/2 on 8/16/32 cells. Bundle byte-identical published DG modules and run each configuration. During h refinement enforce scaled Courant(2p+1)|a|dt/h<=.15. The final wave has actually moved; the calculation does not use a stationary initial picture as evidence of transport.
+Saved initial/final fields and checks. DG differences and mass changes are displayed on axes at the scale of 10⁻¹⁵ roundoff.
+
+## Flux reconstruction: flux correction, DG and 1D periodic advection — Separate conservation, dissipation and time error [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/flux-reconstruction/#conservation
+Coverage: reading
+
+I_h=\sum_e\frac{h}{2}\sum_iw_iu_{e,i},\quad \frac{dI_h}{dt}=0,\qquad \frac{d}{dt}\frac12\|u_h\|_{L^2}^2=-\frac{|a|}{2}\sum_{\rm faces}[u_h]^2
+Shared face fluxes cancel in the periodic mass balance. The semidiscrete quadratic energy dissipates with interface jumps under upwinding. This does not guarantee stability at arbitrary timesteps or nonlinear entropy stability. Also measure every RK stage’s mass and each completed step’s energy.
+\dot U=A_hU,\quad U_{\exp}(T)=\exp(TA_h)U(0),\quad E_t=\|U_{\rm RK3}(T)-U_{\exp}(T)\|_M
+Continuous L2 errors use additional Gauss points. Coupled h/dt observed orders are about 1.99 at p1 and 3.00 at p2. The maximum FR/published-DG difference is about 4.0e−15; maximum stage mass change is about 3.6e−15.
+Compute an exponential action of the same spatial matrix as a separate time propagator. At p2/N32, RK3 time error is about 9.44e−9 and halves in timestep to 1.18e−9, a ratio about.125. This is not an independent spatial PDE solver. Preserve the initial dense-exponential warning and subsequent JSON scalar-type failure with their original source/input/results; fixes retain every numerical acceptance threshold.
+
+## Flux reconstruction: flux correction, DG and 1D periodic advection — Related implementation: PyFR and scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/flux-reconstruction/#implementations
+Coverage: reading
+
+PyFR is FR-based flow software supporting unstructured meshes and CPU/GPU execution. Follow its official overview and source. This small Python example neither installs nor runs or benchmarks PyFR. Nonlinear fluxes, shocks, limiters, general correction families, curved meshes and multidimensional FR require separate verification.
+Existing discontinuous Galerkin method · Continuous spectral elements
+
+## Flux reconstruction: flux correction, DG and 1D periodic advection — Check fixed inputs: separate scoped releases [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/flux-reconstruction/#scoped-examples
+Coverage: reading
+
+Check each example’s inputs, observables, diagnostic definitions and scope. What a passing check establishes depends on its acceptance criteria and differs from a general mathematical guarantee. Historical inputs, measurements and criteria are preserved.
+
+## Flux reconstruction: flux correction, DG and 1D periodic advection — 1D periodic FR advection: Radau correction and published DG comparison [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/flux-reconstruction/
+Coverage: reading
+
+Computation for a fixed target
+Transport0.4+sin(2pi x) toT=.25. Execute Gauss-node/Radau FR and the existing modal DG for p=1/2 and8/16/32 cells; measure analytic error, mass and time-integration error.
+DG correspondence is for these Radau/Gauss choices, a constant linear flux and affine elements. No all-FR/all-DG equivalence, nonlinear flux, shock, limiter or multidimensional FR claim. Distinguish coupled h/dt refinement from the exponential spatial result; the exponential is not an independent spatial PDE solver. PyFR itself is not run.
+Input, results and acceptance · Method, equations and sources · Code: run.py · Code: fr.py · Code: polynomials.py · Code: experiments.py · Code: advection.py · Code: solvers.py · Code: riemann.py · Code: equations.py · Code: limiters.py · Code: sem.py · Code: fem.py · Code: krylov.py · Tests: test_sem_fr.py · Release ZIP · Saved results · Independent-extraction rerun receipt
+
+## Flux reconstruction: flux correction, DG and 1D periodic advection — Publication scope and related entries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/flux-reconstruction/#publication-scope
+Coverage: reading
+
+Dedicated small code, fixed inputs, saved fields and decisions are published with25 tests rerun from an independently extracted ZIP. Related external software is introduced from official documentation, without claiming installation or execution.
+Flux reconstruction (FR)
+Discontinuous Galerkin / Legendre
+WENO5-JS
+
+## Flux reconstruction: flux correction, DG and 1D periodic advection — Primary publications, supporting sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/flux-reconstruction/#sources
+Coverage: reading
+
+Distinguish original research, later variants, author monographs, pedagogical articles and official references. Bibliographic verification differs from consulting selected passages; neither implies a full-paper audit or numerical reproduction. Access-depth notes accompany each source.
+H. T. Huynh (2007). A Flux Reconstruction Approach to High-Order Schemes Including Discontinuous Galerkin Methods. 18th AIAA Computational Fluid Dynamics Conference
+Research publication: proposal or related formulation · Bibliography checked · Consulted record
+Original 2007 title/author/AIAA number checked in the author's 2014 NASA report, printed p.27. The original AIAA text was not retrieved; correction formulas use the separately cited 2014 report.
+H. T. Huynh (2014). On Formulations of Discontinuous Galerkin and Related Methods for Conservation Laws. NASA/TM-2014-218135
+Research publication: proposal or related formulation · Selected source passages consulted · Consulted record
+Selected original NASA passages: abstract, differential form/interface correction, printed pp.19–21 equations(6.2)–(6.13) for Radau/DG, and p.27 bibliography. No full-report audit or nonlinear experiment reproduction.
+PyFR development team (2026). PyFR: Flux Reconstruction and supported implementation platforms (accessed 2026-11-23).
+
+## Flux reconstruction: flux correction, DG and 1D periodic advection — Primary publications, supporting sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/flux-reconstruction/#sources
+Coverage: reading
+
+Official reference documentation · Selected source passages consulted · Consulted record
+Official overview: FR spatial discretization, unstructured meshes and CPU/GPU platforms. PyFR is not installed, invoked or validated by this small Python example.
 
 ## Spherical meshes and Arakawa A, B and C grids [en]
 
@@ -9032,7 +9153,7 @@ R. Car; M. Parrinello (1985)
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/#verification
 Coverage: reading
 
-Two hydrogenic/He problem families were executed, independently compared and added to the 92-problem inventory. A scoped H₂ finite-basis RHF example now adds independent-reference, SCF and basis checks. A scoped periodic-He DFT workflow is now added; molecular DFT, FCI and other periodic materials are not validated.
+Two hydrogenic/He problem families were executed, independently compared and added to the 102-problem inventory. A scoped H₂ finite-basis RHF example now adds independent-reference, SCF and basis checks. A scoped periodic-He DFT workflow is now added; molecular DFT, FCI and other periodic materials are not validated.
 Runnable and checked
 
 ## Quantum chemistry and DFT: approximations and equations — One electron: hydrogenic atoms [en]
@@ -11264,6 +11385,18 @@ S. Osher and J. A. Sethian (1988). Fronts propagating with curvature-dependent s
 C. W. Hirt and B. D. Nichols (1981). Volume of fluid (VOF) method for the dynamics of free boundaries. 10.1016/0021-9991(81)90145-5
 M. Sussman and E. Fatemi (1999). An Efficient, Interface-Preserving Level Set Redistancing Algorithm and Its Application to Interfacial Incompressible Fluid Flow. 10.1137/S1064827596298245
 M. Sussman and E. G. Puckett (2000). A Coupled Level Set and Volume-of-Fluid Method for Computing 3D and Axisymmetric Incompressible Two-Phase Flows. 10.1006/jcph.2000.6537
+A. T. Patera (1984). A spectral element method for fluid dynamics: Laminar flow in a channel expansion. 10.1016/0021-9991(84)90128-1
+Nek5000 development team (2026). Nek5000 documentation: Theory and spectral-element basis (accessed 2026-11-23). Original source
+Nek5000/RS development team (2026). Nek5000/RS project: spectral-element solvers and related implementations (accessed 2026-11-23). Original source
+
+## References by original publication year — Sources added by priority-method curation [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/references/
+Coverage: reading
+
+H. T. Huynh (2007). A Flux Reconstruction Approach to High-Order Schemes Including Discontinuous Galerkin Methods. 10.2514/6.2007-4079
+H. T. Huynh (2014). On Formulations of Discontinuous Galerkin and Related Methods for Conservation Laws. Original source
+PyFR development team (2026). PyFR: Flux Reconstruction and supported implementation platforms (accessed 2026-11-23). Original source
 
 ## References by original publication year — Added quantum-chemistry primary publications [en]
 
@@ -12741,8 +12874,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Published web edition, counted 2026-11-23. These are counts of catalog entries and documented examples, not a claim that every entry is a verified end-to-end solver.
-50 equation/model entries · 133 methods and building blocks · 247 journal/conference papers · 304 total sources.
-There are 9 saved-profile equation-gallery cases across 7 equation families, and 107 reading chapters including this inventory.
+56 equation/model entries · 136 methods and building blocks · 249 journal/conference papers · 310 total sources.
+There are 9 saved-profile equation-gallery cases across 7 equation families, and 115 reading chapters including this inventory.
 
 ## Site coverage and counting rules — Equations and models# [en]
 
@@ -12750,7 +12883,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Named equation/model entries, not scalar component equations or mathematically disjoint families. Includes frameworks and auxiliary formulations; variants share one entry except the three separately explained SR/GR fluid systems. Biological entries are imported once from their own catalog.
-27 entries have scoped local examples; 23 are reading-only, including all 22 biological survey entries. A coupled system is one entry; its individual component equations do not increase the count. Poisson/Laplace and dimensional variants share entries. Named frameworks and specialized kinetic laws can both appear, so this is not a count of mathematically disjoint families.
+34 entries have scoped local examples; 22 are reading-only, including all 22 biological survey entries. A coupled system is one entry; its individual component equations do not increase the count. Poisson/Laplace and dimensional variants share entries. Named frameworks and specialized kinetic laws can both appear, so this is not a count of mathematically disjoint families.
 
 ## Site coverage and counting rules — Physics & mathematical models# [en]
 
@@ -12836,7 +12969,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Named numerical methods and building blocks with a reading chapter. Aliases count once; RK stages, dimensions, parameter combinations, mesh layouts and theoretical conditions do not add methods. A family and a separately explained algorithm may both appear. Not a count of mutually exclusive end-to-end solvers.
-118 entries have scoped local examples; 15 are reading-only. Reconstruction limiters, preconditioners and coupling operators are building blocks, not complete PDE solvers. Mesh layouts, CFL conditions and theorems are not counted as numerical methods.
+121 entries have scoped local examples; 15 are reading-only. Reconstruction limiters, preconditioners and coupling operators are building blocks, not complete PDE solvers. Mesh layouts, CFL conditions and theorems are not counted as numerical methods.
 
 ## Site coverage and counting rules — Spatial discretization# [en]
 
@@ -12989,7 +13122,7 @@ Coverage: reading
 
 Unique bibliographic publications classified as journal articles or conference papers, deduplicated by DOI or author/title/year. Includes reviews, translations and explicitly labeled accepted papers; not a claim that every full text was inspected. Books, chapters, reports, preprints and documentation are separate.
 Unique cataloged works across all publication types. An original publication and a later translation are separate works; duplicate DOI records are not. NASA case links in prose are not catalog records.
-241 journal-article records, including reviews, translations and explicitly labeled accepted papers.
+242 journal-article records, including reviews, translations and explicitly labeled accepted papers.
 3 conference papers.
 22 books.
 2 book chapters.
@@ -13157,6 +13290,126 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/sparse-nonlin
 Coverage: reading
 
 Historical atlas →Computed gallery →
+
+## Spectral elements: high-order finite elements and 2D Poisson — Spectral elements: high-order finite elements and 2D Poisson [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/spectral-element/
+Coverage: reading
+
+The spectral element method (SEM) partitions a domain into elements and approximates the field with high-degree local polynomials. It connects finite-element assembly with high-order approximation of smooth functions. This chapter adopts a continuous Galerkin Legendre GLL variant and a small reproducible two-dimensional Poisson problem.
+
+## Spectral elements: high-order finite elements and 2D Poisson — Connect high-order local polynomials [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/spectral-element/#local-polynomials
+Coverage: reading
+
+u_h|_{K_e}(\xi,\eta)=\sum_{i,j=0}^{p}U^e_{ij}\ell_i(\xi)\ell_j(\eta),\qquad u_h\in C^0(\Omega)
+Map each square to reference coordinates in [−1,1]². Shared boundary degrees of freedom assemble a C0 field, without imposing continuous derivatives. SEM belongs to the high-order finite-element family; finite elements in general are not restricted to linear elements. Element-local polynomials also differ from a single global Fourier expansion.
+
+## Spectral elements: high-order finite elements and 2D Poisson — Start from the Poisson weak form [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/spectral-element/#weak-form
+Coverage: reading
+
+\int_\Omega\nabla v_h\cdot\nabla u_h\,d\Omega=\int_\Omega v_h f\,d\Omega,\qquad v_h|_{\partial\Omega}=0
+Multiply −Laplacian u=f by a test function and integrate by parts, transferring one derivative to each factor. Zero Dirichlet tests remove the boundary term. This implementation approximates the integrals with GLL quadrature for constant coefficients and affine squares.
+
+## Spectral elements: high-order finite elements and 2D Poisson — GLL nodes, quadrature and matrices [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/spectral-element/#gll
+Coverage: reading
+
+(1-\xi_i^2)P_p^\prime(\xi_i)=0,\qquad w_i=\frac{2}{p(p+1)P_p(\xi_i)^2},\qquad i=0,\ldots,pD_{ij}=\ell_j^\prime(\xi_i),\quad W=\operatorname{diag}(w_i),\quad S=D^TWD,\quad K_e=\frac{h_y}{h_x}S\otimes W+\frac{h_x}{h_y}W\otimes Sb^e_{ij}=\frac{h_xh_y}{4}w_iw_jf(x_{e,i},y_{e,j}),\qquad KU=b
+The p+1 GLL nodes are the roots of the derivative of the degree-p Legendre polynomial plus both endpoints. The one-dimensional quadrature is exact through degree 2p−1. Nodal interpolation makes the quadrature mass diagonal, not exactly integrated for every degree-2p product. Two-dimensional stiffness also contains transverse products, so the quadrature convention matters. Assemble local tensor-product stiffness/load contributions, eliminate the boundary values and solve the sparse system.
+
+## Spectral elements: high-order finite elements and 2D Poisson — Comparison with the existing P1 finite elements [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/spectral-element/#fem-comparison
+Coverage: reading
+
+Comparison with the existing P1 finite elements
+AspectPublished P1 FEMThis GLL-SEM
+Local spaceLinear polynomials on trianglesTensor-product Qp polynomials on squares
+Interface couplingC0 continuityC0 continuity
+QuadratureGauss integration via a Duffy transformGLL stiffness/load quadrature
+RefinementPrimarily h refinementSeparate h and p refinement
+Algebraic solver hereExisting Numart ILU(0)/GMRESSciPy sparse direct solve
+Matched controlsPDE, boundary, reference and free unknownsSame controls; no speed ranking
+
+## Spectral elements: high-order finite elements and 2D Poisson — Small example:2D Poisson h/p refinement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/spectral-element/#example
+Coverage: reading
+
+\Omega=(0,1)^2,\quad u_*=\sin(\pi x)\sin(\pi y),\quad f=2\pi^2u_*,\quad u|_{\partial\Omega}=0
+At p=2, use 2/4/8 SEM elements per coordinate and 4/8/16 subdivisions for the existing triangular P1 FEM. Both have 9/49/225 free unknowns. Separately fix 2 x 2 elements and vary p=1..6. The comparison executes byte-identical modules from the published Numart distribution; that historical release remains unchanged.
+Actual saved fields and measurements. A nodal-error picture is distinct from an error norm integrated over element interiors.
+
+## Spectral elements: high-order finite elements and 2D Poisson — Distinguish residual, continuous error and observed order [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/spectral-element/#error-and-refinement
+Coverage: reading
+
+E_{L^2}=\left[\int_\Omega(u_h-u_*)^2\,d\Omega\right]^{1/2},\quad E_{H^1}=\left[\int_\Omega|\nabla u_h-\nabla u_*|^2\,d\Omega\right]^{1/2}E_{L^2}\sim h^{p+1},\qquad E_{H^1}\sim h^p\quad\text{(smooth solution and resolved quadrature)}
+Integrate errors at separate higher-order Gauss points, not only at GLL nodes. A small linear-system residual alone does not imply a small continuous-PDE error. On the last h refinement, p2 SEM gives L2 order about 3.04 and H1-seminorm order 2.01; P1 FEM gives 1.97 and 0.99. At 225 free unknowns, L2 errors are about 2.49e−4 for SEM and 5.38e−3 for P1. At p6 on 2 x 2 elements, L2 error is about 3.78e−7.
+These observations depend on smoothness, boundaries, element geometry, quadrature and solver choices. They establish neither universal p convergence near singularities nor a speed/accuracy ranking for all problems. Curved elements, mixed velocity/pressure spaces and fluid coupling are outside this execution.
+
+## Spectral elements: high-order finite elements and 2D Poisson — Related implementations: Nek5000 and nekRS [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/spectral-element/#implementations
+Coverage: reading
+
+Nek5000 is a high-order spectral-element flow solver. nekRS is the related CPU/GPU successor described by the official project. Follow those links for their documentation and source. The small Python Poisson code does not execute or validate either flow solver or its performance. Patera’s original paper supplies historical bibliographic context; the implemented Legendre GLL variant is separately specified.
+Existing finite elements · Discontinuous FR/DG comparison
+
+## Spectral elements: high-order finite elements and 2D Poisson — Check fixed inputs: separate scoped releases [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/spectral-element/#scoped-examples
+Coverage: reading
+
+Check each example’s inputs, observables, diagnostic definitions and scope. What a passing check establishes depends on its acceptance criteria and differs from a general mathematical guarantee. Historical inputs, measurements and criteria are preserved.
+
+## Spectral elements: high-order finite elements and 2D Poisson — 2D spectral-element Poisson: P1 FEM comparison and h/p refinement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/spectral-element/
+Coverage: reading
+
+Computation for a fixed target
+Solve a sine manufactured solution on the unit square with GLL spectral elements and the existing triangle P1 FEM. Compare matched free-unknown counts under h refinement and p=1..6 at fixed elements.
+One smooth fixed problem only. Meshes, quadrature and algebraic solvers differ: no speed, complexity or universal-accuracy ranking. The diagonal GLL quadrature mass is not the exactly integrated mass of every product. No curved mesh, singular solution, incompressible flow or Nek5000/nekRS run.
+Input, results and acceptance · Method, equations and sources · Code: run.py · Code: sem.py · Code: polynomials.py · Code: experiments.py · Code: fem.py · Code: krylov.py · Code: fr.py · Code: advection.py · Code: solvers.py · Code: riemann.py · Code: equations.py · Code: limiters.py · Tests: test_sem_fr.py · Release ZIP · Saved results · Independent-extraction rerun receipt
+
+## Spectral elements: high-order finite elements and 2D Poisson — Publication scope and related entries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/spectral-element/#publication-scope
+Coverage: reading
+
+Dedicated small code, fixed inputs, saved fields and decisions are published with25 tests rerun from an independently extracted ZIP. Related external software is introduced from official documentation, without claiming installation or execution.
+Spectral element method (SEM)
+Continuous P1 Galerkin FEM
+Discontinuous Galerkin / Legendre
+
+## Spectral elements: high-order finite elements and 2D Poisson — Primary publications, supporting sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/spectral-element/#sources
+Coverage: reading
+
+Distinguish original research, later variants, author monographs, pedagogical articles and official references. Bibliographic verification differs from consulting selected passages; neither implies a full-paper audit or numerical reproduction. Access-depth notes accompany each source.
+A. T. Patera (1984). A spectral element method for fluid dynamics: Laminar flow in a channel expansion. Journal of Computational Physics
+Research publication: proposal or related formulation · Bibliography checked · Consulted record
+Bibliographic identity from the official Nek5000 reference list; publisher full text was not retrieved. No original-paper audit/reproduction. This example is a Legendre GLL variant.
+Nek5000 development team (2026). Nek5000 documentation: Theory and spectral-element basis (accessed 2026-11-23).
+Official reference documentation · Selected source passages consulted · Consulted record
+Official Theory and FAQ: element-local polynomials, GLL/GL nodes and C0 continuity. No installation, execution or full-code audit of Nek5000.
+Nek5000/RS development team (2026). Nek5000/RS project: spectral-element solvers and related implementations (accessed 2026-11-23).
+Official reference documentation · Selected source passages consulted · Consulted record
+
+## Spectral elements: high-order finite elements and 2D Poisson — Primary publications, supporting sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/spectral-element/#sources
+Coverage: reading
+
+Official project overview: SEM, CPU/GPU nekRS and its relationship to Nek5000. No external solver installation, execution or performance comparison.
 
 ## Spline interpolation — Spline interpolation [en]
 
@@ -16527,6 +16780,9 @@ Store normalized residuals, relative solution differences against SciPy spsolve,
 Related-model reference · Manufactured solution
 Poisson / manufactured sine
 The card is 1D sin(πx); this test is 2D sin(πx)sin(πy). Dimension, forcing and FEM error norms differ.
+Same-problem reference · Manufactured solution
+2D Poisson sine manufactured solution: shared SEM/P1 FEM reference
+Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM.
 
 ## AMG, factorizations, eigenvalues and quadrature — Assumptions, units and boundaries [en]
 
@@ -17232,6 +17488,320 @@ Cites the ExactPack software paper and its Guderley solver listing. The paper ve
 Los Alamos National Laboratory / ExactPack contributors (2025). ExactPack Guderley solver, pinned source
 Review scope / review_level: selected source files and license inspected; eexp,ramsey.state/g,interp_laz and official test fixtures; actual execution recorded separately
 Inspected pinned eexp, the pre-collapse ODE/state, transcribed tables, official regression values and BSD3 terms. This is not a claim to have run the complete ExactPack suite; actual reference execution is recorded separately.
+
+## KH/RT initial growth and independent linear references — KH/RT initial growth and independent linear references [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-instability-growth/
+Coverage: reading
+
+Compare actual small-amplitude nonlinear2D runs with separately derived continuous Fourier–Galerkin linear IVPs. Separate finite-time growth, spatial, temporal and amplitude effects.
+
+## KH/RT initial growth and independent linear references — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-instability-growth/#run-all
+Coverage: reading
+
+Run inside atlas-instability-growth-2026-11-23-r2 from the ZIP. This command executes all 2 fixed cases in the supplement. Choose a new or empty output directory.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## KH/RT initial growth and independent linear references — KH initial growth in a smooth periodic shear layer [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-instability-growth/
+Coverage: reading
+
+Evolve the actual nonlinear2D vorticity PDE and compare finite-time growth and spatial errors with an independent continuous Fourier–Galerkin linear IVP.
+Methods, equations, figures and references
+Methods used
+Centered spatial difference
+Heun / SSPRK(2,2)
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Advance point-sampled perturbations using centered shared-face conservative fluxes and Heun; invert the five-point Poisson symbol by FFT. Centered derivatives define divergence-free velocity. Analytic base subtraction avoids a discretization imbalance larger than the small perturbation.
+Forced vorticity about a maintained shear layer
+Periodic[0,2pi]², layer width.25, nu=kappa=.005, epsilon1e-5 and32²/64²/128² grids. Explicit forcing maintains the base. U=tanh(sin y/delta),T1.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+KH initial growth in a smooth periodic shear layer
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+
+## KH/RT initial growth and independent linear references — KH initial growth in a smooth periodic shear layer [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-instability-growth/
+Coverage: reading
+
+Freeze22pytest tests,74case gates and10nonlinear evolutions. QualifyK24/40/56references; separately check three-grid field errors/orders, five-time growth,64²halved-step/halved-amplitude probes, Poisson residual, divergence and means.
+Same-problem reference · Finite-grid numerical reference
+KH initial growth: independent linear Fourier-Galerkin reference
+Small-amplitude fixed educational cases. The independent reference changes spatial representation but linearizes the PDE; it is not a second nonlinear engine. No sharp-interface infinite-domain dispersion, original compressible McNally inputs, late roll-up or RT turbulence claim. Figures explicitly normalize computed perturbations by epsilon.
+
+## KH/RT initial growth and independent linear references — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-instability-growth/#kh-initial-growth-assumptions
+Coverage: reading
+
+Periodic[0,2pi]², layer width.25, nu=kappa=.005, epsilon1e-5 and32²/64²/128² grids. Explicit forcing maintains the base. U=tanh(sin y/delta),T1.
+
+## KH/RT initial growth and independent linear references — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-instability-growth/#kh-initial-growth-algorithm
+Coverage: reading
+
+Advance point-sampled perturbations using centered shared-face conservative fluxes and Heun; invert the five-point Poisson symbol by FFT. Centered derivatives define divergence-free velocity. Analytic base subtraction avoids a discretization imbalance larger than the small perturbation.
+-\Delta\psi=\omega,\qquad (u,v)=(\partial_y\psi,-\partial_x\psi)U(y)=\tanh(\sin y/\delta),\quad \omega_t+U\omega_x+U^{\prime\prime}\psi_x+\mathbf{u}\cdot\nabla\omega=\nu\Delta\omega\sigma_T=\frac{1}{T}\log\frac{A(T)}{A(0)},\qquad \dot{\widehat{\mathbf{q}}}=L_K\widehat{\mathbf{q}}
+
+## KH/RT initial growth and independent linear references — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-instability-growth/#kh-initial-growth-validation
+Coverage: reading
+
+Freeze22pytest tests,74case gates and10nonlinear evolutions. QualifyK24/40/56references; separately check three-grid field errors/orders, five-time growth,64²halved-step/halved-amplitude probes, Poisson residual, divergence and means.
+
+## KH/RT initial growth and independent linear references — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-instability-growth/#kh-initial-growth-limits
+Coverage: reading
+
+Small-amplitude fixed educational cases. The independent reference changes spatial representation but linearizes the PDE; it is not a second nonlinear engine. No sharp-interface infinite-domain dispersion, original compressible McNally inputs, late roll-up or RT turbulence claim. Figures explicitly normalize computed perturbations by epsilon.
+
+## KH/RT initial growth and independent linear references — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-instability-growth/#kh-initial-growth-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+spatial_orders[2.2589498509059927,2.031111897437912]
+finest_relative_field_error0.00425645160444
+finite_window_growth_rate0.394925454035
+reference_finite_window_growth_rate0.397810144022
+finest_growth_factor1.48427354019
+maximum_growth_curve_error0.00288053326655
+time_contamination_fraction0.000451186564654
+amplitude_scaled_difference6.58868997992e-06
+linear_operator_maximum_real_eigenvalue0.585864164046
+判定 / checkPassed
+reference_state_sensitivitytrue
+reference_growth_sensitivitytrue
+reference_positive_eigen_growthtrue
+n32_finitetrue
+n32_divergencetrue
+n32_poissontrue
+n32_mean_omegatrue
+n32_mean_thetatrue
+n64_finitetrue
+n64_divergencetrue
+n64_poissontrue
+n64_mean_omegatrue
+n64_mean_thetatrue
+n128_finitetrue
+n128_divergencetrue
+n128_poissontrue
+n128_mean_omegatrue
+n128_mean_thetatrue
+time-half_finitetrue
+time-half_divergencetrue
+time-half_poissontrue
+time-half_mean_omegatrue
+time-half_mean_thetatrue
+epsilon-half_finitetrue
+epsilon-half_divergencetrue
+epsilon-half_poissontrue
+epsilon-half_mean_omegatrue
+epsilon-half_mean_thetatrue
+spatial_decrease_1true
+spatial_decrease_2true
+minimum_spatial_ordertrue
+finest_field_errortrue
+growth_curvetrue
+finite_window_growth_ratetrue
+observable_growthtrue
+
+## KH/RT initial growth and independent linear references — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-instability-growth/#kh-initial-growth-measurements
+Coverage: reading
+
+time_contaminationtrue
+amplitude_linearitytrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Saved actual2D perturbation vorticity normalized by epsilon; color scale and linear-reference growth are explicit.Read every stored record
+idnepsiloncfl_factorstepsrelative_field_erroramplitudesreference_amplitudesfilesha256finitemax_divergencemax_poisson_residualmax_mean_omegamax_mean_theta
+n32321e-051360.0832693106539[7.571133935436482e-06,7.782362929282533e-06,8.41346745252849e-06,9.410858494395259e-06,1.0731036167334186e-05][7.603453162872775e-06,7.86001815273194e-06,8.611150136682367e-06,9.781764397395089e-06,1.1318206814998453e-05]kh-initial-growth-n32.npzae25727d05326c76d77e593979ac4bf5740d16691e4a7c092b2bb6d7365d2398true1.69406589451e-205.21772295509e-191.27054942088e-210
+n64641e-051680.0173969576214[7.595367435186987e-06,7.840648927426591e-06,8.562300548520147e-06,9.690657995543658e-06,1.1174198473241866e-05][7.603453162872775e-06,7.86001815273194e-06,8.611150136682367e-06,9.781764397395089e-06,1.1318206814998453e-05]kh-initial-growth-n64.npzeb418472bb4dcf3c8fcb97428d8674a604a5a187c1c3f8e78d330ff5253435b4true4.40457132572e-202.77826806699e-181.27054942088e-210
+
+## KH/RT initial growth and independent linear references — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-instability-growth/#kh-initial-growth-measurements
+Coverage: reading
+
+n1281281e-0511520.00425645160444[7.601431365252137e-06,7.855183180822999e-06,8.599003112070968e-06,9.759184173475732e-06,1.128260344303824e-05][7.603453162872775e-06,7.86001815273194e-06,8.611150136682367e-06,9.781764397395089e-06,1.1318206814998453e-05]kh-initial-growth-n128.npz4795c793ed258b06d6f3ac9aebe42fb15c4253a8114e06d6d486d17e0e8957f2true8.63973606199e-201.24344436657e-171.05879118407e-210
+time-half641e-050.51360.0173919823495[7.595367435186987e-06,7.840654126276043e-06,8.562321179686481e-06,9.69070063482987e-06,1.1174267810079785e-05][7.603453162872775e-06,7.86001815273194e-06,8.611150136682367e-06,9.781764397395089e-06,1.1318206814998453e-05]kh-initial-growth-time-half.npz19f31eafb66bad56fec1c6e1f932372c554ec511c9b4f4ea8c031e1711c8ae80true4.319868031e-203.01374322633e-181.27054942088e-210
+epsilon-half645e-061680.0173969539413[3.7976837175934933e-06,3.9203244636673306e-06,4.2811502740558e-06,4.845328997301374e-06,5.587099235786818e-06][3.8017265814363877e-06,3.93000907636597e-06,4.305575068341184e-06,4.890882198697544e-06,5.659103407499227e-06]kh-initial-growth-epsilon-half.npz42d8b9917c8aafd529e7acbb7b82660b7dd78102adc8656a160e363000f51ccdtrue2.1599340155e-201.40946282423e-185.29395592034e-220
+Measurements and complete records / JSON
+
+## KH/RT initial growth and independent linear references — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-instability-growth/#kh-initial-growth-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Colin P. McNally, Wladimir Lyra and Jean-Claude Passy (2012). A Well-Posed Kelvin-Helmholtz Instability Test and Comparison · DOI: 10.1088/0067-0049/201/2/18
+Review scope / review_level: primary-selected-original-pdf-text
+Selected original methodology read; our incompressible forced inputs differ from its compressible benchmark.
+
+## KH/RT initial growth and independent linear references — RT initial growth in smooth Boussinesq double layers [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-instability-growth/
+Coverage: reading
+
+Advance the actual2D Boussinesq vorticity/active-buoyancy system and compare smooth unstable-layer growth with a separately derived linear IVP.
+Methods, equations, figures and references
+Methods used
+Centered spatial difference
+Heun / SSPRK(2,2)
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Advance point-sampled perturbations using centered shared-face conservative fluxes and Heun; invert the five-point Poisson symbol by FFT. Centered derivatives define divergence-free velocity. Analytic base subtraction avoids a discretization imbalance larger than the small perturbation.
+Boussinesq vorticity with active buoyancy
+Periodic[0,2pi]², layer width.25, nu=kappa=.005, epsilon1e-5 and32²/64²/128² grids. Explicit forcing maintains the base. g1,b0=.02tanh(sin y/delta),rho/rho0=1-b/g,T2. Density enters buoyancy only; this is not variable-density Euler.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+RT initial growth in smooth Boussinesq double layers
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+
+## KH/RT initial growth and independent linear references — RT initial growth in smooth Boussinesq double layers [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-instability-growth/
+Coverage: reading
+
+Freeze22pytest tests,74case gates and10nonlinear evolutions. QualifyK24/40/56references; separately check three-grid field errors/orders, five-time growth,64²halved-step/halved-amplitude probes, Poisson residual, divergence and means.
+Same-problem reference · Finite-grid numerical reference
+RT initial growth: linear Boussinesq double-layer IVP reference
+Small-amplitude fixed educational cases. The independent reference changes spatial representation but linearizes the PDE; it is not a second nonlinear engine. No sharp-interface infinite-domain dispersion, original compressible McNally inputs, late roll-up or RT turbulence claim. Figures explicitly normalize computed perturbations by epsilon.
+
+## KH/RT initial growth and independent linear references — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-instability-growth/#rt-initial-growth-assumptions
+Coverage: reading
+
+Periodic[0,2pi]², layer width.25, nu=kappa=.005, epsilon1e-5 and32²/64²/128² grids. Explicit forcing maintains the base. g1,b0=.02tanh(sin y/delta),rho/rho0=1-b/g,T2. Density enters buoyancy only; this is not variable-density Euler.
+
+## KH/RT initial growth and independent linear references — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-instability-growth/#rt-initial-growth-algorithm
+Coverage: reading
+
+Advance point-sampled perturbations using centered shared-face conservative fluxes and Heun; invert the five-point Poisson symbol by FFT. Centered derivatives define divergence-free velocity. Analytic base subtraction avoids a discretization imbalance larger than the small perturbation.
+-\Delta\psi=\omega,\qquad (u,v)=(\partial_y\psi,-\partial_x\psi)b=b_0(y)+\theta,\quad \omega_t+\mathbf{u}\cdot\nabla\omega=\nu\Delta\omega+\theta_x,\quad \theta_t+\mathbf{u}\cdot\nabla\theta+v b_0^{\prime}=\kappa\Delta\theta\sigma_T=\frac{1}{T}\log\frac{A(T)}{A(0)},\qquad \dot{\widehat{\mathbf{q}}}=L_K\widehat{\mathbf{q}}
+
+## KH/RT initial growth and independent linear references — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-instability-growth/#rt-initial-growth-validation
+Coverage: reading
+
+Freeze22pytest tests,74case gates and10nonlinear evolutions. QualifyK24/40/56references; separately check three-grid field errors/orders, five-time growth,64²halved-step/halved-amplitude probes, Poisson residual, divergence and means.
+
+## KH/RT initial growth and independent linear references — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-instability-growth/#rt-initial-growth-limits
+Coverage: reading
+
+Small-amplitude fixed educational cases. The independent reference changes spatial representation but linearizes the PDE; it is not a second nonlinear engine. No sharp-interface infinite-domain dispersion, original compressible McNally inputs, late roll-up or RT turbulence claim. Figures explicitly normalize computed perturbations by epsilon.
+
+## KH/RT initial growth and independent linear references — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-instability-growth/#rt-initial-growth-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+spatial_orders[1.9961801582972816,2.001279583653318]
+finest_relative_field_error0.000604694639785
+finite_window_growth_rate0.00592811455297
+reference_finite_window_growth_rate0.00593424378256
+finest_growth_factor1.01192679279
+maximum_growth_curve_error1.22583840361e-05
+time_contamination_fraction0.0026807715949
+amplitude_scaled_difference6.60786142519e-06
+linear_operator_maximum_real_eigenvalue0.112940107063
+判定 / checkPassed
+reference_state_sensitivitytrue
+reference_growth_sensitivitytrue
+reference_positive_eigen_growthtrue
+n32_finitetrue
+n32_divergencetrue
+n32_poissontrue
+n32_mean_omegatrue
+n32_mean_thetatrue
+n64_finitetrue
+n64_divergencetrue
+n64_poissontrue
+n64_mean_omegatrue
+n64_mean_thetatrue
+n128_finitetrue
+n128_divergencetrue
+n128_poissontrue
+n128_mean_omegatrue
+n128_mean_thetatrue
+time-half_finitetrue
+time-half_divergencetrue
+time-half_poissontrue
+time-half_mean_omegatrue
+time-half_mean_thetatrue
+epsilon-half_finitetrue
+epsilon-half_divergencetrue
+epsilon-half_poissontrue
+epsilon-half_mean_omegatrue
+epsilon-half_mean_thetatrue
+spatial_decrease_1true
+spatial_decrease_2true
+minimum_spatial_ordertrue
+finest_field_errortrue
+growth_curvetrue
+finite_window_growth_ratetrue
+observable_growthtrue
+
+## KH/RT initial growth and independent linear references — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-instability-growth/#rt-initial-growth-measurements
+Coverage: reading
+
+time_contaminationtrue
+amplitude_linearitytrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Saved actual2D buoyancy perturbation normalized by epsilon; an early smooth-layer displacement, not turbulent mixing.Read every stored record
+idnepsiloncfl_factorstepsrelative_field_erroramplitudesreference_amplitudesfilesha256finitemax_divergencemax_poisson_residualmax_mean_omegamax_mean_theta
+n32321e-051160.00965809354867[8.660254037844388e-06,8.64479017514243e-06,8.656060892155223e-06,8.694725433245985e-06,8.762008312385106e-06][8.660254037844388e-06,8.644820882950885e-06,8.656375379014117e-06,8.69557745727289e-06,8.763650521435006e-06]rt-initial-growth-n32.npzd6fdb280bffcc3d485e5d44c1314cca95592f85e49668219f611c1c7e434fca3true1.94817577868e-208.89384594617e-198.47032947254e-221.05879118407e-21
+n64641e-051320.00242092482178[8.660254037844387e-06,8.644812308685322e-06,8.65629287504494e-06,8.695354785233646e-06,8.763220713550922e-06][8.660254037844388e-06,8.644820882950885e-06,8.656375379014117e-06,8.69557745727289e-06,8.763650521435006e-06]rt-initial-growth-n64.npz84025a93b1a9fffdc3b020080cb88c25bd815278f1a20d1c0972e66acd62deaetrue3.89635155737e-205.73271898702e-181.69406589451e-218.47032947254e-22
+
+## KH/RT initial growth and independent linear references — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-instability-growth/#rt-initial-growth-measurements
+Coverage: reading
+
+n1281281e-051960.000604694639785[8.660254037844387e-06,8.64481866060881e-06,8.65635465370854e-06,8.695521724787933e-06,8.763543093241356e-06][8.660254037844388e-06,8.644820882950885e-06,8.656375379014117e-06,8.69557745727289e-06,8.763650521435006e-06]rt-initial-growth-n128.npzc58ef589a323e37b6509e902f2a7ef1ca6fbab7587377068040c42043573dbf3true7.8350547621e-202.36152785694e-171.69406589451e-211.05879118407e-21
+time-half641e-050.5640.00241597676361[8.660254037844387e-06,8.644811904755306e-06,8.656292430772538e-06,8.695354639994936e-06,8.763221209066592e-06][8.660254037844388e-06,8.644820882950885e-06,8.656375379014117e-06,8.69557745727289e-06,8.763650521435006e-06]rt-initial-growth-time-half.npz9c494fea6c95e637e86a76edc9352747f4199ab1e8664eeea47d55165f38ac6dtrue3.89635155737e-204.95006054375e-188.47032947254e-221.27054942088e-21
+epsilon-half645e-061320.00242092458602[4.330127018922193e-06,4.322406154345375e-06,4.328146437529506e-06,4.347677392622142e-06,4.381610356768535e-06][4.330127018922194e-06,4.3224104414754425e-06,4.3281876895070585e-06,4.347788728636445e-06,4.381825260717503e-06]rt-initial-growth-epsilon-half.npz5a770de9626e0fb9897d36ca2e9b7beda34daec8f9939b064df37d21f8a58651true1.926999955e-202.72066982658e-188.47032947254e-226.35274710441e-22
+Measurements and complete records / JSON
+
+## KH/RT initial growth and independent linear references — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-instability-growth/#rt-initial-growth-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Antonio Celani, Andrea Mazzino and Lara Vozella (2006). Rayleigh–Taylor turbulence in two dimensions · DOI: 10.1103/PhysRevLett.96.134504
+Review scope / review_level: primary-selected-original-pdf-text
+Original Boussinesq equations and periodic setup read; our smooth maintained layers and linear reference are constructed here.
 
 ## Level sets: 2D circle translation and rigid rotation — Level sets: 2D circle translation and rigid rotation [en]
 
@@ -20545,6 +21115,641 @@ The ArviZ developers (2024). ArviZ0.20.0 public diagnostics API and tagged sourc
 Review scope / review_level: official-versioned-source-and-actual-independent-execution
 Checked the official0.20.0 rhat/ess API and tagged source for splitting, ranks, Type7 quantiles, endpoints and constant conventions. Installed source hashes match commit94113176cae99a05ba41d1e93739ee2d5bdbe9b1;62 byte-identical datasets were actually processed in a separate environment without importing Atlas diagnostics. No upstream implementation is reproduced; values, versions, hashes and regeneration code are supplied.
 
+## Corner singularities, curved coordinates and Neumann/Robin boundaries — Corner singularities, curved coordinates and Neumann/Robin boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/
+Coverage: reading
+
+Actually solve singular L-corner P1 FEM, annular variable-viscosity vector Q1 PDE, pure-Neumann compatibility/mean-gauge and mixed-Robin manufactured problems.
+
+## Corner singularities, curved coordinates and Neumann/Robin boundaries — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/#run-all
+Coverage: reading
+
+Run inside atlas-mesh-boundary-2026-11-23 from the ZIP. This command executes all 4 fixed cases in the supplement. Choose a new or empty output directory.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Corner singularities, curved coordinates and Neumann/Robin boundaries — L-corner P1 FEM: grading and separate mesh distortion [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/
+Coverage: reading
+
+Solve a harmonic reentrant-corner field with actual2D P1 FEM; compare matched-DOF uniform/grading and separate smooth-square mesh distortion.
+Methods, equations, figures and references
+Methods used
+Continuous P1 Galerkin FEM
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Assemble physical P1 gradients/areas, eliminate boundary data and solve sparse systems. Corner triangles use origin-based Duffy quadrature48/96.
+Poisson / Laplace equations
+L-shaped[-1,1]² minus quadrantIV, theta0..3pi/2, analytic Dirichlet harmonic corner field. N8/16/32, fixed map x→x max(|x|,|y|). Separate unit-square sine MMS uses regular/warped grids.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+L-corner P1 FEM: grading and separate mesh distortion
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Retain integrated L2/H1 errors, quadrature gaps, matched-DOF grading improvement, separate square/warp errors, minimum angle/aspect, estimated1-norm conditioning and true residuals.
+Same-problem reference · Analytic reference
+L-corner singularity: harmonic field and separate smooth MMS
+
+## Corner singularities, curved coordinates and Neumann/Robin boundaries — L-corner P1 FEM: grading and separate mesh distortion [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/
+Coverage: reading
+
+No smooth-square L2 order is imposed on the singular field. Fixed a-priori grading is not an AMR engine. Conditioning is estimated; arbitrary distortion is not certified.
+Input and validation protocol history · Initial input
+
+## Corner singularities, curved coordinates and Neumann/Robin boundaries — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/#lshape-fem-assumptions
+Coverage: reading
+
+L-shaped[-1,1]² minus quadrantIV, theta0..3pi/2, analytic Dirichlet harmonic corner field. N8/16/32, fixed map x→x max(|x|,|y|). Separate unit-square sine MMS uses regular/warped grids.
+
+## Corner singularities, curved coordinates and Neumann/Robin boundaries — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/#lshape-fem-algorithm
+Coverage: reading
+
+Assemble physical P1 gradients/areas, eliminate boundary data and solve sparse systems. Corner triangles use origin-based Duffy quadrature48/96.
+-\Delta u=0,\quad u=r^{2/3}\sin(2\theta/3)K_{ab}=\sum_T |T|\nabla N_a\cdot\nabla N_b,\quad x_{graded}=x\|x\|_\infty
+
+## Corner singularities, curved coordinates and Neumann/Robin boundaries — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/#lshape-fem-validation
+Coverage: reading
+
+Retain integrated L2/H1 errors, quadrature gaps, matched-DOF grading improvement, separate square/warp errors, minimum angle/aspect, estimated1-norm conditioning and true residuals.
+
+## Corner singularities, curved coordinates and Neumann/Robin boundaries — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/#lshape-fem-limits
+Coverage: reading
+
+No smooth-square L2 order is imposed on the singular field. Fixed a-priori grading is not an AMR engine. Conditioning is estimated; arbitrary distortion is not certified.
+
+## Corner singularities, curved coordinates and Neumann/Robin boundaries — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/#lshape-fem-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+n32
+dofs961
+l20.00134735733393
+h10.108844893683
+quadrature_relative_gap1.40015698331e-14
+minimum_area0.000478699571574
+minimum_angle_degrees43.5975187484
+maximum_aspect2.08433300604
+condition_one_norm_estimate627.028424853
+residual1.65145674913e-15
+boundary_error0
+symmetry0
+判定 / checkPassed
+uniform-n8 residualtrue
+uniform-n8 boundary_errortrue
+uniform-n8 symmetrytrue
+uniform-n8 quadrature_relative_gaptrue
+uniform-n8 positive geometrytrue
+uniform-n16 residualtrue
+uniform-n16 boundary_errortrue
+uniform-n16 symmetrytrue
+uniform-n16 quadrature_relative_gaptrue
+uniform-n16 positive geometrytrue
+uniform-n32 residualtrue
+uniform-n32 boundary_errortrue
+uniform-n32 symmetrytrue
+uniform-n32 quadrature_relative_gaptrue
+uniform-n32 positive geometrytrue
+graded-n8 residualtrue
+graded-n8 boundary_errortrue
+graded-n8 symmetrytrue
+graded-n8 quadrature_relative_gaptrue
+graded-n8 positive geometrytrue
+graded-n16 residualtrue
+graded-n16 boundary_errortrue
+graded-n16 symmetrytrue
+graded-n16 quadrature_relative_gaptrue
+graded-n16 positive geometrytrue
+graded-n32 residualtrue
+graded-n32 boundary_errortrue
+graded-n32 symmetrytrue
+graded-n32 quadrature_relative_gaptrue
+graded-n32 positive geometrytrue
+square-n8 residualtrue
+
+## Corner singularities, curved coordinates and Neumann/Robin boundaries — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/#lshape-fem-measurements
+Coverage: reading
+
+square-n8 boundary_errortrue
+square-n8 symmetrytrue
+square-n8 quadrature_relative_gaptrue
+square-n8 positive geometrytrue
+square-n16 residualtrue
+square-n16 boundary_errortrue
+square-n16 symmetrytrue
+square-n16 quadrature_relative_gaptrue
+square-n16 positive geometrytrue
+square-n32 residualtrue
+square-n32 boundary_errortrue
+square-n32 symmetrytrue
+square-n32 quadrature_relative_gaptrue
+square-n32 positive geometrytrue
+warped-n8 residualtrue
+warped-n8 boundary_errortrue
+warped-n8 symmetrytrue
+warped-n8 quadrature_relative_gaptrue
+warped-n8 positive geometrytrue
+warped-n16 residualtrue
+warped-n16 boundary_errortrue
+warped-n16 symmetrytrue
+warped-n16 quadrature_relative_gaptrue
+warped-n16 positive geometrytrue
+warped-n32 residualtrue
+warped-n32 boundary_errortrue
+warped-n32 symmetrytrue
+warped-n32 quadrature_relative_gaptrue
+warped-n32 positive geometrytrue
+uniform l2 refinement 1true
+uniform l2 refinement 2true
+uniform h1 refinement 1true
+uniform h1 refinement 2true
+graded l2 refinement 1true
+graded l2 refinement 2true
+graded h1 refinement 1true
+graded h1 refinement 2true
+square l2 refinement 1true
+square l2 refinement 2true
+square h1 refinement 1true
+square h1 refinement 2true
+warped l2 refinement 1true
+warped l2 refinement 2true
+warped h1 refinement 1true
+warped h1 refinement 2true
+matched unknown countstrue
+finest graded/uniform H1true
+finest graded H1true
+
+## Corner singularities, curved coordinates and Neumann/Robin boundaries — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/#lshape-fem-measurements
+Coverage: reading
+
+analytic Cartesian stress/source identitytrue
+analytic annulus no-slip tracetrue
+analytic corner analytic gradienttrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Validation preview from actual saved PDE arrays and fixed-input refinement measurements.Read every stored record
+nfamilydofsl2h1quadrature_relative_gapminimum_areaminimum_angle_degreesmaximum_aspectcondition_one_norm_estimateresidualboundary_errorsymmetryid
+8uniform1610.006628511205110.1239105175721.05821388364e-050.007812545274.68677116291.33226762955e-1500uniform-n8
+16uniform7050.002714674658460.07911871440861.03055268147e-050.001953125452303.343729382.22044604925e-1500uniform-n16
+32uniform29450.001102753645450.05027693280021.01298024129e-050.000488281254521220.281637813.10862446895e-1500uniform-n32
+8graded1610.002903012090870.07723065550231.70707740698e-060.000122070312515.25511870314.33333333333186.4213666721.18123811318e-1500graded-n8
+16graded7050.0007700545075130.04008770835499.98181048395e-077.62939453125e-0615.25511870314.33333333333778.0868104561.72084568817e-1500graded-n16
+32graded29450.0001997478853040.02051652786236.00227281589e-074.76837158203e-0715.25511870314.333333333333164.564406522.53686779078e-1500graded-n32
+8square490.02113277347420.4317982830061.47756387043e-150.007812545237.26470588246.10622663544e-1600square-n8
+
+## Corner singularities, curved coordinates and Neumann/Robin boundaries — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/#lshape-fem-measurements
+Coverage: reading
+
+16square2250.005377435010010.217536336365.16148973701e-150.001953125452150.4169299548.74300631892e-1600square-n16
+32square9610.001350436248550.1089754235191.38090764275e-140.00048828125452603.0519284081.45196354939e-1500square-n32
+8warped490.02120411721380.4324565085668.18106907486e-160.007173616013239.55559661952.3946476197641.67760044626.66133814775e-1600warped-n8
+16warped2250.005367392081980.2172891314493.23196712571e-150.0018762725273742.11670915752.17662211915161.9302430281.33226762955e-1500warped-n16
+32warped9610.001347357333930.1088448936831.40015698331e-140.00047869957157443.59751874842.08433300604627.0284248531.65145674913e-1500warped-n32
+Measurements and complete records / JSON
+
+## Corner singularities, curved coordinates and Neumann/Robin boundaries — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/#lshape-fem-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Long Chen (n.d.). Introduction to Adaptive Finite Element Methods
+Review scope / review_level: selected-official-tutorial-equations
+Joachim Schöberl (n.d.). Interactive FEM: graded meshes around vertex singularities
+Review scope / review_level: selected-author-teaching-section
+
+## Corner singularities, curved coordinates and Neumann/Robin boundaries — Annular variable-viscosity vector PDE MMS [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/
+Coverage: reading
+
+Actually solve variable-viscosity stress divergence on an annulus; check velocity, strain, physical traction and work.
+Methods, equations, figures and references
+Methods used
+Q1 FEM for mapped-coordinate vector BVP
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Mapped polar Q1 with two Cartesian velocity components;4×4 Gauss integration of2mu epsilon uses exact r dr dtheta metric, followed by a block sparse solve. Circular traction uses r dtheta and outward normals.
+Variable-viscosity vector stress boundary-value problem
+1≤r≤2, periodic angle, mu=1+.2r², lambda0 and zero velocity on both circles. A(s)=(s−1)(4−s), u=(A(1+xy),A(x²−y²)/2). Nr8/16/32,Ntheta2Nr.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Annular variable-viscosity vector PDE MMS
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+Qualify the derived force by separate Cartesian stress differentiation. Measure velocity/strain/traction refinement, reactions versus volume-force/physical traction budgets, and viscous dissipation versus force work. Also check the independently integrated body force (756pi/5,0).
+
+## Corner singularities, curved coordinates and Neumann/Robin boundaries — Annular variable-viscosity vector PDE MMS [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/
+Coverage: reading
+
+Same-problem reference · Manufactured solution
+Annular vector-viscous MMS: force qualified by independent stress differentiation
+A linear vector viscous BVP, without divergence-free constraint, pressure or nonlinear Navier–Stokes. r>0 only; no axis stencil certification.
+Input and validation protocol history · Initial input
+
+## Corner singularities, curved coordinates and Neumann/Robin boundaries — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/#annular-viscous-mms-assumptions
+Coverage: reading
+
+1≤r≤2, periodic angle, mu=1+.2r², lambda0 and zero velocity on both circles. A(s)=(s−1)(4−s), u=(A(1+xy),A(x²−y²)/2). Nr8/16/32,Ntheta2Nr.
+
+## Corner singularities, curved coordinates and Neumann/Robin boundaries — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/#annular-viscous-mms-algorithm
+Coverage: reading
+
+Mapped polar Q1 with two Cartesian velocity components;4×4 Gauss integration of2mu epsilon uses exact r dr dtheta metric, followed by a block sparse solve. Circular traction uses r dtheta and outward normals.
+-\nabla\cdot(2\mu\epsilon(u))=f,\quad\mu=1+0.2r^2\int 2\mu\epsilon(u):\epsilon(v)\,r\,dr\,d\theta=\int f\cdot v\,r\,dr\,d\thetadS=r\,d\theta,\quad t=(2\mu\epsilon(u))n
+
+## Corner singularities, curved coordinates and Neumann/Robin boundaries — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/#annular-viscous-mms-validation
+Coverage: reading
+
+Qualify the derived force by separate Cartesian stress differentiation. Measure velocity/strain/traction refinement, reactions versus volume-force/physical traction budgets, and viscous dissipation versus force work. Also check the independently integrated body force (756pi/5,0).
+
+## Corner singularities, curved coordinates and Neumann/Robin boundaries — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/#annular-viscous-mms-limits
+Coverage: reading
+
+A linear vector viscous BVP, without divergence-free constraint, pressure or nonlinear Navier–Stokes. r>0 only; no axis stencil certification.
+
+## Corner singularities, curved coordinates and Neumann/Robin boundaries — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/#annular-viscous-mms-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+n32
+theta_cells64
+dofs3968
+relative_l20.0022683900911
+relative_strain_l20.0518895568619
+relative_traction_l20.0726600694316
+residual1.08579811808e-13
+boundary_error0
+area_error3.5527136788e-15
+reaction_balance1.73667181888e-15
+traction_flux_balance0.0424955598518
+exact_flux_balance5.98475635565e-16
+analytic_force_error8.39450028527e-16
+work_identity3.85151725267e-15
+symmetry3.5527136788e-15
+判定 / checkPassed
+annulus-n8 residualtrue
+annulus-n8 boundary_errortrue
+annulus-n8 area_errortrue
+annulus-n8 reaction_balancetrue
+annulus-n8 exact_flux_balancetrue
+annulus-n8 analytic_force_errortrue
+annulus-n8 work_identitytrue
+annulus-n8 symmetrytrue
+annulus-n16 residualtrue
+annulus-n16 boundary_errortrue
+annulus-n16 area_errortrue
+annulus-n16 reaction_balancetrue
+annulus-n16 exact_flux_balancetrue
+annulus-n16 analytic_force_errortrue
+annulus-n16 work_identitytrue
+annulus-n16 symmetrytrue
+annulus-n32 residualtrue
+annulus-n32 boundary_errortrue
+annulus-n32 area_errortrue
+annulus-n32 reaction_balancetrue
+annulus-n32 exact_flux_balancetrue
+annulus-n32 analytic_force_errortrue
+annulus-n32 work_identitytrue
+annulus-n32 symmetrytrue
+relative_l2 refinement 1true
+relative_l2 refinement 2true
+
+## Corner singularities, curved coordinates and Neumann/Robin boundaries — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/#annular-viscous-mms-measurements
+Coverage: reading
+
+relative_strain_l2 refinement 1true
+relative_strain_l2 refinement 2true
+relative_traction_l2 refinement 1true
+relative_traction_l2 refinement 2true
+traction_flux_balance refinement 1true
+traction_flux_balance refinement 2true
+finest relative_l2true
+finest relative_strain_l2true
+finest relative_traction_l2true
+finest traction_flux_balancetrue
+analytic Cartesian stress/source identitytrue
+analytic annulus no-slip tracetrue
+analytic corner analytic gradienttrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Validation preview from actual saved PDE arrays and fixed-input refinement measurements.Read every stored record
+ntheta_cellsdofsrelative_l2relative_strain_l2relative_traction_l2residualboundary_errorarea_errorreaction_balancetraction_flux_balanceexact_flux_balanceanalytic_force_errorwork_identitysymmetryid
+8162240.03647315605870.2067625586380.2649537560993.5527136788e-1405.3290705182e-152.79969059743e-160.1625155991871.47540060455e-171.82494747303e-161.91288856848e-163.5527136788e-15annulus-n8
+16329600.009083323597370.1036922772420.140766397994.4408920985e-1403.5527136788e-154.72992091101e-160.08370975762776.04046250803e-164.79214685312e-163.69882328597e-163.5527136788e-15annulus-n16
+
+## Corner singularities, curved coordinates and Neumann/Robin boundaries — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/#annular-viscous-mms-measurements
+Coverage: reading
+
+326439680.00226839009110.05188955686190.07266006943161.08579811808e-1303.5527136788e-151.73667181888e-150.04249555985185.98475635565e-168.39450028527e-163.85151725267e-153.5527136788e-15annulus-n32
+Measurements and complete records / JSON
+
+## Corner singularities, curved coordinates and Neumann/Robin boundaries — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/#annular-viscous-mms-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+MFEM developers (n.d.). Example2: Linear Elasticity
+Review scope / review_level: selected-official-equations
+
+## Corner singularities, curved coordinates and Neumann/Robin boundaries — Pure Neumann compatibility and mean gauge [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/
+Coverage: reading
+
+Solve singular2D Poisson with compatibility/gauge and reject incompatible source.
+Methods, equations, figures and references
+Methods used
+Centered spatial difference
+Conjugate gradients
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Shared-face differences, weighted-mean augmented solve and compatible CG comparison; no physical RHS mean projection.
+Poisson / Laplace equations
+Unit square N16/32/64, cell-centred point DOFs, cosine exact field, homogeneous Neumann; mean0 andN32 mean.25 probe.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Pure Neumann compatibility and mean gauge
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Retain L2 refinement, nullspace/gauge/CG gap, source+1 rejection and boundary/source budget.
+Same-problem reference · Manufactured solution
+Pure Neumann: analytic field, compatibility and mean gauge
+A different linear solver of the same matrix is not an independent PDE discretization; no general boundary/MG claim.
+Input and validation protocol history · Initial input
+
+## Corner singularities, curved coordinates and Neumann/Robin boundaries — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/#poisson-neumann-assumptions
+Coverage: reading
+
+Unit square N16/32/64, cell-centred point DOFs, cosine exact field, homogeneous Neumann; mean0 andN32 mean.25 probe.
+
+## Corner singularities, curved coordinates and Neumann/Robin boundaries — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/#poisson-neumann-algorithm
+Coverage: reading
+
+Shared-face differences, weighted-mean augmented solve and compatible CG comparison; no physical RHS mean projection.
+-\Delta u=f,\quad\partial_nu=g_N,\quad\int f=-\oint g_N
+
+## Corner singularities, curved coordinates and Neumann/Robin boundaries — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/#poisson-neumann-validation
+Coverage: reading
+
+Retain L2 refinement, nullspace/gauge/CG gap, source+1 rejection and boundary/source budget.
+
+## Corner singularities, curved coordinates and Neumann/Robin boundaries — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/#poisson-neumann-limits
+Coverage: reading
+
+A different linear solver of the same matrix is not an independent PDE discretization; no general boundary/MG claim.
+
+## Corner singularities, curved coordinates and Neumann/Robin boundaries — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/#poisson-neumann-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+n64
+mean0
+l20.000401788839684
+linf0.000801642956293
+residual1.64104840827e-15
+compatibility1.47451495458e-17
+mean_error7.16047772291e-17
+nullspace_defect0
+solver_gap1.04360964315e-14
+lagrange_multiplier-2.24365553071e-15
+boundary_residual0
+boundary_flux_error0
+flux_balance1.47451495458e-17
+symmetry0
+gauge_shift_error3.77475828373e-15
+判定 / checkPassed
+neumann-n16 residualtrue
+neumann-n16 boundary_residualtrue
+neumann-n16 flux_balancetrue
+neumann-n16 symmetrytrue
+neumann-n16 compatibilitytrue
+neumann-n16 mean_errortrue
+neumann-n16 nullspace_defecttrue
+neumann-n16 solver_gaptrue
+neumann-n32 residualtrue
+neumann-n32 boundary_residualtrue
+neumann-n32 flux_balancetrue
+neumann-n32 symmetrytrue
+neumann-n32 compatibilitytrue
+neumann-n32 mean_errortrue
+neumann-n32 nullspace_defecttrue
+neumann-n32 solver_gaptrue
+neumann-n64 residualtrue
+neumann-n64 boundary_residualtrue
+neumann-n64 flux_balancetrue
+neumann-n64 symmetrytrue
+neumann-n64 compatibilitytrue
+neumann-n64 mean_errortrue
+neumann-n64 nullspace_defecttrue
+neumann-n64 solver_gaptrue
+L2 refinement 1true
+L2 refinement 2true
+finest L2true
+mean gauge shifts only constanttrue
+incompatible source rejected without projectiontrue
+
+## Corner singularities, curved coordinates and Neumann/Robin boundaries — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/#poisson-neumann-measurements
+Coverage: reading
+
+analytic Cartesian stress/source identitytrue
+analytic annulus no-slip tracetrue
+analytic corner analytic gradienttrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Validation preview from actual saved PDE arrays and fixed-input refinement measurements.Read every stored record
+nfamilymeanl2linfresidualcompatibilitymean_errornullspace_defectsolver_gaplagrange_multiplierboundary_residualboundary_flux_errorflux_balancesymmetryidgauge_shift_error
+16neumann00.006475373360940.01245783827451.16573417586e-156.24500451352e-171.89735380185e-1701.11022302463e-152.43188391583e-15006.24500451352e-170neumann-n16—
+32neumann00.001609482220040.003188038690531.17961196366e-157.17741838185e-171.59379413421e-1603.44169137634e-155.93791795702e-15007.17741838185e-170neumann-n32—
+64neumann00.0004017888396840.0008016429562931.64104840827e-151.47451495458e-177.16047772291e-1701.04360964315e-14-2.24365553071e-15001.47451495458e-170neumann-n643.77475828373e-15
+Measurements and complete records / JSON
+
+## Corner singularities, curved coordinates and Neumann/Robin boundaries — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/#poisson-neumann-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+PETSc developers (n.d.). KSP: Solving Singular Systems
+Review scope / review_level: selected-official-section
+
+## Corner singularities, curved coordinates and Neumann/Robin boundaries — 2D mixed Robin MMS and boundary flux [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/
+Coverage: reading
+
+Assemble actual2D Neumann/Robin faces and compare the manufactured field and boundary flux.
+Methods, equations, figures and references
+Methods used
+Centered spatial difference
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Eliminate Robin trace at half-cell distance, using the same outward-gradient face weights in the discrete PDE and budget.
+Poisson / Laplace equations
+Unit square N16/32/64; cosine-plus-linear exact field. x walls Neumann±1; y walls analytic Robin alpha1,beta.5.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+2D mixed Robin MMS and boundary flux
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Save2D solution/errors, true residuals, Robin relation and analytic normal-flux errors, three-grid refinement and integral budget.
+Same-problem reference · Manufactured solution
+Mixed Robin: 2D analytic field and independent normal flux
+The unique Robin problem has no additional mean gauge. Algebraic boundary satisfaction differs from physical flux accuracy.
+Input and validation protocol history · Initial input
+
+## Corner singularities, curved coordinates and Neumann/Robin boundaries — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/#poisson-robin-assumptions
+Coverage: reading
+
+Unit square N16/32/64; cosine-plus-linear exact field. x walls Neumann±1; y walls analytic Robin alpha1,beta.5.
+
+## Corner singularities, curved coordinates and Neumann/Robin boundaries — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/#poisson-robin-algorithm
+Coverage: reading
+
+Eliminate Robin trace at half-cell distance, using the same outward-gradient face weights in the discrete PDE and budget.
+\alpha u_b+\beta\partial_nu=g,\quad\partial_nu=(g-\alpha u_i)/(\beta+\alpha h/2)
+
+## Corner singularities, curved coordinates and Neumann/Robin boundaries — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/#poisson-robin-validation
+Coverage: reading
+
+Save2D solution/errors, true residuals, Robin relation and analytic normal-flux errors, three-grid refinement and integral budget.
+
+## Corner singularities, curved coordinates and Neumann/Robin boundaries — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/#poisson-robin-limits
+Coverage: reading
+
+The unique Robin problem has no additional mean gauge. Algebraic boundary satisfaction differs from physical flux accuracy.
+
+## Corner singularities, curved coordinates and Neumann/Robin boundaries — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/#poisson-robin-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+n64
+mean0
+l20.000377061132506
+linf0.000891157386347
+residual5.72979164115e-15
+compatibility3.93846153846
+mean_error0
+nullspace_defect0
+solver_gap0
+lagrange_multiplier0
+boundary_residual4.4408920985e-16
+boundary_flux_error0.00061641574893
+flux_balance1.63358909733e-13
+symmetry0
+判定 / checkPassed
+robin-n16 residualtrue
+robin-n16 boundary_residualtrue
+robin-n16 flux_balancetrue
+robin-n16 symmetrytrue
+robin-n32 residualtrue
+robin-n32 boundary_residualtrue
+robin-n32 flux_balancetrue
+robin-n32 symmetrytrue
+robin-n64 residualtrue
+robin-n64 boundary_residualtrue
+robin-n64 flux_balancetrue
+robin-n64 symmetrytrue
+L2 refinement 1true
+L2 refinement 2true
+finest L2true
+boundary flux refinement 1true
+boundary flux refinement 2true
+finest boundary fluxtrue
+analytic Cartesian stress/source identitytrue
+analytic annulus no-slip tracetrue
+analytic corner analytic gradienttrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Validation preview from actual saved PDE arrays and fixed-input refinement measurements.Read every stored record
+
+## Corner singularities, curved coordinates and Neumann/Robin boundaries — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/#poisson-robin-measurements
+Coverage: reading
+
+nfamilymeanl2linfresidualcompatibilitymean_errornullspace_defectsolver_gaplagrange_multiplierboundary_residualboundary_flux_errorflux_balancesymmetryid
+16robin00.006065503644640.01387221956471.73472347598e-153.7647058823500002.22044604925e-160.009882307586444.46517822716e-150robin-n16
+32robin00.00150986662620.003537609082522.60208521397e-153.8787878787900004.4408920985e-160.002466645406498.61255511353e-140robin-n32
+64robin00.0003770611325060.0008911573863475.72979164115e-153.9384615384600004.4408920985e-160.000616415748931.63358909733e-130robin-n64
+Measurements and complete records / JSON
+
+## Corner singularities, curved coordinates and Neumann/Robin boundaries — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/#poisson-robin-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+MFEM developers (n.d.). Boundary Conditions: Robin boundary conditions
+Review scope / review_level: selected-official-equations
+
 ## CT and GLM: matched controls, independent checks and grid/time convergence — CT and GLM: matched controls, independent checks and grid/time convergence [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/
@@ -20768,7 +21973,9 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mh
 Coverage: reading
 
 Measure density/magnetic L1 error, mesh improvement, positivity, conservation and div/psi. Athena256²/512² both useCFL.15; fixed512² CFL.3/.15 checks reference time sensitivity, with increments compared against.1 of primary error. At fixed16², compare primary time refinement with separately executed DOP853 and check finest-grid step doubling.
-No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
+Related-model reference · Finite-grid numerical reference
+Late Orszag-Tang: independent finite-grid density/pressure reference
+gamma5/3,periodic[-.5,.5]²,rho25/(36pi),p5/(12pi),vx=sin2piy,vy=-sin2pix,Az=(cos4pix-2cos2piy)/(4pi sqrt4pi),16/32/64² cells. This does not reproduce the original incompressible viscous/resistive model.
 Input and validation protocol history · Initial input
 
 ## CT and GLM: matched controls, independent checks and grid/time convergence — Assumptions, units and boundaries [en]
@@ -21017,6 +22224,531 @@ G. Tóth (2000). The ∇·B=0 Constraint in Shock-Capturing Magnetohydrodynamics
 Review scope / review_level: author paper abstract and bibliographic metadata
 Confirmed the original comparison topic and bibliographic identity; not a source of this experiment’s criteria or constructed equilibrium.
 
+## Independent MHD transport, waves and compression comparisons — Independent MHD transport, waves and compression comparisons [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/
+Coverage: reading
+
+Evolve all8conserved components with HLLD/MUSCL/Heun and2D CT. Compare wave means or unmodified Athena++ loop/late-OT fields, separating independent reference spatial/time increments.
+
+## Independent MHD transport, waves and compression comparisons — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/#run-all
+Coverage: reading
+
+Run inside atlas-mhd-transport-2026-11-23 from the ZIP. This command executes all 3 fixed cases in the supplement. Choose a new or empty output directory.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Independent MHD transport, waves and compression comparisons — Circular Alfven wave: full-state refinement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/
+Coverage: reading
+
+Evolve all eight conserved variables and compare circular polarization, including nonzero Bz/vz, against analytic cell means.
+Methods, equations, figures and references
+Methods used
+HLLD MHD Riemann solver
+MUSCL reconstruction
+Heun / SSPRK(2,2)
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Full-eight-state HLLD fluxes, MC-MUSCL reconstruction and fixed-step Heun. One-dimensional finite-volume update with constant Bx.
+Ideal magnetohydrodynamics
+gamma5/3, periodic[0,1], rho1,p.1,Bx1,amplitude.1, speed1,T1,32/64/128 cells. Initialize/reference conserved analytic cell means; pressure recovered from means differs from constant pointwise pressure.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Circularly polarized Alfvén wave
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## Independent MHD transport, waves and compression comparisons — Circular Alfven wave: full-state refinement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/
+Coverage: reading
+
+Freeze 47 pytest checks and12 primary runs before execution. Separate three grids and a finest-grid half-dt probe; retain stage positivity/finiteness, conservation, Courant number and five actual field snapshots. Qualify conserved analytic means by independent Gauss16 quadrature; measure transverse errors, phase and observed order.
+Related-model reference · Analytic reference
+Circular Alfven wave: analytic full-state conserved cell means
+gamma5/3, periodic[0,1], rho1,p.1,Bx1,amplitude.1, speed1,T1,32/64/128 cells. Initialize/reference conserved analytic cell means; pressure recovered from means differs from constant pointwise pressure.
+
+## Independent MHD transport, waves and compression comparisons — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/#circular-alfven-refinement-assumptions
+Coverage: reading
+
+gamma5/3, periodic[0,1], rho1,p.1,Bx1,amplitude.1, speed1,T1,32/64/128 cells. Initialize/reference conserved analytic cell means; pressure recovered from means differs from constant pointwise pressure.
+
+## Independent MHD transport, waves and compression comparisons — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/#circular-alfven-refinement-algorithm
+Coverage: reading
+
+Full-eight-state HLLD fluxes, MC-MUSCL reconstruction and fixed-step Heun. One-dimensional finite-volume update with constant Bx.
+\partial_tU+\partial_xF_x(U)=0,\quad U=(\rho,\rho\mathbf v,E,\mathbf B),\quad\gamma=5/3\theta_i=2\pi(x_i-t),\quad(\bar B_y,\bar B_z)=.1\frac{\sin(\pi h)}{\pi h}(\cos\theta_i,\sin\theta_i)\bar\rho=1,\quad\bar B_x=1,\quad(\bar m_y,\bar m_z)=-(\bar B_y,\bar B_z),\quad\bar E=.66e_2=\frac{\|U-U^{\mathrm{exact}}\|_2}{\|U^{\mathrm{exact}}\|_2},\qquad p_{\mathrm{obs}}=\log_2(e_h/e_{h/2})
+
+## Independent MHD transport, waves and compression comparisons — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/#circular-alfven-refinement-validation
+Coverage: reading
+
+Freeze 47 pytest checks and12 primary runs before execution. Separate three grids and a finest-grid half-dt probe; retain stage positivity/finiteness, conservation, Courant number and five actual field snapshots. Qualify conserved analytic means by independent Gauss16 quadrature; measure transverse errors, phase and observed order.
+
+## Independent MHD transport, waves and compression comparisons — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/#circular-alfven-refinement-limits
+Coverage: reading
+
+Educational fixed inputs only. Count HLLD-to-HLLE fallbacks and face reconstruction positivity scaling; no cell floor/clipping/retry. Finite-grid references are not exact solutions; no universal stability, positivity or order guarantee. The observed order is for a 1D aligned wave, not oblique 2D propagation.
+
+## Independent MHD transport, waves and compression comparisons — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/#circular-alfven-refinement-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+completed_pde_runs4
+reference_qualification_passedtrue
+analytic_quadrature_difference3.33066907388e-16
+判定 / checkPassed
+four prescribed fixed runstrue
+qualified independent referencetrue
+independent analytic conserved quadraturetrue
+circular-alfven-refinement-n32 all stages finite positivetrue
+circular-alfven-refinement-n32 final timetrue
+circular-alfven-refinement-n32 five exact snapshotstrue
+circular-alfven-refinement-n32 fluid integral conservationtrue
+circular-alfven-refinement-n32 native face divergencetrue
+circular-alfven-refinement-n32 measured Courant sumtrue
+circular-alfven-refinement-n32 no cell clips or retriestrue
+circular-alfven-refinement-n32 explicit fallback accountingtrue
+circular-alfven-refinement-n64 all stages finite positivetrue
+circular-alfven-refinement-n64 final timetrue
+circular-alfven-refinement-n64 five exact snapshotstrue
+circular-alfven-refinement-n64 fluid integral conservationtrue
+circular-alfven-refinement-n64 native face divergencetrue
+circular-alfven-refinement-n64 measured Courant sumtrue
+circular-alfven-refinement-n64 no cell clips or retriestrue
+circular-alfven-refinement-n64 explicit fallback accountingtrue
+
+## Independent MHD transport, waves and compression comparisons — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/#circular-alfven-refinement-measurements
+Coverage: reading
+
+circular-alfven-refinement-n128 all stages finite positivetrue
+circular-alfven-refinement-n128 final timetrue
+circular-alfven-refinement-n128 five exact snapshotstrue
+circular-alfven-refinement-n128 fluid integral conservationtrue
+circular-alfven-refinement-n128 native face divergencetrue
+circular-alfven-refinement-n128 measured Courant sumtrue
+circular-alfven-refinement-n128 no cell clips or retriestrue
+circular-alfven-refinement-n128 explicit fallback accountingtrue
+circular-alfven-refinement-half-dt all stages finite positivetrue
+circular-alfven-refinement-half-dt final timetrue
+circular-alfven-refinement-half-dt five exact snapshotstrue
+circular-alfven-refinement-half-dt fluid integral conservationtrue
+circular-alfven-refinement-half-dt native face divergencetrue
+circular-alfven-refinement-half-dt measured Courant sumtrue
+circular-alfven-refinement-half-dt no cell clips or retriestrue
+circular-alfven-refinement-half-dt explicit fallback accountingtrue
+transverse refinement n64true
+transverse refinement n128true
+transverse finest errortrue
+transverse separate time contamination fractiontrue
+selected wave last observed ordertrue
+selected wave phase errortrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Actual saved primary By(x,t) at five times: one spatial dimension plus time.Read every stored record
+
+## Independent MHD transport, waves and compression comparisons — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/#circular-alfven-refinement-measurements
+Coverage: reading
+
+idcasenstepstimefamilyfieldsnapshot_timeserrorsfinite_positivemaximum_fluid_integral_defectmaximum_native_divergencemaximum_common_cell_divergencereference_common_cell_divergencemaximum_courant_sumfallback_facesfallback_count_from_historydegenerate_facesreconstruction_scalingsminimum_thetaminimum_densityminimum_pressurestate_clip_countretriesmaximum_abs_bzphase_error_radianstime_half_difference
+circular-alfven-refinement-n32circular-alfven-refinement325121refinementcircular-alfven-refinement-n32.npz[0.0,0.25,0.5,0.75,1.0]{"transverse":{"relative_l1":0.029709742332415977,"relative_l2":0.03004438905970163,"absolute_linf":0.004024848367444947}}true6.66133814775e-160000.0629337712953000010.9995957053680.100004690176000.09936060060390.0128678046351—
+circular-alfven-refinement-n64circular-alfven-refinement645121refinementcircular-alfven-refinement-n64.npz[0.0,0.25,0.5,0.75,1.0]{"transverse":{"relative_l1":0.008840362722738273,"relative_l2":0.009407317675070758,"absolute_linf":0.001471597179273948}}true1.33226762955e-150000.125797276139000010.9998527014820.0999886468298000.09983983960490.00401184578873—
+
+## Independent MHD transport, waves and compression comparisons — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/#circular-alfven-refinement-measurements
+Coverage: reading
+
+circular-alfven-refinement-n128circular-alfven-refinement1285121refinementcircular-alfven-refinement-n128.npz[0.0,0.25,0.5,0.75,1.0]{"transverse":{"relative_l1":0.002577399748901837,"relative_l2":0.0030405937596538713,"absolute_linf":0.0007730094539430826}}true2.88657986403e-150000.251536508105000010.9999393276470.0999906427023000.09995995635790.00121486606626—
+circular-alfven-refinement-half-dtcircular-alfven-refinement12810241time-probecircular-alfven-refinement-half-dt.npz[0.0,0.25,0.5,0.75,1.0]{"transverse":{"relative_l1":0.0023849017486046345,"relative_l2":0.0028370308610534373,"absolute_linf":0.0007169901609374446}}true2.88657986403e-150000.125766131093000010.9999436353120.0999928522094000.09995994572750.00111365151891{"transverse":0.0002002845722462051}
+Measurements and complete records / JSON
+
+## Independent MHD transport, waves and compression comparisons — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/#circular-alfven-refinement-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Athena++ collaboration (2026). Athena++ official field_loop and orszag_tang problem generators, pinned source
+Review scope / review_level: Official archive SHA verified; selected src/pgen/field_loop.cpp and orszag_tang.cpp, PLM/RK2/output configuration and actual conserved tab headers inspected; not a full Athena code audit
+Verified the official pinned archive SHA and inspected both generators, configuration and saved columns. Executed the independent engine and checked spatial/time sensitivity. No complete code audit or exact-solution claim.
+Thomas A. Gardiner and James M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport · DOI: 10.1016/j.jcp.2004.11.016
+Review scope / review_level: Author arXiv PDF selected section2.2 equations13–20,3.3.1–3.3.2 and5.1–5.2 inspected; not the full paper or original experiment replication
+Inspected the author PDF CT section and loop/polarized-wave definitions. Original CTU/PPM and oblique-wave experiments are not replicated. Our wave is 1D aligned; the official loop generator explicitly has vz=2.
+
+## Independent MHD transport, waves and compression comparisons — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/#circular-alfven-refinement-references
+Coverage: reading
+
+Takahiro Miyoshi and Kanya Kusano (2005). A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics · DOI: 10.1016/j.jcp.2005.02.017
+Review scope / review_level: Bibliographic metadata checked; publisher full text returned403. This addition did not newly audit original equations or experiments
+Bibliographic metadata checked; full publisher text unavailable. No new original-equation/experiment audit is claimed. Full-state HLLD is inherited byte-for-byte from the prior public validated Atlas.
+
+## Independent MHD transport, waves and compression comparisons — Magnetic loop: independent 2D reference and refinement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/
+Coverage: reading
+
+Compare genuine 2D magnetic-loop transport with final conserved fields from independent Athena++, qualified in space and time.
+Methods, equations, figures and references
+Methods used
+HLLD MHD Riemann solver
+MUSCL reconstruction
+Heun / SSPRK(2,2)
+Constrained transport / CT
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Full-eight-state HLLD fluxes, MC-MUSCL reconstruction and fixed-step Heun. Shared face fluxes and CT-contact corner EMFs update native face B; cell B is adjacent-face averaged. Initial discrete vector-potential curl and sampled fluid states match the official generator.
+Ideal magnetohydrodynamics
+Periodic[-1,1]x[-.5,.5],rho=p1,Az=.001max(.3-r,0),T1,(Nx,Ny)=(16,8),(32,16),(64,32). Use unchanged official-generator v=(2,1,2), explicitly distinct from old vz0 inputs.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Magnetic field-loop advection
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## Independent MHD transport, waves and compression comparisons — Magnetic loop: independent 2D reference and refinement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/
+Coverage: reading
+
+Freeze 47 pytest checks and12 primary runs before execution. Separate three grids and a finest-grid half-dt probe; retain stage positivity/finiteness, conservation, Courant number and five actual field snapshots. Qualify Athena++ with two grids and a half-CFL probe. Conservatively restrict final conserved states and separate reference sensitivity from primary error. Common-cell divergence and primary native-face divergence are distinct checks.
+Related-model reference · Finite-grid numerical reference
+Magnetic loop: pinned independent Athena++ final-field reference
+Periodic[-1,1]x[-.5,.5],rho=p1,Az=.001max(.3-r,0),T1,(Nx,Ny)=(16,8),(32,16),(64,32). Use unchanged official-generator v=(2,1,2), explicitly distinct from old vz0 inputs.
+
+## Independent MHD transport, waves and compression comparisons — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/#magnetic-loop-independent-assumptions
+Coverage: reading
+
+Periodic[-1,1]x[-.5,.5],rho=p1,Az=.001max(.3-r,0),T1,(Nx,Ny)=(16,8),(32,16),(64,32). Use unchanged official-generator v=(2,1,2), explicitly distinct from old vz0 inputs.
+
+## Independent MHD transport, waves and compression comparisons — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/#magnetic-loop-independent-algorithm
+Coverage: reading
+
+Full-eight-state HLLD fluxes, MC-MUSCL reconstruction and fixed-step Heun. Shared face fluxes and CT-contact corner EMFs update native face B; cell B is adjacent-face averaged. Initial discrete vector-potential curl and sampled fluid states match the official generator.
+\partial_tU+\partial_xF_x(U)+\partial_yF_y(U)=0,\quad U=(\rho,\rho\mathbf v,E,\mathbf B)E=\frac{p}{\gamma-1}+\frac12\rho|\mathbf v|^2+\frac12|\mathbf B|^2,\quad\gamma=5/3\frac{dB_x}{dt}=-D_y\mathcal E_z,\quad\frac{dB_y}{dt}=D_x\mathcal E_z,\quad D_xB_x+D_yB_y=\mathrm{constant}\bar U_i^{\mathrm{ref}}=\frac1{N_i}\sum_{j\in i}\bar U_j^{\mathrm{fine}},\qquad e_1=\frac{\sum|U-U^{\mathrm{ref}}|}{\sum|U^{\mathrm{ref}}|}A_z=.001\max(.3-\sqrt{x^2+y^2},0),\qquad\mathbf v=(2,1,2)
+
+## Independent MHD transport, waves and compression comparisons — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/#magnetic-loop-independent-validation
+Coverage: reading
+
+Freeze 47 pytest checks and12 primary runs before execution. Separate three grids and a finest-grid half-dt probe; retain stage positivity/finiteness, conservation, Courant number and five actual field snapshots. Qualify Athena++ with two grids and a half-CFL probe. Conservatively restrict final conserved states and separate reference sensitivity from primary error. Common-cell divergence and primary native-face divergence are distinct checks.
+
+## Independent MHD transport, waves and compression comparisons — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/#magnetic-loop-independent-limits
+Coverage: reading
+
+Educational fixed inputs only. Count HLLD-to-HLLE fallbacks and face reconstruction positivity scaling; no cell floor/clipping/retry. Finite-grid references are not exact solutions; no universal stability, positivity or order guarantee. Independent comparisons are final-only. Intermediate Athena outputs occur just after requested quarter times and are not matched frames. Athena native-face divergence is not exported/measured. Density contrast diagnoses compression, not a mathematical proof of shock formation.
+
+## Independent MHD transport, waves and compression comparisons — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/#magnetic-loop-independent-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+completed_pde_runs4
+reference_qualification_passedtrue
+analytic_quadrature_difference—
+判定 / checkPassed
+four prescribed fixed runstrue
+qualified independent referencetrue
+magnetic-loop-independent-n8 all stages finite positivetrue
+magnetic-loop-independent-n8 final timetrue
+magnetic-loop-independent-n8 five exact snapshotstrue
+magnetic-loop-independent-n8 fluid integral conservationtrue
+magnetic-loop-independent-n8 native face divergencetrue
+magnetic-loop-independent-n8 measured Courant sumtrue
+magnetic-loop-independent-n8 no cell clips or retriestrue
+magnetic-loop-independent-n8 explicit fallback accountingtrue
+magnetic-loop-independent-n16 all stages finite positivetrue
+magnetic-loop-independent-n16 final timetrue
+magnetic-loop-independent-n16 five exact snapshotstrue
+magnetic-loop-independent-n16 fluid integral conservationtrue
+magnetic-loop-independent-n16 native face divergencetrue
+magnetic-loop-independent-n16 measured Courant sumtrue
+magnetic-loop-independent-n16 no cell clips or retriestrue
+magnetic-loop-independent-n16 explicit fallback accountingtrue
+magnetic-loop-independent-n32 all stages finite positivetrue
+magnetic-loop-independent-n32 final timetrue
+
+## Independent MHD transport, waves and compression comparisons — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/#magnetic-loop-independent-measurements
+Coverage: reading
+
+magnetic-loop-independent-n32 five exact snapshotstrue
+magnetic-loop-independent-n32 fluid integral conservationtrue
+magnetic-loop-independent-n32 native face divergencetrue
+magnetic-loop-independent-n32 measured Courant sumtrue
+magnetic-loop-independent-n32 no cell clips or retriestrue
+magnetic-loop-independent-n32 explicit fallback accountingtrue
+magnetic-loop-independent-half-dt all stages finite positivetrue
+magnetic-loop-independent-half-dt final timetrue
+magnetic-loop-independent-half-dt five exact snapshotstrue
+magnetic-loop-independent-half-dt fluid integral conservationtrue
+magnetic-loop-independent-half-dt native face divergencetrue
+magnetic-loop-independent-half-dt measured Courant sumtrue
+magnetic-loop-independent-half-dt no cell clips or retriestrue
+magnetic-loop-independent-half-dt explicit fallback accountingtrue
+magnetic refinement n16true
+magnetic refinement n32true
+magnetic finest errortrue
+magnetic separate time contamination fractiontrue
+magnetic reference increment/errortrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Actual saved primary 2D in-plane magnetic energy at T1.Read every stored record
+
+## Independent MHD transport, waves and compression comparisons — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/#magnetic-loop-independent-measurements
+Coverage: reading
+
+idcasenstepstimefamilyfieldsnapshot_timeserrorsfinite_positivemaximum_fluid_integral_defectmaximum_native_divergencemaximum_common_cell_divergencereference_common_cell_divergencemaximum_courant_sumfallback_facesfallback_count_from_historydegenerate_facesreconstruction_scalingsminimum_thetaminimum_densityminimum_pressurestate_clip_countretriesmaximum_abs_bzreference_incrementtime_half_difference
+magnetic-loop-independent-n8magnetic-loop-independent810241refinementmagnetic-loop-independent-n8.npz[0.0,0.25,0.5,0.75,1.0]{"magnetic":{"relative_l1":1.0201120103024197,"relative_l2":0.8405195518649691,"absolute_linf":0.0008159155417839306}}true1.4802973524e-151.82145964978e-170.000855860704180.0008776373177770.0436092970302006023010.9999998929950.999999927066001.12291877465e-18{"magnetic":0.07681463629903337}—
+magnetic-loop-independent-n16magnetic-loop-independent1610241refinementmagnetic-loop-independent-n16.npz[0.0,0.25,0.5,0.75,1.0]{"magnetic":{"relative_l1":0.668676579604383,"relative_l2":0.5211776406502052,"absolute_linf":0.0005706710838436806}}true2.66453523109e-156.63531729561e-170.002367355559470.001161533448790.087218606005500158890010.999999712330.999999572888002.94209990663e-18{"magnetic":0.10660222586710934}—
+
+## Independent MHD transport, waves and compression comparisons — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/#magnetic-loop-independent-measurements
+Coverage: reading
+
+magnetic-loop-independent-n32magnetic-loop-independent3210241refinementmagnetic-loop-independent-n32.npz[0.0,0.25,0.5,0.75,1.0]{"magnetic":{"relative_l1":0.2530875146425678,"relative_l2":0.21987860576660073,"absolute_linf":0.0004883506353483678}}true5.3290705182e-151.44740990027e-160.00457863484130.00106113468280.174437217877002888347010.999999598490.999999355017003.63713310815e-18{"magnetic":0.12007354349502387}—
+magnetic-loop-independent-half-dtmagnetic-loop-independent3220481time-probemagnetic-loop-independent-half-dt.npz[0.0,0.25,0.5,0.75,1.0]{"magnetic":{"relative_l1":0.25282584988507095,"relative_l2":0.21966338068429772,"absolute_linf":0.00048750772481418684}}true4.88498125384e-152.43403387723e-160.004722233231250.00106113468280.0872186089253005769952010.9999995987290.999999355246005.29949421389e-18{"magnetic":0.12007354349502387}{"magnetic":0.0008010701537841011}
+Measurements and complete records / JSON
+
+## Independent MHD transport, waves and compression comparisons — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/#magnetic-loop-independent-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Athena++ collaboration (2026). Athena++ official field_loop and orszag_tang problem generators, pinned source
+Review scope / review_level: Official archive SHA verified; selected src/pgen/field_loop.cpp and orszag_tang.cpp, PLM/RK2/output configuration and actual conserved tab headers inspected; not a full Athena code audit
+Verified the official pinned archive SHA and inspected both generators, configuration and saved columns. Executed the independent engine and checked spatial/time sensitivity. No complete code audit or exact-solution claim.
+Thomas A. Gardiner and James M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport · DOI: 10.1016/j.jcp.2004.11.016
+Review scope / review_level: Author arXiv PDF selected section2.2 equations13–20,3.3.1–3.3.2 and5.1–5.2 inspected; not the full paper or original experiment replication
+Inspected the author PDF CT section and loop/polarized-wave definitions. Original CTU/PPM and oblique-wave experiments are not replicated. Our wave is 1D aligned; the official loop generator explicitly has vz=2.
+
+## Independent MHD transport, waves and compression comparisons — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/#magnetic-loop-independent-references
+Coverage: reading
+
+Takahiro Miyoshi and Kanya Kusano (2005). A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics · DOI: 10.1016/j.jcp.2005.02.017
+Review scope / review_level: Bibliographic metadata checked; publisher full text returned403. This addition did not newly audit original equations or experiments
+Bibliographic metadata checked; full publisher text unavailable. No new original-equation/experiment audit is claimed. Full-state HLLD is inherited byte-for-byte from the prior public validated Atlas.
+
+## Independent MHD transport, waves and compression comparisons — Late Orszag-Tang: independent reference and compression structure [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/
+Coverage: reading
+
+Evolve compressible ideal-MHD Orszag-Tang to T.2 and check density/pressure in interacting compression/shock structure against an independent finite-grid reference.
+Methods, equations, figures and references
+Methods used
+HLLD MHD Riemann solver
+MUSCL reconstruction
+Heun / SSPRK(2,2)
+Constrained transport / CT
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Full-eight-state HLLD fluxes, MC-MUSCL reconstruction and fixed-step Heun. Shared face fluxes and CT-contact corner EMFs update native face B; cell B is adjacent-face averaged. Initial discrete vector-potential curl and sampled fluid states match the official generator.
+Ideal magnetohydrodynamics
+gamma5/3,periodic[-.5,.5]²,rho25/(36pi),p5/(12pi),vx=sin2piy,vy=-sin2pix,Az=(cos4pix-2cos2piy)/(4pi sqrt4pi),16/32/64² cells. This does not reproduce the original incompressible viscous/resistive model.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Orszag–Tang vortex (CT/GLM/error variants merged)
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## Independent MHD transport, waves and compression comparisons — Late Orszag-Tang: independent reference and compression structure [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/
+Coverage: reading
+
+Freeze 47 pytest checks and12 primary runs before execution. Separate three grids and a finest-grid half-dt probe; retain stage positivity/finiteness, conservation, Courant number and five actual field snapshots. Qualify Athena++ with two grids and a half-CFL probe. Conservatively restrict final conserved states and separate reference sensitivity from primary error. Common-cell divergence and primary native-face divergence are distinct checks.
+Related-model reference · Finite-grid numerical reference
+Late Orszag-Tang: independent finite-grid density/pressure reference
+gamma5/3,periodic[-.5,.5]²,rho25/(36pi),p5/(12pi),vx=sin2piy,vy=-sin2pix,Az=(cos4pix-2cos2piy)/(4pi sqrt4pi),16/32/64² cells. This does not reproduce the original incompressible viscous/resistive model.
+
+## Independent MHD transport, waves and compression comparisons — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/#postshock-orszag-tang-assumptions
+Coverage: reading
+
+gamma5/3,periodic[-.5,.5]²,rho25/(36pi),p5/(12pi),vx=sin2piy,vy=-sin2pix,Az=(cos4pix-2cos2piy)/(4pi sqrt4pi),16/32/64² cells. This does not reproduce the original incompressible viscous/resistive model.
+
+## Independent MHD transport, waves and compression comparisons — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/#postshock-orszag-tang-algorithm
+Coverage: reading
+
+Full-eight-state HLLD fluxes, MC-MUSCL reconstruction and fixed-step Heun. Shared face fluxes and CT-contact corner EMFs update native face B; cell B is adjacent-face averaged. Initial discrete vector-potential curl and sampled fluid states match the official generator.
+\partial_tU+\partial_xF_x(U)+\partial_yF_y(U)=0,\quad U=(\rho,\rho\mathbf v,E,\mathbf B)E=\frac{p}{\gamma-1}+\frac12\rho|\mathbf v|^2+\frac12|\mathbf B|^2,\quad\gamma=5/3\frac{dB_x}{dt}=-D_y\mathcal E_z,\quad\frac{dB_y}{dt}=D_x\mathcal E_z,\quad D_xB_x+D_yB_y=\mathrm{constant}\bar U_i^{\mathrm{ref}}=\frac1{N_i}\sum_{j\in i}\bar U_j^{\mathrm{fine}},\qquad e_1=\frac{\sum|U-U^{\mathrm{ref}}|}{\sum|U^{\mathrm{ref}}|}\rho_0=\frac{25}{36\pi},\quad p_0=\frac5{12\pi},\quad\mathbf v_0=(\sin2\pi y,-\sin2\pi x,0)
+
+## Independent MHD transport, waves and compression comparisons — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/#postshock-orszag-tang-validation
+Coverage: reading
+
+Freeze 47 pytest checks and12 primary runs before execution. Separate three grids and a finest-grid half-dt probe; retain stage positivity/finiteness, conservation, Courant number and five actual field snapshots. Qualify Athena++ with two grids and a half-CFL probe. Conservatively restrict final conserved states and separate reference sensitivity from primary error. Common-cell divergence and primary native-face divergence are distinct checks.
+
+## Independent MHD transport, waves and compression comparisons — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/#postshock-orszag-tang-limits
+Coverage: reading
+
+Educational fixed inputs only. Count HLLD-to-HLLE fallbacks and face reconstruction positivity scaling; no cell floor/clipping/retry. Finite-grid references are not exact solutions; no universal stability, positivity or order guarantee. Independent comparisons are final-only. Intermediate Athena outputs occur just after requested quarter times and are not matched frames. Athena native-face divergence is not exported/measured. Density contrast diagnoses compression, not a mathematical proof of shock formation.
+
+## Independent MHD transport, waves and compression comparisons — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/#postshock-orszag-tang-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+completed_pde_runs4
+reference_qualification_passedtrue
+analytic_quadrature_difference—
+判定 / checkPassed
+four prescribed fixed runstrue
+qualified independent referencetrue
+postshock-orszag-tang-n16 all stages finite positivetrue
+postshock-orszag-tang-n16 final timetrue
+postshock-orszag-tang-n16 five exact snapshotstrue
+postshock-orszag-tang-n16 fluid integral conservationtrue
+postshock-orszag-tang-n16 native face divergencetrue
+postshock-orszag-tang-n16 measured Courant sumtrue
+postshock-orszag-tang-n16 no cell clips or retriestrue
+postshock-orszag-tang-n16 explicit fallback accountingtrue
+postshock-orszag-tang-n32 all stages finite positivetrue
+postshock-orszag-tang-n32 final timetrue
+postshock-orszag-tang-n32 five exact snapshotstrue
+postshock-orszag-tang-n32 fluid integral conservationtrue
+postshock-orszag-tang-n32 native face divergencetrue
+postshock-orszag-tang-n32 measured Courant sumtrue
+postshock-orszag-tang-n32 no cell clips or retriestrue
+postshock-orszag-tang-n32 explicit fallback accountingtrue
+postshock-orszag-tang-n64 all stages finite positivetrue
+postshock-orszag-tang-n64 final timetrue
+postshock-orszag-tang-n64 five exact snapshotstrue
+
+## Independent MHD transport, waves and compression comparisons — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/#postshock-orszag-tang-measurements
+Coverage: reading
+
+postshock-orszag-tang-n64 fluid integral conservationtrue
+postshock-orszag-tang-n64 native face divergencetrue
+postshock-orszag-tang-n64 measured Courant sumtrue
+postshock-orszag-tang-n64 no cell clips or retriestrue
+postshock-orszag-tang-n64 explicit fallback accountingtrue
+postshock-orszag-tang-half-dt all stages finite positivetrue
+postshock-orszag-tang-half-dt final timetrue
+postshock-orszag-tang-half-dt five exact snapshotstrue
+postshock-orszag-tang-half-dt fluid integral conservationtrue
+postshock-orszag-tang-half-dt native face divergencetrue
+postshock-orszag-tang-half-dt measured Courant sumtrue
+postshock-orszag-tang-half-dt no cell clips or retriestrue
+postshock-orszag-tang-half-dt explicit fallback accountingtrue
+density refinement n32true
+density refinement n64true
+density finest errortrue
+density separate time contamination fractiontrue
+density reference increment/errortrue
+pressure refinement n32true
+pressure refinement n64true
+pressure finest errortrue
+pressure separate time contamination fractiontrue
+pressure reference increment/errortrue
+late density compression diagnostictrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Actual saved primary 2D density field at T.2.Read every stored record
+
+## Independent MHD transport, waves and compression comparisons — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/#postshock-orszag-tang-measurements
+Coverage: reading
+
+idcasenstepstimefamilyfieldsnapshot_timeserrorsfinite_positivemaximum_fluid_integral_defectmaximum_native_divergencemaximum_common_cell_divergencereference_common_cell_divergencemaximum_courant_sumfallback_facesfallback_count_from_historydegenerate_facesreconstruction_scalingsminimum_thetaminimum_densityminimum_pressurestate_clip_countretriesmaximum_abs_bzreference_incrementdensity_contrasttime_half_difference
+postshock-orszag-tang-n16postshock-orszag-tang165120.2refinementpostshock-orszag-tang-n16.npz[0.0,0.05,0.1,0.15000000000000002,0.2]{"density":{"relative_l1":0.055072196798329816,"relative_l2":0.07215164461273015,"absolute_linf":0.08852719739822207},"pressure":{"relative_l1":0.10648854282318818,"relative_l2":0.13723151727368416,"absolute_linf":0.09628047510345739}}true7.49400541622e-163.28626015289e-141.298516839591.534347415750.0290194068648000010.08721400217710.027847918315000{"density":0.0017096329230723328,"pressure":0.002288814999333477}6.19650662864—
+
+## Independent MHD transport, waves and compression comparisons — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/#postshock-orszag-tang-measurements
+Coverage: reading
+
+postshock-orszag-tang-n32postshock-orszag-tang325120.2refinementpostshock-orszag-tang-n32.npz[0.0,0.05,0.1,0.15000000000000002,0.2]{"density":{"relative_l1":0.028678777478569353,"relative_l2":0.041137398858486336,"absolute_linf":0.05823726324242218},"pressure":{"relative_l1":0.04861322533996961,"relative_l2":0.06533475806083373,"absolute_linf":0.058642030300098846}}true2.10942374679e-159.7699626167e-142.05728181693.334593313230.0590074968248000010.08303698949470.0257821107718000{"density":0.002604331788270814,"pressure":0.003866435243131421}6.9926044012—
+postshock-orszag-tang-n64postshock-orszag-tang645120.2refinementpostshock-orszag-tang-n64.npz[0.0,0.05,0.1,0.15000000000000002,0.2]{"density":{"relative_l1":0.01108063471130391,"relative_l2":0.0198769886772933,"absolute_linf":0.031319933531365696},"pressure":{"relative_l1":0.018222741247481397,"relative_l2":0.030445318968789176,"absolute_linf":0.044566838585124946}}true2.41751063612e-142.73558953268e-134.205127934514.888384800090.119266771657000010.08326940161710.026012577592000{"density":0.0034136906328039464,"pressure":0.005436737129754892}7.14314802812—
+
+## Independent MHD transport, waves and compression comparisons — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/#postshock-orszag-tang-measurements
+Coverage: reading
+
+postshock-orszag-tang-half-dtpostshock-orszag-tang6410240.2time-probepostshock-orszag-tang-half-dt.npz[0.0,0.05,0.1,0.15000000000000002,0.2]{"density":{"relative_l1":0.011074410943847774,"relative_l2":0.019861741110300944,"absolute_linf":0.03128885270239748},"pressure":{"relative_l1":0.018217777823514525,"relative_l2":0.03043031230662544,"absolute_linf":0.04453503710572004}}true2.41473507856e-143.16191517413e-134.205072196914.888384800090.0596335885577000010.08336238174570.0260611060828000{"density":0.0034136906328039464,"pressure":0.005436737129754892}7.1433955308{"density":2.1002911370939043e-05,"pressure":3.761339307133521e-05}
+Measurements and complete records / JSON
+
+## Independent MHD transport, waves and compression comparisons — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/#postshock-orszag-tang-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Athena++ collaboration (2026). Athena++ official field_loop and orszag_tang problem generators, pinned source
+Review scope / review_level: Official archive SHA verified; selected src/pgen/field_loop.cpp and orszag_tang.cpp, PLM/RK2/output configuration and actual conserved tab headers inspected; not a full Athena code audit
+Verified the official pinned archive SHA and inspected both generators, configuration and saved columns. Executed the independent engine and checked spatial/time sensitivity. No complete code audit or exact-solution claim.
+Thomas A. Gardiner and James M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport · DOI: 10.1016/j.jcp.2004.11.016
+Review scope / review_level: Author arXiv PDF selected section2.2 equations13–20,3.3.1–3.3.2 and5.1–5.2 inspected; not the full paper or original experiment replication
+Inspected the author PDF CT section and loop/polarized-wave definitions. Original CTU/PPM and oblique-wave experiments are not replicated. Our wave is 1D aligned; the official loop generator explicitly has vz=2.
+
+## Independent MHD transport, waves and compression comparisons — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/#postshock-orszag-tang-references
+Coverage: reading
+
+Takahiro Miyoshi and Kanya Kusano (2005). A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics · DOI: 10.1016/j.jcp.2005.02.017
+Review scope / review_level: Bibliographic metadata checked; publisher full text returned403. This addition did not newly audit original equations or experiments
+Bibliographic metadata checked; full publisher text unavailable. No new original-equation/experiment audit is claimed. Full-state HLLD is inherited byte-for-byte from the prior public validated Atlas.
+Steven A. Orszag and Ching-Mao Tang (1979). Small-scale structure of two-dimensional magnetohydrodynamic turbulence · DOI: 10.1017/S002211207900210X
+Review scope / review_level: Original publisher abstract/bibliography inspected only; original incompressible viscous/resistive setup differs from the official compressible ideal-MHD generator used here
+Inspected publisher abstract and bibliography only. Distinguish the original incompressible viscous/resistive study from the official compressible ideal-MHD setup used here.
+
 ## Independent fluid/MHD comparisons and CT/GLM — Independent fluid/MHD comparisons and CT/GLM [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd/
@@ -21057,7 +22789,15 @@ This problem’s code and validation status
 Exact / reference solutions
 References and checks for this execution
 Measure density/By L1 error, mass/energy drift and positivity on 16²/32²/64². Check the independent 128²/256² reference and conservatively restrict its fine-cell averages.
-No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
+Related-model reference · Finite-grid numerical reference
+Late Orszag-Tang: independent finite-grid density/pressure reference
+
+## Independent fluid/MHD comparisons and CT/GLM — Orszag–Tang: CT, GLM and independent Athena++ [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd/
+Coverage: reading
+
+gamma5/3,periodic[-.5,.5]²,rho25/(36pi),p5/(12pi),vx=sin2piy,vy=-sin2pix,Az=(cos4pix-2cos2piy)/(4pi sqrt4pi),16/32/64² cells. This does not reproduce the original incompressible viscous/resistive model.
 
 ## Independent fluid/MHD comparisons and CT/GLM — Assumptions, units and boundaries [en]
 
@@ -23105,6 +24845,349 @@ IEEE publisher abstract, volume, pages and DOI checked. Historical source for re
 The SciPy community (2024). SciPy1.14.1 solve_ivp reference
 Review scope / review_level: official-api-documentation
 Official DOP853, dense output, tolerance and success specifications checked. Implementation documentation for the separate numerical reference.
+
+## Nonuniform ALE transport and2D rotating shallow-water waves — Nonuniform ALE transport and2D rotating shallow-water waves [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-moving-waves/
+Coverage: reading
+
+Time-advance conservative ALE transport on genuinely nonuniform moving cells with GCL, and2D linear rotating C-grid shallow-water waves. Saltzman pistons and global Williamson problems remain future work.
+
+## Nonuniform ALE transport and2D rotating shallow-water waves — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-moving-waves/#run-all
+Coverage: reading
+
+Run inside atlas-moving-waves-2026-11-23 from the ZIP. This command executes all 2 fixed cases in the supplement. Choose a new or empty output directory.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Nonuniform ALE transport and2D rotating shallow-water waves — ALE scalar transport on genuinely nonuniform moving cells [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-moving-waves/
+Coverage: reading
+
+Advance cell integrals and face positions with identical Heun stages, transporting a nonuniform analytic wave beyond a uniform GCL check.
+Methods, equations, figures and references
+Methods used
+ALE uniform-state / geometric-conservation model
+Upwind finite differences
+Heun / SSPRK(2,2)
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Upwind relative flux(a-w)q advances actual masses with identical predictor/corrector face geometry; record stage volumes and Courant numbers.
+ALE scalar conservation on moving cells
+Periodic unit interval, speed.7,q0=1+.2sin(2pi x), grid speed .2sin(2pi xi)cos(2pi t),N40/80/160,T1. Separate N40,T.25 time series32/64/128steps.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+ALE scalar transport on genuinely nonuniform moving cells
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Separate analytic moving-cell-integral error, global/stage mass, constant GCL and geometry error. Qualify an independent DOP853 integration of the same FV ODE with two tolerances.
+Same-problem reference · Analytic reference
+ALE: analytic moving-cell integrals and separate time reference
+
+## Nonuniform ALE transport and2D rotating shallow-water waves — ALE scalar transport on genuinely nonuniform moving cells [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-moving-waves/
+Coverage: reading
+
+First-stage1D prescribed mesh motion. The x–t image is not2D physics; Euler Lagrange/remap and Saltzman piston remain future work.
+
+## Nonuniform ALE transport and2D rotating shallow-water waves — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-moving-waves/#ale-nonuniform-transport-assumptions
+Coverage: reading
+
+Periodic unit interval, speed.7,q0=1+.2sin(2pi x), grid speed .2sin(2pi xi)cos(2pi t),N40/80/160,T1. Separate N40,T.25 time series32/64/128steps.
+
+## Nonuniform ALE transport and2D rotating shallow-water waves — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-moving-waves/#ale-nonuniform-transport-algorithm
+Coverage: reading
+
+Upwind relative flux(a-w)q advances actual masses with identical predictor/corrector face geometry; record stage volumes and Courant numbers.
+\dot m_i=-[(a-w)q]_{i+1/2}+[(a-w)q]_{i-1/2},\quad V_i=x_{i+1/2}-x_{i-1/2}x(\xi,t)=\xi+0.2\sin(2\pi\xi)\sin(2\pi t)/(2\pi)
+
+## Nonuniform ALE transport and2D rotating shallow-water waves — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-moving-waves/#ale-nonuniform-transport-validation
+Coverage: reading
+
+Separate analytic moving-cell-integral error, global/stage mass, constant GCL and geometry error. Qualify an independent DOP853 integration of the same FV ODE with two tolerances.
+
+## Nonuniform ALE transport and2D rotating shallow-water waves — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-moving-waves/#ale-nonuniform-transport-limits
+Coverage: reading
+
+First-stage1D prescribed mesh motion. The x–t image is not2D physics; Euler Lagrange/remap and Saltzman piston remain future work.
+
+## Nonuniform ALE transport and2D rotating shallow-water waves — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-moving-waves/#ale-nonuniform-transport-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+n40
+steps128
+time0.25
+error0.0107901785662
+minimum_volume0.0200205988155
+minimum_value0.800833542975
+maximum_cfl0.0704950049765
+mass_defect0
+step_mass_defect2.22044604925e-16
+gcl_defect1.97866896479e-16
+geometry_error3.99475166279e-07
+temporal_error2.0565741804e-07
+判定 / checkPassed
+adaptive-time reference qualificationtrue
+space-n40 mass_defecttrue
+space-n40 step_mass_defecttrue
+space-n40 gcl_defecttrue
+space-n40 maximum_cfltrue
+space-n40 positive volumes and valuestrue
+space-n40 five saved timestrue
+space-n80 mass_defecttrue
+space-n80 step_mass_defecttrue
+space-n80 gcl_defecttrue
+space-n80 maximum_cfltrue
+space-n80 positive volumes and valuestrue
+space-n80 five saved timestrue
+space-n160 mass_defecttrue
+space-n160 step_mass_defecttrue
+space-n160 gcl_defecttrue
+space-n160 maximum_cfltrue
+space-n160 positive volumes and valuestrue
+space-n160 five saved timestrue
+gcl-n40 mass_defecttrue
+gcl-n40 step_mass_defecttrue
+gcl-n40 gcl_defecttrue
+gcl-n40 maximum_cfltrue
+gcl-n40 positive volumes and valuestrue
+gcl-n40 five saved timestrue
+time-n40-s32 mass_defecttrue
+time-n40-s32 step_mass_defecttrue
+time-n40-s32 gcl_defecttrue
+time-n40-s32 maximum_cfltrue
+time-n40-s32 positive volumes and valuestrue
+
+## Nonuniform ALE transport and2D rotating shallow-water waves — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-moving-waves/#ale-nonuniform-transport-measurements
+Coverage: reading
+
+time-n40-s32 five saved timestrue
+time-n40-s64 mass_defecttrue
+time-n40-s64 step_mass_defecttrue
+time-n40-s64 gcl_defecttrue
+time-n40-s64 maximum_cfltrue
+time-n40-s64 positive volumes and valuestrue
+time-n40-s64 five saved timestrue
+time-n40-s128 mass_defecttrue
+time-n40-s128 step_mass_defecttrue
+time-n40-s128 gcl_defecttrue
+time-n40-s128 maximum_cfltrue
+time-n40-s128 positive volumes and valuestrue
+time-n40-s128 five saved timestrue
+space refinement 1true
+space refinement 2true
+time refinement 1true
+time refinement 2true
+finest transport errortrue
+constant-state GCL preservationtrue
+finest time errortrue
+reference analytic moving-face velocitytrue
+reference periodic analytic masstrue
+reference skew-Hermitian discrete symboltrue
+reference continuous wave frequencytrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Validation preview from actual saved PDE arrays and fixed-input refinement measurements.Read every stored record
+idfamilynstepstimeerrorminimum_volumeminimum_valuemaximum_cflmass_defectstep_mass_defectgcl_defectgeometry_errorconstant_errortemporal_error
+space-n40space4010410.0372764311050.0200221642990.8012125236270.40022146138502.22044604925e-161.64283734186e-161.0642315649e-05——
+space-n80space8020810.02033805346740.01000277329260.8003040164650.40005547240303.33066907388e-161.98217568119e-162.64417247131e-06——
+
+## Nonuniform ALE transport and2D rotating shallow-water waves — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-moving-waves/#ale-nonuniform-transport-measurements
+Coverage: reading
+
+space-n160space16041610.01065165978060.005000346796790.8000760596660.4000138747872.22044604925e-162.22044604925e-162.03032103391e-166.59088582822e-07——
+gcl-n40gcl40410.372.63677968348e-150.020022628686910.40022146138502.22044604925e-161.59377719355e-161.03032891435e-051.22124532709e-14—
+time-n40-s32time40320.250.01079396806470.02002153622840.8010148449860.28198642721501.11022302463e-161.65449251521e-166.39184331408e-06—3.29244610257e-06
+time-n40-s64time40640.250.01079101255180.02002078629240.8008698106270.1409906778752.22044604925e-162.22044604925e-161.68918698473e-161.5979126976e-06—8.22787218806e-07
+time-n40-s128time401280.250.01079017856620.02002059881550.8008335429750.070495004976502.22044604925e-161.97866896479e-163.99475166279e-07—2.0565741804e-07
+Measurements and complete records / JSON
+
+## Nonuniform ALE transport and2D rotating shallow-water waves — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-moving-waves/#ale-nonuniform-transport-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Dennis L. Huff (1987). Numerical Simulations of Unsteady, Viscous, Transonic Flow Over Isolated and Cascaded Airfoils Using a Deforming Grid
+Review scope / review_level: selected-primary-report-grid-treatment
+
+## Nonuniform ALE transport and2D rotating shallow-water waves — Actual2D C-grid rotating shallow-water time advance [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-moving-waves/
+Coverage: reading
+
+Time-advance actual2D staggered fields and distinguish continuous-wave references from semidiscrete symbols.
+Methods, equations, figures and references
+Methods used
+Centered spatial difference
+Classical RK4
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Actual2D cell-height/face-velocity differences and four-point Coriolis interpolation use RK4. The3×3 matrix exponential is reference-only, never the PDE update.
+Linear rotating shallow-water equations
+Linear f-plane,g=H=f=1, periodic unit square, mode(1,2),height amplitude.01,N16/32/64,T.5. Separate N16 time refinement, zero-mode and discrete geostrophic probes.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Actual2D C-grid rotating shallow-water time advance
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Retain continuous-PDE spatial and discrete-symbol temporal errors, mass/energy, stencil-symbol identity, zero-mode inertia and discrete steady balance.
+Same-problem reference · Analytic reference
+C-grid: continuous Fourier solution and discrete-symbol exponential
+
+## Nonuniform ALE transport and2D rotating shallow-water waves — Actual2D C-grid rotating shallow-water time advance [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-moving-waves/
+Coverage: reading
+
+Linear planar periodic square only. Nonlinear SWE,PV,spherical dynamics and Williamson tests remain future work.
+
+## Nonuniform ALE transport and2D rotating shallow-water waves — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-moving-waves/#cgrid-rotating-wave-assumptions
+Coverage: reading
+
+Linear f-plane,g=H=f=1, periodic unit square, mode(1,2),height amplitude.01,N16/32/64,T.5. Separate N16 time refinement, zero-mode and discrete geostrophic probes.
+
+## Nonuniform ALE transport and2D rotating shallow-water waves — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-moving-waves/#cgrid-rotating-wave-algorithm
+Coverage: reading
+
+Actual2D cell-height/face-velocity differences and four-point Coriolis interpolation use RK4. The3×3 matrix exponential is reference-only, never the PDE update.
+\eta_t+u_x+v_y=0,\quad u_t=v-\eta_x,\quad v_t=-u-\eta_y\tilde k=2\sin(kh/2)/h,\quad C=\cos(kh/2)\cos(lh/2),\quad U_h(t)=e^{tL_h}U_h(0)
+
+## Nonuniform ALE transport and2D rotating shallow-water waves — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-moving-waves/#cgrid-rotating-wave-validation
+Coverage: reading
+
+Retain continuous-PDE spatial and discrete-symbol temporal errors, mass/energy, stencil-symbol identity, zero-mode inertia and discrete steady balance.
+
+## Nonuniform ALE transport and2D rotating shallow-water waves — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-moving-waves/#cgrid-rotating-wave-limits
+Coverage: reading
+
+Linear planar periodic square only. Nonlinear SWE,PV,spherical dynamics and Williamson tests remain future work.
+
+## Nonuniform ALE transport and2D rotating shallow-water waves — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-moving-waves/#cgrid-rotating-wave-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+n16
+steps64
+time0.5
+semidiscrete_error6.9895130578e-16
+continuous_error0.00695334263066
+mean_height_change1.27054942088e-20
+relative_energy_change2.22044604925e-16
+energy_rhs_defect2.13527676817e-19
+steady_change1.80411241502e-16
+判定 / checkPassed
+space-n16-s64 mean_height_changetrue
+space-n16-s64 relative_energy_changetrue
+space-n16-s64 energy_rhs_defecttrue
+space-n16-s64 finite actual 2D RK arraystrue
+space-n32-s128 mean_height_changetrue
+space-n32-s128 relative_energy_changetrue
+space-n32-s128 energy_rhs_defecttrue
+space-n32-s128 finite actual 2D RK arraystrue
+space-n64-s256 mean_height_changetrue
+space-n64-s256 relative_energy_changetrue
+space-n64-s256 energy_rhs_defecttrue
+space-n64-s256 finite actual 2D RK arraystrue
+time-n16-s16 mean_height_changetrue
+time-n16-s16 relative_energy_changetrue
+time-n16-s16 energy_rhs_defecttrue
+time-n16-s16 finite actual 2D RK arraystrue
+time-n16-s32 mean_height_changetrue
+time-n16-s32 relative_energy_changetrue
+time-n16-s32 energy_rhs_defecttrue
+time-n16-s32 finite actual 2D RK arraystrue
+time-n16-s64 mean_height_changetrue
+time-n16-s64 relative_energy_changetrue
+time-n16-s64 energy_rhs_defecttrue
+time-n16-s64 finite actual 2D RK arraystrue
+
+## Nonuniform ALE transport and2D rotating shallow-water waves — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-moving-waves/#cgrid-rotating-wave-measurements
+Coverage: reading
+
+zero-n8-s64 mean_height_changetrue
+zero-n8-s64 relative_energy_changetrue
+zero-n8-s64 energy_rhs_defecttrue
+zero-n8-s64 finite actual 2D RK arraystrue
+balance-n16-s64 mean_height_changetrue
+balance-n16-s64 relative_energy_changetrue
+balance-n16-s64 energy_rhs_defecttrue
+balance-n16-s64 finite actual 2D RK arraystrue
+continuous spatial refinement 1true
+continuous spatial refinement 2true
+semidiscrete temporal refinement 1true
+semidiscrete temporal refinement 2true
+finest continuous errortrue
+finest semidiscrete errortrue
+zero-mode temporal accuracytrue
+discrete geostrophic stationaritytrue
+reference analytic moving-face velocitytrue
+reference periodic analytic masstrue
+reference skew-Hermitian discrete symboltrue
+reference continuous wave frequencytrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Validation preview from actual saved PDE arrays and fixed-input refinement measurements.Read every stored record
+idfamilynstepstimesemidiscrete_errorcontinuous_errormean_height_changerelative_energy_changeenergy_rhs_defectsteady_change
+space-n16-s64space16640.57.68150690579e-060.1541785361431.37219337455e-191.37297294667e-061.21760986168e-200.0190882882076
+space-n32-s128space321280.55.21797355975e-070.03884600898561.78723951871e-194.74517886095e-081.01908651467e-200.0191715542625
+
+## Nonuniform ALE transport and2D rotating shallow-water waves — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-moving-waves/#cgrid-rotating-wave-measurements
+Coverage: reading
+
+space-n64-s256space642560.53.32976186713e-080.009728687776822.34786945067e-191.52063872605e-091.02041000365e-200.0191862118238
+time-n16-s16time16160.256.14305835936e-050.07749468414781.04185052512e-192.18718095334e-051.60936259978e-200.019088353926
+time-n16-s32time16320.253.84075411497e-060.07743945870188.55503276727e-206.86486709922e-071.21760986168e-200.0190882882076
+time-n16-s64time16640.252.40067857546e-070.07743594470517.45388993584e-202.14760436101e-081.79994501292e-200.0190882808774
+zero-n8-s64zero8640.59.27611576742e-129.27611576742e-1207.20534742982e-1400.00836433639079
+balance-n16-s64balance16640.56.9895130578e-160.006953342630661.27054942088e-202.22044604925e-162.13527676817e-191.80411241502e-16
+Measurements and complete records / JSON
+
+## Nonuniform ALE transport and2D rotating shallow-water waves — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-moving-waves/#cgrid-rotating-wave-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+P. Korn and S. Danilov (n.d.). Elementary dispersion analysis of some mimetic discretizations on triangular C-grids
+Review scope / review_level: selected-primary-author-manuscript
 
 ## Noh:2D Cartesian flow and grid orientation error — Noh:2D Cartesian flow and grid orientation error [en]
 
@@ -28607,6 +30690,365 @@ NIST Digital Library of Mathematical Functions (2026). §8.19 Generalized Expone
 Review scope / review_level: official-documentation
 Official integral representation of the generalized exponential integral checked; year denotes access year.
 
+## SRHD collision and nonlinear SRMHD Alfven wave — SRHD collision and nonlinear SRMHD Alfven wave [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-relativistic/
+Coverage: reading
+
+Compare an SRHD head-on collision with a Taub two-shock solution and full7-state finite-amplitude SRMHD wave with independent tensor formulas/conserved means. Space is1D; x–t pictures are not2D flow.
+
+## SRHD collision and nonlinear SRMHD Alfven wave — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-relativistic/#run-all
+Coverage: reading
+
+Run inside atlas-relativistic-2026-11-23 from the ZIP. This command executes all 2 fixed cases in the supplement. Choose a new or empty output directory.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## SRHD collision and nonlinear SRMHD Alfven wave — SRHD symmetric two-shock collision [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-relativistic/
+Coverage: reading
+
+Compare a relativistic symmetric collision with independent exact Taub-based conserved cell means; save actual1D x–t fields.
+Methods, equations, figures and references
+Methods used
+HLL
+MUSCL reconstruction
+Minmod
+SSPRK(3,3)
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Use the shared seven-component RMHD operator at B=0 with primitive MUSCL/minmod, causal HLL bounds±1 and SSPRK33. Safeguarded Newton recovers the physical Z=rho h W² root; check residual and full conserved-state roundtrip.
+Special-relativistic hydrodynamics (SRHD)
+c=1,gamma5/3,rho1,p.1,opposite normal v±.3,B0. Domain[0,1], initial jump .5,t=.3,96/192/384 cells. Constant extrapolation boundaries before shocks reach endpoints.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+SRHD symmetric two-shock collision
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## SRHD collision and nonlinear SRMHD Alfven wave — SRHD symmetric two-shock collision [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-relativistic/
+Coverage: reading
+
+Predeclare25 pytest tests,six runs,110 group gates and six reference qualifiers. Check all-component boundary budgets, stage/face admissibility,D/E refinement,star pressure,shock positions and reflection. Compare actual final states with independent scalar-pressure SRHD recovery and flux.
+Same-problem reference · Semi-analytic reference
+Relativistic symmetric collision: specialized two-shock Taub reference
+Custom mild symmetric input; contact degenerates to identical resting states. No general three-wave Riemann,extreme-Lorentz-factor or original-paper numerical-input reproduction claim. E includes rest mass; compare exact conserved cell means.
+
+## SRHD collision and nonlinear SRMHD Alfven wave — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-relativistic/#srhd-collision-assumptions
+Coverage: reading
+
+c=1,gamma5/3,rho1,p.1,opposite normal v±.3,B0. Domain[0,1], initial jump .5,t=.3,96/192/384 cells. Constant extrapolation boundaries before shocks reach endpoints.
+
+## SRHD collision and nonlinear SRMHD Alfven wave — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-relativistic/#srhd-collision-algorithm
+Coverage: reading
+
+Use the shared seven-component RMHD operator at B=0 with primitive MUSCL/minmod, causal HLL bounds±1 and SSPRK33. Safeguarded Newton recovers the physical Z=rho h W² root; check residual and full conserved-state roundtrip.
+U=(D,S_x,S_y,S_z,E,B_y,B_z)^T,\quad D=\rho W,\quad W=(1-v^2)^{-1/2}h_b^2-h_a^2=(p_b-p_a)(h_b/\rho_b+h_a/\rho_a)v_0^2=\frac{(p_b-p_a)(e_b-e_a)}{(e_a+p_b)(e_b+p_a)},\quad e=\rho+\frac{p}{\Gamma-1}j^2=-\frac{p_b-p_a}{h_b/\rho_b-h_a/\rho_a},\quad V_s^2=\frac{j^2}{\rho_b^2+j^2}
+
+## SRHD collision and nonlinear SRMHD Alfven wave — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-relativistic/#srhd-collision-validation
+Coverage: reading
+
+Predeclare25 pytest tests,six runs,110 group gates and six reference qualifiers. Check all-component boundary budgets, stage/face admissibility,D/E refinement,star pressure,shock positions and reflection. Compare actual final states with independent scalar-pressure SRHD recovery and flux.
+
+## SRHD collision and nonlinear SRMHD Alfven wave — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-relativistic/#srhd-collision-limits
+Coverage: reading
+
+Custom mild symmetric input; contact degenerates to identical resting states. No general three-wave Riemann,extreme-Lorentz-factor or original-paper numerical-input reproduction claim. E includes rest mass; compare exact conserved cell means.
+
+## SRHD collision and nonlinear SRMHD Alfven wave — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-relativistic/#srhd-collision-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+exact_star{"pressure":0.35473854747189193,"density":2.036718245233174,"enthalpy":1.4354290883166312,"speed":0.3181655418651244,"relative_velocity":0.3,"taub_residual":-3.3306690738754696e-16}
+finest_D_l10.00542423044547
+finest_E_l10.00520737551369
+exact_scopeSymmetric identical thermodynamics, opposite normal velocities: two shocks and resting identical star states; no nontrivial contact or general three-wave certification.
+判定 / checkPassed
+n96: fixed final timetrue
+n96: five saved timestrue
+n96: four records per SSP steptrue
+n96: all stored arrays finitetrue
+n96: positive stage densitytrue
+n96: positive stage pressuretrue
+n96: subluminal stagestrue
+n96: positive reconstructed face densitytrue
+n96: positive reconstructed face pressuretrue
+n96: subluminal reconstructed facestrue
+n96: conserved finite-volume boundary budgettrue
+n96: physical root residualtrue
+n96: full conserved primitive roundtriptrue
+n96: no state floor or retrytrue
+n96: reflection symmetrytrue
+n96: independent SRHD zero B flux and recoverytrue
+n192: fixed final timetrue
+n192: five saved timestrue
+n192: four records per SSP steptrue
+n192: all stored arrays finitetrue
+n192: positive stage densitytrue
+n192: positive stage pressuretrue
+
+## SRHD collision and nonlinear SRMHD Alfven wave — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-relativistic/#srhd-collision-measurements
+Coverage: reading
+
+n192: subluminal stagestrue
+n192: positive reconstructed face densitytrue
+n192: positive reconstructed face pressuretrue
+n192: subluminal reconstructed facestrue
+n192: conserved finite-volume boundary budgettrue
+n192: physical root residualtrue
+n192: full conserved primitive roundtriptrue
+n192: no state floor or retrytrue
+n192: reflection symmetrytrue
+n192: independent SRHD zero B flux and recoverytrue
+n384: fixed final timetrue
+n384: five saved timestrue
+n384: four records per SSP steptrue
+n384: all stored arrays finitetrue
+n384: positive stage densitytrue
+n384: positive stage pressuretrue
+n384: subluminal stagestrue
+n384: positive reconstructed face densitytrue
+n384: positive reconstructed face pressuretrue
+n384: subluminal reconstructed facestrue
+n384: conserved finite-volume boundary budgettrue
+n384: physical root residualtrue
+n384: full conserved primitive roundtriptrue
+n384: no state floor or retrytrue
+n384: reflection symmetrytrue
+n384: independent SRHD zero B flux and recoverytrue
+finest D L1true
+finest total E L1true
+finest star pressuretrue
+finest shock positiontrue
+collision component 0 refinement 1true
+collision component 4 refinement 1true
+collision component 0 refinement 2true
+collision component 4 refinement 2true
+
+## SRHD collision and nonlinear SRMHD Alfven wave — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-relativistic/#srhd-collision-measurements
+Coverage: reading
+
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Actual finest-grid1D x–t conserved-density field from five stored times; not a two-dimensional flow.Read every stored record
+ntimestepscomponent_l1maximum_balanceminimum_densityminimum_pressuremaximum_speedmaximum_root_residualmaximum_roundtrip_residualmaximum_recovery_iterationssafeguarded_root_stepsminimum_face_densityminimum_face_pressuremaximum_face_speedrecorded_stagesstate_floor_countretriesrejected_stepsstar_pressure_relativeshock_location_errorshock_locationssymmetry_errorindependent_zero_B_errorfield_file
+960.384[0.0240310024838554,0.007681512259446612,0.0,0.0,0.02373901735135442,0.0,0.0]2.02615701994e-1510.10.31.96415741898e-132.04276226882e-134010.10.33360000.002892582293960.00871700410713[0.3958333333333333,0.6041666666666666]01.40859546249e-14srhd-collision-n96.npz
+1920.3168[0.01218239223203395,0.003693731268063759,0.0,0.0,0.011923340221103114,0.0,0.0]1.69309011255e-1510.10.31.99326296093e-132.06896701035e-134010.10.36720000.0004566610070260.0035086707738[0.40104166666666663,0.5989583333333333]01.40304434737e-14srhd-collision-n192.npz
+
+## SRHD collision and nonlinear SRMHD Alfven wave — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-relativistic/#srhd-collision-measurements
+Coverage: reading
+
+3840.3332[0.0054242304454669415,0.0017778403670735898,0.0,0.0,0.005207375513692991,0.0,0.0]5.07927033766e-1510.10.31.99871044566e-132.07349364987e-134010.10.313280005.14358043965e-050.000904504107129[0.4036458333333333,0.5963541666666666]04.41313652288e-14srhd-collision-n384.npz
+Measurements and complete records / JSON
+
+## SRHD collision and nonlinear SRMHD Alfven wave — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-relativistic/#srhd-collision-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Luciano Rezzolla and Olindo Zanotti (2001). An Improved Exact Riemann Solver for Relativistic Hydrodynamics
+Review scope / review_level: primary-selected-mathematical-sections
+Read original preprint sections2–4: EOS, relative-velocity equation3.1 and Taub quadratic4.5. Restricted symmetric two-shock specialization.
+José A. Font (2008). Numerical Hydrodynamics and Magnetohydrodynamics in General Relativity · DOI: 10.12942/lrr-2008-7
+Review scope / review_level: primary-author-review-selected-equations
+Read official author-review sections3.1–3.2, stress tensor49–51 and recovery68–69; flat-spacetime use only.
+
+## SRHD collision and nonlinear SRMHD Alfven wave — SRMHD finite-amplitude circularly polarized Alfvén wave [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-relativistic/
+Coverage: reading
+
+Evolve a nonlinear finite-amplitude wave for one period with full SRMHD magnetic stress and induction; check exact cell means,phase,amplitude and refinement.
+Methods, equations, figures and references
+Methods used
+HLL
+MUSCL reconstruction
+Minmod
+SSPRK(3,3)
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Evolve all seven variables D,three momenta,total E and two transverse magnetic fields with the shared MUSCL/minmod–HLL–SSPRK33 operator. Magnetic dynamics are coupled; primitive recovery solves the full RMHD Z root.
+Special-relativistic ideal MHD (SRMHD)
+Flat spacetime,c=4pi=1,gamma4/3,rho=p=Bx=eta1, exact-family vx0. Rescale the original2pi period to a unit domain;64/128/256 cells,periodic,t=1/vA. Normal Bx is fixed in1D.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+SRMHD finite-amplitude circularly polarized Alfvén wave
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## SRHD collision and nonlinear SRMHD Alfven wave — SRMHD finite-amplitude circularly polarized Alfvén wave [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-relativistic/
+Coverage: reading
+
+Qualify nonlinear dispersion,independent tensor Gauss means and complex-step PDE residuals. Predeclare all-seven-component conservation,stage admissibility,intermediate errors,finest relative L1≤.04,phase≤.03,amplitude≤.04 and observed order≥1.5.
+Same-problem reference · Analytic reference
+SRMHD circular wave: finite-amplitude exact family and independent tensor integration
+Use the original exact family with an independent lower-order operator; no ECHO-algorithm or error-table reproduction. Generic RMHD shocks,extreme magnetization/Lorentz factors,GR,resistive MHD and multidimensional divergence control are outside scope. Figures show actual1D x–t fields.
+
+## SRHD collision and nonlinear SRMHD Alfven wave — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-relativistic/#srmhd-alfven-assumptions
+Coverage: reading
+
+Flat spacetime,c=4pi=1,gamma4/3,rho=p=Bx=eta1, exact-family vx0. Rescale the original2pi period to a unit domain;64/128/256 cells,periodic,t=1/vA. Normal Bx is fixed in1D.
+
+## SRHD collision and nonlinear SRMHD Alfven wave — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-relativistic/#srmhd-alfven-algorithm
+Coverage: reading
+
+Evolve all seven variables D,three momenta,total E and two transverse magnetic fields with the shared MUSCL/minmod–HLL–SSPRK33 operator. Magnetic dynamics are coupled; primitive recovery solves the full RMHD Z root.
+B_y=\eta B_0\cos[2\pi(x-v_At)],\quad B_z=\eta B_0\sin[2\pi(x-v_At)]v_x=0,\quad (v_y,v_z)=-v_A(B_y,B_z)/B_0K=\rho h+B_0^2(1+\eta^2),\quad v_A^2=\frac{2B_0^2}{K+\sqrt{K^2-4\eta^2B_0^4}}\mathbf v=\frac{\mathbf S+(\mathbf S\cdot\mathbf B)\mathbf B/Z}{Z+B^2},\quad p=\frac{\Gamma-1}{\Gamma}(Z/W^2-\rho)E=Z-p+\frac12\left[B^2(1+v^2)-\frac{(\mathbf S\cdot\mathbf B)^2}{Z^2}\right]
+
+## SRHD collision and nonlinear SRMHD Alfven wave — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-relativistic/#srmhd-alfven-validation
+Coverage: reading
+
+Qualify nonlinear dispersion,independent tensor Gauss means and complex-step PDE residuals. Predeclare all-seven-component conservation,stage admissibility,intermediate errors,finest relative L1≤.04,phase≤.03,amplitude≤.04 and observed order≥1.5.
+
+## SRHD collision and nonlinear SRMHD Alfven wave — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-relativistic/#srmhd-alfven-limits
+Coverage: reading
+
+Use the original exact family with an independent lower-order operator; no ECHO-algorithm or error-table reproduction. Generic RMHD shocks,extreme magnetization/Lorentz factors,GR,resistive MHD and multidimensional divergence control are outside scope. Figures show actual1D x–t fields.
+
+## SRHD collision and nonlinear SRMHD Alfven wave — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-relativistic/#srmhd-alfven-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+alfven_speed0.38196601125
+period2.61803398875
+finest_transverse_relative_l10.00328083474235
+observed_orders[1.8810822553983044,1.8033064216647157]
+exact_scopeNonlinear finite-amplitude circular polarization; not linear passive transport or a generic RMHD Riemann reference.
+判定 / checkPassed
+n64: fixed final timetrue
+n64: five saved timestrue
+n64: four records per SSP steptrue
+n64: all stored arrays finitetrue
+n64: positive stage densitytrue
+n64: positive stage pressuretrue
+n64: subluminal stagestrue
+n64: positive reconstructed face densitytrue
+n64: positive reconstructed face pressuretrue
+n64: subluminal reconstructed facestrue
+n64: conserved finite-volume boundary budgettrue
+n64: physical root residualtrue
+n64: full conserved primitive roundtriptrue
+n64: no state floor or retrytrue
+n64: actual magnetic wave presenttrue
+n64: intermediate wave errorstrue
+n128: fixed final timetrue
+n128: five saved timestrue
+n128: four records per SSP steptrue
+n128: all stored arrays finitetrue
+n128: positive stage densitytrue
+n128: positive stage pressuretrue
+n128: subluminal stagestrue
+n128: positive reconstructed face densitytrue
+n128: positive reconstructed face pressuretrue
+n128: subluminal reconstructed facestrue
+
+## SRHD collision and nonlinear SRMHD Alfven wave — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-relativistic/#srmhd-alfven-measurements
+Coverage: reading
+
+n128: conserved finite-volume boundary budgettrue
+n128: physical root residualtrue
+n128: full conserved primitive roundtriptrue
+n128: no state floor or retrytrue
+n128: actual magnetic wave presenttrue
+n128: intermediate wave errorstrue
+n256: fixed final timetrue
+n256: five saved timestrue
+n256: four records per SSP steptrue
+n256: all stored arrays finitetrue
+n256: positive stage densitytrue
+n256: positive stage pressuretrue
+n256: subluminal stagestrue
+n256: positive reconstructed face densitytrue
+n256: positive reconstructed face pressuretrue
+n256: subluminal reconstructed facestrue
+n256: conserved finite-volume boundary budgettrue
+n256: physical root residualtrue
+n256: full conserved primitive roundtriptrue
+n256: no state floor or retrytrue
+n256: actual magnetic wave presenttrue
+n256: intermediate wave errorstrue
+finest transverse L1true
+finest wave phasetrue
+finest wave amplitudetrue
+minimum observed grid ordertrue
+wave refinement 1true
+wave refinement 2true
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Actual finest-grid transverse By in1D x–t from five stored times; the solver includes full magnetic coupling.Read every stored record
+
+## SRHD collision and nonlinear SRMHD Alfven wave — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-relativistic/#srmhd-alfven-measurements
+Coverage: reading
+
+ntimestepscomponent_l1maximum_balanceminimum_densityminimum_pressuremaximum_speedmaximum_root_residualmaximum_roundtrip_residualmaximum_recovery_iterationssafeguarded_root_stepsminimum_face_densityminimum_face_pressuremaximum_face_speedrecorded_stagesstate_floor_countretriesrejected_stepstransverse_relative_l1intermediate_relative_l1phase_erroramplitude_errorbx_constantlorentz_referencefield_file
+642.61803398875480[0.008254757971169409,0.01595801808141993,0.03938796364814967,0.03938796364814946,0.005409984071148068,0.026851959637796387,0.026851959637796057]4.4408920985e-150.9829706157310.9861390462210.3851558783732.53789872479e-168.152303626e-16500.9829706157310.9861390462210.38654446179519200000.0421789595663[0.012696873375577043,0.023529699074502006,0.032884971118293936]0.01946761931810.036552979460111.0820445431srmhd-alfven-n64.npz
+1282.61803398875960[0.0020972931018017134,0.004324719534684862,0.010626262197647977,0.010626262197648008,0.001482529771230106,0.007289769604563455,0.007289769604563361]2.57571741713e-140.992019381650.992605716510.383596720771.68878497631e-168.35523766573e-16500.992019381650.992605716510.38405556462638400000.011450743318[0.003308700912480984,0.00616979651827247,0.009260758892750348]0.00449740353330.0079215293197111.0820445431srmhd-alfven-n128.npz
+
+## SRHD collision and nonlinear SRMHD Alfven wave — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-relativistic/#srmhd-alfven-measurements
+Coverage: reading
+
+2562.618033988751916[0.0005256005645190101,0.0010594789204062798,0.0031228430460474334,0.0031228430460467737,0.000375445918923906,0.0020886442668485517,0.0020886442668485872]4.79616346638e-140.997856785860.9982626629530.3824009016052.52224784053e-168.82602262961e-16500.997856785860.9982626629530.38252280290576640000.00328083474235[0.0008833391814908864,0.0016278105730856563,0.00260127101123578]0.001063999885180.0018267252140411.0820445431srmhd-alfven-n256.npz
+Measurements and complete records / JSON
+
+## SRHD collision and nonlinear SRMHD Alfven wave — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-relativistic/#srmhd-alfven-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+L. Del Zanna, O. Zanotti, N. Bucciantini and P. Londrillo (2007). ECHO: a Eulerian Conservative High Order scheme for general relativistic magnetohydrodynamics and magnetodynamics · DOI: 10.1051/0004-6361:20077093
+Review scope / review_level: primary-original-selected-section-and-rendered-pages
+Read original journal section4.1 equations82–85 via the university repository; rendered and visually inspected original preprint pages9–10, including normalization and period. No ECHO-algorithm reproduction.
+José A. Font (2008). Numerical Hydrodynamics and Magnetohydrodynamics in General Relativity · DOI: 10.12942/lrr-2008-7
+Review scope / review_level: primary-author-review-selected-equations
+Read official author-review sections3.1–3.2, stress tensor49–51 and recovery68–69; flat-spacetime use only.
+
 ## Sedov–Taylor point blast: lightweight spherical-radial validation — Sedov–Taylor point blast: lightweight spherical-radial validation [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sedov/
@@ -28828,6 +31270,293 @@ Selected original pp159–167 in a university-hosted scan checked for similarity
 J. Thrussell and J. M. Ferguson (2023). ExactPack: A python library of exact analytic solutions · DOI: 10.1016/j.softx.2023.101560
 Review scope / review_level: official-record-and-selected-pinned-code-execution
 Unmodified selected pinned Sedov evaluator actually run at6001/12001 points. Source hashes, parameters, point values, decisions and BSD-3-Clause retained; not another numerical Euler solver or whole-library test.
+
+## Spectral elements and FR: small comparisons with existing FEM/DG — Spectral elements and FR: small comparisons with existing FEM/DG [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/
+Coverage: reading
+
+Compare2D SEM Poisson and1D periodic FR advection with the existing P1 FEM/modal DG under matched equations, boundaries and analytic fields. Separate h/p refinement, continuous error, residuals, conservation and time error from any external Nek/PyFR execution.
+
+## Spectral elements and FR: small comparisons with existing FEM/DG — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/#run-all
+Coverage: reading
+
+Run inside atlas-sem-fr-2026-11-23 from the ZIP. This command executes all 2 fixed cases in the supplement. Choose a new or empty output directory.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Spectral elements and FR: small comparisons with existing FEM/DG — 2D spectral-element Poisson: P1 FEM comparison and h/p refinement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/
+Coverage: reading
+
+Solve a sine manufactured solution on the unit square with GLL spectral elements and the existing triangle P1 FEM. Compare matched free-unknown counts under h refinement and p=1..6 at fixed elements.
+Methods, equations, figures and references
+Methods used
+Spectral element method (SEM)
+Continuous P1 Galerkin FEM
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+C0 tensor Qp Lagrange SEM with p+1 Legendre GLL nodes/quadrature, sparse stiffness assembly and a SciPy direct solve. At p=2 use2/4/8 elements per axis; separately fix2x2 elements and p=1..6. Execute the byte-identical published Numart triangle P1 FEM/GMRES at4/8/16 subdivisions, matching9/49/225 free unknowns.
+Poisson / Laplace equations
+Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+2D Poisson / single sine mode, including FEM
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## Spectral elements and FR: small comparisons with existing FEM/DG — 2D spectral-element Poisson: P1 FEM comparison and h/p refinement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/
+Coverage: reading
+
+Compare with the analytic manufactured sine solution/gradient. Integrate continuous L2/H1-seminorm errors at independent higher-order Gauss points. Check h/p refinement, matched-unknown errors, boundary data and true residuals; save actual2D SEM fields and P1 vertices/triangles/values in NPZ.
+Related-model reference · Manufactured solution
+Poisson / manufactured sine
+The card is 1D sin(πx); this test is 2D sin(πx)sin(πy). Dimension, forcing and FEM error norms differ.
+Same-problem reference · Manufactured solution
+2D Poisson sine manufactured solution: shared SEM/P1 FEM reference
+Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM.
+Input and validation protocol history · Initial input
+
+## Spectral elements and FR: small comparisons with existing FEM/DG — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/#sem-poisson-2d-assumptions
+Coverage: reading
+
+Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM.
+
+## Spectral elements and FR: small comparisons with existing FEM/DG — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/#sem-poisson-2d-algorithm
+Coverage: reading
+
+C0 tensor Qp Lagrange SEM with p+1 Legendre GLL nodes/quadrature, sparse stiffness assembly and a SciPy direct solve. At p=2 use2/4/8 elements per axis; separately fix2x2 elements and p=1..6. Execute the byte-identical published Numart triangle P1 FEM/GMRES at4/8/16 subdivisions, matching9/49/225 free unknowns.
+-\Delta u=f,\quad u|_{\partial\Omega}=0,\quad u_*=\sin(\pi x)\sin(\pi y),\quad f=2\pi^2u_*K^e=S\otimes W+W\otimes S,\quad S=D^TWD,\quad W=\operatorname{diag}(w_i)E_{L^2}=\left(\int_\Omega(u_h-u_*)^2\,d\Omega\right)^{1/2},\quad E_{H^1}=\left(\int_\Omega|\nabla u_h-\nabla u_*|^2\,d\Omega\right)^{1/2}
+
+## Spectral elements and FR: small comparisons with existing FEM/DG — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/#sem-poisson-2d-validation
+Coverage: reading
+
+Compare with the analytic manufactured sine solution/gradient. Integrate continuous L2/H1-seminorm errors at independent higher-order Gauss points. Check h/p refinement, matched-unknown errors, boundary data and true residuals; save actual2D SEM fields and P1 vertices/triangles/values in NPZ.
+
+## Spectral elements and FR: small comparisons with existing FEM/DG — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/#sem-poisson-2d-limits
+Coverage: reading
+
+One smooth fixed problem only. Meshes, quadrature and algebraic solvers differ: no speed, complexity or universal-accuracy ranking. The diagonal GLL quadrature mass is not the exactly integrated mass of every product. No curved mesh, singular solution, incompressible flow or Nek5000/nekRS run.
+
+## Spectral elements and FR: small comparisons with existing FEM/DG — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/#sem-poisson-2d-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+sem_h_l2_order3.03964398611
+sem_h_h1_order2.01063606795
+p1_h_l2_order1.97449202948
+p1_h_h1_order0.989101103836
+p_refinement_l2_reduction311080.769951
+p6_l2_error3.7801651653e-07
+same_dof_free_unknowns225
+sem_finest_l2_error0.000248641096801
+p1_finest_l2_error0.00537743500994
+same_dof_l2_ratio_sem_over_p10.0462378617949
+maximum_relative_residual3.1814596822e-12
+判定 / checkPassed
+sem_h_l2_convergencetrue
+sem_h_h1_convergencetrue
+p1_h_l2_convergencetrue
+p1_h_h1_convergencetrue
+p_refinement_monotonetrue
+p_refinement_resolvedtrue
+equal_free_dofstrue
+same_dof_error_comparisontrue
+linear_residualstrue
+zero_dirichlet_boundarytrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Saved actual2D SEM field and nodal error. Continuous error norms use separate Gauss integration.Read every stored record
+seriesmethodelements_per_axisdegreetotal_dofsfree_dofsl2_errorh1_seminorm_errorrelative_residual
+hGLL-SEM222590.01787454496560.2118984548474.34272076546e-16
+hGLL-SEM4281490.0020445462010.05157518808351.63796506535e-15
+hGLL-SEM822892250.0002486410968010.01279908884138.47037256773e-15
+pGLL-SEM21910.1175936690160.9967518896660
+
+## Spectral elements and FR: small comparisons with existing FEM/DG — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/#sem-poisson-2d-measurements
+Coverage: reading
+
+pGLL-SEM222590.01787454496560.2118984548474.34272076546e-16
+pGLL-SEM2349250.001451993428820.02709319842181.24542149286e-15
+pGLL-SEM2481490.0001074314577740.002658089442672.34630999931e-15
+pGLL-SEM25121816.8432839132e-060.0002093115514593.95967256792e-15
+pGLL-SEM261691213.7801651653e-071.3740969345e-054.98776008376e-15
+hpublished-P1-FEM412590.0790754536760.8385483442187.2411395863e-16
+hpublished-P1-FEM8181490.0211327734560.4317982830062.9836969935e-12
+hpublished-P1-FEM1612892250.005377435009940.217536336363.1814596822e-12
+Measurements and complete records / JSON
+
+## Spectral elements and FR: small comparisons with existing FEM/DG — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/#sem-poisson-2d-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+A. T. Patera (1984). A spectral element method for fluid dynamics: Laminar flow in a channel expansion · DOI: 10.1016/0021-9991(84)90128-1
+Review scope / review_level: metadata
+Bibliographic identity from the official Nek5000 reference list; publisher full text was not retrieved. No original-paper audit/reproduction. This example is a Legendre GLL variant.
+Nek5000 development team (2026). Nek5000 documentation: Theory and spectral-element basis (accessed 2026-11-23)
+Review scope / review_level: full-text
+Official Theory and FAQ: element-local polynomials, GLL/GL nodes and C0 continuity. No installation, execution or full-code audit of Nek5000.
+Nek5000/RS development team (2026). Nek5000/RS project: spectral-element solvers and related implementations (accessed 2026-11-23)
+Review scope / review_level: full-text
+Official project overview: SEM, CPU/GPU nekRS and its relationship to Nek5000. No external solver installation, execution or performance comparison.
+
+## Spectral elements and FR: small comparisons with existing FEM/DG — 1D periodic FR advection: Radau correction and published DG comparison [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/
+Coverage: reading
+
+Transport0.4+sin(2pi x) toT=.25. Execute Gauss-node/Radau FR and the existing modal DG for p=1/2 and8/16/32 cells; measure analytic error, mass and time-integration error.
+Methods, equations, figures and references
+Methods used
+Flux reconstruction (FR)
+Discontinuous Galerkin / Legendre
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+p+1 Gauss solution points, upwind interface flux, Legendre Radau corrections and SSPRK(3,3). Match initial L2 projection, upwind flux and timestep policy to the unchanged published modal DG. Scaled Courant(2p+1)|a|dt/h<=.15; separately halve the timestep at p2/N32.
+Linear advection
+Dimensionless u_t+u_x=0 on[0,1), periodic boundary, initial0.4+sin(2pi x), analytic0.4+sin(2pi(x-t)). Constant positive speed1 and uniform affine intervals.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Periodic sine-wave advection
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## Spectral elements and FR: small comparisons with existing FEM/DG — 1D periodic FR advection: Radau correction and published DG comparison [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/
+Coverage: reading
+
+Integrate continuous L2 error at additional Gauss points and compare final polynomials with the actual published DG at common points. Check weighted mass at every RK stage and quadratic energy at each completed step. A matrix exponential of the same FR operator separately measures RK3 time error and its timestep-halving response.
+Related-model reference · Analytic reference
+Advection / sine translation
+Same periodic sine-transport model at speed one. The library amplitude is 0.25 versus 0.2 in the common fixed input; DG/CIP representations and output times also differ.
+Related-model reference · Analytic reference
+WENO critical points: polynomial cell means and analytic periodic transport
+An additional constant-speed periodic-transport reference. The cos+.1sin³ cell means and local critical polynomials differ from the historical single-sine/CIP display.
+Same-problem reference · Analytic reference
+FR/DG periodic sine advection: analytic reference at mean0.4 andT=.25
+Dimensionless u_t+u_x=0 on[0,1), periodic boundary, initial0.4+sin(2pi x), analytic0.4+sin(2pi(x-t)). Constant positive speed1 and uniform affine intervals.
+Input and validation protocol history · Initial input
+
+## Spectral elements and FR: small comparisons with existing FEM/DG — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/#fr-periodic-advection-assumptions
+Coverage: reading
+
+Dimensionless u_t+u_x=0 on[0,1), periodic boundary, initial0.4+sin(2pi x), analytic0.4+sin(2pi(x-t)). Constant positive speed1 and uniform affine intervals.
+
+## Spectral elements and FR: small comparisons with existing FEM/DG — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/#fr-periodic-advection-algorithm
+Coverage: reading
+
+p+1 Gauss solution points, upwind interface flux, Legendre Radau corrections and SSPRK(3,3). Match initial L2 projection, upwind flux and timestep policy to the unchanged published modal DG. Scaled Courant(2p+1)|a|dt/h<=.15; separately halve the timestep at p2/N32.
+u_t+a u_x=0,\quad u_*(x,t)=0.4+\sin(2\pi(x-at)),\quad a=1f^C=f^D+(f_L^*-f_L^D)g_L+(f_R^*-f_R^D)g_R,\quad \dot u=-\frac{2}{h}\partial_\xi f^Cg_L=\frac{(-1)^p}{2}(P_p-P_{p+1}),\quad g_R=\frac12(P_p+P_{p+1}),\quad\frac{d}{dt}\frac12\|u_h\|^2=-\frac{|a|}{2}\sum_{\rm faces}[u_h]^2
+
+## Spectral elements and FR: small comparisons with existing FEM/DG — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/#fr-periodic-advection-validation
+Coverage: reading
+
+Integrate continuous L2 error at additional Gauss points and compare final polynomials with the actual published DG at common points. Check weighted mass at every RK stage and quadratic energy at each completed step. A matrix exponential of the same FR operator separately measures RK3 time error and its timestep-halving response.
+
+## Spectral elements and FR: small comparisons with existing FEM/DG — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/#fr-periodic-advection-limits
+Coverage: reading
+
+DG correspondence is for these Radau/Gauss choices, a constant linear flux and affine elements. No all-FR/all-DG equivalence, nonlinear flux, shock, limiter or multidimensional FR claim. Distinguish coupled h/dt refinement from the exponential spatial result; the exponential is not an independent spatial PDE solver. PyFR itself is not run.
+
+## Spectral elements and FR: small comparisons with existing FEM/DG — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/#fr-periodic-advection-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+p1_l2_order1.99176792066
+p1_exponential_l2_order1.99176064192
+p2_l2_order2.99959619373
+p2_exponential_l2_order2.99959435791
+finest_l2_error2.61162684302e-05
+maximum_fr_vs_published_dg3.99680288865e-15
+maximum_stage_mass_drift3.5527136788e-15
+maximum_step_energy_increase0
+maximum_scaled_courant0.15
+finest_rk3_time_error9.44239800872e-09
+halved_cfl_time_error1.1816779054e-09
+time_error_halving_ratio0.125145953846
+actual_transport_l2_change0.999999962948
+判定 / checkPassed
+p1_l2_convergencetrue
+p2_l2_convergencetrue
+semidiscrete_spatial_convergencetrue
+finest_analytic_errortrue
+published_dg_agreementtrue
+periodic_stage_masstrue
+nonincreasing_step_energytrue
+scaled_courant_boundtrue
+time_error_controltrue
+nontrivial_translationtrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Saved FR initial/final field and analytic nodal error; actual transport atT=.25.Read every stored record
+seriesdegreecellstotal_dofsl2_errorexponential_l2_errorrk3_vs_exponential_l2fr_vs_published_dg_maxstepsfinal_timemax_mass_driftmax_energy_increasemax_scaled_courantinitial_energyfinal_energy
+
+## Spectral elements and FR: small comparisons with existing FEM/DG — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/#fr-periodic-advection-measurements
+Coverage: reading
+
+h18160.02573716367760.02573651228572.79146782678e-061.7763568394e-15400.253.88578058619e-1600.150.3298701894150.325454977136
+h116320.006587042466840.006586997505143.50023140628e-071.99840144433e-15810.251.22124532709e-1500.150.3299917788350.329381334739
+h132640.001656183962360.001656181013424.37857693682e-083.99680288865e-151610.252.6645352591e-1500.150.3299994844760.329919781495
+h28240.001655527791410.001655510866136.18427430059e-071.7763568394e-15670.259.99200722163e-1600.150.329999425520.329969947015
+h216480.0002088716766660.0002088712705767.54903536135e-082.88657986403e-151340.251.83186799063e-1500.150.3299999909340.329998966251
+h232962.61162684302e-052.61162508874e-059.44239800872e-093.77475828373e-152670.253.5527136788e-1500.150.3299999998580.329999962016
+Measurements and complete records / JSON
+
+## Spectral elements and FR: small comparisons with existing FEM/DG — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/#fr-periodic-advection-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+H. T. Huynh (2007). A Flux Reconstruction Approach to High-Order Schemes Including Discontinuous Galerkin Methods · DOI: 10.2514/6.2007-4079
+Review scope / review_level: metadata
+Original 2007 title/author/AIAA number checked in the author's 2014 NASA report, printed p.27. The original AIAA text was not retrieved; correction formulas use the separately cited 2014 report.
+H. T. Huynh (2014). On Formulations of Discontinuous Galerkin and Related Methods for Conservation Laws
+Review scope / review_level: full-text
+Selected original NASA passages: abstract, differential form/interface correction, printed pp.19–21 equations(6.2)–(6.13) for Radau/DG, and p.27 bibliography. No full-report audit or nonlinear experiment reproduction.
+PyFR development team (2026). PyFR: Flux Reconstruction and supported implementation platforms (accessed 2026-11-23)
+Review scope / review_level: full-text
+Official overview: FR spatial discretization, unstructured meshes and CPU/GPU platforms. PyFR is not installed, invoked or validated by this small Python example.
 
 ## Shallow water: topography, lakes and dry beds — Shallow water: topography, lakes and dry beds [en]
 
@@ -30633,6 +33362,9 @@ Same periodic sine-transport model at speed one. The library amplitude is 0.25 v
 Related-model reference · Analytic reference
 WENO critical points: polynomial cell means and analytic periodic transport
 An additional constant-speed periodic-transport reference. The cos+.1sin³ cell means and local critical polynomials differ from the historical single-sine/CIP display.
+Same-problem reference · Analytic reference
+FR/DG periodic sine advection: analytic reference at mean0.4 andT=.25
+Dimensionless u_t+u_x=0 on[0,1), periodic boundary, initial0.4+sin(2pi x), analytic0.4+sin(2pi(x-t)). Constant positive speed1 and uniform affine intervals.
 
 ## WENO critical points and epsilon dependence — Assumptions, units and boundaries [en]
 
@@ -34797,6 +37529,121 @@ print(result.residual, result.u.shape)
 python scripts/build_equation_gallery.pyで再現します。専用の計算記録に誤差とソースハッシュを残します。速度・圧力の混合要素、inf–sup条件、曲線格子、一般のNeumann／Robin条件の組立て、適応細分化は今後の課題です。現在の射影法の例はスタガード差分格子を使います。
 A安定性・L安定性とL1／L2／L∞誤差ノルムは、精度と安定性の共通ガイドを参照してください。
 
+## Flux Reconstruction法：流束補正とDG・1D周期移流 — Flux Reconstruction法：流束補正とDG・1D周期移流 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/flux-reconstruction/
+Coverage: reading
+
+Flux Reconstruction（FR、流束再構成）は、要素ごとに持つ流束多項式へ界面の補正を加え、高次の保存則離散化を構成する枠組みです。要素間で解を連続にする代わりに数値流束で情報を交換します。補正関数の選び方が手法を決めるため、FRという名前だけで精度や安定性は決まりません。
+
+## Flux Reconstruction法：流束補正とDG・1D周期移流 — 解点・界面の数値流束を分ける [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/flux-reconstruction/#local-flux
+Coverage: reading
+
+u_t+a u_x=0,\quad x\in[0,1),\quad u(x+1,t)=u(x,t),\quad u_*(x,t)=0.4+\sin(2\pi(x-at))u_h(\xi)=\sum_{j=0}^{p}u_j\ell_j(\xi),\qquad f^D(\xi)=\sum_{j=0}^{p}f(u_j)\ell_j(\xi)
+各区間をξ∈[−1,1]へ写し、p+1個の解点に値を置きます。要素内の多項式を左右端へ外挿すると、隣の要素と異なる二つの値が得られます。今回の一定速度ではa>0なら左側、a<0なら右側の状態を使う上流流束を、共有界面の一つの流束として選びます。
+
+## Flux Reconstruction法：流束補正とDG・1D周期移流 — 界面値を補正関数でつなぐ [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/flux-reconstruction/#corrected-flux
+Coverage: reading
+
+f^C(\xi)=f^D(\xi)+(f_L^*-f_L^D)g_L(\xi)+(f_R^*-f_R^D)g_R(\xi)g_L(-1)=1,\ g_L(1)=0,\qquad g_R(-1)=0,\ g_R(1)=1,\qquad\dot u_i=-\frac{2}{h}\partial_\xi f^C(\xi_i)
+fDは要素内で作る流束、f*は界面の共有数値流束です。左右の差をgL・gRで内部へ配ると、補正した流束は端点でf*に一致します。その微分を解点で評価して時間発展させます。MUSCLやWENOの「再構成」と関連する語ですが、ここで構成している多項式・自由度・補正の対象を区別します。
+
+## Flux Reconstruction法：流束補正とDG・1D周期移流 — Radau補正でDGを再現する設定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/flux-reconstruction/#dg-connection
+Coverage: reading
+
+g_L=\frac{(-1)^p}{2}(P_p-P_{p+1}),\qquad g_R=\frac12(P_p+P_{p+1})M\dot{\mathbf u}=\frac{2}{h}\left[aD^TM\mathbf u-\mathbf t_R f_R^*+\mathbf t_L f_L^*\right],\qquad M=\operatorname{diag}(w_i)
+今回の解点はGauss点、補正は上式のRadau型です。MはGauss重みの対角行列、tL・tRは解点から端点への外挿ベクトル、Dは参照微分行列。この線形流束・アフィン区間の設定では、補正式は節点DGの弱形式に対応します。DG側をLegendre modal係数で表しても、同じ初期射影・流束・時間積分なら同じ多項式を表します。非線形流束のaliasing、別の求積や補正関数では条件を改めて確認する必要があります。
+
+## Flux Reconstruction法：流束補正とDG・1D周期移流 — 既存DG法との比較 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/flux-reconstruction/#dg-comparison
+Coverage: reading
+
+既存DG法との比較
+比較点今回のFR既存のmodal DG
+保持する自由度p+1個のGauss点の値p+1個のLegendre係数
+要素の接続共有流束との差をRadau関数で補正弱形式の体積項と面流束
+初期化共通のGauss積分でL2射影同じ射影規約
+時間積分SSPRK(3,3)同じSSPRK(3,3)・刻み規約
+今回の比較の意味線形問題での対応を数値で確認独立に既存コードを実行して照合
+一般化の限界全補正・非線形FRの保証ではない全DG変種との同値性ではない
+
+## Flux Reconstruction法：流束補正とDG・1D周期移流 — 軽量実行例：周期正弦波を1/4周期だけ運ぶ [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/flux-reconstruction/#example
+Coverage: reading
+
+初期値0.4+sin(2πx)、速度1、T=.25。p=1/2、8/16/32セルを実行します。既存のDG関数をバイト一致で同梱し、各設定で実際に計算します。hを細分化する際はスケールしたCourant数(2p+1)|a|Δt/h≤.15にします。終了時の波は初期位置から移動しており、静止した初期図を成功例として使いません。
+保存された初期・最終場と判定。DGとの差と質量変化の軸は10⁻¹⁵程度の丸め誤差の大きさを表示しています。
+
+## Flux Reconstruction法：流束補正とDG・1D周期移流 — 保存・散逸と時間誤差を別々に測る [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/flux-reconstruction/#conservation
+Coverage: reading
+
+I_h=\sum_e\frac{h}{2}\sum_iw_iu_{e,i},\quad \frac{dI_h}{dt}=0,\qquad \frac{d}{dt}\frac12\|u_h\|_{L^2}^2=-\frac{|a|}{2}\sum_{\rm faces}[u_h]^2
+Ihの共有面流束は周期境界で打ち消し合います。上流流束の半離散エネルギーは界面の跳びに応じて散逸します。これは任意の時間刻みでの安定性や、非線形のエントロピー安定性を保証する式ではありません。本例では全RK段階の質量と、完了した各ステップのエネルギーも測定します。
+\dot U=A_hU,\quad U_{\exp}(T)=\exp(TA_h)U(0),\quad E_t=\|U_{\rm RK3}(T)-U_{\exp}(T)\|_M
+連続L2誤差は追加のGauss点で積分します。hとΔtを同時に細分化した観測次数はp1で約1.99、p2で約3.00。FRと実際の既存DGの最大差は約4.0×10⁻¹⁵、最大段階質量変化は約3.6×10⁻¹⁵でした。
+同じ空間演算子の指数作用を別の時間伝播器として計算し、RK3の時間誤差を分けます。p2/N32の時間誤差は約9.44×10⁻⁹、刻み半減では約1.18×10⁻⁹（比約.125）でした。この指数作用は独立した空間PDEソルバーではありません。初回の密行列指数の警告とJSON型変換の失敗は入力・元ソース・結果とともに保持し、数値受入条件を変更せず修正しています。
+
+## Flux Reconstruction法：流束補正とDG・1D周期移流 — 関連実装：PyFRと今回の適用範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/flux-reconstruction/#implementations
+Coverage: reading
+
+PyFRはFRを使う流れのソフトウェアで、非構造格子やCPU/GPU向けの実装を紹介しています。公式資料と公式ソースへ進めます。今回の小さなPython例はPyFR本体の導入・実行・ベンチマークではありません。非線形流束、衝撃波、制限器、一般の補正族、曲線格子、多次元FRは別の検証が必要です。
+既存の不連続Galerkin法 · 連続なスペクトル要素法との違い
+
+## Flux Reconstruction法：流束補正とDG・1D周期移流 — 固定入力で確かめる：別々の配布版 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/flux-reconstruction/#scoped-examples
+Coverage: reading
+
+各例の入力・観測量・診断の定義と適用範囲を確認します。検査の合格が示す内容は受入条件によって異なり、数学的な一般保証とは区別します。旧版の入力・測定・公差は保持します。
+
+## Flux Reconstruction法：流束補正とDG・1D周期移流 — FR法の1D周期移流：Radau補正と既存DGの比較 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/flux-reconstruction/
+Coverage: reading
+
+固定した標的の計算例
+0.4+sin(2πx)をT=.25まで移流。Gauss点・Radau補正のFRと既存のmodal DGをp=1/2、8/16/32セルで実行し、誤差・質量・時間積分誤差を測ります。
+このRadau/Gauss・線形一定流束・アフィン要素の設定がDGに対応します。全FRと全DGの同値性、非線形流束・衝撃波・制限器・多次元FRは保証しません。hとΔtの同時細分化と行列指数による空間誤差を分け、行列指数を独立した空間PDEソルバーとは呼びません。PyFR本体は未実行。
+入力・結果・受入条件 · 手法・式・一次文献 · コード：run.py · コード：fr.py · コード：polynomials.py · コード：experiments.py · コード：advection.py · コード：solvers.py · コード：riemann.py · コード：equations.py · コード：limiters.py · コード：sem.py · コード：fem.py · コード：krylov.py · テスト：test_sem_fr.py · 配布ZIP · 保存結果 · 独立展開からの追試記録
+
+## Flux Reconstruction法：流束補正とDG・1D周期移流 — 公開範囲と関連項目 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/flux-reconstruction/#publication-scope
+Coverage: reading
+
+この章に対応する専用の軽量コード・固定入力・保存場・判定と、ZIP独立展開で再実行した25検査を公開します。関連する外部ソフトは公式資料の紹介であり、導入・動作検証済みの表示ではありません。
+Flux Reconstruction法（FR法）
+不連続Galerkin法／Legendre
+WENO5-JS
+
+## Flux Reconstruction法：流束補正とDG・1D周期移流 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/flux-reconstruction/#sources
+Coverage: reading
+
+原著、後続の変種、著者による著書、概説、公式資料を区別して参照します。DOI・書誌の確認と原文の該当箇所の閲覧を区別し、論文全体の監査や数値再現を行ったという意味ではありません。確認範囲の注記は引用ごとに示します。
+H. T. Huynh (2007). A Flux Reconstruction Approach to High-Order Schemes Including Discontinuous Galerkin Methods. 18th AIAA Computational Fluid Dynamics Conference
+研究論文・提案または関連する定式化 · 書誌確認 · 確認した資料
+著者の2014年NASA報告の参考文献（本文27頁）で2007年原報の題名・著者・会議番号を確認。AIAA原文は未取得。補正式は別記の2014年本文を参照。
+H. T. Huynh (2014). On Formulations of Discontinuous Galerkin and Related Methods for Conservation Laws. NASA/TM-2014-218135
+研究論文・提案または関連する定式化 · 原文の該当箇所を参照 · 確認した資料
+NASA原文の抄録、微分形と界面補正、本文19–21頁の式(6.2)–(6.13)のRadau補正とDG対応、27頁の書誌を確認。全報告の監査や非線形実験の再現ではない。
+PyFR development team (2026). PyFR: Flux Reconstruction and supported implementation platforms (accessed 2026-11-23).
+公式の参照資料 · 原文の該当箇所を参照 · 確認した資料
+公式サイトのFRによる空間離散化・非構造格子・CPU/GPUの紹介を確認。今回の軽量Python例でPyFRを導入・実行・検証したとはしない。
+
 ## 球面メッシュとArakawa A・B・C格子 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/geophysical-grids/
@@ -38557,7 +41404,7 @@ R. Car; M. Parrinello (1985)
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemistry/#verification
 Coverage: reading
 
-水素型原子・Heの2問題群を実行し、独立参照と比較して全92問題の台帳へ加えました。さらにH₂の有限基底RHFを独立参照・SCFと基底の収束で検証しました。周期Heセルの限定DFTも追加。分子DFT・FCIや他の周期物質へ検証を拡張していません。
+水素型原子・Heの2問題群を実行し、独立参照と比較して全102問題の台帳へ加えました。さらにH₂の有限基底RHFを独立参照・SCFと基底の収束で検証しました。周期Heセルの限定DFTも追加。分子DFT・FCIや他の周期物質へ検証を拡張していません。
 実行・検証例あり
 
 ## 量子化学・DFT：何を近似し、何を解くか — 1電子：水素型原子 [ja]
@@ -40695,6 +43542,18 @@ S. Osher and J. A. Sethian (1988). Fronts propagating with curvature-dependent s
 C. W. Hirt and B. D. Nichols (1981). Volume of fluid (VOF) method for the dynamics of free boundaries. 10.1016/0021-9991(81)90145-5
 M. Sussman and E. Fatemi (1999). An Efficient, Interface-Preserving Level Set Redistancing Algorithm and Its Application to Interfacial Incompressible Fluid Flow. 10.1137/S1064827596298245
 M. Sussman and E. G. Puckett (2000). A Coupled Level Set and Volume-of-Fluid Method for Computing 3D and Axisymmetric Incompressible Two-Phase Flows. 10.1006/jcph.2000.6537
+A. T. Patera (1984). A spectral element method for fluid dynamics: Laminar flow in a channel expansion. 10.1016/0021-9991(84)90128-1
+Nek5000 development team (2026). Nek5000 documentation: Theory and spectral-element basis (accessed 2026-11-23). Original source
+Nek5000/RS development team (2026). Nek5000/RS project: spectral-element solvers and related implementations (accessed 2026-11-23). Original source
+
+## 原著の出版年順に並べた参考文献 — 主要手法の条件整理で追加した一次文献・資料 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/references/
+Coverage: reading
+
+H. T. Huynh (2007). A Flux Reconstruction Approach to High-Order Schemes Including Discontinuous Galerkin Methods. 10.2514/6.2007-4079
+H. T. Huynh (2014). On Formulations of Discontinuous Galerkin and Related Methods for Conservation Laws. Original source
+PyFR development team (2026). PyFR: Flux Reconstruction and supported implementation platforms (accessed 2026-11-23). Original source
 
 ## 原著の出版年順に並べた参考文献 — 量子化学の追加一次文献 [ja]
 
@@ -41698,8 +44557,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 公開Web版、集計日2026-11-23。数えるのはカタログ項目と記載した実験例です。すべての項目が検証済みの完全なソルバーであるという意味ではありません。
-方程式・モデル50項目・計算法と構成要素133項目・学術誌／会議論文247件・全参考資料304件。
-保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め107章です。
+方程式・モデル56項目・計算法と構成要素136項目・学術誌／会議論文249件・全参考資料310件。
+保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め115章です。
 
 ## 収録範囲と数え方 — 方程式とモデル# [ja]
 
@@ -41707,7 +44566,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 名前付きの方程式・モデルを数えます。スカラー成分や数学的に互いに独立な系統の数ではありません。枠組みや補助定式化を含み、通常は派生形を一つにまとめます。ただし個別に説明するSR／GRの流体系3種類は分けます。生物モデルは専用カタログから一度だけ取り込みます。
-ローカル実験のある項目は27、文献解説のみは23で、後者には生物調査22項目すべてを含みます。連成系は一項目とし、成分方程式では増やしません。Poisson／Laplaceや次元の違いもまとめます。枠組みと個別反応則が並ぶため、数学的に独立した系統数ではありません。
+ローカル実験のある項目は34、文献解説のみは22で、後者には生物調査22項目すべてを含みます。連成系は一項目とし、成分方程式では増やしません。Poisson／Laplaceや次元の違いもまとめます。枠組みと個別反応則が並ぶため、数学的に独立した系統数ではありません。
 一覧の詳細な範囲注記は原文（英語）を保持します。各章の日本語本文も併せて参照できます。
 
 ## 収録範囲と数え方 — 物理・数学モデル# [ja]
@@ -41794,7 +44653,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 名前付きの離散化法、積分法、線形・非線形解法、連成演算子を数えます。パラメータの違いでは増やしません。
-ローカル実験のある項目は118、文献解説のみは15です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。
+ローカル実験のある項目は121、文献解説のみは15です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。
 
 ## 収録範囲と数え方 — 空間離散化# [ja]
 
@@ -41946,7 +44805,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 論文数は学術誌論文と会議論文です。総説、翻訳、採録済みであることを明記した論文も含みます。全参考資料は、それに書籍、章、技術資料、文書、個別に識別したプレプリント等を加えた、重複を除く出版物の数です。
-241件：学術誌論文（総説・翻訳・採録済み論文を含む）
+242件：学術誌論文（総説・翻訳・採録済み論文を含む）
 3件：会議論文
 22件：書籍
 2件：書籍の章
@@ -42083,6 +44942,120 @@ Newton法はJ(x)δ=−F(x)を解き、残差に対するArmijo減少条件を満
 \leq \kappa(A)\frac{\|b-A\hat x\|}{\|b\|}.
 条件数、固有値分布、非正規性は異なる性質を表します。条件数が小さいことだけで再始動GMRESの優劣は決められません。CGには引き続き対称正定値演算子と適切な対称正定値前処理が必要で、一般のILU(0)がその条件を満たすとはしていません。
 非対称の例は、ゼロDirichlet条件での1次風上移流と中心差分拡散です。1反復あたりの計算量が異なるため、図では実行時間の順位を付けません。データとソースハッシュ、FEMの組立て、陰的ODE段階も参照してください。
+
+## スペクトル要素法：高次の有限要素と2D Poisson — スペクトル要素法：高次の有限要素と2D Poisson [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/spectral-element/
+Coverage: reading
+
+スペクトル要素法（SEM）は、領域を要素に分け、各要素の中を高次多項式で近似する方法です。有限要素法の幾何学的な分割と、滑らかな関数を高次で表す考え方を結びます。ここでは連続Galerkin型のLegendre GLL変種を、手元で再実行できる2D Poisson問題から学びます。
+
+## スペクトル要素法：高次の有限要素と2D Poisson — 要素ごとの高次多項式をつなぐ [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/spectral-element/#local-polynomials
+Coverage: reading
+
+u_h|_{K_e}(\xi,\eta)=\sum_{i,j=0}^{p}U^e_{ij}\ell_i(\xi)\ell_j(\eta),\qquad u_h\in C^0(\Omega)
+ξ・ηは各正方形を[−1,1]²に写した参照座標です。隣り合う要素の境界節点を共有し、関数値をC0連続に組み立てます。導関数まで連続にする条件ではありません。SEMは高次有限要素法の一群であり、有限要素法全般を一次要素に限定する呼び方ではありません。領域全体を一組のFourier基底で表す方法とも分けて考えます。
+
+## スペクトル要素法：高次の有限要素と2D Poisson — Poisson方程式の弱形式から出発する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/spectral-element/#weak-form
+Coverage: reading
+
+\int_\Omega\nabla v_h\cdot\nabla u_h\,d\Omega=\int_\Omega v_h f\,d\Omega,\qquad v_h|_{\partial\Omega}=0
+−Δu=fに試験関数vを掛け、部分積分して微分を両者へ一つずつ配ります。零Dirichlet境界では境界項が消えます。以下の実装は一定係数・アフィン正方形だけを対象にし、この積分をGLL求積で近似します。
+
+## スペクトル要素法：高次の有限要素と2D Poisson — GLL節点・求積と行列 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/spectral-element/#gll
+Coverage: reading
+
+(1-\xi_i^2)P_p^\prime(\xi_i)=0,\qquad w_i=\frac{2}{p(p+1)P_p(\xi_i)^2},\qquad i=0,\ldots,pD_{ij}=\ell_j^\prime(\xi_i),\quad W=\operatorname{diag}(w_i),\quad S=D^TWD,\quad K_e=\frac{h_y}{h_x}S\otimes W+\frac{h_x}{h_y}W\otimes Sb^e_{ij}=\frac{h_xh_y}{4}w_iw_jf(x_{e,i},y_{e,j}),\qquad KU=b
+p次Legendre多項式Ppの導関数の根と両端点がp+1個のGLL節点です。1D求積の厳密次数は2p−1。節点値を自由度に選ぶと求積質量は対角になりますが、一般の2p次の積まで厳密に積分した質量行列とは異なります。2Dの剛性も横方向の積を含むため、求積の規約を明記する必要があります。コードはテンソル積の局所剛性と右辺を疎に組み立て、境界値を消去して解きます。
+
+## スペクトル要素法：高次の有限要素と2D Poisson — 既存のP1有限要素法との比較 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/spectral-element/#fem-comparison
+Coverage: reading
+
+既存のP1有限要素法との比較
+比較点既存のP1 FEM今回のGLL-SEM
+要素内の近似三角形上の一次多項式正方形上のテンソル積Qp多項式
+要素間の接続C0連続C0連続
+求積Duffy変換によるGauss積分GLL節点での剛性・荷重求積
+精度を増やす操作主にh細分化h細分化とp増加を分けられる
+今回の連立解法既存NumartのILU(0)・GMRESSciPyの疎な直接解法
+比較で揃えるもの方程式・境界・製造解・自由未知数同じ条件。速度の優劣は判定しない
+
+## スペクトル要素法：高次の有限要素と2D Poisson — 軽量実行例：2D Poissonのh/p収束 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/spectral-element/#example
+Coverage: reading
+
+\Omega=(0,1)^2,\quad u_*=\sin(\pi x)\sin(\pi y),\quad f=2\pi^2u_*,\quad u|_{\partial\Omega}=0
+p=2のSEMで各方向2/4/8要素、既存の三角形P1 FEMで4/8/16分割を使います。自由未知数は両者とも9/49/225です。さらに2×2要素を固定しp=1〜6を実行します。比較用P1 FEMのソースと依存モジュールは、公開済みNumart版とバイト一致で同梱し、元の配布版を保持しています。
+実際の保存場と誤差の図。節点誤差の画像と、領域内を積分した誤差ノルムは別の量です。
+
+## スペクトル要素法：高次の有限要素と2D Poisson — 残差・連続誤差・観測次数を区別する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/spectral-element/#error-and-refinement
+Coverage: reading
+
+E_{L^2}=\left[\int_\Omega(u_h-u_*)^2\,d\Omega\right]^{1/2},\quad E_{H^1}=\left[\int_\Omega|\nabla u_h-\nabla u_*|^2\,d\Omega\right]^{1/2}E_{L^2}\sim h^{p+1},\qquad E_{H^1}\sim h^p\quad\text{(smooth solution and resolved quadrature)}
+誤差はGLL節点だけでなく、要素内の別の高次Gauss点で積分します。小さい連立方程式の残差だけでは連続PDEの小さい誤差を意味しません。この滑らかな固定問題の最後のh細分化では、p2 SEMのL2観測次数は約3.04、H1半ノルムは約2.01。P1 FEMはそれぞれ約1.97と0.99です。自由未知数225でのL2誤差はSEM約2.49×10⁻⁴、P1約5.38×10⁻³でした。p6・2×2要素のL2誤差は約3.78×10⁻⁷です。
+滑らかさ、境界、要素の形、求積と解法に依存する結果です。特異点や不連続係数で同じp収束を保証せず、この一例からSEMが常に速い・優れるとは結論しません。曲線要素、圧力との混合空間、流体の連成は今回の実行範囲に含めません。
+
+## スペクトル要素法：高次の有限要素と2D Poisson — 関連実装：Nek5000とnekRS [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/spectral-element/#implementations
+Coverage: reading
+
+Nek5000は高次のスペクトル要素流体ソルバーです。nekRSはCPU/GPUに対応する関連する後継実装として、公式プロジェクトから資料・ソースへ進めます。ここで実行した小さなPythonのPoisson例は、その流体ソルバーや性能を再現・検証したものではありません。Pateraの原報は起源をたどる書誌として挙げ、今回のLegendre GLL変種と区別します。
+既存の有限要素法 · 不連続な要素を使うFR・DGとの比較
+
+## スペクトル要素法：高次の有限要素と2D Poisson — 固定入力で確かめる：別々の配布版 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/spectral-element/#scoped-examples
+Coverage: reading
+
+各例の入力・観測量・診断の定義と適用範囲を確認します。検査の合格が示す内容は受入条件によって異なり、数学的な一般保証とは区別します。旧版の入力・測定・公差は保持します。
+
+## スペクトル要素法：高次の有限要素と2D Poisson — スペクトル要素法の2D Poisson：P1 FEMとh/p収束を比較 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/spectral-element/
+Coverage: reading
+
+固定した標的の計算例
+単位正方形の正弦製造解をGLLスペクトル要素法と既存P1三角形FEMで解きます。自由未知数を揃えたh細分化と、固定要素数でのp=1〜6を分けて測ります。
+滑らかな固定問題だけの結果。要素・求積・代数ソルバーが異なるので、速度・計算量・汎用的優位性の比較ではありません。GLLの対角求積質量は一般の積の厳密な質量行列ではない。曲線格子・特異解・非圧縮流体・Nek5000/nekRS本体は未実行。
+入力・結果・受入条件 · 手法・式・一次文献 · コード：run.py · コード：sem.py · コード：polynomials.py · コード：experiments.py · コード：fem.py · コード：krylov.py · コード：fr.py · コード：advection.py · コード：solvers.py · コード：riemann.py · コード：equations.py · コード：limiters.py · テスト：test_sem_fr.py · 配布ZIP · 保存結果 · 独立展開からの追試記録
+
+## スペクトル要素法：高次の有限要素と2D Poisson — 公開範囲と関連項目 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/spectral-element/#publication-scope
+Coverage: reading
+
+この章に対応する専用の軽量コード・固定入力・保存場・判定と、ZIP独立展開で再実行した25検査を公開します。関連する外部ソフトは公式資料の紹介であり、導入・動作検証済みの表示ではありません。
+スペクトル要素法（SEM）
+連続P1 Galerkin有限要素法
+不連続Galerkin法／Legendre
+
+## スペクトル要素法：高次の有限要素と2D Poisson — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/spectral-element/#sources
+Coverage: reading
+
+原著、後続の変種、著者による著書、概説、公式資料を区別して参照します。DOI・書誌の確認と原文の該当箇所の閲覧を区別し、論文全体の監査や数値再現を行ったという意味ではありません。確認範囲の注記は引用ごとに示します。
+A. T. Patera (1984). A spectral element method for fluid dynamics: Laminar flow in a channel expansion. Journal of Computational Physics
+研究論文・提案または関連する定式化 · 書誌確認 · 確認した資料
+Nek5000公式参考文献の題名・巻・頁・DOIを照合。出版社の原文は未取得で、原報全体の監査・数値再現とはしない。今回の実装はLegendre GLL変種。
+Nek5000 development team (2026). Nek5000 documentation: Theory and spectral-element basis (accessed 2026-11-23).
+公式の参照資料 · 原文の該当箇所を参照 · 確認した資料
+公式TheoryとFAQの要素局所の多項式、GLL/GL点・C0連続性を確認。教育用Poissonの実装とNek5000の流体ソルバー全体を同一視しない。
+Nek5000/RS development team (2026). Nek5000/RS project: spectral-element solvers and related implementations (accessed 2026-11-23).
+公式の参照資料 · 原文の該当箇所を参照 · 確認した資料
+公式プロジェクトのSEM、nekRSのCPU/GPU対応、Nek5000との関係を確認。外部ソルバーの導入・実行・性能比較は未実施。
 
 ## スプライン補間 — スプライン補間 [ja]
 
@@ -45218,6 +48191,9 @@ Coverage: reading
 関連モデルの参照 · 製造解
 Poisson／正弦波の製造解
 カードは1次元sin(πx)、こちらは2次元sin(πx)sin(πy)です。次元・右辺・FEMの誤差ノルムは異なります。
+同じ問題の参照 · 製造解
+2D Poisson正弦製造解：SEMとP1 FEMの共通参照
+全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。
 
 ## AMG・行列分解・固有値・求積 — 前提・単位・境界 [ja]
 
@@ -45860,6 +48836,306 @@ ExactPackのソフトウェア論文とGuderley収録を参照。論文記載版
 Los Alamos National Laboratory / ExactPack contributors (2025). ExactPack Guderley solver, pinned source
 確認範囲 / review_level: selected source files and license inspected; eexp,ramsey.state/g,interp_laz and official test fixtures; actual execution recorded separately
 固定版のeexp・ramseyの前収束ODEとstate、表の転記、公式回帰値、BSD3条項を確認。全ExactPackテストを実行したとは扱いません。参照の実行成否はqualification.jsonに別記します。
+
+## KH・RTの初期成長と独立線形参照 — KH・RTの初期成長と独立線形参照 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-instability-growth/
+Coverage: reading
+
+小振幅の非線形2D計算を、別に導出した連続Fourier–Galerkin線形初期値問題と比較します。有限時間の成長、格子・時間・振幅の影響を分けます。
+
+## KH・RTの初期成長と独立線形参照 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-instability-growth/#run-all
+Coverage: reading
+
+ZIPの atlas-instability-growth-2026-11-23-r2 フォルダで実行します。このコマンドは配布版の全2例を実行します。新規または空の出力先を指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## KH・RTの初期成長と独立線形参照 — KHの初期成長：滑らかな周期せん断層 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-instability-growth/
+Coverage: reading
+
+実際の非線形2D渦度方程式を解き、独立Fourier–Galerkin線形初期値問題と有限時間の成長・格子誤差を比較します。
+手法・式・図・参照解
+使用手法
+空間中心差分
+Heun法／SSPRK(2,2)
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+点値の渦度・浮力摂動を共有面の中央流束とHeun法で進め、5点差分PoissonをFFTで解きます。u=ψy,v=−ψxなので中央差分発散は整合します。基底場を解析的に差し引き、層そのものの離散ドリフトと微小摂動を分離します。
+維持されたせん断層の強制渦度系
+[0,2π]²周期、層厚δ=.25、ν=κ=.005、摂動ε=1e−5。32²/64²/128²格子。基底層は明示した外力で定常維持します。U=tanh(sin y/δ)、T=1。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+KHの初期成長：滑らかな周期せん断層
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+群全体22単体検査・74固定判定、10回の非線形計算を事前固定。参照K24/40/56、3格子の場誤差と次数、5保存時刻の成長、64²で刻み半減・振幅半減、Poisson残差・発散・平均値を別々に検査します。
+同じ問題の参照 · 有限格子の数値参照
+KH初期成長：独立した線形Fourier–Galerkin参照
+線形範囲の教育用固定入力です。線形参照は独立した空間表現であり、独立非線形PDEエンジンではありません。鋭い無限領域界面の分散式、McNallyの可圧縮入力、非線形後期の巻上がりやRT乱流を再現したとは表示しません。図の摂動はεで規格化した実計算値です。
+
+## KH・RTの初期成長と独立線形参照 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-instability-growth/#kh-initial-growth-assumptions
+Coverage: reading
+
+[0,2π]²周期、層厚δ=.25、ν=κ=.005、摂動ε=1e−5。32²/64²/128²格子。基底層は明示した外力で定常維持します。U=tanh(sin y/δ)、T=1。
+
+## KH・RTの初期成長と独立線形参照 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-instability-growth/#kh-initial-growth-algorithm
+Coverage: reading
+
+点値の渦度・浮力摂動を共有面の中央流束とHeun法で進め、5点差分PoissonをFFTで解きます。u=ψy,v=−ψxなので中央差分発散は整合します。基底場を解析的に差し引き、層そのものの離散ドリフトと微小摂動を分離します。
+-\Delta\psi=\omega,\qquad (u,v)=(\partial_y\psi,-\partial_x\psi)U(y)=\tanh(\sin y/\delta),\quad \omega_t+U\omega_x+U^{\prime\prime}\psi_x+\mathbf{u}\cdot\nabla\omega=\nu\Delta\omega\sigma_T=\frac{1}{T}\log\frac{A(T)}{A(0)},\qquad \dot{\widehat{\mathbf{q}}}=L_K\widehat{\mathbf{q}}
+
+## KH・RTの初期成長と独立線形参照 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-instability-growth/#kh-initial-growth-validation
+Coverage: reading
+
+群全体22単体検査・74固定判定、10回の非線形計算を事前固定。参照K24/40/56、3格子の場誤差と次数、5保存時刻の成長、64²で刻み半減・振幅半減、Poisson残差・発散・平均値を別々に検査します。
+
+## KH・RTの初期成長と独立線形参照 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-instability-growth/#kh-initial-growth-limits
+Coverage: reading
+
+線形範囲の教育用固定入力です。線形参照は独立した空間表現であり、独立非線形PDEエンジンではありません。鋭い無限領域界面の分散式、McNallyの可圧縮入力、非線形後期の巻上がりやRT乱流を再現したとは表示しません。図の摂動はεで規格化した実計算値です。
+
+## KH・RTの初期成長と独立線形参照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-instability-growth/#kh-initial-growth-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+spatial_orders[2.2589498509059927,2.031111897437912]
+finest_relative_field_error0.00425645160444
+finite_window_growth_rate0.394925454035
+reference_finite_window_growth_rate0.397810144022
+finest_growth_factor1.48427354019
+maximum_growth_curve_error0.00288053326655
+time_contamination_fraction0.000451186564654
+amplitude_scaled_difference6.58868997992e-06
+linear_operator_maximum_real_eigenvalue0.585864164046
+判定 / check合格
+reference_state_sensitivitytrue
+reference_growth_sensitivitytrue
+reference_positive_eigen_growthtrue
+n32_finitetrue
+n32_divergencetrue
+n32_poissontrue
+n32_mean_omegatrue
+n32_mean_thetatrue
+n64_finitetrue
+n64_divergencetrue
+n64_poissontrue
+n64_mean_omegatrue
+n64_mean_thetatrue
+n128_finitetrue
+n128_divergencetrue
+n128_poissontrue
+n128_mean_omegatrue
+n128_mean_thetatrue
+time-half_finitetrue
+time-half_divergencetrue
+time-half_poissontrue
+time-half_mean_omegatrue
+time-half_mean_thetatrue
+epsilon-half_finitetrue
+epsilon-half_divergencetrue
+epsilon-half_poissontrue
+epsilon-half_mean_omegatrue
+epsilon-half_mean_thetatrue
+spatial_decrease_1true
+spatial_decrease_2true
+minimum_spatial_ordertrue
+finest_field_errortrue
+growth_curvetrue
+finite_window_growth_ratetrue
+observable_growthtrue
+time_contaminationtrue
+amplitude_linearitytrue
+
+## KH・RTの初期成長と独立線形参照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-instability-growth/#kh-initial-growth-measurements
+Coverage: reading
+
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存した2D摂動渦度をεで規格化。色の尺度を明記し、線形参照と成長を比較します。全記録を表で読む
+idnepsiloncfl_factorstepsrelative_field_erroramplitudesreference_amplitudesfilesha256finitemax_divergencemax_poisson_residualmax_mean_omegamax_mean_theta
+n32321e-051360.0832693106539[7.571133935436482e-06,7.782362929282533e-06,8.41346745252849e-06,9.410858494395259e-06,1.0731036167334186e-05][7.603453162872775e-06,7.86001815273194e-06,8.611150136682367e-06,9.781764397395089e-06,1.1318206814998453e-05]kh-initial-growth-n32.npzae25727d05326c76d77e593979ac4bf5740d16691e4a7c092b2bb6d7365d2398true1.69406589451e-205.21772295509e-191.27054942088e-210
+n64641e-051680.0173969576214[7.595367435186987e-06,7.840648927426591e-06,8.562300548520147e-06,9.690657995543658e-06,1.1174198473241866e-05][7.603453162872775e-06,7.86001815273194e-06,8.611150136682367e-06,9.781764397395089e-06,1.1318206814998453e-05]kh-initial-growth-n64.npzeb418472bb4dcf3c8fcb97428d8674a604a5a187c1c3f8e78d330ff5253435b4true4.40457132572e-202.77826806699e-181.27054942088e-210
+
+## KH・RTの初期成長と独立線形参照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-instability-growth/#kh-initial-growth-measurements
+Coverage: reading
+
+n1281281e-0511520.00425645160444[7.601431365252137e-06,7.855183180822999e-06,8.599003112070968e-06,9.759184173475732e-06,1.128260344303824e-05][7.603453162872775e-06,7.86001815273194e-06,8.611150136682367e-06,9.781764397395089e-06,1.1318206814998453e-05]kh-initial-growth-n128.npz4795c793ed258b06d6f3ac9aebe42fb15c4253a8114e06d6d486d17e0e8957f2true8.63973606199e-201.24344436657e-171.05879118407e-210
+time-half641e-050.51360.0173919823495[7.595367435186987e-06,7.840654126276043e-06,8.562321179686481e-06,9.69070063482987e-06,1.1174267810079785e-05][7.603453162872775e-06,7.86001815273194e-06,8.611150136682367e-06,9.781764397395089e-06,1.1318206814998453e-05]kh-initial-growth-time-half.npz19f31eafb66bad56fec1c6e1f932372c554ec511c9b4f4ea8c031e1711c8ae80true4.319868031e-203.01374322633e-181.27054942088e-210
+epsilon-half645e-061680.0173969539413[3.7976837175934933e-06,3.9203244636673306e-06,4.2811502740558e-06,4.845328997301374e-06,5.587099235786818e-06][3.8017265814363877e-06,3.93000907636597e-06,4.305575068341184e-06,4.890882198697544e-06,5.659103407499227e-06]kh-initial-growth-epsilon-half.npz42d8b9917c8aafd529e7acbb7b82660b7dd78102adc8656a160e363000f51ccdtrue2.1599340155e-201.40946282423e-185.29395592034e-220
+この例の実測値・全記録 / JSON
+
+## KH・RTの初期成長と独立線形参照 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-instability-growth/#kh-initial-growth-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Colin P. McNally, Wladimir Lyra and Jean-Claude Passy (2012). A Well-Posed Kelvin-Helmholtz Instability Test and Comparison · DOI: 10.1088/0067-0049/201/2/18
+確認範囲 / review_level: primary-selected-original-pdf-text
+原著の滑らかな層・有限領域・成長測定の議論を確認。本例は独自の強制非圧縮系です。
+
+## KH・RTの初期成長と独立線形参照 — RTの初期成長：滑らかなBoussinesq二層 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-instability-growth/
+Coverage: reading
+
+密度差を浮力だけに残す2D Boussinesq系を時間発展し、不安定な滑らかな層の初期成長を独立線形参照で調べます。
+手法・式・図・参照解
+使用手法
+空間中心差分
+Heun法／SSPRK(2,2)
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+点値の渦度・浮力摂動を共有面の中央流束とHeun法で進め、5点差分PoissonをFFTで解きます。u=ψy,v=−ψxなので中央差分発散は整合します。基底場を解析的に差し引き、層そのものの離散ドリフトと微小摂動を分離します。
+能動浮力を伴うBoussinesq渦度系
+[0,2π]²周期、層厚δ=.25、ν=κ=.005、摂動ε=1e−5。32²/64²/128²格子。基底層は明示した外力で定常維持します。g=1、b0=.02 tanh(sin y/δ)、ρ/ρ0=1−b/g、T=2。慣性密度は一定で、密度跳躍の可変密度Euler系ではありません。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+RTの初期成長：滑らかなBoussinesq二層
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+群全体22単体検査・74固定判定、10回の非線形計算を事前固定。参照K24/40/56、3格子の場誤差と次数、5保存時刻の成長、64²で刻み半減・振幅半減、Poisson残差・発散・平均値を別々に検査します。
+同じ問題の参照 · 有限格子の数値参照
+RT初期成長：Boussinesq二層の線形IVP参照
+線形範囲の教育用固定入力です。線形参照は独立した空間表現であり、独立非線形PDEエンジンではありません。鋭い無限領域界面の分散式、McNallyの可圧縮入力、非線形後期の巻上がりやRT乱流を再現したとは表示しません。図の摂動はεで規格化した実計算値です。
+
+## KH・RTの初期成長と独立線形参照 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-instability-growth/#rt-initial-growth-assumptions
+Coverage: reading
+
+[0,2π]²周期、層厚δ=.25、ν=κ=.005、摂動ε=1e−5。32²/64²/128²格子。基底層は明示した外力で定常維持します。g=1、b0=.02 tanh(sin y/δ)、ρ/ρ0=1−b/g、T=2。慣性密度は一定で、密度跳躍の可変密度Euler系ではありません。
+
+## KH・RTの初期成長と独立線形参照 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-instability-growth/#rt-initial-growth-algorithm
+Coverage: reading
+
+点値の渦度・浮力摂動を共有面の中央流束とHeun法で進め、5点差分PoissonをFFTで解きます。u=ψy,v=−ψxなので中央差分発散は整合します。基底場を解析的に差し引き、層そのものの離散ドリフトと微小摂動を分離します。
+-\Delta\psi=\omega,\qquad (u,v)=(\partial_y\psi,-\partial_x\psi)b=b_0(y)+\theta,\quad \omega_t+\mathbf{u}\cdot\nabla\omega=\nu\Delta\omega+\theta_x,\quad \theta_t+\mathbf{u}\cdot\nabla\theta+v b_0^{\prime}=\kappa\Delta\theta\sigma_T=\frac{1}{T}\log\frac{A(T)}{A(0)},\qquad \dot{\widehat{\mathbf{q}}}=L_K\widehat{\mathbf{q}}
+
+## KH・RTの初期成長と独立線形参照 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-instability-growth/#rt-initial-growth-validation
+Coverage: reading
+
+群全体22単体検査・74固定判定、10回の非線形計算を事前固定。参照K24/40/56、3格子の場誤差と次数、5保存時刻の成長、64²で刻み半減・振幅半減、Poisson残差・発散・平均値を別々に検査します。
+
+## KH・RTの初期成長と独立線形参照 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-instability-growth/#rt-initial-growth-limits
+Coverage: reading
+
+線形範囲の教育用固定入力です。線形参照は独立した空間表現であり、独立非線形PDEエンジンではありません。鋭い無限領域界面の分散式、McNallyの可圧縮入力、非線形後期の巻上がりやRT乱流を再現したとは表示しません。図の摂動はεで規格化した実計算値です。
+
+## KH・RTの初期成長と独立線形参照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-instability-growth/#rt-initial-growth-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+spatial_orders[1.9961801582972816,2.001279583653318]
+finest_relative_field_error0.000604694639785
+finite_window_growth_rate0.00592811455297
+reference_finite_window_growth_rate0.00593424378256
+finest_growth_factor1.01192679279
+maximum_growth_curve_error1.22583840361e-05
+time_contamination_fraction0.0026807715949
+amplitude_scaled_difference6.60786142519e-06
+linear_operator_maximum_real_eigenvalue0.112940107063
+判定 / check合格
+reference_state_sensitivitytrue
+reference_growth_sensitivitytrue
+reference_positive_eigen_growthtrue
+n32_finitetrue
+n32_divergencetrue
+n32_poissontrue
+n32_mean_omegatrue
+n32_mean_thetatrue
+n64_finitetrue
+n64_divergencetrue
+n64_poissontrue
+n64_mean_omegatrue
+n64_mean_thetatrue
+n128_finitetrue
+n128_divergencetrue
+n128_poissontrue
+n128_mean_omegatrue
+n128_mean_thetatrue
+time-half_finitetrue
+time-half_divergencetrue
+time-half_poissontrue
+time-half_mean_omegatrue
+time-half_mean_thetatrue
+epsilon-half_finitetrue
+epsilon-half_divergencetrue
+epsilon-half_poissontrue
+epsilon-half_mean_omegatrue
+epsilon-half_mean_thetatrue
+spatial_decrease_1true
+spatial_decrease_2true
+minimum_spatial_ordertrue
+finest_field_errortrue
+growth_curvetrue
+finite_window_growth_ratetrue
+observable_growthtrue
+time_contaminationtrue
+amplitude_linearitytrue
+
+## KH・RTの初期成長と独立線形参照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-instability-growth/#rt-initial-growth-measurements
+Coverage: reading
+
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存した2D浮力摂動をεで規格化。滑らかな二層の初期変位で、乱流混合の図ではありません。全記録を表で読む
+idnepsiloncfl_factorstepsrelative_field_erroramplitudesreference_amplitudesfilesha256finitemax_divergencemax_poisson_residualmax_mean_omegamax_mean_theta
+n32321e-051160.00965809354867[8.660254037844388e-06,8.64479017514243e-06,8.656060892155223e-06,8.694725433245985e-06,8.762008312385106e-06][8.660254037844388e-06,8.644820882950885e-06,8.656375379014117e-06,8.69557745727289e-06,8.763650521435006e-06]rt-initial-growth-n32.npzd6fdb280bffcc3d485e5d44c1314cca95592f85e49668219f611c1c7e434fca3true1.94817577868e-208.89384594617e-198.47032947254e-221.05879118407e-21
+n64641e-051320.00242092482178[8.660254037844387e-06,8.644812308685322e-06,8.65629287504494e-06,8.695354785233646e-06,8.763220713550922e-06][8.660254037844388e-06,8.644820882950885e-06,8.656375379014117e-06,8.69557745727289e-06,8.763650521435006e-06]rt-initial-growth-n64.npz84025a93b1a9fffdc3b020080cb88c25bd815278f1a20d1c0972e66acd62deaetrue3.89635155737e-205.73271898702e-181.69406589451e-218.47032947254e-22
+
+## KH・RTの初期成長と独立線形参照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-instability-growth/#rt-initial-growth-measurements
+Coverage: reading
+
+n1281281e-051960.000604694639785[8.660254037844387e-06,8.64481866060881e-06,8.65635465370854e-06,8.695521724787933e-06,8.763543093241356e-06][8.660254037844388e-06,8.644820882950885e-06,8.656375379014117e-06,8.69557745727289e-06,8.763650521435006e-06]rt-initial-growth-n128.npzc58ef589a323e37b6509e902f2a7ef1ca6fbab7587377068040c42043573dbf3true7.8350547621e-202.36152785694e-171.69406589451e-211.05879118407e-21
+time-half641e-050.5640.00241597676361[8.660254037844387e-06,8.644811904755306e-06,8.656292430772538e-06,8.695354639994936e-06,8.763221209066592e-06][8.660254037844388e-06,8.644820882950885e-06,8.656375379014117e-06,8.69557745727289e-06,8.763650521435006e-06]rt-initial-growth-time-half.npz9c494fea6c95e637e86a76edc9352747f4199ab1e8664eeea47d55165f38ac6dtrue3.89635155737e-204.95006054375e-188.47032947254e-221.27054942088e-21
+epsilon-half645e-061320.00242092458602[4.330127018922193e-06,4.322406154345375e-06,4.328146437529506e-06,4.347677392622142e-06,4.381610356768535e-06][4.330127018922194e-06,4.3224104414754425e-06,4.3281876895070585e-06,4.347788728636445e-06,4.381825260717503e-06]rt-initial-growth-epsilon-half.npz5a770de9626e0fb9897d36ca2e9b7beda34daec8f9939b064df37d21f8a58651true1.926999955e-202.72066982658e-188.47032947254e-226.35274710441e-22
+この例の実測値・全記録 / JSON
+
+## KH・RTの初期成長と独立線形参照 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-instability-growth/#rt-initial-growth-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Antonio Celani, Andrea Mazzino and Lara Vozella (2006). Rayleigh–Taylor turbulence in two dimensions · DOI: 10.1103/PhysRevLett.96.134504
+確認範囲 / review_level: primary-selected-original-pdf-text
+原著のBoussinesq方程式と周期設定を確認。本例の滑らかな定常維持二層と線形参照は独自です。
 
 ## レベルセット法：円の2D移流・剛体回転 — レベルセット法：円の2D移流・剛体回転 [ja]
 
@@ -49086,6 +52362,622 @@ The ArviZ developers (2024). ArviZ0.20.0 public diagnostics API and tagged sourc
 確認範囲 / review_level: official-versioned-source-and-actual-independent-execution
 公式v0.20.0のrhat/ess API、diagnostics.py/stats_utils.pyでsplit・rank・Type7 quantile・端点・定数規約を確認。commit94113176cae99a05ba41d1e93739ee2d5bdbe9b1と導入ソースSHAを照合し、atlas診断をimportしない別環境で同じ62datasetを実計算。元コード本文は転載せず、参照値・版・hash・再生成コードを同梱します。
 
+## 角特異性・曲線座標・Neumann／Robin境界 — 角特異性・曲線座標・Neumann／Robin境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/
+Coverage: reading
+
+L字特異解のP1 FEM、環状領域の可変粘性ベクトルQ1 PDE、純Neumannの互換条件・平均ゲージ、混合Robinの製造解を実際に解きます。
+
+## 角特異性・曲線座標・Neumann／Robin境界 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/#run-all
+Coverage: reading
+
+ZIPの atlas-mesh-boundary-2026-11-23 フォルダで実行します。このコマンドは配布版の全4例を実行します。新規または空の出力先を指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## 角特異性・曲線座標・Neumann／Robin境界 — L字領域P1特異解：graded格子と歪みの分離 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/
+Coverage: reading
+
+再入隅の調和特異解を真の2D P1で解き、同じ未知数の一様/graded格子と、独立した滑らかな正方形の歪みを比較します。
+手法・式・図・参照解
+使用手法
+連続P1 Galerkin有限要素法
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+面積と物理勾配からP1剛性を組み、境界を消去して疎直接法で解きます。隅要素は原点をDuffy写像の頂点に移し、Gauss48/96を比較。
+Poisson・Laplace方程式
+第4象限を除いた[-1,1]²、theta∈[0,3pi/2]、u=r^(2/3)sin(2theta/3)、解析Dirichlet。N8/16/32、graded map x→x max(|x|,|y|)。正方形sin(pi x)sin(pi y)を同Nのregular/warpedで別検査。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+L字領域P1特異解：graded格子と歪みの分離
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+L2/H1積分誤差・求積差、一様/gradedの同DOF改善、別のsquare/warped系列、最小角・aspect・1ノルム条件数推定・真の線形残差を保存。
+同じ問題の参照 · 解析参照
+L字角の特異解：調和場と別の滑らかな製造解
+特異解に正方形のL2二次を要求しません。固定の事前graded写像でありAMRソフトではありません。条件数は推定で、任意歪みへの保証はしません。
+入力・検証手順の履歴 · 初回の入力
+
+## 角特異性・曲線座標・Neumann／Robin境界 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/#lshape-fem-assumptions
+Coverage: reading
+
+第4象限を除いた[-1,1]²、theta∈[0,3pi/2]、u=r^(2/3)sin(2theta/3)、解析Dirichlet。N8/16/32、graded map x→x max(|x|,|y|)。正方形sin(pi x)sin(pi y)を同Nのregular/warpedで別検査。
+
+## 角特異性・曲線座標・Neumann／Robin境界 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/#lshape-fem-algorithm
+Coverage: reading
+
+面積と物理勾配からP1剛性を組み、境界を消去して疎直接法で解きます。隅要素は原点をDuffy写像の頂点に移し、Gauss48/96を比較。
+-\Delta u=0,\quad u=r^{2/3}\sin(2\theta/3)K_{ab}=\sum_T |T|\nabla N_a\cdot\nabla N_b,\quad x_{graded}=x\|x\|_\infty
+
+## 角特異性・曲線座標・Neumann／Robin境界 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/#lshape-fem-validation
+Coverage: reading
+
+L2/H1積分誤差・求積差、一様/gradedの同DOF改善、別のsquare/warped系列、最小角・aspect・1ノルム条件数推定・真の線形残差を保存。
+
+## 角特異性・曲線座標・Neumann／Robin境界 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/#lshape-fem-limits
+Coverage: reading
+
+特異解に正方形のL2二次を要求しません。固定の事前graded写像でありAMRソフトではありません。条件数は推定で、任意歪みへの保証はしません。
+
+## 角特異性・曲線座標・Neumann／Robin境界 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/#lshape-fem-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+n32
+dofs961
+l20.00134735733393
+h10.108844893683
+quadrature_relative_gap1.40015698331e-14
+minimum_area0.000478699571574
+minimum_angle_degrees43.5975187484
+maximum_aspect2.08433300604
+condition_one_norm_estimate627.028424853
+residual1.65145674913e-15
+boundary_error0
+symmetry0
+判定 / check合格
+uniform-n8 residualtrue
+uniform-n8 boundary_errortrue
+uniform-n8 symmetrytrue
+uniform-n8 quadrature_relative_gaptrue
+uniform-n8 positive geometrytrue
+uniform-n16 residualtrue
+uniform-n16 boundary_errortrue
+uniform-n16 symmetrytrue
+uniform-n16 quadrature_relative_gaptrue
+uniform-n16 positive geometrytrue
+uniform-n32 residualtrue
+uniform-n32 boundary_errortrue
+uniform-n32 symmetrytrue
+uniform-n32 quadrature_relative_gaptrue
+uniform-n32 positive geometrytrue
+graded-n8 residualtrue
+graded-n8 boundary_errortrue
+graded-n8 symmetrytrue
+graded-n8 quadrature_relative_gaptrue
+graded-n8 positive geometrytrue
+graded-n16 residualtrue
+graded-n16 boundary_errortrue
+graded-n16 symmetrytrue
+graded-n16 quadrature_relative_gaptrue
+graded-n16 positive geometrytrue
+graded-n32 residualtrue
+graded-n32 boundary_errortrue
+graded-n32 symmetrytrue
+graded-n32 quadrature_relative_gaptrue
+graded-n32 positive geometrytrue
+square-n8 residualtrue
+square-n8 boundary_errortrue
+square-n8 symmetrytrue
+square-n8 quadrature_relative_gaptrue
+
+## 角特異性・曲線座標・Neumann／Robin境界 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/#lshape-fem-measurements
+Coverage: reading
+
+square-n8 positive geometrytrue
+square-n16 residualtrue
+square-n16 boundary_errortrue
+square-n16 symmetrytrue
+square-n16 quadrature_relative_gaptrue
+square-n16 positive geometrytrue
+square-n32 residualtrue
+square-n32 boundary_errortrue
+square-n32 symmetrytrue
+square-n32 quadrature_relative_gaptrue
+square-n32 positive geometrytrue
+warped-n8 residualtrue
+warped-n8 boundary_errortrue
+warped-n8 symmetrytrue
+warped-n8 quadrature_relative_gaptrue
+warped-n8 positive geometrytrue
+warped-n16 residualtrue
+warped-n16 boundary_errortrue
+warped-n16 symmetrytrue
+warped-n16 quadrature_relative_gaptrue
+warped-n16 positive geometrytrue
+warped-n32 residualtrue
+warped-n32 boundary_errortrue
+warped-n32 symmetrytrue
+warped-n32 quadrature_relative_gaptrue
+warped-n32 positive geometrytrue
+uniform l2 refinement 1true
+uniform l2 refinement 2true
+uniform h1 refinement 1true
+uniform h1 refinement 2true
+graded l2 refinement 1true
+graded l2 refinement 2true
+graded h1 refinement 1true
+graded h1 refinement 2true
+square l2 refinement 1true
+square l2 refinement 2true
+square h1 refinement 1true
+square h1 refinement 2true
+warped l2 refinement 1true
+warped l2 refinement 2true
+warped h1 refinement 1true
+warped h1 refinement 2true
+matched unknown countstrue
+finest graded/uniform H1true
+finest graded H1true
+analytic Cartesian stress/source identitytrue
+analytic annulus no-slip tracetrue
+
+## 角特異性・曲線座標・Neumann／Robin境界 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/#lshape-fem-measurements
+Coverage: reading
+
+analytic corner analytic gradienttrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。実際に保存した計算配列と固定入力の収束指標から描いた検証図。全記録を表で読む
+nfamilydofsl2h1quadrature_relative_gapminimum_areaminimum_angle_degreesmaximum_aspectcondition_one_norm_estimateresidualboundary_errorsymmetryid
+8uniform1610.006628511205110.1239105175721.05821388364e-050.007812545274.68677116291.33226762955e-1500uniform-n8
+16uniform7050.002714674658460.07911871440861.03055268147e-050.001953125452303.343729382.22044604925e-1500uniform-n16
+32uniform29450.001102753645450.05027693280021.01298024129e-050.000488281254521220.281637813.10862446895e-1500uniform-n32
+8graded1610.002903012090870.07723065550231.70707740698e-060.000122070312515.25511870314.33333333333186.4213666721.18123811318e-1500graded-n8
+16graded7050.0007700545075130.04008770835499.98181048395e-077.62939453125e-0615.25511870314.33333333333778.0868104561.72084568817e-1500graded-n16
+32graded29450.0001997478853040.02051652786236.00227281589e-074.76837158203e-0715.25511870314.333333333333164.564406522.53686779078e-1500graded-n32
+8square490.02113277347420.4317982830061.47756387043e-150.007812545237.26470588246.10622663544e-1600square-n8
+16square2250.005377435010010.217536336365.16148973701e-150.001953125452150.4169299548.74300631892e-1600square-n16
+32square9610.001350436248550.1089754235191.38090764275e-140.00048828125452603.0519284081.45196354939e-1500square-n32
+
+## 角特異性・曲線座標・Neumann／Robin境界 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/#lshape-fem-measurements
+Coverage: reading
+
+8warped490.02120411721380.4324565085668.18106907486e-160.007173616013239.55559661952.3946476197641.67760044626.66133814775e-1600warped-n8
+16warped2250.005367392081980.2172891314493.23196712571e-150.0018762725273742.11670915752.17662211915161.9302430281.33226762955e-1500warped-n16
+32warped9610.001347357333930.1088448936831.40015698331e-140.00047869957157443.59751874842.08433300604627.0284248531.65145674913e-1500warped-n32
+この例の実測値・全記録 / JSON
+
+## 角特異性・曲線座標・Neumann／Robin境界 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/#lshape-fem-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Long Chen (n.d.). Introduction to Adaptive Finite Element Methods
+確認範囲 / review_level: selected-official-tutorial-equations
+Joachim Schöberl (n.d.). Interactive FEM: graded meshes around vertex singularities
+確認範囲 / review_level: selected-author-teaching-section
+
+## 角特異性・曲線座標・Neumann／Robin境界 — 環状領域の可変粘性・真2DベクトルMMS [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/
+Coverage: reading
+
+軸を除く円環で可変粘性の応力発散方程式を実際に解き、速度・歪み・境界tractionと仕事を照合します。
+手法・式・図・参照解
+使用手法
+Q1有限要素法（曲線座標ベクトルBVP）
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+polarのmapped Q1にCartesian速度2成分を置き、r dr dthetaで2mu epsilonの弱形式を4×4 Gauss積分してblock疎解法。円周faceにはr dthetaと外向き法線を使う。
+可変粘性のベクトル応力境界値問題
+1≤r≤2、theta周期、mu=1+.2r²、lambda=0、両円でu=0。A(s)=(s−1)(4−s)、u=(A(1+xy),A(x²−y²)/2)。Nr8/16/32、Ntheta=2Nr。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+環状領域の可変粘性・真2DベクトルMMS
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+独自解析外力を別のCartesian応力差分で資格確認。L2速度/歪み/traction細分化、反力/体積外力と物理tractionの収支、粘性散逸と外力仕事を別々に測定。 体積外力の解析積分(756pi/5,0)も別に照合。
+同じ問題の参照 · 製造解
+環状粘性ベクトルMMS：独立応力微分で外力を確認
+線形vector粘性BVPです。divfree拘束・圧力・非線形Navier–Stokesは含めません。原点なしのr>0であり、軸stencil検証ではありません。
+入力・検証手順の履歴 · 初回の入力
+
+## 角特異性・曲線座標・Neumann／Robin境界 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/#annular-viscous-mms-assumptions
+Coverage: reading
+
+1≤r≤2、theta周期、mu=1+.2r²、lambda=0、両円でu=0。A(s)=(s−1)(4−s)、u=(A(1+xy),A(x²−y²)/2)。Nr8/16/32、Ntheta=2Nr。
+
+## 角特異性・曲線座標・Neumann／Robin境界 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/#annular-viscous-mms-algorithm
+Coverage: reading
+
+polarのmapped Q1にCartesian速度2成分を置き、r dr dthetaで2mu epsilonの弱形式を4×4 Gauss積分してblock疎解法。円周faceにはr dthetaと外向き法線を使う。
+-\nabla\cdot(2\mu\epsilon(u))=f,\quad\mu=1+0.2r^2\int 2\mu\epsilon(u):\epsilon(v)\,r\,dr\,d\theta=\int f\cdot v\,r\,dr\,d\thetadS=r\,d\theta,\quad t=(2\mu\epsilon(u))n
+
+## 角特異性・曲線座標・Neumann／Robin境界 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/#annular-viscous-mms-validation
+Coverage: reading
+
+独自解析外力を別のCartesian応力差分で資格確認。L2速度/歪み/traction細分化、反力/体積外力と物理tractionの収支、粘性散逸と外力仕事を別々に測定。 体積外力の解析積分(756pi/5,0)も別に照合。
+
+## 角特異性・曲線座標・Neumann／Robin境界 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/#annular-viscous-mms-limits
+Coverage: reading
+
+線形vector粘性BVPです。divfree拘束・圧力・非線形Navier–Stokesは含めません。原点なしのr>0であり、軸stencil検証ではありません。
+
+## 角特異性・曲線座標・Neumann／Robin境界 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/#annular-viscous-mms-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+n32
+theta_cells64
+dofs3968
+relative_l20.0022683900911
+relative_strain_l20.0518895568619
+relative_traction_l20.0726600694316
+residual1.08579811808e-13
+boundary_error0
+area_error3.5527136788e-15
+reaction_balance1.73667181888e-15
+traction_flux_balance0.0424955598518
+exact_flux_balance5.98475635565e-16
+analytic_force_error8.39450028527e-16
+work_identity3.85151725267e-15
+symmetry3.5527136788e-15
+判定 / check合格
+annulus-n8 residualtrue
+annulus-n8 boundary_errortrue
+annulus-n8 area_errortrue
+annulus-n8 reaction_balancetrue
+annulus-n8 exact_flux_balancetrue
+annulus-n8 analytic_force_errortrue
+annulus-n8 work_identitytrue
+annulus-n8 symmetrytrue
+annulus-n16 residualtrue
+annulus-n16 boundary_errortrue
+annulus-n16 area_errortrue
+annulus-n16 reaction_balancetrue
+annulus-n16 exact_flux_balancetrue
+annulus-n16 analytic_force_errortrue
+annulus-n16 work_identitytrue
+annulus-n16 symmetrytrue
+annulus-n32 residualtrue
+annulus-n32 boundary_errortrue
+annulus-n32 area_errortrue
+annulus-n32 reaction_balancetrue
+annulus-n32 exact_flux_balancetrue
+annulus-n32 analytic_force_errortrue
+annulus-n32 work_identitytrue
+annulus-n32 symmetrytrue
+relative_l2 refinement 1true
+relative_l2 refinement 2true
+relative_strain_l2 refinement 1true
+relative_strain_l2 refinement 2true
+relative_traction_l2 refinement 1true
+
+## 角特異性・曲線座標・Neumann／Robin境界 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/#annular-viscous-mms-measurements
+Coverage: reading
+
+relative_traction_l2 refinement 2true
+traction_flux_balance refinement 1true
+traction_flux_balance refinement 2true
+finest relative_l2true
+finest relative_strain_l2true
+finest relative_traction_l2true
+finest traction_flux_balancetrue
+analytic Cartesian stress/source identitytrue
+analytic annulus no-slip tracetrue
+analytic corner analytic gradienttrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。実際に保存した計算配列と固定入力の収束指標から描いた検証図。全記録を表で読む
+ntheta_cellsdofsrelative_l2relative_strain_l2relative_traction_l2residualboundary_errorarea_errorreaction_balancetraction_flux_balanceexact_flux_balanceanalytic_force_errorwork_identitysymmetryid
+8162240.03647315605870.2067625586380.2649537560993.5527136788e-1405.3290705182e-152.79969059743e-160.1625155991871.47540060455e-171.82494747303e-161.91288856848e-163.5527136788e-15annulus-n8
+16329600.009083323597370.1036922772420.140766397994.4408920985e-1403.5527136788e-154.72992091101e-160.08370975762776.04046250803e-164.79214685312e-163.69882328597e-163.5527136788e-15annulus-n16
+326439680.00226839009110.05188955686190.07266006943161.08579811808e-1303.5527136788e-151.73667181888e-150.04249555985185.98475635565e-168.39450028527e-163.85151725267e-153.5527136788e-15annulus-n32
+この例の実測値・全記録 / JSON
+
+## 角特異性・曲線座標・Neumann／Robin境界 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/#annular-viscous-mms-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+MFEM developers (n.d.). Example2: Linear Elasticity
+確認範囲 / review_level: selected-official-equations
+
+## 角特異性・曲線座標・Neumann／Robin境界 — 純Neumannの互換条件と平均値ゲージ [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/
+Coverage: reading
+
+特異な2D Poissonを互換条件と指定平均込みで解き、不適合な外力を拒否します。
+手法・式・図・参照解
+使用手法
+空間中心差分
+共役勾配法
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+共有面差分で特異行列を組み、体積重み平均のLagrange拘束付き疎直接法とcompatible CGを照合。物理的な不適合外力の平均を勝手に引かない。
+Poisson・Laplace方程式
+単位正方形N16/32/64、セル中心の点DOF。cos(2pi x)cos(2pi y)、全壁Neumann0、平均0とN32の平均.25診断。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+純Neumannの互換条件と平均値ゲージ
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+L2細分化、零空間、平均、CG差、source+1拒否、境界流束/体積源の収支を保存。
+同じ問題の参照 · 製造解
+純Neumann：解析場・互換条件・平均値ゲージ
+同じ半離散系の別線形解法は独立PDE参照ではありません。既存Dirichlet MGの成功や2D任意境界へ一般化しません。
+入力・検証手順の履歴 · 初回の入力
+
+## 角特異性・曲線座標・Neumann／Robin境界 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/#poisson-neumann-assumptions
+Coverage: reading
+
+単位正方形N16/32/64、セル中心の点DOF。cos(2pi x)cos(2pi y)、全壁Neumann0、平均0とN32の平均.25診断。
+
+## 角特異性・曲線座標・Neumann／Robin境界 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/#poisson-neumann-algorithm
+Coverage: reading
+
+共有面差分で特異行列を組み、体積重み平均のLagrange拘束付き疎直接法とcompatible CGを照合。物理的な不適合外力の平均を勝手に引かない。
+-\Delta u=f,\quad\partial_nu=g_N,\quad\int f=-\oint g_N
+
+## 角特異性・曲線座標・Neumann／Robin境界 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/#poisson-neumann-validation
+Coverage: reading
+
+L2細分化、零空間、平均、CG差、source+1拒否、境界流束/体積源の収支を保存。
+
+## 角特異性・曲線座標・Neumann／Robin境界 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/#poisson-neumann-limits
+Coverage: reading
+
+同じ半離散系の別線形解法は独立PDE参照ではありません。既存Dirichlet MGの成功や2D任意境界へ一般化しません。
+
+## 角特異性・曲線座標・Neumann／Robin境界 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/#poisson-neumann-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+n64
+mean0
+l20.000401788839684
+linf0.000801642956293
+residual1.64104840827e-15
+compatibility1.47451495458e-17
+mean_error7.16047772291e-17
+nullspace_defect0
+solver_gap1.04360964315e-14
+lagrange_multiplier-2.24365553071e-15
+boundary_residual0
+boundary_flux_error0
+flux_balance1.47451495458e-17
+symmetry0
+gauge_shift_error3.77475828373e-15
+判定 / check合格
+neumann-n16 residualtrue
+neumann-n16 boundary_residualtrue
+neumann-n16 flux_balancetrue
+neumann-n16 symmetrytrue
+neumann-n16 compatibilitytrue
+neumann-n16 mean_errortrue
+neumann-n16 nullspace_defecttrue
+neumann-n16 solver_gaptrue
+neumann-n32 residualtrue
+neumann-n32 boundary_residualtrue
+neumann-n32 flux_balancetrue
+neumann-n32 symmetrytrue
+neumann-n32 compatibilitytrue
+neumann-n32 mean_errortrue
+neumann-n32 nullspace_defecttrue
+neumann-n32 solver_gaptrue
+neumann-n64 residualtrue
+neumann-n64 boundary_residualtrue
+neumann-n64 flux_balancetrue
+neumann-n64 symmetrytrue
+neumann-n64 compatibilitytrue
+neumann-n64 mean_errortrue
+neumann-n64 nullspace_defecttrue
+neumann-n64 solver_gaptrue
+L2 refinement 1true
+L2 refinement 2true
+finest L2true
+mean gauge shifts only constanttrue
+incompatible source rejected without projectiontrue
+analytic Cartesian stress/source identitytrue
+analytic annulus no-slip tracetrue
+analytic corner analytic gradienttrue
+
+## 角特異性・曲線座標・Neumann／Robin境界 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/#poisson-neumann-measurements
+Coverage: reading
+
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。実際に保存した計算配列と固定入力の収束指標から描いた検証図。全記録を表で読む
+nfamilymeanl2linfresidualcompatibilitymean_errornullspace_defectsolver_gaplagrange_multiplierboundary_residualboundary_flux_errorflux_balancesymmetryidgauge_shift_error
+16neumann00.006475373360940.01245783827451.16573417586e-156.24500451352e-171.89735380185e-1701.11022302463e-152.43188391583e-15006.24500451352e-170neumann-n16—
+32neumann00.001609482220040.003188038690531.17961196366e-157.17741838185e-171.59379413421e-1603.44169137634e-155.93791795702e-15007.17741838185e-170neumann-n32—
+64neumann00.0004017888396840.0008016429562931.64104840827e-151.47451495458e-177.16047772291e-1701.04360964315e-14-2.24365553071e-15001.47451495458e-170neumann-n643.77475828373e-15
+この例の実測値・全記録 / JSON
+
+## 角特異性・曲線座標・Neumann／Robin境界 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/#poisson-neumann-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+PETSc developers (n.d.). KSP: Solving Singular Systems
+確認範囲 / review_level: selected-official-section
+
+## 角特異性・曲線座標・Neumann／Robin境界 — 2D混合Robinの製造解と境界流束 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/
+Coverage: reading
+
+2D PoissonのNeumann/Robin面を実際に組み、連続製造解と境界fluxを照合します。
+手法・式・図・参照解
+使用手法
+空間中心差分
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+半セル距離を用いてRobin境界値を消去し、外向きgradientの面積積分を離散式と同じ重みで評価。
+Poisson・Laplace方程式
+単位正方形N16/32/64、u=cos(pi x)cos(2pi y)+x+y。x壁Neumann±1、y壁alpha1,beta.5の解析Robin。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+2D混合Robinの製造解と境界流束
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+2D解/誤差、真の残差、Robin関係残差と解析法線flux誤差、3格子細分化と積分収支を保存。
+同じ問題の参照 · 製造解
+混合Robin：2次元解析場と独立な法線流束
+Robin問題は一意なので平均ゲージを重ねません。境界条件の代数残差と物理flux精度を区別します。
+入力・検証手順の履歴 · 初回の入力
+
+## 角特異性・曲線座標・Neumann／Robin境界 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/#poisson-robin-assumptions
+Coverage: reading
+
+単位正方形N16/32/64、u=cos(pi x)cos(2pi y)+x+y。x壁Neumann±1、y壁alpha1,beta.5の解析Robin。
+
+## 角特異性・曲線座標・Neumann／Robin境界 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/#poisson-robin-algorithm
+Coverage: reading
+
+半セル距離を用いてRobin境界値を消去し、外向きgradientの面積積分を離散式と同じ重みで評価。
+\alpha u_b+\beta\partial_nu=g,\quad\partial_nu=(g-\alpha u_i)/(\beta+\alpha h/2)
+
+## 角特異性・曲線座標・Neumann／Robin境界 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/#poisson-robin-validation
+Coverage: reading
+
+2D解/誤差、真の残差、Robin関係残差と解析法線flux誤差、3格子細分化と積分収支を保存。
+
+## 角特異性・曲線座標・Neumann／Robin境界 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/#poisson-robin-limits
+Coverage: reading
+
+Robin問題は一意なので平均ゲージを重ねません。境界条件の代数残差と物理flux精度を区別します。
+
+## 角特異性・曲線座標・Neumann／Robin境界 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/#poisson-robin-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+n64
+mean0
+l20.000377061132506
+linf0.000891157386347
+residual5.72979164115e-15
+compatibility3.93846153846
+mean_error0
+nullspace_defect0
+solver_gap0
+lagrange_multiplier0
+boundary_residual4.4408920985e-16
+boundary_flux_error0.00061641574893
+flux_balance1.63358909733e-13
+symmetry0
+判定 / check合格
+robin-n16 residualtrue
+robin-n16 boundary_residualtrue
+robin-n16 flux_balancetrue
+robin-n16 symmetrytrue
+robin-n32 residualtrue
+robin-n32 boundary_residualtrue
+robin-n32 flux_balancetrue
+robin-n32 symmetrytrue
+robin-n64 residualtrue
+robin-n64 boundary_residualtrue
+robin-n64 flux_balancetrue
+robin-n64 symmetrytrue
+L2 refinement 1true
+L2 refinement 2true
+finest L2true
+boundary flux refinement 1true
+boundary flux refinement 2true
+finest boundary fluxtrue
+analytic Cartesian stress/source identitytrue
+analytic annulus no-slip tracetrue
+analytic corner analytic gradienttrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。実際に保存した計算配列と固定入力の収束指標から描いた検証図。全記録を表で読む
+nfamilymeanl2linfresidualcompatibilitymean_errornullspace_defectsolver_gaplagrange_multiplierboundary_residualboundary_flux_errorflux_balancesymmetryid
+16robin00.006065503644640.01387221956471.73472347598e-153.7647058823500002.22044604925e-160.009882307586444.46517822716e-150robin-n16
+
+## 角特異性・曲線座標・Neumann／Robin境界 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/#poisson-robin-measurements
+Coverage: reading
+
+32robin00.00150986662620.003537609082522.60208521397e-153.8787878787900004.4408920985e-160.002466645406498.61255511353e-140robin-n32
+64robin00.0003770611325060.0008911573863475.72979164115e-153.9384615384600004.4408920985e-160.000616415748931.63358909733e-130robin-n64
+この例の実測値・全記録 / JSON
+
+## 角特異性・曲線座標・Neumann／Robin境界 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/#poisson-robin-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+MFEM developers (n.d.). Boundary Conditions: Robin boundary conditions
+確認範囲 / review_level: selected-official-equations
+
 ## CTとGLM：同条件の独立照合・格子・時間収束 — CTとGLM：同条件の独立照合・格子・時間収束 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/
@@ -49288,7 +53180,9 @@ Orszag–Tang渦（CT・GLM・発散誤差摂動を統合）
 厳密解・参照解
 この実行例の参照・検証
 密度・磁場L1誤差、格子改善、正値性、保存量とdiv/ψを測定。Athena256²/512²はともにCFL=.15、512²のCFL=.3/.15差で参照の時間感度を確認し、両増分が主計算誤差の.1以下か判定します。主計算の固定16²での時間収束を別実行DOP853へ照合し、最細格子の刻み倍増差も確認します。
-参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
+関連モデルの参照 · 有限格子の数値参照
+後期Orszag–Tang：独立有限格子の密度・圧力参照
+γ=5/3、[-.5,.5]²周期、ρ=25/(36π)、p=5/(12π)、vx=sin2πy、vy=−sin2πx、Az=(cos4πx−2cos2πy)/(4π√(4π))、16/32/64²セル。原著の非圧縮・粘性抵抗モデルの再現ではありません。
 入力・検証手順の履歴 · 初回の入力
 
 ## CTとGLM：同条件の独立照合・格子・時間収束 — 前提・単位・境界 [ja]
@@ -49529,6 +53423,496 @@ G. Tóth (2000). The ∇·B=0 Constraint in Shock-Capturing Magnetohydrodynamics
 確認範囲 / review_level: author paper abstract and bibliographic metadata
 div B制約手法の比較という原著の主題と書誌を確認しました。今回の数値判定や新しい構成例の出典とはしません。
 
+## MHD輸送・波・圧縮構造の独立比較 — MHD輸送・波・圧縮構造の独立比較 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transport/
+Coverage: reading
+
+全8保存量のHLLD・MUSCL・Heunと2D CTで、円偏波・磁場ループ・圧縮後OTを計算します。解析平均または未改変Athena++の保存場を、独立参照の格子・時間誤差を区別して比較します。
+
+## MHD輸送・波・圧縮構造の独立比較 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transport/#run-all
+Coverage: reading
+
+ZIPの atlas-mhd-transport-2026-11-23 フォルダで実行します。このコマンドは配布版の全3例を実行します。新規または空の出力先を指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## MHD輸送・波・圧縮構造の独立比較 — 円偏波Alfvén波：全成分の格子収束 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transport/
+Coverage: reading
+
+全8保存変数を進め、非零のBz・vzを含む円偏波を解析セル平均と比較します。
+手法・式・図・参照解
+使用手法
+HLLDのMHDリーマン解法
+MUSCL再構成
+Heun法／SSPRK(2,2)
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+全8変数HLLD流束、MC-MUSCL再構成、固定刻みHeun。Bx一定の1次元有限体積更新。
+理想MHD
+γ=5/3、[0,1]周期、ρ=1、p=.1、Bx=1、振幅.1、速度1、T=1、32/64/128セル。初期値と参照は保存変数の解析セル平均であり、セル平均から復元する圧力は点の定圧と区別します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+円偏波Alfvén波
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+実行前契約で47pytest・全12計算を固定。3格子と最細格子の時間刻み半減を分離し、全段の正値性・有限性、保存量、Courant数、5時刻の実場を保存します。解析保存平均を独立Gauss16求積と照合し、横成分誤差・位相・観測次数を検査します。
+関連モデルの参照 · 解析参照
+円偏波Alfvén波：全保存変数の解析セル平均
+γ=5/3、[0,1]周期、ρ=1、p=.1、Bx=1、振幅.1、速度1、T=1、32/64/128セル。初期値と参照は保存変数の解析セル平均であり、セル平均から復元する圧力は点の定圧と区別します。
+
+## MHD輸送・波・圧縮構造の独立比較 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transport/#circular-alfven-refinement-assumptions
+Coverage: reading
+
+γ=5/3、[0,1]周期、ρ=1、p=.1、Bx=1、振幅.1、速度1、T=1、32/64/128セル。初期値と参照は保存変数の解析セル平均であり、セル平均から復元する圧力は点の定圧と区別します。
+
+## MHD輸送・波・圧縮構造の独立比較 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transport/#circular-alfven-refinement-algorithm
+Coverage: reading
+
+全8変数HLLD流束、MC-MUSCL再構成、固定刻みHeun。Bx一定の1次元有限体積更新。
+\partial_tU+\partial_xF_x(U)=0,\quad U=(\rho,\rho\mathbf v,E,\mathbf B),\quad\gamma=5/3\theta_i=2\pi(x_i-t),\quad(\bar B_y,\bar B_z)=.1\frac{\sin(\pi h)}{\pi h}(\cos\theta_i,\sin\theta_i)\bar\rho=1,\quad\bar B_x=1,\quad(\bar m_y,\bar m_z)=-(\bar B_y,\bar B_z),\quad\bar E=.66e_2=\frac{\|U-U^{\mathrm{exact}}\|_2}{\|U^{\mathrm{exact}}\|_2},\qquad p_{\mathrm{obs}}=\log_2(e_h/e_{h/2})
+
+## MHD輸送・波・圧縮構造の独立比較 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transport/#circular-alfven-refinement-validation
+Coverage: reading
+
+実行前契約で47pytest・全12計算を固定。3格子と最細格子の時間刻み半減を分離し、全段の正値性・有限性、保存量、Courant数、5時刻の実場を保存します。解析保存平均を独立Gauss16求積と照合し、横成分誤差・位相・観測次数を検査します。
+
+## MHD輸送・波・圧縮構造の独立比較 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transport/#circular-alfven-refinement-limits
+Coverage: reading
+
+少数の固定入力に対する教育用検証です。HLLDのHLLE代替と再構成の正値性スケーリングを数え、セル状態の床・クリップ・再試行は行いません。有限格子参照は厳密解ではなく、任意問題の安定性・正値性や普遍的次数を保証しません。1次元整列波の次数であり、斜め2次元伝播の検証ではありません。
+
+## MHD輸送・波・圧縮構造の独立比較 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transport/#circular-alfven-refinement-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+completed_pde_runs4
+reference_qualification_passedtrue
+analytic_quadrature_difference3.33066907388e-16
+判定 / check合格
+four prescribed fixed runstrue
+qualified independent referencetrue
+independent analytic conserved quadraturetrue
+circular-alfven-refinement-n32 all stages finite positivetrue
+circular-alfven-refinement-n32 final timetrue
+circular-alfven-refinement-n32 five exact snapshotstrue
+circular-alfven-refinement-n32 fluid integral conservationtrue
+circular-alfven-refinement-n32 native face divergencetrue
+circular-alfven-refinement-n32 measured Courant sumtrue
+circular-alfven-refinement-n32 no cell clips or retriestrue
+circular-alfven-refinement-n32 explicit fallback accountingtrue
+circular-alfven-refinement-n64 all stages finite positivetrue
+circular-alfven-refinement-n64 final timetrue
+circular-alfven-refinement-n64 five exact snapshotstrue
+circular-alfven-refinement-n64 fluid integral conservationtrue
+circular-alfven-refinement-n64 native face divergencetrue
+circular-alfven-refinement-n64 measured Courant sumtrue
+circular-alfven-refinement-n64 no cell clips or retriestrue
+circular-alfven-refinement-n64 explicit fallback accountingtrue
+circular-alfven-refinement-n128 all stages finite positivetrue
+circular-alfven-refinement-n128 final timetrue
+circular-alfven-refinement-n128 five exact snapshotstrue
+
+## MHD輸送・波・圧縮構造の独立比較 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transport/#circular-alfven-refinement-measurements
+Coverage: reading
+
+circular-alfven-refinement-n128 fluid integral conservationtrue
+circular-alfven-refinement-n128 native face divergencetrue
+circular-alfven-refinement-n128 measured Courant sumtrue
+circular-alfven-refinement-n128 no cell clips or retriestrue
+circular-alfven-refinement-n128 explicit fallback accountingtrue
+circular-alfven-refinement-half-dt all stages finite positivetrue
+circular-alfven-refinement-half-dt final timetrue
+circular-alfven-refinement-half-dt five exact snapshotstrue
+circular-alfven-refinement-half-dt fluid integral conservationtrue
+circular-alfven-refinement-half-dt native face divergencetrue
+circular-alfven-refinement-half-dt measured Courant sumtrue
+circular-alfven-refinement-half-dt no cell clips or retriestrue
+circular-alfven-refinement-half-dt explicit fallback accountingtrue
+transverse refinement n64true
+transverse refinement n128true
+transverse finest errortrue
+transverse separate time contamination fractiontrue
+selected wave last observed ordertrue
+selected wave phase errortrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存した主計算の実際のBy(x,t)の5時刻場。1次元空間と時間を表示。全記録を表で読む
+
+## MHD輸送・波・圧縮構造の独立比較 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transport/#circular-alfven-refinement-measurements
+Coverage: reading
+
+idcasenstepstimefamilyfieldsnapshot_timeserrorsfinite_positivemaximum_fluid_integral_defectmaximum_native_divergencemaximum_common_cell_divergencereference_common_cell_divergencemaximum_courant_sumfallback_facesfallback_count_from_historydegenerate_facesreconstruction_scalingsminimum_thetaminimum_densityminimum_pressurestate_clip_countretriesmaximum_abs_bzphase_error_radianstime_half_difference
+circular-alfven-refinement-n32circular-alfven-refinement325121refinementcircular-alfven-refinement-n32.npz[0.0,0.25,0.5,0.75,1.0]{"transverse":{"relative_l1":0.029709742332415977,"relative_l2":0.03004438905970163,"absolute_linf":0.004024848367444947}}true6.66133814775e-160000.0629337712953000010.9995957053680.100004690176000.09936060060390.0128678046351—
+circular-alfven-refinement-n64circular-alfven-refinement645121refinementcircular-alfven-refinement-n64.npz[0.0,0.25,0.5,0.75,1.0]{"transverse":{"relative_l1":0.008840362722738273,"relative_l2":0.009407317675070758,"absolute_linf":0.001471597179273948}}true1.33226762955e-150000.125797276139000010.9998527014820.0999886468298000.09983983960490.00401184578873—
+
+## MHD輸送・波・圧縮構造の独立比較 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transport/#circular-alfven-refinement-measurements
+Coverage: reading
+
+circular-alfven-refinement-n128circular-alfven-refinement1285121refinementcircular-alfven-refinement-n128.npz[0.0,0.25,0.5,0.75,1.0]{"transverse":{"relative_l1":0.002577399748901837,"relative_l2":0.0030405937596538713,"absolute_linf":0.0007730094539430826}}true2.88657986403e-150000.251536508105000010.9999393276470.0999906427023000.09995995635790.00121486606626—
+circular-alfven-refinement-half-dtcircular-alfven-refinement12810241time-probecircular-alfven-refinement-half-dt.npz[0.0,0.25,0.5,0.75,1.0]{"transverse":{"relative_l1":0.0023849017486046345,"relative_l2":0.0028370308610534373,"absolute_linf":0.0007169901609374446}}true2.88657986403e-150000.125766131093000010.9999436353120.0999928522094000.09995994572750.00111365151891{"transverse":0.0002002845722462051}
+この例の実測値・全記録 / JSON
+
+## MHD輸送・波・圧縮構造の独立比較 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transport/#circular-alfven-refinement-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Athena++ collaboration (2026). Athena++ official field_loop and orszag_tang problem generators, pinned source
+確認範囲 / review_level: Official archive SHA verified; selected src/pgen/field_loop.cpp and orszag_tang.cpp, PLM/RK2/output configuration and actual conserved tab headers inspected; not a full Athena code audit
+固定コミットの公式アーカイブSHAを照合し、2初期値生成器と設定・保存列を確認。別実装を実行して参照場を作成し、空間・時間感度を検査。全ソース監査や厳密解とは表示しません。
+Thomas A. Gardiner and James M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport · DOI: 10.1016/j.jcp.2004.11.016
+確認範囲 / review_level: Author arXiv PDF selected section2.2 equations13–20,3.3.1–3.3.2 and5.1–5.2 inspected; not the full paper or original experiment replication
+著者公開PDFのCT節・磁場ループ・円偏波の定義を確認。論文のCTU/PPMや斜め伝播実験を再現したとは主張しません。今回の円偏波は1次元整列、公式磁場ループはvz=2の明示的変更です。
+Takahiro Miyoshi and Kanya Kusano (2005). A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics · DOI: 10.1016/j.jcp.2005.02.017
+確認範囲 / review_level: Bibliographic metadata checked; publisher full text returned403. This addition did not newly audit original equations or experiments
+書誌を確認。出版社本文は取得できず、今回新たに原著の式や実験を監査したとは表示しません。全8変数HLLDコードは過去の公開検証済みAtlasから同一バイトで継承します。
+
+## MHD輸送・波・圧縮構造の独立比較 — 磁場ループ：独立2次元参照と細分化 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transport/
+Coverage: reading
+
+実際の2次元磁場ループ輸送を、別実装Athena++の空間・時間感度を検査した終端保存場と比較します。
+手法・式・図・参照解
+使用手法
+HLLDのMHDリーマン解法
+MUSCL再構成
+Heun法／SSPRK(2,2)
+制約輸送法／CT
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+全8変数HLLD流束、MC-MUSCL再構成、固定刻みHeun。共有面流束とCT-contact角電場から面磁場を更新し、セル磁場は隣接面平均。初期状態は公式生成器の離散ベクトルポテンシャルと中心流体値に一致させます。
+理想MHD
+[-1,1]×[-.5,.5]周期、ρ=p=1、Az=.001max(.3−r,0)、T=1、(Nx,Ny)=(16,8),(32,16),(64,32)。変更していない公式生成器と同じv=(2,1,2)で、古いvz=0設定とは区別します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+磁場ループの移流
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+実行前契約で47pytest・全12計算を固定。3格子と最細格子の時間刻み半減を分離し、全段の正値性・有限性、保存量、Courant数、5時刻の実場を保存します。Athena++の2格子と刻み半減で参照を検定。終端保存変数を保守的に粗視化し、誤差と参照感度を分離します。共通セル発散と主計算の固有面発散は別の検査です。
+関連モデルの参照 · 有限格子の数値参照
+磁場ループ：固定Athena++の独立終端参照
+[-1,1]×[-.5,.5]周期、ρ=p=1、Az=.001max(.3−r,0)、T=1、(Nx,Ny)=(16,8),(32,16),(64,32)。変更していない公式生成器と同じv=(2,1,2)で、古いvz=0設定とは区別します。
+
+## MHD輸送・波・圧縮構造の独立比較 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transport/#magnetic-loop-independent-assumptions
+Coverage: reading
+
+[-1,1]×[-.5,.5]周期、ρ=p=1、Az=.001max(.3−r,0)、T=1、(Nx,Ny)=(16,8),(32,16),(64,32)。変更していない公式生成器と同じv=(2,1,2)で、古いvz=0設定とは区別します。
+
+## MHD輸送・波・圧縮構造の独立比較 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transport/#magnetic-loop-independent-algorithm
+Coverage: reading
+
+全8変数HLLD流束、MC-MUSCL再構成、固定刻みHeun。共有面流束とCT-contact角電場から面磁場を更新し、セル磁場は隣接面平均。初期状態は公式生成器の離散ベクトルポテンシャルと中心流体値に一致させます。
+\partial_tU+\partial_xF_x(U)+\partial_yF_y(U)=0,\quad U=(\rho,\rho\mathbf v,E,\mathbf B)E=\frac{p}{\gamma-1}+\frac12\rho|\mathbf v|^2+\frac12|\mathbf B|^2,\quad\gamma=5/3\frac{dB_x}{dt}=-D_y\mathcal E_z,\quad\frac{dB_y}{dt}=D_x\mathcal E_z,\quad D_xB_x+D_yB_y=\mathrm{constant}\bar U_i^{\mathrm{ref}}=\frac1{N_i}\sum_{j\in i}\bar U_j^{\mathrm{fine}},\qquad e_1=\frac{\sum|U-U^{\mathrm{ref}}|}{\sum|U^{\mathrm{ref}}|}A_z=.001\max(.3-\sqrt{x^2+y^2},0),\qquad\mathbf v=(2,1,2)
+
+## MHD輸送・波・圧縮構造の独立比較 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transport/#magnetic-loop-independent-validation
+Coverage: reading
+
+実行前契約で47pytest・全12計算を固定。3格子と最細格子の時間刻み半減を分離し、全段の正値性・有限性、保存量、Courant数、5時刻の実場を保存します。Athena++の2格子と刻み半減で参照を検定。終端保存変数を保守的に粗視化し、誤差と参照感度を分離します。共通セル発散と主計算の固有面発散は別の検査です。
+
+## MHD輸送・波・圧縮構造の独立比較 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transport/#magnetic-loop-independent-limits
+Coverage: reading
+
+少数の固定入力に対する教育用検証です。HLLDのHLLE代替と再構成の正値性スケーリングを数え、セル状態の床・クリップ・再試行は行いません。有限格子参照は厳密解ではなく、任意問題の安定性・正値性や普遍的次数を保証しません。独立比較は終端のみ。中間Athena時刻は指定四半時刻直後で、正確に整列した場とは表示しません。Athenaの固有面発散は出力しておらず測定を主張しません。密度比は圧縮の診断であり数学的衝撃波の証明ではありません。
+
+## MHD輸送・波・圧縮構造の独立比較 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transport/#magnetic-loop-independent-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+completed_pde_runs4
+reference_qualification_passedtrue
+analytic_quadrature_difference—
+判定 / check合格
+four prescribed fixed runstrue
+qualified independent referencetrue
+magnetic-loop-independent-n8 all stages finite positivetrue
+magnetic-loop-independent-n8 final timetrue
+magnetic-loop-independent-n8 five exact snapshotstrue
+magnetic-loop-independent-n8 fluid integral conservationtrue
+magnetic-loop-independent-n8 native face divergencetrue
+magnetic-loop-independent-n8 measured Courant sumtrue
+magnetic-loop-independent-n8 no cell clips or retriestrue
+magnetic-loop-independent-n8 explicit fallback accountingtrue
+magnetic-loop-independent-n16 all stages finite positivetrue
+magnetic-loop-independent-n16 final timetrue
+magnetic-loop-independent-n16 five exact snapshotstrue
+magnetic-loop-independent-n16 fluid integral conservationtrue
+magnetic-loop-independent-n16 native face divergencetrue
+magnetic-loop-independent-n16 measured Courant sumtrue
+magnetic-loop-independent-n16 no cell clips or retriestrue
+magnetic-loop-independent-n16 explicit fallback accountingtrue
+magnetic-loop-independent-n32 all stages finite positivetrue
+magnetic-loop-independent-n32 final timetrue
+magnetic-loop-independent-n32 five exact snapshotstrue
+magnetic-loop-independent-n32 fluid integral conservationtrue
+
+## MHD輸送・波・圧縮構造の独立比較 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transport/#magnetic-loop-independent-measurements
+Coverage: reading
+
+magnetic-loop-independent-n32 native face divergencetrue
+magnetic-loop-independent-n32 measured Courant sumtrue
+magnetic-loop-independent-n32 no cell clips or retriestrue
+magnetic-loop-independent-n32 explicit fallback accountingtrue
+magnetic-loop-independent-half-dt all stages finite positivetrue
+magnetic-loop-independent-half-dt final timetrue
+magnetic-loop-independent-half-dt five exact snapshotstrue
+magnetic-loop-independent-half-dt fluid integral conservationtrue
+magnetic-loop-independent-half-dt native face divergencetrue
+magnetic-loop-independent-half-dt measured Courant sumtrue
+magnetic-loop-independent-half-dt no cell clips or retriestrue
+magnetic-loop-independent-half-dt explicit fallback accountingtrue
+magnetic refinement n16true
+magnetic refinement n32true
+magnetic finest errortrue
+magnetic separate time contamination fractiontrue
+magnetic reference increment/errortrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存した主計算の実際の2次元面内磁気エネルギー、T=1。全記録を表で読む
+idcasenstepstimefamilyfieldsnapshot_timeserrorsfinite_positivemaximum_fluid_integral_defectmaximum_native_divergencemaximum_common_cell_divergencereference_common_cell_divergencemaximum_courant_sumfallback_facesfallback_count_from_historydegenerate_facesreconstruction_scalingsminimum_thetaminimum_densityminimum_pressurestate_clip_countretriesmaximum_abs_bzreference_incrementtime_half_difference
+
+## MHD輸送・波・圧縮構造の独立比較 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transport/#magnetic-loop-independent-measurements
+Coverage: reading
+
+magnetic-loop-independent-n8magnetic-loop-independent810241refinementmagnetic-loop-independent-n8.npz[0.0,0.25,0.5,0.75,1.0]{"magnetic":{"relative_l1":1.0201120103024197,"relative_l2":0.8405195518649691,"absolute_linf":0.0008159155417839306}}true1.4802973524e-151.82145964978e-170.000855860704180.0008776373177770.0436092970302006023010.9999998929950.999999927066001.12291877465e-18{"magnetic":0.07681463629903337}—
+magnetic-loop-independent-n16magnetic-loop-independent1610241refinementmagnetic-loop-independent-n16.npz[0.0,0.25,0.5,0.75,1.0]{"magnetic":{"relative_l1":0.668676579604383,"relative_l2":0.5211776406502052,"absolute_linf":0.0005706710838436806}}true2.66453523109e-156.63531729561e-170.002367355559470.001161533448790.087218606005500158890010.999999712330.999999572888002.94209990663e-18{"magnetic":0.10660222586710934}—
+magnetic-loop-independent-n32magnetic-loop-independent3210241refinementmagnetic-loop-independent-n32.npz[0.0,0.25,0.5,0.75,1.0]{"magnetic":{"relative_l1":0.2530875146425678,"relative_l2":0.21987860576660073,"absolute_linf":0.0004883506353483678}}true5.3290705182e-151.44740990027e-160.00457863484130.00106113468280.174437217877002888347010.999999598490.999999355017003.63713310815e-18{"magnetic":0.12007354349502387}—
+
+## MHD輸送・波・圧縮構造の独立比較 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transport/#magnetic-loop-independent-measurements
+Coverage: reading
+
+magnetic-loop-independent-half-dtmagnetic-loop-independent3220481time-probemagnetic-loop-independent-half-dt.npz[0.0,0.25,0.5,0.75,1.0]{"magnetic":{"relative_l1":0.25282584988507095,"relative_l2":0.21966338068429772,"absolute_linf":0.00048750772481418684}}true4.88498125384e-152.43403387723e-160.004722233231250.00106113468280.0872186089253005769952010.9999995987290.999999355246005.29949421389e-18{"magnetic":0.12007354349502387}{"magnetic":0.0008010701537841011}
+この例の実測値・全記録 / JSON
+
+## MHD輸送・波・圧縮構造の独立比較 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transport/#magnetic-loop-independent-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Athena++ collaboration (2026). Athena++ official field_loop and orszag_tang problem generators, pinned source
+確認範囲 / review_level: Official archive SHA verified; selected src/pgen/field_loop.cpp and orszag_tang.cpp, PLM/RK2/output configuration and actual conserved tab headers inspected; not a full Athena code audit
+固定コミットの公式アーカイブSHAを照合し、2初期値生成器と設定・保存列を確認。別実装を実行して参照場を作成し、空間・時間感度を検査。全ソース監査や厳密解とは表示しません。
+Thomas A. Gardiner and James M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport · DOI: 10.1016/j.jcp.2004.11.016
+確認範囲 / review_level: Author arXiv PDF selected section2.2 equations13–20,3.3.1–3.3.2 and5.1–5.2 inspected; not the full paper or original experiment replication
+著者公開PDFのCT節・磁場ループ・円偏波の定義を確認。論文のCTU/PPMや斜め伝播実験を再現したとは主張しません。今回の円偏波は1次元整列、公式磁場ループはvz=2の明示的変更です。
+Takahiro Miyoshi and Kanya Kusano (2005). A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics · DOI: 10.1016/j.jcp.2005.02.017
+確認範囲 / review_level: Bibliographic metadata checked; publisher full text returned403. This addition did not newly audit original equations or experiments
+書誌を確認。出版社本文は取得できず、今回新たに原著の式や実験を監査したとは表示しません。全8変数HLLDコードは過去の公開検証済みAtlasから同一バイトで継承します。
+
+## MHD輸送・波・圧縮構造の独立比較 — 後期Orszag–Tang：独立参照と圧縮構造 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transport/
+Coverage: reading
+
+圧縮性理想MHDのOrszag–TangをT=.2まで進め、相互作用する圧縮・衝撃波構造の密度と圧力を独立有限格子参照で検査します。
+手法・式・図・参照解
+使用手法
+HLLDのMHDリーマン解法
+MUSCL再構成
+Heun法／SSPRK(2,2)
+制約輸送法／CT
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+全8変数HLLD流束、MC-MUSCL再構成、固定刻みHeun。共有面流束とCT-contact角電場から面磁場を更新し、セル磁場は隣接面平均。初期状態は公式生成器の離散ベクトルポテンシャルと中心流体値に一致させます。
+理想MHD
+γ=5/3、[-.5,.5]²周期、ρ=25/(36π)、p=5/(12π)、vx=sin2πy、vy=−sin2πx、Az=(cos4πx−2cos2πy)/(4π√(4π))、16/32/64²セル。原著の非圧縮・粘性抵抗モデルの再現ではありません。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+Orszag–Tang渦（CT・GLM・発散誤差摂動を統合）
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+実行前契約で47pytest・全12計算を固定。3格子と最細格子の時間刻み半減を分離し、全段の正値性・有限性、保存量、Courant数、5時刻の実場を保存します。Athena++の2格子と刻み半減で参照を検定。終端保存変数を保守的に粗視化し、誤差と参照感度を分離します。共通セル発散と主計算の固有面発散は別の検査です。
+関連モデルの参照 · 有限格子の数値参照
+後期Orszag–Tang：独立有限格子の密度・圧力参照
+γ=5/3、[-.5,.5]²周期、ρ=25/(36π)、p=5/(12π)、vx=sin2πy、vy=−sin2πx、Az=(cos4πx−2cos2πy)/(4π√(4π))、16/32/64²セル。原著の非圧縮・粘性抵抗モデルの再現ではありません。
+
+## MHD輸送・波・圧縮構造の独立比較 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transport/#postshock-orszag-tang-assumptions
+Coverage: reading
+
+γ=5/3、[-.5,.5]²周期、ρ=25/(36π)、p=5/(12π)、vx=sin2πy、vy=−sin2πx、Az=(cos4πx−2cos2πy)/(4π√(4π))、16/32/64²セル。原著の非圧縮・粘性抵抗モデルの再現ではありません。
+
+## MHD輸送・波・圧縮構造の独立比較 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transport/#postshock-orszag-tang-algorithm
+Coverage: reading
+
+全8変数HLLD流束、MC-MUSCL再構成、固定刻みHeun。共有面流束とCT-contact角電場から面磁場を更新し、セル磁場は隣接面平均。初期状態は公式生成器の離散ベクトルポテンシャルと中心流体値に一致させます。
+\partial_tU+\partial_xF_x(U)+\partial_yF_y(U)=0,\quad U=(\rho,\rho\mathbf v,E,\mathbf B)E=\frac{p}{\gamma-1}+\frac12\rho|\mathbf v|^2+\frac12|\mathbf B|^2,\quad\gamma=5/3\frac{dB_x}{dt}=-D_y\mathcal E_z,\quad\frac{dB_y}{dt}=D_x\mathcal E_z,\quad D_xB_x+D_yB_y=\mathrm{constant}\bar U_i^{\mathrm{ref}}=\frac1{N_i}\sum_{j\in i}\bar U_j^{\mathrm{fine}},\qquad e_1=\frac{\sum|U-U^{\mathrm{ref}}|}{\sum|U^{\mathrm{ref}}|}\rho_0=\frac{25}{36\pi},\quad p_0=\frac5{12\pi},\quad\mathbf v_0=(\sin2\pi y,-\sin2\pi x,0)
+
+## MHD輸送・波・圧縮構造の独立比較 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transport/#postshock-orszag-tang-validation
+Coverage: reading
+
+実行前契約で47pytest・全12計算を固定。3格子と最細格子の時間刻み半減を分離し、全段の正値性・有限性、保存量、Courant数、5時刻の実場を保存します。Athena++の2格子と刻み半減で参照を検定。終端保存変数を保守的に粗視化し、誤差と参照感度を分離します。共通セル発散と主計算の固有面発散は別の検査です。
+
+## MHD輸送・波・圧縮構造の独立比較 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transport/#postshock-orszag-tang-limits
+Coverage: reading
+
+少数の固定入力に対する教育用検証です。HLLDのHLLE代替と再構成の正値性スケーリングを数え、セル状態の床・クリップ・再試行は行いません。有限格子参照は厳密解ではなく、任意問題の安定性・正値性や普遍的次数を保証しません。独立比較は終端のみ。中間Athena時刻は指定四半時刻直後で、正確に整列した場とは表示しません。Athenaの固有面発散は出力しておらず測定を主張しません。密度比は圧縮の診断であり数学的衝撃波の証明ではありません。
+
+## MHD輸送・波・圧縮構造の独立比較 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transport/#postshock-orszag-tang-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+completed_pde_runs4
+reference_qualification_passedtrue
+analytic_quadrature_difference—
+判定 / check合格
+four prescribed fixed runstrue
+qualified independent referencetrue
+postshock-orszag-tang-n16 all stages finite positivetrue
+postshock-orszag-tang-n16 final timetrue
+postshock-orszag-tang-n16 five exact snapshotstrue
+postshock-orszag-tang-n16 fluid integral conservationtrue
+postshock-orszag-tang-n16 native face divergencetrue
+postshock-orszag-tang-n16 measured Courant sumtrue
+postshock-orszag-tang-n16 no cell clips or retriestrue
+postshock-orszag-tang-n16 explicit fallback accountingtrue
+postshock-orszag-tang-n32 all stages finite positivetrue
+postshock-orszag-tang-n32 final timetrue
+postshock-orszag-tang-n32 five exact snapshotstrue
+postshock-orszag-tang-n32 fluid integral conservationtrue
+postshock-orszag-tang-n32 native face divergencetrue
+postshock-orszag-tang-n32 measured Courant sumtrue
+postshock-orszag-tang-n32 no cell clips or retriestrue
+postshock-orszag-tang-n32 explicit fallback accountingtrue
+postshock-orszag-tang-n64 all stages finite positivetrue
+postshock-orszag-tang-n64 final timetrue
+postshock-orszag-tang-n64 five exact snapshotstrue
+postshock-orszag-tang-n64 fluid integral conservationtrue
+postshock-orszag-tang-n64 native face divergencetrue
+postshock-orszag-tang-n64 measured Courant sumtrue
+
+## MHD輸送・波・圧縮構造の独立比較 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transport/#postshock-orszag-tang-measurements
+Coverage: reading
+
+postshock-orszag-tang-n64 no cell clips or retriestrue
+postshock-orszag-tang-n64 explicit fallback accountingtrue
+postshock-orszag-tang-half-dt all stages finite positivetrue
+postshock-orszag-tang-half-dt final timetrue
+postshock-orszag-tang-half-dt five exact snapshotstrue
+postshock-orszag-tang-half-dt fluid integral conservationtrue
+postshock-orszag-tang-half-dt native face divergencetrue
+postshock-orszag-tang-half-dt measured Courant sumtrue
+postshock-orszag-tang-half-dt no cell clips or retriestrue
+postshock-orszag-tang-half-dt explicit fallback accountingtrue
+density refinement n32true
+density refinement n64true
+density finest errortrue
+density separate time contamination fractiontrue
+density reference increment/errortrue
+pressure refinement n32true
+pressure refinement n64true
+pressure finest errortrue
+pressure separate time contamination fractiontrue
+pressure reference increment/errortrue
+late density compression diagnostictrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存した主計算の実際の2次元密度場、T=.2。全記録を表で読む
+
+## MHD輸送・波・圧縮構造の独立比較 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transport/#postshock-orszag-tang-measurements
+Coverage: reading
+
+idcasenstepstimefamilyfieldsnapshot_timeserrorsfinite_positivemaximum_fluid_integral_defectmaximum_native_divergencemaximum_common_cell_divergencereference_common_cell_divergencemaximum_courant_sumfallback_facesfallback_count_from_historydegenerate_facesreconstruction_scalingsminimum_thetaminimum_densityminimum_pressurestate_clip_countretriesmaximum_abs_bzreference_incrementdensity_contrasttime_half_difference
+postshock-orszag-tang-n16postshock-orszag-tang165120.2refinementpostshock-orszag-tang-n16.npz[0.0,0.05,0.1,0.15000000000000002,0.2]{"density":{"relative_l1":0.055072196798329816,"relative_l2":0.07215164461273015,"absolute_linf":0.08852719739822207},"pressure":{"relative_l1":0.10648854282318818,"relative_l2":0.13723151727368416,"absolute_linf":0.09628047510345739}}true7.49400541622e-163.28626015289e-141.298516839591.534347415750.0290194068648000010.08721400217710.027847918315000{"density":0.0017096329230723328,"pressure":0.002288814999333477}6.19650662864—
+
+## MHD輸送・波・圧縮構造の独立比較 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transport/#postshock-orszag-tang-measurements
+Coverage: reading
+
+postshock-orszag-tang-n32postshock-orszag-tang325120.2refinementpostshock-orszag-tang-n32.npz[0.0,0.05,0.1,0.15000000000000002,0.2]{"density":{"relative_l1":0.028678777478569353,"relative_l2":0.041137398858486336,"absolute_linf":0.05823726324242218},"pressure":{"relative_l1":0.04861322533996961,"relative_l2":0.06533475806083373,"absolute_linf":0.058642030300098846}}true2.10942374679e-159.7699626167e-142.05728181693.334593313230.0590074968248000010.08303698949470.0257821107718000{"density":0.002604331788270814,"pressure":0.003866435243131421}6.9926044012—
+postshock-orszag-tang-n64postshock-orszag-tang645120.2refinementpostshock-orszag-tang-n64.npz[0.0,0.05,0.1,0.15000000000000002,0.2]{"density":{"relative_l1":0.01108063471130391,"relative_l2":0.0198769886772933,"absolute_linf":0.031319933531365696},"pressure":{"relative_l1":0.018222741247481397,"relative_l2":0.030445318968789176,"absolute_linf":0.044566838585124946}}true2.41751063612e-142.73558953268e-134.205127934514.888384800090.119266771657000010.08326940161710.026012577592000{"density":0.0034136906328039464,"pressure":0.005436737129754892}7.14314802812—
+
+## MHD輸送・波・圧縮構造の独立比較 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transport/#postshock-orszag-tang-measurements
+Coverage: reading
+
+postshock-orszag-tang-half-dtpostshock-orszag-tang6410240.2time-probepostshock-orszag-tang-half-dt.npz[0.0,0.05,0.1,0.15000000000000002,0.2]{"density":{"relative_l1":0.011074410943847774,"relative_l2":0.019861741110300944,"absolute_linf":0.03128885270239748},"pressure":{"relative_l1":0.018217777823514525,"relative_l2":0.03043031230662544,"absolute_linf":0.04453503710572004}}true2.41473507856e-143.16191517413e-134.205072196914.888384800090.0596335885577000010.08336238174570.0260611060828000{"density":0.0034136906328039464,"pressure":0.005436737129754892}7.1433955308{"density":2.1002911370939043e-05,"pressure":3.761339307133521e-05}
+この例の実測値・全記録 / JSON
+
+## MHD輸送・波・圧縮構造の独立比較 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transport/#postshock-orszag-tang-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Athena++ collaboration (2026). Athena++ official field_loop and orszag_tang problem generators, pinned source
+確認範囲 / review_level: Official archive SHA verified; selected src/pgen/field_loop.cpp and orszag_tang.cpp, PLM/RK2/output configuration and actual conserved tab headers inspected; not a full Athena code audit
+固定コミットの公式アーカイブSHAを照合し、2初期値生成器と設定・保存列を確認。別実装を実行して参照場を作成し、空間・時間感度を検査。全ソース監査や厳密解とは表示しません。
+Thomas A. Gardiner and James M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport · DOI: 10.1016/j.jcp.2004.11.016
+確認範囲 / review_level: Author arXiv PDF selected section2.2 equations13–20,3.3.1–3.3.2 and5.1–5.2 inspected; not the full paper or original experiment replication
+著者公開PDFのCT節・磁場ループ・円偏波の定義を確認。論文のCTU/PPMや斜め伝播実験を再現したとは主張しません。今回の円偏波は1次元整列、公式磁場ループはvz=2の明示的変更です。
+Takahiro Miyoshi and Kanya Kusano (2005). A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics · DOI: 10.1016/j.jcp.2005.02.017
+確認範囲 / review_level: Bibliographic metadata checked; publisher full text returned403. This addition did not newly audit original equations or experiments
+書誌を確認。出版社本文は取得できず、今回新たに原著の式や実験を監査したとは表示しません。全8変数HLLDコードは過去の公開検証済みAtlasから同一バイトで継承します。
+
+## MHD輸送・波・圧縮構造の独立比較 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transport/#postshock-orszag-tang-references
+Coverage: reading
+
+Steven A. Orszag and Ching-Mao Tang (1979). Small-scale structure of two-dimensional magnetohydrodynamic turbulence · DOI: 10.1017/S002211207900210X
+確認範囲 / review_level: Original publisher abstract/bibliography inspected only; original incompressible viscous/resistive setup differs from the official compressible ideal-MHD generator used here
+出版社の抄録と書誌のみ確認。原著の非圧縮・粘性抵抗モデルと、今回の圧縮性理想MHDの公式初期値を区別します。
+
 ## 流体・MHDの独立照合とCT／GLM — 流体・MHDの独立照合とCT／GLM [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd/
@@ -49569,7 +53953,9 @@ Orszag–Tang渦（CT・GLM・発散誤差摂動を統合）
 厳密解・参照解
 この実行例の参照・検証
 16²/32²/64²で密度とByのL1誤差、質量・エネルギードリフト、正値性を測定。独立参照は128²/256²でも収束を確認し、細胞平均を保存的に制限します。
-参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
+関連モデルの参照 · 有限格子の数値参照
+後期Orszag–Tang：独立有限格子の密度・圧力参照
+γ=5/3、[-.5,.5]²周期、ρ=25/(36π)、p=5/(12π)、vx=sin2πy、vy=−sin2πx、Az=(cos4πx−2cos2πy)/(4π√(4π))、16/32/64²セル。原著の非圧縮・粘性抵抗モデルの再現ではありません。
 
 ## 流体・MHDの独立照合とCT／GLM — 前提・単位・境界 [ja]
 
@@ -51591,6 +55977,337 @@ IEEE出版社の抄録・巻号・頁・DOIを確認。縮約した膜興奮と�
 The SciPy community (2024). SciPy1.14.1 solve_ivp reference
 確認範囲 / review_level: official-api-documentation
 公式のDOP853、dense_output、許容誤差、successの仕様を確認。独立数値参照の実装資料です。
+
+## 非一様ALE輸送・2次元回転浅水波 — 非一様ALE輸送・2次元回転浅水波 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-moving-waves/
+Coverage: reading
+
+非一様に動くセルの保存的ALE輸送とGCL、および2次元C格子の線形回転浅水波を時間発展させます。SaltzmanピストンとWilliamson球面問題は次段階の未実装項目です。
+
+## 非一様ALE輸送・2次元回転浅水波 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-moving-waves/#run-all
+Coverage: reading
+
+ZIPの atlas-moving-waves-2026-11-23 フォルダで実行します。このコマンドは配布版の全2例を実行します。新規または空の出力先を指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## 非一様ALE輸送・2次元回転浅水波 — 非一様移動格子で実際に運ぶALEスカラー [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-moving-waves/
+Coverage: reading
+
+質量と格子面位置を同じHeun段で更新し、一様GCLだけでなく非一様な解析波を運びます。
+手法・式・図・参照解
+使用手法
+ALE一様状態・幾何保存モデル
+風上差分（upwind）
+Heun法／SSPRK(2,2)
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+実セル質量の上流相対流束(a−w)qと実面位置を同じHeun predictor/correctorで進め、各段体積・面Courant数を記録。
+移動セル上のALEスカラー保存式
+周期[0,1]、速度.7、q0=1+.2sin(2pi x)、面速度w=.2sin(2pi xi)cos(2pi t)、N40/80/160、T1。時間比較N40,T.25,32/64/128step。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+非一様移動格子で実際に運ぶALEスカラー
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+解析的移動セル積分、全体/段の質量、GCLconstant、格子幾何誤差を分離。独立DOP853による同じFV ODEの時間参照を二公差で確認。
+同じ問題の参照 · 解析参照
+ALE：実際の移動セル上の解析積分と時間参照
+1D指定格子運動の第一段階です。図のx–tは2D物理計算ではなく、Euler Lagrange/remapやSaltzmanピストンは未実装の後続課題。
+
+## 非一様ALE輸送・2次元回転浅水波 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-moving-waves/#ale-nonuniform-transport-assumptions
+Coverage: reading
+
+周期[0,1]、速度.7、q0=1+.2sin(2pi x)、面速度w=.2sin(2pi xi)cos(2pi t)、N40/80/160、T1。時間比較N40,T.25,32/64/128step。
+
+## 非一様ALE輸送・2次元回転浅水波 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-moving-waves/#ale-nonuniform-transport-algorithm
+Coverage: reading
+
+実セル質量の上流相対流束(a−w)qと実面位置を同じHeun predictor/correctorで進め、各段体積・面Courant数を記録。
+\dot m_i=-[(a-w)q]_{i+1/2}+[(a-w)q]_{i-1/2},\quad V_i=x_{i+1/2}-x_{i-1/2}x(\xi,t)=\xi+0.2\sin(2\pi\xi)\sin(2\pi t)/(2\pi)
+
+## 非一様ALE輸送・2次元回転浅水波 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-moving-waves/#ale-nonuniform-transport-validation
+Coverage: reading
+
+解析的移動セル積分、全体/段の質量、GCLconstant、格子幾何誤差を分離。独立DOP853による同じFV ODEの時間参照を二公差で確認。
+
+## 非一様ALE輸送・2次元回転浅水波 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-moving-waves/#ale-nonuniform-transport-limits
+Coverage: reading
+
+1D指定格子運動の第一段階です。図のx–tは2D物理計算ではなく、Euler Lagrange/remapやSaltzmanピストンは未実装の後続課題。
+
+## 非一様ALE輸送・2次元回転浅水波 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-moving-waves/#ale-nonuniform-transport-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+n40
+steps128
+time0.25
+error0.0107901785662
+minimum_volume0.0200205988155
+minimum_value0.800833542975
+maximum_cfl0.0704950049765
+mass_defect0
+step_mass_defect2.22044604925e-16
+gcl_defect1.97866896479e-16
+geometry_error3.99475166279e-07
+temporal_error2.0565741804e-07
+判定 / check合格
+adaptive-time reference qualificationtrue
+space-n40 mass_defecttrue
+space-n40 step_mass_defecttrue
+space-n40 gcl_defecttrue
+space-n40 maximum_cfltrue
+space-n40 positive volumes and valuestrue
+space-n40 five saved timestrue
+space-n80 mass_defecttrue
+space-n80 step_mass_defecttrue
+space-n80 gcl_defecttrue
+space-n80 maximum_cfltrue
+space-n80 positive volumes and valuestrue
+space-n80 five saved timestrue
+space-n160 mass_defecttrue
+space-n160 step_mass_defecttrue
+space-n160 gcl_defecttrue
+space-n160 maximum_cfltrue
+space-n160 positive volumes and valuestrue
+space-n160 five saved timestrue
+gcl-n40 mass_defecttrue
+gcl-n40 step_mass_defecttrue
+gcl-n40 gcl_defecttrue
+gcl-n40 maximum_cfltrue
+gcl-n40 positive volumes and valuestrue
+gcl-n40 five saved timestrue
+time-n40-s32 mass_defecttrue
+time-n40-s32 step_mass_defecttrue
+time-n40-s32 gcl_defecttrue
+time-n40-s32 maximum_cfltrue
+time-n40-s32 positive volumes and valuestrue
+time-n40-s32 five saved timestrue
+time-n40-s64 mass_defecttrue
+time-n40-s64 step_mass_defecttrue
+time-n40-s64 gcl_defecttrue
+
+## 非一様ALE輸送・2次元回転浅水波 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-moving-waves/#ale-nonuniform-transport-measurements
+Coverage: reading
+
+time-n40-s64 maximum_cfltrue
+time-n40-s64 positive volumes and valuestrue
+time-n40-s64 five saved timestrue
+time-n40-s128 mass_defecttrue
+time-n40-s128 step_mass_defecttrue
+time-n40-s128 gcl_defecttrue
+time-n40-s128 maximum_cfltrue
+time-n40-s128 positive volumes and valuestrue
+time-n40-s128 five saved timestrue
+space refinement 1true
+space refinement 2true
+time refinement 1true
+time refinement 2true
+finest transport errortrue
+constant-state GCL preservationtrue
+finest time errortrue
+reference analytic moving-face velocitytrue
+reference periodic analytic masstrue
+reference skew-Hermitian discrete symboltrue
+reference continuous wave frequencytrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。実際に保存した計算配列と固定入力の収束指標から描いた検証図。全記録を表で読む
+idfamilynstepstimeerrorminimum_volumeminimum_valuemaximum_cflmass_defectstep_mass_defectgcl_defectgeometry_errorconstant_errortemporal_error
+space-n40space4010410.0372764311050.0200221642990.8012125236270.40022146138502.22044604925e-161.64283734186e-161.0642315649e-05——
+space-n80space8020810.02033805346740.01000277329260.8003040164650.40005547240303.33066907388e-161.98217568119e-162.64417247131e-06——
+space-n160space16041610.01065165978060.005000346796790.8000760596660.4000138747872.22044604925e-162.22044604925e-162.03032103391e-166.59088582822e-07——
+
+## 非一様ALE輸送・2次元回転浅水波 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-moving-waves/#ale-nonuniform-transport-measurements
+Coverage: reading
+
+gcl-n40gcl40410.372.63677968348e-150.020022628686910.40022146138502.22044604925e-161.59377719355e-161.03032891435e-051.22124532709e-14—
+time-n40-s32time40320.250.01079396806470.02002153622840.8010148449860.28198642721501.11022302463e-161.65449251521e-166.39184331408e-06—3.29244610257e-06
+time-n40-s64time40640.250.01079101255180.02002078629240.8008698106270.1409906778752.22044604925e-162.22044604925e-161.68918698473e-161.5979126976e-06—8.22787218806e-07
+time-n40-s128time401280.250.01079017856620.02002059881550.8008335429750.070495004976502.22044604925e-161.97866896479e-163.99475166279e-07—2.0565741804e-07
+この例の実測値・全記録 / JSON
+
+## 非一様ALE輸送・2次元回転浅水波 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-moving-waves/#ale-nonuniform-transport-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Dennis L. Huff (1987). Numerical Simulations of Unsteady, Viscous, Transonic Flow Over Isolated and Cascaded Airfoils Using a Deforming Grid
+確認範囲 / review_level: selected-primary-report-grid-treatment
+
+## 非一様ALE輸送・2次元回転浅水波 — 2D C-grid回転浅水波の実時間発展 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-moving-waves/
+Coverage: reading
+
+実際の2D staggered場を時間積分し、連続波と離散symbolの参照を分けて比較します。
+手法・式・図・参照解
+使用手法
+空間中心差分
+古典的RK4
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+セルeta・法線face u/vの差分と4点Coriolis補間を2Dで評価しRK4更新。3×3行列指数は参照だけで、PDE場の更新には使いません。
+線形回転浅水方程式
+線形f-plane、g=H=f=1、周期単位正方形、(k,l)=(1,2)、eta振幅.01、N16/32/64,T.5。別の固定N16時間系列、zero-modeと離散geostrophic診断。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+2D C-grid回転浅水波の実時間発展
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+連続PDE空間誤差と離散symbol時間誤差、mass/energy、stencil-symbol一致、zero-mode慣性振動と離散定常釣合いを保存。
+同じ問題の参照 · 解析参照
+C-grid：連続Fourier解と離散記号の行列指数
+線形・平面・周期squareの限定例。非線形浅水、PV・球面格子・全球dynamical coreやWilliamsonは未実装の後続課題。
+
+## 非一様ALE輸送・2次元回転浅水波 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-moving-waves/#cgrid-rotating-wave-assumptions
+Coverage: reading
+
+線形f-plane、g=H=f=1、周期単位正方形、(k,l)=(1,2)、eta振幅.01、N16/32/64,T.5。別の固定N16時間系列、zero-modeと離散geostrophic診断。
+
+## 非一様ALE輸送・2次元回転浅水波 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-moving-waves/#cgrid-rotating-wave-algorithm
+Coverage: reading
+
+セルeta・法線face u/vの差分と4点Coriolis補間を2Dで評価しRK4更新。3×3行列指数は参照だけで、PDE場の更新には使いません。
+\eta_t+u_x+v_y=0,\quad u_t=v-\eta_x,\quad v_t=-u-\eta_y\tilde k=2\sin(kh/2)/h,\quad C=\cos(kh/2)\cos(lh/2),\quad U_h(t)=e^{tL_h}U_h(0)
+
+## 非一様ALE輸送・2次元回転浅水波 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-moving-waves/#cgrid-rotating-wave-validation
+Coverage: reading
+
+連続PDE空間誤差と離散symbol時間誤差、mass/energy、stencil-symbol一致、zero-mode慣性振動と離散定常釣合いを保存。
+
+## 非一様ALE輸送・2次元回転浅水波 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-moving-waves/#cgrid-rotating-wave-limits
+Coverage: reading
+
+線形・平面・周期squareの限定例。非線形浅水、PV・球面格子・全球dynamical coreやWilliamsonは未実装の後続課題。
+
+## 非一様ALE輸送・2次元回転浅水波 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-moving-waves/#cgrid-rotating-wave-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+n16
+steps64
+time0.5
+semidiscrete_error6.9895130578e-16
+continuous_error0.00695334263066
+mean_height_change1.27054942088e-20
+relative_energy_change2.22044604925e-16
+energy_rhs_defect2.13527676817e-19
+steady_change1.80411241502e-16
+判定 / check合格
+space-n16-s64 mean_height_changetrue
+space-n16-s64 relative_energy_changetrue
+space-n16-s64 energy_rhs_defecttrue
+space-n16-s64 finite actual 2D RK arraystrue
+space-n32-s128 mean_height_changetrue
+space-n32-s128 relative_energy_changetrue
+space-n32-s128 energy_rhs_defecttrue
+space-n32-s128 finite actual 2D RK arraystrue
+space-n64-s256 mean_height_changetrue
+space-n64-s256 relative_energy_changetrue
+space-n64-s256 energy_rhs_defecttrue
+space-n64-s256 finite actual 2D RK arraystrue
+time-n16-s16 mean_height_changetrue
+time-n16-s16 relative_energy_changetrue
+time-n16-s16 energy_rhs_defecttrue
+time-n16-s16 finite actual 2D RK arraystrue
+time-n16-s32 mean_height_changetrue
+time-n16-s32 relative_energy_changetrue
+time-n16-s32 energy_rhs_defecttrue
+time-n16-s32 finite actual 2D RK arraystrue
+time-n16-s64 mean_height_changetrue
+time-n16-s64 relative_energy_changetrue
+time-n16-s64 energy_rhs_defecttrue
+time-n16-s64 finite actual 2D RK arraystrue
+zero-n8-s64 mean_height_changetrue
+zero-n8-s64 relative_energy_changetrue
+zero-n8-s64 energy_rhs_defecttrue
+
+## 非一様ALE輸送・2次元回転浅水波 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-moving-waves/#cgrid-rotating-wave-measurements
+Coverage: reading
+
+zero-n8-s64 finite actual 2D RK arraystrue
+balance-n16-s64 mean_height_changetrue
+balance-n16-s64 relative_energy_changetrue
+balance-n16-s64 energy_rhs_defecttrue
+balance-n16-s64 finite actual 2D RK arraystrue
+continuous spatial refinement 1true
+continuous spatial refinement 2true
+semidiscrete temporal refinement 1true
+semidiscrete temporal refinement 2true
+finest continuous errortrue
+finest semidiscrete errortrue
+zero-mode temporal accuracytrue
+discrete geostrophic stationaritytrue
+reference analytic moving-face velocitytrue
+reference periodic analytic masstrue
+reference skew-Hermitian discrete symboltrue
+reference continuous wave frequencytrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。実際に保存した計算配列と固定入力の収束指標から描いた検証図。全記録を表で読む
+idfamilynstepstimesemidiscrete_errorcontinuous_errormean_height_changerelative_energy_changeenergy_rhs_defectsteady_change
+space-n16-s64space16640.57.68150690579e-060.1541785361431.37219337455e-191.37297294667e-061.21760986168e-200.0190882882076
+space-n32-s128space321280.55.21797355975e-070.03884600898561.78723951871e-194.74517886095e-081.01908651467e-200.0191715542625
+space-n64-s256space642560.53.32976186713e-080.009728687776822.34786945067e-191.52063872605e-091.02041000365e-200.0191862118238
+time-n16-s16time16160.256.14305835936e-050.07749468414781.04185052512e-192.18718095334e-051.60936259978e-200.019088353926
+
+## 非一様ALE輸送・2次元回転浅水波 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-moving-waves/#cgrid-rotating-wave-measurements
+Coverage: reading
+
+time-n16-s32time16320.253.84075411497e-060.07743945870188.55503276727e-206.86486709922e-071.21760986168e-200.0190882882076
+time-n16-s64time16640.252.40067857546e-070.07743594470517.45388993584e-202.14760436101e-081.79994501292e-200.0190882808774
+zero-n8-s64zero8640.59.27611576742e-129.27611576742e-1207.20534742982e-1400.00836433639079
+balance-n16-s64balance16640.56.9895130578e-160.006953342630661.27054942088e-202.22044604925e-162.13527676817e-191.80411241502e-16
+この例の実測値・全記録 / JSON
+
+## 非一様ALE輸送・2次元回転浅水波 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-moving-waves/#cgrid-rotating-wave-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+P. Korn and S. Danilov (n.d.). Elementary dispersion analysis of some mimetic discretizations on triangular C-grids
+確認範囲 / review_level: selected-primary-author-manuscript
 
 ## Noh問題：2次元Cartesianと格子方向の誤差 — Noh問題：2次元Cartesianと格子方向の誤差 [ja]
 
@@ -56986,6 +61703,339 @@ NIST Digital Library of Mathematical Functions (2026). §8.19 Generalized Expone
 確認範囲 / review_level: official-documentation
 一般化指数積分の積分表示を公式資料で確認。年は確認年。
 
+## SRHD衝突・SRMHD非線形Alfvén波 — SRHD衝突・SRMHD非線形Alfvén波 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-relativistic/
+Coverage: reading
+
+SRHDの対向衝突をTaub関係の二衝撃波解と、全7保存量SRMHDの有限振幅円偏波を独立テンソル式・保存量平均と比較します。空間は1次元で、図のx–t表示は2D流れではありません。
+
+## SRHD衝突・SRMHD非線形Alfvén波 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-relativistic/#run-all
+Coverage: reading
+
+ZIPの atlas-relativistic-2026-11-23 フォルダで実行します。このコマンドは配布版の全2例を実行します。新規または空の出力先を指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## SRHD衝突・SRMHD非線形Alfvén波 — SRHDの対称二衝撃波衝突 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-relativistic/
+Coverage: reading
+
+相対論的な対称衝突を、独立なTaub関係から得る厳密な保存量セル平均と比較し、実際の1D時空間場を保存します。
+手法・式・図・参照解
+使用手法
+HLL
+MUSCL再構成
+Minmod
+SSPRK(3,3)
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+同じ7保存量RMHD演算子をB=0で使い、MUSCL/minmod・因果的HLL波速±1・SSPRK33で進めます。Z=ρhW²の物理根を保護付きNewton法で復元し、残差と保存量往復を確認します。
+特殊相対論的流体（SRHD）
+c=1、γ=5/3、ρ=1、p=.1、左右v=±.3、B=0。区間[0,1]、初期不連続x=.5、t=.3、96/192/384セル。衝撃波が端へ届く前の外挿境界です。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+SRHDの対称二衝撃波衝突
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+群全体25pytest、6固定計算、110判定と参照6検査を事前固定。全量境界収支、各段・再構築面の正値と亜光速、D/E細分化、星領域圧力、衝撃波位置、反射対称性を検査。実際の最終状態を独立なSRHD圧力根と流束でも照合します。
+同じ問題の参照 · 半解析参照
+相対論的対称衝突：特殊化した二衝撃波Taub参照
+独自の穏やかな対称入力で、接触面は同じ静止状態へ退化します。一般三波Riemann解、高Lorentz因子、原著の数値入力は検証しません。Eは静止質量を含み、保存量の厳密セル平均と比較します。
+
+## SRHD衝突・SRMHD非線形Alfvén波 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-relativistic/#srhd-collision-assumptions
+Coverage: reading
+
+c=1、γ=5/3、ρ=1、p=.1、左右v=±.3、B=0。区間[0,1]、初期不連続x=.5、t=.3、96/192/384セル。衝撃波が端へ届く前の外挿境界です。
+
+## SRHD衝突・SRMHD非線形Alfvén波 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-relativistic/#srhd-collision-algorithm
+Coverage: reading
+
+同じ7保存量RMHD演算子をB=0で使い、MUSCL/minmod・因果的HLL波速±1・SSPRK33で進めます。Z=ρhW²の物理根を保護付きNewton法で復元し、残差と保存量往復を確認します。
+U=(D,S_x,S_y,S_z,E,B_y,B_z)^T,\quad D=\rho W,\quad W=(1-v^2)^{-1/2}h_b^2-h_a^2=(p_b-p_a)(h_b/\rho_b+h_a/\rho_a)v_0^2=\frac{(p_b-p_a)(e_b-e_a)}{(e_a+p_b)(e_b+p_a)},\quad e=\rho+\frac{p}{\Gamma-1}j^2=-\frac{p_b-p_a}{h_b/\rho_b-h_a/\rho_a},\quad V_s^2=\frac{j^2}{\rho_b^2+j^2}
+
+## SRHD衝突・SRMHD非線形Alfvén波 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-relativistic/#srhd-collision-validation
+Coverage: reading
+
+群全体25pytest、6固定計算、110判定と参照6検査を事前固定。全量境界収支、各段・再構築面の正値と亜光速、D/E細分化、星領域圧力、衝撃波位置、反射対称性を検査。実際の最終状態を独立なSRHD圧力根と流束でも照合します。
+
+## SRHD衝突・SRMHD非線形Alfvén波 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-relativistic/#srhd-collision-limits
+Coverage: reading
+
+独自の穏やかな対称入力で、接触面は同じ静止状態へ退化します。一般三波Riemann解、高Lorentz因子、原著の数値入力は検証しません。Eは静止質量を含み、保存量の厳密セル平均と比較します。
+
+## SRHD衝突・SRMHD非線形Alfvén波 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-relativistic/#srhd-collision-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+exact_star{"pressure":0.35473854747189193,"density":2.036718245233174,"enthalpy":1.4354290883166312,"speed":0.3181655418651244,"relative_velocity":0.3,"taub_residual":-3.3306690738754696e-16}
+finest_D_l10.00542423044547
+finest_E_l10.00520737551369
+exact_scopeSymmetric identical thermodynamics, opposite normal velocities: two shocks and resting identical star states; no nontrivial contact or general three-wave certification.
+判定 / check合格
+n96: fixed final timetrue
+n96: five saved timestrue
+n96: four records per SSP steptrue
+n96: all stored arrays finitetrue
+n96: positive stage densitytrue
+n96: positive stage pressuretrue
+n96: subluminal stagestrue
+n96: positive reconstructed face densitytrue
+n96: positive reconstructed face pressuretrue
+n96: subluminal reconstructed facestrue
+n96: conserved finite-volume boundary budgettrue
+n96: physical root residualtrue
+n96: full conserved primitive roundtriptrue
+n96: no state floor or retrytrue
+n96: reflection symmetrytrue
+n96: independent SRHD zero B flux and recoverytrue
+n192: fixed final timetrue
+n192: five saved timestrue
+n192: four records per SSP steptrue
+n192: all stored arrays finitetrue
+n192: positive stage densitytrue
+n192: positive stage pressuretrue
+n192: subluminal stagestrue
+n192: positive reconstructed face densitytrue
+
+## SRHD衝突・SRMHD非線形Alfvén波 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-relativistic/#srhd-collision-measurements
+Coverage: reading
+
+n192: positive reconstructed face pressuretrue
+n192: subluminal reconstructed facestrue
+n192: conserved finite-volume boundary budgettrue
+n192: physical root residualtrue
+n192: full conserved primitive roundtriptrue
+n192: no state floor or retrytrue
+n192: reflection symmetrytrue
+n192: independent SRHD zero B flux and recoverytrue
+n384: fixed final timetrue
+n384: five saved timestrue
+n384: four records per SSP steptrue
+n384: all stored arrays finitetrue
+n384: positive stage densitytrue
+n384: positive stage pressuretrue
+n384: subluminal stagestrue
+n384: positive reconstructed face densitytrue
+n384: positive reconstructed face pressuretrue
+n384: subluminal reconstructed facestrue
+n384: conserved finite-volume boundary budgettrue
+n384: physical root residualtrue
+n384: full conserved primitive roundtriptrue
+n384: no state floor or retrytrue
+n384: reflection symmetrytrue
+n384: independent SRHD zero B flux and recoverytrue
+finest D L1true
+finest total E L1true
+finest star pressuretrue
+finest shock positiontrue
+collision component 0 refinement 1true
+collision component 4 refinement 1true
+collision component 0 refinement 2true
+collision component 4 refinement 2true
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。最細格子の実際の保存密度Dの1D x–t図。5保存時刻を使用し、2D流れではありません。全記録を表で読む
+
+## SRHD衝突・SRMHD非線形Alfvén波 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-relativistic/#srhd-collision-measurements
+Coverage: reading
+
+ntimestepscomponent_l1maximum_balanceminimum_densityminimum_pressuremaximum_speedmaximum_root_residualmaximum_roundtrip_residualmaximum_recovery_iterationssafeguarded_root_stepsminimum_face_densityminimum_face_pressuremaximum_face_speedrecorded_stagesstate_floor_countretriesrejected_stepsstar_pressure_relativeshock_location_errorshock_locationssymmetry_errorindependent_zero_B_errorfield_file
+960.384[0.0240310024838554,0.007681512259446612,0.0,0.0,0.02373901735135442,0.0,0.0]2.02615701994e-1510.10.31.96415741898e-132.04276226882e-134010.10.33360000.002892582293960.00871700410713[0.3958333333333333,0.6041666666666666]01.40859546249e-14srhd-collision-n96.npz
+1920.3168[0.01218239223203395,0.003693731268063759,0.0,0.0,0.011923340221103114,0.0,0.0]1.69309011255e-1510.10.31.99326296093e-132.06896701035e-134010.10.36720000.0004566610070260.0035086707738[0.40104166666666663,0.5989583333333333]01.40304434737e-14srhd-collision-n192.npz
+3840.3332[0.0054242304454669415,0.0017778403670735898,0.0,0.0,0.005207375513692991,0.0,0.0]5.07927033766e-1510.10.31.99871044566e-132.07349364987e-134010.10.313280005.14358043965e-050.000904504107129[0.4036458333333333,0.5963541666666666]04.41313652288e-14srhd-collision-n384.npz
+この例の実測値・全記録 / JSON
+
+## SRHD衝突・SRMHD非線形Alfvén波 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-relativistic/#srhd-collision-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Luciano Rezzolla and Olindo Zanotti (2001). An Improved Exact Riemann Solver for Relativistic Hydrodynamics
+確認範囲 / review_level: primary-selected-mathematical-sections
+原著プレプリントの2–4節、状態方程式、相対速度式3.1とTaub二次式4.5を直接確認。対称二衝撃波への特殊化です。
+José A. Font (2008). Numerical Hydrodynamics and Magnetohydrodynamics in General Relativity · DOI: 10.12942/lrr-2008-7
+確認範囲 / review_level: primary-author-review-selected-equations
+公式の著者レビュー3.1–3.2節、テンソル式49–51と変換式68–69を直接確認。平坦時空の実装に使用します。
+
+## SRHD衝突・SRMHD非線形Alfvén波 — SRMHDの有限振幅円偏極Alfvén波 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-relativistic/
+Coverage: reading
+
+完全な磁気応力と誘導を含むSRMHDで非線形有限振幅波を1周期進め、厳密セル平均、位相、振幅と細分化を検査します。
+手法・式・図・参照解
+使用手法
+HLL
+MUSCL再構成
+Minmod
+SSPRK(3,3)
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+D・運動量3成分・全エネルギー・横磁場2成分の全7変数を同じMUSCL/minmod–HLL–SSPRK33で進めます。磁場は動的に結合し、完全なRMHDのZ根で原始変数へ復元します。
+特殊相対論的理想MHD（SRMHD）
+平坦時空、c=4π=1、γ=4/3、ρ=p=Bx=η=1、vx=0の厳密族。原著2π周期を単位区間へ写し、64/128/256セル、周期境界、t=1/vA。Bxは1次元で固定します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+SRMHDの有限振幅円偏極Alfvén波
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+非線形分散式、独立テンソルのGauss積分と複素段階PDE残差で参照を確認。全7量保存と全段物理性、途中誤差、最細相対L1≤.04、位相≤.03、振幅≤.04、観測次数≥1.5を事前固定します。
+同じ問題の参照 · 解析参照
+SRMHD円偏波：有限振幅厳密族と独立テンソル積分
+原著の厳密解族を独立な低次法で計算し、ECHO法や原著誤差表は再現しません。一般RMHD衝撃波、極端な磁化・Lorentz因子、GR、抵抗MHD、多次元磁場発散制御は対象外。図は実際の1D時空間場です。
+
+## SRHD衝突・SRMHD非線形Alfvén波 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-relativistic/#srmhd-alfven-assumptions
+Coverage: reading
+
+平坦時空、c=4π=1、γ=4/3、ρ=p=Bx=η=1、vx=0の厳密族。原著2π周期を単位区間へ写し、64/128/256セル、周期境界、t=1/vA。Bxは1次元で固定します。
+
+## SRHD衝突・SRMHD非線形Alfvén波 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-relativistic/#srmhd-alfven-algorithm
+Coverage: reading
+
+D・運動量3成分・全エネルギー・横磁場2成分の全7変数を同じMUSCL/minmod–HLL–SSPRK33で進めます。磁場は動的に結合し、完全なRMHDのZ根で原始変数へ復元します。
+B_y=\eta B_0\cos[2\pi(x-v_At)],\quad B_z=\eta B_0\sin[2\pi(x-v_At)]v_x=0,\quad (v_y,v_z)=-v_A(B_y,B_z)/B_0K=\rho h+B_0^2(1+\eta^2),\quad v_A^2=\frac{2B_0^2}{K+\sqrt{K^2-4\eta^2B_0^4}}\mathbf v=\frac{\mathbf S+(\mathbf S\cdot\mathbf B)\mathbf B/Z}{Z+B^2},\quad p=\frac{\Gamma-1}{\Gamma}(Z/W^2-\rho)E=Z-p+\frac12\left[B^2(1+v^2)-\frac{(\mathbf S\cdot\mathbf B)^2}{Z^2}\right]
+
+## SRHD衝突・SRMHD非線形Alfvén波 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-relativistic/#srmhd-alfven-validation
+Coverage: reading
+
+非線形分散式、独立テンソルのGauss積分と複素段階PDE残差で参照を確認。全7量保存と全段物理性、途中誤差、最細相対L1≤.04、位相≤.03、振幅≤.04、観測次数≥1.5を事前固定します。
+
+## SRHD衝突・SRMHD非線形Alfvén波 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-relativistic/#srmhd-alfven-limits
+Coverage: reading
+
+原著の厳密解族を独立な低次法で計算し、ECHO法や原著誤差表は再現しません。一般RMHD衝撃波、極端な磁化・Lorentz因子、GR、抵抗MHD、多次元磁場発散制御は対象外。図は実際の1D時空間場です。
+
+## SRHD衝突・SRMHD非線形Alfvén波 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-relativistic/#srmhd-alfven-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+alfven_speed0.38196601125
+period2.61803398875
+finest_transverse_relative_l10.00328083474235
+observed_orders[1.8810822553983044,1.8033064216647157]
+exact_scopeNonlinear finite-amplitude circular polarization; not linear passive transport or a generic RMHD Riemann reference.
+判定 / check合格
+n64: fixed final timetrue
+n64: five saved timestrue
+n64: four records per SSP steptrue
+n64: all stored arrays finitetrue
+n64: positive stage densitytrue
+n64: positive stage pressuretrue
+n64: subluminal stagestrue
+n64: positive reconstructed face densitytrue
+n64: positive reconstructed face pressuretrue
+n64: subluminal reconstructed facestrue
+n64: conserved finite-volume boundary budgettrue
+n64: physical root residualtrue
+n64: full conserved primitive roundtriptrue
+n64: no state floor or retrytrue
+n64: actual magnetic wave presenttrue
+n64: intermediate wave errorstrue
+n128: fixed final timetrue
+n128: five saved timestrue
+n128: four records per SSP steptrue
+n128: all stored arrays finitetrue
+n128: positive stage densitytrue
+n128: positive stage pressuretrue
+n128: subluminal stagestrue
+n128: positive reconstructed face densitytrue
+n128: positive reconstructed face pressuretrue
+n128: subluminal reconstructed facestrue
+n128: conserved finite-volume boundary budgettrue
+n128: physical root residualtrue
+
+## SRHD衝突・SRMHD非線形Alfvén波 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-relativistic/#srmhd-alfven-measurements
+Coverage: reading
+
+n128: full conserved primitive roundtriptrue
+n128: no state floor or retrytrue
+n128: actual magnetic wave presenttrue
+n128: intermediate wave errorstrue
+n256: fixed final timetrue
+n256: five saved timestrue
+n256: four records per SSP steptrue
+n256: all stored arrays finitetrue
+n256: positive stage densitytrue
+n256: positive stage pressuretrue
+n256: subluminal stagestrue
+n256: positive reconstructed face densitytrue
+n256: positive reconstructed face pressuretrue
+n256: subluminal reconstructed facestrue
+n256: conserved finite-volume boundary budgettrue
+n256: physical root residualtrue
+n256: full conserved primitive roundtriptrue
+n256: no state floor or retrytrue
+n256: actual magnetic wave presenttrue
+n256: intermediate wave errorstrue
+finest transverse L1true
+finest wave phasetrue
+finest wave amplitudetrue
+minimum observed grid ordertrue
+wave refinement 1true
+wave refinement 2true
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。最細格子の実際の横磁場Byの1D x–t図。5保存時刻を使い、計算は完全な磁気結合を含みます。全記録を表で読む
+ntimestepscomponent_l1maximum_balanceminimum_densityminimum_pressuremaximum_speedmaximum_root_residualmaximum_roundtrip_residualmaximum_recovery_iterationssafeguarded_root_stepsminimum_face_densityminimum_face_pressuremaximum_face_speedrecorded_stagesstate_floor_countretriesrejected_stepstransverse_relative_l1intermediate_relative_l1phase_erroramplitude_errorbx_constantlorentz_referencefield_file
+
+## SRHD衝突・SRMHD非線形Alfvén波 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-relativistic/#srmhd-alfven-measurements
+Coverage: reading
+
+642.61803398875480[0.008254757971169409,0.01595801808141993,0.03938796364814967,0.03938796364814946,0.005409984071148068,0.026851959637796387,0.026851959637796057]4.4408920985e-150.9829706157310.9861390462210.3851558783732.53789872479e-168.152303626e-16500.9829706157310.9861390462210.38654446179519200000.0421789595663[0.012696873375577043,0.023529699074502006,0.032884971118293936]0.01946761931810.036552979460111.0820445431srmhd-alfven-n64.npz
+1282.61803398875960[0.0020972931018017134,0.004324719534684862,0.010626262197647977,0.010626262197648008,0.001482529771230106,0.007289769604563455,0.007289769604563361]2.57571741713e-140.992019381650.992605716510.383596720771.68878497631e-168.35523766573e-16500.992019381650.992605716510.38405556462638400000.011450743318[0.003308700912480984,0.00616979651827247,0.009260758892750348]0.00449740353330.0079215293197111.0820445431srmhd-alfven-n128.npz
+2562.618033988751916[0.0005256005645190101,0.0010594789204062798,0.0031228430460474334,0.0031228430460467737,0.000375445918923906,0.0020886442668485517,0.0020886442668485872]4.79616346638e-140.997856785860.9982626629530.3824009016052.52224784053e-168.82602262961e-16500.997856785860.9982626629530.38252280290576640000.00328083474235[0.0008833391814908864,0.0016278105730856563,0.00260127101123578]0.001063999885180.0018267252140411.0820445431srmhd-alfven-n256.npz
+この例の実測値・全記録 / JSON
+
+## SRHD衝突・SRMHD非線形Alfvén波 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-relativistic/#srmhd-alfven-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+L. Del Zanna, O. Zanotti, N. Bucciantini and P. Londrillo (2007). ECHO: a Eulerian Conservative High Order scheme for general relativistic magnetohydrodynamics and magnetodynamics · DOI: 10.1051/0004-6361:20077093
+確認範囲 / review_level: primary-original-selected-section-and-rendered-pages
+大学リポジトリの原著4.1節・式82–85を読み、原著プレプリント9–10頁の式・規格化・周期を描画して目視確認。ECHO法自体の再現ではありません。
+José A. Font (2008). Numerical Hydrodynamics and Magnetohydrodynamics in General Relativity · DOI: 10.12942/lrr-2008-7
+確認範囲 / review_level: primary-author-review-selected-equations
+公式の著者レビュー3.1–3.2節、テンソル式49–51と変換式68–69を直接確認。平坦時空の実装に使用します。
+
 ## Sedov–Taylor点爆発：球対称の軽量検証 — Sedov–Taylor点爆発：球対称の軽量検証 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sedov/
@@ -57194,6 +62244,277 @@ G. I. Taylor (1950). The formation of a blast wave by a very intense explosion I
 J. Thrussell and J. M. Ferguson (2023). ExactPack: A python library of exact analytic solutions · DOI: 10.1016/j.softx.2023.101560
 確認範囲 / review_level: official-record-and-selected-pinned-code-execution
 固定commitの未改変Sedov評価器を6001/12001点で実行。ソースhash・パラメータ・点値・照合判定・BSD-3-Clauseを保存。別のEuler数値ソルバーや全ライブラリ検査ではありません。
+
+## スペクトル要素法とFR：既存FEM・DGとの軽量比較 — スペクトル要素法とFR：既存FEM・DGとの軽量比較 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/
+Coverage: reading
+
+SEMの2D PoissonとFRの1D周期移流を、既存P1 FEM・modal DGと同じ方程式・境界・参照で比較します。h/p収束、連続誤差、残差、保存と時間誤差を分け、外部Nek/PyFRソルバーの実行とは区別します。
+
+## スペクトル要素法とFR：既存FEM・DGとの軽量比較 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/#run-all
+Coverage: reading
+
+ZIPの atlas-sem-fr-2026-11-23 フォルダで実行します。このコマンドは配布版の全2例を実行します。新規または空の出力先を指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## スペクトル要素法とFR：既存FEM・DGとの軽量比較 — スペクトル要素法の2D Poisson：P1 FEMとh/p収束を比較 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/
+Coverage: reading
+
+単位正方形の正弦製造解をGLLスペクトル要素法と既存P1三角形FEMで解きます。自由未知数を揃えたh細分化と、固定要素数でのp=1〜6を分けて測ります。
+手法・式・図・参照解
+使用手法
+スペクトル要素法（SEM）
+連続P1 Galerkin有限要素法
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+SEMはC0連続なテンソル積Qp Lagrange基底・p+1個のLegendre GLL節点と求積、疎な剛性行列・SciPy直接解法を使用。p=2で各方向2/4/8要素、別に2×2要素でp=1〜6。公開済みNumartのP1 FEM・GMRESをファイルのバイト列を保持して4/8/16分割で実行し、両者の自由未知数9/49/225を一致させます。
+Poisson・Laplace方程式
+全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+2次元Poisson・正弦単一モード（FEMを含む）
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+解析的な正弦製造解と勾配を参照し、GLL節点とは異なる高次Gauss点で連続L2誤差・H1半ノルムを積分。h/p収束・自由未知数を揃えた誤差・境界値・真の残差を検査し、実際の2D場とP1の頂点・三角形・解をNPZに保存。
+関連モデルの参照 · 製造解
+Poisson／正弦波の製造解
+カードは1次元sin(πx)、こちらは2次元sin(πx)sin(πy)です。次元・右辺・FEMの誤差ノルムは異なります。
+同じ問題の参照 · 製造解
+2D Poisson正弦製造解：SEMとP1 FEMの共通参照
+全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。
+入力・検証手順の履歴 · 初回の入力
+
+## スペクトル要素法とFR：既存FEM・DGとの軽量比較 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/#sem-poisson-2d-assumptions
+Coverage: reading
+
+全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。
+
+## スペクトル要素法とFR：既存FEM・DGとの軽量比較 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/#sem-poisson-2d-algorithm
+Coverage: reading
+
+SEMはC0連続なテンソル積Qp Lagrange基底・p+1個のLegendre GLL節点と求積、疎な剛性行列・SciPy直接解法を使用。p=2で各方向2/4/8要素、別に2×2要素でp=1〜6。公開済みNumartのP1 FEM・GMRESをファイルのバイト列を保持して4/8/16分割で実行し、両者の自由未知数9/49/225を一致させます。
+-\Delta u=f,\quad u|_{\partial\Omega}=0,\quad u_*=\sin(\pi x)\sin(\pi y),\quad f=2\pi^2u_*K^e=S\otimes W+W\otimes S,\quad S=D^TWD,\quad W=\operatorname{diag}(w_i)E_{L^2}=\left(\int_\Omega(u_h-u_*)^2\,d\Omega\right)^{1/2},\quad E_{H^1}=\left(\int_\Omega|\nabla u_h-\nabla u_*|^2\,d\Omega\right)^{1/2}
+
+## スペクトル要素法とFR：既存FEM・DGとの軽量比較 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/#sem-poisson-2d-validation
+Coverage: reading
+
+解析的な正弦製造解と勾配を参照し、GLL節点とは異なる高次Gauss点で連続L2誤差・H1半ノルムを積分。h/p収束・自由未知数を揃えた誤差・境界値・真の残差を検査し、実際の2D場とP1の頂点・三角形・解をNPZに保存。
+
+## スペクトル要素法とFR：既存FEM・DGとの軽量比較 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/#sem-poisson-2d-limits
+Coverage: reading
+
+滑らかな固定問題だけの結果。要素・求積・代数ソルバーが異なるので、速度・計算量・汎用的優位性の比較ではありません。GLLの対角求積質量は一般の積の厳密な質量行列ではない。曲線格子・特異解・非圧縮流体・Nek5000/nekRS本体は未実行。
+
+## スペクトル要素法とFR：既存FEM・DGとの軽量比較 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/#sem-poisson-2d-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+sem_h_l2_order3.03964398611
+sem_h_h1_order2.01063606795
+p1_h_l2_order1.97449202948
+p1_h_h1_order0.989101103836
+p_refinement_l2_reduction311080.769951
+p6_l2_error3.7801651653e-07
+same_dof_free_unknowns225
+sem_finest_l2_error0.000248641096801
+p1_finest_l2_error0.00537743500994
+same_dof_l2_ratio_sem_over_p10.0462378617949
+maximum_relative_residual3.1814596822e-12
+判定 / check合格
+sem_h_l2_convergencetrue
+sem_h_h1_convergencetrue
+p1_h_l2_convergencetrue
+p1_h_h1_convergencetrue
+p_refinement_monotonetrue
+p_refinement_resolvedtrue
+equal_free_dofstrue
+same_dof_error_comparisontrue
+linear_residualstrue
+zero_dirichlet_boundarytrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存した2D SEM場と節点誤差。連続誤差ノルムは別のGauss積分で評価しています。全記録を表で読む
+seriesmethodelements_per_axisdegreetotal_dofsfree_dofsl2_errorh1_seminorm_errorrelative_residual
+hGLL-SEM222590.01787454496560.2118984548474.34272076546e-16
+hGLL-SEM4281490.0020445462010.05157518808351.63796506535e-15
+hGLL-SEM822892250.0002486410968010.01279908884138.47037256773e-15
+pGLL-SEM21910.1175936690160.9967518896660
+pGLL-SEM222590.01787454496560.2118984548474.34272076546e-16
+pGLL-SEM2349250.001451993428820.02709319842181.24542149286e-15
+pGLL-SEM2481490.0001074314577740.002658089442672.34630999931e-15
+pGLL-SEM25121816.8432839132e-060.0002093115514593.95967256792e-15
+
+## スペクトル要素法とFR：既存FEM・DGとの軽量比較 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/#sem-poisson-2d-measurements
+Coverage: reading
+
+pGLL-SEM261691213.7801651653e-071.3740969345e-054.98776008376e-15
+hpublished-P1-FEM412590.0790754536760.8385483442187.2411395863e-16
+hpublished-P1-FEM8181490.0211327734560.4317982830062.9836969935e-12
+hpublished-P1-FEM1612892250.005377435009940.217536336363.1814596822e-12
+この例の実測値・全記録 / JSON
+
+## スペクトル要素法とFR：既存FEM・DGとの軽量比較 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/#sem-poisson-2d-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+A. T. Patera (1984). A spectral element method for fluid dynamics: Laminar flow in a channel expansion · DOI: 10.1016/0021-9991(84)90128-1
+確認範囲 / review_level: metadata
+Nek5000公式参考文献の題名・巻・頁・DOIを照合。出版社の原文は未取得で、原報全体の監査・数値再現とはしない。今回の実装はLegendre GLL変種。
+Nek5000 development team (2026). Nek5000 documentation: Theory and spectral-element basis (accessed 2026-11-23)
+確認範囲 / review_level: full-text
+公式TheoryとFAQの要素局所の多項式、GLL/GL点・C0連続性を確認。教育用Poissonの実装とNek5000の流体ソルバー全体を同一視しない。
+Nek5000/RS development team (2026). Nek5000/RS project: spectral-element solvers and related implementations (accessed 2026-11-23)
+確認範囲 / review_level: full-text
+公式プロジェクトのSEM、nekRSのCPU/GPU対応、Nek5000との関係を確認。外部ソルバーの導入・実行・性能比較は未実施。
+
+## スペクトル要素法とFR：既存FEM・DGとの軽量比較 — FR法の1D周期移流：Radau補正と既存DGの比較 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/
+Coverage: reading
+
+0.4+sin(2πx)をT=.25まで移流。Gauss点・Radau補正のFRと既存のmodal DGをp=1/2、8/16/32セルで実行し、誤差・質量・時間積分誤差を測ります。
+手法・式・図・参照解
+使用手法
+Flux Reconstruction法（FR法）
+不連続Galerkin法／Legendre
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+p+1個のGauss解点、上流数値流束、Legendre多項式によるRadau左右補正、SSPRK(3,3)。初期L2射影・上流流束・時間刻み規約をバイト一致の既存modal DGと揃えます。スケールしたCourant数(2p+1)|a|Δt/h≤.15。最後にp2/N32で刻みを半減。
+線形移流
+全て無次元。u_t+u_x=0、区間[0,1)、周期境界、初期値0.4+sin(2πx)。解析解は0.4+sin(2π(x−t))。一定の正速度1、均一なアフィン区間要素。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+周期正弦波の線形移流
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+追加のGauss点で連続L2誤差を積分し、既存DGの最終多項式と共通点で照合。全RK段階の重み付き質量と各完了ステップの2次エネルギーを検査。同じFR空間演算子の行列指数解で時間誤差を別測定し、刻み半減を確認。
+関連モデルの参照 · 解析参照
+移流／正弦波の平行移動
+同じ周期・速度1の正弦移流モデルです。参照一覧は振幅0.25、共通固定入力は0.2で、DG・CIP等の表現や時間も異なります。
+関連モデルの参照 · 解析参照
+WENO臨界点：多項式セル平均と解析的周期輸送
+同じ一定速度の周期移流に対する追加参照ですが、cos+.1sin³のセル平均と局所臨界多項式は、従来の単一正弦・CIP表示と異なります。
+同じ問題の参照 · 解析参照
+FRとDGの周期正弦移流：平均0.4・T=.25の解析参照
+全て無次元。u_t+u_x=0、区間[0,1)、周期境界、初期値0.4+sin(2πx)。解析解は0.4+sin(2π(x−t))。一定の正速度1、均一なアフィン区間要素。
+入力・検証手順の履歴 · 初回の入力
+
+## スペクトル要素法とFR：既存FEM・DGとの軽量比較 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/#fr-periodic-advection-assumptions
+Coverage: reading
+
+全て無次元。u_t+u_x=0、区間[0,1)、周期境界、初期値0.4+sin(2πx)。解析解は0.4+sin(2π(x−t))。一定の正速度1、均一なアフィン区間要素。
+
+## スペクトル要素法とFR：既存FEM・DGとの軽量比較 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/#fr-periodic-advection-algorithm
+Coverage: reading
+
+p+1個のGauss解点、上流数値流束、Legendre多項式によるRadau左右補正、SSPRK(3,3)。初期L2射影・上流流束・時間刻み規約をバイト一致の既存modal DGと揃えます。スケールしたCourant数(2p+1)|a|Δt/h≤.15。最後にp2/N32で刻みを半減。
+u_t+a u_x=0,\quad u_*(x,t)=0.4+\sin(2\pi(x-at)),\quad a=1f^C=f^D+(f_L^*-f_L^D)g_L+(f_R^*-f_R^D)g_R,\quad \dot u=-\frac{2}{h}\partial_\xi f^Cg_L=\frac{(-1)^p}{2}(P_p-P_{p+1}),\quad g_R=\frac12(P_p+P_{p+1}),\quad\frac{d}{dt}\frac12\|u_h\|^2=-\frac{|a|}{2}\sum_{\rm faces}[u_h]^2
+
+## スペクトル要素法とFR：既存FEM・DGとの軽量比較 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/#fr-periodic-advection-validation
+Coverage: reading
+
+追加のGauss点で連続L2誤差を積分し、既存DGの最終多項式と共通点で照合。全RK段階の重み付き質量と各完了ステップの2次エネルギーを検査。同じFR空間演算子の行列指数解で時間誤差を別測定し、刻み半減を確認。
+
+## スペクトル要素法とFR：既存FEM・DGとの軽量比較 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/#fr-periodic-advection-limits
+Coverage: reading
+
+このRadau/Gauss・線形一定流束・アフィン要素の設定がDGに対応します。全FRと全DGの同値性、非線形流束・衝撃波・制限器・多次元FRは保証しません。hとΔtの同時細分化と行列指数による空間誤差を分け、行列指数を独立した空間PDEソルバーとは呼びません。PyFR本体は未実行。
+
+## スペクトル要素法とFR：既存FEM・DGとの軽量比較 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/#fr-periodic-advection-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+p1_l2_order1.99176792066
+p1_exponential_l2_order1.99176064192
+p2_l2_order2.99959619373
+p2_exponential_l2_order2.99959435791
+finest_l2_error2.61162684302e-05
+maximum_fr_vs_published_dg3.99680288865e-15
+maximum_stage_mass_drift3.5527136788e-15
+maximum_step_energy_increase0
+maximum_scaled_courant0.15
+finest_rk3_time_error9.44239800872e-09
+halved_cfl_time_error1.1816779054e-09
+time_error_halving_ratio0.125145953846
+actual_transport_l2_change0.999999962948
+判定 / check合格
+p1_l2_convergencetrue
+p2_l2_convergencetrue
+semidiscrete_spatial_convergencetrue
+finest_analytic_errortrue
+published_dg_agreementtrue
+periodic_stage_masstrue
+nonincreasing_step_energytrue
+scaled_courant_boundtrue
+time_error_controltrue
+nontrivial_translationtrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存したFRの初期・最終場と解析解との差。T=.25の実際の移流を表示します。全記録を表で読む
+seriesdegreecellstotal_dofsl2_errorexponential_l2_errorrk3_vs_exponential_l2fr_vs_published_dg_maxstepsfinal_timemax_mass_driftmax_energy_increasemax_scaled_courantinitial_energyfinal_energy
+h18160.02573716367760.02573651228572.79146782678e-061.7763568394e-15400.253.88578058619e-1600.150.3298701894150.325454977136
+h116320.006587042466840.006586997505143.50023140628e-071.99840144433e-15810.251.22124532709e-1500.150.3299917788350.329381334739
+
+## スペクトル要素法とFR：既存FEM・DGとの軽量比較 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/#fr-periodic-advection-measurements
+Coverage: reading
+
+h132640.001656183962360.001656181013424.37857693682e-083.99680288865e-151610.252.6645352591e-1500.150.3299994844760.329919781495
+h28240.001655527791410.001655510866136.18427430059e-071.7763568394e-15670.259.99200722163e-1600.150.329999425520.329969947015
+h216480.0002088716766660.0002088712705767.54903536135e-082.88657986403e-151340.251.83186799063e-1500.150.3299999909340.329998966251
+h232962.61162684302e-052.61162508874e-059.44239800872e-093.77475828373e-152670.253.5527136788e-1500.150.3299999998580.329999962016
+この例の実測値・全記録 / JSON
+
+## スペクトル要素法とFR：既存FEM・DGとの軽量比較 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/#fr-periodic-advection-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+H. T. Huynh (2007). A Flux Reconstruction Approach to High-Order Schemes Including Discontinuous Galerkin Methods · DOI: 10.2514/6.2007-4079
+確認範囲 / review_level: metadata
+著者の2014年NASA報告の参考文献（本文27頁）で2007年原報の題名・著者・会議番号を確認。AIAA原文は未取得。補正式は別記の2014年本文を参照。
+H. T. Huynh (2014). On Formulations of Discontinuous Galerkin and Related Methods for Conservation Laws
+確認範囲 / review_level: full-text
+NASA原文の抄録、微分形と界面補正、本文19–21頁の式(6.2)–(6.13)のRadau補正とDG対応、27頁の書誌を確認。全報告の監査や非線形実験の再現ではない。
+PyFR development team (2026). PyFR: Flux Reconstruction and supported implementation platforms (accessed 2026-11-23)
+確認範囲 / review_level: full-text
+公式サイトのFRによる空間離散化・非構造格子・CPU/GPUの紹介を確認。今回の軽量Python例でPyFRを導入・実行・検証したとはしない。
 
 ## 浅水流：地形・静止湖・乾燥床 — 浅水流：地形・静止湖・乾燥床 [ja]
 
@@ -58886,6 +64207,9 @@ WENO5-JS
 関連モデルの参照 · 解析参照
 WENO臨界点：多項式セル平均と解析的周期輸送
 同じ一定速度の周期移流に対する追加参照ですが、cos+.1sin³のセル平均と局所臨界多項式は、従来の単一正弦・CIP表示と異なります。
+同じ問題の参照 · 解析参照
+FRとDGの周期正弦移流：平均0.4・T=.25の解析参照
+全て無次元。u_t+u_x=0、区間[0,1)、周期境界、初期値0.4+sin(2πx)。解析解は0.4+sin(2π(x−t))。一定の正速度1、均一なアフィン区間要素。
 
 ## WENOの臨界点・ε依存性 — 前提・単位・境界 [ja]
 

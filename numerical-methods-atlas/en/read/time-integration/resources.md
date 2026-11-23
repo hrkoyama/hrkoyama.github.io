@@ -62,6 +62,18 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Actual2D Euler finite volumes evolve60x20,120x40 and240x80 meshes toT4, comparing separately implemented MUSCL finite-grid references. Actual numerical wall fluxes, including the vertical and horizontal step faces, close all four conserved budgets. Figures and code explicitly use the variant without corner entropy correction.
+- [Late Orszag-Tang: independent reference and compression structure](<https://hrkoyama.github.io/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=en>)
+  availability: run
+
+  Evolve compressible ideal-MHD Orszag-Tang to T.2 and check density/pressure in interacting compression/shock structure against an independent finite-grid reference.
+- [Circular Alfven wave: full-state refinement](<https://hrkoyama.github.io/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=en>)
+  availability: run
+
+  Evolve all eight conserved variables and compare circular polarization, including nonzero Bz/vz, against analytic cell means.
+- [Magnetic loop: independent 2D reference and refinement](<https://hrkoyama.github.io/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=en>)
+  availability: run
+
+  Compare genuine 2D magnetic-loop transport with final conserved fields from independent Athena++, qualified in space and time.
 - [Noh shocks: zero-pressure planar, cylindrical and spherical flow](<https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-shock/?lang=en>)
   availability: run
 
@@ -86,6 +98,18 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Apply analytic forcing to the same wall-bounded2D solver, measuring grid convergence of velocity/streamfunction and actual wall-vorticity/shear errors. A separate nonzero-Dirichlet manufactured pressure verifies Poisson and boundary-gradient operators.
+- [KH initial growth in a smooth periodic shear layer](<https://hrkoyama.github.io/numerical-methods-atlas/validation/kh-initial-growth/?lang=en>)
+  availability: run
+
+  Evolve the actual nonlinear2D vorticity PDE and compare finite-time growth and spatial errors with an independent continuous Fourier–Galerkin linear IVP.
+- [RT initial growth in smooth Boussinesq double layers](<https://hrkoyama.github.io/numerical-methods-atlas/validation/rt-initial-growth/?lang=en>)
+  availability: run
+
+  Advance the actual2D Boussinesq vorticity/active-buoyancy system and compare smooth unstable-layer growth with a separately derived linear IVP.
+- [ALE scalar transport on genuinely nonuniform moving cells](<https://hrkoyama.github.io/numerical-methods-atlas/validation/ale-nonuniform-transport/?lang=en>)
+  availability: run
+
+  Advance cell integrals and face positions with identical Heun stages, transporting a nonuniform analytic wave beyond a uniform GCL check.
 - [Euler double rarefaction: positivity at every stage](<https://hrkoyama.github.io/numerical-methods-atlas/validation/euler-double-rarefaction-positivity/?lang=en>)
   availability: run
 
@@ -98,6 +122,14 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Rotate a slotted disk through one full turn with an actual 2D finite-volume solver, comparing donor-cell and minmod MUSCL. Eight runs combine three grids with half-cell-center and 45-degree-start probes; measure conservation, bounds at every SSP stage, shape error and slot filling.
+- [SRHD symmetric two-shock collision](<https://hrkoyama.github.io/numerical-methods-atlas/validation/srhd-collision/?lang=en>)
+  availability: run
+
+  Compare a relativistic symmetric collision with independent exact Taub-based conserved cell means; save actual1D x–t fields.
+- [SRMHD finite-amplitude circularly polarized Alfvén wave](<https://hrkoyama.github.io/numerical-methods-atlas/validation/srmhd-alfven/?lang=en>)
+  availability: run
+
+  Evolve a nonlinear finite-amplitude wave for one period with full SRMHD magnetic stress and induction; check exact cell means,phase,amplitude and refinement.
 - [WENO-JS/Z: fixed critical-point and epsilon comparison](<https://hrkoyama.github.io/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=en>)
   availability: run
 
@@ -122,6 +154,10 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Excite a two-variable reduced membrane ODE with a current pulse; check all-output-time errors, temporal refinement and recovery against DOP853.
+- [Actual2D C-grid rotating shallow-water time advance](<https://hrkoyama.github.io/numerical-methods-atlas/validation/cgrid-rotating-wave/?lang=en>)
+  availability: run
+
+  Time-advance actual2D staggered fields and distinguish continuous-wave references from semidiscrete symbols.
 - [Finite-amplitude Schnakenberg transient: nonlinearity and independent reference](<https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-nonlinear/?lang=en>)
   availability: run
 

@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "group": "instability-growth",
+  "edition": "2026-11-23-r2",
+  "verified_on": "2026-11-23",
+  "source_manifest_sha256": "e9e27e0d2911bdafb09f2280eef3eaad7d602510cdd7f1b0282db740a137c69f",
+  "archive": {
+    "file": "atlas-instability-growth-2026-11-23-r2.zip",
+    "sha256": "731bf5ce375327daba93014990053ffc52b38626f132f94303a6d061aca7a7e7",
+    "bytes": 4638578,
+    "archive_directory": "atlas-instability-growth-2026-11-23-r2"
+  },
+  "archive_sha256": "731bf5ce375327daba93014990053ffc52b38626f132f94303a6d061aca7a7e7",
+  "returncode": 0,
+  "passed_tests": 22,
+  "tests": 22,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "kh-initial-growth",
+    "rt-initial-growth"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 1.4168305419952958,
+  "independent_rerun_seconds": 1.3075304160011,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

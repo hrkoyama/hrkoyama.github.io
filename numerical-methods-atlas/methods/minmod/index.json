@@ -1332,8 +1332,8 @@
   },
   "depth_previous_status": "educational-example",
   "depth_scope": {
-    "ja": "このNoh配布の球対称系列で、保存量のMUSCL型再構築の傾きをminmodで制限します。平面・円筒は区分定数のままです。 追加のZalesak型例は与えた発散ゼロ速度による2次元スカラー回転輸送です。同一の周期格子・SSPRK(3,3)で一次風上とminmod MUSCLを比較し、各段の範囲・保存量と一回転後の形状誤差を調べます。FCT法や多次元Euler全般の有界性を認証しません。",
-    "en": "Minmod limits conserved-variable MUSCL slopes in this Noh edition's spherical series. Planar/cylindrical runs retain piecewise-constant states. The additional Zalesak-type example is two-dimensional scalar rotation in a prescribed divergence-free velocity. Compare donor-cell upwinding and minmod MUSCL with the same periodic grid and SSPRK(3,3), measuring stage bounds, conservation and full-turn shape errors. It does not certify FCT or general multidimensional Euler bounds."
+    "ja": "このNoh配布の球対称系列で、保存量のMUSCL型再構築の傾きをminmodで制限します。平面・円筒は区分定数のままです。 追加のZalesak型例は与えた発散ゼロ速度による2次元スカラー回転輸送です。同一の周期格子・SSPRK(3,3)で一次風上とminmod MUSCLを比較し、各段の範囲・保存量と一回転後の形状誤差を調べます。FCT法や多次元Euler全般の有界性を認証しません。 追加の軽量1D SRHD対称衝突/SRMHD有限振幅円偏極波は、同じ完全7量の応力/誘導、MUSCL-minmod、因果的HLL±1、SSPRK33とZ回復を使用。一般Riemann・GR・極端速度の認証ではありません。",
+    "en": "Minmod limits conserved-variable MUSCL slopes in this Noh edition's spherical series. Planar/cylindrical runs retain piecewise-constant states. The additional Zalesak-type example is two-dimensional scalar rotation in a prescribed divergence-free velocity. Compare donor-cell upwinding and minmod MUSCL with the same periodic grid and SSPRK(3,3), measuring stage bounds, conservation and full-turn shape errors. It does not certify FCT or general multidimensional Euler bounds. Additional lightweight1D SRHD symmetric collision/SRMHD finite-amplitude CP wave use the shared full7-variable stress/induction,MUSCL-minmod,causalHLL±1,SSPRK33 and Z recovery; no generic Riemann,GR or extreme-speed claim."
   },
   "depth_additional_releases": [
     {
@@ -4407,6 +4407,700 @@
           }
         }
       ]
+    },
+    {
+      "group": "relativistic",
+      "case_ids": [
+        "srhd-collision",
+        "srmhd-alfven"
+      ],
+      "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/",
+      "code_edition": "2026-11-23",
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/relativistic.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/references/exact.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/test_relativistic.py"
+      ],
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "run_from": "atlas-relativistic-2026-11-23",
+      "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/atlas-relativistic-2026-11-23.zip",
+      "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/source-manifest.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/verification.json",
+      "code_archive_sha256": "c80b18e40f259d72aae6375d59faa0bd3c6c1b00b50da06538004bb6462a7185",
+      "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/results/result.json",
+      "passed_tests": 25,
+      "examples": [
+        {
+          "method_ids": [
+            "hll",
+            "muscl",
+            "minmod",
+            "ssprk33"
+          ],
+          "domains": [
+            "pde",
+            "coupling",
+            "time"
+          ],
+          "code_files": [
+            "run.py",
+            "relativistic.py",
+            "references/exact.py"
+          ],
+          "id": "srhd-collision",
+          "title": {
+            "ja": "SRHDの対称二衝撃波衝突",
+            "en": "SRHD symmetric two-shock collision"
+          },
+          "summary": {
+            "ja": "相対論的な対称衝突を、独立なTaub関係から得る厳密な保存量セル平均と比較し、実際の1D時空間場を保存します。",
+            "en": "Compare a relativistic symmetric collision with independent exact Taub-based conserved cell means; save actual1D x–t fields."
+          },
+          "assumptions": {
+            "ja": "c=1、γ=5/3、ρ=1、p=.1、左右v=±.3、B=0。区間[0,1]、初期不連続x=.5、t=.3、96/192/384セル。衝撃波が端へ届く前の外挿境界です。",
+            "en": "c=1,gamma5/3,rho1,p.1,opposite normal v±.3,B0. Domain[0,1], initial jump .5,t=.3,96/192/384 cells. Constant extrapolation boundaries before shocks reach endpoints."
+          },
+          "algorithm": {
+            "ja": "同じ7保存量RMHD演算子をB=0で使い、MUSCL/minmod・因果的HLL波速±1・SSPRK33で進めます。Z=ρhW²の物理根を保護付きNewton法で復元し、残差と保存量往復を確認します。",
+            "en": "Use the shared seven-component RMHD operator at B=0 with primitive MUSCL/minmod, causal HLL bounds±1 and SSPRK33. Safeguarded Newton recovers the physical Z=rho h W² root; check residual and full conserved-state roundtrip."
+          },
+          "validation": {
+            "ja": "群全体25pytest、6固定計算、110判定と参照6検査を事前固定。全量境界収支、各段・再構築面の正値と亜光速、D/E細分化、星領域圧力、衝撃波位置、反射対称性を検査。実際の最終状態を独立なSRHD圧力根と流束でも照合します。",
+            "en": "Predeclare25 pytest tests,six runs,110 group gates and six reference qualifiers. Check all-component boundary budgets, stage/face admissibility,D/E refinement,star pressure,shock positions and reflection. Compare actual final states with independent scalar-pressure SRHD recovery and flux."
+          },
+          "limits": {
+            "ja": "独自の穏やかな対称入力で、接触面は同じ静止状態へ退化します。一般三波Riemann解、高Lorentz因子、原著の数値入力は検証しません。Eは静止質量を含み、保存量の厳密セル平均と比較します。",
+            "en": "Custom mild symmetric input; contact degenerates to identical resting states. No general three-wave Riemann,extreme-Lorentz-factor or original-paper numerical-input reproduction claim. E includes rest mass; compare exact conserved cell means."
+          },
+          "formulas": [
+            "U=(D,S_x,S_y,S_z,E,B_y,B_z)^T,\\quad D=\\rho W,\\quad W=(1-v^2)^{-1/2}",
+            "h_b^2-h_a^2=(p_b-p_a)(h_b/\\rho_b+h_a/\\rho_a)",
+            "v_0^2=\\frac{(p_b-p_a)(e_b-e_a)}{(e_a+p_b)(e_b+p_a)},\\quad e=\\rho+\\frac{p}{\\Gamma-1}",
+            "j^2=-\\frac{p_b-p_a}{h_b/\\rho_b-h_a/\\rho_a},\\quad V_s^2=\\frac{j^2}{\\rho_b^2+j^2}"
+          ],
+          "references": [
+            {
+              "id": "rezzolla-zanotti2001",
+              "author": "Luciano Rezzolla and Olindo Zanotti",
+              "year": 2001,
+              "title": "An Improved Exact Riemann Solver for Relativistic Hydrodynamics",
+              "url": "https://arxiv.org/abs/gr-qc/0103005",
+              "type": "preprint",
+              "review_level": "primary-selected-mathematical-sections",
+              "review_scope": "Original arxiv v2 read: sections2–4, equations2.3/2.4,3.1 and4.5; restricted two-shock specialization. No whole-paper or generic Riemann implementation audit.",
+              "review": {
+                "ja": "原著プレプリントの2–4節、状態方程式、相対速度式3.1とTaub二次式4.5を直接確認。対称二衝撃波への特殊化です。",
+                "en": "Read original preprint sections2–4: EOS, relative-velocity equation3.1 and Taub quadratic4.5. Restricted symmetric two-shock specialization."
+              },
+              "accessed_on": "2026-11-23"
+            },
+            {
+              "id": "font2008",
+              "author": "José A. Font",
+              "year": 2008,
+              "title": "Numerical Hydrodynamics and Magnetohydrodynamics in General Relativity",
+              "journal": "Living Reviews in Relativity",
+              "volume": "11",
+              "number": "7",
+              "doi": "10.12942/lrr-2008-7",
+              "url": "https://link.springer.com/article/10.12942/lrr-2008-7",
+              "type": "review",
+              "review_level": "primary-author-review-selected-equations",
+              "review_scope": "Official article sections3.1–3.2, tensor49–51 and recovery68–69 actually read. Flat-spacetime use only; no whole-review or complete-GRMHD implementation audit.",
+              "review": {
+                "ja": "公式の著者レビュー3.1–3.2節、テンソル式49–51と変換式68–69を直接確認。平坦時空の実装に使用します。",
+                "en": "Read official author-review sections3.1–3.2, stress tensor49–51 and recovery68–69; flat-spacetime use only."
+              },
+              "accessed_on": "2026-11-23"
+            }
+          ],
+          "citations": [
+            {
+              "id": "rezzolla-zanotti2001",
+              "author": "Luciano Rezzolla and Olindo Zanotti",
+              "year": 2001,
+              "title": "An Improved Exact Riemann Solver for Relativistic Hydrodynamics",
+              "url": "https://arxiv.org/abs/gr-qc/0103005",
+              "type": "preprint",
+              "review_level": "primary-selected-mathematical-sections",
+              "review_scope": "Original arxiv v2 read: sections2–4, equations2.3/2.4,3.1 and4.5; restricted two-shock specialization. No whole-paper or generic Riemann implementation audit.",
+              "review": {
+                "ja": "原著プレプリントの2–4節、状態方程式、相対速度式3.1とTaub二次式4.5を直接確認。対称二衝撃波への特殊化です。",
+                "en": "Read original preprint sections2–4: EOS, relative-velocity equation3.1 and Taub quadratic4.5. Restricted symmetric two-shock specialization."
+              },
+              "accessed_on": "2026-11-23"
+            },
+            {
+              "id": "font2008",
+              "author": "José A. Font",
+              "year": 2008,
+              "title": "Numerical Hydrodynamics and Magnetohydrodynamics in General Relativity",
+              "journal": "Living Reviews in Relativity",
+              "volume": "11",
+              "number": "7",
+              "doi": "10.12942/lrr-2008-7",
+              "url": "https://link.springer.com/article/10.12942/lrr-2008-7",
+              "type": "review",
+              "review_level": "primary-author-review-selected-equations",
+              "review_scope": "Official article sections3.1–3.2, tensor49–51 and recovery68–69 actually read. Flat-spacetime use only; no whole-review or complete-GRMHD implementation audit.",
+              "review": {
+                "ja": "公式の著者レビュー3.1–3.2節、テンソル式49–51と変換式68–69を直接確認。平坦時空の実装に使用します。",
+                "en": "Read official author-review sections3.1–3.2, stress tensor49–51 and recovery68–69; flat-spacetime use only."
+              },
+              "accessed_on": "2026-11-23"
+            }
+          ],
+          "additional_figures": [
+            {
+              "file": "srhd-collision-preview.png",
+              "caption": {
+                "ja": "最細格子の実際の保存密度Dの1D x–t図。5保存時刻を使用し、2D流れではありません。",
+                "en": "Actual finest-grid1D x–t conserved-density field from five stored times; not a two-dimensional flow."
+              }
+            }
+          ],
+          "gallery_figure": "srhd-collision-preview.png",
+          "measured": {
+            "id": "srhd-collision",
+            "passed": true,
+            "checks": {
+              "n96: fixed final time": true,
+              "n96: five saved times": true,
+              "n96: four records per SSP step": true,
+              "n96: all stored arrays finite": true,
+              "n96: positive stage density": true,
+              "n96: positive stage pressure": true,
+              "n96: subluminal stages": true,
+              "n96: positive reconstructed face density": true,
+              "n96: positive reconstructed face pressure": true,
+              "n96: subluminal reconstructed faces": true,
+              "n96: conserved finite-volume boundary budget": true,
+              "n96: physical root residual": true,
+              "n96: full conserved primitive roundtrip": true,
+              "n96: no state floor or retry": true,
+              "n96: reflection symmetry": true,
+              "n96: independent SRHD zero B flux and recovery": true,
+              "n192: fixed final time": true,
+              "n192: five saved times": true,
+              "n192: four records per SSP step": true,
+              "n192: all stored arrays finite": true,
+              "n192: positive stage density": true,
+              "n192: positive stage pressure": true,
+              "n192: subluminal stages": true,
+              "n192: positive reconstructed face density": true,
+              "n192: positive reconstructed face pressure": true,
+              "n192: subluminal reconstructed faces": true,
+              "n192: conserved finite-volume boundary budget": true,
+              "n192: physical root residual": true,
+              "n192: full conserved primitive roundtrip": true,
+              "n192: no state floor or retry": true,
+              "n192: reflection symmetry": true,
+              "n192: independent SRHD zero B flux and recovery": true,
+              "n384: fixed final time": true,
+              "n384: five saved times": true,
+              "n384: four records per SSP step": true,
+              "n384: all stored arrays finite": true,
+              "n384: positive stage density": true,
+              "n384: positive stage pressure": true,
+              "n384: subluminal stages": true,
+              "n384: positive reconstructed face density": true,
+              "n384: positive reconstructed face pressure": true,
+              "n384: subluminal reconstructed faces": true,
+              "n384: conserved finite-volume boundary budget": true,
+              "n384: physical root residual": true,
+              "n384: full conserved primitive roundtrip": true,
+              "n384: no state floor or retry": true,
+              "n384: reflection symmetry": true,
+              "n384: independent SRHD zero B flux and recovery": true,
+              "finest D L1": true,
+              "finest total E L1": true,
+              "finest star pressure": true,
+              "finest shock position": true,
+              "collision component 0 refinement 1": true,
+              "collision component 4 refinement 1": true,
+              "collision component 0 refinement 2": true,
+              "collision component 4 refinement 2": true
+            },
+            "metrics": {
+              "exact_star": {
+                "pressure": 0.35473854747189193,
+                "density": 2.036718245233174,
+                "enthalpy": 1.4354290883166312,
+                "speed": 0.3181655418651244,
+                "relative_velocity": 0.3,
+                "taub_residual": -3.3306690738754696e-16
+              },
+              "finest_D_l1": 0.0054242304454669415,
+              "finest_E_l1": 0.005207375513692991,
+              "exact_scope": "Symmetric identical thermodynamics, opposite normal velocities: two shocks and resting identical star states; no nontrivial contact or general three-wave certification."
+            },
+            "records": [
+              {
+                "n": 96,
+                "time": 0.3,
+                "steps": 84,
+                "component_l1": [
+                  0.0240310024838554,
+                  0.007681512259446612,
+                  0.0,
+                  0.0,
+                  0.02373901735135442,
+                  0.0,
+                  0.0
+                ],
+                "maximum_balance": 2.0261570199409107e-15,
+                "minimum_density": 0.9999999999999974,
+                "minimum_pressure": 0.09999999999998557,
+                "maximum_speed": 0.3000000000000076,
+                "maximum_root_residual": 1.9641574189808435e-13,
+                "maximum_roundtrip_residual": 2.0427622688174485e-13,
+                "maximum_recovery_iterations": 4,
+                "safeguarded_root_steps": 0,
+                "minimum_face_density": 0.9999999999999974,
+                "minimum_face_pressure": 0.09999999999998557,
+                "maximum_face_speed": 0.3000000000000076,
+                "recorded_stages": 336,
+                "state_floor_count": 0,
+                "retries": 0,
+                "rejected_steps": 0,
+                "star_pressure_relative": 0.002892582293960908,
+                "shock_location_error": 0.008717004107129334,
+                "shock_locations": [
+                  0.3958333333333333,
+                  0.6041666666666666
+                ],
+                "symmetry_error": 0.0,
+                "independent_zero_B_error": 1.4085954624931674e-14,
+                "field_file": "srhd-collision-n96.npz"
+              },
+              {
+                "n": 192,
+                "time": 0.3,
+                "steps": 168,
+                "component_l1": [
+                  0.01218239223203395,
+                  0.003693731268063759,
+                  0.0,
+                  0.0,
+                  0.011923340221103114,
+                  0.0,
+                  0.0
+                ],
+                "maximum_balance": 1.6930901125533637e-15,
+                "minimum_density": 0.9999999999999973,
+                "minimum_pressure": 0.09999999999998557,
+                "maximum_speed": 0.30000000000000765,
+                "maximum_root_residual": 1.993262960925041e-13,
+                "maximum_roundtrip_residual": 2.0689670103526644e-13,
+                "maximum_recovery_iterations": 4,
+                "safeguarded_root_steps": 0,
+                "minimum_face_density": 0.9999999999999973,
+                "minimum_face_pressure": 0.09999999999998557,
+                "maximum_face_speed": 0.30000000000000765,
+                "recorded_stages": 672,
+                "state_floor_count": 0,
+                "retries": 0,
+                "rejected_steps": 0,
+                "star_pressure_relative": 0.00045666100702619915,
+                "shock_location_error": 0.0035086707737960188,
+                "shock_locations": [
+                  0.40104166666666663,
+                  0.5989583333333333
+                ],
+                "symmetry_error": 0.0,
+                "independent_zero_B_error": 1.4030443473700416e-14,
+                "field_file": "srhd-collision-n192.npz"
+              },
+              {
+                "n": 384,
+                "time": 0.3,
+                "steps": 332,
+                "component_l1": [
+                  0.0054242304454669415,
+                  0.0017778403670735898,
+                  0.0,
+                  0.0,
+                  0.005207375513692991,
+                  0.0,
+                  0.0
+                ],
+                "maximum_balance": 5.079270337660091e-15,
+                "minimum_density": 0.9999999999999973,
+                "minimum_pressure": 0.09999999999998557,
+                "maximum_speed": 0.30000000000000765,
+                "maximum_root_residual": 1.998710445658288e-13,
+                "maximum_roundtrip_residual": 2.0734936498682292e-13,
+                "maximum_recovery_iterations": 4,
+                "safeguarded_root_steps": 0,
+                "minimum_face_density": 0.9999999999999973,
+                "minimum_face_pressure": 0.09999999999998557,
+                "maximum_face_speed": 0.30000000000000765,
+                "recorded_stages": 1328,
+                "state_floor_count": 0,
+                "retries": 0,
+                "rejected_steps": 0,
+                "star_pressure_relative": 5.143580439648156e-05,
+                "shock_location_error": 0.0009045041071293336,
+                "shock_locations": [
+                  0.4036458333333333,
+                  0.5963541666666666
+                ],
+                "symmetry_error": 0.0,
+                "independent_zero_B_error": 4.413136522884997e-14,
+                "field_file": "srhd-collision-n384.npz"
+              }
+            ]
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/srhd-collision/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-relativistic/#srhd-collision",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-relativistic/#srhd-collision"
+          }
+        },
+        {
+          "method_ids": [
+            "hll",
+            "muscl",
+            "minmod",
+            "ssprk33"
+          ],
+          "domains": [
+            "pde",
+            "coupling",
+            "time"
+          ],
+          "code_files": [
+            "run.py",
+            "relativistic.py",
+            "references/exact.py"
+          ],
+          "id": "srmhd-alfven",
+          "title": {
+            "ja": "SRMHDの有限振幅円偏極Alfvén波",
+            "en": "SRMHD finite-amplitude circularly polarized Alfvén wave"
+          },
+          "summary": {
+            "ja": "完全な磁気応力と誘導を含むSRMHDで非線形有限振幅波を1周期進め、厳密セル平均、位相、振幅と細分化を検査します。",
+            "en": "Evolve a nonlinear finite-amplitude wave for one period with full SRMHD magnetic stress and induction; check exact cell means,phase,amplitude and refinement."
+          },
+          "assumptions": {
+            "ja": "平坦時空、c=4π=1、γ=4/3、ρ=p=Bx=η=1、vx=0の厳密族。原著2π周期を単位区間へ写し、64/128/256セル、周期境界、t=1/vA。Bxは1次元で固定します。",
+            "en": "Flat spacetime,c=4pi=1,gamma4/3,rho=p=Bx=eta1, exact-family vx0. Rescale the original2pi period to a unit domain;64/128/256 cells,periodic,t=1/vA. Normal Bx is fixed in1D."
+          },
+          "algorithm": {
+            "ja": "D・運動量3成分・全エネルギー・横磁場2成分の全7変数を同じMUSCL/minmod–HLL–SSPRK33で進めます。磁場は動的に結合し、完全なRMHDのZ根で原始変数へ復元します。",
+            "en": "Evolve all seven variables D,three momenta,total E and two transverse magnetic fields with the shared MUSCL/minmod–HLL–SSPRK33 operator. Magnetic dynamics are coupled; primitive recovery solves the full RMHD Z root."
+          },
+          "validation": {
+            "ja": "非線形分散式、独立テンソルのGauss積分と複素段階PDE残差で参照を確認。全7量保存と全段物理性、途中誤差、最細相対L1≤.04、位相≤.03、振幅≤.04、観測次数≥1.5を事前固定します。",
+            "en": "Qualify nonlinear dispersion,independent tensor Gauss means and complex-step PDE residuals. Predeclare all-seven-component conservation,stage admissibility,intermediate errors,finest relative L1≤.04,phase≤.03,amplitude≤.04 and observed order≥1.5."
+          },
+          "limits": {
+            "ja": "原著の厳密解族を独立な低次法で計算し、ECHO法や原著誤差表は再現しません。一般RMHD衝撃波、極端な磁化・Lorentz因子、GR、抵抗MHD、多次元磁場発散制御は対象外。図は実際の1D時空間場です。",
+            "en": "Use the original exact family with an independent lower-order operator; no ECHO-algorithm or error-table reproduction. Generic RMHD shocks,extreme magnetization/Lorentz factors,GR,resistive MHD and multidimensional divergence control are outside scope. Figures show actual1D x–t fields."
+          },
+          "formulas": [
+            "B_y=\\eta B_0\\cos[2\\pi(x-v_At)],\\quad B_z=\\eta B_0\\sin[2\\pi(x-v_At)]",
+            "v_x=0,\\quad (v_y,v_z)=-v_A(B_y,B_z)/B_0",
+            "K=\\rho h+B_0^2(1+\\eta^2),\\quad v_A^2=\\frac{2B_0^2}{K+\\sqrt{K^2-4\\eta^2B_0^4}}",
+            "\\mathbf v=\\frac{\\mathbf S+(\\mathbf S\\cdot\\mathbf B)\\mathbf B/Z}{Z+B^2},\\quad p=\\frac{\\Gamma-1}{\\Gamma}(Z/W^2-\\rho)",
+            "E=Z-p+\\frac12\\left[B^2(1+v^2)-\\frac{(\\mathbf S\\cdot\\mathbf B)^2}{Z^2}\\right]"
+          ],
+          "references": [
+            {
+              "id": "delzanna2007",
+              "author": "L. Del Zanna, O. Zanotti, N. Bucciantini and P. Londrillo",
+              "year": 2007,
+              "title": "ECHO: a Eulerian Conservative High Order scheme for general relativistic magnetohydrodynamics and magnetodynamics",
+              "journal": "Astronomy & Astrophysics",
+              "volume": "473",
+              "pages": "11–30",
+              "doi": "10.1051/0004-6361:20077093",
+              "url": "https://arxiv.org/abs/0704.3206",
+              "type": "article",
+              "review_level": "primary-original-selected-section-and-rendered-pages",
+              "review_scope": "University-hosted original journal PDF section4.1 equations82–85 read; original arxiv preprint pages9–10 rendered and visually inspected, including normalization and period. Publisher PDF403. No whole-paper or ECHO-algorithm reproduction claim.",
+              "review": {
+                "ja": "大学リポジトリの原著4.1節・式82–85を読み、原著プレプリント9–10頁の式・規格化・周期を描画して目視確認。ECHO法自体の再現ではありません。",
+                "en": "Read original journal section4.1 equations82–85 via the university repository; rendered and visually inspected original preprint pages9–10, including normalization and period. No ECHO-algorithm reproduction."
+              },
+              "accessed_on": "2026-11-23"
+            },
+            {
+              "id": "font2008",
+              "author": "José A. Font",
+              "year": 2008,
+              "title": "Numerical Hydrodynamics and Magnetohydrodynamics in General Relativity",
+              "journal": "Living Reviews in Relativity",
+              "volume": "11",
+              "number": "7",
+              "doi": "10.12942/lrr-2008-7",
+              "url": "https://link.springer.com/article/10.12942/lrr-2008-7",
+              "type": "review",
+              "review_level": "primary-author-review-selected-equations",
+              "review_scope": "Official article sections3.1–3.2, tensor49–51 and recovery68–69 actually read. Flat-spacetime use only; no whole-review or complete-GRMHD implementation audit.",
+              "review": {
+                "ja": "公式の著者レビュー3.1–3.2節、テンソル式49–51と変換式68–69を直接確認。平坦時空の実装に使用します。",
+                "en": "Read official author-review sections3.1–3.2, stress tensor49–51 and recovery68–69; flat-spacetime use only."
+              },
+              "accessed_on": "2026-11-23"
+            }
+          ],
+          "citations": [
+            {
+              "id": "delzanna2007",
+              "author": "L. Del Zanna, O. Zanotti, N. Bucciantini and P. Londrillo",
+              "year": 2007,
+              "title": "ECHO: a Eulerian Conservative High Order scheme for general relativistic magnetohydrodynamics and magnetodynamics",
+              "journal": "Astronomy & Astrophysics",
+              "volume": "473",
+              "pages": "11–30",
+              "doi": "10.1051/0004-6361:20077093",
+              "url": "https://arxiv.org/abs/0704.3206",
+              "type": "article",
+              "review_level": "primary-original-selected-section-and-rendered-pages",
+              "review_scope": "University-hosted original journal PDF section4.1 equations82–85 read; original arxiv preprint pages9–10 rendered and visually inspected, including normalization and period. Publisher PDF403. No whole-paper or ECHO-algorithm reproduction claim.",
+              "review": {
+                "ja": "大学リポジトリの原著4.1節・式82–85を読み、原著プレプリント9–10頁の式・規格化・周期を描画して目視確認。ECHO法自体の再現ではありません。",
+                "en": "Read original journal section4.1 equations82–85 via the university repository; rendered and visually inspected original preprint pages9–10, including normalization and period. No ECHO-algorithm reproduction."
+              },
+              "accessed_on": "2026-11-23"
+            },
+            {
+              "id": "font2008",
+              "author": "José A. Font",
+              "year": 2008,
+              "title": "Numerical Hydrodynamics and Magnetohydrodynamics in General Relativity",
+              "journal": "Living Reviews in Relativity",
+              "volume": "11",
+              "number": "7",
+              "doi": "10.12942/lrr-2008-7",
+              "url": "https://link.springer.com/article/10.12942/lrr-2008-7",
+              "type": "review",
+              "review_level": "primary-author-review-selected-equations",
+              "review_scope": "Official article sections3.1–3.2, tensor49–51 and recovery68–69 actually read. Flat-spacetime use only; no whole-review or complete-GRMHD implementation audit.",
+              "review": {
+                "ja": "公式の著者レビュー3.1–3.2節、テンソル式49–51と変換式68–69を直接確認。平坦時空の実装に使用します。",
+                "en": "Read official author-review sections3.1–3.2, stress tensor49–51 and recovery68–69; flat-spacetime use only."
+              },
+              "accessed_on": "2026-11-23"
+            }
+          ],
+          "additional_figures": [
+            {
+              "file": "srmhd-alfven-preview.png",
+              "caption": {
+                "ja": "最細格子の実際の横磁場Byの1D x–t図。5保存時刻を使い、計算は完全な磁気結合を含みます。",
+                "en": "Actual finest-grid transverse By in1D x–t from five stored times; the solver includes full magnetic coupling."
+              }
+            }
+          ],
+          "gallery_figure": "srmhd-alfven-preview.png",
+          "measured": {
+            "id": "srmhd-alfven",
+            "passed": true,
+            "checks": {
+              "n64: fixed final time": true,
+              "n64: five saved times": true,
+              "n64: four records per SSP step": true,
+              "n64: all stored arrays finite": true,
+              "n64: positive stage density": true,
+              "n64: positive stage pressure": true,
+              "n64: subluminal stages": true,
+              "n64: positive reconstructed face density": true,
+              "n64: positive reconstructed face pressure": true,
+              "n64: subluminal reconstructed faces": true,
+              "n64: conserved finite-volume boundary budget": true,
+              "n64: physical root residual": true,
+              "n64: full conserved primitive roundtrip": true,
+              "n64: no state floor or retry": true,
+              "n64: actual magnetic wave present": true,
+              "n64: intermediate wave errors": true,
+              "n128: fixed final time": true,
+              "n128: five saved times": true,
+              "n128: four records per SSP step": true,
+              "n128: all stored arrays finite": true,
+              "n128: positive stage density": true,
+              "n128: positive stage pressure": true,
+              "n128: subluminal stages": true,
+              "n128: positive reconstructed face density": true,
+              "n128: positive reconstructed face pressure": true,
+              "n128: subluminal reconstructed faces": true,
+              "n128: conserved finite-volume boundary budget": true,
+              "n128: physical root residual": true,
+              "n128: full conserved primitive roundtrip": true,
+              "n128: no state floor or retry": true,
+              "n128: actual magnetic wave present": true,
+              "n128: intermediate wave errors": true,
+              "n256: fixed final time": true,
+              "n256: five saved times": true,
+              "n256: four records per SSP step": true,
+              "n256: all stored arrays finite": true,
+              "n256: positive stage density": true,
+              "n256: positive stage pressure": true,
+              "n256: subluminal stages": true,
+              "n256: positive reconstructed face density": true,
+              "n256: positive reconstructed face pressure": true,
+              "n256: subluminal reconstructed faces": true,
+              "n256: conserved finite-volume boundary budget": true,
+              "n256: physical root residual": true,
+              "n256: full conserved primitive roundtrip": true,
+              "n256: no state floor or retry": true,
+              "n256: actual magnetic wave present": true,
+              "n256: intermediate wave errors": true,
+              "finest transverse L1": true,
+              "finest wave phase": true,
+              "finest wave amplitude": true,
+              "minimum observed grid order": true,
+              "wave refinement 1": true,
+              "wave refinement 2": true
+            },
+            "metrics": {
+              "alfven_speed": 0.3819660112501051,
+              "period": 2.6180339887498953,
+              "finest_transverse_relative_l1": 0.0032808347423469524,
+              "observed_orders": [
+                1.8810822553983044,
+                1.8033064216647157
+              ],
+              "exact_scope": "Nonlinear finite-amplitude circular polarization; not linear passive transport or a generic RMHD Riemann reference."
+            },
+            "records": [
+              {
+                "n": 64,
+                "time": 2.6180339887498953,
+                "steps": 480,
+                "component_l1": [
+                  0.008254757971169409,
+                  0.01595801808141993,
+                  0.03938796364814967,
+                  0.03938796364814946,
+                  0.005409984071148068,
+                  0.026851959637796387,
+                  0.026851959637796057
+                ],
+                "maximum_balance": 4.440892098500626e-15,
+                "minimum_density": 0.9829706157313469,
+                "minimum_pressure": 0.9861390462205453,
+                "maximum_speed": 0.385155878373101,
+                "maximum_root_residual": 2.5378987247946516e-16,
+                "maximum_roundtrip_residual": 8.152303626001698e-16,
+                "maximum_recovery_iterations": 5,
+                "safeguarded_root_steps": 0,
+                "minimum_face_density": 0.9829706157313469,
+                "minimum_face_pressure": 0.9861390462205453,
+                "maximum_face_speed": 0.3865444617952781,
+                "recorded_stages": 1920,
+                "state_floor_count": 0,
+                "retries": 0,
+                "rejected_steps": 0,
+                "transverse_relative_l1": 0.04217895956629514,
+                "intermediate_relative_l1": [
+                  0.012696873375577043,
+                  0.023529699074502006,
+                  0.032884971118293936
+                ],
+                "phase_error": 0.01946761931806963,
+                "amplitude_error": 0.036552979460102164,
+                "bx_constant": 1.0,
+                "lorentz_reference": 1.0820445430988213,
+                "field_file": "srmhd-alfven-n64.npz"
+              },
+              {
+                "n": 128,
+                "time": 2.6180339887498953,
+                "steps": 960,
+                "component_l1": [
+                  0.0020972931018017134,
+                  0.004324719534684862,
+                  0.010626262197647977,
+                  0.010626262197648008,
+                  0.001482529771230106,
+                  0.007289769604563455,
+                  0.007289769604563361
+                ],
+                "maximum_balance": 2.5757174171303632e-14,
+                "minimum_density": 0.9920193816499302,
+                "minimum_pressure": 0.9926057165103709,
+                "maximum_speed": 0.3835967207697126,
+                "maximum_root_residual": 1.6887849763051291e-16,
+                "maximum_roundtrip_residual": 8.355237665730153e-16,
+                "maximum_recovery_iterations": 5,
+                "safeguarded_root_steps": 0,
+                "minimum_face_density": 0.9920193816499302,
+                "minimum_face_pressure": 0.9926057165103709,
+                "maximum_face_speed": 0.3840555646260777,
+                "recorded_stages": 3840,
+                "state_floor_count": 0,
+                "retries": 0,
+                "rejected_steps": 0,
+                "transverse_relative_l1": 0.011450743318029288,
+                "intermediate_relative_l1": [
+                  0.003308700912480984,
+                  0.00616979651827247,
+                  0.009260758892750348
+                ],
+                "phase_error": 0.004497403533300344,
+                "amplitude_error": 0.007921529319709908,
+                "bx_constant": 1.0,
+                "lorentz_reference": 1.0820445430988213,
+                "field_file": "srmhd-alfven-n128.npz"
+              },
+              {
+                "n": 256,
+                "time": 2.6180339887498953,
+                "steps": 1916,
+                "component_l1": [
+                  0.0005256005645190101,
+                  0.0010594789204062798,
+                  0.0031228430460474334,
+                  0.0031228430460467737,
+                  0.000375445918923906,
+                  0.0020886442668485517,
+                  0.0020886442668485872
+                ],
+                "maximum_balance": 4.796163466380676e-14,
+                "minimum_density": 0.9978567858598474,
+                "minimum_pressure": 0.998262662952563,
+                "maximum_speed": 0.3824009016052644,
+                "maximum_root_residual": 2.5222478405311695e-16,
+                "maximum_roundtrip_residual": 8.826022629612245e-16,
+                "maximum_recovery_iterations": 5,
+                "safeguarded_root_steps": 0,
+                "minimum_face_density": 0.9978567858598474,
+                "minimum_face_pressure": 0.998262662952563,
+                "maximum_face_speed": 0.38252280290543483,
+                "recorded_stages": 7664,
+                "state_floor_count": 0,
+                "retries": 0,
+                "rejected_steps": 0,
+                "transverse_relative_l1": 0.0032808347423469524,
+                "intermediate_relative_l1": [
+                  0.0008833391814908864,
+                  0.0016278105730856563,
+                  0.00260127101123578
+                ],
+                "phase_error": 0.001063999885184198,
+                "amplitude_error": 0.0018267252140372614,
+                "bx_constant": 1.0,
+                "lorentz_reference": 1.0820445430988213,
+                "field_file": "srmhd-alfven-n256.npz"
+              }
+            ]
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/srmhd-alfven/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-relativistic/#srmhd-alfven",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-relativistic/#srmhd-alfven"
+          }
+        }
+      ]
     }
   ],
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/minmod/",
@@ -4424,12 +5118,16 @@
     "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/run.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/rotation.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/references/geometry.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/references/qualify_reference.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/references/qualify_reference.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/relativistic.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/references/exact.py"
   ],
   "test_urls": [
     "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_limiters.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/test_noh.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/test_rotation.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/test_rotation.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/test_relativistic.py"
   ],
   "run_commands": [
     "python -m pytest -q tests/test_limiters.py"
@@ -4453,6 +5151,24 @@
       "guide": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/zalesak-rotation/?lang=ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/zalesak-rotation/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    },
+    {
+      "id": "srhd-collision",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/srhd-collision/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/srhd-collision/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    },
+    {
+      "id": "srmhd-alfven",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/srmhd-alfven/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/srmhd-alfven/?lang=en"
       },
       "kind": "dedicated-supplement"
     }
@@ -4562,6 +5278,34 @@
         "url": {
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#rotational-advection-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#rotational-advection-en"
+        }
+      },
+      {
+        "id": "srhd",
+        "name": {
+          "ja": "特殊相対論的流体（SRHD）",
+          "en": "Special-relativistic hydrodynamics (SRHD)"
+        },
+        "problem_ids": [
+          "srhd-collision"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#srhd-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#srhd-en"
+        }
+      },
+      {
+        "id": "srmhd",
+        "name": {
+          "ja": "特殊相対論的理想MHD（SRMHD）",
+          "en": "Special-relativistic ideal MHD (SRMHD)"
+        },
+        "problem_ids": [
+          "srmhd-alfven"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#srmhd-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#srmhd-en"
         }
       }
     ],
@@ -5049,6 +5793,130 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/zalesak/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/zalesak/?lang=en#references-en"
         }
+      },
+      {
+        "id": "srhd-collision",
+        "name": {
+          "ja": "SRHDの対称二衝撃波衝突",
+          "en": "SRHD symmetric two-shock collision"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/results/srhd-collision-preview.png",
+          "sha256": "ef2df95f225e1a80e231c91b85518a4dd007e85f3e6408e9ccbf29aaac386d3f",
+          "width": 1270,
+          "height": 761,
+          "caption": {
+            "ja": "最細格子の実際の保存密度Dの1D x–t図。5保存時刻を使用し、2D流れではありません。",
+            "en": "Actual finest-grid1D x–t conserved-density field from five stored times; not a two-dimensional flow."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/srhd-collision/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/srhd-collision/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/srhd-collision/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/srhd-collision/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "srhd-collision",
+            "kind": "supplement",
+            "name": {
+              "ja": "SRHDの対称二衝撃波衝突",
+              "en": "SRHD symmetric two-shock collision"
+            },
+            "scope": {
+              "ja": "相対論的な対称衝突を、独立なTaub関係から得る厳密な保存量セル平均と比較し、実際の1D時空間場を保存します。",
+              "en": "Compare a relativistic symmetric collision with independent exact Taub-based conserved cell means; save actual1D x–t fields."
+            },
+            "method_ids": [
+              "hll",
+              "muscl",
+              "minmod",
+              "ssprk33"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/srhd-collision/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/srhd-collision/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/atlas-relativistic-2026-11-23.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "同じ7保存量RMHD演算子をB=0で使い、MUSCL/minmod・因果的HLL波速±1・SSPRK33で進めます。Z=ρhW²の物理根を保護付きNewton法で復元し、残差と保存量往復を確認します。",
+          "en": "Use the shared seven-component RMHD operator at B=0 with primitive MUSCL/minmod, causal HLL bounds±1 and SSPRK33. Safeguarded Newton recovers the physical Z=rho h W² root; check residual and full conserved-state roundtrip."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/srhd-collision/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/srhd-collision/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "srmhd-alfven",
+        "name": {
+          "ja": "SRMHDの有限振幅円偏極Alfvén波",
+          "en": "SRMHD finite-amplitude circularly polarized Alfvén wave"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/results/srmhd-alfven-preview.png",
+          "sha256": "23a1cf1258b81f383dd59132738d6f7cc1d37284752f3b4678ef3251c5d3f7a7",
+          "width": 1270,
+          "height": 761,
+          "caption": {
+            "ja": "最細格子の実際の横磁場Byの1D x–t図。5保存時刻を使い、計算は完全な磁気結合を含みます。",
+            "en": "Actual finest-grid transverse By in1D x–t from five stored times; the solver includes full magnetic coupling."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/srmhd-alfven/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/srmhd-alfven/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/srmhd-alfven/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/srmhd-alfven/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "srmhd-alfven",
+            "kind": "supplement",
+            "name": {
+              "ja": "SRMHDの有限振幅円偏極Alfvén波",
+              "en": "SRMHD finite-amplitude circularly polarized Alfvén wave"
+            },
+            "scope": {
+              "ja": "完全な磁気応力と誘導を含むSRMHDで非線形有限振幅波を1周期進め、厳密セル平均、位相、振幅と細分化を検査します。",
+              "en": "Evolve a nonlinear finite-amplitude wave for one period with full SRMHD magnetic stress and induction; check exact cell means,phase,amplitude and refinement."
+            },
+            "method_ids": [
+              "hll",
+              "muscl",
+              "minmod",
+              "ssprk33"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/srmhd-alfven/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/srmhd-alfven/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/atlas-relativistic-2026-11-23.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "D・運動量3成分・全エネルギー・横磁場2成分の全7変数を同じMUSCL/minmod–HLL–SSPRK33で進めます。磁場は動的に結合し、完全なRMHDのZ根で原始変数へ復元します。",
+          "en": "Evolve all seven variables D,three momenta,total E and two transverse magnetic fields with the shared MUSCL/minmod–HLL–SSPRK33 operator. Magnetic dynamics are coupled; primitive recovery solves the full RMHD Z root."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/srmhd-alfven/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/srmhd-alfven/?lang=en#references-en"
+        }
       }
     ],
     "references": [
@@ -5412,6 +6280,74 @@
             "view": {
               "ja": "/numerical-methods-atlas/validation/zalesak-rotation/?lang=ja#zalesak-rotation-ja-measurements",
               "en": "/numerical-methods-atlas/validation/zalesak-rotation/?lang=en#zalesak-rotation-en-measurements"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "srhd-collision",
+        "problem_name": {
+          "ja": "SRHDの対称二衝撃波衝突",
+          "en": "SRHD symmetric two-shock collision"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/srhd-collision/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/srhd-collision/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "srhd-collision",
+            "title": {
+              "ja": "相対論的対称衝突：特殊化した二衝撃波Taub参照",
+              "en": "Relativistic symmetric collision: specialized two-shock Taub reference"
+            },
+            "kind": "semi-analytic",
+            "relation": "same-problem",
+            "note": {
+              "ja": "独自の穏やかな対称入力で、接触面は同じ静止状態へ退化します。一般三波Riemann解、高Lorentz因子、原著の数値入力は検証しません。Eは静止質量を含み、保存量の厳密セル平均と比較します。",
+              "en": "Custom mild symmetric input; contact degenerates to identical resting states. No general three-wave Riemann,extreme-Lorentz-factor or original-paper numerical-input reproduction claim. E includes rest mass; compare exact conserved cell means."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-srhd-collision-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-srhd-collision-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/srhd-collision/?lang=ja#srhd-collision-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/srhd-collision/?lang=en#srhd-collision-en-measurements"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "srmhd-alfven",
+        "problem_name": {
+          "ja": "SRMHDの有限振幅円偏極Alfvén波",
+          "en": "SRMHD finite-amplitude circularly polarized Alfvén wave"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/srmhd-alfven/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/srmhd-alfven/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "srmhd-alfven",
+            "title": {
+              "ja": "SRMHD円偏波：有限振幅厳密族と独立テンソル積分",
+              "en": "SRMHD circular wave: finite-amplitude exact family and independent tensor integration"
+            },
+            "kind": "analytic",
+            "relation": "same-problem",
+            "note": {
+              "ja": "原著の厳密解族を独立な低次法で計算し、ECHO法や原著誤差表は再現しません。一般RMHD衝撃波、極端な磁化・Lorentz因子、GR、抵抗MHD、多次元磁場発散制御は対象外。図は実際の1D時空間場です。",
+              "en": "Use the original exact family with an independent lower-order operator; no ECHO-algorithm or error-table reproduction. Generic RMHD shocks,extreme magnetization/Lorentz factors,GR,resistive MHD and multidimensional divergence control are outside scope. Figures show actual1D x–t fields."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-srmhd-alfven-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-srmhd-alfven-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/srmhd-alfven/?lang=ja#srmhd-alfven-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/srmhd-alfven/?lang=en#srmhd-alfven-en-measurements"
             }
           }
         ]

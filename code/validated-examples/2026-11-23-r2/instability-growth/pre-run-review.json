@@ -1,0 +1,10 @@
+{
+  "self_reviewed_before_execution": true,
+  "independent_review": "Requested from separate MHD agent; its decision will bind this contract in an external receipt before execution.",
+  "equations_and_signs": "Curl of +theta e_y is +theta_x; v=-psi_x gives -v b0prime in scalar equation; shear perturbation includes +Uprimeprime psi_x on LHS.",
+  "representation": "Point samples, auxiliary five-point Poisson vorticity; independent continuous Galerkin fields and true centered native divergence, no MAC claim.",
+  "planned_tests": 22,
+  "planned_case_gates": 74,
+  "planned_fixed_runs": 10,
+  "failure_policy": "Keep every frozen source/input/acceptance/log/NPZ/actual decision; any changed experimental input or solver becomes a new declared revision."
+}

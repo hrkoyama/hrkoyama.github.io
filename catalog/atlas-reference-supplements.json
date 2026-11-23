@@ -1129,6 +1129,151 @@
       ]
     },
     {
+      "id": "sem-poisson-2d",
+      "model": "poisson-laplace",
+      "kind": "manufactured",
+      "title": "2D Poisson sine manufactured solution: shared SEM/P1 FEM reference",
+      "assumptions": "Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM.",
+      "formula": "u(x,y)=sin(pi*x)*sin(pi*y); f=2*pi^2*u; grad u=(pi*cos(pi*x)*sin(pi*y),pi*sin(pi*x)*cos(pi*y)).",
+      "dimension": 2,
+      "bounds": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "components": [
+        "u"
+      ],
+      "field_type": "scalar",
+      "parameters": {
+        "elements": [
+          2,
+          4,
+          8
+        ],
+        "h_degree": 2,
+        "p_elements": 2,
+        "degrees": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "p1_grids": [
+          4,
+          8,
+          16
+        ],
+        "acceptance": {
+          "sem_l2_order_min": 2.5,
+          "sem_l2_order_max": 3.5,
+          "sem_h1_order_min": 1.6,
+          "sem_h1_order_max": 2.6,
+          "p1_l2_order_min": 1.7,
+          "p1_l2_order_max": 2.3,
+          "p1_h1_order_min": 0.8,
+          "p1_h1_order_max": 1.2,
+          "p_reduction_min": 1000,
+          "p6_l2_max": 2e-05,
+          "same_dof_ratio_max": 0.3333333333333333,
+          "relative_residual_max": 1e-11
+        }
+      },
+      "sources": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/sem.py"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/sem-poisson-2d/?lang=ja",
+        "en": "/numerical-methods-atlas/validation/sem-poisson-2d/?lang=en"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/spectral-element/",
+        "en": "/numerical-methods-atlas/en/read/spectral-element/"
+      },
+      "reference_scope": "Compare with the analytic manufactured sine solution/gradient. Integrate continuous L2/H1-seminorm errors at independent higher-order Gauss points. Check h/p refinement, matched-unknown errors, boundary data and true residuals; save actual2D SEM fields and P1 vertices/triangles/values in NPZ.",
+      "citations": [
+        {
+          "role": "executed-reference-implementation",
+          "title": "Atlas sem.py: sine value and gradient",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/sem.py",
+          "note": "Locally chosen exact field evaluated in every fixed-input run; not an external Nek/PyFR execution."
+        }
+      ]
+    },
+    {
+      "id": "fr-periodic-advection",
+      "model": "linear-advection",
+      "kind": "analytic",
+      "title": "FR/DG periodic sine advection: analytic reference at mean0.4 andT=.25",
+      "assumptions": "Dimensionless u_t+u_x=0 on[0,1), periodic boundary, initial0.4+sin(2pi x), analytic0.4+sin(2pi(x-t)). Constant positive speed1 and uniform affine intervals.",
+      "formula": "u(x,t)=0.4+sin(2*pi*(x-t)); speed1, period1, T=.25.",
+      "dimension": 1,
+      "bounds": [
+        [
+          0,
+          1
+        ]
+      ],
+      "components": [
+        "u"
+      ],
+      "field_type": "scalar",
+      "parameters": {
+        "grids": [
+          8,
+          16,
+          32
+        ],
+        "degrees": [
+          1,
+          2
+        ],
+        "speed": 1,
+        "time": 0.25,
+        "cfl": 0.15,
+        "acceptance": {
+          "p1_order_min": 1.7,
+          "p1_order_max": 2.5,
+          "p2_order_min": 2.6,
+          "p2_order_max": 3.5,
+          "finest_l2_max": 0.0002,
+          "dg_difference_max": 2e-10,
+          "mass_drift_max": 2e-12,
+          "energy_increase_max": 2e-12,
+          "time_error_max": 1e-06,
+          "halving_ratio_max": 0.3,
+          "transport_change_min": 0.5
+        }
+      },
+      "sources": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/fr.py"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/fr-periodic-advection/?lang=ja",
+        "en": "/numerical-methods-atlas/validation/fr-periodic-advection/?lang=en"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/flux-reconstruction/",
+        "en": "/numerical-methods-atlas/en/read/flux-reconstruction/"
+      },
+      "reference_scope": "Integrate continuous L2 error at additional Gauss points and compare final polynomials with the actual published DG at common points. Check weighted mass at every RK stage and quadratic energy at each completed step. A matrix exponential of the same FR operator separately measures RK3 time error and its timestep-halving response.",
+      "citations": [
+        {
+          "role": "executed-reference-implementation",
+          "title": "Atlas fr.py: analytic translation",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/fr.py",
+          "note": "Locally chosen exact field evaluated in every fixed-input run; not an external Nek/PyFR execution."
+        }
+      ]
+    },
+    {
       "id": "kh-initial-growth",
       "model": "forced-vorticity",
       "kind": "numerical-reference",

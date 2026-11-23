@@ -24,6 +24,10 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/ale/
 
 ## コード・検証
 
+- [非一様移動格子で実際に運ぶALEスカラー](<https://hrkoyama.github.io/numerical-methods-atlas/validation/ale-nonuniform-transport/?lang=ja>)
+  availability: run
+
+  質量と格子面位置を同じHeun段で更新し、一様GCLだけでなく非一様な解析波を運びます。
 - [ALE一様状態・幾何保存モデル：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/ale/?lang=ja#method-execution-ja>)
   availability: source
 

@@ -225,6 +225,87 @@
       }
     },
     {
+      "id": "spectral-element",
+      "method_ids": [
+        "spectral-element",
+        "p1-fem"
+      ],
+      "equation_ids": [
+        "poisson-laplace"
+      ],
+      "problem_ids": [
+        "poisson-2d-sine"
+      ],
+      "execution_ids": [
+        "sem-poisson-2d"
+      ],
+      "reference_ids": [
+        "sem-poisson-2d"
+      ],
+      "code_problem_ids": [],
+      "code_links": [],
+      "note": {
+        "ja": "新しい固定入力を実行した範囲で、手法・式・既存の物理問題・解析/製造参照・配布コードを対応させます。関連する外部ソフトの動作検証は含みません。",
+        "en": "Explicitly connects the newly executed fixed inputs to methods, equations, existing physical problems, analytic/manufactured references and release code. It does not validate related external software."
+      }
+    },
+    {
+      "id": "flux-reconstruction",
+      "method_ids": [
+        "flux-reconstruction",
+        "dg"
+      ],
+      "equation_ids": [
+        "linear-advection"
+      ],
+      "problem_ids": [
+        "advection-sine"
+      ],
+      "execution_ids": [
+        "fr-periodic-advection"
+      ],
+      "reference_ids": [
+        "fr-periodic-advection"
+      ],
+      "code_problem_ids": [],
+      "code_links": [],
+      "note": {
+        "ja": "新しい固定入力を実行した範囲で、手法・式・既存の物理問題・解析/製造参照・配布コードを対応させます。関連する外部ソフトの動作検証は含みません。",
+        "en": "Explicitly connects the newly executed fixed inputs to methods, equations, existing physical problems, analytic/manufactured references and release code. It does not validate related external software."
+      }
+    },
+    {
+      "id": "validation-sem-fr",
+      "method_ids": [
+        "spectral-element",
+        "p1-fem",
+        "flux-reconstruction",
+        "dg"
+      ],
+      "equation_ids": [
+        "poisson-laplace",
+        "linear-advection"
+      ],
+      "problem_ids": [
+        "poisson-2d-sine",
+        "advection-sine"
+      ],
+      "execution_ids": [
+        "sem-poisson-2d",
+        "fr-periodic-advection"
+      ],
+      "reference_ids": [
+        "sem-poisson-2d",
+        "fr-periodic-advection"
+      ],
+      "code_problem_ids": [],
+      "code_links": [],
+      "note": {
+        "ja": "新しい固定入力を実行した範囲で、手法・式・既存の物理問題・解析/製造参照・配布コードを対応させます。関連する外部ソフトの動作検証は含みません。",
+        "en": "Explicitly connects the newly executed fixed inputs to methods, equations, existing physical problems, analytic/manufactured references and release code. It does not validate related external software."
+      }
+    },
+    {
       "id": "validation-instability-growth",
       "method_ids": [
         "centered-difference",

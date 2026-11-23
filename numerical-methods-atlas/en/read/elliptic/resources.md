@@ -279,6 +279,10 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Reference sin(πx)sin(πy) on the unit square; refine CG/MG through 15/31/63 interior nodes and P1 FEM through 4/8/16 subdivisions. Independently evaluate FD maximum errors/true residuals and FEM element-interior L2/H1-seminorm errors.
+- [Pure Neumann compatibility and mean gauge](<https://hrkoyama.github.io/numerical-methods-atlas/validation/poisson-neumann/?lang=en>)
+  availability: run
+
+  Solve singular2D Poisson with compatibility/gauge and reject incompatible source.
 - [Crank–Nicolson — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/crank-nicolson/?lang=en#method-execution-en>)
   availability: source
 

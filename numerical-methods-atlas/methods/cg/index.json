@@ -29,7 +29,7 @@
     "test_multigrid",
     "test_poisson_comparison"
   ],
-  "code_mapping_scope": "Related chapter modules and test files; not a claim that each test covers every named method.",
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct.",
   "references": [
     {
       "url": "https://doi.org/10.6028/jres.049.044",
@@ -180,18 +180,265 @@
     "共役勾配",
     "共役勾配法"
   ],
+  "depth_release": {
+    "group": "mesh-boundary",
+    "case_ids": [
+      "poisson-neumann"
+    ],
+    "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/",
+    "code_edition": "2026-11-23",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/boundary.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/fem.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/annulus.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/experiments.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/references/fields.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/test_geometry.py"
+    ],
+    "run_commands": [
+      "python -m pytest -q",
+      "python run.py --input inputs.json --output output"
+    ],
+    "run_from": "atlas-mesh-boundary-2026-11-23",
+    "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/atlas-mesh-boundary-2026-11-23.zip",
+    "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/source-manifest.json",
+    "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/verification.json",
+    "code_archive_sha256": "51032054029345b8f187ebb12e1a0d8d4473b70312f29585a160fc3b0fdca315",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/results/result.json",
+    "passed_tests": 20,
+    "examples": [
+      {
+        "id": "poisson-neumann",
+        "title": {
+          "ja": "純Neumannの互換条件と平均値ゲージ",
+          "en": "Pure Neumann compatibility and mean gauge"
+        },
+        "method_ids": [
+          "centered-difference",
+          "cg"
+        ],
+        "domains": [
+          "pde",
+          "geometry"
+        ],
+        "summary": {
+          "ja": "特異な2D Poissonを互換条件と指定平均込みで解き、不適合な外力を拒否します。",
+          "en": "Solve singular2D Poisson with compatibility/gauge and reject incompatible source."
+        },
+        "assumptions": {
+          "ja": "単位正方形N16/32/64、セル中心の点DOF。cos(2pi x)cos(2pi y)、全壁Neumann0、平均0とN32の平均.25診断。",
+          "en": "Unit square N16/32/64, cell-centred point DOFs, cosine exact field, homogeneous Neumann; mean0 andN32 mean.25 probe."
+        },
+        "algorithm": {
+          "ja": "共有面差分で特異行列を組み、体積重み平均のLagrange拘束付き疎直接法とcompatible CGを照合。物理的な不適合外力の平均を勝手に引かない。",
+          "en": "Shared-face differences, weighted-mean augmented solve and compatible CG comparison; no physical RHS mean projection."
+        },
+        "validation": {
+          "ja": "L2細分化、零空間、平均、CG差、source+1拒否、境界流束/体積源の収支を保存。",
+          "en": "Retain L2 refinement, nullspace/gauge/CG gap, source+1 rejection and boundary/source budget."
+        },
+        "limits": {
+          "ja": "同じ半離散系の別線形解法は独立PDE参照ではありません。既存Dirichlet MGの成功や2D任意境界へ一般化しません。",
+          "en": "A different linear solver of the same matrix is not an independent PDE discretization; no general boundary/MG claim."
+        },
+        "references": [
+          {
+            "id": "petsc-nullspace",
+            "author": "PETSc developers",
+            "title": "KSP: Solving Singular Systems",
+            "url": "https://petsc.org/main/manual/ksp/",
+            "review_level": "selected-official-section",
+            "review_scope": "Solving Singular Systems: constant Neumann nullspace and RHS compatibility inspected. We reject physical incompatibility rather than projecting it away. PETSc is neither a dependency nor executed."
+          }
+        ],
+        "citations": [
+          {
+            "id": "petsc-nullspace",
+            "author": "PETSc developers",
+            "title": "KSP: Solving Singular Systems",
+            "url": "https://petsc.org/main/manual/ksp/",
+            "review_level": "selected-official-section",
+            "review_scope": "Solving Singular Systems: constant Neumann nullspace and RHS compatibility inspected. We reject physical incompatibility rather than projecting it away. PETSc is neither a dependency nor executed."
+          }
+        ],
+        "formulas": [
+          "-\\Delta u=f,\\quad\\partial_nu=g_N,\\quad\\int f=-\\oint g_N"
+        ],
+        "code_files": [
+          "run.py",
+          "boundary.py"
+        ],
+        "gallery_figure": "poisson-neumann-preview.png",
+        "additional_figures": [
+          {
+            "file": "poisson-neumann-preview.png",
+            "caption": {
+              "ja": "実際に保存した計算配列と固定入力の収束指標から描いた検証図。",
+              "en": "Validation preview from actual saved PDE arrays and fixed-input refinement measurements."
+            }
+          }
+        ],
+        "measured": {
+          "id": "poisson-neumann",
+          "passed": true,
+          "checks": {
+            "neumann-n16 residual": true,
+            "neumann-n16 boundary_residual": true,
+            "neumann-n16 flux_balance": true,
+            "neumann-n16 symmetry": true,
+            "neumann-n16 compatibility": true,
+            "neumann-n16 mean_error": true,
+            "neumann-n16 nullspace_defect": true,
+            "neumann-n16 solver_gap": true,
+            "neumann-n32 residual": true,
+            "neumann-n32 boundary_residual": true,
+            "neumann-n32 flux_balance": true,
+            "neumann-n32 symmetry": true,
+            "neumann-n32 compatibility": true,
+            "neumann-n32 mean_error": true,
+            "neumann-n32 nullspace_defect": true,
+            "neumann-n32 solver_gap": true,
+            "neumann-n64 residual": true,
+            "neumann-n64 boundary_residual": true,
+            "neumann-n64 flux_balance": true,
+            "neumann-n64 symmetry": true,
+            "neumann-n64 compatibility": true,
+            "neumann-n64 mean_error": true,
+            "neumann-n64 nullspace_defect": true,
+            "neumann-n64 solver_gap": true,
+            "L2 refinement 1": true,
+            "L2 refinement 2": true,
+            "finest L2": true,
+            "mean gauge shifts only constant": true,
+            "incompatible source rejected without projection": true,
+            "analytic Cartesian stress/source identity": true,
+            "analytic annulus no-slip trace": true,
+            "analytic corner analytic gradient": true
+          },
+          "records": [
+            {
+              "n": 16,
+              "family": "neumann",
+              "mean": 0.0,
+              "l2": 0.006475373360939437,
+              "linf": 0.012457838274480881,
+              "residual": 1.1657341758564144e-15,
+              "compatibility": 6.245004513516506e-17,
+              "mean_error": 1.8973538018496328e-17,
+              "nullspace_defect": 0.0,
+              "solver_gap": 1.1102230246251565e-15,
+              "lagrange_multiplier": 2.4318839158337152e-15,
+              "boundary_residual": 0.0,
+              "boundary_flux_error": 0.0,
+              "flux_balance": 6.245004513516506e-17,
+              "symmetry": 0.0,
+              "id": "neumann-n16"
+            },
+            {
+              "n": 32,
+              "family": "neumann",
+              "mean": 0.0,
+              "l2": 0.0016094822200392455,
+              "linf": 0.003188038690527084,
+              "residual": 1.1796119636642288e-15,
+              "compatibility": 7.177418381854039e-17,
+              "mean_error": 1.5937941342126366e-16,
+              "nullspace_defect": 0.0,
+              "solver_gap": 3.4416913763379853e-15,
+              "lagrange_multiplier": 5.937917957019772e-15,
+              "boundary_residual": 0.0,
+              "boundary_flux_error": 0.0,
+              "flux_balance": 7.177418381854039e-17,
+              "symmetry": 0.0,
+              "id": "neumann-n32"
+            },
+            {
+              "n": 64,
+              "family": "neumann",
+              "mean": 0.0,
+              "l2": 0.0004017888396835558,
+              "linf": 0.0008016429562934801,
+              "residual": 1.6410484082740595e-15,
+              "compatibility": 1.474514954580286e-17,
+              "mean_error": 7.160477722908953e-17,
+              "nullspace_defect": 0.0,
+              "solver_gap": 1.0436096431476471e-14,
+              "lagrange_multiplier": -2.2436555307051445e-15,
+              "boundary_residual": 0.0,
+              "boundary_flux_error": 0.0,
+              "flux_balance": 1.474514954580286e-17,
+              "symmetry": 0.0,
+              "id": "neumann-n64",
+              "gauge_shift_error": 3.774758283725532e-15
+            }
+          ],
+          "metrics": {
+            "n": 64,
+            "mean": 0.0,
+            "l2": 0.0004017888396835558,
+            "linf": 0.0008016429562934801,
+            "residual": 1.6410484082740595e-15,
+            "compatibility": 1.474514954580286e-17,
+            "mean_error": 7.160477722908953e-17,
+            "nullspace_defect": 0.0,
+            "solver_gap": 1.0436096431476471e-14,
+            "lagrange_multiplier": -2.2436555307051445e-15,
+            "boundary_residual": 0.0,
+            "boundary_flux_error": 0.0,
+            "flux_balance": 1.474514954580286e-17,
+            "symmetry": 0.0,
+            "gauge_shift_error": 3.774758283725532e-15
+          },
+          "data_files": [
+            "poisson-neumann-neumann-n16.npz",
+            "poisson-neumann-neumann-n32.npz",
+            "poisson-neumann-neumann-n64.npz",
+            "poisson-neumann-gauge-shift.npz"
+          ],
+          "reference_qualification": {
+            "checks": {
+              "Cartesian stress/source identity": true,
+              "annulus no-slip trace": true,
+              "corner analytic gradient": true
+            },
+            "stress_source_residual": 1.19242983487311e-07,
+            "boundary_trace": 6.991240216781803e-15
+          }
+        },
+        "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/poisson-neumann/",
+        "reading": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/#poisson-neumann",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/#poisson-neumann"
+        }
+      }
+    ]
+  },
+  "depth_scope": {
+    "ja": "追加は適合した純Neumann Poisson系。同じ特異作用素で零からCGを実行し、定数分だけ平均ゲージを合わせ、平均拘束付き直接解と比較します。不適合な右辺は射影せず棄却します。",
+    "en": "Additional compatible pure-Neumann Poisson uses CG from zero on the same singular operator; align only its constant mean gauge and compare a constrained direct solve. Reject incompatible forcing without source projection."
+  },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/cg/",
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/cg/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/cg/index.md",
   "code_urls": [
     "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/linear.py",
     "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/multigrid.py",
-    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/poisson_comparison.py"
+    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/poisson_comparison.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/boundary.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/fem.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/annulus.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/experiments.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/references/fields.py"
   ],
   "test_urls": [
     "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_linear.py",
     "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_multigrid.py",
-    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_poisson_comparison.py"
+    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_poisson_comparison.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/test_geometry.py"
   ],
   "run_commands": [
     "python -m pytest -q tests/test_linear.py tests/test_multigrid.py tests/test_poisson_comparison.py"
@@ -207,6 +454,15 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#poisson-2d-sine-ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#poisson-2d-sine-en"
       }
+    },
+    {
+      "id": "poisson-neumann",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/poisson-neumann/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/poisson-neumann/?lang=en"
+      },
+      "kind": "dedicated-supplement"
     }
   ],
   "problem_navigation": {
@@ -223,7 +479,8 @@
           "poisson-2d-broad",
           "poisson-2d-localized",
           "poisson-2d-sine",
-          "poisson-2d-random"
+          "poisson-2d-random",
+          "poisson-neumann"
         ],
         "url": {
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#poisson-laplace-ja",
@@ -357,8 +614,8 @@
         ],
         "role": "execution",
         "method_note": {
-          "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
-          "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+          "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。 SEMはC0連続なテンソル積Qp Lagrange基底・p+1個のLegendre GLL節点と求積、疎な剛性行列・SciPy直接解法を使用。p=2で各方向2/4/8要素、別に2×2要素でp=1〜6。公開済みNumartのP1 FEM・GMRESをファイルのバイト列を保持して4/8/16分割で実行し、両者の自由未知数9/49/225を一致させます。",
+          "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed. C0 tensor Qp Lagrange SEM with p+1 Legendre GLL nodes/quadrature, sparse stiffness assembly and a SciPy direct solve. At p=2 use2/4/8 elements per axis; separately fix2x2 elements and p=1..6. Execute the byte-identical published Numart triangle P1 FEM/GMRES at4/8/16 subdivisions, matching9/49/225 free unknowns."
         },
         "reference_url": {
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=ja#references-ja",
@@ -399,6 +656,66 @@
         "reference_url": {
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-random/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-random/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "poisson-neumann",
+        "name": {
+          "ja": "純Neumannの互換条件と平均値ゲージ",
+          "en": "Pure Neumann compatibility and mean gauge"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/results/poisson-neumann-preview.png",
+          "sha256": "3b86e5b5ce513745f61f18ef155f3b4a1fee902cef02106516f1ca8aa4e7aebc",
+          "width": 960,
+          "height": 624,
+          "caption": {
+            "ja": "実際に保存した計算配列と固定入力の収束指標から描いた検証図。",
+            "en": "Validation preview from actual saved PDE arrays and fixed-input refinement measurements."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-neumann/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-neumann/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-neumann/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-neumann/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "poisson-neumann",
+            "kind": "supplement",
+            "name": {
+              "ja": "純Neumannの互換条件と平均値ゲージ",
+              "en": "Pure Neumann compatibility and mean gauge"
+            },
+            "scope": {
+              "ja": "特異な2D Poissonを互換条件と指定平均込みで解き、不適合な外力を拒否します。",
+              "en": "Solve singular2D Poisson with compatibility/gauge and reject incompatible source."
+            },
+            "method_ids": [
+              "centered-difference",
+              "cg"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/poisson-neumann/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/poisson-neumann/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/atlas-mesh-boundary-2026-11-23.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "共有面差分で特異行列を組み、体積重み平均のLagrange拘束付き疎直接法とcompatible CGを照合。物理的な不適合外力の平均を勝手に引かない。",
+          "en": "Shared-face differences, weighted-mean augmented solve and compatible CG comparison; no physical RHS mean projection."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-neumann/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-neumann/?lang=en#references-en"
         }
       }
     ],
@@ -480,6 +797,27 @@
               "ja": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=poisson-manufactured",
               "en": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=poisson-manufactured"
             }
+          },
+          {
+            "id": "sem-poisson-2d",
+            "title": {
+              "ja": "2D Poisson正弦製造解：SEMとP1 FEMの共通参照",
+              "en": "2D Poisson sine manufactured solution: shared SEM/P1 FEM reference"
+            },
+            "kind": "manufactured",
+            "relation": "same-problem",
+            "note": {
+              "ja": "全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。",
+              "en": "Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-sem-poisson-2d-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-sem-poisson-2d-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/sem-poisson-2d/?lang=ja",
+              "en": "/numerical-methods-atlas/validation/sem-poisson-2d/?lang=en"
+            }
           }
         ]
       },
@@ -494,6 +832,40 @@
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-random/?lang=en#references-en"
         },
         "cases": []
+      },
+      {
+        "problem_id": "poisson-neumann",
+        "problem_name": {
+          "ja": "純Neumannの互換条件と平均値ゲージ",
+          "en": "Pure Neumann compatibility and mean gauge"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-neumann/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-neumann/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "poisson-neumann",
+            "title": {
+              "ja": "純Neumann：解析場・互換条件・平均値ゲージ",
+              "en": "Pure Neumann: analytic field, compatibility and mean gauge"
+            },
+            "kind": "manufactured",
+            "relation": "same-problem",
+            "note": {
+              "ja": "同じ半離散系の別線形解法は独立PDE参照ではありません。既存Dirichlet MGの成功や2D任意境界へ一般化しません。",
+              "en": "A different linear solver of the same matrix is not an independent PDE discretization; no general boundary/MG claim."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-poisson-neumann-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-poisson-neumann-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/poisson-neumann/?lang=ja#poisson-neumann-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/poisson-neumann/?lang=en#poisson-neumann-en-measurements"
+            }
+          }
+        ]
       }
     ]
   }

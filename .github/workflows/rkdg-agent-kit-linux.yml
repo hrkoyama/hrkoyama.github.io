@@ -7,6 +7,8 @@ on:
       - 'code/rkdg2d/**'
       - 'numerical-methods-atlas/agent-kits/rkdg2d/**'
       - 'scripts/verify-rkdg-agent-kit-public.py'
+      - 'scripts/verify-rkdg-agent-pilot-public.py'
+      - 'catalog/atlas-rkdg-pilot.json'
       - '.github/workflows/rkdg-agent-kit-linux.yml'
   workflow_dispatch:
 
@@ -42,12 +44,22 @@ jobs:
           --expected-manifest-file numerical-methods-atlas/agent-kits/rkdg2d/manifest.json
           --output-dir "${{ runner.temp }}/rkdg-public-verification"
           --wait-seconds 360
+      - name: Download pilot evidence and reassess both generated candidates
+        run: >-
+          python scripts/verify-rkdg-agent-pilot-public.py
+          --base "${{ runner.temp }}/rkdg-public-verification/extracted/atlas-rkdg-agent-kit"
+          --output "${{ runner.temp }}/rkdg-pilot-verification"
+          --wait-seconds 360
       - name: Save checks and outputs
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: rkdg-public-linux-${{ github.run_id }}
           path: |
+            ${{ runner.temp }}/rkdg-pilot-verification/report.json
+            ${{ runner.temp }}/rkdg-pilot-verification/*.stdout
+            ${{ runner.temp }}/rkdg-pilot-verification/*.stderr
+            ${{ runner.temp }}/rkdg-pilot-verification/audit/
             ${{ runner.temp }}/rkdg-public-verification/report.json
             ${{ runner.temp }}/rkdg-public-verification/*.log
             ${{ runner.temp }}/rkdg-public-verification/extracted/atlas-rkdg-agent-kit/outputs/public-verification/

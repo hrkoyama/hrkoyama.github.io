@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "id": "cgrid-rotating-wave",
+  "name": {
+    "ja": "2D C-grid回転浅水波の実時間発展",
+    "en": "Actual2D C-grid rotating shallow-water time advance"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cgrid-rotating-wave/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cgrid-rotating-wave/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cgrid-rotating-wave/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/results/cgrid-rotating-wave-preview.png",
+    "sha256": "363d1ee6a1c02f5fbfff257511b85cc00ef5cf80817cc265eb866847f5609a4c",
+    "width": 960,
+    "height": 608,
+    "caption": {
+      "ja": "実際に保存した計算配列と固定入力の収束指標から描いた検証図。",
+      "en": "Validation preview from actual saved PDE arrays and fixed-input refinement measurements."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-moving-waves/#cgrid-rotating-wave",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-moving-waves/#cgrid-rotating-wave"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#cgrid-rotating-wave",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#cgrid-rotating-wave-en"
+  },
+  "equations": [
+    {
+      "id": "linear-rotating-shallow-water",
+      "name": {
+        "ja": "線形回転浅水方程式",
+        "en": "Linear rotating shallow-water equations"
+      },
+      "formula": [
+        "\\eta_t+H(u_x+v_y)=0,\\qquad u_t-fv=-g\\eta_x,\\qquad v_t+fu=-g\\eta_y",
+        "g=H=f=1,\\quad \\widetilde k=2\\sin(kh/2)/h,\\quad C=\\cos(kh/2)\\cos(lh/2)",
+        "\\omega_h^2=f^2C^2+gH(\\widetilde k^2+\\widetilde l^2)"
+      ],
+      "note": {
+        "ja": "平面f-planeの線形波を実際の2D staggered C-gridでRK4時間発展します。連続分散と離散記号の参照を分け、質量・エネルギー・慣性振動・離散定常釣合いを確認します。",
+        "en": "Actual2D staggered C-grid fields use RK4 on a planar linear f-plane. Separate continuous and semidiscrete references, checking mass,energy,inertial oscillation and discrete geostrophic balance."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#linear-rotating-shallow-water-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#linear-rotating-shallow-water-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "線形f-plane、g=H=f=1、周期単位正方形、(k,l)=(1,2)、eta振幅.01、N16/32/64,T.5。別の固定N16時間系列、zero-modeと離散geostrophic診断。",
+    "en": "Linear f-plane,g=H=f=1, periodic unit square, mode(1,2),height amplitude.01,N16/32/64,T.5. Separate N16 time refinement, zero-mode and discrete geostrophic probes."
+  },
+  "formulations": [
+    {
+      "id": "supplement-cgrid-rotating-wave",
+      "name": {
+        "ja": "2D C-grid回転浅水波の実時間発展",
+        "en": "Actual2D C-grid rotating shallow-water time advance"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "\\eta_t+u_x+v_y=0,\\quad u_t=v-\\eta_x,\\quad v_t=-u-\\eta_y",
+        "\\tilde k=2\\sin(kh/2)/h,\\quad C=\\cos(kh/2)\\cos(lh/2),\\quad U_h(t)=e^{tL_h}U_h(0)"
+      ],
+      "note": {
+        "ja": "実際の2D staggered場を時間積分し、連続波と離散symbolの参照を分けて比較します。",
+        "en": "Time-advance actual2D staggered fields and distinguish continuous-wave references from semidiscrete symbols."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "cgrid-rotating-wave",
+      "kind": "analytic",
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "title": {
+        "ja": "C-grid：連続Fourier解と離散記号の行列指数",
+        "en": "C-grid: continuous Fourier solution and discrete-symbol exponential"
+      },
+      "formula": "Q(t)=exp(t*L)Q0; ktilde=2*sin(k*h/2)/h; ltilde=2*sin(l*h/2)/h; C=cos(k*h/2)*cos(l*h/2); g=H=f=1.",
+      "assumptions": {
+        "ja": "線形f-plane、g=H=f=1、周期単位正方形、(k,l)=(1,2)、eta振幅.01、N16/32/64,T.5。別の固定N16時間系列、zero-modeと離散geostrophic診断。η₀=.01cos[2π(x+2y)]、u₀=v₀=0を、連続3×3 Fourier作用素と離散3×3記号の行列指数で別々に発展させます。主計算は実際の2次元staggered場を時間更新します。",
+        "en": "Linear f-plane,g=H=f=1, periodic unit square, mode(1,2),height amplitude.01,N16/32/64,T.5. Separate N16 time refinement, zero-mode and discrete geostrophic probes. Evolve eta0=.01cos[2pi(x+2y)],u0=v0=0 with separate continuous3x3 Fourier-operator and discrete3x3-symbol exponentials. The primary actually advances2D staggered fields."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "線形・平面・周期squareの限定例。非線形浅水、PV・球面格子・全球dynamical coreやWilliamsonは未実装の後続課題。",
+        "en": "Linear planar periodic square only. Nonlinear SWE,PV,spherical dynamics and Williamson tests remain future work."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/cgrid-rotating-wave/?lang=ja#cgrid-rotating-wave-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/cgrid-rotating-wave/?lang=en#cgrid-rotating-wave-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "連続PDE空間誤差と離散symbol時間誤差、mass/energy、stencil-symbol一致、zero-mode慣性振動と離散定常釣合いを保存。",
+    "en": "Retain continuous-PDE spatial and discrete-symbol temporal errors, mass/energy, stencil-symbol identity, zero-mode inertia and discrete steady balance."
+  },
+  "methods": [
+    {
+      "id": "centered-difference",
+      "name": {
+        "ja": "空間中心差分",
+        "en": "Centered spatial difference"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/centered-difference/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/centered-difference/?lang=en"
+      }
+    },
+    {
+      "id": "rk4",
+      "name": {
+        "ja": "古典的RK4",
+        "en": "Classical RK4"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "セルeta・法線face u/vの差分と4点Coriolis補間を2Dで評価しRK4更新。3×3行列指数は参照だけで、PDE場の更新には使いません。",
+    "en": "Actual2D cell-height/face-velocity differences and four-point Coriolis interpolation use RK4. The3×3 matrix exponential is reference-only, never the PDE update."
+  },
+  "executions": [
+    {
+      "id": "cgrid-rotating-wave",
+      "kind": "supplement",
+      "name": {
+        "ja": "2D C-grid回転浅水波の実時間発展",
+        "en": "Actual2D C-grid rotating shallow-water time advance"
+      },
+      "method_ids": [
+        "centered-difference",
+        "rk4"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/cgrid-rotating-wave/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/cgrid-rotating-wave/?lang=en"
+      },
+      "scope": {
+        "ja": "実際の2D staggered場を時間積分し、連続波と離散symbolの参照を分けて比較します。",
+        "en": "Time-advance actual2D staggered fields and distinguish continuous-wave references from semidiscrete symbols."
+      },
+      "assumptions": {
+        "ja": "線形f-plane、g=H=f=1、周期単位正方形、(k,l)=(1,2)、eta振幅.01、N16/32/64,T.5。別の固定N16時間系列、zero-modeと離散geostrophic診断。",
+        "en": "Linear f-plane,g=H=f=1, periodic unit square, mode(1,2),height amplitude.01,N16/32/64,T.5. Separate N16 time refinement, zero-mode and discrete geostrophic probes."
+      },
+      "limits": {
+        "ja": "線形・平面・周期squareの限定例。非線形浅水、PV・球面格子・全球dynamical coreやWilliamsonは未実装の後続課題。",
+        "en": "Linear planar periodic square only. Nonlinear SWE,PV,spherical dynamics and Williamson tests remain future work."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/atlas-moving-waves-2026-11-23.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "連続PDE空間誤差と離散symbol時間誤差、mass/energy、stencil-symbol一致、zero-mode慣性振動と離散定常釣合いを保存。",
+        "en": "Retain continuous-PDE spatial and discrete-symbol temporal errors, mass/energy, stencil-symbol identity, zero-mode inertia and discrete steady balance."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/transport.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/references/exact.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/test_moving.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

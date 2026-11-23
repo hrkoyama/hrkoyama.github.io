@@ -24,6 +24,10 @@ No chapter-specific association is registered. Atlas-wide index: [Exact and refe
 
 ## Code and validation
 
+- [ALE scalar transport on genuinely nonuniform moving cells](<https://hrkoyama.github.io/numerical-methods-atlas/validation/ale-nonuniform-transport/?lang=en>)
+  availability: run
+
+  Advance cell integrals and face positions with identical Heun stages, transporting a nonuniform analytic wave beyond a uniform GCL check.
 - [ALE uniform-state / geometric-conservation model — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/ale/?lang=en#method-execution-en>)
   availability: source
 

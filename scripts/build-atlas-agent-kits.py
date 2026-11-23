@@ -6,6 +6,7 @@ import hashlib
 import json
 import re
 from atlas_rkdg_prompts import prompt_section
+from atlas_rkdg_pilot import build_pilot, highlight
 
 ROOT = Path(__file__).resolve().parents[1]
 ORIGIN = 'https://hrkoyama.github.io'
@@ -56,6 +57,7 @@ def pre(text):
     return '<pre tabindex="0"><code>'+esc(text)+'</code></pre>'
 
 
+pilot = build_pilot(ROOT)
 sections = []
 for lang in ['ja', 'en']:
     ja = lang == 'ja'
@@ -71,6 +73,7 @@ for lang in ['ja', 'en']:
     body += '<p class="kit-hash">'+esc(data['edition'])+' · '+format(archive.stat().st_size/1_000_000, '.1f')+' MB · SHA256 <code>'+archive_sha+'</code><br>'+link(data['archive']+'.sha256', 'SHA256ファイル' if ja else 'SHA256 file')+'</p>'
     rendered_prompts, prompt_manifest = prompt_section(ROOT, route, lang)
     assert prompt_manifest['archive_sha256'] == archive_sha
+    body += highlight(pilot, lang)
     body += rendered_prompts
     body += '<section id="start-'+lang+'"><h2>'+('AIエージェントへの最初の依頼' if ja else 'The first instruction for your AI agent')+'</h2>'
     body += p('次のURLを渡し、「案内を読んでキットを取得し、SHA256を確認して、新しい出力先でクイックテストを実行。結果と未実施の範囲を報告して」と依頼します。' if ja else 'Pass the following URL to your agent: “Read the guide, download the kit, verify SHA256, and run the quick test in a new output directory. Report the result and what was not rerun.”')
@@ -141,5 +144,6 @@ guide.write_text(text)
 text=guide.read_text()
 for name, info in prompt_manifest['files'].items():
     text += '- [RKDG '+name+']('+info['url']+'): copyable development/repair prompt, frozen original48 + waveform4 target; failures and incomplete runs must remain visible.\n'
+text += '- [Measured RKDG agent pilot]('+ORIGIN+pilot['route']+'): Japanese assembly/repair prompts each tested once; original48 + waveform4 PASS, 2/1 solver repairs, about49/48min including computation; cost unavailable. Bilingual HTML/Markdown and downloadable raw evidence.\n'
 guide.write_text(text)
 print('Built RKDG agent entry; no scientific computation. ZIP SHA256 '+archive_sha)

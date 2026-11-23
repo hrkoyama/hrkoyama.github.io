@@ -1023,7 +1023,7 @@
     {
       "id": "kh-initial-growth",
       "kind": "image",
-      "source": "/code/validated-examples/2026-11-23/instability-growth/results/kh-initial-growth-preview.png",
+      "source": "/code/validated-examples/2026-11-23-r2/instability-growth/results/kh-initial-growth-preview.png",
       "caption": {
         "ja": "保存した2D摂動渦度をεで規格化。色の尺度を明記し、線形参照と成長を比較します。",
         "en": "Saved actual2D perturbation vorticity normalized by epsilon; color scale and linear-reference growth are explicit."
@@ -1032,7 +1032,7 @@
     {
       "id": "rt-initial-growth",
       "kind": "image",
-      "source": "/code/validated-examples/2026-11-23/instability-growth/results/rt-initial-growth-preview.png",
+      "source": "/code/validated-examples/2026-11-23-r2/instability-growth/results/rt-initial-growth-preview.png",
       "caption": {
         "ja": "保存した2D浮力摂動をεで規格化。滑らかな二層の初期変位で、乱流混合の図ではありません。",
         "en": "Saved actual2D buoyancy perturbation normalized by epsilon; an early smooth-layer displacement, not turbulent mixing."

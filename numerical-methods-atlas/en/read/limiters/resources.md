@@ -76,6 +76,14 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Rotate a slotted disk through one full turn with an actual 2D finite-volume solver, comparing donor-cell and minmod MUSCL. Eight runs combine three grids with half-cell-center and 45-degree-start probes; measure conservation, bounds at every SSP stage, shape error and slot filling.
+- [SRHD symmetric two-shock collision](<https://hrkoyama.github.io/numerical-methods-atlas/validation/srhd-collision/?lang=en>)
+  availability: run
+
+  Compare a relativistic symmetric collision with independent exact Taub-based conserved cell means; save actual1D x–t fields.
+- [SRMHD finite-amplitude circularly polarized Alfvén wave](<https://hrkoyama.github.io/numerical-methods-atlas/validation/srmhd-alfven/?lang=en>)
+  availability: run
+
+  Evolve a nonlinear finite-amplitude wave for one period with full SRMHD magnetic stress and induction; check exact cell means,phase,amplitude and refinement.
 - [Minmod — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/minmod/?lang=en#method-execution-en>)
   availability: source
 

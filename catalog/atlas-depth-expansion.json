@@ -348,8 +348,24 @@
       }
     },
     {
-      "id": "instability-growth",
+      "id": "sem-fr",
       "edition": "2026-11-23",
+      "title": {
+        "ja": "スペクトル要素法とFR：既存FEM・DGとの軽量比較",
+        "en": "Spectral elements and FR: small comparisons with existing FEM/DG"
+      },
+      "fields": [
+        "elliptic",
+        "fluid"
+      ],
+      "intro": {
+        "ja": "SEMの2D PoissonとFRの1D周期移流を、既存P1 FEM・modal DGと同じ方程式・境界・参照で比較します。h/p収束、連続誤差、残差、保存と時間誤差を分け、外部Nek/PyFRソルバーの実行とは区別します。",
+        "en": "Compare2D SEM Poisson and1D periodic FR advection with the existing P1 FEM/modal DG under matched equations, boundaries and analytic fields. Separate h/p refinement, continuous error, residuals, conservation and time error from any external Nek/PyFR execution."
+      }
+    },
+    {
+      "id": "instability-growth",
+      "edition": "2026-11-23-r2",
       "title": {
         "ja": "KH・RTの初期成長と独立線形参照",
         "en": "KH/RT initial growth and independent linear references"
@@ -481,6 +497,8 @@
     "wall-manufactured": "wall-manufactured",
     "level-set-translation": "level-set-circle",
     "level-set-rotation": "level-set-circle",
+    "sem-poisson-2d": "poisson-2d-sine",
+    "fr-periodic-advection": "advection-sine",
     "kh-initial-growth": "kh-initial-growth",
     "rt-initial-growth": "rt-initial-growth",
     "circular-alfven-refinement": "circular-alfven",
@@ -820,6 +838,24 @@
       "note": {
         "ja": "円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。",
         "en": "Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution."
+      }
+    },
+    "sem-poisson-2d": {
+      "ids": [
+        "poisson-laplace"
+      ],
+      "note": {
+        "ja": "全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。",
+        "en": "Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM."
+      }
+    },
+    "fr-periodic-advection": {
+      "ids": [
+        "linear-advection"
+      ],
+      "note": {
+        "ja": "全て無次元。u_t+u_x=0、区間[0,1)、周期境界、初期値0.4+sin(2πx)。解析解は0.4+sin(2π(x−t))。一定の正速度1、均一なアフィン区間要素。",
+        "en": "Dimensionless u_t+u_x=0 on[0,1), periodic boundary, initial0.4+sin(2pi x), analytic0.4+sin(2pi(x-t)). Constant positive speed1 and uniform affine intervals."
       }
     },
     "kh-initial-growth": {

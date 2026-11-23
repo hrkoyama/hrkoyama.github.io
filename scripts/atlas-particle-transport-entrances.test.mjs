@@ -124,7 +124,7 @@ test('one scoped goal and two depth fields expose six new checks without changin
  assert.match(stage.gap.en,/does not validate gravity PM/);
  for(const language of ['ja','en'])assert.ok(stage.reading.some(x=>x.url[language]===`/numerical-methods-atlas/${language}/read/validation-particle-transport/`));
  const methods=json('catalog/atlas-methods.json').methods;
- assert.equal(methods.length,150);assert.equal(methods.filter(x=>x.status==='educational-example').length,119);
+ assert.equal(methods.length,152);assert.equal(methods.filter(x=>x.status==='educational-example').length,121);
 });
 
 test('all 80 historical gallery illustrations, image checksums and captions survive the new supplemental evidence',()=>{
@@ -132,5 +132,5 @@ test('all 80 historical gallery illustrations, image checksums and captions surv
  assert.equal(items.length,80);
  assert.equal(hash(items.map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}))),'25c25a4cb7ad5c54e5788b984d949c44994d3f1706ed36c4ef30a3ce36fa6c2b');
  const gallery=json('numerical-methods-atlas/gallery/index.json');
- assert.equal(gallery.items.length,102);assert.equal(gallery.items.filter(x=>x.runnable).length,62);
+ assert.equal(gallery.items.length,102);assert.equal(gallery.items.filter(x=>x.runnable).length,64);
 });

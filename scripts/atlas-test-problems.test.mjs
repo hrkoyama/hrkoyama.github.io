@@ -21,7 +21,9 @@ test('matched MHD refinements add one constructed equilibrium, reuse OT and excl
  assert.ok(!inventory.problems.some(x=>['ct-glm-smooth-convergence','ct-glm-ot-convergence','ct-glm-constraint-control'].includes(x.id)));
  assert.deepEqual(smooth.name,cases.find(x=>x.id==='ct-glm-smooth-convergence').title);
  assert.deepEqual(smooth.supplemental_examples.map(x=>x.id),['ct-glm-smooth-convergence']);
- assert.deepEqual(ot.supplemental_examples.map(x=>x.id),['ct-glm-independent','ct-glm-ot-convergence']);
+ const otExecutions=ot.supplemental_examples.map(x=>x.id);
+ assert.deepEqual(otExecutions.filter(id=>id!=='postshock-orszag-tang'),['ct-glm-independent','ct-glm-ot-convergence']);
+ assert.deepEqual(otExecutions.filter(id=>id==='postshock-orszag-tang'),['postshock-orszag-tang']);
  assert.ok(ot.evidence.some(x=>x.path==='code/validated-examples/2026-11-22/mhd/results/result.json'));
  for(const [problem,id] of [[smooth,'ct-glm-smooth-convergence'],[ot,'ct-glm-ot-convergence']]){
   assert.ok(problem.evidence.some(x=>x.path===base+'results/result.json'&&x.where?.id===id));

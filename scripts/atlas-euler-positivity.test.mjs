@@ -15,6 +15,9 @@ const base='code/validated-examples/2026-11-23-r2/euler-positivity/';
 // Preserve the three original MHD problem records while projecting only appended batch18–27 links.
 const batch18OriginalProblems={"orszag-tang":{"id":"orszag-tang","group":"mhd","name":{"ja":"Orszag–Tang渦（CT・GLM・発散誤差摂動を統合）","en":"Orszag–Tang vortex (CT/GLM/error variants merged)"},"chapter":"mhd","evidence":[{"path":"numerical-methods-atlas/assets/validation.json","json_pointer":"/metrics/orszag_tang_ct"},{"path":"numerical-methods-atlas/assets/validation.json","json_pointer":"/metrics/orszag_tang_glm"},{"path":"numerical-methods-atlas/assets/movies/catalog.json","json_pointer":"/movies","where":{"chapter":"mhd"}},{"path":"code/validated-examples/2026-11-22/mhd/results/result.json","json_pointer":"/cases","where":{"id":"ct-glm-independent"}},{"path":"code/validated-examples/2026-11-22/mhd/results/ct-glm-independent.png","artifact":"image"},{"path":"code/validated-examples/2026-11-22/mhd/verification.json","json_pointer":"/all_cases_rerun"},{"path":"code/validated-examples/2026-11-22/mhd-convergence/results/result.json","json_pointer":"/cases","where":{"id":"ct-glm-ot-convergence"}},{"path":"code/validated-examples/2026-11-22/mhd-convergence/results/ct-glm-ot-convergence.png","artifact":"image"},{"path":"code/validated-examples/2026-11-22/mhd-convergence/inputs.json","json_pointer":"/ot"},{"path":"code/validated-examples/2026-11-22/mhd-convergence/verification.json","json_pointer":"/all_cases_rerun"}],"availability":"saved-output","supplemental_examples":[{"id":"ct-glm-independent","url":"/numerical-methods-atlas/validation/ct-glm-independent/","name":{"ja":"Orszag–Tang：CT・GLMと独立Athena++比較","en":"Orszag–Tang: CT, GLM and independent Athena++"}},{"id":"ct-glm-ot-convergence","url":"/numerical-methods-atlas/validation/ct-glm-ot-convergence/","name":{"ja":"Orszag–Tang：条件を揃えたCT・GLMと独立参照の収束","en":"Orszag–Tang: matched CT/GLM and converged independent references"}}]},"circular-alfven":{"id":"circular-alfven","group":"mhd","name":{"ja":"円偏波Alfvén波","en":"Circularly polarized Alfvén wave"},"chapter":"mhd","evidence":[{"path":"numerical-methods-atlas/assets/mhd-tests/mhd-tests.json","json_pointer":"/alfven"}],"availability":"saved-output"},"magnetic-loop":{"id":"magnetic-loop","group":"mhd","name":{"ja":"磁場ループの移流","en":"Magnetic field-loop advection"},"chapter":"mhd","evidence":[{"path":"numerical-methods-atlas/assets/mhd-tests/mhd-tests.json","json_pointer":"/field_loop"}],"availability":"saved-output"}};
 const historicalProblem = row => {
+ const extras=(row.supplemental_examples||[]).filter(e=>!['sem-poisson-2d','fr-periodic-advection'].includes(e.id));
+ row={...row,evidence:row.evidence.filter(e=>!e.path.includes('/sem-fr/'))};
+ if(extras.length)row.supplemental_examples=extras;else delete row.supplemental_examples;
  row=batch18OriginalProblems[row.id]||row;
  if(row.id!=='advection-sine')return row;
  const copy={...row,evidence:row.evidence.filter(e=>!e.path.includes('/weno-critical/'))};
@@ -56,17 +59,17 @@ print('manifest-bound supplemental gallery opt-in checked')`;
 
 test('Euler stage positivity reuses one problem and preserves eighteen older releases and all eighty-six primary pictures',()=>{
  const registry=json('numerical-methods-atlas/validation/releases.json');
- assert.equal(objectHash(registry.releases.filter(r=>r.group!==group&&!['zalesak','weno-critical','shallow-water','wall-flow','level-set', 'instability-growth', 'mhd-transport', 'mesh-boundary', 'moving-waves', 'relativistic'].includes(r.group))),'897f2f731b5911739be0230dfb5ae0ab174ebeb08b954bcca028f02d59dba1ee');
- assert.equal(registry.case_count,69);assert.equal(registry.releases.length,29);
+ assert.equal(objectHash(registry.releases.filter(r=>r.group!==group&&!['zalesak','weno-critical','shallow-water','wall-flow','level-set', 'instability-growth', 'mhd-transport', 'mesh-boundary', 'moving-waves', 'relativistic', 'sem-fr'].includes(r.group))),'897f2f731b5911739be0230dfb5ae0ab174ebeb08b954bcca028f02d59dba1ee');
+ assert.equal(registry.case_count,71);assert.equal(registry.releases.length,30);
  const release=registry.releases.find(r=>r.group===group);assert.deepEqual(release.case_ids,[id]);
- assert.equal(registry.releases.filter(r=>!['zalesak','weno-critical','shallow-water','wall-flow','level-set', 'instability-growth', 'mhd-transport', 'mesh-boundary', 'moving-waves', 'relativistic'].includes(r.group)).reduce((s,r)=>s+r.tests,0),571+release.tests);
+ assert.equal(registry.releases.filter(r=>!['zalesak','weno-critical','shallow-water','wall-flow','level-set', 'instability-growth', 'mhd-transport', 'mesh-boundary', 'moving-waves', 'relativistic', 'sem-fr'].includes(r.group)).reduce((s,r)=>s+r.tests,0),571+release.tests);
  const pictures=json('numerical-methods-atlas/gallery/preview-manifest.json').items.filter(r=>!['zalesak','swashes-topography','dry-bed-dam-break','lid-driven-cavity','wall-manufactured','level-set-circle', 'kh-initial-growth', 'rt-initial-growth', 'lshape-fem', 'annular-viscous-mms', 'poisson-neumann', 'poisson-robin', 'ale-nonuniform-transport', 'cgrid-rotating-wave', 'srhd-collision', 'srmhd-alfven'].includes(r.id)).map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}));
  assert.equal(pictures.length,86);assert.equal(objectHash(pictures),'c64fafd78d6ae0a39941161c2932799ffca4f8eb0e3885ce2998de58f4a1f429');
  const problems=json('catalog/atlas-test-problems.json').problems;
  assert.equal(problems.length,102);
  const before=problems.filter(p=>!['zalesak','swashes-topography','dry-bed-dam-break','lid-driven-cavity','wall-manufactured','level-set-circle', 'kh-initial-growth', 'rt-initial-growth', 'lshape-fem', 'annular-viscous-mms', 'poisson-neumann', 'poisson-robin', 'ale-nonuniform-transport', 'cgrid-rotating-wave', 'srhd-collision', 'srmhd-alfven'].includes(p.id)).map(historicalProblem).map(p=>{if(p.id!=='double-rarefaction')return p;const copy={...p};delete copy.supplemental_examples;return copy;});
  assert.equal(objectHash(before),'cb3e36911d193201104862c1d0038e1b1b08c551946f7508a0ce7f4eb1fafd67');
- assert.equal(json('catalog/atlas-methods.json').methods.length,150);
+ assert.equal(json('catalog/atlas-methods.json').methods.length,152);
  assert.equal(hash('numerical-methods-atlas/code-and-data/examples.json'),'3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7');
  const receipt=json(base+'verification.json');assert.equal(receipt.tests,release.tests);assert.equal(receipt.passed,true);assert.equal(receipt.all_cases_rerun,true);assert.equal(hash(base+receipt.archive.file),receipt.archive.sha256);
  for(const[p,h]of Object.entries(json(base+'source-manifest.json').files))assert.equal(hash(base+p),h,p);
@@ -89,7 +92,7 @@ test('the new double-rarefaction figure is visible and linked to actual methods,
  assert.equal((html.match(new RegExp('data-supplemental-preview="'+id+'"','g'))||[]).length,2);
  const methods=json('numerical-methods-atlas/methods/index.json').methods;
  for(const mid of page.method_ids){const method=methods.find(x=>x.id===mid);assert.equal(method.status,'educational-example');assert.ok([method.depth_release,...(method.depth_additional_releases||[])].some(x=>x.group===group));}
- assert.deepEqual(Object.fromEntries(['educational-example','reading-only','planned'].map(s=>[s,methods.filter(m=>m.status===s).length])),{'educational-example':118,'reading-only':15,planned:16});
+ assert.deepEqual(Object.fromEntries(['educational-example','reading-only','planned'].map(s=>[s,methods.filter(m=>m.status===s).length])),{'educational-example':121,'reading-only':15,planned:16});
 });
 
 test('the frozen three-grid Euler update retains every positive stage, actual scaling, shared-flux budgets and full x-t data',()=>{

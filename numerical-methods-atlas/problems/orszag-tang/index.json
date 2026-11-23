@@ -90,12 +90,59 @@
         "ja": "同じOT初期セル平均と同じdt列でCT/GLMを計算し、別に実行したAthena++の格子・時間感度を分離した参照と比較します。",
         "en": "Run CT/GLM with the same OT initial cell averages and dt sequence, comparing with separately executed Athena++ references whose mesh/time sensitivities are separated."
       }
+    },
+    {
+      "id": "supplement-postshock-orszag-tang",
+      "name": {
+        "ja": "後期Orszag–Tang：独立参照と圧縮構造",
+        "en": "Late Orszag-Tang: independent reference and compression structure"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "\\partial_tU+\\partial_xF_x(U)+\\partial_yF_y(U)=0,\\quad U=(\\rho,\\rho\\mathbf v,E,\\mathbf B)",
+        "E=\\frac{p}{\\gamma-1}+\\frac12\\rho|\\mathbf v|^2+\\frac12|\\mathbf B|^2,\\quad\\gamma=5/3",
+        "\\frac{dB_x}{dt}=-D_y\\mathcal E_z,\\quad\\frac{dB_y}{dt}=D_x\\mathcal E_z,\\quad D_xB_x+D_yB_y=\\mathrm{constant}",
+        "\\bar U_i^{\\mathrm{ref}}=\\frac1{N_i}\\sum_{j\\in i}\\bar U_j^{\\mathrm{fine}},\\qquad e_1=\\frac{\\sum|U-U^{\\mathrm{ref}}|}{\\sum|U^{\\mathrm{ref}}|}",
+        "\\rho_0=\\frac{25}{36\\pi},\\quad p_0=\\frac5{12\\pi},\\quad\\mathbf v_0=(\\sin2\\pi y,-\\sin2\\pi x,0)"
+      ],
+      "note": {
+        "ja": "圧縮性理想MHDのOrszag–TangをT=.2まで進め、相互作用する圧縮・衝撃波構造の密度と圧力を独立有限格子参照で検査します。",
+        "en": "Evolve compressible ideal-MHD Orszag-Tang to T.2 and check density/pressure in interacting compression/shock structure against an independent finite-grid reference."
+      }
     }
   ],
-  "references": [],
+  "references": [
+    {
+      "id": "postshock-orszag-tang",
+      "kind": "numerical-reference",
+      "kind_label": {
+        "ja": "有限格子の数値参照",
+        "en": "Finite-grid numerical reference"
+      },
+      "title": {
+        "ja": "後期Orszag–Tang：独立有限格子の密度・圧力参照",
+        "en": "Late Orszag-Tang: independent finite-grid density/pressure reference"
+      },
+      "formula": "rho0=25/(36*pi); p0=5/(12*pi); v=(sin(2*pi*y),-sin(2*pi*x),0); Az=(cos(4*pi*x)-2*cos(2*pi*y))/(4*pi*sqrt(4*pi)); T=.2.",
+      "assumptions": {
+        "ja": "γ=5/3、[-.5,.5]²周期、ρ=25/(36π)、p=5/(12π)、vx=sin2πy、vy=−sin2πx、Az=(cos4πx−2cos2πy)/(4π√(4π))、16/32/64²セル。原著の非圧縮・粘性抵抗モデルの再現ではありません。公式Athena++を128²/256²と最細CFL半減でT=.2まで進めます。終端保存変数を保守的に粗視化し、その後で圧力を計算します。参照圧力の平均を先に作る規約ではありません。",
+        "en": "gamma5/3,periodic[-.5,.5]²,rho25/(36pi),p5/(12pi),vx=sin2piy,vy=-sin2pix,Az=(cos4pix-2cos2piy)/(4pi sqrt4pi),16/32/64² cells. This does not reproduce the original incompressible viscous/resistive model. Run official Athena++ at128²/256² and finest-grid half CFL to T.2. Conservatively restrict final conserved variables before computing pressure; pressure is not averaged separately."
+      },
+      "relation": "related-model",
+      "note": {
+        "ja": "γ=5/3、[-.5,.5]²周期、ρ=25/(36π)、p=5/(12π)、vx=sin2πy、vy=−sin2πx、Az=(cos4πx−2cos2πy)/(4π√(4π))、16/32/64²セル。原著の非圧縮・粘性抵抗モデルの再現ではありません。",
+        "en": "gamma5/3,periodic[-.5,.5]²,rho25/(36pi),p5/(12pi),vx=sin2piy,vy=-sin2pix,Az=(cos4pix-2cos2piy)/(4pi sqrt4pi),16/32/64² cells. This does not reproduce the original incompressible viscous/resistive model."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=ja#postshock-orszag-tang-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=en#postshock-orszag-tang-en-measurements"
+      }
+    }
+  ],
   "reference_note": {
-    "ja": "保存則・各離散配置に対応する磁場発散と、別実行のAthena++数値参照を確認します。この非線形MHD問題の厳密解を提供するものではありません。",
-    "en": "Check conservation, divergence appropriate to each discrete layout, and separately run Athena++ numerical references. These are not exact solutions of the nonlinear MHD problem."
+    "ja": "保存則・各離散配置に対応する磁場発散と、別実行のAthena++数値参照を確認します。この非線形MHD問題の厳密解を提供するものではありません。 実行前契約で47pytest・全12計算を固定。3格子と最細格子の時間刻み半減を分離し、全段の正値性・有限性、保存量、Courant数、5時刻の実場を保存します。Athena++の2格子と刻み半減で参照を検定。終端保存変数を保守的に粗視化し、誤差と参照感度を分離します。共通セル発散と主計算の固有面発散は別の検査です。",
+    "en": "Check conservation, divergence appropriate to each discrete layout, and separately run Athena++ numerical references. These are not exact solutions of the nonlinear MHD problem. Freeze 47 pytest checks and12 primary runs before execution. Separate three grids and a finest-grid half-dt probe; retain stage positivity/finiteness, conservation, Courant number and five actual field snapshots. Qualify Athena++ with two grids and a half-CFL probe. Conservatively restrict final conserved states and separate reference sensitivity from primary error. Common-cell divergence and primary native-face divergence are distinct checks."
   },
   "methods": [
     {
@@ -122,6 +169,45 @@
       "url": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/glm/?lang=ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/glm/?lang=en"
+      }
+    },
+    {
+      "id": "hlld",
+      "name": {
+        "ja": "HLLDのMHDリーマン解法",
+        "en": "HLLD MHD Riemann solver"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hlld/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hlld/?lang=en"
+      }
+    },
+    {
+      "id": "muscl",
+      "name": {
+        "ja": "MUSCL再構成",
+        "en": "MUSCL reconstruction"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=en"
+      }
+    },
+    {
+      "id": "heun",
+      "name": {
+        "ja": "Heun法／SSPRK(2,2)",
+        "en": "Heun / SSPRK(2,2)"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/heun/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/heun/?lang=en"
       }
     }
   ],
@@ -234,6 +320,63 @@
       ],
       "test_urls": [
         "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd-convergence/test_convergence.py"
+      ],
+      "source_scope": "package"
+    },
+    {
+      "id": "postshock-orszag-tang",
+      "kind": "supplement",
+      "name": {
+        "ja": "後期Orszag–Tang：独立参照と圧縮構造",
+        "en": "Late Orszag-Tang: independent reference and compression structure"
+      },
+      "method_ids": [
+        "hlld",
+        "muscl",
+        "heun",
+        "ct"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=en"
+      },
+      "scope": {
+        "ja": "圧縮性理想MHDのOrszag–TangをT=.2まで進め、相互作用する圧縮・衝撃波構造の密度と圧力を独立有限格子参照で検査します。",
+        "en": "Evolve compressible ideal-MHD Orszag-Tang to T.2 and check density/pressure in interacting compression/shock structure against an independent finite-grid reference."
+      },
+      "assumptions": {
+        "ja": "γ=5/3、[-.5,.5]²周期、ρ=25/(36π)、p=5/(12π)、vx=sin2πy、vy=−sin2πx、Az=(cos4πx−2cos2πy)/(4π√(4π))、16/32/64²セル。原著の非圧縮・粘性抵抗モデルの再現ではありません。",
+        "en": "gamma5/3,periodic[-.5,.5]²,rho25/(36pi),p5/(12pi),vx=sin2piy,vy=-sin2pix,Az=(cos4pix-2cos2piy)/(4pi sqrt4pi),16/32/64² cells. This does not reproduce the original incompressible viscous/resistive model."
+      },
+      "limits": {
+        "ja": "少数の固定入力に対する教育用検証です。HLLDのHLLE代替と再構成の正値性スケーリングを数え、セル状態の床・クリップ・再試行は行いません。有限格子参照は厳密解ではなく、任意問題の安定性・正値性や普遍的次数を保証しません。独立比較は終端のみ。中間Athena時刻は指定四半時刻直後で、正確に整列した場とは表示しません。Athenaの固有面発散は出力しておらず測定を主張しません。密度比は圧縮の診断であり数学的衝撃波の証明ではありません。",
+        "en": "Educational fixed inputs only. Count HLLD-to-HLLE fallbacks and face reconstruction positivity scaling; no cell floor/clipping/retry. Finite-grid references are not exact solutions; no universal stability, positivity or order guarantee. Independent comparisons are final-only. Intermediate Athena outputs occur just after requested quarter times and are not matched frames. Athena native-face divergence is not exported/measured. Density contrast diagnoses compression, not a mathematical proof of shock formation."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "実行前契約で47pytest・全12計算を固定。3格子と最細格子の時間刻み半減を分離し、全段の正値性・有限性、保存量、Courant数、5時刻の実場を保存します。Athena++の2格子と刻み半減で参照を検定。終端保存変数を保守的に粗視化し、誤差と参照感度を分離します。共通セル発散と主計算の固有面発散は別の検査です。",
+        "en": "Freeze 47 pytest checks and12 primary runs before execution. Separate three grids and a finest-grid half-dt probe; retain stage positivity/finiteness, conservation, Courant number and five actual field snapshots. Qualify Athena++ with two grids and a half-CFL probe. Conservatively restrict final conserved states and separate reference sensitivity from primary error. Common-cell divergence and primary native-face divergence are distinct checks."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/solver.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/hlld.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/qualify_saved.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/test_mhd.py"
       ],
       "source_scope": "package"
     }

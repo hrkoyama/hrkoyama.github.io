@@ -275,6 +275,8 @@ def main(root=ROOT, navigation=None):
     expansion=json.loads((ROOT/'catalog/atlas-depth-expansion.json').read_text())
     supplements=load_supplemental_examples(ROOT,list(expansion['case_problem_ids']))
     case_aliases={
+        'sem-poisson-2d':['SEM','spectral element','spectral-element','スペクトル要素','スペクトル要素法','Poisson','ポアソン','FEM','h refinement','p refinement'],
+        'fr-periodic-advection':['FR','flux reconstruction','流束再構成','FR法','DG','周期移流','periodic advection','Radau'],
         'level-set-translation':['level set','level-set','levelset','レベルセット','界面','circle','円の移流','平行移動','translation','signed distance'],
         'level-set-rotation':['level set','level-set','levelset','レベルセット','界面','circle','円の回転','剛体回転','rigid rotation','signed distance'],
 

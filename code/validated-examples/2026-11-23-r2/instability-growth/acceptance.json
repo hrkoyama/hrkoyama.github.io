@@ -1,0 +1,17 @@
+{
+  "reference_state_sensitivity_max": 0.0002,
+  "reference_growth_sensitivity_max": 0.0002,
+  "reference_eigen_growth_min": 0.001,
+  "finest_relative_field_error_max": 0.05,
+  "minimum_spatial_order": 1.3,
+  "growth_curve_relative_error_max": 0.05,
+  "finite_window_rate_absolute_error_max": 0.04,
+  "finite_window_growth_min": 1.001,
+  "time_probe_fraction_of_spatial_error_max": 0.25,
+  "amplitude_halving_scaled_difference_max": 0.002,
+  "absolute_divergence_max": 1e-12,
+  "absolute_poisson_residual_max": 1e-12,
+  "absolute_mean_drift_max": 1e-12,
+  "shared_pytest_plus_main_budget_seconds": 120,
+  "meaning": "Fixed before first scientific execution. Reference, spatial refinement, Heun time contamination, amplitude-linearity and conservation/constraint diagnostics are distinct. No thresholds may be relaxed to hide a failed run."
+}

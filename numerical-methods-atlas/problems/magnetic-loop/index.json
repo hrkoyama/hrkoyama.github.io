@@ -56,11 +56,59 @@
     "ja": "この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。",
     "en": "Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters."
   },
-  "formulations": [],
-  "references": [],
+  "formulations": [
+    {
+      "id": "supplement-magnetic-loop-independent",
+      "name": {
+        "ja": "磁場ループ：独立2次元参照と細分化",
+        "en": "Magnetic loop: independent 2D reference and refinement"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "\\partial_tU+\\partial_xF_x(U)+\\partial_yF_y(U)=0,\\quad U=(\\rho,\\rho\\mathbf v,E,\\mathbf B)",
+        "E=\\frac{p}{\\gamma-1}+\\frac12\\rho|\\mathbf v|^2+\\frac12|\\mathbf B|^2,\\quad\\gamma=5/3",
+        "\\frac{dB_x}{dt}=-D_y\\mathcal E_z,\\quad\\frac{dB_y}{dt}=D_x\\mathcal E_z,\\quad D_xB_x+D_yB_y=\\mathrm{constant}",
+        "\\bar U_i^{\\mathrm{ref}}=\\frac1{N_i}\\sum_{j\\in i}\\bar U_j^{\\mathrm{fine}},\\qquad e_1=\\frac{\\sum|U-U^{\\mathrm{ref}}|}{\\sum|U^{\\mathrm{ref}}|}",
+        "A_z=.001\\max(.3-\\sqrt{x^2+y^2},0),\\qquad\\mathbf v=(2,1,2)"
+      ],
+      "note": {
+        "ja": "実際の2次元磁場ループ輸送を、別実装Athena++の空間・時間感度を検査した終端保存場と比較します。",
+        "en": "Compare genuine 2D magnetic-loop transport with final conserved fields from independent Athena++, qualified in space and time."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "magnetic-loop-independent",
+      "kind": "numerical-reference",
+      "kind_label": {
+        "ja": "有限格子の数値参照",
+        "en": "Finite-grid numerical reference"
+      },
+      "title": {
+        "ja": "磁場ループ：固定Athena++の独立終端参照",
+        "en": "Magnetic loop: pinned independent Athena++ final-field reference"
+      },
+      "formula": "Az=.001*max(.3-sqrt(x*x+y*y),0); rho=p=1; v=(2,1,2); T=1; Uref_coarse=conservative_block_average(Uref_fine).",
+      "assumptions": {
+        "ja": "[-1,1]×[-.5,.5]周期、ρ=p=1、Az=.001max(.3−r,0)、T=1、(Nx,Ny)=(16,8),(32,16),(64,32)。変更していない公式生成器と同じv=(2,1,2)で、古いvz=0設定とは区別します。未変更の公式生成器を固定コミット1395e2f…で実行し、Ny64/128と最細格子CFL半減で参照感度を確認します。比較は終端保存場のみで、保守的な粗視化後に評価します。",
+        "en": "Periodic[-1,1]x[-.5,.5],rho=p1,Az=.001max(.3-r,0),T1,(Nx,Ny)=(16,8),(32,16),(64,32). Use unchanged official-generator v=(2,1,2), explicitly distinct from old vz0 inputs. Execute the unchanged official generator at pinned commit1395e2f…; qualify Ny64/128 and finest-grid half-CFL sensitivity. Compare final conserved fields only after conservative restriction."
+      },
+      "relation": "related-model",
+      "note": {
+        "ja": "[-1,1]×[-.5,.5]周期、ρ=p=1、Az=.001max(.3−r,0)、T=1、(Nx,Ny)=(16,8),(32,16),(64,32)。変更していない公式生成器と同じv=(2,1,2)で、古いvz=0設定とは区別します。",
+        "en": "Periodic[-1,1]x[-.5,.5],rho=p1,Az=.001max(.3-r,0),T1,(Nx,Ny)=(16,8),(32,16),(64,32). Use unchanged official-generator v=(2,1,2), explicitly distinct from old vz0 inputs."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=ja#magnetic-loop-independent-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=en#magnetic-loop-independent-en-measurements"
+      }
+    }
+  ],
   "reference_note": {
-    "ja": "弱磁場ループが1周期で戻る初期場との誤差、磁気エネルギー、配置固有の磁場発散を確認します。任意強度のMHDループの厳密解を主張しません。",
-    "en": "Check return error against the initial weak-field loop, magnetic energy and layout-specific divergence after one transit. No exact solution is claimed for arbitrary finite-strength MHD loops."
+    "ja": "弱磁場ループが1周期で戻る初期場との誤差、磁気エネルギー、配置固有の磁場発散を確認します。任意強度のMHDループの厳密解を主張しません。 実行前契約で47pytest・全12計算を固定。3格子と最細格子の時間刻み半減を分離し、全段の正値性・有限性、保存量、Courant数、5時刻の実場を保存します。Athena++の2格子と刻み半減で参照を検定。終端保存変数を保守的に粗視化し、誤差と参照感度を分離します。共通セル発散と主計算の固有面発散は別の検査です。",
+    "en": "Check return error against the initial weak-field loop, magnetic energy and layout-specific divergence after one transit. No exact solution is claimed for arbitrary finite-strength MHD loops. Freeze 47 pytest checks and12 primary runs before execution. Separate three grids and a finest-grid half-dt probe; retain stage positivity/finiteness, conservation, Courant number and five actual field snapshots. Qualify Athena++ with two grids and a half-CFL probe. Conservatively restrict final conserved states and separate reference sensitivity from primary error. Common-cell divergence and primary native-face divergence are distinct checks."
   },
   "methods": [
     {
@@ -70,7 +118,7 @@
         "en": "Constrained transport / CT"
       },
       "status": "educational-example",
-      "role": "related",
+      "role": "execution",
       "url": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ct/?lang=ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ct/?lang=en"
@@ -96,7 +144,7 @@
         "en": "HLLD MHD Riemann solver"
       },
       "status": "educational-example",
-      "role": "related",
+      "role": "execution",
       "url": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hlld/?lang=ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hlld/?lang=en"
@@ -114,12 +162,96 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hlle/?lang=ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hlle/?lang=en"
       }
+    },
+    {
+      "id": "muscl",
+      "name": {
+        "ja": "MUSCL再構成",
+        "en": "MUSCL reconstruction"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=en"
+      }
+    },
+    {
+      "id": "heun",
+      "name": {
+        "ja": "Heun法／SSPRK(2,2)",
+        "en": "Heun / SSPRK(2,2)"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/heun/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/heun/?lang=en"
+      }
     }
   ],
   "method_note": {
     "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
     "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
   },
-  "executions": [],
+  "executions": [
+    {
+      "id": "magnetic-loop-independent",
+      "kind": "supplement",
+      "name": {
+        "ja": "磁場ループ：独立2次元参照と細分化",
+        "en": "Magnetic loop: independent 2D reference and refinement"
+      },
+      "method_ids": [
+        "hlld",
+        "muscl",
+        "heun",
+        "ct"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=en"
+      },
+      "scope": {
+        "ja": "実際の2次元磁場ループ輸送を、別実装Athena++の空間・時間感度を検査した終端保存場と比較します。",
+        "en": "Compare genuine 2D magnetic-loop transport with final conserved fields from independent Athena++, qualified in space and time."
+      },
+      "assumptions": {
+        "ja": "[-1,1]×[-.5,.5]周期、ρ=p=1、Az=.001max(.3−r,0)、T=1、(Nx,Ny)=(16,8),(32,16),(64,32)。変更していない公式生成器と同じv=(2,1,2)で、古いvz=0設定とは区別します。",
+        "en": "Periodic[-1,1]x[-.5,.5],rho=p1,Az=.001max(.3-r,0),T1,(Nx,Ny)=(16,8),(32,16),(64,32). Use unchanged official-generator v=(2,1,2), explicitly distinct from old vz0 inputs."
+      },
+      "limits": {
+        "ja": "少数の固定入力に対する教育用検証です。HLLDのHLLE代替と再構成の正値性スケーリングを数え、セル状態の床・クリップ・再試行は行いません。有限格子参照は厳密解ではなく、任意問題の安定性・正値性や普遍的次数を保証しません。独立比較は終端のみ。中間Athena時刻は指定四半時刻直後で、正確に整列した場とは表示しません。Athenaの固有面発散は出力しておらず測定を主張しません。密度比は圧縮の診断であり数学的衝撃波の証明ではありません。",
+        "en": "Educational fixed inputs only. Count HLLD-to-HLLE fallbacks and face reconstruction positivity scaling; no cell floor/clipping/retry. Finite-grid references are not exact solutions; no universal stability, positivity or order guarantee. Independent comparisons are final-only. Intermediate Athena outputs occur just after requested quarter times and are not matched frames. Athena native-face divergence is not exported/measured. Density contrast diagnoses compression, not a mathematical proof of shock formation."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "実行前契約で47pytest・全12計算を固定。3格子と最細格子の時間刻み半減を分離し、全段の正値性・有限性、保存量、Courant数、5時刻の実場を保存します。Athena++の2格子と刻み半減で参照を検定。終端保存変数を保守的に粗視化し、誤差と参照感度を分離します。共通セル発散と主計算の固有面発散は別の検査です。",
+        "en": "Freeze 47 pytest checks and12 primary runs before execution. Separate three grids and a finest-grid half-dt probe; retain stage positivity/finiteness, conservation, Courant number and five actual field snapshots. Qualify Athena++ with two grids and a half-CFL probe. Conservatively restrict final conserved states and separate reference sensitivity from primary error. Common-cell divergence and primary native-face divergence are distinct checks."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/solver.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/hlld.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/qualify_saved.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/test_mhd.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
   "code_checks": []
 }

@@ -130,6 +130,9 @@
       "chapters": [
         "meshes",
         "fem",
+        "spectral-element",
+        "flux-reconstruction",
+        "validation-sem-fr",
         "ale",
         "coordinates-viscosity",
         "geophysical-grids",

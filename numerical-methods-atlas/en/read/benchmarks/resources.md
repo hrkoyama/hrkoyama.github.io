@@ -205,10 +205,22 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   The same nonlinear 2D Euler vortex is evolved to T=0.1 on N=16/32/64 at background Mach 0.1/0.01, comparing ordinary Roe with Miczek spatial flux preconditioning. Twelve fixed runs retain velocity and dynamically scaled pressure errors, conserved budgets, acoustic steps and actual stage states.
+- [Late Orszag-Tang: independent reference and compression structure](<https://hrkoyama.github.io/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=en>)
+  availability: run
+
+  Evolve compressible ideal-MHD Orszag-Tang to T.2 and check density/pressure in interacting compression/shock structure against an independent finite-grid reference.
 - [Brio–Wu: HLLD and a conservatively restricted numerical reference](<https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/brio-wu/?lang=en>)
   availability: run
 
   Evolve the one-dimensional γ=2 ideal-MHD shock tube with Bx=0.75 to t=0.1. Compare 64/128-cell HLLD/MC/SSPRK2 with a 512-cell numerical reference, recording density, pressure, longitudinal field, balances and fallback counts.
+- [Circular Alfven wave: full-state refinement](<https://hrkoyama.github.io/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=en>)
+  availability: run
+
+  Evolve all eight conserved variables and compare circular polarization, including nonzero Bz/vz, against analytic cell means.
+- [Magnetic loop: independent 2D reference and refinement](<https://hrkoyama.github.io/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=en>)
+  availability: run
+
+  Compare genuine 2D magnetic-loop transport with final conserved fields from independent Athena++, qualified in space and time.
 - [Noh shocks: zero-pressure planar, cylindrical and spherical flow](<https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-shock/?lang=en>)
   availability: run
 
@@ -217,10 +229,22 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Rotate a slotted disk through one full turn with an actual 2D finite-volume solver, comparing donor-cell and minmod MUSCL. Eight runs combine three grids with half-cell-center and 45-degree-start probes; measure conservation, bounds at every SSP stage, shape error and slot filling.
+- [SRHD symmetric two-shock collision](<https://hrkoyama.github.io/numerical-methods-atlas/validation/srhd-collision/?lang=en>)
+  availability: run
+
+  Compare a relativistic symmetric collision with independent exact Taub-based conserved cell means; save actual1D x–t fields.
+- [SRMHD finite-amplitude circularly polarized Alfvén wave](<https://hrkoyama.github.io/numerical-methods-atlas/validation/srmhd-alfven/?lang=en>)
+  availability: run
+
+  Evolve a nonlinear finite-amplitude wave for one period with full SRMHD magnetic stress and induction; check exact cell means,phase,amplitude and refinement.
 - [WENO-JS/Z: fixed critical-point and epsilon comparison](<https://hrkoyama.github.io/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=en>)
   availability: run
 
   Compare WENO5 JS and Z power-two weights from the same cell means, then evolve actual periodic transport. Retain three regularity classes, three epsilon choices, fixed grids and separate halved-time-step diagnostics.
+- [1D periodic FR advection: Radau correction and published DG comparison](<https://hrkoyama.github.io/numerical-methods-atlas/validation/fr-periodic-advection/?lang=en>)
+  availability: run
+
+  Transport0.4+sin(2pi x) toT=.25. Execute Gauss-node/Radau FR and the existing modal DG for p=1/2 and8/16/32 cells; measure analytic error, mass and time-integration error.
 - [Noh problem: an actual 2D Cartesian Euler calculation](<https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-cartesian-2d/?lang=en>)
   availability: run
 

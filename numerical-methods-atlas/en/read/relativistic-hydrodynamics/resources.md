@@ -14,7 +14,7 @@ No chapter-specific association is registered. Atlas-wide index: [Methods and co
 
 - [Special-relativistic hydrodynamics (SRHD)](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#srhd-en>)
 
-  Representative ideal fluid in flat Cartesian spacetime, c=1. An equation of state and primitive recovery are required. Atlas coverage is literature-only.
+  Ideal fluid in flat Cartesian spacetime,c=1. Add a mild fixed symmetric two-shock example with gamma-law EOS and primitive recovery; no general three-wave Riemann,extreme-Lorentz-factor or GR claim.
 - [General-relativistic hydrodynamics (GRHD)](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#grhd-en>)
 
   Ideal fluid with c=G=1 and signature (−,+,+,+). Distinguish prescribed geometry from an evolved Einstein system. Literature-only.

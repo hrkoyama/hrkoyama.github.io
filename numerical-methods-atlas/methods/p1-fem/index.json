@@ -25,7 +25,7 @@
   "test_files": [
     "test_sparse_fem"
   ],
-  "code_mapping_scope": "Related chapter modules and test files; not a claim that each test covers every named method.",
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct.",
   "references": [
     {
       "url": "https://doi.org/10.1090/S0002-9904-1943-07818-4",
@@ -169,14 +169,470 @@
     "連続Galerkin法",
     "continuous Galerkin"
   ],
+  "depth_release": {
+    "group": "mesh-boundary",
+    "case_ids": [
+      "lshape-fem"
+    ],
+    "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/",
+    "code_edition": "2026-11-23",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/fem.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/references/fields.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/annulus.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/boundary.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/experiments.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/test_geometry.py"
+    ],
+    "run_commands": [
+      "python -m pytest -q",
+      "python run.py --input inputs.json --output output"
+    ],
+    "run_from": "atlas-mesh-boundary-2026-11-23",
+    "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/atlas-mesh-boundary-2026-11-23.zip",
+    "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/source-manifest.json",
+    "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/verification.json",
+    "code_archive_sha256": "51032054029345b8f187ebb12e1a0d8d4473b70312f29585a160fc3b0fdca315",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/results/result.json",
+    "passed_tests": 20,
+    "examples": [
+      {
+        "id": "lshape-fem",
+        "title": {
+          "ja": "L字領域P1特異解：graded格子と歪みの分離",
+          "en": "L-corner P1 FEM: grading and separate mesh distortion"
+        },
+        "method_ids": [
+          "p1-fem"
+        ],
+        "domains": [
+          "pde",
+          "geometry"
+        ],
+        "summary": {
+          "ja": "再入隅の調和特異解を真の2D P1で解き、同じ未知数の一様/graded格子と、独立した滑らかな正方形の歪みを比較します。",
+          "en": "Solve a harmonic reentrant-corner field with actual2D P1 FEM; compare matched-DOF uniform/grading and separate smooth-square mesh distortion."
+        },
+        "assumptions": {
+          "ja": "第4象限を除いた[-1,1]²、theta∈[0,3pi/2]、u=r^(2/3)sin(2theta/3)、解析Dirichlet。N8/16/32、graded map x→x max(|x|,|y|)。正方形sin(pi x)sin(pi y)を同Nのregular/warpedで別検査。",
+          "en": "L-shaped[-1,1]² minus quadrantIV, theta0..3pi/2, analytic Dirichlet harmonic corner field. N8/16/32, fixed map x→x max(|x|,|y|). Separate unit-square sine MMS uses regular/warped grids."
+        },
+        "algorithm": {
+          "ja": "面積と物理勾配からP1剛性を組み、境界を消去して疎直接法で解きます。隅要素は原点をDuffy写像の頂点に移し、Gauss48/96を比較。",
+          "en": "Assemble physical P1 gradients/areas, eliminate boundary data and solve sparse systems. Corner triangles use origin-based Duffy quadrature48/96."
+        },
+        "validation": {
+          "ja": "L2/H1積分誤差・求積差、一様/gradedの同DOF改善、別のsquare/warped系列、最小角・aspect・1ノルム条件数推定・真の線形残差を保存。",
+          "en": "Retain integrated L2/H1 errors, quadrature gaps, matched-DOF grading improvement, separate square/warp errors, minimum angle/aspect, estimated1-norm conditioning and true residuals."
+        },
+        "limits": {
+          "ja": "特異解に正方形のL2二次を要求しません。固定の事前graded写像でありAMRソフトではありません。条件数は推定で、任意歪みへの保証はしません。",
+          "en": "No smooth-square L2 order is imposed on the singular field. Fixed a-priori grading is not an AMR engine. Conditioning is estimated; arbitrary distortion is not certified."
+        },
+        "references": [
+          {
+            "id": "ifem-corner",
+            "author": "Long Chen",
+            "title": "Introduction to Adaptive Finite Element Methods",
+            "url": "https://lyc102.github.io/ifem/afem/",
+            "review_level": "selected-official-tutorial-equations",
+            "review_scope": "Author documentation: L-shaped harmonic r^(2/3)sin(2theta/3) field and non-quasiuniform refinement motivation inspected. No MATLAB code copied or run; our removed quadrant/angle convention is explicitly defined."
+          },
+          {
+            "id": "schoeberl-graded",
+            "author": "Joachim Schöberl",
+            "title": "Interactive FEM: graded meshes around vertex singularities",
+            "url": "https://jschoeberl.github.io/iFEM/FEM/erroranalysis.html",
+            "review_level": "selected-author-teaching-section",
+            "review_scope": "Section24.4 weighted regularity and graded meshes inspected. Our fixed max-norm radial map is independently constructed; no general AMR implementation or universal optimality theorem claimed."
+          }
+        ],
+        "citations": [
+          {
+            "id": "ifem-corner",
+            "author": "Long Chen",
+            "title": "Introduction to Adaptive Finite Element Methods",
+            "url": "https://lyc102.github.io/ifem/afem/",
+            "review_level": "selected-official-tutorial-equations",
+            "review_scope": "Author documentation: L-shaped harmonic r^(2/3)sin(2theta/3) field and non-quasiuniform refinement motivation inspected. No MATLAB code copied or run; our removed quadrant/angle convention is explicitly defined."
+          },
+          {
+            "id": "schoeberl-graded",
+            "author": "Joachim Schöberl",
+            "title": "Interactive FEM: graded meshes around vertex singularities",
+            "url": "https://jschoeberl.github.io/iFEM/FEM/erroranalysis.html",
+            "review_level": "selected-author-teaching-section",
+            "review_scope": "Section24.4 weighted regularity and graded meshes inspected. Our fixed max-norm radial map is independently constructed; no general AMR implementation or universal optimality theorem claimed."
+          }
+        ],
+        "formulas": [
+          "-\\Delta u=0,\\quad u=r^{2/3}\\sin(2\\theta/3)",
+          "K_{ab}=\\sum_T |T|\\nabla N_a\\cdot\\nabla N_b,\\quad x_{graded}=x\\|x\\|_\\infty"
+        ],
+        "code_files": [
+          "run.py",
+          "fem.py",
+          "references/fields.py"
+        ],
+        "gallery_figure": "lshape-fem-preview.png",
+        "additional_figures": [
+          {
+            "file": "lshape-fem-preview.png",
+            "caption": {
+              "ja": "実際に保存した計算配列と固定入力の収束指標から描いた検証図。",
+              "en": "Validation preview from actual saved PDE arrays and fixed-input refinement measurements."
+            }
+          }
+        ],
+        "measured": {
+          "id": "lshape-fem",
+          "passed": true,
+          "checks": {
+            "uniform-n8 residual": true,
+            "uniform-n8 boundary_error": true,
+            "uniform-n8 symmetry": true,
+            "uniform-n8 quadrature_relative_gap": true,
+            "uniform-n8 positive geometry": true,
+            "uniform-n16 residual": true,
+            "uniform-n16 boundary_error": true,
+            "uniform-n16 symmetry": true,
+            "uniform-n16 quadrature_relative_gap": true,
+            "uniform-n16 positive geometry": true,
+            "uniform-n32 residual": true,
+            "uniform-n32 boundary_error": true,
+            "uniform-n32 symmetry": true,
+            "uniform-n32 quadrature_relative_gap": true,
+            "uniform-n32 positive geometry": true,
+            "graded-n8 residual": true,
+            "graded-n8 boundary_error": true,
+            "graded-n8 symmetry": true,
+            "graded-n8 quadrature_relative_gap": true,
+            "graded-n8 positive geometry": true,
+            "graded-n16 residual": true,
+            "graded-n16 boundary_error": true,
+            "graded-n16 symmetry": true,
+            "graded-n16 quadrature_relative_gap": true,
+            "graded-n16 positive geometry": true,
+            "graded-n32 residual": true,
+            "graded-n32 boundary_error": true,
+            "graded-n32 symmetry": true,
+            "graded-n32 quadrature_relative_gap": true,
+            "graded-n32 positive geometry": true,
+            "square-n8 residual": true,
+            "square-n8 boundary_error": true,
+            "square-n8 symmetry": true,
+            "square-n8 quadrature_relative_gap": true,
+            "square-n8 positive geometry": true,
+            "square-n16 residual": true,
+            "square-n16 boundary_error": true,
+            "square-n16 symmetry": true,
+            "square-n16 quadrature_relative_gap": true,
+            "square-n16 positive geometry": true,
+            "square-n32 residual": true,
+            "square-n32 boundary_error": true,
+            "square-n32 symmetry": true,
+            "square-n32 quadrature_relative_gap": true,
+            "square-n32 positive geometry": true,
+            "warped-n8 residual": true,
+            "warped-n8 boundary_error": true,
+            "warped-n8 symmetry": true,
+            "warped-n8 quadrature_relative_gap": true,
+            "warped-n8 positive geometry": true,
+            "warped-n16 residual": true,
+            "warped-n16 boundary_error": true,
+            "warped-n16 symmetry": true,
+            "warped-n16 quadrature_relative_gap": true,
+            "warped-n16 positive geometry": true,
+            "warped-n32 residual": true,
+            "warped-n32 boundary_error": true,
+            "warped-n32 symmetry": true,
+            "warped-n32 quadrature_relative_gap": true,
+            "warped-n32 positive geometry": true,
+            "uniform l2 refinement 1": true,
+            "uniform l2 refinement 2": true,
+            "uniform h1 refinement 1": true,
+            "uniform h1 refinement 2": true,
+            "graded l2 refinement 1": true,
+            "graded l2 refinement 2": true,
+            "graded h1 refinement 1": true,
+            "graded h1 refinement 2": true,
+            "square l2 refinement 1": true,
+            "square l2 refinement 2": true,
+            "square h1 refinement 1": true,
+            "square h1 refinement 2": true,
+            "warped l2 refinement 1": true,
+            "warped l2 refinement 2": true,
+            "warped h1 refinement 1": true,
+            "warped h1 refinement 2": true,
+            "matched unknown counts": true,
+            "finest graded/uniform H1": true,
+            "finest graded H1": true,
+            "analytic Cartesian stress/source identity": true,
+            "analytic annulus no-slip trace": true,
+            "analytic corner analytic gradient": true
+          },
+          "records": [
+            {
+              "n": 8,
+              "family": "uniform",
+              "dofs": 161,
+              "l2": 0.006628511205113294,
+              "h1": 0.12391051757162894,
+              "quadrature_relative_gap": 1.0582138836423203e-05,
+              "minimum_area": 0.007812500000000003,
+              "minimum_angle_degrees": 45.000000000000014,
+              "maximum_aspect": 1.9999999999999996,
+              "condition_one_norm_estimate": 74.68677116285255,
+              "residual": 1.3322676295501878e-15,
+              "boundary_error": 0.0,
+              "symmetry": 0.0,
+              "id": "uniform-n8"
+            },
+            {
+              "n": 16,
+              "family": "uniform",
+              "dofs": 705,
+              "l2": 0.002714674658456388,
+              "h1": 0.07911871440856175,
+              "quadrature_relative_gap": 1.0305526814699861e-05,
+              "minimum_area": 0.0019531250000000004,
+              "minimum_angle_degrees": 45.00000000000001,
+              "maximum_aspect": 2.0,
+              "condition_one_norm_estimate": 303.34372938013684,
+              "residual": 2.220446049250313e-15,
+              "boundary_error": 0.0,
+              "symmetry": 0.0,
+              "id": "uniform-n16"
+            },
+            {
+              "n": 32,
+              "family": "uniform",
+              "dofs": 2945,
+              "l2": 0.0011027536454541462,
+              "h1": 0.05027693280023604,
+              "quadrature_relative_gap": 1.0129802412928497e-05,
+              "minimum_area": 0.00048828125,
+              "minimum_angle_degrees": 45.0,
+              "maximum_aspect": 2.0000000000000004,
+              "condition_one_norm_estimate": 1220.2816378051423,
+              "residual": 3.1086244689504383e-15,
+              "boundary_error": 0.0,
+              "symmetry": 0.0,
+              "id": "uniform-n32"
+            },
+            {
+              "n": 8,
+              "family": "graded",
+              "dofs": 161,
+              "l2": 0.0029030120908652033,
+              "h1": 0.07723065550228825,
+              "quadrature_relative_gap": 1.7070774069820287e-06,
+              "minimum_area": 0.00012207031250000008,
+              "minimum_angle_degrees": 15.255118703057764,
+              "maximum_aspect": 4.333333333333336,
+              "condition_one_norm_estimate": 186.42136667169743,
+              "residual": 1.1812381131815807e-15,
+              "boundary_error": 0.0,
+              "symmetry": 0.0,
+              "id": "graded-n8"
+            },
+            {
+              "n": 16,
+              "family": "graded",
+              "dofs": 705,
+              "l2": 0.0007700545075125479,
+              "h1": 0.04008770835486755,
+              "quadrature_relative_gap": 9.981810483949227e-07,
+              "minimum_area": 7.629394531250003e-06,
+              "minimum_angle_degrees": 15.255118703057775,
+              "maximum_aspect": 4.333333333333333,
+              "condition_one_norm_estimate": 778.0868104555791,
+              "residual": 1.7208456881689926e-15,
+              "boundary_error": 0.0,
+              "symmetry": 0.0,
+              "id": "graded-n16"
+            },
+            {
+              "n": 32,
+              "family": "graded",
+              "dofs": 2945,
+              "l2": 0.00019974788530367372,
+              "h1": 0.020516527862329274,
+              "quadrature_relative_gap": 6.00227281588531e-07,
+              "minimum_area": 4.76837158203125e-07,
+              "minimum_angle_degrees": 15.255118703057768,
+              "maximum_aspect": 4.333333333333336,
+              "condition_one_norm_estimate": 3164.564406521065,
+              "residual": 2.5368677907756472e-15,
+              "boundary_error": 0.0,
+              "symmetry": 0.0,
+              "id": "graded-n32"
+            },
+            {
+              "n": 8,
+              "family": "square",
+              "dofs": 49,
+              "l2": 0.02113277347422566,
+              "h1": 0.43179828300647366,
+              "quadrature_relative_gap": 1.477563870434035e-15,
+              "minimum_area": 0.007812500000000003,
+              "minimum_angle_degrees": 45.000000000000014,
+              "maximum_aspect": 1.9999999999999996,
+              "condition_one_norm_estimate": 37.26470588235294,
+              "residual": 6.106226635438361e-16,
+              "boundary_error": 0.0,
+              "symmetry": 0.0,
+              "id": "square-n8"
+            },
+            {
+              "n": 16,
+              "family": "square",
+              "dofs": 225,
+              "l2": 0.005377435010011609,
+              "h1": 0.2175363363595284,
+              "quadrature_relative_gap": 5.1614897370129516e-15,
+              "minimum_area": 0.0019531250000000004,
+              "minimum_angle_degrees": 45.00000000000001,
+              "maximum_aspect": 2.0,
+              "condition_one_norm_estimate": 150.41692995362772,
+              "residual": 8.743006318923108e-16,
+              "boundary_error": 0.0,
+              "symmetry": 0.0,
+              "id": "square-n16"
+            },
+            {
+              "n": 32,
+              "family": "square",
+              "dofs": 961,
+              "l2": 0.0013504362485506818,
+              "h1": 0.10897542351921932,
+              "quadrature_relative_gap": 1.380907642753568e-14,
+              "minimum_area": 0.00048828125,
+              "minimum_angle_degrees": 45.0,
+              "maximum_aspect": 2.0000000000000004,
+              "condition_one_norm_estimate": 603.0519284082644,
+              "residual": 1.4519635493925875e-15,
+              "boundary_error": 0.0,
+              "symmetry": 0.0,
+              "id": "square-n32"
+            },
+            {
+              "n": 8,
+              "family": "warped",
+              "dofs": 49,
+              "l2": 0.02120411721380701,
+              "h1": 0.43245650856620677,
+              "quadrature_relative_gap": 8.18106907486461e-16,
+              "minimum_area": 0.007173616013198773,
+              "minimum_angle_degrees": 39.55559661950395,
+              "maximum_aspect": 2.394647619762385,
+              "condition_one_norm_estimate": 41.67760044617892,
+              "residual": 6.661338147750939e-16,
+              "boundary_error": 0.0,
+              "symmetry": 0.0,
+              "id": "warped-n8"
+            },
+            {
+              "n": 16,
+              "family": "warped",
+              "dofs": 225,
+              "l2": 0.0053673920819827135,
+              "h1": 0.2172891314486851,
+              "quadrature_relative_gap": 3.231967125710716e-15,
+              "minimum_area": 0.0018762725273650193,
+              "minimum_angle_degrees": 42.11670915750543,
+              "maximum_aspect": 2.176622119153484,
+              "condition_one_norm_estimate": 161.93024302771093,
+              "residual": 1.3322676295501878e-15,
+              "boundary_error": 0.0,
+              "symmetry": 0.0,
+              "id": "warped-n16"
+            },
+            {
+              "n": 32,
+              "family": "warped",
+              "dofs": 961,
+              "l2": 0.00134735733393484,
+              "h1": 0.10884489368256302,
+              "quadrature_relative_gap": 1.40015698331148e-14,
+              "minimum_area": 0.00047869957157375606,
+              "minimum_angle_degrees": 43.597518748367705,
+              "maximum_aspect": 2.084333006036921,
+              "condition_one_norm_estimate": 627.0284248525954,
+              "residual": 1.6514567491299204e-15,
+              "boundary_error": 0.0,
+              "symmetry": 0.0,
+              "id": "warped-n32"
+            }
+          ],
+          "metrics": {
+            "n": 32,
+            "dofs": 961,
+            "l2": 0.00134735733393484,
+            "h1": 0.10884489368256302,
+            "quadrature_relative_gap": 1.40015698331148e-14,
+            "minimum_area": 0.00047869957157375606,
+            "minimum_angle_degrees": 43.597518748367705,
+            "maximum_aspect": 2.084333006036921,
+            "condition_one_norm_estimate": 627.0284248525954,
+            "residual": 1.6514567491299204e-15,
+            "boundary_error": 0.0,
+            "symmetry": 0.0
+          },
+          "data_files": [
+            "lshape-fem-uniform-n8.npz",
+            "lshape-fem-uniform-n16.npz",
+            "lshape-fem-uniform-n32.npz",
+            "lshape-fem-graded-n8.npz",
+            "lshape-fem-graded-n16.npz",
+            "lshape-fem-graded-n32.npz",
+            "lshape-fem-square-n8.npz",
+            "lshape-fem-square-n16.npz",
+            "lshape-fem-square-n32.npz",
+            "lshape-fem-warped-n8.npz",
+            "lshape-fem-warped-n16.npz",
+            "lshape-fem-warped-n32.npz"
+          ],
+          "reference_qualification": {
+            "checks": {
+              "Cartesian stress/source identity": true,
+              "annulus no-slip trace": true,
+              "corner analytic gradient": true
+            },
+            "stress_source_residual": 1.19242983487311e-07,
+            "boundary_trace": 6.991240216781803e-15
+          }
+        },
+        "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lshape-fem/",
+        "reading": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/#lshape-fem",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/#lshape-fem"
+        }
+      }
+    ]
+  },
+  "depth_scope": {
+    "ja": "追加のP1例はL字領域の特異解と同じ未知数数のgraded格子、正方形/warped三角形。角に接するDuffy積分を別次数で確認し、L2/H1誤差と格子品質を比較します。",
+    "en": "AdditionalP1 cases compare an Lshape singularity on uniform/matched-DOF graded meshes and square/warped triangles. Independently increase corner-Duffy quadrature and compare L2/H1 errors and mesh quality."
+  },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/p1-fem/",
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/p1-fem/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/p1-fem/index.md",
   "code_urls": [
-    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/fem.py"
+    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/fem.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/fem.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/references/fields.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/annulus.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/boundary.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/experiments.py"
   ],
   "test_urls": [
-    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_sparse_fem.py"
+    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_sparse_fem.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/test_geometry.py"
   ],
   "run_commands": [
     "python -m pytest -q tests/test_sparse_fem.py"
@@ -192,6 +648,15 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#poisson-2d-sine-ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#poisson-2d-sine-en"
       }
+    },
+    {
+      "id": "lshape-fem",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lshape-fem/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lshape-fem/?lang=en"
+      },
+      "kind": "dedicated-supplement"
     }
   ],
   "problem_navigation": {
@@ -205,7 +670,8 @@
           "en": "Poisson / Laplace equations"
         },
         "problem_ids": [
-          "poisson-2d-sine"
+          "poisson-2d-sine",
+          "lshape-fem"
         ],
         "url": {
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#poisson-laplace-ja",
@@ -263,16 +729,98 @@
             "input": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/poisson-2d-sine.json",
             "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
             "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json"
+          },
+          {
+            "id": "sem-poisson-2d",
+            "kind": "supplement",
+            "name": {
+              "ja": "スペクトル要素法の2D Poisson：P1 FEMとh/p収束を比較",
+              "en": "2D spectral-element Poisson: P1 FEM comparison and h/p refinement"
+            },
+            "scope": {
+              "ja": "単位正方形の正弦製造解をGLLスペクトル要素法と既存P1三角形FEMで解きます。自由未知数を揃えたh細分化と、固定要素数でのp=1〜6を分けて測ります。",
+              "en": "Solve a sine manufactured solution on the unit square with GLL spectral elements and the existing triangle P1 FEM. Compare matched free-unknown counts under h refinement and p=1..6 at fixed elements."
+            },
+            "method_ids": [
+              "spectral-element",
+              "p1-fem"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sem-poisson-2d/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sem-poisson-2d/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/atlas-sem-fr-2026-11-23.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/verification.json"
           }
         ],
         "role": "execution",
         "method_note": {
-          "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
-          "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+          "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。 SEMはC0連続なテンソル積Qp Lagrange基底・p+1個のLegendre GLL節点と求積、疎な剛性行列・SciPy直接解法を使用。p=2で各方向2/4/8要素、別に2×2要素でp=1〜6。公開済みNumartのP1 FEM・GMRESをファイルのバイト列を保持して4/8/16分割で実行し、両者の自由未知数9/49/225を一致させます。",
+          "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed. C0 tensor Qp Lagrange SEM with p+1 Legendre GLL nodes/quadrature, sparse stiffness assembly and a SciPy direct solve. At p=2 use2/4/8 elements per axis; separately fix2x2 elements and p=1..6. Execute the byte-identical published Numart triangle P1 FEM/GMRES at4/8/16 subdivisions, matching9/49/225 free unknowns."
         },
         "reference_url": {
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "lshape-fem",
+        "name": {
+          "ja": "L字領域P1特異解：graded格子と歪みの分離",
+          "en": "L-corner P1 FEM: grading and separate mesh distortion"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/results/lshape-fem-preview.png",
+          "sha256": "c83b1fe941f1df00a73cd99913be0a67a91890e10a4af808168c8fdcfde88ff5",
+          "width": 960,
+          "height": 624,
+          "caption": {
+            "ja": "実際に保存した計算配列と固定入力の収束指標から描いた検証図。",
+            "en": "Validation preview from actual saved PDE arrays and fixed-input refinement measurements."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lshape-fem/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lshape-fem/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lshape-fem/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lshape-fem/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "lshape-fem",
+            "kind": "supplement",
+            "name": {
+              "ja": "L字領域P1特異解：graded格子と歪みの分離",
+              "en": "L-corner P1 FEM: grading and separate mesh distortion"
+            },
+            "scope": {
+              "ja": "再入隅の調和特異解を真の2D P1で解き、同じ未知数の一様/graded格子と、独立した滑らかな正方形の歪みを比較します。",
+              "en": "Solve a harmonic reentrant-corner field with actual2D P1 FEM; compare matched-DOF uniform/grading and separate smooth-square mesh distortion."
+            },
+            "method_ids": [
+              "p1-fem"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lshape-fem/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lshape-fem/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/atlas-mesh-boundary-2026-11-23.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "面積と物理勾配からP1剛性を組み、境界を消去して疎直接法で解きます。隅要素は原点をDuffy写像の頂点に移し、Gauss48/96を比較。",
+          "en": "Assemble physical P1 gradients/areas, eliminate boundary data and solve sparse systems. Corner triangles use origin-based Duffy quadrature48/96."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lshape-fem/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lshape-fem/?lang=en#references-en"
         }
       }
     ],
@@ -307,6 +855,61 @@
             "view": {
               "ja": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=poisson-manufactured",
               "en": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=poisson-manufactured"
+            }
+          },
+          {
+            "id": "sem-poisson-2d",
+            "title": {
+              "ja": "2D Poisson正弦製造解：SEMとP1 FEMの共通参照",
+              "en": "2D Poisson sine manufactured solution: shared SEM/P1 FEM reference"
+            },
+            "kind": "manufactured",
+            "relation": "same-problem",
+            "note": {
+              "ja": "全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。",
+              "en": "Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-sem-poisson-2d-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-sem-poisson-2d-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/sem-poisson-2d/?lang=ja",
+              "en": "/numerical-methods-atlas/validation/sem-poisson-2d/?lang=en"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "lshape-fem",
+        "problem_name": {
+          "ja": "L字領域P1特異解：graded格子と歪みの分離",
+          "en": "L-corner P1 FEM: grading and separate mesh distortion"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lshape-fem/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lshape-fem/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "lshape-fem",
+            "title": {
+              "ja": "L字角の特異解：調和場と別の滑らかな製造解",
+              "en": "L-corner singularity: harmonic field and separate smooth MMS"
+            },
+            "kind": "analytic",
+            "relation": "same-problem",
+            "note": {
+              "ja": "特異解に正方形のL2二次を要求しません。固定の事前graded写像でありAMRソフトではありません。条件数は推定で、任意歪みへの保証はしません。",
+              "en": "No smooth-square L2 order is imposed on the singular field. Fixed a-priori grading is not an AMR engine. Conditioning is estimated; arbitrary distortion is not certified."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-lshape-fem-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-lshape-fem-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/lshape-fem/?lang=ja#lshape-fem-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/lshape-fem/?lang=en#lshape-fem-en-measurements"
             }
           }
         ]

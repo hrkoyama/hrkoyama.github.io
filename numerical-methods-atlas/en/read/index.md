@@ -73,6 +73,9 @@ Read about reconstruction, limiting and shock robustness, followed by low-Mach c
 - [Sedov–Taylor point blast: lightweight spherical-radial validation](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sedov/)
 - [Guderley converging shock: lightweight spherical-radial verification](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-guderley/)
 - [WENO critical points and epsilon dependence](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-weno-critical/)
+- [KH/RT initial growth and independent linear references](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-instability-growth/)
+- [Independent MHD transport, waves and compression comparisons](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/)
+- [SRHD collision and nonlinear SRMHD Alfven wave](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-relativistic/)
 
 ## Meshes, finite elements and coupled equations
 
@@ -80,6 +83,9 @@ Organize spatial discretization and coordinates, then examine incompressible flo
 
 - [Structured, unstructured, and triangular meshes](https://hrkoyama.github.io/numerical-methods-atlas/en/read/meshes/)
 - [Continuous finite elements: from weak form to sparse assembly](https://hrkoyama.github.io/numerical-methods-atlas/en/read/fem/)
+- [Spectral elements: high-order finite elements and 2D Poisson](https://hrkoyama.github.io/numerical-methods-atlas/en/read/spectral-element/)
+- [Flux reconstruction: flux correction, DG and 1D periodic advection](https://hrkoyama.github.io/numerical-methods-atlas/en/read/flux-reconstruction/)
+- [Spectral elements and FR: small comparisons with existing FEM/DG](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/)
 - [Arbitrary Lagrangian–Eulerian methods](https://hrkoyama.github.io/numerical-methods-atlas/en/read/ale/)
 - [Polar and cylindrical coordinates: tensors and viscosity](https://hrkoyama.github.io/numerical-methods-atlas/en/read/coordinates-viscosity/)
 - [Spherical meshes and Arakawa A, B and C grids](https://hrkoyama.github.io/numerical-methods-atlas/en/read/geophysical-grids/)
@@ -91,6 +97,8 @@ Organize spatial discretization and coordinates, then examine incompressible flo
 - [CT and GLM: matched controls, independent checks and grid/time convergence](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/)
 - [Shallow water: topography, lakes and dry beds](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/)
 - [Nonperiodic walls: cavity and manufactured flow](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-wall-flow/)
+- [Corner singularities, curved coordinates and Neumann/Robin boundaries](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/)
+- [Nonuniform ALE transport and2D rotating shallow-water waves](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-moving-waves/)
 
 ## Particles, kinetic methods and transport
 

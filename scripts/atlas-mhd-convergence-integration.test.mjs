@@ -37,7 +37,7 @@ test('matched CT and GLM examples retain their earlier primary releases and reso
 
 test('same-target OT refinements add no problem while the constructed equilibrium adds exactly one',()=>{
  const index=json('numerical-methods-atlas/validation/index.json');
- assert.equal(index.case_count,69);assert.equal(index.groups.length,29);
+ assert.equal(index.case_count,71);assert.equal(index.groups.length,30);
  assert.equal(index.case_problem_ids[cases[0]],'advected-magnetostatic-equilibrium');
  assert.equal(index.case_problem_ids[cases[1]],'orszag-tang');
  assert.equal(index.case_problem_ids[cases[2]],null);
@@ -46,9 +46,11 @@ test('same-target OT refinements add no problem while the constructed equilibriu
  assert.equal(problems.length,102);
  assert.equal(problems.filter(p=>p.id==='advected-magnetostatic-equilibrium').length,1);
  const ot=problems.find(p=>p.id==='orszag-tang');
- assert.deepEqual(ot.supplemental_examples.map(x=>x.id).sort(),['ct-glm-independent','ct-glm-ot-convergence']);
- assert.equal(methods.length,150);
- assert.deepEqual(Object.fromEntries(['educational-example','reading-only','planned'].map(s=>[s,methods.filter(m=>m.status===s).length])),{'educational-example':118,'reading-only':15,'planned':16});
+ const otExecutions=ot.supplemental_examples.map(x=>x.id);
+ assert.deepEqual(otExecutions.filter(id=>id!=='postshock-orszag-tang').sort(),['ct-glm-independent','ct-glm-ot-convergence']);
+ assert.deepEqual(otExecutions.filter(id=>id==='postshock-orszag-tang'),['postshock-orszag-tang']);
+ assert.equal(methods.length,152);
+ assert.deepEqual(Object.fromEntries(['educational-example','reading-only','planned'].map(s=>[s,methods.filter(m=>m.status===s).length])),{'educational-example':121,'reading-only':15,'planned':16});
 });
 
 test('seven immutable earlier archives, common examples and pre-pilot controls stay fixed',()=>{

@@ -4,8 +4,8 @@
   "title": "分野別に解説を読む",
   "description": "理論・導出・計算例を、分野ごとにまとめた読み物です。基礎から関連する手法と検証例へ進めます。",
   "source": "/catalog/atlas-reading-index.json",
-  "source_sha256": "eb9e63bb6cc4fdd06845f1ae0c16744e2b964bf374c4247755908e76980c60fa",
-  "chapter_count": 107,
+  "source_sha256": "bd46027a0501f08d08accff0cd302198dd1365d1519b779fa24bb15c6cd01377",
+  "chapter_count": 115,
   "groups": [
     {
       "id": "foundations-time",
@@ -604,6 +604,39 @@
             "en"
           ],
           "search_text": "validation-weno-critical WENOの臨界点・ε依存性 WENO critical points and epsilon dependence 流体・衝撃波・定常解法 Fluids, shocks and steady solvers"
+        },
+        {
+          "id": "validation-instability-growth",
+          "title": "KH・RTの初期成長と独立線形参照",
+          "url": "/numerical-methods-atlas/ja/read/validation-instability-growth/",
+          "language": "ja",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-instability-growth KH・RTの初期成長と独立線形参照 KH/RT initial growth and independent linear references 流体・衝撃波・定常解法 Fluids, shocks and steady solvers"
+        },
+        {
+          "id": "validation-mhd-transport",
+          "title": "MHD輸送・波・圧縮構造の独立比較",
+          "url": "/numerical-methods-atlas/ja/read/validation-mhd-transport/",
+          "language": "ja",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-mhd-transport MHD輸送・波・圧縮構造の独立比較 Independent MHD transport, waves and compression comparisons 流体・衝撃波・定常解法 Fluids, shocks and steady solvers"
+        },
+        {
+          "id": "validation-relativistic",
+          "title": "SRHD衝突・SRMHD非線形Alfvén波",
+          "url": "/numerical-methods-atlas/ja/read/validation-relativistic/",
+          "language": "ja",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-relativistic SRHD衝突・SRMHD非線形Alfvén波 SRHD collision and nonlinear SRMHD Alfven wave 流体・衝撃波・定常解法 Fluids, shocks and steady solvers"
         }
       ]
     },
@@ -633,6 +666,39 @@
             "en"
           ],
           "search_text": "fem 連続有限要素法：弱形式から疎行列の組立てへ Continuous finite elements: from weak form to sparse assembly 格子・有限要素・連成方程式 Meshes, finite elements and coupled equations"
+        },
+        {
+          "id": "spectral-element",
+          "title": "スペクトル要素法：高次の有限要素と2D Poisson",
+          "url": "/numerical-methods-atlas/ja/read/spectral-element/",
+          "language": "ja",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "spectral-element スペクトル要素法：高次の有限要素と2D Poisson Spectral elements: high-order finite elements and 2D Poisson 格子・有限要素・連成方程式 Meshes, finite elements and coupled equations"
+        },
+        {
+          "id": "flux-reconstruction",
+          "title": "Flux Reconstruction法：流束補正とDG・1D周期移流",
+          "url": "/numerical-methods-atlas/ja/read/flux-reconstruction/",
+          "language": "ja",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "flux-reconstruction Flux Reconstruction法：流束補正とDG・1D周期移流 Flux reconstruction: flux correction, DG and 1D periodic advection 格子・有限要素・連成方程式 Meshes, finite elements and coupled equations"
+        },
+        {
+          "id": "validation-sem-fr",
+          "title": "スペクトル要素法とFR：既存FEM・DGとの軽量比較",
+          "url": "/numerical-methods-atlas/ja/read/validation-sem-fr/",
+          "language": "ja",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-sem-fr スペクトル要素法とFR：既存FEM・DGとの軽量比較 Spectral elements and FR: small comparisons with existing FEM/DG 格子・有限要素・連成方程式 Meshes, finite elements and coupled equations"
         },
         {
           "id": "ale",
@@ -754,6 +820,28 @@
             "en"
           ],
           "search_text": "validation-wall-flow 非周期壁面：キャビティと製造解 Nonperiodic walls: cavity and manufactured flow 格子・有限要素・連成方程式 Meshes, finite elements and coupled equations"
+        },
+        {
+          "id": "validation-mesh-boundary",
+          "title": "角特異性・曲線座標・Neumann／Robin境界",
+          "url": "/numerical-methods-atlas/ja/read/validation-mesh-boundary/",
+          "language": "ja",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-mesh-boundary 角特異性・曲線座標・Neumann／Robin境界 Corner singularities, curved coordinates and Neumann/Robin boundaries 格子・有限要素・連成方程式 Meshes, finite elements and coupled equations"
+        },
+        {
+          "id": "validation-moving-waves",
+          "title": "非一様ALE輸送・2次元回転浅水波",
+          "url": "/numerical-methods-atlas/ja/read/validation-moving-waves/",
+          "language": "ja",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-moving-waves 非一様ALE輸送・2次元回転浅水波 Nonuniform ALE transport and2D rotating shallow-water waves 格子・有限要素・連成方程式 Meshes, finite elements and coupled equations"
         }
       ]
     },

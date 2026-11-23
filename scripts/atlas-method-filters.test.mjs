@@ -10,7 +10,7 @@ const published = JSON.parse(read('numerical-methods-atlas/methods/index.json'))
 const html = read('numerical-methods-atlas/methods/index.html');
 const storageKey = 'hrkoyama.atlas.methodFilters.v1';
 const statuses = ['all', 'educational-example', 'reading-only', 'planned'];
-const expectedCounts = {'educational-example': 118, 'reading-only': 15, planned: 16};
+const expectedCounts = {'educational-example': 121, 'reading-only': 15, planned: 16};
 const byId = new Map(catalog.methods.map(method => [method.id, method]));
 
 const decode = value => value.replace(/&(?:amp|lt|gt|quot|#39|#x[\da-f]+|#\d+);/gi, entity => {
@@ -39,8 +39,8 @@ const recordsFor = lang => mapFor(lang).rows.map(row => ({
   id: row.id, status: row.attributes['data-status'], search: row.attributes['data-search']
 }));
 
-test('all 149 canonical records retain exact IDs, statuses, scientific metadata and bilingual static membership', () => {
-  assert.equal(catalog.methods.length, 150);
+test('all 152 canonical records retain exact IDs, statuses, scientific metadata and bilingual static membership', () => {
+  assert.equal(catalog.methods.length, 152);
   assert.deepEqual(Object.fromEntries(Object.keys(expectedCounts).map(status => [status, catalog.methods.filter(method => method.status === status).length])), expectedCounts);
   assert.deepEqual(published.methods.map(method => method.id), catalog.methods.map(method => method.id));
   for (const original of catalog.methods) {
@@ -74,7 +74,7 @@ test('all 149 canonical records retain exact IDs, statuses, scientific metadata 
     assert.equal(map.attributes['data-site-language'], lang);
     const groupedIds = catalog.groups.flatMap(group => catalog.methods.filter(method => method.group.id === group.id).map(method => method.id));
     assert.deepEqual(map.rows.map(row => row.id), groupedIds);
-    assert.equal(new Set(map.rows.map(row => row.id)).size, 150);
+    assert.equal(new Set(map.rows.map(row => row.id)).size, 152);
     for (const row of map.rows) {
       const method = byId.get(row.id);
       assert.equal(row.attributes['data-status'], method.status, row.id);
@@ -92,7 +92,7 @@ test('all 149 canonical records retain exact IDs, statuses, scientific metadata 
     }
     assert.equal((map.source.match(/<details\b[^>]*class="reviewed-methods"/g) || []).length, 1);
     const reviewed = map.source.match(/<details\b[^>]*class="reviewed-methods"[^>]*>([\s\S]*?)<\/details>/)[1];
-    assert.equal((reviewed.match(/<li>/g) || []).length, 25);
+    assert.equal((reviewed.match(/<li>/g) || []).length, 24);
     assert.ok(!reviewed.includes('data-method-id'), 'The reviewed subset is not counted as duplicate method rows');
   }
 });
@@ -129,7 +129,7 @@ test('normalization handles width, case, Unicode dashes and whitespace while pre
 test('actual bilingual names, aliases, groups and AND terms combine with exact canonical status membership', () => {
   for (const lang of ['ja', 'en']) {
     const records = recordsFor(lang); const lookup = new Map(records.map(record => [record.id, record]));
-    assert.equal(records.filter(record => methodMatches(record)).length, 149);
+    assert.equal(records.filter(record => methodMatches(record)).length, 152);
     for (const [status, count] of Object.entries(expectedCounts)) {
       const actual = records.filter(record => methodMatches(record, status, ''));
       assert.equal(actual.length, count);
@@ -221,7 +221,7 @@ function assertVisible(fixture, expected) {
     assert.deepEqual([...visibleIds(section)].sort(), [...expected].sort(), section.lang);
     assert.equal(section.empty.hidden, expected.length !== 0);
     assert.ok(numericWords(section.count.textContent).includes(expected.length), section.count.textContent);
-    assert.ok(numericWords(section.count.textContent).includes(149), section.count.textContent);
+    assert.ok(numericWords(section.count.textContent).includes(152), section.count.textContent);
     for (const group of section.groups) {
       const count = expected.filter(id => byId.get(id).group.id === group.id).length;
       assert.equal(group.node.hidden, count === 0, group.id);
@@ -299,6 +299,6 @@ test('query text remains inert, preserves all source rows and never invokes HTML
   assertVisible(fixture, []);
   assert.equal(fixture.ja.input.value, payload); assert.equal(fixture.en.input.value, payload);
   assert.equal(globalThis.__methodFilterInjected, undefined);
-  for (const section of fixture.sections) assert.equal(section.items.length, 150);
+  for (const section of fixture.sections) assert.equal(section.items.length, 152);
   fixture.ja.reset.dispatch('click'); assertVisible(fixture, catalog.methods.map(method => method.id));
 });

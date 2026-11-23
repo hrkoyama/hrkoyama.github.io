@@ -17,8 +17,8 @@
         "en": "Fluid dynamics"
       },
       "scope": {
-        "ja": "Euler衝撃波・滑らかな渦などに複数の教育用コードと保存結果があります。固定入力での検証内容は問題ごとに異なります。 追加の固定例はWENOのε、浅水の地形・乾燥床、Re100壁面流と製造解を扱います。 円のレベルセット移流は指定した速度による界面輸送の別検証です。 今回の固定例：KHの初期成長：滑らかな周期せん断層, RTの初期成長：滑らかなBoussinesq二層, 非一様移動格子で実際に運ぶALEスカラー, 2D C-grid回転浅水波の実時間発展, SRHDの対称二衝撃波衝突, SRMHDの有限振幅円偏極Alfvén波.",
-        "en": "Several educational codes and saved results cover Euler shocks and smooth vortices. Fixed-input validation differs by problem. Additional fixed cases cover WENO epsilon, shallow-water bed/dry states, and Re100 wall flow with manufactured verification. Level-set circle transport is separate interface evidence in a prescribed velocity. Additional fixed examples: KH initial growth in a smooth periodic shear layer, RT initial growth in smooth Boussinesq double layers, ALE scalar transport on genuinely nonuniform moving cells, Actual2D C-grid rotating shallow-water time advance, SRHD symmetric two-shock collision, SRMHD finite-amplitude circularly polarized Alfvén wave."
+        "ja": "Euler衝撃波・滑らかな渦などに複数の教育用コードと保存結果があります。固定入力での検証内容は問題ごとに異なります。 追加の固定例はWENOのε、浅水の地形・乾燥床、Re100壁面流と製造解を扱います。 円のレベルセット移流は指定した速度による界面輸送の別検証です。 0.4+sin(2πx)をT=.25まで移流。Gauss点・Radau補正のFRと既存のmodal DGをp=1/2、8/16/32セルで実行し、誤差・質量・時間積分誤差を測ります。 今回の固定例：KHの初期成長：滑らかな周期せん断層, RTの初期成長：滑らかなBoussinesq二層, 非一様移動格子で実際に運ぶALEスカラー, 2D C-grid回転浅水波の実時間発展, SRHDの対称二衝撃波衝突.",
+        "en": "Several educational codes and saved results cover Euler shocks and smooth vortices. Fixed-input validation differs by problem. Additional fixed cases cover WENO epsilon, shallow-water bed/dry states, and Re100 wall flow with manufactured verification. Level-set circle transport is separate interface evidence in a prescribed velocity. Transport0.4+sin(2pi x) toT=.25. Execute Gauss-node/Radau FR and the existing modal DG for p=1/2 and8/16/32 cells; measure analytic error, mass and time-integration error. Additional fixed examples: KH initial growth in a smooth periodic shear layer, RT initial growth in smooth Boussinesq double layers, ALE scalar transport on genuinely nonuniform moving cells, Actual2D C-grid rotating shallow-water time advance, SRHD symmetric two-shock collision."
       },
       "examples": [
         "sod",
@@ -59,12 +59,12 @@
         "wall-manufactured",
         "level-set-translation",
         "level-set-rotation",
+        "fr-periodic-advection",
         "kh-initial-growth",
         "rt-initial-growth",
         "ale-nonuniform-transport",
         "cgrid-rotating-wave",
-        "srhd-collision",
-        "srmhd-alfven"
+        "srhd-collision"
       ]
     },
     {
@@ -74,8 +74,8 @@
         "en": "MHD"
       },
       "scope": {
-        "ja": "旧Brio–Wu・Orszag–Tangと独立Athena++照合を保持し、移流する磁気流体静力学的平衡の構成厳密解と、同じOT初期場を使うCT／GLM比較を追加します。連続初期条件・最終時刻・実際の時間刻みを揃えた限定比較です。 物理2例の精度と、非ゼロ発散を与える制約対照での能動的なGLM輸送・減衰を分けます。 今回の固定例：円偏波Alfvén波：全成分の格子収束, 磁場ループ：独立2次元参照と細分化, 後期Orszag–Tang：独立参照と圧縮構造, SRHDの対称二衝撃波衝突, SRMHDの有限振幅円偏極Alfvén波.",
-        "en": "Preserve the earlier Brio–Wu/Orszag–Tang independent Athena++ comparisons and add CT/GLM comparisons of a constructed exact advected magnetostatic equilibrium and the same OT data. The scoped comparisons match continuous initial conditions, final time and actual time steps. Separate accuracy in the two physical cases from active GLM transport/damping in an initially nonzero-divergence constraint control. Additional fixed examples: Circular Alfven wave: full-state refinement, Magnetic loop: independent 2D reference and refinement, Late Orszag-Tang: independent reference and compression structure, SRHD symmetric two-shock collision, SRMHD finite-amplitude circularly polarized Alfvén wave."
+        "ja": "旧Brio–Wu・Orszag–Tangと独立Athena++照合を保持し、移流する磁気流体静力学的平衡の構成厳密解と、同じOT初期場を使うCT／GLM比較を追加します。連続初期条件・最終時刻・実際の時間刻みを揃えた限定比較です。 物理2例の精度と、非ゼロ発散を与える制約対照での能動的なGLM輸送・減衰を分けます。 今回の固定例：円偏波Alfvén波：全成分の格子収束, 磁場ループ：独立2次元参照と細分化, 後期Orszag–Tang：独立参照と圧縮構造, SRMHDの有限振幅円偏極Alfvén波.",
+        "en": "Preserve the earlier Brio–Wu/Orszag–Tang independent Athena++ comparisons and add CT/GLM comparisons of a constructed exact advected magnetostatic equilibrium and the same OT data. The scoped comparisons match continuous initial conditions, final time and actual time steps. Separate accuracy in the two physical cases from active GLM transport/damping in an initially nonzero-divergence constraint control. Additional fixed examples: Circular Alfven wave: full-state refinement, Magnetic loop: independent 2D reference and refinement, Late Orszag-Tang: independent reference and compression structure, SRMHD finite-amplitude circularly polarized Alfvén wave."
       },
       "examples": [
         "brio-wu"
@@ -106,7 +106,6 @@
         "circular-alfven-refinement",
         "magnetic-loop-independent",
         "postshock-orszag-tang",
-        "srhd-collision",
         "srmhd-alfven"
       ]
     },
@@ -117,8 +116,8 @@
         "en": "Elliptic problems and gravity"
       },
       "scope": {
-        "ja": "Poisson・Bratu・粒子重力に固定入力例があります。 今回の固定例：L字領域P1特異解：graded格子と歪みの分離, 環状領域の可変粘性・真2DベクトルMMS, 純Neumannの互換条件と平均値ゲージ, 2D混合Robinの製造解と境界流束.",
-        "en": "Poisson, Bratu and particle-gravity fixed-input examples. Additional fixed examples: L-corner P1 FEM: grading and separate mesh distortion, Annular variable-viscosity vector PDE MMS, Pure Neumann compatibility and mean gauge, 2D mixed Robin MMS and boundary flux."
+        "ja": "Poisson・Bratu・粒子重力に固定入力例があります。 単位正方形の正弦製造解をGLLスペクトル要素法と既存P1三角形FEMで解きます。自由未知数を揃えたh細分化と、固定要素数でのp=1〜6を分けて測ります。 今回の固定例：L字領域P1特異解：graded格子と歪みの分離, 環状領域の可変粘性・真2DベクトルMMS, 純Neumannの互換条件と平均値ゲージ, 2D混合Robinの製造解と境界流束.",
+        "en": "Poisson, Bratu and particle-gravity fixed-input examples. Solve a sine manufactured solution on the unit square with GLL spectral elements and the existing triangle P1 FEM. Compare matched free-unknown counts under h refinement and p=1..6 at fixed elements. Additional fixed examples: L-corner P1 FEM: grading and separate mesh distortion, Annular variable-viscosity vector PDE MMS, Pure Neumann compatibility and mean gauge, 2D mixed Robin MMS and boundary flux."
       },
       "examples": [
         "poisson-1d-dirichlet",
@@ -144,6 +143,7 @@
         "en": "Match boundary conditions and discretizations when comparing residual and solution errors."
       },
       "supplemental_examples": [
+        "sem-poisson-2d",
         "lshape-fem",
         "annular-viscous-mms",
         "poisson-neumann",

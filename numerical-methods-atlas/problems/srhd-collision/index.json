@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "id": "srhd-collision",
+  "name": {
+    "ja": "SRHDの対称二衝撃波衝突",
+    "en": "SRHD symmetric two-shock collision"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/srhd-collision/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/srhd-collision/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/srhd-collision/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/results/srhd-collision-preview.png",
+    "sha256": "ef2df95f225e1a80e231c91b85518a4dd007e85f3e6408e9ccbf29aaac386d3f",
+    "width": 1270,
+    "height": 761,
+    "caption": {
+      "ja": "最細格子の実際の保存密度Dの1D x–t図。5保存時刻を使用し、2D流れではありません。",
+      "en": "Actual finest-grid1D x–t conserved-density field from five stored times; not a two-dimensional flow."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-relativistic/#srhd-collision",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-relativistic/#srhd-collision"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#srhd-collision",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#srhd-collision-en"
+  },
+  "equations": [
+    {
+      "id": "srhd",
+      "name": {
+        "ja": "特殊相対論的流体（SRHD）",
+        "en": "Special-relativistic hydrodynamics (SRHD)"
+      },
+      "formula": [
+        "\\partial_\\mu(\\rho_0u^\\mu)=0,\\qquad\\partial_\\mu T^{\\mu\\nu}=0",
+        "T^{\\mu\\nu}=\\rho_0h u^\\mu u^\\nu+p\\eta^{\\mu\\nu}"
+      ],
+      "note": {
+        "ja": "c=1、平坦なCartesian時空の理想流体。γ則EOSと原始変数回復を使う穏やかな対称二衝撃波の固定例を追加。一般三波Riemann解、極端なLorentz因子、一般相対論を検証したとはしません。",
+        "en": "Ideal fluid in flat Cartesian spacetime,c=1. Add a mild fixed symmetric two-shock example with gamma-law EOS and primitive recovery; no general three-wave Riemann,extreme-Lorentz-factor or GR claim."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#srhd-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#srhd-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "c=1、γ=5/3、ρ=1、p=.1、左右v=±.3、B=0。区間[0,1]、初期不連続x=.5、t=.3、96/192/384セル。衝撃波が端へ届く前の外挿境界です。",
+    "en": "c=1,gamma5/3,rho1,p.1,opposite normal v±.3,B0. Domain[0,1], initial jump .5,t=.3,96/192/384 cells. Constant extrapolation boundaries before shocks reach endpoints."
+  },
+  "formulations": [
+    {
+      "id": "supplement-srhd-collision",
+      "name": {
+        "ja": "SRHDの対称二衝撃波衝突",
+        "en": "SRHD symmetric two-shock collision"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "U=(D,S_x,S_y,S_z,E,B_y,B_z)^T,\\quad D=\\rho W,\\quad W=(1-v^2)^{-1/2}",
+        "h_b^2-h_a^2=(p_b-p_a)(h_b/\\rho_b+h_a/\\rho_a)",
+        "v_0^2=\\frac{(p_b-p_a)(e_b-e_a)}{(e_a+p_b)(e_b+p_a)},\\quad e=\\rho+\\frac{p}{\\Gamma-1}",
+        "j^2=-\\frac{p_b-p_a}{h_b/\\rho_b-h_a/\\rho_a},\\quad V_s^2=\\frac{j^2}{\\rho_b^2+j^2}"
+      ],
+      "note": {
+        "ja": "相対論的な対称衝突を、独立なTaub関係から得る厳密な保存量セル平均と比較し、実際の1D時空間場を保存します。",
+        "en": "Compare a relativistic symmetric collision with independent exact Taub-based conserved cell means; save actual1D x–t fields."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "srhd-collision",
+      "kind": "semi-analytic",
+      "kind_label": {
+        "ja": "半解析解",
+        "en": "Semi-analytic reference"
+      },
+      "title": {
+        "ja": "相対論的対称衝突：特殊化した二衝撃波Taub参照",
+        "en": "Relativistic symmetric collision: specialized two-shock Taub reference"
+      },
+      "formula": "h_b^2-h_a^2=(p_b-p_a)*(h_b/rho_b+h_a/rho_a); v0^2=(p_b-p_a)*(e_b-e_a)/((e_a+p_b)*(e_b+p_a)); shock positions=.5 +/- Vs*t.",
+      "assumptions": {
+        "ja": "c=1、γ=5/3、ρ=1、p=.1、左右v=±.3、B=0。区間[0,1]、初期不連続x=.5、t=.3、96/192/384セル。衝撃波が端へ届く前の外挿境界です。Taub断熱式と相対速度式の圧力根から静止した同一星状態と衝撃波速度を求め、保存変数の区分一定厳密場をセル積分します。接触面は退化し、一般三波Riemannソルバーではありません。",
+        "en": "c=1,gamma5/3,rho1,p.1,opposite normal v±.3,B0. Domain[0,1], initial jump .5,t=.3,96/192/384 cells. Constant extrapolation boundaries before shocks reach endpoints. Solve the pressure root from Taub adiabat and relative-velocity relations for the identical resting star states and shock speeds, then integrate the piecewise-constant exact conserved field over cells. The contact degenerates; this is not a general three-wave Riemann solver."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "独自の穏やかな対称入力で、接触面は同じ静止状態へ退化します。一般三波Riemann解、高Lorentz因子、原著の数値入力は検証しません。Eは静止質量を含み、保存量の厳密セル平均と比較します。",
+        "en": "Custom mild symmetric input; contact degenerates to identical resting states. No general three-wave Riemann,extreme-Lorentz-factor or original-paper numerical-input reproduction claim. E includes rest mass; compare exact conserved cell means."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/srhd-collision/?lang=ja#srhd-collision-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/srhd-collision/?lang=en#srhd-collision-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "群全体25pytest、6固定計算、110判定と参照6検査を事前固定。全量境界収支、各段・再構築面の正値と亜光速、D/E細分化、星領域圧力、衝撃波位置、反射対称性を検査。実際の最終状態を独立なSRHD圧力根と流束でも照合します。",
+    "en": "Predeclare25 pytest tests,six runs,110 group gates and six reference qualifiers. Check all-component boundary budgets, stage/face admissibility,D/E refinement,star pressure,shock positions and reflection. Compare actual final states with independent scalar-pressure SRHD recovery and flux."
+  },
+  "methods": [
+    {
+      "id": "hll",
+      "name": {
+        "ja": "HLL",
+        "en": "HLL"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hll/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hll/?lang=en"
+      }
+    },
+    {
+      "id": "muscl",
+      "name": {
+        "ja": "MUSCL再構成",
+        "en": "MUSCL reconstruction"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=en"
+      }
+    },
+    {
+      "id": "minmod",
+      "name": {
+        "ja": "Minmod",
+        "en": "Minmod"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/minmod/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/minmod/?lang=en"
+      }
+    },
+    {
+      "id": "ssprk33",
+      "name": {
+        "ja": "SSPRK(3,3)",
+        "en": "SSPRK(3,3)"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ssprk33/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ssprk33/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "同じ7保存量RMHD演算子をB=0で使い、MUSCL/minmod・因果的HLL波速±1・SSPRK33で進めます。Z=ρhW²の物理根を保護付きNewton法で復元し、残差と保存量往復を確認します。",
+    "en": "Use the shared seven-component RMHD operator at B=0 with primitive MUSCL/minmod, causal HLL bounds±1 and SSPRK33. Safeguarded Newton recovers the physical Z=rho h W² root; check residual and full conserved-state roundtrip."
+  },
+  "executions": [
+    {
+      "id": "srhd-collision",
+      "kind": "supplement",
+      "name": {
+        "ja": "SRHDの対称二衝撃波衝突",
+        "en": "SRHD symmetric two-shock collision"
+      },
+      "method_ids": [
+        "hll",
+        "muscl",
+        "minmod",
+        "ssprk33"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/srhd-collision/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/srhd-collision/?lang=en"
+      },
+      "scope": {
+        "ja": "相対論的な対称衝突を、独立なTaub関係から得る厳密な保存量セル平均と比較し、実際の1D時空間場を保存します。",
+        "en": "Compare a relativistic symmetric collision with independent exact Taub-based conserved cell means; save actual1D x–t fields."
+      },
+      "assumptions": {
+        "ja": "c=1、γ=5/3、ρ=1、p=.1、左右v=±.3、B=0。区間[0,1]、初期不連続x=.5、t=.3、96/192/384セル。衝撃波が端へ届く前の外挿境界です。",
+        "en": "c=1,gamma5/3,rho1,p.1,opposite normal v±.3,B0. Domain[0,1], initial jump .5,t=.3,96/192/384 cells. Constant extrapolation boundaries before shocks reach endpoints."
+      },
+      "limits": {
+        "ja": "独自の穏やかな対称入力で、接触面は同じ静止状態へ退化します。一般三波Riemann解、高Lorentz因子、原著の数値入力は検証しません。Eは静止質量を含み、保存量の厳密セル平均と比較します。",
+        "en": "Custom mild symmetric input; contact degenerates to identical resting states. No general three-wave Riemann,extreme-Lorentz-factor or original-paper numerical-input reproduction claim. E includes rest mass; compare exact conserved cell means."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/atlas-relativistic-2026-11-23.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "群全体25pytest、6固定計算、110判定と参照6検査を事前固定。全量境界収支、各段・再構築面の正値と亜光速、D/E細分化、星領域圧力、衝撃波位置、反射対称性を検査。実際の最終状態を独立なSRHD圧力根と流束でも照合します。",
+        "en": "Predeclare25 pytest tests,six runs,110 group gates and six reference qualifiers. Check all-component boundary budgets, stage/face admissibility,D/E refinement,star pressure,shock positions and reflection. Compare actual final states with independent scalar-pressure SRHD recovery and flux."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/relativistic.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/references/exact.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/test_relativistic.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

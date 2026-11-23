@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "edition": "2026-11-23-v1",
+  "date": "2026-11-23",
+  "prompt_language": "ja",
+  "prompt_version": "2026-11-23-v1",
+  "code_release": "2026-11-23-r2",
+  "numerical_status": "PASS",
+  "source_record_sha256": "b544425082c546adfb4914eef0c47d3c0ceb6a401bc3bd0cac9b543e3b55653e",
+  "publication_transform": "Selected evidence with machine paths redacted in marked JSON/journals. Solver source, metrics, raw arrays and frozen verdicts remain byte-identical.",
+  "cost": {
+    "amount": null,
+    "currency": "USD",
+    "billable_tokens": null,
+    "status": "unavailable",
+    "lower_cost_comparison_performed": false
+  },
+  "base_archive": {
+    "url": "https://hrkoyama.github.io/code/rkdg2d/2026-11-23-r2/atlas-rkdg-agent-kit.zip",
+    "sha256": "6fa8d75c1f70281eb0a78363eb3323c5a9a1b006f01f49182c4827f4d5710a69"
+  },
+  "trials": [
+    {
+      "trial": "assembly",
+      "candidate_sha256": "c8c6b11b688a50a3082a9dedb6b8a663b55a7cd5358aa4ac20166b672299cc2a",
+      "initial_implementation_count": 1,
+      "solver_repairs": 2,
+      "subject_reported_elapsed_seconds": 2949.834583,
+      "subject_reported_elapsed_minutes": 49.163909716666666,
+      "full_campaign_wall_seconds": 2538.137851916,
+      "full_campaign_attempts": 1,
+      "counts": {
+        "smooth": 12,
+        "directional": 24,
+        "double_mach": 9,
+        "temporal": 3,
+        "negative_controls": 1
+      },
+      "waveform_diagnostics": 4,
+      "negative_control_rejected": true,
+      "fresh_full_campaign_pde_arrays": 49,
+      "l2_finest_pair_orders": {
+        "1": 2.0013341442301256,
+        "2": 2.974669979866226,
+        "3": 4.008793861561816
+      },
+      "max_reported_normalized_conservation_defect": 4.421211772498547e-14,
+      "status": "PASS",
+      "raw_scalar_comparisons": 240,
+      "protected_file_count": 295,
+      "protected_files_changed": 0,
+      "agent_precise_model_id": null,
+      "source": "trials/assembly/candidate.py",
+      "metrics": "trials/assembly/metrics.json",
+      "original_verdict": "trials/assembly/original-verdict.json",
+      "waveform_verdict": "trials/assembly/waveform-verdict.json",
+      "raw_audit": "trials/assembly/raw-metric-audit.json"
+    },
+    {
+      "trial": "repair",
+      "candidate_sha256": "4ed984a01c42fe9bb657c09c61361b086682d6aa611e9f478bf996c0b29b81d4",
+      "initial_implementation_count": 0,
+      "solver_repairs": 1,
+      "subject_reported_elapsed_seconds": 2866.545312,
+      "subject_reported_elapsed_minutes": 47.775755200000006,
+      "full_campaign_wall_seconds": 2573.994918292,
+      "full_campaign_attempts": 1,
+      "counts": {
+        "smooth": 12,
+        "directional": 24,
+        "double_mach": 9,
+        "temporal": 3,
+        "negative_controls": 1
+      },
+      "waveform_diagnostics": 4,
+      "negative_control_rejected": true,
+      "fresh_full_campaign_pde_arrays": 49,
+      "l2_finest_pair_orders": {
+        "1": 2.0013341442301256,
+        "2": 2.974669979866226,
+        "3": 4.008793861561816
+      },
+      "max_reported_normalized_conservation_defect": 4.468638111443899e-14,
+      "status": "PASS",
+      "raw_scalar_comparisons": 240,
+      "protected_file_count": 295,
+      "protected_files_changed": 0,
+      "agent_precise_model_id": null,
+      "source": "trials/repair/candidate.py",
+      "metrics": "trials/repair/metrics.json",
+      "original_verdict": "trials/repair/original-verdict.json",
+      "waveform_verdict": "trials/repair/waveform-verdict.json",
+      "raw_audit": "trials/repair/raw-metric-audit.json"
+    }
+  ],
+  "scope_limits": [
+    "One pilot per task, not a measured success probability.",
+    "No lower-cost-model or Atlas-free control comparison.",
+    "Public downloads and environment prepared by supervisor; subjects implemented/repaired and executed candidate-bound tests.",
+    "No OS-enforced read isolation; completed-source access prohibited by task instructions and self-reported read logs.",
+    "Shared-host overlapping campaigns: wall times are observations, not a speed or monetary comparison.",
+    "Historical reversed-x supplement remains a separate 5/6 result; not rerun or fixed here.",
+    "Warnings and the first supervisor-audit failure are preserved."
+  ],
+  "supervisor_audit_correction": "records/supervisor-audit-correction.json"
+}

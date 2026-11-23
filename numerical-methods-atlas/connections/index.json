@@ -1440,7 +1440,21 @@
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/biology.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/run.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/wall_flow.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/references/qualify_reference.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/references/qualify_reference.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/instability-growth/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/instability-growth/flow.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/instability-growth/references/linear.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/instability-growth/history/reference-attempt-01/references/linear.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/boundary.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/fem.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/annulus.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/experiments.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/references/fields.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/transport.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/references/exact.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/experiments.py"
                 ],
                 "test_urls": [
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
@@ -1449,7 +1463,10 @@
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/test_biology.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/test_result_envelope.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/test_serialization.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/test_wall_flow.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/test_wall_flow.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/instability-growth/test_instability.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/test_geometry.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/test_moving.py"
                 ],
                 "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               },
@@ -1472,14 +1489,19 @@
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/run.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/weno.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/references/analytic.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/references/analytic.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/transport.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/references/exact.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/experiments.py"
                 ],
                 "test_urls": [
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_runge_kutta.py",
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_hamiltonian.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/test_weno.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/test_weno.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/test_moving.py"
                 ],
                 "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               },
@@ -1958,7 +1980,21 @@
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/biology.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/run.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/wall_flow.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/references/qualify_reference.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/references/qualify_reference.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/instability-growth/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/instability-growth/flow.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/instability-growth/references/linear.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/instability-growth/history/reference-attempt-01/references/linear.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/boundary.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/fem.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/annulus.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/experiments.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/references/fields.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/transport.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/references/exact.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/experiments.py"
                 ],
                 "test_urls": [
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
@@ -1967,7 +2003,10 @@
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/test_biology.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/test_result_envelope.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/test_serialization.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/test_wall_flow.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/test_wall_flow.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/instability-growth/test_instability.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/test_geometry.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/test_moving.py"
                 ],
                 "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               },
@@ -1990,14 +2029,19 @@
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/run.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/weno.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/references/analytic.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/references/analytic.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/transport.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/references/exact.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/experiments.py"
                 ],
                 "test_urls": [
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_runge_kutta.py",
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_hamiltonian.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/test_weno.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/test_weno.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/test_moving.py"
                 ],
                 "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               },
@@ -2429,14 +2473,19 @@
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/run.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/weno.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/references/analytic.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/references/analytic.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/transport.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/references/exact.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/experiments.py"
                 ],
                 "test_urls": [
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_runge_kutta.py",
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_hamiltonian.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/test_weno.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/test_weno.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/test_moving.py"
                 ],
                 "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               }
@@ -2540,12 +2589,17 @@
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/run.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/rotation.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/references/geometry.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/references/qualify_reference.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/references/qualify_reference.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/transport.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/references/exact.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/experiments.py"
                 ],
                 "test_urls": [
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/test_rotation.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/test_rotation.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/test_moving.py"
                 ],
                 "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               },
@@ -2892,14 +2946,21 @@
                 "code_urls": [
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/linear.py",
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/multigrid.py",
-                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/poisson_comparison.py"
+                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/poisson_comparison.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/boundary.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/fem.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/annulus.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/experiments.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/references/fields.py"
                 ],
                 "test_urls": [
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_linear.py",
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_multigrid.py",
-                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_poisson_comparison.py"
+                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_poisson_comparison.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/test_geometry.py"
                 ],
-                "code_mapping_scope": "Related chapter modules and test files; not a claim that each test covers every named method."
+                "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               },
               {
                 "id": "multigrid",
@@ -2936,12 +2997,19 @@
                   "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/fem/"
                 },
                 "code_urls": [
-                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/fem.py"
+                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/fem.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/fem.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/references/fields.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/annulus.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/boundary.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/experiments.py"
                 ],
                 "test_urls": [
-                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_sparse_fem.py"
+                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_sparse_fem.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/test_geometry.py"
                 ],
-                "code_mapping_scope": "Related chapter modules and test files; not a claim that each test covers every named method."
+                "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               }
             ],
             "examples": [
@@ -3668,14 +3736,14 @@
   "verification_receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
   "source_sha256": {
     "catalog/atlas-crossovers.json": "04358952828bd2732864c794205f60e351d0a7a669abec0222c2821fc03fd71f",
-    "catalog/atlas-methods.json": "90c03bcde9b6a77ec07835aba8cce6b64b07389d8d0a7c643f8c24289ab54bb6",
-    "numerical-methods-atlas/methods/index.json": "a6ec0f1b03f8baba8cdfa9d29b5044f6d7671e28accf79437184d2241f47014b",
+    "catalog/atlas-methods.json": "065a3b34662d245db876b4f35261d0ab080429a80ad4a35300b2676b20d009e7",
+    "numerical-methods-atlas/methods/index.json": "b83573abbe2578e39f72491e2cb2e6013d593fa9fb099f873d82166698e4654a",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
     "numerical-methods-atlas/assets/biological-models.json": "b4432736fdbb32d6ec0be5104585348bfc166663688640f8d99a039dd4e521ab"
   },
   "supplemental_source_sha256": {
-    "catalog/atlas-depth-expansion.json": "b5c4fcb308e4627460f59b96428960b22b508d3a593d480c4c2bee1b60373aeb",
+    "catalog/atlas-depth-expansion.json": "25b030e85b4313197b9d98802270ffb65507ea0f8915bab9cbf64dabbf7fa47e",
     "code/validated-examples/2026-11-22/biology/source-manifest.json": "56947a4fb54ae757408ddddfc5de0884bfe35266032ee425a8d96a815f3362ba",
     "code/validated-examples/2026-11-22/biology/verification.json": "5cafaaef809f46e6ab01327107f7367113b8069931621fc92d446fbf142682bd",
     "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
