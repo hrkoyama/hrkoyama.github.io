@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "declared_before_first_pde_run": true,
+  "scope": "Three fixed first-order spherical HLL/Heun runs before collapse. Error includes finite-volume and time discretization against a numerically evaluated similarity reference. The active norm uses the predetermined r >= 0.8 r_shock region, alongside full-volume norms.",
+  "limits": {
+    "balance": 2e-12,
+    "minimum_internal_energy": -1.4210854715202004e-14,
+    "minimum_sound_guard_pressure": -5.6843418860808e-15,
+    "reference_quadrature": 1e-7,
+    "reference_euler_residual": 1e-5,
+    "reference_jump_residual": 1e-7,
+    "finest_density_l1": 0.15,
+    "finest_pressure_l1": 0.15,
+    "finest_active_density_l1": 0.15,
+    "finest_active_pressure_l1": 0.15,
+    "finest_shock_cells": 4.0,
+    "minimum_last_pair_density_order": 0.2
+  },
+  "diagnostic_only": [
+    "Density and pressure Linf near the shock are retained without requiring monotonic decrease.",
+    "History shock positions use the pressure-gradient peak in a fixed analytic-radius window; they are finite-resolution diagnostics.",
+    "Sound-speed-only roundoff-guard evaluations are counted separately from state repairs, including repeated face/CFL evaluations of the same negative cancellation-band pressure.",
+    "No convergence at the collapse singularity, reflected branch, or actual two-dimensional perturbation is tested."
+  ]
+}

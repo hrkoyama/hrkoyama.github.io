@@ -205,6 +205,10 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Actual2D Euler finite volumes evolve60x20,120x40 and240x80 meshes toT4, comparing separately implemented MUSCL finite-grid references. Actual numerical wall fluxes, including the vertical and horizontal step faces, close all four conserved budgets. Figures and code explicitly use the variant without corner entropy correction.
+- [Guderley converging shock: lightweight spherical-radial verification](<https://hrkoyama.github.io/numerical-methods-atlas/validation/guderley-implosion/?lang=en>)
+  availability: run
+
+  An inward spherical Guderley shock in cold stationary gas is evolved from t=-1 to -0.85 on 128/256/512 radial shells. HLL fluxes and Heun steps are checked against a similarity eigenvalue/field, shock trajectory and discrete conservation budgets.
 - [Godunov-type finite volumes — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/godunov/?lang=en#method-execution-en>)
   availability: source
 

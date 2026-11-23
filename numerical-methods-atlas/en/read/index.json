@@ -4,8 +4,8 @@
   "title": "Learn by field",
   "description": "Read the theory, derivations and worked examples by field, from foundations to related methods and verification.",
   "source": "/catalog/atlas-reading-index.json",
-  "source_sha256": "9efa7a7ca32fc53fc91465b1f6f4ad8ad4b5e71b31c903022d1dd979188db651",
-  "chapter_count": 99,
+  "source_sha256": "89a8de16bd56dcc3ede62a7a7192e4524d779ba202d3789d5fb96d4fe30154db",
+  "chapter_count": 100,
   "groups": [
     {
       "id": "foundations-time",
@@ -538,6 +538,17 @@
             "en"
           ],
           "search_text": "validation-sedov Sedov–Taylor点爆発：球対称の軽量検証 Sedov–Taylor point blast: lightweight spherical-radial validation 流体・衝撃波・定常解法 Fluids, shocks and steady solvers"
+        },
+        {
+          "id": "validation-guderley",
+          "title": "Guderley converging shock: lightweight spherical-radial verification",
+          "url": "/numerical-methods-atlas/en/read/validation-guderley/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-guderley Guderley収束衝撃波：球対称の軽量検証 Guderley converging shock: lightweight spherical-radial verification 流体・衝撃波・定常解法 Fluids, shocks and steady solvers"
         }
       ]
     },

@@ -3009,7 +3009,7 @@
     }
   ],
   "source_sha256": {
-    "catalog/atlas-depth-expansion.json": "d664e9e67d7661114a212229bd05104fc479d37137d697cd93d77c801288ca47",
+    "catalog/atlas-depth-expansion.json": "f9f0dc0fae15eb6b1e82b5179289e8505f95dfeea6cbf59a572fa479f9073016",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
     "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
@@ -3094,6 +3094,11 @@
     "code/validated-examples/2026-11-23/low-mach/verification.json": "f747210e1d46900c4f56b01e989696c3feaee35361fe42be11428fd280bacf84",
     "code/validated-examples/2026-11-23/low-mach/cases.json": "8a33dd861d6c635afeb526a2823fa33e88dc84fb49f1ae8a5ba19cbad32ae058",
     "code/validated-examples/2026-11-23/low-mach/results/result.json": "5e1fdfa86dc57b13857bd571de1070d00ac5237400e0fc9ee9875fae9824d9f5",
-    "code/validated-examples/2026-11-23/low-mach/atlas-low-mach-2026-11-23.zip": "717b2ceed76d37cf4c1e570a7a022e1a17d66fce3048648a3edde4164a1513aa"
+    "code/validated-examples/2026-11-23/low-mach/atlas-low-mach-2026-11-23.zip": "717b2ceed76d37cf4c1e570a7a022e1a17d66fce3048648a3edde4164a1513aa",
+    "code/validated-examples/2026-11-23-r2/guderley/source-manifest.json": "21ad6b276da23b43f14f945275ede89423c84382684fbb11efaaf2479542d942",
+    "code/validated-examples/2026-11-23-r2/guderley/verification.json": "f1aec66cb2d92f0166bd948ea685ad9c193ebf74d1be67b0cc2cfa1d254dc554",
+    "code/validated-examples/2026-11-23-r2/guderley/cases.json": "141e0de47934171fc3ddc943bdedd7b0bda34ead92b13e03fee48aac5ffbad98",
+    "code/validated-examples/2026-11-23-r2/guderley/results/result.json": "1ed7e0d78c95488bd804a62946785040aa30b8b45a39f2e575ce8bf0ea53a0ea",
+    "code/validated-examples/2026-11-23-r2/guderley/atlas-guderley-2026-11-23-r2.zip": "ca6974a8e48f8d6a2ad81ad74bce173dcff3656e35a465d9e75fac3d6cbdbfb6"
   }
 }

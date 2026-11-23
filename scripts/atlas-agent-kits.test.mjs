@@ -49,9 +49,9 @@ test('known supplemental failure and execution boundaries remain visible in both
  assert.equal(json('catalog/atlas-methods.json').methods.length,147);
  assert.equal(json('catalog/atlas-execution-examples.json').examples.length,22);
  const problems=json('catalog/atlas-test-problems.json').problems;
- assert.equal(problems.filter(problem=>!['noh','sedov'].includes(problem.id)).length,83,'the kit preserves the historical problem inventory');
+ assert.equal(problems.filter(problem=>!['noh','sedov','guderley'].includes(problem.id)).length,83,'the kit preserves the historical problem inventory');
  assert.equal(problems.filter(problem=>problem.id==='noh').length,1,'the separate Noh addition contributes one physical problem');
- assert.equal(problems.length,85);
+ assert.equal(problems.length,86);
 });
 
 test('agent kit is reachable from the real static and runtime home and code guide',()=>{

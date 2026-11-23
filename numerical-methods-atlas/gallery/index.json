@@ -4,15 +4,15 @@
   "reviewed_on": "2026-11-22",
   "scope": "One explicitly mapped visual per atlas test problem. Existing shared figures are identified. Derived plots use stored numerical values; computed previews record fixed inputs and numerical checks.",
   "counts": {
-    "test_problems": 85,
-    "runnable_problems": 44,
+    "test_problems": 86,
+    "runnable_problems": 45,
     "common_runnable_problems": 22,
-    "supplemental_runnable_problems": 25,
-    "supplemental_case_count": 41,
-    "supplemental_release_case_count": 46,
+    "supplemental_runnable_problems": 26,
+    "supplemental_case_count": 42,
+    "supplemental_release_case_count": 47,
     "groups": {
       "transport": 9,
-      "fluid": 18,
+      "fluid": 19,
       "mhd": 5,
       "viscous": 3,
       "elliptic": 13,
@@ -26,7 +26,7 @@
     },
     "visual_sources": {
       "stored-data-plot": 27,
-      "existing-figure": 49,
+      "existing-figure": 50,
       "computed-preview": 9
     }
   },
@@ -7495,10 +7495,126 @@
           "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/verification.json"
         }
       ]
+    },
+    {
+      "id": "guderley",
+      "group": "fluid",
+      "name": {
+        "ja": "Guderleyの収束衝撃波",
+        "en": "Guderley converging shock"
+      },
+      "chapter": "validation-guderley",
+      "reading_section": "guderley-implosion",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23-r2/guderley/",
+      "verification": "/code/validated-examples/2026-11-23-r2/guderley/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23-r2/guderley/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "guderley-implosion"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r2/guderley/results/guderley-implosion-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r2/guderley/inputs.json",
+          "json_pointer": "/cases/guderley-implosion"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r2/guderley/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "guderley-implosion",
+          "url": "/numerical-methods-atlas/validation/guderley-implosion/",
+          "name": {
+            "ja": "Guderley収束衝撃波：球対称の軽量検証",
+            "en": "Guderley converging shock: lightweight spherical-radial verification"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-guderley/#guderley-implosion",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-guderley/#guderley-implosion"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#guderley",
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "image": "/code/validated-examples/2026-11-23-r2/guderley/results/guderley-implosion-preview.png",
+      "image_sha256": "03774f695db7f8e07eb006db120075d808871a194e1ab59abb815995fc53f383",
+      "width": 1376,
+      "height": 880,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "1次元球対称Eulerの保存済み半径密度を子午面に表示。γ=1.4、512球殻、r∈[0,.75]、R_s(−1)=.6、t=−.85。圧力ゼロの静止上流へ進む収束前の衝撃波を半解析参照と比較します。2D Cartesianや原点反射後の計算ではありません。",
+        "en": "A meridional-section display of saved one-dimensional spherical-radial Euler density: gamma=1.4, 512 shells, r in [0,0.75], Rs(-1)=0.6, t=-0.85. Compare the pre-collapse shock entering stationary zero-pressure upstream gas with a semi-analytic reference. This is not 2D Cartesian or post-collapse evolution."
+      },
+      "visual_input": {
+        "id": "guderley",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-23-r2/guderley/results/guderley-implosion-preview.png",
+        "caption": {
+          "ja": "1次元球対称Eulerの保存済み半径密度を子午面に表示。γ=1.4、512球殻、r∈[0,.75]、R_s(−1)=.6、t=−.85。圧力ゼロの静止上流へ進む収束前の衝撃波を半解析参照と比較します。2D Cartesianや原点反射後の計算ではありません。",
+          "en": "A meridional-section display of saved one-dimensional spherical-radial Euler density: gamma=1.4, 512 shells, r in [0,0.75], Rs(-1)=0.6, t=-0.85. Compare the pre-collapse shock entering stationary zero-pressure upstream gas with a semi-analytic reference. This is not 2D Cartesian or post-collapse evolution."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#guderley-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/guderley/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/guderley/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "guderley-implosion",
+          "title": {
+            "ja": "Guderley収束衝撃波：球対称の軽量検証",
+            "en": "Guderley converging shock: lightweight spherical-radial verification"
+          },
+          "group": "guderley",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/guderley-implosion/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/guderley-implosion/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/guderley_solver.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/precollapse.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/EXACTPACK-test_guderley.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/eexp.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/guderley.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/interp_laz.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/original_init.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/ramsey.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/qualify_reference.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/test_guderley.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/atlas-guderley-2026-11-23-r2.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/verification.json"
+        }
+      ]
     }
   ],
   "source_sha256": {
-    "catalog/atlas-gallery.json": "c7a79d0d75ff502148bca24ca31683f71c72ae53006f866d24d1626940601a56",
+    "catalog/atlas-gallery.json": "4e03d8dcdd858e9935b75bf0685960ac5ba4ae681b4fd918f0425a75cff9c8ce",
     "scripts/render-atlas-gallery.py": "62956b5a0ece0c5144ec079bb30f36e44b3ccf97e4b56b677d4de356cdbab04c",
     "code/numerical-methods-atlas/2026-11-21/numart/benchmarks.py": "dc8f83aafea473b5f0e1e7bf82630484dd60aa446859c1f602571adc3c59f019",
     "code/numerical-methods-atlas/2026-11-21/numart/solvers.py": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d",
@@ -7545,8 +7661,8 @@
     "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
     "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
     "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
-    "catalog/atlas-test-problems.json": "872d6a32fa180fc575ac2e014734d6dfbba0632aee8c54866df254d3fb0d8fbb",
-    "catalog/atlas-depth-expansion.json": "d664e9e67d7661114a212229bd05104fc479d37137d697cd93d77c801288ca47",
+    "catalog/atlas-test-problems.json": "e1e23af794544805ca27bb02f50ad0f89bdba9f2d03f41f324300db0997edf84",
+    "catalog/atlas-depth-expansion.json": "f9f0dc0fae15eb6b1e82b5179289e8505f95dfeea6cbf59a572fa479f9073016",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
     "code/validated-examples/2026-11-22/foundations/inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -7692,18 +7808,25 @@
     "code/validated-examples/2026-11-23/low-mach/results/result.json": "5e1fdfa86dc57b13857bd571de1070d00ac5237400e0fc9ee9875fae9824d9f5",
     "code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex.png": "38635f161af26efd48e0c0a2bc463974e3e81e6b506770a4c6f6c19b24be1970",
     "code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex-preview.png": "295a80ecab6c8e93c0504f115f48a3b5105ab4e29fe2ccd44965fe387744dbdf",
+    "code/validated-examples/2026-11-23-r2/guderley/cases.json": "141e0de47934171fc3ddc943bdedd7b0bda34ead92b13e03fee48aac5ffbad98",
+    "code/validated-examples/2026-11-23-r2/guderley/inputs.json": "55012ed25956636e2433f61c5bd5de45651c8d252212aac2e9c8cb47e7e1442c",
+    "code/validated-examples/2026-11-23-r2/guderley/source-manifest.json": "21ad6b276da23b43f14f945275ede89423c84382684fbb11efaaf2479542d942",
+    "code/validated-examples/2026-11-23-r2/guderley/verification.json": "f1aec66cb2d92f0166bd948ea685ad9c193ebf74d1be67b0cc2cfa1d254dc554",
+    "code/validated-examples/2026-11-23-r2/guderley/results/result.json": "1ed7e0d78c95488bd804a62946785040aa30b8b45a39f2e575ce8bf0ea53a0ea",
+    "code/validated-examples/2026-11-23-r2/guderley/results/guderley-implosion.png": "af3c5bc89657b250436a73571bfb793345c17dc283c08d8f9b278060138918f9",
+    "code/validated-examples/2026-11-23-r2/guderley/results/guderley-implosion-preview.png": "03774f695db7f8e07eb006db120075d808871a194e1ab59abb815995fc53f383",
     "code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py": "4ad61ac54dfa59d7d61959c5699f290e2386c23bf5b4b930a5d98576feaa54d1",
     "code/numerical-methods-atlas/2026-11-21/tests/test_linear.py": "5e7323f2734fb7328c35706ccd90fc25076bd46d01d32cd9c78c8cd25dd0421f",
     "code/numerical-methods-atlas/2026-11-21/tests/test_sparse_fem.py": "4076e514e0b9b5fd94dead4af33fe7e7548fba6a7b48b3e21a406034f7170afb",
     "code/numerical-methods-atlas/2026-11-21/tests/test_runge_kutta.py": "920a5eb560afe7f560cae8d22f879f125851f4ee0451b24720d0eca0082c31ce",
     "code/numerical-methods-atlas/2026-11-21/tests/test_new_models.py": "2937daf8fa8ad86882ac06e47835a6309ca1df3d0283c7dfb7b9606dc3906b1f",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "e911630439324bd63c075829ed175621068e33088c8a874cb774d725d49a2446",
+    "numerical-methods-atlas/gallery/preview-manifest.json": "c478bc4512ba218b3a7f0f9fbbe8293b64fe7053cf84daffc8c3e4bf3b0765d8",
     "numerical-methods-atlas/gallery/calculations.json": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6",
     "numerical-methods-atlas/gallery/verification.json": "46c39543afa9d943dfef896fadbc8f84d847f1a145d9b1427a2336de7a3a50f9",
-    "numerical-methods-atlas/test-cases/index.json": "74a39c9c145f0e9ab86ac75da83e1fa780467fa030bb91a25319c37b7175b905",
+    "numerical-methods-atlas/test-cases/index.json": "36d95c54b302a2e8685154c7f5f1ec8636413c85f4cc82c11cf0ce33e18b31a5",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "scripts/atlas_execution_discovery.py": "3431dae95fb0adc68e1deca07b406b70bd99480f9ad6023a31765cb07ccf84be",
-    "scripts/atlas_depth_release.py": "1f4c7e182e1c9b2918c0d099a2a9dedd5ba49fc1e34081f983db2993b6c94788",
+    "scripts/atlas_depth_release.py": "6c1aaa8bcf2a4fe293f5e01e821b3b1ee90f03b0e57a9a62ebce4e54e19e0391",
     "scripts/atlas_goal_availability.py": "3b32fcee61cd8452e529a73ed203b1a64aa32db7312734df477926f5fa39fab5",
     "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
     "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
@@ -7725,6 +7848,7 @@
     "code/validated-examples/2026-11-23-r2/sedov/atlas-sedov-2026-11-23-r2.zip": "abb7344023b91b090820de1ebec8d6c6a949b8c06fda73037204a5d6f62b4b73",
     "code/validated-examples/2026-11-23/double-mach/atlas-double-mach-2026-11-23.zip": "0a68d19746c508e0ac0cf9b5bebe9375c797a87ade1a9fbfbef87d6e5fa63347",
     "code/validated-examples/2026-11-23/forward-step/atlas-forward-step-2026-11-23.zip": "ae69647a4e63c75c0888a6daf15835d348e9d74de58b5e59926e359e9ffc52cd",
-    "code/validated-examples/2026-11-23/low-mach/atlas-low-mach-2026-11-23.zip": "717b2ceed76d37cf4c1e570a7a022e1a17d66fce3048648a3edde4164a1513aa"
+    "code/validated-examples/2026-11-23/low-mach/atlas-low-mach-2026-11-23.zip": "717b2ceed76d37cf4c1e570a7a022e1a17d66fce3048648a3edde4164a1513aa",
+    "code/validated-examples/2026-11-23-r2/guderley/atlas-guderley-2026-11-23-r2.zip": "ca6974a8e48f8d6a2ad81ad74bce173dcff3656e35a465d9e75fac3d6cbdbfb6"
   }
 }

@@ -375,6 +375,107 @@
           "note": "Checked the generalized vortex and finite-periodic-boundary qualifications. The selected beta3, mean velocity(1,.5) and background Mach values are explicit adaptations, not NASA/FR execution or figure reuse."
         }
       ]
+    },
+    {
+      "id": "guderley",
+      "model": "euler",
+      "kind": "semi-analytic",
+      "formula": "R_s(t)=0.6*(-t)^alpha, alpha=1/lambda; x=t*(0.6/r)^lambda; rho=rho0*R(x), u=-r*V(x)/(lambda*t), p=rho*(-r*C(x)/(lambda*t))^2/gamma. For r<R_s:rho=rho0,u=p=0.",
+      "dimension": 1,
+      "bounds": [
+        [
+          0.0,
+          0.75
+        ]
+      ],
+      "components": [
+        "density",
+        "radial momentum",
+        "total energy"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "gamma": 1.4,
+        "rho0": 1.0,
+        "upstream_pressure": 0.0,
+        "upstream_velocity": 0.0,
+        "geometry_dimension": 3,
+        "shock_scale": 0.6,
+        "initial_time": -1.0,
+        "time": -0.85,
+        "grids": [
+          128,
+          256,
+          512
+        ],
+        "cfl": 0.4,
+        "quadrature_order": 16,
+        "quadrature_check_order": 32,
+        "similarity_lambda": 1.3943607844230872,
+        "similarity_alpha": 0.7171745011559165
+      },
+      "sources": [
+        "https://raw.githubusercontent.com/lanl/ExactPack/9bacc477eb791e959c9621e771fc7a725db755fa/doc/source/references.rst",
+        "https://doi.org/10.1080/10618562.2011.647768",
+        "https://doi.org/10.1137/0718022",
+        "https://doi.org/10.1017/S0022112097007775",
+        "https://doi.org/10.1016/j.softx.2023.101560",
+        "https://github.com/lanl/ExactPack/tree/9bacc477eb791e959c9621e771fc7a725db755fa/exactpack/solvers/guderley"
+      ],
+      "title": "Guderley converging shock: eigenvalue and spherical semi-analytic reference",
+      "assumptions": "Ideal-gas Euler in spherical radial symmetry, gamma=1.4, with unshocked upstream rho0=1, u=p=0. Lazarus time t in [-1,-0.85] excludes collapse at 0; r in [0,0.75], Rs(t)=0.6*(-t)^alpha and alpha=1/lambda. The initial field already contains the similarity shock and is not zero pressure throughout the domain. Lambda is computed by the pinned ExactPack eigenvalue routine, and the same pinned source supplies the pre-collapse similarity ODE. Shells are split at the shock and conserved states are Gauss16 volume averaged, checked against Gauss32; pressure is p(Ubar). This is not closed-form exact cell means or an independent semi-analytic implementation: it is a dense-output adapter to ExactPack. The figure is a 2D central-section display of 1D radial data, not a 2D Cartesian or post-collapse computation.",
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/guderley-implosion/?lang=ja#guderley-implosion-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/guderley-implosion/?lang=en#guderley-implosion-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-guderley/#guderley-implosion",
+        "en": "/numerical-methods-atlas/en/read/validation-guderley/#guderley-implosion"
+      },
+      "reference_scope": "Pinned ExactPack eexp computes the similarity exponent; unchanged ramsey.g supplies the similarity ODE. A dense pre-collapse adapter changes caching, evaluation and coordinates, not that ODE. Eight original ramsey.state point calls qualify the adapter, alongside the code-transcribed exponent table, critical matching, shock jumps and Gauss16/32 shell quadrature. This is actual selected ExactPack source execution, not a complete ExactPack test run, an independent similarity implementation or a second numerical Euler engine. The separate finite-volume evolution is Atlas HLL/Heun. The collapse singularity and reflected-shock B eigenvalue are excluded.",
+      "citations": [
+        {
+          "role": "historical-original-problem-attribution",
+          "title": "G. Guderley (1942), Starke kugelige und zylindrische Verdichtungsstöße in der Nähe des Kugelmittelpunktes bzw. der Zylinderachse, Luftfahrtforschung 19, 302 (first page)",
+          "url": "https://raw.githubusercontent.com/lanl/ExactPack/9bacc477eb791e959c9621e771fc7a725db755fa/doc/source/references.rst",
+          "note": "Historical original-problem attribution. Author/year/volume/first page 302 were checked in the pinned ExactPack bibliography and the title in the Lazarus1981 publisher references. The original 1942 text was not inspected and is not claimed as the directly transcribed source of the present fields or measurements.",
+          "review_url": "https://epubs.siam.org/doi/10.1137/0718022"
+        },
+        {
+          "role": "semi-analytic-benchmark-and-two-eigenvalue-context",
+          "title": "Scott D. Ramsey, James R. Kamm and John H. Bolstad (2012), The Guderley problem revisited, International Journal of Computational Fluid Dynamics 26, 79–99",
+          "url": "https://doi.org/10.1080/10618562.2011.647768",
+          "note": "The LANL record and abstract distinguish the convergence exponent from the reflected trajectory eigenvalue. This is not a claim to have read the entire paper or reproduced its PDE experiment; the present field is constructed using the pinned ExactPack source.",
+          "review_url": "https://laro.lanl.gov/esploro/outputs/journalArticle/The-Guderley-problem-revisited/9916364702403761"
+        },
+        {
+          "role": "similarity-coordinate-convention-and-tabulated-exponent",
+          "title": "Roger B. Lazarus (1981), Self-Similar Solutions for Converging Shocks and Collapsing Cavities, SIAM Journal on Numerical Analysis 18, 316–371",
+          "url": "https://doi.org/10.1137/0718022",
+          "note": "Checked the publisher record/abstract and the explicitly attributed equations/table in ExactPack. The tabulated lambda 1.3943607838 is the value transcribed in that code, not an independent retranscription of the original table.",
+          "review_url": "https://epubs.siam.org/doi/10.1137/0718022"
+        },
+        {
+          "role": "critical-point-eigenvalue-formulation-used-by-ExactPack-eexp",
+          "title": "R. F. Chisnell (1998), An analytic description of converging shock waves, Journal of Fluid Mechanics 354, 357–375",
+          "url": "https://doi.org/10.1017/S0022112097007775",
+          "note": "Checked the publisher record/abstract and the critical-point phase matching and equation 3.1 implementation in ExactPack eexp. The exponent is computed through that eigenvalue routine rather than fixed by dimensional analysis.",
+          "review_url": "https://www.cambridge.org/core/journals/journal-of-fluid-mechanics/article/abs/an-analytic-description-of-converging-shock-waves/1D3D7014FF4C6297A5F6DC9BCFDBE0E8"
+        },
+        {
+          "role": "ExactPack-software-reference",
+          "title": "Jasper Thrussell and Jim Michael Ferguson (2023), ExactPack: A python library of exact analytic solutions, SoftwareX 24, 101560",
+          "url": "https://doi.org/10.1016/j.softx.2023.101560",
+          "note": "Cites the ExactPack software paper and its Guderley solver listing. The paper version 1.7.5 is distinguished from the exact source commit used here, whose source, SHA receipts and BSD license are retained.",
+          "review_url": "https://www.osti.gov/servlets/purl/2204208"
+        },
+        {
+          "role": "actually-executed-semi-analytic-reference-source",
+          "title": "Los Alamos National Laboratory / ExactPack contributors (2025), ExactPack Guderley solver, pinned source",
+          "url": "https://github.com/lanl/ExactPack/tree/9bacc477eb791e959c9621e771fc7a725db755fa/exactpack/solvers/guderley",
+          "note": "Inspected pinned eexp, the pre-collapse ODE/state, transcribed tables, official regression values and BSD 3 terms. This is not a claim to have run the complete ExactPack suite; actual reference execution is recorded separately. The selected exponent, pre-collapse ODE and eight original state probes were actually executed; qualification.json and pinned source/license hashes are archived with this release. The public Guderley class, reflected B solve and full ExactPack suite were not run."
+        }
+      ]
     }
   ]
 }

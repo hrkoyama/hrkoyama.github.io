@@ -3879,6 +3879,65 @@
         "python -m pytest -q",
         "python run.py --input inputs.json --output output"
       ]
+    },
+    {
+      "id": "guderley",
+      "group": "fluid",
+      "name": {
+        "ja": "Guderleyの収束衝撃波",
+        "en": "Guderley converging shock"
+      },
+      "chapter": "validation-guderley",
+      "reading_section": "guderley-implosion",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23-r2/guderley/",
+      "verification": "/code/validated-examples/2026-11-23-r2/guderley/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23-r2/guderley/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "guderley-implosion"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r2/guderley/results/guderley-implosion-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r2/guderley/inputs.json",
+          "json_pointer": "/cases/guderley-implosion"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r2/guderley/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "guderley-implosion",
+          "url": "/numerical-methods-atlas/validation/guderley-implosion/",
+          "name": {
+            "ja": "Guderley収束衝撃波：球対称の軽量検証",
+            "en": "Guderley converging shock: lightweight spherical-radial verification"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-guderley/#guderley-implosion",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-guderley/#guderley-implosion"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#guderley",
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ]
     }
   ],
   "excluded_examples": {
@@ -3907,12 +3966,12 @@
   },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/",
   "counts": {
-    "test_problems": 85,
-    "saved_test_problems": 85,
+    "test_problems": 86,
+    "saved_test_problems": 86,
     "code_test_problems": 0,
     "groups": {
       "transport": 9,
-      "fluid": 18,
+      "fluid": 19,
       "mhd": 5,
       "viscous": 3,
       "elliptic": 13,
@@ -3926,7 +3985,7 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-test-problems.json": "872d6a32fa180fc575ac2e014734d6dfbba0632aee8c54866df254d3fb0d8fbb",
+    "catalog/atlas-test-problems.json": "e1e23af794544805ca27bb02f50ad0f89bdba9f2d03f41f324300db0997edf84",
     "numerical-methods-atlas/equation-gallery.json": "e99af38238a50232f92875817c4556ab6c730289db13014efdd41913096c902e",
     "numerical-methods-atlas/cip.json": "3aa33fbffad6b9ad76310e9b713629a1a35b4e30e419db0c531180cf769e6b6f",
     "numerical-methods-atlas/limiters.json": "3242180ba171420220fd349cac93dff552466070f886f3d00a70927939255312",
@@ -4063,7 +4122,11 @@
     "code/validated-examples/2026-11-23-r2/sedov/results/sedov-blast-preview.png": "ce5d4651b188e6cd5caab2cf6840829788e1952386e8bb7d235928d2a982d847",
     "code/validated-examples/2026-11-23-r2/sedov/inputs.json": "e8db508fe755dcebc65633b9d02a017211a36e7e8ffd0184a23caea0996dfab9",
     "code/validated-examples/2026-11-23-r2/sedov/verification.json": "1bec773b9e6d657ea7b71996df2bcc2c593f64b8cbb51942ed7d106be3419a03",
-    "code/validated-examples/2026-11-23-r2/sedov/exactpack-receipt.json": "048d94b8dec429a17ebaf485067a46c74b619e69e4443ca9a4ee5ce62081ba8f"
+    "code/validated-examples/2026-11-23-r2/sedov/exactpack-receipt.json": "048d94b8dec429a17ebaf485067a46c74b619e69e4443ca9a4ee5ce62081ba8f",
+    "code/validated-examples/2026-11-23-r2/guderley/results/result.json": "1ed7e0d78c95488bd804a62946785040aa30b8b45a39f2e575ce8bf0ea53a0ea",
+    "code/validated-examples/2026-11-23-r2/guderley/results/guderley-implosion-preview.png": "03774f695db7f8e07eb006db120075d808871a194e1ab59abb815995fc53f383",
+    "code/validated-examples/2026-11-23-r2/guderley/inputs.json": "55012ed25956636e2433f61c5bd5de45651c8d252212aac2e9c8cb47e7e1442c",
+    "code/validated-examples/2026-11-23-r2/guderley/verification.json": "f1aec66cb2d92f0166bd948ea685ad9c193ebf74d1be67b0cc2cfa1d254dc554"
   },
   "code_edition": "2026-11-21",
   "code_verification": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/verification.json"

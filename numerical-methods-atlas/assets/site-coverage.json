@@ -27,9 +27,9 @@
     "biological_entries": 22,
     "gallery_cases": 9,
     "gallery_equations": 7,
-    "reading_chapters": 99,
-    "test_problems": 85,
-    "saved_test_problems": 85,
+    "reading_chapters": 100,
+    "test_problems": 86,
+    "saved_test_problems": 86,
     "code_test_problems": 0
   },
   "items": [
@@ -1423,7 +1423,7 @@
       "chapter": "validation-double-mach",
       "status": "local-example",
       "group": "Riemann fluxes & corrections",
-      "scope": "Three-grid 2D Double Mach verification using HLL and Heun compares a separately written finite-grid numerical reference, boundary-flux budgets, shock position and unresolved near-wall structure. The additional forward-step example verifies actual 2D finite-volume flow with reflecting walls including the step faces.",
+      "scope": "Three-grid 2D Double Mach verification using HLL and Heun compares a separately written finite-grid numerical reference, boundary-flux budgets, shock position and unresolved near-wall structure. The additional forward-step example verifies actual 2D finite-volume flow with reflecting walls including the step faces. The additional Guderley example evolves a zero-upstream-pressure spherical converging shock only before collapse and compares a semi-analytic similarity reference.",
       "origin": "curated-depth-example"
     },
     {
@@ -1453,7 +1453,7 @@
       "chapter": "validation-noh",
       "status": "local-example",
       "group": "Time integration",
-      "scope": "An original small 1D finite-volume code solves zero-pressure Noh flow in planar, cylindrical and spherical symmetry. Grids 64/128/256/512 measure full-domain error, origin heating, shock location and budgets, and compare spherical boundary-inflow time-quadrature error with its analytic identity. The additional2D Cartesian Noh edition updates both x/y fluxes and both momenta on a full square. The additional spherical Sedov blast measures grid and finite deposition-radius effects separately. The additional forward-step example verifies actual 2D finite-volume flow with reflecting walls including the step faces.",
+      "scope": "An original small 1D finite-volume code solves zero-pressure Noh flow in planar, cylindrical and spherical symmetry. Grids 64/128/256/512 measure full-domain error, origin heating, shock location and budgets, and compare spherical boundary-inflow time-quadrature error with its analytic identity. The additional2D Cartesian Noh edition updates both x/y fluxes and both momenta on a full square. The additional spherical Sedov blast measures grid and finite deposition-radius effects separately. The additional forward-step example verifies actual 2D finite-volume flow with reflecting walls including the step faces. The additional Guderley example evolves a zero-upstream-pressure spherical converging shock only before collapse and compares a semi-analytic similarity reference.",
       "origin": "curated-depth-example"
     },
     {
@@ -3326,7 +3326,7 @@
   },
   "public_extension_sha256": {
     "catalog/atlas-quantum.json": "415dd98efe103ad5a2d950c22b98980f53539f6243b93e4e193dbca2c67169fe",
-    "catalog/atlas-methods.json": "522672ce3ce6e90f529ad1ae8ab3a1269ab35658eb6ae99460e1f256fca7afa2",
+    "catalog/atlas-methods.json": "0ea9515873898b348d1cb20caeb6434a2f551548e3996b19683fb2d51a6d5a6b",
     "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
     "catalog/atlas-method-primary-references.json": "9bc3991b1f9c50bc75d5c6c69a09b5fd030341ba2834f19d79cc76c92b37b0d5"
   },

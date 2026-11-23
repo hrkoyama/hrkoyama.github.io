@@ -1,0 +1,18 @@
+{
+  "command": [
+    "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/gd-env/bin/python",
+    "-W",
+    "error",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "--junitxml=/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/gd-pytest-01.xml"
+  ],
+  "limit_seconds": 120.0,
+  "timed_out": false,
+  "retry_count": 0,
+  "returncode": 0,
+  "elapsed_seconds": 43.52865929200016
+}

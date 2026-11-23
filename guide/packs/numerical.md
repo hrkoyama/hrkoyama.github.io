@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-23-dae36d7a4d
-Captured (UTC): 2026-11-23T06:09:08+00:00
+Snapshot: 2026-11-23-9ed54dc06c
+Captured (UTC): 2026-11-23T07:13:13+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -8887,7 +8887,7 @@ R. Car; M. Parrinello (1985)
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/#verification
 Coverage: reading
 
-Two hydrogenic/He problem families were executed, independently compared and added to the 85-problem inventory. A scoped H₂ finite-basis RHF example now adds independent-reference, SCF and basis checks. A scoped periodic-He DFT workflow is now added; molecular DFT, FCI and other periodic materials are not validated.
+Two hydrogenic/He problem families were executed, independently compared and added to the 86-problem inventory. A scoped H₂ finite-basis RHF example now adds independent-reference, SCF and basis checks. A scoped periodic-He DFT workflow is now added; molecular DFT, FCI and other periodic materials are not validated.
 Runnable and checked
 
 ## Quantum chemistry and DFT: approximations and equations — One electron: hydrogenic atoms [en]
@@ -12593,7 +12593,7 @@ Coverage: reading
 
 Published web edition, counted 2026-11-22. These are counts of catalog entries and documented examples, not a claim that every entry is a verified end-to-end solver.
 46 equation/model entries · 131 methods and building blocks · 243 journal/conference papers · 300 total sources.
-There are 9 saved-profile equation-gallery cases across 7 equation families, and 99 reading chapters including this inventory.
+There are 9 saved-profile equation-gallery cases across 7 equation families, and 100 reading chapters including this inventory.
 
 ## Site coverage and counting rules — Equations and models# [en]
 
@@ -16515,6 +16515,315 @@ Review scope / review_level: publisher-search-first-page-and-metadata
 J. N. Lyness (1969). Notes on the Adaptive Simpson Quadrature Routine · DOI: 10.1145/321526.321537
 Review scope / review_level: publisher-metadata
 Official reference-implementation documentation: scipy.special.roots_legendre.html · scipy.integrate.quad.html
+
+## Guderley converging shock: lightweight spherical-radial verification — Guderley converging shock: lightweight spherical-radial verification [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-guderley/
+Coverage: reading
+
+HLL plus Heun follows a Guderley shock into stationary zero-pressure upstream gas at gamma=1.4, r in [0,0.75], t=-1 to -0.85 on 128/256/512 shells. Initialize the similarity field with Rs(-1)=0.6 and compare the pre-collapse trajectory, conserved shell means and budgets with a semi-analytic reference. The figure is a 2D section display of 1D radial results.
+
+## Guderley converging shock: lightweight spherical-radial verification — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-guderley/#run-all
+Coverage: reading
+
+Run inside atlas-guderley-2026-11-23-r2 from the ZIP. This command executes all 1 fixed cases in the supplement. Choose a new or empty output directory.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Guderley converging shock: lightweight spherical-radial verification — Guderley converging shock: lightweight spherical-radial verification [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-guderley/
+Coverage: reading
+
+An inward spherical Guderley shock in cold stationary gas is evolved from t=-1 to -0.85 on 128/256/512 radial shells. HLL fluxes and Heun steps are checked against a similarity eigenvalue/field, shock trajectory and discrete conservation budgets.
+Methods, equations, figures and references
+Methods used
+HLL
+Heun / SSPRK(2,2)
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+First-order spherical finite volumes use face area4pi*r^2 and shell volume4pi*delta(r^3)/3. Shared HLL flux divergence plus the radial-momentum pressure source p_i*delta(A)/V is advanced by Heun at CFL0.4. The center is reflecting with zero face area; the outer similarity state is evaluated at both actual RK times. All three conserved budgets integrate the actual boundary flux and geometric source using the same Heun weights. There are no state floors, pressure repairs or hidden step retries.
+Compressible Euler equations
+The one-dimensional spherical-radial ideal-gas Euler system with zero upstream pressure and gamma=1.4. The fixed input defines a pre-collapse interval, similarity initial field, boundaries and shell averaging.
+Problem figure
+
+## Guderley converging shock: lightweight spherical-radial verification — Guderley converging shock: lightweight spherical-radial verification [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-guderley/
+Coverage: reading
+
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Guderley converging shock
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## Guderley converging shock: lightweight spherical-radial verification — Guderley converging shock: lightweight spherical-radial verification [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-guderley/
+Coverage: reading
+
+The33 unit checks and55 gates over three refinements were fixed before execution and passed with warnings treated as errors. Checks cover the zero-sound-speed cold HLL branch, geometric static-pressure balance, shared-flux budgets, actual two-stage boundary times and raw failed-stage retention. Full-volume L1 is shown alongside the predetermined r>=0.8*Rs shock/nonzero-flow region, so cold inner gas does not hide active errors. Maximum density/pressure differences and the saved shock trajectory remain visible. The semi-analytic reference uses the pinned LANL ExactPack eigenvalue routine and ODE through a cached pre-collapse-only adapter. It is not an independently reimplemented similarity ODE; the separately implemented finite-volume Euler evolution is compared against that reference. Full-volume density L1 is0.02345/0.01339/0.007722 and pressure L1 is0.03277/0.01743/0.009477. Density L1 in the predetermined r>=0.8*Rs region also decreases:0.02414/0.01378/0.007948. The finest measured shock radius is0.530273 against similarity0.533989, about2.54 cells apart. The maximum scaled three-component budget residual is8.85e-16. Minimum internal energy and sound-speed-only roundoff guard evaluations are both0. The smooth-reference Euler finite-difference residual is8.24e-9 and finite-offset moving-jump residual4.40e-8. All three runs including the similarity eigenvalue calculation took
+
+## Guderley converging shock: lightweight spherical-radial verification — Guderley converging shock: lightweight spherical-radial verification [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-guderley/
+Coverage: reading
+
+about44.6 seconds on the original Mac.
+Same-problem reference · Semi-analytic reference
+Guderley converging shock: eigenvalue and spherical semi-analytic reference
+The pre-collapse branch of the spherical Guderley similarity solution at gamma=1.4 with a cold uniform upstream state. Numerical eigenvalue shooting, similarity-ODE integration and shock-split shell quadrature make this a semi-analytic reference, not closed-form exact cell means. Distinguish the ExactPack-based evaluator from the finite-volume PDE calculation; this is not a comparison between independent similarity implementations. Collapse at the origin, the reflected branch and general equations of state are outside this example.
+
+## Guderley converging shock: lightweight spherical-radial verification — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-guderley/#guderley-implosion-assumptions
+Coverage: reading
+
+Fix gamma=1.4, three-dimensional spherical symmetry on r in [0,0.75], Rs(-1)=0.6 and t in [-1,-0.85]. Ahead of the inward shock the inner gas is exactly rho0=1,u0=p0=0. The outer region already contains the shocked similarity field; the entire initial domain is not a uniform cold state. Initial conserved shell means use order16 Gauss integration split at the exact shock, checked against order32. Reference pressure is p(mean conserved state), not mean primitive pressure.
+
+## Guderley converging shock: lightweight spherical-radial verification — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-guderley/#guderley-implosion-algorithm
+Coverage: reading
+
+First-order spherical finite volumes use face area4pi*r^2 and shell volume4pi*delta(r^3)/3. Shared HLL flux divergence plus the radial-momentum pressure source p_i*delta(A)/V is advanced by Heun at CFL0.4. The center is reflecting with zero face area; the outer similarity state is evaluated at both actual RK times. All three conserved budgets integrate the actual boundary flux and geometric source using the same Heun weights. There are no state floors, pressure repairs or hidden step retries.
+\partial_t U+\frac{1}{r^2}\partial_r(r^2 F)=\left(0,\frac{2p}{r},0\right)^T,\quad U=(\rho,\rho u,E)^TR_s(t)=0.6(-t)^\alpha,\quad\alpha=1/\lambda,\quad \lambda\simeq1.3943607844,\quad t<0\frac{d\bar U_i}{dt}=-\frac{A_{i+1/2}\widehat F_{i+1/2}-A_{i-1/2}\widehat F_{i-1/2}}{V_i}+\left(0,p_i\frac{\Delta A_i}{V_i},0\right)^T\bar U_i^{\rm ref}=\frac{\int_{r_{i-1/2}}^{r_{i+1/2}}U_{\rm sim}(r,t)r^2\,dr}{(r_{i+1/2}^3-r_{i-1/2}^3)/3},\qquad p_i^{\rm ref}=p(\bar U_i^{\rm ref})
+
+## Guderley converging shock: lightweight spherical-radial verification — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-guderley/#guderley-implosion-validation
+Coverage: reading
+
+The33 unit checks and55 gates over three refinements were fixed before execution and passed with warnings treated as errors. Checks cover the zero-sound-speed cold HLL branch, geometric static-pressure balance, shared-flux budgets, actual two-stage boundary times and raw failed-stage retention. Full-volume L1 is shown alongside the predetermined r>=0.8*Rs shock/nonzero-flow region, so cold inner gas does not hide active errors. Maximum density/pressure differences and the saved shock trajectory remain visible. The semi-analytic reference uses the pinned LANL ExactPack eigenvalue routine and ODE through a cached pre-collapse-only adapter. It is not an independently reimplemented similarity ODE; the separately implemented finite-volume Euler evolution is compared against that reference. Full-volume density L1 is0.02345/0.01339/0.007722 and pressure L1 is0.03277/0.01743/0.009477. Density L1 in the predetermined r>=0.8*Rs region also decreases:0.02414/0.01378/0.007948. The finest measured shock radius is0.530273 against similarity0.533989, about2.54 cells apart. The maximum scaled three-component budget residual is8.85e-16. Minimum internal energy and sound-speed-only roundoff guard evaluations are both0. The smooth-reference Euler finite-difference residual is8.24e-9 and finite-offset moving-jump residual4.40e-8. All three runs including the similarity eigenvalue calculation took
+
+## Guderley converging shock: lightweight spherical-radial verification — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-guderley/#guderley-implosion-validation
+Coverage: reading
+
+about44.6 seconds on the original Mac.
+
+## Guderley converging shock: lightweight spherical-radial verification — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-guderley/#guderley-implosion-limits
+Coverage: reading
+
+This is a short one-dimensional spherical verification away from collapse t=0. The singular origin, reflected branch, cylindrical geometry, other gammas and nonspherical perturbation stability are untested. Two-dimensional pictures map saved spherical shell means onto a meridional plane; they are not Cartesian2D evolution. The semi-analytic field is a numerically evaluated ODE/quadrature reference, not a closed-form exact cell average. Zero pressure is allowed in the cold upstream; cancellation-band negative internal energy density down to an absolute64eps is recorded. Sound-speed square-root guards only within that band have separate counts/minimum raw pressure and do not repair the state. No general nonlinear positivity theorem is claimed. Shock-position error in cell units does not decrease monotonically:1.13/2.27/2.54. Absolute radius error is about0.00665 for the first two grids and0.00372 for the finest. Density Linf differences0.258/0.271/0.266 and pressure Linf0.492/0.494/0.466 are also not monotonically decreasing. L1 reduction is not evidence that the discontinuity is pointwise resolved or that the collapse region converges.
+
+## Guderley converging shock: lightweight spherical-radial verification — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-guderley/#guderley-implosion-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+n512
+time-0.85
+steps285
+density_l10.0077216186265
+pressure_l10.00947688731818
+active_density_l10.00794832226952
+active_pressure_l10.00947688731818
+density_linf0.265597992546
+pressure_linf0.466464104136
+maximum_velocity_error0.291830263497
+active_volume_fraction0.814502239227
+active_inner_radius0.427191192963
+shock_radius0.5302734375
+reference_shock_radius0.533988991204
+shock_error_cells2.53648466206
+maximum_history_shock_error_cells2.53648466206
+minimum_density_all_stages1
+minimum_pressure_all_stages0
+minimum_internal_energy_all_stages0
+sound_speed_roundoff_guard_evaluations0
+minimum_pressure_at_sound_speed_guard0
+state_floor_count0
+rejected_steps0
+minimum_dt0.000497049925497
+maximum_dt0.0005370156068
+reference_quadrature_density_l14.6073262855e-15
+reference_quadrature_pressure_l18.2958496295e-15
+initial_reference_quadrature_density_l11.45227436667e-15
+initial_reference_quadrature_pressure_l13.2080095343e-15
+判定 / checkPassed
+all three fixed spherical runs completedtrue
+N128: final time before collapsetrue
+N128: strictly positive density all stagestrue
+N128: minimum_internal_energy_all_stagestrue
+N128: minimum_pressure_at_sound_speed_guardtrue
+N128: state_floor_counttrue
+N128: rejected_stepstrue
+
+## Guderley converging shock: lightweight spherical-radial verification — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-guderley/#guderley-implosion-measurements
+Coverage: reading
+
+N128: mass discrete balancetrue
+N128: radial momentum including geometric source discrete balancetrue
+N128: energy discrete balancetrue
+N128: reference_quadrature_density_l1true
+N128: reference_quadrature_pressure_l1true
+N128: initial_reference_quadrature_density_l1true
+N128: initial_reference_quadrature_pressure_l1true
+N128: maximum and trajectory diagnostics retainedtrue
+N256: final time before collapsetrue
+N256: strictly positive density all stagestrue
+N256: minimum_internal_energy_all_stagestrue
+N256: minimum_pressure_at_sound_speed_guardtrue
+N256: state_floor_counttrue
+N256: rejected_stepstrue
+N256: mass discrete balancetrue
+N256: radial momentum including geometric source discrete balancetrue
+N256: energy discrete balancetrue
+N256: reference_quadrature_density_l1true
+N256: reference_quadrature_pressure_l1true
+N256: initial_reference_quadrature_density_l1true
+N256: initial_reference_quadrature_pressure_l1true
+N256: maximum and trajectory diagnostics retainedtrue
+N512: final time before collapsetrue
+N512: strictly positive density all stagestrue
+N512: minimum_internal_energy_all_stagestrue
+N512: minimum_pressure_at_sound_speed_guardtrue
+N512: state_floor_counttrue
+N512: rejected_stepstrue
+N512: mass discrete balancetrue
+N512: radial momentum including geometric source discrete balancetrue
+N512: energy discrete balancetrue
+N512: reference_quadrature_density_l1true
+
+## Guderley converging shock: lightweight spherical-radial verification — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-guderley/#guderley-implosion-measurements
+Coverage: reading
+
+N512: reference_quadrature_pressure_l1true
+N512: initial_reference_quadrature_density_l1true
+N512: initial_reference_quadrature_pressure_l1true
+N512: maximum and trajectory diagnostics retainedtrue
+similarity qualification: maximum_scaled_euler_residualtrue
+similarity qualification: maximum_scaled_jump_residualtrue
+similarity exponent agrees with tabulated lambdatrue
+finest density_l1true
+finest pressure_l1true
+finest active_density_l1true
+finest active_pressure_l1true
+finest shock_error_cellstrue
+density_l1 decreases across the three gridstrue
+active_density_l1 decreases across the three gridstrue
+pressure_l1 decreases across the three gridstrue
+last-pair active density L1 slopetrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Read every stored record
+
+## Guderley converging shock: lightweight spherical-radial verification — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-guderley/#guderley-implosion-measurements
+Coverage: reading
+
+ntimestepsdensity_l1pressure_l1active_density_l1active_pressure_l1density_linfpressure_linfmaximum_velocity_erroractive_volume_fractionactive_inner_radiusshock_radiusreference_shock_radiusshock_error_cellsmaximum_history_shock_error_cellsminimum_density_all_stagesminimum_pressure_all_stagesminimum_internal_energy_all_stagessound_speed_roundoff_guard_evaluationsminimum_pressure_at_sound_speed_guardstate_floor_countrejected_stepsminimum_dtmaximum_dtreference_quadrature_density_l1reference_quadrature_pressure_l1initial_integralfinal_integralboundary_net_integralgeometric_source_integralconservation_residualconservation_relativeshock_trajectoryinitial_reference_quadrature_density_l1initial_reference_quadrature_pressure_l1fieldhistory
+
+## Guderley converging shock: lightweight spherical-radial verification — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-guderley/#guderley-implosion-measurements
+Coverage: reading
+
+128-0.85710.02345410836450.03276932018380.02414271163110.03276932018380.2583714498780.4918248213720.2966760621560.8145022392270.4271911929630.527343750.5339889912041.134121165511.7681946834210000007.16280647394e-050.002178908443572.89692426331e-135.01442805195e-13[8.206089344193586,-2.301703302347455,0.7323576961002365][11.492857422295556,-3.356590525840208,1.0664451467573306][3.286768078101971,-1.137667428505291,0.3340874506570939][0.0,0.08278020501253855,0.0][-1.3322676295501878e-15,-6.38378239159465e-16,2.220446049250313e-16][1.159213571174786e-16,1.8124670145705584e-16,2.0821005712313262e-16][{"time":-1.0,"shock_radius":0.59765625,"reference_shock_radius":0.6,"error_cells":0.3999999999999962},{"time":-0.9782924377299245,"shock_radius":0.5859375,"reference_shock_radius":0.5906301905085632,"error_cells":0.800885846794794},{"time":-0.9567333756433305,"shock_radius":0.57421875,"reference_shock_radius":0.5812660947627811,"error_cells":1.2027468395146457},{"time":-0.9352998546116794,"shock_radius":0.5625,"reference_shock_radius":0.5718971770148007,"error_cells":1.603784877192652},{"time":-0.9139388734034526,"shock_radius":0.556640625,"reference_shock_radius":0.5624993525585723,"error_cells":0.9998895033296739},{"time":-0.8926184138281185,"shock_radius":0.544921875,"reference_shock_radius":0.5530571992420324,"error_cells":1.3884286706402047},{"time":-0.871326123557209,"shock_radiu
+
+## Guderley converging shock: lightweight spherical-radial verification — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-guderley/#guderley-implosion-measurements
+Coverage: reading
+
+s":0.533203125,"reference_shock_radius":0.5435636407231892,"error_cells":1.7681946834242883},{"time":-0.8500716280647393,"shock_radius":0.52734375,"reference_shock_radius":0.5340212624892918,"error_cells":1.1396287981724715},{"time":-0.85,"shock_radius":0.52734375,"reference_shock_radius":0.533988991204184,"error_cells":1.1341211655140644}]1.5942464519e-122.54765297288e-12field-n128.npzhistory-n128.json
+
+## Guderley converging shock: lightweight spherical-radial verification — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-guderley/#guderley-implosion-measurements
+Coverage: reading
+
+256-0.851420.01338692816860.01743186567770.01377996304010.01743186567770.2709663681340.4941696805780.2978984692410.8145022392270.4271911929630.527343750.5339889912042.268242331032.2682423310310000000.0006571939652950.001078069816791.33639622684e-132.25102492399e-13[8.206089344179338,-2.3017033023405276,0.7323576960977348][11.492857829370788,-3.356838930125358,1.0664451760055733][3.2867684851914554,-1.1376675780299623,0.3340874799078385][0.0,0.08253195024513331,0.0][-5.329070518200751e-15,-1.2628786905111156e-15,0.0][4.636854120462487e-16,3.585785160036248e-16,0.0][{"time":-1.0,"shock_radius":0.6005859375,"reference_shock_radius":0.6,"error_cells":0.2000000000000076},{"time":-0.9892429722026659,"shock_radius":0.5947265625,"reference_shock_radius":0.5953641265433148,"error_cells":0.217621860118129},{"time":-0.9785571011243208,"shock_radius":0.5888671875,"reference_shock_radius":0.5907447811237423,"error_cells":0.6408852902373686},{"time":-0.9679283208757195,"shock_radius":0.5830078125,"reference_shock_radius":0.5861359408438291,"error_cells":1.0677344746936797},{"time":-0.9573269458641117,"shock_radius":0.5771484375,"reference_shock_radius":0.5815247033352795,"error_cells":1.4937654051087368},{"time":-0.9467378525669856,"shock_radius":0.5712890625,"reference_shock_radius":0.5769043678302476,"error_cells":1.916690886057836},{"time":-0.9361538067102382,"shock_radius":0.568359375,"r
+
+## Guderley converging shock: lightweight spherical-radial verification — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-guderley/#guderley-implosion-measurements
+Coverage: reading
+
+eference_shock_radius":0.5722716059312678,"error_cells":1.3353748245394097},{"time":-0.9255738090651571,"shock_radius":0.5625,"reference_shock_radius":0.5676257867679166,"error_cells":1.7496018834488798},{"time":-0.9149957838902998,"shock_radius":0.5595703125,"reference_shock_radius":0.5629657937877414,"error_cells":1.158990946215719},{"time":-0.9044217573600973,"shock_radius":0.5537109375,"reference_shock_radius":0.5582923090634493,"error_cells":1.5637748269906904},{"time":-0.8938548672539243,"shock_radius":0.5478515625,"reference_shock_radius":0.553606514650018,"error_cells":1.9643570005394697},{"time":-0.8832974269090673,"shock_radius":0.544921875,"reference_shock_radius":0.5489092382682375,"error_cells":1.3610199955583842},{"time":-0.8727523613407671,"shock_radius":0.5390625,"reference_shock_radius":0.5442015897403887,"error_cells":1.754142631386003},{"time":-0.8622219850609406,"shock_radius":0.533203125,"reference_shock_radius":0.5394844175650627,"error_cells":2.1440145288747394},{"time":-0.8517076931838873,"shock_radius":0.5302734375,"reference_shock_radius":0.5347581655057968,"error_cells":1.5307871593119746},{"time":-0.85,"shock_radius":0.52734375,"reference_shock_radius":0.533988991204184,"error_cells":2.2682423310281288}]1.46602643745e-142.92096924673e-14field-n256.npzhistory-n256.json
+
+## Guderley converging shock: lightweight spherical-radial verification — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-guderley/#guderley-implosion-measurements
+Coverage: reading
+
+512-0.852850.00772161862650.009476887318180.007948322269520.009476887318180.2655979925460.4664641041360.2918302634970.8145022392270.4271911929630.53027343750.5339889912042.536484662062.5364846620610000000.0004970499254970.00053701560684.6073262855e-158.2958496295e-15[8.206089344179249,-2.3017033023404845,0.7323576960977207][11.492857928234441,-3.3569808384086612,1.0664451831092827][3.2867685840551983,-1.1376676143431048,0.33408748701156293][0.0,0.08239007827492695,0.0][-6.217248937900877e-15,1.1102230246251565e-15,-9.43689570931383e-16][5.409663094004662e-16,3.152465559742603e-16,8.848927126099446e-16][{"time":-1.0,"shock_radius":0.6005859375,"reference_shock_radius":0.6,"error_cells":0.4000000000000152},{"time":-0.9946368166418362,"shock_radius":0.59619140625,"reference_shock_radius":0.5976904426742187,"error_cells":1.0233421989332783},{"time":-0.9893094005273915,"shock_radius":0.59326171875,"reference_shock_radius":0.5953927982605718,"error_cells":1.4548169458836735},{"time":-0.9840146694470209,"shock_radius":0.591796875,"reference_shock_radius":0.5931057806604236,"error_cells":0.8935462641825325},{"time":-0.9787352896599837,"shock_radius":0.5888671875,"reference_shock_radius":0.590821926008946,"error_cells":1.3344348221071414},{"time":-0.9734624811850209,"shock_radius":0.5859375,"reference_shock_radius":0.5885374337271152,"error_cells":1.7748880910439766},{"time":-0.96819140
+
+## Guderley converging shock: lightweight spherical-radial verification — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-guderley/#guderley-implosion-measurements
+Coverage: reading
+
+86700115,"shock_radius":0.58447265625,"reference_shock_radius":0.5862501928945101,"error_cells":1.2134650159855482},{"time":-0.9629198107206394,"shock_radius":0.58154296875,"reference_shock_radius":0.5839591989745323,"error_cells":1.6494798332807175},{"time":-0.9576467627883994,"shock_radius":0.57861328125,"reference_shock_radius":0.5816640233953347,"error_cells":2.082639971215182},{"time":-0.952371549031616,"shock_radius":0.5771484375,"reference_shock_radius":0.5793643257959106,"error_cells":1.5127130766749513},{"time":-0.9470946346463607,"shock_radius":0.57421875,"reference_shock_radius":0.5770602795696169,"error_cells":1.9398175195251497},{"time":-0.9418172329328481,"shock_radius":0.57275390625,"reference_shock_radius":0.5747523864238984,"error_cells":1.3642957987146171},{"time":-0.9365399380633962,"shock_radius":0.56982421875,"reference_shock_radius":0.5724408796635158,"error_cells":1.7863071836267561},{"time":-0.9312641042325702,"shock_radius":0.56689453125,"reference_shock_radius":0.5701263276031471,"error_cells":2.206239643748404},{"time":-0.9259901328230302,"shock_radius":0.5654296875,"reference_shock_radius":0.5678088830286193,"error_cells":1.6241974808707862},{"time":-0.9207190803034304,"shock_radius":0.5625,"reference_shock_radius":0.5654889881116121,"error_cells":2.0404825508605122},{"time":-0.9154510487847011,"shock_radius":0.56103515625,"reference_shock_radius":0.
+
+## Guderley converging shock: lightweight spherical-radial verification — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-guderley/#guderley-implosion-measurements
+Coverage: reading
+
+5631666666951907,"error_cells":1.455111130583494},{"time":-0.9101868411404913,"shock_radius":0.55810546875,"reference_shock_radius":0.5608422523193408,"error_cells":1.8683109166699978},{"time":-0.9049263750373424,"shock_radius":0.55517578125,"reference_shock_radius":0.5585156887538151,"error_cells":2.280043522604425},{"time":-0.8996702937039848,"shock_radius":0.5537109375,"reference_shock_radius":0.5561872409623809,"error_cells":1.690489830318711},{"time":-0.8944184318023805,"shock_radius":0.55078125,"reference_shock_radius":0.5538568164517846,"error_cells":2.099586697751647},{"time":-0.8891713276989159,"shock_radius":0.5478515625,"reference_shock_radius":0.5515246350278591,"error_cells":2.5074841790184714},{"time":-0.8839287833047897,"shock_radius":0.54638671875,"reference_shock_radius":0.5491905896890821,"error_cells":1.9141092277466971},{"time":-0.878691267191384,"shock_radius":0.54345703125,"reference_shock_radius":0.5468548701476631,"error_cells":2.3195913541380073},{"time":-0.8734585866220838,"shock_radius":0.5419921875,"reference_shock_radius":0.5445173716101,"error_cells":1.7238590191616368},{"time":-0.8682311375431372,"shock_radius":0.5390625,"reference_shock_radius":0.5421782520914779,"error_cells":2.1270200944488806},{"time":-0.8630087862744834,"shock_radius":0.5361328125,"reference_shock_radius":0.5398374329633072,"error_cells":2.5290209029510606},{"time":-0.8577918
+
+## Guderley converging shock: lightweight spherical-radial verification — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-guderley/#guderley-implosion-measurements
+Coverage: reading
+
+019735371,"shock_radius":0.53466796875,"reference_shock_radius":0.5374950159643461,"error_cells":1.9299308983269536},{"time":-0.8525801975333194,"shock_radius":0.53173828125,"reference_shock_radius":0.5351509880497817,"error_cells":2.329741175317622},{"time":-0.85,"shock_radius":0.5302734375,"reference_shock_radius":0.533988991204184,"error_cells":2.536484662056258}]1.45227436667e-153.2080095343e-15field-n512.npzhistory-n512.json
+Measurements and complete records / JSON
+
+## Guderley converging shock: lightweight spherical-radial verification — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-guderley/#guderley-implosion-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+G. Guderley (1942). Starke kugelige und zylindrische Verdichtungsstöße in der Nähe des Kugelmittelpunktes bzw. der Zylinderachse
+Review scope / review_level: bibliographic attribution only: year/volume/first page in pinned ExactPack bibliography, title in Lazarus1981 publisher bibliography; original1942 article not inspected
+Historical original-problem attribution. Author/year/volume/first page302 were checked in the pinned ExactPack bibliography and the title in the Lazarus1981 publisher references. The original1942 text was not inspected and is not claimed as the directly transcribed source of the present fields or measurements.
+Scott D. Ramsey, James R. Kamm and John H. Bolstad (2012). The Guderley problem revisited · DOI: 10.1080/10618562.2011.647768
+Review scope / review_level: primary institutional bibliographic record and abstract; actual implementation equations reviewed in pinned ExactPack source, not full original paper
+
+## Guderley converging shock: lightweight spherical-radial verification — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-guderley/#guderley-implosion-references
+Coverage: reading
+
+The LANL record and abstract distinguish the convergence exponent from the reflected trajectory eigenvalue. This is not a claim to have read the entire paper or reproduced its PDE experiment; the present field is constructed using the pinned ExactPack source.
+Roger B. Lazarus (1981). Self-Similar Solutions for Converging Shocks and Collapsing Cavities · DOI: 10.1137/0718022
+Review scope / review_level: publisher bibliographic record/abstract plus equations2.5,2.8,2.9 and sphericalTable6.5 as explicitly transcribed in pinned ExactPack; original full text not inspected
+Checked the publisher record/abstract and the explicitly attributed equations/table in ExactPack. The tabulated lambda1.3943607838 is the value transcribed in that code, not an independent retranscription of the original table.
+R. F. Chisnell (1998). An analytic description of converging shock waves · DOI: 10.1017/S0022112097007775
+Review scope / review_level: publisher bibliographic record/abstract and equation3.1 implementation/comments in actual pinned ExactPack eexp source
+Checked the publisher record/abstract and the critical-point phase matching and equation3.1 implementation in ExactPack eexp. The exponent is computed through that eigenvalue routine rather than fixed by dimensional analysis.
+
+## Guderley converging shock: lightweight spherical-radial verification — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-guderley/#guderley-implosion-references
+Coverage: reading
+
+Jasper Thrussell and Jim Michael Ferguson (2023). ExactPack: A python library of exact analytic solutions · DOI: 10.1016/j.softx.2023.101560
+Review scope / review_level: primary OSTI accepted manuscript/search text; software metadata and Guderley registry; selected actual source files pinned separately
+Cites the ExactPack software paper and its Guderley solver listing. The paper version1.7.5 is distinguished from the exact source commit used here, whose source, SHA receipts and BSD license are retained.
+Los Alamos National Laboratory / ExactPack contributors (2025). ExactPack Guderley solver, pinned source
+Review scope / review_level: selected source files and license inspected; eexp,ramsey.state/g,interp_laz and official test fixtures; actual execution recorded separately
+Inspected pinned eexp, the pre-collapse ODE/state, transcribed tables, official regression values and BSD3 terms. This is not a claim to have run the complete ExactPack suite; actual reference execution is recorded separately.
 
 ## Low-Mach isentropic vortex: preconditioned Roe flux verification — Low-Mach isentropic vortex: preconditioned Roe flux verification [en]
 
@@ -34644,7 +34953,7 @@ R. Car; M. Parrinello (1985)
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemistry/#verification
 Coverage: reading
 
-水素型原子・Heの2問題群を実行し、独立参照と比較して全85問題の台帳へ加えました。さらにH₂の有限基底RHFを独立参照・SCFと基底の収束で検証しました。周期Heセルの限定DFTも追加。分子DFT・FCIや他の周期物質へ検証を拡張していません。
+水素型原子・Heの2問題群を実行し、独立参照と比較して全86問題の台帳へ加えました。さらにH₂の有限基底RHFを独立参照・SCFと基底の収束で検証しました。周期Heセルの限定DFTも追加。分子DFT・FCIや他の周期物質へ検証を拡張していません。
 実行・検証例あり
 
 ## 量子化学・DFT：何を近似し、何を解くか — 1電子：水素型原子 [ja]
@@ -37782,7 +38091,7 @@ Coverage: reading
 
 公開Web版、集計日2026-11-22。数えるのはカタログ項目と記載した実験例です。すべての項目が検証済みの完全なソルバーであるという意味ではありません。
 方程式・モデル46項目・計算法と構成要素131項目・学術誌／会議論文243件・全参考資料300件。
-保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め99章です。
+保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め100章です。
 
 ## 収録範囲と数え方 — 方程式とモデル# [ja]
 
@@ -41422,6 +41731,282 @@ G. H. Golub and J. H. Welsch (1969). Calculation of Gauss Quadrature Rules · DO
 J. N. Lyness (1969). Notes on the Adaptive Simpson Quadrature Routine · DOI: 10.1145/321526.321537
 確認範囲 / review_level: publisher-metadata
 独立参照の公式資料：scipy.special.roots_legendre.html · scipy.integrate.quad.html
+
+## Guderley収束衝撃波：球対称の軽量検証 — Guderley収束衝撃波：球対称の軽量検証 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-guderley/
+Coverage: reading
+
+圧力ゼロの静止上流へ進むGuderley収束衝撃波を、γ=1.4、r∈[0,.75]、t=-1から-.85、128/256/512球殻のHLL＋Heunで計算します。R_s(-1)=.6の相似場から初期化し、原点到達前の衝撃軌道・保存量の球殻平均・保存収支を半解析参照と比較します。図は1D半径結果の2D断面表示です。
+
+## Guderley収束衝撃波：球対称の軽量検証 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-guderley/#run-all
+Coverage: reading
+
+ZIPの atlas-guderley-2026-11-23-r2 フォルダで実行します。このコマンドは配布版の全1例を実行します。新規または空の出力先を指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## Guderley収束衝撃波：球対称の軽量検証 — Guderley収束衝撃波：球対称の軽量検証 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-guderley/
+Coverage: reading
+
+冷たい静止気体へ内向きに進む球対称Guderley衝撃波を、128/256/512個の球殻でt=−1から−.85まで計算します。HLL流束とHeun法を、相似指数の固有値・半解析場・衝撃位置・保存収支と照合する軽量例です。
+手法・式・図・参照解
+使用手法
+HLL
+Heun法／SSPRK(2,2)
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+面積4πr²と球殻体積4πΔ(r³)/3を用いた第一次数の球対称有限体積法です。共有HLL面流束の発散に、半径方向運動量の圧力幾何項p_iΔA/Vを加え、Heun法・CFL=.4で更新します。中心は面積ゼロの反射条件、外側は各RK段の実時刻に評価した相似場です。全3保存量について実際の境界面流束と幾何ソースを同じHeun重みで積分します。状態floor、圧力修復、時間刻みの隠れた再試行はありません。
+圧縮性Euler方程式
+未衝撃上流の圧力ゼロ・γ=1.4の理想気体Euler系の1次元球半径対称形。原点到達前の時区間、相似初期場、境界条件、球殻平均はこの固定入力で定義します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+Guderleyの収束衝撃波
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+参照・検証の確認範囲
+33単体検査と3格子55判定を実行前に固定し、警告をエラーにする設定で合格しました。冷たい上流でのゼロ音速HLL分岐、幾何的な静止圧力釣合い、共有流束の収支、実際の2段の境界時刻、不正段の生配列保持を確認します。全体積L1と、あらかじめr≥.8Rsとした衝撃・非零流れ領域のL1を並べ、冷たい内側で誤差を薄めないようにします。密度・圧力の最大差と保存した時系列からの衝撃軌道も残します。半解析参照は固定LANL ExactPackの相似指数固有値ルーチンとODEを使い、反射後分岐を計算しないキャッシュ付きアダプターです。独自に再実装した相似ODEとは表示しません。別に実装したEuler有限体積計算と参照を比較します。 全体積の密度L1は.02345/.01339/.007722、圧力L1は.03277/.01743/.009477でした。r≥.8Rsの密度L1も.02414/.01378/.007948と減少します。最細の衝撃位置は.530273、相似参照は.533989で、差は約2.54セルです。最大の全3成分収支残差は8.85e-16、全段の最小内部エネルギーと音速専用丸めガード回数はともに0でした。参照のEuler差分代入残差は8.24e-9、有限オフセットの移動衝撃ジャンプ残差は4.40e-8。固有値計算を含む全3計算は元のMacで約44.6秒でした。
+同じ問題の参照 · 半解析参照
+Guderley収束衝撃波：固有値と球対称の半解析参照
+
+## Guderley収束衝撃波：球対称の軽量検証 — Guderley収束衝撃波：球対称の軽量検証 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-guderley/
+Coverage: reading
+
+γ=1.4・冷たい一様な上流を持つ球対称Guderley相似解の収束前分岐です。相似指数の固有値探索・相似ODE積分・衝撃位置で分割した球殻求積を含む半解析参照で、閉形式の厳密セル平均ではありません。ExactPackに基づく参照実装と有限体積PDE計算の役割を分け、独立した相似解実装どうしの照合とは扱いません。原点での収束、反射後の衝撃波、一般のEOSは今回の範囲外です。
+
+## Guderley収束衝撃波：球対称の軽量検証 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-guderley/#guderley-implosion-assumptions
+Coverage: reading
+
+γ=1.4、球対称3次元の半径r∈[0,.75]、衝撃半径Rs(−1)=.6、時間t∈[−1,−.85]を固定します。衝撃前方の内側はρ0=1、u0=p0=0です。外側には初めから衝撃後の相似場があり、領域全体が冷たい一様気体という初期条件ではありません。初期保存量は衝撃位置で積分区間を分けた16点Gauss球殻体積平均とし、32点と照合します。圧力参照はp(保存量平均)で、原始圧力の体積平均とは区別します。
+
+## Guderley収束衝撃波：球対称の軽量検証 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-guderley/#guderley-implosion-algorithm
+Coverage: reading
+
+面積4πr²と球殻体積4πΔ(r³)/3を用いた第一次数の球対称有限体積法です。共有HLL面流束の発散に、半径方向運動量の圧力幾何項p_iΔA/Vを加え、Heun法・CFL=.4で更新します。中心は面積ゼロの反射条件、外側は各RK段の実時刻に評価した相似場です。全3保存量について実際の境界面流束と幾何ソースを同じHeun重みで積分します。状態floor、圧力修復、時間刻みの隠れた再試行はありません。
+\partial_t U+\frac{1}{r^2}\partial_r(r^2 F)=\left(0,\frac{2p}{r},0\right)^T,\quad U=(\rho,\rho u,E)^TR_s(t)=0.6(-t)^\alpha,\quad\alpha=1/\lambda,\quad \lambda\simeq1.3943607844,\quad t<0\frac{d\bar U_i}{dt}=-\frac{A_{i+1/2}\widehat F_{i+1/2}-A_{i-1/2}\widehat F_{i-1/2}}{V_i}+\left(0,p_i\frac{\Delta A_i}{V_i},0\right)^T\bar U_i^{\rm ref}=\frac{\int_{r_{i-1/2}}^{r_{i+1/2}}U_{\rm sim}(r,t)r^2\,dr}{(r_{i+1/2}^3-r_{i-1/2}^3)/3},\qquad p_i^{\rm ref}=p(\bar U_i^{\rm ref})
+
+## Guderley収束衝撃波：球対称の軽量検証 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-guderley/#guderley-implosion-validation
+Coverage: reading
+
+33単体検査と3格子55判定を実行前に固定し、警告をエラーにする設定で合格しました。冷たい上流でのゼロ音速HLL分岐、幾何的な静止圧力釣合い、共有流束の収支、実際の2段の境界時刻、不正段の生配列保持を確認します。全体積L1と、あらかじめr≥.8Rsとした衝撃・非零流れ領域のL1を並べ、冷たい内側で誤差を薄めないようにします。密度・圧力の最大差と保存した時系列からの衝撃軌道も残します。半解析参照は固定LANL ExactPackの相似指数固有値ルーチンとODEを使い、反射後分岐を計算しないキャッシュ付きアダプターです。独自に再実装した相似ODEとは表示しません。別に実装したEuler有限体積計算と参照を比較します。 全体積の密度L1は.02345/.01339/.007722、圧力L1は.03277/.01743/.009477でした。r≥.8Rsの密度L1も.02414/.01378/.007948と減少します。最細の衝撃位置は.530273、相似参照は.533989で、差は約2.54セルです。最大の全3成分収支残差は8.85e-16、全段の最小内部エネルギーと音速専用丸めガード回数はともに0でした。参照のEuler差分代入残差は8.24e-9、有限オフセットの移動衝撃ジャンプ残差は4.40e-8。固有値計算を含む全3計算は元のMacで約44.6秒でした。
+
+## Guderley収束衝撃波：球対称の軽量検証 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-guderley/#guderley-implosion-limits
+Coverage: reading
+
+収束点t=0から離れた短い時間窓の1次元球対称検証です。原点の特異点、原点反射後、円筒対称、他のγ、一般摂動や非球対称の安定性は未検証です。2次元の図は保存した球殻平均を子午面へ表示したもので、2次元Cartesian計算ではありません。半解析場もODEと求積を数値評価した参照であり、閉形式の厳密セル平均ではありません。冷たい上流では圧力ゼロを許し、64epsの絶対内部エネルギー密度までの丸めによる負値を記録します。許容帯だけの音速平方根ガードは状態修復と分けて回数・最小圧力を残し、非線形正値性の一般保証は主張しません。 衝撃位置のセル単位誤差は1.13/2.27/2.54と単調に減りません。半径の絶対誤差は最初の2格子で同じ約.00665、最細で約.00372です。密度L∞差は.258/.271/.266、圧力L∞差は.492/.494/.466で、いずれも単調な減少を主張できません。L1の減少を衝撃内部の点ごとの解像や原点付近の収束へ拡張しません。
+
+## Guderley収束衝撃波：球対称の軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-guderley/#guderley-implosion-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+n512
+time-0.85
+steps285
+density_l10.0077216186265
+pressure_l10.00947688731818
+active_density_l10.00794832226952
+active_pressure_l10.00947688731818
+density_linf0.265597992546
+pressure_linf0.466464104136
+maximum_velocity_error0.291830263497
+active_volume_fraction0.814502239227
+active_inner_radius0.427191192963
+shock_radius0.5302734375
+reference_shock_radius0.533988991204
+shock_error_cells2.53648466206
+maximum_history_shock_error_cells2.53648466206
+minimum_density_all_stages1
+minimum_pressure_all_stages0
+minimum_internal_energy_all_stages0
+sound_speed_roundoff_guard_evaluations0
+minimum_pressure_at_sound_speed_guard0
+state_floor_count0
+rejected_steps0
+minimum_dt0.000497049925497
+maximum_dt0.0005370156068
+reference_quadrature_density_l14.6073262855e-15
+reference_quadrature_pressure_l18.2958496295e-15
+initial_reference_quadrature_density_l11.45227436667e-15
+initial_reference_quadrature_pressure_l13.2080095343e-15
+判定 / check合格
+all three fixed spherical runs completedtrue
+N128: final time before collapsetrue
+N128: strictly positive density all stagestrue
+N128: minimum_internal_energy_all_stagestrue
+N128: minimum_pressure_at_sound_speed_guardtrue
+N128: state_floor_counttrue
+N128: rejected_stepstrue
+N128: mass discrete balancetrue
+N128: radial momentum including geometric source discrete balancetrue
+
+## Guderley収束衝撃波：球対称の軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-guderley/#guderley-implosion-measurements
+Coverage: reading
+
+N128: energy discrete balancetrue
+N128: reference_quadrature_density_l1true
+N128: reference_quadrature_pressure_l1true
+N128: initial_reference_quadrature_density_l1true
+N128: initial_reference_quadrature_pressure_l1true
+N128: maximum and trajectory diagnostics retainedtrue
+N256: final time before collapsetrue
+N256: strictly positive density all stagestrue
+N256: minimum_internal_energy_all_stagestrue
+N256: minimum_pressure_at_sound_speed_guardtrue
+N256: state_floor_counttrue
+N256: rejected_stepstrue
+N256: mass discrete balancetrue
+N256: radial momentum including geometric source discrete balancetrue
+N256: energy discrete balancetrue
+N256: reference_quadrature_density_l1true
+N256: reference_quadrature_pressure_l1true
+N256: initial_reference_quadrature_density_l1true
+N256: initial_reference_quadrature_pressure_l1true
+N256: maximum and trajectory diagnostics retainedtrue
+N512: final time before collapsetrue
+N512: strictly positive density all stagestrue
+N512: minimum_internal_energy_all_stagestrue
+N512: minimum_pressure_at_sound_speed_guardtrue
+N512: state_floor_counttrue
+N512: rejected_stepstrue
+N512: mass discrete balancetrue
+N512: radial momentum including geometric source discrete balancetrue
+N512: energy discrete balancetrue
+N512: reference_quadrature_density_l1true
+N512: reference_quadrature_pressure_l1true
+N512: initial_reference_quadrature_density_l1true
+
+## Guderley収束衝撃波：球対称の軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-guderley/#guderley-implosion-measurements
+Coverage: reading
+
+N512: initial_reference_quadrature_pressure_l1true
+N512: maximum and trajectory diagnostics retainedtrue
+similarity qualification: maximum_scaled_euler_residualtrue
+similarity qualification: maximum_scaled_jump_residualtrue
+similarity exponent agrees with tabulated lambdatrue
+finest density_l1true
+finest pressure_l1true
+finest active_density_l1true
+finest active_pressure_l1true
+finest shock_error_cellstrue
+density_l1 decreases across the three gridstrue
+active_density_l1 decreases across the three gridstrue
+pressure_l1 decreases across the three gridstrue
+last-pair active density L1 slopetrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全記録を表で読む
+ntimestepsdensity_l1pressure_l1active_density_l1active_pressure_l1density_linfpressure_linfmaximum_velocity_erroractive_volume_fractionactive_inner_radiusshock_radiusreference_shock_radiusshock_error_cellsmaximum_history_shock_error_cellsminimum_density_all_stagesminimum_pressure_all_stagesminimum_internal_energy_all_stagessound_speed_roundoff_guard_evaluationsminimum_pressure_at_sound_speed_guardstate_floor_countrejected_stepsminimum_dtmaximum_dtreference_quadrature_density_l1reference_quadrature_pressure_l1initial_integralfinal_integralboundary_net_integralgeometric_source_integralconservation_residualconservation_relativeshock_trajectoryinitial_reference_quadrature_density_l1initial_reference_quadrature_pressure_l1fieldhistory
+
+## Guderley収束衝撃波：球対称の軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-guderley/#guderley-implosion-measurements
+Coverage: reading
+
+128-0.85710.02345410836450.03276932018380.02414271163110.03276932018380.2583714498780.4918248213720.2966760621560.8145022392270.4271911929630.527343750.5339889912041.134121165511.7681946834210000007.16280647394e-050.002178908443572.89692426331e-135.01442805195e-13[8.206089344193586,-2.301703302347455,0.7323576961002365][11.492857422295556,-3.356590525840208,1.0664451467573306][3.286768078101971,-1.137667428505291,0.3340874506570939][0.0,0.08278020501253855,0.0][-1.3322676295501878e-15,-6.38378239159465e-16,2.220446049250313e-16][1.159213571174786e-16,1.8124670145705584e-16,2.0821005712313262e-16][{"time":-1.0,"shock_radius":0.59765625,"reference_shock_radius":0.6,"error_cells":0.3999999999999962},{"time":-0.9782924377299245,"shock_radius":0.5859375,"reference_shock_radius":0.5906301905085632,"error_cells":0.800885846794794},{"time":-0.9567333756433305,"shock_radius":0.57421875,"reference_shock_radius":0.5812660947627811,"error_cells":1.2027468395146457},{"time":-0.9352998546116794,"shock_radius":0.5625,"reference_shock_radius":0.5718971770148007,"error_cells":1.603784877192652},{"time":-0.9139388734034526,"shock_radius":0.556640625,"reference_shock_radius":0.5624993525585723,"error_cells":0.9998895033296739},{"time":-0.8926184138281185,"shock_radius":0.544921875,"reference_shock_radius":0.5530571992420324,"error_cells":1.3884286706402047},{"time":-0.871326123557209,"shock_radiu
+
+## Guderley収束衝撃波：球対称の軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-guderley/#guderley-implosion-measurements
+Coverage: reading
+
+s":0.533203125,"reference_shock_radius":0.5435636407231892,"error_cells":1.7681946834242883},{"time":-0.8500716280647393,"shock_radius":0.52734375,"reference_shock_radius":0.5340212624892918,"error_cells":1.1396287981724715},{"time":-0.85,"shock_radius":0.52734375,"reference_shock_radius":0.533988991204184,"error_cells":1.1341211655140644}]1.5942464519e-122.54765297288e-12field-n128.npzhistory-n128.json
+
+## Guderley収束衝撃波：球対称の軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-guderley/#guderley-implosion-measurements
+Coverage: reading
+
+256-0.851420.01338692816860.01743186567770.01377996304010.01743186567770.2709663681340.4941696805780.2978984692410.8145022392270.4271911929630.527343750.5339889912042.268242331032.2682423310310000000.0006571939652950.001078069816791.33639622684e-132.25102492399e-13[8.206089344179338,-2.3017033023405276,0.7323576960977348][11.492857829370788,-3.356838930125358,1.0664451760055733][3.2867684851914554,-1.1376675780299623,0.3340874799078385][0.0,0.08253195024513331,0.0][-5.329070518200751e-15,-1.2628786905111156e-15,0.0][4.636854120462487e-16,3.585785160036248e-16,0.0][{"time":-1.0,"shock_radius":0.6005859375,"reference_shock_radius":0.6,"error_cells":0.2000000000000076},{"time":-0.9892429722026659,"shock_radius":0.5947265625,"reference_shock_radius":0.5953641265433148,"error_cells":0.217621860118129},{"time":-0.9785571011243208,"shock_radius":0.5888671875,"reference_shock_radius":0.5907447811237423,"error_cells":0.6408852902373686},{"time":-0.9679283208757195,"shock_radius":0.5830078125,"reference_shock_radius":0.5861359408438291,"error_cells":1.0677344746936797},{"time":-0.9573269458641117,"shock_radius":0.5771484375,"reference_shock_radius":0.5815247033352795,"error_cells":1.4937654051087368},{"time":-0.9467378525669856,"shock_radius":0.5712890625,"reference_shock_radius":0.5769043678302476,"error_cells":1.916690886057836},{"time":-0.9361538067102382,"shock_radius":0.568359375,"r
+
+## Guderley収束衝撃波：球対称の軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-guderley/#guderley-implosion-measurements
+Coverage: reading
+
+eference_shock_radius":0.5722716059312678,"error_cells":1.3353748245394097},{"time":-0.9255738090651571,"shock_radius":0.5625,"reference_shock_radius":0.5676257867679166,"error_cells":1.7496018834488798},{"time":-0.9149957838902998,"shock_radius":0.5595703125,"reference_shock_radius":0.5629657937877414,"error_cells":1.158990946215719},{"time":-0.9044217573600973,"shock_radius":0.5537109375,"reference_shock_radius":0.5582923090634493,"error_cells":1.5637748269906904},{"time":-0.8938548672539243,"shock_radius":0.5478515625,"reference_shock_radius":0.553606514650018,"error_cells":1.9643570005394697},{"time":-0.8832974269090673,"shock_radius":0.544921875,"reference_shock_radius":0.5489092382682375,"error_cells":1.3610199955583842},{"time":-0.8727523613407671,"shock_radius":0.5390625,"reference_shock_radius":0.5442015897403887,"error_cells":1.754142631386003},{"time":-0.8622219850609406,"shock_radius":0.533203125,"reference_shock_radius":0.5394844175650627,"error_cells":2.1440145288747394},{"time":-0.8517076931838873,"shock_radius":0.5302734375,"reference_shock_radius":0.5347581655057968,"error_cells":1.5307871593119746},{"time":-0.85,"shock_radius":0.52734375,"reference_shock_radius":0.533988991204184,"error_cells":2.2682423310281288}]1.46602643745e-142.92096924673e-14field-n256.npzhistory-n256.json
+
+## Guderley収束衝撃波：球対称の軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-guderley/#guderley-implosion-measurements
+Coverage: reading
+
+512-0.852850.00772161862650.009476887318180.007948322269520.009476887318180.2655979925460.4664641041360.2918302634970.8145022392270.4271911929630.53027343750.5339889912042.536484662062.5364846620610000000.0004970499254970.00053701560684.6073262855e-158.2958496295e-15[8.206089344179249,-2.3017033023404845,0.7323576960977207][11.492857928234441,-3.3569808384086612,1.0664451831092827][3.2867685840551983,-1.1376676143431048,0.33408748701156293][0.0,0.08239007827492695,0.0][-6.217248937900877e-15,1.1102230246251565e-15,-9.43689570931383e-16][5.409663094004662e-16,3.152465559742603e-16,8.848927126099446e-16][{"time":-1.0,"shock_radius":0.6005859375,"reference_shock_radius":0.6,"error_cells":0.4000000000000152},{"time":-0.9946368166418362,"shock_radius":0.59619140625,"reference_shock_radius":0.5976904426742187,"error_cells":1.0233421989332783},{"time":-0.9893094005273915,"shock_radius":0.59326171875,"reference_shock_radius":0.5953927982605718,"error_cells":1.4548169458836735},{"time":-0.9840146694470209,"shock_radius":0.591796875,"reference_shock_radius":0.5931057806604236,"error_cells":0.8935462641825325},{"time":-0.9787352896599837,"shock_radius":0.5888671875,"reference_shock_radius":0.590821926008946,"error_cells":1.3344348221071414},{"time":-0.9734624811850209,"shock_radius":0.5859375,"reference_shock_radius":0.5885374337271152,"error_cells":1.7748880910439766},{"time":-0.96819140
+
+## Guderley収束衝撃波：球対称の軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-guderley/#guderley-implosion-measurements
+Coverage: reading
+
+86700115,"shock_radius":0.58447265625,"reference_shock_radius":0.5862501928945101,"error_cells":1.2134650159855482},{"time":-0.9629198107206394,"shock_radius":0.58154296875,"reference_shock_radius":0.5839591989745323,"error_cells":1.6494798332807175},{"time":-0.9576467627883994,"shock_radius":0.57861328125,"reference_shock_radius":0.5816640233953347,"error_cells":2.082639971215182},{"time":-0.952371549031616,"shock_radius":0.5771484375,"reference_shock_radius":0.5793643257959106,"error_cells":1.5127130766749513},{"time":-0.9470946346463607,"shock_radius":0.57421875,"reference_shock_radius":0.5770602795696169,"error_cells":1.9398175195251497},{"time":-0.9418172329328481,"shock_radius":0.57275390625,"reference_shock_radius":0.5747523864238984,"error_cells":1.3642957987146171},{"time":-0.9365399380633962,"shock_radius":0.56982421875,"reference_shock_radius":0.5724408796635158,"error_cells":1.7863071836267561},{"time":-0.9312641042325702,"shock_radius":0.56689453125,"reference_shock_radius":0.5701263276031471,"error_cells":2.206239643748404},{"time":-0.9259901328230302,"shock_radius":0.5654296875,"reference_shock_radius":0.5678088830286193,"error_cells":1.6241974808707862},{"time":-0.9207190803034304,"shock_radius":0.5625,"reference_shock_radius":0.5654889881116121,"error_cells":2.0404825508605122},{"time":-0.9154510487847011,"shock_radius":0.56103515625,"reference_shock_radius":0.
+
+## Guderley収束衝撃波：球対称の軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-guderley/#guderley-implosion-measurements
+Coverage: reading
+
+5631666666951907,"error_cells":1.455111130583494},{"time":-0.9101868411404913,"shock_radius":0.55810546875,"reference_shock_radius":0.5608422523193408,"error_cells":1.8683109166699978},{"time":-0.9049263750373424,"shock_radius":0.55517578125,"reference_shock_radius":0.5585156887538151,"error_cells":2.280043522604425},{"time":-0.8996702937039848,"shock_radius":0.5537109375,"reference_shock_radius":0.5561872409623809,"error_cells":1.690489830318711},{"time":-0.8944184318023805,"shock_radius":0.55078125,"reference_shock_radius":0.5538568164517846,"error_cells":2.099586697751647},{"time":-0.8891713276989159,"shock_radius":0.5478515625,"reference_shock_radius":0.5515246350278591,"error_cells":2.5074841790184714},{"time":-0.8839287833047897,"shock_radius":0.54638671875,"reference_shock_radius":0.5491905896890821,"error_cells":1.9141092277466971},{"time":-0.878691267191384,"shock_radius":0.54345703125,"reference_shock_radius":0.5468548701476631,"error_cells":2.3195913541380073},{"time":-0.8734585866220838,"shock_radius":0.5419921875,"reference_shock_radius":0.5445173716101,"error_cells":1.7238590191616368},{"time":-0.8682311375431372,"shock_radius":0.5390625,"reference_shock_radius":0.5421782520914779,"error_cells":2.1270200944488806},{"time":-0.8630087862744834,"shock_radius":0.5361328125,"reference_shock_radius":0.5398374329633072,"error_cells":2.5290209029510606},{"time":-0.8577918
+
+## Guderley収束衝撃波：球対称の軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-guderley/#guderley-implosion-measurements
+Coverage: reading
+
+019735371,"shock_radius":0.53466796875,"reference_shock_radius":0.5374950159643461,"error_cells":1.9299308983269536},{"time":-0.8525801975333194,"shock_radius":0.53173828125,"reference_shock_radius":0.5351509880497817,"error_cells":2.329741175317622},{"time":-0.85,"shock_radius":0.5302734375,"reference_shock_radius":0.533988991204184,"error_cells":2.536484662056258}]1.45227436667e-153.2080095343e-15field-n512.npzhistory-n512.json
+この例の実測値・全記録 / JSON
+
+## Guderley収束衝撃波：球対称の軽量検証 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-guderley/#guderley-implosion-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+G. Guderley (1942). Starke kugelige und zylindrische Verdichtungsstöße in der Nähe des Kugelmittelpunktes bzw. der Zylinderachse
+確認範囲 / review_level: bibliographic attribution only: year/volume/first page in pinned ExactPack bibliography, title in Lazarus1981 publisher bibliography; original1942 article not inspected
+原問題の歴史的出典。固定ExactPackの書誌で著者・年・巻・開始頁302を、Lazarus1981の出版社参考文献で題名を確認。原著1942本文は未閲覧で、相似場の式や今回の実測を原著から直接再現したとは主張しません。
+Scott D. Ramsey, James R. Kamm and John H. Bolstad (2012). The Guderley problem revisited · DOI: 10.1080/10618562.2011.647768
+確認範囲 / review_level: primary institutional bibliographic record and abstract; actual implementation equations reviewed in pinned ExactPack source, not full original paper
+LANLの書誌・抄録で収束側の相似指数と反射後の軌道係数が別の固有値問題であることを確認。原論文の全文通読や原著のPDE計算再現とは扱わず、今回の場は固定ExactPackソースを実際に用いて構成します。
+Roger B. Lazarus (1981). Self-Similar Solutions for Converging Shocks and Collapsing Cavities · DOI: 10.1137/0718022
+確認範囲 / review_level: publisher bibliographic record/abstract plus equations2.5,2.8,2.9 and sphericalTable6.5 as explicitly transcribed in pinned ExactPack; original full text not inspected
+出版社の書誌・抄録と、ExactPackが明示する式2.5/2.8/2.9・球対称表6.5の転記を確認。λ=1.3943607838の表値はコード内の転記値で、元論文を独立に再転記した値とは区別します。
+
+## Guderley収束衝撃波：球対称の軽量検証 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-guderley/#guderley-implosion-references
+Coverage: reading
+
+R. F. Chisnell (1998). An analytic description of converging shock waves · DOI: 10.1017/S0022112097007775
+確認範囲 / review_level: publisher bibliographic record/abstract and equation3.1 implementation/comments in actual pinned ExactPack eexp source
+出版社の書誌・抄録と、ExactPack eexpが採用する臨界点の位相差・式3.1の実装を確認。相似指数は寸法解析から固定せず、固定コードの固有値計算で求めます。
+Jasper Thrussell and Jim Michael Ferguson (2023). ExactPack: A python library of exact analytic solutions · DOI: 10.1016/j.softx.2023.101560
+確認範囲 / review_level: primary OSTI accepted manuscript/search text; software metadata and Guderley registry; selected actual source files pinned separately
+ExactPackのソフトウェア論文とGuderley収録を参照。論文記載版1.7.5と今回用いるソースの固定コミットは区別し、配布物内にソース・SHA・BSDライセンスを保存します。
+Los Alamos National Laboratory / ExactPack contributors (2025). ExactPack Guderley solver, pinned source
+確認範囲 / review_level: selected source files and license inspected; eexp,ramsey.state/g,interp_laz and official test fixtures; actual execution recorded separately
+固定版のeexp・ramseyの前収束ODEとstate、表の転記、公式回帰値、BSD3条項を確認。全ExactPackテストを実行したとは扱いません。参照の実行成否はqualification.jsonに別記します。
 
 ## 低Mach等エントロピー渦：前処理Roe流束の軽量検証 — 低Mach等エントロピー渦：前処理Roe流束の軽量検証 [ja]
 

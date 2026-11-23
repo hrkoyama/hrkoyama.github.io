@@ -807,24 +807,49 @@
       "field_id": "compressible-fluid",
       "title": {
         "ja": "Guderleyの収束衝撃波",
-        "en": "Guderleyの収束衝撃波"
+        "en": "Guderley converging shock"
       },
       "detail_language": "ja",
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "planned",
-      "current": "Sod・Shu–Osherの固定入力、独立Athena++追補shu-independent、PPM/AUSM/回転流束の既存実装と2D保存画像がある。Noh/Sedovは本文の将来項目のみ。",
+      "state": "published",
+      "current": "γ=1.4・未衝撃上流ρ=1,u=p=0、r∈[0,.75]、R_s(-1)=.6、t=-1→-.85、128/256/512球殻でHLL＋Heunの軽量例を公開。33単体検査・3格子55判定、配布ZIPの独立展開と全固定入力の再実行が合格した。相似指数は固定ExactPackで固有値計算し、収束前ODE・元stateの8点照合・衝撃条件・Gauss16/32求積を別に確認。全体積の密度L1は.02345/.01339/.007722、圧力は.03277/.01743/.009477。事前固定したr≥.8R_sの活性領域L1も併記する。全3保存量の境界流束・幾何源収支の最大残差は8.85e-16。衝撃層の最大差とセル幅単位の位置差は単調減少せず、原点での収束や反射後は実装済みとしない。 初回の未公開ZIPは数値検証に合格しましたが、公開用メタデータのlimitsキー不足が配布版の厳密検査で判明したため、未公開の初回を作業記録に保持し、r2の33単体検査・全3固定入力55判定と配布版の厳密検査が合格。数値コード・入力・参照・受入基準は変えず、公開用の項目名だけを整えました。",
       "tasks": [
         "Noh/Sedovと区別し、相似指数の固有値問題と半解析的な場の参照を構成する。",
         "まず収束前の限定時区間・固定EOSで衝撃軌道と体積平均を照合し、原点反射後の分岐は別段階とする。"
       ],
-      "scope_note": "",
+      "scope_note": "対象は球対称・γ=1.4・冷たい一様上流の収束前分岐をt=-1から-.85まで追う短い固定例。初期場は衝撃後の外側を含む相似場で、圧力ゼロは未衝撃の内側上流に限る。相似指数の固有値探索・相似ODE・球殻平均は数値評価を含む半解析参照で、閉形式の厳密セル平均とは区別する。参照は実際の固定ExactPackソースに基づくアダプターであり、独立に実装した相似解や別のPDEエンジンとの比較とは扱わない。圧力は保存量平均から評価し、原始圧力の平均と混同しない。図は1D半径結果の2D子午面表示。原点到達・反射後、円筒対称、一般EOS・非球対称摂動は未検証。冷たい上流の圧力ゼロと、64epsの絶対内部エネルギー許容帯にある丸め負値を記録し、音速平方根だけのガード回数と状態修復を分ける。非線形正値性の一般保証や高次の収束次数は主張しない。",
       "sources": [
         {
-          "title": "LANL ExactPack: Guderley problem and references",
-          "url": "https://github.com/lanl/ExactPack",
-          "review": "公式READMEのGuderley登録とRamsey–Kamm–Bolstad (2012)の参照先を確認。原著の全導出・数値再現は未実施。"
+          "url": "https://raw.githubusercontent.com/lanl/ExactPack/9bacc477eb791e959c9621e771fc7a725db755fa/doc/source/references.rst",
+          "title": "G. Guderley (1942), Starke kugelige und zylindrische Verdichtungsstöße in der Nähe des Kugelmittelpunktes bzw. der Zylinderachse",
+          "review": "原問題の歴史的出典。固定ExactPackの書誌で著者・年・巻・開始頁302を、Lazarus1981の出版社参考文献で題名を確認。原著1942本文は未閲覧で、相似場の式や今回の実測を原著から直接再現したとは主張しません。"
+        },
+        {
+          "url": "https://doi.org/10.1080/10618562.2011.647768",
+          "title": "Scott D. Ramsey, James R. Kamm and John H. Bolstad (2012), The Guderley problem revisited",
+          "review": "LANLの書誌・抄録で収束側の相似指数と反射後の軌道係数が別の固有値問題であることを確認。原論文の全文通読や原著のPDE計算再現とは扱わず、今回の場は固定ExactPackソースを実際に用いて構成します。"
+        },
+        {
+          "url": "https://doi.org/10.1137/0718022",
+          "title": "Roger B. Lazarus (1981), Self-Similar Solutions for Converging Shocks and Collapsing Cavities",
+          "review": "出版社の書誌・抄録と、ExactPackが明示する式2.5/2.8/2.9・球対称表6.5の転記を確認。λ=1.3943607838の表値はコード内の転記値で、元論文を独立に再転記した値とは区別します。"
+        },
+        {
+          "url": "https://doi.org/10.1017/S0022112097007775",
+          "title": "R. F. Chisnell (1998), An analytic description of converging shock waves",
+          "review": "出版社の書誌・抄録と、ExactPack eexpが採用する臨界点の位相差・式3.1の実装を確認。相似指数は寸法解析から固定せず、固定コードの固有値計算で求めます。"
+        },
+        {
+          "url": "https://doi.org/10.1016/j.softx.2023.101560",
+          "title": "Jasper Thrussell and Jim Michael Ferguson (2023), ExactPack: A python library of exact analytic solutions",
+          "review": "ExactPackのソフトウェア論文とGuderley収録を参照。論文記載版1.7.5と今回用いるソースの固定コミットは区別し、配布物内にソース・SHA・BSDライセンスを保存します。"
+        },
+        {
+          "url": "https://github.com/lanl/ExactPack/tree/9bacc477eb791e959c9621e771fc7a725db755fa/exactpack/solvers/guderley",
+          "title": "Los Alamos National Laboratory / ExactPack contributors (2025), ExactPack Guderley solver, pinned source",
+          "review": "固定版のeexp・ramseyの前収束ODEとstate、表の転記、公式回帰値、BSD3条項を確認。全ExactPackテストを実行したとは扱いません。参照の実行成否はqualification.jsonに別記します。"
         }
       ],
       "baseline_evidence": [
@@ -844,7 +869,34 @@
           "observation": "独立Athena++参照・格子収束あり。"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23-r2/guderley/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23-r2/guderley/inputs.json",
+          "/code/validated-examples/2026-11-23-r2/guderley/acceptance.json",
+          "/code/validated-examples/2026-11-23-r2/guderley/pre-run-contract.json",
+          "/code/validated-examples/2026-11-23-r2/guderley/references/definition.json",
+          "/code/validated-examples/2026-11-23-r2/guderley/references/pre-reference-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23-r2/guderley/results/guderley-implosion-preview.png",
+          "/code/validated-examples/2026-11-23-r2/guderley/results/guderley-implosion.png"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#guderley-ja",
+        "execution": "/numerical-methods-atlas/validation/guderley-implosion/?lang=ja",
+        "code": [
+          "/code/validated-examples/2026-11-23-r2/guderley/run.py",
+          "/code/validated-examples/2026-11-23-r2/guderley/guderley_solver.py",
+          "/code/validated-examples/2026-11-23-r2/guderley/references/precollapse.py"
+        ],
+        "references": [
+          "/numerical-methods-atlas/solutions/?lang=ja#solution-guderley-ja",
+          "/code/validated-examples/2026-11-23-r2/guderley/references/citations.json",
+          "/code/validated-examples/2026-11-23-r2/guderley/references/README.md",
+          "/code/validated-examples/2026-11-23-r2/guderley/references/qualification.json",
+          "/code/validated-examples/2026-11-23-r2/guderley/references/exactpack-source.json"
+        ]
+      },
       "sequence": 10
     },
     {

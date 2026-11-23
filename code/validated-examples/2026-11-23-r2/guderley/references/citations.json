@@ -1,0 +1,116 @@
+[
+  {
+    "id": "guderley1942",
+    "author": "G. Guderley",
+    "year": 1942,
+    "title": "Starke kugelige und zylindrische Verdichtungsstöße in der Nähe des Kugelmittelpunktes bzw. der Zylinderachse",
+    "journal": "Luftfahrtforschung",
+    "volume": "19",
+    "pages": "302 (first page)",
+    "url": "https://raw.githubusercontent.com/lanl/ExactPack/9bacc477eb791e959c9621e771fc7a725db755fa/doc/source/references.rst",
+    "type": "article",
+    "role": "historical-original-problem-attribution",
+    "review_level": "bibliographic attribution only: year/volume/first page in pinned ExactPack bibliography, title in Lazarus1981 publisher bibliography; original1942 article not inspected",
+    "review": {
+      "ja": "原問題の歴史的出典。固定ExactPackの書誌で著者・年・巻・開始頁302を、Lazarus1981の出版社参考文献で題名を確認。原著1942本文は未閲覧で、相似場の式や今回の実測を原著から直接再現したとは主張しません。",
+      "en": "Historical original-problem attribution. Author/year/volume/first page302 were checked in the pinned ExactPack bibliography and the title in the Lazarus1981 publisher references. The original1942 text was not inspected and is not claimed as the directly transcribed source of the present fields or measurements."
+    },
+    "additional_bibliographic_url": "https://epubs.siam.org/doi/10.1137/0718022",
+    "accessed_on": "2026-11-23"
+  },
+  {
+    "id": "ramsey2012guderley",
+    "author": "Scott D. Ramsey, James R. Kamm and John H. Bolstad",
+    "year": 2012,
+    "title": "The Guderley problem revisited",
+    "journal": "International Journal of Computational Fluid Dynamics",
+    "volume": "26",
+    "number": "2",
+    "pages": "79–99",
+    "doi": "10.1080/10618562.2011.647768",
+    "url": "https://laro.lanl.gov/esploro/outputs/journalArticle/The-Guderley-problem-revisited/9916364702403761",
+    "type": "article",
+    "role": "semi-analytic-benchmark-and-two-eigenvalue-context",
+    "review_level": "primary institutional bibliographic record and abstract; actual implementation equations reviewed in pinned ExactPack source, not full original paper",
+    "review": {
+      "ja": "LANLの書誌・抄録で収束側の相似指数と反射後の軌道係数が別の固有値問題であることを確認。原論文の全文通読や原著のPDE計算再現とは扱わず、今回の場は固定ExactPackソースを実際に用いて構成します。",
+      "en": "The LANL record and abstract distinguish the convergence exponent from the reflected trajectory eigenvalue. This is not a claim to have read the entire paper or reproduced its PDE experiment; the present field is constructed using the pinned ExactPack source."
+    },
+    "accessed_on": "2026-11-23"
+  },
+  {
+    "id": "lazarus1981guderley",
+    "author": "Roger B. Lazarus",
+    "year": 1981,
+    "title": "Self-Similar Solutions for Converging Shocks and Collapsing Cavities",
+    "journal": "SIAM Journal on Numerical Analysis",
+    "volume": "18",
+    "number": "2",
+    "pages": "316–371",
+    "doi": "10.1137/0718022",
+    "url": "https://epubs.siam.org/doi/10.1137/0718022",
+    "type": "article",
+    "role": "similarity-coordinate-convention-and-tabulated-exponent",
+    "review_level": "publisher bibliographic record/abstract plus equations2.5,2.8,2.9 and sphericalTable6.5 as explicitly transcribed in pinned ExactPack; original full text not inspected",
+    "review": {
+      "ja": "出版社の書誌・抄録と、ExactPackが明示する式2.5/2.8/2.9・球対称表6.5の転記を確認。λ=1.3943607838の表値はコード内の転記値で、元論文を独立に再転記した値とは区別します。",
+      "en": "Checked the publisher record/abstract and the explicitly attributed equations/table in ExactPack. The tabulated lambda1.3943607838 is the value transcribed in that code, not an independent retranscription of the original table."
+    },
+    "accessed_on": "2026-11-23"
+  },
+  {
+    "id": "chisnell1998guderley",
+    "author": "R. F. Chisnell",
+    "year": 1998,
+    "title": "An analytic description of converging shock waves",
+    "journal": "Journal of Fluid Mechanics",
+    "volume": "354",
+    "pages": "357–375",
+    "doi": "10.1017/S0022112097007775",
+    "url": "https://www.cambridge.org/core/journals/journal-of-fluid-mechanics/article/abs/an-analytic-description-of-converging-shock-waves/1D3D7014FF4C6297A5F6DC9BCFDBE0E8",
+    "type": "article",
+    "role": "critical-point-eigenvalue-formulation-used-by-ExactPack-eexp",
+    "review_level": "publisher bibliographic record/abstract and equation3.1 implementation/comments in actual pinned ExactPack eexp source",
+    "review": {
+      "ja": "出版社の書誌・抄録と、ExactPack eexpが採用する臨界点の位相差・式3.1の実装を確認。相似指数は寸法解析から固定せず、固定コードの固有値計算で求めます。",
+      "en": "Checked the publisher record/abstract and the critical-point phase matching and equation3.1 implementation in ExactPack eexp. The exponent is computed through that eigenvalue routine rather than fixed by dimensional analysis."
+    },
+    "accessed_on": "2026-11-23"
+  },
+  {
+    "id": "thrussell2023exactpack",
+    "author": "Jasper Thrussell and Jim Michael Ferguson",
+    "year": 2023,
+    "title": "ExactPack: A python library of exact analytic solutions",
+    "journal": "SoftwareX",
+    "volume": "24",
+    "pages": "101560",
+    "doi": "10.1016/j.softx.2023.101560",
+    "url": "https://www.osti.gov/servlets/purl/2204208",
+    "type": "software-paper",
+    "role": "ExactPack-software-reference",
+    "review_level": "primary OSTI accepted manuscript/search text; software metadata and Guderley registry; selected actual source files pinned separately",
+    "review": {
+      "ja": "ExactPackのソフトウェア論文とGuderley収録を参照。論文記載版1.7.5と今回用いるソースの固定コミットは区別し、配布物内にソース・SHA・BSDライセンスを保存します。",
+      "en": "Cites the ExactPack software paper and its Guderley solver listing. The paper version1.7.5 is distinguished from the exact source commit used here, whose source, SHA receipts and BSD license are retained."
+    },
+    "accessed_on": "2026-11-23"
+  },
+  {
+    "id": "exactpack-guderley-pinned",
+    "author": "Los Alamos National Laboratory / ExactPack contributors",
+    "year": 2025,
+    "title": "ExactPack Guderley solver, pinned source",
+    "url": "https://github.com/lanl/ExactPack/tree/9bacc477eb791e959c9621e771fc7a725db755fa/exactpack/solvers/guderley",
+    "type": "software",
+    "role": "actually-executed-semi-analytic-reference-source",
+    "version": "9bacc477eb791e959c9621e771fc7a725db755fa",
+    "review_level": "selected source files and license inspected; eexp,ramsey.state/g,interp_laz and official test fixtures; actual execution recorded separately",
+    "review": {
+      "ja": "固定版のeexp・ramseyの前収束ODEとstate、表の転記、公式回帰値、BSD3条項を確認。全ExactPackテストを実行したとは扱いません。参照の実行成否はqualification.jsonに別記します。",
+      "en": "Inspected pinned eexp, the pre-collapse ODE/state, transcribed tables, official regression values and BSD3 terms. This is not a claim to have run the complete ExactPack suite; actual reference execution is recorded separately."
+    },
+    "accessed_on": "2026-11-23",
+    "source_commit_date": "2025-09-24T22:25:51Z"
+  }
+]

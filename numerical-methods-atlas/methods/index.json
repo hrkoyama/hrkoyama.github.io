@@ -29793,8 +29793,8 @@
       },
       "depth_previous_status": "educational-example",
       "depth_scope": {
-        "ja": "既存のHLL流束・Heunによる2D Double Mach反射を3格子で検証し、別実装の有限格子数値参照との差、境界流束収支、衝撃位置と未解像の壁近傍構造を示します。 追加の前向きステップ例は段差面を含む反射壁境界の実2D有限体積計算を検証します。",
-        "en": "Three-grid 2D Double Mach verification using HLL and Heun compares a separately written finite-grid numerical reference, boundary-flux budgets, shock position and unresolved near-wall structure. The additional forward-step example verifies actual 2D finite-volume flow with reflecting walls including the step faces."
+        "ja": "既存のHLL流束・Heunによる2D Double Mach反射を3格子で検証し、別実装の有限格子数値参照との差、境界流束収支、衝撃位置と未解像の壁近傍構造を示します。 追加の前向きステップ例は段差面を含む反射壁境界の実2D有限体積計算を検証します。 追加のGuderley例は、圧力ゼロの上流へ進む球対称収束衝撃波を原点到達前だけ計算し、半解析的な相似参照と比較します。",
+        "en": "Three-grid 2D Double Mach verification using HLL and Heun compares a separately written finite-grid numerical reference, boundary-flux budgets, shock position and unresolved near-wall structure. The additional forward-step example verifies actual 2D finite-volume flow with reflecting walls including the step faces. The additional Guderley example evolves a zero-upstream-pressure spherical converging shock only before collapse and compares a semi-analytic similarity reference."
       },
       "depth_additional_releases": [
         {
@@ -30603,6 +30603,1211 @@
               }
             }
           ]
+        },
+        {
+          "group": "guderley",
+          "case_ids": [
+            "guderley-implosion"
+          ],
+          "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/",
+          "code_edition": "2026-11-23-r2",
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/guderley_solver.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/precollapse.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/EXACTPACK-test_guderley.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/eexp.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/guderley.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/interp_laz.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/original_init.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/ramsey.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/qualify_reference.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/test_guderley.py"
+          ],
+          "run_commands": [
+            "python -m pytest -q",
+            "python run.py --input inputs.json --output output"
+          ],
+          "run_from": "atlas-guderley-2026-11-23-r2",
+          "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/atlas-guderley-2026-11-23-r2.zip",
+          "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/source-manifest.json",
+          "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/verification.json",
+          "code_archive_sha256": "ca6974a8e48f8d6a2ad81ad74bce173dcff3656e35a465d9e75fac3d6cbdbfb6",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/results/result.json",
+          "passed_tests": 33,
+          "examples": [
+            {
+              "id": "guderley-implosion",
+              "title": {
+                "ja": "Guderley収束衝撃波：球対称の軽量検証",
+                "en": "Guderley converging shock: lightweight spherical-radial verification"
+              },
+              "method_ids": [
+                "hll",
+                "heun"
+              ],
+              "domains": [
+                "fluid",
+                "time",
+                "pde"
+              ],
+              "code_files": [
+                "run.py",
+                "guderley_solver.py",
+                "references/precollapse.py"
+              ],
+              "summary": {
+                "ja": "冷たい静止気体へ内向きに進む球対称Guderley衝撃波を、128/256/512個の球殻でt=−1から−.85まで計算します。HLL流束とHeun法を、相似指数の固有値・半解析場・衝撃位置・保存収支と照合する軽量例です。",
+                "en": "An inward spherical Guderley shock in cold stationary gas is evolved from t=-1 to -0.85 on 128/256/512 radial shells. HLL fluxes and Heun steps are checked against a similarity eigenvalue/field, shock trajectory and discrete conservation budgets."
+              },
+              "assumptions": {
+                "ja": "γ=1.4、球対称3次元の半径r∈[0,.75]、衝撃半径Rs(−1)=.6、時間t∈[−1,−.85]を固定します。衝撃前方の内側はρ0=1、u0=p0=0です。外側には初めから衝撃後の相似場があり、領域全体が冷たい一様気体という初期条件ではありません。初期保存量は衝撃位置で積分区間を分けた16点Gauss球殻体積平均とし、32点と照合します。圧力参照はp(保存量平均)で、原始圧力の体積平均とは区別します。",
+                "en": "Fix gamma=1.4, three-dimensional spherical symmetry on r in [0,0.75], Rs(-1)=0.6 and t in [-1,-0.85]. Ahead of the inward shock the inner gas is exactly rho0=1,u0=p0=0. The outer region already contains the shocked similarity field; the entire initial domain is not a uniform cold state. Initial conserved shell means use order16 Gauss integration split at the exact shock, checked against order32. Reference pressure is p(mean conserved state), not mean primitive pressure."
+              },
+              "algorithm": {
+                "ja": "面積4πr²と球殻体積4πΔ(r³)/3を用いた第一次数の球対称有限体積法です。共有HLL面流束の発散に、半径方向運動量の圧力幾何項p_iΔA/Vを加え、Heun法・CFL=.4で更新します。中心は面積ゼロの反射条件、外側は各RK段の実時刻に評価した相似場です。全3保存量について実際の境界面流束と幾何ソースを同じHeun重みで積分します。状態floor、圧力修復、時間刻みの隠れた再試行はありません。",
+                "en": "First-order spherical finite volumes use face area4pi*r^2 and shell volume4pi*delta(r^3)/3. Shared HLL flux divergence plus the radial-momentum pressure source p_i*delta(A)/V is advanced by Heun at CFL0.4. The center is reflecting with zero face area; the outer similarity state is evaluated at both actual RK times. All three conserved budgets integrate the actual boundary flux and geometric source using the same Heun weights. There are no state floors, pressure repairs or hidden step retries."
+              },
+              "validation": {
+                "ja": "33単体検査と3格子55判定を実行前に固定し、警告をエラーにする設定で合格しました。冷たい上流でのゼロ音速HLL分岐、幾何的な静止圧力釣合い、共有流束の収支、実際の2段の境界時刻、不正段の生配列保持を確認します。全体積L1と、あらかじめr≥.8Rsとした衝撃・非零流れ領域のL1を並べ、冷たい内側で誤差を薄めないようにします。密度・圧力の最大差と保存した時系列からの衝撃軌道も残します。半解析参照は固定LANL ExactPackの相似指数固有値ルーチンとODEを使い、反射後分岐を計算しないキャッシュ付きアダプターです。独自に再実装した相似ODEとは表示しません。別に実装したEuler有限体積計算と参照を比較します。 全体積の密度L1は.02345/.01339/.007722、圧力L1は.03277/.01743/.009477でした。r≥.8Rsの密度L1も.02414/.01378/.007948と減少します。最細の衝撃位置は.530273、相似参照は.533989で、差は約2.54セルです。最大の全3成分収支残差は8.85e-16、全段の最小内部エネルギーと音速専用丸めガード回数はともに0でした。参照のEuler差分代入残差は8.24e-9、有限オフセットの移動衝撃ジャンプ残差は4.40e-8。固有値計算を含む全3計算は元のMacで約44.6秒でした。",
+                "en": "The33 unit checks and55 gates over three refinements were fixed before execution and passed with warnings treated as errors. Checks cover the zero-sound-speed cold HLL branch, geometric static-pressure balance, shared-flux budgets, actual two-stage boundary times and raw failed-stage retention. Full-volume L1 is shown alongside the predetermined r>=0.8*Rs shock/nonzero-flow region, so cold inner gas does not hide active errors. Maximum density/pressure differences and the saved shock trajectory remain visible. The semi-analytic reference uses the pinned LANL ExactPack eigenvalue routine and ODE through a cached pre-collapse-only adapter. It is not an independently reimplemented similarity ODE; the separately implemented finite-volume Euler evolution is compared against that reference. Full-volume density L1 is0.02345/0.01339/0.007722 and pressure L1 is0.03277/0.01743/0.009477. Density L1 in the predetermined r>=0.8*Rs region also decreases:0.02414/0.01378/0.007948. The finest measured shock radius is0.530273 against similarity0.533989, about2.54 cells apart. The maximum scaled three-component budget residual is8.85e-16. Minimum internal energy and sound-speed-only roundoff guard evaluations are both0. The smooth-reference Euler finite-difference residual is8.24e-9 and finite-offset moving-jump residual4.40e-8. All three runs including the similarity eigenvalue calculation took about44.6 seconds on the original Mac."
+              },
+              "formulas": [
+                "\\partial_t U+\\frac{1}{r^2}\\partial_r(r^2 F)=\\left(0,\\frac{2p}{r},0\\right)^T,\\quad U=(\\rho,\\rho u,E)^T",
+                "R_s(t)=0.6(-t)^\\alpha,\\quad\\alpha=1/\\lambda,\\quad \\lambda\\simeq1.3943607844,\\quad t<0",
+                "\\frac{d\\bar U_i}{dt}=-\\frac{A_{i+1/2}\\widehat F_{i+1/2}-A_{i-1/2}\\widehat F_{i-1/2}}{V_i}+\\left(0,p_i\\frac{\\Delta A_i}{V_i},0\\right)^T",
+                "\\bar U_i^{\\rm ref}=\\frac{\\int_{r_{i-1/2}}^{r_{i+1/2}}U_{\\rm sim}(r,t)r^2\\,dr}{(r_{i+1/2}^3-r_{i-1/2}^3)/3},\\qquad p_i^{\\rm ref}=p(\\bar U_i^{\\rm ref})"
+              ],
+              "references": [
+                {
+                  "id": "guderley1942",
+                  "author": "G. Guderley",
+                  "year": 1942,
+                  "title": "Starke kugelige und zylindrische Verdichtungsstöße in der Nähe des Kugelmittelpunktes bzw. der Zylinderachse",
+                  "journal": "Luftfahrtforschung",
+                  "volume": "19",
+                  "pages": "302 (first page)",
+                  "url": "https://raw.githubusercontent.com/lanl/ExactPack/9bacc477eb791e959c9621e771fc7a725db755fa/doc/source/references.rst",
+                  "type": "article",
+                  "role": "historical-original-problem-attribution",
+                  "review_level": "bibliographic attribution only: year/volume/first page in pinned ExactPack bibliography, title in Lazarus1981 publisher bibliography; original1942 article not inspected",
+                  "review": {
+                    "ja": "原問題の歴史的出典。固定ExactPackの書誌で著者・年・巻・開始頁302を、Lazarus1981の出版社参考文献で題名を確認。原著1942本文は未閲覧で、相似場の式や今回の実測を原著から直接再現したとは主張しません。",
+                    "en": "Historical original-problem attribution. Author/year/volume/first page302 were checked in the pinned ExactPack bibliography and the title in the Lazarus1981 publisher references. The original1942 text was not inspected and is not claimed as the directly transcribed source of the present fields or measurements."
+                  },
+                  "additional_bibliographic_url": "https://epubs.siam.org/doi/10.1137/0718022",
+                  "accessed_on": "2026-11-23"
+                },
+                {
+                  "id": "ramsey2012guderley",
+                  "author": "Scott D. Ramsey, James R. Kamm and John H. Bolstad",
+                  "year": 2012,
+                  "title": "The Guderley problem revisited",
+                  "journal": "International Journal of Computational Fluid Dynamics",
+                  "volume": "26",
+                  "number": "2",
+                  "pages": "79–99",
+                  "doi": "10.1080/10618562.2011.647768",
+                  "url": "https://laro.lanl.gov/esploro/outputs/journalArticle/The-Guderley-problem-revisited/9916364702403761",
+                  "type": "article",
+                  "role": "semi-analytic-benchmark-and-two-eigenvalue-context",
+                  "review_level": "primary institutional bibliographic record and abstract; actual implementation equations reviewed in pinned ExactPack source, not full original paper",
+                  "review": {
+                    "ja": "LANLの書誌・抄録で収束側の相似指数と反射後の軌道係数が別の固有値問題であることを確認。原論文の全文通読や原著のPDE計算再現とは扱わず、今回の場は固定ExactPackソースを実際に用いて構成します。",
+                    "en": "The LANL record and abstract distinguish the convergence exponent from the reflected trajectory eigenvalue. This is not a claim to have read the entire paper or reproduced its PDE experiment; the present field is constructed using the pinned ExactPack source."
+                  },
+                  "accessed_on": "2026-11-23"
+                },
+                {
+                  "id": "lazarus1981guderley",
+                  "author": "Roger B. Lazarus",
+                  "year": 1981,
+                  "title": "Self-Similar Solutions for Converging Shocks and Collapsing Cavities",
+                  "journal": "SIAM Journal on Numerical Analysis",
+                  "volume": "18",
+                  "number": "2",
+                  "pages": "316–371",
+                  "doi": "10.1137/0718022",
+                  "url": "https://epubs.siam.org/doi/10.1137/0718022",
+                  "type": "article",
+                  "role": "similarity-coordinate-convention-and-tabulated-exponent",
+                  "review_level": "publisher bibliographic record/abstract plus equations2.5,2.8,2.9 and sphericalTable6.5 as explicitly transcribed in pinned ExactPack; original full text not inspected",
+                  "review": {
+                    "ja": "出版社の書誌・抄録と、ExactPackが明示する式2.5/2.8/2.9・球対称表6.5の転記を確認。λ=1.3943607838の表値はコード内の転記値で、元論文を独立に再転記した値とは区別します。",
+                    "en": "Checked the publisher record/abstract and the explicitly attributed equations/table in ExactPack. The tabulated lambda1.3943607838 is the value transcribed in that code, not an independent retranscription of the original table."
+                  },
+                  "accessed_on": "2026-11-23"
+                },
+                {
+                  "id": "chisnell1998guderley",
+                  "author": "R. F. Chisnell",
+                  "year": 1998,
+                  "title": "An analytic description of converging shock waves",
+                  "journal": "Journal of Fluid Mechanics",
+                  "volume": "354",
+                  "pages": "357–375",
+                  "doi": "10.1017/S0022112097007775",
+                  "url": "https://www.cambridge.org/core/journals/journal-of-fluid-mechanics/article/abs/an-analytic-description-of-converging-shock-waves/1D3D7014FF4C6297A5F6DC9BCFDBE0E8",
+                  "type": "article",
+                  "role": "critical-point-eigenvalue-formulation-used-by-ExactPack-eexp",
+                  "review_level": "publisher bibliographic record/abstract and equation3.1 implementation/comments in actual pinned ExactPack eexp source",
+                  "review": {
+                    "ja": "出版社の書誌・抄録と、ExactPack eexpが採用する臨界点の位相差・式3.1の実装を確認。相似指数は寸法解析から固定せず、固定コードの固有値計算で求めます。",
+                    "en": "Checked the publisher record/abstract and the critical-point phase matching and equation3.1 implementation in ExactPack eexp. The exponent is computed through that eigenvalue routine rather than fixed by dimensional analysis."
+                  },
+                  "accessed_on": "2026-11-23"
+                },
+                {
+                  "id": "thrussell2023exactpack",
+                  "author": "Jasper Thrussell and Jim Michael Ferguson",
+                  "year": 2023,
+                  "title": "ExactPack: A python library of exact analytic solutions",
+                  "journal": "SoftwareX",
+                  "volume": "24",
+                  "pages": "101560",
+                  "doi": "10.1016/j.softx.2023.101560",
+                  "url": "https://www.osti.gov/servlets/purl/2204208",
+                  "type": "software-paper",
+                  "role": "ExactPack-software-reference",
+                  "review_level": "primary OSTI accepted manuscript/search text; software metadata and Guderley registry; selected actual source files pinned separately",
+                  "review": {
+                    "ja": "ExactPackのソフトウェア論文とGuderley収録を参照。論文記載版1.7.5と今回用いるソースの固定コミットは区別し、配布物内にソース・SHA・BSDライセンスを保存します。",
+                    "en": "Cites the ExactPack software paper and its Guderley solver listing. The paper version1.7.5 is distinguished from the exact source commit used here, whose source, SHA receipts and BSD license are retained."
+                  },
+                  "accessed_on": "2026-11-23"
+                },
+                {
+                  "id": "exactpack-guderley-pinned",
+                  "author": "Los Alamos National Laboratory / ExactPack contributors",
+                  "year": 2025,
+                  "title": "ExactPack Guderley solver, pinned source",
+                  "url": "https://github.com/lanl/ExactPack/tree/9bacc477eb791e959c9621e771fc7a725db755fa/exactpack/solvers/guderley",
+                  "type": "software",
+                  "role": "actually-executed-semi-analytic-reference-source",
+                  "version": "9bacc477eb791e959c9621e771fc7a725db755fa",
+                  "review_level": "selected source files and license inspected; eexp,ramsey.state/g,interp_laz and official test fixtures; actual execution recorded separately",
+                  "review": {
+                    "ja": "固定版のeexp・ramseyの前収束ODEとstate、表の転記、公式回帰値、BSD3条項を確認。全ExactPackテストを実行したとは扱いません。参照の実行成否はqualification.jsonに別記します。",
+                    "en": "Inspected pinned eexp, the pre-collapse ODE/state, transcribed tables, official regression values and BSD3 terms. This is not a claim to have run the complete ExactPack suite; actual reference execution is recorded separately."
+                  },
+                  "accessed_on": "2026-11-23",
+                  "source_commit_date": "2025-09-24T22:25:51Z"
+                }
+              ],
+              "limits": {
+                "ja": "収束点t=0から離れた短い時間窓の1次元球対称検証です。原点の特異点、原点反射後、円筒対称、他のγ、一般摂動や非球対称の安定性は未検証です。2次元の図は保存した球殻平均を子午面へ表示したもので、2次元Cartesian計算ではありません。半解析場もODEと求積を数値評価した参照であり、閉形式の厳密セル平均ではありません。冷たい上流では圧力ゼロを許し、64epsの絶対内部エネルギー密度までの丸めによる負値を記録します。許容帯だけの音速平方根ガードは状態修復と分けて回数・最小圧力を残し、非線形正値性の一般保証は主張しません。 衝撃位置のセル単位誤差は1.13/2.27/2.54と単調に減りません。半径の絶対誤差は最初の2格子で同じ約.00665、最細で約.00372です。密度L∞差は.258/.271/.266、圧力L∞差は.492/.494/.466で、いずれも単調な減少を主張できません。L1の減少を衝撃内部の点ごとの解像や原点付近の収束へ拡張しません。",
+                "en": "This is a short one-dimensional spherical verification away from collapse t=0. The singular origin, reflected branch, cylindrical geometry, other gammas and nonspherical perturbation stability are untested. Two-dimensional pictures map saved spherical shell means onto a meridional plane; they are not Cartesian2D evolution. The semi-analytic field is a numerically evaluated ODE/quadrature reference, not a closed-form exact cell average. Zero pressure is allowed in the cold upstream; cancellation-band negative internal energy density down to an absolute64eps is recorded. Sound-speed square-root guards only within that band have separate counts/minimum raw pressure and do not repair the state. No general nonlinear positivity theorem is claimed. Shock-position error in cell units does not decrease monotonically:1.13/2.27/2.54. Absolute radius error is about0.00665 for the first two grids and0.00372 for the finest. Density Linf differences0.258/0.271/0.266 and pressure Linf0.492/0.494/0.466 are also not monotonically decreasing. L1 reduction is not evidence that the discontinuity is pointwise resolved or that the collapse region converges."
+              },
+              "measured": {
+                "id": "guderley-implosion",
+                "passed": true,
+                "records": [
+                  {
+                    "n": 128,
+                    "time": -0.85,
+                    "steps": 71,
+                    "density_l1": 0.023454108364462135,
+                    "pressure_l1": 0.032769320183763787,
+                    "active_density_l1": 0.024142711631118356,
+                    "active_pressure_l1": 0.03276932018376379,
+                    "density_linf": 0.2583714498778471,
+                    "pressure_linf": 0.4918248213723752,
+                    "maximum_velocity_error": 0.29667606215626224,
+                    "active_volume_fraction": 0.8145022392272948,
+                    "active_inner_radius": 0.4271911929633472,
+                    "shock_radius": 0.52734375,
+                    "reference_shock_radius": 0.533988991204184,
+                    "shock_error_cells": 1.1341211655140644,
+                    "maximum_history_shock_error_cells": 1.7681946834242883,
+                    "minimum_density_all_stages": 1.0,
+                    "minimum_pressure_all_stages": 0.0,
+                    "minimum_internal_energy_all_stages": 0.0,
+                    "sound_speed_roundoff_guard_evaluations": 0,
+                    "minimum_pressure_at_sound_speed_guard": 0.0,
+                    "state_floor_count": 0,
+                    "rejected_steps": 0,
+                    "minimum_dt": 7.162806473937078e-05,
+                    "maximum_dt": 0.0021789084435661628,
+                    "reference_quadrature_density_l1": 2.896924263307821e-13,
+                    "reference_quadrature_pressure_l1": 5.014428051950655e-13,
+                    "initial_integral": [
+                      8.206089344193586,
+                      -2.301703302347455,
+                      0.7323576961002365
+                    ],
+                    "final_integral": [
+                      11.492857422295556,
+                      -3.356590525840208,
+                      1.0664451467573306
+                    ],
+                    "boundary_net_integral": [
+                      3.286768078101971,
+                      -1.137667428505291,
+                      0.3340874506570939
+                    ],
+                    "geometric_source_integral": [
+                      0.0,
+                      0.08278020501253855,
+                      0.0
+                    ],
+                    "conservation_residual": [
+                      -1.3322676295501878e-15,
+                      -6.38378239159465e-16,
+                      2.220446049250313e-16
+                    ],
+                    "conservation_relative": [
+                      1.159213571174786e-16,
+                      1.8124670145705584e-16,
+                      2.0821005712313262e-16
+                    ],
+                    "shock_trajectory": [
+                      {
+                        "time": -1.0,
+                        "shock_radius": 0.59765625,
+                        "reference_shock_radius": 0.6,
+                        "error_cells": 0.3999999999999962
+                      },
+                      {
+                        "time": -0.9782924377299245,
+                        "shock_radius": 0.5859375,
+                        "reference_shock_radius": 0.5906301905085632,
+                        "error_cells": 0.800885846794794
+                      },
+                      {
+                        "time": -0.9567333756433305,
+                        "shock_radius": 0.57421875,
+                        "reference_shock_radius": 0.5812660947627811,
+                        "error_cells": 1.2027468395146457
+                      },
+                      {
+                        "time": -0.9352998546116794,
+                        "shock_radius": 0.5625,
+                        "reference_shock_radius": 0.5718971770148007,
+                        "error_cells": 1.603784877192652
+                      },
+                      {
+                        "time": -0.9139388734034526,
+                        "shock_radius": 0.556640625,
+                        "reference_shock_radius": 0.5624993525585723,
+                        "error_cells": 0.9998895033296739
+                      },
+                      {
+                        "time": -0.8926184138281185,
+                        "shock_radius": 0.544921875,
+                        "reference_shock_radius": 0.5530571992420324,
+                        "error_cells": 1.3884286706402047
+                      },
+                      {
+                        "time": -0.871326123557209,
+                        "shock_radius": 0.533203125,
+                        "reference_shock_radius": 0.5435636407231892,
+                        "error_cells": 1.7681946834242883
+                      },
+                      {
+                        "time": -0.8500716280647393,
+                        "shock_radius": 0.52734375,
+                        "reference_shock_radius": 0.5340212624892918,
+                        "error_cells": 1.1396287981724715
+                      },
+                      {
+                        "time": -0.85,
+                        "shock_radius": 0.52734375,
+                        "reference_shock_radius": 0.533988991204184,
+                        "error_cells": 1.1341211655140644
+                      }
+                    ],
+                    "initial_reference_quadrature_density_l1": 1.5942464518988718e-12,
+                    "initial_reference_quadrature_pressure_l1": 2.54765297288434e-12,
+                    "field": "field-n128.npz",
+                    "history": "history-n128.json"
+                  },
+                  {
+                    "n": 256,
+                    "time": -0.85,
+                    "steps": 142,
+                    "density_l1": 0.013386928168626924,
+                    "pressure_l1": 0.017431865677689944,
+                    "active_density_l1": 0.013779963040136765,
+                    "active_pressure_l1": 0.017431865677689944,
+                    "density_linf": 0.2709663681343314,
+                    "pressure_linf": 0.49416968057811794,
+                    "maximum_velocity_error": 0.2978984692414384,
+                    "active_volume_fraction": 0.814502239227295,
+                    "active_inner_radius": 0.4271911929633472,
+                    "shock_radius": 0.52734375,
+                    "reference_shock_radius": 0.533988991204184,
+                    "shock_error_cells": 2.2682423310281288,
+                    "maximum_history_shock_error_cells": 2.2682423310281288,
+                    "minimum_density_all_stages": 1.0,
+                    "minimum_pressure_all_stages": 0.0,
+                    "minimum_internal_energy_all_stages": 0.0,
+                    "sound_speed_roundoff_guard_evaluations": 0,
+                    "minimum_pressure_at_sound_speed_guard": 0.0,
+                    "state_floor_count": 0,
+                    "rejected_steps": 0,
+                    "minimum_dt": 0.0006571939652950665,
+                    "maximum_dt": 0.0010780698167943245,
+                    "reference_quadrature_density_l1": 1.3363962268430173e-13,
+                    "reference_quadrature_pressure_l1": 2.251024923990976e-13,
+                    "initial_integral": [
+                      8.206089344179338,
+                      -2.3017033023405276,
+                      0.7323576960977348
+                    ],
+                    "final_integral": [
+                      11.492857829370788,
+                      -3.356838930125358,
+                      1.0664451760055733
+                    ],
+                    "boundary_net_integral": [
+                      3.2867684851914554,
+                      -1.1376675780299623,
+                      0.3340874799078385
+                    ],
+                    "geometric_source_integral": [
+                      0.0,
+                      0.08253195024513331,
+                      0.0
+                    ],
+                    "conservation_residual": [
+                      -5.329070518200751e-15,
+                      -1.2628786905111156e-15,
+                      0.0
+                    ],
+                    "conservation_relative": [
+                      4.636854120462487e-16,
+                      3.585785160036248e-16,
+                      0.0
+                    ],
+                    "shock_trajectory": [
+                      {
+                        "time": -1.0,
+                        "shock_radius": 0.6005859375,
+                        "reference_shock_radius": 0.6,
+                        "error_cells": 0.2000000000000076
+                      },
+                      {
+                        "time": -0.9892429722026659,
+                        "shock_radius": 0.5947265625,
+                        "reference_shock_radius": 0.5953641265433148,
+                        "error_cells": 0.217621860118129
+                      },
+                      {
+                        "time": -0.9785571011243208,
+                        "shock_radius": 0.5888671875,
+                        "reference_shock_radius": 0.5907447811237423,
+                        "error_cells": 0.6408852902373686
+                      },
+                      {
+                        "time": -0.9679283208757195,
+                        "shock_radius": 0.5830078125,
+                        "reference_shock_radius": 0.5861359408438291,
+                        "error_cells": 1.0677344746936797
+                      },
+                      {
+                        "time": -0.9573269458641117,
+                        "shock_radius": 0.5771484375,
+                        "reference_shock_radius": 0.5815247033352795,
+                        "error_cells": 1.4937654051087368
+                      },
+                      {
+                        "time": -0.9467378525669856,
+                        "shock_radius": 0.5712890625,
+                        "reference_shock_radius": 0.5769043678302476,
+                        "error_cells": 1.916690886057836
+                      },
+                      {
+                        "time": -0.9361538067102382,
+                        "shock_radius": 0.568359375,
+                        "reference_shock_radius": 0.5722716059312678,
+                        "error_cells": 1.3353748245394097
+                      },
+                      {
+                        "time": -0.9255738090651571,
+                        "shock_radius": 0.5625,
+                        "reference_shock_radius": 0.5676257867679166,
+                        "error_cells": 1.7496018834488798
+                      },
+                      {
+                        "time": -0.9149957838902998,
+                        "shock_radius": 0.5595703125,
+                        "reference_shock_radius": 0.5629657937877414,
+                        "error_cells": 1.158990946215719
+                      },
+                      {
+                        "time": -0.9044217573600973,
+                        "shock_radius": 0.5537109375,
+                        "reference_shock_radius": 0.5582923090634493,
+                        "error_cells": 1.5637748269906904
+                      },
+                      {
+                        "time": -0.8938548672539243,
+                        "shock_radius": 0.5478515625,
+                        "reference_shock_radius": 0.553606514650018,
+                        "error_cells": 1.9643570005394697
+                      },
+                      {
+                        "time": -0.8832974269090673,
+                        "shock_radius": 0.544921875,
+                        "reference_shock_radius": 0.5489092382682375,
+                        "error_cells": 1.3610199955583842
+                      },
+                      {
+                        "time": -0.8727523613407671,
+                        "shock_radius": 0.5390625,
+                        "reference_shock_radius": 0.5442015897403887,
+                        "error_cells": 1.754142631386003
+                      },
+                      {
+                        "time": -0.8622219850609406,
+                        "shock_radius": 0.533203125,
+                        "reference_shock_radius": 0.5394844175650627,
+                        "error_cells": 2.1440145288747394
+                      },
+                      {
+                        "time": -0.8517076931838873,
+                        "shock_radius": 0.5302734375,
+                        "reference_shock_radius": 0.5347581655057968,
+                        "error_cells": 1.5307871593119746
+                      },
+                      {
+                        "time": -0.85,
+                        "shock_radius": 0.52734375,
+                        "reference_shock_radius": 0.533988991204184,
+                        "error_cells": 2.2682423310281288
+                      }
+                    ],
+                    "initial_reference_quadrature_density_l1": 1.4660264374459572e-14,
+                    "initial_reference_quadrature_pressure_l1": 2.920969246729905e-14,
+                    "field": "field-n256.npz",
+                    "history": "history-n256.json"
+                  },
+                  {
+                    "n": 512,
+                    "time": -0.85,
+                    "steps": 285,
+                    "density_l1": 0.00772161862650073,
+                    "pressure_l1": 0.00947688731818041,
+                    "active_density_l1": 0.007948322269523746,
+                    "active_pressure_l1": 0.009476887318180412,
+                    "density_linf": 0.26559799254635363,
+                    "pressure_linf": 0.4664641041357883,
+                    "maximum_velocity_error": 0.2918302634973315,
+                    "active_volume_fraction": 0.8145022392272949,
+                    "active_inner_radius": 0.4271911929633472,
+                    "shock_radius": 0.5302734375,
+                    "reference_shock_radius": 0.533988991204184,
+                    "shock_error_cells": 2.536484662056258,
+                    "maximum_history_shock_error_cells": 2.536484662056258,
+                    "minimum_density_all_stages": 1.0,
+                    "minimum_pressure_all_stages": 0.0,
+                    "minimum_internal_energy_all_stages": 0.0,
+                    "sound_speed_roundoff_guard_evaluations": 0,
+                    "minimum_pressure_at_sound_speed_guard": 0.0,
+                    "state_floor_count": 0,
+                    "rejected_steps": 0,
+                    "minimum_dt": 0.0004970499254967065,
+                    "maximum_dt": 0.000537015606799512,
+                    "reference_quadrature_density_l1": 4.607326285502161e-15,
+                    "reference_quadrature_pressure_l1": 8.295849629501113e-15,
+                    "initial_integral": [
+                      8.206089344179249,
+                      -2.3017033023404845,
+                      0.7323576960977207
+                    ],
+                    "final_integral": [
+                      11.492857928234441,
+                      -3.3569808384086612,
+                      1.0664451831092827
+                    ],
+                    "boundary_net_integral": [
+                      3.2867685840551983,
+                      -1.1376676143431048,
+                      0.33408748701156293
+                    ],
+                    "geometric_source_integral": [
+                      0.0,
+                      0.08239007827492695,
+                      0.0
+                    ],
+                    "conservation_residual": [
+                      -6.217248937900877e-15,
+                      1.1102230246251565e-15,
+                      -9.43689570931383e-16
+                    ],
+                    "conservation_relative": [
+                      5.409663094004662e-16,
+                      3.152465559742603e-16,
+                      8.848927126099446e-16
+                    ],
+                    "shock_trajectory": [
+                      {
+                        "time": -1.0,
+                        "shock_radius": 0.6005859375,
+                        "reference_shock_radius": 0.6,
+                        "error_cells": 0.4000000000000152
+                      },
+                      {
+                        "time": -0.9946368166418362,
+                        "shock_radius": 0.59619140625,
+                        "reference_shock_radius": 0.5976904426742187,
+                        "error_cells": 1.0233421989332783
+                      },
+                      {
+                        "time": -0.9893094005273915,
+                        "shock_radius": 0.59326171875,
+                        "reference_shock_radius": 0.5953927982605718,
+                        "error_cells": 1.4548169458836735
+                      },
+                      {
+                        "time": -0.9840146694470209,
+                        "shock_radius": 0.591796875,
+                        "reference_shock_radius": 0.5931057806604236,
+                        "error_cells": 0.8935462641825325
+                      },
+                      {
+                        "time": -0.9787352896599837,
+                        "shock_radius": 0.5888671875,
+                        "reference_shock_radius": 0.590821926008946,
+                        "error_cells": 1.3344348221071414
+                      },
+                      {
+                        "time": -0.9734624811850209,
+                        "shock_radius": 0.5859375,
+                        "reference_shock_radius": 0.5885374337271152,
+                        "error_cells": 1.7748880910439766
+                      },
+                      {
+                        "time": -0.9681914086700115,
+                        "shock_radius": 0.58447265625,
+                        "reference_shock_radius": 0.5862501928945101,
+                        "error_cells": 1.2134650159855482
+                      },
+                      {
+                        "time": -0.9629198107206394,
+                        "shock_radius": 0.58154296875,
+                        "reference_shock_radius": 0.5839591989745323,
+                        "error_cells": 1.6494798332807175
+                      },
+                      {
+                        "time": -0.9576467627883994,
+                        "shock_radius": 0.57861328125,
+                        "reference_shock_radius": 0.5816640233953347,
+                        "error_cells": 2.082639971215182
+                      },
+                      {
+                        "time": -0.952371549031616,
+                        "shock_radius": 0.5771484375,
+                        "reference_shock_radius": 0.5793643257959106,
+                        "error_cells": 1.5127130766749513
+                      },
+                      {
+                        "time": -0.9470946346463607,
+                        "shock_radius": 0.57421875,
+                        "reference_shock_radius": 0.5770602795696169,
+                        "error_cells": 1.9398175195251497
+                      },
+                      {
+                        "time": -0.9418172329328481,
+                        "shock_radius": 0.57275390625,
+                        "reference_shock_radius": 0.5747523864238984,
+                        "error_cells": 1.3642957987146171
+                      },
+                      {
+                        "time": -0.9365399380633962,
+                        "shock_radius": 0.56982421875,
+                        "reference_shock_radius": 0.5724408796635158,
+                        "error_cells": 1.7863071836267561
+                      },
+                      {
+                        "time": -0.9312641042325702,
+                        "shock_radius": 0.56689453125,
+                        "reference_shock_radius": 0.5701263276031471,
+                        "error_cells": 2.206239643748404
+                      },
+                      {
+                        "time": -0.9259901328230302,
+                        "shock_radius": 0.5654296875,
+                        "reference_shock_radius": 0.5678088830286193,
+                        "error_cells": 1.6241974808707862
+                      },
+                      {
+                        "time": -0.9207190803034304,
+                        "shock_radius": 0.5625,
+                        "reference_shock_radius": 0.5654889881116121,
+                        "error_cells": 2.0404825508605122
+                      },
+                      {
+                        "time": -0.9154510487847011,
+                        "shock_radius": 0.56103515625,
+                        "reference_shock_radius": 0.5631666666951907,
+                        "error_cells": 1.455111130583494
+                      },
+                      {
+                        "time": -0.9101868411404913,
+                        "shock_radius": 0.55810546875,
+                        "reference_shock_radius": 0.5608422523193408,
+                        "error_cells": 1.8683109166699978
+                      },
+                      {
+                        "time": -0.9049263750373424,
+                        "shock_radius": 0.55517578125,
+                        "reference_shock_radius": 0.5585156887538151,
+                        "error_cells": 2.280043522604425
+                      },
+                      {
+                        "time": -0.8996702937039848,
+                        "shock_radius": 0.5537109375,
+                        "reference_shock_radius": 0.5561872409623809,
+                        "error_cells": 1.690489830318711
+                      },
+                      {
+                        "time": -0.8944184318023805,
+                        "shock_radius": 0.55078125,
+                        "reference_shock_radius": 0.5538568164517846,
+                        "error_cells": 2.099586697751647
+                      },
+                      {
+                        "time": -0.8891713276989159,
+                        "shock_radius": 0.5478515625,
+                        "reference_shock_radius": 0.5515246350278591,
+                        "error_cells": 2.5074841790184714
+                      },
+                      {
+                        "time": -0.8839287833047897,
+                        "shock_radius": 0.54638671875,
+                        "reference_shock_radius": 0.5491905896890821,
+                        "error_cells": 1.9141092277466971
+                      },
+                      {
+                        "time": -0.878691267191384,
+                        "shock_radius": 0.54345703125,
+                        "reference_shock_radius": 0.5468548701476631,
+                        "error_cells": 2.3195913541380073
+                      },
+                      {
+                        "time": -0.8734585866220838,
+                        "shock_radius": 0.5419921875,
+                        "reference_shock_radius": 0.5445173716101,
+                        "error_cells": 1.7238590191616368
+                      },
+                      {
+                        "time": -0.8682311375431372,
+                        "shock_radius": 0.5390625,
+                        "reference_shock_radius": 0.5421782520914779,
+                        "error_cells": 2.1270200944488806
+                      },
+                      {
+                        "time": -0.8630087862744834,
+                        "shock_radius": 0.5361328125,
+                        "reference_shock_radius": 0.5398374329633072,
+                        "error_cells": 2.5290209029510606
+                      },
+                      {
+                        "time": -0.8577918019735371,
+                        "shock_radius": 0.53466796875,
+                        "reference_shock_radius": 0.5374950159643461,
+                        "error_cells": 1.9299308983269536
+                      },
+                      {
+                        "time": -0.8525801975333194,
+                        "shock_radius": 0.53173828125,
+                        "reference_shock_radius": 0.5351509880497817,
+                        "error_cells": 2.329741175317622
+                      },
+                      {
+                        "time": -0.85,
+                        "shock_radius": 0.5302734375,
+                        "reference_shock_radius": 0.533988991204184,
+                        "error_cells": 2.536484662056258
+                      }
+                    ],
+                    "initial_reference_quadrature_density_l1": 1.4522743666682576e-15,
+                    "initial_reference_quadrature_pressure_l1": 3.208009534299476e-15,
+                    "field": "field-n512.npz",
+                    "history": "history-n512.json"
+                  }
+                ],
+                "metrics": {
+                  "n": 512,
+                  "time": -0.85,
+                  "steps": 285,
+                  "density_l1": 0.00772161862650073,
+                  "pressure_l1": 0.00947688731818041,
+                  "active_density_l1": 0.007948322269523746,
+                  "active_pressure_l1": 0.009476887318180412,
+                  "density_linf": 0.26559799254635363,
+                  "pressure_linf": 0.4664641041357883,
+                  "maximum_velocity_error": 0.2918302634973315,
+                  "active_volume_fraction": 0.8145022392272949,
+                  "active_inner_radius": 0.4271911929633472,
+                  "shock_radius": 0.5302734375,
+                  "reference_shock_radius": 0.533988991204184,
+                  "shock_error_cells": 2.536484662056258,
+                  "maximum_history_shock_error_cells": 2.536484662056258,
+                  "minimum_density_all_stages": 1.0,
+                  "minimum_pressure_all_stages": 0.0,
+                  "minimum_internal_energy_all_stages": 0.0,
+                  "sound_speed_roundoff_guard_evaluations": 0,
+                  "minimum_pressure_at_sound_speed_guard": 0.0,
+                  "state_floor_count": 0,
+                  "rejected_steps": 0,
+                  "minimum_dt": 0.0004970499254967065,
+                  "maximum_dt": 0.000537015606799512,
+                  "reference_quadrature_density_l1": 4.607326285502161e-15,
+                  "reference_quadrature_pressure_l1": 8.295849629501113e-15,
+                  "initial_reference_quadrature_density_l1": 1.4522743666682576e-15,
+                  "initial_reference_quadrature_pressure_l1": 3.208009534299476e-15
+                },
+                "checks": {
+                  "all three fixed spherical runs completed": true,
+                  "N128: final time before collapse": true,
+                  "N128: strictly positive density all stages": true,
+                  "N128: minimum_internal_energy_all_stages": true,
+                  "N128: minimum_pressure_at_sound_speed_guard": true,
+                  "N128: state_floor_count": true,
+                  "N128: rejected_steps": true,
+                  "N128: mass discrete balance": true,
+                  "N128: radial momentum including geometric source discrete balance": true,
+                  "N128: energy discrete balance": true,
+                  "N128: reference_quadrature_density_l1": true,
+                  "N128: reference_quadrature_pressure_l1": true,
+                  "N128: initial_reference_quadrature_density_l1": true,
+                  "N128: initial_reference_quadrature_pressure_l1": true,
+                  "N128: maximum and trajectory diagnostics retained": true,
+                  "N256: final time before collapse": true,
+                  "N256: strictly positive density all stages": true,
+                  "N256: minimum_internal_energy_all_stages": true,
+                  "N256: minimum_pressure_at_sound_speed_guard": true,
+                  "N256: state_floor_count": true,
+                  "N256: rejected_steps": true,
+                  "N256: mass discrete balance": true,
+                  "N256: radial momentum including geometric source discrete balance": true,
+                  "N256: energy discrete balance": true,
+                  "N256: reference_quadrature_density_l1": true,
+                  "N256: reference_quadrature_pressure_l1": true,
+                  "N256: initial_reference_quadrature_density_l1": true,
+                  "N256: initial_reference_quadrature_pressure_l1": true,
+                  "N256: maximum and trajectory diagnostics retained": true,
+                  "N512: final time before collapse": true,
+                  "N512: strictly positive density all stages": true,
+                  "N512: minimum_internal_energy_all_stages": true,
+                  "N512: minimum_pressure_at_sound_speed_guard": true,
+                  "N512: state_floor_count": true,
+                  "N512: rejected_steps": true,
+                  "N512: mass discrete balance": true,
+                  "N512: radial momentum including geometric source discrete balance": true,
+                  "N512: energy discrete balance": true,
+                  "N512: reference_quadrature_density_l1": true,
+                  "N512: reference_quadrature_pressure_l1": true,
+                  "N512: initial_reference_quadrature_density_l1": true,
+                  "N512: initial_reference_quadrature_pressure_l1": true,
+                  "N512: maximum and trajectory diagnostics retained": true,
+                  "similarity qualification: maximum_scaled_euler_residual": true,
+                  "similarity qualification: maximum_scaled_jump_residual": true,
+                  "similarity exponent agrees with tabulated lambda": true,
+                  "finest density_l1": true,
+                  "finest pressure_l1": true,
+                  "finest active_density_l1": true,
+                  "finest active_pressure_l1": true,
+                  "finest shock_error_cells": true,
+                  "density_l1 decreases across the three grids": true,
+                  "active_density_l1 decreases across the three grids": true,
+                  "pressure_l1 decreases across the three grids": true,
+                  "last-pair active density L1 slope": true
+                },
+                "check_details": [
+                  {
+                    "name": "all three fixed spherical runs completed",
+                    "value": [
+                      128,
+                      256,
+                      512
+                    ],
+                    "bound": [
+                      128,
+                      256,
+                      512
+                    ],
+                    "passed": true
+                  },
+                  {
+                    "name": "N128: final time before collapse",
+                    "value": -0.85,
+                    "bound": -0.85,
+                    "passed": true
+                  },
+                  {
+                    "name": "N128: strictly positive density all stages",
+                    "value": 1.0,
+                    "bound": 0,
+                    "passed": true
+                  },
+                  {
+                    "name": "N128: minimum_internal_energy_all_stages",
+                    "value": 0.0,
+                    "bound": -1.4210854715202004e-14,
+                    "passed": true
+                  },
+                  {
+                    "name": "N128: minimum_pressure_at_sound_speed_guard",
+                    "value": 0.0,
+                    "bound": -5.6843418860808e-15,
+                    "passed": true
+                  },
+                  {
+                    "name": "N128: state_floor_count",
+                    "value": 0,
+                    "bound": 0,
+                    "passed": true
+                  },
+                  {
+                    "name": "N128: rejected_steps",
+                    "value": 0,
+                    "bound": 0,
+                    "passed": true
+                  },
+                  {
+                    "name": "N128: mass discrete balance",
+                    "value": 1.159213571174786e-16,
+                    "bound": 2e-12,
+                    "passed": true
+                  },
+                  {
+                    "name": "N128: radial momentum including geometric source discrete balance",
+                    "value": 1.8124670145705584e-16,
+                    "bound": 2e-12,
+                    "passed": true
+                  },
+                  {
+                    "name": "N128: energy discrete balance",
+                    "value": 2.0821005712313262e-16,
+                    "bound": 2e-12,
+                    "passed": true
+                  },
+                  {
+                    "name": "N128: reference_quadrature_density_l1",
+                    "value": 2.896924263307821e-13,
+                    "bound": 1e-07,
+                    "passed": true
+                  },
+                  {
+                    "name": "N128: reference_quadrature_pressure_l1",
+                    "value": 5.014428051950655e-13,
+                    "bound": 1e-07,
+                    "passed": true
+                  },
+                  {
+                    "name": "N128: initial_reference_quadrature_density_l1",
+                    "value": 1.5942464518988718e-12,
+                    "bound": 1e-07,
+                    "passed": true
+                  },
+                  {
+                    "name": "N128: initial_reference_quadrature_pressure_l1",
+                    "value": 2.54765297288434e-12,
+                    "bound": 1e-07,
+                    "passed": true
+                  },
+                  {
+                    "name": "N128: maximum and trajectory diagnostics retained",
+                    "value": true,
+                    "bound": true,
+                    "passed": true
+                  },
+                  {
+                    "name": "N256: final time before collapse",
+                    "value": -0.85,
+                    "bound": -0.85,
+                    "passed": true
+                  },
+                  {
+                    "name": "N256: strictly positive density all stages",
+                    "value": 1.0,
+                    "bound": 0,
+                    "passed": true
+                  },
+                  {
+                    "name": "N256: minimum_internal_energy_all_stages",
+                    "value": 0.0,
+                    "bound": -1.4210854715202004e-14,
+                    "passed": true
+                  },
+                  {
+                    "name": "N256: minimum_pressure_at_sound_speed_guard",
+                    "value": 0.0,
+                    "bound": -5.6843418860808e-15,
+                    "passed": true
+                  },
+                  {
+                    "name": "N256: state_floor_count",
+                    "value": 0,
+                    "bound": 0,
+                    "passed": true
+                  },
+                  {
+                    "name": "N256: rejected_steps",
+                    "value": 0,
+                    "bound": 0,
+                    "passed": true
+                  },
+                  {
+                    "name": "N256: mass discrete balance",
+                    "value": 4.636854120462487e-16,
+                    "bound": 2e-12,
+                    "passed": true
+                  },
+                  {
+                    "name": "N256: radial momentum including geometric source discrete balance",
+                    "value": 3.585785160036248e-16,
+                    "bound": 2e-12,
+                    "passed": true
+                  },
+                  {
+                    "name": "N256: energy discrete balance",
+                    "value": 0.0,
+                    "bound": 2e-12,
+                    "passed": true
+                  },
+                  {
+                    "name": "N256: reference_quadrature_density_l1",
+                    "value": 1.3363962268430173e-13,
+                    "bound": 1e-07,
+                    "passed": true
+                  },
+                  {
+                    "name": "N256: reference_quadrature_pressure_l1",
+                    "value": 2.251024923990976e-13,
+                    "bound": 1e-07,
+                    "passed": true
+                  },
+                  {
+                    "name": "N256: initial_reference_quadrature_density_l1",
+                    "value": 1.4660264374459572e-14,
+                    "bound": 1e-07,
+                    "passed": true
+                  },
+                  {
+                    "name": "N256: initial_reference_quadrature_pressure_l1",
+                    "value": 2.920969246729905e-14,
+                    "bound": 1e-07,
+                    "passed": true
+                  },
+                  {
+                    "name": "N256: maximum and trajectory diagnostics retained",
+                    "value": true,
+                    "bound": true,
+                    "passed": true
+                  },
+                  {
+                    "name": "N512: final time before collapse",
+                    "value": -0.85,
+                    "bound": -0.85,
+                    "passed": true
+                  },
+                  {
+                    "name": "N512: strictly positive density all stages",
+                    "value": 1.0,
+                    "bound": 0,
+                    "passed": true
+                  },
+                  {
+                    "name": "N512: minimum_internal_energy_all_stages",
+                    "value": 0.0,
+                    "bound": -1.4210854715202004e-14,
+                    "passed": true
+                  },
+                  {
+                    "name": "N512: minimum_pressure_at_sound_speed_guard",
+                    "value": 0.0,
+                    "bound": -5.6843418860808e-15,
+                    "passed": true
+                  },
+                  {
+                    "name": "N512: state_floor_count",
+                    "value": 0,
+                    "bound": 0,
+                    "passed": true
+                  },
+                  {
+                    "name": "N512: rejected_steps",
+                    "value": 0,
+                    "bound": 0,
+                    "passed": true
+                  },
+                  {
+                    "name": "N512: mass discrete balance",
+                    "value": 5.409663094004662e-16,
+                    "bound": 2e-12,
+                    "passed": true
+                  },
+                  {
+                    "name": "N512: radial momentum including geometric source discrete balance",
+                    "value": 3.152465559742603e-16,
+                    "bound": 2e-12,
+                    "passed": true
+                  },
+                  {
+                    "name": "N512: energy discrete balance",
+                    "value": 8.848927126099446e-16,
+                    "bound": 2e-12,
+                    "passed": true
+                  },
+                  {
+                    "name": "N512: reference_quadrature_density_l1",
+                    "value": 4.607326285502161e-15,
+                    "bound": 1e-07,
+                    "passed": true
+                  },
+                  {
+                    "name": "N512: reference_quadrature_pressure_l1",
+                    "value": 8.295849629501113e-15,
+                    "bound": 1e-07,
+                    "passed": true
+                  },
+                  {
+                    "name": "N512: initial_reference_quadrature_density_l1",
+                    "value": 1.4522743666682576e-15,
+                    "bound": 1e-07,
+                    "passed": true
+                  },
+                  {
+                    "name": "N512: initial_reference_quadrature_pressure_l1",
+                    "value": 3.208009534299476e-15,
+                    "bound": 1e-07,
+                    "passed": true
+                  },
+                  {
+                    "name": "N512: maximum and trajectory diagnostics retained",
+                    "value": true,
+                    "bound": true,
+                    "passed": true
+                  },
+                  {
+                    "name": "similarity qualification: maximum_scaled_euler_residual",
+                    "value": 8.233415560656415e-09,
+                    "bound": 1e-05,
+                    "passed": true
+                  },
+                  {
+                    "name": "similarity qualification: maximum_scaled_jump_residual",
+                    "value": 4.3989810016853426e-08,
+                    "bound": 1e-07,
+                    "passed": true
+                  },
+                  {
+                    "name": "similarity exponent agrees with tabulated lambda",
+                    "value": 4.468621028763664e-10,
+                    "bound": 2e-09,
+                    "passed": true
+                  },
+                  {
+                    "name": "finest density_l1",
+                    "value": 0.00772161862650073,
+                    "bound": 0.15,
+                    "passed": true
+                  },
+                  {
+                    "name": "finest pressure_l1",
+                    "value": 0.00947688731818041,
+                    "bound": 0.15,
+                    "passed": true
+                  },
+                  {
+                    "name": "finest active_density_l1",
+                    "value": 0.007948322269523746,
+                    "bound": 0.15,
+                    "passed": true
+                  },
+                  {
+                    "name": "finest active_pressure_l1",
+                    "value": 0.009476887318180412,
+                    "bound": 0.15,
+                    "passed": true
+                  },
+                  {
+                    "name": "finest shock_error_cells",
+                    "value": 2.536484662056258,
+                    "bound": 4.0,
+                    "passed": true
+                  },
+                  {
+                    "name": "density_l1 decreases across the three grids",
+                    "value": true,
+                    "bound": true,
+                    "passed": true
+                  },
+                  {
+                    "name": "active_density_l1 decreases across the three grids",
+                    "value": true,
+                    "bound": true,
+                    "passed": true
+                  },
+                  {
+                    "name": "pressure_l1 decreases across the three grids",
+                    "value": true,
+                    "bound": true,
+                    "passed": true
+                  },
+                  {
+                    "name": "last-pair active density L1 slope",
+                    "value": 0.7938497447023544,
+                    "bound": 0.2,
+                    "passed": true
+                  }
+                ],
+                "reference_qualification": {
+                  "maximum_scaled_euler_residual": 8.233415560656415e-09,
+                  "maximum_scaled_jump_residual": 4.3989810016853426e-08,
+                  "lambda_table_relative_difference": 4.468621028763664e-10,
+                  "euler_residual_radii": [
+                    0.5787208592237053,
+                    0.6241107305353685,
+                    0.7092167392447368
+                  ],
+                  "euler_residual_time": -0.925,
+                  "radial_derivative_step": 5.673733913957895e-06,
+                  "time_derivative_step": 9.250000000000001e-06,
+                  "jump_state_radius_relative_offset": 1e-08,
+                  "metadata": {
+                    "geometry": 3,
+                    "gamma": 1.4,
+                    "rho0": 1.0,
+                    "lambda": 1.3943607844230872,
+                    "alpha": 0.7171745011559165,
+                    "shock_scale": 0.6,
+                    "lazarus_times": [
+                      -1.0,
+                      -0.85
+                    ],
+                    "domain": [
+                      0,
+                      0.75
+                    ],
+                    "similarity_x_end": -0.6132747790371198,
+                    "max_similarity_radius": 1.42,
+                    "ode_success": true,
+                    "ode_steps": 36,
+                    "ode_nfev": 254,
+                    "exactpack_public_times": [
+                      0.0,
+                      0.11250364830000002
+                    ],
+                    "reflected_branch_executed": false,
+                    "source_independence": "actual pinned ExactPack eexp and RHS with a pre-collapse dense adapter"
+                  }
+                },
+                "scope": "One-dimensional spherical radial Euler before collapse; a revolved meridional visualization is not a two-dimensional Cartesian evolution."
+              },
+              "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/guderley-implosion/",
+              "reading": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-guderley/#guderley-implosion",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-guderley/#guderley-implosion"
+              }
+            }
+          ]
         }
       ],
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hll/",
@@ -30622,12 +31827,23 @@
         "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/attempts/01/source/convert.py",
         "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/attempts/01/source/run-reference.py",
         "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/convert.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/run-reference.py"
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/run-reference.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/guderley_solver.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/precollapse.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/EXACTPACK-test_guderley.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/eexp.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/guderley.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/interp_laz.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/original_init.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/ramsey.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/qualify_reference.py"
       ],
       "test_urls": [
         "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py",
         "https://hrkoyama.github.io/code/validated-examples/2026-11-23/double-mach/test_dm.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/test_fs.py"
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/test_fs.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/test_guderley.py"
       ],
       "run_commands": [
         "python -m pytest -q tests/test_numerics.py"
@@ -30651,6 +31867,15 @@
           "guide": {
             "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/forward-step-m3/?lang=ja",
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/forward-step-m3/?lang=en"
+          },
+          "kind": "dedicated-supplement"
+        },
+        {
+          "id": "guderley-implosion",
+          "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/guderley-implosion/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/guderley-implosion/?lang=en"
           },
           "kind": "dedicated-supplement"
         }
@@ -30698,7 +31923,8 @@
               "nasa-wedge",
               "forward-step",
               "entropy-2d",
-              "odd-even"
+              "odd-even",
+              "guderley"
             ],
             "url": {
               "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja",
@@ -31006,6 +32232,66 @@
               "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/odd-even/?lang=ja#references-ja",
               "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/odd-even/?lang=en#references-en"
             }
+          },
+          {
+            "id": "guderley",
+            "name": {
+              "ja": "Guderleyの収束衝撃波",
+              "en": "Guderley converging shock"
+            },
+            "image": {
+              "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/results/guderley-implosion-preview.png",
+              "sha256": "03774f695db7f8e07eb006db120075d808871a194e1ab59abb815995fc53f383",
+              "width": 1376,
+              "height": 880,
+              "caption": {
+                "ja": "1次元球対称Eulerの保存済み半径密度を子午面に表示。γ=1.4、512球殻、r∈[0,.75]、R_s(−1)=.6、t=−.85。圧力ゼロの静止上流へ進む収束前の衝撃波を半解析参照と比較します。2D Cartesianや原点反射後の計算ではありません。",
+                "en": "A meridional-section display of saved one-dimensional spherical-radial Euler density: gamma=1.4, 512 shells, r in [0,0.75], Rs(-1)=0.6, t=-0.85. Compare the pre-collapse shock entering stationary zero-pressure upstream gas with a semi-analytic reference. This is not 2D Cartesian or post-collapse evolution."
+              },
+              "source_kind": "existing-figure"
+            },
+            "hub": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/guderley/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/guderley/?lang=en"
+            },
+            "code": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/guderley/?lang=ja#code-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/guderley/?lang=en#code-en"
+            },
+            "executions": [
+              {
+                "id": "guderley-implosion",
+                "kind": "supplement",
+                "name": {
+                  "ja": "Guderley収束衝撃波：球対称の軽量検証",
+                  "en": "Guderley converging shock: lightweight spherical-radial verification"
+                },
+                "scope": {
+                  "ja": "冷たい静止気体へ内向きに進む球対称Guderley衝撃波を、128/256/512個の球殻でt=−1から−.85まで計算します。HLL流束とHeun法を、相似指数の固有値・半解析場・衝撃位置・保存収支と照合する軽量例です。",
+                  "en": "An inward spherical Guderley shock in cold stationary gas is evolved from t=-1 to -0.85 on 128/256/512 radial shells. HLL fluxes and Heun steps are checked against a similarity eigenvalue/field, shock trajectory and discrete conservation budgets."
+                },
+                "method_ids": [
+                  "hll",
+                  "heun"
+                ],
+                "guide": {
+                  "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/guderley-implosion/?lang=ja",
+                  "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/guderley-implosion/?lang=en"
+                },
+                "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/inputs.json",
+                "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/atlas-guderley-2026-11-23-r2.zip",
+                "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/verification.json"
+              }
+            ],
+            "role": "execution",
+            "method_note": {
+              "ja": "球殻の面積・体積と幾何学的な圧力源を使う区分定数HLL有限体積流束、物理時間のHeun更新による限定例です。",
+              "en": "A scoped spherical-shell example with piecewise-constant HLL finite-volume fluxes, shell areas/volumes, the geometric pressure source and physical-time Heun updates."
+            },
+            "reference_url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/guderley/?lang=ja#references-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/guderley/?lang=en#references-en"
+            }
           }
         ],
         "references": [
@@ -31180,6 +32466,40 @@
               "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/odd-even/?lang=en#references-en"
             },
             "cases": []
+          },
+          {
+            "problem_id": "guderley",
+            "problem_name": {
+              "ja": "Guderleyの収束衝撃波",
+              "en": "Guderley converging shock"
+            },
+            "reference_url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/guderley/?lang=ja#references-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/guderley/?lang=en#references-en"
+            },
+            "cases": [
+              {
+                "id": "guderley",
+                "title": {
+                  "ja": "Guderley収束衝撃波：固有値と球対称の半解析参照",
+                  "en": "Guderley converging shock: eigenvalue and spherical semi-analytic reference"
+                },
+                "kind": "semi-analytic",
+                "relation": "same-problem",
+                "note": {
+                  "ja": "γ=1.4・冷たい一様な上流を持つ球対称Guderley相似解の収束前分岐です。相似指数の固有値探索・相似ODE積分・衝撃位置で分割した球殻求積を含む半解析参照で、閉形式の厳密セル平均ではありません。ExactPackに基づく参照実装と有限体積PDE計算の役割を分け、独立した相似解実装どうしの照合とは扱いません。原点での収束、反射後の衝撃波、一般のEOSは今回の範囲外です。",
+                  "en": "The pre-collapse branch of the spherical Guderley similarity solution at gamma=1.4 with a cold uniform upstream state. Numerical eigenvalue shooting, similarity-ODE integration and shock-split shell quadrature make this a semi-analytic reference, not closed-form exact cell means. Distinguish the ExactPack-based evaluator from the finite-volume PDE calculation; this is not a comparison between independent similarity implementations. Collapse at the origin, the reflected branch and general equations of state are outside this example."
+                },
+                "url": {
+                  "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-guderley-ja",
+                  "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-guderley-en"
+                },
+                "view": {
+                  "ja": "/numerical-methods-atlas/validation/guderley-implosion/?lang=ja#guderley-implosion-ja-measurements",
+                  "en": "/numerical-methods-atlas/validation/guderley-implosion/?lang=en#guderley-implosion-en-measurements"
+                }
+              }
+            ]
           }
         ]
       }
@@ -40062,8 +41382,8 @@
       },
       "depth_previous_status": "educational-example",
       "depth_scope": {
-        "ja": "初期圧力ゼロのNoh問題を、独自の小型1D有限体積コードで平面・円筒・球対称に計算します。64/128/256/512格子の全域誤差、原点過熱、衝撃位置、保存収支を測り、球で現れる境界流入の時間積分誤差を解析式と照合します。 追加の2D Cartesian Noh版は正方形全域のx/y流束と2成分運動量を更新する軽量例です。 Sedov球対称爆発の追加例では、有限半径へのエネルギー投入と格子の影響を分けて測ります。 追加の前向きステップ例は段差面を含む反射壁境界の実2D有限体積計算を検証します。",
-        "en": "An original small 1D finite-volume code solves zero-pressure Noh flow in planar, cylindrical and spherical symmetry. Grids 64/128/256/512 measure full-domain error, origin heating, shock location and budgets, and compare spherical boundary-inflow time-quadrature error with its analytic identity. The additional2D Cartesian Noh edition updates both x/y fluxes and both momenta on a full square. The additional spherical Sedov blast measures grid and finite deposition-radius effects separately. The additional forward-step example verifies actual 2D finite-volume flow with reflecting walls including the step faces."
+        "ja": "初期圧力ゼロのNoh問題を、独自の小型1D有限体積コードで平面・円筒・球対称に計算します。64/128/256/512格子の全域誤差、原点過熱、衝撃位置、保存収支を測り、球で現れる境界流入の時間積分誤差を解析式と照合します。 追加の2D Cartesian Noh版は正方形全域のx/y流束と2成分運動量を更新する軽量例です。 Sedov球対称爆発の追加例では、有限半径へのエネルギー投入と格子の影響を分けて測ります。 追加の前向きステップ例は段差面を含む反射壁境界の実2D有限体積計算を検証します。 追加のGuderley例は、圧力ゼロの上流へ進む球対称収束衝撃波を原点到達前だけ計算し、半解析的な相似参照と比較します。",
+        "en": "An original small 1D finite-volume code solves zero-pressure Noh flow in planar, cylindrical and spherical symmetry. Grids 64/128/256/512 measure full-domain error, origin heating, shock location and budgets, and compare spherical boundary-inflow time-quadrature error with its analytic identity. The additional2D Cartesian Noh edition updates both x/y fluxes and both momenta on a full square. The additional spherical Sedov blast measures grid and finite deposition-radius effects separately. The additional forward-step example verifies actual 2D finite-volume flow with reflecting walls including the step faces. The additional Guderley example evolves a zero-upstream-pressure spherical converging shock only before collapse and compares a semi-analytic similarity reference."
       },
       "depth_additional_releases": [
         {
@@ -42982,6 +44302,1211 @@
               }
             }
           ]
+        },
+        {
+          "group": "guderley",
+          "case_ids": [
+            "guderley-implosion"
+          ],
+          "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/",
+          "code_edition": "2026-11-23-r2",
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/guderley_solver.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/precollapse.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/EXACTPACK-test_guderley.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/eexp.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/guderley.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/interp_laz.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/original_init.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/ramsey.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/qualify_reference.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/test_guderley.py"
+          ],
+          "run_commands": [
+            "python -m pytest -q",
+            "python run.py --input inputs.json --output output"
+          ],
+          "run_from": "atlas-guderley-2026-11-23-r2",
+          "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/atlas-guderley-2026-11-23-r2.zip",
+          "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/source-manifest.json",
+          "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/verification.json",
+          "code_archive_sha256": "ca6974a8e48f8d6a2ad81ad74bce173dcff3656e35a465d9e75fac3d6cbdbfb6",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/results/result.json",
+          "passed_tests": 33,
+          "examples": [
+            {
+              "id": "guderley-implosion",
+              "title": {
+                "ja": "Guderley収束衝撃波：球対称の軽量検証",
+                "en": "Guderley converging shock: lightweight spherical-radial verification"
+              },
+              "method_ids": [
+                "hll",
+                "heun"
+              ],
+              "domains": [
+                "fluid",
+                "time",
+                "pde"
+              ],
+              "code_files": [
+                "run.py",
+                "guderley_solver.py",
+                "references/precollapse.py"
+              ],
+              "summary": {
+                "ja": "冷たい静止気体へ内向きに進む球対称Guderley衝撃波を、128/256/512個の球殻でt=−1から−.85まで計算します。HLL流束とHeun法を、相似指数の固有値・半解析場・衝撃位置・保存収支と照合する軽量例です。",
+                "en": "An inward spherical Guderley shock in cold stationary gas is evolved from t=-1 to -0.85 on 128/256/512 radial shells. HLL fluxes and Heun steps are checked against a similarity eigenvalue/field, shock trajectory and discrete conservation budgets."
+              },
+              "assumptions": {
+                "ja": "γ=1.4、球対称3次元の半径r∈[0,.75]、衝撃半径Rs(−1)=.6、時間t∈[−1,−.85]を固定します。衝撃前方の内側はρ0=1、u0=p0=0です。外側には初めから衝撃後の相似場があり、領域全体が冷たい一様気体という初期条件ではありません。初期保存量は衝撃位置で積分区間を分けた16点Gauss球殻体積平均とし、32点と照合します。圧力参照はp(保存量平均)で、原始圧力の体積平均とは区別します。",
+                "en": "Fix gamma=1.4, three-dimensional spherical symmetry on r in [0,0.75], Rs(-1)=0.6 and t in [-1,-0.85]. Ahead of the inward shock the inner gas is exactly rho0=1,u0=p0=0. The outer region already contains the shocked similarity field; the entire initial domain is not a uniform cold state. Initial conserved shell means use order16 Gauss integration split at the exact shock, checked against order32. Reference pressure is p(mean conserved state), not mean primitive pressure."
+              },
+              "algorithm": {
+                "ja": "面積4πr²と球殻体積4πΔ(r³)/3を用いた第一次数の球対称有限体積法です。共有HLL面流束の発散に、半径方向運動量の圧力幾何項p_iΔA/Vを加え、Heun法・CFL=.4で更新します。中心は面積ゼロの反射条件、外側は各RK段の実時刻に評価した相似場です。全3保存量について実際の境界面流束と幾何ソースを同じHeun重みで積分します。状態floor、圧力修復、時間刻みの隠れた再試行はありません。",
+                "en": "First-order spherical finite volumes use face area4pi*r^2 and shell volume4pi*delta(r^3)/3. Shared HLL flux divergence plus the radial-momentum pressure source p_i*delta(A)/V is advanced by Heun at CFL0.4. The center is reflecting with zero face area; the outer similarity state is evaluated at both actual RK times. All three conserved budgets integrate the actual boundary flux and geometric source using the same Heun weights. There are no state floors, pressure repairs or hidden step retries."
+              },
+              "validation": {
+                "ja": "33単体検査と3格子55判定を実行前に固定し、警告をエラーにする設定で合格しました。冷たい上流でのゼロ音速HLL分岐、幾何的な静止圧力釣合い、共有流束の収支、実際の2段の境界時刻、不正段の生配列保持を確認します。全体積L1と、あらかじめr≥.8Rsとした衝撃・非零流れ領域のL1を並べ、冷たい内側で誤差を薄めないようにします。密度・圧力の最大差と保存した時系列からの衝撃軌道も残します。半解析参照は固定LANL ExactPackの相似指数固有値ルーチンとODEを使い、反射後分岐を計算しないキャッシュ付きアダプターです。独自に再実装した相似ODEとは表示しません。別に実装したEuler有限体積計算と参照を比較します。 全体積の密度L1は.02345/.01339/.007722、圧力L1は.03277/.01743/.009477でした。r≥.8Rsの密度L1も.02414/.01378/.007948と減少します。最細の衝撃位置は.530273、相似参照は.533989で、差は約2.54セルです。最大の全3成分収支残差は8.85e-16、全段の最小内部エネルギーと音速専用丸めガード回数はともに0でした。参照のEuler差分代入残差は8.24e-9、有限オフセットの移動衝撃ジャンプ残差は4.40e-8。固有値計算を含む全3計算は元のMacで約44.6秒でした。",
+                "en": "The33 unit checks and55 gates over three refinements were fixed before execution and passed with warnings treated as errors. Checks cover the zero-sound-speed cold HLL branch, geometric static-pressure balance, shared-flux budgets, actual two-stage boundary times and raw failed-stage retention. Full-volume L1 is shown alongside the predetermined r>=0.8*Rs shock/nonzero-flow region, so cold inner gas does not hide active errors. Maximum density/pressure differences and the saved shock trajectory remain visible. The semi-analytic reference uses the pinned LANL ExactPack eigenvalue routine and ODE through a cached pre-collapse-only adapter. It is not an independently reimplemented similarity ODE; the separately implemented finite-volume Euler evolution is compared against that reference. Full-volume density L1 is0.02345/0.01339/0.007722 and pressure L1 is0.03277/0.01743/0.009477. Density L1 in the predetermined r>=0.8*Rs region also decreases:0.02414/0.01378/0.007948. The finest measured shock radius is0.530273 against similarity0.533989, about2.54 cells apart. The maximum scaled three-component budget residual is8.85e-16. Minimum internal energy and sound-speed-only roundoff guard evaluations are both0. The smooth-reference Euler finite-difference residual is8.24e-9 and finite-offset moving-jump residual4.40e-8. All three runs including the similarity eigenvalue calculation took about44.6 seconds on the original Mac."
+              },
+              "formulas": [
+                "\\partial_t U+\\frac{1}{r^2}\\partial_r(r^2 F)=\\left(0,\\frac{2p}{r},0\\right)^T,\\quad U=(\\rho,\\rho u,E)^T",
+                "R_s(t)=0.6(-t)^\\alpha,\\quad\\alpha=1/\\lambda,\\quad \\lambda\\simeq1.3943607844,\\quad t<0",
+                "\\frac{d\\bar U_i}{dt}=-\\frac{A_{i+1/2}\\widehat F_{i+1/2}-A_{i-1/2}\\widehat F_{i-1/2}}{V_i}+\\left(0,p_i\\frac{\\Delta A_i}{V_i},0\\right)^T",
+                "\\bar U_i^{\\rm ref}=\\frac{\\int_{r_{i-1/2}}^{r_{i+1/2}}U_{\\rm sim}(r,t)r^2\\,dr}{(r_{i+1/2}^3-r_{i-1/2}^3)/3},\\qquad p_i^{\\rm ref}=p(\\bar U_i^{\\rm ref})"
+              ],
+              "references": [
+                {
+                  "id": "guderley1942",
+                  "author": "G. Guderley",
+                  "year": 1942,
+                  "title": "Starke kugelige und zylindrische Verdichtungsstöße in der Nähe des Kugelmittelpunktes bzw. der Zylinderachse",
+                  "journal": "Luftfahrtforschung",
+                  "volume": "19",
+                  "pages": "302 (first page)",
+                  "url": "https://raw.githubusercontent.com/lanl/ExactPack/9bacc477eb791e959c9621e771fc7a725db755fa/doc/source/references.rst",
+                  "type": "article",
+                  "role": "historical-original-problem-attribution",
+                  "review_level": "bibliographic attribution only: year/volume/first page in pinned ExactPack bibliography, title in Lazarus1981 publisher bibliography; original1942 article not inspected",
+                  "review": {
+                    "ja": "原問題の歴史的出典。固定ExactPackの書誌で著者・年・巻・開始頁302を、Lazarus1981の出版社参考文献で題名を確認。原著1942本文は未閲覧で、相似場の式や今回の実測を原著から直接再現したとは主張しません。",
+                    "en": "Historical original-problem attribution. Author/year/volume/first page302 were checked in the pinned ExactPack bibliography and the title in the Lazarus1981 publisher references. The original1942 text was not inspected and is not claimed as the directly transcribed source of the present fields or measurements."
+                  },
+                  "additional_bibliographic_url": "https://epubs.siam.org/doi/10.1137/0718022",
+                  "accessed_on": "2026-11-23"
+                },
+                {
+                  "id": "ramsey2012guderley",
+                  "author": "Scott D. Ramsey, James R. Kamm and John H. Bolstad",
+                  "year": 2012,
+                  "title": "The Guderley problem revisited",
+                  "journal": "International Journal of Computational Fluid Dynamics",
+                  "volume": "26",
+                  "number": "2",
+                  "pages": "79–99",
+                  "doi": "10.1080/10618562.2011.647768",
+                  "url": "https://laro.lanl.gov/esploro/outputs/journalArticle/The-Guderley-problem-revisited/9916364702403761",
+                  "type": "article",
+                  "role": "semi-analytic-benchmark-and-two-eigenvalue-context",
+                  "review_level": "primary institutional bibliographic record and abstract; actual implementation equations reviewed in pinned ExactPack source, not full original paper",
+                  "review": {
+                    "ja": "LANLの書誌・抄録で収束側の相似指数と反射後の軌道係数が別の固有値問題であることを確認。原論文の全文通読や原著のPDE計算再現とは扱わず、今回の場は固定ExactPackソースを実際に用いて構成します。",
+                    "en": "The LANL record and abstract distinguish the convergence exponent from the reflected trajectory eigenvalue. This is not a claim to have read the entire paper or reproduced its PDE experiment; the present field is constructed using the pinned ExactPack source."
+                  },
+                  "accessed_on": "2026-11-23"
+                },
+                {
+                  "id": "lazarus1981guderley",
+                  "author": "Roger B. Lazarus",
+                  "year": 1981,
+                  "title": "Self-Similar Solutions for Converging Shocks and Collapsing Cavities",
+                  "journal": "SIAM Journal on Numerical Analysis",
+                  "volume": "18",
+                  "number": "2",
+                  "pages": "316–371",
+                  "doi": "10.1137/0718022",
+                  "url": "https://epubs.siam.org/doi/10.1137/0718022",
+                  "type": "article",
+                  "role": "similarity-coordinate-convention-and-tabulated-exponent",
+                  "review_level": "publisher bibliographic record/abstract plus equations2.5,2.8,2.9 and sphericalTable6.5 as explicitly transcribed in pinned ExactPack; original full text not inspected",
+                  "review": {
+                    "ja": "出版社の書誌・抄録と、ExactPackが明示する式2.5/2.8/2.9・球対称表6.5の転記を確認。λ=1.3943607838の表値はコード内の転記値で、元論文を独立に再転記した値とは区別します。",
+                    "en": "Checked the publisher record/abstract and the explicitly attributed equations/table in ExactPack. The tabulated lambda1.3943607838 is the value transcribed in that code, not an independent retranscription of the original table."
+                  },
+                  "accessed_on": "2026-11-23"
+                },
+                {
+                  "id": "chisnell1998guderley",
+                  "author": "R. F. Chisnell",
+                  "year": 1998,
+                  "title": "An analytic description of converging shock waves",
+                  "journal": "Journal of Fluid Mechanics",
+                  "volume": "354",
+                  "pages": "357–375",
+                  "doi": "10.1017/S0022112097007775",
+                  "url": "https://www.cambridge.org/core/journals/journal-of-fluid-mechanics/article/abs/an-analytic-description-of-converging-shock-waves/1D3D7014FF4C6297A5F6DC9BCFDBE0E8",
+                  "type": "article",
+                  "role": "critical-point-eigenvalue-formulation-used-by-ExactPack-eexp",
+                  "review_level": "publisher bibliographic record/abstract and equation3.1 implementation/comments in actual pinned ExactPack eexp source",
+                  "review": {
+                    "ja": "出版社の書誌・抄録と、ExactPack eexpが採用する臨界点の位相差・式3.1の実装を確認。相似指数は寸法解析から固定せず、固定コードの固有値計算で求めます。",
+                    "en": "Checked the publisher record/abstract and the critical-point phase matching and equation3.1 implementation in ExactPack eexp. The exponent is computed through that eigenvalue routine rather than fixed by dimensional analysis."
+                  },
+                  "accessed_on": "2026-11-23"
+                },
+                {
+                  "id": "thrussell2023exactpack",
+                  "author": "Jasper Thrussell and Jim Michael Ferguson",
+                  "year": 2023,
+                  "title": "ExactPack: A python library of exact analytic solutions",
+                  "journal": "SoftwareX",
+                  "volume": "24",
+                  "pages": "101560",
+                  "doi": "10.1016/j.softx.2023.101560",
+                  "url": "https://www.osti.gov/servlets/purl/2204208",
+                  "type": "software-paper",
+                  "role": "ExactPack-software-reference",
+                  "review_level": "primary OSTI accepted manuscript/search text; software metadata and Guderley registry; selected actual source files pinned separately",
+                  "review": {
+                    "ja": "ExactPackのソフトウェア論文とGuderley収録を参照。論文記載版1.7.5と今回用いるソースの固定コミットは区別し、配布物内にソース・SHA・BSDライセンスを保存します。",
+                    "en": "Cites the ExactPack software paper and its Guderley solver listing. The paper version1.7.5 is distinguished from the exact source commit used here, whose source, SHA receipts and BSD license are retained."
+                  },
+                  "accessed_on": "2026-11-23"
+                },
+                {
+                  "id": "exactpack-guderley-pinned",
+                  "author": "Los Alamos National Laboratory / ExactPack contributors",
+                  "year": 2025,
+                  "title": "ExactPack Guderley solver, pinned source",
+                  "url": "https://github.com/lanl/ExactPack/tree/9bacc477eb791e959c9621e771fc7a725db755fa/exactpack/solvers/guderley",
+                  "type": "software",
+                  "role": "actually-executed-semi-analytic-reference-source",
+                  "version": "9bacc477eb791e959c9621e771fc7a725db755fa",
+                  "review_level": "selected source files and license inspected; eexp,ramsey.state/g,interp_laz and official test fixtures; actual execution recorded separately",
+                  "review": {
+                    "ja": "固定版のeexp・ramseyの前収束ODEとstate、表の転記、公式回帰値、BSD3条項を確認。全ExactPackテストを実行したとは扱いません。参照の実行成否はqualification.jsonに別記します。",
+                    "en": "Inspected pinned eexp, the pre-collapse ODE/state, transcribed tables, official regression values and BSD3 terms. This is not a claim to have run the complete ExactPack suite; actual reference execution is recorded separately."
+                  },
+                  "accessed_on": "2026-11-23",
+                  "source_commit_date": "2025-09-24T22:25:51Z"
+                }
+              ],
+              "limits": {
+                "ja": "収束点t=0から離れた短い時間窓の1次元球対称検証です。原点の特異点、原点反射後、円筒対称、他のγ、一般摂動や非球対称の安定性は未検証です。2次元の図は保存した球殻平均を子午面へ表示したもので、2次元Cartesian計算ではありません。半解析場もODEと求積を数値評価した参照であり、閉形式の厳密セル平均ではありません。冷たい上流では圧力ゼロを許し、64epsの絶対内部エネルギー密度までの丸めによる負値を記録します。許容帯だけの音速平方根ガードは状態修復と分けて回数・最小圧力を残し、非線形正値性の一般保証は主張しません。 衝撃位置のセル単位誤差は1.13/2.27/2.54と単調に減りません。半径の絶対誤差は最初の2格子で同じ約.00665、最細で約.00372です。密度L∞差は.258/.271/.266、圧力L∞差は.492/.494/.466で、いずれも単調な減少を主張できません。L1の減少を衝撃内部の点ごとの解像や原点付近の収束へ拡張しません。",
+                "en": "This is a short one-dimensional spherical verification away from collapse t=0. The singular origin, reflected branch, cylindrical geometry, other gammas and nonspherical perturbation stability are untested. Two-dimensional pictures map saved spherical shell means onto a meridional plane; they are not Cartesian2D evolution. The semi-analytic field is a numerically evaluated ODE/quadrature reference, not a closed-form exact cell average. Zero pressure is allowed in the cold upstream; cancellation-band negative internal energy density down to an absolute64eps is recorded. Sound-speed square-root guards only within that band have separate counts/minimum raw pressure and do not repair the state. No general nonlinear positivity theorem is claimed. Shock-position error in cell units does not decrease monotonically:1.13/2.27/2.54. Absolute radius error is about0.00665 for the first two grids and0.00372 for the finest. Density Linf differences0.258/0.271/0.266 and pressure Linf0.492/0.494/0.466 are also not monotonically decreasing. L1 reduction is not evidence that the discontinuity is pointwise resolved or that the collapse region converges."
+              },
+              "measured": {
+                "id": "guderley-implosion",
+                "passed": true,
+                "records": [
+                  {
+                    "n": 128,
+                    "time": -0.85,
+                    "steps": 71,
+                    "density_l1": 0.023454108364462135,
+                    "pressure_l1": 0.032769320183763787,
+                    "active_density_l1": 0.024142711631118356,
+                    "active_pressure_l1": 0.03276932018376379,
+                    "density_linf": 0.2583714498778471,
+                    "pressure_linf": 0.4918248213723752,
+                    "maximum_velocity_error": 0.29667606215626224,
+                    "active_volume_fraction": 0.8145022392272948,
+                    "active_inner_radius": 0.4271911929633472,
+                    "shock_radius": 0.52734375,
+                    "reference_shock_radius": 0.533988991204184,
+                    "shock_error_cells": 1.1341211655140644,
+                    "maximum_history_shock_error_cells": 1.7681946834242883,
+                    "minimum_density_all_stages": 1.0,
+                    "minimum_pressure_all_stages": 0.0,
+                    "minimum_internal_energy_all_stages": 0.0,
+                    "sound_speed_roundoff_guard_evaluations": 0,
+                    "minimum_pressure_at_sound_speed_guard": 0.0,
+                    "state_floor_count": 0,
+                    "rejected_steps": 0,
+                    "minimum_dt": 7.162806473937078e-05,
+                    "maximum_dt": 0.0021789084435661628,
+                    "reference_quadrature_density_l1": 2.896924263307821e-13,
+                    "reference_quadrature_pressure_l1": 5.014428051950655e-13,
+                    "initial_integral": [
+                      8.206089344193586,
+                      -2.301703302347455,
+                      0.7323576961002365
+                    ],
+                    "final_integral": [
+                      11.492857422295556,
+                      -3.356590525840208,
+                      1.0664451467573306
+                    ],
+                    "boundary_net_integral": [
+                      3.286768078101971,
+                      -1.137667428505291,
+                      0.3340874506570939
+                    ],
+                    "geometric_source_integral": [
+                      0.0,
+                      0.08278020501253855,
+                      0.0
+                    ],
+                    "conservation_residual": [
+                      -1.3322676295501878e-15,
+                      -6.38378239159465e-16,
+                      2.220446049250313e-16
+                    ],
+                    "conservation_relative": [
+                      1.159213571174786e-16,
+                      1.8124670145705584e-16,
+                      2.0821005712313262e-16
+                    ],
+                    "shock_trajectory": [
+                      {
+                        "time": -1.0,
+                        "shock_radius": 0.59765625,
+                        "reference_shock_radius": 0.6,
+                        "error_cells": 0.3999999999999962
+                      },
+                      {
+                        "time": -0.9782924377299245,
+                        "shock_radius": 0.5859375,
+                        "reference_shock_radius": 0.5906301905085632,
+                        "error_cells": 0.800885846794794
+                      },
+                      {
+                        "time": -0.9567333756433305,
+                        "shock_radius": 0.57421875,
+                        "reference_shock_radius": 0.5812660947627811,
+                        "error_cells": 1.2027468395146457
+                      },
+                      {
+                        "time": -0.9352998546116794,
+                        "shock_radius": 0.5625,
+                        "reference_shock_radius": 0.5718971770148007,
+                        "error_cells": 1.603784877192652
+                      },
+                      {
+                        "time": -0.9139388734034526,
+                        "shock_radius": 0.556640625,
+                        "reference_shock_radius": 0.5624993525585723,
+                        "error_cells": 0.9998895033296739
+                      },
+                      {
+                        "time": -0.8926184138281185,
+                        "shock_radius": 0.544921875,
+                        "reference_shock_radius": 0.5530571992420324,
+                        "error_cells": 1.3884286706402047
+                      },
+                      {
+                        "time": -0.871326123557209,
+                        "shock_radius": 0.533203125,
+                        "reference_shock_radius": 0.5435636407231892,
+                        "error_cells": 1.7681946834242883
+                      },
+                      {
+                        "time": -0.8500716280647393,
+                        "shock_radius": 0.52734375,
+                        "reference_shock_radius": 0.5340212624892918,
+                        "error_cells": 1.1396287981724715
+                      },
+                      {
+                        "time": -0.85,
+                        "shock_radius": 0.52734375,
+                        "reference_shock_radius": 0.533988991204184,
+                        "error_cells": 1.1341211655140644
+                      }
+                    ],
+                    "initial_reference_quadrature_density_l1": 1.5942464518988718e-12,
+                    "initial_reference_quadrature_pressure_l1": 2.54765297288434e-12,
+                    "field": "field-n128.npz",
+                    "history": "history-n128.json"
+                  },
+                  {
+                    "n": 256,
+                    "time": -0.85,
+                    "steps": 142,
+                    "density_l1": 0.013386928168626924,
+                    "pressure_l1": 0.017431865677689944,
+                    "active_density_l1": 0.013779963040136765,
+                    "active_pressure_l1": 0.017431865677689944,
+                    "density_linf": 0.2709663681343314,
+                    "pressure_linf": 0.49416968057811794,
+                    "maximum_velocity_error": 0.2978984692414384,
+                    "active_volume_fraction": 0.814502239227295,
+                    "active_inner_radius": 0.4271911929633472,
+                    "shock_radius": 0.52734375,
+                    "reference_shock_radius": 0.533988991204184,
+                    "shock_error_cells": 2.2682423310281288,
+                    "maximum_history_shock_error_cells": 2.2682423310281288,
+                    "minimum_density_all_stages": 1.0,
+                    "minimum_pressure_all_stages": 0.0,
+                    "minimum_internal_energy_all_stages": 0.0,
+                    "sound_speed_roundoff_guard_evaluations": 0,
+                    "minimum_pressure_at_sound_speed_guard": 0.0,
+                    "state_floor_count": 0,
+                    "rejected_steps": 0,
+                    "minimum_dt": 0.0006571939652950665,
+                    "maximum_dt": 0.0010780698167943245,
+                    "reference_quadrature_density_l1": 1.3363962268430173e-13,
+                    "reference_quadrature_pressure_l1": 2.251024923990976e-13,
+                    "initial_integral": [
+                      8.206089344179338,
+                      -2.3017033023405276,
+                      0.7323576960977348
+                    ],
+                    "final_integral": [
+                      11.492857829370788,
+                      -3.356838930125358,
+                      1.0664451760055733
+                    ],
+                    "boundary_net_integral": [
+                      3.2867684851914554,
+                      -1.1376675780299623,
+                      0.3340874799078385
+                    ],
+                    "geometric_source_integral": [
+                      0.0,
+                      0.08253195024513331,
+                      0.0
+                    ],
+                    "conservation_residual": [
+                      -5.329070518200751e-15,
+                      -1.2628786905111156e-15,
+                      0.0
+                    ],
+                    "conservation_relative": [
+                      4.636854120462487e-16,
+                      3.585785160036248e-16,
+                      0.0
+                    ],
+                    "shock_trajectory": [
+                      {
+                        "time": -1.0,
+                        "shock_radius": 0.6005859375,
+                        "reference_shock_radius": 0.6,
+                        "error_cells": 0.2000000000000076
+                      },
+                      {
+                        "time": -0.9892429722026659,
+                        "shock_radius": 0.5947265625,
+                        "reference_shock_radius": 0.5953641265433148,
+                        "error_cells": 0.217621860118129
+                      },
+                      {
+                        "time": -0.9785571011243208,
+                        "shock_radius": 0.5888671875,
+                        "reference_shock_radius": 0.5907447811237423,
+                        "error_cells": 0.6408852902373686
+                      },
+                      {
+                        "time": -0.9679283208757195,
+                        "shock_radius": 0.5830078125,
+                        "reference_shock_radius": 0.5861359408438291,
+                        "error_cells": 1.0677344746936797
+                      },
+                      {
+                        "time": -0.9573269458641117,
+                        "shock_radius": 0.5771484375,
+                        "reference_shock_radius": 0.5815247033352795,
+                        "error_cells": 1.4937654051087368
+                      },
+                      {
+                        "time": -0.9467378525669856,
+                        "shock_radius": 0.5712890625,
+                        "reference_shock_radius": 0.5769043678302476,
+                        "error_cells": 1.916690886057836
+                      },
+                      {
+                        "time": -0.9361538067102382,
+                        "shock_radius": 0.568359375,
+                        "reference_shock_radius": 0.5722716059312678,
+                        "error_cells": 1.3353748245394097
+                      },
+                      {
+                        "time": -0.9255738090651571,
+                        "shock_radius": 0.5625,
+                        "reference_shock_radius": 0.5676257867679166,
+                        "error_cells": 1.7496018834488798
+                      },
+                      {
+                        "time": -0.9149957838902998,
+                        "shock_radius": 0.5595703125,
+                        "reference_shock_radius": 0.5629657937877414,
+                        "error_cells": 1.158990946215719
+                      },
+                      {
+                        "time": -0.9044217573600973,
+                        "shock_radius": 0.5537109375,
+                        "reference_shock_radius": 0.5582923090634493,
+                        "error_cells": 1.5637748269906904
+                      },
+                      {
+                        "time": -0.8938548672539243,
+                        "shock_radius": 0.5478515625,
+                        "reference_shock_radius": 0.553606514650018,
+                        "error_cells": 1.9643570005394697
+                      },
+                      {
+                        "time": -0.8832974269090673,
+                        "shock_radius": 0.544921875,
+                        "reference_shock_radius": 0.5489092382682375,
+                        "error_cells": 1.3610199955583842
+                      },
+                      {
+                        "time": -0.8727523613407671,
+                        "shock_radius": 0.5390625,
+                        "reference_shock_radius": 0.5442015897403887,
+                        "error_cells": 1.754142631386003
+                      },
+                      {
+                        "time": -0.8622219850609406,
+                        "shock_radius": 0.533203125,
+                        "reference_shock_radius": 0.5394844175650627,
+                        "error_cells": 2.1440145288747394
+                      },
+                      {
+                        "time": -0.8517076931838873,
+                        "shock_radius": 0.5302734375,
+                        "reference_shock_radius": 0.5347581655057968,
+                        "error_cells": 1.5307871593119746
+                      },
+                      {
+                        "time": -0.85,
+                        "shock_radius": 0.52734375,
+                        "reference_shock_radius": 0.533988991204184,
+                        "error_cells": 2.2682423310281288
+                      }
+                    ],
+                    "initial_reference_quadrature_density_l1": 1.4660264374459572e-14,
+                    "initial_reference_quadrature_pressure_l1": 2.920969246729905e-14,
+                    "field": "field-n256.npz",
+                    "history": "history-n256.json"
+                  },
+                  {
+                    "n": 512,
+                    "time": -0.85,
+                    "steps": 285,
+                    "density_l1": 0.00772161862650073,
+                    "pressure_l1": 0.00947688731818041,
+                    "active_density_l1": 0.007948322269523746,
+                    "active_pressure_l1": 0.009476887318180412,
+                    "density_linf": 0.26559799254635363,
+                    "pressure_linf": 0.4664641041357883,
+                    "maximum_velocity_error": 0.2918302634973315,
+                    "active_volume_fraction": 0.8145022392272949,
+                    "active_inner_radius": 0.4271911929633472,
+                    "shock_radius": 0.5302734375,
+                    "reference_shock_radius": 0.533988991204184,
+                    "shock_error_cells": 2.536484662056258,
+                    "maximum_history_shock_error_cells": 2.536484662056258,
+                    "minimum_density_all_stages": 1.0,
+                    "minimum_pressure_all_stages": 0.0,
+                    "minimum_internal_energy_all_stages": 0.0,
+                    "sound_speed_roundoff_guard_evaluations": 0,
+                    "minimum_pressure_at_sound_speed_guard": 0.0,
+                    "state_floor_count": 0,
+                    "rejected_steps": 0,
+                    "minimum_dt": 0.0004970499254967065,
+                    "maximum_dt": 0.000537015606799512,
+                    "reference_quadrature_density_l1": 4.607326285502161e-15,
+                    "reference_quadrature_pressure_l1": 8.295849629501113e-15,
+                    "initial_integral": [
+                      8.206089344179249,
+                      -2.3017033023404845,
+                      0.7323576960977207
+                    ],
+                    "final_integral": [
+                      11.492857928234441,
+                      -3.3569808384086612,
+                      1.0664451831092827
+                    ],
+                    "boundary_net_integral": [
+                      3.2867685840551983,
+                      -1.1376676143431048,
+                      0.33408748701156293
+                    ],
+                    "geometric_source_integral": [
+                      0.0,
+                      0.08239007827492695,
+                      0.0
+                    ],
+                    "conservation_residual": [
+                      -6.217248937900877e-15,
+                      1.1102230246251565e-15,
+                      -9.43689570931383e-16
+                    ],
+                    "conservation_relative": [
+                      5.409663094004662e-16,
+                      3.152465559742603e-16,
+                      8.848927126099446e-16
+                    ],
+                    "shock_trajectory": [
+                      {
+                        "time": -1.0,
+                        "shock_radius": 0.6005859375,
+                        "reference_shock_radius": 0.6,
+                        "error_cells": 0.4000000000000152
+                      },
+                      {
+                        "time": -0.9946368166418362,
+                        "shock_radius": 0.59619140625,
+                        "reference_shock_radius": 0.5976904426742187,
+                        "error_cells": 1.0233421989332783
+                      },
+                      {
+                        "time": -0.9893094005273915,
+                        "shock_radius": 0.59326171875,
+                        "reference_shock_radius": 0.5953927982605718,
+                        "error_cells": 1.4548169458836735
+                      },
+                      {
+                        "time": -0.9840146694470209,
+                        "shock_radius": 0.591796875,
+                        "reference_shock_radius": 0.5931057806604236,
+                        "error_cells": 0.8935462641825325
+                      },
+                      {
+                        "time": -0.9787352896599837,
+                        "shock_radius": 0.5888671875,
+                        "reference_shock_radius": 0.590821926008946,
+                        "error_cells": 1.3344348221071414
+                      },
+                      {
+                        "time": -0.9734624811850209,
+                        "shock_radius": 0.5859375,
+                        "reference_shock_radius": 0.5885374337271152,
+                        "error_cells": 1.7748880910439766
+                      },
+                      {
+                        "time": -0.9681914086700115,
+                        "shock_radius": 0.58447265625,
+                        "reference_shock_radius": 0.5862501928945101,
+                        "error_cells": 1.2134650159855482
+                      },
+                      {
+                        "time": -0.9629198107206394,
+                        "shock_radius": 0.58154296875,
+                        "reference_shock_radius": 0.5839591989745323,
+                        "error_cells": 1.6494798332807175
+                      },
+                      {
+                        "time": -0.9576467627883994,
+                        "shock_radius": 0.57861328125,
+                        "reference_shock_radius": 0.5816640233953347,
+                        "error_cells": 2.082639971215182
+                      },
+                      {
+                        "time": -0.952371549031616,
+                        "shock_radius": 0.5771484375,
+                        "reference_shock_radius": 0.5793643257959106,
+                        "error_cells": 1.5127130766749513
+                      },
+                      {
+                        "time": -0.9470946346463607,
+                        "shock_radius": 0.57421875,
+                        "reference_shock_radius": 0.5770602795696169,
+                        "error_cells": 1.9398175195251497
+                      },
+                      {
+                        "time": -0.9418172329328481,
+                        "shock_radius": 0.57275390625,
+                        "reference_shock_radius": 0.5747523864238984,
+                        "error_cells": 1.3642957987146171
+                      },
+                      {
+                        "time": -0.9365399380633962,
+                        "shock_radius": 0.56982421875,
+                        "reference_shock_radius": 0.5724408796635158,
+                        "error_cells": 1.7863071836267561
+                      },
+                      {
+                        "time": -0.9312641042325702,
+                        "shock_radius": 0.56689453125,
+                        "reference_shock_radius": 0.5701263276031471,
+                        "error_cells": 2.206239643748404
+                      },
+                      {
+                        "time": -0.9259901328230302,
+                        "shock_radius": 0.5654296875,
+                        "reference_shock_radius": 0.5678088830286193,
+                        "error_cells": 1.6241974808707862
+                      },
+                      {
+                        "time": -0.9207190803034304,
+                        "shock_radius": 0.5625,
+                        "reference_shock_radius": 0.5654889881116121,
+                        "error_cells": 2.0404825508605122
+                      },
+                      {
+                        "time": -0.9154510487847011,
+                        "shock_radius": 0.56103515625,
+                        "reference_shock_radius": 0.5631666666951907,
+                        "error_cells": 1.455111130583494
+                      },
+                      {
+                        "time": -0.9101868411404913,
+                        "shock_radius": 0.55810546875,
+                        "reference_shock_radius": 0.5608422523193408,
+                        "error_cells": 1.8683109166699978
+                      },
+                      {
+                        "time": -0.9049263750373424,
+                        "shock_radius": 0.55517578125,
+                        "reference_shock_radius": 0.5585156887538151,
+                        "error_cells": 2.280043522604425
+                      },
+                      {
+                        "time": -0.8996702937039848,
+                        "shock_radius": 0.5537109375,
+                        "reference_shock_radius": 0.5561872409623809,
+                        "error_cells": 1.690489830318711
+                      },
+                      {
+                        "time": -0.8944184318023805,
+                        "shock_radius": 0.55078125,
+                        "reference_shock_radius": 0.5538568164517846,
+                        "error_cells": 2.099586697751647
+                      },
+                      {
+                        "time": -0.8891713276989159,
+                        "shock_radius": 0.5478515625,
+                        "reference_shock_radius": 0.5515246350278591,
+                        "error_cells": 2.5074841790184714
+                      },
+                      {
+                        "time": -0.8839287833047897,
+                        "shock_radius": 0.54638671875,
+                        "reference_shock_radius": 0.5491905896890821,
+                        "error_cells": 1.9141092277466971
+                      },
+                      {
+                        "time": -0.878691267191384,
+                        "shock_radius": 0.54345703125,
+                        "reference_shock_radius": 0.5468548701476631,
+                        "error_cells": 2.3195913541380073
+                      },
+                      {
+                        "time": -0.8734585866220838,
+                        "shock_radius": 0.5419921875,
+                        "reference_shock_radius": 0.5445173716101,
+                        "error_cells": 1.7238590191616368
+                      },
+                      {
+                        "time": -0.8682311375431372,
+                        "shock_radius": 0.5390625,
+                        "reference_shock_radius": 0.5421782520914779,
+                        "error_cells": 2.1270200944488806
+                      },
+                      {
+                        "time": -0.8630087862744834,
+                        "shock_radius": 0.5361328125,
+                        "reference_shock_radius": 0.5398374329633072,
+                        "error_cells": 2.5290209029510606
+                      },
+                      {
+                        "time": -0.8577918019735371,
+                        "shock_radius": 0.53466796875,
+                        "reference_shock_radius": 0.5374950159643461,
+                        "error_cells": 1.9299308983269536
+                      },
+                      {
+                        "time": -0.8525801975333194,
+                        "shock_radius": 0.53173828125,
+                        "reference_shock_radius": 0.5351509880497817,
+                        "error_cells": 2.329741175317622
+                      },
+                      {
+                        "time": -0.85,
+                        "shock_radius": 0.5302734375,
+                        "reference_shock_radius": 0.533988991204184,
+                        "error_cells": 2.536484662056258
+                      }
+                    ],
+                    "initial_reference_quadrature_density_l1": 1.4522743666682576e-15,
+                    "initial_reference_quadrature_pressure_l1": 3.208009534299476e-15,
+                    "field": "field-n512.npz",
+                    "history": "history-n512.json"
+                  }
+                ],
+                "metrics": {
+                  "n": 512,
+                  "time": -0.85,
+                  "steps": 285,
+                  "density_l1": 0.00772161862650073,
+                  "pressure_l1": 0.00947688731818041,
+                  "active_density_l1": 0.007948322269523746,
+                  "active_pressure_l1": 0.009476887318180412,
+                  "density_linf": 0.26559799254635363,
+                  "pressure_linf": 0.4664641041357883,
+                  "maximum_velocity_error": 0.2918302634973315,
+                  "active_volume_fraction": 0.8145022392272949,
+                  "active_inner_radius": 0.4271911929633472,
+                  "shock_radius": 0.5302734375,
+                  "reference_shock_radius": 0.533988991204184,
+                  "shock_error_cells": 2.536484662056258,
+                  "maximum_history_shock_error_cells": 2.536484662056258,
+                  "minimum_density_all_stages": 1.0,
+                  "minimum_pressure_all_stages": 0.0,
+                  "minimum_internal_energy_all_stages": 0.0,
+                  "sound_speed_roundoff_guard_evaluations": 0,
+                  "minimum_pressure_at_sound_speed_guard": 0.0,
+                  "state_floor_count": 0,
+                  "rejected_steps": 0,
+                  "minimum_dt": 0.0004970499254967065,
+                  "maximum_dt": 0.000537015606799512,
+                  "reference_quadrature_density_l1": 4.607326285502161e-15,
+                  "reference_quadrature_pressure_l1": 8.295849629501113e-15,
+                  "initial_reference_quadrature_density_l1": 1.4522743666682576e-15,
+                  "initial_reference_quadrature_pressure_l1": 3.208009534299476e-15
+                },
+                "checks": {
+                  "all three fixed spherical runs completed": true,
+                  "N128: final time before collapse": true,
+                  "N128: strictly positive density all stages": true,
+                  "N128: minimum_internal_energy_all_stages": true,
+                  "N128: minimum_pressure_at_sound_speed_guard": true,
+                  "N128: state_floor_count": true,
+                  "N128: rejected_steps": true,
+                  "N128: mass discrete balance": true,
+                  "N128: radial momentum including geometric source discrete balance": true,
+                  "N128: energy discrete balance": true,
+                  "N128: reference_quadrature_density_l1": true,
+                  "N128: reference_quadrature_pressure_l1": true,
+                  "N128: initial_reference_quadrature_density_l1": true,
+                  "N128: initial_reference_quadrature_pressure_l1": true,
+                  "N128: maximum and trajectory diagnostics retained": true,
+                  "N256: final time before collapse": true,
+                  "N256: strictly positive density all stages": true,
+                  "N256: minimum_internal_energy_all_stages": true,
+                  "N256: minimum_pressure_at_sound_speed_guard": true,
+                  "N256: state_floor_count": true,
+                  "N256: rejected_steps": true,
+                  "N256: mass discrete balance": true,
+                  "N256: radial momentum including geometric source discrete balance": true,
+                  "N256: energy discrete balance": true,
+                  "N256: reference_quadrature_density_l1": true,
+                  "N256: reference_quadrature_pressure_l1": true,
+                  "N256: initial_reference_quadrature_density_l1": true,
+                  "N256: initial_reference_quadrature_pressure_l1": true,
+                  "N256: maximum and trajectory diagnostics retained": true,
+                  "N512: final time before collapse": true,
+                  "N512: strictly positive density all stages": true,
+                  "N512: minimum_internal_energy_all_stages": true,
+                  "N512: minimum_pressure_at_sound_speed_guard": true,
+                  "N512: state_floor_count": true,
+                  "N512: rejected_steps": true,
+                  "N512: mass discrete balance": true,
+                  "N512: radial momentum including geometric source discrete balance": true,
+                  "N512: energy discrete balance": true,
+                  "N512: reference_quadrature_density_l1": true,
+                  "N512: reference_quadrature_pressure_l1": true,
+                  "N512: initial_reference_quadrature_density_l1": true,
+                  "N512: initial_reference_quadrature_pressure_l1": true,
+                  "N512: maximum and trajectory diagnostics retained": true,
+                  "similarity qualification: maximum_scaled_euler_residual": true,
+                  "similarity qualification: maximum_scaled_jump_residual": true,
+                  "similarity exponent agrees with tabulated lambda": true,
+                  "finest density_l1": true,
+                  "finest pressure_l1": true,
+                  "finest active_density_l1": true,
+                  "finest active_pressure_l1": true,
+                  "finest shock_error_cells": true,
+                  "density_l1 decreases across the three grids": true,
+                  "active_density_l1 decreases across the three grids": true,
+                  "pressure_l1 decreases across the three grids": true,
+                  "last-pair active density L1 slope": true
+                },
+                "check_details": [
+                  {
+                    "name": "all three fixed spherical runs completed",
+                    "value": [
+                      128,
+                      256,
+                      512
+                    ],
+                    "bound": [
+                      128,
+                      256,
+                      512
+                    ],
+                    "passed": true
+                  },
+                  {
+                    "name": "N128: final time before collapse",
+                    "value": -0.85,
+                    "bound": -0.85,
+                    "passed": true
+                  },
+                  {
+                    "name": "N128: strictly positive density all stages",
+                    "value": 1.0,
+                    "bound": 0,
+                    "passed": true
+                  },
+                  {
+                    "name": "N128: minimum_internal_energy_all_stages",
+                    "value": 0.0,
+                    "bound": -1.4210854715202004e-14,
+                    "passed": true
+                  },
+                  {
+                    "name": "N128: minimum_pressure_at_sound_speed_guard",
+                    "value": 0.0,
+                    "bound": -5.6843418860808e-15,
+                    "passed": true
+                  },
+                  {
+                    "name": "N128: state_floor_count",
+                    "value": 0,
+                    "bound": 0,
+                    "passed": true
+                  },
+                  {
+                    "name": "N128: rejected_steps",
+                    "value": 0,
+                    "bound": 0,
+                    "passed": true
+                  },
+                  {
+                    "name": "N128: mass discrete balance",
+                    "value": 1.159213571174786e-16,
+                    "bound": 2e-12,
+                    "passed": true
+                  },
+                  {
+                    "name": "N128: radial momentum including geometric source discrete balance",
+                    "value": 1.8124670145705584e-16,
+                    "bound": 2e-12,
+                    "passed": true
+                  },
+                  {
+                    "name": "N128: energy discrete balance",
+                    "value": 2.0821005712313262e-16,
+                    "bound": 2e-12,
+                    "passed": true
+                  },
+                  {
+                    "name": "N128: reference_quadrature_density_l1",
+                    "value": 2.896924263307821e-13,
+                    "bound": 1e-07,
+                    "passed": true
+                  },
+                  {
+                    "name": "N128: reference_quadrature_pressure_l1",
+                    "value": 5.014428051950655e-13,
+                    "bound": 1e-07,
+                    "passed": true
+                  },
+                  {
+                    "name": "N128: initial_reference_quadrature_density_l1",
+                    "value": 1.5942464518988718e-12,
+                    "bound": 1e-07,
+                    "passed": true
+                  },
+                  {
+                    "name": "N128: initial_reference_quadrature_pressure_l1",
+                    "value": 2.54765297288434e-12,
+                    "bound": 1e-07,
+                    "passed": true
+                  },
+                  {
+                    "name": "N128: maximum and trajectory diagnostics retained",
+                    "value": true,
+                    "bound": true,
+                    "passed": true
+                  },
+                  {
+                    "name": "N256: final time before collapse",
+                    "value": -0.85,
+                    "bound": -0.85,
+                    "passed": true
+                  },
+                  {
+                    "name": "N256: strictly positive density all stages",
+                    "value": 1.0,
+                    "bound": 0,
+                    "passed": true
+                  },
+                  {
+                    "name": "N256: minimum_internal_energy_all_stages",
+                    "value": 0.0,
+                    "bound": -1.4210854715202004e-14,
+                    "passed": true
+                  },
+                  {
+                    "name": "N256: minimum_pressure_at_sound_speed_guard",
+                    "value": 0.0,
+                    "bound": -5.6843418860808e-15,
+                    "passed": true
+                  },
+                  {
+                    "name": "N256: state_floor_count",
+                    "value": 0,
+                    "bound": 0,
+                    "passed": true
+                  },
+                  {
+                    "name": "N256: rejected_steps",
+                    "value": 0,
+                    "bound": 0,
+                    "passed": true
+                  },
+                  {
+                    "name": "N256: mass discrete balance",
+                    "value": 4.636854120462487e-16,
+                    "bound": 2e-12,
+                    "passed": true
+                  },
+                  {
+                    "name": "N256: radial momentum including geometric source discrete balance",
+                    "value": 3.585785160036248e-16,
+                    "bound": 2e-12,
+                    "passed": true
+                  },
+                  {
+                    "name": "N256: energy discrete balance",
+                    "value": 0.0,
+                    "bound": 2e-12,
+                    "passed": true
+                  },
+                  {
+                    "name": "N256: reference_quadrature_density_l1",
+                    "value": 1.3363962268430173e-13,
+                    "bound": 1e-07,
+                    "passed": true
+                  },
+                  {
+                    "name": "N256: reference_quadrature_pressure_l1",
+                    "value": 2.251024923990976e-13,
+                    "bound": 1e-07,
+                    "passed": true
+                  },
+                  {
+                    "name": "N256: initial_reference_quadrature_density_l1",
+                    "value": 1.4660264374459572e-14,
+                    "bound": 1e-07,
+                    "passed": true
+                  },
+                  {
+                    "name": "N256: initial_reference_quadrature_pressure_l1",
+                    "value": 2.920969246729905e-14,
+                    "bound": 1e-07,
+                    "passed": true
+                  },
+                  {
+                    "name": "N256: maximum and trajectory diagnostics retained",
+                    "value": true,
+                    "bound": true,
+                    "passed": true
+                  },
+                  {
+                    "name": "N512: final time before collapse",
+                    "value": -0.85,
+                    "bound": -0.85,
+                    "passed": true
+                  },
+                  {
+                    "name": "N512: strictly positive density all stages",
+                    "value": 1.0,
+                    "bound": 0,
+                    "passed": true
+                  },
+                  {
+                    "name": "N512: minimum_internal_energy_all_stages",
+                    "value": 0.0,
+                    "bound": -1.4210854715202004e-14,
+                    "passed": true
+                  },
+                  {
+                    "name": "N512: minimum_pressure_at_sound_speed_guard",
+                    "value": 0.0,
+                    "bound": -5.6843418860808e-15,
+                    "passed": true
+                  },
+                  {
+                    "name": "N512: state_floor_count",
+                    "value": 0,
+                    "bound": 0,
+                    "passed": true
+                  },
+                  {
+                    "name": "N512: rejected_steps",
+                    "value": 0,
+                    "bound": 0,
+                    "passed": true
+                  },
+                  {
+                    "name": "N512: mass discrete balance",
+                    "value": 5.409663094004662e-16,
+                    "bound": 2e-12,
+                    "passed": true
+                  },
+                  {
+                    "name": "N512: radial momentum including geometric source discrete balance",
+                    "value": 3.152465559742603e-16,
+                    "bound": 2e-12,
+                    "passed": true
+                  },
+                  {
+                    "name": "N512: energy discrete balance",
+                    "value": 8.848927126099446e-16,
+                    "bound": 2e-12,
+                    "passed": true
+                  },
+                  {
+                    "name": "N512: reference_quadrature_density_l1",
+                    "value": 4.607326285502161e-15,
+                    "bound": 1e-07,
+                    "passed": true
+                  },
+                  {
+                    "name": "N512: reference_quadrature_pressure_l1",
+                    "value": 8.295849629501113e-15,
+                    "bound": 1e-07,
+                    "passed": true
+                  },
+                  {
+                    "name": "N512: initial_reference_quadrature_density_l1",
+                    "value": 1.4522743666682576e-15,
+                    "bound": 1e-07,
+                    "passed": true
+                  },
+                  {
+                    "name": "N512: initial_reference_quadrature_pressure_l1",
+                    "value": 3.208009534299476e-15,
+                    "bound": 1e-07,
+                    "passed": true
+                  },
+                  {
+                    "name": "N512: maximum and trajectory diagnostics retained",
+                    "value": true,
+                    "bound": true,
+                    "passed": true
+                  },
+                  {
+                    "name": "similarity qualification: maximum_scaled_euler_residual",
+                    "value": 8.233415560656415e-09,
+                    "bound": 1e-05,
+                    "passed": true
+                  },
+                  {
+                    "name": "similarity qualification: maximum_scaled_jump_residual",
+                    "value": 4.3989810016853426e-08,
+                    "bound": 1e-07,
+                    "passed": true
+                  },
+                  {
+                    "name": "similarity exponent agrees with tabulated lambda",
+                    "value": 4.468621028763664e-10,
+                    "bound": 2e-09,
+                    "passed": true
+                  },
+                  {
+                    "name": "finest density_l1",
+                    "value": 0.00772161862650073,
+                    "bound": 0.15,
+                    "passed": true
+                  },
+                  {
+                    "name": "finest pressure_l1",
+                    "value": 0.00947688731818041,
+                    "bound": 0.15,
+                    "passed": true
+                  },
+                  {
+                    "name": "finest active_density_l1",
+                    "value": 0.007948322269523746,
+                    "bound": 0.15,
+                    "passed": true
+                  },
+                  {
+                    "name": "finest active_pressure_l1",
+                    "value": 0.009476887318180412,
+                    "bound": 0.15,
+                    "passed": true
+                  },
+                  {
+                    "name": "finest shock_error_cells",
+                    "value": 2.536484662056258,
+                    "bound": 4.0,
+                    "passed": true
+                  },
+                  {
+                    "name": "density_l1 decreases across the three grids",
+                    "value": true,
+                    "bound": true,
+                    "passed": true
+                  },
+                  {
+                    "name": "active_density_l1 decreases across the three grids",
+                    "value": true,
+                    "bound": true,
+                    "passed": true
+                  },
+                  {
+                    "name": "pressure_l1 decreases across the three grids",
+                    "value": true,
+                    "bound": true,
+                    "passed": true
+                  },
+                  {
+                    "name": "last-pair active density L1 slope",
+                    "value": 0.7938497447023544,
+                    "bound": 0.2,
+                    "passed": true
+                  }
+                ],
+                "reference_qualification": {
+                  "maximum_scaled_euler_residual": 8.233415560656415e-09,
+                  "maximum_scaled_jump_residual": 4.3989810016853426e-08,
+                  "lambda_table_relative_difference": 4.468621028763664e-10,
+                  "euler_residual_radii": [
+                    0.5787208592237053,
+                    0.6241107305353685,
+                    0.7092167392447368
+                  ],
+                  "euler_residual_time": -0.925,
+                  "radial_derivative_step": 5.673733913957895e-06,
+                  "time_derivative_step": 9.250000000000001e-06,
+                  "jump_state_radius_relative_offset": 1e-08,
+                  "metadata": {
+                    "geometry": 3,
+                    "gamma": 1.4,
+                    "rho0": 1.0,
+                    "lambda": 1.3943607844230872,
+                    "alpha": 0.7171745011559165,
+                    "shock_scale": 0.6,
+                    "lazarus_times": [
+                      -1.0,
+                      -0.85
+                    ],
+                    "domain": [
+                      0,
+                      0.75
+                    ],
+                    "similarity_x_end": -0.6132747790371198,
+                    "max_similarity_radius": 1.42,
+                    "ode_success": true,
+                    "ode_steps": 36,
+                    "ode_nfev": 254,
+                    "exactpack_public_times": [
+                      0.0,
+                      0.11250364830000002
+                    ],
+                    "reflected_branch_executed": false,
+                    "source_independence": "actual pinned ExactPack eexp and RHS with a pre-collapse dense adapter"
+                  }
+                },
+                "scope": "One-dimensional spherical radial Euler before collapse; a revolved meridional visualization is not a two-dimensional Cartesian evolution."
+              },
+              "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/guderley-implosion/",
+              "reading": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-guderley/#guderley-implosion",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-guderley/#guderley-implosion"
+              }
+            }
+          ]
         }
       ],
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/heun/",
@@ -43012,7 +45537,17 @@
         "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/attempts/01/source/convert.py",
         "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/attempts/01/source/run-reference.py",
         "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/convert.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/run-reference.py"
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/run-reference.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/guderley_solver.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/precollapse.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/EXACTPACK-test_guderley.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/eexp.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/guderley.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/interp_laz.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/original_init.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/ramsey.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/qualify_reference.py"
       ],
       "test_urls": [
         "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
@@ -43022,7 +45557,8 @@
         "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/noh-cartesian/test_cartesian.py",
         "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/test_sedov.py",
         "https://hrkoyama.github.io/code/validated-examples/2026-11-23/double-mach/test_dm.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/test_fs.py"
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/test_fs.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/test_guderley.py"
       ],
       "run_commands": [
         "python -m pytest -q tests/test_time_geometry.py tests/test_runge_kutta.py tests/test_hamiltonian.py"
@@ -43075,6 +45611,15 @@
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/forward-step-m3/?lang=en"
           },
           "kind": "dedicated-supplement"
+        },
+        {
+          "id": "guderley-implosion",
+          "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/guderley-implosion/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/guderley-implosion/?lang=en"
+          },
+          "kind": "dedicated-supplement"
         }
       ],
       "problem_navigation": {
@@ -43091,7 +45636,8 @@
               "double-mach",
               "forward-step",
               "noh",
-              "sedov"
+              "sedov",
+              "guderley"
             ],
             "url": {
               "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja",
@@ -43436,6 +45982,66 @@
               "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sedov/?lang=ja#references-ja",
               "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sedov/?lang=en#references-en"
             }
+          },
+          {
+            "id": "guderley",
+            "name": {
+              "ja": "Guderleyの収束衝撃波",
+              "en": "Guderley converging shock"
+            },
+            "image": {
+              "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/results/guderley-implosion-preview.png",
+              "sha256": "03774f695db7f8e07eb006db120075d808871a194e1ab59abb815995fc53f383",
+              "width": 1376,
+              "height": 880,
+              "caption": {
+                "ja": "1次元球対称Eulerの保存済み半径密度を子午面に表示。γ=1.4、512球殻、r∈[0,.75]、R_s(−1)=.6、t=−.85。圧力ゼロの静止上流へ進む収束前の衝撃波を半解析参照と比較します。2D Cartesianや原点反射後の計算ではありません。",
+                "en": "A meridional-section display of saved one-dimensional spherical-radial Euler density: gamma=1.4, 512 shells, r in [0,0.75], Rs(-1)=0.6, t=-0.85. Compare the pre-collapse shock entering stationary zero-pressure upstream gas with a semi-analytic reference. This is not 2D Cartesian or post-collapse evolution."
+              },
+              "source_kind": "existing-figure"
+            },
+            "hub": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/guderley/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/guderley/?lang=en"
+            },
+            "code": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/guderley/?lang=ja#code-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/guderley/?lang=en#code-en"
+            },
+            "executions": [
+              {
+                "id": "guderley-implosion",
+                "kind": "supplement",
+                "name": {
+                  "ja": "Guderley収束衝撃波：球対称の軽量検証",
+                  "en": "Guderley converging shock: lightweight spherical-radial verification"
+                },
+                "scope": {
+                  "ja": "冷たい静止気体へ内向きに進む球対称Guderley衝撃波を、128/256/512個の球殻でt=−1から−.85まで計算します。HLL流束とHeun法を、相似指数の固有値・半解析場・衝撃位置・保存収支と照合する軽量例です。",
+                  "en": "An inward spherical Guderley shock in cold stationary gas is evolved from t=-1 to -0.85 on 128/256/512 radial shells. HLL fluxes and Heun steps are checked against a similarity eigenvalue/field, shock trajectory and discrete conservation budgets."
+                },
+                "method_ids": [
+                  "hll",
+                  "heun"
+                ],
+                "guide": {
+                  "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/guderley-implosion/?lang=ja",
+                  "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/guderley-implosion/?lang=en"
+                },
+                "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/inputs.json",
+                "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/atlas-guderley-2026-11-23-r2.zip",
+                "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/verification.json"
+              }
+            ],
+            "role": "execution",
+            "method_note": {
+              "ja": "球殻の面積・体積と幾何学的な圧力源を使う区分定数HLL有限体積流束、物理時間のHeun更新による限定例です。",
+              "en": "A scoped spherical-shell example with piecewise-constant HLL finite-volume fluxes, shell areas/volumes, the geometric pressure source and physical-time Heun updates."
+            },
+            "reference_url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/guderley/?lang=ja#references-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/guderley/?lang=en#references-en"
+            }
           }
         ],
         "references": [
@@ -43595,6 +46201,40 @@
                 "view": {
                   "ja": "/numerical-methods-atlas/validation/sedov-blast/?lang=ja#sedov-blast-ja-measurements",
                   "en": "/numerical-methods-atlas/validation/sedov-blast/?lang=en#sedov-blast-en-measurements"
+                }
+              }
+            ]
+          },
+          {
+            "problem_id": "guderley",
+            "problem_name": {
+              "ja": "Guderleyの収束衝撃波",
+              "en": "Guderley converging shock"
+            },
+            "reference_url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/guderley/?lang=ja#references-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/guderley/?lang=en#references-en"
+            },
+            "cases": [
+              {
+                "id": "guderley",
+                "title": {
+                  "ja": "Guderley収束衝撃波：固有値と球対称の半解析参照",
+                  "en": "Guderley converging shock: eigenvalue and spherical semi-analytic reference"
+                },
+                "kind": "semi-analytic",
+                "relation": "same-problem",
+                "note": {
+                  "ja": "γ=1.4・冷たい一様な上流を持つ球対称Guderley相似解の収束前分岐です。相似指数の固有値探索・相似ODE積分・衝撃位置で分割した球殻求積を含む半解析参照で、閉形式の厳密セル平均ではありません。ExactPackに基づく参照実装と有限体積PDE計算の役割を分け、独立した相似解実装どうしの照合とは扱いません。原点での収束、反射後の衝撃波、一般のEOSは今回の範囲外です。",
+                  "en": "The pre-collapse branch of the spherical Guderley similarity solution at gamma=1.4 with a cold uniform upstream state. Numerical eigenvalue shooting, similarity-ODE integration and shock-split shell quadrature make this a semi-analytic reference, not closed-form exact cell means. Distinguish the ExactPack-based evaluator from the finite-volume PDE calculation; this is not a comparison between independent similarity implementations. Collapse at the origin, the reflected branch and general equations of state are outside this example."
+                },
+                "url": {
+                  "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-guderley-ja",
+                  "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-guderley-en"
+                },
+                "view": {
+                  "ja": "/numerical-methods-atlas/validation/guderley-implosion/?lang=ja#guderley-implosion-ja-measurements",
+                  "en": "/numerical-methods-atlas/validation/guderley-implosion/?lang=en#guderley-implosion-en-measurements"
                 }
               }
             ]
@@ -172994,13 +175634,13 @@
     }
   },
   "problem_navigation_source_sha256": {
-    "catalog/atlas-depth-expansion.json": "d664e9e67d7661114a212229bd05104fc479d37137d697cd93d77c801288ca47",
+    "catalog/atlas-depth-expansion.json": "f9f0dc0fae15eb6b1e82b5179289e8505f95dfeea6cbf59a572fa479f9073016",
     "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
-    "catalog/atlas-methods.json": "522672ce3ce6e90f529ad1ae8ab3a1269ab35658eb6ae99460e1f256fca7afa2",
-    "catalog/atlas-problem-links.json": "1bdb911b9d6917282288dc3aaa46389778cfe176d4c70f42d57b3169939f4ad5",
-    "catalog/atlas-reference-supplements.json": "a0398611d998d2b39b54c82bc5897904be7a6cc060665bf2a956be7e0e16ce0a",
-    "catalog/atlas-test-problems.json": "872d6a32fa180fc575ac2e014734d6dfbba0632aee8c54866df254d3fb0d8fbb",
+    "catalog/atlas-methods.json": "0ea9515873898b348d1cb20caeb6434a2f551548e3996b19683fb2d51a6d5a6b",
+    "catalog/atlas-problem-links.json": "b11d784c7ff9809b0f562ae0f7ad3fccd97834f7866716574d561e854d07580e",
+    "catalog/atlas-reference-supplements.json": "84387dd3b1a0148eeaa9d0b8258f09f5ec7f903efadcd7680efc8c8239445339",
+    "catalog/atlas-test-problems.json": "e1e23af794544805ca27bb02f50ad0f89bdba9f2d03f41f324300db0997edf84",
     "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
     "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
     "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
@@ -173056,6 +175696,11 @@
     "code/validated-examples/2026-11-22/thermostats/results/result.json": "7971007807acce9f75261b684b789f196e1d5dffc80797e102d1b0bebbc93f11",
     "code/validated-examples/2026-11-22/thermostats/source-manifest.json": "81a854bdfe3ae33b4eb4bffdccc9ab15a09f2bddbffb294cd2c2cbd07e641580",
     "code/validated-examples/2026-11-22/thermostats/verification.json": "c14f55ac05d93269dbf8eef4a2a4042f75764d5228d06f8e41039d0b60351905",
+    "code/validated-examples/2026-11-23-r2/guderley/atlas-guderley-2026-11-23-r2.zip": "ca6974a8e48f8d6a2ad81ad74bce173dcff3656e35a465d9e75fac3d6cbdbfb6",
+    "code/validated-examples/2026-11-23-r2/guderley/cases.json": "141e0de47934171fc3ddc943bdedd7b0bda34ead92b13e03fee48aac5ffbad98",
+    "code/validated-examples/2026-11-23-r2/guderley/results/result.json": "1ed7e0d78c95488bd804a62946785040aa30b8b45a39f2e575ce8bf0ea53a0ea",
+    "code/validated-examples/2026-11-23-r2/guderley/source-manifest.json": "21ad6b276da23b43f14f945275ede89423c84382684fbb11efaaf2479542d942",
+    "code/validated-examples/2026-11-23-r2/guderley/verification.json": "f1aec66cb2d92f0166bd948ea685ad9c193ebf74d1be67b0cc2cfa1d254dc554",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/atlas-noh-cartesian-2026-11-23-r2.zip": "2145beb161f993c1608fc5ac167af5278d58e10f92e74ed37e5fb9c35243b918",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/cases.json": "49b94c1f65e269d4a878be3a4d8778375b88b767f5dd01998ae5fe6b8fc2b3ee",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/results/result.json": "e121c2f5171ee53491b492019311d002ceb44213f6f7cd43051a3ca68f74c694",
@@ -173089,8 +175734,8 @@
     "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "e911630439324bd63c075829ed175621068e33088c8a874cb774d725d49a2446",
-    "numerical-methods-atlas/locales/messages.json": "a56c00dd0502482140a934bd6109bc7fe09798d9bd4676c63854f3ea6b2d6053"
+    "numerical-methods-atlas/gallery/preview-manifest.json": "c478bc4512ba218b3a7f0f9fbbe8293b64fe7053cf84daffc8c3e4bf3b0765d8",
+    "numerical-methods-atlas/locales/messages.json": "e4435c7ea610f9f1ef9604b4b4794d6c7dbaf7d17f84047b762691c8e748ea14"
   },
   "code_release": {
     "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/atlas-code-2026-11-21.zip",

@@ -416,13 +416,13 @@
     }
   },
   "navigation_source_sha256": {
-    "catalog/atlas-depth-expansion.json": "d664e9e67d7661114a212229bd05104fc479d37137d697cd93d77c801288ca47",
+    "catalog/atlas-depth-expansion.json": "f9f0dc0fae15eb6b1e82b5179289e8505f95dfeea6cbf59a572fa479f9073016",
     "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
-    "catalog/atlas-methods.json": "522672ce3ce6e90f529ad1ae8ab3a1269ab35658eb6ae99460e1f256fca7afa2",
-    "catalog/atlas-problem-links.json": "1bdb911b9d6917282288dc3aaa46389778cfe176d4c70f42d57b3169939f4ad5",
-    "catalog/atlas-reference-supplements.json": "a0398611d998d2b39b54c82bc5897904be7a6cc060665bf2a956be7e0e16ce0a",
-    "catalog/atlas-test-problems.json": "872d6a32fa180fc575ac2e014734d6dfbba0632aee8c54866df254d3fb0d8fbb",
+    "catalog/atlas-methods.json": "0ea9515873898b348d1cb20caeb6434a2f551548e3996b19683fb2d51a6d5a6b",
+    "catalog/atlas-problem-links.json": "b11d784c7ff9809b0f562ae0f7ad3fccd97834f7866716574d561e854d07580e",
+    "catalog/atlas-reference-supplements.json": "84387dd3b1a0148eeaa9d0b8258f09f5ec7f903efadcd7680efc8c8239445339",
+    "catalog/atlas-test-problems.json": "e1e23af794544805ca27bb02f50ad0f89bdba9f2d03f41f324300db0997edf84",
     "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
     "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
     "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
@@ -518,6 +518,12 @@
     "code/validated-examples/2026-11-22/thermostats/results/result.json": "7971007807acce9f75261b684b789f196e1d5dffc80797e102d1b0bebbc93f11",
     "code/validated-examples/2026-11-22/thermostats/source-manifest.json": "81a854bdfe3ae33b4eb4bffdccc9ab15a09f2bddbffb294cd2c2cbd07e641580",
     "code/validated-examples/2026-11-22/thermostats/verification.json": "c14f55ac05d93269dbf8eef4a2a4042f75764d5228d06f8e41039d0b60351905",
+    "code/validated-examples/2026-11-23-r2/guderley/atlas-guderley-2026-11-23-r2.zip": "ca6974a8e48f8d6a2ad81ad74bce173dcff3656e35a465d9e75fac3d6cbdbfb6",
+    "code/validated-examples/2026-11-23-r2/guderley/cases.json": "141e0de47934171fc3ddc943bdedd7b0bda34ead92b13e03fee48aac5ffbad98",
+    "code/validated-examples/2026-11-23-r2/guderley/results/guderley-implosion.png": "af3c5bc89657b250436a73571bfb793345c17dc283c08d8f9b278060138918f9",
+    "code/validated-examples/2026-11-23-r2/guderley/results/result.json": "1ed7e0d78c95488bd804a62946785040aa30b8b45a39f2e575ce8bf0ea53a0ea",
+    "code/validated-examples/2026-11-23-r2/guderley/source-manifest.json": "21ad6b276da23b43f14f945275ede89423c84382684fbb11efaaf2479542d942",
+    "code/validated-examples/2026-11-23-r2/guderley/verification.json": "f1aec66cb2d92f0166bd948ea685ad9c193ebf74d1be67b0cc2cfa1d254dc554",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/atlas-noh-cartesian-2026-11-23-r2.zip": "2145beb161f993c1608fc5ac167af5278d58e10f92e74ed37e5fb9c35243b918",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/cases.json": "49b94c1f65e269d4a878be3a4d8778375b88b767f5dd01998ae5fe6b8fc2b3ee",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/results/noh-cartesian-2d.png": "cca6fdfc8f524ee05f729437b38ce064f276aaebe1485ed6e26045c279ac1ae4",
@@ -557,7 +563,7 @@
     "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "e911630439324bd63c075829ed175621068e33088c8a874cb774d725d49a2446",
-    "numerical-methods-atlas/locales/messages.json": "a56c00dd0502482140a934bd6109bc7fe09798d9bd4676c63854f3ea6b2d6053"
+    "numerical-methods-atlas/gallery/preview-manifest.json": "c478bc4512ba218b3a7f0f9fbbe8293b64fe7053cf84daffc8c3e4bf3b0765d8",
+    "numerical-methods-atlas/locales/messages.json": "e4435c7ea610f9f1ef9604b4b4794d6c7dbaf7d17f84047b762691c8e748ea14"
   }
 }

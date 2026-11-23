@@ -240,6 +240,21 @@
         "ja": "同じ2次元Euler等エントロピー渦を、背景Mach数.1/.01、16²・32²・64²、T=.1で計算します。両流束に無制限の中心primitive MUSCL再構築を用い、通常Roeと数値散逸をMiczek系行列で前処理するRoeをSSPRK(3,3)で比較します。物理時間項と音響CFL=.2を保つ限定例です。",
         "en": "The same 2D Euler isentropic-vortex family is evolved at background Mach numbers .1 and .01 on 16², 32² and 64² grids to T=.1. Both Roe variants use unlimited central primitive-variable MUSCL reconstruction and SSPRK(3,3); one preconditions numerical dissipation with a Miczek-type matrix. Physical time and acoustic CFL=.2 are retained."
       }
+    },
+    {
+      "id": "guderley",
+      "edition": "2026-11-23-r2",
+      "title": {
+        "ja": "Guderley収束衝撃波：球対称の軽量検証",
+        "en": "Guderley converging shock: lightweight spherical-radial verification"
+      },
+      "fields": [
+        "fluid"
+      ],
+      "intro": {
+        "ja": "圧力ゼロの静止上流へ進むGuderley収束衝撃波を、γ=1.4、r∈[0,.75]、t=-1から-.85、128/256/512球殻のHLL＋Heunで計算します。R_s(-1)=.6の相似場から初期化し、原点到達前の衝撃軌道・保存量の球殻平均・保存収支を半解析参照と比較します。図は1D半径結果の2D断面表示です。",
+        "en": "HLL plus Heun follows a Guderley shock into stationary zero-pressure upstream gas at gamma=1.4, r in [0,0.75], t=-1 to -0.85 on 128/256/512 shells. Initialize the similarity field with Rs(-1)=0.6 and compare the pre-collapse trajectory, conserved shell means and budgets with a semi-analytic reference. The figure is a 2D section display of 1D radial results."
+      }
     }
   ],
   "case_problem_ids": {
@@ -288,7 +303,8 @@
     "sedov-blast": "sedov",
     "double-mach-reflection": "double-mach",
     "forward-step-m3": "forward-step",
-    "low-mach-vortex": "isentropic-vortex"
+    "low-mach-vortex": "isentropic-vortex",
+    "guderley-implosion": "guderley"
   },
   "routine_policy": {
     "ja": "通常の補助例CIは、公開レジストリに登録した補助配布グループをNumPy・SciPy・pytestで実行します。保存済みの独立参照は版・入力・実行記録を照合し、新規の参照計算と区別します。量子収束を含む従来の共通22例は必要時の手動実行とし、既存の配布物・公差・履歴を保持します。",
@@ -386,6 +402,10 @@
     "low-mach-vortex": {
       "ja": "実装するのは数値流束の散逸行列D=P⁻¹|PA|の前処理です。擬似時間の定常反復・二重時間積分による加速や、対流刻みでの陽的安定性を検証するものではありません。SSPRK(3,3)という名称だけから強安定性や非線形正値性の定理を適用せず、固定実行と標本化した定数状態Fourierモードの範囲を区別します。 最細のM∞=.01では速度誤差と渦の運動エネルギー保持が改善しますが、全域の動圧規格化圧力L1は通常Roeの約.01194に対し前処理側は約.01260で、圧力誤差が常に小さくなる結果ではありません。図の渦度・背景流からの速度差は中心部分の表示で、誤差判定は全域と固定coreを区別します。",
       "en": "The implementation preconditions the numerical-flux dissipation matrix D=P⁻¹|PA|. It does not implement steady pseudo-time or dual-time acceleration, or validate an explicit convective time step. The SSPRK(3,3) name alone does not supply strong-stability or nonlinear positivity guarantees; fixed runs and sampled constant-state Fourier modes have distinct scopes. At the finest M∞=.01 grid, velocity error and vortex kinetic-energy retention improve, but whole-domain dynamically normalized pressure L1 is about .01194 for ordinary Roe and .01260 for preconditioned Roe. Pressure error is not uniformly improved. The vorticity/velocity-perturbation illustration is a central crop; diagnostics distinguish the whole box from a fixed core."
+    },
+    "guderley-implosion": {
+      "ja": "γ=1.4・冷たい一様な上流を持つ球対称Guderley相似解の収束前分岐です。相似指数の固有値探索・相似ODE積分・衝撃位置で分割した球殻求積を含む半解析参照で、閉形式の厳密セル平均ではありません。ExactPackに基づく参照実装と有限体積PDE計算の役割を分け、独立した相似解実装どうしの照合とは扱いません。原点での収束、反射後の衝撃波、一般のEOSは今回の範囲外です。 全体積の密度・圧力L1と、事前固定したr≥.8R_sの活性領域L1は3格子で減少しましたが、衝撃層の密度・圧力L∞やセル幅単位の衝撃位置差は単調減少しません。原点への収束や細部の高次収束は主張しません。冷たい上流を含め最小内部エネルギー密度は今回0で、許容帯内の音速平方根ガードも全3計算で0回でした。",
+      "en": "The pre-collapse branch of the spherical Guderley similarity solution at gamma=1.4 with a cold uniform upstream state. Numerical eigenvalue shooting, similarity-ODE integration and shock-split shell quadrature make this a semi-analytic reference, not closed-form exact cell means. Distinguish the ExactPack-based evaluator from the finite-volume PDE calculation; this is not a comparison between independent similarity implementations. Collapse at the origin, the reflected branch and general equations of state are outside this example. Full-volume density/pressure L1 and the predetermined r>=0.8*Rs active-region L1 decrease across the three grids, but shock-layer density/pressure Linf and shock-location error in cell widths do not decrease monotonically. No collapse or high-order shock-detail convergence is claimed. Minimum raw internal-energy density was 0, including the cold upstream, and the sound-speed square-root guard was used zero times in all three runs."
     }
   },
   "case_equations": {
@@ -441,6 +461,15 @@
       "note": {
         "ja": "無外力の2次元理想気体Euler系を、元の保存変数・物理時間で更新します。γ=1.4、周期20×20領域、背景圧力をMach数に応じて変える等エントロピー渦が固定入力です。",
         "en": "Unforced 2D ideal-gas Euler is advanced in the original conservative variables and physical time. Fixed inputs use gamma=1.4, a periodic 20×20 box and a consistently scaled isentropic vortex with Mach-dependent background pressure."
+      }
+    },
+    "guderley-implosion": {
+      "ids": [
+        "euler"
+      ],
+      "note": {
+        "ja": "未衝撃上流の圧力ゼロ・γ=1.4の理想気体Euler系の1次元球半径対称形。原点到達前の時区間、相似初期場、境界条件、球殻平均はこの固定入力で定義します。",
+        "en": "The one-dimensional spherical-radial ideal-gas Euler system with zero upstream pressure and gamma=1.4. The fixed input defines a pre-collapse interval, similarity initial field, boundaries and shell averaging."
       }
     }
   }

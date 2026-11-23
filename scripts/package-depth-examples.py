@@ -3,7 +3,7 @@
 import argparse,hashlib,importlib.metadata,json,os,re,shutil,subprocess,sys,tempfile,time,xml.etree.ElementTree as ET,zipfile
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
-GROUPS=['foundations','models','particles','mhd','thermostats','biology','mcmc','mhd-convergence','foundations-conditioning','particle-transport', 'splitting', 'noh', 'noh-cartesian', 'sedov', 'double-mach', 'forward-step', 'low-mach']
+GROUPS=['foundations','models','particles','mhd','thermostats','biology','mcmc','mhd-convergence','foundations-conditioning','particle-transport', 'splitting', 'noh', 'noh-cartesian', 'sedov', 'double-mach', 'forward-step', 'low-mach', 'guderley']
 
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def dump(p,x):p.write_text(json.dumps(x,ensure_ascii=False,indent=2,allow_nan=False)+'\n')
@@ -18,6 +18,13 @@ def package(group,edition):
     metadata=json.loads((source/'cases.json').read_text());metadata=metadata['cases'] if isinstance(metadata,dict) else metadata
     ids={c['id'] for c in metadata};assert len(ids)==len(metadata) and ids
     assert all(re.fullmatch(r'[a-z][a-z0-9-]+',i) for i in ids)
+    # Match the public loader's metadata contract before executing a solver.
+    for case in metadata:
+        assert case['method_ids'] and len(case['method_ids'])==len(set(case['method_ids']))
+        for field in ['title','summary','assumptions','algorithm','validation','limits']:
+            assert all(isinstance(case[field][language],str) and case[field][language].strip()
+                       for language in ['ja','en']), (case['id'],field)
+        assert case['references'] and all(reference.get('review_level') for reference in case['references'])
     with tempfile.TemporaryDirectory(prefix='atlas-validation-') as tmp:
         tmp=Path(tmp);stage=tmp/prefix;stage.mkdir()
         for p in source.rglob('*'):

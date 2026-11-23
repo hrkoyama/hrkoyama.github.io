@@ -2065,6 +2065,61 @@
             "ja": "無次元の球半径対称Euler系。1D半径方向の密度・運動量・全エネルギーを体積重み付きで発展させます。",
             "en": "Nondimensional spherical-radial Euler flow, evolving radial density, momentum and total energy with volume weighting."
           }
+        },
+        {
+          "id": "guderley",
+          "name": {
+            "ja": "Guderleyの収束衝撃波",
+            "en": "Guderley converging shock"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/results/guderley-implosion-preview.png",
+            "sha256": "03774f695db7f8e07eb006db120075d808871a194e1ab59abb815995fc53f383",
+            "width": 1376,
+            "height": 880,
+            "caption": {
+              "ja": "1次元球対称Eulerの保存済み半径密度を子午面に表示。γ=1.4、512球殻、r∈[0,.75]、R_s(−1)=.6、t=−.85。圧力ゼロの静止上流へ進む収束前の衝撃波を半解析参照と比較します。2D Cartesianや原点反射後の計算ではありません。",
+              "en": "A meridional-section display of saved one-dimensional spherical-radial Euler density: gamma=1.4, 512 shells, r in [0,0.75], Rs(-1)=0.6, t=-0.85. Compare the pre-collapse shock entering stationary zero-pressure upstream gas with a semi-analytic reference. This is not 2D Cartesian or post-collapse evolution."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/guderley/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/guderley/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/guderley/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/guderley/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "guderley-implosion",
+              "kind": "supplement",
+              "name": {
+                "ja": "Guderley収束衝撃波：球対称の軽量検証",
+                "en": "Guderley converging shock: lightweight spherical-radial verification"
+              },
+              "scope": {
+                "ja": "冷たい静止気体へ内向きに進む球対称Guderley衝撃波を、128/256/512個の球殻でt=−1から−.85まで計算します。HLL流束とHeun法を、相似指数の固有値・半解析場・衝撃位置・保存収支と照合する軽量例です。",
+                "en": "An inward spherical Guderley shock in cold stationary gas is evolved from t=-1 to -0.85 on 128/256/512 radial shells. HLL fluxes and Heun steps are checked against a similarity eigenvalue/field, shock trajectory and discrete conservation budgets."
+              },
+              "method_ids": [
+                "hll",
+                "heun"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/guderley-implosion/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/guderley-implosion/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/atlas-guderley-2026-11-23-r2.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "理想気体Eulerの球半径対称系。球殻体積を重みとして密度・半径運動量・全エネルギーを発展させ、半径運動量の幾何源を分けて積算します。",
+            "en": "Spherical-radial ideal-gas Euler flow, evolving density, radial momentum and total energy with shell-volume weighting and separately integrating the radial-momentum geometric source."
+          }
         }
       ]
     },
@@ -5281,13 +5336,13 @@
   },
   "execution_example_count": 22,
   "problem_routes_source_sha256": {
-    "catalog/atlas-depth-expansion.json": "d664e9e67d7661114a212229bd05104fc479d37137d697cd93d77c801288ca47",
+    "catalog/atlas-depth-expansion.json": "f9f0dc0fae15eb6b1e82b5179289e8505f95dfeea6cbf59a572fa479f9073016",
     "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
-    "catalog/atlas-methods.json": "522672ce3ce6e90f529ad1ae8ab3a1269ab35658eb6ae99460e1f256fca7afa2",
-    "catalog/atlas-problem-links.json": "1bdb911b9d6917282288dc3aaa46389778cfe176d4c70f42d57b3169939f4ad5",
-    "catalog/atlas-reference-supplements.json": "a0398611d998d2b39b54c82bc5897904be7a6cc060665bf2a956be7e0e16ce0a",
-    "catalog/atlas-test-problems.json": "872d6a32fa180fc575ac2e014734d6dfbba0632aee8c54866df254d3fb0d8fbb",
+    "catalog/atlas-methods.json": "0ea9515873898b348d1cb20caeb6434a2f551548e3996b19683fb2d51a6d5a6b",
+    "catalog/atlas-problem-links.json": "b11d784c7ff9809b0f562ae0f7ad3fccd97834f7866716574d561e854d07580e",
+    "catalog/atlas-reference-supplements.json": "84387dd3b1a0148eeaa9d0b8258f09f5ec7f903efadcd7680efc8c8239445339",
+    "catalog/atlas-test-problems.json": "e1e23af794544805ca27bb02f50ad0f89bdba9f2d03f41f324300db0997edf84",
     "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
     "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
     "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
@@ -5343,6 +5398,11 @@
     "code/validated-examples/2026-11-22/thermostats/results/result.json": "7971007807acce9f75261b684b789f196e1d5dffc80797e102d1b0bebbc93f11",
     "code/validated-examples/2026-11-22/thermostats/source-manifest.json": "81a854bdfe3ae33b4eb4bffdccc9ab15a09f2bddbffb294cd2c2cbd07e641580",
     "code/validated-examples/2026-11-22/thermostats/verification.json": "c14f55ac05d93269dbf8eef4a2a4042f75764d5228d06f8e41039d0b60351905",
+    "code/validated-examples/2026-11-23-r2/guderley/atlas-guderley-2026-11-23-r2.zip": "ca6974a8e48f8d6a2ad81ad74bce173dcff3656e35a465d9e75fac3d6cbdbfb6",
+    "code/validated-examples/2026-11-23-r2/guderley/cases.json": "141e0de47934171fc3ddc943bdedd7b0bda34ead92b13e03fee48aac5ffbad98",
+    "code/validated-examples/2026-11-23-r2/guderley/results/result.json": "1ed7e0d78c95488bd804a62946785040aa30b8b45a39f2e575ce8bf0ea53a0ea",
+    "code/validated-examples/2026-11-23-r2/guderley/source-manifest.json": "21ad6b276da23b43f14f945275ede89423c84382684fbb11efaaf2479542d942",
+    "code/validated-examples/2026-11-23-r2/guderley/verification.json": "f1aec66cb2d92f0166bd948ea685ad9c193ebf74d1be67b0cc2cfa1d254dc554",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/atlas-noh-cartesian-2026-11-23-r2.zip": "2145beb161f993c1608fc5ac167af5278d58e10f92e74ed37e5fb9c35243b918",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/cases.json": "49b94c1f65e269d4a878be3a4d8778375b88b767f5dd01998ae5fe6b8fc2b3ee",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/results/result.json": "e121c2f5171ee53491b492019311d002ceb44213f6f7cd43051a3ca68f74c694",
@@ -5376,7 +5436,7 @@
     "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "e911630439324bd63c075829ed175621068e33088c8a874cb774d725d49a2446"
+    "numerical-methods-atlas/gallery/preview-manifest.json": "c478bc4512ba218b3a7f0f9fbbe8293b64fe7053cf84daffc8c3e4bf3b0765d8"
   },
   "supplemental_case_ids": [
     "fitzhugh-nagumo",

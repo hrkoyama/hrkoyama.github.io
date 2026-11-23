@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "kind": "semi-analytic-reference-qualification",
+  "passed": true,
+  "checks": {
+    "computed lambda matches archived Lazarus spherical gamma1.4 table within1e-7": true,
+    "computed alpha matches official ExactPack regression within1e-7": true,
+    "critical-phase matching residual below2e-7": true,
+    "dense ODE reached entire fixed branch and is finite": true,
+    "cold upstream is rho1 u0 p0 exactly": true,
+    "strong-shock jump scaled error below2e-12": true,
+    "eight calls to unchanged original state agree within5e-6": true,
+    "split-shock Gauss16/32 conserved and pressure averages agree within2e-7": true
+  },
+  "metadata": {
+    "geometry": 3,
+    "gamma": 1.4,
+    "rho0": 1.0,
+    "lambda": 1.3943607844230872,
+    "alpha": 0.7171745011559165,
+    "shock_scale": 0.6,
+    "lazarus_times": [
+      -1.0,
+      -0.85
+    ],
+    "domain": [
+      0,
+      0.75
+    ],
+    "similarity_x_end": -0.6132747790371198,
+    "max_similarity_radius": 1.42,
+    "ode_success": true,
+    "ode_steps": 36,
+    "ode_nfev": 254,
+    "exactpack_public_times": [
+      0.0,
+      0.11250364830000002
+    ],
+    "reflected_branch_executed": false,
+    "source_independence": "actual pinned ExactPack eexp and RHS with a pre-collapse dense adapter"
+  },
+  "eigenvalue": {
+    "lambda_table": 1.3943607838,
+    "alpha_official_test": 0.717174501,
+    "Cdiff": -2.8882521374562486e-12,
+    "critical_points_in_fixed_branch": [
+      {
+        "x": -0.8450866934121276,
+        "r_over_Rs": 1.1282999007295973,
+        "VCR": [
+          -0.6533923946907427,
+          0.34660760530925827,
+          8.49173539950631
+        ]
+      }
+    ]
+  },
+  "strong_shock_scaled_error": 2.997975320367581e-16,
+  "max_original_state_scaled_difference": 8.73944472346011e-10,
+  "original_state_calls": [
+    {
+      "t": -1.0,
+      "r": 0.606,
+      "r_over_Rs": 1.01,
+      "dense_rho_u_p": [
+        6.247369106562781,
+        -0.3545551324108361,
+        0.1561334765779895
+      ],
+      "original_rho_u_p": [
+        6.247369106897718,
+        -0.354555132410639,
+        0.1561334765558965
+      ],
+      "scaled_difference": 3.3493741113943543e-10
+    },
+    {
+      "t": -1.0,
+      "r": 0.624,
+      "r_over_Rs": 1.04,
+      "dense_rho_u_p": [
+        6.916447079438383,
+        -0.3434571842917448,
+        0.16110475947460964
+      ],
+      "original_rho_u_p": [
+        6.916447079753158,
+        -0.34345718429130406,
+        0.161104759451366
+      ],
+      "scaled_difference": 3.147748728338229e-10
+    },
+    {
+      "t": -1.0,
+      "r": 0.648,
+      "r_over_Rs": 1.08,
+      "dense_rho_u_p": [
+        7.687601773858174,
+        -0.3305686927819424,
+        0.16660263997376207
+      ],
+      "original_rho_u_p": [
+        7.687601774047445,
+        -0.3305686927813204,
+        0.16660263995544908
+      ],
+      "scaled_difference": 1.8927082123809669e-10
+    },
+    {
+      "t": -1.0,
+      "r": 0.72,
+      "r_over_Rs": 1.2,
+      "dense_rho_u_p": [
+        9.50449836607905,
+        -0.3007127011771664,
+        0.17709178284135618
+      ],
+      "original_rho_u_p": [
+        9.504498365205105,
+        -0.300712701189637,
+        0.17709178291083583
+      ],
+      "scaled_difference": 8.73944472346011e-10
+    },
+    {
+      "t": -0.85,
+      "r": 0.5393288811162258,
+      "r_over_Rs": 1.01,
+      "dense_rho_u_p": [
+        6.247369106562777,
+        -0.37123242643593785,
+        0.1711670970519244
+      ],
+      "original_rho_u_p": [
+        6.247369106897714,
+        -0.37123242643573146,
+        0.17116709702770405
+      ],
+      "scaled_difference": 3.349365229610157e-10
+    },
+    {
+      "t": -0.85,
+      "r": 0.5553485508523514,
+      "r_over_Rs": 1.04,
+      "dense_rho_u_p": [
+        6.916447079438381,
+        -0.35961246149368303,
+        0.17661704975065468
+      ],
+      "original_rho_u_p": [
+        6.916447079753156,
+        -0.3596124614932216,
+        0.17661704972517284
+      ],
+      "scaled_difference": 3.147748728338229e-10
+    },
+    {
+      "t": -0.85,
+      "r": 0.5767081105005187,
+      "r_over_Rs": 1.08,
+      "dense_rho_u_p": [
+        7.687601773858172,
+        -0.3461177309457162,
+        0.18264430454317987
+      ],
+      "original_rho_u_p": [
+        7.687601774047443,
+        -0.34611773094506487,
+        0.18264430452310354
+      ],
+      "scaled_difference": 1.8927082123809669e-10
+    },
+    {
+      "t": -0.85,
+      "r": 0.6407867894450208,
+      "r_over_Rs": 1.2,
+      "dense_rho_u_p": [
+        9.50449836607905,
+        -0.3148573959683928,
+        0.19414341526920126
+      ],
+      "original_rho_u_p": [
+        9.504498365205105,
+        -0.31485739598145,
+        0.19414341534537094
+      ],
+      "scaled_difference": 8.73944472346011e-10
+    }
+  ],
+  "max_Gauss16_32_scaled_difference": 4.317845738055493e-10,
+  "quadrature": [
+    {
+      "N": 128,
+      "t": -1.0,
+      "scaled_q_difference": 4.317845738055493e-10,
+      "scaled_pressure_difference": 5.852077805110722e-11
+    },
+    {
+      "N": 128,
+      "t": -0.85,
+      "scaled_q_difference": 1.3454311329342243e-10,
+      "scaled_pressure_difference": 1.817771447458606e-11
+    },
+    {
+      "N": 256,
+      "t": -1.0,
+      "scaled_q_difference": 5.118890119736328e-12,
+      "scaled_pressure_difference": 6.931318940689847e-13
+    },
+    {
+      "N": 256,
+      "t": -0.85,
+      "scaled_q_difference": 1.2594411901235212e-10,
+      "scaled_pressure_difference": 1.706142508010481e-11
+    },
+    {
+      "N": 512,
+      "t": -1.0,
+      "scaled_q_difference": 8.896135651638538e-13,
+      "scaled_pressure_difference": 1.2066850664479512e-13
+    },
+    {
+      "N": 512,
+      "t": -0.85,
+      "scaled_q_difference": 8.097287714235747e-12,
+      "scaled_pressure_difference": 1.0970100210586789e-12
+    }
+  ],
+  "source_scope": "actual pinned eexp and original ramsey.state/RHS; custom dense pre-collapse adapter, not independent implementation",
+  "pde_evolution_executed": false,
+  "reflected_branch_executed": false,
+  "duration_seconds": 43.13773204100107
+}

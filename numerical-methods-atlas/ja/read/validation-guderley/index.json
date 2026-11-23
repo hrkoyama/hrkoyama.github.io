@@ -1,0 +1,1151 @@
+{
+  "title": "Guderley収束衝撃波：球対称の軽量検証",
+  "html": "<h1>Guderley収束衝撃波：球対称の軽量検証</h1><p>圧力ゼロの静止上流へ進むGuderley収束衝撃波を、γ=1.4、r∈[0,.75]、t=-1から-.85、128/256/512球殻のHLL＋Heunで計算します。R_s(-1)=.6の相似場から初期化し、原点到達前の衝撃軌道・保存量の球殻平均・保存収支を半解析参照と比較します。図は1D半径結果の2D断面表示です。</p><aside class=\"validation-scope\"><p>共通22実行例の台帳とは別に管理する追加検証集です。配布ZIPを独立展開し、各グループの全固定入力と検査を実行した記録を示します。設定・手法・刻み幅の違いを独立した物理問題の数には加算しません。</p><p>通常の補助例CIは、公開レジストリに登録した補助配布グループをNumPy・SciPy・pytestで実行します。保存済みの独立参照は版・入力・実行記録を照合し、新規の参照計算と区別します。量子収束を含む従来の共通22例は必要時の手動実行とし、既存の配布物・公差・履歴を保持します。</p></aside><nav class=\"validation-actions\"><a href=\"/numerical-methods-atlas/validation/?lang=ja\">追加検証の一覧</a><a href=\"/code/validated-examples/2026-11-23-r2/guderley/atlas-guderley-2026-11-23-r2.zip\">コード・テスト / ZIP</a><a href=\"/code/validated-examples/2026-11-23-r2/guderley/verification.json\">独立展開の検証記録</a></nav><nav class=\"validation-toc\" aria-label=\"この章の例\"><a href=\"#guderley-implosion\">Guderley収束衝撃波：球対称の軽量検証</a></nav><section><h2 id=\"run-all\">配布版を取得して実行する</h2><p>ZIPの atlas-guderley-2026-11-23-r2 フォルダで実行します。このコマンドは配布版の全1例を実行します。新規または空の出力先を指定してください。</p><pre><code>python -m pip install -r requirements.txt\npython -m pytest -q\npython run.py --input inputs.json --output output</code></pre><p>Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。</p></section><article class=\"validation-case\" data-validation-case=\"guderley-implosion\" id=\"guderley-implosion\"><h2>Guderley収束衝撃波：球対称の軽量検証</h2><p>冷たい静止気体へ内向きに進む球対称Guderley衝撃波を、128/256/512個の球殻でt=−1から−.85まで計算します。HLL流束とHeun法を、相似指数の固有値・半解析場・衝撃位置・保存収支と照合する軽量例です。</p><nav class=\"validation-actions\" aria-label=\"コード・入力・検証\"><a href=\"/numerical-methods-atlas/validation/guderley-implosion/?lang=ja\">固定入力・実行入口</a><a href=\"/code/validated-examples/2026-11-23-r2/guderley/atlas-guderley-2026-11-23-r2.zip\">コード / ZIP</a><a href=\"/code/validated-examples/2026-11-23-r2/guderley/inputs.json\">固定入力 / JSON</a><a href=\"/code/validated-examples/2026-11-23-r2/guderley/results/result.json\">全結果 / JSON</a><a href=\"/code/validated-examples/2026-11-23-r2/guderley/source-manifest.json\">配布物のSHA-256</a><a href=\"/code/validated-examples/2026-11-23-r2/guderley/verification.json\">独立展開の検証記録</a></nav><details class=\"execution-resource-details\"><summary>手法・式・図・参照解</summary><div class=\"execution-navigation execution-resource-navigation\" data-execution-navigation=\"guderley-implosion\" role=\"group\" aria-label=\"この実行例に関連する資料\"><div class=\"execution-navigation-grid\"><div class=\"execution-navigation-card\" data-execution-navigation-card=\"methods\"><p class=\"execution-navigation-label\"><strong>使用手法</strong></p><ul class=\"execution-navigation-links\"><li data-execution-method-id=\"hll\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/methods/hll/?lang=ja\" data-execution-method-link>HLL</a></li><li data-execution-method-id=\"heun\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/methods/heun/?lang=ja\" data-execution-method-link>Heun法／SSPRK(2,2)</a></li></ul><p class=\"execution-navigation-note\">この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。</p></div><div class=\"execution-navigation-card\" data-execution-navigation-card=\"equations\"><p class=\"execution-navigation-label\"><strong>方程式</strong></p><p class=\"execution-navigation-primary\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/validation/guderley-implosion/?lang=ja#guderley-implosion-ja-algorithm\" data-execution-formulation-link>この実行例の式と条件</a></p><p class=\"execution-navigation-note\">面積4πr²と球殻体積4πΔ(r³)/3を用いた第一次数の球対称有限体積法です。共有HLL面流束の発散に、半径方向運動量の圧力幾何項p_iΔA/Vを加え、Heun法・CFL=.4で更新します。中心は面積ゼロの反射条件、外側は各RK段の実時刻に評価した相似場です。全3保存量について実際の境界面流束と幾何ソースを同じHeun重みで積分します。状態floor、圧力修復、時間刻みの隠れた再試行はありません。</p><ul class=\"execution-navigation-links\"><li data-execution-equation-id=\"euler\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja\" data-execution-equation-link>圧縮性Euler方程式</a><p class=\"execution-navigation-equation-note\">未衝撃上流の圧力ゼロ・γ=1.4の理想気体Euler系の1次元球半径対称形。原点到達前の時区間、相似初期場、境界条件、球殻平均はこの固定入力で定義します。</p></li></ul></div><div class=\"execution-navigation-card\" data-execution-navigation-card=\"figure\"><p class=\"execution-navigation-label\"><strong>問題の図</strong></p><a class=\"execution-navigation-figure\" data-execution-figure-link href=\"https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/results/guderley-implosion.png\"><img src=\"https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/results/guderley-implosion.png\" alt=\"Guderley収束衝撃波：球対称の軽量検証：この実行例の保存済み検証図。\" width=\"2016\" height=\"1504\" loading=\"lazy\" decoding=\"async\"></a><p class=\"execution-navigation-note\">この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。</p><p class=\"execution-navigation-primary\" data-execution-problem-id=\"guderley\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/problems/guderley/?lang=ja\" data-execution-problem-link>Guderleyの収束衝撃波</a></p><p class=\"execution-navigation-primary\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/problems/guderley/?lang=ja#code-ja\" data-execution-problem-code>この問題のコード・検証状況</a></p></div><div class=\"execution-navigation-card\" data-execution-navigation-card=\"references\"><p class=\"execution-navigation-label\"><strong>厳密解・参照解</strong></p><p class=\"execution-navigation-primary\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/validation/guderley-implosion/?lang=ja#guderley-implosion-ja-validation\" data-execution-validation-link>この実行例の参照・検証</a></p><details class=\"execution-navigation-scope\"><summary>参照・検証の確認範囲</summary><p>33単体検査と3格子55判定を実行前に固定し、警告をエラーにする設定で合格しました。冷たい上流でのゼロ音速HLL分岐、幾何的な静止圧力釣合い、共有流束の収支、実際の2段の境界時刻、不正段の生配列保持を確認します。全体積L1と、あらかじめr≥.8Rsとした衝撃・非零流れ領域のL1を並べ、冷たい内側で誤差を薄めないようにします。密度・圧力の最大差と保存した時系列からの衝撃軌道も残します。半解析参照は固定LANL ExactPackの相似指数固有値ルーチンとODEを使い、反射後分岐を計算しないキャッシュ付きアダプターです。独自に再実装した相似ODEとは表示しません。別に実装したEuler有限体積計算と参照を比較します。 全体積の密度L1は.02345/.01339/.007722、圧力L1は.03277/.01743/.009477でした。r≥.8Rsの密度L1も.02414/.01378/.007948と減少します。最細の衝撃位置は.530273、相似参照は.533989で、差は約2.54セルです。最大の全3成分収支残差は8.85e-16、全段の最小内部エネルギーと音速専用丸めガード回数はともに0でした。参照のEuler差分代入残差は8.24e-9、有限オフセットの移動衝撃ジャンプ残差は4.40e-8。固有値計算を含む全3計算は元のMacで約44.6秒でした。</p></details><ul class=\"execution-navigation-reference-cases\"><li data-execution-reference-id=\"guderley\" data-reference-relation=\"same-problem\"><p class=\"execution-navigation-relation\">同じ問題の参照 · 半解析参照</p><p class=\"execution-navigation-primary\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-guderley-ja\" data-execution-reference-link>Guderley収束衝撃波：固有値と球対称の半解析参照</a></p><p class=\"execution-navigation-reference-note\">γ=1.4・冷たい一様な上流を持つ球対称Guderley相似解の収束前分岐です。相似指数の固有値探索・相似ODE積分・衝撃位置で分割した球殻求積を含む半解析参照で、閉形式の厳密セル平均ではありません。ExactPackに基づく参照実装と有限体積PDE計算の役割を分け、独立した相似解実装どうしの照合とは扱いません。原点での収束、反射後の衝撃波、一般のEOSは今回の範囲外です。</p></li></ul></div></div></div></details><h3 id=\"guderley-implosion-assumptions\">前提・単位・境界</h3><p>γ=1.4、球対称3次元の半径r∈[0,.75]、衝撃半径Rs(−1)=.6、時間t∈[−1,−.85]を固定します。衝撃前方の内側はρ0=1、u0=p0=0です。外側には初めから衝撃後の相似場があり、領域全体が冷たい一様気体という初期条件ではありません。初期保存量は衝撃位置で積分区間を分けた16点Gauss球殻体積平均とし、32点と照合します。圧力参照はp(保存量平均)で、原始圧力の体積平均とは区別します。</p><aside class=\"validation-scope validation-editorial-note\"><strong>編集上の補足</strong><p>γ=1.4・冷たい一様な上流を持つ球対称Guderley相似解の収束前分岐です。相似指数の固有値探索・相似ODE積分・衝撃位置で分割した球殻求積を含む半解析参照で、閉形式の厳密セル平均ではありません。ExactPackに基づく参照実装と有限体積PDE計算の役割を分け、独立した相似解実装どうしの照合とは扱いません。原点での収束、反射後の衝撃波、一般のEOSは今回の範囲外です。 全体積の密度・圧力L1と、事前固定したr≥.8R_sの活性領域L1は3格子で減少しましたが、衝撃層の密度・圧力L∞やセル幅単位の衝撃位置差は単調減少しません。原点への収束や細部の高次収束は主張しません。冷たい上流を含め最小内部エネルギー密度は今回0で、許容帯内の音速平方根ガードも全3計算で0回でした。</p></aside><h3 id=\"guderley-implosion-algorithm\">採用した計算法</h3><p>面積4πr²と球殻体積4πΔ(r³)/3を用いた第一次数の球対称有限体積法です。共有HLL面流束の発散に、半径方向運動量の圧力幾何項p_iΔA/Vを加え、Heun法・CFL=.4で更新します。中心は面積ゼロの反射条件、外側は各RK段の実時刻に評価した相似場です。全3保存量について実際の境界面流束と幾何ソースを同じHeun重みで積分します。状態floor、圧力修復、時間刻みの隠れた再試行はありません。</p><div class=\"validation-math\"><span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi mathvariant=\"normal\">∂</mi><mi>t</mi></msub><mi>U</mi><mo>+</mo><mfrac><mn>1</mn><msup><mi>r</mi><mn>2</mn></msup></mfrac><msub><mi mathvariant=\"normal\">∂</mi><mi>r</mi></msub><mo stretchy=\"false\">(</mo><msup><mi>r</mi><mn>2</mn></msup><mi>F</mi><mo stretchy=\"false\">)</mo><mo>=</mo><msup><mrow><mo fence=\"true\">(</mo><mn>0</mn><mo separator=\"true\">,</mo><mfrac><mrow><mn>2</mn><mi>p</mi></mrow><mi>r</mi></mfrac><mo separator=\"true\">,</mo><mn>0</mn><mo fence=\"true\">)</mo></mrow><mi>T</mi></msup><mo separator=\"true\">,</mo><mspace width=\"1em\"/><mi>U</mi><mo>=</mo><mo stretchy=\"false\">(</mo><mi>ρ</mi><mo separator=\"true\">,</mo><mi>ρ</mi><mi>u</mi><mo separator=\"true\">,</mo><mi>E</mi><msup><mo stretchy=\"false\">)</mo><mi>T</mi></msup></mrow><annotation encoding=\"application/x-tex\">\\partial_t U+\\frac{1}{r^2}\\partial_r(r^2 F)=\\left(0,\\frac{2p}{r},0\\right)^T,\\quad U=(\\rho,\\rho u,E)^T</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.8444em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord\" style=\"margin-right:0.0556em;\">∂</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2806em;\"><span style=\"top:-2.55em;margin-left:-0.0556em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">t</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:2.0074em;vertical-align:-0.686em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:1.3214em;\"><span style=\"top:-2.314em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0278em;\">r</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.7401em;\"><span style=\"top:-2.989em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">2</span></span></span></span></span></span></span></span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.677em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord\">1</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.686em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mord\"><span class=\"mord\" style=\"margin-right:0.0556em;\">∂</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:-0.0556em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.0278em;\">r</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mopen\">(</span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0278em;\">r</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8641em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">2</span></span></span></span></span></span></span></span><span class=\"mord mathnormal\" style=\"margin-right:0.1389em;\">F</span><span class=\"mclose\">)</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:2.6313em;vertical-align:-0.95em;\"></span><span class=\"minner\"><span class=\"minner\"><span class=\"mopen delimcenter\" style=\"top:0em;\"><span class=\"delimsizing size3\">(</span></span><span class=\"mord\">0</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:1.3214em;\"><span style=\"top:-2.314em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0278em;\">r</span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.677em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord\">2</span><span class=\"mord mathnormal\">p</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.686em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\">0</span><span class=\"mclose delimcenter\" style=\"top:0em;\"><span class=\"delimsizing size3\">)</span></span></span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:1.6812em;\"><span style=\"top:-3.9029em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.1389em;\">T</span></span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:1em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.1413em;vertical-align:-0.25em;\"></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">ρ</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\">ρ</span><span class=\"mord mathnormal\">u</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.0576em;\">E</span><span class=\"mclose\"><span class=\"mclose\">)</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8913em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.1389em;\">T</span></span></span></span></span></span></span></span></span></span></span></span></div><div class=\"validation-math\"><span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi>R</mi><mi>s</mi></msub><mo stretchy=\"false\">(</mo><mi>t</mi><mo stretchy=\"false\">)</mo><mo>=</mo><mn>0.6</mn><mo stretchy=\"false\">(</mo><mo>−</mo><mi>t</mi><msup><mo stretchy=\"false\">)</mo><mi>α</mi></msup><mo separator=\"true\">,</mo><mspace width=\"1em\"/><mi>α</mi><mo>=</mo><mn>1</mn><mi mathvariant=\"normal\">/</mi><mi>λ</mi><mo separator=\"true\">,</mo><mspace width=\"1em\"/><mi>λ</mi><mo>≃</mo><mn>1.3943607844</mn><mo separator=\"true\">,</mo><mspace width=\"1em\"/><mi>t</mi><mo>&lt;</mo><mn>0</mn></mrow><annotation encoding=\"application/x-tex\">R_s(t)=0.6(-t)^\\alpha,\\quad\\alpha=1/\\lambda,\\quad \\lambda\\simeq1.3943607844,\\quad t&lt;0</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0077em;\">R</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">s</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">t</span><span class=\"mclose\">)</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord\">0.6</span><span class=\"mopen\">(</span><span class=\"mord\">−</span><span class=\"mord mathnormal\">t</span><span class=\"mclose\"><span class=\"mclose\">)</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.7144em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.0037em;\">α</span></span></span></span></span></span></span></span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:1em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.0037em;\">α</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord\">1/</span><span class=\"mord mathnormal\">λ</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:1em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\">λ</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">≃</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.8389em;vertical-align:-0.1944em;\"></span><span class=\"mord\">1.3943607844</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:1em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\">t</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">&lt;</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.6444em;\"></span><span class=\"mord\">0</span></span></span></span></span></div><div class=\"validation-math\"><span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><mfrac><mrow><mi>d</mi><msub><mover accent=\"true\"><mi>U</mi><mo>ˉ</mo></mover><mi>i</mi></msub></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac><mo>=</mo><mo>−</mo><mfrac><mrow><msub><mi>A</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn><mi mathvariant=\"normal\">/</mi><mn>2</mn></mrow></msub><msub><mover accent=\"true\"><mi>F</mi><mo stretchy=\"true\">^</mo></mover><mrow><mi>i</mi><mo>+</mo><mn>1</mn><mi mathvariant=\"normal\">/</mi><mn>2</mn></mrow></msub><mo>−</mo><msub><mi>A</mi><mrow><mi>i</mi><mo>−</mo><mn>1</mn><mi mathvariant=\"normal\">/</mi><mn>2</mn></mrow></msub><msub><mover accent=\"true\"><mi>F</mi><mo stretchy=\"true\">^</mo></mover><mrow><mi>i</mi><mo>−</mo><mn>1</mn><mi mathvariant=\"normal\">/</mi><mn>2</mn></mrow></msub></mrow><msub><mi>V</mi><mi>i</mi></msub></mfrac><mo>+</mo><msup><mrow><mo fence=\"true\">(</mo><mn>0</mn><mo separator=\"true\">,</mo><msub><mi>p</mi><mi>i</mi></msub><mfrac><mrow><mi mathvariant=\"normal\">Δ</mi><msub><mi>A</mi><mi>i</mi></msub></mrow><msub><mi>V</mi><mi>i</mi></msub></mfrac><mo separator=\"true\">,</mo><mn>0</mn><mo fence=\"true\">)</mo></mrow><mi>T</mi></msup></mrow><annotation encoding=\"application/x-tex\">\\frac{d\\bar U_i}{dt}=-\\frac{A_{i+1/2}\\widehat F_{i+1/2}-A_{i-1/2}\\widehat F_{i-1/2}}{V_i}+\\left(0,p_i\\frac{\\Delta A_i}{V_i},0\\right)^T</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:2.1831em;vertical-align:-0.686em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:1.4971em;\"><span style=\"top:-2.314em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">d</span><span class=\"mord mathnormal\">t</span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.677em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">d</span><span class=\"mord\"><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8201em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span></span><span style=\"top:-3.2523em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.2222em;\"><span class=\"mord\">ˉ</span></span></span></span></span></span></span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3117em;\"><span style=\"top:-2.55em;margin-left:-0.109em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">i</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.686em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:2.5045em;vertical-align:-0.836em;\"></span><span class=\"mord\">−</span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:1.6685em;\"><span style=\"top:-2.314em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.2222em;\">V</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3117em;\"><span style=\"top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">i</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.7452em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord\"><span class=\"mord mathnormal\">A</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3448em;\"><span style=\"top:-2.5198em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">i</span><span class=\"mbin mtight\">+</span><span class=\"mord mtight\">1/2</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3552em;\"><span></span></span></span></span></span></span><span class=\"mord\"><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.9233em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.1389em;\">F</span></span><span class=\"svg-align\" style=\"width:calc(100% - 0.1667em);margin-left:0.1667em;top:-3.6833em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span style=\"height:0.24em;\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"0.24em\" viewBox=\"0 0 1062 239\" preserveAspectRatio=\"none\"><path d=\"M529 0h5l519 115c5 1 9 5 9 10 0 1-1 2-1 3l-4 22\nc-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z\"/></svg></span></span></span></span></span></span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3448em;\"><span style=\"top:-2.5198em;margin-left:-0.1389em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">i</span><span class=\"mbin mtight\">+</span><span class=\"mord mtight\">1/2</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3552em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">A</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3448em;\"><span style=\"top:-2.5198em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">i</span><span class=\"mbin mtight\">−</span><span class=\"mord mtight\">1/2</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3552em;\"><span></span></span></span></span></span></span><span class=\"mord\"><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.9233em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.1389em;\">F</span></span><span class=\"svg-align\" style=\"width:calc(100% - 0.1667em);margin-left:0.1667em;top:-3.6833em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span style=\"height:0.24em;\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100%\" height=\"0.24em\" viewBox=\"0 0 1062 239\" preserveAspectRatio=\"none\"><path d=\"M529 0h5l519 115c5 1 9 5 9 10 0 1-1 2-1 3l-4 22\nc-1 5-5 9-11 9h-2L532 67 19 159h-2c-5 0-9-4-11-9l-5-22c-1-6 2-12 8-13z\"/></svg></span></span></span></span></span></span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3448em;\"><span style=\"top:-2.5198em;margin-left:-0.1389em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">i</span><span class=\"mbin mtight\">−</span><span class=\"mord mtight\">1/2</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3552em;\"><span></span></span></span></span></span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.836em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:2.6313em;vertical-align:-0.95em;\"></span><span class=\"minner\"><span class=\"minner\"><span class=\"mopen delimcenter\" style=\"top:0em;\"><span class=\"delimsizing size3\">(</span></span><span class=\"mord\">0</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">p</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3117em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">i</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:1.3603em;\"><span style=\"top:-2.314em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.2222em;\">V</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3117em;\"><span style=\"top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">i</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.677em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord\">Δ</span><span class=\"mord\"><span class=\"mord mathnormal\">A</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3117em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">i</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.836em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\">0</span><span class=\"mclose delimcenter\" style=\"top:0em;\"><span class=\"delimsizing size3\">)</span></span></span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:1.6812em;\"><span style=\"top:-3.9029em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.1389em;\">T</span></span></span></span></span></span></span></span></span></span></span></span></div><div class=\"validation-math\"><span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msubsup><mover accent=\"true\"><mi>U</mi><mo>ˉ</mo></mover><mi>i</mi><mrow><mi mathvariant=\"normal\">r</mi><mi mathvariant=\"normal\">e</mi><mi mathvariant=\"normal\">f</mi></mrow></msubsup><mo>=</mo><mfrac><mrow><msubsup><mo>∫</mo><msub><mi>r</mi><mrow><mi>i</mi><mo>−</mo><mn>1</mn><mi mathvariant=\"normal\">/</mi><mn>2</mn></mrow></msub><msub><mi>r</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn><mi mathvariant=\"normal\">/</mi><mn>2</mn></mrow></msub></msubsup><msub><mi>U</mi><mrow><mi mathvariant=\"normal\">s</mi><mi mathvariant=\"normal\">i</mi><mi mathvariant=\"normal\">m</mi></mrow></msub><mo stretchy=\"false\">(</mo><mi>r</mi><mo separator=\"true\">,</mo><mi>t</mi><mo stretchy=\"false\">)</mo><msup><mi>r</mi><mn>2</mn></msup><mtext> </mtext><mi>d</mi><mi>r</mi></mrow><mrow><mo stretchy=\"false\">(</mo><msubsup><mi>r</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn><mi mathvariant=\"normal\">/</mi><mn>2</mn></mrow><mn>3</mn></msubsup><mo>−</mo><msubsup><mi>r</mi><mrow><mi>i</mi><mo>−</mo><mn>1</mn><mi mathvariant=\"normal\">/</mi><mn>2</mn></mrow><mn>3</mn></msubsup><mo stretchy=\"false\">)</mo><mi mathvariant=\"normal\">/</mi><mn>3</mn></mrow></mfrac><mo separator=\"true\">,</mo><mspace width=\"2em\"/><msubsup><mi>p</mi><mi>i</mi><mrow><mi mathvariant=\"normal\">r</mi><mi mathvariant=\"normal\">e</mi><mi mathvariant=\"normal\">f</mi></mrow></msubsup><mo>=</mo><mi>p</mi><mo stretchy=\"false\">(</mo><msubsup><mover accent=\"true\"><mi>U</mi><mo>ˉ</mo></mover><mi>i</mi><mrow><mi mathvariant=\"normal\">r</mi><mi mathvariant=\"normal\">e</mi><mi mathvariant=\"normal\">f</mi></mrow></msubsup><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">\\bar U_i^{\\rm ref}=\\frac{\\int_{r_{i-1/2}}^{r_{i+1/2}}U_{\\rm sim}(r,t)r^2\\,dr}{(r_{i+1/2}^3-r_{i-1/2}^3)/3},\\qquad p_i^{\\rm ref}=p(\\bar U_i^{\\rm ref})</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.1461em;vertical-align:-0.247em;\"></span><span class=\"mord\"><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8201em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span></span><span style=\"top:-3.2523em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.2222em;\"><span class=\"mord\">ˉ</span></span></span></span></span></span></span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8991em;\"><span style=\"top:-2.453em;margin-left:-0.109em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">i</span></span></span><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\"><span class=\"mord mathrm mtight\" style=\"margin-right:0.0778em;\">ref</span></span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.247em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:3.065em;vertical-align:-1.2012em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:1.8638em;\"><span style=\"top:-2.314em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mopen\">(</span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0278em;\">r</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.7959em;\"><span style=\"top:-2.3598em;margin-left:-0.0278em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">i</span><span class=\"mbin mtight\">+</span><span class=\"mord mtight\">1/2</span></span></span></span><span style=\"top:-3.0448em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">3</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.5152em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0278em;\">r</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.7959em;\"><span style=\"top:-2.3598em;margin-left:-0.0278em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">i</span><span class=\"mbin mtight\">−</span><span class=\"mord mtight\">1/2</span></span></span></span><span style=\"top:-3.0448em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">3</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.5152em;\"><span></span></span></span></span></span></span><span class=\"mclose\">)</span><span class=\"mord\">/3</span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-4.0045em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mop\"><span class=\"mop op-symbol small-op\" style=\"margin-right:0.1945em;position:relative;top:-0.0006em;\">∫</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8593em;\"><span style=\"top:-2.3442em;margin-left:-0.1945em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.0278em;\">r</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3448em;\"><span style=\"top:-2.3448em;margin-left:-0.0278em;margin-right:0.0714em;\"><span class=\"pstrut\" style=\"height:2.5357em;\"></span><span class=\"katex-sizing reset-size3 size1 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">i</span><span class=\"mbin mtight\">−</span><span class=\"mord mtight\">1/2</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3695em;\"><span></span></span></span></span></span></span></span></span></span><span style=\"top:-3.2579em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.0278em;\">r</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3448em;\"><span style=\"top:-2.3448em;margin-left:-0.0278em;margin-right:0.0714em;\"><span class=\"pstrut\" style=\"height:2.5357em;\"></span><span class=\"katex-sizing reset-size3 size1 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">i</span><span class=\"mbin mtight\">+</span><span class=\"mord mtight\">1/2</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3695em;\"><span></span></span></span></span></span></span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.6145em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3175em;\"><span style=\"top:-2.55em;margin-left:-0.109em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\"><span class=\"mord mathrm mtight\">sim</span></span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\" style=\"margin-right:0.0278em;\">r</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\">t</span><span class=\"mclose\">)</span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0278em;\">r</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8141em;\"><span style=\"top:-3.063em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">2</span></span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\">d</span><span class=\"mord mathnormal\" style=\"margin-right:0.0278em;\">r</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:1.2012em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:2em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">p</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8991em;\"><span style=\"top:-2.453em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">i</span></span></span><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\"><span class=\"mord mathrm mtight\" style=\"margin-right:0.0778em;\">ref</span></span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.247em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.1491em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\">p</span><span class=\"mopen\">(</span><span class=\"mord\"><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8201em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span></span><span style=\"top:-3.2523em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.2222em;\"><span class=\"mord\">ˉ</span></span></span></span></span></span></span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8991em;\"><span style=\"top:-2.453em;margin-left:-0.109em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">i</span></span></span><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\"><span class=\"mord mathrm mtight\" style=\"margin-right:0.0778em;\">ref</span></span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.247em;\"><span></span></span></span></span></span></span><span class=\"mclose\">)</span></span></span></span></span></div><h3 id=\"guderley-implosion-validation\">何と比較し、何を測るか</h3><p>33単体検査と3格子55判定を実行前に固定し、警告をエラーにする設定で合格しました。冷たい上流でのゼロ音速HLL分岐、幾何的な静止圧力釣合い、共有流束の収支、実際の2段の境界時刻、不正段の生配列保持を確認します。全体積L1と、あらかじめr≥.8Rsとした衝撃・非零流れ領域のL1を並べ、冷たい内側で誤差を薄めないようにします。密度・圧力の最大差と保存した時系列からの衝撃軌道も残します。半解析参照は固定LANL ExactPackの相似指数固有値ルーチンとODEを使い、反射後分岐を計算しないキャッシュ付きアダプターです。独自に再実装した相似ODEとは表示しません。別に実装したEuler有限体積計算と参照を比較します。 全体積の密度L1は.02345/.01339/.007722、圧力L1は.03277/.01743/.009477でした。r≥.8Rsの密度L1も.02414/.01378/.007948と減少します。最細の衝撃位置は.530273、相似参照は.533989で、差は約2.54セルです。最大の全3成分収支残差は8.85e-16、全段の最小内部エネルギーと音速専用丸めガード回数はともに0でした。参照のEuler差分代入残差は8.24e-9、有限オフセットの移動衝撃ジャンプ残差は4.40e-8。固有値計算を含む全3計算は元のMacで約44.6秒でした。</p><h3 id=\"guderley-implosion-limits\">確認の限界と失敗条件</h3><p>収束点t=0から離れた短い時間窓の1次元球対称検証です。原点の特異点、原点反射後、円筒対称、他のγ、一般摂動や非球対称の安定性は未検証です。2次元の図は保存した球殻平均を子午面へ表示したもので、2次元Cartesian計算ではありません。半解析場もODEと求積を数値評価した参照であり、閉形式の厳密セル平均ではありません。冷たい上流では圧力ゼロを許し、64epsの絶対内部エネルギー密度までの丸めによる負値を記録します。許容帯だけの音速平方根ガードは状態修復と分けて回数・最小圧力を残し、非線形正値性の一般保証は主張しません。 衝撃位置のセル単位誤差は1.13/2.27/2.54と単調に減りません。半径の絶対誤差は最初の2格子で同じ約.00665、最細で約.00372です。密度L∞差は.258/.271/.266、圧力L∞差は.492/.494/.466で、いずれも単調な減少を主張できません。L1の減少を衝撃内部の点ごとの解像や原点付近の収束へ拡張しません。</p><h3 id=\"guderley-implosion-measurements\">保存した実測値と判定</h3><p>表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。</p><div class=\"validation-table\" tabindex=\"0\" role=\"region\" aria-label=\"Guderley収束衝撃波：球対称の軽量検証：実測値\"><table><thead><tr><th scope=\"col\">量 / metric</th><th scope=\"col\">実測値</th></tr></thead><tbody><tr><td>n</td><td>512</td></tr><tr><td>time</td><td>-0.85</td></tr><tr><td>steps</td><td>285</td></tr><tr><td>density_l1</td><td>0.0077216186265</td></tr><tr><td>pressure_l1</td><td>0.00947688731818</td></tr><tr><td>active_density_l1</td><td>0.00794832226952</td></tr><tr><td>active_pressure_l1</td><td>0.00947688731818</td></tr><tr><td>density_linf</td><td>0.265597992546</td></tr><tr><td>pressure_linf</td><td>0.466464104136</td></tr><tr><td>maximum_velocity_error</td><td>0.291830263497</td></tr><tr><td>active_volume_fraction</td><td>0.814502239227</td></tr><tr><td>active_inner_radius</td><td>0.427191192963</td></tr><tr><td>shock_radius</td><td>0.5302734375</td></tr><tr><td>reference_shock_radius</td><td>0.533988991204</td></tr><tr><td>shock_error_cells</td><td>2.53648466206</td></tr><tr><td>maximum_history_shock_error_cells</td><td>2.53648466206</td></tr><tr><td>minimum_density_all_stages</td><td>1</td></tr><tr><td>minimum_pressure_all_stages</td><td>0</td></tr><tr><td>minimum_internal_energy_all_stages</td><td>0</td></tr><tr><td>sound_speed_roundoff_guard_evaluations</td><td>0</td></tr><tr><td>minimum_pressure_at_sound_speed_guard</td><td>0</td></tr><tr><td>state_floor_count</td><td>0</td></tr><tr><td>rejected_steps</td><td>0</td></tr><tr><td>minimum_dt</td><td>0.000497049925497</td></tr><tr><td>maximum_dt</td><td>0.0005370156068</td></tr><tr><td>reference_quadrature_density_l1</td><td>4.6073262855e-15</td></tr><tr><td>reference_quadrature_pressure_l1</td><td>8.2958496295e-15</td></tr><tr><td>initial_reference_quadrature_density_l1</td><td>1.45227436667e-15</td></tr><tr><td>initial_reference_quadrature_pressure_l1</td><td>3.2080095343e-15</td></tr></tbody></table></div><div class=\"validation-table\" tabindex=\"0\" role=\"region\" aria-label=\"Guderley収束衝撃波：球対称の軽量検証：判定\"><table><thead><tr><th scope=\"col\">判定 / check</th><th scope=\"col\">合格</th></tr></thead><tbody><tr><td>all three fixed spherical runs completed</td><td>true</td></tr><tr><td>N128: final time before collapse</td><td>true</td></tr><tr><td>N128: strictly positive density all stages</td><td>true</td></tr><tr><td>N128: minimum_internal_energy_all_stages</td><td>true</td></tr><tr><td>N128: minimum_pressure_at_sound_speed_guard</td><td>true</td></tr><tr><td>N128: state_floor_count</td><td>true</td></tr><tr><td>N128: rejected_steps</td><td>true</td></tr><tr><td>N128: mass discrete balance</td><td>true</td></tr><tr><td>N128: radial momentum including geometric source discrete balance</td><td>true</td></tr><tr><td>N128: energy discrete balance</td><td>true</td></tr><tr><td>N128: reference_quadrature_density_l1</td><td>true</td></tr><tr><td>N128: reference_quadrature_pressure_l1</td><td>true</td></tr><tr><td>N128: initial_reference_quadrature_density_l1</td><td>true</td></tr><tr><td>N128: initial_reference_quadrature_pressure_l1</td><td>true</td></tr><tr><td>N128: maximum and trajectory diagnostics retained</td><td>true</td></tr><tr><td>N256: final time before collapse</td><td>true</td></tr><tr><td>N256: strictly positive density all stages</td><td>true</td></tr><tr><td>N256: minimum_internal_energy_all_stages</td><td>true</td></tr><tr><td>N256: minimum_pressure_at_sound_speed_guard</td><td>true</td></tr><tr><td>N256: state_floor_count</td><td>true</td></tr><tr><td>N256: rejected_steps</td><td>true</td></tr><tr><td>N256: mass discrete balance</td><td>true</td></tr><tr><td>N256: radial momentum including geometric source discrete balance</td><td>true</td></tr><tr><td>N256: energy discrete balance</td><td>true</td></tr><tr><td>N256: reference_quadrature_density_l1</td><td>true</td></tr><tr><td>N256: reference_quadrature_pressure_l1</td><td>true</td></tr><tr><td>N256: initial_reference_quadrature_density_l1</td><td>true</td></tr><tr><td>N256: initial_reference_quadrature_pressure_l1</td><td>true</td></tr><tr><td>N256: maximum and trajectory diagnostics retained</td><td>true</td></tr><tr><td>N512: final time before collapse</td><td>true</td></tr><tr><td>N512: strictly positive density all stages</td><td>true</td></tr><tr><td>N512: minimum_internal_energy_all_stages</td><td>true</td></tr><tr><td>N512: minimum_pressure_at_sound_speed_guard</td><td>true</td></tr><tr><td>N512: state_floor_count</td><td>true</td></tr><tr><td>N512: rejected_steps</td><td>true</td></tr><tr><td>N512: mass discrete balance</td><td>true</td></tr><tr><td>N512: radial momentum including geometric source discrete balance</td><td>true</td></tr><tr><td>N512: energy discrete balance</td><td>true</td></tr><tr><td>N512: reference_quadrature_density_l1</td><td>true</td></tr><tr><td>N512: reference_quadrature_pressure_l1</td><td>true</td></tr><tr><td>N512: initial_reference_quadrature_density_l1</td><td>true</td></tr><tr><td>N512: initial_reference_quadrature_pressure_l1</td><td>true</td></tr><tr><td>N512: maximum and trajectory diagnostics retained</td><td>true</td></tr><tr><td>similarity qualification: maximum_scaled_euler_residual</td><td>true</td></tr><tr><td>similarity qualification: maximum_scaled_jump_residual</td><td>true</td></tr><tr><td>similarity exponent agrees with tabulated lambda</td><td>true</td></tr><tr><td>finest density_l1</td><td>true</td></tr><tr><td>finest pressure_l1</td><td>true</td></tr><tr><td>finest active_density_l1</td><td>true</td></tr><tr><td>finest active_pressure_l1</td><td>true</td></tr><tr><td>finest shock_error_cells</td><td>true</td></tr><tr><td>density_l1 decreases across the three grids</td><td>true</td></tr><tr><td>active_density_l1 decreases across the three grids</td><td>true</td></tr><tr><td>pressure_l1 decreases across the three grids</td><td>true</td></tr><tr><td>last-pair active density L1 slope</td><td>true</td></tr></tbody></table></div><figure><img loading=\"lazy\" src=\"/code/validated-examples/2026-11-23-r2/guderley/results/guderley-implosion.png\" width=\"2016\" height=\"1504\" alt=\"Guderley収束衝撃波：球対称の軽量検証の保存済み検証図\"><figcaption>保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。</figcaption></figure><details class=\"validation-records\"><summary>全記録を表で読む</summary><div class=\"validation-table\" tabindex=\"0\" role=\"region\" aria-label=\"guderley-implosion records\"><table><thead><tr><th scope=\"col\">n</th><th scope=\"col\">time</th><th scope=\"col\">steps</th><th scope=\"col\">density_l1</th><th scope=\"col\">pressure_l1</th><th scope=\"col\">active_density_l1</th><th scope=\"col\">active_pressure_l1</th><th scope=\"col\">density_linf</th><th scope=\"col\">pressure_linf</th><th scope=\"col\">maximum_velocity_error</th><th scope=\"col\">active_volume_fraction</th><th scope=\"col\">active_inner_radius</th><th scope=\"col\">shock_radius</th><th scope=\"col\">reference_shock_radius</th><th scope=\"col\">shock_error_cells</th><th scope=\"col\">maximum_history_shock_error_cells</th><th scope=\"col\">minimum_density_all_stages</th><th scope=\"col\">minimum_pressure_all_stages</th><th scope=\"col\">minimum_internal_energy_all_stages</th><th scope=\"col\">sound_speed_roundoff_guard_evaluations</th><th scope=\"col\">minimum_pressure_at_sound_speed_guard</th><th scope=\"col\">state_floor_count</th><th scope=\"col\">rejected_steps</th><th scope=\"col\">minimum_dt</th><th scope=\"col\">maximum_dt</th><th scope=\"col\">reference_quadrature_density_l1</th><th scope=\"col\">reference_quadrature_pressure_l1</th><th scope=\"col\">initial_integral</th><th scope=\"col\">final_integral</th><th scope=\"col\">boundary_net_integral</th><th scope=\"col\">geometric_source_integral</th><th scope=\"col\">conservation_residual</th><th scope=\"col\">conservation_relative</th><th scope=\"col\">shock_trajectory</th><th scope=\"col\">initial_reference_quadrature_density_l1</th><th scope=\"col\">initial_reference_quadrature_pressure_l1</th><th scope=\"col\">field</th><th scope=\"col\">history</th></tr></thead><tbody><tr><td>128</td><td>-0.85</td><td>71</td><td>0.0234541083645</td><td>0.0327693201838</td><td>0.0241427116311</td><td>0.0327693201838</td><td>0.258371449878</td><td>0.491824821372</td><td>0.296676062156</td><td>0.814502239227</td><td>0.427191192963</td><td>0.52734375</td><td>0.533988991204</td><td>1.13412116551</td><td>1.76819468342</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>7.16280647394e-05</td><td>0.00217890844357</td><td>2.89692426331e-13</td><td>5.01442805195e-13</td><td>[8.206089344193586,-2.301703302347455,0.7323576961002365]</td><td>[11.492857422295556,-3.356590525840208,1.0664451467573306]</td><td>[3.286768078101971,-1.137667428505291,0.3340874506570939]</td><td>[0.0,0.08278020501253855,0.0]</td><td>[-1.3322676295501878e-15,-6.38378239159465e-16,2.220446049250313e-16]</td><td>[1.159213571174786e-16,1.8124670145705584e-16,2.0821005712313262e-16]</td><td>[{&quot;time&quot;:-1.0,&quot;shock_radius&quot;:0.59765625,&quot;reference_shock_radius&quot;:0.6,&quot;error_cells&quot;:0.3999999999999962},{&quot;time&quot;:-0.9782924377299245,&quot;shock_radius&quot;:0.5859375,&quot;reference_shock_radius&quot;:0.5906301905085632,&quot;error_cells&quot;:0.800885846794794},{&quot;time&quot;:-0.9567333756433305,&quot;shock_radius&quot;:0.57421875,&quot;reference_shock_radius&quot;:0.5812660947627811,&quot;error_cells&quot;:1.2027468395146457},{&quot;time&quot;:-0.9352998546116794,&quot;shock_radius&quot;:0.5625,&quot;reference_shock_radius&quot;:0.5718971770148007,&quot;error_cells&quot;:1.603784877192652},{&quot;time&quot;:-0.9139388734034526,&quot;shock_radius&quot;:0.556640625,&quot;reference_shock_radius&quot;:0.5624993525585723,&quot;error_cells&quot;:0.9998895033296739},{&quot;time&quot;:-0.8926184138281185,&quot;shock_radius&quot;:0.544921875,&quot;reference_shock_radius&quot;:0.5530571992420324,&quot;error_cells&quot;:1.3884286706402047},{&quot;time&quot;:-0.871326123557209,&quot;shock_radius&quot;:0.533203125,&quot;reference_shock_radius&quot;:0.5435636407231892,&quot;error_cells&quot;:1.7681946834242883},{&quot;time&quot;:-0.8500716280647393,&quot;shock_radius&quot;:0.52734375,&quot;reference_shock_radius&quot;:0.5340212624892918,&quot;error_cells&quot;:1.1396287981724715},{&quot;time&quot;:-0.85,&quot;shock_radius&quot;:0.52734375,&quot;reference_shock_radius&quot;:0.533988991204184,&quot;error_cells&quot;:1.1341211655140644}]</td><td>1.5942464519e-12</td><td>2.54765297288e-12</td><td>field-n128.npz</td><td>history-n128.json</td></tr><tr><td>256</td><td>-0.85</td><td>142</td><td>0.0133869281686</td><td>0.0174318656777</td><td>0.0137799630401</td><td>0.0174318656777</td><td>0.270966368134</td><td>0.494169680578</td><td>0.297898469241</td><td>0.814502239227</td><td>0.427191192963</td><td>0.52734375</td><td>0.533988991204</td><td>2.26824233103</td><td>2.26824233103</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.000657193965295</td><td>0.00107806981679</td><td>1.33639622684e-13</td><td>2.25102492399e-13</td><td>[8.206089344179338,-2.3017033023405276,0.7323576960977348]</td><td>[11.492857829370788,-3.356838930125358,1.0664451760055733]</td><td>[3.2867684851914554,-1.1376675780299623,0.3340874799078385]</td><td>[0.0,0.08253195024513331,0.0]</td><td>[-5.329070518200751e-15,-1.2628786905111156e-15,0.0]</td><td>[4.636854120462487e-16,3.585785160036248e-16,0.0]</td><td>[{&quot;time&quot;:-1.0,&quot;shock_radius&quot;:0.6005859375,&quot;reference_shock_radius&quot;:0.6,&quot;error_cells&quot;:0.2000000000000076},{&quot;time&quot;:-0.9892429722026659,&quot;shock_radius&quot;:0.5947265625,&quot;reference_shock_radius&quot;:0.5953641265433148,&quot;error_cells&quot;:0.217621860118129},{&quot;time&quot;:-0.9785571011243208,&quot;shock_radius&quot;:0.5888671875,&quot;reference_shock_radius&quot;:0.5907447811237423,&quot;error_cells&quot;:0.6408852902373686},{&quot;time&quot;:-0.9679283208757195,&quot;shock_radius&quot;:0.5830078125,&quot;reference_shock_radius&quot;:0.5861359408438291,&quot;error_cells&quot;:1.0677344746936797},{&quot;time&quot;:-0.9573269458641117,&quot;shock_radius&quot;:0.5771484375,&quot;reference_shock_radius&quot;:0.5815247033352795,&quot;error_cells&quot;:1.4937654051087368},{&quot;time&quot;:-0.9467378525669856,&quot;shock_radius&quot;:0.5712890625,&quot;reference_shock_radius&quot;:0.5769043678302476,&quot;error_cells&quot;:1.916690886057836},{&quot;time&quot;:-0.9361538067102382,&quot;shock_radius&quot;:0.568359375,&quot;reference_shock_radius&quot;:0.5722716059312678,&quot;error_cells&quot;:1.3353748245394097},{&quot;time&quot;:-0.9255738090651571,&quot;shock_radius&quot;:0.5625,&quot;reference_shock_radius&quot;:0.5676257867679166,&quot;error_cells&quot;:1.7496018834488798},{&quot;time&quot;:-0.9149957838902998,&quot;shock_radius&quot;:0.5595703125,&quot;reference_shock_radius&quot;:0.5629657937877414,&quot;error_cells&quot;:1.158990946215719},{&quot;time&quot;:-0.9044217573600973,&quot;shock_radius&quot;:0.5537109375,&quot;reference_shock_radius&quot;:0.5582923090634493,&quot;error_cells&quot;:1.5637748269906904},{&quot;time&quot;:-0.8938548672539243,&quot;shock_radius&quot;:0.5478515625,&quot;reference_shock_radius&quot;:0.553606514650018,&quot;error_cells&quot;:1.9643570005394697},{&quot;time&quot;:-0.8832974269090673,&quot;shock_radius&quot;:0.544921875,&quot;reference_shock_radius&quot;:0.5489092382682375,&quot;error_cells&quot;:1.3610199955583842},{&quot;time&quot;:-0.8727523613407671,&quot;shock_radius&quot;:0.5390625,&quot;reference_shock_radius&quot;:0.5442015897403887,&quot;error_cells&quot;:1.754142631386003},{&quot;time&quot;:-0.8622219850609406,&quot;shock_radius&quot;:0.533203125,&quot;reference_shock_radius&quot;:0.5394844175650627,&quot;error_cells&quot;:2.1440145288747394},{&quot;time&quot;:-0.8517076931838873,&quot;shock_radius&quot;:0.5302734375,&quot;reference_shock_radius&quot;:0.5347581655057968,&quot;error_cells&quot;:1.5307871593119746},{&quot;time&quot;:-0.85,&quot;shock_radius&quot;:0.52734375,&quot;reference_shock_radius&quot;:0.533988991204184,&quot;error_cells&quot;:2.2682423310281288}]</td><td>1.46602643745e-14</td><td>2.92096924673e-14</td><td>field-n256.npz</td><td>history-n256.json</td></tr><tr><td>512</td><td>-0.85</td><td>285</td><td>0.0077216186265</td><td>0.00947688731818</td><td>0.00794832226952</td><td>0.00947688731818</td><td>0.265597992546</td><td>0.466464104136</td><td>0.291830263497</td><td>0.814502239227</td><td>0.427191192963</td><td>0.5302734375</td><td>0.533988991204</td><td>2.53648466206</td><td>2.53648466206</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.000497049925497</td><td>0.0005370156068</td><td>4.6073262855e-15</td><td>8.2958496295e-15</td><td>[8.206089344179249,-2.3017033023404845,0.7323576960977207]</td><td>[11.492857928234441,-3.3569808384086612,1.0664451831092827]</td><td>[3.2867685840551983,-1.1376676143431048,0.33408748701156293]</td><td>[0.0,0.08239007827492695,0.0]</td><td>[-6.217248937900877e-15,1.1102230246251565e-15,-9.43689570931383e-16]</td><td>[5.409663094004662e-16,3.152465559742603e-16,8.848927126099446e-16]</td><td>[{&quot;time&quot;:-1.0,&quot;shock_radius&quot;:0.6005859375,&quot;reference_shock_radius&quot;:0.6,&quot;error_cells&quot;:0.4000000000000152},{&quot;time&quot;:-0.9946368166418362,&quot;shock_radius&quot;:0.59619140625,&quot;reference_shock_radius&quot;:0.5976904426742187,&quot;error_cells&quot;:1.0233421989332783},{&quot;time&quot;:-0.9893094005273915,&quot;shock_radius&quot;:0.59326171875,&quot;reference_shock_radius&quot;:0.5953927982605718,&quot;error_cells&quot;:1.4548169458836735},{&quot;time&quot;:-0.9840146694470209,&quot;shock_radius&quot;:0.591796875,&quot;reference_shock_radius&quot;:0.5931057806604236,&quot;error_cells&quot;:0.8935462641825325},{&quot;time&quot;:-0.9787352896599837,&quot;shock_radius&quot;:0.5888671875,&quot;reference_shock_radius&quot;:0.590821926008946,&quot;error_cells&quot;:1.3344348221071414},{&quot;time&quot;:-0.9734624811850209,&quot;shock_radius&quot;:0.5859375,&quot;reference_shock_radius&quot;:0.5885374337271152,&quot;error_cells&quot;:1.7748880910439766},{&quot;time&quot;:-0.9681914086700115,&quot;shock_radius&quot;:0.58447265625,&quot;reference_shock_radius&quot;:0.5862501928945101,&quot;error_cells&quot;:1.2134650159855482},{&quot;time&quot;:-0.9629198107206394,&quot;shock_radius&quot;:0.58154296875,&quot;reference_shock_radius&quot;:0.5839591989745323,&quot;error_cells&quot;:1.6494798332807175},{&quot;time&quot;:-0.9576467627883994,&quot;shock_radius&quot;:0.57861328125,&quot;reference_shock_radius&quot;:0.5816640233953347,&quot;error_cells&quot;:2.082639971215182},{&quot;time&quot;:-0.952371549031616,&quot;shock_radius&quot;:0.5771484375,&quot;reference_shock_radius&quot;:0.5793643257959106,&quot;error_cells&quot;:1.5127130766749513},{&quot;time&quot;:-0.9470946346463607,&quot;shock_radius&quot;:0.57421875,&quot;reference_shock_radius&quot;:0.5770602795696169,&quot;error_cells&quot;:1.9398175195251497},{&quot;time&quot;:-0.9418172329328481,&quot;shock_radius&quot;:0.57275390625,&quot;reference_shock_radius&quot;:0.5747523864238984,&quot;error_cells&quot;:1.3642957987146171},{&quot;time&quot;:-0.9365399380633962,&quot;shock_radius&quot;:0.56982421875,&quot;reference_shock_radius&quot;:0.5724408796635158,&quot;error_cells&quot;:1.7863071836267561},{&quot;time&quot;:-0.9312641042325702,&quot;shock_radius&quot;:0.56689453125,&quot;reference_shock_radius&quot;:0.5701263276031471,&quot;error_cells&quot;:2.206239643748404},{&quot;time&quot;:-0.9259901328230302,&quot;shock_radius&quot;:0.5654296875,&quot;reference_shock_radius&quot;:0.5678088830286193,&quot;error_cells&quot;:1.6241974808707862},{&quot;time&quot;:-0.9207190803034304,&quot;shock_radius&quot;:0.5625,&quot;reference_shock_radius&quot;:0.5654889881116121,&quot;error_cells&quot;:2.0404825508605122},{&quot;time&quot;:-0.9154510487847011,&quot;shock_radius&quot;:0.56103515625,&quot;reference_shock_radius&quot;:0.5631666666951907,&quot;error_cells&quot;:1.455111130583494},{&quot;time&quot;:-0.9101868411404913,&quot;shock_radius&quot;:0.55810546875,&quot;reference_shock_radius&quot;:0.5608422523193408,&quot;error_cells&quot;:1.8683109166699978},{&quot;time&quot;:-0.9049263750373424,&quot;shock_radius&quot;:0.55517578125,&quot;reference_shock_radius&quot;:0.5585156887538151,&quot;error_cells&quot;:2.280043522604425},{&quot;time&quot;:-0.8996702937039848,&quot;shock_radius&quot;:0.5537109375,&quot;reference_shock_radius&quot;:0.5561872409623809,&quot;error_cells&quot;:1.690489830318711},{&quot;time&quot;:-0.8944184318023805,&quot;shock_radius&quot;:0.55078125,&quot;reference_shock_radius&quot;:0.5538568164517846,&quot;error_cells&quot;:2.099586697751647},{&quot;time&quot;:-0.8891713276989159,&quot;shock_radius&quot;:0.5478515625,&quot;reference_shock_radius&quot;:0.5515246350278591,&quot;error_cells&quot;:2.5074841790184714},{&quot;time&quot;:-0.8839287833047897,&quot;shock_radius&quot;:0.54638671875,&quot;reference_shock_radius&quot;:0.5491905896890821,&quot;error_cells&quot;:1.9141092277466971},{&quot;time&quot;:-0.878691267191384,&quot;shock_radius&quot;:0.54345703125,&quot;reference_shock_radius&quot;:0.5468548701476631,&quot;error_cells&quot;:2.3195913541380073},{&quot;time&quot;:-0.8734585866220838,&quot;shock_radius&quot;:0.5419921875,&quot;reference_shock_radius&quot;:0.5445173716101,&quot;error_cells&quot;:1.7238590191616368},{&quot;time&quot;:-0.8682311375431372,&quot;shock_radius&quot;:0.5390625,&quot;reference_shock_radius&quot;:0.5421782520914779,&quot;error_cells&quot;:2.1270200944488806},{&quot;time&quot;:-0.8630087862744834,&quot;shock_radius&quot;:0.5361328125,&quot;reference_shock_radius&quot;:0.5398374329633072,&quot;error_cells&quot;:2.5290209029510606},{&quot;time&quot;:-0.8577918019735371,&quot;shock_radius&quot;:0.53466796875,&quot;reference_shock_radius&quot;:0.5374950159643461,&quot;error_cells&quot;:1.9299308983269536},{&quot;time&quot;:-0.8525801975333194,&quot;shock_radius&quot;:0.53173828125,&quot;reference_shock_radius&quot;:0.5351509880497817,&quot;error_cells&quot;:2.329741175317622},{&quot;time&quot;:-0.85,&quot;shock_radius&quot;:0.5302734375,&quot;reference_shock_radius&quot;:0.533988991204184,&quot;error_cells&quot;:2.536484662056258}]</td><td>1.45227436667e-15</td><td>3.2080095343e-15</td><td>field-n512.npz</td><td>history-n512.json</td></tr></tbody></table></div></details><p><a href=\"/numerical-methods-atlas/validation/guderley-implosion/index.json\">この例の実測値・全記録 / JSON</a></p><h3 id=\"guderley-implosion-references\">一次文献・関連資料と確認範囲</h3><p>原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。</p><ol class=\"validation-references\"><li id=\"guderley-implosion-source-guderley1942\"><a href=\"https://raw.githubusercontent.com/lanl/ExactPack/9bacc477eb791e959c9621e771fc7a725db755fa/doc/source/references.rst\">G. Guderley (1942). Starke kugelige und zylindrische Verdichtungsstöße in der Nähe des Kugelmittelpunktes bzw. der Zylinderachse</a><p>確認範囲 / review_level: bibliographic attribution only: year/volume/first page in pinned ExactPack bibliography, title in Lazarus1981 publisher bibliography; original1942 article not inspected</p><p>原問題の歴史的出典。固定ExactPackの書誌で著者・年・巻・開始頁302を、Lazarus1981の出版社参考文献で題名を確認。原著1942本文は未閲覧で、相似場の式や今回の実測を原著から直接再現したとは主張しません。</p></li><li id=\"guderley-implosion-source-ramsey2012guderley\"><a href=\"https://laro.lanl.gov/esploro/outputs/journalArticle/The-Guderley-problem-revisited/9916364702403761\">Scott D. Ramsey, James R. Kamm and John H. Bolstad (2012). The Guderley problem revisited</a> · <a href=\"https://doi.org/10.1080/10618562.2011.647768\">DOI: 10.1080/10618562.2011.647768</a><p>確認範囲 / review_level: primary institutional bibliographic record and abstract; actual implementation equations reviewed in pinned ExactPack source, not full original paper</p><p>LANLの書誌・抄録で収束側の相似指数と反射後の軌道係数が別の固有値問題であることを確認。原論文の全文通読や原著のPDE計算再現とは扱わず、今回の場は固定ExactPackソースを実際に用いて構成します。</p></li><li id=\"guderley-implosion-source-lazarus1981guderley\"><a href=\"https://epubs.siam.org/doi/10.1137/0718022\">Roger B. Lazarus (1981). Self-Similar Solutions for Converging Shocks and Collapsing Cavities</a> · <a href=\"https://doi.org/10.1137/0718022\">DOI: 10.1137/0718022</a><p>確認範囲 / review_level: publisher bibliographic record/abstract plus equations2.5,2.8,2.9 and sphericalTable6.5 as explicitly transcribed in pinned ExactPack; original full text not inspected</p><p>出版社の書誌・抄録と、ExactPackが明示する式2.5/2.8/2.9・球対称表6.5の転記を確認。λ=1.3943607838の表値はコード内の転記値で、元論文を独立に再転記した値とは区別します。</p></li><li id=\"guderley-implosion-source-chisnell1998guderley\"><a href=\"https://www.cambridge.org/core/journals/journal-of-fluid-mechanics/article/abs/an-analytic-description-of-converging-shock-waves/1D3D7014FF4C6297A5F6DC9BCFDBE0E8\">R. F. Chisnell (1998). An analytic description of converging shock waves</a> · <a href=\"https://doi.org/10.1017/S0022112097007775\">DOI: 10.1017/S0022112097007775</a><p>確認範囲 / review_level: publisher bibliographic record/abstract and equation3.1 implementation/comments in actual pinned ExactPack eexp source</p><p>出版社の書誌・抄録と、ExactPack eexpが採用する臨界点の位相差・式3.1の実装を確認。相似指数は寸法解析から固定せず、固定コードの固有値計算で求めます。</p></li><li id=\"guderley-implosion-source-thrussell2023exactpack\"><a href=\"https://www.osti.gov/servlets/purl/2204208\">Jasper Thrussell and Jim Michael Ferguson (2023). ExactPack: A python library of exact analytic solutions</a> · <a href=\"https://doi.org/10.1016/j.softx.2023.101560\">DOI: 10.1016/j.softx.2023.101560</a><p>確認範囲 / review_level: primary OSTI accepted manuscript/search text; software metadata and Guderley registry; selected actual source files pinned separately</p><p>ExactPackのソフトウェア論文とGuderley収録を参照。論文記載版1.7.5と今回用いるソースの固定コミットは区別し、配布物内にソース・SHA・BSDライセンスを保存します。</p></li><li id=\"guderley-implosion-source-exactpack-guderley-pinned\"><a href=\"https://github.com/lanl/ExactPack/tree/9bacc477eb791e959c9621e771fc7a725db755fa/exactpack/solvers/guderley\">Los Alamos National Laboratory / ExactPack contributors (2025). ExactPack Guderley solver, pinned source</a><p>確認範囲 / review_level: selected source files and license inspected; eexp,ramsey.state/g,interp_laz and official test fixtures; actual execution recorded separately</p><p>固定版のeexp・ramseyの前収束ODEとstate、表の転記、公式回帰値、BSD3条項を確認。全ExactPackテストを実行したとは扱いません。参照の実行成否はqualification.jsonに別記します。</p></li></ol></article><aside class=\"validation-terms\"><p>オリジナルコードはMIT。本文・図・固定入力・数値データと第三者資料は、それぞれの利用条件に従います。</p><p><a href=\"/LICENSING.md\">LICENSING.md</a> · <a href=\"/rights/?lang=ja\">利用条件・AI方針</a></p></aside>",
+  "headings": [
+    {
+      "level": 2,
+      "id": "run-all",
+      "title": "配布版を取得して実行する"
+    },
+    {
+      "level": 3,
+      "id": "guderley-implosion-assumptions",
+      "title": "前提・単位・境界"
+    },
+    {
+      "level": 3,
+      "id": "guderley-implosion-algorithm",
+      "title": "採用した計算法"
+    },
+    {
+      "level": 3,
+      "id": "guderley-implosion-validation",
+      "title": "何と比較し、何を測るか"
+    },
+    {
+      "level": 3,
+      "id": "guderley-implosion-limits",
+      "title": "確認の限界と失敗条件"
+    },
+    {
+      "level": 3,
+      "id": "guderley-implosion-measurements",
+      "title": "保存した実測値と判定"
+    },
+    {
+      "level": 3,
+      "id": "guderley-implosion-references",
+      "title": "一次文献・関連資料と確認範囲"
+    },
+    {
+      "level": 2,
+      "id": "guderley-implosion",
+      "title": "Guderley収束衝撃波：球対称の軽量検証"
+    }
+  ],
+  "locale": "ja",
+  "source_url": "/code/validated-examples/2026-11-23-r2/guderley/cases.json",
+  "updated_on": "2026-11-23",
+  "translation_status": "draft",
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-guderley/",
+  "group": "guderley",
+  "case_ids": [
+    "guderley-implosion"
+  ],
+  "measurements": [
+    {
+      "id": "guderley-implosion",
+      "passed": true,
+      "records": [
+        {
+          "n": 128,
+          "time": -0.85,
+          "steps": 71,
+          "density_l1": 0.023454108364462135,
+          "pressure_l1": 0.032769320183763787,
+          "active_density_l1": 0.024142711631118356,
+          "active_pressure_l1": 0.03276932018376379,
+          "density_linf": 0.2583714498778471,
+          "pressure_linf": 0.4918248213723752,
+          "maximum_velocity_error": 0.29667606215626224,
+          "active_volume_fraction": 0.8145022392272948,
+          "active_inner_radius": 0.4271911929633472,
+          "shock_radius": 0.52734375,
+          "reference_shock_radius": 0.533988991204184,
+          "shock_error_cells": 1.1341211655140644,
+          "maximum_history_shock_error_cells": 1.7681946834242883,
+          "minimum_density_all_stages": 1.0,
+          "minimum_pressure_all_stages": 0.0,
+          "minimum_internal_energy_all_stages": 0.0,
+          "sound_speed_roundoff_guard_evaluations": 0,
+          "minimum_pressure_at_sound_speed_guard": 0.0,
+          "state_floor_count": 0,
+          "rejected_steps": 0,
+          "minimum_dt": 7.162806473937078e-05,
+          "maximum_dt": 0.0021789084435661628,
+          "reference_quadrature_density_l1": 2.896924263307821e-13,
+          "reference_quadrature_pressure_l1": 5.014428051950655e-13,
+          "initial_integral": [
+            8.206089344193586,
+            -2.301703302347455,
+            0.7323576961002365
+          ],
+          "final_integral": [
+            11.492857422295556,
+            -3.356590525840208,
+            1.0664451467573306
+          ],
+          "boundary_net_integral": [
+            3.286768078101971,
+            -1.137667428505291,
+            0.3340874506570939
+          ],
+          "geometric_source_integral": [
+            0.0,
+            0.08278020501253855,
+            0.0
+          ],
+          "conservation_residual": [
+            -1.3322676295501878e-15,
+            -6.38378239159465e-16,
+            2.220446049250313e-16
+          ],
+          "conservation_relative": [
+            1.159213571174786e-16,
+            1.8124670145705584e-16,
+            2.0821005712313262e-16
+          ],
+          "shock_trajectory": [
+            {
+              "time": -1.0,
+              "shock_radius": 0.59765625,
+              "reference_shock_radius": 0.6,
+              "error_cells": 0.3999999999999962
+            },
+            {
+              "time": -0.9782924377299245,
+              "shock_radius": 0.5859375,
+              "reference_shock_radius": 0.5906301905085632,
+              "error_cells": 0.800885846794794
+            },
+            {
+              "time": -0.9567333756433305,
+              "shock_radius": 0.57421875,
+              "reference_shock_radius": 0.5812660947627811,
+              "error_cells": 1.2027468395146457
+            },
+            {
+              "time": -0.9352998546116794,
+              "shock_radius": 0.5625,
+              "reference_shock_radius": 0.5718971770148007,
+              "error_cells": 1.603784877192652
+            },
+            {
+              "time": -0.9139388734034526,
+              "shock_radius": 0.556640625,
+              "reference_shock_radius": 0.5624993525585723,
+              "error_cells": 0.9998895033296739
+            },
+            {
+              "time": -0.8926184138281185,
+              "shock_radius": 0.544921875,
+              "reference_shock_radius": 0.5530571992420324,
+              "error_cells": 1.3884286706402047
+            },
+            {
+              "time": -0.871326123557209,
+              "shock_radius": 0.533203125,
+              "reference_shock_radius": 0.5435636407231892,
+              "error_cells": 1.7681946834242883
+            },
+            {
+              "time": -0.8500716280647393,
+              "shock_radius": 0.52734375,
+              "reference_shock_radius": 0.5340212624892918,
+              "error_cells": 1.1396287981724715
+            },
+            {
+              "time": -0.85,
+              "shock_radius": 0.52734375,
+              "reference_shock_radius": 0.533988991204184,
+              "error_cells": 1.1341211655140644
+            }
+          ],
+          "initial_reference_quadrature_density_l1": 1.5942464518988718e-12,
+          "initial_reference_quadrature_pressure_l1": 2.54765297288434e-12,
+          "field": "field-n128.npz",
+          "history": "history-n128.json"
+        },
+        {
+          "n": 256,
+          "time": -0.85,
+          "steps": 142,
+          "density_l1": 0.013386928168626924,
+          "pressure_l1": 0.017431865677689944,
+          "active_density_l1": 0.013779963040136765,
+          "active_pressure_l1": 0.017431865677689944,
+          "density_linf": 0.2709663681343314,
+          "pressure_linf": 0.49416968057811794,
+          "maximum_velocity_error": 0.2978984692414384,
+          "active_volume_fraction": 0.814502239227295,
+          "active_inner_radius": 0.4271911929633472,
+          "shock_radius": 0.52734375,
+          "reference_shock_radius": 0.533988991204184,
+          "shock_error_cells": 2.2682423310281288,
+          "maximum_history_shock_error_cells": 2.2682423310281288,
+          "minimum_density_all_stages": 1.0,
+          "minimum_pressure_all_stages": 0.0,
+          "minimum_internal_energy_all_stages": 0.0,
+          "sound_speed_roundoff_guard_evaluations": 0,
+          "minimum_pressure_at_sound_speed_guard": 0.0,
+          "state_floor_count": 0,
+          "rejected_steps": 0,
+          "minimum_dt": 0.0006571939652950665,
+          "maximum_dt": 0.0010780698167943245,
+          "reference_quadrature_density_l1": 1.3363962268430173e-13,
+          "reference_quadrature_pressure_l1": 2.251024923990976e-13,
+          "initial_integral": [
+            8.206089344179338,
+            -2.3017033023405276,
+            0.7323576960977348
+          ],
+          "final_integral": [
+            11.492857829370788,
+            -3.356838930125358,
+            1.0664451760055733
+          ],
+          "boundary_net_integral": [
+            3.2867684851914554,
+            -1.1376675780299623,
+            0.3340874799078385
+          ],
+          "geometric_source_integral": [
+            0.0,
+            0.08253195024513331,
+            0.0
+          ],
+          "conservation_residual": [
+            -5.329070518200751e-15,
+            -1.2628786905111156e-15,
+            0.0
+          ],
+          "conservation_relative": [
+            4.636854120462487e-16,
+            3.585785160036248e-16,
+            0.0
+          ],
+          "shock_trajectory": [
+            {
+              "time": -1.0,
+              "shock_radius": 0.6005859375,
+              "reference_shock_radius": 0.6,
+              "error_cells": 0.2000000000000076
+            },
+            {
+              "time": -0.9892429722026659,
+              "shock_radius": 0.5947265625,
+              "reference_shock_radius": 0.5953641265433148,
+              "error_cells": 0.217621860118129
+            },
+            {
+              "time": -0.9785571011243208,
+              "shock_radius": 0.5888671875,
+              "reference_shock_radius": 0.5907447811237423,
+              "error_cells": 0.6408852902373686
+            },
+            {
+              "time": -0.9679283208757195,
+              "shock_radius": 0.5830078125,
+              "reference_shock_radius": 0.5861359408438291,
+              "error_cells": 1.0677344746936797
+            },
+            {
+              "time": -0.9573269458641117,
+              "shock_radius": 0.5771484375,
+              "reference_shock_radius": 0.5815247033352795,
+              "error_cells": 1.4937654051087368
+            },
+            {
+              "time": -0.9467378525669856,
+              "shock_radius": 0.5712890625,
+              "reference_shock_radius": 0.5769043678302476,
+              "error_cells": 1.916690886057836
+            },
+            {
+              "time": -0.9361538067102382,
+              "shock_radius": 0.568359375,
+              "reference_shock_radius": 0.5722716059312678,
+              "error_cells": 1.3353748245394097
+            },
+            {
+              "time": -0.9255738090651571,
+              "shock_radius": 0.5625,
+              "reference_shock_radius": 0.5676257867679166,
+              "error_cells": 1.7496018834488798
+            },
+            {
+              "time": -0.9149957838902998,
+              "shock_radius": 0.5595703125,
+              "reference_shock_radius": 0.5629657937877414,
+              "error_cells": 1.158990946215719
+            },
+            {
+              "time": -0.9044217573600973,
+              "shock_radius": 0.5537109375,
+              "reference_shock_radius": 0.5582923090634493,
+              "error_cells": 1.5637748269906904
+            },
+            {
+              "time": -0.8938548672539243,
+              "shock_radius": 0.5478515625,
+              "reference_shock_radius": 0.553606514650018,
+              "error_cells": 1.9643570005394697
+            },
+            {
+              "time": -0.8832974269090673,
+              "shock_radius": 0.544921875,
+              "reference_shock_radius": 0.5489092382682375,
+              "error_cells": 1.3610199955583842
+            },
+            {
+              "time": -0.8727523613407671,
+              "shock_radius": 0.5390625,
+              "reference_shock_radius": 0.5442015897403887,
+              "error_cells": 1.754142631386003
+            },
+            {
+              "time": -0.8622219850609406,
+              "shock_radius": 0.533203125,
+              "reference_shock_radius": 0.5394844175650627,
+              "error_cells": 2.1440145288747394
+            },
+            {
+              "time": -0.8517076931838873,
+              "shock_radius": 0.5302734375,
+              "reference_shock_radius": 0.5347581655057968,
+              "error_cells": 1.5307871593119746
+            },
+            {
+              "time": -0.85,
+              "shock_radius": 0.52734375,
+              "reference_shock_radius": 0.533988991204184,
+              "error_cells": 2.2682423310281288
+            }
+          ],
+          "initial_reference_quadrature_density_l1": 1.4660264374459572e-14,
+          "initial_reference_quadrature_pressure_l1": 2.920969246729905e-14,
+          "field": "field-n256.npz",
+          "history": "history-n256.json"
+        },
+        {
+          "n": 512,
+          "time": -0.85,
+          "steps": 285,
+          "density_l1": 0.00772161862650073,
+          "pressure_l1": 0.00947688731818041,
+          "active_density_l1": 0.007948322269523746,
+          "active_pressure_l1": 0.009476887318180412,
+          "density_linf": 0.26559799254635363,
+          "pressure_linf": 0.4664641041357883,
+          "maximum_velocity_error": 0.2918302634973315,
+          "active_volume_fraction": 0.8145022392272949,
+          "active_inner_radius": 0.4271911929633472,
+          "shock_radius": 0.5302734375,
+          "reference_shock_radius": 0.533988991204184,
+          "shock_error_cells": 2.536484662056258,
+          "maximum_history_shock_error_cells": 2.536484662056258,
+          "minimum_density_all_stages": 1.0,
+          "minimum_pressure_all_stages": 0.0,
+          "minimum_internal_energy_all_stages": 0.0,
+          "sound_speed_roundoff_guard_evaluations": 0,
+          "minimum_pressure_at_sound_speed_guard": 0.0,
+          "state_floor_count": 0,
+          "rejected_steps": 0,
+          "minimum_dt": 0.0004970499254967065,
+          "maximum_dt": 0.000537015606799512,
+          "reference_quadrature_density_l1": 4.607326285502161e-15,
+          "reference_quadrature_pressure_l1": 8.295849629501113e-15,
+          "initial_integral": [
+            8.206089344179249,
+            -2.3017033023404845,
+            0.7323576960977207
+          ],
+          "final_integral": [
+            11.492857928234441,
+            -3.3569808384086612,
+            1.0664451831092827
+          ],
+          "boundary_net_integral": [
+            3.2867685840551983,
+            -1.1376676143431048,
+            0.33408748701156293
+          ],
+          "geometric_source_integral": [
+            0.0,
+            0.08239007827492695,
+            0.0
+          ],
+          "conservation_residual": [
+            -6.217248937900877e-15,
+            1.1102230246251565e-15,
+            -9.43689570931383e-16
+          ],
+          "conservation_relative": [
+            5.409663094004662e-16,
+            3.152465559742603e-16,
+            8.848927126099446e-16
+          ],
+          "shock_trajectory": [
+            {
+              "time": -1.0,
+              "shock_radius": 0.6005859375,
+              "reference_shock_radius": 0.6,
+              "error_cells": 0.4000000000000152
+            },
+            {
+              "time": -0.9946368166418362,
+              "shock_radius": 0.59619140625,
+              "reference_shock_radius": 0.5976904426742187,
+              "error_cells": 1.0233421989332783
+            },
+            {
+              "time": -0.9893094005273915,
+              "shock_radius": 0.59326171875,
+              "reference_shock_radius": 0.5953927982605718,
+              "error_cells": 1.4548169458836735
+            },
+            {
+              "time": -0.9840146694470209,
+              "shock_radius": 0.591796875,
+              "reference_shock_radius": 0.5931057806604236,
+              "error_cells": 0.8935462641825325
+            },
+            {
+              "time": -0.9787352896599837,
+              "shock_radius": 0.5888671875,
+              "reference_shock_radius": 0.590821926008946,
+              "error_cells": 1.3344348221071414
+            },
+            {
+              "time": -0.9734624811850209,
+              "shock_radius": 0.5859375,
+              "reference_shock_radius": 0.5885374337271152,
+              "error_cells": 1.7748880910439766
+            },
+            {
+              "time": -0.9681914086700115,
+              "shock_radius": 0.58447265625,
+              "reference_shock_radius": 0.5862501928945101,
+              "error_cells": 1.2134650159855482
+            },
+            {
+              "time": -0.9629198107206394,
+              "shock_radius": 0.58154296875,
+              "reference_shock_radius": 0.5839591989745323,
+              "error_cells": 1.6494798332807175
+            },
+            {
+              "time": -0.9576467627883994,
+              "shock_radius": 0.57861328125,
+              "reference_shock_radius": 0.5816640233953347,
+              "error_cells": 2.082639971215182
+            },
+            {
+              "time": -0.952371549031616,
+              "shock_radius": 0.5771484375,
+              "reference_shock_radius": 0.5793643257959106,
+              "error_cells": 1.5127130766749513
+            },
+            {
+              "time": -0.9470946346463607,
+              "shock_radius": 0.57421875,
+              "reference_shock_radius": 0.5770602795696169,
+              "error_cells": 1.9398175195251497
+            },
+            {
+              "time": -0.9418172329328481,
+              "shock_radius": 0.57275390625,
+              "reference_shock_radius": 0.5747523864238984,
+              "error_cells": 1.3642957987146171
+            },
+            {
+              "time": -0.9365399380633962,
+              "shock_radius": 0.56982421875,
+              "reference_shock_radius": 0.5724408796635158,
+              "error_cells": 1.7863071836267561
+            },
+            {
+              "time": -0.9312641042325702,
+              "shock_radius": 0.56689453125,
+              "reference_shock_radius": 0.5701263276031471,
+              "error_cells": 2.206239643748404
+            },
+            {
+              "time": -0.9259901328230302,
+              "shock_radius": 0.5654296875,
+              "reference_shock_radius": 0.5678088830286193,
+              "error_cells": 1.6241974808707862
+            },
+            {
+              "time": -0.9207190803034304,
+              "shock_radius": 0.5625,
+              "reference_shock_radius": 0.5654889881116121,
+              "error_cells": 2.0404825508605122
+            },
+            {
+              "time": -0.9154510487847011,
+              "shock_radius": 0.56103515625,
+              "reference_shock_radius": 0.5631666666951907,
+              "error_cells": 1.455111130583494
+            },
+            {
+              "time": -0.9101868411404913,
+              "shock_radius": 0.55810546875,
+              "reference_shock_radius": 0.5608422523193408,
+              "error_cells": 1.8683109166699978
+            },
+            {
+              "time": -0.9049263750373424,
+              "shock_radius": 0.55517578125,
+              "reference_shock_radius": 0.5585156887538151,
+              "error_cells": 2.280043522604425
+            },
+            {
+              "time": -0.8996702937039848,
+              "shock_radius": 0.5537109375,
+              "reference_shock_radius": 0.5561872409623809,
+              "error_cells": 1.690489830318711
+            },
+            {
+              "time": -0.8944184318023805,
+              "shock_radius": 0.55078125,
+              "reference_shock_radius": 0.5538568164517846,
+              "error_cells": 2.099586697751647
+            },
+            {
+              "time": -0.8891713276989159,
+              "shock_radius": 0.5478515625,
+              "reference_shock_radius": 0.5515246350278591,
+              "error_cells": 2.5074841790184714
+            },
+            {
+              "time": -0.8839287833047897,
+              "shock_radius": 0.54638671875,
+              "reference_shock_radius": 0.5491905896890821,
+              "error_cells": 1.9141092277466971
+            },
+            {
+              "time": -0.878691267191384,
+              "shock_radius": 0.54345703125,
+              "reference_shock_radius": 0.5468548701476631,
+              "error_cells": 2.3195913541380073
+            },
+            {
+              "time": -0.8734585866220838,
+              "shock_radius": 0.5419921875,
+              "reference_shock_radius": 0.5445173716101,
+              "error_cells": 1.7238590191616368
+            },
+            {
+              "time": -0.8682311375431372,
+              "shock_radius": 0.5390625,
+              "reference_shock_radius": 0.5421782520914779,
+              "error_cells": 2.1270200944488806
+            },
+            {
+              "time": -0.8630087862744834,
+              "shock_radius": 0.5361328125,
+              "reference_shock_radius": 0.5398374329633072,
+              "error_cells": 2.5290209029510606
+            },
+            {
+              "time": -0.8577918019735371,
+              "shock_radius": 0.53466796875,
+              "reference_shock_radius": 0.5374950159643461,
+              "error_cells": 1.9299308983269536
+            },
+            {
+              "time": -0.8525801975333194,
+              "shock_radius": 0.53173828125,
+              "reference_shock_radius": 0.5351509880497817,
+              "error_cells": 2.329741175317622
+            },
+            {
+              "time": -0.85,
+              "shock_radius": 0.5302734375,
+              "reference_shock_radius": 0.533988991204184,
+              "error_cells": 2.536484662056258
+            }
+          ],
+          "initial_reference_quadrature_density_l1": 1.4522743666682576e-15,
+          "initial_reference_quadrature_pressure_l1": 3.208009534299476e-15,
+          "field": "field-n512.npz",
+          "history": "history-n512.json"
+        }
+      ],
+      "metrics": {
+        "n": 512,
+        "time": -0.85,
+        "steps": 285,
+        "density_l1": 0.00772161862650073,
+        "pressure_l1": 0.00947688731818041,
+        "active_density_l1": 0.007948322269523746,
+        "active_pressure_l1": 0.009476887318180412,
+        "density_linf": 0.26559799254635363,
+        "pressure_linf": 0.4664641041357883,
+        "maximum_velocity_error": 0.2918302634973315,
+        "active_volume_fraction": 0.8145022392272949,
+        "active_inner_radius": 0.4271911929633472,
+        "shock_radius": 0.5302734375,
+        "reference_shock_radius": 0.533988991204184,
+        "shock_error_cells": 2.536484662056258,
+        "maximum_history_shock_error_cells": 2.536484662056258,
+        "minimum_density_all_stages": 1.0,
+        "minimum_pressure_all_stages": 0.0,
+        "minimum_internal_energy_all_stages": 0.0,
+        "sound_speed_roundoff_guard_evaluations": 0,
+        "minimum_pressure_at_sound_speed_guard": 0.0,
+        "state_floor_count": 0,
+        "rejected_steps": 0,
+        "minimum_dt": 0.0004970499254967065,
+        "maximum_dt": 0.000537015606799512,
+        "reference_quadrature_density_l1": 4.607326285502161e-15,
+        "reference_quadrature_pressure_l1": 8.295849629501113e-15,
+        "initial_reference_quadrature_density_l1": 1.4522743666682576e-15,
+        "initial_reference_quadrature_pressure_l1": 3.208009534299476e-15
+      },
+      "checks": {
+        "all three fixed spherical runs completed": true,
+        "N128: final time before collapse": true,
+        "N128: strictly positive density all stages": true,
+        "N128: minimum_internal_energy_all_stages": true,
+        "N128: minimum_pressure_at_sound_speed_guard": true,
+        "N128: state_floor_count": true,
+        "N128: rejected_steps": true,
+        "N128: mass discrete balance": true,
+        "N128: radial momentum including geometric source discrete balance": true,
+        "N128: energy discrete balance": true,
+        "N128: reference_quadrature_density_l1": true,
+        "N128: reference_quadrature_pressure_l1": true,
+        "N128: initial_reference_quadrature_density_l1": true,
+        "N128: initial_reference_quadrature_pressure_l1": true,
+        "N128: maximum and trajectory diagnostics retained": true,
+        "N256: final time before collapse": true,
+        "N256: strictly positive density all stages": true,
+        "N256: minimum_internal_energy_all_stages": true,
+        "N256: minimum_pressure_at_sound_speed_guard": true,
+        "N256: state_floor_count": true,
+        "N256: rejected_steps": true,
+        "N256: mass discrete balance": true,
+        "N256: radial momentum including geometric source discrete balance": true,
+        "N256: energy discrete balance": true,
+        "N256: reference_quadrature_density_l1": true,
+        "N256: reference_quadrature_pressure_l1": true,
+        "N256: initial_reference_quadrature_density_l1": true,
+        "N256: initial_reference_quadrature_pressure_l1": true,
+        "N256: maximum and trajectory diagnostics retained": true,
+        "N512: final time before collapse": true,
+        "N512: strictly positive density all stages": true,
+        "N512: minimum_internal_energy_all_stages": true,
+        "N512: minimum_pressure_at_sound_speed_guard": true,
+        "N512: state_floor_count": true,
+        "N512: rejected_steps": true,
+        "N512: mass discrete balance": true,
+        "N512: radial momentum including geometric source discrete balance": true,
+        "N512: energy discrete balance": true,
+        "N512: reference_quadrature_density_l1": true,
+        "N512: reference_quadrature_pressure_l1": true,
+        "N512: initial_reference_quadrature_density_l1": true,
+        "N512: initial_reference_quadrature_pressure_l1": true,
+        "N512: maximum and trajectory diagnostics retained": true,
+        "similarity qualification: maximum_scaled_euler_residual": true,
+        "similarity qualification: maximum_scaled_jump_residual": true,
+        "similarity exponent agrees with tabulated lambda": true,
+        "finest density_l1": true,
+        "finest pressure_l1": true,
+        "finest active_density_l1": true,
+        "finest active_pressure_l1": true,
+        "finest shock_error_cells": true,
+        "density_l1 decreases across the three grids": true,
+        "active_density_l1 decreases across the three grids": true,
+        "pressure_l1 decreases across the three grids": true,
+        "last-pair active density L1 slope": true
+      },
+      "check_details": [
+        {
+          "name": "all three fixed spherical runs completed",
+          "value": [
+            128,
+            256,
+            512
+          ],
+          "bound": [
+            128,
+            256,
+            512
+          ],
+          "passed": true
+        },
+        {
+          "name": "N128: final time before collapse",
+          "value": -0.85,
+          "bound": -0.85,
+          "passed": true
+        },
+        {
+          "name": "N128: strictly positive density all stages",
+          "value": 1.0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N128: minimum_internal_energy_all_stages",
+          "value": 0.0,
+          "bound": -1.4210854715202004e-14,
+          "passed": true
+        },
+        {
+          "name": "N128: minimum_pressure_at_sound_speed_guard",
+          "value": 0.0,
+          "bound": -5.6843418860808e-15,
+          "passed": true
+        },
+        {
+          "name": "N128: state_floor_count",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N128: rejected_steps",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N128: mass discrete balance",
+          "value": 1.159213571174786e-16,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "N128: radial momentum including geometric source discrete balance",
+          "value": 1.8124670145705584e-16,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "N128: energy discrete balance",
+          "value": 2.0821005712313262e-16,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "N128: reference_quadrature_density_l1",
+          "value": 2.896924263307821e-13,
+          "bound": 1e-07,
+          "passed": true
+        },
+        {
+          "name": "N128: reference_quadrature_pressure_l1",
+          "value": 5.014428051950655e-13,
+          "bound": 1e-07,
+          "passed": true
+        },
+        {
+          "name": "N128: initial_reference_quadrature_density_l1",
+          "value": 1.5942464518988718e-12,
+          "bound": 1e-07,
+          "passed": true
+        },
+        {
+          "name": "N128: initial_reference_quadrature_pressure_l1",
+          "value": 2.54765297288434e-12,
+          "bound": 1e-07,
+          "passed": true
+        },
+        {
+          "name": "N128: maximum and trajectory diagnostics retained",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "N256: final time before collapse",
+          "value": -0.85,
+          "bound": -0.85,
+          "passed": true
+        },
+        {
+          "name": "N256: strictly positive density all stages",
+          "value": 1.0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N256: minimum_internal_energy_all_stages",
+          "value": 0.0,
+          "bound": -1.4210854715202004e-14,
+          "passed": true
+        },
+        {
+          "name": "N256: minimum_pressure_at_sound_speed_guard",
+          "value": 0.0,
+          "bound": -5.6843418860808e-15,
+          "passed": true
+        },
+        {
+          "name": "N256: state_floor_count",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N256: rejected_steps",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N256: mass discrete balance",
+          "value": 4.636854120462487e-16,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "N256: radial momentum including geometric source discrete balance",
+          "value": 3.585785160036248e-16,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "N256: energy discrete balance",
+          "value": 0.0,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "N256: reference_quadrature_density_l1",
+          "value": 1.3363962268430173e-13,
+          "bound": 1e-07,
+          "passed": true
+        },
+        {
+          "name": "N256: reference_quadrature_pressure_l1",
+          "value": 2.251024923990976e-13,
+          "bound": 1e-07,
+          "passed": true
+        },
+        {
+          "name": "N256: initial_reference_quadrature_density_l1",
+          "value": 1.4660264374459572e-14,
+          "bound": 1e-07,
+          "passed": true
+        },
+        {
+          "name": "N256: initial_reference_quadrature_pressure_l1",
+          "value": 2.920969246729905e-14,
+          "bound": 1e-07,
+          "passed": true
+        },
+        {
+          "name": "N256: maximum and trajectory diagnostics retained",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "N512: final time before collapse",
+          "value": -0.85,
+          "bound": -0.85,
+          "passed": true
+        },
+        {
+          "name": "N512: strictly positive density all stages",
+          "value": 1.0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N512: minimum_internal_energy_all_stages",
+          "value": 0.0,
+          "bound": -1.4210854715202004e-14,
+          "passed": true
+        },
+        {
+          "name": "N512: minimum_pressure_at_sound_speed_guard",
+          "value": 0.0,
+          "bound": -5.6843418860808e-15,
+          "passed": true
+        },
+        {
+          "name": "N512: state_floor_count",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N512: rejected_steps",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N512: mass discrete balance",
+          "value": 5.409663094004662e-16,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "N512: radial momentum including geometric source discrete balance",
+          "value": 3.152465559742603e-16,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "N512: energy discrete balance",
+          "value": 8.848927126099446e-16,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "N512: reference_quadrature_density_l1",
+          "value": 4.607326285502161e-15,
+          "bound": 1e-07,
+          "passed": true
+        },
+        {
+          "name": "N512: reference_quadrature_pressure_l1",
+          "value": 8.295849629501113e-15,
+          "bound": 1e-07,
+          "passed": true
+        },
+        {
+          "name": "N512: initial_reference_quadrature_density_l1",
+          "value": 1.4522743666682576e-15,
+          "bound": 1e-07,
+          "passed": true
+        },
+        {
+          "name": "N512: initial_reference_quadrature_pressure_l1",
+          "value": 3.208009534299476e-15,
+          "bound": 1e-07,
+          "passed": true
+        },
+        {
+          "name": "N512: maximum and trajectory diagnostics retained",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "similarity qualification: maximum_scaled_euler_residual",
+          "value": 8.233415560656415e-09,
+          "bound": 1e-05,
+          "passed": true
+        },
+        {
+          "name": "similarity qualification: maximum_scaled_jump_residual",
+          "value": 4.3989810016853426e-08,
+          "bound": 1e-07,
+          "passed": true
+        },
+        {
+          "name": "similarity exponent agrees with tabulated lambda",
+          "value": 4.468621028763664e-10,
+          "bound": 2e-09,
+          "passed": true
+        },
+        {
+          "name": "finest density_l1",
+          "value": 0.00772161862650073,
+          "bound": 0.15,
+          "passed": true
+        },
+        {
+          "name": "finest pressure_l1",
+          "value": 0.00947688731818041,
+          "bound": 0.15,
+          "passed": true
+        },
+        {
+          "name": "finest active_density_l1",
+          "value": 0.007948322269523746,
+          "bound": 0.15,
+          "passed": true
+        },
+        {
+          "name": "finest active_pressure_l1",
+          "value": 0.009476887318180412,
+          "bound": 0.15,
+          "passed": true
+        },
+        {
+          "name": "finest shock_error_cells",
+          "value": 2.536484662056258,
+          "bound": 4.0,
+          "passed": true
+        },
+        {
+          "name": "density_l1 decreases across the three grids",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "active_density_l1 decreases across the three grids",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "pressure_l1 decreases across the three grids",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "last-pair active density L1 slope",
+          "value": 0.7938497447023544,
+          "bound": 0.2,
+          "passed": true
+        }
+      ],
+      "reference_qualification": {
+        "maximum_scaled_euler_residual": 8.233415560656415e-09,
+        "maximum_scaled_jump_residual": 4.3989810016853426e-08,
+        "lambda_table_relative_difference": 4.468621028763664e-10,
+        "euler_residual_radii": [
+          0.5787208592237053,
+          0.6241107305353685,
+          0.7092167392447368
+        ],
+        "euler_residual_time": -0.925,
+        "radial_derivative_step": 5.673733913957895e-06,
+        "time_derivative_step": 9.250000000000001e-06,
+        "jump_state_radius_relative_offset": 1e-08,
+        "metadata": {
+          "geometry": 3,
+          "gamma": 1.4,
+          "rho0": 1.0,
+          "lambda": 1.3943607844230872,
+          "alpha": 0.7171745011559165,
+          "shock_scale": 0.6,
+          "lazarus_times": [
+            -1.0,
+            -0.85
+          ],
+          "domain": [
+            0,
+            0.75
+          ],
+          "similarity_x_end": -0.6132747790371198,
+          "max_similarity_radius": 1.42,
+          "ode_success": true,
+          "ode_steps": 36,
+          "ode_nfev": 254,
+          "exactpack_public_times": [
+            0.0,
+            0.11250364830000002
+          ],
+          "reflected_branch_executed": false,
+          "source_independence": "actual pinned ExactPack eexp and RHS with a pre-collapse dense adapter"
+        }
+      },
+      "scope": "One-dimensional spherical radial Euler before collapse; a revolved meridional visualization is not a two-dimensional Cartesian evolution."
+    }
+  ],
+  "source_sha256": {
+    "catalog/atlas-depth-expansion.json": "f9f0dc0fae15eb6b1e82b5179289e8505f95dfeea6cbf59a572fa479f9073016",
+    "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
+    "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
+    "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
+    "code/validated-examples/2026-11-22/foundations/results/result.json": "93a27cb8e43d7195d2417fc9110f196b07c826ea1f4e2b240f879ab8ab8b4b77",
+    "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
+    "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
+    "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
+    "code/validated-examples/2026-11-22/models/cases.json": "09b670a3462f7f1395dcdf12b507786b69616c0ea165d2678efe780ddb0cf0e6",
+    "code/validated-examples/2026-11-22/models/results/result.json": "d3af162e0e4a1cb0cc14bd41f250cfe16b69e0b6f111cc4ba1c71eb4ca55e266",
+    "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
+    "code/validated-examples/2026-11-22/particles/source-manifest.json": "63cefd473db691db611628f6501b2b58d6727c055ffde1b9a4962bfecfacd125",
+    "code/validated-examples/2026-11-22/particles/verification.json": "48744c4ce661cb76ce7cba81d55bbbb2737885c472966237e78c9e3dfcbf43b7",
+    "code/validated-examples/2026-11-22/particles/cases.json": "f6e68b2ec8d0cd56357b1aeecea3f9c40cf22f89e7f9c1b8b9442ad020ddbf86",
+    "code/validated-examples/2026-11-22/particles/results/result.json": "ed038f2af0d25bb29235e5f2853e0c8360974e8a499475f4b5cb3146d142ad60",
+    "code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+    "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
+    "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
+    "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
+    "code/validated-examples/2026-11-22/mhd/results/result.json": "ce1a011a3f2a18727aa7c10a81d712e23b536e9367e4be18d6847b74210a73f6",
+    "code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip": "2e7eeaaacaeb918671228cc56ab333d0c4ca5a9879241846f5772594552d0b16",
+    "code/validated-examples/2026-11-22/thermostats/source-manifest.json": "81a854bdfe3ae33b4eb4bffdccc9ab15a09f2bddbffb294cd2c2cbd07e641580",
+    "code/validated-examples/2026-11-22/thermostats/verification.json": "c14f55ac05d93269dbf8eef4a2a4042f75764d5228d06f8e41039d0b60351905",
+    "code/validated-examples/2026-11-22/thermostats/cases.json": "123566ec7000dce11f2a6a7474d35e45c8fdf24db85a0556e2cbb3911d3acd77",
+    "code/validated-examples/2026-11-22/thermostats/results/result.json": "7971007807acce9f75261b684b789f196e1d5dffc80797e102d1b0bebbc93f11",
+    "code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip": "38142da988bf0c790eab7e7f10f8d1e209d074c3627f73a207f5223a24e18d65",
+    "code/validated-examples/2026-11-22/biology/source-manifest.json": "56947a4fb54ae757408ddddfc5de0884bfe35266032ee425a8d96a815f3362ba",
+    "code/validated-examples/2026-11-22/biology/verification.json": "5cafaaef809f46e6ab01327107f7367113b8069931621fc92d446fbf142682bd",
+    "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
+    "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
+    "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
+    "code/validated-examples/2026-11-22/mcmc/source-manifest.json": "c288e5c96aefe6f4bfdab4dbd78efc8b27924087aa09ac7e91d61adf63ebf195",
+    "code/validated-examples/2026-11-22/mcmc/verification.json": "f39975a549b48345d5b6f833d6226cdae1054ecb9f004d9c845d1ffa8bbc8c9e",
+    "code/validated-examples/2026-11-22/mcmc/cases.json": "fa950eafd45ac23aa2eba3374b23ab2d8df934368ab5b833bf812fbdd095fcaa",
+    "code/validated-examples/2026-11-22/mcmc/results/result.json": "530a343f4e59e03aa9369e373507e73a063eb810eb5a24fd820568467567cbd5",
+    "code/validated-examples/2026-11-22/mcmc/atlas-mcmc-2026-11-22.zip": "7fb1cde233b79e2b2d56edac89c6e1bdbe8239c1b7f5e166054f8e3e2cdaac11",
+    "code/validated-examples/2026-11-22/mhd-convergence/source-manifest.json": "9d5fd8eb67ed3d4ac3965596bbd12152bdc1ae2e03a3a4f060573175d00caf67",
+    "code/validated-examples/2026-11-22/mhd-convergence/verification.json": "ddf51e803eb94ca7dc419d0b9fc4aa6ec7204c319e448f7d4b120f5342a319d8",
+    "code/validated-examples/2026-11-22/mhd-convergence/cases.json": "a1ebd3a1344c90cc49e11dd790a522434f7fdec27f77d8621a2197a7be738434",
+    "code/validated-examples/2026-11-22/mhd-convergence/results/result.json": "7b1ddd177a96b1ede21b568b0f8e72e4b23d970d96ace3ab2441b0df0efbfe6b",
+    "code/validated-examples/2026-11-22/mhd-convergence/atlas-mhd-convergence-2026-11-22.zip": "5db2fc202014a576145e98c84e1802540df7d8e26353d469fbd55c8e393fd866",
+    "code/validated-examples/2026-11-22/foundations-conditioning/source-manifest.json": "f5b5b5cb5540a1ea76f60f599bd3afd99ffbf312343588e6c7d5c5bcffb3dd9c",
+    "code/validated-examples/2026-11-22/foundations-conditioning/verification.json": "3368c373d622c4246868a43ce869f160de34d0d124c0334d4355573e7c8b3b5f",
+    "code/validated-examples/2026-11-22/foundations-conditioning/cases.json": "fe1b43a92ad60c91a1fdbd79342db0269e27cc0ef2f7d1ddcee58e183cf5b66c",
+    "code/validated-examples/2026-11-22/foundations-conditioning/results/result.json": "0b8ef84da85f950afa9779feb79052401dcdda707d1ac6bb314c3afa3a1973e9",
+    "code/validated-examples/2026-11-22/foundations-conditioning/atlas-foundations-conditioning-2026-11-22.zip": "71d8f0d3b0bed4a6a97f976aabfd02cc0baf08a30c1655f6b1ea42ea16df3c9d",
+    "code/validated-examples/2026-11-22/particle-transport/source-manifest.json": "d5724e7fd43635a489acb3b9ae90ac83fcce734ee89b6f29bc80cbdd4cefac97",
+    "code/validated-examples/2026-11-22/particle-transport/verification.json": "a16b3b90fd815909a8f3241dd7c04aeedabb2dd964da603eadd851fd6a0e171d",
+    "code/validated-examples/2026-11-22/particle-transport/cases.json": "3d3dd9cbc6c62666bb76f893762cf27b33b2606a34e87ffe8c4275e258b96f66",
+    "code/validated-examples/2026-11-22/particle-transport/results/result.json": "8e189a555c575dba4878c1813f828b29a3045c5015bb4ff2aa1b16c8eab9b138",
+    "code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip": "940c1b9c867d5fda395bf93d9dac6b38d992bb4d3de29065f1b42108d1d4c0c9",
+    "code/validated-examples/2026-11-22/splitting/source-manifest.json": "e071ab71032cce9e1a8340cdd80bb58364b7105de764594507024259915f6368",
+    "code/validated-examples/2026-11-22/splitting/verification.json": "899af4b800c58e990a6eae62dd5510ff1afed02060ab7fb67e1c5c8ebcd47b53",
+    "code/validated-examples/2026-11-22/splitting/cases.json": "f252ee6b994a6827e5579b28127143680170124de50f05057d2890e545dcc84f",
+    "code/validated-examples/2026-11-22/splitting/results/result.json": "7b1b8338ec2a03eb04e82f3891d4e2fd08a2edb665313dc8bd0991b1a7a9a8f2",
+    "code/validated-examples/2026-11-22/splitting/atlas-splitting-2026-11-22.zip": "2ae466a4ea62e204716a388b86033de3a6493a9ab0ef4ad9aec4ebb038d8a404",
+    "code/validated-examples/2026-11-23-r5/noh/source-manifest.json": "8597cbc7b841502f4e7eca154e86fe8893402c1167614952de682d7307c5595d",
+    "code/validated-examples/2026-11-23-r5/noh/verification.json": "48545a33ab2c19e9071616a15a1fcbf90c716096aa1a12550d3cb872ed8d9e36",
+    "code/validated-examples/2026-11-23-r5/noh/cases.json": "9501c9cb57617c09a8ceb0aa7e124ba1e2af303144eaa82045e8632fc7c39fc2",
+    "code/validated-examples/2026-11-23-r5/noh/results/result.json": "4e92acb911d505b3f7e74e39f01acf77e59fbe15577f321ac759f1315e487724",
+    "code/validated-examples/2026-11-23-r5/noh/atlas-noh-2026-11-23-r5.zip": "64de5483e9896a3773348b75e1ec2b4630f8a709d68194c1d94772396f531733",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/source-manifest.json": "3f34837f6078bfdc96e5bea2a0ec36c3ae4c48a09c25fcd61560cbb4f4781f93",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/verification.json": "7c530b06df5d2878958bd249b3035050592365e23aee79804e600368dfb09f46",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/cases.json": "49b94c1f65e269d4a878be3a4d8778375b88b767f5dd01998ae5fe6b8fc2b3ee",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/results/result.json": "e121c2f5171ee53491b492019311d002ceb44213f6f7cd43051a3ca68f74c694",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/atlas-noh-cartesian-2026-11-23-r2.zip": "2145beb161f993c1608fc5ac167af5278d58e10f92e74ed37e5fb9c35243b918",
+    "code/validated-examples/2026-11-23-r2/sedov/source-manifest.json": "4a92404602abd0d01096aae1576afb96533c64ea68989615df885a4310e3479f",
+    "code/validated-examples/2026-11-23-r2/sedov/verification.json": "1bec773b9e6d657ea7b71996df2bcc2c593f64b8cbb51942ed7d106be3419a03",
+    "code/validated-examples/2026-11-23-r2/sedov/cases.json": "aab3ca7447d35997bd38505e1ef79e1693096a29cc52c10e994bdcc9c80c8c03",
+    "code/validated-examples/2026-11-23-r2/sedov/results/result.json": "e4767029260bee54e0de2c85b07cbca07c5b99c4eb999b9d609735b6e615ef23",
+    "code/validated-examples/2026-11-23-r2/sedov/atlas-sedov-2026-11-23-r2.zip": "abb7344023b91b090820de1ebec8d6c6a949b8c06fda73037204a5d6f62b4b73",
+    "code/validated-examples/2026-11-23/double-mach/source-manifest.json": "32ba5521149368b729b31796dcc0006c8fd743e840e1e36533a867a47170d8c8",
+    "code/validated-examples/2026-11-23/double-mach/verification.json": "c588b4ce7f539d53b1d5eec4413ce3a1dc104eff975e4adddf0c544460dbb49e",
+    "code/validated-examples/2026-11-23/double-mach/cases.json": "38eb6a6fb4af35cdd3ca8834b9f3e5c80be22a50615f03aef712bc67b11b85e3",
+    "code/validated-examples/2026-11-23/double-mach/results/result.json": "3b4a36b9b3e10e7a6984130ee24bb7d5707de0fe24facff3a49b8eabd71ea5fe",
+    "code/validated-examples/2026-11-23/double-mach/atlas-double-mach-2026-11-23.zip": "0a68d19746c508e0ac0cf9b5bebe9375c797a87ade1a9fbfbef87d6e5fa63347",
+    "code/validated-examples/2026-11-23/forward-step/source-manifest.json": "77546e263d8e08266cedb57ef5e128a3bee68d7b9597fb56bed2eee5dcbec6dc",
+    "code/validated-examples/2026-11-23/forward-step/verification.json": "f40317a2721c2048c6174bf41c03adf5e3eddae07e19ae95e6ed5210a9b01914",
+    "code/validated-examples/2026-11-23/forward-step/cases.json": "e7397c94e5d170170b09a6baa4fdf9276d83419118e456cc172ad6c5cf63b363",
+    "code/validated-examples/2026-11-23/forward-step/results/result.json": "636e179813165fbe620caadd825ac699973ea2dde897d13aed8b2d22102e6704",
+    "code/validated-examples/2026-11-23/forward-step/atlas-forward-step-2026-11-23.zip": "ae69647a4e63c75c0888a6daf15835d348e9d74de58b5e59926e359e9ffc52cd",
+    "code/validated-examples/2026-11-23/low-mach/source-manifest.json": "ff359786cf6efff8e5e61f842ae63a866cb7655a4151b2d33ac12501eed98124",
+    "code/validated-examples/2026-11-23/low-mach/verification.json": "f747210e1d46900c4f56b01e989696c3feaee35361fe42be11428fd280bacf84",
+    "code/validated-examples/2026-11-23/low-mach/cases.json": "8a33dd861d6c635afeb526a2823fa33e88dc84fb49f1ae8a5ba19cbad32ae058",
+    "code/validated-examples/2026-11-23/low-mach/results/result.json": "5e1fdfa86dc57b13857bd571de1070d00ac5237400e0fc9ee9875fae9824d9f5",
+    "code/validated-examples/2026-11-23/low-mach/atlas-low-mach-2026-11-23.zip": "717b2ceed76d37cf4c1e570a7a022e1a17d66fce3048648a3edde4164a1513aa",
+    "code/validated-examples/2026-11-23-r2/guderley/source-manifest.json": "21ad6b276da23b43f14f945275ede89423c84382684fbb11efaaf2479542d942",
+    "code/validated-examples/2026-11-23-r2/guderley/verification.json": "f1aec66cb2d92f0166bd948ea685ad9c193ebf74d1be67b0cc2cfa1d254dc554",
+    "code/validated-examples/2026-11-23-r2/guderley/cases.json": "141e0de47934171fc3ddc943bdedd7b0bda34ead92b13e03fee48aac5ffbad98",
+    "code/validated-examples/2026-11-23-r2/guderley/results/result.json": "1ed7e0d78c95488bd804a62946785040aa30b8b45a39f2e575ce8bf0ea53a0ea",
+    "code/validated-examples/2026-11-23-r2/guderley/atlas-guderley-2026-11-23-r2.zip": "ca6974a8e48f8d6a2ad81ad74bce173dcff3656e35a465d9e75fac3d6cbdbfb6"
+  }
+}

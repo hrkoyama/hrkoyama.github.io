@@ -66,6 +66,10 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/time-integration/
   availability: run
 
   球対称Euler方程式を半径方向の有限体積法で解く軽量例です。固定した半径0.03の領域に総エネルギー1を与え、128・256・512セルで点爆発の相似参照からの差と保存収支を測ります。図は1次元球対称データの断面表示で、2次元Cartesian計算ではありません。
+- [Guderley収束衝撃波：球対称の軽量検証](<https://hrkoyama.github.io/numerical-methods-atlas/validation/guderley-implosion/?lang=ja>)
+  availability: run
+
+  冷たい静止気体へ内向きに進む球対称Guderley衝撃波を、128/256/512個の球殻でt=−1から−.85まで計算します。HLL流束とHeun法を、相似指数の固有値・半解析場・衝撃位置・保存収支と照合する軽量例です。
 - [低Mach等エントロピー渦：前処理Roe流束の軽量検証](<https://hrkoyama.github.io/numerical-methods-atlas/validation/low-mach-vortex/?lang=ja>)
   availability: run
 

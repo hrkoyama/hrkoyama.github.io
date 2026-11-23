@@ -969,6 +969,10 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "validation-guderley": [
+    "ja",
+    "en"
+  ],
   "validation-low-mach": [
     "ja",
     "en"

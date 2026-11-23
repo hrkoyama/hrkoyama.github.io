@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "group": "guderley",
+  "case": "guderley-implosion",
+  "original_implementation": {
+    "files": ["guderley_solver.py", "run.py", "test_guderley.py", "plot.py"],
+    "description": "Locally authored spherical finite-volume HLL/Heun Euler evolution, independent of the reference eigenvalue/ODE algorithms. Physical geometry and numerical flux identities are checked separately.",
+    "license": "LICENSE"
+  },
+  "reference_implementation": {
+    "adapter": "references/precollapse.py",
+    "description": "Uses actual pinned LANL ExactPack eigenvalue and similarity RHS code through a pre-collapse-only cached coordinate adapter. It is not an independently reimplemented similarity ODE.",
+    "source_and_hashes": "references/exactpack-source.json",
+    "license": "references/EXACTPACK-LICENSE.txt",
+    "preregistered_qualification": "references/pre-reference-contract.json",
+    "qualification_result": "references/qualification.json"
+  },
+  "inputs_and_acceptance": {
+    "inputs": "inputs.json",
+    "acceptance": "acceptance.json",
+    "main_source_contract": "pre-run-contract.json",
+    "policy": "Inputs, criteria and numerical sources are fixed before primary unit/PDE execution; failures and attempts are retained if any revision is needed. Presentation changes do not loosen scientific criteria."
+  },
+  "figures": "Only saved, hash-qualified radial states are mapped to a meridional plane. No plotted image is described as a Cartesian 2D calculation."
+}

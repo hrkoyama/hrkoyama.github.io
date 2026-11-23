@@ -1,0 +1,387 @@
+{
+  "started_at_utc": "2026-11-23T06:59:45.921703+00:00",
+  "command": [
+    "env",
+    "PYTHONDONTWRITEBYTECODE=1",
+    "TMPDIR=/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459",
+    "OPENBLAS_NUM_THREADS=1",
+    "OMP_NUM_THREADS=1",
+    "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/gd-env/bin/python",
+    "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/bounded-exec.py",
+    "--seconds",
+    "120",
+    "--receipt",
+    "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/gd-pytest-01-time.json",
+    "--",
+    "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/gd-env/bin/python",
+    "-W",
+    "error",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "--junitxml=/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/gd-pytest-01.xml"
+  ],
+  "cwd": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/atlas-search-publisher/scripts/depth-guderley",
+  "initial_free_bytes": 12007071744,
+  "reserve_bytes": 2684354560,
+  "minimum_free_bytes": 12003790848,
+  "samples": [
+    {
+      "seconds": 0.0,
+      "free_bytes": 12007067648
+    },
+    {
+      "seconds": 0.51,
+      "free_bytes": 12007051264
+    },
+    {
+      "seconds": 1.02,
+      "free_bytes": 12007047168
+    },
+    {
+      "seconds": 1.53,
+      "free_bytes": 12006944768
+    },
+    {
+      "seconds": 2.04,
+      "free_bytes": 12006936576
+    },
+    {
+      "seconds": 2.55,
+      "free_bytes": 12006932480
+    },
+    {
+      "seconds": 3.06,
+      "free_bytes": 12006866944
+    },
+    {
+      "seconds": 3.57,
+      "free_bytes": 12006866944
+    },
+    {
+      "seconds": 4.08,
+      "free_bytes": 12006866944
+    },
+    {
+      "seconds": 4.59,
+      "free_bytes": 12006928384
+    },
+    {
+      "seconds": 5.1,
+      "free_bytes": 12006928384
+    },
+    {
+      "seconds": 5.61,
+      "free_bytes": 12006928384
+    },
+    {
+      "seconds": 6.12,
+      "free_bytes": 12006916096
+    },
+    {
+      "seconds": 6.63,
+      "free_bytes": 12006658048
+    },
+    {
+      "seconds": 7.14,
+      "free_bytes": 12006895616
+    },
+    {
+      "seconds": 7.65,
+      "free_bytes": 12006895616
+    },
+    {
+      "seconds": 8.16,
+      "free_bytes": 12006895616
+    },
+    {
+      "seconds": 8.67,
+      "free_bytes": 12006883328
+    },
+    {
+      "seconds": 9.18,
+      "free_bytes": 12006965248
+    },
+    {
+      "seconds": 9.69,
+      "free_bytes": 12006957056
+    },
+    {
+      "seconds": 10.2,
+      "free_bytes": 12006862848
+    },
+    {
+      "seconds": 10.71,
+      "free_bytes": 12006842368
+    },
+    {
+      "seconds": 11.22,
+      "free_bytes": 12006821888
+    },
+    {
+      "seconds": 11.73,
+      "free_bytes": 12006821888
+    },
+    {
+      "seconds": 12.24,
+      "free_bytes": 12006813696
+    },
+    {
+      "seconds": 12.75,
+      "free_bytes": 12006739968
+    },
+    {
+      "seconds": 13.26,
+      "free_bytes": 12006739968
+    },
+    {
+      "seconds": 13.77,
+      "free_bytes": 12006731776
+    },
+    {
+      "seconds": 14.28,
+      "free_bytes": 12006793216
+    },
+    {
+      "seconds": 14.79,
+      "free_bytes": 12006793216
+    },
+    {
+      "seconds": 15.3,
+      "free_bytes": 12006789120
+    },
+    {
+      "seconds": 15.81,
+      "free_bytes": 12006789120
+    },
+    {
+      "seconds": 16.32,
+      "free_bytes": 12006776832
+    },
+    {
+      "seconds": 16.83,
+      "free_bytes": 12006760448
+    },
+    {
+      "seconds": 17.34,
+      "free_bytes": 12006752256
+    },
+    {
+      "seconds": 17.85,
+      "free_bytes": 12006748160
+    },
+    {
+      "seconds": 18.36,
+      "free_bytes": 12006735872
+    },
+    {
+      "seconds": 18.87,
+      "free_bytes": 12006735872
+    },
+    {
+      "seconds": 19.38,
+      "free_bytes": 12006735872
+    },
+    {
+      "seconds": 19.89,
+      "free_bytes": 12006735872
+    },
+    {
+      "seconds": 20.4,
+      "free_bytes": 12006731776
+    },
+    {
+      "seconds": 20.91,
+      "free_bytes": 12006731776
+    },
+    {
+      "seconds": 21.42,
+      "free_bytes": 12006731776
+    },
+    {
+      "seconds": 21.92,
+      "free_bytes": 12006731776
+    },
+    {
+      "seconds": 22.43,
+      "free_bytes": 12006727680
+    },
+    {
+      "seconds": 22.94,
+      "free_bytes": 12006719488
+    },
+    {
+      "seconds": 23.45,
+      "free_bytes": 12006719488
+    },
+    {
+      "seconds": 23.96,
+      "free_bytes": 12006719488
+    },
+    {
+      "seconds": 24.47,
+      "free_bytes": 12006637568
+    },
+    {
+      "seconds": 24.98,
+      "free_bytes": 12006633472
+    },
+    {
+      "seconds": 25.49,
+      "free_bytes": 12005515264
+    },
+    {
+      "seconds": 25.99,
+      "free_bytes": 12004450304
+    },
+    {
+      "seconds": 26.5,
+      "free_bytes": 12004007936
+    },
+    {
+      "seconds": 27.01,
+      "free_bytes": 12003962880
+    },
+    {
+      "seconds": 27.52,
+      "free_bytes": 12004077568
+    },
+    {
+      "seconds": 28.03,
+      "free_bytes": 12004061184
+    },
+    {
+      "seconds": 28.55,
+      "free_bytes": 12004052992
+    },
+    {
+      "seconds": 29.06,
+      "free_bytes": 12004044800
+    },
+    {
+      "seconds": 29.57,
+      "free_bytes": 12004044800
+    },
+    {
+      "seconds": 30.08,
+      "free_bytes": 12004044800
+    },
+    {
+      "seconds": 30.59,
+      "free_bytes": 12004044800
+    },
+    {
+      "seconds": 31.1,
+      "free_bytes": 12004044800
+    },
+    {
+      "seconds": 31.61,
+      "free_bytes": 12004044800
+    },
+    {
+      "seconds": 32.11,
+      "free_bytes": 12004036608
+    },
+    {
+      "seconds": 32.62,
+      "free_bytes": 12003962880
+    },
+    {
+      "seconds": 33.13,
+      "free_bytes": 12003946496
+    },
+    {
+      "seconds": 33.64,
+      "free_bytes": 12003942400
+    },
+    {
+      "seconds": 34.15,
+      "free_bytes": 12003942400
+    },
+    {
+      "seconds": 34.66,
+      "free_bytes": 12003926016
+    },
+    {
+      "seconds": 35.17,
+      "free_bytes": 12003926016
+    },
+    {
+      "seconds": 35.68,
+      "free_bytes": 12003905536
+    },
+    {
+      "seconds": 36.19,
+      "free_bytes": 12003905536
+    },
+    {
+      "seconds": 36.7,
+      "free_bytes": 12003897344
+    },
+    {
+      "seconds": 37.21,
+      "free_bytes": 12003897344
+    },
+    {
+      "seconds": 37.72,
+      "free_bytes": 12003897344
+    },
+    {
+      "seconds": 38.23,
+      "free_bytes": 12003897344
+    },
+    {
+      "seconds": 38.74,
+      "free_bytes": 12003893248
+    },
+    {
+      "seconds": 39.25,
+      "free_bytes": 12003889152
+    },
+    {
+      "seconds": 39.76,
+      "free_bytes": 12003889152
+    },
+    {
+      "seconds": 40.27,
+      "free_bytes": 12003880960
+    },
+    {
+      "seconds": 40.78,
+      "free_bytes": 12003880960
+    },
+    {
+      "seconds": 41.29,
+      "free_bytes": 12003876864
+    },
+    {
+      "seconds": 41.8,
+      "free_bytes": 12003876864
+    },
+    {
+      "seconds": 42.31,
+      "free_bytes": 12003876864
+    },
+    {
+      "seconds": 42.82,
+      "free_bytes": 12003876864
+    },
+    {
+      "seconds": 43.33,
+      "free_bytes": 12003856384
+    },
+    {
+      "seconds": 43.84,
+      "free_bytes": 12003790848
+    }
+  ],
+  "disk_stop": false,
+  "started": true,
+  "owned_process_group": 58607,
+  "child_returncode": 0,
+  "returncode": 0,
+  "final_free_bytes": 12003790848,
+  "completed_at_utc": "2026-11-23T07:00:29.763255+00:00"
+}

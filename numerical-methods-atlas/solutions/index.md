@@ -715,6 +715,41 @@ Taylor–Green：y = π/4のx方向断面です。2次元セル平均ではな�
 
 
 
+### Guderley収束衝撃波：固有値と球対称の半解析参照
+
+半解析解 · 1次元
+
+`R_s(t)=0.6*(-t)^alpha, alpha=1/lambda; x=t*(0.6/r)^lambda; rho=rho0*R(x), u=-r*V(x)/(lambda*t), p=rho*(-r*C(x)/(lambda*t))^2/gamma. For r<R_s:rho=rho0,u=p=0.`
+
+理想気体Eulerの球半径対称、γ=1.4、未衝撃の上流はρ0=1,u=p=0。Lazarus時間t∈[-1,-.85]、原点での収束はt=0で今回の区間外、r∈[0,.75]、R_s(t)=.6(-t)^α、α=1/λです。初期場も衝撃を含む相似場であり、領域全体が圧力ゼロの初期値ではありません。λは固定ExactPackの固有値計算で求め、同じ固定ソースの相似ODEを収束前だけ積分します。球殻は衝撃位置で分割し、保存量をGauss16で体積平均してGauss32と比較し、その平均保存量からpを計算します。閉形式の厳密セル平均ではありません。ExactPackの高密度出力アダプターであり、独立した半解析実装との照合とは扱いません。図は1D半径計算の2D中心断面表示で、2D Cartesianや原点反射後の計算ではありません。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/guderley-implosion/?lang=ja#guderley-implosion-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-guderley/#guderley-implosion)
+
+- historical-original-problem-attribution: [G. Guderley (1942), Starke kugelige und zylindrische Verdichtungsstöße in der Nähe des Kugelmittelpunktes bzw. der Zylinderachse, Luftfahrtforschung 19, 302 (first page)](https://raw.githubusercontent.com/lanl/ExactPack/9bacc477eb791e959c9621e771fc7a725db755fa/doc/source/references.rst) — Historical original-problem attribution. Author/year/volume/first page 302 were checked in the pinned ExactPack bibliography and the title in the Lazarus1981 publisher references. The original 1942 text was not inspected and is not claimed as the directly transcribed source of the present fields or measurements.
+- semi-analytic-benchmark-and-two-eigenvalue-context: [Scott D. Ramsey, James R. Kamm and John H. Bolstad (2012), The Guderley problem revisited, International Journal of Computational Fluid Dynamics 26, 79–99](https://doi.org/10.1080/10618562.2011.647768) — The LANL record and abstract distinguish the convergence exponent from the reflected trajectory eigenvalue. This is not a claim to have read the entire paper or reproduced its PDE experiment; the present field is constructed using the pinned ExactPack source.
+- similarity-coordinate-convention-and-tabulated-exponent: [Roger B. Lazarus (1981), Self-Similar Solutions for Converging Shocks and Collapsing Cavities, SIAM Journal on Numerical Analysis 18, 316–371](https://doi.org/10.1137/0718022) — Checked the publisher record/abstract and the explicitly attributed equations/table in ExactPack. The tabulated lambda 1.3943607838 is the value transcribed in that code, not an independent retranscription of the original table.
+- critical-point-eigenvalue-formulation-used-by-ExactPack-eexp: [R. F. Chisnell (1998), An analytic description of converging shock waves, Journal of Fluid Mechanics 354, 357–375](https://doi.org/10.1017/S0022112097007775) — Checked the publisher record/abstract and the critical-point phase matching and equation 3.1 implementation in ExactPack eexp. The exponent is computed through that eigenvalue routine rather than fixed by dimensional analysis.
+- ExactPack-software-reference: [Jasper Thrussell and Jim Michael Ferguson (2023), ExactPack: A python library of exact analytic solutions, SoftwareX 24, 101560](https://doi.org/10.1016/j.softx.2023.101560) — Cites the ExactPack software paper and its Guderley solver listing. The paper version 1.7.5 is distinguished from the exact source commit used here, whose source, SHA receipts and BSD license are retained.
+- actually-executed-semi-analytic-reference-source: [Los Alamos National Laboratory / ExactPack contributors (2025), ExactPack Guderley solver, pinned source](https://github.com/lanl/ExactPack/tree/9bacc477eb791e959c9621e771fc7a725db755fa/exactpack/solvers/guderley) — Inspected pinned eexp, the pre-collapse ODE/state, transcribed tables, official regression values and BSD 3 terms. This is not a claim to have run the complete ExactPack suite; actual reference execution is recorded separately. The selected exponent, pre-collapse ODE and eight original state probes were actually executed; qualification.json and pinned source/license hashes are archived with this release. The public Guderley class, reflected B solve and full ExactPack suite were not run.
+#### 関連するテスト問題の図とコード
+
+##### [Guderleyの収束衝撃波](https://hrkoyama.github.io/numerical-methods-atlas/problems/guderley/?lang=ja) (`guderley`)
+
+![1次元球対称Eulerの保存済み半径密度を子午面に表示。γ=1.4、512球殻、r∈\[0,.75\]、R_s(−1)=.6、t=−.85。圧力ゼロの静止上流へ進む収束前の衝撃波を半解析参照と比較します。2D Cartesianや原点反射後の計算ではありません。](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/results/guderley-implosion-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/guderley/?lang=ja#code-ja)
+
+同じ問題への対応
+
+γ=1.4・冷たい一様な上流を持つ球対称Guderley相似解の収束前分岐です。相似指数の固有値探索・相似ODE積分・衝撃位置で分割した球殻求積を含む半解析参照で、閉形式の厳密セル平均ではありません。ExactPackに基づく参照実装と有限体積PDE計算の役割を分け、独立した相似解実装どうしの照合とは扱いません。原点での収束、反射後の衝撃波、一般のEOSは今回の範囲外です。
+
+- [実行・検証：Guderley収束衝撃波：球対称の軽量検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/guderley-implosion/?lang=ja) (`guderley-implosion`) · [コードZIP：Guderley収束衝撃波：球対称の軽量検証](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/atlas-guderley-2026-11-23-r2.zip)
+
+この実行例の範囲：冷たい静止気体へ内向きに進む球対称Guderley衝撃波を、128/256/512個の球殻でt=−1から−.85まで計算します。HLL流束とHeun法を、相似指数の固有値・半解析場・衝撃位置・保存収支と照合する軽量例です。
+
+
+
+
 ## English
 
 ### Advection / sine translation
@@ -1422,3 +1457,38 @@ Analytic field for the same translating isentropic-vortex family. Pressure and v
 - [Run and validate: Low-Mach isentropic vortex: preconditioned Roe flux verification](https://hrkoyama.github.io/numerical-methods-atlas/validation/low-mach-vortex/?lang=en) (`low-mach-vortex`) · [Code ZIP: Low-Mach isentropic vortex: preconditioned Roe flux verification](https://hrkoyama.github.io/code/validated-examples/2026-11-23/low-mach/atlas-low-mach-2026-11-23.zip)
 
 Scope of this execution example: The same nonlinear 2D Euler vortex is evolved to T=0.1 on N=16/32/64 at background Mach 0.1/0.01, comparing ordinary Roe with Miczek spatial flux preconditioning. Twelve fixed runs retain velocity and dynamically scaled pressure errors, conserved budgets, acoustic steps and actual stage states.
+
+
+
+
+### Guderley converging shock: eigenvalue and spherical semi-analytic reference
+
+Semi-analytic reference · 1D
+
+`R_s(t)=0.6*(-t)^alpha, alpha=1/lambda; x=t*(0.6/r)^lambda; rho=rho0*R(x), u=-r*V(x)/(lambda*t), p=rho*(-r*C(x)/(lambda*t))^2/gamma. For r<R_s:rho=rho0,u=p=0.`
+
+Ideal-gas Euler in spherical radial symmetry, gamma=1.4, with unshocked upstream rho0=1, u=p=0. Lazarus time t in [-1,-0.85] excludes collapse at 0; r in [0,0.75], Rs(t)=0.6*(-t)^alpha and alpha=1/lambda. The initial field already contains the similarity shock and is not zero pressure throughout the domain. Lambda is computed by the pinned ExactPack eigenvalue routine, and the same pinned source supplies the pre-collapse similarity ODE. Shells are split at the shock and conserved states are Gauss16 volume averaged, checked against Gauss32; pressure is p(Ubar). This is not closed-form exact cell means or an independent semi-analytic implementation: it is a dense-output adapter to ExactPack. The figure is a 2D central-section display of 1D radial data, not a 2D Cartesian or post-collapse computation.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/guderley-implosion/?lang=en#guderley-implosion-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-guderley/#guderley-implosion)
+
+- historical-original-problem-attribution: [G. Guderley (1942), Starke kugelige und zylindrische Verdichtungsstöße in der Nähe des Kugelmittelpunktes bzw. der Zylinderachse, Luftfahrtforschung 19, 302 (first page)](https://raw.githubusercontent.com/lanl/ExactPack/9bacc477eb791e959c9621e771fc7a725db755fa/doc/source/references.rst) — Historical original-problem attribution. Author/year/volume/first page 302 were checked in the pinned ExactPack bibliography and the title in the Lazarus1981 publisher references. The original 1942 text was not inspected and is not claimed as the directly transcribed source of the present fields or measurements.
+- semi-analytic-benchmark-and-two-eigenvalue-context: [Scott D. Ramsey, James R. Kamm and John H. Bolstad (2012), The Guderley problem revisited, International Journal of Computational Fluid Dynamics 26, 79–99](https://doi.org/10.1080/10618562.2011.647768) — The LANL record and abstract distinguish the convergence exponent from the reflected trajectory eigenvalue. This is not a claim to have read the entire paper or reproduced its PDE experiment; the present field is constructed using the pinned ExactPack source.
+- similarity-coordinate-convention-and-tabulated-exponent: [Roger B. Lazarus (1981), Self-Similar Solutions for Converging Shocks and Collapsing Cavities, SIAM Journal on Numerical Analysis 18, 316–371](https://doi.org/10.1137/0718022) — Checked the publisher record/abstract and the explicitly attributed equations/table in ExactPack. The tabulated lambda 1.3943607838 is the value transcribed in that code, not an independent retranscription of the original table.
+- critical-point-eigenvalue-formulation-used-by-ExactPack-eexp: [R. F. Chisnell (1998), An analytic description of converging shock waves, Journal of Fluid Mechanics 354, 357–375](https://doi.org/10.1017/S0022112097007775) — Checked the publisher record/abstract and the critical-point phase matching and equation 3.1 implementation in ExactPack eexp. The exponent is computed through that eigenvalue routine rather than fixed by dimensional analysis.
+- ExactPack-software-reference: [Jasper Thrussell and Jim Michael Ferguson (2023), ExactPack: A python library of exact analytic solutions, SoftwareX 24, 101560](https://doi.org/10.1016/j.softx.2023.101560) — Cites the ExactPack software paper and its Guderley solver listing. The paper version 1.7.5 is distinguished from the exact source commit used here, whose source, SHA receipts and BSD license are retained.
+- actually-executed-semi-analytic-reference-source: [Los Alamos National Laboratory / ExactPack contributors (2025), ExactPack Guderley solver, pinned source](https://github.com/lanl/ExactPack/tree/9bacc477eb791e959c9621e771fc7a725db755fa/exactpack/solvers/guderley) — Inspected pinned eexp, the pre-collapse ODE/state, transcribed tables, official regression values and BSD 3 terms. This is not a claim to have run the complete ExactPack suite; actual reference execution is recorded separately. The selected exponent, pre-collapse ODE and eight original state probes were actually executed; qualification.json and pinned source/license hashes are archived with this release. The public Guderley class, reflected B solve and full ExactPack suite were not run.
+#### Related test problem figures and code
+
+##### [Guderley converging shock](https://hrkoyama.github.io/numerical-methods-atlas/problems/guderley/?lang=en) (`guderley`)
+
+![A meridional-section display of saved one-dimensional spherical-radial Euler density: gamma=1.4, 512 shells, r in \[0,0.75\], Rs(-1)=0.6, t=-0.85. Compare the pre-collapse shock entering stationary zero-pressure upstream gas with a semi-analytic reference. This is not 2D Cartesian or post-collapse evolution.](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/results/guderley-implosion-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/guderley/?lang=en#code-en)
+
+Same-problem link
+
+The pre-collapse branch of the spherical Guderley similarity solution at gamma=1.4 with a cold uniform upstream state. Numerical eigenvalue shooting, similarity-ODE integration and shock-split shell quadrature make this a semi-analytic reference, not closed-form exact cell means. Distinguish the ExactPack-based evaluator from the finite-volume PDE calculation; this is not a comparison between independent similarity implementations. Collapse at the origin, the reflected branch and general equations of state are outside this example.
+
+- [Run and validate: Guderley converging shock: lightweight spherical-radial verification](https://hrkoyama.github.io/numerical-methods-atlas/validation/guderley-implosion/?lang=en) (`guderley-implosion`) · [Code ZIP: Guderley converging shock: lightweight spherical-radial verification](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/atlas-guderley-2026-11-23-r2.zip)
+
+Scope of this execution example: An inward spherical Guderley shock in cold stationary gas is evolved from t=-1 to -0.85 on 128/256/512 radial shells. HLL fluxes and Heun steps are checked against a similarity eigenvalue/field, shock trajectory and discrete conservation budgets.

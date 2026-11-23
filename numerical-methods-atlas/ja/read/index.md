@@ -67,6 +67,7 @@
 - [Noh衝撃波：厳密解・過熱誤差・格子収束](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh/)
 - [Noh問題：2次元Cartesianと格子方向の誤差](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh-cartesian/)
 - [Sedov–Taylor点爆発：球対称の軽量検証](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sedov/)
+- [Guderley収束衝撃波：球対称の軽量検証](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-guderley/)
 
 ## 格子・有限要素・連成方程式
 

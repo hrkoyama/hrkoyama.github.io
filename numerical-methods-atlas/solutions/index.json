@@ -1,16 +1,16 @@
 {
   "supplements_source": "/catalog/atlas-reference-supplements.json",
-  "supplements_source_sha256": "a0398611d998d2b39b54c82bc5897904be7a6cc060665bf2a956be7e0e16ce0a",
+  "supplements_source_sha256": "84387dd3b1a0148eeaa9d0b8258f09f5ec7f903efadcd7680efc8c8239445339",
   "schema_version": 1,
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/",
   "source": "/numerical-methods-atlas/assets/reference-solutions.json",
   "source_sha256": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
   "translations_source": "/numerical-methods-atlas/locales/messages.json",
-  "translations_source_sha256": "a56c00dd0502482140a934bd6109bc7fe09798d9bd4676c63854f3ea6b2d6053",
-  "count": 23,
+  "translations_source_sha256": "e4435c7ea610f9f1ef9604b4b4794d6c7dbaf7d17f84047b762691c8e748ea14",
+  "count": 24,
   "counts": {
     "analytic": 14,
-    "semi-analytic": 6,
+    "semi-analytic": 7,
     "manufactured": 1,
     "numerical-reference": 2
   },
@@ -2504,16 +2504,185 @@
           }
         }
       ]
+    },
+    {
+      "id": "guderley",
+      "model": "euler",
+      "kind": "semi-analytic",
+      "formula": "R_s(t)=0.6*(-t)^alpha, alpha=1/lambda; x=t*(0.6/r)^lambda; rho=rho0*R(x), u=-r*V(x)/(lambda*t), p=rho*(-r*C(x)/(lambda*t))^2/gamma. For r<R_s:rho=rho0,u=p=0.",
+      "dimension": 1,
+      "bounds": [
+        [
+          0.0,
+          0.75
+        ]
+      ],
+      "components": [
+        "density",
+        "radial momentum",
+        "total energy"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "gamma": 1.4,
+        "rho0": 1.0,
+        "upstream_pressure": 0.0,
+        "upstream_velocity": 0.0,
+        "geometry_dimension": 3,
+        "shock_scale": 0.6,
+        "initial_time": -1.0,
+        "time": -0.85,
+        "grids": [
+          128,
+          256,
+          512
+        ],
+        "cfl": 0.4,
+        "quadrature_order": 16,
+        "quadrature_check_order": 32,
+        "similarity_lambda": 1.3943607844230872,
+        "similarity_alpha": 0.7171745011559165
+      },
+      "sources": [
+        "https://raw.githubusercontent.com/lanl/ExactPack/9bacc477eb791e959c9621e771fc7a725db755fa/doc/source/references.rst",
+        "https://doi.org/10.1080/10618562.2011.647768",
+        "https://doi.org/10.1137/0718022",
+        "https://doi.org/10.1017/S0022112097007775",
+        "https://doi.org/10.1016/j.softx.2023.101560",
+        "https://github.com/lanl/ExactPack/tree/9bacc477eb791e959c9621e771fc7a725db755fa/exactpack/solvers/guderley"
+      ],
+      "title": {
+        "ja": "Guderley収束衝撃波：固有値と球対称の半解析参照",
+        "en": "Guderley converging shock: eigenvalue and spherical semi-analytic reference"
+      },
+      "assumptions": {
+        "ja": "理想気体Eulerの球半径対称、γ=1.4、未衝撃の上流はρ0=1,u=p=0。Lazarus時間t∈[-1,-.85]、原点での収束はt=0で今回の区間外、r∈[0,.75]、R_s(t)=.6(-t)^α、α=1/λです。初期場も衝撃を含む相似場であり、領域全体が圧力ゼロの初期値ではありません。λは固定ExactPackの固有値計算で求め、同じ固定ソースの相似ODEを収束前だけ積分します。球殻は衝撃位置で分割し、保存量をGauss16で体積平均してGauss32と比較し、その平均保存量からpを計算します。閉形式の厳密セル平均ではありません。ExactPackの高密度出力アダプターであり、独立した半解析実装との照合とは扱いません。図は1D半径計算の2D中心断面表示で、2D Cartesianや原点反射後の計算ではありません。",
+        "en": "Ideal-gas Euler in spherical radial symmetry, gamma=1.4, with unshocked upstream rho0=1, u=p=0. Lazarus time t in [-1,-0.85] excludes collapse at 0; r in [0,0.75], Rs(t)=0.6*(-t)^alpha and alpha=1/lambda. The initial field already contains the similarity shock and is not zero pressure throughout the domain. Lambda is computed by the pinned ExactPack eigenvalue routine, and the same pinned source supplies the pre-collapse similarity ODE. Shells are split at the shock and conserved states are Gauss16 volume averaged, checked against Gauss32; pressure is p(Ubar). This is not closed-form exact cell means or an independent semi-analytic implementation: it is a dense-output adapter to ExactPack. The figure is a 2D central-section display of 1D radial data, not a 2D Cartesian or post-collapse computation."
+      },
+      "kind_label": {
+        "ja": "半解析解",
+        "en": "Semi-analytic reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/guderley-implosion/?lang=ja#guderley-implosion-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/guderley-implosion/?lang=en#guderley-implosion-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-guderley/#guderley-implosion",
+        "en": "/numerical-methods-atlas/en/read/validation-guderley/#guderley-implosion"
+      },
+      "citations": [
+        {
+          "role": "historical-original-problem-attribution",
+          "title": "G. Guderley (1942), Starke kugelige und zylindrische Verdichtungsstöße in der Nähe des Kugelmittelpunktes bzw. der Zylinderachse, Luftfahrtforschung 19, 302 (first page)",
+          "url": "https://raw.githubusercontent.com/lanl/ExactPack/9bacc477eb791e959c9621e771fc7a725db755fa/doc/source/references.rst",
+          "note": "Historical original-problem attribution. Author/year/volume/first page 302 were checked in the pinned ExactPack bibliography and the title in the Lazarus1981 publisher references. The original 1942 text was not inspected and is not claimed as the directly transcribed source of the present fields or measurements.",
+          "review_url": "https://epubs.siam.org/doi/10.1137/0718022"
+        },
+        {
+          "role": "semi-analytic-benchmark-and-two-eigenvalue-context",
+          "title": "Scott D. Ramsey, James R. Kamm and John H. Bolstad (2012), The Guderley problem revisited, International Journal of Computational Fluid Dynamics 26, 79–99",
+          "url": "https://doi.org/10.1080/10618562.2011.647768",
+          "note": "The LANL record and abstract distinguish the convergence exponent from the reflected trajectory eigenvalue. This is not a claim to have read the entire paper or reproduced its PDE experiment; the present field is constructed using the pinned ExactPack source.",
+          "review_url": "https://laro.lanl.gov/esploro/outputs/journalArticle/The-Guderley-problem-revisited/9916364702403761"
+        },
+        {
+          "role": "similarity-coordinate-convention-and-tabulated-exponent",
+          "title": "Roger B. Lazarus (1981), Self-Similar Solutions for Converging Shocks and Collapsing Cavities, SIAM Journal on Numerical Analysis 18, 316–371",
+          "url": "https://doi.org/10.1137/0718022",
+          "note": "Checked the publisher record/abstract and the explicitly attributed equations/table in ExactPack. The tabulated lambda 1.3943607838 is the value transcribed in that code, not an independent retranscription of the original table.",
+          "review_url": "https://epubs.siam.org/doi/10.1137/0718022"
+        },
+        {
+          "role": "critical-point-eigenvalue-formulation-used-by-ExactPack-eexp",
+          "title": "R. F. Chisnell (1998), An analytic description of converging shock waves, Journal of Fluid Mechanics 354, 357–375",
+          "url": "https://doi.org/10.1017/S0022112097007775",
+          "note": "Checked the publisher record/abstract and the critical-point phase matching and equation 3.1 implementation in ExactPack eexp. The exponent is computed through that eigenvalue routine rather than fixed by dimensional analysis.",
+          "review_url": "https://www.cambridge.org/core/journals/journal-of-fluid-mechanics/article/abs/an-analytic-description-of-converging-shock-waves/1D3D7014FF4C6297A5F6DC9BCFDBE0E8"
+        },
+        {
+          "role": "ExactPack-software-reference",
+          "title": "Jasper Thrussell and Jim Michael Ferguson (2023), ExactPack: A python library of exact analytic solutions, SoftwareX 24, 101560",
+          "url": "https://doi.org/10.1016/j.softx.2023.101560",
+          "note": "Cites the ExactPack software paper and its Guderley solver listing. The paper version 1.7.5 is distinguished from the exact source commit used here, whose source, SHA receipts and BSD license are retained.",
+          "review_url": "https://www.osti.gov/servlets/purl/2204208"
+        },
+        {
+          "role": "actually-executed-semi-analytic-reference-source",
+          "title": "Los Alamos National Laboratory / ExactPack contributors (2025), ExactPack Guderley solver, pinned source",
+          "url": "https://github.com/lanl/ExactPack/tree/9bacc477eb791e959c9621e771fc7a725db755fa/exactpack/solvers/guderley",
+          "note": "Inspected pinned eexp, the pre-collapse ODE/state, transcribed tables, official regression values and BSD 3 terms. This is not a claim to have run the complete ExactPack suite; actual reference execution is recorded separately. The selected exponent, pre-collapse ODE and eight original state probes were actually executed; qualification.json and pinned source/license hashes are archived with this release. The public Guderley class, reflected B solve and full ExactPack suite were not run."
+        }
+      ],
+      "reference_scope": "Pinned ExactPack eexp computes the similarity exponent; unchanged ramsey.g supplies the similarity ODE. A dense pre-collapse adapter changes caching, evaluation and coordinates, not that ODE. Eight original ramsey.state point calls qualify the adapter, alongside the code-transcribed exponent table, critical matching, shock jumps and Gauss16/32 shell quadrature. This is actual selected ExactPack source execution, not a complete ExactPack test run, an independent similarity implementation or a second numerical Euler engine. The separate finite-volume evolution is Atlas HLL/Heun. The collapse singularity and reflected-shock B eigenvalue are excluded.",
+      "related_problems": [
+        {
+          "id": "guderley",
+          "name": {
+            "ja": "Guderleyの収束衝撃波",
+            "en": "Guderley converging shock"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/results/guderley-implosion-preview.png",
+            "sha256": "03774f695db7f8e07eb006db120075d808871a194e1ab59abb815995fc53f383",
+            "width": 1376,
+            "height": 880,
+            "caption": {
+              "ja": "1次元球対称Eulerの保存済み半径密度を子午面に表示。γ=1.4、512球殻、r∈[0,.75]、R_s(−1)=.6、t=−.85。圧力ゼロの静止上流へ進む収束前の衝撃波を半解析参照と比較します。2D Cartesianや原点反射後の計算ではありません。",
+              "en": "A meridional-section display of saved one-dimensional spherical-radial Euler density: gamma=1.4, 512 shells, r in [0,0.75], Rs(-1)=0.6, t=-0.85. Compare the pre-collapse shock entering stationary zero-pressure upstream gas with a semi-analytic reference. This is not 2D Cartesian or post-collapse evolution."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/guderley/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/guderley/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/guderley/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/guderley/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "guderley-implosion",
+              "kind": "supplement",
+              "name": {
+                "ja": "Guderley収束衝撃波：球対称の軽量検証",
+                "en": "Guderley converging shock: lightweight spherical-radial verification"
+              },
+              "scope": {
+                "ja": "冷たい静止気体へ内向きに進む球対称Guderley衝撃波を、128/256/512個の球殻でt=−1から−.85まで計算します。HLL流束とHeun法を、相似指数の固有値・半解析場・衝撃位置・保存収支と照合する軽量例です。",
+                "en": "An inward spherical Guderley shock in cold stationary gas is evolved from t=-1 to -0.85 on 128/256/512 radial shells. HLL fluxes and Heun steps are checked against a similarity eigenvalue/field, shock trajectory and discrete conservation budgets."
+              },
+              "method_ids": [
+                "hll",
+                "heun"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/guderley-implosion/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/guderley-implosion/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/atlas-guderley-2026-11-23-r2.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/verification.json"
+            }
+          ],
+          "relation": "same-problem",
+          "note": {
+            "ja": "γ=1.4・冷たい一様な上流を持つ球対称Guderley相似解の収束前分岐です。相似指数の固有値探索・相似ODE積分・衝撃位置で分割した球殻求積を含む半解析参照で、閉形式の厳密セル平均ではありません。ExactPackに基づく参照実装と有限体積PDE計算の役割を分け、独立した相似解実装どうしの照合とは扱いません。原点での収束、反射後の衝撃波、一般のEOSは今回の範囲外です。",
+            "en": "The pre-collapse branch of the spherical Guderley similarity solution at gamma=1.4 with a cold uniform upstream state. Numerical eigenvalue shooting, similarity-ODE integration and shock-split shell quadrature make this a semi-analytic reference, not closed-form exact cell means. Distinguish the ExactPack-based evaluator from the finite-volume PDE calculation; this is not a comparison between independent similarity implementations. Collapse at the origin, the reflected branch and general equations of state are outside this example."
+          }
+        }
+      ]
     }
   ],
   "problem_routes_source_sha256": {
-    "catalog/atlas-depth-expansion.json": "d664e9e67d7661114a212229bd05104fc479d37137d697cd93d77c801288ca47",
+    "catalog/atlas-depth-expansion.json": "f9f0dc0fae15eb6b1e82b5179289e8505f95dfeea6cbf59a572fa479f9073016",
     "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
-    "catalog/atlas-methods.json": "522672ce3ce6e90f529ad1ae8ab3a1269ab35658eb6ae99460e1f256fca7afa2",
-    "catalog/atlas-problem-links.json": "1bdb911b9d6917282288dc3aaa46389778cfe176d4c70f42d57b3169939f4ad5",
-    "catalog/atlas-reference-supplements.json": "a0398611d998d2b39b54c82bc5897904be7a6cc060665bf2a956be7e0e16ce0a",
-    "catalog/atlas-test-problems.json": "872d6a32fa180fc575ac2e014734d6dfbba0632aee8c54866df254d3fb0d8fbb",
+    "catalog/atlas-methods.json": "0ea9515873898b348d1cb20caeb6434a2f551548e3996b19683fb2d51a6d5a6b",
+    "catalog/atlas-problem-links.json": "b11d784c7ff9809b0f562ae0f7ad3fccd97834f7866716574d561e854d07580e",
+    "catalog/atlas-reference-supplements.json": "84387dd3b1a0148eeaa9d0b8258f09f5ec7f903efadcd7680efc8c8239445339",
+    "catalog/atlas-test-problems.json": "e1e23af794544805ca27bb02f50ad0f89bdba9f2d03f41f324300db0997edf84",
     "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
     "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
     "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
@@ -2569,6 +2738,11 @@
     "code/validated-examples/2026-11-22/thermostats/results/result.json": "7971007807acce9f75261b684b789f196e1d5dffc80797e102d1b0bebbc93f11",
     "code/validated-examples/2026-11-22/thermostats/source-manifest.json": "81a854bdfe3ae33b4eb4bffdccc9ab15a09f2bddbffb294cd2c2cbd07e641580",
     "code/validated-examples/2026-11-22/thermostats/verification.json": "c14f55ac05d93269dbf8eef4a2a4042f75764d5228d06f8e41039d0b60351905",
+    "code/validated-examples/2026-11-23-r2/guderley/atlas-guderley-2026-11-23-r2.zip": "ca6974a8e48f8d6a2ad81ad74bce173dcff3656e35a465d9e75fac3d6cbdbfb6",
+    "code/validated-examples/2026-11-23-r2/guderley/cases.json": "141e0de47934171fc3ddc943bdedd7b0bda34ead92b13e03fee48aac5ffbad98",
+    "code/validated-examples/2026-11-23-r2/guderley/results/result.json": "1ed7e0d78c95488bd804a62946785040aa30b8b45a39f2e575ce8bf0ea53a0ea",
+    "code/validated-examples/2026-11-23-r2/guderley/source-manifest.json": "21ad6b276da23b43f14f945275ede89423c84382684fbb11efaaf2479542d942",
+    "code/validated-examples/2026-11-23-r2/guderley/verification.json": "f1aec66cb2d92f0166bd948ea685ad9c193ebf74d1be67b0cc2cfa1d254dc554",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/atlas-noh-cartesian-2026-11-23-r2.zip": "2145beb161f993c1608fc5ac167af5278d58e10f92e74ed37e5fb9c35243b918",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/cases.json": "49b94c1f65e269d4a878be3a4d8778375b88b767f5dd01998ae5fe6b8fc2b3ee",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/results/result.json": "e121c2f5171ee53491b492019311d002ceb44213f6f7cd43051a3ca68f74c694",
@@ -2602,6 +2776,6 @@
     "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "e911630439324bd63c075829ed175621068e33088c8a874cb774d725d49a2446"
+    "numerical-methods-atlas/gallery/preview-manifest.json": "c478bc4512ba218b3a7f0f9fbbe8293b64fe7053cf84daffc8c3e4bf3b0765d8"
   }
 }

@@ -205,6 +205,10 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/benchmarks/
   availability: run
 
   実際の2次元Euler有限体積計算を60×20・120×40・240×80でT=4まで行い、別実装のMUSCL有限格子参照と比較します。段差の垂直面・上面を含む実際の数値流束から4保存量の収支を評価し、角のエントロピー補正を加えない変種として図とコードを公開します。
+- [Guderley収束衝撃波：球対称の軽量検証](<https://hrkoyama.github.io/numerical-methods-atlas/validation/guderley-implosion/?lang=ja>)
+  availability: run
+
+  冷たい静止気体へ内向きに進む球対称Guderley衝撃波を、128/256/512個の球殻でt=−1から−.85まで計算します。HLL流束とHeun法を、相似指数の固有値・半解析場・衝撃位置・保存収支と照合する軽量例です。
 - [Godunov型有限体積法：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/godunov/?lang=ja#method-execution-ja>)
   availability: source
 
