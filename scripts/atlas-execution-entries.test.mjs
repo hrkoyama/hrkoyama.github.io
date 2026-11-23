@@ -119,3 +119,21 @@ test('the concise homepage leads to the full execution chooser with the existing
   }
   assert.ok(!home.includes('data-featured-example='), 'the choices live one page beyond the compact landing');
 });
+
+test('the shared chooser also exposes the separate supplementary registry and named fixed-input cases in both languages',()=>{
+  const html=read('numerical-methods-atlas/code-and-data/examples/index.html');
+  const registry=json('numerical-methods-atlas/validation/releases.json');
+  const count=registry.releases.reduce((n,row)=>n+row.case_ids.length,0);
+  const selected=['sem-poisson-2d','fr-periodic-advection','level-set-translation','level-set-rotation','reaction-diffusion-splitting'];
+  for(const lang of ['ja','en']){
+    const section=locale(html,lang);
+    assert.ok(section.includes('id="supplementary-examples-'+lang+'"'));
+    assert.ok(section.includes('/numerical-methods-atlas/validation/?lang='+lang));
+    assert.ok(section.includes(lang==='ja'?`${registry.releases.length}群・${count}ケース`:`${count} fixed-input cases in ${registry.releases.length} groups`));
+    for(const id of selected){
+      assert.ok(section.includes('href="/numerical-methods-atlas/validation/'+id+'/?lang='+lang+'"'),id);
+      assert.ok(read('numerical-methods-atlas/validation/'+id+'/index.html').includes('data-site-language="'+lang+'"'));
+    }
+    assert.equal((section.match(/data-entry-id=/g)||[]).length,execution.examples.length,'shared examples remain a separate inventory');
+  }
+});

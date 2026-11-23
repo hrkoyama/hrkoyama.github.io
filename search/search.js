@@ -99,6 +99,7 @@ async function render() {
   status.textContent=words('loading');
   let engine;
   try {engine=await load(scope);} catch {
+    if (ticket!==version)return;
     status.textContent=words('failed');results.replaceChildren();related.hidden=true;more.hidden=true;return;
   }
   // Ignore an earlier response if the user changed the fragment during the fetch.

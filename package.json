@@ -4,7 +4,8 @@
   },
   "private": true,
   "scripts": {
-    "test:browser": "playwright test --config=playwright.config.mjs"
+    "test:browser": "playwright test --config=playwright.config.mjs",
+    "test:search-performance": "playwright test --config=playwright.search-performance.config.mjs"
   },
   "name": "hrkoyama-public-site-checks"
 }
