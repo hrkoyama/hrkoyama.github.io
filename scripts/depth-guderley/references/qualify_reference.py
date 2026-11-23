@@ -1,7 +1,9 @@
 """Bounded qualification of actual pinned ExactPack and its dense adapter.
 
 No finite-volume PDE evolution, reflected-shock solve or parameter scan occurs.
-Run from the distribution root: python -m references.qualify_reference --output ...
+Explicit expensive regeneration only; routine verification uses the qualified
+eigenvalue cache. Run from the distribution root:
+python -m references.qualify_reference --recompute-eigenvalue --output ...
 """
 import argparse
 import json
@@ -17,7 +19,7 @@ from .exactpack_guderley import ramsey
 
 
 def qualify():
-    ref = GuderleyReference()
+    ref = GuderleyReference(recompute_eigenvalue=True)
     metadata = ref.metadata()
     alpha = ref.alpha
     cdiff = float(exponent_module.Cdiff(alpha, 3, GAMMA))
@@ -91,7 +93,11 @@ def qualify():
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output",type=Path,required=True)
+    parser.add_argument("--recompute-eigenvalue",action="store_true",
+                        help="explicitly authorize the full nonlinear shooting calculation")
     args=parser.parse_args()
+    if not args.recompute_eigenvalue:
+        parser.error("full regeneration requires --recompute-eigenvalue; routine verification reuses the qualified cache")
     if args.output.exists():parser.error("choose a new output path")
     started=time.monotonic()
     try:

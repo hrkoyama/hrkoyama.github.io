@@ -7,6 +7,7 @@ import warnings
 import numpy as np
 import pytest
 import guderley_solver as s
+from references import precollapse as ref
 from references.precollapse import GuderleyReference, TABULATED_LAMBDA
 
 ROOT = Path(__file__).resolve().parent
@@ -230,10 +231,32 @@ def test_postcollapse_or_reversed_intervals_are_rejected():
             s.solve(q, edges, start, stop, .4, lambda t: q[-1])
 
 
-def test_reference_computes_eigenvalue_and_matches_tabulated_lambda(reference):
+def test_reference_reuses_source_bound_eigenvalue_checks_phase_and_rejects_tampering(reference, tmp_path):
+    cache_path = ROOT/'references/eigenvalue-cache.json'
+    cache = json.loads(cache_path.read_text())
+    proof = ref.load_eigenvalue_cache()
+    qualification_path = ROOT/'references'/cache['qualification']['file']
+    qualification = json.loads(qualification_path.read_text())
+    assert qualification['passed'] and all(qualification['checks'].values())
+    assert proof['qualification_sha256'] == hashlib.sha256(qualification_path.read_bytes()).hexdigest()
+    assert proof['cache_sha256'] == hashlib.sha256(cache_path.read_bytes()).hexdigest()
+    assert proof['eigenvalue_recomputed'] is False
+    assert reference.lambda_ == proof['lambda'] == qualification['metadata']['lambda']
     assert abs(reference.lambda_/TABULATED_LAMBDA-1) < 2e-9
     assert abs(reference.alpha*reference.lambda_-1) < 2e-15
-    assert 'eexp' in (ROOT/'references/precollapse.py').read_text()
+    # Default verification must not repeat the costly nonlinear shooting
+    # already recorded in the immutable qualification. The fresh residual
+    # still exercises the actual pinned critical-phase ODE once.
+    with patch.object(ref.exponent_module, 'eexp', side_effect=AssertionError('Unexpected full eigenvalue shooting')):
+        ref.eigenvalue.cache_clear()
+        assert ref.eigenvalue() == qualification['metadata']['lambda']
+        ref.critical_phase_residual.cache_clear()
+        assert abs(ref.critical_phase_residual()) < 2e-7
+    tampered = tmp_path/'tampered-eigenvalue-cache.json'
+    cache['lambda'] += 1e-3
+    tampered.write_text(json.dumps(cache)+'\n')
+    with pytest.raises(RuntimeError):
+        ref.load_eigenvalue_cache(tampered)
 
 
 def test_reference_cold_upstream_is_exactly_unseeded(reference):
@@ -303,9 +326,14 @@ def test_euler_algorithm_does_not_import_the_similarity_reference():
 
 def test_pre_run_contract_binds_sources_and_unchanged_physical_acceptance():
     contract = json.loads((ROOT/'pre-run-contract.json').read_text())
-    assert contract['declared_before_first_pde_run'] is True
+    assert contract['declared_before_first_pde_run'] is False
+    assert contract['declared_before_this_revision_pde_execution'] is True
+    assert contract['declared_before_this_revision_pytest_execution'] is True
     for name, digest in contract['files_sha256'].items():
         assert hashlib.sha256((ROOT/name).read_bytes()).hexdigest() == digest, name
+    previous = json.loads((ROOT/'attempts/02/pre-run-contract.json').read_text())
+    for name in ['inputs.json', 'acceptance.json', 'guderley_solver.py', 'run.py']:
+        assert contract['files_sha256'][name] == previous['files_sha256'][name], name
     acceptance = json.loads((ROOT/'acceptance.json').read_text())
     assert acceptance['declared_before_first_pde_run'] is True
     assert acceptance['limits']['minimum_internal_energy'] == -64*np.finfo(float).eps

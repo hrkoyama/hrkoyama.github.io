@@ -191,7 +191,7 @@ def load_depth_group(root, group, edition):
 
     # Failed, archived revisions remain in the manifest/ZIP, not active code links.
     python_files = sorted(name for name in manifest['files']
-                          if name.endswith('.py') and PurePosixPath(name).parts[0] != 'attempts')
+                          if name.endswith('.py') and 'attempts' not in PurePosixPath(name).parts)
     tests = [name for name in python_files if PurePosixPath(name).name.startswith('test_')]
     code = [name for name in python_files if name not in tests and PurePosixPath(name).name not in ('plot.py', '__init__.py')]
     assert 'run.py' in code and tests

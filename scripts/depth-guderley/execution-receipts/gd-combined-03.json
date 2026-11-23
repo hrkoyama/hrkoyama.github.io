@@ -1,0 +1,17 @@
+{
+  "commands": [
+    {
+      "phase": "pytest",
+      "returncode": 0,
+      "duration_seconds": 0.4878491249983199
+    },
+    {
+      "phase": "run",
+      "returncode": 0,
+      "duration_seconds": 0.4238687499964726
+    }
+  ],
+  "duration_seconds": 0.9121139999988372,
+  "shared_budget_seconds": 120,
+  "passed": true
+}

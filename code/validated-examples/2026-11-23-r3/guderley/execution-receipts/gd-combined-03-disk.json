@@ -1,0 +1,48 @@
+{
+  "started_at_utc": "2026-11-23T07:39:26.409069+00:00",
+  "command": [
+    "env",
+    "PYTHONDONTWRITEBYTECODE=1",
+    "TMPDIR=/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459",
+    "OPENBLAS_NUM_THREADS=1",
+    "OMP_NUM_THREADS=1",
+    "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/gd-env/bin/python",
+    "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/bounded-exec.py",
+    "--seconds",
+    "120",
+    "--receipt",
+    "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/gd-combined-03-time.json",
+    "--",
+    "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/gd-env/bin/python",
+    "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/gd-combined.py",
+    "--python",
+    "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/gd-env/bin/python",
+    "--output",
+    "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-guderley-2026-11-23/primary-attempts/03/combined"
+  ],
+  "cwd": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/atlas-search-publisher/scripts/depth-guderley",
+  "initial_free_bytes": 12360781824,
+  "reserve_bytes": 2684354560,
+  "minimum_free_bytes": 12360462336,
+  "samples": [
+    {
+      "seconds": 0.0,
+      "free_bytes": 12360773632
+    },
+    {
+      "seconds": 0.51,
+      "free_bytes": 12360740864
+    },
+    {
+      "seconds": 1.02,
+      "free_bytes": 12360462336
+    }
+  ],
+  "disk_stop": false,
+  "started": true,
+  "owned_process_group": 65393,
+  "child_returncode": 0,
+  "returncode": 0,
+  "final_free_bytes": 12360462336,
+  "completed_at_utc": "2026-11-23T07:39:27.431055+00:00"
+}

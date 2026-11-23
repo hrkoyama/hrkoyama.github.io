@@ -2910,30 +2910,30 @@
       "chapter": "validation-guderley",
       "reading_section": "guderley-implosion",
       "availability": "saved-output",
-      "code_base": "/code/validated-examples/2026-11-23-r2/guderley/",
-      "verification": "/code/validated-examples/2026-11-23-r2/guderley/verification.json",
+      "code_base": "/code/validated-examples/2026-11-23-r3/guderley/",
+      "verification": "/code/validated-examples/2026-11-23-r3/guderley/verification.json",
       "commands": [
         "python -m pytest -q",
         "python run.py --input inputs.json --output output"
       ],
       "evidence": [
         {
-          "path": "code/validated-examples/2026-11-23-r2/guderley/results/result.json",
+          "path": "code/validated-examples/2026-11-23-r3/guderley/results/result.json",
           "json_pointer": "/cases",
           "where": {
             "id": "guderley-implosion"
           }
         },
         {
-          "path": "code/validated-examples/2026-11-23-r2/guderley/results/guderley-implosion-preview.png",
+          "path": "code/validated-examples/2026-11-23-r3/guderley/results/guderley-implosion-preview.png",
           "artifact": "image"
         },
         {
-          "path": "code/validated-examples/2026-11-23-r2/guderley/inputs.json",
+          "path": "code/validated-examples/2026-11-23-r3/guderley/inputs.json",
           "json_pointer": "/cases/guderley-implosion"
         },
         {
-          "path": "code/validated-examples/2026-11-23-r2/guderley/verification.json",
+          "path": "code/validated-examples/2026-11-23-r3/guderley/verification.json",
           "json_pointer": "/all_cases_rerun"
         }
       ],

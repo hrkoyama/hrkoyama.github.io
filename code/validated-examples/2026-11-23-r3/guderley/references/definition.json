@@ -1,0 +1,33 @@
+{
+  "kind": "semi-analytic",
+  "geometry": "spherical radial Euler",
+  "gamma": 1.4,
+  "rho0": 1,
+  "time": "Lazarus t in[-1,-.85], collapse at0 excluded",
+  "normalization": "Rs(t)=.6*(-t)^alpha; alpha=1/lambda from actual pinned ExactPack eexp(3,1.4)",
+  "domain": [
+    0,
+    0.75
+  ],
+  "upstream": "r<Rs: rho=1,u=0,p=0 (exact cold upstream, not vacuum)",
+  "similarity": "x=t*(.6/r)^lambda; shocked branch -1<=x<0",
+  "fields": "rho=R*rho0; u=-r*V/(lambda*t); p=rho*(-r*C/(lambda*t))^2/gamma",
+  "original_variables": "V,C,R from unchanged ExactPack ramsey.g",
+  "public_ExactPack_time": "t_C=.750024322*(t+1); the upstream state() returns Lazarus-time velocity normalization",
+  "quadrature": "split each spherical shell at exact shock, Gauss16 versus32 on conserved U=(rho,rho*u,E); derive p(Ubar), not mean primitivep",
+  "reflected_branch": "not constructed; no B eigenvalue solve; no origin reflection/collapse singularity",
+  "source_independence": "dense pre-collapse adapter of actual ExactPack, not independent semi-analytic implementation; finite-volume HLL/Heun evolution is separate",
+  "qualifications": "pre-reference-contract.json; qualification.json after actual bounded execution",
+  "sources": [
+    "guderley1942",
+    "ramsey2012guderley",
+    "lazarus1981guderley",
+    "chisnell1998guderley",
+    "thrussell2023exactpack",
+    "exactpack-guderley-pinned"
+  ],
+  "units": "nondimensional educational scaling",
+  "eigenvalue_runtime": "By default reuse actual computed lambda from hash-qualified original qualification; validate archived contract/twelve sources and ten current upstream/provenance bindings. Fresh dense ODE and optional one critical-phase evaluation do not repeat nonlinear root shooting.",
+  "original_eigenvalue_qualification": "attempts/01-eigenvalue-recompute/qualification.json",
+  "cached_reference_qualification": "cache-contract.json and cache-qualification.json"
+}

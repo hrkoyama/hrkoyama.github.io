@@ -272,12 +272,12 @@
     },
     {
       "group": "guderley",
-      "edition": "2026-11-23-r2",
-      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/",
-      "archive": "atlas-guderley-2026-11-23-r2.zip",
-      "archive_sha256": "ca6974a8e48f8d6a2ad81ad74bce173dcff3656e35a465d9e75fac3d6cbdbfb6",
-      "manifest_sha256": "21ad6b276da23b43f14f945275ede89423c84382684fbb11efaaf2479542d942",
-      "verification_sha256": "f1aec66cb2d92f0166bd948ea685ad9c193ebf74d1be67b0cc2cfa1d254dc554",
+      "edition": "2026-11-23-r3",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/",
+      "archive": "atlas-guderley-2026-11-23-r3.zip",
+      "archive_sha256": "f00ff906861495bd73b2ae75f7c3895fab505ba45ad7a34a2612700405d8466f",
+      "manifest_sha256": "e436ada98187ba8a1ca755712fc60d1ce5f735379f026d92d63b2cbd19c6d112",
+      "verification_sha256": "3eb90bb576b4b9579433bb15a93b0acc42948a85f335a45de7c649ec1b61e625",
       "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
       "case_ids": [
         "guderley-implosion"

@@ -1024,7 +1024,7 @@
     },
     {
       "id": "guderley",
-      "image": "/code/validated-examples/2026-11-23-r2/guderley/results/guderley-implosion-preview.png",
+      "image": "/code/validated-examples/2026-11-23-r3/guderley/results/guderley-implosion-preview.png",
       "image_sha256": "03774f695db7f8e07eb006db120075d808871a194e1ab59abb815995fc53f383",
       "width": 1376,
       "height": 880,
@@ -1036,7 +1036,7 @@
     }
   ],
   "source_sha256": {
-    "catalog/atlas-gallery.json": "4e03d8dcdd858e9935b75bf0685960ac5ba4ae681b4fd918f0425a75cff9c8ce",
+    "catalog/atlas-gallery.json": "cd478e232b28fbf113992df585965b575496b5ea99e7fd6fe1d3f66d93f0f050",
     "scripts/render-atlas-gallery.py": "62956b5a0ece0c5144ec079bb30f36e44b3ccf97e4b56b677d4de356cdbab04c",
     "code/numerical-methods-atlas/2026-11-21/numart/benchmarks.py": "dc8f83aafea473b5f0e1e7bf82630484dd60aa446859c1f602571adc3c59f019",
     "code/numerical-methods-atlas/2026-11-21/numart/solvers.py": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d",
@@ -1083,8 +1083,8 @@
     "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
     "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
     "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
-    "catalog/atlas-test-problems.json": "e1e23af794544805ca27bb02f50ad0f89bdba9f2d03f41f324300db0997edf84",
-    "catalog/atlas-depth-expansion.json": "f9f0dc0fae15eb6b1e82b5179289e8505f95dfeea6cbf59a572fa479f9073016",
+    "catalog/atlas-test-problems.json": "25febf285358beb3f730decdd4c48c870766542829f71da96087b2974d47b65d",
+    "catalog/atlas-depth-expansion.json": "5d68fb749341591df2537dcee7c9ee757976a54a2fd2ab2c52b41ed67c4bd689",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
     "code/validated-examples/2026-11-22/foundations/inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -1230,13 +1230,13 @@
     "code/validated-examples/2026-11-23/low-mach/results/result.json": "5e1fdfa86dc57b13857bd571de1070d00ac5237400e0fc9ee9875fae9824d9f5",
     "code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex.png": "38635f161af26efd48e0c0a2bc463974e3e81e6b506770a4c6f6c19b24be1970",
     "code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex-preview.png": "295a80ecab6c8e93c0504f115f48a3b5105ab4e29fe2ccd44965fe387744dbdf",
-    "code/validated-examples/2026-11-23-r2/guderley/cases.json": "141e0de47934171fc3ddc943bdedd7b0bda34ead92b13e03fee48aac5ffbad98",
-    "code/validated-examples/2026-11-23-r2/guderley/inputs.json": "55012ed25956636e2433f61c5bd5de45651c8d252212aac2e9c8cb47e7e1442c",
-    "code/validated-examples/2026-11-23-r2/guderley/source-manifest.json": "21ad6b276da23b43f14f945275ede89423c84382684fbb11efaaf2479542d942",
-    "code/validated-examples/2026-11-23-r2/guderley/verification.json": "f1aec66cb2d92f0166bd948ea685ad9c193ebf74d1be67b0cc2cfa1d254dc554",
-    "code/validated-examples/2026-11-23-r2/guderley/results/result.json": "1ed7e0d78c95488bd804a62946785040aa30b8b45a39f2e575ce8bf0ea53a0ea",
-    "code/validated-examples/2026-11-23-r2/guderley/results/guderley-implosion.png": "af3c5bc89657b250436a73571bfb793345c17dc283c08d8f9b278060138918f9",
-    "code/validated-examples/2026-11-23-r2/guderley/results/guderley-implosion-preview.png": "03774f695db7f8e07eb006db120075d808871a194e1ab59abb815995fc53f383"
+    "code/validated-examples/2026-11-23-r3/guderley/cases.json": "72e621b096fdb1ff229dba33b9243667a7e7c4f9b2593d7331953333707f28f7",
+    "code/validated-examples/2026-11-23-r3/guderley/inputs.json": "55012ed25956636e2433f61c5bd5de45651c8d252212aac2e9c8cb47e7e1442c",
+    "code/validated-examples/2026-11-23-r3/guderley/source-manifest.json": "e436ada98187ba8a1ca755712fc60d1ce5f735379f026d92d63b2cbd19c6d112",
+    "code/validated-examples/2026-11-23-r3/guderley/verification.json": "3eb90bb576b4b9579433bb15a93b0acc42948a85f335a45de7c649ec1b61e625",
+    "code/validated-examples/2026-11-23-r3/guderley/results/result.json": "c85894f329b97d62ef9d093792316028e4b3b9ca38a0488047bdbab2542e84bb",
+    "code/validated-examples/2026-11-23-r3/guderley/results/guderley-implosion.png": "af3c5bc89657b250436a73571bfb793345c17dc283c08d8f9b278060138918f9",
+    "code/validated-examples/2026-11-23-r3/guderley/results/guderley-implosion-preview.png": "03774f695db7f8e07eb006db120075d808871a194e1ab59abb815995fc53f383"
   },
   "calculations_sha256": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6"
 }

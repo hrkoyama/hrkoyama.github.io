@@ -960,7 +960,7 @@
     {
       "id": "guderley",
       "kind": "image",
-      "source": "/code/validated-examples/2026-11-23-r2/guderley/results/guderley-implosion-preview.png",
+      "source": "/code/validated-examples/2026-11-23-r3/guderley/results/guderley-implosion-preview.png",
       "caption": {
         "ja": "1次元球対称Eulerの保存済み半径密度を子午面に表示。γ=1.4、512球殻、r∈[0,.75]、R_s(−1)=.6、t=−.85。圧力ゼロの静止上流へ進む収束前の衝撃波を半解析参照と比較します。2D Cartesianや原点反射後の計算ではありません。",
         "en": "A meridional-section display of saved one-dimensional spherical-radial Euler density: gamma=1.4, 512 shells, r in [0,0.75], Rs(-1)=0.6, t=-0.85. Compare the pre-collapse shock entering stationary zero-pressure upstream gas with a semi-analytic reference. This is not 2D Cartesian or post-collapse evolution."

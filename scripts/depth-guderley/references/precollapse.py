@@ -1,11 +1,16 @@
 """Pre-collapse-only dense adapter to pinned LANL ExactPack Guderley routines.
 
-The nonlinear exponent and the similarity ODE are actual ExactPack code.  This
-adapter changes evaluation/caching and coordinates, not the ODE.  It is not an
-independently implemented semi-analytic solution.  The finite-volume Euler
-evolution is a separate numerical method.
+The exponent was actually computed with ExactPack and is reused from a
+hash-qualified receipt by default. The unchanged similarity ODE is freshly
+integrated. Full eigenvalue shooting is explicit opt-in work. This adapter is
+not an independently implemented semi-analytic solution; the finite-volume
+Euler evolution is a separate numerical method.
 """
 from functools import lru_cache
+import hashlib
+import json
+import math
+from pathlib import Path
 import numpy as np
 from scipy.integrate import solve_ivp
 from .exactpack_guderley import eexp as exponent_module
@@ -22,14 +27,115 @@ MAX_SIMILARITY_RADIUS = 1.42
 EXACTPACK_FACTOR_C = 0.750024322
 TABULATED_LAMBDA = 1.3943607838
 TABULATED_ALPHA = 0.717174501
+REFERENCE_DIR = Path(__file__).resolve().parent
+EIGENVALUE_CACHE_SHA256 = "1a03ece09d775587d95bc4cdaf159d4fc4e3e12416e6caf3bb1d1b58f8eccb30"
+EXACTPACK_COMMIT = "9bacc477eb791e959c9621e771fc7a725db755fa"
 
 
-@lru_cache(maxsize=1)
-def eigenvalue():
-    """Compute (do not hardcode) the spherical gamma=1.4 exponent."""
+def _safe_path(base, name):
+    relative = Path(name)
+    if relative.is_absolute() or ".." in relative.parts:
+        raise RuntimeError("reference receipt path is not relative")
+    path = (base/relative).resolve()
+    if not path.is_relative_to(base.resolve()):
+        raise RuntimeError("reference receipt path escapes its directory")
+    return path
+
+
+def _hashed_bytes(path, digest, label):
+    payload = path.read_bytes()
+    if hashlib.sha256(payload).hexdigest() != digest:
+        raise RuntimeError("changed Guderley " + label)
+    return payload
+
+
+def load_eigenvalue_cache(cache_path=None, reference_dir=None):
+    """Validate the original computation, its inputs, and unchanged sources.
+
+    The cache contains an executed result, not a replacement table constant.
+    Its literal SHA binds the receipt/contract descriptors. The original twelve
+    source files are retained and checked in the historical bundle; current
+    upstream modules must still match those original bindings. Only this
+    adapter and the explicit regeneration driver are intentionally revised.
+    Optional paths support failure-path checks without mutating released data.
+    """
+    base = REFERENCE_DIR if reference_dir is None else Path(reference_dir)
+    path = base/"eigenvalue-cache.json" if cache_path is None else Path(cache_path)
+    try:
+        payload = _hashed_bytes(path, EIGENVALUE_CACHE_SHA256, "eigenvalue cache")
+        cache = json.loads(payload)
+        if (cache["schema_version"] != 1 or cache["geometry"] != 3
+                or cache["gamma"] != GAMMA or cache["source_commit"] != EXACTPACK_COMMIT):
+            raise RuntimeError("cached Guderley eigenvalue has incompatible fixed inputs")
+        qdesc, cdesc = cache["qualification"], cache["original_reference_contract"]
+        qualification = json.loads(_hashed_bytes(_safe_path(base, qdesc["file"]),
+                                                  qdesc["sha256"], "original qualification"))
+        contract = json.loads(_hashed_bytes(_safe_path(base, cdesc["file"]),
+                                             cdesc["sha256"], "original reference contract"))
+        if (contract["geometry"] != 3 or contract["fixed_gamma"] != GAMMA
+                or contract["declared_before_reference_execution"] is not True
+                or contract["no_PDE_evolution"] is not True):
+            raise RuntimeError("original eigenvalue contract has incompatible inputs")
+        archived = _safe_path(base, cache["original_source_prefix"])
+        for name, digest in contract["files_sha256"].items():
+            _hashed_bytes(_safe_path(archived, name), digest, "archived source: " + name)
+        expected_current = {name:digest for name,digest in contract["files_sha256"].items()
+                            if name not in {"precollapse.py", "qualify_reference.py"}}
+        if cache["current_sources_sha256"] != expected_current:
+            raise RuntimeError("incomplete current Guderley source bindings")
+        for name, digest in expected_current.items():
+            _hashed_bytes(_safe_path(base, name), digest, "current upstream source: " + name)
+        meta, checks = qualification["metadata"], qualification["checks"]
+        if (qualification["passed"] is not True or len(checks) != 8
+                or not all(value is True for value in checks.values())
+                or meta["geometry"] != 3 or meta["gamma"] != GAMMA
+                or meta["rho0"] != RHO0 or meta["shock_scale"] != SHOCK_SCALE
+                or meta["lazarus_times"] != [TIME0,TIME1]
+                or meta["domain"] != [0,OUTER_RADIUS]
+                or qualification["reflected_branch_executed"] is not False):
+            raise RuntimeError("original Guderley qualification does not cover fixed inputs")
+        value, alpha = float(cache["lambda"]), float(cache["alpha"])
+        cdiff = float(cache["stored_Cdiff"])
+        if (not all(math.isfinite(x) for x in [value,alpha,cdiff])
+                or value != meta["lambda"] or alpha != meta["alpha"]
+                or cdiff != qualification["eigenvalue"]["Cdiff"]
+                or value <= 1 or not 0 < alpha < 1
+                or abs(alpha*value-1) > 2e-15
+                or abs(value/TABULATED_LAMBDA-1) >= 2e-9
+                or abs(cdiff) >= 2e-7):
+            raise RuntimeError("cached Guderley exponent failed its original qualification")
+        return {"lambda":value, "alpha":alpha,
+                "cache_sha256":EIGENVALUE_CACHE_SHA256,
+                "qualification_sha256":qdesc["sha256"],
+                "contract_sha256":cdesc["sha256"],
+                "stored_Cdiff":cdiff, "current_sources_sha256":expected_current,
+                "original_source_files_checked":len(contract["files_sha256"]),
+                "mode":"hash-qualified reused ExactPack eigenvalue",
+                "eigenvalue_recomputed":False}
+    except (OSError, KeyError, TypeError, ValueError) as error:
+        raise RuntimeError("invalid Guderley eigenvalue cache: " + str(error)) from error
+
+
+@lru_cache(maxsize=2)
+def eigenvalue(recompute=False):
+    """Reuse qualified work by default; full ExactPack shooting is opt-in."""
+    if not recompute:
+        return load_eigenvalue_cache()["lambda"]
     value = float(exponent_module.eexp(3, GAMMA))
     if not np.isfinite(value) or value <= 1:
         raise RuntimeError("invalid Guderley similarity eigenvalue")
+    return value
+
+
+@lru_cache(maxsize=1)
+def critical_phase_residual():
+    """One fresh Cdiff evaluation at the qualified alpha, without root search."""
+    # Upstream Cdiff reads these globals even though it accepts dummy arguments.
+    exponent_module.n = 3
+    exponent_module.g = GAMMA
+    value = float(exponent_module.Cdiff(1.0/eigenvalue(), 3, GAMMA))
+    if not math.isfinite(value):
+        raise RuntimeError("nonfinite Guderley critical-phase residual")
     return value
 
 
@@ -47,8 +153,11 @@ class GuderleyReference:
     rho0 = RHO0
     shock_scale = SHOCK_SCALE
 
-    def __init__(self):
-        self.lambda_ = eigenvalue()
+    def __init__(self, *, recompute_eigenvalue=False):
+        self.lambda_ = eigenvalue(recompute=recompute_eigenvalue)
+        self.eigenvalue_provenance = (
+            {"mode":"fresh ExactPack nonlinear eigenvalue shooting", "eigenvalue_recomputed":True}
+            if recompute_eigenvalue else load_eigenvalue_cache())
         self.alpha = 1.0 / self.lambda_
         self.x_end = -MAX_SIMILARITY_RADIUS ** (-self.lambda_)
         self.jump = np.array([-2.0 / (GAMMA + 1.0),
@@ -158,7 +267,8 @@ class GuderleyReference:
                 "ode_nfev":self.solution.nfev,
                 "exactpack_public_times":[EXACTPACK_FACTOR_C*(t+1) for t in [TIME0,TIME1]],
                 "reflected_branch_executed":False,
-                "source_independence":"actual pinned ExactPack eexp and RHS with a pre-collapse dense adapter"}
+                "eigenvalue_provenance":self.eigenvalue_provenance,
+                "source_independence":"qualified ExactPack eigenvalue reused; unchanged pre-collapse RHS freshly integrated"}
 
 
 PrecollapseReference = GuderleyReference

@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "validation_passed": true,
+  "result_sha256": "c85894f329b97d62ef9d093792316028e4b3b9ca38a0488047bdbab2542e84bb",
+  "plot_sha256": "54b0cd85a97cf008e6a8b1e4715c848380cf881e0da9f513388c94f8043aace9",
+  "files_sha256": {
+    "field-n128.npz": "a80e07ae18d79bafacec0c727fcba7140ef17d5e61a22c78dc20fddf2405fd8f",
+    "history-n128.json": "cc4721e8871a1f49a99fd4e4b04a75b87806d6507019dc2aa860757bf0e21e0e",
+    "field-n256.npz": "5a7b3ee8092824e94e0b3cf5a532d46d70db93b13a8fcc66480f7f533909e8a1",
+    "history-n256.json": "4441b9573d481afa493579cd0be94a304ab1ec3309099e7cd0246221311a3049",
+    "field-n512.npz": "e67e62c80ea65b0ae3ef9c55e2e19862eed95c3244e42dc2fb9a6b7ceeea901f",
+    "history-n512.json": "3c93534f3ea6c38d4de983145e31d5dd8bf8d9298fc123ba9c16bd625beaadab"
+  },
+  "actual_cartesian_field": false,
+  "actual_radial_field": true,
+  "n": 512,
+  "geometry": "1D spherical shell means mapped onto a meridional plane; not a 2D Cartesian computation",
+  "display_grid_pixels": [
+    401,
+    401
+  ],
+  "radial_mapping": "nearest saved shell; no synthetic 2D PDE",
+  "figures": [
+    {
+      "path": "guderley-implosion-preview.png",
+      "sha256": "03774f695db7f8e07eb006db120075d808871a194e1ab59abb815995fc53f383"
+    },
+    {
+      "path": "guderley-implosion-preview.svg",
+      "sha256": "e556f7a619e43d78db5e69e24b9a422daef41e4425ff94eac654137cbbe76b1d"
+    },
+    {
+      "path": "guderley-implosion-preview.pdf",
+      "sha256": "fde90f58556626046ab8c7a263f79dbdc2cd49e1ad0f28cdf68e616c187d55eb"
+    },
+    {
+      "path": "guderley-implosion.png",
+      "sha256": "af3c5bc89657b250436a73571bfb793345c17dc283c08d8f9b278060138918f9"
+    },
+    {
+      "path": "guderley-implosion.svg",
+      "sha256": "b02e5f0fb2007c451fa8c4151241fd0e2d5de86dd5e914bcd82ae9fb4b416af1"
+    },
+    {
+      "path": "guderley-implosion.pdf",
+      "sha256": "c42f05dc51a2ddf4d6f4d973bdc334ef6a336c5d20e3f2069d73ff1a316bd943"
+    }
+  ]
+}

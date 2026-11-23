@@ -7,13 +7,27 @@ BSD-3 license is `EXACTPACK-LICENSE.txt`. The original public wrapper and packag
 initializer/docstring are archived, but the minimal local package initializer does not
 import the unavailable full ExactPack `base` package.
 
-`precollapse.py` calls the unchanged `eexp.eexp(3,1.4)` eigenvalue calculation.
-It integrates the unchanged `ramsey.g` ODE once with the original pre-collapse
-RK45 tolerances and uses its dense output for shell quadrature. It deliberately
-avoids the public wrapper's repeated per-point integrations and unnecessary
-post-reflection `B` solve. This is an adapter of ExactPack, not an independent
-implementation of the semi-analytic solution. The separate HLL/Heun finite-volume
-PDE evolution does not use this ODE as its evolution equation.
+`precollapse.py` normally reuses the exponent that was actually computed by
+unchanged `eexp.eexp(3,1.4)` in the retained original qualification. The cache
+`eigenvalue-cache.json` has a literal SHA binding in the adapter. Its loader
+checks the original qualification, its pre-execution contract, all twelve
+archived source files, fixed geometry/gamma/normalization, and ten unchanged
+live upstream/provenance files. The adapter still freshly integrates unchanged
+`ramsey.g` with the original pre-collapse RK45 tolerances for dense shell
+quadrature. Reusing the exponent does not reuse the finite-volume PDE result.
+
+Full nonlinear exponent shooting was repeated in both pytest and main execution
+in the original release. The Linux33-test phase passed but took96.34seconds,
+leaving insufficient time for the main run under the unchanged combined120second
+group limit. That failed timing record and original source are retained. The
+runtime revision reuses completed, hash-qualified eigenvalue work; it changes no
+physical input or numerical acceptance threshold. One fresh `critical_phase_residual()`
+check uses the original `Cdiff` at the saved alpha, without a root search.
+
+This is an adapter of ExactPack, not an independent implementation of the
+semi-analytic solution. The separate HLL/Heun finite-volume PDE evolution does
+not use the similarity ODE as its evolution equation. No reflected-shock `B`
+solve is required for this pre-collapse branch.
 
 The exponent conventions are `lambda` in `x=t/r**lambda` and
 `alpha=1/lambda` in the shock trajectory. The spherical gamma1.4 table transcribed
@@ -34,20 +48,31 @@ from the averaged conserved state. It is neither an analytic closed-form shell
 mean nor the average of primitive pressure. A plotted radial cross-section of
 these fields is a spherical-symmetry visualization, not a2D Cartesian calculation.
 
-Before any reference computation, `pre-reference-contract.json` fixes the exact
-sources, eight checks, tolerances and a60second execution bound. Run from the
-distribution root:
+The original full-shooting qualification and its unchanged source/contract are
+preserved under `attempts/01-eigenvalue-recompute/`. The original eight checks
+included eight actual calls to unchanged `ramsey.state`; those successful calls
+are historical evidence and are not claimed as new cached-run work.
+
+`cache-contract.json` preregisters the fresh lightweight cache qualification:
+receipt/source checks, one actual critical-phase evaluation, fresh dense ODE,
+eight comparisons against the archived original state values, and fresh
+Gauss16/32 shell integration. Its result is `cache-qualification.json`:
 
 ```sh
-python -W error -m references.qualify_reference --output references/qualification.json
+python -W error -m references.qualify_cached_reference --output references/cache-qualification.json
 ```
 
-The qualifier checks the computed exponent, critical-phase residual, integration
-completion, cold upstream, strong-shock jumps, eight calls to the original
-unchanged `ramsey.state`, and split Gauss16/32 shell means. Actual execution and
-its outcome are recorded separately in `qualification.json`. It performs no PDE
-evolution and no reflected-shock eigenvalue solve. The main verification's smooth
-Euler-substitution and moving-shock checks further qualify its use.
+The original root-shooting path remains available as a separate explicit
+regeneration command; it is not called by routine pytest or PDE execution:
+
+```sh
+python -W error -m references.qualify_reference --recompute-eigenvalue --output new-full-reference-qualification.json
+```
+
+This command recomputes the exponent and repeats the original eight state calls.
+It belongs to separate reference regeneration, outside the routine combined
+120second group verification. The original contract/time receipts describe the
+actual earlier run and are not rewritten to claim the full work was repeated.
 
 `citations.json` distinguishes actual source inspection from publisher abstracts
 and bibliographic records. The original papers were not all read in full; no

@@ -1,0 +1,1092 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "termination": "fixed_budget_completed",
+  "input_sha256": "55012ed25956636e2433f61c5bd5de45651c8d252212aac2e9c8cb47e7e1442c",
+  "checks": {
+    "guderley-implosion": true
+  },
+  "cases": [
+    {
+      "id": "guderley-implosion",
+      "passed": true,
+      "records": [
+        {
+          "n": 128,
+          "time": -0.85,
+          "steps": 71,
+          "density_l1": 0.023454108364462135,
+          "pressure_l1": 0.032769320183763787,
+          "active_density_l1": 0.024142711631118356,
+          "active_pressure_l1": 0.03276932018376379,
+          "density_linf": 0.2583714498778471,
+          "pressure_linf": 0.4918248213723752,
+          "maximum_velocity_error": 0.29667606215626224,
+          "active_volume_fraction": 0.8145022392272948,
+          "active_inner_radius": 0.4271911929633472,
+          "shock_radius": 0.52734375,
+          "reference_shock_radius": 0.533988991204184,
+          "shock_error_cells": 1.1341211655140644,
+          "maximum_history_shock_error_cells": 1.7681946834242883,
+          "minimum_density_all_stages": 1.0,
+          "minimum_pressure_all_stages": 0.0,
+          "minimum_internal_energy_all_stages": 0.0,
+          "sound_speed_roundoff_guard_evaluations": 0,
+          "minimum_pressure_at_sound_speed_guard": 0.0,
+          "state_floor_count": 0,
+          "rejected_steps": 0,
+          "minimum_dt": 7.162806473937078e-05,
+          "maximum_dt": 0.0021789084435661628,
+          "reference_quadrature_density_l1": 2.896924263307821e-13,
+          "reference_quadrature_pressure_l1": 5.014428051950655e-13,
+          "initial_integral": [
+            8.206089344193586,
+            -2.301703302347455,
+            0.7323576961002365
+          ],
+          "final_integral": [
+            11.492857422295556,
+            -3.356590525840208,
+            1.0664451467573306
+          ],
+          "boundary_net_integral": [
+            3.286768078101971,
+            -1.137667428505291,
+            0.3340874506570939
+          ],
+          "geometric_source_integral": [
+            0.0,
+            0.08278020501253855,
+            0.0
+          ],
+          "conservation_residual": [
+            -1.3322676295501878e-15,
+            -6.38378239159465e-16,
+            2.220446049250313e-16
+          ],
+          "conservation_relative": [
+            1.159213571174786e-16,
+            1.8124670145705584e-16,
+            2.0821005712313262e-16
+          ],
+          "shock_trajectory": [
+            {
+              "time": -1.0,
+              "shock_radius": 0.59765625,
+              "reference_shock_radius": 0.6,
+              "error_cells": 0.3999999999999962
+            },
+            {
+              "time": -0.9782924377299245,
+              "shock_radius": 0.5859375,
+              "reference_shock_radius": 0.5906301905085632,
+              "error_cells": 0.800885846794794
+            },
+            {
+              "time": -0.9567333756433305,
+              "shock_radius": 0.57421875,
+              "reference_shock_radius": 0.5812660947627811,
+              "error_cells": 1.2027468395146457
+            },
+            {
+              "time": -0.9352998546116794,
+              "shock_radius": 0.5625,
+              "reference_shock_radius": 0.5718971770148007,
+              "error_cells": 1.603784877192652
+            },
+            {
+              "time": -0.9139388734034526,
+              "shock_radius": 0.556640625,
+              "reference_shock_radius": 0.5624993525585723,
+              "error_cells": 0.9998895033296739
+            },
+            {
+              "time": -0.8926184138281185,
+              "shock_radius": 0.544921875,
+              "reference_shock_radius": 0.5530571992420324,
+              "error_cells": 1.3884286706402047
+            },
+            {
+              "time": -0.871326123557209,
+              "shock_radius": 0.533203125,
+              "reference_shock_radius": 0.5435636407231892,
+              "error_cells": 1.7681946834242883
+            },
+            {
+              "time": -0.8500716280647393,
+              "shock_radius": 0.52734375,
+              "reference_shock_radius": 0.5340212624892918,
+              "error_cells": 1.1396287981724715
+            },
+            {
+              "time": -0.85,
+              "shock_radius": 0.52734375,
+              "reference_shock_radius": 0.533988991204184,
+              "error_cells": 1.1341211655140644
+            }
+          ],
+          "initial_reference_quadrature_density_l1": 1.5942464518988718e-12,
+          "initial_reference_quadrature_pressure_l1": 2.54765297288434e-12,
+          "field": "field-n128.npz",
+          "history": "history-n128.json"
+        },
+        {
+          "n": 256,
+          "time": -0.85,
+          "steps": 142,
+          "density_l1": 0.013386928168626924,
+          "pressure_l1": 0.017431865677689944,
+          "active_density_l1": 0.013779963040136765,
+          "active_pressure_l1": 0.017431865677689944,
+          "density_linf": 0.2709663681343314,
+          "pressure_linf": 0.49416968057811794,
+          "maximum_velocity_error": 0.2978984692414384,
+          "active_volume_fraction": 0.814502239227295,
+          "active_inner_radius": 0.4271911929633472,
+          "shock_radius": 0.52734375,
+          "reference_shock_radius": 0.533988991204184,
+          "shock_error_cells": 2.2682423310281288,
+          "maximum_history_shock_error_cells": 2.2682423310281288,
+          "minimum_density_all_stages": 1.0,
+          "minimum_pressure_all_stages": 0.0,
+          "minimum_internal_energy_all_stages": 0.0,
+          "sound_speed_roundoff_guard_evaluations": 0,
+          "minimum_pressure_at_sound_speed_guard": 0.0,
+          "state_floor_count": 0,
+          "rejected_steps": 0,
+          "minimum_dt": 0.0006571939652950665,
+          "maximum_dt": 0.0010780698167943245,
+          "reference_quadrature_density_l1": 1.3363962268430173e-13,
+          "reference_quadrature_pressure_l1": 2.251024923990976e-13,
+          "initial_integral": [
+            8.206089344179338,
+            -2.3017033023405276,
+            0.7323576960977348
+          ],
+          "final_integral": [
+            11.492857829370788,
+            -3.356838930125358,
+            1.0664451760055733
+          ],
+          "boundary_net_integral": [
+            3.2867684851914554,
+            -1.1376675780299623,
+            0.3340874799078385
+          ],
+          "geometric_source_integral": [
+            0.0,
+            0.08253195024513331,
+            0.0
+          ],
+          "conservation_residual": [
+            -5.329070518200751e-15,
+            -1.2628786905111156e-15,
+            0.0
+          ],
+          "conservation_relative": [
+            4.636854120462487e-16,
+            3.585785160036248e-16,
+            0.0
+          ],
+          "shock_trajectory": [
+            {
+              "time": -1.0,
+              "shock_radius": 0.6005859375,
+              "reference_shock_radius": 0.6,
+              "error_cells": 0.2000000000000076
+            },
+            {
+              "time": -0.9892429722026659,
+              "shock_radius": 0.5947265625,
+              "reference_shock_radius": 0.5953641265433148,
+              "error_cells": 0.217621860118129
+            },
+            {
+              "time": -0.9785571011243208,
+              "shock_radius": 0.5888671875,
+              "reference_shock_radius": 0.5907447811237423,
+              "error_cells": 0.6408852902373686
+            },
+            {
+              "time": -0.9679283208757195,
+              "shock_radius": 0.5830078125,
+              "reference_shock_radius": 0.5861359408438291,
+              "error_cells": 1.0677344746936797
+            },
+            {
+              "time": -0.9573269458641117,
+              "shock_radius": 0.5771484375,
+              "reference_shock_radius": 0.5815247033352795,
+              "error_cells": 1.4937654051087368
+            },
+            {
+              "time": -0.9467378525669856,
+              "shock_radius": 0.5712890625,
+              "reference_shock_radius": 0.5769043678302476,
+              "error_cells": 1.916690886057836
+            },
+            {
+              "time": -0.9361538067102382,
+              "shock_radius": 0.568359375,
+              "reference_shock_radius": 0.5722716059312678,
+              "error_cells": 1.3353748245394097
+            },
+            {
+              "time": -0.9255738090651571,
+              "shock_radius": 0.5625,
+              "reference_shock_radius": 0.5676257867679166,
+              "error_cells": 1.7496018834488798
+            },
+            {
+              "time": -0.9149957838902998,
+              "shock_radius": 0.5595703125,
+              "reference_shock_radius": 0.5629657937877414,
+              "error_cells": 1.158990946215719
+            },
+            {
+              "time": -0.9044217573600973,
+              "shock_radius": 0.5537109375,
+              "reference_shock_radius": 0.5582923090634493,
+              "error_cells": 1.5637748269906904
+            },
+            {
+              "time": -0.8938548672539243,
+              "shock_radius": 0.5478515625,
+              "reference_shock_radius": 0.553606514650018,
+              "error_cells": 1.9643570005394697
+            },
+            {
+              "time": -0.8832974269090673,
+              "shock_radius": 0.544921875,
+              "reference_shock_radius": 0.5489092382682375,
+              "error_cells": 1.3610199955583842
+            },
+            {
+              "time": -0.8727523613407671,
+              "shock_radius": 0.5390625,
+              "reference_shock_radius": 0.5442015897403887,
+              "error_cells": 1.754142631386003
+            },
+            {
+              "time": -0.8622219850609406,
+              "shock_radius": 0.533203125,
+              "reference_shock_radius": 0.5394844175650627,
+              "error_cells": 2.1440145288747394
+            },
+            {
+              "time": -0.8517076931838873,
+              "shock_radius": 0.5302734375,
+              "reference_shock_radius": 0.5347581655057968,
+              "error_cells": 1.5307871593119746
+            },
+            {
+              "time": -0.85,
+              "shock_radius": 0.52734375,
+              "reference_shock_radius": 0.533988991204184,
+              "error_cells": 2.2682423310281288
+            }
+          ],
+          "initial_reference_quadrature_density_l1": 1.4660264374459572e-14,
+          "initial_reference_quadrature_pressure_l1": 2.920969246729905e-14,
+          "field": "field-n256.npz",
+          "history": "history-n256.json"
+        },
+        {
+          "n": 512,
+          "time": -0.85,
+          "steps": 285,
+          "density_l1": 0.00772161862650073,
+          "pressure_l1": 0.00947688731818041,
+          "active_density_l1": 0.007948322269523746,
+          "active_pressure_l1": 0.009476887318180412,
+          "density_linf": 0.26559799254635363,
+          "pressure_linf": 0.4664641041357883,
+          "maximum_velocity_error": 0.2918302634973315,
+          "active_volume_fraction": 0.8145022392272949,
+          "active_inner_radius": 0.4271911929633472,
+          "shock_radius": 0.5302734375,
+          "reference_shock_radius": 0.533988991204184,
+          "shock_error_cells": 2.536484662056258,
+          "maximum_history_shock_error_cells": 2.536484662056258,
+          "minimum_density_all_stages": 1.0,
+          "minimum_pressure_all_stages": 0.0,
+          "minimum_internal_energy_all_stages": 0.0,
+          "sound_speed_roundoff_guard_evaluations": 0,
+          "minimum_pressure_at_sound_speed_guard": 0.0,
+          "state_floor_count": 0,
+          "rejected_steps": 0,
+          "minimum_dt": 0.0004970499254967065,
+          "maximum_dt": 0.000537015606799512,
+          "reference_quadrature_density_l1": 4.607326285502161e-15,
+          "reference_quadrature_pressure_l1": 8.295849629501113e-15,
+          "initial_integral": [
+            8.206089344179249,
+            -2.3017033023404845,
+            0.7323576960977207
+          ],
+          "final_integral": [
+            11.492857928234441,
+            -3.3569808384086612,
+            1.0664451831092827
+          ],
+          "boundary_net_integral": [
+            3.2867685840551983,
+            -1.1376676143431048,
+            0.33408748701156293
+          ],
+          "geometric_source_integral": [
+            0.0,
+            0.08239007827492695,
+            0.0
+          ],
+          "conservation_residual": [
+            -6.217248937900877e-15,
+            1.1102230246251565e-15,
+            -9.43689570931383e-16
+          ],
+          "conservation_relative": [
+            5.409663094004662e-16,
+            3.152465559742603e-16,
+            8.848927126099446e-16
+          ],
+          "shock_trajectory": [
+            {
+              "time": -1.0,
+              "shock_radius": 0.6005859375,
+              "reference_shock_radius": 0.6,
+              "error_cells": 0.4000000000000152
+            },
+            {
+              "time": -0.9946368166418362,
+              "shock_radius": 0.59619140625,
+              "reference_shock_radius": 0.5976904426742187,
+              "error_cells": 1.0233421989332783
+            },
+            {
+              "time": -0.9893094005273915,
+              "shock_radius": 0.59326171875,
+              "reference_shock_radius": 0.5953927982605718,
+              "error_cells": 1.4548169458836735
+            },
+            {
+              "time": -0.9840146694470209,
+              "shock_radius": 0.591796875,
+              "reference_shock_radius": 0.5931057806604236,
+              "error_cells": 0.8935462641825325
+            },
+            {
+              "time": -0.9787352896599837,
+              "shock_radius": 0.5888671875,
+              "reference_shock_radius": 0.590821926008946,
+              "error_cells": 1.3344348221071414
+            },
+            {
+              "time": -0.9734624811850209,
+              "shock_radius": 0.5859375,
+              "reference_shock_radius": 0.5885374337271152,
+              "error_cells": 1.7748880910439766
+            },
+            {
+              "time": -0.9681914086700115,
+              "shock_radius": 0.58447265625,
+              "reference_shock_radius": 0.5862501928945101,
+              "error_cells": 1.2134650159855482
+            },
+            {
+              "time": -0.9629198107206394,
+              "shock_radius": 0.58154296875,
+              "reference_shock_radius": 0.5839591989745323,
+              "error_cells": 1.6494798332807175
+            },
+            {
+              "time": -0.9576467627883994,
+              "shock_radius": 0.57861328125,
+              "reference_shock_radius": 0.5816640233953347,
+              "error_cells": 2.082639971215182
+            },
+            {
+              "time": -0.952371549031616,
+              "shock_radius": 0.5771484375,
+              "reference_shock_radius": 0.5793643257959106,
+              "error_cells": 1.5127130766749513
+            },
+            {
+              "time": -0.9470946346463607,
+              "shock_radius": 0.57421875,
+              "reference_shock_radius": 0.5770602795696169,
+              "error_cells": 1.9398175195251497
+            },
+            {
+              "time": -0.9418172329328481,
+              "shock_radius": 0.57275390625,
+              "reference_shock_radius": 0.5747523864238984,
+              "error_cells": 1.3642957987146171
+            },
+            {
+              "time": -0.9365399380633962,
+              "shock_radius": 0.56982421875,
+              "reference_shock_radius": 0.5724408796635158,
+              "error_cells": 1.7863071836267561
+            },
+            {
+              "time": -0.9312641042325702,
+              "shock_radius": 0.56689453125,
+              "reference_shock_radius": 0.5701263276031471,
+              "error_cells": 2.206239643748404
+            },
+            {
+              "time": -0.9259901328230302,
+              "shock_radius": 0.5654296875,
+              "reference_shock_radius": 0.5678088830286193,
+              "error_cells": 1.6241974808707862
+            },
+            {
+              "time": -0.9207190803034304,
+              "shock_radius": 0.5625,
+              "reference_shock_radius": 0.5654889881116121,
+              "error_cells": 2.0404825508605122
+            },
+            {
+              "time": -0.9154510487847011,
+              "shock_radius": 0.56103515625,
+              "reference_shock_radius": 0.5631666666951907,
+              "error_cells": 1.455111130583494
+            },
+            {
+              "time": -0.9101868411404913,
+              "shock_radius": 0.55810546875,
+              "reference_shock_radius": 0.5608422523193408,
+              "error_cells": 1.8683109166699978
+            },
+            {
+              "time": -0.9049263750373424,
+              "shock_radius": 0.55517578125,
+              "reference_shock_radius": 0.5585156887538151,
+              "error_cells": 2.280043522604425
+            },
+            {
+              "time": -0.8996702937039848,
+              "shock_radius": 0.5537109375,
+              "reference_shock_radius": 0.5561872409623809,
+              "error_cells": 1.690489830318711
+            },
+            {
+              "time": -0.8944184318023805,
+              "shock_radius": 0.55078125,
+              "reference_shock_radius": 0.5538568164517846,
+              "error_cells": 2.099586697751647
+            },
+            {
+              "time": -0.8891713276989159,
+              "shock_radius": 0.5478515625,
+              "reference_shock_radius": 0.5515246350278591,
+              "error_cells": 2.5074841790184714
+            },
+            {
+              "time": -0.8839287833047897,
+              "shock_radius": 0.54638671875,
+              "reference_shock_radius": 0.5491905896890821,
+              "error_cells": 1.9141092277466971
+            },
+            {
+              "time": -0.878691267191384,
+              "shock_radius": 0.54345703125,
+              "reference_shock_radius": 0.5468548701476631,
+              "error_cells": 2.3195913541380073
+            },
+            {
+              "time": -0.8734585866220838,
+              "shock_radius": 0.5419921875,
+              "reference_shock_radius": 0.5445173716101,
+              "error_cells": 1.7238590191616368
+            },
+            {
+              "time": -0.8682311375431372,
+              "shock_radius": 0.5390625,
+              "reference_shock_radius": 0.5421782520914779,
+              "error_cells": 2.1270200944488806
+            },
+            {
+              "time": -0.8630087862744834,
+              "shock_radius": 0.5361328125,
+              "reference_shock_radius": 0.5398374329633072,
+              "error_cells": 2.5290209029510606
+            },
+            {
+              "time": -0.8577918019735371,
+              "shock_radius": 0.53466796875,
+              "reference_shock_radius": 0.5374950159643461,
+              "error_cells": 1.9299308983269536
+            },
+            {
+              "time": -0.8525801975333194,
+              "shock_radius": 0.53173828125,
+              "reference_shock_radius": 0.5351509880497817,
+              "error_cells": 2.329741175317622
+            },
+            {
+              "time": -0.85,
+              "shock_radius": 0.5302734375,
+              "reference_shock_radius": 0.533988991204184,
+              "error_cells": 2.536484662056258
+            }
+          ],
+          "initial_reference_quadrature_density_l1": 1.4522743666682576e-15,
+          "initial_reference_quadrature_pressure_l1": 3.208009534299476e-15,
+          "field": "field-n512.npz",
+          "history": "history-n512.json"
+        }
+      ],
+      "metrics": {
+        "n": 512,
+        "time": -0.85,
+        "steps": 285,
+        "density_l1": 0.00772161862650073,
+        "pressure_l1": 0.00947688731818041,
+        "active_density_l1": 0.007948322269523746,
+        "active_pressure_l1": 0.009476887318180412,
+        "density_linf": 0.26559799254635363,
+        "pressure_linf": 0.4664641041357883,
+        "maximum_velocity_error": 0.2918302634973315,
+        "active_volume_fraction": 0.8145022392272949,
+        "active_inner_radius": 0.4271911929633472,
+        "shock_radius": 0.5302734375,
+        "reference_shock_radius": 0.533988991204184,
+        "shock_error_cells": 2.536484662056258,
+        "maximum_history_shock_error_cells": 2.536484662056258,
+        "minimum_density_all_stages": 1.0,
+        "minimum_pressure_all_stages": 0.0,
+        "minimum_internal_energy_all_stages": 0.0,
+        "sound_speed_roundoff_guard_evaluations": 0,
+        "minimum_pressure_at_sound_speed_guard": 0.0,
+        "state_floor_count": 0,
+        "rejected_steps": 0,
+        "minimum_dt": 0.0004970499254967065,
+        "maximum_dt": 0.000537015606799512,
+        "reference_quadrature_density_l1": 4.607326285502161e-15,
+        "reference_quadrature_pressure_l1": 8.295849629501113e-15,
+        "initial_reference_quadrature_density_l1": 1.4522743666682576e-15,
+        "initial_reference_quadrature_pressure_l1": 3.208009534299476e-15
+      },
+      "checks": {
+        "all three fixed spherical runs completed": true,
+        "N128: final time before collapse": true,
+        "N128: strictly positive density all stages": true,
+        "N128: minimum_internal_energy_all_stages": true,
+        "N128: minimum_pressure_at_sound_speed_guard": true,
+        "N128: state_floor_count": true,
+        "N128: rejected_steps": true,
+        "N128: mass discrete balance": true,
+        "N128: radial momentum including geometric source discrete balance": true,
+        "N128: energy discrete balance": true,
+        "N128: reference_quadrature_density_l1": true,
+        "N128: reference_quadrature_pressure_l1": true,
+        "N128: initial_reference_quadrature_density_l1": true,
+        "N128: initial_reference_quadrature_pressure_l1": true,
+        "N128: maximum and trajectory diagnostics retained": true,
+        "N256: final time before collapse": true,
+        "N256: strictly positive density all stages": true,
+        "N256: minimum_internal_energy_all_stages": true,
+        "N256: minimum_pressure_at_sound_speed_guard": true,
+        "N256: state_floor_count": true,
+        "N256: rejected_steps": true,
+        "N256: mass discrete balance": true,
+        "N256: radial momentum including geometric source discrete balance": true,
+        "N256: energy discrete balance": true,
+        "N256: reference_quadrature_density_l1": true,
+        "N256: reference_quadrature_pressure_l1": true,
+        "N256: initial_reference_quadrature_density_l1": true,
+        "N256: initial_reference_quadrature_pressure_l1": true,
+        "N256: maximum and trajectory diagnostics retained": true,
+        "N512: final time before collapse": true,
+        "N512: strictly positive density all stages": true,
+        "N512: minimum_internal_energy_all_stages": true,
+        "N512: minimum_pressure_at_sound_speed_guard": true,
+        "N512: state_floor_count": true,
+        "N512: rejected_steps": true,
+        "N512: mass discrete balance": true,
+        "N512: radial momentum including geometric source discrete balance": true,
+        "N512: energy discrete balance": true,
+        "N512: reference_quadrature_density_l1": true,
+        "N512: reference_quadrature_pressure_l1": true,
+        "N512: initial_reference_quadrature_density_l1": true,
+        "N512: initial_reference_quadrature_pressure_l1": true,
+        "N512: maximum and trajectory diagnostics retained": true,
+        "similarity qualification: maximum_scaled_euler_residual": true,
+        "similarity qualification: maximum_scaled_jump_residual": true,
+        "similarity exponent agrees with tabulated lambda": true,
+        "finest density_l1": true,
+        "finest pressure_l1": true,
+        "finest active_density_l1": true,
+        "finest active_pressure_l1": true,
+        "finest shock_error_cells": true,
+        "density_l1 decreases across the three grids": true,
+        "active_density_l1 decreases across the three grids": true,
+        "pressure_l1 decreases across the three grids": true,
+        "last-pair active density L1 slope": true
+      },
+      "check_details": [
+        {
+          "name": "all three fixed spherical runs completed",
+          "value": [
+            128,
+            256,
+            512
+          ],
+          "bound": [
+            128,
+            256,
+            512
+          ],
+          "passed": true
+        },
+        {
+          "name": "N128: final time before collapse",
+          "value": -0.85,
+          "bound": -0.85,
+          "passed": true
+        },
+        {
+          "name": "N128: strictly positive density all stages",
+          "value": 1.0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N128: minimum_internal_energy_all_stages",
+          "value": 0.0,
+          "bound": -1.4210854715202004e-14,
+          "passed": true
+        },
+        {
+          "name": "N128: minimum_pressure_at_sound_speed_guard",
+          "value": 0.0,
+          "bound": -5.6843418860808e-15,
+          "passed": true
+        },
+        {
+          "name": "N128: state_floor_count",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N128: rejected_steps",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N128: mass discrete balance",
+          "value": 1.159213571174786e-16,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "N128: radial momentum including geometric source discrete balance",
+          "value": 1.8124670145705584e-16,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "N128: energy discrete balance",
+          "value": 2.0821005712313262e-16,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "N128: reference_quadrature_density_l1",
+          "value": 2.896924263307821e-13,
+          "bound": 1e-07,
+          "passed": true
+        },
+        {
+          "name": "N128: reference_quadrature_pressure_l1",
+          "value": 5.014428051950655e-13,
+          "bound": 1e-07,
+          "passed": true
+        },
+        {
+          "name": "N128: initial_reference_quadrature_density_l1",
+          "value": 1.5942464518988718e-12,
+          "bound": 1e-07,
+          "passed": true
+        },
+        {
+          "name": "N128: initial_reference_quadrature_pressure_l1",
+          "value": 2.54765297288434e-12,
+          "bound": 1e-07,
+          "passed": true
+        },
+        {
+          "name": "N128: maximum and trajectory diagnostics retained",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "N256: final time before collapse",
+          "value": -0.85,
+          "bound": -0.85,
+          "passed": true
+        },
+        {
+          "name": "N256: strictly positive density all stages",
+          "value": 1.0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N256: minimum_internal_energy_all_stages",
+          "value": 0.0,
+          "bound": -1.4210854715202004e-14,
+          "passed": true
+        },
+        {
+          "name": "N256: minimum_pressure_at_sound_speed_guard",
+          "value": 0.0,
+          "bound": -5.6843418860808e-15,
+          "passed": true
+        },
+        {
+          "name": "N256: state_floor_count",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N256: rejected_steps",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N256: mass discrete balance",
+          "value": 4.636854120462487e-16,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "N256: radial momentum including geometric source discrete balance",
+          "value": 3.585785160036248e-16,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "N256: energy discrete balance",
+          "value": 0.0,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "N256: reference_quadrature_density_l1",
+          "value": 1.3363962268430173e-13,
+          "bound": 1e-07,
+          "passed": true
+        },
+        {
+          "name": "N256: reference_quadrature_pressure_l1",
+          "value": 2.251024923990976e-13,
+          "bound": 1e-07,
+          "passed": true
+        },
+        {
+          "name": "N256: initial_reference_quadrature_density_l1",
+          "value": 1.4660264374459572e-14,
+          "bound": 1e-07,
+          "passed": true
+        },
+        {
+          "name": "N256: initial_reference_quadrature_pressure_l1",
+          "value": 2.920969246729905e-14,
+          "bound": 1e-07,
+          "passed": true
+        },
+        {
+          "name": "N256: maximum and trajectory diagnostics retained",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "N512: final time before collapse",
+          "value": -0.85,
+          "bound": -0.85,
+          "passed": true
+        },
+        {
+          "name": "N512: strictly positive density all stages",
+          "value": 1.0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N512: minimum_internal_energy_all_stages",
+          "value": 0.0,
+          "bound": -1.4210854715202004e-14,
+          "passed": true
+        },
+        {
+          "name": "N512: minimum_pressure_at_sound_speed_guard",
+          "value": 0.0,
+          "bound": -5.6843418860808e-15,
+          "passed": true
+        },
+        {
+          "name": "N512: state_floor_count",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N512: rejected_steps",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "N512: mass discrete balance",
+          "value": 5.409663094004662e-16,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "N512: radial momentum including geometric source discrete balance",
+          "value": 3.152465559742603e-16,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "N512: energy discrete balance",
+          "value": 8.848927126099446e-16,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "N512: reference_quadrature_density_l1",
+          "value": 4.607326285502161e-15,
+          "bound": 1e-07,
+          "passed": true
+        },
+        {
+          "name": "N512: reference_quadrature_pressure_l1",
+          "value": 8.295849629501113e-15,
+          "bound": 1e-07,
+          "passed": true
+        },
+        {
+          "name": "N512: initial_reference_quadrature_density_l1",
+          "value": 1.4522743666682576e-15,
+          "bound": 1e-07,
+          "passed": true
+        },
+        {
+          "name": "N512: initial_reference_quadrature_pressure_l1",
+          "value": 3.208009534299476e-15,
+          "bound": 1e-07,
+          "passed": true
+        },
+        {
+          "name": "N512: maximum and trajectory diagnostics retained",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "similarity qualification: maximum_scaled_euler_residual",
+          "value": 8.233415560656415e-09,
+          "bound": 1e-05,
+          "passed": true
+        },
+        {
+          "name": "similarity qualification: maximum_scaled_jump_residual",
+          "value": 4.3989810016853426e-08,
+          "bound": 1e-07,
+          "passed": true
+        },
+        {
+          "name": "similarity exponent agrees with tabulated lambda",
+          "value": 4.468621028763664e-10,
+          "bound": 2e-09,
+          "passed": true
+        },
+        {
+          "name": "finest density_l1",
+          "value": 0.00772161862650073,
+          "bound": 0.15,
+          "passed": true
+        },
+        {
+          "name": "finest pressure_l1",
+          "value": 0.00947688731818041,
+          "bound": 0.15,
+          "passed": true
+        },
+        {
+          "name": "finest active_density_l1",
+          "value": 0.007948322269523746,
+          "bound": 0.15,
+          "passed": true
+        },
+        {
+          "name": "finest active_pressure_l1",
+          "value": 0.009476887318180412,
+          "bound": 0.15,
+          "passed": true
+        },
+        {
+          "name": "finest shock_error_cells",
+          "value": 2.536484662056258,
+          "bound": 4.0,
+          "passed": true
+        },
+        {
+          "name": "density_l1 decreases across the three grids",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "active_density_l1 decreases across the three grids",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "pressure_l1 decreases across the three grids",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "last-pair active density L1 slope",
+          "value": 0.7938497447023544,
+          "bound": 0.2,
+          "passed": true
+        }
+      ],
+      "reference_qualification": {
+        "maximum_scaled_euler_residual": 8.233415560656415e-09,
+        "maximum_scaled_jump_residual": 4.3989810016853426e-08,
+        "lambda_table_relative_difference": 4.468621028763664e-10,
+        "euler_residual_radii": [
+          0.5787208592237053,
+          0.6241107305353685,
+          0.7092167392447368
+        ],
+        "euler_residual_time": -0.925,
+        "radial_derivative_step": 5.673733913957895e-06,
+        "time_derivative_step": 9.250000000000001e-06,
+        "jump_state_radius_relative_offset": 1e-08,
+        "metadata": {
+          "geometry": 3,
+          "gamma": 1.4,
+          "rho0": 1.0,
+          "lambda": 1.3943607844230872,
+          "alpha": 0.7171745011559165,
+          "shock_scale": 0.6,
+          "lazarus_times": [
+            -1.0,
+            -0.85
+          ],
+          "domain": [
+            0,
+            0.75
+          ],
+          "similarity_x_end": -0.6132747790371198,
+          "max_similarity_radius": 1.42,
+          "ode_success": true,
+          "ode_steps": 36,
+          "ode_nfev": 254,
+          "exactpack_public_times": [
+            0.0,
+            0.11250364830000002
+          ],
+          "reflected_branch_executed": false,
+          "eigenvalue_provenance": {
+            "lambda": 1.3943607844230872,
+            "alpha": 0.7171745011559165,
+            "cache_sha256": "1a03ece09d775587d95bc4cdaf159d4fc4e3e12416e6caf3bb1d1b58f8eccb30",
+            "qualification_sha256": "7d5825c880d4dda6d375a236ce0e7b66617d68e7d5dfafd8ddca0bd906d172e5",
+            "contract_sha256": "d67f95f41b8ee549004ebce4b69ec0542ff6c467d545b5c81ac77f912e26aa0d",
+            "stored_Cdiff": -2.8882521374562486e-12,
+            "current_sources_sha256": {
+              "EXACTPACK-LICENSE.txt": "763767e730623814502f95054919a019f17f5257e0cd8d60aede203d9736dd40",
+              "EXACTPACK-test_guderley.py": "394a0bb67840cffcb02cd573cc50feeeb237c5438835642f25aadd85f3dbcf34",
+              "__init__.py": "f45a1aad38d884ee1bac10a96d8490ff3535ed66aa1949c1339c8bbe1b0ddbdb",
+              "exactpack-source.json": "106c9ddc42ae34b90d03d8807c18250deab12885fc8d449e9f403ce7c9b1c2fa",
+              "exactpack_guderley/__init__.py": "ac847505482cac2b8b0d985605bbd6665282e7ce1fa95d77b7b1696b32d75249",
+              "exactpack_guderley/eexp.py": "111bb69cc3869f2e820eb97e2f9c6132a51f257017c0375c4a7b1509642ce664",
+              "exactpack_guderley/guderley.py": "27dc6a811a880fe6c52dd8a3423d1132adc4a0720c039cb69ac271587e6a1967",
+              "exactpack_guderley/interp_laz.py": "4b11a3a3f0cc233bff47814b11dab2a8290c73d99bfe9321fc5aa34021b771e9",
+              "exactpack_guderley/original_init.py": "6e6ad38211448db5823eab4c581ebc8644d72ee7a91da3ba4144b64ac26bd788",
+              "exactpack_guderley/ramsey.py": "57156dff491a181e19d779fc0878bed6c4e3f74b048d251745a0f5bde0f87a2b"
+            },
+            "original_source_files_checked": 12,
+            "mode": "hash-qualified reused ExactPack eigenvalue",
+            "eigenvalue_recomputed": false
+          },
+          "source_independence": "qualified ExactPack eigenvalue reused; unchanged pre-collapse RHS freshly integrated"
+        }
+      },
+      "scope": "One-dimensional spherical radial Euler before collapse; a revolved meridional visualization is not a two-dimensional Cartesian evolution."
+    }
+  ],
+  "files_sha256": {
+    "field-n128.npz": "a80e07ae18d79bafacec0c727fcba7140ef17d5e61a22c78dc20fddf2405fd8f",
+    "history-n128.json": "cc4721e8871a1f49a99fd4e4b04a75b87806d6507019dc2aa860757bf0e21e0e",
+    "field-n256.npz": "5a7b3ee8092824e94e0b3cf5a532d46d70db93b13a8fcc66480f7f533909e8a1",
+    "history-n256.json": "4441b9573d481afa493579cd0be94a304ab1ec3309099e7cd0246221311a3049",
+    "field-n512.npz": "e67e62c80ea65b0ae3ef9c55e2e19862eed95c3244e42dc2fb9a6b7ceeea901f",
+    "history-n512.json": "3c93534f3ea6c38d4de983145e31d5dd8bf8d9298fc123ba9c16bd625beaadab"
+  },
+  "source_sha256": {
+    "guderley_solver.py": "206c023aff847f37b3cd46c1c956c580e5efecae81f393f1e956ee23ff507c24",
+    "run.py": "0eb350a5ff21eb60d2ce9d5c7f01aaca9a8a822846997337513162581cc810d4",
+    "inputs.json": "55012ed25956636e2433f61c5bd5de45651c8d252212aac2e9c8cb47e7e1442c",
+    "acceptance.json": "9d8e42a1a8e515fbd7f213300f7b2555a15387acb9657bd81bc9f57f7d066b7b",
+    "test_guderley.py": "f380f1f6f09716b4bbef2d5ef34ec273c5efca135aa3cde5ec510b1644e85eeb",
+    "references/EXACTPACK-LICENSE.txt": "763767e730623814502f95054919a019f17f5257e0cd8d60aede203d9736dd40",
+    "references/EXACTPACK-test_guderley.py": "394a0bb67840cffcb02cd573cc50feeeb237c5438835642f25aadd85f3dbcf34",
+    "references/__init__.py": "f45a1aad38d884ee1bac10a96d8490ff3535ed66aa1949c1339c8bbe1b0ddbdb",
+    "references/attempts/01-eigenvalue-recompute/EXACTPACK-LICENSE.txt": "763767e730623814502f95054919a019f17f5257e0cd8d60aede203d9736dd40",
+    "references/attempts/01-eigenvalue-recompute/EXACTPACK-test_guderley.py": "394a0bb67840cffcb02cd573cc50feeeb237c5438835642f25aadd85f3dbcf34",
+    "references/attempts/01-eigenvalue-recompute/README.md": "94a60005c8bce9ab368301038cebc68b9b8c896f0ca10f662226f4147c1e809c",
+    "references/attempts/01-eigenvalue-recompute/__init__.py": "f45a1aad38d884ee1bac10a96d8490ff3535ed66aa1949c1339c8bbe1b0ddbdb",
+    "references/attempts/01-eigenvalue-recompute/citations.json": "450fbfa08a10dd961f77f9cd5d61241e4048df1c9511b1af4af5f430538fe3f5",
+    "references/attempts/01-eigenvalue-recompute/definition.json": "6c4d03c7c9f77b0e6e2e8083523110cd670ba5eea14b5e274110927504254e2d",
+    "references/attempts/01-eigenvalue-recompute/exactpack-source.json": "106c9ddc42ae34b90d03d8807c18250deab12885fc8d449e9f403ce7c9b1c2fa",
+    "references/attempts/01-eigenvalue-recompute/exactpack_guderley/__init__.py": "ac847505482cac2b8b0d985605bbd6665282e7ce1fa95d77b7b1696b32d75249",
+    "references/attempts/01-eigenvalue-recompute/exactpack_guderley/eexp.py": "111bb69cc3869f2e820eb97e2f9c6132a51f257017c0375c4a7b1509642ce664",
+    "references/attempts/01-eigenvalue-recompute/exactpack_guderley/guderley.py": "27dc6a811a880fe6c52dd8a3423d1132adc4a0720c039cb69ac271587e6a1967",
+    "references/attempts/01-eigenvalue-recompute/exactpack_guderley/interp_laz.py": "4b11a3a3f0cc233bff47814b11dab2a8290c73d99bfe9321fc5aa34021b771e9",
+    "references/attempts/01-eigenvalue-recompute/exactpack_guderley/original_init.py": "6e6ad38211448db5823eab4c581ebc8644d72ee7a91da3ba4144b64ac26bd788",
+    "references/attempts/01-eigenvalue-recompute/exactpack_guderley/ramsey.py": "57156dff491a181e19d779fc0878bed6c4e3f74b048d251745a0f5bde0f87a2b",
+    "references/attempts/01-eigenvalue-recompute/execution-receipts/gd-reference-01-disk.json": "d745ef9c43005fc042cc2bdec683c2432d0dc47d2354f7fc246d88e84f3ec862",
+    "references/attempts/01-eigenvalue-recompute/execution-receipts/gd-reference-01-time.json": "ec4c2389dc4cd1683b21247af0ba5b7b18f270ae0424e0b7b2c514733f44a84c",
+    "references/attempts/01-eigenvalue-recompute/execution-receipts/gd-reference-01.log": "20aecb8cca4602e5a74208c3160698bc0776e31c4a461174b7c6140a275ae605",
+    "references/attempts/01-eigenvalue-recompute/pre-reference-contract.json": "d67f95f41b8ee549004ebce4b69ec0542ff6c467d545b5c81ac77f912e26aa0d",
+    "references/attempts/01-eigenvalue-recompute/precollapse.py": "a587a2b8e332f6cf99ebb5e0acad345ceb9bd6c3fa91fe37436e63aad305ae95",
+    "references/attempts/01-eigenvalue-recompute/qualification.json": "7d5825c880d4dda6d375a236ce0e7b66617d68e7d5dfafd8ddca0bd906d172e5",
+    "references/attempts/01-eigenvalue-recompute/qualify_reference.py": "41b78ef6f417c53e27b8129b54f9f3e9e524000f7d9a130e91869e6a50966a66",
+    "references/eigenvalue-cache.json": "1a03ece09d775587d95bc4cdaf159d4fc4e3e12416e6caf3bb1d1b58f8eccb30",
+    "references/exactpack-source.json": "106c9ddc42ae34b90d03d8807c18250deab12885fc8d449e9f403ce7c9b1c2fa",
+    "references/exactpack_guderley/__init__.py": "ac847505482cac2b8b0d985605bbd6665282e7ce1fa95d77b7b1696b32d75249",
+    "references/exactpack_guderley/eexp.py": "111bb69cc3869f2e820eb97e2f9c6132a51f257017c0375c4a7b1509642ce664",
+    "references/exactpack_guderley/guderley.py": "27dc6a811a880fe6c52dd8a3423d1132adc4a0720c039cb69ac271587e6a1967",
+    "references/exactpack_guderley/interp_laz.py": "4b11a3a3f0cc233bff47814b11dab2a8290c73d99bfe9321fc5aa34021b771e9",
+    "references/exactpack_guderley/original_init.py": "6e6ad38211448db5823eab4c581ebc8644d72ee7a91da3ba4144b64ac26bd788",
+    "references/exactpack_guderley/ramsey.py": "57156dff491a181e19d779fc0878bed6c4e3f74b048d251745a0f5bde0f87a2b",
+    "references/pre-reference-contract.json": "d67f95f41b8ee549004ebce4b69ec0542ff6c467d545b5c81ac77f912e26aa0d",
+    "references/precollapse.py": "ac8735ed8fafc8d1b1a280a996dc8b6afe4236b6b7d4e3285a0121d92de97983",
+    "references/qualification.json": "7d5825c880d4dda6d375a236ce0e7b66617d68e7d5dfafd8ddca0bd906d172e5",
+    "references/qualify_cached_reference.py": "fe1b393c431937bc8afec489e800151c446ff6138c3d959ebba6186db0e8dc1c",
+    "references/qualify_reference.py": "b10c830037559597b22dfdd83f940a6ec6c54ba260b5bfd2c3fbc49b91166d2a",
+    "references/cache-contract.json": "a878eafa4bef3efdb278b69e9bf2164255c3b736aeac5f5b06e8ea30addf63c1",
+    "references/cache-qualification.json": "a9b0e8ab2a13c228e8faf5bda4de706881f97c6f7267b99a461c08e1166aca09",
+    "attempts/02/pre-run-contract.json": "aa65710a19e98b65b5522f1602b9fb4d35fc4b13eb011eeee8abc5bb0e769b79",
+    "pre-run-contract.json": "9fa2e2be38efe3c00efac9a3baa7e3121207f936fb04fbb1e5d78f1feb455fa8"
+  },
+  "failure": null,
+  "duration_seconds": 0.1747302089970617
+}

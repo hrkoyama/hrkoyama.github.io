@@ -979,12 +979,12 @@
       "kind": "implementation",
       "initial_coverage": "未収録",
       "state": "published",
-      "current": "γ=1.4・未衝撃上流ρ=1,u=p=0、r∈[0,.75]、R_s(-1)=.6、t=-1→-.85、128/256/512球殻でHLL＋Heunの軽量例を公開。33単体検査・3格子55判定、配布ZIPの独立展開と全固定入力の再実行が合格した。相似指数は固定ExactPackで固有値計算し、収束前ODE・元stateの8点照合・衝撃条件・Gauss16/32求積を別に確認。全体積の密度L1は.02345/.01339/.007722、圧力は.03277/.01743/.009477。事前固定したr≥.8R_sの活性領域L1も併記する。全3保存量の境界流束・幾何源収支の最大残差は8.85e-16。衝撃層の最大差とセル幅単位の位置差は単調減少せず、原点での収束や反射後は実装済みとしない。 初回の未公開ZIPは数値検証に合格しましたが、公開用メタデータのlimitsキー不足が配布版の厳密検査で判明したため、未公開の初回を作業記録に保持し、r2の33単体検査・全3固定入力55判定と配布版の厳密検査が合格。数値コード・入力・参照・受入基準は変えず、公開用の項目名だけを整えました。",
+      "current": "γ=1.4・未衝撃上流ρ=1,u=p=0、r∈[0,.75]、R_s(-1)=.6、t=-1→-.85、128/256/512球殻でHLL＋Heunを比較するr3を公開。33単体検査・3格子55判定と、ZIP独立展開での再実行が合格した。通常追試は元ExactPackの固有値探索・8点照合で資格確認したλを再利用し、相似ODE・Gauss16/32球殻求積・全3格子Euler計算を新たに実行する。固有値探索と元ソース点照合の再生成は別の明示コマンド。旧r2はMacの33検査・55判定に合格したが、公開Linuxでは33検査96.3396秒の後、本計算が残り23.312秒でグループ全体120秒上限へ達した。旧r2と実際の失敗記録を保持し、物理入力・受入基準・有限体積コア・run.py・120秒上限は不変。全体積・活性領域のL1、衝撃位置、境界流束と幾何源収支を並べ、衝撃層の最大差とセル幅単位の位置差が単調減少しない事実も保持する。原点収束や反射後は今回の範囲外。 Macでは同じ120秒枠で検査と本計算を続けて約.9121秒で完了し、ZIP独立展開での本計算は約.4241秒でした。全3格子の初期場・最終場・参照・履歴の保存配列は旧r2とビット一致しました。",
       "tasks": [
         "Noh/Sedovと区別し、相似指数の固有値問題と半解析的な場の参照を構成する。",
         "まず収束前の限定時区間・固定EOSで衝撃軌道と体積平均を照合し、原点反射後の分岐は別段階とする。"
       ],
-      "scope_note": "対象は球対称・γ=1.4・冷たい一様上流の収束前分岐をt=-1から-.85まで追う短い固定例。初期場は衝撃後の外側を含む相似場で、圧力ゼロは未衝撃の内側上流に限る。相似指数の固有値探索・相似ODE・球殻平均は数値評価を含む半解析参照で、閉形式の厳密セル平均とは区別する。参照は実際の固定ExactPackソースに基づくアダプターであり、独立に実装した相似解や別のPDEエンジンとの比較とは扱わない。圧力は保存量平均から評価し、原始圧力の平均と混同しない。図は1D半径結果の2D子午面表示。原点到達・反射後、円筒対称、一般EOS・非球対称摂動は未検証。冷たい上流の圧力ゼロと、64epsの絶対内部エネルギー許容帯にある丸め負値を記録し、音速平方根だけのガード回数と状態修復を分ける。非線形正値性の一般保証や高次の収束次数は主張しない。",
+      "scope_note": "対象は球対称・γ=1.4・冷たい一様上流の収束前分岐をt=-1から-.85まで追う短い固定例。初期場は衝撃後の外側を含む相似場で、圧力ゼロは未衝撃の内側上流に限る。相似指数の固有値探索・相似ODE・球殻平均は数値評価を含む半解析参照で、閉形式の厳密セル平均とは区別する。参照は実際の固定ExactPackソースに基づくアダプターであり、独立に実装した相似解や別のPDEエンジンとの比較とは扱わない。圧力は保存量平均から評価し、原始圧力の平均と混同しない。図は1D半径結果の2D子午面表示。原点到達・反射後、円筒対称、一般EOS・非球対称摂動は未検証。冷たい上流の圧力ゼロと、64epsの絶対内部エネルギー許容帯にある丸め負値を記録し、音速平方根だけのガード回数と状態修復を分ける。非線形正値性の一般保証や高次の収束次数は主張しない。 通常追試のλは、固定ExactPackを実際に実行した資格確認記録から再利用します。相似ODEと求積・PDEの再計算、固有値探索の明示再生成、保存された元ソース照合の役割を区別し、キャッシュを固有値探索の再実行と表示しません。",
       "sources": [
         {
           "url": "https://raw.githubusercontent.com/lanl/ExactPack/9bacc477eb791e959c9621e771fc7a725db755fa/doc/source/references.rst",
@@ -1035,31 +1035,41 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-23-r2/guderley/verification.json",
+        "verification": "/code/validated-examples/2026-11-23-r3/guderley/verification.json",
         "inputs": [
-          "/code/validated-examples/2026-11-23-r2/guderley/inputs.json",
-          "/code/validated-examples/2026-11-23-r2/guderley/acceptance.json",
-          "/code/validated-examples/2026-11-23-r2/guderley/pre-run-contract.json",
-          "/code/validated-examples/2026-11-23-r2/guderley/references/definition.json",
-          "/code/validated-examples/2026-11-23-r2/guderley/references/pre-reference-contract.json"
+          "/code/validated-examples/2026-11-23-r3/guderley/inputs.json",
+          "/code/validated-examples/2026-11-23-r3/guderley/acceptance.json",
+          "/code/validated-examples/2026-11-23-r3/guderley/pre-run-contract.json",
+          "/code/validated-examples/2026-11-23-r3/guderley/references/definition.json",
+          "/code/validated-examples/2026-11-23-r3/guderley/references/pre-reference-contract.json",
+          "/code/validated-examples/2026-11-23-r3/guderley/references/cache-contract.json"
         ],
         "plots": [
-          "/code/validated-examples/2026-11-23-r2/guderley/results/guderley-implosion-preview.png",
-          "/code/validated-examples/2026-11-23-r2/guderley/results/guderley-implosion.png"
+          "/code/validated-examples/2026-11-23-r3/guderley/results/guderley-implosion-preview.png",
+          "/code/validated-examples/2026-11-23-r3/guderley/results/guderley-implosion.png"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#guderley-ja",
         "execution": "/numerical-methods-atlas/validation/guderley-implosion/?lang=ja",
         "code": [
-          "/code/validated-examples/2026-11-23-r2/guderley/run.py",
-          "/code/validated-examples/2026-11-23-r2/guderley/guderley_solver.py",
-          "/code/validated-examples/2026-11-23-r2/guderley/references/precollapse.py"
+          "/code/validated-examples/2026-11-23-r3/guderley/run.py",
+          "/code/validated-examples/2026-11-23-r3/guderley/guderley_solver.py",
+          "/code/validated-examples/2026-11-23-r3/guderley/references/precollapse.py"
         ],
         "references": [
           "/numerical-methods-atlas/solutions/?lang=ja#solution-guderley-ja",
-          "/code/validated-examples/2026-11-23-r2/guderley/references/citations.json",
-          "/code/validated-examples/2026-11-23-r2/guderley/references/README.md",
-          "/code/validated-examples/2026-11-23-r2/guderley/references/qualification.json",
-          "/code/validated-examples/2026-11-23-r2/guderley/references/exactpack-source.json"
+          "/code/validated-examples/2026-11-23-r3/guderley/references/citations.json",
+          "/code/validated-examples/2026-11-23-r3/guderley/references/README.md",
+          "/code/validated-examples/2026-11-23-r3/guderley/references/qualification.json",
+          "/code/validated-examples/2026-11-23-r3/guderley/references/exactpack-source.json",
+          "/code/validated-examples/2026-11-23-r3/guderley/references/eigenvalue-cache.json",
+          "/code/validated-examples/2026-11-23-r3/guderley/references/cache-contract.json",
+          "/code/validated-examples/2026-11-23-r3/guderley/references/cache-qualification.json",
+          "/code/validated-examples/2026-11-23-r3/guderley/references/attempts/01-eigenvalue-recompute/qualification.json",
+          "/code/validated-examples/2026-11-23-r3/guderley/attempts/02/failed-linux-report.json",
+          "/code/validated-examples/2026-11-23-r3/guderley/attempts/02/failed-linux-workflow-context.json",
+          "/code/validated-examples/2026-11-23-r3/guderley/attempts/02/published-release.json",
+          "/code/validated-examples/2026-11-23-r3/guderley/attempts/02/pre-run-contract.json",
+          "/code/validated-examples/2026-11-23-r3/guderley/attempts/02/cases.json"
         ]
       },
       "sequence": 10,
@@ -1069,31 +1079,41 @@
         "local_evidence_checked": true,
         "verification_passed": true,
         "links": {
-          "verification": "/code/validated-examples/2026-11-23-r2/guderley/verification.json",
+          "verification": "/code/validated-examples/2026-11-23-r3/guderley/verification.json",
           "inputs": [
-            "/code/validated-examples/2026-11-23-r2/guderley/inputs.json",
-            "/code/validated-examples/2026-11-23-r2/guderley/acceptance.json",
-            "/code/validated-examples/2026-11-23-r2/guderley/pre-run-contract.json",
-            "/code/validated-examples/2026-11-23-r2/guderley/references/definition.json",
-            "/code/validated-examples/2026-11-23-r2/guderley/references/pre-reference-contract.json"
+            "/code/validated-examples/2026-11-23-r3/guderley/inputs.json",
+            "/code/validated-examples/2026-11-23-r3/guderley/acceptance.json",
+            "/code/validated-examples/2026-11-23-r3/guderley/pre-run-contract.json",
+            "/code/validated-examples/2026-11-23-r3/guderley/references/definition.json",
+            "/code/validated-examples/2026-11-23-r3/guderley/references/pre-reference-contract.json",
+            "/code/validated-examples/2026-11-23-r3/guderley/references/cache-contract.json"
           ],
           "plots": [
-            "/code/validated-examples/2026-11-23-r2/guderley/results/guderley-implosion-preview.png",
-            "/code/validated-examples/2026-11-23-r2/guderley/results/guderley-implosion.png"
+            "/code/validated-examples/2026-11-23-r3/guderley/results/guderley-implosion-preview.png",
+            "/code/validated-examples/2026-11-23-r3/guderley/results/guderley-implosion.png"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#guderley-ja",
           "execution": "/numerical-methods-atlas/validation/guderley-implosion/?lang=ja",
           "code": [
-            "/code/validated-examples/2026-11-23-r2/guderley/run.py",
-            "/code/validated-examples/2026-11-23-r2/guderley/guderley_solver.py",
-            "/code/validated-examples/2026-11-23-r2/guderley/references/precollapse.py"
+            "/code/validated-examples/2026-11-23-r3/guderley/run.py",
+            "/code/validated-examples/2026-11-23-r3/guderley/guderley_solver.py",
+            "/code/validated-examples/2026-11-23-r3/guderley/references/precollapse.py"
           ],
           "references": [
             "/numerical-methods-atlas/solutions/?lang=ja#solution-guderley-ja",
-            "/code/validated-examples/2026-11-23-r2/guderley/references/citations.json",
-            "/code/validated-examples/2026-11-23-r2/guderley/references/README.md",
-            "/code/validated-examples/2026-11-23-r2/guderley/references/qualification.json",
-            "/code/validated-examples/2026-11-23-r2/guderley/references/exactpack-source.json"
+            "/code/validated-examples/2026-11-23-r3/guderley/references/citations.json",
+            "/code/validated-examples/2026-11-23-r3/guderley/references/README.md",
+            "/code/validated-examples/2026-11-23-r3/guderley/references/qualification.json",
+            "/code/validated-examples/2026-11-23-r3/guderley/references/exactpack-source.json",
+            "/code/validated-examples/2026-11-23-r3/guderley/references/eigenvalue-cache.json",
+            "/code/validated-examples/2026-11-23-r3/guderley/references/cache-contract.json",
+            "/code/validated-examples/2026-11-23-r3/guderley/references/cache-qualification.json",
+            "/code/validated-examples/2026-11-23-r3/guderley/references/attempts/01-eigenvalue-recompute/qualification.json",
+            "/code/validated-examples/2026-11-23-r3/guderley/attempts/02/failed-linux-report.json",
+            "/code/validated-examples/2026-11-23-r3/guderley/attempts/02/failed-linux-workflow-context.json",
+            "/code/validated-examples/2026-11-23-r3/guderley/attempts/02/published-release.json",
+            "/code/validated-examples/2026-11-23-r3/guderley/attempts/02/pre-run-contract.json",
+            "/code/validated-examples/2026-11-23-r3/guderley/attempts/02/cases.json"
           ]
         }
       }
@@ -5063,22 +5083,7 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-benchmark-backlog.json": "6aaf9b17e94dc6b9cbbd21b167ae5dfe42d175ef6b83ffc806f976c385ae481e",
-    "code/validated-examples/2026-11-23-r2/guderley/acceptance.json": "9d8e42a1a8e515fbd7f213300f7b2555a15387acb9657bd81bc9f57f7d066b7b",
-    "code/validated-examples/2026-11-23-r2/guderley/guderley_solver.py": "206c023aff847f37b3cd46c1c956c580e5efecae81f393f1e956ee23ff507c24",
-    "code/validated-examples/2026-11-23-r2/guderley/inputs.json": "55012ed25956636e2433f61c5bd5de45651c8d252212aac2e9c8cb47e7e1442c",
-    "code/validated-examples/2026-11-23-r2/guderley/pre-run-contract.json": "aa65710a19e98b65b5522f1602b9fb4d35fc4b13eb011eeee8abc5bb0e769b79",
-    "code/validated-examples/2026-11-23-r2/guderley/references/README.md": "94a60005c8bce9ab368301038cebc68b9b8c896f0ca10f662226f4147c1e809c",
-    "code/validated-examples/2026-11-23-r2/guderley/references/citations.json": "450fbfa08a10dd961f77f9cd5d61241e4048df1c9511b1af4af5f430538fe3f5",
-    "code/validated-examples/2026-11-23-r2/guderley/references/definition.json": "6c4d03c7c9f77b0e6e2e8083523110cd670ba5eea14b5e274110927504254e2d",
-    "code/validated-examples/2026-11-23-r2/guderley/references/exactpack-source.json": "106c9ddc42ae34b90d03d8807c18250deab12885fc8d449e9f403ce7c9b1c2fa",
-    "code/validated-examples/2026-11-23-r2/guderley/references/pre-reference-contract.json": "d67f95f41b8ee549004ebce4b69ec0542ff6c467d545b5c81ac77f912e26aa0d",
-    "code/validated-examples/2026-11-23-r2/guderley/references/precollapse.py": "a587a2b8e332f6cf99ebb5e0acad345ceb9bd6c3fa91fe37436e63aad305ae95",
-    "code/validated-examples/2026-11-23-r2/guderley/references/qualification.json": "7d5825c880d4dda6d375a236ce0e7b66617d68e7d5dfafd8ddca0bd906d172e5",
-    "code/validated-examples/2026-11-23-r2/guderley/results/guderley-implosion-preview.png": "03774f695db7f8e07eb006db120075d808871a194e1ab59abb815995fc53f383",
-    "code/validated-examples/2026-11-23-r2/guderley/results/guderley-implosion.png": "af3c5bc89657b250436a73571bfb793345c17dc283c08d8f9b278060138918f9",
-    "code/validated-examples/2026-11-23-r2/guderley/run.py": "0eb350a5ff21eb60d2ce9d5c7f01aaca9a8a822846997337513162581cc810d4",
-    "code/validated-examples/2026-11-23-r2/guderley/verification.json": "f1aec66cb2d92f0166bd948ea685ad9c193ebf74d1be67b0cc2cfa1d254dc554",
+    "catalog/atlas-benchmark-backlog.json": "46fcb1b9808055f7ef0ca7dc2df790f97b4e550fc031aff0ca800d33198cbc06",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/acceptance.json": "9da18d8d22194a07bc0d8e7c619199baab0984f978d84a673bc8f94d4baf5f8b",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/cartesian_reference.py": "b53b9ac767938389abc99eedc3bc2dd23bab965bdb4f41fe19933b2da1b312c0",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/cartesian_solver.py": "7360a880b6318259ddf50b18d79861aca7f806190baaaa1d1200e6d9e4c7e0f8",
@@ -5099,6 +5104,30 @@
     "code/validated-examples/2026-11-23-r2/sedov/run.py": "d0aea58ef35b4c4f707bbfa90c16a5bfd8040ba63dd47fdaa9a6bee69254c0ad",
     "code/validated-examples/2026-11-23-r2/sedov/sedov_solver.py": "1ddd6eb080a8ea3813ec26c37695b5f024da7a4cf49b05c2c4851642431f6139",
     "code/validated-examples/2026-11-23-r2/sedov/verification.json": "1bec773b9e6d657ea7b71996df2bcc2c593f64b8cbb51942ed7d106be3419a03",
+    "code/validated-examples/2026-11-23-r3/guderley/acceptance.json": "9d8e42a1a8e515fbd7f213300f7b2555a15387acb9657bd81bc9f57f7d066b7b",
+    "code/validated-examples/2026-11-23-r3/guderley/attempts/02/cases.json": "141e0de47934171fc3ddc943bdedd7b0bda34ead92b13e03fee48aac5ffbad98",
+    "code/validated-examples/2026-11-23-r3/guderley/attempts/02/failed-linux-report.json": "13c09086bc221f03637a6aead3f6b5f86beed2d3da9276caf82704a4f1f0a9ce",
+    "code/validated-examples/2026-11-23-r3/guderley/attempts/02/failed-linux-workflow-context.json": "16b6e9ab87d044eb2c23f094b7e77dc96d5dda05628d8175dc94ef7cb307d1e3",
+    "code/validated-examples/2026-11-23-r3/guderley/attempts/02/pre-run-contract.json": "aa65710a19e98b65b5522f1602b9fb4d35fc4b13eb011eeee8abc5bb0e769b79",
+    "code/validated-examples/2026-11-23-r3/guderley/attempts/02/published-release.json": "e175ad2a79be3e8bd36048149756d0b0e92d9d001fd3fb0cf1731ab9b6bea44a",
+    "code/validated-examples/2026-11-23-r3/guderley/guderley_solver.py": "206c023aff847f37b3cd46c1c956c580e5efecae81f393f1e956ee23ff507c24",
+    "code/validated-examples/2026-11-23-r3/guderley/inputs.json": "55012ed25956636e2433f61c5bd5de45651c8d252212aac2e9c8cb47e7e1442c",
+    "code/validated-examples/2026-11-23-r3/guderley/pre-run-contract.json": "9fa2e2be38efe3c00efac9a3baa7e3121207f936fb04fbb1e5d78f1feb455fa8",
+    "code/validated-examples/2026-11-23-r3/guderley/references/README.md": "4288546785337711b9fbd96a4cc21f18f75edd0f9180a2a0f46da26d73eaf5f4",
+    "code/validated-examples/2026-11-23-r3/guderley/references/attempts/01-eigenvalue-recompute/qualification.json": "7d5825c880d4dda6d375a236ce0e7b66617d68e7d5dfafd8ddca0bd906d172e5",
+    "code/validated-examples/2026-11-23-r3/guderley/references/cache-contract.json": "a878eafa4bef3efdb278b69e9bf2164255c3b736aeac5f5b06e8ea30addf63c1",
+    "code/validated-examples/2026-11-23-r3/guderley/references/cache-qualification.json": "a9b0e8ab2a13c228e8faf5bda4de706881f97c6f7267b99a461c08e1166aca09",
+    "code/validated-examples/2026-11-23-r3/guderley/references/citations.json": "a1d2309c35aadd48ed0d4f6ca6143eda70e6b8fb9f31a725ae61a03928559255",
+    "code/validated-examples/2026-11-23-r3/guderley/references/definition.json": "9f4baebc99efb1deb2edc87d393d8887c51807c7954e65eef9ca6196184e1483",
+    "code/validated-examples/2026-11-23-r3/guderley/references/eigenvalue-cache.json": "1a03ece09d775587d95bc4cdaf159d4fc4e3e12416e6caf3bb1d1b58f8eccb30",
+    "code/validated-examples/2026-11-23-r3/guderley/references/exactpack-source.json": "106c9ddc42ae34b90d03d8807c18250deab12885fc8d449e9f403ce7c9b1c2fa",
+    "code/validated-examples/2026-11-23-r3/guderley/references/pre-reference-contract.json": "d67f95f41b8ee549004ebce4b69ec0542ff6c467d545b5c81ac77f912e26aa0d",
+    "code/validated-examples/2026-11-23-r3/guderley/references/precollapse.py": "ac8735ed8fafc8d1b1a280a996dc8b6afe4236b6b7d4e3285a0121d92de97983",
+    "code/validated-examples/2026-11-23-r3/guderley/references/qualification.json": "7d5825c880d4dda6d375a236ce0e7b66617d68e7d5dfafd8ddca0bd906d172e5",
+    "code/validated-examples/2026-11-23-r3/guderley/results/guderley-implosion-preview.png": "03774f695db7f8e07eb006db120075d808871a194e1ab59abb815995fc53f383",
+    "code/validated-examples/2026-11-23-r3/guderley/results/guderley-implosion.png": "af3c5bc89657b250436a73571bfb793345c17dc283c08d8f9b278060138918f9",
+    "code/validated-examples/2026-11-23-r3/guderley/run.py": "0eb350a5ff21eb60d2ce9d5c7f01aaca9a8a822846997337513162581cc810d4",
+    "code/validated-examples/2026-11-23-r3/guderley/verification.json": "3eb90bb576b4b9579433bb15a93b0acc42948a85f335a45de7c649ec1b61e625",
     "code/validated-examples/2026-11-23-r5/noh/acceptance.json": "a12c0ce119877e71fc8dfd852bd6dfb6aa6d8e7beb5e18bd13e91a5dd16117ff",
     "code/validated-examples/2026-11-23-r5/noh/exactpack-reference-receipt.json": "35d1622672578b48639766b916645d1bbbdc2c65d999968b6b5f699197f2ce64",
     "code/validated-examples/2026-11-23-r5/noh/exactpack-reference.json": "7442d51a8f53939a2a37009c4d9e1856eb80408670875c4ac6b85c22499d8d74",
@@ -5155,11 +5184,11 @@
     "code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex.png": "38635f161af26efd48e0c0a2bc463974e3e81e6b506770a4c6f6c19b24be1970",
     "code/validated-examples/2026-11-23/low-mach/run.py": "727cbf0477eaac09bc23179c8fb2d5f71c187a6fe4d33fc166d55274a3baba6e",
     "code/validated-examples/2026-11-23/low-mach/verification.json": "f747210e1d46900c4f56b01e989696c3feaee35361fe42be11428fd280bacf84",
-    "numerical-methods-atlas/gallery/index.html": "4c4ca30378537594c738a3b1a91853dcb44005c2d0684535c4dfa704daeed224",
-    "numerical-methods-atlas/solutions/index.html": "5d57b0de7bb29ee597afe75193bb93e9e695eed9d54081569cb5342c1f641b6f",
+    "numerical-methods-atlas/gallery/index.html": "2284c7b397a9aaa7e2fa3b78ba55d387fb49b3e24307bcec4e772de7145c7e9a",
+    "numerical-methods-atlas/solutions/index.html": "06862a63e89c8d5249686530eb32ec989910a4a23cb4bdbce0057bafede20f4a",
     "numerical-methods-atlas/validation/double-mach-reflection/index.html": "a97c707de665870d0897a0cdaddda7b7b455e0beb56778061c2d8a02ba3f4979",
-    "numerical-methods-atlas/validation/forward-step-m3/index.html": "1bcb43bd4ef02feb632bf4c66c0518bce5af23682e1cb3e4b38eb696b85edbf1",
-    "numerical-methods-atlas/validation/guderley-implosion/index.html": "3d061e6b9d24abea6356b4ee40e3c47c6973c3f7b3608f66b0b656bc50db54d0",
+    "numerical-methods-atlas/validation/forward-step-m3/index.html": "708a4748a1108bc66d709800ff2ae21b4cad482fe6e470dfdbd30484149e08a0",
+    "numerical-methods-atlas/validation/guderley-implosion/index.html": "267f7a62dc4509301181934bfa05f2fcb501d14c94bbf362ae98624fbcf126ae",
     "numerical-methods-atlas/validation/low-mach-vortex/index.html": "2744e0d480dc86de863edef6de5ced0fc0c3cf3f7bec0eda8581a5589c774d53",
     "numerical-methods-atlas/validation/noh-cartesian-2d/index.html": "484592fde6dbf3f4b5da68a363d9907e9deda9ea1883525c40762d405d64e2e1",
     "numerical-methods-atlas/validation/sedov-blast/index.html": "3b23469cd17837f105df30961020a8c4ff8b47efe937bf45430b8720a6e440ed"

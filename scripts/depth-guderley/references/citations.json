@@ -107,8 +107,8 @@
     "version": "9bacc477eb791e959c9621e771fc7a725db755fa",
     "review_level": "selected source files and license inspected; eexp,ramsey.state/g,interp_laz and official test fixtures; actual execution recorded separately",
     "review": {
-      "ja": "固定版のeexp・ramseyの前収束ODEとstate、表の転記、公式回帰値、BSD3条項を確認。全ExactPackテストを実行したとは扱いません。参照の実行成否はqualification.jsonに別記します。",
-      "en": "Inspected pinned eexp, the pre-collapse ODE/state, transcribed tables, official regression values and BSD3 terms. This is not a claim to have run the complete ExactPack suite; actual reference execution is recorded separately."
+      "ja": "固定版のeexp・ramseyの前収束ODEとstate、表の転記、公式回帰値、BSD3条項を確認。全ExactPackテストを実行したとは扱いません。参照の実行成否はqualification.jsonに別記します。 通常の追試では実際に計算済みの固有値をハッシュ付き記録から再利用し、相似ODEと臨界点残差を新しく確認します。固有値の全面的な再探索と元の8点state照合は別途の明示的な参照再生成として残します。",
+      "en": "Inspected pinned eexp, the pre-collapse ODE/state, transcribed tables, official regression values and BSD3 terms. This is not a claim to have run the complete ExactPack suite; actual reference execution is recorded separately. Routine verification reuses the actually computed eigenvalue through hash-bound records and freshly checks the similarity ODE/critical phase. Full root shooting and the eight original state calls remain separate explicit reference regeneration."
     },
     "accessed_on": "2026-11-23",
     "source_commit_date": "2025-09-24T22:25:51Z"

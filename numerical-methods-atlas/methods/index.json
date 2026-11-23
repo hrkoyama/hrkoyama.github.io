@@ -29807,8 +29807,6 @@
           "code_urls": [
             "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/run.py",
             "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/fs_solver.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/attempts/01/source/convert.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/attempts/01/source/run-reference.py",
             "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/convert.py",
             "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/run-reference.py"
           ],
@@ -30609,33 +30607,34 @@
           "case_ids": [
             "guderley-implosion"
           ],
-          "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/",
-          "code_edition": "2026-11-23-r2",
+          "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/",
+          "code_edition": "2026-11-23-r3",
           "code_urls": [
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/run.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/guderley_solver.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/precollapse.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/EXACTPACK-test_guderley.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/eexp.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/guderley.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/interp_laz.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/original_init.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/ramsey.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/qualify_reference.py"
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/guderley_solver.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/references/precollapse.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/references/EXACTPACK-test_guderley.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/references/exactpack_guderley/eexp.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/references/exactpack_guderley/guderley.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/references/exactpack_guderley/interp_laz.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/references/exactpack_guderley/original_init.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/references/exactpack_guderley/ramsey.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/references/qualify_cached_reference.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/references/qualify_reference.py"
           ],
           "test_urls": [
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/test_guderley.py"
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/test_guderley.py"
           ],
           "run_commands": [
             "python -m pytest -q",
             "python run.py --input inputs.json --output output"
           ],
-          "run_from": "atlas-guderley-2026-11-23-r2",
-          "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/atlas-guderley-2026-11-23-r2.zip",
-          "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/source-manifest.json",
-          "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/verification.json",
-          "code_archive_sha256": "ca6974a8e48f8d6a2ad81ad74bce173dcff3656e35a465d9e75fac3d6cbdbfb6",
-          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/results/result.json",
+          "run_from": "atlas-guderley-2026-11-23-r3",
+          "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/atlas-guderley-2026-11-23-r3.zip",
+          "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/source-manifest.json",
+          "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/verification.json",
+          "code_archive_sha256": "f00ff906861495bd73b2ae75f7c3895fab505ba45ad7a34a2612700405d8466f",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/results/result.json",
           "passed_tests": 33,
           "examples": [
             {
@@ -30671,8 +30670,8 @@
                 "en": "First-order spherical finite volumes use face area4pi*r^2 and shell volume4pi*delta(r^3)/3. Shared HLL flux divergence plus the radial-momentum pressure source p_i*delta(A)/V is advanced by Heun at CFL0.4. The center is reflecting with zero face area; the outer similarity state is evaluated at both actual RK times. All three conserved budgets integrate the actual boundary flux and geometric source using the same Heun weights. There are no state floors, pressure repairs or hidden step retries."
               },
               "validation": {
-                "ja": "33単体検査と3格子55判定を実行前に固定し、警告をエラーにする設定で合格しました。冷たい上流でのゼロ音速HLL分岐、幾何的な静止圧力釣合い、共有流束の収支、実際の2段の境界時刻、不正段の生配列保持を確認します。全体積L1と、あらかじめr≥.8Rsとした衝撃・非零流れ領域のL1を並べ、冷たい内側で誤差を薄めないようにします。密度・圧力の最大差と保存した時系列からの衝撃軌道も残します。半解析参照は固定LANL ExactPackの相似指数固有値ルーチンとODEを使い、反射後分岐を計算しないキャッシュ付きアダプターです。独自に再実装した相似ODEとは表示しません。別に実装したEuler有限体積計算と参照を比較します。 全体積の密度L1は.02345/.01339/.007722、圧力L1は.03277/.01743/.009477でした。r≥.8Rsの密度L1も.02414/.01378/.007948と減少します。最細の衝撃位置は.530273、相似参照は.533989で、差は約2.54セルです。最大の全3成分収支残差は8.85e-16、全段の最小内部エネルギーと音速専用丸めガード回数はともに0でした。参照のEuler差分代入残差は8.24e-9、有限オフセットの移動衝撃ジャンプ残差は4.40e-8。固有値計算を含む全3計算は元のMacで約44.6秒でした。",
-                "en": "The33 unit checks and55 gates over three refinements were fixed before execution and passed with warnings treated as errors. Checks cover the zero-sound-speed cold HLL branch, geometric static-pressure balance, shared-flux budgets, actual two-stage boundary times and raw failed-stage retention. Full-volume L1 is shown alongside the predetermined r>=0.8*Rs shock/nonzero-flow region, so cold inner gas does not hide active errors. Maximum density/pressure differences and the saved shock trajectory remain visible. The semi-analytic reference uses the pinned LANL ExactPack eigenvalue routine and ODE through a cached pre-collapse-only adapter. It is not an independently reimplemented similarity ODE; the separately implemented finite-volume Euler evolution is compared against that reference. Full-volume density L1 is0.02345/0.01339/0.007722 and pressure L1 is0.03277/0.01743/0.009477. Density L1 in the predetermined r>=0.8*Rs region also decreases:0.02414/0.01378/0.007948. The finest measured shock radius is0.530273 against similarity0.533989, about2.54 cells apart. The maximum scaled three-component budget residual is8.85e-16. Minimum internal energy and sound-speed-only roundoff guard evaluations are both0. The smooth-reference Euler finite-difference residual is8.24e-9 and finite-offset moving-jump residual4.40e-8. All three runs including the similarity eigenvalue calculation took about44.6 seconds on the original Mac."
+                "ja": "33単体検査と3格子55判定を実行前に固定し、警告をエラーにする設定で合格しました。冷たい上流でのゼロ音速HLL分岐、幾何的な静止圧力釣合い、共有流束の収支、実際の2段の境界時刻、不正段の生配列保持を確認します。全体積L1と、あらかじめr≥.8Rsとした衝撃・非零流れ領域のL1を並べ、冷たい内側で誤差を薄めないようにします。密度・圧力の最大差と保存した時系列からの衝撃軌道も残します。半解析参照は固定LANL ExactPackの相似指数固有値ルーチンとODEを使い、反射後分岐を計算しないキャッシュ付きアダプターです。独自に再実装した相似ODEとは表示しません。別に実装したEuler有限体積計算と参照を比較します。 全体積の密度L1は.02345/.01339/.007722、圧力L1は.03277/.01743/.009477でした。r≥.8Rsの密度L1も.02414/.01378/.007948と減少します。最細の衝撃位置は.530273、相似参照は.533989で、差は約2.54セルです。最大の全3成分収支残差は8.85e-16、全段の最小内部エネルギーと音速専用丸めガード回数はともに0でした。参照のEuler差分代入残差は8.24e-9、有限オフセットの移動衝撃ジャンプ残差は4.40e-8。旧版で固有値を新規計算した全3計算は元のMacで約44.6秒でした。 公開r2のLinuxでは33検査は96.34秒で合格しましたが、検査と本計算を合わせた120秒枠の残り23.31秒で本計算が時間切れになりました。この公開追試の失敗記録と旧ソースを保持します。改訂では、既に実際のExactPack射撃法で求め、出典ソース・資格確認とSHAで結んだ固有値を再利用し、通常実行の各プロセスで射撃法を重複計算しません。臨界位相のCdiff残差と相似ODEは新しく評価します。入力・数値判定・Eulerソルバー・実行入口・120秒枠は変えません。 改訂版では33単体検査と全3入力55判定を共通120秒枠で続け、Macで計約.912秒で完了しました。全3格子の初期値・最終値・参照値・保存履歴の配列は公開r2とビット一致し、固有値の再利用で物理結果が変わらないことを別に照合しました。",
+                "en": "The33 unit checks and55 gates over three refinements were fixed before execution and passed with warnings treated as errors. Checks cover the zero-sound-speed cold HLL branch, geometric static-pressure balance, shared-flux budgets, actual two-stage boundary times and raw failed-stage retention. Full-volume L1 is shown alongside the predetermined r>=0.8*Rs shock/nonzero-flow region, so cold inner gas does not hide active errors. Maximum density/pressure differences and the saved shock trajectory remain visible. The semi-analytic reference uses the pinned LANL ExactPack eigenvalue routine and ODE through a cached pre-collapse-only adapter. It is not an independently reimplemented similarity ODE; the separately implemented finite-volume Euler evolution is compared against that reference. Full-volume density L1 is0.02345/0.01339/0.007722 and pressure L1 is0.03277/0.01743/0.009477. Density L1 in the predetermined r>=0.8*Rs region also decreases:0.02414/0.01378/0.007948. The finest measured shock radius is0.530273 against similarity0.533989, about2.54 cells apart. The maximum scaled three-component budget residual is8.85e-16. Minimum internal energy and sound-speed-only roundoff guard evaluations are both0. The smooth-reference Euler finite-difference residual is8.24e-9 and finite-offset moving-jump residual4.40e-8. The older three-run execution with a newly computed similarity eigenvalue took about44.6 seconds on the original Mac. Public r2 passed all33 Linux tests in96.34 seconds, but its fixed-input runner timed out after the remaining23.31 seconds of the combined120-second test-plus-run budget. That failed replay and its sources are retained. The revision reuses the eigenvalue already obtained by actual ExactPack shooting, bound by SHA to its source and qualification, instead of shooting again in both normal processes. The critical-phase Cdiff residual and similarity ODE are freshly evaluated. Inputs, numerical criteria, Euler solver, fixed-input runner and120-second budget are unchanged. In the revision,33 unit tests and all three fixed inputs with55 gates completed sequentially within one120-second budget in about0.912s on the Mac. Initial,final,reference and saved-history arrays for all three grids were bit-identical to published r2, separately checking that reuse of the eigenvalue preserved the physical results."
               },
               "formulas": [
                 "\\partial_t U+\\frac{1}{r^2}\\partial_r(r^2 F)=\\left(0,\\frac{2p}{r},0\\right)^T,\\quad U=(\\rho,\\rho u,E)^T",
@@ -31796,7 +31795,30 @@
                       0.11250364830000002
                     ],
                     "reflected_branch_executed": false,
-                    "source_independence": "actual pinned ExactPack eexp and RHS with a pre-collapse dense adapter"
+                    "eigenvalue_provenance": {
+                      "lambda": 1.3943607844230872,
+                      "alpha": 0.7171745011559165,
+                      "cache_sha256": "1a03ece09d775587d95bc4cdaf159d4fc4e3e12416e6caf3bb1d1b58f8eccb30",
+                      "qualification_sha256": "7d5825c880d4dda6d375a236ce0e7b66617d68e7d5dfafd8ddca0bd906d172e5",
+                      "contract_sha256": "d67f95f41b8ee549004ebce4b69ec0542ff6c467d545b5c81ac77f912e26aa0d",
+                      "stored_Cdiff": -2.8882521374562486e-12,
+                      "current_sources_sha256": {
+                        "EXACTPACK-LICENSE.txt": "763767e730623814502f95054919a019f17f5257e0cd8d60aede203d9736dd40",
+                        "EXACTPACK-test_guderley.py": "394a0bb67840cffcb02cd573cc50feeeb237c5438835642f25aadd85f3dbcf34",
+                        "__init__.py": "f45a1aad38d884ee1bac10a96d8490ff3535ed66aa1949c1339c8bbe1b0ddbdb",
+                        "exactpack-source.json": "106c9ddc42ae34b90d03d8807c18250deab12885fc8d449e9f403ce7c9b1c2fa",
+                        "exactpack_guderley/__init__.py": "ac847505482cac2b8b0d985605bbd6665282e7ce1fa95d77b7b1696b32d75249",
+                        "exactpack_guderley/eexp.py": "111bb69cc3869f2e820eb97e2f9c6132a51f257017c0375c4a7b1509642ce664",
+                        "exactpack_guderley/guderley.py": "27dc6a811a880fe6c52dd8a3423d1132adc4a0720c039cb69ac271587e6a1967",
+                        "exactpack_guderley/interp_laz.py": "4b11a3a3f0cc233bff47814b11dab2a8290c73d99bfe9321fc5aa34021b771e9",
+                        "exactpack_guderley/original_init.py": "6e6ad38211448db5823eab4c581ebc8644d72ee7a91da3ba4144b64ac26bd788",
+                        "exactpack_guderley/ramsey.py": "57156dff491a181e19d779fc0878bed6c4e3f74b048d251745a0f5bde0f87a2b"
+                      },
+                      "original_source_files_checked": 12,
+                      "mode": "hash-qualified reused ExactPack eigenvalue",
+                      "eigenvalue_recomputed": false
+                    },
+                    "source_independence": "qualified ExactPack eigenvalue reused; unchanged pre-collapse RHS freshly integrated"
                   }
                 },
                 "scope": "One-dimensional spherical radial Euler before collapse; a revolved meridional visualization is not a two-dimensional Cartesian evolution."
@@ -31824,26 +31846,25 @@
         "https://hrkoyama.github.io/code/validated-examples/2026-11-23/double-mach/references/reference-source.py",
         "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/run.py",
         "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/fs_solver.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/attempts/01/source/convert.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/attempts/01/source/run-reference.py",
         "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/convert.py",
         "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/run-reference.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/run.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/guderley_solver.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/precollapse.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/EXACTPACK-test_guderley.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/eexp.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/guderley.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/interp_laz.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/original_init.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/ramsey.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/qualify_reference.py"
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/guderley_solver.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/references/precollapse.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/references/EXACTPACK-test_guderley.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/references/exactpack_guderley/eexp.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/references/exactpack_guderley/guderley.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/references/exactpack_guderley/interp_laz.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/references/exactpack_guderley/original_init.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/references/exactpack_guderley/ramsey.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/references/qualify_cached_reference.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/references/qualify_reference.py"
       ],
       "test_urls": [
         "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py",
         "https://hrkoyama.github.io/code/validated-examples/2026-11-23/double-mach/test_dm.py",
         "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/test_fs.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/test_guderley.py"
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/test_guderley.py"
       ],
       "run_commands": [
         "python -m pytest -q tests/test_numerics.py"
@@ -32240,7 +32261,7 @@
               "en": "Guderley converging shock"
             },
             "image": {
-              "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/results/guderley-implosion-preview.png",
+              "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/results/guderley-implosion-preview.png",
               "sha256": "03774f695db7f8e07eb006db120075d808871a194e1ab59abb815995fc53f383",
               "width": 1376,
               "height": 880,
@@ -32278,9 +32299,9 @@
                   "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/guderley-implosion/?lang=ja",
                   "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/guderley-implosion/?lang=en"
                 },
-                "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/inputs.json",
-                "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/atlas-guderley-2026-11-23-r2.zip",
-                "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/verification.json"
+                "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/inputs.json",
+                "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/atlas-guderley-2026-11-23-r3.zip",
+                "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/verification.json"
               }
             ],
             "role": "execution",
@@ -32487,8 +32508,8 @@
                 "kind": "semi-analytic",
                 "relation": "same-problem",
                 "note": {
-                  "ja": "γ=1.4・冷たい一様な上流を持つ球対称Guderley相似解の収束前分岐です。相似指数の固有値探索・相似ODE積分・衝撃位置で分割した球殻求積を含む半解析参照で、閉形式の厳密セル平均ではありません。ExactPackに基づく参照実装と有限体積PDE計算の役割を分け、独立した相似解実装どうしの照合とは扱いません。原点での収束、反射後の衝撃波、一般のEOSは今回の範囲外です。",
-                  "en": "The pre-collapse branch of the spherical Guderley similarity solution at gamma=1.4 with a cold uniform upstream state. Numerical eigenvalue shooting, similarity-ODE integration and shock-split shell quadrature make this a semi-analytic reference, not closed-form exact cell means. Distinguish the ExactPack-based evaluator from the finite-volume PDE calculation; this is not a comparison between independent similarity implementations. Collapse at the origin, the reflected branch and general equations of state are outside this example."
+                  "ja": "γ=1.4・冷たい一様な上流を持つ球対称Guderley相似解の収束前分岐です。相似指数の固有値探索・相似ODE積分・衝撃位置で分割した球殻求積を含む半解析参照で、閉形式の厳密セル平均ではありません。通常追試は保存済みの資格確認で求めたλを再利用して相似ODEと求積を再実行し、固有値探索と元ExactPack点照合の再生成は別の明示コマンドとします。参照は固定ExactPackに基づくアダプターであり、独立に実装した相似解との照合とは扱いません。原点での収束、反射後の衝撃波、一般のEOSは今回の範囲外です。",
+                  "en": "The pre-collapse branch of the spherical Guderley similarity solution at gamma=1.4 with a cold uniform upstream state. Eigenvalue shooting, similarity-ODE integration and shock-split shell quadrature make it semi-analytic rather than closed-form exact cell means. Routine replay reuses lambda from the retained qualification, freshly integrating the similarity ODE and quadrature; recomputing the eigenvalue and original ExactPack probes is a separate explicit command. This is an adapter to pinned ExactPack, not an independently implemented similarity evaluator. Collapse at the origin, the reflected shock and general equations of state remain outside this example."
                 },
                 "url": {
                   "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-guderley-ja",
@@ -43506,8 +43527,6 @@
           "code_urls": [
             "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/run.py",
             "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/fs_solver.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/attempts/01/source/convert.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/attempts/01/source/run-reference.py",
             "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/convert.py",
             "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/run-reference.py"
           ],
@@ -44308,33 +44327,34 @@
           "case_ids": [
             "guderley-implosion"
           ],
-          "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/",
-          "code_edition": "2026-11-23-r2",
+          "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/",
+          "code_edition": "2026-11-23-r3",
           "code_urls": [
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/run.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/guderley_solver.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/precollapse.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/EXACTPACK-test_guderley.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/eexp.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/guderley.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/interp_laz.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/original_init.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/ramsey.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/qualify_reference.py"
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/guderley_solver.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/references/precollapse.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/references/EXACTPACK-test_guderley.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/references/exactpack_guderley/eexp.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/references/exactpack_guderley/guderley.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/references/exactpack_guderley/interp_laz.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/references/exactpack_guderley/original_init.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/references/exactpack_guderley/ramsey.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/references/qualify_cached_reference.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/references/qualify_reference.py"
           ],
           "test_urls": [
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/test_guderley.py"
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/test_guderley.py"
           ],
           "run_commands": [
             "python -m pytest -q",
             "python run.py --input inputs.json --output output"
           ],
-          "run_from": "atlas-guderley-2026-11-23-r2",
-          "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/atlas-guderley-2026-11-23-r2.zip",
-          "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/source-manifest.json",
-          "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/verification.json",
-          "code_archive_sha256": "ca6974a8e48f8d6a2ad81ad74bce173dcff3656e35a465d9e75fac3d6cbdbfb6",
-          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/results/result.json",
+          "run_from": "atlas-guderley-2026-11-23-r3",
+          "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/atlas-guderley-2026-11-23-r3.zip",
+          "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/source-manifest.json",
+          "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/verification.json",
+          "code_archive_sha256": "f00ff906861495bd73b2ae75f7c3895fab505ba45ad7a34a2612700405d8466f",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/results/result.json",
           "passed_tests": 33,
           "examples": [
             {
@@ -44370,8 +44390,8 @@
                 "en": "First-order spherical finite volumes use face area4pi*r^2 and shell volume4pi*delta(r^3)/3. Shared HLL flux divergence plus the radial-momentum pressure source p_i*delta(A)/V is advanced by Heun at CFL0.4. The center is reflecting with zero face area; the outer similarity state is evaluated at both actual RK times. All three conserved budgets integrate the actual boundary flux and geometric source using the same Heun weights. There are no state floors, pressure repairs or hidden step retries."
               },
               "validation": {
-                "ja": "33単体検査と3格子55判定を実行前に固定し、警告をエラーにする設定で合格しました。冷たい上流でのゼロ音速HLL分岐、幾何的な静止圧力釣合い、共有流束の収支、実際の2段の境界時刻、不正段の生配列保持を確認します。全体積L1と、あらかじめr≥.8Rsとした衝撃・非零流れ領域のL1を並べ、冷たい内側で誤差を薄めないようにします。密度・圧力の最大差と保存した時系列からの衝撃軌道も残します。半解析参照は固定LANL ExactPackの相似指数固有値ルーチンとODEを使い、反射後分岐を計算しないキャッシュ付きアダプターです。独自に再実装した相似ODEとは表示しません。別に実装したEuler有限体積計算と参照を比較します。 全体積の密度L1は.02345/.01339/.007722、圧力L1は.03277/.01743/.009477でした。r≥.8Rsの密度L1も.02414/.01378/.007948と減少します。最細の衝撃位置は.530273、相似参照は.533989で、差は約2.54セルです。最大の全3成分収支残差は8.85e-16、全段の最小内部エネルギーと音速専用丸めガード回数はともに0でした。参照のEuler差分代入残差は8.24e-9、有限オフセットの移動衝撃ジャンプ残差は4.40e-8。固有値計算を含む全3計算は元のMacで約44.6秒でした。",
-                "en": "The33 unit checks and55 gates over three refinements were fixed before execution and passed with warnings treated as errors. Checks cover the zero-sound-speed cold HLL branch, geometric static-pressure balance, shared-flux budgets, actual two-stage boundary times and raw failed-stage retention. Full-volume L1 is shown alongside the predetermined r>=0.8*Rs shock/nonzero-flow region, so cold inner gas does not hide active errors. Maximum density/pressure differences and the saved shock trajectory remain visible. The semi-analytic reference uses the pinned LANL ExactPack eigenvalue routine and ODE through a cached pre-collapse-only adapter. It is not an independently reimplemented similarity ODE; the separately implemented finite-volume Euler evolution is compared against that reference. Full-volume density L1 is0.02345/0.01339/0.007722 and pressure L1 is0.03277/0.01743/0.009477. Density L1 in the predetermined r>=0.8*Rs region also decreases:0.02414/0.01378/0.007948. The finest measured shock radius is0.530273 against similarity0.533989, about2.54 cells apart. The maximum scaled three-component budget residual is8.85e-16. Minimum internal energy and sound-speed-only roundoff guard evaluations are both0. The smooth-reference Euler finite-difference residual is8.24e-9 and finite-offset moving-jump residual4.40e-8. All three runs including the similarity eigenvalue calculation took about44.6 seconds on the original Mac."
+                "ja": "33単体検査と3格子55判定を実行前に固定し、警告をエラーにする設定で合格しました。冷たい上流でのゼロ音速HLL分岐、幾何的な静止圧力釣合い、共有流束の収支、実際の2段の境界時刻、不正段の生配列保持を確認します。全体積L1と、あらかじめr≥.8Rsとした衝撃・非零流れ領域のL1を並べ、冷たい内側で誤差を薄めないようにします。密度・圧力の最大差と保存した時系列からの衝撃軌道も残します。半解析参照は固定LANL ExactPackの相似指数固有値ルーチンとODEを使い、反射後分岐を計算しないキャッシュ付きアダプターです。独自に再実装した相似ODEとは表示しません。別に実装したEuler有限体積計算と参照を比較します。 全体積の密度L1は.02345/.01339/.007722、圧力L1は.03277/.01743/.009477でした。r≥.8Rsの密度L1も.02414/.01378/.007948と減少します。最細の衝撃位置は.530273、相似参照は.533989で、差は約2.54セルです。最大の全3成分収支残差は8.85e-16、全段の最小内部エネルギーと音速専用丸めガード回数はともに0でした。参照のEuler差分代入残差は8.24e-9、有限オフセットの移動衝撃ジャンプ残差は4.40e-8。旧版で固有値を新規計算した全3計算は元のMacで約44.6秒でした。 公開r2のLinuxでは33検査は96.34秒で合格しましたが、検査と本計算を合わせた120秒枠の残り23.31秒で本計算が時間切れになりました。この公開追試の失敗記録と旧ソースを保持します。改訂では、既に実際のExactPack射撃法で求め、出典ソース・資格確認とSHAで結んだ固有値を再利用し、通常実行の各プロセスで射撃法を重複計算しません。臨界位相のCdiff残差と相似ODEは新しく評価します。入力・数値判定・Eulerソルバー・実行入口・120秒枠は変えません。 改訂版では33単体検査と全3入力55判定を共通120秒枠で続け、Macで計約.912秒で完了しました。全3格子の初期値・最終値・参照値・保存履歴の配列は公開r2とビット一致し、固有値の再利用で物理結果が変わらないことを別に照合しました。",
+                "en": "The33 unit checks and55 gates over three refinements were fixed before execution and passed with warnings treated as errors. Checks cover the zero-sound-speed cold HLL branch, geometric static-pressure balance, shared-flux budgets, actual two-stage boundary times and raw failed-stage retention. Full-volume L1 is shown alongside the predetermined r>=0.8*Rs shock/nonzero-flow region, so cold inner gas does not hide active errors. Maximum density/pressure differences and the saved shock trajectory remain visible. The semi-analytic reference uses the pinned LANL ExactPack eigenvalue routine and ODE through a cached pre-collapse-only adapter. It is not an independently reimplemented similarity ODE; the separately implemented finite-volume Euler evolution is compared against that reference. Full-volume density L1 is0.02345/0.01339/0.007722 and pressure L1 is0.03277/0.01743/0.009477. Density L1 in the predetermined r>=0.8*Rs region also decreases:0.02414/0.01378/0.007948. The finest measured shock radius is0.530273 against similarity0.533989, about2.54 cells apart. The maximum scaled three-component budget residual is8.85e-16. Minimum internal energy and sound-speed-only roundoff guard evaluations are both0. The smooth-reference Euler finite-difference residual is8.24e-9 and finite-offset moving-jump residual4.40e-8. The older three-run execution with a newly computed similarity eigenvalue took about44.6 seconds on the original Mac. Public r2 passed all33 Linux tests in96.34 seconds, but its fixed-input runner timed out after the remaining23.31 seconds of the combined120-second test-plus-run budget. That failed replay and its sources are retained. The revision reuses the eigenvalue already obtained by actual ExactPack shooting, bound by SHA to its source and qualification, instead of shooting again in both normal processes. The critical-phase Cdiff residual and similarity ODE are freshly evaluated. Inputs, numerical criteria, Euler solver, fixed-input runner and120-second budget are unchanged. In the revision,33 unit tests and all three fixed inputs with55 gates completed sequentially within one120-second budget in about0.912s on the Mac. Initial,final,reference and saved-history arrays for all three grids were bit-identical to published r2, separately checking that reuse of the eigenvalue preserved the physical results."
               },
               "formulas": [
                 "\\partial_t U+\\frac{1}{r^2}\\partial_r(r^2 F)=\\left(0,\\frac{2p}{r},0\\right)^T,\\quad U=(\\rho,\\rho u,E)^T",
@@ -45495,7 +45515,30 @@
                       0.11250364830000002
                     ],
                     "reflected_branch_executed": false,
-                    "source_independence": "actual pinned ExactPack eexp and RHS with a pre-collapse dense adapter"
+                    "eigenvalue_provenance": {
+                      "lambda": 1.3943607844230872,
+                      "alpha": 0.7171745011559165,
+                      "cache_sha256": "1a03ece09d775587d95bc4cdaf159d4fc4e3e12416e6caf3bb1d1b58f8eccb30",
+                      "qualification_sha256": "7d5825c880d4dda6d375a236ce0e7b66617d68e7d5dfafd8ddca0bd906d172e5",
+                      "contract_sha256": "d67f95f41b8ee549004ebce4b69ec0542ff6c467d545b5c81ac77f912e26aa0d",
+                      "stored_Cdiff": -2.8882521374562486e-12,
+                      "current_sources_sha256": {
+                        "EXACTPACK-LICENSE.txt": "763767e730623814502f95054919a019f17f5257e0cd8d60aede203d9736dd40",
+                        "EXACTPACK-test_guderley.py": "394a0bb67840cffcb02cd573cc50feeeb237c5438835642f25aadd85f3dbcf34",
+                        "__init__.py": "f45a1aad38d884ee1bac10a96d8490ff3535ed66aa1949c1339c8bbe1b0ddbdb",
+                        "exactpack-source.json": "106c9ddc42ae34b90d03d8807c18250deab12885fc8d449e9f403ce7c9b1c2fa",
+                        "exactpack_guderley/__init__.py": "ac847505482cac2b8b0d985605bbd6665282e7ce1fa95d77b7b1696b32d75249",
+                        "exactpack_guderley/eexp.py": "111bb69cc3869f2e820eb97e2f9c6132a51f257017c0375c4a7b1509642ce664",
+                        "exactpack_guderley/guderley.py": "27dc6a811a880fe6c52dd8a3423d1132adc4a0720c039cb69ac271587e6a1967",
+                        "exactpack_guderley/interp_laz.py": "4b11a3a3f0cc233bff47814b11dab2a8290c73d99bfe9321fc5aa34021b771e9",
+                        "exactpack_guderley/original_init.py": "6e6ad38211448db5823eab4c581ebc8644d72ee7a91da3ba4144b64ac26bd788",
+                        "exactpack_guderley/ramsey.py": "57156dff491a181e19d779fc0878bed6c4e3f74b048d251745a0f5bde0f87a2b"
+                      },
+                      "original_source_files_checked": 12,
+                      "mode": "hash-qualified reused ExactPack eigenvalue",
+                      "eigenvalue_recomputed": false
+                    },
+                    "source_independence": "qualified ExactPack eigenvalue reused; unchanged pre-collapse RHS freshly integrated"
                   }
                 },
                 "scope": "One-dimensional spherical radial Euler before collapse; a revolved meridional visualization is not a two-dimensional Cartesian evolution."
@@ -45534,20 +45577,19 @@
         "https://hrkoyama.github.io/code/validated-examples/2026-11-23/double-mach/references/reference-source.py",
         "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/run.py",
         "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/fs_solver.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/attempts/01/source/convert.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/attempts/01/source/run-reference.py",
         "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/convert.py",
         "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/run-reference.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/run.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/guderley_solver.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/precollapse.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/EXACTPACK-test_guderley.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/eexp.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/guderley.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/interp_laz.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/original_init.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/exactpack_guderley/ramsey.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/references/qualify_reference.py"
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/guderley_solver.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/references/precollapse.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/references/EXACTPACK-test_guderley.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/references/exactpack_guderley/eexp.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/references/exactpack_guderley/guderley.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/references/exactpack_guderley/interp_laz.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/references/exactpack_guderley/original_init.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/references/exactpack_guderley/ramsey.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/references/qualify_cached_reference.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/references/qualify_reference.py"
       ],
       "test_urls": [
         "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
@@ -45558,7 +45600,7 @@
         "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/test_sedov.py",
         "https://hrkoyama.github.io/code/validated-examples/2026-11-23/double-mach/test_dm.py",
         "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/test_fs.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/test_guderley.py"
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/test_guderley.py"
       ],
       "run_commands": [
         "python -m pytest -q tests/test_time_geometry.py tests/test_runge_kutta.py tests/test_hamiltonian.py"
@@ -45990,7 +46032,7 @@
               "en": "Guderley converging shock"
             },
             "image": {
-              "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/results/guderley-implosion-preview.png",
+              "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/results/guderley-implosion-preview.png",
               "sha256": "03774f695db7f8e07eb006db120075d808871a194e1ab59abb815995fc53f383",
               "width": 1376,
               "height": 880,
@@ -46028,9 +46070,9 @@
                   "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/guderley-implosion/?lang=ja",
                   "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/guderley-implosion/?lang=en"
                 },
-                "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/inputs.json",
-                "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/atlas-guderley-2026-11-23-r2.zip",
-                "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/verification.json"
+                "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/inputs.json",
+                "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/atlas-guderley-2026-11-23-r3.zip",
+                "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/verification.json"
               }
             ],
             "role": "execution",
@@ -46225,8 +46267,8 @@
                 "kind": "semi-analytic",
                 "relation": "same-problem",
                 "note": {
-                  "ja": "γ=1.4・冷たい一様な上流を持つ球対称Guderley相似解の収束前分岐です。相似指数の固有値探索・相似ODE積分・衝撃位置で分割した球殻求積を含む半解析参照で、閉形式の厳密セル平均ではありません。ExactPackに基づく参照実装と有限体積PDE計算の役割を分け、独立した相似解実装どうしの照合とは扱いません。原点での収束、反射後の衝撃波、一般のEOSは今回の範囲外です。",
-                  "en": "The pre-collapse branch of the spherical Guderley similarity solution at gamma=1.4 with a cold uniform upstream state. Numerical eigenvalue shooting, similarity-ODE integration and shock-split shell quadrature make this a semi-analytic reference, not closed-form exact cell means. Distinguish the ExactPack-based evaluator from the finite-volume PDE calculation; this is not a comparison between independent similarity implementations. Collapse at the origin, the reflected branch and general equations of state are outside this example."
+                  "ja": "γ=1.4・冷たい一様な上流を持つ球対称Guderley相似解の収束前分岐です。相似指数の固有値探索・相似ODE積分・衝撃位置で分割した球殻求積を含む半解析参照で、閉形式の厳密セル平均ではありません。通常追試は保存済みの資格確認で求めたλを再利用して相似ODEと求積を再実行し、固有値探索と元ExactPack点照合の再生成は別の明示コマンドとします。参照は固定ExactPackに基づくアダプターであり、独立に実装した相似解との照合とは扱いません。原点での収束、反射後の衝撃波、一般のEOSは今回の範囲外です。",
+                  "en": "The pre-collapse branch of the spherical Guderley similarity solution at gamma=1.4 with a cold uniform upstream state. Eigenvalue shooting, similarity-ODE integration and shock-split shell quadrature make it semi-analytic rather than closed-form exact cell means. Routine replay reuses lambda from the retained qualification, freshly integrating the similarity ODE and quadrature; recomputing the eigenvalue and original ExactPack probes is a separate explicit command. This is an adapter to pinned ExactPack, not an independently implemented similarity evaluator. Collapse at the origin, the reflected shock and general equations of state remain outside this example."
                 },
                 "url": {
                   "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-guderley-ja",
@@ -175634,13 +175676,13 @@
     }
   },
   "problem_navigation_source_sha256": {
-    "catalog/atlas-depth-expansion.json": "f9f0dc0fae15eb6b1e82b5179289e8505f95dfeea6cbf59a572fa479f9073016",
+    "catalog/atlas-depth-expansion.json": "5d68fb749341591df2537dcee7c9ee757976a54a2fd2ab2c52b41ed67c4bd689",
     "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
-    "catalog/atlas-methods.json": "0ea9515873898b348d1cb20caeb6434a2f551548e3996b19683fb2d51a6d5a6b",
-    "catalog/atlas-problem-links.json": "b11d784c7ff9809b0f562ae0f7ad3fccd97834f7866716574d561e854d07580e",
-    "catalog/atlas-reference-supplements.json": "84387dd3b1a0148eeaa9d0b8258f09f5ec7f903efadcd7680efc8c8239445339",
-    "catalog/atlas-test-problems.json": "e1e23af794544805ca27bb02f50ad0f89bdba9f2d03f41f324300db0997edf84",
+    "catalog/atlas-methods.json": "5ba47bcb2832285b5ee8f45c5db63858069bf36779e9aa6d57de97bc5e16ef30",
+    "catalog/atlas-problem-links.json": "34d30b7bb8df3e2a930933b429748baf86a87fe1769c31fb5ca37c5d80c87bb1",
+    "catalog/atlas-reference-supplements.json": "a6a6915367571a4316964453ef2fd0ed4456d3e235be80bdfd59e113983cb153",
+    "catalog/atlas-test-problems.json": "25febf285358beb3f730decdd4c48c870766542829f71da96087b2974d47b65d",
     "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
     "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
     "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
@@ -175696,11 +175738,6 @@
     "code/validated-examples/2026-11-22/thermostats/results/result.json": "7971007807acce9f75261b684b789f196e1d5dffc80797e102d1b0bebbc93f11",
     "code/validated-examples/2026-11-22/thermostats/source-manifest.json": "81a854bdfe3ae33b4eb4bffdccc9ab15a09f2bddbffb294cd2c2cbd07e641580",
     "code/validated-examples/2026-11-22/thermostats/verification.json": "c14f55ac05d93269dbf8eef4a2a4042f75764d5228d06f8e41039d0b60351905",
-    "code/validated-examples/2026-11-23-r2/guderley/atlas-guderley-2026-11-23-r2.zip": "ca6974a8e48f8d6a2ad81ad74bce173dcff3656e35a465d9e75fac3d6cbdbfb6",
-    "code/validated-examples/2026-11-23-r2/guderley/cases.json": "141e0de47934171fc3ddc943bdedd7b0bda34ead92b13e03fee48aac5ffbad98",
-    "code/validated-examples/2026-11-23-r2/guderley/results/result.json": "1ed7e0d78c95488bd804a62946785040aa30b8b45a39f2e575ce8bf0ea53a0ea",
-    "code/validated-examples/2026-11-23-r2/guderley/source-manifest.json": "21ad6b276da23b43f14f945275ede89423c84382684fbb11efaaf2479542d942",
-    "code/validated-examples/2026-11-23-r2/guderley/verification.json": "f1aec66cb2d92f0166bd948ea685ad9c193ebf74d1be67b0cc2cfa1d254dc554",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/atlas-noh-cartesian-2026-11-23-r2.zip": "2145beb161f993c1608fc5ac167af5278d58e10f92e74ed37e5fb9c35243b918",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/cases.json": "49b94c1f65e269d4a878be3a4d8778375b88b767f5dd01998ae5fe6b8fc2b3ee",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/results/result.json": "e121c2f5171ee53491b492019311d002ceb44213f6f7cd43051a3ca68f74c694",
@@ -175711,6 +175748,11 @@
     "code/validated-examples/2026-11-23-r2/sedov/results/result.json": "e4767029260bee54e0de2c85b07cbca07c5b99c4eb999b9d609735b6e615ef23",
     "code/validated-examples/2026-11-23-r2/sedov/source-manifest.json": "4a92404602abd0d01096aae1576afb96533c64ea68989615df885a4310e3479f",
     "code/validated-examples/2026-11-23-r2/sedov/verification.json": "1bec773b9e6d657ea7b71996df2bcc2c593f64b8cbb51942ed7d106be3419a03",
+    "code/validated-examples/2026-11-23-r3/guderley/atlas-guderley-2026-11-23-r3.zip": "f00ff906861495bd73b2ae75f7c3895fab505ba45ad7a34a2612700405d8466f",
+    "code/validated-examples/2026-11-23-r3/guderley/cases.json": "72e621b096fdb1ff229dba33b9243667a7e7c4f9b2593d7331953333707f28f7",
+    "code/validated-examples/2026-11-23-r3/guderley/results/result.json": "c85894f329b97d62ef9d093792316028e4b3b9ca38a0488047bdbab2542e84bb",
+    "code/validated-examples/2026-11-23-r3/guderley/source-manifest.json": "e436ada98187ba8a1ca755712fc60d1ce5f735379f026d92d63b2cbd19c6d112",
+    "code/validated-examples/2026-11-23-r3/guderley/verification.json": "3eb90bb576b4b9579433bb15a93b0acc42948a85f335a45de7c649ec1b61e625",
     "code/validated-examples/2026-11-23-r5/noh/atlas-noh-2026-11-23-r5.zip": "64de5483e9896a3773348b75e1ec2b4630f8a709d68194c1d94772396f531733",
     "code/validated-examples/2026-11-23-r5/noh/cases.json": "9501c9cb57617c09a8ceb0aa7e124ba1e2af303144eaa82045e8632fc7c39fc2",
     "code/validated-examples/2026-11-23-r5/noh/results/result.json": "4e92acb911d505b3f7e74e39f01acf77e59fbe15577f321ac759f1315e487724",
@@ -175734,8 +175776,8 @@
     "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "c478bc4512ba218b3a7f0f9fbbe8293b64fe7053cf84daffc8c3e4bf3b0765d8",
-    "numerical-methods-atlas/locales/messages.json": "e4435c7ea610f9f1ef9604b4b4794d6c7dbaf7d17f84047b762691c8e748ea14"
+    "numerical-methods-atlas/gallery/preview-manifest.json": "68234fcfee30b055401fa6eb252da01f5a9030c88902c8e4ecf3171a5dcf9580",
+    "numerical-methods-atlas/locales/messages.json": "5600601127f438f2935a88d5ce597656cef65b07034961fc863a7074da0e6fd7"
   },
   "code_release": {
     "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/atlas-code-2026-11-21.zip",

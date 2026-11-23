@@ -423,7 +423,7 @@
         "https://github.com/lanl/ExactPack/tree/9bacc477eb791e959c9621e771fc7a725db755fa/exactpack/solvers/guderley"
       ],
       "title": "Guderley converging shock: eigenvalue and spherical semi-analytic reference",
-      "assumptions": "Ideal-gas Euler in spherical radial symmetry, gamma=1.4, with unshocked upstream rho0=1, u=p=0. Lazarus time t in [-1,-0.85] excludes collapse at 0; r in [0,0.75], Rs(t)=0.6*(-t)^alpha and alpha=1/lambda. The initial field already contains the similarity shock and is not zero pressure throughout the domain. Lambda is computed by the pinned ExactPack eigenvalue routine, and the same pinned source supplies the pre-collapse similarity ODE. Shells are split at the shock and conserved states are Gauss16 volume averaged, checked against Gauss32; pressure is p(Ubar). This is not closed-form exact cell means or an independent semi-analytic implementation: it is a dense-output adapter to ExactPack. The figure is a 2D central-section display of 1D radial data, not a 2D Cartesian or post-collapse computation.",
+      "assumptions": "Ideal-gas Euler in spherical radial symmetry, gamma=1.4, with unshocked upstream rho0=1, u=p=0. Lazarus time t in [-1,-0.85] excludes collapse at 0; r in [0,0.75], Rs(t)=0.6*(-t)^alpha and alpha=1/lambda. The initial field already contains the shocked outer similarity state. Lambda was computed and qualified using pinned ExactPack eigenvalue shooting and eight original-state probes. Routine replay reuses that recorded lambda and freshly integrates the same pinned pre-collapse similarity ODE. Full eigenvalue and original-probe regeneration is a separate explicit command. Shells are split at the shock and conserved states are Gauss16 volume averaged, checked against Gauss32; pressure is p(Ubar). This is a dense-output adapter to ExactPack, not closed-form exact cell means or an independent similarity implementation. The figure maps 1D spherical-radial data onto a 2D meridional section, not 2D Cartesian or post-collapse evolution.",
       "view": {
         "ja": "/numerical-methods-atlas/validation/guderley-implosion/?lang=ja#guderley-implosion-ja-measurements",
         "en": "/numerical-methods-atlas/validation/guderley-implosion/?lang=en#guderley-implosion-en-measurements"
@@ -432,7 +432,7 @@
         "ja": "/numerical-methods-atlas/ja/read/validation-guderley/#guderley-implosion",
         "en": "/numerical-methods-atlas/en/read/validation-guderley/#guderley-implosion"
       },
-      "reference_scope": "Pinned ExactPack eexp computes the similarity exponent; unchanged ramsey.g supplies the similarity ODE. A dense pre-collapse adapter changes caching, evaluation and coordinates, not that ODE. Eight original ramsey.state point calls qualify the adapter, alongside the code-transcribed exponent table, critical matching, shock jumps and Gauss16/32 shell quadrature. This is actual selected ExactPack source execution, not a complete ExactPack test run, an independent similarity implementation or a second numerical Euler engine. The separate finite-volume evolution is Atlas HLL/Heun. The collapse singularity and reflected-shock B eigenvalue are excluded.",
+      "reference_scope": "The retained qualification actually executed pinned ExactPack eexp shooting, critical matching, eight original ramsey.state probes, shock jumps and Gauss16/32 shell checks. Routine replay validates and reuses that recorded lambda instead of repeating shooting or the original probes. It freshly integrates unchanged ramsey.g, checks the new field against eight archived original-source point values, evaluates critical matching once, repeats shell quadrature and runs the separate Atlas HLL/Heun finite-volume Euler evolution. The archived point values are reused; routine replay makes no new original ramsey.state calls. Full qualification regeneration remains an explicit separate command. A dense pre-collapse adapter changes caching, evaluation and coordinates, not the ODE; this is neither an independent similarity implementation, a complete ExactPack suite nor a second numerical Euler engine. Collapse and the reflected-shock B eigenvalue are excluded.",
       "citations": [
         {
           "role": "historical-original-problem-attribution",
@@ -459,7 +459,7 @@
           "role": "critical-point-eigenvalue-formulation-used-by-ExactPack-eexp",
           "title": "R. F. Chisnell (1998), An analytic description of converging shock waves, Journal of Fluid Mechanics 354, 357–375",
           "url": "https://doi.org/10.1017/S0022112097007775",
-          "note": "Checked the publisher record/abstract and the critical-point phase matching and equation 3.1 implementation in ExactPack eexp. The exponent is computed through that eigenvalue routine rather than fixed by dimensional analysis.",
+          "note": "Checked the publisher record/abstract and the critical-point phase matching and equation 3.1 implementation in ExactPack eexp. The exponent is computed through that eigenvalue routine rather than fixed by dimensional analysis. The exponent was computed in the retained qualification; routine replay reuses the qualified value. Full eigenvalue shooting is an explicit separate regeneration step.",
           "review_url": "https://www.cambridge.org/core/journals/journal-of-fluid-mechanics/article/abs/an-analytic-description-of-converging-shock-waves/1D3D7014FF4C6297A5F6DC9BCFDBE0E8"
         },
         {
@@ -473,7 +473,7 @@
           "role": "actually-executed-semi-analytic-reference-source",
           "title": "Los Alamos National Laboratory / ExactPack contributors (2025), ExactPack Guderley solver, pinned source",
           "url": "https://github.com/lanl/ExactPack/tree/9bacc477eb791e959c9621e771fc7a725db755fa/exactpack/solvers/guderley",
-          "note": "Inspected pinned eexp, the pre-collapse ODE/state, transcribed tables, official regression values and BSD 3 terms. This is not a claim to have run the complete ExactPack suite; actual reference execution is recorded separately. The selected exponent, pre-collapse ODE and eight original state probes were actually executed; qualification.json and pinned source/license hashes are archived with this release. The public Guderley class, reflected B solve and full ExactPack suite were not run."
+          "note": "Inspected pinned eexp, the pre-collapse ODE/state, transcribed tables, official regression values and BSD 3 terms. This is not a claim to have run the complete ExactPack suite; actual reference execution is recorded separately. The selected exponent, pre-collapse ODE and eight original state probes were actually executed; qualification.json and pinned source/license hashes are archived with this release. The public Guderley class, reflected B solve and full ExactPack suite were not run. Routine replay reuses the recorded qualified lambda and freshly integrates the pinned pre-collapse ODE; it does not claim to repeat eexp shooting or the eight original-state probes by default. Their full regeneration is separately available."
         }
       ]
     }

@@ -1,0 +1,17 @@
+{
+  "command": [
+    "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/gd-env/bin/python",
+    "-W",
+    "error",
+    "run.py",
+    "--input",
+    "inputs.json",
+    "--output",
+    "results"
+  ],
+  "limit_seconds": 120.0,
+  "timed_out": false,
+  "retry_count": 0,
+  "returncode": 0,
+  "elapsed_seconds": 44.86493241700009
+}

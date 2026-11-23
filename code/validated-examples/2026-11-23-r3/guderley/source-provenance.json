@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "group": "guderley",
+  "case": "guderley-implosion",
+  "original_implementation": {
+    "files": [
+      "guderley_solver.py",
+      "run.py",
+      "test_guderley.py",
+      "plot.py"
+    ],
+    "description": "Locally authored spherical finite-volume HLL/Heun Euler evolution, independent of the reference eigenvalue/ODE algorithms. Physical geometry and numerical flux identities are checked separately.",
+    "license": "LICENSE"
+  },
+  "reference_implementation": {
+    "adapter": "references/precollapse.py",
+    "description": "Uses actual pinned LANL ExactPack eigenvalue and similarity RHS code. Default execution reuses the hash-bound eigenvalue from the completed original shooting/qualification and freshly integrates the pre-collapse ODE; full eigenvalue shooting is an explicit regeneration operation. The critical-phase residual is freshly checked in the tests. It is not an independently reimplemented similarity ODE.",
+    "source_and_hashes": "references/exactpack-source.json",
+    "license": "references/EXACTPACK-LICENSE.txt",
+    "preregistered_qualification": "references/cache-contract.json",
+    "qualification_result": "references/cache-qualification.json",
+    "eigenvalue_reuse": "references/eigenvalue-cache.json",
+    "original_shooting_qualification": "references/attempts/01-eigenvalue-recompute/qualification.json",
+    "original_shooting_contract": "references/attempts/01-eigenvalue-recompute/pre-reference-contract.json"
+  },
+  "inputs_and_acceptance": {
+    "inputs": "inputs.json",
+    "acceptance": "acceptance.json",
+    "main_source_contract": "pre-run-contract.json",
+    "policy": "Original physical inputs and acceptance were fixed before the original primary execution and remain byte-identical. Revised numerical/reference sources and tests are bound before each revision execution. Earlier sources, contracts and failed public replay records are retained; presentation changes do not loosen scientific criteria."
+  },
+  "figures": "Only saved, hash-qualified radial states are mapped to a meridional plane. No plotted image is described as a Cartesian 2D calculation.",
+  "retained_failed_public_replay": {
+    "edition": "2026-11-23-r2",
+    "reason": "Combined120-second test-plus-run budget:33Linux tests passed in96.34s; fixed-input run timed out after remaining23.31s.",
+    "sources_and_failure": "attempts/02/",
+    "physical_inputs_and_acceptance_unchanged": true
+  }
+}

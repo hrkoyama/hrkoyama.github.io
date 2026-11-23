@@ -3890,30 +3890,30 @@
       "chapter": "validation-guderley",
       "reading_section": "guderley-implosion",
       "availability": "saved-output",
-      "code_base": "/code/validated-examples/2026-11-23-r2/guderley/",
-      "verification": "/code/validated-examples/2026-11-23-r2/guderley/verification.json",
+      "code_base": "/code/validated-examples/2026-11-23-r3/guderley/",
+      "verification": "/code/validated-examples/2026-11-23-r3/guderley/verification.json",
       "commands": [
         "python -m pytest -q",
         "python run.py --input inputs.json --output output"
       ],
       "evidence": [
         {
-          "path": "code/validated-examples/2026-11-23-r2/guderley/results/result.json",
+          "path": "code/validated-examples/2026-11-23-r3/guderley/results/result.json",
           "json_pointer": "/cases",
           "where": {
             "id": "guderley-implosion"
           }
         },
         {
-          "path": "code/validated-examples/2026-11-23-r2/guderley/results/guderley-implosion-preview.png",
+          "path": "code/validated-examples/2026-11-23-r3/guderley/results/guderley-implosion-preview.png",
           "artifact": "image"
         },
         {
-          "path": "code/validated-examples/2026-11-23-r2/guderley/inputs.json",
+          "path": "code/validated-examples/2026-11-23-r3/guderley/inputs.json",
           "json_pointer": "/cases/guderley-implosion"
         },
         {
-          "path": "code/validated-examples/2026-11-23-r2/guderley/verification.json",
+          "path": "code/validated-examples/2026-11-23-r3/guderley/verification.json",
           "json_pointer": "/all_cases_rerun"
         }
       ],
@@ -3931,7 +3931,7 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-guderley/#guderley-implosion",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-guderley/#guderley-implosion"
       },
-      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/verification.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r3/guderley/verification.json",
       "execution_examples": [],
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#guderley",
       "run_commands": [
@@ -3985,7 +3985,7 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-test-problems.json": "e1e23af794544805ca27bb02f50ad0f89bdba9f2d03f41f324300db0997edf84",
+    "catalog/atlas-test-problems.json": "25febf285358beb3f730decdd4c48c870766542829f71da96087b2974d47b65d",
     "numerical-methods-atlas/equation-gallery.json": "e99af38238a50232f92875817c4556ab6c730289db13014efdd41913096c902e",
     "numerical-methods-atlas/cip.json": "3aa33fbffad6b9ad76310e9b713629a1a35b4e30e419db0c531180cf769e6b6f",
     "numerical-methods-atlas/limiters.json": "3242180ba171420220fd349cac93dff552466070f886f3d00a70927939255312",
@@ -4123,10 +4123,10 @@
     "code/validated-examples/2026-11-23-r2/sedov/inputs.json": "e8db508fe755dcebc65633b9d02a017211a36e7e8ffd0184a23caea0996dfab9",
     "code/validated-examples/2026-11-23-r2/sedov/verification.json": "1bec773b9e6d657ea7b71996df2bcc2c593f64b8cbb51942ed7d106be3419a03",
     "code/validated-examples/2026-11-23-r2/sedov/exactpack-receipt.json": "048d94b8dec429a17ebaf485067a46c74b619e69e4443ca9a4ee5ce62081ba8f",
-    "code/validated-examples/2026-11-23-r2/guderley/results/result.json": "1ed7e0d78c95488bd804a62946785040aa30b8b45a39f2e575ce8bf0ea53a0ea",
-    "code/validated-examples/2026-11-23-r2/guderley/results/guderley-implosion-preview.png": "03774f695db7f8e07eb006db120075d808871a194e1ab59abb815995fc53f383",
-    "code/validated-examples/2026-11-23-r2/guderley/inputs.json": "55012ed25956636e2433f61c5bd5de45651c8d252212aac2e9c8cb47e7e1442c",
-    "code/validated-examples/2026-11-23-r2/guderley/verification.json": "f1aec66cb2d92f0166bd948ea685ad9c193ebf74d1be67b0cc2cfa1d254dc554"
+    "code/validated-examples/2026-11-23-r3/guderley/results/result.json": "c85894f329b97d62ef9d093792316028e4b3b9ca38a0488047bdbab2542e84bb",
+    "code/validated-examples/2026-11-23-r3/guderley/results/guderley-implosion-preview.png": "03774f695db7f8e07eb006db120075d808871a194e1ab59abb815995fc53f383",
+    "code/validated-examples/2026-11-23-r3/guderley/inputs.json": "55012ed25956636e2433f61c5bd5de45651c8d252212aac2e9c8cb47e7e1442c",
+    "code/validated-examples/2026-11-23-r3/guderley/verification.json": "3eb90bb576b4b9579433bb15a93b0acc42948a85f335a45de7c649ec1b61e625"
   },
   "code_edition": "2026-11-21",
   "code_verification": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/verification.json"

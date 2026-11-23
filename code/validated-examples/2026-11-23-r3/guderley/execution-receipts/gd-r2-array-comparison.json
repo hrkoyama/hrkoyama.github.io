@@ -1,0 +1,49 @@
+{
+  "compared_to_public_r2": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/guderley/",
+  "physical_inputs_acceptance_core_runner_byte_identical": true,
+  "all_three_fields_and_trajectories_bit_identical": true,
+  "comparisons": [
+    {
+      "n": 128,
+      "all_arrays_bit_identical": true,
+      "keys": [
+        "q",
+        "q_initial",
+        "q_reference",
+        "pressure_reference",
+        "edges",
+        "time",
+        "q_history",
+        "history_times"
+      ]
+    },
+    {
+      "n": 256,
+      "all_arrays_bit_identical": true,
+      "keys": [
+        "q",
+        "q_initial",
+        "q_reference",
+        "pressure_reference",
+        "edges",
+        "time",
+        "q_history",
+        "history_times"
+      ]
+    },
+    {
+      "n": 512,
+      "all_arrays_bit_identical": true,
+      "keys": [
+        "q",
+        "q_initial",
+        "q_reference",
+        "pressure_reference",
+        "edges",
+        "time",
+        "q_history",
+        "history_times"
+      ]
+    }
+  ]
+}

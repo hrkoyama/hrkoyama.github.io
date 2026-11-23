@@ -1,0 +1,57 @@
+{
+  "repository": "https://github.com/lanl/ExactPack",
+  "commit": "9bacc477eb791e959c9621e771fc7a725db755fa",
+  "commit_url": "https://github.com/lanl/ExactPack/commit/9bacc477eb791e959c9621e771fc7a725db755fa",
+  "scope": "unchanged eexp and ramsey ODE; custom pre-collapse-only dense adapter; public Guderley class is archived, not called by routine verification",
+  "files": [
+    {
+      "path": "exactpack/solvers/guderley/eexp.py",
+      "local": "exactpack_guderley/eexp.py",
+      "sha256": "111bb69cc3869f2e820eb97e2f9c6132a51f257017c0375c4a7b1509642ce664",
+      "bytes": 6158,
+      "url": "https://raw.githubusercontent.com/lanl/ExactPack/9bacc477eb791e959c9621e771fc7a725db755fa/exactpack/solvers/guderley/eexp.py"
+    },
+    {
+      "path": "exactpack/solvers/guderley/ramsey.py",
+      "local": "exactpack_guderley/ramsey.py",
+      "sha256": "57156dff491a181e19d779fc0878bed6c4e3f74b048d251745a0f5bde0f87a2b",
+      "bytes": 21382,
+      "url": "https://raw.githubusercontent.com/lanl/ExactPack/9bacc477eb791e959c9621e771fc7a725db755fa/exactpack/solvers/guderley/ramsey.py"
+    },
+    {
+      "path": "exactpack/solvers/guderley/interp_laz.py",
+      "local": "exactpack_guderley/interp_laz.py",
+      "sha256": "4b11a3a3f0cc233bff47814b11dab2a8290c73d99bfe9321fc5aa34021b771e9",
+      "bytes": 10055,
+      "url": "https://raw.githubusercontent.com/lanl/ExactPack/9bacc477eb791e959c9621e771fc7a725db755fa/exactpack/solvers/guderley/interp_laz.py"
+    },
+    {
+      "path": "exactpack/solvers/guderley/guderley.py",
+      "local": "exactpack_guderley/guderley.py",
+      "sha256": "27dc6a811a880fe6c52dd8a3423d1132adc4a0720c039cb69ac271587e6a1967",
+      "bytes": 1131,
+      "url": "https://raw.githubusercontent.com/lanl/ExactPack/9bacc477eb791e959c9621e771fc7a725db755fa/exactpack/solvers/guderley/guderley.py"
+    },
+    {
+      "path": "LICENSE.txt",
+      "local": "EXACTPACK-LICENSE.txt",
+      "sha256": "763767e730623814502f95054919a019f17f5257e0cd8d60aede203d9736dd40",
+      "bytes": 2217,
+      "url": "https://raw.githubusercontent.com/lanl/ExactPack/9bacc477eb791e959c9621e771fc7a725db755fa/LICENSE.txt"
+    },
+    {
+      "path": "exactpack/solvers/guderley/__init__.py",
+      "local": "exactpack_guderley/original_init.py",
+      "sha256": "6e6ad38211448db5823eab4c581ebc8644d72ee7a91da3ba4144b64ac26bd788",
+      "bytes": 1837,
+      "url": "https://raw.githubusercontent.com/lanl/ExactPack/9bacc477eb791e959c9621e771fc7a725db755fa/exactpack/solvers/guderley/__init__.py"
+    },
+    {
+      "path": "exactpack/tests/test_guderley.py",
+      "local": "EXACTPACK-test_guderley.py",
+      "sha256": "394a0bb67840cffcb02cd573cc50feeeb237c5438835642f25aadd85f3dbcf34",
+      "bytes": 2926,
+      "url": "https://raw.githubusercontent.com/lanl/ExactPack/9bacc477eb791e959c9621e771fc7a725db755fa/exactpack/tests/test_guderley.py"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "cases": {
+    "guderley-implosion": {
+      "gamma": 1.4,
+      "rho0": 1.0,
+      "upstream_velocity": 0.0,
+      "upstream_pressure": 0.0,
+      "dimension": 3,
+      "radius": 0.75,
+      "shock_radius_at_minus_one": 0.6,
+      "initial_time": -1.0,
+      "final_time": -0.85,
+      "grids": [128, 256, 512],
+      "cfl": 0.4,
+      "max_steps_per_run": 10000,
+      "history_stride": 10,
+      "reference_order": 16,
+      "reference_check_order": 32,
+      "active_radius_factor": 0.8,
+      "shock_search_factors": [0.8, 1.2],
+      "reference_residual_time": -0.925,
+      "reference_residual_radius_ratios": [1.02, 1.1, 1.25],
+      "reference_derivative_relative_step": 1e-5
+    }
+  }
+}

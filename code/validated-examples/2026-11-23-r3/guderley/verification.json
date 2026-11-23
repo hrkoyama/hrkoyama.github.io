@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "group": "guderley",
+  "edition": "2026-11-23-r3",
+  "verified_on": "2026-11-23",
+  "source_manifest_sha256": "e436ada98187ba8a1ca755712fc60d1ce5f735379f026d92d63b2cbd19c6d112",
+  "archive": {
+    "file": "atlas-guderley-2026-11-23-r3.zip",
+    "sha256": "f00ff906861495bd73b2ae75f7c3895fab505ba45ad7a34a2612700405d8466f",
+    "bytes": 1710200,
+    "archive_directory": "atlas-guderley-2026-11-23-r3"
+  },
+  "archive_sha256": "f00ff906861495bd73b2ae75f7c3895fab505ba45ad7a34a2612700405d8466f",
+  "returncode": 0,
+  "passed_tests": 33,
+  "tests": 33,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "guderley-implosion"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 0.41378591699685785,
+  "independent_rerun_seconds": 0.4241122500025085,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

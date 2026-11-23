@@ -1,0 +1,117 @@
+{
+  "started_at_utc": "2026-11-23T07:38:37.015533+00:00",
+  "command": [
+    "env",
+    "PYTHONDONTWRITEBYTECODE=1",
+    "TMPDIR=/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459",
+    "OPENBLAS_NUM_THREADS=1",
+    "OMP_NUM_THREADS=1",
+    "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/gd-env/bin/python",
+    "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/bounded-exec.py",
+    "--seconds",
+    "60",
+    "--receipt",
+    "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/gd-cache-reference-01-time.json",
+    "--",
+    "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/gd-env/bin/python",
+    "-W",
+    "error",
+    "-m",
+    "references.qualify_cached_reference",
+    "--output",
+    "references/cache-qualification.json"
+  ],
+  "cwd": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/atlas-search-publisher/scripts/depth-guderley",
+  "initial_free_bytes": 12365418496,
+  "reserve_bytes": 2684354560,
+  "minimum_free_bytes": 12363247616,
+  "samples": [
+    {
+      "seconds": 0.0,
+      "free_bytes": 12365410304
+    },
+    {
+      "seconds": 0.51,
+      "free_bytes": 12365410304
+    },
+    {
+      "seconds": 1.02,
+      "free_bytes": 12365410304
+    },
+    {
+      "seconds": 1.52,
+      "free_bytes": 12365410304
+    },
+    {
+      "seconds": 2.03,
+      "free_bytes": 12364349440
+    },
+    {
+      "seconds": 2.54,
+      "free_bytes": 12364349440
+    },
+    {
+      "seconds": 3.05,
+      "free_bytes": 12364349440
+    },
+    {
+      "seconds": 3.56,
+      "free_bytes": 12364349440
+    },
+    {
+      "seconds": 4.07,
+      "free_bytes": 12364349440
+    },
+    {
+      "seconds": 4.57,
+      "free_bytes": 12364349440
+    },
+    {
+      "seconds": 5.08,
+      "free_bytes": 12364603392
+    },
+    {
+      "seconds": 5.59,
+      "free_bytes": 12364599296
+    },
+    {
+      "seconds": 6.1,
+      "free_bytes": 12363550720
+    },
+    {
+      "seconds": 6.6,
+      "free_bytes": 12363522048
+    },
+    {
+      "seconds": 7.11,
+      "free_bytes": 12363522048
+    },
+    {
+      "seconds": 7.61,
+      "free_bytes": 12363247616
+    },
+    {
+      "seconds": 8.12,
+      "free_bytes": 12363489280
+    },
+    {
+      "seconds": 8.62,
+      "free_bytes": 12363481088
+    },
+    {
+      "seconds": 9.13,
+      "free_bytes": 12363468800
+    },
+    {
+      "seconds": 9.64,
+      "free_bytes": 12363423744
+    }
+  ],
+  "disk_stop": false,
+  "started": true,
+  "owned_process_group": 65282,
+  "child_returncode": 0,
+  "returncode": 0,
+  "final_free_bytes": 12363423744,
+  "completed_at_utc": "2026-11-23T07:38:46.658572+00:00"
+}
