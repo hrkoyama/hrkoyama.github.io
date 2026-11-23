@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "title": "Public-distribution verification of Euler stage positivity",
+  "verified_on": "2026-11-23",
+  "passed": true,
+  "content_commit": "1c5302913560376997cfd3df06bb684bf71330df",
+  "scope": "This records the already-published scientific content commit, not a prediction of later maintenance commits. The immutable numerical package is unchanged. The reference is a one-dimensional non-vacuum double rarefaction, not a general positivity certification.",
+  "edition": "2026-11-23-r2",
+  "group": "euler-positivity",
+  "case_ids": [
+    "euler-double-rarefaction-positivity"
+  ],
+  "archive_sha256": "0f2c8a3bf94a612f89d8f6f695b94574dd05d70976aa97a497ef47ff4e0c1efe",
+  "local_independent_zip": {
+    "tests": 27,
+    "all_cases_rerun": true,
+    "verification_url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/euler-positivity/verification.json"
+  },
+  "public_http": {
+    "matched_files": 517,
+    "passed": true,
+    "inventory": {
+      "files": 517,
+      "release_files": 64,
+      "figure_files": 6,
+      "total_bytes": 136209597
+    },
+    "body_files_saved": false,
+    "commit": "1c5302913560376997cfd3df06bb684bf71330df"
+  },
+  "linux": {
+    "passed": true,
+    "source_checkout": false,
+    "tests": 598,
+    "case_count": 48,
+    "group_count": 19,
+    "run_id": "45142681101",
+    "url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45142681101",
+    "report_sha256": "7015d661366e20a183f814f6ee3e20c6117dce640583239a077158b1fb30b997",
+    "new_group_pytest": {
+      "tests": 27,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "workflows": {
+    "Atlas lightweight public Linux verification": {
+      "id": 45142681101,
+      "name": "Atlas lightweight public Linux verification",
+      "head_sha": "1c5302913560376997cfd3df06bb684bf71330df",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45142681101",
+      "run_attempt": 1
+    },
+    "pages build and deployment": {
+      "id": 45142088700,
+      "name": "pages build and deployment",
+      "head_sha": "1c5302913560376997cfd3df06bb684bf71330df",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45142088700",
+      "run_attempt": 1
+    },
+    "Public site checks": {
+      "id": 45142087238,
+      "name": "Public site checks",
+      "head_sha": "1c5302913560376997cfd3df06bb684bf71330df",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45142087238",
+      "run_attempt": 1
+    }
+  },
+  "artifact_acquisition": {
+    "artifact_total_bytes": 139335530,
+    "selected_transfer_bytes": 741926,
+    "range_only": true,
+    "archive_written": false
+  }
+}

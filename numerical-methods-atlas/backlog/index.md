@@ -543,13 +543,13 @@ ID: compressible-fluid-additional · P2 · 公開済み · 新規実装
 
 ### Eulerの段階ごとの完全離散正値性
 
-ID: advection-reconstruction-1 · P1 · 検証済み · 検証の拡充
+ID: advection-reconstruction-1 · P1 · 公開済み · 検証の拡充
 
 調査時の範囲：検証範囲不足
 
 調査時の現状：
 
-27単体検査・3格子73判定と独立ZIP展開の再実行が合格。公開URLと公開ZIPのLinux確認は未完了です。
+27単体検査・3格子73判定と独立ZIP再実行、公開URLの517ファイル照合、公開配布物だけのLinux598検査/48ケース/19群が合格。ギャラリーの時空間図とコードへの経路を公開確認しました。
 
 追加内容・最小の検証：
 
@@ -564,7 +564,7 @@ ID: advection-reconstruction-1 · P1 · 検証済み · 検証の拡充
 - 誤差・収束と制約が分かる図を保存する。
 - 実在する問題ギャラリー・実行入口・入力・図への対応を確認する。
 
-γ1.4の既存二重希薄波、128/256/512セル、保存量MUSCL・大域LF a4・SSPRK33に限定。CFL .4≤.5と全段波速上限を実測し、密度・圧力・保存収支・制限発動を記録。真空生成・一般のWENO/DG・2D正値性の検証ではありません。
+γ1.4の既存二重希薄波、128/256/512セル、保存量MUSCL・大域LF a4・SSPRK33に限定。CFL .4≤.5と全段波速上限を実測し、密度・圧力・保存収支・制限発動を記録。真空生成・一般のWENO/DG・2D正値性の検証ではありません。 公開内容commit 1c5302913560376997cfd3df06bb684bf71330df、Linux run 45142681101の実測成功を別記録に保持しています。
 
 調査時の根拠：
 
@@ -582,7 +582,7 @@ ID: advection-reconstruction-1 · P1 · 検証済み · 検証の拡充
 
 ```json
 {
-  "verification": "/code/validated-examples/2026-11-23-r2/euler-positivity/verification.json",
+  "verification": "/numerical-methods-atlas/validation/verification/2026-11-23-euler-positivity-public.json",
   "inputs": [
     "/code/validated-examples/2026-11-23-r2/euler-positivity/inputs.json",
     "/code/validated-examples/2026-11-23-r2/euler-positivity/acceptance.json",
@@ -604,7 +604,8 @@ ID: advection-reconstruction-1 · P1 · 検証済み · 検証の拡充
     "/code/validated-examples/2026-11-23-r2/euler-positivity/references/README.md",
     "/code/validated-examples/2026-11-23-r2/euler-positivity/references/source-review.json",
     "/code/validated-examples/2026-11-23-r2/euler-positivity/source-provenance.json",
-    "/code/validated-examples/2026-11-23-r2/euler-positivity/pre-run-review.json"
+    "/code/validated-examples/2026-11-23-r2/euler-positivity/pre-run-review.json",
+    "/code/validated-examples/2026-11-23-r2/euler-positivity/verification.json"
   ]
 }
 ```

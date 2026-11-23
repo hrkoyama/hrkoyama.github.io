@@ -920,14 +920,14 @@
       "priority": "P1",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "verified",
-      "current": "27単体検査・3格子73判定と独立ZIP展開の再実行が合格。公開URLと公開ZIPのLinux確認は未完了です。",
+      "state": "published",
+      "current": "27単体検査・3格子73判定と独立ZIP再実行、公開URLの517ファイル照合、公開配布物だけのLinux598検査/48ケース/19群が合格。ギャラリーの時空間図とコードへの経路を公開確認しました。",
       "tasks": [
         "既存mean-preserving scalingの部品検査から、許容数値流束・SSP段階・CFLを含む一つの限定更新へ接続。",
         "密度/圧力最小値とセル平均保存を全段階で測る。",
         "強希薄波/near-vacuumで失敗・retry・floorを記録し、結果を理論の保証条件と対応付ける。"
       ],
-      "scope_note": "γ1.4の既存二重希薄波、128/256/512セル、保存量MUSCL・大域LF a4・SSPRK33に限定。CFL .4≤.5と全段波速上限を実測し、密度・圧力・保存収支・制限発動を記録。真空生成・一般のWENO/DG・2D正値性の検証ではありません。",
+      "scope_note": "γ1.4の既存二重希薄波、128/256/512セル、保存量MUSCL・大域LF a4・SSPRK33に限定。CFL .4≤.5と全段波速上限を実測し、密度・圧力・保存収支・制限発動を記録。真空生成・一般のWENO/DG・2D正値性の検証ではありません。 公開内容commit 1c5302913560376997cfd3df06bb684bf71330df、Linux run 45142681101の実測成功を別記録に保持しています。",
       "sources": [
         {
           "title": "Zhang & Shu (2010), positivity-preserving Euler DG schemes",
@@ -953,7 +953,7 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-23-r2/euler-positivity/verification.json",
+        "verification": "/numerical-methods-atlas/validation/verification/2026-11-23-euler-positivity-public.json",
         "inputs": [
           "/code/validated-examples/2026-11-23-r2/euler-positivity/inputs.json",
           "/code/validated-examples/2026-11-23-r2/euler-positivity/acceptance.json",
@@ -975,7 +975,8 @@
           "/code/validated-examples/2026-11-23-r2/euler-positivity/references/README.md",
           "/code/validated-examples/2026-11-23-r2/euler-positivity/references/source-review.json",
           "/code/validated-examples/2026-11-23-r2/euler-positivity/source-provenance.json",
-          "/code/validated-examples/2026-11-23-r2/euler-positivity/pre-run-review.json"
+          "/code/validated-examples/2026-11-23-r2/euler-positivity/pre-run-review.json",
+          "/code/validated-examples/2026-11-23-r2/euler-positivity/verification.json"
         ]
       },
       "sequence": 11
