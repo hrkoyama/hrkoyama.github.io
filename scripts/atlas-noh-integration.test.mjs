@@ -224,10 +224,11 @@ test('Noh reference, figure, chapter and execution connect through their actual 
   const methods=json('numerical-methods-atlas/methods/index.json').methods;
   const muscl=methods.find(row=>row.id==='muscl');
   assert.equal(muscl.depth_release.group,'mhd','the original MUSCL MHD release remains primary');
-  assert.equal(muscl.depth_release.edition,'2026-11-22');
+  assert.equal(objectSha(muscl.depth_release),'d0c2c83e60edf5893487c5a97f7363ed499bb100b5f886a4c80447ad4bb9e8c8','the complete primary release object is unchanged from6995ffc7');
+  assert.equal(muscl.depth_release.code_edition,'2026-11-22');
   assert.deepEqual(muscl.depth_release.case_ids,['shu-independent']);
   const extra=muscl.depth_additional_releases.find(row=>row.group==='noh');
-  assert.equal(extra.edition,'2026-11-23-r5');assert.deepEqual(extra.case_ids,['noh-shock']);
+  assert.equal(extra.code_edition,'2026-11-23-r5');assert.deepEqual(extra.case_ids,['noh-shock']);
   for(const id of ['heun','minmod','muscl','rusanov']){
     const method=methods.find(row=>row.id===id),card=method.problem_navigation.problems.find(row=>row.id==='noh');
     assert.equal(card.role,'execution');

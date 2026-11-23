@@ -85,7 +85,7 @@ $$
 
 **編集上の補足**
 
-初回不合格の保存物は、実行ソース・入力・全8格子計算の診断ログと、そこから原文のまま抽出した不合格サマリーです。初回の全場CSVが保存されているという意味ではありません。公開する成功版は、別途生成した全断面CSV・履歴・結果とZIP独立展開の再実行記録を備えます。
+初回不合格の実行ソース・入力・全8格子計算の診断ログに加え、全8本の元の全場プロファイルCSVも保存しています。stdoutから原文のまま抽出した不合格サマリーの来歴とは区別します。旧r3の同じCSVとSHAが一致することを確認しました。公開する成功版は全断面CSV・履歴・結果とZIP独立展開の再実行記録を備えます。
 
 ## 採用した計算法
 
@@ -421,7 +421,7 @@ Nondimensional r in [0,1], gamma=5/3, rho0=1, u0=-1, p0=0, T=.6. PDE runs use pl
 
 **Editorial clarification**
 
-The retained failed attempt includes source, inputs, diagnostic logs for all eight runs and its failed summary recovered verbatim from stdout. It does not contain every failed full-field CSV. The successful release separately supplies all profile CSVs, histories, results and an independently extracted ZIP rerun.
+The initial failed attempt retains its source, inputs, diagnostic logs and all eight original full-field profile CSVs. These arrays are distinct from the failed summary recovered verbatim from stdout; their hashes match the same CSVs in the prior r3 edition. The successful release supplies all profiles, histories, results and an independently extracted ZIP rerun.
 
 ## Adopted numerical method
 
