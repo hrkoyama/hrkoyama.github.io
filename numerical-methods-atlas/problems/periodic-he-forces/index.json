@@ -42,8 +42,8 @@
         "n(\\mathbf r)=\\sum_i f_i|\\phi_i(\\mathbf r)|^2,\\quad \\int n\\,d\\mathbf r=N,\\quad v_{\\rm xc}=\\frac{\\delta E_{\\rm xc}}{\\delta n}"
       ],
       "note": {
-        "ja": "密度汎関数の局所KS代表形。実行例は球対称He・スピン非偏極Dirac交換のみLDA。相関・GGA・hybrid・一般化KS・周期系は未実装。",
-        "en": "Representative local KS equations. Runnable code covers spherical-helium spin-unpolarized Dirac exchange-only LDA. Correlation, GGA, hybrids, generalized KS and periodic systems are not implemented."
+        "ja": "密度汎関数の局所KS代表形です。公開例は、球対称Heのスピン非偏極・Dirac交換のみLDAと、固定した周期He／He₂セルのLDA交換＋VWN5相関です。原子の動径実装と周期PySCFワークフローは別系列で、基底・境界条件・参照も異なります。各例の範囲は下の固定入力・検証記録で確認してください。GGA・hybrid・一般物質・励起状態まで検証した意味ではありません。",
+        "en": "Representative local Kohn–Sham equations. Published examples cover spin-unpolarized exchange-only Dirac LDA for spherical helium and LDA exchange plus VWN5 correlation for fixed periodic He/He₂ cells. The radial atomic implementation and periodic PySCF workflows are separate series with different bases, boundaries and references. Inspect each input and validation record below; these examples do not validate GGA, hybrids, general materials or excited states."
       },
       "url": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#kohn-sham-model-ja",

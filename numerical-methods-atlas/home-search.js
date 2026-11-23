@@ -1,7 +1,8 @@
+import {atlasSearch} from '../search/engine.mjs?v=e6edd0fe7acc';
 import {currentLanguage} from './i18n.js';
 import {readingURL} from './reading-urls.js';
-import {findMethods,appendMethodCard} from '../search/method-search.mjs?v=6739c8e4300c';
-import {appendSearchNavigation,publicNavigationPath} from '../search/navigation.mjs?v=460334bf824e';
+import {appendMethodCard,tokenIncludes} from '../search/method-search.mjs?v=d21135ad2350';
+import {appendSearchNavigation,publicNavigationPath} from '../search/navigation.mjs?v=b1d4759792b8';
 const esc=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export const normalizeSearch=value=>String(value).normalize('NFKC').toLocaleLowerCase().replace(/[‐‑‒–—−-]/g,' ').replace(/\s+/g,' ').trim();
 const plain=value=>String(value).replace(/<[^>]*>/g,' ').replace(/&(?:amp|lt|gt|quot|#39|nbsp);/g,c=>({'&amp;':'&','&lt;':'<','&gt;':'>','&quot;':'"','&#39;':"'",'&nbsp;':' '}[c])).replace(/\s+/g,' ').trim();
@@ -33,41 +34,28 @@ function localSearchURL(entry,locale){
  return null;
 }
 export function searchChapters(index,query,language='en'){
- const q=normalizeSearch(query);if(!q)return [];
- const words=q.split(' ');
- const methodResults=findMethods(index.entries.filter(entry=>entry.method).map(entry=>entry.method),query,language).map(result=>({...result,badge:kindLabels.method[result.locale],url:result.method.resource_type==='model'?new URL(result.method.url).pathname+new URL(result.method.url).hash:`/numerical-methods-atlas/methods/${result.method.id}/?lang=${result.locale}`}));
- const chapters=index.entries.flatMap(entry=>{
-  // The shared matcher owns method-name and alias matching. Falling back to
-  // the old registry corpus would reintroduce ordinary English "keep" hits.
-  if(entry.method)return [];
-  const titles=[entry.title.en,entry.title.ja].filter(Boolean),headings=[...entry.headings.en,...entry.headings.ja],keys=entry.keywords;
-  const kind=Object.hasOwn(kindLabels,entry.kind)?entry.kind:'chapter';
-  const entityPriority=['equation','reference'].includes(kind)&&[entry.id.replace(/^(?:equation|reference)-/,''),...titles,...Object.values(entry.name||{})].some(identity=>normalizeSearch(plain(identity))===q);
-  const hay=normalizeSearch([...titles,...headings.map(h=>h.title),...keys,...Object.values(entry.text||{})].join(' '));
-  if(!entityPriority&&!words.every(word=>hay.includes(word)))return [];
-  const titleHit=titles.some(title=>normalizeSearch(title).includes(q));
-  const heading=headings.find(h=>normalizeSearch(h.title).includes(q))||headings.find(h=>words.every(word=>normalizeSearch(h.title).includes(word)));
-  const intent=words.some(word=>executionIntents.has(word));
-  const focusWords=words.filter(word=>!executionIntents.has(word));
-  const focus=normalizeSearch((entry.focus_keywords||[]).join(' '));
-  // Prefer a named runnable case for execution intent, not for generic "code".
-  // A compound name/method query such as "He SCF" also identifies a case.
-  const namedExecution=kind==='execution-example'&&focusWords.length>0&&focusWords.every(word=>focus.includes(word));
-  const compoundName=namedExecution&&!intent&&focusWords.length>1&&titles.some(title=>focusWords.some(word=>normalizeSearch(title).includes(word)));
-  const score=(titleHit?100:0)+(heading?40:0)+(keys.some(key=>normalizeSearch(key)===q)?60:0)+(namedExecution&&intent?80:compoundName?50:0);
-  const locale=language==='ja'&&entry.title.ja?'ja':entry.title.en?'en':'ja';
-  const shownHeading=heading?(entry.headings[locale].find(h=>h.id===heading.id)||heading):null;
-  const snippet=typeof entry.snippet?.[locale]==='string'?plain(entry.snippet[locale]):'';
-  return [{id:entry.id,title:entry.title[locale],locale,section:titleHit?'':heading?.id||'',kind,badge:kindLabels[kind][locale],detail:snippet||shownHeading?.title||(keys.filter(key=>words.every(word=>normalizeSearch(key).includes(word))).slice(0,3).join(' · ')||keys.slice(0,4).join(' · ')),score,entityPriority,executionPriority:namedExecution&&(intent||(compoundName&&!methodResults.some(result=>result.exactMethod))),url:localSearchURL(entry,locale),routes:entry.routes,search_navigation:entry.search_navigation}];
- }).sort((a,b)=>b.score-a.score||a.id.localeCompare(b.id));
- const executions=chapters.filter(result=>result.executionPriority);
- const entities=chapters.filter(result=>result.entityPriority&&!result.executionPriority).map(result=>({...result,related:false}));
- const pages=chapters.filter(result=>!result.executionPriority&&!result.entityPriority);
- if(!methodResults.length)return [...executions,...entities,...pages];
- // A request for a particular runnable problem still opens that problem.
- // Named methods get one direct card; mentions in other chapters stay below.
- return [...executions,...methodResults.filter(result=>result.exactMethod),...entities,...methodResults.filter(result=>!result.exactMethod),...pages.map(result=>({...result,related:true}))];
+ const found=atlasSearch(index)(query,language,'atlas');
+ const methods=found.some(result=>result.kind==='method');
+ return found.map(result=>{
+  const entry=result.atlasEntry,locale=result.locale||(language==='ja'&&entry?.title?.ja?'ja':entry?.title?.en?'en':'ja');
+  if(result.kind==='method'){
+   const path=publicNavigationPath(result.method.url);
+   const url=path?new URL(path,'https://hrkoyama.github.io'):null;
+   if(url)url.searchParams.set('lang',locale);
+   return {...result,badge:kindLabels.method[locale],url:url?url.pathname+url.search+url.hash:null};
+  }
+  const title=entry?.title?.[locale]||result.titleEn||result.title;
+  const headings=entry?.headings?.[locale]||[],q=normalizeSearch(query),words=q.split(' ');
+  const heading=headings.find(h=>normalizeSearch(h.title).includes(q))||headings.find(h=>words.every(word=>tokenIncludes(normalizeSearch(h.title),word)));
+  const kind=Object.hasOwn(kindLabels,result.kind)?result.kind:'chapter';
+  const snippet=entry?.snippet?.[locale]||'';
+  return {...result,id:entry?.id||result.id,title,locale,section:heading?.id||'',badge:kindLabels[kind][locale],
+   detail:snippet||heading?.title||(entry?.keywords||[]).slice(0,4).join(' · '),
+   url:publicNavigationPath(result.routes?.[locale]||result.url),
+   related:methods&&!result.executionPriority&&!result.entityPriority};
+ });
 }
+
 const copy={ja:{label:'アトラスを検索',placeholder:'例：KEEP法、Roe、WENO-Z、Sod 実行',hint:'手法の解説・公開コード・テストへ直接進めます。日英の名称・別名に対応し、検索語はこのブラウザ内で処理します。',related:'関連資料',all:'すべての結果をアトラス内で検索',button:'検索',empty:'キーワードを入力してください。',loading:'検索データを読み込んでいます…',none:'該当する項目がありません。別の用語や英語名でもお試しください。',failed:'検索データを読み込めませんでした。もう一度「検索」を押してください。',english:'英語の解説',count:(n,m)=>`${n}件が該当${n>m?`（上位${m}件を表示）`:''}`},en:{label:'Search the atlas',placeholder:'e.g. KEEP, Roe, WENO-Z, Sod run',hint:'Go directly to method explanations, published code and tests. Search English or Japanese names and aliases; search terms stay in this browser.',related:'Related resources',all:'View all atlas search results',button:'Search',empty:'Enter a keyword to find an entry.',loading:'Loading the search index…',none:'No entries match. Try another term or its Japanese name.',failed:'The search index could not load. Press Search to try again.',english:'English chapter',count:(n,m)=>`${n} matching entr${n===1?'y':'ies'}${n>m?` (showing ${m})`:''}`}};
 export function homeSearchPage({compact=false,staticMode=false}={}){
  const lang=currentLanguage(),c=copy[lang];
@@ -79,7 +67,7 @@ export function homeSearchPage({compact=false,staticMode=false}={}){
 }
 let indexPromise;
 function loadIndex(){
- if(!indexPromise)indexPromise=fetch(new URL('home-search-index.json?v=e39345838d02',import.meta.url)).then(r=>{if(!r.ok)throw Error('Search index unavailable');return r.json();}).catch(error=>{indexPromise=null;throw error;});
+ if(!indexPromise)indexPromise=fetch(new URL('../search/atlas-query-index.json?v=a50fb09f9e06',import.meta.url)).then(r=>{if(!r.ok)throw Error('Search index unavailable');return r.json();}).catch(error=>{indexPromise=null;throw error;});
  return indexPromise;
 }
 export function wireHomeSearch(){

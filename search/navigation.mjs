@@ -1,4 +1,5 @@
 /** Explicit, source-built cross-navigation shared by both search interfaces. */
+import {loadSearchDetail} from './compact-index.mjs?v=957cbb4e144f';
 const origin='https://hrkoyama.github.io';
 const groups=['methods','equations','figures','references','code'];
 const copy={
@@ -60,7 +61,7 @@ function appendPreview(target,entry,language,c){
 }
 
 /** Add no inferred resources and never recover a purpose-restricted parent graph. */
-export function appendSearchNavigation(item,result,language='ja'){
+function appendFullNavigation(item,result,language='ja'){
  language=language==='en'?'en':'ja';const c=copy[language];
  const graph=Object.hasOwn(result,'search_navigation')?result.search_navigation:result.method?.search_navigation;
  if(!graph||typeof graph!=='object'||!graph.groups)return item;
@@ -99,4 +100,48 @@ export function appendSearchNavigation(item,result,language='ja'){
   details.append(summary,body);wrapper.append(details);
  }
  item.append(wrapper);return item;
+}
+
+/** The same labels and destinations, with large scope graphs opened on demand. */
+export function appendSearchNavigation(item,result,language='ja'){
+ const graph=Object.hasOwn(result,'search_navigation')?result.search_navigation:result.method?.search_navigation;
+ if(!graph?.details_ref)return appendFullNavigation(item,result,language);
+ if(!/^[a-f0-9]{64}$/.test(graph.details_ref)||!graph.counts||!graph.groups)return item;
+ language=language==='ja'?'ja':'en';const c=copy[language];ensureStyle();
+ const wrapper=node('div','search-navigation');wrapper.dataset.searchNavigation=String(graph.id||'');
+ const nav=node('nav','search-navigation-groups');nav.setAttribute('aria-label',c.label);const disclosures=[];
+ const hint=language==='ja'?'開くと関連資料を読み込みます。':'Open to load the related resources.';
+ let loading=false;
+ async function expand(){
+  if(loading)return;loading=true;
+  try{
+   const data=await loadSearchDetail(graph.details_ref),full=data.search_navigation;
+   if(!full||full.kind!==graph.kind||full.id!==graph.id||!full.groups)throw Error('Wrong search navigation');
+   if(!item.isConnected)return;
+   const holder=node('div');appendFullNavigation(holder,{...result,search_navigation:full},language);
+   const replacement=holder.children[0];if(!replacement)throw Error('Missing search navigation');
+   for(const {details,key}of disclosures)if(details.open){
+    const next=key==='context'?replacement.querySelector('.search-navigation-context'):replacement.querySelector('[data-search-navigation-category="'+key+'"]');
+    if(next)next.open=true;
+   }
+   item.insertBefore(replacement,wrapper);wrapper.remove();
+  }catch{
+   for(const {body}of disclosures)body.textContent=language==='ja'?'読み込めませんでした。もう一度開いてください。':'Could not load. Close and open again to retry.';
+  }finally{loading=false;}
+ }
+ function disclosure(key,label,css){
+  const details=node('details',css),summary=node('summary','',label),body=node('p','search-navigation-note',hint);
+  details.append(summary,body);details.addEventListener('toggle',()=>{if(details.open)expand();});disclosures.push({details,key,body});return details;
+ }
+ for(const key of groups){
+  const count=graph.counts[key],single=graph.groups[key]?.[0],path=single&&entryPath(single,language);
+  if(!Number.isInteger(count)||count<0)return item;
+  const label=key==='code'&&single?.availability==='source'?c.sourceCode:c[key];
+  let category;
+  if(count===1&&path)category=link(path,label,'search-navigation-direct');
+  else if(count>0)category=disclosure(key,label+' ('+count+')','search-navigation-category');
+  else{category=node('span','search-navigation-unavailable',c[key]);category.setAttribute('aria-label',c[key]+': '+c.missing);}
+  category.dataset.searchNavigationCategory=key;nav.append(category);
+ }
+ wrapper.append(nav);wrapper.append(disclosure('context',c.details,'search-navigation-context'));item.append(wrapper);return item;
 }

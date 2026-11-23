@@ -1213,7 +1213,7 @@
       "chapter": "quantum-chemistry",
       "status": "local-example",
       "group": "Electronic structure & quantum chemistry",
-      "scope": "Closed-shell RHF spatial-orbital equations, generally with nonlocal exchange. Runnable code is restricted to the spherical 1s² helium local reduction; general molecular/many-electron Fock-matrix construction is not implemented.",
+      "scope": "Closed-shell RHF equations for occupied spatial orbitals generally include nonlocal exchange. Published examples cover the spherical 1s²-helium local reduction and fixed-input H₂ RHF using a separate molecular-integral implementation. Their bases, discretizations and references differ; inspect each input and validation record below. These examples do not validate general multicenter molecules, open shells or correlated methods.",
       "origin": "curated-quantum-reading"
     },
     {
@@ -1223,7 +1223,7 @@
       "chapter": "quantum-chemistry",
       "status": "local-example",
       "group": "Electronic structure & quantum chemistry",
-      "scope": "Representative local KS equations. Runnable code covers spherical-helium spin-unpolarized Dirac exchange-only LDA. Correlation, GGA, hybrids, generalized KS and periodic systems are not implemented.",
+      "scope": "Representative local Kohn–Sham equations. Published examples cover spin-unpolarized exchange-only Dirac LDA for spherical helium and LDA exchange plus VWN5 correlation for fixed periodic He/He₂ cells. The radial atomic implementation and periodic PySCF workflows are separate series with different bases, boundaries and references. Inspect each input and validation record below; these examples do not validate GGA, hybrids, general materials or excited states.",
       "origin": "curated-quantum-reading"
     },
     {
@@ -3547,14 +3547,14 @@
   "public_extension_sha256": {
     "catalog/atlas-quantum.json": "415dd98efe103ad5a2d950c22b98980f53539f6243b93e4e193dbca2c67169fe",
     "catalog/atlas-methods.json": "065a3b34662d245db876b4f35261d0ab080429a80ad4a35300b2676b20d009e7",
-    "catalog/atlas-equations.json": "ff35400b4add4d9cf37561c483a25b798a83d229e96d396f5622bb3cd17f10b6",
+    "catalog/atlas-equations.json": "7cc4e148e7a78c3218727153febf59fc9c19ccb1088f89ca2cd5d94c16bc7e28",
     "catalog/atlas-method-primary-references.json": "1e9de6c042875cb95060bf63386cb051f0dbdbce4d5a63ce5600b52fef2e2082"
   },
   "equation_execution_source_sha256": {
     "numerical-methods-atlas/assets/biological-models.json": "b4432736fdbb32d6ec0be5104585348bfc166663688640f8d99a039dd4e521ab",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "catalog/atlas-equations.json": "ff35400b4add4d9cf37561c483a25b798a83d229e96d396f5622bb3cd17f10b6",
+    "catalog/atlas-equations.json": "7cc4e148e7a78c3218727153febf59fc9c19ccb1088f89ca2cd5d94c16bc7e28",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "code/validated-examples/2026-11-23/weno-critical/source-manifest.json": "abd8b0a29bb81b7d98b897ec0a0eb409f77873857ec8199c3767f1ede11b43a5",
     "code/validated-examples/2026-11-23/weno-critical/verification.json": "ccbf3c6a2fe7055b324a0d98c152da909242f36e0c82ca3281038e4c9b0c165f",

@@ -340,9 +340,9 @@ test('search permits exact connection fragments while retaining legacy navigatio
     '/numerical-methods-atlas/connections/?lang=ja#dft-md-ja',
     '/numerical-methods-atlas/connections/#dft-md-en',
     '/numerical-methods-atlas/code-and-data/examples/sod/?lang=en#dft-md-en',
-  ]) assert.equal(searchChapters({entries: [row(url)]}, 'needle', 'en')[0].url, null, url);
+  ]) assert.deepEqual(searchChapters({entries: [row(url)]}, 'needle', 'en'), [], url);
   const connectionURL = '/numerical-methods-atlas/connections/?lang=en#dft-md-en';
-  assert.equal(searchChapters({entries: [row(connectionURL, 'execution-example')]}, 'needle', 'en')[0].url, null);
+  assert.deepEqual(searchChapters({entries: [row(connectionURL, 'execution-example')]}, 'needle', 'en'), []);
 });
 
 test('published connections distinguish fixed force evidence and a local MD interface from unexecuted full routes', () => {

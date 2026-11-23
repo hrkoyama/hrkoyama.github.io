@@ -44,7 +44,7 @@ function fixture() {
   write(directory, 'numerical-methods-atlas/home-search-index.json', {version:1,entries:[{id:'ghost',title:{ja:'GhostSeedToken',en:'GhostSeedToken'},headings:{ja:[],en:[]},keywords:['GhostSeedToken'],routes:{en:'/numerical-methods-atlas/en/read/ghost/'}}]});
   write(directory, 'package.json', {type:'module'});
   write(directory, 'llms.txt', '');
-  for (const file of ['numerical-methods-atlas/home-search.js','numerical-methods-atlas/i18n.js','numerical-methods-atlas/reading-urls.js','search/method-search.mjs','search/methods.css','search/goals-data.mjs','search/navigation.mjs','search/navigation.css']) {
+  for (const file of ['numerical-methods-atlas/home-search.js','numerical-methods-atlas/i18n.js','numerical-methods-atlas/reading-urls.js','search/compact-index.mjs','search/engine.mjs','search/search.js','search/method-search.mjs','search/methods.css','search/goals-data.mjs','search/navigation.mjs','search/navigation.css']) {
     const target = join(directory,file); mkdirSync(join(target,'..'),{recursive:true}); copyFileSync(join(root,file),target);
   }
   write(directory, 'numerical-methods-atlas/home-overview.js', "import {} from './home-search.js';\n");

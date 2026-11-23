@@ -116,7 +116,7 @@ test('atlas-local search includes the map and new method names with safe destina
   assert.equal(searchChapters(index,'手法の見取り図','ja')[0]?.url,'/numerical-methods-atlas/methods/?lang=ja');
   for(const [query,id] of [['のせフーバー','nose-hoover'],['ベロシティースケーリング','velocity-rescaling'],['CSVR','stochastic-velocity-rescaling']])assert.ok(searchChapters(index,query,'ja').some(x=>x.url===`/numerical-methods-atlas/methods/${id}/?lang=ja`));
   const entry={id:'x',title:{ja:'needle',en:'needle'},headings:{ja:[],en:[]},keywords:[],routes:{ja:'https://evil.example/'}};
-  assert.equal(searchChapters({entries:[entry]},'needle','ja')[0].url,null);
+  assert.deepEqual(searchChapters({entries:[entry]},'needle','ja'),[]);
 });
 
 test('efficiency techniques are excluded consistently from the map and roadmap',()=>{

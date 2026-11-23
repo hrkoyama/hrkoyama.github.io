@@ -40,10 +40,10 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-atoms/
   固定核・非相対論の電子多体固有値問題。核間反発は電子Hamiltonianの外に加える。実行例は1電子の孤立水素型原子に限定。一般の多電子直接解法は未実装。 この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。
 - [閉殻Hartree–Fock方程式](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#hartree-fock-model-ja>)
 
-  閉殻RHFの占有空間軌道の式。一般に非局所な交換を含む。実行例は球対称1s² Heの局所還元に限定し、一般の分子・多電子のFock行列構築は未実装。 この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。
+  閉殻RHFの占有空間軌道の式で、一般に非局所な交換を含みます。公開例は、球対称1s² Heの局所還元と、別の分子積分実装による固定入力のH₂ RHFです。原子例と分子例では基底・離散化・参照が異なります。各例の範囲は下の固定入力・検証記録で確認してください。一般多中心分子・開殻・相関を含む解法の検証ではありません。 この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。
 - [局所Kohn–Sham DFT](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#kohn-sham-model-ja>)
 
-  密度汎関数の局所KS代表形。実行例は球対称He・スピン非偏極Dirac交換のみLDA。相関・GGA・hybrid・一般化KS・周期系は未実装。 この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。
+  密度汎関数の局所KS代表形です。公開例は、球対称Heのスピン非偏極・Dirac交換のみLDAと、固定した周期He／He₂セルのLDA交換＋VWN5相関です。原子の動径実装と周期PySCFワークフローは別系列で、基底・境界条件・参照も異なります。各例の範囲は下の固定入力・検証記録で確認してください。GGA・hybrid・一般物質・励起状態まで検証した意味ではありません。 この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。
 - [この実行例の式と条件](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#execution-hydrogenic-atoms-ja>)
 
   原子単位の1電子・定常動径問題。計算は有限半径箱の零Dirichlet境界を使い、無限領域の水素型解析解と比較する。一般多電子・分子・周期系の解法を意味しない。
@@ -55,10 +55,10 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-atoms/
   孤立・球対称・閉殻1s²に限定した原子単位の動径式。RHFのvH/2は2電子同一空間軌道に特有。LDAは交換のみで相関なし。UHF、GGA、hybrid、一般分子・周期DFTの実行例ではない。
 - [閉殻Hartree–Fock方程式](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#hartree-fock-model-ja>)
 
-  閉殻RHFの占有空間軌道の式。一般に非局所な交換を含む。実行例は球対称1s² Heの局所還元に限定し、一般の分子・多電子のFock行列構築は未実装。
+  閉殻RHFの占有空間軌道の式で、一般に非局所な交換を含みます。公開例は、球対称1s² Heの局所還元と、別の分子積分実装による固定入力のH₂ RHFです。原子例と分子例では基底・離散化・参照が異なります。各例の範囲は下の固定入力・検証記録で確認してください。一般多中心分子・開殻・相関を含む解法の検証ではありません。
 - [局所Kohn–Sham DFT](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#kohn-sham-model-ja>)
 
-  密度汎関数の局所KS代表形。実行例は球対称He・スピン非偏極Dirac交換のみLDA。相関・GGA・hybrid・一般化KS・周期系は未実装。
+  密度汎関数の局所KS代表形です。公開例は、球対称Heのスピン非偏極・Dirac交換のみLDAと、固定した周期He／He₂セルのLDA交換＋VWN5相関です。原子の動径実装と周期PySCFワークフローは別系列で、基底・境界条件・参照も異なります。各例の範囲は下の固定入力・検証記録で確認してください。GGA・hybrid・一般物質・励起状態まで検証した意味ではありません。
 
 ## 問題の図
 

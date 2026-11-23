@@ -1,4 +1,6 @@
-import {findMethods,tokenIncludes} from './method-search.mjs?v=6739c8e4300c';
+import {findMethods,tokenIncludes} from './method-search.mjs?v=d21135ad2350';
+import {unpackSearchIndex} from './compact-index.mjs?v=957cbb4e144f';
+import {publicNavigationPath} from './navigation.mjs?v=b1d4759792b8';
 const ORIGIN = 'https://hrkoyama.github.io';
 export function safePath(value) {
   try {
@@ -11,10 +13,42 @@ export function normalize(value) {
   return String(value).normalize('NFKC').toLowerCase().replace(/[‐‑‒–—−-]/g,' ').replace(/\s+/g,' ').trim();
 }
 const stop = new Set(['the','a','an','of','and','or','in','for','to','with']);
+export const searchVocabulary=text=>[...new Set(normalize(text).split(' ').filter(Boolean))].sort().join(' ');
+const atlasEngines=new WeakMap();
+export function atlasSearchPath(entry,language){
+ const path=publicNavigationPath(entry.routes?.[language]);if(!path)return null;
+ if(/^\/numerical-methods-atlas\/[a-z0-9/?=.-]+$/.test(path))return path;
+ if(entry.kind==='connection'&&new RegExp('^/numerical-methods-atlas/connections/\\?lang='+language+'#(?:dft-md|reaction-transport|poisson-fields)-'+language+'$').test(path))return path;
+ if(entry.kind==='equation'&&new RegExp('^/numerical-methods-atlas/equations/\\?lang='+language+'#[a-z0-9-]+-'+language+'$').test(path))return path;
+ if(entry.kind==='reference'&&new RegExp('^/numerical-methods-atlas/solutions/\\?lang='+language+'#solution-[a-z0-9-]+-'+language+'$').test(path))return path;
+ return null;
+}
+/** Both browser entry points use this exact atlas corpus and ranking function. */
+export function atlasSearch(input){
+ if(atlasEngines.has(input))return atlasEngines.get(input);
+ const index=unpackSearchIndex(input);
+ const documents=index.entries.flatMap(entry=>{
+  const routes=Object.fromEntries(['ja','en'].map(language=>[language,atlasSearchPath(entry,language)]).filter(([,path])=>path));
+  const url=routes.ja||routes.en;if(!url)return [];
+  const text=entry.text||{},search=entry.search_text||text;
+  const body=typeof text==='string'?text:Object.values(text).join(' ');
+  const searchable=typeof search==='string'?search:Object.values(search).join(' ');
+  return [{id:entry.id,url,
+   title:entry.title.ja||entry.title.en,titleEn:entry.title.en||entry.title.ja,
+   text:body,search_text:[searchable,...(entry.keywords||[])].join(' '),
+   headings:[...(entry.headings?.ja||[]),...(entry.headings?.en||[])].map(h=>h.title).join(' '),
+   lang:entry.title.ja&&entry.title.en?'both':entry.title.ja?'ja':'en',
+   kind:entry.kind,routes,snippet:entry.snippet,method:entry.method,
+   execution:entry.kind==='execution-example'?{title:entry.title,focus_keywords:entry.focus_keywords||[],snippet:entry.snippet}:undefined,
+   search_navigation:entry.search_navigation,text_ref:entry.text_ref,
+   categoryJa:'数値解析',categoryEn:'Numerical methods',categoryText:'数値解析 Numerical methods',atlasEntry:entry}];
+ });
+ const engine=makeSearch(documents);atlasEngines.set(input,engine);return engine;
+}
 export function makeSearch(documents) {
   const entries = documents.filter(doc => doc && typeof doc.text === 'string' && safePath(doc.url)).map(doc => ({
     doc, title: normalize(doc.title + ' ' + (doc.titleEn || '')),
-    text: normalize(doc.text), headings: normalize(doc.headings || ''), category: normalize(doc.categoryText || ''),
+    text: searchVocabulary(doc.search_text||doc.text), headings: normalize(doc.headings || ''), category: normalize(doc.categoryText || ''),
     family: safePath(doc.url).replace(/\/(ja|en)\//, '/')
   }));
   return function search(query, language = 'ja', scope = 'all') {
@@ -22,7 +56,12 @@ export function makeSearch(documents) {
     if (!phrase) return [];
     const terms = [...new Set(phrase.split(/\s+/).filter(term => !stop.has(term)))];
     if (!terms.length) return [];
-    const scoped=entries.filter(entry => scope!=='atlas' || entry.doc.url.startsWith('/numerical-methods-atlas/'));
+    const scoped=entries.filter(entry => {
+      if(scope==='atlas'&&!entry.doc.url.startsWith('/numerical-methods-atlas/'))return false;
+      const atlas=entry.doc.atlasEntry;
+      const locale=atlas?.title?.[language]?language:atlas?.title?.en?'en':'ja';
+      return !atlas || !!entry.doc.routes?.[locale];
+    });
     const methods=findMethods(scoped.filter(entry=>entry.doc.method).map(entry=>entry.doc.method),query,language)
       .map(result=>({...result,url:safePath(result.method.url),lang:'both',text:result.method.summary?.[language] || '',categoryJa:'数値解析',categoryEn:'Numerical methods'})).filter(result=>result.url);
     const intentWords=new Set(['実行','コード','テスト','入力','検証','再現','ダウンロード','run','code','test','tests','execute','execution','runnable','reproduce','validation','input','download','example']);
@@ -48,7 +87,6 @@ export function makeSearch(documents) {
       let score = terms.reduce((total,term) => total + (entry.title.includes(term) ? 30 : entry.headings.includes(term) ? 16 : entry.category.includes(term) ? 12 : 1) + Math.min(8,Math.log2(1+entry.text.split(term).length-1)),0);
       if (entry.title.includes(phrase)) score += 50;
       if (entry.headings.includes(phrase)) score += 20;
-      if (entry.text.includes(phrase)) score += 4;
       if (entry.category.includes(phrase) && /^\/[^/]+\/$/.test(safePath(entry.doc.url))) score += 45;
       if (entry.doc.lang === language || entry.doc.lang === 'both') score += 3;
       const result = { ...entry.doc, url:safePath(entry.doc.url), score, entityPriority };

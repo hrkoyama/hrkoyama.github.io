@@ -127,7 +127,7 @@ test('execution search retains same-site path validation and renders untrusted l
     '/numerical-methods-atlas/../rights/','/numerical-methods-atlas/examples/x/#unsafe',
     '/numerical-methods-atlas/examples/x/?lang=en&next=https://evil.example/'];
   const item=url=>({id:'needle',title:{en:'needle <img src=x onerror=alert(1)>',ja:null},headings:{en:[],ja:[]},keywords:['needle','run'],focus_keywords:['needle'],snippet:{en:'Expected <script>alert(2)</script> result'},kind:'execution-example',routes:{en:url}});
-  for(const url of unsafe)assert.equal(searchChapters({entries:[item(url)]},'needle run')[0].url,null,url);
+  for(const url of unsafe)assert.deepEqual(searchChapters({entries:[item(url)]},'needle run'),[],url+' is rejected before ranking');
   const valid=route('sod','en');
   assert.equal(searchChapters({entries:[item(valid)]},'needle run')[0].url,valid);
 

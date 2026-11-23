@@ -1,6 +1,8 @@
 #!/usr/bin/env python 3
 """Rebuild local search from published readings and current public registries."""
 from pathlib import Path
+from compact_search import write_compact
+from atlas_search_methods import version_search_engine
 from html.parser import HTMLParser
 from urllib.parse import urlsplit
 import hashlib
@@ -308,22 +310,24 @@ def main(root=ROOT, navigation=None):
     lines.append(marker+'https://hrkoyama.github.io/search/atlas-navigation.json): explicit method, equation, problem-picture, reference and execution routes for search results; purpose restrictions and original verification scopes are retained.')
     llms.write_text('\n'.join(lines)+'\n')
     path.write_text(json.dumps(index,ensure_ascii=False,separators=(',',':'))+'\n')
+    compact_path = write_compact(ROOT, index, 'atlas')
     update_goal_resource_navigation(ROOT, navigation)
     module=ATLAS/'home-search.js';text=module.read_text()
     text=text.replace("[...titles,...headings.map(h=>h.title),...keys].join(' ')","[...titles,...headings.map(h=>h.title),...keys,...Object.values(entry.text||{})].join(' ')")
     text=text.replace("const locale=language==='ja'&&entry.title.ja?'ja':'en';","const locale=language==='ja'&&entry.title.ja?'ja':entry.title.en?'en':'ja';")
     text=re.sub(r"from '../search/method-search[.]mjs(?:[?]v=[a-f0-9]+)?'", "from '../search/method-search.mjs?v="+version_method_search(ROOT)+"'", text)
     text=version_navigation_imports(ROOT, text)
+    text=re.sub(r"from '../search/engine[.]mjs(?:[?]v=[a-f0-9]+)?'", "from '../search/engine.mjs?v="+version_search_engine(ROOT)+"'", text)
     marker=' // Public word-search entry\n'
     if marker not in text:
         target=" const schedule=()=>"
         assert target in text
         text=text.replace(target,marker+" document.querySelectorAll('[data-atlas-word-search]').forEach(link=>link.addEventListener('click',event=>{event.preventDefault();input.focus({preventScroll:true});form.scrollIntoView({block:'center',behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'instant':'smooth'});}));\n"+target,1)
-    text=re.sub(r"new URL\('home-search-index[.]json(?:[?]v=[a-f0-9]+)?',import.meta.url\)","new URL('home-search-index.json?v="+hashlib.sha256(path.read_bytes()).hexdigest()[:12]+"',import.meta.url)",text)
+    text=re.sub(r"new URL\('(?:home-search-index[.]json|[.][.]/search/atlas-query-index[.]json)(?:[?]v=[a-f0-9]+)?',import.meta.url\)","new URL('../search/atlas-query-index.json?v="+hashlib.sha256(compact_path.read_bytes()).hexdigest()[:12]+"',import.meta.url)",text)
     old='score}];'
     new="score,url:(/^\\/numerical-methods-atlas\\/[a-z0-9/?=.-]+$/.test(entry.routes?.[locale]||'')||entry.kind==='connection'&&/^\\/numerical-methods-atlas\\/connections\\/\\?lang=(ja|en)#(?:dft-md|reaction-transport|poisson-fields)-\\1$/.test(entry.routes?.[locale]||'')&&entry.routes[locale].startsWith('/numerical-methods-atlas/connections/?lang='+locale+'#'))&&!entry.routes[locale].includes('..')?entry.routes[locale]:null}];"
     if old in text:text=text.replace(old,new)
-    assert new in text or 'findMethods(' in text,'Review upstream search result shape'
+    assert new in text or 'findMethods(' in text or 'atlasSearch(index)' in text,'Review upstream search result shape'
     text=text.replace("a.href=readingURL(new URL('.',import.meta.url),result.id,result.locale,result.section)","a.href=result.url||readingURL(new URL('.',import.meta.url),result.id,result.locale,result.section)")
     text=text.replace('該当する章がありません。','該当する項目がありません。').replace('No chapters match.','No entries match.')
     text=text.replace('`${n}章が該当${n>m?`（上位${m}章を表示）`', '`${n}件が該当${n>m?`（上位${m}件を表示）`')

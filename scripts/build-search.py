@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Index only published, same-site HTML and explicitly allowlisted public metadata."""
 from pathlib import Path
+from compact_search import write_compact
 from html.parser import HTMLParser
 from urllib.parse import urlparse,unquote
 from atlas_search_methods import search_methods,version_method_search,version_navigation_imports
@@ -134,8 +135,10 @@ for url in urls:
  if path.is_dir():path=path/'index.html'
  if path.suffix=='.html':inputs.add(path.relative_to(ROOT).as_posix())
 receipts={name:hashlib.sha256((ROOT/name).read_bytes()).hexdigest() for name in sorted(inputs)}
-data=json.dumps({'version':1,'documents':documents,'sourceSha256':receipts,'navigation_source_sha256':navigation['source_sha256']},ensure_ascii=False,separators=(',',':'))+'\n'
+source_data={'version':1,'documents':documents,'sourceSha256':receipts,'navigation_source_sha256':navigation['source_sha256']}
+data=json.dumps(source_data,ensure_ascii=False,separators=(',',':'))+'\n'
 (ROOT/'search/index.json').write_text(data)
+compact_path=write_compact(ROOT,source_data,'site')
 digest=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()[:12]
 js=ROOT/'search/search.js'
 shared=ROOT/'search/method-search.mjs'
@@ -147,6 +150,10 @@ js.write_text(re.sub(r"from './engine\.mjs(?:\?v=[a-f0-9]+)?'", "from './engine.
 page=ROOT/'search/index.html';html=page.read_text()
 for name in ['search.js','search.css']:
  html=re.sub(r'(/search/'+re.escape(name)+r')(?:\?v=[a-f0-9]+)?',r'\1?v='+digest(ROOT/'search'/name),html)
-html=re.sub(r'data-search-index="[^"]+"','data-search-index="/search/index.json?v='+hashlib.sha256(data.encode()).hexdigest()[:12]+'"',html)
+html=re.sub(r'data-search-index="[^"]+"','data-search-index="/search/query-index.json?v='+digest(compact_path)+'"',html)
+html=re.sub(r'\sdata-atlas-search-index="[^"]*"|\sdata-search-count="[^"]*"|\sdata-atlas-search-count="[^"]*"','',html)
+atlas_compact=ROOT/'search/atlas-query-index.json'
+atlas_count=len(atlas_index['entries'])
+html=html.replace('data-search-index="','data-atlas-search-index="/search/atlas-query-index.json?v='+digest(atlas_compact)+'" data-search-count="'+str(len(documents))+'" data-atlas-search-count="'+str(atlas_count)+'" data-search-index="',1)
 page.write_text(html)
 print('Built site search:',len(documents),'public pages/resources;',len(data.encode()),'bytes;',len(notebooks),'notebook records. No PDF/image OCR or external content.')

@@ -10242,8 +10242,8 @@
             "\\mathbf F\\mathbf C=\\mathbf S\\mathbf C\\boldsymbol\\varepsilon,\\qquad \\mathbf C^\\dagger\\mathbf S\\mathbf C=\\mathbf I"
           ],
           "note": {
-            "ja": "閉殻RHFの占有空間軌道の式。一般に非局所な交換を含む。実行例は球対称1s² Heの局所還元に限定し、一般の分子・多電子のFock行列構築は未実装。",
-            "en": "Closed-shell RHF spatial-orbital equations, generally with nonlocal exchange. Runnable code is restricted to the spherical 1s² helium local reduction; general molecular/many-electron Fock-matrix construction is not implemented."
+            "ja": "閉殻RHFの占有空間軌道の式で、一般に非局所な交換を含みます。公開例は、球対称1s² Heの局所還元と、別の分子積分実装による固定入力のH₂ RHFです。原子例と分子例では基底・離散化・参照が異なります。各例の範囲は下の固定入力・検証記録で確認してください。一般多中心分子・開殻・相関を含む解法の検証ではありません。",
+            "en": "Closed-shell RHF equations for occupied spatial orbitals generally include nonlocal exchange. Published examples cover the spherical 1s²-helium local reduction and fixed-input H₂ RHF using a separate molecular-integral implementation. Their bases, discretizations and references differ; inspect each input and validation record below. These examples do not validate general multicenter molecules, open shells or correlated methods."
           },
           "url": {
             "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#hartree-fock-model-ja",
@@ -10262,8 +10262,8 @@
             "n(\\mathbf r)=\\sum_i f_i|\\phi_i(\\mathbf r)|^2,\\quad \\int n\\,d\\mathbf r=N,\\quad v_{\\rm xc}=\\frac{\\delta E_{\\rm xc}}{\\delta n}"
           ],
           "note": {
-            "ja": "密度汎関数の局所KS代表形。実行例は球対称He・スピン非偏極Dirac交換のみLDA。相関・GGA・hybrid・一般化KS・周期系は未実装。",
-            "en": "Representative local KS equations. Runnable code covers spherical-helium spin-unpolarized Dirac exchange-only LDA. Correlation, GGA, hybrids, generalized KS and periodic systems are not implemented."
+            "ja": "密度汎関数の局所KS代表形です。公開例は、球対称Heのスピン非偏極・Dirac交換のみLDAと、固定した周期He／He₂セルのLDA交換＋VWN5相関です。原子の動径実装と周期PySCFワークフローは別系列で、基底・境界条件・参照も異なります。各例の範囲は下の固定入力・検証記録で確認してください。GGA・hybrid・一般物質・励起状態まで検証した意味ではありません。",
+            "en": "Representative local Kohn–Sham equations. Published examples cover spin-unpolarized exchange-only Dirac LDA for spherical helium and LDA exchange plus VWN5 correlation for fixed periodic He/He₂ cells. The radial atomic implementation and periodic PySCF workflows are separate series with different bases, boundaries and references. Inspect each input and validation record below; these examples do not validate GGA, hybrids, general materials or excited states."
           },
           "url": {
             "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#kohn-sham-model-ja",
@@ -11127,8 +11127,8 @@
             "\\mathbf F\\mathbf C=\\mathbf S\\mathbf C\\boldsymbol\\varepsilon,\\qquad \\mathbf C^\\dagger\\mathbf S\\mathbf C=\\mathbf I"
           ],
           "note": {
-            "ja": "閉殻RHFの占有空間軌道の式。一般に非局所な交換を含む。実行例は球対称1s² Heの局所還元に限定し、一般の分子・多電子のFock行列構築は未実装。",
-            "en": "Closed-shell RHF spatial-orbital equations, generally with nonlocal exchange. Runnable code is restricted to the spherical 1s² helium local reduction; general molecular/many-electron Fock-matrix construction is not implemented."
+            "ja": "閉殻RHFの占有空間軌道の式で、一般に非局所な交換を含みます。公開例は、球対称1s² Heの局所還元と、別の分子積分実装による固定入力のH₂ RHFです。原子例と分子例では基底・離散化・参照が異なります。各例の範囲は下の固定入力・検証記録で確認してください。一般多中心分子・開殻・相関を含む解法の検証ではありません。",
+            "en": "Closed-shell RHF equations for occupied spatial orbitals generally include nonlocal exchange. Published examples cover the spherical 1s²-helium local reduction and fixed-input H₂ RHF using a separate molecular-integral implementation. Their bases, discretizations and references differ; inspect each input and validation record below. These examples do not validate general multicenter molecules, open shells or correlated methods."
           },
           "url": {
             "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#hartree-fock-model-ja",
@@ -11350,8 +11350,8 @@
             "n(\\mathbf r)=\\sum_i f_i|\\phi_i(\\mathbf r)|^2,\\quad \\int n\\,d\\mathbf r=N,\\quad v_{\\rm xc}=\\frac{\\delta E_{\\rm xc}}{\\delta n}"
           ],
           "note": {
-            "ja": "密度汎関数の局所KS代表形。実行例は球対称He・スピン非偏極Dirac交換のみLDA。相関・GGA・hybrid・一般化KS・周期系は未実装。",
-            "en": "Representative local KS equations. Runnable code covers spherical-helium spin-unpolarized Dirac exchange-only LDA. Correlation, GGA, hybrids, generalized KS and periodic systems are not implemented."
+            "ja": "密度汎関数の局所KS代表形です。公開例は、球対称Heのスピン非偏極・Dirac交換のみLDAと、固定した周期He／He₂セルのLDA交換＋VWN5相関です。原子の動径実装と周期PySCFワークフローは別系列で、基底・境界条件・参照も異なります。各例の範囲は下の固定入力・検証記録で確認してください。GGA・hybrid・一般物質・励起状態まで検証した意味ではありません。",
+            "en": "Representative local Kohn–Sham equations. Published examples cover spin-unpolarized exchange-only Dirac LDA for spherical helium and LDA exchange plus VWN5 correlation for fixed periodic He/He₂ cells. The radial atomic implementation and periodic PySCF workflows are separate series with different bases, boundaries and references. Inspect each input and validation record below; these examples do not validate GGA, hybrids, general materials or excited states."
           },
           "url": {
             "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#kohn-sham-model-ja",
@@ -11597,8 +11597,8 @@
             "n(\\mathbf r)=\\sum_i f_i|\\phi_i(\\mathbf r)|^2,\\quad \\int n\\,d\\mathbf r=N,\\quad v_{\\rm xc}=\\frac{\\delta E_{\\rm xc}}{\\delta n}"
           ],
           "note": {
-            "ja": "密度汎関数の局所KS代表形。実行例は球対称He・スピン非偏極Dirac交換のみLDA。相関・GGA・hybrid・一般化KS・周期系は未実装。",
-            "en": "Representative local KS equations. Runnable code covers spherical-helium spin-unpolarized Dirac exchange-only LDA. Correlation, GGA, hybrids, generalized KS and periodic systems are not implemented."
+            "ja": "密度汎関数の局所KS代表形です。公開例は、球対称Heのスピン非偏極・Dirac交換のみLDAと、固定した周期He／He₂セルのLDA交換＋VWN5相関です。原子の動径実装と周期PySCFワークフローは別系列で、基底・境界条件・参照も異なります。各例の範囲は下の固定入力・検証記録で確認してください。GGA・hybrid・一般物質・励起状態まで検証した意味ではありません。",
+            "en": "Representative local Kohn–Sham equations. Published examples cover spin-unpolarized exchange-only Dirac LDA for spherical helium and LDA exchange plus VWN5 correlation for fixed periodic He/He₂ cells. The radial atomic implementation and periodic PySCF workflows are separate series with different bases, boundaries and references. Inspect each input and validation record below; these examples do not validate GGA, hybrids, general materials or excited states."
           },
           "url": {
             "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#kohn-sham-model-ja",
@@ -19398,7 +19398,7 @@
   ],
   "source_sha256": {
     "catalog/atlas-depth-expansion.json": "25b030e85b4313197b9d98802270ffb65507ea0f8915bab9cbf64dabbf7fa47e",
-    "catalog/atlas-equations.json": "ff35400b4add4d9cf37561c483a25b798a83d229e96d396f5622bb3cd17f10b6",
+    "catalog/atlas-equations.json": "7cc4e148e7a78c3218727153febf59fc9c19ccb1088f89ca2cd5d94c16bc7e28",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "catalog/atlas-problem-links.json": "70892664d662db9c5422fd52a18f540be3a5b67bfe5804ca36de656f26c1120a",
     "catalog/atlas-reference-supplements.json": "bc848ad33eefba5e1e2818b45bcb5130f60057cebba0596c0f64c47c40fef637",
@@ -19562,8 +19562,8 @@
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
     "numerical-methods-atlas/gallery/index.json": "c33f663b81cc05c4e8016cb02be797e97e18f647330629bd0a9191051861f453",
-    "numerical-methods-atlas/methods/index.json": "b83573abbe2578e39f72491e2cb2e6013d593fa9fb099f873d82166698e4654a",
-    "numerical-methods-atlas/solutions/index.json": "349973ee52abc00f11fa92dbef43f2887a7b7c6b44d5f199a33aa0be571edb27",
+    "numerical-methods-atlas/methods/index.json": "750aa1445c6698d2baa4f5da39c6fe8537acae50878aae538877f950968c2156",
+    "numerical-methods-atlas/solutions/index.json": "886c2d4d8a1b15392c7d106737fb5651b3fc546dc6a77b6146db5c5825ebc661",
     "numerical-methods-atlas/test-cases/index.json": "05dc0c443ec9b16bf09c325a8f2a79dc62f05c9390e5e568c3d70cc6794236b3"
   }
 }
