@@ -11,12 +11,12 @@ const base='code/validated-examples/2026-11-23-r2/sedov/';
 
 test('Sedov adds one problem and release while preserving the previous thirteen frozen release records',()=>{
  const registry=json('numerical-methods-atlas/validation/releases.json');
- assert.equal(objectHash(registry.releases.filter(r=>!['sedov','double-mach','forward-step','low-mach','guderley','euler-positivity','zalesak','weno-critical','shallow-water','wall-flow','level-set'].includes(r.group))),'8f4b09898b9509788ae2e51e18846b6b5b7b71458fa7366b128ffcab4f1a43f3');
- assert.equal(registry.case_count,56);assert.equal(registry.releases.length,24);
- assert.equal(registry.releases.filter(r=>!['euler-positivity','zalesak','weno-critical','shallow-water','wall-flow','level-set'].includes(r.group)).reduce((s,r)=>s+r.tests,0),571);
+ assert.equal(objectHash(registry.releases.filter(r=>!['sedov','double-mach','forward-step','low-mach','guderley','euler-positivity','zalesak','weno-critical','shallow-water','wall-flow','level-set','sem-fr'].includes(r.group))),'8f4b09898b9509788ae2e51e18846b6b5b7b71458fa7366b128ffcab4f1a43f3');
+ assert.equal(registry.case_count,58);assert.equal(registry.releases.length,25);
+ assert.equal(registry.releases.filter(r=>!['euler-positivity','zalesak','weno-critical','shallow-water','wall-flow','level-set','sem-fr'].includes(r.group)).reduce((s,r)=>s+r.tests,0),571);
  const release=registry.releases.find(r=>r.group==='sedov');assert.equal(release.tests,23);assert.deepEqual(release.case_ids,['sedov-blast']);
  const problems=json('catalog/atlas-test-problems.json').problems;assert.equal(problems.length,92);assert.equal(problems.filter(p=>p.id==='sedov').length,1);
- assert.equal(json('catalog/atlas-methods.json').methods.length,149);
+ assert.equal(json('catalog/atlas-methods.json').methods.length,151);
  assert.equal(json('catalog/atlas-execution-examples.json').examples.length,22);
  const manifest=json(base+'source-manifest.json');for(const[p,h]of Object.entries(manifest.files))assert.equal(hash(base+p),h,p);
  const receipt=json(base+'verification.json');assert.equal(receipt.tests,23);assert.equal(receipt.all_cases_rerun,true);assert.equal(receipt.passed,true);assert.equal(hash(base+receipt.archive.file),receipt.archive.sha256);

@@ -13,7 +13,7 @@ const sha=p=>createHash('sha256').update(readFileSync(new URL(p,root))).digest('
 const objectHash=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex');
 // Only these eight existing methods gained the separately validated batch13–17 bindings/scope.
 // Their original IDs, names, statuses and all other scientific metadata remain in the golden.
-const batchBindingFields={"centered-difference":["depth_scope","depth_additional_releases"],"godunov":["depth_scope","depth_release"],"weno-js":["depth_release","depth_scope"],"hll":["depth_scope","depth_additional_releases"],"forward-euler":["depth_release","depth_scope"],"heun":["depth_scope","depth_additional_releases"],"rk4":["depth_scope","depth_additional_releases"],"weno-z":["depth_scope","depth_release"]};
+const batchBindingFields={"p1-fem":["depth_release","depth_scope","depth_previous_status"],"dg":["depth_release","depth_scope","depth_previous_status"],"centered-difference":["depth_scope","depth_additional_releases"],"godunov":["depth_scope","depth_release"],"weno-js":["depth_release","depth_scope"],"hll":["depth_scope","depth_additional_releases"],"forward-euler":["depth_release","depth_scope"],"heun":["depth_scope","depth_additional_releases"],"rk4":["depth_scope","depth_additional_releases"],"weno-z":["depth_scope","depth_release"]};
 const canonicalMethodValue=value=>Array.isArray(value)?value.map(canonicalMethodValue):value&&typeof value==='object'?Object.fromEntries(Object.keys(value).sort().map(key=>[key,canonicalMethodValue(value[key])])):value;
 const historicalMethod=method=>canonicalMethodValue(Object.fromEntries(Object.entries(method).filter(([key])=>!(batchBindingFields[method.id]||[]).includes(key))));
 const ids=['level-set-translation','level-set-rotation'];
@@ -21,12 +21,12 @@ const inputs=json(base+'inputs.json'),result=json(base+'results/result.json');
 
 test('the dedicated two-case release preserves all previous releases, method records, primary pictures and the shared execution registry',()=>{
  const registry=json('numerical-methods-atlas/validation/releases.json');
- assert.equal(registry.releases.length,24);assert.equal(registry.case_count,56);
- assert.equal(registry.releases.reduce((s,r)=>s+r.tests,0),735);
- assert.equal(objectHash(registry.releases.filter(r=>!['level-set','weno-critical','shallow-water','wall-flow'].includes(r.group))),'150a2bfb669938f7c9c67dde0f23fcc4dace9e54c3298841fed651a57bb5fd3f');
+ assert.equal(registry.releases.length,25);assert.equal(registry.case_count,58);
+ assert.equal(registry.releases.reduce((s,r)=>s+r.tests,0),760);
+ assert.equal(objectHash(registry.releases.filter(r=>!['level-set','weno-critical','shallow-water','wall-flow','sem-fr'].includes(r.group))),'150a2bfb669938f7c9c67dde0f23fcc4dace9e54c3298841fed651a57bb5fd3f');
  const methods=json('catalog/atlas-methods.json').methods;
- assert.equal(methods.length,149);
- assert.equal(objectHash(methods.filter(m=>!['level-set','vof'].includes(m.id)).map(historicalMethod)),'6462e0c0e177b17a95b97d953fd12bf2887933124691bb8844c5cc0eda9ee904');
+ assert.equal(methods.length,151);
+ assert.equal(objectHash(methods.filter(m=>!['level-set','vof','spectral-element','flux-reconstruction'].includes(m.id)).map(historicalMethod)),'6462e0c0e177b17a95b97d953fd12bf2887933124691bb8844c5cc0eda9ee904');
  const pictures=json('numerical-methods-atlas/gallery/preview-manifest.json').items;
  assert.equal(pictures.length,92);
  assert.equal(objectHash(pictures.filter(p=>!['level-set-circle','swashes-topography','dry-bed-dam-break','lid-driven-cavity','wall-manufactured'].includes(p.id))),'ea4dfdfc33dfb4da3c54b6a6a5d8e1c02fd10b94b2281af9e21fd15f55938d9c');

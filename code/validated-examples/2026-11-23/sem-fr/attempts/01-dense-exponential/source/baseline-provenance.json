@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "origin": "Previously published Numart 2026-11-22 original code, copied byte for byte. The minimal legacy package initializer is new.",
+  "license": "MIT for code; other content and data retain separate terms.",
+  "executed_symbols": [
+    "legacy.fem.poisson_2d",
+    "legacy.fem.error_norms",
+    "legacy.advection.dg_advection"
+  ],
+  "dependency_scope": "Other functions in dependency modules are retained for exact provenance, not newly validated here.",
+  "files": {
+    "legacy/fem.py": {
+      "sha256": "def8018fcf5b3c0c5ffa763b978a2cd47b62f54be240ec831e5f49613790f740",
+      "source_url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/numart/fem.py"
+    },
+    "legacy/krylov.py": {
+      "sha256": "3241dc174c3e0cf496723152ec92f81e1b741cb4d826c02f88395621b965ae2d",
+      "source_url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/numart/krylov.py"
+    },
+    "legacy/advection.py": {
+      "sha256": "27128109c8a6f416eabce891d912436505cbc09fea460c30d71dcd44829504bd",
+      "source_url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/numart/advection.py"
+    },
+    "legacy/solvers.py": {
+      "sha256": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d",
+      "source_url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/numart/solvers.py"
+    },
+    "legacy/riemann.py": {
+      "sha256": "702ce9e08fbef67ed77363e8603e64f2da8a979d3b5abd6ffa62ab78344c95cf",
+      "source_url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/numart/riemann.py"
+    },
+    "legacy/limiters.py": {
+      "sha256": "f9e7fc43fcf4c77c030faf1495ec0d1573b272637284be70c2a4d62ba113f287",
+      "source_url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/numart/limiters.py"
+    },
+    "legacy/equations.py": {
+      "sha256": "d1b589ad4b8a31d316c20926ef7104664609d789f31f6fb239c1d74bb310b619",
+      "source_url": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/numart/equations.py"
+    }
+  }
+}

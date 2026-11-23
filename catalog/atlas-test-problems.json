@@ -120,6 +120,25 @@
         {
           "path": "code/validated-examples/2026-11-23/weno-critical/verification.json",
           "json_pointer": "/all_cases_rerun"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/sem-fr/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "fr-periodic-advection"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/sem-fr/inputs.json",
+          "json_pointer": "/cases/fr-periodic-advection"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/sem-fr/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/sem-fr/results/fr-periodic-advection-preview.png",
+          "artifact": "image"
         }
       ],
       "availability": "saved-output",
@@ -130,6 +149,14 @@
           "name": {
             "ja": "WENO-JS／Z：臨界点とεの固定比較",
             "en": "WENO-JS/Z: fixed critical-point and epsilon comparison"
+          }
+        },
+        {
+          "id": "fr-periodic-advection",
+          "url": "/numerical-methods-atlas/validation/fr-periodic-advection/",
+          "name": {
+            "ja": "FR法の1D周期移流：Radau補正と既存DGの比較",
+            "en": "1D periodic FR advection: Radau correction and published DG comparison"
           }
         }
       ]
@@ -1158,6 +1185,25 @@
         {
           "path": "code/validated-examples/2026-11-22/foundations/verification.json",
           "json_pointer": "/all_cases_rerun"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/sem-fr/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "sem-poisson-2d"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/sem-fr/inputs.json",
+          "json_pointer": "/cases/sem-poisson-2d"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/sem-fr/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/sem-fr/results/sem-poisson-2d-preview.png",
+          "artifact": "image"
         }
       ],
       "availability": "saved-output",
@@ -1168,6 +1214,14 @@
           "name": {
             "ja": "行列から粗視化するAMG：残差と解誤差を分ける",
             "en": "Matrix-based AMG: distinguish residual and solution error"
+          }
+        },
+        {
+          "id": "sem-poisson-2d",
+          "url": "/numerical-methods-atlas/validation/sem-poisson-2d/",
+          "name": {
+            "ja": "スペクトル要素法の2D Poisson：P1 FEMとh/p収束を比較",
+            "en": "2D spectral-element Poisson: P1 FEM comparison and h/p refinement"
           }
         }
       ]

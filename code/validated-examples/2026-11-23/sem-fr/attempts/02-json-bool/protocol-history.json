@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "first_execution_passed": false,
+  "first_execution_termination": "RuntimeWarning in dense SciPy expm; complete SEM field saved, FR did not finish",
+  "original_pytest": {
+    "tests": 24,
+    "passed": 23,
+    "failed": 1
+  },
+  "acceptance_modified_after_first_execution": false,
+  "input_modified_after_first_execution": false,
+  "revision": "Replace dense scipy.linalg.expm by sparse scipy.sparse.linalg.expm_multiply for the same spatial matrix/time. No warning suppression. Documentation review-level/type normalized to the existing page schema.",
+  "diagnostic": "All 6 operators finite; dense outputs finite with warnings in a separate diagnostic; exponential actions agree within 3e-15. See attempts/01-dense-exponential.",
+  "original_input_sha256": "c10e0ef3737b81f8e088d43d411067aaa00b7b42e197f8f2a43b19b6852f0525"
+}

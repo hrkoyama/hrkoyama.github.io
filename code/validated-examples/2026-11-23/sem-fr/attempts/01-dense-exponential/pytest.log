@@ -1,0 +1,25 @@
+.....................F..                                                 [100%]
+=================================== FAILURES ===================================
+_____________ test_complete_fr_protocol_and_time_error_separation ______________
+
+    def test_complete_fr_protocol_and_time_error_separation():
+>       result, fields = fr_case(CONFIG['cases']['fr-periodic-advection'], Budget(30))
+
+test_sem_fr.py:158: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+experiments.py:110: in fr_case
+    exponential = op.exponential(start, config['time'])
+fr.py:64: in exponential
+    return (expm(time*matrix)@u.ravel()).reshape(u.shape)
+/private/tmp/codex-scratch-501/8da64e730d87e7538dcffe4f3b231e16d895555f18d8d45e8d94f203b474df56/level-set-env/lib/python3.12/site-packages/scipy/linalg/_matfuncs.py:323: in expm
+    m, s = pick_pade_structure(Am)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+>   ???
+E   RuntimeWarning: divide by zero encountered in matmul
+
+scipy/linalg/_matfuncs_expm.pyx:131: RuntimeWarning
+- generated xml file: /Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/sem-fr-publication/first-pytest.xml -
+=========================== short test summary info ============================
+FAILED test_sem_fr.py::test_complete_fr_protocol_and_time_error_separation - ...
+1 failed, 23 passed in 0.39s

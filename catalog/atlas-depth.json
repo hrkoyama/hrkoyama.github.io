@@ -17,8 +17,8 @@
         "en": "Fluid dynamics"
       },
       "scope": {
-        "ja": "Euler衝撃波・滑らかな渦などに複数の教育用コードと保存結果があります。固定入力での検証内容は問題ごとに異なります。 追加の固定例はWENOのε、浅水の地形・乾燥床、Re100壁面流と製造解を扱います。 円のレベルセット移流は指定した速度による界面輸送の別検証です。",
-        "en": "Several educational codes and saved results cover Euler shocks and smooth vortices. Fixed-input validation differs by problem. Additional fixed cases cover WENO epsilon, shallow-water bed/dry states, and Re100 wall flow with manufactured verification. Level-set circle transport is separate interface evidence in a prescribed velocity."
+        "ja": "Euler衝撃波・滑らかな渦などに複数の教育用コードと保存結果があります。固定入力での検証内容は問題ごとに異なります。 追加の固定例はWENOのε、浅水の地形・乾燥床、Re100壁面流と製造解を扱います。 円のレベルセット移流は指定した速度による界面輸送の別検証です。 0.4+sin(2πx)をT=.25まで移流。Gauss点・Radau補正のFRと既存のmodal DGをp=1/2、8/16/32セルで実行し、誤差・質量・時間積分誤差を測ります。",
+        "en": "Several educational codes and saved results cover Euler shocks and smooth vortices. Fixed-input validation differs by problem. Additional fixed cases cover WENO epsilon, shallow-water bed/dry states, and Re100 wall flow with manufactured verification. Level-set circle transport is separate interface evidence in a prescribed velocity. Transport0.4+sin(2pi x) toT=.25. Execute Gauss-node/Radau FR and the existing modal DG for p=1/2 and8/16/32 cells; measure analytic error, mass and time-integration error."
       },
       "examples": [
         "sod",
@@ -58,7 +58,8 @@
         "cavity-ghia-re100",
         "wall-manufactured",
         "level-set-translation",
-        "level-set-rotation"
+        "level-set-rotation",
+        "fr-periodic-advection"
       ]
     },
     {
@@ -106,8 +107,8 @@
         "en": "Elliptic problems and gravity"
       },
       "scope": {
-        "ja": "Poisson・Bratu・粒子重力に固定入力例があります。",
-        "en": "Poisson, Bratu and particle-gravity fixed-input examples."
+        "ja": "Poisson・Bratu・粒子重力に固定入力例があります。 単位正方形の正弦製造解をGLLスペクトル要素法と既存P1三角形FEMで解きます。自由未知数を揃えたh細分化と、固定要素数でのp=1〜6を分けて測ります。",
+        "en": "Poisson, Bratu and particle-gravity fixed-input examples. Solve a sine manufactured solution on the unit square with GLL spectral elements and the existing triangle P1 FEM. Compare matched free-unknown counts under h refinement and p=1..6 at fixed elements."
       },
       "examples": [
         "poisson-1d-dirichlet",
@@ -132,7 +133,9 @@
         "ja": "境界条件と離散化をそろえ、残差と解誤差を比較する。",
         "en": "Match boundary conditions and discretizations when comparing residual and solution errors."
       },
-      "supplemental_examples": []
+      "supplemental_examples": [
+        "sem-poisson-2d"
+      ]
     },
     {
       "id": "quantum-atoms",

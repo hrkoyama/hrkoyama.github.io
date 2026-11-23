@@ -733,6 +733,10 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "flux-reconstruction": [
+    "ja",
+    "en"
+  ],
   "geophysical-grids": [
     "ja",
     "en"
@@ -917,6 +921,10 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "spectral-element": [
+    "ja",
+    "en"
+  ],
   "splines": [
     "ja",
     "en"
@@ -1022,6 +1030,10 @@ export const homeReadingLanguages = {
     "en"
   ],
   "validation-sedov": [
+    "ja",
+    "en"
+  ],
+  "validation-sem-fr": [
     "ja",
     "en"
   ],

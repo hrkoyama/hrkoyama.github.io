@@ -17,6 +17,9 @@ const historicalEquation=row=>{if(!oldEquationMetadata[row.id])return row;const 
 
 // Remove only this batch's appended WENO evidence/entry for the historical golden.
 const historicalProblem = row => {
+ const extras=(row.supplemental_examples||[]).filter(e=>!['sem-poisson-2d','fr-periodic-advection'].includes(e.id));
+ row={...row,evidence:row.evidence.filter(e=>!e.path.includes('/sem-fr/'))};
+ if(extras.length)row.supplemental_examples=extras;else delete row.supplemental_examples;
  if(row.id!=='advection-sine')return row;
  const copy={...row,evidence:row.evidence.filter(e=>!e.path.includes('/weno-critical/'))};
  const remaining=(row.supplemental_examples||[]).filter(e=>e.id!=='weno-critical-epsilon');
@@ -58,21 +61,21 @@ print('canonical model additions synchronize without replacing historical invent
 
 test('Zalesak adds one scalar problem while preserving nineteen releases, eighty-six primary figures and all previous equations/references',()=>{
  const registry=json('numerical-methods-atlas/validation/releases.json');
- assert.equal(registry.case_count,56);assert.equal(registry.releases.length,24);
- assert.equal(objectHash(registry.releases.filter(r=>r.group!==group&&!['weno-critical','shallow-water','wall-flow','level-set'].includes(r.group))),'0b22556a067a3320bc7984fd2eedcbf97fe4b935ac6db98ca449933553a1c745');
+ assert.equal(registry.case_count,58);assert.equal(registry.releases.length,25);
+ assert.equal(objectHash(registry.releases.filter(r=>r.group!==group&&!['weno-critical','shallow-water','wall-flow','level-set','sem-fr'].includes(r.group))),'0b22556a067a3320bc7984fd2eedcbf97fe4b935ac6db98ca449933553a1c745');
  const release=registry.releases.find(r=>r.group===group);assert.deepEqual(release.case_ids,[id]);assert.equal(release.tests,26);
- assert.equal(registry.releases.filter(r=>!['weno-critical','shallow-water','wall-flow','level-set'].includes(r.group)).reduce((s,r)=>s+r.tests,0),598+26);
+ assert.equal(registry.releases.filter(r=>!['weno-critical','shallow-water','wall-flow','level-set','sem-fr'].includes(r.group)).reduce((s,r)=>s+r.tests,0),598+26);
  const previews=json('numerical-methods-atlas/gallery/preview-manifest.json').items;
  assert.equal(previews.length,92);assert.equal(objectHash(previews.filter(p=>p.id!==group&&!['swashes-topography','dry-bed-dam-break','lid-driven-cavity','wall-manufactured','level-set-circle'].includes(p.id))),'3d6a5bd72993ebb9110689f25d2cd9560b11a8188806e97db4c1e7b37af5d3ef');
  const problems=json('catalog/atlas-test-problems.json').problems;assert.equal(problems.length,92);
  assert.equal(objectHash(problems.filter(p=>p.id!==group&&!['swashes-topography','dry-bed-dam-break','lid-driven-cavity','wall-manufactured','level-set-circle'].includes(p.id)).map(historicalProblem)),'8b131bb281c278a7d556d31d8e6ed9539c44a2abb8e57e5b3e333044161b6247');
  const equations=json('catalog/atlas-equations.json').equations;assert.equal(equations.length,50);
  assert.equal(objectHash(equations.filter(p=>!['rotational-advection','shallow-water-bed','forced-incompressible','level-set-advection'].includes(p.id)).map(historicalEquation)),'e408172f62ae24312952989490300562a76bd7f2d9164b69f97e715eb27fc9b9');
- assert.equal(objectHash(json('catalog/atlas-reference-supplements.json').cases.filter(p=>p.id!==id&&!['weno-critical-profile','lake-at-rest-bed','swashes-bernoulli','ritter-dry-bed','ghia-re100','wall-mms','level-set-translation','level-set-rotation'].includes(p.id))),'b1cbe79c82644c6c2d19d3a27944e996a0c6ae7707a899068445e693e6a5dbe3');
+ assert.equal(objectHash(json('catalog/atlas-reference-supplements.json').cases.filter(p=>p.id!==id&&!['weno-critical-profile','lake-at-rest-bed','swashes-bernoulli','ritter-dry-bed','ghia-re100','wall-mms','level-set-translation','level-set-rotation','sem-poisson-2d','fr-periodic-advection'].includes(p.id))),'b1cbe79c82644c6c2d19d3a27944e996a0c6ae7707a899068445e693e6a5dbe3');
  assert.equal(hash('numerical-methods-atlas/assets/reference-solutions.json'),'c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc');
  assert.equal(hash('numerical-methods-atlas/code-and-data/examples.json'),'3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7');
- const methods=json('catalog/atlas-methods.json').methods;assert.equal(methods.length,149);
- assert.deepEqual(Object.fromEntries(['educational-example','reading-only','planned'].map(s=>[s,methods.filter(m=>m.status===s).length])),{'educational-example':118,'reading-only':15,planned:16});
+ const methods=json('catalog/atlas-methods.json').methods;assert.equal(methods.length,151);
+ assert.deepEqual(Object.fromEntries(['educational-example','reading-only','planned'].map(s=>[s,methods.filter(m=>m.status===s).length])),{'educational-example':120,'reading-only':15,planned:16});
  const receipt=json(base+'verification.json');assert.equal(receipt.passed,true);assert.equal(receipt.all_cases_rerun,true);assert.equal(receipt.tests,26);assert.equal(hash(base+receipt.archive.file),receipt.archive.sha256);
  for(const[p,h]of Object.entries(json(base+'source-manifest.json').files))assert.equal(hash(base+p),h,p);
 });

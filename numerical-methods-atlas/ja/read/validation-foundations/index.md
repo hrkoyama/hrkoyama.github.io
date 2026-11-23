@@ -47,6 +47,10 @@ $$
 - [Poisson／正弦波の製造解](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-poisson-manufactured-ja) (`poisson-manufactured`; 関連モデルの参照 · 製造解)
 
 カードは1次元sin(πx)、こちらは2次元sin(πx)sin(πy)です。次元・右辺・FEMの誤差ノルムは異なります。
+
+- [2D Poisson正弦製造解：SEMとP1 FEMの共通参照](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-sem-poisson-2d-ja) (`sem-poisson-2d`; 同じ問題の参照 · 製造解)
+
+全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。
 ### 前提・単位・境界
 
 無次元の単位正方形、一定正係数の−Δu=f、全周同次Dirichlet境界、5点差分です。階層構築には座標・格子幅・nを渡さず、係数行列と暗黙の定数近似核だけを使います。入力は実対称正定値を前提とし、任意の不定値行列を扱うソルバーではありません。

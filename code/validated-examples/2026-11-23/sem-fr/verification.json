@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "group": "sem-fr",
+  "edition": "2026-11-23",
+  "verified_on": "2026-11-23",
+  "source_manifest_sha256": "800461c1ae226cc1f4350d4fce65a0c24ef2bce851ad862ad55394b47fc321d1",
+  "archive": {
+    "file": "atlas-sem-fr-2026-11-23.zip",
+    "sha256": "f7e852c18571791492fa4b804cba1fdd744909e690a90d2708a422a4b5e99d66",
+    "bytes": 1343609,
+    "archive_directory": "atlas-sem-fr-2026-11-23"
+  },
+  "archive_sha256": "f7e852c18571791492fa4b804cba1fdd744909e690a90d2708a422a4b5e99d66",
+  "returncode": 0,
+  "passed_tests": 25,
+  "tests": 25,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "fr-periodic-advection",
+    "sem-poisson-2d"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 0.5418719999943278,
+  "independent_rerun_seconds": 0.46670662500400795,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

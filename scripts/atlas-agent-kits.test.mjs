@@ -46,7 +46,7 @@ test('known supplemental failure and execution boundaries remain visible in both
   assert.ok(section.includes(lang==='ja'?'未実施':'have not been run'));
  }
  for(const figure of config.figures)assert.ok(existsSync(new URL(base+'figures/'+figure.file,root)));
- assert.equal(json('catalog/atlas-methods.json').methods.length,149);
+ assert.equal(json('catalog/atlas-methods.json').methods.length,151);
  assert.equal(json('catalog/atlas-execution-examples.json').examples.length,22);
  const problems=json('catalog/atlas-test-problems.json').problems;
  assert.equal(problems.filter(problem=>!['noh','sedov','guderley','zalesak','swashes-topography','dry-bed-dam-break','lid-driven-cavity','wall-manufactured','level-set-circle'].includes(problem.id)).length,83,'the kit preserves the historical problem inventory');

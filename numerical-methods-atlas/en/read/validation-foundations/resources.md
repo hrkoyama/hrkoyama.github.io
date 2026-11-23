@@ -94,6 +94,11 @@ Resources explicitly registered to the methods, problems and executions of this 
   reference_kind: manufactured
 
   Manufactured solution Zero Dirichlet endpoints. The forcing is chosen from the target solution; this is not an arbitrary-source Poisson solution. The card is 1D sin(πx); this test is 2D sin(πx)sin(πy). Dimension, forcing and FEM error norms differ.
+- [2D Poisson sine manufactured solution: shared SEM/P1 FEM reference](<https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-sem-poisson-2d-en>)
+  relation: same-problem
+  reference_kind: manufactured
+
+  Manufactured solution Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM. Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM.
 - [Householder QR and one-sided Jacobi SVD: orthogonality, rank and least squares — references and checks](<https://hrkoyama.github.io/numerical-methods-atlas/validation/qr-svd-factorization/?lang=en#qr-svd-factorization-en-validation>)
 
   Compare QR/SVD relative reconstruction, Q/U/V orthogonality, singular values from SciPy LAPACK gesdd, least-squares solutions/ranks from gelsd/gelsy and normal-equation stationarity residuals. Singular-vector signs are not compared; zero matrices and budget exhaustion are tested.

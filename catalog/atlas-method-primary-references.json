@@ -1731,6 +1731,140 @@
         "scope": "Author-hosted pp.302–305, equations(1)–(6),(9),(12),(15): signed-distance geometry, enclosed-mass issue and volume-fraction conservation. Sign is reversed here to make phi negative inside. No CLSVOF or two-phase fluid experiment executed.",
         "scope_ja": "著者公開PDFの302–305頁、式(1)–(6),(9),(12),(15)の界面幾何・囲まれた質量の誤差・体積率の保存を参照。本教材は内部を負とするため符号規約を反転。CLSVOFや二相流の原著実験は実行していません。"
       }
+    },
+    {
+      "id": "patera1984",
+      "author": "A. T. Patera",
+      "year": 1984,
+      "title": "A spectral element method for fluid dynamics: Laminar flow in a channel expansion",
+      "type": "article",
+      "source": "https://nek5000.github.io/NekDoc/references.html",
+      "url": "https://nek5000.github.io/NekDoc/references.html",
+      "journal": "Journal of Computational Physics",
+      "volume": "54",
+      "pages": "468–488",
+      "doi": "10.1016/0021-9991(84)90128-1",
+      "source_review": {
+        "level": "metadata",
+        "checked_on": "2026-11-23",
+        "url": "https://nek5000.github.io/NekDoc/references.html",
+        "scope_ja": "Nek5000公式参考文献の題名・巻・頁・DOIを照合。出版社の原文は未取得で、原報全体の監査・数値再現とはしない。今回の実装はLegendre GLL変種。",
+        "scope": "Bibliographic identity from the official Nek5000 reference list; publisher full text was not retrieved. No original-paper audit/reproduction. This example is a Legendre GLL variant."
+      },
+      "review_level": "metadata",
+      "review": {
+        "ja": "Nek5000公式参考文献の題名・巻・頁・DOIを照合。出版社の原文は未取得で、原報全体の監査・数値再現とはしない。今回の実装はLegendre GLL変種。",
+        "en": "Bibliographic identity from the official Nek5000 reference list; publisher full text was not retrieved. No original-paper audit/reproduction. This example is a Legendre GLL variant."
+      }
+    },
+    {
+      "id": "nek5000-sem-docs",
+      "author": "Nek5000 development team",
+      "year": 2026,
+      "title": "Nek5000 documentation: Theory and spectral-element basis (accessed 2026-11-23)",
+      "type": "misc",
+      "source": "https://nek5000.github.io/NekDoc/theory.html",
+      "url": "https://nek5000.github.io/NekDoc/theory.html",
+      "source_review": {
+        "level": "full-text",
+        "checked_on": "2026-11-23",
+        "url": "https://nek5000.github.io/NekDoc/theory.html",
+        "scope_ja": "公式TheoryとFAQの要素局所の多項式、GLL/GL点・C0連続性を確認。教育用Poissonの実装とNek5000の流体ソルバー全体を同一視しない。",
+        "scope": "Official Theory and FAQ: element-local polynomials, GLL/GL nodes and C0 continuity. No installation, execution or full-code audit of Nek5000."
+      },
+      "review_level": "full-text",
+      "review": {
+        "ja": "公式TheoryとFAQの要素局所の多項式、GLL/GL点・C0連続性を確認。教育用Poissonの実装とNek5000の流体ソルバー全体を同一視しない。",
+        "en": "Official Theory and FAQ: element-local polynomials, GLL/GL nodes and C0 continuity. No installation, execution or full-code audit of Nek5000."
+      }
+    },
+    {
+      "id": "nekrs-implementation",
+      "author": "Nek5000/RS development team",
+      "year": 2026,
+      "title": "Nek5000/RS project: spectral-element solvers and related implementations (accessed 2026-11-23)",
+      "type": "misc",
+      "source": "https://nek5000.github.io/",
+      "url": "https://nek5000.github.io/",
+      "source_review": {
+        "level": "full-text",
+        "checked_on": "2026-11-23",
+        "url": "https://nek5000.github.io/",
+        "scope_ja": "公式プロジェクトのSEM、nekRSのCPU/GPU対応、Nek5000との関係を確認。外部ソルバーの導入・実行・性能比較は未実施。",
+        "scope": "Official project overview: SEM, CPU/GPU nekRS and its relationship to Nek5000. No external solver installation, execution or performance comparison."
+      },
+      "review_level": "full-text",
+      "review": {
+        "ja": "公式プロジェクトのSEM、nekRSのCPU/GPU対応、Nek5000との関係を確認。外部ソルバーの導入・実行・性能比較は未実施。",
+        "en": "Official project overview: SEM, CPU/GPU nekRS and its relationship to Nek5000. No external solver installation, execution or performance comparison."
+      }
+    },
+    {
+      "id": "huynh2007-fr",
+      "author": "H. T. Huynh",
+      "year": 2007,
+      "title": "A Flux Reconstruction Approach to High-Order Schemes Including Discontinuous Galerkin Methods",
+      "type": "inproceedings",
+      "source": "https://ntrs.nasa.gov/api/citations/20140009969/downloads/20140009969.pdf",
+      "url": "https://ntrs.nasa.gov/api/citations/20140009969/downloads/20140009969.pdf",
+      "doi": "10.2514/6.2007-4079",
+      "journal": "18th AIAA Computational Fluid Dynamics Conference",
+      "pages": "AIAA 2007-4079",
+      "source_review": {
+        "level": "metadata",
+        "checked_on": "2026-11-23",
+        "url": "https://ntrs.nasa.gov/api/citations/20140009969/downloads/20140009969.pdf",
+        "scope_ja": "著者の2014年NASA報告の参考文献（本文27頁）で2007年原報の題名・著者・会議番号を確認。AIAA原文は未取得。補正式は別記の2014年本文を参照。",
+        "scope": "Original 2007 title/author/AIAA number checked in the author's 2014 NASA report, printed p.27. The original AIAA text was not retrieved; correction formulas use the separately cited 2014 report."
+      },
+      "review_level": "metadata",
+      "review": {
+        "ja": "著者の2014年NASA報告の参考文献（本文27頁）で2007年原報の題名・著者・会議番号を確認。AIAA原文は未取得。補正式は別記の2014年本文を参照。",
+        "en": "Original 2007 title/author/AIAA number checked in the author's 2014 NASA report, printed p.27. The original AIAA text was not retrieved; correction formulas use the separately cited 2014 report."
+      }
+    },
+    {
+      "id": "huynh2014-fr",
+      "author": "H. T. Huynh",
+      "year": 2014,
+      "title": "On Formulations of Discontinuous Galerkin and Related Methods for Conservation Laws",
+      "type": "techreport",
+      "source": "https://ntrs.nasa.gov/api/citations/20140009969/downloads/20140009969.pdf",
+      "url": "https://ntrs.nasa.gov/api/citations/20140009969/downloads/20140009969.pdf",
+      "journal": "NASA/TM-2014-218135",
+      "source_review": {
+        "level": "full-text",
+        "checked_on": "2026-11-23",
+        "url": "https://ntrs.nasa.gov/api/citations/20140009969/downloads/20140009969.pdf",
+        "scope_ja": "NASA原文の抄録、微分形と界面補正、本文19–21頁の式(6.2)–(6.13)のRadau補正とDG対応、27頁の書誌を確認。全報告の監査や非線形実験の再現ではない。",
+        "scope": "Selected original NASA passages: abstract, differential form/interface correction, printed pp.19–21 equations(6.2)–(6.13) for Radau/DG, and p.27 bibliography. No full-report audit or nonlinear experiment reproduction."
+      },
+      "review_level": "full-text",
+      "review": {
+        "ja": "NASA原文の抄録、微分形と界面補正、本文19–21頁の式(6.2)–(6.13)のRadau補正とDG対応、27頁の書誌を確認。全報告の監査や非線形実験の再現ではない。",
+        "en": "Selected original NASA passages: abstract, differential form/interface correction, printed pp.19–21 equations(6.2)–(6.13) for Radau/DG, and p.27 bibliography. No full-report audit or nonlinear experiment reproduction."
+      }
+    },
+    {
+      "id": "pyfr-implementation",
+      "author": "PyFR development team",
+      "year": 2026,
+      "title": "PyFR: Flux Reconstruction and supported implementation platforms (accessed 2026-11-23)",
+      "type": "misc",
+      "source": "https://www.pyfr.org/",
+      "url": "https://www.pyfr.org/",
+      "source_review": {
+        "level": "full-text",
+        "checked_on": "2026-11-23",
+        "url": "https://www.pyfr.org/",
+        "scope_ja": "公式サイトのFRによる空間離散化・非構造格子・CPU/GPUの紹介を確認。今回の軽量Python例でPyFRを導入・実行・検証したとはしない。",
+        "scope": "Official overview: FR spatial discretization, unstructured meshes and CPU/GPU platforms. PyFR is not installed, invoked or validated by this small Python example."
+      },
+      "review_level": "full-text",
+      "review": {
+        "ja": "公式サイトのFRによる空間離散化・非構造格子・CPU/GPUの紹介を確認。今回の軽量Python例でPyFRを導入・実行・検証したとはしない。",
+        "en": "Official overview: FR spatial discretization, unstructured meshes and CPU/GPU platforms. PyFR is not installed, invoked or validated by this small Python example."
+      }
     }
   ]
 }

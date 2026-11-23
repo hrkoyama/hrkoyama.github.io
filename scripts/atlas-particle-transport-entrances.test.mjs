@@ -124,7 +124,7 @@ test('one scoped goal and two depth fields expose six new checks without changin
  assert.match(stage.gap.en,/does not validate gravity PM/);
  for(const language of ['ja','en'])assert.ok(stage.reading.some(x=>x.url[language]===`/numerical-methods-atlas/${language}/read/validation-particle-transport/`));
  const methods=json('catalog/atlas-methods.json').methods;
- assert.equal(methods.length,149);assert.equal(methods.filter(x=>x.status==='educational-example').length,118);
+ assert.equal(methods.length,151);assert.equal(methods.filter(x=>x.status==='educational-example').length,120);
 });
 
 test('all 80 historical gallery illustrations, image checksums and captions survive the new supplemental evidence',()=>{

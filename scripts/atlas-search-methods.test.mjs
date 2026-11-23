@@ -15,7 +15,7 @@ const index={...published,entries:published.entries.map(entry=>entry.origin==='p
 
 test('the generated inline index contains public canonical method metadata',()=>{
   const entries=published.entries.filter(entry=>entry.kind==='method');
-  assert.equal(entries.length,149);
+  assert.equal(entries.length,151);
   for(const method of methods){
     const entry=entries.find(entry=>entry.method?.id===method.id);
     assert.ok(entry,method.id+' generated canonical metadata');
@@ -28,7 +28,7 @@ test('the generated inline index contains public canonical method metadata',()=>
 });
 
 test('method IDs, bilingual names and curated aliases reach every cataloged method',()=>{
-  assert.equal(methods.length,149);
+  assert.equal(methods.length,151);
   for(const method of methods){
     for(const [query,language] of [[method.id,'ja'],[method.name.ja,'ja'],[method.name.en,'en'],...(method.aliases||[]).map(alias=>[alias,'ja'])]){
       const found=searchChapters(index,query,language).filter(result=>result.method);

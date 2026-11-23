@@ -2627,6 +2627,26 @@
               }
             },
             {
+              "id": "fr-periodic-advection",
+              "name": {
+                "ja": "FR法の1D周期移流：Radau補正と既存DGの比較",
+                "en": "1D periodic FR advection: Radau correction and published DG comparison"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fr-periodic-advection/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fr-periodic-advection/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "flux-reconstruction",
+                "dg"
+              ],
+              "note": {
+                "ja": "0.4+sin(2πx)をT=.25まで移流。Gauss点・Radau補正のFRと既存のmodal DGをp=1/2、8/16/32セルで実行し、誤差・質量・時間積分誤差を測ります。",
+                "en": "Transport0.4+sin(2pi x) toT=.25. Execute Gauss-node/Radau FR and the existing modal DG for p=1/2 and8/16/32 cells; measure analytic error, mass and time-integration error."
+              }
+            },
+            {
               "id": "method-dg",
               "name": {
                 "ja": "不連続Galerkin法／Legendre：コード・検証",
@@ -8228,8 +8248,8 @@
               "status": "educational-example",
               "role": "execution",
               "note": {
-                "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
-                "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+                "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。 SEMはC0連続なテンソル積Qp Lagrange基底・p+1個のLegendre GLL節点と求積、疎な剛性行列・SciPy直接解法を使用。p=2で各方向2/4/8要素、別に2×2要素でp=1〜6。公開済みNumartのP1 FEM・GMRESをファイルのバイト列を保持して4/8/16分割で実行し、両者の自由未知数9/49/225を一致させます。",
+                "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed. C0 tensor Qp Lagrange SEM with p+1 Legendre GLL nodes/quadrature, sparse stiffness assembly and a SciPy direct solve. At p=2 use2/4/8 elements per axis; separately fix2x2 elements and p=1..6. Execute the byte-identical published Numart triangle P1 FEM/GMRES at4/8/16 subdivisions, matching9/49/225 free unknowns."
               },
               "context_problem_id": "poisson-2d-sine"
             },
@@ -8246,8 +8266,8 @@
               "status": "educational-example",
               "role": "execution",
               "note": {
-                "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
-                "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+                "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。 SEMはC0連続なテンソル積Qp Lagrange基底・p+1個のLegendre GLL節点と求積、疎な剛性行列・SciPy直接解法を使用。p=2で各方向2/4/8要素、別に2×2要素でp=1〜6。公開済みNumartのP1 FEM・GMRESをファイルのバイト列を保持して4/8/16分割で実行し、両者の自由未知数9/49/225を一致させます。",
+                "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed. C0 tensor Qp Lagrange SEM with p+1 Legendre GLL nodes/quadrature, sparse stiffness assembly and a SciPy direct solve. At p=2 use2/4/8 elements per axis; separately fix2x2 elements and p=1..6. Execute the byte-identical published Numart triangle P1 FEM/GMRES at4/8/16 subdivisions, matching9/49/225 free unknowns."
               },
               "context_problem_id": "poisson-2d-sine"
             },
@@ -8264,8 +8284,8 @@
               "status": "educational-example",
               "role": "execution",
               "note": {
-                "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
-                "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+                "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。 SEMはC0連続なテンソル積Qp Lagrange基底・p+1個のLegendre GLL節点と求積、疎な剛性行列・SciPy直接解法を使用。p=2で各方向2/4/8要素、別に2×2要素でp=1〜6。公開済みNumartのP1 FEM・GMRESをファイルのバイト列を保持して4/8/16分割で実行し、両者の自由未知数9/49/225を一致させます。",
+                "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed. C0 tensor Qp Lagrange SEM with p+1 Legendre GLL nodes/quadrature, sparse stiffness assembly and a SciPy direct solve. At p=2 use2/4/8 elements per axis; separately fix2x2 elements and p=1..6. Execute the byte-identical published Numart triangle P1 FEM/GMRES at4/8/16 subdivisions, matching9/49/225 free unknowns."
               },
               "context_problem_id": "poisson-2d-sine"
             },
@@ -8282,8 +8302,26 @@
               "status": "educational-example",
               "role": "execution",
               "note": {
-                "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
-                "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+                "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。 SEMはC0連続なテンソル積Qp Lagrange基底・p+1個のLegendre GLL節点と求積、疎な剛性行列・SciPy直接解法を使用。p=2で各方向2/4/8要素、別に2×2要素でp=1〜6。公開済みNumartのP1 FEM・GMRESをファイルのバイト列を保持して4/8/16分割で実行し、両者の自由未知数9/49/225を一致させます。",
+                "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed. C0 tensor Qp Lagrange SEM with p+1 Legendre GLL nodes/quadrature, sparse stiffness assembly and a SciPy direct solve. At p=2 use2/4/8 elements per axis; separately fix2x2 elements and p=1..6. Execute the byte-identical published Numart triangle P1 FEM/GMRES at4/8/16 subdivisions, matching9/49/225 free unknowns."
+              },
+              "context_problem_id": "poisson-2d-sine"
+            },
+            {
+              "id": "spectral-element",
+              "name": {
+                "ja": "スペクトル要素法（SEM）",
+                "en": "Spectral element method (SEM)"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/spectral-element/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/spectral-element/?lang=en"
+              },
+              "status": "educational-example",
+              "role": "execution",
+              "note": {
+                "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。 SEMはC0連続なテンソル積Qp Lagrange基底・p+1個のLegendre GLL節点と求積、疎な剛性行列・SciPy直接解法を使用。p=2で各方向2/4/8要素、別に2×2要素でp=1〜6。公開済みNumartのP1 FEM・GMRESをファイルのバイト列を保持して4/8/16分割で実行し、両者の自由未知数9/49/225を一致させます。",
+                "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed. C0 tensor Qp Lagrange SEM with p+1 Legendre GLL nodes/quadrature, sparse stiffness assembly and a SciPy direct solve. At p=2 use2/4/8 elements per axis; separately fix2x2 elements and p=1..6. Execute the byte-identical published Numart triangle P1 FEM/GMRES at4/8/16 subdivisions, matching9/49/225 free unknowns."
               },
               "context_problem_id": "poisson-2d-sine"
             },
@@ -8403,8 +8441,8 @@
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=en#references-en"
               },
               "note": {
-                "ja": "単位正方形の製造解sin(πx)sin(πy)を使い、差分・連続P1 FEMの格子誤差と、補助AMG例の離散参照を確認します。 追加のamg-conditioningは既知の代数解を使う条件数・残差診断で、物理問題への紐付けはありません。このPoisson問題の格子精度・独立参照の証拠として流用しません。",
-                "en": "Use sin(πx)sin(πy) on the unit square to check finite-difference and continuous-P1 FEM mesh errors, plus the supplemental AMG example's discrete reference. The added amg-conditioning case uses known algebraic solutions for conditioning/residual diagnostics and has no physical-problem binding. Its results are not borrowed as evidence for this Poisson problem’s mesh accuracy or independent reference."
+                "ja": "単位正方形の製造解sin(πx)sin(πy)を使い、差分・連続P1 FEMの格子誤差と、補助AMG例の離散参照を確認します。 追加のamg-conditioningは既知の代数解を使う条件数・残差診断で、物理問題への紐付けはありません。このPoisson問題の格子精度・独立参照の証拠として流用しません。 解析的な正弦製造解と勾配を参照し、GLL節点とは異なる高次Gauss点で連続L2誤差・H1半ノルムを積分。h/p収束・自由未知数を揃えた誤差・境界値・真の残差を検査し、実際の2D場とP1の頂点・三角形・解をNPZに保存。",
+                "en": "Use sin(πx)sin(πy) on the unit square to check finite-difference and continuous-P1 FEM mesh errors, plus the supplemental AMG example's discrete reference. The added amg-conditioning case uses known algebraic solutions for conditioning/residual diagnostics and has no physical-problem binding. Its results are not borrowed as evidence for this Poisson problem’s mesh accuracy or independent reference. Compare with the analytic manufactured sine solution/gradient. Integrate continuous L2/H1-seminorm errors at independent higher-order Gauss points. Check h/p refinement, matched-unknown errors, boundary data and true residuals; save actual2D SEM fields and P1 vertices/triangles/values in NPZ."
               }
             },
             {
@@ -8423,6 +8461,24 @@
                 "en": "Manufactured solution Zero Dirichlet endpoints. The forcing is chosen from the target solution; this is not an arbitrary-source Poisson solution. The card is 1D sin(πx); this test is 2D sin(πx)sin(πy). Dimension, forcing and FEM error norms differ."
               },
               "relation": "related-model",
+              "context_problem_id": "poisson-2d-sine"
+            },
+            {
+              "id": "sem-poisson-2d",
+              "name": {
+                "ja": "2D Poisson正弦製造解：SEMとP1 FEMの共通参照",
+                "en": "2D Poisson sine manufactured solution: shared SEM/P1 FEM reference"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-sem-poisson-2d-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-sem-poisson-2d-en"
+              },
+              "reference_kind": "manufactured",
+              "note": {
+                "ja": "製造解 全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。 全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。",
+                "en": "Manufactured solution Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM. Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM."
+              },
+              "relation": "same-problem",
               "context_problem_id": "poisson-2d-sine"
             },
             {
@@ -8458,6 +8514,24 @@
               },
               "relation": "related-model",
               "context_execution_id": "poisson-2d-sine"
+            },
+            {
+              "id": "sem-poisson-2d",
+              "name": {
+                "ja": "2D Poisson正弦製造解：SEMとP1 FEMの共通参照",
+                "en": "2D Poisson sine manufactured solution: shared SEM/P1 FEM reference"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-sem-poisson-2d-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-sem-poisson-2d-en"
+              },
+              "reference_kind": "manufactured",
+              "note": {
+                "ja": "製造解 全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。 全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。",
+                "en": "Manufactured solution Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM. Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM."
+              },
+              "relation": "same-problem",
+              "context_execution_id": "poisson-2d-sine"
             }
           ],
           "code": [
@@ -8480,6 +8554,26 @@
               "note": {
                 "ja": "単位正方形のsin(πx)sin(πy)を参照し、CG/MGは15/31/63内部点、P1 FEMは4/8/16分割で細分化。FDの最大誤差と真の残差、FEMの要素内L2誤差とH1半ノルムを独立に評価する。",
                 "en": "Reference sin(πx)sin(πy) on the unit square; refine CG/MG through 15/31/63 interior nodes and P1 FEM through 4/8/16 subdivisions. Independently evaluate FD maximum errors/true residuals and FEM element-interior L2/H1-seminorm errors."
+              }
+            },
+            {
+              "id": "sem-poisson-2d",
+              "name": {
+                "ja": "スペクトル要素法の2D Poisson：P1 FEMとh/p収束を比較",
+                "en": "2D spectral-element Poisson: P1 FEM comparison and h/p refinement"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sem-poisson-2d/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sem-poisson-2d/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "spectral-element",
+                "p1-fem"
+              ],
+              "note": {
+                "ja": "単位正方形の正弦製造解をGLLスペクトル要素法と既存P1三角形FEMで解きます。自由未知数を揃えたh細分化と、固定要素数でのp=1〜6を分けて測ります。",
+                "en": "Solve a sine manufactured solution on the unit square with GLL spectral elements and the existing triangle P1 FEM. Compare matched free-unknown counts under h refinement and p=1..6 at fixed elements."
               }
             },
             {
@@ -8518,6 +8612,428 @@
               "note": {
                 "ja": "正方形Poisson問題から得たSPD行列だけを階層構築へ渡し、平滑化集約AMGのV-cycleを実行します。7²・15²・31²未知数で独立疎行列直接解、解析的な離散正弦モード、連続解への2次収束を分けて検査します。",
                 "en": "Build a smoothed-aggregation hierarchy from an SPD matrix alone and run V-cycles. Problems with 7², 15² and 31² unknowns distinguish independent sparse direct solutions, analytic discrete sine modes and second-order convergence to the continuum solution."
+              }
+            }
+          ]
+        }
+      },
+      "directories": {
+        "methods": {
+          "name": {
+            "ja": "手法・コードの対応表",
+            "en": "Methods and code reference"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/?lang=en"
+          }
+        },
+        "equations": {
+          "name": {
+            "ja": "方程式",
+            "en": "Equations"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en"
+          }
+        },
+        "figures": {
+          "name": {
+            "ja": "テスト問題の名前と図",
+            "en": "Test problems by name and figure"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/?lang=en"
+          }
+        },
+        "references": {
+          "name": {
+            "ja": "厳密解・参照解",
+            "en": "Exact and reference solutions"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en"
+          }
+        },
+        "code": {
+          "name": {
+            "ja": "コード・入力・検証",
+            "en": "Code, inputs and validation"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en"
+          }
+        }
+      }
+    },
+    "flux-reconstruction": {
+      "id": "flux-reconstruction",
+      "title": {
+        "ja": "Flux Reconstruction法：流束補正とDG・1D周期移流",
+        "en": "Flux reconstruction: flux correction, DG and 1D periodic advection"
+      },
+      "routes": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/flux-reconstruction/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/flux-reconstruction/"
+      },
+      "association_status": "registered",
+      "resource_navigation": {
+        "kind": "chapter",
+        "id": "flux-reconstruction",
+        "note": {
+          "ja": "この章に登録された手法・問題・実行例の関連資料です。 新しい固定入力を実行した範囲で、手法・式・既存の物理問題・解析/製造参照・配布コードを対応させます。関連する外部ソフトの動作検証は含みません。",
+          "en": "Resources explicitly registered to the methods, problems and executions of this chapter. Explicitly connects the newly executed fixed inputs to methods, equations, existing physical problems, analytic/manufactured references and release code. It does not validate related external software."
+        },
+        "groups": {
+          "methods": [
+            {
+              "id": "flux-reconstruction",
+              "name": {
+                "ja": "Flux Reconstruction法（FR法）",
+                "en": "Flux reconstruction (FR)"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/flux-reconstruction/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/flux-reconstruction/?lang=en"
+              },
+              "status": "educational-example"
+            },
+            {
+              "id": "dg",
+              "name": {
+                "ja": "不連続Galerkin法／Legendre",
+                "en": "Discontinuous Galerkin / Legendre"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/dg/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/dg/?lang=en"
+              },
+              "status": "educational-example",
+              "role": "related"
+            },
+            {
+              "id": "weno-js",
+              "name": {
+                "ja": "WENO5-JS",
+                "en": "WENO5-JS"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/weno-js/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/weno-js/?lang=en"
+              },
+              "status": "educational-example",
+              "role": "related"
+            }
+          ],
+          "equations": [
+            {
+              "id": "linear-advection",
+              "name": {
+                "ja": "線形移流",
+                "en": "Linear advection"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#linear-advection-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#linear-advection-en"
+              },
+              "note": {
+                "ja": "新しい固定入力を実行した範囲で、手法・式・既存の物理問題・解析/製造参照・配布コードを対応させます。関連する外部ソフトの動作検証は含みません。 一定速度aによる輸送。波形の移動、数値拡散、安定性へ。",
+                "en": "Explicitly connects the newly executed fixed inputs to methods, equations, existing physical problems, analytic/manufactured references and release code. It does not validate related external software. Transport at constant speed a: translation, numerical diffusion and stability."
+              },
+              "context_chapter_id": "flux-reconstruction",
+              "role": "related"
+            },
+            {
+              "id": "formulation-fr-periodic-advection",
+              "name": {
+                "ja": "この実行例の式と条件",
+                "en": "This execution’s formulation and conditions"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fr-periodic-advection/?lang=ja#fr-periodic-advection-ja-algorithm",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fr-periodic-advection/?lang=en#fr-periodic-advection-en-algorithm"
+              },
+              "note": {
+                "ja": "新しい固定入力を実行した範囲で、手法・式・既存の物理問題・解析/製造参照・配布コードを対応させます。関連する外部ソフトの動作検証は含みません。 p+1個のGauss解点、上流数値流束、Legendre多項式によるRadau左右補正、SSPRK(3,3)。初期L2射影・上流流束・時間刻み規約をバイト一致の既存modal DGと揃えます。スケールしたCourant数(2p+1)|a|Δt/h≤.15。最後にp2/N32で刻みを半減。",
+                "en": "Explicitly connects the newly executed fixed inputs to methods, equations, existing physical problems, analytic/manufactured references and release code. It does not validate related external software. p+1 Gauss solution points, upwind interface flux, Legendre Radau corrections and SSPRK(3,3). Match initial L2 projection, upwind flux and timestep policy to the unchanged published modal DG. Scaled Courant(2p+1)|a|dt/h<=.15; separately halve the timestep at p2/N32."
+              },
+              "role": "related",
+              "context_chapter_id": "flux-reconstruction"
+            }
+          ],
+          "figures": [
+            {
+              "id": "advection-sine",
+              "name": {
+                "ja": "周期正弦波の線形移流",
+                "en": "Periodic sine-wave advection"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=en"
+              },
+              "image": {
+                "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/advection-sine.png",
+                "sha256": "dbb022150fee1472e54b24dfd3f01363bcfd3998f7e21da9dad6f30e4d224f0a",
+                "width": 832,
+                "height": 494,
+                "caption": {
+                  "ja": "保存済みのCIP・線形補間・厳密な移流波形。",
+                  "en": "Stored CIP, linear-interpolation and exact advection profiles."
+                },
+                "source_kind": "stored-data-plot"
+              },
+              "note": {
+                "ja": "新しい固定入力を実行した範囲で、手法・式・既存の物理問題・解析/製造参照・配布コードを対応させます。関連する外部ソフトの動作検証は含みません。 テスト問題の代表図。条件と出典は問題別ページで確認できます。",
+                "en": "Explicitly connects the newly executed fixed inputs to methods, equations, existing physical problems, analytic/manufactured references and release code. It does not validate related external software. Representative test-problem figure; the problem page records conditions and provenance."
+              },
+              "context_chapter_id": "flux-reconstruction",
+              "role": "related"
+            },
+            {
+              "id": "fr-periodic-advection",
+              "name": {
+                "ja": "FR法の1D周期移流：Radau補正と既存DGの比較",
+                "en": "1D periodic FR advection: Radau correction and published DG comparison"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/results/fr-periodic-advection.png",
+                "en": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/results/fr-periodic-advection.png"
+              },
+              "image": {
+                "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/results/fr-periodic-advection.png",
+                "sha256": "d4afeebdf38e32dcaf3a2c58288ef4ed2f1f79c7c32e89c80f40d71199a11c37",
+                "width": 1650,
+                "height": 1260,
+                "kind": "case-validation",
+                "caption": {
+                  "ja": "FR法の1D周期移流：Radau補正と既存DGの比較：この実行例の保存済み検証図。",
+                  "en": "1D periodic FR advection: Radau correction and published DG comparison: saved validation figure for this execution."
+                }
+              },
+              "note": {
+                "ja": "新しい固定入力を実行した範囲で、手法・式・既存の物理問題・解析/製造参照・配布コードを対応させます。関連する外部ソフトの動作検証は含みません。 この実行例自身の保存済み検証図です。",
+                "en": "Explicitly connects the newly executed fixed inputs to methods, equations, existing physical problems, analytic/manufactured references and release code. It does not validate related external software. The saved validation figure for this execution itself."
+              },
+              "problem_id": "advection-sine",
+              "context_chapter_id": "flux-reconstruction",
+              "role": "related"
+            }
+          ],
+          "references": [
+            {
+              "id": "fr-periodic-advection",
+              "name": {
+                "ja": "FRとDGの周期正弦移流：平均0.4・T=.25の解析参照",
+                "en": "FR/DG periodic sine advection: analytic reference at mean0.4 andT=.25"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-fr-periodic-advection-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-fr-periodic-advection-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "解析解 全て無次元。u_t+u_x=0、区間[0,1)、周期境界、初期値0.4+sin(2πx)。解析解は0.4+sin(2π(x−t))。一定の正速度1、均一なアフィン区間要素。",
+                "en": "Analytic reference Dimensionless u_t+u_x=0 on[0,1), periodic boundary, initial0.4+sin(2pi x), analytic0.4+sin(2pi(x-t)). Constant positive speed1 and uniform affine intervals."
+              }
+            },
+            {
+              "id": "problem-advection-sine",
+              "name": {
+                "ja": "周期正弦波の線形移流：参照・比較条件",
+                "en": "Periodic sine-wave advection — references and comparison conditions"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=ja#references-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=en#references-en"
+              },
+              "note": {
+                "ja": "新しい固定入力を実行した範囲で、手法・式・既存の物理問題・解析/製造参照・配布コードを対応させます。関連する外部ソフトの動作検証は含みません。 周期正弦波の解析的な平行移動が基準です。問題台帳には振幅や離散表現の異なる比較を統合しており、参照解一覧の振幅0.25を全実行例に流用しません。 追加のGauss点で連続L2誤差を積分し、既存DGの最終多項式と共通点で照合。全RK段階の重み付き質量と各完了ステップの2次エネルギーを検査。同じFR空間演算子の行列指数解で時間誤差を別測定し、刻み半減を確認。",
+                "en": "Explicitly connects the newly executed fixed inputs to methods, equations, existing physical problems, analytic/manufactured references and release code. It does not validate related external software. Analytic translation of a periodic sine is the standard. The problem merges different amplitudes and representations; the reference-library amplitude 0.25 is not the input for every execution example. Integrate continuous L2 error at additional Gauss points and compare final polynomials with the actual published DG at common points. Check weighted mass at every RK stage and quadratic energy at each completed step. A matrix exponential of the same FR operator separately measures RK3 time error and its timestep-halving response."
+              },
+              "context_chapter_id": "flux-reconstruction",
+              "role": "related"
+            },
+            {
+              "id": "sine-advection",
+              "name": {
+                "ja": "移流／正弦波の平行移動",
+                "en": "Advection / sine translation"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-sine-advection-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-sine-advection-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "新しい固定入力を実行した範囲で、手法・式・既存の物理問題・解析/製造参照・配布コードを対応させます。関連する外部ソフトの動作検証は含みません。 解析解 単位区間の周期境界、一定移流速度1。 同じ周期・速度1の正弦移流モデルです。参照一覧は振幅0.25、共通固定入力は0.2で、DG・CIP等の表現や時間も異なります。",
+                "en": "Explicitly connects the newly executed fixed inputs to methods, equations, existing physical problems, analytic/manufactured references and release code. It does not validate related external software. Analytic reference Periodic unit interval; constant advection speed 1. Same periodic sine-transport model at speed one. The library amplitude is 0.25 versus 0.2 in the common fixed input; DG/CIP representations and output times also differ."
+              },
+              "relation": "related-model",
+              "context_problem_id": "advection-sine",
+              "context_chapter_id": "flux-reconstruction",
+              "role": "related"
+            },
+            {
+              "id": "weno-critical-profile",
+              "name": {
+                "ja": "WENO臨界点：多項式セル平均と解析的周期輸送",
+                "en": "WENO critical points: polynomial cell means and analytic periodic transport"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-weno-critical-profile-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-weno-critical-profile-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "新しい固定入力を実行した範囲で、手法・式・既存の物理問題・解析/製造参照・配布コードを対応させます。関連する外部ソフトの動作検証は含みません。 解析解 局所参照はx=0を中心とする5セルの解析平均からh/2を評価する多項式です。通常・一次・二次臨界の3形、h=1/64…1/512を区別します。実際の周期輸送参照は[0,1]、速度1、T1、q₀=cos(2πx)+.1sin³(2πx)のFourier積分セル平均で、別のGauss12点関数求積と照合します。局所多項式と輸送の初期形は異なり、点値や別PDE計算の参照ではありません。 同じ一定速度の周期移流に対する追加参照ですが、cos+.1sin³のセル平均と局所臨界多項式は、従来の単一正弦・CIP表示と異なります。",
+                "en": "Explicitly connects the newly executed fixed inputs to methods, equations, existing physical problems, analytic/manufactured references and release code. It does not validate related external software. Analytic reference Local references integrate polynomials over five cells centered around x=0 and evaluate at h/2. Regular, first-critical and second-critical profiles use h=1/64…1/512. The actual periodic-transport reference is the Fourier-integrated cell mean of q₀=cos(2πx)+.1sin³(2πx) on[0,1], speed1,T1, checked independently by Gauss12 point-function quadrature. Local polynomials differ from the evolved profile; neither point samples nor another PDE calculation are substituted for cell means. An additional constant-speed periodic-transport reference. The cos+.1sin³ cell means and local critical polynomials differ from the historical single-sine/CIP display."
+              },
+              "relation": "related-model",
+              "context_problem_id": "advection-sine",
+              "context_chapter_id": "flux-reconstruction",
+              "role": "related"
+            },
+            {
+              "id": "fr-periodic-advection",
+              "name": {
+                "ja": "FRとDGの周期正弦移流：平均0.4・T=.25の解析参照",
+                "en": "FR/DG periodic sine advection: analytic reference at mean0.4 andT=.25"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-fr-periodic-advection-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-fr-periodic-advection-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "新しい固定入力を実行した範囲で、手法・式・既存の物理問題・解析/製造参照・配布コードを対応させます。関連する外部ソフトの動作検証は含みません。 解析解 全て無次元。u_t+u_x=0、区間[0,1)、周期境界、初期値0.4+sin(2πx)。解析解は0.4+sin(2π(x−t))。一定の正速度1、均一なアフィン区間要素。 全て無次元。u_t+u_x=0、区間[0,1)、周期境界、初期値0.4+sin(2πx)。解析解は0.4+sin(2π(x−t))。一定の正速度1、均一なアフィン区間要素。",
+                "en": "Explicitly connects the newly executed fixed inputs to methods, equations, existing physical problems, analytic/manufactured references and release code. It does not validate related external software. Analytic reference Dimensionless u_t+u_x=0 on[0,1), periodic boundary, initial0.4+sin(2pi x), analytic0.4+sin(2pi(x-t)). Constant positive speed1 and uniform affine intervals. Dimensionless u_t+u_x=0 on[0,1), periodic boundary, initial0.4+sin(2pi x), analytic0.4+sin(2pi(x-t)). Constant positive speed1 and uniform affine intervals."
+              },
+              "relation": "same-problem",
+              "context_problem_id": "advection-sine",
+              "context_chapter_id": "flux-reconstruction",
+              "role": "related"
+            },
+            {
+              "id": "validation-fr-periodic-advection",
+              "name": {
+                "ja": "FR法の1D周期移流：Radau補正と既存DGの比較：参照・検証",
+                "en": "1D periodic FR advection: Radau correction and published DG comparison — references and checks"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fr-periodic-advection/?lang=ja#fr-periodic-advection-ja-validation",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fr-periodic-advection/?lang=en#fr-periodic-advection-en-validation"
+              },
+              "note": {
+                "ja": "新しい固定入力を実行した範囲で、手法・式・既存の物理問題・解析/製造参照・配布コードを対応させます。関連する外部ソフトの動作検証は含みません。 追加のGauss点で連続L2誤差を積分し、既存DGの最終多項式と共通点で照合。全RK段階の重み付き質量と各完了ステップの2次エネルギーを検査。同じFR空間演算子の行列指数解で時間誤差を別測定し、刻み半減を確認。",
+                "en": "Explicitly connects the newly executed fixed inputs to methods, equations, existing physical problems, analytic/manufactured references and release code. It does not validate related external software. Integrate continuous L2 error at additional Gauss points and compare final polynomials with the actual published DG at common points. Check weighted mass at every RK stage and quadratic energy at each completed step. A matrix exponential of the same FR operator separately measures RK3 time error and its timestep-halving response."
+              },
+              "role": "related",
+              "context_chapter_id": "flux-reconstruction"
+            },
+            {
+              "id": "sine-advection",
+              "name": {
+                "ja": "移流／正弦波の平行移動",
+                "en": "Advection / sine translation"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-sine-advection-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-sine-advection-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "新しい固定入力を実行した範囲で、手法・式・既存の物理問題・解析/製造参照・配布コードを対応させます。関連する外部ソフトの動作検証は含みません。 解析解 単位区間の周期境界、一定移流速度1。 同じ周期・速度1の正弦移流モデルです。参照一覧は振幅0.25、共通固定入力は0.2で、DG・CIP等の表現や時間も異なります。",
+                "en": "Explicitly connects the newly executed fixed inputs to methods, equations, existing physical problems, analytic/manufactured references and release code. It does not validate related external software. Analytic reference Periodic unit interval; constant advection speed 1. Same periodic sine-transport model at speed one. The library amplitude is 0.25 versus 0.2 in the common fixed input; DG/CIP representations and output times also differ."
+              },
+              "relation": "related-model",
+              "context_execution_id": "fr-periodic-advection",
+              "context_chapter_id": "flux-reconstruction",
+              "role": "related"
+            },
+            {
+              "id": "weno-critical-profile",
+              "name": {
+                "ja": "WENO臨界点：多項式セル平均と解析的周期輸送",
+                "en": "WENO critical points: polynomial cell means and analytic periodic transport"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-weno-critical-profile-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-weno-critical-profile-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "新しい固定入力を実行した範囲で、手法・式・既存の物理問題・解析/製造参照・配布コードを対応させます。関連する外部ソフトの動作検証は含みません。 解析解 局所参照はx=0を中心とする5セルの解析平均からh/2を評価する多項式です。通常・一次・二次臨界の3形、h=1/64…1/512を区別します。実際の周期輸送参照は[0,1]、速度1、T1、q₀=cos(2πx)+.1sin³(2πx)のFourier積分セル平均で、別のGauss12点関数求積と照合します。局所多項式と輸送の初期形は異なり、点値や別PDE計算の参照ではありません。 同じ一定速度の周期移流に対する追加参照ですが、cos+.1sin³のセル平均と局所臨界多項式は、従来の単一正弦・CIP表示と異なります。",
+                "en": "Explicitly connects the newly executed fixed inputs to methods, equations, existing physical problems, analytic/manufactured references and release code. It does not validate related external software. Analytic reference Local references integrate polynomials over five cells centered around x=0 and evaluate at h/2. Regular, first-critical and second-critical profiles use h=1/64…1/512. The actual periodic-transport reference is the Fourier-integrated cell mean of q₀=cos(2πx)+.1sin³(2πx) on[0,1], speed1,T1, checked independently by Gauss12 point-function quadrature. Local polynomials differ from the evolved profile; neither point samples nor another PDE calculation are substituted for cell means. An additional constant-speed periodic-transport reference. The cos+.1sin³ cell means and local critical polynomials differ from the historical single-sine/CIP display."
+              },
+              "relation": "related-model",
+              "context_execution_id": "fr-periodic-advection",
+              "context_chapter_id": "flux-reconstruction",
+              "role": "related"
+            },
+            {
+              "id": "fr-periodic-advection",
+              "name": {
+                "ja": "FRとDGの周期正弦移流：平均0.4・T=.25の解析参照",
+                "en": "FR/DG periodic sine advection: analytic reference at mean0.4 andT=.25"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-fr-periodic-advection-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-fr-periodic-advection-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "新しい固定入力を実行した範囲で、手法・式・既存の物理問題・解析/製造参照・配布コードを対応させます。関連する外部ソフトの動作検証は含みません。 解析解 全て無次元。u_t+u_x=0、区間[0,1)、周期境界、初期値0.4+sin(2πx)。解析解は0.4+sin(2π(x−t))。一定の正速度1、均一なアフィン区間要素。 全て無次元。u_t+u_x=0、区間[0,1)、周期境界、初期値0.4+sin(2πx)。解析解は0.4+sin(2π(x−t))。一定の正速度1、均一なアフィン区間要素。",
+                "en": "Explicitly connects the newly executed fixed inputs to methods, equations, existing physical problems, analytic/manufactured references and release code. It does not validate related external software. Analytic reference Dimensionless u_t+u_x=0 on[0,1), periodic boundary, initial0.4+sin(2pi x), analytic0.4+sin(2pi(x-t)). Constant positive speed1 and uniform affine intervals. Dimensionless u_t+u_x=0 on[0,1), periodic boundary, initial0.4+sin(2pi x), analytic0.4+sin(2pi(x-t)). Constant positive speed1 and uniform affine intervals."
+              },
+              "relation": "same-problem",
+              "context_execution_id": "fr-periodic-advection",
+              "context_chapter_id": "flux-reconstruction",
+              "role": "related"
+            }
+          ],
+          "code": [
+            {
+              "id": "fr-periodic-advection",
+              "name": {
+                "ja": "FR法の1D周期移流：Radau補正と既存DGの比較",
+                "en": "1D periodic FR advection: Radau correction and published DG comparison"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fr-periodic-advection/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fr-periodic-advection/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "flux-reconstruction",
+                "dg"
+              ],
+              "note": {
+                "ja": "0.4+sin(2πx)をT=.25まで移流。Gauss点・Radau補正のFRと既存のmodal DGをp=1/2、8/16/32セルで実行し、誤差・質量・時間積分誤差を測ります。",
+                "en": "Transport0.4+sin(2pi x) toT=.25. Execute Gauss-node/Radau FR and the existing modal DG for p=1/2 and8/16/32 cells; measure analytic error, mass and time-integration error."
+              }
+            },
+            {
+              "id": "method-flux-reconstruction",
+              "name": {
+                "ja": "Flux Reconstruction法（FR法）：コード・検証",
+                "en": "Flux reconstruction (FR) — code and checks"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/flux-reconstruction/?lang=ja#method-execution-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/flux-reconstruction/?lang=en#method-execution-en"
+              },
+              "availability": "source",
+              "method_ids": [
+                "flux-reconstruction"
+              ],
+              "note": {
+                "ja": "手法固有の配布版と関連ソースを案内します。固定入力例は別の項目で区別します。",
+                "en": "Method-specific editions and related sources; fixed-input runs are listed separately."
               }
             }
           ]
@@ -21156,6 +21672,388 @@
         }
       }
     },
+    "spectral-element": {
+      "id": "spectral-element",
+      "title": {
+        "ja": "スペクトル要素法：高次の有限要素と2D Poisson",
+        "en": "Spectral elements: high-order finite elements and 2D Poisson"
+      },
+      "routes": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/spectral-element/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/spectral-element/"
+      },
+      "association_status": "registered",
+      "resource_navigation": {
+        "kind": "chapter",
+        "id": "spectral-element",
+        "note": {
+          "ja": "この章に登録された手法・問題・実行例の関連資料です。 新しい固定入力を実行した範囲で、手法・式・既存の物理問題・解析/製造参照・配布コードを対応させます。関連する外部ソフトの動作検証は含みません。",
+          "en": "Resources explicitly registered to the methods, problems and executions of this chapter. Explicitly connects the newly executed fixed inputs to methods, equations, existing physical problems, analytic/manufactured references and release code. It does not validate related external software."
+        },
+        "groups": {
+          "methods": [
+            {
+              "id": "spectral-element",
+              "name": {
+                "ja": "スペクトル要素法（SEM）",
+                "en": "Spectral element method (SEM)"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/spectral-element/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/spectral-element/?lang=en"
+              },
+              "status": "educational-example"
+            },
+            {
+              "id": "p1-fem",
+              "name": {
+                "ja": "連続P1 Galerkin有限要素法",
+                "en": "Continuous P1 Galerkin FEM"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/p1-fem/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/p1-fem/?lang=en"
+              },
+              "status": "educational-example",
+              "role": "related"
+            },
+            {
+              "id": "dg",
+              "name": {
+                "ja": "不連続Galerkin法／Legendre",
+                "en": "Discontinuous Galerkin / Legendre"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/dg/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/dg/?lang=en"
+              },
+              "status": "educational-example",
+              "role": "related"
+            }
+          ],
+          "equations": [
+            {
+              "id": "poisson-laplace",
+              "name": {
+                "ja": "Poisson・Laplace方程式",
+                "en": "Poisson / Laplace equations"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#poisson-laplace-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#poisson-laplace-en"
+              },
+              "note": {
+                "ja": "新しい固定入力を実行した範囲で、手法・式・既存の物理問題・解析/製造参照・配布コードを対応させます。関連する外部ソフトの動作検証は含みません。 楕円型境界値問題。符号規約を確認し、反復解法・疎行列・境界条件をたどる。",
+                "en": "Explicitly connects the newly executed fixed inputs to methods, equations, existing physical problems, analytic/manufactured references and release code. It does not validate related external software. Elliptic boundary-value problems: check sign conventions, iterative solvers, sparse matrices and boundaries."
+              },
+              "context_chapter_id": "spectral-element",
+              "role": "related"
+            },
+            {
+              "id": "formulation-sem-poisson-2d",
+              "name": {
+                "ja": "この実行例の式と条件",
+                "en": "This execution’s formulation and conditions"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sem-poisson-2d/?lang=ja#sem-poisson-2d-ja-algorithm",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sem-poisson-2d/?lang=en#sem-poisson-2d-en-algorithm"
+              },
+              "note": {
+                "ja": "新しい固定入力を実行した範囲で、手法・式・既存の物理問題・解析/製造参照・配布コードを対応させます。関連する外部ソフトの動作検証は含みません。 SEMはC0連続なテンソル積Qp Lagrange基底・p+1個のLegendre GLL節点と求積、疎な剛性行列・SciPy直接解法を使用。p=2で各方向2/4/8要素、別に2×2要素でp=1〜6。公開済みNumartのP1 FEM・GMRESをファイルのバイト列を保持して4/8/16分割で実行し、両者の自由未知数9/49/225を一致させます。",
+                "en": "Explicitly connects the newly executed fixed inputs to methods, equations, existing physical problems, analytic/manufactured references and release code. It does not validate related external software. C0 tensor Qp Lagrange SEM with p+1 Legendre GLL nodes/quadrature, sparse stiffness assembly and a SciPy direct solve. At p=2 use2/4/8 elements per axis; separately fix2x2 elements and p=1..6. Execute the byte-identical published Numart triangle P1 FEM/GMRES at4/8/16 subdivisions, matching9/49/225 free unknowns."
+              },
+              "role": "related",
+              "context_chapter_id": "spectral-element"
+            }
+          ],
+          "figures": [
+            {
+              "id": "poisson-2d-sine",
+              "name": {
+                "ja": "2次元Poisson・正弦単一モード（FEMを含む）",
+                "en": "2D Poisson / single sine mode, including FEM"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=en"
+              },
+              "image": {
+                "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/field-fem-poisson.png",
+                "sha256": "5cb31b1cb182fa6509de11f0cafcc2368b9136b46d625bc6183df2a648f9af29",
+                "width": 1575,
+                "height": 690,
+                "caption": {
+                  "ja": "同じ正弦製造解を解く、三角形有限要素の保存解と誤差。",
+                  "en": "Stored triangular-FEM solution and error for the same sine manufactured problem."
+                },
+                "source_kind": "existing-figure"
+              },
+              "note": {
+                "ja": "新しい固定入力を実行した範囲で、手法・式・既存の物理問題・解析/製造参照・配布コードを対応させます。関連する外部ソフトの動作検証は含みません。 テスト問題の代表図。条件と出典は問題別ページで確認できます。",
+                "en": "Explicitly connects the newly executed fixed inputs to methods, equations, existing physical problems, analytic/manufactured references and release code. It does not validate related external software. Representative test-problem figure; the problem page records conditions and provenance."
+              },
+              "context_chapter_id": "spectral-element",
+              "role": "related"
+            },
+            {
+              "id": "sem-poisson-2d",
+              "name": {
+                "ja": "スペクトル要素法の2D Poisson：P1 FEMとh/p収束を比較",
+                "en": "2D spectral-element Poisson: P1 FEM comparison and h/p refinement"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/results/sem-poisson-2d.png",
+                "en": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/results/sem-poisson-2d.png"
+              },
+              "image": {
+                "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/results/sem-poisson-2d.png",
+                "sha256": "fdad68cc85073ba5d51bc9b48b34c116896d2c99cf497bdda32faa2d27481ef7",
+                "width": 1650,
+                "height": 1260,
+                "kind": "case-validation",
+                "caption": {
+                  "ja": "スペクトル要素法の2D Poisson：P1 FEMとh/p収束を比較：この実行例の保存済み検証図。",
+                  "en": "2D spectral-element Poisson: P1 FEM comparison and h/p refinement: saved validation figure for this execution."
+                }
+              },
+              "note": {
+                "ja": "新しい固定入力を実行した範囲で、手法・式・既存の物理問題・解析/製造参照・配布コードを対応させます。関連する外部ソフトの動作検証は含みません。 この実行例自身の保存済み検証図です。",
+                "en": "Explicitly connects the newly executed fixed inputs to methods, equations, existing physical problems, analytic/manufactured references and release code. It does not validate related external software. The saved validation figure for this execution itself."
+              },
+              "problem_id": "poisson-2d-sine",
+              "context_chapter_id": "spectral-element",
+              "role": "related"
+            }
+          ],
+          "references": [
+            {
+              "id": "sem-poisson-2d",
+              "name": {
+                "ja": "2D Poisson正弦製造解：SEMとP1 FEMの共通参照",
+                "en": "2D Poisson sine manufactured solution: shared SEM/P1 FEM reference"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-sem-poisson-2d-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-sem-poisson-2d-en"
+              },
+              "reference_kind": "manufactured",
+              "note": {
+                "ja": "製造解 全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。",
+                "en": "Manufactured solution Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM."
+              }
+            },
+            {
+              "id": "problem-poisson-2d-sine",
+              "name": {
+                "ja": "2次元Poisson・正弦単一モード（FEMを含む）：参照・比較条件",
+                "en": "2D Poisson / single sine mode, including FEM — references and comparison conditions"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=ja#references-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=en#references-en"
+              },
+              "note": {
+                "ja": "新しい固定入力を実行した範囲で、手法・式・既存の物理問題・解析/製造参照・配布コードを対応させます。関連する外部ソフトの動作検証は含みません。 単位正方形の製造解sin(πx)sin(πy)を使い、差分・連続P1 FEMの格子誤差と、補助AMG例の離散参照を確認します。 追加のamg-conditioningは既知の代数解を使う条件数・残差診断で、物理問題への紐付けはありません。このPoisson問題の格子精度・独立参照の証拠として流用しません。 解析的な正弦製造解と勾配を参照し、GLL節点とは異なる高次Gauss点で連続L2誤差・H1半ノルムを積分。h/p収束・自由未知数を揃えた誤差・境界値・真の残差を検査し、実際の2D場とP1の頂点・三角形・解をNPZに保存。",
+                "en": "Explicitly connects the newly executed fixed inputs to methods, equations, existing physical problems, analytic/manufactured references and release code. It does not validate related external software. Use sin(πx)sin(πy) on the unit square to check finite-difference and continuous-P1 FEM mesh errors, plus the supplemental AMG example's discrete reference. The added amg-conditioning case uses known algebraic solutions for conditioning/residual diagnostics and has no physical-problem binding. Its results are not borrowed as evidence for this Poisson problem’s mesh accuracy or independent reference. Compare with the analytic manufactured sine solution/gradient. Integrate continuous L2/H1-seminorm errors at independent higher-order Gauss points. Check h/p refinement, matched-unknown errors, boundary data and true residuals; save actual2D SEM fields and P1 vertices/triangles/values in NPZ."
+              },
+              "context_chapter_id": "spectral-element",
+              "role": "related"
+            },
+            {
+              "id": "poisson-manufactured",
+              "name": {
+                "ja": "Poisson／正弦波の製造解",
+                "en": "Poisson / manufactured sine"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-poisson-manufactured-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-poisson-manufactured-en"
+              },
+              "reference_kind": "manufactured",
+              "note": {
+                "ja": "新しい固定入力を実行した範囲で、手法・式・既存の物理問題・解析/製造参照・配布コードを対応させます。関連する外部ソフトの動作検証は含みません。 製造解 両端はゼロDirichlet条件。目標解から外力を選ぶ製造解であり、任意の外力のPoisson解ではありません。 カードは1次元sin(πx)、こちらは2次元sin(πx)sin(πy)です。次元・右辺・FEMの誤差ノルムは異なります。",
+                "en": "Explicitly connects the newly executed fixed inputs to methods, equations, existing physical problems, analytic/manufactured references and release code. It does not validate related external software. Manufactured solution Zero Dirichlet endpoints. The forcing is chosen from the target solution; this is not an arbitrary-source Poisson solution. The card is 1D sin(πx); this test is 2D sin(πx)sin(πy). Dimension, forcing and FEM error norms differ."
+              },
+              "relation": "related-model",
+              "context_problem_id": "poisson-2d-sine",
+              "context_chapter_id": "spectral-element",
+              "role": "related"
+            },
+            {
+              "id": "sem-poisson-2d",
+              "name": {
+                "ja": "2D Poisson正弦製造解：SEMとP1 FEMの共通参照",
+                "en": "2D Poisson sine manufactured solution: shared SEM/P1 FEM reference"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-sem-poisson-2d-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-sem-poisson-2d-en"
+              },
+              "reference_kind": "manufactured",
+              "note": {
+                "ja": "新しい固定入力を実行した範囲で、手法・式・既存の物理問題・解析/製造参照・配布コードを対応させます。関連する外部ソフトの動作検証は含みません。 製造解 全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。 全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。",
+                "en": "Explicitly connects the newly executed fixed inputs to methods, equations, existing physical problems, analytic/manufactured references and release code. It does not validate related external software. Manufactured solution Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM. Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM."
+              },
+              "relation": "same-problem",
+              "context_problem_id": "poisson-2d-sine",
+              "context_chapter_id": "spectral-element",
+              "role": "related"
+            },
+            {
+              "id": "validation-sem-poisson-2d",
+              "name": {
+                "ja": "スペクトル要素法の2D Poisson：P1 FEMとh/p収束を比較：参照・検証",
+                "en": "2D spectral-element Poisson: P1 FEM comparison and h/p refinement — references and checks"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sem-poisson-2d/?lang=ja#sem-poisson-2d-ja-validation",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sem-poisson-2d/?lang=en#sem-poisson-2d-en-validation"
+              },
+              "note": {
+                "ja": "新しい固定入力を実行した範囲で、手法・式・既存の物理問題・解析/製造参照・配布コードを対応させます。関連する外部ソフトの動作検証は含みません。 解析的な正弦製造解と勾配を参照し、GLL節点とは異なる高次Gauss点で連続L2誤差・H1半ノルムを積分。h/p収束・自由未知数を揃えた誤差・境界値・真の残差を検査し、実際の2D場とP1の頂点・三角形・解をNPZに保存。",
+                "en": "Explicitly connects the newly executed fixed inputs to methods, equations, existing physical problems, analytic/manufactured references and release code. It does not validate related external software. Compare with the analytic manufactured sine solution/gradient. Integrate continuous L2/H1-seminorm errors at independent higher-order Gauss points. Check h/p refinement, matched-unknown errors, boundary data and true residuals; save actual2D SEM fields and P1 vertices/triangles/values in NPZ."
+              },
+              "role": "related",
+              "context_chapter_id": "spectral-element"
+            },
+            {
+              "id": "poisson-manufactured",
+              "name": {
+                "ja": "Poisson／正弦波の製造解",
+                "en": "Poisson / manufactured sine"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-poisson-manufactured-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-poisson-manufactured-en"
+              },
+              "reference_kind": "manufactured",
+              "note": {
+                "ja": "新しい固定入力を実行した範囲で、手法・式・既存の物理問題・解析/製造参照・配布コードを対応させます。関連する外部ソフトの動作検証は含みません。 製造解 両端はゼロDirichlet条件。目標解から外力を選ぶ製造解であり、任意の外力のPoisson解ではありません。 カードは1次元sin(πx)、こちらは2次元sin(πx)sin(πy)です。次元・右辺・FEMの誤差ノルムは異なります。",
+                "en": "Explicitly connects the newly executed fixed inputs to methods, equations, existing physical problems, analytic/manufactured references and release code. It does not validate related external software. Manufactured solution Zero Dirichlet endpoints. The forcing is chosen from the target solution; this is not an arbitrary-source Poisson solution. The card is 1D sin(πx); this test is 2D sin(πx)sin(πy). Dimension, forcing and FEM error norms differ."
+              },
+              "relation": "related-model",
+              "context_execution_id": "sem-poisson-2d",
+              "context_chapter_id": "spectral-element",
+              "role": "related"
+            },
+            {
+              "id": "sem-poisson-2d",
+              "name": {
+                "ja": "2D Poisson正弦製造解：SEMとP1 FEMの共通参照",
+                "en": "2D Poisson sine manufactured solution: shared SEM/P1 FEM reference"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-sem-poisson-2d-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-sem-poisson-2d-en"
+              },
+              "reference_kind": "manufactured",
+              "note": {
+                "ja": "新しい固定入力を実行した範囲で、手法・式・既存の物理問題・解析/製造参照・配布コードを対応させます。関連する外部ソフトの動作検証は含みません。 製造解 全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。 全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。",
+                "en": "Explicitly connects the newly executed fixed inputs to methods, equations, existing physical problems, analytic/manufactured references and release code. It does not validate related external software. Manufactured solution Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM. Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM."
+              },
+              "relation": "same-problem",
+              "context_execution_id": "sem-poisson-2d",
+              "context_chapter_id": "spectral-element",
+              "role": "related"
+            }
+          ],
+          "code": [
+            {
+              "id": "sem-poisson-2d",
+              "name": {
+                "ja": "スペクトル要素法の2D Poisson：P1 FEMとh/p収束を比較",
+                "en": "2D spectral-element Poisson: P1 FEM comparison and h/p refinement"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sem-poisson-2d/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sem-poisson-2d/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "spectral-element",
+                "p1-fem"
+              ],
+              "note": {
+                "ja": "単位正方形の正弦製造解をGLLスペクトル要素法と既存P1三角形FEMで解きます。自由未知数を揃えたh細分化と、固定要素数でのp=1〜6を分けて測ります。",
+                "en": "Solve a sine manufactured solution on the unit square with GLL spectral elements and the existing triangle P1 FEM. Compare matched free-unknown counts under h refinement and p=1..6 at fixed elements."
+              }
+            },
+            {
+              "id": "method-spectral-element",
+              "name": {
+                "ja": "スペクトル要素法（SEM）：コード・検証",
+                "en": "Spectral element method (SEM) — code and checks"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/spectral-element/?lang=ja#method-execution-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/spectral-element/?lang=en#method-execution-en"
+              },
+              "availability": "source",
+              "method_ids": [
+                "spectral-element"
+              ],
+              "note": {
+                "ja": "手法固有の配布版と関連ソースを案内します。固定入力例は別の項目で区別します。",
+                "en": "Method-specific editions and related sources; fixed-input runs are listed separately."
+              }
+            }
+          ]
+        }
+      },
+      "directories": {
+        "methods": {
+          "name": {
+            "ja": "手法・コードの対応表",
+            "en": "Methods and code reference"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/?lang=en"
+          }
+        },
+        "equations": {
+          "name": {
+            "ja": "方程式",
+            "en": "Equations"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en"
+          }
+        },
+        "figures": {
+          "name": {
+            "ja": "テスト問題の名前と図",
+            "en": "Test problems by name and figure"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/?lang=en"
+          }
+        },
+        "references": {
+          "name": {
+            "ja": "厳密解・参照解",
+            "en": "Exact and reference solutions"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en"
+          }
+        },
+        "code": {
+          "name": {
+            "ja": "コード・入力・検証",
+            "en": "Code, inputs and validation"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en"
+          }
+        }
+      }
+    },
     "splines": {
       "id": "splines",
       "title": {
@@ -21505,8 +22403,8 @@
               "status": "educational-example",
               "role": "execution",
               "note": {
-                "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。 セル平均からのWENO-JS／Z二乗重みの臨界点再構成と、実際の周期スカラー輸送を比較します。εの違い、解析セル平均と点値、空間誤差と時間刻みの影響を分けます。",
-                "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions. Compare critical-point reconstruction from cell means using WENO-JS/Z power-two weights and actual periodic scalar transport. Separate epsilon choices, analytic cell means versus point values, and spatial error versus time-step effects."
+                "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。 セル平均からのWENO-JS／Z二乗重みの臨界点再構成と、実際の周期スカラー輸送を比較します。εの違い、解析セル平均と点値、空間誤差と時間刻みの影響を分けます。 p+1個のGauss解点、上流数値流束、Legendre多項式によるRadau左右補正、SSPRK(3,3)。初期L2射影・上流流束・時間刻み規約をバイト一致の既存modal DGと揃えます。スケールしたCourant数(2p+1)|a|Δt/h≤.15。最後にp2/N32で刻みを半減。",
+                "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions. Compare critical-point reconstruction from cell means using WENO-JS/Z power-two weights and actual periodic scalar transport. Separate epsilon choices, analytic cell means versus point values, and spatial error versus time-step effects. p+1 Gauss solution points, upwind interface flux, Legendre Radau corrections and SSPRK(3,3). Match initial L2 projection, upwind flux and timestep policy to the unchanged published modal DG. Scaled Courant(2p+1)|a|dt/h<=.15; separately halve the timestep at p2/N32."
               },
               "context_problem_id": "advection-sine"
             },
@@ -21523,8 +22421,8 @@
               "status": "educational-example",
               "role": "execution",
               "note": {
-                "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。 セル平均からのWENO-JS／Z二乗重みの臨界点再構成と、実際の周期スカラー輸送を比較します。εの違い、解析セル平均と点値、空間誤差と時間刻みの影響を分けます。",
-                "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions. Compare critical-point reconstruction from cell means using WENO-JS/Z power-two weights and actual periodic scalar transport. Separate epsilon choices, analytic cell means versus point values, and spatial error versus time-step effects."
+                "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。 セル平均からのWENO-JS／Z二乗重みの臨界点再構成と、実際の周期スカラー輸送を比較します。εの違い、解析セル平均と点値、空間誤差と時間刻みの影響を分けます。 p+1個のGauss解点、上流数値流束、Legendre多項式によるRadau左右補正、SSPRK(3,3)。初期L2射影・上流流束・時間刻み規約をバイト一致の既存modal DGと揃えます。スケールしたCourant数(2p+1)|a|Δt/h≤.15。最後にp2/N32で刻みを半減。",
+                "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions. Compare critical-point reconstruction from cell means using WENO-JS/Z power-two weights and actual periodic scalar transport. Separate epsilon choices, analytic cell means versus point values, and spatial error versus time-step effects. p+1 Gauss solution points, upwind interface flux, Legendre Radau corrections and SSPRK(3,3). Match initial L2 projection, upwind flux and timestep policy to the unchanged published modal DG. Scaled Courant(2p+1)|a|dt/h<=.15; separately halve the timestep at p2/N32."
               },
               "context_problem_id": "advection-sine"
             },
@@ -21541,8 +22439,8 @@
               "status": "educational-example",
               "role": "execution",
               "note": {
-                "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。 セル平均からのWENO-JS／Z二乗重みの臨界点再構成と、実際の周期スカラー輸送を比較します。εの違い、解析セル平均と点値、空間誤差と時間刻みの影響を分けます。",
-                "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions. Compare critical-point reconstruction from cell means using WENO-JS/Z power-two weights and actual periodic scalar transport. Separate epsilon choices, analytic cell means versus point values, and spatial error versus time-step effects."
+                "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。 セル平均からのWENO-JS／Z二乗重みの臨界点再構成と、実際の周期スカラー輸送を比較します。εの違い、解析セル平均と点値、空間誤差と時間刻みの影響を分けます。 p+1個のGauss解点、上流数値流束、Legendre多項式によるRadau左右補正、SSPRK(3,3)。初期L2射影・上流流束・時間刻み規約をバイト一致の既存modal DGと揃えます。スケールしたCourant数(2p+1)|a|Δt/h≤.15。最後にp2/N32で刻みを半減。",
+                "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions. Compare critical-point reconstruction from cell means using WENO-JS/Z power-two weights and actual periodic scalar transport. Separate epsilon choices, analytic cell means versus point values, and spatial error versus time-step effects. p+1 Gauss solution points, upwind interface flux, Legendre Radau corrections and SSPRK(3,3). Match initial L2 projection, upwind flux and timestep policy to the unchanged published modal DG. Scaled Courant(2p+1)|a|dt/h<=.15; separately halve the timestep at p2/N32."
               },
               "context_problem_id": "advection-sine"
             },
@@ -21559,8 +22457,44 @@
               "status": "educational-example",
               "role": "execution",
               "note": {
-                "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。 セル平均からのWENO-JS／Z二乗重みの臨界点再構成と、実際の周期スカラー輸送を比較します。εの違い、解析セル平均と点値、空間誤差と時間刻みの影響を分けます。",
-                "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions. Compare critical-point reconstruction from cell means using WENO-JS/Z power-two weights and actual periodic scalar transport. Separate epsilon choices, analytic cell means versus point values, and spatial error versus time-step effects."
+                "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。 セル平均からのWENO-JS／Z二乗重みの臨界点再構成と、実際の周期スカラー輸送を比較します。εの違い、解析セル平均と点値、空間誤差と時間刻みの影響を分けます。 p+1個のGauss解点、上流数値流束、Legendre多項式によるRadau左右補正、SSPRK(3,3)。初期L2射影・上流流束・時間刻み規約をバイト一致の既存modal DGと揃えます。スケールしたCourant数(2p+1)|a|Δt/h≤.15。最後にp2/N32で刻みを半減。",
+                "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions. Compare critical-point reconstruction from cell means using WENO-JS/Z power-two weights and actual periodic scalar transport. Separate epsilon choices, analytic cell means versus point values, and spatial error versus time-step effects. p+1 Gauss solution points, upwind interface flux, Legendre Radau corrections and SSPRK(3,3). Match initial L2 projection, upwind flux and timestep policy to the unchanged published modal DG. Scaled Courant(2p+1)|a|dt/h<=.15; separately halve the timestep at p2/N32."
+              },
+              "context_problem_id": "advection-sine"
+            },
+            {
+              "id": "flux-reconstruction",
+              "name": {
+                "ja": "Flux Reconstruction法（FR法）",
+                "en": "Flux reconstruction (FR)"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/flux-reconstruction/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/flux-reconstruction/?lang=en"
+              },
+              "status": "educational-example",
+              "role": "execution",
+              "note": {
+                "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。 セル平均からのWENO-JS／Z二乗重みの臨界点再構成と、実際の周期スカラー輸送を比較します。εの違い、解析セル平均と点値、空間誤差と時間刻みの影響を分けます。 p+1個のGauss解点、上流数値流束、Legendre多項式によるRadau左右補正、SSPRK(3,3)。初期L2射影・上流流束・時間刻み規約をバイト一致の既存modal DGと揃えます。スケールしたCourant数(2p+1)|a|Δt/h≤.15。最後にp2/N32で刻みを半減。",
+                "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions. Compare critical-point reconstruction from cell means using WENO-JS/Z power-two weights and actual periodic scalar transport. Separate epsilon choices, analytic cell means versus point values, and spatial error versus time-step effects. p+1 Gauss solution points, upwind interface flux, Legendre Radau corrections and SSPRK(3,3). Match initial L2 projection, upwind flux and timestep policy to the unchanged published modal DG. Scaled Courant(2p+1)|a|dt/h<=.15; separately halve the timestep at p2/N32."
+              },
+              "context_problem_id": "advection-sine"
+            },
+            {
+              "id": "dg",
+              "name": {
+                "ja": "不連続Galerkin法／Legendre",
+                "en": "Discontinuous Galerkin / Legendre"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/dg/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/dg/?lang=en"
+              },
+              "status": "educational-example",
+              "role": "execution",
+              "note": {
+                "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。 セル平均からのWENO-JS／Z二乗重みの臨界点再構成と、実際の周期スカラー輸送を比較します。εの違い、解析セル平均と点値、空間誤差と時間刻みの影響を分けます。 p+1個のGauss解点、上流数値流束、Legendre多項式によるRadau左右補正、SSPRK(3,3)。初期L2射影・上流流束・時間刻み規約をバイト一致の既存modal DGと揃えます。スケールしたCourant数(2p+1)|a|Δt/h≤.15。最後にp2/N32で刻みを半減。",
+                "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions. Compare critical-point reconstruction from cell means using WENO-JS/Z power-two weights and actual periodic scalar transport. Separate epsilon choices, analytic cell means versus point values, and spatial error versus time-step effects. p+1 Gauss solution points, upwind interface flux, Legendre Radau corrections and SSPRK(3,3). Match initial L2 projection, upwind flux and timestep policy to the unchanged published modal DG. Scaled Courant(2p+1)|a|dt/h<=.15; separately halve the timestep at p2/N32."
               },
               "context_problem_id": "advection-sine"
             }
@@ -21654,8 +22588,8 @@
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=en#references-en"
               },
               "note": {
-                "ja": "周期正弦波の解析的な平行移動が基準です。問題台帳には振幅や離散表現の異なる比較を統合しており、参照解一覧の振幅0.25を全実行例に流用しません。",
-                "en": "Analytic translation of a periodic sine is the standard. The problem merges different amplitudes and representations; the reference-library amplitude 0.25 is not the input for every execution example."
+                "ja": "周期正弦波の解析的な平行移動が基準です。問題台帳には振幅や離散表現の異なる比較を統合しており、参照解一覧の振幅0.25を全実行例に流用しません。 追加のGauss点で連続L2誤差を積分し、既存DGの最終多項式と共通点で照合。全RK段階の重み付き質量と各完了ステップの2次エネルギーを検査。同じFR空間演算子の行列指数解で時間誤差を別測定し、刻み半減を確認。",
+                "en": "Analytic translation of a periodic sine is the standard. The problem merges different amplitudes and representations; the reference-library amplitude 0.25 is not the input for every execution example. Integrate continuous L2 error at additional Gauss points and compare final polynomials with the actual published DG at common points. Check weighted mass at every RK stage and quadratic energy at each completed step. A matrix exponential of the same FR operator separately measures RK3 time error and its timestep-halving response."
               }
             },
             {
@@ -21692,6 +22626,24 @@
                 "en": "Analytic reference Local references integrate polynomials over five cells centered around x=0 and evaluate at h/2. Regular, first-critical and second-critical profiles use h=1/64…1/512. The actual periodic-transport reference is the Fourier-integrated cell mean of q₀=cos(2πx)+.1sin³(2πx) on[0,1], speed1,T1, checked independently by Gauss12 point-function quadrature. Local polynomials differ from the evolved profile; neither point samples nor another PDE calculation are substituted for cell means. An additional constant-speed periodic-transport reference. The cos+.1sin³ cell means and local critical polynomials differ from the historical single-sine/CIP display."
               },
               "relation": "related-model",
+              "context_problem_id": "advection-sine"
+            },
+            {
+              "id": "fr-periodic-advection",
+              "name": {
+                "ja": "FRとDGの周期正弦移流：平均0.4・T=.25の解析参照",
+                "en": "FR/DG periodic sine advection: analytic reference at mean0.4 andT=.25"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-fr-periodic-advection-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-fr-periodic-advection-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "解析解 全て無次元。u_t+u_x=0、区間[0,1)、周期境界、初期値0.4+sin(2πx)。解析解は0.4+sin(2π(x−t))。一定の正速度1、均一なアフィン区間要素。 全て無次元。u_t+u_x=0、区間[0,1)、周期境界、初期値0.4+sin(2πx)。解析解は0.4+sin(2π(x−t))。一定の正速度1、均一なアフィン区間要素。",
+                "en": "Analytic reference Dimensionless u_t+u_x=0 on[0,1), periodic boundary, initial0.4+sin(2pi x), analytic0.4+sin(2pi(x-t)). Constant positive speed1 and uniform affine intervals. Dimensionless u_t+u_x=0 on[0,1), periodic boundary, initial0.4+sin(2pi x), analytic0.4+sin(2pi(x-t)). Constant positive speed1 and uniform affine intervals."
+              },
+              "relation": "same-problem",
               "context_problem_id": "advection-sine"
             },
             {
@@ -21744,6 +22696,24 @@
                 "en": "Analytic reference Local references integrate polynomials over five cells centered around x=0 and evaluate at h/2. Regular, first-critical and second-critical profiles use h=1/64…1/512. The actual periodic-transport reference is the Fourier-integrated cell mean of q₀=cos(2πx)+.1sin³(2πx) on[0,1], speed1,T1, checked independently by Gauss12 point-function quadrature. Local polynomials differ from the evolved profile; neither point samples nor another PDE calculation are substituted for cell means. An additional constant-speed periodic-transport reference. The cos+.1sin³ cell means and local critical polynomials differ from the historical single-sine/CIP display."
               },
               "relation": "related-model",
+              "context_execution_id": "advection-sine"
+            },
+            {
+              "id": "fr-periodic-advection",
+              "name": {
+                "ja": "FRとDGの周期正弦移流：平均0.4・T=.25の解析参照",
+                "en": "FR/DG periodic sine advection: analytic reference at mean0.4 andT=.25"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-fr-periodic-advection-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-fr-periodic-advection-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "解析解 全て無次元。u_t+u_x=0、区間[0,1)、周期境界、初期値0.4+sin(2πx)。解析解は0.4+sin(2π(x−t))。一定の正速度1、均一なアフィン区間要素。 全て無次元。u_t+u_x=0、区間[0,1)、周期境界、初期値0.4+sin(2πx)。解析解は0.4+sin(2π(x−t))。一定の正速度1、均一なアフィン区間要素。",
+                "en": "Analytic reference Dimensionless u_t+u_x=0 on[0,1), periodic boundary, initial0.4+sin(2pi x), analytic0.4+sin(2pi(x-t)). Constant positive speed1 and uniform affine intervals. Dimensionless u_t+u_x=0 on[0,1), periodic boundary, initial0.4+sin(2pi x), analytic0.4+sin(2pi(x-t)). Constant positive speed1 and uniform affine intervals."
+              },
+              "relation": "same-problem",
               "context_execution_id": "advection-sine"
             }
           ],
@@ -22064,6 +23034,26 @@
               "note": {
                 "ja": "同じセル平均からのWENO5再構成と実際の周期輸送で、JS重みとZ二乗重みを比較します。3種類の臨界性、3種類のε、固定格子と時間刻み半減を分けて保存します。",
                 "en": "Compare WENO5 JS and Z power-two weights from the same cell means, then evolve actual periodic transport. Retain three regularity classes, three epsilon choices, fixed grids and separate halved-time-step diagnostics."
+              }
+            },
+            {
+              "id": "fr-periodic-advection",
+              "name": {
+                "ja": "FR法の1D周期移流：Radau補正と既存DGの比較",
+                "en": "1D periodic FR advection: Radau correction and published DG comparison"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fr-periodic-advection/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fr-periodic-advection/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "flux-reconstruction",
+                "dg"
+              ],
+              "note": {
+                "ja": "0.4+sin(2πx)をT=.25まで移流。Gauss点・Radau補正のFRと既存のmodal DGをp=1/2、8/16/32セルで実行し、誤差・質量・時間積分誤差を測ります。",
+                "en": "Transport0.4+sin(2pi x) toT=.25. Execute Gauss-node/Radau FR and the existing modal DG for p=1/2 and8/16/32 cells; measure analytic error, mass and time-integration error."
               }
             }
           ]
@@ -26261,6 +27251,24 @@
                 "en": "Manufactured solution Zero Dirichlet endpoints. The forcing is chosen from the target solution; this is not an arbitrary-source Poisson solution. The card is 1D sin(πx); this test is 2D sin(πx)sin(πy). Dimension, forcing and FEM error norms differ."
               },
               "relation": "related-model",
+              "context_execution_id": "sa-amg"
+            },
+            {
+              "id": "sem-poisson-2d",
+              "name": {
+                "ja": "2D Poisson正弦製造解：SEMとP1 FEMの共通参照",
+                "en": "2D Poisson sine manufactured solution: shared SEM/P1 FEM reference"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-sem-poisson-2d-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-sem-poisson-2d-en"
+              },
+              "reference_kind": "manufactured",
+              "note": {
+                "ja": "製造解 全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。 全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。",
+                "en": "Manufactured solution Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM. Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM."
+              },
+              "relation": "same-problem",
               "context_execution_id": "sa-amg"
             },
             {
@@ -33289,6 +34297,646 @@
         }
       }
     },
+    "validation-sem-fr": {
+      "id": "validation-sem-fr",
+      "title": {
+        "ja": "スペクトル要素法とFR：既存FEM・DGとの軽量比較",
+        "en": "Spectral elements and FR: small comparisons with existing FEM/DG"
+      },
+      "routes": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/"
+      },
+      "association_status": "registered",
+      "resource_navigation": {
+        "kind": "chapter",
+        "id": "validation-sem-fr",
+        "note": {
+          "ja": "この章に登録された手法・問題・実行例の関連資料です。 新しい固定入力を実行した範囲で、手法・式・既存の物理問題・解析/製造参照・配布コードを対応させます。関連する外部ソフトの動作検証は含みません。",
+          "en": "Resources explicitly registered to the methods, problems and executions of this chapter. Explicitly connects the newly executed fixed inputs to methods, equations, existing physical problems, analytic/manufactured references and release code. It does not validate related external software."
+        },
+        "groups": {
+          "methods": [
+            {
+              "id": "spectral-element",
+              "name": {
+                "ja": "スペクトル要素法（SEM）",
+                "en": "Spectral element method (SEM)"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/spectral-element/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/spectral-element/?lang=en"
+              },
+              "status": "educational-example",
+              "role": "execution"
+            },
+            {
+              "id": "p1-fem",
+              "name": {
+                "ja": "連続P1 Galerkin有限要素法",
+                "en": "Continuous P1 Galerkin FEM"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/p1-fem/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/p1-fem/?lang=en"
+              },
+              "status": "educational-example",
+              "role": "execution"
+            },
+            {
+              "id": "flux-reconstruction",
+              "name": {
+                "ja": "Flux Reconstruction法（FR法）",
+                "en": "Flux reconstruction (FR)"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/flux-reconstruction/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/flux-reconstruction/?lang=en"
+              },
+              "status": "educational-example",
+              "role": "execution"
+            },
+            {
+              "id": "dg",
+              "name": {
+                "ja": "不連続Galerkin法／Legendre",
+                "en": "Discontinuous Galerkin / Legendre"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/dg/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/dg/?lang=en"
+              },
+              "status": "educational-example",
+              "role": "execution"
+            }
+          ],
+          "equations": [
+            {
+              "id": "formulation-sem-poisson-2d",
+              "name": {
+                "ja": "この実行例の式と条件",
+                "en": "This execution’s formulation and conditions"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sem-poisson-2d/?lang=ja#sem-poisson-2d-ja-algorithm",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sem-poisson-2d/?lang=en#sem-poisson-2d-en-algorithm"
+              },
+              "note": {
+                "ja": "SEMはC0連続なテンソル積Qp Lagrange基底・p+1個のLegendre GLL節点と求積、疎な剛性行列・SciPy直接解法を使用。p=2で各方向2/4/8要素、別に2×2要素でp=1〜6。公開済みNumartのP1 FEM・GMRESをファイルのバイト列を保持して4/8/16分割で実行し、両者の自由未知数9/49/225を一致させます。",
+                "en": "C0 tensor Qp Lagrange SEM with p+1 Legendre GLL nodes/quadrature, sparse stiffness assembly and a SciPy direct solve. At p=2 use2/4/8 elements per axis; separately fix2x2 elements and p=1..6. Execute the byte-identical published Numart triangle P1 FEM/GMRES at4/8/16 subdivisions, matching9/49/225 free unknowns."
+              },
+              "role": "example-definition"
+            },
+            {
+              "id": "poisson-laplace",
+              "name": {
+                "ja": "Poisson・Laplace方程式",
+                "en": "Poisson / Laplace equations"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#poisson-laplace-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#poisson-laplace-en"
+              },
+              "note": {
+                "ja": "楕円型境界値問題。符号規約を確認し、反復解法・疎行列・境界条件をたどる。",
+                "en": "Elliptic boundary-value problems: check sign conventions, iterative solvers, sparse matrices and boundaries."
+              }
+            },
+            {
+              "id": "formulation-fr-periodic-advection",
+              "name": {
+                "ja": "この実行例の式と条件",
+                "en": "This execution’s formulation and conditions"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fr-periodic-advection/?lang=ja#fr-periodic-advection-ja-algorithm",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fr-periodic-advection/?lang=en#fr-periodic-advection-en-algorithm"
+              },
+              "note": {
+                "ja": "p+1個のGauss解点、上流数値流束、Legendre多項式によるRadau左右補正、SSPRK(3,3)。初期L2射影・上流流束・時間刻み規約をバイト一致の既存modal DGと揃えます。スケールしたCourant数(2p+1)|a|Δt/h≤.15。最後にp2/N32で刻みを半減。",
+                "en": "p+1 Gauss solution points, upwind interface flux, Legendre Radau corrections and SSPRK(3,3). Match initial L2 projection, upwind flux and timestep policy to the unchanged published modal DG. Scaled Courant(2p+1)|a|dt/h<=.15; separately halve the timestep at p2/N32."
+              },
+              "role": "example-definition"
+            },
+            {
+              "id": "linear-advection",
+              "name": {
+                "ja": "線形移流",
+                "en": "Linear advection"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#linear-advection-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#linear-advection-en"
+              },
+              "note": {
+                "ja": "一定速度aによる輸送。波形の移動、数値拡散、安定性へ。",
+                "en": "Transport at constant speed a: translation, numerical diffusion and stability."
+              }
+            }
+          ],
+          "figures": [
+            {
+              "id": "sem-poisson-2d",
+              "name": {
+                "ja": "スペクトル要素法の2D Poisson：P1 FEMとh/p収束を比較",
+                "en": "2D spectral-element Poisson: P1 FEM comparison and h/p refinement"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/results/sem-poisson-2d.png",
+                "en": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/results/sem-poisson-2d.png"
+              },
+              "image": {
+                "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/results/sem-poisson-2d.png",
+                "sha256": "fdad68cc85073ba5d51bc9b48b34c116896d2c99cf497bdda32faa2d27481ef7",
+                "width": 1650,
+                "height": 1260,
+                "kind": "case-validation",
+                "caption": {
+                  "ja": "スペクトル要素法の2D Poisson：P1 FEMとh/p収束を比較：この実行例の保存済み検証図。",
+                  "en": "2D spectral-element Poisson: P1 FEM comparison and h/p refinement: saved validation figure for this execution."
+                }
+              },
+              "note": {
+                "ja": "この実行例自身の保存済み検証図です。",
+                "en": "The saved validation figure for this execution itself."
+              },
+              "problem_id": "poisson-2d-sine"
+            },
+            {
+              "id": "fr-periodic-advection",
+              "name": {
+                "ja": "FR法の1D周期移流：Radau補正と既存DGの比較",
+                "en": "1D periodic FR advection: Radau correction and published DG comparison"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/results/fr-periodic-advection.png",
+                "en": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/results/fr-periodic-advection.png"
+              },
+              "image": {
+                "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/results/fr-periodic-advection.png",
+                "sha256": "d4afeebdf38e32dcaf3a2c58288ef4ed2f1f79c7c32e89c80f40d71199a11c37",
+                "width": 1650,
+                "height": 1260,
+                "kind": "case-validation",
+                "caption": {
+                  "ja": "FR法の1D周期移流：Radau補正と既存DGの比較：この実行例の保存済み検証図。",
+                  "en": "1D periodic FR advection: Radau correction and published DG comparison: saved validation figure for this execution."
+                }
+              },
+              "note": {
+                "ja": "この実行例自身の保存済み検証図です。",
+                "en": "The saved validation figure for this execution itself."
+              },
+              "problem_id": "advection-sine"
+            },
+            {
+              "id": "poisson-2d-sine",
+              "name": {
+                "ja": "2次元Poisson・正弦単一モード（FEMを含む）",
+                "en": "2D Poisson / single sine mode, including FEM"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=en"
+              },
+              "image": {
+                "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/field-fem-poisson.png",
+                "sha256": "5cb31b1cb182fa6509de11f0cafcc2368b9136b46d625bc6183df2a648f9af29",
+                "width": 1575,
+                "height": 690,
+                "caption": {
+                  "ja": "同じ正弦製造解を解く、三角形有限要素の保存解と誤差。",
+                  "en": "Stored triangular-FEM solution and error for the same sine manufactured problem."
+                },
+                "source_kind": "existing-figure"
+              },
+              "note": {
+                "ja": "新しい固定入力を実行した範囲で、手法・式・既存の物理問題・解析/製造参照・配布コードを対応させます。関連する外部ソフトの動作検証は含みません。 テスト問題の代表図。条件と出典は問題別ページで確認できます。",
+                "en": "Explicitly connects the newly executed fixed inputs to methods, equations, existing physical problems, analytic/manufactured references and release code. It does not validate related external software. Representative test-problem figure; the problem page records conditions and provenance."
+              },
+              "context_chapter_id": "validation-sem-fr",
+              "role": "related"
+            },
+            {
+              "id": "advection-sine",
+              "name": {
+                "ja": "周期正弦波の線形移流",
+                "en": "Periodic sine-wave advection"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=en"
+              },
+              "image": {
+                "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/advection-sine.png",
+                "sha256": "dbb022150fee1472e54b24dfd3f01363bcfd3998f7e21da9dad6f30e4d224f0a",
+                "width": 832,
+                "height": 494,
+                "caption": {
+                  "ja": "保存済みのCIP・線形補間・厳密な移流波形。",
+                  "en": "Stored CIP, linear-interpolation and exact advection profiles."
+                },
+                "source_kind": "stored-data-plot"
+              },
+              "note": {
+                "ja": "新しい固定入力を実行した範囲で、手法・式・既存の物理問題・解析/製造参照・配布コードを対応させます。関連する外部ソフトの動作検証は含みません。 テスト問題の代表図。条件と出典は問題別ページで確認できます。",
+                "en": "Explicitly connects the newly executed fixed inputs to methods, equations, existing physical problems, analytic/manufactured references and release code. It does not validate related external software. Representative test-problem figure; the problem page records conditions and provenance."
+              },
+              "context_chapter_id": "validation-sem-fr",
+              "role": "related"
+            }
+          ],
+          "references": [
+            {
+              "id": "validation-sem-poisson-2d",
+              "name": {
+                "ja": "スペクトル要素法の2D Poisson：P1 FEMとh/p収束を比較：参照・検証",
+                "en": "2D spectral-element Poisson: P1 FEM comparison and h/p refinement — references and checks"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sem-poisson-2d/?lang=ja#sem-poisson-2d-ja-validation",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sem-poisson-2d/?lang=en#sem-poisson-2d-en-validation"
+              },
+              "note": {
+                "ja": "解析的な正弦製造解と勾配を参照し、GLL節点とは異なる高次Gauss点で連続L2誤差・H1半ノルムを積分。h/p収束・自由未知数を揃えた誤差・境界値・真の残差を検査し、実際の2D場とP1の頂点・三角形・解をNPZに保存。",
+                "en": "Compare with the analytic manufactured sine solution/gradient. Integrate continuous L2/H1-seminorm errors at independent higher-order Gauss points. Check h/p refinement, matched-unknown errors, boundary data and true residuals; save actual2D SEM fields and P1 vertices/triangles/values in NPZ."
+              },
+              "role": "execution"
+            },
+            {
+              "id": "poisson-manufactured",
+              "name": {
+                "ja": "Poisson／正弦波の製造解",
+                "en": "Poisson / manufactured sine"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-poisson-manufactured-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-poisson-manufactured-en"
+              },
+              "reference_kind": "manufactured",
+              "note": {
+                "ja": "製造解 両端はゼロDirichlet条件。目標解から外力を選ぶ製造解であり、任意の外力のPoisson解ではありません。 カードは1次元sin(πx)、こちらは2次元sin(πx)sin(πy)です。次元・右辺・FEMの誤差ノルムは異なります。",
+                "en": "Manufactured solution Zero Dirichlet endpoints. The forcing is chosen from the target solution; this is not an arbitrary-source Poisson solution. The card is 1D sin(πx); this test is 2D sin(πx)sin(πy). Dimension, forcing and FEM error norms differ."
+              },
+              "relation": "related-model",
+              "context_execution_id": "sem-poisson-2d"
+            },
+            {
+              "id": "sem-poisson-2d",
+              "name": {
+                "ja": "2D Poisson正弦製造解：SEMとP1 FEMの共通参照",
+                "en": "2D Poisson sine manufactured solution: shared SEM/P1 FEM reference"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-sem-poisson-2d-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-sem-poisson-2d-en"
+              },
+              "reference_kind": "manufactured",
+              "note": {
+                "ja": "製造解 全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。 全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。",
+                "en": "Manufactured solution Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM. Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM."
+              },
+              "relation": "same-problem",
+              "context_execution_id": "sem-poisson-2d"
+            },
+            {
+              "id": "validation-fr-periodic-advection",
+              "name": {
+                "ja": "FR法の1D周期移流：Radau補正と既存DGの比較：参照・検証",
+                "en": "1D periodic FR advection: Radau correction and published DG comparison — references and checks"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fr-periodic-advection/?lang=ja#fr-periodic-advection-ja-validation",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fr-periodic-advection/?lang=en#fr-periodic-advection-en-validation"
+              },
+              "note": {
+                "ja": "追加のGauss点で連続L2誤差を積分し、既存DGの最終多項式と共通点で照合。全RK段階の重み付き質量と各完了ステップの2次エネルギーを検査。同じFR空間演算子の行列指数解で時間誤差を別測定し、刻み半減を確認。",
+                "en": "Integrate continuous L2 error at additional Gauss points and compare final polynomials with the actual published DG at common points. Check weighted mass at every RK stage and quadratic energy at each completed step. A matrix exponential of the same FR operator separately measures RK3 time error and its timestep-halving response."
+              },
+              "role": "execution"
+            },
+            {
+              "id": "sine-advection",
+              "name": {
+                "ja": "移流／正弦波の平行移動",
+                "en": "Advection / sine translation"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-sine-advection-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-sine-advection-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "解析解 単位区間の周期境界、一定移流速度1。 同じ周期・速度1の正弦移流モデルです。参照一覧は振幅0.25、共通固定入力は0.2で、DG・CIP等の表現や時間も異なります。",
+                "en": "Analytic reference Periodic unit interval; constant advection speed 1. Same periodic sine-transport model at speed one. The library amplitude is 0.25 versus 0.2 in the common fixed input; DG/CIP representations and output times also differ."
+              },
+              "relation": "related-model",
+              "context_execution_id": "fr-periodic-advection"
+            },
+            {
+              "id": "weno-critical-profile",
+              "name": {
+                "ja": "WENO臨界点：多項式セル平均と解析的周期輸送",
+                "en": "WENO critical points: polynomial cell means and analytic periodic transport"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-weno-critical-profile-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-weno-critical-profile-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "解析解 局所参照はx=0を中心とする5セルの解析平均からh/2を評価する多項式です。通常・一次・二次臨界の3形、h=1/64…1/512を区別します。実際の周期輸送参照は[0,1]、速度1、T1、q₀=cos(2πx)+.1sin³(2πx)のFourier積分セル平均で、別のGauss12点関数求積と照合します。局所多項式と輸送の初期形は異なり、点値や別PDE計算の参照ではありません。 同じ一定速度の周期移流に対する追加参照ですが、cos+.1sin³のセル平均と局所臨界多項式は、従来の単一正弦・CIP表示と異なります。",
+                "en": "Analytic reference Local references integrate polynomials over five cells centered around x=0 and evaluate at h/2. Regular, first-critical and second-critical profiles use h=1/64…1/512. The actual periodic-transport reference is the Fourier-integrated cell mean of q₀=cos(2πx)+.1sin³(2πx) on[0,1], speed1,T1, checked independently by Gauss12 point-function quadrature. Local polynomials differ from the evolved profile; neither point samples nor another PDE calculation are substituted for cell means. An additional constant-speed periodic-transport reference. The cos+.1sin³ cell means and local critical polynomials differ from the historical single-sine/CIP display."
+              },
+              "relation": "related-model",
+              "context_execution_id": "fr-periodic-advection"
+            },
+            {
+              "id": "fr-periodic-advection",
+              "name": {
+                "ja": "FRとDGの周期正弦移流：平均0.4・T=.25の解析参照",
+                "en": "FR/DG periodic sine advection: analytic reference at mean0.4 andT=.25"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-fr-periodic-advection-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-fr-periodic-advection-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "解析解 全て無次元。u_t+u_x=0、区間[0,1)、周期境界、初期値0.4+sin(2πx)。解析解は0.4+sin(2π(x−t))。一定の正速度1、均一なアフィン区間要素。 全て無次元。u_t+u_x=0、区間[0,1)、周期境界、初期値0.4+sin(2πx)。解析解は0.4+sin(2π(x−t))。一定の正速度1、均一なアフィン区間要素。",
+                "en": "Analytic reference Dimensionless u_t+u_x=0 on[0,1), periodic boundary, initial0.4+sin(2pi x), analytic0.4+sin(2pi(x-t)). Constant positive speed1 and uniform affine intervals. Dimensionless u_t+u_x=0 on[0,1), periodic boundary, initial0.4+sin(2pi x), analytic0.4+sin(2pi(x-t)). Constant positive speed1 and uniform affine intervals."
+              },
+              "relation": "same-problem",
+              "context_execution_id": "fr-periodic-advection"
+            },
+            {
+              "id": "sem-poisson-2d",
+              "name": {
+                "ja": "2D Poisson正弦製造解：SEMとP1 FEMの共通参照",
+                "en": "2D Poisson sine manufactured solution: shared SEM/P1 FEM reference"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-sem-poisson-2d-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-sem-poisson-2d-en"
+              },
+              "reference_kind": "manufactured",
+              "note": {
+                "ja": "新しい固定入力を実行した範囲で、手法・式・既存の物理問題・解析/製造参照・配布コードを対応させます。関連する外部ソフトの動作検証は含みません。 製造解 全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。",
+                "en": "Explicitly connects the newly executed fixed inputs to methods, equations, existing physical problems, analytic/manufactured references and release code. It does not validate related external software. Manufactured solution Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM."
+              },
+              "context_chapter_id": "validation-sem-fr",
+              "role": "related"
+            },
+            {
+              "id": "fr-periodic-advection",
+              "name": {
+                "ja": "FRとDGの周期正弦移流：平均0.4・T=.25の解析参照",
+                "en": "FR/DG periodic sine advection: analytic reference at mean0.4 andT=.25"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-fr-periodic-advection-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-fr-periodic-advection-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "新しい固定入力を実行した範囲で、手法・式・既存の物理問題・解析/製造参照・配布コードを対応させます。関連する外部ソフトの動作検証は含みません。 解析解 全て無次元。u_t+u_x=0、区間[0,1)、周期境界、初期値0.4+sin(2πx)。解析解は0.4+sin(2π(x−t))。一定の正速度1、均一なアフィン区間要素。",
+                "en": "Explicitly connects the newly executed fixed inputs to methods, equations, existing physical problems, analytic/manufactured references and release code. It does not validate related external software. Analytic reference Dimensionless u_t+u_x=0 on[0,1), periodic boundary, initial0.4+sin(2pi x), analytic0.4+sin(2pi(x-t)). Constant positive speed1 and uniform affine intervals."
+              },
+              "context_chapter_id": "validation-sem-fr",
+              "role": "related"
+            },
+            {
+              "id": "problem-poisson-2d-sine",
+              "name": {
+                "ja": "2次元Poisson・正弦単一モード（FEMを含む）：参照・比較条件",
+                "en": "2D Poisson / single sine mode, including FEM — references and comparison conditions"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=ja#references-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=en#references-en"
+              },
+              "note": {
+                "ja": "新しい固定入力を実行した範囲で、手法・式・既存の物理問題・解析/製造参照・配布コードを対応させます。関連する外部ソフトの動作検証は含みません。 単位正方形の製造解sin(πx)sin(πy)を使い、差分・連続P1 FEMの格子誤差と、補助AMG例の離散参照を確認します。 追加のamg-conditioningは既知の代数解を使う条件数・残差診断で、物理問題への紐付けはありません。このPoisson問題の格子精度・独立参照の証拠として流用しません。 解析的な正弦製造解と勾配を参照し、GLL節点とは異なる高次Gauss点で連続L2誤差・H1半ノルムを積分。h/p収束・自由未知数を揃えた誤差・境界値・真の残差を検査し、実際の2D場とP1の頂点・三角形・解をNPZに保存。",
+                "en": "Explicitly connects the newly executed fixed inputs to methods, equations, existing physical problems, analytic/manufactured references and release code. It does not validate related external software. Use sin(πx)sin(πy) on the unit square to check finite-difference and continuous-P1 FEM mesh errors, plus the supplemental AMG example's discrete reference. The added amg-conditioning case uses known algebraic solutions for conditioning/residual diagnostics and has no physical-problem binding. Its results are not borrowed as evidence for this Poisson problem’s mesh accuracy or independent reference. Compare with the analytic manufactured sine solution/gradient. Integrate continuous L2/H1-seminorm errors at independent higher-order Gauss points. Check h/p refinement, matched-unknown errors, boundary data and true residuals; save actual2D SEM fields and P1 vertices/triangles/values in NPZ."
+              },
+              "context_chapter_id": "validation-sem-fr",
+              "role": "related"
+            },
+            {
+              "id": "poisson-manufactured",
+              "name": {
+                "ja": "Poisson／正弦波の製造解",
+                "en": "Poisson / manufactured sine"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-poisson-manufactured-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-poisson-manufactured-en"
+              },
+              "reference_kind": "manufactured",
+              "note": {
+                "ja": "新しい固定入力を実行した範囲で、手法・式・既存の物理問題・解析/製造参照・配布コードを対応させます。関連する外部ソフトの動作検証は含みません。 製造解 両端はゼロDirichlet条件。目標解から外力を選ぶ製造解であり、任意の外力のPoisson解ではありません。 カードは1次元sin(πx)、こちらは2次元sin(πx)sin(πy)です。次元・右辺・FEMの誤差ノルムは異なります。",
+                "en": "Explicitly connects the newly executed fixed inputs to methods, equations, existing physical problems, analytic/manufactured references and release code. It does not validate related external software. Manufactured solution Zero Dirichlet endpoints. The forcing is chosen from the target solution; this is not an arbitrary-source Poisson solution. The card is 1D sin(πx); this test is 2D sin(πx)sin(πy). Dimension, forcing and FEM error norms differ."
+              },
+              "relation": "related-model",
+              "context_problem_id": "poisson-2d-sine",
+              "context_chapter_id": "validation-sem-fr",
+              "role": "related"
+            },
+            {
+              "id": "sem-poisson-2d",
+              "name": {
+                "ja": "2D Poisson正弦製造解：SEMとP1 FEMの共通参照",
+                "en": "2D Poisson sine manufactured solution: shared SEM/P1 FEM reference"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-sem-poisson-2d-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-sem-poisson-2d-en"
+              },
+              "reference_kind": "manufactured",
+              "note": {
+                "ja": "新しい固定入力を実行した範囲で、手法・式・既存の物理問題・解析/製造参照・配布コードを対応させます。関連する外部ソフトの動作検証は含みません。 製造解 全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。 全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。",
+                "en": "Explicitly connects the newly executed fixed inputs to methods, equations, existing physical problems, analytic/manufactured references and release code. It does not validate related external software. Manufactured solution Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM. Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM."
+              },
+              "relation": "same-problem",
+              "context_problem_id": "poisson-2d-sine",
+              "context_chapter_id": "validation-sem-fr",
+              "role": "related"
+            },
+            {
+              "id": "problem-advection-sine",
+              "name": {
+                "ja": "周期正弦波の線形移流：参照・比較条件",
+                "en": "Periodic sine-wave advection — references and comparison conditions"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=ja#references-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=en#references-en"
+              },
+              "note": {
+                "ja": "新しい固定入力を実行した範囲で、手法・式・既存の物理問題・解析/製造参照・配布コードを対応させます。関連する外部ソフトの動作検証は含みません。 周期正弦波の解析的な平行移動が基準です。問題台帳には振幅や離散表現の異なる比較を統合しており、参照解一覧の振幅0.25を全実行例に流用しません。 追加のGauss点で連続L2誤差を積分し、既存DGの最終多項式と共通点で照合。全RK段階の重み付き質量と各完了ステップの2次エネルギーを検査。同じFR空間演算子の行列指数解で時間誤差を別測定し、刻み半減を確認。",
+                "en": "Explicitly connects the newly executed fixed inputs to methods, equations, existing physical problems, analytic/manufactured references and release code. It does not validate related external software. Analytic translation of a periodic sine is the standard. The problem merges different amplitudes and representations; the reference-library amplitude 0.25 is not the input for every execution example. Integrate continuous L2 error at additional Gauss points and compare final polynomials with the actual published DG at common points. Check weighted mass at every RK stage and quadratic energy at each completed step. A matrix exponential of the same FR operator separately measures RK3 time error and its timestep-halving response."
+              },
+              "context_chapter_id": "validation-sem-fr",
+              "role": "related"
+            },
+            {
+              "id": "sine-advection",
+              "name": {
+                "ja": "移流／正弦波の平行移動",
+                "en": "Advection / sine translation"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-sine-advection-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-sine-advection-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "新しい固定入力を実行した範囲で、手法・式・既存の物理問題・解析/製造参照・配布コードを対応させます。関連する外部ソフトの動作検証は含みません。 解析解 単位区間の周期境界、一定移流速度1。 同じ周期・速度1の正弦移流モデルです。参照一覧は振幅0.25、共通固定入力は0.2で、DG・CIP等の表現や時間も異なります。",
+                "en": "Explicitly connects the newly executed fixed inputs to methods, equations, existing physical problems, analytic/manufactured references and release code. It does not validate related external software. Analytic reference Periodic unit interval; constant advection speed 1. Same periodic sine-transport model at speed one. The library amplitude is 0.25 versus 0.2 in the common fixed input; DG/CIP representations and output times also differ."
+              },
+              "relation": "related-model",
+              "context_problem_id": "advection-sine",
+              "context_chapter_id": "validation-sem-fr",
+              "role": "related"
+            },
+            {
+              "id": "weno-critical-profile",
+              "name": {
+                "ja": "WENO臨界点：多項式セル平均と解析的周期輸送",
+                "en": "WENO critical points: polynomial cell means and analytic periodic transport"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-weno-critical-profile-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-weno-critical-profile-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "新しい固定入力を実行した範囲で、手法・式・既存の物理問題・解析/製造参照・配布コードを対応させます。関連する外部ソフトの動作検証は含みません。 解析解 局所参照はx=0を中心とする5セルの解析平均からh/2を評価する多項式です。通常・一次・二次臨界の3形、h=1/64…1/512を区別します。実際の周期輸送参照は[0,1]、速度1、T1、q₀=cos(2πx)+.1sin³(2πx)のFourier積分セル平均で、別のGauss12点関数求積と照合します。局所多項式と輸送の初期形は異なり、点値や別PDE計算の参照ではありません。 同じ一定速度の周期移流に対する追加参照ですが、cos+.1sin³のセル平均と局所臨界多項式は、従来の単一正弦・CIP表示と異なります。",
+                "en": "Explicitly connects the newly executed fixed inputs to methods, equations, existing physical problems, analytic/manufactured references and release code. It does not validate related external software. Analytic reference Local references integrate polynomials over five cells centered around x=0 and evaluate at h/2. Regular, first-critical and second-critical profiles use h=1/64…1/512. The actual periodic-transport reference is the Fourier-integrated cell mean of q₀=cos(2πx)+.1sin³(2πx) on[0,1], speed1,T1, checked independently by Gauss12 point-function quadrature. Local polynomials differ from the evolved profile; neither point samples nor another PDE calculation are substituted for cell means. An additional constant-speed periodic-transport reference. The cos+.1sin³ cell means and local critical polynomials differ from the historical single-sine/CIP display."
+              },
+              "relation": "related-model",
+              "context_problem_id": "advection-sine",
+              "context_chapter_id": "validation-sem-fr",
+              "role": "related"
+            },
+            {
+              "id": "fr-periodic-advection",
+              "name": {
+                "ja": "FRとDGの周期正弦移流：平均0.4・T=.25の解析参照",
+                "en": "FR/DG periodic sine advection: analytic reference at mean0.4 andT=.25"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-fr-periodic-advection-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-fr-periodic-advection-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "新しい固定入力を実行した範囲で、手法・式・既存の物理問題・解析/製造参照・配布コードを対応させます。関連する外部ソフトの動作検証は含みません。 解析解 全て無次元。u_t+u_x=0、区間[0,1)、周期境界、初期値0.4+sin(2πx)。解析解は0.4+sin(2π(x−t))。一定の正速度1、均一なアフィン区間要素。 全て無次元。u_t+u_x=0、区間[0,1)、周期境界、初期値0.4+sin(2πx)。解析解は0.4+sin(2π(x−t))。一定の正速度1、均一なアフィン区間要素。",
+                "en": "Explicitly connects the newly executed fixed inputs to methods, equations, existing physical problems, analytic/manufactured references and release code. It does not validate related external software. Analytic reference Dimensionless u_t+u_x=0 on[0,1), periodic boundary, initial0.4+sin(2pi x), analytic0.4+sin(2pi(x-t)). Constant positive speed1 and uniform affine intervals. Dimensionless u_t+u_x=0 on[0,1), periodic boundary, initial0.4+sin(2pi x), analytic0.4+sin(2pi(x-t)). Constant positive speed1 and uniform affine intervals."
+              },
+              "relation": "same-problem",
+              "context_problem_id": "advection-sine",
+              "context_chapter_id": "validation-sem-fr",
+              "role": "related"
+            }
+          ],
+          "code": [
+            {
+              "id": "sem-poisson-2d",
+              "name": {
+                "ja": "スペクトル要素法の2D Poisson：P1 FEMとh/p収束を比較",
+                "en": "2D spectral-element Poisson: P1 FEM comparison and h/p refinement"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sem-poisson-2d/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sem-poisson-2d/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "spectral-element",
+                "p1-fem"
+              ],
+              "note": {
+                "ja": "単位正方形の正弦製造解をGLLスペクトル要素法と既存P1三角形FEMで解きます。自由未知数を揃えたh細分化と、固定要素数でのp=1〜6を分けて測ります。",
+                "en": "Solve a sine manufactured solution on the unit square with GLL spectral elements and the existing triangle P1 FEM. Compare matched free-unknown counts under h refinement and p=1..6 at fixed elements."
+              }
+            },
+            {
+              "id": "fr-periodic-advection",
+              "name": {
+                "ja": "FR法の1D周期移流：Radau補正と既存DGの比較",
+                "en": "1D periodic FR advection: Radau correction and published DG comparison"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fr-periodic-advection/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fr-periodic-advection/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "flux-reconstruction",
+                "dg"
+              ],
+              "note": {
+                "ja": "0.4+sin(2πx)をT=.25まで移流。Gauss点・Radau補正のFRと既存のmodal DGをp=1/2、8/16/32セルで実行し、誤差・質量・時間積分誤差を測ります。",
+                "en": "Transport0.4+sin(2pi x) toT=.25. Execute Gauss-node/Radau FR and the existing modal DG for p=1/2 and8/16/32 cells; measure analytic error, mass and time-integration error."
+              }
+            }
+          ]
+        }
+      },
+      "directories": {
+        "methods": {
+          "name": {
+            "ja": "手法・コードの対応表",
+            "en": "Methods and code reference"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/?lang=en"
+          }
+        },
+        "equations": {
+          "name": {
+            "ja": "方程式",
+            "en": "Equations"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en"
+          }
+        },
+        "figures": {
+          "name": {
+            "ja": "テスト問題の名前と図",
+            "en": "Test problems by name and figure"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/?lang=en"
+          }
+        },
+        "references": {
+          "name": {
+            "ja": "厳密解・参照解",
+            "en": "Exact and reference solutions"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en"
+          }
+        },
+        "code": {
+          "name": {
+            "ja": "コード・入力・検証",
+            "en": "Code, inputs and validation"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en"
+          }
+        }
+      }
+    },
     "validation-shallow-water": {
       "id": "validation-shallow-water",
       "title": {
@@ -35422,6 +37070,24 @@
               },
               "relation": "related-model",
               "context_execution_id": "weno-critical-epsilon"
+            },
+            {
+              "id": "fr-periodic-advection",
+              "name": {
+                "ja": "FRとDGの周期正弦移流：平均0.4・T=.25の解析参照",
+                "en": "FR/DG periodic sine advection: analytic reference at mean0.4 andT=.25"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-fr-periodic-advection-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-fr-periodic-advection-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "解析解 全て無次元。u_t+u_x=0、区間[0,1)、周期境界、初期値0.4+sin(2πx)。解析解は0.4+sin(2π(x−t))。一定の正速度1、均一なアフィン区間要素。 全て無次元。u_t+u_x=0、区間[0,1)、周期境界、初期値0.4+sin(2πx)。解析解は0.4+sin(2π(x−t))。一定の正速度1、均一なアフィン区間要素。",
+                "en": "Analytic reference Dimensionless u_t+u_x=0 on[0,1), periodic boundary, initial0.4+sin(2pi x), analytic0.4+sin(2pi(x-t)). Constant positive speed1 and uniform affine intervals. Dimensionless u_t+u_x=0 on[0,1), periodic boundary, initial0.4+sin(2pi x), analytic0.4+sin(2pi(x-t)). Constant positive speed1 and uniform affine intervals."
+              },
+              "relation": "same-problem",
+              "context_execution_id": "weno-critical-epsilon"
             }
           ],
           "code": [
@@ -36009,17 +37675,17 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-chapter-links.json": "e6fa1c6edd7219b8af60c0265f559582b65f3e0b22f65ddaef9f302dd7cc7e3d",
-    "catalog/atlas-depth-expansion.json": "b5c4fcb308e4627460f59b96428960b22b508d3a593d480c4c2bee1b60373aeb",
-    "catalog/atlas-detailed-reading.json": "d771642c889ef2e2aaf3830978486f6c96481cfe095960f8a90c3a90deeb7385",
+    "catalog/atlas-chapter-links.json": "87bfae976abda4002bc663b01cd1c661e84c93cf95e78f7e734c037e7f8cf968",
+    "catalog/atlas-depth-expansion.json": "2adadc1abbd338bad24bf31415fc91fb3a5b72894aeca3afb031d185a2d40035",
+    "catalog/atlas-detailed-reading.json": "bbe020da3fae4d88307d3ea89e09ec023091b95331d530aaccb9fe4b2af90c58",
     "catalog/atlas-equations.json": "d8e02f24bdff318fa82d98349dbb8cca828bac2ac9e502473349d28d6a982a86",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "catalog/atlas-execution-examples.json": "b67c3635f42660eaa208073af8addf82777b26337e1b7f2792987f4116fb37c2",
     "catalog/atlas-goals.json": "706721b859ac559fa4cdfca75b9ef00edc2e70fe590de3ee378bfc1bf89eacdd",
-    "catalog/atlas-methods.json": "90c03bcde9b6a77ec07835aba8cce6b64b07389d8d0a7c643f8c24289ab54bb6",
-    "catalog/atlas-problem-links.json": "3314d935ba123b50c27000e2241083d929e74f11edde2960a18c763fb16190bf",
-    "catalog/atlas-reference-supplements.json": "b356e31d1df63c45aca440754d0a179767a5b1e4ae7ae879ddc4fa51c3f9f6f0",
-    "catalog/atlas-test-problems.json": "8c2198ce3cf88056b9b5a78b796f676f2e64c773882eb8e911c178a0578fb79b",
+    "catalog/atlas-methods.json": "f2195631f3cb460a944433d426e5c5ad173feb27ea1d777eac6bd1377f588002",
+    "catalog/atlas-problem-links.json": "9eda6ddb6f1b505b2c3b515b3f11a5cfe129505b4b0230d0d603c42e43f23eaf",
+    "catalog/atlas-reference-supplements.json": "55eb7e82579f2804966d4e15ecd843ba1225bdfb7b859e852c7af971cc104249",
+    "catalog/atlas-test-problems.json": "990a6813ec502fa317ba45d4d339b27f87aad6b463f17f07dc1bb75f16d38083",
     "code/numerical-methods-atlas/2026-11-21/atlas-code-2026-11-21.zip": "f17c0cfcf6956a2677dcdc874235806ae9c5453514be02e6d3274732bcdebe4f",
     "code/numerical-methods-atlas/2026-11-21/numart/coordinates.py": "c05903b96e57667c9a492aabc5c9ab1375ad37f774108ce189d4f43a3225d862",
     "code/numerical-methods-atlas/2026-11-21/numart/geometry.py": "ce62b61ff5989643e87fbdbda8507179b1c0c94af094c91c09d142c1a2a23a84",
@@ -36182,6 +37848,13 @@
     "code/validated-examples/2026-11-23/low-mach/results/result.json": "5e1fdfa86dc57b13857bd571de1070d00ac5237400e0fc9ee9875fae9824d9f5",
     "code/validated-examples/2026-11-23/low-mach/source-manifest.json": "ff359786cf6efff8e5e61f842ae63a866cb7655a4151b2d33ac12501eed98124",
     "code/validated-examples/2026-11-23/low-mach/verification.json": "f747210e1d46900c4f56b01e989696c3feaee35361fe42be11428fd280bacf84",
+    "code/validated-examples/2026-11-23/sem-fr/atlas-sem-fr-2026-11-23.zip": "f7e852c18571791492fa4b804cba1fdd744909e690a90d2708a422a4b5e99d66",
+    "code/validated-examples/2026-11-23/sem-fr/cases.json": "b1005680e6bd36a330dd178f9eac2c39444dc40c98f5dbf5bfd3ad01ca2c751d",
+    "code/validated-examples/2026-11-23/sem-fr/results/fr-periodic-advection.png": "d4afeebdf38e32dcaf3a2c58288ef4ed2f1f79c7c32e89c80f40d71199a11c37",
+    "code/validated-examples/2026-11-23/sem-fr/results/result.json": "f934329701c57bd4eb41cec04c0bbf374812ec0372739c3c2d869e9829b54a96",
+    "code/validated-examples/2026-11-23/sem-fr/results/sem-poisson-2d.png": "fdad68cc85073ba5d51bc9b48b34c116896d2c99cf497bdda32faa2d27481ef7",
+    "code/validated-examples/2026-11-23/sem-fr/source-manifest.json": "800461c1ae226cc1f4350d4fce65a0c24ef2bce851ad862ad55394b47fc321d1",
+    "code/validated-examples/2026-11-23/sem-fr/verification.json": "63de17e91ba54215e7de815df931b8b2c6f04c65d5d43037b9c921c14ca75b54",
     "code/validated-examples/2026-11-23/shallow-water/atlas-shallow-water-2026-11-23.zip": "259244fc5c237542ba577df62308fd2a3191979dd43717d58df33d8abb902644",
     "code/validated-examples/2026-11-23/shallow-water/cases.json": "9296c20b7609cb4acdcd5a0ce437781dcd2e7635dbfea0a924f8468a3e5a5792",
     "code/validated-examples/2026-11-23/shallow-water/results/dry-bed-dam-break.png": "462d58375af1a86ce16672c5ac827012a17f13902f40b622736382b1ace5fd6a",
@@ -36204,12 +37877,12 @@
     "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/equations/index.json": "efce9b9a316cc60a98c0c185d4096f01ec6d958a8084ad7678843fbb7d137f33",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "2ce7e000d21e5d4497616b5c3a991069abbdb59c9dabb796b7e5689a20a3e7cf",
-    "numerical-methods-atlas/locales/messages.json": "4784e17e3dc4bcfebca46d86b9664fc71578e90061aacc0f10c1e5d976404640",
-    "numerical-methods-atlas/methods/index.json": "a6ec0f1b03f8baba8cdfa9d29b5044f6d7671e28accf79437184d2241f47014b",
-    "numerical-methods-atlas/problems/index.json": "cbdd52b37c7bf23bea351d6220f9fd47a3e6406ebc68a7d2c7477e3c885a96a7",
-    "numerical-methods-atlas/solutions/index.json": "f6fe96cbf238376f8b9685d6feb4bcaecf11c36f8d8b3c879deebca46c7b3227",
-    "numerical-methods-atlas/validation/index.json": "e483df6eca7d46d4c37755ab37c8bd180b6bc10edf226eefe9ec9a442e27b641"
+    "numerical-methods-atlas/equations/index.json": "1b8cc791b01e5c3a5acf1bcf3f8ccee6be1e751936d3aac4181b4277ef524464",
+    "numerical-methods-atlas/gallery/preview-manifest.json": "70b6d01f503dc888b7d9dbe809311b6990f090816b1db96855e2838a8d85c647",
+    "numerical-methods-atlas/locales/messages.json": "721e54205ddd2eeb71da968069e40d61d26267667ae85f5e71f27553995ea004",
+    "numerical-methods-atlas/methods/index.json": "abfd8db0021b8ba3098aa6ff5490f2f7c74ed2bcb24b48f96453d74347bdba4a",
+    "numerical-methods-atlas/problems/index.json": "fddc4bd5174d1fe64929d5f906c53f8fdcc78e764b127aaf498fc3a8f4180434",
+    "numerical-methods-atlas/solutions/index.json": "c86c1b0a47f97d5de48841c634fb6072e208fbc66a84d58fc3a67f94781f14e0",
+    "numerical-methods-atlas/validation/index.json": "bace8aa8da5acdaca71ab8c810fe4397c28533b21cc36ff462bc8a4435927d95"
   }
 }

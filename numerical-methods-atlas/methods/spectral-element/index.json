@@ -1,0 +1,619 @@
+{
+  "id": "spectral-element",
+  "name": {
+    "ja": "スペクトル要素法（SEM）",
+    "en": "Spectral element method (SEM)"
+  },
+  "group": {
+    "id": "space",
+    "ja": "空間離散化",
+    "en": "Spatial discretization"
+  },
+  "summary": {
+    "ja": "要素内の高次多項式とGLL求積を用いる連続Galerkin型の方法。2D Poissonのh/p収束と既存P1 FEMを軽量例で比較する。Nek5000・nekRSを関連実装として紹介。",
+    "en": "Continuous Galerkin elements with high-order local polynomials and GLL quadrature. A small2D Poisson example compares h/p refinement with the existing P1 FEM; related implementations include Nek5000 and nekRS."
+  },
+  "status": "educational-example",
+  "origin": "dedicated-sem-fr-addition",
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/spectral-element/",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/spectral-element/"
+  },
+  "code_modules": [],
+  "test_files": [],
+  "aliases": [
+    "SEM",
+    "スペクトル要素",
+    "スペクトルエレメント法",
+    "spectral element",
+    "spectral-element method",
+    "spectral element method"
+  ],
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct.",
+  "references": [
+    {
+      "url": "https://nek5000.github.io/NekDoc/references.html",
+      "label": "A. T. Patera (1984). A spectral element method for fluid dynamics: Laminar flow in a channel expansion",
+      "scope": "Bibliographic identity from the official Nek5000 reference list; publisher full text was not retrieved. No original-paper audit/reproduction. This example is a Legendre GLL variant.",
+      "role": "original-or-adopted-formulation",
+      "kind": "primary-research",
+      "supports": {
+        "ja": "Nek5000公式参考文献の題名・巻・頁・DOIを照合。出版社の原文は未取得で、原報全体の監査・数値再現とはしない。今回の実装はLegendre GLL変種。",
+        "en": "Bibliographic identity from the official Nek5000 reference list; publisher full text was not retrieved. No original-paper audit/reproduction. This example is a Legendre GLL variant."
+      },
+      "verification": {
+        "checked_on": "2026-11-23",
+        "level": "metadata",
+        "url": "https://nek5000.github.io/NekDoc/references.html",
+        "locator": "Bibliographic identity from the official Nek5000 reference list; publisher full text was not retrieved. No original-paper audit/reproduction. This example is a Legendre GLL variant."
+      },
+      "bibliography_id": "patera1984"
+    },
+    {
+      "url": "https://nek5000.github.io/NekDoc/theory.html",
+      "label": "Nek5000 development team (2026). Nek5000 documentation: Theory and spectral-element basis (accessed 2026-11-23)",
+      "scope": "Official Theory and FAQ: element-local polynomials, GLL/GL nodes and C0 continuity. No installation, execution or full-code audit of Nek5000.",
+      "role": "official-implementation-context",
+      "kind": "official-documentation",
+      "supports": {
+        "ja": "公式TheoryとFAQの要素局所の多項式、GLL/GL点・C0連続性を確認。教育用Poissonの実装とNek5000の流体ソルバー全体を同一視しない。",
+        "en": "Official Theory and FAQ: element-local polynomials, GLL/GL nodes and C0 continuity. No installation, execution or full-code audit of Nek5000."
+      },
+      "verification": {
+        "checked_on": "2026-11-23",
+        "level": "full-text",
+        "url": "https://nek5000.github.io/NekDoc/theory.html",
+        "locator": "Official Theory and FAQ: element-local polynomials, GLL/GL nodes and C0 continuity. No installation, execution or full-code audit of Nek5000."
+      },
+      "bibliography_id": "nek5000-sem-docs"
+    },
+    {
+      "url": "https://nek5000.github.io/",
+      "label": "Nek5000/RS development team (2026). Nek5000/RS project: spectral-element solvers and related implementations (accessed 2026-11-23)",
+      "scope": "Official project overview: SEM, CPU/GPU nekRS and its relationship to Nek5000. No external solver installation, execution or performance comparison.",
+      "role": "official-implementation-context",
+      "kind": "official-documentation",
+      "supports": {
+        "ja": "公式プロジェクトのSEM、nekRSのCPU/GPU対応、Nek5000との関係を確認。外部ソルバーの導入・実行・性能比較は未実施。",
+        "en": "Official project overview: SEM, CPU/GPU nekRS and its relationship to Nek5000. No external solver installation, execution or performance comparison."
+      },
+      "verification": {
+        "checked_on": "2026-11-23",
+        "level": "full-text",
+        "url": "https://nek5000.github.io/",
+        "locator": "Official project overview: SEM, CPU/GPU nekRS and its relationship to Nek5000. No external solver installation, execution or performance comparison."
+      },
+      "bibliography_id": "nekrs-implementation"
+    }
+  ],
+  "assumptions": "Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM.",
+  "assumptions_ja": "全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。",
+  "units": "Dimensionless educational example.",
+  "units_ja": "無次元の教育用例。",
+  "boundary_conditions": "Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM.",
+  "boundary_conditions_ja": "全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。",
+  "limitations": {
+    "ja": "滑らかな固定問題だけの結果。要素・求積・代数ソルバーが異なるので、速度・計算量・汎用的優位性の比較ではありません。GLLの対角求積質量は一般の積の厳密な質量行列ではない。曲線格子・特異解・非圧縮流体・Nek5000/nekRS本体は未実行。",
+    "en": "One smooth fixed problem only. Meshes, quadrature and algebraic solvers differ: no speed, complexity or universal-accuracy ranking. The diagonal GLL quadrature mass is not the exactly integrated mass of every product. No curved mesh, singular solution, incompressible flow or Nek5000/nekRS run."
+  },
+  "metadata_review": {
+    "on": "2026-11-23",
+    "level": "Method-specific derivation and scoped dedicated fixed inputs; 25 tests and full independent ZIP rerun. Related external implementations reviewed from official documentation only."
+  },
+  "depth_release": {
+    "group": "sem-fr",
+    "case_ids": [
+      "sem-poisson-2d"
+    ],
+    "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/",
+    "code_edition": "2026-11-23",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/sem.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/polynomials.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/experiments.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/legacy/fem.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/legacy/krylov.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/fr.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/legacy/advection.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/legacy/solvers.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/legacy/riemann.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/legacy/equations.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/legacy/limiters.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/test_sem_fr.py"
+    ],
+    "run_commands": [
+      "python -m pytest -q",
+      "python run.py --input inputs.json --output output"
+    ],
+    "run_from": "atlas-sem-fr-2026-11-23",
+    "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/atlas-sem-fr-2026-11-23.zip",
+    "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/source-manifest.json",
+    "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/verification.json",
+    "code_archive_sha256": "f7e852c18571791492fa4b804cba1fdd744909e690a90d2708a422a4b5e99d66",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/results/result.json",
+    "passed_tests": 25,
+    "examples": [
+      {
+        "id": "sem-poisson-2d",
+        "title": {
+          "ja": "スペクトル要素法の2D Poisson：P1 FEMとh/p収束を比較",
+          "en": "2D spectral-element Poisson: P1 FEM comparison and h/p refinement"
+        },
+        "method_ids": [
+          "spectral-element",
+          "p1-fem"
+        ],
+        "summary": {
+          "ja": "単位正方形の正弦製造解をGLLスペクトル要素法と既存P1三角形FEMで解きます。自由未知数を揃えたh細分化と、固定要素数でのp=1〜6を分けて測ります。",
+          "en": "Solve a sine manufactured solution on the unit square with GLL spectral elements and the existing triangle P1 FEM. Compare matched free-unknown counts under h refinement and p=1..6 at fixed elements."
+        },
+        "assumptions": {
+          "ja": "全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。",
+          "en": "Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM."
+        },
+        "algorithm": {
+          "ja": "SEMはC0連続なテンソル積Qp Lagrange基底・p+1個のLegendre GLL節点と求積、疎な剛性行列・SciPy直接解法を使用。p=2で各方向2/4/8要素、別に2×2要素でp=1〜6。公開済みNumartのP1 FEM・GMRESをファイルのバイト列を保持して4/8/16分割で実行し、両者の自由未知数9/49/225を一致させます。",
+          "en": "C0 tensor Qp Lagrange SEM with p+1 Legendre GLL nodes/quadrature, sparse stiffness assembly and a SciPy direct solve. At p=2 use2/4/8 elements per axis; separately fix2x2 elements and p=1..6. Execute the byte-identical published Numart triangle P1 FEM/GMRES at4/8/16 subdivisions, matching9/49/225 free unknowns."
+        },
+        "validation": {
+          "ja": "解析的な正弦製造解と勾配を参照し、GLL節点とは異なる高次Gauss点で連続L2誤差・H1半ノルムを積分。h/p収束・自由未知数を揃えた誤差・境界値・真の残差を検査し、実際の2D場とP1の頂点・三角形・解をNPZに保存。",
+          "en": "Compare with the analytic manufactured sine solution/gradient. Integrate continuous L2/H1-seminorm errors at independent higher-order Gauss points. Check h/p refinement, matched-unknown errors, boundary data and true residuals; save actual2D SEM fields and P1 vertices/triangles/values in NPZ."
+        },
+        "limits": {
+          "ja": "滑らかな固定問題だけの結果。要素・求積・代数ソルバーが異なるので、速度・計算量・汎用的優位性の比較ではありません。GLLの対角求積質量は一般の積の厳密な質量行列ではない。曲線格子・特異解・非圧縮流体・Nek5000/nekRS本体は未実行。",
+          "en": "One smooth fixed problem only. Meshes, quadrature and algebraic solvers differ: no speed, complexity or universal-accuracy ranking. The diagonal GLL quadrature mass is not the exactly integrated mass of every product. No curved mesh, singular solution, incompressible flow or Nek5000/nekRS run."
+        },
+        "formulas": [
+          "-\\Delta u=f,\\quad u|_{\\partial\\Omega}=0,\\quad u_*=\\sin(\\pi x)\\sin(\\pi y),\\quad f=2\\pi^2u_*",
+          "K^e=S\\otimes W+W\\otimes S,\\quad S=D^TWD,\\quad W=\\operatorname{diag}(w_i)",
+          "E_{L^2}=\\left(\\int_\\Omega(u_h-u_*)^2\\,d\\Omega\\right)^{1/2},\\quad E_{H^1}=\\left(\\int_\\Omega|\\nabla u_h-\\nabla u_*|^2\\,d\\Omega\\right)^{1/2}"
+        ],
+        "references": [
+          {
+            "id": "patera1984",
+            "author": "A. T. Patera",
+            "year": 1984,
+            "title": "A spectral element method for fluid dynamics: Laminar flow in a channel expansion",
+            "type": "article",
+            "source": "https://nek5000.github.io/NekDoc/references.html",
+            "url": "https://nek5000.github.io/NekDoc/references.html",
+            "journal": "Journal of Computational Physics",
+            "volume": "54",
+            "pages": "468–488",
+            "doi": "10.1016/0021-9991(84)90128-1",
+            "source_review": {
+              "level": "metadata",
+              "checked_on": "2026-11-23",
+              "url": "https://nek5000.github.io/NekDoc/references.html",
+              "scope_ja": "Nek5000公式参考文献の題名・巻・頁・DOIを照合。出版社の原文は未取得で、原報全体の監査・数値再現とはしない。今回の実装はLegendre GLL変種。",
+              "scope": "Bibliographic identity from the official Nek5000 reference list; publisher full text was not retrieved. No original-paper audit/reproduction. This example is a Legendre GLL variant."
+            },
+            "review_level": "metadata",
+            "review": {
+              "ja": "Nek5000公式参考文献の題名・巻・頁・DOIを照合。出版社の原文は未取得で、原報全体の監査・数値再現とはしない。今回の実装はLegendre GLL変種。",
+              "en": "Bibliographic identity from the official Nek5000 reference list; publisher full text was not retrieved. No original-paper audit/reproduction. This example is a Legendre GLL variant."
+            }
+          },
+          {
+            "id": "nek5000-sem-docs",
+            "author": "Nek5000 development team",
+            "year": 2026,
+            "title": "Nek5000 documentation: Theory and spectral-element basis (accessed 2026-11-23)",
+            "type": "misc",
+            "source": "https://nek5000.github.io/NekDoc/theory.html",
+            "url": "https://nek5000.github.io/NekDoc/theory.html",
+            "source_review": {
+              "level": "full-text",
+              "checked_on": "2026-11-23",
+              "url": "https://nek5000.github.io/NekDoc/theory.html",
+              "scope_ja": "公式TheoryとFAQの要素局所の多項式、GLL/GL点・C0連続性を確認。教育用Poissonの実装とNek5000の流体ソルバー全体を同一視しない。",
+              "scope": "Official Theory and FAQ: element-local polynomials, GLL/GL nodes and C0 continuity. No installation, execution or full-code audit of Nek5000."
+            },
+            "review_level": "full-text",
+            "review": {
+              "ja": "公式TheoryとFAQの要素局所の多項式、GLL/GL点・C0連続性を確認。教育用Poissonの実装とNek5000の流体ソルバー全体を同一視しない。",
+              "en": "Official Theory and FAQ: element-local polynomials, GLL/GL nodes and C0 continuity. No installation, execution or full-code audit of Nek5000."
+            }
+          },
+          {
+            "id": "nekrs-implementation",
+            "author": "Nek5000/RS development team",
+            "year": 2026,
+            "title": "Nek5000/RS project: spectral-element solvers and related implementations (accessed 2026-11-23)",
+            "type": "misc",
+            "source": "https://nek5000.github.io/",
+            "url": "https://nek5000.github.io/",
+            "source_review": {
+              "level": "full-text",
+              "checked_on": "2026-11-23",
+              "url": "https://nek5000.github.io/",
+              "scope_ja": "公式プロジェクトのSEM、nekRSのCPU/GPU対応、Nek5000との関係を確認。外部ソルバーの導入・実行・性能比較は未実施。",
+              "scope": "Official project overview: SEM, CPU/GPU nekRS and its relationship to Nek5000. No external solver installation, execution or performance comparison."
+            },
+            "review_level": "full-text",
+            "review": {
+              "ja": "公式プロジェクトのSEM、nekRSのCPU/GPU対応、Nek5000との関係を確認。外部ソルバーの導入・実行・性能比較は未実施。",
+              "en": "Official project overview: SEM, CPU/GPU nekRS and its relationship to Nek5000. No external solver installation, execution or performance comparison."
+            }
+          }
+        ],
+        "code_files": [
+          "run.py",
+          "sem.py",
+          "polynomials.py",
+          "experiments.py",
+          "legacy/fem.py",
+          "legacy/krylov.py"
+        ],
+        "additional_figures": [
+          {
+            "file": "sem-poisson-2d-preview.png",
+            "caption": {
+              "ja": "保存した2D SEM場と節点誤差。連続誤差ノルムは別のGauss積分で評価しています。",
+              "en": "Saved actual2D SEM field and nodal error. Continuous error norms use separate Gauss integration."
+            }
+          }
+        ],
+        "gallery_figure": "sem-poisson-2d-preview.png",
+        "measured": {
+          "id": "sem-poisson-2d",
+          "passed": true,
+          "metrics": {
+            "sem_h_l2_order": 3.0396439861149207,
+            "sem_h_h1_order": 2.010636067947865,
+            "p1_h_l2_order": 1.9744920294804964,
+            "p1_h_h1_order": 0.9891011038360976,
+            "p_refinement_l2_reduction": 311080.7699512155,
+            "p6_l2_error": 3.7801651652951424e-07,
+            "same_dof_free_unknowns": 225,
+            "sem_finest_l2_error": 0.0002486410968007461,
+            "p1_finest_l2_error": 0.005377435009938097,
+            "same_dof_l2_ratio_sem_over_p1": 0.046237861794931924,
+            "maximum_relative_residual": 3.1814596822002824e-12
+          },
+          "checks": {
+            "sem_h_l2_convergence": true,
+            "sem_h_h1_convergence": true,
+            "p1_h_l2_convergence": true,
+            "p1_h_h1_convergence": true,
+            "p_refinement_monotone": true,
+            "p_refinement_resolved": true,
+            "equal_free_dofs": true,
+            "same_dof_error_comparison": true,
+            "linear_residuals": true,
+            "zero_dirichlet_boundary": true
+          },
+          "records": [
+            {
+              "series": "h",
+              "method": "GLL-SEM",
+              "elements_per_axis": 2,
+              "degree": 2,
+              "total_dofs": 25,
+              "free_dofs": 9,
+              "l2_error": 0.01787454496560825,
+              "h1_seminorm_error": 0.21189845484689934,
+              "relative_residual": 4.342720765455059e-16
+            },
+            {
+              "series": "h",
+              "method": "GLL-SEM",
+              "elements_per_axis": 4,
+              "degree": 2,
+              "total_dofs": 81,
+              "free_dofs": 49,
+              "l2_error": 0.00204454620100101,
+              "h1_seminorm_error": 0.051575188083525035,
+              "relative_residual": 1.6379650653498462e-15
+            },
+            {
+              "series": "h",
+              "method": "GLL-SEM",
+              "elements_per_axis": 8,
+              "degree": 2,
+              "total_dofs": 289,
+              "free_dofs": 225,
+              "l2_error": 0.0002486410968007461,
+              "h1_seminorm_error": 0.012799088841280405,
+              "relative_residual": 8.47037256773357e-15
+            },
+            {
+              "series": "p",
+              "method": "GLL-SEM",
+              "elements_per_axis": 2,
+              "degree": 1,
+              "total_dofs": 9,
+              "free_dofs": 1,
+              "l2_error": 0.11759366901627767,
+              "h1_seminorm_error": 0.9967518896663585,
+              "relative_residual": 0.0
+            },
+            {
+              "series": "p",
+              "method": "GLL-SEM",
+              "elements_per_axis": 2,
+              "degree": 2,
+              "total_dofs": 25,
+              "free_dofs": 9,
+              "l2_error": 0.01787454496560825,
+              "h1_seminorm_error": 0.21189845484689934,
+              "relative_residual": 4.342720765455059e-16
+            },
+            {
+              "series": "p",
+              "method": "GLL-SEM",
+              "elements_per_axis": 2,
+              "degree": 3,
+              "total_dofs": 49,
+              "free_dofs": 25,
+              "l2_error": 0.0014519934288164192,
+              "h1_seminorm_error": 0.027093198421820536,
+              "relative_residual": 1.2454214928553583e-15
+            },
+            {
+              "series": "p",
+              "method": "GLL-SEM",
+              "elements_per_axis": 2,
+              "degree": 4,
+              "total_dofs": 81,
+              "free_dofs": 49,
+              "l2_error": 0.00010743145777440273,
+              "h1_seminorm_error": 0.002658089442668566,
+              "relative_residual": 2.346309999310097e-15
+            },
+            {
+              "series": "p",
+              "method": "GLL-SEM",
+              "elements_per_axis": 2,
+              "degree": 5,
+              "total_dofs": 121,
+              "free_dofs": 81,
+              "l2_error": 6.843283913204029e-06,
+              "h1_seminorm_error": 0.0002093115514594795,
+              "relative_residual": 3.959672567918128e-15
+            },
+            {
+              "series": "p",
+              "method": "GLL-SEM",
+              "elements_per_axis": 2,
+              "degree": 6,
+              "total_dofs": 169,
+              "free_dofs": 121,
+              "l2_error": 3.7801651652951424e-07,
+              "h1_seminorm_error": 1.3740969344988637e-05,
+              "relative_residual": 4.98776008376032e-15
+            },
+            {
+              "series": "h",
+              "method": "published-P1-FEM",
+              "elements_per_axis": 4,
+              "degree": 1,
+              "total_dofs": 25,
+              "free_dofs": 9,
+              "l2_error": 0.07907545367595636,
+              "h1_seminorm_error": 0.8385483442177264,
+              "relative_residual": 7.241139586298328e-16
+            },
+            {
+              "series": "h",
+              "method": "published-P1-FEM",
+              "elements_per_axis": 8,
+              "degree": 1,
+              "total_dofs": 81,
+              "free_dofs": 49,
+              "l2_error": 0.02113277345600527,
+              "h1_seminorm_error": 0.43179828300647327,
+              "relative_residual": 2.983696993503871e-12
+            },
+            {
+              "series": "h",
+              "method": "published-P1-FEM",
+              "elements_per_axis": 16,
+              "degree": 1,
+              "total_dofs": 289,
+              "free_dofs": 225,
+              "l2_error": 0.005377435009938097,
+              "h1_seminorm_error": 0.21753633635952843,
+              "relative_residual": 3.1814596822002824e-12
+            }
+          ],
+          "input_sha256": "95de4d7c58eb65dc5f1ac90bf8b2308db3ca71466c969617e76ce08fbd374ed9"
+        },
+        "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sem-poisson-2d/",
+        "reading": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/#sem-poisson-2d",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/#sem-poisson-2d"
+        }
+      }
+    ]
+  },
+  "depth_scope": {
+    "ja": "単位正方形の正弦製造解をGLLスペクトル要素法と既存P1三角形FEMで解きます。自由未知数を揃えたh細分化と、固定要素数でのp=1〜6を分けて測ります。",
+    "en": "Solve a sine manufactured solution on the unit square with GLL spectral elements and the existing triangle P1 FEM. Compare matched free-unknown counts under h refinement and p=1..6 at fixed elements."
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/spectral-element/",
+  "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/spectral-element/index.json",
+  "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/spectral-element/index.md",
+  "code_urls": [
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/sem.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/polynomials.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/experiments.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/legacy/fem.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/legacy/krylov.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/fr.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/legacy/advection.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/legacy/solvers.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/legacy/riemann.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/legacy/equations.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/legacy/limiters.py"
+  ],
+  "test_urls": [
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/test_sem_fr.py"
+  ],
+  "run_commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output"
+  ],
+  "run_from": "atlas-sem-fr-2026-11-23",
+  "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/",
+  "code_edition": "2026-11-23",
+  "execution_examples": [
+    {
+      "id": "sem-poisson-2d",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sem-poisson-2d/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sem-poisson-2d/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    }
+  ],
+  "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/atlas-sem-fr-2026-11-23.zip",
+  "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/source-manifest.json",
+  "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/verification.json",
+  "code_archive_sha256": "f7e852c18571791492fa4b804cba1fdd744909e690a90d2708a422a4b5e99d66",
+  "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/results/result.json",
+  "problem_navigation": {
+    "method_id": "spectral-element",
+    "status": "educational-example",
+    "equations": [
+      {
+        "id": "poisson-laplace",
+        "name": {
+          "ja": "Poisson・Laplace方程式",
+          "en": "Poisson / Laplace equations"
+        },
+        "problem_ids": [
+          "poisson-2d-sine"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#poisson-laplace-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#poisson-laplace-en"
+        }
+      }
+    ],
+    "problems": [
+      {
+        "id": "poisson-2d-sine",
+        "name": {
+          "ja": "2次元Poisson・正弦単一モード（FEMを含む）",
+          "en": "2D Poisson / single sine mode, including FEM"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/field-fem-poisson.png",
+          "sha256": "5cb31b1cb182fa6509de11f0cafcc2368b9136b46d625bc6183df2a648f9af29",
+          "width": 1575,
+          "height": 690,
+          "caption": {
+            "ja": "同じ正弦製造解を解く、三角形有限要素の保存解と誤差。",
+            "en": "Stored triangular-FEM solution and error for the same sine manufactured problem."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "sem-poisson-2d",
+            "kind": "supplement",
+            "name": {
+              "ja": "スペクトル要素法の2D Poisson：P1 FEMとh/p収束を比較",
+              "en": "2D spectral-element Poisson: P1 FEM comparison and h/p refinement"
+            },
+            "scope": {
+              "ja": "単位正方形の正弦製造解をGLLスペクトル要素法と既存P1三角形FEMで解きます。自由未知数を揃えたh細分化と、固定要素数でのp=1〜6を分けて測ります。",
+              "en": "Solve a sine manufactured solution on the unit square with GLL spectral elements and the existing triangle P1 FEM. Compare matched free-unknown counts under h refinement and p=1..6 at fixed elements."
+            },
+            "method_ids": [
+              "spectral-element",
+              "p1-fem"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sem-poisson-2d/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sem-poisson-2d/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/atlas-sem-fr-2026-11-23.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。 SEMはC0連続なテンソル積Qp Lagrange基底・p+1個のLegendre GLL節点と求積、疎な剛性行列・SciPy直接解法を使用。p=2で各方向2/4/8要素、別に2×2要素でp=1〜6。公開済みNumartのP1 FEM・GMRESをファイルのバイト列を保持して4/8/16分割で実行し、両者の自由未知数9/49/225を一致させます。",
+          "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed. C0 tensor Qp Lagrange SEM with p+1 Legendre GLL nodes/quadrature, sparse stiffness assembly and a SciPy direct solve. At p=2 use2/4/8 elements per axis; separately fix2x2 elements and p=1..6. Execute the byte-identical published Numart triangle P1 FEM/GMRES at4/8/16 subdivisions, matching9/49/225 free unknowns."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "poisson-2d-sine",
+        "problem_name": {
+          "ja": "2次元Poisson・正弦単一モード（FEMを含む）",
+          "en": "2D Poisson / single sine mode, including FEM"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-2d-sine/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "poisson-manufactured",
+            "title": {
+              "ja": "Poisson／正弦波の製造解",
+              "en": "Poisson / manufactured sine"
+            },
+            "kind": "manufactured",
+            "relation": "related-model",
+            "note": {
+              "ja": "カードは1次元sin(πx)、こちらは2次元sin(πx)sin(πy)です。次元・右辺・FEMの誤差ノルムは異なります。",
+              "en": "The card is 1D sin(πx); this test is 2D sin(πx)sin(πy). Dimension, forcing and FEM error norms differ."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-poisson-manufactured-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-poisson-manufactured-en"
+            },
+            "view": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=poisson-manufactured",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=poisson-manufactured"
+            }
+          },
+          {
+            "id": "sem-poisson-2d",
+            "title": {
+              "ja": "2D Poisson正弦製造解：SEMとP1 FEMの共通参照",
+              "en": "2D Poisson sine manufactured solution: shared SEM/P1 FEM reference"
+            },
+            "kind": "manufactured",
+            "relation": "same-problem",
+            "note": {
+              "ja": "全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。",
+              "en": "Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-sem-poisson-2d-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-sem-poisson-2d-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/sem-poisson-2d/?lang=ja",
+              "en": "/numerical-methods-atlas/validation/sem-poisson-2d/?lang=en"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

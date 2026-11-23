@@ -37,7 +37,7 @@ test('matched CT and GLM examples retain their earlier primary releases and reso
 
 test('same-target OT refinements add no problem while the constructed equilibrium adds exactly one',()=>{
  const index=json('numerical-methods-atlas/validation/index.json');
- assert.equal(index.case_count,56);assert.equal(index.groups.length,24);
+ assert.equal(index.case_count,58);assert.equal(index.groups.length,25);
  assert.equal(index.case_problem_ids[cases[0]],'advected-magnetostatic-equilibrium');
  assert.equal(index.case_problem_ids[cases[1]],'orszag-tang');
  assert.equal(index.case_problem_ids[cases[2]],null);
@@ -47,8 +47,8 @@ test('same-target OT refinements add no problem while the constructed equilibriu
  assert.equal(problems.filter(p=>p.id==='advected-magnetostatic-equilibrium').length,1);
  const ot=problems.find(p=>p.id==='orszag-tang');
  assert.deepEqual(ot.supplemental_examples.map(x=>x.id).sort(),['ct-glm-independent','ct-glm-ot-convergence']);
- assert.equal(methods.length,149);
- assert.deepEqual(Object.fromEntries(['educational-example','reading-only','planned'].map(s=>[s,methods.filter(m=>m.status===s).length])),{'educational-example':118,'reading-only':15,'planned':16});
+ assert.equal(methods.length,151);
+ assert.deepEqual(Object.fromEntries(['educational-example','reading-only','planned'].map(s=>[s,methods.filter(m=>m.status===s).length])),{'educational-example':120,'reading-only':15,'planned':16});
 });
 
 test('seven immutable earlier archives, common examples and pre-pilot controls stay fixed',()=>{

@@ -120,6 +120,25 @@
         {
           "path": "code/validated-examples/2026-11-23/weno-critical/verification.json",
           "json_pointer": "/all_cases_rerun"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/sem-fr/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "fr-periodic-advection"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/sem-fr/inputs.json",
+          "json_pointer": "/cases/fr-periodic-advection"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/sem-fr/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/sem-fr/results/fr-periodic-advection-preview.png",
+          "artifact": "image"
         }
       ],
       "availability": "saved-output",
@@ -130,6 +149,14 @@
           "name": {
             "ja": "WENO-JS／Z：臨界点とεの固定比較",
             "en": "WENO-JS/Z: fixed critical-point and epsilon comparison"
+          }
+        },
+        {
+          "id": "fr-periodic-advection",
+          "url": "/numerical-methods-atlas/validation/fr-periodic-advection/",
+          "name": {
+            "ja": "FR法の1D周期移流：Radau補正と既存DGの比較",
+            "en": "1D periodic FR advection: Radau correction and published DG comparison"
           }
         }
       ],
@@ -1520,6 +1547,25 @@
         {
           "path": "code/validated-examples/2026-11-22/foundations/verification.json",
           "json_pointer": "/all_cases_rerun"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/sem-fr/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "sem-poisson-2d"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/sem-fr/inputs.json",
+          "json_pointer": "/cases/sem-poisson-2d"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/sem-fr/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/sem-fr/results/sem-poisson-2d-preview.png",
+          "artifact": "image"
         }
       ],
       "availability": "saved-output",
@@ -1530,6 +1576,14 @@
           "name": {
             "ja": "行列から粗視化するAMG：残差と解誤差を分ける",
             "en": "Matrix-based AMG: distinguish residual and solution error"
+          }
+        },
+        {
+          "id": "sem-poisson-2d",
+          "url": "/numerical-methods-atlas/validation/sem-poisson-2d/",
+          "name": {
+            "ja": "スペクトル要素法の2D Poisson：P1 FEMとh/p収束を比較",
+            "en": "2D spectral-element Poisson: P1 FEM comparison and h/p refinement"
           }
         }
       ],
@@ -4396,7 +4450,7 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-test-problems.json": "8c2198ce3cf88056b9b5a78b796f676f2e64c773882eb8e911c178a0578fb79b",
+    "catalog/atlas-test-problems.json": "990a6813ec502fa317ba45d4d339b27f87aad6b463f17f07dc1bb75f16d38083",
     "numerical-methods-atlas/equation-gallery.json": "e99af38238a50232f92875817c4556ab6c730289db13014efdd41913096c902e",
     "numerical-methods-atlas/cip.json": "3aa33fbffad6b9ad76310e9b713629a1a35b4e30e419db0c531180cf769e6b6f",
     "numerical-methods-atlas/limiters.json": "3242180ba171420220fd349cac93dff552466070f886f3d00a70927939255312",
@@ -4405,6 +4459,10 @@
     "code/validated-examples/2026-11-23/weno-critical/results/weno-critical-epsilon-preview.png": "a70007470597454c794b682ba985521ee32f2e8cbbaba2eb7eff9371296138d4",
     "code/validated-examples/2026-11-23/weno-critical/inputs.json": "1236a9d75c55a9cc9dfbdcb4f184c57e82b06e45948422e4ca75b750295860a0",
     "code/validated-examples/2026-11-23/weno-critical/verification.json": "ccbf3c6a2fe7055b324a0d98c152da909242f36e0c82ca3281038e4c9b0c165f",
+    "code/validated-examples/2026-11-23/sem-fr/results/result.json": "f934329701c57bd4eb41cec04c0bbf374812ec0372739c3c2d869e9829b54a96",
+    "code/validated-examples/2026-11-23/sem-fr/inputs.json": "c10e0ef3737b81f8e088d43d411067aaa00b7b42e197f8f2a43b19b6852f0525",
+    "code/validated-examples/2026-11-23/sem-fr/verification.json": "63de17e91ba54215e7de815df931b8b2c6f04c65d5d43037b9c921c14ca75b54",
+    "code/validated-examples/2026-11-23/sem-fr/results/fr-periodic-advection-preview.png": "30674c0de38a4c3507602ec895fdb37d7a72d6290a36bca97ae931e3bdcd5bd1",
     "code/numerical-methods-atlas/2026-11-21/tests/test_linear.py": "5e7323f2734fb7328c35706ccd90fc25076bd46d01d32cd9c78c8cd25dd0421f",
     "numerical-methods-atlas/assets/validation.json": "8c9198b072ae067f208fdb6c44ee4f84fe19b93f68f2f78811eb18cb1ffcef1a",
     "numerical-methods-atlas/sod.json": "ea8a84854b7f66b80251b007420ba4b2c8b2c83f20171e60a05a6ce6a092ca95",
@@ -4453,6 +4511,7 @@
     "code/validated-examples/2026-11-22/foundations/results/result.json": "93a27cb8e43d7195d2417fc9110f196b07c826ea1f4e2b240f879ab8ab8b4b77",
     "code/validated-examples/2026-11-22/foundations/results/sa-amg.png": "5c45adc8d863129f320884c1ed61a5c1eb5413cfde3c07a8859e99baef58705e",
     "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
+    "code/validated-examples/2026-11-23/sem-fr/results/sem-poisson-2d-preview.png": "6f1e1d026f03c64656de459078757c9862a29ee0de68816f2aa9802be5bec6da",
     "code/numerical-methods-atlas/2026-11-21/tests/test_multigrid.py": "1ff0a1d00b61872844c46a0f9961547acc857ebc8d87e3395550d8c1ae25fad0",
     "numerical-methods-atlas/assets/particle-gravity.json": "04d2172033898666e9df1578174df6007899fa6fed23d5094991b04df77d5923",
     "code/numerical-methods-atlas/2026-11-21/tests/test_sparse_fem.py": "4076e514e0b9b5fd94dead4af33fe7e7548fba6a7b48b3e21a406034f7170afb",

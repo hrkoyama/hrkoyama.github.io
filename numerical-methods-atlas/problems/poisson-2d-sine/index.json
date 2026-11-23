@@ -88,6 +88,24 @@
         "ja": "正方形Poisson問題から得たSPD行列だけを階層構築へ渡し、平滑化集約AMGのV-cycleを実行します。7²・15²・31²未知数で独立疎行列直接解、解析的な離散正弦モード、連続解への2次収束を分けて検査します。",
         "en": "Build a smoothed-aggregation hierarchy from an SPD matrix alone and run V-cycles. Problems with 7², 15² and 31² unknowns distinguish independent sparse direct solutions, analytic discrete sine modes and second-order convergence to the continuum solution."
       }
+    },
+    {
+      "id": "supplement-sem-poisson-2d",
+      "name": {
+        "ja": "スペクトル要素法の2D Poisson：P1 FEMとh/p収束を比較",
+        "en": "2D spectral-element Poisson: P1 FEM comparison and h/p refinement"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "-\\Delta u=f,\\quad u|_{\\partial\\Omega}=0,\\quad u_*=\\sin(\\pi x)\\sin(\\pi y),\\quad f=2\\pi^2u_*",
+        "K^e=S\\otimes W+W\\otimes S,\\quad S=D^TWD,\\quad W=\\operatorname{diag}(w_i)",
+        "E_{L^2}=\\left(\\int_\\Omega(u_h-u_*)^2\\,d\\Omega\\right)^{1/2},\\quad E_{H^1}=\\left(\\int_\\Omega|\\nabla u_h-\\nabla u_*|^2\\,d\\Omega\\right)^{1/2}"
+      ],
+      "note": {
+        "ja": "単位正方形の正弦製造解をGLLスペクトル要素法と既存P1三角形FEMで解きます。自由未知数を揃えたh細分化と、固定要素数でのp=1〜6を分けて測ります。",
+        "en": "Solve a sine manufactured solution on the unit square with GLL spectral elements and the existing triangle P1 FEM. Compare matched free-unknown counts under h refinement and p=1..6 at fixed elements."
+      }
     }
   ],
   "references": [
@@ -116,11 +134,37 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=poisson-manufactured",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=poisson-manufactured"
       }
+    },
+    {
+      "id": "sem-poisson-2d",
+      "kind": "manufactured",
+      "kind_label": {
+        "ja": "製造解",
+        "en": "Manufactured solution"
+      },
+      "title": {
+        "ja": "2D Poisson正弦製造解：SEMとP1 FEMの共通参照",
+        "en": "2D Poisson sine manufactured solution: shared SEM/P1 FEM reference"
+      },
+      "formula": "u(x,y)=sin(pi*x)*sin(pi*y); f=2*pi^2*u; grad u=(pi*cos(pi*x)*sin(pi*y),pi*sin(pi*x)*cos(pi*y)).",
+      "assumptions": {
+        "ja": "全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。",
+        "en": "Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。",
+        "en": "Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sem-poisson-2d/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sem-poisson-2d/?lang=en"
+      }
     }
   ],
   "reference_note": {
-    "ja": "単位正方形の製造解sin(πx)sin(πy)を使い、差分・連続P1 FEMの格子誤差と、補助AMG例の離散参照を確認します。 追加のamg-conditioningは既知の代数解を使う条件数・残差診断で、物理問題への紐付けはありません。このPoisson問題の格子精度・独立参照の証拠として流用しません。",
-    "en": "Use sin(πx)sin(πy) on the unit square to check finite-difference and continuous-P1 FEM mesh errors, plus the supplemental AMG example's discrete reference. The added amg-conditioning case uses known algebraic solutions for conditioning/residual diagnostics and has no physical-problem binding. Its results are not borrowed as evidence for this Poisson problem’s mesh accuracy or independent reference."
+    "ja": "単位正方形の製造解sin(πx)sin(πy)を使い、差分・連続P1 FEMの格子誤差と、補助AMG例の離散参照を確認します。 追加のamg-conditioningは既知の代数解を使う条件数・残差診断で、物理問題への紐付けはありません。このPoisson問題の格子精度・独立参照の証拠として流用しません。 解析的な正弦製造解と勾配を参照し、GLL節点とは異なる高次Gauss点で連続L2誤差・H1半ノルムを積分。h/p収束・自由未知数を揃えた誤差・境界値・真の残差を検査し、実際の2D場とP1の頂点・三角形・解をNPZに保存。",
+    "en": "Use sin(πx)sin(πy) on the unit square to check finite-difference and continuous-P1 FEM mesh errors, plus the supplemental AMG example's discrete reference. The added amg-conditioning case uses known algebraic solutions for conditioning/residual diagnostics and has no physical-problem binding. Its results are not borrowed as evidence for this Poisson problem’s mesh accuracy or independent reference. Compare with the analytic manufactured sine solution/gradient. Integrate continuous L2/H1-seminorm errors at independent higher-order Gauss points. Check h/p refinement, matched-unknown errors, boundary data and true residuals; save actual2D SEM fields and P1 vertices/triangles/values in NPZ."
   },
   "methods": [
     {
@@ -174,11 +218,24 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/amg/?lang=ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/amg/?lang=en"
       }
+    },
+    {
+      "id": "spectral-element",
+      "name": {
+        "ja": "スペクトル要素法（SEM）",
+        "en": "Spectral element method (SEM)"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/spectral-element/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/spectral-element/?lang=en"
+      }
     }
   ],
   "method_note": {
-    "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。",
-    "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed."
+    "ja": "この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。 SEMはC0連続なテンソル積Qp Lagrange基底・p+1個のLegendre GLL節点と求積、疎な剛性行列・SciPy直接解法を使用。p=2で各方向2/4/8要素、別に2×2要素でp=1〜6。公開済みNumartのP1 FEM・GMRESをファイルのバイト列を保持して4/8/16分割で実行し、両者の自由未知数9/49/225を一致させます。",
+    "en": "Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed. C0 tensor Qp Lagrange SEM with p+1 Legendre GLL nodes/quadrature, sparse stiffness assembly and a SciPy direct solve. At p=2 use2/4/8 elements per axis; separately fix2x2 elements and p=1..6. Execute the byte-identical published Numart triangle P1 FEM/GMRES at4/8/16 subdivisions, matching9/49/225 free unknowns."
   },
   "executions": [
     {
@@ -300,6 +357,63 @@
       ],
       "test_urls": [
         "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/test_foundations.py"
+      ],
+      "source_scope": "package"
+    },
+    {
+      "id": "sem-poisson-2d",
+      "kind": "supplement",
+      "name": {
+        "ja": "スペクトル要素法の2D Poisson：P1 FEMとh/p収束を比較",
+        "en": "2D spectral-element Poisson: P1 FEM comparison and h/p refinement"
+      },
+      "method_ids": [
+        "spectral-element",
+        "p1-fem"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sem-poisson-2d/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sem-poisson-2d/?lang=en"
+      },
+      "scope": {
+        "ja": "単位正方形の正弦製造解をGLLスペクトル要素法と既存P1三角形FEMで解きます。自由未知数を揃えたh細分化と、固定要素数でのp=1〜6を分けて測ります。",
+        "en": "Solve a sine manufactured solution on the unit square with GLL spectral elements and the existing triangle P1 FEM. Compare matched free-unknown counts under h refinement and p=1..6 at fixed elements."
+      },
+      "assumptions": {
+        "ja": "全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。",
+        "en": "Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM."
+      },
+      "limits": {
+        "ja": "滑らかな固定問題だけの結果。要素・求積・代数ソルバーが異なるので、速度・計算量・汎用的優位性の比較ではありません。GLLの対角求積質量は一般の積の厳密な質量行列ではない。曲線格子・特異解・非圧縮流体・Nek5000/nekRS本体は未実行。",
+        "en": "One smooth fixed problem only. Meshes, quadrature and algebraic solvers differ: no speed, complexity or universal-accuracy ranking. The diagonal GLL quadrature mass is not the exactly integrated mass of every product. No curved mesh, singular solution, incompressible flow or Nek5000/nekRS run."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/atlas-sem-fr-2026-11-23.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "解析的な正弦製造解と勾配を参照し、GLL節点とは異なる高次Gauss点で連続L2誤差・H1半ノルムを積分。h/p収束・自由未知数を揃えた誤差・境界値・真の残差を検査し、実際の2D場とP1の頂点・三角形・解をNPZに保存。",
+        "en": "Compare with the analytic manufactured sine solution/gradient. Integrate continuous L2/H1-seminorm errors at independent higher-order Gauss points. Check h/p refinement, matched-unknown errors, boundary data and true residuals; save actual2D SEM fields and P1 vertices/triangles/values in NPZ."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/sem.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/polynomials.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/experiments.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/legacy/fem.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/legacy/krylov.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/test_sem_fr.py"
       ],
       "source_scope": "package"
     }

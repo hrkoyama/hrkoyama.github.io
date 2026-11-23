@@ -80,6 +80,9 @@
 
 - [構造格子、非構造格子、三角形格子](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/meshes/)
 - [連続有限要素法：弱形式から疎行列の組立てへ](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/fem/)
+- [スペクトル要素法：高次の有限要素と2D Poisson](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/spectral-element/)
+- [Flux Reconstruction法：流束補正とDG・1D周期移流](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/flux-reconstruction/)
+- [スペクトル要素法とFR：既存FEM・DGとの軽量比較](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/)
 - [任意Lagrange–Euler法](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/ale/)
 - [極・円筒座標：テンソルと粘性](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/coordinates-viscosity/)
 - [球面メッシュとArakawa A・B・C格子](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/geophysical-grids/)

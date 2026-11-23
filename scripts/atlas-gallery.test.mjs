@@ -20,7 +20,7 @@ test('new MHD accuracy and active-cleaning evidence preserve the earlier OT illu
  const item=gallery.items.find(x=>x.id==='advected-magnetostatic-equilibrium');
  const metadata=cases.find(x=>x.id==='ct-glm-smooth-convergence');
  assert.equal(gallery.items.length,92);assert.equal(gallery.counts.runnable_problems,52);
- assert.equal(gallery.counts.supplemental_release_case_count,56);
+ assert.equal(gallery.counts.supplemental_release_case_count,58);
  assert.equal(item.image,'/'+base+'results/ct-glm-smooth-convergence.png');
  assert.equal(item.image_sha256,digest(base+'results/ct-glm-smooth-convergence.png'));
  assert.deepEqual(item.caption,metadata.summary);
@@ -39,7 +39,7 @@ test('new MHD accuracy and active-cleaning evidence preserve the earlier OT illu
  const nohBase='code/validated-examples/2026-11-23-r3/noh/';
  const nohSources=['cases.json','inputs.json','source-manifest.json','verification.json','results/result.json','results/noh-shock.png','results/noh-shock-preview.png'].map(name=>nohBase+name);
  const currentNohSources=nohSources.map(path=>path.replace('2026-11-23-r3/noh/','2026-11-23-r5/noh/'));
- assert.equal(Object.keys(manifest.source_sha256).filter(path=>!['/weno-critical/','/shallow-water/','/wall-flow/','/level-set/'].some(group=>path.includes(group))).length,127+new Set(addedSources).size+nohSources.length+currentNohSources.length+49+7+7);
+ assert.equal(Object.keys(manifest.source_sha256).filter(path=>!['/weno-critical/','/shallow-water/','/wall-flow/','/level-set/','/sem-fr/'].some(group=>path.includes(group))).length,127+new Set(addedSources).size+nohSources.length+currentNohSources.length+49+7+7);
  for(const path of nohSources)assert.equal(manifest.source_sha256[path],digest(path),path);
  for(const path of currentNohSources)assert.equal(manifest.source_sha256[path],digest(path),path);
  for(const path of addedSources)assert.equal(manifest.source_sha256[path],digest(path),path);
@@ -78,8 +78,8 @@ test('six particle/transport checks retain all five historical images and add on
   }
  }
  for(const name of ['cases.json','inputs.json','source-manifest.json','verification.json','results/result.json',...cases.map(x=>'results/'+x.id+'.png')])assert.equal(manifest.source_sha256[base+name],digest(base+name));
- assert.equal(gallery.counts.supplemental_case_count,51);
- assert.equal(gallery.counts.supplemental_release_case_count,56);
+ assert.equal(gallery.counts.supplemental_case_count,53);
+ assert.equal(gallery.counts.supplemental_release_case_count,58);
  assert.equal(gallery.counts.runnable_problems,52);
 });
 

@@ -24,6 +24,9 @@ function local(value){
 
 // Remove only this batch's appended WENO evidence/entry for the historical golden.
 const historicalProblem = row => {
+ const extras=(row.supplemental_examples||[]).filter(e=>!['sem-poisson-2d','fr-periodic-advection'].includes(e.id));
+ row={...row,evidence:row.evidence.filter(e=>!e.path.includes('/sem-fr/'))};
+ if(extras.length)row.supplemental_examples=extras;else delete row.supplemental_examples;
  if(row.id!=='advection-sine')return row;
  const copy={...row,evidence:row.evidence.filter(e=>!e.path.includes('/weno-critical/'))};
  const remaining=(row.supplemental_examples||[]).filter(e=>e.id!=='weno-critical-epsilon');
@@ -209,7 +212,7 @@ test('spherical diagnostics distinguish discrete conservation from the signed SS
 
 test('Noh reference, figure, chapter and execution connect through their actual new records',()=>{
   const addition=json('catalog/atlas-reference-supplements.json').cases;
-  assert.deepEqual(addition.filter(row=>!['zalesak-rotation','weno-critical-profile','lake-at-rest-bed','swashes-bernoulli','ritter-dry-bed','ghia-re100','wall-mms','level-set-translation','level-set-rotation'].includes(row.id)).map(row=>row.id),['noh','sedov','double-mach','forward-step','isentropic-vortex','guderley']);assert.equal(addition[0].kind,'analytic');
+  assert.deepEqual(addition.filter(row=>!['zalesak-rotation','weno-critical-profile','lake-at-rest-bed','swashes-bernoulli','ritter-dry-bed','ghia-re100','wall-mms','level-set-translation','level-set-rotation','sem-poisson-2d','fr-periodic-advection'].includes(row.id)).map(row=>row.id),['noh','sedov','double-mach','forward-step','isentropic-vortex','guderley']);assert.equal(addition[0].kind,'analytic');
   const reference=json('numerical-methods-atlas/solutions/index.json').cases.find(row=>row.id==='noh');
   const problem=json('numerical-methods-atlas/problems/noh/index.json');
   const run=json('numerical-methods-atlas/validation/noh-shock/index.json');
@@ -273,7 +276,7 @@ with tempfile.TemporaryDirectory(prefix='atlas-reference-catalog-') as directory
  old=root/'numerical-methods-atlas/assets/reference-solutions.json';old.parent.mkdir(parents=True);old.write_text(json.dumps({'cases':[{'id':'old'}]}))
  extra=root/'catalog/atlas-reference-supplements.json';extra.parent.mkdir()
  def write(value):extra.write_text(json.dumps(value))
- write(source);assert [row['id'] for row in load_reference_cases(root) if row['id'] not in ['zalesak-rotation','weno-critical-profile','lake-at-rest-bed','swashes-bernoulli','ritter-dry-bed','ghia-re100','wall-mms','level-set-translation','level-set-rotation']]==['old','noh','sedov','double-mach','forward-step','isentropic-vortex','guderley']
+ write(source);assert [row['id'] for row in load_reference_cases(root) if row['id'] not in ['zalesak-rotation','weno-critical-profile','lake-at-rest-bed','swashes-bernoulli','ritter-dry-bed','ghia-re100','wall-mms','level-set-translation','level-set-rotation','sem-poisson-2d','fr-periodic-advection']]==['old','noh','sedov','double-mach','forward-step','isentropic-vortex','guderley']
  for mutation in ['duplicate','citation','route']:
   bad=copy.deepcopy(source)
   if mutation=='duplicate':bad['cases'][0]['id']='old'

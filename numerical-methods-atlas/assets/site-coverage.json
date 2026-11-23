@@ -11,23 +11,23 @@
   },
   "counts": {
     "equations": 50,
-    "methods": 133,
-    "papers": 247,
-    "references": 304,
-    "journal_articles": 241,
-    "conference_papers": 6,
+    "methods": 135,
+    "papers": 249,
+    "references": 310,
+    "journal_articles": 242,
+    "conference_papers": 7,
     "books": 25,
     "chapters": 3,
-    "reports": 3,
-    "other_sources": 26,
+    "reports": 4,
+    "other_sources": 29,
     "local_equations": 27,
     "reading_equations": 23,
-    "local_methods": 118,
+    "local_methods": 120,
     "reading_methods": 15,
     "biological_entries": 22,
     "gallery_cases": 9,
     "gallery_equations": 7,
-    "reading_chapters": 107,
+    "reading_chapters": 110,
     "test_problems": 92,
     "saved_test_problems": 92,
     "code_test_problems": 0
@@ -1745,6 +1745,26 @@
     },
     {
       "kind": "method",
+      "id": "spectral-element",
+      "label": "Spectral element method (SEM)",
+      "chapter": "validation-sem-fr",
+      "status": "local-example",
+      "group": "Spatial discretization",
+      "scope": "Solve a sine manufactured solution on the unit square with GLL spectral elements and the existing triangle P1 FEM. Compare matched free-unknown counts under h refinement and p=1..6 at fixed elements.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "flux-reconstruction",
+      "label": "Flux reconstruction (FR)",
+      "chapter": "validation-sem-fr",
+      "status": "local-example",
+      "group": "Spatial discretization",
+      "scope": "Transport0.4+sin(2pi x) toT=.25. Execute Gauss-node/Radau FR and the existing modal DG for p=1/2 and8/16/32 cells; measure analytic error, mass and time-integration error.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
       "id": "vof",
       "label": "Volume-of-fluid / VOF",
       "chapter": "level-set",
@@ -3187,6 +3207,42 @@
       "origin": "curated-method-metadata"
     },
     {
+      "id": "patera1984",
+      "type": "article",
+      "identity": "doi:10.1016/0021-9991(84)90128-1",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "nek5000-sem-docs",
+      "type": "misc",
+      "identity": "url:https://nek5000.github.io/NekDoc/theory.html",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "nekrs-implementation",
+      "type": "misc",
+      "identity": "url:https://nek5000.github.io/",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "huynh2007-fr",
+      "type": "inproceedings",
+      "identity": "doi:10.2514/6.2007-4079",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "huynh2014-fr",
+      "type": "techreport",
+      "identity": "url:https://ntrs.nasa.gov/api/citations/20140009969/downloads/20140009969.pdf",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "pyfr-implementation",
+      "type": "misc",
+      "identity": "url:https://www.pyfr.org/",
+      "origin": "curated-method-metadata"
+    },
+    {
       "id": "schrodinger1926",
       "type": "article",
       "identity": "doi:10.1002/andp.19263840404",
@@ -3417,9 +3473,9 @@
   },
   "public_extension_sha256": {
     "catalog/atlas-quantum.json": "415dd98efe103ad5a2d950c22b98980f53539f6243b93e4e193dbca2c67169fe",
-    "catalog/atlas-methods.json": "90c03bcde9b6a77ec07835aba8cce6b64b07389d8d0a7c643f8c24289ab54bb6",
+    "catalog/atlas-methods.json": "f2195631f3cb460a944433d426e5c5ad173feb27ea1d777eac6bd1377f588002",
     "catalog/atlas-equations.json": "d8e02f24bdff318fa82d98349dbb8cca828bac2ac9e502473349d28d6a982a86",
-    "catalog/atlas-method-primary-references.json": "81781bcd44c25473182a83403a8e450dad93df70461c679fb3dc7934f61d5581"
+    "catalog/atlas-method-primary-references.json": "1e9de6c042875cb95060bf63386cb051f0dbdbce4d5a63ce5600b52fef2e2082"
   },
   "equation_execution_source_sha256": {
     "numerical-methods-atlas/assets/biological-models.json": "b4432736fdbb32d6ec0be5104585348bfc166663688640f8d99a039dd4e521ab",

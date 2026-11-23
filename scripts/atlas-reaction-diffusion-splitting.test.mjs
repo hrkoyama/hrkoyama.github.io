@@ -60,7 +60,7 @@ test('stored observed orders follow shared-time errors and the actual subsolver 
 
 test('the two methods acquire only the verified dedicated release and the physical/common problem inventories stay fixed',()=>{
  const methods=json('numerical-methods-atlas/methods/index.json').methods;
- assert.equal(methods.length,149);
+ assert.equal(methods.length,151);
  for(const methodId of ['lie-trotter','strang-splitting']){
   const method=methods.find(x=>x.id===methodId);
   assert.equal(method.status,'educational-example');
@@ -71,10 +71,10 @@ test('the two methods acquire only the verified dedicated release and the physic
   assert.ok(method.code_urls.every(url=>url.includes('/splitting/')));
  }
  const registry=json('numerical-methods-atlas/validation/releases.json');
- assert.equal(registry.releases.length,24);assert.equal(registry.case_count,56);
- assert.equal(registry.releases.filter(row=>!['noh','noh-cartesian','sedov','double-mach','forward-step','low-mach','guderley','euler-positivity','zalesak','weno-critical','shallow-water','wall-flow','level-set'].includes(row.group)).reduce((sum,row)=>sum+row.tests,0),388);
+ assert.equal(registry.releases.length,25);assert.equal(registry.case_count,58);
+ assert.equal(registry.releases.filter(row=>!['noh','noh-cartesian','sedov','double-mach','forward-step','low-mach','guderley','euler-positivity','zalesak','weno-critical','shallow-water','wall-flow','level-set','sem-fr'].includes(row.group)).reduce((sum,row)=>sum+row.tests,0),388);
  assert.equal(registry.releases.find(row=>row.group==='noh').tests,28);
- assert.equal(registry.releases.filter(row=>!['euler-positivity','zalesak','weno-critical','shallow-water','wall-flow','level-set'].includes(row.group)).reduce((sum,row)=>sum+row.tests,0),571);
+ assert.equal(registry.releases.filter(row=>!['euler-positivity','zalesak','weno-critical','shallow-water','wall-flow','level-set','sem-fr'].includes(row.group)).reduce((sum,row)=>sum+row.tests,0),571);
  const problems=json('numerical-methods-atlas/test-cases/index.json').problems;
  assert.equal(problems.length,92);
  assert.deepEqual(problems.filter(p=>(p.supplemental_examples||[]).some(x=>x.id===id)).map(x=>x.id),['turing-schnakenberg']);

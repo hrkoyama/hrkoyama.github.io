@@ -93,8 +93,161 @@
   "problem_navigation": {
     "method_id": "dg",
     "status": "educational-example",
-    "equations": [],
-    "problems": [],
-    "references": []
+    "equations": [
+      {
+        "id": "linear-advection",
+        "name": {
+          "ja": "線形移流",
+          "en": "Linear advection"
+        },
+        "problem_ids": [
+          "advection-sine"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#linear-advection-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#linear-advection-en"
+        }
+      }
+    ],
+    "problems": [
+      {
+        "id": "advection-sine",
+        "name": {
+          "ja": "周期正弦波の線形移流",
+          "en": "Periodic sine-wave advection"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/advection-sine.png",
+          "sha256": "dbb022150fee1472e54b24dfd3f01363bcfd3998f7e21da9dad6f30e4d224f0a",
+          "width": 832,
+          "height": 494,
+          "caption": {
+            "ja": "保存済みのCIP・線形補間・厳密な移流波形。",
+            "en": "Stored CIP, linear-interpolation and exact advection profiles."
+          },
+          "source_kind": "stored-data-plot"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "fr-periodic-advection",
+            "kind": "supplement",
+            "name": {
+              "ja": "FR法の1D周期移流：Radau補正と既存DGの比較",
+              "en": "1D periodic FR advection: Radau correction and published DG comparison"
+            },
+            "scope": {
+              "ja": "0.4+sin(2πx)をT=.25まで移流。Gauss点・Radau補正のFRと既存のmodal DGをp=1/2、8/16/32セルで実行し、誤差・質量・時間積分誤差を測ります。",
+              "en": "Transport0.4+sin(2pi x) toT=.25. Execute Gauss-node/Radau FR and the existing modal DG for p=1/2 and8/16/32 cells; measure analytic error, mass and time-integration error."
+            },
+            "method_ids": [
+              "flux-reconstruction",
+              "dg"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fr-periodic-advection/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fr-periodic-advection/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/atlas-sem-fr-2026-11-23.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sem-fr/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。 セル平均からのWENO-JS／Z二乗重みの臨界点再構成と、実際の周期スカラー輸送を比較します。εの違い、解析セル平均と点値、空間誤差と時間刻みの影響を分けます。 p+1個のGauss解点、上流数値流束、Legendre多項式によるRadau左右補正、SSPRK(3,3)。初期L2射影・上流流束・時間刻み規約をバイト一致の既存modal DGと揃えます。スケールしたCourant数(2p+1)|a|Δt/h≤.15。最後にp2/N32で刻みを半減。",
+          "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions. Compare critical-point reconstruction from cell means using WENO-JS/Z power-two weights and actual periodic scalar transport. Separate epsilon choices, analytic cell means versus point values, and spatial error versus time-step effects. p+1 Gauss solution points, upwind interface flux, Legendre Radau corrections and SSPRK(3,3). Match initial L2 projection, upwind flux and timestep policy to the unchanged published modal DG. Scaled Courant(2p+1)|a|dt/h<=.15; separately halve the timestep at p2/N32."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "advection-sine",
+        "problem_name": {
+          "ja": "周期正弦波の線形移流",
+          "en": "Periodic sine-wave advection"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "sine-advection",
+            "title": {
+              "ja": "移流／正弦波の平行移動",
+              "en": "Advection / sine translation"
+            },
+            "kind": "analytic",
+            "relation": "related-model",
+            "note": {
+              "ja": "同じ周期・速度1の正弦移流モデルです。参照一覧は振幅0.25、共通固定入力は0.2で、DG・CIP等の表現や時間も異なります。",
+              "en": "Same periodic sine-transport model at speed one. The library amplitude is 0.25 versus 0.2 in the common fixed input; DG/CIP representations and output times also differ."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-sine-advection-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-sine-advection-en"
+            },
+            "view": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=sine-advection",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=sine-advection"
+            }
+          },
+          {
+            "id": "weno-critical-profile",
+            "title": {
+              "ja": "WENO臨界点：多項式セル平均と解析的周期輸送",
+              "en": "WENO critical points: polynomial cell means and analytic periodic transport"
+            },
+            "kind": "analytic",
+            "relation": "related-model",
+            "note": {
+              "ja": "同じ一定速度の周期移流に対する追加参照ですが、cos+.1sin³のセル平均と局所臨界多項式は、従来の単一正弦・CIP表示と異なります。",
+              "en": "An additional constant-speed periodic-transport reference. The cos+.1sin³ cell means and local critical polynomials differ from the historical single-sine/CIP display."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-weno-critical-profile-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-weno-critical-profile-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=ja#weno-critical-epsilon-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=en#weno-critical-epsilon-en-measurements"
+            }
+          },
+          {
+            "id": "fr-periodic-advection",
+            "title": {
+              "ja": "FRとDGの周期正弦移流：平均0.4・T=.25の解析参照",
+              "en": "FR/DG periodic sine advection: analytic reference at mean0.4 andT=.25"
+            },
+            "kind": "analytic",
+            "relation": "same-problem",
+            "note": {
+              "ja": "全て無次元。u_t+u_x=0、区間[0,1)、周期境界、初期値0.4+sin(2πx)。解析解は0.4+sin(2π(x−t))。一定の正速度1、均一なアフィン区間要素。",
+              "en": "Dimensionless u_t+u_x=0 on[0,1), periodic boundary, initial0.4+sin(2pi x), analytic0.4+sin(2pi(x-t)). Constant positive speed1 and uniform affine intervals."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-fr-periodic-advection-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-fr-periodic-advection-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/fr-periodic-advection/?lang=ja",
+              "en": "/numerical-methods-atlas/validation/fr-periodic-advection/?lang=en"
+            }
+          }
+        ]
+      }
+    ]
   }
 }

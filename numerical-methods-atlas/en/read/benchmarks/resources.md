@@ -221,6 +221,10 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Compare WENO5 JS and Z power-two weights from the same cell means, then evolve actual periodic transport. Retain three regularity classes, three epsilon choices, fixed grids and separate halved-time-step diagnostics.
+- [1D periodic FR advection: Radau correction and published DG comparison](<https://hrkoyama.github.io/numerical-methods-atlas/validation/fr-periodic-advection/?lang=en>)
+  availability: run
+
+  Transport0.4+sin(2pi x) toT=.25. Execute Gauss-node/Radau FR and the existing modal DG for p=1/2 and8/16/32 cells; measure analytic error, mass and time-integration error.
 - [Noh problem: an actual 2D Cartesian Euler calculation](<https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-cartesian-2d/?lang=en>)
   availability: run
 

@@ -1,0 +1,251 @@
+[
+  {
+    "id": "sem-poisson-2d",
+    "title": {
+      "ja": "スペクトル要素法の2D Poisson：P1 FEMとh/p収束を比較",
+      "en": "2D spectral-element Poisson: P1 FEM comparison and h/p refinement"
+    },
+    "method_ids": [
+      "spectral-element",
+      "p1-fem"
+    ],
+    "summary": {
+      "ja": "単位正方形の正弦製造解をGLLスペクトル要素法と既存P1三角形FEMで解きます。自由未知数を揃えたh細分化と、固定要素数でのp=1〜6を分けて測ります。",
+      "en": "Solve a sine manufactured solution on the unit square with GLL spectral elements and the existing triangle P1 FEM. Compare matched free-unknown counts under h refinement and p=1..6 at fixed elements."
+    },
+    "assumptions": {
+      "ja": "全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。",
+      "en": "Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM."
+    },
+    "algorithm": {
+      "ja": "SEMはC0連続なテンソル積Qp Lagrange基底・p+1個のLegendre GLL節点と求積、疎な剛性行列・SciPy直接解法を使用。p=2で各方向2/4/8要素、別に2×2要素でp=1〜6。公開済みNumartのP1 FEM・GMRESをファイルのバイト列を保持して4/8/16分割で実行し、両者の自由未知数9/49/225を一致させます。",
+      "en": "C0 tensor Qp Lagrange SEM with p+1 Legendre GLL nodes/quadrature, sparse stiffness assembly and a SciPy direct solve. At p=2 use2/4/8 elements per axis; separately fix2x2 elements and p=1..6. Execute the byte-identical published Numart triangle P1 FEM/GMRES at4/8/16 subdivisions, matching9/49/225 free unknowns."
+    },
+    "validation": {
+      "ja": "解析的な正弦製造解と勾配を参照し、GLL節点とは異なる高次Gauss点で連続L2誤差・H1半ノルムを積分。h/p収束・自由未知数を揃えた誤差・境界値・真の残差を検査し、実際の2D場とP1の頂点・三角形・解をNPZに保存。",
+      "en": "Compare with the analytic manufactured sine solution/gradient. Integrate continuous L2/H1-seminorm errors at independent higher-order Gauss points. Check h/p refinement, matched-unknown errors, boundary data and true residuals; save actual2D SEM fields and P1 vertices/triangles/values in NPZ."
+    },
+    "limits": {
+      "ja": "滑らかな固定問題だけの結果。要素・求積・代数ソルバーが異なるので、速度・計算量・汎用的優位性の比較ではありません。GLLの対角求積質量は一般の積の厳密な質量行列ではない。曲線格子・特異解・非圧縮流体・Nek5000/nekRS本体は未実行。",
+      "en": "One smooth fixed problem only. Meshes, quadrature and algebraic solvers differ: no speed, complexity or universal-accuracy ranking. The diagonal GLL quadrature mass is not the exactly integrated mass of every product. No curved mesh, singular solution, incompressible flow or Nek5000/nekRS run."
+    },
+    "formulas": [
+      "-\\Delta u=f,\\quad u|_{\\partial\\Omega}=0,\\quad u_*=\\sin(\\pi x)\\sin(\\pi y),\\quad f=2\\pi^2u_*",
+      "K^e=S\\otimes W+W\\otimes S,\\quad S=D^TWD,\\quad W=\\operatorname{diag}(w_i)",
+      "E_{L^2}=\\left(\\int_\\Omega(u_h-u_*)^2\\,d\\Omega\\right)^{1/2},\\quad E_{H^1}=\\left(\\int_\\Omega|\\nabla u_h-\\nabla u_*|^2\\,d\\Omega\\right)^{1/2}"
+    ],
+    "references": [
+      {
+        "id": "patera1984",
+        "author": "A. T. Patera",
+        "year": 1984,
+        "title": "A spectral element method for fluid dynamics: Laminar flow in a channel expansion",
+        "type": "article",
+        "source": "https://nek5000.github.io/NekDoc/references.html",
+        "url": "https://nek5000.github.io/NekDoc/references.html",
+        "journal": "Journal of Computational Physics",
+        "volume": "54",
+        "pages": "468–488",
+        "doi": "10.1016/0021-9991(84)90128-1",
+        "source_review": {
+          "level": "metadata",
+          "checked_on": "2026-11-23",
+          "url": "https://nek5000.github.io/NekDoc/references.html",
+          "scope_ja": "Nek5000公式参考文献の題名・巻・頁・DOIを照合。出版社の原文は未取得で、原報全体の監査・数値再現とはしない。今回の実装はLegendre GLL変種。",
+          "scope": "Bibliographic identity from the official Nek5000 reference list; publisher full text was not retrieved. No original-paper audit/reproduction. This example is a Legendre GLL variant."
+        },
+        "review_level": "metadata",
+        "review": {
+          "ja": "Nek5000公式参考文献の題名・巻・頁・DOIを照合。出版社の原文は未取得で、原報全体の監査・数値再現とはしない。今回の実装はLegendre GLL変種。",
+          "en": "Bibliographic identity from the official Nek5000 reference list; publisher full text was not retrieved. No original-paper audit/reproduction. This example is a Legendre GLL variant."
+        }
+      },
+      {
+        "id": "nek5000-sem-docs",
+        "author": "Nek5000 development team",
+        "year": 2026,
+        "title": "Nek5000 documentation: Theory and spectral-element basis (accessed 2026-11-23)",
+        "type": "misc",
+        "source": "https://nek5000.github.io/NekDoc/theory.html",
+        "url": "https://nek5000.github.io/NekDoc/theory.html",
+        "source_review": {
+          "level": "full-text",
+          "checked_on": "2026-11-23",
+          "url": "https://nek5000.github.io/NekDoc/theory.html",
+          "scope_ja": "公式TheoryとFAQの要素局所の多項式、GLL/GL点・C0連続性を確認。教育用Poissonの実装とNek5000の流体ソルバー全体を同一視しない。",
+          "scope": "Official Theory and FAQ: element-local polynomials, GLL/GL nodes and C0 continuity. No installation, execution or full-code audit of Nek5000."
+        },
+        "review_level": "full-text",
+        "review": {
+          "ja": "公式TheoryとFAQの要素局所の多項式、GLL/GL点・C0連続性を確認。教育用Poissonの実装とNek5000の流体ソルバー全体を同一視しない。",
+          "en": "Official Theory and FAQ: element-local polynomials, GLL/GL nodes and C0 continuity. No installation, execution or full-code audit of Nek5000."
+        }
+      },
+      {
+        "id": "nekrs-implementation",
+        "author": "Nek5000/RS development team",
+        "year": 2026,
+        "title": "Nek5000/RS project: spectral-element solvers and related implementations (accessed 2026-11-23)",
+        "type": "misc",
+        "source": "https://nek5000.github.io/",
+        "url": "https://nek5000.github.io/",
+        "source_review": {
+          "level": "full-text",
+          "checked_on": "2026-11-23",
+          "url": "https://nek5000.github.io/",
+          "scope_ja": "公式プロジェクトのSEM、nekRSのCPU/GPU対応、Nek5000との関係を確認。外部ソルバーの導入・実行・性能比較は未実施。",
+          "scope": "Official project overview: SEM, CPU/GPU nekRS and its relationship to Nek5000. No external solver installation, execution or performance comparison."
+        },
+        "review_level": "full-text",
+        "review": {
+          "ja": "公式プロジェクトのSEM、nekRSのCPU/GPU対応、Nek5000との関係を確認。外部ソルバーの導入・実行・性能比較は未実施。",
+          "en": "Official project overview: SEM, CPU/GPU nekRS and its relationship to Nek5000. No external solver installation, execution or performance comparison."
+        }
+      }
+    ],
+    "code_files": [
+      "run.py",
+      "sem.py",
+      "polynomials.py",
+      "experiments.py",
+      "legacy/fem.py",
+      "legacy/krylov.py"
+    ],
+    "additional_figures": [
+      {
+        "file": "sem-poisson-2d-preview.png",
+        "caption": {
+          "ja": "保存した2D SEM場と節点誤差。連続誤差ノルムは別のGauss積分で評価しています。",
+          "en": "Saved actual2D SEM field and nodal error. Continuous error norms use separate Gauss integration."
+        }
+      }
+    ],
+    "gallery_figure": "sem-poisson-2d-preview.png"
+  },
+  {
+    "id": "fr-periodic-advection",
+    "title": {
+      "ja": "FR法の1D周期移流：Radau補正と既存DGの比較",
+      "en": "1D periodic FR advection: Radau correction and published DG comparison"
+    },
+    "method_ids": [
+      "flux-reconstruction",
+      "dg"
+    ],
+    "summary": {
+      "ja": "0.4+sin(2πx)をT=.25まで移流。Gauss点・Radau補正のFRと既存のmodal DGをp=1/2、8/16/32セルで実行し、誤差・質量・時間積分誤差を測ります。",
+      "en": "Transport0.4+sin(2pi x) toT=.25. Execute Gauss-node/Radau FR and the existing modal DG for p=1/2 and8/16/32 cells; measure analytic error, mass and time-integration error."
+    },
+    "assumptions": {
+      "ja": "全て無次元。u_t+u_x=0、区間[0,1)、周期境界、初期値0.4+sin(2πx)。解析解は0.4+sin(2π(x−t))。一定の正速度1、均一なアフィン区間要素。",
+      "en": "Dimensionless u_t+u_x=0 on[0,1), periodic boundary, initial0.4+sin(2pi x), analytic0.4+sin(2pi(x-t)). Constant positive speed1 and uniform affine intervals."
+    },
+    "algorithm": {
+      "ja": "p+1個のGauss解点、上流数値流束、Legendre多項式によるRadau左右補正、SSPRK(3,3)。初期L2射影・上流流束・時間刻み規約をバイト一致の既存modal DGと揃えます。スケールしたCourant数(2p+1)|a|Δt/h≤.15。最後にp2/N32で刻みを半減。",
+      "en": "p+1 Gauss solution points, upwind interface flux, Legendre Radau corrections and SSPRK(3,3). Match initial L2 projection, upwind flux and timestep policy to the unchanged published modal DG. Scaled Courant(2p+1)|a|dt/h<=.15; separately halve the timestep at p2/N32."
+    },
+    "validation": {
+      "ja": "追加のGauss点で連続L2誤差を積分し、既存DGの最終多項式と共通点で照合。全RK段階の重み付き質量と各完了ステップの2次エネルギーを検査。同じFR空間演算子の行列指数解で時間誤差を別測定し、刻み半減を確認。",
+      "en": "Integrate continuous L2 error at additional Gauss points and compare final polynomials with the actual published DG at common points. Check weighted mass at every RK stage and quadratic energy at each completed step. A matrix exponential of the same FR operator separately measures RK3 time error and its timestep-halving response."
+    },
+    "limits": {
+      "ja": "このRadau/Gauss・線形一定流束・アフィン要素の設定がDGに対応します。全FRと全DGの同値性、非線形流束・衝撃波・制限器・多次元FRは保証しません。hとΔtの同時細分化と行列指数による空間誤差を分け、行列指数を独立した空間PDEソルバーとは呼びません。PyFR本体は未実行。",
+      "en": "DG correspondence is for these Radau/Gauss choices, a constant linear flux and affine elements. No all-FR/all-DG equivalence, nonlinear flux, shock, limiter or multidimensional FR claim. Distinguish coupled h/dt refinement from the exponential spatial result; the exponential is not an independent spatial PDE solver. PyFR itself is not run."
+    },
+    "formulas": [
+      "u_t+a u_x=0,\\quad u_*(x,t)=0.4+\\sin(2\\pi(x-at)),\\quad a=1",
+      "f^C=f^D+(f_L^*-f_L^D)g_L+(f_R^*-f_R^D)g_R,\\quad \\dot u=-\\frac{2}{h}\\partial_\\xi f^C",
+      "g_L=\\frac{(-1)^p}{2}(P_p-P_{p+1}),\\quad g_R=\\frac12(P_p+P_{p+1}),\\quad\\frac{d}{dt}\\frac12\\|u_h\\|^2=-\\frac{|a|}{2}\\sum_{\\rm faces}[u_h]^2"
+    ],
+    "references": [
+      {
+        "id": "huynh2007-fr",
+        "author": "H. T. Huynh",
+        "year": 2007,
+        "title": "A Flux Reconstruction Approach to High-Order Schemes Including Discontinuous Galerkin Methods",
+        "type": "conference",
+        "source": "https://ntrs.nasa.gov/api/citations/20140009969/downloads/20140009969.pdf",
+        "url": "https://ntrs.nasa.gov/api/citations/20140009969/downloads/20140009969.pdf",
+        "doi": "10.2514/6.2007-4079",
+        "journal": "18th AIAA Computational Fluid Dynamics Conference",
+        "pages": "AIAA 2007-4079",
+        "source_review": {
+          "level": "metadata",
+          "checked_on": "2026-11-23",
+          "url": "https://ntrs.nasa.gov/api/citations/20140009969/downloads/20140009969.pdf",
+          "scope_ja": "著者の2014年NASA報告の参考文献（本文27頁）で2007年原報の題名・著者・会議番号を確認。AIAA原文は未取得。補正式は別記の2014年本文を参照。",
+          "scope": "Original 2007 title/author/AIAA number checked in the author's 2014 NASA report, printed p.27. The original AIAA text was not retrieved; correction formulas use the separately cited 2014 report."
+        },
+        "review_level": "metadata",
+        "review": {
+          "ja": "著者の2014年NASA報告の参考文献（本文27頁）で2007年原報の題名・著者・会議番号を確認。AIAA原文は未取得。補正式は別記の2014年本文を参照。",
+          "en": "Original 2007 title/author/AIAA number checked in the author's 2014 NASA report, printed p.27. The original AIAA text was not retrieved; correction formulas use the separately cited 2014 report."
+        }
+      },
+      {
+        "id": "huynh2014-fr",
+        "author": "H. T. Huynh",
+        "year": 2014,
+        "title": "On Formulations of Discontinuous Galerkin and Related Methods for Conservation Laws",
+        "type": "report",
+        "source": "https://ntrs.nasa.gov/api/citations/20140009969/downloads/20140009969.pdf",
+        "url": "https://ntrs.nasa.gov/api/citations/20140009969/downloads/20140009969.pdf",
+        "journal": "NASA/TM-2014-218135",
+        "source_review": {
+          "level": "full-text",
+          "checked_on": "2026-11-23",
+          "url": "https://ntrs.nasa.gov/api/citations/20140009969/downloads/20140009969.pdf",
+          "scope_ja": "NASA原文の抄録、微分形と界面補正、本文19–21頁の式(6.2)–(6.13)のRadau補正とDG対応、27頁の書誌を確認。全報告の監査や非線形実験の再現ではない。",
+          "scope": "Selected original NASA passages: abstract, differential form/interface correction, printed pp.19–21 equations(6.2)–(6.13) for Radau/DG, and p.27 bibliography. No full-report audit or nonlinear experiment reproduction."
+        },
+        "review_level": "full-text",
+        "review": {
+          "ja": "NASA原文の抄録、微分形と界面補正、本文19–21頁の式(6.2)–(6.13)のRadau補正とDG対応、27頁の書誌を確認。全報告の監査や非線形実験の再現ではない。",
+          "en": "Selected original NASA passages: abstract, differential form/interface correction, printed pp.19–21 equations(6.2)–(6.13) for Radau/DG, and p.27 bibliography. No full-report audit or nonlinear experiment reproduction."
+        }
+      },
+      {
+        "id": "pyfr-implementation",
+        "author": "PyFR development team",
+        "year": 2026,
+        "title": "PyFR: Flux Reconstruction and supported implementation platforms (accessed 2026-11-23)",
+        "type": "misc",
+        "source": "https://www.pyfr.org/",
+        "url": "https://www.pyfr.org/",
+        "source_review": {
+          "level": "full-text",
+          "checked_on": "2026-11-23",
+          "url": "https://www.pyfr.org/",
+          "scope_ja": "公式サイトのFRによる空間離散化・非構造格子・CPU/GPUの紹介を確認。今回の軽量Python例でPyFRを導入・実行・検証したとはしない。",
+          "scope": "Official overview: FR spatial discretization, unstructured meshes and CPU/GPU platforms. PyFR is not installed, invoked or validated by this small Python example."
+        },
+        "review_level": "full-text",
+        "review": {
+          "ja": "公式サイトのFRによる空間離散化・非構造格子・CPU/GPUの紹介を確認。今回の軽量Python例でPyFRを導入・実行・検証したとはしない。",
+          "en": "Official overview: FR spatial discretization, unstructured meshes and CPU/GPU platforms. PyFR is not installed, invoked or validated by this small Python example."
+        }
+      }
+    ],
+    "code_files": [
+      "run.py",
+      "fr.py",
+      "polynomials.py",
+      "experiments.py",
+      "legacy/advection.py",
+      "legacy/solvers.py",
+      "legacy/riemann.py",
+      "legacy/equations.py",
+      "legacy/limiters.py"
+    ],
+    "additional_figures": [
+      {
+        "file": "fr-periodic-advection-preview.png",
+        "caption": {
+          "ja": "保存したFRの初期・最終場と解析解との差。T=.25の実際の移流を表示します。",
+          "en": "Saved FR initial/final field and analytic nodal error; actual transport atT=.25."
+        }
+      }
+    ],
+    "gallery_figure": "fr-periodic-advection-preview.png"
+  }
+]

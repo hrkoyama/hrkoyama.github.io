@@ -39,3 +39,7 @@ scripts/depth-euler-positivity/attempts/01/site-tests.log -whitespace
 # Preserve the original level-set arithmetic-unit failure transcript verbatim.
 scripts/depth-level-set/attempts/01-tests/pytest.txt -whitespace
 code/validated-examples/2026-11-23/level-set/attempts/01-tests/pytest.txt -whitespace
+scripts/depth-sem-fr/attempts/01-dense-exponential/pytest.log -whitespace
+code/validated-examples/2026-11-23/sem-fr/attempts/01-dense-exponential/pytest.log -whitespace
+scripts/depth-sem-fr/attempts/01-dense-exponential/pytest.xml -whitespace
+code/validated-examples/2026-11-23/sem-fr/attempts/01-dense-exponential/pytest.xml -whitespace

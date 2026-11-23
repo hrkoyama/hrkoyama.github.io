@@ -162,7 +162,23 @@
     "levelset-vof": "F_K=\\frac1{|K|}\\int_K H(-\\phi)\\,d\\mathbf{x},\\quad0\\le F_K\\le1,\\qquad\\nabla\\cdot\\mathbf{u}=0:\\quad F_t+\\nabla\\cdot(F\\mathbf{u})=0",
     "levelset-conservation": "F_K^{n+1}=F_K^n-\\frac{\\Delta t}{|K|}\\sum_{f\\subset\\partial K}|f|\\widehat{\\mathcal F}_{K,f},\\quad\\sum_K|K|F_K^{n+1}=\\sum_K|K|F_K^n-\\text{boundary flux}",
     "levelset-reference": "\\phi_{\\rm ref}(\\mathbf{x},t)=\\|\\mathbf{x}-\\mathbf{c}(t)\\|-r,\\quad \\mathbf{c}_{\\rm tr}(t)=\\mathbf{c}_0+t\\mathbf{v},\\quad\\mathbf{c}_{\\rm rot}(t)=\\mathbf{x}_c+R(\\omega t)(\\mathbf{c}_0-\\mathbf{x}_c)",
-    "levelset-error": "E_\\Gamma=\\max_{t\\in\\{.25,.5,.75,1\\}}\\max_{\\mathbf{z}\\in Z_h(t)}\\big|\\|\\mathbf{z}-\\mathbf{c}(t)\\|-r\\big|,\\quad p_{\\rm obs}=\\log_2\\!\\left(E_\\Gamma(h)/E_\\Gamma(h/2)\\right)"
+    "levelset-error": "E_\\Gamma=\\max_{t\\in\\{.25,.5,.75,1\\}}\\max_{\\mathbf{z}\\in Z_h(t)}\\big|\\|\\mathbf{z}-\\mathbf{c}(t)\\|-r\\big|,\\quad p_{\\rm obs}=\\log_2\\!\\left(E_\\Gamma(h)/E_\\Gamma(h/2)\\right)",
+    "sem-space": "u_h|_{K_e}(\\xi,\\eta)=\\sum_{i,j=0}^{p}U^e_{ij}\\ell_i(\\xi)\\ell_j(\\eta),\\qquad u_h\\in C^0(\\Omega)",
+    "sem-weak": "\\int_\\Omega\\nabla v_h\\cdot\\nabla u_h\\,d\\Omega=\\int_\\Omega v_h f\\,d\\Omega,\\qquad v_h|_{\\partial\\Omega}=0",
+    "sem-gll": "(1-\\xi_i^2)P_p^\\prime(\\xi_i)=0,\\qquad w_i=\\frac{2}{p(p+1)P_p(\\xi_i)^2},\\qquad i=0,\\ldots,p",
+    "sem-stiffness": "D_{ij}=\\ell_j^\\prime(\\xi_i),\\quad W=\\operatorname{diag}(w_i),\\quad S=D^TWD,\\quad K_e=\\frac{h_y}{h_x}S\\otimes W+\\frac{h_x}{h_y}W\\otimes S",
+    "sem-load": "b^e_{ij}=\\frac{h_xh_y}{4}w_iw_jf(x_{e,i},y_{e,j}),\\qquad KU=b",
+    "sem-mms": "\\Omega=(0,1)^2,\\quad u_*=\\sin(\\pi x)\\sin(\\pi y),\\quad f=2\\pi^2u_*,\\quad u|_{\\partial\\Omega}=0",
+    "sem-errors": "E_{L^2}=\\left[\\int_\\Omega(u_h-u_*)^2\\,d\\Omega\\right]^{1/2},\\quad E_{H^1}=\\left[\\int_\\Omega|\\nabla u_h-\\nabla u_*|^2\\,d\\Omega\\right]^{1/2}",
+    "sem-hp": "E_{L^2}\\sim h^{p+1},\\qquad E_{H^1}\\sim h^p\\quad\\text{(smooth solution and resolved quadrature)}",
+    "fr-transport": "u_t+a u_x=0,\\quad x\\in[0,1),\\quad u(x+1,t)=u(x,t),\\quad u_*(x,t)=0.4+\\sin(2\\pi(x-at))",
+    "fr-polynomial": "u_h(\\xi)=\\sum_{j=0}^{p}u_j\\ell_j(\\xi),\\qquad f^D(\\xi)=\\sum_{j=0}^{p}f(u_j)\\ell_j(\\xi)",
+    "fr-correction": "f^C(\\xi)=f^D(\\xi)+(f_L^*-f_L^D)g_L(\\xi)+(f_R^*-f_R^D)g_R(\\xi)",
+    "fr-endpoints": "g_L(-1)=1,\\ g_L(1)=0,\\qquad g_R(-1)=0,\\ g_R(1)=1,\\qquad\\dot u_i=-\\frac{2}{h}\\partial_\\xi f^C(\\xi_i)",
+    "fr-radau": "g_L=\\frac{(-1)^p}{2}(P_p-P_{p+1}),\\qquad g_R=\\frac12(P_p+P_{p+1})",
+    "fr-dg": "M\\dot{\\mathbf u}=\\frac{2}{h}\\left[aD^TM\\mathbf u-\\mathbf t_R f_R^*+\\mathbf t_L f_L^*\\right],\\qquad M=\\operatorname{diag}(w_i)",
+    "fr-conservation": "I_h=\\sum_e\\frac{h}{2}\\sum_iw_iu_{e,i},\\quad \\frac{dI_h}{dt}=0,\\qquad \\frac{d}{dt}\\frac12\\|u_h\\|_{L^2}^2=-\\frac{|a|}{2}\\sum_{\\rm faces}[u_h]^2",
+    "fr-time": "\\dot U=A_hU,\\quad U_{\\exp}(T)=\\exp(TA_h)U(0),\\quad E_t=\\|U_{\\rm RK3}(T)-U_{\\exp}(T)\\|_M"
   },
   "chapters": [
     {
@@ -2859,6 +2875,92 @@
         "ja": "レベルセット法は2D円の移流・剛体回転に限定した教育用実装、VOFは比較解説のみです。専用配布版の22検査と全固定入力を独立展開から再実行。共通22例と旧配布版・既存問題の成功履歴は保持します。",
         "en": "The level-set implementation is limited to educational2D circle translation/rotation; VOF has comparison reading only. The dedicated ZIP is independently extracted and its22 tests and every fixed input rerun. The common22 examples, historical releases and existing success records are preserved."
       }
+    },
+    {
+      "id": "spectral-element",
+      "methods": [
+        "spectral-element"
+      ],
+      "related_methods": [
+        "p1-fem",
+        "dg"
+      ],
+      "title": {
+        "ja": "スペクトル要素法：高次の有限要素と2D Poisson",
+        "en": "Spectral elements: high-order finite elements and 2D Poisson"
+      },
+      "keywords": [
+        "SEM",
+        "スペクトル要素法",
+        "spectral element",
+        "GLL",
+        "Gauss Lobatto Legendre",
+        "Nek5000",
+        "nekRS",
+        "Poisson",
+        "h refinement",
+        "p refinement"
+      ],
+      "references": [
+        "patera1984",
+        "nek5000-sem-docs",
+        "nekrs-implementation"
+      ],
+      "html": {
+        "ja": "<h1>スペクトル要素法：高次の有限要素と2D Poisson</h1><p>スペクトル要素法（SEM）は、領域を要素に分け、各要素の中を高次多項式で近似する方法です。有限要素法の幾何学的な分割と、滑らかな関数を高次で表す考え方を結びます。ここでは連続Galerkin型のLegendre GLL変種を、手元で再実行できる2D Poisson問題から学びます。</p><h2 id=\"local-polynomials\">要素ごとの高次多項式をつなぐ</h2><math-placeholder id=\"sem-space\"></math-placeholder><p>ξ・ηは各正方形を[−1,1]²に写した参照座標です。隣り合う要素の境界節点を共有し、関数値をC0連続に組み立てます。導関数まで連続にする条件ではありません。SEMは高次有限要素法の一群であり、有限要素法全般を一次要素に限定する呼び方ではありません。領域全体を一組のFourier基底で表す方法とも分けて考えます。</p><h2 id=\"weak-form\">Poisson方程式の弱形式から出発する</h2><math-placeholder id=\"sem-weak\"></math-placeholder><p>−Δu=fに試験関数vを掛け、部分積分して微分を両者へ一つずつ配ります。零Dirichlet境界では境界項が消えます。以下の実装は一定係数・アフィン正方形だけを対象にし、この積分をGLL求積で近似します。</p><h2 id=\"gll\">GLL節点・求積と行列</h2><math-placeholder id=\"sem-gll\"></math-placeholder><math-placeholder id=\"sem-stiffness\"></math-placeholder><math-placeholder id=\"sem-load\"></math-placeholder><p>p次Legendre多項式Ppの導関数の根と両端点がp+1個のGLL節点です。1D求積の厳密次数は2p−1。節点値を自由度に選ぶと求積質量は対角になりますが、一般の2p次の積まで厳密に積分した質量行列とは異なります。2Dの剛性も横方向の積を含むため、求積の規約を明記する必要があります。コードはテンソル積の局所剛性と右辺を疎に組み立て、境界値を消去して解きます。</p><h2 id=\"fem-comparison\">既存のP1有限要素法との比較</h2><div role=\"region\" tabindex=\"0\" aria-label=\"既存のP1有限要素法との比較\" style=\"max-width:100%;overflow-x:auto\"><table style=\"min-width:36rem;width:100%;font-size:1rem;line-height:1.6\"><caption>既存のP1有限要素法との比較</caption><thead><tr><th scope=\"col\">比較点</th><th scope=\"col\">既存のP1 FEM</th><th scope=\"col\">今回のGLL-SEM</th></tr></thead><tbody><tr><th scope=\"row\">要素内の近似</th><td>三角形上の一次多項式</td><td>正方形上のテンソル積Qp多項式</td></tr><tr><th scope=\"row\">要素間の接続</th><td>C0連続</td><td>C0連続</td></tr><tr><th scope=\"row\">求積</th><td>Duffy変換によるGauss積分</td><td>GLL節点での剛性・荷重求積</td></tr><tr><th scope=\"row\">精度を増やす操作</th><td>主にh細分化</td><td>h細分化とp増加を分けられる</td></tr><tr><th scope=\"row\">今回の連立解法</th><td>既存NumartのILU(0)・GMRES</td><td>SciPyの疎な直接解法</td></tr><tr><th scope=\"row\">比較で揃えるもの</th><td>方程式・境界・製造解・自由未知数</td><td>同じ条件。速度の優劣は判定しない</td></tr></tbody></table></div><h2 id=\"example\">軽量実行例：2D Poissonのh/p収束</h2><math-placeholder id=\"sem-mms\"></math-placeholder><p>p=2のSEMで各方向2/4/8要素、既存の三角形P1 FEMで4/8/16分割を使います。自由未知数は両者とも9/49/225です。さらに2×2要素を固定しp=1〜6を実行します。比較用P1 FEMのソースと依存モジュールは、公開済みNumart版とバイト一致で同梱し、元の配布版を保持しています。</p><figure><a href=\"/code/validated-examples/2026-11-23/sem-fr/results/sem-poisson-2d.png\"><img src=\"/code/validated-examples/2026-11-23/sem-fr/results/sem-poisson-2d.png\" alt=\"実際に計算した2D SEM解、節点誤差、FEMとの比較と次数収束\" style=\"width:100%;height:auto\" loading=\"lazy\"></a><figcaption>実際の保存場と誤差の図。節点誤差の画像と、領域内を積分した誤差ノルムは別の量です。</figcaption></figure><h2 id=\"error-and-refinement\">残差・連続誤差・観測次数を区別する</h2><math-placeholder id=\"sem-errors\"></math-placeholder><math-placeholder id=\"sem-hp\"></math-placeholder><p>誤差はGLL節点だけでなく、要素内の別の高次Gauss点で積分します。小さい連立方程式の残差だけでは連続PDEの小さい誤差を意味しません。この滑らかな固定問題の最後のh細分化では、p2 SEMのL2観測次数は約3.04、H1半ノルムは約2.01。P1 FEMはそれぞれ約1.97と0.99です。自由未知数225でのL2誤差はSEM約2.49×10⁻⁴、P1約5.38×10⁻³でした。p6・2×2要素のL2誤差は約3.78×10⁻⁷です。</p><p>滑らかさ、境界、要素の形、求積と解法に依存する結果です。特異点や不連続係数で同じp収束を保証せず、この一例からSEMが常に速い・優れるとは結論しません。曲線要素、圧力との混合空間、流体の連成は今回の実行範囲に含めません。</p><h2 id=\"implementations\">関連実装：Nek5000とnekRS</h2><p><a href=\"https://nek5000.github.io/NekDoc/theory.html\">Nek5000</a>は高次のスペクトル要素流体ソルバーです。<a href=\"https://github.com/Nek5000/nekRS\">nekRS</a>はCPU/GPUに対応する関連する後継実装として、<a href=\"https://nek5000.github.io/\">公式プロジェクト</a>から資料・ソースへ進めます。ここで実行した小さなPythonのPoisson例は、その流体ソルバーや性能を再現・検証したものではありません。Pateraの原報は起源をたどる書誌として挙げ、今回のLegendre GLL変種と区別します。</p><p><a href=\"/numerical-methods-atlas/ja/read/fem/\">既存の有限要素法</a> · <a href=\"/numerical-methods-atlas/ja/read/flux-reconstruction/\">不連続な要素を使うFR・DGとの比較</a></p>",
+        "en": "<h1>Spectral elements: high-order finite elements and 2D Poisson</h1><p>The spectral element method (SEM) partitions a domain into elements and approximates the field with high-degree local polynomials. It connects finite-element assembly with high-order approximation of smooth functions. This chapter adopts a continuous Galerkin Legendre GLL variant and a small reproducible two-dimensional Poisson problem.</p><h2 id=\"local-polynomials\">Connect high-order local polynomials</h2><math-placeholder id=\"sem-space\"></math-placeholder><p>Map each square to reference coordinates in [−1,1]². Shared boundary degrees of freedom assemble a C0 field, without imposing continuous derivatives. SEM belongs to the high-order finite-element family; finite elements in general are not restricted to linear elements. Element-local polynomials also differ from a single global Fourier expansion.</p><h2 id=\"weak-form\">Start from the Poisson weak form</h2><math-placeholder id=\"sem-weak\"></math-placeholder><p>Multiply −Laplacian u=f by a test function and integrate by parts, transferring one derivative to each factor. Zero Dirichlet tests remove the boundary term. This implementation approximates the integrals with GLL quadrature for constant coefficients and affine squares.</p><h2 id=\"gll\">GLL nodes, quadrature and matrices</h2><math-placeholder id=\"sem-gll\"></math-placeholder><math-placeholder id=\"sem-stiffness\"></math-placeholder><math-placeholder id=\"sem-load\"></math-placeholder><p>The p+1 GLL nodes are the roots of the derivative of the degree-p Legendre polynomial plus both endpoints. The one-dimensional quadrature is exact through degree 2p−1. Nodal interpolation makes the quadrature mass diagonal, not exactly integrated for every degree-2p product. Two-dimensional stiffness also contains transverse products, so the quadrature convention matters. Assemble local tensor-product stiffness/load contributions, eliminate the boundary values and solve the sparse system.</p><h2 id=\"fem-comparison\">Comparison with the existing P1 finite elements</h2><div role=\"region\" tabindex=\"0\" aria-label=\"Comparison with the existing P1 finite elements\" style=\"max-width:100%;overflow-x:auto\"><table style=\"min-width:36rem;width:100%;font-size:1rem;line-height:1.6\"><caption>Comparison with the existing P1 finite elements</caption><thead><tr><th scope=\"col\">Aspect</th><th scope=\"col\">Published P1 FEM</th><th scope=\"col\">This GLL-SEM</th></tr></thead><tbody><tr><th scope=\"row\">Local space</th><td>Linear polynomials on triangles</td><td>Tensor-product Qp polynomials on squares</td></tr><tr><th scope=\"row\">Interface coupling</th><td>C0 continuity</td><td>C0 continuity</td></tr><tr><th scope=\"row\">Quadrature</th><td>Gauss integration via a Duffy transform</td><td>GLL stiffness/load quadrature</td></tr><tr><th scope=\"row\">Refinement</th><td>Primarily h refinement</td><td>Separate h and p refinement</td></tr><tr><th scope=\"row\">Algebraic solver here</th><td>Existing Numart ILU(0)/GMRES</td><td>SciPy sparse direct solve</td></tr><tr><th scope=\"row\">Matched controls</th><td>PDE, boundary, reference and free unknowns</td><td>Same controls; no speed ranking</td></tr></tbody></table></div><h2 id=\"example\">Small example:2D Poisson h/p refinement</h2><math-placeholder id=\"sem-mms\"></math-placeholder><p>At p=2, use 2/4/8 SEM elements per coordinate and 4/8/16 subdivisions for the existing triangular P1 FEM. Both have 9/49/225 free unknowns. Separately fix 2 x 2 elements and vary p=1..6. The comparison executes byte-identical modules from the published Numart distribution; that historical release remains unchanged.</p><figure><a href=\"/code/validated-examples/2026-11-23/sem-fr/results/sem-poisson-2d.png\"><img src=\"/code/validated-examples/2026-11-23/sem-fr/results/sem-poisson-2d.png\" alt=\"Computed2D SEM field, nodal error, FEM comparison and p refinement\" style=\"width:100%;height:auto\" loading=\"lazy\"></a><figcaption>Actual saved fields and measurements. A nodal-error picture is distinct from an error norm integrated over element interiors.</figcaption></figure><h2 id=\"error-and-refinement\">Distinguish residual, continuous error and observed order</h2><math-placeholder id=\"sem-errors\"></math-placeholder><math-placeholder id=\"sem-hp\"></math-placeholder><p>Integrate errors at separate higher-order Gauss points, not only at GLL nodes. A small linear-system residual alone does not imply a small continuous-PDE error. On the last h refinement, p2 SEM gives L2 order about 3.04 and H1-seminorm order 2.01; P1 FEM gives 1.97 and 0.99. At 225 free unknowns, L2 errors are about 2.49e−4 for SEM and 5.38e−3 for P1. At p6 on 2 x 2 elements, L2 error is about 3.78e−7.</p><p>These observations depend on smoothness, boundaries, element geometry, quadrature and solver choices. They establish neither universal p convergence near singularities nor a speed/accuracy ranking for all problems. Curved elements, mixed velocity/pressure spaces and fluid coupling are outside this execution.</p><h2 id=\"implementations\">Related implementations: Nek5000 and nekRS</h2><p><a href=\"https://nek5000.github.io/NekDoc/theory.html\">Nek5000</a> is a high-order spectral-element flow solver. <a href=\"https://github.com/Nek5000/nekRS\">nekRS</a> is the related CPU/GPU successor described by the <a href=\"https://nek5000.github.io/\">official project</a>. Follow those links for their documentation and source. The small Python Poisson code does not execute or validate either flow solver or its performance. Patera’s original paper supplies historical bibliographic context; the implemented Legendre GLL variant is separately specified.</p><p><a href=\"/numerical-methods-atlas/en/read/fem/\">Existing finite elements</a> · <a href=\"/numerical-methods-atlas/en/read/flux-reconstruction/\">Discontinuous FR/DG comparison</a></p>"
+      },
+      "scoped_supplements": [
+        "sem-poisson-2d"
+      ],
+      "publication_scope": {
+        "ja": "この章に対応する専用の軽量コード・固定入力・保存場・判定と、ZIP独立展開で再実行した25検査を公開します。関連する外部ソフトは公式資料の紹介であり、導入・動作検証済みの表示ではありません。",
+        "en": "Dedicated small code, fixed inputs, saved fields and decisions are published with25 tests rerun from an independently extracted ZIP. Related external software is introduced from official documentation, without claiming installation or execution."
+      },
+      "tables_in_markdown": true
+    },
+    {
+      "id": "flux-reconstruction",
+      "methods": [
+        "flux-reconstruction"
+      ],
+      "related_methods": [
+        "dg",
+        "weno-js"
+      ],
+      "title": {
+        "ja": "Flux Reconstruction法：流束補正とDG・1D周期移流",
+        "en": "Flux reconstruction: flux correction, DG and 1D periodic advection"
+      },
+      "keywords": [
+        "FR",
+        "FR法",
+        "flux reconstruction",
+        "流束再構成",
+        "Radau",
+        "DG",
+        "CPR",
+        "PyFR",
+        "periodic advection",
+        "周期移流"
+      ],
+      "references": [
+        "huynh2007-fr",
+        "huynh2014-fr",
+        "pyfr-implementation"
+      ],
+      "html": {
+        "ja": "<h1>Flux Reconstruction法：流束補正とDG・1D周期移流</h1><p>Flux Reconstruction（FR、流束再構成）は、要素ごとに持つ流束多項式へ界面の補正を加え、高次の保存則離散化を構成する枠組みです。要素間で解を連続にする代わりに数値流束で情報を交換します。補正関数の選び方が手法を決めるため、FRという名前だけで精度や安定性は決まりません。</p><h2 id=\"local-flux\">解点・界面の数値流束を分ける</h2><math-placeholder id=\"fr-transport\"></math-placeholder><math-placeholder id=\"fr-polynomial\"></math-placeholder><p>各区間をξ∈[−1,1]へ写し、p+1個の解点に値を置きます。要素内の多項式を左右端へ外挿すると、隣の要素と異なる二つの値が得られます。今回の一定速度ではa>0なら左側、a<0なら右側の状態を使う上流流束を、共有界面の一つの流束として選びます。</p><h2 id=\"corrected-flux\">界面値を補正関数でつなぐ</h2><math-placeholder id=\"fr-correction\"></math-placeholder><math-placeholder id=\"fr-endpoints\"></math-placeholder><p>fDは要素内で作る流束、f*は界面の共有数値流束です。左右の差をgL・gRで内部へ配ると、補正した流束は端点でf*に一致します。その微分を解点で評価して時間発展させます。MUSCLやWENOの「再構成」と関連する語ですが、ここで構成している多項式・自由度・補正の対象を区別します。</p><h2 id=\"dg-connection\">Radau補正でDGを再現する設定</h2><math-placeholder id=\"fr-radau\"></math-placeholder><math-placeholder id=\"fr-dg\"></math-placeholder><p>今回の解点はGauss点、補正は上式のRadau型です。MはGauss重みの対角行列、tL・tRは解点から端点への外挿ベクトル、Dは参照微分行列。この線形流束・アフィン区間の設定では、補正式は節点DGの弱形式に対応します。DG側をLegendre modal係数で表しても、同じ初期射影・流束・時間積分なら同じ多項式を表します。非線形流束のaliasing、別の求積や補正関数では条件を改めて確認する必要があります。</p><h2 id=\"dg-comparison\">既存DG法との比較</h2><div role=\"region\" tabindex=\"0\" aria-label=\"既存DG法との比較\" style=\"max-width:100%;overflow-x:auto\"><table style=\"min-width:36rem;width:100%;font-size:1rem;line-height:1.6\"><caption>既存DG法との比較</caption><thead><tr><th scope=\"col\">比較点</th><th scope=\"col\">今回のFR</th><th scope=\"col\">既存のmodal DG</th></tr></thead><tbody><tr><th scope=\"row\">保持する自由度</th><td>p+1個のGauss点の値</td><td>p+1個のLegendre係数</td></tr><tr><th scope=\"row\">要素の接続</th><td>共有流束との差をRadau関数で補正</td><td>弱形式の体積項と面流束</td></tr><tr><th scope=\"row\">初期化</th><td>共通のGauss積分でL2射影</td><td>同じ射影規約</td></tr><tr><th scope=\"row\">時間積分</th><td>SSPRK(3,3)</td><td>同じSSPRK(3,3)・刻み規約</td></tr><tr><th scope=\"row\">今回の比較の意味</th><td>線形問題での対応を数値で確認</td><td>独立に既存コードを実行して照合</td></tr><tr><th scope=\"row\">一般化の限界</th><td>全補正・非線形FRの保証ではない</td><td>全DG変種との同値性ではない</td></tr></tbody></table></div><h2 id=\"example\">軽量実行例：周期正弦波を1/4周期だけ運ぶ</h2><p>初期値0.4+sin(2πx)、速度1、T=.25。p=1/2、8/16/32セルを実行します。既存のDG関数をバイト一致で同梱し、各設定で実際に計算します。hを細分化する際はスケールしたCourant数(2p+1)|a|Δt/h≤.15にします。終了時の波は初期位置から移動しており、静止した初期図を成功例として使いません。</p><figure><a href=\"/code/validated-examples/2026-11-23/sem-fr/results/fr-periodic-advection.png\"><img src=\"/code/validated-examples/2026-11-23/sem-fr/results/fr-periodic-advection.png\" alt=\"FRの実際の周期移流、既存DGとの差、連続誤差と質量履歴\" style=\"width:100%;height:auto\" loading=\"lazy\"></a><figcaption>保存された初期・最終場と判定。DGとの差と質量変化の軸は10⁻¹⁵程度の丸め誤差の大きさを表示しています。</figcaption></figure><h2 id=\"conservation\">保存・散逸と時間誤差を別々に測る</h2><math-placeholder id=\"fr-conservation\"></math-placeholder><p>Ihの共有面流束は周期境界で打ち消し合います。上流流束の半離散エネルギーは界面の跳びに応じて散逸します。これは任意の時間刻みでの安定性や、非線形のエントロピー安定性を保証する式ではありません。本例では全RK段階の質量と、完了した各ステップのエネルギーも測定します。</p><math-placeholder id=\"fr-time\"></math-placeholder><p>連続L2誤差は追加のGauss点で積分します。hとΔtを同時に細分化した観測次数はp1で約1.99、p2で約3.00。FRと実際の既存DGの最大差は約4.0×10⁻¹⁵、最大段階質量変化は約3.6×10⁻¹⁵でした。</p><p>同じ空間演算子の指数作用を別の時間伝播器として計算し、RK3の時間誤差を分けます。p2/N32の時間誤差は約9.44×10⁻⁹、刻み半減では約1.18×10⁻⁹（比約.125）でした。この指数作用は独立した空間PDEソルバーではありません。初回の密行列指数の警告とJSON型変換の失敗は入力・元ソース・結果とともに保持し、数値受入条件を変更せず修正しています。</p><h2 id=\"implementations\">関連実装：PyFRと今回の適用範囲</h2><p><a href=\"https://www.pyfr.org/\">PyFR</a>はFRを使う流れのソフトウェアで、非構造格子やCPU/GPU向けの実装を紹介しています。公式資料と<a href=\"https://github.com/PyFR/PyFR\">公式ソース</a>へ進めます。今回の小さなPython例はPyFR本体の導入・実行・ベンチマークではありません。非線形流束、衝撃波、制限器、一般の補正族、曲線格子、多次元FRは別の検証が必要です。</p><p><a href=\"/numerical-methods-atlas/methods/dg/?lang=ja\">既存の不連続Galerkin法</a> · <a href=\"/numerical-methods-atlas/ja/read/spectral-element/\">連続なスペクトル要素法との違い</a></p>",
+        "en": "<h1>Flux reconstruction: flux correction, DG and 1D periodic advection</h1><p>Flux reconstruction (FR) builds high-order conservation-law discretizations by correcting a polynomial flux inside each element with shared interface fluxes. Elements exchange information through numerical fluxes rather than enforcing a continuous solution. The correction function is part of the method definition; the name FR alone specifies neither accuracy nor stability.</p><h2 id=\"local-flux\">Separate solution points from numerical interface fluxes</h2><math-placeholder id=\"fr-transport\"></math-placeholder><math-placeholder id=\"fr-polynomial\"></math-placeholder><p>Map each interval to ξ in [−1,1] and store values at p+1 solution points. Extrapolation to a face gives two traces from neighboring elements. For this constant-speed problem choose the left state when a>0 and the right state when a<0, giving one shared upwind flux per face.</p><h2 id=\"corrected-flux\">Connect face fluxes with correction functions</h2><math-placeholder id=\"fr-correction\"></math-placeholder><math-placeholder id=\"fr-endpoints\"></math-placeholder><p>Here fD is the element-local flux polynomial and f* is the shared numerical flux. Distribute their face differences using gL/gR so that the corrected flux matches f* at the endpoints. Differentiate it at the solution points to evolve the state. Distinguish these unknowns and flux corrections from the different reconstruction procedures in MUSCL/WENO.</p><h2 id=\"dg-connection\">A Radau choice that recovers DG</h2><math-placeholder id=\"fr-radau\"></math-placeholder><math-placeholder id=\"fr-dg\"></math-placeholder><p>Use Gauss solution points and the displayed Radau corrections. M is the diagonal Gauss-weight matrix, tL/tR extrapolate to faces and D differentiates on the reference interval. For a constant linear flux on affine intervals, this FR formulation corresponds to nodal DG. Modal Legendre coefficients represent the same polynomial when initial projection, flux and time stepping match. Nonlinear flux aliasing, other quadratures and other corrections require separate conditions.</p><h2 id=\"dg-comparison\">Comparison with the existing modal DG</h2><div role=\"region\" tabindex=\"0\" aria-label=\"Comparison with the existing modal DG\" style=\"max-width:100%;overflow-x:auto\"><table style=\"min-width:36rem;width:100%;font-size:1rem;line-height:1.6\"><caption>Comparison with the existing modal DG</caption><thead><tr><th scope=\"col\">Aspect</th><th scope=\"col\">This FR</th><th scope=\"col\">Published modal DG</th></tr></thead><tbody><tr><th scope=\"row\">Unknowns</th><td>p+1 Gauss-point values</td><td>p+1 Legendre coefficients</td></tr><tr><th scope=\"row\">Coupling</th><td>Radau corrections of face-flux differences</td><td>Weak-form volume and face fluxes</td></tr><tr><th scope=\"row\">Initialization</th><td>Common Gauss L2 projection</td><td>Same projection rule</td></tr><tr><th scope=\"row\">Time integration</th><td>SSPRK(3,3)</td><td>Same SSPRK(3,3) and timestep rule</td></tr><tr><th scope=\"row\">Meaning of this comparison</th><td>Check a specified linear correspondence</td><td>Actually execute the existing implementation</td></tr><tr><th scope=\"row\">Limits</th><td>Not all corrections or nonlinear FR</td><td>Not equivalence with every DG variant</td></tr></tbody></table></div><h2 id=\"example\">Small example: translate a sine by a quarter period</h2><p>Initial 0.4+sin(2pi x), speed 1, T=.25; execute p=1/2 on 8/16/32 cells. Bundle byte-identical published DG modules and run each configuration. During h refinement enforce scaled Courant(2p+1)|a|dt/h<=.15. The final wave has actually moved; the calculation does not use a stationary initial picture as evidence of transport.</p><figure><a href=\"/code/validated-examples/2026-11-23/sem-fr/results/fr-periodic-advection.png\"><img src=\"/code/validated-examples/2026-11-23/sem-fr/results/fr-periodic-advection.png\" alt=\"Actual periodic FR transport, published-DG difference, continuous error and mass history\" style=\"width:100%;height:auto\" loading=\"lazy\"></a><figcaption>Saved initial/final fields and checks. DG differences and mass changes are displayed on axes at the scale of 10⁻¹⁵ roundoff.</figcaption></figure><h2 id=\"conservation\">Separate conservation, dissipation and time error</h2><math-placeholder id=\"fr-conservation\"></math-placeholder><p>Shared face fluxes cancel in the periodic mass balance. The semidiscrete quadratic energy dissipates with interface jumps under upwinding. This does not guarantee stability at arbitrary timesteps or nonlinear entropy stability. Also measure every RK stage’s mass and each completed step’s energy.</p><math-placeholder id=\"fr-time\"></math-placeholder><p>Continuous L2 errors use additional Gauss points. Coupled h/dt observed orders are about 1.99 at p1 and 3.00 at p2. The maximum FR/published-DG difference is about 4.0e−15; maximum stage mass change is about 3.6e−15.</p><p>Compute an exponential action of the same spatial matrix as a separate time propagator. At p2/N32, RK3 time error is about 9.44e−9 and halves in timestep to 1.18e−9, a ratio about.125. This is not an independent spatial PDE solver. Preserve the initial dense-exponential warning and subsequent JSON scalar-type failure with their original source/input/results; fixes retain every numerical acceptance threshold.</p><h2 id=\"implementations\">Related implementation: PyFR and scope</h2><p><a href=\"https://www.pyfr.org/\">PyFR</a> is FR-based flow software supporting unstructured meshes and CPU/GPU execution. Follow its official overview and <a href=\"https://github.com/PyFR/PyFR\">source</a>. This small Python example neither installs nor runs or benchmarks PyFR. Nonlinear fluxes, shocks, limiters, general correction families, curved meshes and multidimensional FR require separate verification.</p><p><a href=\"/numerical-methods-atlas/methods/dg/?lang=en\">Existing discontinuous Galerkin method</a> · <a href=\"/numerical-methods-atlas/en/read/spectral-element/\">Continuous spectral elements</a></p>"
+      },
+      "scoped_supplements": [
+        "fr-periodic-advection"
+      ],
+      "publication_scope": {
+        "ja": "この章に対応する専用の軽量コード・固定入力・保存場・判定と、ZIP独立展開で再実行した25検査を公開します。関連する外部ソフトは公式資料の紹介であり、導入・動作検証済みの表示ではありません。",
+        "en": "Dedicated small code, fixed inputs, saved fields and decisions are published with25 tests rerun from an independently extracted ZIP. Related external software is introduced from official documentation, without claiming installation or execution."
+      },
+      "tables_in_markdown": true
     }
   ],
   "references": [
@@ -4173,6 +4275,140 @@
         "url": "https://www.math.ucdavis.edu/~egp/PUBLICATIONS/JOURNAL_ARTICLES/APPEARED/2000/MSS-EGP_2000.pdf",
         "scope": "Author-hosted pp.302–305, equations(1)–(6),(9),(12),(15): signed-distance geometry, enclosed-mass issue and volume-fraction conservation. Sign is reversed here to make phi negative inside. No CLSVOF or two-phase fluid experiment executed.",
         "scope_ja": "著者公開PDFの302–305頁、式(1)–(6),(9),(12),(15)の界面幾何・囲まれた質量の誤差・体積率の保存を参照。本教材は内部を負とするため符号規約を反転。CLSVOFや二相流の原著実験は実行していません。"
+      }
+    },
+    {
+      "id": "patera1984",
+      "author": "A. T. Patera",
+      "year": 1984,
+      "title": "A spectral element method for fluid dynamics: Laminar flow in a channel expansion",
+      "type": "article",
+      "source": "https://nek5000.github.io/NekDoc/references.html",
+      "url": "https://nek5000.github.io/NekDoc/references.html",
+      "journal": "Journal of Computational Physics",
+      "volume": "54",
+      "pages": "468–488",
+      "doi": "10.1016/0021-9991(84)90128-1",
+      "source_review": {
+        "level": "metadata",
+        "checked_on": "2026-11-23",
+        "url": "https://nek5000.github.io/NekDoc/references.html",
+        "scope_ja": "Nek5000公式参考文献の題名・巻・頁・DOIを照合。出版社の原文は未取得で、原報全体の監査・数値再現とはしない。今回の実装はLegendre GLL変種。",
+        "scope": "Bibliographic identity from the official Nek5000 reference list; publisher full text was not retrieved. No original-paper audit/reproduction. This example is a Legendre GLL variant."
+      },
+      "review_level": "metadata",
+      "review": {
+        "ja": "Nek5000公式参考文献の題名・巻・頁・DOIを照合。出版社の原文は未取得で、原報全体の監査・数値再現とはしない。今回の実装はLegendre GLL変種。",
+        "en": "Bibliographic identity from the official Nek5000 reference list; publisher full text was not retrieved. No original-paper audit/reproduction. This example is a Legendre GLL variant."
+      }
+    },
+    {
+      "id": "nek5000-sem-docs",
+      "author": "Nek5000 development team",
+      "year": 2026,
+      "title": "Nek5000 documentation: Theory and spectral-element basis (accessed 2026-11-23)",
+      "type": "misc",
+      "source": "https://nek5000.github.io/NekDoc/theory.html",
+      "url": "https://nek5000.github.io/NekDoc/theory.html",
+      "source_review": {
+        "level": "full-text",
+        "checked_on": "2026-11-23",
+        "url": "https://nek5000.github.io/NekDoc/theory.html",
+        "scope_ja": "公式TheoryとFAQの要素局所の多項式、GLL/GL点・C0連続性を確認。教育用Poissonの実装とNek5000の流体ソルバー全体を同一視しない。",
+        "scope": "Official Theory and FAQ: element-local polynomials, GLL/GL nodes and C0 continuity. No installation, execution or full-code audit of Nek5000."
+      },
+      "review_level": "full-text",
+      "review": {
+        "ja": "公式TheoryとFAQの要素局所の多項式、GLL/GL点・C0連続性を確認。教育用Poissonの実装とNek5000の流体ソルバー全体を同一視しない。",
+        "en": "Official Theory and FAQ: element-local polynomials, GLL/GL nodes and C0 continuity. No installation, execution or full-code audit of Nek5000."
+      }
+    },
+    {
+      "id": "nekrs-implementation",
+      "author": "Nek5000/RS development team",
+      "year": 2026,
+      "title": "Nek5000/RS project: spectral-element solvers and related implementations (accessed 2026-11-23)",
+      "type": "misc",
+      "source": "https://nek5000.github.io/",
+      "url": "https://nek5000.github.io/",
+      "source_review": {
+        "level": "full-text",
+        "checked_on": "2026-11-23",
+        "url": "https://nek5000.github.io/",
+        "scope_ja": "公式プロジェクトのSEM、nekRSのCPU/GPU対応、Nek5000との関係を確認。外部ソルバーの導入・実行・性能比較は未実施。",
+        "scope": "Official project overview: SEM, CPU/GPU nekRS and its relationship to Nek5000. No external solver installation, execution or performance comparison."
+      },
+      "review_level": "full-text",
+      "review": {
+        "ja": "公式プロジェクトのSEM、nekRSのCPU/GPU対応、Nek5000との関係を確認。外部ソルバーの導入・実行・性能比較は未実施。",
+        "en": "Official project overview: SEM, CPU/GPU nekRS and its relationship to Nek5000. No external solver installation, execution or performance comparison."
+      }
+    },
+    {
+      "id": "huynh2007-fr",
+      "author": "H. T. Huynh",
+      "year": 2007,
+      "title": "A Flux Reconstruction Approach to High-Order Schemes Including Discontinuous Galerkin Methods",
+      "type": "inproceedings",
+      "source": "https://ntrs.nasa.gov/api/citations/20140009969/downloads/20140009969.pdf",
+      "url": "https://ntrs.nasa.gov/api/citations/20140009969/downloads/20140009969.pdf",
+      "doi": "10.2514/6.2007-4079",
+      "journal": "18th AIAA Computational Fluid Dynamics Conference",
+      "pages": "AIAA 2007-4079",
+      "source_review": {
+        "level": "metadata",
+        "checked_on": "2026-11-23",
+        "url": "https://ntrs.nasa.gov/api/citations/20140009969/downloads/20140009969.pdf",
+        "scope_ja": "著者の2014年NASA報告の参考文献（本文27頁）で2007年原報の題名・著者・会議番号を確認。AIAA原文は未取得。補正式は別記の2014年本文を参照。",
+        "scope": "Original 2007 title/author/AIAA number checked in the author's 2014 NASA report, printed p.27. The original AIAA text was not retrieved; correction formulas use the separately cited 2014 report."
+      },
+      "review_level": "metadata",
+      "review": {
+        "ja": "著者の2014年NASA報告の参考文献（本文27頁）で2007年原報の題名・著者・会議番号を確認。AIAA原文は未取得。補正式は別記の2014年本文を参照。",
+        "en": "Original 2007 title/author/AIAA number checked in the author's 2014 NASA report, printed p.27. The original AIAA text was not retrieved; correction formulas use the separately cited 2014 report."
+      }
+    },
+    {
+      "id": "huynh2014-fr",
+      "author": "H. T. Huynh",
+      "year": 2014,
+      "title": "On Formulations of Discontinuous Galerkin and Related Methods for Conservation Laws",
+      "type": "techreport",
+      "source": "https://ntrs.nasa.gov/api/citations/20140009969/downloads/20140009969.pdf",
+      "url": "https://ntrs.nasa.gov/api/citations/20140009969/downloads/20140009969.pdf",
+      "journal": "NASA/TM-2014-218135",
+      "source_review": {
+        "level": "full-text",
+        "checked_on": "2026-11-23",
+        "url": "https://ntrs.nasa.gov/api/citations/20140009969/downloads/20140009969.pdf",
+        "scope_ja": "NASA原文の抄録、微分形と界面補正、本文19–21頁の式(6.2)–(6.13)のRadau補正とDG対応、27頁の書誌を確認。全報告の監査や非線形実験の再現ではない。",
+        "scope": "Selected original NASA passages: abstract, differential form/interface correction, printed pp.19–21 equations(6.2)–(6.13) for Radau/DG, and p.27 bibliography. No full-report audit or nonlinear experiment reproduction."
+      },
+      "review_level": "full-text",
+      "review": {
+        "ja": "NASA原文の抄録、微分形と界面補正、本文19–21頁の式(6.2)–(6.13)のRadau補正とDG対応、27頁の書誌を確認。全報告の監査や非線形実験の再現ではない。",
+        "en": "Selected original NASA passages: abstract, differential form/interface correction, printed pp.19–21 equations(6.2)–(6.13) for Radau/DG, and p.27 bibliography. No full-report audit or nonlinear experiment reproduction."
+      }
+    },
+    {
+      "id": "pyfr-implementation",
+      "author": "PyFR development team",
+      "year": 2026,
+      "title": "PyFR: Flux Reconstruction and supported implementation platforms (accessed 2026-11-23)",
+      "type": "misc",
+      "source": "https://www.pyfr.org/",
+      "url": "https://www.pyfr.org/",
+      "source_review": {
+        "level": "full-text",
+        "checked_on": "2026-11-23",
+        "url": "https://www.pyfr.org/",
+        "scope_ja": "公式サイトのFRによる空間離散化・非構造格子・CPU/GPUの紹介を確認。今回の軽量Python例でPyFRを導入・実行・検証したとはしない。",
+        "scope": "Official overview: FR spatial discretization, unstructured meshes and CPU/GPU platforms. PyFR is not installed, invoked or validated by this small Python example."
+      },
+      "review_level": "full-text",
+      "review": {
+        "ja": "公式サイトのFRによる空間離散化・非構造格子・CPU/GPUの紹介を確認。今回の軽量Python例でPyFRを導入・実行・検証したとはしない。",
+        "en": "Official overview: FR spatial discretization, unstructured meshes and CPU/GPU platforms. PyFR is not installed, invoked or validated by this small Python example."
       }
     }
   ]

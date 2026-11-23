@@ -7607,5 +7607,21 @@
   "ref-level-set-rotation-assumptions": {
     "ja": "全て無次元、領域[0,1]²、内部φ<0。与えた非圧縮の剛体運動だけを解き、円は境界から離れます。外側2層のゴースト値は各RK段階で解析解を指定します。周期境界ではなく、内部のφは数値更新します。出力時刻0/.25/.5/.75/1、物理Courant数max(|u|+|v|)Δt/Δx≤.35。",
     "en": "All quantities are nondimensional on[0,1]², with phi<0 inside. The prescribed divergence-free rigid motion keeps the circle away from the boundary. Two exterior ghost layers receive analytic data at each RK stage; this is not a periodic boundary. Every interior value is numerically advanced. Observe0/.25/.5/.75/1; max(|u|+|v|)dt/dx<=.35."
+  },
+  "reference.sem-fr.sem-poisson-2d.title": {
+    "en": "2D Poisson sine manufactured solution: shared SEM/P1 FEM reference",
+    "ja": "2D Poisson正弦製造解：SEMとP1 FEMの共通参照"
+  },
+  "reference.sem-fr.sem-poisson-2d.assumptions": {
+    "en": "Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM.",
+    "ja": "全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。"
+  },
+  "reference.sem-fr.fr-periodic-advection.title": {
+    "en": "FR/DG periodic sine advection: analytic reference at mean0.4 andT=.25",
+    "ja": "FRとDGの周期正弦移流：平均0.4・T=.25の解析参照"
+  },
+  "reference.sem-fr.fr-periodic-advection.assumptions": {
+    "en": "Dimensionless u_t+u_x=0 on[0,1), periodic boundary, initial0.4+sin(2pi x), analytic0.4+sin(2pi(x-t)). Constant positive speed1 and uniform affine intervals.",
+    "ja": "全て無次元。u_t+u_x=0、区間[0,1)、周期境界、初期値0.4+sin(2πx)。解析解は0.4+sin(2π(x−t))。一定の正速度1、均一なアフィン区間要素。"
   }
 }

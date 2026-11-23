@@ -4,8 +4,8 @@
   "title": "Learn by field",
   "description": "Read the theory, derivations and worked examples by field, from foundations to related methods and verification.",
   "source": "/catalog/atlas-reading-index.json",
-  "source_sha256": "eb9e63bb6cc4fdd06845f1ae0c16744e2b964bf374c4247755908e76980c60fa",
-  "chapter_count": 107,
+  "source_sha256": "77ba253c69e0bae163842c7909884a96ba5b34d9d74f3a0789a778b1fb9aae0e",
+  "chapter_count": 110,
   "groups": [
     {
       "id": "foundations-time",
@@ -633,6 +633,39 @@
             "en"
           ],
           "search_text": "fem 連続有限要素法：弱形式から疎行列の組立てへ Continuous finite elements: from weak form to sparse assembly 格子・有限要素・連成方程式 Meshes, finite elements and coupled equations"
+        },
+        {
+          "id": "spectral-element",
+          "title": "Spectral elements: high-order finite elements and 2D Poisson",
+          "url": "/numerical-methods-atlas/en/read/spectral-element/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "spectral-element スペクトル要素法：高次の有限要素と2D Poisson Spectral elements: high-order finite elements and 2D Poisson 格子・有限要素・連成方程式 Meshes, finite elements and coupled equations"
+        },
+        {
+          "id": "flux-reconstruction",
+          "title": "Flux reconstruction: flux correction, DG and 1D periodic advection",
+          "url": "/numerical-methods-atlas/en/read/flux-reconstruction/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "flux-reconstruction Flux Reconstruction法：流束補正とDG・1D周期移流 Flux reconstruction: flux correction, DG and 1D periodic advection 格子・有限要素・連成方程式 Meshes, finite elements and coupled equations"
+        },
+        {
+          "id": "validation-sem-fr",
+          "title": "Spectral elements and FR: small comparisons with existing FEM/DG",
+          "url": "/numerical-methods-atlas/en/read/validation-sem-fr/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-sem-fr スペクトル要素法とFR：既存FEM・DGとの軽量比較 Spectral elements and FR: small comparisons with existing FEM/DG 格子・有限要素・連成方程式 Meshes, finite elements and coupled equations"
         },
         {
           "id": "ale",

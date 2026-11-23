@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-23-28a7cccfdd
-Captured (UTC): 2026-11-23T11:26:13+00:00
+Snapshot: 2026-11-23-761589c9de
+Captured (UTC): 2026-11-23T12:03:46+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -4355,6 +4355,127 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/fem/#inspect-
 Coverage: reading
 
 Historical atlas →Computed gallery →
+
+## Flux reconstruction: flux correction, DG and 1D periodic advection — Flux reconstruction: flux correction, DG and 1D periodic advection [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/flux-reconstruction/
+Coverage: reading
+
+Flux reconstruction (FR) builds high-order conservation-law discretizations by correcting a polynomial flux inside each element with shared interface fluxes. Elements exchange information through numerical fluxes rather than enforcing a continuous solution. The correction function is part of the method definition; the name FR alone specifies neither accuracy nor stability.
+
+## Flux reconstruction: flux correction, DG and 1D periodic advection — Separate solution points from numerical interface fluxes [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/flux-reconstruction/#local-flux
+Coverage: reading
+
+u_t+a u_x=0,\quad x\in[0,1),\quad u(x+1,t)=u(x,t),\quad u_*(x,t)=0.4+\sin(2\pi(x-at))u_h(\xi)=\sum_{j=0}^{p}u_j\ell_j(\xi),\qquad f^D(\xi)=\sum_{j=0}^{p}f(u_j)\ell_j(\xi)
+Map each interval to ξ in [−1,1] and store values at p+1 solution points. Extrapolation to a face gives two traces from neighboring elements. For this constant-speed problem choose the left state when a>0 and the right state when a<0, giving one shared upwind flux per face.
+
+## Flux reconstruction: flux correction, DG and 1D periodic advection — Connect face fluxes with correction functions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/flux-reconstruction/#corrected-flux
+Coverage: reading
+
+f^C(\xi)=f^D(\xi)+(f_L^*-f_L^D)g_L(\xi)+(f_R^*-f_R^D)g_R(\xi)g_L(-1)=1,\ g_L(1)=0,\qquad g_R(-1)=0,\ g_R(1)=1,\qquad\dot u_i=-\frac{2}{h}\partial_\xi f^C(\xi_i)
+Here fD is the element-local flux polynomial and f* is the shared numerical flux. Distribute their face differences using gL/gR so that the corrected flux matches f* at the endpoints. Differentiate it at the solution points to evolve the state. Distinguish these unknowns and flux corrections from the different reconstruction procedures in MUSCL/WENO.
+
+## Flux reconstruction: flux correction, DG and 1D periodic advection — A Radau choice that recovers DG [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/flux-reconstruction/#dg-connection
+Coverage: reading
+
+g_L=\frac{(-1)^p}{2}(P_p-P_{p+1}),\qquad g_R=\frac12(P_p+P_{p+1})M\dot{\mathbf u}=\frac{2}{h}\left[aD^TM\mathbf u-\mathbf t_R f_R^*+\mathbf t_L f_L^*\right],\qquad M=\operatorname{diag}(w_i)
+Use Gauss solution points and the displayed Radau corrections. M is the diagonal Gauss-weight matrix, tL/tR extrapolate to faces and D differentiates on the reference interval. For a constant linear flux on affine intervals, this FR formulation corresponds to nodal DG. Modal Legendre coefficients represent the same polynomial when initial projection, flux and time stepping match. Nonlinear flux aliasing, other quadratures and other corrections require separate conditions.
+
+## Flux reconstruction: flux correction, DG and 1D periodic advection — Comparison with the existing modal DG [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/flux-reconstruction/#dg-comparison
+Coverage: reading
+
+Comparison with the existing modal DG
+AspectThis FRPublished modal DG
+Unknownsp+1 Gauss-point valuesp+1 Legendre coefficients
+CouplingRadau corrections of face-flux differencesWeak-form volume and face fluxes
+InitializationCommon Gauss L2 projectionSame projection rule
+Time integrationSSPRK(3,3)Same SSPRK(3,3) and timestep rule
+Meaning of this comparisonCheck a specified linear correspondenceActually execute the existing implementation
+LimitsNot all corrections or nonlinear FRNot equivalence with every DG variant
+
+## Flux reconstruction: flux correction, DG and 1D periodic advection — Small example: translate a sine by a quarter period [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/flux-reconstruction/#example
+Coverage: reading
+
+Initial 0.4+sin(2pi x), speed 1, T=.25; execute p=1/2 on 8/16/32 cells. Bundle byte-identical published DG modules and run each configuration. During h refinement enforce scaled Courant(2p+1)|a|dt/h<=.15. The final wave has actually moved; the calculation does not use a stationary initial picture as evidence of transport.
+Saved initial/final fields and checks. DG differences and mass changes are displayed on axes at the scale of 10⁻¹⁵ roundoff.
+
+## Flux reconstruction: flux correction, DG and 1D periodic advection — Separate conservation, dissipation and time error [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/flux-reconstruction/#conservation
+Coverage: reading
+
+I_h=\sum_e\frac{h}{2}\sum_iw_iu_{e,i},\quad \frac{dI_h}{dt}=0,\qquad \frac{d}{dt}\frac12\|u_h\|_{L^2}^2=-\frac{|a|}{2}\sum_{\rm faces}[u_h]^2
+Shared face fluxes cancel in the periodic mass balance. The semidiscrete quadratic energy dissipates with interface jumps under upwinding. This does not guarantee stability at arbitrary timesteps or nonlinear entropy stability. Also measure every RK stage’s mass and each completed step’s energy.
+\dot U=A_hU,\quad U_{\exp}(T)=\exp(TA_h)U(0),\quad E_t=\|U_{\rm RK3}(T)-U_{\exp}(T)\|_M
+Continuous L2 errors use additional Gauss points. Coupled h/dt observed orders are about 1.99 at p1 and 3.00 at p2. The maximum FR/published-DG difference is about 4.0e−15; maximum stage mass change is about 3.6e−15.
+Compute an exponential action of the same spatial matrix as a separate time propagator. At p2/N32, RK3 time error is about 9.44e−9 and halves in timestep to 1.18e−9, a ratio about.125. This is not an independent spatial PDE solver. Preserve the initial dense-exponential warning and subsequent JSON scalar-type failure with their original source/input/results; fixes retain every numerical acceptance threshold.
+
+## Flux reconstruction: flux correction, DG and 1D periodic advection — Related implementation: PyFR and scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/flux-reconstruction/#implementations
+Coverage: reading
+
+PyFR is FR-based flow software supporting unstructured meshes and CPU/GPU execution. Follow its official overview and source. This small Python example neither installs nor runs or benchmarks PyFR. Nonlinear fluxes, shocks, limiters, general correction families, curved meshes and multidimensional FR require separate verification.
+Existing discontinuous Galerkin method · Continuous spectral elements
+
+## Flux reconstruction: flux correction, DG and 1D periodic advection — Check fixed inputs: separate scoped releases [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/flux-reconstruction/#scoped-examples
+Coverage: reading
+
+Check each example’s inputs, observables, diagnostic definitions and scope. What a passing check establishes depends on its acceptance criteria and differs from a general mathematical guarantee. Historical inputs, measurements and criteria are preserved.
+
+## Flux reconstruction: flux correction, DG and 1D periodic advection — 1D periodic FR advection: Radau correction and published DG comparison [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/flux-reconstruction/
+Coverage: reading
+
+Computation for a fixed target
+Transport0.4+sin(2pi x) toT=.25. Execute Gauss-node/Radau FR and the existing modal DG for p=1/2 and8/16/32 cells; measure analytic error, mass and time-integration error.
+DG correspondence is for these Radau/Gauss choices, a constant linear flux and affine elements. No all-FR/all-DG equivalence, nonlinear flux, shock, limiter or multidimensional FR claim. Distinguish coupled h/dt refinement from the exponential spatial result; the exponential is not an independent spatial PDE solver. PyFR itself is not run.
+Input, results and acceptance · Method, equations and sources · Code: run.py · Code: fr.py · Code: polynomials.py · Code: experiments.py · Code: advection.py · Code: solvers.py · Code: riemann.py · Code: equations.py · Code: limiters.py · Code: sem.py · Code: fem.py · Code: krylov.py · Tests: test_sem_fr.py · Release ZIP · Saved results · Independent-extraction rerun receipt
+
+## Flux reconstruction: flux correction, DG and 1D periodic advection — Publication scope and related entries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/flux-reconstruction/#publication-scope
+Coverage: reading
+
+Dedicated small code, fixed inputs, saved fields and decisions are published with25 tests rerun from an independently extracted ZIP. Related external software is introduced from official documentation, without claiming installation or execution.
+Flux reconstruction (FR)
+Discontinuous Galerkin / Legendre
+WENO5-JS
+
+## Flux reconstruction: flux correction, DG and 1D periodic advection — Primary publications, supporting sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/flux-reconstruction/#sources
+Coverage: reading
+
+Distinguish original research, later variants, author monographs, pedagogical articles and official references. Bibliographic verification differs from consulting selected passages; neither implies a full-paper audit or numerical reproduction. Access-depth notes accompany each source.
+H. T. Huynh (2007). A Flux Reconstruction Approach to High-Order Schemes Including Discontinuous Galerkin Methods. 18th AIAA Computational Fluid Dynamics Conference
+Research publication: proposal or related formulation · Bibliography checked · Consulted record
+Original 2007 title/author/AIAA number checked in the author's 2014 NASA report, printed p.27. The original AIAA text was not retrieved; correction formulas use the separately cited 2014 report.
+H. T. Huynh (2014). On Formulations of Discontinuous Galerkin and Related Methods for Conservation Laws. NASA/TM-2014-218135
+Research publication: proposal or related formulation · Selected source passages consulted · Consulted record
+Selected original NASA passages: abstract, differential form/interface correction, printed pp.19–21 equations(6.2)–(6.13) for Radau/DG, and p.27 bibliography. No full-report audit or nonlinear experiment reproduction.
+PyFR development team (2026). PyFR: Flux Reconstruction and supported implementation platforms (accessed 2026-11-23).
+
+## Flux reconstruction: flux correction, DG and 1D periodic advection — Primary publications, supporting sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/flux-reconstruction/#sources
+Coverage: reading
+
+Official reference documentation · Selected source passages consulted · Consulted record
+Official overview: FR spatial discretization, unstructured meshes and CPU/GPU platforms. PyFR is not installed, invoked or validated by this small Python example.
 
 ## Spherical meshes and Arakawa A, B and C grids [en]
 
@@ -11264,6 +11385,18 @@ S. Osher and J. A. Sethian (1988). Fronts propagating with curvature-dependent s
 C. W. Hirt and B. D. Nichols (1981). Volume of fluid (VOF) method for the dynamics of free boundaries. 10.1016/0021-9991(81)90145-5
 M. Sussman and E. Fatemi (1999). An Efficient, Interface-Preserving Level Set Redistancing Algorithm and Its Application to Interfacial Incompressible Fluid Flow. 10.1137/S1064827596298245
 M. Sussman and E. G. Puckett (2000). A Coupled Level Set and Volume-of-Fluid Method for Computing 3D and Axisymmetric Incompressible Two-Phase Flows. 10.1006/jcph.2000.6537
+A. T. Patera (1984). A spectral element method for fluid dynamics: Laminar flow in a channel expansion. 10.1016/0021-9991(84)90128-1
+Nek5000 development team (2026). Nek5000 documentation: Theory and spectral-element basis (accessed 2026-11-23). Original source
+Nek5000/RS development team (2026). Nek5000/RS project: spectral-element solvers and related implementations (accessed 2026-11-23). Original source
+
+## References by original publication year — Sources added by priority-method curation [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/references/
+Coverage: reading
+
+H. T. Huynh (2007). A Flux Reconstruction Approach to High-Order Schemes Including Discontinuous Galerkin Methods. 10.2514/6.2007-4079
+H. T. Huynh (2014). On Formulations of Discontinuous Galerkin and Related Methods for Conservation Laws. Original source
+PyFR development team (2026). PyFR: Flux Reconstruction and supported implementation platforms (accessed 2026-11-23). Original source
 
 ## References by original publication year — Added quantum-chemistry primary publications [en]
 
@@ -12741,8 +12874,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Published web edition, counted 2026-11-23. These are counts of catalog entries and documented examples, not a claim that every entry is a verified end-to-end solver.
-50 equation/model entries · 133 methods and building blocks · 247 journal/conference papers · 304 total sources.
-There are 9 saved-profile equation-gallery cases across 7 equation families, and 107 reading chapters including this inventory.
+50 equation/model entries · 135 methods and building blocks · 249 journal/conference papers · 310 total sources.
+There are 9 saved-profile equation-gallery cases across 7 equation families, and 110 reading chapters including this inventory.
 
 ## Site coverage and counting rules — Equations and models# [en]
 
@@ -12836,7 +12969,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Named numerical methods and building blocks with a reading chapter. Aliases count once; RK stages, dimensions, parameter combinations, mesh layouts and theoretical conditions do not add methods. A family and a separately explained algorithm may both appear. Not a count of mutually exclusive end-to-end solvers.
-118 entries have scoped local examples; 15 are reading-only. Reconstruction limiters, preconditioners and coupling operators are building blocks, not complete PDE solvers. Mesh layouts, CFL conditions and theorems are not counted as numerical methods.
+120 entries have scoped local examples; 15 are reading-only. Reconstruction limiters, preconditioners and coupling operators are building blocks, not complete PDE solvers. Mesh layouts, CFL conditions and theorems are not counted as numerical methods.
 
 ## Site coverage and counting rules — Spatial discretization# [en]
 
@@ -12989,7 +13122,7 @@ Coverage: reading
 
 Unique bibliographic publications classified as journal articles or conference papers, deduplicated by DOI or author/title/year. Includes reviews, translations and explicitly labeled accepted papers; not a claim that every full text was inspected. Books, chapters, reports, preprints and documentation are separate.
 Unique cataloged works across all publication types. An original publication and a later translation are separate works; duplicate DOI records are not. NASA case links in prose are not catalog records.
-241 journal-article records, including reviews, translations and explicitly labeled accepted papers.
+242 journal-article records, including reviews, translations and explicitly labeled accepted papers.
 3 conference papers.
 22 books.
 2 book chapters.
@@ -13157,6 +13290,126 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/sparse-nonlin
 Coverage: reading
 
 Historical atlas →Computed gallery →
+
+## Spectral elements: high-order finite elements and 2D Poisson — Spectral elements: high-order finite elements and 2D Poisson [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/spectral-element/
+Coverage: reading
+
+The spectral element method (SEM) partitions a domain into elements and approximates the field with high-degree local polynomials. It connects finite-element assembly with high-order approximation of smooth functions. This chapter adopts a continuous Galerkin Legendre GLL variant and a small reproducible two-dimensional Poisson problem.
+
+## Spectral elements: high-order finite elements and 2D Poisson — Connect high-order local polynomials [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/spectral-element/#local-polynomials
+Coverage: reading
+
+u_h|_{K_e}(\xi,\eta)=\sum_{i,j=0}^{p}U^e_{ij}\ell_i(\xi)\ell_j(\eta),\qquad u_h\in C^0(\Omega)
+Map each square to reference coordinates in [−1,1]². Shared boundary degrees of freedom assemble a C0 field, without imposing continuous derivatives. SEM belongs to the high-order finite-element family; finite elements in general are not restricted to linear elements. Element-local polynomials also differ from a single global Fourier expansion.
+
+## Spectral elements: high-order finite elements and 2D Poisson — Start from the Poisson weak form [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/spectral-element/#weak-form
+Coverage: reading
+
+\int_\Omega\nabla v_h\cdot\nabla u_h\,d\Omega=\int_\Omega v_h f\,d\Omega,\qquad v_h|_{\partial\Omega}=0
+Multiply −Laplacian u=f by a test function and integrate by parts, transferring one derivative to each factor. Zero Dirichlet tests remove the boundary term. This implementation approximates the integrals with GLL quadrature for constant coefficients and affine squares.
+
+## Spectral elements: high-order finite elements and 2D Poisson — GLL nodes, quadrature and matrices [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/spectral-element/#gll
+Coverage: reading
+
+(1-\xi_i^2)P_p^\prime(\xi_i)=0,\qquad w_i=\frac{2}{p(p+1)P_p(\xi_i)^2},\qquad i=0,\ldots,pD_{ij}=\ell_j^\prime(\xi_i),\quad W=\operatorname{diag}(w_i),\quad S=D^TWD,\quad K_e=\frac{h_y}{h_x}S\otimes W+\frac{h_x}{h_y}W\otimes Sb^e_{ij}=\frac{h_xh_y}{4}w_iw_jf(x_{e,i},y_{e,j}),\qquad KU=b
+The p+1 GLL nodes are the roots of the derivative of the degree-p Legendre polynomial plus both endpoints. The one-dimensional quadrature is exact through degree 2p−1. Nodal interpolation makes the quadrature mass diagonal, not exactly integrated for every degree-2p product. Two-dimensional stiffness also contains transverse products, so the quadrature convention matters. Assemble local tensor-product stiffness/load contributions, eliminate the boundary values and solve the sparse system.
+
+## Spectral elements: high-order finite elements and 2D Poisson — Comparison with the existing P1 finite elements [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/spectral-element/#fem-comparison
+Coverage: reading
+
+Comparison with the existing P1 finite elements
+AspectPublished P1 FEMThis GLL-SEM
+Local spaceLinear polynomials on trianglesTensor-product Qp polynomials on squares
+Interface couplingC0 continuityC0 continuity
+QuadratureGauss integration via a Duffy transformGLL stiffness/load quadrature
+RefinementPrimarily h refinementSeparate h and p refinement
+Algebraic solver hereExisting Numart ILU(0)/GMRESSciPy sparse direct solve
+Matched controlsPDE, boundary, reference and free unknownsSame controls; no speed ranking
+
+## Spectral elements: high-order finite elements and 2D Poisson — Small example:2D Poisson h/p refinement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/spectral-element/#example
+Coverage: reading
+
+\Omega=(0,1)^2,\quad u_*=\sin(\pi x)\sin(\pi y),\quad f=2\pi^2u_*,\quad u|_{\partial\Omega}=0
+At p=2, use 2/4/8 SEM elements per coordinate and 4/8/16 subdivisions for the existing triangular P1 FEM. Both have 9/49/225 free unknowns. Separately fix 2 x 2 elements and vary p=1..6. The comparison executes byte-identical modules from the published Numart distribution; that historical release remains unchanged.
+Actual saved fields and measurements. A nodal-error picture is distinct from an error norm integrated over element interiors.
+
+## Spectral elements: high-order finite elements and 2D Poisson — Distinguish residual, continuous error and observed order [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/spectral-element/#error-and-refinement
+Coverage: reading
+
+E_{L^2}=\left[\int_\Omega(u_h-u_*)^2\,d\Omega\right]^{1/2},\quad E_{H^1}=\left[\int_\Omega|\nabla u_h-\nabla u_*|^2\,d\Omega\right]^{1/2}E_{L^2}\sim h^{p+1},\qquad E_{H^1}\sim h^p\quad\text{(smooth solution and resolved quadrature)}
+Integrate errors at separate higher-order Gauss points, not only at GLL nodes. A small linear-system residual alone does not imply a small continuous-PDE error. On the last h refinement, p2 SEM gives L2 order about 3.04 and H1-seminorm order 2.01; P1 FEM gives 1.97 and 0.99. At 225 free unknowns, L2 errors are about 2.49e−4 for SEM and 5.38e−3 for P1. At p6 on 2 x 2 elements, L2 error is about 3.78e−7.
+These observations depend on smoothness, boundaries, element geometry, quadrature and solver choices. They establish neither universal p convergence near singularities nor a speed/accuracy ranking for all problems. Curved elements, mixed velocity/pressure spaces and fluid coupling are outside this execution.
+
+## Spectral elements: high-order finite elements and 2D Poisson — Related implementations: Nek5000 and nekRS [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/spectral-element/#implementations
+Coverage: reading
+
+Nek5000 is a high-order spectral-element flow solver. nekRS is the related CPU/GPU successor described by the official project. Follow those links for their documentation and source. The small Python Poisson code does not execute or validate either flow solver or its performance. Patera’s original paper supplies historical bibliographic context; the implemented Legendre GLL variant is separately specified.
+Existing finite elements · Discontinuous FR/DG comparison
+
+## Spectral elements: high-order finite elements and 2D Poisson — Check fixed inputs: separate scoped releases [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/spectral-element/#scoped-examples
+Coverage: reading
+
+Check each example’s inputs, observables, diagnostic definitions and scope. What a passing check establishes depends on its acceptance criteria and differs from a general mathematical guarantee. Historical inputs, measurements and criteria are preserved.
+
+## Spectral elements: high-order finite elements and 2D Poisson — 2D spectral-element Poisson: P1 FEM comparison and h/p refinement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/spectral-element/
+Coverage: reading
+
+Computation for a fixed target
+Solve a sine manufactured solution on the unit square with GLL spectral elements and the existing triangle P1 FEM. Compare matched free-unknown counts under h refinement and p=1..6 at fixed elements.
+One smooth fixed problem only. Meshes, quadrature and algebraic solvers differ: no speed, complexity or universal-accuracy ranking. The diagonal GLL quadrature mass is not the exactly integrated mass of every product. No curved mesh, singular solution, incompressible flow or Nek5000/nekRS run.
+Input, results and acceptance · Method, equations and sources · Code: run.py · Code: sem.py · Code: polynomials.py · Code: experiments.py · Code: fem.py · Code: krylov.py · Code: fr.py · Code: advection.py · Code: solvers.py · Code: riemann.py · Code: equations.py · Code: limiters.py · Tests: test_sem_fr.py · Release ZIP · Saved results · Independent-extraction rerun receipt
+
+## Spectral elements: high-order finite elements and 2D Poisson — Publication scope and related entries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/spectral-element/#publication-scope
+Coverage: reading
+
+Dedicated small code, fixed inputs, saved fields and decisions are published with25 tests rerun from an independently extracted ZIP. Related external software is introduced from official documentation, without claiming installation or execution.
+Spectral element method (SEM)
+Continuous P1 Galerkin FEM
+Discontinuous Galerkin / Legendre
+
+## Spectral elements: high-order finite elements and 2D Poisson — Primary publications, supporting sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/spectral-element/#sources
+Coverage: reading
+
+Distinguish original research, later variants, author monographs, pedagogical articles and official references. Bibliographic verification differs from consulting selected passages; neither implies a full-paper audit or numerical reproduction. Access-depth notes accompany each source.
+A. T. Patera (1984). A spectral element method for fluid dynamics: Laminar flow in a channel expansion. Journal of Computational Physics
+Research publication: proposal or related formulation · Bibliography checked · Consulted record
+Bibliographic identity from the official Nek5000 reference list; publisher full text was not retrieved. No original-paper audit/reproduction. This example is a Legendre GLL variant.
+Nek5000 development team (2026). Nek5000 documentation: Theory and spectral-element basis (accessed 2026-11-23).
+Official reference documentation · Selected source passages consulted · Consulted record
+Official Theory and FAQ: element-local polynomials, GLL/GL nodes and C0 continuity. No installation, execution or full-code audit of Nek5000.
+Nek5000/RS development team (2026). Nek5000/RS project: spectral-element solvers and related implementations (accessed 2026-11-23).
+Official reference documentation · Selected source passages consulted · Consulted record
+
+## Spectral elements: high-order finite elements and 2D Poisson — Primary publications, supporting sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/spectral-element/#sources
+Coverage: reading
+
+Official project overview: SEM, CPU/GPU nekRS and its relationship to Nek5000. No external solver installation, execution or performance comparison.
 
 ## Spline interpolation — Spline interpolation [en]
 
@@ -16527,6 +16780,9 @@ Store normalized residuals, relative solution differences against SciPy spsolve,
 Related-model reference · Manufactured solution
 Poisson / manufactured sine
 The card is 1D sin(πx); this test is 2D sin(πx)sin(πy). Dimension, forcing and FEM error norms differ.
+Same-problem reference · Manufactured solution
+2D Poisson sine manufactured solution: shared SEM/P1 FEM reference
+Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM.
 
 ## AMG, factorizations, eigenvalues and quadrature — Assumptions, units and boundaries [en]
 
@@ -28829,6 +29085,293 @@ J. Thrussell and J. M. Ferguson (2023). ExactPack: A python library of exact ana
 Review scope / review_level: official-record-and-selected-pinned-code-execution
 Unmodified selected pinned Sedov evaluator actually run at6001/12001 points. Source hashes, parameters, point values, decisions and BSD-3-Clause retained; not another numerical Euler solver or whole-library test.
 
+## Spectral elements and FR: small comparisons with existing FEM/DG — Spectral elements and FR: small comparisons with existing FEM/DG [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/
+Coverage: reading
+
+Compare2D SEM Poisson and1D periodic FR advection with the existing P1 FEM/modal DG under matched equations, boundaries and analytic fields. Separate h/p refinement, continuous error, residuals, conservation and time error from any external Nek/PyFR execution.
+
+## Spectral elements and FR: small comparisons with existing FEM/DG — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/#run-all
+Coverage: reading
+
+Run inside atlas-sem-fr-2026-11-23 from the ZIP. This command executes all 2 fixed cases in the supplement. Choose a new or empty output directory.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Spectral elements and FR: small comparisons with existing FEM/DG — 2D spectral-element Poisson: P1 FEM comparison and h/p refinement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/
+Coverage: reading
+
+Solve a sine manufactured solution on the unit square with GLL spectral elements and the existing triangle P1 FEM. Compare matched free-unknown counts under h refinement and p=1..6 at fixed elements.
+Methods, equations, figures and references
+Methods used
+Spectral element method (SEM)
+Continuous P1 Galerkin FEM
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+C0 tensor Qp Lagrange SEM with p+1 Legendre GLL nodes/quadrature, sparse stiffness assembly and a SciPy direct solve. At p=2 use2/4/8 elements per axis; separately fix2x2 elements and p=1..6. Execute the byte-identical published Numart triangle P1 FEM/GMRES at4/8/16 subdivisions, matching9/49/225 free unknowns.
+Poisson / Laplace equations
+Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+2D Poisson / single sine mode, including FEM
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## Spectral elements and FR: small comparisons with existing FEM/DG — 2D spectral-element Poisson: P1 FEM comparison and h/p refinement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/
+Coverage: reading
+
+Compare with the analytic manufactured sine solution/gradient. Integrate continuous L2/H1-seminorm errors at independent higher-order Gauss points. Check h/p refinement, matched-unknown errors, boundary data and true residuals; save actual2D SEM fields and P1 vertices/triangles/values in NPZ.
+Related-model reference · Manufactured solution
+Poisson / manufactured sine
+The card is 1D sin(πx); this test is 2D sin(πx)sin(πy). Dimension, forcing and FEM error norms differ.
+Same-problem reference · Manufactured solution
+2D Poisson sine manufactured solution: shared SEM/P1 FEM reference
+Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM.
+Input and validation protocol history · Initial input
+
+## Spectral elements and FR: small comparisons with existing FEM/DG — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/#sem-poisson-2d-assumptions
+Coverage: reading
+
+Dimensionless: -Laplacian u=2pi²sin(pi x)sin(pi y) on[0,1]², u=0 on the boundary. Constant coefficient; affine Cartesian squares for SEM and the existing regular triangle mesh for P1 FEM.
+
+## Spectral elements and FR: small comparisons with existing FEM/DG — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/#sem-poisson-2d-algorithm
+Coverage: reading
+
+C0 tensor Qp Lagrange SEM with p+1 Legendre GLL nodes/quadrature, sparse stiffness assembly and a SciPy direct solve. At p=2 use2/4/8 elements per axis; separately fix2x2 elements and p=1..6. Execute the byte-identical published Numart triangle P1 FEM/GMRES at4/8/16 subdivisions, matching9/49/225 free unknowns.
+-\Delta u=f,\quad u|_{\partial\Omega}=0,\quad u_*=\sin(\pi x)\sin(\pi y),\quad f=2\pi^2u_*K^e=S\otimes W+W\otimes S,\quad S=D^TWD,\quad W=\operatorname{diag}(w_i)E_{L^2}=\left(\int_\Omega(u_h-u_*)^2\,d\Omega\right)^{1/2},\quad E_{H^1}=\left(\int_\Omega|\nabla u_h-\nabla u_*|^2\,d\Omega\right)^{1/2}
+
+## Spectral elements and FR: small comparisons with existing FEM/DG — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/#sem-poisson-2d-validation
+Coverage: reading
+
+Compare with the analytic manufactured sine solution/gradient. Integrate continuous L2/H1-seminorm errors at independent higher-order Gauss points. Check h/p refinement, matched-unknown errors, boundary data and true residuals; save actual2D SEM fields and P1 vertices/triangles/values in NPZ.
+
+## Spectral elements and FR: small comparisons with existing FEM/DG — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/#sem-poisson-2d-limits
+Coverage: reading
+
+One smooth fixed problem only. Meshes, quadrature and algebraic solvers differ: no speed, complexity or universal-accuracy ranking. The diagonal GLL quadrature mass is not the exactly integrated mass of every product. No curved mesh, singular solution, incompressible flow or Nek5000/nekRS run.
+
+## Spectral elements and FR: small comparisons with existing FEM/DG — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/#sem-poisson-2d-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+sem_h_l2_order3.03964398611
+sem_h_h1_order2.01063606795
+p1_h_l2_order1.97449202948
+p1_h_h1_order0.989101103836
+p_refinement_l2_reduction311080.769951
+p6_l2_error3.7801651653e-07
+same_dof_free_unknowns225
+sem_finest_l2_error0.000248641096801
+p1_finest_l2_error0.00537743500994
+same_dof_l2_ratio_sem_over_p10.0462378617949
+maximum_relative_residual3.1814596822e-12
+判定 / checkPassed
+sem_h_l2_convergencetrue
+sem_h_h1_convergencetrue
+p1_h_l2_convergencetrue
+p1_h_h1_convergencetrue
+p_refinement_monotonetrue
+p_refinement_resolvedtrue
+equal_free_dofstrue
+same_dof_error_comparisontrue
+linear_residualstrue
+zero_dirichlet_boundarytrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Saved actual2D SEM field and nodal error. Continuous error norms use separate Gauss integration.Read every stored record
+seriesmethodelements_per_axisdegreetotal_dofsfree_dofsl2_errorh1_seminorm_errorrelative_residual
+hGLL-SEM222590.01787454496560.2118984548474.34272076546e-16
+hGLL-SEM4281490.0020445462010.05157518808351.63796506535e-15
+hGLL-SEM822892250.0002486410968010.01279908884138.47037256773e-15
+pGLL-SEM21910.1175936690160.9967518896660
+
+## Spectral elements and FR: small comparisons with existing FEM/DG — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/#sem-poisson-2d-measurements
+Coverage: reading
+
+pGLL-SEM222590.01787454496560.2118984548474.34272076546e-16
+pGLL-SEM2349250.001451993428820.02709319842181.24542149286e-15
+pGLL-SEM2481490.0001074314577740.002658089442672.34630999931e-15
+pGLL-SEM25121816.8432839132e-060.0002093115514593.95967256792e-15
+pGLL-SEM261691213.7801651653e-071.3740969345e-054.98776008376e-15
+hpublished-P1-FEM412590.0790754536760.8385483442187.2411395863e-16
+hpublished-P1-FEM8181490.0211327734560.4317982830062.9836969935e-12
+hpublished-P1-FEM1612892250.005377435009940.217536336363.1814596822e-12
+Measurements and complete records / JSON
+
+## Spectral elements and FR: small comparisons with existing FEM/DG — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/#sem-poisson-2d-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+A. T. Patera (1984). A spectral element method for fluid dynamics: Laminar flow in a channel expansion · DOI: 10.1016/0021-9991(84)90128-1
+Review scope / review_level: metadata
+Bibliographic identity from the official Nek5000 reference list; publisher full text was not retrieved. No original-paper audit/reproduction. This example is a Legendre GLL variant.
+Nek5000 development team (2026). Nek5000 documentation: Theory and spectral-element basis (accessed 2026-11-23)
+Review scope / review_level: full-text
+Official Theory and FAQ: element-local polynomials, GLL/GL nodes and C0 continuity. No installation, execution or full-code audit of Nek5000.
+Nek5000/RS development team (2026). Nek5000/RS project: spectral-element solvers and related implementations (accessed 2026-11-23)
+Review scope / review_level: full-text
+Official project overview: SEM, CPU/GPU nekRS and its relationship to Nek5000. No external solver installation, execution or performance comparison.
+
+## Spectral elements and FR: small comparisons with existing FEM/DG — 1D periodic FR advection: Radau correction and published DG comparison [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/
+Coverage: reading
+
+Transport0.4+sin(2pi x) toT=.25. Execute Gauss-node/Radau FR and the existing modal DG for p=1/2 and8/16/32 cells; measure analytic error, mass and time-integration error.
+Methods, equations, figures and references
+Methods used
+Flux reconstruction (FR)
+Discontinuous Galerkin / Legendre
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+p+1 Gauss solution points, upwind interface flux, Legendre Radau corrections and SSPRK(3,3). Match initial L2 projection, upwind flux and timestep policy to the unchanged published modal DG. Scaled Courant(2p+1)|a|dt/h<=.15; separately halve the timestep at p2/N32.
+Linear advection
+Dimensionless u_t+u_x=0 on[0,1), periodic boundary, initial0.4+sin(2pi x), analytic0.4+sin(2pi(x-t)). Constant positive speed1 and uniform affine intervals.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Periodic sine-wave advection
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## Spectral elements and FR: small comparisons with existing FEM/DG — 1D periodic FR advection: Radau correction and published DG comparison [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/
+Coverage: reading
+
+Integrate continuous L2 error at additional Gauss points and compare final polynomials with the actual published DG at common points. Check weighted mass at every RK stage and quadratic energy at each completed step. A matrix exponential of the same FR operator separately measures RK3 time error and its timestep-halving response.
+Related-model reference · Analytic reference
+Advection / sine translation
+Same periodic sine-transport model at speed one. The library amplitude is 0.25 versus 0.2 in the common fixed input; DG/CIP representations and output times also differ.
+Related-model reference · Analytic reference
+WENO critical points: polynomial cell means and analytic periodic transport
+An additional constant-speed periodic-transport reference. The cos+.1sin³ cell means and local critical polynomials differ from the historical single-sine/CIP display.
+Same-problem reference · Analytic reference
+FR/DG periodic sine advection: analytic reference at mean0.4 andT=.25
+Dimensionless u_t+u_x=0 on[0,1), periodic boundary, initial0.4+sin(2pi x), analytic0.4+sin(2pi(x-t)). Constant positive speed1 and uniform affine intervals.
+Input and validation protocol history · Initial input
+
+## Spectral elements and FR: small comparisons with existing FEM/DG — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/#fr-periodic-advection-assumptions
+Coverage: reading
+
+Dimensionless u_t+u_x=0 on[0,1), periodic boundary, initial0.4+sin(2pi x), analytic0.4+sin(2pi(x-t)). Constant positive speed1 and uniform affine intervals.
+
+## Spectral elements and FR: small comparisons with existing FEM/DG — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/#fr-periodic-advection-algorithm
+Coverage: reading
+
+p+1 Gauss solution points, upwind interface flux, Legendre Radau corrections and SSPRK(3,3). Match initial L2 projection, upwind flux and timestep policy to the unchanged published modal DG. Scaled Courant(2p+1)|a|dt/h<=.15; separately halve the timestep at p2/N32.
+u_t+a u_x=0,\quad u_*(x,t)=0.4+\sin(2\pi(x-at)),\quad a=1f^C=f^D+(f_L^*-f_L^D)g_L+(f_R^*-f_R^D)g_R,\quad \dot u=-\frac{2}{h}\partial_\xi f^Cg_L=\frac{(-1)^p}{2}(P_p-P_{p+1}),\quad g_R=\frac12(P_p+P_{p+1}),\quad\frac{d}{dt}\frac12\|u_h\|^2=-\frac{|a|}{2}\sum_{\rm faces}[u_h]^2
+
+## Spectral elements and FR: small comparisons with existing FEM/DG — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/#fr-periodic-advection-validation
+Coverage: reading
+
+Integrate continuous L2 error at additional Gauss points and compare final polynomials with the actual published DG at common points. Check weighted mass at every RK stage and quadratic energy at each completed step. A matrix exponential of the same FR operator separately measures RK3 time error and its timestep-halving response.
+
+## Spectral elements and FR: small comparisons with existing FEM/DG — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/#fr-periodic-advection-limits
+Coverage: reading
+
+DG correspondence is for these Radau/Gauss choices, a constant linear flux and affine elements. No all-FR/all-DG equivalence, nonlinear flux, shock, limiter or multidimensional FR claim. Distinguish coupled h/dt refinement from the exponential spatial result; the exponential is not an independent spatial PDE solver. PyFR itself is not run.
+
+## Spectral elements and FR: small comparisons with existing FEM/DG — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/#fr-periodic-advection-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+p1_l2_order1.99176792066
+p1_exponential_l2_order1.99176064192
+p2_l2_order2.99959619373
+p2_exponential_l2_order2.99959435791
+finest_l2_error2.61162684302e-05
+maximum_fr_vs_published_dg3.99680288865e-15
+maximum_stage_mass_drift3.5527136788e-15
+maximum_step_energy_increase0
+maximum_scaled_courant0.15
+finest_rk3_time_error9.44239800872e-09
+halved_cfl_time_error1.1816779054e-09
+time_error_halving_ratio0.125145953846
+actual_transport_l2_change0.999999962948
+判定 / checkPassed
+p1_l2_convergencetrue
+p2_l2_convergencetrue
+semidiscrete_spatial_convergencetrue
+finest_analytic_errortrue
+published_dg_agreementtrue
+periodic_stage_masstrue
+nonincreasing_step_energytrue
+scaled_courant_boundtrue
+time_error_controltrue
+nontrivial_translationtrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Saved FR initial/final field and analytic nodal error; actual transport atT=.25.Read every stored record
+seriesdegreecellstotal_dofsl2_errorexponential_l2_errorrk3_vs_exponential_l2fr_vs_published_dg_maxstepsfinal_timemax_mass_driftmax_energy_increasemax_scaled_courantinitial_energyfinal_energy
+
+## Spectral elements and FR: small comparisons with existing FEM/DG — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/#fr-periodic-advection-measurements
+Coverage: reading
+
+h18160.02573716367760.02573651228572.79146782678e-061.7763568394e-15400.253.88578058619e-1600.150.3298701894150.325454977136
+h116320.006587042466840.006586997505143.50023140628e-071.99840144433e-15810.251.22124532709e-1500.150.3299917788350.329381334739
+h132640.001656183962360.001656181013424.37857693682e-083.99680288865e-151610.252.6645352591e-1500.150.3299994844760.329919781495
+h28240.001655527791410.001655510866136.18427430059e-071.7763568394e-15670.259.99200722163e-1600.150.329999425520.329969947015
+h216480.0002088716766660.0002088712705767.54903536135e-082.88657986403e-151340.251.83186799063e-1500.150.3299999909340.329998966251
+h232962.61162684302e-052.61162508874e-059.44239800872e-093.77475828373e-152670.253.5527136788e-1500.150.3299999998580.329999962016
+Measurements and complete records / JSON
+
+## Spectral elements and FR: small comparisons with existing FEM/DG — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sem-fr/#fr-periodic-advection-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+H. T. Huynh (2007). A Flux Reconstruction Approach to High-Order Schemes Including Discontinuous Galerkin Methods · DOI: 10.2514/6.2007-4079
+Review scope / review_level: metadata
+Original 2007 title/author/AIAA number checked in the author's 2014 NASA report, printed p.27. The original AIAA text was not retrieved; correction formulas use the separately cited 2014 report.
+H. T. Huynh (2014). On Formulations of Discontinuous Galerkin and Related Methods for Conservation Laws
+Review scope / review_level: full-text
+Selected original NASA passages: abstract, differential form/interface correction, printed pp.19–21 equations(6.2)–(6.13) for Radau/DG, and p.27 bibliography. No full-report audit or nonlinear experiment reproduction.
+PyFR development team (2026). PyFR: Flux Reconstruction and supported implementation platforms (accessed 2026-11-23)
+Review scope / review_level: full-text
+Official overview: FR spatial discretization, unstructured meshes and CPU/GPU platforms. PyFR is not installed, invoked or validated by this small Python example.
+
 ## Shallow water: topography, lakes and dry beds — Shallow water: topography, lakes and dry beds [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/
@@ -30633,6 +31176,9 @@ Same periodic sine-transport model at speed one. The library amplitude is 0.25 v
 Related-model reference · Analytic reference
 WENO critical points: polynomial cell means and analytic periodic transport
 An additional constant-speed periodic-transport reference. The cos+.1sin³ cell means and local critical polynomials differ from the historical single-sine/CIP display.
+Same-problem reference · Analytic reference
+FR/DG periodic sine advection: analytic reference at mean0.4 andT=.25
+Dimensionless u_t+u_x=0 on[0,1), periodic boundary, initial0.4+sin(2pi x), analytic0.4+sin(2pi(x-t)). Constant positive speed1 and uniform affine intervals.
 
 ## WENO critical points and epsilon dependence — Assumptions, units and boundaries [en]
 
@@ -34796,6 +35342,121 @@ result = poisson_2d(16)
 print(result.residual, result.u.shape)
 python scripts/build_equation_gallery.pyで再現します。専用の計算記録に誤差とソースハッシュを残します。速度・圧力の混合要素、inf–sup条件、曲線格子、一般のNeumann／Robin条件の組立て、適応細分化は今後の課題です。現在の射影法の例はスタガード差分格子を使います。
 A安定性・L安定性とL1／L2／L∞誤差ノルムは、精度と安定性の共通ガイドを参照してください。
+
+## Flux Reconstruction法：流束補正とDG・1D周期移流 — Flux Reconstruction法：流束補正とDG・1D周期移流 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/flux-reconstruction/
+Coverage: reading
+
+Flux Reconstruction（FR、流束再構成）は、要素ごとに持つ流束多項式へ界面の補正を加え、高次の保存則離散化を構成する枠組みです。要素間で解を連続にする代わりに数値流束で情報を交換します。補正関数の選び方が手法を決めるため、FRという名前だけで精度や安定性は決まりません。
+
+## Flux Reconstruction法：流束補正とDG・1D周期移流 — 解点・界面の数値流束を分ける [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/flux-reconstruction/#local-flux
+Coverage: reading
+
+u_t+a u_x=0,\quad x\in[0,1),\quad u(x+1,t)=u(x,t),\quad u_*(x,t)=0.4+\sin(2\pi(x-at))u_h(\xi)=\sum_{j=0}^{p}u_j\ell_j(\xi),\qquad f^D(\xi)=\sum_{j=0}^{p}f(u_j)\ell_j(\xi)
+各区間をξ∈[−1,1]へ写し、p+1個の解点に値を置きます。要素内の多項式を左右端へ外挿すると、隣の要素と異なる二つの値が得られます。今回の一定速度ではa>0なら左側、a<0なら右側の状態を使う上流流束を、共有界面の一つの流束として選びます。
+
+## Flux Reconstruction法：流束補正とDG・1D周期移流 — 界面値を補正関数でつなぐ [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/flux-reconstruction/#corrected-flux
+Coverage: reading
+
+f^C(\xi)=f^D(\xi)+(f_L^*-f_L^D)g_L(\xi)+(f_R^*-f_R^D)g_R(\xi)g_L(-1)=1,\ g_L(1)=0,\qquad g_R(-1)=0,\ g_R(1)=1,\qquad\dot u_i=-\frac{2}{h}\partial_\xi f^C(\xi_i)
+fDは要素内で作る流束、f*は界面の共有数値流束です。左右の差をgL・gRで内部へ配ると、補正した流束は端点でf*に一致します。その微分を解点で評価して時間発展させます。MUSCLやWENOの「再構成」と関連する語ですが、ここで構成している多項式・自由度・補正の対象を区別します。
+
+## Flux Reconstruction法：流束補正とDG・1D周期移流 — Radau補正でDGを再現する設定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/flux-reconstruction/#dg-connection
+Coverage: reading
+
+g_L=\frac{(-1)^p}{2}(P_p-P_{p+1}),\qquad g_R=\frac12(P_p+P_{p+1})M\dot{\mathbf u}=\frac{2}{h}\left[aD^TM\mathbf u-\mathbf t_R f_R^*+\mathbf t_L f_L^*\right],\qquad M=\operatorname{diag}(w_i)
+今回の解点はGauss点、補正は上式のRadau型です。MはGauss重みの対角行列、tL・tRは解点から端点への外挿ベクトル、Dは参照微分行列。この線形流束・アフィン区間の設定では、補正式は節点DGの弱形式に対応します。DG側をLegendre modal係数で表しても、同じ初期射影・流束・時間積分なら同じ多項式を表します。非線形流束のaliasing、別の求積や補正関数では条件を改めて確認する必要があります。
+
+## Flux Reconstruction法：流束補正とDG・1D周期移流 — 既存DG法との比較 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/flux-reconstruction/#dg-comparison
+Coverage: reading
+
+既存DG法との比較
+比較点今回のFR既存のmodal DG
+保持する自由度p+1個のGauss点の値p+1個のLegendre係数
+要素の接続共有流束との差をRadau関数で補正弱形式の体積項と面流束
+初期化共通のGauss積分でL2射影同じ射影規約
+時間積分SSPRK(3,3)同じSSPRK(3,3)・刻み規約
+今回の比較の意味線形問題での対応を数値で確認独立に既存コードを実行して照合
+一般化の限界全補正・非線形FRの保証ではない全DG変種との同値性ではない
+
+## Flux Reconstruction法：流束補正とDG・1D周期移流 — 軽量実行例：周期正弦波を1/4周期だけ運ぶ [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/flux-reconstruction/#example
+Coverage: reading
+
+初期値0.4+sin(2πx)、速度1、T=.25。p=1/2、8/16/32セルを実行します。既存のDG関数をバイト一致で同梱し、各設定で実際に計算します。hを細分化する際はスケールしたCourant数(2p+1)|a|Δt/h≤.15にします。終了時の波は初期位置から移動しており、静止した初期図を成功例として使いません。
+保存された初期・最終場と判定。DGとの差と質量変化の軸は10⁻¹⁵程度の丸め誤差の大きさを表示しています。
+
+## Flux Reconstruction法：流束補正とDG・1D周期移流 — 保存・散逸と時間誤差を別々に測る [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/flux-reconstruction/#conservation
+Coverage: reading
+
+I_h=\sum_e\frac{h}{2}\sum_iw_iu_{e,i},\quad \frac{dI_h}{dt}=0,\qquad \frac{d}{dt}\frac12\|u_h\|_{L^2}^2=-\frac{|a|}{2}\sum_{\rm faces}[u_h]^2
+Ihの共有面流束は周期境界で打ち消し合います。上流流束の半離散エネルギーは界面の跳びに応じて散逸します。これは任意の時間刻みでの安定性や、非線形のエントロピー安定性を保証する式ではありません。本例では全RK段階の質量と、完了した各ステップのエネルギーも測定します。
+\dot U=A_hU,\quad U_{\exp}(T)=\exp(TA_h)U(0),\quad E_t=\|U_{\rm RK3}(T)-U_{\exp}(T)\|_M
+連続L2誤差は追加のGauss点で積分します。hとΔtを同時に細分化した観測次数はp1で約1.99、p2で約3.00。FRと実際の既存DGの最大差は約4.0×10⁻¹⁵、最大段階質量変化は約3.6×10⁻¹⁵でした。
+同じ空間演算子の指数作用を別の時間伝播器として計算し、RK3の時間誤差を分けます。p2/N32の時間誤差は約9.44×10⁻⁹、刻み半減では約1.18×10⁻⁹（比約.125）でした。この指数作用は独立した空間PDEソルバーではありません。初回の密行列指数の警告とJSON型変換の失敗は入力・元ソース・結果とともに保持し、数値受入条件を変更せず修正しています。
+
+## Flux Reconstruction法：流束補正とDG・1D周期移流 — 関連実装：PyFRと今回の適用範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/flux-reconstruction/#implementations
+Coverage: reading
+
+PyFRはFRを使う流れのソフトウェアで、非構造格子やCPU/GPU向けの実装を紹介しています。公式資料と公式ソースへ進めます。今回の小さなPython例はPyFR本体の導入・実行・ベンチマークではありません。非線形流束、衝撃波、制限器、一般の補正族、曲線格子、多次元FRは別の検証が必要です。
+既存の不連続Galerkin法 · 連続なスペクトル要素法との違い
+
+## Flux Reconstruction法：流束補正とDG・1D周期移流 — 固定入力で確かめる：別々の配布版 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/flux-reconstruction/#scoped-examples
+Coverage: reading
+
+各例の入力・観測量・診断の定義と適用範囲を確認します。検査の合格が示す内容は受入条件によって異なり、数学的な一般保証とは区別します。旧版の入力・測定・公差は保持します。
+
+## Flux Reconstruction法：流束補正とDG・1D周期移流 — FR法の1D周期移流：Radau補正と既存DGの比較 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/flux-reconstruction/
+Coverage: reading
+
+固定した標的の計算例
+0.4+sin(2πx)をT=.25まで移流。Gauss点・Radau補正のFRと既存のmodal DGをp=1/2、8/16/32セルで実行し、誤差・質量・時間積分誤差を測ります。
+このRadau/Gauss・線形一定流束・アフィン要素の設定がDGに対応します。全FRと全DGの同値性、非線形流束・衝撃波・制限器・多次元FRは保証しません。hとΔtの同時細分化と行列指数による空間誤差を分け、行列指数を独立した空間PDEソルバーとは呼びません。PyFR本体は未実行。
+入力・結果・受入条件 · 手法・式・一次文献 · コード：run.py · コード：fr.py · コード：polynomials.py · コード：experiments.py · コード：advection.py · コード：solvers.py · コード：riemann.py · コード：equations.py · コード：limiters.py · コード：sem.py · コード：fem.py · コード：krylov.py · テスト：test_sem_fr.py · 配布ZIP · 保存結果 · 独立展開からの追試記録
+
+## Flux Reconstruction法：流束補正とDG・1D周期移流 — 公開範囲と関連項目 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/flux-reconstruction/#publication-scope
+Coverage: reading
+
+この章に対応する専用の軽量コード・固定入力・保存場・判定と、ZIP独立展開で再実行した25検査を公開します。関連する外部ソフトは公式資料の紹介であり、導入・動作検証済みの表示ではありません。
+Flux Reconstruction法（FR法）
+不連続Galerkin法／Legendre
+WENO5-JS
+
+## Flux Reconstruction法：流束補正とDG・1D周期移流 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/flux-reconstruction/#sources
+Coverage: reading
+
+原著、後続の変種、著者による著書、概説、公式資料を区別して参照します。DOI・書誌の確認と原文の該当箇所の閲覧を区別し、論文全体の監査や数値再現を行ったという意味ではありません。確認範囲の注記は引用ごとに示します。
+H. T. Huynh (2007). A Flux Reconstruction Approach to High-Order Schemes Including Discontinuous Galerkin Methods. 18th AIAA Computational Fluid Dynamics Conference
+研究論文・提案または関連する定式化 · 書誌確認 · 確認した資料
+著者の2014年NASA報告の参考文献（本文27頁）で2007年原報の題名・著者・会議番号を確認。AIAA原文は未取得。補正式は別記の2014年本文を参照。
+H. T. Huynh (2014). On Formulations of Discontinuous Galerkin and Related Methods for Conservation Laws. NASA/TM-2014-218135
+研究論文・提案または関連する定式化 · 原文の該当箇所を参照 · 確認した資料
+NASA原文の抄録、微分形と界面補正、本文19–21頁の式(6.2)–(6.13)のRadau補正とDG対応、27頁の書誌を確認。全報告の監査や非線形実験の再現ではない。
+PyFR development team (2026). PyFR: Flux Reconstruction and supported implementation platforms (accessed 2026-11-23).
+公式の参照資料 · 原文の該当箇所を参照 · 確認した資料
+公式サイトのFRによる空間離散化・非構造格子・CPU/GPUの紹介を確認。今回の軽量Python例でPyFRを導入・実行・検証したとはしない。
 
 ## 球面メッシュとArakawa A・B・C格子 [ja]
 
@@ -40695,6 +41356,18 @@ S. Osher and J. A. Sethian (1988). Fronts propagating with curvature-dependent s
 C. W. Hirt and B. D. Nichols (1981). Volume of fluid (VOF) method for the dynamics of free boundaries. 10.1016/0021-9991(81)90145-5
 M. Sussman and E. Fatemi (1999). An Efficient, Interface-Preserving Level Set Redistancing Algorithm and Its Application to Interfacial Incompressible Fluid Flow. 10.1137/S1064827596298245
 M. Sussman and E. G. Puckett (2000). A Coupled Level Set and Volume-of-Fluid Method for Computing 3D and Axisymmetric Incompressible Two-Phase Flows. 10.1006/jcph.2000.6537
+A. T. Patera (1984). A spectral element method for fluid dynamics: Laminar flow in a channel expansion. 10.1016/0021-9991(84)90128-1
+Nek5000 development team (2026). Nek5000 documentation: Theory and spectral-element basis (accessed 2026-11-23). Original source
+Nek5000/RS development team (2026). Nek5000/RS project: spectral-element solvers and related implementations (accessed 2026-11-23). Original source
+
+## 原著の出版年順に並べた参考文献 — 主要手法の条件整理で追加した一次文献・資料 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/references/
+Coverage: reading
+
+H. T. Huynh (2007). A Flux Reconstruction Approach to High-Order Schemes Including Discontinuous Galerkin Methods. 10.2514/6.2007-4079
+H. T. Huynh (2014). On Formulations of Discontinuous Galerkin and Related Methods for Conservation Laws. Original source
+PyFR development team (2026). PyFR: Flux Reconstruction and supported implementation platforms (accessed 2026-11-23). Original source
 
 ## 原著の出版年順に並べた参考文献 — 量子化学の追加一次文献 [ja]
 
@@ -41698,8 +42371,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 公開Web版、集計日2026-11-23。数えるのはカタログ項目と記載した実験例です。すべての項目が検証済みの完全なソルバーであるという意味ではありません。
-方程式・モデル50項目・計算法と構成要素133項目・学術誌／会議論文247件・全参考資料304件。
-保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め107章です。
+方程式・モデル50項目・計算法と構成要素135項目・学術誌／会議論文249件・全参考資料310件。
+保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め110章です。
 
 ## 収録範囲と数え方 — 方程式とモデル# [ja]
 
@@ -41794,7 +42467,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 名前付きの離散化法、積分法、線形・非線形解法、連成演算子を数えます。パラメータの違いでは増やしません。
-ローカル実験のある項目は118、文献解説のみは15です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。
+ローカル実験のある項目は120、文献解説のみは15です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。
 
 ## 収録範囲と数え方 — 空間離散化# [ja]
 
@@ -41946,7 +42619,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 論文数は学術誌論文と会議論文です。総説、翻訳、採録済みであることを明記した論文も含みます。全参考資料は、それに書籍、章、技術資料、文書、個別に識別したプレプリント等を加えた、重複を除く出版物の数です。
-241件：学術誌論文（総説・翻訳・採録済み論文を含む）
+242件：学術誌論文（総説・翻訳・採録済み論文を含む）
 3件：会議論文
 22件：書籍
 2件：書籍の章
@@ -42083,6 +42756,120 @@ Newton法はJ(x)δ=−F(x)を解き、残差に対するArmijo減少条件を満
 \leq \kappa(A)\frac{\|b-A\hat x\|}{\|b\|}.
 条件数、固有値分布、非正規性は異なる性質を表します。条件数が小さいことだけで再始動GMRESの優劣は決められません。CGには引き続き対称正定値演算子と適切な対称正定値前処理が必要で、一般のILU(0)がその条件を満たすとはしていません。
 非対称の例は、ゼロDirichlet条件での1次風上移流と中心差分拡散です。1反復あたりの計算量が異なるため、図では実行時間の順位を付けません。データとソースハッシュ、FEMの組立て、陰的ODE段階も参照してください。
+
+## スペクトル要素法：高次の有限要素と2D Poisson — スペクトル要素法：高次の有限要素と2D Poisson [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/spectral-element/
+Coverage: reading
+
+スペクトル要素法（SEM）は、領域を要素に分け、各要素の中を高次多項式で近似する方法です。有限要素法の幾何学的な分割と、滑らかな関数を高次で表す考え方を結びます。ここでは連続Galerkin型のLegendre GLL変種を、手元で再実行できる2D Poisson問題から学びます。
+
+## スペクトル要素法：高次の有限要素と2D Poisson — 要素ごとの高次多項式をつなぐ [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/spectral-element/#local-polynomials
+Coverage: reading
+
+u_h|_{K_e}(\xi,\eta)=\sum_{i,j=0}^{p}U^e_{ij}\ell_i(\xi)\ell_j(\eta),\qquad u_h\in C^0(\Omega)
+ξ・ηは各正方形を[−1,1]²に写した参照座標です。隣り合う要素の境界節点を共有し、関数値をC0連続に組み立てます。導関数まで連続にする条件ではありません。SEMは高次有限要素法の一群であり、有限要素法全般を一次要素に限定する呼び方ではありません。領域全体を一組のFourier基底で表す方法とも分けて考えます。
+
+## スペクトル要素法：高次の有限要素と2D Poisson — Poisson方程式の弱形式から出発する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/spectral-element/#weak-form
+Coverage: reading
+
+\int_\Omega\nabla v_h\cdot\nabla u_h\,d\Omega=\int_\Omega v_h f\,d\Omega,\qquad v_h|_{\partial\Omega}=0
+−Δu=fに試験関数vを掛け、部分積分して微分を両者へ一つずつ配ります。零Dirichlet境界では境界項が消えます。以下の実装は一定係数・アフィン正方形だけを対象にし、この積分をGLL求積で近似します。
+
+## スペクトル要素法：高次の有限要素と2D Poisson — GLL節点・求積と行列 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/spectral-element/#gll
+Coverage: reading
+
+(1-\xi_i^2)P_p^\prime(\xi_i)=0,\qquad w_i=\frac{2}{p(p+1)P_p(\xi_i)^2},\qquad i=0,\ldots,pD_{ij}=\ell_j^\prime(\xi_i),\quad W=\operatorname{diag}(w_i),\quad S=D^TWD,\quad K_e=\frac{h_y}{h_x}S\otimes W+\frac{h_x}{h_y}W\otimes Sb^e_{ij}=\frac{h_xh_y}{4}w_iw_jf(x_{e,i},y_{e,j}),\qquad KU=b
+p次Legendre多項式Ppの導関数の根と両端点がp+1個のGLL節点です。1D求積の厳密次数は2p−1。節点値を自由度に選ぶと求積質量は対角になりますが、一般の2p次の積まで厳密に積分した質量行列とは異なります。2Dの剛性も横方向の積を含むため、求積の規約を明記する必要があります。コードはテンソル積の局所剛性と右辺を疎に組み立て、境界値を消去して解きます。
+
+## スペクトル要素法：高次の有限要素と2D Poisson — 既存のP1有限要素法との比較 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/spectral-element/#fem-comparison
+Coverage: reading
+
+既存のP1有限要素法との比較
+比較点既存のP1 FEM今回のGLL-SEM
+要素内の近似三角形上の一次多項式正方形上のテンソル積Qp多項式
+要素間の接続C0連続C0連続
+求積Duffy変換によるGauss積分GLL節点での剛性・荷重求積
+精度を増やす操作主にh細分化h細分化とp増加を分けられる
+今回の連立解法既存NumartのILU(0)・GMRESSciPyの疎な直接解法
+比較で揃えるもの方程式・境界・製造解・自由未知数同じ条件。速度の優劣は判定しない
+
+## スペクトル要素法：高次の有限要素と2D Poisson — 軽量実行例：2D Poissonのh/p収束 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/spectral-element/#example
+Coverage: reading
+
+\Omega=(0,1)^2,\quad u_*=\sin(\pi x)\sin(\pi y),\quad f=2\pi^2u_*,\quad u|_{\partial\Omega}=0
+p=2のSEMで各方向2/4/8要素、既存の三角形P1 FEMで4/8/16分割を使います。自由未知数は両者とも9/49/225です。さらに2×2要素を固定しp=1〜6を実行します。比較用P1 FEMのソースと依存モジュールは、公開済みNumart版とバイト一致で同梱し、元の配布版を保持しています。
+実際の保存場と誤差の図。節点誤差の画像と、領域内を積分した誤差ノルムは別の量です。
+
+## スペクトル要素法：高次の有限要素と2D Poisson — 残差・連続誤差・観測次数を区別する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/spectral-element/#error-and-refinement
+Coverage: reading
+
+E_{L^2}=\left[\int_\Omega(u_h-u_*)^2\,d\Omega\right]^{1/2},\quad E_{H^1}=\left[\int_\Omega|\nabla u_h-\nabla u_*|^2\,d\Omega\right]^{1/2}E_{L^2}\sim h^{p+1},\qquad E_{H^1}\sim h^p\quad\text{(smooth solution and resolved quadrature)}
+誤差はGLL節点だけでなく、要素内の別の高次Gauss点で積分します。小さい連立方程式の残差だけでは連続PDEの小さい誤差を意味しません。この滑らかな固定問題の最後のh細分化では、p2 SEMのL2観測次数は約3.04、H1半ノルムは約2.01。P1 FEMはそれぞれ約1.97と0.99です。自由未知数225でのL2誤差はSEM約2.49×10⁻⁴、P1約5.38×10⁻³でした。p6・2×2要素のL2誤差は約3.78×10⁻⁷です。
+滑らかさ、境界、要素の形、求積と解法に依存する結果です。特異点や不連続係数で同じp収束を保証せず、この一例からSEMが常に速い・優れるとは結論しません。曲線要素、圧力との混合空間、流体の連成は今回の実行範囲に含めません。
+
+## スペクトル要素法：高次の有限要素と2D Poisson — 関連実装：Nek5000とnekRS [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/spectral-element/#implementations
+Coverage: reading
+
+Nek5000は高次のスペクトル要素流体ソルバーです。nekRSはCPU/GPUに対応する関連する後継実装として、公式プロジェクトから資料・ソースへ進めます。ここで実行した小さなPythonのPoisson例は、その流体ソルバーや性能を再現・検証したものではありません。Pateraの原報は起源をたどる書誌として挙げ、今回のLegendre GLL変種と区別します。
+既存の有限要素法 · 不連続な要素を使うFR・DGとの比較
+
+## スペクトル要素法：高次の有限要素と2D Poisson — 固定入力で確かめる：別々の配布版 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/spectral-element/#scoped-examples
+Coverage: reading
+
+各例の入力・観測量・診断の定義と適用範囲を確認します。検査の合格が示す内容は受入条件によって異なり、数学的な一般保証とは区別します。旧版の入力・測定・公差は保持します。
+
+## スペクトル要素法：高次の有限要素と2D Poisson — スペクトル要素法の2D Poisson：P1 FEMとh/p収束を比較 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/spectral-element/
+Coverage: reading
+
+固定した標的の計算例
+単位正方形の正弦製造解をGLLスペクトル要素法と既存P1三角形FEMで解きます。自由未知数を揃えたh細分化と、固定要素数でのp=1〜6を分けて測ります。
+滑らかな固定問題だけの結果。要素・求積・代数ソルバーが異なるので、速度・計算量・汎用的優位性の比較ではありません。GLLの対角求積質量は一般の積の厳密な質量行列ではない。曲線格子・特異解・非圧縮流体・Nek5000/nekRS本体は未実行。
+入力・結果・受入条件 · 手法・式・一次文献 · コード：run.py · コード：sem.py · コード：polynomials.py · コード：experiments.py · コード：fem.py · コード：krylov.py · コード：fr.py · コード：advection.py · コード：solvers.py · コード：riemann.py · コード：equations.py · コード：limiters.py · テスト：test_sem_fr.py · 配布ZIP · 保存結果 · 独立展開からの追試記録
+
+## スペクトル要素法：高次の有限要素と2D Poisson — 公開範囲と関連項目 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/spectral-element/#publication-scope
+Coverage: reading
+
+この章に対応する専用の軽量コード・固定入力・保存場・判定と、ZIP独立展開で再実行した25検査を公開します。関連する外部ソフトは公式資料の紹介であり、導入・動作検証済みの表示ではありません。
+スペクトル要素法（SEM）
+連続P1 Galerkin有限要素法
+不連続Galerkin法／Legendre
+
+## スペクトル要素法：高次の有限要素と2D Poisson — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/spectral-element/#sources
+Coverage: reading
+
+原著、後続の変種、著者による著書、概説、公式資料を区別して参照します。DOI・書誌の確認と原文の該当箇所の閲覧を区別し、論文全体の監査や数値再現を行ったという意味ではありません。確認範囲の注記は引用ごとに示します。
+A. T. Patera (1984). A spectral element method for fluid dynamics: Laminar flow in a channel expansion. Journal of Computational Physics
+研究論文・提案または関連する定式化 · 書誌確認 · 確認した資料
+Nek5000公式参考文献の題名・巻・頁・DOIを照合。出版社の原文は未取得で、原報全体の監査・数値再現とはしない。今回の実装はLegendre GLL変種。
+Nek5000 development team (2026). Nek5000 documentation: Theory and spectral-element basis (accessed 2026-11-23).
+公式の参照資料 · 原文の該当箇所を参照 · 確認した資料
+公式TheoryとFAQの要素局所の多項式、GLL/GL点・C0連続性を確認。教育用Poissonの実装とNek5000の流体ソルバー全体を同一視しない。
+Nek5000/RS development team (2026). Nek5000/RS project: spectral-element solvers and related implementations (accessed 2026-11-23).
+公式の参照資料 · 原文の該当箇所を参照 · 確認した資料
+公式プロジェクトのSEM、nekRSのCPU/GPU対応、Nek5000との関係を確認。外部ソルバーの導入・実行・性能比較は未実施。
 
 ## スプライン補間 — スプライン補間 [ja]
 
@@ -45218,6 +46005,9 @@ Coverage: reading
 関連モデルの参照 · 製造解
 Poisson／正弦波の製造解
 カードは1次元sin(πx)、こちらは2次元sin(πx)sin(πy)です。次元・右辺・FEMの誤差ノルムは異なります。
+同じ問題の参照 · 製造解
+2D Poisson正弦製造解：SEMとP1 FEMの共通参照
+全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。
 
 ## AMG・行列分解・固有値・求積 — 前提・単位・境界 [ja]
 
@@ -57195,6 +57985,277 @@ J. Thrussell and J. M. Ferguson (2023). ExactPack: A python library of exact ana
 確認範囲 / review_level: official-record-and-selected-pinned-code-execution
 固定commitの未改変Sedov評価器を6001/12001点で実行。ソースhash・パラメータ・点値・照合判定・BSD-3-Clauseを保存。別のEuler数値ソルバーや全ライブラリ検査ではありません。
 
+## スペクトル要素法とFR：既存FEM・DGとの軽量比較 — スペクトル要素法とFR：既存FEM・DGとの軽量比較 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/
+Coverage: reading
+
+SEMの2D PoissonとFRの1D周期移流を、既存P1 FEM・modal DGと同じ方程式・境界・参照で比較します。h/p収束、連続誤差、残差、保存と時間誤差を分け、外部Nek/PyFRソルバーの実行とは区別します。
+
+## スペクトル要素法とFR：既存FEM・DGとの軽量比較 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/#run-all
+Coverage: reading
+
+ZIPの atlas-sem-fr-2026-11-23 フォルダで実行します。このコマンドは配布版の全2例を実行します。新規または空の出力先を指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## スペクトル要素法とFR：既存FEM・DGとの軽量比較 — スペクトル要素法の2D Poisson：P1 FEMとh/p収束を比較 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/
+Coverage: reading
+
+単位正方形の正弦製造解をGLLスペクトル要素法と既存P1三角形FEMで解きます。自由未知数を揃えたh細分化と、固定要素数でのp=1〜6を分けて測ります。
+手法・式・図・参照解
+使用手法
+スペクトル要素法（SEM）
+連続P1 Galerkin有限要素法
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+SEMはC0連続なテンソル積Qp Lagrange基底・p+1個のLegendre GLL節点と求積、疎な剛性行列・SciPy直接解法を使用。p=2で各方向2/4/8要素、別に2×2要素でp=1〜6。公開済みNumartのP1 FEM・GMRESをファイルのバイト列を保持して4/8/16分割で実行し、両者の自由未知数9/49/225を一致させます。
+Poisson・Laplace方程式
+全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+2次元Poisson・正弦単一モード（FEMを含む）
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+解析的な正弦製造解と勾配を参照し、GLL節点とは異なる高次Gauss点で連続L2誤差・H1半ノルムを積分。h/p収束・自由未知数を揃えた誤差・境界値・真の残差を検査し、実際の2D場とP1の頂点・三角形・解をNPZに保存。
+関連モデルの参照 · 製造解
+Poisson／正弦波の製造解
+カードは1次元sin(πx)、こちらは2次元sin(πx)sin(πy)です。次元・右辺・FEMの誤差ノルムは異なります。
+同じ問題の参照 · 製造解
+2D Poisson正弦製造解：SEMとP1 FEMの共通参照
+全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。
+入力・検証手順の履歴 · 初回の入力
+
+## スペクトル要素法とFR：既存FEM・DGとの軽量比較 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/#sem-poisson-2d-assumptions
+Coverage: reading
+
+全て無次元。−Δu=2π²sin(πx)sin(πy)、領域[0,1]²、境界u=0。係数は一定、SEMは直交するアフィン正方形、FEMは既存の規則的な三角形分割。
+
+## スペクトル要素法とFR：既存FEM・DGとの軽量比較 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/#sem-poisson-2d-algorithm
+Coverage: reading
+
+SEMはC0連続なテンソル積Qp Lagrange基底・p+1個のLegendre GLL節点と求積、疎な剛性行列・SciPy直接解法を使用。p=2で各方向2/4/8要素、別に2×2要素でp=1〜6。公開済みNumartのP1 FEM・GMRESをファイルのバイト列を保持して4/8/16分割で実行し、両者の自由未知数9/49/225を一致させます。
+-\Delta u=f,\quad u|_{\partial\Omega}=0,\quad u_*=\sin(\pi x)\sin(\pi y),\quad f=2\pi^2u_*K^e=S\otimes W+W\otimes S,\quad S=D^TWD,\quad W=\operatorname{diag}(w_i)E_{L^2}=\left(\int_\Omega(u_h-u_*)^2\,d\Omega\right)^{1/2},\quad E_{H^1}=\left(\int_\Omega|\nabla u_h-\nabla u_*|^2\,d\Omega\right)^{1/2}
+
+## スペクトル要素法とFR：既存FEM・DGとの軽量比較 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/#sem-poisson-2d-validation
+Coverage: reading
+
+解析的な正弦製造解と勾配を参照し、GLL節点とは異なる高次Gauss点で連続L2誤差・H1半ノルムを積分。h/p収束・自由未知数を揃えた誤差・境界値・真の残差を検査し、実際の2D場とP1の頂点・三角形・解をNPZに保存。
+
+## スペクトル要素法とFR：既存FEM・DGとの軽量比較 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/#sem-poisson-2d-limits
+Coverage: reading
+
+滑らかな固定問題だけの結果。要素・求積・代数ソルバーが異なるので、速度・計算量・汎用的優位性の比較ではありません。GLLの対角求積質量は一般の積の厳密な質量行列ではない。曲線格子・特異解・非圧縮流体・Nek5000/nekRS本体は未実行。
+
+## スペクトル要素法とFR：既存FEM・DGとの軽量比較 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/#sem-poisson-2d-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+sem_h_l2_order3.03964398611
+sem_h_h1_order2.01063606795
+p1_h_l2_order1.97449202948
+p1_h_h1_order0.989101103836
+p_refinement_l2_reduction311080.769951
+p6_l2_error3.7801651653e-07
+same_dof_free_unknowns225
+sem_finest_l2_error0.000248641096801
+p1_finest_l2_error0.00537743500994
+same_dof_l2_ratio_sem_over_p10.0462378617949
+maximum_relative_residual3.1814596822e-12
+判定 / check合格
+sem_h_l2_convergencetrue
+sem_h_h1_convergencetrue
+p1_h_l2_convergencetrue
+p1_h_h1_convergencetrue
+p_refinement_monotonetrue
+p_refinement_resolvedtrue
+equal_free_dofstrue
+same_dof_error_comparisontrue
+linear_residualstrue
+zero_dirichlet_boundarytrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存した2D SEM場と節点誤差。連続誤差ノルムは別のGauss積分で評価しています。全記録を表で読む
+seriesmethodelements_per_axisdegreetotal_dofsfree_dofsl2_errorh1_seminorm_errorrelative_residual
+hGLL-SEM222590.01787454496560.2118984548474.34272076546e-16
+hGLL-SEM4281490.0020445462010.05157518808351.63796506535e-15
+hGLL-SEM822892250.0002486410968010.01279908884138.47037256773e-15
+pGLL-SEM21910.1175936690160.9967518896660
+pGLL-SEM222590.01787454496560.2118984548474.34272076546e-16
+pGLL-SEM2349250.001451993428820.02709319842181.24542149286e-15
+pGLL-SEM2481490.0001074314577740.002658089442672.34630999931e-15
+pGLL-SEM25121816.8432839132e-060.0002093115514593.95967256792e-15
+
+## スペクトル要素法とFR：既存FEM・DGとの軽量比較 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/#sem-poisson-2d-measurements
+Coverage: reading
+
+pGLL-SEM261691213.7801651653e-071.3740969345e-054.98776008376e-15
+hpublished-P1-FEM412590.0790754536760.8385483442187.2411395863e-16
+hpublished-P1-FEM8181490.0211327734560.4317982830062.9836969935e-12
+hpublished-P1-FEM1612892250.005377435009940.217536336363.1814596822e-12
+この例の実測値・全記録 / JSON
+
+## スペクトル要素法とFR：既存FEM・DGとの軽量比較 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/#sem-poisson-2d-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+A. T. Patera (1984). A spectral element method for fluid dynamics: Laminar flow in a channel expansion · DOI: 10.1016/0021-9991(84)90128-1
+確認範囲 / review_level: metadata
+Nek5000公式参考文献の題名・巻・頁・DOIを照合。出版社の原文は未取得で、原報全体の監査・数値再現とはしない。今回の実装はLegendre GLL変種。
+Nek5000 development team (2026). Nek5000 documentation: Theory and spectral-element basis (accessed 2026-11-23)
+確認範囲 / review_level: full-text
+公式TheoryとFAQの要素局所の多項式、GLL/GL点・C0連続性を確認。教育用Poissonの実装とNek5000の流体ソルバー全体を同一視しない。
+Nek5000/RS development team (2026). Nek5000/RS project: spectral-element solvers and related implementations (accessed 2026-11-23)
+確認範囲 / review_level: full-text
+公式プロジェクトのSEM、nekRSのCPU/GPU対応、Nek5000との関係を確認。外部ソルバーの導入・実行・性能比較は未実施。
+
+## スペクトル要素法とFR：既存FEM・DGとの軽量比較 — FR法の1D周期移流：Radau補正と既存DGの比較 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/
+Coverage: reading
+
+0.4+sin(2πx)をT=.25まで移流。Gauss点・Radau補正のFRと既存のmodal DGをp=1/2、8/16/32セルで実行し、誤差・質量・時間積分誤差を測ります。
+手法・式・図・参照解
+使用手法
+Flux Reconstruction法（FR法）
+不連続Galerkin法／Legendre
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+p+1個のGauss解点、上流数値流束、Legendre多項式によるRadau左右補正、SSPRK(3,3)。初期L2射影・上流流束・時間刻み規約をバイト一致の既存modal DGと揃えます。スケールしたCourant数(2p+1)|a|Δt/h≤.15。最後にp2/N32で刻みを半減。
+線形移流
+全て無次元。u_t+u_x=0、区間[0,1)、周期境界、初期値0.4+sin(2πx)。解析解は0.4+sin(2π(x−t))。一定の正速度1、均一なアフィン区間要素。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+周期正弦波の線形移流
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+追加のGauss点で連続L2誤差を積分し、既存DGの最終多項式と共通点で照合。全RK段階の重み付き質量と各完了ステップの2次エネルギーを検査。同じFR空間演算子の行列指数解で時間誤差を別測定し、刻み半減を確認。
+関連モデルの参照 · 解析参照
+移流／正弦波の平行移動
+同じ周期・速度1の正弦移流モデルです。参照一覧は振幅0.25、共通固定入力は0.2で、DG・CIP等の表現や時間も異なります。
+関連モデルの参照 · 解析参照
+WENO臨界点：多項式セル平均と解析的周期輸送
+同じ一定速度の周期移流に対する追加参照ですが、cos+.1sin³のセル平均と局所臨界多項式は、従来の単一正弦・CIP表示と異なります。
+同じ問題の参照 · 解析参照
+FRとDGの周期正弦移流：平均0.4・T=.25の解析参照
+全て無次元。u_t+u_x=0、区間[0,1)、周期境界、初期値0.4+sin(2πx)。解析解は0.4+sin(2π(x−t))。一定の正速度1、均一なアフィン区間要素。
+入力・検証手順の履歴 · 初回の入力
+
+## スペクトル要素法とFR：既存FEM・DGとの軽量比較 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/#fr-periodic-advection-assumptions
+Coverage: reading
+
+全て無次元。u_t+u_x=0、区間[0,1)、周期境界、初期値0.4+sin(2πx)。解析解は0.4+sin(2π(x−t))。一定の正速度1、均一なアフィン区間要素。
+
+## スペクトル要素法とFR：既存FEM・DGとの軽量比較 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/#fr-periodic-advection-algorithm
+Coverage: reading
+
+p+1個のGauss解点、上流数値流束、Legendre多項式によるRadau左右補正、SSPRK(3,3)。初期L2射影・上流流束・時間刻み規約をバイト一致の既存modal DGと揃えます。スケールしたCourant数(2p+1)|a|Δt/h≤.15。最後にp2/N32で刻みを半減。
+u_t+a u_x=0,\quad u_*(x,t)=0.4+\sin(2\pi(x-at)),\quad a=1f^C=f^D+(f_L^*-f_L^D)g_L+(f_R^*-f_R^D)g_R,\quad \dot u=-\frac{2}{h}\partial_\xi f^Cg_L=\frac{(-1)^p}{2}(P_p-P_{p+1}),\quad g_R=\frac12(P_p+P_{p+1}),\quad\frac{d}{dt}\frac12\|u_h\|^2=-\frac{|a|}{2}\sum_{\rm faces}[u_h]^2
+
+## スペクトル要素法とFR：既存FEM・DGとの軽量比較 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/#fr-periodic-advection-validation
+Coverage: reading
+
+追加のGauss点で連続L2誤差を積分し、既存DGの最終多項式と共通点で照合。全RK段階の重み付き質量と各完了ステップの2次エネルギーを検査。同じFR空間演算子の行列指数解で時間誤差を別測定し、刻み半減を確認。
+
+## スペクトル要素法とFR：既存FEM・DGとの軽量比較 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/#fr-periodic-advection-limits
+Coverage: reading
+
+このRadau/Gauss・線形一定流束・アフィン要素の設定がDGに対応します。全FRと全DGの同値性、非線形流束・衝撃波・制限器・多次元FRは保証しません。hとΔtの同時細分化と行列指数による空間誤差を分け、行列指数を独立した空間PDEソルバーとは呼びません。PyFR本体は未実行。
+
+## スペクトル要素法とFR：既存FEM・DGとの軽量比較 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/#fr-periodic-advection-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+p1_l2_order1.99176792066
+p1_exponential_l2_order1.99176064192
+p2_l2_order2.99959619373
+p2_exponential_l2_order2.99959435791
+finest_l2_error2.61162684302e-05
+maximum_fr_vs_published_dg3.99680288865e-15
+maximum_stage_mass_drift3.5527136788e-15
+maximum_step_energy_increase0
+maximum_scaled_courant0.15
+finest_rk3_time_error9.44239800872e-09
+halved_cfl_time_error1.1816779054e-09
+time_error_halving_ratio0.125145953846
+actual_transport_l2_change0.999999962948
+判定 / check合格
+p1_l2_convergencetrue
+p2_l2_convergencetrue
+semidiscrete_spatial_convergencetrue
+finest_analytic_errortrue
+published_dg_agreementtrue
+periodic_stage_masstrue
+nonincreasing_step_energytrue
+scaled_courant_boundtrue
+time_error_controltrue
+nontrivial_translationtrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存したFRの初期・最終場と解析解との差。T=.25の実際の移流を表示します。全記録を表で読む
+seriesdegreecellstotal_dofsl2_errorexponential_l2_errorrk3_vs_exponential_l2fr_vs_published_dg_maxstepsfinal_timemax_mass_driftmax_energy_increasemax_scaled_courantinitial_energyfinal_energy
+h18160.02573716367760.02573651228572.79146782678e-061.7763568394e-15400.253.88578058619e-1600.150.3298701894150.325454977136
+h116320.006587042466840.006586997505143.50023140628e-071.99840144433e-15810.251.22124532709e-1500.150.3299917788350.329381334739
+
+## スペクトル要素法とFR：既存FEM・DGとの軽量比較 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/#fr-periodic-advection-measurements
+Coverage: reading
+
+h132640.001656183962360.001656181013424.37857693682e-083.99680288865e-151610.252.6645352591e-1500.150.3299994844760.329919781495
+h28240.001655527791410.001655510866136.18427430059e-071.7763568394e-15670.259.99200722163e-1600.150.329999425520.329969947015
+h216480.0002088716766660.0002088712705767.54903536135e-082.88657986403e-151340.251.83186799063e-1500.150.3299999909340.329998966251
+h232962.61162684302e-052.61162508874e-059.44239800872e-093.77475828373e-152670.253.5527136788e-1500.150.3299999998580.329999962016
+この例の実測値・全記録 / JSON
+
+## スペクトル要素法とFR：既存FEM・DGとの軽量比較 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sem-fr/#fr-periodic-advection-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+H. T. Huynh (2007). A Flux Reconstruction Approach to High-Order Schemes Including Discontinuous Galerkin Methods · DOI: 10.2514/6.2007-4079
+確認範囲 / review_level: metadata
+著者の2014年NASA報告の参考文献（本文27頁）で2007年原報の題名・著者・会議番号を確認。AIAA原文は未取得。補正式は別記の2014年本文を参照。
+H. T. Huynh (2014). On Formulations of Discontinuous Galerkin and Related Methods for Conservation Laws
+確認範囲 / review_level: full-text
+NASA原文の抄録、微分形と界面補正、本文19–21頁の式(6.2)–(6.13)のRadau補正とDG対応、27頁の書誌を確認。全報告の監査や非線形実験の再現ではない。
+PyFR development team (2026). PyFR: Flux Reconstruction and supported implementation platforms (accessed 2026-11-23)
+確認範囲 / review_level: full-text
+公式サイトのFRによる空間離散化・非構造格子・CPU/GPUの紹介を確認。今回の軽量Python例でPyFRを導入・実行・検証したとはしない。
+
 ## 浅水流：地形・静止湖・乾燥床 — 浅水流：地形・静止湖・乾燥床 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-shallow-water/
@@ -58886,6 +59947,9 @@ WENO5-JS
 関連モデルの参照 · 解析参照
 WENO臨界点：多項式セル平均と解析的周期輸送
 同じ一定速度の周期移流に対する追加参照ですが、cos+.1sin³のセル平均と局所臨界多項式は、従来の単一正弦・CIP表示と異なります。
+同じ問題の参照 · 解析参照
+FRとDGの周期正弦移流：平均0.4・T=.25の解析参照
+全て無次元。u_t+u_x=0、区間[0,1)、周期境界、初期値0.4+sin(2πx)。解析解は0.4+sin(2π(x−t))。一定の正速度1、均一なアフィン区間要素。
 
 ## WENOの臨界点・ε依存性 — 前提・単位・境界 [ja]
 

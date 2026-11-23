@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "maximum_total_seconds": 90,
+  "cases": {
+    "sem-poisson-2d": {
+      "elements": [2, 4, 8],
+      "h_degree": 2,
+      "p_elements": 2,
+      "degrees": [1, 2, 3, 4, 5, 6],
+      "p1_grids": [4, 8, 16],
+      "acceptance": {
+        "sem_l2_order_min": 2.5, "sem_l2_order_max": 3.5,
+        "sem_h1_order_min": 1.6, "sem_h1_order_max": 2.6,
+        "p1_l2_order_min": 1.7, "p1_l2_order_max": 2.3,
+        "p1_h1_order_min": 0.8, "p1_h1_order_max": 1.2,
+        "p_reduction_min": 1000, "p6_l2_max": 0.00002,
+        "same_dof_ratio_max": 0.3333333333333333,
+        "relative_residual_max": 0.00000000001
+      }
+    },
+    "fr-periodic-advection": {
+      "grids": [8, 16, 32],
+      "degrees": [1, 2],
+      "speed": 1,
+      "time": 0.25,
+      "cfl": 0.15,
+      "acceptance": {
+        "p1_order_min": 1.7, "p1_order_max": 2.5,
+        "p2_order_min": 2.6, "p2_order_max": 3.5,
+        "finest_l2_max": 0.0002,
+        "dg_difference_max": 0.0000000002,
+        "mass_drift_max": 0.000000000002,
+        "energy_increase_max": 0.000000000002,
+        "time_error_max": 0.000001,
+        "halving_ratio_max": 0.3,
+        "transport_change_min": 0.5
+      }
+    }
+  }
+}

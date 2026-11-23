@@ -1155,8 +1155,8 @@
     "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
     "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
     "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
-    "catalog/atlas-test-problems.json": "8c2198ce3cf88056b9b5a78b796f676f2e64c773882eb8e911c178a0578fb79b",
-    "catalog/atlas-depth-expansion.json": "b5c4fcb308e4627460f59b96428960b22b508d3a593d480c4c2bee1b60373aeb",
+    "catalog/atlas-test-problems.json": "990a6813ec502fa317ba45d4d339b27f87aad6b463f17f07dc1bb75f16d38083",
+    "catalog/atlas-depth-expansion.json": "2adadc1abbd338bad24bf31415fc91fb3a5b72894aeca3afb031d185a2d40035",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
     "code/validated-examples/2026-11-22/foundations/inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -1355,7 +1355,16 @@
     "code/validated-examples/2026-11-23/level-set/results/result.json": "7108491721386902c6adaa5ea5c1c709b31a204060346d0c93a06efd4a4a5a31",
     "code/validated-examples/2026-11-23/level-set/results/level-set-translation.png": "4e99dec1449e65944b246b2280dd5439a5dbc59a99633b201f57e5cd0453507e",
     "code/validated-examples/2026-11-23/level-set/results/level-set-rotation.png": "54c6d02fd40c0bf702f413f8ce12aaefc43a5f911d681b42ad7634d6a26ebdde",
-    "code/validated-examples/2026-11-23/level-set/results/level-set-overview.png": "88f72aed9b862da17107f9f1c07c1ca10b3f43e61342de01e03f55379723f730"
+    "code/validated-examples/2026-11-23/level-set/results/level-set-overview.png": "88f72aed9b862da17107f9f1c07c1ca10b3f43e61342de01e03f55379723f730",
+    "code/validated-examples/2026-11-23/sem-fr/cases.json": "b1005680e6bd36a330dd178f9eac2c39444dc40c98f5dbf5bfd3ad01ca2c751d",
+    "code/validated-examples/2026-11-23/sem-fr/inputs.json": "c10e0ef3737b81f8e088d43d411067aaa00b7b42e197f8f2a43b19b6852f0525",
+    "code/validated-examples/2026-11-23/sem-fr/source-manifest.json": "800461c1ae226cc1f4350d4fce65a0c24ef2bce851ad862ad55394b47fc321d1",
+    "code/validated-examples/2026-11-23/sem-fr/verification.json": "63de17e91ba54215e7de815df931b8b2c6f04c65d5d43037b9c921c14ca75b54",
+    "code/validated-examples/2026-11-23/sem-fr/results/result.json": "f934329701c57bd4eb41cec04c0bbf374812ec0372739c3c2d869e9829b54a96",
+    "code/validated-examples/2026-11-23/sem-fr/results/sem-poisson-2d.png": "fdad68cc85073ba5d51bc9b48b34c116896d2c99cf497bdda32faa2d27481ef7",
+    "code/validated-examples/2026-11-23/sem-fr/results/fr-periodic-advection.png": "d4afeebdf38e32dcaf3a2c58288ef4ed2f1f79c7c32e89c80f40d71199a11c37",
+    "code/validated-examples/2026-11-23/sem-fr/results/sem-poisson-2d-preview.png": "6f1e1d026f03c64656de459078757c9862a29ee0de68816f2aa9802be5bec6da",
+    "code/validated-examples/2026-11-23/sem-fr/results/fr-periodic-advection-preview.png": "30674c0de38a4c3507602ec895fdb37d7a72d6290a36bca97ae931e3bdcd5bd1"
   },
   "calculations_sha256": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6",
   "maintenance_updates": [
@@ -1541,6 +1550,33 @@
         "code/validated-examples/2026-11-23/level-set/results/level-set-overview.png": "88f72aed9b862da17107f9f1c07c1ca10b3f43e61342de01e03f55379723f730"
       },
       "numerical_previews_executed": false
+    },
+    {
+      "reviewed_on": "2026-11-23",
+      "operation": "Link the independently packaged SEM/FR results and saved-data previews to two existing physical problems. Preserve every one of the92 primary pictures and all prior calculations.",
+      "changed_catalog_bindings": {
+        "catalog/atlas-test-problems.json": {
+          "before": "8c2198ce3cf88056b9b5a78b796f676f2e64c773882eb8e911c178a0578fb79b",
+          "after": "990a6813ec502fa317ba45d4d339b27f87aad6b463f17f07dc1bb75f16d38083"
+        },
+        "catalog/atlas-depth-expansion.json": {
+          "before": "b5c4fcb308e4627460f59b96428960b22b508d3a593d480c4c2bee1b60373aeb",
+          "after": "2adadc1abbd338bad24bf31415fc91fb3a5b72894aeca3afb031d185a2d40035"
+        }
+      },
+      "new_sem_fr_bindings": {
+        "code/validated-examples/2026-11-23/sem-fr/cases.json": "b1005680e6bd36a330dd178f9eac2c39444dc40c98f5dbf5bfd3ad01ca2c751d",
+        "code/validated-examples/2026-11-23/sem-fr/inputs.json": "c10e0ef3737b81f8e088d43d411067aaa00b7b42e197f8f2a43b19b6852f0525",
+        "code/validated-examples/2026-11-23/sem-fr/source-manifest.json": "800461c1ae226cc1f4350d4fce65a0c24ef2bce851ad862ad55394b47fc321d1",
+        "code/validated-examples/2026-11-23/sem-fr/verification.json": "63de17e91ba54215e7de815df931b8b2c6f04c65d5d43037b9c921c14ca75b54",
+        "code/validated-examples/2026-11-23/sem-fr/results/result.json": "f934329701c57bd4eb41cec04c0bbf374812ec0372739c3c2d869e9829b54a96",
+        "code/validated-examples/2026-11-23/sem-fr/results/sem-poisson-2d.png": "fdad68cc85073ba5d51bc9b48b34c116896d2c99cf497bdda32faa2d27481ef7",
+        "code/validated-examples/2026-11-23/sem-fr/results/fr-periodic-advection.png": "d4afeebdf38e32dcaf3a2c58288ef4ed2f1f79c7c32e89c80f40d71199a11c37",
+        "code/validated-examples/2026-11-23/sem-fr/results/sem-poisson-2d-preview.png": "6f1e1d026f03c64656de459078757c9862a29ee0de68816f2aa9802be5bec6da",
+        "code/validated-examples/2026-11-23/sem-fr/results/fr-periodic-advection-preview.png": "30674c0de38a4c3507602ec895fdb37d7a72d6290a36bca97ae931e3bdcd5bd1"
+      },
+      "numerical_previews_executed": false,
+      "new_release_plots_from_saved_fields": true
     }
   ]
 }

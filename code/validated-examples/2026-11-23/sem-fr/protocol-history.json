@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "first_execution_passed": false,
+  "first_execution_termination": "RuntimeWarning in dense SciPy expm; complete SEM field saved, FR did not finish",
+  "original_pytest": {
+    "tests": 24,
+    "passed": 23,
+    "failed": 1
+  },
+  "acceptance_modified_after_first_execution": false,
+  "input_modified_after_first_execution": false,
+  "revision": "Replace dense scipy.linalg.expm by sparse scipy.sparse.linalg.expm_multiply for the same spatial matrix/time. No warning suppression. Documentation review-level/type normalized to the existing page schema.",
+  "diagnostic": "All 6 operators finite; dense outputs finite with warnings in a separate diagnostic; exponential actions agree within 3e-15. See attempts/01-dense-exponential.",
+  "original_input_sha256": "c10e0ef3737b81f8e088d43d411067aaa00b7b42e197f8f2a43b19b6852f0525",
+  "second_execution": {
+    "termination": "TypeError serializing numpy.bool_ decision; both actual NPZ/CSV computed",
+    "revision": "Convert decision scalars to Python bool; add one actual full-driver output regression",
+    "archive": "attempts/02-json-bool",
+    "pde_and_criteria_unchanged": true
+  },
+  "third_execution": {
+    "passed": true,
+    "tests": 25,
+    "all_fixed_checks": 20,
+    "computed_arrays_bit_equal_to_revision2": true,
+    "scope": "Convert JSON scalar type only; exact original physical inputs/criteria and all 7 baselines retained."
+  },
+  "packaging_revision": "Separate saved-data gallery previews and scoped captions added after numerical success; numerical source/inputs/criteria unchanged."
+}

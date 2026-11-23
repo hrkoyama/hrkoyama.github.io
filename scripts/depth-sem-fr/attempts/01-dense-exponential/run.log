@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/atlas-lie-trotter-publisher/scripts/depth-sem-fr/run.py", line 48, in <module>
+    result = run(args.input, args.output)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/atlas-lie-trotter-publisher/scripts/depth-sem-fr/run.py", line 26, in run
+    budget.check(); result, fields = function(parameters, budget)
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/atlas-lie-trotter-publisher/scripts/depth-sem-fr/experiments.py", line 110, in fr_case
+    exponential = op.exponential(start, config['time'])
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/atlas-lie-trotter-publisher/scripts/depth-sem-fr/fr.py", line 64, in exponential
+    return (expm(time*matrix)@u.ravel()).reshape(u.shape)
+            ^^^^^^^^^^^^^^^^^
+  File "/private/tmp/codex-scratch-501/8da64e730d87e7538dcffe4f3b231e16d895555f18d8d45e8d94f203b474df56/level-set-env/lib/python3.12/site-packages/scipy/linalg/_matfuncs.py", line 323, in expm
+    m, s = pick_pade_structure(Am)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "scipy/linalg/_matfuncs_expm.pyx", line 131, in scipy.linalg._matfuncs_expm.pick_pade_structure
+RuntimeWarning: divide by zero encountered in matmul
