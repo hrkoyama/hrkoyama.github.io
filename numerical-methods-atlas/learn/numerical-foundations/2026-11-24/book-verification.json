@@ -1,10 +1,10 @@
 {
   "passed": true,
-  "source_sha256": "f0a8d76a65adea00eb7b250e5af0e1a7de0574f35cd8a2412dce968b6e3e76b6",
+  "source_sha256": "231338afd44d8126863eba326dbc98ff9a2a9efd85cc5a228a503835f51cf9d9",
   "pdf_pages": 42,
   "chapters": 19,
   "questions_and_answers": 38,
-  "prose_and_code_fragments_checked": 556,
+  "prose_and_code_fragments_checked": 602,
   "equations": 36,
   "figures": 19,
   "assets": {
@@ -102,7 +102,7 @@
     "figures/figure-19.pdf": "6413214d969f9fd57384f57f3a3a6ea72053aa8985ea39543fd835b007a0925f",
     "figures/figure-19.png": "80a8ba578fad216e33fa5a9c04bca6f737e9c6c48e3a19a2411d655b69fbb09e",
     "figures/figure-19.svg": "8712f67386cf331f4ee4aabaf1b2006019a3c0d68991bdaba2868c5f013f317a",
-    "numerical-foundations-ja.pdf": "ec29c047fff05243e3cc5b9168f0adf10311668ba5ae94f2c146b7f25d3d271d"
+    "numerical-foundations-ja.pdf": "99fd73f16f8af17ef0d6addb35b6ef3034879854b1919fe11b030a6a6e2ea74d"
   },
   "visual_review": "All rendered pages reviewed; shared vector equations and charts; embedded Japanese TrueType font also used for code comments.",
   "generation": "ReportLab 4.4.9 / svglib 1.6.0 / MathJax 3.2.2 SVG; authoring-only; normal refresh validates frozen assets without executing scientific or PDF code."

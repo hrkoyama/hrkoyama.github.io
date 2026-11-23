@@ -10,7 +10,10 @@ source=ROOT/'catalog/atlas-foundations-course.json';d=json.loads(source.read_tex
 reader=PdfReader(pdf)
 def norm(s):return re.sub(r'\s+','',unicodedata.normalize('NFKC',s)).replace('−','-')
 text=norm('\n'.join(p.extract_text() for p in reader.pages))
-expected=[*d['preface'],d['audience'],d['rights'],d['execution_scope']]
+expected=[d['title'],d['subtitle'],*d['preface'],d['audience'],d['rights'],d['execution_scope']]
+for term,meaning in d['glossary']:expected += [term,meaning]
+for reference in d['references']:expected += [reference['title'],reference['scope'],reference['url']]
+for reading in d['readings'].values():expected += [reading['title'],reading['url']]
 for c in d['chapters']:
  expected += [c['title'],*c['lead'],*c['goals'],*c['worked']['paragraphs'],c['worked']['result'],c['figure']['caption'],c['experiment']['instructions'],*c['pitfalls'],*c['summary']]
  for s in c['sections']:expected += [s['title'],*s['paragraphs']]
