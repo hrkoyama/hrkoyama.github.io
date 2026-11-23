@@ -1,5 +1,5 @@
 const atlasIntroDescriptions = {"ja": "数値計算法の適用条件・数式・一次文献から公開コードとデータへ。Poisson・Barnes–Hut・H/Heなど代表22問題の固定入力・実行・結果照合を日英で案内します。", "en": "Connect numerical methods, assumptions, equations and original papers with public code and data. Explore twenty-two fixed-input examples, including Poisson, Barnes–Hut and H/He atoms, with execution and result checks in English and Japanese."};
-import {homeOverviewPage,wireHomeOverview} from './home-overview.js?v=c8db79951cda';
+import {homeOverviewPage,wireHomeOverview} from './home-overview.js?v=895be34d1271';
 import {resolveHomeLegacyURL} from './home-navigation.mjs?v=a99d305b4863';
 import {readingURL,rewriteReadingLinks} from './reading-urls.js';
 import {chapterEditions} from './chapter-resources.mjs?v=1686ec12c495';
@@ -330,7 +330,7 @@ async function route(options={}) {
 document.querySelector('.skip-link').addEventListener('click',e=>{e.preventDefault();main.focus();main.scrollIntoView();});
 document.querySelector('#figure-dialog').addEventListener('click',e=>{if(e.target===e.currentTarget)e.currentTarget.close();});
 try {
- [localeCatalog,references,sod,experiments,foundations,coverage,translationStatus,glossary,site]=await Promise.all(['locales/messages.json?v=ede6878491f6','references.json?v=9482446cf06a','sod.json','experiments.json','foundations.json','coverage.json?v=f64bae559ab8','translation-status.json','glossary.json','site.json'].map(async file=>{const response=await fetch(file);if(!response.ok)throw Error(`Cannot load ${file}`);return response.json();}));
+ [localeCatalog,references,sod,experiments,foundations,coverage,translationStatus,glossary,site]=await Promise.all(['locales/messages.json?v=ede6878491f6','references.json?v=9482446cf06a','sod.json','experiments.json','foundations.json','coverage.json?v=621c031f119a','translation-status.json','glossary.json','site.json'].map(async file=>{const response=await fetch(file);if(!response.ok)throw Error(`Cannot load ${file}`);return response.json();}));
  repo=site.repositoryUrl;
  references.sort((a,b)=>a.year-b.year||a.id.localeCompare(b.id));
  let saved;try{saved=localStorage.getItem('hrkoyama.home.language') || localStorage.getItem('numart-language');}catch{}

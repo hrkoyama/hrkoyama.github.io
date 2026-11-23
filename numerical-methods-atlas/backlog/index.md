@@ -612,13 +612,13 @@ ID: advection-reconstruction-1 · P1 · 公開済み · 検証の拡充
 
 ### Zalesak型2D回転輸送・形状保持
 
-ID: advection-reconstruction-2 · P2 · 検証済み · 新規実装
+ID: advection-reconstruction-2 · P2 · 公開済み · 新規実装
 
 調査時の範囲：未収録
 
 調査時の現状：
 
-26単体検査・64²/128²/256²と位置/角度を含む8計算158判定、独立ZIP展開の再実行が合格。公開URLと公開ZIPのLinux確認は未完了です。
+26単体検査・8回転計算158判定、独立ZIP再実行、公開URLの図・コード照合と公開配布物のみのLinux全624検査が合格。途中の1/4周、回転中心とスロット角度の診断、ギャラリーからの導線も保存しています。
 
 追加内容・最小の検証：
 
@@ -633,7 +633,7 @@ ID: advection-reconstruction-2 · P2 · 検証済み · 新規実装
 - 誤差・収束と制約が分かる図を保存する。
 - 実在する問題ギャラリー・実行入口・入力・図への対応を確認する。
 
-Firedrake公式例で形状・速度・周期を確認した単独0–1円盤の周期有限体積変種。真の2次元回転輸送を一次風上/保存量MUSCL minmod・SSPRK33で比較し、全段の保存・上下限、四分の一周と1周の形状誤差、位置/角度・境界帯の診断を保存。Zalesak FCT・Firedrake DG・LeVeque CTUの再現ではありません。初回32²/64²/128²の156/158判定と不合格を保持し、同一受入基準で細分化しています。
+Firedrake公式例で形状・速度・周期を確認した単独0–1円盤の周期有限体積変種。真の2次元回転輸送を一次風上/保存量MUSCL minmod・SSPRK33で比較し、全段の保存・上下限、四分の一周と1周の形状誤差、位置/角度・境界帯の診断を保存。Zalesak FCT・Firedrake DG・LeVeque CTUの再現ではありません。初回32²/64²/128²の156/158判定と不合格を保持し、同一受入基準で細分化しています。 科学内容commit c1398c0eafe5511741cebc44d14ac324a6bf0429とLinux run 45154798151の公開実績を別記録に保存しています。
 
 調査時の根拠：
 
@@ -647,7 +647,7 @@ Firedrake公式例で形状・速度・周期を確認した単独0–1円盤の
 
 ```json
 {
-  "verification": "/code/validated-examples/2026-11-23/zalesak/verification.json",
+  "verification": "/numerical-methods-atlas/validation/verification/2026-11-23-zalesak-public.json",
   "inputs": [
     "/code/validated-examples/2026-11-23/zalesak/inputs.json",
     "/code/validated-examples/2026-11-23/zalesak/acceptance.json",
@@ -672,7 +672,8 @@ Firedrake公式例で形状・速度・周期を確認した単独0–1円盤の
     "/code/validated-examples/2026-11-23/zalesak/pre-run-review.json",
     "/code/validated-examples/2026-11-23/zalesak/attempts/01/attempt-summary.json",
     "/code/validated-examples/2026-11-23/zalesak/attempts/01/results/result.json",
-    "/code/validated-examples/2026-11-23/zalesak/attempts/01/source/pre-run-contract.json"
+    "/code/validated-examples/2026-11-23/zalesak/attempts/01/source/pre-run-contract.json",
+    "/code/validated-examples/2026-11-23/zalesak/verification.json"
   ]
 }
 ```

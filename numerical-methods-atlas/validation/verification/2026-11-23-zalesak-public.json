@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "title": "Public-distribution verification of Zalesak-type 2D rotation",
+  "verified_on": "2026-11-23",
+  "passed": true,
+  "content_commit": "c1398c0eafe5511741cebc44d14ac324a6bf0429",
+  "scope": "Actual public scientific content verification. The isolated 0–1 slotted disk and periodic FV boundary are an explicitly stated variant of the cited official geometry, not a reproduction of Zalesak FCT or the full Firedrake DG demo. Later publication-status commits are not predicted here.",
+  "group": "zalesak",
+  "edition": "2026-11-23",
+  "case_ids": [
+    "zalesak-rotation"
+  ],
+  "archive_sha256": "28e7d2bc93d3a5ba1cb015c874c489e9fd1a2e8a586a46d519800c799b0fb6f8",
+  "local_independent_zip": {
+    "tests": 26,
+    "all_cases_rerun": true,
+    "verification_url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/verification.json"
+  },
+  "public_http": {
+    "matched_files": 568,
+    "passed": true,
+    "inventory": {
+      "files": 568,
+      "release_files": 101,
+      "figure_files": 6,
+      "total_bytes": 155725513
+    },
+    "body_files_saved": false,
+    "commit": "c1398c0eafe5511741cebc44d14ac324a6bf0429"
+  },
+  "linux": {
+    "passed": true,
+    "source_checkout": false,
+    "tests": 624,
+    "case_count": 49,
+    "group_count": 20,
+    "run_id": "45154798151",
+    "url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45154798151",
+    "report_sha256": "a62eda08e6be90b739e04b87437156b73597a80274749d8d5596d3cce2f7e4a4",
+    "new_group_pytest": {
+      "tests": 26,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "workflows": {
+    "Atlas lightweight public Linux verification": {
+      "id": 45154798151,
+      "name": "Atlas lightweight public Linux verification",
+      "head_sha": "c1398c0eafe5511741cebc44d14ac324a6bf0429",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45154798151",
+      "run_attempt": 1
+    },
+    "Public site checks": {
+      "id": 45154087536,
+      "name": "Public site checks",
+      "head_sha": "c1398c0eafe5511741cebc44d14ac324a6bf0429",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45154087536",
+      "run_attempt": 1
+    },
+    "pages build and deployment": {
+      "id": 45154086811,
+      "name": "pages build and deployment",
+      "head_sha": "c1398c0eafe5511741cebc44d14ac324a6bf0429",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45154086811",
+      "run_attempt": 1
+    }
+  },
+  "artifact_acquisition": {
+    "artifact_total_bytes": 172810084,
+    "selected_transfer_bytes": 767742,
+    "range_only": true,
+    "archive_written": false
+  }
+}

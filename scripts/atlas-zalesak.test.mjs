@@ -74,7 +74,7 @@ test('the actual two-dimensional saved figure connects to scalar rotation, its a
  const execution=item.supplemental_execution_entries.find(x=>x.id===id);assert.ok(execution);assert.ok(execution.download.endsWith('atlas-zalesak-2026-11-23.zip'));
  const reference=json('numerical-methods-atlas/solutions/index.json').cases.find(x=>x.id===id);
  assert.equal(reference.kind,'analytic');assert.equal(reference.dimension,2);assert.equal(reference.model,'rotational-advection');assert.ok(reference.related_problems.some(x=>x.id==='zalesak'));
- const equation=json('numerical-methods-atlas/equations/index.json').equations.find(x=>x.id==='rotational-advection');assert.ok(equation.related_problems.some(x=>x.id==='zalesak'));
+ const equation=json('numerical-methods-atlas/equations/index.json').equations.find(x=>x.id==='rotational-advection');assert.ok(equation.related_problems.some(x=>x.id==='zalesak'));assert.deepEqual(equation.supplemental_execution_examples.map(x=>x.id),[id]);assert.deepEqual(equation.supplemental_examples,[id]);
  const methods=json('numerical-methods-atlas/methods/index.json').methods;
  for(const mid of page.method_ids){const m=methods.find(x=>x.id===mid);assert.equal(m.status,'educational-example');assert.ok([m.depth_release,...(m.depth_additional_releases||[])].some(r=>r?.group===group));}
  for(const lang of ['ja','en']){

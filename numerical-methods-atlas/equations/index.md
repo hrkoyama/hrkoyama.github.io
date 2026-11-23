@@ -1865,6 +1865,8 @@ $$
 
 [解説](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-zalesak/)
 
+単位正方形の周期境界、指定した非圧縮の剛体回転速度、0–1の切り欠き付き円盤を用いる2次元スカラー移流の固定例です。ドナーセル風上法とminmod制限付きMUSCL法をSSPRK(3,3)で進め、64²・128²・256²の一回転と64²の位置・角度変更を検証します。解析的な幾何学的セル平均を参照し、保存量、全記録段階の有界性、形状誤差を別々に評価します。FCT、Euler流体、任意の速度場への検証結果ではありません。
+
 #### 関連するテスト問題の図とコード
 
 ##### [Zalesak型の切り欠き円盤の回転輸送](https://hrkoyama.github.io/numerical-methods-atlas/problems/zalesak/?lang=ja) (`zalesak`)
@@ -3744,6 +3746,8 @@ $$
 A two-dimensional scalar conservation law in a prescribed rigid rotation. The continuum field returns after one turn, enabling mass, bounds and slotted-shape error checks.
 
 [Reading](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-zalesak/)
+
+A fixed two-dimensional scalar-advection example on the periodic unit square with prescribed divergence-free rigid rotation and a 0–1 slotted disk. Donor-cell upwind and minmod-limited MUSCL use SSPRK(3,3); one-turn runs use 64², 128² and 256² grids, with position and angle probes at 64². Analytic geometric cell averages provide the reference, and mass, bounds at every recorded stage and shape error are assessed separately. This does not validate FCT, Euler fluid dynamics or arbitrary velocity fields.
 
 #### Related test problem figures and code
 

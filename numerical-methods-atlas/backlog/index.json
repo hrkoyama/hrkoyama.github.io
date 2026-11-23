@@ -1234,14 +1234,14 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "verified",
-      "current": "26単体検査・64²/128²/256²と位置/角度を含む8計算158判定、独立ZIP展開の再実行が合格。公開URLと公開ZIPのLinux確認は未完了です。",
+      "state": "published",
+      "current": "26単体検査・8回転計算158判定、独立ZIP再実行、公開URLの図・コード照合と公開配布物のみのLinux全624検査が合格。途中の1/4周、回転中心とスロット角度の診断、ギャラリーからの導線も保存しています。",
       "tasks": [
         "既存1D矩形波と2D滑らかentropy waveを残し、周期回転後の解析的returnを新たな問題として追加。",
         "総量、min/max、形状誤差と回転中心/格子方向依存を比較。",
         "スロット形状・時刻・境界と点値/セル平均を原著または公式実装から固定する。"
       ],
-      "scope_note": "Firedrake公式例で形状・速度・周期を確認した単独0–1円盤の周期有限体積変種。真の2次元回転輸送を一次風上/保存量MUSCL minmod・SSPRK33で比較し、全段の保存・上下限、四分の一周と1周の形状誤差、位置/角度・境界帯の診断を保存。Zalesak FCT・Firedrake DG・LeVeque CTUの再現ではありません。初回32²/64²/128²の156/158判定と不合格を保持し、同一受入基準で細分化しています。",
+      "scope_note": "Firedrake公式例で形状・速度・周期を確認した単独0–1円盤の周期有限体積変種。真の2次元回転輸送を一次風上/保存量MUSCL minmod・SSPRK33で比較し、全段の保存・上下限、四分の一周と1周の形状誤差、位置/角度・境界帯の診断を保存。Zalesak FCT・Firedrake DG・LeVeque CTUの再現ではありません。初回32²/64²/128²の156/158判定と不合格を保持し、同一受入基準で細分化しています。 科学内容commit c1398c0eafe5511741cebc44d14ac324a6bf0429とLinux run 45154798151の公開実績を別記録に保存しています。",
       "sources": [
         {
           "title": "Zalesak (1979), Fully multidimensional flux-corrected transport algorithms for fluids",
@@ -1257,7 +1257,7 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-23/zalesak/verification.json",
+        "verification": "/numerical-methods-atlas/validation/verification/2026-11-23-zalesak-public.json",
         "inputs": [
           "/code/validated-examples/2026-11-23/zalesak/inputs.json",
           "/code/validated-examples/2026-11-23/zalesak/acceptance.json",
@@ -1282,7 +1282,8 @@
           "/code/validated-examples/2026-11-23/zalesak/pre-run-review.json",
           "/code/validated-examples/2026-11-23/zalesak/attempts/01/attempt-summary.json",
           "/code/validated-examples/2026-11-23/zalesak/attempts/01/results/result.json",
-          "/code/validated-examples/2026-11-23/zalesak/attempts/01/source/pre-run-contract.json"
+          "/code/validated-examples/2026-11-23/zalesak/attempts/01/source/pre-run-contract.json",
+          "/code/validated-examples/2026-11-23/zalesak/verification.json"
         ]
       },
       "sequence": 12,
@@ -1292,7 +1293,7 @@
         "local_evidence_checked": true,
         "verification_passed": true,
         "links": {
-          "verification": "/code/validated-examples/2026-11-23/zalesak/verification.json",
+          "verification": "/numerical-methods-atlas/validation/verification/2026-11-23-zalesak-public.json",
           "inputs": [
             "/code/validated-examples/2026-11-23/zalesak/inputs.json",
             "/code/validated-examples/2026-11-23/zalesak/acceptance.json",
@@ -1317,7 +1318,8 @@
             "/code/validated-examples/2026-11-23/zalesak/pre-run-review.json",
             "/code/validated-examples/2026-11-23/zalesak/attempts/01/attempt-summary.json",
             "/code/validated-examples/2026-11-23/zalesak/attempts/01/results/result.json",
-            "/code/validated-examples/2026-11-23/zalesak/attempts/01/source/pre-run-contract.json"
+            "/code/validated-examples/2026-11-23/zalesak/attempts/01/source/pre-run-contract.json",
+            "/code/validated-examples/2026-11-23/zalesak/verification.json"
           ]
         }
       }
@@ -5187,8 +5189,8 @@
     "states": {
       "planned": 96,
       "in-progress": 0,
-      "verified": 1,
-      "published": 6
+      "verified": 0,
+      "published": 7
     },
     "kinds": {
       "implementation": 58,
@@ -5203,7 +5205,7 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-benchmark-backlog.json": "4d4f642b4c45a5dfe0feb491fdb3efdcc9156fc997d58e80ccf51e479ca2e56b",
+    "catalog/atlas-benchmark-backlog.json": "46b8bbd02979aa2704f75ebb424f509746559491b13b04de332ccabd555568ed",
     "code/validated-examples/2026-11-23-r2/euler-positivity/acceptance.json": "f08558b2703369a2260db1252dc40272f76556a2f6205688faa88a4c37c79050",
     "code/validated-examples/2026-11-23-r2/euler-positivity/euler_positivity.py": "c22015d9435095b3f08189d1b09be4a040c79062b1cc76fd15648cca00f73a58",
     "code/validated-examples/2026-11-23-r2/euler-positivity/inputs.json": "a1185e4b8be0f49f8f3f551f934614110c227d39b2bb0dc4438c5301428d751b",
@@ -5345,6 +5347,7 @@
     "numerical-methods-atlas/validation/noh-cartesian-2d/index.html": "484592fde6dbf3f4b5da68a363d9907e9deda9ea1883525c40762d405d64e2e1",
     "numerical-methods-atlas/validation/sedov-blast/index.html": "3b23469cd17837f105df30961020a8c4ff8b47efe937bf45430b8720a6e440ed",
     "numerical-methods-atlas/validation/verification/2026-11-23-euler-positivity-public.json": "6d219b1fe34353e9a6634d64c8379d3a7dab6b324b538b35ecb695f5a584e757",
+    "numerical-methods-atlas/validation/verification/2026-11-23-zalesak-public.json": "85da729371ecceeb80953fabe8c4932d6b476bcdacd492f9102c08c8fa09a3dc",
     "numerical-methods-atlas/validation/zalesak-rotation/index.html": "2f2287fd37a8a620bcd82a64c8952b6ed852d864321cd3114872c883f5a4e3ed"
   }
 }
