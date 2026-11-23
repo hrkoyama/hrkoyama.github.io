@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "checks": {
+    "beta_resolution_relative": true,
+    "swept_mass_relative": true,
+    "exactpack_beta_relative": true,
+    "exactpack_point_scaled_max": true
+  },
+  "criteria": {
+    "beta_resolution_relative": 2e-07,
+    "swept_mass_relative": 2e-07,
+    "exactpack_beta_relative": 2e-07,
+    "exactpack_point_scaled_max": 0.0005
+  },
+  "reference_commit": "9bacc477eb791e959c9621e771fc7a725db755fa",
+  "source_files_sha256": {
+    "LICENSE.txt": "763767e730623814502f95054919a019f17f5257e0cd8d60aede203d9736dd40",
+    "exactpack/__init__.py": "fac5c9e93253890cff33124da6e7ea5259f5bc171ce45574d43a171fc852d7ff",
+    "exactpack/base.py": "ce8e37ee0ed97dedca174a2ac0d8fa01b8b416bc3b441afab4e3bea9fe4f922e",
+    "exactpack/solvers/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "exactpack/solvers/sedov/__init__.py": "322616b5740f79d784b74d9f0f6d7ba514afa96cdab7808f4a322ff0bf3bc340",
+    "exactpack/solvers/sedov/sedov.py": "c2c91eb7b8674e6ad383356f0a3b7f29ff00c667c590e95b508f64e91eeafd00"
+  },
+  "snapshot_sha256": "57abc4a93fdddb701774d2595b63920d59b4a77cf4607e3aa4b1438760cf6022",
+  "reference_generator_sha256": "f7fb3d20a32938ff2ca1718c962db90129fe33798342fa23a910e3be4ae2c6bd",
+  "local_reference_sha256": "7a2904a043a2f3aa823b7bb4686b9acd9b1b80759f3dca608d59615b7a0e160a",
+  "reference_contract_sha256": "be1c2c80d6c13be3ffa428e4a91cb2f054b8e17cea921dfd07fbc4e73b234efd",
+  "local_reference_metadata": {
+    "gamma": 1.6666666666666667,
+    "geometry": 3,
+    "rho0": 1.0,
+    "energy": 1.0,
+    "alpha": 0.4,
+    "beta": 1.1516664179278793,
+    "core_cutoff_xi": 0.001,
+    "ode_rtol": 2e-10,
+    "ode_nfev": 923,
+    "energy_integral": 0.24549160052739177,
+    "energy_quad_error_estimate": 8.418224034116616e-12,
+    "swept_mass_dimensionless": 0.3333333333314057,
+    "mass_quad_error_estimate": 8.711331269232957e-12,
+    "core_model": "G proportional to xi^(9/2), V proportional to xi, P constant",
+    "reference_kind": "semi-analytic similarity ODE plus split Gauss cell quadrature",
+    "refined_core_cutoff_xi": 0.0005,
+    "refined_ode_rtol": 5e-11,
+    "beta_resolution_relative_difference": 2.1682655670929307e-12,
+    "swept_mass_relative_error": 5.782929690667515e-12
+  },
+  "errors": {
+    "exactpack_beta_relative": 1.893374346195742e-12,
+    "exactpack_point_scaled_max": 0.00027378711790526286
+  },
+  "environment": {
+    "python": "3.12.16",
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "exactpack": "1.7.11"
+  },
+  "execution": "Unmodified hash-checked official selected Sedov module and package/base dependencies in isolated source directory; original Atlas FV solver is never imported.",
+  "command": "python exactpack-generate.py --upstream /path/to/pinned-ExactPack --output /path/to/new-reference-output",
+  "limitations": "Upstream double-precision Sedov implementation warns that central density/internal energy may be inaccurate. Probes exclude xi<.15 and the shock. Reference npts refinement is retained; no independent PDE execution or full library tests."
+}

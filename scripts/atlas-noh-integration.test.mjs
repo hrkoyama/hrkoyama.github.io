@@ -24,11 +24,11 @@ function local(value){
 
 test('Noh adds one physical problem while every historical problem, image and reference value remains unchanged',()=>{
   const problems=json('catalog/atlas-test-problems.json').problems;
-  assert.equal(problems.length,84);assert.equal(problems.filter(row=>row.id==='noh').length,1);
-  assert.equal(objectSha(problems.filter(row=>row.id!=='noh')),'7d8427b4abea2ecc81c651b25888e242c35033c414d53fccfdf4b1e49a778434');
+  assert.equal(problems.length,85);assert.equal(problems.filter(row=>row.id==='noh').length,1);
+  assert.equal(objectSha(problems.filter(row=>!['noh','sedov'].includes(row.id))),'7d8427b4abea2ecc81c651b25888e242c35033c414d53fccfdf4b1e49a778434');
   const previews=json('numerical-methods-atlas/gallery/preview-manifest.json').items;
-  assert.equal(previews.length,84);
-  assert.equal(objectSha(previews.filter(row=>row.id!=='noh').map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}))),'57239dc61d0fc48ff97ec9cfa2c771bd1b675b561a884bb6843c70251f4481c0');
+  assert.equal(previews.length,85);
+  assert.equal(objectSha(previews.filter(row=>!['noh','sedov'].includes(row.id)).map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}))),'57239dc61d0fc48ff97ec9cfa2c771bd1b675b561a884bb6843c70251f4481c0');
   assert.equal(sha('numerical-methods-atlas/assets/reference-solutions.json'),'c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc');
   assert.equal(sha('numerical-methods-atlas/code-and-data/examples.json'),'3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7');
 });
@@ -200,7 +200,7 @@ test('spherical diagnostics distinguish discrete conservation from the signed SS
 
 test('Noh reference, figure, chapter and execution connect through their actual new records',()=>{
   const addition=json('catalog/atlas-reference-supplements.json').cases;
-  assert.deepEqual(addition.map(row=>row.id),['noh']);assert.equal(addition[0].kind,'analytic');
+  assert.deepEqual(addition.map(row=>row.id),['noh','sedov']);assert.equal(addition[0].kind,'analytic');
   const reference=json('numerical-methods-atlas/solutions/index.json').cases.find(row=>row.id==='noh');
   const problem=json('numerical-methods-atlas/problems/noh/index.json');
   const run=json('numerical-methods-atlas/validation/noh-shock/index.json');
@@ -264,7 +264,7 @@ with tempfile.TemporaryDirectory(prefix='atlas-reference-catalog-') as directory
  old=root/'numerical-methods-atlas/assets/reference-solutions.json';old.parent.mkdir(parents=True);old.write_text(json.dumps({'cases':[{'id':'old'}]}))
  extra=root/'catalog/atlas-reference-supplements.json';extra.parent.mkdir()
  def write(value):extra.write_text(json.dumps(value))
- write(source);assert [row['id'] for row in load_reference_cases(root)]==['old','noh']
+ write(source);assert [row['id'] for row in load_reference_cases(root)]==['old','noh','sedov']
  for mutation in ['duplicate','citation','route']:
   bad=copy.deepcopy(source)
   if mutation=='duplicate':bad['cases'][0]['id']='old'

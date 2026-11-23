@@ -3665,6 +3665,69 @@
         "python -m pytest -q",
         "python run.py --input inputs.json --output output"
       ]
+    },
+    {
+      "id": "sedov",
+      "group": "fluid",
+      "name": {
+        "ja": "Sedov–Taylorの点爆発",
+        "en": "Sedov–Taylor point blast"
+      },
+      "chapter": "validation-sedov",
+      "reading_section": "sedov-blast",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/sedov/",
+      "verification": "/code/validated-examples/2026-11-23/sedov/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/sedov/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "sedov-blast"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/sedov/results/sedov-blast-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/sedov/inputs.json",
+          "json_pointer": "/cases/sedov-blast"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/sedov/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/sedov/exactpack-receipt.json",
+          "json_pointer": "/passed"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "sedov-blast",
+          "url": "/numerical-methods-atlas/validation/sedov-blast/",
+          "name": {
+            "ja": "Sedov–Taylor点爆発：球対称の軽量検証",
+            "en": "Sedov–Taylor point blast: lightweight spherical-radial validation"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sedov/#sedov-blast",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sedov/#sedov-blast"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#sedov",
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ]
     }
   ],
   "excluded_examples": {
@@ -3693,12 +3756,12 @@
   },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/",
   "counts": {
-    "test_problems": 84,
-    "saved_test_problems": 84,
+    "test_problems": 85,
+    "saved_test_problems": 85,
     "code_test_problems": 0,
     "groups": {
       "transport": 9,
-      "fluid": 17,
+      "fluid": 18,
       "mhd": 5,
       "viscous": 3,
       "elliptic": 13,
@@ -3712,7 +3775,7 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-test-problems.json": "8af2b8fe0db87f9b65c4054ee4772ad915ad4754788dc792b8f686f619f8a31c",
+    "catalog/atlas-test-problems.json": "b32c87977ad028925d9e49bb4b25ace8e7934f182d6ade7a608327d62b2b24d0",
     "numerical-methods-atlas/equation-gallery.json": "e99af38238a50232f92875817c4556ab6c730289db13014efdd41913096c902e",
     "numerical-methods-atlas/cip.json": "3aa33fbffad6b9ad76310e9b713629a1a35b4e30e419db0c531180cf769e6b6f",
     "numerical-methods-atlas/limiters.json": "3242180ba171420220fd349cac93dff552466070f886f3d00a70927939255312",
@@ -3825,7 +3888,12 @@
     "code/validated-examples/2026-11-23-r5/noh/exactpack-reference-receipt.json": "35d1622672578b48639766b916645d1bbbdc2c65d999968b6b5f699197f2ce64",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/results/result.json": "e121c2f5171ee53491b492019311d002ceb44213f6f7cd43051a3ca68f74c694",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/results/noh-cartesian-2d-preview.png": "17cb2f697122c8ada6e578f23c109d1549c15287be05438f25e9c500a19ddb1f",
-    "code/validated-examples/2026-11-23-r2/noh-cartesian/verification.json": "7c530b06df5d2878958bd249b3035050592365e23aee79804e600368dfb09f46"
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/verification.json": "7c530b06df5d2878958bd249b3035050592365e23aee79804e600368dfb09f46",
+    "code/validated-examples/2026-11-23/sedov/results/result.json": "c17444a72b4974bc58a2bfe722fc0ed98a554dfdc7179e512e81304a22b46dd4",
+    "code/validated-examples/2026-11-23/sedov/results/sedov-blast-preview.png": "ce5d4651b188e6cd5caab2cf6840829788e1952386e8bb7d235928d2a982d847",
+    "code/validated-examples/2026-11-23/sedov/inputs.json": "e8db508fe755dcebc65633b9d02a017211a36e7e8ffd0184a23caea0996dfab9",
+    "code/validated-examples/2026-11-23/sedov/verification.json": "fde165bb62331821f6ffa2d98d8c695bca9fcdae160801126323716580ab5db2",
+    "code/validated-examples/2026-11-23/sedov/exactpack-receipt.json": "048d94b8dec429a17ebaf485067a46c74b619e69e4443ca9a4ee5ce62081ba8f"
   },
   "code_edition": "2026-11-21",
   "code_verification": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/verification.json"

@@ -54,6 +54,10 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   A small 2D Euler finite-volume calculation evolves density, both momenta and total energy over the full square. Three grids,32²/64²/128², measure Noh-reference errors, budgets and grid orientation effects. The picture shows the actual evolved 2D array.
+- [Sedov–Taylor point blast: lightweight spherical-radial validation](<https://hrkoyama.github.io/numerical-methods-atlas/validation/sedov-blast/?lang=en>)
+  availability: run
+
+  A lightweight spherical-radial Euler finite-volume example deposits unit energy inside fixed radius0.03. Three grids of128/256/512 radial cells measure differences from a point-blast similarity reference and conservation budgets. The picture is a section display of1D spherical data, not a2D Cartesian calculation.
 - [Logistic growth: analytic solution and time refinement](<https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/logistic-growth/?lang=en>)
   availability: run
 

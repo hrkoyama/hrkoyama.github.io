@@ -74,6 +74,72 @@
           "note": "BSD-3-Clause. Actual evaluation is restricted to gamma=5/3,rho0=1,inward speed1. Source hashes, point/shell comparisons and parameter-limit control are saved in the Noh release."
         }
       ]
+    },
+    {
+      "id": "sedov",
+      "model": "euler",
+      "kind": "semi-analytic",
+      "formula": "R_s(t)=beta*(E0*t^2/rho0)^(1/5), beta≈1.15166641793; D=2*R_s/(5*t); rho=rho0*G(r/R_s), u=D*V(r/R_s), p=rho0*D^2*P(r/R_s).",
+      "dimension": 1,
+      "bounds": [
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "components": [
+        "density",
+        "radial momentum",
+        "total energy"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "gamma": 1.6666666666666667,
+        "rho0": 1.0,
+        "energy": 1.0,
+        "p0": 0.0,
+        "geometry_dimension": 3,
+        "time": 0.05,
+        "deposit_radius": 0.03,
+        "sensitivity_deposit_radius": 0.015
+      },
+      "sources": [
+        "https://doi.org/10.1098/rspa.1950.0049",
+        "https://doi.org/10.1016/j.softx.2023.101560",
+        "https://github.com/lanl/ExactPack/tree/9bacc477eb791e959c9621e771fc7a725db755fa"
+      ],
+      "title": "Sedov–Taylor point blast: energy-normalized spherical similarity solution",
+      "assumptions": "Ideal-gas Euler in spherical radial symmetry, gamma=5/3, ambient rho0=1 and p0=0, explosion energy E0=1, r in [0,1], t=0.05. The similarity reference describes ideal instantaneous point deposition. Finite-volume runs instead deposit energy inside radius 0.03, with a paired radius-0.015 sensitivity calculation. The reference uses a numerical similarity-ODE integration, a tiny-core regular asymptote and split shell quadrature; it is semi-analytic, not closed-form exact cell means. The gallery picture is a central section of one-dimensional spherical-radial data, not a two-dimensional Cartesian computation. Fixed-radius errors include point-source model discrepancy, so their refinement slope is not a pure spatial order; the paired-radius calculation is only a sensitivity diagnostic.",
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/sedov-blast/?lang=ja#sedov-blast-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/sedov-blast/?lang=en#sedov-blast-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-sedov/#sedov-blast",
+        "en": "/numerical-methods-atlas/en/read/validation-sedov/#sedov-blast"
+      },
+      "reference_scope": "Energy-normalized spherical similarity solution integrated independently of the FV solver. Reference resolution and shell quadrature are checked separately; selected pinned ExactPack point probes are an independent evaluator comparison, not a second numerical Euler engine. Finite deposition radius and grid error remain distinct. The fixed-radius point-source comparison includes model discrepancy; its refinement slope is not a pure spatial order. The paired-radius test does not fully separate deposition and PDE errors.",
+      "citations": [
+        {
+          "role": "original-similarity-theory",
+          "title": "G. I. Taylor (1950), The formation of a blast wave by a very intense explosion I. Theoretical discussion, Proceedings of the Royal Society A201(1065),159–174",
+          "url": "https://doi.org/10.1098/rspa.1950.0049",
+          "note": "Original theoretical similarity assumptions, Euler reduction, strong-shock conditions, energy normalization and regular-center exponent checked in selected original pp159–167 via a university-hosted scan. Publisher access returned403; no full publisher-text review or PDF redistribution is claimed.",
+          "review_url": "https://homepage.physics.uiowa.edu/~ghowes/teach/phys7729/docs/Taylor50a.pdf"
+        },
+        {
+          "role": "reference-software-paper",
+          "title": "Jasper Thrussell and Jim Michael Ferguson (2023), ExactPack: A python library of exact analytic solutions, SoftwareX24,101560",
+          "url": "https://doi.org/10.1016/j.softx.2023.101560",
+          "note": "Cite the software paper separately from Taylor1950 and the selected pinned reference implementation. ExactPack evaluates a reference and is not a numerical Euler solver."
+        },
+        {
+          "role": "executed-reference-implementation",
+          "title": "LANL ExactPack, commit9bacc477eb791e959c9621e771fc7a725db755fa, selected Sedov evaluator",
+          "url": "https://github.com/lanl/ExactPack/tree/9bacc477eb791e959c9621e771fc7a725db755fa/exactpack/solvers/sedov",
+          "note": "BSD-3-Clause. The selected unmodified pinned Sedov evaluator was actually run at npts6001/12001 with gamma=5/3,rho0=E0=1,t=.05,geometry3 and probes xi=.15,.25,.5,.75,.9,1.05. Source hashes, invocation and point values are archived. The upstream small-radius warning for density/internal energy is retained; the central region and shock jump are excluded from these point probes. This does not validate other ExactPack solvers or an independent PDE engine."
+        }
+      ]
     }
   ]
 }

@@ -63,6 +63,7 @@ Read about reconstruction, limiting and shock robustness, followed by low-Mach c
 - [NASA 2D verification and validation case catalog](https://hrkoyama.github.io/numerical-methods-atlas/en/read/nasa-2d/)
 - [Noh shocks: exact reference, origin heating and refinement](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh/)
 - [Noh:2D Cartesian flow and grid orientation error](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh-cartesian/)
+- [Sedov–Taylor point blast: lightweight spherical-radial validation](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sedov/)
 
 ## Meshes, finite elements and coupled equations
 

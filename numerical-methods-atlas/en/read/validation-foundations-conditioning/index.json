@@ -3008,7 +3008,7 @@
     }
   ],
   "source_sha256": {
-    "catalog/atlas-depth-expansion.json": "65f2a4013ed2830e7812ab84a54ecb93484eb379fe4d62d33de9a198eb7d5517",
+    "catalog/atlas-depth-expansion.json": "73d9e1b8a53e087825d8be61d173ae8518ddefa8ab0298166909921a7175e28c",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
     "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
@@ -3073,6 +3073,11 @@
     "code/validated-examples/2026-11-23-r2/noh-cartesian/verification.json": "7c530b06df5d2878958bd249b3035050592365e23aee79804e600368dfb09f46",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/cases.json": "49b94c1f65e269d4a878be3a4d8778375b88b767f5dd01998ae5fe6b8fc2b3ee",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/results/result.json": "e121c2f5171ee53491b492019311d002ceb44213f6f7cd43051a3ca68f74c694",
-    "code/validated-examples/2026-11-23-r2/noh-cartesian/atlas-noh-cartesian-2026-11-23-r2.zip": "2145beb161f993c1608fc5ac167af5278d58e10f92e74ed37e5fb9c35243b918"
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/atlas-noh-cartesian-2026-11-23-r2.zip": "2145beb161f993c1608fc5ac167af5278d58e10f92e74ed37e5fb9c35243b918",
+    "code/validated-examples/2026-11-23/sedov/source-manifest.json": "026a5c21e68cc127115ccc429fb35cb7a280a0914057d0b7167c64d032567e9b",
+    "code/validated-examples/2026-11-23/sedov/verification.json": "fde165bb62331821f6ffa2d98d8c695bca9fcdae160801126323716580ab5db2",
+    "code/validated-examples/2026-11-23/sedov/cases.json": "41083cf19e47a71e15b12684c7fb1586ac4a25cca37b54da5abdcbe159100d87",
+    "code/validated-examples/2026-11-23/sedov/results/result.json": "c17444a72b4974bc58a2bfe722fc0ed98a554dfdc7179e512e81304a22b46dd4",
+    "code/validated-examples/2026-11-23/sedov/atlas-sedov-2026-11-23.zip": "63d584129e6260bf04618205b7ea57cc9a36e8bb4d3423b1bcdd8489ca43eebb"
   }
 }

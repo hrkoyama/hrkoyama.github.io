@@ -1,16 +1,16 @@
 {
   "supplements_source": "/catalog/atlas-reference-supplements.json",
-  "supplements_source_sha256": "2552843c7b68ee2c5943817bab71ce232e816578216a5e4153d887cbe47aaf45",
+  "supplements_source_sha256": "ea445fcdd98f2043977e0484900da6d106e150482a793df7241f1775627beccb",
   "schema_version": 1,
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/",
   "source": "/numerical-methods-atlas/assets/reference-solutions.json",
   "source_sha256": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
   "translations_source": "/numerical-methods-atlas/locales/messages.json",
-  "translations_source_sha256": "d03ed5ebcf41ff499ac13502abe26feab90ab181f8154f94925cc0c4bfe6ff67",
-  "count": 19,
+  "translations_source_sha256": "e54aebf2990250fca29033120a30d435a8a08afa113fabdccc67169ea7e84148",
+  "count": 20,
   "counts": {
     "analytic": 13,
-    "semi-analytic": 5,
+    "semi-analytic": 6,
     "manufactured": 1
   },
   "cases": [
@@ -1928,16 +1928,150 @@
           }
         }
       ]
+    },
+    {
+      "id": "sedov",
+      "model": "euler",
+      "kind": "semi-analytic",
+      "formula": "R_s(t)=beta*(E0*t^2/rho0)^(1/5), beta≈1.15166641793; D=2*R_s/(5*t); rho=rho0*G(r/R_s), u=D*V(r/R_s), p=rho0*D^2*P(r/R_s).",
+      "dimension": 1,
+      "bounds": [
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "components": [
+        "density",
+        "radial momentum",
+        "total energy"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "gamma": 1.6666666666666667,
+        "rho0": 1.0,
+        "energy": 1.0,
+        "p0": 0.0,
+        "geometry_dimension": 3,
+        "time": 0.05,
+        "deposit_radius": 0.03,
+        "sensitivity_deposit_radius": 0.015
+      },
+      "sources": [
+        "https://doi.org/10.1098/rspa.1950.0049",
+        "https://doi.org/10.1016/j.softx.2023.101560",
+        "https://github.com/lanl/ExactPack/tree/9bacc477eb791e959c9621e771fc7a725db755fa"
+      ],
+      "title": {
+        "ja": "Sedov–Taylorの点爆発：エネルギー正規化した球対称自己相似解",
+        "en": "Sedov–Taylor point blast: energy-normalized spherical similarity solution"
+      },
+      "assumptions": {
+        "ja": "理想気体Eulerの球半径対称、γ=5/3、周囲密度1・圧力0、爆発エネルギー1、r∈[0,1]、t=0.05。自己相似参照は瞬間的な理想点源を表しますが、有限体積計算は半径0.03の内部へ投入し、同じ最細格子で半径0.015も比較します。参照は相似ODEの数値積分、小さな中心域の正則漸近形、衝撃位置で分割する球殻求積を含む半解析解であり、閉形式の厳密セル平均ではありません。ギャラリー図は1次元球半径データの中心断面で、2D Cartesian計算ではありません。固定投入半径での誤差には点源とのモデル差が含まれ、その傾きは純粋な空間収束次数ではなく、投入半径の変更も感度診断に留まります。",
+        "en": "Ideal-gas Euler in spherical radial symmetry, gamma=5/3, ambient rho0=1 and p0=0, explosion energy E0=1, r in [0,1], t=0.05. The similarity reference describes ideal instantaneous point deposition. Finite-volume runs instead deposit energy inside radius 0.03, with a paired radius-0.015 sensitivity calculation. The reference uses a numerical similarity-ODE integration, a tiny-core regular asymptote and split shell quadrature; it is semi-analytic, not closed-form exact cell means. The gallery picture is a central section of one-dimensional spherical-radial data, not a two-dimensional Cartesian computation. Fixed-radius errors include point-source model discrepancy, so their refinement slope is not a pure spatial order; the paired-radius calculation is only a sensitivity diagnostic."
+      },
+      "kind_label": {
+        "ja": "半解析解",
+        "en": "Semi-analytic reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/sedov-blast/?lang=ja#sedov-blast-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/sedov-blast/?lang=en#sedov-blast-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-sedov/#sedov-blast",
+        "en": "/numerical-methods-atlas/en/read/validation-sedov/#sedov-blast"
+      },
+      "citations": [
+        {
+          "role": "original-similarity-theory",
+          "title": "G. I. Taylor (1950), The formation of a blast wave by a very intense explosion I. Theoretical discussion, Proceedings of the Royal Society A201(1065),159–174",
+          "url": "https://doi.org/10.1098/rspa.1950.0049",
+          "note": "Original theoretical similarity assumptions, Euler reduction, strong-shock conditions, energy normalization and regular-center exponent checked in selected original pp159–167 via a university-hosted scan. Publisher access returned403; no full publisher-text review or PDF redistribution is claimed.",
+          "review_url": "https://homepage.physics.uiowa.edu/~ghowes/teach/phys7729/docs/Taylor50a.pdf"
+        },
+        {
+          "role": "reference-software-paper",
+          "title": "Jasper Thrussell and Jim Michael Ferguson (2023), ExactPack: A python library of exact analytic solutions, SoftwareX24,101560",
+          "url": "https://doi.org/10.1016/j.softx.2023.101560",
+          "note": "Cite the software paper separately from Taylor1950 and the selected pinned reference implementation. ExactPack evaluates a reference and is not a numerical Euler solver."
+        },
+        {
+          "role": "executed-reference-implementation",
+          "title": "LANL ExactPack, commit9bacc477eb791e959c9621e771fc7a725db755fa, selected Sedov evaluator",
+          "url": "https://github.com/lanl/ExactPack/tree/9bacc477eb791e959c9621e771fc7a725db755fa/exactpack/solvers/sedov",
+          "note": "BSD-3-Clause. The selected unmodified pinned Sedov evaluator was actually run at npts6001/12001 with gamma=5/3,rho0=E0=1,t=.05,geometry3 and probes xi=.15,.25,.5,.75,.9,1.05. Source hashes, invocation and point values are archived. The upstream small-radius warning for density/internal energy is retained; the central region and shock jump are excluded from these point probes. This does not validate other ExactPack solvers or an independent PDE engine."
+        }
+      ],
+      "reference_scope": "Energy-normalized spherical similarity solution integrated independently of the FV solver. Reference resolution and shell quadrature are checked separately; selected pinned ExactPack point probes are an independent evaluator comparison, not a second numerical Euler engine. Finite deposition radius and grid error remain distinct. The fixed-radius point-source comparison includes model discrepancy; its refinement slope is not a pure spatial order. The paired-radius test does not fully separate deposition and PDE errors.",
+      "related_problems": [
+        {
+          "id": "sedov",
+          "name": {
+            "ja": "Sedov–Taylorの点爆発",
+            "en": "Sedov–Taylor point blast"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/results/sedov-blast-preview.png",
+            "sha256": "ce5d4651b188e6cd5caab2cf6840829788e1952386e8bb7d235928d2a982d847",
+            "width": 1312,
+            "height": 728,
+            "caption": {
+              "ja": "1次元球対称Eulerの保存済み半径密度を中心断面に表示。γ=5/3、E=ρ0=1、p0=0、t=.05、512球殻、有限投入半径.03。半解析的な点源参照との違いと衝撃層の誤差を残した図で、実2D Cartesian計算ではありません。",
+              "en": "A central-section view of saved one-dimensional spherical-radial Euler density:gamma5/3,E=rho0=1,p0=0,t=.05,512 shells and finite deposition radius.03. Point-source reference differences and shock errors remain visible; this is not an actual2D Cartesian computation."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sedov/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sedov/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sedov/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sedov/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "sedov-blast",
+              "kind": "supplement",
+              "name": {
+                "ja": "Sedov–Taylor点爆発：球対称の軽量検証",
+                "en": "Sedov–Taylor point blast: lightweight spherical-radial validation"
+              },
+              "scope": {
+                "ja": "球対称Euler方程式を半径方向の有限体積法で解く軽量例です。固定した半径0.03の領域に総エネルギー1を与え、128・256・512セルで点爆発の相似参照からの差と保存収支を測ります。図は1次元球対称データの断面表示で、2次元Cartesian計算ではありません。",
+                "en": "A lightweight spherical-radial Euler finite-volume example deposits unit energy inside fixed radius0.03. Three grids of128/256/512 radial cells measure differences from a point-blast similarity reference and conservation budgets. The picture is a section display of1D spherical data, not a2D Cartesian calculation."
+              },
+              "method_ids": [
+                "rusanov",
+                "heun"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sedov-blast/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sedov-blast/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/atlas-sedov-2026-11-23.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/verification.json"
+            }
+          ],
+          "relation": "same-problem",
+          "note": {
+            "ja": "エネルギー正規化した球対称の自己相似参照。相似ODEの数値積分・球殻平均の求積を含む半解析解で、閉形式の厳密セル平均とは区別します。有限半径の投入初期値は理想点爆発の特異初期値と一致しません。 固定した有限の投入半径で点源の自己相似参照と比べるため、誤差曲線には投入モデルの差も含まれ、純粋な空間精度の収束次数ではありません。同じ最細格子で投入半径を変える比較は感度診断であり、連続極限の投入誤差とPDE離散化誤差を完全に分離する検証ではありません。",
+            "en": "An energy-normalized spherical similarity reference. Numerical integration of similarity ODEs and shell quadrature make this semi-analytic, not closed-form exact cell means. Finite-radius deposition is distinct from the singular ideal point-blast initial data. At fixed finite deposition radius, comparison with the point-source similarity reference includes deposition-model discrepancy; its refinement slope is not a pure spatial order. Changing deposition radius on the same finest grid is a sensitivity diagnostic, not a complete separation of continuum deposition and PDE-discretization errors."
+          }
+        }
+      ]
     }
   ],
   "problem_routes_source_sha256": {
-    "catalog/atlas-depth-expansion.json": "65f2a4013ed2830e7812ab84a54ecb93484eb379fe4d62d33de9a198eb7d5517",
+    "catalog/atlas-depth-expansion.json": "73d9e1b8a53e087825d8be61d173ae8518ddefa8ab0298166909921a7175e28c",
     "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
-    "catalog/atlas-methods.json": "b02963b715ee25e04df15e1038a7f4be87fc4c585898368d1f8c6daf7e60ea2f",
-    "catalog/atlas-problem-links.json": "d9fd8319032fac0e7ab60cf78e84739779cdf673618dbfa14c083242d8fa1158",
-    "catalog/atlas-reference-supplements.json": "2552843c7b68ee2c5943817bab71ce232e816578216a5e4153d887cbe47aaf45",
-    "catalog/atlas-test-problems.json": "8af2b8fe0db87f9b65c4054ee4772ad915ad4754788dc792b8f686f619f8a31c",
+    "catalog/atlas-methods.json": "305ef5d651bac6f648a3901759b480af32b024f818013dba5466ed7357cd8368",
+    "catalog/atlas-problem-links.json": "feef5ed8a84db9c9851da6ef79eef298cba3707b973173686cbff4d1b4a54103",
+    "catalog/atlas-reference-supplements.json": "ea445fcdd98f2043977e0484900da6d106e150482a793df7241f1775627beccb",
+    "catalog/atlas-test-problems.json": "b32c87977ad028925d9e49bb4b25ace8e7934f182d6ade7a608327d62b2b24d0",
     "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
     "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
     "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
@@ -2003,9 +2137,14 @@
     "code/validated-examples/2026-11-23-r5/noh/results/result.json": "4e92acb911d505b3f7e74e39f01acf77e59fbe15577f321ac759f1315e487724",
     "code/validated-examples/2026-11-23-r5/noh/source-manifest.json": "8597cbc7b841502f4e7eca154e86fe8893402c1167614952de682d7307c5595d",
     "code/validated-examples/2026-11-23-r5/noh/verification.json": "48545a33ab2c19e9071616a15a1fcbf90c716096aa1a12550d3cb872ed8d9e36",
+    "code/validated-examples/2026-11-23/sedov/atlas-sedov-2026-11-23.zip": "63d584129e6260bf04618205b7ea57cc9a36e8bb4d3423b1bcdd8489ca43eebb",
+    "code/validated-examples/2026-11-23/sedov/cases.json": "41083cf19e47a71e15b12684c7fb1586ac4a25cca37b54da5abdcbe159100d87",
+    "code/validated-examples/2026-11-23/sedov/results/result.json": "c17444a72b4974bc58a2bfe722fc0ed98a554dfdc7179e512e81304a22b46dd4",
+    "code/validated-examples/2026-11-23/sedov/source-manifest.json": "026a5c21e68cc127115ccc429fb35cb7a280a0914057d0b7167c64d032567e9b",
+    "code/validated-examples/2026-11-23/sedov/verification.json": "fde165bb62331821f6ffa2d98d8c695bca9fcdae160801126323716580ab5db2",
     "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "115154d283f75676dd01b182c9c61735c86ca4318555996ecc299ef579523728"
+    "numerical-methods-atlas/gallery/preview-manifest.json": "dac46dd4fd3f024ed87b8d7e69ce47cc2aadafe0edd9e708792e94427e103750"
   }
 }

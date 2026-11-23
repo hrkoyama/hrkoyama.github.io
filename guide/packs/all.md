@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-23-6b6cdffb14
-Captured (UTC): 2026-11-23T03:16:27+00:00
+Snapshot: 2026-11-23-db85e3d8be
+Captured (UTC): 2026-11-23T03:56:13+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -8887,7 +8887,7 @@ R. Car; M. Parrinello (1985)
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/#verification
 Coverage: reading
 
-Two hydrogenic/He problem families were executed, independently compared and added to the 84-problem inventory. A scoped H₂ finite-basis RHF example now adds independent-reference, SCF and basis checks. A scoped periodic-He DFT workflow is now added; molecular DFT, FCI and other periodic materials are not validated.
+Two hydrogenic/He problem families were executed, independently compared and added to the 85-problem inventory. A scoped H₂ finite-basis RHF example now adds independent-reference, SCF and basis checks. A scoped periodic-He DFT workflow is now added; molecular DFT, FCI and other periodic materials are not validated.
 Runnable and checked
 
 ## Quantum chemistry and DFT: approximations and equations — One electron: hydrogenic atoms [en]
@@ -12593,7 +12593,7 @@ Coverage: reading
 
 Published web edition, counted 2026-11-22. These are counts of catalog entries and documented examples, not a claim that every entry is a verified end-to-end solver.
 46 equation/model entries · 131 methods and building blocks · 243 journal/conference papers · 300 total sources.
-There are 9 saved-profile equation-gallery cases across 7 equation families, and 95 reading chapters including this inventory.
+There are 9 saved-profile equation-gallery cases across 7 equation families, and 96 reading chapters including this inventory.
 
 ## Site coverage and counting rules — Equations and models# [en]
 
@@ -25719,6 +25719,222 @@ NIST Digital Library of Mathematical Functions (2026). §8.19 Generalized Expone
 Review scope / review_level: official-documentation
 Official integral representation of the generalized exponential integral checked; year denotes access year.
 
+## Sedov–Taylor point blast: lightweight spherical-radial validation — Sedov–Taylor point blast: lightweight spherical-radial validation [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sedov/
+Coverage: reading
+
+A lightweight spherical-radial Euler finite-volume example deposits unit energy inside fixed radius0.03. Three grids of128/256/512 radial cells measure differences from a point-blast similarity reference and conservation budgets. The picture is a section display of1D spherical data, not a2D Cartesian calculation.
+
+## Sedov–Taylor point blast: lightweight spherical-radial validation — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sedov/#run-all
+Coverage: reading
+
+Run inside atlas-sedov-2026-11-23 from the ZIP. This command executes all 1 fixed cases in the supplement. Choose a new or empty output directory.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Sedov–Taylor point blast: lightweight spherical-radial validation — Sedov–Taylor point blast: lightweight spherical-radial validation [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sedov/
+Coverage: reading
+
+A lightweight spherical-radial Euler finite-volume example deposits unit energy inside fixed radius0.03. Three grids of128/256/512 radial cells measure differences from a point-blast similarity reference and conservation budgets. The picture is a section display of1D spherical data, not a2D Cartesian calculation.
+Methods, equations, figures and references
+Methods used
+Rusanov / local Lax–Friedrichs flux
+Heun / SSPRK(2,2)
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Piecewise-constant Rusanov fluxes on spherical shells with SSPRK2/Heun. The radial-momentum source p(A_right-A_left)/V is integrated at the same RK stages, with a stationary uniform-pressure balance test. CFL.4 uses the minimum V/(A_left+A_right)/(|u|+c). No pressure seed, floor, cell repair or hidden timestep retry; an invalid stage retains raw conserved values and history and fails.
+Compressible Euler equations
+The one-dimensional spherical-radial ideal-gas Euler system. This example defines origin reflection, geometric source, finite-radius energy deposition and outer boundary in its fixed input.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+
+## Sedov–Taylor point blast: lightweight spherical-radial validation — Sedov–Taylor point blast: lightweight spherical-radial validation [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sedov/
+Coverage: reading
+
+Sedov–Taylor point blast
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+Inputs, numerical sources, acceptance and22 tests were hash-locked before the first FV execution. All22 unit tests and48 gates on four calculations passed on the first attempt. The independent reference integrates the similarity ODE with DOP853, normalizes energy, uses a regular asymptote for xi<.001 and split shell quadrature at the shock. Orders16/32, core cutoff and ODE tolerance are checked separately. The unmodified pinned ExactPack evaluator was independently run at6001/12001 points and compared away from the center/jump with its preregistered5e-4 criterion. Beta=1.15166641793, Rs(.05)=.34746791233. Origin/shock-inclusive volume-weighted density L1 within r<=1.2Rs is.17257/.12785/.07458 and pressure L1 is.18148/.13939/.07615. Finest shock error is1.096 cells; maximum relative discrete-budget residual is about1.34e-15.
+Same-problem reference · Semi-analytic reference
+Sedov–Taylor point blast: energy-normalized spherical similarity solution
+
+## Sedov–Taylor point blast: lightweight spherical-radial validation — Sedov–Taylor point blast: lightweight spherical-radial validation [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sedov/
+Coverage: reading
+
+An energy-normalized spherical similarity reference. Numerical integration of similarity ODEs and shell quadrature make this semi-analytic, not closed-form exact cell means. Finite-radius deposition is distinct from the singular ideal point-blast initial data. At fixed finite deposition radius, comparison with the point-source similarity reference includes deposition-model discrepancy; its refinement slope is not a pure spatial order. Changing deposition radius on the same finest grid is a sensitivity diagnostic, not a complete separation of continuum deposition and PDE-discretization errors.
+
+## Sedov–Taylor point blast: lightweight spherical-radial validation — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sedov/#sedov-blast-assumptions
+Coverage: reading
+
+Nondimensional gamma=5/3, ambient density1, velocity0, pressure0, radius[0,1], deposited energy1, T=.05. Uniform thermal energy inside a sphere is assigned using exact cut-shell volumes. Deposition radius0.03 is shared by all three grids; a separate512-cell run uses0.015. The origin is reflecting and the outer boundary is outflow; actual boundary fluxes enter measured budgets.
+
+## Sedov–Taylor point blast: lightweight spherical-radial validation — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sedov/#sedov-blast-algorithm
+Coverage: reading
+
+Piecewise-constant Rusanov fluxes on spherical shells with SSPRK2/Heun. The radial-momentum source p(A_right-A_left)/V is integrated at the same RK stages, with a stationary uniform-pressure balance test. CFL.4 uses the minimum V/(A_left+A_right)/(|u|+c). No pressure seed, floor, cell repair or hidden timestep retry; an invalid stage retains raw conserved values and history and fails.
+\partial_t U+\frac{1}{r^2}\partial_r(r^2F)=\left(0,2p/r,0\right)^T,\quad U=(\rho,\rho u,E)^TR_s(t)=\beta(E_0t^2/\rho_0)^{1/5},\quad\beta\simeq1.15166641793,\quad\dot R_s=2R_s/(5t)\rho=\rho_0G(\xi),\quad u=\dot R_sV(\xi),\quad p=\rho_0\dot R_s^2P(\xi),\quad\xi=r/R_sE_0=4\pi\int_0^\infty\left(\frac{p}{\gamma-1}+\frac{\rho u^2}{2}\right)r^2\,dr=1\bar U_i=\frac{3}{r_{i+1/2}^3-r_{i-1/2}^3}\int_{r_{i-1/2}}^{r_{i+1/2}}U(r)r^2\,dr
+
+## Sedov–Taylor point blast: lightweight spherical-radial validation — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sedov/#sedov-blast-validation
+Coverage: reading
+
+Inputs, numerical sources, acceptance and22 tests were hash-locked before the first FV execution. All22 unit tests and48 gates on four calculations passed on the first attempt. The independent reference integrates the similarity ODE with DOP853, normalizes energy, uses a regular asymptote for xi<.001 and split shell quadrature at the shock. Orders16/32, core cutoff and ODE tolerance are checked separately. The unmodified pinned ExactPack evaluator was independently run at6001/12001 points and compared away from the center/jump with its preregistered5e-4 criterion. Beta=1.15166641793, Rs(.05)=.34746791233. Origin/shock-inclusive volume-weighted density L1 within r<=1.2Rs is.17257/.12785/.07458 and pressure L1 is.18148/.13939/.07615. Finest shock error is1.096 cells; maximum relative discrete-budget residual is about1.34e-15.
+
+## Sedov–Taylor point blast: lightweight spherical-radial validation — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sedov/#sedov-blast-limits
+Coverage: reading
+
+A finite deposition sphere and an ideal point blast have different initial data; reported errors combine deposition-model and discretization effects. The refinement slope is not a pure spatial order. Halving the source radius at the same512 cells changes density by about.000451 and pressure by.000619, but point-reference errors become slightly worse; no improvement or point-source-limit proof is claimed. Pressure compares numerical p(mean conserved U) with reference mean physical pressure, distinct from p(mean reference U). Center values and maximum errors remain reported. The finest density peak is about2.918 versus the exact jump4. Extremely small cold-tail wave speeds can overflow a local CFL ratio to infinity; it is unrestrictive, and the chosen global timestep is checked finite. The regular tiny-core continuation is approximate, and ExactPack point probes exclude xi<.15. Cartesian2D/3D, general perturbations/asymmetry and high-order accuracy are unverified.
+
+## Sedov–Taylor point blast: lightweight spherical-radial validation — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sedov/#sedov-blast-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+n512
+deposit_radius0.03
+time0.05
+steps4009
+density_l10.00536963404194
+active_density_l10.0745788634711
+active_pressure_l10.0761523736729
+density_l20.0583137035262
+density_linf0.38924755337
+density_min0.0148422317489
+density_max2.91821581015
+pressure_min0
+pressure_max4.80236959915
+maximum_speed2.00759202688
+center_density0.0148422317489
+center_pressure1.64170168391
+center_reference_density4.10438899137e-11
+center_reference_pressure1.77447156467
+shock_radius0.349609375
+reference_shock_radius0.347467912333
+shock_error_cells1.09642888565
+minimum_density_all_stages0.0148422315818
+minimum_pressure_all_stages0
+minimum_internal_roundoff_units0
+state_floor_count0
+reference_quadrature_density_l11.17660850038e-16
+reference_quadrature_pressure_l11.1717338252e-16
+initial_energy_error0
+判定 / checkPassed
+three fixed-radius refinements completetrue
+paired smaller-radius run completestrue
+n128: strictly positive density all stagestrue
+n128: internal energy within roundofftrue
+n128: no state floor or repairtrue
+n128: unit deposited energytrue
+n128: mass discrete balancetrue
+n128: radial momentum including geometric source discrete balancetrue
+n128: energy discrete balancetrue
+n128: reference_quadrature_density_l1true
+
+## Sedov–Taylor point blast: lightweight spherical-radial validation — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sedov/#sedov-blast-measurements
+Coverage: reading
+
+n128: reference_quadrature_pressure_l1true
+n128: origin and maximum diagnostics retainedtrue
+n256: strictly positive density all stagestrue
+n256: internal energy within roundofftrue
+n256: no state floor or repairtrue
+n256: unit deposited energytrue
+n256: mass discrete balancetrue
+n256: radial momentum including geometric source discrete balancetrue
+n256: energy discrete balancetrue
+n256: reference_quadrature_density_l1true
+n256: reference_quadrature_pressure_l1true
+n256: origin and maximum diagnostics retainedtrue
+n512: strictly positive density all stagestrue
+n512: internal energy within roundofftrue
+n512: no state floor or repairtrue
+n512: unit deposited energytrue
+n512: mass discrete balancetrue
+n512: radial momentum including geometric source discrete balancetrue
+n512: energy discrete balancetrue
+n512: reference_quadrature_density_l1true
+n512: reference_quadrature_pressure_l1true
+n512: origin and maximum diagnostics retainedtrue
+sensitivity: strictly positive density all stagestrue
+sensitivity: internal energy within roundofftrue
+sensitivity: no state floor or repairtrue
+sensitivity: unit deposited energytrue
+sensitivity: mass discrete balancetrue
+sensitivity: radial momentum including geometric source discrete balancetrue
+sensitivity: energy discrete balancetrue
+sensitivity: reference_quadrature_density_l1true
+sensitivity: reference_quadrature_pressure_l1true
+
+## Sedov–Taylor point blast: lightweight spherical-radial validation — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sedov/#sedov-blast-measurements
+Coverage: reading
+
+sensitivity: origin and maximum diagnostics retainedtrue
+finest active_density_l1true
+finest active_pressure_l1true
+finest shock_error_cellstrue
+fixed-source active density L1 decreasestrue
+last fixed-source density L1 ordertrue
+source-radius effects separately retainedtrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Read every stored record
+ndeposit_radiustimestepsdensity_l1active_density_l1active_pressure_l1density_l2density_linfdensity_mindensity_maxpressure_minpressure_maxmaximum_speedcenter_densitycenter_pressurecenter_reference_densitycenter_reference_pressureshock_radiusreference_shock_radiusshock_error_cellsminimum_density_all_stagesminimum_pressure_all_stagesminimum_internal_roundoff_unitsstate_floor_countreference_quadrature_density_l1reference_quadrature_pressure_l1initial_integralfinal_integralboundary_net_integralgeometric_source_integralconservation_residualconservation_relativeinitial_energy_errorfieldhistory
+
+## Sedov–Taylor point blast: lightweight spherical-radial validation — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sedov/#sedov-blast-measurements
+Coverage: reading
+
+1280.030.055660.01225047100180.1725659421030.1814846912450.08209659666610.3521235945580.04765868263442.0190605844403.886041582211.923553498830.04765868263441.351617523972.10248598487e-081.774471564680.35156250.3474679123330.5241072214130.0476586618630002.35888907529e-153.01140658635e-15[4.188790204786392,0.0,0.9999999999999999][4.188790204786392,0.31408958816217897,1.0000000000000004][0.0,0.0,0.0][0.0,0.3140895881621789,0.0][0.0,5.551115123125783e-17,5.551115123125783e-16][0.0,5.551115123125783e-17,5.551115123125783e-16]1.11022302463e-16field-n128.npzhistory-n128.json
+2560.030.0515260.009335095006480.1278460472860.1393948343940.08070703514720.331835415530.02715441119392.4827922717204.382105847751.970548863380.02715441119391.529545032219.29125286755e-101.774471564670.35156250.3474679123331.048214442830.02715440752830003.53310534914e-163.66212328601e-16[4.188790204786392,0.0,0.9999999999999999][4.188790204786392,0.3125332118657703,0.9999999999999998][0.0,0.0,0.0][0.0,0.31253321186577027,0.0][0.0,5.551115123125783e-17,-1.1102230246251565e-16][0.0,5.551115123125783e-17,1.1102230246251565e-16]1.11022302463e-16field-n256.npzhistory-n256.json
+
+## Sedov–Taylor point blast: lightweight spherical-radial validation — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sedov/#sedov-blast-measurements
+Coverage: reading
+
+5120.030.0540090.005369634041940.07457886347110.07615237367290.05831370352620.389247553370.01484223174892.9182158101504.802369599152.007592026880.01484223174891.641701683914.10438899137e-111.774471564670.3496093750.3474679123331.096428885650.01484223158180001.17660850038e-161.1717338252e-16[4.18879020478639,0.0,1.0][4.18879020478639,0.3119858848492353,0.9999999999999987][0.0,0.0,0.0][0.0,0.3119858848492348,0.0][0.0,4.996003610813204e-16,-1.3322676295501878e-15][0.0,4.996003610813204e-16,1.3322676295501878e-15]0field-n512.npzhistory-n512.json
+Measurements and complete records / JSON
+
+## Sedov–Taylor point blast: lightweight spherical-radial validation — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sedov/#sedov-blast-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+G. I. Taylor (1950). The formation of a blast wave by a very intense explosion I. Theoretical discussion · DOI: 10.1098/rspa.1950.0049
+Review scope / review_level: selected-original-pages
+Selected original pp159–167 in a university-hosted scan checked for similarity assumptions, Euler reduction, strong-shock jumps, energy normalization and center exponent. Publisher access403; no full-text review or PDF redistribution claimed.
+J. Thrussell and J. M. Ferguson (2023). ExactPack: A python library of exact analytic solutions · DOI: 10.1016/j.softx.2023.101560
+Review scope / review_level: official-record-and-selected-pinned-code-execution
+Unmodified selected pinned Sedov evaluator actually run at6001/12001 points. Source hashes, parameters, point values, decisions and BSD-3-Clause retained; not another numerical Euler solver or whole-library test.
+
 ## Operator splitting: Lie–Trotter and Strang on the same reaction–diffusion problem — Operator splitting: Lie–Trotter and Strang on the same reaction–diffusion problem [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-splitting/
@@ -33565,7 +33781,7 @@ R. Car; M. Parrinello (1985)
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemistry/#verification
 Coverage: reading
 
-水素型原子・Heの2問題群を実行し、独立参照と比較して全84問題の台帳へ加えました。さらにH₂の有限基底RHFを独立参照・SCFと基底の収束で検証しました。周期Heセルの限定DFTも追加。分子DFT・FCIや他の周期物質へ検証を拡張していません。
+水素型原子・Heの2問題群を実行し、独立参照と比較して全85問題の台帳へ加えました。さらにH₂の有限基底RHFを独立参照・SCFと基底の収束で検証しました。周期Heセルの限定DFTも追加。分子DFT・FCIや他の周期物質へ検証を拡張していません。
 実行・検証例あり
 
 ## 量子化学・DFT：何を近似し、何を解くか — 1電子：水素型原子 [ja]
@@ -36703,7 +36919,7 @@ Coverage: reading
 
 公開Web版、集計日2026-11-22。数えるのはカタログ項目と記載した実験例です。すべての項目が検証済みの完全なソルバーであるという意味ではありません。
 方程式・モデル46項目・計算法と構成要素131項目・学術誌／会議論文243件・全参考資料300件。
-保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め95章です。
+保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め96章です。
 
 ## 収録範囲と数え方 — 方程式とモデル# [ja]
 
@@ -49397,6 +49613,209 @@ K. Stamnes, S.-C. Tsay, W. Wiscombe and K. Jayaweera (1988). Numerically stable 
 NIST Digital Library of Mathematical Functions (2026). §8.19 Generalized Exponential Integral
 確認範囲 / review_level: official-documentation
 一般化指数積分の積分表示を公式資料で確認。年は確認年。
+
+## Sedov–Taylor点爆発：球対称の軽量検証 — Sedov–Taylor点爆発：球対称の軽量検証 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sedov/
+Coverage: reading
+
+球対称Euler方程式を半径方向の有限体積法で解く軽量例です。固定した半径0.03の領域に総エネルギー1を与え、128・256・512セルで点爆発の相似参照からの差と保存収支を測ります。図は1次元球対称データの断面表示で、2次元Cartesian計算ではありません。
+
+## Sedov–Taylor点爆発：球対称の軽量検証 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sedov/#run-all
+Coverage: reading
+
+ZIPの atlas-sedov-2026-11-23 フォルダで実行します。このコマンドは配布版の全1例を実行します。新規または空の出力先を指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## Sedov–Taylor点爆発：球対称の軽量検証 — Sedov–Taylor点爆発：球対称の軽量検証 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sedov/
+Coverage: reading
+
+球対称Euler方程式を半径方向の有限体積法で解く軽量例です。固定した半径0.03の領域に総エネルギー1を与え、128・256・512セルで点爆発の相似参照からの差と保存収支を測ります。図は1次元球対称データの断面表示で、2次元Cartesian計算ではありません。
+手法・式・図・参照解
+使用手法
+Rusanov／局所Lax–Friedrichs流束
+Heun法／SSPRK(2,2)
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+球殻体積と面積を用いる区分定数Rusanov流束＋SSPRK2（Heun）です。半径運動量の幾何源p(A右−A左)/Vを同じRK段で積分し、静止した一様圧力との釣り合いも検査します。CFL=.4は各セルのV/(A左+A右)/(|u|+c)の最小値を使います。圧力seed・floor・セル平均修復・隠れた刻み再試行はなく、不正な段は生の保存量と履歴を保存して失敗とします。
+圧縮性Euler方程式
+理想気体Eulerの1次元球半径対称形。原点反射、幾何源、有限半径へのエネルギー投入と外側境界は、この例の固定入力で定義します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+Sedov–Taylorの点爆発
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+参照・検証の確認範囲
+入力・数値ソース・受入基準・22テストを初回計算前にhash固定し、22単体検査と全4計算・48判定が初回から合格しました。参照は独立な相似ODEのDOP853積分、エネルギー規格化、中心ξ<.001の正則漸近形と衝撃位置で分割する殻求積です。16/32点求積・中心cutoff/ODE公差を別々に確認。固定commitの未改変ExactPackを6001/12001点で別実行し、中心とジャンプから離れた点を事前基準5e-4で照合しました。β=1.15166641793、Rs(.05)=.34746791233。原点・衝撃波を含むr≤1.2Rsの体積重み密度L1は.17257/.12785/.07458、圧力L1は.18148/.13939/.07615。512セルの衝撃位置誤差は1.096セル、最大離散収支残差は約1.34e-15です。
+同じ問題の参照 · 半解析参照
+Sedov–Taylorの点爆発：エネルギー正規化した球対称自己相似解
+エネルギー正規化した球対称の自己相似参照。相似ODEの数値積分・球殻平均の求積を含む半解析解で、閉形式の厳密セル平均とは区別します。有限半径の投入初期値は理想点爆発の特異初期値と一致しません。 固定した有限の投入半径で点源の自己相似参照と比べるため、誤差曲線には投入モデルの差も含まれ、純粋な空間精度の収束次数ではありません。同じ最細格子で投入半径を変える比較は感度診断であり、連続極限の投入誤差とPDE離散化誤差を完全に分離する検証ではありません。
+
+## Sedov–Taylor点爆発：球対称の軽量検証 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sedov/#sedov-blast-assumptions
+Coverage: reading
+
+無次元、γ=5/3、初期密度1・速度0・背景圧力0、半径[0,1]、総注入エネルギー1、T=.05。球内一様の熱エネルギーを各殻の切断体積で正確に配分します。注入半径0.03を3格子で共通にし、512セルでは半径0.015の別実行も保存します。原点は鏡映、外端は流出境界で、実際の境界流束を収支へ含めます。
+
+## Sedov–Taylor点爆発：球対称の軽量検証 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sedov/#sedov-blast-algorithm
+Coverage: reading
+
+球殻体積と面積を用いる区分定数Rusanov流束＋SSPRK2（Heun）です。半径運動量の幾何源p(A右−A左)/Vを同じRK段で積分し、静止した一様圧力との釣り合いも検査します。CFL=.4は各セルのV/(A左+A右)/(|u|+c)の最小値を使います。圧力seed・floor・セル平均修復・隠れた刻み再試行はなく、不正な段は生の保存量と履歴を保存して失敗とします。
+\partial_t U+\frac{1}{r^2}\partial_r(r^2F)=\left(0,2p/r,0\right)^T,\quad U=(\rho,\rho u,E)^TR_s(t)=\beta(E_0t^2/\rho_0)^{1/5},\quad\beta\simeq1.15166641793,\quad\dot R_s=2R_s/(5t)\rho=\rho_0G(\xi),\quad u=\dot R_sV(\xi),\quad p=\rho_0\dot R_s^2P(\xi),\quad\xi=r/R_sE_0=4\pi\int_0^\infty\left(\frac{p}{\gamma-1}+\frac{\rho u^2}{2}\right)r^2\,dr=1\bar U_i=\frac{3}{r_{i+1/2}^3-r_{i-1/2}^3}\int_{r_{i-1/2}}^{r_{i+1/2}}U(r)r^2\,dr
+
+## Sedov–Taylor点爆発：球対称の軽量検証 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sedov/#sedov-blast-validation
+Coverage: reading
+
+入力・数値ソース・受入基準・22テストを初回計算前にhash固定し、22単体検査と全4計算・48判定が初回から合格しました。参照は独立な相似ODEのDOP853積分、エネルギー規格化、中心ξ<.001の正則漸近形と衝撃位置で分割する殻求積です。16/32点求積・中心cutoff/ODE公差を別々に確認。固定commitの未改変ExactPackを6001/12001点で別実行し、中心とジャンプから離れた点を事前基準5e-4で照合しました。β=1.15166641793、Rs(.05)=.34746791233。原点・衝撃波を含むr≤1.2Rsの体積重み密度L1は.17257/.12785/.07458、圧力L1は.18148/.13939/.07615。512セルの衝撃位置誤差は1.096セル、最大離散収支残差は約1.34e-15です。
+
+## Sedov–Taylor点爆発：球対称の軽量検証 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sedov/#sedov-blast-limits
+Coverage: reading
+
+有限の注入球と理想点爆発は初期条件が異なり、報告誤差には注入モデルと離散化の両方が含まれます。傾きは純粋な空間精度次数ではありません。同じ512セルで注入半径を半分にした密度差は約.000451、圧力差は約.000619ですが、点爆発参照への誤差は僅かに悪化し、改善や点源極限の証明とは扱いません。圧力誤差は数値p(保存量のセル平均)と参照の物理圧力平均を比較し、参照平均保存量からの圧力と区別します。中心密度・圧力・最大誤差を除外せず保存します。最細密度ピークは約2.918で厳密ジャンプ4を解像しきりません。冷たい裾の極小波速では局所CFL比が浮動小数点overflowで∞になりますが、制限しない比として扱い、選ばれる全体刻みの有限性・正値性を検査します。原点漸近部は近似で、ExactPack点照合もξ<.15を除きます。2D/3D Cartesian、一般摂動・非球対称性、高次精度は未検証です。
+
+## Sedov–Taylor点爆発：球対称の軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sedov/#sedov-blast-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+n512
+deposit_radius0.03
+time0.05
+steps4009
+density_l10.00536963404194
+active_density_l10.0745788634711
+active_pressure_l10.0761523736729
+density_l20.0583137035262
+density_linf0.38924755337
+density_min0.0148422317489
+density_max2.91821581015
+pressure_min0
+pressure_max4.80236959915
+maximum_speed2.00759202688
+center_density0.0148422317489
+center_pressure1.64170168391
+center_reference_density4.10438899137e-11
+center_reference_pressure1.77447156467
+shock_radius0.349609375
+reference_shock_radius0.347467912333
+shock_error_cells1.09642888565
+minimum_density_all_stages0.0148422315818
+minimum_pressure_all_stages0
+minimum_internal_roundoff_units0
+state_floor_count0
+reference_quadrature_density_l11.17660850038e-16
+reference_quadrature_pressure_l11.1717338252e-16
+initial_energy_error0
+判定 / check合格
+three fixed-radius refinements completetrue
+paired smaller-radius run completestrue
+n128: strictly positive density all stagestrue
+n128: internal energy within roundofftrue
+n128: no state floor or repairtrue
+n128: unit deposited energytrue
+n128: mass discrete balancetrue
+n128: radial momentum including geometric source discrete balancetrue
+n128: energy discrete balancetrue
+n128: reference_quadrature_density_l1true
+n128: reference_quadrature_pressure_l1true
+n128: origin and maximum diagnostics retainedtrue
+
+## Sedov–Taylor点爆発：球対称の軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sedov/#sedov-blast-measurements
+Coverage: reading
+
+n256: strictly positive density all stagestrue
+n256: internal energy within roundofftrue
+n256: no state floor or repairtrue
+n256: unit deposited energytrue
+n256: mass discrete balancetrue
+n256: radial momentum including geometric source discrete balancetrue
+n256: energy discrete balancetrue
+n256: reference_quadrature_density_l1true
+n256: reference_quadrature_pressure_l1true
+n256: origin and maximum diagnostics retainedtrue
+n512: strictly positive density all stagestrue
+n512: internal energy within roundofftrue
+n512: no state floor or repairtrue
+n512: unit deposited energytrue
+n512: mass discrete balancetrue
+n512: radial momentum including geometric source discrete balancetrue
+n512: energy discrete balancetrue
+n512: reference_quadrature_density_l1true
+n512: reference_quadrature_pressure_l1true
+n512: origin and maximum diagnostics retainedtrue
+sensitivity: strictly positive density all stagestrue
+sensitivity: internal energy within roundofftrue
+sensitivity: no state floor or repairtrue
+sensitivity: unit deposited energytrue
+sensitivity: mass discrete balancetrue
+sensitivity: radial momentum including geometric source discrete balancetrue
+sensitivity: energy discrete balancetrue
+sensitivity: reference_quadrature_density_l1true
+sensitivity: reference_quadrature_pressure_l1true
+sensitivity: origin and maximum diagnostics retainedtrue
+finest active_density_l1true
+
+## Sedov–Taylor点爆発：球対称の軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sedov/#sedov-blast-measurements
+Coverage: reading
+
+finest active_pressure_l1true
+finest shock_error_cellstrue
+fixed-source active density L1 decreasestrue
+last fixed-source density L1 ordertrue
+source-radius effects separately retainedtrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全記録を表で読む
+ndeposit_radiustimestepsdensity_l1active_density_l1active_pressure_l1density_l2density_linfdensity_mindensity_maxpressure_minpressure_maxmaximum_speedcenter_densitycenter_pressurecenter_reference_densitycenter_reference_pressureshock_radiusreference_shock_radiusshock_error_cellsminimum_density_all_stagesminimum_pressure_all_stagesminimum_internal_roundoff_unitsstate_floor_countreference_quadrature_density_l1reference_quadrature_pressure_l1initial_integralfinal_integralboundary_net_integralgeometric_source_integralconservation_residualconservation_relativeinitial_energy_errorfieldhistory
+
+## Sedov–Taylor点爆発：球対称の軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sedov/#sedov-blast-measurements
+Coverage: reading
+
+1280.030.055660.01225047100180.1725659421030.1814846912450.08209659666610.3521235945580.04765868263442.0190605844403.886041582211.923553498830.04765868263441.351617523972.10248598487e-081.774471564680.35156250.3474679123330.5241072214130.0476586618630002.35888907529e-153.01140658635e-15[4.188790204786392,0.0,0.9999999999999999][4.188790204786392,0.31408958816217897,1.0000000000000004][0.0,0.0,0.0][0.0,0.3140895881621789,0.0][0.0,5.551115123125783e-17,5.551115123125783e-16][0.0,5.551115123125783e-17,5.551115123125783e-16]1.11022302463e-16field-n128.npzhistory-n128.json
+2560.030.0515260.009335095006480.1278460472860.1393948343940.08070703514720.331835415530.02715441119392.4827922717204.382105847751.970548863380.02715441119391.529545032219.29125286755e-101.774471564670.35156250.3474679123331.048214442830.02715440752830003.53310534914e-163.66212328601e-16[4.188790204786392,0.0,0.9999999999999999][4.188790204786392,0.3125332118657703,0.9999999999999998][0.0,0.0,0.0][0.0,0.31253321186577027,0.0][0.0,5.551115123125783e-17,-1.1102230246251565e-16][0.0,5.551115123125783e-17,1.1102230246251565e-16]1.11022302463e-16field-n256.npzhistory-n256.json
+
+## Sedov–Taylor点爆発：球対称の軽量検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sedov/#sedov-blast-measurements
+Coverage: reading
+
+5120.030.0540090.005369634041940.07457886347110.07615237367290.05831370352620.389247553370.01484223174892.9182158101504.802369599152.007592026880.01484223174891.641701683914.10438899137e-111.774471564670.3496093750.3474679123331.096428885650.01484223158180001.17660850038e-161.1717338252e-16[4.18879020478639,0.0,1.0][4.18879020478639,0.3119858848492353,0.9999999999999987][0.0,0.0,0.0][0.0,0.3119858848492348,0.0][0.0,4.996003610813204e-16,-1.3322676295501878e-15][0.0,4.996003610813204e-16,1.3322676295501878e-15]0field-n512.npzhistory-n512.json
+この例の実測値・全記録 / JSON
+
+## Sedov–Taylor点爆発：球対称の軽量検証 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sedov/#sedov-blast-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+G. I. Taylor (1950). The formation of a blast wave by a very intense explosion I. Theoretical discussion · DOI: 10.1098/rspa.1950.0049
+確認範囲 / review_level: selected-original-pages
+大学公開の原著スキャンpp159–167で相似仮定・Euler縮約・強衝撃条件・エネルギー規格化・中心指数を選択確認。出版社は403で、全文読了やPDF再配布を主張しません。
+J. Thrussell and J. M. Ferguson (2023). ExactPack: A python library of exact analytic solutions · DOI: 10.1016/j.softx.2023.101560
+確認範囲 / review_level: official-record-and-selected-pinned-code-execution
+固定commitの未改変Sedov評価器を6001/12001点で実行。ソースhash・パラメータ・点値・照合判定・BSD-3-Clauseを保存。別のEuler数値ソルバーや全ライブラリ検査ではありません。
 
 ## 作用素分割：同じ反応拡散でLie–TrotterとStrangを比較 — 作用素分割：同じ反応拡散でLie–TrotterとStrangを比較 [ja]
 

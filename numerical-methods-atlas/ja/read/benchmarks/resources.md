@@ -189,6 +189,10 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/benchmarks/
   availability: run
 
   正方形の全域で密度・2成分運動量・全エネルギーを更新する、小型の2次元Euler有限体積計算です。32²・64²・128²の3格子で厳密Noh状態からの誤差・保存収支・格子方向の影響を測ります。図は実際の2次元保存配列で、1D半径解の回転表示ではありません。
+- [Sedov–Taylor点爆発：球対称の軽量検証](<https://hrkoyama.github.io/numerical-methods-atlas/validation/sedov-blast/?lang=ja>)
+  availability: run
+
+  球対称Euler方程式を半径方向の有限体積法で解く軽量例です。固定した半径0.03の領域に総エネルギー1を与え、128・256・512セルで点爆発の相似参照からの差と保存収支を測ります。図は1次元球対称データの断面表示で、2次元Cartesian計算ではありません。
 - [Godunov型有限体積法：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/godunov/?lang=ja#method-execution-ja>)
   availability: source
 

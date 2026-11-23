@@ -1,0 +1,687 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "termination": "fixed_budget_completed",
+  "cases": [
+    {
+      "id": "sedov-blast",
+      "passed": true,
+      "records": [
+        {
+          "n": 128,
+          "deposit_radius": 0.03,
+          "time": 0.05,
+          "steps": 566,
+          "density_l1": 0.012250471001811052,
+          "active_density_l1": 0.1725659421031009,
+          "active_pressure_l1": 0.1814846912454574,
+          "density_l2": 0.08209659666610923,
+          "density_linf": 0.3521235945578273,
+          "density_min": 0.047658682634418886,
+          "density_max": 2.0190605844395444,
+          "pressure_min": 0.0,
+          "pressure_max": 3.8860415822055825,
+          "maximum_speed": 1.9235534988316347,
+          "center_density": 0.047658682634418886,
+          "center_pressure": 1.351617523967532,
+          "center_reference_density": 2.1024859848663485e-08,
+          "center_reference_pressure": 1.7744715646805047,
+          "shock_radius": 0.3515625,
+          "reference_shock_radius": 0.3474679123327071,
+          "shock_error_cells": 0.5241072214134945,
+          "minimum_density_all_stages": 0.047658661862980935,
+          "minimum_pressure_all_stages": 0.0,
+          "minimum_internal_roundoff_units": 0.0,
+          "state_floor_count": 0,
+          "reference_quadrature_density_l1": 2.3588890752860758e-15,
+          "reference_quadrature_pressure_l1": 3.0114065863515865e-15,
+          "initial_integral": [
+            4.188790204786392,
+            0.0,
+            0.9999999999999999
+          ],
+          "final_integral": [
+            4.188790204786392,
+            0.31408958816217897,
+            1.0000000000000004
+          ],
+          "boundary_net_integral": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "geometric_source_integral": [
+            0.0,
+            0.3140895881621789,
+            0.0
+          ],
+          "conservation_residual": [
+            0.0,
+            5.551115123125783e-17,
+            5.551115123125783e-16
+          ],
+          "conservation_relative": [
+            0.0,
+            5.551115123125783e-17,
+            5.551115123125783e-16
+          ],
+          "initial_energy_error": 1.1102230246251565e-16,
+          "field": "field-n128.npz",
+          "history": "history-n128.json"
+        },
+        {
+          "n": 256,
+          "deposit_radius": 0.03,
+          "time": 0.05,
+          "steps": 1526,
+          "density_l1": 0.00933509500648086,
+          "active_density_l1": 0.12784604728552587,
+          "active_pressure_l1": 0.1393948343940096,
+          "density_l2": 0.08070703514722417,
+          "density_linf": 0.3318354155299079,
+          "density_min": 0.027154411193888128,
+          "density_max": 2.482792271720597,
+          "pressure_min": 0.0,
+          "pressure_max": 4.382105847750185,
+          "maximum_speed": 1.9705488633838766,
+          "center_density": 0.027154411193888128,
+          "center_pressure": 1.5295450322089066,
+          "center_reference_density": 9.291252867552618e-10,
+          "center_reference_pressure": 1.774471564669259,
+          "shock_radius": 0.3515625,
+          "reference_shock_radius": 0.3474679123327071,
+          "shock_error_cells": 1.048214442826989,
+          "minimum_density_all_stages": 0.02715440752831178,
+          "minimum_pressure_all_stages": 0.0,
+          "minimum_internal_roundoff_units": 0.0,
+          "state_floor_count": 0,
+          "reference_quadrature_density_l1": 3.533105349140851e-16,
+          "reference_quadrature_pressure_l1": 3.6621232860099745e-16,
+          "initial_integral": [
+            4.188790204786392,
+            0.0,
+            0.9999999999999999
+          ],
+          "final_integral": [
+            4.188790204786392,
+            0.3125332118657703,
+            0.9999999999999998
+          ],
+          "boundary_net_integral": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "geometric_source_integral": [
+            0.0,
+            0.31253321186577027,
+            0.0
+          ],
+          "conservation_residual": [
+            0.0,
+            5.551115123125783e-17,
+            -1.1102230246251565e-16
+          ],
+          "conservation_relative": [
+            0.0,
+            5.551115123125783e-17,
+            1.1102230246251565e-16
+          ],
+          "initial_energy_error": 1.1102230246251565e-16,
+          "field": "field-n256.npz",
+          "history": "history-n256.json"
+        },
+        {
+          "n": 512,
+          "deposit_radius": 0.03,
+          "time": 0.05,
+          "steps": 4009,
+          "density_l1": 0.005369634041936693,
+          "active_density_l1": 0.0745788634711047,
+          "active_pressure_l1": 0.07615237367293834,
+          "density_l2": 0.058313703526242607,
+          "density_linf": 0.3892475533701589,
+          "density_min": 0.014842231748925943,
+          "density_max": 2.918215810146801,
+          "pressure_min": 0.0,
+          "pressure_max": 4.8023695991464725,
+          "maximum_speed": 2.007592026879321,
+          "center_density": 0.014842231748925943,
+          "center_pressure": 1.641701683913197,
+          "center_reference_density": 4.1043889913677827e-11,
+          "center_reference_pressure": 1.7744715646691345,
+          "shock_radius": 0.349609375,
+          "reference_shock_radius": 0.3474679123327071,
+          "shock_error_cells": 1.0964288856539781,
+          "minimum_density_all_stages": 0.014842231581750319,
+          "minimum_pressure_all_stages": 0.0,
+          "minimum_internal_roundoff_units": 0.0,
+          "state_floor_count": 0,
+          "reference_quadrature_density_l1": 1.1766085003791174e-16,
+          "reference_quadrature_pressure_l1": 1.1717338251963657e-16,
+          "initial_integral": [
+            4.18879020478639,
+            0.0,
+            1.0
+          ],
+          "final_integral": [
+            4.18879020478639,
+            0.3119858848492353,
+            0.9999999999999987
+          ],
+          "boundary_net_integral": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "geometric_source_integral": [
+            0.0,
+            0.3119858848492348,
+            0.0
+          ],
+          "conservation_residual": [
+            0.0,
+            4.996003610813204e-16,
+            -1.3322676295501878e-15
+          ],
+          "conservation_relative": [
+            0.0,
+            4.996003610813204e-16,
+            1.3322676295501878e-15
+          ],
+          "initial_energy_error": 0.0,
+          "field": "field-n512.npz",
+          "history": "history-n512.json"
+        }
+      ],
+      "source_radius_sensitivity": {
+        "n": 512,
+        "deposit_radius": 0.015,
+        "time": 0.05,
+        "steps": 4369,
+        "density_l1": 0.005393753638752148,
+        "active_density_l1": 0.07491386062432395,
+        "active_pressure_l1": 0.0763195410911965,
+        "density_l2": 0.05842159318126381,
+        "density_linf": 0.39003149491196826,
+        "density_min": 0.014455563056910205,
+        "density_max": 2.918008461264103,
+        "pressure_min": 0.0,
+        "pressure_max": 4.79871250116524,
+        "maximum_speed": 2.0069269208346303,
+        "center_density": 0.014455563056910205,
+        "center_pressure": 1.6407553622782687,
+        "center_reference_density": 4.1043889913677827e-11,
+        "center_reference_pressure": 1.7744715646691345,
+        "shock_radius": 0.349609375,
+        "reference_shock_radius": 0.3474679123327071,
+        "shock_error_cells": 1.0964288856539781,
+        "minimum_density_all_stages": 0.014455563054644637,
+        "minimum_pressure_all_stages": 0.0,
+        "minimum_internal_roundoff_units": 0.0,
+        "state_floor_count": 0,
+        "reference_quadrature_density_l1": 1.1766085003791174e-16,
+        "reference_quadrature_pressure_l1": 1.1717338251963657e-16,
+        "initial_integral": [
+          4.18879020478639,
+          0.0,
+          0.9999999999999999
+        ],
+        "final_integral": [
+          4.18879020478639,
+          0.3120004426932392,
+          1.0000000000000002
+        ],
+        "boundary_net_integral": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "geometric_source_integral": [
+          0.0,
+          0.3120004426932395,
+          0.0
+        ],
+        "conservation_residual": [
+          0.0,
+          -3.3306690738754696e-16,
+          3.3306690738754696e-16
+        ],
+        "conservation_relative": [
+          0.0,
+          3.3306690738754696e-16,
+          3.3306690738754696e-16
+        ],
+        "initial_energy_error": 1.1102230246251565e-16,
+        "paired_density_difference": 0.0004507157824291705,
+        "paired_pressure_difference": 0.0006192064661489633,
+        "field": "field-radius-probe.npz",
+        "history": "history-radius-probe.json"
+      },
+      "checks": {
+        "three fixed-radius refinements complete": true,
+        "paired smaller-radius run completes": true,
+        "n128: strictly positive density all stages": true,
+        "n128: internal energy within roundoff": true,
+        "n128: no state floor or repair": true,
+        "n128: unit deposited energy": true,
+        "n128: mass discrete balance": true,
+        "n128: radial momentum including geometric source discrete balance": true,
+        "n128: energy discrete balance": true,
+        "n128: reference_quadrature_density_l1": true,
+        "n128: reference_quadrature_pressure_l1": true,
+        "n128: origin and maximum diagnostics retained": true,
+        "n256: strictly positive density all stages": true,
+        "n256: internal energy within roundoff": true,
+        "n256: no state floor or repair": true,
+        "n256: unit deposited energy": true,
+        "n256: mass discrete balance": true,
+        "n256: radial momentum including geometric source discrete balance": true,
+        "n256: energy discrete balance": true,
+        "n256: reference_quadrature_density_l1": true,
+        "n256: reference_quadrature_pressure_l1": true,
+        "n256: origin and maximum diagnostics retained": true,
+        "n512: strictly positive density all stages": true,
+        "n512: internal energy within roundoff": true,
+        "n512: no state floor or repair": true,
+        "n512: unit deposited energy": true,
+        "n512: mass discrete balance": true,
+        "n512: radial momentum including geometric source discrete balance": true,
+        "n512: energy discrete balance": true,
+        "n512: reference_quadrature_density_l1": true,
+        "n512: reference_quadrature_pressure_l1": true,
+        "n512: origin and maximum diagnostics retained": true,
+        "sensitivity: strictly positive density all stages": true,
+        "sensitivity: internal energy within roundoff": true,
+        "sensitivity: no state floor or repair": true,
+        "sensitivity: unit deposited energy": true,
+        "sensitivity: mass discrete balance": true,
+        "sensitivity: radial momentum including geometric source discrete balance": true,
+        "sensitivity: energy discrete balance": true,
+        "sensitivity: reference_quadrature_density_l1": true,
+        "sensitivity: reference_quadrature_pressure_l1": true,
+        "sensitivity: origin and maximum diagnostics retained": true,
+        "finest active_density_l1": true,
+        "finest active_pressure_l1": true,
+        "finest shock_error_cells": true,
+        "fixed-source active density L1 decreases": true,
+        "last fixed-source density L1 order": true,
+        "source-radius effects separately retained": true
+      },
+      "check_details": [
+        {
+          "name": "three fixed-radius refinements complete",
+          "value": [
+            128,
+            256,
+            512
+          ],
+          "bound": [
+            128,
+            256,
+            512
+          ],
+          "passed": true
+        },
+        {
+          "name": "paired smaller-radius run completes",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "n128: strictly positive density all stages",
+          "value": 0.047658661862980935,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "n128: internal energy within roundoff",
+          "value": 0.0,
+          "bound": -64,
+          "passed": true
+        },
+        {
+          "name": "n128: no state floor or repair",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "n128: unit deposited energy",
+          "value": 1.1102230246251565e-16,
+          "bound": 2e-14,
+          "passed": true
+        },
+        {
+          "name": "n128: mass discrete balance",
+          "value": 0.0,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "n128: radial momentum including geometric source discrete balance",
+          "value": 5.551115123125783e-17,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "n128: energy discrete balance",
+          "value": 5.551115123125783e-16,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "n128: reference_quadrature_density_l1",
+          "value": 2.3588890752860758e-15,
+          "bound": 1e-05,
+          "passed": true
+        },
+        {
+          "name": "n128: reference_quadrature_pressure_l1",
+          "value": 3.0114065863515865e-15,
+          "bound": 1e-05,
+          "passed": true
+        },
+        {
+          "name": "n128: origin and maximum diagnostics retained",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "n256: strictly positive density all stages",
+          "value": 0.02715440752831178,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "n256: internal energy within roundoff",
+          "value": 0.0,
+          "bound": -64,
+          "passed": true
+        },
+        {
+          "name": "n256: no state floor or repair",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "n256: unit deposited energy",
+          "value": 1.1102230246251565e-16,
+          "bound": 2e-14,
+          "passed": true
+        },
+        {
+          "name": "n256: mass discrete balance",
+          "value": 0.0,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "n256: radial momentum including geometric source discrete balance",
+          "value": 5.551115123125783e-17,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "n256: energy discrete balance",
+          "value": 1.1102230246251565e-16,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "n256: reference_quadrature_density_l1",
+          "value": 3.533105349140851e-16,
+          "bound": 1e-05,
+          "passed": true
+        },
+        {
+          "name": "n256: reference_quadrature_pressure_l1",
+          "value": 3.6621232860099745e-16,
+          "bound": 1e-05,
+          "passed": true
+        },
+        {
+          "name": "n256: origin and maximum diagnostics retained",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "n512: strictly positive density all stages",
+          "value": 0.014842231581750319,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "n512: internal energy within roundoff",
+          "value": 0.0,
+          "bound": -64,
+          "passed": true
+        },
+        {
+          "name": "n512: no state floor or repair",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "n512: unit deposited energy",
+          "value": 0.0,
+          "bound": 2e-14,
+          "passed": true
+        },
+        {
+          "name": "n512: mass discrete balance",
+          "value": 0.0,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "n512: radial momentum including geometric source discrete balance",
+          "value": 4.996003610813204e-16,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "n512: energy discrete balance",
+          "value": 1.3322676295501878e-15,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "n512: reference_quadrature_density_l1",
+          "value": 1.1766085003791174e-16,
+          "bound": 1e-05,
+          "passed": true
+        },
+        {
+          "name": "n512: reference_quadrature_pressure_l1",
+          "value": 1.1717338251963657e-16,
+          "bound": 1e-05,
+          "passed": true
+        },
+        {
+          "name": "n512: origin and maximum diagnostics retained",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "sensitivity: strictly positive density all stages",
+          "value": 0.014455563054644637,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "sensitivity: internal energy within roundoff",
+          "value": 0.0,
+          "bound": -64,
+          "passed": true
+        },
+        {
+          "name": "sensitivity: no state floor or repair",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "sensitivity: unit deposited energy",
+          "value": 1.1102230246251565e-16,
+          "bound": 2e-14,
+          "passed": true
+        },
+        {
+          "name": "sensitivity: mass discrete balance",
+          "value": 0.0,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "sensitivity: radial momentum including geometric source discrete balance",
+          "value": 3.3306690738754696e-16,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "sensitivity: energy discrete balance",
+          "value": 3.3306690738754696e-16,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "sensitivity: reference_quadrature_density_l1",
+          "value": 1.1766085003791174e-16,
+          "bound": 1e-05,
+          "passed": true
+        },
+        {
+          "name": "sensitivity: reference_quadrature_pressure_l1",
+          "value": 1.1717338251963657e-16,
+          "bound": 1e-05,
+          "passed": true
+        },
+        {
+          "name": "sensitivity: origin and maximum diagnostics retained",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "finest active_density_l1",
+          "value": 0.0745788634711047,
+          "bound": 0.3,
+          "passed": true
+        },
+        {
+          "name": "finest active_pressure_l1",
+          "value": 0.07615237367293834,
+          "bound": 0.3,
+          "passed": true
+        },
+        {
+          "name": "finest shock_error_cells",
+          "value": 1.0964288856539781,
+          "bound": 5.0,
+          "passed": true
+        },
+        {
+          "name": "fixed-source active density L1 decreases",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "last fixed-source density L1 order",
+          "value": 0.7775688396137775,
+          "bound": 0.2,
+          "passed": true
+        },
+        {
+          "name": "source-radius effects separately retained",
+          "value": true,
+          "bound": true,
+          "passed": true
+        }
+      ],
+      "metrics": {
+        "n": 512,
+        "deposit_radius": 0.03,
+        "time": 0.05,
+        "steps": 4009,
+        "density_l1": 0.005369634041936693,
+        "active_density_l1": 0.0745788634711047,
+        "active_pressure_l1": 0.07615237367293834,
+        "density_l2": 0.058313703526242607,
+        "density_linf": 0.3892475533701589,
+        "density_min": 0.014842231748925943,
+        "density_max": 2.918215810146801,
+        "pressure_min": 0.0,
+        "pressure_max": 4.8023695991464725,
+        "maximum_speed": 2.007592026879321,
+        "center_density": 0.014842231748925943,
+        "center_pressure": 1.641701683913197,
+        "center_reference_density": 4.1043889913677827e-11,
+        "center_reference_pressure": 1.7744715646691345,
+        "shock_radius": 0.349609375,
+        "reference_shock_radius": 0.3474679123327071,
+        "shock_error_cells": 1.0964288856539781,
+        "minimum_density_all_stages": 0.014842231581750319,
+        "minimum_pressure_all_stages": 0.0,
+        "minimum_internal_roundoff_units": 0.0,
+        "state_floor_count": 0,
+        "reference_quadrature_density_l1": 1.1766085003791174e-16,
+        "reference_quadrature_pressure_l1": 1.1717338251963657e-16,
+        "initial_energy_error": 0.0
+      },
+      "scope": "One-dimensional spherical radial Euler; fixed finite deposition sphere; not a two-dimensional Cartesian blast."
+    }
+  ],
+  "checks": {
+    "sedov-blast": true
+  },
+  "input_sha256": "e8db508fe755dcebc65633b9d02a017211a36e7e8ffd0184a23caea0996dfab9",
+  "source_sha256": {
+    "sedov_solver.py": "a0848f757b593bf1a7d94555216ea8d2fc042b01698eddb8a6e87962809f2d81",
+    "reference_sedov.py": "7a2904a043a2f3aa823b7bb4686b9acd9b1b80759f3dca608d59615b7a0e160a",
+    "run.py": "d0aea58ef35b4c4f707bbfa90c16a5bfd8040ba63dd47fdaa9a6bee69254c0ad",
+    "inputs.json": "e8db508fe755dcebc65633b9d02a017211a36e7e8ffd0184a23caea0996dfab9",
+    "acceptance.json": "2e066bd5149dda72bc2b04132c56ec0f6af23a83a66d54a52e579d5cd63e4456",
+    "pre-run-contract.json": "1348af65e7055d5e2a28cdbe7854de9c8413fb87abc9b0e31437f88efa7dbd4a"
+  },
+  "files_sha256": {
+    "field-n128.npz": "99de81ba57139758e1cb4ec3c3b625be6fb0d5e69664ad8735cc30bf5d15f350",
+    "history-n128.json": "99738277ff5b23353a3b6bd369bad8a0ee84172896ace6f7a8e8f179652e1859",
+    "field-n256.npz": "9ce05095ea4f5423e060061098f42e28611bf4c14a68c5d56c415a542d982be1",
+    "history-n256.json": "67997919b20b5f5f28c0cf49a34e240f116e13e89f76184cee2c9675fff6056c",
+    "field-n512.npz": "857533d3ef21daf3710e1ef3e3fa8cd0695bb552a1edc7f54e33e85642dcbe5b",
+    "history-n512.json": "c843aabe44e19c6b394c83b4f9c43c28487f0334dd0f447730b6447d359d45e5",
+    "field-radius-probe.npz": "9544a3597551d33aff6056fa56d3245aa70770e6bb8a3bbd10cb6a91503b3e74",
+    "history-radius-probe.json": "90d151a2d92d79806354c43709c56069da6f04435764adbc53b9c9adccef3767"
+  },
+  "reference_summary": {
+    "gamma": 1.6666666666666667,
+    "geometry": 3,
+    "rho0": 1.0,
+    "energy": 1.0,
+    "alpha": 0.4,
+    "beta": 1.1516664179278793,
+    "core_cutoff_xi": 0.001,
+    "ode_rtol": 2e-10,
+    "ode_nfev": 923,
+    "energy_integral": 0.24549160052739177,
+    "energy_quad_error_estimate": 8.418224034116616e-12,
+    "swept_mass_dimensionless": 0.3333333333314057,
+    "mass_quad_error_estimate": 8.711331269232957e-12,
+    "core_model": "G proportional to xi^(9/2), V proportional to xi, P constant",
+    "reference_kind": "semi-analytic similarity ODE plus split Gauss cell quadrature",
+    "refined_core_cutoff_xi": 0.0005,
+    "refined_ode_rtol": 5e-11,
+    "beta_resolution_relative_difference": 2.1682655670929307e-12,
+    "swept_mass_relative_error": 5.782929690667515e-12
+  },
+  "failure": null,
+  "duration_seconds": 2.2429810410003483
+}

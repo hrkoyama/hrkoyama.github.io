@@ -1,0 +1,50 @@
+{
+  "started_at_utc": "2026-11-23T03:49:00.556228+00:00",
+  "command": [
+    "env",
+    "PYTHONDONTWRITEBYTECODE=1",
+    "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/sedov-env/bin/python",
+    "scripts/depth-sedov/exactpack-generate.py",
+    "--upstream",
+    "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/sedov-exactpack-upstream",
+    "--output",
+    "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/sedov-reference-execution01"
+  ],
+  "cwd": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/atlas-search-publisher",
+  "initial_free_bytes": 13480091648,
+  "reserve_bytes": 2684354560,
+  "minimum_free_bytes": 13480067072,
+  "samples": [
+    {
+      "seconds": 0.0,
+      "free_bytes": 13480087552
+    },
+    {
+      "seconds": 0.51,
+      "free_bytes": 13480083456
+    },
+    {
+      "seconds": 1.02,
+      "free_bytes": 13480067072
+    },
+    {
+      "seconds": 1.53,
+      "free_bytes": 13480157184
+    },
+    {
+      "seconds": 2.04,
+      "free_bytes": 13480157184
+    },
+    {
+      "seconds": 2.55,
+      "free_bytes": 13480116224
+    }
+  ],
+  "disk_stop": false,
+  "started": true,
+  "owned_process_group": 18663,
+  "child_returncode": 0,
+  "returncode": 0,
+  "final_free_bytes": 13480116224,
+  "completed_at_utc": "2026-11-23T03:49:03.103017+00:00"
+}

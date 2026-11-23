@@ -107,7 +107,7 @@ test('every verified example is reachable from words, formulas and its image thr
     }
   }
   assert.equal(json('numerical-methods-atlas/equations/index.json').equations.length,46);
-  assert.equal(gallery.items.length,84);
+  assert.equal(gallery.items.length,85);
 });
 
 test('the concise homepage leads to the full execution chooser with the existing starting calculations',()=>{

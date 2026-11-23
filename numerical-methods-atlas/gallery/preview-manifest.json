@@ -1009,10 +1009,22 @@
         "ja": "実際の2次元Cartesian Euler計算の密度場。正方形全域128²セル、初期圧力ゼロ、γ=5/3、t=.6。白破線は厳密衝撃円。軸・対角方向の差と原点過熱を残し、1D半径例にも辿れます。",
         "en": "Density from an actual2D Cartesian Euler computation:full square128²,p0=0,gamma5/3,t=.6. White dashed circle is the exact shock. Axis/diagonal differences and origin heating remain visible, with links to earlier1D radial examples."
       }
+    },
+    {
+      "id": "sedov",
+      "image": "/code/validated-examples/2026-11-23/sedov/results/sedov-blast-preview.png",
+      "image_sha256": "ce5d4651b188e6cd5caab2cf6840829788e1952386e8bb7d235928d2a982d847",
+      "width": 1312,
+      "height": 728,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "1次元球対称Eulerの保存済み半径密度を中心断面に表示。γ=5/3、E=ρ0=1、p0=0、t=.05、512球殻、有限投入半径.03。半解析的な点源参照との違いと衝撃層の誤差を残した図で、実2D Cartesian計算ではありません。",
+        "en": "A central-section view of saved one-dimensional spherical-radial Euler density:gamma5/3,E=rho0=1,p0=0,t=.05,512 shells and finite deposition radius.03. Point-source reference differences and shock errors remain visible; this is not an actual2D Cartesian computation."
+      }
     }
   ],
   "source_sha256": {
-    "catalog/atlas-gallery.json": "f6bf5d3ed17d90fa86a3f51f761587e8c8e37babb3957a9147282f3ca5cc8184",
+    "catalog/atlas-gallery.json": "f8dbae6cb668a25c758e62396ce2752786b8e7ed6b21c2978b6f137e83010358",
     "scripts/render-atlas-gallery.py": "62956b5a0ece0c5144ec079bb30f36e44b3ccf97e4b56b677d4de356cdbab04c",
     "code/numerical-methods-atlas/2026-11-21/numart/benchmarks.py": "dc8f83aafea473b5f0e1e7bf82630484dd60aa446859c1f602571adc3c59f019",
     "code/numerical-methods-atlas/2026-11-21/numart/solvers.py": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d",
@@ -1059,8 +1071,8 @@
     "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
     "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
     "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
-    "catalog/atlas-test-problems.json": "8af2b8fe0db87f9b65c4054ee4772ad915ad4754788dc792b8f686f619f8a31c",
-    "catalog/atlas-depth-expansion.json": "65f2a4013ed2830e7812ab84a54ecb93484eb379fe4d62d33de9a198eb7d5517",
+    "catalog/atlas-test-problems.json": "b32c87977ad028925d9e49bb4b25ace8e7934f182d6ade7a608327d62b2b24d0",
+    "catalog/atlas-depth-expansion.json": "73d9e1b8a53e087825d8be61d173ae8518ddefa8ab0298166909921a7175e28c",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
     "code/validated-examples/2026-11-22/foundations/inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -1170,7 +1182,14 @@
     "code/validated-examples/2026-11-23-r2/noh-cartesian/verification.json": "7c530b06df5d2878958bd249b3035050592365e23aee79804e600368dfb09f46",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/results/result.json": "e121c2f5171ee53491b492019311d002ceb44213f6f7cd43051a3ca68f74c694",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/results/noh-cartesian-2d.png": "cca6fdfc8f524ee05f729437b38ce064f276aaebe1485ed6e26045c279ac1ae4",
-    "code/validated-examples/2026-11-23-r2/noh-cartesian/results/noh-cartesian-2d-preview.png": "17cb2f697122c8ada6e578f23c109d1549c15287be05438f25e9c500a19ddb1f"
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/results/noh-cartesian-2d-preview.png": "17cb2f697122c8ada6e578f23c109d1549c15287be05438f25e9c500a19ddb1f",
+    "code/validated-examples/2026-11-23/sedov/cases.json": "41083cf19e47a71e15b12684c7fb1586ac4a25cca37b54da5abdcbe159100d87",
+    "code/validated-examples/2026-11-23/sedov/inputs.json": "e8db508fe755dcebc65633b9d02a017211a36e7e8ffd0184a23caea0996dfab9",
+    "code/validated-examples/2026-11-23/sedov/source-manifest.json": "026a5c21e68cc127115ccc429fb35cb7a280a0914057d0b7167c64d032567e9b",
+    "code/validated-examples/2026-11-23/sedov/verification.json": "fde165bb62331821f6ffa2d98d8c695bca9fcdae160801126323716580ab5db2",
+    "code/validated-examples/2026-11-23/sedov/results/result.json": "c17444a72b4974bc58a2bfe722fc0ed98a554dfdc7179e512e81304a22b46dd4",
+    "code/validated-examples/2026-11-23/sedov/results/sedov-blast.png": "40a5d1f86e9aecab42be47d61c7c3b1b2e6e04a0cad8938caaa6d7c3ab5f2146",
+    "code/validated-examples/2026-11-23/sedov/results/sedov-blast-preview.png": "ce5d4651b188e6cd5caab2cf6840829788e1952386e8bb7d235928d2a982d847"
   },
   "calculations_sha256": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6"
 }

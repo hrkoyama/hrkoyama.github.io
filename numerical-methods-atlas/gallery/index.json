@@ -4,15 +4,15 @@
   "reviewed_on": "2026-11-22",
   "scope": "One explicitly mapped visual per atlas test problem. Existing shared figures are identified. Derived plots use stored numerical values; computed previews record fixed inputs and numerical checks.",
   "counts": {
-    "test_problems": 84,
-    "runnable_problems": 40,
+    "test_problems": 85,
+    "runnable_problems": 41,
     "common_runnable_problems": 22,
-    "supplemental_runnable_problems": 21,
-    "supplemental_case_count": 37,
-    "supplemental_release_case_count": 42,
+    "supplemental_runnable_problems": 22,
+    "supplemental_case_count": 38,
+    "supplemental_release_case_count": 43,
     "groups": {
       "transport": 9,
-      "fluid": 17,
+      "fluid": 18,
       "mhd": 5,
       "viscous": 3,
       "elliptic": 13,
@@ -26,7 +26,7 @@
     },
     "visual_sources": {
       "stored-data-plot": 27,
-      "existing-figure": 48,
+      "existing-figure": 49,
       "computed-preview": 9
     }
   },
@@ -7152,10 +7152,125 @@
           "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/noh-cartesian/verification.json"
         }
       ]
+    },
+    {
+      "id": "sedov",
+      "group": "fluid",
+      "name": {
+        "ja": "Sedov–Taylorの点爆発",
+        "en": "Sedov–Taylor point blast"
+      },
+      "chapter": "validation-sedov",
+      "reading_section": "sedov-blast",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/sedov/",
+      "verification": "/code/validated-examples/2026-11-23/sedov/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/sedov/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "sedov-blast"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/sedov/results/sedov-blast-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/sedov/inputs.json",
+          "json_pointer": "/cases/sedov-blast"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/sedov/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/sedov/exactpack-receipt.json",
+          "json_pointer": "/passed"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "sedov-blast",
+          "url": "/numerical-methods-atlas/validation/sedov-blast/",
+          "name": {
+            "ja": "Sedov–Taylor点爆発：球対称の軽量検証",
+            "en": "Sedov–Taylor point blast: lightweight spherical-radial validation"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sedov/#sedov-blast",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sedov/#sedov-blast"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#sedov",
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "image": "/code/validated-examples/2026-11-23/sedov/results/sedov-blast-preview.png",
+      "image_sha256": "ce5d4651b188e6cd5caab2cf6840829788e1952386e8bb7d235928d2a982d847",
+      "width": 1312,
+      "height": 728,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "1次元球対称Eulerの保存済み半径密度を中心断面に表示。γ=5/3、E=ρ0=1、p0=0、t=.05、512球殻、有限投入半径.03。半解析的な点源参照との違いと衝撃層の誤差を残した図で、実2D Cartesian計算ではありません。",
+        "en": "A central-section view of saved one-dimensional spherical-radial Euler density:gamma5/3,E=rho0=1,p0=0,t=.05,512 shells and finite deposition radius.03. Point-source reference differences and shock errors remain visible; this is not an actual2D Cartesian computation."
+      },
+      "visual_input": {
+        "id": "sedov",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-23/sedov/results/sedov-blast-preview.png",
+        "caption": {
+          "ja": "1次元球対称Eulerの保存済み半径密度を中心断面に表示。γ=5/3、E=ρ0=1、p0=0、t=.05、512球殻、有限投入半径.03。半解析的な点源参照との違いと衝撃層の誤差を残した図で、実2D Cartesian計算ではありません。",
+          "en": "A central-section view of saved one-dimensional spherical-radial Euler density:gamma5/3,E=rho0=1,p0=0,t=.05,512 shells and finite deposition radius.03. Point-source reference differences and shock errors remain visible; this is not an actual2D Cartesian computation."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#sedov-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sedov/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sedov/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "sedov-blast",
+          "title": {
+            "ja": "Sedov–Taylor点爆発：球対称の軽量検証",
+            "en": "Sedov–Taylor point blast: lightweight spherical-radial validation"
+          },
+          "group": "sedov",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sedov-blast/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sedov-blast/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/sedov_solver.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/reference_sedov.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/exactpack-generate.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/reference-development/ode01-source.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/test_sedov.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/atlas-sedov-2026-11-23.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/verification.json"
+        }
+      ]
     }
   ],
   "source_sha256": {
-    "catalog/atlas-gallery.json": "f6bf5d3ed17d90fa86a3f51f761587e8c8e37babb3957a9147282f3ca5cc8184",
+    "catalog/atlas-gallery.json": "f8dbae6cb668a25c758e62396ce2752786b8e7ed6b21c2978b6f137e83010358",
     "scripts/render-atlas-gallery.py": "62956b5a0ece0c5144ec079bb30f36e44b3ccf97e4b56b677d4de356cdbab04c",
     "code/numerical-methods-atlas/2026-11-21/numart/benchmarks.py": "dc8f83aafea473b5f0e1e7bf82630484dd60aa446859c1f602571adc3c59f019",
     "code/numerical-methods-atlas/2026-11-21/numart/solvers.py": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d",
@@ -7202,8 +7317,8 @@
     "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
     "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
     "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
-    "catalog/atlas-test-problems.json": "8af2b8fe0db87f9b65c4054ee4772ad915ad4754788dc792b8f686f619f8a31c",
-    "catalog/atlas-depth-expansion.json": "65f2a4013ed2830e7812ab84a54ecb93484eb379fe4d62d33de9a198eb7d5517",
+    "catalog/atlas-test-problems.json": "b32c87977ad028925d9e49bb4b25ace8e7934f182d6ade7a608327d62b2b24d0",
+    "catalog/atlas-depth-expansion.json": "73d9e1b8a53e087825d8be61d173ae8518ddefa8ab0298166909921a7175e28c",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
     "code/validated-examples/2026-11-22/foundations/inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -7314,18 +7429,25 @@
     "code/validated-examples/2026-11-23-r2/noh-cartesian/results/result.json": "e121c2f5171ee53491b492019311d002ceb44213f6f7cd43051a3ca68f74c694",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/results/noh-cartesian-2d.png": "cca6fdfc8f524ee05f729437b38ce064f276aaebe1485ed6e26045c279ac1ae4",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/results/noh-cartesian-2d-preview.png": "17cb2f697122c8ada6e578f23c109d1549c15287be05438f25e9c500a19ddb1f",
+    "code/validated-examples/2026-11-23/sedov/cases.json": "41083cf19e47a71e15b12684c7fb1586ac4a25cca37b54da5abdcbe159100d87",
+    "code/validated-examples/2026-11-23/sedov/inputs.json": "e8db508fe755dcebc65633b9d02a017211a36e7e8ffd0184a23caea0996dfab9",
+    "code/validated-examples/2026-11-23/sedov/source-manifest.json": "026a5c21e68cc127115ccc429fb35cb7a280a0914057d0b7167c64d032567e9b",
+    "code/validated-examples/2026-11-23/sedov/verification.json": "fde165bb62331821f6ffa2d98d8c695bca9fcdae160801126323716580ab5db2",
+    "code/validated-examples/2026-11-23/sedov/results/result.json": "c17444a72b4974bc58a2bfe722fc0ed98a554dfdc7179e512e81304a22b46dd4",
+    "code/validated-examples/2026-11-23/sedov/results/sedov-blast.png": "40a5d1f86e9aecab42be47d61c7c3b1b2e6e04a0cad8938caaa6d7c3ab5f2146",
+    "code/validated-examples/2026-11-23/sedov/results/sedov-blast-preview.png": "ce5d4651b188e6cd5caab2cf6840829788e1952386e8bb7d235928d2a982d847",
     "code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py": "4ad61ac54dfa59d7d61959c5699f290e2386c23bf5b4b930a5d98576feaa54d1",
     "code/numerical-methods-atlas/2026-11-21/tests/test_linear.py": "5e7323f2734fb7328c35706ccd90fc25076bd46d01d32cd9c78c8cd25dd0421f",
     "code/numerical-methods-atlas/2026-11-21/tests/test_sparse_fem.py": "4076e514e0b9b5fd94dead4af33fe7e7548fba6a7b48b3e21a406034f7170afb",
     "code/numerical-methods-atlas/2026-11-21/tests/test_runge_kutta.py": "920a5eb560afe7f560cae8d22f879f125851f4ee0451b24720d0eca0082c31ce",
     "code/numerical-methods-atlas/2026-11-21/tests/test_new_models.py": "2937daf8fa8ad86882ac06e47835a6309ca1df3d0283c7dfb7b9606dc3906b1f",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "115154d283f75676dd01b182c9c61735c86ca4318555996ecc299ef579523728",
+    "numerical-methods-atlas/gallery/preview-manifest.json": "dac46dd4fd3f024ed87b8d7e69ce47cc2aadafe0edd9e708792e94427e103750",
     "numerical-methods-atlas/gallery/calculations.json": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6",
     "numerical-methods-atlas/gallery/verification.json": "46c39543afa9d943dfef896fadbc8f84d847f1a145d9b1427a2336de7a3a50f9",
-    "numerical-methods-atlas/test-cases/index.json": "b44b170317a5b330bb368bb35afe67096248516292ab58e4cb4acd58cdbcd2f6",
+    "numerical-methods-atlas/test-cases/index.json": "8a59ef4d5f41ed8d03985b2393f6edecda7087b97a8f32fd9f7b26f8a8330fa2",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "scripts/atlas_execution_discovery.py": "3431dae95fb0adc68e1deca07b406b70bd99480f9ad6023a31765cb07ccf84be",
-    "scripts/atlas_depth_release.py": "d3c3bfed97edd08b7c919d82121febaf12cef416f2ea0201dc0b162d38822abc",
+    "scripts/atlas_depth_release.py": "4d360c07c645a6d780c43bd0dc78e4f465e8aa28b104c1f84da04bb7d647690f",
     "scripts/atlas_goal_availability.py": "3b32fcee61cd8452e529a73ed203b1a64aa32db7312734df477926f5fa39fab5",
     "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
     "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
@@ -7343,6 +7465,7 @@
     "code/validated-examples/2026-11-22/splitting/results/result.json": "7b1b8338ec2a03eb04e82f3891d4e2fd08a2edb665313dc8bd0991b1a7a9a8f2",
     "code/validated-examples/2026-11-22/splitting/atlas-splitting-2026-11-22.zip": "2ae466a4ea62e204716a388b86033de3a6493a9ab0ef4ad9aec4ebb038d8a404",
     "code/validated-examples/2026-11-23-r5/noh/atlas-noh-2026-11-23-r5.zip": "64de5483e9896a3773348b75e1ec2b4630f8a709d68194c1d94772396f531733",
-    "code/validated-examples/2026-11-23-r2/noh-cartesian/atlas-noh-cartesian-2026-11-23-r2.zip": "2145beb161f993c1608fc5ac167af5278d58e10f92e74ed37e5fb9c35243b918"
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/atlas-noh-cartesian-2026-11-23-r2.zip": "2145beb161f993c1608fc5ac167af5278d58e10f92e74ed37e5fb9c35243b918",
+    "code/validated-examples/2026-11-23/sedov/atlas-sedov-2026-11-23.zip": "63d584129e6260bf04618205b7ea57cc9a36e8bb4d3423b1bcdd8489ca43eebb"
   }
 }

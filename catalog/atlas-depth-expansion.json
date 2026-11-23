@@ -180,6 +180,21 @@
         "ja": "正方形の全域で密度・2成分運動量・全エネルギーを更新する、小型の2次元Euler有限体積計算です。32²・64²・128²の3格子で厳密Noh状態からの誤差・保存収支・格子方向の影響を測ります。図は実際の2次元保存配列で、1D半径解の回転表示ではありません。",
         "en": "A small 2D Euler finite-volume calculation evolves density, both momenta and total energy over the full square. Three grids,32²/64²/128², measure Noh-reference errors, budgets and grid orientation effects. The picture shows the actual evolved 2D array."
       }
+    },
+    {
+      "id": "sedov",
+      "edition": "2026-11-23",
+      "title": {
+        "ja": "Sedov–Taylor点爆発：球対称の軽量検証",
+        "en": "Sedov–Taylor point blast: lightweight spherical-radial validation"
+      },
+      "fields": [
+        "fluid"
+      ],
+      "intro": {
+        "ja": "球対称Euler方程式を半径方向の有限体積法で解く軽量例です。固定した半径0.03の領域に総エネルギー1を与え、128・256・512セルで点爆発の相似参照からの差と保存収支を測ります。図は1次元球対称データの断面表示で、2次元Cartesian計算ではありません。",
+        "en": "A lightweight spherical-radial Euler finite-volume example deposits unit energy inside fixed radius0.03. Three grids of128/256/512 radial cells measure differences from a point-blast similarity reference and conservation budgets. The picture is a section display of1D spherical data, not a2D Cartesian calculation."
+      }
     }
   ],
   "case_problem_ids": {
@@ -224,7 +239,8 @@
     "radiation-convergence": "absorbing-slab",
     "reaction-diffusion-splitting": "turing-schnakenberg",
     "noh-shock": "noh",
-    "noh-cartesian-2d": "noh"
+    "noh-cartesian-2d": "noh",
+    "sedov-blast": "sedov"
   },
   "routine_policy": {
     "ja": "通常の補助例CIはNumPy・SciPy・pytestで実行する11グループです。独立ライブラリ等の保存参照は版と入力を記録した保存値に照合します。量子収束を含む従来の共通22例は必要時の手動実行とし、既存の配布物・公差・履歴を保持します。",
@@ -306,6 +322,10 @@
     "noh-shock": {
       "ja": "初回不合格の実行ソース・入力・全8格子計算の診断ログに加え、全8本の元の全場プロファイルCSVも保存しています。stdoutから原文のまま抽出した不合格サマリーの来歴とは区別します。旧r3の同じCSVとSHAが一致することを確認しました。公開する成功版は全断面CSV・履歴・結果とZIP独立展開の再実行記録を備えます。",
       "en": "The initial failed attempt retains its source, inputs, diagnostic logs and all eight original full-field profile CSVs. These arrays are distinct from the failed summary recovered verbatim from stdout; their hashes match the same CSVs in the prior r3 edition. The successful release supplies all profiles, histories, results and an independently extracted ZIP rerun."
+    },
+    "sedov-blast": {
+      "ja": "固定した有限の投入半径で点源の自己相似参照と比べるため、誤差曲線には投入モデルの差も含まれ、純粋な空間精度の収束次数ではありません。同じ最細格子で投入半径を変える比較は感度診断であり、連続極限の投入誤差とPDE離散化誤差を完全に分離する検証ではありません。",
+      "en": "At fixed finite deposition radius, comparison with the point-source similarity reference includes deposition-model discrepancy; its refinement slope is not a pure spatial order. Changing deposition radius on the same finest grid is a sensitivity diagnostic, not a complete separation of continuum deposition and PDE-discretization errors."
     }
   },
   "case_equations": {
@@ -326,6 +346,15 @@
       "ids": [
         "euler"
       ]
+    },
+    "sedov-blast": {
+      "ids": [
+        "euler"
+      ],
+      "note": {
+        "ja": "理想気体Eulerの1次元球半径対称形。原点反射、幾何源、有限半径へのエネルギー投入と外側境界は、この例の固定入力で定義します。",
+        "en": "The one-dimensional spherical-radial ideal-gas Euler system. This example defines origin reflection, geometric source, finite-radius energy deposition and outer boundary in its fixed input."
+      }
     }
   }
 }

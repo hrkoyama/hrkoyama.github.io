@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "edition": "2026-11-22",
-  "case_count": 42,
+  "case_count": 43,
   "releases": [
     {
       "group": "foundations",
@@ -213,6 +213,20 @@
         "noh-cartesian-2d"
       ],
       "tests": 19
+    },
+    {
+      "group": "sedov",
+      "edition": "2026-11-23",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/",
+      "archive": "atlas-sedov-2026-11-23.zip",
+      "archive_sha256": "63d584129e6260bf04618205b7ea57cc9a36e8bb4d3423b1bcdd8489ca43eebb",
+      "manifest_sha256": "026a5c21e68cc127115ccc429fb35cb7a280a0914057d0b7167c64d032567e9b",
+      "verification_sha256": "fde165bb62331821f6ffa2d98d8c695bca9fcdae160801126323716580ab5db2",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "sedov-blast"
+      ],
+      "tests": 22
     }
   ]
 }

@@ -141,13 +141,13 @@ greengard1987.note はM2LとFMM solver未実装と記すが、現行の2D log FM
 
 ### Noh問題：収束流と外向き強衝撃波
 
-ID: compressible-fluid-1 · P1 · 作業中 · 新規実装
+ID: compressible-fluid-1 · P1 · 公開済み · 新規実装
 
 調査時の範囲：未収録
 
 調査時の現状：
 
-Sod・Shu–Osherの固定入力、独立Athena++追補shu-independent、PPM/AUSM/回転流束の既存実装と2D保存画像がある。Noh/Sedovは本文の将来項目のみ。
+初期圧力ゼロの1D平面・円筒・球対称と、正方形全域の実2D Cartesianの固定入力を公開済み。旧配布版・基準・失敗履歴を保持し、公開URLの図・ZIP・Linux追試まで確認。
 
 追加内容・最小の検証：
 
@@ -163,9 +163,7 @@ Sod・Shu–Osherの固定入力、独立Athena++追補shu-independent、PPM/AUS
 - 誤差・収束と制約が分かる図を保存する。
 - 実在する問題ギャラリー・実行入口・入力・図への対応を確認する。
 
-公開した段階と残る範囲：
-
-初期圧力ゼロの1D平面・円筒・球に加え、正方形全域の実2D Cartesian Euler版を追加。32²/64²/128²の3格子、19検査・49判定で密度誤差、全4保存量収支、原点過熱、D4偶奇性と軸・対角方向の差を確認。最細密度L1約10%、中心過熱約14%、衝撃半径の方向差は約.501Δxで単調減少しません。旧r3/r5の配布物と基準は保持。新図は実2D配列で、旧1D回転表示と区別します。原点位置ずらし・一般摂動安定性・3D Cartesianは未検証で、拡充候補として進行中です。
+公開完了の範囲は初期圧力ゼロの1D平面・円筒・球対称と、正方形全域の実2D Cartesianの固定入力です。各配布物・受入基準・失敗履歴・過熱誤差・方向差を保持しています。原点位置ずらし・一般摂動安定性・3D Cartesian等の将来拡張は今回の完了範囲外で、未検証です。
 
 調査時の根拠：
 
@@ -181,7 +179,7 @@ Sod・Shu–Osherの固定入力、独立Athena++追補shu-independent、PPM/AUS
 - [LANL ExactPack official Noh solver](<https://github.com/lanl/ExactPack/blob/master/exactpack/solvers/noh/noh1.py>)
   geometry=1/2/3、既定gamma=5/3、shock_locationと密度式を選択確認。一般gammaを受け付けても圧力実装に4**geometry/3があるため、独立照合は既定gammaで始め、API一般性を無検証で信用しない。
 
-公開した段階の根拠：
+完了の根拠：
 
 ```json
 {
@@ -222,13 +220,13 @@ Sod・Shu–Osherの固定入力、独立Athena++追補shu-independent、PPM/AUS
 
 ### Sedov–Taylorの点爆発
 
-ID: compressible-fluid-2 · P1 · 未着手 · 新規実装
+ID: compressible-fluid-2 · P1 · 作業中 · 新規実装
 
 調査時の範囲：未収録
 
 調査時の現状：
 
-Sod・Shu–Osherの固定入力、独立Athena++追補shu-independent、PPM/AUSM/回転流束の既存実装と2D保存画像がある。Noh/Sedovは本文の将来項目のみ。
+γ=5/3・周囲密度1・爆発エネルギー1・初期圧力0の1D球対称Eulerの固定入力、半解析参照、独立ExactPack点値照合、保存図・実行コードを追加。
 
 追加内容・最小の検証：
 
@@ -243,6 +241,10 @@ Sod・Shu–Osherの固定入力、独立Athena++追補shu-independent、PPM/AUS
 - 誤差・収束と制約が分かる図を保存する。
 - 実在する問題ギャラリー・実行入口・入力・図への対応を確認する。
 
+公開した段階と残る範囲：
+
+今回の軽量検証は1D球半径の128/256/512球殻と、同じ最細格子での投入半径.03/.015感度に限定します。有限投入半径と理想点源のモデル差が残り、誤差曲線の傾きは純粋な空間精度の次数ではありません。投入誤差とPDE離散化誤差の完全な連続極限分離、実2D Cartesian、非対称安定性、他γや周囲密度勾配は未検証の拡充候補です。
+
 調査時の根拠：
 
 - `catalog/atlas-test-problems.json`
@@ -252,6 +254,36 @@ Sod・Shu–Osherの固定入力、独立Athena++追補shu-independent、PPM/AUS
 
 - [LANL ExactPack: official benchmark collection and references](<https://github.com/lanl/ExactPack>)
   公式READMEでNoh/Sedov/Guderleyと出典一覧を確認。追加して相互検証する候補であり、現アトラスの依存や照合済み実績ではない。
+
+公開した段階の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-23/sedov/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-23/sedov/inputs.json",
+    "/code/validated-examples/2026-11-23/sedov/acceptance.json",
+    "/code/validated-examples/2026-11-23/sedov/pre-run-contract.json",
+    "/code/validated-examples/2026-11-23/sedov/reference-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-23/sedov/results/sedov-blast-preview.png",
+    "/code/validated-examples/2026-11-23/sedov/results/sedov-blast.png"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#sedov-ja",
+  "execution": "/numerical-methods-atlas/validation/sedov-blast/?lang=ja",
+  "code": [
+    "/code/validated-examples/2026-11-23/sedov/run.py",
+    "/code/validated-examples/2026-11-23/sedov/sedov_solver.py",
+    "/code/validated-examples/2026-11-23/sedov/reference_sedov.py"
+  ],
+  "references": [
+    "/numerical-methods-atlas/solutions/?lang=ja#solution-sedov-ja",
+    "/code/validated-examples/2026-11-23/sedov/exactpack-receipt.json",
+    "/code/validated-examples/2026-11-23/sedov/exactpack-snapshot.json"
+  ]
+}
+```
 
 ### Double-Mach/前向きステップの多格子・独立参照
 

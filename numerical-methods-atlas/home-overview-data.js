@@ -993,6 +993,10 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "validation-sedov": [
+    "ja",
+    "en"
+  ],
   "validation-splitting": [
     "ja",
     "en"

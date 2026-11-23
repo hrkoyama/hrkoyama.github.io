@@ -22,7 +22,7 @@
   },
   "workflow": {
     "max_active": 1,
-    "active_item": "compressible-fluid-1",
+    "active_item": "compressible-fluid-2",
     "states": [
       "planned",
       "in-progress",
@@ -332,15 +332,15 @@
       "priority": "P1",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "in-progress",
-      "current": "Sod・Shu–Osherの固定入力、独立Athena++追補shu-independent、PPM/AUSM/回転流束の既存実装と2D保存画像がある。Noh/Sedovは本文の将来項目のみ。",
+      "state": "published",
+      "current": "初期圧力ゼロの1D平面・円筒・球対称と、正方形全域の実2D Cartesianの固定入力を公開済み。旧配布版・基準・失敗履歴を保持し、公開URLの図・ZIP・Linux追試まで確認。",
       "tasks": [
         "平面1Dの固定gamma=5/3から開始し、衝撃位置/速度、密度圧縮、保存量、原点・反射壁過熱を測る。",
         "円筒・球対称は幾何ソース/原点正則性を別検証し、可能ならCartesian多次元で対称性破れも測る。",
         "セル平均と点値、体積重み付き誤差、衝撃近傍と原点近傍の誤差を分ける。",
         "厳密なcold limit p0=0と正圧近似を区別。既存Eulerはp<=0を拒否するので無言のfloor追加で厳密Nohと称さない。"
       ],
-      "scope_note": "初期圧力ゼロの1D平面・円筒・球に加え、正方形全域の実2D Cartesian Euler版を追加。32²/64²/128²の3格子、19検査・49判定で密度誤差、全4保存量収支、原点過熱、D4偶奇性と軸・対角方向の差を確認。最細密度L1約10%、中心過熱約14%、衝撃半径の方向差は約.501Δxで単調減少しません。旧r3/r5の配布物と基準は保持。新図は実2D配列で、旧1D回転表示と区別します。原点位置ずらし・一般摂動安定性・3D Cartesianは未検証で、拡充候補として進行中です。",
+      "scope_note": "公開完了の範囲は初期圧力ゼロの1D平面・円筒・球対称と、正方形全域の実2D Cartesianの固定入力です。各配布物・受入基準・失敗履歴・過熱誤差・方向差を保持しています。原点位置ずらし・一般摂動安定性・3D Cartesian等の将来拡張は今回の完了範囲外で、未検証です。",
       "sources": [
         {
           "title": "Noh (1987), Errors for calculations of strong shocks using an artificial viscosity and an artificial heat flux",
@@ -560,20 +560,20 @@
       "field_id": "compressible-fluid",
       "title": {
         "ja": "Sedov–Taylorの点爆発",
-        "en": "Sedov–Taylorの点爆発"
+        "en": "Sedov–Taylor point blast"
       },
       "detail_language": "ja",
       "priority": "P1",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "planned",
-      "current": "Sod・Shu–Osherの固定入力、独立Athena++追補shu-independent、PPM/AUSM/回転流束の既存実装と2D保存画像がある。Noh/Sedovは本文の将来項目のみ。",
+      "state": "in-progress",
+      "current": "γ=5/3・周囲密度1・爆発エネルギー1・初期圧力0の1D球対称Eulerの固定入力、半解析参照、独立ExactPack点値照合、保存図・実行コードを追加。",
       "tasks": [
         "固定爆発エネルギーの正規化、自己相似の衝撃半径と密度/圧力/速度を比較。",
         "有限セルへのエネルギー投入半径の誤差とPDE格子誤差を分け、球対称体積平均で参照を作る。",
         "低密度/負圧、総エネルギー、球対称性、中心特異点を報告。"
       ],
-      "scope_note": "",
+      "scope_note": "今回の軽量検証は1D球半径の128/256/512球殻と、同じ最細格子での投入半径.03/.015感度に限定します。有限投入半径と理想点源のモデル差が残り、誤差曲線の傾きは純粋な空間精度の次数ではありません。投入誤差とPDE離散化誤差の完全な連続極限分離、実2D Cartesian、非対称安定性、他γや周囲密度勾配は未検証の拡充候補です。",
       "sources": [
         {
           "title": "LANL ExactPack: official benchmark collection and references",
@@ -593,7 +593,31 @@
           "observation": "Sedovは将来項目としてのみ言及。"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23/sedov/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23/sedov/inputs.json",
+          "/code/validated-examples/2026-11-23/sedov/acceptance.json",
+          "/code/validated-examples/2026-11-23/sedov/pre-run-contract.json",
+          "/code/validated-examples/2026-11-23/sedov/reference-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23/sedov/results/sedov-blast-preview.png",
+          "/code/validated-examples/2026-11-23/sedov/results/sedov-blast.png"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#sedov-ja",
+        "execution": "/numerical-methods-atlas/validation/sedov-blast/?lang=ja",
+        "code": [
+          "/code/validated-examples/2026-11-23/sedov/run.py",
+          "/code/validated-examples/2026-11-23/sedov/sedov_solver.py",
+          "/code/validated-examples/2026-11-23/sedov/reference_sedov.py"
+        ],
+        "references": [
+          "/numerical-methods-atlas/solutions/?lang=ja#solution-sedov-ja",
+          "/code/validated-examples/2026-11-23/sedov/exactpack-receipt.json",
+          "/code/validated-examples/2026-11-23/sedov/exactpack-snapshot.json"
+        ]
+      },
       "sequence": 7
     },
     {

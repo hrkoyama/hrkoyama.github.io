@@ -1,0 +1,1130 @@
+{
+  "id": "sedov-blast",
+  "title": {
+    "ja": "Sedov–Taylor点爆発：球対称の軽量検証",
+    "en": "Sedov–Taylor point blast: lightweight spherical-radial validation"
+  },
+  "method_ids": [
+    "rusanov",
+    "heun"
+  ],
+  "domains": [
+    "fluid",
+    "shock",
+    "time"
+  ],
+  "code_files": [
+    "run.py",
+    "sedov_solver.py",
+    "reference_sedov.py"
+  ],
+  "summary": {
+    "ja": "球対称Euler方程式を半径方向の有限体積法で解く軽量例です。固定した半径0.03の領域に総エネルギー1を与え、128・256・512セルで点爆発の相似参照からの差と保存収支を測ります。図は1次元球対称データの断面表示で、2次元Cartesian計算ではありません。",
+    "en": "A lightweight spherical-radial Euler finite-volume example deposits unit energy inside fixed radius0.03. Three grids of128/256/512 radial cells measure differences from a point-blast similarity reference and conservation budgets. The picture is a section display of1D spherical data, not a2D Cartesian calculation."
+  },
+  "assumptions": {
+    "ja": "無次元、γ=5/3、初期密度1・速度0・背景圧力0、半径[0,1]、総注入エネルギー1、T=.05。球内一様の熱エネルギーを各殻の切断体積で正確に配分します。注入半径0.03を3格子で共通にし、512セルでは半径0.015の別実行も保存します。原点は鏡映、外端は流出境界で、実際の境界流束を収支へ含めます。",
+    "en": "Nondimensional gamma=5/3, ambient density1, velocity0, pressure0, radius[0,1], deposited energy1, T=.05. Uniform thermal energy inside a sphere is assigned using exact cut-shell volumes. Deposition radius0.03 is shared by all three grids; a separate512-cell run uses0.015. The origin is reflecting and the outer boundary is outflow; actual boundary fluxes enter measured budgets."
+  },
+  "algorithm": {
+    "ja": "球殻体積と面積を用いる区分定数Rusanov流束＋SSPRK2（Heun）です。半径運動量の幾何源p(A右−A左)/Vを同じRK段で積分し、静止した一様圧力との釣り合いも検査します。CFL=.4は各セルのV/(A左+A右)/(|u|+c)の最小値を使います。圧力seed・floor・セル平均修復・隠れた刻み再試行はなく、不正な段は生の保存量と履歴を保存して失敗とします。",
+    "en": "Piecewise-constant Rusanov fluxes on spherical shells with SSPRK2/Heun. The radial-momentum source p(A_right-A_left)/V is integrated at the same RK stages, with a stationary uniform-pressure balance test. CFL.4 uses the minimum V/(A_left+A_right)/(|u|+c). No pressure seed, floor, cell repair or hidden timestep retry; an invalid stage retains raw conserved values and history and fails."
+  },
+  "validation": {
+    "ja": "入力・数値ソース・受入基準・22テストを初回計算前にhash固定し、22単体検査と全4計算・48判定が初回から合格しました。参照は独立な相似ODEのDOP853積分、エネルギー規格化、中心ξ<.001の正則漸近形と衝撃位置で分割する殻求積です。16/32点求積・中心cutoff/ODE公差を別々に確認。固定commitの未改変ExactPackを6001/12001点で別実行し、中心とジャンプから離れた点を事前基準5e-4で照合しました。β=1.15166641793、Rs(.05)=.34746791233。原点・衝撃波を含むr≤1.2Rsの体積重み密度L1は.17257/.12785/.07458、圧力L1は.18148/.13939/.07615。512セルの衝撃位置誤差は1.096セル、最大離散収支残差は約1.34e-15です。",
+    "en": "Inputs, numerical sources, acceptance and22 tests were hash-locked before the first FV execution. All22 unit tests and48 gates on four calculations passed on the first attempt. The independent reference integrates the similarity ODE with DOP853, normalizes energy, uses a regular asymptote for xi<.001 and split shell quadrature at the shock. Orders16/32, core cutoff and ODE tolerance are checked separately. The unmodified pinned ExactPack evaluator was independently run at6001/12001 points and compared away from the center/jump with its preregistered5e-4 criterion. Beta=1.15166641793, Rs(.05)=.34746791233. Origin/shock-inclusive volume-weighted density L1 within r<=1.2Rs is.17257/.12785/.07458 and pressure L1 is.18148/.13939/.07615. Finest shock error is1.096 cells; maximum relative discrete-budget residual is about1.34e-15."
+  },
+  "limits": {
+    "ja": "有限の注入球と理想点爆発は初期条件が異なり、報告誤差には注入モデルと離散化の両方が含まれます。傾きは純粋な空間精度次数ではありません。同じ512セルで注入半径を半分にした密度差は約.000451、圧力差は約.000619ですが、点爆発参照への誤差は僅かに悪化し、改善や点源極限の証明とは扱いません。圧力誤差は数値p(保存量のセル平均)と参照の物理圧力平均を比較し、参照平均保存量からの圧力と区別します。中心密度・圧力・最大誤差を除外せず保存します。最細密度ピークは約2.918で厳密ジャンプ4を解像しきりません。冷たい裾の極小波速では局所CFL比が浮動小数点overflowで∞になりますが、制限しない比として扱い、選ばれる全体刻みの有限性・正値性を検査します。原点漸近部は近似で、ExactPack点照合もξ<.15を除きます。2D/3D Cartesian、一般摂動・非球対称性、高次精度は未検証です。",
+    "en": "A finite deposition sphere and an ideal point blast have different initial data; reported errors combine deposition-model and discretization effects. The refinement slope is not a pure spatial order. Halving the source radius at the same512 cells changes density by about.000451 and pressure by.000619, but point-reference errors become slightly worse; no improvement or point-source-limit proof is claimed. Pressure compares numerical p(mean conserved U) with reference mean physical pressure, distinct from p(mean reference U). Center values and maximum errors remain reported. The finest density peak is about2.918 versus the exact jump4. Extremely small cold-tail wave speeds can overflow a local CFL ratio to infinity; it is unrestrictive, and the chosen global timestep is checked finite. The regular tiny-core continuation is approximate, and ExactPack point probes exclude xi<.15. Cartesian2D/3D, general perturbations/asymmetry and high-order accuracy are unverified."
+  },
+  "formulas": [
+    "\\partial_t U+\\frac{1}{r^2}\\partial_r(r^2F)=\\left(0,2p/r,0\\right)^T,\\quad U=(\\rho,\\rho u,E)^T",
+    "R_s(t)=\\beta(E_0t^2/\\rho_0)^{1/5},\\quad\\beta\\simeq1.15166641793,\\quad\\dot R_s=2R_s/(5t)",
+    "\\rho=\\rho_0G(\\xi),\\quad u=\\dot R_sV(\\xi),\\quad p=\\rho_0\\dot R_s^2P(\\xi),\\quad\\xi=r/R_s",
+    "E_0=4\\pi\\int_0^\\infty\\left(\\frac{p}{\\gamma-1}+\\frac{\\rho u^2}{2}\\right)r^2\\,dr=1",
+    "\\bar U_i=\\frac{3}{r_{i+1/2}^3-r_{i-1/2}^3}\\int_{r_{i-1/2}}^{r_{i+1/2}}U(r)r^2\\,dr"
+  ],
+  "references": [
+    {
+      "id": "taylor1950blast",
+      "author": "G. I. Taylor",
+      "year": 1950,
+      "title": "The formation of a blast wave by a very intense explosion I. Theoretical discussion",
+      "journal": "Proceedings of the Royal Society A",
+      "volume": "201",
+      "number": "1065",
+      "pages": "159–174",
+      "doi": "10.1098/rspa.1950.0049",
+      "url": "https://doi.org/10.1098/rspa.1950.0049",
+      "type": "article",
+      "role": "original-similarity-theory",
+      "review_level": "selected-original-pages",
+      "review": {
+        "ja": "大学公開の原著スキャンpp159–167で相似仮定・Euler縮約・強衝撃条件・エネルギー規格化・中心指数を選択確認。出版社は403で、全文読了やPDF再配布を主張しません。",
+        "en": "Selected original pp159–167 in a university-hosted scan checked for similarity assumptions, Euler reduction, strong-shock jumps, energy normalization and center exponent. Publisher access403; no full-text review or PDF redistribution claimed."
+      },
+      "review_url": "https://homepage.physics.uiowa.edu/~ghowes/teach/phys7729/docs/Taylor50a.pdf"
+    },
+    {
+      "id": "thrussell2023exactpack",
+      "author": "J. Thrussell and J. M. Ferguson",
+      "year": 2023,
+      "title": "ExactPack: A python library of exact analytic solutions",
+      "journal": "SoftwareX",
+      "volume": "24",
+      "article_number": "101560",
+      "doi": "10.1016/j.softx.2023.101560",
+      "url": "https://doi.org/10.1016/j.softx.2023.101560",
+      "type": "article",
+      "role": "independent-reference-software",
+      "software_commit": "9bacc477eb791e959c9621e771fc7a725db755fa",
+      "software_url": "https://github.com/lanl/ExactPack/tree/9bacc477eb791e959c9621e771fc7a725db755fa",
+      "review_level": "official-record-and-selected-pinned-code-execution",
+      "review": {
+        "ja": "固定commitの未改変Sedov評価器を6001/12001点で実行。ソースhash・パラメータ・点値・照合判定・BSD-3-Clauseを保存。別のEuler数値ソルバーや全ライブラリ検査ではありません。",
+        "en": "Unmodified selected pinned Sedov evaluator actually run at6001/12001 points. Source hashes, parameters, point values, decisions and BSD-3-Clause retained; not another numerical Euler solver or whole-library test."
+      }
+    }
+  ],
+  "group": "sedov",
+  "edition": "2026-11-23",
+  "measured": {
+    "id": "sedov-blast",
+    "passed": true,
+    "records": [
+      {
+        "n": 128,
+        "deposit_radius": 0.03,
+        "time": 0.05,
+        "steps": 566,
+        "density_l1": 0.012250471001811052,
+        "active_density_l1": 0.1725659421031009,
+        "active_pressure_l1": 0.1814846912454574,
+        "density_l2": 0.08209659666610923,
+        "density_linf": 0.3521235945578273,
+        "density_min": 0.047658682634418886,
+        "density_max": 2.0190605844395444,
+        "pressure_min": 0.0,
+        "pressure_max": 3.8860415822055825,
+        "maximum_speed": 1.9235534988316347,
+        "center_density": 0.047658682634418886,
+        "center_pressure": 1.351617523967532,
+        "center_reference_density": 2.1024859848663485e-08,
+        "center_reference_pressure": 1.7744715646805047,
+        "shock_radius": 0.3515625,
+        "reference_shock_radius": 0.3474679123327071,
+        "shock_error_cells": 0.5241072214134945,
+        "minimum_density_all_stages": 0.047658661862980935,
+        "minimum_pressure_all_stages": 0.0,
+        "minimum_internal_roundoff_units": 0.0,
+        "state_floor_count": 0,
+        "reference_quadrature_density_l1": 2.3588890752860758e-15,
+        "reference_quadrature_pressure_l1": 3.0114065863515865e-15,
+        "initial_integral": [
+          4.188790204786392,
+          0.0,
+          0.9999999999999999
+        ],
+        "final_integral": [
+          4.188790204786392,
+          0.31408958816217897,
+          1.0000000000000004
+        ],
+        "boundary_net_integral": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "geometric_source_integral": [
+          0.0,
+          0.3140895881621789,
+          0.0
+        ],
+        "conservation_residual": [
+          0.0,
+          5.551115123125783e-17,
+          5.551115123125783e-16
+        ],
+        "conservation_relative": [
+          0.0,
+          5.551115123125783e-17,
+          5.551115123125783e-16
+        ],
+        "initial_energy_error": 1.1102230246251565e-16,
+        "field": "field-n128.npz",
+        "history": "history-n128.json"
+      },
+      {
+        "n": 256,
+        "deposit_radius": 0.03,
+        "time": 0.05,
+        "steps": 1526,
+        "density_l1": 0.00933509500648086,
+        "active_density_l1": 0.12784604728552587,
+        "active_pressure_l1": 0.1393948343940096,
+        "density_l2": 0.08070703514722417,
+        "density_linf": 0.3318354155299079,
+        "density_min": 0.027154411193888128,
+        "density_max": 2.482792271720597,
+        "pressure_min": 0.0,
+        "pressure_max": 4.382105847750185,
+        "maximum_speed": 1.9705488633838766,
+        "center_density": 0.027154411193888128,
+        "center_pressure": 1.5295450322089066,
+        "center_reference_density": 9.291252867552618e-10,
+        "center_reference_pressure": 1.774471564669259,
+        "shock_radius": 0.3515625,
+        "reference_shock_radius": 0.3474679123327071,
+        "shock_error_cells": 1.048214442826989,
+        "minimum_density_all_stages": 0.02715440752831178,
+        "minimum_pressure_all_stages": 0.0,
+        "minimum_internal_roundoff_units": 0.0,
+        "state_floor_count": 0,
+        "reference_quadrature_density_l1": 3.533105349140851e-16,
+        "reference_quadrature_pressure_l1": 3.6621232860099745e-16,
+        "initial_integral": [
+          4.188790204786392,
+          0.0,
+          0.9999999999999999
+        ],
+        "final_integral": [
+          4.188790204786392,
+          0.3125332118657703,
+          0.9999999999999998
+        ],
+        "boundary_net_integral": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "geometric_source_integral": [
+          0.0,
+          0.31253321186577027,
+          0.0
+        ],
+        "conservation_residual": [
+          0.0,
+          5.551115123125783e-17,
+          -1.1102230246251565e-16
+        ],
+        "conservation_relative": [
+          0.0,
+          5.551115123125783e-17,
+          1.1102230246251565e-16
+        ],
+        "initial_energy_error": 1.1102230246251565e-16,
+        "field": "field-n256.npz",
+        "history": "history-n256.json"
+      },
+      {
+        "n": 512,
+        "deposit_radius": 0.03,
+        "time": 0.05,
+        "steps": 4009,
+        "density_l1": 0.005369634041936693,
+        "active_density_l1": 0.0745788634711047,
+        "active_pressure_l1": 0.07615237367293834,
+        "density_l2": 0.058313703526242607,
+        "density_linf": 0.3892475533701589,
+        "density_min": 0.014842231748925943,
+        "density_max": 2.918215810146801,
+        "pressure_min": 0.0,
+        "pressure_max": 4.8023695991464725,
+        "maximum_speed": 2.007592026879321,
+        "center_density": 0.014842231748925943,
+        "center_pressure": 1.641701683913197,
+        "center_reference_density": 4.1043889913677827e-11,
+        "center_reference_pressure": 1.7744715646691345,
+        "shock_radius": 0.349609375,
+        "reference_shock_radius": 0.3474679123327071,
+        "shock_error_cells": 1.0964288856539781,
+        "minimum_density_all_stages": 0.014842231581750319,
+        "minimum_pressure_all_stages": 0.0,
+        "minimum_internal_roundoff_units": 0.0,
+        "state_floor_count": 0,
+        "reference_quadrature_density_l1": 1.1766085003791174e-16,
+        "reference_quadrature_pressure_l1": 1.1717338251963657e-16,
+        "initial_integral": [
+          4.18879020478639,
+          0.0,
+          1.0
+        ],
+        "final_integral": [
+          4.18879020478639,
+          0.3119858848492353,
+          0.9999999999999987
+        ],
+        "boundary_net_integral": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "geometric_source_integral": [
+          0.0,
+          0.3119858848492348,
+          0.0
+        ],
+        "conservation_residual": [
+          0.0,
+          4.996003610813204e-16,
+          -1.3322676295501878e-15
+        ],
+        "conservation_relative": [
+          0.0,
+          4.996003610813204e-16,
+          1.3322676295501878e-15
+        ],
+        "initial_energy_error": 0.0,
+        "field": "field-n512.npz",
+        "history": "history-n512.json"
+      }
+    ],
+    "source_radius_sensitivity": {
+      "n": 512,
+      "deposit_radius": 0.015,
+      "time": 0.05,
+      "steps": 4369,
+      "density_l1": 0.005393753638752148,
+      "active_density_l1": 0.07491386062432395,
+      "active_pressure_l1": 0.0763195410911965,
+      "density_l2": 0.05842159318126381,
+      "density_linf": 0.39003149491196826,
+      "density_min": 0.014455563056910205,
+      "density_max": 2.918008461264103,
+      "pressure_min": 0.0,
+      "pressure_max": 4.79871250116524,
+      "maximum_speed": 2.0069269208346303,
+      "center_density": 0.014455563056910205,
+      "center_pressure": 1.6407553622782687,
+      "center_reference_density": 4.1043889913677827e-11,
+      "center_reference_pressure": 1.7744715646691345,
+      "shock_radius": 0.349609375,
+      "reference_shock_radius": 0.3474679123327071,
+      "shock_error_cells": 1.0964288856539781,
+      "minimum_density_all_stages": 0.014455563054644637,
+      "minimum_pressure_all_stages": 0.0,
+      "minimum_internal_roundoff_units": 0.0,
+      "state_floor_count": 0,
+      "reference_quadrature_density_l1": 1.1766085003791174e-16,
+      "reference_quadrature_pressure_l1": 1.1717338251963657e-16,
+      "initial_integral": [
+        4.18879020478639,
+        0.0,
+        0.9999999999999999
+      ],
+      "final_integral": [
+        4.18879020478639,
+        0.3120004426932392,
+        1.0000000000000002
+      ],
+      "boundary_net_integral": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "geometric_source_integral": [
+        0.0,
+        0.3120004426932395,
+        0.0
+      ],
+      "conservation_residual": [
+        0.0,
+        -3.3306690738754696e-16,
+        3.3306690738754696e-16
+      ],
+      "conservation_relative": [
+        0.0,
+        3.3306690738754696e-16,
+        3.3306690738754696e-16
+      ],
+      "initial_energy_error": 1.1102230246251565e-16,
+      "paired_density_difference": 0.0004507157824291705,
+      "paired_pressure_difference": 0.0006192064661489633,
+      "field": "field-radius-probe.npz",
+      "history": "history-radius-probe.json"
+    },
+    "checks": {
+      "three fixed-radius refinements complete": true,
+      "paired smaller-radius run completes": true,
+      "n128: strictly positive density all stages": true,
+      "n128: internal energy within roundoff": true,
+      "n128: no state floor or repair": true,
+      "n128: unit deposited energy": true,
+      "n128: mass discrete balance": true,
+      "n128: radial momentum including geometric source discrete balance": true,
+      "n128: energy discrete balance": true,
+      "n128: reference_quadrature_density_l1": true,
+      "n128: reference_quadrature_pressure_l1": true,
+      "n128: origin and maximum diagnostics retained": true,
+      "n256: strictly positive density all stages": true,
+      "n256: internal energy within roundoff": true,
+      "n256: no state floor or repair": true,
+      "n256: unit deposited energy": true,
+      "n256: mass discrete balance": true,
+      "n256: radial momentum including geometric source discrete balance": true,
+      "n256: energy discrete balance": true,
+      "n256: reference_quadrature_density_l1": true,
+      "n256: reference_quadrature_pressure_l1": true,
+      "n256: origin and maximum diagnostics retained": true,
+      "n512: strictly positive density all stages": true,
+      "n512: internal energy within roundoff": true,
+      "n512: no state floor or repair": true,
+      "n512: unit deposited energy": true,
+      "n512: mass discrete balance": true,
+      "n512: radial momentum including geometric source discrete balance": true,
+      "n512: energy discrete balance": true,
+      "n512: reference_quadrature_density_l1": true,
+      "n512: reference_quadrature_pressure_l1": true,
+      "n512: origin and maximum diagnostics retained": true,
+      "sensitivity: strictly positive density all stages": true,
+      "sensitivity: internal energy within roundoff": true,
+      "sensitivity: no state floor or repair": true,
+      "sensitivity: unit deposited energy": true,
+      "sensitivity: mass discrete balance": true,
+      "sensitivity: radial momentum including geometric source discrete balance": true,
+      "sensitivity: energy discrete balance": true,
+      "sensitivity: reference_quadrature_density_l1": true,
+      "sensitivity: reference_quadrature_pressure_l1": true,
+      "sensitivity: origin and maximum diagnostics retained": true,
+      "finest active_density_l1": true,
+      "finest active_pressure_l1": true,
+      "finest shock_error_cells": true,
+      "fixed-source active density L1 decreases": true,
+      "last fixed-source density L1 order": true,
+      "source-radius effects separately retained": true
+    },
+    "check_details": [
+      {
+        "name": "three fixed-radius refinements complete",
+        "value": [
+          128,
+          256,
+          512
+        ],
+        "bound": [
+          128,
+          256,
+          512
+        ],
+        "passed": true
+      },
+      {
+        "name": "paired smaller-radius run completes",
+        "value": true,
+        "bound": true,
+        "passed": true
+      },
+      {
+        "name": "n128: strictly positive density all stages",
+        "value": 0.047658661862980935,
+        "bound": 0,
+        "passed": true
+      },
+      {
+        "name": "n128: internal energy within roundoff",
+        "value": 0.0,
+        "bound": -64,
+        "passed": true
+      },
+      {
+        "name": "n128: no state floor or repair",
+        "value": 0,
+        "bound": 0,
+        "passed": true
+      },
+      {
+        "name": "n128: unit deposited energy",
+        "value": 1.1102230246251565e-16,
+        "bound": 2e-14,
+        "passed": true
+      },
+      {
+        "name": "n128: mass discrete balance",
+        "value": 0.0,
+        "bound": 2e-12,
+        "passed": true
+      },
+      {
+        "name": "n128: radial momentum including geometric source discrete balance",
+        "value": 5.551115123125783e-17,
+        "bound": 2e-12,
+        "passed": true
+      },
+      {
+        "name": "n128: energy discrete balance",
+        "value": 5.551115123125783e-16,
+        "bound": 2e-12,
+        "passed": true
+      },
+      {
+        "name": "n128: reference_quadrature_density_l1",
+        "value": 2.3588890752860758e-15,
+        "bound": 1e-05,
+        "passed": true
+      },
+      {
+        "name": "n128: reference_quadrature_pressure_l1",
+        "value": 3.0114065863515865e-15,
+        "bound": 1e-05,
+        "passed": true
+      },
+      {
+        "name": "n128: origin and maximum diagnostics retained",
+        "value": true,
+        "bound": true,
+        "passed": true
+      },
+      {
+        "name": "n256: strictly positive density all stages",
+        "value": 0.02715440752831178,
+        "bound": 0,
+        "passed": true
+      },
+      {
+        "name": "n256: internal energy within roundoff",
+        "value": 0.0,
+        "bound": -64,
+        "passed": true
+      },
+      {
+        "name": "n256: no state floor or repair",
+        "value": 0,
+        "bound": 0,
+        "passed": true
+      },
+      {
+        "name": "n256: unit deposited energy",
+        "value": 1.1102230246251565e-16,
+        "bound": 2e-14,
+        "passed": true
+      },
+      {
+        "name": "n256: mass discrete balance",
+        "value": 0.0,
+        "bound": 2e-12,
+        "passed": true
+      },
+      {
+        "name": "n256: radial momentum including geometric source discrete balance",
+        "value": 5.551115123125783e-17,
+        "bound": 2e-12,
+        "passed": true
+      },
+      {
+        "name": "n256: energy discrete balance",
+        "value": 1.1102230246251565e-16,
+        "bound": 2e-12,
+        "passed": true
+      },
+      {
+        "name": "n256: reference_quadrature_density_l1",
+        "value": 3.533105349140851e-16,
+        "bound": 1e-05,
+        "passed": true
+      },
+      {
+        "name": "n256: reference_quadrature_pressure_l1",
+        "value": 3.6621232860099745e-16,
+        "bound": 1e-05,
+        "passed": true
+      },
+      {
+        "name": "n256: origin and maximum diagnostics retained",
+        "value": true,
+        "bound": true,
+        "passed": true
+      },
+      {
+        "name": "n512: strictly positive density all stages",
+        "value": 0.014842231581750319,
+        "bound": 0,
+        "passed": true
+      },
+      {
+        "name": "n512: internal energy within roundoff",
+        "value": 0.0,
+        "bound": -64,
+        "passed": true
+      },
+      {
+        "name": "n512: no state floor or repair",
+        "value": 0,
+        "bound": 0,
+        "passed": true
+      },
+      {
+        "name": "n512: unit deposited energy",
+        "value": 0.0,
+        "bound": 2e-14,
+        "passed": true
+      },
+      {
+        "name": "n512: mass discrete balance",
+        "value": 0.0,
+        "bound": 2e-12,
+        "passed": true
+      },
+      {
+        "name": "n512: radial momentum including geometric source discrete balance",
+        "value": 4.996003610813204e-16,
+        "bound": 2e-12,
+        "passed": true
+      },
+      {
+        "name": "n512: energy discrete balance",
+        "value": 1.3322676295501878e-15,
+        "bound": 2e-12,
+        "passed": true
+      },
+      {
+        "name": "n512: reference_quadrature_density_l1",
+        "value": 1.1766085003791174e-16,
+        "bound": 1e-05,
+        "passed": true
+      },
+      {
+        "name": "n512: reference_quadrature_pressure_l1",
+        "value": 1.1717338251963657e-16,
+        "bound": 1e-05,
+        "passed": true
+      },
+      {
+        "name": "n512: origin and maximum diagnostics retained",
+        "value": true,
+        "bound": true,
+        "passed": true
+      },
+      {
+        "name": "sensitivity: strictly positive density all stages",
+        "value": 0.014455563054644637,
+        "bound": 0,
+        "passed": true
+      },
+      {
+        "name": "sensitivity: internal energy within roundoff",
+        "value": 0.0,
+        "bound": -64,
+        "passed": true
+      },
+      {
+        "name": "sensitivity: no state floor or repair",
+        "value": 0,
+        "bound": 0,
+        "passed": true
+      },
+      {
+        "name": "sensitivity: unit deposited energy",
+        "value": 1.1102230246251565e-16,
+        "bound": 2e-14,
+        "passed": true
+      },
+      {
+        "name": "sensitivity: mass discrete balance",
+        "value": 0.0,
+        "bound": 2e-12,
+        "passed": true
+      },
+      {
+        "name": "sensitivity: radial momentum including geometric source discrete balance",
+        "value": 3.3306690738754696e-16,
+        "bound": 2e-12,
+        "passed": true
+      },
+      {
+        "name": "sensitivity: energy discrete balance",
+        "value": 3.3306690738754696e-16,
+        "bound": 2e-12,
+        "passed": true
+      },
+      {
+        "name": "sensitivity: reference_quadrature_density_l1",
+        "value": 1.1766085003791174e-16,
+        "bound": 1e-05,
+        "passed": true
+      },
+      {
+        "name": "sensitivity: reference_quadrature_pressure_l1",
+        "value": 1.1717338251963657e-16,
+        "bound": 1e-05,
+        "passed": true
+      },
+      {
+        "name": "sensitivity: origin and maximum diagnostics retained",
+        "value": true,
+        "bound": true,
+        "passed": true
+      },
+      {
+        "name": "finest active_density_l1",
+        "value": 0.0745788634711047,
+        "bound": 0.3,
+        "passed": true
+      },
+      {
+        "name": "finest active_pressure_l1",
+        "value": 0.07615237367293834,
+        "bound": 0.3,
+        "passed": true
+      },
+      {
+        "name": "finest shock_error_cells",
+        "value": 1.0964288856539781,
+        "bound": 5.0,
+        "passed": true
+      },
+      {
+        "name": "fixed-source active density L1 decreases",
+        "value": true,
+        "bound": true,
+        "passed": true
+      },
+      {
+        "name": "last fixed-source density L1 order",
+        "value": 0.7775688396137775,
+        "bound": 0.2,
+        "passed": true
+      },
+      {
+        "name": "source-radius effects separately retained",
+        "value": true,
+        "bound": true,
+        "passed": true
+      }
+    ],
+    "metrics": {
+      "n": 512,
+      "deposit_radius": 0.03,
+      "time": 0.05,
+      "steps": 4009,
+      "density_l1": 0.005369634041936693,
+      "active_density_l1": 0.0745788634711047,
+      "active_pressure_l1": 0.07615237367293834,
+      "density_l2": 0.058313703526242607,
+      "density_linf": 0.3892475533701589,
+      "density_min": 0.014842231748925943,
+      "density_max": 2.918215810146801,
+      "pressure_min": 0.0,
+      "pressure_max": 4.8023695991464725,
+      "maximum_speed": 2.007592026879321,
+      "center_density": 0.014842231748925943,
+      "center_pressure": 1.641701683913197,
+      "center_reference_density": 4.1043889913677827e-11,
+      "center_reference_pressure": 1.7744715646691345,
+      "shock_radius": 0.349609375,
+      "reference_shock_radius": 0.3474679123327071,
+      "shock_error_cells": 1.0964288856539781,
+      "minimum_density_all_stages": 0.014842231581750319,
+      "minimum_pressure_all_stages": 0.0,
+      "minimum_internal_roundoff_units": 0.0,
+      "state_floor_count": 0,
+      "reference_quadrature_density_l1": 1.1766085003791174e-16,
+      "reference_quadrature_pressure_l1": 1.1717338251963657e-16,
+      "initial_energy_error": 0.0
+    },
+    "scope": "One-dimensional spherical radial Euler; fixed finite deposition sphere; not a two-dimensional Cartesian blast."
+  },
+  "problem_id": "sedov",
+  "editorial_note": {
+    "ja": "固定した有限の投入半径で点源の自己相似参照と比べるため、誤差曲線には投入モデルの差も含まれ、純粋な空間精度の収束次数ではありません。同じ最細格子で投入半径を変える比較は感度診断であり、連続極限の投入誤差とPDE離散化誤差を完全に分離する検証ではありません。",
+    "en": "At fixed finite deposition radius, comparison with the point-source similarity reference includes deposition-model discrepancy; its refinement slope is not a pure spatial order. Changing deposition radius on the same finest grid is a sensitivity diagnostic, not a complete separation of continuum deposition and PDE-discretization errors."
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sedov-blast/",
+  "entry": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sedov-blast/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sedov-blast/?lang=en"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sedov/#sedov-blast",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sedov/#sedov-blast"
+  },
+  "release": {
+    "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/",
+    "archive": {
+      "file": "atlas-sedov-2026-11-23.zip",
+      "sha256": "63d584129e6260bf04618205b7ea57cc9a36e8bb4d3423b1bcdd8489ca43eebb",
+      "bytes": 783208,
+      "archive_directory": "atlas-sedov-2026-11-23"
+    },
+    "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/atlas-sedov-2026-11-23.zip",
+    "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/source-manifest.json",
+    "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/verification.json",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/results/result.json",
+    "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/inputs.json",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/sedov_solver.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/reference_sedov.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/exactpack-generate.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/reference-development/ode01-source.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/test_sedov.py"
+    ],
+    "passed_tests": 22
+  },
+  "source_sha256": {
+    "catalog/atlas-depth-expansion.json": "73d9e1b8a53e087825d8be61d173ae8518ddefa8ab0298166909921a7175e28c",
+    "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
+    "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
+    "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
+    "code/validated-examples/2026-11-22/foundations/results/result.json": "93a27cb8e43d7195d2417fc9110f196b07c826ea1f4e2b240f879ab8ab8b4b77",
+    "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
+    "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
+    "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
+    "code/validated-examples/2026-11-22/models/cases.json": "09b670a3462f7f1395dcdf12b507786b69616c0ea165d2678efe780ddb0cf0e6",
+    "code/validated-examples/2026-11-22/models/results/result.json": "d3af162e0e4a1cb0cc14bd41f250cfe16b69e0b6f111cc4ba1c71eb4ca55e266",
+    "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
+    "code/validated-examples/2026-11-22/particles/source-manifest.json": "63cefd473db691db611628f6501b2b58d6727c055ffde1b9a4962bfecfacd125",
+    "code/validated-examples/2026-11-22/particles/verification.json": "48744c4ce661cb76ce7cba81d55bbbb2737885c472966237e78c9e3dfcbf43b7",
+    "code/validated-examples/2026-11-22/particles/cases.json": "f6e68b2ec8d0cd56357b1aeecea3f9c40cf22f89e7f9c1b8b9442ad020ddbf86",
+    "code/validated-examples/2026-11-22/particles/results/result.json": "ed038f2af0d25bb29235e5f2853e0c8360974e8a499475f4b5cb3146d142ad60",
+    "code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+    "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
+    "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
+    "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
+    "code/validated-examples/2026-11-22/mhd/results/result.json": "ce1a011a3f2a18727aa7c10a81d712e23b536e9367e4be18d6847b74210a73f6",
+    "code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip": "2e7eeaaacaeb918671228cc56ab333d0c4ca5a9879241846f5772594552d0b16",
+    "code/validated-examples/2026-11-22/thermostats/source-manifest.json": "81a854bdfe3ae33b4eb4bffdccc9ab15a09f2bddbffb294cd2c2cbd07e641580",
+    "code/validated-examples/2026-11-22/thermostats/verification.json": "c14f55ac05d93269dbf8eef4a2a4042f75764d5228d06f8e41039d0b60351905",
+    "code/validated-examples/2026-11-22/thermostats/cases.json": "123566ec7000dce11f2a6a7474d35e45c8fdf24db85a0556e2cbb3911d3acd77",
+    "code/validated-examples/2026-11-22/thermostats/results/result.json": "7971007807acce9f75261b684b789f196e1d5dffc80797e102d1b0bebbc93f11",
+    "code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip": "38142da988bf0c790eab7e7f10f8d1e209d074c3627f73a207f5223a24e18d65",
+    "code/validated-examples/2026-11-22/biology/source-manifest.json": "56947a4fb54ae757408ddddfc5de0884bfe35266032ee425a8d96a815f3362ba",
+    "code/validated-examples/2026-11-22/biology/verification.json": "5cafaaef809f46e6ab01327107f7367113b8069931621fc92d446fbf142682bd",
+    "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
+    "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
+    "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
+    "code/validated-examples/2026-11-22/mcmc/source-manifest.json": "c288e5c96aefe6f4bfdab4dbd78efc8b27924087aa09ac7e91d61adf63ebf195",
+    "code/validated-examples/2026-11-22/mcmc/verification.json": "f39975a549b48345d5b6f833d6226cdae1054ecb9f004d9c845d1ffa8bbc8c9e",
+    "code/validated-examples/2026-11-22/mcmc/cases.json": "fa950eafd45ac23aa2eba3374b23ab2d8df934368ab5b833bf812fbdd095fcaa",
+    "code/validated-examples/2026-11-22/mcmc/results/result.json": "530a343f4e59e03aa9369e373507e73a063eb810eb5a24fd820568467567cbd5",
+    "code/validated-examples/2026-11-22/mcmc/atlas-mcmc-2026-11-22.zip": "7fb1cde233b79e2b2d56edac89c6e1bdbe8239c1b7f5e166054f8e3e2cdaac11",
+    "code/validated-examples/2026-11-22/mhd-convergence/source-manifest.json": "9d5fd8eb67ed3d4ac3965596bbd12152bdc1ae2e03a3a4f060573175d00caf67",
+    "code/validated-examples/2026-11-22/mhd-convergence/verification.json": "ddf51e803eb94ca7dc419d0b9fc4aa6ec7204c319e448f7d4b120f5342a319d8",
+    "code/validated-examples/2026-11-22/mhd-convergence/cases.json": "a1ebd3a1344c90cc49e11dd790a522434f7fdec27f77d8621a2197a7be738434",
+    "code/validated-examples/2026-11-22/mhd-convergence/results/result.json": "7b1ddd177a96b1ede21b568b0f8e72e4b23d970d96ace3ab2441b0df0efbfe6b",
+    "code/validated-examples/2026-11-22/mhd-convergence/atlas-mhd-convergence-2026-11-22.zip": "5db2fc202014a576145e98c84e1802540df7d8e26353d469fbd55c8e393fd866",
+    "code/validated-examples/2026-11-22/foundations-conditioning/source-manifest.json": "f5b5b5cb5540a1ea76f60f599bd3afd99ffbf312343588e6c7d5c5bcffb3dd9c",
+    "code/validated-examples/2026-11-22/foundations-conditioning/verification.json": "3368c373d622c4246868a43ce869f160de34d0d124c0334d4355573e7c8b3b5f",
+    "code/validated-examples/2026-11-22/foundations-conditioning/cases.json": "fe1b43a92ad60c91a1fdbd79342db0269e27cc0ef2f7d1ddcee58e183cf5b66c",
+    "code/validated-examples/2026-11-22/foundations-conditioning/results/result.json": "0b8ef84da85f950afa9779feb79052401dcdda707d1ac6bb314c3afa3a1973e9",
+    "code/validated-examples/2026-11-22/foundations-conditioning/atlas-foundations-conditioning-2026-11-22.zip": "71d8f0d3b0bed4a6a97f976aabfd02cc0baf08a30c1655f6b1ea42ea16df3c9d",
+    "code/validated-examples/2026-11-22/particle-transport/source-manifest.json": "d5724e7fd43635a489acb3b9ae90ac83fcce734ee89b6f29bc80cbdd4cefac97",
+    "code/validated-examples/2026-11-22/particle-transport/verification.json": "a16b3b90fd815909a8f3241dd7c04aeedabb2dd964da603eadd851fd6a0e171d",
+    "code/validated-examples/2026-11-22/particle-transport/cases.json": "3d3dd9cbc6c62666bb76f893762cf27b33b2606a34e87ffe8c4275e258b96f66",
+    "code/validated-examples/2026-11-22/particle-transport/results/result.json": "8e189a555c575dba4878c1813f828b29a3045c5015bb4ff2aa1b16c8eab9b138",
+    "code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip": "940c1b9c867d5fda395bf93d9dac6b38d992bb4d3de29065f1b42108d1d4c0c9",
+    "code/validated-examples/2026-11-22/splitting/source-manifest.json": "e071ab71032cce9e1a8340cdd80bb58364b7105de764594507024259915f6368",
+    "code/validated-examples/2026-11-22/splitting/verification.json": "899af4b800c58e990a6eae62dd5510ff1afed02060ab7fb67e1c5c8ebcd47b53",
+    "code/validated-examples/2026-11-22/splitting/cases.json": "f252ee6b994a6827e5579b28127143680170124de50f05057d2890e545dcc84f",
+    "code/validated-examples/2026-11-22/splitting/results/result.json": "7b1b8338ec2a03eb04e82f3891d4e2fd08a2edb665313dc8bd0991b1a7a9a8f2",
+    "code/validated-examples/2026-11-22/splitting/atlas-splitting-2026-11-22.zip": "2ae466a4ea62e204716a388b86033de3a6493a9ab0ef4ad9aec4ebb038d8a404",
+    "code/validated-examples/2026-11-23-r5/noh/source-manifest.json": "8597cbc7b841502f4e7eca154e86fe8893402c1167614952de682d7307c5595d",
+    "code/validated-examples/2026-11-23-r5/noh/verification.json": "48545a33ab2c19e9071616a15a1fcbf90c716096aa1a12550d3cb872ed8d9e36",
+    "code/validated-examples/2026-11-23-r5/noh/cases.json": "9501c9cb57617c09a8ceb0aa7e124ba1e2af303144eaa82045e8632fc7c39fc2",
+    "code/validated-examples/2026-11-23-r5/noh/results/result.json": "4e92acb911d505b3f7e74e39f01acf77e59fbe15577f321ac759f1315e487724",
+    "code/validated-examples/2026-11-23-r5/noh/atlas-noh-2026-11-23-r5.zip": "64de5483e9896a3773348b75e1ec2b4630f8a709d68194c1d94772396f531733",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/source-manifest.json": "3f34837f6078bfdc96e5bea2a0ec36c3ae4c48a09c25fcd61560cbb4f4781f93",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/verification.json": "7c530b06df5d2878958bd249b3035050592365e23aee79804e600368dfb09f46",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/cases.json": "49b94c1f65e269d4a878be3a4d8778375b88b767f5dd01998ae5fe6b8fc2b3ee",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/results/result.json": "e121c2f5171ee53491b492019311d002ceb44213f6f7cd43051a3ca68f74c694",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/atlas-noh-cartesian-2026-11-23-r2.zip": "2145beb161f993c1608fc5ac167af5278d58e10f92e74ed37e5fb9c35243b918",
+    "code/validated-examples/2026-11-23/sedov/source-manifest.json": "026a5c21e68cc127115ccc429fb35cb7a280a0914057d0b7167c64d032567e9b",
+    "code/validated-examples/2026-11-23/sedov/verification.json": "fde165bb62331821f6ffa2d98d8c695bca9fcdae160801126323716580ab5db2",
+    "code/validated-examples/2026-11-23/sedov/cases.json": "41083cf19e47a71e15b12684c7fb1586ac4a25cca37b54da5abdcbe159100d87",
+    "code/validated-examples/2026-11-23/sedov/results/result.json": "c17444a72b4974bc58a2bfe722fc0ed98a554dfdc7179e512e81304a22b46dd4",
+    "code/validated-examples/2026-11-23/sedov/atlas-sedov-2026-11-23.zip": "63d584129e6260bf04618205b7ea57cc9a36e8bb4d3423b1bcdd8489ca43eebb"
+  },
+  "scope": {
+    "ja": "共通22実行例の台帳とは別に管理する追加検証集です。配布ZIPを独立展開し、各グループの全固定入力と検査を実行した記録を示します。設定・手法・刻み幅の違いを独立した物理問題の数には加算しません。",
+    "en": "These additional validation supplements are managed separately from the common 22-example registry. Receipts cover independent ZIP extraction, tests and every fixed input within each group. Changes of settings, methods or step sizes do not add independent physical problems."
+  },
+  "execution_navigation": {
+    "id": "sedov-blast",
+    "kind": "supplement",
+    "name": {
+      "ja": "Sedov–Taylor点爆発：球対称の軽量検証",
+      "en": "Sedov–Taylor point blast: lightweight spherical-radial validation"
+    },
+    "methods": [
+      {
+        "id": "rusanov",
+        "name": {
+          "ja": "Rusanov／局所Lax–Friedrichs流束",
+          "en": "Rusanov / local Lax–Friedrichs flux"
+        },
+        "status": "educational-example",
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rusanov/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rusanov/?lang=en"
+        }
+      },
+      {
+        "id": "heun",
+        "name": {
+          "ja": "Heun法／SSPRK(2,2)",
+          "en": "Heun / SSPRK(2,2)"
+        },
+        "status": "educational-example",
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/heun/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/heun/?lang=en"
+        }
+      }
+    ],
+    "formulation": {
+      "role": "example-definition",
+      "latex": [
+        "\\partial_t U+\\frac{1}{r^2}\\partial_r(r^2F)=\\left(0,2p/r,0\\right)^T,\\quad U=(\\rho,\\rho u,E)^T",
+        "R_s(t)=\\beta(E_0t^2/\\rho_0)^{1/5},\\quad\\beta\\simeq1.15166641793,\\quad\\dot R_s=2R_s/(5t)",
+        "\\rho=\\rho_0G(\\xi),\\quad u=\\dot R_sV(\\xi),\\quad p=\\rho_0\\dot R_s^2P(\\xi),\\quad\\xi=r/R_s",
+        "E_0=4\\pi\\int_0^\\infty\\left(\\frac{p}{\\gamma-1}+\\frac{\\rho u^2}{2}\\right)r^2\\,dr=1",
+        "\\bar U_i=\\frac{3}{r_{i+1/2}^3-r_{i-1/2}^3}\\int_{r_{i-1/2}}^{r_{i+1/2}}U(r)r^2\\,dr"
+      ],
+      "note": {
+        "ja": "球殻体積と面積を用いる区分定数Rusanov流束＋SSPRK2（Heun）です。半径運動量の幾何源p(A右−A左)/Vを同じRK段で積分し、静止した一様圧力との釣り合いも検査します。CFL=.4は各セルのV/(A左+A右)/(|u|+c)の最小値を使います。圧力seed・floor・セル平均修復・隠れた刻み再試行はなく、不正な段は生の保存量と履歴を保存して失敗とします。",
+        "en": "Piecewise-constant Rusanov fluxes on spherical shells with SSPRK2/Heun. The radial-momentum source p(A_right-A_left)/V is integrated at the same RK stages, with a stationary uniform-pressure balance test. CFL.4 uses the minimum V/(A_left+A_right)/(|u|+c). No pressure seed, floor, cell repair or hidden timestep retry; an invalid stage retains raw conserved values and history and fails."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sedov-blast/?lang=ja#sedov-blast-ja-algorithm",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sedov-blast/?lang=en#sedov-blast-en-algorithm"
+      }
+    },
+    "equations": [
+      {
+        "id": "euler",
+        "name": {
+          "ja": "圧縮性Euler方程式",
+          "en": "Compressible Euler equations"
+        },
+        "note": {
+          "ja": "理想気体Eulerの1次元球半径対称形。原点反射、幾何源、有限半径へのエネルギー投入と外側境界は、この例の固定入力で定義します。",
+          "en": "The one-dimensional spherical-radial ideal-gas Euler system. This example defines origin reflection, geometric source, finite-radius energy deposition and outer boundary in its fixed input."
+        },
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#euler-en"
+        }
+      }
+    ],
+    "problem": {
+      "id": "sedov",
+      "name": {
+        "ja": "Sedov–Taylorの点爆発",
+        "en": "Sedov–Taylor point blast"
+      },
+      "image": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/results/sedov-blast-preview.png",
+        "sha256": "ce5d4651b188e6cd5caab2cf6840829788e1952386e8bb7d235928d2a982d847",
+        "width": 1312,
+        "height": 728,
+        "caption": {
+          "ja": "1次元球対称Eulerの保存済み半径密度を中心断面に表示。γ=5/3、E=ρ0=1、p0=0、t=.05、512球殻、有限投入半径.03。半解析的な点源参照との違いと衝撃層の誤差を残した図で、実2D Cartesian計算ではありません。",
+          "en": "A central-section view of saved one-dimensional spherical-radial Euler density:gamma5/3,E=rho0=1,p0=0,t=.05,512 shells and finite deposition radius.03. Point-source reference differences and shock errors remain visible; this is not an actual2D Cartesian computation."
+        },
+        "source_kind": "existing-figure"
+      },
+      "hub": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sedov/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sedov/?lang=en"
+      },
+      "code": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sedov/?lang=ja#code-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sedov/?lang=en#code-en"
+      },
+      "executions": [
+        {
+          "id": "sedov-blast",
+          "kind": "supplement",
+          "name": {
+            "ja": "Sedov–Taylor点爆発：球対称の軽量検証",
+            "en": "Sedov–Taylor point blast: lightweight spherical-radial validation"
+          },
+          "scope": {
+            "ja": "球対称Euler方程式を半径方向の有限体積法で解く軽量例です。固定した半径0.03の領域に総エネルギー1を与え、128・256・512セルで点爆発の相似参照からの差と保存収支を測ります。図は1次元球対称データの断面表示で、2次元Cartesian計算ではありません。",
+            "en": "A lightweight spherical-radial Euler finite-volume example deposits unit energy inside fixed radius0.03. Three grids of128/256/512 radial cells measure differences from a point-blast similarity reference and conservation budgets. The picture is a section display of1D spherical data, not a2D Cartesian calculation."
+          },
+          "method_ids": [
+            "rusanov",
+            "heun"
+          ],
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sedov-blast/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sedov-blast/?lang=en"
+          },
+          "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/inputs.json",
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/atlas-sedov-2026-11-23.zip",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/verification.json"
+        }
+      ]
+    },
+    "figure": {
+      "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/sedov/results/sedov-blast.png",
+      "sha256": "40a5d1f86e9aecab42be47d61c7c3b1b2e6e04a0cad8938caaa6d7c3ab5f2146",
+      "width": 1792,
+      "height": 1440,
+      "kind": "case-validation",
+      "caption": {
+        "ja": "Sedov–Taylor点爆発：球対称の軽量検証：この実行例の保存済み検証図。",
+        "en": "Sedov–Taylor point blast: lightweight spherical-radial validation: saved validation figure for this execution."
+      }
+    },
+    "references": {
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sedov-blast/?lang=ja#sedov-blast-ja-validation",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sedov-blast/?lang=en#sedov-blast-en-validation"
+      },
+      "note": {
+        "ja": "入力・数値ソース・受入基準・22テストを初回計算前にhash固定し、22単体検査と全4計算・48判定が初回から合格しました。参照は独立な相似ODEのDOP853積分、エネルギー規格化、中心ξ<.001の正則漸近形と衝撃位置で分割する殻求積です。16/32点求積・中心cutoff/ODE公差を別々に確認。固定commitの未改変ExactPackを6001/12001点で別実行し、中心とジャンプから離れた点を事前基準5e-4で照合しました。β=1.15166641793、Rs(.05)=.34746791233。原点・衝撃波を含むr≤1.2Rsの体積重み密度L1は.17257/.12785/.07458、圧力L1は.18148/.13939/.07615。512セルの衝撃位置誤差は1.096セル、最大離散収支残差は約1.34e-15です。",
+        "en": "Inputs, numerical sources, acceptance and22 tests were hash-locked before the first FV execution. All22 unit tests and48 gates on four calculations passed on the first attempt. The independent reference integrates the similarity ODE with DOP853, normalizes energy, uses a regular asymptote for xi<.001 and split shell quadrature at the shock. Orders16/32, core cutoff and ODE tolerance are checked separately. The unmodified pinned ExactPack evaluator was independently run at6001/12001 points and compared away from the center/jump with its preregistered5e-4 criterion. Beta=1.15166641793, Rs(.05)=.34746791233. Origin/shock-inclusive volume-weighted density L1 within r<=1.2Rs is.17257/.12785/.07458 and pressure L1 is.18148/.13939/.07615. Finest shock error is1.096 cells; maximum relative discrete-budget residual is about1.34e-15."
+      },
+      "cases": [
+        {
+          "id": "sedov",
+          "title": {
+            "ja": "Sedov–Taylorの点爆発：エネルギー正規化した球対称自己相似解",
+            "en": "Sedov–Taylor point blast: energy-normalized spherical similarity solution"
+          },
+          "kind": "semi-analytic",
+          "relation": "same-problem",
+          "note": {
+            "ja": "エネルギー正規化した球対称の自己相似参照。相似ODEの数値積分・球殻平均の求積を含む半解析解で、閉形式の厳密セル平均とは区別します。有限半径の投入初期値は理想点爆発の特異初期値と一致しません。 固定した有限の投入半径で点源の自己相似参照と比べるため、誤差曲線には投入モデルの差も含まれ、純粋な空間精度の収束次数ではありません。同じ最細格子で投入半径を変える比較は感度診断であり、連続極限の投入誤差とPDE離散化誤差を完全に分離する検証ではありません。",
+            "en": "An energy-normalized spherical similarity reference. Numerical integration of similarity ODEs and shell quadrature make this semi-analytic, not closed-form exact cell means. Finite-radius deposition is distinct from the singular ideal point-blast initial data. At fixed finite deposition radius, comparison with the point-source similarity reference includes deposition-model discrepancy; its refinement slope is not a pure spatial order. Changing deposition radius on the same finest grid is a sensitivity diagnostic, not a complete separation of continuum deposition and PDE-discretization errors."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-sedov-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-sedov-en"
+          }
+        }
+      ]
+    }
+  },
+  "navigation_source_sha256": {
+    "catalog/atlas-depth-expansion.json": "73d9e1b8a53e087825d8be61d173ae8518ddefa8ab0298166909921a7175e28c",
+    "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
+    "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
+    "catalog/atlas-methods.json": "305ef5d651bac6f648a3901759b480af32b024f818013dba5466ed7357cd8368",
+    "catalog/atlas-problem-links.json": "feef5ed8a84db9c9851da6ef79eef298cba3707b973173686cbff4d1b4a54103",
+    "catalog/atlas-reference-supplements.json": "ea445fcdd98f2043977e0484900da6d106e150482a793df7241f1775627beccb",
+    "catalog/atlas-test-problems.json": "b32c87977ad028925d9e49bb4b25ace8e7934f182d6ade7a608327d62b2b24d0",
+    "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
+    "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
+    "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
+    "code/validated-examples/2026-11-22/biology/results/schnakenberg-nonlinear.png": "9b11bf9725aa4256a36bbfd29ba37c346ea7757456d09aec20505727a1286ff5",
+    "code/validated-examples/2026-11-22/biology/results/schnakenberg-pattern.png": "5b4e51780084bfed99e5c8ff2d3a35900014c52745f62577f09cba1ef59a1f59",
+    "code/validated-examples/2026-11-22/biology/source-manifest.json": "56947a4fb54ae757408ddddfc5de0884bfe35266032ee425a8d96a815f3362ba",
+    "code/validated-examples/2026-11-22/biology/verification.json": "5cafaaef809f46e6ab01327107f7367113b8069931621fc92d446fbf142682bd",
+    "code/validated-examples/2026-11-22/foundations-conditioning/atlas-foundations-conditioning-2026-11-22.zip": "71d8f0d3b0bed4a6a97f976aabfd02cc0baf08a30c1655f6b1ea42ea16df3c9d",
+    "code/validated-examples/2026-11-22/foundations-conditioning/cases.json": "fe1b43a92ad60c91a1fdbd79342db0269e27cc0ef2f7d1ddcee58e183cf5b66c",
+    "code/validated-examples/2026-11-22/foundations-conditioning/results/amg-conditioning.png": "5f49ba07a6c8041814cb9232a60c60cabd0c606f4045916cad93caf7667716b8",
+    "code/validated-examples/2026-11-22/foundations-conditioning/results/krylov-eigen-conditioning.png": "bd2eb0349f22e5aeea427cc95010c0f7db2dc806553d8724bdf1883b512f2745",
+    "code/validated-examples/2026-11-22/foundations-conditioning/results/qr-svd-conditioning.png": "ebc0a58aaaa831fdce8faa446b1ae8b42823fd5d817a7dd9330058ccf2fd65df",
+    "code/validated-examples/2026-11-22/foundations-conditioning/results/quadrature-conditioning.png": "5da9a7a93338c2c9e9349bf22425df1e87a271f5f984a071c6cd1e618613e0f3",
+    "code/validated-examples/2026-11-22/foundations-conditioning/results/result.json": "0b8ef84da85f950afa9779feb79052401dcdda707d1ac6bb314c3afa3a1973e9",
+    "code/validated-examples/2026-11-22/foundations-conditioning/source-manifest.json": "f5b5b5cb5540a1ea76f60f599bd3afd99ffbf312343588e6c7d5c5bcffb3dd9c",
+    "code/validated-examples/2026-11-22/foundations-conditioning/verification.json": "3368c373d622c4246868a43ce869f160de34d0d124c0334d4355573e7c8b3b5f",
+    "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
+    "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
+    "code/validated-examples/2026-11-22/foundations/results/gauss-adaptive-quadrature.png": "f6b7f8fcb9d96ededd4e215b89d6efca3ac27e62f2ad336984f257c9ed035d84",
+    "code/validated-examples/2026-11-22/foundations/results/krylov-eigenvalues.png": "bed0399fc9eb30e8264bace36e5d2faf0ac0bbf6ab822bf60b80cc35dddb6f9d",
+    "code/validated-examples/2026-11-22/foundations/results/qr-svd-factorization.png": "ef3466a17be7d5b7bc2ce99de9d09988c1f2a4cef16bfa10d480fd51eaaa6dd4",
+    "code/validated-examples/2026-11-22/foundations/results/result.json": "93a27cb8e43d7195d2417fc9110f196b07c826ea1f4e2b240f879ab8ab8b4b77",
+    "code/validated-examples/2026-11-22/foundations/results/sa-amg.png": "5c45adc8d863129f320884c1ed61a5c1eb5413cfde3c07a8859e99baef58705e",
+    "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
+    "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
+    "code/validated-examples/2026-11-22/mcmc/atlas-mcmc-2026-11-22.zip": "7fb1cde233b79e2b2d56edac89c6e1bdbe8239c1b7f5e166054f8e3e2cdaac11",
+    "code/validated-examples/2026-11-22/mcmc/cases.json": "fa950eafd45ac23aa2eba3374b23ab2d8df934368ab5b833bf812fbdd095fcaa",
+    "code/validated-examples/2026-11-22/mcmc/results/mcmc-diagnostic-reference.png": "92a97dcbf430c557cd8622762c1e8bb291bd98224e37d629f2665ce71f1e0a67",
+    "code/validated-examples/2026-11-22/mcmc/results/mcmc-multimodal-mixing.png": "6448fed83f9d66d852a572ab2f30d2795ef9e54d4cde342152209aaa4dc59037",
+    "code/validated-examples/2026-11-22/mcmc/results/result.json": "530a343f4e59e03aa9369e373507e73a063eb810eb5a24fd820568467567cbd5",
+    "code/validated-examples/2026-11-22/mcmc/source-manifest.json": "c288e5c96aefe6f4bfdab4dbd78efc8b27924087aa09ac7e91d61adf63ebf195",
+    "code/validated-examples/2026-11-22/mcmc/verification.json": "f39975a549b48345d5b6f833d6226cdae1054ecb9f004d9c845d1ffa8bbc8c9e",
+    "code/validated-examples/2026-11-22/mhd-convergence/atlas-mhd-convergence-2026-11-22.zip": "5db2fc202014a576145e98c84e1802540df7d8e26353d469fbd55c8e393fd866",
+    "code/validated-examples/2026-11-22/mhd-convergence/cases.json": "a1ebd3a1344c90cc49e11dd790a522434f7fdec27f77d8621a2197a7be738434",
+    "code/validated-examples/2026-11-22/mhd-convergence/results/ct-glm-constraint-control.png": "a16bf22ab58330a8a6612a9da16780d4e53999f4fa2606350dbad19b65c33824",
+    "code/validated-examples/2026-11-22/mhd-convergence/results/ct-glm-ot-convergence.png": "d8b498925ef3fd099b3ec8e5b51fc35ec6033d94a5cc21e2d664e99bdd42dfe2",
+    "code/validated-examples/2026-11-22/mhd-convergence/results/ct-glm-smooth-convergence.png": "ba2ace7b67cc93b4990069a43250de481d998b7e18742e0911748c605fce721b",
+    "code/validated-examples/2026-11-22/mhd-convergence/results/result.json": "7b1ddd177a96b1ede21b568b0f8e72e4b23d970d96ace3ab2441b0df0efbfe6b",
+    "code/validated-examples/2026-11-22/mhd-convergence/source-manifest.json": "9d5fd8eb67ed3d4ac3965596bbd12152bdc1ae2e03a3a4f060573175d00caf67",
+    "code/validated-examples/2026-11-22/mhd-convergence/verification.json": "ddf51e803eb94ca7dc419d0b9fc4aa6ec7204c319e448f7d4b120f5342a319d8",
+    "code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip": "2e7eeaaacaeb918671228cc56ab333d0c4ca5a9879241846f5772594552d0b16",
+    "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
+    "code/validated-examples/2026-11-22/mhd/results/brio-independent.png": "e0c1f27e6b01d82084e20bc37398423411849374aa103133ca4df8db8e9b5c62",
+    "code/validated-examples/2026-11-22/mhd/results/ct-glm-independent.png": "498cd2842f093fe173c7cc19764d36cac1e12ce019f5b7f0eb9bfa74bbb191c1",
+    "code/validated-examples/2026-11-22/mhd/results/glm-fourier-mode.png": "d1e2a41d58baa80ea3910c7bab4d7efa0e6fcaa46a694eb102e2cc172d60795f",
+    "code/validated-examples/2026-11-22/mhd/results/result.json": "ce1a011a3f2a18727aa7c10a81d712e23b536e9367e4be18d6847b74210a73f6",
+    "code/validated-examples/2026-11-22/mhd/results/shu-independent.png": "0e5cc09c13e29f99160d4a22b489f98c9f24f4416515f01d1531d8112680a4e1",
+    "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
+    "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
+    "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
+    "code/validated-examples/2026-11-22/models/cases.json": "09b670a3462f7f1395dcdf12b507786b69616c0ea165d2678efe780ddb0cf0e6",
+    "code/validated-examples/2026-11-22/models/results/fitzhugh-nagumo.png": "52686dd168fd30ee8a88cfa758075bc51d47a41de0d918814a1ea27224425637",
+    "code/validated-examples/2026-11-22/models/results/gaussian-mcmc.png": "a84e814bcce77c66f1886d01931a061b2317984e35e6e5fbf71dfa33a85e1c44",
+    "code/validated-examples/2026-11-22/models/results/langevin-harmonic.png": "0b199f45202724a444c1195b31cae227b9599d50bc92d6c793a93a90f2ff1c14",
+    "code/validated-examples/2026-11-22/models/results/reaction-diffusion-fourier.png": "ec48f7b2c2f4989b4bf98a5c5895062ea8bc1cfe95cfb40e2d077561758fd801",
+    "code/validated-examples/2026-11-22/models/results/result.json": "d3af162e0e4a1cb0cc14bd41f250cfe16b69e0b6f111cc4ba1c71eb4ca55e266",
+    "code/validated-examples/2026-11-22/models/results/turing-schnakenberg.png": "d960e2701881dcd027d21d7d17f2a43c9e14157f1ab8a401e4cb69d95be88893",
+    "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
+    "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
+    "code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip": "940c1b9c867d5fda395bf93d9dac6b38d992bb4d3de29065f1b42108d1d4c0c9",
+    "code/validated-examples/2026-11-22/particle-transport/cases.json": "3d3dd9cbc6c62666bb76f893762cf27b33b2606a34e87ffe8c4275e258b96f66",
+    "code/validated-examples/2026-11-22/particle-transport/results/dsmc-statistics.png": "4e384a77f7d4288841ef1b99fabe92b1021805bcd8958d8f0ca8da9b869b4303",
+    "code/validated-examples/2026-11-22/particle-transport/results/ewald-convergence.png": "377a985727d54477ba021b571b137562f65979026dc848808d4ad50b81b84492",
+    "code/validated-examples/2026-11-22/particle-transport/results/fmm-convergence.png": "9358e2e4e7c7d8cb9f5e0bcb4d6cb7c2cf52f0beb7cc14fe64313261aec5363d",
+    "code/validated-examples/2026-11-22/particle-transport/results/pic-conservation.png": "3263e20e5502a7ba8cf358ab8f9034acda4ec192a1916bae8316f08217b7e412",
+    "code/validated-examples/2026-11-22/particle-transport/results/radiation-convergence.png": "894bbfc64f1a76efb5ed9f5dc370d916cb8e5dc2d758fddd12f8aed34657f20f",
+    "code/validated-examples/2026-11-22/particle-transport/results/result.json": "8e189a555c575dba4878c1813f828b29a3045c5015bb4ff2aa1b16c8eab9b138",
+    "code/validated-examples/2026-11-22/particle-transport/results/spme-convergence.png": "4207da16dbd3e326736684e40899ced22cd23c00071f5623a1e61d838db52d9e",
+    "code/validated-examples/2026-11-22/particle-transport/source-manifest.json": "d5724e7fd43635a489acb3b9ae90ac83fcce734ee89b6f29bc80cbdd4cefac97",
+    "code/validated-examples/2026-11-22/particle-transport/verification.json": "a16b3b90fd815909a8f3241dd7c04aeedabb2dd964da603eadd851fd6a0e171d",
+    "code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+    "code/validated-examples/2026-11-22/particles/cases.json": "f6e68b2ec8d0cd56357b1aeecea3f9c40cf22f89e7f9c1b8b9442ad020ddbf86",
+    "code/validated-examples/2026-11-22/particles/results/dsmc.png": "a3d1aa68c3e5119d35f9bc51eafe1893d12cb5b763dca4fc552c39eca9e9ffe9",
+    "code/validated-examples/2026-11-22/particles/results/ewald.png": "4b92c0acc84d0926cf9a1b0b2f2f7a671831fc8863f66fb7c6fb4fb382501619",
+    "code/validated-examples/2026-11-22/particles/results/fmm.png": "4a1ce7d65733be37983a4707a8e29beb6765063d9628027c3f1b202c65b7e967",
+    "code/validated-examples/2026-11-22/particles/results/pic.png": "f7b329fb160b94a559bd7553bd6bf398b6b6e133421778418d40a4c69107cb20",
+    "code/validated-examples/2026-11-22/particles/results/radiation-transport.png": "bbf48afe15f5b4ac0cd2a25b0fec0dd8b4a9c0948aad929feaf34f01d938d6ae",
+    "code/validated-examples/2026-11-22/particles/results/result.json": "ed038f2af0d25bb29235e5f2853e0c8360974e8a499475f4b5cb3146d142ad60",
+    "code/validated-examples/2026-11-22/particles/results/spme.png": "4d8b32bf087ffffd40b23a37c8b93d914eae4155b07be837da752bea4a4f0fea",
+    "code/validated-examples/2026-11-22/particles/source-manifest.json": "63cefd473db691db611628f6501b2b58d6727c055ffde1b9a4962bfecfacd125",
+    "code/validated-examples/2026-11-22/particles/verification.json": "48744c4ce661cb76ce7cba81d55bbbb2737885c472966237e78c9e3dfcbf43b7",
+    "code/validated-examples/2026-11-22/splitting/atlas-splitting-2026-11-22.zip": "2ae466a4ea62e204716a388b86033de3a6493a9ab0ef4ad9aec4ebb038d8a404",
+    "code/validated-examples/2026-11-22/splitting/cases.json": "f252ee6b994a6827e5579b28127143680170124de50f05057d2890e545dcc84f",
+    "code/validated-examples/2026-11-22/splitting/results/reaction-diffusion-splitting.png": "ac165c53c4832328365e2a2c4bc507a6ab73e053ac712d5f402f2b22137bee1d",
+    "code/validated-examples/2026-11-22/splitting/results/result.json": "7b1b8338ec2a03eb04e82f3891d4e2fd08a2edb665313dc8bd0991b1a7a9a8f2",
+    "code/validated-examples/2026-11-22/splitting/source-manifest.json": "e071ab71032cce9e1a8340cdd80bb58364b7105de764594507024259915f6368",
+    "code/validated-examples/2026-11-22/splitting/verification.json": "899af4b800c58e990a6eae62dd5510ff1afed02060ab7fb67e1c5c8ebcd47b53",
+    "code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip": "38142da988bf0c790eab7e7f10f8d1e209d074c3627f73a207f5223a24e18d65",
+    "code/validated-examples/2026-11-22/thermostats/cases.json": "123566ec7000dce11f2a6a7474d35e45c8fdf24db85a0556e2cbb3911d3acd77",
+    "code/validated-examples/2026-11-22/thermostats/results/csvr-kinetic-kernel.png": "c4ea7f308b8cd14669bbe11b9d62edf964f2c21db828bcdf2a5aae2ffdc62a43",
+    "code/validated-examples/2026-11-22/thermostats/results/csvr-langevin-harmonic.png": "f49ebc2c68942b7a946e9954b6cd0bc09e412a377ded606a59615c2ef447a7c4",
+    "code/validated-examples/2026-11-22/thermostats/results/csvr-langevin-quartic.png": "6e1ace5cfef29d49e7e500f46acfb64d481d57faf2869598effb70947719952a",
+    "code/validated-examples/2026-11-22/thermostats/results/result.json": "7971007807acce9f75261b684b789f196e1d5dffc80797e102d1b0bebbc93f11",
+    "code/validated-examples/2026-11-22/thermostats/source-manifest.json": "81a854bdfe3ae33b4eb4bffdccc9ab15a09f2bddbffb294cd2c2cbd07e641580",
+    "code/validated-examples/2026-11-22/thermostats/verification.json": "c14f55ac05d93269dbf8eef4a2a4042f75764d5228d06f8e41039d0b60351905",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/atlas-noh-cartesian-2026-11-23-r2.zip": "2145beb161f993c1608fc5ac167af5278d58e10f92e74ed37e5fb9c35243b918",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/cases.json": "49b94c1f65e269d4a878be3a4d8778375b88b767f5dd01998ae5fe6b8fc2b3ee",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/results/noh-cartesian-2d.png": "cca6fdfc8f524ee05f729437b38ce064f276aaebe1485ed6e26045c279ac1ae4",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/results/result.json": "e121c2f5171ee53491b492019311d002ceb44213f6f7cd43051a3ca68f74c694",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/source-manifest.json": "3f34837f6078bfdc96e5bea2a0ec36c3ae4c48a09c25fcd61560cbb4f4781f93",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/verification.json": "7c530b06df5d2878958bd249b3035050592365e23aee79804e600368dfb09f46",
+    "code/validated-examples/2026-11-23-r5/noh/atlas-noh-2026-11-23-r5.zip": "64de5483e9896a3773348b75e1ec2b4630f8a709d68194c1d94772396f531733",
+    "code/validated-examples/2026-11-23-r5/noh/cases.json": "9501c9cb57617c09a8ceb0aa7e124ba1e2af303144eaa82045e8632fc7c39fc2",
+    "code/validated-examples/2026-11-23-r5/noh/results/noh-shock.png": "11d0f030985cf900b04ce6f8b903be486684c43129f2e3f4226ed81b70041f4f",
+    "code/validated-examples/2026-11-23-r5/noh/results/result.json": "4e92acb911d505b3f7e74e39f01acf77e59fbe15577f321ac759f1315e487724",
+    "code/validated-examples/2026-11-23-r5/noh/source-manifest.json": "8597cbc7b841502f4e7eca154e86fe8893402c1167614952de682d7307c5595d",
+    "code/validated-examples/2026-11-23-r5/noh/verification.json": "48545a33ab2c19e9071616a15a1fcbf90c716096aa1a12550d3cb872ed8d9e36",
+    "code/validated-examples/2026-11-23/sedov/atlas-sedov-2026-11-23.zip": "63d584129e6260bf04618205b7ea57cc9a36e8bb4d3423b1bcdd8489ca43eebb",
+    "code/validated-examples/2026-11-23/sedov/cases.json": "41083cf19e47a71e15b12684c7fb1586ac4a25cca37b54da5abdcbe159100d87",
+    "code/validated-examples/2026-11-23/sedov/results/result.json": "c17444a72b4974bc58a2bfe722fc0ed98a554dfdc7179e512e81304a22b46dd4",
+    "code/validated-examples/2026-11-23/sedov/results/sedov-blast.png": "40a5d1f86e9aecab42be47d61c7c3b1b2e6e04a0cad8938caaa6d7c3ab5f2146",
+    "code/validated-examples/2026-11-23/sedov/source-manifest.json": "026a5c21e68cc127115ccc429fb35cb7a280a0914057d0b7167c64d032567e9b",
+    "code/validated-examples/2026-11-23/sedov/verification.json": "fde165bb62331821f6ffa2d98d8c695bca9fcdae160801126323716580ab5db2",
+    "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
+    "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
+    "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
+    "numerical-methods-atlas/gallery/preview-manifest.json": "dac46dd4fd3f024ed87b8d7e69ce47cc2aadafe0edd9e708792e94427e103750",
+    "numerical-methods-atlas/locales/messages.json": "e54aebf2990250fca29033120a30d435a8a08afa113fabdccc67169ea7e84148"
+  }
+}

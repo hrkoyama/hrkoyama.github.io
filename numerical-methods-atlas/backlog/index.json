@@ -22,7 +22,7 @@
   },
   "workflow": {
     "max_active": 1,
-    "active_item": "compressible-fluid-1",
+    "active_item": "compressible-fluid-2",
     "states": [
       "planned",
       "in-progress",
@@ -332,15 +332,15 @@
       "priority": "P1",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "in-progress",
-      "current": "Sod・Shu–Osherの固定入力、独立Athena++追補shu-independent、PPM/AUSM/回転流束の既存実装と2D保存画像がある。Noh/Sedovは本文の将来項目のみ。",
+      "state": "published",
+      "current": "初期圧力ゼロの1D平面・円筒・球対称と、正方形全域の実2D Cartesianの固定入力を公開済み。旧配布版・基準・失敗履歴を保持し、公開URLの図・ZIP・Linux追試まで確認。",
       "tasks": [
         "平面1Dの固定gamma=5/3から開始し、衝撃位置/速度、密度圧縮、保存量、原点・反射壁過熱を測る。",
         "円筒・球対称は幾何ソース/原点正則性を別検証し、可能ならCartesian多次元で対称性破れも測る。",
         "セル平均と点値、体積重み付き誤差、衝撃近傍と原点近傍の誤差を分ける。",
         "厳密なcold limit p0=0と正圧近似を区別。既存Eulerはp<=0を拒否するので無言のfloor追加で厳密Nohと称さない。"
       ],
-      "scope_note": "初期圧力ゼロの1D平面・円筒・球に加え、正方形全域の実2D Cartesian Euler版を追加。32²/64²/128²の3格子、19検査・49判定で密度誤差、全4保存量収支、原点過熱、D4偶奇性と軸・対角方向の差を確認。最細密度L1約10%、中心過熱約14%、衝撃半径の方向差は約.501Δxで単調減少しません。旧r3/r5の配布物と基準は保持。新図は実2D配列で、旧1D回転表示と区別します。原点位置ずらし・一般摂動安定性・3D Cartesianは未検証で、拡充候補として進行中です。",
+      "scope_note": "公開完了の範囲は初期圧力ゼロの1D平面・円筒・球対称と、正方形全域の実2D Cartesianの固定入力です。各配布物・受入基準・失敗履歴・過熱誤差・方向差を保持しています。原点位置ずらし・一般摂動安定性・3D Cartesian等の将来拡張は今回の完了範囲外で、未検証です。",
       "sources": [
         {
           "title": "Noh (1987), Errors for calculations of strong shocks using an artificial viscosity and an artificial heat flux",
@@ -411,7 +411,7 @@
       },
       "completion_evidence": {
         "kind": "scientific",
-        "partial": true,
+        "partial": false,
         "local_evidence_checked": true,
         "verification_passed": true,
         "links": {
@@ -605,20 +605,20 @@
       "field_id": "compressible-fluid",
       "title": {
         "ja": "Sedov–Taylorの点爆発",
-        "en": "Sedov–Taylorの点爆発"
+        "en": "Sedov–Taylor point blast"
       },
       "detail_language": "ja",
       "priority": "P1",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "planned",
-      "current": "Sod・Shu–Osherの固定入力、独立Athena++追補shu-independent、PPM/AUSM/回転流束の既存実装と2D保存画像がある。Noh/Sedovは本文の将来項目のみ。",
+      "state": "in-progress",
+      "current": "γ=5/3・周囲密度1・爆発エネルギー1・初期圧力0の1D球対称Eulerの固定入力、半解析参照、独立ExactPack点値照合、保存図・実行コードを追加。",
       "tasks": [
         "固定爆発エネルギーの正規化、自己相似の衝撃半径と密度/圧力/速度を比較。",
         "有限セルへのエネルギー投入半径の誤差とPDE格子誤差を分け、球対称体積平均で参照を作る。",
         "低密度/負圧、総エネルギー、球対称性、中心特異点を報告。"
       ],
-      "scope_note": "",
+      "scope_note": "今回の軽量検証は1D球半径の128/256/512球殻と、同じ最細格子での投入半径.03/.015感度に限定します。有限投入半径と理想点源のモデル差が残り、誤差曲線の傾きは純粋な空間精度の次数ではありません。投入誤差とPDE離散化誤差の完全な連続極限分離、実2D Cartesian、非対称安定性、他γや周囲密度勾配は未検証の拡充候補です。",
       "sources": [
         {
           "title": "LANL ExactPack: official benchmark collection and references",
@@ -638,9 +638,63 @@
           "observation": "Sedovは将来項目としてのみ言及。"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23/sedov/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23/sedov/inputs.json",
+          "/code/validated-examples/2026-11-23/sedov/acceptance.json",
+          "/code/validated-examples/2026-11-23/sedov/pre-run-contract.json",
+          "/code/validated-examples/2026-11-23/sedov/reference-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23/sedov/results/sedov-blast-preview.png",
+          "/code/validated-examples/2026-11-23/sedov/results/sedov-blast.png"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#sedov-ja",
+        "execution": "/numerical-methods-atlas/validation/sedov-blast/?lang=ja",
+        "code": [
+          "/code/validated-examples/2026-11-23/sedov/run.py",
+          "/code/validated-examples/2026-11-23/sedov/sedov_solver.py",
+          "/code/validated-examples/2026-11-23/sedov/reference_sedov.py"
+        ],
+        "references": [
+          "/numerical-methods-atlas/solutions/?lang=ja#solution-sedov-ja",
+          "/code/validated-examples/2026-11-23/sedov/exactpack-receipt.json",
+          "/code/validated-examples/2026-11-23/sedov/exactpack-snapshot.json"
+        ]
+      },
       "sequence": 7,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": true,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-23/sedov/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-23/sedov/inputs.json",
+            "/code/validated-examples/2026-11-23/sedov/acceptance.json",
+            "/code/validated-examples/2026-11-23/sedov/pre-run-contract.json",
+            "/code/validated-examples/2026-11-23/sedov/reference-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-23/sedov/results/sedov-blast-preview.png",
+            "/code/validated-examples/2026-11-23/sedov/results/sedov-blast.png"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#sedov-ja",
+          "execution": "/numerical-methods-atlas/validation/sedov-blast/?lang=ja",
+          "code": [
+            "/code/validated-examples/2026-11-23/sedov/run.py",
+            "/code/validated-examples/2026-11-23/sedov/sedov_solver.py",
+            "/code/validated-examples/2026-11-23/sedov/reference_sedov.py"
+          ],
+          "references": [
+            "/numerical-methods-atlas/solutions/?lang=ja#solution-sedov-ja",
+            "/code/validated-examples/2026-11-23/sedov/exactpack-receipt.json",
+            "/code/validated-examples/2026-11-23/sedov/exactpack-snapshot.json"
+          ]
+        }
+      }
     },
     {
       "id": "compressible-fluid-3",
@@ -4707,10 +4761,10 @@
     "total": 103,
     "fields": 36,
     "states": {
-      "planned": 102,
+      "planned": 101,
       "in-progress": 1,
       "verified": 0,
-      "published": 0
+      "published": 1
     },
     "kinds": {
       "implementation": 58,
@@ -4725,7 +4779,7 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-benchmark-backlog.json": "887b2e6c2c904f04a32f7b77616150022c9e267407bc825ee9f32f8223d4b565",
+    "catalog/atlas-benchmark-backlog.json": "02e79ba3412219dad67e9b0b3b408c86483ebb11c18aa955f42a5199a7f737ca",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/acceptance.json": "9da18d8d22194a07bc0d8e7c619199baab0984f978d84a673bc8f94d4baf5f8b",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/cartesian_reference.py": "b53b9ac767938389abc99eedc3bc2dd23bab965bdb4f41fe19933b2da1b312c0",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/cartesian_solver.py": "7360a880b6318259ddf50b18d79861aca7f806190baaaa1d1200e6d9e4c7e0f8",
@@ -4747,8 +4801,21 @@
     "code/validated-examples/2026-11-23-r5/noh/results/noh-spherical-budget.png": "7b7672b50bdeefb62c50d10fd150a075eee2657cc3ec18e146dc24d261807f42",
     "code/validated-examples/2026-11-23-r5/noh/spherical-acceptance.json": "bb1c8d14feb07a8876f04711aa81780642d5f6a547f6754ccafd2eaf223530a2",
     "code/validated-examples/2026-11-23-r5/noh/verification.json": "48545a33ab2c19e9071616a15a1fcbf90c716096aa1a12550d3cb872ed8d9e36",
-    "numerical-methods-atlas/gallery/index.html": "cbe393e6c8b408c044e4a7c8c197c89319e760b75d7d1813360e781cc77e3fd5",
-    "numerical-methods-atlas/solutions/index.html": "9aea727be864cb182aaf29470aef69be85114b6247441b38c455207741be01ba",
-    "numerical-methods-atlas/validation/noh-cartesian-2d/index.html": "484592fde6dbf3f4b5da68a363d9907e9deda9ea1883525c40762d405d64e2e1"
+    "code/validated-examples/2026-11-23/sedov/acceptance.json": "2e066bd5149dda72bc2b04132c56ec0f6af23a83a66d54a52e579d5cd63e4456",
+    "code/validated-examples/2026-11-23/sedov/exactpack-receipt.json": "048d94b8dec429a17ebaf485067a46c74b619e69e4443ca9a4ee5ce62081ba8f",
+    "code/validated-examples/2026-11-23/sedov/exactpack-snapshot.json": "57abc4a93fdddb701774d2595b63920d59b4a77cf4607e3aa4b1438760cf6022",
+    "code/validated-examples/2026-11-23/sedov/inputs.json": "e8db508fe755dcebc65633b9d02a017211a36e7e8ffd0184a23caea0996dfab9",
+    "code/validated-examples/2026-11-23/sedov/pre-run-contract.json": "1348af65e7055d5e2a28cdbe7854de9c8413fb87abc9b0e31437f88efa7dbd4a",
+    "code/validated-examples/2026-11-23/sedov/reference-contract.json": "be1c2c80d6c13be3ffa428e4a91cb2f054b8e17cea921dfd07fbc4e73b234efd",
+    "code/validated-examples/2026-11-23/sedov/reference_sedov.py": "7a2904a043a2f3aa823b7bb4686b9acd9b1b80759f3dca608d59615b7a0e160a",
+    "code/validated-examples/2026-11-23/sedov/results/sedov-blast-preview.png": "ce5d4651b188e6cd5caab2cf6840829788e1952386e8bb7d235928d2a982d847",
+    "code/validated-examples/2026-11-23/sedov/results/sedov-blast.png": "40a5d1f86e9aecab42be47d61c7c3b1b2e6e04a0cad8938caaa6d7c3ab5f2146",
+    "code/validated-examples/2026-11-23/sedov/run.py": "d0aea58ef35b4c4f707bbfa90c16a5bfd8040ba63dd47fdaa9a6bee69254c0ad",
+    "code/validated-examples/2026-11-23/sedov/sedov_solver.py": "a0848f757b593bf1a7d94555216ea8d2fc042b01698eddb8a6e87962809f2d81",
+    "code/validated-examples/2026-11-23/sedov/verification.json": "fde165bb62331821f6ffa2d98d8c695bca9fcdae160801126323716580ab5db2",
+    "numerical-methods-atlas/gallery/index.html": "e599b9bef491d16df1a3109c0f2661a0c39879a4f4d085a0aceb27218ffa2fc1",
+    "numerical-methods-atlas/solutions/index.html": "1ba8d81b744e0d5202b5f2fa219cc64a5a782a3cba90b07f7825862235839c59",
+    "numerical-methods-atlas/validation/noh-cartesian-2d/index.html": "484592fde6dbf3f4b5da68a363d9907e9deda9ea1883525c40762d405d64e2e1",
+    "numerical-methods-atlas/validation/sedov-blast/index.html": "f7e078361e473f1a8da262dbd10421221d554fe9b7a0075dfb414233103f1829"
   }
 }

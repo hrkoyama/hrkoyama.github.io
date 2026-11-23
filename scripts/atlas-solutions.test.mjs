@@ -61,7 +61,7 @@ with tempfile.TemporaryDirectory(prefix='atlas-solutions-fixture-') as temporary
 test('the saved-solution index derives every existing case and source hash without changing scientific inputs',()=>{
   assert.equal(historicalCases.length,18);
   assert.equal(sha(source),'c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc','the historical18 scientific references remain byte-identical');
-  assert.deepEqual(cases.slice(historicalCases.length).map(row=>row.id),['noh']);
+  assert.deepEqual(cases.slice(historicalCases.length).map(row=>row.id),['noh','sedov']);
   assert.equal(rendered.record.supplements_source_sha256,sha(supplementSource));
   assert.deepEqual(rendered.record.cases.map(row=>row.id),cases.map(row=>row.id));
   assert.equal(rendered.record.count,cases.length);
@@ -119,15 +119,15 @@ test('historical cards retain SPA views while reviewed supplements open their ow
     const original=cases.find(item=>item.id===row.id);
     if(original.view){
       assert.equal(row.view[language],original.view[language]);
-      assert.equal(view.pathname,'/numerical-methods-atlas/validation/noh-shock/');
-      assert.equal(view.hash,'#noh-shock-'+language+'-measurements');
+      assert.equal(view.pathname,new URL(original.view[language],origin).pathname);
+      assert.equal(view.hash,new URL(original.view[language],origin).hash);
     }else{
       assert.equal(view.pathname,'/numerical-methods-atlas/');
       assert.equal(view.hash,'#/exact-solutions?case='+row.id);
     }
     assert.equal(view.searchParams.get('lang'),language);
     const reading=new URL(row.reading[language],origin);
-    assert.equal(reading.pathname,`/numerical-methods-atlas/${language}/read/${original.reading?'validation-noh':'reference-solutions'}/`);
+    assert.equal(reading.pathname,`/numerical-methods-atlas/${language}/read/${original.reading?'validation-'+row.id:'reference-solutions'}/`);
     if(original.reading)assert.equal(row.reading[language],original.reading[language]);
     assert.ok(existsSync(new URL(reading.pathname.slice(1)+'index.html',root)));
     assert.ok(rendered.html.includes(row.view[language])&&rendered.markdown.includes(origin+row.view[language]));

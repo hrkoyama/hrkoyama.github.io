@@ -4,8 +4,8 @@
   "title": "Learn by field",
   "description": "Read the theory, derivations and worked examples by field, from foundations to related methods and verification.",
   "source": "/catalog/atlas-reading-index.json",
-  "source_sha256": "265984e2841bc33adfa34ed995c7a767f01b79390bb70b51ecaebdedb8853029",
-  "chapter_count": 95,
+  "source_sha256": "d46a2c6dde8d8e38ff637953c613b03d53f43988c054aaaa95811dc11ed65f18",
+  "chapter_count": 96,
   "groups": [
     {
       "id": "foundations-time",
@@ -494,6 +494,17 @@
             "en"
           ],
           "search_text": "validation-noh-cartesian Noh問題：2次元Cartesianと格子方向の誤差 Noh:2D Cartesian flow and grid orientation error 流体・衝撃波・定常解法 Fluids, shocks and steady solvers"
+        },
+        {
+          "id": "validation-sedov",
+          "title": "Sedov–Taylor point blast: lightweight spherical-radial validation",
+          "url": "/numerical-methods-atlas/en/read/validation-sedov/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-sedov Sedov–Taylor点爆発：球対称の軽量検証 Sedov–Taylor point blast: lightweight spherical-radial validation 流体・衝撃波・定常解法 Fluids, shocks and steady solvers"
         }
       ]
     },
