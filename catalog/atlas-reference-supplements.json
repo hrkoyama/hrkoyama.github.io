@@ -297,6 +297,84 @@
           "note": "MIT. New primitive-MUSCL/generalized-minmod(theta1.5)/Davis-HLL/Heun runs on240×80 and480×160. Reference sourceSHA25666e523f5486179f2c79ac0ad21a35a11856e55a9101e03b8d3bca76cccbd5996; compiler/invocation and execution/quality receipts accompany the arrays. No external AMROC/Athena/LAVA execution."
         }
       ]
+    },
+    {
+      "id": "isentropic-vortex",
+      "model": "euler",
+      "kind": "analytic",
+      "formula": "a=beta exp((1-X²-Y²)/2)/(2pi); (u,v)=(1-aY,.5+aX); theta=1-(gamma-1)beta² exp(1-X²-Y²)/(8 gamma pi² p_inf); rho=theta^(1/(gamma-1)); p=p_inf theta^(gamma/(gamma-1)); p_inf=1.25/(1.4 M_inf²).",
+      "dimension": 2,
+      "bounds": [
+        [
+          -10.0,
+          10.0
+        ],
+        [
+          -10.0,
+          10.0
+        ]
+      ],
+      "components": [
+        "density",
+        "x momentum",
+        "y momentum",
+        "total energy"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "gamma": 1.4,
+        "beta": 3.0,
+        "background_velocity": [
+          1.0,
+          0.5
+        ],
+        "far_field_density": 1.0,
+        "background_mach_values": [
+          0.1,
+          0.01
+        ],
+        "final_time": 0.1,
+        "cell_quadrature_orders": [
+          8,
+          16
+        ]
+      },
+      "sources": [
+        "https://doi.org/10.1051/0004-6361/201425059",
+        "https://doi.org/10.1007/s10915-017-0372-4",
+        "https://doi.org/10.2514/6.2015-2444"
+      ],
+      "title": "Isentropic vortex: analytic Euler field for low-Mach comparisons",
+      "assumptions": "The translating whole-plane ideal-gas Euler vortex uses gamma=1.4, beta=3, far-field density1 and background velocity U=(1,.5). For background Mach number M, p_inf=1.25/(1.4*M^2); theta=1-(gamma-1)*beta^2*exp(1-r^2)/(8*gamma*pi^2*p_inf), rho=theta^(1/(gamma-1)), p=p_inf*theta^(gamma/(gamma-1)). Coordinates move with U and are wrapped in [-10,10]^2. The whole-plane field is analytic; the finite minimum-image periodic field retains nonzero Gaussian seam tails and is not a globally exact smooth torus solution. Tensor Gauss8 cell means of all conserved variables are checked against Gauss16, then primitive pressure and velocity are recovered from those means. These are numerical cell quadratures, not closed-form exact cell averages or means of primitive variables. The low-Mach fixed runs use M=.1/.01 and T=.1; the historical KEEP case is recovered by p_inf=1.",
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/low-mach-vortex/?lang=ja#low-mach-vortex-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/low-mach-vortex/?lang=en#low-mach-vortex-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-low-mach/#low-mach-vortex",
+        "en": "/numerical-methods-atlas/en/read/validation-low-mach/#low-mach-vortex"
+      },
+      "reference_scope": "Whole-plane analytic Euler field, evaluated without primary flux imports. Finite periodic minimum-image tails and conservative cell quadrature are separately qualified. This does not reuse an incompressible Taylor–Green field or run an independent external PDE engine.",
+      "citations": [
+        {
+          "role": "original-flux-preconditioning-method",
+          "title": "Fabian Miczek, Friedrich K. Röpke and Philipp V. F. Edelmann (2015), New numerical solver for flows at various Mach numbers",
+          "url": "https://doi.org/10.1051/0004-6361/201425059",
+          "note": "Selected author-version equations and RK3 discussion were checked. This short isentropic-vortex application does not reproduce the paper’s Gresho or implicit-integration experiments."
+        },
+        {
+          "role": "matrix-form-and-explicit-stability-analysis",
+          "title": "Wasilij Barsukow, Philipp V. F. Edelmann, Christian Klingenberg, Fabian Miczek and Friedrich K. Röpke (2017), A Numerical Scheme for the Compressible Low-Mach Number Regime of Ideal Fluid Dynamics",
+          "url": "https://doi.org/10.1007/s10915-017-0372-4",
+          "note": "Checked the modified dissipation, primitive matrix and restrictive forward-Euler stability result. The present SSPRK33 Fourier/stage checks are separate fixed-input evidence, not a general nonlinear or SSP guarantee."
+        },
+        {
+          "role": "analytic-vortex-definition-and-finite-periodic-box-qualification",
+          "title": "Seth C. Spiegel, H. T. Huynh and James R. DeBonis (2015), A Survey of the Isentropic Euler Vortex Problem using High-Order Methods",
+          "url": "https://doi.org/10.2514/6.2015-2444",
+          "note": "Checked the generalized vortex and finite-periodic-boundary qualifications. The selected beta3, mean velocity(1,.5) and background Mach values are explicit adaptations, not NASA/FR execution or figure reuse."
+        }
+      ]
     }
   ]
 }

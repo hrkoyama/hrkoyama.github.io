@@ -923,21 +923,61 @@
         "ja": "周期移動等エントロピー渦",
         "en": "Periodic moving isentropic vortex"
       },
-      "chapter": "keep",
+      "chapter": "validation-low-mach",
       "evidence": [
         {
           "path": "numerical-methods-atlas/assets/keep-vortex.json",
           "json_pointer": "/studies"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/low-mach/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "low-mach-vortex"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/low-mach/inputs.json",
+          "json_pointer": "/cases/low-mach-vortex"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/low-mach/verification.json",
+          "json_pointer": "/all_cases_rerun"
         }
       ],
       "availability": "saved-output",
+      "reading_section": "low-mach-vortex",
+      "code_base": "/code/validated-examples/2026-11-23/low-mach/",
+      "verification": "/code/validated-examples/2026-11-23/low-mach/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "supplemental_examples": [
+        {
+          "id": "low-mach-vortex",
+          "url": "/numerical-methods-atlas/validation/low-mach-vortex/",
+          "name": {
+            "ja": "低Mach等エントロピー渦：前処理Roe流束の軽量検証",
+            "en": "Low-Mach isentropic vortex: preconditioned Roe flux verification"
+          }
+        }
+      ],
       "reading": {
-        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/keep/",
-        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/keep/"
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-low-mach/#low-mach-vortex",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-low-mach/#low-mach-vortex"
       },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/low-mach/verification.json",
       "execution_examples": [],
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#isentropic-vortex",
-      "run_commands": []
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ]
     },
     {
       "id": "orszag-tang",
@@ -3886,7 +3926,7 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-test-problems.json": "900e7e140ad24506138dc36df2a733ce2022cb7a771fc28b1d0975f3331142bd",
+    "catalog/atlas-test-problems.json": "872d6a32fa180fc575ac2e014734d6dfbba0632aee8c54866df254d3fb0d8fbb",
     "numerical-methods-atlas/equation-gallery.json": "e99af38238a50232f92875817c4556ab6c730289db13014efdd41913096c902e",
     "numerical-methods-atlas/cip.json": "3aa33fbffad6b9ad76310e9b713629a1a35b4e30e419db0c531180cf769e6b6f",
     "numerical-methods-atlas/limiters.json": "3242180ba171420220fd349cac93dff552466070f886f3d00a70927939255312",
@@ -3920,6 +3960,10 @@
     "code/numerical-methods-atlas/2026-11-21/tests/test_muscl2d.py": "43a462dd3086893015c62335cbdb0aadf094f8c519d5db80d80fbaa8b03a84d7",
     "numerical-methods-atlas/assets/shock-methods/robustness.json": "92bc1b37b63ddad501c6e012433909da6fabc5c811527f6bc2d1bc7620a1d8d8",
     "numerical-methods-atlas/assets/keep-vortex.json": "73388410dbf21de395e76207b4bb5907e0165b226f96f8ab9bc13968b5f416e3",
+    "code/validated-examples/2026-11-23/low-mach/results/result.json": "5e1fdfa86dc57b13857bd571de1070d00ac5237400e0fc9ee9875fae9824d9f5",
+    "code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex-preview.png": "295a80ecab6c8e93c0504f115f48a3b5105ab4e29fe2ccd44965fe387744dbdf",
+    "code/validated-examples/2026-11-23/low-mach/inputs.json": "a84bd010dce2128a1b4e4c673f16110ddc4f59a363c64ef6d1b85444989907c5",
+    "code/validated-examples/2026-11-23/low-mach/verification.json": "f747210e1d46900c4f56b01e989696c3feaee35361fe42be11428fd280bacf84",
     "numerical-methods-atlas/assets/movies/catalog.json": "fa81fc551ccd179b17a08679c393b35732ad6f0096eecda53ec64f8abea6d687",
     "code/validated-examples/2026-11-22/mhd/results/ct-glm-independent.png": "498cd2842f093fe173c7cc19764d36cac1e12ce019f5b7f0eb9bfa74bbb191c1",
     "code/validated-examples/2026-11-22/mhd-convergence/results/result.json": "7b1ddd177a96b1ede21b568b0f8e72e4b23d970d96ace3ab2441b0df0efbfe6b",

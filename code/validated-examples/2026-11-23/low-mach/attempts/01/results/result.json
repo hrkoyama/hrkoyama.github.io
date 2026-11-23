@@ -1,0 +1,1915 @@
+{
+  "schema_version": 1,
+  "passed": false,
+  "termination": "fixed_budget_completed",
+  "input_sha256": "a84bd010dce2128a1b4e4c673f16110ddc4f59a363c64ef6d1b85444989907c5",
+  "checks": {
+    "low-mach-vortex": false
+  },
+  "cases": [
+    {
+      "id": "low-mach-vortex",
+      "passed": false,
+      "records": [
+        {
+          "n": 16,
+          "mach_far": 0.1,
+          "time": 0.1,
+          "steps": 10,
+          "velocity_relative_l1": 0.4061539887835654,
+          "velocity_relative_l2": 0.3047391583745545,
+          "pressure_dynamic_l1": 0.01831633159280139,
+          "core_pressure_dynamic_l1": 0.08978544736297918,
+          "pressure_dynamic_linf": 0.17340368192506045,
+          "density_l1": 0.0001825679049436272,
+          "perturbation_kinetic_energy": 0.46955413548549363,
+          "reference_perturbation_kinetic_energy": 0.7688105089541234,
+          "perturbation_kinetic_energy_ratio": 0.6107540544994201,
+          "maximum_local_mach": 0.12269952795540966,
+          "acoustic_dt_diagnostic": 0.01031741275713259,
+          "convective_dt_diagnostic": 0.1335383035968919,
+          "convective_to_acoustic_dt_ratio": 12.9430029349727,
+          "minimum_density_all_stages": 0.9980906714421497,
+          "minimum_pressure_all_stages": 89.05390045782961,
+          "minimum_dt": 0.007489877305460926,
+          "maximum_dt": 0.010307273873442865,
+          "state_floor_count": 0,
+          "rejected_steps": 0,
+          "initial_integral": [
+            399.9922155913132,
+            399.99221559131314,
+            199.99610779565637,
+            89534.25020552153
+          ],
+          "final_integral": [
+            399.99221559131274,
+            399.99221559131297,
+            199.99610779565637,
+            89534.2502055217
+          ],
+          "conservation_relative": [
+            1.1368905022669148e-15,
+            4.263339383500931e-16,
+            0.0,
+            1.9503484123624606e-15
+          ],
+          "initial_translation_corrected_residual_l1": [
+            0.0027053309705027165,
+            0.04807708799477717,
+            0.04931934815385012,
+            0.6950776903290193
+          ],
+          "scope": "Velocity normalized by analytic vortex perturbation, pressure by rho_infinity*|U_infinity|^2, not large thermodynamic background.",
+          "variant": "roe",
+          "field": "field-M0.1-roe-n16.npz",
+          "history": "history-M0.1-roe-n16.json"
+        },
+        {
+          "n": 32,
+          "mach_far": 0.1,
+          "time": 0.1,
+          "steps": 20,
+          "velocity_relative_l1": 0.2643368756011046,
+          "velocity_relative_l2": 0.2122855998685607,
+          "pressure_dynamic_l1": 0.012093770970648163,
+          "core_pressure_dynamic_l1": 0.08968973635633717,
+          "pressure_dynamic_linf": 0.19098626337358834,
+          "density_l1": 0.00012093453456280619,
+          "perturbation_kinetic_energy": 0.6590660972103226,
+          "reference_perturbation_kinetic_energy": 0.9120406141531759,
+          "perturbation_kinetic_energy_ratio": 0.7226280134709367,
+          "maximum_local_mach": 0.13107143522347484,
+          "acoustic_dt_diagnostic": 0.005099397106974357,
+          "convective_dt_diagnostic": 0.057964968227546244,
+          "convective_to_acoustic_dt_ratio": 11.367023789590453,
+          "minimum_density_all_stages": 0.9980426168909398,
+          "minimum_pressure_all_stages": 89.04485892012643,
+          "minimum_dt": 0.0035160782859160328,
+          "maximum_dt": 0.005096469247482203,
+          "state_floor_count": 0,
+          "rejected_steps": 0,
+          "initial_integral": [
+            399.99221559131274,
+            399.99221559131297,
+            199.99610779565657,
+            89534.2502055222
+          ],
+          "final_integral": [
+            399.99221559131286,
+            399.9922155913132,
+            199.99610779565648,
+            89534.25020552182
+          ],
+          "conservation_relative": [
+            2.84222625566729e-16,
+            5.684452511334577e-16,
+            4.263339383500931e-16,
+            4.2257548934519666e-15
+          ],
+          "initial_translation_corrected_residual_l1": [
+            0.0010037429612153915,
+            0.027878409117713606,
+            0.02865292435653202,
+            0.2623476930980368
+          ],
+          "scope": "Velocity normalized by analytic vortex perturbation, pressure by rho_infinity*|U_infinity|^2, not large thermodynamic background.",
+          "variant": "roe",
+          "field": "field-M0.1-roe-n32.npz",
+          "history": "history-M0.1-roe-n32.json"
+        },
+        {
+          "n": 64,
+          "mach_far": 0.1,
+          "time": 0.1,
+          "steps": 40,
+          "velocity_relative_l1": 0.15147927650163337,
+          "velocity_relative_l2": 0.1260479606108276,
+          "pressure_dynamic_l1": 0.007213763389965576,
+          "core_pressure_dynamic_l1": 0.06193016740707297,
+          "pressure_dynamic_linf": 0.13211881835554776,
+          "density_l1": 7.203658893387507e-05,
+          "perturbation_kinetic_energy": 0.7953540819266982,
+          "reference_perturbation_kinetic_energy": 0.9571442081528939,
+          "perturbation_kinetic_energy_ratio": 0.8309657783559911,
+          "maximum_local_mach": 0.1363564865716641,
+          "acoustic_dt_diagnostic": 0.002535303066147065,
+          "convective_dt_diagnostic": 0.027232374160202872,
+          "convective_to_acoustic_dt_ratio": 10.741269761326123,
+          "minimum_density_all_stages": 0.9976771278901932,
+          "minimum_pressure_all_stages": 88.99727683072113,
+          "minimum_dt": 0.0013756950925299244,
+          "maximum_dt": 0.0025348612369727346,
+          "state_floor_count": 0,
+          "rejected_steps": 0,
+          "initial_integral": [
+            399.99221559131354,
+            399.9922155913132,
+            199.99610779565597,
+            89534.25020552479
+          ],
+          "final_integral": [
+            399.99221559131314,
+            399.9922155913129,
+            199.99610779565657,
+            89534.25020552287
+          ],
+          "conservation_relative": [
+            9.947791894835496e-16,
+            7.105565639168218e-16,
+            2.9843375684506606e-15,
+            2.1453832535986286e-14
+          ],
+          "initial_translation_corrected_residual_l1": [
+            0.0003247551318025291,
+            0.014973231683064893,
+            0.015201741076372344,
+            0.08856717842283791
+          ],
+          "scope": "Velocity normalized by analytic vortex perturbation, pressure by rho_infinity*|U_infinity|^2, not large thermodynamic background.",
+          "variant": "roe",
+          "field": "field-M0.1-roe-n64.npz",
+          "history": "history-M0.1-roe-n64.json"
+        },
+        {
+          "n": 16,
+          "mach_far": 0.1,
+          "time": 0.1,
+          "steps": 10,
+          "velocity_relative_l1": 0.35651450589941613,
+          "velocity_relative_l2": 0.2817641208713849,
+          "pressure_dynamic_l1": 0.03635198540870434,
+          "core_pressure_dynamic_l1": 0.35113839006719083,
+          "pressure_dynamic_linf": 0.816402805208338,
+          "density_l1": 0.00036357069342342514,
+          "perturbation_kinetic_energy": 0.6196957583414564,
+          "reference_perturbation_kinetic_energy": 0.7688105089541234,
+          "perturbation_kinetic_energy_ratio": 0.8060448590699936,
+          "maximum_local_mach": 0.12344955850475364,
+          "acoustic_dt_diagnostic": 0.010249364348419653,
+          "convective_dt_diagnostic": 0.12309583335225732,
+          "convective_to_acoustic_dt_ratio": 12.010094398804101,
+          "minimum_density_all_stages": 0.9910879896772072,
+          "minimum_pressure_all_stages": 88.18299155687933,
+          "minimum_dt": 0.0077468213727096,
+          "maximum_dt": 0.010255242637136371,
+          "state_floor_count": 0,
+          "rejected_steps": 0,
+          "initial_integral": [
+            399.9922155913132,
+            399.99221559131314,
+            199.99610779565637,
+            89534.25020552153
+          ],
+          "final_integral": [
+            399.99221559131274,
+            399.99221559131286,
+            199.99610779565643,
+            89534.2502055217
+          ],
+          "conservation_relative": [
+            1.1368905022669148e-15,
+            7.105565639168219e-16,
+            2.84222625566729e-16,
+            1.9503484123624606e-15
+          ],
+          "initial_translation_corrected_residual_l1": [
+            0.005868749857078082,
+            0.00804551357760225,
+            0.009367360236902503,
+            1.4661252228461028
+          ],
+          "scope": "Velocity normalized by analytic vortex perturbation, pressure by rho_infinity*|U_infinity|^2, not large thermodynamic background.",
+          "variant": "miczek",
+          "field": "field-M0.1-miczek-n16.npz",
+          "history": "history-M0.1-miczek-n16.json"
+        },
+        {
+          "n": 32,
+          "mach_far": 0.1,
+          "time": 0.1,
+          "steps": 20,
+          "velocity_relative_l1": 0.2328641421058823,
+          "velocity_relative_l2": 0.18734686559452934,
+          "pressure_dynamic_l1": 0.021923177323606265,
+          "core_pressure_dynamic_l1": 0.2172995850901962,
+          "pressure_dynamic_linf": 0.47666047427466074,
+          "density_l1": 0.0002190957478208084,
+          "perturbation_kinetic_energy": 0.8114165478030417,
+          "reference_perturbation_kinetic_energy": 0.9120406141531759,
+          "perturbation_kinetic_energy_ratio": 0.8896715071800141,
+          "maximum_local_mach": 0.13521281545998073,
+          "acoustic_dt_diagnostic": 0.005064231628777349,
+          "convective_dt_diagnostic": 0.05412607755691249,
+          "convective_to_acoustic_dt_ratio": 10.687915072711647,
+          "minimum_density_all_stages": 0.9938158204871557,
+          "minimum_pressure_all_stages": 88.51713110893716,
+          "minimum_dt": 0.0038873184992247456,
+          "maximum_dt": 0.005062740209913548,
+          "state_floor_count": 0,
+          "rejected_steps": 0,
+          "initial_integral": [
+            399.99221559131274,
+            399.99221559131297,
+            199.99610779565657,
+            89534.2502055222
+          ],
+          "final_integral": [
+            399.99221559131263,
+            399.99221559131263,
+            199.99610779565648,
+            89534.25020552188
+          ],
+          "conservation_relative": [
+            2.84222625566729e-16,
+            8.526678767001865e-16,
+            4.263339383500931e-16,
+            3.575638755997818e-15
+          ],
+          "initial_translation_corrected_residual_l1": [
+            0.003900313118210307,
+            0.004388947784240368,
+            0.005844321172384192,
+            0.973781931867232
+          ],
+          "scope": "Velocity normalized by analytic vortex perturbation, pressure by rho_infinity*|U_infinity|^2, not large thermodynamic background.",
+          "variant": "miczek",
+          "field": "field-M0.1-miczek-n32.npz",
+          "history": "history-M0.1-miczek-n32.json"
+        },
+        {
+          "n": 64,
+          "mach_far": 0.1,
+          "time": 0.1,
+          "steps": 40,
+          "velocity_relative_l1": 0.12641274803824212,
+          "velocity_relative_l2": 0.10225910353220478,
+          "pressure_dynamic_l1": 0.011613976782962271,
+          "core_pressure_dynamic_l1": 0.12124084944529392,
+          "pressure_dynamic_linf": 0.2447405966221822,
+          "density_l1": 0.00011606606157934604,
+          "perturbation_kinetic_energy": 0.9026082282351484,
+          "reference_perturbation_kinetic_energy": 0.9571442081528939,
+          "perturbation_kinetic_energy_ratio": 0.9430221909580485,
+          "maximum_local_mach": 0.13942285572769447,
+          "acoustic_dt_diagnostic": 0.002524563026105619,
+          "convective_dt_diagnostic": 0.026152575309381185,
+          "convective_to_acoustic_dt_ratio": 10.359248328897554,
+          "minimum_density_all_stages": 0.9957839130938407,
+          "minimum_pressure_all_stages": 88.7607463174791,
+          "minimum_dt": 0.0016216628699430996,
+          "maximum_dt": 0.0025242997599463635,
+          "state_floor_count": 0,
+          "rejected_steps": 0,
+          "initial_integral": [
+            399.99221559131354,
+            399.9922155913132,
+            199.99610779565597,
+            89534.25020552479
+          ],
+          "final_integral": [
+            399.9922155913126,
+            399.9922155913126,
+            199.996107795656,
+            89534.25020552412
+          ],
+          "conservation_relative": [
+            2.415892317317192e-15,
+            1.5632244406170077e-15,
+            1.421113127833648e-16,
+            7.476335580722493e-15
+          ],
+          "initial_translation_corrected_residual_l1": [
+            0.0021219802396999256,
+            0.002209731625782761,
+            0.003127864647711619,
+            0.5296846612000136
+          ],
+          "scope": "Velocity normalized by analytic vortex perturbation, pressure by rho_infinity*|U_infinity|^2, not large thermodynamic background.",
+          "variant": "miczek",
+          "field": "field-M0.1-miczek-n64.npz",
+          "history": "history-M0.1-miczek-n64.json"
+        },
+        {
+          "n": 16,
+          "mach_far": 0.01,
+          "time": 0.1,
+          "steps": 91,
+          "velocity_relative_l1": 1.4053780862499128,
+          "velocity_relative_l2": 0.7799072397639082,
+          "pressure_dynamic_l1": 0.0884212095110115,
+          "core_pressure_dynamic_l1": 0.10312804022614726,
+          "pressure_dynamic_linf": 0.3628891896529239,
+          "density_l1": 8.83290651154927e-06,
+          "perturbation_kinetic_energy": 0.1597323836014274,
+          "reference_perturbation_kinetic_energy": 0.7692638341291939,
+          "perturbation_kinetic_energy_ratio": 0.20764317327129303,
+          "maximum_local_mach": 0.01078545267949939,
+          "acoustic_dt_diagnostic": 0.0011099466171331084,
+          "convective_dt_diagnostic": 0.1534486982232466,
+          "convective_to_acoustic_dt_ratio": 138.2487192218223,
+          "minimum_density_all_stages": 0.9998193131184018,
+          "minimum_pressure_all_stages": 8926.313885769605,
+          "minimum_dt": 0.00015082322152741579,
+          "maximum_dt": 0.0011099420785653379,
+          "state_floor_count": 0,
+          "rejected_steps": 0,
+          "initial_integral": [
+            399.99992212725135,
+            399.99992212725135,
+            199.9999610636255,
+            8928819.968412314
+          ],
+          "final_integral": [
+            399.99992212725,
+            399.9999221272499,
+            199.9999610636249,
+            8928819.968412321
+          ],
+          "conservation_relative": [
+            3.4106057956316007e-15,
+            3.694822945267567e-15,
+            2.984280071177653e-15,
+            8.344417989478917e-16
+          ],
+          "initial_translation_corrected_residual_l1": [
+            0.0025372310682565177,
+            0.4666801993922161,
+            0.46776930045553866,
+            63.56529565717959
+          ],
+          "scope": "Velocity normalized by analytic vortex perturbation, pressure by rho_infinity*|U_infinity|^2, not large thermodynamic background.",
+          "variant": "roe",
+          "field": "field-M0.01-roe-n16.npz",
+          "history": "history-M0.01-roe-n16.json"
+        },
+        {
+          "n": 32,
+          "mach_far": 0.01,
+          "time": 0.1,
+          "steps": 181,
+          "velocity_relative_l1": 1.1846813880026084,
+          "velocity_relative_l2": 0.6799306955532239,
+          "pressure_dynamic_l1": 0.08262187008901377,
+          "core_pressure_dynamic_l1": 0.17210059039225103,
+          "pressure_dynamic_linf": 0.4800875018743681,
+          "density_l1": 8.25057933184943e-06,
+          "perturbation_kinetic_energy": 0.25520393655103346,
+          "reference_perturbation_kinetic_energy": 0.9125831713311778,
+          "perturbation_kinetic_energy_ratio": 0.27965005773530704,
+          "maximum_local_mach": 0.011497843157839914,
+          "acoustic_dt_diagnostic": 0.0005546487883336707,
+          "convective_dt_diagnostic": 0.07097624565399055,
+          "convective_to_acoustic_dt_ratio": 127.96610602400163,
+          "minimum_density_all_stages": 0.9997940576234997,
+          "minimum_pressure_all_stages": 8926.000491997795,
+          "minimum_dt": 0.00024032769171643265,
+          "maximum_dt": 0.0005546457244259224,
+          "state_floor_count": 0,
+          "rejected_steps": 0,
+          "initial_integral": [
+            399.9999221272517,
+            399.9999221272512,
+            199.99996106362573,
+            8928819.968412409
+          ],
+          "final_integral": [
+            399.99992212724817,
+            399.9999221272481,
+            199.99996106362426,
+            8928819.96841228
+          ],
+          "conservation_relative": [
+            8.81073163871496e-15,
+            7.673863040171105e-15,
+            7.389645890535133e-15,
+            1.4394121031850977e-14
+          ],
+          "initial_translation_corrected_residual_l1": [
+            0.0009014819473258547,
+            0.26936258091081644,
+            0.27007440866985954,
+            22.557867460047433
+          ],
+          "scope": "Velocity normalized by analytic vortex perturbation, pressure by rho_infinity*|U_infinity|^2, not large thermodynamic background.",
+          "variant": "roe",
+          "field": "field-M0.01-roe-n32.npz",
+          "history": "history-M0.01-roe-n32.json"
+        },
+        {
+          "n": 64,
+          "mach_far": 0.01,
+          "time": 0.1,
+          "steps": 362,
+          "velocity_relative_l1": 0.9037937883838678,
+          "velocity_relative_l2": 0.540862134809803,
+          "pressure_dynamic_l1": 0.061652211749055386,
+          "core_pressure_dynamic_l1": 0.17515767029156415,
+          "pressure_dynamic_linf": 0.42381181383971117,
+          "density_l1": 6.160076545727719e-06,
+          "perturbation_kinetic_energy": 0.38462112098396545,
+          "reference_perturbation_kinetic_energy": 0.9577268735015931,
+          "perturbation_kinetic_energy_ratio": 0.40159792068664935,
+          "maximum_local_mach": 0.012074084716737248,
+          "acoustic_dt_diagnostic": 0.0002771515450270232,
+          "convective_dt_diagnostic": 0.03286453888215091,
+          "convective_to_acoustic_dt_ratio": 118.57967047936357,
+          "minimum_density_all_stages": 0.9998528567759368,
+          "minimum_pressure_all_stages": 8926.73341132005,
+          "minimum_dt": 2.979249624689151e-05,
+          "maximum_dt": 0.0002771507586860366,
+          "state_floor_count": 0,
+          "rejected_steps": 0,
+          "initial_integral": [
+            399.9999221272516,
+            399.9999221272515,
+            199.99996106362502,
+            8928819.968412615
+          ],
+          "final_integral": [
+            399.99992212724635,
+            399.99992212724635,
+            199.99996106362258,
+            8928819.968412267
+          ],
+          "conservation_relative": [
+            1.3073988883254461e-14,
+            1.293188030843648e-14,
+            1.2221337434346609e-14,
+            3.901015410081262e-14
+          ],
+          "initial_translation_corrected_residual_l1": [
+            0.0002512916079622531,
+            0.14628896564706242,
+            0.14648406502632663,
+            6.295343851430019
+          ],
+          "scope": "Velocity normalized by analytic vortex perturbation, pressure by rho_infinity*|U_infinity|^2, not large thermodynamic background.",
+          "variant": "roe",
+          "field": "field-M0.01-roe-n64.npz",
+          "history": "history-M0.01-roe-n64.json"
+        },
+        {
+          "n": 16,
+          "mach_far": 0.01,
+          "time": 0.1,
+          "steps": 91,
+          "velocity_relative_l1": 0.9000728975818063,
+          "velocity_relative_l2": 0.336344438450295,
+          "pressure_dynamic_l1": 0.6385714260435803,
+          "core_pressure_dynamic_l1": 0.09311138095026761,
+          "pressure_dynamic_linf": 4.022766767126449,
+          "density_l1": 6.38540018403225e-05,
+          "perturbation_kinetic_energy": 0.6395726434738664,
+          "reference_perturbation_kinetic_energy": 0.7692638341291939,
+          "perturbation_kinetic_energy_ratio": 0.8314086989385927,
+          "maximum_local_mach": 0.012395791033631904,
+          "acoustic_dt_diagnostic": 0.0011080343663697463,
+          "convective_dt_diagnostic": 0.12386222150295768,
+          "convective_to_acoustic_dt_ratio": 111.78554137157998,
+          "minimum_density_all_stages": 0.9990661130164509,
+          "minimum_pressure_all_stages": 8916.908590975885,
+          "minimum_dt": 0.00029552977044675077,
+          "maximum_dt": 0.001108030501283534,
+          "state_floor_count": 0,
+          "rejected_steps": 0,
+          "initial_integral": [
+            399.99992212725135,
+            399.99992212725135,
+            199.9999610636255,
+            8928819.968412314
+          ],
+          "final_integral": [
+            399.9999221272502,
+            399.99992212725,
+            199.99996106362494,
+            8928819.968412321
+          ],
+          "conservation_relative": [
+            2.842171496359667e-15,
+            3.4106057956316007e-15,
+            2.8421714963596695e-15,
+            8.344417989478917e-16
+          ],
+          "initial_translation_corrected_residual_l1": [
+            0.005938560721714323,
+            0.007867870235131606,
+            0.009201908909618303,
+            148.46329807956036
+          ],
+          "scope": "Velocity normalized by analytic vortex perturbation, pressure by rho_infinity*|U_infinity|^2, not large thermodynamic background.",
+          "variant": "miczek",
+          "field": "field-M0.01-miczek-n16.npz",
+          "history": "history-M0.01-miczek-n16.json"
+        },
+        {
+          "n": 32,
+          "mach_far": 0.01,
+          "time": 0.1,
+          "steps": 181,
+          "velocity_relative_l1": 0.5197160878359177,
+          "velocity_relative_l2": 0.1902984421535133,
+          "pressure_dynamic_l1": 0.3167082067359444,
+          "core_pressure_dynamic_l1": 0.012076013623477223,
+          "pressure_dynamic_linf": 2.3542522275398365,
+          "density_l1": 3.166807038739513e-05,
+          "perturbation_kinetic_energy": 0.8199748526007112,
+          "reference_perturbation_kinetic_energy": 0.9125831713311778,
+          "perturbation_kinetic_energy_ratio": 0.8985206810296759,
+          "maximum_local_mach": 0.013540269844655096,
+          "acoustic_dt_diagnostic": 0.0005533021704704806,
+          "convective_dt_diagnostic": 0.05411711515425881,
+          "convective_to_acoustic_dt_ratio": 97.80752370489034,
+          "minimum_density_all_stages": 0.9994213028701745,
+          "minimum_pressure_all_stages": 8921.340848171312,
+          "minimum_dt": 0.0004193732755717605,
+          "maximum_dt": 0.0005533007190699691,
+          "state_floor_count": 0,
+          "rejected_steps": 0,
+          "initial_integral": [
+            399.9999221272517,
+            399.9999221272512,
+            199.99996106362573,
+            8928819.968412409
+          ],
+          "final_integral": [
+            399.9999221272487,
+            399.9999221272489,
+            199.99996106362417,
+            8928819.968412293
+          ],
+          "conservation_relative": [
+            7.531754465353111e-15,
+            5.684342992719337e-15,
+            7.815971614989083e-15,
+            1.2933847883692183e-14
+          ],
+          "initial_translation_corrected_residual_l1": [
+            0.003967170498198608,
+            0.004299175850576176,
+            0.005708388175619785,
+            99.17831094630606
+          ],
+          "scope": "Velocity normalized by analytic vortex perturbation, pressure by rho_infinity*|U_infinity|^2, not large thermodynamic background.",
+          "variant": "miczek",
+          "field": "field-M0.01-miczek-n32.npz",
+          "history": "history-M0.01-miczek-n32.json"
+        },
+        {
+          "n": 64,
+          "mach_far": 0.01,
+          "time": 0.1,
+          "steps": 362,
+          "velocity_relative_l1": 0.2709868099002454,
+          "velocity_relative_l2": 0.10009330515122702,
+          "pressure_dynamic_l1": 0.16536676320960308,
+          "core_pressure_dynamic_l1": 0.006715252089724626,
+          "pressure_dynamic_linf": 1.2955746428153359,
+          "density_l1": 1.653486782546385e-05,
+          "perturbation_kinetic_energy": 0.9064236698203202,
+          "reference_perturbation_kinetic_energy": 0.9577268735015931,
+          "perturbation_kinetic_energy_ratio": 0.9464323231385366,
+          "maximum_local_mach": 0.013941610831144721,
+          "acoustic_dt_diagnostic": 0.00027655130246953476,
+          "convective_dt_diagnostic": 0.026135814530171345,
+          "convective_to_acoustic_dt_ratio": 94.50620661260672,
+          "minimum_density_all_stages": 0.9996931789523559,
+          "minimum_pressure_all_stages": 8924.736867227044,
+          "minimum_dt": 0.00017376138220738524,
+          "maximum_dt": 0.000276551070561894,
+          "state_floor_count": 0,
+          "rejected_steps": 0,
+          "initial_integral": [
+            399.9999221272516,
+            399.9999221272515,
+            199.99996106362502,
+            8928819.968412615
+          ],
+          "final_integral": [
+            399.99992212724754,
+            399.9999221272455,
+            199.99996106362335,
+            8928819.968412261
+          ],
+          "conservation_relative": [
+            1.0089708812076812e-14,
+            1.5063508930706228e-14,
+            8.384405914261045e-15,
+            3.963598545002351e-14
+          ],
+          "initial_translation_corrected_residual_l1": [
+            0.0021605460680138066,
+            0.0021712806633045266,
+            0.0030516094632609056,
+            54.01306188419954
+          ],
+          "scope": "Velocity normalized by analytic vortex perturbation, pressure by rho_infinity*|U_infinity|^2, not large thermodynamic background.",
+          "variant": "miczek",
+          "field": "field-M0.01-miczek-n64.npz",
+          "history": "history-M0.01-miczek-n64.json"
+        }
+      ],
+      "metrics": {
+        "fixed_runs_completed": 12,
+        "maximum_quadrature_dynamic_difference": 4.0745362639427176e-11,
+        "maximum_point_Euler_residual": 1.0897087716081738e-16
+      },
+      "checks": {
+        "all twelve fixed nonlinear runs completed": true,
+        "M0.1/roe/N16: final time": true,
+        "M0.1/roe/N16: minimum_density_all_stages": true,
+        "M0.1/roe/N16: minimum_pressure_all_stages": true,
+        "M0.1/roe/N16: state_floor_count": true,
+        "M0.1/roe/N16: rejected_steps": true,
+        "M0.1/roe/N16: mass periodic balance": true,
+        "M0.1/roe/N16: x momentum periodic balance": true,
+        "M0.1/roe/N16: y momentum periodic balance": true,
+        "M0.1/roe/N16: total energy periodic balance": true,
+        "M0.1/roe/N16: finite physical diagnostics": true,
+        "M0.1/roe/N32: final time": true,
+        "M0.1/roe/N32: minimum_density_all_stages": true,
+        "M0.1/roe/N32: minimum_pressure_all_stages": true,
+        "M0.1/roe/N32: state_floor_count": true,
+        "M0.1/roe/N32: rejected_steps": true,
+        "M0.1/roe/N32: mass periodic balance": true,
+        "M0.1/roe/N32: x momentum periodic balance": true,
+        "M0.1/roe/N32: y momentum periodic balance": true,
+        "M0.1/roe/N32: total energy periodic balance": true,
+        "M0.1/roe/N32: finite physical diagnostics": true,
+        "M0.1/roe/N64: final time": true,
+        "M0.1/roe/N64: minimum_density_all_stages": true,
+        "M0.1/roe/N64: minimum_pressure_all_stages": true,
+        "M0.1/roe/N64: state_floor_count": true,
+        "M0.1/roe/N64: rejected_steps": true,
+        "M0.1/roe/N64: mass periodic balance": true,
+        "M0.1/roe/N64: x momentum periodic balance": true,
+        "M0.1/roe/N64: y momentum periodic balance": true,
+        "M0.1/roe/N64: total energy periodic balance": true,
+        "M0.1/roe/N64: finite physical diagnostics": true,
+        "M0.1/miczek/N16: final time": true,
+        "M0.1/miczek/N16: minimum_density_all_stages": true,
+        "M0.1/miczek/N16: minimum_pressure_all_stages": true,
+        "M0.1/miczek/N16: state_floor_count": true,
+        "M0.1/miczek/N16: rejected_steps": true,
+        "M0.1/miczek/N16: mass periodic balance": true,
+        "M0.1/miczek/N16: x momentum periodic balance": true,
+        "M0.1/miczek/N16: y momentum periodic balance": true,
+        "M0.1/miczek/N16: total energy periodic balance": true,
+        "M0.1/miczek/N16: finite physical diagnostics": true,
+        "M0.1/miczek/N32: final time": true,
+        "M0.1/miczek/N32: minimum_density_all_stages": true,
+        "M0.1/miczek/N32: minimum_pressure_all_stages": true,
+        "M0.1/miczek/N32: state_floor_count": true,
+        "M0.1/miczek/N32: rejected_steps": true,
+        "M0.1/miczek/N32: mass periodic balance": true,
+        "M0.1/miczek/N32: x momentum periodic balance": true,
+        "M0.1/miczek/N32: y momentum periodic balance": true,
+        "M0.1/miczek/N32: total energy periodic balance": true,
+        "M0.1/miczek/N32: finite physical diagnostics": true,
+        "M0.1/miczek/N64: final time": true,
+        "M0.1/miczek/N64: minimum_density_all_stages": true,
+        "M0.1/miczek/N64: minimum_pressure_all_stages": true,
+        "M0.1/miczek/N64: state_floor_count": true,
+        "M0.1/miczek/N64: rejected_steps": true,
+        "M0.1/miczek/N64: mass periodic balance": true,
+        "M0.1/miczek/N64: x momentum periodic balance": true,
+        "M0.1/miczek/N64: y momentum periodic balance": true,
+        "M0.1/miczek/N64: total energy periodic balance": true,
+        "M0.1/miczek/N64: finite physical diagnostics": true,
+        "M0.01/roe/N16: final time": true,
+        "M0.01/roe/N16: minimum_density_all_stages": true,
+        "M0.01/roe/N16: minimum_pressure_all_stages": true,
+        "M0.01/roe/N16: state_floor_count": true,
+        "M0.01/roe/N16: rejected_steps": true,
+        "M0.01/roe/N16: mass periodic balance": true,
+        "M0.01/roe/N16: x momentum periodic balance": true,
+        "M0.01/roe/N16: y momentum periodic balance": true,
+        "M0.01/roe/N16: total energy periodic balance": true,
+        "M0.01/roe/N16: finite physical diagnostics": true,
+        "M0.01/roe/N32: final time": true,
+        "M0.01/roe/N32: minimum_density_all_stages": true,
+        "M0.01/roe/N32: minimum_pressure_all_stages": true,
+        "M0.01/roe/N32: state_floor_count": true,
+        "M0.01/roe/N32: rejected_steps": true,
+        "M0.01/roe/N32: mass periodic balance": true,
+        "M0.01/roe/N32: x momentum periodic balance": true,
+        "M0.01/roe/N32: y momentum periodic balance": true,
+        "M0.01/roe/N32: total energy periodic balance": true,
+        "M0.01/roe/N32: finite physical diagnostics": true,
+        "M0.01/roe/N64: final time": true,
+        "M0.01/roe/N64: minimum_density_all_stages": true,
+        "M0.01/roe/N64: minimum_pressure_all_stages": true,
+        "M0.01/roe/N64: state_floor_count": true,
+        "M0.01/roe/N64: rejected_steps": true,
+        "M0.01/roe/N64: mass periodic balance": true,
+        "M0.01/roe/N64: x momentum periodic balance": true,
+        "M0.01/roe/N64: y momentum periodic balance": true,
+        "M0.01/roe/N64: total energy periodic balance": true,
+        "M0.01/roe/N64: finite physical diagnostics": true,
+        "M0.01/miczek/N16: final time": true,
+        "M0.01/miczek/N16: minimum_density_all_stages": true,
+        "M0.01/miczek/N16: minimum_pressure_all_stages": true,
+        "M0.01/miczek/N16: state_floor_count": true,
+        "M0.01/miczek/N16: rejected_steps": true,
+        "M0.01/miczek/N16: mass periodic balance": true,
+        "M0.01/miczek/N16: x momentum periodic balance": true,
+        "M0.01/miczek/N16: y momentum periodic balance": true,
+        "M0.01/miczek/N16: total energy periodic balance": true,
+        "M0.01/miczek/N16: finite physical diagnostics": true,
+        "M0.01/miczek/N32: final time": true,
+        "M0.01/miczek/N32: minimum_density_all_stages": true,
+        "M0.01/miczek/N32: minimum_pressure_all_stages": true,
+        "M0.01/miczek/N32: state_floor_count": true,
+        "M0.01/miczek/N32: rejected_steps": true,
+        "M0.01/miczek/N32: mass periodic balance": true,
+        "M0.01/miczek/N32: x momentum periodic balance": true,
+        "M0.01/miczek/N32: y momentum periodic balance": true,
+        "M0.01/miczek/N32: total energy periodic balance": true,
+        "M0.01/miczek/N32: finite physical diagnostics": true,
+        "M0.01/miczek/N64: final time": true,
+        "M0.01/miczek/N64: minimum_density_all_stages": true,
+        "M0.01/miczek/N64: minimum_pressure_all_stages": true,
+        "M0.01/miczek/N64: state_floor_count": true,
+        "M0.01/miczek/N64: rejected_steps": true,
+        "M0.01/miczek/N64: mass periodic balance": true,
+        "M0.01/miczek/N64: x momentum periodic balance": true,
+        "M0.01/miczek/N64: y momentum periodic balance": true,
+        "M0.01/miczek/N64: total energy periodic balance": true,
+        "M0.01/miczek/N64: finite physical diagnostics": true,
+        "M0.1: preconditioned velocity error decreases across grids": true,
+        "M0.1: finest preconditioned velocity_relative_l1": true,
+        "M0.1: finest preconditioned pressure_dynamic_l1": true,
+        "M0.1: finest preconditioned core_pressure_dynamic_l1": true,
+        "M0.1: finest preconditioned / Roe velocity error": true,
+        "M0.01: preconditioned velocity error decreases across grids": true,
+        "M0.01: finest preconditioned velocity_relative_l1": true,
+        "M0.01: finest preconditioned pressure_dynamic_l1": false,
+        "M0.01: finest preconditioned core_pressure_dynamic_l1": true,
+        "M0.01: finest preconditioned / Roe velocity error": true,
+        "Fourier M0.1/roe: maximum_SSPRK3_spectral_radius": true,
+        "Fourier M0.1/roe: maximum_energy_scaled_power_norm": true,
+        "Fourier M0.1/miczek: maximum_SSPRK3_spectral_radius": true,
+        "Fourier M0.1/miczek: maximum_energy_scaled_power_norm": true,
+        "Fourier M0.01/roe: maximum_SSPRK3_spectral_radius": true,
+        "Fourier M0.01/roe: maximum_energy_scaled_power_norm": true,
+        "Fourier M0.01/miczek: maximum_SSPRK3_spectral_radius": true,
+        "Fourier M0.01/miczek: maximum_energy_scaled_power_norm": true,
+        "forward Euler counterexample at the chosen acoustic step": true,
+        "analytic qualification: maximum_point_Euler_residual": true,
+        "analytic qualification: maximum_quadrature_dynamic_difference": true,
+        "analytic qualification: periodic_seam_velocity_bound": true
+      },
+      "check_details": [
+        {
+          "name": "all twelve fixed nonlinear runs completed",
+          "value": [
+            [
+              0.1,
+              "roe",
+              16
+            ],
+            [
+              0.1,
+              "roe",
+              32
+            ],
+            [
+              0.1,
+              "roe",
+              64
+            ],
+            [
+              0.1,
+              "miczek",
+              16
+            ],
+            [
+              0.1,
+              "miczek",
+              32
+            ],
+            [
+              0.1,
+              "miczek",
+              64
+            ],
+            [
+              0.01,
+              "roe",
+              16
+            ],
+            [
+              0.01,
+              "roe",
+              32
+            ],
+            [
+              0.01,
+              "roe",
+              64
+            ],
+            [
+              0.01,
+              "miczek",
+              16
+            ],
+            [
+              0.01,
+              "miczek",
+              32
+            ],
+            [
+              0.01,
+              "miczek",
+              64
+            ]
+          ],
+          "bound": [
+            [
+              0.1,
+              "roe",
+              16
+            ],
+            [
+              0.1,
+              "roe",
+              32
+            ],
+            [
+              0.1,
+              "roe",
+              64
+            ],
+            [
+              0.1,
+              "miczek",
+              16
+            ],
+            [
+              0.1,
+              "miczek",
+              32
+            ],
+            [
+              0.1,
+              "miczek",
+              64
+            ],
+            [
+              0.01,
+              "roe",
+              16
+            ],
+            [
+              0.01,
+              "roe",
+              32
+            ],
+            [
+              0.01,
+              "roe",
+              64
+            ],
+            [
+              0.01,
+              "miczek",
+              16
+            ],
+            [
+              0.01,
+              "miczek",
+              32
+            ],
+            [
+              0.01,
+              "miczek",
+              64
+            ]
+          ],
+          "passed": true
+        },
+        {
+          "name": "M0.1/roe/N16: final time",
+          "value": 0.1,
+          "bound": 0.1,
+          "passed": true
+        },
+        {
+          "name": "M0.1/roe/N16: minimum_density_all_stages",
+          "value": 0.9980906714421497,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.1/roe/N16: minimum_pressure_all_stages",
+          "value": 89.05390045782961,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.1/roe/N16: state_floor_count",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.1/roe/N16: rejected_steps",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.1/roe/N16: mass periodic balance",
+          "value": 1.1368905022669148e-15,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.1/roe/N16: x momentum periodic balance",
+          "value": 4.263339383500931e-16,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.1/roe/N16: y momentum periodic balance",
+          "value": 0.0,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.1/roe/N16: total energy periodic balance",
+          "value": 1.9503484123624606e-15,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.1/roe/N16: finite physical diagnostics",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "M0.1/roe/N32: final time",
+          "value": 0.1,
+          "bound": 0.1,
+          "passed": true
+        },
+        {
+          "name": "M0.1/roe/N32: minimum_density_all_stages",
+          "value": 0.9980426168909398,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.1/roe/N32: minimum_pressure_all_stages",
+          "value": 89.04485892012643,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.1/roe/N32: state_floor_count",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.1/roe/N32: rejected_steps",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.1/roe/N32: mass periodic balance",
+          "value": 2.84222625566729e-16,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.1/roe/N32: x momentum periodic balance",
+          "value": 5.684452511334577e-16,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.1/roe/N32: y momentum periodic balance",
+          "value": 4.263339383500931e-16,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.1/roe/N32: total energy periodic balance",
+          "value": 4.2257548934519666e-15,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.1/roe/N32: finite physical diagnostics",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "M0.1/roe/N64: final time",
+          "value": 0.1,
+          "bound": 0.1,
+          "passed": true
+        },
+        {
+          "name": "M0.1/roe/N64: minimum_density_all_stages",
+          "value": 0.9976771278901932,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.1/roe/N64: minimum_pressure_all_stages",
+          "value": 88.99727683072113,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.1/roe/N64: state_floor_count",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.1/roe/N64: rejected_steps",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.1/roe/N64: mass periodic balance",
+          "value": 9.947791894835496e-16,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.1/roe/N64: x momentum periodic balance",
+          "value": 7.105565639168218e-16,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.1/roe/N64: y momentum periodic balance",
+          "value": 2.9843375684506606e-15,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.1/roe/N64: total energy periodic balance",
+          "value": 2.1453832535986286e-14,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.1/roe/N64: finite physical diagnostics",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "M0.1/miczek/N16: final time",
+          "value": 0.1,
+          "bound": 0.1,
+          "passed": true
+        },
+        {
+          "name": "M0.1/miczek/N16: minimum_density_all_stages",
+          "value": 0.9910879896772072,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.1/miczek/N16: minimum_pressure_all_stages",
+          "value": 88.18299155687933,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.1/miczek/N16: state_floor_count",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.1/miczek/N16: rejected_steps",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.1/miczek/N16: mass periodic balance",
+          "value": 1.1368905022669148e-15,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.1/miczek/N16: x momentum periodic balance",
+          "value": 7.105565639168219e-16,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.1/miczek/N16: y momentum periodic balance",
+          "value": 2.84222625566729e-16,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.1/miczek/N16: total energy periodic balance",
+          "value": 1.9503484123624606e-15,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.1/miczek/N16: finite physical diagnostics",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "M0.1/miczek/N32: final time",
+          "value": 0.1,
+          "bound": 0.1,
+          "passed": true
+        },
+        {
+          "name": "M0.1/miczek/N32: minimum_density_all_stages",
+          "value": 0.9938158204871557,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.1/miczek/N32: minimum_pressure_all_stages",
+          "value": 88.51713110893716,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.1/miczek/N32: state_floor_count",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.1/miczek/N32: rejected_steps",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.1/miczek/N32: mass periodic balance",
+          "value": 2.84222625566729e-16,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.1/miczek/N32: x momentum periodic balance",
+          "value": 8.526678767001865e-16,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.1/miczek/N32: y momentum periodic balance",
+          "value": 4.263339383500931e-16,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.1/miczek/N32: total energy periodic balance",
+          "value": 3.575638755997818e-15,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.1/miczek/N32: finite physical diagnostics",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "M0.1/miczek/N64: final time",
+          "value": 0.1,
+          "bound": 0.1,
+          "passed": true
+        },
+        {
+          "name": "M0.1/miczek/N64: minimum_density_all_stages",
+          "value": 0.9957839130938407,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.1/miczek/N64: minimum_pressure_all_stages",
+          "value": 88.7607463174791,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.1/miczek/N64: state_floor_count",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.1/miczek/N64: rejected_steps",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.1/miczek/N64: mass periodic balance",
+          "value": 2.415892317317192e-15,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.1/miczek/N64: x momentum periodic balance",
+          "value": 1.5632244406170077e-15,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.1/miczek/N64: y momentum periodic balance",
+          "value": 1.421113127833648e-16,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.1/miczek/N64: total energy periodic balance",
+          "value": 7.476335580722493e-15,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.1/miczek/N64: finite physical diagnostics",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "M0.01/roe/N16: final time",
+          "value": 0.1,
+          "bound": 0.1,
+          "passed": true
+        },
+        {
+          "name": "M0.01/roe/N16: minimum_density_all_stages",
+          "value": 0.9998193131184018,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.01/roe/N16: minimum_pressure_all_stages",
+          "value": 8926.313885769605,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.01/roe/N16: state_floor_count",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.01/roe/N16: rejected_steps",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.01/roe/N16: mass periodic balance",
+          "value": 3.4106057956316007e-15,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.01/roe/N16: x momentum periodic balance",
+          "value": 3.694822945267567e-15,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.01/roe/N16: y momentum periodic balance",
+          "value": 2.984280071177653e-15,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.01/roe/N16: total energy periodic balance",
+          "value": 8.344417989478917e-16,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.01/roe/N16: finite physical diagnostics",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "M0.01/roe/N32: final time",
+          "value": 0.1,
+          "bound": 0.1,
+          "passed": true
+        },
+        {
+          "name": "M0.01/roe/N32: minimum_density_all_stages",
+          "value": 0.9997940576234997,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.01/roe/N32: minimum_pressure_all_stages",
+          "value": 8926.000491997795,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.01/roe/N32: state_floor_count",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.01/roe/N32: rejected_steps",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.01/roe/N32: mass periodic balance",
+          "value": 8.81073163871496e-15,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.01/roe/N32: x momentum periodic balance",
+          "value": 7.673863040171105e-15,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.01/roe/N32: y momentum periodic balance",
+          "value": 7.389645890535133e-15,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.01/roe/N32: total energy periodic balance",
+          "value": 1.4394121031850977e-14,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.01/roe/N32: finite physical diagnostics",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "M0.01/roe/N64: final time",
+          "value": 0.1,
+          "bound": 0.1,
+          "passed": true
+        },
+        {
+          "name": "M0.01/roe/N64: minimum_density_all_stages",
+          "value": 0.9998528567759368,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.01/roe/N64: minimum_pressure_all_stages",
+          "value": 8926.73341132005,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.01/roe/N64: state_floor_count",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.01/roe/N64: rejected_steps",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.01/roe/N64: mass periodic balance",
+          "value": 1.3073988883254461e-14,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.01/roe/N64: x momentum periodic balance",
+          "value": 1.293188030843648e-14,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.01/roe/N64: y momentum periodic balance",
+          "value": 1.2221337434346609e-14,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.01/roe/N64: total energy periodic balance",
+          "value": 3.901015410081262e-14,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.01/roe/N64: finite physical diagnostics",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "M0.01/miczek/N16: final time",
+          "value": 0.1,
+          "bound": 0.1,
+          "passed": true
+        },
+        {
+          "name": "M0.01/miczek/N16: minimum_density_all_stages",
+          "value": 0.9990661130164509,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.01/miczek/N16: minimum_pressure_all_stages",
+          "value": 8916.908590975885,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.01/miczek/N16: state_floor_count",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.01/miczek/N16: rejected_steps",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.01/miczek/N16: mass periodic balance",
+          "value": 2.842171496359667e-15,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.01/miczek/N16: x momentum periodic balance",
+          "value": 3.4106057956316007e-15,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.01/miczek/N16: y momentum periodic balance",
+          "value": 2.8421714963596695e-15,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.01/miczek/N16: total energy periodic balance",
+          "value": 8.344417989478917e-16,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.01/miczek/N16: finite physical diagnostics",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "M0.01/miczek/N32: final time",
+          "value": 0.1,
+          "bound": 0.1,
+          "passed": true
+        },
+        {
+          "name": "M0.01/miczek/N32: minimum_density_all_stages",
+          "value": 0.9994213028701745,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.01/miczek/N32: minimum_pressure_all_stages",
+          "value": 8921.340848171312,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.01/miczek/N32: state_floor_count",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.01/miczek/N32: rejected_steps",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.01/miczek/N32: mass periodic balance",
+          "value": 7.531754465353111e-15,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.01/miczek/N32: x momentum periodic balance",
+          "value": 5.684342992719337e-15,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.01/miczek/N32: y momentum periodic balance",
+          "value": 7.815971614989083e-15,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.01/miczek/N32: total energy periodic balance",
+          "value": 1.2933847883692183e-14,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.01/miczek/N32: finite physical diagnostics",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "M0.01/miczek/N64: final time",
+          "value": 0.1,
+          "bound": 0.1,
+          "passed": true
+        },
+        {
+          "name": "M0.01/miczek/N64: minimum_density_all_stages",
+          "value": 0.9996931789523559,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.01/miczek/N64: minimum_pressure_all_stages",
+          "value": 8924.736867227044,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.01/miczek/N64: state_floor_count",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.01/miczek/N64: rejected_steps",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "M0.01/miczek/N64: mass periodic balance",
+          "value": 1.0089708812076812e-14,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.01/miczek/N64: x momentum periodic balance",
+          "value": 1.5063508930706228e-14,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.01/miczek/N64: y momentum periodic balance",
+          "value": 8.384405914261045e-15,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.01/miczek/N64: total energy periodic balance",
+          "value": 3.963598545002351e-14,
+          "bound": 3e-12,
+          "passed": true
+        },
+        {
+          "name": "M0.01/miczek/N64: finite physical diagnostics",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "M0.1: preconditioned velocity error decreases across grids",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "M0.1: finest preconditioned velocity_relative_l1",
+          "value": 0.12641274803824212,
+          "bound": 0.5,
+          "passed": true
+        },
+        {
+          "name": "M0.1: finest preconditioned pressure_dynamic_l1",
+          "value": 0.011613976782962271,
+          "bound": 0.1,
+          "passed": true
+        },
+        {
+          "name": "M0.1: finest preconditioned core_pressure_dynamic_l1",
+          "value": 0.12124084944529392,
+          "bound": 1.0,
+          "passed": true
+        },
+        {
+          "name": "M0.1: finest preconditioned / Roe velocity error",
+          "value": 0.8345217310097137,
+          "bound": 0.9,
+          "passed": true
+        },
+        {
+          "name": "M0.01: preconditioned velocity error decreases across grids",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "M0.01: finest preconditioned velocity_relative_l1",
+          "value": 0.2709868099002454,
+          "bound": 0.5,
+          "passed": true
+        },
+        {
+          "name": "M0.01: finest preconditioned pressure_dynamic_l1",
+          "value": 0.16536676320960308,
+          "bound": 0.1,
+          "passed": false
+        },
+        {
+          "name": "M0.01: finest preconditioned core_pressure_dynamic_l1",
+          "value": 0.006715252089724626,
+          "bound": 1.0,
+          "passed": true
+        },
+        {
+          "name": "M0.01: finest preconditioned / Roe velocity error",
+          "value": 0.2998325651084795,
+          "bound": 0.9,
+          "passed": true
+        },
+        {
+          "name": "Fourier M0.1/roe: maximum_SSPRK3_spectral_radius",
+          "value": 1.0,
+          "bound": 1.00000000005,
+          "passed": true
+        },
+        {
+          "name": "Fourier M0.1/roe: maximum_energy_scaled_power_norm",
+          "value": 1.0,
+          "bound": 4.0,
+          "passed": true
+        },
+        {
+          "name": "Fourier M0.1/miczek: maximum_SSPRK3_spectral_radius",
+          "value": 1.0,
+          "bound": 1.00000000005,
+          "passed": true
+        },
+        {
+          "name": "Fourier M0.1/miczek: maximum_energy_scaled_power_norm",
+          "value": 1.0,
+          "bound": 4.0,
+          "passed": true
+        },
+        {
+          "name": "Fourier M0.01/roe: maximum_SSPRK3_spectral_radius",
+          "value": 1.0,
+          "bound": 1.00000000005,
+          "passed": true
+        },
+        {
+          "name": "Fourier M0.01/roe: maximum_energy_scaled_power_norm",
+          "value": 1.0,
+          "bound": 4.0,
+          "passed": true
+        },
+        {
+          "name": "Fourier M0.01/miczek: maximum_SSPRK3_spectral_radius",
+          "value": 1.0,
+          "bound": 1.00000000005,
+          "passed": true
+        },
+        {
+          "name": "Fourier M0.01/miczek: maximum_energy_scaled_power_norm",
+          "value": 1.0,
+          "bound": 4.0,
+          "passed": true
+        },
+        {
+          "name": "forward Euler counterexample at the chosen acoustic step",
+          "value": 1.03517429243935,
+          "bound": 1.00001,
+          "passed": true
+        },
+        {
+          "name": "analytic qualification: maximum_point_Euler_residual",
+          "value": 1.0897087716081738e-16,
+          "bound": 1e-11,
+          "passed": true
+        },
+        {
+          "name": "analytic qualification: maximum_quadrature_dynamic_difference",
+          "value": 4.0745362639427176e-11,
+          "bound": 2e-07,
+          "passed": true
+        },
+        {
+          "name": "analytic qualification: periodic_seam_velocity_bound",
+          "value": 9.230732788845203e-21,
+          "bound": 1e-16,
+          "passed": true
+        }
+      ],
+      "linear_stability": [
+        {
+          "mach_far": 0.1,
+          "variant": "roe",
+          "acoustic_dt_at_h1": 0.00838199086890925,
+          "wavenumbers_per_axis": 17,
+          "sampled_2d_modes": 289,
+          "power_indices": [
+            1,
+            10,
+            100
+          ],
+          "maximum_SSPRK3_spectral_radius": 1.0,
+          "maximum_energy_scaled_power_norm": 1.0,
+          "maximum_forward_Euler_spectral_radius": 1.0,
+          "maximum_semidiscrete_eigenvalue_real_part": 0.0,
+          "worst_SSPRK3_mode": [
+            0.0,
+            0.0
+          ],
+          "scope": "Constant uniform background only; selected Fourier grid/powers, not a nonlinear or continuous-mode stability theorem."
+        },
+        {
+          "mach_far": 0.1,
+          "variant": "miczek",
+          "acoustic_dt_at_h1": 0.00838199086890925,
+          "wavenumbers_per_axis": 17,
+          "sampled_2d_modes": 289,
+          "power_indices": [
+            1,
+            10,
+            100
+          ],
+          "maximum_SSPRK3_spectral_radius": 1.0,
+          "maximum_energy_scaled_power_norm": 1.0,
+          "maximum_forward_Euler_spectral_radius": 1.0006162678919706,
+          "maximum_semidiscrete_eigenvalue_real_part": 0.0,
+          "worst_SSPRK3_mode": [
+            0.0,
+            0.0
+          ],
+          "scope": "Constant uniform background only; selected Fourier grid/powers, not a nonlinear or continuous-mode stability theorem."
+        },
+        {
+          "mach_far": 0.01,
+          "variant": "roe",
+          "acoustic_dt_at_h1": 0.000888467172022657,
+          "wavenumbers_per_axis": 17,
+          "sampled_2d_modes": 289,
+          "power_indices": [
+            1,
+            10,
+            100
+          ],
+          "maximum_SSPRK3_spectral_radius": 1.0,
+          "maximum_energy_scaled_power_norm": 1.0,
+          "maximum_forward_Euler_spectral_radius": 1.0,
+          "maximum_semidiscrete_eigenvalue_real_part": 0.0,
+          "worst_SSPRK3_mode": [
+            0.0,
+            0.0
+          ],
+          "scope": "Constant uniform background only; selected Fourier grid/powers, not a nonlinear or continuous-mode stability theorem."
+        },
+        {
+          "mach_far": 0.01,
+          "variant": "miczek",
+          "acoustic_dt_at_h1": 0.000888467172022657,
+          "wavenumbers_per_axis": 17,
+          "sampled_2d_modes": 289,
+          "power_indices": [
+            1,
+            10,
+            100
+          ],
+          "maximum_SSPRK3_spectral_radius": 1.0,
+          "maximum_energy_scaled_power_norm": 1.0,
+          "maximum_forward_Euler_spectral_radius": 1.03517429243935,
+          "maximum_semidiscrete_eigenvalue_real_part": 0.0,
+          "worst_SSPRK3_mode": [
+            0.0,
+            0.0
+          ],
+          "scope": "Constant uniform background only; selected Fourier grid/powers, not a nonlinear or continuous-mode stability theorem."
+        }
+      ],
+      "reference_qualification": {
+        "maximum_point_Euler_residual": 1.0897087716081738e-16,
+        "maximum_quadrature_dynamic_difference": 4.0745362639427176e-11,
+        "periodic_seam_velocity_bound": 9.230732788845203e-21,
+        "scope": "Whole-plane analytic solution in a finite periodic box; Gauss8 means qualified against Gauss16, not closed-form exact cell averages."
+      }
+    }
+  ],
+  "files_sha256": {
+    "field-M0.1-roe-n16.npz": "37f904c344015121f6de0f19c3dd9ee7325684b79c8cec8fab4658f753b22f93",
+    "history-M0.1-roe-n16.json": "28b401c3091740148e75ffd61bd1368204477f57b24f8d41a49049afada3abd0",
+    "field-M0.1-roe-n32.npz": "15d884cbeeeb06b4edb25c42ac8f68225ae04c905e75ff908a7078af2c35b302",
+    "history-M0.1-roe-n32.json": "204d04e44dacaa756c5d6c15216f7fc7100c0f589ebc7e7a371334ba0a130953",
+    "field-M0.1-roe-n64.npz": "4cea2559faba32b267c5c1c9beae25ff87f169afd9d5873b451c83c686b68476",
+    "history-M0.1-roe-n64.json": "b78ef8d101ad7999cd4189b00f7f681df820671de1fed5b0785f7a351106b920",
+    "field-M0.1-miczek-n16.npz": "6e10736005aa9c33466c82a28d9bbfbfc2c28f1f31dc8dbca8072c4528a289b1",
+    "history-M0.1-miczek-n16.json": "e1d519f1fc8ebd83412cebb5c9fd20b68e228242b4f9624104302d2c67561ecc",
+    "field-M0.1-miczek-n32.npz": "9d4065a94056b79fcd1dfed064541818e827badc889059d36c95f1ac7c823de7",
+    "history-M0.1-miczek-n32.json": "c2f9ed26626daa3229fa3f1aa0af576923193c6a29259314084effbd84f9b1f5",
+    "field-M0.1-miczek-n64.npz": "69fb53eabf44b8a1220e7a5fb8a9d07fbdae27ba4071fc4d119fa46e6606a4e7",
+    "history-M0.1-miczek-n64.json": "5ae64c157249553707316bd96eaa6a108eec1e6f4787c876c96bf54a00512e70",
+    "field-M0.01-roe-n16.npz": "fd29bcdbbd716ad430287b2d934426c81c008a6bc838d5f3b73b1eccf6d5711d",
+    "history-M0.01-roe-n16.json": "21025b319c8fc73ba3751ad63331f45f853ed3d3e8f4be1d2aca857e2f72713e",
+    "field-M0.01-roe-n32.npz": "665a35dcda7928f74125f578a4ff2cb2aa129acdfbf58925cc7d5021bc168d04",
+    "history-M0.01-roe-n32.json": "033232092a0d7898c95621e442f75ae25199ebd7d077f39a3a9348f932e6bdfe",
+    "field-M0.01-roe-n64.npz": "b143b8dbecfc4f1524b05ad65b3692c76e7d2c08aca43038f4d47a6245b17ccb",
+    "history-M0.01-roe-n64.json": "6958c9b632ceba7f7f9b9774dbc2461a874fc9e267582f8f9a22bca60bbbb476",
+    "field-M0.01-miczek-n16.npz": "a9e38ffcc726d87ce5c1663f15481e45ae8c41b61ac8e4b31085060d93ba37f6",
+    "history-M0.01-miczek-n16.json": "f1556a13036465583601340e5ceebc8d9d169cf5de1d182526682e10f53772eb",
+    "field-M0.01-miczek-n32.npz": "c42a822b3e3d138c8165a632912172e622a5621e7ef2cab782c9022c47abdcca",
+    "history-M0.01-miczek-n32.json": "25cf33b542a5b32419b3c2ca58537c0409afa29b87b2d88027a322754f1b4496",
+    "field-M0.01-miczek-n64.npz": "c7e969c84675e931cba6a71939aecbb17f1907199210a5cad82d16a18b72b12f",
+    "history-M0.01-miczek-n64.json": "78d819c6733e6bbebcf946ee19d0ec8d044d539e2d8fe0e0855481359de4d807"
+  },
+  "source_sha256": {
+    "lm_solver.py": "149cf3fb54c0eef15e4fb28880d0707edb465ae873a5a829f017857eca94122d",
+    "linear_stability.py": "fc78dcd5704c6cd2fad42da076ec3ca8201041eaae2073b061c5423ad7b3893e",
+    "run.py": "85cc8f365aa9804a9cb919bfc5d060be0b9ece386a3be81dccf9e41e9a8b779f",
+    "inputs.json": "a84bd010dce2128a1b4e4c673f16110ddc4f59a363c64ef6d1b85444989907c5",
+    "acceptance.json": "5ab3845b4bf18433bca96980112357723ebf0c2846d65ee74941f1f82cf82d75",
+    "pre-run-contract.json": "5af5d8f16225ff28ea9a03ecd84c9337eed3b429b39fba7c2c6ec96283bacf30",
+    "references/analytic_vortex.py": "17d94f53c394a7cee89ff7b016311cf02a6b598551e52b41f83a4c49e826786c",
+    "references/miczek_matrix.py": "7c5c101be83bf5717cbdd771582b80fc358cb128aeebb388e7689421be3eb175"
+  },
+  "duration_seconds": 3.586884791999182,
+  "failure": null
+}

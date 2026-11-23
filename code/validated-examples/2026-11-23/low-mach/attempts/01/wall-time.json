@@ -1,0 +1,17 @@
+{
+  "command": [
+    "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/lm-env/bin/python",
+    "-W",
+    "error",
+    "run.py",
+    "--input",
+    "inputs.json",
+    "--output",
+    "attempts/01/results"
+  ],
+  "limit_seconds": 120.0,
+  "timed_out": false,
+  "retry_count": 0,
+  "returncode": 1,
+  "elapsed_seconds": 3.690344416998414
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "group": "low-mach",
+  "edition": "2026-11-23",
+  "verified_on": "2026-11-23",
+  "source_manifest_sha256": "ff359786cf6efff8e5e61f842ae63a866cb7655a4151b2d33ac12501eed98124",
+  "archive": {
+    "file": "atlas-low-mach-2026-11-23.zip",
+    "sha256": "717b2ceed76d37cf4c1e570a7a022e1a17d66fce3048648a3edde4164a1513aa",
+    "bytes": 3166398,
+    "archive_directory": "atlas-low-mach-2026-11-23"
+  },
+  "archive_sha256": "717b2ceed76d37cf4c1e570a7a022e1a17d66fce3048648a3edde4164a1513aa",
+  "returncode": 0,
+  "passed_tests": 35,
+  "tests": 35,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "low-mach-vortex"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 4.547401542000443,
+  "independent_rerun_seconds": 4.528299290999712,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

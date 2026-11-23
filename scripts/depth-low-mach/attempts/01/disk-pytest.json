@@ -1,0 +1,44 @@
+{
+  "started_at_utc": "2026-11-23T05:55:43.055681+00:00",
+  "command": [
+    "env",
+    "PYTHONDONTWRITEBYTECODE=1",
+    "TMPDIR=/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459",
+    "OPENBLAS_NUM_THREADS=1",
+    "OMP_NUM_THREADS=1",
+    "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/lm-env/bin/python",
+    "-W",
+    "error",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "--junitxml=attempts/01/pytest.xml"
+  ],
+  "cwd": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/atlas-search-publisher/scripts/depth-low-mach",
+  "initial_free_bytes": 12600000512,
+  "reserve_bytes": 2684354560,
+  "minimum_free_bytes": 12599869440,
+  "samples": [
+    {
+      "seconds": 0.0,
+      "free_bytes": 12599996416
+    },
+    {
+      "seconds": 0.51,
+      "free_bytes": 12599869440
+    },
+    {
+      "seconds": 1.02,
+      "free_bytes": 12599881728
+    }
+  ],
+  "disk_stop": false,
+  "started": true,
+  "owned_process_group": 49194,
+  "child_returncode": 0,
+  "returncode": 0,
+  "final_free_bytes": 12599877632,
+  "completed_at_utc": "2026-11-23T05:55:44.077502+00:00"
+}

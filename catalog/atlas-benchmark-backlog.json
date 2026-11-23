@@ -723,15 +723,41 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "解説のみ",
-      "state": "planned",
-      "current": "Sod・Shu–Osherの固定入力、独立Athena++追補shu-independent、PPM/AUSM/回転流束の既存実装と2D保存画像がある。Noh/Sedovは本文の将来項目のみ。",
+      "state": "published",
+      "current": "背景Mach数.1/.01・3格子・2流束の12計算を、同じ無制限中心primitive MUSCLとSSPRK(3,3)で比較する軽量例を公開。35単体検査・143判定と配布ZIPの独立展開再実行が合格した。初版の区分定数計算は全143判定中142合格で、M∞=.01の全域動圧規格化圧力L1=.16537が固定閾値.1を超えた失敗を保持。物理入力・判定値を変えず、両流束を同じ再構築へ改訂した。最細のM∞=.01では速度誤差と運動エネルギー保持が改善する一方、全域圧力L1は通常Roe .01194に対し前処理側 .01260で、すべての量が改善する結果ではない。",
       "tasks": [
         "既存等エントロピー渦と同じ解析場を基準に少数Mach値を固定。",
         "圧力誤差のMach依存、速度誤差、音響/対流刻み、定常残差を分離。",
         "原理説明やRoe entropy-fixの成功をPDE前処理の実装と取り違えない。"
       ],
-      "scope_note": "",
-      "sources": [],
+      "scope_note": "対象はN16/32/64、M∞=.1/.01、T=.1の12固定実行と定数状態の17²標本Fourierモードです。数値散逸を前処理し、元の物理時間項は保ちます。SSPRK(3,3)の名だけから前進Eulerの強安定性や非線形安定性を導かず、陽的な音響刻み制約も保持します。定常反復・二重時間積分の加速、長時間・全Mach数域・衝撃波の検証は今後の範囲です。 初回の失敗した区分定数計算も全域誤差とともに保持し、改訂版だけを初回成功として扱いません。無制限中心MUSCLは滑らかな固定入力向けで、制限関数やTVD・衝撃波の保証は含みません。 公開済みという状態は、この短い固定入力と標本Fourier診断の範囲に限ります。全域圧力誤差は前処理側が大きい場合もあり、中心部の改善や切り出し図だけで全域の精度を主張しません。",
+      "sources": [
+        {
+          "url": "https://doi.org/10.1051/0004-6361/201425059",
+          "title": "Fabian Miczek, Friedrich K. Röpke and Philipp V. F. Edelmann (2015). New numerical solver for flows at various Mach numbers",
+          "review": "著者版の前処理行列・散逸項とRK3への言及を確認。今回は等エントロピー渦の短い時間区間に適用し、原著のGresho実験や暗黙積分を再現したとは扱いません。"
+        },
+        {
+          "url": "https://doi.org/10.1007/s10915-017-0372-4",
+          "title": "Wasilij Barsukow, Philipp V. F. Edelmann, Christian Klingenberg, Fabian Miczek and Friedrich K. Röpke (2017). A Numerical Scheme for the Compressible Low-Mach Number Regime of Ideal Fluid Dynamics",
+          "review": "前処理散逸P⁻¹|PA|、原始変数行列と前進Eulerの厳しい刻み制限を確認。SSPRK33での本固定入力のFourier診断・実段検査は別に実施し、一般の非線形安定性やSSP保証を借用しません。"
+        },
+        {
+          "url": "https://doi.org/10.2514/6.2015-2444",
+          "title": "Seth C. Spiegel, H. T. Huynh and James R. DeBonis (2015). A Survey of the Isentropic Euler Vortex Problem using High-Order Methods",
+          "review": "一般化された渦の定義と周期境界の相互作用・せん断層の説明を確認。独自のβ3・流速(1,.5)・M∞.1/.01を明示し、全平面解と有限周期箱の違いを保持します。NASA/FRソルバーや論文図の転載ではありません。"
+        },
+        {
+          "url": "https://doi.org/10.1090/S0025-5718-98-00913-2",
+          "title": "Sigal Gottlieb and Chi-Wang Shu (1998). Total Variation Diminishing Runge-Kutta Schemes",
+          "review": "著者の書誌と著者PDFの索引抜粋で書誌・3次TVD法の位置付けを確認。PDFを直接通読したとは記録しません。係数は次の著者レビューのSSPRK(3,3)表示とも照合します。"
+        },
+        {
+          "url": "https://doi.org/10.1137/S003614450036757X",
+          "title": "Sigal Gottlieb, Chi-Wang Shu and Eitan Tadmor (2001). Strong Stability-Preserving High-Order Time Discretization Methods",
+          "review": "3段3次の更新係数と、前進Eulerの強安定性を前提にするSSPの条件を確認。今回のMiczek流束についてSSP・TVD・非線形安定性を一般保証せず、指定したFourier行列と実際の段状態を別途確認します。"
+        }
+      ],
       "baseline_evidence": [
         {
           "path": "catalog/atlas-methods.json",
@@ -744,7 +770,36 @@
           "observation": "原KEEPの既存計算はある。"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23/low-mach/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23/low-mach/inputs.json",
+          "/code/validated-examples/2026-11-23/low-mach/acceptance.json",
+          "/code/validated-examples/2026-11-23/low-mach/pre-run-contract.json",
+          "/code/validated-examples/2026-11-23/low-mach/references/definition.json",
+          "/code/validated-examples/2026-11-23/low-mach/contract-first-order.json",
+          "/code/validated-examples/2026-11-23/low-mach/attempts/01/acceptance.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex-preview.png",
+          "/code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex.png"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#isentropic-vortex-ja",
+        "execution": "/numerical-methods-atlas/validation/low-mach-vortex/?lang=ja",
+        "code": [
+          "/code/validated-examples/2026-11-23/low-mach/run.py",
+          "/code/validated-examples/2026-11-23/low-mach/lm_solver.py",
+          "/code/validated-examples/2026-11-23/low-mach/linear_stability.py",
+          "/code/validated-examples/2026-11-23/low-mach/references/analytic_vortex.py"
+        ],
+        "references": [
+          "/numerical-methods-atlas/solutions/?lang=ja#solution-isentropic-vortex-ja",
+          "/code/validated-examples/2026-11-23/low-mach/references/citations.json",
+          "/code/validated-examples/2026-11-23/low-mach/references/README.md",
+          "/code/validated-examples/2026-11-23/low-mach/attempts/01/results/result.json",
+          "/code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex-first-order.png"
+        ]
+      },
       "sequence": 9
     },
     {

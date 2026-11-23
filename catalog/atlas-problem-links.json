@@ -630,17 +630,30 @@
         "euler"
       ],
       "reference_note": {
-        "ja": "滑らかな周期等エントロピー渦の解析的移動解と格子・時間刻みの収束を確認します。非圧縮Taylor–Green渦の参照式とは別問題です。",
-        "en": "Check analytic transport of a smooth periodic isentropic vortex with space/time refinement. This differs from the incompressible Taylor–Green reference."
+        "ja": "従来KEEPの等エントロピー渦と同じ解析解族に、背景Mach数.1/.01の整合した圧力・密度スケーリングを加えた比較です。解析場は全平面Eulerの移動解で、有限周期箱の微小な裾と保存量セル平均の数値求積は別に資格確認します。",
+        "en": "This extends the analytic family used by the historical KEEP vortex with consistently scaled pressure and density at background Mach numbers .1 and .01. The analytic field is a translating whole-plane Euler solution; tiny finite-periodic-box tails and numerical quadrature of conservative cell averages are qualified separately."
       },
-      "references": [],
+      "references": [
+        {
+          "id": "isentropic-vortex",
+          "relation": "same-problem",
+          "note": {
+            "ja": "同じ等エントロピー移動渦族の解析場です。保存量をGauss求積してから圧力・速度を算出し、周期の継ぎ目に残るGaussianの裾と求積誤差を明記します。",
+            "en": "Analytic field for the same translating isentropic-vortex family. Pressure and velocity are evaluated after Gauss integration of conserved variables; finite-periodic Gaussian tails and quadrature error remain explicit."
+          }
+        }
+      ],
       "method_ids": [
         "keep",
-        "rk4"
+        "rk4",
+        "roe",
+        "low-mach-preconditioning",
+        "ssprk33",
+        "muscl"
       ],
       "method_note": {
-        "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
-        "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+        "ja": "従来のKEEP/RK4固定例を保持し、新しい低Mach比較にRoe・数値散逸の前処理・無制限中心primitive MUSCL・SSPRK(3,3)を対応付けます。個々の実行例が使う手法は実行ページで区別します。",
+        "en": "Retain the historical KEEP/RK4 fixed case and connect Roe, dissipation preconditioning, unlimited central primitive MUSCL and SSPRK(3,3) to the additional low-Mach comparison. Each execution page states its own methods."
       }
     },
     {

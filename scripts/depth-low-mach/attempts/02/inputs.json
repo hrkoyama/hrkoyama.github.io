@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "cases": {
+    "low-mach-vortex": {
+      "grids": [16, 32, 64],
+      "mach_far_values": [0.1, 0.01],
+      "variants": ["roe", "miczek"],
+      "final_time": 0.1,
+      "length": 20.0,
+      "beta": 3.0,
+      "gamma": 1.4,
+      "background_velocity": [1.0, 0.5],
+      "cfl": 0.2,
+      "time_integrator": "SSPRK33",
+      "mach_cutoff": "same as background Mach",
+      "quadrature_order": 8,
+      "quadrature_check_order": 16,
+      "core_radius": 3.0,
+      "max_steps_per_run": 20000,
+      "fourier_wavenumbers_per_axis": 17,
+      "fourier_power_indices": [1, 10, 100]
+    }
+  }
+}

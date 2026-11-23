@@ -1,0 +1,10 @@
+{
+  "analytic_family_base": "code/numerical-methods-atlas/2026-11-22/numart/keep.py",
+  "analytic_family_base_sha256": "0819e2c3de3e4ab9ffe763f247a471a21966fde88da6ed13621ae334afc71f91",
+  "primary_implementation": "Standalone conservative Roe or Miczek fluxes with the same unlimited centered primitive-MUSCL reconstruction on both variants; no limiter or fallback.",
+  "matrix_source": "Miczek et al.2015 Eq56 / Barsukow et al.2017 Eq31; D=P^-1|PA| with dimensional standard Euler.",
+  "time": "Physical Euler time derivative unchanged; explicit SSPRK(3,3), acoustic CFL.2 qualified empirically and by a sampled constant-state Fourier scan. No pseudo-time or steady convergence acceleration.",
+  "analytical_reference": "Separately written continuous vortex evaluator and Gauss cell quadrature; dense-matrix eigendecomposition oracle is separate from the polynomial-action flux. Neither is a separate PDE engine.",
+  "changes": "Background pressure rescales Mach while beta/velocity/L remain fixed; finite-box Gaussian seam and quadrature are explicitly qualified.",
+  "revision02": "Original piecewise-constant trial32tests/143gates retained; atMach.01 its mean pressure dynamicL1=.1653667632 exceeded the fixed.1 gate. Rev02 changes spatial reconstruction only, addsfaceguards and exact reconstructed Fourier symbols plus3regressiontests. Inputs, physicaltime, CFL and acceptance remain byte-identical."
+}

@@ -5,11 +5,11 @@
   "scope": "One explicitly mapped visual per atlas test problem. Existing shared figures are identified. Derived plots use stored numerical values; computed previews record fixed inputs and numerical checks.",
   "counts": {
     "test_problems": 85,
-    "runnable_problems": 43,
+    "runnable_problems": 44,
     "common_runnable_problems": 22,
-    "supplemental_runnable_problems": 24,
-    "supplemental_case_count": 40,
-    "supplemental_release_case_count": 45,
+    "supplemental_runnable_problems": 25,
+    "supplemental_case_count": 41,
+    "supplemental_release_case_count": 46,
     "groups": {
       "transport": 9,
       "fluid": 18,
@@ -1610,37 +1610,77 @@
         "ja": "周期移動等エントロピー渦",
         "en": "Periodic moving isentropic vortex"
       },
-      "chapter": "keep",
+      "chapter": "validation-low-mach",
       "evidence": [
         {
           "path": "numerical-methods-atlas/assets/keep-vortex.json",
           "json_pointer": "/studies"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/low-mach/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "low-mach-vortex"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/low-mach/inputs.json",
+          "json_pointer": "/cases/low-mach-vortex"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/low-mach/verification.json",
+          "json_pointer": "/all_cases_rerun"
         }
       ],
       "availability": "saved-output",
+      "reading_section": "low-mach-vortex",
+      "code_base": "/code/validated-examples/2026-11-23/low-mach/",
+      "verification": "/code/validated-examples/2026-11-23/low-mach/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "supplemental_examples": [
+        {
+          "id": "low-mach-vortex",
+          "url": "/numerical-methods-atlas/validation/low-mach-vortex/",
+          "name": {
+            "ja": "低Mach等エントロピー渦：前処理Roe流束の軽量検証",
+            "en": "Low-Mach isentropic vortex: preconditioned Roe flux verification"
+          }
+        }
+      ],
       "reading": {
-        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/keep/",
-        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/keep/"
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-low-mach/#low-mach-vortex",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-low-mach/#low-mach-vortex"
       },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/low-mach/verification.json",
       "execution_examples": [],
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#isentropic-vortex",
-      "run_commands": [],
-      "image": "/numerical-methods-atlas/assets/movies/keep-vortex/frame-080.webp",
-      "image_sha256": "0571dd99590171b88cab7b70ee4a152eec5870a6129fa8dca0769e1c001eaf5e",
-      "width": 960,
-      "height": 640,
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "image": "/code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex-preview.png",
+      "image_sha256": "295a80ecab6c8e93c0504f115f48a3b5105ab4e29fe2ccd44965fe387744dbdf",
+      "width": 1312,
+      "height": 840,
       "source_kind": "existing-figure",
       "caption": {
-        "ja": "保存したKEEP移動渦の最終フレーム。",
-        "en": "Stored final frame of the KEEP moving vortex."
+        "ja": "M∞=.01、64²、T=.1の実際の2次元Euler計算。全[-10,10]²領域から中心[-3,3]²を拡大し、保存速度から差分で求めた渦度と背景流を引いた速度矢印で、MUSCL付き通常Roe／前処理Roeを比較します。",
+        "en": "Actual 2D Euler evolution at M∞=.01, 64² and T=.1. A central [-3,3]² crop of the full [-10,10]² computation compares ordinary and preconditioned Roe with MUSCL. Vorticity is derived by finite differences of saved velocity; arrows show velocity minus the background flow."
       },
       "visual_input": {
         "id": "isentropic-vortex",
         "kind": "image",
-        "source": "assets/movies/keep-vortex/frame-080.webp",
+        "source": "/code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex-preview.png",
         "caption": {
-          "ja": "保存したKEEP移動渦の最終フレーム。",
-          "en": "Stored final frame of the KEEP moving vortex."
+          "ja": "M∞=.01、64²、T=.1の実際の2次元Euler計算。全[-10,10]²領域から中心[-3,3]²を拡大し、保存速度から差分で求めた渦度と背景流を引いた速度矢印で、MUSCL付き通常Roe／前処理Roeを比較します。",
+          "en": "Actual 2D Euler evolution at M∞=.01, 64² and T=.1. A central [-3,3]² crop of the full [-10,10]² computation compares ordinary and preconditioned Roe with MUSCL. Vorticity is derived by finite differences of saved velocity; arrows show velocity minus the background flow."
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#isentropic-vortex-ja",
@@ -1648,9 +1688,35 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isentropic-vortex/?lang=ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isentropic-vortex/?lang=en"
       },
-      "runnable": false,
+      "runnable": true,
       "execution_entry": null,
-      "supplemental_execution_entries": []
+      "supplemental_execution_entries": [
+        {
+          "id": "low-mach-vortex",
+          "title": {
+            "ja": "低Mach等エントロピー渦：前処理Roe流束の軽量検証",
+            "en": "Low-Mach isentropic vortex: preconditioned Roe flux verification"
+          },
+          "group": "low-mach",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/low-mach-vortex/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/low-mach-vortex/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/low-mach/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/low-mach/lm_solver.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/low-mach/linear_stability.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/low-mach/references/analytic_vortex.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/low-mach/references/miczek_matrix.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/low-mach/test_low_mach.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/low-mach/atlas-low-mach-2026-11-23.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/low-mach/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/low-mach/verification.json"
+        }
+      ]
     },
     {
       "id": "orszag-tang",
@@ -7432,7 +7498,7 @@
     }
   ],
   "source_sha256": {
-    "catalog/atlas-gallery.json": "f664f1b6074233918dba16d6cb0a0058a1f58e5b8797857b185529c95f5f4f47",
+    "catalog/atlas-gallery.json": "c7a79d0d75ff502148bca24ca31683f71c72ae53006f866d24d1626940601a56",
     "scripts/render-atlas-gallery.py": "62956b5a0ece0c5144ec079bb30f36e44b3ccf97e4b56b677d4de356cdbab04c",
     "code/numerical-methods-atlas/2026-11-21/numart/benchmarks.py": "dc8f83aafea473b5f0e1e7bf82630484dd60aa446859c1f602571adc3c59f019",
     "code/numerical-methods-atlas/2026-11-21/numart/solvers.py": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d",
@@ -7479,8 +7545,8 @@
     "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
     "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
     "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
-    "catalog/atlas-test-problems.json": "900e7e140ad24506138dc36df2a733ce2022cb7a771fc28b1d0975f3331142bd",
-    "catalog/atlas-depth-expansion.json": "5fc8fd929c0e3a3bba7c5d25e1fc3b159bc0976f0cc6a2f9cc96bc5276aa3c4e",
+    "catalog/atlas-test-problems.json": "872d6a32fa180fc575ac2e014734d6dfbba0632aee8c54866df254d3fb0d8fbb",
+    "catalog/atlas-depth-expansion.json": "d664e9e67d7661114a212229bd05104fc479d37137d697cd93d77c801288ca47",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
     "code/validated-examples/2026-11-22/foundations/inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -7619,18 +7685,25 @@
     "code/validated-examples/2026-11-23/forward-step/results/result.json": "636e179813165fbe620caadd825ac699973ea2dde897d13aed8b2d22102e6704",
     "code/validated-examples/2026-11-23/forward-step/results/forward-step-m3.png": "8f4ad22c5af00347914f9dfee7a84f9a07fdf9da5394674937013fad5f94bf16",
     "code/validated-examples/2026-11-23/forward-step/results/forward-step-m3-preview.png": "14874a4887433c8cfc247d436ce37bc305cf5a6f88f86a9fe54df23827a522a1",
+    "code/validated-examples/2026-11-23/low-mach/cases.json": "8a33dd861d6c635afeb526a2823fa33e88dc84fb49f1ae8a5ba19cbad32ae058",
+    "code/validated-examples/2026-11-23/low-mach/inputs.json": "a84bd010dce2128a1b4e4c673f16110ddc4f59a363c64ef6d1b85444989907c5",
+    "code/validated-examples/2026-11-23/low-mach/source-manifest.json": "ff359786cf6efff8e5e61f842ae63a866cb7655a4151b2d33ac12501eed98124",
+    "code/validated-examples/2026-11-23/low-mach/verification.json": "f747210e1d46900c4f56b01e989696c3feaee35361fe42be11428fd280bacf84",
+    "code/validated-examples/2026-11-23/low-mach/results/result.json": "5e1fdfa86dc57b13857bd571de1070d00ac5237400e0fc9ee9875fae9824d9f5",
+    "code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex.png": "38635f161af26efd48e0c0a2bc463974e3e81e6b506770a4c6f6c19b24be1970",
+    "code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex-preview.png": "295a80ecab6c8e93c0504f115f48a3b5105ab4e29fe2ccd44965fe387744dbdf",
     "code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py": "4ad61ac54dfa59d7d61959c5699f290e2386c23bf5b4b930a5d98576feaa54d1",
     "code/numerical-methods-atlas/2026-11-21/tests/test_linear.py": "5e7323f2734fb7328c35706ccd90fc25076bd46d01d32cd9c78c8cd25dd0421f",
     "code/numerical-methods-atlas/2026-11-21/tests/test_sparse_fem.py": "4076e514e0b9b5fd94dead4af33fe7e7548fba6a7b48b3e21a406034f7170afb",
     "code/numerical-methods-atlas/2026-11-21/tests/test_runge_kutta.py": "920a5eb560afe7f560cae8d22f879f125851f4ee0451b24720d0eca0082c31ce",
     "code/numerical-methods-atlas/2026-11-21/tests/test_new_models.py": "2937daf8fa8ad86882ac06e47835a6309ca1df3d0283c7dfb7b9606dc3906b1f",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "c8453ca9add9e833d9a71c09f901eaba04029ee887c8b275ea9287246a2ce3ee",
+    "numerical-methods-atlas/gallery/preview-manifest.json": "e911630439324bd63c075829ed175621068e33088c8a874cb774d725d49a2446",
     "numerical-methods-atlas/gallery/calculations.json": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6",
     "numerical-methods-atlas/gallery/verification.json": "46c39543afa9d943dfef896fadbc8f84d847f1a145d9b1427a2336de7a3a50f9",
-    "numerical-methods-atlas/test-cases/index.json": "363dcee41b84d99768b8f8a7628279895e0d80c975952d32a9c96e1c721bd729",
+    "numerical-methods-atlas/test-cases/index.json": "74a39c9c145f0e9ab86ac75da83e1fa780467fa030bb91a25319c37b7175b905",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "scripts/atlas_execution_discovery.py": "3431dae95fb0adc68e1deca07b406b70bd99480f9ad6023a31765cb07ccf84be",
-    "scripts/atlas_depth_release.py": "8399aaf2c229cdb4f752e3914c7ba06724fa5784d9b9a737cb215714760c6a1d",
+    "scripts/atlas_depth_release.py": "1f4c7e182e1c9b2918c0d099a2a9dedd5ba49fc1e34081f983db2993b6c94788",
     "scripts/atlas_goal_availability.py": "3b32fcee61cd8452e529a73ed203b1a64aa32db7312734df477926f5fa39fab5",
     "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
     "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
@@ -7651,6 +7724,7 @@
     "code/validated-examples/2026-11-23-r2/noh-cartesian/atlas-noh-cartesian-2026-11-23-r2.zip": "2145beb161f993c1608fc5ac167af5278d58e10f92e74ed37e5fb9c35243b918",
     "code/validated-examples/2026-11-23-r2/sedov/atlas-sedov-2026-11-23-r2.zip": "abb7344023b91b090820de1ebec8d6c6a949b8c06fda73037204a5d6f62b4b73",
     "code/validated-examples/2026-11-23/double-mach/atlas-double-mach-2026-11-23.zip": "0a68d19746c508e0ac0cf9b5bebe9375c797a87ade1a9fbfbef87d6e5fa63347",
-    "code/validated-examples/2026-11-23/forward-step/atlas-forward-step-2026-11-23.zip": "ae69647a4e63c75c0888a6daf15835d348e9d74de58b5e59926e359e9ffc52cd"
+    "code/validated-examples/2026-11-23/forward-step/atlas-forward-step-2026-11-23.zip": "ae69647a4e63c75c0888a6daf15835d348e9d74de58b5e59926e359e9ffc52cd",
+    "code/validated-examples/2026-11-23/low-mach/atlas-low-mach-2026-11-23.zip": "717b2ceed76d37cf4c1e570a7a022e1a17d66fce3048648a3edde4164a1513aa"
   }
 }

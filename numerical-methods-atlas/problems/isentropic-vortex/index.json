@@ -11,19 +11,19 @@
     "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isentropic-vortex/?lang=en"
   },
   "image": {
-    "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/movies/keep-vortex/frame-080.webp",
-    "sha256": "0571dd99590171b88cab7b70ee4a152eec5870a6129fa8dca0769e1c001eaf5e",
-    "width": 960,
-    "height": 640,
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex-preview.png",
+    "sha256": "295a80ecab6c8e93c0504f115f48a3b5105ab4e29fe2ccd44965fe387744dbdf",
+    "width": 1312,
+    "height": 840,
     "caption": {
-      "ja": "保存したKEEP移動渦の最終フレーム。",
-      "en": "Stored final frame of the KEEP moving vortex."
+      "ja": "M∞=.01、64²、T=.1の実際の2次元Euler計算。全[-10,10]²領域から中心[-3,3]²を拡大し、保存速度から差分で求めた渦度と背景流を引いた速度矢印で、MUSCL付き通常Roe／前処理Roeを比較します。",
+      "en": "Actual 2D Euler evolution at M∞=.01, 64² and T=.1. A central [-3,3]² crop of the full [-10,10]² computation compares ordinary and preconditioned Roe with MUSCL. Vorticity is derived by finite differences of saved velocity; arrows show velocity minus the background flow."
     },
     "source_kind": "existing-figure"
   },
   "reading": {
-    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/keep/",
-    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/keep/"
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-low-mach/#low-mach-vortex",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-low-mach/#low-mach-vortex"
   },
   "conditions": {
     "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#isentropic-vortex",
@@ -55,11 +55,58 @@
     "ja": "この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。",
     "en": "Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters."
   },
-  "formulations": [],
-  "references": [],
+  "formulations": [
+    {
+      "id": "supplement-low-mach-vortex",
+      "name": {
+        "ja": "低Mach等エントロピー渦：前処理Roe流束の軽量検証",
+        "en": "Low-Mach isentropic vortex: preconditioned Roe flux verification"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "\\partial_tU+\\partial_xF(U)+\\partial_yG(U)=0,\\quad U=(\\rho,\\rho u,\\rho v,E)^T",
+        "\\widehat F=\\tfrac12(F_L+F_R)-\\tfrac12J P^{-1}|P A|J^{-1}(U_R-U_L),\\quad \\mu=\\min(1,\\max(M_{\\rm local},M_\\infty)),\\quad\\delta=\\mu^{-1}-1",
+        "p_\\infty=\\frac{|U_\\infty|^2}{\\gamma M_\\infty^2},\\qquad \\Delta t=\\frac{0.2\\Delta x}{\\max(|u|+c)+\\max(|v|+c)}",
+        "\\chi(k)=\\sin k\\,(3-\\cos k)/2,\\quad\\psi(k)=(1-\\cos k)^2/2,\\quad L_h=-i\\sum_j\\chi(k_j\\Delta x)A_j/\\Delta x-\\sum_j\\psi(k_j\\Delta x)D_j/\\Delta x,\\quad R(z)=I+z+z^2/2+z^3/6"
+      ],
+      "note": {
+        "ja": "同じ非線形2次元Euler渦をN=16/32/64、背景Mach数.1/.01でT=.1まで進め、通常RoeとMiczek型の空間流束前処理を比較します。全12計算で、速度・動圧スケールの圧力誤差、保存収支、音響刻み、実段状態を調べます。",
+        "en": "The same nonlinear 2D Euler vortex is evolved to T=0.1 on N=16/32/64 at background Mach 0.1/0.01, comparing ordinary Roe with Miczek spatial flux preconditioning. Twelve fixed runs retain velocity and dynamically scaled pressure errors, conserved budgets, acoustic steps and actual stage states."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "isentropic-vortex",
+      "kind": "analytic",
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "title": {
+        "ja": "等エントロピー渦：低Mach比較に用いるEuler解析場",
+        "en": "Isentropic vortex: analytic Euler field for low-Mach comparisons"
+      },
+      "formula": "a=beta exp((1-X²-Y²)/2)/(2pi); (u,v)=(1-aY,.5+aX); theta=1-(gamma-1)beta² exp(1-X²-Y²)/(8 gamma pi² p_inf); rho=theta^(1/(gamma-1)); p=p_inf theta^(gamma/(gamma-1)); p_inf=1.25/(1.4 M_inf²).",
+      "assumptions": {
+        "ja": "全平面Eulerの移動等エントロピー渦を、γ=1.4、β=3、背景密度1、背景速度U=(1,.5)で定義します。背景Mach数Mに対してp∞=1.25/(1.4M²)とし、θ=1−(γ−1)β²exp(1−r²)/(8γπ²p∞)、ρ=θ^(1/(γ−1))、p=p∞θ^(γ/(γ−1))です。Uとともに動く座標を[-10,10]²へ折り返します。解析式は全平面の厳密なEuler解ですが、有限周期箱の継ぎ目にはゼロでないGaussianの裾があり、滑らかな周期トーラスの厳密解とは区別します。4保存量のセル平均をGauss8で求積しGauss16と照合した後、圧力・速度へ変換します。閉形式の厳密セル平均やprimitive変数の平均ではありません。低Mach固定例はM=.1/.01、T=.1。p∞=1で従来KEEPの場へ戻ります。",
+        "en": "The translating whole-plane ideal-gas Euler vortex uses gamma=1.4, beta=3, far-field density1 and background velocity U=(1,.5). For background Mach number M, p_inf=1.25/(1.4*M^2); theta=1-(gamma-1)*beta^2*exp(1-r^2)/(8*gamma*pi^2*p_inf), rho=theta^(1/(gamma-1)), p=p_inf*theta^(gamma/(gamma-1)). Coordinates move with U and are wrapped in [-10,10]^2. The whole-plane field is analytic; the finite minimum-image periodic field retains nonzero Gaussian seam tails and is not a globally exact smooth torus solution. Tensor Gauss8 cell means of all conserved variables are checked against Gauss16, then primitive pressure and velocity are recovered from those means. These are numerical cell quadratures, not closed-form exact cell averages or means of primitive variables. The low-Mach fixed runs use M=.1/.01 and T=.1; the historical KEEP case is recovered by p_inf=1."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "同じ等エントロピー移動渦族の解析場です。保存量をGauss求積してから圧力・速度を算出し、周期の継ぎ目に残るGaussianの裾と求積誤差を明記します。",
+        "en": "Analytic field for the same translating isentropic-vortex family. Pressure and velocity are evaluated after Gauss integration of conserved variables; finite-periodic Gaussian tails and quadrature error remain explicit."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/low-mach-vortex/?lang=ja#low-mach-vortex-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/low-mach-vortex/?lang=en#low-mach-vortex-en-measurements"
+      }
+    }
+  ],
   "reference_note": {
-    "ja": "滑らかな周期等エントロピー渦の解析的移動解と格子・時間刻みの収束を確認します。非圧縮Taylor–Green渦の参照式とは別問題です。",
-    "en": "Check analytic transport of a smooth periodic isentropic vortex with space/time refinement. This differs from the incompressible Taylor–Green reference."
+    "ja": "従来KEEPの等エントロピー渦と同じ解析解族に、背景Mach数.1/.01の整合した圧力・密度スケーリングを加えた比較です。解析場は全平面Eulerの移動解で、有限周期箱の微小な裾と保存量セル平均の数値求積は別に資格確認します。",
+    "en": "This extends the analytic family used by the historical KEEP vortex with consistently scaled pressure and density at background Mach numbers .1 and .01. The analytic field is a translating whole-plane Euler solution; tiny finite-periodic-box tails and numerical quadrature of conservative cell averages are qualified separately."
   },
   "methods": [
     {
@@ -87,12 +134,121 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/?lang=ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/?lang=en"
       }
+    },
+    {
+      "id": "roe",
+      "name": {
+        "ja": "Roe法",
+        "en": "Roe"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/roe/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/roe/?lang=en"
+      }
+    },
+    {
+      "id": "low-mach-preconditioning",
+      "name": {
+        "ja": "低Mach数のPDE前処理",
+        "en": "Low-Mach PDE preconditioning"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/low-mach-preconditioning/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/low-mach-preconditioning/?lang=en"
+      }
+    },
+    {
+      "id": "ssprk33",
+      "name": {
+        "ja": "SSPRK(3,3)",
+        "en": "SSPRK(3,3)"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ssprk33/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ssprk33/?lang=en"
+      }
+    },
+    {
+      "id": "muscl",
+      "name": {
+        "ja": "MUSCL再構成",
+        "en": "MUSCL reconstruction"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=en"
+      }
     }
   ],
   "method_note": {
-    "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
-    "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+    "ja": "従来のKEEP/RK4固定例を保持し、新しい低Mach比較にRoe・数値散逸の前処理・無制限中心primitive MUSCL・SSPRK(3,3)を対応付けます。個々の実行例が使う手法は実行ページで区別します。",
+    "en": "Retain the historical KEEP/RK4 fixed case and connect Roe, dissipation preconditioning, unlimited central primitive MUSCL and SSPRK(3,3) to the additional low-Mach comparison. Each execution page states its own methods."
   },
-  "executions": [],
+  "executions": [
+    {
+      "id": "low-mach-vortex",
+      "kind": "supplement",
+      "name": {
+        "ja": "低Mach等エントロピー渦：前処理Roe流束の軽量検証",
+        "en": "Low-Mach isentropic vortex: preconditioned Roe flux verification"
+      },
+      "method_ids": [
+        "roe",
+        "low-mach-preconditioning",
+        "muscl",
+        "ssprk33"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/low-mach-vortex/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/low-mach-vortex/?lang=en"
+      },
+      "scope": {
+        "ja": "同じ非線形2次元Euler渦をN=16/32/64、背景Mach数.1/.01でT=.1まで進め、通常RoeとMiczek型の空間流束前処理を比較します。全12計算で、速度・動圧スケールの圧力誤差、保存収支、音響刻み、実段状態を調べます。",
+        "en": "The same nonlinear 2D Euler vortex is evolved to T=0.1 on N=16/32/64 at background Mach 0.1/0.01, comparing ordinary Roe with Miczek spatial flux preconditioning. Twelve fixed runs retain velocity and dynamically scaled pressure errors, conserved budgets, acoustic steps and actual stage states."
+      },
+      "assumptions": {
+        "ja": "領域[-10,10]²、周期境界、γ=1.4、β=3、背景ρ∞=1とU∞=(1,.5)。p∞=|U∞|²/(γM∞²)とし、流速と渦強度を固定して背景Mach数を変えます。M∞は局所最大Mach数ではありません。全平面の移動等エントロピー渦を最小像座標で評価し、有限周期箱のGaussian裾の継ぎ目を別に評価します。保存量のセル平均は8点Gauss求積で初期化・比較し、16点と照合します。閉形式の厳密セル平均や一般の厳密周期渦とは呼びません。",
+        "en": "Periodic [-10,10]^2, gamma=1.4, beta=3, background density 1 and velocity (1,0.5). Set p_infinity=|U_infinity|^2/(gamma M_infinity^2), retaining the same flow and vortex strengths. Background Mach is not maximum local Mach. A whole-plane translating isentropic vortex is evaluated with minimum-image coordinates and a separately qualified Gaussian seam. Conserved cell means use eight-point tensor Gauss quadrature, checked against order 16; they are not closed-form exact means or a generic exactly periodic nonlinear vortex."
+      },
+      "limits": {
+        "ja": "T=.1だけの短時間・少数格子の検証で、渦の一周や長時間保存を確認したものではありません。Fourier検査は指定した一様背景・離散波数・増幅回数の範囲であり、全波数や可変状態の非線形安定性・正値性の証明ではありません。実計算では音響CFLを維持し、対流刻みで進めたとは主張しません。定常解の加速、dual time、衝撃波・接触の頑健性、一般格子やMach数全域は未検証です。解析場の有限周期箱、Gauss求積、セル平均からの原始変数評価を区別し、圧力のMach依存や局所誤差を成功値だけに置き換えません。 無制限MUSCLは滑らかなこの入力の選択であり、limiter・TVD法・一般的な正値性保証ではありません。初版で現れた箱全体の圧力波を角の切り取りだけで隠さず、追加図で全領域の失敗を示します。 速度や固定コアの改善を圧力全域へ一般化できません。最細の全領域圧力L1は前処理側が少し大きく、M∞を10分の1にすると前処理の全域圧力誤差も増えています。圧力精度のMach独立性はこの実測から主張しません。運動エネルギー比は保存セル平均から求めた速度変動の診断で、連続場の運動エネルギーの厳密保存ではありません。",
+        "en": "This is a short T=0.1 fixed-input, few-grid test, not a full circulation or long-time preservation study. The Fourier check covers selected uniform states, wave numbers and powers; it is no proof for all modes, nonlinear variable states or general positivity. Actual integration retains the acoustic CFL and does not use the displayed convective diagnostic step. Steady convergence acceleration, dual time, shock/contact robustness, general meshes and all Mach numbers remain unverified. Finite periodic-box seams, Gauss quadrature and primitive variables evaluated from cell means remain distinct qualifications. Pressure Mach dependence and local errors are retained. Unlimited MUSCL is selected for these smooth inputs, not a limiter, TVD method or general positivity guarantee. The original box-wide pressure waves are shown in a separate full-domain failed-trial figure rather than hidden by the gallery core crop. Velocity/core improvements do not imply globally better pressure: finest whole-domain pressure L1 is slightly larger with preconditioning and grows when background Mach is reduced by ten. No Mach-independent pressure accuracy follows from these measurements. Perturbation kinetic energy is a diagnostic computed from conserved cell means, not exact conservation of continuous kinetic energy."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/low-mach/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/low-mach/atlas-low-mach-2026-11-23.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/low-mach/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/low-mach/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "初版の32単体検査は合格しましたが、区分定数空間離散化での143判定中、M∞=.01・最細格子の全領域圧力誤差.16537が事前閾値.1を超えました。初版ソース・契約・全12場・判定と、その全領域図を失敗のまま保存します。改訂では両流束を同じ無制限中心原始変数MUSCLにし、面状態の拒否・正しい再構築Fourier記号・独立行列を使う実RHSの線形化など3検査を追加しました。入力・物理時間・CFL・受入条件はバイト単位で不変です。新35検査と143条件の契約を改訂の実行前に固定しました。 Roe平均の保存量ジャンプと物理流束差、密行列の前処理散逸、3段更新・不正段保持を照合します。各背景Mach・流束で17²個の定数状態Fourierモードと、物理音響エネルギーで規格化した増幅行列の1/10/100乗を調べます。圧力誤差は大きなp∞ではなくρ∞|U∞|²で割り、速度誤差は渦の速度変動で規格化します。移動解析場に対する初期R_h−q_tも記録し、定常残差の収束とは区別します。 改訂の35検査・全12計算143判定は-W errorで合格し、元のMacで全計算は約4.4秒でした。最細M∞=.01の速度相対L1はRoe .07411、前処理 .01847、固定コアの圧力誤差は.04871/.0006325でした。一方、全領域の圧力誤差は.01194/.01260で前処理側がわずかに悪く、M∞=.1でも.0006653/.0006737と同様です。全4保存量の最大相対残差は4.24e-14。Gauss8/16の動的スケール最大差は4.08e-11、解析Euler代入残差は1.09e-16でした。指定したFourierモードのSSPRK3増幅半径とエネルギー規格化行列累乗ノルムは最大1。前進Eulerは両MUSCL流束で1を超え、M∞=.01の前処理側で約1.03560でした。",
+        "en": "The original 32 unit tests passed, but one of 143 first-order spatial gates failed: finest M_infinity=0.01 whole-domain dynamic pressure error 0.16537 exceeded the fixed 0.1 threshold. Original sources, contract, all twelve fields and the failed global pressure plot are retained. Revision 2 gives both fluxes the same unlimited centered primitive MUSCL and adds three checks for reconstruction, raw face failure and actual-RHS linearization against independent matrices. Inputs, physical time, CFL and acceptance bytes are unchanged; the revised 35-test/143-gate contract was frozen before revision execution.  Checks cover Roe conserved jumps and physical-flux differences, dense-matrix dissipation, the three stages and raw invalid-stage retention. Each background Mach/flux has 17^2 constant-state Fourier modes and powers 1/10/100 in stated physical acoustic-energy variables. Pressure errors divide by rho_infinity*|U_infinity|^2 rather than the large p_infinity; velocity errors divide by analytic vortex perturbations. Initial R_h-q_t for the translating analytic field is retained as truncation error, not converged steady residual. Revision 2 passed all 35 tests, twelve runs and 143 gates with -W error, taking about 4.4 seconds on the original Mac. At finest M_infinity=0.01, relative velocity L1 was 0.07411 for Roe and 0.01847 for preconditioning; fixed-core pressure errors were 0.04871/0.0006325. Whole-domain pressure errors were instead 0.01194/0.01260, slightly worse with preconditioning; M_infinity=0.1 similarly gave 0.0006653/0.0006737. Maximum relative conserved-budget residual was 4.24e-14. Dynamic-scale Gauss8/16 maximum difference was 4.08e-11 and analytic Euler substitution residual 1.09e-16. Sampled SSPRK3 spectral radii and stated energy-scaled matrix powers had maximum 1. Forward Euler exceeded 1 for both MUSCL variants, reaching about 1.03560 for preconditioning at M_infinity=0.01."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/low-mach/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/low-mach/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/low-mach/lm_solver.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/low-mach/linear_stability.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/low-mach/test_low_mach.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
   "code_checks": []
 }

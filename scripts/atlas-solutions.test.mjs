@@ -61,7 +61,7 @@ with tempfile.TemporaryDirectory(prefix='atlas-solutions-fixture-') as temporary
 test('the saved-solution index derives every existing case and source hash without changing scientific inputs',()=>{
   assert.equal(historicalCases.length,18);
   assert.equal(sha(source),'c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc','the historical18 scientific references remain byte-identical');
-  assert.deepEqual(cases.slice(historicalCases.length).map(row=>row.id),['noh','sedov','double-mach','forward-step']);
+  assert.deepEqual(cases.slice(historicalCases.length).map(row=>row.id),['noh','sedov','double-mach','forward-step','isentropic-vortex']);
   assert.equal(rendered.record.supplements_source_sha256,sha(supplementSource));
   assert.deepEqual(rendered.record.cases.map(row=>row.id),cases.map(row=>row.id));
   assert.equal(rendered.record.count,cases.length);
@@ -127,7 +127,7 @@ test('historical cards retain SPA views while reviewed supplements open their ow
     }
     assert.equal(view.searchParams.get('lang'),language);
     const reading=new URL(row.reading[language],origin);
-    assert.equal(reading.pathname,`/numerical-methods-atlas/${language}/read/${original.reading?'validation-'+row.id:'reference-solutions'}/`);
+    assert.equal(reading.pathname,original.reading?new URL(original.reading[language],origin).pathname:`/numerical-methods-atlas/${language}/read/reference-solutions/`);
     if(original.reading)assert.equal(row.reading[language],original.reading[language]);
     assert.ok(existsSync(new URL(reading.pathname.slice(1)+'index.html',root)));
     assert.ok(rendered.html.includes(row.view[language])&&rendered.markdown.includes(origin+row.view[language]));

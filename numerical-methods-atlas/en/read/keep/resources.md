@@ -9,32 +9,18 @@ Resources explicitly registered to the methods, problems and executions of this 
 ## Methods
 
 - [Original Cartesian KEEP split flux](<https://hrkoyama.github.io/numerical-methods-atlas/methods/keep/?lang=en>)
-- [Original Cartesian KEEP split flux](<https://hrkoyama.github.io/numerical-methods-atlas/methods/keep/?lang=en>)
-
-  Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability.
-- [Classical RK4](<https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/?lang=en>)
-
-  Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability.
 
 ## Equations
 
-- [Compressible Euler equations](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#euler-en>)
-
-  The one-dimensional conservative form. Consult each test for its equation of state, initial data and boundaries. Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters.
+No chapter-specific association is registered. Atlas-wide index: [Equations](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en)
 
 ## Problem figures
 
-- [Periodic moving isentropic vortex](<https://hrkoyama.github.io/numerical-methods-atlas/problems/isentropic-vortex/?lang=en>)
-
-  Representative test-problem figure; the problem page records conditions and provenance.
-
-  https://hrkoyama.github.io/numerical-methods-atlas/assets/movies/keep-vortex/frame-080.webp
+No chapter-specific association is registered. Atlas-wide index: [Test problems by name and figure](https://hrkoyama.github.io/numerical-methods-atlas/gallery/?lang=en)
 
 ## Exact / reference solutions
 
-- [Periodic moving isentropic vortex — references and comparison conditions](<https://hrkoyama.github.io/numerical-methods-atlas/problems/isentropic-vortex/?lang=en#references-en>)
-
-  Check analytic transport of a smooth periodic isentropic vortex with space/time refinement. This differs from the incompressible Taylor–Green reference.
+No chapter-specific association is registered. Atlas-wide index: [Exact and reference solutions](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en)
 
 ## Code and validation
 

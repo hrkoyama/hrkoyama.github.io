@@ -10,13 +10,13 @@ const hash=p=>createHash('sha256').update(bytes(p)).digest('hex');
 const objectHash=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex');
 const base='code/validated-examples/2026-11-23/forward-step/';
 
-test('forward step preserves all fifteen published releases and eighty-four other gallery pictures',()=>{
+test('forward step preserves all fifteen published releases and eighty-three historical gallery pictures',()=>{
  const registry=json('numerical-methods-atlas/validation/releases.json');
- assert.equal(objectHash(registry.releases.filter(r=>r.group!=='forward-step')),'22b3f44f5555a2e12fbacb96b4a4ccc57fb5e620a971df9c548908695cb4225b');
- assert.equal(registry.case_count,45);assert.equal(registry.releases.length,16);assert.equal(registry.releases.reduce((s,r)=>s+r.tests,0),503);
+ assert.equal(objectHash(registry.releases.filter(r=>!['forward-step','low-mach'].includes(r.group))),'22b3f44f5555a2e12fbacb96b4a4ccc57fb5e620a971df9c548908695cb4225b');
+ assert.equal(registry.case_count,46);assert.equal(registry.releases.length,17);assert.equal(registry.releases.reduce((s,r)=>s+r.tests,0),538);
  const release=registry.releases.find(r=>r.group==='forward-step');assert.equal(release.tests,24);assert.deepEqual(release.case_ids,['forward-step-m3']);
- const pictures=json('numerical-methods-atlas/gallery/preview-manifest.json').items.filter(r=>r.id!=='forward-step').map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}));
- assert.equal(pictures.length,84);assert.equal(objectHash(pictures),'4614e614ea7d9f0946ef89d4bfd16ccb792ddff56393d56bd86c43b72c50540b');
+ const pictures=json('numerical-methods-atlas/gallery/preview-manifest.json').items.filter(r=>!['forward-step','isentropic-vortex'].includes(r.id)).map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}));
+ assert.equal(pictures.length,83);assert.equal(objectHash(pictures),'cc42574f290cd31549ef959f4bc97086be02d90e57655fcf5d2c172dbf3203b6');
  assert.equal(json('catalog/atlas-test-problems.json').problems.length,85);assert.equal(json('catalog/atlas-methods.json').methods.length,147);assert.equal(json('catalog/atlas-execution-examples.json').examples.length,22);
  const manifest=json(base+'source-manifest.json');for(const[p,h]of Object.entries(manifest.files))assert.equal(hash(base+p),h,p);
  const receipt=json(base+'verification.json');assert.equal(receipt.tests,24);assert.equal(receipt.passed,true);assert.equal(receipt.all_cases_rerun,true);assert.equal(hash(base+receipt.archive.file),receipt.archive.sha256);

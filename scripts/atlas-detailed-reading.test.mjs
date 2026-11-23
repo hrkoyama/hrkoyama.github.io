@@ -8,7 +8,7 @@ const methods=read('catalog/atlas-methods.json').methods;
 const originalPlanned=['ewald','pme','spme','slab-ewald','fdtd','pic','amg','qr-svd','eigensolvers','splines','quadrature','chebyshev','wavelets','optimization','monte-carlo','mcmc','sde','adjoint','radiation-transport','dsmc','dae','automatic-differentiation','pinn-operators'];
 test('all 23 formerly unlinked methods have substantive bilingual reading while implementation states remain honest',()=>{
  assert.equal(source.chapters.length,30);
- assert.equal(methods.length,147);assert.equal(methods.filter(m=>m.status==='planned').length,16);assert.equal(methods.filter(m=>m.status==='educational-example').length,116);assert.equal(methods.filter(m=>m.status==='reading-only').length,15);
+ assert.equal(methods.length,147);assert.equal(methods.filter(m=>m.status==='planned').length,16);assert.equal(methods.filter(m=>m.status==='educational-example').length,117);assert.equal(methods.filter(m=>m.status==='reading-only').length,14);
  for(const id of originalPlanned){
   const chapter=source.chapters.find(c=>c.id===id),m=methods.find(m=>m.id===id);assert.ok(chapter,id);assert.equal(m.status,['monte-carlo','sde','automatic-differentiation','adjoint','optimization','fdtd'].includes(id)||m.depth_release?'educational-example':'planned');
   if(!['automatic-differentiation','adjoint','optimization'].includes(id)){assert.equal(m.code_modules.length,0);assert.equal(m.test_files.length,0);}
@@ -209,7 +209,7 @@ test('preconditioning distinguishes pseudo time, sonic zeros and entropy smoothi
  const pc=source.chapters.find(c=>c.id==='low-mach-preconditioning'),rk=source.chapters.find(c=>c.id==='steady-runge-kutta');
  assert.ok(pc.sections.some(s=>s.id==='weiss-smith-example'));assert.ok(pc.sections.some(s=>s.id==='sonic-point-is-different'));assert.ok(pc.publication_scope.en.includes('reading-only'));
  assert.ok(source.formulas['sonic-determinant'].includes('\\det(PA)'));assert.ok(source.formulas['steady-rk-nonlinear-order'].includes('\\tfrac14\\ne\\tfrac13'));
- assert.ok(rk.publication_scope.en.includes('No dedicated solver'));assert.equal(methods.find(m=>m.id==='low-mach-preconditioning').status,'reading-only');
+ assert.ok(rk.publication_scope.en.includes('No dedicated solver'));assert.equal(methods.find(m=>m.id==='low-mach-preconditioning').status,'educational-example');
 });
 
 test('new Japanese queries reach the actual detailed reading through the public search',async()=>{

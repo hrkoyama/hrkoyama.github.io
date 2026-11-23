@@ -53,7 +53,7 @@ test('AMG algebraic diagnostics remain outside physical counts and the Poisson g
  const inventory=problemCatalog.problems;
  assert.equal(inventory.length,85);assert.ok(!inventory.some(x=>x.id==='amg-conditioning'));
  const methods=json('catalog/atlas-methods.json').methods;
- assert.equal(methods.length,147);assert.equal(methods.filter(x=>x.status==='educational-example').length,116);
+ assert.equal(methods.length,147);assert.equal(methods.filter(x=>x.status==='educational-example').length,117);
 });
 
 test('conditioning readings enter contents and crossovers without borrowing evidence for coupled applications',()=>{
@@ -88,8 +88,8 @@ for lang in ['ja','en']:
  execFileSync('python3',['-B','-c',source],{cwd:root,encoding:'utf8',timeout:30000});
 });
 
-test('all 81 historical illustrations, checksums and captions remain unchanged',()=>{
- const items=json('numerical-methods-atlas/gallery/preview-manifest.json').items.filter(x=>!['noh','sedov','double-mach','forward-step'].includes(x.id));
- assert.equal(items.length,81);
- assert.equal(hash(items.map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}))),'c8c5c776259a9fb024ad5da9ab494ea4ff8f3cc3d9deff350b62c202d51434e0');
+test('all 80 historical illustrations, checksums and captions remain unchanged',()=>{
+ const items=json('numerical-methods-atlas/gallery/preview-manifest.json').items.filter(x=>!['noh','sedov','double-mach','forward-step','isentropic-vortex'].includes(x.id));
+ assert.equal(items.length,80);
+ assert.equal(hash(items.map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}))),'25c25a4cb7ad5c54e5788b984d949c44994d3f1706ed36c4ef30a3ce36fa6c2b');
 });

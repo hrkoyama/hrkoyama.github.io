@@ -24,8 +24,8 @@ test('time refinement preserves the initially declared numerical acceptance crit
 
 test('nonlinear biological comparisons reuse one physical problem and preserve the earlier linear-onset release',()=>{
  const index=json('numerical-methods-atlas/validation/index.json');
- assert.equal(index.case_count,45);
- assert.equal(index.groups.length,16);
+ assert.equal(index.case_count,46);
+ assert.equal(index.groups.length,17);
  for(const id of cases)assert.equal(index.case_problem_ids[id],'turing-schnakenberg');
  const inventory=json('numerical-methods-atlas/test-cases/index.json').problems;
  assert.equal(inventory.length,85);
@@ -48,7 +48,7 @@ test('five earlier supplement archives, the common registry and unrelated availa
  for(const [group,hash] of Object.entries(hashes))assert.equal(sha(`code/validated-examples/2026-11-22/${group}/atlas-${group}-2026-11-22.zip`),hash);
  assert.equal(sha('numerical-methods-atlas/code-and-data/examples.json'),'3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7');
  assert.equal(methods.length,147);
- assert.deepEqual(Object.fromEntries(['educational-example','reading-only','planned'].map(s=>[s,methods.filter(m=>m.status===s).length])),{'educational-example':116,'reading-only':15,'planned':16});
+ assert.deepEqual(Object.fromEntries(['educational-example','reading-only','planned'].map(s=>[s,methods.filter(m=>m.status===s).length])),{'educational-example':117,'reading-only':14,'planned':16});
  const bio=json('numerical-methods-atlas/assets/biological-models.json').models;
  assert.deepEqual(new Set(bio.filter(x=>x.status==='scoped-educational-example').map(x=>x.id)),new Set(['logistic','sir','turing','schnakenberg','fitzhugh-nagumo']));
  const detailed=read('.github/workflows/atlas-public-linux.yml').toString();

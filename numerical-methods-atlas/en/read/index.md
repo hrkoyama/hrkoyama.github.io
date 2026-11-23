@@ -60,6 +60,7 @@ Read about reconstruction, limiting and shock robustness, followed by low-Mach c
 - [KEEP schemes: preserve the smooth-flow balance, test the limits](https://hrkoyama.github.io/numerical-methods-atlas/en/read/keep/)
 - [Preconditioning, dual time stepping, and residual distribution](https://hrkoyama.github.io/numerical-methods-atlas/en/read/advanced/)
 - [Preconditioning matrices, low Mach numbers, sonic points and entropy fixes](https://hrkoyama.github.io/numerical-methods-atlas/en/read/low-mach-preconditioning/)
+- [Low-Mach isentropic vortex: preconditioned Roe flux verification](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-low-mach/)
 - [Damping Runge–Kutta iterations for steady solutions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/steady-runge-kutta/)
 - [NASA 2D verification and validation case catalog](https://hrkoyama.github.io/numerical-methods-atlas/en/read/nasa-2d/)
 - [Mach-3 forward-facing step: lightweight 2D verification](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-forward-step/)

@@ -1,0 +1,74 @@
+{
+  "started_at_utc": "2026-11-23T05:56:36.925842+00:00",
+  "command": [
+    "env",
+    "PYTHONDONTWRITEBYTECODE=1",
+    "TMPDIR=/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459",
+    "OPENBLAS_NUM_THREADS=1",
+    "OMP_NUM_THREADS=1",
+    "/opt/homebrew/bin/python3.12",
+    "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/bounded-exec.py",
+    "--seconds",
+    "120",
+    "--receipt",
+    "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/lm-main-01-time.json",
+    "--",
+    "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/lm-env/bin/python",
+    "-W",
+    "error",
+    "run.py",
+    "--input",
+    "inputs.json",
+    "--output",
+    "attempts/01/results"
+  ],
+  "cwd": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/atlas-search-publisher/scripts/depth-low-mach",
+  "initial_free_bytes": 12596916224,
+  "reserve_bytes": 2684354560,
+  "minimum_free_bytes": 12595707904,
+  "samples": [
+    {
+      "seconds": 0.0,
+      "free_bytes": 12596912128
+    },
+    {
+      "seconds": 0.51,
+      "free_bytes": 12596908032
+    },
+    {
+      "seconds": 1.02,
+      "free_bytes": 12596535296
+    },
+    {
+      "seconds": 1.53,
+      "free_bytes": 12596445184
+    },
+    {
+      "seconds": 2.04,
+      "free_bytes": 12596445184
+    },
+    {
+      "seconds": 2.55,
+      "free_bytes": 12596269056
+    },
+    {
+      "seconds": 3.06,
+      "free_bytes": 12596088832
+    },
+    {
+      "seconds": 3.57,
+      "free_bytes": 12596023296
+    },
+    {
+      "seconds": 4.08,
+      "free_bytes": 12595707904
+    }
+  ],
+  "disk_stop": false,
+  "started": true,
+  "owned_process_group": 49295,
+  "child_returncode": 1,
+  "returncode": 1,
+  "final_free_bytes": 12595707904,
+  "completed_at_utc": "2026-11-23T05:56:41.004949+00:00"
+}

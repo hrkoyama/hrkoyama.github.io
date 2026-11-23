@@ -124,13 +124,13 @@ test('one scoped goal and two depth fields expose six new checks without changin
  assert.match(stage.gap.en,/does not validate gravity PM/);
  for(const language of ['ja','en'])assert.ok(stage.reading.some(x=>x.url[language]===`/numerical-methods-atlas/${language}/read/validation-particle-transport/`));
  const methods=json('catalog/atlas-methods.json').methods;
- assert.equal(methods.length,147);assert.equal(methods.filter(x=>x.status==='educational-example').length,116);
+ assert.equal(methods.length,147);assert.equal(methods.filter(x=>x.status==='educational-example').length,117);
 });
 
-test('all 81 historical gallery illustrations, image checksums and captions survive the new supplemental evidence',()=>{
- const items=json('numerical-methods-atlas/gallery/preview-manifest.json').items.filter(x=>!['noh','sedov','double-mach','forward-step'].includes(x.id));
- assert.equal(items.length,81);
- assert.equal(hash(items.map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}))),'c8c5c776259a9fb024ad5da9ab494ea4ff8f3cc3d9deff350b62c202d51434e0');
+test('all 80 historical gallery illustrations, image checksums and captions survive the new supplemental evidence',()=>{
+ const items=json('numerical-methods-atlas/gallery/preview-manifest.json').items.filter(x=>!['noh','sedov','double-mach','forward-step','isentropic-vortex'].includes(x.id));
+ assert.equal(items.length,80);
+ assert.equal(hash(items.map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}))),'25c25a4cb7ad5c54e5788b984d949c44994d3f1706ed36c4ef30a3ce36fa6c2b');
  const gallery=json('numerical-methods-atlas/gallery/index.json');
- assert.equal(gallery.items.length,85);assert.equal(gallery.items.filter(x=>x.runnable).length,43);
+ assert.equal(gallery.items.length,85);assert.equal(gallery.items.filter(x=>x.runnable).length,44);
 });

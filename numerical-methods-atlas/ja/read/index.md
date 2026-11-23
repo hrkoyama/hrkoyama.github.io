@@ -60,6 +60,7 @@
 - [KEEP法：滑らかな流れの釣合いと限界を検証する](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/keep/)
 - [前処理、二重時間積分、残差分配法](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/advanced/)
 - [前処理行列・低Mach数・音速点とエントロピー修正](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/low-mach-preconditioning/)
+- [低Mach等エントロピー渦：前処理Roe流束の軽量検証](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-low-mach/)
 - [定常解のためのダンピングRunge–Kutta反復](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/steady-runge-kutta/)
 - [NASAの2次元検証・妥当性確認問題集](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/nasa-2d/)
 - [Mach 3前向きステップ：軽量な2次元検証](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-forward-step/)

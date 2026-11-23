@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "reference_kind": "analytic-continuous-with-numerical-cell-quadrature",
+  "equations": "unforced 2D ideal-gas compressible Euler in standard physical-time conservative form",
+  "gamma": 1.4,
+  "beta": 3,
+  "domain": [
+    [
+      -10,
+      10
+    ],
+    [
+      -10,
+      10
+    ]
+  ],
+  "background_velocity": [
+    1,
+    0.5
+  ],
+  "background_mach_values": [
+    0.1,
+    0.01
+  ],
+  "background_density": 1,
+  "background_pressure_formula": "p_inf=|U_inf|^2/(gamma*M_inf^2)",
+  "coordinates": "X=x-U_inf_x*t, Y=y-U_inf_y*t, wrapped to [-10,10) by minimum image",
+  "formula": {
+    "a": "beta/(2*pi)*exp((1-X^2-Y^2)/2)",
+    "velocity": "u=1-aY; v=.5+aX",
+    "theta": "1-(gamma-1)*beta^2*exp(1-X^2-Y^2)/(8*gamma*pi^2*p_inf)",
+    "density": "theta^(1/(gamma-1))",
+    "pressure": "p_inf*theta^(gamma/(gamma-1))"
+  },
+  "physical_time_derivative": "q_t=-U_inf_x*q_x-U_inf_y*q_y, evaluated by analytic primitive/conservative chain rule",
+  "cell_reference": "Tensor Gauss quadrature of all four conserved variables. Compare order8 and16; primitive pressure and velocity are computed AFTER quadrature of q. Mean primitive pressure is a different quantity.",
+  "continuous_exactness_scope": "The translating vortex is an exact whole-plane Euler solution. The finite periodic minimum-image field has nonzero Gaussian tails at seams and is not a globally exact smooth periodic solution. At halfwidth10 and this short time, velocity tails are extremely small but the qualification remains.",
+  "same_physical_family": "At p_inf=1 this formula recovers the historical KEEP beta3, background(1,.5), L20 vortex. The low-Mach additions change background pressure and density/pressure perturbations consistently, not pressure alone.",
+  "independence": "Analytic/reference implementation imports neither primary fluxes nor Numart. No external PDE engine or reference PDE is executed.",
+  "source_ids": [
+    "spiegel2015vortex",
+    "miczek2015",
+    "barsukow2017"
+  ],
+  "code_license": "MIT; cited papers retain their own copyright and are not redistributed"
+}

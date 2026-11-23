@@ -34,7 +34,7 @@ const methods=json('numerical-methods-atlas/methods/index.json').methods;
 
  test('three sampler scenarios add one target and the calibration diagnostic adds no physical problem',()=>{
  const d=json('numerical-methods-atlas/validation/index.json');
- assert.equal(d.case_count,45);assert.equal(d.groups.length,16);
+ assert.equal(d.case_count,46);assert.equal(d.groups.length,17);
  assert.equal(d.case_problem_ids[cases[0]],'mcmc-bimodal-mixture');
  assert.equal(d.case_problem_ids[cases[1]],null);
  const problems=json('numerical-methods-atlas/test-cases/index.json').problems;
@@ -43,7 +43,7 @@ const methods=json('numerical-methods-atlas/methods/index.json').methods;
  assert.ok(!problems.some(p=>p.id===cases[1]));
  assert.equal(problems.find(p=>p.id==='mcmc-bimodal-mixture').supplemental_examples.length,1);
  assert.equal(methods.length,147);
- assert.deepEqual(Object.fromEntries(['educational-example','reading-only','planned'].map(s=>[s,methods.filter(m=>m.status===s).length])),{'educational-example':116,'reading-only':15,'planned':16});
+ assert.deepEqual(Object.fromEntries(['educational-example','reading-only','planned'].map(s=>[s,methods.filter(m=>m.status===s).length])),{'educational-example':117,'reading-only':14,'planned':16});
 });
 
  test('the six earlier archives, common registry and pre-run MCMC input remain fixed',()=>{

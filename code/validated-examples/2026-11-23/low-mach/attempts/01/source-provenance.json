@@ -1,0 +1,9 @@
+{
+  "analytic_family_base": "code/numerical-methods-atlas/2026-11-22/numart/keep.py",
+  "analytic_family_base_sha256": "0819e2c3de3e4ab9ffe763f247a471a21966fde88da6ed13621ae334afc71f91",
+  "primary_implementation": "New standalone conservative Roe finite volumes and Miczek spatial flux preconditioning, not an import of the original Numart solver.",
+  "matrix_source": "Miczek et al.2015 Eq56 / Barsukow et al.2017 Eq31; D=P^-1|PA| with dimensional standard Euler.",
+  "time": "Physical Euler time derivative unchanged; explicit SSPRK(3,3), acoustic CFL.2 qualified empirically and by a sampled constant-state Fourier scan. No pseudo-time or steady convergence acceleration.",
+  "analytical_reference": "Separately written continuous vortex evaluator and Gauss cell quadrature; dense-matrix eigendecomposition oracle is separate from the polynomial-action flux. Neither is a separate PDE engine.",
+  "changes": "Background pressure rescales Mach while beta/velocity/L remain fixed; finite-box Gaussian seam and quadrature are explicitly qualified."
+}

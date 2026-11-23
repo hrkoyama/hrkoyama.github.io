@@ -904,8 +904,8 @@
         ]
       },
       "depth_scope": {
-        "ja": "衝撃波と密度正弦波の相互作用を、同じPython実装の細格子ではなく、別に実行したAthena++の参照と照合します。 追加Noh版では球対称系列だけに体積重心を用いる保存量MUSCL/minmod＋Heunを実装し、平面・円筒は区分定数のままです。",
-        "en": "Compare shock–density-wave interaction against separately executed Athena++ reference data rather than a finer grid of the same Python code. The additional Noh edition uses volume-centroid conservative MUSCL/minmod with Heun only in spherical runs; planar/cylindrical states stay piecewise constant."
+        "ja": "衝撃波と密度正弦波の相互作用を、同じPython実装の細格子ではなく、別に実行したAthena++の参照と照合します。 追加Noh版では球対称系列だけに体積重心を用いる保存量MUSCL/minmod＋Heunを実装し、平面・円筒は区分定数のままです。 低Mach渦の追加例は、両Roe流束に同じ無制限の中心primitive再構築を用います。勾配制限付きMUSCL全般やTVDの保証ではありません。",
+        "en": "Compare shock–density-wave interaction against separately executed Athena++ reference data rather than a finer grid of the same Python code. The additional Noh edition uses volume-centroid conservative MUSCL/minmod with Heun only in spherical runs; planar/cylindrical states stay piecewise constant. The additional low-Mach vortex uses the same unlimited central primitive reconstruction for both Roe variants. It does not verify general limited MUSCL or a TVD guarantee."
       },
       "depth_additional_releases": [
         {
@@ -913,6 +913,13 @@
           "edition": "2026-11-23-r5",
           "case_ids": [
             "noh-shock"
+          ]
+        },
+        {
+          "group": "low-mach",
+          "edition": "2026-11-23",
+          "case_ids": [
+            "low-mach-vortex"
           ]
         }
       ]
@@ -1841,6 +1848,16 @@
           "url": "https://doi.org/10.1017/CBO9780511791253",
           "label": "Finite Volume Methods for Hyperbolic Problems (2002)",
           "scope": "Cited by the linked chapter; inspect its source-review notes before treating this as a method-specific derivation."
+        },
+        {
+          "url": "https://doi.org/10.1051/0004-6361/201425059",
+          "label": "New numerical solver for flows at various Mach numbers (2015)",
+          "scope": "Selected author-version equations and RK3 discussion were checked. This short isentropic-vortex application does not reproduce the paper’s Gresho or implicit-integration experiments."
+        },
+        {
+          "url": "https://doi.org/10.1007/s10915-017-0372-4",
+          "label": "A Numerical Scheme for the Compressible Low-Mach Number Regime of Ideal Fluid Dynamics (2017)",
+          "scope": "Checked the modified dissipation, primitive matrix and restrictive forward-Euler stability result. The present SSPRK33 Fourier/stage checks are separate fixed-input evidence, not a general nonlinear or SSP guarantee."
         }
       ],
       "assumptions": null,
@@ -1861,7 +1878,19 @@
         "Roe method",
         "Roeリーマンソルバー",
         "ロー法"
-      ]
+      ],
+      "depth_previous_status": "educational-example",
+      "depth_release": {
+        "group": "low-mach",
+        "edition": "2026-11-23",
+        "case_ids": [
+          "low-mach-vortex"
+        ]
+      },
+      "depth_scope": {
+        "ja": "背景Mach数.1/.01の滑らかな2D Euler等エントロピー渦で、両流束に無制限の中心primitive MUSCL再構築を用い、通常RoeとMiczek系の数値散逸行列前処理D=P⁻¹|PA|を比較します。SSPRK(3,3)で元の物理時間項と音響CFLを保ち、速度誤差・動圧規格化した圧力誤差・周期保存収支・標本Fourier診断を分けて評価します。擬似時間・二重時間積分の定常加速や、勾配制限・TVDの保証は扱いません。",
+        "en": "A fixed smooth 2D Euler isentropic vortex at background Mach numbers .1 and .01 compares ordinary Roe and Miczek-type dissipation-matrix preconditioning D=P⁻¹|PA|, with unlimited central primitive-variable MUSCL reconstruction for both. SSPRK(3,3) retains physical time and the acoustic CFL. Velocity error, dynamically normalized pressure error, periodic conservation and sampled Fourier diagnostics are evaluated separately. Pseudo-time or dual-time steady acceleration, slope limiting and TVD guarantees remain outside this example."
+      }
     },
     {
       "id": "hlle",
@@ -2910,6 +2939,11 @@
           "url": "https://doi.org/10.1175/2009MWR2724.1",
           "label": "A Proposed Modification to the Robert–Asselin Time Filter (2009)",
           "scope": "Cited by the linked chapter; inspect its source-review notes before treating this as a method-specific derivation."
+        },
+        {
+          "url": "https://doi.org/10.1137/S003614450036757X",
+          "label": "Strong Stability-Preserving High-Order Time Discretization Methods (2001)",
+          "scope": "Checked the three-stage updates and the forward-Euler hypothesis behind SSP. No general SSP/TVD/nonlinear stability guarantee is borrowed for this Miczek flux; the stated Fourier matrices and actual stage states are checked separately."
         }
       ],
       "assumptions": null,
@@ -2929,7 +2963,19 @@
         "Shu-Osher RK3",
         "SSP RK3",
         "TVD RK3"
-      ]
+      ],
+      "depth_previous_status": "educational-example",
+      "depth_release": {
+        "group": "low-mach",
+        "edition": "2026-11-23",
+        "case_ids": [
+          "low-mach-vortex"
+        ]
+      },
+      "depth_scope": {
+        "ja": "背景Mach数.1/.01の滑らかな2D Euler等エントロピー渦で、両流束に無制限の中心primitive MUSCL再構築を用い、通常RoeとMiczek系の数値散逸行列前処理D=P⁻¹|PA|を比較します。SSPRK(3,3)で元の物理時間項と音響CFLを保ち、速度誤差・動圧規格化した圧力誤差・周期保存収支・標本Fourier診断を分けて評価します。擬似時間・二重時間積分の定常加速や、勾配制限・TVDの保証は扱いません。",
+        "en": "A fixed smooth 2D Euler isentropic vortex at background Mach numbers .1 and .01 compares ordinary Roe and Miczek-type dissipation-matrix preconditioning D=P⁻¹|PA|, with unlimited central primitive-variable MUSCL reconstruction for both. SSPRK(3,3) retains physical time and the acoustic CFL. Velocity error, dynamically normalized pressure error, periodic conservation and sampled Fourier diagnostics are evaluated separately. Pseudo-time or dual-time steady acceleration, slope limiting and TVD guarantees remain outside this example."
+      }
     },
     {
       "id": "ssprk43",
@@ -5446,10 +5492,10 @@
         "en": "Coupling, constraints & particles"
       },
       "summary": {
-        "ja": "「低Mach数のPDE前処理」の考え方と適用範囲を、解説章・一次文献からたどります。専用実装は公開していません。",
-        "en": "Read about Low-Mach PDE preconditioning, follow the original references. No dedicated implementation is distributed for this entry."
+        "ja": "低Mach数での音響・対流尺度と、擬似時間の質量行列または数値散逸の前処理を区別します。専用の軽量例は、物理時間を保つMiczek系Roe散逸行列の実装と通常Roeを比較します。",
+        "en": "Distinguish acoustic/convective scales and pseudo-time mass-matrix preconditioning from numerical-dissipation preconditioning. A dedicated lightweight example compares a Miczek-type Roe dissipation matrix with ordinary Roe while retaining physical time."
       },
-      "status": "reading-only",
+      "status": "educational-example",
       "origin": "existing-coverage-catalog",
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/low-mach-preconditioning/",
@@ -5488,25 +5534,51 @@
           "url": "https://doi.org/10.1016/j.jcp.2007.11.003",
           "label": "Very simple, carbuncle-free, boundary-layer-resolving, rotated-hybrid Riemann solvers (2008)",
           "scope": "Cited by the linked chapter; inspect its source-review notes before treating this as a method-specific derivation."
+        },
+        {
+          "url": "https://doi.org/10.1051/0004-6361/201425059",
+          "label": "New numerical solver for flows at various Mach numbers (2015)",
+          "scope": "Selected author-version equations and RK3 discussion were checked. This short isentropic-vortex application does not reproduce the paper’s Gresho or implicit-integration experiments."
+        },
+        {
+          "url": "https://doi.org/10.1007/s10915-017-0372-4",
+          "label": "A Numerical Scheme for the Compressible Low-Mach Number Regime of Ideal Fluid Dynamics (2017)",
+          "scope": "Checked the modified dissipation, primitive matrix and restrictive forward-Euler stability result. The present SSPRK33 Fourier/stage checks are separate fixed-input evidence, not a general nonlinear or SSP guarantee."
         }
       ],
-      "assumptions": null,
-      "units": null,
-      "boundary_conditions": null,
+      "assumptions": [
+        "Smooth fixed isentropic-vortex data for the unforced 2D ideal-gas Euler equations; gamma=1.4.",
+        "Matrix preconditioning is applied to numerical dissipation, retaining the physical-time mass matrix.",
+        "Only the stated fixed Mach numbers, grids, acoustic CFL and short time interval are validated."
+      ],
+      "units": "Nondimensional: far-field density1, background velocity(1,.5), beta3, box[-10,10]^2; pressure scales consistently with the chosen background Mach number.",
+      "boundary_conditions": "Periodic finite box. The whole-plane Gaussian analytic vortex has tiny nonzero minimum-image seam tails, which are explicitly qualified.",
       "limitations": {
-        "ja": "対象方程式・境界条件・検証の範囲は解説章と各コードを確認してください。教育用例は汎用ソルバーの完成を意味しません。",
-        "en": "See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers."
+        "ja": "数値散逸側の限定実装です。定常反復の加速、二重時間積分、衝撃波、一般の非線形安定性・正値性、音響刻み制約の除去、全Mach域で一様な精度を保証しません。",
+        "en": "A scoped numerical-dissipation implementation. Steady acceleration, dual time stepping, shocks, general nonlinear stability/positivity, removal of the acoustic time-step restriction and uniform all-Mach accuracy remain outside validation."
       },
       "metadata_review": {
-        "level": "chapter-linked; detailed method-specific curation in progress",
-        "on": "2026-11-21"
+        "level": "dedicated fixed-input spatial-flux implementation and selected primary-source review; broader pseudo-time algorithms retain their stated limits",
+        "on": "2026-11-23"
       },
       "aliases": [
         "low Mach preconditioning",
         "低マッハ数前処理",
         "低Mach数前処理",
         "PDE preconditioning"
-      ]
+      ],
+      "depth_previous_status": "reading-only",
+      "depth_release": {
+        "group": "low-mach",
+        "edition": "2026-11-23",
+        "case_ids": [
+          "low-mach-vortex"
+        ]
+      },
+      "depth_scope": {
+        "ja": "背景Mach数.1/.01の滑らかな2D Euler等エントロピー渦で、両流束に無制限の中心primitive MUSCL再構築を用い、通常RoeとMiczek系の数値散逸行列前処理D=P⁻¹|PA|を比較します。SSPRK(3,3)で元の物理時間項と音響CFLを保ち、速度誤差・動圧規格化した圧力誤差・周期保存収支・標本Fourier診断を分けて評価します。擬似時間・二重時間積分の定常加速や、勾配制限・TVDの保証は扱いません。",
+        "en": "A fixed smooth 2D Euler isentropic vortex at background Mach numbers .1 and .01 compares ordinary Roe and Miczek-type dissipation-matrix preconditioning D=P⁻¹|PA|, with unlimited central primitive-variable MUSCL reconstruction for both. SSPRK(3,3) retains physical time and the acoustic CFL. Velocity error, dynamically normalized pressure error, periodic conservation and sampled Fourier diagnostics are evaluated separately. Pseudo-time or dual-time steady acceleration, slope limiting and TVD guarantees remain outside this example."
+      }
     },
     {
       "id": "ct",

@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "validation_passed": true,
+  "actual_cartesian_field": true,
+  "result_sha256": "5e1fdfa86dc57b13857bd571de1070d00ac5237400e0fc9ee9875fae9824d9f5",
+  "plot_sha256": "cb14b6c2180ca62525b2bf29ac14450d5100f03504efab37e4d7798a66045456",
+  "files_sha256": {
+    "field-M0.1-roe-n16.npz": "d8d4cfea5d536d6bd4ee8d213e1f9bf0a1d43899e5cccc5c98b8451e24728889",
+    "history-M0.1-roe-n16.json": "da3ecede42fce5312b1737160389af8c2c411a34314b00fa58dba6fed574e04d",
+    "field-M0.1-roe-n32.npz": "474cb6e73dce87964c168dd149af78854de1d103eacb595ee467340df7e21b51",
+    "history-M0.1-roe-n32.json": "f802a925dd61c98a09f255d88c4537615613ba5b0dcd91a89023bd7c11f16890",
+    "field-M0.1-roe-n64.npz": "5a2099e6cf6b030dd2dc0e38d9e988ec1f33afc9afaed0d807287a41e14fbcdb",
+    "history-M0.1-roe-n64.json": "1303a5f45fbc58517f8e00f10984def7d708f430d12f5985eaa0f45d88a11bfb",
+    "field-M0.1-miczek-n16.npz": "4bd5ad1451e6e54ec4df338b0a1a4bfff69b682608b7bae3c261b20906acd6f1",
+    "history-M0.1-miczek-n16.json": "9e1cce1b583f37cc63140f07bfc1502d2dfb56b9260b00466cb724a96c91ecdc",
+    "field-M0.1-miczek-n32.npz": "5902e6e45a581890250dd9005821aab5e4f71ec443cdb8ef2b7ef545d76e2409",
+    "history-M0.1-miczek-n32.json": "090958cecff2678c998e6ca88a4be78490968e5b192c270e5522f21ad112aa50",
+    "field-M0.1-miczek-n64.npz": "71392d9418e3c67e3726698d38835ee423b8c84ad7eeb6f08dd06a812e91b8c2",
+    "history-M0.1-miczek-n64.json": "ad50992535427b8405c843a4fdabc15e19631f9062a35ad39256c2821b71d505",
+    "field-M0.01-roe-n16.npz": "452e6821be3c2ae211219285a7f7e14b21892e57faa4431e66319252dcdb12fc",
+    "history-M0.01-roe-n16.json": "e98dc49d735fa24589d1050578c05fd49c0d9b0971158c70ab60b97990ad109d",
+    "field-M0.01-roe-n32.npz": "957890a35f48cdbe5353c980e1bec707ecc87c0e8dfbca6bf9d57a13e7cfcf5c",
+    "history-M0.01-roe-n32.json": "c2a23a9297be4d36b791624290557f5b4dff75db07c4974f0e2cffab7b30f113",
+    "field-M0.01-roe-n64.npz": "9d86aefb2701f73e23b7477403ade01b1908d20f5ff03960075fa10680847753",
+    "history-M0.01-roe-n64.json": "ffd887185c7c667db4176b49b1b006ec73ef9fa4382ed85355173c02e395d6cc",
+    "field-M0.01-miczek-n16.npz": "a57faf34fafd9e02064698f128598dc666c158239e2248dc6d03b20969e9362e",
+    "history-M0.01-miczek-n16.json": "352eeb109b4bb8146bd99d506c145e4c383fc84ffca56c3cf2f21f68894b6388",
+    "field-M0.01-miczek-n32.npz": "8dc6d108e264902724341447f1e07c99fca62525a6e4cf49a5e81469cf6bb095",
+    "history-M0.01-miczek-n32.json": "53bee730443d61f43f07e57e4de23005405f8f95aca4d893e64b824ec4536e14",
+    "field-M0.01-miczek-n64.npz": "d787cbe1f72a3007f9a7971b4c900bc4d6caa53405b494a0acbe0235e391350d",
+    "history-M0.01-miczek-n64.json": "40a9a19863bf023785180fd23a7dea652ba9fced594bb17fd3c49802140bab0d"
+  },
+  "nx": 64,
+  "ny": 64,
+  "mach_far": 0.01,
+  "display_crop": [
+    -3,
+    3,
+    -3,
+    3
+  ],
+  "full_domain": [
+    -10,
+    10,
+    -10,
+    10
+  ],
+  "displayed_field": "Centered periodic vorticity and velocity perturbation derived from saved actual2D conserved states. No PDE executed by plotting.",
+  "figures": [
+    {
+      "path": "low-mach-vortex-preview.png",
+      "sha256": "295a80ecab6c8e93c0504f115f48a3b5105ab4e29fe2ccd44965fe387744dbdf"
+    },
+    {
+      "path": "low-mach-vortex-preview.svg",
+      "sha256": "c47b5fba041d0a1fd1812d2c242795e4ef2e5f39e78db5d56fe92c9399d9f7bc"
+    },
+    {
+      "path": "low-mach-vortex-preview.pdf",
+      "sha256": "9b758bc9a68abf398538de6e34ff813505da69e76af58294a7a8f6c6018aee86"
+    },
+    {
+      "path": "low-mach-vortex.png",
+      "sha256": "38635f161af26efd48e0c0a2bc463974e3e81e6b506770a4c6f6c19b24be1970"
+    },
+    {
+      "path": "low-mach-vortex.svg",
+      "sha256": "6ba85a93122e4a30c4f46e192616a48f72652fc44375cb3f2bde0bc6f0e2e66a"
+    },
+    {
+      "path": "low-mach-vortex.pdf",
+      "sha256": "e71ed34921cda4e337b47414a7bdb353ea188fc0e515797adb288d555e536ac3"
+    },
+    {
+      "path": "low-mach-vortex-first-order.png",
+      "sha256": "d3e4aa19fcc168e41d8f93da85d52cb4b4c1b644bf858f61b593dd742694d349"
+    },
+    {
+      "path": "low-mach-vortex-first-order.svg",
+      "sha256": "4fbb142e38594fbfdb47693931b0c03cd01de693e57bcdf23f9404cbc54dc2bb"
+    },
+    {
+      "path": "low-mach-vortex-first-order.pdf",
+      "sha256": "1f54f4fad5cf8658853df1e143fd3d87979236b144105b24c2e6849096750f25"
+    }
+  ],
+  "retained_failed_trial": {
+    "passed": false,
+    "result_sha256": "ac28859e15d35d96aaaf87e3b1a851a1e0b823316721e84ff800153ea034a130",
+    "full_domain_shown": true,
+    "file": "low-mach-vortex-first-order.png",
+    "original_pressure_dynamic_l1": 0.16536676320960308,
+    "unchanged_criterion": 0.1
+  }
+}

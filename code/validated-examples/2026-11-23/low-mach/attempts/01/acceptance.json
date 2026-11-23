@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "frozen_before_first_primary_test_or_pde": true,
+  "limits": {
+    "balance": 3e-12,
+    "finest_velocity_relative_l1": 0.5,
+    "finest_pressure_dynamic_l1": 0.1,
+    "finest_core_pressure_dynamic_l1": 1.0,
+    "finest_preconditioned_to_Roe_velocity_error": 0.9,
+    "fourier_spectral_radius": 1.00000000005,
+    "energy_scaled_power_norm": 4.0,
+    "forward_Euler_instability_excess": 1e-5,
+    "analytic_point_Euler_residual": 1e-11,
+    "cell_quadrature_dynamic_max": 2e-7,
+    "periodic_seam_velocity_bound": 1e-16
+  },
+  "diagnostics_only": [
+    "pressure Mach dependence, not forced equal",
+    "whole-domain and fixed-core pressure/velocity extrema",
+    "perturbation kinetic-energy ratio",
+    "initial translation-corrected spatial truncation residual",
+    "local maximum Mach, acoustic and convective time steps",
+    "semidiscrete eigenvalue real parts and forward Euler amplification"
+  ],
+  "scope": "Short-time fixed smooth Euler inputs and sampled constant-state Fourier modes. No steady-convergence acceleration, nonlinear stability theorem, shock/positivity guarantee, removal of the explicit acoustic restriction or full-vortex-period validation."
+}

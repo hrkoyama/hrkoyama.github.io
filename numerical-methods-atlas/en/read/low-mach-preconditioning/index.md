@@ -82,7 +82,7 @@ Use transonic Burgers/Euler rarefactions to examine expansion shocks, refinement
 
 ## Publication scope
 
-Low-Mach PDE preconditioning is reading-only, without dedicated code or numerical verification. Existing educational acoustic Roe smoothing does not implement Γ or the Weiss–Smith method. Dated verification records are unchanged, and proposed preconditioning checks are not presented as executed results.
+Dedicated fixed-input code and verification cover Miczek-type spatial numerical-dissipation preconditioning in a 2D isentropic vortex. Ordinary and preconditioned Roe use unlimited primitive MUSCL, two background Mach values, three grids, 12 runs, T=.1 and SSPRK(3,3) with unchanged physical time and an acoustic CFL. See https://hrkoyama.github.io/numerical-methods-atlas/validation/low-mach-vortex/?lang=en . Pseudo-time mass matrices Γ, the Weiss–Smith method, dual-time algorithms and steady-convergence acceleration remain reading-only. This spatial-dissipation example does not implement those algorithms or remove the physical acoustic time-step restriction. The original first-order pressure-gate failure and all earlier dated verification records are retained.
 
 ## Sources
 

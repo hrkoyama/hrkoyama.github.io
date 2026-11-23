@@ -177,6 +177,10 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Compare shock–density-wave interaction against separately executed Athena++ reference data rather than a finer grid of the same Python code.
+- [Low-Mach isentropic vortex: preconditioned Roe flux verification](<https://hrkoyama.github.io/numerical-methods-atlas/validation/low-mach-vortex/?lang=en>)
+  availability: run
+
+  The same nonlinear 2D Euler vortex is evolved to T=0.1 on N=16/32/64 at background Mach 0.1/0.01, comparing ordinary Roe with Miczek spatial flux preconditioning. Twelve fixed runs retain velocity and dynamically scaled pressure errors, conserved budgets, acoustic steps and actual stage states.
 - [Brio–Wu: HLLD and a conservatively restricted numerical reference](<https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/brio-wu/?lang=en>)
   availability: run
 

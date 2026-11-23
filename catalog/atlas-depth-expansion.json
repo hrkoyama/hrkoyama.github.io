@@ -225,6 +225,21 @@
         "ja": "γ=1.4、Mach 3の一様流を、[0,3]×[0,1]からx≥.6,y<.2の段差を除いた流路でT=4まで計算します。60×20・120×40・240×80の区分定数HLL＋Heunで、段差面を含む実際の境界流束収支・正値性・衝撃波構造を比較します。角でエントロピーやエンタルピーを修正する処理は使いません。",
         "en": "Evolve uniform Mach-3 flow with gamma=1.4 to T=4 in [0,3]×[0,1] excluding the step x≥.6,y<.2. Piecewise-constant HLL plus Heun on 60×20,120×40 and240×80 grids compares actual boundary-flux budgets including the step faces, admissibility and shock structure. No corner entropy or enthalpy correction is applied."
       }
+    },
+    {
+      "id": "low-mach",
+      "edition": "2026-11-23",
+      "title": {
+        "ja": "低Mach等エントロピー渦：前処理Roe流束の軽量検証",
+        "en": "Low-Mach isentropic vortex: preconditioned Roe flux verification"
+      },
+      "fields": [
+        "fluid"
+      ],
+      "intro": {
+        "ja": "同じ2次元Euler等エントロピー渦を、背景Mach数.1/.01、16²・32²・64²、T=.1で計算します。両流束に無制限の中心primitive MUSCL再構築を用い、通常Roeと数値散逸をMiczek系行列で前処理するRoeをSSPRK(3,3)で比較します。物理時間項と音響CFL=.2を保つ限定例です。",
+        "en": "The same 2D Euler isentropic-vortex family is evolved at background Mach numbers .1 and .01 on 16², 32² and 64² grids to T=.1. Both Roe variants use unlimited central primitive-variable MUSCL reconstruction and SSPRK(3,3); one preconditions numerical dissipation with a Miczek-type matrix. Physical time and acoustic CFL=.2 are retained."
+      }
     }
   ],
   "case_problem_ids": {
@@ -272,7 +287,8 @@
     "noh-cartesian-2d": "noh",
     "sedov-blast": "sedov",
     "double-mach-reflection": "double-mach",
-    "forward-step-m3": "forward-step"
+    "forward-step-m3": "forward-step",
+    "low-mach-vortex": "isentropic-vortex"
   },
   "routine_policy": {
     "ja": "通常の補助例CIは、公開レジストリに登録した補助配布グループをNumPy・SciPy・pytestで実行します。保存済みの独立参照は版・入力・実行記録を照合し、新規の参照計算と区別します。量子収束を含む従来の共通22例は必要時の手動実行とし、既存の配布物・公差・履歴を保持します。",
@@ -366,6 +382,10 @@
     "forward-step-m3": {
       "ja": "有限個の格子と固定入力による軽量検証です。Woodward–Colella型の段差角エントロピー・エンタルピー修正は行わず、角からの数値的なエントロピー層が下流の反射衝撃波・Mach stemに影響し得る設定です。元論文の角補正付きPPM像との一致や、微細なすべり線・渦までの収束を保証しません。",
       "en": "A lightweight verification on fixed inputs and a small number of grids. No Woodward–Colella corner entropy/enthalpy correction is applied; the numerical entropy layer from the corner can affect downstream reflected shocks and the Mach stem. It does not establish agreement with the original corner-corrected PPM picture or convergence of fine slip lines and vortices."
+    },
+    "low-mach-vortex": {
+      "ja": "実装するのは数値流束の散逸行列D=P⁻¹|PA|の前処理です。擬似時間の定常反復・二重時間積分による加速や、対流刻みでの陽的安定性を検証するものではありません。SSPRK(3,3)という名称だけから強安定性や非線形正値性の定理を適用せず、固定実行と標本化した定数状態Fourierモードの範囲を区別します。 最細のM∞=.01では速度誤差と渦の運動エネルギー保持が改善しますが、全域の動圧規格化圧力L1は通常Roeの約.01194に対し前処理側は約.01260で、圧力誤差が常に小さくなる結果ではありません。図の渦度・背景流からの速度差は中心部分の表示で、誤差判定は全域と固定coreを区別します。",
+      "en": "The implementation preconditions the numerical-flux dissipation matrix D=P⁻¹|PA|. It does not implement steady pseudo-time or dual-time acceleration, or validate an explicit convective time step. The SSPRK(3,3) name alone does not supply strong-stability or nonlinear positivity guarantees; fixed runs and sampled constant-state Fourier modes have distinct scopes. At the finest M∞=.01 grid, velocity error and vortex kinetic-energy retention improve, but whole-domain dynamically normalized pressure L1 is about .01194 for ordinary Roe and .01260 for preconditioned Roe. Pressure error is not uniformly improved. The vorticity/velocity-perturbation illustration is a central crop; diagnostics distinguish the whole box from a fixed core."
     }
   },
   "case_equations": {
@@ -412,6 +432,15 @@
       "note": {
         "ja": "γ=1.4の2次元圧縮性Euler保存系。Mach 3の一様流入と、段差・流路上下の反射壁、右端の流出境界を固定入力に定義します。",
         "en": "Two-dimensional compressible Euler conservation laws with gamma=1.4. Fixed inputs define uniform Mach-3 inflow, reflecting channel/step walls and right outflow."
+      }
+    },
+    "low-mach-vortex": {
+      "ids": [
+        "euler"
+      ],
+      "note": {
+        "ja": "無外力の2次元理想気体Euler系を、元の保存変数・物理時間で更新します。γ=1.4、周期20×20領域、背景圧力をMach数に応じて変える等エントロピー渦が固定入力です。",
+        "en": "Unforced 2D ideal-gas Euler is advanced in the original conservative variables and physical time. Fixed inputs use gamma=1.4, a periodic 20×20 box and a consistently scaled isentropic vortex with Mach-dependent background pressure."
       }
     }
   }

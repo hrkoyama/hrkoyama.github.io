@@ -852,15 +852,41 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "解説のみ",
-      "state": "planned",
-      "current": "Sod・Shu–Osherの固定入力、独立Athena++追補shu-independent、PPM/AUSM/回転流束の既存実装と2D保存画像がある。Noh/Sedovは本文の将来項目のみ。",
+      "state": "published",
+      "current": "背景Mach数.1/.01・3格子・2流束の12計算を、同じ無制限中心primitive MUSCLとSSPRK(3,3)で比較する軽量例を公開。35単体検査・143判定と配布ZIPの独立展開再実行が合格した。初版の区分定数計算は全143判定中142合格で、M∞=.01の全域動圧規格化圧力L1=.16537が固定閾値.1を超えた失敗を保持。物理入力・判定値を変えず、両流束を同じ再構築へ改訂した。最細のM∞=.01では速度誤差と運動エネルギー保持が改善する一方、全域圧力L1は通常Roe .01194に対し前処理側 .01260で、すべての量が改善する結果ではない。",
       "tasks": [
         "既存等エントロピー渦と同じ解析場を基準に少数Mach値を固定。",
         "圧力誤差のMach依存、速度誤差、音響/対流刻み、定常残差を分離。",
         "原理説明やRoe entropy-fixの成功をPDE前処理の実装と取り違えない。"
       ],
-      "scope_note": "",
-      "sources": [],
+      "scope_note": "対象はN16/32/64、M∞=.1/.01、T=.1の12固定実行と定数状態の17²標本Fourierモードです。数値散逸を前処理し、元の物理時間項は保ちます。SSPRK(3,3)の名だけから前進Eulerの強安定性や非線形安定性を導かず、陽的な音響刻み制約も保持します。定常反復・二重時間積分の加速、長時間・全Mach数域・衝撃波の検証は今後の範囲です。 初回の失敗した区分定数計算も全域誤差とともに保持し、改訂版だけを初回成功として扱いません。無制限中心MUSCLは滑らかな固定入力向けで、制限関数やTVD・衝撃波の保証は含みません。 公開済みという状態は、この短い固定入力と標本Fourier診断の範囲に限ります。全域圧力誤差は前処理側が大きい場合もあり、中心部の改善や切り出し図だけで全域の精度を主張しません。",
+      "sources": [
+        {
+          "url": "https://doi.org/10.1051/0004-6361/201425059",
+          "title": "Fabian Miczek, Friedrich K. Röpke and Philipp V. F. Edelmann (2015). New numerical solver for flows at various Mach numbers",
+          "review": "著者版の前処理行列・散逸項とRK3への言及を確認。今回は等エントロピー渦の短い時間区間に適用し、原著のGresho実験や暗黙積分を再現したとは扱いません。"
+        },
+        {
+          "url": "https://doi.org/10.1007/s10915-017-0372-4",
+          "title": "Wasilij Barsukow, Philipp V. F. Edelmann, Christian Klingenberg, Fabian Miczek and Friedrich K. Röpke (2017). A Numerical Scheme for the Compressible Low-Mach Number Regime of Ideal Fluid Dynamics",
+          "review": "前処理散逸P⁻¹|PA|、原始変数行列と前進Eulerの厳しい刻み制限を確認。SSPRK33での本固定入力のFourier診断・実段検査は別に実施し、一般の非線形安定性やSSP保証を借用しません。"
+        },
+        {
+          "url": "https://doi.org/10.2514/6.2015-2444",
+          "title": "Seth C. Spiegel, H. T. Huynh and James R. DeBonis (2015). A Survey of the Isentropic Euler Vortex Problem using High-Order Methods",
+          "review": "一般化された渦の定義と周期境界の相互作用・せん断層の説明を確認。独自のβ3・流速(1,.5)・M∞.1/.01を明示し、全平面解と有限周期箱の違いを保持します。NASA/FRソルバーや論文図の転載ではありません。"
+        },
+        {
+          "url": "https://doi.org/10.1090/S0025-5718-98-00913-2",
+          "title": "Sigal Gottlieb and Chi-Wang Shu (1998). Total Variation Diminishing Runge-Kutta Schemes",
+          "review": "著者の書誌と著者PDFの索引抜粋で書誌・3次TVD法の位置付けを確認。PDFを直接通読したとは記録しません。係数は次の著者レビューのSSPRK(3,3)表示とも照合します。"
+        },
+        {
+          "url": "https://doi.org/10.1137/S003614450036757X",
+          "title": "Sigal Gottlieb, Chi-Wang Shu and Eitan Tadmor (2001). Strong Stability-Preserving High-Order Time Discretization Methods",
+          "review": "3段3次の更新係数と、前進Eulerの強安定性を前提にするSSPの条件を確認。今回のMiczek流束についてSSP・TVD・非線形安定性を一般保証せず、指定したFourier行列と実際の段状態を別途確認します。"
+        }
+      ],
       "baseline_evidence": [
         {
           "path": "catalog/atlas-methods.json",
@@ -873,9 +899,73 @@
           "observation": "原KEEPの既存計算はある。"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23/low-mach/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23/low-mach/inputs.json",
+          "/code/validated-examples/2026-11-23/low-mach/acceptance.json",
+          "/code/validated-examples/2026-11-23/low-mach/pre-run-contract.json",
+          "/code/validated-examples/2026-11-23/low-mach/references/definition.json",
+          "/code/validated-examples/2026-11-23/low-mach/contract-first-order.json",
+          "/code/validated-examples/2026-11-23/low-mach/attempts/01/acceptance.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex-preview.png",
+          "/code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex.png"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#isentropic-vortex-ja",
+        "execution": "/numerical-methods-atlas/validation/low-mach-vortex/?lang=ja",
+        "code": [
+          "/code/validated-examples/2026-11-23/low-mach/run.py",
+          "/code/validated-examples/2026-11-23/low-mach/lm_solver.py",
+          "/code/validated-examples/2026-11-23/low-mach/linear_stability.py",
+          "/code/validated-examples/2026-11-23/low-mach/references/analytic_vortex.py"
+        ],
+        "references": [
+          "/numerical-methods-atlas/solutions/?lang=ja#solution-isentropic-vortex-ja",
+          "/code/validated-examples/2026-11-23/low-mach/references/citations.json",
+          "/code/validated-examples/2026-11-23/low-mach/references/README.md",
+          "/code/validated-examples/2026-11-23/low-mach/attempts/01/results/result.json",
+          "/code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex-first-order.png"
+        ]
+      },
       "sequence": 9,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-23/low-mach/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-23/low-mach/inputs.json",
+            "/code/validated-examples/2026-11-23/low-mach/acceptance.json",
+            "/code/validated-examples/2026-11-23/low-mach/pre-run-contract.json",
+            "/code/validated-examples/2026-11-23/low-mach/references/definition.json",
+            "/code/validated-examples/2026-11-23/low-mach/contract-first-order.json",
+            "/code/validated-examples/2026-11-23/low-mach/attempts/01/acceptance.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex-preview.png",
+            "/code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex.png"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#isentropic-vortex-ja",
+          "execution": "/numerical-methods-atlas/validation/low-mach-vortex/?lang=ja",
+          "code": [
+            "/code/validated-examples/2026-11-23/low-mach/run.py",
+            "/code/validated-examples/2026-11-23/low-mach/lm_solver.py",
+            "/code/validated-examples/2026-11-23/low-mach/linear_stability.py",
+            "/code/validated-examples/2026-11-23/low-mach/references/analytic_vortex.py"
+          ],
+          "references": [
+            "/numerical-methods-atlas/solutions/?lang=ja#solution-isentropic-vortex-ja",
+            "/code/validated-examples/2026-11-23/low-mach/references/citations.json",
+            "/code/validated-examples/2026-11-23/low-mach/references/README.md",
+            "/code/validated-examples/2026-11-23/low-mach/attempts/01/results/result.json",
+            "/code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex-first-order.png"
+          ]
+        }
+      }
     },
     {
       "id": "compressible-fluid-additional",
@@ -4870,10 +4960,10 @@
     "total": 103,
     "fields": 36,
     "states": {
-      "planned": 100,
+      "planned": 99,
       "in-progress": 0,
       "verified": 0,
-      "published": 3
+      "published": 4
     },
     "kinds": {
       "implementation": 58,
@@ -4888,7 +4978,7 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-benchmark-backlog.json": "f985372c67b52b7064eb3d35c3ae553ed3c9fb0d044464f08af2f043da05a2e6",
+    "catalog/atlas-benchmark-backlog.json": "a555528ac5df0daa8887bc726e78b5a0984af09db0723af3b6fdd8018e449264",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/acceptance.json": "9da18d8d22194a07bc0d8e7c619199baab0984f978d84a673bc8f94d4baf5f8b",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/cartesian_reference.py": "b53b9ac767938389abc99eedc3bc2dd23bab965bdb4f41fe19933b2da1b312c0",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/cartesian_solver.py": "7360a880b6318259ddf50b18d79861aca7f806190baaaa1d1200e6d9e4c7e0f8",
@@ -4948,10 +5038,28 @@
     "code/validated-examples/2026-11-23/forward-step/results/forward-step-m3.png": "8f4ad22c5af00347914f9dfee7a84f9a07fdf9da5394674937013fad5f94bf16",
     "code/validated-examples/2026-11-23/forward-step/run.py": "b514eb5523bb198199ba4ed057d0807fcc47e81f19b9288d1199f68614fcc413",
     "code/validated-examples/2026-11-23/forward-step/verification.json": "f40317a2721c2048c6174bf41c03adf5e3eddae07e19ae95e6ed5210a9b01914",
-    "numerical-methods-atlas/gallery/index.html": "f5d0aea644b58762cabb957edb8457dc2e27d6b2fa453199fa7abf3e6b19d374",
-    "numerical-methods-atlas/solutions/index.html": "93ef4f88d2220108656790a513cfd87e5ba4e5321df0fa150da9d376fe0116bd",
+    "code/validated-examples/2026-11-23/low-mach/acceptance.json": "5ab3845b4bf18433bca96980112357723ebf0c2846d65ee74941f1f82cf82d75",
+    "code/validated-examples/2026-11-23/low-mach/attempts/01/acceptance.json": "5ab3845b4bf18433bca96980112357723ebf0c2846d65ee74941f1f82cf82d75",
+    "code/validated-examples/2026-11-23/low-mach/attempts/01/results/result.json": "ac28859e15d35d96aaaf87e3b1a851a1e0b823316721e84ff800153ea034a130",
+    "code/validated-examples/2026-11-23/low-mach/contract-first-order.json": "5af5d8f16225ff28ea9a03ecd84c9337eed3b429b39fba7c2c6ec96283bacf30",
+    "code/validated-examples/2026-11-23/low-mach/inputs.json": "a84bd010dce2128a1b4e4c673f16110ddc4f59a363c64ef6d1b85444989907c5",
+    "code/validated-examples/2026-11-23/low-mach/linear_stability.py": "68810a9e107a9294a98d1056da4cf84d3d74c5de2f2ae73c39c992a5df7167c2",
+    "code/validated-examples/2026-11-23/low-mach/lm_solver.py": "aebccf681e824e8f6778d5b4078aebb72c6eb95e201c1df89895e7159d7604b8",
+    "code/validated-examples/2026-11-23/low-mach/pre-run-contract.json": "71f52c53b5d8c2149bdafeb5fcef9b577cd9ad7b48595dc7557045a80305c845",
+    "code/validated-examples/2026-11-23/low-mach/references/README.md": "2d99220c199501c0255b827f9ad866dc13159f20e4c3a86b7e9a43f590eb0a71",
+    "code/validated-examples/2026-11-23/low-mach/references/analytic_vortex.py": "17d94f53c394a7cee89ff7b016311cf02a6b598551e52b41f83a4c49e826786c",
+    "code/validated-examples/2026-11-23/low-mach/references/citations.json": "86fa4207b1da686d932b15b8a594225e9360cbbd9af06ba23d96522bcbdfc66e",
+    "code/validated-examples/2026-11-23/low-mach/references/definition.json": "60aed5e4f63bc748d924705e56e29c1da08b5ccf3b47c1ed1899597857d7edfa",
+    "code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex-first-order.png": "d3e4aa19fcc168e41d8f93da85d52cb4b4c1b644bf858f61b593dd742694d349",
+    "code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex-preview.png": "295a80ecab6c8e93c0504f115f48a3b5105ab4e29fe2ccd44965fe387744dbdf",
+    "code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex.png": "38635f161af26efd48e0c0a2bc463974e3e81e6b506770a4c6f6c19b24be1970",
+    "code/validated-examples/2026-11-23/low-mach/run.py": "727cbf0477eaac09bc23179c8fb2d5f71c187a6fe4d33fc166d55274a3baba6e",
+    "code/validated-examples/2026-11-23/low-mach/verification.json": "f747210e1d46900c4f56b01e989696c3feaee35361fe42be11428fd280bacf84",
+    "numerical-methods-atlas/gallery/index.html": "fe34b582c3d2e4a058e190e709a8060598cbb19ff59237f087101d96d75426d4",
+    "numerical-methods-atlas/solutions/index.html": "0bd5acb26a2a9c30b7cd6c4ca57336bf0e58398256e859f47cbe8254dab28db1",
     "numerical-methods-atlas/validation/double-mach-reflection/index.html": "a97c707de665870d0897a0cdaddda7b7b455e0beb56778061c2d8a02ba3f4979",
     "numerical-methods-atlas/validation/forward-step-m3/index.html": "1bcb43bd4ef02feb632bf4c66c0518bce5af23682e1cb3e4b38eb696b85edbf1",
+    "numerical-methods-atlas/validation/low-mach-vortex/index.html": "2744e0d480dc86de863edef6de5ced0fc0c3cf3f7bec0eda8581a5589c774d53",
     "numerical-methods-atlas/validation/noh-cartesian-2d/index.html": "484592fde6dbf3f4b5da68a363d9907e9deda9ea1883525c40762d405d64e2e1",
     "numerical-methods-atlas/validation/sedov-blast/index.html": "3b23469cd17837f105df30961020a8c4ff8b47efe937bf45430b8720a6e440ed"
   }

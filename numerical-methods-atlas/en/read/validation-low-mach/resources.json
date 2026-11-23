@@ -1,0 +1,611 @@
+{
+  "schema_version": 1,
+  "generated_by": "atlas-chapter-resources",
+  "id": "validation-low-mach",
+  "title": {
+    "ja": "低Mach等エントロピー渦：前処理Roe流束の軽量検証",
+    "en": "Low-Mach isentropic vortex: preconditioned Roe flux verification"
+  },
+  "routes": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-low-mach/",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-low-mach/"
+  },
+  "association_status": "registered",
+  "resource_navigation": {
+    "kind": "chapter",
+    "id": "validation-low-mach",
+    "note": {
+      "ja": "この章に登録された手法・問題・実行例の関連資料です。",
+      "en": "Resources explicitly registered to the methods, problems and executions of this chapter."
+    },
+    "groups": {
+      "methods": [
+        {
+          "id": "keep",
+          "name": {
+            "ja": "直交座標の原KEEP分割流束",
+            "en": "Original Cartesian KEEP split flux"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/keep/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/keep/?lang=en"
+          },
+          "status": "educational-example",
+          "role": "related",
+          "note": {
+            "ja": "従来のKEEP/RK4固定例を保持し、新しい低Mach比較にRoe・数値散逸の前処理・無制限中心primitive MUSCL・SSPRK(3,3)を対応付けます。個々の実行例が使う手法は実行ページで区別します。",
+            "en": "Retain the historical KEEP/RK4 fixed case and connect Roe, dissipation preconditioning, unlimited central primitive MUSCL and SSPRK(3,3) to the additional low-Mach comparison. Each execution page states its own methods."
+          },
+          "context_problem_id": "isentropic-vortex"
+        },
+        {
+          "id": "rk4",
+          "name": {
+            "ja": "古典的RK4",
+            "en": "Classical RK4"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/?lang=en"
+          },
+          "status": "educational-example",
+          "role": "related",
+          "note": {
+            "ja": "従来のKEEP/RK4固定例を保持し、新しい低Mach比較にRoe・数値散逸の前処理・無制限中心primitive MUSCL・SSPRK(3,3)を対応付けます。個々の実行例が使う手法は実行ページで区別します。",
+            "en": "Retain the historical KEEP/RK4 fixed case and connect Roe, dissipation preconditioning, unlimited central primitive MUSCL and SSPRK(3,3) to the additional low-Mach comparison. Each execution page states its own methods."
+          },
+          "context_problem_id": "isentropic-vortex"
+        },
+        {
+          "id": "roe",
+          "name": {
+            "ja": "Roe法",
+            "en": "Roe"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/roe/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/roe/?lang=en"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "note": {
+            "ja": "従来のKEEP/RK4固定例を保持し、新しい低Mach比較にRoe・数値散逸の前処理・無制限中心primitive MUSCL・SSPRK(3,3)を対応付けます。個々の実行例が使う手法は実行ページで区別します。",
+            "en": "Retain the historical KEEP/RK4 fixed case and connect Roe, dissipation preconditioning, unlimited central primitive MUSCL and SSPRK(3,3) to the additional low-Mach comparison. Each execution page states its own methods."
+          },
+          "context_problem_id": "isentropic-vortex"
+        },
+        {
+          "id": "low-mach-preconditioning",
+          "name": {
+            "ja": "低Mach数のPDE前処理",
+            "en": "Low-Mach PDE preconditioning"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/low-mach-preconditioning/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/low-mach-preconditioning/?lang=en"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "note": {
+            "ja": "従来のKEEP/RK4固定例を保持し、新しい低Mach比較にRoe・数値散逸の前処理・無制限中心primitive MUSCL・SSPRK(3,3)を対応付けます。個々の実行例が使う手法は実行ページで区別します。",
+            "en": "Retain the historical KEEP/RK4 fixed case and connect Roe, dissipation preconditioning, unlimited central primitive MUSCL and SSPRK(3,3) to the additional low-Mach comparison. Each execution page states its own methods."
+          },
+          "context_problem_id": "isentropic-vortex"
+        },
+        {
+          "id": "ssprk33",
+          "name": {
+            "ja": "SSPRK(3,3)",
+            "en": "SSPRK(3,3)"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ssprk33/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ssprk33/?lang=en"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "note": {
+            "ja": "従来のKEEP/RK4固定例を保持し、新しい低Mach比較にRoe・数値散逸の前処理・無制限中心primitive MUSCL・SSPRK(3,3)を対応付けます。個々の実行例が使う手法は実行ページで区別します。",
+            "en": "Retain the historical KEEP/RK4 fixed case and connect Roe, dissipation preconditioning, unlimited central primitive MUSCL and SSPRK(3,3) to the additional low-Mach comparison. Each execution page states its own methods."
+          },
+          "context_problem_id": "isentropic-vortex"
+        },
+        {
+          "id": "muscl",
+          "name": {
+            "ja": "MUSCL再構成",
+            "en": "MUSCL reconstruction"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=en"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "note": {
+            "ja": "従来のKEEP/RK4固定例を保持し、新しい低Mach比較にRoe・数値散逸の前処理・無制限中心primitive MUSCL・SSPRK(3,3)を対応付けます。個々の実行例が使う手法は実行ページで区別します。",
+            "en": "Retain the historical KEEP/RK4 fixed case and connect Roe, dissipation preconditioning, unlimited central primitive MUSCL and SSPRK(3,3) to the additional low-Mach comparison. Each execution page states its own methods."
+          },
+          "context_problem_id": "isentropic-vortex"
+        },
+        {
+          "id": "roe",
+          "name": {
+            "ja": "Roe法",
+            "en": "Roe"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/roe/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/roe/?lang=en"
+          },
+          "status": "educational-example",
+          "role": "execution"
+        },
+        {
+          "id": "low-mach-preconditioning",
+          "name": {
+            "ja": "低Mach数のPDE前処理",
+            "en": "Low-Mach PDE preconditioning"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/low-mach-preconditioning/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/low-mach-preconditioning/?lang=en"
+          },
+          "status": "educational-example",
+          "role": "execution"
+        },
+        {
+          "id": "muscl",
+          "name": {
+            "ja": "MUSCL再構成",
+            "en": "MUSCL reconstruction"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=en"
+          },
+          "status": "educational-example",
+          "role": "execution"
+        },
+        {
+          "id": "ssprk33",
+          "name": {
+            "ja": "SSPRK(3,3)",
+            "en": "SSPRK(3,3)"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ssprk33/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ssprk33/?lang=en"
+          },
+          "status": "educational-example",
+          "role": "execution"
+        }
+      ],
+      "equations": [
+        {
+          "id": "euler",
+          "name": {
+            "ja": "圧縮性Euler方程式",
+            "en": "Compressible Euler equations"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#euler-en"
+          },
+          "note": {
+            "ja": "1次元の保存形。状態方程式と初期・境界条件は各テストの定義を参照する。 この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。",
+            "en": "The one-dimensional conservative form. Consult each test for its equation of state, initial data and boundaries. Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters."
+          },
+          "context_problem_id": "isentropic-vortex"
+        },
+        {
+          "id": "formulation-low-mach-vortex",
+          "name": {
+            "ja": "この実行例の式と条件",
+            "en": "This execution’s formulation and conditions"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/low-mach-vortex/?lang=ja#low-mach-vortex-ja-algorithm",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/low-mach-vortex/?lang=en#low-mach-vortex-en-algorithm"
+          },
+          "note": {
+            "ja": "同じ無制限の中心原始変数MUSCL再構築・有限体積・物理Euler流束・SSPRK(3,3)を使い、Roe散逸だけをD=P⁻¹|PA|で前処理します。Roe平均の全流速Machからμ=min(1,max(Mlocal,M∞))、δ=1/μ−1とし、原始変数のMiczek行列を保存量へ変換します。行列絶対値は特性値ũn,ũn±τの2次多項式で作用させ、別の密行列固有分解と照合します。物理時間微分・音速は変えず、音響CFL=.2を使います。再構築した両面と各3段の正のρ,pを確認し、limiter・floor・状態修復・隠れた再試行・疑似時間反復はありません。前進Eulerの増幅反例を示すため、SSP・TVD・非線形安定性を名前だけで保証しません。",
+            "en": "Both finite-volume variants use the same unlimited centered primitive-MUSCL reconstruction,  the physical Euler flux and SSPRK(3,3); only Roe dissipation is replaced by D=P^-1|PA|. At each Roe state use the total-speed Mach with mu=min(1,max(M_local,M_infinity)) and delta=1/mu-1, applying the primitive Miczek matrix through conserved-variable Jacobians. A degree-two characteristic polynomial applies the matrix absolute value; a separate dense eigendecomposition checks it. Physical time and sound speed are unchanged; acoustic CFL=0.2 remains. Reconstructed faces and all three stages check positive density and pressure, without limiters, floors, repair, hidden retries or pseudo-time iteration. A forward-Euler amplification counterexample prevents claiming SSP/TVD or general nonlinear stability from the integrator name."
+          },
+          "role": "example-definition"
+        },
+        {
+          "id": "euler",
+          "name": {
+            "ja": "圧縮性Euler方程式",
+            "en": "Compressible Euler equations"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#euler-en"
+          },
+          "note": {
+            "ja": "1次元の保存形。状態方程式と初期・境界条件は各テストの定義を参照する。",
+            "en": "The one-dimensional conservative form. Consult each test for its equation of state, initial data and boundaries."
+          }
+        }
+      ],
+      "figures": [
+        {
+          "id": "isentropic-vortex",
+          "name": {
+            "ja": "周期移動等エントロピー渦",
+            "en": "Periodic moving isentropic vortex"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isentropic-vortex/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isentropic-vortex/?lang=en"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex-preview.png",
+            "sha256": "295a80ecab6c8e93c0504f115f48a3b5105ab4e29fe2ccd44965fe387744dbdf",
+            "width": 1312,
+            "height": 840,
+            "caption": {
+              "ja": "M∞=.01、64²、T=.1の実際の2次元Euler計算。全[-10,10]²領域から中心[-3,3]²を拡大し、保存速度から差分で求めた渦度と背景流を引いた速度矢印で、MUSCL付き通常Roe／前処理Roeを比較します。",
+              "en": "Actual 2D Euler evolution at M∞=.01, 64² and T=.1. A central [-3,3]² crop of the full [-10,10]² computation compares ordinary and preconditioned Roe with MUSCL. Vorticity is derived by finite differences of saved velocity; arrows show velocity minus the background flow."
+            },
+            "source_kind": "existing-figure"
+          },
+          "note": {
+            "ja": "テスト問題の代表図。条件と出典は問題別ページで確認できます。",
+            "en": "Representative test-problem figure; the problem page records conditions and provenance."
+          }
+        },
+        {
+          "id": "low-mach-vortex",
+          "name": {
+            "ja": "低Mach等エントロピー渦：前処理Roe流束の軽量検証",
+            "en": "Low-Mach isentropic vortex: preconditioned Roe flux verification"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex.png",
+            "en": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex.png"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex.png",
+            "sha256": "38635f161af26efd48e0c0a2bc463974e3e81e6b506770a4c6f6c19b24be1970",
+            "width": 1808,
+            "height": 1632,
+            "kind": "case-validation",
+            "caption": {
+              "ja": "低Mach等エントロピー渦：前処理Roe流束の軽量検証：この実行例の保存済み検証図。",
+              "en": "Low-Mach isentropic vortex: preconditioned Roe flux verification: saved validation figure for this execution."
+            }
+          },
+          "note": {
+            "ja": "この実行例自身の保存済み検証図です。",
+            "en": "The saved validation figure for this execution itself."
+          },
+          "problem_id": "isentropic-vortex"
+        }
+      ],
+      "references": [
+        {
+          "id": "problem-isentropic-vortex",
+          "name": {
+            "ja": "周期移動等エントロピー渦：参照・比較条件",
+            "en": "Periodic moving isentropic vortex — references and comparison conditions"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isentropic-vortex/?lang=ja#references-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isentropic-vortex/?lang=en#references-en"
+          },
+          "note": {
+            "ja": "従来KEEPの等エントロピー渦と同じ解析解族に、背景Mach数.1/.01の整合した圧力・密度スケーリングを加えた比較です。解析場は全平面Eulerの移動解で、有限周期箱の微小な裾と保存量セル平均の数値求積は別に資格確認します。",
+            "en": "This extends the analytic family used by the historical KEEP vortex with consistently scaled pressure and density at background Mach numbers .1 and .01. The analytic field is a translating whole-plane Euler solution; tiny finite-periodic-box tails and numerical quadrature of conservative cell averages are qualified separately."
+          }
+        },
+        {
+          "id": "isentropic-vortex",
+          "name": {
+            "ja": "等エントロピー渦：低Mach比較に用いるEuler解析場",
+            "en": "Isentropic vortex: analytic Euler field for low-Mach comparisons"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-isentropic-vortex-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-isentropic-vortex-en"
+          },
+          "reference_kind": "analytic",
+          "note": {
+            "ja": "解析解 全平面Eulerの移動等エントロピー渦を、γ=1.4、β=3、背景密度1、背景速度U=(1,.5)で定義します。背景Mach数Mに対してp∞=1.25/(1.4M²)とし、θ=1−(γ−1)β²exp(1−r²)/(8γπ²p∞)、ρ=θ^(1/(γ−1))、p=p∞θ^(γ/(γ−1))です。Uとともに動く座標を[-10,10]²へ折り返します。解析式は全平面の厳密なEuler解ですが、有限周期箱の継ぎ目にはゼロでないGaussianの裾があり、滑らかな周期トーラスの厳密解とは区別します。4保存量のセル平均をGauss8で求積しGauss16と照合した後、圧力・速度へ変換します。閉形式の厳密セル平均やprimitive変数の平均ではありません。低Mach固定例はM=.1/.01、T=.1。p∞=1で従来KEEPの場へ戻ります。 同じ等エントロピー移動渦族の解析場です。保存量をGauss求積してから圧力・速度を算出し、周期の継ぎ目に残るGaussianの裾と求積誤差を明記します。",
+            "en": "Analytic reference The translating whole-plane ideal-gas Euler vortex uses gamma=1.4, beta=3, far-field density1 and background velocity U=(1,.5). For background Mach number M, p_inf=1.25/(1.4*M^2); theta=1-(gamma-1)*beta^2*exp(1-r^2)/(8*gamma*pi^2*p_inf), rho=theta^(1/(gamma-1)), p=p_inf*theta^(gamma/(gamma-1)). Coordinates move with U and are wrapped in [-10,10]^2. The whole-plane field is analytic; the finite minimum-image periodic field retains nonzero Gaussian seam tails and is not a globally exact smooth torus solution. Tensor Gauss8 cell means of all conserved variables are checked against Gauss16, then primitive pressure and velocity are recovered from those means. These are numerical cell quadratures, not closed-form exact cell averages or means of primitive variables. The low-Mach fixed runs use M=.1/.01 and T=.1; the historical KEEP case is recovered by p_inf=1. Analytic field for the same translating isentropic-vortex family. Pressure and velocity are evaluated after Gauss integration of conserved variables; finite-periodic Gaussian tails and quadrature error remain explicit."
+          },
+          "relation": "same-problem",
+          "context_problem_id": "isentropic-vortex"
+        },
+        {
+          "id": "isentropic-vortex",
+          "name": {
+            "ja": "等エントロピー渦：低Mach比較に用いるEuler解析場",
+            "en": "Isentropic vortex: analytic Euler field for low-Mach comparisons"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-isentropic-vortex-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-isentropic-vortex-en"
+          },
+          "reference_kind": "analytic",
+          "note": {
+            "ja": "解析解 全平面Eulerの移動等エントロピー渦を、γ=1.4、β=3、背景密度1、背景速度U=(1,.5)で定義します。背景Mach数Mに対してp∞=1.25/(1.4M²)とし、θ=1−(γ−1)β²exp(1−r²)/(8γπ²p∞)、ρ=θ^(1/(γ−1))、p=p∞θ^(γ/(γ−1))です。Uとともに動く座標を[-10,10]²へ折り返します。解析式は全平面の厳密なEuler解ですが、有限周期箱の継ぎ目にはゼロでないGaussianの裾があり、滑らかな周期トーラスの厳密解とは区別します。4保存量のセル平均をGauss8で求積しGauss16と照合した後、圧力・速度へ変換します。閉形式の厳密セル平均やprimitive変数の平均ではありません。低Mach固定例はM=.1/.01、T=.1。p∞=1で従来KEEPの場へ戻ります。",
+            "en": "Analytic reference The translating whole-plane ideal-gas Euler vortex uses gamma=1.4, beta=3, far-field density1 and background velocity U=(1,.5). For background Mach number M, p_inf=1.25/(1.4*M^2); theta=1-(gamma-1)*beta^2*exp(1-r^2)/(8*gamma*pi^2*p_inf), rho=theta^(1/(gamma-1)), p=p_inf*theta^(gamma/(gamma-1)). Coordinates move with U and are wrapped in [-10,10]^2. The whole-plane field is analytic; the finite minimum-image periodic field retains nonzero Gaussian seam tails and is not a globally exact smooth torus solution. Tensor Gauss8 cell means of all conserved variables are checked against Gauss16, then primitive pressure and velocity are recovered from those means. These are numerical cell quadratures, not closed-form exact cell averages or means of primitive variables. The low-Mach fixed runs use M=.1/.01 and T=.1; the historical KEEP case is recovered by p_inf=1."
+          }
+        },
+        {
+          "id": "validation-low-mach-vortex",
+          "name": {
+            "ja": "低Mach等エントロピー渦：前処理Roe流束の軽量検証：参照・検証",
+            "en": "Low-Mach isentropic vortex: preconditioned Roe flux verification — references and checks"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/low-mach-vortex/?lang=ja#low-mach-vortex-ja-validation",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/low-mach-vortex/?lang=en#low-mach-vortex-en-validation"
+          },
+          "note": {
+            "ja": "初版の32単体検査は合格しましたが、区分定数空間離散化での143判定中、M∞=.01・最細格子の全領域圧力誤差.16537が事前閾値.1を超えました。初版ソース・契約・全12場・判定と、その全領域図を失敗のまま保存します。改訂では両流束を同じ無制限中心原始変数MUSCLにし、面状態の拒否・正しい再構築Fourier記号・独立行列を使う実RHSの線形化など3検査を追加しました。入力・物理時間・CFL・受入条件はバイト単位で不変です。新35検査と143条件の契約を改訂の実行前に固定しました。 Roe平均の保存量ジャンプと物理流束差、密行列の前処理散逸、3段更新・不正段保持を照合します。各背景Mach・流束で17²個の定数状態Fourierモードと、物理音響エネルギーで規格化した増幅行列の1/10/100乗を調べます。圧力誤差は大きなp∞ではなくρ∞|U∞|²で割り、速度誤差は渦の速度変動で規格化します。移動解析場に対する初期R_h−q_tも記録し、定常残差の収束とは区別します。 改訂の35検査・全12計算143判定は-W errorで合格し、元のMacで全計算は約4.4秒でした。最細M∞=.01の速度相対L1はRoe .07411、前処理 .01847、固定コアの圧力誤差は.04871/.0006325でした。一方、全領域の圧力誤差は.01194/.01260で前処理側がわずかに悪く、M∞=.1でも.0006653/.0006737と同様です。全4保存量の最大相対残差は4.24e-14。Gauss8/16の動的スケール最大差は4.08e-11、解析Euler代入残差は1.09e-16でした。指定したFourierモードのSSPRK3増幅半径とエネルギー規格化行列累乗ノルムは最大1。前進Eulerは両MUSCL流束で1を超え、M∞=.01の前処理側で約1.03560でした。",
+            "en": "The original 32 unit tests passed, but one of 143 first-order spatial gates failed: finest M_infinity=0.01 whole-domain dynamic pressure error 0.16537 exceeded the fixed 0.1 threshold. Original sources, contract, all twelve fields and the failed global pressure plot are retained. Revision 2 gives both fluxes the same unlimited centered primitive MUSCL and adds three checks for reconstruction, raw face failure and actual-RHS linearization against independent matrices. Inputs, physical time, CFL and acceptance bytes are unchanged; the revised 35-test/143-gate contract was frozen before revision execution.  Checks cover Roe conserved jumps and physical-flux differences, dense-matrix dissipation, the three stages and raw invalid-stage retention. Each background Mach/flux has 17^2 constant-state Fourier modes and powers 1/10/100 in stated physical acoustic-energy variables. Pressure errors divide by rho_infinity*|U_infinity|^2 rather than the large p_infinity; velocity errors divide by analytic vortex perturbations. Initial R_h-q_t for the translating analytic field is retained as truncation error, not converged steady residual. Revision 2 passed all 35 tests, twelve runs and 143 gates with -W error, taking about 4.4 seconds on the original Mac. At finest M_infinity=0.01, relative velocity L1 was 0.07411 for Roe and 0.01847 for preconditioning; fixed-core pressure errors were 0.04871/0.0006325. Whole-domain pressure errors were instead 0.01194/0.01260, slightly worse with preconditioning; M_infinity=0.1 similarly gave 0.0006653/0.0006737. Maximum relative conserved-budget residual was 4.24e-14. Dynamic-scale Gauss8/16 maximum difference was 4.08e-11 and analytic Euler substitution residual 1.09e-16. Sampled SSPRK3 spectral radii and stated energy-scaled matrix powers had maximum 1. Forward Euler exceeded 1 for both MUSCL variants, reaching about 1.03560 for preconditioning at M_infinity=0.01."
+          },
+          "role": "execution"
+        },
+        {
+          "id": "isentropic-vortex",
+          "name": {
+            "ja": "等エントロピー渦：低Mach比較に用いるEuler解析場",
+            "en": "Isentropic vortex: analytic Euler field for low-Mach comparisons"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-isentropic-vortex-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-isentropic-vortex-en"
+          },
+          "reference_kind": "analytic",
+          "note": {
+            "ja": "解析解 全平面Eulerの移動等エントロピー渦を、γ=1.4、β=3、背景密度1、背景速度U=(1,.5)で定義します。背景Mach数Mに対してp∞=1.25/(1.4M²)とし、θ=1−(γ−1)β²exp(1−r²)/(8γπ²p∞)、ρ=θ^(1/(γ−1))、p=p∞θ^(γ/(γ−1))です。Uとともに動く座標を[-10,10]²へ折り返します。解析式は全平面の厳密なEuler解ですが、有限周期箱の継ぎ目にはゼロでないGaussianの裾があり、滑らかな周期トーラスの厳密解とは区別します。4保存量のセル平均をGauss8で求積しGauss16と照合した後、圧力・速度へ変換します。閉形式の厳密セル平均やprimitive変数の平均ではありません。低Mach固定例はM=.1/.01、T=.1。p∞=1で従来KEEPの場へ戻ります。 同じ等エントロピー移動渦族の解析場です。保存量をGauss求積してから圧力・速度を算出し、周期の継ぎ目に残るGaussianの裾と求積誤差を明記します。",
+            "en": "Analytic reference The translating whole-plane ideal-gas Euler vortex uses gamma=1.4, beta=3, far-field density1 and background velocity U=(1,.5). For background Mach number M, p_inf=1.25/(1.4*M^2); theta=1-(gamma-1)*beta^2*exp(1-r^2)/(8*gamma*pi^2*p_inf), rho=theta^(1/(gamma-1)), p=p_inf*theta^(gamma/(gamma-1)). Coordinates move with U and are wrapped in [-10,10]^2. The whole-plane field is analytic; the finite minimum-image periodic field retains nonzero Gaussian seam tails and is not a globally exact smooth torus solution. Tensor Gauss8 cell means of all conserved variables are checked against Gauss16, then primitive pressure and velocity are recovered from those means. These are numerical cell quadratures, not closed-form exact cell averages or means of primitive variables. The low-Mach fixed runs use M=.1/.01 and T=.1; the historical KEEP case is recovered by p_inf=1. Analytic field for the same translating isentropic-vortex family. Pressure and velocity are evaluated after Gauss integration of conserved variables; finite-periodic Gaussian tails and quadrature error remain explicit."
+          },
+          "relation": "same-problem",
+          "context_execution_id": "low-mach-vortex"
+        }
+      ],
+      "code": [
+        {
+          "id": "low-mach-vortex",
+          "name": {
+            "ja": "低Mach等エントロピー渦：前処理Roe流束の軽量検証",
+            "en": "Low-Mach isentropic vortex: preconditioned Roe flux verification"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/low-mach-vortex/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/low-mach-vortex/?lang=en"
+          },
+          "availability": "run",
+          "method_ids": [
+            "roe",
+            "low-mach-preconditioning",
+            "muscl",
+            "ssprk33"
+          ],
+          "note": {
+            "ja": "同じ非線形2次元Euler渦をN=16/32/64、背景Mach数.1/.01でT=.1まで進め、通常RoeとMiczek型の空間流束前処理を比較します。全12計算で、速度・動圧スケールの圧力誤差、保存収支、音響刻み、実段状態を調べます。",
+            "en": "The same nonlinear 2D Euler vortex is evolved to T=0.1 on N=16/32/64 at background Mach 0.1/0.01, comparing ordinary Roe with Miczek spatial flux preconditioning. Twelve fixed runs retain velocity and dynamically scaled pressure errors, conserved budgets, acoustic steps and actual stage states."
+          }
+        }
+      ]
+    }
+  },
+  "directories": {
+    "methods": {
+      "name": {
+        "ja": "手法・コードの対応表",
+        "en": "Methods and code reference"
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/?lang=en"
+      }
+    },
+    "equations": {
+      "name": {
+        "ja": "方程式",
+        "en": "Equations"
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en"
+      }
+    },
+    "figures": {
+      "name": {
+        "ja": "テスト問題の名前と図",
+        "en": "Test problems by name and figure"
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/?lang=en"
+      }
+    },
+    "references": {
+      "name": {
+        "ja": "厳密解・参照解",
+        "en": "Exact and reference solutions"
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en"
+      }
+    },
+    "code": {
+      "name": {
+        "ja": "コード・入力・検証",
+        "en": "Code, inputs and validation"
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en"
+      }
+    }
+  },
+  "language": "en",
+  "source_sha256": {
+    "catalog/atlas-chapter-links.json": "4f41459ddda500d9cbddb7a8406dfee5a698346307d8a3fb50ce670d3ef72c9e",
+    "catalog/atlas-depth-expansion.json": "d664e9e67d7661114a212229bd05104fc479d37137d697cd93d77c801288ca47",
+    "catalog/atlas-detailed-reading.json": "f5e4b7e39f89322182359aa6adb9ac4af24a52337e07ca40b3933623f769b6eb",
+    "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
+    "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
+    "catalog/atlas-execution-examples.json": "b67c3635f42660eaa208073af8addf82777b26337e1b7f2792987f4116fb37c2",
+    "catalog/atlas-goals.json": "706721b859ac559fa4cdfca75b9ef00edc2e70fe590de3ee378bfc1bf89eacdd",
+    "catalog/atlas-methods.json": "522672ce3ce6e90f529ad1ae8ab3a1269ab35658eb6ae99460e1f256fca7afa2",
+    "catalog/atlas-problem-links.json": "1bdb911b9d6917282288dc3aaa46389778cfe176d4c70f42d57b3169939f4ad5",
+    "catalog/atlas-reference-supplements.json": "a0398611d998d2b39b54c82bc5897904be7a6cc060665bf2a956be7e0e16ce0a",
+    "catalog/atlas-test-problems.json": "872d6a32fa180fc575ac2e014734d6dfbba0632aee8c54866df254d3fb0d8fbb",
+    "code/numerical-methods-atlas/2026-11-21/atlas-code-2026-11-21.zip": "f17c0cfcf6956a2677dcdc874235806ae9c5453514be02e6d3274732bcdebe4f",
+    "code/numerical-methods-atlas/2026-11-21/numart/coordinates.py": "c05903b96e57667c9a492aabc5c9ab1375ad37f774108ce189d4f43a3225d862",
+    "code/numerical-methods-atlas/2026-11-21/numart/geometry.py": "ce62b61ff5989643e87fbdbda8507179b1c0c94af094c91c09d142c1a2a23a84",
+    "code/numerical-methods-atlas/2026-11-21/tests/test_coordinates.py": "3a29397b4011099b0ec28b24e7e6f7bcacc615d9e649c9680d2195c774e3262f",
+    "code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py": "dd6e3eb98af2bca603134916b7db474d3319ecf137083192b5c888c517eb08ed",
+    "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
+    "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
+    "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
+    "code/validated-examples/2026-11-22/biology/results/schnakenberg-nonlinear.png": "9b11bf9725aa4256a36bbfd29ba37c346ea7757456d09aec20505727a1286ff5",
+    "code/validated-examples/2026-11-22/biology/results/schnakenberg-pattern.png": "5b4e51780084bfed99e5c8ff2d3a35900014c52745f62577f09cba1ef59a1f59",
+    "code/validated-examples/2026-11-22/biology/source-manifest.json": "56947a4fb54ae757408ddddfc5de0884bfe35266032ee425a8d96a815f3362ba",
+    "code/validated-examples/2026-11-22/biology/verification.json": "5cafaaef809f46e6ab01327107f7367113b8069931621fc92d446fbf142682bd",
+    "code/validated-examples/2026-11-22/foundations-conditioning/atlas-foundations-conditioning-2026-11-22.zip": "71d8f0d3b0bed4a6a97f976aabfd02cc0baf08a30c1655f6b1ea42ea16df3c9d",
+    "code/validated-examples/2026-11-22/foundations-conditioning/cases.json": "fe1b43a92ad60c91a1fdbd79342db0269e27cc0ef2f7d1ddcee58e183cf5b66c",
+    "code/validated-examples/2026-11-22/foundations-conditioning/results/amg-conditioning.png": "5f49ba07a6c8041814cb9232a60c60cabd0c606f4045916cad93caf7667716b8",
+    "code/validated-examples/2026-11-22/foundations-conditioning/results/krylov-eigen-conditioning.png": "bd2eb0349f22e5aeea427cc95010c0f7db2dc806553d8724bdf1883b512f2745",
+    "code/validated-examples/2026-11-22/foundations-conditioning/results/qr-svd-conditioning.png": "ebc0a58aaaa831fdce8faa446b1ae8b42823fd5d817a7dd9330058ccf2fd65df",
+    "code/validated-examples/2026-11-22/foundations-conditioning/results/quadrature-conditioning.png": "5da9a7a93338c2c9e9349bf22425df1e87a271f5f984a071c6cd1e618613e0f3",
+    "code/validated-examples/2026-11-22/foundations-conditioning/results/result.json": "0b8ef84da85f950afa9779feb79052401dcdda707d1ac6bb314c3afa3a1973e9",
+    "code/validated-examples/2026-11-22/foundations-conditioning/source-manifest.json": "f5b5b5cb5540a1ea76f60f599bd3afd99ffbf312343588e6c7d5c5bcffb3dd9c",
+    "code/validated-examples/2026-11-22/foundations-conditioning/verification.json": "3368c373d622c4246868a43ce869f160de34d0d124c0334d4355573e7c8b3b5f",
+    "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
+    "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
+    "code/validated-examples/2026-11-22/foundations/results/gauss-adaptive-quadrature.png": "f6b7f8fcb9d96ededd4e215b89d6efca3ac27e62f2ad336984f257c9ed035d84",
+    "code/validated-examples/2026-11-22/foundations/results/krylov-eigenvalues.png": "bed0399fc9eb30e8264bace36e5d2faf0ac0bbf6ab822bf60b80cc35dddb6f9d",
+    "code/validated-examples/2026-11-22/foundations/results/qr-svd-factorization.png": "ef3466a17be7d5b7bc2ce99de9d09988c1f2a4cef16bfa10d480fd51eaaa6dd4",
+    "code/validated-examples/2026-11-22/foundations/results/result.json": "93a27cb8e43d7195d2417fc9110f196b07c826ea1f4e2b240f879ab8ab8b4b77",
+    "code/validated-examples/2026-11-22/foundations/results/sa-amg.png": "5c45adc8d863129f320884c1ed61a5c1eb5413cfde3c07a8859e99baef58705e",
+    "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
+    "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
+    "code/validated-examples/2026-11-22/mcmc/atlas-mcmc-2026-11-22.zip": "7fb1cde233b79e2b2d56edac89c6e1bdbe8239c1b7f5e166054f8e3e2cdaac11",
+    "code/validated-examples/2026-11-22/mcmc/cases.json": "fa950eafd45ac23aa2eba3374b23ab2d8df934368ab5b833bf812fbdd095fcaa",
+    "code/validated-examples/2026-11-22/mcmc/results/mcmc-diagnostic-reference.png": "92a97dcbf430c557cd8622762c1e8bb291bd98224e37d629f2665ce71f1e0a67",
+    "code/validated-examples/2026-11-22/mcmc/results/mcmc-multimodal-mixing.png": "6448fed83f9d66d852a572ab2f30d2795ef9e54d4cde342152209aaa4dc59037",
+    "code/validated-examples/2026-11-22/mcmc/results/result.json": "530a343f4e59e03aa9369e373507e73a063eb810eb5a24fd820568467567cbd5",
+    "code/validated-examples/2026-11-22/mcmc/source-manifest.json": "c288e5c96aefe6f4bfdab4dbd78efc8b27924087aa09ac7e91d61adf63ebf195",
+    "code/validated-examples/2026-11-22/mcmc/verification.json": "f39975a549b48345d5b6f833d6226cdae1054ecb9f004d9c845d1ffa8bbc8c9e",
+    "code/validated-examples/2026-11-22/mhd-convergence/atlas-mhd-convergence-2026-11-22.zip": "5db2fc202014a576145e98c84e1802540df7d8e26353d469fbd55c8e393fd866",
+    "code/validated-examples/2026-11-22/mhd-convergence/cases.json": "a1ebd3a1344c90cc49e11dd790a522434f7fdec27f77d8621a2197a7be738434",
+    "code/validated-examples/2026-11-22/mhd-convergence/results/ct-glm-constraint-control.png": "a16bf22ab58330a8a6612a9da16780d4e53999f4fa2606350dbad19b65c33824",
+    "code/validated-examples/2026-11-22/mhd-convergence/results/ct-glm-ot-convergence.png": "d8b498925ef3fd099b3ec8e5b51fc35ec6033d94a5cc21e2d664e99bdd42dfe2",
+    "code/validated-examples/2026-11-22/mhd-convergence/results/ct-glm-smooth-convergence.png": "ba2ace7b67cc93b4990069a43250de481d998b7e18742e0911748c605fce721b",
+    "code/validated-examples/2026-11-22/mhd-convergence/results/result.json": "7b1ddd177a96b1ede21b568b0f8e72e4b23d970d96ace3ab2441b0df0efbfe6b",
+    "code/validated-examples/2026-11-22/mhd-convergence/source-manifest.json": "9d5fd8eb67ed3d4ac3965596bbd12152bdc1ae2e03a3a4f060573175d00caf67",
+    "code/validated-examples/2026-11-22/mhd-convergence/verification.json": "ddf51e803eb94ca7dc419d0b9fc4aa6ec7204c319e448f7d4b120f5342a319d8",
+    "code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip": "2e7eeaaacaeb918671228cc56ab333d0c4ca5a9879241846f5772594552d0b16",
+    "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
+    "code/validated-examples/2026-11-22/mhd/results/brio-independent.png": "e0c1f27e6b01d82084e20bc37398423411849374aa103133ca4df8db8e9b5c62",
+    "code/validated-examples/2026-11-22/mhd/results/ct-glm-independent.png": "498cd2842f093fe173c7cc19764d36cac1e12ce019f5b7f0eb9bfa74bbb191c1",
+    "code/validated-examples/2026-11-22/mhd/results/glm-fourier-mode.png": "d1e2a41d58baa80ea3910c7bab4d7efa0e6fcaa46a694eb102e2cc172d60795f",
+    "code/validated-examples/2026-11-22/mhd/results/result.json": "ce1a011a3f2a18727aa7c10a81d712e23b536e9367e4be18d6847b74210a73f6",
+    "code/validated-examples/2026-11-22/mhd/results/shu-independent.png": "0e5cc09c13e29f99160d4a22b489f98c9f24f4416515f01d1531d8112680a4e1",
+    "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
+    "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
+    "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
+    "code/validated-examples/2026-11-22/models/cases.json": "09b670a3462f7f1395dcdf12b507786b69616c0ea165d2678efe780ddb0cf0e6",
+    "code/validated-examples/2026-11-22/models/results/fitzhugh-nagumo.png": "52686dd168fd30ee8a88cfa758075bc51d47a41de0d918814a1ea27224425637",
+    "code/validated-examples/2026-11-22/models/results/gaussian-mcmc.png": "a84e814bcce77c66f1886d01931a061b2317984e35e6e5fbf71dfa33a85e1c44",
+    "code/validated-examples/2026-11-22/models/results/langevin-harmonic.png": "0b199f45202724a444c1195b31cae227b9599d50bc92d6c793a93a90f2ff1c14",
+    "code/validated-examples/2026-11-22/models/results/reaction-diffusion-fourier.png": "ec48f7b2c2f4989b4bf98a5c5895062ea8bc1cfe95cfb40e2d077561758fd801",
+    "code/validated-examples/2026-11-22/models/results/result.json": "d3af162e0e4a1cb0cc14bd41f250cfe16b69e0b6f111cc4ba1c71eb4ca55e266",
+    "code/validated-examples/2026-11-22/models/results/turing-schnakenberg.png": "d960e2701881dcd027d21d7d17f2a43c9e14157f1ab8a401e4cb69d95be88893",
+    "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
+    "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
+    "code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip": "940c1b9c867d5fda395bf93d9dac6b38d992bb4d3de29065f1b42108d1d4c0c9",
+    "code/validated-examples/2026-11-22/particle-transport/cases.json": "3d3dd9cbc6c62666bb76f893762cf27b33b2606a34e87ffe8c4275e258b96f66",
+    "code/validated-examples/2026-11-22/particle-transport/results/dsmc-statistics.png": "4e384a77f7d4288841ef1b99fabe92b1021805bcd8958d8f0ca8da9b869b4303",
+    "code/validated-examples/2026-11-22/particle-transport/results/ewald-convergence.png": "377a985727d54477ba021b571b137562f65979026dc848808d4ad50b81b84492",
+    "code/validated-examples/2026-11-22/particle-transport/results/fmm-convergence.png": "9358e2e4e7c7d8cb9f5e0bcb4d6cb7c2cf52f0beb7cc14fe64313261aec5363d",
+    "code/validated-examples/2026-11-22/particle-transport/results/pic-conservation.png": "3263e20e5502a7ba8cf358ab8f9034acda4ec192a1916bae8316f08217b7e412",
+    "code/validated-examples/2026-11-22/particle-transport/results/radiation-convergence.png": "894bbfc64f1a76efb5ed9f5dc370d916cb8e5dc2d758fddd12f8aed34657f20f",
+    "code/validated-examples/2026-11-22/particle-transport/results/result.json": "8e189a555c575dba4878c1813f828b29a3045c5015bb4ff2aa1b16c8eab9b138",
+    "code/validated-examples/2026-11-22/particle-transport/results/spme-convergence.png": "4207da16dbd3e326736684e40899ced22cd23c00071f5623a1e61d838db52d9e",
+    "code/validated-examples/2026-11-22/particle-transport/source-manifest.json": "d5724e7fd43635a489acb3b9ae90ac83fcce734ee89b6f29bc80cbdd4cefac97",
+    "code/validated-examples/2026-11-22/particle-transport/verification.json": "a16b3b90fd815909a8f3241dd7c04aeedabb2dd964da603eadd851fd6a0e171d",
+    "code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+    "code/validated-examples/2026-11-22/particles/cases.json": "f6e68b2ec8d0cd56357b1aeecea3f9c40cf22f89e7f9c1b8b9442ad020ddbf86",
+    "code/validated-examples/2026-11-22/particles/results/dsmc.png": "a3d1aa68c3e5119d35f9bc51eafe1893d12cb5b763dca4fc552c39eca9e9ffe9",
+    "code/validated-examples/2026-11-22/particles/results/ewald.png": "4b92c0acc84d0926cf9a1b0b2f2f7a671831fc8863f66fb7c6fb4fb382501619",
+    "code/validated-examples/2026-11-22/particles/results/fmm.png": "4a1ce7d65733be37983a4707a8e29beb6765063d9628027c3f1b202c65b7e967",
+    "code/validated-examples/2026-11-22/particles/results/pic.png": "f7b329fb160b94a559bd7553bd6bf398b6b6e133421778418d40a4c69107cb20",
+    "code/validated-examples/2026-11-22/particles/results/radiation-transport.png": "bbf48afe15f5b4ac0cd2a25b0fec0dd8b4a9c0948aad929feaf34f01d938d6ae",
+    "code/validated-examples/2026-11-22/particles/results/result.json": "ed038f2af0d25bb29235e5f2853e0c8360974e8a499475f4b5cb3146d142ad60",
+    "code/validated-examples/2026-11-22/particles/results/spme.png": "4d8b32bf087ffffd40b23a37c8b93d914eae4155b07be837da752bea4a4f0fea",
+    "code/validated-examples/2026-11-22/particles/source-manifest.json": "63cefd473db691db611628f6501b2b58d6727c055ffde1b9a4962bfecfacd125",
+    "code/validated-examples/2026-11-22/particles/verification.json": "48744c4ce661cb76ce7cba81d55bbbb2737885c472966237e78c9e3dfcbf43b7",
+    "code/validated-examples/2026-11-22/splitting/atlas-splitting-2026-11-22.zip": "2ae466a4ea62e204716a388b86033de3a6493a9ab0ef4ad9aec4ebb038d8a404",
+    "code/validated-examples/2026-11-22/splitting/cases.json": "f252ee6b994a6827e5579b28127143680170124de50f05057d2890e545dcc84f",
+    "code/validated-examples/2026-11-22/splitting/results/reaction-diffusion-splitting.png": "ac165c53c4832328365e2a2c4bc507a6ab73e053ac712d5f402f2b22137bee1d",
+    "code/validated-examples/2026-11-22/splitting/results/result.json": "7b1b8338ec2a03eb04e82f3891d4e2fd08a2edb665313dc8bd0991b1a7a9a8f2",
+    "code/validated-examples/2026-11-22/splitting/source-manifest.json": "e071ab71032cce9e1a8340cdd80bb58364b7105de764594507024259915f6368",
+    "code/validated-examples/2026-11-22/splitting/verification.json": "899af4b800c58e990a6eae62dd5510ff1afed02060ab7fb67e1c5c8ebcd47b53",
+    "code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip": "38142da988bf0c790eab7e7f10f8d1e209d074c3627f73a207f5223a24e18d65",
+    "code/validated-examples/2026-11-22/thermostats/cases.json": "123566ec7000dce11f2a6a7474d35e45c8fdf24db85a0556e2cbb3911d3acd77",
+    "code/validated-examples/2026-11-22/thermostats/results/csvr-kinetic-kernel.png": "c4ea7f308b8cd14669bbe11b9d62edf964f2c21db828bcdf2a5aae2ffdc62a43",
+    "code/validated-examples/2026-11-22/thermostats/results/csvr-langevin-harmonic.png": "f49ebc2c68942b7a946e9954b6cd0bc09e412a377ded606a59615c2ef447a7c4",
+    "code/validated-examples/2026-11-22/thermostats/results/csvr-langevin-quartic.png": "6e1ace5cfef29d49e7e500f46acfb64d481d57faf2869598effb70947719952a",
+    "code/validated-examples/2026-11-22/thermostats/results/result.json": "7971007807acce9f75261b684b789f196e1d5dffc80797e102d1b0bebbc93f11",
+    "code/validated-examples/2026-11-22/thermostats/source-manifest.json": "81a854bdfe3ae33b4eb4bffdccc9ab15a09f2bddbffb294cd2c2cbd07e641580",
+    "code/validated-examples/2026-11-22/thermostats/verification.json": "c14f55ac05d93269dbf8eef4a2a4042f75764d5228d06f8e41039d0b60351905",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/atlas-noh-cartesian-2026-11-23-r2.zip": "2145beb161f993c1608fc5ac167af5278d58e10f92e74ed37e5fb9c35243b918",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/cases.json": "49b94c1f65e269d4a878be3a4d8778375b88b767f5dd01998ae5fe6b8fc2b3ee",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/results/noh-cartesian-2d.png": "cca6fdfc8f524ee05f729437b38ce064f276aaebe1485ed6e26045c279ac1ae4",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/results/result.json": "e121c2f5171ee53491b492019311d002ceb44213f6f7cd43051a3ca68f74c694",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/source-manifest.json": "3f34837f6078bfdc96e5bea2a0ec36c3ae4c48a09c25fcd61560cbb4f4781f93",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/verification.json": "7c530b06df5d2878958bd249b3035050592365e23aee79804e600368dfb09f46",
+    "code/validated-examples/2026-11-23-r2/sedov/atlas-sedov-2026-11-23-r2.zip": "abb7344023b91b090820de1ebec8d6c6a949b8c06fda73037204a5d6f62b4b73",
+    "code/validated-examples/2026-11-23-r2/sedov/cases.json": "aab3ca7447d35997bd38505e1ef79e1693096a29cc52c10e994bdcc9c80c8c03",
+    "code/validated-examples/2026-11-23-r2/sedov/results/result.json": "e4767029260bee54e0de2c85b07cbca07c5b99c4eb999b9d609735b6e615ef23",
+    "code/validated-examples/2026-11-23-r2/sedov/results/sedov-blast.png": "40a5d1f86e9aecab42be47d61c7c3b1b2e6e04a0cad8938caaa6d7c3ab5f2146",
+    "code/validated-examples/2026-11-23-r2/sedov/source-manifest.json": "4a92404602abd0d01096aae1576afb96533c64ea68989615df885a4310e3479f",
+    "code/validated-examples/2026-11-23-r2/sedov/verification.json": "1bec773b9e6d657ea7b71996df2bcc2c593f64b8cbb51942ed7d106be3419a03",
+    "code/validated-examples/2026-11-23-r5/noh/atlas-noh-2026-11-23-r5.zip": "64de5483e9896a3773348b75e1ec2b4630f8a709d68194c1d94772396f531733",
+    "code/validated-examples/2026-11-23-r5/noh/cases.json": "9501c9cb57617c09a8ceb0aa7e124ba1e2af303144eaa82045e8632fc7c39fc2",
+    "code/validated-examples/2026-11-23-r5/noh/results/noh-shock.png": "11d0f030985cf900b04ce6f8b903be486684c43129f2e3f4226ed81b70041f4f",
+    "code/validated-examples/2026-11-23-r5/noh/results/result.json": "4e92acb911d505b3f7e74e39f01acf77e59fbe15577f321ac759f1315e487724",
+    "code/validated-examples/2026-11-23-r5/noh/source-manifest.json": "8597cbc7b841502f4e7eca154e86fe8893402c1167614952de682d7307c5595d",
+    "code/validated-examples/2026-11-23-r5/noh/verification.json": "48545a33ab2c19e9071616a15a1fcbf90c716096aa1a12550d3cb872ed8d9e36",
+    "code/validated-examples/2026-11-23/double-mach/atlas-double-mach-2026-11-23.zip": "0a68d19746c508e0ac0cf9b5bebe9375c797a87ade1a9fbfbef87d6e5fa63347",
+    "code/validated-examples/2026-11-23/double-mach/cases.json": "38eb6a6fb4af35cdd3ca8834b9f3e5c80be22a50615f03aef712bc67b11b85e3",
+    "code/validated-examples/2026-11-23/double-mach/results/double-mach-reflection.png": "564ab5c372e1c4ce5e468876142858830f6425eca79a7dc34a18568ecc89edff",
+    "code/validated-examples/2026-11-23/double-mach/results/result.json": "3b4a36b9b3e10e7a6984130ee24bb7d5707de0fe24facff3a49b8eabd71ea5fe",
+    "code/validated-examples/2026-11-23/double-mach/source-manifest.json": "32ba5521149368b729b31796dcc0006c8fd743e840e1e36533a867a47170d8c8",
+    "code/validated-examples/2026-11-23/double-mach/verification.json": "c588b4ce7f539d53b1d5eec4413ce3a1dc104eff975e4adddf0c544460dbb49e",
+    "code/validated-examples/2026-11-23/forward-step/atlas-forward-step-2026-11-23.zip": "ae69647a4e63c75c0888a6daf15835d348e9d74de58b5e59926e359e9ffc52cd",
+    "code/validated-examples/2026-11-23/forward-step/cases.json": "e7397c94e5d170170b09a6baa4fdf9276d83419118e456cc172ad6c5cf63b363",
+    "code/validated-examples/2026-11-23/forward-step/results/forward-step-m3.png": "8f4ad22c5af00347914f9dfee7a84f9a07fdf9da5394674937013fad5f94bf16",
+    "code/validated-examples/2026-11-23/forward-step/results/result.json": "636e179813165fbe620caadd825ac699973ea2dde897d13aed8b2d22102e6704",
+    "code/validated-examples/2026-11-23/forward-step/source-manifest.json": "77546e263d8e08266cedb57ef5e128a3bee68d7b9597fb56bed2eee5dcbec6dc",
+    "code/validated-examples/2026-11-23/forward-step/verification.json": "f40317a2721c2048c6174bf41c03adf5e3eddae07e19ae95e6ed5210a9b01914",
+    "code/validated-examples/2026-11-23/low-mach/atlas-low-mach-2026-11-23.zip": "717b2ceed76d37cf4c1e570a7a022e1a17d66fce3048648a3edde4164a1513aa",
+    "code/validated-examples/2026-11-23/low-mach/cases.json": "8a33dd861d6c635afeb526a2823fa33e88dc84fb49f1ae8a5ba19cbad32ae058",
+    "code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex.png": "38635f161af26efd48e0c0a2bc463974e3e81e6b506770a4c6f6c19b24be1970",
+    "code/validated-examples/2026-11-23/low-mach/results/result.json": "5e1fdfa86dc57b13857bd571de1070d00ac5237400e0fc9ee9875fae9824d9f5",
+    "code/validated-examples/2026-11-23/low-mach/source-manifest.json": "ff359786cf6efff8e5e61f842ae63a866cb7655a4151b2d33ac12501eed98124",
+    "code/validated-examples/2026-11-23/low-mach/verification.json": "f747210e1d46900c4f56b01e989696c3feaee35361fe42be11428fd280bacf84",
+    "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
+    "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
+    "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
+    "numerical-methods-atlas/equations/index.json": "a70d0d47e3308308701598b87fed3bcca1f742f69591abdbbff7e122f9a0f14a",
+    "numerical-methods-atlas/gallery/preview-manifest.json": "e911630439324bd63c075829ed175621068e33088c8a874cb774d725d49a2446",
+    "numerical-methods-atlas/locales/messages.json": "a56c00dd0502482140a934bd6109bc7fe09798d9bd4676c63854f3ea6b2d6053",
+    "numerical-methods-atlas/methods/index.json": "5f10974ac26449836b41913e1f5b4ea3961e7276c258ce58f3a4d50cc0e95e13",
+    "numerical-methods-atlas/problems/index.json": "3a840f480222cfa81918887353a742584f6716583fe70fe6a5af712e94a56639",
+    "numerical-methods-atlas/solutions/index.json": "34c48d6ee108b06ebf9b389607bcb3bd83f3fece5ee3480a6c237331f191eb8e",
+    "numerical-methods-atlas/validation/index.json": "f8e8a6897be5c13498c69d2eb086f22519c227a9d24cfaae9f8114d809b063fc"
+  }
+}

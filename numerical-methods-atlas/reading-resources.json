@@ -2324,6 +2324,28 @@
               }
             },
             {
+              "id": "low-mach-vortex",
+              "name": {
+                "ja": "低Mach等エントロピー渦：前処理Roe流束の軽量検証",
+                "en": "Low-Mach isentropic vortex: preconditioned Roe flux verification"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/low-mach-vortex/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/low-mach-vortex/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "roe",
+                "low-mach-preconditioning",
+                "muscl",
+                "ssprk33"
+              ],
+              "note": {
+                "ja": "同じ非線形2次元Euler渦をN=16/32/64、背景Mach数.1/.01でT=.1まで進め、通常RoeとMiczek型の空間流束前処理を比較します。全12計算で、速度・動圧スケールの圧力誤差、保存収支、音響刻み、実段状態を調べます。",
+                "en": "The same nonlinear 2D Euler vortex is evolved to T=0.1 on N=16/32/64 at background Mach 0.1/0.01, comparing ordinary Roe with Miczek spatial flux preconditioning. Twelve fixed runs retain velocity and dynamically scaled pressure errors, conserved budgets, acoustic steps and actual stage states."
+              }
+            },
+            {
               "id": "brio-wu",
               "name": {
                 "ja": "Brio–Wu：HLLDと保存的に粗視化した数値参照",
@@ -9880,107 +9902,11 @@
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/keep/?lang=en"
               },
               "status": "educational-example"
-            },
-            {
-              "id": "keep",
-              "name": {
-                "ja": "直交座標の原KEEP分割流束",
-                "en": "Original Cartesian KEEP split flux"
-              },
-              "url": {
-                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/keep/?lang=ja",
-                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/keep/?lang=en"
-              },
-              "status": "educational-example",
-              "role": "related",
-              "note": {
-                "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
-                "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
-              },
-              "context_problem_id": "isentropic-vortex"
-            },
-            {
-              "id": "rk4",
-              "name": {
-                "ja": "古典的RK4",
-                "en": "Classical RK4"
-              },
-              "url": {
-                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/?lang=ja",
-                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/?lang=en"
-              },
-              "status": "educational-example",
-              "role": "related",
-              "note": {
-                "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
-                "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
-              },
-              "context_problem_id": "isentropic-vortex"
             }
           ],
-          "equations": [
-            {
-              "id": "euler",
-              "name": {
-                "ja": "圧縮性Euler方程式",
-                "en": "Compressible Euler equations"
-              },
-              "url": {
-                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja",
-                "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#euler-en"
-              },
-              "note": {
-                "ja": "1次元の保存形。状態方程式と初期・境界条件は各テストの定義を参照する。 この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。",
-                "en": "The one-dimensional conservative form. Consult each test for its equation of state, initial data and boundaries. Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters."
-              },
-              "context_problem_id": "isentropic-vortex"
-            }
-          ],
-          "figures": [
-            {
-              "id": "isentropic-vortex",
-              "name": {
-                "ja": "周期移動等エントロピー渦",
-                "en": "Periodic moving isentropic vortex"
-              },
-              "url": {
-                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isentropic-vortex/?lang=ja",
-                "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isentropic-vortex/?lang=en"
-              },
-              "image": {
-                "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/movies/keep-vortex/frame-080.webp",
-                "sha256": "0571dd99590171b88cab7b70ee4a152eec5870a6129fa8dca0769e1c001eaf5e",
-                "width": 960,
-                "height": 640,
-                "caption": {
-                  "ja": "保存したKEEP移動渦の最終フレーム。",
-                  "en": "Stored final frame of the KEEP moving vortex."
-                },
-                "source_kind": "existing-figure"
-              },
-              "note": {
-                "ja": "テスト問題の代表図。条件と出典は問題別ページで確認できます。",
-                "en": "Representative test-problem figure; the problem page records conditions and provenance."
-              }
-            }
-          ],
-          "references": [
-            {
-              "id": "problem-isentropic-vortex",
-              "name": {
-                "ja": "周期移動等エントロピー渦：参照・比較条件",
-                "en": "Periodic moving isentropic vortex — references and comparison conditions"
-              },
-              "url": {
-                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isentropic-vortex/?lang=ja#references-ja",
-                "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isentropic-vortex/?lang=en#references-en"
-              },
-              "note": {
-                "ja": "滑らかな周期等エントロピー渦の解析的移動解と格子・時間刻みの収束を確認します。非圧縮Taylor–Green渦の参照式とは別問題です。",
-                "en": "Check analytic transport of a smooth periodic isentropic vortex with space/time refinement. This differs from the incompressible Taylor–Green reference."
-              }
-            }
-          ],
+          "equations": [],
+          "figures": [],
+          "references": [],
           "code": [
             {
               "id": "method-keep",
@@ -11075,7 +11001,7 @@
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/low-mach-preconditioning/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/low-mach-preconditioning/?lang=en"
               },
-              "status": "reading-only"
+              "status": "educational-example"
             }
           ],
           "equations": [],
@@ -11095,6 +11021,47 @@
               "availability": "source",
               "method_ids": [
                 "entropy-fix"
+              ],
+              "note": {
+                "ja": "手法固有の配布版と関連ソースを案内します。固定入力例は別の項目で区別します。",
+                "en": "Method-specific editions and related sources; fixed-input runs are listed separately."
+              }
+            },
+            {
+              "id": "low-mach-vortex",
+              "name": {
+                "ja": "低Mach等エントロピー渦：前処理Roe流束の軽量検証",
+                "en": "Low-Mach isentropic vortex: preconditioned Roe flux verification"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/low-mach-vortex/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/low-mach-vortex/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "roe",
+                "low-mach-preconditioning",
+                "muscl",
+                "ssprk33"
+              ],
+              "note": {
+                "ja": "同じ非線形2次元Euler渦をN=16/32/64、背景Mach数.1/.01でT=.1まで進め、通常RoeとMiczek型の空間流束前処理を比較します。全12計算で、速度・動圧スケールの圧力誤差、保存収支、音響刻み、実段状態を調べます。",
+                "en": "The same nonlinear 2D Euler vortex is evolved to T=0.1 on N=16/32/64 at background Mach 0.1/0.01, comparing ordinary Roe with Miczek spatial flux preconditioning. Twelve fixed runs retain velocity and dynamically scaled pressure errors, conserved budgets, acoustic steps and actual stage states."
+              }
+            },
+            {
+              "id": "method-low-mach-preconditioning",
+              "name": {
+                "ja": "低Mach数のPDE前処理：コード・検証",
+                "en": "Low-Mach PDE preconditioning — code and checks"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/low-mach-preconditioning/?lang=ja#method-execution-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/low-mach-preconditioning/?lang=en#method-execution-en"
+              },
+              "availability": "source",
+              "method_ids": [
+                "low-mach-preconditioning"
               ],
               "note": {
                 "ja": "手法固有の配布版と関連ソースを案内します。固定入力例は別の項目で区別します。",
@@ -21197,7 +21164,7 @@
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/low-mach-preconditioning/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/low-mach-preconditioning/?lang=en"
               },
-              "status": "reading-only",
+              "status": "educational-example",
               "role": "related"
             },
             {
@@ -23016,6 +22983,28 @@
               "note": {
                 "ja": "手法固有の配布版と関連ソースを案内します。固定入力例は別の項目で区別します。",
                 "en": "Method-specific editions and related sources; fixed-input runs are listed separately."
+              }
+            },
+            {
+              "id": "low-mach-vortex",
+              "name": {
+                "ja": "低Mach等エントロピー渦：前処理Roe流束の軽量検証",
+                "en": "Low-Mach isentropic vortex: preconditioned Roe flux verification"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/low-mach-vortex/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/low-mach-vortex/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "roe",
+                "low-mach-preconditioning",
+                "muscl",
+                "ssprk33"
+              ],
+              "note": {
+                "ja": "同じ非線形2次元Euler渦をN=16/32/64、背景Mach数.1/.01でT=.1まで進め、通常RoeとMiczek型の空間流束前処理を比較します。全12計算で、速度・動圧スケールの圧力誤差、保存収支、音響刻み、実段状態を調べます。",
+                "en": "The same nonlinear 2D Euler vortex is evolved to T=0.1 on N=16/32/64 at background Mach 0.1/0.01, comparing ordinary Roe with Miczek spatial flux preconditioning. Twelve fixed runs retain velocity and dynamically scaled pressure errors, conserved budgets, acoustic steps and actual stage states."
               }
             },
             {
@@ -25472,6 +25461,455 @@
               "note": {
                 "ja": "Gauss次数と適応公差を走査し、狭いLorentzピーク、平方根端点、巨大な相殺、零積分、見逃すcompact bumpを解析積分とQUADPACKで検証します。",
                 "en": "Vary Gauss order and adaptive tolerance on narrow Lorentz peaks, a square-root endpoint, severe cancellation, a zero integral and a deliberately missed compact bump, using analytic integrals and QUADPACK."
+              }
+            }
+          ]
+        }
+      },
+      "directories": {
+        "methods": {
+          "name": {
+            "ja": "手法・コードの対応表",
+            "en": "Methods and code reference"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/?lang=en"
+          }
+        },
+        "equations": {
+          "name": {
+            "ja": "方程式",
+            "en": "Equations"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en"
+          }
+        },
+        "figures": {
+          "name": {
+            "ja": "テスト問題の名前と図",
+            "en": "Test problems by name and figure"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/?lang=en"
+          }
+        },
+        "references": {
+          "name": {
+            "ja": "厳密解・参照解",
+            "en": "Exact and reference solutions"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en"
+          }
+        },
+        "code": {
+          "name": {
+            "ja": "コード・入力・検証",
+            "en": "Code, inputs and validation"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en"
+          }
+        }
+      }
+    },
+    "validation-low-mach": {
+      "id": "validation-low-mach",
+      "title": {
+        "ja": "低Mach等エントロピー渦：前処理Roe流束の軽量検証",
+        "en": "Low-Mach isentropic vortex: preconditioned Roe flux verification"
+      },
+      "routes": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-low-mach/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-low-mach/"
+      },
+      "association_status": "registered",
+      "resource_navigation": {
+        "kind": "chapter",
+        "id": "validation-low-mach",
+        "note": {
+          "ja": "この章に登録された手法・問題・実行例の関連資料です。",
+          "en": "Resources explicitly registered to the methods, problems and executions of this chapter."
+        },
+        "groups": {
+          "methods": [
+            {
+              "id": "keep",
+              "name": {
+                "ja": "直交座標の原KEEP分割流束",
+                "en": "Original Cartesian KEEP split flux"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/keep/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/keep/?lang=en"
+              },
+              "status": "educational-example",
+              "role": "related",
+              "note": {
+                "ja": "従来のKEEP/RK4固定例を保持し、新しい低Mach比較にRoe・数値散逸の前処理・無制限中心primitive MUSCL・SSPRK(3,3)を対応付けます。個々の実行例が使う手法は実行ページで区別します。",
+                "en": "Retain the historical KEEP/RK4 fixed case and connect Roe, dissipation preconditioning, unlimited central primitive MUSCL and SSPRK(3,3) to the additional low-Mach comparison. Each execution page states its own methods."
+              },
+              "context_problem_id": "isentropic-vortex"
+            },
+            {
+              "id": "rk4",
+              "name": {
+                "ja": "古典的RK4",
+                "en": "Classical RK4"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/?lang=en"
+              },
+              "status": "educational-example",
+              "role": "related",
+              "note": {
+                "ja": "従来のKEEP/RK4固定例を保持し、新しい低Mach比較にRoe・数値散逸の前処理・無制限中心primitive MUSCL・SSPRK(3,3)を対応付けます。個々の実行例が使う手法は実行ページで区別します。",
+                "en": "Retain the historical KEEP/RK4 fixed case and connect Roe, dissipation preconditioning, unlimited central primitive MUSCL and SSPRK(3,3) to the additional low-Mach comparison. Each execution page states its own methods."
+              },
+              "context_problem_id": "isentropic-vortex"
+            },
+            {
+              "id": "roe",
+              "name": {
+                "ja": "Roe法",
+                "en": "Roe"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/roe/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/roe/?lang=en"
+              },
+              "status": "educational-example",
+              "role": "execution",
+              "note": {
+                "ja": "従来のKEEP/RK4固定例を保持し、新しい低Mach比較にRoe・数値散逸の前処理・無制限中心primitive MUSCL・SSPRK(3,3)を対応付けます。個々の実行例が使う手法は実行ページで区別します。",
+                "en": "Retain the historical KEEP/RK4 fixed case and connect Roe, dissipation preconditioning, unlimited central primitive MUSCL and SSPRK(3,3) to the additional low-Mach comparison. Each execution page states its own methods."
+              },
+              "context_problem_id": "isentropic-vortex"
+            },
+            {
+              "id": "low-mach-preconditioning",
+              "name": {
+                "ja": "低Mach数のPDE前処理",
+                "en": "Low-Mach PDE preconditioning"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/low-mach-preconditioning/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/low-mach-preconditioning/?lang=en"
+              },
+              "status": "educational-example",
+              "role": "execution",
+              "note": {
+                "ja": "従来のKEEP/RK4固定例を保持し、新しい低Mach比較にRoe・数値散逸の前処理・無制限中心primitive MUSCL・SSPRK(3,3)を対応付けます。個々の実行例が使う手法は実行ページで区別します。",
+                "en": "Retain the historical KEEP/RK4 fixed case and connect Roe, dissipation preconditioning, unlimited central primitive MUSCL and SSPRK(3,3) to the additional low-Mach comparison. Each execution page states its own methods."
+              },
+              "context_problem_id": "isentropic-vortex"
+            },
+            {
+              "id": "ssprk33",
+              "name": {
+                "ja": "SSPRK(3,3)",
+                "en": "SSPRK(3,3)"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ssprk33/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ssprk33/?lang=en"
+              },
+              "status": "educational-example",
+              "role": "execution",
+              "note": {
+                "ja": "従来のKEEP/RK4固定例を保持し、新しい低Mach比較にRoe・数値散逸の前処理・無制限中心primitive MUSCL・SSPRK(3,3)を対応付けます。個々の実行例が使う手法は実行ページで区別します。",
+                "en": "Retain the historical KEEP/RK4 fixed case and connect Roe, dissipation preconditioning, unlimited central primitive MUSCL and SSPRK(3,3) to the additional low-Mach comparison. Each execution page states its own methods."
+              },
+              "context_problem_id": "isentropic-vortex"
+            },
+            {
+              "id": "muscl",
+              "name": {
+                "ja": "MUSCL再構成",
+                "en": "MUSCL reconstruction"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=en"
+              },
+              "status": "educational-example",
+              "role": "execution",
+              "note": {
+                "ja": "従来のKEEP/RK4固定例を保持し、新しい低Mach比較にRoe・数値散逸の前処理・無制限中心primitive MUSCL・SSPRK(3,3)を対応付けます。個々の実行例が使う手法は実行ページで区別します。",
+                "en": "Retain the historical KEEP/RK4 fixed case and connect Roe, dissipation preconditioning, unlimited central primitive MUSCL and SSPRK(3,3) to the additional low-Mach comparison. Each execution page states its own methods."
+              },
+              "context_problem_id": "isentropic-vortex"
+            },
+            {
+              "id": "roe",
+              "name": {
+                "ja": "Roe法",
+                "en": "Roe"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/roe/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/roe/?lang=en"
+              },
+              "status": "educational-example",
+              "role": "execution"
+            },
+            {
+              "id": "low-mach-preconditioning",
+              "name": {
+                "ja": "低Mach数のPDE前処理",
+                "en": "Low-Mach PDE preconditioning"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/low-mach-preconditioning/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/low-mach-preconditioning/?lang=en"
+              },
+              "status": "educational-example",
+              "role": "execution"
+            },
+            {
+              "id": "muscl",
+              "name": {
+                "ja": "MUSCL再構成",
+                "en": "MUSCL reconstruction"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=en"
+              },
+              "status": "educational-example",
+              "role": "execution"
+            },
+            {
+              "id": "ssprk33",
+              "name": {
+                "ja": "SSPRK(3,3)",
+                "en": "SSPRK(3,3)"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ssprk33/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ssprk33/?lang=en"
+              },
+              "status": "educational-example",
+              "role": "execution"
+            }
+          ],
+          "equations": [
+            {
+              "id": "euler",
+              "name": {
+                "ja": "圧縮性Euler方程式",
+                "en": "Compressible Euler equations"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#euler-en"
+              },
+              "note": {
+                "ja": "1次元の保存形。状態方程式と初期・境界条件は各テストの定義を参照する。 この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。",
+                "en": "The one-dimensional conservative form. Consult each test for its equation of state, initial data and boundaries. Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters."
+              },
+              "context_problem_id": "isentropic-vortex"
+            },
+            {
+              "id": "formulation-low-mach-vortex",
+              "name": {
+                "ja": "この実行例の式と条件",
+                "en": "This execution’s formulation and conditions"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/low-mach-vortex/?lang=ja#low-mach-vortex-ja-algorithm",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/low-mach-vortex/?lang=en#low-mach-vortex-en-algorithm"
+              },
+              "note": {
+                "ja": "同じ無制限の中心原始変数MUSCL再構築・有限体積・物理Euler流束・SSPRK(3,3)を使い、Roe散逸だけをD=P⁻¹|PA|で前処理します。Roe平均の全流速Machからμ=min(1,max(Mlocal,M∞))、δ=1/μ−1とし、原始変数のMiczek行列を保存量へ変換します。行列絶対値は特性値ũn,ũn±τの2次多項式で作用させ、別の密行列固有分解と照合します。物理時間微分・音速は変えず、音響CFL=.2を使います。再構築した両面と各3段の正のρ,pを確認し、limiter・floor・状態修復・隠れた再試行・疑似時間反復はありません。前進Eulerの増幅反例を示すため、SSP・TVD・非線形安定性を名前だけで保証しません。",
+                "en": "Both finite-volume variants use the same unlimited centered primitive-MUSCL reconstruction,  the physical Euler flux and SSPRK(3,3); only Roe dissipation is replaced by D=P^-1|PA|. At each Roe state use the total-speed Mach with mu=min(1,max(M_local,M_infinity)) and delta=1/mu-1, applying the primitive Miczek matrix through conserved-variable Jacobians. A degree-two characteristic polynomial applies the matrix absolute value; a separate dense eigendecomposition checks it. Physical time and sound speed are unchanged; acoustic CFL=0.2 remains. Reconstructed faces and all three stages check positive density and pressure, without limiters, floors, repair, hidden retries or pseudo-time iteration. A forward-Euler amplification counterexample prevents claiming SSP/TVD or general nonlinear stability from the integrator name."
+              },
+              "role": "example-definition"
+            },
+            {
+              "id": "euler",
+              "name": {
+                "ja": "圧縮性Euler方程式",
+                "en": "Compressible Euler equations"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#euler-en"
+              },
+              "note": {
+                "ja": "1次元の保存形。状態方程式と初期・境界条件は各テストの定義を参照する。",
+                "en": "The one-dimensional conservative form. Consult each test for its equation of state, initial data and boundaries."
+              }
+            }
+          ],
+          "figures": [
+            {
+              "id": "isentropic-vortex",
+              "name": {
+                "ja": "周期移動等エントロピー渦",
+                "en": "Periodic moving isentropic vortex"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isentropic-vortex/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isentropic-vortex/?lang=en"
+              },
+              "image": {
+                "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex-preview.png",
+                "sha256": "295a80ecab6c8e93c0504f115f48a3b5105ab4e29fe2ccd44965fe387744dbdf",
+                "width": 1312,
+                "height": 840,
+                "caption": {
+                  "ja": "M∞=.01、64²、T=.1の実際の2次元Euler計算。全[-10,10]²領域から中心[-3,3]²を拡大し、保存速度から差分で求めた渦度と背景流を引いた速度矢印で、MUSCL付き通常Roe／前処理Roeを比較します。",
+                  "en": "Actual 2D Euler evolution at M∞=.01, 64² and T=.1. A central [-3,3]² crop of the full [-10,10]² computation compares ordinary and preconditioned Roe with MUSCL. Vorticity is derived by finite differences of saved velocity; arrows show velocity minus the background flow."
+                },
+                "source_kind": "existing-figure"
+              },
+              "note": {
+                "ja": "テスト問題の代表図。条件と出典は問題別ページで確認できます。",
+                "en": "Representative test-problem figure; the problem page records conditions and provenance."
+              }
+            },
+            {
+              "id": "low-mach-vortex",
+              "name": {
+                "ja": "低Mach等エントロピー渦：前処理Roe流束の軽量検証",
+                "en": "Low-Mach isentropic vortex: preconditioned Roe flux verification"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex.png",
+                "en": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex.png"
+              },
+              "image": {
+                "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex.png",
+                "sha256": "38635f161af26efd48e0c0a2bc463974e3e81e6b506770a4c6f6c19b24be1970",
+                "width": 1808,
+                "height": 1632,
+                "kind": "case-validation",
+                "caption": {
+                  "ja": "低Mach等エントロピー渦：前処理Roe流束の軽量検証：この実行例の保存済み検証図。",
+                  "en": "Low-Mach isentropic vortex: preconditioned Roe flux verification: saved validation figure for this execution."
+                }
+              },
+              "note": {
+                "ja": "この実行例自身の保存済み検証図です。",
+                "en": "The saved validation figure for this execution itself."
+              },
+              "problem_id": "isentropic-vortex"
+            }
+          ],
+          "references": [
+            {
+              "id": "problem-isentropic-vortex",
+              "name": {
+                "ja": "周期移動等エントロピー渦：参照・比較条件",
+                "en": "Periodic moving isentropic vortex — references and comparison conditions"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isentropic-vortex/?lang=ja#references-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isentropic-vortex/?lang=en#references-en"
+              },
+              "note": {
+                "ja": "従来KEEPの等エントロピー渦と同じ解析解族に、背景Mach数.1/.01の整合した圧力・密度スケーリングを加えた比較です。解析場は全平面Eulerの移動解で、有限周期箱の微小な裾と保存量セル平均の数値求積は別に資格確認します。",
+                "en": "This extends the analytic family used by the historical KEEP vortex with consistently scaled pressure and density at background Mach numbers .1 and .01. The analytic field is a translating whole-plane Euler solution; tiny finite-periodic-box tails and numerical quadrature of conservative cell averages are qualified separately."
+              }
+            },
+            {
+              "id": "isentropic-vortex",
+              "name": {
+                "ja": "等エントロピー渦：低Mach比較に用いるEuler解析場",
+                "en": "Isentropic vortex: analytic Euler field for low-Mach comparisons"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-isentropic-vortex-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-isentropic-vortex-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "解析解 全平面Eulerの移動等エントロピー渦を、γ=1.4、β=3、背景密度1、背景速度U=(1,.5)で定義します。背景Mach数Mに対してp∞=1.25/(1.4M²)とし、θ=1−(γ−1)β²exp(1−r²)/(8γπ²p∞)、ρ=θ^(1/(γ−1))、p=p∞θ^(γ/(γ−1))です。Uとともに動く座標を[-10,10]²へ折り返します。解析式は全平面の厳密なEuler解ですが、有限周期箱の継ぎ目にはゼロでないGaussianの裾があり、滑らかな周期トーラスの厳密解とは区別します。4保存量のセル平均をGauss8で求積しGauss16と照合した後、圧力・速度へ変換します。閉形式の厳密セル平均やprimitive変数の平均ではありません。低Mach固定例はM=.1/.01、T=.1。p∞=1で従来KEEPの場へ戻ります。 同じ等エントロピー移動渦族の解析場です。保存量をGauss求積してから圧力・速度を算出し、周期の継ぎ目に残るGaussianの裾と求積誤差を明記します。",
+                "en": "Analytic reference The translating whole-plane ideal-gas Euler vortex uses gamma=1.4, beta=3, far-field density1 and background velocity U=(1,.5). For background Mach number M, p_inf=1.25/(1.4*M^2); theta=1-(gamma-1)*beta^2*exp(1-r^2)/(8*gamma*pi^2*p_inf), rho=theta^(1/(gamma-1)), p=p_inf*theta^(gamma/(gamma-1)). Coordinates move with U and are wrapped in [-10,10]^2. The whole-plane field is analytic; the finite minimum-image periodic field retains nonzero Gaussian seam tails and is not a globally exact smooth torus solution. Tensor Gauss8 cell means of all conserved variables are checked against Gauss16, then primitive pressure and velocity are recovered from those means. These are numerical cell quadratures, not closed-form exact cell averages or means of primitive variables. The low-Mach fixed runs use M=.1/.01 and T=.1; the historical KEEP case is recovered by p_inf=1. Analytic field for the same translating isentropic-vortex family. Pressure and velocity are evaluated after Gauss integration of conserved variables; finite-periodic Gaussian tails and quadrature error remain explicit."
+              },
+              "relation": "same-problem",
+              "context_problem_id": "isentropic-vortex"
+            },
+            {
+              "id": "isentropic-vortex",
+              "name": {
+                "ja": "等エントロピー渦：低Mach比較に用いるEuler解析場",
+                "en": "Isentropic vortex: analytic Euler field for low-Mach comparisons"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-isentropic-vortex-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-isentropic-vortex-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "解析解 全平面Eulerの移動等エントロピー渦を、γ=1.4、β=3、背景密度1、背景速度U=(1,.5)で定義します。背景Mach数Mに対してp∞=1.25/(1.4M²)とし、θ=1−(γ−1)β²exp(1−r²)/(8γπ²p∞)、ρ=θ^(1/(γ−1))、p=p∞θ^(γ/(γ−1))です。Uとともに動く座標を[-10,10]²へ折り返します。解析式は全平面の厳密なEuler解ですが、有限周期箱の継ぎ目にはゼロでないGaussianの裾があり、滑らかな周期トーラスの厳密解とは区別します。4保存量のセル平均をGauss8で求積しGauss16と照合した後、圧力・速度へ変換します。閉形式の厳密セル平均やprimitive変数の平均ではありません。低Mach固定例はM=.1/.01、T=.1。p∞=1で従来KEEPの場へ戻ります。",
+                "en": "Analytic reference The translating whole-plane ideal-gas Euler vortex uses gamma=1.4, beta=3, far-field density1 and background velocity U=(1,.5). For background Mach number M, p_inf=1.25/(1.4*M^2); theta=1-(gamma-1)*beta^2*exp(1-r^2)/(8*gamma*pi^2*p_inf), rho=theta^(1/(gamma-1)), p=p_inf*theta^(gamma/(gamma-1)). Coordinates move with U and are wrapped in [-10,10]^2. The whole-plane field is analytic; the finite minimum-image periodic field retains nonzero Gaussian seam tails and is not a globally exact smooth torus solution. Tensor Gauss8 cell means of all conserved variables are checked against Gauss16, then primitive pressure and velocity are recovered from those means. These are numerical cell quadratures, not closed-form exact cell averages or means of primitive variables. The low-Mach fixed runs use M=.1/.01 and T=.1; the historical KEEP case is recovered by p_inf=1."
+              }
+            },
+            {
+              "id": "validation-low-mach-vortex",
+              "name": {
+                "ja": "低Mach等エントロピー渦：前処理Roe流束の軽量検証：参照・検証",
+                "en": "Low-Mach isentropic vortex: preconditioned Roe flux verification — references and checks"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/low-mach-vortex/?lang=ja#low-mach-vortex-ja-validation",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/low-mach-vortex/?lang=en#low-mach-vortex-en-validation"
+              },
+              "note": {
+                "ja": "初版の32単体検査は合格しましたが、区分定数空間離散化での143判定中、M∞=.01・最細格子の全領域圧力誤差.16537が事前閾値.1を超えました。初版ソース・契約・全12場・判定と、その全領域図を失敗のまま保存します。改訂では両流束を同じ無制限中心原始変数MUSCLにし、面状態の拒否・正しい再構築Fourier記号・独立行列を使う実RHSの線形化など3検査を追加しました。入力・物理時間・CFL・受入条件はバイト単位で不変です。新35検査と143条件の契約を改訂の実行前に固定しました。 Roe平均の保存量ジャンプと物理流束差、密行列の前処理散逸、3段更新・不正段保持を照合します。各背景Mach・流束で17²個の定数状態Fourierモードと、物理音響エネルギーで規格化した増幅行列の1/10/100乗を調べます。圧力誤差は大きなp∞ではなくρ∞|U∞|²で割り、速度誤差は渦の速度変動で規格化します。移動解析場に対する初期R_h−q_tも記録し、定常残差の収束とは区別します。 改訂の35検査・全12計算143判定は-W errorで合格し、元のMacで全計算は約4.4秒でした。最細M∞=.01の速度相対L1はRoe .07411、前処理 .01847、固定コアの圧力誤差は.04871/.0006325でした。一方、全領域の圧力誤差は.01194/.01260で前処理側がわずかに悪く、M∞=.1でも.0006653/.0006737と同様です。全4保存量の最大相対残差は4.24e-14。Gauss8/16の動的スケール最大差は4.08e-11、解析Euler代入残差は1.09e-16でした。指定したFourierモードのSSPRK3増幅半径とエネルギー規格化行列累乗ノルムは最大1。前進Eulerは両MUSCL流束で1を超え、M∞=.01の前処理側で約1.03560でした。",
+                "en": "The original 32 unit tests passed, but one of 143 first-order spatial gates failed: finest M_infinity=0.01 whole-domain dynamic pressure error 0.16537 exceeded the fixed 0.1 threshold. Original sources, contract, all twelve fields and the failed global pressure plot are retained. Revision 2 gives both fluxes the same unlimited centered primitive MUSCL and adds three checks for reconstruction, raw face failure and actual-RHS linearization against independent matrices. Inputs, physical time, CFL and acceptance bytes are unchanged; the revised 35-test/143-gate contract was frozen before revision execution.  Checks cover Roe conserved jumps and physical-flux differences, dense-matrix dissipation, the three stages and raw invalid-stage retention. Each background Mach/flux has 17^2 constant-state Fourier modes and powers 1/10/100 in stated physical acoustic-energy variables. Pressure errors divide by rho_infinity*|U_infinity|^2 rather than the large p_infinity; velocity errors divide by analytic vortex perturbations. Initial R_h-q_t for the translating analytic field is retained as truncation error, not converged steady residual. Revision 2 passed all 35 tests, twelve runs and 143 gates with -W error, taking about 4.4 seconds on the original Mac. At finest M_infinity=0.01, relative velocity L1 was 0.07411 for Roe and 0.01847 for preconditioning; fixed-core pressure errors were 0.04871/0.0006325. Whole-domain pressure errors were instead 0.01194/0.01260, slightly worse with preconditioning; M_infinity=0.1 similarly gave 0.0006653/0.0006737. Maximum relative conserved-budget residual was 4.24e-14. Dynamic-scale Gauss8/16 maximum difference was 4.08e-11 and analytic Euler substitution residual 1.09e-16. Sampled SSPRK3 spectral radii and stated energy-scaled matrix powers had maximum 1. Forward Euler exceeded 1 for both MUSCL variants, reaching about 1.03560 for preconditioning at M_infinity=0.01."
+              },
+              "role": "execution"
+            },
+            {
+              "id": "isentropic-vortex",
+              "name": {
+                "ja": "等エントロピー渦：低Mach比較に用いるEuler解析場",
+                "en": "Isentropic vortex: analytic Euler field for low-Mach comparisons"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-isentropic-vortex-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-isentropic-vortex-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "解析解 全平面Eulerの移動等エントロピー渦を、γ=1.4、β=3、背景密度1、背景速度U=(1,.5)で定義します。背景Mach数Mに対してp∞=1.25/(1.4M²)とし、θ=1−(γ−1)β²exp(1−r²)/(8γπ²p∞)、ρ=θ^(1/(γ−1))、p=p∞θ^(γ/(γ−1))です。Uとともに動く座標を[-10,10]²へ折り返します。解析式は全平面の厳密なEuler解ですが、有限周期箱の継ぎ目にはゼロでないGaussianの裾があり、滑らかな周期トーラスの厳密解とは区別します。4保存量のセル平均をGauss8で求積しGauss16と照合した後、圧力・速度へ変換します。閉形式の厳密セル平均やprimitive変数の平均ではありません。低Mach固定例はM=.1/.01、T=.1。p∞=1で従来KEEPの場へ戻ります。 同じ等エントロピー移動渦族の解析場です。保存量をGauss求積してから圧力・速度を算出し、周期の継ぎ目に残るGaussianの裾と求積誤差を明記します。",
+                "en": "Analytic reference The translating whole-plane ideal-gas Euler vortex uses gamma=1.4, beta=3, far-field density1 and background velocity U=(1,.5). For background Mach number M, p_inf=1.25/(1.4*M^2); theta=1-(gamma-1)*beta^2*exp(1-r^2)/(8*gamma*pi^2*p_inf), rho=theta^(1/(gamma-1)), p=p_inf*theta^(gamma/(gamma-1)). Coordinates move with U and are wrapped in [-10,10]^2. The whole-plane field is analytic; the finite minimum-image periodic field retains nonzero Gaussian seam tails and is not a globally exact smooth torus solution. Tensor Gauss8 cell means of all conserved variables are checked against Gauss16, then primitive pressure and velocity are recovered from those means. These are numerical cell quadratures, not closed-form exact cell averages or means of primitive variables. The low-Mach fixed runs use M=.1/.01 and T=.1; the historical KEEP case is recovered by p_inf=1. Analytic field for the same translating isentropic-vortex family. Pressure and velocity are evaluated after Gauss integration of conserved variables; finite-periodic Gaussian tails and quadrature error remain explicit."
+              },
+              "relation": "same-problem",
+              "context_execution_id": "low-mach-vortex"
+            }
+          ],
+          "code": [
+            {
+              "id": "low-mach-vortex",
+              "name": {
+                "ja": "低Mach等エントロピー渦：前処理Roe流束の軽量検証",
+                "en": "Low-Mach isentropic vortex: preconditioned Roe flux verification"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/low-mach-vortex/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/low-mach-vortex/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "roe",
+                "low-mach-preconditioning",
+                "muscl",
+                "ssprk33"
+              ],
+              "note": {
+                "ja": "同じ非線形2次元Euler渦をN=16/32/64、背景Mach数.1/.01でT=.1まで進め、通常RoeとMiczek型の空間流束前処理を比較します。全12計算で、速度・動圧スケールの圧力誤差、保存収支、音響刻み、実段状態を調べます。",
+                "en": "The same nonlinear 2D Euler vortex is evolved to T=0.1 on N=16/32/64 at background Mach 0.1/0.01, comparing ordinary Roe with Miczek spatial flux preconditioning. Twelve fixed runs retain velocity and dynamically scaled pressure errors, conserved budgets, acoustic steps and actual stage states."
               }
             }
           ]
@@ -31333,16 +31771,16 @@
   },
   "source_sha256": {
     "catalog/atlas-chapter-links.json": "4f41459ddda500d9cbddb7a8406dfee5a698346307d8a3fb50ce670d3ef72c9e",
-    "catalog/atlas-depth-expansion.json": "5fc8fd929c0e3a3bba7c5d25e1fc3b159bc0976f0cc6a2f9cc96bc5276aa3c4e",
-    "catalog/atlas-detailed-reading.json": "5c209859418a8b949710681a84511bdbc94a2a919e9641d27a1222e3e4a8f9f6",
+    "catalog/atlas-depth-expansion.json": "d664e9e67d7661114a212229bd05104fc479d37137d697cd93d77c801288ca47",
+    "catalog/atlas-detailed-reading.json": "f5e4b7e39f89322182359aa6adb9ac4af24a52337e07ca40b3933623f769b6eb",
     "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "catalog/atlas-execution-examples.json": "b67c3635f42660eaa208073af8addf82777b26337e1b7f2792987f4116fb37c2",
     "catalog/atlas-goals.json": "706721b859ac559fa4cdfca75b9ef00edc2e70fe590de3ee378bfc1bf89eacdd",
-    "catalog/atlas-methods.json": "c1693b8a8eaa994d89dda3e3d08f3a8a7bf4031c643d5a292defb3f88fa5da3f",
-    "catalog/atlas-problem-links.json": "6b99c0b338881c7dc687b58c9634944a4f8d38cf96e238b3d720216ddb6561e7",
-    "catalog/atlas-reference-supplements.json": "2fcdee41dc267924a94ef38cbeedc77d0e014b84302edb1013630f6937d63443",
-    "catalog/atlas-test-problems.json": "900e7e140ad24506138dc36df2a733ce2022cb7a771fc28b1d0975f3331142bd",
+    "catalog/atlas-methods.json": "522672ce3ce6e90f529ad1ae8ab3a1269ab35658eb6ae99460e1f256fca7afa2",
+    "catalog/atlas-problem-links.json": "1bdb911b9d6917282288dc3aaa46389778cfe176d4c70f42d57b3169939f4ad5",
+    "catalog/atlas-reference-supplements.json": "a0398611d998d2b39b54c82bc5897904be7a6cc060665bf2a956be7e0e16ce0a",
+    "catalog/atlas-test-problems.json": "872d6a32fa180fc575ac2e014734d6dfbba0632aee8c54866df254d3fb0d8fbb",
     "code/numerical-methods-atlas/2026-11-21/atlas-code-2026-11-21.zip": "f17c0cfcf6956a2677dcdc874235806ae9c5453514be02e6d3274732bcdebe4f",
     "code/numerical-methods-atlas/2026-11-21/numart/coordinates.py": "c05903b96e57667c9a492aabc5c9ab1375ad37f774108ce189d4f43a3225d862",
     "code/numerical-methods-atlas/2026-11-21/numart/geometry.py": "ce62b61ff5989643e87fbdbda8507179b1c0c94af094c91c09d142c1a2a23a84",
@@ -31473,15 +31911,21 @@
     "code/validated-examples/2026-11-23/forward-step/results/result.json": "636e179813165fbe620caadd825ac699973ea2dde897d13aed8b2d22102e6704",
     "code/validated-examples/2026-11-23/forward-step/source-manifest.json": "77546e263d8e08266cedb57ef5e128a3bee68d7b9597fb56bed2eee5dcbec6dc",
     "code/validated-examples/2026-11-23/forward-step/verification.json": "f40317a2721c2048c6174bf41c03adf5e3eddae07e19ae95e6ed5210a9b01914",
+    "code/validated-examples/2026-11-23/low-mach/atlas-low-mach-2026-11-23.zip": "717b2ceed76d37cf4c1e570a7a022e1a17d66fce3048648a3edde4164a1513aa",
+    "code/validated-examples/2026-11-23/low-mach/cases.json": "8a33dd861d6c635afeb526a2823fa33e88dc84fb49f1ae8a5ba19cbad32ae058",
+    "code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex.png": "38635f161af26efd48e0c0a2bc463974e3e81e6b506770a4c6f6c19b24be1970",
+    "code/validated-examples/2026-11-23/low-mach/results/result.json": "5e1fdfa86dc57b13857bd571de1070d00ac5237400e0fc9ee9875fae9824d9f5",
+    "code/validated-examples/2026-11-23/low-mach/source-manifest.json": "ff359786cf6efff8e5e61f842ae63a866cb7655a4151b2d33ac12501eed98124",
+    "code/validated-examples/2026-11-23/low-mach/verification.json": "f747210e1d46900c4f56b01e989696c3feaee35361fe42be11428fd280bacf84",
     "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/equations/index.json": "9a5a372d8beadaa261f87c284aa71d6afe0caea76ffbd5444da80906f6d02503",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "c8453ca9add9e833d9a71c09f901eaba04029ee887c8b275ea9287246a2ce3ee",
-    "numerical-methods-atlas/locales/messages.json": "ca763bb2b8a7f466bef88c28835ed915de93a2b3109660231f9de0116334b4bc",
-    "numerical-methods-atlas/methods/index.json": "004368de1a5e253bd5a680dcd8d06c61c8db869dffbbdd90ae8be0f9a79734d5",
-    "numerical-methods-atlas/problems/index.json": "c17b0b8fbe75c50d8d6e22a7c2bacca1a2ac682fb15f2b628a2a12584225b9e2",
-    "numerical-methods-atlas/solutions/index.json": "cd9fc6ca1f80377fba576c1507eb6ebae234d6ee48efb3fea6148033a4cae845",
-    "numerical-methods-atlas/validation/index.json": "56fc09815432b045da4cfa807925d3ee70cd694e636005054c8e4c7a86289c22"
+    "numerical-methods-atlas/equations/index.json": "a70d0d47e3308308701598b87fed3bcca1f742f69591abdbbff7e122f9a0f14a",
+    "numerical-methods-atlas/gallery/preview-manifest.json": "e911630439324bd63c075829ed175621068e33088c8a874cb774d725d49a2446",
+    "numerical-methods-atlas/locales/messages.json": "a56c00dd0502482140a934bd6109bc7fe09798d9bd4676c63854f3ea6b2d6053",
+    "numerical-methods-atlas/methods/index.json": "5f10974ac26449836b41913e1f5b4ea3961e7276c258ce58f3a4d50cc0e95e13",
+    "numerical-methods-atlas/problems/index.json": "3a840f480222cfa81918887353a742584f6716583fe70fe6a5af712e94a56639",
+    "numerical-methods-atlas/solutions/index.json": "34c48d6ee108b06ebf9b389607bcb3bd83f3fece5ee3480a6c237331f191eb8e",
+    "numerical-methods-atlas/validation/index.json": "f8e8a6897be5c13498c69d2eb086f22519c227a9d24cfaae9f8114d809b063fc"
   }
 }

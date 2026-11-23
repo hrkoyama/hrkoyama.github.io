@@ -1,0 +1,97 @@
+[
+  {
+    "id": "miczek2015",
+    "author": "Fabian Miczek, Friedrich K. Röpke and Philipp V. F. Edelmann",
+    "year": 2015,
+    "title": "New numerical solver for flows at various Mach numbers",
+    "journal": "Astronomy & Astrophysics",
+    "volume": "576",
+    "pages": "A50",
+    "doi": "10.1051/0004-6361/201425059",
+    "url": "https://arxiv.org/html/1409.8289",
+    "type": "article",
+    "role": "original-flux-preconditioning-method",
+    "review_level": "selected-author-version-full-text: Section8 Eq56; Section4 explicit-RK3 discussion; AppendixA variable transforms",
+    "review": {
+      "ja": "著者版の前処理行列・散逸項とRK3への言及を確認。今回は等エントロピー渦の短い時間区間に適用し、原著のGresho実験や暗黙積分を再現したとは扱いません。",
+      "en": "Selected author-version equations and RK3 discussion were checked. This short isentropic-vortex application does not reproduce the paper’s Gresho or implicit-integration experiments."
+    },
+    "accessed_on": "2026-11-23"
+  },
+  {
+    "id": "barsukow2017",
+    "author": "Wasilij Barsukow, Philipp V. F. Edelmann, Christian Klingenberg, Fabian Miczek and Friedrich K. Röpke",
+    "year": 2017,
+    "title": "A Numerical Scheme for the Compressible Low-Mach Number Regime of Ideal Fluid Dynamics",
+    "journal": "Journal of Scientific Computing",
+    "volume": "72",
+    "pages": "623–646",
+    "doi": "10.1007/s10915-017-0372-4",
+    "url": "https://arxiv.org/html/1612.03910",
+    "type": "article",
+    "role": "matrix-form-and-explicit-stability-analysis",
+    "review_level": "selected-full-text: Section3 Eqs21,31,32; Section5 Eq83 and Fourier-mode stability discussion",
+    "review": {
+      "ja": "前処理散逸P⁻¹|PA|、原始変数行列と前進Eulerの厳しい刻み制限を確認。SSPRK33での本固定入力のFourier診断・実段検査は別に実施し、一般の非線形安定性やSSP保証を借用しません。",
+      "en": "Checked the modified dissipation, primitive matrix and restrictive forward-Euler stability result. The present SSPRK33 Fourier/stage checks are separate fixed-input evidence, not a general nonlinear or SSP guarantee."
+    },
+    "accessed_on": "2026-11-23"
+  },
+  {
+    "id": "spiegel2015vortex",
+    "author": "Seth C. Spiegel, H. T. Huynh and James R. DeBonis",
+    "year": 2015,
+    "title": "A Survey of the Isentropic Euler Vortex Problem using High-Order Methods",
+    "journal": "22nd AIAA Computational Fluid Dynamics Conference",
+    "doi": "10.2514/6.2015-2444",
+    "url": "https://ntrs.nasa.gov/citations/20150018403",
+    "type": "conference-paper",
+    "role": "analytic-vortex-definition-and-finite-periodic-box-qualification",
+    "review_level": "selected-primary-report: parameterized vortex definitions and Sections IV.B/IV.C boundary discussion",
+    "review": {
+      "ja": "一般化された渦の定義と周期境界の相互作用・せん断層の説明を確認。独自のβ3・流速(1,.5)・M∞.1/.01を明示し、全平面解と有限周期箱の違いを保持します。NASA/FRソルバーや論文図の転載ではありません。",
+      "en": "Checked the generalized vortex and finite-periodic-boundary qualifications. The selected beta3, mean velocity(1,.5) and background Mach values are explicit adaptations, not NASA/FR execution or figure reuse."
+    },
+    "accessed_on": "2026-11-23"
+  },
+  {
+    "id": "gottlieb1998",
+    "author": "Sigal Gottlieb and Chi-Wang Shu",
+    "year": 1998,
+    "title": "Total Variation Diminishing Runge-Kutta Schemes",
+    "journal": "Mathematics of Computation",
+    "volume": "67",
+    "number": "221",
+    "pages": "73–85",
+    "doi": "10.1090/S0025-5718-98-00913-2",
+    "url": "https://www.cfm.brown.edu/people/sg/SSP1.pdf",
+    "type": "article",
+    "role": "SSPRK33-original-time-discretization-reference",
+    "review_level": "author-bibliography and indexed author-PDF excerpts; direct PDF fetch unavailable",
+    "review": {
+      "ja": "著者の書誌と著者PDFの索引抜粋で書誌・3次TVD法の位置付けを確認。PDFを直接通読したとは記録しません。係数は次の著者レビューのSSPRK(3,3)表示とも照合します。",
+      "en": "Bibliography and indexed author-PDF excerpts were checked. No direct full-PDF reading is claimed; coefficients are also cross-checked against the author review below."
+    },
+    "accessed_on": "2026-11-23"
+  },
+  {
+    "id": "gottlieb2001ssp",
+    "author": "Sigal Gottlieb, Chi-Wang Shu and Eitan Tadmor",
+    "year": 2001,
+    "title": "Strong Stability-Preserving High-Order Time Discretization Methods",
+    "journal": "SIAM Review",
+    "volume": "43",
+    "number": "1",
+    "pages": "89–112",
+    "doi": "10.1137/S003614450036757X",
+    "url": "https://math.umd.edu/~tadmor/pub/linear-stability/Gottlieb-Shu-Tadmor.SIREV-01.pdf",
+    "type": "article",
+    "role": "SSPRK33-coefficients-and-conditional-stability-theorem",
+    "review_level": "selected-full-author-PDF: Section4 Proposition4.1 Eq4.2 printedp100/PDFpage12; Section2.2 Lemma2.1 printedp92/PDFpage4",
+    "review": {
+      "ja": "3段3次の更新係数と、前進Eulerの強安定性を前提にするSSPの条件を確認。今回のMiczek流束についてSSP・TVD・非線形安定性を一般保証せず、指定したFourier行列と実際の段状態を別途確認します。",
+      "en": "Checked the three-stage updates and the forward-Euler hypothesis behind SSP. No general SSP/TVD/nonlinear stability guarantee is borrowed for this Miczek flux; the stated Fourier matrices and actual stage states are checked separately."
+    },
+    "accessed_on": "2026-11-23"
+  }
+]

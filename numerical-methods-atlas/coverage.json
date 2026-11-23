@@ -22,12 +22,12 @@
     "other_sources": 26,
     "local_equations": 23,
     "reading_equations": 23,
-    "local_methods": 116,
-    "reading_methods": 15,
+    "local_methods": 117,
+    "reading_methods": 14,
     "biological_entries": 22,
     "gallery_cases": 9,
     "gallery_equations": 7,
-    "reading_chapters": 98,
+    "reading_chapters": 99,
     "test_problems": 85,
     "saved_test_problems": 85,
     "code_test_problems": 0
@@ -323,15 +323,6 @@
     },
     {
       "kind": "method",
-      "id": "roe",
-      "label": "Roe",
-      "chapter": "benchmarks",
-      "status": "local-example",
-      "group": "Riemann fluxes & corrections",
-      "scope": ""
-    },
-    {
-      "kind": "method",
       "id": "hlle",
       "label": "HLLE / Einfeldt wave speeds",
       "chapter": "benchmarks",
@@ -451,15 +442,6 @@
       "kind": "method",
       "id": "kutta3",
       "label": "Kutta RK3",
-      "chapter": "time-integration",
-      "status": "local-example",
-      "group": "Time integration",
-      "scope": ""
-    },
-    {
-      "kind": "method",
-      "id": "ssprk33",
-      "label": "SSPRK(3,3)",
       "chapter": "time-integration",
       "status": "local-example",
       "group": "Time integration",
@@ -698,15 +680,6 @@
       "status": "local-example",
       "group": "Coupling, constraints & particles",
       "scope": "1D P1 upwind equivalent, not multidimensional Euler RD."
-    },
-    {
-      "kind": "method",
-      "id": "low-mach-preconditioning",
-      "label": "Low-Mach PDE preconditioning",
-      "chapter": "advanced",
-      "status": "reading",
-      "group": "Coupling, constraints & particles",
-      "scope": ""
     },
     {
       "kind": "method",
@@ -1430,7 +1403,7 @@
       "chapter": "validation-mhd",
       "status": "local-example",
       "group": "Spatial discretization",
-      "scope": "Compare shock–density-wave interaction against separately executed Athena++ reference data rather than a finer grid of the same Python code. The additional Noh edition uses volume-centroid conservative MUSCL/minmod with Heun only in spherical runs; planar/cylindrical states stay piecewise constant.",
+      "scope": "Compare shock–density-wave interaction against separately executed Athena++ reference data rather than a finer grid of the same Python code. The additional Noh edition uses volume-centroid conservative MUSCL/minmod with Heun only in spherical runs; planar/cylindrical states stay piecewise constant. The additional low-Mach vortex uses the same unlimited central primitive reconstruction for both Roe variants. It does not verify general limited MUSCL or a TVD guarantee.",
       "origin": "curated-depth-example"
     },
     {
@@ -1455,6 +1428,16 @@
     },
     {
       "kind": "method",
+      "id": "roe",
+      "label": "Roe",
+      "chapter": "validation-low-mach",
+      "status": "local-example",
+      "group": "Riemann fluxes & corrections",
+      "scope": "A fixed smooth 2D Euler isentropic vortex at background Mach numbers .1 and .01 compares ordinary Roe and Miczek-type dissipation-matrix preconditioning D=P⁻¹|PA|, with unlimited central primitive-variable MUSCL reconstruction for both. SSPRK(3,3) retains physical time and the acoustic CFL. Velocity error, dynamically normalized pressure error, periodic conservation and sampled Fourier diagnostics are evaluated separately. Pseudo-time or dual-time steady acceleration, slope limiting and TVD guarantees remain outside this example.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
       "id": "minmod",
       "label": "Minmod",
       "chapter": "validation-noh",
@@ -1475,6 +1458,16 @@
     },
     {
       "kind": "method",
+      "id": "ssprk33",
+      "label": "SSPRK(3,3)",
+      "chapter": "validation-low-mach",
+      "status": "local-example",
+      "group": "Time integration",
+      "scope": "A fixed smooth 2D Euler isentropic vortex at background Mach numbers .1 and .01 compares ordinary Roe and Miczek-type dissipation-matrix preconditioning D=P⁻¹|PA|, with unlimited central primitive-variable MUSCL reconstruction for both. SSPRK(3,3) retains physical time and the acoustic CFL. Velocity error, dynamically normalized pressure error, periodic conservation and sampled Fourier diagnostics are evaluated separately. Pseudo-time or dual-time steady acceleration, slope limiting and TVD guarantees remain outside this example.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
       "id": "rk4",
       "label": "Classical RK4",
       "chapter": "validation-models",
@@ -1491,6 +1484,16 @@
       "status": "local-example",
       "group": "Time integration",
       "scope": "Finite-amplitude Schnakenberg transient: nonlinearity and independent reference: Validate a finite-amplitude reaction-diffusion transient to t=8 with an independent Fourier–Galerkin reference, grid/time convergence and newly generated harmonics. Near-saturated Schnakenberg pattern: near-stationarity and grid/time convergence: Compare the selected1D pattern at t=100 with an independent reference. Separate reference90→100 change/full-PDE residual from the finite-step primary FD residual.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "low-mach-preconditioning",
+      "label": "Low-Mach PDE preconditioning",
+      "chapter": "validation-low-mach",
+      "status": "local-example",
+      "group": "Coupling, constraints & particles",
+      "scope": "A fixed smooth 2D Euler isentropic vortex at background Mach numbers .1 and .01 compares ordinary Roe and Miczek-type dissipation-matrix preconditioning D=P⁻¹|PA|, with unlimited central primitive-variable MUSCL reconstruction for both. SSPRK(3,3) retains physical time and the acoustic CFL. Velocity error, dynamically normalized pressure error, periodic conservation and sampled Fourier diagnostics are evaluated separately. Pseudo-time or dual-time steady acceleration, slope limiting and TVD guarantees remain outside this example.",
       "origin": "curated-depth-example"
     },
     {
@@ -3323,7 +3326,7 @@
   },
   "public_extension_sha256": {
     "catalog/atlas-quantum.json": "415dd98efe103ad5a2d950c22b98980f53539f6243b93e4e193dbca2c67169fe",
-    "catalog/atlas-methods.json": "c1693b8a8eaa994d89dda3e3d08f3a8a7bf4031c643d5a292defb3f88fa5da3f",
+    "catalog/atlas-methods.json": "522672ce3ce6e90f529ad1ae8ab3a1269ab35658eb6ae99460e1f256fca7afa2",
     "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
     "catalog/atlas-method-primary-references.json": "9bc3991b1f9c50bc75d5c6c69a09b5fd030341ba2834f19d79cc76c92b37b0d5"
   },

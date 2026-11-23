@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "declared_at_utc": "2026-11-23T06:01:00.793591+00:00",
+  "declared_before_first_primary_test_or_pde_execution": false,
+  "primary_unit_or_pde_executed_yet": true,
+  "reference_sources_imported_or_executed_yet": true,
+  "case": "low-mach-vortex",
+  "target_edition": "2026-11-23",
+  "planned_tests": 35,
+  "planned_numerical_gates": 143,
+  "planned_pde_runs": 12,
+  "grids": [
+    16,
+    32,
+    64
+  ],
+  "mach_far_values": [
+    0.1,
+    0.01
+  ],
+  "variants": [
+    "roe",
+    "miczek"
+  ],
+  "final_time": 0.1,
+  "acoustic_cfl": 0.2,
+  "time_integrator": "SSPRK33",
+  "public_run_timeout_seconds": 120,
+  "max_steps_per_run": 20000,
+  "files_sha256": {
+    "lm_solver.py": "aebccf681e824e8f6778d5b4078aebb72c6eb95e201c1df89895e7159d7604b8",
+    "linear_stability.py": "68810a9e107a9294a98d1056da4cf84d3d74c5de2f2ae73c39c992a5df7167c2",
+    "run.py": "727cbf0477eaac09bc23179c8fb2d5f71c187a6fe4d33fc166d55274a3baba6e",
+    "test_low_mach.py": "93592357b8b0ff5c1a7d52509062c405e43e315a9f87f734f3bf1ae45d06786a",
+    "inputs.json": "a84bd010dce2128a1b4e4c673f16110ddc4f59a363c64ef6d1b85444989907c5",
+    "acceptance.json": "5ab3845b4bf18433bca96980112357723ebf0c2846d65ee74941f1f82cf82d75",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "source-provenance.json": "e88bf08ac232245d0208ead5520b40b2c05cdaa4fce0b6d8761dabae4219bb90",
+    "references/README.md": "2d99220c199501c0255b827f9ad866dc13159f20e4c3a86b7e9a43f590eb0a71",
+    "references/REFERENCE-LICENSE.txt": "e7ef64e3f49750eea719e7fb737b34677664e582c81be4e2ccd7b7c4b72d393b",
+    "references/analytic_vortex.py": "17d94f53c394a7cee89ff7b016311cf02a6b598551e52b41f83a4c49e826786c",
+    "references/citations.json": "86fa4207b1da686d932b15b8a594225e9360cbbd9af06ba23d96522bcbdfc66e",
+    "references/definition.json": "60aed5e4f63bc748d924705e56e29c1da08b5ccf3b47c1ed1899597857d7edfa",
+    "references/miczek_matrix.py": "7c5c101be83bf5717cbdd771582b80fc358cb128aeebb388e7689421be3eb175",
+    "contract-first-order.json": "5af5d8f16225ff28ea9a03ecd84c9337eed3b429b39fba7c2c6ec96283bacf30"
+  },
+  "scope": "Fixed short-time nonlinear Euler vortices plus sampled uniform-state Fourier tests. No full-period, shock, arbitrary mesh, nonlinear stability, steady-acceleration or removal-of-acoustic-CFL guarantee.",
+  "declared_before_this_revision_test_or_pde_execution": true,
+  "revision": 2,
+  "previous_contract_sha256": "5af5d8f16225ff28ea9a03ecd84c9337eed3b429b39fba7c2c6ec96283bacf30",
+  "original_trial": {
+    "tests_passed": 32,
+    "gates_passed": 142,
+    "gates_failed": 1,
+    "failed_gate": "M.01 finest preconditioned pressure_dynamic_l1=.1653667632>.1",
+    "retained_path": "attempts/01"
+  },
+  "revision_reason": "Original piecewise-constant trial32tests/143gates retained; atMach.01 its mean pressure dynamicL1=.1653667632 exceeded the fixed.1 gate. Rev02 changes spatial reconstruction only, addsfaceguards and exact reconstructed Fourier symbols plus3regressiontests. Inputs, physicaltime, CFL and acceptance remain byte-identical.",
+  "spatial_reconstruction": "Unlimited centered primitive MUSCL, both ordinary Roe and Miczek; exact linear symbols qualified separately. No limiter, floors or automatic fallback."
+}

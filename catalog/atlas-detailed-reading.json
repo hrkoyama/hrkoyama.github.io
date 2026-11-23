@@ -2503,8 +2503,8 @@
         "roe1981"
       ],
       "publication_scope": {
-        "ja": "低MachのPDE前処理は解説のみで、専用実装・数値検証は未公開です。Roe音響波の二次平滑化には既存の教育用コードがありますが、ΓやWeiss–Smith法を実装したものではありません。既存の版別検証記録は変更せず、上記の前処理検証案を実行済みとは表示しません。",
-        "en": "Low-Mach PDE preconditioning is reading-only, without dedicated code or numerical verification. Existing educational acoustic Roe smoothing does not implement Γ or the Weiss–Smith method. Dated verification records are unchanged, and proposed preconditioning checks are not presented as executed results."
+        "ja": "専用の固定入力例として、数値散逸行列をMiczek系の行列で前処理する2次元等エントロピー渦のコードと検証を追加しました。両Roe流束に無制限primitive MUSCLを用い、背景Mach数.1/.01・3格子の12計算を、元の物理時間と音響CFLによるSSPRK(3,3)でT=.1まで進めます。実行・検証先は https://hrkoyama.github.io/numerical-methods-atlas/validation/low-mach-vortex/?lang=ja です。擬似時間の質量行列Γ、Weiss–Smith法、二重時間積分、定常収束の加速は引き続き解説のみです。この数値散逸側の例で、それらの実装や物理音響刻み制約の除去を検証したとは扱いません。初回の区分定数計算の圧力判定不合格と、以前の版別検証記録を保持します。",
+        "en": "Dedicated fixed-input code and verification cover Miczek-type spatial numerical-dissipation preconditioning in a 2D isentropic vortex. Ordinary and preconditioned Roe use unlimited primitive MUSCL, two background Mach values, three grids, 12 runs, T=.1 and SSPRK(3,3) with unchanged physical time and an acoustic CFL. See https://hrkoyama.github.io/numerical-methods-atlas/validation/low-mach-vortex/?lang=en . Pseudo-time mass matrices Γ, the Weiss–Smith method, dual-time algorithms and steady-convergence acceleration remain reading-only. This spatial-dissipation example does not implement those algorithms or remove the physical acoustic time-step restriction. The original first-order pressure-gate failure and all earlier dated verification records are retained."
       },
       "keywords": [
         "プレコンディショニング",

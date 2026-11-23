@@ -4,8 +4,8 @@
   "title": "分野別に解説を読む",
   "description": "理論・導出・計算例を、分野ごとにまとめた読み物です。基礎から関連する手法と検証例へ進めます。",
   "source": "/catalog/atlas-reading-index.json",
-  "source_sha256": "7cf1835ee6d12382e69086870a06b26d166f1c74dd5c0fca396ecc2865f72d10",
-  "chapter_count": 98,
+  "source_sha256": "9efa7a7ca32fc53fc91465b1f6f4ad8ad4b5e71b31c903022d1dd979188db651",
+  "chapter_count": 99,
   "groups": [
     {
       "id": "foundations-time",
@@ -461,6 +461,17 @@
             "en"
           ],
           "search_text": "low-mach-preconditioning 前処理行列・低Mach数・音速点とエントロピー修正 Preconditioning matrices, low Mach numbers, sonic points and entropy fixes 流体・衝撃波・定常解法 Fluids, shocks and steady solvers"
+        },
+        {
+          "id": "validation-low-mach",
+          "title": "低Mach等エントロピー渦：前処理Roe流束の軽量検証",
+          "url": "/numerical-methods-atlas/ja/read/validation-low-mach/",
+          "language": "ja",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-low-mach 低Mach等エントロピー渦：前処理Roe流束の軽量検証 Low-Mach isentropic vortex: preconditioned Roe flux verification 流体・衝撃波・定常解法 Fluids, shocks and steady solvers"
         },
         {
           "id": "steady-runge-kutta",

@@ -207,7 +207,7 @@ test('reference destinations preserve each method’s own explanations, independ
 test('HLLC, WENO-Z, Roe and Bratu derivatives do not borrow one another’s execution examples',()=>{
   const method=id=>navigation.methods[id];
   const runs=id=>method(id).problems.flatMap(problem=>problem.executions.map(run=>run.id));
-  assert.deepEqual(runs('hllc'),['sod']);assert.deepEqual(runs('weno-z'),['shu-osher']);assert.deepEqual(runs('roe'),[]);
+  assert.deepEqual(runs('hllc'),['sod']);assert.deepEqual(runs('weno-z'),['shu-osher']);assert.deepEqual(runs('roe'),['low-mach-vortex']);
   for(const id of ['automatic-differentiation','adjoint','optimization']){
     const bratu=method(id).problems.find(problem=>problem.id==='bratu');
     assert.ok(bratu);assert.equal(bratu.role,'related');assert.deepEqual(bratu.executions,[]);

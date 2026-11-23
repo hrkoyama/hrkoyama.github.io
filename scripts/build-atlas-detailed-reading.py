@@ -220,6 +220,23 @@ for lang in ['ja','en']:
     content=documents[lang];text=re.sub(re.escape(marker)+'.*?'+re.escape(end),'',content['nasa-2d']['html'],flags=re.S);content['nasa-2d']['html']=note+text
     write(ATLAS/f'content.{lang}.json',content)
     if lang=='en':write(ATLAS/'content.json',content)
+# Retain the historical KEEP case and distinguish spatial flux preconditioning
+# from the pseudo-time and dual-time algorithms explained in the older chapter.
+for lang in ['ja','en']:
+    followups = [
+        ('low-mach-preconditioning', 'low-mach-validation-followup',
+         '数値散逸行列の前処理を扱う専用の軽量実行例を追加しました。背景Mach数.1/.01、3格子の移動等エントロピー渦を、元の物理時間と音響CFLで計算します。擬似時間・二重時間積分の定常加速、一般の非線形安定性や正値性は、この例の確認範囲に含みません。' if lang=='ja' else
+         'A dedicated lightweight example implements numerical-dissipation matrix preconditioning. Moving isentropic vortices at background Mach numbers .1 and .01 are compared on three grids with unchanged physical time and an acoustic CFL. Pseudo-time or dual-time steady acceleration and general nonlinear stability or positivity guarantees remain outside its checked scope.'),
+
+    ]
+    for ident, anchor, message in followups:
+        marker='<!-- '+anchor+' -->';end='<!-- /'+anchor+' -->'
+        note=marker+'<aside class="callout" id="'+anchor+'"><p>'+escape(message)+'</p><p>'+link('/numerical-methods-atlas/validation/low-mach-vortex/?lang='+lang,'低Mach渦の追加検証へ' if lang=='ja' else 'Open the additional low-Mach vortex verification')+'</p></aside>'+end
+        path=ATLAS/lang/'read'/ident/'index.html';text=re.sub(re.escape(marker)+'.*?'+re.escape(end),'',path.read_text(),flags=re.S)
+        path.write_text(re.sub(r'<article\b[^>]*>',lambda m:m[0]+note,text,count=1))
+        content=documents[lang];text=re.sub(re.escape(marker)+'.*?'+re.escape(end),'',content[ident]['html'],flags=re.S);content[ident]['html']=note+text
+    write(ATLAS/f'content.{lang}.json',documents[lang])
+    if lang=='en':write(ATLAS/'content.json',documents[lang])
 # The imported atlas sitemap is additive; root sitemap is rebuilt later.
 path=ATLAS/'sitemap.xml';xml=ET.parse(path);root=xml.getroot();existing={x.text for x in root.findall('.//{*}loc')};ns='{http://www.sitemaps.org/schemas/sitemap/0.9}'
 for c in data['chapters']:

@@ -226,10 +226,10 @@
     {
       "id": "isentropic-vortex",
       "kind": "image",
-      "source": "assets/movies/keep-vortex/frame-080.webp",
+      "source": "/code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex-preview.png",
       "caption": {
-        "ja": "保存したKEEP移動渦の最終フレーム。",
-        "en": "Stored final frame of the KEEP moving vortex."
+        "ja": "M∞=.01、64²、T=.1の実際の2次元Euler計算。全[-10,10]²領域から中心[-3,3]²を拡大し、保存速度から差分で求めた渦度と背景流を引いた速度矢印で、MUSCL付き通常Roe／前処理Roeを比較します。",
+        "en": "Actual 2D Euler evolution at M∞=.01, 64² and T=.1. A central [-3,3]² crop of the full [-10,10]² computation compares ordinary and preconditioned Roe with MUSCL. Vorticity is derived by finite differences of saved velocity; arrows show velocity minus the background flow."
       }
     },
     {

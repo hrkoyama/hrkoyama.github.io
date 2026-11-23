@@ -706,14 +706,50 @@
         "ja": "周期移動等エントロピー渦",
         "en": "Periodic moving isentropic vortex"
       },
-      "chapter": "keep",
+      "chapter": "validation-low-mach",
       "evidence": [
         {
           "path": "numerical-methods-atlas/assets/keep-vortex.json",
           "json_pointer": "/studies"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/low-mach/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "low-mach-vortex"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/low-mach/inputs.json",
+          "json_pointer": "/cases/low-mach-vortex"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/low-mach/verification.json",
+          "json_pointer": "/all_cases_rerun"
         }
       ],
-      "availability": "saved-output"
+      "availability": "saved-output",
+      "reading_section": "low-mach-vortex",
+      "code_base": "/code/validated-examples/2026-11-23/low-mach/",
+      "verification": "/code/validated-examples/2026-11-23/low-mach/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "supplemental_examples": [
+        {
+          "id": "low-mach-vortex",
+          "url": "/numerical-methods-atlas/validation/low-mach-vortex/",
+          "name": {
+            "ja": "低Mach等エントロピー渦：前処理Roe流束の軽量検証",
+            "en": "Low-Mach isentropic vortex: preconditioned Roe flux verification"
+          }
+        }
+      ]
     },
     {
       "id": "orszag-tang",
