@@ -35,6 +35,11 @@ def version_navigation_imports(root, text):
 
 
 def version_method_search(root):
+    compact_hash = hashlib.sha256((root/'search/compact-index.mjs').read_bytes()).hexdigest()[:12]
+    for name in ['search/navigation.mjs', 'search/engine.mjs', 'search/search.js']:
+        path = root/name
+        path.write_text(re.sub(r"from './compact-index[.]mjs(?:[?]v=[a-f0-9]+)?'",
+                               "from './compact-index.mjs?v="+compact_hash+"'", path.read_text()))
     navigation = root / 'search/navigation.mjs'
     navigation_css_hash = hashlib.sha256((root / 'search/navigation.css').read_bytes()).hexdigest()[:12]
     navigation.write_text(re.sub(
@@ -48,3 +53,12 @@ def version_method_search(root):
     text=version_navigation_imports(root, text)
     module.write_text(text)
     return hashlib.sha256(module.read_bytes()).hexdigest()[:12]
+
+
+def version_search_engine(root):
+    method_hash = version_method_search(root)
+    path = root/'search/engine.mjs'
+    text=re.sub(r"from './method-search[.]mjs(?:[?]v=[a-f0-9]+)?'",
+                "from './method-search.mjs?v="+method_hash+"'", path.read_text())
+    path.write_text(version_navigation_imports(root,text))
+    return hashlib.sha256(path.read_bytes()).hexdigest()[:12]
