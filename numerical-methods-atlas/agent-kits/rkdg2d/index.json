@@ -111,5 +111,38 @@
     "en": "https://hrkoyama.github.io/numerical-methods-atlas/agent-kits/rkdg2d/TESTSET-en.md"
   },
   "manifest": "https://hrkoyama.github.io/numerical-methods-atlas/agent-kits/rkdg2d/manifest.json",
+  "prompts": {
+    "version": "2026-11-23-v1",
+    "code_release": "2026-11-23-r2",
+    "archive_sha256": "6fa8d75c1f70281eb0a78363eb3323c5a9a1b006f01f49182c4827f4d5710a69",
+    "target": {
+      "original_scientific_cases": 48,
+      "waveform_diagnostics": 4,
+      "negative_control_rejected": true,
+      "historical_reflection_in_target": false
+    },
+    "default_budget": {
+      "wall_minutes": 60,
+      "repair_iterations": 3
+    },
+    "files": {
+      "development-ja.md": {
+        "url": "https://hrkoyama.github.io/numerical-methods-atlas/agent-kits/rkdg2d/prompts/2026-11-23-v1/development-ja.md",
+        "sha256": "a7e5e9246e3d56486484f07cb942bf3fbb2e68c4b8e0dc7bb9d9f97356c37c9c"
+      },
+      "development-en.md": {
+        "url": "https://hrkoyama.github.io/numerical-methods-atlas/agent-kits/rkdg2d/prompts/2026-11-23-v1/development-en.md",
+        "sha256": "97958ea30455c02d6e89fa9f725f406c76f01ddef8f62c037b7a64bef14106a9"
+      },
+      "repair-ja.md": {
+        "url": "https://hrkoyama.github.io/numerical-methods-atlas/agent-kits/rkdg2d/prompts/2026-11-23-v1/repair-ja.md",
+        "sha256": "8324a2d0ebada5c4626744b73f147dfbf3a95acdf2961905395942955651e992"
+      },
+      "repair-en.md": {
+        "url": "https://hrkoyama.github.io/numerical-methods-atlas/agent-kits/rkdg2d/prompts/2026-11-23-v1/repair-en.md",
+        "sha256": "1ee26696f73e150a68391ee0289aa177ddef6b5089d37d56c132b98df8a95d8c"
+      }
+    }
+  },
   "scientific_computation_run_by_builder": false
 }

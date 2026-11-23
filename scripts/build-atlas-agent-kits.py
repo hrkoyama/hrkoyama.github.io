@@ -5,6 +5,7 @@ from html import escape as esc
 import hashlib
 import json
 import re
+from atlas_rkdg_prompts import prompt_section
 
 ROOT = Path(__file__).resolve().parents[1]
 ORIGIN = 'https://hrkoyama.github.io'
@@ -62,11 +63,15 @@ for lang in ['ja', 'en']:
     body = '<section data-site-language="'+lang+'" lang="'+lang+'"><p class="eyebrow">NUMERICAL METHODS ATLAS · AGENT CODE KIT</p>'
     body += '<h1>'+esc(data['title'][lang])+'</h1><p class="kit-lead">'+esc(data['lead'][lang])+'</p>'
     body += '<nav class="kit-actions" aria-label="'+('取得するもの' if ja else 'Get the kit')+'">'
+    body += link('#prompts-'+lang, '開発・修正プロンプトをコピー' if ja else 'Copy development / repair prompts')
     body += link(route+guide, 'AIに渡す案内 / Markdown' if ja else 'Agent instructions / Markdown')
     body += link(route+'manifest.json', '版・実行仕様 / JSON' if ja else 'Release and execution manifest / JSON')
     body += link(data['archive'], 'コードと固定テスト / ZIP' if ja else 'Code and fixed tests / ZIP')+'</nav>'
     body += p(data['scope'][lang])
     body += '<p class="kit-hash">'+esc(data['edition'])+' · '+format(archive.stat().st_size/1_000_000, '.1f')+' MB · SHA256 <code>'+archive_sha+'</code><br>'+link(data['archive']+'.sha256', 'SHA256ファイル' if ja else 'SHA256 file')+'</p>'
+    rendered_prompts, prompt_manifest = prompt_section(ROOT, route, lang)
+    assert prompt_manifest['archive_sha256'] == archive_sha
+    body += rendered_prompts
     body += '<section id="start-'+lang+'"><h2>'+('AIエージェントへの最初の依頼' if ja else 'The first instruction for your AI agent')+'</h2>'
     body += p('次のURLを渡し、「案内を読んでキットを取得し、SHA256を確認して、新しい出力先でクイックテストを実行。結果と未実施の範囲を報告して」と依頼します。' if ja else 'Pass the following URL to your agent: “Read the guide, download the kit, verify SHA256, and run the quick test in a new output directory. Report the result and what was not rerun.”')
     body += pre(ORIGIN+route+guide)
@@ -121,13 +126,20 @@ for lang in ['ja', 'en']:
 
 css='/styles/atlas-agent-kits.css'
 version=hashlib.sha256((ROOT/css.lstrip('/')).read_bytes()).hexdigest()[:12]
+js='/scripts/atlas-agent-prompts.mjs'
+js_version=hashlib.sha256((ROOT/js.lstrip('/')).read_bytes()).hexdigest()[:12]
 document='<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title data-page-title-ja="2D RKDG開発キット | 数値計算法アトラス" data-page-title-en="2D RKDG agent code kit | Numerical Methods Atlas">2D RKDG開発キット | 数値計算法アトラス</title><meta name="description" content="AIエージェントが2D Euler RKDGの完成コード・固定テスト・独立参照を取得し、実行・改修・判定する日英Markdownと機械可読manifest。"><link rel="canonical" href="'+ORIGIN+route+'"><link rel="stylesheet" href="/styles/atlas-resources.css"><link rel="stylesheet" href="'+css+'?v='+version+'"></head><body class="profile-page"><main class="profile-main atlas-resource-main agent-kit" id="main">'+''.join(sections)+'</main></body></html>\n'
+document=document.replace('</body>', '<script type="module" src="'+js+'?v='+js_version+'"></script></body>')
 (dest/'index.html').write_text(document)
-(dest/'index.json').write_text(json.dumps({**data,'archive_sha256':archive_sha,'archive_bytes':archive.stat().st_size,'guides':{l:ORIGIN+route+('TESTSET.md' if l=='ja' else 'TESTSET-en.md') for l in ['ja','en']},'manifest':ORIGIN+route+'manifest.json','scientific_computation_run_by_builder':False},ensure_ascii=False,indent=2)+'\n')
+(dest/'index.json').write_text(json.dumps({**data,'archive_sha256':archive_sha,'archive_bytes':archive.stat().st_size,'guides':{l:ORIGIN+route+('TESTSET.md' if l=='ja' else 'TESTSET-en.md') for l in ['ja','en']},'manifest':ORIGIN+route+'manifest.json','prompts':prompt_manifest,'scientific_computation_run_by_builder':False},ensure_ascii=False,indent=2)+'\n')
 guide=ROOT/'llms.txt'
 text=guide.read_text()
 marker='\n## Agent code kits / AIエージェント向け開発キット\n'
 text=re.sub(r'\n## Agent code kits / AIエージェント向け開発キット\n.*?(?=\n## |\Z)', '', text, flags=re.S)
 text += marker+'\n- [2D Euler RKDG agent guide — 日本語]('+ORIGIN+route+'TESTSET.md): working Q1/Q2/Q3 code, SHA256-verified ZIP, fresh quick test, saved-result reassessment and full fixed tests. Preserve original48 + waveform4 PASS separately from additional reflection5/6 known failure.\n- [2D Euler RKDG agent guide — English]('+ORIGIN+route+'TESTSET-en.md)\n- [2D Euler RKDG manifest]('+ORIGIN+route+'manifest.json): source/version, acquisition and execution contract. Full MPI and foreign-language PDE runs remain unperformed.\n'
+guide.write_text(text)
+text=guide.read_text()
+for name, info in prompt_manifest['files'].items():
+    text += '- [RKDG '+name+']('+info['url']+'): copyable development/repair prompt, frozen original48 + waveform4 target; failures and incomplete runs must remain visible.\n'
 guide.write_text(text)
 print('Built RKDG agent entry; no scientific computation. ZIP SHA256 '+archive_sha)
