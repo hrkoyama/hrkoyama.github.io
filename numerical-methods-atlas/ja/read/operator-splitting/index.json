@@ -60,7 +60,7 @@
   ],
   "locale": "ja",
   "source_url": "/catalog/atlas-detailed-reading.json",
-  "updated_on": "2026-11-22",
+  "updated_on": "2026-11-23",
   "translation_status": "draft",
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/operator-splitting/",
   "methods": [
@@ -125,7 +125,7 @@
       }
     }
   ],
-  "source_sha256": "f5e4b7e39f89322182359aa6adb9ac4af24a52337e07ca40b3933623f769b6eb",
+  "source_sha256": "d771642c889ef2e2aaf3830978486f6c96481cfe095960f8a90c3a90deeb7385",
   "scoped_supplements": [
     {
       "id": "reaction-diffusion-splitting",
@@ -162,7 +162,7 @@
     }
   ],
   "supplemental_source_sha256": {
-    "catalog/atlas-depth-expansion.json": "6080528b544ab1d60956b6e382b12b1505fe80fdbd66bac8791f78014878748f",
+    "catalog/atlas-depth-expansion.json": "b5c4fcb308e4627460f59b96428960b22b508d3a593d480c4c2bee1b60373aeb",
     "code/validated-examples/2026-11-22/splitting/source-manifest.json": "e071ab71032cce9e1a8340cdd80bb58364b7105de764594507024259915f6368",
     "code/validated-examples/2026-11-22/splitting/verification.json": "899af4b800c58e990a6eae62dd5510ff1afed02060ab7fb67e1c5c8ebcd47b53",
     "code/validated-examples/2026-11-22/splitting/cases.json": "f252ee6b994a6827e5579b28127143680170124de50f05057d2890e545dcc84f",

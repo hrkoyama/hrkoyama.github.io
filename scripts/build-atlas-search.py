@@ -275,6 +275,9 @@ def main(root=ROOT, navigation=None):
     expansion=json.loads((ROOT/'catalog/atlas-depth-expansion.json').read_text())
     supplements=load_supplemental_examples(ROOT,list(expansion['case_problem_ids']))
     case_aliases={
+        'level-set-translation':['level set','level-set','levelset','レベルセット','界面','circle','円の移流','平行移動','translation','signed distance'],
+        'level-set-rotation':['level set','level-set','levelset','レベルセット','界面','circle','円の回転','剛体回転','rigid rotation','signed distance'],
+
         'reaction-diffusion-splitting':['Lie Trotter','Lie-Trotter','Lie–Trotter','Strang','作用素分割','反応拡散','Schnakenberg','ストラング','リー・トロッター'],
         'gaussian-mcmc':['Metropolis Hastings','マルコフ連鎖','有効標本数','ESS','自己相関'],
         'langevin-harmonic':['BAOAB','NVT','正準分布','温度制御'],

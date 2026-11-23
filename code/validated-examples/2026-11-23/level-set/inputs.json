@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "maximum_total_seconds": 90,
+  "scope": "Two nondimensional prescribed 2D rigid circle motions. ENO2 plus Heun, analytic exterior data, optional first-order redistancing; no VOF or fluid solver.",
+  "cases": {
+    "level-set-translation": {
+      "motion": "translation", "center": [0.3,0.35], "velocity": [0.2,0.1],
+      "pivot": [0.5,0.5], "omega": 0.0, "radius": 0.15, "time": 1.0,
+      "grids": [32,64,128], "snapshots": [0,0.25,0.5,0.75,1], "cfl": 0.35,
+      "reinit_interval": 0.1, "pseudo_steps": 5, "pseudo_cfl": 0.3,
+      "acceptance": {"order_min": 0.7, "order_max": 3.2, "interface_max": 0.015,
+        "area_relative_max": 0.15, "redistance_interface_max": 0.025,
+        "redistance_area_relative_max": 0.25, "time_sensitivity_max": 0.002}
+    },
+    "level-set-rotation": {
+      "motion": "rotation", "center": [0.68,0.5], "velocity": [0.0,0.0],
+      "pivot": [0.5,0.5], "omega": 6.283185307179586, "radius": 0.15, "time": 1.0,
+      "grids": [32,64,128], "snapshots": [0,0.25,0.5,0.75,1], "cfl": 0.35,
+      "reinit_interval": 0.1, "pseudo_steps": 5, "pseudo_cfl": 0.3,
+      "acceptance": {"order_min": 0.7, "order_max": 3.2, "interface_max": 0.015,
+        "area_relative_max": 0.15, "redistance_interface_max": 0.025,
+        "redistance_area_relative_max": 0.25, "time_sensitivity_max": 0.002}
+    }
+  }
+}

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_on": "2026-11-22",
+  "updated_on": "2026-11-23",
   "scope": {
     "ja": "既存23候補からの詳細解説、基底関数章の翻訳、回転Riemann法の出典整理、自動微分を数値計算の共通基盤として扱う独立章。自動微分には2026年11月22日の前進モード・Bratu比較の配布物と実測検証を追加し、他の手法の既存配布版・測定結果は保持します。 Bratu合成観測の逆問題を独立章として追加し、随伴勾配による1次元の箱制約つき推定だけを新たに教育用実装とします。",
     "en": "Detailed reading for 23 original candidates, translation of the basis chapter, source clarification for rotated Riemann methods, and an independent automatic-differentiation foundation chapter. AD links a November 22, 2026 forward-mode/Bratu supplement with measured verification; existing releases and measurements for other methods are preserved. An independent Bratu synthetic inverse chapter adds measured verification of a scalar box-constrained adjoint-gradient fit only."
@@ -153,7 +153,16 @@
     "splitting-oscillator": "u=\\begin{pmatrix}q\\\\p\\end{pmatrix},\\quad A=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix},\\quad B=\\begin{pmatrix}0&0\\\\-1&0\\end{pmatrix},\\quad u(0)=\\begin{pmatrix}1\\\\0\\end{pmatrix},\\quad u(t)=\\begin{pmatrix}\\cos t\\\\-\\sin t\\end{pmatrix}.",
     "splitting-subflows": "\\varphi_A^h(q,p)=(q+hp,p),\\qquad\\varphi_B^h(q,p)=(q,p-hq),\\qquad [A,B]=\\begin{pmatrix}-1&0\\\\0&1\\end{pmatrix}.",
     "splitting-first-step": "L_hu_0=\\begin{pmatrix}1\\\\-h\\end{pmatrix},\\quad S_hu_0=\\begin{pmatrix}1-h^2/2\\\\-h\\end{pmatrix},\\quad u(h)=\\begin{pmatrix}1-h^2/2+O(h^4)\\\\-h+h^3/6+O(h^5)\\end{pmatrix}.",
-    "splitting-stability": "\\det L_h=\\det S_h=1,\\quad\\operatorname{tr}L_h=\\operatorname{tr}S_h=2-h^2,\\quad 0<|h|<2\\quad\\text{(oscillator)}."
+    "splitting-stability": "\\det L_h=\\det S_h=1,\\quad\\operatorname{tr}L_h=\\operatorname{tr}S_h=2-h^2,\\quad 0<|h|<2\\quad\\text{(oscillator)}.",
+    "levelset-representation": "\\Gamma(t)=\\{\\mathbf{x}:\\phi(\\mathbf{x},t)=0\\},\\qquad\\phi<0\\;\\text{inside},\\quad\\phi>0\\;\\text{outside}",
+    "levelset-transport": "\\frac{D\\phi}{Dt}=0\\quad\\Longrightarrow\\quad\\phi_t+\\mathbf{u}\\cdot\\nabla\\phi=0",
+    "levelset-normal": "\\phi_t+V_n\\|\\nabla\\phi\\|=0,\\qquad\\mathbf{n}=\\frac{\\nabla\\phi}{\\|\\nabla\\phi\\|},\\quad\\kappa=\\nabla\\cdot\\mathbf{n}",
+    "levelset-distance": "\\phi(\\mathbf{x})=\\operatorname{sgn}(\\phi)\\operatorname{dist}(\\mathbf{x},\\Gamma),\\qquad\\|\\nabla\\phi\\|=1\\quad\\text{where differentiable}",
+    "levelset-redistance": "\\psi_\\tau+S_\\epsilon(\\phi_0)(\\|\\nabla\\psi\\|-1)=0,\\quad\\psi(\\mathbf{x},0)=\\phi_0(\\mathbf{x}),\\quad S_\\epsilon(z)=\\frac{z}{\\sqrt{z^2+\\epsilon^2}}",
+    "levelset-vof": "F_K=\\frac1{|K|}\\int_K H(-\\phi)\\,d\\mathbf{x},\\quad0\\le F_K\\le1,\\qquad\\nabla\\cdot\\mathbf{u}=0:\\quad F_t+\\nabla\\cdot(F\\mathbf{u})=0",
+    "levelset-conservation": "F_K^{n+1}=F_K^n-\\frac{\\Delta t}{|K|}\\sum_{f\\subset\\partial K}|f|\\widehat{\\mathcal F}_{K,f},\\quad\\sum_K|K|F_K^{n+1}=\\sum_K|K|F_K^n-\\text{boundary flux}",
+    "levelset-reference": "\\phi_{\\rm ref}(\\mathbf{x},t)=\\|\\mathbf{x}-\\mathbf{c}(t)\\|-r,\\quad \\mathbf{c}_{\\rm tr}(t)=\\mathbf{c}_0+t\\mathbf{v},\\quad\\mathbf{c}_{\\rm rot}(t)=\\mathbf{x}_c+R(\\omega t)(\\mathbf{c}_0-\\mathbf{x}_c)",
+    "levelset-error": "E_\\Gamma=\\max_{t\\in\\{.25,.5,.75,1\\}}\\max_{\\mathbf{z}\\in Z_h(t)}\\big|\\|\\mathbf{z}-\\mathbf{c}(t)\\|-r\\big|,\\quad p_{\\rm obs}=\\log_2\\!\\left(E_\\Gamma(h)/E_\\Gamma(h/2)\\right)"
   },
   "chapters": [
     {
@@ -2804,6 +2813,52 @@
       "scoped_supplements": [
         "reaction-diffusion-splitting"
       ]
+    },
+    {
+      "id": "level-set",
+      "methods": [
+        "level-set",
+        "vof"
+      ],
+      "related_methods": [
+        "heun",
+        "weno-js"
+      ],
+      "title": {
+        "ja": "レベルセット法：動く界面とVOFとの比較",
+        "en": "Level sets: moving interfaces and comparison with VOF"
+      },
+      "keywords": [
+        "level set",
+        "level-set",
+        "levelset",
+        "レベルセット",
+        "VOF",
+        "volume of fluid",
+        "界面捕獲",
+        "signed distance",
+        "再初期化",
+        "円の移流",
+        "rigid rotation"
+      ],
+      "references": [
+        "osher-sethian1988",
+        "hirt-nichols1981",
+        "sussman-fatemi1999",
+        "sussman-puckett2000"
+      ],
+      "html": {
+        "ja": "<h1>レベルセット法：動く界面とVOFとの比較</h1><p>レベルセット法は、曲線や曲面を関数のゼロ等値面として格子上に表し、その関数を発展させる方法です。移流方程式、Hamilton–Jacobi方程式、界面幾何を結び、合体や分裂を表現しやすい構造を持ちます。本章では基本式から、再現できる小さな2Dの円の運動へ進みます。</p><h2 id=\"representation\">界面をφ=0として表す</h2><math-placeholder id=\"levelset-representation\"></math-placeholder><p>本章は内部を負、外部を正とします。関数値そのものは流体の密度や体積率ではありません。同じゼロ集合を持つ単調な変換でも界面は同じですが、勾配と数値誤差は変わります。原著・実装によって内部を正とする規約もあるため、法線と速度の符号をそろえてください。</p><h2 id=\"advection\">流れに運ばれる界面</h2><math-placeholder id=\"levelset-transport\"></math-placeholder><p>界面上の粒子が速度uで動き、その軌道上でφが変わらない条件を微分すると移流式が得られます。既知速度による界面の移流と、速度・圧力まで解く二相流の連成は区別します。風上差分・ENO/WENO・時間積分はこの式を離散化する選択肢であり、界面表現そのものとは別です。</p><h2 id=\"geometry\">法線・曲率と法線方向への運動</h2><math-placeholder id=\"levelset-normal\"></math-placeholder><math-placeholder id=\"levelset-distance\"></math-placeholder><p>内部が負ならnは外向きです。2Dの円ではこの規約のκは1/r。法線方向へVnで進む場合は一般のHamilton–Jacobi型になります。符号付き距離関数は微分可能な場所で|∇φ|=1ですが、中心や最近点が一意でない場所では滑らかさを仮定できません。今回の誤差評価は円の界面近傍で行い、曲率で駆動する運動は解説の範囲に留めます。</p><h2 id=\"reinitialization\">再初期化は何を直し、何を動かし得るか</h2><math-placeholder id=\"levelset-redistance\"></math-placeholder><p>一般の速度場では移流したφが距離関数でなくなり、擬似時間τの補助方程式で距離性を回復することがあります。物理時間tはこの操作では進めません。理想的なゼロ集合の保持と、格子上で補間した界面の保持は同じ保証ではありません。実装例は平滑符号を各呼出しで固定する1次Godunov反復です。Sussman–Fatemiの制約付き高次法とは異なり、位置・面積の改善を仮定しません。</p><h2 id=\"vof-comparison\">VOFとの比較：幾何と体積収支</h2><math-placeholder id=\"levelset-vof\"></math-placeholder><math-placeholder id=\"levelset-conservation\"></math-placeholder><div role=\"region\" tabindex=\"0\" aria-label=\"定式化・保存・今回の実装範囲の比較\" style=\"max-width:100%;overflow-x:auto\"><table style=\"min-width:34rem;width:100%;font-size:1rem;line-height:1.6\"><caption>定式化・保存・今回の実装範囲の比較</caption><thead><tr><th scope=\"col\">比較点</th><th scope=\"col\">レベルセット</th><th scope=\"col\">VOF</th></tr></thead><tbody><tr><th scope=\"row\">保持する量</th><td>符号付き関数φ、界面はφ=0</td><td>セル内の体積率F</td></tr><tr><th scope=\"row\">界面幾何</th><td>φの勾配から法線・曲率を計算</td><td>体積率から界面の再構築・幾何評価が必要</td></tr><tr><th scope=\"row\">保存</th><td>通常の移流・再初期化だけでは囲まれた体積を保証しない</td><td>共有面流束の保存的更新で体積収支を構成できる</td></tr><tr><th scope=\"row\">数値上の課題</th><td>距離関数の劣化、界面位置と体積のずれ</td><td>有界性、界面再構築、曲率精度を別に確認</td></tr><tr><th scope=\"row\">組合せ</th><td>CLSVOFなどで距離型幾何と保存的体積率を結ぶ</td><td>結合の具体式と誤差・整合性を別途確認</td></tr><tr><th scope=\"row\">本サイトの今回の範囲</th><td>円の移流・剛体回転の実行例と22検査</td><td>比較解説のみ。VOFの数値実験は未実施</td></tr></tbody></table></div><p>非圧縮の指定速度では、体積率は保存形で運べます。共有面の流束が対向セルで打ち消し合えば、全体の体積変化は境界流束と整合します。有界性0≤F≤1はさらに流束・再構築・CFL条件を必要とし、保存性だけでは決まりません。φを保存形で更新しても、ゼロ界面が囲む面積の保存は別の問題です。今回の区分線形φから測る面積を、保存的に移流したVOFの体積率と呼びません。</p><h2 id=\"examples\">軽量2D例：平行移動と偏心円の剛体回転</h2><math-placeholder id=\"levelset-reference\"></math-placeholder><p>半径.15、単位正方形、T=1。平行移動は中心(.3,.35)、速度(.2,.1)。回転は中心(.68,.5)の円を(.5,.5)周りに角速度2πで1周させます。32²/64²/128²のENO2片側差分とHeun RK2を使い、Courant数は.35以下。外側ゴースト値は各段階の解析解を指定し、内部は毎回数値更新します。これは指定境界を持つ問題で、周期条件ではありません。</p><p>両方で移流単独と、時刻.1ごとに5擬似ステップの再初期化を加えたモードを比較します。0/.25/.5/.75/1で観測し、回転の終了時だけでなく円が途中で実際に移動したことも照合します。</p><figure><a href=\"/code/validated-examples/2026-11-23/level-set/results/level-set-overview.png\"><img src=\"/code/validated-examples/2026-11-23/level-set/results/level-set-overview.png\" alt=\"実際に数値移流した円のゼロ等値線と解析界面\" style=\"width:100%;height:auto\" loading=\"lazy\"></a><figcaption>保存した2D場からの最細格子の比較。黒は解析的な最終界面、橙は移流単独、緑破線は再初期化あり、灰点線は初期界面です。</figcaption></figure><h2 id=\"errors\">何を誤差と呼ぶか</h2><math-placeholder id=\"levelset-error\"></math-placeholder><p>Z_hは格子辺の線形補間によるゼロ交差点で、EΓはその点での最大半径誤差です。連続な2界面間のHausdorff距離とは区別します。面積は三角形上の線形φを切り取りπr²と比較し、初期からの幾何学的な偏りも表示します。格子と物理刻みを同時に細分化した移流単独の観測次数は平行移動約1.90、回転約2.02。N64での刻み半減の感度を別に記録し、純粋な空間次数の証明とは呼びません。</p><p>最細格子の最大相対面積誤差は平行移動で約0.22%→0.93%、回転で約1.06%→2.02%（移流単独→再初期化あり）。この設定では単純な再初期化で誤差が増える事実を残します。距離勾配の改善、ゼロ界面の精度、体積収支は別々の評価項目です。</p><h2 id=\"scope\">適用範囲と次に読む資料</h2><p>この配布版は与えた速度による円の移流です。合体分裂・曲率流・表面張力・二相流の検証、VOFとの性能比較は行っていません。幾何学的な参照式、全2D最終配列、途中の界面標本、CSV、入力ハッシュ、全判定、各再初期化の面積変化を公開します。既存のZalesak型切り欠き円盤は保存的スカラー輸送の別資料として読むことができ、そのコードをVOF実装と読み替えません。</p><p><a href=\"/numerical-methods-atlas/ja/read/validation-zalesak/\">Zalesak型の保存的な2D回転輸送</a> · <a href=\"/numerical-methods-atlas/ja/read/benchmarks/\">ENO/WENO</a></p>",
+        "en": "<h1>Level sets: moving interfaces and comparison with VOF</h1><p>A level set embeds a curve or surface as the zero contour of a grid function and evolves that function. It connects transport, Hamilton–Jacobi equations and interface geometry, with a representation that naturally accommodates merging and splitting. Start with the equations, then inspect small reproducible two-dimensional circle motions.</p><h2 id=\"representation\">Represent the interface by phi=0</h2><math-placeholder id=\"levelset-representation\"></math-placeholder><p>Here the interior is negative and the exterior positive. Function values are neither fluid density nor volume fraction. A monotone transformation retaining the zero set leaves the interface unchanged while changing gradients and numerical behavior. Some sources reverse the sign; normals and normal speeds must use the same convention.</p><h2 id=\"advection\">An interface transported by a velocity</h2><math-placeholder id=\"levelset-transport\"></math-placeholder><p>Differentiate the condition that phi is constant along a trajectory moving with velocity u to obtain the transport equation. Prescribed-velocity interface transport differs from solving coupled two-phase velocities and pressure. Upwind differences, ENO/WENO and time integration discretize this equation; they are choices in addition to the interface representation.</p><h2 id=\"geometry\">Normals, curvature and normal motion</h2><math-placeholder id=\"levelset-normal\"></math-placeholder><math-placeholder id=\"levelset-distance\"></math-placeholder><p>With a negative interior the normal points outward; the two-dimensional circle has kappa=1/r in this convention. A prescribed normal speed gives a Hamilton–Jacobi equation. A signed distance has unit gradient where differentiable; circle centers and points with nonunique nearest interfaces need not be smooth. Diagnostics therefore focus on a band near the interface; curvature-driven motion is explained but not executed here.</p><h2 id=\"reinitialization\">What redistancing repairs and can change</h2><math-placeholder id=\"levelset-redistance\"></math-placeholder><p>General advection need not retain a distance function. An auxiliary pseudo-time tau equation can restore distance quality without advancing physical time t. Preserving an ideal zero set does not guarantee an interpolated discrete interface stays fixed. The example uses first-order Godunov iterations with sign frozen per call; it is not the constrained higher-order Sussman–Fatemi scheme, and no position or area improvement is assumed.</p><h2 id=\"vof-comparison\">VOF: geometry and a volume balance</h2><math-placeholder id=\"levelset-vof\"></math-placeholder><math-placeholder id=\"levelset-conservation\"></math-placeholder><div role=\"region\" tabindex=\"0\" aria-label=\"Comparison of formulations, conservation and implementation scope\" style=\"max-width:100%;overflow-x:auto\"><table style=\"min-width:34rem;width:100%;font-size:1rem;line-height:1.6\"><caption>Comparison of formulations, conservation and implementation scope</caption><thead><tr><th scope=\"col\">Aspect</th><th scope=\"col\">Level set</th><th scope=\"col\">VOF</th></tr></thead><tbody><tr><th scope=\"row\">Stored quantity</th><td>Signed function phi; interface phi=0</td><td>Cell fluid-volume fraction F</td></tr><tr><th scope=\"row\">Geometry</th><td>Normals/curvature from derivatives of phi</td><td>Interface reconstruction and geometry from fractions</td></tr><tr><th scope=\"row\">Conservation</th><td>Ordinary transport/redistancing does not guarantee enclosed volume</td><td>Conservative shared face fluxes provide a volume balance</td></tr><tr><th scope=\"row\">Numerical issues</th><td>Distance distortion; interface/volume drift</td><td>Check bounds, reconstruction and curvature separately</td></tr><tr><th scope=\"row\">Combination</th><td>CLSVOF couples distance-like geometry and conservative fractions</td><td>The particular coupling needs its own consistency/error checks</td></tr><tr><th scope=\"row\">This addition</th><td>Circle advection/rotation examples and22 tests</td><td>Conceptual comparison; no VOF numerical experiment</td></tr></tbody></table></div><p>For a prescribed incompressible velocity, volume fractions admit conservative transport. Cancellation of shared interior face fluxes gives a global balance with boundary fluxes. Bounds0<=F<=1 additionally depend on fluxes, reconstruction and CFL conditions; conservation alone is insufficient. Conserving phi itself does not conserve its enclosed area. The area diagnosed from piecewise-linear phi here is not a conservatively advected VOF fraction.</p><h2 id=\"examples\">Small 2D examples: translation and off-center rotation</h2><math-placeholder id=\"levelset-reference\"></math-placeholder><p>Radius.15 on the unit square, T=1. Translation starts at(.3,.35) with velocity(.2,.1). Rotation carries a circle centered at(.68,.5) once about(.5,.5), at angular speed2pi. ENO2 one-sided differences and Heun RK2 use32²/64²/128² grids and Courant number<=.35. Analytic ghost values are prescribed at every stage while all interior values are numerically updated. These are prescribed boundaries, not periodic conditions.</p><p>Both cases compare advection alone against five redistancing pseudo-steps every.1 physical time. Observe0/.25/.5/.75/1; the rotation checks intermediate displacement as well as full-turn return.</p><figure><a href=\"/code/validated-examples/2026-11-23/level-set/results/level-set-overview.png\"><img src=\"/code/validated-examples/2026-11-23/level-set/results/level-set-overview.png\" alt=\"Numerically transported zero contours and analytic circle interfaces\" style=\"width:100%;height:auto\" loading=\"lazy\"></a><figcaption>Finest-grid contours from saved2D fields: black analytic final interface, orange advection only, dashed teal redistancing, dotted gray initial interface.</figcaption></figure><h2 id=\"errors\">What the error measurements mean</h2><math-placeholder id=\"levelset-error\"></math-placeholder><p>Z_h contains linearly interpolated grid-edge zero crossings; E_Gamma is the maximum radial error at these samples, not a continuous-interface Hausdorff distance. Geometric area clips linear phi on triangles and compares against pi*r², retaining initial geometric bias. Coupled grid/time refinement of advection alone observes about1.90 for translation and2.02 for rotation. SeparateN64 CFL-halving sensitivity is recorded; this is not a proof of pure spatial order.</p><p>Finest-grid worst relative area error changes about0.22% to0.93% for translation and1.06% to2.02% for rotation, from advection alone to redistancing. The simple redistancing increases error in these fixed runs. Distance-gradient quality, zero-interface accuracy and enclosed-volume balance are distinct diagnostics.</p><h2 id=\"scope\">Scope and related reading</h2><p>This release transports circles in prescribed velocities. It does not validate topology changes, curvature flow, surface tension or two-phase flow, nor benchmark VOF performance. Downloads retain analytic reference formulas, full2D final fields, intermediate interface samples, CSV, input hashes, all decisions and each redistancing area change. The existing Zalesak slotted-disk material is a separate conservative scalar-transport example; its code is not relabeled as a VOF implementation.</p><p><a href=\"/numerical-methods-atlas/en/read/validation-zalesak/\">Zalesak-type conservative2D rotational transport</a> · <a href=\"/numerical-methods-atlas/en/read/benchmarks/\">ENO/WENO</a></p>"
+      },
+      "scoped_supplements": [
+        "level-set-translation",
+        "level-set-rotation"
+      ],
+      "publication_scope": {
+        "ja": "レベルセット法は2D円の移流・剛体回転に限定した教育用実装、VOFは比較解説のみです。専用配布版の22検査と全固定入力を独立展開から再実行。共通22例と旧配布版・既存問題の成功履歴は保持します。",
+        "en": "The level-set implementation is limited to educational2D circle translation/rotation; VOF has comparison reading only. The dedicated ZIP is independently extracted and its22 tests and every fixed input rerun. The common22 examples, historical releases and existing success records are preserved."
+      }
     }
   ],
   "references": [
@@ -4046,6 +4101,78 @@
         "locator": "Abstract; journal reference and related DOI on the arXiv record",
         "scope": "The abstract distinguishes finite microcanonical velocity/energy distributions from thermodynamic-limit Maxwell/Gamma laws. The constrained-sphere moment formulas used in this companion are derived and checked here; neither a full-paper audit nor reproduction of its complete hard-sphere simulations is claimed.",
         "scope_ja": "抄録で有限microcanonical系の速度・エネルギー分布と、熱力学極限のMaxwell/Gamma則の区別を確認しました。追加版の制約球面モーメントはここで導出・照合したものであり、論文全体の監査やhard-sphereシミュレーション全体の再現ではありません。"
+      }
+    },
+    {
+      "id": "osher-sethian1988",
+      "author": "S. Osher and J. A. Sethian",
+      "year": 1988,
+      "title": "Fronts propagating with curvature-dependent speed: Algorithms based on Hamilton-Jacobi formulations",
+      "type": "article",
+      "journal": "Journal of Computational Physics",
+      "volume": "79",
+      "pages": "12–49",
+      "doi": "10.1016/0021-9991(88)90002-2",
+      "source": "https://math.berkeley.edu/~sethian/Papers/sethian.osher.88.pdf",
+      "source_review": {
+        "level": "full-text",
+        "url": "https://math.berkeley.edu/~sethian/Papers/sethian.osher.88.pdf",
+        "scope": "Selected author-hosted original passages: abstract, implicit front representation and Hamilton–Jacobi transport/normal-motion formulation. No full-paper audit or reproduction of its full experiment suite.",
+        "scope_ja": "著者公開の原著から抄録・陰的な界面表現・Hamilton–Jacobi型の移流と法線運動の該当箇所を参照。論文全体の監査や原著の全計算の再現ではありません。"
+      }
+    },
+    {
+      "id": "hirt-nichols1981",
+      "author": "C. W. Hirt and B. D. Nichols",
+      "year": 1981,
+      "title": "Volume of fluid (VOF) method for the dynamics of free boundaries",
+      "type": "article",
+      "journal": "Journal of Computational Physics",
+      "volume": "39",
+      "pages": "201–225",
+      "doi": "10.1016/0021-9991(81)90145-5",
+      "source": "https://www.sciencedirect.com/science/article/pii/0021999181901455",
+      "source_review": {
+        "level": "abstract-and-metadata",
+        "url": "https://www.sciencedirect.com/science/article/pii/0021999181901455",
+        "scope": "Publisher bibliography and abstract for the original volume-fraction formulation. No full-text algorithm audit or implementation of its donor–acceptor scheme.",
+        "scope_ja": "出版社の書誌・抄録を確認し、体積率による表現の原著として引用。原著全体やdonor–acceptor法の実装を監査・再現したとは主張しません。"
+      }
+    },
+    {
+      "id": "sussman-fatemi1999",
+      "author": "M. Sussman and E. Fatemi",
+      "year": 1999,
+      "title": "An Efficient, Interface-Preserving Level Set Redistancing Algorithm and Its Application to Interfacial Incompressible Fluid Flow",
+      "type": "article",
+      "journal": "SIAM Journal on Scientific Computing",
+      "volume": "20",
+      "pages": "1165–1191",
+      "doi": "10.1137/S1064827596298245",
+      "source": "https://epubs.siam.org/doi/10.1137/S1064827596298245",
+      "source_review": {
+        "level": "abstract-and-metadata",
+        "url": "https://epubs.siam.org/doi/10.1137/S1064827596298245",
+        "scope": "Official abstract and bibliography: redistancing quality includes retaining the zero interface; its constrained higher-order algorithm is not the simple Godunov auxiliary iteration implemented here.",
+        "scope_ja": "公式の抄録・書誌を確認。距離関数の再構成とゼロ界面の保持を区別する資料であり、原著の制約付き高次法を今回の単純なGodunov反復と同一視しません。"
+      }
+    },
+    {
+      "id": "sussman-puckett2000",
+      "author": "M. Sussman and E. G. Puckett",
+      "year": 2000,
+      "title": "A Coupled Level Set and Volume-of-Fluid Method for Computing 3D and Axisymmetric Incompressible Two-Phase Flows",
+      "type": "article",
+      "journal": "Journal of Computational Physics",
+      "volume": "162",
+      "pages": "301–337",
+      "doi": "10.1006/jcph.2000.6537",
+      "source": "https://www.math.ucdavis.edu/~egp/PUBLICATIONS/JOURNAL_ARTICLES/APPEARED/2000/MSS-EGP_2000.pdf",
+      "source_review": {
+        "level": "full-text",
+        "url": "https://www.math.ucdavis.edu/~egp/PUBLICATIONS/JOURNAL_ARTICLES/APPEARED/2000/MSS-EGP_2000.pdf",
+        "scope": "Author-hosted pp.302–305, equations(1)–(6),(9),(12),(15): signed-distance geometry, enclosed-mass issue and volume-fraction conservation. Sign is reversed here to make phi negative inside. No CLSVOF or two-phase fluid experiment executed.",
+        "scope_ja": "著者公開PDFの302–305頁、式(1)–(6),(9),(12),(15)の界面幾何・囲まれた質量の誤差・体積率の保存を参照。本教材は内部を負とするため符号規約を反転。CLSVOFや二相流の原著実験は実行していません。"
       }
     }
   ]

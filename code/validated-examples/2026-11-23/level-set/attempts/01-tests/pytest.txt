@@ -1,0 +1,38 @@
+...F..................                                                   [100%]
+=================================== FAILURES ===================================
+______ test_prescribed_rotation_is_divergence_free_and_tangent_to_orbits _______
+
+configs = {'level-set-rotation': {'acceptance': {'area_relative_max': 0.15, 'interface_max': 0.015, 'order_max': 3.2, 'order_min...ax': 0.015, 'order_max': 3.2, 'order_min': 0.7, ...}, 'center': [0.3, 0.35], 'cfl': 0.35, 'grids': [32, 64, 128], ...}}
+
+    def test_prescribed_rotation_is_divergence_free_and_tangent_to_orbits(configs):
+        config=configs['level-set-rotation'];x,y=grid(32);u,v=velocity(config,x,y)
+>       np.testing.assert_allclose(u*(x-.5)+v*(y-.5),0,atol=2e-16)
+
+test_level_set.py:40: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+args = (<function assert_allclose.<locals>.compare at 0x10ab8cc20>, array([[0., 0., 0., ..., 0., 0., 0.],
+       [0., 0., 0.,... [0., 0., 0., ..., 0., 0., 0.],
+       [0., 0., 0., ..., 0., 0., 0.],
+       [0., 0., 0., ..., 0., 0., 0.]]), array(0))
+kwds = {'equal_nan': True, 'err_msg': '', 'header': 'Not equal to tolerance rtol=1e-07, atol=2e-16', 'strict': False, ...}
+
+    @wraps(func)
+    def inner(*args, **kwds):
+        with self._recreate_cm():
+>           return func(*args, **kwds)
+E           AssertionError: 
+E           Not equal to tolerance rtol=1e-07, atol=2e-16
+E           
+E           Mismatched elements: 16 / 1024 (1.56%)
+E           Max absolute difference among violations: 2.22044605e-16
+E           Max relative difference among violations: inf
+E            ACTUAL: array([[0., 0., 0., ..., 0., 0., 0.],
+E                  [0., 0., 0., ..., 0., 0., 0.],
+E                  [0., 0., 0., ..., 0., 0., 0.],...
+E            DESIRED: array(0)
+
+/opt/homebrew/Cellar/python@3.12/3.12.16/Frameworks/Python.framework/Versions/3.12/lib/python3.12/contextlib.py:81: AssertionError
+=========================== short test summary info ============================
+FAILED test_level_set.py::test_prescribed_rotation_is_divergence_free_and_tangent_to_orbits
+1 failed, 21 passed in 7.12s

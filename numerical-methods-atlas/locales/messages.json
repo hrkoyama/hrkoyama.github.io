@@ -7591,5 +7591,21 @@
   "coverage.forced-incompressible.scope": {
     "ja": "滑りなしの固定多項式流れとcurl外力、独立した圧力Dirichlet製造演算子。キャビティ圧力やMAC射影は検証しません。",
     "en": "Fixed no-slip polynomial flow with curl forcing and a separate manufactured Dirichlet pressure operator; no cavity-pressure or MAC-projection validation."
+  },
+  "ref-level-set-translation": {
+    "ja": "レベルセット円の2D平行移動：界面・面積・再初期化：解析的符号付き距離参照",
+    "en": "2D level-set circle translation: interface, area and redistancing: analytic signed-distance reference"
+  },
+  "ref-level-set-rotation": {
+    "ja": "偏心したレベルセット円の2D剛体回転：解析的符号付き距離参照",
+    "en": "2D rigid rotation of an off-center level-set circle: analytic signed-distance reference"
+  },
+  "ref-level-set-translation-assumptions": {
+    "ja": "全て無次元、領域[0,1]²、内部φ<0。与えた非圧縮の剛体運動だけを解き、円は境界から離れます。外側2層のゴースト値は各RK段階で解析解を指定します。周期境界ではなく、内部のφは数値更新します。出力時刻0/.25/.5/.75/1、物理Courant数max(|u|+|v|)Δt/Δx≤.35。",
+    "en": "All quantities are nondimensional on[0,1]², with phi<0 inside. The prescribed divergence-free rigid motion keeps the circle away from the boundary. Two exterior ghost layers receive analytic data at each RK stage; this is not a periodic boundary. Every interior value is numerically advanced. Observe0/.25/.5/.75/1; max(|u|+|v|)dt/dx<=.35."
+  },
+  "ref-level-set-rotation-assumptions": {
+    "ja": "全て無次元、領域[0,1]²、内部φ<0。与えた非圧縮の剛体運動だけを解き、円は境界から離れます。外側2層のゴースト値は各RK段階で解析解を指定します。周期境界ではなく、内部のφは数値更新します。出力時刻0/.25/.5/.75/1、物理Courant数max(|u|+|v|)Δt/Δx≤.35。",
+    "en": "All quantities are nondimensional on[0,1]², with phi<0 inside. The prescribed divergence-free rigid motion keeps the circle away from the boundary. Two exterior ghost layers receive analytic data at each RK stage; this is not a periodic boundary. Every interior value is numerically advanced. Observe0/.25/.5/.75/1; max(|u|+|v|)dt/dx<=.35."
   }
 }

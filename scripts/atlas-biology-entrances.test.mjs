@@ -22,8 +22,8 @@ test('the two new nonlinear cases deepen the existing biological scope without p
  assert.equal(survey.length,22);
  assert.equal(survey.filter(x=>x.status==='scoped-educational-example').length,5);
  const equations=json('catalog/atlas-equations.json').equations;
- assert.equal(equations.length,49);
- assert.equal(equations.filter(x=>!['rotational-advection','shallow-water-bed','forced-incompressible'].includes(x.id)&&x.status==='local-example').length,23);
+ assert.equal(equations.length,50);
+ assert.equal(equations.filter(x=>!['rotational-advection','shallow-water-bed','forced-incompressible','level-set-advection'].includes(x.id)&&x.status==='local-example').length,23);
  for(const id of ['turing','schnakenberg']){
   const model=survey.find(x=>x.id===id),equation=equations.find(x=>x.id==='bio-'+id);
   assert.deepEqual(model.supplemental_examples,shared);
@@ -37,7 +37,7 @@ test('the two new nonlinear cases deepen the existing biological scope without p
  assert.match(biology.reference.en,/same finite-difference semidiscretization/);
  assert.match(biology.refinement.en,/implicit-midpoint/);
  assert.match(biology.next.en,/reflection-symmetric/);
- assert.equal(json('catalog/atlas-test-problems.json').problems.length,91);
+ assert.equal(json('catalog/atlas-test-problems.json').problems.length,92);
 });
 
 test('nonlinear reaction-diffusion remains component evidence and cannot certify the transport bridge',()=>{

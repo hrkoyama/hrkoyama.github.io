@@ -1,0 +1,93 @@
+{
+  "id": "vof",
+  "name": {
+    "ja": "VOF法／体積率による界面捕獲",
+    "en": "Volume-of-fluid / VOF"
+  },
+  "group": {
+    "id": "coupling",
+    "ja": "連成・拘束・粒子法",
+    "en": "Coupling, constraints & particles"
+  },
+  "summary": {
+    "ja": "セル内の流体体積率で界面を表す方法。レベルセット法との保存性・幾何表現・曲率評価の違いを比較解説する。VOF専用コードと数値比較は未収録。",
+    "en": "Represent an interface through cell fluid-volume fractions. Compare conservation, geometric representation and curvature evaluation with level sets. No dedicated VOF implementation or numerical comparison is included."
+  },
+  "status": "reading-only",
+  "origin": "curated-interface-reading",
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/level-set/",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/level-set/"
+  },
+  "code_modules": [],
+  "test_files": [],
+  "aliases": [
+    "VOF",
+    "volume of fluid",
+    "volume-of-fluid method",
+    "体積流体法",
+    "体積率法",
+    "VOF法"
+  ],
+  "references": [
+    {
+      "url": "https://doi.org/10.1016/0021-9991(88)90002-2",
+      "label": "S. Osher and J. A. Sethian (1988). Fronts propagating with curvature-dependent speed: Algorithms based on Hamilton-Jacobi formulations.",
+      "bibliography_id": "osher-sethian1988",
+      "scope": "Selected author-hosted original passages: abstract, implicit front representation and Hamilton–Jacobi transport/normal-motion formulation. No full-paper audit or reproduction of its full experiment suite."
+    },
+    {
+      "url": "https://doi.org/10.1016/0021-9991(81)90145-5",
+      "label": "C. W. Hirt and B. D. Nichols (1981). Volume of fluid (VOF) method for the dynamics of free boundaries.",
+      "bibliography_id": "hirt-nichols1981",
+      "scope": "Publisher bibliography and abstract for the original volume-fraction formulation. No full-text algorithm audit or implementation of its donor–acceptor scheme."
+    },
+    {
+      "url": "https://doi.org/10.1137/S1064827596298245",
+      "label": "M. Sussman and E. Fatemi (1999). An Efficient, Interface-Preserving Level Set Redistancing Algorithm and Its Application to Interfacial Incompressible Fluid Flow.",
+      "bibliography_id": "sussman-fatemi1999",
+      "scope": "Official abstract and bibliography: redistancing quality includes retaining the zero interface; its constrained higher-order algorithm is not the simple Godunov auxiliary iteration implemented here."
+    },
+    {
+      "url": "https://doi.org/10.1006/jcph.2000.6537",
+      "label": "M. Sussman and E. G. Puckett (2000). A Coupled Level Set and Volume-of-Fluid Method for Computing 3D and Axisymmetric Incompressible Two-Phase Flows.",
+      "bibliography_id": "sussman-puckett2000",
+      "scope": "Author-hosted pp.302–305, equations(1)–(6),(9),(12),(15): signed-distance geometry, enclosed-mass issue and volume-fraction conservation. Sign is reversed here to make phi negative inside. No CLSVOF or two-phase fluid experiment executed."
+    }
+  ],
+  "assumptions": [
+    "Prescribed sufficiently regular velocity and resolved interface. Dedicated examples use a fixed unit square, analytic exterior data and rigid circle kinematics."
+  ],
+  "assumptions_ja": [
+    "十分に正則な指定速度と解像された界面。専用例は単位正方形・解析的な外部境界値・円の剛体運動に限定。"
+  ],
+  "units": "Examples are nondimensional. A distance-like phi has length units in dimensional formulations; a volume fraction is dimensionless.",
+  "units_ja": "実行例は無次元。次元付き定式化の距離型φは長さ、体積率は無次元。",
+  "boundary_conditions": "Dedicated level-set examples prescribe analytic exterior ghost data at every RK stage; no periodic or general two-phase-flow validation.",
+  "boundary_conditions_ja": "専用レベルセット例は全RK段の外側ゴースト値を解析的に指定。周期条件・一般二相流の検証ではない。",
+  "limitations": {
+    "ja": "VOFとの比較は定式化と適用条件の解説です。VOFやCLSVOFの実装・性能測定、曲率流・二相流・合体分裂の数値検証はありません。",
+    "en": "VOF/CLSVOF comparisons describe formulations and conditions. No VOF implementation, performance ranking, curvature-flow, two-phase-flow or topology-change validation is claimed."
+  },
+  "metadata_review": {
+    "on": "2026-11-23",
+    "level": "Selected original-source passages and explicit implementation boundary; dedicated level-set release independently extracted and rerun with22 tests."
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/vof/",
+  "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/vof/index.json",
+  "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/vof/index.md",
+  "code_urls": [],
+  "test_urls": [],
+  "run_commands": [],
+  "run_from": null,
+  "code_base": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/",
+  "code_edition": null,
+  "execution_examples": [],
+  "problem_navigation": {
+    "method_id": "vof",
+    "status": "reading-only",
+    "equations": [],
+    "problems": [],
+    "references": []
+  }
+}

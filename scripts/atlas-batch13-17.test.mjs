@@ -22,6 +22,12 @@ test('the five-item addition preserves all prior distribution bytes, primary pic
  const methods=json('catalog/atlas-methods.json').methods;for(const[id,status]of Object.entries(proof.method_status))assert.equal(methods.find(x=>x.id===id).status,status);
  const eq=json('catalog/atlas-equations.json').equations;for(const[id,formula]of Object.entries(proof.equation_formulas))assert.deepEqual(eq.find(x=>x.id===id).formula,formula);
  const refs=json('catalog/atlas-reference-supplements.json').cases;for(const old of proof.reference_supplements)assert.deepEqual(refs.find(x=>x.id===old.id),old);
+ const concurrent=json('numerical-methods-atlas/validation/verification/2026-11-23-batch13-17-concurrent-preservation.json');
+ assert.equal(concurrent.incoming_commit,'11ba7a20076f052a569091ef976217f07341c3ba');
+ for(const[p,h]of Object.entries(concurrent.protected_files))assert.equal(sha(p),h,p);
+ assert.deepEqual(registry.releases.find(x=>x.group==='level-set'),concurrent.release);
+ assert.deepEqual(json('catalog/atlas-gallery.json').items.find(x=>x.id==='level-set-circle'),concurrent.primary_figure);
+ assert.deepEqual(gallery.find(x=>x.id==='level-set-circle'),concurrent.preview_record);
 });
 
 test('all five independently qualified examples connect figures, models, references, actual methods and runnable archives in both languages',()=>{

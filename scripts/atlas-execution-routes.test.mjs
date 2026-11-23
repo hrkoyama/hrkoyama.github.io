@@ -68,7 +68,7 @@ test('execution routes cover only the explicit common and supplemental source ca
     const direct=route.kind==='common'?discovery.examples.find(row=>row.id===route.id):null;
     const explicitEquations=route.kind==='supplement'?expansion.case_equations?.[route.id]:null;
     assert.deepEqual(route.equations.map(row=>row.id),direct?.equation_ids||explicitEquations?.ids||[]);
-    if(route.kind==='supplement'&&!['noh-shock','noh-cartesian-2d','sedov-blast','double-mach-reflection','forward-step-m3','low-mach-vortex','guderley-implosion','euler-double-rarefaction-positivity','zalesak-rotation','weno-critical-epsilon','swashes-topography','dry-bed-dam-break','cavity-ghia-re100','wall-manufactured'].includes(route.id))assert.deepEqual(route.equations,[],route.id+' historical supplemental formulas do not infer an equation-index binding');
+    if(route.kind==='supplement'&&!['noh-shock','noh-cartesian-2d','sedov-blast','double-mach-reflection','forward-step-m3','low-mach-vortex','guderley-implosion','euler-double-rarefaction-positivity','zalesak-rotation','weno-critical-epsilon','swashes-topography','dry-bed-dam-break','cavity-ghia-re100','wall-manufactured','level-set-translation','level-set-rotation'].includes(route.id))assert.deepEqual(route.equations,[],route.id+' historical supplemental formulas do not infer an equation-index binding');
     if(explicitEquations)for(const equation of route.equations)assert.deepEqual(equation.note,explicitEquations.note);
     for(const equation of route.equations)assert.deepEqual(equation.name,equations.get(equation.id).name);
     assert.equal(route.formulation.role,direct?.formula.role||(problemId?'example-definition':'diagnostic'));

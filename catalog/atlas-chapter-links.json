@@ -166,6 +166,63 @@
         "ja": "Jameson系の定常多段RK反復を読む章です。既存の詳細章カタログのrelated_methodsは関連する手法の定義だけを案内します。古典RK4・二重時間積分・低Mach前処理・多重格子の既存例は、完全なJameson型圧縮性流ソルバーの実装・検証を意味しません。この章専用のソルバー、固定入力実行例、新しい測定結果は追加していません。",
         "en": "Reading on Jameson-family steady multistage RK iterations. The existing detailed-chapter catalog's related_methods links identify related method definitions only. Existing classical RK4, dual-time, low-Mach preconditioning and multigrid examples do not implement or validate a complete Jameson-type compressible solver. No dedicated solver, fixed-input execution or new measured result is added for this chapter."
       }
+    },
+    {
+      "id": "level-set",
+      "method_ids": [
+        "level-set",
+        "vof"
+      ],
+      "equation_ids": [
+        "level-set-advection"
+      ],
+      "problem_ids": [
+        "level-set-circle"
+      ],
+      "execution_ids": [
+        "level-set-translation",
+        "level-set-rotation"
+      ],
+      "reference_ids": [
+        "level-set-translation",
+        "level-set-rotation"
+      ],
+      "code_problem_ids": [
+        "level-set-circle"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。",
+        "en": "Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution."
+      }
+    },
+    {
+      "id": "validation-level-set",
+      "method_ids": [
+        "level-set"
+      ],
+      "equation_ids": [
+        "level-set-advection"
+      ],
+      "problem_ids": [
+        "level-set-circle"
+      ],
+      "execution_ids": [
+        "level-set-translation",
+        "level-set-rotation"
+      ],
+      "reference_ids": [
+        "level-set-translation",
+        "level-set-rotation"
+      ],
+      "code_problem_ids": [
+        "level-set-circle"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。",
+        "en": "Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution."
+      }
     }
   ]
 }

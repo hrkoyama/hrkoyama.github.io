@@ -330,6 +330,22 @@
         "ja": "非周期壁面の2D渦度・流れ関数法でRe100蓋駆動キャビティと製造流れを解きます。Ghia原著の有限格子数値表、壁剪断と格子収束を比較し、独立した圧力Poisson・勾配製造問題を区別します。",
         "en": "Solve a Re100 lid-driven cavity and manufactured flow with a nonperiodic wall-bounded2D vorticity/streamfunction method. Compare original finite-grid Ghia tables, wall shear and grid refinement, keeping a separate pressure-Poisson/gradient manufactured problem distinct."
       }
+    },
+    {
+      "id": "level-set",
+      "edition": "2026-11-23",
+      "title": {
+        "ja": "レベルセット法：円の2D移流・剛体回転",
+        "en": "Level sets: 2D circle translation and rigid rotation"
+      },
+      "fields": [
+        "fluid",
+        "transport"
+      ],
+      "intro": {
+        "ja": "符号付き距離のゼロ等値線を32²/64²/128²で数値移流し、再初期化の有無、解析的な界面位置、面積と格子・時間刻みの細分化を比較します。VOFは理論比較のみです。",
+        "en": "Numerically transport the signed-distance zero contour on32²/64²/128² grids, comparing optional redistancing, analytic interface positions, geometric area and coupled grid/time refinement. VOF is a conceptual comparison only."
+      }
     }
   ],
   "case_problem_ids": {
@@ -386,7 +402,9 @@
     "swashes-topography": "swashes-topography",
     "dry-bed-dam-break": "dry-bed-dam-break",
     "cavity-ghia-re100": "lid-driven-cavity",
-    "wall-manufactured": "wall-manufactured"
+    "wall-manufactured": "wall-manufactured",
+    "level-set-translation": "level-set-circle",
+    "level-set-rotation": "level-set-circle"
   },
   "routine_policy": {
     "ja": "通常の補助例CIは、公開レジストリに登録した補助配布グループをNumPy・SciPy・pytestで実行します。保存済みの独立参照は版・入力・実行記録を照合し、新規の参照計算と区別します。量子収束を含む従来の共通22例は必要時の手動実行とし、既存の配布物・公差・履歴を保持します。",
@@ -643,6 +661,24 @@
       "note": {
         "ja": "単位正方形、ν=.01、17/33/65点、ψ=8f(x)f(y),f(z)=z²(1−z)²。全壁で非浸透・滑りなし。渦度外力は連続方程式から解析的に導出し、全壁にキャビティと同じThom条件を使用します。厳密壁渦度は注入しません。",
         "en": "Unit square, viscosity .01,17/33/65nodes,psi8f(x)f(y), f(z)=z²(1−z)². All walls are impermeable/no-slip. Derive the curl forcing from the continuous PDE and use the same actual Thom closure as the cavity on every wall; never inject exact wall vorticity."
+      }
+    },
+    "level-set-translation": {
+      "ids": [
+        "level-set-advection"
+      ],
+      "note": {
+        "ja": "円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。",
+        "en": "Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution."
+      }
+    },
+    "level-set-rotation": {
+      "ids": [
+        "level-set-advection"
+      ],
+      "note": {
+        "ja": "円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。",
+        "en": "Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution."
       }
     }
   }

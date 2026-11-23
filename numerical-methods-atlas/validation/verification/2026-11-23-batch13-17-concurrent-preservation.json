@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "incoming_commit": "11ba7a20076f052a569091ef976217f07341c3ba",
+  "protected_files": {
+    "code/validated-examples/2026-11-23/level-set/LICENSE": "e1053200337d037d9d81620956ce49263117c6540b1c1352c030c220bee05f59",
+    "code/validated-examples/2026-11-23/level-set/README.md": "baab9bc72d1d893301b94eaf509cda2e786156f9ea4dd6fb476e4754edf58fa7",
+    "code/validated-examples/2026-11-23/level-set/atlas-level-set-2026-11-23.zip": "46c2c2fd0aea98eb4cc4facef8d30cc81ebd6b1b9e0d965f7ef79167a06c048b",
+    "code/validated-examples/2026-11-23/level-set/attempts/01-tests/pre-run-contract.json": "135ad761ac700c8f6dc18118717d1f3ae1ea93406900bad1c53f959ae4093538",
+    "code/validated-examples/2026-11-23/level-set/attempts/01-tests/pytest.txt": "b1375e93413bd900a780f46fc34985c246caab6747dd9178d8baf3ae2da5f283",
+    "code/validated-examples/2026-11-23/level-set/attempts/01-tests/test-source.py": "7656b0870a5ceb75a77f56a69a0c75fff5fbc18e540f143467108462e295ffb5",
+    "code/validated-examples/2026-11-23/level-set/cases.json": "b077db49bb69055b9612a2153f7d9ea4d9c1025f0bf13b0c94157d2e9235e655",
+    "code/validated-examples/2026-11-23/level-set/geometry.py": "0c1ac85db980f2e3378da6a3ca7beaef46c466ad5c64dafa122c3700c2a0f7fd",
+    "code/validated-examples/2026-11-23/level-set/inputs-initial.json": "48b36acc98390bc01af40c9a19d3ae348b6d737df30449bbcbd5850511df7ac2",
+    "code/validated-examples/2026-11-23/level-set/inputs.json": "48b36acc98390bc01af40c9a19d3ae348b6d737df30449bbcbd5850511df7ac2",
+    "code/validated-examples/2026-11-23/level-set/level_set.py": "d831e308d1db2ae8e51871c6385813611dcba12803c3dfb33625833f985c79b7",
+    "code/validated-examples/2026-11-23/level-set/plot.py": "16258c6319f070fd22db044648932f555e38d39ddb60daa58c52fb2bc1e26e03",
+    "code/validated-examples/2026-11-23/level-set/pre-run-contract.json": "c542d3fcd757b3dcf39c4b3bb325244d5e7bad1012dc0fd6346044db8e07e364",
+    "code/validated-examples/2026-11-23/level-set/protocol-history.json": "fb0d7eff3fceb9e30dfdf332c6fc1558fabbb247c6435791987fd5e4c8c10c32",
+    "code/validated-examples/2026-11-23/level-set/requirements-plotting.txt": "9543d27e2cdeb027d6f372bbf0d09a3566f8807c4b346b77ca299f341fda55ed",
+    "code/validated-examples/2026-11-23/level-set/requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "code/validated-examples/2026-11-23/level-set/results/level-set-overview.png": "88f72aed9b862da17107f9f1c07c1ca10b3f43e61342de01e03f55379723f730",
+    "code/validated-examples/2026-11-23/level-set/results/level-set-rotation.csv": "d736f9ac58e24657cad5db1d2eb9255e795bf752858c35d110e3de25b5b24f26",
+    "code/validated-examples/2026-11-23/level-set/results/level-set-rotation.npz": "0a773b31c8506387401d2746d1a6a4ef8794a60c6b8e14e990bac3911926c0de",
+    "code/validated-examples/2026-11-23/level-set/results/level-set-rotation.png": "54c6d02fd40c0bf702f413f8ce12aaefc43a5f911d681b42ad7634d6a26ebdde",
+    "code/validated-examples/2026-11-23/level-set/results/level-set-translation.csv": "4afbbe4fac4ca5bc4a222e99b5d566ab9070bdea4d0bca650c0c5db98ce868d6",
+    "code/validated-examples/2026-11-23/level-set/results/level-set-translation.npz": "69c826dee577a4e0d87dc84c8c2a6de2e472f9ddb5a9b585c81d5f02914bcc66",
+    "code/validated-examples/2026-11-23/level-set/results/level-set-translation.png": "4e99dec1449e65944b246b2280dd5439a5dbc59a99633b201f57e5cd0453507e",
+    "code/validated-examples/2026-11-23/level-set/results/result.json": "7108491721386902c6adaa5ea5c1c709b31a204060346d0c93a06efd4a4a5a31",
+    "code/validated-examples/2026-11-23/level-set/run.py": "2c609b056e6f857bb0cd2efbe8c311da5233908347eb994408d8158194e65cf9",
+    "code/validated-examples/2026-11-23/level-set/source-manifest.json": "7055bd243b522c8de50c2091a983c61b734a589105af49d27d63f0519f9075e4",
+    "code/validated-examples/2026-11-23/level-set/test_level_set.py": "c692c9c79b97249aa69046a5467ab03a765822bd0f5b2c9807a86bde7b8ca4b1",
+    "code/validated-examples/2026-11-23/level-set/verification.json": "d70c2ed415b9e61bac769c0060a7ee1e7a4cf4b0b8ce1a6beabd4bca09ef7042",
+    "scripts/depth-level-set/LICENSE": "e1053200337d037d9d81620956ce49263117c6540b1c1352c030c220bee05f59",
+    "scripts/depth-level-set/README.md": "baab9bc72d1d893301b94eaf509cda2e786156f9ea4dd6fb476e4754edf58fa7",
+    "scripts/depth-level-set/attempts/01-tests/pre-run-contract.json": "135ad761ac700c8f6dc18118717d1f3ae1ea93406900bad1c53f959ae4093538",
+    "scripts/depth-level-set/attempts/01-tests/pytest.txt": "b1375e93413bd900a780f46fc34985c246caab6747dd9178d8baf3ae2da5f283",
+    "scripts/depth-level-set/attempts/01-tests/test-source.py": "7656b0870a5ceb75a77f56a69a0c75fff5fbc18e540f143467108462e295ffb5",
+    "scripts/depth-level-set/cases.json": "b077db49bb69055b9612a2153f7d9ea4d9c1025f0bf13b0c94157d2e9235e655",
+    "scripts/depth-level-set/geometry.py": "0c1ac85db980f2e3378da6a3ca7beaef46c466ad5c64dafa122c3700c2a0f7fd",
+    "scripts/depth-level-set/inputs-initial.json": "48b36acc98390bc01af40c9a19d3ae348b6d737df30449bbcbd5850511df7ac2",
+    "scripts/depth-level-set/inputs.json": "48b36acc98390bc01af40c9a19d3ae348b6d737df30449bbcbd5850511df7ac2",
+    "scripts/depth-level-set/level_set.py": "d831e308d1db2ae8e51871c6385813611dcba12803c3dfb33625833f985c79b7",
+    "scripts/depth-level-set/plot.py": "16258c6319f070fd22db044648932f555e38d39ddb60daa58c52fb2bc1e26e03",
+    "scripts/depth-level-set/pre-run-contract.json": "c542d3fcd757b3dcf39c4b3bb325244d5e7bad1012dc0fd6346044db8e07e364",
+    "scripts/depth-level-set/protocol-history.json": "fb0d7eff3fceb9e30dfdf332c6fc1558fabbb247c6435791987fd5e4c8c10c32",
+    "scripts/depth-level-set/requirements-plotting.txt": "9543d27e2cdeb027d6f372bbf0d09a3566f8807c4b346b77ca299f341fda55ed",
+    "scripts/depth-level-set/requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "scripts/depth-level-set/run.py": "2c609b056e6f857bb0cd2efbe8c311da5233908347eb994408d8158194e65cf9",
+    "scripts/depth-level-set/test_level_set.py": "c692c9c79b97249aa69046a5467ab03a765822bd0f5b2c9807a86bde7b8ca4b1"
+  },
+  "release": {
+    "group": "level-set",
+    "edition": "2026-11-23",
+    "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/",
+    "archive": "atlas-level-set-2026-11-23.zip",
+    "archive_sha256": "46c2c2fd0aea98eb4cc4facef8d30cc81ebd6b1b9e0d965f7ef79167a06c048b",
+    "manifest_sha256": "7055bd243b522c8de50c2091a983c61b734a589105af49d27d63f0519f9075e4",
+    "verification_sha256": "d70c2ed415b9e61bac769c0060a7ee1e7a4cf4b0b8ce1a6beabd4bca09ef7042",
+    "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "case_ids": [
+      "level-set-rotation",
+      "level-set-translation"
+    ],
+    "tests": 22
+  },
+  "primary_figure": {
+    "id": "level-set-circle",
+    "kind": "image",
+    "source": "/code/validated-examples/2026-11-23/level-set/results/level-set-overview.png",
+    "caption": {
+      "ja": "実際の128²レベルセット場から抽出した円のゼロ等値線。左は平行移動、右は偏心円の一周回転。解析界面と移流単独・単純な再初期化ありを比較します。VOF計算ではなく、面積保存を補正していません。",
+      "en": "Zero contours extracted from actual128² level-set fields: translation(left) and an off-center full rotation(right). Compare analytic interfaces against advection alone and simple redistancing. This is not a VOF calculation, and no area correction is applied."
+    }
+  },
+  "reason": "Concurrent level-set publication was integrated with all five benchmark additions; its existing distribution and implementation bytes are preserved.",
+  "reference_bib_addition": {
+    "baseline_sha256": null,
+    "incoming_sha256": "afba9790ea613f890804138a418afa6b888d25c0159fd0c425ea968f7062df61"
+  },
+  "preview_record": {
+    "id": "level-set-circle",
+    "image": "/code/validated-examples/2026-11-23/level-set/results/level-set-overview.png",
+    "image_sha256": "88f72aed9b862da17107f9f1c07c1ca10b3f43e61342de01e03f55379723f730",
+    "width": 1450,
+    "height": 652,
+    "source_kind": "existing-figure",
+    "caption": {
+      "ja": "実際の128²レベルセット場から抽出した円のゼロ等値線。左は平行移動、右は偏心円の一周回転。解析界面と移流単独・単純な再初期化ありを比較します。VOF計算ではなく、面積保存を補正していません。",
+      "en": "Zero contours extracted from actual128² level-set fields: translation(left) and an off-center full rotation(right). Compare analytic interfaces against advection alone and simple redistancing. This is not a VOF calculation, and no area correction is applied."
+    }
+  }
+}

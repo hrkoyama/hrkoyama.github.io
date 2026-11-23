@@ -769,6 +769,10 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "level-set": [
+    "ja",
+    "en"
+  ],
   "limiters": [
     "ja",
     "en"
@@ -974,6 +978,10 @@ export const homeReadingLanguages = {
     "en"
   ],
   "validation-guderley": [
+    "ja",
+    "en"
+  ],
+  "validation-level-set": [
     "ja",
     "en"
   ],

@@ -10682,6 +10682,561 @@
         }
       }
     },
+    "level-set": {
+      "id": "level-set",
+      "title": {
+        "ja": "レベルセット法：動く界面とVOFとの比較",
+        "en": "Level sets: moving interfaces and comparison with VOF"
+      },
+      "routes": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/level-set/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/level-set/"
+      },
+      "association_status": "registered",
+      "resource_navigation": {
+        "kind": "chapter",
+        "id": "level-set",
+        "note": {
+          "ja": "この章に登録された手法・問題・実行例の関連資料です。 円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。",
+          "en": "Resources explicitly registered to the methods, problems and executions of this chapter. Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution."
+        },
+        "groups": {
+          "methods": [
+            {
+              "id": "level-set",
+              "name": {
+                "ja": "レベルセット法",
+                "en": "Level-set method"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/level-set/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/level-set/?lang=en"
+              },
+              "status": "educational-example"
+            },
+            {
+              "id": "vof",
+              "name": {
+                "ja": "VOF法／体積率による界面捕獲",
+                "en": "Volume-of-fluid / VOF"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/vof/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/vof/?lang=en"
+              },
+              "status": "reading-only"
+            },
+            {
+              "id": "heun",
+              "name": {
+                "ja": "Heun法／SSPRK(2,2)",
+                "en": "Heun / SSPRK(2,2)"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/heun/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/heun/?lang=en"
+              },
+              "status": "educational-example",
+              "role": "related"
+            },
+            {
+              "id": "weno-js",
+              "name": {
+                "ja": "WENO5-JS",
+                "en": "WENO5-JS"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/weno-js/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/weno-js/?lang=en"
+              },
+              "status": "educational-example",
+              "role": "related"
+            },
+            {
+              "id": "level-set",
+              "name": {
+                "ja": "レベルセット法",
+                "en": "Level-set method"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/level-set/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/level-set/?lang=en"
+              },
+              "status": "educational-example",
+              "role": "execution",
+              "note": {
+                "ja": "専用の2D ENO2／Heunレベルセット移流。任意選択の単純なGodunov再初期化による面積変化も保存し、VOF実装を割り当てません。",
+                "en": "Dedicated2D ENO2/Heun level-set advection. Optional simple Godunov redistancing retains measured area changes; no VOF implementation is assigned."
+              },
+              "context_problem_id": "level-set-circle"
+            }
+          ],
+          "equations": [
+            {
+              "id": "level-set-advection",
+              "name": {
+                "ja": "レベルセット界面の移流",
+                "en": "Level-set interface advection"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#level-set-advection-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#level-set-advection-en"
+              },
+              "note": {
+                "ja": "ゼロ等値線で界面を表す非保存形の移流式。円の平行移動・剛体回転を検証し、VOFの体積率輸送と区別します。 円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。",
+                "en": "Nonconservative transport of an implicit zero-contour interface. Dedicated circle translation and rigid rotation distinguish this from VOF fraction transport. Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution."
+              },
+              "context_problem_id": "level-set-circle"
+            },
+            {
+              "id": "level-set-advection",
+              "name": {
+                "ja": "レベルセット界面の移流",
+                "en": "Level-set interface advection"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#level-set-advection-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#level-set-advection-en"
+              },
+              "note": {
+                "ja": "ゼロ等値線で界面を表す非保存形の移流式。円の平行移動・剛体回転を検証し、VOFの体積率輸送と区別します。",
+                "en": "Nonconservative transport of an implicit zero-contour interface. Dedicated circle translation and rigid rotation distinguish this from VOF fraction transport."
+              }
+            },
+            {
+              "id": "formulation-level-set-translation",
+              "name": {
+                "ja": "この実行例の式と条件",
+                "en": "This execution’s formulation and conditions"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/level-set-translation/?lang=ja#level-set-translation-ja-algorithm",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/level-set-translation/?lang=en#level-set-translation-en-algorithm"
+              },
+              "note": {
+                "ja": "円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。 移流は両モードで同じ2次ENO片側微分とHeun RK2。2階差分の絶対値でステンシルを選択します。再初期化ありでは物理時刻.1ごとに、呼出し開始時の平滑符号を固定した1次Godunov法をΔτ=.3Δxで5回実行。体積補正、界面への投影、φのclip、隠れたretry、内部の解析解への置換を行いません。",
+                "en": "Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution. Both modes use the same second-order ENO one-sided differences and Heun RK2, selecting stencils by absolute second differences. Optional redistancing occurs every.1 physical time: five first-order Godunov steps, dtau=.3dx, with the smoothed sign frozen per call. There is no volume correction, interface projection, phi clipping, hidden retry or analytic interior reset."
+              },
+              "role": "related",
+              "context_chapter_id": "level-set"
+            },
+            {
+              "id": "formulation-level-set-rotation",
+              "name": {
+                "ja": "この実行例の式と条件",
+                "en": "This execution’s formulation and conditions"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/level-set-rotation/?lang=ja#level-set-rotation-ja-algorithm",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/level-set-rotation/?lang=en#level-set-rotation-en-algorithm"
+              },
+              "note": {
+                "ja": "円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。 移流は両モードで同じ2次ENO片側微分とHeun RK2。2階差分の絶対値でステンシルを選択します。再初期化ありでは物理時刻.1ごとに、呼出し開始時の平滑符号を固定した1次Godunov法をΔτ=.3Δxで5回実行。体積補正、界面への投影、φのclip、隠れたretry、内部の解析解への置換を行いません。",
+                "en": "Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution. Both modes use the same second-order ENO one-sided differences and Heun RK2, selecting stencils by absolute second differences. Optional redistancing occurs every.1 physical time: five first-order Godunov steps, dtau=.3dx, with the smoothed sign frozen per call. There is no volume correction, interface projection, phi clipping, hidden retry or analytic interior reset."
+              },
+              "role": "related",
+              "context_chapter_id": "level-set"
+            }
+          ],
+          "figures": [
+            {
+              "id": "level-set-circle",
+              "name": {
+                "ja": "レベルセットで表した円の移流",
+                "en": "Advection of a level-set circle"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/level-set-circle/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/level-set-circle/?lang=en"
+              },
+              "image": {
+                "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/results/level-set-overview.png",
+                "sha256": "88f72aed9b862da17107f9f1c07c1ca10b3f43e61342de01e03f55379723f730",
+                "width": 1450,
+                "height": 652,
+                "caption": {
+                  "ja": "実際の128²レベルセット場から抽出した円のゼロ等値線。左は平行移動、右は偏心円の一周回転。解析界面と移流単独・単純な再初期化ありを比較します。VOF計算ではなく、面積保存を補正していません。",
+                  "en": "Zero contours extracted from actual128² level-set fields: translation(left) and an off-center full rotation(right). Compare analytic interfaces against advection alone and simple redistancing. This is not a VOF calculation, and no area correction is applied."
+                },
+                "source_kind": "existing-figure"
+              },
+              "note": {
+                "ja": "テスト問題の代表図。条件と出典は問題別ページで確認できます。",
+                "en": "Representative test-problem figure; the problem page records conditions and provenance."
+              }
+            },
+            {
+              "id": "level-set-translation",
+              "name": {
+                "ja": "レベルセット円の2D平行移動：界面・面積・再初期化",
+                "en": "2D level-set circle translation: interface, area and redistancing"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/results/level-set-translation.png",
+                "en": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/results/level-set-translation.png"
+              },
+              "image": {
+                "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/results/level-set-translation.png",
+                "sha256": "4e99dec1449e65944b246b2280dd5439a5dbc59a99633b201f57e5cd0453507e",
+                "width": 1595,
+                "height": 1203,
+                "kind": "case-validation",
+                "caption": {
+                  "ja": "レベルセット円の2D平行移動：界面・面積・再初期化：この実行例の保存済み検証図。",
+                  "en": "2D level-set circle translation: interface, area and redistancing: saved validation figure for this execution."
+                }
+              },
+              "note": {
+                "ja": "円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。 この実行例自身の保存済み検証図です。",
+                "en": "Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution. The saved validation figure for this execution itself."
+              },
+              "problem_id": "level-set-circle",
+              "context_chapter_id": "level-set",
+              "role": "related"
+            },
+            {
+              "id": "level-set-rotation",
+              "name": {
+                "ja": "偏心したレベルセット円の2D剛体回転",
+                "en": "2D rigid rotation of an off-center level-set circle"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/results/level-set-rotation.png",
+                "en": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/results/level-set-rotation.png"
+              },
+              "image": {
+                "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/results/level-set-rotation.png",
+                "sha256": "54c6d02fd40c0bf702f413f8ce12aaefc43a5f911d681b42ad7634d6a26ebdde",
+                "width": 1595,
+                "height": 1203,
+                "kind": "case-validation",
+                "caption": {
+                  "ja": "偏心したレベルセット円の2D剛体回転：この実行例の保存済み検証図。",
+                  "en": "2D rigid rotation of an off-center level-set circle: saved validation figure for this execution."
+                }
+              },
+              "note": {
+                "ja": "円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。 この実行例自身の保存済み検証図です。",
+                "en": "Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution. The saved validation figure for this execution itself."
+              },
+              "problem_id": "level-set-circle",
+              "context_chapter_id": "level-set",
+              "role": "related"
+            }
+          ],
+          "references": [
+            {
+              "id": "problem-level-set-circle",
+              "name": {
+                "ja": "レベルセットで表した円の移流：参照・比較条件",
+                "en": "Advection of a level-set circle — references and comparison conditions"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/level-set-circle/?lang=ja#references-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/level-set-circle/?lang=en#references-en"
+              },
+              "note": {
+                "ja": "円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。",
+                "en": "Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution."
+              }
+            },
+            {
+              "id": "level-set-translation",
+              "name": {
+                "ja": "レベルセット円の2D平行移動：界面・面積・再初期化：解析的符号付き距離参照",
+                "en": "2D level-set circle translation: interface, area and redistancing: analytic signed-distance reference"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-level-set-translation-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-level-set-translation-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "解析解 全て無次元、領域[0,1]²、内部φ<0。与えた非圧縮の剛体運動だけを解き、円は境界から離れます。外側2層のゴースト値は各RK段階で解析解を指定します。周期境界ではなく、内部のφは数値更新します。出力時刻0/.25/.5/.75/1、物理Courant数max(|u|+|v|)Δt/Δx≤.35。 円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。",
+                "en": "Analytic reference All quantities are nondimensional on[0,1]², with phi<0 inside. The prescribed divergence-free rigid motion keeps the circle away from the boundary. Two exterior ghost layers receive analytic data at each RK stage; this is not a periodic boundary. Every interior value is numerically advanced. Observe0/.25/.5/.75/1; max(|u|+|v|)dt/dx<=.35. Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution."
+              },
+              "relation": "same-problem",
+              "context_problem_id": "level-set-circle"
+            },
+            {
+              "id": "level-set-rotation",
+              "name": {
+                "ja": "偏心したレベルセット円の2D剛体回転：解析的符号付き距離参照",
+                "en": "2D rigid rotation of an off-center level-set circle: analytic signed-distance reference"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-level-set-rotation-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-level-set-rotation-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "解析解 全て無次元、領域[0,1]²、内部φ<0。与えた非圧縮の剛体運動だけを解き、円は境界から離れます。外側2層のゴースト値は各RK段階で解析解を指定します。周期境界ではなく、内部のφは数値更新します。出力時刻0/.25/.5/.75/1、物理Courant数max(|u|+|v|)Δt/Δx≤.35。 円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。",
+                "en": "Analytic reference All quantities are nondimensional on[0,1]², with phi<0 inside. The prescribed divergence-free rigid motion keeps the circle away from the boundary. Two exterior ghost layers receive analytic data at each RK stage; this is not a periodic boundary. Every interior value is numerically advanced. Observe0/.25/.5/.75/1; max(|u|+|v|)dt/dx<=.35. Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution."
+              },
+              "relation": "same-problem",
+              "context_problem_id": "level-set-circle"
+            },
+            {
+              "id": "level-set-translation",
+              "name": {
+                "ja": "レベルセット円の2D平行移動：界面・面積・再初期化：解析的符号付き距離参照",
+                "en": "2D level-set circle translation: interface, area and redistancing: analytic signed-distance reference"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-level-set-translation-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-level-set-translation-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "解析解 全て無次元、領域[0,1]²、内部φ<0。与えた非圧縮の剛体運動だけを解き、円は境界から離れます。外側2層のゴースト値は各RK段階で解析解を指定します。周期境界ではなく、内部のφは数値更新します。出力時刻0/.25/.5/.75/1、物理Courant数max(|u|+|v|)Δt/Δx≤.35。",
+                "en": "Analytic reference All quantities are nondimensional on[0,1]², with phi<0 inside. The prescribed divergence-free rigid motion keeps the circle away from the boundary. Two exterior ghost layers receive analytic data at each RK stage; this is not a periodic boundary. Every interior value is numerically advanced. Observe0/.25/.5/.75/1; max(|u|+|v|)dt/dx<=.35."
+              }
+            },
+            {
+              "id": "level-set-rotation",
+              "name": {
+                "ja": "偏心したレベルセット円の2D剛体回転：解析的符号付き距離参照",
+                "en": "2D rigid rotation of an off-center level-set circle: analytic signed-distance reference"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-level-set-rotation-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-level-set-rotation-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "解析解 全て無次元、領域[0,1]²、内部φ<0。与えた非圧縮の剛体運動だけを解き、円は境界から離れます。外側2層のゴースト値は各RK段階で解析解を指定します。周期境界ではなく、内部のφは数値更新します。出力時刻0/.25/.5/.75/1、物理Courant数max(|u|+|v|)Δt/Δx≤.35。",
+                "en": "Analytic reference All quantities are nondimensional on[0,1]², with phi<0 inside. The prescribed divergence-free rigid motion keeps the circle away from the boundary. Two exterior ghost layers receive analytic data at each RK stage; this is not a periodic boundary. Every interior value is numerically advanced. Observe0/.25/.5/.75/1; max(|u|+|v|)dt/dx<=.35."
+              }
+            },
+            {
+              "id": "validation-level-set-translation",
+              "name": {
+                "ja": "レベルセット円の2D平行移動：界面・面積・再初期化：参照・検証",
+                "en": "2D level-set circle translation: interface, area and redistancing — references and checks"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/level-set-translation/?lang=ja#level-set-translation-ja-validation",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/level-set-translation/?lang=en#level-set-translation-en-validation"
+              },
+              "note": {
+                "ja": "円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。 解析的な円の中心運動と符号付き距離を参照し、4つの正の共通時刻の最悪値を測定します。界面位置は格子辺上で線形補間したφ=0点の半径誤差、面積は格子中心間を三角形に分けた区分線形φの負領域から計算。初期の幾何学的な面積偏りも残します。|φ厳密|≤2Δx帯のφ誤差と距離勾配、各再初期化による面積変化、N64でのCourant半減も別記録。",
+                "en": "Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution. Analytic center motion and signed distance provide the reference. Take worst errors over the four positive common observation times. Interface error samples linearly interpolated grid-edge zeros; area comes from the negative portion of a piecewise-linear triangulation between grid centers, retaining initial geometric bias. Also record phi error and distance-gradient quality in|phi_exact|<=2dx, each redistancing area jump and a separateN64 CFL-halving sensitivity."
+              },
+              "role": "related",
+              "context_chapter_id": "level-set"
+            },
+            {
+              "id": "level-set-translation",
+              "name": {
+                "ja": "レベルセット円の2D平行移動：界面・面積・再初期化：解析的符号付き距離参照",
+                "en": "2D level-set circle translation: interface, area and redistancing: analytic signed-distance reference"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-level-set-translation-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-level-set-translation-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。 解析解 全て無次元、領域[0,1]²、内部φ<0。与えた非圧縮の剛体運動だけを解き、円は境界から離れます。外側2層のゴースト値は各RK段階で解析解を指定します。周期境界ではなく、内部のφは数値更新します。出力時刻0/.25/.5/.75/1、物理Courant数max(|u|+|v|)Δt/Δx≤.35。 円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。",
+                "en": "Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution. Analytic reference All quantities are nondimensional on[0,1]², with phi<0 inside. The prescribed divergence-free rigid motion keeps the circle away from the boundary. Two exterior ghost layers receive analytic data at each RK stage; this is not a periodic boundary. Every interior value is numerically advanced. Observe0/.25/.5/.75/1; max(|u|+|v|)dt/dx<=.35. Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution."
+              },
+              "relation": "same-problem",
+              "context_execution_id": "level-set-translation",
+              "context_chapter_id": "level-set",
+              "role": "related"
+            },
+            {
+              "id": "level-set-rotation",
+              "name": {
+                "ja": "偏心したレベルセット円の2D剛体回転：解析的符号付き距離参照",
+                "en": "2D rigid rotation of an off-center level-set circle: analytic signed-distance reference"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-level-set-rotation-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-level-set-rotation-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。 解析解 全て無次元、領域[0,1]²、内部φ<0。与えた非圧縮の剛体運動だけを解き、円は境界から離れます。外側2層のゴースト値は各RK段階で解析解を指定します。周期境界ではなく、内部のφは数値更新します。出力時刻0/.25/.5/.75/1、物理Courant数max(|u|+|v|)Δt/Δx≤.35。 円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。",
+                "en": "Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution. Analytic reference All quantities are nondimensional on[0,1]², with phi<0 inside. The prescribed divergence-free rigid motion keeps the circle away from the boundary. Two exterior ghost layers receive analytic data at each RK stage; this is not a periodic boundary. Every interior value is numerically advanced. Observe0/.25/.5/.75/1; max(|u|+|v|)dt/dx<=.35. Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution."
+              },
+              "relation": "same-problem",
+              "context_execution_id": "level-set-translation",
+              "context_chapter_id": "level-set",
+              "role": "related"
+            },
+            {
+              "id": "validation-level-set-rotation",
+              "name": {
+                "ja": "偏心したレベルセット円の2D剛体回転：参照・検証",
+                "en": "2D rigid rotation of an off-center level-set circle — references and checks"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/level-set-rotation/?lang=ja#level-set-rotation-ja-validation",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/level-set-rotation/?lang=en#level-set-rotation-en-validation"
+              },
+              "note": {
+                "ja": "円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。 解析的な円の中心運動と符号付き距離を参照し、4つの正の共通時刻の最悪値を測定します。界面位置は格子辺上で線形補間したφ=0点の半径誤差、面積は格子中心間を三角形に分けた区分線形φの負領域から計算。初期の幾何学的な面積偏りも残します。|φ厳密|≤2Δx帯のφ誤差と距離勾配、各再初期化による面積変化、N64でのCourant半減も別記録。",
+                "en": "Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution. Analytic center motion and signed distance provide the reference. Take worst errors over the four positive common observation times. Interface error samples linearly interpolated grid-edge zeros; area comes from the negative portion of a piecewise-linear triangulation between grid centers, retaining initial geometric bias. Also record phi error and distance-gradient quality in|phi_exact|<=2dx, each redistancing area jump and a separateN64 CFL-halving sensitivity."
+              },
+              "role": "related",
+              "context_chapter_id": "level-set"
+            },
+            {
+              "id": "level-set-translation",
+              "name": {
+                "ja": "レベルセット円の2D平行移動：界面・面積・再初期化：解析的符号付き距離参照",
+                "en": "2D level-set circle translation: interface, area and redistancing: analytic signed-distance reference"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-level-set-translation-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-level-set-translation-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。 解析解 全て無次元、領域[0,1]²、内部φ<0。与えた非圧縮の剛体運動だけを解き、円は境界から離れます。外側2層のゴースト値は各RK段階で解析解を指定します。周期境界ではなく、内部のφは数値更新します。出力時刻0/.25/.5/.75/1、物理Courant数max(|u|+|v|)Δt/Δx≤.35。 円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。",
+                "en": "Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution. Analytic reference All quantities are nondimensional on[0,1]², with phi<0 inside. The prescribed divergence-free rigid motion keeps the circle away from the boundary. Two exterior ghost layers receive analytic data at each RK stage; this is not a periodic boundary. Every interior value is numerically advanced. Observe0/.25/.5/.75/1; max(|u|+|v|)dt/dx<=.35. Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution."
+              },
+              "relation": "same-problem",
+              "context_execution_id": "level-set-rotation",
+              "context_chapter_id": "level-set",
+              "role": "related"
+            },
+            {
+              "id": "level-set-rotation",
+              "name": {
+                "ja": "偏心したレベルセット円の2D剛体回転：解析的符号付き距離参照",
+                "en": "2D rigid rotation of an off-center level-set circle: analytic signed-distance reference"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-level-set-rotation-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-level-set-rotation-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。 解析解 全て無次元、領域[0,1]²、内部φ<0。与えた非圧縮の剛体運動だけを解き、円は境界から離れます。外側2層のゴースト値は各RK段階で解析解を指定します。周期境界ではなく、内部のφは数値更新します。出力時刻0/.25/.5/.75/1、物理Courant数max(|u|+|v|)Δt/Δx≤.35。 円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。",
+                "en": "Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution. Analytic reference All quantities are nondimensional on[0,1]², with phi<0 inside. The prescribed divergence-free rigid motion keeps the circle away from the boundary. Two exterior ghost layers receive analytic data at each RK stage; this is not a periodic boundary. Every interior value is numerically advanced. Observe0/.25/.5/.75/1; max(|u|+|v|)dt/dx<=.35. Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution."
+              },
+              "relation": "same-problem",
+              "context_execution_id": "level-set-rotation",
+              "context_chapter_id": "level-set",
+              "role": "related"
+            }
+          ],
+          "code": [
+            {
+              "id": "level-set-translation",
+              "name": {
+                "ja": "レベルセット円の2D平行移動：界面・面積・再初期化",
+                "en": "2D level-set circle translation: interface, area and redistancing"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/level-set-translation/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/level-set-translation/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "level-set"
+              ],
+              "note": {
+                "ja": "中心(.3,.35)の半径.15の円を速度(.2,.1)でT=1まで平行移動します。32²/64²/128²のENO2＋Heunを用い、再初期化の有無、途中の界面位置、面積誤差と格子・刻みの細分化を比べます。",
+                "en": "Translate a radius.15 circle from(.3,.35) at velocity(.2,.1) toT=1. ENO2/Heun on32²/64²/128² grids compares optional redistancing, intermediate interfaces, geometric area and coupled grid/time refinement."
+              }
+            },
+            {
+              "id": "level-set-rotation",
+              "name": {
+                "ja": "偏心したレベルセット円の2D剛体回転",
+                "en": "2D rigid rotation of an off-center level-set circle"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/level-set-rotation/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/level-set-rotation/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "level-set"
+              ],
+              "note": {
+                "ja": "中心(.68,.5)の半径.15の円を(.5,.5)周りに角速度2πで1周回転させます。32²/64²/128²のENO2＋Heunを用い、再初期化の有無、途中の界面位置、面積誤差と格子・刻みの細分化を比べます。",
+                "en": "Rotate a radius.15 circle initially centered at(.68,.5) once about(.5,.5), with angular speed2pi. ENO2/Heun on32²/64²/128² grids compares optional redistancing, intermediate interfaces, geometric area and coupled grid/time refinement."
+              }
+            },
+            {
+              "id": "method-level-set",
+              "name": {
+                "ja": "レベルセット法：コード・検証",
+                "en": "Level-set method — code and checks"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/level-set/?lang=ja#method-execution-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/level-set/?lang=en#method-execution-en"
+              },
+              "availability": "source",
+              "method_ids": [
+                "level-set"
+              ],
+              "note": {
+                "ja": "手法固有の配布版と関連ソースを案内します。固定入力例は別の項目で区別します。",
+                "en": "Method-specific editions and related sources; fixed-input runs are listed separately."
+              }
+            }
+          ]
+        }
+      },
+      "directories": {
+        "methods": {
+          "name": {
+            "ja": "手法・コードの対応表",
+            "en": "Methods and code reference"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/?lang=en"
+          }
+        },
+        "equations": {
+          "name": {
+            "ja": "方程式",
+            "en": "Equations"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en"
+          }
+        },
+        "figures": {
+          "name": {
+            "ja": "テスト問題の名前と図",
+            "en": "Test problems by name and figure"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/?lang=en"
+          }
+        },
+        "references": {
+          "name": {
+            "ja": "厳密解・参照解",
+            "en": "Exact and reference solutions"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en"
+          }
+        },
+        "code": {
+          "name": {
+            "ja": "コード・入力・検証",
+            "en": "Code, inputs and validation"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en"
+          }
+        }
+      }
+    },
     "limiters": {
       "id": "limiters",
       "title": {
@@ -26744,6 +27299,467 @@
         }
       }
     },
+    "validation-level-set": {
+      "id": "validation-level-set",
+      "title": {
+        "ja": "レベルセット法：円の2D移流・剛体回転",
+        "en": "Level sets: 2D circle translation and rigid rotation"
+      },
+      "routes": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-level-set/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-level-set/"
+      },
+      "association_status": "registered",
+      "resource_navigation": {
+        "kind": "chapter",
+        "id": "validation-level-set",
+        "note": {
+          "ja": "この章に登録された手法・問題・実行例の関連資料です。 円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。",
+          "en": "Resources explicitly registered to the methods, problems and executions of this chapter. Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution."
+        },
+        "groups": {
+          "methods": [
+            {
+              "id": "level-set",
+              "name": {
+                "ja": "レベルセット法",
+                "en": "Level-set method"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/level-set/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/level-set/?lang=en"
+              },
+              "status": "educational-example",
+              "role": "execution"
+            }
+          ],
+          "equations": [
+            {
+              "id": "formulation-level-set-translation",
+              "name": {
+                "ja": "この実行例の式と条件",
+                "en": "This execution’s formulation and conditions"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/level-set-translation/?lang=ja#level-set-translation-ja-algorithm",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/level-set-translation/?lang=en#level-set-translation-en-algorithm"
+              },
+              "note": {
+                "ja": "移流は両モードで同じ2次ENO片側微分とHeun RK2。2階差分の絶対値でステンシルを選択します。再初期化ありでは物理時刻.1ごとに、呼出し開始時の平滑符号を固定した1次Godunov法をΔτ=.3Δxで5回実行。体積補正、界面への投影、φのclip、隠れたretry、内部の解析解への置換を行いません。",
+                "en": "Both modes use the same second-order ENO one-sided differences and Heun RK2, selecting stencils by absolute second differences. Optional redistancing occurs every.1 physical time: five first-order Godunov steps, dtau=.3dx, with the smoothed sign frozen per call. There is no volume correction, interface projection, phi clipping, hidden retry or analytic interior reset."
+              },
+              "role": "example-definition"
+            },
+            {
+              "id": "level-set-advection",
+              "name": {
+                "ja": "レベルセット界面の移流",
+                "en": "Level-set interface advection"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#level-set-advection-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#level-set-advection-en"
+              },
+              "note": {
+                "ja": "ゼロ等値線で界面を表す非保存形の移流式。円の平行移動・剛体回転を検証し、VOFの体積率輸送と区別します。",
+                "en": "Nonconservative transport of an implicit zero-contour interface. Dedicated circle translation and rigid rotation distinguish this from VOF fraction transport."
+              }
+            },
+            {
+              "id": "formulation-level-set-rotation",
+              "name": {
+                "ja": "この実行例の式と条件",
+                "en": "This execution’s formulation and conditions"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/level-set-rotation/?lang=ja#level-set-rotation-ja-algorithm",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/level-set-rotation/?lang=en#level-set-rotation-en-algorithm"
+              },
+              "note": {
+                "ja": "移流は両モードで同じ2次ENO片側微分とHeun RK2。2階差分の絶対値でステンシルを選択します。再初期化ありでは物理時刻.1ごとに、呼出し開始時の平滑符号を固定した1次Godunov法をΔτ=.3Δxで5回実行。体積補正、界面への投影、φのclip、隠れたretry、内部の解析解への置換を行いません。",
+                "en": "Both modes use the same second-order ENO one-sided differences and Heun RK2, selecting stencils by absolute second differences. Optional redistancing occurs every.1 physical time: five first-order Godunov steps, dtau=.3dx, with the smoothed sign frozen per call. There is no volume correction, interface projection, phi clipping, hidden retry or analytic interior reset."
+              },
+              "role": "example-definition"
+            }
+          ],
+          "figures": [
+            {
+              "id": "level-set-translation",
+              "name": {
+                "ja": "レベルセット円の2D平行移動：界面・面積・再初期化",
+                "en": "2D level-set circle translation: interface, area and redistancing"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/results/level-set-translation.png",
+                "en": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/results/level-set-translation.png"
+              },
+              "image": {
+                "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/results/level-set-translation.png",
+                "sha256": "4e99dec1449e65944b246b2280dd5439a5dbc59a99633b201f57e5cd0453507e",
+                "width": 1595,
+                "height": 1203,
+                "kind": "case-validation",
+                "caption": {
+                  "ja": "レベルセット円の2D平行移動：界面・面積・再初期化：この実行例の保存済み検証図。",
+                  "en": "2D level-set circle translation: interface, area and redistancing: saved validation figure for this execution."
+                }
+              },
+              "note": {
+                "ja": "この実行例自身の保存済み検証図です。",
+                "en": "The saved validation figure for this execution itself."
+              },
+              "problem_id": "level-set-circle"
+            },
+            {
+              "id": "level-set-rotation",
+              "name": {
+                "ja": "偏心したレベルセット円の2D剛体回転",
+                "en": "2D rigid rotation of an off-center level-set circle"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/results/level-set-rotation.png",
+                "en": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/results/level-set-rotation.png"
+              },
+              "image": {
+                "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/results/level-set-rotation.png",
+                "sha256": "54c6d02fd40c0bf702f413f8ce12aaefc43a5f911d681b42ad7634d6a26ebdde",
+                "width": 1595,
+                "height": 1203,
+                "kind": "case-validation",
+                "caption": {
+                  "ja": "偏心したレベルセット円の2D剛体回転：この実行例の保存済み検証図。",
+                  "en": "2D rigid rotation of an off-center level-set circle: saved validation figure for this execution."
+                }
+              },
+              "note": {
+                "ja": "この実行例自身の保存済み検証図です。",
+                "en": "The saved validation figure for this execution itself."
+              },
+              "problem_id": "level-set-circle"
+            },
+            {
+              "id": "level-set-circle",
+              "name": {
+                "ja": "レベルセットで表した円の移流",
+                "en": "Advection of a level-set circle"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/level-set-circle/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/level-set-circle/?lang=en"
+              },
+              "image": {
+                "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/results/level-set-overview.png",
+                "sha256": "88f72aed9b862da17107f9f1c07c1ca10b3f43e61342de01e03f55379723f730",
+                "width": 1450,
+                "height": 652,
+                "caption": {
+                  "ja": "実際の128²レベルセット場から抽出した円のゼロ等値線。左は平行移動、右は偏心円の一周回転。解析界面と移流単独・単純な再初期化ありを比較します。VOF計算ではなく、面積保存を補正していません。",
+                  "en": "Zero contours extracted from actual128² level-set fields: translation(left) and an off-center full rotation(right). Compare analytic interfaces against advection alone and simple redistancing. This is not a VOF calculation, and no area correction is applied."
+                },
+                "source_kind": "existing-figure"
+              },
+              "note": {
+                "ja": "円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。 テスト問題の代表図。条件と出典は問題別ページで確認できます。",
+                "en": "Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution. Representative test-problem figure; the problem page records conditions and provenance."
+              },
+              "context_chapter_id": "validation-level-set",
+              "role": "related"
+            }
+          ],
+          "references": [
+            {
+              "id": "validation-level-set-translation",
+              "name": {
+                "ja": "レベルセット円の2D平行移動：界面・面積・再初期化：参照・検証",
+                "en": "2D level-set circle translation: interface, area and redistancing — references and checks"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/level-set-translation/?lang=ja#level-set-translation-ja-validation",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/level-set-translation/?lang=en#level-set-translation-en-validation"
+              },
+              "note": {
+                "ja": "解析的な円の中心運動と符号付き距離を参照し、4つの正の共通時刻の最悪値を測定します。界面位置は格子辺上で線形補間したφ=0点の半径誤差、面積は格子中心間を三角形に分けた区分線形φの負領域から計算。初期の幾何学的な面積偏りも残します。|φ厳密|≤2Δx帯のφ誤差と距離勾配、各再初期化による面積変化、N64でのCourant半減も別記録。",
+                "en": "Analytic center motion and signed distance provide the reference. Take worst errors over the four positive common observation times. Interface error samples linearly interpolated grid-edge zeros; area comes from the negative portion of a piecewise-linear triangulation between grid centers, retaining initial geometric bias. Also record phi error and distance-gradient quality in|phi_exact|<=2dx, each redistancing area jump and a separateN64 CFL-halving sensitivity."
+              },
+              "role": "execution"
+            },
+            {
+              "id": "level-set-translation",
+              "name": {
+                "ja": "レベルセット円の2D平行移動：界面・面積・再初期化：解析的符号付き距離参照",
+                "en": "2D level-set circle translation: interface, area and redistancing: analytic signed-distance reference"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-level-set-translation-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-level-set-translation-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "解析解 全て無次元、領域[0,1]²、内部φ<0。与えた非圧縮の剛体運動だけを解き、円は境界から離れます。外側2層のゴースト値は各RK段階で解析解を指定します。周期境界ではなく、内部のφは数値更新します。出力時刻0/.25/.5/.75/1、物理Courant数max(|u|+|v|)Δt/Δx≤.35。 円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。",
+                "en": "Analytic reference All quantities are nondimensional on[0,1]², with phi<0 inside. The prescribed divergence-free rigid motion keeps the circle away from the boundary. Two exterior ghost layers receive analytic data at each RK stage; this is not a periodic boundary. Every interior value is numerically advanced. Observe0/.25/.5/.75/1; max(|u|+|v|)dt/dx<=.35. Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution."
+              },
+              "relation": "same-problem",
+              "context_execution_id": "level-set-translation"
+            },
+            {
+              "id": "level-set-rotation",
+              "name": {
+                "ja": "偏心したレベルセット円の2D剛体回転：解析的符号付き距離参照",
+                "en": "2D rigid rotation of an off-center level-set circle: analytic signed-distance reference"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-level-set-rotation-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-level-set-rotation-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "解析解 全て無次元、領域[0,1]²、内部φ<0。与えた非圧縮の剛体運動だけを解き、円は境界から離れます。外側2層のゴースト値は各RK段階で解析解を指定します。周期境界ではなく、内部のφは数値更新します。出力時刻0/.25/.5/.75/1、物理Courant数max(|u|+|v|)Δt/Δx≤.35。 円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。",
+                "en": "Analytic reference All quantities are nondimensional on[0,1]², with phi<0 inside. The prescribed divergence-free rigid motion keeps the circle away from the boundary. Two exterior ghost layers receive analytic data at each RK stage; this is not a periodic boundary. Every interior value is numerically advanced. Observe0/.25/.5/.75/1; max(|u|+|v|)dt/dx<=.35. Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution."
+              },
+              "relation": "same-problem",
+              "context_execution_id": "level-set-translation"
+            },
+            {
+              "id": "validation-level-set-rotation",
+              "name": {
+                "ja": "偏心したレベルセット円の2D剛体回転：参照・検証",
+                "en": "2D rigid rotation of an off-center level-set circle — references and checks"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/level-set-rotation/?lang=ja#level-set-rotation-ja-validation",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/level-set-rotation/?lang=en#level-set-rotation-en-validation"
+              },
+              "note": {
+                "ja": "解析的な円の中心運動と符号付き距離を参照し、4つの正の共通時刻の最悪値を測定します。界面位置は格子辺上で線形補間したφ=0点の半径誤差、面積は格子中心間を三角形に分けた区分線形φの負領域から計算。初期の幾何学的な面積偏りも残します。|φ厳密|≤2Δx帯のφ誤差と距離勾配、各再初期化による面積変化、N64でのCourant半減も別記録。",
+                "en": "Analytic center motion and signed distance provide the reference. Take worst errors over the four positive common observation times. Interface error samples linearly interpolated grid-edge zeros; area comes from the negative portion of a piecewise-linear triangulation between grid centers, retaining initial geometric bias. Also record phi error and distance-gradient quality in|phi_exact|<=2dx, each redistancing area jump and a separateN64 CFL-halving sensitivity."
+              },
+              "role": "execution"
+            },
+            {
+              "id": "level-set-translation",
+              "name": {
+                "ja": "レベルセット円の2D平行移動：界面・面積・再初期化：解析的符号付き距離参照",
+                "en": "2D level-set circle translation: interface, area and redistancing: analytic signed-distance reference"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-level-set-translation-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-level-set-translation-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "解析解 全て無次元、領域[0,1]²、内部φ<0。与えた非圧縮の剛体運動だけを解き、円は境界から離れます。外側2層のゴースト値は各RK段階で解析解を指定します。周期境界ではなく、内部のφは数値更新します。出力時刻0/.25/.5/.75/1、物理Courant数max(|u|+|v|)Δt/Δx≤.35。 円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。",
+                "en": "Analytic reference All quantities are nondimensional on[0,1]², with phi<0 inside. The prescribed divergence-free rigid motion keeps the circle away from the boundary. Two exterior ghost layers receive analytic data at each RK stage; this is not a periodic boundary. Every interior value is numerically advanced. Observe0/.25/.5/.75/1; max(|u|+|v|)dt/dx<=.35. Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution."
+              },
+              "relation": "same-problem",
+              "context_execution_id": "level-set-rotation"
+            },
+            {
+              "id": "level-set-rotation",
+              "name": {
+                "ja": "偏心したレベルセット円の2D剛体回転：解析的符号付き距離参照",
+                "en": "2D rigid rotation of an off-center level-set circle: analytic signed-distance reference"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-level-set-rotation-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-level-set-rotation-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "解析解 全て無次元、領域[0,1]²、内部φ<0。与えた非圧縮の剛体運動だけを解き、円は境界から離れます。外側2層のゴースト値は各RK段階で解析解を指定します。周期境界ではなく、内部のφは数値更新します。出力時刻0/.25/.5/.75/1、物理Courant数max(|u|+|v|)Δt/Δx≤.35。 円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。",
+                "en": "Analytic reference All quantities are nondimensional on[0,1]², with phi<0 inside. The prescribed divergence-free rigid motion keeps the circle away from the boundary. Two exterior ghost layers receive analytic data at each RK stage; this is not a periodic boundary. Every interior value is numerically advanced. Observe0/.25/.5/.75/1; max(|u|+|v|)dt/dx<=.35. Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution."
+              },
+              "relation": "same-problem",
+              "context_execution_id": "level-set-rotation"
+            },
+            {
+              "id": "level-set-translation",
+              "name": {
+                "ja": "レベルセット円の2D平行移動：界面・面積・再初期化：解析的符号付き距離参照",
+                "en": "2D level-set circle translation: interface, area and redistancing: analytic signed-distance reference"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-level-set-translation-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-level-set-translation-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。 解析解 全て無次元、領域[0,1]²、内部φ<0。与えた非圧縮の剛体運動だけを解き、円は境界から離れます。外側2層のゴースト値は各RK段階で解析解を指定します。周期境界ではなく、内部のφは数値更新します。出力時刻0/.25/.5/.75/1、物理Courant数max(|u|+|v|)Δt/Δx≤.35。",
+                "en": "Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution. Analytic reference All quantities are nondimensional on[0,1]², with phi<0 inside. The prescribed divergence-free rigid motion keeps the circle away from the boundary. Two exterior ghost layers receive analytic data at each RK stage; this is not a periodic boundary. Every interior value is numerically advanced. Observe0/.25/.5/.75/1; max(|u|+|v|)dt/dx<=.35."
+              },
+              "context_chapter_id": "validation-level-set",
+              "role": "related"
+            },
+            {
+              "id": "level-set-rotation",
+              "name": {
+                "ja": "偏心したレベルセット円の2D剛体回転：解析的符号付き距離参照",
+                "en": "2D rigid rotation of an off-center level-set circle: analytic signed-distance reference"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-level-set-rotation-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-level-set-rotation-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。 解析解 全て無次元、領域[0,1]²、内部φ<0。与えた非圧縮の剛体運動だけを解き、円は境界から離れます。外側2層のゴースト値は各RK段階で解析解を指定します。周期境界ではなく、内部のφは数値更新します。出力時刻0/.25/.5/.75/1、物理Courant数max(|u|+|v|)Δt/Δx≤.35。",
+                "en": "Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution. Analytic reference All quantities are nondimensional on[0,1]², with phi<0 inside. The prescribed divergence-free rigid motion keeps the circle away from the boundary. Two exterior ghost layers receive analytic data at each RK stage; this is not a periodic boundary. Every interior value is numerically advanced. Observe0/.25/.5/.75/1; max(|u|+|v|)dt/dx<=.35."
+              },
+              "context_chapter_id": "validation-level-set",
+              "role": "related"
+            },
+            {
+              "id": "problem-level-set-circle",
+              "name": {
+                "ja": "レベルセットで表した円の移流：参照・比較条件",
+                "en": "Advection of a level-set circle — references and comparison conditions"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/level-set-circle/?lang=ja#references-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/level-set-circle/?lang=en#references-en"
+              },
+              "note": {
+                "ja": "円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。 円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。",
+                "en": "Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution. Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution."
+              },
+              "context_chapter_id": "validation-level-set",
+              "role": "related"
+            },
+            {
+              "id": "level-set-translation",
+              "name": {
+                "ja": "レベルセット円の2D平行移動：界面・面積・再初期化：解析的符号付き距離参照",
+                "en": "2D level-set circle translation: interface, area and redistancing: analytic signed-distance reference"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-level-set-translation-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-level-set-translation-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。 解析解 全て無次元、領域[0,1]²、内部φ<0。与えた非圧縮の剛体運動だけを解き、円は境界から離れます。外側2層のゴースト値は各RK段階で解析解を指定します。周期境界ではなく、内部のφは数値更新します。出力時刻0/.25/.5/.75/1、物理Courant数max(|u|+|v|)Δt/Δx≤.35。 円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。",
+                "en": "Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution. Analytic reference All quantities are nondimensional on[0,1]², with phi<0 inside. The prescribed divergence-free rigid motion keeps the circle away from the boundary. Two exterior ghost layers receive analytic data at each RK stage; this is not a periodic boundary. Every interior value is numerically advanced. Observe0/.25/.5/.75/1; max(|u|+|v|)dt/dx<=.35. Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution."
+              },
+              "relation": "same-problem",
+              "context_problem_id": "level-set-circle",
+              "context_chapter_id": "validation-level-set",
+              "role": "related"
+            },
+            {
+              "id": "level-set-rotation",
+              "name": {
+                "ja": "偏心したレベルセット円の2D剛体回転：解析的符号付き距離参照",
+                "en": "2D rigid rotation of an off-center level-set circle: analytic signed-distance reference"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-level-set-rotation-ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-level-set-rotation-en"
+              },
+              "reference_kind": "analytic",
+              "note": {
+                "ja": "円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。 解析解 全て無次元、領域[0,1]²、内部φ<0。与えた非圧縮の剛体運動だけを解き、円は境界から離れます。外側2層のゴースト値は各RK段階で解析解を指定します。周期境界ではなく、内部のφは数値更新します。出力時刻0/.25/.5/.75/1、物理Courant数max(|u|+|v|)Δt/Δx≤.35。 円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。",
+                "en": "Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution. Analytic reference All quantities are nondimensional on[0,1]², with phi<0 inside. The prescribed divergence-free rigid motion keeps the circle away from the boundary. Two exterior ghost layers receive analytic data at each RK stage; this is not a periodic boundary. Every interior value is numerically advanced. Observe0/.25/.5/.75/1; max(|u|+|v|)dt/dx<=.35. Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution."
+              },
+              "relation": "same-problem",
+              "context_problem_id": "level-set-circle",
+              "context_chapter_id": "validation-level-set",
+              "role": "related"
+            }
+          ],
+          "code": [
+            {
+              "id": "level-set-translation",
+              "name": {
+                "ja": "レベルセット円の2D平行移動：界面・面積・再初期化",
+                "en": "2D level-set circle translation: interface, area and redistancing"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/level-set-translation/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/level-set-translation/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "level-set"
+              ],
+              "note": {
+                "ja": "中心(.3,.35)の半径.15の円を速度(.2,.1)でT=1まで平行移動します。32²/64²/128²のENO2＋Heunを用い、再初期化の有無、途中の界面位置、面積誤差と格子・刻みの細分化を比べます。",
+                "en": "Translate a radius.15 circle from(.3,.35) at velocity(.2,.1) toT=1. ENO2/Heun on32²/64²/128² grids compares optional redistancing, intermediate interfaces, geometric area and coupled grid/time refinement."
+              }
+            },
+            {
+              "id": "level-set-rotation",
+              "name": {
+                "ja": "偏心したレベルセット円の2D剛体回転",
+                "en": "2D rigid rotation of an off-center level-set circle"
+              },
+              "url": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/level-set-rotation/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/level-set-rotation/?lang=en"
+              },
+              "availability": "run",
+              "method_ids": [
+                "level-set"
+              ],
+              "note": {
+                "ja": "中心(.68,.5)の半径.15の円を(.5,.5)周りに角速度2πで1周回転させます。32²/64²/128²のENO2＋Heunを用い、再初期化の有無、途中の界面位置、面積誤差と格子・刻みの細分化を比べます。",
+                "en": "Rotate a radius.15 circle initially centered at(.68,.5) once about(.5,.5), with angular speed2pi. ENO2/Heun on32²/64²/128² grids compares optional redistancing, intermediate interfaces, geometric area and coupled grid/time refinement."
+              }
+            }
+          ]
+        }
+      },
+      "directories": {
+        "methods": {
+          "name": {
+            "ja": "手法・コードの対応表",
+            "en": "Methods and code reference"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/?lang=en"
+          }
+        },
+        "equations": {
+          "name": {
+            "ja": "方程式",
+            "en": "Equations"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en"
+          }
+        },
+        "figures": {
+          "name": {
+            "ja": "テスト問題の名前と図",
+            "en": "Test problems by name and figure"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/?lang=en"
+          }
+        },
+        "references": {
+          "name": {
+            "ja": "厳密解・参照解",
+            "en": "Exact and reference solutions"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en"
+          }
+        },
+        "code": {
+          "name": {
+            "ja": "コード・入力・検証",
+            "en": "Code, inputs and validation"
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en"
+          }
+        }
+      }
+    },
     "validation-low-mach": {
       "id": "validation-low-mach",
       "title": {
@@ -34993,17 +36009,17 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-chapter-links.json": "4f41459ddda500d9cbddb7a8406dfee5a698346307d8a3fb50ce670d3ef72c9e",
-    "catalog/atlas-depth-expansion.json": "6080528b544ab1d60956b6e382b12b1505fe80fdbd66bac8791f78014878748f",
-    "catalog/atlas-detailed-reading.json": "f5e4b7e39f89322182359aa6adb9ac4af24a52337e07ca40b3933623f769b6eb",
-    "catalog/atlas-equations.json": "50b68b43fdcae4cdf3e2a2a5062a7cd809503761c248275a52d1a58622f7f426",
+    "catalog/atlas-chapter-links.json": "e6fa1c6edd7219b8af60c0265f559582b65f3e0b22f65ddaef9f302dd7cc7e3d",
+    "catalog/atlas-depth-expansion.json": "b5c4fcb308e4627460f59b96428960b22b508d3a593d480c4c2bee1b60373aeb",
+    "catalog/atlas-detailed-reading.json": "d771642c889ef2e2aaf3830978486f6c96481cfe095960f8a90c3a90deeb7385",
+    "catalog/atlas-equations.json": "d8e02f24bdff318fa82d98349dbb8cca828bac2ac9e502473349d28d6a982a86",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "catalog/atlas-execution-examples.json": "b67c3635f42660eaa208073af8addf82777b26337e1b7f2792987f4116fb37c2",
     "catalog/atlas-goals.json": "706721b859ac559fa4cdfca75b9ef00edc2e70fe590de3ee378bfc1bf89eacdd",
-    "catalog/atlas-methods.json": "2c08a1023555ec2ee08a5d1c9c86acc037a6efd2a215b97a240ec63f058bdf13",
-    "catalog/atlas-problem-links.json": "fca94497ae867bfefbd5d9557802dfd3291f186f382c5ba3fed42cf6c3230e6d",
-    "catalog/atlas-reference-supplements.json": "c8f2a0dfab619ae566386acd51d81c2164afa49c5d410ca15a3ef4d2d373b6c7",
-    "catalog/atlas-test-problems.json": "fbd338a47e91a37a1881d5d8d06125971331434f742f539e3a21f339ad37958a",
+    "catalog/atlas-methods.json": "90c03bcde9b6a77ec07835aba8cce6b64b07389d8d0a7c643f8c24289ab54bb6",
+    "catalog/atlas-problem-links.json": "3314d935ba123b50c27000e2241083d929e74f11edde2960a18c763fb16190bf",
+    "catalog/atlas-reference-supplements.json": "b356e31d1df63c45aca440754d0a179767a5b1e4ae7ae879ddc4fa51c3f9f6f0",
+    "catalog/atlas-test-problems.json": "8c2198ce3cf88056b9b5a78b796f676f2e64c773882eb8e911c178a0578fb79b",
     "code/numerical-methods-atlas/2026-11-21/atlas-code-2026-11-21.zip": "f17c0cfcf6956a2677dcdc874235806ae9c5453514be02e6d3274732bcdebe4f",
     "code/numerical-methods-atlas/2026-11-21/numart/coordinates.py": "c05903b96e57667c9a492aabc5c9ab1375ad37f774108ce189d4f43a3225d862",
     "code/numerical-methods-atlas/2026-11-21/numart/geometry.py": "ce62b61ff5989643e87fbdbda8507179b1c0c94af094c91c09d142c1a2a23a84",
@@ -35153,6 +36169,13 @@
     "code/validated-examples/2026-11-23/forward-step/results/result.json": "636e179813165fbe620caadd825ac699973ea2dde897d13aed8b2d22102e6704",
     "code/validated-examples/2026-11-23/forward-step/source-manifest.json": "77546e263d8e08266cedb57ef5e128a3bee68d7b9597fb56bed2eee5dcbec6dc",
     "code/validated-examples/2026-11-23/forward-step/verification.json": "f40317a2721c2048c6174bf41c03adf5e3eddae07e19ae95e6ed5210a9b01914",
+    "code/validated-examples/2026-11-23/level-set/atlas-level-set-2026-11-23.zip": "46c2c2fd0aea98eb4cc4facef8d30cc81ebd6b1b9e0d965f7ef79167a06c048b",
+    "code/validated-examples/2026-11-23/level-set/cases.json": "b077db49bb69055b9612a2153f7d9ea4d9c1025f0bf13b0c94157d2e9235e655",
+    "code/validated-examples/2026-11-23/level-set/results/level-set-rotation.png": "54c6d02fd40c0bf702f413f8ce12aaefc43a5f911d681b42ad7634d6a26ebdde",
+    "code/validated-examples/2026-11-23/level-set/results/level-set-translation.png": "4e99dec1449e65944b246b2280dd5439a5dbc59a99633b201f57e5cd0453507e",
+    "code/validated-examples/2026-11-23/level-set/results/result.json": "7108491721386902c6adaa5ea5c1c709b31a204060346d0c93a06efd4a4a5a31",
+    "code/validated-examples/2026-11-23/level-set/source-manifest.json": "7055bd243b522c8de50c2091a983c61b734a589105af49d27d63f0519f9075e4",
+    "code/validated-examples/2026-11-23/level-set/verification.json": "d70c2ed415b9e61bac769c0060a7ee1e7a4cf4b0b8ce1a6beabd4bca09ef7042",
     "code/validated-examples/2026-11-23/low-mach/atlas-low-mach-2026-11-23.zip": "717b2ceed76d37cf4c1e570a7a022e1a17d66fce3048648a3edde4164a1513aa",
     "code/validated-examples/2026-11-23/low-mach/cases.json": "8a33dd861d6c635afeb526a2823fa33e88dc84fb49f1ae8a5ba19cbad32ae058",
     "code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex.png": "38635f161af26efd48e0c0a2bc463974e3e81e6b506770a4c6f6c19b24be1970",
@@ -35181,12 +36204,12 @@
     "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/equations/index.json": "2de0c3d439eda662c0d53c03713d92a9afcfd5a29d5162f8bec65377731e2738",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "c56f91764e5569d11300598e0d11abfa518dbc90e7273ad2442f5830c5927e84",
-    "numerical-methods-atlas/locales/messages.json": "42899e78dbd904c35b906e46319159ab12c5da0e6a1adcdbcde0a9ebf76668cd",
-    "numerical-methods-atlas/methods/index.json": "6d01d603f68e5d1baee4c9e0c6af955b489253c02afb6744f70dd30aa2647029",
-    "numerical-methods-atlas/problems/index.json": "6dee26f06e3bbfad26533bdf4f61ff5a565e484f28d441da955b1d4fa861c01e",
-    "numerical-methods-atlas/solutions/index.json": "7a450b5c789024c0430876f1cf6535b173263b77abda94fc8985298233eaa71a",
-    "numerical-methods-atlas/validation/index.json": "84089ed143160ffc616760df24917f65b443f9894fd7504ef00efde88cb5b9de"
+    "numerical-methods-atlas/equations/index.json": "efce9b9a316cc60a98c0c185d4096f01ec6d958a8084ad7678843fbb7d137f33",
+    "numerical-methods-atlas/gallery/preview-manifest.json": "2ce7e000d21e5d4497616b5c3a991069abbdb59c9dabb796b7e5689a20a3e7cf",
+    "numerical-methods-atlas/locales/messages.json": "4784e17e3dc4bcfebca46d86b9664fc71578e90061aacc0f10c1e5d976404640",
+    "numerical-methods-atlas/methods/index.json": "a6ec0f1b03f8baba8cdfa9d29b5044f6d7671e28accf79437184d2241f47014b",
+    "numerical-methods-atlas/problems/index.json": "cbdd52b37c7bf23bea351d6220f9fd47a3e6406ebc68a7d2c7477e3c885a96a7",
+    "numerical-methods-atlas/solutions/index.json": "f6fe96cbf238376f8b9685d6feb4bcaecf11c36f8d8b3c879deebca46c7b3227",
+    "numerical-methods-atlas/validation/index.json": "e483df6eca7d46d4c37755ab37c8bd180b6bc10edf226eefe9ec9a442e27b641"
   }
 }

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "edition": "2026-11-22",
-  "case_count": 54,
+  "case_count": 56,
   "releases": [
     {
       "group": "foundations",
@@ -353,6 +353,21 @@
       "case_ids": [
         "cavity-ghia-re100",
         "wall-manufactured"
+      ],
+      "tests": 22
+    },
+    {
+      "group": "level-set",
+      "edition": "2026-11-23",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/",
+      "archive": "atlas-level-set-2026-11-23.zip",
+      "archive_sha256": "46c2c2fd0aea98eb4cc4facef8d30cc81ebd6b1b9e0d965f7ef79167a06c048b",
+      "manifest_sha256": "7055bd243b522c8de50c2091a983c61b734a589105af49d27d63f0519f9075e4",
+      "verification_sha256": "d70c2ed415b9e61bac769c0060a7ee1e7a4cf4b0b8ce1a6beabd4bca09ef7042",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "level-set-rotation",
+        "level-set-translation"
       ],
       "tests": 22
     }

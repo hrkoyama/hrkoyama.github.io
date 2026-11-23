@@ -17,8 +17,8 @@
         "en": "Fluid dynamics"
       },
       "scope": {
-        "ja": "Euler衝撃波・滑らかな渦などに複数の教育用コードと保存結果があります。固定入力での検証内容は問題ごとに異なります。 追加の固定例はWENOのε、浅水の地形・乾燥床、Re100壁面流と製造解を扱います。",
-        "en": "Several educational codes and saved results cover Euler shocks and smooth vortices. Fixed-input validation differs by problem. Additional fixed cases cover WENO epsilon, shallow-water bed/dry states, and Re100 wall flow with manufactured verification."
+        "ja": "Euler衝撃波・滑らかな渦などに複数の教育用コードと保存結果があります。固定入力での検証内容は問題ごとに異なります。 追加の固定例はWENOのε、浅水の地形・乾燥床、Re100壁面流と製造解を扱います。 円のレベルセット移流は指定した速度による界面輸送の別検証です。",
+        "en": "Several educational codes and saved results cover Euler shocks and smooth vortices. Fixed-input validation differs by problem. Additional fixed cases cover WENO epsilon, shallow-water bed/dry states, and Re100 wall flow with manufactured verification. Level-set circle transport is separate interface evidence in a prescribed velocity."
       },
       "examples": [
         "sod",
@@ -56,7 +56,9 @@
         "swashes-topography",
         "dry-bed-dam-break",
         "cavity-ghia-re100",
-        "wall-manufactured"
+        "wall-manufactured",
+        "level-set-translation",
+        "level-set-rotation"
       ]
     },
     {

@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "group": "level-set",
+  "edition": "2026-11-23",
+  "verified_on": "2026-11-23",
+  "source_manifest_sha256": "7055bd243b522c8de50c2091a983c61b734a589105af49d27d63f0519f9075e4",
+  "archive": {
+    "file": "atlas-level-set-2026-11-23.zip",
+    "sha256": "46c2c2fd0aea98eb4cc4facef8d30cc81ebd6b1b9e0d965f7ef79167a06c048b",
+    "bytes": 1505018,
+    "archive_directory": "atlas-level-set-2026-11-23"
+  },
+  "archive_sha256": "46c2c2fd0aea98eb4cc4facef8d30cc81ebd6b1b9e0d965f7ef79167a06c048b",
+  "returncode": 0,
+  "passed_tests": 22,
+  "tests": 22,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "level-set-rotation",
+    "level-set-translation"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 7.420967375001055,
+  "independent_rerun_seconds": 15.759091957999772,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

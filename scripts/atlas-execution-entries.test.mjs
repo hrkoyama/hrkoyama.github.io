@@ -106,8 +106,8 @@ test('every verified example is reachable from words, formulas and its image thr
       assert.ok(badge?.includes('href="'+target+'"'),item.id+' direct run badge');
     }
   }
-  assert.equal(json('numerical-methods-atlas/equations/index.json').equations.length,49);
-  assert.equal(gallery.items.length,91);
+  assert.equal(json('numerical-methods-atlas/equations/index.json').equations.length,50);
+  assert.equal(gallery.items.length,92);
 });
 
 test('the concise homepage leads to the full execution chooser with the existing starting calculations',()=>{
