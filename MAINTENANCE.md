@@ -494,3 +494,11 @@ Nohの公開版は `code/validated-examples/2026-11-23-r3/noh/`。初回の未�
 ExactPackを使う際は、元の問題・解の原著と別に Thrussell–Ferguson (2023), *ExactPack: A python library of exact analytic solutions*, SoftwareX24,101560, DOI `10.1016/j.softx.2023.101560` と公式 `lanl/ExactPack` を引用する。実際のcommit、モジュール、パラメータ、ソースハッシュ、実行した照合とライセンスを保存する。Nohの参照はcommit `9bacc477eb791e959c9621e771fc7a725db755fa` の `noh1.py` と、γ=5/3・密度1・内向き速度1の実行範囲に限定する。解析評価器との一致を、別の数値Eulerソルバーによる検証やExactPack全テスト実行と呼ばない。コードのBSD-3-Clauseとソフト論文の利用条件を混同しない。
 
 教科書案内に併置する関連論文は `catalog/atlas-textbook-related-papers.json` と `build-atlas-textbook-papers.py` から生成する。DOI `10.1007/BF02462380` はAblowitz–Zeppetella (1979)のFisher特殊進行波の原著**論文**であり、書籍件数や表紙・ISBNを作らない。書誌は既存の `ablowitz1979` を再利用し、同じ論文を重複登録しない。
+
+## 2D RKDGのAIエージェント向け開発キット（2026-11-23）
+
+入口は `/numerical-methods-atlas/agent-kits/rkdg2d/`。日英の `TESTSET.md` / `TESTSET-en.md` をAIへ渡し、機械可読 `manifest.json` と不変な `/code/rkdg2d/2026-11-23-r1/atlas-rkdg-agent-kit.zip`、SHA256副ファイルからコード・固定入力・独立参照・評価器を取得する。`catalog/atlas-agent-kits.json` と `scripts/build-atlas-agent-kits.py` が案内HTML/JSONを生成し、通常refreshの索引とサイトマップに反映する。トップの入口は `catalog/atlas-home.json` と共通 `home-overview.js`、コード案内は `build-atlas-execution-guide.py`、AI用直リンクは `llms.txt` に接続する。共通22実行例や全体の手法・問題件数へキットを別問題として加算しない。
+
+小さな新規PDEによるクイック検査、保存結果のハッシュ照合と再判定、全固定入力の新規再計算を区別する。元48科学ケースと波形4診断の合格を保持し、別の反転x追加試験は6件中5件合格・Shu–Osher p3不合格のまま公開する。固定閾値を緩めず、全モードの反転差と密度差を保持する。C++17解析I/O・1/2/4分割fixtureを、実MPI実行や他言語PDEの追試と呼ばない。完全2D結合は斜め波とDouble Mach、厳密1D入力は解析的縮約として範囲を明記する。
+
+更新は旧ZIPや候補SHAを上書きせず、新しい版・manifest・MD・SHA目録を揃える。builderは保存物の存在・ハッシュ・既知の合否だけを確認し、PDE・独立参照生成は起動しない。公開後はMD・manifest・図・ZIPを匿名取得して照合し、その取得ZIPから軽量実計算と保存判定を行う。ポスター本体、非公開草稿やそのQRはこのキットへ含めない。

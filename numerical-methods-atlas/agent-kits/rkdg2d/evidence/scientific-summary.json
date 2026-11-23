@@ -1,0 +1,339 @@
+{
+  "passed": true,
+  "case_counts": {
+    "smooth": 12,
+    "directional": 24,
+    "double_mach": 9,
+    "temporal": 3,
+    "negative_controls": 1
+  },
+  "scientific_case_count": 48,
+  "candidate_sha256": "4ed984a01c42fe9bb657c09c61361b086682d6aa611e9f478bf996c0b29b81d4",
+  "criteria_sha256": "7219904b7460efa32f1f1ea03b6cd729e9e3b200e7c60643d0cfa08ec866d4af",
+  "observed_orders_32_to_64": {
+    "1": {
+      "l1": 2.007084841503362,
+      "l2": 2.0013341442301256,
+      "linf": 1.9871586180941403
+    },
+    "2": {
+      "l1": 2.9816503754843438,
+      "l2": 2.974669979866226,
+      "linf": 2.9764076555381536
+    },
+    "3": {
+      "l1": 4.013214061826186,
+      "l2": 4.008793861561816,
+      "linf": 3.940415282566403
+    }
+  },
+  "finest_directional": [
+    {
+      "problem": "shu-osher",
+      "p": 1,
+      "axis": 0,
+      "n": 256,
+      "time": 1.8,
+      "error_l1": 0.01123183145375658,
+      "transverse": 0.0,
+      "conservation_defect": 6.82209478077879e-15,
+      "min_density": 0.7998670240507773,
+      "min_pressure": 0.8552259312952704,
+      "reference_kind": "independent-fv",
+      "axis_difference": 0.0
+    },
+    {
+      "problem": "shu-osher",
+      "p": 2,
+      "axis": 0,
+      "n": 256,
+      "time": 1.8,
+      "error_l1": 0.0062527823489915875,
+      "transverse": 0.0,
+      "conservation_defect": 1.829099004440784e-15,
+      "min_density": 0.8000046120543748,
+      "min_pressure": 0.99713861767431,
+      "reference_kind": "independent-fv",
+      "axis_difference": 0.0
+    },
+    {
+      "problem": "shu-osher",
+      "p": 3,
+      "axis": 0,
+      "n": 256,
+      "time": 1.8,
+      "error_l1": 0.006663041994280967,
+      "transverse": 0.0,
+      "conservation_defect": 9.697821343335855e-15,
+      "min_density": 0.8000041568676356,
+      "min_pressure": 0.9582676920426314,
+      "reference_kind": "independent-fv",
+      "axis_difference": 0.0
+    },
+    {
+      "problem": "sod",
+      "p": 1,
+      "axis": 0,
+      "n": 256,
+      "time": 0.2,
+      "error_l1": 0.002119219790509544,
+      "transverse": 0.0,
+      "conservation_defect": 8.881784197001252e-16,
+      "min_density": 0.12489130596899259,
+      "min_pressure": 0.09986643755361478,
+      "reference_kind": "exact-riemann",
+      "axis_difference": 0.0
+    },
+    {
+      "problem": "sod",
+      "p": 2,
+      "axis": 0,
+      "n": 256,
+      "time": 0.2,
+      "error_l1": 0.0018633773704560695,
+      "transverse": 0.0,
+      "conservation_defect": 4.844609562000683e-16,
+      "min_density": 0.12498313147940941,
+      "min_pressure": 0.09997656749608956,
+      "reference_kind": "exact-riemann",
+      "axis_difference": 0.0
+    },
+    {
+      "problem": "sod",
+      "p": 3,
+      "axis": 0,
+      "n": 256,
+      "time": 0.2,
+      "error_l1": 0.0018899522143065001,
+      "transverse": 0.0,
+      "conservation_defect": 8.583559826778312e-16,
+      "min_density": 0.12496398174558022,
+      "min_pressure": 0.09996029567630829,
+      "reference_kind": "exact-riemann",
+      "axis_difference": 0.0
+    }
+  ],
+  "finest_double_mach": [
+    {
+      "p": 1,
+      "ny": 32,
+      "time": 0.2,
+      "error_l1": 0.012423133387954293,
+      "reference_grid_change_l1": 0.00955251332639019,
+      "conservation_defect": 4.432519219487035e-14,
+      "min_density": 1.2868301337223396,
+      "min_pressure": 4.5316462943256755e-10,
+      "reference_kind": "independent-fv"
+    },
+    {
+      "p": 2,
+      "ny": 32,
+      "time": 0.2,
+      "error_l1": 0.012656729073089753,
+      "reference_grid_change_l1": 0.00955251332639019,
+      "conservation_defect": 3.6344646799425194e-14,
+      "min_density": 1.2978454235951402,
+      "min_pressure": 2.875816251801666e-11,
+      "reference_kind": "independent-fv"
+    },
+    {
+      "p": 3,
+      "ny": 32,
+      "time": 0.2,
+      "error_l1": 0.012519700056675733,
+      "reference_grid_change_l1": 0.00955251332639019,
+      "conservation_defect": 4.468638111443899e-14,
+      "min_density": 1.2925341286298522,
+      "min_pressure": 3.507287238413426e-11,
+      "reference_kind": "independent-fv"
+    }
+  ],
+  "temporal_error_ratios": [
+    16.006001891077258,
+    14.234464074084885
+  ],
+  "temporal_effective_orders": [
+    4.000541079677748,
+    3.8313162716897144
+  ],
+  "max_normalized_conservation_defect": 4.468638111443899e-14,
+  "max_transverse": 0.0,
+  "max_axis_difference": 0.0,
+  "references": [
+    {
+      "coarse": "shu-osher-n800",
+      "fine": "shu-osher-n1600",
+      "comparison": "conservative equal-area restriction of finer cell averages to coarse grid",
+      "rho_relative_l1": 0.0022771919123757006,
+      "rho_linf_difference": 0.43659984191943857,
+      "all_variables_relative_l1": [
+        0.00227719191237569,
+        0.0023078800369759934,
+        0.0,
+        0.0011936914876412995
+      ]
+    },
+    {
+      "coarse": "shu-osher-n1600",
+      "fine": "shu-osher-n3200",
+      "comparison": "conservative equal-area restriction of finer cell averages to coarse grid",
+      "rho_relative_l1": 0.0009951359279730737,
+      "rho_linf_difference": 0.2723945573874398,
+      "all_variables_relative_l1": [
+        0.000995135927973064,
+        0.0010195573323173426,
+        0.0,
+        0.0005718084682948526
+      ]
+    },
+    {
+      "coarse": "double-mach-ny64",
+      "fine": "double-mach-ny128",
+      "comparison": "conservative equal-area restriction of finer cell averages to coarse grid",
+      "rho_relative_l1": 0.009552513326390188,
+      "rho_linf_difference": 4.43170433870166,
+      "all_variables_relative_l1": [
+        0.009552513326392169,
+        0.011498421619569425,
+        0.019476683107928043,
+        0.01221739078967083
+      ]
+    }
+  ],
+  "structural_and_regression_tests": 195,
+  "scope": [
+    "All measurements are tied to the same frozen candidate source.",
+    "Exact invariant 1D cases exercise the analytic reduction; oblique wave and DMR exercise full 2D.",
+    "Density errors and sampled positivity at specified points; no continuous-point positivity theorem.",
+    "Shock tests do not claim second-to-fourth global order or fine-vortex agreement.",
+    "Actual initial failures and repairs retained; criteria were not relaxed.",
+    "Mac/Python3.9.6/NumPy2.0.2 full campaign.",
+    "Supplemental post-shock waveform criteria add four diagnostics on existing directional runs, not four new PDE runs.",
+    "C++ analytic I/O and 1/2/4 partition fixtures were executed; no actual foreign-language or MPI PDE run."
+  ],
+  "supplemental_criteria_sha256": "275c7ffc386bc4cc791148b498e3872e9a67398f2a175bd3ae9a418559cf63c3",
+  "supplemental_resolution_report": "resolution-v3.json",
+  "supplemental_diagnostics_count": 4,
+  "supplemental_resolution_cases": [
+    {
+      "p": 2,
+      "axis": 0,
+      "n": 256,
+      "time": 1.8,
+      "region": [
+        1.2,
+        2.2
+      ],
+      "global_relative_l1_density": 0.0062527823489915875,
+      "metrics": {
+        "roi_cell_count": 25,
+        "selected_center_range": [
+          1.23046875,
+          2.16796875
+        ],
+        "relative_l1_density": 0.02370192421532485,
+        "max_absolute_density_difference": 0.16966925393177323,
+        "demeaned_standard_deviation_ratio": 0.8015110658357409,
+        "pearson_correlation": 0.9961415817431619,
+        "candidate_mean": 3.864125011779346,
+        "reference_mean": 3.865360403903172,
+        "candidate_standard_deviation": 0.38952113448223774,
+        "reference_standard_deviation": 0.485983476817106
+      },
+      "passed": true,
+      "failures": [],
+      "raw_array_sha256": "b17682394d29b2aa7b33f002936864ee353d361384d57994916f102888202675"
+    },
+    {
+      "p": 2,
+      "axis": 1,
+      "n": 256,
+      "time": 1.8,
+      "region": [
+        1.2,
+        2.2
+      ],
+      "global_relative_l1_density": 0.0062527823489915875,
+      "metrics": {
+        "roi_cell_count": 25,
+        "selected_center_range": [
+          1.23046875,
+          2.16796875
+        ],
+        "relative_l1_density": 0.02370192421532485,
+        "max_absolute_density_difference": 0.16966925393177323,
+        "demeaned_standard_deviation_ratio": 0.8015110658357409,
+        "pearson_correlation": 0.9961415817431619,
+        "candidate_mean": 3.864125011779346,
+        "reference_mean": 3.865360403903172,
+        "candidate_standard_deviation": 0.38952113448223774,
+        "reference_standard_deviation": 0.485983476817106
+      },
+      "passed": true,
+      "failures": [],
+      "raw_array_sha256": "b2c4813128d5868a25eb0c93c1736044c6a04db2c2bae3b17f4e3e36dc924fbf"
+    },
+    {
+      "p": 3,
+      "axis": 0,
+      "n": 256,
+      "time": 1.8,
+      "region": [
+        1.2,
+        2.2
+      ],
+      "global_relative_l1_density": 0.006663041994280967,
+      "metrics": {
+        "roi_cell_count": 25,
+        "selected_center_range": [
+          1.23046875,
+          2.16796875
+        ],
+        "relative_l1_density": 0.024096439894433233,
+        "max_absolute_density_difference": 0.18225057781673293,
+        "demeaned_standard_deviation_ratio": 0.812866724385283,
+        "pearson_correlation": 0.993030863971317,
+        "candidate_mean": 3.8646454066376417,
+        "reference_mean": 3.865360403903172,
+        "candidate_standard_deviation": 0.3950397969056921,
+        "reference_standard_deviation": 0.485983476817106
+      },
+      "passed": true,
+      "failures": [],
+      "raw_array_sha256": "8335d592bb5081796ecbbbce9bd4f4f3529777c56b27002b4ea4f19ae2204ad7"
+    },
+    {
+      "p": 3,
+      "axis": 1,
+      "n": 256,
+      "time": 1.8,
+      "region": [
+        1.2,
+        2.2
+      ],
+      "global_relative_l1_density": 0.006663041994280967,
+      "metrics": {
+        "roi_cell_count": 25,
+        "selected_center_range": [
+          1.23046875,
+          2.16796875
+        ],
+        "relative_l1_density": 0.024096439894433233,
+        "max_absolute_density_difference": 0.18225057781673293,
+        "demeaned_standard_deviation_ratio": 0.812866724385283,
+        "pearson_correlation": 0.993030863971317,
+        "candidate_mean": 3.8646454066376417,
+        "reference_mean": 3.865360403903172,
+        "candidate_standard_deviation": 0.3950397969056921,
+        "reference_standard_deviation": 0.485983476817106
+      },
+      "passed": true,
+      "failures": [],
+      "raw_array_sha256": "8c0f27c15b0a3a601ba7001dfd1b3a7df460fc73f5ebb18ce32ca958bcc7d686"
+    }
+  ],
+  "mpi_pde_executed": false,
+  "foreign_pde_executed": false,
+  "cpp_io_fixture_executed": true,
+  "quantum_cases_run": 0
+}
