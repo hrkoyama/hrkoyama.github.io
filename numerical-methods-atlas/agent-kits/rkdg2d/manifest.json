@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "release": "2026-11-23-r1",
+  "kit_url": "https://hrkoyama.github.io/numerical-methods-atlas/agent-kits/rkdg2d/",
+  "archive_url": "https://hrkoyama.github.io/code/rkdg2d/2026-11-23-r1/atlas-rkdg-agent-kit.zip",
+  "candidate": "agent-kits/rkdg2d/generated/rkdg2d.py",
+  "candidate_sha256": "4ed984a01c42fe9bb657c09c61361b086682d6aa611e9f478bf996c0b29b81d4",
+  "original_48_passed": true,
+  "waveform_4_passed": true,
+  "reflection_6_passed": false,
+  "reflection_passed_count": 5,
+  "reflection_baseline_only": true,
+  "smoke_criteria_sha256": "54f397cbb8c875781ad8fc4bffd243db908bc9144ebcaf33a0b062089d4462c8",
+  "python_minimum": "3.9",
+  "tested_python": "3.9.6",
+  "tested_numpy": "2.0.2",
+  "license": "MIT",
+  "history_note": "accepted/ and assembly-notes are historical v2; current source is explicitly pinned above",
+  "archive_sha256": "dce2866531edd11b0b2b9efe50901f940aafb52228305e4193c27d4b01680f40",
+  "archive_bytes": 26998411,
+  "archive_file_count": 294,
+  "archive_root": "atlas-rkdg-agent-kit",
+  "checksum_url": "https://hrkoyama.github.io/code/rkdg2d/2026-11-23-r1/atlas-rkdg-agent-kit.zip.sha256",
+  "entry_ja": "https://hrkoyama.github.io/numerical-methods-atlas/agent-kits/rkdg2d/TESTSET.md",
+  "entry_en": "https://hrkoyama.github.io/numerical-methods-atlas/agent-kits/rkdg2d/TESTSET-en.md",
+  "commands": {
+    "smoke": "python scripts/run_rkdg_smoke.py --output outputs/fresh-smoke.json",
+    "saved_original": "python validation/rkdg/evaluate.py outputs/rkdg-2026-11-23/accepted-v3/metrics.json --solver agent-kits/rkdg2d/generated/rkdg2d.py --output outputs/saved-verdict.json",
+    "saved_waveform": "python validation/rkdg/resolution.py --campaign outputs/rkdg-2026-11-23/accepted-v3 --solver agent-kits/rkdg2d/generated/rkdg2d.py --output outputs/saved-resolution-verdict.json"
+  },
+  "reflection_supplement": {
+    "integrity_passed": true,
+    "qualification_passed": false,
+    "passed_cases": 5,
+    "total_cases": 6,
+    "baseline_only": true,
+    "candidate_sha256": "4ed984a01c42fe9bb657c09c61361b086682d6aa611e9f478bf996c0b29b81d4",
+    "criteria_sha256": "ab7986e1eaf768f63fb239bf5a8d766d4c4fc5778389bdc42b5eb294594bf18a",
+    "raw_arrays_checked": 12,
+    "verdict_sha256": "bf223d2215230fefd675193e661888f90105d059d8b8cab9d1ea2b5db0d9cc9b",
+    "cases": [
+      {
+        "problem": "shu-osher",
+        "degree": 1,
+        "passed": true,
+        "measured": {
+          "scaled_modal_max": 8.486310641443724e-14,
+          "density_average_relative_l1": 4.308272101357479e-15,
+          "density_average_scaled_linf": 5.136991184119094e-14
+        }
+      },
+      {
+        "problem": "shu-osher",
+        "degree": 2,
+        "passed": true,
+        "measured": {
+          "scaled_modal_max": 1.8639855072033544e-13,
+          "density_average_relative_l1": 2.585636970808494e-14,
+          "density_average_scaled_linf": 1.8639855072033544e-13
+        }
+      },
+      {
+        "problem": "shu-osher",
+        "degree": 3,
+        "passed": false,
+        "measured": {
+          "scaled_modal_max": 1.483264972141412e-10,
+          "density_average_relative_l1": 6.508390421529158e-12,
+          "density_average_scaled_linf": 1.483264972141412e-10
+        }
+      },
+      {
+        "problem": "sod",
+        "degree": 1,
+        "passed": true,
+        "measured": {
+          "scaled_modal_max": 3.7141875582931765e-15,
+          "density_average_relative_l1": 8.810467787433313e-16,
+          "density_average_scaled_linf": 3.7141875582931765e-15
+        }
+      },
+      {
+        "problem": "sod",
+        "degree": 2,
+        "passed": true,
+        "measured": {
+          "scaled_modal_max": 4.495489989986742e-15,
+          "density_average_relative_l1": 1.5643350812253067e-15,
+          "density_average_scaled_linf": 3.8857409135907005e-15
+        }
+      },
+      {
+        "problem": "sod",
+        "degree": 3,
+        "passed": true,
+        "measured": {
+          "scaled_modal_max": 9.416799721501932e-13,
+          "density_average_relative_l1": 2.230594181584764e-14,
+          "density_average_scaled_linf": 8.434292683139168e-13
+        }
+      }
+    ],
+    "pde_rerun_by_packager": false
+  },
+  "archive": {
+    "url": "https://hrkoyama.github.io/code/rkdg2d/2026-11-23-r1/atlas-rkdg-agent-kit.zip",
+    "sha256": "dce2866531edd11b0b2b9efe50901f940aafb52228305e4193c27d4b01680f40",
+    "bytes": 26998411,
+    "root_directory": "atlas-rkdg-agent-kit"
+  },
+  "guides": {
+    "ja": {
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/agent-kits/rkdg2d/TESTSET.md",
+      "sha256": "4e37b4cc66b5f1410794b5f25c882e9323df102afd8883ea07726a3d7f5991b2"
+    },
+    "en": {
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/agent-kits/rkdg2d/TESTSET-en.md",
+      "sha256": "b301aef4215248f06e6d28e6f880f5e4ee76063b21df21a9265eebb0cd87ccc1"
+    }
+  }
+}

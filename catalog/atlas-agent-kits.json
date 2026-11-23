@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "rkdg2d",
+  "edition": "2026-11-23-r1",
+  "route": "/numerical-methods-atlas/agent-kits/rkdg2d/",
+  "archive": "/code/rkdg2d/2026-11-23-r1/atlas-rkdg-agent-kit.zip",
+  "source_sha256": "4ed984a01c42fe9bb657c09c61361b086682d6aa611e9f478bf996c0b29b81d4",
+  "title": {"ja": "2D RKDG：コードと固定テストをAIへ渡す", "en": "2D RKDG: give your AI the code and fixed tests"},
+  "lead": {"ja": "この案内のMarkdownを利用者のAIエージェントへ渡してください。完成したPythonコードと固定試験を取得し、実行・改修・結果の確認を始められます。", "en": "Give the Markdown guide to your AI agent. It can retrieve the working Python implementation and fixed tests, run them, make changes and check the results."},
+  "scope": {"ja": "理想気体の2D Euler方程式、γ=1.4、直交格子のLegendre Q1/Q2/Q3。HLL、特性TVB/minmod（M=100）、指定点での正値性制限、SSPRK(5,4)。", "en": "Ideal-gas 2D Euler, gamma=1.4, Cartesian Legendre Q1/Q2/Q3; HLL flux, characteristic TVB/minmod (M=100), positivity scaling at specified points and SSPRK(5,4)."},
+  "baseline": {"scientific_cases": 48, "waveform_diagnostics": 4, "reflection_cases": 6, "reflection_passed": 5, "l2_orders": [2.001334, 2.974670, 4.008794]},
+  "figures": [
+    {"file": "convergence.png", "caption": {"ja": "斜めエントロピー波：p1/p2/p3のL₂次数は2.001 / 2.975 / 4.009。モードから独立に密度を再構成し、厳密解と比較した保存結果。", "en": "Oblique entropy wave: measured p1/p2/p3 L2 orders are 2.001 / 2.975 / 4.009. Stored results use independently reconstructed density and an analytic reference."}},
+    {"file": "directional-forward-reverse-x.png", "caption": {"ja": "Sod・Shu–Osher：青は正向き、橙は新たに計算した逆向き。両方とも同じ通常のx座標で表示。反転して戻した差は別の追加基準で判定し、6件中5件が合格。", "en": "Sod and Shu–Osher: blue is the original direction, orange a fresh reversed-direction calculation, both on the same ascending x axis. A separate mapped-back symmetry test passes five of six cases."}},
+    {"file": "double-mach.png", "caption": {"ja": "Double Mach reflection：128×32セルのp3と、512×128セルの独立FV参照。広域構造を比較し、微細な渦の一致は主張しない。", "en": "Double Mach reflection: p3 on 128x32 cells versus an independent FV reference on 512x128 cells. The check covers broad structure, not fine-scale vortex agreement."}}
+  ],
+  "references": [
+    {"label": "Sod (1978)", "doi": "10.1016/0021-9991(78)90023-2"},
+    {"label": "Harten, Lax & van Leer (1983)", "doi": "10.1137/1025002"},
+    {"label": "Woodward & Colella (1984)", "doi": "10.1016/0021-9991(84)90142-6"},
+    {"label": "Shu & Osher (1989)", "doi": "10.1016/0021-9991(89)90222-2"},
+    {"label": "Toro, Spruce & Speares (1994)", "doi": "10.1007/BF01414629"},
+    {"label": "Jiang & Shu (1996)", "doi": "10.1006/jcph.1996.0130"},
+    {"label": "Cockburn & Shu (1998)", "doi": "10.1006/jcph.1998.5892"},
+    {"label": "Spiteri & Ruuth (2002)", "doi": "10.1137/S0036142901389025"},
+    {"label": "Zhang & Shu (2010)", "doi": "10.1016/j.jcp.2010.08.016"}
+  ]
+}

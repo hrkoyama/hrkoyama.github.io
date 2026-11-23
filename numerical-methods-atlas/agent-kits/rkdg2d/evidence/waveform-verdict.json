@@ -1,0 +1,145 @@
+{
+  "passed": true,
+  "supplemental": true,
+  "supplemental_version": "supplemental-shu-resolution-1",
+  "resolution_criteria_sha256": "275c7ffc386bc4cc791148b498e3872e9a67398f2a175bd3ae9a418559cf63c3",
+  "original_acceptance_sha256": "7219904b7460efa32f1f1ea03b6cd729e9e3b200e7c60643d0cfa08ec866d4af",
+  "failures": [],
+  "cases": [
+    {
+      "p": 2,
+      "axis": 0,
+      "n": 256,
+      "time": 1.8,
+      "region": [
+        1.2,
+        2.2
+      ],
+      "global_relative_l1_density": 0.0062527823489915875,
+      "metrics": {
+        "roi_cell_count": 25,
+        "selected_center_range": [
+          1.23046875,
+          2.16796875
+        ],
+        "relative_l1_density": 0.02370192421532485,
+        "max_absolute_density_difference": 0.16966925393177323,
+        "demeaned_standard_deviation_ratio": 0.8015110658357409,
+        "pearson_correlation": 0.9961415817431619,
+        "candidate_mean": 3.864125011779346,
+        "reference_mean": 3.865360403903172,
+        "candidate_standard_deviation": 0.38952113448223774,
+        "reference_standard_deviation": 0.485983476817106
+      },
+      "passed": true,
+      "failures": [],
+      "raw_array_sha256": "b17682394d29b2aa7b33f002936864ee353d361384d57994916f102888202675"
+    },
+    {
+      "p": 2,
+      "axis": 1,
+      "n": 256,
+      "time": 1.8,
+      "region": [
+        1.2,
+        2.2
+      ],
+      "global_relative_l1_density": 0.0062527823489915875,
+      "metrics": {
+        "roi_cell_count": 25,
+        "selected_center_range": [
+          1.23046875,
+          2.16796875
+        ],
+        "relative_l1_density": 0.02370192421532485,
+        "max_absolute_density_difference": 0.16966925393177323,
+        "demeaned_standard_deviation_ratio": 0.8015110658357409,
+        "pearson_correlation": 0.9961415817431619,
+        "candidate_mean": 3.864125011779346,
+        "reference_mean": 3.865360403903172,
+        "candidate_standard_deviation": 0.38952113448223774,
+        "reference_standard_deviation": 0.485983476817106
+      },
+      "passed": true,
+      "failures": [],
+      "raw_array_sha256": "b2c4813128d5868a25eb0c93c1736044c6a04db2c2bae3b17f4e3e36dc924fbf"
+    },
+    {
+      "p": 3,
+      "axis": 0,
+      "n": 256,
+      "time": 1.8,
+      "region": [
+        1.2,
+        2.2
+      ],
+      "global_relative_l1_density": 0.006663041994280967,
+      "metrics": {
+        "roi_cell_count": 25,
+        "selected_center_range": [
+          1.23046875,
+          2.16796875
+        ],
+        "relative_l1_density": 0.024096439894433233,
+        "max_absolute_density_difference": 0.18225057781673293,
+        "demeaned_standard_deviation_ratio": 0.812866724385283,
+        "pearson_correlation": 0.993030863971317,
+        "candidate_mean": 3.8646454066376417,
+        "reference_mean": 3.865360403903172,
+        "candidate_standard_deviation": 0.3950397969056921,
+        "reference_standard_deviation": 0.485983476817106
+      },
+      "passed": true,
+      "failures": [],
+      "raw_array_sha256": "8335d592bb5081796ecbbbce9bd4f4f3529777c56b27002b4ea4f19ae2204ad7"
+    },
+    {
+      "p": 3,
+      "axis": 1,
+      "n": 256,
+      "time": 1.8,
+      "region": [
+        1.2,
+        2.2
+      ],
+      "global_relative_l1_density": 0.006663041994280967,
+      "metrics": {
+        "roi_cell_count": 25,
+        "selected_center_range": [
+          1.23046875,
+          2.16796875
+        ],
+        "relative_l1_density": 0.024096439894433233,
+        "max_absolute_density_difference": 0.18225057781673293,
+        "demeaned_standard_deviation_ratio": 0.812866724385283,
+        "pearson_correlation": 0.993030863971317,
+        "candidate_mean": 3.8646454066376417,
+        "reference_mean": 3.865360403903172,
+        "candidate_standard_deviation": 0.3950397969056921,
+        "reference_standard_deviation": 0.485983476817106
+      },
+      "passed": true,
+      "failures": [],
+      "raw_array_sha256": "8c0f27c15b0a3a601ba7001dfd1b3a7df460fc73f5ebb18ce32ca958bcc7d686"
+    }
+  ],
+  "scope": "Four supplemental wave-resolution diagnostic checks on existing PDE runs; original 48-case acceptance/history is not rewritten.",
+  "source_bindings": {
+    "solver_sha256": "4ed984a01c42fe9bb657c09c61361b086682d6aa611e9f478bf996c0b29b81d4",
+    "campaign_metrics_sha256": "a32397dd375ba57102fb88a259e4f709ab9ed8afe9e648f437c40d610d0365eb",
+    "runner_sha256": "fbb861341aa65e7196b01110bcff0f5684be09e7e87613de8bc6e107f14e27e0",
+    "support_sha256": {
+      "validation/rkdg/evaluate.py": "d8b95e3326f2db8eb59125dbb04566de4ec5a55bdc21c8c06406879c00791511",
+      "numart/riemann.py": "702ce9e08fbef67ed77363e8603e64f2da8a979d3b5abd6ffa62ab78344c95cf",
+      "numart/equations.py": "d1b589ad4b8a31d316c20926ef7104664609d789f31f6fb239c1d74bb310b619"
+    },
+    "reference_sha256": "b6c51a2abed1ae7eb71d4ebcb1dfcdf1348686521f8a2b8d8941ed638413bd46",
+    "resolution_evaluator_sha256": "37b6cac903d5acfe26bb4a3d6bb7c2d6ef401293f9792e48a0bd2ae5461fcad0"
+  },
+  "original_verdict_record": {
+    "passed": true,
+    "sha256": "e710385e638b189875a40ce04308d15b1bdcd5832994e8ad04c34d11cfa836aa",
+    "note": "Read-only historical record; this supplemental result does not alter it."
+  },
+  "diagnostic_checks": 4
+}

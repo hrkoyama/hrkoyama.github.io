@@ -1,0 +1,53 @@
+name: RKDG public agent kit Linux verification
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'code/rkdg2d/**'
+      - 'numerical-methods-atlas/agent-kits/rkdg2d/**'
+      - 'scripts/verify-rkdg-agent-kit-public.py'
+      - '.github/workflows/rkdg-agent-kit-linux.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: rkdg-agent-kit-public-linux
+  cancel-in-progress: false
+
+jobs:
+  downloaded-kit:
+    if: github.repository == 'hrkoyama/hrkoyama.github.io'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      PYTHONNOUSERSITE: '1'
+      PIP_NO_CACHE_DIR: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install lightweight pinned test dependencies
+        run: python -m pip install --only-binary=:all: numpy==2.0.2 pytest==8.4.2
+      - name: Download and verify the published kit, then run fresh smoke and saved checks
+        run: >-
+          python scripts/verify-rkdg-agent-kit-public.py
+          --expected-manifest-file numerical-methods-atlas/agent-kits/rkdg2d/manifest.json
+          --output-dir "${{ runner.temp }}/rkdg-public-verification"
+          --wait-seconds 360
+      - name: Save checks and outputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rkdg-public-linux-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/rkdg-public-verification/report.json
+            ${{ runner.temp }}/rkdg-public-verification/*.log
+            ${{ runner.temp }}/rkdg-public-verification/extracted/atlas-rkdg-agent-kit/outputs/public-verification/
+          retention-days: 90
