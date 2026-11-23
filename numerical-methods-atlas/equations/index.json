@@ -1749,13 +1749,13 @@
             "en": "Mach-3 forward-facing step"
           },
           "image": {
-            "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/comparisons/step-m3-mc.png",
-            "sha256": "3002eb94449b6fe7835da19cc825840ddf6c25818c19a0b5840606ef72a6889b",
-            "width": 1300,
-            "height": 910,
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/results/forward-step-m3-preview.png",
+            "sha256": "14874a4887433c8cfc247d436ce37bc305cf5a6f88f86a9fe54df23827a522a1",
+            "width": 1312,
+            "height": 744,
             "caption": {
-              "ja": "保存済みMach 3前向きステップの計算場。",
-              "en": "Stored computed field for the Mach-3 forward-facing step."
+              "ja": "実際の2次元Euler計算の密度場。Mach 3、γ=1.4、T=4、240×80セル。固体段差を除いて描きます。角のエントロピー補正は使わず、微細なすべり線・渦の収束を保証する図ではありません。",
+              "en": "Density from the actual 2D Euler computation: Mach3,gamma=1.4,T=4,240×80 cells. The solid step is masked. No corner entropy correction is used; the picture does not establish convergence of fine slip lines or vortices."
             },
             "source_kind": "existing-figure"
           },
@@ -1767,7 +1767,35 @@
             "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/forward-step/?lang=ja#code-ja",
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/forward-step/?lang=en#code-en"
           },
-          "executions": []
+          "executions": [
+            {
+              "id": "forward-step-m3",
+              "kind": "supplement",
+              "name": {
+                "ja": "Mach 3前向きステップ：壁面収支と多格子検証",
+                "en": "Mach3 forward step: wall budgets and grid verification"
+              },
+              "scope": {
+                "ja": "実際の2次元Euler有限体積計算を60×20・120×40・240×80でT=4まで行い、別実装のMUSCL有限格子参照と比較します。段差の垂直面・上面を含む実際の数値流束から4保存量の収支を評価し、角のエントロピー補正を加えない変種として図とコードを公開します。",
+                "en": "Actual2D Euler finite volumes evolve60x20,120x40 and240x80 meshes toT4, comparing separately implemented MUSCL finite-grid references. Actual numerical wall fluxes, including the vertical and horizontal step faces, close all four conserved budgets. Figures and code explicitly use the variant without corner entropy correction."
+              },
+              "method_ids": [
+                "hll",
+                "heun"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/forward-step-m3/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/forward-step-m3/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/atlas-forward-step-2026-11-23.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "γ=1.4、ρ=1.4、u=3、v=0、p=1の流入を、[0,3]×[0,1]から高さ.2・開始位置x=.6の段差を除いた2次元Euler系でT=4まで更新します。",
+            "en": "Two-dimensional Euler flow with gamma=1.4 and inflow rho=1.4,u=3,v=0,p=1 evolves to T=4 in [0,3]×[0,1] minus a step of height .2 starting at x=.6."
+          }
         },
         {
           "id": "entropy-2d",
@@ -5227,13 +5255,13 @@
   },
   "execution_example_count": 22,
   "problem_routes_source_sha256": {
-    "catalog/atlas-depth-expansion.json": "15ba0967cb9d417ebbcdb027ef0adac50cff449887cfe723bdba6b221a1d5b63",
+    "catalog/atlas-depth-expansion.json": "5fc8fd929c0e3a3bba7c5d25e1fc3b159bc0976f0cc6a2f9cc96bc5276aa3c4e",
     "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
-    "catalog/atlas-methods.json": "c3515d3b333e4f47134814008ed467d86a8327cb2b7ac3575f6e03ba6ea05d88",
-    "catalog/atlas-problem-links.json": "a777db7cf0eff50bf24dbd750d589e8b4fcc45ea95deca8933b89067e8a9c424",
-    "catalog/atlas-reference-supplements.json": "23b6ab3b573b28fe9d7116f18a5fe83cd0d7a5760acf14558843711754cf4ee9",
-    "catalog/atlas-test-problems.json": "6585a905ba296ab9731d1bbbc1a9cc43877b0254339b2867c28928eb9cc47720",
+    "catalog/atlas-methods.json": "c1693b8a8eaa994d89dda3e3d08f3a8a7bf4031c643d5a292defb3f88fa5da3f",
+    "catalog/atlas-problem-links.json": "6b99c0b338881c7dc687b58c9634944a4f8d38cf96e238b3d720216ddb6561e7",
+    "catalog/atlas-reference-supplements.json": "2fcdee41dc267924a94ef38cbeedc77d0e014b84302edb1013630f6937d63443",
+    "catalog/atlas-test-problems.json": "900e7e140ad24506138dc36df2a733ce2022cb7a771fc28b1d0975f3331142bd",
     "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
     "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
     "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
@@ -5309,10 +5337,15 @@
     "code/validated-examples/2026-11-23/double-mach/results/result.json": "3b4a36b9b3e10e7a6984130ee24bb7d5707de0fe24facff3a49b8eabd71ea5fe",
     "code/validated-examples/2026-11-23/double-mach/source-manifest.json": "32ba5521149368b729b31796dcc0006c8fd743e840e1e36533a867a47170d8c8",
     "code/validated-examples/2026-11-23/double-mach/verification.json": "c588b4ce7f539d53b1d5eec4413ce3a1dc104eff975e4adddf0c544460dbb49e",
+    "code/validated-examples/2026-11-23/forward-step/atlas-forward-step-2026-11-23.zip": "ae69647a4e63c75c0888a6daf15835d348e9d74de58b5e59926e359e9ffc52cd",
+    "code/validated-examples/2026-11-23/forward-step/cases.json": "e7397c94e5d170170b09a6baa4fdf9276d83419118e456cc172ad6c5cf63b363",
+    "code/validated-examples/2026-11-23/forward-step/results/result.json": "636e179813165fbe620caadd825ac699973ea2dde897d13aed8b2d22102e6704",
+    "code/validated-examples/2026-11-23/forward-step/source-manifest.json": "77546e263d8e08266cedb57ef5e128a3bee68d7b9597fb56bed2eee5dcbec6dc",
+    "code/validated-examples/2026-11-23/forward-step/verification.json": "f40317a2721c2048c6174bf41c03adf5e3eddae07e19ae95e6ed5210a9b01914",
     "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "cf3fa51285928331e2f8efbce596408bac617b3a5b8e70ef11e6f497f24ce5f5"
+    "numerical-methods-atlas/gallery/preview-manifest.json": "c8453ca9add9e833d9a71c09f901eaba04029ee887c8b275ea9287246a2ce3ee"
   },
   "supplemental_case_ids": [
     "fitzhugh-nagumo",

@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "primary_operator_imports": false,
+  "planned_runs": [
+    {
+      "ny": 80,
+      "nx": 240,
+      "final_time": 4.0
+    },
+    {
+      "ny": 160,
+      "nx": 480,
+      "final_time": 4.0
+    }
+  ],
+  "fixed_method": "C++17 -O3 independent primitive-MUSCL generalizedminmodtheta1.5 / DavisHLL / Heun",
+  "fixed_cfl": 0.3,
+  "no_entropy_corner_reset": true,
+  "no_state_floors": true,
+  "no_step_rejections_or_retries": true,
+  "stage_checks": "finite positive fluid rho,p at both updated Heun stages; failed stage raw array is retained and run stops",
+  "acceptance": {
+    "maximum_relative_conservation_residual": 2e-10,
+    "all_fluid_states_finite_positive": true,
+    "state_floor_count": 0,
+    "rejected_steps": 0,
+    "step_budget_each": 100000,
+    "pde_timeout_seconds_each": 120
+  },
+  "reference_increment_scope": "grid sensitivity diagnostic; primary contract determines numerical-reference adequacy before any main PDE execution",
+  "revision": 2,
+  "declared_at_utc": "2026-11-23T05:13:53.867298+00:00",
+  "declared_before_any_reference_compilation_or_unit_or_pde_execution": false,
+  "declared_before_this_revision_compilation_or_unit_or_pde_execution": true,
+  "prior_reference_pde_executed": true,
+  "this_revision_reference_pde_executed_yet": false,
+  "prior_attempt": {
+    "path": "attempts/01/preservation.json",
+    "sha256": "86960473b344c7cc8b43e6c089eb8941f6e3d5b4707e3728998aa0fe659a46ed",
+    "completed_ny": [
+      80
+    ],
+    "incomplete_ny": 160,
+    "status": "timeout120seconds"
+  },
+  "change_from_first_attempt": "Only require(bool,const std::string&) -> require(bool,const char*) diagnostic message argument; no numerical arithmetic/criteria/timeout change",
+  "files_sha256": {
+    "reference.cpp": "66e523f5486179f2c79ac0ad21a35a11856e55a9101e03b8d3bca76cccbd5996",
+    "run-reference.py": "50e48cfd28c289a06d788581c7703439cde1736edac33c0c6c646ef6490fc9d5",
+    "convert.py": "9029b5cabb5dc416069c4d77ee7161baa794ee6de68587b91053fa6fead890f6",
+    "definition.json": "220c5ccda2855780cfcb6751ee1bae28c2a1638317ec1d9f8abaf5131838451a",
+    "citations.json": "60beabb12a0ce232c4ba2cca5008d92c3e9288e35f254c5fe69586cfad7a7402",
+    "REFERENCE-LICENSE.txt": "07cca125623617c85a41e9a21a2b114d693c61737bc353e3ca98587431e26ee6",
+    "README.md": "20089aee73786a8353c395bb5df35e79413c7a411eb87753edc001246f51281d",
+    "attempts/01/preservation.json": "86960473b344c7cc8b43e6c089eb8941f6e3d5b4707e3728998aa0fe659a46ed"
+  }
+}

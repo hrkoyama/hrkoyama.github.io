@@ -4,8 +4,8 @@
   "title": "Learn by field",
   "description": "Read the theory, derivations and worked examples by field, from foundations to related methods and verification.",
   "source": "/catalog/atlas-reading-index.json",
-  "source_sha256": "749c67bf6b26ca8035ea28679aefa626c09aa18ddd424c258cfea00c1fef173d",
-  "chapter_count": 97,
+  "source_sha256": "7cf1835ee6d12382e69086870a06b26d166f1c74dd5c0fca396ecc2865f72d10",
+  "chapter_count": 98,
   "groups": [
     {
       "id": "foundations-time",
@@ -483,6 +483,17 @@
             "en"
           ],
           "search_text": "nasa-2d NASAの2次元検証・妥当性確認問題集 NASA 2D verification and validation case catalog 流体・衝撃波・定常解法 Fluids, shocks and steady solvers"
+        },
+        {
+          "id": "validation-forward-step",
+          "title": "Mach-3 forward-facing step: lightweight 2D verification",
+          "url": "/numerical-methods-atlas/en/read/validation-forward-step/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-forward-step Mach 3前向きステップ：軽量な2次元検証 Mach-3 forward-facing step: lightweight 2D verification 流体・衝撃波・定常解法 Fluids, shocks and steady solvers"
         },
         {
           "id": "validation-noh",

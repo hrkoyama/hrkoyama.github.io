@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "validation_passed": true,
+  "result_sha256": "636e179813165fbe620caadd825ac699973ea2dde897d13aed8b2d22102e6704",
+  "plot_sha256": "019bfd4d7057e018dda4dc3e265d5eaab5b33235b10201c05fe0c18562e6b9e1",
+  "files_sha256": {
+    "field-ny20.npz": "216e36e4ac3ddda64834708b9f700fe5fff553009e4317e3b9b117658f03e35c",
+    "history-ny20.json": "da67d03f0cc2376a624caa45cbc8950fb9dc16f46e7a997e80cd4538a58c5400",
+    "field-ny40.npz": "a868fe10337469ac2c380b85de2f9f80608b413d0d8aac693cf340603685806b",
+    "history-ny40.json": "acdb07cea22bb1b2786afba58891dc6ae6d0e1e9e5cc65331f9dfe4b357c35f2",
+    "field-ny80.npz": "a7046532fe9d3bcce1c9b74c90403f33ceda69249cf1db2f05799a5697c70a1b",
+    "history-ny80.json": "770dad34c6a3a371e6e8fdb52b1240b336631790c77a2d345b0868e8bb72e04e"
+  },
+  "actual_cartesian_field": true,
+  "geometry": "Actual2D aligned forward-facing step; solid cells masked, never interpolated as fluid",
+  "nx": 240,
+  "ny": 80,
+  "figures": [
+    {
+      "path": "forward-step-m3-preview.png",
+      "sha256": "14874a4887433c8cfc247d436ce37bc305cf5a6f88f86a9fe54df23827a522a1"
+    },
+    {
+      "path": "forward-step-m3-preview.svg",
+      "sha256": "d9d35d3e7dfb9562107d603b81e1851109b47095e468ff34b10299da5ad5dce4"
+    },
+    {
+      "path": "forward-step-m3-preview.pdf",
+      "sha256": "34ad0262e0e9befa4679d651af172f4aaed1dc9d72bb1f13d25e82c3fb788157"
+    },
+    {
+      "path": "forward-step-m3.png",
+      "sha256": "8f4ad22c5af00347914f9dfee7a84f9a07fdf9da5394674937013fad5f94bf16"
+    },
+    {
+      "path": "forward-step-m3.svg",
+      "sha256": "949f3f36abd4590a117a252d23ff70f65445322bc55535d41bf858357a1c7f6d"
+    },
+    {
+      "path": "forward-step-m3.pdf",
+      "sha256": "b868918df301e6655e4caf7b93c17ab21fb3801808adb5b6e227b16ac644f537"
+    }
+  ]
+}

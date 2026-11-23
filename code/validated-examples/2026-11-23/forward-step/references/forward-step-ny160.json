@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "ny": 160,
+  "nx": 480,
+  "time": 4,
+  "steps": 15800,
+  "wall_seconds": 65.0964205,
+  "gamma": 1.4,
+  "cfl": 0.3,
+  "muscl_theta": 1.5,
+  "minimum_density_all_stages": 0.1655647883356254,
+  "minimum_pressure_all_stages": 0.17965946845461886,
+  "slope_rescalings": 0,
+  "state_floor_count": 0,
+  "rejected_steps": 0,
+  "corner_entropy_reset": false,
+  "initial_integral": [
+    3.5280000000021103,
+    10.583999999987709,
+    0,
+    22.175999999996993
+  ],
+  "final_integral": [
+    6.321847393857796,
+    12.258484663628378,
+    0.5730344152469931,
+    35.828716069279714
+  ],
+  "boundary_net_integral": [
+    2.79384739385781,
+    1.6744846636289725,
+    0.5730344152469781,
+    13.652716069279823
+  ],
+  "conservation_residual": [
+    -2.1240786907128495e-12,
+    1.1696643653635874e-11,
+    1.4988010832439613e-14,
+    2.8990143619012088e-12
+  ],
+  "conservation_relative": [
+    3.3599018742157074e-13,
+    9.54167172745297e-13,
+    1.4988010832439613e-14,
+    8.091315235230781e-14
+  ],
+  "npz_sha256": "ce8397260c8fd467dc4c1e2dcef07d237a7ec4a5640454c75a34feeac095dca0",
+  "raw_state_sha256": "d08ef793318e06ae9bf38bf32af5739637db4904af1a9d9dd53ab0f197fa10f6",
+  "reference_source_sha256": "66e523f5486179f2c79ac0ad21a35a11856e55a9101e03b8d3bca76cccbd5996",
+  "pre_run_contract_sha256": "82bdc5bf092db1e71979775ca172d30e53f260c02593e2d5901e32a40fc258a8",
+  "array_interpretation": "q[x,y,4] finite-volume cell averages; dummy solid states excluded from norms",
+  "method": "independent C++17 primitive-MUSCL generalized minmod theta1.5 / HLL / Heun",
+  "diagnostics": {
+    "rejected_steps": 0,
+    "state_floor_count": 0,
+    "slope_rescalings": 0
+  },
+  "new_reference_pde_executed": true
+}

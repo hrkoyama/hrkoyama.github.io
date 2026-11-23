@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "frozen_before_first_pde_or_unit_execution": true,
+  "limits": {
+    "balance": 3e-12,
+    "wall_mass_energy_flux": 2e-13,
+    "finest_density_l1": 0.18,
+    "finest_pressure_l1": 0.18,
+    "minimum_density_slope": 0.15,
+    "reference_increment_l1": 0.08,
+    "reference_to_primary_ratio": 0.8
+  },
+  "diagnostics_only": ["full-domain density Linf", "fixed corner-region density/pressure/entropy extrema", "individual inlet/outlet/wall impulse budgets"],
+  "scope": "Finite-grid difference from separately implemented higher-order FV references, not exact2D error or a proof of pure spatial order. No corner entropy fix, viscosity, fine slip-line or roll-up convergence claim."
+}

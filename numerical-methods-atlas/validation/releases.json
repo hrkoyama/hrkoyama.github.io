@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "edition": "2026-11-22",
-  "case_count": 44,
+  "case_count": 45,
   "releases": [
     {
       "group": "foundations",
@@ -241,6 +241,20 @@
         "double-mach-reflection"
       ],
       "tests": 21
+    },
+    {
+      "group": "forward-step",
+      "edition": "2026-11-23",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/",
+      "archive": "atlas-forward-step-2026-11-23.zip",
+      "archive_sha256": "ae69647a4e63c75c0888a6daf15835d348e9d74de58b5e59926e359e9ffc52cd",
+      "manifest_sha256": "77546e263d8e08266cedb57ef5e128a3bee68d7b9597fb56bed2eee5dcbec6dc",
+      "verification_sha256": "f40317a2721c2048c6174bf41c03adf5e3eddae07e19ae95e6ed5210a9b01914",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "forward-step-m3"
+      ],
+      "tests": 24
     }
   ]
 }

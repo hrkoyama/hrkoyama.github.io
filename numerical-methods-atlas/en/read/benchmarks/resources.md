@@ -197,6 +197,10 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Full 2D Euler finite volumes evolve the existing Double Mach initial/boundary data to T=.2 on64x16,128x32 and256x64 cells. Compare a separately written finite-grid reference, actual boundary-flux budgets, an upper incident-front position and a fixed near-wall region.
+- [Mach3 forward step: wall budgets and grid verification](<https://hrkoyama.github.io/numerical-methods-atlas/validation/forward-step-m3/?lang=en>)
+  availability: run
+
+  Actual2D Euler finite volumes evolve60x20,120x40 and240x80 meshes toT4, comparing separately implemented MUSCL finite-grid references. Actual numerical wall fluxes, including the vertical and horizontal step faces, close all four conserved budgets. Figures and code explicitly use the variant without corner entropy correction.
 - [Godunov-type finite volumes — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/godunov/?lang=en#method-execution-en>)
   availability: source
 

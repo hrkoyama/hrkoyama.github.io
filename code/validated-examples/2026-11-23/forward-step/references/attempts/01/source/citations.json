@@ -1,0 +1,51 @@
+[
+  {
+    "id": "woodward1984",
+    "author": "Paul Woodward and Phillip Colella",
+    "year": 1984,
+    "title": "The numerical simulation of two-dimensional fluid flow with strong shocks",
+    "journal": "Journal of Computational Physics",
+    "volume": "54",
+    "number": "1",
+    "pages": "115–173",
+    "doi": "10.1016/0021-9991(84)90142-6",
+    "url": "https://www.sciencedirect.com/science/article/pii/0021999184901426",
+    "type": "article",
+    "role": "standard-strong-shock-benchmark-origin",
+    "review_level": "previously-reviewed-publisher-metadata; setup cross-checked against Cockburn-Shu1991 primary report",
+    "review": {
+      "ja": "強衝撃波の標準比較の原著として引用。今回の出版社ページは取得拒否、原著本文を直接通読したとは主張せず、前向きステップの設定と角処理の区別はCockburn–Shu(1991)の一次資料で確認した。",
+      "en": "Cited as the original standard strong-shock comparison. The publisher page rejected retrieval in this task; no direct full-paper reading is claimed. Setup and the distinction between corner treatments were checked in the primary Cockburn–Shu(1991) report."
+    }
+  },
+  {
+    "id": "cockburn-shu1991-step",
+    "author": "Bernardo Cockburn and Chi-Wang Shu",
+    "year": 1991,
+    "title": "The P¹-RKDG Method for Two-Dimensional Euler Equations of Gas Dynamics",
+    "report": "NASA Contractor Report 187542; ICASE Report91-32",
+    "url": "https://ntrs.nasa.gov/citations/19910015505",
+    "pdf_url": "https://ntrs.nasa.gov/api/citations/19910015505/downloads/19910015505.pdf",
+    "type": "technical-report",
+    "role": "primary-setup-and-corner-treatment-comparison",
+    "review_level": "selected-text-review: Example2 printedp7/PDFpage11 and Fig3 captions printedp8/PDFpage12",
+    "review": {
+      "ja": "Example2の形状、Mach3一様流、流入・流出・反射境界、T=4、および角の特別処理あり/なしを比べるFig3の説明を確認。本文の選択箇所の確認であり、図の転載・RKDGの実行は行わない。",
+      "en": "Reviewed Example2 setup, Mach3 uniform flow, inlet/outlet/reflection boundaries, T4 and the Fig3 distinction between untreated and specially treated corners. Selected text only; no figure redistribution or RKDG execution."
+    }
+  },
+  {
+    "id": "amroc-forward-step",
+    "author": "Ralf Deiterding / AMROC project",
+    "year": 2004,
+    "title": "2D Euler equations — Forward facing step",
+    "url": "https://amroc.sourceforge.net/examples/euler/2d/html/ffstep_n.htm",
+    "type": "official-software-documentation",
+    "role": "explicit-uncorrected-corner-variant-context",
+    "review_level": "official-example-selected-problem-description",
+    "review": {
+      "ja": "角セルに特別なエントロピー補正を加えない変種とT=4の公式説明を確認。AMROCの計算・AMR・図をこの例へ取り込んだものではない。",
+      "en": "Checked the official example description explicitly omitting special corner entropy corrections and using T4. No AMROC calculation, AMR or figure is imported."
+    }
+  }
+]

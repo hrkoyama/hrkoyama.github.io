@@ -774,7 +774,7 @@
         "ja": "Mach 3前向きステップ",
         "en": "Mach-3 forward-facing step"
       },
-      "chapter": "nasa-2d",
+      "chapter": "validation-forward-step",
       "evidence": [
         {
           "path": "numerical-methods-atlas/assets/shock-gallery.json",
@@ -786,16 +786,60 @@
           "where": {
             "id": "forward-step"
           }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/forward-step/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "forward-step-m3"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/forward-step/results/forward-step-m3-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/forward-step/inputs.json",
+          "json_pointer": "/cases/forward-step-m3"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/forward-step/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/forward-step/references/independent-execution.json",
+          "json_pointer": "/passed"
         }
       ],
       "availability": "saved-output",
+      "reading_section": "forward-step-m3",
+      "code_base": "/code/validated-examples/2026-11-23/forward-step/",
+      "verification": "/code/validated-examples/2026-11-23/forward-step/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "supplemental_examples": [
+        {
+          "id": "forward-step-m3",
+          "url": "/numerical-methods-atlas/validation/forward-step-m3/",
+          "name": {
+            "ja": "Mach 3前向きステップ：壁面収支と多格子検証",
+            "en": "Mach3 forward step: wall budgets and grid verification"
+          }
+        }
+      ],
       "reading": {
-        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/nasa-2d/",
-        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/nasa-2d/"
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-forward-step/#forward-step-m3",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-forward-step/#forward-step-m3"
       },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/verification.json",
       "execution_examples": [],
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#forward-step",
-      "run_commands": []
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ]
     },
     {
       "id": "entropy-2d",
@@ -3842,7 +3886,7 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-test-problems.json": "6585a905ba296ab9731d1bbbc1a9cc43877b0254339b2867c28928eb9cc47720",
+    "catalog/atlas-test-problems.json": "900e7e140ad24506138dc36df2a733ce2022cb7a771fc28b1d0975f3331142bd",
     "numerical-methods-atlas/equation-gallery.json": "e99af38238a50232f92875817c4556ab6c730289db13014efdd41913096c902e",
     "numerical-methods-atlas/cip.json": "3aa33fbffad6b9ad76310e9b713629a1a35b4e30e419db0c531180cf769e6b6f",
     "numerical-methods-atlas/limiters.json": "3242180ba171420220fd349cac93dff552466070f886f3d00a70927939255312",
@@ -3868,6 +3912,11 @@
     "code/validated-examples/2026-11-23/double-mach/references/independent-reuse.json": "465016e0dacb972ac14e3d80c96e4d0841104619a856169bff306fca0b168d0c",
     "numerical-methods-atlas/assets/shock-gallery.json": "ce84e5fa7f6414e2f1cd4eeacdbd7dba60cfd048dfc3b4bdd72ec463bb592e64",
     "numerical-methods-atlas/assets/comparisons/euler-comparison.json": "b249c2748936df1a562c9dad9d91ec20eb7b2d0f8aa8c9f514f92317c160405c",
+    "code/validated-examples/2026-11-23/forward-step/results/result.json": "636e179813165fbe620caadd825ac699973ea2dde897d13aed8b2d22102e6704",
+    "code/validated-examples/2026-11-23/forward-step/results/forward-step-m3-preview.png": "14874a4887433c8cfc247d436ce37bc305cf5a6f88f86a9fe54df23827a522a1",
+    "code/validated-examples/2026-11-23/forward-step/inputs.json": "a55b2912063117c65b30c48cb5ed665b45dd58e378d72968f12e551d9c37f15e",
+    "code/validated-examples/2026-11-23/forward-step/verification.json": "f40317a2721c2048c6174bf41c03adf5e3eddae07e19ae95e6ed5210a9b01914",
+    "code/validated-examples/2026-11-23/forward-step/references/independent-execution.json": "1aeb18103d494fcaa5669ef7cb1f545e9a497cfcaf19109c3b8caf055ec37a24",
     "code/numerical-methods-atlas/2026-11-21/tests/test_muscl2d.py": "43a462dd3086893015c62335cbdb0aadf094f8c519d5db80d80fbaa8b03a84d7",
     "numerical-methods-atlas/assets/shock-methods/robustness.json": "92bc1b37b63ddad501c6e012433909da6fabc5c811527f6bc2d1bc7620a1d8d8",
     "numerical-methods-atlas/assets/keep-vortex.json": "73388410dbf21de395e76207b4bb5907e0165b226f96f8ab9bc13968b5f416e3",

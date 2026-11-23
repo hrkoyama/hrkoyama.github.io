@@ -1,0 +1,8 @@
+{
+  "source": "code/numerical-methods-atlas/2026-11-22/numart/shock_cases.py",
+  "sha256": "1e8ac23fae1209c65cf42903779446a6da2e134a940234e1d6c52c3c59d00a93",
+  "supporting_euler_source": "code/numerical-methods-atlas/2026-11-22/numart/euler2d.py",
+  "supporting_euler_sha256": "f924068bf0d79719f2650d148a3f8e07958493e0666ecad9628c59364db38f9a",
+  "changes": "Same aligned-step geometry, piecewise-constant HLL/Heun and reflected-state wall conditions. Added both-stage admissibility, individual actual face-flux budgets, raw failure retention, standalone packaging. Explicitly zero inactive solid-solid face fluxes (no active-cell effect). No corner entropy fix, pressure floors, repair or hidden retries.",
+  "independent_reference": "Newly executed separate C++17 primitive-MUSCL generalized-minmod theta1.5/HLL/Heun implementation; no primary spatial operator imports. Same wall/corner benchmark variant, shared HLL/Heun family, not an external engine."
+}

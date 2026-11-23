@@ -591,7 +591,7 @@
         "ja": "Mach 3前向きステップ",
         "en": "Mach-3 forward-facing step"
       },
-      "chapter": "nasa-2d",
+      "chapter": "validation-forward-step",
       "evidence": [
         {
           "path": "numerical-methods-atlas/assets/shock-gallery.json",
@@ -603,9 +603,49 @@
           "where": {
             "id": "forward-step"
           }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/forward-step/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "forward-step-m3"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/forward-step/results/forward-step-m3-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/forward-step/inputs.json",
+          "json_pointer": "/cases/forward-step-m3"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/forward-step/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/forward-step/references/independent-execution.json",
+          "json_pointer": "/passed"
         }
       ],
-      "availability": "saved-output"
+      "availability": "saved-output",
+      "reading_section": "forward-step-m3",
+      "code_base": "/code/validated-examples/2026-11-23/forward-step/",
+      "verification": "/code/validated-examples/2026-11-23/forward-step/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "supplemental_examples": [
+        {
+          "id": "forward-step-m3",
+          "url": "/numerical-methods-atlas/validation/forward-step-m3/",
+          "name": {
+            "ja": "Mach 3前向きステップ：壁面収支と多格子検証",
+            "en": "Mach3 forward step: wall budgets and grid verification"
+          }
+        }
+      ]
     },
     {
       "id": "entropy-2d",

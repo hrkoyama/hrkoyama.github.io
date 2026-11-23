@@ -217,6 +217,86 @@
           "note": "Selected sourceSHA256bc206f991594c6b011bb3cde50f104b8806a371df19af0464ff6b1a1d1cc39af; archiveSHA2566fa8d75c1f70281eb0a78363eb3323c5a9a1b006f01f49182c4827f4d5710a69. Reuse previously executed256×64 and512×128 arrays, source and records under MIT; no new reference PDE/Athena/LAVA execution. Reference has an adaptive retry capability, but the selected saved records report zero rejected steps."
         }
       ]
+    },
+    {
+      "id": "forward-step",
+      "model": "euler",
+      "kind": "numerical-reference",
+      "formula": "partial_t U + partial_x F(U) + partial_y G(U) = 0; Uref_C = sum_f(|C_f| Uref_f)/|C| on fluid cells (conservative restriction of a finite-grid reference).",
+      "dimension": 2,
+      "bounds": [
+        [
+          0.0,
+          3.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "components": [
+        "density",
+        "x momentum",
+        "y momentum",
+        "total energy"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "gamma": 1.4,
+        "inlet_mach": 3.0,
+        "inlet_density": 1.4,
+        "inlet_pressure": 1.0,
+        "step_x": 0.6,
+        "step_height": 0.2,
+        "time": 4.0,
+        "reference_grids": [
+          [
+            240,
+            80
+          ],
+          [
+            480,
+            160
+          ]
+        ],
+        "corner_entropy_reset": false
+      },
+      "sources": [
+        "https://doi.org/10.1016/0021-9991(84)90142-6",
+        "https://ntrs.nasa.gov/api/citations/19910015505/downloads/19910015505.pdf",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/reference.cpp"
+      ],
+      "title": "Mach-3 forward-facing step: independent C++ finite-grid numerical reference",
+      "assumptions": "Two-dimensional ideal-gas Euler flow with gamma=1.4 in [0,3]×[0,1] excluding the solid step x>=.6,y<.2. Uniform initial/inflow primitive state (rho,u,v,p)=(1.4,3,0,1), reflecting slip channel/step walls, right zero-gradient outflow and T=4. The reference is a separately written C++17 unsplit finite-volume implementation with primitive MUSCL generalized minmod(theta=1.5), Davis HLL flux and Heun/SSPRK2 at CFL=.3 on 240×80 and480×160 cells. Normal slopes touching walls/exterior boundaries are zero; reconstructed primitive slopes may be rescaled without altering cell means. The primary Python calculation uses piecewise-constant HLL plus Heun; flux family/time equations are shared, while implementation and spatial reconstruction are separate. No Woodward–Colella corner entropy/enthalpy reset, state floors or time-step retries are used. The uncorrected corner can produce an entropy layer that affects the downstream reflected shock/Mach stem. This is a finite-grid numerical reference, not an exact solution, rigorous error bound, replication of corner-corrected original PPM figures, or proof that fine slip lines/vortices are resolved.",
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/forward-step-m3/?lang=ja#forward-step-m3-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/forward-step-m3/?lang=en#forward-step-m3-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-forward-step/#forward-step-m3",
+        "en": "/numerical-methods-atlas/en/read/validation-forward-step/#forward-step-m3"
+      },
+      "reference_scope": "New independent C++17 reference executions at Ny80/160, with source, compiler/invocation, raw-derived arrays, stage-admissibility checks, boundary budgets and hashes retained. This is distinct from reusing the prior Double Mach kit references. Both codes share the HLL flux family and Heun equations and omit the corner entropy fix. Finite-grid reference increments are sensitivity diagnostics, not rigorous error bounds. No external Athena, LAVA or AMROC simulation is claimed.",
+      "citations": [
+        {
+          "role": "original-problem",
+          "title": "P. Woodward and P. Colella (1984), The numerical simulation of two-dimensional fluid flow with strong shocks, Journal of Computational Physics54(1),115–173",
+          "url": "https://doi.org/10.1016/0021-9991(84)90142-6",
+          "note": "Original-problem bibliographic context; no direct full-original-paper review or reproduction of its corner-corrected PPM results is claimed."
+        },
+        {
+          "role": "checked-setup-and-corner-caveat",
+          "title": "B. Cockburn and C.-W. Shu (1991), The P¹-RKDG Method for Two-Dimensional Euler Equations of Gas Dynamics, NASA CR187542 / ICASE91-32, Example2",
+          "url": "https://ntrs.nasa.gov/api/citations/19910015505/downloads/19910015505.pdf",
+          "note": "Selected text of Example2 on printedpage7/PDFpage11 and Fig3 captions on printedpage8/PDFpage12 checked for Mach3 step geometry,initial/inflow state,T4 and the distinction between untreated and specially treated corners. No figure redistribution or RKDG execution. This publication deliberately uses the uncorrected corner."
+        },
+        {
+          "role": "independent-reference-implementation",
+          "title": "Independent educational C++17 forward-step FV reference,2026-11-23",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/reference.cpp",
+          "note": "MIT. New primitive-MUSCL/generalized-minmod(theta1.5)/Davis-HLL/Heun runs on240×80 and480×160. Reference sourceSHA25666e523f5486179f2c79ac0ad21a35a11856e55a9101e03b8d3bca76cccbd5996; compiler/invocation and execution/quality receipts accompany the arrays. No external AMROC/Athena/LAVA execution."
+        }
+      ]
     }
   ]
 }

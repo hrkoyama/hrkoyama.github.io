@@ -10,13 +10,13 @@ const hash=p=>createHash('sha256').update(bytes(p)).digest('hex');
 const objectHash=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex');
 const base='code/validated-examples/2026-11-23/double-mach/';
 
-test('Double Mach extends an existing problem and preserves all fourteen earlier release records and eighty-four other pictures',()=>{
+test('Double Mach extends an existing problem and preserves all fourteen earlier release records and eighty-three historical pictures',()=>{
  const registry=json('numerical-methods-atlas/validation/releases.json');
- assert.equal(objectHash(registry.releases.filter(r=>r.group!=='double-mach')),'bb57fe2ece2d6f8b07b9e793ab8a21c3a9bcc2166d0e04dd73e00fe9d9ed46c3');
- assert.equal(registry.case_count,44);assert.equal(registry.releases.length,15);assert.equal(registry.releases.reduce((s,r)=>s+r.tests,0),479);
+ assert.equal(objectHash(registry.releases.filter(r=>!['double-mach','forward-step'].includes(r.group))),'bb57fe2ece2d6f8b07b9e793ab8a21c3a9bcc2166d0e04dd73e00fe9d9ed46c3');
+ assert.equal(registry.case_count,45);assert.equal(registry.releases.length,16);assert.equal(registry.releases.reduce((s,r)=>s+r.tests,0),503);
  const release=registry.releases.find(r=>r.group==='double-mach');assert.equal(release.tests,21);assert.deepEqual(release.case_ids,['double-mach-reflection']);
- const pictures=json('numerical-methods-atlas/gallery/preview-manifest.json').items.filter(r=>r.id!=='double-mach').map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}));
- assert.equal(pictures.length,84);assert.equal(objectHash(pictures),'889a8c99315e5b7fe975f9e33ac64be521a852c28d299465dec0329575119748');
+ const pictures=json('numerical-methods-atlas/gallery/preview-manifest.json').items.filter(r=>!['double-mach','forward-step'].includes(r.id)).map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}));
+ assert.equal(pictures.length,83);assert.equal(objectHash(pictures),'bf57e7292598ba2f200c4bc020dfb93d2e3ce2799dfee5b4f47e145caf5a29b4');
  assert.equal(json('catalog/atlas-test-problems.json').problems.length,85);assert.equal(json('catalog/atlas-methods.json').methods.length,147);assert.equal(json('catalog/atlas-execution-examples.json').examples.length,22);
  const manifest=json(base+'source-manifest.json');for(const[p,h]of Object.entries(manifest.files))assert.equal(hash(base+p),h,p);
  const receipt=json(base+'verification.json');assert.equal(receipt.tests,21);assert.equal(receipt.passed,true);assert.equal(receipt.all_cases_rerun,true);assert.equal(hash(base+receipt.archive.file),receipt.archive.sha256);

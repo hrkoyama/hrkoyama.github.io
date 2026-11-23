@@ -190,10 +190,10 @@
     {
       "id": "forward-step",
       "kind": "image",
-      "source": "assets/comparisons/step-m3-mc.png",
+      "source": "/code/validated-examples/2026-11-23/forward-step/results/forward-step-m3-preview.png",
       "caption": {
-        "ja": "保存済みMach 3前向きステップの計算場。",
-        "en": "Stored computed field for the Mach-3 forward-facing step."
+        "ja": "実際の2次元Euler計算の密度場。Mach 3、γ=1.4、T=4、240×80セル。固体段差を除いて描きます。角のエントロピー補正は使わず、微細なすべり線・渦の収束を保証する図ではありません。",
+        "en": "Density from the actual 2D Euler computation: Mach3,gamma=1.4,T=4,240×80 cells. The solid step is masked. No corner entropy correction is used; the picture does not establish convergence of fine slip lines or vortices."
       }
     },
     {

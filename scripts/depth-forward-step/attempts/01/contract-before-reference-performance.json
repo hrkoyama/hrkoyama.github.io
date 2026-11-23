@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "declared_at_utc": "2026-11-23T05:10:56.044160+00:00",
+  "declared_before_first_primary_pde_or_unit_execution": true,
+  "primary_unit_or_pde_executed_yet": false,
+  "target_edition": "2026-11-23",
+  "case": "forward-step-m3",
+  "planned_tests": 24,
+  "planned_numerical_gates": 45,
+  "planned_primary_grids": [
+    20,
+    40,
+    80
+  ],
+  "final_time": 4.0,
+  "max_steps_each": 20000,
+  "primary_timeout_seconds": 120,
+  "reference_scope": "Reference source, method, inputs and first-execution contract are fixed here before primary execution. Numerical reference arrays do not yet exist; they will be bound by a separate post-reference data qualification without rewriting this contract. Reference execution has its own earlier pre-run-contract.",
+  "files_sha256": {
+    "fs_solver.py": "2765dc4c370b9bb4c3f3fea5b0f59501983dfde2e75ef4322970e91e1ce0469e",
+    "run.py": "b514eb5523bb198199ba4ed057d0807fcc47e81f19b9288d1199f68614fcc413",
+    "test_fs.py": "47989b0efd97f8a01895c3f4e375bde24f3996f59969e9cb565f8e54975ecea1",
+    "inputs.json": "a55b2912063117c65b30c48cb5ed665b45dd58e378d72968f12e551d9c37f15e",
+    "acceptance.json": "eb895555dedeec88021dd38e1689c80e3bb80090b4ba1ed1469b34baa9be4a53",
+    "source-provenance.json": "f5e5521493f779343f482eda46a2f7560ac5aef31473929895f3d1352385b84f",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "references/pre-run-contract.json": "d710ef6cabf58ffb2052000ab3344b8eba620383a8badf71cd30c3a91cee5bd5",
+    "references/reference.cpp": "eb59312c22c5ea8e188c181305676cf7e4eeb98c1edd59980a48288283d88408",
+    "references/run-reference.py": "50e48cfd28c289a06d788581c7703439cde1736edac33c0c6c646ef6490fc9d5",
+    "references/convert.py": "9029b5cabb5dc416069c4d77ee7161baa794ee6de68587b91053fa6fead890f6",
+    "references/definition.json": "220c5ccda2855780cfcb6751ee1bae28c2a1638317ec1d9f8abaf5131838451a",
+    "references/citations.json": "60beabb12a0ce232c4ba2cca5008d92c3e9288e35f254c5fe69586cfad7a7402",
+    "references/REFERENCE-LICENSE.txt": "07cca125623617c85a41e9a21a2b114d693c61737bc353e3ca98587431e26ee6"
+  }
+}

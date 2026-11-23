@@ -531,19 +531,33 @@
         "euler"
       ],
       "reference_note": {
-        "ja": "段差回りの保存済み数値場・格子比較・時間履歴を参照します。この公開例に全場の厳密解は添付されていません。",
-        "en": "Use saved numerical fields, grid comparisons and time histories around the step. This publication does not attach an exact solution for the entire field."
+        "ja": "全場の厳密解はありません。新規の別実装C++有限体積参照とその2格子差を示し、主計算との共通の流束族・時間積分、角無補正条件、有限格子の限界を明記します。",
+        "en": "No exact full-field solution is attached. A newly executed separate C++ finite-volume reference and its two-grid increment are shown, with the shared flux family/time integration,uncorrected corner and finite-grid limits made explicit."
       },
-      "references": [],
+      "references": [
+        {
+          "id": "forward-step",
+          "relation": "same-problem",
+          "note": {
+            "ja": "新しく独立実行したC++17のMUSCL/HLL/Heun参照を保存量制限で比較します。同じHLL族・Heunと角無補正条件を共有する有限格子数値参照であり、全場の厳密解や誤差上界ではありません。",
+            "en": "Conservatively restrict newly independently executed C++17 MUSCL/HLL/Heun reference data. The finite-grid numerical reference shares the HLL family,Heun and the uncorrected corner; it is not an exact full-field solution or error bound."
+          }
+        }
+      ],
       "method_ids": [
         "hll",
         "muscl",
         "minmod",
-        "mc"
+        "mc",
+        "heun"
       ],
       "method_note": {
-        "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
-        "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+        "ja": "従来のHLL・MUSCLと勾配制限の比較データを保持し、追加の軽量例は区分定数HLL＋Heunを使います。参照実装の手法は参照の出典と条件で区別します。",
+        "en": "Retain the earlier HLL/MUSCL and slope-limiter comparisons; the additional lightweight example uses piecewise-constant HLL plus Heun. Methods belonging to the reference implementation are identified separately with its source and conditions."
+      },
+      "equation_note": {
+        "ja": "γ=1.4、ρ=1.4、u=3、v=0、p=1の流入を、[0,3]×[0,1]から高さ.2・開始位置x=.6の段差を除いた2次元Euler系でT=4まで更新します。",
+        "en": "Two-dimensional Euler flow with gamma=1.4 and inflow rho=1.4,u=3,v=0,p=1 evolves to T=4 in [0,3]×[0,1] minus a step of height .2 starting at x=.6."
       }
     },
     {

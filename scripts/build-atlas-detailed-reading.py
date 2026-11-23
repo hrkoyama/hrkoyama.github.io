@@ -210,6 +210,16 @@ for lang in ['ja','en']:
     content=documents[lang];text=re.sub(re.escape(marker)+'.*?'+re.escape(end),'',content['double-mach']['html'],flags=re.S);content['double-mach']['html']=note+text
     write(ATLAS/f'content.{lang}.json',content)
     if lang=='en':write(ATLAS/'content.json',content)
+# Keep the existing wedge/step overview and point to the measured step follow-up.
+for lang in ['ja','en']:
+    marker='<!-- forward-step-validation-followup -->';end='<!-- /forward-step-validation-followup -->'
+    message=('この章は楔と前向きステップの従来の計算例をまとめたものです。前向きステップには、段差面を含む境界の保存収支・正値性・格子依存性を調べる軽量な2次元検証を追加しています。段差角の処理と、未解像の細いすべり線・渦の限界も専用ページで確認できます。' if lang=='ja' else 'This chapter collects the earlier wedge and forward-step examples. A newer lightweight 2D forward-step verification checks conservation budgets including the step faces, admissibility and grid dependence. Its dedicated page also records the corner treatment and unresolved fine slip lines and vortices.')
+    note=marker+'<aside class="callout" id="forward-step-validation-followup"><p>'+escape(message)+'</p><p>'+link('/numerical-methods-atlas/validation/forward-step-m3/?lang='+lang,'前向きステップの追加検証へ' if lang=='ja' else 'Open the additional forward-step verification')+'</p></aside>'+end
+    path=ATLAS/lang/'read/nasa-2d/index.html';text=re.sub(re.escape(marker)+'.*?'+re.escape(end),'',path.read_text(),flags=re.S)
+    path.write_text(re.sub(r'<article\b[^>]*>',lambda m:m[0]+note,text,count=1))
+    content=documents[lang];text=re.sub(re.escape(marker)+'.*?'+re.escape(end),'',content['nasa-2d']['html'],flags=re.S);content['nasa-2d']['html']=note+text
+    write(ATLAS/f'content.{lang}.json',content)
+    if lang=='en':write(ATLAS/'content.json',content)
 # The imported atlas sitemap is additive; root sitemap is rebuilt later.
 path=ATLAS/'sitemap.xml';xml=ET.parse(path);root=xml.getroot();existing={x.text for x in root.findall('.//{*}loc')};ns='{http://www.sitemaps.org/schemas/sitemap/0.9}'
 for c in data['chapters']:

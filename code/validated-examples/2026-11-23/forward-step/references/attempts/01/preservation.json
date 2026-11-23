@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "status": "failed_reference_runtime_budget",
+  "failure": "Ny160 exceeded the fixed120-second process timeout; Ny80 completed. No numerical tolerance or method changed.",
+  "original_reference_source_sha256": "eb59312c22c5ea8e188c181305676cf7e4eeb98c1edd59980a48288283d88408",
+  "original_contract_sha256": "d710ef6cabf58ffb2052000ab3344b8eba620383a8badf71cd30c3a91cee5bd5",
+  "raw_ny80_sha256": "dd9ef684c120acceaab6e075e6b7e523c8d628e1385dd4ceb9ec2d2e7edd20c6",
+  "ny80_compressed_array_sha256": "2ce84f1c31c075b8e20f10e59ddceae8720c5b1b1ccac87a27c59f181395ec00",
+  "compressed_array_contents": "Exact original raw doubles reshaped q[240,80,4]; no PDE, interpolation or rounding",
+  "ny160_final_array_available": false,
+  "files_sha256": {
+    "independent-execution.json": "d843b130a1b90b982e3d6e5657854a390d40df22e801e2590cd209d23ff56a3c",
+    "pre-run-contract.json": "d710ef6cabf58ffb2052000ab3344b8eba620383a8badf71cd30c3a91cee5bd5",
+    "driver.log": "cdf3f6054c98cd058454814967ca37fcb79c4326eb046ffc20b8b1d6f2c584a8",
+    "completed/forward-step-ny80.npz": "2ce84f1c31c075b8e20f10e59ddceae8720c5b1b1ccac87a27c59f181395ec00",
+    "completed/forward-step-ny80-original.json": "0300c386e05ac28d492bfec659c9b5a57a6b955137f4b8640e691365db82f68b",
+    "source/REFERENCE-LICENSE.txt": "07cca125623617c85a41e9a21a2b114d693c61737bc353e3ca98587431e26ee6",
+    "source/convert.py": "9029b5cabb5dc416069c4d77ee7161baa794ee6de68587b91053fa6fead890f6",
+    "source/citations.json": "60beabb12a0ce232c4ba2cca5008d92c3e9288e35f254c5fe69586cfad7a7402",
+    "source/run-reference.py": "50e48cfd28c289a06d788581c7703439cde1736edac33c0c6c646ef6490fc9d5",
+    "source/README.md": "afa02c0c844f46cd1e44de5b70202fc60dece3ce24cadc5f9cfc2ac7d9fdb155",
+    "source/reference.cpp": "eb59312c22c5ea8e188c181305676cf7e4eeb98c1edd59980a48288283d88408",
+    "source/definition.json": "220c5ccda2855780cfcb6751ee1bae28c2a1638317ec1d9f8abaf5131838451a"
+  }
+}

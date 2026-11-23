@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "reference_kind": "independent-finite-grid-numerical",
+  "method": "independent C++17 primitive-MUSCL theta1.5/HLL/Heun",
+  "comparison": "Ny80 versus conservatively restricted Ny160 q on fluid cells; pressure computed after restriction",
+  "reference_increment": {
+    "density_l1": 0.02635884764940855,
+    "pressure_l1": 0.030632816211638252
+  },
+  "files": [
+    {
+      "file": "forward-step-ny80.npz",
+      "sha256": "e10e8fd54009df3e8a751213b60bffb8c231685fca1bb06ad0a33de89757e9d9",
+      "metadata_sha256": "d0700f9a3dc8469a5657e11980c14375e999408dfbd0d95529b5403d6840cd02",
+      "steps": 7707,
+      "wall_seconds": 7.817623292,
+      "min_density": 0.3433836324688217,
+      "min_pressure": 0.3431095114883593
+    },
+    {
+      "file": "forward-step-ny160.npz",
+      "sha256": "ce8397260c8fd467dc4c1e2dcef07d237a7ec4a5640454c75a34feeac095dca0",
+      "metadata_sha256": "c147c7f3a77763eef39d07c0d6edcb894f56b58c69542baa47b23977149abd39",
+      "steps": 15800,
+      "wall_seconds": 65.0964205,
+      "min_density": 0.20295029050248686,
+      "min_pressure": 0.18317831130048995
+    }
+  ],
+  "new_reference_pde_executed": true,
+  "corner_entropy_reset": false,
+  "primary_operator_imports": false,
+  "limitations": [
+    "Finite-grid difference is not an error bound or an exact2D solution.",
+    "No Woodward--Colella corner entropy/enthalpy reset; corner numerical entropy affects the reflected flow.",
+    "Both primary and reference share HLL/Heun families, while source language and reconstruction are independent."
+  ]
+}

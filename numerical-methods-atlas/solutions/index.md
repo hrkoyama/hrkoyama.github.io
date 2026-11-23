@@ -651,6 +651,38 @@ Taylor–Green：y = π/4のx方向断面です。2次元セル平均ではな�
 
 
 
+### Mach 3前向きステップ：独立C++有限格子数値参照
+
+有限格子の数値参照 · 2次元
+
+`partial_t U + partial_x F(U) + partial_y G(U) = 0; Uref_C = sum_f(|C_f| Uref_f)/|C| on fluid cells (conservative restriction of a finite-grid reference).`
+
+γ=1.4の2次元Euler流れ。[0,3]×[0,1]のうちx≥.6,y<.2は固体とし、初期・入口の(ρ,u,v,p)=(1.4,3,0,1)、上下と段差は滑り壁、右端はゼロ勾配、T=4です。参照は独立したC++17実装のprimitive MUSCL（一般化minmod θ1.5）/Davis HLL/HeunをCFL=.3、240×80・480×160で新規実行しました。境界に接する法線方向の傾きはゼロにし、再構築の傾き再調整はセル平均を変えません。Python主計算は区分定数HLL/Heunで、流束族・時間積分式は共有しますが実装と空間再構築は別です。角のエントロピー/エンタルピー補正、状態floor、刻み再試行はありません。角の数値エントロピー層が下流へ移流され得る無補正条件であり、補正付き原著PPM像の再現とは区別します。固体を除いた保存量を保守的に制限してから圧力を算出し、参照格子差・保存収支・局所診断を残します。有限格子の数値参照であり、厳密2次元解、誤差上界、細いすべり線や巻き上がりの収束証明ではありません。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/forward-step-m3/?lang=ja#forward-step-m3-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-forward-step/#forward-step-m3)
+
+- original-problem: [P. Woodward and P. Colella (1984), The numerical simulation of two-dimensional fluid flow with strong shocks, Journal of Computational Physics54(1),115–173](https://doi.org/10.1016/0021-9991(84)90142-6) — Original-problem bibliographic context; no direct full-original-paper review or reproduction of its corner-corrected PPM results is claimed.
+- checked-setup-and-corner-caveat: [B. Cockburn and C.-W. Shu (1991), The P¹-RKDG Method for Two-Dimensional Euler Equations of Gas Dynamics, NASA CR187542 / ICASE91-32, Example2](https://ntrs.nasa.gov/api/citations/19910015505/downloads/19910015505.pdf) — Selected text of Example2 on printedpage7/PDFpage11 and Fig3 captions on printedpage8/PDFpage12 checked for Mach3 step geometry,initial/inflow state,T4 and the distinction between untreated and specially treated corners. No figure redistribution or RKDG execution. This publication deliberately uses the uncorrected corner.
+- independent-reference-implementation: [Independent educational C++17 forward-step FV reference,2026-11-23](https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/reference.cpp) — MIT. New primitive-MUSCL/generalized-minmod(theta1.5)/Davis-HLL/Heun runs on240×80 and480×160. Reference sourceSHA25666e523f5486179f2c79ac0ad21a35a11856e55a9101e03b8d3bca76cccbd5996; compiler/invocation and execution/quality receipts accompany the arrays. No external AMROC/Athena/LAVA execution.
+#### 関連するテスト問題の図とコード
+
+##### [Mach 3前向きステップ](https://hrkoyama.github.io/numerical-methods-atlas/problems/forward-step/?lang=ja) (`forward-step`)
+
+![実際の2次元Euler計算の密度場。Mach 3、γ=1.4、T=4、240×80セル。固体段差を除いて描きます。角のエントロピー補正は使わず、微細なすべり線・渦の収束を保証する図ではありません。](https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/results/forward-step-m3-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/forward-step/?lang=ja#code-ja)
+
+同じ問題への対応
+
+新しく独立実行したC++17のMUSCL/HLL/Heun参照を保存量制限で比較します。同じHLL族・Heunと角無補正条件を共有する有限格子数値参照であり、全場の厳密解や誤差上界ではありません。
+
+- [実行・検証：Mach 3前向きステップ：壁面収支と多格子検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/forward-step-m3/?lang=ja) (`forward-step-m3`) · [コードZIP：Mach 3前向きステップ：壁面収支と多格子検証](https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/atlas-forward-step-2026-11-23.zip)
+
+この実行例の範囲：実際の2次元Euler有限体積計算を60×20・120×40・240×80でT=4まで行い、別実装のMUSCL有限格子参照と比較します。段差の垂直面・上面を含む実際の数値流束から4保存量の収支を評価し、角のエントロピー補正を加えない変種として図とコードを公開します。
+
+
+
+
 ## English
 
 ### Advection / sine translation
@@ -1294,3 +1326,35 @@ Compare against two previously independently executed finite-volume reference gr
 - [Run and validate: Double Mach reflection: lightweight grid verification](https://hrkoyama.github.io/numerical-methods-atlas/validation/double-mach-reflection/?lang=en) (`double-mach-reflection`) · [Code ZIP: Double Mach reflection: lightweight grid verification](https://hrkoyama.github.io/code/validated-examples/2026-11-23/double-mach/atlas-double-mach-2026-11-23.zip)
 
 Scope of this execution example: Full 2D Euler finite volumes evolve the existing Double Mach initial/boundary data to T=.2 on64x16,128x32 and256x64 cells. Compare a separately written finite-grid reference, actual boundary-flux budgets, an upper incident-front position and a fixed near-wall region.
+
+
+
+
+### Mach-3 forward-facing step: independent C++ finite-grid numerical reference
+
+Finite-grid numerical reference · 2D
+
+`partial_t U + partial_x F(U) + partial_y G(U) = 0; Uref_C = sum_f(|C_f| Uref_f)/|C| on fluid cells (conservative restriction of a finite-grid reference).`
+
+Two-dimensional ideal-gas Euler flow with gamma=1.4 in [0,3]×[0,1] excluding the solid step x>=.6,y<.2. Uniform initial/inflow primitive state (rho,u,v,p)=(1.4,3,0,1), reflecting slip channel/step walls, right zero-gradient outflow and T=4. The reference is a separately written C++17 unsplit finite-volume implementation with primitive MUSCL generalized minmod(theta=1.5), Davis HLL flux and Heun/SSPRK2 at CFL=.3 on 240×80 and480×160 cells. Normal slopes touching walls/exterior boundaries are zero; reconstructed primitive slopes may be rescaled without altering cell means. The primary Python calculation uses piecewise-constant HLL plus Heun; flux family/time equations are shared, while implementation and spatial reconstruction are separate. No Woodward–Colella corner entropy/enthalpy reset, state floors or time-step retries are used. The uncorrected corner can produce an entropy layer that affects the downstream reflected shock/Mach stem. This is a finite-grid numerical reference, not an exact solution, rigorous error bound, replication of corner-corrected original PPM figures, or proof that fine slip lines/vortices are resolved.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/forward-step-m3/?lang=en#forward-step-m3-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-forward-step/#forward-step-m3)
+
+- original-problem: [P. Woodward and P. Colella (1984), The numerical simulation of two-dimensional fluid flow with strong shocks, Journal of Computational Physics54(1),115–173](https://doi.org/10.1016/0021-9991(84)90142-6) — Original-problem bibliographic context; no direct full-original-paper review or reproduction of its corner-corrected PPM results is claimed.
+- checked-setup-and-corner-caveat: [B. Cockburn and C.-W. Shu (1991), The P¹-RKDG Method for Two-Dimensional Euler Equations of Gas Dynamics, NASA CR187542 / ICASE91-32, Example2](https://ntrs.nasa.gov/api/citations/19910015505/downloads/19910015505.pdf) — Selected text of Example2 on printedpage7/PDFpage11 and Fig3 captions on printedpage8/PDFpage12 checked for Mach3 step geometry,initial/inflow state,T4 and the distinction between untreated and specially treated corners. No figure redistribution or RKDG execution. This publication deliberately uses the uncorrected corner.
+- independent-reference-implementation: [Independent educational C++17 forward-step FV reference,2026-11-23](https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/reference.cpp) — MIT. New primitive-MUSCL/generalized-minmod(theta1.5)/Davis-HLL/Heun runs on240×80 and480×160. Reference sourceSHA25666e523f5486179f2c79ac0ad21a35a11856e55a9101e03b8d3bca76cccbd5996; compiler/invocation and execution/quality receipts accompany the arrays. No external AMROC/Athena/LAVA execution.
+#### Related test problem figures and code
+
+##### [Mach-3 forward-facing step](https://hrkoyama.github.io/numerical-methods-atlas/problems/forward-step/?lang=en) (`forward-step`)
+
+![Density from the actual 2D Euler computation: Mach3,gamma=1.4,T=4,240×80 cells. The solid step is masked. No corner entropy correction is used; the picture does not establish convergence of fine slip lines or vortices.](https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/results/forward-step-m3-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/forward-step/?lang=en#code-en)
+
+Same-problem link
+
+Conservatively restrict newly independently executed C++17 MUSCL/HLL/Heun reference data. The finite-grid numerical reference shares the HLL family,Heun and the uncorrected corner; it is not an exact full-field solution or error bound.
+
+- [Run and validate: Mach3 forward step: wall budgets and grid verification](https://hrkoyama.github.io/numerical-methods-atlas/validation/forward-step-m3/?lang=en) (`forward-step-m3`) · [Code ZIP: Mach3 forward step: wall budgets and grid verification](https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/atlas-forward-step-2026-11-23.zip)
+
+Scope of this execution example: Actual2D Euler finite volumes evolve60x20,120x40 and240x80 meshes toT4, comparing separately implemented MUSCL finite-grid references. Actual numerical wall fluxes, including the vertical and horizontal step faces, close all four conserved budgets. Figures and code explicitly use the variant without corner entropy correction.

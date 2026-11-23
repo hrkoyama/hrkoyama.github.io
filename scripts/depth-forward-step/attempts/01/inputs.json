@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "cases": {
+    "forward-step-m3": {
+      "gamma": 1.4,
+      "mach": 3.0,
+      "domain": [0.0, 3.0, 0.0, 1.0],
+      "step": [0.6, 0.2],
+      "upstream": [1.4, 3.0, 0.0, 1.0],
+      "final_time": 4.0,
+      "cfl": 0.4,
+      "grids": [20, 40, 80],
+      "max_steps_per_grid": 20000,
+      "reference_grids": [80, 160],
+      "corner_roi": [0.4, 1.0, 0.0, 0.5],
+      "corner_entropy_fix": false
+    }
+  }
+}

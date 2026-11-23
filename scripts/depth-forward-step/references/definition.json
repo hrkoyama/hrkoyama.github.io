@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "gamma": 1.4,
+  "state_order": [
+    "rho",
+    "rho_u",
+    "rho_v",
+    "total_energy_density"
+  ],
+  "array_interpretation": "finite-volume cell averages; q[x,y,variable]; solid dummy values are not part of the fluid solution",
+  "domain": [
+    0.0,
+    3.0,
+    0.0,
+    1.0
+  ],
+  "solid": "x>=0.6 and y<0.2; all fixed grids align exactly",
+  "fluid_area": 2.52,
+  "initial_primitive_rho_u_v_p": [
+    1.4,
+    3.0,
+    0.0,
+    1.0
+  ],
+  "final_time": 4.0,
+  "ny_grids": [
+    80,
+    160
+  ],
+  "nx": "3*ny",
+  "left_boundary": "fixed uniform Mach3 inflow on the complete entrance",
+  "right_boundary": "zero-gradient primitive outflow on open fluid faces",
+  "walls": "slip reflection at y=0 upstream of step, y=1, step riser x=.6 below y=.2, step top y=.2 downstream of x=.6",
+  "corner_entropy_enthalpy_reset": false,
+  "method": "independent standalone C++17 primitive-MUSCL generalized minmod(theta=1.5), Davis HLL and Heun/SSPRK(2,2)",
+  "cfl": 0.3,
+  "slopes": "directional primitive slopes vanish if either normal neighbor is outside fluid; per-direction positivity slope rescaling leaves conserved cell average unchanged",
+  "state_floors": false,
+  "step_rejections_or_retries": false,
+  "stage_checks": "all fluid rho,p finite and >0 at both updated RK stages; raw failed stage is written and process fails",
+  "conservation": "Heun-weighted fluxes on outer boundaries and both solid step faces, including wall momentum tractions",
+  "comparison": "conservatively restrict q, then compute pressure; exclude identically aligned solid cells",
+  "scope": "Same uncorrected-corner variant as primary. Numerical entropy generated at corner can pollute downstream flow; not exact 2D solution, original corner-corrected PPM reproduction, or proof of full-pattern convergence."
+}

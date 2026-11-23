@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-11-23T05:14:51.027442+00:00",
+  "passed": true,
+  "comparison": "Completed Ny80 states from actual reference attempts01 and02, no new PDE execution",
+  "old_source_sha256": "eb59312c22c5ea8e188c181305676cf7e4eeb98c1edd59980a48288283d88408",
+  "new_source_sha256": "66e523f5486179f2c79ac0ad21a35a11856e55a9101e03b8d3bca76cccbd5996",
+  "only_cpp_source_change": "require diagnostic message parameter std::string const& to char const*",
+  "q_bitwise_equal": true,
+  "q_max_abs_difference": 0.0,
+  "steps_equal": true,
+  "steps": 7707,
+  "time": 4.0,
+  "old_wall_seconds": 27.1997115,
+  "new_wall_seconds": 7.817623292,
+  "old_completed_npz_sha256": "2ce84f1c31c075b8e20f10e59ddceae8720c5b1b1ccac87a27c59f181395ec00",
+  "new_raw_state_sha256": "dd9ef684c120acceaab6e075e6b7e523c8d628e1385dd4ceb9ec2d2e7edd20c6",
+  "scope": "The completed Ny80 trajectory endpoint and step count are unchanged. The timed-out old Ny160 run is not represented as completed or rerun."
+}

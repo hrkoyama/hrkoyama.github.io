@@ -1336,8 +1336,8 @@
   },
   "depth_previous_status": "educational-example",
   "depth_scope": {
-    "ja": "初期圧力ゼロのNoh問題を、独自の小型1D有限体積コードで平面・円筒・球対称に計算します。64/128/256/512格子の全域誤差、原点過熱、衝撃位置、保存収支を測り、球で現れる境界流入の時間積分誤差を解析式と照合します。 追加の2D Cartesian Noh版は正方形全域のx/y流束と2成分運動量を更新する軽量例です。 Sedov球対称爆発の追加例では、有限半径へのエネルギー投入と格子の影響を分けて測ります。",
-    "en": "An original small 1D finite-volume code solves zero-pressure Noh flow in planar, cylindrical and spherical symmetry. Grids 64/128/256/512 measure full-domain error, origin heating, shock location and budgets, and compare spherical boundary-inflow time-quadrature error with its analytic identity. The additional2D Cartesian Noh edition updates both x/y fluxes and both momenta on a full square. The additional spherical Sedov blast measures grid and finite deposition-radius effects separately."
+    "ja": "初期圧力ゼロのNoh問題を、独自の小型1D有限体積コードで平面・円筒・球対称に計算します。64/128/256/512格子の全域誤差、原点過熱、衝撃位置、保存収支を測り、球で現れる境界流入の時間積分誤差を解析式と照合します。 追加の2D Cartesian Noh版は正方形全域のx/y流束と2成分運動量を更新する軽量例です。 Sedov球対称爆発の追加例では、有限半径へのエネルギー投入と格子の影響を分けて測ります。 追加の前向きステップ例は段差面を含む反射壁境界の実2D有限体積計算を検証します。",
+    "en": "An original small 1D finite-volume code solves zero-pressure Noh flow in planar, cylindrical and spherical symmetry. Grids 64/128/256/512 measure full-domain error, origin heating, shock location and budgets, and compare spherical boundary-inflow time-quadrature error with its analytic identity. The additional2D Cartesian Noh edition updates both x/y fluxes and both momenta on a full square. The additional spherical Sedov blast measures grid and finite deposition-radius effects separately. The additional forward-step example verifies actual 2D finite-volume flow with reflecting walls including the step faces."
   },
   "depth_additional_releases": [
     {
@@ -3449,6 +3449,813 @@
           }
         }
       ]
+    },
+    {
+      "group": "forward-step",
+      "case_ids": [
+        "forward-step-m3"
+      ],
+      "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/",
+      "code_edition": "2026-11-23",
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/fs_solver.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/attempts/01/source/convert.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/attempts/01/source/run-reference.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/convert.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/run-reference.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/test_fs.py"
+      ],
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "run_from": "atlas-forward-step-2026-11-23",
+      "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/atlas-forward-step-2026-11-23.zip",
+      "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/source-manifest.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/verification.json",
+      "code_archive_sha256": "ae69647a4e63c75c0888a6daf15835d348e9d74de58b5e59926e359e9ffc52cd",
+      "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/results/result.json",
+      "passed_tests": 24,
+      "examples": [
+        {
+          "id": "forward-step-m3",
+          "title": {
+            "ja": "Mach 3前向きステップ：壁面収支と多格子検証",
+            "en": "Mach3 forward step: wall budgets and grid verification"
+          },
+          "method_ids": [
+            "hll",
+            "heun"
+          ],
+          "domains": [
+            "fluid",
+            "shock",
+            "time"
+          ],
+          "code_files": [
+            "run.py",
+            "fs_solver.py"
+          ],
+          "summary": {
+            "ja": "実際の2次元Euler有限体積計算を60×20・120×40・240×80でT=4まで行い、別実装のMUSCL有限格子参照と比較します。段差の垂直面・上面を含む実際の数値流束から4保存量の収支を評価し、角のエントロピー補正を加えない変種として図とコードを公開します。",
+            "en": "Actual2D Euler finite volumes evolve60x20,120x40 and240x80 meshes toT4, comparing separately implemented MUSCL finite-grid references. Actual numerical wall fluxes, including the vertical and horizontal step faces, close all four conserved budgets. Figures and code explicitly use the variant without corner entropy correction."
+          },
+          "assumptions": {
+            "ja": "無次元[0,3]×[0,1]からx≥.6・y<.2の固体を除き、γ=1.4、初期・左流入(ρ,u,v,p)=(1.4,3,0,1)。音速1なのでMach3です。右はゼロ勾配流出、上下と段差の両面は法線運動量を反転する滑り壁。格子Nyは5の倍数で両壁を厳密に整列し、固体記憶領域は流体ノルム・積分から除外します。Woodward–Colella型の角エントロピー・エンタルピー再設定は行いません。",
+            "en": "Nondimensional[0,3]x[0,1] minus solidx>=.6,y<.2; gamma1.4, initial/left-inflow(rho,u,v,p)=(1.4,3,0,1), giving sound speed1 and Mach3. Right zero-gradient outflow; top,bottom and both step faces are slip walls by normal-momentum reflection. Ny multiples of5 align both walls exactly; solid storage is excluded from every fluid norm/integral. No Woodward-Colella corner entropy/enthalpy reset."
+          },
+          "algorithm": {
+            "ja": "既存Numartの区分定数HLL・非分割x/y発散・Heun/SSPRK(2,2)を小型配布物にし、6種類の境界ごとに両RK段で実際に使う流束を同じ重みで積算します。CFL=.4、各格子の上限20000刻み。全予測・更新段の正の密度と圧力を確認し、状態floor・修復・隠れた再試行はしません。不正段は生配列と完了履歴を保持して失敗します。",
+            "en": "Published Numart piecewise-constant HLL, unsplit x/y divergence and Heun/SSPRK(2,2) become a standalone package. Six boundary categories integrate the actual fluxes at both RK stages with identical weights. CFL.4, at most20000steps per grid. Every predictor/update checks positive density and pressure. No state floor, repair or hidden retry; invalid stages retain raw arrays/completed history and fail."
+          },
+          "validation": {
+            "ja": "入力・受入基準・24単体検査・数値ソースを主計算の初回検査・PDE実行前に固定しました。解析的なMach3垂直衝撃波のRankine–Hugoniot関係、一様な平行流路、壁の質量・エネルギー流束ゼロ、段差の圧力力の向き、実際の4成分収支、不正段の保持を検査します。別実装のC++17 MUSCL/generalized-minmod θ1.5/HLL/HeunによるNy80/160の参照を新規に実行し、保存量を保守的に制限して密度・圧力の全流体領域L1を比較します。参照の再計算は通常の公開ZIP追試には含めず、保存データ・ソース・契約・実行記録を同梱します。 最初の参照Ny160は事前固定の120秒上限で停止した記録を保持し、診断文字列の不要なメモリ割当てだけを除く参照改訂を、主計算の初回実行前に再固定しました。入力・演算・CFL・判定値は変更していません。 24検査と全3計算・45判定が-W errorで合格。主計算の密度L1は.14754/.12878/.10265、圧力L1は.19373/.16015/.12242、密度の最後の2格子の傾きは.327。参照80/160増分は.02636/.03063で、最細主計算差の約.257/.250。全4成分の境界収支の最大相対残差は2.99e-13、全壁の積分質量・エネルギー流束は0でした。主計算3格子は元のMacで約46秒、性能改訂後の参照80/160は約8/65秒です。",
+            "en": "Inputs, acceptance,24 unit checks and numerical source were frozen before the first primary test/PDE execution. Checks cover analytic Mach3 normal-shock Rankine-Hugoniot identities, uniform parallel-channel flow, zero stationary-wall mass/energy flux, step-pressure force orientation, actual four-component budgets and raw failure retention. Newly executed separate C++17 MUSCL/generalized-minmod theta1.5/HLL/Heun references atNy80/160 are conservatively restricted for whole-fluid density/pressure L1 comparison. Ordinary public-ZIP verification reads saved reference data; reference source, contracts and execution records are bundled. The first referenceNy160 exhausted its preregistered120second budget; that actual timeout is preserved. A reference revision removed only unnecessary diagnostic-string allocation and was repinned before first primary execution; physical inputs,arithmetic,CFL and acceptance values did not change. All24 tests, three final-time runs and45 gates passed with-W error. Primary density L1=.14754/.12878/.10265, pressure L1=.19373/.16015/.12242 and last-pair density slope=.327. Reference80/160 increments=.02636/.03063, about.257/.250 of the finest primary differences. Maximum four-component relative boundary-budget residual=2.99e-13; all integrated wall mass/energy fluxes are zero. The three primary grids took about46seconds on the original Mac; revised reference80/160 took about8/65seconds."
+          },
+          "limits": {
+            "ja": "参照は別実装ですがHLL流束族とHeunを共有し、外部AMROC・LAVA・RKDGを実行した意味ではありません。有限格子の数値参照であり、厳密2D解や誤差上界ではありません。角の特別処理を加えない入力では数値的なエントロピー層が下流へ運ばれうるため、補正付き原著PPMの細部一致を主張しません。全流体領域の差とL∞、固定した角近傍の密度・圧力・エントロピー診断を隠さず残します。傾きは純粋な空間次数の証明ではなく、薄いすべり線・巻き上がり・一般形状や高次精度の収束は未検証です。 正規化した密度の最大差は.592/.670/.665で減少せず、角近傍のlog(p/ρ^γ)の最小値も−.0784/−.1224/−.3510と大きく変わります。これは任意の定数を含む絶対量で、負になるほど誤差が大きいという指標ではありませんが、角の極値や点ごとのパターンが安定・収束したとは主張できません。",
+            "en": "The reference is separately implemented but shares the HLL family and Heun; no external AMROC,LAVA or RKDG engine was executed. Finite-grid numerical data are neither an exact2D solution nor an error bound. Without special corner treatment, a numerical entropy layer may be advected downstream; no agreement with corrected originalPPM fine structures is claimed. Whole-fluid differences,Linf and fixed corner density/pressure/entropy diagnostics are retained. Slopes do not prove pure spatial order; thin slip lines,roll-up,general geometries and high-order convergence remain unverified. Normalized maximum density differences=.592/.670/.665 do not decrease. Corner minima of log(p/rho^gamma)=-.0784/-.1224/-.3510 change substantially. This absolute entropy variable includes an arbitrary additive constant; a more-negative value is not itself an error increase. Neither stable corner extrema nor pointwise pattern convergence is established."
+          },
+          "formulas": [
+            "\\partial_tU+\\partial_xF(U)+\\partial_yG(U)=0,\\qquad U=(\\rho,\\rho u,\\rho v,E)^T",
+            "\\Omega=([0,3]\\times[0,1])\\setminus([0.6,3]\\times[0,0.2]),\\quad (\\rho,u,v,p)_\\infty=(1.4,3,0,1)",
+            "\\sum_{C\\subset\\Omega}|C|(\\bar U_C^{n+1}-\\bar U_C^n)=\\frac{\\Delta t}{2}(B(U^n)+B(U^{(1)})),\\quad B=-\\sum_{\\partial\\Omega}|f|\\widehat F_n",
+            "\\epsilon_1(\\rho)=\\frac{\\sum_{C\\subset\\Omega}|\\bar\\rho_C-\\overline{\\rho_{\\rm ref}}_C|}{\\sum_{C\\subset\\Omega}|\\overline{\\rho_{\\rm ref}}_C|}"
+          ],
+          "references": [
+            {
+              "id": "woodward1984",
+              "author": "Paul Woodward and Phillip Colella",
+              "year": 1984,
+              "title": "The numerical simulation of two-dimensional fluid flow with strong shocks",
+              "journal": "Journal of Computational Physics",
+              "volume": "54",
+              "number": "1",
+              "pages": "115–173",
+              "doi": "10.1016/0021-9991(84)90142-6",
+              "url": "https://www.sciencedirect.com/science/article/pii/0021999184901426",
+              "type": "article",
+              "role": "standard-strong-shock-benchmark-origin",
+              "review_level": "previously-reviewed-publisher-metadata; setup cross-checked against Cockburn-Shu1991 primary report",
+              "review": {
+                "ja": "強衝撃波の標準比較の原著として引用。今回の出版社ページは取得拒否、原著本文を直接通読したとは主張せず、前向きステップの設定と角処理の区別はCockburn–Shu(1991)の一次資料で確認した。",
+                "en": "Cited as the original standard strong-shock comparison. The publisher page rejected retrieval in this task; no direct full-paper reading is claimed. Setup and the distinction between corner treatments were checked in the primary Cockburn–Shu(1991) report."
+              }
+            },
+            {
+              "id": "cockburn-shu1991-step",
+              "author": "Bernardo Cockburn and Chi-Wang Shu",
+              "year": 1991,
+              "title": "The P¹-RKDG Method for Two-Dimensional Euler Equations of Gas Dynamics",
+              "report": "NASA Contractor Report 187542; ICASE Report91-32",
+              "url": "https://ntrs.nasa.gov/citations/19910015505",
+              "pdf_url": "https://ntrs.nasa.gov/api/citations/19910015505/downloads/19910015505.pdf",
+              "type": "technical-report",
+              "role": "primary-setup-and-corner-treatment-comparison",
+              "review_level": "selected-text-review: Example2 printedp7/PDFpage11 and Fig3 captions printedp8/PDFpage12",
+              "review": {
+                "ja": "Example2の形状、Mach3一様流、流入・流出・反射境界、T=4、および角の特別処理あり/なしを比べるFig3の説明を確認。本文の選択箇所の確認であり、図の転載・RKDGの実行は行わない。",
+                "en": "Reviewed Example2 setup, Mach3 uniform flow, inlet/outlet/reflection boundaries, T4 and the Fig3 distinction between untreated and specially treated corners. Selected text only; no figure redistribution or RKDG execution."
+              }
+            },
+            {
+              "id": "amroc-forward-step",
+              "author": "Ralf Deiterding / AMROC project",
+              "year": 2004,
+              "title": "2D Euler equations — Forward facing step",
+              "url": "https://amroc.sourceforge.net/examples/euler/2d/html/ffstep_n.htm",
+              "type": "official-software-documentation",
+              "role": "explicit-uncorrected-corner-variant-context",
+              "review_level": "official-example-selected-problem-description",
+              "review": {
+                "ja": "角セルに特別なエントロピー補正を加えない変種とT=4の公式説明を確認。AMROCの計算・AMR・図をこの例へ取り込んだものではない。",
+                "en": "Checked the official example description explicitly omitting special corner entropy corrections and using T4. No AMROC calculation, AMR or figure is imported."
+              }
+            },
+            {
+              "id": "atlas-forward-step-independent-reference",
+              "author": "Hiroshi Koyama",
+              "year": 2026,
+              "title": "Independent C++17 MUSCL finite-volume reference for the uncorrected Mach-3 forward-facing step",
+              "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/reference.cpp",
+              "type": "software-and-saved-data",
+              "role": "independently-implemented-finite-grid-reference",
+              "license": "MIT",
+              "source_sha256": "66e523f5486179f2c79ac0ad21a35a11856e55a9101e03b8d3bca76cccbd5996",
+              "review_level": "source-and-preregistered-new-execution",
+              "review": {
+                "ja": "主計算の空間演算をimportしない別実装。HLLとHeunの族は共有し、外部エンジンの実行ではありません。初版の時間切れと診断引数だけの性能改訂を保存し、参照データ・入力・実行履歴・契約を同梱します。",
+                "en": "Separate implementation without primary spatial-operator imports. HLL and Heun families are shared; no external engine execution. The original timeout and diagnostic-argument-only performance revision are retained alongside saved data,inputs,execution history and contracts."
+              }
+            }
+          ],
+          "measured": {
+            "id": "forward-step-m3",
+            "passed": true,
+            "records": [
+              {
+                "n": 20,
+                "ny": 20,
+                "nx": 60,
+                "time": 4.0,
+                "steps": 1324,
+                "fluid_cells": 1008,
+                "fluid_area": 2.52,
+                "density_l1": 0.1475409451217851,
+                "pressure_l1": 0.1937266653816585,
+                "density_l2": 0.20569222459711295,
+                "density_linf": 0.5922630026808776,
+                "minimum_density_all_stages": 0.6937162681587627,
+                "minimum_pressure_all_stages": 0.8135226202360644,
+                "density_min": 1.123165730029373,
+                "density_max": 6.45323308807948,
+                "pressure_min": 1.0000000000000009,
+                "pressure_max": 11.431121109793171,
+                "state_floor_count": 0,
+                "rejected_steps": 0,
+                "initial_integral": [
+                  3.528000000000034,
+                  10.583999999999806,
+                  0.0,
+                  22.176000000000162
+                ],
+                "final_integral": [
+                  6.454864773240575,
+                  12.331166499307141,
+                  0.6124808308256182,
+                  36.34299488033696
+                ],
+                "boundary_net_integral": [
+                  2.92686477324059,
+                  1.7471664993071165,
+                  0.612480830825568,
+                  14.166994880336816
+                ],
+                "boundary_integrals": {
+                  "inlet": [
+                    16.800000000000015,
+                    54.40000000000004,
+                    0.0,
+                    117.60000000000008
+                  ],
+                  "outlet": [
+                    -13.873135226759425,
+                    -42.76307996368035,
+                    -0.09746061394522142,
+                    -103.43300511966326
+                  ],
+                  "bottom": [
+                    0.0,
+                    0.0,
+                    12.91869208462983,
+                    0.0
+                  ],
+                  "top": [
+                    0.0,
+                    0.0,
+                    -33.66947425920519,
+                    0.0
+                  ],
+                  "vertical_step": [
+                    0.0,
+                    -9.889753537012577,
+                    0.0,
+                    0.0
+                  ],
+                  "horizontal_step": [
+                    0.0,
+                    0.0,
+                    21.460723619346147,
+                    0.0
+                  ]
+                },
+                "conservation_residual": [
+                  -4.884981308350689e-14,
+                  2.184918912462308e-13,
+                  5.0182080713057076e-14,
+                  -1.7763568394002505e-14
+                ],
+                "conservation_relative": [
+                  1.3846318901220638e-14,
+                  2.0643602725456802e-14,
+                  5.0182080713057076e-14,
+                  8.010267132937579e-16
+                ],
+                "wall_mass_energy_max_abs": 0.0,
+                "corner_density_l1": 0.10808108266730719,
+                "corner_density_max": 5.380052841726943,
+                "corner_pressure_max": 11.431121109793171,
+                "corner_entropy_min": -0.07840851927233083,
+                "corner_entropy_max": 0.22207703894846234,
+                "field": "field-ny20.npz",
+                "history": "history-ny20.json"
+              },
+              {
+                "n": 40,
+                "ny": 40,
+                "nx": 120,
+                "time": 4.0,
+                "steps": 2712,
+                "fluid_cells": 4032,
+                "fluid_area": 2.52,
+                "density_l1": 0.12877549384477924,
+                "pressure_l1": 0.1601532242934376,
+                "density_l2": 0.19734717052800388,
+                "density_linf": 0.6702885016598537,
+                "minimum_density_all_stages": 0.6636165198278086,
+                "minimum_pressure_all_stages": 0.8122964457934898,
+                "density_min": 0.947557714251976,
+                "density_max": 6.829952573638311,
+                "pressure_min": 1.0000000000000009,
+                "pressure_max": 13.006034151828572,
+                "state_floor_count": 0,
+                "rejected_steps": 0,
+                "initial_integral": [
+                  3.527999999999867,
+                  10.584000000000792,
+                  0.0,
+                  22.17599999999937
+                ],
+                "final_integral": [
+                  6.4053827632692375,
+                  12.307453519604408,
+                  0.637855129438976,
+                  36.13579035189517
+                ],
+                "boundary_net_integral": [
+                  2.877382763269253,
+                  1.7234535196045453,
+                  0.6378551294389609,
+                  13.959790351895165
+                ],
+                "boundary_integrals": {
+                  "inlet": [
+                    16.80000000000001,
+                    54.40000000000019,
+                    0.0,
+                    117.6000000000001
+                  ],
+                  "outlet": [
+                    -13.922617236730758,
+                    -43.013721211894634,
+                    -0.4533480175276906,
+                    -103.64020964810493
+                  ],
+                  "bottom": [
+                    0.0,
+                    0.0,
+                    13.152914766216469,
+                    0.0
+                  ],
+                  "top": [
+                    0.0,
+                    0.0,
+                    -33.37942685570288,
+                    0.0
+                  ],
+                  "vertical_step": [
+                    0.0,
+                    -9.662825268501011,
+                    0.0,
+                    0.0
+                  ],
+                  "horizontal_step": [
+                    0.0,
+                    0.0,
+                    21.317715236453065,
+                    0.0
+                  ]
+                },
+                "conservation_residual": [
+                  1.176836406102666e-13,
+                  -9.29034627006331e-13,
+                  1.509903313490213e-14,
+                  6.323830348264892e-13
+                ],
+                "conservation_relative": [
+                  3.335704098930585e-14,
+                  8.777727012530815e-14,
+                  1.509903313490213e-14,
+                  2.85165509932588e-14
+                ],
+                "wall_mass_energy_max_abs": 0.0,
+                "corner_density_l1": 0.062151450288476365,
+                "corner_density_max": 5.670421239617745,
+                "corner_pressure_max": 11.722490825381184,
+                "corner_entropy_min": -0.12242655195426976,
+                "corner_entropy_max": 0.25178686098232733,
+                "field": "field-ny40.npz",
+                "history": "history-ny40.json"
+              },
+              {
+                "n": 80,
+                "ny": 80,
+                "nx": 240,
+                "time": 4.0,
+                "steps": 5557,
+                "fluid_cells": 16128,
+                "fluid_area": 2.52,
+                "density_l1": 0.10265130952593862,
+                "pressure_l1": 0.12242245655875464,
+                "density_l2": 0.17407969884723082,
+                "density_linf": 0.6649309657923782,
+                "minimum_density_all_stages": 0.572306931838617,
+                "minimum_pressure_all_stages": 0.7623628074232572,
+                "density_min": 0.6990444287976558,
+                "density_max": 6.591899988897764,
+                "pressure_min": 0.8066533197248239,
+                "pressure_max": 12.16201901303801,
+                "state_floor_count": 0,
+                "rejected_steps": 0,
+                "initial_integral": [
+                  3.5280000000005374,
+                  10.583999999996843,
+                  0.0,
+                  22.176000000002542
+                ],
+                "final_integral": [
+                  6.372615354316513,
+                  12.286268963909581,
+                  0.6387925784415488,
+                  36.008269687101006
+                ],
+                "boundary_net_integral": [
+                  2.8446153543164634,
+                  1.702268963909578,
+                  0.638792578441354,
+                  13.832269687101586
+                ],
+                "boundary_integrals": {
+                  "inlet": [
+                    16.799999999999994,
+                    54.39999999999998,
+                    0.0,
+                    117.60000000000038
+                  ],
+                  "outlet": [
+                    -13.95538464568353,
+                    -43.179769794713124,
+                    -0.7546583393640717,
+                    -103.76773031289879
+                  ],
+                  "bottom": [
+                    0.0,
+                    0.0,
+                    13.312050379287443,
+                    0.0
+                  ],
+                  "top": [
+                    0.0,
+                    0.0,
+                    -33.15606874815574,
+                    0.0
+                  ],
+                  "vertical_step": [
+                    0.0,
+                    -9.517961241377275,
+                    0.0,
+                    0.0
+                  ],
+                  "horizontal_step": [
+                    0.0,
+                    0.0,
+                    21.237469286673722,
+                    0.0
+                  ]
+                },
+                "conservation_residual": [
+                  -4.880540416252188e-13,
+                  3.1601388172930456e-12,
+                  1.9484414082171497e-13,
+                  -3.1228353236656403e-12
+                ],
+                "conservation_relative": [
+                  1.3833731338581192e-13,
+                  2.9857698576095884e-13,
+                  1.9484414082171497e-13,
+                  1.4082049619702753e-13
+                ],
+                "wall_mass_energy_max_abs": 0.0,
+                "corner_density_l1": 0.03512271217575579,
+                "corner_density_max": 5.840654003919099,
+                "corner_pressure_max": 11.902361154385352,
+                "corner_entropy_min": -0.35096779612542683,
+                "corner_entropy_max": 0.3051128979484177,
+                "field": "field-ny80.npz",
+                "history": "history-ny80.json"
+              }
+            ],
+            "reference_increment": {
+              "density_l1": 0.02635884764940855,
+              "pressure_l1": 0.030632816211638252,
+              "scope": "Ny80 versus conservatively restricted Ny160 separately implemented numerical references; not an exact error bound."
+            },
+            "checks": {
+              "three final-time refinements complete": true,
+              "ny20: requested time reached": true,
+              "ny20: minimum_density_all_stages": true,
+              "ny20: minimum_pressure_all_stages": true,
+              "ny20: state_floor_count": true,
+              "ny20: rejected_steps": true,
+              "ny20: exact aligned fluid area": true,
+              "ny20: mass including step-wall boundary balance": true,
+              "ny20: x momentum including step-wall boundary balance": true,
+              "ny20: y momentum including step-wall boundary balance": true,
+              "ny20: energy including step-wall boundary balance": true,
+              "ny20: stationary-wall integrated mass/energy flux": true,
+              "ny20: unmasked full-field/corner diagnostics retained": true,
+              "ny40: requested time reached": true,
+              "ny40: minimum_density_all_stages": true,
+              "ny40: minimum_pressure_all_stages": true,
+              "ny40: state_floor_count": true,
+              "ny40: rejected_steps": true,
+              "ny40: exact aligned fluid area": true,
+              "ny40: mass including step-wall boundary balance": true,
+              "ny40: x momentum including step-wall boundary balance": true,
+              "ny40: y momentum including step-wall boundary balance": true,
+              "ny40: energy including step-wall boundary balance": true,
+              "ny40: stationary-wall integrated mass/energy flux": true,
+              "ny40: unmasked full-field/corner diagnostics retained": true,
+              "ny80: requested time reached": true,
+              "ny80: minimum_density_all_stages": true,
+              "ny80: minimum_pressure_all_stages": true,
+              "ny80: state_floor_count": true,
+              "ny80: rejected_steps": true,
+              "ny80: exact aligned fluid area": true,
+              "ny80: mass including step-wall boundary balance": true,
+              "ny80: x momentum including step-wall boundary balance": true,
+              "ny80: y momentum including step-wall boundary balance": true,
+              "ny80: energy including step-wall boundary balance": true,
+              "ny80: stationary-wall integrated mass/energy flux": true,
+              "ny80: unmasked full-field/corner diagnostics retained": true,
+              "finest density_l1": true,
+              "finest pressure_l1": true,
+              "density difference decreases across the fixed grids": true,
+              "last-pair density difference slope": true,
+              "reference increment density_l1": true,
+              "reference increment / primary finest density_l1": true,
+              "reference increment pressure_l1": true,
+              "reference increment / primary finest pressure_l1": true
+            },
+            "check_details": [
+              {
+                "name": "three final-time refinements complete",
+                "value": [
+                  20,
+                  40,
+                  80
+                ],
+                "bound": [
+                  20,
+                  40,
+                  80
+                ],
+                "passed": true
+              },
+              {
+                "name": "ny20: requested time reached",
+                "value": 4.0,
+                "bound": 4.0,
+                "passed": true
+              },
+              {
+                "name": "ny20: minimum_density_all_stages",
+                "value": 0.6937162681587627,
+                "bound": 0,
+                "passed": true
+              },
+              {
+                "name": "ny20: minimum_pressure_all_stages",
+                "value": 0.8135226202360644,
+                "bound": 0,
+                "passed": true
+              },
+              {
+                "name": "ny20: state_floor_count",
+                "value": 0,
+                "bound": 0,
+                "passed": true
+              },
+              {
+                "name": "ny20: rejected_steps",
+                "value": 0,
+                "bound": 0,
+                "passed": true
+              },
+              {
+                "name": "ny20: exact aligned fluid area",
+                "value": 2.52,
+                "bound": 2.52,
+                "passed": true
+              },
+              {
+                "name": "ny20: mass including step-wall boundary balance",
+                "value": 1.3846318901220638e-14,
+                "bound": 3e-12,
+                "passed": true
+              },
+              {
+                "name": "ny20: x momentum including step-wall boundary balance",
+                "value": 2.0643602725456802e-14,
+                "bound": 3e-12,
+                "passed": true
+              },
+              {
+                "name": "ny20: y momentum including step-wall boundary balance",
+                "value": 5.0182080713057076e-14,
+                "bound": 3e-12,
+                "passed": true
+              },
+              {
+                "name": "ny20: energy including step-wall boundary balance",
+                "value": 8.010267132937579e-16,
+                "bound": 3e-12,
+                "passed": true
+              },
+              {
+                "name": "ny20: stationary-wall integrated mass/energy flux",
+                "value": 0.0,
+                "bound": 2e-13,
+                "passed": true
+              },
+              {
+                "name": "ny20: unmasked full-field/corner diagnostics retained",
+                "value": true,
+                "bound": true,
+                "passed": true
+              },
+              {
+                "name": "ny40: requested time reached",
+                "value": 4.0,
+                "bound": 4.0,
+                "passed": true
+              },
+              {
+                "name": "ny40: minimum_density_all_stages",
+                "value": 0.6636165198278086,
+                "bound": 0,
+                "passed": true
+              },
+              {
+                "name": "ny40: minimum_pressure_all_stages",
+                "value": 0.8122964457934898,
+                "bound": 0,
+                "passed": true
+              },
+              {
+                "name": "ny40: state_floor_count",
+                "value": 0,
+                "bound": 0,
+                "passed": true
+              },
+              {
+                "name": "ny40: rejected_steps",
+                "value": 0,
+                "bound": 0,
+                "passed": true
+              },
+              {
+                "name": "ny40: exact aligned fluid area",
+                "value": 2.52,
+                "bound": 2.52,
+                "passed": true
+              },
+              {
+                "name": "ny40: mass including step-wall boundary balance",
+                "value": 3.335704098930585e-14,
+                "bound": 3e-12,
+                "passed": true
+              },
+              {
+                "name": "ny40: x momentum including step-wall boundary balance",
+                "value": 8.777727012530815e-14,
+                "bound": 3e-12,
+                "passed": true
+              },
+              {
+                "name": "ny40: y momentum including step-wall boundary balance",
+                "value": 1.509903313490213e-14,
+                "bound": 3e-12,
+                "passed": true
+              },
+              {
+                "name": "ny40: energy including step-wall boundary balance",
+                "value": 2.85165509932588e-14,
+                "bound": 3e-12,
+                "passed": true
+              },
+              {
+                "name": "ny40: stationary-wall integrated mass/energy flux",
+                "value": 0.0,
+                "bound": 2e-13,
+                "passed": true
+              },
+              {
+                "name": "ny40: unmasked full-field/corner diagnostics retained",
+                "value": true,
+                "bound": true,
+                "passed": true
+              },
+              {
+                "name": "ny80: requested time reached",
+                "value": 4.0,
+                "bound": 4.0,
+                "passed": true
+              },
+              {
+                "name": "ny80: minimum_density_all_stages",
+                "value": 0.572306931838617,
+                "bound": 0,
+                "passed": true
+              },
+              {
+                "name": "ny80: minimum_pressure_all_stages",
+                "value": 0.7623628074232572,
+                "bound": 0,
+                "passed": true
+              },
+              {
+                "name": "ny80: state_floor_count",
+                "value": 0,
+                "bound": 0,
+                "passed": true
+              },
+              {
+                "name": "ny80: rejected_steps",
+                "value": 0,
+                "bound": 0,
+                "passed": true
+              },
+              {
+                "name": "ny80: exact aligned fluid area",
+                "value": 2.52,
+                "bound": 2.52,
+                "passed": true
+              },
+              {
+                "name": "ny80: mass including step-wall boundary balance",
+                "value": 1.3833731338581192e-13,
+                "bound": 3e-12,
+                "passed": true
+              },
+              {
+                "name": "ny80: x momentum including step-wall boundary balance",
+                "value": 2.9857698576095884e-13,
+                "bound": 3e-12,
+                "passed": true
+              },
+              {
+                "name": "ny80: y momentum including step-wall boundary balance",
+                "value": 1.9484414082171497e-13,
+                "bound": 3e-12,
+                "passed": true
+              },
+              {
+                "name": "ny80: energy including step-wall boundary balance",
+                "value": 1.4082049619702753e-13,
+                "bound": 3e-12,
+                "passed": true
+              },
+              {
+                "name": "ny80: stationary-wall integrated mass/energy flux",
+                "value": 0.0,
+                "bound": 2e-13,
+                "passed": true
+              },
+              {
+                "name": "ny80: unmasked full-field/corner diagnostics retained",
+                "value": true,
+                "bound": true,
+                "passed": true
+              },
+              {
+                "name": "finest density_l1",
+                "value": 0.10265130952593862,
+                "bound": 0.18,
+                "passed": true
+              },
+              {
+                "name": "finest pressure_l1",
+                "value": 0.12242245655875464,
+                "bound": 0.18,
+                "passed": true
+              },
+              {
+                "name": "density difference decreases across the fixed grids",
+                "value": true,
+                "bound": true,
+                "passed": true
+              },
+              {
+                "name": "last-pair density difference slope",
+                "value": 0.3271060406344992,
+                "bound": 0.15,
+                "passed": true
+              },
+              {
+                "name": "reference increment density_l1",
+                "value": 0.02635884764940855,
+                "bound": 0.08,
+                "passed": true
+              },
+              {
+                "name": "reference increment / primary finest density_l1",
+                "value": 0.25678043242836585,
+                "bound": 0.8,
+                "passed": true
+              },
+              {
+                "name": "reference increment pressure_l1",
+                "value": 0.030632816211638252,
+                "bound": 0.08,
+                "passed": true
+              },
+              {
+                "name": "reference increment / primary finest pressure_l1",
+                "value": 0.2502221983834848,
+                "bound": 0.8,
+                "passed": true
+              }
+            ],
+            "metrics": {
+              "n": 80,
+              "ny": 80,
+              "nx": 240,
+              "time": 4.0,
+              "steps": 5557,
+              "fluid_cells": 16128,
+              "fluid_area": 2.52,
+              "density_l1": 0.10265130952593862,
+              "pressure_l1": 0.12242245655875464,
+              "density_l2": 0.17407969884723082,
+              "density_linf": 0.6649309657923782,
+              "minimum_density_all_stages": 0.572306931838617,
+              "minimum_pressure_all_stages": 0.7623628074232572,
+              "density_min": 0.6990444287976558,
+              "density_max": 6.591899988897764,
+              "pressure_min": 0.8066533197248239,
+              "pressure_max": 12.16201901303801,
+              "state_floor_count": 0,
+              "rejected_steps": 0,
+              "wall_mass_energy_max_abs": 0.0,
+              "corner_density_l1": 0.03512271217575579,
+              "corner_density_max": 5.840654003919099,
+              "corner_pressure_max": 11.902361154385352,
+              "corner_entropy_min": -0.35096779612542683,
+              "corner_entropy_max": 0.3051128979484177
+            },
+            "scope": "Full2D first-order HLL/Heun Mach3 forward-step atT4, same aligned no-corner-fix variant as a separately implemented MUSCL finite-grid reference."
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/forward-step-m3/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-forward-step/#forward-step-m3",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-forward-step/#forward-step-m3"
+          }
+        }
+      ]
     }
   ],
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/heun/",
@@ -3473,7 +4280,13 @@
     "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/reference-development/ode01-source.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-23/double-mach/run.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-23/double-mach/dm_solver.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/double-mach/references/reference-source.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/double-mach/references/reference-source.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/fs_solver.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/attempts/01/source/convert.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/attempts/01/source/run-reference.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/convert.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/run-reference.py"
   ],
   "test_urls": [
     "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
@@ -3482,7 +4295,8 @@
     "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r5/noh/test_noh.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/noh-cartesian/test_cartesian.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/sedov/test_sedov.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/double-mach/test_dm.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/double-mach/test_dm.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/test_fs.py"
   ],
   "run_commands": [
     "python -m pytest -q tests/test_time_geometry.py tests/test_runge_kutta.py tests/test_hamiltonian.py"
@@ -3526,6 +4340,15 @@
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/double-mach-reflection/?lang=en"
       },
       "kind": "dedicated-supplement"
+    },
+    {
+      "id": "forward-step-m3",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/forward-step-m3/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/forward-step-m3/?lang=en"
+      },
+      "kind": "dedicated-supplement"
     }
   ],
   "problem_navigation": {
@@ -3540,6 +4363,7 @@
         },
         "problem_ids": [
           "double-mach",
+          "forward-step",
           "noh",
           "sedov"
         ],
@@ -3608,6 +4432,66 @@
         "reference_url": {
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-mach/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/double-mach/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "forward-step",
+        "name": {
+          "ja": "Mach 3前向きステップ",
+          "en": "Mach-3 forward-facing step"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/results/forward-step-m3-preview.png",
+          "sha256": "14874a4887433c8cfc247d436ce37bc305cf5a6f88f86a9fe54df23827a522a1",
+          "width": 1312,
+          "height": 744,
+          "caption": {
+            "ja": "実際の2次元Euler計算の密度場。Mach 3、γ=1.4、T=4、240×80セル。固体段差を除いて描きます。角のエントロピー補正は使わず、微細なすべり線・渦の収束を保証する図ではありません。",
+            "en": "Density from the actual 2D Euler computation: Mach3,gamma=1.4,T=4,240×80 cells. The solid step is masked. No corner entropy correction is used; the picture does not establish convergence of fine slip lines or vortices."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/forward-step/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/forward-step/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/forward-step/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/forward-step/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "forward-step-m3",
+            "kind": "supplement",
+            "name": {
+              "ja": "Mach 3前向きステップ：壁面収支と多格子検証",
+              "en": "Mach3 forward step: wall budgets and grid verification"
+            },
+            "scope": {
+              "ja": "実際の2次元Euler有限体積計算を60×20・120×40・240×80でT=4まで行い、別実装のMUSCL有限格子参照と比較します。段差の垂直面・上面を含む実際の数値流束から4保存量の収支を評価し、角のエントロピー補正を加えない変種として図とコードを公開します。",
+              "en": "Actual2D Euler finite volumes evolve60x20,120x40 and240x80 meshes toT4, comparing separately implemented MUSCL finite-grid references. Actual numerical wall fluxes, including the vertical and horizontal step faces, close all four conserved budgets. Figures and code explicitly use the variant without corner entropy correction."
+            },
+            "method_ids": [
+              "hll",
+              "heun"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/forward-step-m3/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/forward-step-m3/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/atlas-forward-step-2026-11-23.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "従来のHLL・MUSCLと勾配制限の比較データを保持し、追加の軽量例は区分定数HLL＋Heunを使います。参照実装の手法は参照の出典と条件で区別します。",
+          "en": "Retain the earlier HLL/MUSCL and slope-limiter comparisons; the additional lightweight example uses piecewise-constant HLL plus Heun. Methods belonging to the reference implementation are identified separately with its source and conditions."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/forward-step/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/forward-step/?lang=en#references-en"
         }
       },
       {
@@ -3859,6 +4743,40 @@
             "view": {
               "ja": "/numerical-methods-atlas/validation/double-mach-reflection/?lang=ja#double-mach-reflection-ja-measurements",
               "en": "/numerical-methods-atlas/validation/double-mach-reflection/?lang=en#double-mach-reflection-en-measurements"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "forward-step",
+        "problem_name": {
+          "ja": "Mach 3前向きステップ",
+          "en": "Mach-3 forward-facing step"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/forward-step/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/forward-step/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "forward-step",
+            "title": {
+              "ja": "Mach 3前向きステップ：独立C++有限格子数値参照",
+              "en": "Mach-3 forward-facing step: independent C++ finite-grid numerical reference"
+            },
+            "kind": "numerical-reference",
+            "relation": "same-problem",
+            "note": {
+              "ja": "新しく独立実行したC++17のMUSCL/HLL/Heun参照を保存量制限で比較します。同じHLL族・Heunと角無補正条件を共有する有限格子数値参照であり、全場の厳密解や誤差上界ではありません。",
+              "en": "Conservatively restrict newly independently executed C++17 MUSCL/HLL/Heun reference data. The finite-grid numerical reference shares the HLL family,Heun and the uncorrected corner; it is not an exact full-field solution or error bound."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-forward-step-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-forward-step-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/forward-step-m3/?lang=ja#forward-step-m3-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/forward-step-m3/?lang=en#forward-step-m3-en-measurements"
             }
           }
         ]

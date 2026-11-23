@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "started_at_utc": "2026-11-23T05:14:16.202680+00:00",
+  "new_reference_pde_executed": true,
+  "primary_operator_imports": false,
+  "source_language": "C++17",
+  "source_sha256": "66e523f5486179f2c79ac0ad21a35a11856e55a9101e03b8d3bca76cccbd5996",
+  "pre_run_contract_sha256": "82bdc5bf092db1e71979775ca172d30e53f260c02593e2d5901e32a40fc258a8",
+  "python": "3.12.16 (main, Oct 25 2026, 18:24:37) [Clang 21.0.0 (clang-2100.3.34.2)]",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "processes": [
+    {
+      "name": "compiler-version",
+      "command": [
+        "/usr/bin/c++",
+        "--version"
+      ],
+      "timeout_seconds": 120,
+      "started_at_utc": "2026-11-23T05:14:16.222850+00:00",
+      "exit_code": 0,
+      "duration_seconds": 0.023876332999861916,
+      "stdout": "Apple clang version 21.0.0 (clang-2100.4.1.1)\nTarget: arm64-apple-darwin25.6.0\nThread model: posix\nInstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin\n",
+      "stderr": ""
+    },
+    {
+      "name": "compile",
+      "command": [
+        "/usr/bin/c++",
+        "-std=c++17",
+        "-O3",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/atlas-search-publisher/scripts/depth-forward-step/references/reference.cpp",
+        "-o",
+        "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/fs-reference-run02/reference"
+      ],
+      "timeout_seconds": 120,
+      "started_at_utc": "2026-11-23T05:14:16.246981+00:00",
+      "exit_code": 0,
+      "duration_seconds": 0.6253924579996237,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "self-tests",
+      "command": [
+        "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/fs-reference-run02/reference",
+        "--self-test"
+      ],
+      "timeout_seconds": 120,
+      "started_at_utc": "2026-11-23T05:14:16.872800+00:00",
+      "exit_code": 0,
+      "duration_seconds": 0.33730483399995137,
+      "stdout": "{\"self_tests_passed\":8}\n",
+      "stderr": ""
+    },
+    {
+      "name": "reference-ny80",
+      "command": [
+        "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/fs-reference-run02/reference",
+        "80",
+        "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/fs-reference-run02/forward-step-ny80"
+      ],
+      "timeout_seconds": 120,
+      "started_at_utc": "2026-11-23T05:14:17.210456+00:00",
+      "exit_code": 0,
+      "duration_seconds": 7.824979208000514,
+      "stdout": "{\"ny\":80,\"steps\":7707,\"wall_seconds\":7.817623292,\"min_rho\":0.2666392465,\"min_p\":0.3291579447}\n",
+      "stderr": ""
+    },
+    {
+      "name": "reference-ny160",
+      "command": [
+        "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/fs-reference-run02/reference",
+        "160",
+        "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/fs-reference-run02/forward-step-ny160"
+      ],
+      "timeout_seconds": 120,
+      "started_at_utc": "2026-11-23T05:14:25.035742+00:00",
+      "exit_code": 0,
+      "duration_seconds": 65.11855933299921,
+      "stdout": "{\"ny\":160,\"steps\":15800,\"wall_seconds\":65.0964205,\"min_rho\":0.1655647883,\"min_p\":0.1796594685}\n",
+      "stderr": ""
+    },
+    {
+      "name": "convert",
+      "command": [
+        "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/fs-env/bin/python",
+        "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/atlas-search-publisher/scripts/depth-forward-step/references/convert.py",
+        "--raw-dir",
+        "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/fs-reference-run02",
+        "--output-dir",
+        "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/atlas-search-publisher/scripts/depth-forward-step/references"
+      ],
+      "timeout_seconds": 120,
+      "started_at_utc": "2026-11-23T05:15:30.154602+00:00",
+      "exit_code": 0,
+      "duration_seconds": 0.1522535419990163,
+      "stdout": "{\"converted\": 2, \"reference_increment\": {\"density_l1\": 0.02635884764940855, \"pressure_l1\": 0.030632816211638252}, \"gate_evaluation\": \"Primary source evaluates its own predeclared reference criteria; converter checks reference integrity/admissibility/conservation only.\"}\n",
+      "stderr": ""
+    }
+  ],
+  "passed": true,
+  "binary_sha256": "979be11164d8fe2ebc327d29c6a2f16a897790a81d430aa8b2febd16c75e9c3b",
+  "finished_at_utc": "2026-11-23T05:15:30.307122+00:00"
+}

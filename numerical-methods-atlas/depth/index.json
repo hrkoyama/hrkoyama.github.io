@@ -46,7 +46,8 @@
         "noh-shock",
         "noh-cartesian-2d",
         "sedov-blast",
-        "double-mach-reflection"
+        "double-mach-reflection",
+        "forward-step-m3"
       ]
     },
     {
@@ -445,10 +446,10 @@
   "registry": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
   "verification_receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
   "source_sha256": {
-    "catalog/atlas-depth.json": "54dc9fa8dec37b4dc6d2fcd5f5fc78267559811d0713941d8376fe4422faee6f",
+    "catalog/atlas-depth.json": "0efced91155b0329a922eb69e5e5020528d68a6f5e94ce399c4734dad127b527",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "catalog/atlas-depth-expansion.json": "15ba0967cb9d417ebbcdb027ef0adac50cff449887cfe723bdba6b221a1d5b63",
+    "catalog/atlas-depth-expansion.json": "5fc8fd929c0e3a3bba7c5d25e1fc3b159bc0976f0cc6a2f9cc96bc5276aa3c4e",
     "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
     "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
     "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
@@ -474,6 +475,11 @@
     "code/validated-examples/2026-11-23/double-mach/cases.json": "38eb6a6fb4af35cdd3ca8834b9f3e5c80be22a50615f03aef712bc67b11b85e3",
     "code/validated-examples/2026-11-23/double-mach/results/result.json": "3b4a36b9b3e10e7a6984130ee24bb7d5707de0fe24facff3a49b8eabd71ea5fe",
     "code/validated-examples/2026-11-23/double-mach/atlas-double-mach-2026-11-23.zip": "0a68d19746c508e0ac0cf9b5bebe9375c797a87ade1a9fbfbef87d6e5fa63347",
+    "code/validated-examples/2026-11-23/forward-step/source-manifest.json": "77546e263d8e08266cedb57ef5e128a3bee68d7b9597fb56bed2eee5dcbec6dc",
+    "code/validated-examples/2026-11-23/forward-step/verification.json": "f40317a2721c2048c6174bf41c03adf5e3eddae07e19ae95e6ed5210a9b01914",
+    "code/validated-examples/2026-11-23/forward-step/cases.json": "e7397c94e5d170170b09a6baa4fdf9276d83419118e456cc172ad6c5cf63b363",
+    "code/validated-examples/2026-11-23/forward-step/results/result.json": "636e179813165fbe620caadd825ac699973ea2dde897d13aed8b2d22102e6704",
+    "code/validated-examples/2026-11-23/forward-step/atlas-forward-step-2026-11-23.zip": "ae69647a4e63c75c0888a6daf15835d348e9d74de58b5e59926e359e9ffc52cd",
     "code/validated-examples/2026-11-22/mhd-convergence/source-manifest.json": "9d5fd8eb67ed3d4ac3965596bbd12152bdc1ae2e03a3a4f060573175d00caf67",
     "code/validated-examples/2026-11-22/mhd-convergence/verification.json": "ddf51e803eb94ca7dc419d0b9fc4aa6ec7204c319e448f7d4b120f5342a319d8",
     "code/validated-examples/2026-11-22/mhd-convergence/cases.json": "a1ebd3a1344c90cc49e11dd790a522434f7fdec27f77d8621a2197a7be738434",

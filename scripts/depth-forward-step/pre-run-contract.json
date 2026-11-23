@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "declared_at_utc": "2026-11-23T05:14:17.272930+00:00",
+  "declared_before_first_primary_pde_or_unit_execution": true,
+  "primary_unit_or_pde_executed_yet": false,
+  "target_edition": "2026-11-23",
+  "case": "forward-step-m3",
+  "planned_tests": 24,
+  "planned_numerical_gates": 45,
+  "planned_primary_grids": [
+    20,
+    40,
+    80
+  ],
+  "final_time": 4.0,
+  "max_steps_each": 20000,
+  "primary_timeout_seconds": 120,
+  "reference_scope": "Reference source, method, inputs and first-execution contract are fixed here before primary execution. Numerical reference arrays do not yet exist; they will be bound by a separate post-reference data qualification without rewriting this contract. Reference execution has its own earlier pre-run-contract.",
+  "files_sha256": {
+    "fs_solver.py": "2765dc4c370b9bb4c3f3fea5b0f59501983dfde2e75ef4322970e91e1ce0469e",
+    "run.py": "b514eb5523bb198199ba4ed057d0807fcc47e81f19b9288d1199f68614fcc413",
+    "test_fs.py": "47989b0efd97f8a01895c3f4e375bde24f3996f59969e9cb565f8e54975ecea1",
+    "inputs.json": "a55b2912063117c65b30c48cb5ed665b45dd58e378d72968f12e551d9c37f15e",
+    "acceptance.json": "eb895555dedeec88021dd38e1689c80e3bb80090b4ba1ed1469b34baa9be4a53",
+    "source-provenance.json": "f5e5521493f779343f482eda46a2f7560ac5aef31473929895f3d1352385b84f",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "references/pre-run-contract.json": "82bdc5bf092db1e71979775ca172d30e53f260c02593e2d5901e32a40fc258a8",
+    "references/reference.cpp": "66e523f5486179f2c79ac0ad21a35a11856e55a9101e03b8d3bca76cccbd5996",
+    "references/run-reference.py": "50e48cfd28c289a06d788581c7703439cde1736edac33c0c6c646ef6490fc9d5",
+    "references/convert.py": "9029b5cabb5dc416069c4d77ee7161baa794ee6de68587b91053fa6fead890f6",
+    "references/definition.json": "220c5ccda2855780cfcb6751ee1bae28c2a1638317ec1d9f8abaf5131838451a",
+    "references/citations.json": "60beabb12a0ce232c4ba2cca5008d92c3e9288e35f254c5fe69586cfad7a7402",
+    "references/REFERENCE-LICENSE.txt": "07cca125623617c85a41e9a21a2b114d693c61737bc353e3ca98587431e26ee6",
+    "contract-before-reference-performance.json": "d4cc36d39f5469c7fdd6051cdeee590d170f566f0876a3bcda5274d48f219b39"
+  },
+  "previous_contract_sha256": "d4cc36d39f5469c7fdd6051cdeee590d170f566f0876a3bcda5274d48f219b39",
+  "revision": "Before any primary unit/PDE execution, the separate reference run Ny160 hit its unchanged120second execution budget. Its original frozen source/contract, successfulNy80 state and actual timeout are retained under references/attempts/01. The reference diagnostic argument changes from conststd::string& to constchar* to avoid per-face heap allocation; arithmetic, method, physical input, CFL, budget and acceptance are unchanged. This revision pins that new reference source/contract and retains the original primary contract. No primary numerical code, test, input or criterion changes."
+}

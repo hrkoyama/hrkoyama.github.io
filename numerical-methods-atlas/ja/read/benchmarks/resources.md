@@ -197,6 +197,10 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/benchmarks/
   availability: run
 
   既存のDouble Mach反射と同じ初期値・境界を使い、64×16・128×32・256×64の実2D Euler有限体積計算をT=.2まで実行します。別実装の有限格子参照との差、実際の境界流束収支、上部の入射衝撃位置と壁近傍を比較します。
+- [Mach 3前向きステップ：壁面収支と多格子検証](<https://hrkoyama.github.io/numerical-methods-atlas/validation/forward-step-m3/?lang=ja>)
+  availability: run
+
+  実際の2次元Euler有限体積計算を60×20・120×40・240×80でT=4まで行い、別実装のMUSCL有限格子参照と比較します。段差の垂直面・上面を含む実際の数値流束から4保存量の収支を評価し、角のエントロピー補正を加えない変種として図とコードを公開します。
 - [Godunov型有限体積法：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/godunov/?lang=ja#method-execution-ja>)
   availability: source
 

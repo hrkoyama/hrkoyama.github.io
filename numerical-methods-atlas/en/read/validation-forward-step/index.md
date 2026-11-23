@@ -1,0 +1,207 @@
+# Mach-3 forward-facing step: lightweight 2D verification
+
+Evolve uniform Mach-3 flow with gamma=1.4 to T=4 in [0,3]×[0,1] excluding the step x≥.6,y<.2. Piecewise-constant HLL plus Heun on 60×20,120×40 and240×80 grids compares actual boundary-flux budgets including the step faces, admissibility and shock structure. No corner entropy or enthalpy correction is applied.
+
+These additional validation supplements are managed separately from the common 22-example registry. Receipts cover independent ZIP extraction, tests and every fixed input within each group. Changes of settings, methods or step sizes do not add independent physical problems.
+
+## Mach3 forward step: wall budgets and grid verification
+
+Actual2D Euler finite volumes evolve60x20,120x40 and240x80 meshes toT4, comparing separately implemented MUSCL finite-grid references. Actual numerical wall fluxes, including the vertical and horizontal step faces, close all four conserved budgets. Figures and code explicitly use the variant without corner entropy correction.
+
+**Methods used**
+
+- [HLL](https://hrkoyama.github.io/numerical-methods-atlas/methods/hll/?lang=en) (`hll`)
+- [Heun / SSPRK(2,2)](https://hrkoyama.github.io/numerical-methods-atlas/methods/heun/?lang=en) (`heun`)
+
+**Equations**
+
+[This example’s formulation and conditions](https://hrkoyama.github.io/numerical-methods-atlas/validation/forward-step-m3/?lang=en#forward-step-m3-en-algorithm)
+
+Published Numart piecewise-constant HLL, unsplit x/y divergence and Heun/SSPRK(2,2) become a standalone package. Six boundary categories integrate the actual fluxes at both RK stages with identical weights. CFL.4, at most20000steps per grid. Every predictor/update checks positive density and pressure. No state floor, repair or hidden retry; invalid stages retain raw arrays/completed history and fail.
+
+$$
+\partial_tU+\partial_xF(U)+\partial_yG(U)=0,\qquad U=(\rho,\rho u,\rho v,E)^T
+$$
+
+$$
+\Omega=([0,3]\times[0,1])\setminus([0.6,3]\times[0,0.2]),\quad (\rho,u,v,p)_\infty=(1.4,3,0,1)
+$$
+
+$$
+\sum_{C\subset\Omega}|C|(\bar U_C^{n+1}-\bar U_C^n)=\frac{\Delta t}{2}(B(U^n)+B(U^{(1)})),\quad B=-\sum_{\partial\Omega}|f|\widehat F_n
+$$
+
+$$
+\epsilon_1(\rho)=\frac{\sum_{C\subset\Omega}|\bar\rho_C-\overline{\rho_{\rm ref}}_C|}{\sum_{C\subset\Omega}|\overline{\rho_{\rm ref}}_C|}
+$$
+
+- [Compressible Euler equations](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#euler-en) (`euler`)
+
+Two-dimensional compressible Euler conservation laws with gamma=1.4. Fixed inputs define uniform Mach-3 inflow, reflecting channel/step walls and right outflow.
+
+
+**Problem figure**
+
+![Mach3 forward step: wall budgets and grid verification: saved validation figure for this execution.](https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/results/forward-step-m3.png)
+
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+
+[Mach-3 forward-facing step](https://hrkoyama.github.io/numerical-methods-atlas/problems/forward-step/?lang=en) (`forward-step`)
+
+[This problem’s code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/forward-step/?lang=en#code-en)
+
+**Exact / reference solutions**
+
+[References and checks for this execution](https://hrkoyama.github.io/numerical-methods-atlas/validation/forward-step-m3/?lang=en#forward-step-m3-en-validation)
+
+Inputs, acceptance,24 unit checks and numerical source were frozen before the first primary test/PDE execution. Checks cover analytic Mach3 normal-shock Rankine-Hugoniot identities, uniform parallel-channel flow, zero stationary-wall mass/energy flux, step-pressure force orientation, actual four-component budgets and raw failure retention. Newly executed separate C++17 MUSCL/generalized-minmod theta1.5/HLL/Heun references atNy80/160 are conservatively restricted for whole-fluid density/pressure L1 comparison. Ordinary public-ZIP verification reads saved reference data; reference source, contracts and execution records are bundled. The first referenceNy160 exhausted its preregistered120second budget; that actual timeout is preserved. A reference revision removed only unnecessary diagnostic-string allocation and was repinned before first primary execution; physical inputs,arithmetic,CFL and acceptance values did not change. All24 tests, three final-time runs and45 gates passed with-W error. Primary density L1=.14754/.12878/.10265, pressure L1=.19373/.16015/.12242 and last-pair density slope=.327. Reference80/160 increments=.02636/.03063, about.257/.250 of the finest primary differences. Maximum four-component relative boundary-budget residual=2.99e-13; all integrated wall mass/energy fluxes are zero. The three primary grids took about46seconds on the original Mac; revised reference80/160 took about8/65seconds.
+
+- [Mach-3 forward-facing step: independent C++ finite-grid numerical reference](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-forward-step-en) (`forward-step`; Same-problem reference · Finite-grid numerical reference)
+
+Conservatively restrict newly independently executed C++17 MUSCL/HLL/Heun reference data. The finite-grid numerical reference shares the HLL family,Heun and the uncorrected corner; it is not an exact full-field solution or error bound.
+### Assumptions, units and boundaries
+
+Nondimensional[0,3]x[0,1] minus solidx>=.6,y<.2; gamma1.4, initial/left-inflow(rho,u,v,p)=(1.4,3,0,1), giving sound speed1 and Mach3. Right zero-gradient outflow; top,bottom and both step faces are slip walls by normal-momentum reflection. Ny multiples of5 align both walls exactly; solid storage is excluded from every fluid norm/integral. No Woodward-Colella corner entropy/enthalpy reset.
+
+**Editorial clarification**
+
+A lightweight verification on fixed inputs and a small number of grids. No Woodward–Colella corner entropy/enthalpy correction is applied; the numerical entropy layer from the corner can affect downstream reflected shocks and the Mach stem. It does not establish agreement with the original corner-corrected PPM picture or convergence of fine slip lines and vortices.
+
+### Adopted numerical method
+
+Published Numart piecewise-constant HLL, unsplit x/y divergence and Heun/SSPRK(2,2) become a standalone package. Six boundary categories integrate the actual fluxes at both RK stages with identical weights. CFL.4, at most20000steps per grid. Every predictor/update checks positive density and pressure. No state floor, repair or hidden retry; invalid stages retain raw arrays/completed history and fail.
+
+$$
+\partial_tU+\partial_xF(U)+\partial_yG(U)=0,\qquad U=(\rho,\rho u,\rho v,E)^T
+$$
+
+$$
+\Omega=([0,3]\times[0,1])\setminus([0.6,3]\times[0,0.2]),\quad (\rho,u,v,p)_\infty=(1.4,3,0,1)
+$$
+
+$$
+\sum_{C\subset\Omega}|C|(\bar U_C^{n+1}-\bar U_C^n)=\frac{\Delta t}{2}(B(U^n)+B(U^{(1)})),\quad B=-\sum_{\partial\Omega}|f|\widehat F_n
+$$
+
+$$
+\epsilon_1(\rho)=\frac{\sum_{C\subset\Omega}|\bar\rho_C-\overline{\rho_{\rm ref}}_C|}{\sum_{C\subset\Omega}|\overline{\rho_{\rm ref}}_C|}
+$$
+
+### References and validation
+
+Inputs, acceptance,24 unit checks and numerical source were frozen before the first primary test/PDE execution. Checks cover analytic Mach3 normal-shock Rankine-Hugoniot identities, uniform parallel-channel flow, zero stationary-wall mass/energy flux, step-pressure force orientation, actual four-component budgets and raw failure retention. Newly executed separate C++17 MUSCL/generalized-minmod theta1.5/HLL/Heun references atNy80/160 are conservatively restricted for whole-fluid density/pressure L1 comparison. Ordinary public-ZIP verification reads saved reference data; reference source, contracts and execution records are bundled. The first referenceNy160 exhausted its preregistered120second budget; that actual timeout is preserved. A reference revision removed only unnecessary diagnostic-string allocation and was repinned before first primary execution; physical inputs,arithmetic,CFL and acceptance values did not change. All24 tests, three final-time runs and45 gates passed with-W error. Primary density L1=.14754/.12878/.10265, pressure L1=.19373/.16015/.12242 and last-pair density slope=.327. Reference80/160 increments=.02636/.03063, about.257/.250 of the finest primary differences. Maximum four-component relative boundary-budget residual=2.99e-13; all integrated wall mass/energy fluxes are zero. The three primary grids took about46seconds on the original Mac; revised reference80/160 took about8/65seconds.
+
+### Limits
+
+The reference is separately implemented but shares the HLL family and Heun; no external AMROC,LAVA or RKDG engine was executed. Finite-grid numerical data are neither an exact2D solution nor an error bound. Without special corner treatment, a numerical entropy layer may be advected downstream; no agreement with corrected originalPPM fine structures is claimed. Whole-fluid differences,Linf and fixed corner density/pressure/entropy diagnostics are retained. Slopes do not prove pure spatial order; thin slip lines,roll-up,general geometries and high-order convergence remain unverified. Normalized maximum density differences=.592/.670/.665 do not decrease. Corner minima of log(p/rho^gamma)=-.0784/-.1224/-.3510 change substantially. This absolute entropy variable includes an arbitrary additive constant; a more-negative value is not itself an error increase. Neither stable corner extrema nor pointwise pattern convergence is established.
+
+### Stored measurements and decisions
+
+```json
+{
+  "metrics": {
+    "n": 80,
+    "ny": 80,
+    "nx": 240,
+    "time": 4.0,
+    "steps": 5557,
+    "fluid_cells": 16128,
+    "fluid_area": 2.52,
+    "density_l1": 0.10265130952593862,
+    "pressure_l1": 0.12242245655875464,
+    "density_l2": 0.17407969884723082,
+    "density_linf": 0.6649309657923782,
+    "minimum_density_all_stages": 0.572306931838617,
+    "minimum_pressure_all_stages": 0.7623628074232572,
+    "density_min": 0.6990444287976558,
+    "density_max": 6.591899988897764,
+    "pressure_min": 0.8066533197248239,
+    "pressure_max": 12.16201901303801,
+    "state_floor_count": 0,
+    "rejected_steps": 0,
+    "wall_mass_energy_max_abs": 0.0,
+    "corner_density_l1": 0.03512271217575579,
+    "corner_density_max": 5.840654003919099,
+    "corner_pressure_max": 11.902361154385352,
+    "corner_entropy_min": -0.35096779612542683,
+    "corner_entropy_max": 0.3051128979484177
+  },
+  "checks": {
+    "three final-time refinements complete": true,
+    "ny20: requested time reached": true,
+    "ny20: minimum_density_all_stages": true,
+    "ny20: minimum_pressure_all_stages": true,
+    "ny20: state_floor_count": true,
+    "ny20: rejected_steps": true,
+    "ny20: exact aligned fluid area": true,
+    "ny20: mass including step-wall boundary balance": true,
+    "ny20: x momentum including step-wall boundary balance": true,
+    "ny20: y momentum including step-wall boundary balance": true,
+    "ny20: energy including step-wall boundary balance": true,
+    "ny20: stationary-wall integrated mass/energy flux": true,
+    "ny20: unmasked full-field/corner diagnostics retained": true,
+    "ny40: requested time reached": true,
+    "ny40: minimum_density_all_stages": true,
+    "ny40: minimum_pressure_all_stages": true,
+    "ny40: state_floor_count": true,
+    "ny40: rejected_steps": true,
+    "ny40: exact aligned fluid area": true,
+    "ny40: mass including step-wall boundary balance": true,
+    "ny40: x momentum including step-wall boundary balance": true,
+    "ny40: y momentum including step-wall boundary balance": true,
+    "ny40: energy including step-wall boundary balance": true,
+    "ny40: stationary-wall integrated mass/energy flux": true,
+    "ny40: unmasked full-field/corner diagnostics retained": true,
+    "ny80: requested time reached": true,
+    "ny80: minimum_density_all_stages": true,
+    "ny80: minimum_pressure_all_stages": true,
+    "ny80: state_floor_count": true,
+    "ny80: rejected_steps": true,
+    "ny80: exact aligned fluid area": true,
+    "ny80: mass including step-wall boundary balance": true,
+    "ny80: x momentum including step-wall boundary balance": true,
+    "ny80: y momentum including step-wall boundary balance": true,
+    "ny80: energy including step-wall boundary balance": true,
+    "ny80: stationary-wall integrated mass/energy flux": true,
+    "ny80: unmasked full-field/corner diagnostics retained": true,
+    "finest density_l1": true,
+    "finest pressure_l1": true,
+    "density difference decreases across the fixed grids": true,
+    "last-pair density difference slope": true,
+    "reference increment density_l1": true,
+    "reference increment / primary finest density_l1": true,
+    "reference increment pressure_l1": true,
+    "reference increment / primary finest pressure_l1": true
+  }
+}
+```
+
+Complete records and reference_records: https://hrkoyama.github.io/numerical-methods-atlas/validation/forward-step-m3/index.json
+
+### Download and run
+
+ZIP: https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/atlas-forward-step-2026-11-23.zip
+Input: https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/inputs.json
+Results: https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/results/result.json
+Receipt: https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/verification.json
+
+```sh
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+```
+
+This command executes every fixed case in the distribution group.
+
+### Sources and review scope
+
+- Paul Woodward and Phillip Colella (1984). The numerical simulation of two-dimensional fluid flow with strong shocks. https://www.sciencedirect.com/science/article/pii/0021999184901426; review_level=previously-reviewed-publisher-metadata; setup cross-checked against Cockburn-Shu1991 primary report
+  Cited as the original standard strong-shock comparison. The publisher page rejected retrieval in this task; no direct full-paper reading is claimed. Setup and the distinction between corner treatments were checked in the primary Cockburn–Shu(1991) report.
+- Bernardo Cockburn and Chi-Wang Shu (1991). The P¹-RKDG Method for Two-Dimensional Euler Equations of Gas Dynamics. https://ntrs.nasa.gov/citations/19910015505; review_level=selected-text-review: Example2 printedp7/PDFpage11 and Fig3 captions printedp8/PDFpage12
+  Reviewed Example2 setup, Mach3 uniform flow, inlet/outlet/reflection boundaries, T4 and the Fig3 distinction between untreated and specially treated corners. Selected text only; no figure redistribution or RKDG execution.
+- Ralf Deiterding / AMROC project (2004). 2D Euler equations — Forward facing step. https://amroc.sourceforge.net/examples/euler/2d/html/ffstep_n.htm; review_level=official-example-selected-problem-description
+  Checked the official example description explicitly omitting special corner entropy corrections and using T4. No AMROC calculation, AMR or figure is imported.
+- Hiroshi Koyama (2026). Independent C++17 MUSCL finite-volume reference for the uncorrected Mach-3 forward-facing step. https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/reference.cpp; review_level=source-and-preregistered-new-execution
+  Separate implementation without primary spatial-operator imports. HLL and Heun families are shared; no external engine execution. The original timeout and diagnostic-argument-only performance revision are retained alongside saved data,inputs,execution history and contracts.
+
+Original code: MIT. Text/figures/inputs/data/third-party material: separate terms at https://hrkoyama.github.io/LICENSING.md and https://hrkoyama.github.io/rights/.

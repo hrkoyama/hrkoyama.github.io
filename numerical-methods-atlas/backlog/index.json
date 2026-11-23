@@ -22,7 +22,7 @@
   },
   "workflow": {
     "max_active": 1,
-    "active_item": "compressible-fluid-3",
+    "active_item": null,
     "states": [
       "planned",
       "in-progress",
@@ -713,15 +713,26 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "in-progress",
-      "current": "Double Mach反射の固定入力・少数格子・保存済み独立有限体積参照との照合・保存収支・衝撃位置・wall jet診断・図とコードを追加。参照PDEの新規実行ではなく、不変RKDG2Dキットに含まれる以前の2格子参照をハッシュ照合して再利用する。前向きステップと細いwall jetの収束は未検証。",
+      "state": "published",
+      "current": "Double Mach反射と前向きステップの固定入力・3格子比較・独立有限体積参照・保存収支・図と実行コードを公開。前向きステップの参照は新規の独立C++17 MUSCL/HLL/Heun実行で、参照Ny160初回の120秒タイムアウトも保存。診断文字列の不要な確保だけを修正し、旧Ny80と配列がビット一致した。角の特別なエントロピー補正は使わず、局所エントロピー極値の変化と単調には減らない全流体の最大密度差を保持する。",
       "tasks": [
         "既存初期条件と境界処理を固定し、少数格子で衝撃位置・保存誤差・wall jetを比較。",
         "独立コードの有限格子数値参照として保存し厳密2D解とは呼ばない。",
         "現時刻まで到達しない計算と成功例を混ぜない。"
       ],
-      "scope_note": "今回の作業単位はDouble Mach反射の軽量な固定入力です。前向きステップ、高解像度の細いwall jetやfull-patternの収束、一般の衝撃反射条件は未検証のまま区別します。",
-      "sources": [],
+      "scope_note": "今回までの公開段階はDouble Mach反射と前向きステップの軽量な固定入力例です。Double Mach参照は過去実行の再利用、前向きステップ参照は新規の独立C++実行です。前向きステップの角無補正条件と元論文の角補正付きPPM像を区別し、高解像度のwall jet・すべり線・渦やfull-patternの収束、一般条件への保証は未検証として残します。 公開済みという状態は、この固定入力で完了した軽量検証に限ります。",
+      "sources": [
+        {
+          "title": "Woodward and Colella (1984), The numerical simulation of two-dimensional fluid flow with strong shocks",
+          "url": "https://doi.org/10.1016/0021-9991(84)90142-6",
+          "review": "問題の原著として書誌を引用。原著全文を直接精読したとは表示せず、前向きステップの固定設定と角処理の区別は下記Cockburn–Shuの選択箇所に照合。"
+        },
+        {
+          "title": "Cockburn and Shu (1991), The P¹-RKDG Method for Two-Dimensional Euler Equations of Gas Dynamics, NASA CR187542 / ICASE91-32",
+          "url": "https://ntrs.nasa.gov/api/citations/19910015505/downloads/19910015505.pdf",
+          "review": "Example2のprintedpage7/PDFpage11とFig3のprintedpage8/PDFpage12の選択本文で、Mach3・形状・初期/流入値・T4と、角の特別処理有無を区別する記述を確認。今回の実装は角無補正。図の転載やRKDG実行は行わない。"
+        }
+      ],
       "baseline_evidence": [
         {
           "path": "catalog/atlas-test-problems.json",
@@ -735,59 +746,97 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-23/double-mach/verification.json",
+        "verification": "/code/validated-examples/2026-11-23/forward-step/verification.json",
         "inputs": [
           "/code/validated-examples/2026-11-23/double-mach/inputs.json",
           "/code/validated-examples/2026-11-23/double-mach/acceptance.json",
           "/code/validated-examples/2026-11-23/double-mach/pre-run-contract.json",
-          "/code/validated-examples/2026-11-23/double-mach/references/independent-reuse.json"
+          "/code/validated-examples/2026-11-23/double-mach/references/independent-reuse.json",
+          "/code/validated-examples/2026-11-23/forward-step/inputs.json",
+          "/code/validated-examples/2026-11-23/forward-step/acceptance.json",
+          "/code/validated-examples/2026-11-23/forward-step/pre-run-contract.json",
+          "/code/validated-examples/2026-11-23/forward-step/references/independent-execution.json",
+          "/code/validated-examples/2026-11-23/forward-step/contract-before-reference-performance.json",
+          "/code/validated-examples/2026-11-23/forward-step/reference-data-qualification.json"
         ],
         "plots": [
           "/code/validated-examples/2026-11-23/double-mach/results/double-mach-reflection-preview.png",
-          "/code/validated-examples/2026-11-23/double-mach/results/double-mach-reflection.png"
+          "/code/validated-examples/2026-11-23/double-mach/results/double-mach-reflection.png",
+          "/code/validated-examples/2026-11-23/forward-step/results/forward-step-m3-preview.png",
+          "/code/validated-examples/2026-11-23/forward-step/results/forward-step-m3.png"
         ],
-        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#double-mach-ja",
-        "execution": "/numerical-methods-atlas/validation/double-mach-reflection/?lang=ja",
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#forward-step-ja",
+        "execution": "/numerical-methods-atlas/validation/forward-step-m3/?lang=ja",
         "code": [
           "/code/validated-examples/2026-11-23/double-mach/run.py",
-          "/code/validated-examples/2026-11-23/double-mach/dm_solver.py"
+          "/code/validated-examples/2026-11-23/double-mach/dm_solver.py",
+          "/code/validated-examples/2026-11-23/forward-step/run.py",
+          "/code/validated-examples/2026-11-23/forward-step/fs_solver.py"
         ],
         "references": [
           "/numerical-methods-atlas/solutions/?lang=ja#solution-double-mach-ja",
           "/code/validated-examples/2026-11-23/double-mach/references/independent-reuse.json",
           "/code/validated-examples/2026-11-23/double-mach/references/quality.json",
-          "https://doi.org/10.1016/0021-9991(84)90142-6"
+          "https://doi.org/10.1016/0021-9991(84)90142-6",
+          "/code/validated-examples/2026-11-23/double-mach/verification.json",
+          "/numerical-methods-atlas/validation/double-mach-reflection/?lang=ja",
+          "/numerical-methods-atlas/solutions/?lang=ja#solution-forward-step-ja",
+          "/code/validated-examples/2026-11-23/forward-step/references/independent-execution.json",
+          "/code/validated-examples/2026-11-23/forward-step/references/quality.json",
+          "/code/validated-examples/2026-11-23/forward-step/references/reference.cpp",
+          "https://ntrs.nasa.gov/api/citations/19910015505/downloads/19910015505.pdf",
+          "/code/validated-examples/2026-11-23/forward-step/references/attempts/01/independent-execution.json",
+          "/code/validated-examples/2026-11-23/forward-step/references/performance-revision-comparison.json"
         ]
       },
       "sequence": 8,
       "completion_evidence": {
         "kind": "scientific",
-        "partial": true,
+        "partial": false,
         "local_evidence_checked": true,
         "verification_passed": true,
         "links": {
-          "verification": "/code/validated-examples/2026-11-23/double-mach/verification.json",
+          "verification": "/code/validated-examples/2026-11-23/forward-step/verification.json",
           "inputs": [
             "/code/validated-examples/2026-11-23/double-mach/inputs.json",
             "/code/validated-examples/2026-11-23/double-mach/acceptance.json",
             "/code/validated-examples/2026-11-23/double-mach/pre-run-contract.json",
-            "/code/validated-examples/2026-11-23/double-mach/references/independent-reuse.json"
+            "/code/validated-examples/2026-11-23/double-mach/references/independent-reuse.json",
+            "/code/validated-examples/2026-11-23/forward-step/inputs.json",
+            "/code/validated-examples/2026-11-23/forward-step/acceptance.json",
+            "/code/validated-examples/2026-11-23/forward-step/pre-run-contract.json",
+            "/code/validated-examples/2026-11-23/forward-step/references/independent-execution.json",
+            "/code/validated-examples/2026-11-23/forward-step/contract-before-reference-performance.json",
+            "/code/validated-examples/2026-11-23/forward-step/reference-data-qualification.json"
           ],
           "plots": [
             "/code/validated-examples/2026-11-23/double-mach/results/double-mach-reflection-preview.png",
-            "/code/validated-examples/2026-11-23/double-mach/results/double-mach-reflection.png"
+            "/code/validated-examples/2026-11-23/double-mach/results/double-mach-reflection.png",
+            "/code/validated-examples/2026-11-23/forward-step/results/forward-step-m3-preview.png",
+            "/code/validated-examples/2026-11-23/forward-step/results/forward-step-m3.png"
           ],
-          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#double-mach-ja",
-          "execution": "/numerical-methods-atlas/validation/double-mach-reflection/?lang=ja",
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#forward-step-ja",
+          "execution": "/numerical-methods-atlas/validation/forward-step-m3/?lang=ja",
           "code": [
             "/code/validated-examples/2026-11-23/double-mach/run.py",
-            "/code/validated-examples/2026-11-23/double-mach/dm_solver.py"
+            "/code/validated-examples/2026-11-23/double-mach/dm_solver.py",
+            "/code/validated-examples/2026-11-23/forward-step/run.py",
+            "/code/validated-examples/2026-11-23/forward-step/fs_solver.py"
           ],
           "references": [
             "/numerical-methods-atlas/solutions/?lang=ja#solution-double-mach-ja",
             "/code/validated-examples/2026-11-23/double-mach/references/independent-reuse.json",
             "/code/validated-examples/2026-11-23/double-mach/references/quality.json",
-            "https://doi.org/10.1016/0021-9991(84)90142-6"
+            "https://doi.org/10.1016/0021-9991(84)90142-6",
+            "/code/validated-examples/2026-11-23/double-mach/verification.json",
+            "/numerical-methods-atlas/validation/double-mach-reflection/?lang=ja",
+            "/numerical-methods-atlas/solutions/?lang=ja#solution-forward-step-ja",
+            "/code/validated-examples/2026-11-23/forward-step/references/independent-execution.json",
+            "/code/validated-examples/2026-11-23/forward-step/references/quality.json",
+            "/code/validated-examples/2026-11-23/forward-step/references/reference.cpp",
+            "https://ntrs.nasa.gov/api/citations/19910015505/downloads/19910015505.pdf",
+            "/code/validated-examples/2026-11-23/forward-step/references/attempts/01/independent-execution.json",
+            "/code/validated-examples/2026-11-23/forward-step/references/performance-revision-comparison.json"
           ]
         }
       }
@@ -4822,9 +4871,9 @@
     "fields": 36,
     "states": {
       "planned": 100,
-      "in-progress": 1,
+      "in-progress": 0,
       "verified": 0,
-      "published": 2
+      "published": 3
     },
     "kinds": {
       "implementation": 58,
@@ -4839,7 +4888,7 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-benchmark-backlog.json": "58103cd82083048689249cc9f49a85611fa18ad6e2fefa500b2e8d3b3dce6030",
+    "catalog/atlas-benchmark-backlog.json": "f985372c67b52b7064eb3d35c3ae553ed3c9fb0d044464f08af2f043da05a2e6",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/acceptance.json": "9da18d8d22194a07bc0d8e7c619199baab0984f978d84a673bc8f94d4baf5f8b",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/cartesian_reference.py": "b53b9ac767938389abc99eedc3bc2dd23bab965bdb4f41fe19933b2da1b312c0",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/cartesian_solver.py": "7360a880b6318259ddf50b18d79861aca7f806190baaaa1d1200e6d9e4c7e0f8",
@@ -4884,9 +4933,25 @@
     "code/validated-examples/2026-11-23/double-mach/results/double-mach-reflection.png": "564ab5c372e1c4ce5e468876142858830f6425eca79a7dc34a18568ecc89edff",
     "code/validated-examples/2026-11-23/double-mach/run.py": "ab357547a4168cd9a7149f5318f12f3b44408e7934fdf34468d38d333343afa6",
     "code/validated-examples/2026-11-23/double-mach/verification.json": "c588b4ce7f539d53b1d5eec4413ce3a1dc104eff975e4adddf0c544460dbb49e",
-    "numerical-methods-atlas/gallery/index.html": "c81243a3c0a6fab9e9f08f9691e55c021781e48a095966f79a135ef34dbbfe5a",
-    "numerical-methods-atlas/solutions/index.html": "f8e23d7525146f23e4b513fed30e4bed7823314fbf60f514ca98f77ddd70179e",
+    "code/validated-examples/2026-11-23/forward-step/acceptance.json": "eb895555dedeec88021dd38e1689c80e3bb80090b4ba1ed1469b34baa9be4a53",
+    "code/validated-examples/2026-11-23/forward-step/contract-before-reference-performance.json": "d4cc36d39f5469c7fdd6051cdeee590d170f566f0876a3bcda5274d48f219b39",
+    "code/validated-examples/2026-11-23/forward-step/fs_solver.py": "2765dc4c370b9bb4c3f3fea5b0f59501983dfde2e75ef4322970e91e1ce0469e",
+    "code/validated-examples/2026-11-23/forward-step/inputs.json": "a55b2912063117c65b30c48cb5ed665b45dd58e378d72968f12e551d9c37f15e",
+    "code/validated-examples/2026-11-23/forward-step/pre-run-contract.json": "cc7fd216ca571ef42bbdd7c1d5f7b3c0d392d5d764a927cd4532d99b14273a9c",
+    "code/validated-examples/2026-11-23/forward-step/reference-data-qualification.json": "d29b33de05b4f67af9da3a10088353eab46f1d2fd3772d4bf72798a5c43ec49e",
+    "code/validated-examples/2026-11-23/forward-step/references/attempts/01/independent-execution.json": "d843b130a1b90b982e3d6e5657854a390d40df22e801e2590cd209d23ff56a3c",
+    "code/validated-examples/2026-11-23/forward-step/references/independent-execution.json": "1aeb18103d494fcaa5669ef7cb1f545e9a497cfcaf19109c3b8caf055ec37a24",
+    "code/validated-examples/2026-11-23/forward-step/references/performance-revision-comparison.json": "38eeb25de263fdca532cd5e00b3ff50a1de6cbf05e8ea5c4c98139da029b747f",
+    "code/validated-examples/2026-11-23/forward-step/references/quality.json": "0ffc3545956a6b24df72e42f243168cc5ef972fc6ba489e187e0531bac2c1a6a",
+    "code/validated-examples/2026-11-23/forward-step/references/reference.cpp": "66e523f5486179f2c79ac0ad21a35a11856e55a9101e03b8d3bca76cccbd5996",
+    "code/validated-examples/2026-11-23/forward-step/results/forward-step-m3-preview.png": "14874a4887433c8cfc247d436ce37bc305cf5a6f88f86a9fe54df23827a522a1",
+    "code/validated-examples/2026-11-23/forward-step/results/forward-step-m3.png": "8f4ad22c5af00347914f9dfee7a84f9a07fdf9da5394674937013fad5f94bf16",
+    "code/validated-examples/2026-11-23/forward-step/run.py": "b514eb5523bb198199ba4ed057d0807fcc47e81f19b9288d1199f68614fcc413",
+    "code/validated-examples/2026-11-23/forward-step/verification.json": "f40317a2721c2048c6174bf41c03adf5e3eddae07e19ae95e6ed5210a9b01914",
+    "numerical-methods-atlas/gallery/index.html": "f5d0aea644b58762cabb957edb8457dc2e27d6b2fa453199fa7abf3e6b19d374",
+    "numerical-methods-atlas/solutions/index.html": "93ef4f88d2220108656790a513cfd87e5ba4e5321df0fa150da9d376fe0116bd",
     "numerical-methods-atlas/validation/double-mach-reflection/index.html": "a97c707de665870d0897a0cdaddda7b7b455e0beb56778061c2d8a02ba3f4979",
+    "numerical-methods-atlas/validation/forward-step-m3/index.html": "1bcb43bd4ef02feb632bf4c66c0518bce5af23682e1cb3e4b38eb696b85edbf1",
     "numerical-methods-atlas/validation/noh-cartesian-2d/index.html": "484592fde6dbf3f4b5da68a363d9907e9deda9ea1883525c40762d405d64e2e1",
     "numerical-methods-atlas/validation/sedov-blast/index.html": "3b23469cd17837f105df30961020a8c4ff8b47efe937bf45430b8720a6e440ed"
   }

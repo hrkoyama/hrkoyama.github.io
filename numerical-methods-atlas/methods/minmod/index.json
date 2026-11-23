@@ -1759,13 +1759,13 @@
           "en": "Mach-3 forward-facing step"
         },
         "image": {
-          "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/comparisons/step-m3-mc.png",
-          "sha256": "3002eb94449b6fe7835da19cc825840ddf6c25818c19a0b5840606ef72a6889b",
-          "width": 1300,
-          "height": 910,
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/results/forward-step-m3-preview.png",
+          "sha256": "14874a4887433c8cfc247d436ce37bc305cf5a6f88f86a9fe54df23827a522a1",
+          "width": 1312,
+          "height": 744,
           "caption": {
-            "ja": "保存済みMach 3前向きステップの計算場。",
-            "en": "Stored computed field for the Mach-3 forward-facing step."
+            "ja": "実際の2次元Euler計算の密度場。Mach 3、γ=1.4、T=4、240×80セル。固体段差を除いて描きます。角のエントロピー補正は使わず、微細なすべり線・渦の収束を保証する図ではありません。",
+            "en": "Density from the actual 2D Euler computation: Mach3,gamma=1.4,T=4,240×80 cells. The solid step is masked. No corner entropy correction is used; the picture does not establish convergence of fine slip lines or vortices."
           },
           "source_kind": "existing-figure"
         },
@@ -1780,8 +1780,8 @@
         "executions": [],
         "role": "related",
         "method_note": {
-          "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
-          "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+          "ja": "従来のHLL・MUSCLと勾配制限の比較データを保持し、追加の軽量例は区分定数HLL＋Heunを使います。参照実装の手法は参照の出典と条件で区別します。",
+          "en": "Retain the earlier HLL/MUSCL and slope-limiter comparisons; the additional lightweight example uses piecewise-constant HLL plus Heun. Methods belonging to the reference implementation are identified separately with its source and conditions."
         },
         "reference_url": {
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/forward-step/?lang=ja#references-ja",
@@ -2148,7 +2148,29 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/forward-step/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/forward-step/?lang=en#references-en"
         },
-        "cases": []
+        "cases": [
+          {
+            "id": "forward-step",
+            "title": {
+              "ja": "Mach 3前向きステップ：独立C++有限格子数値参照",
+              "en": "Mach-3 forward-facing step: independent C++ finite-grid numerical reference"
+            },
+            "kind": "numerical-reference",
+            "relation": "same-problem",
+            "note": {
+              "ja": "新しく独立実行したC++17のMUSCL/HLL/Heun参照を保存量制限で比較します。同じHLL族・Heunと角無補正条件を共有する有限格子数値参照であり、全場の厳密解や誤差上界ではありません。",
+              "en": "Conservatively restrict newly independently executed C++17 MUSCL/HLL/Heun reference data. The finite-grid numerical reference shares the HLL family,Heun and the uncorrected corner; it is not an exact full-field solution or error bound."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-forward-step-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-forward-step-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/forward-step-m3/?lang=ja#forward-step-m3-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/forward-step-m3/?lang=en#forward-step-m3-en-measurements"
+            }
+          }
+        ]
       },
       {
         "problem_id": "entropy-2d",

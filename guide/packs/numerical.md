@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-23-759c079f26
-Captured (UTC): 2026-11-23T04:39:17+00:00
+Snapshot: 2026-11-23-3590fb25f3
+Captured (UTC): 2026-11-23T05:25:29+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -12593,7 +12593,7 @@ Coverage: reading
 
 Published web edition, counted 2026-11-22. These are counts of catalog entries and documented examples, not a claim that every entry is a verified end-to-end solver.
 46 equation/model entries · 131 methods and building blocks · 243 journal/conference papers · 300 total sources.
-There are 9 saved-profile equation-gallery cases across 7 equation families, and 97 reading chapters including this inventory.
+There are 9 saved-profile equation-gallery cases across 7 equation families, and 98 reading chapters including this inventory.
 
 ## Site coverage and counting rules — Equations and models# [en]
 
@@ -15157,6 +15157,248 @@ Checked Mach10, gamma1.4, domain, shock foot x=1/6, upstream state, boundaries a
 Hiroshi Koyama (2026). Independent finite-volume references distributed with the RKDG2D agent kit, 2026-11-23-r2
 Review scope / review_level: hash-checked-selected-public-archive-artifacts
 Selected source, two-grid data and execution records were copied from the immutable archive. No reference PDE, Athena or LAVA was rerun here. The flux family HLL is shared, while the reference is a separate implementation without imports of primary spatial operators.
+
+## Mach-3 forward-facing step: lightweight 2D verification — Mach-3 forward-facing step: lightweight 2D verification [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-forward-step/
+Coverage: reading
+
+Evolve uniform Mach-3 flow with gamma=1.4 to T=4 in [0,3]×[0,1] excluding the step x≥.6,y<.2. Piecewise-constant HLL plus Heun on 60×20,120×40 and240×80 grids compares actual boundary-flux budgets including the step faces, admissibility and shock structure. No corner entropy or enthalpy correction is applied.
+
+## Mach-3 forward-facing step: lightweight 2D verification — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-forward-step/#run-all
+Coverage: reading
+
+Run inside atlas-forward-step-2026-11-23 from the ZIP. This command executes all 1 fixed cases in the supplement. Choose a new or empty output directory.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Mach-3 forward-facing step: lightweight 2D verification — Mach3 forward step: wall budgets and grid verification [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-forward-step/
+Coverage: reading
+
+Actual2D Euler finite volumes evolve60x20,120x40 and240x80 meshes toT4, comparing separately implemented MUSCL finite-grid references. Actual numerical wall fluxes, including the vertical and horizontal step faces, close all four conserved budgets. Figures and code explicitly use the variant without corner entropy correction.
+Methods, equations, figures and references
+Methods used
+HLL
+Heun / SSPRK(2,2)
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Published Numart piecewise-constant HLL, unsplit x/y divergence and Heun/SSPRK(2,2) become a standalone package. Six boundary categories integrate the actual fluxes at both RK stages with identical weights. CFL.4, at most20000steps per grid. Every predictor/update checks positive density and pressure. No state floor, repair or hidden retry; invalid stages retain raw arrays/completed history and fail.
+Compressible Euler equations
+Two-dimensional compressible Euler conservation laws with gamma=1.4. Fixed inputs define uniform Mach-3 inflow, reflecting channel/step walls and right outflow.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Mach-3 forward-facing step
+
+## Mach-3 forward-facing step: lightweight 2D verification — Mach3 forward step: wall budgets and grid verification [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-forward-step/
+Coverage: reading
+
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## Mach-3 forward-facing step: lightweight 2D verification — Mach3 forward step: wall budgets and grid verification [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-forward-step/
+Coverage: reading
+
+Inputs, acceptance,24 unit checks and numerical source were frozen before the first primary test/PDE execution. Checks cover analytic Mach3 normal-shock Rankine-Hugoniot identities, uniform parallel-channel flow, zero stationary-wall mass/energy flux, step-pressure force orientation, actual four-component budgets and raw failure retention. Newly executed separate C++17 MUSCL/generalized-minmod theta1.5/HLL/Heun references atNy80/160 are conservatively restricted for whole-fluid density/pressure L1 comparison. Ordinary public-ZIP verification reads saved reference data; reference source, contracts and execution records are bundled. The first referenceNy160 exhausted its preregistered120second budget; that actual timeout is preserved. A reference revision removed only unnecessary diagnostic-string allocation and was repinned before first primary execution; physical inputs,arithmetic,CFL and acceptance values did not change. All24 tests, three final-time runs and45 gates passed with-W error. Primary density L1=.14754/.12878/.10265, pressure L1=.19373/.16015/.12242 and last-pair density slope=.327. Reference80/160 increments=.02636/.03063, about.257/.250 of the finest primary differences. Maximum four-component relative boundary-budget residual=2.99e-13; all integrated wall mass/energy fluxes are zero. The three primary grids took about46seconds on the original Mac; revised referen
+
+## Mach-3 forward-facing step: lightweight 2D verification — Mach3 forward step: wall budgets and grid verification [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-forward-step/
+Coverage: reading
+
+ce80/160 took about8/65seconds.
+Same-problem reference · Finite-grid numerical reference
+Mach-3 forward-facing step: independent C++ finite-grid numerical reference
+Conservatively restrict newly independently executed C++17 MUSCL/HLL/Heun reference data. The finite-grid numerical reference shares the HLL family,Heun and the uncorrected corner; it is not an exact full-field solution or error bound.
+
+## Mach-3 forward-facing step: lightweight 2D verification — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-forward-step/#forward-step-m3-assumptions
+Coverage: reading
+
+Nondimensional[0,3]x[0,1] minus solidx>=.6,y<.2; gamma1.4, initial/left-inflow(rho,u,v,p)=(1.4,3,0,1), giving sound speed1 and Mach3. Right zero-gradient outflow; top,bottom and both step faces are slip walls by normal-momentum reflection. Ny multiples of5 align both walls exactly; solid storage is excluded from every fluid norm/integral. No Woodward-Colella corner entropy/enthalpy reset.
+
+## Mach-3 forward-facing step: lightweight 2D verification — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-forward-step/#forward-step-m3-algorithm
+Coverage: reading
+
+Published Numart piecewise-constant HLL, unsplit x/y divergence and Heun/SSPRK(2,2) become a standalone package. Six boundary categories integrate the actual fluxes at both RK stages with identical weights. CFL.4, at most20000steps per grid. Every predictor/update checks positive density and pressure. No state floor, repair or hidden retry; invalid stages retain raw arrays/completed history and fail.
+\partial_tU+\partial_xF(U)+\partial_yG(U)=0,\qquad U=(\rho,\rho u,\rho v,E)^T\Omega=([0,3]\times[0,1])\setminus([0.6,3]\times[0,0.2]),\quad (\rho,u,v,p)_\infty=(1.4,3,0,1)\sum_{C\subset\Omega}|C|(\bar U_C^{n+1}-\bar U_C^n)=\frac{\Delta t}{2}(B(U^n)+B(U^{(1)})),\quad B=-\sum_{\partial\Omega}|f|\widehat F_n\epsilon_1(\rho)=\frac{\sum_{C\subset\Omega}|\bar\rho_C-\overline{\rho_{\rm ref}}_C|}{\sum_{C\subset\Omega}|\overline{\rho_{\rm ref}}_C|}
+
+## Mach-3 forward-facing step: lightweight 2D verification — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-forward-step/#forward-step-m3-validation
+Coverage: reading
+
+Inputs, acceptance,24 unit checks and numerical source were frozen before the first primary test/PDE execution. Checks cover analytic Mach3 normal-shock Rankine-Hugoniot identities, uniform parallel-channel flow, zero stationary-wall mass/energy flux, step-pressure force orientation, actual four-component budgets and raw failure retention. Newly executed separate C++17 MUSCL/generalized-minmod theta1.5/HLL/Heun references atNy80/160 are conservatively restricted for whole-fluid density/pressure L1 comparison. Ordinary public-ZIP verification reads saved reference data; reference source, contracts and execution records are bundled. The first referenceNy160 exhausted its preregistered120second budget; that actual timeout is preserved. A reference revision removed only unnecessary diagnostic-string allocation and was repinned before first primary execution; physical inputs,arithmetic,CFL and acceptance values did not change. All24 tests, three final-time runs and45 gates passed with-W error. Primary density L1=.14754/.12878/.10265, pressure L1=.19373/.16015/.12242 and last-pair density slope=.327. Reference80/160 increments=.02636/.03063, about.257/.250 of the finest primary differences. Maximum four-component relative boundary-budget residual=2.99e-13; all integrated wall mass/energy fluxes are zero. The three primary grids took about46seconds on the original Mac; revised referen
+
+## Mach-3 forward-facing step: lightweight 2D verification — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-forward-step/#forward-step-m3-validation
+Coverage: reading
+
+ce80/160 took about8/65seconds.
+
+## Mach-3 forward-facing step: lightweight 2D verification — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-forward-step/#forward-step-m3-limits
+Coverage: reading
+
+The reference is separately implemented but shares the HLL family and Heun; no external AMROC,LAVA or RKDG engine was executed. Finite-grid numerical data are neither an exact2D solution nor an error bound. Without special corner treatment, a numerical entropy layer may be advected downstream; no agreement with corrected originalPPM fine structures is claimed. Whole-fluid differences,Linf and fixed corner density/pressure/entropy diagnostics are retained. Slopes do not prove pure spatial order; thin slip lines,roll-up,general geometries and high-order convergence remain unverified. Normalized maximum density differences=.592/.670/.665 do not decrease. Corner minima of log(p/rho^gamma)=-.0784/-.1224/-.3510 change substantially. This absolute entropy variable includes an arbitrary additive constant; a more-negative value is not itself an error increase. Neither stable corner extrema nor pointwise pattern convergence is established.
+
+## Mach-3 forward-facing step: lightweight 2D verification — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-forward-step/#forward-step-m3-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+n80
+ny80
+nx240
+time4
+steps5557
+fluid_cells16128
+fluid_area2.52
+density_l10.102651309526
+pressure_l10.122422456559
+density_l20.174079698847
+density_linf0.664930965792
+minimum_density_all_stages0.572306931839
+minimum_pressure_all_stages0.762362807423
+density_min0.699044428798
+density_max6.5918999889
+pressure_min0.806653319725
+pressure_max12.162019013
+state_floor_count0
+rejected_steps0
+wall_mass_energy_max_abs0
+corner_density_l10.0351227121758
+corner_density_max5.84065400392
+corner_pressure_max11.9023611544
+corner_entropy_min-0.350967796125
+corner_entropy_max0.305112897948
+判定 / checkPassed
+three final-time refinements completetrue
+ny20: requested time reachedtrue
+ny20: minimum_density_all_stagestrue
+ny20: minimum_pressure_all_stagestrue
+ny20: state_floor_counttrue
+ny20: rejected_stepstrue
+ny20: exact aligned fluid areatrue
+ny20: mass including step-wall boundary balancetrue
+ny20: x momentum including step-wall boundary balancetrue
+ny20: y momentum including step-wall boundary balancetrue
+ny20: energy including step-wall boundary balancetrue
+ny20: stationary-wall integrated mass/energy fluxtrue
+ny20: unmasked full-field/corner diagnostics retainedtrue
+ny40: requested time reachedtrue
+
+## Mach-3 forward-facing step: lightweight 2D verification — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-forward-step/#forward-step-m3-measurements
+Coverage: reading
+
+ny40: minimum_density_all_stagestrue
+ny40: minimum_pressure_all_stagestrue
+ny40: state_floor_counttrue
+ny40: rejected_stepstrue
+ny40: exact aligned fluid areatrue
+ny40: mass including step-wall boundary balancetrue
+ny40: x momentum including step-wall boundary balancetrue
+ny40: y momentum including step-wall boundary balancetrue
+ny40: energy including step-wall boundary balancetrue
+ny40: stationary-wall integrated mass/energy fluxtrue
+ny40: unmasked full-field/corner diagnostics retainedtrue
+ny80: requested time reachedtrue
+ny80: minimum_density_all_stagestrue
+ny80: minimum_pressure_all_stagestrue
+ny80: state_floor_counttrue
+ny80: rejected_stepstrue
+ny80: exact aligned fluid areatrue
+ny80: mass including step-wall boundary balancetrue
+ny80: x momentum including step-wall boundary balancetrue
+ny80: y momentum including step-wall boundary balancetrue
+ny80: energy including step-wall boundary balancetrue
+ny80: stationary-wall integrated mass/energy fluxtrue
+ny80: unmasked full-field/corner diagnostics retainedtrue
+finest density_l1true
+finest pressure_l1true
+density difference decreases across the fixed gridstrue
+last-pair density difference slopetrue
+reference increment density_l1true
+reference increment / primary finest density_l1true
+reference increment pressure_l1true
+reference increment / primary finest pressure_l1true
+
+## Mach-3 forward-facing step: lightweight 2D verification — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-forward-step/#forward-step-m3-measurements
+Coverage: reading
+
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Read every stored record
+nnynxtimestepsfluid_cellsfluid_areadensity_l1pressure_l1density_l2density_linfminimum_density_all_stagesminimum_pressure_all_stagesdensity_mindensity_maxpressure_minpressure_maxstate_floor_countrejected_stepsinitial_integralfinal_integralboundary_net_integralboundary_integralsconservation_residualconservation_relativewall_mass_energy_max_abscorner_density_l1corner_density_maxcorner_pressure_maxcorner_entropy_mincorner_entropy_maxfieldhistory
+
+## Mach-3 forward-facing step: lightweight 2D verification — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-forward-step/#forward-step-m3-measurements
+Coverage: reading
+
+2020604132410082.520.1475409451220.1937266653820.2056922245970.5922630026810.6937162681590.8135226202361.123165730036.45323308808111.431121109800[3.528000000000034,10.583999999999806,0.0,22.176000000000162][6.454864773240575,12.331166499307141,0.6124808308256182,36.34299488033696][2.92686477324059,1.7471664993071165,0.612480830825568,14.166994880336816]{"inlet":[16.800000000000015,54.40000000000004,0.0,117.60000000000008],"outlet":[-13.873135226759425,-42.76307996368035,-0.09746061394522142,-103.43300511966326],"bottom":[0.0,0.0,12.91869208462983,0.0],"top":[0.0,0.0,-33.66947425920519,0.0],"vertical_step":[0.0,-9.889753537012577,0.0,0.0],"horizontal_step":[0.0,0.0,21.460723619346147,0.0]}[-4.884981308350689e-14,2.184918912462308e-13,5.0182080713057076e-14,-1.7763568394002505e-14][1.3846318901220638e-14,2.0643602725456802e-14,5.0182080713057076e-14,8.010267132937579e-16]00.1080810826675.3800528417311.4311211098-0.07840851927230.222077038948field-ny20.npzhistory-ny20.json
+
+## Mach-3 forward-facing step: lightweight 2D verification — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-forward-step/#forward-step-m3-measurements
+Coverage: reading
+
+40401204271240322.520.1287754938450.1601532242930.1973471705280.670288501660.6636165198280.8122964457930.9475577142526.82995257364113.006034151800[3.527999999999867,10.584000000000792,0.0,22.17599999999937][6.4053827632692375,12.307453519604408,0.637855129438976,36.13579035189517][2.877382763269253,1.7234535196045453,0.6378551294389609,13.959790351895165]{"inlet":[16.80000000000001,54.40000000000019,0.0,117.6000000000001],"outlet":[-13.922617236730758,-43.013721211894634,-0.4533480175276906,-103.64020964810493],"bottom":[0.0,0.0,13.152914766216469,0.0],"top":[0.0,0.0,-33.37942685570288,0.0],"vertical_step":[0.0,-9.662825268501011,0.0,0.0],"horizontal_step":[0.0,0.0,21.317715236453065,0.0]}[1.176836406102666e-13,-9.29034627006331e-13,1.509903313490213e-14,6.323830348264892e-13][3.335704098930585e-14,8.777727012530815e-14,1.509903313490213e-14,2.85165509932588e-14]00.06215145028855.6704212396211.7224908254-0.1224265519540.251786860982field-ny40.npzhistory-ny40.json
+
+## Mach-3 forward-facing step: lightweight 2D verification — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-forward-step/#forward-step-m3-measurements
+Coverage: reading
+
+808024045557161282.520.1026513095260.1224224565590.1740796988470.6649309657920.5723069318390.7623628074230.6990444287986.59189998890.80665331972512.16201901300[3.5280000000005374,10.583999999996843,0.0,22.176000000002542][6.372615354316513,12.286268963909581,0.6387925784415488,36.008269687101006][2.8446153543164634,1.702268963909578,0.638792578441354,13.832269687101586]{"inlet":[16.799999999999994,54.39999999999998,0.0,117.60000000000038],"outlet":[-13.95538464568353,-43.179769794713124,-0.7546583393640717,-103.76773031289879],"bottom":[0.0,0.0,13.312050379287443,0.0],"top":[0.0,0.0,-33.15606874815574,0.0],"vertical_step":[0.0,-9.517961241377275,0.0,0.0],"horizontal_step":[0.0,0.0,21.237469286673722,0.0]}[-4.880540416252188e-13,3.1601388172930456e-12,1.9484414082171497e-13,-3.1228353236656403e-12][1.3833731338581192e-13,2.9857698576095884e-13,1.9484414082171497e-13,1.4082049619702753e-13]00.03512271217585.8406540039211.9023611544-0.3509677961250.305112897948field-ny80.npzhistory-ny80.json
+Measurements and complete records / JSON
+
+## Mach-3 forward-facing step: lightweight 2D verification — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-forward-step/#forward-step-m3-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Paul Woodward and Phillip Colella (1984). The numerical simulation of two-dimensional fluid flow with strong shocks · DOI: 10.1016/0021-9991(84)90142-6
+Review scope / review_level: previously-reviewed-publisher-metadata; setup cross-checked against Cockburn-Shu1991 primary report
+Cited as the original standard strong-shock comparison. The publisher page rejected retrieval in this task; no direct full-paper reading is claimed. Setup and the distinction between corner treatments were checked in the primary Cockburn–Shu(1991) report.
+Bernardo Cockburn and Chi-Wang Shu (1991). The P¹-RKDG Method for Two-Dimensional Euler Equations of Gas Dynamics
+Review scope / review_level: selected-text-review: Example2 printedp7/PDFpage11 and Fig3 captions printedp8/PDFpage12
+Reviewed Example2 setup, Mach3 uniform flow, inlet/outlet/reflection boundaries, T4 and the Fig3 distinction between untreated and specially treated corners. Selected text only; no figure redistribution or RKDG execution.
+Ralf Deiterding / AMROC project (2004). 2D Euler equations — Forward facing step
+Review scope / review_level: official-example-selected-problem-description
+
+## Mach-3 forward-facing step: lightweight 2D verification — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-forward-step/#forward-step-m3-references
+Coverage: reading
+
+Checked the official example description explicitly omitting special corner entropy corrections and using T4. No AMROC calculation, AMR or figure is imported.
+Hiroshi Koyama (2026). Independent C++17 MUSCL finite-volume reference for the uncorrected Mach-3 forward-facing step
+Review scope / review_level: source-and-preregistered-new-execution
+Separate implementation without primary spatial-operator imports. HLL and Heun families are shared; no external engine execution. The original timeout and diagnostic-argument-only performance revision are retained alongside saved data,inputs,execution history and contracts.
 
 ## Numerical foundations: conditioning, residuals, convergence and independent references — Numerical foundations: conditioning, residuals, convergence and independent references [en]
 
@@ -37124,7 +37366,7 @@ Coverage: reading
 
 公開Web版、集計日2026-11-22。数えるのはカタログ項目と記載した実験例です。すべての項目が検証済みの完全なソルバーであるという意味ではありません。
 方程式・モデル46項目・計算法と構成要素131項目・学術誌／会議論文243件・全参考資料300件。
-保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め97章です。
+保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め98章です。
 
 ## 収録範囲と数え方 — 方程式とモデル# [ja]
 
@@ -39512,6 +39754,215 @@ NASA Advanced Supercomputing Division, LAVA team (n.d.). Double Mach Reflection 
 Hiroshi Koyama (2026). Independent finite-volume references distributed with the RKDG2D agent kit, 2026-11-23-r2
 確認範囲 / review_level: hash-checked-selected-public-archive-artifacts
 保存済みの独立2D FV-MUSCL/HLL/Heun参照のソース・2格子データ・実行記録を不変ZIPから選択取得。今回の参照PDE再実行や別のAthena/LAVA実行ではありません。主計算とHLLという流束族は共有しますが、参照は主計算の空間演算をimportしない別実装です。
+
+## Mach 3前向きステップ：軽量な2次元検証 — Mach 3前向きステップ：軽量な2次元検証 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-forward-step/
+Coverage: reading
+
+γ=1.4、Mach 3の一様流を、[0,3]×[0,1]からx≥.6,y<.2の段差を除いた流路でT=4まで計算します。60×20・120×40・240×80の区分定数HLL＋Heunで、段差面を含む実際の境界流束収支・正値性・衝撃波構造を比較します。角でエントロピーやエンタルピーを修正する処理は使いません。
+
+## Mach 3前向きステップ：軽量な2次元検証 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-forward-step/#run-all
+Coverage: reading
+
+ZIPの atlas-forward-step-2026-11-23 フォルダで実行します。このコマンドは配布版の全1例を実行します。新規または空の出力先を指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## Mach 3前向きステップ：軽量な2次元検証 — Mach 3前向きステップ：壁面収支と多格子検証 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-forward-step/
+Coverage: reading
+
+実際の2次元Euler有限体積計算を60×20・120×40・240×80でT=4まで行い、別実装のMUSCL有限格子参照と比較します。段差の垂直面・上面を含む実際の数値流束から4保存量の収支を評価し、角のエントロピー補正を加えない変種として図とコードを公開します。
+手法・式・図・参照解
+使用手法
+HLL
+Heun法／SSPRK(2,2)
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+既存Numartの区分定数HLL・非分割x/y発散・Heun/SSPRK(2,2)を小型配布物にし、6種類の境界ごとに両RK段で実際に使う流束を同じ重みで積算します。CFL=.4、各格子の上限20000刻み。全予測・更新段の正の密度と圧力を確認し、状態floor・修復・隠れた再試行はしません。不正段は生配列と完了履歴を保持して失敗します。
+圧縮性Euler方程式
+γ=1.4の2次元圧縮性Euler保存系。Mach 3の一様流入と、段差・流路上下の反射壁、右端の流出境界を固定入力に定義します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+Mach 3前向きステップ
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+参照・検証の確認範囲
+入力・受入基準・24単体検査・数値ソースを主計算の初回検査・PDE実行前に固定しました。解析的なMach3垂直衝撃波のRankine–Hugoniot関係、一様な平行流路、壁の質量・エネルギー流束ゼロ、段差の圧力力の向き、実際の4成分収支、不正段の保持を検査します。別実装のC++17 MUSCL/generalized-minmod θ1.5/HLL/HeunによるNy80/160の参照を新規に実行し、保存量を保守的に制限して密度・圧力の全流体領域L1を比較します。参照の再計算は通常の公開ZIP追試には含めず、保存データ・ソース・契約・実行記録を同梱します。 最初の参照Ny160は事前固定の120秒上限で停止した記録を保持し、診断文字列の不要なメモリ割当てだけを除く参照改訂を、主計算の初回実行前に再固定しました。入力・演算・CFL・判定値は変更していません。 24検査と全3計算・45判定が-W errorで合格。主計算の密度L1は.14754/.12878/.10265、圧力L1は.19373/.16015/.12242、密度の最後の2格子の傾きは.327。参照80/160増分は.02636/.03063で、最細主計算差の約.257/.250。全4成分の境界収支の最大相対残差は2.99e-13、全壁の積分質量・エネルギー流束は0でした。主計算3格子は元のMacで約46秒、性能改訂後の参照80/160は約8/65秒です。
+同じ問題の参照 · 有限格子の数値参照
+Mach 3前向きステップ：独立C++有限格子数値参照
+新しく独立実行したC++17のMUSCL/HLL/Heun参照を保存量制限で比較します。同じHLL族・Heunと角無補正条件を共有する有限格子数値参照であり、全場の厳密解や誤差上界ではありません。
+
+## Mach 3前向きステップ：軽量な2次元検証 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-forward-step/#forward-step-m3-assumptions
+Coverage: reading
+
+無次元[0,3]×[0,1]からx≥.6・y<.2の固体を除き、γ=1.4、初期・左流入(ρ,u,v,p)=(1.4,3,0,1)。音速1なのでMach3です。右はゼロ勾配流出、上下と段差の両面は法線運動量を反転する滑り壁。格子Nyは5の倍数で両壁を厳密に整列し、固体記憶領域は流体ノルム・積分から除外します。Woodward–Colella型の角エントロピー・エンタルピー再設定は行いません。
+
+## Mach 3前向きステップ：軽量な2次元検証 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-forward-step/#forward-step-m3-algorithm
+Coverage: reading
+
+既存Numartの区分定数HLL・非分割x/y発散・Heun/SSPRK(2,2)を小型配布物にし、6種類の境界ごとに両RK段で実際に使う流束を同じ重みで積算します。CFL=.4、各格子の上限20000刻み。全予測・更新段の正の密度と圧力を確認し、状態floor・修復・隠れた再試行はしません。不正段は生配列と完了履歴を保持して失敗します。
+\partial_tU+\partial_xF(U)+\partial_yG(U)=0,\qquad U=(\rho,\rho u,\rho v,E)^T\Omega=([0,3]\times[0,1])\setminus([0.6,3]\times[0,0.2]),\quad (\rho,u,v,p)_\infty=(1.4,3,0,1)\sum_{C\subset\Omega}|C|(\bar U_C^{n+1}-\bar U_C^n)=\frac{\Delta t}{2}(B(U^n)+B(U^{(1)})),\quad B=-\sum_{\partial\Omega}|f|\widehat F_n\epsilon_1(\rho)=\frac{\sum_{C\subset\Omega}|\bar\rho_C-\overline{\rho_{\rm ref}}_C|}{\sum_{C\subset\Omega}|\overline{\rho_{\rm ref}}_C|}
+
+## Mach 3前向きステップ：軽量な2次元検証 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-forward-step/#forward-step-m3-validation
+Coverage: reading
+
+入力・受入基準・24単体検査・数値ソースを主計算の初回検査・PDE実行前に固定しました。解析的なMach3垂直衝撃波のRankine–Hugoniot関係、一様な平行流路、壁の質量・エネルギー流束ゼロ、段差の圧力力の向き、実際の4成分収支、不正段の保持を検査します。別実装のC++17 MUSCL/generalized-minmod θ1.5/HLL/HeunによるNy80/160の参照を新規に実行し、保存量を保守的に制限して密度・圧力の全流体領域L1を比較します。参照の再計算は通常の公開ZIP追試には含めず、保存データ・ソース・契約・実行記録を同梱します。 最初の参照Ny160は事前固定の120秒上限で停止した記録を保持し、診断文字列の不要なメモリ割当てだけを除く参照改訂を、主計算の初回実行前に再固定しました。入力・演算・CFL・判定値は変更していません。 24検査と全3計算・45判定が-W errorで合格。主計算の密度L1は.14754/.12878/.10265、圧力L1は.19373/.16015/.12242、密度の最後の2格子の傾きは.327。参照80/160増分は.02636/.03063で、最細主計算差の約.257/.250。全4成分の境界収支の最大相対残差は2.99e-13、全壁の積分質量・エネルギー流束は0でした。主計算3格子は元のMacで約46秒、性能改訂後の参照80/160は約8/65秒です。
+
+## Mach 3前向きステップ：軽量な2次元検証 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-forward-step/#forward-step-m3-limits
+Coverage: reading
+
+参照は別実装ですがHLL流束族とHeunを共有し、外部AMROC・LAVA・RKDGを実行した意味ではありません。有限格子の数値参照であり、厳密2D解や誤差上界ではありません。角の特別処理を加えない入力では数値的なエントロピー層が下流へ運ばれうるため、補正付き原著PPMの細部一致を主張しません。全流体領域の差とL∞、固定した角近傍の密度・圧力・エントロピー診断を隠さず残します。傾きは純粋な空間次数の証明ではなく、薄いすべり線・巻き上がり・一般形状や高次精度の収束は未検証です。 正規化した密度の最大差は.592/.670/.665で減少せず、角近傍のlog(p/ρ^γ)の最小値も−.0784/−.1224/−.3510と大きく変わります。これは任意の定数を含む絶対量で、負になるほど誤差が大きいという指標ではありませんが、角の極値や点ごとのパターンが安定・収束したとは主張できません。
+
+## Mach 3前向きステップ：軽量な2次元検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-forward-step/#forward-step-m3-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+n80
+ny80
+nx240
+time4
+steps5557
+fluid_cells16128
+fluid_area2.52
+density_l10.102651309526
+pressure_l10.122422456559
+density_l20.174079698847
+density_linf0.664930965792
+minimum_density_all_stages0.572306931839
+minimum_pressure_all_stages0.762362807423
+density_min0.699044428798
+density_max6.5918999889
+pressure_min0.806653319725
+pressure_max12.162019013
+state_floor_count0
+rejected_steps0
+wall_mass_energy_max_abs0
+corner_density_l10.0351227121758
+corner_density_max5.84065400392
+corner_pressure_max11.9023611544
+corner_entropy_min-0.350967796125
+corner_entropy_max0.305112897948
+判定 / check合格
+three final-time refinements completetrue
+ny20: requested time reachedtrue
+ny20: minimum_density_all_stagestrue
+ny20: minimum_pressure_all_stagestrue
+ny20: state_floor_counttrue
+ny20: rejected_stepstrue
+ny20: exact aligned fluid areatrue
+ny20: mass including step-wall boundary balancetrue
+ny20: x momentum including step-wall boundary balancetrue
+ny20: y momentum including step-wall boundary balancetrue
+ny20: energy including step-wall boundary balancetrue
+ny20: stationary-wall integrated mass/energy fluxtrue
+ny20: unmasked full-field/corner diagnostics retainedtrue
+ny40: requested time reachedtrue
+ny40: minimum_density_all_stagestrue
+ny40: minimum_pressure_all_stagestrue
+ny40: state_floor_counttrue
+ny40: rejected_stepstrue
+
+## Mach 3前向きステップ：軽量な2次元検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-forward-step/#forward-step-m3-measurements
+Coverage: reading
+
+ny40: exact aligned fluid areatrue
+ny40: mass including step-wall boundary balancetrue
+ny40: x momentum including step-wall boundary balancetrue
+ny40: y momentum including step-wall boundary balancetrue
+ny40: energy including step-wall boundary balancetrue
+ny40: stationary-wall integrated mass/energy fluxtrue
+ny40: unmasked full-field/corner diagnostics retainedtrue
+ny80: requested time reachedtrue
+ny80: minimum_density_all_stagestrue
+ny80: minimum_pressure_all_stagestrue
+ny80: state_floor_counttrue
+ny80: rejected_stepstrue
+ny80: exact aligned fluid areatrue
+ny80: mass including step-wall boundary balancetrue
+ny80: x momentum including step-wall boundary balancetrue
+ny80: y momentum including step-wall boundary balancetrue
+ny80: energy including step-wall boundary balancetrue
+ny80: stationary-wall integrated mass/energy fluxtrue
+ny80: unmasked full-field/corner diagnostics retainedtrue
+finest density_l1true
+finest pressure_l1true
+density difference decreases across the fixed gridstrue
+last-pair density difference slopetrue
+reference increment density_l1true
+reference increment / primary finest density_l1true
+reference increment pressure_l1true
+reference increment / primary finest pressure_l1true
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全記録を表で読む
+
+## Mach 3前向きステップ：軽量な2次元検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-forward-step/#forward-step-m3-measurements
+Coverage: reading
+
+nnynxtimestepsfluid_cellsfluid_areadensity_l1pressure_l1density_l2density_linfminimum_density_all_stagesminimum_pressure_all_stagesdensity_mindensity_maxpressure_minpressure_maxstate_floor_countrejected_stepsinitial_integralfinal_integralboundary_net_integralboundary_integralsconservation_residualconservation_relativewall_mass_energy_max_abscorner_density_l1corner_density_maxcorner_pressure_maxcorner_entropy_mincorner_entropy_maxfieldhistory
+
+## Mach 3前向きステップ：軽量な2次元検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-forward-step/#forward-step-m3-measurements
+Coverage: reading
+
+2020604132410082.520.1475409451220.1937266653820.2056922245970.5922630026810.6937162681590.8135226202361.123165730036.45323308808111.431121109800[3.528000000000034,10.583999999999806,0.0,22.176000000000162][6.454864773240575,12.331166499307141,0.6124808308256182,36.34299488033696][2.92686477324059,1.7471664993071165,0.612480830825568,14.166994880336816]{"inlet":[16.800000000000015,54.40000000000004,0.0,117.60000000000008],"outlet":[-13.873135226759425,-42.76307996368035,-0.09746061394522142,-103.43300511966326],"bottom":[0.0,0.0,12.91869208462983,0.0],"top":[0.0,0.0,-33.66947425920519,0.0],"vertical_step":[0.0,-9.889753537012577,0.0,0.0],"horizontal_step":[0.0,0.0,21.460723619346147,0.0]}[-4.884981308350689e-14,2.184918912462308e-13,5.0182080713057076e-14,-1.7763568394002505e-14][1.3846318901220638e-14,2.0643602725456802e-14,5.0182080713057076e-14,8.010267132937579e-16]00.1080810826675.3800528417311.4311211098-0.07840851927230.222077038948field-ny20.npzhistory-ny20.json
+
+## Mach 3前向きステップ：軽量な2次元検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-forward-step/#forward-step-m3-measurements
+Coverage: reading
+
+40401204271240322.520.1287754938450.1601532242930.1973471705280.670288501660.6636165198280.8122964457930.9475577142526.82995257364113.006034151800[3.527999999999867,10.584000000000792,0.0,22.17599999999937][6.4053827632692375,12.307453519604408,0.637855129438976,36.13579035189517][2.877382763269253,1.7234535196045453,0.6378551294389609,13.959790351895165]{"inlet":[16.80000000000001,54.40000000000019,0.0,117.6000000000001],"outlet":[-13.922617236730758,-43.013721211894634,-0.4533480175276906,-103.64020964810493],"bottom":[0.0,0.0,13.152914766216469,0.0],"top":[0.0,0.0,-33.37942685570288,0.0],"vertical_step":[0.0,-9.662825268501011,0.0,0.0],"horizontal_step":[0.0,0.0,21.317715236453065,0.0]}[1.176836406102666e-13,-9.29034627006331e-13,1.509903313490213e-14,6.323830348264892e-13][3.335704098930585e-14,8.777727012530815e-14,1.509903313490213e-14,2.85165509932588e-14]00.06215145028855.6704212396211.7224908254-0.1224265519540.251786860982field-ny40.npzhistory-ny40.json
+
+## Mach 3前向きステップ：軽量な2次元検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-forward-step/#forward-step-m3-measurements
+Coverage: reading
+
+808024045557161282.520.1026513095260.1224224565590.1740796988470.6649309657920.5723069318390.7623628074230.6990444287986.59189998890.80665331972512.16201901300[3.5280000000005374,10.583999999996843,0.0,22.176000000002542][6.372615354316513,12.286268963909581,0.6387925784415488,36.008269687101006][2.8446153543164634,1.702268963909578,0.638792578441354,13.832269687101586]{"inlet":[16.799999999999994,54.39999999999998,0.0,117.60000000000038],"outlet":[-13.95538464568353,-43.179769794713124,-0.7546583393640717,-103.76773031289879],"bottom":[0.0,0.0,13.312050379287443,0.0],"top":[0.0,0.0,-33.15606874815574,0.0],"vertical_step":[0.0,-9.517961241377275,0.0,0.0],"horizontal_step":[0.0,0.0,21.237469286673722,0.0]}[-4.880540416252188e-13,3.1601388172930456e-12,1.9484414082171497e-13,-3.1228353236656403e-12][1.3833731338581192e-13,2.9857698576095884e-13,1.9484414082171497e-13,1.4082049619702753e-13]00.03512271217585.8406540039211.9023611544-0.3509677961250.305112897948field-ny80.npzhistory-ny80.json
+この例の実測値・全記録 / JSON
+
+## Mach 3前向きステップ：軽量な2次元検証 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-forward-step/#forward-step-m3-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Paul Woodward and Phillip Colella (1984). The numerical simulation of two-dimensional fluid flow with strong shocks · DOI: 10.1016/0021-9991(84)90142-6
+確認範囲 / review_level: previously-reviewed-publisher-metadata; setup cross-checked against Cockburn-Shu1991 primary report
+強衝撃波の標準比較の原著として引用。今回の出版社ページは取得拒否、原著本文を直接通読したとは主張せず、前向きステップの設定と角処理の区別はCockburn–Shu(1991)の一次資料で確認した。
+Bernardo Cockburn and Chi-Wang Shu (1991). The P¹-RKDG Method for Two-Dimensional Euler Equations of Gas Dynamics
+確認範囲 / review_level: selected-text-review: Example2 printedp7/PDFpage11 and Fig3 captions printedp8/PDFpage12
+Example2の形状、Mach3一様流、流入・流出・反射境界、T=4、および角の特別処理あり/なしを比べるFig3の説明を確認。本文の選択箇所の確認であり、図の転載・RKDGの実行は行わない。
+Ralf Deiterding / AMROC project (2004). 2D Euler equations — Forward facing step
+確認範囲 / review_level: official-example-selected-problem-description
+角セルに特別なエントロピー補正を加えない変種とT=4の公式説明を確認。AMROCの計算・AMR・図をこの例へ取り込んだものではない。
+Hiroshi Koyama (2026). Independent C++17 MUSCL finite-volume reference for the uncorrected Mach-3 forward-facing step
+確認範囲 / review_level: source-and-preregistered-new-execution
+主計算の空間演算をimportしない別実装。HLLとHeunの族は共有し、外部エンジンの実行ではありません。初版の時間切れと診断引数だけの性能改訂を保存し、参照データ・入力・実行履歴・契約を同梱します。
 
 ## 基盤手法：条件数・残差・収束と独立参照 — 基盤手法：条件数・残差・収束と独立参照 [ja]
 

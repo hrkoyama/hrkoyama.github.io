@@ -5,11 +5,11 @@
   "scope": "One explicitly mapped visual per atlas test problem. Existing shared figures are identified. Derived plots use stored numerical values; computed previews record fixed inputs and numerical checks.",
   "counts": {
     "test_problems": 85,
-    "runnable_problems": 42,
+    "runnable_problems": 43,
     "common_runnable_problems": 22,
-    "supplemental_runnable_problems": 23,
-    "supplemental_case_count": 39,
-    "supplemental_release_case_count": 44,
+    "supplemental_runnable_problems": 24,
+    "supplemental_case_count": 40,
+    "supplemental_release_case_count": 45,
     "groups": {
       "transport": 9,
       "fluid": 18,
@@ -1330,7 +1330,7 @@
         "ja": "Mach 3前向きステップ",
         "en": "Mach-3 forward-facing step"
       },
-      "chapter": "nasa-2d",
+      "chapter": "validation-forward-step",
       "evidence": [
         {
           "path": "numerical-methods-atlas/assets/shock-gallery.json",
@@ -1342,32 +1342,76 @@
           "where": {
             "id": "forward-step"
           }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/forward-step/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "forward-step-m3"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/forward-step/results/forward-step-m3-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/forward-step/inputs.json",
+          "json_pointer": "/cases/forward-step-m3"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/forward-step/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/forward-step/references/independent-execution.json",
+          "json_pointer": "/passed"
         }
       ],
       "availability": "saved-output",
+      "reading_section": "forward-step-m3",
+      "code_base": "/code/validated-examples/2026-11-23/forward-step/",
+      "verification": "/code/validated-examples/2026-11-23/forward-step/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "supplemental_examples": [
+        {
+          "id": "forward-step-m3",
+          "url": "/numerical-methods-atlas/validation/forward-step-m3/",
+          "name": {
+            "ja": "Mach 3前向きステップ：壁面収支と多格子検証",
+            "en": "Mach3 forward step: wall budgets and grid verification"
+          }
+        }
+      ],
       "reading": {
-        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/nasa-2d/",
-        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/nasa-2d/"
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-forward-step/#forward-step-m3",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-forward-step/#forward-step-m3"
       },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/verification.json",
       "execution_examples": [],
       "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#forward-step",
-      "run_commands": [],
-      "image": "/numerical-methods-atlas/assets/comparisons/step-m3-mc.png",
-      "image_sha256": "3002eb94449b6fe7835da19cc825840ddf6c25818c19a0b5840606ef72a6889b",
-      "width": 1300,
-      "height": 910,
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "image": "/code/validated-examples/2026-11-23/forward-step/results/forward-step-m3-preview.png",
+      "image_sha256": "14874a4887433c8cfc247d436ce37bc305cf5a6f88f86a9fe54df23827a522a1",
+      "width": 1312,
+      "height": 744,
       "source_kind": "existing-figure",
       "caption": {
-        "ja": "保存済みMach 3前向きステップの計算場。",
-        "en": "Stored computed field for the Mach-3 forward-facing step."
+        "ja": "実際の2次元Euler計算の密度場。Mach 3、γ=1.4、T=4、240×80セル。固体段差を除いて描きます。角のエントロピー補正は使わず、微細なすべり線・渦の収束を保証する図ではありません。",
+        "en": "Density from the actual 2D Euler computation: Mach3,gamma=1.4,T=4,240×80 cells. The solid step is masked. No corner entropy correction is used; the picture does not establish convergence of fine slip lines or vortices."
       },
       "visual_input": {
         "id": "forward-step",
         "kind": "image",
-        "source": "assets/comparisons/step-m3-mc.png",
+        "source": "/code/validated-examples/2026-11-23/forward-step/results/forward-step-m3-preview.png",
         "caption": {
-          "ja": "保存済みMach 3前向きステップの計算場。",
-          "en": "Stored computed field for the Mach-3 forward-facing step."
+          "ja": "実際の2次元Euler計算の密度場。Mach 3、γ=1.4、T=4、240×80セル。固体段差を除いて描きます。角のエントロピー補正は使わず、微細なすべり線・渦の収束を保証する図ではありません。",
+          "en": "Density from the actual 2D Euler computation: Mach3,gamma=1.4,T=4,240×80 cells. The solid step is masked. No corner entropy correction is used; the picture does not establish convergence of fine slip lines or vortices."
         }
       },
       "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#forward-step-ja",
@@ -1375,9 +1419,36 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/forward-step/?lang=ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/forward-step/?lang=en"
       },
-      "runnable": false,
+      "runnable": true,
       "execution_entry": null,
-      "supplemental_execution_entries": []
+      "supplemental_execution_entries": [
+        {
+          "id": "forward-step-m3",
+          "title": {
+            "ja": "Mach 3前向きステップ：壁面収支と多格子検証",
+            "en": "Mach3 forward step: wall budgets and grid verification"
+          },
+          "group": "forward-step",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/forward-step-m3/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/forward-step-m3/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/fs_solver.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/attempts/01/source/convert.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/attempts/01/source/run-reference.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/convert.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/references/run-reference.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/test_fs.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/atlas-forward-step-2026-11-23.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/forward-step/verification.json"
+        }
+      ]
     },
     {
       "id": "entropy-2d",
@@ -7361,7 +7432,7 @@
     }
   ],
   "source_sha256": {
-    "catalog/atlas-gallery.json": "68e8c4ca2f4493438363376a9dcf4f5b5d64bc38f6ddbff7f2cdb51635dd69e9",
+    "catalog/atlas-gallery.json": "f664f1b6074233918dba16d6cb0a0058a1f58e5b8797857b185529c95f5f4f47",
     "scripts/render-atlas-gallery.py": "62956b5a0ece0c5144ec079bb30f36e44b3ccf97e4b56b677d4de356cdbab04c",
     "code/numerical-methods-atlas/2026-11-21/numart/benchmarks.py": "dc8f83aafea473b5f0e1e7bf82630484dd60aa446859c1f602571adc3c59f019",
     "code/numerical-methods-atlas/2026-11-21/numart/solvers.py": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d",
@@ -7408,8 +7479,8 @@
     "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
     "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
     "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
-    "catalog/atlas-test-problems.json": "6585a905ba296ab9731d1bbbc1a9cc43877b0254339b2867c28928eb9cc47720",
-    "catalog/atlas-depth-expansion.json": "15ba0967cb9d417ebbcdb027ef0adac50cff449887cfe723bdba6b221a1d5b63",
+    "catalog/atlas-test-problems.json": "900e7e140ad24506138dc36df2a733ce2022cb7a771fc28b1d0975f3331142bd",
+    "catalog/atlas-depth-expansion.json": "5fc8fd929c0e3a3bba7c5d25e1fc3b159bc0976f0cc6a2f9cc96bc5276aa3c4e",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
     "code/validated-examples/2026-11-22/foundations/inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -7541,18 +7612,25 @@
     "code/validated-examples/2026-11-23/double-mach/results/result.json": "3b4a36b9b3e10e7a6984130ee24bb7d5707de0fe24facff3a49b8eabd71ea5fe",
     "code/validated-examples/2026-11-23/double-mach/results/double-mach-reflection.png": "564ab5c372e1c4ce5e468876142858830f6425eca79a7dc34a18568ecc89edff",
     "code/validated-examples/2026-11-23/double-mach/results/double-mach-reflection-preview.png": "53153eee0fd13c933f8da09b0d628169906c4962c4926555858542d965c27587",
+    "code/validated-examples/2026-11-23/forward-step/cases.json": "e7397c94e5d170170b09a6baa4fdf9276d83419118e456cc172ad6c5cf63b363",
+    "code/validated-examples/2026-11-23/forward-step/inputs.json": "a55b2912063117c65b30c48cb5ed665b45dd58e378d72968f12e551d9c37f15e",
+    "code/validated-examples/2026-11-23/forward-step/source-manifest.json": "77546e263d8e08266cedb57ef5e128a3bee68d7b9597fb56bed2eee5dcbec6dc",
+    "code/validated-examples/2026-11-23/forward-step/verification.json": "f40317a2721c2048c6174bf41c03adf5e3eddae07e19ae95e6ed5210a9b01914",
+    "code/validated-examples/2026-11-23/forward-step/results/result.json": "636e179813165fbe620caadd825ac699973ea2dde897d13aed8b2d22102e6704",
+    "code/validated-examples/2026-11-23/forward-step/results/forward-step-m3.png": "8f4ad22c5af00347914f9dfee7a84f9a07fdf9da5394674937013fad5f94bf16",
+    "code/validated-examples/2026-11-23/forward-step/results/forward-step-m3-preview.png": "14874a4887433c8cfc247d436ce37bc305cf5a6f88f86a9fe54df23827a522a1",
     "code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py": "4ad61ac54dfa59d7d61959c5699f290e2386c23bf5b4b930a5d98576feaa54d1",
     "code/numerical-methods-atlas/2026-11-21/tests/test_linear.py": "5e7323f2734fb7328c35706ccd90fc25076bd46d01d32cd9c78c8cd25dd0421f",
     "code/numerical-methods-atlas/2026-11-21/tests/test_sparse_fem.py": "4076e514e0b9b5fd94dead4af33fe7e7548fba6a7b48b3e21a406034f7170afb",
     "code/numerical-methods-atlas/2026-11-21/tests/test_runge_kutta.py": "920a5eb560afe7f560cae8d22f879f125851f4ee0451b24720d0eca0082c31ce",
     "code/numerical-methods-atlas/2026-11-21/tests/test_new_models.py": "2937daf8fa8ad86882ac06e47835a6309ca1df3d0283c7dfb7b9606dc3906b1f",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "cf3fa51285928331e2f8efbce596408bac617b3a5b8e70ef11e6f497f24ce5f5",
+    "numerical-methods-atlas/gallery/preview-manifest.json": "c8453ca9add9e833d9a71c09f901eaba04029ee887c8b275ea9287246a2ce3ee",
     "numerical-methods-atlas/gallery/calculations.json": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6",
     "numerical-methods-atlas/gallery/verification.json": "46c39543afa9d943dfef896fadbc8f84d847f1a145d9b1427a2336de7a3a50f9",
-    "numerical-methods-atlas/test-cases/index.json": "465c6f4701a96ed9c2032d1eeddd9e4eb031d6cd43e86bfe404c966d9e417915",
+    "numerical-methods-atlas/test-cases/index.json": "363dcee41b84d99768b8f8a7628279895e0d80c975952d32a9c96e1c721bd729",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "scripts/atlas_execution_discovery.py": "3431dae95fb0adc68e1deca07b406b70bd99480f9ad6023a31765cb07ccf84be",
-    "scripts/atlas_depth_release.py": "23bcaba6452f88050b16903d73eab25a1a284892e5f266ee7056854ef192cc1e",
+    "scripts/atlas_depth_release.py": "8399aaf2c229cdb4f752e3914c7ba06724fa5784d9b9a737cb215714760c6a1d",
     "scripts/atlas_goal_availability.py": "3b32fcee61cd8452e529a73ed203b1a64aa32db7312734df477926f5fa39fab5",
     "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
     "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
@@ -7572,6 +7650,7 @@
     "code/validated-examples/2026-11-23-r5/noh/atlas-noh-2026-11-23-r5.zip": "64de5483e9896a3773348b75e1ec2b4630f8a709d68194c1d94772396f531733",
     "code/validated-examples/2026-11-23-r2/noh-cartesian/atlas-noh-cartesian-2026-11-23-r2.zip": "2145beb161f993c1608fc5ac167af5278d58e10f92e74ed37e5fb9c35243b918",
     "code/validated-examples/2026-11-23-r2/sedov/atlas-sedov-2026-11-23-r2.zip": "abb7344023b91b090820de1ebec8d6c6a949b8c06fda73037204a5d6f62b4b73",
-    "code/validated-examples/2026-11-23/double-mach/atlas-double-mach-2026-11-23.zip": "0a68d19746c508e0ac0cf9b5bebe9375c797a87ade1a9fbfbef87d6e5fa63347"
+    "code/validated-examples/2026-11-23/double-mach/atlas-double-mach-2026-11-23.zip": "0a68d19746c508e0ac0cf9b5bebe9375c797a87ade1a9fbfbef87d6e5fa63347",
+    "code/validated-examples/2026-11-23/forward-step/atlas-forward-step-2026-11-23.zip": "ae69647a4e63c75c0888a6daf15835d348e9d74de58b5e59926e359e9ffc52cd"
   }
 }

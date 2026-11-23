@@ -127,10 +127,10 @@ test('one scoped goal and two depth fields expose six new checks without changin
  assert.equal(methods.length,147);assert.equal(methods.filter(x=>x.status==='educational-example').length,116);
 });
 
-test('all 82 historical gallery illustrations, image checksums and captions survive the new supplemental evidence',()=>{
- const items=json('numerical-methods-atlas/gallery/preview-manifest.json').items.filter(x=>!['noh','sedov','double-mach'].includes(x.id));
- assert.equal(items.length,82);
- assert.equal(hash(items.map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}))),'b255b3c071b678981cceb7b78743f7e25cb78df254e0cb18d76e51616045a487');
+test('all 81 historical gallery illustrations, image checksums and captions survive the new supplemental evidence',()=>{
+ const items=json('numerical-methods-atlas/gallery/preview-manifest.json').items.filter(x=>!['noh','sedov','double-mach','forward-step'].includes(x.id));
+ assert.equal(items.length,81);
+ assert.equal(hash(items.map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}))),'c8c5c776259a9fb024ad5da9ab494ea4ff8f3cc3d9deff350b62c202d51434e0');
  const gallery=json('numerical-methods-atlas/gallery/index.json');
- assert.equal(gallery.items.length,85);assert.equal(gallery.items.filter(x=>x.runnable).length,42);
+ assert.equal(gallery.items.length,85);assert.equal(gallery.items.filter(x=>x.runnable).length,43);
 });

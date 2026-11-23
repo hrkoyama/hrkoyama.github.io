@@ -19689,7 +19689,7 @@
     "passed_tests": 39
   },
   "source_sha256": {
-    "catalog/atlas-depth-expansion.json": "15ba0967cb9d417ebbcdb027ef0adac50cff449887cfe723bdba6b221a1d5b63",
+    "catalog/atlas-depth-expansion.json": "5fc8fd929c0e3a3bba7c5d25e1fc3b159bc0976f0cc6a2f9cc96bc5276aa3c4e",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
     "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
@@ -19764,7 +19764,12 @@
     "code/validated-examples/2026-11-23/double-mach/verification.json": "c588b4ce7f539d53b1d5eec4413ce3a1dc104eff975e4adddf0c544460dbb49e",
     "code/validated-examples/2026-11-23/double-mach/cases.json": "38eb6a6fb4af35cdd3ca8834b9f3e5c80be22a50615f03aef712bc67b11b85e3",
     "code/validated-examples/2026-11-23/double-mach/results/result.json": "3b4a36b9b3e10e7a6984130ee24bb7d5707de0fe24facff3a49b8eabd71ea5fe",
-    "code/validated-examples/2026-11-23/double-mach/atlas-double-mach-2026-11-23.zip": "0a68d19746c508e0ac0cf9b5bebe9375c797a87ade1a9fbfbef87d6e5fa63347"
+    "code/validated-examples/2026-11-23/double-mach/atlas-double-mach-2026-11-23.zip": "0a68d19746c508e0ac0cf9b5bebe9375c797a87ade1a9fbfbef87d6e5fa63347",
+    "code/validated-examples/2026-11-23/forward-step/source-manifest.json": "77546e263d8e08266cedb57ef5e128a3bee68d7b9597fb56bed2eee5dcbec6dc",
+    "code/validated-examples/2026-11-23/forward-step/verification.json": "f40317a2721c2048c6174bf41c03adf5e3eddae07e19ae95e6ed5210a9b01914",
+    "code/validated-examples/2026-11-23/forward-step/cases.json": "e7397c94e5d170170b09a6baa4fdf9276d83419118e456cc172ad6c5cf63b363",
+    "code/validated-examples/2026-11-23/forward-step/results/result.json": "636e179813165fbe620caadd825ac699973ea2dde897d13aed8b2d22102e6704",
+    "code/validated-examples/2026-11-23/forward-step/atlas-forward-step-2026-11-23.zip": "ae69647a4e63c75c0888a6daf15835d348e9d74de58b5e59926e359e9ffc52cd"
   },
   "scope": {
     "ja": "共通22実行例の台帳とは別に管理する追加検証集です。配布ZIPを独立展開し、各グループの全固定入力と検査を実行した記録を示します。設定・手法・刻み幅の違いを独立した物理問題の数には加算しません。",
@@ -19883,13 +19888,13 @@
     }
   },
   "navigation_source_sha256": {
-    "catalog/atlas-depth-expansion.json": "15ba0967cb9d417ebbcdb027ef0adac50cff449887cfe723bdba6b221a1d5b63",
+    "catalog/atlas-depth-expansion.json": "5fc8fd929c0e3a3bba7c5d25e1fc3b159bc0976f0cc6a2f9cc96bc5276aa3c4e",
     "catalog/atlas-equations.json": "3bcc515019da747a2e8a668a8ccc57200024afd1391a4c6adf1acb8cdfa25c14",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
-    "catalog/atlas-methods.json": "c3515d3b333e4f47134814008ed467d86a8327cb2b7ac3575f6e03ba6ea05d88",
-    "catalog/atlas-problem-links.json": "a777db7cf0eff50bf24dbd750d589e8b4fcc45ea95deca8933b89067e8a9c424",
-    "catalog/atlas-reference-supplements.json": "23b6ab3b573b28fe9d7116f18a5fe83cd0d7a5760acf14558843711754cf4ee9",
-    "catalog/atlas-test-problems.json": "6585a905ba296ab9731d1bbbc1a9cc43877b0254339b2867c28928eb9cc47720",
+    "catalog/atlas-methods.json": "c1693b8a8eaa994d89dda3e3d08f3a8a7bf4031c643d5a292defb3f88fa5da3f",
+    "catalog/atlas-problem-links.json": "6b99c0b338881c7dc687b58c9634944a4f8d38cf96e238b3d720216ddb6561e7",
+    "catalog/atlas-reference-supplements.json": "2fcdee41dc267924a94ef38cbeedc77d0e014b84302edb1013630f6937d63443",
+    "catalog/atlas-test-problems.json": "900e7e140ad24506138dc36df2a733ce2022cb7a771fc28b1d0975f3331142bd",
     "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
     "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
     "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
@@ -20009,10 +20014,16 @@
     "code/validated-examples/2026-11-23/double-mach/results/result.json": "3b4a36b9b3e10e7a6984130ee24bb7d5707de0fe24facff3a49b8eabd71ea5fe",
     "code/validated-examples/2026-11-23/double-mach/source-manifest.json": "32ba5521149368b729b31796dcc0006c8fd743e840e1e36533a867a47170d8c8",
     "code/validated-examples/2026-11-23/double-mach/verification.json": "c588b4ce7f539d53b1d5eec4413ce3a1dc104eff975e4adddf0c544460dbb49e",
+    "code/validated-examples/2026-11-23/forward-step/atlas-forward-step-2026-11-23.zip": "ae69647a4e63c75c0888a6daf15835d348e9d74de58b5e59926e359e9ffc52cd",
+    "code/validated-examples/2026-11-23/forward-step/cases.json": "e7397c94e5d170170b09a6baa4fdf9276d83419118e456cc172ad6c5cf63b363",
+    "code/validated-examples/2026-11-23/forward-step/results/forward-step-m3.png": "8f4ad22c5af00347914f9dfee7a84f9a07fdf9da5394674937013fad5f94bf16",
+    "code/validated-examples/2026-11-23/forward-step/results/result.json": "636e179813165fbe620caadd825ac699973ea2dde897d13aed8b2d22102e6704",
+    "code/validated-examples/2026-11-23/forward-step/source-manifest.json": "77546e263d8e08266cedb57ef5e128a3bee68d7b9597fb56bed2eee5dcbec6dc",
+    "code/validated-examples/2026-11-23/forward-step/verification.json": "f40317a2721c2048c6174bf41c03adf5e3eddae07e19ae95e6ed5210a9b01914",
     "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "cf3fa51285928331e2f8efbce596408bac617b3a5b8e70ef11e6f497f24ce5f5",
-    "numerical-methods-atlas/locales/messages.json": "ce1fefc43d0c715b22cf86513f20e880c29db8e0f329552af014d015ad1856f5"
+    "numerical-methods-atlas/gallery/preview-manifest.json": "c8453ca9add9e833d9a71c09f901eaba04029ee887c8b275ea9287246a2ce3ee",
+    "numerical-methods-atlas/locales/messages.json": "ca763bb2b8a7f466bef88c28835ed915de93a2b3109660231f9de0116334b4bc"
   }
 }

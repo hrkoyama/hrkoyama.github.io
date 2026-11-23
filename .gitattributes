@@ -10,3 +10,7 @@ code/validated-examples/2026-11-23/sedov/exactpack-LICENSE.txt -whitespace
 code/validated-examples/2026-11-23-r2/sedov/exactpack-LICENSE.txt -whitespace
 scripts/depth-sedov/**/exactpack-LICENSE.txt -whitespace
 code/validated-examples/2026-11-23-r2/sedov/**/exactpack-LICENSE.txt -whitespace
+
+# Preserve the original timed-out reference driver log byte for byte.
+scripts/depth-forward-step/references/attempts/01/driver.log -whitespace
+code/validated-examples/2026-11-23/forward-step/references/attempts/01/driver.log -whitespace

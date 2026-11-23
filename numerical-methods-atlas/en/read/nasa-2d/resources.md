@@ -20,24 +20,9 @@ Resources explicitly registered to the methods, problems and executions of this 
 - [Monotonized central / MC](<https://hrkoyama.github.io/numerical-methods-atlas/methods/mc/?lang=en>)
 
   Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability.
-- [HLL](<https://hrkoyama.github.io/numerical-methods-atlas/methods/hll/?lang=en>)
-
-  Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability.
-- [MUSCL reconstruction](<https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=en>)
-
-  Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability.
-- [Minmod](<https://hrkoyama.github.io/numerical-methods-atlas/methods/minmod/?lang=en>)
-
-  Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability.
-- [Monotonized central / MC](<https://hrkoyama.github.io/numerical-methods-atlas/methods/mc/?lang=en>)
-
-  Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability.
 
 ## Equations
 
-- [Compressible Euler equations](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#euler-en>)
-
-  The one-dimensional conservative form. Consult each test for its equation of state, initial data and boundaries. Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters.
 - [Compressible Euler equations](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#euler-en>)
 
   The one-dimensional conservative form. Consult each test for its equation of state, initial data and boundaries. Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters.
@@ -49,20 +34,12 @@ Resources explicitly registered to the methods, problems and executions of this 
   Representative test-problem figure; the problem page records conditions and provenance.
 
   https://hrkoyama.github.io/numerical-methods-atlas/assets/comparisons/wedge-m2-mc.png
-- [Mach-3 forward-facing step](<https://hrkoyama.github.io/numerical-methods-atlas/problems/forward-step/?lang=en>)
-
-  Representative test-problem figure; the problem page records conditions and provenance.
-
-  https://hrkoyama.github.io/numerical-methods-atlas/assets/comparisons/step-m3-mc.png
 
 ## Exact / reference solutions
 
 - [15-degree wedge shock (Mach variants merged) — references and comparison conditions](<https://hrkoyama.github.io/numerical-methods-atlas/problems/nasa-wedge/?lang=en#references-en>)
 
   Use analytic weak-branch oblique-shock angles and state ratios together with mesh refinement. Inspect the conditions separately for each Mach-number variant.
-- [Mach-3 forward-facing step — references and comparison conditions](<https://hrkoyama.github.io/numerical-methods-atlas/problems/forward-step/?lang=en#references-en>)
-
-  Use saved numerical fields, grid comparisons and time histories around the step. This publication does not attach an exact solution for the entire field.
 
 ## Code and validation
 

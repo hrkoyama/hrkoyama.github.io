@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "snapshot_at_utc": "2026-11-23T05:15:58.341998+00:00",
+  "before_first_primary_unit_or_pde_execution": true,
+  "planned_tests": 24,
+  "planned_numerical_gates": 45,
+  "original_to_archived_paths": {
+    "fs_solver.py": "fs_solver.py",
+    "run.py": "run.py",
+    "inputs.json": "inputs.json",
+    "acceptance.json": "acceptance.json",
+    "source-provenance.json": "source-provenance.json",
+    "pre-run-contract.json": "pre-run-contract.json",
+    "contract-before-reference-performance.json": "contract-before-reference-performance.json",
+    "reference-data-qualification.json": "reference-data-qualification.json",
+    "test_fs.py": "archived_test_fs.py"
+  },
+  "archived_sha256": {
+    "fs_solver.py": "2765dc4c370b9bb4c3f3fea5b0f59501983dfde2e75ef4322970e91e1ce0469e",
+    "run.py": "b514eb5523bb198199ba4ed057d0807fcc47e81f19b9288d1199f68614fcc413",
+    "inputs.json": "a55b2912063117c65b30c48cb5ed665b45dd58e378d72968f12e551d9c37f15e",
+    "acceptance.json": "eb895555dedeec88021dd38e1689c80e3bb80090b4ba1ed1469b34baa9be4a53",
+    "source-provenance.json": "f5e5521493f779343f482eda46a2f7560ac5aef31473929895f3d1352385b84f",
+    "pre-run-contract.json": "cc7fd216ca571ef42bbdd7c1d5f7b3c0d392d5d764a927cd4532d99b14273a9c",
+    "contract-before-reference-performance.json": "d4cc36d39f5469c7fdd6051cdeee590d170f566f0876a3bcda5274d48f219b39",
+    "reference-data-qualification.json": "d29b33de05b4f67af9da3a10088353eab46f1d2fd3772d4bf72798a5c43ec49e",
+    "archived_test_fs.py": "47989b0efd97f8a01895c3f4e375bde24f3996f59969e9cb565f8e54975ecea1"
+  },
+  "note": "No primary import, unit test or PDE has occurred. archived_test_fs.py is deliberately named to avoid recursive pytest collection; its original bytes match the preregistered test_fs.py."
+}
