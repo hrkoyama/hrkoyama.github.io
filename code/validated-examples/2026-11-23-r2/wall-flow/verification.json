@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "group": "wall-flow",
+  "edition": "2026-11-23-r2",
+  "verified_on": "2026-11-23",
+  "source_manifest_sha256": "5defc88a20d06c6806f1aa18c5a5a9f027c7891d8a237bb5fe980169d1bbdfe4",
+  "archive": {
+    "file": "atlas-wall-flow-2026-11-23-r2.zip",
+    "sha256": "de499fde477a49b1eae10bd6bf04b0800b58105ca5d504ec6eff2ec3272690fd",
+    "bytes": 3382663,
+    "archive_directory": "atlas-wall-flow-2026-11-23-r2"
+  },
+  "archive_sha256": "de499fde477a49b1eae10bd6bf04b0800b58105ca5d504ec6eff2ec3272690fd",
+  "returncode": 0,
+  "passed_tests": 22,
+  "tests": 22,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "cavity-ghia-re100",
+    "wall-manufactured"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 12.337918207998882,
+  "independent_rerun_seconds": 11.472447542000737,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

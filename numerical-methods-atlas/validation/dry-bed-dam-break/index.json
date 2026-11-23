@@ -1,0 +1,1260 @@
+{
+  "method_ids": [
+    "godunov",
+    "hll",
+    "forward-euler"
+  ],
+  "domains": [
+    "pde",
+    "hydrodynamics"
+  ],
+  "code_files": [
+    "run.py",
+    "shallow_water.py",
+    "references/analytic.py"
+  ],
+  "references": [
+    {
+      "id": "swashes2013",
+      "author": "O. Delestre et al.",
+      "year": 2013,
+      "title": "SWASHES: a compilation of shallow water analytic solutions for hydraulic and environmental studies",
+      "journal": "International Journal for Numerical Methods in Fluids",
+      "volume": "72",
+      "pages": "269-300",
+      "doi": "10.1002/fld.3741",
+      "url": "https://arxiv.org/pdf/1110.0288",
+      "review_level": "selected-equations-and-fixed-inputs",
+      "review_scope": "Author arXiv v3: sections2,3.1.1-3.1.3,4.1.2. Bump, lakes, Bernoulli and Ritter formulas inspected; no full-library audit or SWASHES execution/source reuse.",
+      "role": "analytic formulas and benchmark provenance"
+    },
+    {
+      "id": "audusse2004",
+      "author": "E. Audusse, F. Bouchut, M.-O. Bristeau, R. Klein, B. Perthame",
+      "year": 2004,
+      "title": "A Fast and Stable Well-Balanced Scheme with Hydrostatic Reconstruction for Shallow Water Flows",
+      "journal": "SIAM Journal on Scientific Computing",
+      "volume": "25",
+      "pages": "2050-2065",
+      "doi": "10.1137/S1064827503431090",
+      "url": "https://epubs.siam.org/doi/abs/10.1137/S1064827503431090",
+      "review_level": "bibliography-and-author-follow-up",
+      "review_scope": "Publisher/author bibliography checked. Author-linked original PDF retrieval timed out; HR algebra read in author follow-up arXiv1409.3825. No full original-paper audit.",
+      "role": "original HR attribution"
+    },
+    {
+      "id": "audusse2016",
+      "author": "E. Audusse, F. Bouchut, M.-O. Bristeau, J. Sainte-Marie",
+      "year": 2016,
+      "title": "Kinetic entropy inequality and hydrostatic reconstruction scheme for the Saint-Venant system",
+      "journal": "Mathematics of Computation",
+      "volume": "85",
+      "pages": "2815-2837",
+      "url": "https://arxiv.org/pdf/1409.3825",
+      "review_level": "selected-scheme-equations",
+      "review_scope": "arXiv v2 section1 model/entropy caveat; section3.1 equations3.1-3.5 face states and pressure corrections. Full kinetic proof not audited or claimed for this HLL solver.",
+      "role": "directly inspected HR algebra"
+    },
+    {
+      "id": "swashes-project",
+      "author": "Institut Denis Poisson / SWASHES authors",
+      "title": "SWASHES project page",
+      "url": "https://www.idpoisson.fr/en/swashes-es/",
+      "review_level": "official-project-scope-and-rights",
+      "review_scope": "Official project/library purpose, CeCILL-v2 licensing and corrected-paper/addendum notice inspected. No library code copied or executed.",
+      "role": "project scope and rights"
+    }
+  ],
+  "citations": [
+    {
+      "id": "swashes2013",
+      "author": "O. Delestre et al.",
+      "year": 2013,
+      "title": "SWASHES: a compilation of shallow water analytic solutions for hydraulic and environmental studies",
+      "journal": "International Journal for Numerical Methods in Fluids",
+      "volume": "72",
+      "pages": "269-300",
+      "doi": "10.1002/fld.3741",
+      "url": "https://arxiv.org/pdf/1110.0288",
+      "review_level": "selected-equations-and-fixed-inputs",
+      "review_scope": "Author arXiv v3: sections2,3.1.1-3.1.3,4.1.2. Bump, lakes, Bernoulli and Ritter formulas inspected; no full-library audit or SWASHES execution/source reuse.",
+      "role": "analytic formulas and benchmark provenance"
+    },
+    {
+      "id": "audusse2004",
+      "author": "E. Audusse, F. Bouchut, M.-O. Bristeau, R. Klein, B. Perthame",
+      "year": 2004,
+      "title": "A Fast and Stable Well-Balanced Scheme with Hydrostatic Reconstruction for Shallow Water Flows",
+      "journal": "SIAM Journal on Scientific Computing",
+      "volume": "25",
+      "pages": "2050-2065",
+      "doi": "10.1137/S1064827503431090",
+      "url": "https://epubs.siam.org/doi/abs/10.1137/S1064827503431090",
+      "review_level": "bibliography-and-author-follow-up",
+      "review_scope": "Publisher/author bibliography checked. Author-linked original PDF retrieval timed out; HR algebra read in author follow-up arXiv1409.3825. No full original-paper audit.",
+      "role": "original HR attribution"
+    },
+    {
+      "id": "audusse2016",
+      "author": "E. Audusse, F. Bouchut, M.-O. Bristeau, J. Sainte-Marie",
+      "year": 2016,
+      "title": "Kinetic entropy inequality and hydrostatic reconstruction scheme for the Saint-Venant system",
+      "journal": "Mathematics of Computation",
+      "volume": "85",
+      "pages": "2815-2837",
+      "url": "https://arxiv.org/pdf/1409.3825",
+      "review_level": "selected-scheme-equations",
+      "review_scope": "arXiv v2 section1 model/entropy caveat; section3.1 equations3.1-3.5 face states and pressure corrections. Full kinetic proof not audited or claimed for this HLL solver.",
+      "role": "directly inspected HR algebra"
+    },
+    {
+      "id": "swashes-project",
+      "author": "Institut Denis Poisson / SWASHES authors",
+      "title": "SWASHES project page",
+      "url": "https://www.idpoisson.fr/en/swashes-es/",
+      "review_level": "official-project-scope-and-rights",
+      "review_scope": "Official project/library purpose, CeCILL-v2 licensing and corrected-paper/addendum notice inspected. No library code copied or executed.",
+      "role": "project scope and rights"
+    }
+  ],
+  "id": "dry-bed-dam-break",
+  "title": {
+    "ja": "乾いた河床のダム破壊：実際のwetting/drying",
+    "en": "Dry-bed dam break: actual wetting and dry states"
+  },
+  "summary": {
+    "ja": "右半分を厳密にh=q=0として開始する浅水方程式を解き、実際の乾湿前線の進行と保存をRitter解析解と比較します。",
+    "en": "Start the right half at exactly h=q=0 and compare wetting-front advance, conservation and conservative errors with the Ritter analytic solution."
+  },
+  "assumptions": {
+    "ja": "平坦床・無摩擦、[−10,10]m、ダムx=0、左深さ1m・右0m、初速0、g=9.81、t=.5s、1600/3200/6400セル。SWASHESのRitter式を明示した別スケールで使い、原例の.005m・6s入力とは区別します。",
+    "en": "Flat frictionless bed on[-10,10]m, dam0, hL=1m/hR=0, initial velocity0, g=9.81, t=.5s,1600/3200/6400 cells. The Ritter formula uses an explicit rescaling distinct from the paper numerical example."
+  },
+  "algorithm": {
+    "ja": "同じ有限体積ソルバーが乾状態h=q=0を直接扱います。片側乾床HLL波速はu−c,u+2c（反対向きも同様）。面Courant数.4で前進Euler更新し、状態の切上げなしに全更新後の非負性と共有流束収支を記録します。 HLL更新を非負の水量packetに代数的に分解し、丸め後の同じ水量から移流運動量を作ります。微小水深閾値や事後修復は使いません。",
+    "en": "The FV solver supports h=q=0 directly; one-sided dry HLL speeds use u-c/u+2c and their reflection. Forward Euler at face CFL .4 records every minimum and shared-flux budget without raising cell depths. Algebraically factor HLL updates into nonnegative water packets; advected momentum uses those same rounded masses, without a small-depth threshold or subsequent repair."
+  },
+  "validation": {
+    "ja": "全段の水深min、新たに濡れた初期乾セル数、残る乾セル数、境界流束を含む質量・運動量収支を保存します。Ritterのhとhuをファン端で分割したGauss8セル平均と比較し、Gauss16・全質量・PDE残差で参照を確認。3格子L1細分化とh≥.001mの最右セル中心を検査します。 水深L1の合否は初回と同じ固定参照質量5m²で正規化し、領域を広げたことによる基準の緩和を防ぎます。領域全体の相対L1は別の診断です。",
+    "en": "Record all FE minima, newly wetted and remaining dry cells, boundary-aware mass/momentum budgets, and L1 refinement. Split Gauss8 h/hu references are qualified by Gauss16, mass and PDE identities. Diagnose the rightmost cell center with mean h>=.001m. Depth acceptance uses the original fixed5m2 reference mass, preventing domain extension from weakening the criterion; full-domain relativeL1 remains a separate diagnostic."
+  },
+  "limits": {
+    "ja": "前線診断はセル平均の.001m等深線で、厳密な支持端を別に保存します。非負性は固定実行の実測です。初期乾セルの濡れを検査し、後退汀線・周期的な再乾燥、実地洪水、摩擦や地形上の移動前線は検証しません。 初回100/200/400セル・[−5,5]mでは28検査と105/109判定が合格し、乾セル残存3判定と前線誤差.3960>.25mが不合格でした。元の全記録を保持し、許容条件を変えず領域・格子を細分化しました。 領域・格子だけを変えた第2回は微小な裾のbinary64 underflowで停止しました。第3回は同じHLL更新の水量packetによる代数的評価を導入し、元の28検査に3検査を追加します。 第3回は108/109判定が合格し、最細の前線誤差.27415>.25mで不合格でした。第4回は同じ領域のRitter格子だけを1600/3200/6400に細分化します。相対水深L1は領域内参照質量で正規化し、領域変更を比べるため絶対L1も保存します。",
+    "en": "The .001m mean-depth contour differs from the analytic support edge, which is reported separately. These fixed runs test wetting of initially dry cells. Retreating shorelines, re-drying cycles, real floods, friction and moving fronts over topography are outside scope. The initial100/200/400-cell [-5,5]m attempt passed28 tests and105/109 gates; three retained-dry-cell gates and the .3960m>.25m contour error failed. All original records remain archived; revision2 enlarges/refines the input without changing acceptance. Revision2 then stopped on a binary64 subnormal-tail dry-momentum artifact. Revision3 factors the same HLL update into water packets and adds three regression/equivalence tests; the original28 remain unchanged. Revision3 passed108/109 gates but failed the .27415m>.25m contour criterion. Revision4 refines only Ritter grids to1600/3200/6400. Relative depth L1 is normalized by domain reference mass; absolute L1 is also retained because the domain changed between revisions1 and2."
+  },
+  "formulas": [
+    "c_L=\\sqrt{gh_L},\\quad x_A=x_0-c_Lt,\\quad x_B=x_0+2c_Lt",
+    "h=(2c_L-(x-x_0)/t)^2/(9g),\\quad u=\\tfrac23((x-x_0)/t+c_L)\\quad (x_A<x<x_B)",
+    "\\bar U_i^{\\mathrm{ref}}=\\Delta x^{-1}\\int_{C_i}(h,hu)^Tdx,\\quad x_{.001}=x_B-3t\\sqrt{g(0.001)}"
+  ],
+  "gallery_figure": "dry-bed-dam-break-preview.png",
+  "additional_figures": [
+    {
+      "file": "dry-bed-dam-break-preview.png",
+      "caption": {
+        "ja": "実際の1次元浅水計算の保存配列による水深・流量と乾湿前線のプレビュー。時空間図は1次元の5保存時刻です。",
+        "en": "Preview from actual saved 1D shallow-water depth/discharge arrays. The space-time panel shows five saved times, not a 2D flow."
+      }
+    }
+  ],
+  "group": "shallow-water",
+  "edition": "2026-11-23",
+  "measured": {
+    "id": "dry-bed-dam-break",
+    "passed": true,
+    "records": [
+      {
+        "id": "ritter-n1600",
+        "case": "dry-bed-dam-break",
+        "family": "ritter",
+        "n": 1600,
+        "steps": 532,
+        "time": 0.5,
+        "depth_l1": 0.02512521724715113,
+        "momentum_l1": 0.06613198451145408,
+        "relative_depth_l1": 0.002512521724715256,
+        "relative_momentum_l1": 0.026965131299269234,
+        "depth_linf": 0.033385844952806054,
+        "minimum_depth": 0.0,
+        "maximum_depth": 1.0,
+        "maximum_velocity": 5.159439026191249,
+        "maximum_courant": 0.40000000000000013,
+        "maximum_step_mass_defect": 2.0493514458405504e-15,
+        "maximum_step_momentum_defect": 4.336808689942018e-17,
+        "minimum_staying_coefficient": 0.6038337128225416,
+        "maximum_total_mass_defect": 3.197442310920451e-14,
+        "maximum_total_momentum_defect": 6.217248937900877e-15,
+        "mass_change": -1.1990408665951009e-14,
+        "boundary_mass_change": 0.0,
+        "bed_momentum_impulse": 0.0,
+        "initial_dry_cells": 800,
+        "final_dry_cells": 297,
+        "newly_wet_cells": 503,
+        "all_saved_values_finite": true,
+        "depth_floor_count": 0,
+        "state_clip_count": 0,
+        "rejected_steps": 0,
+        "retries": 0,
+        "snapshot_times": [
+          0.0,
+          0.125,
+          0.25,
+          0.375,
+          0.5
+        ],
+        "front_depth_threshold": 0.001,
+        "numerical_threshold_front": 2.6437500000000007,
+        "analytic_threshold_front": 2.9835237865001925,
+        "analytic_support_front": 3.132091952673165,
+        "threshold_front_error": 0.33977378650019174,
+        "depth_acceptance_reference_mass": 5.0,
+        "fixed_reference_relative_depth_l1": 0.005025043449430226
+      },
+      {
+        "id": "ritter-n3200",
+        "case": "dry-bed-dam-break",
+        "family": "ritter",
+        "n": 3200,
+        "steps": 1099,
+        "time": 0.5,
+        "depth_l1": 0.015074459120924356,
+        "momentum_l1": 0.03984559008998231,
+        "relative_depth_l1": 0.0015074459120925218,
+        "relative_momentum_l1": 0.016246927661563524,
+        "depth_linf": 0.025089122095101724,
+        "minimum_depth": 0.0,
+        "maximum_depth": 1.0,
+        "maximum_velocity": 5.41569334285852,
+        "maximum_courant": 0.40000000000000013,
+        "maximum_step_mass_defect": 2.1348987475453684e-15,
+        "maximum_step_momentum_defect": 2.992397996059992e-17,
+        "minimum_staying_coefficient": 0.6038337128225416,
+        "maximum_total_mass_defect": 3.197442310920451e-14,
+        "maximum_total_momentum_defect": 9.769962616701378e-15,
+        "mass_change": -1.1901590823981002e-14,
+        "boundary_mass_change": 0.0,
+        "bed_momentum_impulse": 0.0,
+        "initial_dry_cells": 1600,
+        "final_dry_cells": 728,
+        "newly_wet_cells": 872,
+        "all_saved_values_finite": true,
+        "depth_floor_count": 0,
+        "state_clip_count": 0,
+        "rejected_steps": 0,
+        "retries": 0,
+        "snapshot_times": [
+          0.0,
+          0.125,
+          0.25,
+          0.375,
+          0.5
+        ],
+        "front_depth_threshold": 0.001,
+        "numerical_threshold_front": 2.7093750000000005,
+        "analytic_threshold_front": 2.9835237865001925,
+        "analytic_support_front": 3.132091952673165,
+        "threshold_front_error": 0.2741487865001919,
+        "depth_acceptance_reference_mass": 5.0,
+        "fixed_reference_relative_depth_l1": 0.003014891824184871
+      },
+      {
+        "id": "ritter-n6400",
+        "case": "dry-bed-dam-break",
+        "family": "ritter",
+        "n": 6400,
+        "steps": 2263,
+        "time": 0.5,
+        "depth_l1": 0.00886909478548199,
+        "momentum_l1": 0.02351989621706402,
+        "relative_depth_l1": 0.0008869094785479971,
+        "relative_momentum_l1": 0.009590171750074893,
+        "depth_linf": 0.018378452319254834,
+        "minimum_depth": 0.0,
+        "maximum_depth": 1.0,
+        "maximum_velocity": 5.618969641557241,
+        "maximum_courant": 0.4000000000000001,
+        "maximum_step_mass_defect": 2.175706973437462e-15,
+        "maximum_step_momentum_defect": 2.47198095326695e-17,
+        "minimum_staying_coefficient": 0.6038337128225417,
+        "maximum_total_mass_defect": 4.973799150320701e-14,
+        "maximum_total_momentum_defect": 7.549516567451064e-15,
+        "mass_change": -7.904787935332912e-15,
+        "boundary_mass_change": 0.0,
+        "bed_momentum_impulse": 0.0,
+        "initial_dry_cells": 3200,
+        "final_dry_cells": 1679,
+        "newly_wet_cells": 1521,
+        "all_saved_values_finite": true,
+        "depth_floor_count": 0,
+        "state_clip_count": 0,
+        "rejected_steps": 0,
+        "retries": 0,
+        "snapshot_times": [
+          0.0,
+          0.125,
+          0.25,
+          0.375,
+          0.5
+        ],
+        "front_depth_threshold": 0.001,
+        "numerical_threshold_front": 2.7765625000000007,
+        "analytic_threshold_front": 2.9835237865001925,
+        "analytic_support_front": 3.132091952673165,
+        "threshold_front_error": 0.20696128650019174,
+        "depth_acceptance_reference_mass": 5.0,
+        "fixed_reference_relative_depth_l1": 0.001773818957096398
+      }
+    ],
+    "check_details": [
+      {
+        "name": "ritter-n1600: maximum_step_mass_defect",
+        "value": 2.0493514458405504e-15,
+        "bound": 2e-10,
+        "passed": true
+      },
+      {
+        "name": "ritter-n1600: maximum_step_momentum_defect",
+        "value": 4.336808689942018e-17,
+        "bound": 2e-10,
+        "passed": true
+      },
+      {
+        "name": "ritter-n1600: maximum_total_mass_defect",
+        "value": 3.197442310920451e-14,
+        "bound": 2e-10,
+        "passed": true
+      },
+      {
+        "name": "ritter-n1600: maximum_total_momentum_defect",
+        "value": 6.217248937900877e-15,
+        "bound": 2e-10,
+        "passed": true
+      },
+      {
+        "name": "ritter-n1600: nonnegative depth",
+        "value": 0.0,
+        "bound": 0,
+        "passed": true
+      },
+      {
+        "name": "ritter-n1600: finite arrays",
+        "value": true,
+        "bound": true,
+        "passed": true
+      },
+      {
+        "name": "ritter-n1600: face CFL",
+        "value": 0.40000000000000013,
+        "bound": 0.40000000000001,
+        "passed": true
+      },
+      {
+        "name": "ritter-n1600: no repairs or retries",
+        "value": 0,
+        "bound": 0,
+        "passed": true
+      },
+      {
+        "name": "ritter-n1600: five exact output times",
+        "value": [
+          0.0,
+          0.125,
+          0.25,
+          0.375,
+          0.5
+        ],
+        "bound": [
+          0.0,
+          0.125,
+          0.25,
+          0.375,
+          0.5
+        ],
+        "passed": true
+      },
+      {
+        "name": "ritter-n1600: actual wetting",
+        "value": 503,
+        "bound": 1,
+        "passed": true
+      },
+      {
+        "name": "ritter-n1600: dry cells retained",
+        "value": 297,
+        "bound": 1,
+        "passed": true
+      },
+      {
+        "name": "ritter-n3200: maximum_step_mass_defect",
+        "value": 2.1348987475453684e-15,
+        "bound": 2e-10,
+        "passed": true
+      },
+      {
+        "name": "ritter-n3200: maximum_step_momentum_defect",
+        "value": 2.992397996059992e-17,
+        "bound": 2e-10,
+        "passed": true
+      },
+      {
+        "name": "ritter-n3200: maximum_total_mass_defect",
+        "value": 3.197442310920451e-14,
+        "bound": 2e-10,
+        "passed": true
+      },
+      {
+        "name": "ritter-n3200: maximum_total_momentum_defect",
+        "value": 9.769962616701378e-15,
+        "bound": 2e-10,
+        "passed": true
+      },
+      {
+        "name": "ritter-n3200: nonnegative depth",
+        "value": 0.0,
+        "bound": 0,
+        "passed": true
+      },
+      {
+        "name": "ritter-n3200: finite arrays",
+        "value": true,
+        "bound": true,
+        "passed": true
+      },
+      {
+        "name": "ritter-n3200: face CFL",
+        "value": 0.40000000000000013,
+        "bound": 0.40000000000001,
+        "passed": true
+      },
+      {
+        "name": "ritter-n3200: no repairs or retries",
+        "value": 0,
+        "bound": 0,
+        "passed": true
+      },
+      {
+        "name": "ritter-n3200: five exact output times",
+        "value": [
+          0.0,
+          0.125,
+          0.25,
+          0.375,
+          0.5
+        ],
+        "bound": [
+          0.0,
+          0.125,
+          0.25,
+          0.375,
+          0.5
+        ],
+        "passed": true
+      },
+      {
+        "name": "ritter-n3200: actual wetting",
+        "value": 872,
+        "bound": 1,
+        "passed": true
+      },
+      {
+        "name": "ritter-n3200: dry cells retained",
+        "value": 728,
+        "bound": 1,
+        "passed": true
+      },
+      {
+        "name": "ritter-n6400: maximum_step_mass_defect",
+        "value": 2.175706973437462e-15,
+        "bound": 2e-10,
+        "passed": true
+      },
+      {
+        "name": "ritter-n6400: maximum_step_momentum_defect",
+        "value": 2.47198095326695e-17,
+        "bound": 2e-10,
+        "passed": true
+      },
+      {
+        "name": "ritter-n6400: maximum_total_mass_defect",
+        "value": 4.973799150320701e-14,
+        "bound": 2e-10,
+        "passed": true
+      },
+      {
+        "name": "ritter-n6400: maximum_total_momentum_defect",
+        "value": 7.549516567451064e-15,
+        "bound": 2e-10,
+        "passed": true
+      },
+      {
+        "name": "ritter-n6400: nonnegative depth",
+        "value": 0.0,
+        "bound": 0,
+        "passed": true
+      },
+      {
+        "name": "ritter-n6400: finite arrays",
+        "value": true,
+        "bound": true,
+        "passed": true
+      },
+      {
+        "name": "ritter-n6400: face CFL",
+        "value": 0.4000000000000001,
+        "bound": 0.40000000000001,
+        "passed": true
+      },
+      {
+        "name": "ritter-n6400: no repairs or retries",
+        "value": 0,
+        "bound": 0,
+        "passed": true
+      },
+      {
+        "name": "ritter-n6400: five exact output times",
+        "value": [
+          0.0,
+          0.125,
+          0.25,
+          0.375,
+          0.5
+        ],
+        "bound": [
+          0.0,
+          0.125,
+          0.25,
+          0.375,
+          0.5
+        ],
+        "passed": true
+      },
+      {
+        "name": "ritter-n6400: actual wetting",
+        "value": 1521,
+        "bound": 1,
+        "passed": true
+      },
+      {
+        "name": "ritter-n6400: dry cells retained",
+        "value": 1679,
+        "bound": 1,
+        "passed": true
+      },
+      {
+        "name": "ritter finest relative_depth_l1",
+        "value": 0.001773818957096398,
+        "bound": 0.05,
+        "passed": true
+      },
+      {
+        "name": "ritter relative_depth_l1 refinement 1",
+        "value": 0.5999732847139302,
+        "bound": 0.85,
+        "passed": true
+      },
+      {
+        "name": "ritter relative_depth_l1 refinement 2",
+        "value": 0.5883524386736433,
+        "bound": 0.85,
+        "passed": true
+      },
+      {
+        "name": "ritter finest relative_momentum_l1",
+        "value": 0.009590171750074893,
+        "bound": 0.08,
+        "passed": true
+      },
+      {
+        "name": "ritter relative_momentum_l1 refinement 1",
+        "value": 0.6025161710228284,
+        "bound": 0.85,
+        "passed": true
+      },
+      {
+        "name": "ritter relative_momentum_l1 refinement 2",
+        "value": 0.5902760170935594,
+        "bound": 0.85,
+        "passed": true
+      },
+      {
+        "name": "finest threshold front error",
+        "value": 0.20696128650019174,
+        "bound": 0.25,
+        "passed": true
+      },
+      {
+        "name": "reference: Bernoulli energy constant",
+        "value": true,
+        "bound": true,
+        "passed": true
+      },
+      {
+        "name": "reference: subcritical branch",
+        "value": true,
+        "bound": true,
+        "passed": true
+      },
+      {
+        "name": "reference: Gauss8 vs Gauss16 conservative means",
+        "value": true,
+        "bound": true,
+        "passed": true
+      },
+      {
+        "name": "reference: Ritter total mass",
+        "value": true,
+        "bound": true,
+        "passed": true
+      },
+      {
+        "name": "reference: Ritter finite difference PDE residual",
+        "value": true,
+        "bound": true,
+        "passed": true
+      },
+      {
+        "name": "reference: exact dry branch",
+        "value": true,
+        "bound": true,
+        "passed": true
+      },
+      {
+        "name": "all fixed runs completed",
+        "value": 3,
+        "bound": 3,
+        "passed": true
+      }
+    ],
+    "checks": {
+      "ritter-n1600: maximum_step_mass_defect": true,
+      "ritter-n1600: maximum_step_momentum_defect": true,
+      "ritter-n1600: maximum_total_mass_defect": true,
+      "ritter-n1600: maximum_total_momentum_defect": true,
+      "ritter-n1600: nonnegative depth": true,
+      "ritter-n1600: finite arrays": true,
+      "ritter-n1600: face CFL": true,
+      "ritter-n1600: no repairs or retries": true,
+      "ritter-n1600: five exact output times": true,
+      "ritter-n1600: actual wetting": true,
+      "ritter-n1600: dry cells retained": true,
+      "ritter-n3200: maximum_step_mass_defect": true,
+      "ritter-n3200: maximum_step_momentum_defect": true,
+      "ritter-n3200: maximum_total_mass_defect": true,
+      "ritter-n3200: maximum_total_momentum_defect": true,
+      "ritter-n3200: nonnegative depth": true,
+      "ritter-n3200: finite arrays": true,
+      "ritter-n3200: face CFL": true,
+      "ritter-n3200: no repairs or retries": true,
+      "ritter-n3200: five exact output times": true,
+      "ritter-n3200: actual wetting": true,
+      "ritter-n3200: dry cells retained": true,
+      "ritter-n6400: maximum_step_mass_defect": true,
+      "ritter-n6400: maximum_step_momentum_defect": true,
+      "ritter-n6400: maximum_total_mass_defect": true,
+      "ritter-n6400: maximum_total_momentum_defect": true,
+      "ritter-n6400: nonnegative depth": true,
+      "ritter-n6400: finite arrays": true,
+      "ritter-n6400: face CFL": true,
+      "ritter-n6400: no repairs or retries": true,
+      "ritter-n6400: five exact output times": true,
+      "ritter-n6400: actual wetting": true,
+      "ritter-n6400: dry cells retained": true,
+      "ritter finest relative_depth_l1": true,
+      "ritter relative_depth_l1 refinement 1": true,
+      "ritter relative_depth_l1 refinement 2": true,
+      "ritter finest relative_momentum_l1": true,
+      "ritter relative_momentum_l1 refinement 1": true,
+      "ritter relative_momentum_l1 refinement 2": true,
+      "finest threshold front error": true,
+      "reference: Bernoulli energy constant": true,
+      "reference: subcritical branch": true,
+      "reference: Gauss8 vs Gauss16 conservative means": true,
+      "reference: Ritter total mass": true,
+      "reference: Ritter finite difference PDE residual": true,
+      "reference: exact dry branch": true,
+      "all fixed runs completed": true
+    },
+    "metrics": {
+      "n": 6400,
+      "steps": 2263,
+      "time": 0.5,
+      "depth_l1": 0.00886909478548199,
+      "momentum_l1": 0.02351989621706402,
+      "relative_depth_l1": 0.0008869094785479971,
+      "relative_momentum_l1": 0.009590171750074893,
+      "depth_linf": 0.018378452319254834,
+      "minimum_depth": 0.0,
+      "maximum_depth": 1.0,
+      "maximum_velocity": 5.618969641557241,
+      "maximum_courant": 0.4000000000000001,
+      "maximum_step_mass_defect": 2.175706973437462e-15,
+      "maximum_step_momentum_defect": 2.47198095326695e-17,
+      "minimum_staying_coefficient": 0.6038337128225417,
+      "maximum_total_mass_defect": 4.973799150320701e-14,
+      "maximum_total_momentum_defect": 7.549516567451064e-15,
+      "mass_change": -7.904787935332912e-15,
+      "boundary_mass_change": 0.0,
+      "bed_momentum_impulse": 0.0,
+      "initial_dry_cells": 3200,
+      "final_dry_cells": 1679,
+      "newly_wet_cells": 1521,
+      "all_saved_values_finite": true,
+      "depth_floor_count": 0,
+      "state_clip_count": 0,
+      "rejected_steps": 0,
+      "retries": 0,
+      "front_depth_threshold": 0.001,
+      "numerical_threshold_front": 2.7765625000000007,
+      "analytic_threshold_front": 2.9835237865001925,
+      "analytic_support_front": 3.132091952673165,
+      "threshold_front_error": 0.20696128650019174,
+      "depth_acceptance_reference_mass": 5.0,
+      "fixed_reference_relative_depth_l1": 0.001773818957096398
+    },
+    "reference_qualification": {
+      "checks": {
+        "Bernoulli energy constant": true,
+        "subcritical branch": true,
+        "Gauss8 vs Gauss16 conservative means": true,
+        "Ritter total mass": true,
+        "Ritter finite difference PDE residual": true,
+        "exact dry branch": true
+      },
+      "maximum_quadrature_gap": 3.3306690738754696e-16,
+      "maximum_pde_residual": 5.995204332975845e-10,
+      "energy_span": 4.440892098500626e-16
+    }
+  },
+  "problem_id": "dry-bed-dam-break",
+  "editorial_note": {
+    "ja": "前線診断はセル平均の.001m等深線で、厳密な支持端を別に保存します。非負性は固定実行の実測です。初期乾セルの濡れを検査し、後退汀線・周期的な再乾燥、実地洪水、摩擦や地形上の移動前線は検証しません。 初回100/200/400セル・[−5,5]mでは28検査と105/109判定が合格し、乾セル残存3判定と前線誤差.3960>.25mが不合格でした。元の全記録を保持し、許容条件を変えず領域・格子を細分化しました。 領域・格子だけを変えた第2回は微小な裾のbinary64 underflowで停止しました。第3回は同じHLL更新の水量packetによる代数的評価を導入し、元の28検査に3検査を追加します。 第3回は108/109判定が合格し、最細の前線誤差.27415>.25mで不合格でした。第4回は同じ領域のRitter格子だけを1600/3200/6400に細分化します。相対水深L1は領域内参照質量で正規化し、領域変更を比べるため絶対L1も保存します。 最終改訂4の固定格子は1600/3200/6400、領域[-10,10]m、t=.5sです。31単体検査と群全体109判定に合格しました。領域拡大による規格化の有利化を避けるため、受入判定の水深L1は元の固定参照質量5m²で規格化し、最細の値は.001773819、絶対水深L1は.008869095m²です。拡大領域の参照質量10m²による.000886909は別の診断値で、受入基準には使いません。相対運動量L1は.009590172、水深.001m等値線の前縁誤差は.2069613m<.25m、最終の真の乾燥セルは1679です。前三改訂の不合格を保持し、深さfloor・状態clip・再試行は0です。",
+    "en": "The .001m mean-depth contour differs from the analytic support edge, which is reported separately. These fixed runs test wetting of initially dry cells. Retreating shorelines, re-drying cycles, real floods, friction and moving fronts over topography are outside scope. The initial100/200/400-cell [-5,5]m attempt passed28 tests and105/109 gates; three retained-dry-cell gates and the .3960m>.25m contour error failed. All original records remain archived; revision2 enlarges/refines the input without changing acceptance. Revision2 then stopped on a binary64 subnormal-tail dry-momentum artifact. Revision3 factors the same HLL update into water packets and adds three regression/equivalence tests; the original28 remain unchanged. Revision3 passed108/109 gates but failed the .27415m>.25m contour criterion. Revision4 refines only Ritter grids to1600/3200/6400. Relative depth L1 is normalized by domain reference mass; absolute L1 is also retained because the domain changed between revisions1 and2. Final revision4 uses1600/3200/6400cells on[-10,10]m at t.5s and passed31 unit checks and all109 group gates. Acceptance depthL1 retains the original fixed reference mass5m², giving finest.001773819 and absolute depthL1.008869095m². Normalization by the enlarged-domain reference mass10m² gives.000886909 as a separate diagnostic, never an easier acceptance criterion. Relative momentumL1 is.009590172; the depth.001m contour error is.2069613m<.25m and1679 genuinely dry cells remain. All three earlier failures are retained; depth floors,state clips and retries are zero."
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dry-bed-dam-break/",
+  "entry": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dry-bed-dam-break/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dry-bed-dam-break/?lang=en"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-shallow-water/#dry-bed-dam-break",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/#dry-bed-dam-break"
+  },
+  "release": {
+    "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/",
+    "archive": {
+      "file": "atlas-shallow-water-2026-11-23.zip",
+      "sha256": "259244fc5c237542ba577df62308fd2a3191979dd43717d58df33d8abb902644",
+      "bytes": 3195040,
+      "archive_directory": "atlas-shallow-water-2026-11-23"
+    },
+    "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/atlas-shallow-water-2026-11-23.zip",
+    "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/source-manifest.json",
+    "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/verification.json",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/results/result.json",
+    "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/inputs.json",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/shallow_water.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/references/analytic.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/protocol-candidates/04-before-normalization/run.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/test_packet_arithmetic.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/test_shallow_water.py"
+    ],
+    "passed_tests": 31
+  },
+  "source_sha256": {
+    "catalog/atlas-depth-expansion.json": "6080528b544ab1d60956b6e382b12b1505fe80fdbd66bac8791f78014878748f",
+    "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
+    "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
+    "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
+    "code/validated-examples/2026-11-22/foundations/results/result.json": "93a27cb8e43d7195d2417fc9110f196b07c826ea1f4e2b240f879ab8ab8b4b77",
+    "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
+    "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
+    "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
+    "code/validated-examples/2026-11-22/models/cases.json": "09b670a3462f7f1395dcdf12b507786b69616c0ea165d2678efe780ddb0cf0e6",
+    "code/validated-examples/2026-11-22/models/results/result.json": "d3af162e0e4a1cb0cc14bd41f250cfe16b69e0b6f111cc4ba1c71eb4ca55e266",
+    "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
+    "code/validated-examples/2026-11-22/particles/source-manifest.json": "63cefd473db691db611628f6501b2b58d6727c055ffde1b9a4962bfecfacd125",
+    "code/validated-examples/2026-11-22/particles/verification.json": "48744c4ce661cb76ce7cba81d55bbbb2737885c472966237e78c9e3dfcbf43b7",
+    "code/validated-examples/2026-11-22/particles/cases.json": "f6e68b2ec8d0cd56357b1aeecea3f9c40cf22f89e7f9c1b8b9442ad020ddbf86",
+    "code/validated-examples/2026-11-22/particles/results/result.json": "ed038f2af0d25bb29235e5f2853e0c8360974e8a499475f4b5cb3146d142ad60",
+    "code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+    "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
+    "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
+    "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
+    "code/validated-examples/2026-11-22/mhd/results/result.json": "ce1a011a3f2a18727aa7c10a81d712e23b536e9367e4be18d6847b74210a73f6",
+    "code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip": "2e7eeaaacaeb918671228cc56ab333d0c4ca5a9879241846f5772594552d0b16",
+    "code/validated-examples/2026-11-22/thermostats/source-manifest.json": "81a854bdfe3ae33b4eb4bffdccc9ab15a09f2bddbffb294cd2c2cbd07e641580",
+    "code/validated-examples/2026-11-22/thermostats/verification.json": "c14f55ac05d93269dbf8eef4a2a4042f75764d5228d06f8e41039d0b60351905",
+    "code/validated-examples/2026-11-22/thermostats/cases.json": "123566ec7000dce11f2a6a7474d35e45c8fdf24db85a0556e2cbb3911d3acd77",
+    "code/validated-examples/2026-11-22/thermostats/results/result.json": "7971007807acce9f75261b684b789f196e1d5dffc80797e102d1b0bebbc93f11",
+    "code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip": "38142da988bf0c790eab7e7f10f8d1e209d074c3627f73a207f5223a24e18d65",
+    "code/validated-examples/2026-11-22/biology/source-manifest.json": "56947a4fb54ae757408ddddfc5de0884bfe35266032ee425a8d96a815f3362ba",
+    "code/validated-examples/2026-11-22/biology/verification.json": "5cafaaef809f46e6ab01327107f7367113b8069931621fc92d446fbf142682bd",
+    "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
+    "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
+    "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
+    "code/validated-examples/2026-11-22/mcmc/source-manifest.json": "c288e5c96aefe6f4bfdab4dbd78efc8b27924087aa09ac7e91d61adf63ebf195",
+    "code/validated-examples/2026-11-22/mcmc/verification.json": "f39975a549b48345d5b6f833d6226cdae1054ecb9f004d9c845d1ffa8bbc8c9e",
+    "code/validated-examples/2026-11-22/mcmc/cases.json": "fa950eafd45ac23aa2eba3374b23ab2d8df934368ab5b833bf812fbdd095fcaa",
+    "code/validated-examples/2026-11-22/mcmc/results/result.json": "530a343f4e59e03aa9369e373507e73a063eb810eb5a24fd820568467567cbd5",
+    "code/validated-examples/2026-11-22/mcmc/atlas-mcmc-2026-11-22.zip": "7fb1cde233b79e2b2d56edac89c6e1bdbe8239c1b7f5e166054f8e3e2cdaac11",
+    "code/validated-examples/2026-11-22/mhd-convergence/source-manifest.json": "9d5fd8eb67ed3d4ac3965596bbd12152bdc1ae2e03a3a4f060573175d00caf67",
+    "code/validated-examples/2026-11-22/mhd-convergence/verification.json": "ddf51e803eb94ca7dc419d0b9fc4aa6ec7204c319e448f7d4b120f5342a319d8",
+    "code/validated-examples/2026-11-22/mhd-convergence/cases.json": "a1ebd3a1344c90cc49e11dd790a522434f7fdec27f77d8621a2197a7be738434",
+    "code/validated-examples/2026-11-22/mhd-convergence/results/result.json": "7b1ddd177a96b1ede21b568b0f8e72e4b23d970d96ace3ab2441b0df0efbfe6b",
+    "code/validated-examples/2026-11-22/mhd-convergence/atlas-mhd-convergence-2026-11-22.zip": "5db2fc202014a576145e98c84e1802540df7d8e26353d469fbd55c8e393fd866",
+    "code/validated-examples/2026-11-22/foundations-conditioning/source-manifest.json": "f5b5b5cb5540a1ea76f60f599bd3afd99ffbf312343588e6c7d5c5bcffb3dd9c",
+    "code/validated-examples/2026-11-22/foundations-conditioning/verification.json": "3368c373d622c4246868a43ce869f160de34d0d124c0334d4355573e7c8b3b5f",
+    "code/validated-examples/2026-11-22/foundations-conditioning/cases.json": "fe1b43a92ad60c91a1fdbd79342db0269e27cc0ef2f7d1ddcee58e183cf5b66c",
+    "code/validated-examples/2026-11-22/foundations-conditioning/results/result.json": "0b8ef84da85f950afa9779feb79052401dcdda707d1ac6bb314c3afa3a1973e9",
+    "code/validated-examples/2026-11-22/foundations-conditioning/atlas-foundations-conditioning-2026-11-22.zip": "71d8f0d3b0bed4a6a97f976aabfd02cc0baf08a30c1655f6b1ea42ea16df3c9d",
+    "code/validated-examples/2026-11-22/particle-transport/source-manifest.json": "d5724e7fd43635a489acb3b9ae90ac83fcce734ee89b6f29bc80cbdd4cefac97",
+    "code/validated-examples/2026-11-22/particle-transport/verification.json": "a16b3b90fd815909a8f3241dd7c04aeedabb2dd964da603eadd851fd6a0e171d",
+    "code/validated-examples/2026-11-22/particle-transport/cases.json": "3d3dd9cbc6c62666bb76f893762cf27b33b2606a34e87ffe8c4275e258b96f66",
+    "code/validated-examples/2026-11-22/particle-transport/results/result.json": "8e189a555c575dba4878c1813f828b29a3045c5015bb4ff2aa1b16c8eab9b138",
+    "code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip": "940c1b9c867d5fda395bf93d9dac6b38d992bb4d3de29065f1b42108d1d4c0c9",
+    "code/validated-examples/2026-11-22/splitting/source-manifest.json": "e071ab71032cce9e1a8340cdd80bb58364b7105de764594507024259915f6368",
+    "code/validated-examples/2026-11-22/splitting/verification.json": "899af4b800c58e990a6eae62dd5510ff1afed02060ab7fb67e1c5c8ebcd47b53",
+    "code/validated-examples/2026-11-22/splitting/cases.json": "f252ee6b994a6827e5579b28127143680170124de50f05057d2890e545dcc84f",
+    "code/validated-examples/2026-11-22/splitting/results/result.json": "7b1b8338ec2a03eb04e82f3891d4e2fd08a2edb665313dc8bd0991b1a7a9a8f2",
+    "code/validated-examples/2026-11-22/splitting/atlas-splitting-2026-11-22.zip": "2ae466a4ea62e204716a388b86033de3a6493a9ab0ef4ad9aec4ebb038d8a404",
+    "code/validated-examples/2026-11-23-r5/noh/source-manifest.json": "8597cbc7b841502f4e7eca154e86fe8893402c1167614952de682d7307c5595d",
+    "code/validated-examples/2026-11-23-r5/noh/verification.json": "48545a33ab2c19e9071616a15a1fcbf90c716096aa1a12550d3cb872ed8d9e36",
+    "code/validated-examples/2026-11-23-r5/noh/cases.json": "9501c9cb57617c09a8ceb0aa7e124ba1e2af303144eaa82045e8632fc7c39fc2",
+    "code/validated-examples/2026-11-23-r5/noh/results/result.json": "4e92acb911d505b3f7e74e39f01acf77e59fbe15577f321ac759f1315e487724",
+    "code/validated-examples/2026-11-23-r5/noh/atlas-noh-2026-11-23-r5.zip": "64de5483e9896a3773348b75e1ec2b4630f8a709d68194c1d94772396f531733",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/source-manifest.json": "3f34837f6078bfdc96e5bea2a0ec36c3ae4c48a09c25fcd61560cbb4f4781f93",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/verification.json": "7c530b06df5d2878958bd249b3035050592365e23aee79804e600368dfb09f46",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/cases.json": "49b94c1f65e269d4a878be3a4d8778375b88b767f5dd01998ae5fe6b8fc2b3ee",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/results/result.json": "e121c2f5171ee53491b492019311d002ceb44213f6f7cd43051a3ca68f74c694",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/atlas-noh-cartesian-2026-11-23-r2.zip": "2145beb161f993c1608fc5ac167af5278d58e10f92e74ed37e5fb9c35243b918",
+    "code/validated-examples/2026-11-23-r2/sedov/source-manifest.json": "4a92404602abd0d01096aae1576afb96533c64ea68989615df885a4310e3479f",
+    "code/validated-examples/2026-11-23-r2/sedov/verification.json": "1bec773b9e6d657ea7b71996df2bcc2c593f64b8cbb51942ed7d106be3419a03",
+    "code/validated-examples/2026-11-23-r2/sedov/cases.json": "aab3ca7447d35997bd38505e1ef79e1693096a29cc52c10e994bdcc9c80c8c03",
+    "code/validated-examples/2026-11-23-r2/sedov/results/result.json": "e4767029260bee54e0de2c85b07cbca07c5b99c4eb999b9d609735b6e615ef23",
+    "code/validated-examples/2026-11-23-r2/sedov/atlas-sedov-2026-11-23-r2.zip": "abb7344023b91b090820de1ebec8d6c6a949b8c06fda73037204a5d6f62b4b73",
+    "code/validated-examples/2026-11-23/double-mach/source-manifest.json": "32ba5521149368b729b31796dcc0006c8fd743e840e1e36533a867a47170d8c8",
+    "code/validated-examples/2026-11-23/double-mach/verification.json": "c588b4ce7f539d53b1d5eec4413ce3a1dc104eff975e4adddf0c544460dbb49e",
+    "code/validated-examples/2026-11-23/double-mach/cases.json": "38eb6a6fb4af35cdd3ca8834b9f3e5c80be22a50615f03aef712bc67b11b85e3",
+    "code/validated-examples/2026-11-23/double-mach/results/result.json": "3b4a36b9b3e10e7a6984130ee24bb7d5707de0fe24facff3a49b8eabd71ea5fe",
+    "code/validated-examples/2026-11-23/double-mach/atlas-double-mach-2026-11-23.zip": "0a68d19746c508e0ac0cf9b5bebe9375c797a87ade1a9fbfbef87d6e5fa63347",
+    "code/validated-examples/2026-11-23/forward-step/source-manifest.json": "77546e263d8e08266cedb57ef5e128a3bee68d7b9597fb56bed2eee5dcbec6dc",
+    "code/validated-examples/2026-11-23/forward-step/verification.json": "f40317a2721c2048c6174bf41c03adf5e3eddae07e19ae95e6ed5210a9b01914",
+    "code/validated-examples/2026-11-23/forward-step/cases.json": "e7397c94e5d170170b09a6baa4fdf9276d83419118e456cc172ad6c5cf63b363",
+    "code/validated-examples/2026-11-23/forward-step/results/result.json": "636e179813165fbe620caadd825ac699973ea2dde897d13aed8b2d22102e6704",
+    "code/validated-examples/2026-11-23/forward-step/atlas-forward-step-2026-11-23.zip": "ae69647a4e63c75c0888a6daf15835d348e9d74de58b5e59926e359e9ffc52cd",
+    "code/validated-examples/2026-11-23/low-mach/source-manifest.json": "ff359786cf6efff8e5e61f842ae63a866cb7655a4151b2d33ac12501eed98124",
+    "code/validated-examples/2026-11-23/low-mach/verification.json": "f747210e1d46900c4f56b01e989696c3feaee35361fe42be11428fd280bacf84",
+    "code/validated-examples/2026-11-23/low-mach/cases.json": "8a33dd861d6c635afeb526a2823fa33e88dc84fb49f1ae8a5ba19cbad32ae058",
+    "code/validated-examples/2026-11-23/low-mach/results/result.json": "5e1fdfa86dc57b13857bd571de1070d00ac5237400e0fc9ee9875fae9824d9f5",
+    "code/validated-examples/2026-11-23/low-mach/atlas-low-mach-2026-11-23.zip": "717b2ceed76d37cf4c1e570a7a022e1a17d66fce3048648a3edde4164a1513aa",
+    "code/validated-examples/2026-11-23-r3/guderley/source-manifest.json": "e436ada98187ba8a1ca755712fc60d1ce5f735379f026d92d63b2cbd19c6d112",
+    "code/validated-examples/2026-11-23-r3/guderley/verification.json": "3eb90bb576b4b9579433bb15a93b0acc42948a85f335a45de7c649ec1b61e625",
+    "code/validated-examples/2026-11-23-r3/guderley/cases.json": "72e621b096fdb1ff229dba33b9243667a7e7c4f9b2593d7331953333707f28f7",
+    "code/validated-examples/2026-11-23-r3/guderley/results/result.json": "c85894f329b97d62ef9d093792316028e4b3b9ca38a0488047bdbab2542e84bb",
+    "code/validated-examples/2026-11-23-r3/guderley/atlas-guderley-2026-11-23-r3.zip": "f00ff906861495bd73b2ae75f7c3895fab505ba45ad7a34a2612700405d8466f",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/source-manifest.json": "86eef08f81c19d211d9908ba195f6fbbdcd4af54dcfaf8df59ebbe9df73b34b9",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/verification.json": "4c205d9d21d1ea7efbf3d56e881c8c740f26a983576415a69e95490393af4f3d",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/cases.json": "52e618b3a97dab879badba192d5c2f74c5a08c25e473f055de81c645a6985d5a",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/results/result.json": "bee593154817e7a6339cee14fa7c029000002f42ade8ccd6d568119d375fdddc",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/atlas-euler-positivity-2026-11-23-r2.zip": "0f2c8a3bf94a612f89d8f6f695b94574dd05d70976aa97a497ef47ff4e0c1efe",
+    "code/validated-examples/2026-11-23/zalesak/source-manifest.json": "d13a134c2e791740190529a8a4eef07eda5126a14101155d254f450d0438eb55",
+    "code/validated-examples/2026-11-23/zalesak/verification.json": "aad9b39c23d83e967588361edfdb05724f1ea3fade93843ebb05b5fd829ba44e",
+    "code/validated-examples/2026-11-23/zalesak/cases.json": "4ff0db4160a4da838ddb57089dae6849d18d3386fedd935365ab53795611831a",
+    "code/validated-examples/2026-11-23/zalesak/results/result.json": "51851a31df72eec078e25171deeacd2699a9bfe9eedc55b4bc6831fd233b408d",
+    "code/validated-examples/2026-11-23/zalesak/atlas-zalesak-2026-11-23.zip": "28e7d2bc93d3a5ba1cb015c874c489e9fd1a2e8a586a46d519800c799b0fb6f8",
+    "code/validated-examples/2026-11-23/weno-critical/source-manifest.json": "abd8b0a29bb81b7d98b897ec0a0eb409f77873857ec8199c3767f1ede11b43a5",
+    "code/validated-examples/2026-11-23/weno-critical/verification.json": "ccbf3c6a2fe7055b324a0d98c152da909242f36e0c82ca3281038e4c9b0c165f",
+    "code/validated-examples/2026-11-23/weno-critical/cases.json": "6b68c525e99fe15adbdce97a5d078289e5df0ff5f63cd9c790784a29b979440b",
+    "code/validated-examples/2026-11-23/weno-critical/results/result.json": "c4150a350d0854b3b815bd820790711ecdbcc7594690c0ad8c15e23f6aa3d05d",
+    "code/validated-examples/2026-11-23/weno-critical/atlas-weno-critical-2026-11-23.zip": "9c119480261013ef8ed0c58716c45af5b9fb9d3e891aef56b95b66fbd8415491",
+    "code/validated-examples/2026-11-23/shallow-water/source-manifest.json": "0fdab6190462f91176fa2eb4eb452d6fb66c2066b0e07d115b8ea789231614da",
+    "code/validated-examples/2026-11-23/shallow-water/verification.json": "e342321ddc1f7692e08dcc7a63478912956f63637c855f2f85eaf0999c4d22cc",
+    "code/validated-examples/2026-11-23/shallow-water/cases.json": "9296c20b7609cb4acdcd5a0ce437781dcd2e7635dbfea0a924f8468a3e5a5792",
+    "code/validated-examples/2026-11-23/shallow-water/results/result.json": "49a56493e429dd3b4c9d6f8eba72c53ddd3469689699217157b9823a392c015f",
+    "code/validated-examples/2026-11-23/shallow-water/atlas-shallow-water-2026-11-23.zip": "259244fc5c237542ba577df62308fd2a3191979dd43717d58df33d8abb902644",
+    "code/validated-examples/2026-11-23-r2/wall-flow/source-manifest.json": "5defc88a20d06c6806f1aa18c5a5a9f027c7891d8a237bb5fe980169d1bbdfe4",
+    "code/validated-examples/2026-11-23-r2/wall-flow/verification.json": "6daf2fa12cf2e7f604bb54413b82e36bbe72891132e1846abf598f9c9600b096",
+    "code/validated-examples/2026-11-23-r2/wall-flow/cases.json": "ed51f9003bbf5ddfa88602dd579ad962c81f95fb5dd3e7ef32973b17f9844d70",
+    "code/validated-examples/2026-11-23-r2/wall-flow/results/result.json": "ce92039a849015c3c3bd1de8e6ef77052f6fc5a9765ff961bc20086180996252",
+    "code/validated-examples/2026-11-23-r2/wall-flow/atlas-wall-flow-2026-11-23-r2.zip": "de499fde477a49b1eae10bd6bf04b0800b58105ca5d504ec6eff2ec3272690fd"
+  },
+  "scope": {
+    "ja": "共通22実行例の台帳とは別に管理する追加検証集です。配布ZIPを独立展開し、各グループの全固定入力と検査を実行した記録を示します。設定・手法・刻み幅の違いを独立した物理問題の数には加算しません。",
+    "en": "These additional validation supplements are managed separately from the common 22-example registry. Receipts cover independent ZIP extraction, tests and every fixed input within each group. Changes of settings, methods or step sizes do not add independent physical problems."
+  },
+  "execution_navigation": {
+    "id": "dry-bed-dam-break",
+    "kind": "supplement",
+    "name": {
+      "ja": "乾いた河床のダム破壊：実際のwetting/drying",
+      "en": "Dry-bed dam break: actual wetting and dry states"
+    },
+    "methods": [
+      {
+        "id": "godunov",
+        "name": {
+          "ja": "Godunov型有限体積法",
+          "en": "Godunov-type finite volumes"
+        },
+        "status": "educational-example",
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/godunov/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/godunov/?lang=en"
+        }
+      },
+      {
+        "id": "hll",
+        "name": {
+          "ja": "HLL",
+          "en": "HLL"
+        },
+        "status": "educational-example",
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hll/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hll/?lang=en"
+        }
+      },
+      {
+        "id": "forward-euler",
+        "name": {
+          "ja": "前進Euler法",
+          "en": "Forward Euler"
+        },
+        "status": "educational-example",
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/forward-euler/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/forward-euler/?lang=en"
+        }
+      }
+    ],
+    "formulation": {
+      "role": "example-definition",
+      "latex": [
+        "c_L=\\sqrt{gh_L},\\quad x_A=x_0-c_Lt,\\quad x_B=x_0+2c_Lt",
+        "h=(2c_L-(x-x_0)/t)^2/(9g),\\quad u=\\tfrac23((x-x_0)/t+c_L)\\quad (x_A<x<x_B)",
+        "\\bar U_i^{\\mathrm{ref}}=\\Delta x^{-1}\\int_{C_i}(h,hu)^Tdx,\\quad x_{.001}=x_B-3t\\sqrt{g(0.001)}"
+      ],
+      "note": {
+        "ja": "同じ有限体積ソルバーが乾状態h=q=0を直接扱います。片側乾床HLL波速はu−c,u+2c（反対向きも同様）。面Courant数.4で前進Euler更新し、状態の切上げなしに全更新後の非負性と共有流束収支を記録します。 HLL更新を非負の水量packetに代数的に分解し、丸め後の同じ水量から移流運動量を作ります。微小水深閾値や事後修復は使いません。",
+        "en": "The FV solver supports h=q=0 directly; one-sided dry HLL speeds use u-c/u+2c and their reflection. Forward Euler at face CFL .4 records every minimum and shared-flux budget without raising cell depths. Algebraically factor HLL updates into nonnegative water packets; advected momentum uses those same rounded masses, without a small-depth threshold or subsequent repair."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dry-bed-dam-break/?lang=ja#dry-bed-dam-break-ja-algorithm",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dry-bed-dam-break/?lang=en#dry-bed-dam-break-en-algorithm"
+      }
+    },
+    "equations": [
+      {
+        "id": "shallow-water",
+        "name": {
+          "ja": "浅水方程式",
+          "en": "Shallow-water equations"
+        },
+        "note": {
+          "ja": "平坦床・無摩擦、[−10,10]m、ダムx=0、左深さ1m・右0m、初速0、g=9.81、t=.5s、1600/3200/6400セル。SWASHESのRitter式を明示した別スケールで使い、原例の.005m・6s入力とは区別します。",
+          "en": "Flat frictionless bed on[-10,10]m, dam0, hL=1m/hR=0, initial velocity0, g=9.81, t=.5s,1600/3200/6400 cells. The Ritter formula uses an explicit rescaling distinct from the paper numerical example."
+        },
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#shallow-water-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#shallow-water-en"
+        }
+      }
+    ],
+    "problem": {
+      "id": "dry-bed-dam-break",
+      "name": {
+        "ja": "乾燥床へのRitter破堤流",
+        "en": "Ritter dam break onto a dry bed"
+      },
+      "image": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/results/dry-bed-dam-break-preview.png",
+        "sha256": "84a63409b927c0ee6214d1c2519e5727493f121cc835340e509d997e3eff32e2",
+        "width": 960,
+        "height": 576,
+        "caption": {
+          "ja": "実際の1次元浅水計算の保存配列による水深・流量と乾湿前線のプレビュー。時空間図は1次元の5保存時刻です。",
+          "en": "Preview from actual saved 1D shallow-water depth/discharge arrays. The space-time panel shows five saved times, not a 2D flow."
+        },
+        "source_kind": "existing-figure"
+      },
+      "hub": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dry-bed-dam-break/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dry-bed-dam-break/?lang=en"
+      },
+      "code": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dry-bed-dam-break/?lang=ja#code-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dry-bed-dam-break/?lang=en#code-en"
+      },
+      "executions": [
+        {
+          "id": "dry-bed-dam-break",
+          "kind": "supplement",
+          "name": {
+            "ja": "乾いた河床のダム破壊：実際のwetting/drying",
+            "en": "Dry-bed dam break: actual wetting and dry states"
+          },
+          "scope": {
+            "ja": "右半分を厳密にh=q=0として開始する浅水方程式を解き、実際の乾湿前線の進行と保存をRitter解析解と比較します。",
+            "en": "Start the right half at exactly h=q=0 and compare wetting-front advance, conservation and conservative errors with the Ritter analytic solution."
+          },
+          "method_ids": [
+            "godunov",
+            "hll",
+            "forward-euler"
+          ],
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dry-bed-dam-break/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dry-bed-dam-break/?lang=en"
+          },
+          "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/inputs.json",
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/atlas-shallow-water-2026-11-23.zip",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/verification.json"
+        }
+      ]
+    },
+    "figure": {
+      "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/results/dry-bed-dam-break.png",
+      "sha256": "462d58375af1a86ce16672c5ac827012a17f13902f40b622736382b1ace5fd6a",
+      "width": 1800,
+      "height": 1080,
+      "kind": "case-validation",
+      "caption": {
+        "ja": "乾いた河床のダム破壊：実際のwetting/drying：この実行例の保存済み検証図。",
+        "en": "Dry-bed dam break: actual wetting and dry states: saved validation figure for this execution."
+      }
+    },
+    "references": {
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dry-bed-dam-break/?lang=ja#dry-bed-dam-break-ja-validation",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dry-bed-dam-break/?lang=en#dry-bed-dam-break-en-validation"
+      },
+      "note": {
+        "ja": "全段の水深min、新たに濡れた初期乾セル数、残る乾セル数、境界流束を含む質量・運動量収支を保存します。Ritterのhとhuをファン端で分割したGauss8セル平均と比較し、Gauss16・全質量・PDE残差で参照を確認。3格子L1細分化とh≥.001mの最右セル中心を検査します。 水深L1の合否は初回と同じ固定参照質量5m²で正規化し、領域を広げたことによる基準の緩和を防ぎます。領域全体の相対L1は別の診断です。",
+        "en": "Record all FE minima, newly wetted and remaining dry cells, boundary-aware mass/momentum budgets, and L1 refinement. Split Gauss8 h/hu references are qualified by Gauss16, mass and PDE identities. Diagnose the rightmost cell center with mean h>=.001m. Depth acceptance uses the original fixed5m2 reference mass, preventing domain extension from weakening the criterion; full-domain relativeL1 remains a separate diagnostic."
+      },
+      "cases": [
+        {
+          "id": "ritter-dry-bed",
+          "title": {
+            "ja": "Ritter乾燥床破堤：g9.81の専用セル平均参照",
+            "en": "Ritter dry-bed dam break: dedicated g9.81 cell-mean reference"
+          },
+          "kind": "analytic",
+          "relation": "same-problem",
+          "note": {
+            "ja": "前線診断はセル平均の.001m等深線で、厳密な支持端を別に保存します。非負性は固定実行の実測です。初期乾セルの濡れを検査し、後退汀線・周期的な再乾燥、実地洪水、摩擦や地形上の移動前線は検証しません。 初回100/200/400セル・[−5,5]mでは28検査と105/109判定が合格し、乾セル残存3判定と前線誤差.3960>.25mが不合格でした。元の全記録を保持し、許容条件を変えず領域・格子を細分化しました。 領域・格子だけを変えた第2回は微小な裾のbinary64 underflowで停止しました。第3回は同じHLL更新の水量packetによる代数的評価を導入し、元の28検査に3検査を追加します。",
+            "en": "The .001m mean-depth contour differs from the analytic support edge, which is reported separately. These fixed runs test wetting of initially dry cells. Retreating shorelines, re-drying cycles, real floods, friction and moving fronts over topography are outside scope. The initial100/200/400-cell [-5,5]m attempt passed28 tests and105/109 gates; three retained-dry-cell gates and the .3960m>.25m contour error failed. All original records remain archived; revision2 enlarges/refines the input without changing acceptance. Revision2 then stopped on a binary64 subnormal-tail dry-momentum artifact. Revision3 factors the same HLL update into water packets and adds three regression/equivalence tests; the original28 remain unchanged."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-ritter-dry-bed-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-ritter-dry-bed-en"
+          }
+        },
+        {
+          "id": "swe-dry-bed",
+          "title": {
+            "ja": "浅水／乾床への膨張波",
+            "en": "Shallow water / dry-bed fan"
+          },
+          "kind": "analytic",
+          "relation": "related-model",
+          "note": {
+            "ja": "既存の乾燥床浅水参照は元の重力・領域・時刻を保持します。今回のg9.81・[-10,10]・t.5は専用Ritter参照で照合します。",
+            "en": "Retain the historical dry-bed reference gravity/domain/time unchanged. The new g9.81,[-10,10],t.5 computation uses its dedicated Ritter reference."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-swe-dry-bed-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-swe-dry-bed-en"
+          }
+        }
+      ]
+    }
+  },
+  "navigation_source_sha256": {
+    "catalog/atlas-depth-expansion.json": "6080528b544ab1d60956b6e382b12b1505fe80fdbd66bac8791f78014878748f",
+    "catalog/atlas-equations.json": "50b68b43fdcae4cdf3e2a2a5062a7cd809503761c248275a52d1a58622f7f426",
+    "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
+    "catalog/atlas-methods.json": "2c08a1023555ec2ee08a5d1c9c86acc037a6efd2a215b97a240ec63f058bdf13",
+    "catalog/atlas-problem-links.json": "fca94497ae867bfefbd5d9557802dfd3291f186f382c5ba3fed42cf6c3230e6d",
+    "catalog/atlas-reference-supplements.json": "c8f2a0dfab619ae566386acd51d81c2164afa49c5d410ca15a3ef4d2d373b6c7",
+    "catalog/atlas-test-problems.json": "fbd338a47e91a37a1881d5d8d06125971331434f742f539e3a21f339ad37958a",
+    "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
+    "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
+    "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
+    "code/validated-examples/2026-11-22/biology/results/schnakenberg-nonlinear.png": "9b11bf9725aa4256a36bbfd29ba37c346ea7757456d09aec20505727a1286ff5",
+    "code/validated-examples/2026-11-22/biology/results/schnakenberg-pattern.png": "5b4e51780084bfed99e5c8ff2d3a35900014c52745f62577f09cba1ef59a1f59",
+    "code/validated-examples/2026-11-22/biology/source-manifest.json": "56947a4fb54ae757408ddddfc5de0884bfe35266032ee425a8d96a815f3362ba",
+    "code/validated-examples/2026-11-22/biology/verification.json": "5cafaaef809f46e6ab01327107f7367113b8069931621fc92d446fbf142682bd",
+    "code/validated-examples/2026-11-22/foundations-conditioning/atlas-foundations-conditioning-2026-11-22.zip": "71d8f0d3b0bed4a6a97f976aabfd02cc0baf08a30c1655f6b1ea42ea16df3c9d",
+    "code/validated-examples/2026-11-22/foundations-conditioning/cases.json": "fe1b43a92ad60c91a1fdbd79342db0269e27cc0ef2f7d1ddcee58e183cf5b66c",
+    "code/validated-examples/2026-11-22/foundations-conditioning/results/amg-conditioning.png": "5f49ba07a6c8041814cb9232a60c60cabd0c606f4045916cad93caf7667716b8",
+    "code/validated-examples/2026-11-22/foundations-conditioning/results/krylov-eigen-conditioning.png": "bd2eb0349f22e5aeea427cc95010c0f7db2dc806553d8724bdf1883b512f2745",
+    "code/validated-examples/2026-11-22/foundations-conditioning/results/qr-svd-conditioning.png": "ebc0a58aaaa831fdce8faa446b1ae8b42823fd5d817a7dd9330058ccf2fd65df",
+    "code/validated-examples/2026-11-22/foundations-conditioning/results/quadrature-conditioning.png": "5da9a7a93338c2c9e9349bf22425df1e87a271f5f984a071c6cd1e618613e0f3",
+    "code/validated-examples/2026-11-22/foundations-conditioning/results/result.json": "0b8ef84da85f950afa9779feb79052401dcdda707d1ac6bb314c3afa3a1973e9",
+    "code/validated-examples/2026-11-22/foundations-conditioning/source-manifest.json": "f5b5b5cb5540a1ea76f60f599bd3afd99ffbf312343588e6c7d5c5bcffb3dd9c",
+    "code/validated-examples/2026-11-22/foundations-conditioning/verification.json": "3368c373d622c4246868a43ce869f160de34d0d124c0334d4355573e7c8b3b5f",
+    "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
+    "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
+    "code/validated-examples/2026-11-22/foundations/results/gauss-adaptive-quadrature.png": "f6b7f8fcb9d96ededd4e215b89d6efca3ac27e62f2ad336984f257c9ed035d84",
+    "code/validated-examples/2026-11-22/foundations/results/krylov-eigenvalues.png": "bed0399fc9eb30e8264bace36e5d2faf0ac0bbf6ab822bf60b80cc35dddb6f9d",
+    "code/validated-examples/2026-11-22/foundations/results/qr-svd-factorization.png": "ef3466a17be7d5b7bc2ce99de9d09988c1f2a4cef16bfa10d480fd51eaaa6dd4",
+    "code/validated-examples/2026-11-22/foundations/results/result.json": "93a27cb8e43d7195d2417fc9110f196b07c826ea1f4e2b240f879ab8ab8b4b77",
+    "code/validated-examples/2026-11-22/foundations/results/sa-amg.png": "5c45adc8d863129f320884c1ed61a5c1eb5413cfde3c07a8859e99baef58705e",
+    "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
+    "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
+    "code/validated-examples/2026-11-22/mcmc/atlas-mcmc-2026-11-22.zip": "7fb1cde233b79e2b2d56edac89c6e1bdbe8239c1b7f5e166054f8e3e2cdaac11",
+    "code/validated-examples/2026-11-22/mcmc/cases.json": "fa950eafd45ac23aa2eba3374b23ab2d8df934368ab5b833bf812fbdd095fcaa",
+    "code/validated-examples/2026-11-22/mcmc/results/mcmc-diagnostic-reference.png": "92a97dcbf430c557cd8622762c1e8bb291bd98224e37d629f2665ce71f1e0a67",
+    "code/validated-examples/2026-11-22/mcmc/results/mcmc-multimodal-mixing.png": "6448fed83f9d66d852a572ab2f30d2795ef9e54d4cde342152209aaa4dc59037",
+    "code/validated-examples/2026-11-22/mcmc/results/result.json": "530a343f4e59e03aa9369e373507e73a063eb810eb5a24fd820568467567cbd5",
+    "code/validated-examples/2026-11-22/mcmc/source-manifest.json": "c288e5c96aefe6f4bfdab4dbd78efc8b27924087aa09ac7e91d61adf63ebf195",
+    "code/validated-examples/2026-11-22/mcmc/verification.json": "f39975a549b48345d5b6f833d6226cdae1054ecb9f004d9c845d1ffa8bbc8c9e",
+    "code/validated-examples/2026-11-22/mhd-convergence/atlas-mhd-convergence-2026-11-22.zip": "5db2fc202014a576145e98c84e1802540df7d8e26353d469fbd55c8e393fd866",
+    "code/validated-examples/2026-11-22/mhd-convergence/cases.json": "a1ebd3a1344c90cc49e11dd790a522434f7fdec27f77d8621a2197a7be738434",
+    "code/validated-examples/2026-11-22/mhd-convergence/results/ct-glm-constraint-control.png": "a16bf22ab58330a8a6612a9da16780d4e53999f4fa2606350dbad19b65c33824",
+    "code/validated-examples/2026-11-22/mhd-convergence/results/ct-glm-ot-convergence.png": "d8b498925ef3fd099b3ec8e5b51fc35ec6033d94a5cc21e2d664e99bdd42dfe2",
+    "code/validated-examples/2026-11-22/mhd-convergence/results/ct-glm-smooth-convergence.png": "ba2ace7b67cc93b4990069a43250de481d998b7e18742e0911748c605fce721b",
+    "code/validated-examples/2026-11-22/mhd-convergence/results/result.json": "7b1ddd177a96b1ede21b568b0f8e72e4b23d970d96ace3ab2441b0df0efbfe6b",
+    "code/validated-examples/2026-11-22/mhd-convergence/source-manifest.json": "9d5fd8eb67ed3d4ac3965596bbd12152bdc1ae2e03a3a4f060573175d00caf67",
+    "code/validated-examples/2026-11-22/mhd-convergence/verification.json": "ddf51e803eb94ca7dc419d0b9fc4aa6ec7204c319e448f7d4b120f5342a319d8",
+    "code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip": "2e7eeaaacaeb918671228cc56ab333d0c4ca5a9879241846f5772594552d0b16",
+    "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
+    "code/validated-examples/2026-11-22/mhd/results/brio-independent.png": "e0c1f27e6b01d82084e20bc37398423411849374aa103133ca4df8db8e9b5c62",
+    "code/validated-examples/2026-11-22/mhd/results/ct-glm-independent.png": "498cd2842f093fe173c7cc19764d36cac1e12ce019f5b7f0eb9bfa74bbb191c1",
+    "code/validated-examples/2026-11-22/mhd/results/glm-fourier-mode.png": "d1e2a41d58baa80ea3910c7bab4d7efa0e6fcaa46a694eb102e2cc172d60795f",
+    "code/validated-examples/2026-11-22/mhd/results/result.json": "ce1a011a3f2a18727aa7c10a81d712e23b536e9367e4be18d6847b74210a73f6",
+    "code/validated-examples/2026-11-22/mhd/results/shu-independent.png": "0e5cc09c13e29f99160d4a22b489f98c9f24f4416515f01d1531d8112680a4e1",
+    "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
+    "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
+    "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
+    "code/validated-examples/2026-11-22/models/cases.json": "09b670a3462f7f1395dcdf12b507786b69616c0ea165d2678efe780ddb0cf0e6",
+    "code/validated-examples/2026-11-22/models/results/fitzhugh-nagumo.png": "52686dd168fd30ee8a88cfa758075bc51d47a41de0d918814a1ea27224425637",
+    "code/validated-examples/2026-11-22/models/results/gaussian-mcmc.png": "a84e814bcce77c66f1886d01931a061b2317984e35e6e5fbf71dfa33a85e1c44",
+    "code/validated-examples/2026-11-22/models/results/langevin-harmonic.png": "0b199f45202724a444c1195b31cae227b9599d50bc92d6c793a93a90f2ff1c14",
+    "code/validated-examples/2026-11-22/models/results/reaction-diffusion-fourier.png": "ec48f7b2c2f4989b4bf98a5c5895062ea8bc1cfe95cfb40e2d077561758fd801",
+    "code/validated-examples/2026-11-22/models/results/result.json": "d3af162e0e4a1cb0cc14bd41f250cfe16b69e0b6f111cc4ba1c71eb4ca55e266",
+    "code/validated-examples/2026-11-22/models/results/turing-schnakenberg.png": "d960e2701881dcd027d21d7d17f2a43c9e14157f1ab8a401e4cb69d95be88893",
+    "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
+    "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
+    "code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip": "940c1b9c867d5fda395bf93d9dac6b38d992bb4d3de29065f1b42108d1d4c0c9",
+    "code/validated-examples/2026-11-22/particle-transport/cases.json": "3d3dd9cbc6c62666bb76f893762cf27b33b2606a34e87ffe8c4275e258b96f66",
+    "code/validated-examples/2026-11-22/particle-transport/results/dsmc-statistics.png": "4e384a77f7d4288841ef1b99fabe92b1021805bcd8958d8f0ca8da9b869b4303",
+    "code/validated-examples/2026-11-22/particle-transport/results/ewald-convergence.png": "377a985727d54477ba021b571b137562f65979026dc848808d4ad50b81b84492",
+    "code/validated-examples/2026-11-22/particle-transport/results/fmm-convergence.png": "9358e2e4e7c7d8cb9f5e0bcb4d6cb7c2cf52f0beb7cc14fe64313261aec5363d",
+    "code/validated-examples/2026-11-22/particle-transport/results/pic-conservation.png": "3263e20e5502a7ba8cf358ab8f9034acda4ec192a1916bae8316f08217b7e412",
+    "code/validated-examples/2026-11-22/particle-transport/results/radiation-convergence.png": "894bbfc64f1a76efb5ed9f5dc370d916cb8e5dc2d758fddd12f8aed34657f20f",
+    "code/validated-examples/2026-11-22/particle-transport/results/result.json": "8e189a555c575dba4878c1813f828b29a3045c5015bb4ff2aa1b16c8eab9b138",
+    "code/validated-examples/2026-11-22/particle-transport/results/spme-convergence.png": "4207da16dbd3e326736684e40899ced22cd23c00071f5623a1e61d838db52d9e",
+    "code/validated-examples/2026-11-22/particle-transport/source-manifest.json": "d5724e7fd43635a489acb3b9ae90ac83fcce734ee89b6f29bc80cbdd4cefac97",
+    "code/validated-examples/2026-11-22/particle-transport/verification.json": "a16b3b90fd815909a8f3241dd7c04aeedabb2dd964da603eadd851fd6a0e171d",
+    "code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+    "code/validated-examples/2026-11-22/particles/cases.json": "f6e68b2ec8d0cd56357b1aeecea3f9c40cf22f89e7f9c1b8b9442ad020ddbf86",
+    "code/validated-examples/2026-11-22/particles/results/dsmc.png": "a3d1aa68c3e5119d35f9bc51eafe1893d12cb5b763dca4fc552c39eca9e9ffe9",
+    "code/validated-examples/2026-11-22/particles/results/ewald.png": "4b92c0acc84d0926cf9a1b0b2f2f7a671831fc8863f66fb7c6fb4fb382501619",
+    "code/validated-examples/2026-11-22/particles/results/fmm.png": "4a1ce7d65733be37983a4707a8e29beb6765063d9628027c3f1b202c65b7e967",
+    "code/validated-examples/2026-11-22/particles/results/pic.png": "f7b329fb160b94a559bd7553bd6bf398b6b6e133421778418d40a4c69107cb20",
+    "code/validated-examples/2026-11-22/particles/results/radiation-transport.png": "bbf48afe15f5b4ac0cd2a25b0fec0dd8b4a9c0948aad929feaf34f01d938d6ae",
+    "code/validated-examples/2026-11-22/particles/results/result.json": "ed038f2af0d25bb29235e5f2853e0c8360974e8a499475f4b5cb3146d142ad60",
+    "code/validated-examples/2026-11-22/particles/results/spme.png": "4d8b32bf087ffffd40b23a37c8b93d914eae4155b07be837da752bea4a4f0fea",
+    "code/validated-examples/2026-11-22/particles/source-manifest.json": "63cefd473db691db611628f6501b2b58d6727c055ffde1b9a4962bfecfacd125",
+    "code/validated-examples/2026-11-22/particles/verification.json": "48744c4ce661cb76ce7cba81d55bbbb2737885c472966237e78c9e3dfcbf43b7",
+    "code/validated-examples/2026-11-22/splitting/atlas-splitting-2026-11-22.zip": "2ae466a4ea62e204716a388b86033de3a6493a9ab0ef4ad9aec4ebb038d8a404",
+    "code/validated-examples/2026-11-22/splitting/cases.json": "f252ee6b994a6827e5579b28127143680170124de50f05057d2890e545dcc84f",
+    "code/validated-examples/2026-11-22/splitting/results/reaction-diffusion-splitting.png": "ac165c53c4832328365e2a2c4bc507a6ab73e053ac712d5f402f2b22137bee1d",
+    "code/validated-examples/2026-11-22/splitting/results/result.json": "7b1b8338ec2a03eb04e82f3891d4e2fd08a2edb665313dc8bd0991b1a7a9a8f2",
+    "code/validated-examples/2026-11-22/splitting/source-manifest.json": "e071ab71032cce9e1a8340cdd80bb58364b7105de764594507024259915f6368",
+    "code/validated-examples/2026-11-22/splitting/verification.json": "899af4b800c58e990a6eae62dd5510ff1afed02060ab7fb67e1c5c8ebcd47b53",
+    "code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip": "38142da988bf0c790eab7e7f10f8d1e209d074c3627f73a207f5223a24e18d65",
+    "code/validated-examples/2026-11-22/thermostats/cases.json": "123566ec7000dce11f2a6a7474d35e45c8fdf24db85a0556e2cbb3911d3acd77",
+    "code/validated-examples/2026-11-22/thermostats/results/csvr-kinetic-kernel.png": "c4ea7f308b8cd14669bbe11b9d62edf964f2c21db828bcdf2a5aae2ffdc62a43",
+    "code/validated-examples/2026-11-22/thermostats/results/csvr-langevin-harmonic.png": "f49ebc2c68942b7a946e9954b6cd0bc09e412a377ded606a59615c2ef447a7c4",
+    "code/validated-examples/2026-11-22/thermostats/results/csvr-langevin-quartic.png": "6e1ace5cfef29d49e7e500f46acfb64d481d57faf2869598effb70947719952a",
+    "code/validated-examples/2026-11-22/thermostats/results/result.json": "7971007807acce9f75261b684b789f196e1d5dffc80797e102d1b0bebbc93f11",
+    "code/validated-examples/2026-11-22/thermostats/source-manifest.json": "81a854bdfe3ae33b4eb4bffdccc9ab15a09f2bddbffb294cd2c2cbd07e641580",
+    "code/validated-examples/2026-11-22/thermostats/verification.json": "c14f55ac05d93269dbf8eef4a2a4042f75764d5228d06f8e41039d0b60351905",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/atlas-euler-positivity-2026-11-23-r2.zip": "0f2c8a3bf94a612f89d8f6f695b94574dd05d70976aa97a497ef47ff4e0c1efe",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/cases.json": "52e618b3a97dab879badba192d5c2f74c5a08c25e473f055de81c645a6985d5a",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/results/euler-double-rarefaction-positivity.png": "f1d024c853686c5733c1139f5836392352cfa2cf1390f1f2a69e3215872b0877",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/results/result.json": "bee593154817e7a6339cee14fa7c029000002f42ade8ccd6d568119d375fdddc",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/source-manifest.json": "86eef08f81c19d211d9908ba195f6fbbdcd4af54dcfaf8df59ebbe9df73b34b9",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/verification.json": "4c205d9d21d1ea7efbf3d56e881c8c740f26a983576415a69e95490393af4f3d",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/atlas-noh-cartesian-2026-11-23-r2.zip": "2145beb161f993c1608fc5ac167af5278d58e10f92e74ed37e5fb9c35243b918",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/cases.json": "49b94c1f65e269d4a878be3a4d8778375b88b767f5dd01998ae5fe6b8fc2b3ee",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/results/noh-cartesian-2d.png": "cca6fdfc8f524ee05f729437b38ce064f276aaebe1485ed6e26045c279ac1ae4",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/results/result.json": "e121c2f5171ee53491b492019311d002ceb44213f6f7cd43051a3ca68f74c694",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/source-manifest.json": "3f34837f6078bfdc96e5bea2a0ec36c3ae4c48a09c25fcd61560cbb4f4781f93",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/verification.json": "7c530b06df5d2878958bd249b3035050592365e23aee79804e600368dfb09f46",
+    "code/validated-examples/2026-11-23-r2/sedov/atlas-sedov-2026-11-23-r2.zip": "abb7344023b91b090820de1ebec8d6c6a949b8c06fda73037204a5d6f62b4b73",
+    "code/validated-examples/2026-11-23-r2/sedov/cases.json": "aab3ca7447d35997bd38505e1ef79e1693096a29cc52c10e994bdcc9c80c8c03",
+    "code/validated-examples/2026-11-23-r2/sedov/results/result.json": "e4767029260bee54e0de2c85b07cbca07c5b99c4eb999b9d609735b6e615ef23",
+    "code/validated-examples/2026-11-23-r2/sedov/results/sedov-blast.png": "40a5d1f86e9aecab42be47d61c7c3b1b2e6e04a0cad8938caaa6d7c3ab5f2146",
+    "code/validated-examples/2026-11-23-r2/sedov/source-manifest.json": "4a92404602abd0d01096aae1576afb96533c64ea68989615df885a4310e3479f",
+    "code/validated-examples/2026-11-23-r2/sedov/verification.json": "1bec773b9e6d657ea7b71996df2bcc2c593f64b8cbb51942ed7d106be3419a03",
+    "code/validated-examples/2026-11-23-r2/wall-flow/atlas-wall-flow-2026-11-23-r2.zip": "de499fde477a49b1eae10bd6bf04b0800b58105ca5d504ec6eff2ec3272690fd",
+    "code/validated-examples/2026-11-23-r2/wall-flow/cases.json": "ed51f9003bbf5ddfa88602dd579ad962c81f95fb5dd3e7ef32973b17f9844d70",
+    "code/validated-examples/2026-11-23-r2/wall-flow/results/cavity-ghia-re100.png": "264ec174a0aaeb374d6506ba91503f44e6518ebb9f91a7a309ff8a890f372906",
+    "code/validated-examples/2026-11-23-r2/wall-flow/results/result.json": "ce92039a849015c3c3bd1de8e6ef77052f6fc5a9765ff961bc20086180996252",
+    "code/validated-examples/2026-11-23-r2/wall-flow/results/wall-manufactured.png": "8e85ee6e755ba71c723b19b5222e85e450f88c4383bbce7526b23a6d6f04cdb8",
+    "code/validated-examples/2026-11-23-r2/wall-flow/source-manifest.json": "5defc88a20d06c6806f1aa18c5a5a9f027c7891d8a237bb5fe980169d1bbdfe4",
+    "code/validated-examples/2026-11-23-r2/wall-flow/verification.json": "6daf2fa12cf2e7f604bb54413b82e36bbe72891132e1846abf598f9c9600b096",
+    "code/validated-examples/2026-11-23-r3/guderley/atlas-guderley-2026-11-23-r3.zip": "f00ff906861495bd73b2ae75f7c3895fab505ba45ad7a34a2612700405d8466f",
+    "code/validated-examples/2026-11-23-r3/guderley/cases.json": "72e621b096fdb1ff229dba33b9243667a7e7c4f9b2593d7331953333707f28f7",
+    "code/validated-examples/2026-11-23-r3/guderley/results/guderley-implosion.png": "af3c5bc89657b250436a73571bfb793345c17dc283c08d8f9b278060138918f9",
+    "code/validated-examples/2026-11-23-r3/guderley/results/result.json": "c85894f329b97d62ef9d093792316028e4b3b9ca38a0488047bdbab2542e84bb",
+    "code/validated-examples/2026-11-23-r3/guderley/source-manifest.json": "e436ada98187ba8a1ca755712fc60d1ce5f735379f026d92d63b2cbd19c6d112",
+    "code/validated-examples/2026-11-23-r3/guderley/verification.json": "3eb90bb576b4b9579433bb15a93b0acc42948a85f335a45de7c649ec1b61e625",
+    "code/validated-examples/2026-11-23-r5/noh/atlas-noh-2026-11-23-r5.zip": "64de5483e9896a3773348b75e1ec2b4630f8a709d68194c1d94772396f531733",
+    "code/validated-examples/2026-11-23-r5/noh/cases.json": "9501c9cb57617c09a8ceb0aa7e124ba1e2af303144eaa82045e8632fc7c39fc2",
+    "code/validated-examples/2026-11-23-r5/noh/results/noh-shock.png": "11d0f030985cf900b04ce6f8b903be486684c43129f2e3f4226ed81b70041f4f",
+    "code/validated-examples/2026-11-23-r5/noh/results/result.json": "4e92acb911d505b3f7e74e39f01acf77e59fbe15577f321ac759f1315e487724",
+    "code/validated-examples/2026-11-23-r5/noh/source-manifest.json": "8597cbc7b841502f4e7eca154e86fe8893402c1167614952de682d7307c5595d",
+    "code/validated-examples/2026-11-23-r5/noh/verification.json": "48545a33ab2c19e9071616a15a1fcbf90c716096aa1a12550d3cb872ed8d9e36",
+    "code/validated-examples/2026-11-23/double-mach/atlas-double-mach-2026-11-23.zip": "0a68d19746c508e0ac0cf9b5bebe9375c797a87ade1a9fbfbef87d6e5fa63347",
+    "code/validated-examples/2026-11-23/double-mach/cases.json": "38eb6a6fb4af35cdd3ca8834b9f3e5c80be22a50615f03aef712bc67b11b85e3",
+    "code/validated-examples/2026-11-23/double-mach/results/double-mach-reflection.png": "564ab5c372e1c4ce5e468876142858830f6425eca79a7dc34a18568ecc89edff",
+    "code/validated-examples/2026-11-23/double-mach/results/result.json": "3b4a36b9b3e10e7a6984130ee24bb7d5707de0fe24facff3a49b8eabd71ea5fe",
+    "code/validated-examples/2026-11-23/double-mach/source-manifest.json": "32ba5521149368b729b31796dcc0006c8fd743e840e1e36533a867a47170d8c8",
+    "code/validated-examples/2026-11-23/double-mach/verification.json": "c588b4ce7f539d53b1d5eec4413ce3a1dc104eff975e4adddf0c544460dbb49e",
+    "code/validated-examples/2026-11-23/forward-step/atlas-forward-step-2026-11-23.zip": "ae69647a4e63c75c0888a6daf15835d348e9d74de58b5e59926e359e9ffc52cd",
+    "code/validated-examples/2026-11-23/forward-step/cases.json": "e7397c94e5d170170b09a6baa4fdf9276d83419118e456cc172ad6c5cf63b363",
+    "code/validated-examples/2026-11-23/forward-step/results/forward-step-m3.png": "8f4ad22c5af00347914f9dfee7a84f9a07fdf9da5394674937013fad5f94bf16",
+    "code/validated-examples/2026-11-23/forward-step/results/result.json": "636e179813165fbe620caadd825ac699973ea2dde897d13aed8b2d22102e6704",
+    "code/validated-examples/2026-11-23/forward-step/source-manifest.json": "77546e263d8e08266cedb57ef5e128a3bee68d7b9597fb56bed2eee5dcbec6dc",
+    "code/validated-examples/2026-11-23/forward-step/verification.json": "f40317a2721c2048c6174bf41c03adf5e3eddae07e19ae95e6ed5210a9b01914",
+    "code/validated-examples/2026-11-23/low-mach/atlas-low-mach-2026-11-23.zip": "717b2ceed76d37cf4c1e570a7a022e1a17d66fce3048648a3edde4164a1513aa",
+    "code/validated-examples/2026-11-23/low-mach/cases.json": "8a33dd861d6c635afeb526a2823fa33e88dc84fb49f1ae8a5ba19cbad32ae058",
+    "code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex.png": "38635f161af26efd48e0c0a2bc463974e3e81e6b506770a4c6f6c19b24be1970",
+    "code/validated-examples/2026-11-23/low-mach/results/result.json": "5e1fdfa86dc57b13857bd571de1070d00ac5237400e0fc9ee9875fae9824d9f5",
+    "code/validated-examples/2026-11-23/low-mach/source-manifest.json": "ff359786cf6efff8e5e61f842ae63a866cb7655a4151b2d33ac12501eed98124",
+    "code/validated-examples/2026-11-23/low-mach/verification.json": "f747210e1d46900c4f56b01e989696c3feaee35361fe42be11428fd280bacf84",
+    "code/validated-examples/2026-11-23/shallow-water/atlas-shallow-water-2026-11-23.zip": "259244fc5c237542ba577df62308fd2a3191979dd43717d58df33d8abb902644",
+    "code/validated-examples/2026-11-23/shallow-water/cases.json": "9296c20b7609cb4acdcd5a0ce437781dcd2e7635dbfea0a924f8468a3e5a5792",
+    "code/validated-examples/2026-11-23/shallow-water/results/dry-bed-dam-break.png": "462d58375af1a86ce16672c5ac827012a17f13902f40b622736382b1ace5fd6a",
+    "code/validated-examples/2026-11-23/shallow-water/results/result.json": "49a56493e429dd3b4c9d6f8eba72c53ddd3469689699217157b9823a392c015f",
+    "code/validated-examples/2026-11-23/shallow-water/results/swashes-topography.png": "3b91bc40a354bebf41dfae5658f077c4a2eb8ffcbfd537a6211c9c96a52dce2c",
+    "code/validated-examples/2026-11-23/shallow-water/source-manifest.json": "0fdab6190462f91176fa2eb4eb452d6fb66c2066b0e07d115b8ea789231614da",
+    "code/validated-examples/2026-11-23/shallow-water/verification.json": "e342321ddc1f7692e08dcc7a63478912956f63637c855f2f85eaf0999c4d22cc",
+    "code/validated-examples/2026-11-23/weno-critical/atlas-weno-critical-2026-11-23.zip": "9c119480261013ef8ed0c58716c45af5b9fb9d3e891aef56b95b66fbd8415491",
+    "code/validated-examples/2026-11-23/weno-critical/cases.json": "6b68c525e99fe15adbdce97a5d078289e5df0ff5f63cd9c790784a29b979440b",
+    "code/validated-examples/2026-11-23/weno-critical/results/result.json": "c4150a350d0854b3b815bd820790711ecdbcc7594690c0ad8c15e23f6aa3d05d",
+    "code/validated-examples/2026-11-23/weno-critical/results/weno-critical-epsilon.png": "b2fae938bbb2e2f8b179f079baf86c85ec6ead23cc99ecbf019e4a2c80ec6167",
+    "code/validated-examples/2026-11-23/weno-critical/source-manifest.json": "abd8b0a29bb81b7d98b897ec0a0eb409f77873857ec8199c3767f1ede11b43a5",
+    "code/validated-examples/2026-11-23/weno-critical/verification.json": "ccbf3c6a2fe7055b324a0d98c152da909242f36e0c82ca3281038e4c9b0c165f",
+    "code/validated-examples/2026-11-23/zalesak/atlas-zalesak-2026-11-23.zip": "28e7d2bc93d3a5ba1cb015c874c489e9fd1a2e8a586a46d519800c799b0fb6f8",
+    "code/validated-examples/2026-11-23/zalesak/cases.json": "4ff0db4160a4da838ddb57089dae6849d18d3386fedd935365ab53795611831a",
+    "code/validated-examples/2026-11-23/zalesak/results/result.json": "51851a31df72eec078e25171deeacd2699a9bfe9eedc55b4bc6831fd233b408d",
+    "code/validated-examples/2026-11-23/zalesak/results/zalesak-rotation.png": "1d7ed7b6669b25cbe45951d26ffc82974790c5234237eff32e7456064822ed27",
+    "code/validated-examples/2026-11-23/zalesak/source-manifest.json": "d13a134c2e791740190529a8a4eef07eda5126a14101155d254f450d0438eb55",
+    "code/validated-examples/2026-11-23/zalesak/verification.json": "aad9b39c23d83e967588361edfdb05724f1ea3fade93843ebb05b5fd829ba44e",
+    "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
+    "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
+    "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
+    "numerical-methods-atlas/gallery/preview-manifest.json": "c56f91764e5569d11300598e0d11abfa518dbc90e7273ad2442f5830c5927e84",
+    "numerical-methods-atlas/locales/messages.json": "42899e78dbd904c35b906e46319159ab12c5da0e6a1adcdbcde0a9ebf76668cd"
+  }
+}

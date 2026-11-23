@@ -1,0 +1,9 @@
+{
+  "paths": {
+    "source/test_wall_flow.py": "source/archived_test_wall_flow.py",
+    "source/test_serialization.py": "source/archived_test_serialization.py"
+  },
+  "reason": "Keep successful R2 original21test bytes while avoiding pytest recollection.",
+  "successful_result": "source/results/result.json",
+  "source_snapshot_excludes": "Earlier attempts retained separately in attempts/01."
+}

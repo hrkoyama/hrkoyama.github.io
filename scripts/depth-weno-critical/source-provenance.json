@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "implementation": "New educational scalar FV implementation; no third-party solver code copied.",
+  "reference": "Analytic polynomial cell averages and Fourier-antiderivative periodic means; separate Gauss12 point-function quadrature. No independent PDE engine run.",
+  "unit_convention": "Dimensionless unit interval and speed1; epsilon has squared solution units. Fixed epsilon values therefore depend on amplitude/units. h² means the explicit coefficient1 at the fixed unit amplitude.",
+  "inspected_sources": "references/source-review.json",
+  "originality_limits": "Baseline WENO-JS and WENO-Z power2, not the new embedded methods in van Lith2017 or original finite-difference Borges experiments."
+}

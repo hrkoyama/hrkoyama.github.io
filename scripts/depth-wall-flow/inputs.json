@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "domain": [0, 1, 0, 1],
+  "nodes": [17, 33, 65],
+  "viscosity": 0.01,
+  "cavity_lid_speed": 1.0,
+  "cavity_reynolds": 100,
+  "manufactured_amplitude": 8.0,
+  "initial_interior_vorticity": 0.0,
+  "maximum_pseudo_time": 100.0,
+  "steady_stop_residual": 1e-9,
+  "check_every_steps": 50,
+  "diffusive_dt_safety": 0.15,
+  "advective_dt_cap": "0.25*h/max(1,abs(lid))",
+  "boundary": "nonperiodic Dirichlet psi=0; same Thom no-slip wall-vorticity closure for both flows; stationary corner velocities",
+  "pressure_diagnostic": "p=x^2+y^2+sin(pi*x)*sin(pi*y), -Delta p=-4+2*pi^2*sin(pi*x)*sin(pi*y), analytic Dirichlet boundary; separate from cavity pressure"
+}

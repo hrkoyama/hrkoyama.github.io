@@ -2,8 +2,8 @@
   "schema_version": 1,
   "reviewed_on": "2026-11-23",
   "title": {
-    "ja": "未実装・拡充候補：一つずつ検証する",
-    "en": "Implementation and verification backlog"
+    "ja": "未実装・拡充候補：問題ごとに検証し、まとめて公開する",
+    "en": "Benchmark backlog: verify each problem, publish in batches"
   },
   "description": {
     "ja": "全分野サーベイの98候補と共通5項目を作業台帳に登録し、参照・コード・検証・図を一組ずつ揃えます。既存例の拡充や出典整備も含み、103件すべてが未実装の手法という意味ではありません。",
@@ -17,11 +17,11 @@
     "shared_count": 5
   },
   "policy": {
-    "ja": "2026年11月23日の指示により全候補を順次進めます。Nohから着手し、一つの単位を実装・独立追試・引用・図・公開まで揃えてから次へ進みます。新規実装、既存検証の拡充、出典整理を区別し、未着手や検証中を実装済みと表示しません。既存の年末必達計画とは別の継続台帳で、全項目の完了期限は設定していません。",
-    "en": "The 23 November 2026 instruction authorizes sequential work on all candidates, starting with Noh. Complete implementation, independent rerun, citation, figure and publication for one unit before the next. Distinguish new code, verification extensions and citation work. This continuing backlog has no all-items completion deadline and remains separate from the required year-end milestones."
+    "ja": "ユーザーが指定した最大5件を一組として進めます。入力・参照・合否判定・保存図と履歴は各問題で独立させ、索引更新・サイト全体検査・公開確認をまとめます。未検証の項目は完了扱いにしません。",
+    "en": "Work on a user-selected batch of up to five items. Keep each problem’s inputs, references, acceptance, saved figures and history independent; combine index refresh, whole-site checks and publication verification. Unverified items remain incomplete."
   },
   "workflow": {
-    "max_active": 1,
+    "max_active": 5,
     "active_item": null,
     "states": [
       "planned",
@@ -32,7 +32,9 @@
     "completion_rule": {
       "ja": "科学計算の項目は入力・参照と出典・コード・検査・誤差/収束・保存図・実行入口・検証記録を確認して完了にします。出典整理は対象箇所と修正根拠を確認します。",
       "en": "Scientific items require inputs, cited reference, code, tests, error/refinement evidence, saved figure, execution entry and verification receipt. Curation items require checked target passages and evidence for the correction."
-    }
+    },
+    "active_items": [],
+    "batch_id": "2026-11-23-sequences13-17"
   },
   "priority_labels": {
     "P0": {
@@ -1057,14 +1059,14 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "planned",
-      "current": "MUSCL、WENO-JS/Z、PPM、CIP、DG、特性再構築、各limiterは実装済み。1D滑らか/不連続、2D entropy wave、保存・界面恒等式の検査がある。",
+      "state": "verified",
+      "current": "36単体検査と当該例の217判定、独立ZIPの全固定入力追試が合格。5件一括の公開URL/Linux確認は公開後に別記録へ保存します。",
       "tasks": [
         "既存p=2・epsilon=1e-6版を凍結し、比較版を追加して極値/高階臨界点の空間誤差を測る。",
         "時間誤差を小さくした系列と固定格子の刻み系列を分離する。",
         "原著最終版と前稿で異なる重み規約、特性/成分投影、FD点値を明記。"
       ],
-      "scope_note": "",
+      "scope_note": "2026-11-23の候補13〜17を一括公開する限定検証。入力・受入基準・保存配列・失敗履歴は各不変配布版に保持。詳細な条件と適用範囲は実行入口を参照。",
       "sources": [],
       "baseline_evidence": [
         {
@@ -1083,7 +1085,28 @@
           "observation": "滑らか関数の既存検査を基準に拡張。"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23/weno-critical/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23/weno-critical/inputs.json",
+          "/code/validated-examples/2026-11-23/weno-critical/acceptance.json",
+          "/code/validated-examples/2026-11-23/weno-critical/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23/weno-critical/results/weno-critical-epsilon.png",
+          "/code/validated-examples/2026-11-23/weno-critical/results/weno-critical-epsilon-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-23/weno-critical/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-23/weno-critical/references/citations.json",
+          "/code/validated-examples/2026-11-23/weno-critical/references/source-review.json",
+          "/code/validated-examples/2026-11-23/weno-critical/README.md"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#advection-sine-ja",
+        "execution": "/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=ja"
+      },
       "sequence": 13
     },
     {
@@ -1097,14 +1120,14 @@
       "priority": "P1",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "planned",
-      "current": "平坦底・正水深SWEのダム崩壊は実装済み。乾床の参照解カードはあるが既存FV solverは正水深専用。",
+      "state": "verified",
+      "current": "31単体検査と当該例の62判定、独立ZIPの全固定入力追試が合格。5件一括の公開URL/Linux確認は公開後に別記録へ保存します。",
       "tasks": [
         "地形圧力ソースとfluxの釣合い、静止水面の保持、質量を測る。",
         "一つのsmooth bump定常ケースから始め、境界条件と水頭/流量を固定。",
         "平坦底ダム崩壊の成功をwell-balanced性の証拠にしない。"
       ],
-      "scope_note": "",
+      "scope_note": "2026-11-23の候補13〜17を一括公開する限定検証。入力・受入基準・保存配列・失敗履歴は各不変配布版に保持。詳細な条件と適用範囲は実行入口を参照。",
       "sources": [
         {
           "title": "Delestre et al., SWASHES",
@@ -1124,7 +1147,29 @@
           "observation": "現行問題との差。"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23/shallow-water/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23/shallow-water/inputs.json",
+          "/code/validated-examples/2026-11-23/shallow-water/acceptance.json",
+          "/code/validated-examples/2026-11-23/shallow-water/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23/shallow-water/results/swashes-topography.png",
+          "/code/validated-examples/2026-11-23/shallow-water/results/swashes-topography-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-23/shallow-water/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-23/shallow-water/references/citations.json",
+          "/code/validated-examples/2026-11-23/shallow-water/references/source-review.json",
+          "/code/validated-examples/2026-11-23/shallow-water/README.md",
+          "/code/validated-examples/2026-11-23/shallow-water/protocol-history.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#swashes-topography-ja",
+        "execution": "/numerical-methods-atlas/validation/swashes-topography/?lang=ja"
+      },
       "sequence": 14
     },
     {
@@ -1138,14 +1183,14 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "planned",
-      "current": "平坦底・正水深SWEのダム崩壊は実装済み。乾床の参照解カードはあるが既存FV solverは正水深専用。",
+      "state": "verified",
+      "current": "31単体検査と当該例の47判定、独立ZIPの全固定入力追試が合格。5件一括の公開URL/Linux確認は公開後に別記録へ保存します。",
       "tasks": [
         "既存解析乾床解とfront位置、乾湿遷移、非負水深、質量を照合。",
         "dry toleranceと運動量処理、dry-cell速度の定義を公開。",
         "既存の参照カードを実行済みと数えず、solver拡張後に新規固定入力を登録。"
       ],
-      "scope_note": "",
+      "scope_note": "2026-11-23の候補13〜17を一括公開する限定検証。入力・受入基準・保存配列・失敗履歴は各不変配布版に保持。詳細な条件と適用範囲は実行入口を参照。",
       "sources": [
         {
           "title": "Delestre et al., SWASHES",
@@ -1165,7 +1210,29 @@
           "observation": "現solverは非正水深を拒否。"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23/shallow-water/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23/shallow-water/inputs.json",
+          "/code/validated-examples/2026-11-23/shallow-water/acceptance.json",
+          "/code/validated-examples/2026-11-23/shallow-water/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23/shallow-water/results/dry-bed-dam-break.png",
+          "/code/validated-examples/2026-11-23/shallow-water/results/dry-bed-dam-break-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-23/shallow-water/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-23/shallow-water/references/citations.json",
+          "/code/validated-examples/2026-11-23/shallow-water/references/source-review.json",
+          "/code/validated-examples/2026-11-23/shallow-water/README.md",
+          "/code/validated-examples/2026-11-23/shallow-water/protocol-history.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#dry-bed-dam-break-ja",
+        "execution": "/numerical-methods-atlas/validation/dry-bed-dam-break/?lang=ja"
+      },
       "sequence": 15
     },
     {
@@ -1179,14 +1246,14 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "planned",
-      "current": "周期2D MAC射影法とTaylor–Greenの16/32/64格子、圧力・divergence・保存診断、共通固定入力はある。壁境界や境界層の検証はない。",
+      "state": "verified",
+      "current": "22単体検査と当該例の35判定、独立ZIPの全固定入力追試が合格。5件一括の公開URL/Linux確認は公開後に別記録へ保存します。",
       "tasks": [
         "まずRe=100等の固定した少数条件で壁速度・角点処理・圧力基準を定義。",
         "中心線u/v、渦中心、divergenceと定常残差を格子ごとに比較。",
         "Ghia表は高精度数値参照であり厳密解ではない。原表転記・出典ページと独立参照の差も保存。"
       ],
-      "scope_note": "",
+      "scope_note": "2026-11-23の候補13〜17を一括公開する限定検証。入力・受入基準・保存配列・失敗履歴は各不変配布版に保持。詳細な条件と適用範囲は実行入口を参照。",
       "sources": [
         {
           "title": "Ghia, Ghia & Shin (1982), High-Re solutions for incompressible flow",
@@ -1206,7 +1273,29 @@
           "observation": "周期FFT演算子。"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23-r2/wall-flow/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23-r2/wall-flow/inputs.json",
+          "/code/validated-examples/2026-11-23-r2/wall-flow/acceptance.json",
+          "/code/validated-examples/2026-11-23-r2/wall-flow/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23-r2/wall-flow/results/cavity-ghia-re100.png",
+          "/code/validated-examples/2026-11-23-r2/wall-flow/results/cavity-ghia-re100-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-23-r2/wall-flow/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-23-r2/wall-flow/references/citations.json",
+          "/code/validated-examples/2026-11-23-r2/wall-flow/references/source-review.json",
+          "/code/validated-examples/2026-11-23-r2/wall-flow/README.md",
+          "/code/validated-examples/2026-11-23-r2/wall-flow/protocol-history.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#lid-driven-cavity-ja",
+        "execution": "/numerical-methods-atlas/validation/cavity-ghia-re100/?lang=ja"
+      },
       "sequence": 16
     },
     {
@@ -1220,14 +1309,14 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "planned",
-      "current": "周期2D MAC射影法とTaylor–Greenの16/32/64格子、圧力・divergence・保存診断、共通固定入力はある。壁境界や境界層の検証はない。",
+      "state": "verified",
+      "current": "22単体検査と当該例の59判定、独立ZIPの全固定入力追試が合格。5件一括の公開URL/Linux確認は公開後に別記録へ保存します。",
       "tasks": [
         "軽い非周期MMSで速度/圧力の境界と次数を先に検査。",
         "Blasius追加時は境界層近似の相似ODE解と、有限Re Navier–Stokes/有限計算領域の差を区別。",
         "壁面せん断・排除厚さ・領域依存を測り、全NSの厳密解と表示しない。"
       ],
-      "scope_note": "",
+      "scope_note": "2026-11-23の候補13〜17を一括公開する限定検証。入力・受入基準・保存配列・失敗履歴は各不変配布版に保持。詳細な条件と適用範囲は実行入口を参照。",
       "sources": [
         {
           "title": "Salari & Knupp, Code Verification by the Method of Manufactured Solutions, SAND2000-1444",
@@ -1247,7 +1336,29 @@
           "observation": "現有は周期解析場。"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-23-r2/wall-flow/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-23-r2/wall-flow/inputs.json",
+          "/code/validated-examples/2026-11-23-r2/wall-flow/acceptance.json",
+          "/code/validated-examples/2026-11-23-r2/wall-flow/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-23-r2/wall-flow/results/wall-manufactured.png",
+          "/code/validated-examples/2026-11-23-r2/wall-flow/results/wall-manufactured-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-23-r2/wall-flow/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-23-r2/wall-flow/references/citations.json",
+          "/code/validated-examples/2026-11-23-r2/wall-flow/references/source-review.json",
+          "/code/validated-examples/2026-11-23-r2/wall-flow/README.md",
+          "/code/validated-examples/2026-11-23-r2/wall-flow/protocol-history.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#wall-manufactured-ja",
+        "execution": "/numerical-methods-atlas/validation/wall-manufactured/?lang=ja"
+      },
       "sequence": 17
     },
     {

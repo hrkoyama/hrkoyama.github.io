@@ -1437,13 +1437,19 @@
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/run.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/run.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/biology.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/biology.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/wall_flow.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/references/qualify_reference.py"
                 ],
                 "test_urls": [
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/test_biology.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/test_biology.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/test_result_envelope.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/test_serialization.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/test_wall_flow.py"
                 ],
                 "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               },
@@ -1463,13 +1469,17 @@
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/runge_kutta.py",
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/hamiltonian.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/run.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/weno.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/references/analytic.py"
                 ],
                 "test_urls": [
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_runge_kutta.py",
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_hamiltonian.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/test_weno.py"
                 ],
                 "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               },
@@ -1945,13 +1955,19 @@
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/run.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/run.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/biology.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/biology.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/wall_flow.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/references/qualify_reference.py"
                 ],
                 "test_urls": [
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/test_biology.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/test_biology.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/test_result_envelope.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/test_serialization.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/test_wall_flow.py"
                 ],
                 "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               },
@@ -1971,13 +1987,17 @@
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/runge_kutta.py",
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/hamiltonian.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/run.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/weno.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/references/analytic.py"
                 ],
                 "test_urls": [
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_runge_kutta.py",
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_hamiltonian.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/test_weno.py"
                 ],
                 "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               },
@@ -2406,13 +2426,17 @@
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/runge_kutta.py",
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/hamiltonian.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/run.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/weno.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/references/analytic.py"
                 ],
                 "test_urls": [
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_runge_kutta.py",
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_hamiltonian.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/test_weno.py"
                 ],
                 "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               }
@@ -3644,14 +3668,14 @@
   "verification_receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
   "source_sha256": {
     "catalog/atlas-crossovers.json": "04358952828bd2732864c794205f60e351d0a7a669abec0222c2821fc03fd71f",
-    "catalog/atlas-methods.json": "270402769611e844e54a79e38931e2ab348797a838e383f8e3e712317db1376b",
-    "numerical-methods-atlas/methods/index.json": "6a65c620b855169f98e255622b034ed9bb498236d8cd942916e23e0d9b618d49",
+    "catalog/atlas-methods.json": "2c08a1023555ec2ee08a5d1c9c86acc037a6efd2a215b97a240ec63f058bdf13",
+    "numerical-methods-atlas/methods/index.json": "6d01d603f68e5d1baee4c9e0c6af955b489253c02afb6744f70dd30aa2647029",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/assets/biological-models.json": "657be85b4aa6dc2fe2488167635ddd71888fe47459972723a5830a5323f8a1ba"
+    "numerical-methods-atlas/assets/biological-models.json": "b4432736fdbb32d6ec0be5104585348bfc166663688640f8d99a039dd4e521ab"
   },
   "supplemental_source_sha256": {
-    "catalog/atlas-depth-expansion.json": "b2e5a2d218c1bc2f542b2f54d38fc1c1b21193b1fa931ca6cfd3bccddb5667cf",
+    "catalog/atlas-depth-expansion.json": "6080528b544ab1d60956b6e382b12b1505fe80fdbd66bac8791f78014878748f",
     "code/validated-examples/2026-11-22/biology/source-manifest.json": "56947a4fb54ae757408ddddfc5de0884bfe35266032ee425a8d96a815f3362ba",
     "code/validated-examples/2026-11-22/biology/verification.json": "5cafaaef809f46e6ab01327107f7367113b8069931621fc92d446fbf142682bd",
     "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",

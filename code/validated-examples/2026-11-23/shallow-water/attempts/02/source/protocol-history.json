@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "initial_attempt": {
+    "passed": false,
+    "pytest_passed": 28,
+    "numerical_passed": 105,
+    "numerical_total": 109,
+    "failed": [
+      "No exact-zero cells remained at finite numerical-domain end on all three Ritter grids",
+      "Finest fixed0.001m-contour error0.3960237865001921 exceeded unchanged0.25m limit"
+    ],
+    "contract_sha256": "d8444966bfd6e09ab635ccb6711b0c751bc38792ff652a98075e0ad2c1add334"
+  },
+  "revision_2": {
+    "change": "Ritter domain[-5,5] ->[-10,10]; separate Ritter grids100/200/400 ->800/1600/3200; topography100/200/400 and lakes200 unchanged",
+    "reason": "Longer dry reach avoids tiny positive finite-stencil tails filling the domain. Finer Ritter cell widths0.025/0.0125/0.00625 target contour resolution without loosening limits.",
+    "unchanged_files_sha256": {
+      "acceptance.json": "644da767ea681ea9f87df16848ed9d499c6f0468b2e239ec69f4aa1793ac22ec",
+      "shallow_water.py": "6402f76ff341a7246e8ba20c104891f467402c74bca9e47b2dec7636b508ae33",
+      "test_shallow_water.py": "98b893551010a5c0e2ff1725f8fc74ef676cb5b188dcf8baf9ff8ef91eb7fc75",
+      "references/analytic.py": "9c979fa7b0308e753e82cea173b96f6a33f6ec277805dafce55fb44dae3d644e"
+    },
+    "declared_before_revision_2_execution": true
+  }
+}

@@ -27,8 +27,8 @@ discovery=load_discovery(ROOT)
 const python=source=>execFileSync('python3',['-B','-c',prelude+source],{cwd:root,encoding:'utf8',timeout:30000});
 
 test('five biology labels expose only their verified common or supplemental scope, without adding equations or physical problems',()=>{
- assert.equal(equations.length,47);
- assert.equal(equations.filter(x=>x.id!=='rotational-advection'&&x.status==='local-example').length,23);
+ assert.equal(equations.length,49);
+ assert.equal(equations.filter(x=>!['rotational-advection','shallow-water-bed','forced-incompressible'].includes(x.id)&&x.status==='local-example').length,23);
  assert.equal(equations.filter(x=>x.status==='reading').length,23);
  const discovery=json('catalog/atlas-execution-discovery.json').examples;
  for(const [id,wanted] of Object.entries(expected)){
@@ -49,7 +49,7 @@ test('five biology labels expose only their verified common or supplemental scop
 test('actual evidence resolves immutable receipts and refuses borrowed, missing or inflated biological executions',()=>{
  python(String.raw`
 value=equation_evidence(ROOT,equations,discovery)
-assert [x for x in value['supplemental_case_ids'] if x!='zalesak-rotation']==['fitzhugh-nagumo','schnakenberg-nonlinear','schnakenberg-pattern','turing-schnakenberg']
+assert [x for x in value['supplemental_case_ids'] if x not in ['zalesak-rotation','weno-critical-epsilon','swashes-topography','dry-bed-dam-break','cavity-ghia-re100','wall-manufactured']]==['fitzhugh-nagumo','schnakenberg-nonlinear','schnakenberg-pattern','turing-schnakenberg']
 assert len(value['common']['bio-logistic'])==len(value['common']['bio-sir'])==1
 for scenario in ['borrow-hh','wrong-case','missing-common','inflated-scope']:
  rows=copy.deepcopy(equations);d=copy.deepcopy(discovery);byid={x['id']:x for x in rows}
@@ -87,12 +87,12 @@ with mock.patch.object(pathlib.Path,'read_text',read_text),mock.patch.object(pat
  runpy.run_path('scripts/build-atlas-equations.py',run_name='__equation_render_test__')
 html=captured[str(ROOT/'numerical-methods-atlas/equations/index.html')]
 public=json.loads(captured[str(ROOT/'numerical-methods-atlas/equations/index.json')])
-historical=[x for x in public['equations'] if x['id']!='rotational-advection']
+historical=[x for x in public['equations'] if x['id'] not in ['rotational-advection','shallow-water-bed','forced-incompressible']]
 assert len(historical)==46 and sum(x['status']=='local-example' for x in historical)==23
 assert public['counts']['total']==len(public['equations'])
 assert public['counts']['local_example']==sum(x['status']=='local-example' for x in public['equations'])
 assert public['execution_example_count']==22
-assert [x for x in public['supplemental_case_ids'] if x!='zalesak-rotation']==['fitzhugh-nagumo','schnakenberg-nonlinear','schnakenberg-pattern','turing-schnakenberg']
+assert [x for x in public['supplemental_case_ids'] if x not in ['zalesak-rotation','weno-critical-epsilon','swashes-topography','dry-bed-dam-break','cavity-ghia-re100','wall-manufactured']]==['fitzhugh-nagumo','schnakenberg-nonlinear','schnakenberg-pattern','turing-schnakenberg']
 rows={x['id']:x for x in public['equations']}
 for ident in ['bio-turing','bio-schnakenberg']:
  assert rows[ident]['execution_examples']==[]

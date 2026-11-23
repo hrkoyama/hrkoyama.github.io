@@ -1,0 +1,33 @@
+{
+  "reviewer": "root, independent of implementation subagent",
+  "before_this_revision_main_and_pytest": true,
+  "contract_sha256": "828276c0e04e0977992e96d7bf25a85be5516083deac9746d90e099f9a98feb1",
+  "files_sha256": {
+    "acceptance.json": "6d592a67e1e2d765278961336beb18f2c7cd421f965310fe57ec290359d1cd82",
+    "inputs.json": "41281dc7b9e7cc2a79dd88d5f17e6d2b9be1c3d492691244856ec1cf11d7e2c4",
+    "pre-run-review.json": "57eee9fe17033255d30a990e8f6723efb67bbdad7696efca97b88d9107a84382",
+    "protocol-history.json": "98e44742f0d605cab021e6c247fb63c54eb394e1e6ba07acd273f17347fc4ccd",
+    "references/__init__.py": "c5ce773b690de12ef336339fefbbe1585d2cc7b0a51dd1bd161a7650858a35e6",
+    "references/citations.json": "a5533d7ceeeb4bd748db29830758c81eed4a83cf33738ec7b213510ce9bac4d6",
+    "references/ghia-re100.csv": "0e844ac059c779a67819b8def7b1f0798b690a414214177a2a45b9397f6a1335",
+    "references/qualify_reference.py": "67102bf89f6317ff9e8751618792a58f1bf73b4ff342f41d9a92adce623f23d9",
+    "references/source-review.json": "0bc6d4f697c67d8d7e1209e257997527047dcde7f5a924f7f123a5d3ca77c77b",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "run.py": "6945781da35c1ed9bf8d9bd21aabf8e5232647b11e4d25a3f551abe05f572d47",
+    "source-provenance.json": "a81e755bce968df20ff243276b4835b539fec80774c41b3908db8199de7c8e4c",
+    "test_serialization.py": "bcef53bc3a0f9a1016774485ea5f57987a6b0a65ccc6d2e16827bbef34d8080e",
+    "test_wall_flow.py": "3319db7a4a9f507b3f3a686c6524e4165aeb17b5a99a84f6e8d40e098cf2341a",
+    "wall_flow.py": "dd0e3e430859096afae33377b16924e604250fcb394fba40645a9d6983dc391e",
+    "references/README.md": "b915c9d4686816b61ed9e8af6f80fbd652228323785957afc14b6c1d0e2fca30"
+  },
+  "findings": [
+    "R2 changes only JSON-native qualification booleans and adds a separate serialization regression",
+    "Inputs, acceptance, solver, runner and original20tests byte-identical to retained attempt01",
+    "Original6flows+3pressure outputs and serialization failure retained; missing original result.json not fabricated",
+    "Currentrevision timestamp/after-first-execution flags explicit despite retained initial-protocol declaration fields",
+    "Physics review unchanged: actualThom walls, originalGhia tables, independentMMS derivatives, separatepressure operator",
+    "Planned21tests/94gates with identical physical inputs and criteria",
+    "Bilingual required metadata, existing method IDs, dependency pins and KaTeX formulas pass preflight"
+  ],
+  "approved_for_declared_execution": true
+}

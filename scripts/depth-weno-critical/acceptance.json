@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "declared_before_first_scientific_execution": true,
+  "limits": {
+    "weight_sum": 5e-15,
+    "reference_quadrature": 3e-14,
+    "periodic_mass": 3e-12,
+    "rhs_mass": 3e-13,
+    "finest_transport_l1": 0.0001,
+    "transport_refinement_ratio": 0.65,
+    "time_probe_error_fraction": 0.1,
+    "first_critical_z_js_error_ratio": 0.25,
+    "first_critical_z_last_order_minimum": 4.5,
+    "first_critical_scaled_js_last_order_minimum": 4.5,
+    "local_refinement_ratio": 0.8
+  },
+  "interpretation": "Fixed educational diagnostics. Convergence gates concern first-critical reconstruction at x=h/2, not a universal rate at every critical order. Higher critical order is retained as a diagnostic. Both methods must refine and conserve in actual transport. Halved-dt differences must be <=10% of corresponding finest-grid continuum error. No clipping/retry or post-result tolerance relaxation."
+}

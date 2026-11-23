@@ -97,6 +97,10 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/reconstruction/
 
 ## コード・検証
 
+- [WENO-JS／Z：臨界点とεの固定比較](<https://hrkoyama.github.io/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=ja>)
+  availability: run
+
+  同じセル平均からのWENO5再構成と実際の周期輸送で、JS重みとZ二乗重みを比較します。3種類の臨界性、3種類のε、固定格子と時間刻み半減を分けて保存します。
 - [Shu–Osher：特性WENO-Zと高解像度参照](<https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/shu-osher/?lang=ja>)
   availability: run
 

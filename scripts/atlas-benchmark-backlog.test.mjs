@@ -69,7 +69,7 @@ import base64,hashlib,importlib.util,json,shutil,sys,tempfile
 root=Path(sys.argv[1]).resolve()
 spec=importlib.util.spec_from_file_location('backlog',root/'scripts/build-atlas-benchmark-backlog.py');module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
 actual=module.load(root);assert len(actual['items'])==actual['source']['proposal_count']+actual['source']['shared_count']
-assert sum(item['state']=='in-progress' for item in actual['items'])<=1
+assert sum(item['state']=='in-progress' for item in actual['items'])<=actual['workflow']['max_active']
 with tempfile.TemporaryDirectory(prefix='atlas-backlog-test-') as raw:
  fixture=Path(raw)
  def put(path,value):
@@ -77,7 +77,7 @@ with tempfile.TemporaryDirectory(prefix='atlas-backlog-test-') as raw:
  data=deepcopy(actual);implementation=deepcopy(next(row for row in data['items'] if row['kind']=='implementation'));curation=deepcopy(next(row for row in data['items'] if row['kind']=='references'))
  implementation.update(state='in-progress',completion=None,sequence=1);curation.update(state='planned',completion=None,sequence=2)
  data['items']=[implementation,curation];data['fields']=[row for row in data['fields'] if row['id'] in {implementation['field_id'],curation['field_id']}]
- data['source'].update(proposal_count=1,shared_count=1);data['workflow']['active_item']=implementation['id']
+ data['source'].update(proposal_count=1,shared_count=1);data['workflow'].update(max_active=1,active_item=implementation['id']);data['workflow'].pop('active_items',None)
  for asset in ['styles/atlas-benchmark-backlog.css','numerical-methods-atlas/benchmark-backlog.mjs']:
   destination=fixture/asset;destination.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(root/asset,destination)
  def save():put(module.SOURCE,data)
@@ -125,7 +125,7 @@ with tempfile.TemporaryDirectory(prefix='atlas-backlog-stage-test-') as raw:
  fixture=Path(raw)
  def put(path,value):
   p=fixture/path;p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(value,ensure_ascii=False) if isinstance(value,(dict,list)) else value);return p
- data=deepcopy(original);item=deepcopy(next(row for row in data['items'] if row['kind']=='implementation'));tasks=deepcopy(item['tasks'])
+ data=deepcopy(original);data['workflow'].update(max_active=1,active_item=None);data['workflow'].pop('active_items',None);item=deepcopy(next(row for row in data['items'] if row['kind']=='implementation'));tasks=deepcopy(item['tasks'])
  data['items']=[item];data['fields']=[row for row in data['fields'] if row['id']==item['field_id']];data['source'].update(proposal_count=1,shared_count=0)
  item.update(state='in-progress',scope_note='',sequence=1)
  put('code/stage/input.json',{'fixed':True});put('code/stage/run.py','# fixture scientific source\n');put('code/stage/verification.json',{'passed':True});put('code/stage/reference.json',{'cell_average':True})
@@ -172,4 +172,43 @@ print('partial stages retain scope and evidence validation without completing ca
 `;
  const output=execFileSync(python,['-B','-c',code,fileURLToPath(root)],{encoding:'utf8',maxBuffer:4*1024*1024});
  assert.match(output,/partial stages retain scope and evidence validation without completing candidates/);
+});
+
+test('a five-item batch retains independent evidence and rejects unlisted, duplicate or excessive active work',()=>{
+ const code=String.raw`
+import copy,importlib.util,json,pathlib,sys
+from unittest.mock import patch
+root=pathlib.Path(sys.argv[1]).resolve()
+spec=importlib.util.spec_from_file_location('backlog',root/'scripts/build-atlas-benchmark-backlog.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
+data=json.loads((root/m.SOURCE).read_text())
+for row in data['items']:
+ if row['state']=='in-progress':row['state']='planned';row['completion']=None
+chosen=[row for row in data['items'] if 13<=row['sequence']<=17]
+assert len(chosen)==5
+for row in chosen:row.update(state='in-progress',completion=None)
+ids=[row['id'] for row in chosen]
+data['workflow'].update(max_active=5,active_item=None,active_items=ids,batch_id='fixture-five')
+original=pathlib.Path.read_text
+def load(value):
+ def read(path,*a,**kw):
+  return json.dumps(value) if path.resolve()==(root/m.SOURCE).resolve() else original(path,*a,**kw)
+ with patch.object(pathlib.Path,'read_text',read):return m.load(root)
+valid=load(data)
+assert valid['counts']['states']['in-progress']==5
+assert all(next(row for row in valid['items'] if row['id']==i)['completion_evidence'] is None for i in ids)
+html=m.section(valid,'en');assert '5 active items' in html and all('#'+i+'-en' in html for i in ids)
+for mutation in ['excess','duplicate','missing','unlisted','no-batch','legacy-conflict']:
+ bad=copy.deepcopy(data);w=bad['workflow']
+ if mutation=='excess':w['max_active']=6
+ elif mutation=='duplicate':w['active_items']=[ids[0]]*5
+ elif mutation=='missing':w['active_items']=ids[:-1]
+ elif mutation=='unlisted':w['active_items']=ids[:-1]+['unknown-item']
+ elif mutation=='no-batch':w['batch_id']=''
+ else:w['active_item']=ids[0]
+ try:load(bad)
+ except ValueError:pass
+ else:raise AssertionError('invalid batch accepted: '+mutation)
+print('five-item batches are explicit and evidence remains independent')
+`;
+ assert.match(execFileSync(process.env.ATLAS_INDEX_PYTHON||'python3',['-B','-c',code,fileURLToPath(root)],{encoding:'utf8'}),/five-item batches are explicit/);
 });

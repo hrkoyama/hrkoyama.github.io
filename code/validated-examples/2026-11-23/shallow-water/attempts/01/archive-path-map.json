@@ -1,0 +1,4 @@
+{
+  "source/test_shallow_water.py": "source/archived_test_shallow_water.py",
+  "reason": "Exact original test bytes retained under a non-collectable name; prevents archived tests entering current pytest collection."
+}

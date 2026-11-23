@@ -1,0 +1,20 @@
+{
+  "original_implementation": true,
+  "third_party_code_copied": false,
+  "model": "1D inviscid frictionless Saint-Venant with fixed bed source",
+  "solver": "New first-order hydrostatic-reconstruction/HLL/forward-Euler Python implementation",
+  "reference": "New independent Bernoulli/Ritter analytic evaluator",
+  "sources": [
+    "https://arxiv.org/pdf/1110.0288",
+    "https://epubs.siam.org/doi/abs/10.1137/S1064827503431090",
+    "https://arxiv.org/pdf/1409.3825",
+    "https://www.idpoisson.fr/en/swashes-es/"
+  ],
+  "license_scope": "MIT original implementation only; site rights for prose/data/figures",
+  "not_claimed": [
+    "Exact moving-water well balance",
+    "Full SWASHES validation",
+    "Fully discrete entropy inequality",
+    "2D flood prediction"
+  ]
+}

@@ -31,13 +31,13 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/lattice-boltzmann/
   格子単位Δx=Δt=1の衝突・並進更新。D2Q9等温・低Mach数のせん断波とPoiseuille流を扱います。 格子BGKが計算モデル、非圧縮Navier–Stokesは低Mach数で比較する巨視的な減衰モデルです。
 - [非圧縮Navier–Stokes](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#navier-stokes-ja>)
 
-  一定密度・粘性の代表形。公開例は周期2次元MAC格子の射影法とTaylor–Green渦です。 格子BGKが計算モデル、非圧縮Navier–Stokesは低Mach数で比較する巨視的な減衰モデルです。
+  一定密度・粘性の代表形。周期2D MAC射影・Taylor–Green渦に加え、圧力を消去する非周期Re100キャビティを別配布で検証します。 格子BGKが計算モデル、非圧縮Navier–Stokesは低Mach数で比較する巨視的な減衰モデルです。
 - [等温格子BGK](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bgk-ja>)
 
   格子単位Δx=Δt=1の衝突・並進更新。D2Q9等温・低Mach数のせん断波とPoiseuille流を扱います。 格子BGK・体積力・半格子壁を使う計算と、巨視的な定常非圧縮流路解を結びます。
 - [非圧縮Navier–Stokes](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#navier-stokes-ja>)
 
-  一定密度・粘性の代表形。公開例は周期2次元MAC格子の射影法とTaylor–Green渦です。 格子BGK・体積力・半格子壁を使う計算と、巨視的な定常非圧縮流路解を結びます。
+  一定密度・粘性の代表形。周期2D MAC射影・Taylor–Green渦に加え、圧力を消去する非周期Re100キャビティを別配布で検証します。 格子BGK・体積力・半格子壁を使う計算と、巨視的な定常非圧縮流路解を結びます。
 - [等温格子BGK](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bgk-ja>)
 
   格子単位Δx=Δt=1の衝突・並進更新。D2Q9等温・低Mach数のせん断波とPoiseuille流を扱います。

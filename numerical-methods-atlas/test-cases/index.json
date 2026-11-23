@@ -101,9 +101,38 @@
         {
           "path": "numerical-methods-atlas/experiments.json",
           "json_pointer": "/dg"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/weno-critical/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "weno-critical-epsilon"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/weno-critical/results/weno-critical-epsilon-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/weno-critical/inputs.json",
+          "json_pointer": "/cases/weno-critical-epsilon"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/weno-critical/verification.json",
+          "json_pointer": "/all_cases_rerun"
         }
       ],
       "availability": "saved-output",
+      "supplemental_examples": [
+        {
+          "id": "weno-critical-epsilon",
+          "url": "/numerical-methods-atlas/validation/weno-critical-epsilon/",
+          "name": {
+            "ja": "WENO-JS／Z：臨界点とεの固定比較",
+            "en": "WENO-JS/Z: fixed critical-point and epsilon comparison"
+          }
+        }
+      ],
       "reading": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/stability/",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/stability/"
@@ -4007,6 +4036,242 @@
         "python -m pytest -q",
         "python run.py --input inputs.json --output output"
       ]
+    },
+    {
+      "id": "swashes-topography",
+      "group": "fluid",
+      "name": {
+        "ja": "SWASHES地形上の静止湖・定常浅水流",
+        "en": "SWASHES lakes and steady shallow flow over topography"
+      },
+      "chapter": "validation-shallow-water",
+      "reading_section": "swashes-topography",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/shallow-water/",
+      "verification": "/code/validated-examples/2026-11-23/shallow-water/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/shallow-water/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "swashes-topography"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/shallow-water/results/swashes-topography-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/shallow-water/inputs.json",
+          "json_pointer": "/topography"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/shallow-water/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "swashes-topography",
+          "url": "/numerical-methods-atlas/validation/swashes-topography/",
+          "name": {
+            "ja": "SWASHES地形流：静水と非零流量の定常解",
+            "en": "SWASHES topographic flow: lakes and nonzero steady discharge"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-shallow-water/#swashes-topography",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/#swashes-topography"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#swashes-topography",
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ]
+    },
+    {
+      "id": "dry-bed-dam-break",
+      "group": "fluid",
+      "name": {
+        "ja": "乾燥床へのRitter破堤流",
+        "en": "Ritter dam break onto a dry bed"
+      },
+      "chapter": "validation-shallow-water",
+      "reading_section": "dry-bed-dam-break",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/shallow-water/",
+      "verification": "/code/validated-examples/2026-11-23/shallow-water/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/shallow-water/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "dry-bed-dam-break"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/shallow-water/results/dry-bed-dam-break-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/shallow-water/inputs.json",
+          "json_pointer": "/ritter"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/shallow-water/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "dry-bed-dam-break",
+          "url": "/numerical-methods-atlas/validation/dry-bed-dam-break/",
+          "name": {
+            "ja": "乾いた河床のダム破壊：実際のwetting/drying",
+            "en": "Dry-bed dam break: actual wetting and dry states"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-shallow-water/#dry-bed-dam-break",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/#dry-bed-dam-break"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#dry-bed-dam-break",
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ]
+    },
+    {
+      "id": "lid-driven-cavity",
+      "group": "viscous",
+      "name": {
+        "ja": "Re100の蓋駆動キャビティ",
+        "en": "Re100 lid-driven cavity"
+      },
+      "chapter": "validation-wall-flow",
+      "reading_section": "cavity-ghia-re100",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23-r2/wall-flow/",
+      "verification": "/code/validated-examples/2026-11-23-r2/wall-flow/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23-r2/wall-flow/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "cavity-ghia-re100"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r2/wall-flow/results/cavity-ghia-re100-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r2/wall-flow/inputs.json",
+          "json_pointer": "/nodes"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r2/wall-flow/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "cavity-ghia-re100",
+          "url": "/numerical-methods-atlas/validation/cavity-ghia-re100/",
+          "name": {
+            "ja": "Re=100蓋駆動キャビティ：Ghia中心線との比較",
+            "en": "Re100 lid-driven cavity: Ghia centerline comparison"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-wall-flow/#cavity-ghia-re100",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-wall-flow/#cavity-ghia-re100"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#lid-driven-cavity",
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ]
+    },
+    {
+      "id": "wall-manufactured",
+      "group": "viscous",
+      "name": {
+        "ja": "非周期壁面の製造非圧縮流",
+        "en": "Manufactured incompressible flow with nonperiodic walls"
+      },
+      "chapter": "validation-wall-flow",
+      "reading_section": "wall-manufactured",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23-r2/wall-flow/",
+      "verification": "/code/validated-examples/2026-11-23-r2/wall-flow/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23-r2/wall-flow/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "wall-manufactured"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r2/wall-flow/results/wall-manufactured-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r2/wall-flow/inputs.json",
+          "json_pointer": "/nodes"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r2/wall-flow/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "wall-manufactured",
+          "url": "/numerical-methods-atlas/validation/wall-manufactured/",
+          "name": {
+            "ja": "非周期壁面の製造解：速度・剪断・圧力演算子",
+            "en": "Nonperiodic wall MMS: velocity, shear and pressure operator"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-wall-flow/#wall-manufactured",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-wall-flow/#wall-manufactured"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#wall-manufactured",
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ]
     }
   ],
   "excluded_examples": {
@@ -4035,14 +4300,14 @@
   },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/",
   "counts": {
-    "test_problems": 87,
-    "saved_test_problems": 87,
+    "test_problems": 91,
+    "saved_test_problems": 91,
     "code_test_problems": 0,
     "groups": {
       "transport": 10,
-      "fluid": 19,
+      "fluid": 21,
       "mhd": 5,
-      "viscous": 3,
+      "viscous": 5,
       "elliptic": 13,
       "gravity": 7,
       "time": 8,
@@ -4054,11 +4319,15 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-test-problems.json": "5f210155a1fa739db4baa26e279015aebc92914c6a613dd3cf882e0d72c5fda9",
+    "catalog/atlas-test-problems.json": "fbd338a47e91a37a1881d5d8d06125971331434f742f539e3a21f339ad37958a",
     "numerical-methods-atlas/equation-gallery.json": "e99af38238a50232f92875817c4556ab6c730289db13014efdd41913096c902e",
     "numerical-methods-atlas/cip.json": "3aa33fbffad6b9ad76310e9b713629a1a35b4e30e419db0c531180cf769e6b6f",
     "numerical-methods-atlas/limiters.json": "3242180ba171420220fd349cac93dff552466070f886f3d00a70927939255312",
     "numerical-methods-atlas/experiments.json": "3b58cba3ed6001ca9403f9ace461747d2eaa5e187e6599ead876c6af27150226",
+    "code/validated-examples/2026-11-23/weno-critical/results/result.json": "c4150a350d0854b3b815bd820790711ecdbcc7594690c0ad8c15e23f6aa3d05d",
+    "code/validated-examples/2026-11-23/weno-critical/results/weno-critical-epsilon-preview.png": "a70007470597454c794b682ba985521ee32f2e8cbbaba2eb7eff9371296138d4",
+    "code/validated-examples/2026-11-23/weno-critical/inputs.json": "1236a9d75c55a9cc9dfbdcb4f184c57e82b06e45948422e4ca75b750295860a0",
+    "code/validated-examples/2026-11-23/weno-critical/verification.json": "ccbf3c6a2fe7055b324a0d98c152da909242f36e0c82ca3281038e4c9b0c165f",
     "code/numerical-methods-atlas/2026-11-21/tests/test_linear.py": "5e7323f2734fb7328c35706ccd90fc25076bd46d01d32cd9c78c8cd25dd0421f",
     "numerical-methods-atlas/assets/validation.json": "8c9198b072ae067f208fdb6c44ee4f84fe19b93f68f2f78811eb18cb1ffcef1a",
     "numerical-methods-atlas/sod.json": "ea8a84854b7f66b80251b007420ba4b2c8b2c83f20171e60a05a6ce6a092ca95",
@@ -4199,7 +4468,17 @@
     "code/validated-examples/2026-11-23/zalesak/results/result.json": "51851a31df72eec078e25171deeacd2699a9bfe9eedc55b4bc6831fd233b408d",
     "code/validated-examples/2026-11-23/zalesak/results/zalesak-rotation-preview.png": "4c1236cfeda0f42d555a6a918ed20682729c95c91f2ab6a9c615e2eb5fbcdccc",
     "code/validated-examples/2026-11-23/zalesak/inputs.json": "0dcc0dc1e870fd50ddf5778ee189ec4069694247fdee6610c16832ed4d690c63",
-    "code/validated-examples/2026-11-23/zalesak/verification.json": "aad9b39c23d83e967588361edfdb05724f1ea3fade93843ebb05b5fd829ba44e"
+    "code/validated-examples/2026-11-23/zalesak/verification.json": "aad9b39c23d83e967588361edfdb05724f1ea3fade93843ebb05b5fd829ba44e",
+    "code/validated-examples/2026-11-23/shallow-water/results/result.json": "49a56493e429dd3b4c9d6f8eba72c53ddd3469689699217157b9823a392c015f",
+    "code/validated-examples/2026-11-23/shallow-water/results/swashes-topography-preview.png": "dfbcd9dc201a400172a4c82346772383c32b6ff77d9e16d72992994be962e01c",
+    "code/validated-examples/2026-11-23/shallow-water/inputs.json": "fff83d5e5feda6863ca574a15701b532e85fdb2872110ab4b4ba1a2ebde4f147",
+    "code/validated-examples/2026-11-23/shallow-water/verification.json": "e342321ddc1f7692e08dcc7a63478912956f63637c855f2f85eaf0999c4d22cc",
+    "code/validated-examples/2026-11-23/shallow-water/results/dry-bed-dam-break-preview.png": "84a63409b927c0ee6214d1c2519e5727493f121cc835340e509d997e3eff32e2",
+    "code/validated-examples/2026-11-23-r2/wall-flow/results/result.json": "ce92039a849015c3c3bd1de8e6ef77052f6fc5a9765ff961bc20086180996252",
+    "code/validated-examples/2026-11-23-r2/wall-flow/results/cavity-ghia-re100-preview.png": "ce88c820d7513d83c054892f36ee234d938cf180428f3a6783899deb3b9f77b5",
+    "code/validated-examples/2026-11-23-r2/wall-flow/inputs.json": "41281dc7b9e7cc2a79dd88d5f17e6d2b9be1c3d492691244856ec1cf11d7e2c4",
+    "code/validated-examples/2026-11-23-r2/wall-flow/verification.json": "6daf2fa12cf2e7f604bb54413b82e36bbe72891132e1846abf598f9c9600b096",
+    "code/validated-examples/2026-11-23-r2/wall-flow/results/wall-manufactured-preview.png": "edb1f81d131734b64f5056b10209f6a93ba3e8148ea6d5f50bcd9af312acf4d7"
   },
   "code_edition": "2026-11-21",
   "code_verification": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/verification.json"

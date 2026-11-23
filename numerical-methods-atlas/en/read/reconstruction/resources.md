@@ -97,6 +97,10 @@ Resources explicitly registered to the methods, problems and executions of this 
 
 ## Code and validation
 
+- [WENO-JS/Z: fixed critical-point and epsilon comparison](<https://hrkoyama.github.io/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=en>)
+  availability: run
+
+  Compare WENO5 JS and Z power-two weights from the same cell means, then evolve actual periodic transport. Retain three regularity classes, three epsilon choices, fixed grids and separate halved-time-step diagnostics.
 - [Shu–Osher: characteristic WENO-Z and a numerical reference](<https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/shu-osher/?lang=en>)
   availability: run
 

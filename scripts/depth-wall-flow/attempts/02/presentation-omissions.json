@@ -1,0 +1,66 @@
+{
+  "scope": "Only duplicate presentation files omitted from this nested public source archive; all scientificsource and JSON/CSV/NPZ/logs retained. Exact12figures are persistently retained in private output backup.",
+  "files": [
+    {
+      "file": "source/results/cavity-ghia-re100-preview.pdf",
+      "sha256": "962b245801998d18e83d12c185223116059482aef3548b9505a81180fc40fd96",
+      "private_preserved_backup": "outputs/atlas-batch-13-17-2026-11-23/wall-flow/attempt-02/results/cavity-ghia-re100-preview.pdf"
+    },
+    {
+      "file": "source/results/cavity-ghia-re100-preview.png",
+      "sha256": "ce88c820d7513d83c054892f36ee234d938cf180428f3a6783899deb3b9f77b5",
+      "private_preserved_backup": "outputs/atlas-batch-13-17-2026-11-23/wall-flow/attempt-02/results/cavity-ghia-re100-preview.png"
+    },
+    {
+      "file": "source/results/cavity-ghia-re100-preview.svg",
+      "sha256": "f4fac39873992372a8a3bccc20dc08fb3dff78e5e555199fca8afb01b1d32574",
+      "private_preserved_backup": "outputs/atlas-batch-13-17-2026-11-23/wall-flow/attempt-02/results/cavity-ghia-re100-preview.svg"
+    },
+    {
+      "file": "source/results/cavity-ghia-re100.pdf",
+      "sha256": "eaf5993607ca4f49e1bbeb4d623907f7594ef9b3c33ca76ba6226c41a0b62f9e",
+      "private_preserved_backup": "outputs/atlas-batch-13-17-2026-11-23/wall-flow/attempt-02/results/cavity-ghia-re100.pdf"
+    },
+    {
+      "file": "source/results/cavity-ghia-re100.png",
+      "sha256": "264ec174a0aaeb374d6506ba91503f44e6518ebb9f91a7a309ff8a890f372906",
+      "private_preserved_backup": "outputs/atlas-batch-13-17-2026-11-23/wall-flow/attempt-02/results/cavity-ghia-re100.png"
+    },
+    {
+      "file": "source/results/cavity-ghia-re100.svg",
+      "sha256": "3f7b3956365ff29596c39183f76234bb2c8551caba019e750817fa3dcf525fa7",
+      "private_preserved_backup": "outputs/atlas-batch-13-17-2026-11-23/wall-flow/attempt-02/results/cavity-ghia-re100.svg"
+    },
+    {
+      "file": "source/results/wall-manufactured-preview.pdf",
+      "sha256": "dab3501c7c9aaad0d3cb60c503e2a3afbf17ec85670beb0d669e114ff0455020",
+      "private_preserved_backup": "outputs/atlas-batch-13-17-2026-11-23/wall-flow/attempt-02/results/wall-manufactured-preview.pdf"
+    },
+    {
+      "file": "source/results/wall-manufactured-preview.png",
+      "sha256": "edb1f81d131734b64f5056b10209f6a93ba3e8148ea6d5f50bcd9af312acf4d7",
+      "private_preserved_backup": "outputs/atlas-batch-13-17-2026-11-23/wall-flow/attempt-02/results/wall-manufactured-preview.png"
+    },
+    {
+      "file": "source/results/wall-manufactured-preview.svg",
+      "sha256": "0692d7bf0d8820c5951d997b5b715ea6e07f16026c1912ba9b6097cddbce67d2",
+      "private_preserved_backup": "outputs/atlas-batch-13-17-2026-11-23/wall-flow/attempt-02/results/wall-manufactured-preview.svg"
+    },
+    {
+      "file": "source/results/wall-manufactured.pdf",
+      "sha256": "f58f1c99412fba4abf2d6b057289bbead439239f5c005825ae1185c8fa617b98",
+      "private_preserved_backup": "outputs/atlas-batch-13-17-2026-11-23/wall-flow/attempt-02/results/wall-manufactured.pdf"
+    },
+    {
+      "file": "source/results/wall-manufactured.png",
+      "sha256": "8e85ee6e755ba71c723b19b5222e85e450f88c4383bbce7526b23a6d6f04cdb8",
+      "private_preserved_backup": "outputs/atlas-batch-13-17-2026-11-23/wall-flow/attempt-02/results/wall-manufactured.png"
+    },
+    {
+      "file": "source/results/wall-manufactured.svg",
+      "sha256": "6bbd369d0cbe7fb598d0c03258ed20ef568fae02ea8b9967546cf3a158b88e82",
+      "private_preserved_backup": "outputs/atlas-batch-13-17-2026-11-23/wall-flow/attempt-02/results/wall-manufactured.svg"
+    }
+  ],
+  "reproduce_from_archived_numerical_data": "cd attempts/02/source && python plot.py --results results/result.json --output results"
+}

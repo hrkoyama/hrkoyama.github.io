@@ -1,0 +1,37 @@
+{
+  "revision": 2,
+  "runtime_limit_seconds": 120,
+  "shared_pytest_plus_main_budget_seconds": 120,
+  "free_disk_bytes_before": 11350024192,
+  "contract_sha256": "60b6fb56896cd80bcbba3ba03d498440fafc260d3edb1c99103a9dda2a88de7a",
+  "pytest": {
+    "returncode": 0,
+    "remaining_budget_before_seconds": 119.9997822080004,
+    "elapsed_group_seconds": 0.38701904200206627
+  },
+  "run": {
+    "returncode": 1,
+    "remaining_budget_before_seconds": 119.61297833299977,
+    "elapsed_group_seconds": 0.9439986249999492
+  },
+  "total_seconds": 0.9440010420003091,
+  "pytest_counts": {
+    "tests": 28,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "passed": false,
+  "runs": 6,
+  "gates": 80,
+  "scientific_duration_seconds": 0.47718020799948135,
+  "failed": [
+    {
+      "name": "all fixed runs completed",
+      "value": 1,
+      "bound": 3,
+      "passed": false
+    }
+  ],
+  "free_disk_bytes_after": 11353010176
+}

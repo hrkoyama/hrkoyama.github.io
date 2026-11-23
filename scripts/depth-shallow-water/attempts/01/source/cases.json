@@ -1,0 +1,303 @@
+[
+  {
+    "method_ids": [
+      "godunov",
+      "hll",
+      "forward-euler"
+    ],
+    "domains": [
+      "pde",
+      "hydrodynamics"
+    ],
+    "code_files": [
+      "run.py",
+      "shallow_water.py",
+      "references/analytic.py"
+    ],
+    "references": [
+      {
+        "id": "swashes2013",
+        "author": "O. Delestre et al.",
+        "year": 2013,
+        "title": "SWASHES: a compilation of shallow water analytic solutions for hydraulic and environmental studies",
+        "journal": "International Journal for Numerical Methods in Fluids",
+        "volume": "72",
+        "pages": "269-300",
+        "doi": "10.1002/fld.3741",
+        "url": "https://arxiv.org/pdf/1110.0288",
+        "review_level": "selected-equations-and-fixed-inputs",
+        "review_scope": "Author arXiv v3: sections2,3.1.1-3.1.3,4.1.2. Bump, lakes, Bernoulli and Ritter formulas inspected; no full-library audit or SWASHES execution/source reuse.",
+        "role": "analytic formulas and benchmark provenance"
+      },
+      {
+        "id": "audusse2004",
+        "author": "E. Audusse, F. Bouchut, M.-O. Bristeau, R. Klein, B. Perthame",
+        "year": 2004,
+        "title": "A Fast and Stable Well-Balanced Scheme with Hydrostatic Reconstruction for Shallow Water Flows",
+        "journal": "SIAM Journal on Scientific Computing",
+        "volume": "25",
+        "pages": "2050-2065",
+        "doi": "10.1137/S1064827503431090",
+        "url": "https://epubs.siam.org/doi/abs/10.1137/S1064827503431090",
+        "review_level": "bibliography-and-author-follow-up",
+        "review_scope": "Publisher/author bibliography checked. Author-linked original PDF retrieval timed out; HR algebra read in author follow-up arXiv1409.3825. No full original-paper audit.",
+        "role": "original HR attribution"
+      },
+      {
+        "id": "audusse2016",
+        "author": "E. Audusse, F. Bouchut, M.-O. Bristeau, J. Sainte-Marie",
+        "year": 2016,
+        "title": "Kinetic entropy inequality and hydrostatic reconstruction scheme for the Saint-Venant system",
+        "journal": "Mathematics of Computation",
+        "volume": "85",
+        "pages": "2815-2837",
+        "url": "https://arxiv.org/pdf/1409.3825",
+        "review_level": "selected-scheme-equations",
+        "review_scope": "arXiv v2 section1 model/entropy caveat; section3.1 equations3.1-3.5 face states and pressure corrections. Full kinetic proof not audited or claimed for this HLL solver.",
+        "role": "directly inspected HR algebra"
+      },
+      {
+        "id": "swashes-project",
+        "author": "Institut Denis Poisson / SWASHES authors",
+        "title": "SWASHES project page",
+        "url": "https://www.idpoisson.fr/en/swashes-es/",
+        "review_level": "official-project-scope-and-rights",
+        "review_scope": "Official project/library purpose, CeCILL-v2 licensing and corrected-paper/addendum notice inspected. No library code copied or executed.",
+        "role": "project scope and rights"
+      }
+    ],
+    "citations": [
+      {
+        "id": "swashes2013",
+        "author": "O. Delestre et al.",
+        "year": 2013,
+        "title": "SWASHES: a compilation of shallow water analytic solutions for hydraulic and environmental studies",
+        "journal": "International Journal for Numerical Methods in Fluids",
+        "volume": "72",
+        "pages": "269-300",
+        "doi": "10.1002/fld.3741",
+        "url": "https://arxiv.org/pdf/1110.0288",
+        "review_level": "selected-equations-and-fixed-inputs",
+        "review_scope": "Author arXiv v3: sections2,3.1.1-3.1.3,4.1.2. Bump, lakes, Bernoulli and Ritter formulas inspected; no full-library audit or SWASHES execution/source reuse.",
+        "role": "analytic formulas and benchmark provenance"
+      },
+      {
+        "id": "audusse2004",
+        "author": "E. Audusse, F. Bouchut, M.-O. Bristeau, R. Klein, B. Perthame",
+        "year": 2004,
+        "title": "A Fast and Stable Well-Balanced Scheme with Hydrostatic Reconstruction for Shallow Water Flows",
+        "journal": "SIAM Journal on Scientific Computing",
+        "volume": "25",
+        "pages": "2050-2065",
+        "doi": "10.1137/S1064827503431090",
+        "url": "https://epubs.siam.org/doi/abs/10.1137/S1064827503431090",
+        "review_level": "bibliography-and-author-follow-up",
+        "review_scope": "Publisher/author bibliography checked. Author-linked original PDF retrieval timed out; HR algebra read in author follow-up arXiv1409.3825. No full original-paper audit.",
+        "role": "original HR attribution"
+      },
+      {
+        "id": "audusse2016",
+        "author": "E. Audusse, F. Bouchut, M.-O. Bristeau, J. Sainte-Marie",
+        "year": 2016,
+        "title": "Kinetic entropy inequality and hydrostatic reconstruction scheme for the Saint-Venant system",
+        "journal": "Mathematics of Computation",
+        "volume": "85",
+        "pages": "2815-2837",
+        "url": "https://arxiv.org/pdf/1409.3825",
+        "review_level": "selected-scheme-equations",
+        "review_scope": "arXiv v2 section1 model/entropy caveat; section3.1 equations3.1-3.5 face states and pressure corrections. Full kinetic proof not audited or claimed for this HLL solver.",
+        "role": "directly inspected HR algebra"
+      },
+      {
+        "id": "swashes-project",
+        "author": "Institut Denis Poisson / SWASHES authors",
+        "title": "SWASHES project page",
+        "url": "https://www.idpoisson.fr/en/swashes-es/",
+        "review_level": "official-project-scope-and-rights",
+        "review_scope": "Official project/library purpose, CeCILL-v2 licensing and corrected-paper/addendum notice inspected. No library code copied or executed.",
+        "role": "project scope and rights"
+      }
+    ],
+    "id": "swashes-topography",
+    "title": {
+      "ja": "SWASHES地形流：静水と非零流量の定常解",
+      "en": "SWASHES topographic flow: lakes and nonzero steady discharge"
+    },
+    "summary": {
+      "ja": "水没・露出した隆起上の静水と、非零流量の亜臨界定常解を別々に検査します。静水の保存と、動く定常流に残る離散化誤差を区別します。",
+      "en": "Check two lake equilibria separately from nonzero subcritical flow, distinguishing lake preservation from moving-flow discretization error."
+    },
+    "assumptions": {
+      "ja": "1次元、g=9.81、長さ25m、8<x<12でz=.2−.05(x−10)²m。水位.5/.1mの静水は200セル、流量4.42m²/s・下流深さ2mの定常流は100/200/400セル、t=2s。地形は区分定数セル平均。定常流から開始し、静水からの定常化実験とは区別します。",
+      "en": "1D, g=9.81, L=25m, compact parabolic bed z=.2-.05(x-10)^2 on8<x<12. Lakes at surface .5/.1m use200 cells. Moving flow q=4.42m2/s, downstream h=2m uses100/200/400 cells to2s. Initialize the steady branch, not the published rest-to-steady transient."
+    },
+    "algorithm": {
+      "ja": "非負な静水圧再構成、共有HLL流束と左右の圧力補正で地形源項を離散化します。前進Euler、面Courant数.4。静水は反射壁。亜臨界流は上流で流量・下流で水深のみを指定し他変数を外挿します。floor・clip・retryはありません。",
+      "en": "Hydrostatic reconstruction, shared HLL flux and left/right pressure corrections discretize the bed source; forward Euler and face CFL .4. Lakes use reflecting walls. Moving subcritical boundaries impose upstream q and downstream h, extrapolating the other datum. No state floors, clipping or retries."
+    },
+    "validation": {
+      "ja": "28単体検査と8固定計算を事前固定。静水の水深・流量の最大変化、全FE段の非負水深、共有流束と地形運動量の収支、定常流3格子の保存量セル平均L1誤差・細分化比を保存します。独立したBernoulli二分法のエネルギー一定・亜臨界枝を照合します。",
+      "en": "Freeze28 unit checks and eight group runs. Record lake drift, every FE minimum depth, shared-flux/bed-impulse budgets, conservative-mean L1 errors and three-grid ratios. Qualify an independent Bernoulli bisection by energy and branch checks."
+    },
+    "limits": {
+      "ja": "静水の厳密釣合いは表現したセル地形に対する性質です。非零流量の定常解は厳密には保存されず、有限時刻の誤差を測ります。遷移流・跳水・摩擦・降雨・浸透・2次元流や完全離散エントロピー安定性は検証しません。",
+      "en": "Exact lake balance concerns the represented cell bed. Moving steady states retain finite-time numerical error. Transcritical flows, jumps, friction, rain, infiltration, 2D flow and fully discrete entropy stability are outside scope."
+    },
+    "formulas": [
+      "\\partial_t h+\\partial_x q=0,\\qquad \\partial_tq+\\partial_x(q^2/h+gh^2/2)=-gh\\partial_xz",
+      "z^*=\\max(z_L,z_R),\\quad h_K^*=\\max(0,h_K+z_K-z^*),\\quad q_K^*=h_K^*u_K",
+      "F_K=F_{\\mathrm{HLL}}(U_L^*,U_R^*)+(0,\\tfrac12g(h_K^2-(h_K^*)^2))^T",
+      "q=4.42,\\quad h+z+q^2/(2gh^2)=2+4.42^2/(8g),\\quad h>(q^2/g)^{1/3}"
+    ]
+  },
+  {
+    "method_ids": [
+      "godunov",
+      "hll",
+      "forward-euler"
+    ],
+    "domains": [
+      "pde",
+      "hydrodynamics"
+    ],
+    "code_files": [
+      "run.py",
+      "shallow_water.py",
+      "references/analytic.py"
+    ],
+    "references": [
+      {
+        "id": "swashes2013",
+        "author": "O. Delestre et al.",
+        "year": 2013,
+        "title": "SWASHES: a compilation of shallow water analytic solutions for hydraulic and environmental studies",
+        "journal": "International Journal for Numerical Methods in Fluids",
+        "volume": "72",
+        "pages": "269-300",
+        "doi": "10.1002/fld.3741",
+        "url": "https://arxiv.org/pdf/1110.0288",
+        "review_level": "selected-equations-and-fixed-inputs",
+        "review_scope": "Author arXiv v3: sections2,3.1.1-3.1.3,4.1.2. Bump, lakes, Bernoulli and Ritter formulas inspected; no full-library audit or SWASHES execution/source reuse.",
+        "role": "analytic formulas and benchmark provenance"
+      },
+      {
+        "id": "audusse2004",
+        "author": "E. Audusse, F. Bouchut, M.-O. Bristeau, R. Klein, B. Perthame",
+        "year": 2004,
+        "title": "A Fast and Stable Well-Balanced Scheme with Hydrostatic Reconstruction for Shallow Water Flows",
+        "journal": "SIAM Journal on Scientific Computing",
+        "volume": "25",
+        "pages": "2050-2065",
+        "doi": "10.1137/S1064827503431090",
+        "url": "https://epubs.siam.org/doi/abs/10.1137/S1064827503431090",
+        "review_level": "bibliography-and-author-follow-up",
+        "review_scope": "Publisher/author bibliography checked. Author-linked original PDF retrieval timed out; HR algebra read in author follow-up arXiv1409.3825. No full original-paper audit.",
+        "role": "original HR attribution"
+      },
+      {
+        "id": "audusse2016",
+        "author": "E. Audusse, F. Bouchut, M.-O. Bristeau, J. Sainte-Marie",
+        "year": 2016,
+        "title": "Kinetic entropy inequality and hydrostatic reconstruction scheme for the Saint-Venant system",
+        "journal": "Mathematics of Computation",
+        "volume": "85",
+        "pages": "2815-2837",
+        "url": "https://arxiv.org/pdf/1409.3825",
+        "review_level": "selected-scheme-equations",
+        "review_scope": "arXiv v2 section1 model/entropy caveat; section3.1 equations3.1-3.5 face states and pressure corrections. Full kinetic proof not audited or claimed for this HLL solver.",
+        "role": "directly inspected HR algebra"
+      },
+      {
+        "id": "swashes-project",
+        "author": "Institut Denis Poisson / SWASHES authors",
+        "title": "SWASHES project page",
+        "url": "https://www.idpoisson.fr/en/swashes-es/",
+        "review_level": "official-project-scope-and-rights",
+        "review_scope": "Official project/library purpose, CeCILL-v2 licensing and corrected-paper/addendum notice inspected. No library code copied or executed.",
+        "role": "project scope and rights"
+      }
+    ],
+    "citations": [
+      {
+        "id": "swashes2013",
+        "author": "O. Delestre et al.",
+        "year": 2013,
+        "title": "SWASHES: a compilation of shallow water analytic solutions for hydraulic and environmental studies",
+        "journal": "International Journal for Numerical Methods in Fluids",
+        "volume": "72",
+        "pages": "269-300",
+        "doi": "10.1002/fld.3741",
+        "url": "https://arxiv.org/pdf/1110.0288",
+        "review_level": "selected-equations-and-fixed-inputs",
+        "review_scope": "Author arXiv v3: sections2,3.1.1-3.1.3,4.1.2. Bump, lakes, Bernoulli and Ritter formulas inspected; no full-library audit or SWASHES execution/source reuse.",
+        "role": "analytic formulas and benchmark provenance"
+      },
+      {
+        "id": "audusse2004",
+        "author": "E. Audusse, F. Bouchut, M.-O. Bristeau, R. Klein, B. Perthame",
+        "year": 2004,
+        "title": "A Fast and Stable Well-Balanced Scheme with Hydrostatic Reconstruction for Shallow Water Flows",
+        "journal": "SIAM Journal on Scientific Computing",
+        "volume": "25",
+        "pages": "2050-2065",
+        "doi": "10.1137/S1064827503431090",
+        "url": "https://epubs.siam.org/doi/abs/10.1137/S1064827503431090",
+        "review_level": "bibliography-and-author-follow-up",
+        "review_scope": "Publisher/author bibliography checked. Author-linked original PDF retrieval timed out; HR algebra read in author follow-up arXiv1409.3825. No full original-paper audit.",
+        "role": "original HR attribution"
+      },
+      {
+        "id": "audusse2016",
+        "author": "E. Audusse, F. Bouchut, M.-O. Bristeau, J. Sainte-Marie",
+        "year": 2016,
+        "title": "Kinetic entropy inequality and hydrostatic reconstruction scheme for the Saint-Venant system",
+        "journal": "Mathematics of Computation",
+        "volume": "85",
+        "pages": "2815-2837",
+        "url": "https://arxiv.org/pdf/1409.3825",
+        "review_level": "selected-scheme-equations",
+        "review_scope": "arXiv v2 section1 model/entropy caveat; section3.1 equations3.1-3.5 face states and pressure corrections. Full kinetic proof not audited or claimed for this HLL solver.",
+        "role": "directly inspected HR algebra"
+      },
+      {
+        "id": "swashes-project",
+        "author": "Institut Denis Poisson / SWASHES authors",
+        "title": "SWASHES project page",
+        "url": "https://www.idpoisson.fr/en/swashes-es/",
+        "review_level": "official-project-scope-and-rights",
+        "review_scope": "Official project/library purpose, CeCILL-v2 licensing and corrected-paper/addendum notice inspected. No library code copied or executed.",
+        "role": "project scope and rights"
+      }
+    ],
+    "id": "dry-bed-dam-break",
+    "title": {
+      "ja": "乾いた河床のダム破壊：実際のwetting/drying",
+      "en": "Dry-bed dam break: actual wetting and dry states"
+    },
+    "summary": {
+      "ja": "右半分を厳密にh=q=0として開始する浅水方程式を解き、実際の乾湿前線の進行と保存をRitter解析解と比較します。",
+      "en": "Start the right half at exactly h=q=0 and compare wetting-front advance, conservation and conservative errors with the Ritter analytic solution."
+    },
+    "assumptions": {
+      "ja": "平坦床・無摩擦、[−5,5]m、ダムx=0、左深さ1m・右0m、初速0、g=9.81、t=.5s、100/200/400セル。SWASHESのRitter式を明示した別スケールで使い、原例の.005m・6s入力とは区別します。",
+      "en": "Flat frictionless bed on[-5,5]m, dam0, hL=1m/hR=0, initial velocity0, g=9.81, t=.5s,100/200/400 cells. The Ritter formula uses an explicit rescaling distinct from the paper numerical example."
+    },
+    "algorithm": {
+      "ja": "同じ有限体積ソルバーが乾状態h=q=0を直接扱います。片側乾床HLL波速はu−c,u+2c（反対向きも同様）。面Courant数.4で前進Euler更新し、状態の切上げなしに全更新後の非負性と共有流束収支を記録します。",
+      "en": "The FV solver supports h=q=0 directly; one-sided dry HLL speeds use u-c/u+2c and their reflection. Forward Euler at face CFL .4 records every minimum and shared-flux budget without raising cell depths."
+    },
+    "validation": {
+      "ja": "全段の水深min、新たに濡れた初期乾セル数、残る乾セル数、境界流束を含む質量・運動量収支を保存します。Ritterのhとhuをファン端で分割したGauss8セル平均と比較し、Gauss16・全質量・PDE残差で参照を確認。3格子L1細分化とh≥.001mの最右セル中心を検査します。",
+      "en": "Record all FE minima, newly wetted and remaining dry cells, boundary-aware mass/momentum budgets, and L1 refinement. Split Gauss8 h/hu references are qualified by Gauss16, mass and PDE identities. Diagnose the rightmost cell center with mean h>=.001m."
+    },
+    "limits": {
+      "ja": "前線診断はセル平均の.001m等深線で、厳密な支持端を別に保存します。非負性は固定実行の実測です。初期乾セルの濡れを検査し、後退汀線・周期的な再乾燥、実地洪水、摩擦や地形上の移動前線は検証しません。",
+      "en": "The .001m mean-depth contour differs from the analytic support edge, which is reported separately. These fixed runs test wetting of initially dry cells. Retreating shorelines, re-drying cycles, real floods, friction and moving fronts over topography are outside scope."
+    },
+    "formulas": [
+      "c_L=\\sqrt{gh_L},\\quad x_A=x_0-c_Lt,\\quad x_B=x_0+2c_Lt",
+      "h=(2c_L-(x-x_0)/t)^2/(9g),\\quad u=\\tfrac23((x-x_0)/t+c_L)\\quad (x_A<x<x_B)",
+      "\\bar U_i^{\\mathrm{ref}}=\\Delta x^{-1}\\int_{C_i}(h,hu)^Tdx,\\quad x_{.001}=x_B-3t\\sqrt{g(0.001)}"
+    ]
+  }
+]

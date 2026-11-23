@@ -1,0 +1,272 @@
+[
+  {
+    "method_ids": [
+      "centered-difference",
+      "heun"
+    ],
+    "domains": [
+      "pde",
+      "coupling",
+      "time"
+    ],
+    "code_files": [
+      "run.py",
+      "wall_flow.py",
+      "references/qualify_reference.py"
+    ],
+    "references": [
+      {
+        "id": "ghia1982",
+        "author": "U. Ghia, K. N. Ghia and C. T. Shin",
+        "year": 1982,
+        "title": "High-Re solutions for incompressible flow using the Navier-Stokes equations and a multigrid method",
+        "journal": "Journal of Computational Physics",
+        "volume": "48",
+        "number": "3",
+        "pages": "387–411",
+        "doi": "10.1016/0021-9991(82)90058-4",
+        "url": "https://www.sciencedirect.com/science/article/pii/0021999182900584",
+        "type": "article",
+        "review_level": "primary-original-selected-pages",
+        "review_scope": "Original PDF rendered and visually read:391–392 equations/Fig1;398–399 TablesI/II Re100 columns;408 TableV primary vortex. Publisher abstract/bibliography read; publisher PDF403. Original PDF obtained from recorded public mirror; no full-paper audit.",
+        "review": {
+          "ja": "原著の式・境界図・表I/IIのRe100列と表Vの主渦を直接目視確認。公開ミラーは原著の配送元として記録し、論文PDFは配布しません。本実装は原著のCSI-MG法とは異なります。",
+          "en": "Visually inspected original equations/boundary figure, Re100 columns in TablesI/II and primary vortex in TableV. The public mirror delivers the original paper; its PDF is not redistributed. This independently written solver differs from CSI-MG."
+        },
+        "accessed_on": "2026-11-23"
+      },
+      {
+        "id": "salari-knupp2000",
+        "author": "Kambiz Salari and Patrick Knupp",
+        "year": 2000,
+        "title": "Code Verification by the Method of Manufactured Solutions",
+        "report": "SAND2000-1444",
+        "doi": "10.2172/759450",
+        "url": "https://www.sandia.gov/research/publications/details/code-verification-by-the-method-of-manufactured-solutions-2000-06-01/",
+        "type": "technical-report",
+        "review_level": "primary-selected-section-and-official-abstract",
+        "review_scope": "Official Sandia/OSTI record and primary report printed12 at UNT read for MMS plus mesh refinement. No whole-report audit. Our quartic polynomial and pressure field are newly constructed.",
+        "review": {
+          "ja": "Sandia/OSTI公式書誌・抄録と、原著報告の印刷12頁で製造解と格子細分化の併用を確認。本例の多項式と圧力場は独自に構成しました。",
+          "en": "Read official Sandia/OSTI metadata/abstract and original report printed12 on MMS together with mesh refinement. The polynomial and pressure field are constructed for this example."
+        },
+        "accessed_on": "2026-11-23"
+      }
+    ],
+    "citations": [
+      {
+        "id": "ghia1982",
+        "author": "U. Ghia, K. N. Ghia and C. T. Shin",
+        "year": 1982,
+        "title": "High-Re solutions for incompressible flow using the Navier-Stokes equations and a multigrid method",
+        "journal": "Journal of Computational Physics",
+        "volume": "48",
+        "number": "3",
+        "pages": "387–411",
+        "doi": "10.1016/0021-9991(82)90058-4",
+        "url": "https://www.sciencedirect.com/science/article/pii/0021999182900584",
+        "type": "article",
+        "review_level": "primary-original-selected-pages",
+        "review_scope": "Original PDF rendered and visually read:391–392 equations/Fig1;398–399 TablesI/II Re100 columns;408 TableV primary vortex. Publisher abstract/bibliography read; publisher PDF403. Original PDF obtained from recorded public mirror; no full-paper audit.",
+        "review": {
+          "ja": "原著の式・境界図・表I/IIのRe100列と表Vの主渦を直接目視確認。公開ミラーは原著の配送元として記録し、論文PDFは配布しません。本実装は原著のCSI-MG法とは異なります。",
+          "en": "Visually inspected original equations/boundary figure, Re100 columns in TablesI/II and primary vortex in TableV. The public mirror delivers the original paper; its PDF is not redistributed. This independently written solver differs from CSI-MG."
+        },
+        "accessed_on": "2026-11-23"
+      },
+      {
+        "id": "salari-knupp2000",
+        "author": "Kambiz Salari and Patrick Knupp",
+        "year": 2000,
+        "title": "Code Verification by the Method of Manufactured Solutions",
+        "report": "SAND2000-1444",
+        "doi": "10.2172/759450",
+        "url": "https://www.sandia.gov/research/publications/details/code-verification-by-the-method-of-manufactured-solutions-2000-06-01/",
+        "type": "technical-report",
+        "review_level": "primary-selected-section-and-official-abstract",
+        "review_scope": "Official Sandia/OSTI record and primary report printed12 at UNT read for MMS plus mesh refinement. No whole-report audit. Our quartic polynomial and pressure field are newly constructed.",
+        "review": {
+          "ja": "Sandia/OSTI公式書誌・抄録と、原著報告の印刷12頁で製造解と格子細分化の併用を確認。本例の多項式と圧力場は独自に構成しました。",
+          "en": "Read official Sandia/OSTI metadata/abstract and original report printed12 on MMS together with mesh refinement. The polynomial and pressure field are constructed for this example."
+        },
+        "accessed_on": "2026-11-23"
+      }
+    ],
+    "id": "cavity-ghia-re100",
+    "title": {
+      "ja": "Re=100蓋駆動キャビティ：Ghia中心線との比較",
+      "en": "Re100 lid-driven cavity: Ghia centerline comparison"
+    },
+    "summary": {
+      "ja": "非周期・粘性非圧縮の実際の2D計算を17/33/65点格子で定常化し、Ghia原著の速度中心線と比較します。流線・渦中心・真の残差と発散を同時に保存します。",
+      "en": "March a real nonperiodic2D viscous incompressible solver to steady state on17/33/65node grids and compare against original Ghia centerlines. Retain streamlines, grid vortex center, true PDE residual and discrete divergence."
+    },
+    "assumptions": {
+      "ja": "無次元の単位正方形、ν=.01、蓋速度U=1、Re=100。上面の内部節点だけu=1、他壁と四隅の速度は0、全壁ψ=0。初期内部渦度は0。壁渦度はThom条件で各Heun段に再設定します。",
+      "en": "Dimensionless unit square, viscosity.01, lid speed1, Re100. Top interior nodes haveu1; other walls and all four corners have zero velocity. Psi0 on every wall; initial interior vorticity0. Reapply Thom wall vorticity at every Heun stage."
+    },
+    "algorithm": {
+      "ja": "ωt+uωx+vωy=νΔωを中央差分とHeun法で進め、各段で−Δhψ=ωを非周期Dirichlet DSTで解きます。u=ψy,v=−ψx。局所一次のThom壁渦度を使用し、原著のCSI-MGと高次壁公式は実装していません。",
+      "en": "Advance vorticity transport with centered differences and Heun. Each stage solves−Delta_h psi=omega using a nonperiodic Dirichlet DST, then formsu=psi_y,v=−psi_x. Use local first-order Thom wall vorticity; this is an independent method, not Ghia CSI-MG or its higher-order wall formula."
+    },
+    "validation": {
+      "ja": "20単体検査と群全体94判定を事前固定。原著の表I/II（印刷398–399頁）を直接確認して転記した17点ずつへ線形補間し、最細の各速度最大誤差≤.03、細分化で減少、定常残差≤1e−7を検査します。表Vの主渦位置・壁値・Poisson残差・離散発散も確認します。",
+      "en": "Freeze20pytest checks and94group gates. Linearly interpolate to17points per velocity transcribed after direct visual reading of original TablesI/II, printed398–399. Require finest component maximum errors≤.03, refinement decrease and steady residual≤1e−7. Also check primary-vortex grid location from TableV, wall values, Poisson residual and discrete divergence."
+    },
+    "limits": {
+      "ja": "Re=100・3固定格子の教育用検査です。蓋と側壁の角に速度の不連続があり、角の速度は静止側を優先します。Ghia値は丸めた数値参照で厳密解ではなく、4桁座標をそのまま使います。高Re・乱流・原著アルゴリズムの再現・キャビティ圧力を検証したとは主張しません。",
+      "en": "Educational Re100 checks on three fixed grids. Lid/sidewall corner velocities are discontinuous; stationary corners take precedence. Ghia values are rounded numerical references, not an exact solution, and printed four-decimal coordinates are preserved. No high-Re, turbulence, original-algorithm reproduction or cavity-pressure validation is claimed."
+    },
+    "formulas": [
+      "\\omega_t+u\\omega_x+v\\omega_y=\\nu\\Delta\\omega,\\quad -\\Delta\\psi=\\omega,\\quad (u,v)=(\\psi_y,-\\psi_x)",
+      "\\mathrm{Re}=UL/\\nu=100,\\quad \\psi|_{\\partial\\Omega}=0,\\quad u(x,1)=1\\ (0<x<1)",
+      "\\omega_{\\mathrm{top},i}=-2\\psi_{J-1,i}/h^2-2U/h,\\quad \\omega_{\\mathrm{stationary}}=-2\\psi_{\\mathrm{adj}}/h^2+O(h)",
+      "\\omega^{(1)}=\\omega^n+\\Delta t L(\\omega^n),\\quad \\omega^{n+1}=\\tfrac12\\omega^n+\\tfrac12[\\omega^{(1)}+\\Delta t L(\\omega^{(1)})]"
+    ],
+    "additional_figures": [
+      {
+        "file": "cavity-ghia-re100-preview.png",
+        "caption": {
+          "ja": "保存した最細Re100計算の流線と速さ。赤点は格子上の主渦、白抜き点はGhia表Vの主渦位置です。",
+          "en": "Saved finest Re100 streamlines and speed. Red dot: computed grid primary vortex; hollow dot: original Ghia TableV location."
+        }
+      }
+    ],
+    "gallery_figure": "cavity-ghia-re100-preview.png"
+  },
+  {
+    "method_ids": [
+      "centered-difference",
+      "heun"
+    ],
+    "domains": [
+      "pde",
+      "coupling",
+      "time"
+    ],
+    "code_files": [
+      "run.py",
+      "wall_flow.py",
+      "references/qualify_reference.py"
+    ],
+    "references": [
+      {
+        "id": "ghia1982",
+        "author": "U. Ghia, K. N. Ghia and C. T. Shin",
+        "year": 1982,
+        "title": "High-Re solutions for incompressible flow using the Navier-Stokes equations and a multigrid method",
+        "journal": "Journal of Computational Physics",
+        "volume": "48",
+        "number": "3",
+        "pages": "387–411",
+        "doi": "10.1016/0021-9991(82)90058-4",
+        "url": "https://www.sciencedirect.com/science/article/pii/0021999182900584",
+        "type": "article",
+        "review_level": "primary-original-selected-pages",
+        "review_scope": "Original PDF rendered and visually read:391–392 equations/Fig1;398–399 TablesI/II Re100 columns;408 TableV primary vortex. Publisher abstract/bibliography read; publisher PDF403. Original PDF obtained from recorded public mirror; no full-paper audit.",
+        "review": {
+          "ja": "原著の式・境界図・表I/IIのRe100列と表Vの主渦を直接目視確認。公開ミラーは原著の配送元として記録し、論文PDFは配布しません。本実装は原著のCSI-MG法とは異なります。",
+          "en": "Visually inspected original equations/boundary figure, Re100 columns in TablesI/II and primary vortex in TableV. The public mirror delivers the original paper; its PDF is not redistributed. This independently written solver differs from CSI-MG."
+        },
+        "accessed_on": "2026-11-23"
+      },
+      {
+        "id": "salari-knupp2000",
+        "author": "Kambiz Salari and Patrick Knupp",
+        "year": 2000,
+        "title": "Code Verification by the Method of Manufactured Solutions",
+        "report": "SAND2000-1444",
+        "doi": "10.2172/759450",
+        "url": "https://www.sandia.gov/research/publications/details/code-verification-by-the-method-of-manufactured-solutions-2000-06-01/",
+        "type": "technical-report",
+        "review_level": "primary-selected-section-and-official-abstract",
+        "review_scope": "Official Sandia/OSTI record and primary report printed12 at UNT read for MMS plus mesh refinement. No whole-report audit. Our quartic polynomial and pressure field are newly constructed.",
+        "review": {
+          "ja": "Sandia/OSTI公式書誌・抄録と、原著報告の印刷12頁で製造解と格子細分化の併用を確認。本例の多項式と圧力場は独自に構成しました。",
+          "en": "Read official Sandia/OSTI metadata/abstract and original report printed12 on MMS together with mesh refinement. The polynomial and pressure field are constructed for this example."
+        },
+        "accessed_on": "2026-11-23"
+      }
+    ],
+    "citations": [
+      {
+        "id": "ghia1982",
+        "author": "U. Ghia, K. N. Ghia and C. T. Shin",
+        "year": 1982,
+        "title": "High-Re solutions for incompressible flow using the Navier-Stokes equations and a multigrid method",
+        "journal": "Journal of Computational Physics",
+        "volume": "48",
+        "number": "3",
+        "pages": "387–411",
+        "doi": "10.1016/0021-9991(82)90058-4",
+        "url": "https://www.sciencedirect.com/science/article/pii/0021999182900584",
+        "type": "article",
+        "review_level": "primary-original-selected-pages",
+        "review_scope": "Original PDF rendered and visually read:391–392 equations/Fig1;398–399 TablesI/II Re100 columns;408 TableV primary vortex. Publisher abstract/bibliography read; publisher PDF403. Original PDF obtained from recorded public mirror; no full-paper audit.",
+        "review": {
+          "ja": "原著の式・境界図・表I/IIのRe100列と表Vの主渦を直接目視確認。公開ミラーは原著の配送元として記録し、論文PDFは配布しません。本実装は原著のCSI-MG法とは異なります。",
+          "en": "Visually inspected original equations/boundary figure, Re100 columns in TablesI/II and primary vortex in TableV. The public mirror delivers the original paper; its PDF is not redistributed. This independently written solver differs from CSI-MG."
+        },
+        "accessed_on": "2026-11-23"
+      },
+      {
+        "id": "salari-knupp2000",
+        "author": "Kambiz Salari and Patrick Knupp",
+        "year": 2000,
+        "title": "Code Verification by the Method of Manufactured Solutions",
+        "report": "SAND2000-1444",
+        "doi": "10.2172/759450",
+        "url": "https://www.sandia.gov/research/publications/details/code-verification-by-the-method-of-manufactured-solutions-2000-06-01/",
+        "type": "technical-report",
+        "review_level": "primary-selected-section-and-official-abstract",
+        "review_scope": "Official Sandia/OSTI record and primary report printed12 at UNT read for MMS plus mesh refinement. No whole-report audit. Our quartic polynomial and pressure field are newly constructed.",
+        "review": {
+          "ja": "Sandia/OSTI公式書誌・抄録と、原著報告の印刷12頁で製造解と格子細分化の併用を確認。本例の多項式と圧力場は独自に構成しました。",
+          "en": "Read official Sandia/OSTI metadata/abstract and original report printed12 on MMS together with mesh refinement. The polynomial and pressure field are constructed for this example."
+        },
+        "accessed_on": "2026-11-23"
+      }
+    ],
+    "id": "wall-manufactured",
+    "title": {
+      "ja": "非周期壁面の製造解：速度・剪断・圧力演算子",
+      "en": "Nonperiodic wall MMS: velocity, shear and pressure operator"
+    },
+    "summary": {
+      "ja": "キャビティと同じ壁条件付き2Dソルバーに解析外力を与え、速度と流れ関数の格子収束、壁渦度・壁剪断の誤差を測ります。別の非零Dirichlet圧力製造解でPoisson・勾配の境界演算子も検査します。",
+      "en": "Apply analytic forcing to the same wall-bounded2D solver, measuring grid convergence of velocity/streamfunction and actual wall-vorticity/shear errors. A separate nonzero-Dirichlet manufactured pressure verifies Poisson and boundary-gradient operators."
+    },
+    "assumptions": {
+      "ja": "単位正方形、ν=.01、17/33/65点、ψ=8f(x)f(y),f(z)=z²(1−z)²。全壁で非浸透・滑りなし。渦度外力は連続方程式から解析的に導出し、全壁にキャビティと同じThom条件を使用します。厳密壁渦度は注入しません。",
+      "en": "Unit square, viscosity.01,17/33/65nodes,psi8f(x)f(y), f(z)=z²(1−z)². All walls are impermeable/no-slip. Derive the curl forcing from the continuous PDE and use the same actual Thom closure as the cavity on every wall; never inject exact wall vorticity."
+    },
+    "algorithm": {
+      "ja": "共通の中央差分・Heun・非周期Dirichlet DST Poissonを使用します。多項式の明示微分と、独立な係数行列の微分を照合します。別途p=x²+y²+sinπx sinπyの非零Dirichlet Poisson問題を解き、内部中央差分・壁上の二次片側差分勾配を検査します。",
+      "en": "Use the shared centered FD/Heun/nonperiodic Dirichlet DST solver. Qualify explicit analytic derivatives against independently differentiated tensor coefficients. Separately solve nonzero-Dirichlet Poisson forp=x²+y²+sin(pi*x)sin(pi*y), checking central interior and second-order one-sided boundary gradients."
+    },
+    "validation": {
+      "ja": "ψと速度の最細刻み対の次数≥1.7、誤差減少・絶対誤差、実際の壁渦度と速度勾配剪断の誤差減少を検査します。圧力演算子はp次数≥1.8、全体と境界の勾配次数≥1.7。独立多項式照合5項目、全壁値、真の定常残差、非周期Poisson残差も記録します。",
+      "en": "Require finest-pair psi/velocity orders≥1.7, decreasing and bounded errors, and decreasing actual wall-vorticity/velocity-gradient shear errors. Separate pressure orders must be≥1.8 forp and≥1.7 for full/boundary gradients. Record five independent polynomial-reference checks, four-wall values, true steady residual and nonperiodic Poisson residual."
+    },
+    "limits": {
+      "ja": "Thomの壁渦度局所打切りは一次で、壁剪断の二次精度は主張せず観測次数を示します。流れ関数の発展では圧力を消去するためゲージは該当しません。圧力診断は独立した演算子製造問題であり、キャビティの圧力・応力境界やMAC射影の検証ではありません。多項式の別微分は独立な流体ソルバーとの比較とは区別します。",
+      "en": "Thom wall vorticity has first-order local truncation; publish observed shear rates without promising second order. Pressure is eliminated from streamfunction evolution, so a pressure gauge is inapplicable. The separate operator MMS does not verify cavity pressure, traction boundaries or MAC projection. Independent polynomial differentiation is distinct from comparison with an independent flow solver."
+    },
+    "formulas": [
+      "f(z)=z^2(1-z)^2,\\quad \\psi_\\star=8f(x)f(y),\\quad u_\\star=\\partial_y\\psi_\\star,\\quad v_\\star=-\\partial_x\\psi_\\star,\\quad\\omega_\\star=-\\Delta\\psi_\\star",
+      "\\omega_t+u\\omega_x+v\\omega_y=\\nu\\Delta\\omega+s,\\quad s=u_\\star\\partial_x\\omega_\\star+v_\\star\\partial_y\\omega_\\star-\\nu\\Delta\\omega_\\star",
+      "p_\\star=x^2+y^2+\\sin(\\pi x)\\sin(\\pi y),\\quad -\\Delta p_\\star=-4+2\\pi^2\\sin(\\pi x)\\sin(\\pi y),\\quad p|_{\\partial\\Omega}=p_\\star",
+      "\\tau_{xy}/\\mu=\\partial_y u\\quad\\text{on stationary horizontal walls},\\qquad p_{\\mathrm{obs}}=\\log_2(E_h/E_{h/2})"
+    ],
+    "additional_figures": [
+      {
+        "file": "wall-manufactured-preview.png",
+        "caption": {
+          "ja": "実計算した最細の製造流れの流線と速度誤差。厳密壁渦度を注入せず、キャビティと同じThom閉鎖を使います。",
+          "en": "Computed finest manufactured-flow streamlines and velocity error, using the same Thom closure as the cavity without exact wall-vorticity injection."
+        }
+      }
+    ],
+    "gallery_figure": "wall-manufactured-preview.png"
+  }
+]

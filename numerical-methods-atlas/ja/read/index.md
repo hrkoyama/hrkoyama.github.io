@@ -70,6 +70,7 @@
 - [Noh問題：2次元Cartesianと格子方向の誤差](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-noh-cartesian/)
 - [Sedov–Taylor点爆発：球対称の軽量検証](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sedov/)
 - [Guderley収束衝撃波：球対称の軽量検証](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-guderley/)
+- [WENOの臨界点・ε依存性](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-weno-critical/)
 
 ## 格子・有限要素・連成方程式
 
@@ -86,6 +87,8 @@
 - [相対論的流体力学：SRHD、GRHD、GRMHD](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/relativistic-hydrodynamics/)
 - [流体・MHDの独立照合とCT／GLM](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd/)
 - [CTとGLM：同条件の独立照合・格子・時間収束](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-convergence/)
+- [浅水流：地形・静止湖・乾燥床](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-shallow-water/)
+- [非周期壁面：キャビティと製造解](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-wall-flow/)
 
 ## 粒子・運動論・輸送
 

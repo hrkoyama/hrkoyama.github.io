@@ -1,8 +1,8 @@
-# 未実装・拡充候補：一つずつ検証する / Implementation and verification backlog
+# 未実装・拡充候補：問題ごとに検証し、まとめて公開する / Benchmark backlog: verify each problem, publish in batches
 
 全分野サーベイの98候補と共通5項目を作業台帳に登録し、参照・コード・検証・図を一組ずつ揃えます。既存例の拡充や出典整備も含み、103件すべてが未実装の手法という意味ではありません。
 
-2026年11月23日の指示により全候補を順次進めます。Nohから着手し、一つの単位を実装・独立追試・引用・図・公開まで揃えてから次へ進みます。新規実装、既存検証の拡充、出典整理を区別し、未着手や検証中を実装済みと表示しません。既存の年末必達計画とは別の継続台帳で、全項目の完了期限は設定していません。
+ユーザーが指定した最大5件を一組として進めます。入力・参照・合否判定・保存図と履歴は各問題で独立させ、索引更新・サイト全体検査・公開確認をまとめます。未検証の項目は完了扱いにしません。
 
 Source: https://hrkoyama.github.io/catalog/atlas-benchmark-backlog.json
 
@@ -680,13 +680,13 @@ Firedrake公式例で形状・速度・周期を確認した単独0–1円盤の
 
 ### WENO-Zの臨界点・epsilon依存の比較
 
-ID: advection-reconstruction-3 · P2 · 未着手 · 検証の拡充
+ID: advection-reconstruction-3 · P2 · 検証済み · 検証の拡充
 
 調査時の範囲：検証範囲不足
 
 調査時の現状：
 
-MUSCL、WENO-JS/Z、PPM、CIP、DG、特性再構築、各limiterは実装済み。1D滑らか/不連続、2D entropy wave、保存・界面恒等式の検査がある。
+36単体検査と当該例の217判定、独立ZIPの全固定入力追試が合格。5件一括の公開URL/Linux確認は公開後に別記録へ保存します。
 
 追加内容・最小の検証：
 
@@ -701,6 +701,8 @@ MUSCL、WENO-JS/Z、PPM、CIP、DG、特性再構築、各limiterは実装済み
 - 誤差・収束と制約が分かる図を保存する。
 - 実在する問題ギャラリー・実行入口・入力・図への対応を確認する。
 
+2026-11-23の候補13〜17を一括公開する限定検証。入力・受入基準・保存配列・失敗履歴は各不変配布版に保持。詳細な条件と適用範囲は実行入口を参照。
+
 調査時の根拠：
 
 - `catalog/atlas-methods.json` · weno-z
@@ -711,17 +713,44 @@ MUSCL、WENO-JS/Z、PPM、CIP、DG、特性再構築、各limiterは実装済み
   滑らか関数の既存検査を基準に拡張。
 
 
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-23/weno-critical/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-23/weno-critical/inputs.json",
+    "/code/validated-examples/2026-11-23/weno-critical/acceptance.json",
+    "/code/validated-examples/2026-11-23/weno-critical/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-23/weno-critical/results/weno-critical-epsilon.png",
+    "/code/validated-examples/2026-11-23/weno-critical/results/weno-critical-epsilon-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-23/weno-critical/run.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-23/weno-critical/references/citations.json",
+    "/code/validated-examples/2026-11-23/weno-critical/references/source-review.json",
+    "/code/validated-examples/2026-11-23/weno-critical/README.md"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#advection-sine-ja",
+  "execution": "/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=ja"
+}
+```
+
 ## 浅水・地形・wet/dry
 
 ### SWASHESのlake at rest・地形上の定常解
 
-ID: shallow-water-1 · P1 · 未着手 · 新規実装
+ID: shallow-water-1 · P1 · 検証済み · 新規実装
 
 調査時の範囲：未収録
 
 調査時の現状：
 
-平坦底・正水深SWEのダム崩壊は実装済み。乾床の参照解カードはあるが既存FV solverは正水深専用。
+31単体検査と当該例の62判定、独立ZIPの全固定入力追試が合格。5件一括の公開URL/Linux確認は公開後に別記録へ保存します。
 
 追加内容・最小の検証：
 
@@ -736,6 +765,8 @@ ID: shallow-water-1 · P1 · 未着手 · 新規実装
 - 誤差・収束と制約が分かる図を保存する。
 - 実在する問題ギャラリー・実行入口・入力・図への対応を確認する。
 
+2026-11-23の候補13〜17を一括公開する限定検証。入力・受入基準・保存配列・失敗履歴は各不変配布版に保持。詳細な条件と適用範囲は実行入口を参照。
+
 調査時の根拠：
 
 - `code/numerical-methods-atlas/2026-11-21/numart/equations.py` · Barotropic(name='shallow-water')
@@ -746,15 +777,43 @@ ID: shallow-water-1 · P1 · 未着手 · 新規実装
 - [Delestre et al., SWASHES](<https://arxiv.org/abs/1110.0288v7>)
   著者原稿の書誌・抄録を確認。2013出版、2016修正版v7で出版版の誤りを訂正と明示。参照版を固定すべき。
 
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-23/shallow-water/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-23/shallow-water/inputs.json",
+    "/code/validated-examples/2026-11-23/shallow-water/acceptance.json",
+    "/code/validated-examples/2026-11-23/shallow-water/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-23/shallow-water/results/swashes-topography.png",
+    "/code/validated-examples/2026-11-23/shallow-water/results/swashes-topography-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-23/shallow-water/run.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-23/shallow-water/references/citations.json",
+    "/code/validated-examples/2026-11-23/shallow-water/references/source-review.json",
+    "/code/validated-examples/2026-11-23/shallow-water/README.md",
+    "/code/validated-examples/2026-11-23/shallow-water/protocol-history.json"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#swashes-topography-ja",
+  "execution": "/numerical-methods-atlas/validation/swashes-topography/?lang=ja"
+}
+```
+
 ### dry-bed参照を使うwetting/drying実行
 
-ID: shallow-water-2 · P2 · 未着手 · 検証の拡充
+ID: shallow-water-2 · P2 · 検証済み · 検証の拡充
 
 調査時の範囲：検証範囲不足
 
 調査時の現状：
 
-平坦底・正水深SWEのダム崩壊は実装済み。乾床の参照解カードはあるが既存FV solverは正水深専用。
+31単体検査と当該例の47判定、独立ZIPの全固定入力追試が合格。5件一括の公開URL/Linux確認は公開後に別記録へ保存します。
 
 追加内容・最小の検証：
 
@@ -769,6 +828,8 @@ ID: shallow-water-2 · P2 · 未着手 · 検証の拡充
 - 誤差・収束と制約が分かる図を保存する。
 - 実在する問題ギャラリー・実行入口・入力・図への対応を確認する。
 
+2026-11-23の候補13〜17を一括公開する限定検証。入力・受入基準・保存配列・失敗履歴は各不変配布版に保持。詳細な条件と適用範囲は実行入口を参照。
+
 調査時の根拠：
 
 - `numerical-methods-atlas/solutions/index.json` · swe-dry-bed/swe-vacuum
@@ -779,17 +840,45 @@ ID: shallow-water-2 · P2 · 未着手 · 検証の拡充
 - [Delestre et al., SWASHES](<https://arxiv.org/abs/1110.0288v7>)
   著者原稿の書誌・抄録を確認。2013出版、2016修正版v7で出版版の誤りを訂正と明示。参照版を固定すべき。
 
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-23/shallow-water/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-23/shallow-water/inputs.json",
+    "/code/validated-examples/2026-11-23/shallow-water/acceptance.json",
+    "/code/validated-examples/2026-11-23/shallow-water/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-23/shallow-water/results/dry-bed-dam-break.png",
+    "/code/validated-examples/2026-11-23/shallow-water/results/dry-bed-dam-break-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-23/shallow-water/run.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-23/shallow-water/references/citations.json",
+    "/code/validated-examples/2026-11-23/shallow-water/references/source-review.json",
+    "/code/validated-examples/2026-11-23/shallow-water/README.md",
+    "/code/validated-examples/2026-11-23/shallow-water/protocol-history.json"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#dry-bed-dam-break-ja",
+  "execution": "/numerical-methods-atlas/validation/dry-bed-dam-break/?lang=ja"
+}
+```
+
 ## 非圧縮流・壁境界
 
 ### Ghiaのlid-driven cavity低Re比較
 
-ID: incompressible-1 · P2 · 未着手 · 新規実装
+ID: incompressible-1 · P2 · 検証済み · 新規実装
 
 調査時の範囲：未収録
 
 調査時の現状：
 
-周期2D MAC射影法とTaylor–Greenの16/32/64格子、圧力・divergence・保存診断、共通固定入力はある。壁境界や境界層の検証はない。
+22単体検査と当該例の35判定、独立ZIPの全固定入力追試が合格。5件一括の公開URL/Linux確認は公開後に別記録へ保存します。
 
 追加内容・最小の検証：
 
@@ -804,6 +893,8 @@ ID: incompressible-1 · P2 · 未着手 · 新規実装
 - 誤差・収束と制約が分かる図を保存する。
 - 実在する問題ギャラリー・実行入口・入力・図への対応を確認する。
 
+2026-11-23の候補13〜17を一括公開する限定検証。入力・受入基準・保存配列・失敗履歴は各不変配布版に保持。詳細な条件と適用範囲は実行入口を参照。
+
 調査時の根拠：
 
 - `numerical-methods-atlas/en/read/incompressible/index.html` · incompressible
@@ -814,15 +905,43 @@ ID: incompressible-1 · P2 · 未着手 · 新規実装
 - [Ghia, Ghia & Shin (1982), High-Re solutions for incompressible flow](<https://www.sciencedirect.com/science/article/abs/pii/0021999182900584>)
   出版社検索結果の書誌・抄録で正方形cavityと数値参照を確認。直接openは403、表の値や全文は未照合。
 
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-23-r2/wall-flow/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-23-r2/wall-flow/inputs.json",
+    "/code/validated-examples/2026-11-23-r2/wall-flow/acceptance.json",
+    "/code/validated-examples/2026-11-23-r2/wall-flow/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-23-r2/wall-flow/results/cavity-ghia-re100.png",
+    "/code/validated-examples/2026-11-23-r2/wall-flow/results/cavity-ghia-re100-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-23-r2/wall-flow/run.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-23-r2/wall-flow/references/citations.json",
+    "/code/validated-examples/2026-11-23-r2/wall-flow/references/source-review.json",
+    "/code/validated-examples/2026-11-23-r2/wall-flow/README.md",
+    "/code/validated-examples/2026-11-23-r2/wall-flow/protocol-history.json"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#lid-driven-cavity-ja",
+  "execution": "/numerical-methods-atlas/validation/cavity-ghia-re100/?lang=ja"
+}
+```
+
 ### Blasiusまたは非周期の製造解による壁面検査
 
-ID: incompressible-2 · P2 · 未着手 · 新規実装
+ID: incompressible-2 · P2 · 検証済み · 新規実装
 
 調査時の範囲：未収録
 
 調査時の現状：
 
-周期2D MAC射影法とTaylor–Greenの16/32/64格子、圧力・divergence・保存診断、共通固定入力はある。壁境界や境界層の検証はない。
+22単体検査と当該例の59判定、独立ZIPの全固定入力追試が合格。5件一括の公開URL/Linux確認は公開後に別記録へ保存します。
 
 追加内容・最小の検証：
 
@@ -837,6 +956,8 @@ ID: incompressible-2 · P2 · 未着手 · 新規実装
 - 誤差・収束と制約が分かる図を保存する。
 - 実在する問題ギャラリー・実行入口・入力・図への対応を確認する。
 
+2026-11-23の候補13〜17を一括公開する限定検証。入力・受入基準・保存配列・失敗履歴は各不変配布版に保持。詳細な条件と適用範囲は実行入口を参照。
+
 調査時の根拠：
 
 - `numerical-methods-atlas/en/read/reference-solutions/index.html` · reference-solutions
@@ -846,6 +967,34 @@ ID: incompressible-2 · P2 · 未着手 · 新規実装
 
 - [Salari & Knupp, Code Verification by the Method of Manufactured Solutions, SAND2000-1444](<https://www.sandia.gov/research/publications/details/code-verification-by-the-method-of-manufactured-solutions-2000-06-01/>)
   Sandia公式報告の書誌・概要・DOI10.2172/759450を確認。製造解の検証方法の出典で、個別の初等解の発見原著として扱わない。
+
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-23-r2/wall-flow/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-23-r2/wall-flow/inputs.json",
+    "/code/validated-examples/2026-11-23-r2/wall-flow/acceptance.json",
+    "/code/validated-examples/2026-11-23-r2/wall-flow/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-23-r2/wall-flow/results/wall-manufactured.png",
+    "/code/validated-examples/2026-11-23-r2/wall-flow/results/wall-manufactured-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-23-r2/wall-flow/run.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-23-r2/wall-flow/references/citations.json",
+    "/code/validated-examples/2026-11-23-r2/wall-flow/references/source-review.json",
+    "/code/validated-examples/2026-11-23-r2/wall-flow/README.md",
+    "/code/validated-examples/2026-11-23-r2/wall-flow/protocol-history.json"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#wall-manufactured-ja",
+  "execution": "/numerical-methods-atlas/validation/wall-manufactured/?lang=ja"
+}
+```
 
 ### Kelvin–Helmholtz／Rayleigh–Taylorの初期成長と独立参照
 

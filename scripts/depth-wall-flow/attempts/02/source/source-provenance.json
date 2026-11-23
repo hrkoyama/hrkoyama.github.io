@@ -1,0 +1,10 @@
+{
+  "created_on": "2026-11-23",
+  "implementation": "Original educational Python implementation; no external solver source copied.",
+  "primary_data": "Only scientific numeric facts from original Ghia1982 TablesI/II and TableV are transcribed. Third-party article PDF is excluded from the release.",
+  "manufactured_reference": "Explicit quartic-product streamfunction and independent tensor-polynomial differentiation; no finite-difference residual injection.",
+  "pressure_scope": "Separate manufactured nonzero Dirichlet Poisson/gradient diagnostic, not cavity pressure or MAC projection.",
+  "source_review_file": "references/source-review.json",
+  "derivation_file": "references/README.md",
+  "no_external_runtime_or_network": true
+}

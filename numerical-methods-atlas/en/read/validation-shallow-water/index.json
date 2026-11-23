@@ -1,0 +1,1529 @@
+{
+  "title": "Shallow water: topography, lakes and dry beds",
+  "html": "<h1>Shallow water: topography, lakes and dry beds</h1><p>Check shallow-water bed sources and hydrostatic reconstruction with wet/emerged lakes and a SWASHES steady Bernoulli flow. A separate flat-bed Ritter dam break tests genuinely dry states, conservation budgets and a fixed-depth front.</p><aside class=\"validation-scope\"><p>These additional validation supplements are managed separately from the common 22-example registry. Receipts cover independent ZIP extraction, tests and every fixed input within each group. Changes of settings, methods or step sizes do not add independent physical problems.</p><p>Routine supplement CI runs the supplement groups listed in the public registry with NumPy,SciPy and pytest. It checks versions,inputs and execution records for stored independent references and distinguishes their reuse from new reference computations. The existing common22-case suite,including quantum convergence,remains manual on explicit need; released artifacts,criteria and history are preserved.</p></aside><nav class=\"validation-actions\"><a href=\"/numerical-methods-atlas/validation/?lang=en\">Additional validation index</a><a href=\"/code/validated-examples/2026-11-23/shallow-water/atlas-shallow-water-2026-11-23.zip\">Code and tests / ZIP</a><a href=\"/code/validated-examples/2026-11-23/shallow-water/verification.json\">Independent-extraction receipt</a></nav><nav class=\"validation-toc\" aria-label=\"Cases in this chapter\"><a href=\"#swashes-topography\">SWASHES topographic flow: lakes and nonzero steady discharge</a><a href=\"#dry-bed-dam-break\">Dry-bed dam break: actual wetting and dry states</a></nav><section><h2 id=\"run-all\">Download and execute the supplement</h2><p>Run inside atlas-shallow-water-2026-11-23 from the ZIP. This command executes all 2 fixed cases in the supplement. Choose a new or empty output directory.</p><pre><code>python -m pip install -r requirements.txt\npython -m pytest -q\npython run.py --input inputs.json --output output</code></pre><p>Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.</p></section><article class=\"validation-case\" data-validation-case=\"swashes-topography\" id=\"swashes-topography\"><h2>SWASHES topographic flow: lakes and nonzero steady discharge</h2><p>Check two lake equilibria separately from nonzero subcritical flow, distinguishing lake preservation from moving-flow discretization error.</p><nav class=\"validation-actions\" aria-label=\"Code, inputs and verification\"><a href=\"/numerical-methods-atlas/validation/swashes-topography/?lang=en\">Fixed-input execution entry</a><a href=\"/code/validated-examples/2026-11-23/shallow-water/atlas-shallow-water-2026-11-23.zip\">Code / ZIP</a><a href=\"/code/validated-examples/2026-11-23/shallow-water/inputs.json\">Fixed input / JSON</a><a href=\"/code/validated-examples/2026-11-23/shallow-water/results/result.json\">All results / JSON</a><a href=\"/code/validated-examples/2026-11-23/shallow-water/source-manifest.json\">Release SHA-256 manifest</a><a href=\"/code/validated-examples/2026-11-23/shallow-water/verification.json\">Independent-extraction receipt</a></nav><details class=\"execution-resource-details\"><summary>Methods, equations, figures and references</summary><div class=\"execution-navigation execution-resource-navigation\" data-execution-navigation=\"swashes-topography\" role=\"group\" aria-label=\"Resources for this execution example\"><div class=\"execution-navigation-grid\"><div class=\"execution-navigation-card\" data-execution-navigation-card=\"methods\"><p class=\"execution-navigation-label\"><strong>Methods used</strong></p><ul class=\"execution-navigation-links\"><li data-execution-method-id=\"godunov\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/methods/godunov/?lang=en\" data-execution-method-link>Godunov-type finite volumes</a></li><li data-execution-method-id=\"hll\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/methods/hll/?lang=en\" data-execution-method-link>HLL</a></li><li data-execution-method-id=\"forward-euler\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/methods/forward-euler/?lang=en\" data-execution-method-link>Forward Euler</a></li></ul><p class=\"execution-navigation-note\">Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.</p></div><div class=\"execution-navigation-card\" data-execution-navigation-card=\"equations\"><p class=\"execution-navigation-label\"><strong>Equations</strong></p><p class=\"execution-navigation-primary\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/validation/swashes-topography/?lang=en#swashes-topography-en-algorithm\" data-execution-formulation-link>This example’s formulation and conditions</a></p><details class=\"execution-navigation-scope\"><summary>Formulation, approximation and diagnostic scope</summary><p>Hydrostatic reconstruction, shared HLL flux and left/right pressure corrections discretize the bed source; forward Euler and face CFL .4. Lakes use reflecting walls. Moving subcritical boundaries impose upstream q and downstream h, extrapolating the other datum. No state floors, clipping or retries. Algebraically factor HLL updates into nonnegative water packets; advected momentum uses those same rounded masses, without a small-depth threshold or subsequent repair.</p></details><ul class=\"execution-navigation-links\"><li data-execution-equation-id=\"shallow-water-bed\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#shallow-water-bed-en\" data-execution-equation-link>Shallow-water equations with bed source</a><p class=\"execution-navigation-equation-note\">1D, g=9.81, L=25m, compact parabolic bed z=.2-.05(x-10)^2 on8&lt;x&lt;12. Lakes at surface .5/.1m use200 cells. Moving flow q=4.42m2/s, downstream h=2m uses100/200/400 cells to2s. Initialize the steady branch, not the published rest-to-steady transient.</p></li></ul></div><div class=\"execution-navigation-card\" data-execution-navigation-card=\"figure\"><p class=\"execution-navigation-label\"><strong>Problem figure</strong></p><a class=\"execution-navigation-figure\" data-execution-figure-link href=\"https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/results/swashes-topography.png\"><img src=\"https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/results/swashes-topography.png\" alt=\"SWASHES topographic flow: lakes and nonzero steady discharge: saved validation figure for this execution.\" width=\"1800\" height=\"1080\" loading=\"lazy\" decoding=\"async\"></a><p class=\"execution-navigation-note\">A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.</p><p class=\"execution-navigation-primary\" data-execution-problem-id=\"swashes-topography\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/problems/swashes-topography/?lang=en\" data-execution-problem-link>SWASHES lakes and steady shallow flow over topography</a></p><p class=\"execution-navigation-primary\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/problems/swashes-topography/?lang=en#code-en\" data-execution-problem-code>This problem’s code and validation status</a></p></div><div class=\"execution-navigation-card\" data-execution-navigation-card=\"references\"><p class=\"execution-navigation-label\"><strong>Exact / reference solutions</strong></p><p class=\"execution-navigation-primary\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/validation/swashes-topography/?lang=en#swashes-topography-en-validation\" data-execution-validation-link>References and checks for this execution</a></p><details class=\"execution-navigation-scope\"><summary>Reference and validation scope</summary><p>Freeze31 unit checks and eight group runs. Record lake drift, every FE minimum depth, shared-flux/bed-impulse budgets, conservative-mean L1 errors and three-grid ratios. Qualify an independent Bernoulli bisection by energy and branch checks.</p></details><ul class=\"execution-navigation-reference-cases\"><li data-execution-reference-id=\"lake-at-rest-bed\" data-reference-relation=\"same-problem\"><p class=\"execution-navigation-relation\">Same-problem reference · Analytic reference</p><p class=\"execution-navigation-primary\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-lake-at-rest-bed-en\" data-execution-reference-link>Lake at rest: wet and emerged equilibrium over represented bed</a></p><p class=\"execution-navigation-reference-note\">Exact lake balance concerns the represented cell bed. Moving steady states retain finite-time numerical error. Transcritical flows, jumps, friction, rain, infiltration, 2D flow and fully discrete entropy stability are outside scope.</p></li><li data-execution-reference-id=\"swashes-bernoulli\" data-reference-relation=\"same-problem\"><p class=\"execution-navigation-relation\">Same-problem reference · Semi-analytic reference</p><p class=\"execution-navigation-primary\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-swashes-bernoulli-en\" data-execution-reference-link>SWASHES steady flow: subcritical Bernoulli root</a></p><p class=\"execution-navigation-reference-note\">Exact lake balance concerns the represented cell bed. Moving steady states retain finite-time numerical error. Transcritical flows, jumps, friction, rain, infiltration, 2D flow and fully discrete entropy stability are outside scope.</p></li></ul></div></div></div></details><p><a href=\"/code/validated-examples/2026-11-23/shallow-water/protocol-history.json\">Input and validation protocol history</a> · <a href=\"/code/validated-examples/2026-11-23/shallow-water/attempts/01/source/inputs.json\">Initial input</a></p><h3 id=\"swashes-topography-assumptions\">Assumptions, units and boundaries</h3><p>1D, g=9.81, L=25m, compact parabolic bed z=.2-.05(x-10)^2 on8&lt;x&lt;12. Lakes at surface .5/.1m use200 cells. Moving flow q=4.42m2/s, downstream h=2m uses100/200/400 cells to2s. Initialize the steady branch, not the published rest-to-steady transient.</p><aside class=\"validation-scope validation-editorial-note\"><strong>Editorial clarification</strong><p>Exact lake balance concerns the represented cell bed. Moving steady states retain finite-time numerical error. Transcritical flows, jumps, friction, rain, infiltration, 2D flow and fully discrete entropy stability are outside scope. The final revision passed31 unit checks and all109 gates over8 group runs. The finest moving steady case,N400, has depthL1 about.0249108 and relative depthL1 about.000505933. Represented-bed lake balance, finite-time moving steady errors and dry-bed front errors are retained separately.</p></aside><h3 id=\"swashes-topography-algorithm\">Adopted numerical method</h3><p>Hydrostatic reconstruction, shared HLL flux and left/right pressure corrections discretize the bed source; forward Euler and face CFL .4. Lakes use reflecting walls. Moving subcritical boundaries impose upstream q and downstream h, extrapolating the other datum. No state floors, clipping or retries. Algebraically factor HLL updates into nonnegative water packets; advected momentum uses those same rounded masses, without a small-depth threshold or subsequent repair.</p><div class=\"validation-math\"><span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi mathvariant=\"normal\">∂</mi><mi>t</mi></msub><mi>h</mi><mo>+</mo><msub><mi mathvariant=\"normal\">∂</mi><mi>x</mi></msub><mi>q</mi><mo>=</mo><mn>0</mn><mo separator=\"true\">,</mo><mspace width=\"2em\"/><msub><mi mathvariant=\"normal\">∂</mi><mi>t</mi></msub><mi>q</mi><mo>+</mo><msub><mi mathvariant=\"normal\">∂</mi><mi>x</mi></msub><mo stretchy=\"false\">(</mo><msup><mi>q</mi><mn>2</mn></msup><mi mathvariant=\"normal\">/</mi><mi>h</mi><mo>+</mo><mi>g</mi><msup><mi>h</mi><mn>2</mn></msup><mi mathvariant=\"normal\">/</mi><mn>2</mn><mo stretchy=\"false\">)</mo><mo>=</mo><mo>−</mo><mi>g</mi><mi>h</mi><msub><mi mathvariant=\"normal\">∂</mi><mi>x</mi></msub><mi>z</mi></mrow><annotation encoding=\"application/x-tex\">\\partial_t h+\\partial_x q=0,\\qquad \\partial_tq+\\partial_x(q^2/h+gh^2/2)=-gh\\partial_xz</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.8444em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord\" style=\"margin-right:0.0556em;\">∂</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2806em;\"><span style=\"top:-2.55em;margin-left:-0.0556em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">t</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\">h</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord\"><span class=\"mord\" style=\"margin-right:0.0556em;\">∂</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:-0.0556em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">x</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\" style=\"margin-right:0.0359em;\">q</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord\">0</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:2em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord\" style=\"margin-right:0.0556em;\">∂</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2806em;\"><span style=\"top:-2.55em;margin-left:-0.0556em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">t</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\" style=\"margin-right:0.0359em;\">q</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.1141em;vertical-align:-0.25em;\"></span><span class=\"mord\"><span class=\"mord\" style=\"margin-right:0.0556em;\">∂</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:-0.0556em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">x</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mopen\">(</span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0359em;\">q</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8641em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">2</span></span></span></span></span></span></span></span><span class=\"mord\">/</span><span class=\"mord mathnormal\">h</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.1141em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.0359em;\">g</span><span class=\"mord\"><span class=\"mord mathnormal\">h</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8641em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">2</span></span></span></span></span></span></span></span><span class=\"mord\">/2</span><span class=\"mclose\">)</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord\">−</span><span class=\"mord mathnormal\" style=\"margin-right:0.0359em;\">g</span><span class=\"mord mathnormal\">h</span><span class=\"mord\"><span class=\"mord\" style=\"margin-right:0.0556em;\">∂</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:-0.0556em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">x</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\" style=\"margin-right:0.044em;\">z</span></span></span></span></span></div><div class=\"validation-math\"><span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msup><mi>z</mi><mo>∗</mo></msup><mo>=</mo><mi>max</mi><mo>⁡</mo><mo stretchy=\"false\">(</mo><msub><mi>z</mi><mi>L</mi></msub><mo separator=\"true\">,</mo><msub><mi>z</mi><mi>R</mi></msub><mo stretchy=\"false\">)</mo><mo separator=\"true\">,</mo><mspace width=\"1em\"/><msubsup><mi>h</mi><mi>K</mi><mo>∗</mo></msubsup><mo>=</mo><mi>max</mi><mo>⁡</mo><mo stretchy=\"false\">(</mo><mn>0</mn><mo separator=\"true\">,</mo><msub><mi>h</mi><mi>K</mi></msub><mo>+</mo><msub><mi>z</mi><mi>K</mi></msub><mo>−</mo><msup><mi>z</mi><mo>∗</mo></msup><mo stretchy=\"false\">)</mo><mo separator=\"true\">,</mo><mspace width=\"1em\"/><msubsup><mi>q</mi><mi>K</mi><mo>∗</mo></msubsup><mo>=</mo><msubsup><mi>h</mi><mi>K</mi><mo>∗</mo></msubsup><msub><mi>u</mi><mi>K</mi></msub></mrow><annotation encoding=\"application/x-tex\">z^*=\\max(z_L,z_R),\\quad h_K^*=\\max(0,h_K+z_K-z^*),\\quad q_K^*=h_K^*u_K</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.7387em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.044em;\">z</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.7387em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mbin mtight\">∗</span></span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mop\">max</span><span class=\"mopen\">(</span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.044em;\">z</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:-0.044em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">L</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.044em;\">z</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:-0.044em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.0077em;\">R</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mclose\">)</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:1em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">h</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.7387em;\"><span style=\"top:-2.453em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.0715em;\">K</span></span></span><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mbin mtight\">∗</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.247em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mop\">max</span><span class=\"mopen\">(</span><span class=\"mord\">0</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">h</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.0715em;\">K</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.7333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.044em;\">z</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:-0.044em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.0715em;\">K</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.044em;\">z</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.7387em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mbin mtight\">∗</span></span></span></span></span></span></span></span><span class=\"mclose\">)</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:1em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0359em;\">q</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.7387em;\"><span style=\"top:-2.453em;margin-left:-0.0359em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.0715em;\">K</span></span></span><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mbin mtight\">∗</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.247em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.9857em;vertical-align:-0.247em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">h</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.7387em;\"><span style=\"top:-2.453em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.0715em;\">K</span></span></span><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mbin mtight\">∗</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.247em;\"><span></span></span></span></span></span></span><span class=\"mord\"><span class=\"mord mathnormal\">u</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.0715em;\">K</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span></span></span></span></span></div><div class=\"validation-math\"><span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi>F</mi><mi>K</mi></msub><mo>=</mo><msub><mi>F</mi><mrow><mi mathvariant=\"normal\">H</mi><mi mathvariant=\"normal\">L</mi><mi mathvariant=\"normal\">L</mi></mrow></msub><mo stretchy=\"false\">(</mo><msubsup><mi>U</mi><mi>L</mi><mo>∗</mo></msubsup><mo separator=\"true\">,</mo><msubsup><mi>U</mi><mi>R</mi><mo>∗</mo></msubsup><mo stretchy=\"false\">)</mo><mo>+</mo><mo stretchy=\"false\">(</mo><mn>0</mn><mo separator=\"true\">,</mo><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mi>g</mi><mo stretchy=\"false\">(</mo><msubsup><mi>h</mi><mi>K</mi><mn>2</mn></msubsup><mo>−</mo><mo stretchy=\"false\">(</mo><msubsup><mi>h</mi><mi>K</mi><mo>∗</mo></msubsup><msup><mo stretchy=\"false\">)</mo><mn>2</mn></msup><mo stretchy=\"false\">)</mo><msup><mo stretchy=\"false\">)</mo><mi>T</mi></msup></mrow><annotation encoding=\"application/x-tex\">F_K=F_{\\mathrm{HLL}}(U_L^*,U_R^*)+(0,\\tfrac12g(h_K^2-(h_K^*)^2))^T</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.1389em;\">F</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.0715em;\">K</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.1389em;\">F</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\"><span class=\"mord mathrm mtight\">HLL</span></span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mopen\">(</span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.7387em;\"><span style=\"top:-2.453em;margin-left:-0.109em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">L</span></span></span><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mbin mtight\">∗</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.247em;\"><span></span></span></span></span></span></span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.7387em;\"><span style=\"top:-2.453em;margin-left:-0.109em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.0077em;\">R</span></span></span><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mbin mtight\">∗</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.247em;\"><span></span></span></span></span></span></span><span class=\"mclose\">)</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.2091em;vertical-align:-0.345em;\"></span><span class=\"mopen\">(</span><span class=\"mord\">0</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8451em;\"><span style=\"top:-2.655em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">2</span></span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.394em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">1</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.345em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mord mathnormal\" style=\"margin-right:0.0359em;\">g</span><span class=\"mopen\">(</span><span class=\"mord\"><span class=\"mord mathnormal\">h</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8641em;\"><span style=\"top:-2.453em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.0715em;\">K</span></span></span><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">2</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.247em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.1413em;vertical-align:-0.25em;\"></span><span class=\"mopen\">(</span><span class=\"mord\"><span class=\"mord mathnormal\">h</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.7387em;\"><span style=\"top:-2.453em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.0715em;\">K</span></span></span><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mbin mtight\">∗</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.247em;\"><span></span></span></span></span></span></span><span class=\"mclose\"><span class=\"mclose\">)</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8641em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">2</span></span></span></span></span></span></span></span><span class=\"mclose\">)</span><span class=\"mclose\"><span class=\"mclose\">)</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8913em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.1389em;\">T</span></span></span></span></span></span></span></span></span></span></span></span></div><div class=\"validation-math\"><span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><mi>q</mi><mo>=</mo><mn>4.42</mn><mo separator=\"true\">,</mo><mspace width=\"1em\"/><mi>h</mi><mo>+</mo><mi>z</mi><mo>+</mo><msup><mi>q</mi><mn>2</mn></msup><mi mathvariant=\"normal\">/</mi><mo stretchy=\"false\">(</mo><mn>2</mn><mi>g</mi><msup><mi>h</mi><mn>2</mn></msup><mo stretchy=\"false\">)</mo><mo>=</mo><mn>2</mn><mo>+</mo><msup><mn>4.42</mn><mn>2</mn></msup><mi mathvariant=\"normal\">/</mi><mo stretchy=\"false\">(</mo><mn>8</mn><mi>g</mi><mo stretchy=\"false\">)</mo><mo separator=\"true\">,</mo><mspace width=\"1em\"/><mi>h</mi><mo>&gt;</mo><mo stretchy=\"false\">(</mo><msup><mi>q</mi><mn>2</mn></msup><mi mathvariant=\"normal\">/</mi><mi>g</mi><msup><mo stretchy=\"false\">)</mo><mrow><mn>1</mn><mi mathvariant=\"normal\">/</mi><mn>3</mn></mrow></msup></mrow><annotation encoding=\"application/x-tex\">q=4.42,\\quad h+z+q^2/(2gh^2)=2+4.42^2/(8g),\\quad h&gt;(q^2/g)^{1/3}</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.625em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.0359em;\">q</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord\">4.42</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:1em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\">h</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.6667em;vertical-align:-0.0833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.044em;\">z</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.1141em;vertical-align:-0.25em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0359em;\">q</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8641em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">2</span></span></span></span></span></span></span></span><span class=\"mord\">/</span><span class=\"mopen\">(</span><span class=\"mord\">2</span><span class=\"mord mathnormal\" style=\"margin-right:0.0359em;\">g</span><span class=\"mord\"><span class=\"mord mathnormal\">h</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8641em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">2</span></span></span></span></span></span></span></span><span class=\"mclose\">)</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.7278em;vertical-align:-0.0833em;\"></span><span class=\"mord\">2</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.1141em;vertical-align:-0.25em;\"></span><span class=\"mord\">4.4</span><span class=\"mord\"><span class=\"mord\">2</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8641em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">2</span></span></span></span></span></span></span></span><span class=\"mord\">/</span><span class=\"mopen\">(</span><span class=\"mord\">8</span><span class=\"mord mathnormal\" style=\"margin-right:0.0359em;\">g</span><span class=\"mclose\">)</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:1em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\">h</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">&gt;</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.188em;vertical-align:-0.25em;\"></span><span class=\"mopen\">(</span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.0359em;\">q</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8641em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">2</span></span></span></span></span></span></span></span><span class=\"mord\">/</span><span class=\"mord mathnormal\" style=\"margin-right:0.0359em;\">g</span><span class=\"mclose\"><span class=\"mclose\">)</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.938em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">1/3</span></span></span></span></span></span></span></span></span></span></span></span></span></div><h3 id=\"swashes-topography-validation\">References and measured quantities</h3><p>Freeze31 unit checks and eight group runs. Record lake drift, every FE minimum depth, shared-flux/bed-impulse budgets, conservative-mean L1 errors and three-grid ratios. Qualify an independent Bernoulli bisection by energy and branch checks.</p><h3 id=\"swashes-topography-limits\">Verification limits and failures</h3><p>Exact lake balance concerns the represented cell bed. Moving steady states retain finite-time numerical error. Transcritical flows, jumps, friction, rain, infiltration, 2D flow and fully discrete entropy stability are outside scope.</p><h3 id=\"swashes-topography-measurements\">Stored measurements and decisions</h3><p>Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.</p><div class=\"validation-table\" tabindex=\"0\" role=\"region\" aria-label=\"SWASHES topographic flow: lakes and nonzero steady discharge: measurements\"><table><thead><tr><th scope=\"col\">量 / metric</th><th scope=\"col\">Measured value</th></tr></thead><tbody><tr><td>n</td><td>400</td></tr><tr><td>steps</td><td>536</td></tr><tr><td>time</td><td>2</td></tr><tr><td>depth_l1</td><td>0.0249107506127</td></tr><tr><td>momentum_l1</td><td>0.0600872468879</td></tr><tr><td>relative_depth_l1</td><td>0.000505932693276</td></tr><tr><td>relative_momentum_l1</td><td>0.000543775989935</td></tr><tr><td>depth_linf</td><td>0.00642472619238</td></tr><tr><td>minimum_depth</td><td>1.7071673524</td></tr><tr><td>maximum_depth</td><td>2.0053503464</td></tr><tr><td>maximum_velocity</td><td>2.58857396537</td></tr><tr><td>maximum_courant</td><td>0.4</td></tr><tr><td>maximum_step_mass_defect</td><td>8.6247543363e-15</td></tr><tr><td>maximum_step_momentum_defect</td><td>1.70913994695e-14</td></tr><tr><td>minimum_staying_coefficient</td><td>0.734464640585</td></tr><tr><td>maximum_total_mass_defect</td><td>8.03844865466e-14</td></tr><tr><td>maximum_total_momentum_defect</td><td>3.85243269577e-13</td></tr><tr><td>mass_change</td><td>1.74538262629e-05</td></tr><tr><td>boundary_mass_change</td><td>1.74538262704e-05</td></tr><tr><td>bed_momentum_impulse</td><td>-0.0282824071098</td></tr><tr><td>initial_dry_cells</td><td>0</td></tr><tr><td>final_dry_cells</td><td>0</td></tr><tr><td>newly_wet_cells</td><td>0</td></tr><tr><td>all_saved_values_finite</td><td>true</td></tr><tr><td>depth_floor_count</td><td>0</td></tr><tr><td>state_clip_count</td><td>0</td></tr><tr><td>rejected_steps</td><td>0</td></tr><tr><td>retries</td><td>0</td></tr></tbody></table></div><div class=\"validation-table\" tabindex=\"0\" role=\"region\" aria-label=\"SWASHES topographic flow: lakes and nonzero steady discharge: decisions\"><table><thead><tr><th scope=\"col\">判定 / check</th><th scope=\"col\">Passed</th></tr></thead><tbody><tr><td>lake-immersed: maximum_step_mass_defect</td><td>true</td></tr><tr><td>lake-immersed: maximum_step_momentum_defect</td><td>true</td></tr><tr><td>lake-immersed: maximum_total_mass_defect</td><td>true</td></tr><tr><td>lake-immersed: maximum_total_momentum_defect</td><td>true</td></tr><tr><td>lake-immersed: nonnegative depth</td><td>true</td></tr><tr><td>lake-immersed: finite arrays</td><td>true</td></tr><tr><td>lake-immersed: face CFL</td><td>true</td></tr><tr><td>lake-immersed: no repairs or retries</td><td>true</td></tr><tr><td>lake-immersed: five exact output times</td><td>true</td></tr><tr><td>lake-immersed: maximum_equilibrium_depth_drift</td><td>true</td></tr><tr><td>lake-immersed: maximum_equilibrium_discharge</td><td>true</td></tr><tr><td>lake-emerged: maximum_step_mass_defect</td><td>true</td></tr><tr><td>lake-emerged: maximum_step_momentum_defect</td><td>true</td></tr><tr><td>lake-emerged: maximum_total_mass_defect</td><td>true</td></tr><tr><td>lake-emerged: maximum_total_momentum_defect</td><td>true</td></tr><tr><td>lake-emerged: nonnegative depth</td><td>true</td></tr><tr><td>lake-emerged: finite arrays</td><td>true</td></tr><tr><td>lake-emerged: face CFL</td><td>true</td></tr><tr><td>lake-emerged: no repairs or retries</td><td>true</td></tr><tr><td>lake-emerged: five exact output times</td><td>true</td></tr><tr><td>lake-emerged: maximum_equilibrium_depth_drift</td><td>true</td></tr><tr><td>lake-emerged: maximum_equilibrium_discharge</td><td>true</td></tr><tr><td>subcritical-n100: maximum_step_mass_defect</td><td>true</td></tr><tr><td>subcritical-n100: maximum_step_momentum_defect</td><td>true</td></tr><tr><td>subcritical-n100: maximum_total_mass_defect</td><td>true</td></tr><tr><td>subcritical-n100: maximum_total_momentum_defect</td><td>true</td></tr><tr><td>subcritical-n100: nonnegative depth</td><td>true</td></tr><tr><td>subcritical-n100: finite arrays</td><td>true</td></tr><tr><td>subcritical-n100: face CFL</td><td>true</td></tr><tr><td>subcritical-n100: no repairs or retries</td><td>true</td></tr><tr><td>subcritical-n100: five exact output times</td><td>true</td></tr><tr><td>subcritical-n200: maximum_step_mass_defect</td><td>true</td></tr><tr><td>subcritical-n200: maximum_step_momentum_defect</td><td>true</td></tr><tr><td>subcritical-n200: maximum_total_mass_defect</td><td>true</td></tr><tr><td>subcritical-n200: maximum_total_momentum_defect</td><td>true</td></tr><tr><td>subcritical-n200: nonnegative depth</td><td>true</td></tr><tr><td>subcritical-n200: finite arrays</td><td>true</td></tr><tr><td>subcritical-n200: face CFL</td><td>true</td></tr><tr><td>subcritical-n200: no repairs or retries</td><td>true</td></tr><tr><td>subcritical-n200: five exact output times</td><td>true</td></tr><tr><td>subcritical-n400: maximum_step_mass_defect</td><td>true</td></tr><tr><td>subcritical-n400: maximum_step_momentum_defect</td><td>true</td></tr><tr><td>subcritical-n400: maximum_total_mass_defect</td><td>true</td></tr><tr><td>subcritical-n400: maximum_total_momentum_defect</td><td>true</td></tr><tr><td>subcritical-n400: nonnegative depth</td><td>true</td></tr><tr><td>subcritical-n400: finite arrays</td><td>true</td></tr><tr><td>subcritical-n400: face CFL</td><td>true</td></tr><tr><td>subcritical-n400: no repairs or retries</td><td>true</td></tr><tr><td>subcritical-n400: five exact output times</td><td>true</td></tr><tr><td>subcritical finest relative_depth_l1</td><td>true</td></tr><tr><td>subcritical relative_depth_l1 refinement 1</td><td>true</td></tr><tr><td>subcritical relative_depth_l1 refinement 2</td><td>true</td></tr><tr><td>subcritical finest relative_momentum_l1</td><td>true</td></tr><tr><td>subcritical relative_momentum_l1 refinement 1</td><td>true</td></tr><tr><td>subcritical relative_momentum_l1 refinement 2</td><td>true</td></tr><tr><td>reference: Bernoulli energy constant</td><td>true</td></tr><tr><td>reference: subcritical branch</td><td>true</td></tr><tr><td>reference: Gauss8 vs Gauss16 conservative means</td><td>true</td></tr><tr><td>reference: Ritter total mass</td><td>true</td></tr><tr><td>reference: Ritter finite difference PDE residual</td><td>true</td></tr><tr><td>reference: exact dry branch</td><td>true</td></tr><tr><td>all fixed runs completed</td><td>true</td></tr></tbody></table></div><figure><img loading=\"lazy\" src=\"/code/validated-examples/2026-11-23/shallow-water/results/swashes-topography.png\" width=\"1800\" height=\"1080\" alt=\"SWASHES topographic flow: lakes and nonzero steady discharge: stored validation figure\"><figcaption>Figure from saved results. See the text and JSON for input, reference and acceptance scope.</figcaption></figure><figure class=\"validation-additional-figure\" data-validation-additional-figure=\"swashes-topography-preview.png\"><a href=\"/code/validated-examples/2026-11-23/shallow-water/results/swashes-topography-preview.png\"><img loading=\"lazy\" src=\"/code/validated-examples/2026-11-23/shallow-water/results/swashes-topography-preview.png\" width=\"960\" height=\"576\" alt=\"Preview of represented bed, saved FV surfaces and moving-steady errors.\"></a><figcaption>Preview of represented bed, saved FV surfaces and moving-steady errors.</figcaption></figure><details class=\"validation-records\"><summary>Read every stored record</summary><div class=\"validation-table\" tabindex=\"0\" role=\"region\" aria-label=\"swashes-topography records\"><table><thead><tr><th scope=\"col\">id</th><th scope=\"col\">case</th><th scope=\"col\">family</th><th scope=\"col\">n</th><th scope=\"col\">surface</th><th scope=\"col\">steps</th><th scope=\"col\">time</th><th scope=\"col\">depth_l1</th><th scope=\"col\">momentum_l1</th><th scope=\"col\">relative_depth_l1</th><th scope=\"col\">relative_momentum_l1</th><th scope=\"col\">depth_linf</th><th scope=\"col\">minimum_depth</th><th scope=\"col\">maximum_depth</th><th scope=\"col\">maximum_velocity</th><th scope=\"col\">maximum_courant</th><th scope=\"col\">maximum_step_mass_defect</th><th scope=\"col\">maximum_step_momentum_defect</th><th scope=\"col\">minimum_staying_coefficient</th><th scope=\"col\">maximum_total_mass_defect</th><th scope=\"col\">maximum_total_momentum_defect</th><th scope=\"col\">mass_change</th><th scope=\"col\">boundary_mass_change</th><th scope=\"col\">bed_momentum_impulse</th><th scope=\"col\">initial_dry_cells</th><th scope=\"col\">final_dry_cells</th><th scope=\"col\">newly_wet_cells</th><th scope=\"col\">all_saved_values_finite</th><th scope=\"col\">depth_floor_count</th><th scope=\"col\">state_clip_count</th><th scope=\"col\">rejected_steps</th><th scope=\"col\">retries</th><th scope=\"col\">snapshot_times</th><th scope=\"col\">maximum_equilibrium_depth_drift</th><th scope=\"col\">maximum_equilibrium_discharge</th></tr></thead><tbody><tr><td>lake-immersed</td><td>swashes-topography</td><td>lake</td><td>200</td><td>0.5</td><td>92</td><td>2</td><td>7.48012762841e-15</td><td>2.88435932187e-15</td><td>6.2508030321e-16</td><td>2.88435932187e-15</td><td>4.4408920985e-16</td><td>0.300260416667</td><td>0.5</td><td>1.99208134818e-15</td><td>0.4</td><td>1.15185638805e-15</td><td>9.79712439899e-18</td><td>0.6</td><td>1.7763568394e-15</td><td>5.30489427158e-17</td><td>-7.2858385991e-15</td><td>0</td><td>5.12363069452e-17</td><td>0</td><td>0</td><td>0</td><td>true</td><td>0</td><td>0</td><td>0</td><td>0</td><td>[0.0,0.5,1.0,1.5,2.0]</td><td>4.4408920985e-16</td><td>7.45868860846e-16</td></tr><tr><td>lake-emerged</td><td>swashes-topography</td><td>lake</td><td>200</td><td>0.1</td><td>40</td><td>2</td><td>8.07947458936e-16</td><td>2.84715787942e-17</td><td>3.74915349061e-16</td><td>2.84715787942e-17</td><td>4.16333634234e-17</td><td>0</td><td>0.1</td><td>2.95134567e-16</td><td>0.4</td><td>2.82759926584e-16</td><td>6.36621789215e-19</td><td>0.6</td><td>4.4408920985e-16</td><td>6.00310713979e-18</td><td>-7.73144569199e-16</td><td>0</td><td>1.44700943678e-17</td><td>22</td><td>22</td><td>0</td><td>true</td><td>0</td><td>0</td><td>0</td><td>0</td><td>[0.0,0.5,1.0,1.5,2.0]</td><td>4.16333634234e-17</td><td>2.05966162927e-17</td></tr><tr><td>subcritical-n100</td><td>swashes-topography</td><td>subcritical</td><td>100</td><td>—</td><td>136</td><td>2</td><td>0.0964373627476</td><td>0.222714030381</td><td>0.00195862482933</td><td>0.00201551158716</td><td>0.0246906135488</td><td>1.70619759443</td><td>2.01547816846</td><td>2.58502610096</td><td>0.4</td><td>1.01896852053e-15</td><td>1.58132445398e-14</td><td>0.733915070207</td><td>5.31389362537e-14</td><td>1.41347003546e-13</td><td>0.000343710946006</td><td>0.000343710946001</td><td>-0.0992156995567</td><td>0</td><td>0</td><td>0</td><td>true</td><td>0</td><td>0</td><td>0</td><td>0</td><td>[0.0,0.5,1.0,1.5,2.0]</td><td>—</td><td>—</td></tr><tr><td>subcritical-n200</td><td>swashes-topography</td><td>subcritical</td><td>200</td><td>—</td><td>268</td><td>2</td><td>0.0493768716268</td><td>0.116709168868</td><td>0.00100283504243</td><td>0.00105619157346</td><td>0.0126995764127</td><td>1.7067820868</td><td>2.00931304389</td><td>2.58786311428</td><td>0.4</td><td>1.19011910776e-15</td><td>1.86517468137e-14</td><td>0.734226484571</td><td>5.28200884884e-14</td><td>6.62473548241e-13</td><td>6.54157876871e-05</td><td>6.54157876882e-05</td><td>-0.0541260135504</td><td>0</td><td>0</td><td>0</td><td>true</td><td>0</td><td>0</td><td>0</td><td>0</td><td>[0.0,0.5,1.0,1.5,2.0]</td><td>—</td><td>—</td></tr><tr><td>subcritical-n400</td><td>swashes-topography</td><td>subcritical</td><td>400</td><td>—</td><td>536</td><td>2</td><td>0.0249107506127</td><td>0.0600872468879</td><td>0.000505932693276</td><td>0.000543775989935</td><td>0.00642472619238</td><td>1.7071673524</td><td>2.0053503464</td><td>2.58857396537</td><td>0.4</td><td>8.6247543363e-15</td><td>1.70913994695e-14</td><td>0.734464640585</td><td>8.03844865466e-14</td><td>3.85243269577e-13</td><td>1.74538262629e-05</td><td>1.74538262704e-05</td><td>-0.0282824071098</td><td>0</td><td>0</td><td>0</td><td>true</td><td>0</td><td>0</td><td>0</td><td>0</td><td>[0.0,0.5,1.0,1.5,2.0]</td><td>—</td><td>—</td></tr></tbody></table></div></details><p><a href=\"/numerical-methods-atlas/validation/swashes-topography/index.json\">Measurements and complete records / JSON</a></p><h3 id=\"swashes-topography-references\">Primary sources and review scope</h3><p>Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.</p><ol class=\"validation-references\"><li id=\"swashes-topography-source-swashes2013\"><a href=\"https://arxiv.org/pdf/1110.0288\">O. Delestre et al. (2013). SWASHES: a compilation of shallow water analytic solutions for hydraulic and environmental studies</a> · <a href=\"https://doi.org/10.1002/fld.3741\">DOI: 10.1002/fld.3741</a><p>Review scope / review_level: selected-equations-and-fixed-inputs</p></li><li id=\"swashes-topography-source-audusse2004\"><a href=\"https://epubs.siam.org/doi/abs/10.1137/S1064827503431090\">E. Audusse, F. Bouchut, M.-O. Bristeau, R. Klein, B. Perthame (2004). A Fast and Stable Well-Balanced Scheme with Hydrostatic Reconstruction for Shallow Water Flows</a> · <a href=\"https://doi.org/10.1137/S1064827503431090\">DOI: 10.1137/S1064827503431090</a><p>Review scope / review_level: bibliography-and-author-follow-up</p></li><li id=\"swashes-topography-source-audusse2016\"><a href=\"https://arxiv.org/pdf/1409.3825\">E. Audusse, F. Bouchut, M.-O. Bristeau, J. Sainte-Marie (2016). Kinetic entropy inequality and hydrostatic reconstruction scheme for the Saint-Venant system</a><p>Review scope / review_level: selected-scheme-equations</p></li><li id=\"swashes-topography-source-swashes-project\"><a href=\"https://www.idpoisson.fr/en/swashes-es/\">Institut Denis Poisson / SWASHES authors (n.d.). SWASHES project page</a><p>Review scope / review_level: official-project-scope-and-rights</p></li></ol></article><article class=\"validation-case\" data-validation-case=\"dry-bed-dam-break\" id=\"dry-bed-dam-break\"><h2>Dry-bed dam break: actual wetting and dry states</h2><p>Start the right half at exactly h=q=0 and compare wetting-front advance, conservation and conservative errors with the Ritter analytic solution.</p><nav class=\"validation-actions\" aria-label=\"Code, inputs and verification\"><a href=\"/numerical-methods-atlas/validation/dry-bed-dam-break/?lang=en\">Fixed-input execution entry</a><a href=\"/code/validated-examples/2026-11-23/shallow-water/atlas-shallow-water-2026-11-23.zip\">Code / ZIP</a><a href=\"/code/validated-examples/2026-11-23/shallow-water/inputs.json\">Fixed input / JSON</a><a href=\"/code/validated-examples/2026-11-23/shallow-water/results/result.json\">All results / JSON</a><a href=\"/code/validated-examples/2026-11-23/shallow-water/source-manifest.json\">Release SHA-256 manifest</a><a href=\"/code/validated-examples/2026-11-23/shallow-water/verification.json\">Independent-extraction receipt</a></nav><details class=\"execution-resource-details\"><summary>Methods, equations, figures and references</summary><div class=\"execution-navigation execution-resource-navigation\" data-execution-navigation=\"dry-bed-dam-break\" role=\"group\" aria-label=\"Resources for this execution example\"><div class=\"execution-navigation-grid\"><div class=\"execution-navigation-card\" data-execution-navigation-card=\"methods\"><p class=\"execution-navigation-label\"><strong>Methods used</strong></p><ul class=\"execution-navigation-links\"><li data-execution-method-id=\"godunov\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/methods/godunov/?lang=en\" data-execution-method-link>Godunov-type finite volumes</a></li><li data-execution-method-id=\"hll\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/methods/hll/?lang=en\" data-execution-method-link>HLL</a></li><li data-execution-method-id=\"forward-euler\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/methods/forward-euler/?lang=en\" data-execution-method-link>Forward Euler</a></li></ul><p class=\"execution-navigation-note\">Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.</p></div><div class=\"execution-navigation-card\" data-execution-navigation-card=\"equations\"><p class=\"execution-navigation-label\"><strong>Equations</strong></p><p class=\"execution-navigation-primary\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/validation/dry-bed-dam-break/?lang=en#dry-bed-dam-break-en-algorithm\" data-execution-formulation-link>This example’s formulation and conditions</a></p><details class=\"execution-navigation-scope\"><summary>Formulation, approximation and diagnostic scope</summary><p>The FV solver supports h=q=0 directly; one-sided dry HLL speeds use u-c/u+2c and their reflection. Forward Euler at face CFL .4 records every minimum and shared-flux budget without raising cell depths. Algebraically factor HLL updates into nonnegative water packets; advected momentum uses those same rounded masses, without a small-depth threshold or subsequent repair.</p></details><ul class=\"execution-navigation-links\"><li data-execution-equation-id=\"shallow-water\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#shallow-water-en\" data-execution-equation-link>Shallow-water equations</a><p class=\"execution-navigation-equation-note\">Flat frictionless bed on[-10,10]m, dam0, hL=1m/hR=0, initial velocity0, g=9.81, t=.5s,1600/3200/6400 cells. The Ritter formula uses an explicit rescaling distinct from the paper numerical example.</p></li></ul></div><div class=\"execution-navigation-card\" data-execution-navigation-card=\"figure\"><p class=\"execution-navigation-label\"><strong>Problem figure</strong></p><a class=\"execution-navigation-figure\" data-execution-figure-link href=\"https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/results/dry-bed-dam-break.png\"><img src=\"https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/results/dry-bed-dam-break.png\" alt=\"Dry-bed dam break: actual wetting and dry states: saved validation figure for this execution.\" width=\"1800\" height=\"1080\" loading=\"lazy\" decoding=\"async\"></a><p class=\"execution-navigation-note\">A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.</p><p class=\"execution-navigation-primary\" data-execution-problem-id=\"dry-bed-dam-break\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/problems/dry-bed-dam-break/?lang=en\" data-execution-problem-link>Ritter dam break onto a dry bed</a></p><p class=\"execution-navigation-primary\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/problems/dry-bed-dam-break/?lang=en#code-en\" data-execution-problem-code>This problem’s code and validation status</a></p></div><div class=\"execution-navigation-card\" data-execution-navigation-card=\"references\"><p class=\"execution-navigation-label\"><strong>Exact / reference solutions</strong></p><p class=\"execution-navigation-primary\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/validation/dry-bed-dam-break/?lang=en#dry-bed-dam-break-en-validation\" data-execution-validation-link>References and checks for this execution</a></p><details class=\"execution-navigation-scope\"><summary>Reference and validation scope</summary><p>Record all FE minima, newly wetted and remaining dry cells, boundary-aware mass/momentum budgets, and L1 refinement. Split Gauss8 h/hu references are qualified by Gauss16, mass and PDE identities. Diagnose the rightmost cell center with mean h&gt;=.001m. Depth acceptance uses the original fixed5m2 reference mass, preventing domain extension from weakening the criterion; full-domain relativeL1 remains a separate diagnostic.</p></details><ul class=\"execution-navigation-reference-cases\"><li data-execution-reference-id=\"ritter-dry-bed\" data-reference-relation=\"same-problem\"><p class=\"execution-navigation-relation\">Same-problem reference · Analytic reference</p><p class=\"execution-navigation-primary\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-ritter-dry-bed-en\" data-execution-reference-link>Ritter dry-bed dam break: dedicated g9.81 cell-mean reference</a></p><p class=\"execution-navigation-reference-note\">The .001m mean-depth contour differs from the analytic support edge, which is reported separately. These fixed runs test wetting of initially dry cells. Retreating shorelines, re-drying cycles, real floods, friction and moving fronts over topography are outside scope. The initial100/200/400-cell [-5,5]m attempt passed28 tests and105/109 gates; three retained-dry-cell gates and the .3960m&gt;.25m contour error failed. All original records remain archived; revision2 enlarges/refines the input without changing acceptance. Revision2 then stopped on a binary64 subnormal-tail dry-momentum artifact. Revision3 factors the same HLL update into water packets and adds three regression/equivalence tests; the original28 remain unchanged.</p></li><li data-execution-reference-id=\"swe-dry-bed\" data-reference-relation=\"related-model\"><p class=\"execution-navigation-relation\">Related-model reference · Analytic reference</p><p class=\"execution-navigation-primary\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-swe-dry-bed-en\" data-execution-reference-link>Shallow water / dry-bed fan</a></p><p class=\"execution-navigation-reference-note\">Retain the historical dry-bed reference gravity/domain/time unchanged. The new g9.81,[-10,10],t.5 computation uses its dedicated Ritter reference.</p></li></ul></div></div></div></details><p><a href=\"/code/validated-examples/2026-11-23/shallow-water/protocol-history.json\">Input and validation protocol history</a> · <a href=\"/code/validated-examples/2026-11-23/shallow-water/attempts/01/source/inputs.json\">Initial input</a></p><h3 id=\"dry-bed-dam-break-assumptions\">Assumptions, units and boundaries</h3><p>Flat frictionless bed on[-10,10]m, dam0, hL=1m/hR=0, initial velocity0, g=9.81, t=.5s,1600/3200/6400 cells. The Ritter formula uses an explicit rescaling distinct from the paper numerical example.</p><aside class=\"validation-scope validation-editorial-note\"><strong>Editorial clarification</strong><p>The .001m mean-depth contour differs from the analytic support edge, which is reported separately. These fixed runs test wetting of initially dry cells. Retreating shorelines, re-drying cycles, real floods, friction and moving fronts over topography are outside scope. The initial100/200/400-cell [-5,5]m attempt passed28 tests and105/109 gates; three retained-dry-cell gates and the .3960m&gt;.25m contour error failed. All original records remain archived; revision2 enlarges/refines the input without changing acceptance. Revision2 then stopped on a binary64 subnormal-tail dry-momentum artifact. Revision3 factors the same HLL update into water packets and adds three regression/equivalence tests; the original28 remain unchanged. Revision3 passed108/109 gates but failed the .27415m&gt;.25m contour criterion. Revision4 refines only Ritter grids to1600/3200/6400. Relative depth L1 is normalized by domain reference mass; absolute L1 is also retained because the domain changed between revisions1 and2. Final revision4 uses1600/3200/6400cells on[-10,10]m at t.5s and passed31 unit checks and all109 group gates. Acceptance depthL1 retains the original fixed reference mass5m², giving finest.001773819 and absolute depthL1.008869095m². Normalization by the enlarged-domain reference mass10m² gives.000886909 as a separate diagnostic, never an easier acceptance criterion. Relative momentumL1 is.009590172; the depth.001m contour error is.2069613m&lt;.25m and1679 genuinely dry cells remain. All three earlier failures are retained; depth floors,state clips and retries are zero.</p></aside><h3 id=\"dry-bed-dam-break-algorithm\">Adopted numerical method</h3><p>The FV solver supports h=q=0 directly; one-sided dry HLL speeds use u-c/u+2c and their reflection. Forward Euler at face CFL .4 records every minimum and shared-flux budget without raising cell depths. Algebraically factor HLL updates into nonnegative water packets; advected momentum uses those same rounded masses, without a small-depth threshold or subsequent repair.</p><div class=\"validation-math\"><span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi>c</mi><mi>L</mi></msub><mo>=</mo><msqrt><mrow><mi>g</mi><msub><mi>h</mi><mi>L</mi></msub></mrow></msqrt><mo separator=\"true\">,</mo><mspace width=\"1em\"/><msub><mi>x</mi><mi>A</mi></msub><mo>=</mo><msub><mi>x</mi><mn>0</mn></msub><mo>−</mo><msub><mi>c</mi><mi>L</mi></msub><mi>t</mi><mo separator=\"true\">,</mo><mspace width=\"1em\"/><msub><mi>x</mi><mi>B</mi></msub><mo>=</mo><msub><mi>x</mi><mn>0</mn></msub><mo>+</mo><mn>2</mn><msub><mi>c</mi><mi>L</mi></msub><mi>t</mi></mrow><annotation encoding=\"application/x-tex\">c_L=\\sqrt{gh_L},\\quad x_A=x_0-c_Lt,\\quad x_B=x_0+2c_Lt</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.5806em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">c</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">L</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.24em;vertical-align:-0.2561em;\"></span><span class=\"mord sqrt\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.9839em;\"><span class=\"svg-align\" style=\"top:-3.2em;\"><span class=\"pstrut\" style=\"height:3.2em;\"></span><span class=\"mord\" style=\"padding-left:1em;\"><span class=\"mord mathnormal\" style=\"margin-right:0.0359em;\">g</span><span class=\"mord\"><span class=\"mord mathnormal\">h</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">L</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span></span></span><span style=\"top:-2.9439em;\"><span class=\"pstrut\" style=\"height:3.2em;\"></span><span class=\"hide-tail\" style=\"min-width:1.02em;height:1.28em;\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"400em\" height=\"1.28em\" viewBox=\"0 0 400000 1296\" preserveAspectRatio=\"xMinYMin slice\"><path d=\"M263,681c0.7,0,18,39.7,52,119\nc34,79.3,68.167,158.7,102.5,238c34.3,79.3,51.8,119.3,52.5,120\nc340,-704.7,510.7,-1060.3,512,-1067\nl0 -0\nc4.7,-7.3,11,-11,19,-11\nH40000v40H1012.3\ns-271.3,567,-271.3,567c-38.7,80.7,-84,175,-136,283c-52,108,-89.167,185.3,-111.5,232\nc-22.3,46.7,-33.8,70.3,-34.5,71c-4.7,4.7,-12.3,7,-23,7s-12,-1,-12,-1\ns-109,-253,-109,-253c-72.7,-168,-109.3,-252,-110,-252c-10.7,8,-22,16.7,-34,26\nc-22,17.3,-33.3,26,-34,26s-26,-26,-26,-26s76,-59,76,-59s76,-60,76,-60z\nM1001 80h400000v40h-400000z\"/></svg></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2561em;\"><span></span></span></span></span></span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:1em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">x</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">A</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.7333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">x</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">0</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.8095em;vertical-align:-0.1944em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">c</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">L</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\">t</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:1em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">x</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.0502em;\">B</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.7333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">x</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">0</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.7944em;vertical-align:-0.15em;\"></span><span class=\"mord\">2</span><span class=\"mord\"><span class=\"mord mathnormal\">c</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">L</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\">t</span></span></span></span></span></div><div class=\"validation-math\"><span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><mi>h</mi><mo>=</mo><mo stretchy=\"false\">(</mo><mn>2</mn><msub><mi>c</mi><mi>L</mi></msub><mo>−</mo><mo stretchy=\"false\">(</mo><mi>x</mi><mo>−</mo><msub><mi>x</mi><mn>0</mn></msub><mo stretchy=\"false\">)</mo><mi mathvariant=\"normal\">/</mi><mi>t</mi><msup><mo stretchy=\"false\">)</mo><mn>2</mn></msup><mi mathvariant=\"normal\">/</mi><mo stretchy=\"false\">(</mo><mn>9</mn><mi>g</mi><mo stretchy=\"false\">)</mo><mo separator=\"true\">,</mo><mspace width=\"1em\"/><mi>u</mi><mo>=</mo><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mfrac><mn>2</mn><mn>3</mn></mfrac></mstyle><mo stretchy=\"false\">(</mo><mo stretchy=\"false\">(</mo><mi>x</mi><mo>−</mo><msub><mi>x</mi><mn>0</mn></msub><mo stretchy=\"false\">)</mo><mi mathvariant=\"normal\">/</mi><mi>t</mi><mo>+</mo><msub><mi>c</mi><mi>L</mi></msub><mo stretchy=\"false\">)</mo><mspace width=\"1em\"/><mo stretchy=\"false\">(</mo><msub><mi>x</mi><mi>A</mi></msub><mo>&lt;</mo><mi>x</mi><mo>&lt;</mo><msub><mi>x</mi><mi>B</mi></msub><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">h=(2c_L-(x-x_0)/t)^2/(9g),\\quad u=\\tfrac23((x-x_0)/t+c_L)\\quad (x_A&lt;x&lt;x_B)</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.6944em;\"></span><span class=\"mord mathnormal\">h</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mopen\">(</span><span class=\"mord\">2</span><span class=\"mord\"><span class=\"mord mathnormal\">c</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">L</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">x</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.1141em;vertical-align:-0.25em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">x</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">0</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mclose\">)</span><span class=\"mord\">/</span><span class=\"mord mathnormal\">t</span><span class=\"mclose\"><span class=\"mclose\">)</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8641em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">2</span></span></span></span></span></span></span></span><span class=\"mord\">/</span><span class=\"mopen\">(</span><span class=\"mord\">9</span><span class=\"mord mathnormal\" style=\"margin-right:0.0359em;\">g</span><span class=\"mclose\">)</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:1em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\">u</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.1901em;vertical-align:-0.345em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8451em;\"><span style=\"top:-2.655em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">3</span></span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.394em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">2</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.345em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mopen\">((</span><span class=\"mord mathnormal\">x</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">x</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">0</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mclose\">)</span><span class=\"mord\">/</span><span class=\"mord mathnormal\">t</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">c</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">L</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mclose\">)</span><span class=\"mspace\" style=\"margin-right:1em;\"></span><span class=\"mopen\">(</span><span class=\"mord\"><span class=\"mord mathnormal\">x</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">A</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">&lt;</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.5782em;vertical-align:-0.0391em;\"></span><span class=\"mord mathnormal\">x</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">&lt;</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">x</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.0502em;\">B</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mclose\">)</span></span></span></span></span></div><div class=\"validation-math\"><span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msubsup><mover accent=\"true\"><mi>U</mi><mo>ˉ</mo></mover><mi>i</mi><mrow><mi mathvariant=\"normal\">r</mi><mi mathvariant=\"normal\">e</mi><mi mathvariant=\"normal\">f</mi></mrow></msubsup><mo>=</mo><mi mathvariant=\"normal\">Δ</mi><msup><mi>x</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><msub><mo>∫</mo><msub><mi>C</mi><mi>i</mi></msub></msub><mo stretchy=\"false\">(</mo><mi>h</mi><mo separator=\"true\">,</mo><mi>h</mi><mi>u</mi><msup><mo stretchy=\"false\">)</mo><mi>T</mi></msup><mi>d</mi><mi>x</mi><mo separator=\"true\">,</mo><mspace width=\"1em\"/><msub><mi>x</mi><mn>.001</mn></msub><mo>=</mo><msub><mi>x</mi><mi>B</mi></msub><mo>−</mo><mn>3</mn><mi>t</mi><msqrt><mrow><mi>g</mi><mo stretchy=\"false\">(</mo><mn>0.001</mn><mo stretchy=\"false\">)</mo></mrow></msqrt></mrow><annotation encoding=\"application/x-tex\">\\bar U_i^{\\mathrm{ref}}=\\Delta x^{-1}\\int_{C_i}(h,hu)^Tdx,\\quad x_{.001}=x_B-3t\\sqrt{g(0.001)}</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.1461em;vertical-align:-0.247em;\"></span><span class=\"mord\"><span class=\"mord katex-accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8201em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.109em;\">U</span></span><span style=\"top:-3.2523em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.2222em;\"><span class=\"mord\">ˉ</span></span></span></span></span></span></span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8991em;\"><span style=\"top:-2.453em;margin-left:-0.109em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">i</span></span></span><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\"><span class=\"mord mathrm mtight\" style=\"margin-right:0.0778em;\">ref</span></span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.247em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:2.372em;vertical-align:-1.012em;\"></span><span class=\"mord\">Δ</span><span class=\"mord\"><span class=\"mord mathnormal\">x</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8641em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">−</span><span class=\"mord mtight\">1</span></span></span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mop\"><span class=\"mop op-symbol large-op\" style=\"margin-right:0.4445em;position:relative;top:-0.0011em;\">∫</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:-0.4336em;\"><span style=\"top:-1.7881em;margin-left:-0.4445em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.0715em;\">C</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3281em;\"><span style=\"top:-2.357em;margin-left:-0.0715em;margin-right:0.0714em;\"><span class=\"pstrut\" style=\"height:2.5em;\"></span><span class=\"katex-sizing reset-size3 size1 mtight\"><span class=\"mord mathnormal mtight\">i</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.143em;\"><span></span></span></span></span></span></span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:1.012em;\"><span></span></span></span></span></span></span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">h</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\">h</span><span class=\"mord mathnormal\">u</span><span class=\"mclose\"><span class=\"mclose\">)</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8913em;\"><span style=\"top:-3.113em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.1389em;\">T</span></span></span></span></span></span></span></span><span class=\"mord mathnormal\">d</span><span class=\"mord mathnormal\">x</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:1em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">x</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mtight\">.001</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.7333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\">x</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3283em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.0502em;\">B</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1.24em;vertical-align:-0.2561em;\"></span><span class=\"mord\">3</span><span class=\"mord mathnormal\">t</span><span class=\"mord sqrt\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.9839em;\"><span class=\"svg-align\" style=\"top:-3.2em;\"><span class=\"pstrut\" style=\"height:3.2em;\"></span><span class=\"mord\" style=\"padding-left:1em;\"><span class=\"mord mathnormal\" style=\"margin-right:0.0359em;\">g</span><span class=\"mopen\">(</span><span class=\"mord\">0.001</span><span class=\"mclose\">)</span></span></span><span style=\"top:-2.9439em;\"><span class=\"pstrut\" style=\"height:3.2em;\"></span><span class=\"hide-tail\" style=\"min-width:1.02em;height:1.28em;\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"400em\" height=\"1.28em\" viewBox=\"0 0 400000 1296\" preserveAspectRatio=\"xMinYMin slice\"><path d=\"M263,681c0.7,0,18,39.7,52,119\nc34,79.3,68.167,158.7,102.5,238c34.3,79.3,51.8,119.3,52.5,120\nc340,-704.7,510.7,-1060.3,512,-1067\nl0 -0\nc4.7,-7.3,11,-11,19,-11\nH40000v40H1012.3\ns-271.3,567,-271.3,567c-38.7,80.7,-84,175,-136,283c-52,108,-89.167,185.3,-111.5,232\nc-22.3,46.7,-33.8,70.3,-34.5,71c-4.7,4.7,-12.3,7,-23,7s-12,-1,-12,-1\ns-109,-253,-109,-253c-72.7,-168,-109.3,-252,-110,-252c-10.7,8,-22,16.7,-34,26\nc-22,17.3,-33.3,26,-34,26s-26,-26,-26,-26s76,-59,76,-59s76,-60,76,-60z\nM1001 80h400000v40h-400000z\"/></svg></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2561em;\"><span></span></span></span></span></span></span></span></span></span></div><h3 id=\"dry-bed-dam-break-validation\">References and measured quantities</h3><p>Record all FE minima, newly wetted and remaining dry cells, boundary-aware mass/momentum budgets, and L1 refinement. Split Gauss8 h/hu references are qualified by Gauss16, mass and PDE identities. Diagnose the rightmost cell center with mean h&gt;=.001m. Depth acceptance uses the original fixed5m2 reference mass, preventing domain extension from weakening the criterion; full-domain relativeL1 remains a separate diagnostic.</p><h3 id=\"dry-bed-dam-break-limits\">Verification limits and failures</h3><p>The .001m mean-depth contour differs from the analytic support edge, which is reported separately. These fixed runs test wetting of initially dry cells. Retreating shorelines, re-drying cycles, real floods, friction and moving fronts over topography are outside scope. The initial100/200/400-cell [-5,5]m attempt passed28 tests and105/109 gates; three retained-dry-cell gates and the .3960m&gt;.25m contour error failed. All original records remain archived; revision2 enlarges/refines the input without changing acceptance. Revision2 then stopped on a binary64 subnormal-tail dry-momentum artifact. Revision3 factors the same HLL update into water packets and adds three regression/equivalence tests; the original28 remain unchanged. Revision3 passed108/109 gates but failed the .27415m&gt;.25m contour criterion. Revision4 refines only Ritter grids to1600/3200/6400. Relative depth L1 is normalized by domain reference mass; absolute L1 is also retained because the domain changed between revisions1 and2.</p><h3 id=\"dry-bed-dam-break-measurements\">Stored measurements and decisions</h3><p>Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.</p><div class=\"validation-table\" tabindex=\"0\" role=\"region\" aria-label=\"Dry-bed dam break: actual wetting and dry states: measurements\"><table><thead><tr><th scope=\"col\">量 / metric</th><th scope=\"col\">Measured value</th></tr></thead><tbody><tr><td>n</td><td>6400</td></tr><tr><td>steps</td><td>2263</td></tr><tr><td>time</td><td>0.5</td></tr><tr><td>depth_l1</td><td>0.00886909478548</td></tr><tr><td>momentum_l1</td><td>0.0235198962171</td></tr><tr><td>relative_depth_l1</td><td>0.000886909478548</td></tr><tr><td>relative_momentum_l1</td><td>0.00959017175007</td></tr><tr><td>depth_linf</td><td>0.0183784523193</td></tr><tr><td>minimum_depth</td><td>0</td></tr><tr><td>maximum_depth</td><td>1</td></tr><tr><td>maximum_velocity</td><td>5.61896964156</td></tr><tr><td>maximum_courant</td><td>0.4</td></tr><tr><td>maximum_step_mass_defect</td><td>2.17570697344e-15</td></tr><tr><td>maximum_step_momentum_defect</td><td>2.47198095327e-17</td></tr><tr><td>minimum_staying_coefficient</td><td>0.603833712823</td></tr><tr><td>maximum_total_mass_defect</td><td>4.97379915032e-14</td></tr><tr><td>maximum_total_momentum_defect</td><td>7.54951656745e-15</td></tr><tr><td>mass_change</td><td>-7.90478793533e-15</td></tr><tr><td>boundary_mass_change</td><td>0</td></tr><tr><td>bed_momentum_impulse</td><td>0</td></tr><tr><td>initial_dry_cells</td><td>3200</td></tr><tr><td>final_dry_cells</td><td>1679</td></tr><tr><td>newly_wet_cells</td><td>1521</td></tr><tr><td>all_saved_values_finite</td><td>true</td></tr><tr><td>depth_floor_count</td><td>0</td></tr><tr><td>state_clip_count</td><td>0</td></tr><tr><td>rejected_steps</td><td>0</td></tr><tr><td>retries</td><td>0</td></tr><tr><td>front_depth_threshold</td><td>0.001</td></tr><tr><td>numerical_threshold_front</td><td>2.7765625</td></tr><tr><td>analytic_threshold_front</td><td>2.9835237865</td></tr><tr><td>analytic_support_front</td><td>3.13209195267</td></tr><tr><td>threshold_front_error</td><td>0.2069612865</td></tr><tr><td>depth_acceptance_reference_mass</td><td>5</td></tr><tr><td>fixed_reference_relative_depth_l1</td><td>0.0017738189571</td></tr></tbody></table></div><div class=\"validation-table\" tabindex=\"0\" role=\"region\" aria-label=\"Dry-bed dam break: actual wetting and dry states: decisions\"><table><thead><tr><th scope=\"col\">判定 / check</th><th scope=\"col\">Passed</th></tr></thead><tbody><tr><td>ritter-n1600: maximum_step_mass_defect</td><td>true</td></tr><tr><td>ritter-n1600: maximum_step_momentum_defect</td><td>true</td></tr><tr><td>ritter-n1600: maximum_total_mass_defect</td><td>true</td></tr><tr><td>ritter-n1600: maximum_total_momentum_defect</td><td>true</td></tr><tr><td>ritter-n1600: nonnegative depth</td><td>true</td></tr><tr><td>ritter-n1600: finite arrays</td><td>true</td></tr><tr><td>ritter-n1600: face CFL</td><td>true</td></tr><tr><td>ritter-n1600: no repairs or retries</td><td>true</td></tr><tr><td>ritter-n1600: five exact output times</td><td>true</td></tr><tr><td>ritter-n1600: actual wetting</td><td>true</td></tr><tr><td>ritter-n1600: dry cells retained</td><td>true</td></tr><tr><td>ritter-n3200: maximum_step_mass_defect</td><td>true</td></tr><tr><td>ritter-n3200: maximum_step_momentum_defect</td><td>true</td></tr><tr><td>ritter-n3200: maximum_total_mass_defect</td><td>true</td></tr><tr><td>ritter-n3200: maximum_total_momentum_defect</td><td>true</td></tr><tr><td>ritter-n3200: nonnegative depth</td><td>true</td></tr><tr><td>ritter-n3200: finite arrays</td><td>true</td></tr><tr><td>ritter-n3200: face CFL</td><td>true</td></tr><tr><td>ritter-n3200: no repairs or retries</td><td>true</td></tr><tr><td>ritter-n3200: five exact output times</td><td>true</td></tr><tr><td>ritter-n3200: actual wetting</td><td>true</td></tr><tr><td>ritter-n3200: dry cells retained</td><td>true</td></tr><tr><td>ritter-n6400: maximum_step_mass_defect</td><td>true</td></tr><tr><td>ritter-n6400: maximum_step_momentum_defect</td><td>true</td></tr><tr><td>ritter-n6400: maximum_total_mass_defect</td><td>true</td></tr><tr><td>ritter-n6400: maximum_total_momentum_defect</td><td>true</td></tr><tr><td>ritter-n6400: nonnegative depth</td><td>true</td></tr><tr><td>ritter-n6400: finite arrays</td><td>true</td></tr><tr><td>ritter-n6400: face CFL</td><td>true</td></tr><tr><td>ritter-n6400: no repairs or retries</td><td>true</td></tr><tr><td>ritter-n6400: five exact output times</td><td>true</td></tr><tr><td>ritter-n6400: actual wetting</td><td>true</td></tr><tr><td>ritter-n6400: dry cells retained</td><td>true</td></tr><tr><td>ritter finest relative_depth_l1</td><td>true</td></tr><tr><td>ritter relative_depth_l1 refinement 1</td><td>true</td></tr><tr><td>ritter relative_depth_l1 refinement 2</td><td>true</td></tr><tr><td>ritter finest relative_momentum_l1</td><td>true</td></tr><tr><td>ritter relative_momentum_l1 refinement 1</td><td>true</td></tr><tr><td>ritter relative_momentum_l1 refinement 2</td><td>true</td></tr><tr><td>finest threshold front error</td><td>true</td></tr><tr><td>reference: Bernoulli energy constant</td><td>true</td></tr><tr><td>reference: subcritical branch</td><td>true</td></tr><tr><td>reference: Gauss8 vs Gauss16 conservative means</td><td>true</td></tr><tr><td>reference: Ritter total mass</td><td>true</td></tr><tr><td>reference: Ritter finite difference PDE residual</td><td>true</td></tr><tr><td>reference: exact dry branch</td><td>true</td></tr><tr><td>all fixed runs completed</td><td>true</td></tr></tbody></table></div><figure><img loading=\"lazy\" src=\"/code/validated-examples/2026-11-23/shallow-water/results/dry-bed-dam-break.png\" width=\"1800\" height=\"1080\" alt=\"Dry-bed dam break: actual wetting and dry states: stored validation figure\"><figcaption>Figure from saved results. See the text and JSON for input, reference and acceptance scope.</figcaption></figure><figure class=\"validation-additional-figure\" data-validation-additional-figure=\"dry-bed-dam-break-preview.png\"><a href=\"/code/validated-examples/2026-11-23/shallow-water/results/dry-bed-dam-break-preview.png\"><img loading=\"lazy\" src=\"/code/validated-examples/2026-11-23/shallow-water/results/dry-bed-dam-break-preview.png\" width=\"960\" height=\"576\" alt=\"Preview from actual saved 1D shallow-water depth/discharge arrays. The space-time panel shows five saved times, not a 2D flow.\"></a><figcaption>Preview from actual saved 1D shallow-water depth/discharge arrays. The space-time panel shows five saved times, not a 2D flow.</figcaption></figure><details class=\"validation-records\"><summary>Read every stored record</summary><div class=\"validation-table\" tabindex=\"0\" role=\"region\" aria-label=\"dry-bed-dam-break records\"><table><thead><tr><th scope=\"col\">id</th><th scope=\"col\">case</th><th scope=\"col\">family</th><th scope=\"col\">n</th><th scope=\"col\">steps</th><th scope=\"col\">time</th><th scope=\"col\">depth_l1</th><th scope=\"col\">momentum_l1</th><th scope=\"col\">relative_depth_l1</th><th scope=\"col\">relative_momentum_l1</th><th scope=\"col\">depth_linf</th><th scope=\"col\">minimum_depth</th><th scope=\"col\">maximum_depth</th><th scope=\"col\">maximum_velocity</th><th scope=\"col\">maximum_courant</th><th scope=\"col\">maximum_step_mass_defect</th><th scope=\"col\">maximum_step_momentum_defect</th><th scope=\"col\">minimum_staying_coefficient</th><th scope=\"col\">maximum_total_mass_defect</th><th scope=\"col\">maximum_total_momentum_defect</th><th scope=\"col\">mass_change</th><th scope=\"col\">boundary_mass_change</th><th scope=\"col\">bed_momentum_impulse</th><th scope=\"col\">initial_dry_cells</th><th scope=\"col\">final_dry_cells</th><th scope=\"col\">newly_wet_cells</th><th scope=\"col\">all_saved_values_finite</th><th scope=\"col\">depth_floor_count</th><th scope=\"col\">state_clip_count</th><th scope=\"col\">rejected_steps</th><th scope=\"col\">retries</th><th scope=\"col\">snapshot_times</th><th scope=\"col\">front_depth_threshold</th><th scope=\"col\">numerical_threshold_front</th><th scope=\"col\">analytic_threshold_front</th><th scope=\"col\">analytic_support_front</th><th scope=\"col\">threshold_front_error</th><th scope=\"col\">depth_acceptance_reference_mass</th><th scope=\"col\">fixed_reference_relative_depth_l1</th></tr></thead><tbody><tr><td>ritter-n1600</td><td>dry-bed-dam-break</td><td>ritter</td><td>1600</td><td>532</td><td>0.5</td><td>0.0251252172472</td><td>0.0661319845115</td><td>0.00251252172472</td><td>0.0269651312993</td><td>0.0333858449528</td><td>0</td><td>1</td><td>5.15943902619</td><td>0.4</td><td>2.04935144584e-15</td><td>4.33680868994e-17</td><td>0.603833712823</td><td>3.19744231092e-14</td><td>6.2172489379e-15</td><td>-1.1990408666e-14</td><td>0</td><td>0</td><td>800</td><td>297</td><td>503</td><td>true</td><td>0</td><td>0</td><td>0</td><td>0</td><td>[0.0,0.125,0.25,0.375,0.5]</td><td>0.001</td><td>2.64375</td><td>2.9835237865</td><td>3.13209195267</td><td>0.3397737865</td><td>5</td><td>0.00502504344943</td></tr><tr><td>ritter-n3200</td><td>dry-bed-dam-break</td><td>ritter</td><td>3200</td><td>1099</td><td>0.5</td><td>0.0150744591209</td><td>0.03984559009</td><td>0.00150744591209</td><td>0.0162469276616</td><td>0.0250891220951</td><td>0</td><td>1</td><td>5.41569334286</td><td>0.4</td><td>2.13489874755e-15</td><td>2.99239799606e-17</td><td>0.603833712823</td><td>3.19744231092e-14</td><td>9.7699626167e-15</td><td>-1.1901590824e-14</td><td>0</td><td>0</td><td>1600</td><td>728</td><td>872</td><td>true</td><td>0</td><td>0</td><td>0</td><td>0</td><td>[0.0,0.125,0.25,0.375,0.5]</td><td>0.001</td><td>2.709375</td><td>2.9835237865</td><td>3.13209195267</td><td>0.2741487865</td><td>5</td><td>0.00301489182418</td></tr><tr><td>ritter-n6400</td><td>dry-bed-dam-break</td><td>ritter</td><td>6400</td><td>2263</td><td>0.5</td><td>0.00886909478548</td><td>0.0235198962171</td><td>0.000886909478548</td><td>0.00959017175007</td><td>0.0183784523193</td><td>0</td><td>1</td><td>5.61896964156</td><td>0.4</td><td>2.17570697344e-15</td><td>2.47198095327e-17</td><td>0.603833712823</td><td>4.97379915032e-14</td><td>7.54951656745e-15</td><td>-7.90478793533e-15</td><td>0</td><td>0</td><td>3200</td><td>1679</td><td>1521</td><td>true</td><td>0</td><td>0</td><td>0</td><td>0</td><td>[0.0,0.125,0.25,0.375,0.5]</td><td>0.001</td><td>2.7765625</td><td>2.9835237865</td><td>3.13209195267</td><td>0.2069612865</td><td>5</td><td>0.0017738189571</td></tr></tbody></table></div></details><p><a href=\"/numerical-methods-atlas/validation/dry-bed-dam-break/index.json\">Measurements and complete records / JSON</a></p><h3 id=\"dry-bed-dam-break-references\">Primary sources and review scope</h3><p>Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.</p><ol class=\"validation-references\"><li id=\"dry-bed-dam-break-source-swashes2013\"><a href=\"https://arxiv.org/pdf/1110.0288\">O. Delestre et al. (2013). SWASHES: a compilation of shallow water analytic solutions for hydraulic and environmental studies</a> · <a href=\"https://doi.org/10.1002/fld.3741\">DOI: 10.1002/fld.3741</a><p>Review scope / review_level: selected-equations-and-fixed-inputs</p></li><li id=\"dry-bed-dam-break-source-audusse2004\"><a href=\"https://epubs.siam.org/doi/abs/10.1137/S1064827503431090\">E. Audusse, F. Bouchut, M.-O. Bristeau, R. Klein, B. Perthame (2004). A Fast and Stable Well-Balanced Scheme with Hydrostatic Reconstruction for Shallow Water Flows</a> · <a href=\"https://doi.org/10.1137/S1064827503431090\">DOI: 10.1137/S1064827503431090</a><p>Review scope / review_level: bibliography-and-author-follow-up</p></li><li id=\"dry-bed-dam-break-source-audusse2016\"><a href=\"https://arxiv.org/pdf/1409.3825\">E. Audusse, F. Bouchut, M.-O. Bristeau, J. Sainte-Marie (2016). Kinetic entropy inequality and hydrostatic reconstruction scheme for the Saint-Venant system</a><p>Review scope / review_level: selected-scheme-equations</p></li><li id=\"dry-bed-dam-break-source-swashes-project\"><a href=\"https://www.idpoisson.fr/en/swashes-es/\">Institut Denis Poisson / SWASHES authors (n.d.). SWASHES project page</a><p>Review scope / review_level: official-project-scope-and-rights</p></li></ol></article><aside class=\"validation-terms\"><p>Original code is MIT. Text, figures, fixed inputs, numerical data and third-party material retain their separate terms.</p><p><a href=\"/LICENSING.md\">LICENSING.md</a> · <a href=\"/rights/?lang=en\">Rights &amp; AI policy</a></p></aside>",
+  "headings": [
+    {
+      "level": 2,
+      "id": "run-all",
+      "title": "Download and execute the supplement"
+    },
+    {
+      "level": 3,
+      "id": "swashes-topography-assumptions",
+      "title": "Assumptions, units and boundaries"
+    },
+    {
+      "level": 3,
+      "id": "swashes-topography-algorithm",
+      "title": "Adopted numerical method"
+    },
+    {
+      "level": 3,
+      "id": "swashes-topography-validation",
+      "title": "References and measured quantities"
+    },
+    {
+      "level": 3,
+      "id": "swashes-topography-limits",
+      "title": "Verification limits and failures"
+    },
+    {
+      "level": 3,
+      "id": "swashes-topography-measurements",
+      "title": "Stored measurements and decisions"
+    },
+    {
+      "level": 3,
+      "id": "swashes-topography-references",
+      "title": "Primary sources and review scope"
+    },
+    {
+      "level": 3,
+      "id": "dry-bed-dam-break-assumptions",
+      "title": "Assumptions, units and boundaries"
+    },
+    {
+      "level": 3,
+      "id": "dry-bed-dam-break-algorithm",
+      "title": "Adopted numerical method"
+    },
+    {
+      "level": 3,
+      "id": "dry-bed-dam-break-validation",
+      "title": "References and measured quantities"
+    },
+    {
+      "level": 3,
+      "id": "dry-bed-dam-break-limits",
+      "title": "Verification limits and failures"
+    },
+    {
+      "level": 3,
+      "id": "dry-bed-dam-break-measurements",
+      "title": "Stored measurements and decisions"
+    },
+    {
+      "level": 3,
+      "id": "dry-bed-dam-break-references",
+      "title": "Primary sources and review scope"
+    },
+    {
+      "level": 2,
+      "id": "swashes-topography",
+      "title": "SWASHES topographic flow: lakes and nonzero steady discharge"
+    },
+    {
+      "level": 2,
+      "id": "dry-bed-dam-break",
+      "title": "Dry-bed dam break: actual wetting and dry states"
+    }
+  ],
+  "locale": "en",
+  "source_url": "/code/validated-examples/2026-11-23/shallow-water/cases.json",
+  "updated_on": "2026-11-23",
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/",
+  "group": "shallow-water",
+  "case_ids": [
+    "swashes-topography",
+    "dry-bed-dam-break"
+  ],
+  "measurements": [
+    {
+      "id": "swashes-topography",
+      "passed": true,
+      "records": [
+        {
+          "id": "lake-immersed",
+          "case": "swashes-topography",
+          "family": "lake",
+          "n": 200,
+          "surface": 0.5,
+          "steps": 92,
+          "time": 2.0,
+          "depth_l1": 7.480127628411992e-15,
+          "momentum_l1": 2.884359321870825e-15,
+          "relative_depth_l1": 6.250803032099157e-16,
+          "relative_momentum_l1": 2.884359321870825e-15,
+          "depth_linf": 4.440892098500626e-16,
+          "minimum_depth": 0.30026041666666653,
+          "maximum_depth": 0.5,
+          "maximum_velocity": 1.9920813481808118e-15,
+          "maximum_courant": 0.4,
+          "maximum_step_mass_defect": 1.1518563880486e-15,
+          "maximum_step_momentum_defect": 9.797124398985663e-18,
+          "minimum_staying_coefficient": 0.6,
+          "maximum_total_mass_defect": 1.7763568394002505e-15,
+          "maximum_total_momentum_defect": 5.3048942715760625e-17,
+          "mass_change": -7.28583859910259e-15,
+          "boundary_mass_change": 0.0,
+          "bed_momentum_impulse": 5.123630694523616e-17,
+          "initial_dry_cells": 0,
+          "final_dry_cells": 0,
+          "newly_wet_cells": 0,
+          "all_saved_values_finite": true,
+          "depth_floor_count": 0,
+          "state_clip_count": 0,
+          "rejected_steps": 0,
+          "retries": 0,
+          "snapshot_times": [
+            0.0,
+            0.5,
+            1.0,
+            1.5,
+            2.0
+          ],
+          "maximum_equilibrium_depth_drift": 4.440892098500626e-16,
+          "maximum_equilibrium_discharge": 7.458688608464603e-16
+        },
+        {
+          "id": "lake-emerged",
+          "case": "swashes-topography",
+          "family": "lake",
+          "n": 200,
+          "surface": 0.1,
+          "steps": 40,
+          "time": 2.0,
+          "depth_l1": 8.079474589361979e-16,
+          "momentum_l1": 2.847157879423602e-17,
+          "relative_depth_l1": 3.7491534906075394e-16,
+          "relative_momentum_l1": 2.847157879423602e-17,
+          "depth_linf": 4.163336342344337e-17,
+          "minimum_depth": 0.0,
+          "maximum_depth": 0.10000000000000005,
+          "maximum_velocity": 2.9513456699954604e-16,
+          "maximum_courant": 0.4,
+          "maximum_step_mass_defect": 2.8275992658421956e-16,
+          "maximum_step_momentum_defect": 6.366217892153998e-19,
+          "minimum_staying_coefficient": 0.6,
+          "maximum_total_mass_defect": 4.440892098500626e-16,
+          "maximum_total_momentum_defect": 6.0031071397914446e-18,
+          "mass_change": -7.731445691994132e-16,
+          "boundary_mass_change": 0.0,
+          "bed_momentum_impulse": 1.447009436782323e-17,
+          "initial_dry_cells": 22,
+          "final_dry_cells": 22,
+          "newly_wet_cells": 0,
+          "all_saved_values_finite": true,
+          "depth_floor_count": 0,
+          "state_clip_count": 0,
+          "rejected_steps": 0,
+          "retries": 0,
+          "snapshot_times": [
+            0.0,
+            0.5,
+            1.0,
+            1.5,
+            2.0
+          ],
+          "maximum_equilibrium_depth_drift": 4.163336342344337e-17,
+          "maximum_equilibrium_discharge": 2.0596616292697125e-17
+        },
+        {
+          "id": "subcritical-n100",
+          "case": "swashes-topography",
+          "family": "subcritical",
+          "n": 100,
+          "steps": 136,
+          "time": 2.0,
+          "depth_l1": 0.09643736274762676,
+          "momentum_l1": 0.22271403038089543,
+          "relative_depth_l1": 0.0019586248293300113,
+          "relative_momentum_l1": 0.002015511587157423,
+          "depth_linf": 0.024690613548768114,
+          "minimum_depth": 1.7061975944337895,
+          "maximum_depth": 2.0154781684583587,
+          "maximum_velocity": 2.5850261009643445,
+          "maximum_courant": 0.4,
+          "maximum_step_mass_defect": 1.0189685205270892e-15,
+          "maximum_step_momentum_defect": 1.5813244539763377e-14,
+          "minimum_staying_coefficient": 0.7339150702066347,
+          "maximum_total_mass_defect": 5.313893625373821e-14,
+          "maximum_total_momentum_defect": 1.4134700354606622e-13,
+          "mass_change": 0.0003437109460062149,
+          "boundary_mass_change": 0.0003437109460005203,
+          "bed_momentum_impulse": -0.09921569955672352,
+          "initial_dry_cells": 0,
+          "final_dry_cells": 0,
+          "newly_wet_cells": 0,
+          "all_saved_values_finite": true,
+          "depth_floor_count": 0,
+          "state_clip_count": 0,
+          "rejected_steps": 0,
+          "retries": 0,
+          "snapshot_times": [
+            0.0,
+            0.5,
+            1.0,
+            1.5,
+            2.0
+          ]
+        },
+        {
+          "id": "subcritical-n200",
+          "case": "swashes-topography",
+          "family": "subcritical",
+          "n": 200,
+          "steps": 268,
+          "time": 2.0,
+          "depth_l1": 0.04937687162678692,
+          "momentum_l1": 0.11670916886752913,
+          "relative_depth_l1": 0.0010028350424301227,
+          "relative_momentum_l1": 0.0010561915734618055,
+          "depth_linf": 0.012699576412735114,
+          "minimum_depth": 1.706782086795888,
+          "maximum_depth": 2.0093130438899056,
+          "maximum_velocity": 2.5878631142837896,
+          "maximum_courant": 0.4,
+          "maximum_step_mass_defect": 1.1901191077612708e-15,
+          "maximum_step_momentum_defect": 1.865174681370263e-14,
+          "minimum_staying_coefficient": 0.7342264845706998,
+          "maximum_total_mass_defect": 5.282008848843622e-14,
+          "maximum_total_momentum_defect": 6.624735482407829e-13,
+          "mass_change": 6.541578768706757e-05,
+          "boundary_mass_change": 6.541578768820363e-05,
+          "bed_momentum_impulse": -0.05412601355037701,
+          "initial_dry_cells": 0,
+          "final_dry_cells": 0,
+          "newly_wet_cells": 0,
+          "all_saved_values_finite": true,
+          "depth_floor_count": 0,
+          "state_clip_count": 0,
+          "rejected_steps": 0,
+          "retries": 0,
+          "snapshot_times": [
+            0.0,
+            0.5,
+            1.0,
+            1.5,
+            2.0
+          ]
+        },
+        {
+          "id": "subcritical-n400",
+          "case": "swashes-topography",
+          "family": "subcritical",
+          "n": 400,
+          "steps": 536,
+          "time": 2.0,
+          "depth_l1": 0.024910750612742227,
+          "momentum_l1": 0.060087246887864654,
+          "relative_depth_l1": 0.0005059326932762419,
+          "relative_momentum_l1": 0.0005437759899354242,
+          "depth_linf": 0.006424726192375774,
+          "minimum_depth": 1.7071673523958315,
+          "maximum_depth": 2.0053503464023863,
+          "maximum_velocity": 2.5885739653660536,
+          "maximum_courant": 0.4,
+          "maximum_step_mass_defect": 8.624754336295616e-15,
+          "maximum_step_momentum_defect": 1.7091399469478224e-14,
+          "minimum_staying_coefficient": 0.7344646405854746,
+          "maximum_total_mass_defect": 8.038448654658321e-14,
+          "maximum_total_momentum_defect": 3.8524326957667387e-13,
+          "mass_change": 1.7453826262892047e-05,
+          "boundary_mass_change": 1.745382627041232e-05,
+          "bed_momentum_impulse": -0.02828240710978647,
+          "initial_dry_cells": 0,
+          "final_dry_cells": 0,
+          "newly_wet_cells": 0,
+          "all_saved_values_finite": true,
+          "depth_floor_count": 0,
+          "state_clip_count": 0,
+          "rejected_steps": 0,
+          "retries": 0,
+          "snapshot_times": [
+            0.0,
+            0.5,
+            1.0,
+            1.5,
+            2.0
+          ]
+        }
+      ],
+      "check_details": [
+        {
+          "name": "lake-immersed: maximum_step_mass_defect",
+          "value": 1.1518563880486e-15,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "lake-immersed: maximum_step_momentum_defect",
+          "value": 9.797124398985663e-18,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "lake-immersed: maximum_total_mass_defect",
+          "value": 1.7763568394002505e-15,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "lake-immersed: maximum_total_momentum_defect",
+          "value": 5.3048942715760625e-17,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "lake-immersed: nonnegative depth",
+          "value": 0.30026041666666653,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "lake-immersed: finite arrays",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "lake-immersed: face CFL",
+          "value": 0.4,
+          "bound": 0.40000000000001,
+          "passed": true
+        },
+        {
+          "name": "lake-immersed: no repairs or retries",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "lake-immersed: five exact output times",
+          "value": [
+            0.0,
+            0.5,
+            1.0,
+            1.5,
+            2.0
+          ],
+          "bound": [
+            0.0,
+            0.5,
+            1.0,
+            1.5,
+            2.0
+          ],
+          "passed": true
+        },
+        {
+          "name": "lake-immersed: maximum_equilibrium_depth_drift",
+          "value": 4.440892098500626e-16,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "lake-immersed: maximum_equilibrium_discharge",
+          "value": 7.458688608464603e-16,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "lake-emerged: maximum_step_mass_defect",
+          "value": 2.8275992658421956e-16,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "lake-emerged: maximum_step_momentum_defect",
+          "value": 6.366217892153998e-19,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "lake-emerged: maximum_total_mass_defect",
+          "value": 4.440892098500626e-16,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "lake-emerged: maximum_total_momentum_defect",
+          "value": 6.0031071397914446e-18,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "lake-emerged: nonnegative depth",
+          "value": 0.0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "lake-emerged: finite arrays",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "lake-emerged: face CFL",
+          "value": 0.4,
+          "bound": 0.40000000000001,
+          "passed": true
+        },
+        {
+          "name": "lake-emerged: no repairs or retries",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "lake-emerged: five exact output times",
+          "value": [
+            0.0,
+            0.5,
+            1.0,
+            1.5,
+            2.0
+          ],
+          "bound": [
+            0.0,
+            0.5,
+            1.0,
+            1.5,
+            2.0
+          ],
+          "passed": true
+        },
+        {
+          "name": "lake-emerged: maximum_equilibrium_depth_drift",
+          "value": 4.163336342344337e-17,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "lake-emerged: maximum_equilibrium_discharge",
+          "value": 2.0596616292697125e-17,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n100: maximum_step_mass_defect",
+          "value": 1.0189685205270892e-15,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n100: maximum_step_momentum_defect",
+          "value": 1.5813244539763377e-14,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n100: maximum_total_mass_defect",
+          "value": 5.313893625373821e-14,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n100: maximum_total_momentum_defect",
+          "value": 1.4134700354606622e-13,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n100: nonnegative depth",
+          "value": 1.7061975944337895,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n100: finite arrays",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n100: face CFL",
+          "value": 0.4,
+          "bound": 0.40000000000001,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n100: no repairs or retries",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n100: five exact output times",
+          "value": [
+            0.0,
+            0.5,
+            1.0,
+            1.5,
+            2.0
+          ],
+          "bound": [
+            0.0,
+            0.5,
+            1.0,
+            1.5,
+            2.0
+          ],
+          "passed": true
+        },
+        {
+          "name": "subcritical-n200: maximum_step_mass_defect",
+          "value": 1.1901191077612708e-15,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n200: maximum_step_momentum_defect",
+          "value": 1.865174681370263e-14,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n200: maximum_total_mass_defect",
+          "value": 5.282008848843622e-14,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n200: maximum_total_momentum_defect",
+          "value": 6.624735482407829e-13,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n200: nonnegative depth",
+          "value": 1.706782086795888,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n200: finite arrays",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n200: face CFL",
+          "value": 0.4,
+          "bound": 0.40000000000001,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n200: no repairs or retries",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n200: five exact output times",
+          "value": [
+            0.0,
+            0.5,
+            1.0,
+            1.5,
+            2.0
+          ],
+          "bound": [
+            0.0,
+            0.5,
+            1.0,
+            1.5,
+            2.0
+          ],
+          "passed": true
+        },
+        {
+          "name": "subcritical-n400: maximum_step_mass_defect",
+          "value": 8.624754336295616e-15,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n400: maximum_step_momentum_defect",
+          "value": 1.7091399469478224e-14,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n400: maximum_total_mass_defect",
+          "value": 8.038448654658321e-14,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n400: maximum_total_momentum_defect",
+          "value": 3.8524326957667387e-13,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n400: nonnegative depth",
+          "value": 1.7071673523958315,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n400: finite arrays",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n400: face CFL",
+          "value": 0.4,
+          "bound": 0.40000000000001,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n400: no repairs or retries",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n400: five exact output times",
+          "value": [
+            0.0,
+            0.5,
+            1.0,
+            1.5,
+            2.0
+          ],
+          "bound": [
+            0.0,
+            0.5,
+            1.0,
+            1.5,
+            2.0
+          ],
+          "passed": true
+        },
+        {
+          "name": "subcritical finest relative_depth_l1",
+          "value": 0.0005059326932762419,
+          "bound": 0.01,
+          "passed": true
+        },
+        {
+          "name": "subcritical relative_depth_l1 refinement 1",
+          "value": 0.5120097669614264,
+          "bound": 0.85,
+          "passed": true
+        },
+        {
+          "name": "subcritical relative_depth_l1 refinement 2",
+          "value": 0.5045024075447535,
+          "bound": 0.85,
+          "passed": true
+        },
+        {
+          "name": "subcritical finest relative_momentum_l1",
+          "value": 0.0005437759899354242,
+          "bound": 0.01,
+          "passed": true
+        },
+        {
+          "name": "subcritical relative_momentum_l1 refinement 1",
+          "value": 0.524031506537457,
+          "bound": 0.85,
+          "passed": true
+        },
+        {
+          "name": "subcritical relative_momentum_l1 refinement 2",
+          "value": 0.5148459840037614,
+          "bound": 0.85,
+          "passed": true
+        },
+        {
+          "name": "reference: Bernoulli energy constant",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "reference: subcritical branch",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "reference: Gauss8 vs Gauss16 conservative means",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "reference: Ritter total mass",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "reference: Ritter finite difference PDE residual",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "reference: exact dry branch",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "all fixed runs completed",
+          "value": 5,
+          "bound": 5,
+          "passed": true
+        }
+      ],
+      "checks": {
+        "lake-immersed: maximum_step_mass_defect": true,
+        "lake-immersed: maximum_step_momentum_defect": true,
+        "lake-immersed: maximum_total_mass_defect": true,
+        "lake-immersed: maximum_total_momentum_defect": true,
+        "lake-immersed: nonnegative depth": true,
+        "lake-immersed: finite arrays": true,
+        "lake-immersed: face CFL": true,
+        "lake-immersed: no repairs or retries": true,
+        "lake-immersed: five exact output times": true,
+        "lake-immersed: maximum_equilibrium_depth_drift": true,
+        "lake-immersed: maximum_equilibrium_discharge": true,
+        "lake-emerged: maximum_step_mass_defect": true,
+        "lake-emerged: maximum_step_momentum_defect": true,
+        "lake-emerged: maximum_total_mass_defect": true,
+        "lake-emerged: maximum_total_momentum_defect": true,
+        "lake-emerged: nonnegative depth": true,
+        "lake-emerged: finite arrays": true,
+        "lake-emerged: face CFL": true,
+        "lake-emerged: no repairs or retries": true,
+        "lake-emerged: five exact output times": true,
+        "lake-emerged: maximum_equilibrium_depth_drift": true,
+        "lake-emerged: maximum_equilibrium_discharge": true,
+        "subcritical-n100: maximum_step_mass_defect": true,
+        "subcritical-n100: maximum_step_momentum_defect": true,
+        "subcritical-n100: maximum_total_mass_defect": true,
+        "subcritical-n100: maximum_total_momentum_defect": true,
+        "subcritical-n100: nonnegative depth": true,
+        "subcritical-n100: finite arrays": true,
+        "subcritical-n100: face CFL": true,
+        "subcritical-n100: no repairs or retries": true,
+        "subcritical-n100: five exact output times": true,
+        "subcritical-n200: maximum_step_mass_defect": true,
+        "subcritical-n200: maximum_step_momentum_defect": true,
+        "subcritical-n200: maximum_total_mass_defect": true,
+        "subcritical-n200: maximum_total_momentum_defect": true,
+        "subcritical-n200: nonnegative depth": true,
+        "subcritical-n200: finite arrays": true,
+        "subcritical-n200: face CFL": true,
+        "subcritical-n200: no repairs or retries": true,
+        "subcritical-n200: five exact output times": true,
+        "subcritical-n400: maximum_step_mass_defect": true,
+        "subcritical-n400: maximum_step_momentum_defect": true,
+        "subcritical-n400: maximum_total_mass_defect": true,
+        "subcritical-n400: maximum_total_momentum_defect": true,
+        "subcritical-n400: nonnegative depth": true,
+        "subcritical-n400: finite arrays": true,
+        "subcritical-n400: face CFL": true,
+        "subcritical-n400: no repairs or retries": true,
+        "subcritical-n400: five exact output times": true,
+        "subcritical finest relative_depth_l1": true,
+        "subcritical relative_depth_l1 refinement 1": true,
+        "subcritical relative_depth_l1 refinement 2": true,
+        "subcritical finest relative_momentum_l1": true,
+        "subcritical relative_momentum_l1 refinement 1": true,
+        "subcritical relative_momentum_l1 refinement 2": true,
+        "reference: Bernoulli energy constant": true,
+        "reference: subcritical branch": true,
+        "reference: Gauss8 vs Gauss16 conservative means": true,
+        "reference: Ritter total mass": true,
+        "reference: Ritter finite difference PDE residual": true,
+        "reference: exact dry branch": true,
+        "all fixed runs completed": true
+      },
+      "metrics": {
+        "n": 400,
+        "steps": 536,
+        "time": 2.0,
+        "depth_l1": 0.024910750612742227,
+        "momentum_l1": 0.060087246887864654,
+        "relative_depth_l1": 0.0005059326932762419,
+        "relative_momentum_l1": 0.0005437759899354242,
+        "depth_linf": 0.006424726192375774,
+        "minimum_depth": 1.7071673523958315,
+        "maximum_depth": 2.0053503464023863,
+        "maximum_velocity": 2.5885739653660536,
+        "maximum_courant": 0.4,
+        "maximum_step_mass_defect": 8.624754336295616e-15,
+        "maximum_step_momentum_defect": 1.7091399469478224e-14,
+        "minimum_staying_coefficient": 0.7344646405854746,
+        "maximum_total_mass_defect": 8.038448654658321e-14,
+        "maximum_total_momentum_defect": 3.8524326957667387e-13,
+        "mass_change": 1.7453826262892047e-05,
+        "boundary_mass_change": 1.745382627041232e-05,
+        "bed_momentum_impulse": -0.02828240710978647,
+        "initial_dry_cells": 0,
+        "final_dry_cells": 0,
+        "newly_wet_cells": 0,
+        "all_saved_values_finite": true,
+        "depth_floor_count": 0,
+        "state_clip_count": 0,
+        "rejected_steps": 0,
+        "retries": 0
+      },
+      "reference_qualification": {
+        "checks": {
+          "Bernoulli energy constant": true,
+          "subcritical branch": true,
+          "Gauss8 vs Gauss16 conservative means": true,
+          "Ritter total mass": true,
+          "Ritter finite difference PDE residual": true,
+          "exact dry branch": true
+        },
+        "maximum_quadrature_gap": 3.3306690738754696e-16,
+        "maximum_pde_residual": 5.995204332975845e-10,
+        "energy_span": 4.440892098500626e-16
+      }
+    },
+    {
+      "id": "dry-bed-dam-break",
+      "passed": true,
+      "records": [
+        {
+          "id": "ritter-n1600",
+          "case": "dry-bed-dam-break",
+          "family": "ritter",
+          "n": 1600,
+          "steps": 532,
+          "time": 0.5,
+          "depth_l1": 0.02512521724715113,
+          "momentum_l1": 0.06613198451145408,
+          "relative_depth_l1": 0.002512521724715256,
+          "relative_momentum_l1": 0.026965131299269234,
+          "depth_linf": 0.033385844952806054,
+          "minimum_depth": 0.0,
+          "maximum_depth": 1.0,
+          "maximum_velocity": 5.159439026191249,
+          "maximum_courant": 0.40000000000000013,
+          "maximum_step_mass_defect": 2.0493514458405504e-15,
+          "maximum_step_momentum_defect": 4.336808689942018e-17,
+          "minimum_staying_coefficient": 0.6038337128225416,
+          "maximum_total_mass_defect": 3.197442310920451e-14,
+          "maximum_total_momentum_defect": 6.217248937900877e-15,
+          "mass_change": -1.1990408665951009e-14,
+          "boundary_mass_change": 0.0,
+          "bed_momentum_impulse": 0.0,
+          "initial_dry_cells": 800,
+          "final_dry_cells": 297,
+          "newly_wet_cells": 503,
+          "all_saved_values_finite": true,
+          "depth_floor_count": 0,
+          "state_clip_count": 0,
+          "rejected_steps": 0,
+          "retries": 0,
+          "snapshot_times": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "front_depth_threshold": 0.001,
+          "numerical_threshold_front": 2.6437500000000007,
+          "analytic_threshold_front": 2.9835237865001925,
+          "analytic_support_front": 3.132091952673165,
+          "threshold_front_error": 0.33977378650019174,
+          "depth_acceptance_reference_mass": 5.0,
+          "fixed_reference_relative_depth_l1": 0.005025043449430226
+        },
+        {
+          "id": "ritter-n3200",
+          "case": "dry-bed-dam-break",
+          "family": "ritter",
+          "n": 3200,
+          "steps": 1099,
+          "time": 0.5,
+          "depth_l1": 0.015074459120924356,
+          "momentum_l1": 0.03984559008998231,
+          "relative_depth_l1": 0.0015074459120925218,
+          "relative_momentum_l1": 0.016246927661563524,
+          "depth_linf": 0.025089122095101724,
+          "minimum_depth": 0.0,
+          "maximum_depth": 1.0,
+          "maximum_velocity": 5.41569334285852,
+          "maximum_courant": 0.40000000000000013,
+          "maximum_step_mass_defect": 2.1348987475453684e-15,
+          "maximum_step_momentum_defect": 2.992397996059992e-17,
+          "minimum_staying_coefficient": 0.6038337128225416,
+          "maximum_total_mass_defect": 3.197442310920451e-14,
+          "maximum_total_momentum_defect": 9.769962616701378e-15,
+          "mass_change": -1.1901590823981002e-14,
+          "boundary_mass_change": 0.0,
+          "bed_momentum_impulse": 0.0,
+          "initial_dry_cells": 1600,
+          "final_dry_cells": 728,
+          "newly_wet_cells": 872,
+          "all_saved_values_finite": true,
+          "depth_floor_count": 0,
+          "state_clip_count": 0,
+          "rejected_steps": 0,
+          "retries": 0,
+          "snapshot_times": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "front_depth_threshold": 0.001,
+          "numerical_threshold_front": 2.7093750000000005,
+          "analytic_threshold_front": 2.9835237865001925,
+          "analytic_support_front": 3.132091952673165,
+          "threshold_front_error": 0.2741487865001919,
+          "depth_acceptance_reference_mass": 5.0,
+          "fixed_reference_relative_depth_l1": 0.003014891824184871
+        },
+        {
+          "id": "ritter-n6400",
+          "case": "dry-bed-dam-break",
+          "family": "ritter",
+          "n": 6400,
+          "steps": 2263,
+          "time": 0.5,
+          "depth_l1": 0.00886909478548199,
+          "momentum_l1": 0.02351989621706402,
+          "relative_depth_l1": 0.0008869094785479971,
+          "relative_momentum_l1": 0.009590171750074893,
+          "depth_linf": 0.018378452319254834,
+          "minimum_depth": 0.0,
+          "maximum_depth": 1.0,
+          "maximum_velocity": 5.618969641557241,
+          "maximum_courant": 0.4000000000000001,
+          "maximum_step_mass_defect": 2.175706973437462e-15,
+          "maximum_step_momentum_defect": 2.47198095326695e-17,
+          "minimum_staying_coefficient": 0.6038337128225417,
+          "maximum_total_mass_defect": 4.973799150320701e-14,
+          "maximum_total_momentum_defect": 7.549516567451064e-15,
+          "mass_change": -7.904787935332912e-15,
+          "boundary_mass_change": 0.0,
+          "bed_momentum_impulse": 0.0,
+          "initial_dry_cells": 3200,
+          "final_dry_cells": 1679,
+          "newly_wet_cells": 1521,
+          "all_saved_values_finite": true,
+          "depth_floor_count": 0,
+          "state_clip_count": 0,
+          "rejected_steps": 0,
+          "retries": 0,
+          "snapshot_times": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "front_depth_threshold": 0.001,
+          "numerical_threshold_front": 2.7765625000000007,
+          "analytic_threshold_front": 2.9835237865001925,
+          "analytic_support_front": 3.132091952673165,
+          "threshold_front_error": 0.20696128650019174,
+          "depth_acceptance_reference_mass": 5.0,
+          "fixed_reference_relative_depth_l1": 0.001773818957096398
+        }
+      ],
+      "check_details": [
+        {
+          "name": "ritter-n1600: maximum_step_mass_defect",
+          "value": 2.0493514458405504e-15,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "ritter-n1600: maximum_step_momentum_defect",
+          "value": 4.336808689942018e-17,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "ritter-n1600: maximum_total_mass_defect",
+          "value": 3.197442310920451e-14,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "ritter-n1600: maximum_total_momentum_defect",
+          "value": 6.217248937900877e-15,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "ritter-n1600: nonnegative depth",
+          "value": 0.0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "ritter-n1600: finite arrays",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "ritter-n1600: face CFL",
+          "value": 0.40000000000000013,
+          "bound": 0.40000000000001,
+          "passed": true
+        },
+        {
+          "name": "ritter-n1600: no repairs or retries",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "ritter-n1600: five exact output times",
+          "value": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "bound": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "passed": true
+        },
+        {
+          "name": "ritter-n1600: actual wetting",
+          "value": 503,
+          "bound": 1,
+          "passed": true
+        },
+        {
+          "name": "ritter-n1600: dry cells retained",
+          "value": 297,
+          "bound": 1,
+          "passed": true
+        },
+        {
+          "name": "ritter-n3200: maximum_step_mass_defect",
+          "value": 2.1348987475453684e-15,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "ritter-n3200: maximum_step_momentum_defect",
+          "value": 2.992397996059992e-17,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "ritter-n3200: maximum_total_mass_defect",
+          "value": 3.197442310920451e-14,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "ritter-n3200: maximum_total_momentum_defect",
+          "value": 9.769962616701378e-15,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "ritter-n3200: nonnegative depth",
+          "value": 0.0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "ritter-n3200: finite arrays",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "ritter-n3200: face CFL",
+          "value": 0.40000000000000013,
+          "bound": 0.40000000000001,
+          "passed": true
+        },
+        {
+          "name": "ritter-n3200: no repairs or retries",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "ritter-n3200: five exact output times",
+          "value": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "bound": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "passed": true
+        },
+        {
+          "name": "ritter-n3200: actual wetting",
+          "value": 872,
+          "bound": 1,
+          "passed": true
+        },
+        {
+          "name": "ritter-n3200: dry cells retained",
+          "value": 728,
+          "bound": 1,
+          "passed": true
+        },
+        {
+          "name": "ritter-n6400: maximum_step_mass_defect",
+          "value": 2.175706973437462e-15,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "ritter-n6400: maximum_step_momentum_defect",
+          "value": 2.47198095326695e-17,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "ritter-n6400: maximum_total_mass_defect",
+          "value": 4.973799150320701e-14,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "ritter-n6400: maximum_total_momentum_defect",
+          "value": 7.549516567451064e-15,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "ritter-n6400: nonnegative depth",
+          "value": 0.0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "ritter-n6400: finite arrays",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "ritter-n6400: face CFL",
+          "value": 0.4000000000000001,
+          "bound": 0.40000000000001,
+          "passed": true
+        },
+        {
+          "name": "ritter-n6400: no repairs or retries",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "ritter-n6400: five exact output times",
+          "value": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "bound": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "passed": true
+        },
+        {
+          "name": "ritter-n6400: actual wetting",
+          "value": 1521,
+          "bound": 1,
+          "passed": true
+        },
+        {
+          "name": "ritter-n6400: dry cells retained",
+          "value": 1679,
+          "bound": 1,
+          "passed": true
+        },
+        {
+          "name": "ritter finest relative_depth_l1",
+          "value": 0.001773818957096398,
+          "bound": 0.05,
+          "passed": true
+        },
+        {
+          "name": "ritter relative_depth_l1 refinement 1",
+          "value": 0.5999732847139302,
+          "bound": 0.85,
+          "passed": true
+        },
+        {
+          "name": "ritter relative_depth_l1 refinement 2",
+          "value": 0.5883524386736433,
+          "bound": 0.85,
+          "passed": true
+        },
+        {
+          "name": "ritter finest relative_momentum_l1",
+          "value": 0.009590171750074893,
+          "bound": 0.08,
+          "passed": true
+        },
+        {
+          "name": "ritter relative_momentum_l1 refinement 1",
+          "value": 0.6025161710228284,
+          "bound": 0.85,
+          "passed": true
+        },
+        {
+          "name": "ritter relative_momentum_l1 refinement 2",
+          "value": 0.5902760170935594,
+          "bound": 0.85,
+          "passed": true
+        },
+        {
+          "name": "finest threshold front error",
+          "value": 0.20696128650019174,
+          "bound": 0.25,
+          "passed": true
+        },
+        {
+          "name": "reference: Bernoulli energy constant",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "reference: subcritical branch",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "reference: Gauss8 vs Gauss16 conservative means",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "reference: Ritter total mass",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "reference: Ritter finite difference PDE residual",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "reference: exact dry branch",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "all fixed runs completed",
+          "value": 3,
+          "bound": 3,
+          "passed": true
+        }
+      ],
+      "checks": {
+        "ritter-n1600: maximum_step_mass_defect": true,
+        "ritter-n1600: maximum_step_momentum_defect": true,
+        "ritter-n1600: maximum_total_mass_defect": true,
+        "ritter-n1600: maximum_total_momentum_defect": true,
+        "ritter-n1600: nonnegative depth": true,
+        "ritter-n1600: finite arrays": true,
+        "ritter-n1600: face CFL": true,
+        "ritter-n1600: no repairs or retries": true,
+        "ritter-n1600: five exact output times": true,
+        "ritter-n1600: actual wetting": true,
+        "ritter-n1600: dry cells retained": true,
+        "ritter-n3200: maximum_step_mass_defect": true,
+        "ritter-n3200: maximum_step_momentum_defect": true,
+        "ritter-n3200: maximum_total_mass_defect": true,
+        "ritter-n3200: maximum_total_momentum_defect": true,
+        "ritter-n3200: nonnegative depth": true,
+        "ritter-n3200: finite arrays": true,
+        "ritter-n3200: face CFL": true,
+        "ritter-n3200: no repairs or retries": true,
+        "ritter-n3200: five exact output times": true,
+        "ritter-n3200: actual wetting": true,
+        "ritter-n3200: dry cells retained": true,
+        "ritter-n6400: maximum_step_mass_defect": true,
+        "ritter-n6400: maximum_step_momentum_defect": true,
+        "ritter-n6400: maximum_total_mass_defect": true,
+        "ritter-n6400: maximum_total_momentum_defect": true,
+        "ritter-n6400: nonnegative depth": true,
+        "ritter-n6400: finite arrays": true,
+        "ritter-n6400: face CFL": true,
+        "ritter-n6400: no repairs or retries": true,
+        "ritter-n6400: five exact output times": true,
+        "ritter-n6400: actual wetting": true,
+        "ritter-n6400: dry cells retained": true,
+        "ritter finest relative_depth_l1": true,
+        "ritter relative_depth_l1 refinement 1": true,
+        "ritter relative_depth_l1 refinement 2": true,
+        "ritter finest relative_momentum_l1": true,
+        "ritter relative_momentum_l1 refinement 1": true,
+        "ritter relative_momentum_l1 refinement 2": true,
+        "finest threshold front error": true,
+        "reference: Bernoulli energy constant": true,
+        "reference: subcritical branch": true,
+        "reference: Gauss8 vs Gauss16 conservative means": true,
+        "reference: Ritter total mass": true,
+        "reference: Ritter finite difference PDE residual": true,
+        "reference: exact dry branch": true,
+        "all fixed runs completed": true
+      },
+      "metrics": {
+        "n": 6400,
+        "steps": 2263,
+        "time": 0.5,
+        "depth_l1": 0.00886909478548199,
+        "momentum_l1": 0.02351989621706402,
+        "relative_depth_l1": 0.0008869094785479971,
+        "relative_momentum_l1": 0.009590171750074893,
+        "depth_linf": 0.018378452319254834,
+        "minimum_depth": 0.0,
+        "maximum_depth": 1.0,
+        "maximum_velocity": 5.618969641557241,
+        "maximum_courant": 0.4000000000000001,
+        "maximum_step_mass_defect": 2.175706973437462e-15,
+        "maximum_step_momentum_defect": 2.47198095326695e-17,
+        "minimum_staying_coefficient": 0.6038337128225417,
+        "maximum_total_mass_defect": 4.973799150320701e-14,
+        "maximum_total_momentum_defect": 7.549516567451064e-15,
+        "mass_change": -7.904787935332912e-15,
+        "boundary_mass_change": 0.0,
+        "bed_momentum_impulse": 0.0,
+        "initial_dry_cells": 3200,
+        "final_dry_cells": 1679,
+        "newly_wet_cells": 1521,
+        "all_saved_values_finite": true,
+        "depth_floor_count": 0,
+        "state_clip_count": 0,
+        "rejected_steps": 0,
+        "retries": 0,
+        "front_depth_threshold": 0.001,
+        "numerical_threshold_front": 2.7765625000000007,
+        "analytic_threshold_front": 2.9835237865001925,
+        "analytic_support_front": 3.132091952673165,
+        "threshold_front_error": 0.20696128650019174,
+        "depth_acceptance_reference_mass": 5.0,
+        "fixed_reference_relative_depth_l1": 0.001773818957096398
+      },
+      "reference_qualification": {
+        "checks": {
+          "Bernoulli energy constant": true,
+          "subcritical branch": true,
+          "Gauss8 vs Gauss16 conservative means": true,
+          "Ritter total mass": true,
+          "Ritter finite difference PDE residual": true,
+          "exact dry branch": true
+        },
+        "maximum_quadrature_gap": 3.3306690738754696e-16,
+        "maximum_pde_residual": 5.995204332975845e-10,
+        "energy_span": 4.440892098500626e-16
+      }
+    }
+  ],
+  "source_sha256": {
+    "catalog/atlas-depth-expansion.json": "6080528b544ab1d60956b6e382b12b1505fe80fdbd66bac8791f78014878748f",
+    "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
+    "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
+    "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
+    "code/validated-examples/2026-11-22/foundations/results/result.json": "93a27cb8e43d7195d2417fc9110f196b07c826ea1f4e2b240f879ab8ab8b4b77",
+    "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
+    "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
+    "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
+    "code/validated-examples/2026-11-22/models/cases.json": "09b670a3462f7f1395dcdf12b507786b69616c0ea165d2678efe780ddb0cf0e6",
+    "code/validated-examples/2026-11-22/models/results/result.json": "d3af162e0e4a1cb0cc14bd41f250cfe16b69e0b6f111cc4ba1c71eb4ca55e266",
+    "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
+    "code/validated-examples/2026-11-22/particles/source-manifest.json": "63cefd473db691db611628f6501b2b58d6727c055ffde1b9a4962bfecfacd125",
+    "code/validated-examples/2026-11-22/particles/verification.json": "48744c4ce661cb76ce7cba81d55bbbb2737885c472966237e78c9e3dfcbf43b7",
+    "code/validated-examples/2026-11-22/particles/cases.json": "f6e68b2ec8d0cd56357b1aeecea3f9c40cf22f89e7f9c1b8b9442ad020ddbf86",
+    "code/validated-examples/2026-11-22/particles/results/result.json": "ed038f2af0d25bb29235e5f2853e0c8360974e8a499475f4b5cb3146d142ad60",
+    "code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+    "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
+    "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
+    "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
+    "code/validated-examples/2026-11-22/mhd/results/result.json": "ce1a011a3f2a18727aa7c10a81d712e23b536e9367e4be18d6847b74210a73f6",
+    "code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip": "2e7eeaaacaeb918671228cc56ab333d0c4ca5a9879241846f5772594552d0b16",
+    "code/validated-examples/2026-11-22/thermostats/source-manifest.json": "81a854bdfe3ae33b4eb4bffdccc9ab15a09f2bddbffb294cd2c2cbd07e641580",
+    "code/validated-examples/2026-11-22/thermostats/verification.json": "c14f55ac05d93269dbf8eef4a2a4042f75764d5228d06f8e41039d0b60351905",
+    "code/validated-examples/2026-11-22/thermostats/cases.json": "123566ec7000dce11f2a6a7474d35e45c8fdf24db85a0556e2cbb3911d3acd77",
+    "code/validated-examples/2026-11-22/thermostats/results/result.json": "7971007807acce9f75261b684b789f196e1d5dffc80797e102d1b0bebbc93f11",
+    "code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip": "38142da988bf0c790eab7e7f10f8d1e209d074c3627f73a207f5223a24e18d65",
+    "code/validated-examples/2026-11-22/biology/source-manifest.json": "56947a4fb54ae757408ddddfc5de0884bfe35266032ee425a8d96a815f3362ba",
+    "code/validated-examples/2026-11-22/biology/verification.json": "5cafaaef809f46e6ab01327107f7367113b8069931621fc92d446fbf142682bd",
+    "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
+    "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
+    "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
+    "code/validated-examples/2026-11-22/mcmc/source-manifest.json": "c288e5c96aefe6f4bfdab4dbd78efc8b27924087aa09ac7e91d61adf63ebf195",
+    "code/validated-examples/2026-11-22/mcmc/verification.json": "f39975a549b48345d5b6f833d6226cdae1054ecb9f004d9c845d1ffa8bbc8c9e",
+    "code/validated-examples/2026-11-22/mcmc/cases.json": "fa950eafd45ac23aa2eba3374b23ab2d8df934368ab5b833bf812fbdd095fcaa",
+    "code/validated-examples/2026-11-22/mcmc/results/result.json": "530a343f4e59e03aa9369e373507e73a063eb810eb5a24fd820568467567cbd5",
+    "code/validated-examples/2026-11-22/mcmc/atlas-mcmc-2026-11-22.zip": "7fb1cde233b79e2b2d56edac89c6e1bdbe8239c1b7f5e166054f8e3e2cdaac11",
+    "code/validated-examples/2026-11-22/mhd-convergence/source-manifest.json": "9d5fd8eb67ed3d4ac3965596bbd12152bdc1ae2e03a3a4f060573175d00caf67",
+    "code/validated-examples/2026-11-22/mhd-convergence/verification.json": "ddf51e803eb94ca7dc419d0b9fc4aa6ec7204c319e448f7d4b120f5342a319d8",
+    "code/validated-examples/2026-11-22/mhd-convergence/cases.json": "a1ebd3a1344c90cc49e11dd790a522434f7fdec27f77d8621a2197a7be738434",
+    "code/validated-examples/2026-11-22/mhd-convergence/results/result.json": "7b1ddd177a96b1ede21b568b0f8e72e4b23d970d96ace3ab2441b0df0efbfe6b",
+    "code/validated-examples/2026-11-22/mhd-convergence/atlas-mhd-convergence-2026-11-22.zip": "5db2fc202014a576145e98c84e1802540df7d8e26353d469fbd55c8e393fd866",
+    "code/validated-examples/2026-11-22/foundations-conditioning/source-manifest.json": "f5b5b5cb5540a1ea76f60f599bd3afd99ffbf312343588e6c7d5c5bcffb3dd9c",
+    "code/validated-examples/2026-11-22/foundations-conditioning/verification.json": "3368c373d622c4246868a43ce869f160de34d0d124c0334d4355573e7c8b3b5f",
+    "code/validated-examples/2026-11-22/foundations-conditioning/cases.json": "fe1b43a92ad60c91a1fdbd79342db0269e27cc0ef2f7d1ddcee58e183cf5b66c",
+    "code/validated-examples/2026-11-22/foundations-conditioning/results/result.json": "0b8ef84da85f950afa9779feb79052401dcdda707d1ac6bb314c3afa3a1973e9",
+    "code/validated-examples/2026-11-22/foundations-conditioning/atlas-foundations-conditioning-2026-11-22.zip": "71d8f0d3b0bed4a6a97f976aabfd02cc0baf08a30c1655f6b1ea42ea16df3c9d",
+    "code/validated-examples/2026-11-22/particle-transport/source-manifest.json": "d5724e7fd43635a489acb3b9ae90ac83fcce734ee89b6f29bc80cbdd4cefac97",
+    "code/validated-examples/2026-11-22/particle-transport/verification.json": "a16b3b90fd815909a8f3241dd7c04aeedabb2dd964da603eadd851fd6a0e171d",
+    "code/validated-examples/2026-11-22/particle-transport/cases.json": "3d3dd9cbc6c62666bb76f893762cf27b33b2606a34e87ffe8c4275e258b96f66",
+    "code/validated-examples/2026-11-22/particle-transport/results/result.json": "8e189a555c575dba4878c1813f828b29a3045c5015bb4ff2aa1b16c8eab9b138",
+    "code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip": "940c1b9c867d5fda395bf93d9dac6b38d992bb4d3de29065f1b42108d1d4c0c9",
+    "code/validated-examples/2026-11-22/splitting/source-manifest.json": "e071ab71032cce9e1a8340cdd80bb58364b7105de764594507024259915f6368",
+    "code/validated-examples/2026-11-22/splitting/verification.json": "899af4b800c58e990a6eae62dd5510ff1afed02060ab7fb67e1c5c8ebcd47b53",
+    "code/validated-examples/2026-11-22/splitting/cases.json": "f252ee6b994a6827e5579b28127143680170124de50f05057d2890e545dcc84f",
+    "code/validated-examples/2026-11-22/splitting/results/result.json": "7b1b8338ec2a03eb04e82f3891d4e2fd08a2edb665313dc8bd0991b1a7a9a8f2",
+    "code/validated-examples/2026-11-22/splitting/atlas-splitting-2026-11-22.zip": "2ae466a4ea62e204716a388b86033de3a6493a9ab0ef4ad9aec4ebb038d8a404",
+    "code/validated-examples/2026-11-23-r5/noh/source-manifest.json": "8597cbc7b841502f4e7eca154e86fe8893402c1167614952de682d7307c5595d",
+    "code/validated-examples/2026-11-23-r5/noh/verification.json": "48545a33ab2c19e9071616a15a1fcbf90c716096aa1a12550d3cb872ed8d9e36",
+    "code/validated-examples/2026-11-23-r5/noh/cases.json": "9501c9cb57617c09a8ceb0aa7e124ba1e2af303144eaa82045e8632fc7c39fc2",
+    "code/validated-examples/2026-11-23-r5/noh/results/result.json": "4e92acb911d505b3f7e74e39f01acf77e59fbe15577f321ac759f1315e487724",
+    "code/validated-examples/2026-11-23-r5/noh/atlas-noh-2026-11-23-r5.zip": "64de5483e9896a3773348b75e1ec2b4630f8a709d68194c1d94772396f531733",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/source-manifest.json": "3f34837f6078bfdc96e5bea2a0ec36c3ae4c48a09c25fcd61560cbb4f4781f93",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/verification.json": "7c530b06df5d2878958bd249b3035050592365e23aee79804e600368dfb09f46",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/cases.json": "49b94c1f65e269d4a878be3a4d8778375b88b767f5dd01998ae5fe6b8fc2b3ee",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/results/result.json": "e121c2f5171ee53491b492019311d002ceb44213f6f7cd43051a3ca68f74c694",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/atlas-noh-cartesian-2026-11-23-r2.zip": "2145beb161f993c1608fc5ac167af5278d58e10f92e74ed37e5fb9c35243b918",
+    "code/validated-examples/2026-11-23-r2/sedov/source-manifest.json": "4a92404602abd0d01096aae1576afb96533c64ea68989615df885a4310e3479f",
+    "code/validated-examples/2026-11-23-r2/sedov/verification.json": "1bec773b9e6d657ea7b71996df2bcc2c593f64b8cbb51942ed7d106be3419a03",
+    "code/validated-examples/2026-11-23-r2/sedov/cases.json": "aab3ca7447d35997bd38505e1ef79e1693096a29cc52c10e994bdcc9c80c8c03",
+    "code/validated-examples/2026-11-23-r2/sedov/results/result.json": "e4767029260bee54e0de2c85b07cbca07c5b99c4eb999b9d609735b6e615ef23",
+    "code/validated-examples/2026-11-23-r2/sedov/atlas-sedov-2026-11-23-r2.zip": "abb7344023b91b090820de1ebec8d6c6a949b8c06fda73037204a5d6f62b4b73",
+    "code/validated-examples/2026-11-23/double-mach/source-manifest.json": "32ba5521149368b729b31796dcc0006c8fd743e840e1e36533a867a47170d8c8",
+    "code/validated-examples/2026-11-23/double-mach/verification.json": "c588b4ce7f539d53b1d5eec4413ce3a1dc104eff975e4adddf0c544460dbb49e",
+    "code/validated-examples/2026-11-23/double-mach/cases.json": "38eb6a6fb4af35cdd3ca8834b9f3e5c80be22a50615f03aef712bc67b11b85e3",
+    "code/validated-examples/2026-11-23/double-mach/results/result.json": "3b4a36b9b3e10e7a6984130ee24bb7d5707de0fe24facff3a49b8eabd71ea5fe",
+    "code/validated-examples/2026-11-23/double-mach/atlas-double-mach-2026-11-23.zip": "0a68d19746c508e0ac0cf9b5bebe9375c797a87ade1a9fbfbef87d6e5fa63347",
+    "code/validated-examples/2026-11-23/forward-step/source-manifest.json": "77546e263d8e08266cedb57ef5e128a3bee68d7b9597fb56bed2eee5dcbec6dc",
+    "code/validated-examples/2026-11-23/forward-step/verification.json": "f40317a2721c2048c6174bf41c03adf5e3eddae07e19ae95e6ed5210a9b01914",
+    "code/validated-examples/2026-11-23/forward-step/cases.json": "e7397c94e5d170170b09a6baa4fdf9276d83419118e456cc172ad6c5cf63b363",
+    "code/validated-examples/2026-11-23/forward-step/results/result.json": "636e179813165fbe620caadd825ac699973ea2dde897d13aed8b2d22102e6704",
+    "code/validated-examples/2026-11-23/forward-step/atlas-forward-step-2026-11-23.zip": "ae69647a4e63c75c0888a6daf15835d348e9d74de58b5e59926e359e9ffc52cd",
+    "code/validated-examples/2026-11-23/low-mach/source-manifest.json": "ff359786cf6efff8e5e61f842ae63a866cb7655a4151b2d33ac12501eed98124",
+    "code/validated-examples/2026-11-23/low-mach/verification.json": "f747210e1d46900c4f56b01e989696c3feaee35361fe42be11428fd280bacf84",
+    "code/validated-examples/2026-11-23/low-mach/cases.json": "8a33dd861d6c635afeb526a2823fa33e88dc84fb49f1ae8a5ba19cbad32ae058",
+    "code/validated-examples/2026-11-23/low-mach/results/result.json": "5e1fdfa86dc57b13857bd571de1070d00ac5237400e0fc9ee9875fae9824d9f5",
+    "code/validated-examples/2026-11-23/low-mach/atlas-low-mach-2026-11-23.zip": "717b2ceed76d37cf4c1e570a7a022e1a17d66fce3048648a3edde4164a1513aa",
+    "code/validated-examples/2026-11-23-r3/guderley/source-manifest.json": "e436ada98187ba8a1ca755712fc60d1ce5f735379f026d92d63b2cbd19c6d112",
+    "code/validated-examples/2026-11-23-r3/guderley/verification.json": "3eb90bb576b4b9579433bb15a93b0acc42948a85f335a45de7c649ec1b61e625",
+    "code/validated-examples/2026-11-23-r3/guderley/cases.json": "72e621b096fdb1ff229dba33b9243667a7e7c4f9b2593d7331953333707f28f7",
+    "code/validated-examples/2026-11-23-r3/guderley/results/result.json": "c85894f329b97d62ef9d093792316028e4b3b9ca38a0488047bdbab2542e84bb",
+    "code/validated-examples/2026-11-23-r3/guderley/atlas-guderley-2026-11-23-r3.zip": "f00ff906861495bd73b2ae75f7c3895fab505ba45ad7a34a2612700405d8466f",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/source-manifest.json": "86eef08f81c19d211d9908ba195f6fbbdcd4af54dcfaf8df59ebbe9df73b34b9",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/verification.json": "4c205d9d21d1ea7efbf3d56e881c8c740f26a983576415a69e95490393af4f3d",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/cases.json": "52e618b3a97dab879badba192d5c2f74c5a08c25e473f055de81c645a6985d5a",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/results/result.json": "bee593154817e7a6339cee14fa7c029000002f42ade8ccd6d568119d375fdddc",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/atlas-euler-positivity-2026-11-23-r2.zip": "0f2c8a3bf94a612f89d8f6f695b94574dd05d70976aa97a497ef47ff4e0c1efe",
+    "code/validated-examples/2026-11-23/zalesak/source-manifest.json": "d13a134c2e791740190529a8a4eef07eda5126a14101155d254f450d0438eb55",
+    "code/validated-examples/2026-11-23/zalesak/verification.json": "aad9b39c23d83e967588361edfdb05724f1ea3fade93843ebb05b5fd829ba44e",
+    "code/validated-examples/2026-11-23/zalesak/cases.json": "4ff0db4160a4da838ddb57089dae6849d18d3386fedd935365ab53795611831a",
+    "code/validated-examples/2026-11-23/zalesak/results/result.json": "51851a31df72eec078e25171deeacd2699a9bfe9eedc55b4bc6831fd233b408d",
+    "code/validated-examples/2026-11-23/zalesak/atlas-zalesak-2026-11-23.zip": "28e7d2bc93d3a5ba1cb015c874c489e9fd1a2e8a586a46d519800c799b0fb6f8",
+    "code/validated-examples/2026-11-23/weno-critical/source-manifest.json": "abd8b0a29bb81b7d98b897ec0a0eb409f77873857ec8199c3767f1ede11b43a5",
+    "code/validated-examples/2026-11-23/weno-critical/verification.json": "ccbf3c6a2fe7055b324a0d98c152da909242f36e0c82ca3281038e4c9b0c165f",
+    "code/validated-examples/2026-11-23/weno-critical/cases.json": "6b68c525e99fe15adbdce97a5d078289e5df0ff5f63cd9c790784a29b979440b",
+    "code/validated-examples/2026-11-23/weno-critical/results/result.json": "c4150a350d0854b3b815bd820790711ecdbcc7594690c0ad8c15e23f6aa3d05d",
+    "code/validated-examples/2026-11-23/weno-critical/atlas-weno-critical-2026-11-23.zip": "9c119480261013ef8ed0c58716c45af5b9fb9d3e891aef56b95b66fbd8415491",
+    "code/validated-examples/2026-11-23/shallow-water/source-manifest.json": "0fdab6190462f91176fa2eb4eb452d6fb66c2066b0e07d115b8ea789231614da",
+    "code/validated-examples/2026-11-23/shallow-water/verification.json": "e342321ddc1f7692e08dcc7a63478912956f63637c855f2f85eaf0999c4d22cc",
+    "code/validated-examples/2026-11-23/shallow-water/cases.json": "9296c20b7609cb4acdcd5a0ce437781dcd2e7635dbfea0a924f8468a3e5a5792",
+    "code/validated-examples/2026-11-23/shallow-water/results/result.json": "49a56493e429dd3b4c9d6f8eba72c53ddd3469689699217157b9823a392c015f",
+    "code/validated-examples/2026-11-23/shallow-water/atlas-shallow-water-2026-11-23.zip": "259244fc5c237542ba577df62308fd2a3191979dd43717d58df33d8abb902644",
+    "code/validated-examples/2026-11-23-r2/wall-flow/source-manifest.json": "5defc88a20d06c6806f1aa18c5a5a9f027c7891d8a237bb5fe980169d1bbdfe4",
+    "code/validated-examples/2026-11-23-r2/wall-flow/verification.json": "6daf2fa12cf2e7f604bb54413b82e36bbe72891132e1846abf598f9c9600b096",
+    "code/validated-examples/2026-11-23-r2/wall-flow/cases.json": "ed51f9003bbf5ddfa88602dd579ad962c81f95fb5dd3e7ef32973b17f9844d70",
+    "code/validated-examples/2026-11-23-r2/wall-flow/results/result.json": "ce92039a849015c3c3bd1de8e6ef77052f6fc5a9765ff961bc20086180996252",
+    "code/validated-examples/2026-11-23-r2/wall-flow/atlas-wall-flow-2026-11-23-r2.zip": "de499fde477a49b1eae10bd6bf04b0800b58105ca5d504ec6eff2ec3272690fd"
+  }
+}

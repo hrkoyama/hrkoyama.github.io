@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Freeze small validation supplements after a real independent ZIP extraction."""
-import argparse,hashlib,importlib.metadata,json,os,re,shutil,subprocess,sys,tempfile,time,xml.etree.ElementTree as ET,zipfile
+import argparse,hashlib,importlib.metadata,importlib.util,json,os,re,shutil,subprocess,sys,tempfile,time,xml.etree.ElementTree as ET,zipfile
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
-GROUPS=['foundations','models','particles','mhd','thermostats','biology','mcmc','mhd-convergence','foundations-conditioning','particle-transport', 'splitting', 'noh', 'noh-cartesian', 'sedov', 'double-mach', 'forward-step', 'low-mach', 'guderley', 'euler-positivity', 'zalesak']
+GROUPS=['foundations','models','particles','mhd','thermostats','biology','mcmc','mhd-convergence','foundations-conditioning','particle-transport', 'splitting', 'noh', 'noh-cartesian', 'sedov', 'double-mach', 'forward-step', 'low-mach', 'guderley', 'euler-positivity', 'zalesak', 'weno-critical', 'shallow-water', 'wall-flow']
 
 # Keep this self-contained preflight equal to the public-only verifier's
 # reviewed DIRECT_PINS policy; packaging must fail before running science.
@@ -13,6 +13,12 @@ def validate_requirements(data):
     lines=[line.strip() for line in data.decode('utf-8').splitlines() if line.strip()]
     if len(lines)!=len(REVIEWED_REQUIREMENTS) or set(lines)!=REVIEWED_REQUIREMENTS:
         raise ValueError('Release requirements must contain only the three reviewed direct pins')
+
+def validate_result_envelope(result, case_ids, input_sha256):
+    """Apply the actual public-only verifier before freezing a distribution."""
+    spec=importlib.util.spec_from_file_location('depth_public_result_contract',ROOT/'scripts/verify-depth-public.py')
+    verifier=importlib.util.module_from_spec(spec);spec.loader.exec_module(verifier)
+    return verifier.validate_result(result,case_ids,input_sha256,result.get('termination'))
 
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def dump(p,x):p.write_text(json.dumps(x,ensure_ascii=False,indent=2,allow_nan=False)+'\n')
@@ -47,6 +53,7 @@ def package(group,edition):
             start=time.monotonic();p=subprocess.run([sys.executable,'-W','error','run.py','--input','inputs.json','--output',str(out)],cwd=cwd,env=env,text=True,capture_output=True,timeout=120)
             if p.returncode:raise RuntimeError(p.stdout+'\n'+p.stderr)
             result=json.loads((out/'result.json').read_text());assert result['passed'] is True and result['checks'] and all(result['checks'].values())
+            validate_result_envelope(result,ids,sha(cwd/'inputs.json'))
             assert {c['id'] for c in result['cases']}==ids
             assert all(c['passed'] and c['checks'] and all(c['checks'].values()) for c in result['cases'])
             return result,time.monotonic()-start

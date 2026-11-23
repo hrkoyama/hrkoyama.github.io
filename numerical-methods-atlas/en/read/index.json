@@ -4,8 +4,8 @@
   "title": "Learn by field",
   "description": "Read the theory, derivations and worked examples by field, from foundations to related methods and verification.",
   "source": "/catalog/atlas-reading-index.json",
-  "source_sha256": "119522b39111340ab8fe6257062833ee98d921877a3d2cdb758df23b8116c19d",
-  "chapter_count": 102,
+  "source_sha256": "ce5d51b35821803d75c5c10aba20546fc656333b3492b54fc35c96345087cc57",
+  "chapter_count": 105,
   "groups": [
     {
       "id": "foundations-time",
@@ -571,6 +571,17 @@
             "en"
           ],
           "search_text": "validation-guderley Guderley収束衝撃波：球対称の軽量検証 Guderley converging shock: lightweight spherical-radial verification 流体・衝撃波・定常解法 Fluids, shocks and steady solvers"
+        },
+        {
+          "id": "validation-weno-critical",
+          "title": "WENO critical points and epsilon dependence",
+          "url": "/numerical-methods-atlas/en/read/validation-weno-critical/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-weno-critical WENOの臨界点・ε依存性 WENO critical points and epsilon dependence 流体・衝撃波・定常解法 Fluids, shocks and steady solvers"
         }
       ]
     },
@@ -699,6 +710,28 @@
             "en"
           ],
           "search_text": "validation-mhd-convergence CTとGLM：同条件の独立照合・格子・時間収束 CT and GLM: matched controls, independent checks and grid/time convergence 格子・有限要素・連成方程式 Meshes, finite elements and coupled equations"
+        },
+        {
+          "id": "validation-shallow-water",
+          "title": "Shallow water: topography, lakes and dry beds",
+          "url": "/numerical-methods-atlas/en/read/validation-shallow-water/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-shallow-water 浅水流：地形・静止湖・乾燥床 Shallow water: topography, lakes and dry beds 格子・有限要素・連成方程式 Meshes, finite elements and coupled equations"
+        },
+        {
+          "id": "validation-wall-flow",
+          "title": "Nonperiodic walls: cavity and manufactured flow",
+          "url": "/numerical-methods-atlas/en/read/validation-wall-flow/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-wall-flow 非周期壁面：キャビティと製造解 Nonperiodic walls: cavity and manufactured flow 格子・有限要素・連成方程式 Meshes, finite elements and coupled equations"
         }
       ]
     },

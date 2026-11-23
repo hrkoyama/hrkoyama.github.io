@@ -1,0 +1,10 @@
+{
+  "scientific_contract_unchanged": true,
+  "changes_after_scientific_run": [
+    "plot.py fixed log-axis tick labels, presentation-only excluded by contract"
+  ],
+  "initial_figure_directory": "figures-initial",
+  "final_pngs_visually_inspected": true,
+  "scientific_rerun": false,
+  "final_plot_sha256": "415981c9b1ec649e903c91e3ca1cf811f4ce17078a6a294b9f4250468c818a56"
+}

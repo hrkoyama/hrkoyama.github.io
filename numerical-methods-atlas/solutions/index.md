@@ -32,6 +32,10 @@ SHA-256: `c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc`
 
 この実行例の範囲：長さ1の周期区間でq_t+a q_x=0を1周期進め、64/128点の1次風上法を平行移動した正弦波と比較する。計算値、解析値、誤差をCSVへ出す。
 
+- [実行・検証：WENO-JS／Z：臨界点とεの固定比較](https://hrkoyama.github.io/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=ja) (`weno-critical-epsilon`) · [コードZIP：WENO-JS／Z：臨界点とεの固定比較](https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/atlas-weno-critical-2026-11-23.zip)
+
+この実行例の範囲：同じセル平均からのWENO5再構成と実際の周期輸送で、JS重みとZ二乗重みを比較します。3種類の臨界性、3種類のε、固定格子と時間刻み半減を分けて保存します。
+
 
 ##### [周期矩形波の線形移流](https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-square/?lang=ja) (`advection-square`)
 
@@ -339,7 +343,20 @@ SHA-256: `c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc`
 
 #### 関連するテスト問題の図とコード
 
-この項目に対応付けられたテスト問題は未登録です。
+##### [乾燥床へのRitter破堤流](https://hrkoyama.github.io/numerical-methods-atlas/problems/dry-bed-dam-break/?lang=ja) (`dry-bed-dam-break`)
+
+![実際の1次元浅水計算の保存配列による水深・流量と乾湿前線のプレビュー。時空間図は1次元の5保存時刻です。](https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/results/dry-bed-dam-break-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/dry-bed-dam-break/?lang=ja#code-ja)
+
+関連モデルの問題
+
+既存の乾燥床浅水参照は元の重力・領域・時刻を保持します。今回のg9.81・[-10,10]・t.5は専用Ritter参照で照合します。
+
+- [実行・検証：乾いた河床のダム破壊：実際のwetting/drying](https://hrkoyama.github.io/numerical-methods-atlas/validation/dry-bed-dam-break/?lang=ja) (`dry-bed-dam-break`) · [コードZIP：乾いた河床のダム破壊：実際のwetting/drying](https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/atlas-shallow-water-2026-11-23.zip)
+
+この実行例の範囲：右半分を厳密にh=q=0として開始する浅水方程式を解き、実際の乾湿前線の進行と保存をRitter解析解と比較します。
+
 
 
 
@@ -785,6 +802,195 @@ Taylor–Green：y = π/4のx方向断面です。2次元セル平均ではな�
 
 
 
+### WENO臨界点：多項式セル平均と解析的周期輸送
+
+解析解 · 1次元
+
+`qbar_i=h^-1 integral_Ci q0(x-t)dx; q0=cos(2pi*x)+.1*sin(2pi*x)^3; local P=x+...+x^5, x²+x³+x⁴+x⁵, or x³+x⁴+x⁵.`
+
+局所参照はx=0を中心とする5セルの解析平均からh/2を評価する多項式です。通常・一次・二次臨界の3形、h=1/64…1/512を区別します。実際の周期輸送参照は[0,1]、速度1、T1、q₀=cos(2πx)+.1sin³(2πx)のFourier積分セル平均で、別のGauss12点関数求積と照合します。局所多項式と輸送の初期形は異なり、点値や別PDE計算の参照ではありません。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=ja#weno-critical-epsilon-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-weno-critical/#weno-critical-epsilon)
+
+- Classical JS candidate/weight/indicator background; preprint finite-difference convention distinguished from this FV implementation: [Guang-Shan Jiang and Chi-Wang Shu (1996), Efficient Implementation of Weighted ENO Schemes](https://ntrs.nasa.gov/api/citations/19960007052/downloads/19960007052.pdf) — NASA-hosted ICASE95-73 preprint selected sections1–3: candidate Table1, optimal Table2, equations2.15–2.16 and3.1–3.9; text layer inspected, not full paper/numerical tables
+- Original WENO-Z attribution and historical scope, not an actually inspected full-text formula source: [Rafael Borges, Monique Carmona, Bruno Costa and Wai Sun Don (2008), An improved weighted essentially non-oscillatory scheme for hyperbolic conservation laws](https://scholars.hkbu.edu.hk/en/publications/an-improved-weighted-essentially-non-oscillatory-scheme-for-hyper-2/) — Author-institution publication record and abstract inspected; publisher full text returned403; original full paper and numerical experiments not audited
+- Actually inspected finite-volume cell-mean derivation of baseline JS/Z candidates, weights and power-two choice; embedded modifications excluded: [Bart S. van Lith, Jan H. M. ten Thije Boonkkamp and Wilbert L. IJzerman (2017), Embedded WENO: A design strategy to improve existing WENO schemes](https://pure.tue.nl/ws/portalfiles/portal/53481949/embedded_WENO.pdf) — Institution-hosted accepted manuscript section2 equations2–15 (PDF pages4–8) and selected section4.2 (PDF page22) text inspected; screenshot requests cache-missed; not a full-paper review
+#### 関連するテスト問題の図とコード
+
+##### [周期正弦波の線形移流](https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=ja) (`advection-sine`)
+
+![保存済みのCIP・線形補間・厳密な移流波形。](https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/advection-sine.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=ja#code-ja)
+
+関連モデルの問題
+
+同じ一定速度の周期移流に対する追加参照ですが、cos+.1sin³のセル平均と局所臨界多項式は、従来の単一正弦・CIP表示と異なります。
+
+- [実行・検証：周期正弦波の線形移流：風上法と解析解](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/advection-sine/?lang=ja) (`advection-sine`) · [コードZIP：周期正弦波の線形移流：風上法と解析解](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip)
+
+この実行例の範囲：長さ1の周期区間でq_t+a q_x=0を1周期進め、64/128点の1次風上法を平行移動した正弦波と比較する。計算値、解析値、誤差をCSVへ出す。
+
+- [実行・検証：WENO-JS／Z：臨界点とεの固定比較](https://hrkoyama.github.io/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=ja) (`weno-critical-epsilon`) · [コードZIP：WENO-JS／Z：臨界点とεの固定比較](https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/atlas-weno-critical-2026-11-23.zip)
+
+この実行例の範囲：同じセル平均からのWENO5再構成と実際の周期輸送で、JS重みとZ二乗重みを比較します。3種類の臨界性、3種類のε、固定格子と時間刻み半減を分けて保存します。
+
+
+
+
+### 静止湖：表現した床の上の湿潤・露出平衡
+
+解析解 · 1次元
+
+`q_i=0; h_i=max(eta0-z_i,0); z_i=cellmean(z); eta0=.5 or .1.`
+
+g9.81、[0,25]m、200セル。8<x<12の放物線床z=.2−.05(x−10)²をセルごとにGauss8で平均し、h_i=max(η₀−z_i,0)、q_i=0、η₀=.5/.1mを初期化します。静水再構成が保つのはこの表現した区分定数床の平衡であり、連続床上の水深平均をそのまま使う別問題ではありません。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/swashes-topography/?lang=ja#swashes-topography-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-shallow-water/#swashes-topography)
+
+- analytic formulas and benchmark provenance: [O. Delestre et al. (2013), SWASHES: a compilation of shallow water analytic solutions for hydraulic and environmental studies](https://arxiv.org/pdf/1110.0288) — Author arXiv v3: sections2,3.1.1-3.1.3,4.1.2. Bump, lakes, Bernoulli and Ritter formulas inspected; no full-library audit or SWASHES execution/source reuse.
+- original HR attribution: [E. Audusse, F. Bouchut, M.-O. Bristeau, R. Klein, B. Perthame (2004), A Fast and Stable Well-Balanced Scheme with Hydrostatic Reconstruction for Shallow Water Flows](https://epubs.siam.org/doi/abs/10.1137/S1064827503431090) — Publisher/author bibliography checked. Author-linked original PDF retrieval timed out; HR algebra read in author follow-up arXiv1409.3825. No full original-paper audit.
+- directly inspected HR algebra: [E. Audusse, F. Bouchut, M.-O. Bristeau, J. Sainte-Marie (2016), Kinetic entropy inequality and hydrostatic reconstruction scheme for the Saint-Venant system](https://arxiv.org/pdf/1409.3825) — arXiv v2 section1 model/entropy caveat; section3.1 equations3.1-3.5 face states and pressure corrections. Full kinetic proof not audited or claimed for this HLL solver.
+#### 関連するテスト問題の図とコード
+
+##### [SWASHES地形上の静止湖・定常浅水流](https://hrkoyama.github.io/numerical-methods-atlas/problems/swashes-topography/?lang=ja) (`swashes-topography`)
+
+![保存した有限体積配列から描いた地形・水面と定常誤差のプレビュー。](https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/results/swashes-topography-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/swashes-topography/?lang=ja#code-ja)
+
+同じ問題への対応
+
+静水の厳密釣合いは表現したセル地形に対する性質です。非零流量の定常解は厳密には保存されず、有限時刻の誤差を測ります。遷移流・跳水・摩擦・降雨・浸透・2次元流や完全離散エントロピー安定性は検証しません。
+
+- [実行・検証：SWASHES地形流：静水と非零流量の定常解](https://hrkoyama.github.io/numerical-methods-atlas/validation/swashes-topography/?lang=ja) (`swashes-topography`) · [コードZIP：SWASHES地形流：静水と非零流量の定常解](https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/atlas-shallow-water-2026-11-23.zip)
+
+この実行例の範囲：水没・露出した隆起上の静水と、非零流量の亜臨界定常解を別々に検査します。静水の保存と、動く定常流に残る離散化誤差を区別します。
+
+
+
+
+### SWASHES定常流：非射流Bernoulli根
+
+半解析解 · 1次元
+
+`q=4.42; h+z+q²/(2gh²)=2+q²/(8g); h>(q²/g)^(1/3).`
+
+g9.81、[0,25]m、同じ放物線床、流量q4.42m²/s、下流h2m。h+z+q²/(2gh²)=2+q²/(8g)の非射流根を別の二分法で求め、セル平均求積を比較します。100/200/400セルのPDE計算は定常参照から初期化してt2まで進め、SWASHESの静止状態からの過渡計算そのものは再現しません。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/swashes-topography/?lang=ja#swashes-topography-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-shallow-water/#swashes-topography)
+
+- analytic formulas and benchmark provenance: [O. Delestre et al. (2013), SWASHES: a compilation of shallow water analytic solutions for hydraulic and environmental studies](https://arxiv.org/pdf/1110.0288) — Author arXiv v3: sections2,3.1.1-3.1.3,4.1.2. Bump, lakes, Bernoulli and Ritter formulas inspected; no full-library audit or SWASHES execution/source reuse.
+#### 関連するテスト問題の図とコード
+
+##### [SWASHES地形上の静止湖・定常浅水流](https://hrkoyama.github.io/numerical-methods-atlas/problems/swashes-topography/?lang=ja) (`swashes-topography`)
+
+![保存した有限体積配列から描いた地形・水面と定常誤差のプレビュー。](https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/results/swashes-topography-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/swashes-topography/?lang=ja#code-ja)
+
+同じ問題への対応
+
+静水の厳密釣合いは表現したセル地形に対する性質です。非零流量の定常解は厳密には保存されず、有限時刻の誤差を測ります。遷移流・跳水・摩擦・降雨・浸透・2次元流や完全離散エントロピー安定性は検証しません。
+
+- [実行・検証：SWASHES地形流：静水と非零流量の定常解](https://hrkoyama.github.io/numerical-methods-atlas/validation/swashes-topography/?lang=ja) (`swashes-topography`) · [コードZIP：SWASHES地形流：静水と非零流量の定常解](https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/atlas-shallow-water-2026-11-23.zip)
+
+この実行例の範囲：水没・露出した隆起上の静水と、非零流量の亜臨界定常解を別々に検査します。静水の保存と、動く定常流に残る離散化誤差を区別します。
+
+
+
+
+### Ritter乾燥床破堤：g9.81の専用セル平均参照
+
+解析解 · 1次元
+
+`cL=sqrt(g*hL); h=(2*cL-(x-x0)/t)^2/(9*g), u=2*((x-x0)/t+cL)/3 inside fan; hR=0 beyond x0+2*cL*t.`
+
+平坦・摩擦なしの[-10,10]m、堰x0=0、hL1m/hR0、初速0、g9.81、t.5s。左波頭−sqrt(g)tと真の乾燥前縁2sqrt(g)tで分割して保存量(h,hu)をセル平均します。固定水深.001mの等値線も区別します。旧参照カードと重力・領域・時刻の異なる専用入力で、旧値は変更しません。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/dry-bed-dam-break/?lang=ja#dry-bed-dam-break-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-shallow-water/#dry-bed-dam-break)
+
+- analytic formulas and benchmark provenance: [O. Delestre et al. (2013), SWASHES: a compilation of shallow water analytic solutions for hydraulic and environmental studies](https://arxiv.org/pdf/1110.0288) — Author arXiv v3: sections2,3.1.1-3.1.3,4.1.2. Bump, lakes, Bernoulli and Ritter formulas inspected; no full-library audit or SWASHES execution/source reuse.
+#### 関連するテスト問題の図とコード
+
+##### [乾燥床へのRitter破堤流](https://hrkoyama.github.io/numerical-methods-atlas/problems/dry-bed-dam-break/?lang=ja) (`dry-bed-dam-break`)
+
+![実際の1次元浅水計算の保存配列による水深・流量と乾湿前線のプレビュー。時空間図は1次元の5保存時刻です。](https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/results/dry-bed-dam-break-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/dry-bed-dam-break/?lang=ja#code-ja)
+
+同じ問題への対応
+
+前線診断はセル平均の.001m等深線で、厳密な支持端を別に保存します。非負性は固定実行の実測です。初期乾セルの濡れを検査し、後退汀線・周期的な再乾燥、実地洪水、摩擦や地形上の移動前線は検証しません。 初回100/200/400セル・[−5,5]mでは28検査と105/109判定が合格し、乾セル残存3判定と前線誤差.3960>.25mが不合格でした。元の全記録を保持し、許容条件を変えず領域・格子を細分化しました。 領域・格子だけを変えた第2回は微小な裾のbinary64 underflowで停止しました。第3回は同じHLL更新の水量packetによる代数的評価を導入し、元の28検査に3検査を追加します。
+
+- [実行・検証：乾いた河床のダム破壊：実際のwetting/drying](https://hrkoyama.github.io/numerical-methods-atlas/validation/dry-bed-dam-break/?lang=ja) (`dry-bed-dam-break`) · [コードZIP：乾いた河床のダム破壊：実際のwetting/drying](https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/atlas-shallow-water-2026-11-23.zip)
+
+この実行例の範囲：右半分を厳密にh=q=0として開始する浅水方程式を解き、実際の乾湿前線の進行と保存をRitter解析解と比較します。
+
+
+
+
+### Ghia Re100：原著の有限格子速度中心線
+
+有限格子の数値参照 · 2次元
+
+`u_ref(.5,y_j),v_ref(x_j,.5): original TablesI/II Re100; primary vortex(x,y)=(.6172,.7344): TableV.`
+
+単位正方形、Re100、蓋速度1、他壁静止。Ghia原著の表I/IIのRe100列から速度u(0.5,y)とv(x,0.5)各17点を直接確認して転記し、印刷された4桁座標を保持します。表Vの格子上の主渦位置(.6172,.7344)を別に比較します。丸めを含む有限格子数値表で、厳密な連続解でも今回のソルバー出力でもありません。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/cavity-ghia-re100/?lang=ja#cavity-ghia-re100-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-wall-flow/#cavity-ghia-re100)
+
+- primary-research-reference: [U. Ghia, K. N. Ghia and C. T. Shin (1982), High-Re solutions for incompressible flow using the Navier-Stokes equations and a multigrid method](https://www.sciencedirect.com/science/article/pii/0021999182900584) — Original PDF rendered and visually read:391–392 equations/Fig1;398–399 TablesI/II Re100 columns;408 TableV primary vortex. Publisher abstract/bibliography read; publisher PDF403. Original PDF obtained from recorded public mirror; no full-paper audit.
+- actual-original-table-transcription-provenance: [Original Ghia TablesI/II andV transcription/source audit](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/references/source-review.json) — Original PDF selected printed391–392,398–399,408 visually inspected. PDF SHA2561d76e4636d24d0fad41c7bdb5ed383e9b224b0bfe3aa0317ce7dfc50619f2d93; public mirror is only its delivery location. Transcribed CSV accompanies the immutable release.
+#### 関連するテスト問題の図とコード
+
+##### [Re100の蓋駆動キャビティ](https://hrkoyama.github.io/numerical-methods-atlas/problems/lid-driven-cavity/?lang=ja) (`lid-driven-cavity`)
+
+![保存した最細Re100計算の流線と速さ。赤点は格子上の主渦、白抜き点はGhia表Vの主渦位置です。](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/results/cavity-ghia-re100-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/lid-driven-cavity/?lang=ja#code-ja)
+
+同じ問題への対応
+
+Re=100・3固定格子の教育用検査です。蓋と側壁の角に速度の不連続があり、角の速度は静止側を優先します。Ghia値は丸めた数値参照で厳密解ではなく、4桁座標をそのまま使います。高Re・乱流・原著アルゴリズムの再現・キャビティ圧力を検証したとは主張しません。
+
+- [実行・検証：Re=100蓋駆動キャビティ：Ghia中心線との比較](https://hrkoyama.github.io/numerical-methods-atlas/validation/cavity-ghia-re100/?lang=ja) (`cavity-ghia-re100`) · [コードZIP：Re=100蓋駆動キャビティ：Ghia中心線との比較](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/atlas-wall-flow-2026-11-23-r2.zip)
+
+この実行例の範囲：非周期・粘性非圧縮の実際の2D計算を17/33/65点格子で定常化し、Ghia原著の速度中心線と比較します。流線・渦中心・真の残差と発散を同時に保存します。
+
+
+
+
+### 壁面製造解：多項式速度と独立した圧力演算子
+
+製造解 · 2次元
+
+`psi*=8 f(x)f(y),f(z)=z²(1−z)²; s=u*omega*_x+v*omega*_y−nu*Delta omega*. Separate: p_op=x²+y²+sin(pi*x)sin(pi*y).`
+
+単位正方形・ν.01・滑りなし、ψ*=8x²(1−x)²y²(1−y)²、u*=ψ*y、v*=−ψ*x、ω*=−Δψ*。連続の渦度式からs=u*ω*x+v*ω*y−νΔω*を構成し、独立の係数行列微分と照合します。PDE計算の壁渦度はキャビティと同じThom式で、厳密値を注入しません。p_op=x²+y²+sinπx sinπyの非零Dirichlet Poisson・勾配は別の演算子問題で、流れに結合した圧力やキャビティ圧力ではありません。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/wall-manufactured/?lang=ja#wall-manufactured-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-wall-flow/#wall-manufactured)
+
+- primary-research-reference: [Kambiz Salari and Patrick Knupp (2000), Code Verification by the Method of Manufactured Solutions](https://www.sandia.gov/research/publications/details/code-verification-by-the-method-of-manufactured-solutions-2000-06-01/) — Official Sandia/OSTI record and primary report printed12 at UNT read for MMS plus mesh refinement. No whole-report audit. Our quartic polynomial and pressure field are newly constructed.
+#### 関連するテスト問題の図とコード
+
+##### [非周期壁面の製造非圧縮流](https://hrkoyama.github.io/numerical-methods-atlas/problems/wall-manufactured/?lang=ja) (`wall-manufactured`)
+
+![実計算した最細の製造流れの流線と速度誤差。厳密壁渦度を注入せず、キャビティと同じThom閉鎖を使います。](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/results/wall-manufactured-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/wall-manufactured/?lang=ja#code-ja)
+
+同じ問題への対応
+
+Thomの壁渦度局所打切りは一次で、壁剪断の二次精度は主張せず観測次数を示します。流れ関数の発展では圧力を消去するためゲージは該当しません。圧力診断は独立した演算子製造問題であり、キャビティの圧力・応力境界やMAC射影の検証ではありません。多項式の別微分は独立な流体ソルバーとの比較とは区別します。
+
+- [実行・検証：非周期壁面の製造解：速度・剪断・圧力演算子](https://hrkoyama.github.io/numerical-methods-atlas/validation/wall-manufactured/?lang=ja) (`wall-manufactured`) · [コードZIP：非周期壁面の製造解：速度・剪断・圧力演算子](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/atlas-wall-flow-2026-11-23-r2.zip)
+
+この実行例の範囲：キャビティと同じ壁条件付き2Dソルバーに解析外力を与え、速度と流れ関数の格子収束、壁渦度・壁剪断の誤差を測ります。別の非零Dirichlet圧力製造解でPoisson・勾配の境界演算子も検査します。
+
+
+
+
 ## English
 
 ### Advection / sine translation
@@ -812,6 +1018,10 @@ Same periodic sine-transport model at speed one. The library amplitude is 0.25 v
 - [Run and validate: Periodic sine advection: upwind and analytic transport](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/advection-sine/?lang=en) (`advection-sine`) · [Code ZIP: Periodic sine advection: upwind and analytic transport](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip)
 
 Scope of this execution example: Advance q_t+a q_x=0 for one period on a unit periodic interval. Compare first-order upwind on 64/128 points with an analytically translated sine, exporting computed, analytic and error values.
+
+- [Run and validate: WENO-JS/Z: fixed critical-point and epsilon comparison](https://hrkoyama.github.io/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=en) (`weno-critical-epsilon`) · [Code ZIP: WENO-JS/Z: fixed critical-point and epsilon comparison](https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/atlas-weno-critical-2026-11-23.zip)
+
+Scope of this execution example: Compare WENO5 JS and Z power-two weights from the same cell means, then evolve actual periodic transport. Retain three regularity classes, three epsilon choices, fixed grids and separate halved-time-step diagnostics.
 
 
 ##### [Periodic square-wave advection](https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-square/?lang=en) (`advection-square`)
@@ -1120,7 +1330,20 @@ Flat bottom; constant g; dry states allowed in the reference only, not the exist
 
 #### Related test problem figures and code
 
-No associated test problem is registered for this entry.
+##### [Ritter dam break onto a dry bed](https://hrkoyama.github.io/numerical-methods-atlas/problems/dry-bed-dam-break/?lang=en) (`dry-bed-dam-break`)
+
+![Preview from actual saved 1D shallow-water depth/discharge arrays. The space-time panel shows five saved times, not a 2D flow.](https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/results/dry-bed-dam-break-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/dry-bed-dam-break/?lang=en#code-en)
+
+Related-model problem
+
+Retain the historical dry-bed reference gravity/domain/time unchanged. The new g9.81,[-10,10],t.5 computation uses its dedicated Ritter reference.
+
+- [Run and validate: Dry-bed dam break: actual wetting and dry states](https://hrkoyama.github.io/numerical-methods-atlas/validation/dry-bed-dam-break/?lang=en) (`dry-bed-dam-break`) · [Code ZIP: Dry-bed dam break: actual wetting and dry states](https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/atlas-shallow-water-2026-11-23.zip)
+
+Scope of this execution example: Start the right half at exactly h=q=0 and compare wetting-front advance, conservation and conservative errors with the Ritter analytic solution.
+
 
 
 
@@ -1562,3 +1785,192 @@ Fix the disk and slot geometry and compare stored initial/returned cell means. D
 - [Run and validate: Zalesak-type 2D rotation: conservation, bounds and shape error](https://hrkoyama.github.io/numerical-methods-atlas/validation/zalesak-rotation/?lang=en) (`zalesak-rotation`) · [Code ZIP: Zalesak-type 2D rotation: conservation, bounds and shape error](https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/atlas-zalesak-2026-11-23.zip)
 
 Scope of this execution example: Rotate a slotted disk through one full turn with an actual 2D finite-volume solver, comparing donor-cell and minmod MUSCL. Eight runs combine three grids with half-cell-center and 45-degree-start probes; measure conservation, bounds at every SSP stage, shape error and slot filling.
+
+
+
+
+### WENO critical points: polynomial cell means and analytic periodic transport
+
+Analytic reference · 1D
+
+`qbar_i=h^-1 integral_Ci q0(x-t)dx; q0=cos(2pi*x)+.1*sin(2pi*x)^3; local P=x+...+x^5, x²+x³+x⁴+x⁵, or x³+x⁴+x⁵.`
+
+Local references integrate polynomials over five cells centered around x=0 and evaluate at h/2. Regular, first-critical and second-critical profiles use h=1/64…1/512. The actual periodic-transport reference is the Fourier-integrated cell mean of q₀=cos(2πx)+.1sin³(2πx) on[0,1], speed1,T1, checked independently by Gauss12 point-function quadrature. Local polynomials differ from the evolved profile; neither point samples nor another PDE calculation are substituted for cell means.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=en#weno-critical-epsilon-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-weno-critical/#weno-critical-epsilon)
+
+- Classical JS candidate/weight/indicator background; preprint finite-difference convention distinguished from this FV implementation: [Guang-Shan Jiang and Chi-Wang Shu (1996), Efficient Implementation of Weighted ENO Schemes](https://ntrs.nasa.gov/api/citations/19960007052/downloads/19960007052.pdf) — NASA-hosted ICASE95-73 preprint selected sections1–3: candidate Table1, optimal Table2, equations2.15–2.16 and3.1–3.9; text layer inspected, not full paper/numerical tables
+- Original WENO-Z attribution and historical scope, not an actually inspected full-text formula source: [Rafael Borges, Monique Carmona, Bruno Costa and Wai Sun Don (2008), An improved weighted essentially non-oscillatory scheme for hyperbolic conservation laws](https://scholars.hkbu.edu.hk/en/publications/an-improved-weighted-essentially-non-oscillatory-scheme-for-hyper-2/) — Author-institution publication record and abstract inspected; publisher full text returned403; original full paper and numerical experiments not audited
+- Actually inspected finite-volume cell-mean derivation of baseline JS/Z candidates, weights and power-two choice; embedded modifications excluded: [Bart S. van Lith, Jan H. M. ten Thije Boonkkamp and Wilbert L. IJzerman (2017), Embedded WENO: A design strategy to improve existing WENO schemes](https://pure.tue.nl/ws/portalfiles/portal/53481949/embedded_WENO.pdf) — Institution-hosted accepted manuscript section2 equations2–15 (PDF pages4–8) and selected section4.2 (PDF page22) text inspected; screenshot requests cache-missed; not a full-paper review
+#### Related test problem figures and code
+
+##### [Periodic sine-wave advection](https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=en) (`advection-sine`)
+
+![Stored CIP, linear-interpolation and exact advection profiles.](https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/advection-sine.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=en#code-en)
+
+Related-model problem
+
+An additional constant-speed periodic-transport reference. The cos+.1sin³ cell means and local critical polynomials differ from the historical single-sine/CIP display.
+
+- [Run and validate: Periodic sine advection: upwind and analytic transport](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/advection-sine/?lang=en) (`advection-sine`) · [Code ZIP: Periodic sine advection: upwind and analytic transport](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip)
+
+Scope of this execution example: Advance q_t+a q_x=0 for one period on a unit periodic interval. Compare first-order upwind on 64/128 points with an analytically translated sine, exporting computed, analytic and error values.
+
+- [Run and validate: WENO-JS/Z: fixed critical-point and epsilon comparison](https://hrkoyama.github.io/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=en) (`weno-critical-epsilon`) · [Code ZIP: WENO-JS/Z: fixed critical-point and epsilon comparison](https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/atlas-weno-critical-2026-11-23.zip)
+
+Scope of this execution example: Compare WENO5 JS and Z power-two weights from the same cell means, then evolve actual periodic transport. Retain three regularity classes, three epsilon choices, fixed grids and separate halved-time-step diagnostics.
+
+
+
+
+### Lake at rest: wet and emerged equilibrium over represented bed
+
+Analytic reference · 1D
+
+`q_i=0; h_i=max(eta0-z_i,0); z_i=cellmean(z); eta0=.5 or .1.`
+
+Use g9.81,[0,25]m and200cells. Represent z=.2−.05(x−10)² on8<x<12 by split Gauss8 cell means, initializing h_i=max(eta0−z_i,0),q_i0 with eta0=.5/.1m. Hydrostatic reconstruction preserves equilibrium over this represented piecewise-constant bed; this differs from directly averaging depth over the continuous bed.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/swashes-topography/?lang=en#swashes-topography-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/#swashes-topography)
+
+- analytic formulas and benchmark provenance: [O. Delestre et al. (2013), SWASHES: a compilation of shallow water analytic solutions for hydraulic and environmental studies](https://arxiv.org/pdf/1110.0288) — Author arXiv v3: sections2,3.1.1-3.1.3,4.1.2. Bump, lakes, Bernoulli and Ritter formulas inspected; no full-library audit or SWASHES execution/source reuse.
+- original HR attribution: [E. Audusse, F. Bouchut, M.-O. Bristeau, R. Klein, B. Perthame (2004), A Fast and Stable Well-Balanced Scheme with Hydrostatic Reconstruction for Shallow Water Flows](https://epubs.siam.org/doi/abs/10.1137/S1064827503431090) — Publisher/author bibliography checked. Author-linked original PDF retrieval timed out; HR algebra read in author follow-up arXiv1409.3825. No full original-paper audit.
+- directly inspected HR algebra: [E. Audusse, F. Bouchut, M.-O. Bristeau, J. Sainte-Marie (2016), Kinetic entropy inequality and hydrostatic reconstruction scheme for the Saint-Venant system](https://arxiv.org/pdf/1409.3825) — arXiv v2 section1 model/entropy caveat; section3.1 equations3.1-3.5 face states and pressure corrections. Full kinetic proof not audited or claimed for this HLL solver.
+#### Related test problem figures and code
+
+##### [SWASHES lakes and steady shallow flow over topography](https://hrkoyama.github.io/numerical-methods-atlas/problems/swashes-topography/?lang=en) (`swashes-topography`)
+
+![Preview of represented bed, saved FV surfaces and moving-steady errors.](https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/results/swashes-topography-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/swashes-topography/?lang=en#code-en)
+
+Same-problem link
+
+Exact lake balance concerns the represented cell bed. Moving steady states retain finite-time numerical error. Transcritical flows, jumps, friction, rain, infiltration, 2D flow and fully discrete entropy stability are outside scope.
+
+- [Run and validate: SWASHES topographic flow: lakes and nonzero steady discharge](https://hrkoyama.github.io/numerical-methods-atlas/validation/swashes-topography/?lang=en) (`swashes-topography`) · [Code ZIP: SWASHES topographic flow: lakes and nonzero steady discharge](https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/atlas-shallow-water-2026-11-23.zip)
+
+Scope of this execution example: Check two lake equilibria separately from nonzero subcritical flow, distinguishing lake preservation from moving-flow discretization error.
+
+
+
+
+### SWASHES steady flow: subcritical Bernoulli root
+
+Semi-analytic reference · 1D
+
+`q=4.42; h+z+q²/(2gh²)=2+q²/(8g); h>(q²/g)^(1/3).`
+
+Use g9.81,[0,25]m, the parabolic bed, discharge q4.42m²/s and downstream depth2m. Independently bisect the subcritical root of h+z+q²/(2gh²)=2+q²/(8g) and qualify cell quadrature. PDE runs on100/200/400cells start from the steady reference and advance to t2; they do not reproduce the original rest-to-steady transient.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/swashes-topography/?lang=en#swashes-topography-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/#swashes-topography)
+
+- analytic formulas and benchmark provenance: [O. Delestre et al. (2013), SWASHES: a compilation of shallow water analytic solutions for hydraulic and environmental studies](https://arxiv.org/pdf/1110.0288) — Author arXiv v3: sections2,3.1.1-3.1.3,4.1.2. Bump, lakes, Bernoulli and Ritter formulas inspected; no full-library audit or SWASHES execution/source reuse.
+#### Related test problem figures and code
+
+##### [SWASHES lakes and steady shallow flow over topography](https://hrkoyama.github.io/numerical-methods-atlas/problems/swashes-topography/?lang=en) (`swashes-topography`)
+
+![Preview of represented bed, saved FV surfaces and moving-steady errors.](https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/results/swashes-topography-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/swashes-topography/?lang=en#code-en)
+
+Same-problem link
+
+Exact lake balance concerns the represented cell bed. Moving steady states retain finite-time numerical error. Transcritical flows, jumps, friction, rain, infiltration, 2D flow and fully discrete entropy stability are outside scope.
+
+- [Run and validate: SWASHES topographic flow: lakes and nonzero steady discharge](https://hrkoyama.github.io/numerical-methods-atlas/validation/swashes-topography/?lang=en) (`swashes-topography`) · [Code ZIP: SWASHES topographic flow: lakes and nonzero steady discharge](https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/atlas-shallow-water-2026-11-23.zip)
+
+Scope of this execution example: Check two lake equilibria separately from nonzero subcritical flow, distinguishing lake preservation from moving-flow discretization error.
+
+
+
+
+### Ritter dry-bed dam break: dedicated g9.81 cell-mean reference
+
+Analytic reference · 1D
+
+`cL=sqrt(g*hL); h=(2*cL-(x-x0)/t)^2/(9*g), u=2*((x-x0)/t+cL)/3 inside fan; hR=0 beyond x0+2*cL*t.`
+
+Flat frictionless[-10,10]m, dam x00,hL1m/hR0,zero initial velocity,g9.81,t.5s. Split conserved(h,hu) cell means at the rarefaction head−sqrt(g)t and genuine dry front2sqrt(g)t. Separately track the fixed depth.001m contour. These dedicated gravity/domain/time inputs differ from the historical card, whose values remain unchanged.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/dry-bed-dam-break/?lang=en#dry-bed-dam-break-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/#dry-bed-dam-break)
+
+- analytic formulas and benchmark provenance: [O. Delestre et al. (2013), SWASHES: a compilation of shallow water analytic solutions for hydraulic and environmental studies](https://arxiv.org/pdf/1110.0288) — Author arXiv v3: sections2,3.1.1-3.1.3,4.1.2. Bump, lakes, Bernoulli and Ritter formulas inspected; no full-library audit or SWASHES execution/source reuse.
+#### Related test problem figures and code
+
+##### [Ritter dam break onto a dry bed](https://hrkoyama.github.io/numerical-methods-atlas/problems/dry-bed-dam-break/?lang=en) (`dry-bed-dam-break`)
+
+![Preview from actual saved 1D shallow-water depth/discharge arrays. The space-time panel shows five saved times, not a 2D flow.](https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/results/dry-bed-dam-break-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/dry-bed-dam-break/?lang=en#code-en)
+
+Same-problem link
+
+The .001m mean-depth contour differs from the analytic support edge, which is reported separately. These fixed runs test wetting of initially dry cells. Retreating shorelines, re-drying cycles, real floods, friction and moving fronts over topography are outside scope. The initial100/200/400-cell [-5,5]m attempt passed28 tests and105/109 gates; three retained-dry-cell gates and the .3960m>.25m contour error failed. All original records remain archived; revision2 enlarges/refines the input without changing acceptance. Revision2 then stopped on a binary64 subnormal-tail dry-momentum artifact. Revision3 factors the same HLL update into water packets and adds three regression/equivalence tests; the original28 remain unchanged.
+
+- [Run and validate: Dry-bed dam break: actual wetting and dry states](https://hrkoyama.github.io/numerical-methods-atlas/validation/dry-bed-dam-break/?lang=en) (`dry-bed-dam-break`) · [Code ZIP: Dry-bed dam break: actual wetting and dry states](https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/atlas-shallow-water-2026-11-23.zip)
+
+Scope of this execution example: Start the right half at exactly h=q=0 and compare wetting-front advance, conservation and conservative errors with the Ritter analytic solution.
+
+
+
+
+### Ghia Re100: original finite-grid velocity centerlines
+
+Finite-grid numerical reference · 2D
+
+`u_ref(.5,y_j),v_ref(x_j,.5): original TablesI/II Re100; primary vortex(x,y)=(.6172,.7344): TableV.`
+
+Unit square,Re100,unit top lid and stationary other walls. Transcribe17points each of u(.5,y) and v(x,.5) after direct inspection of original TablesI/II Re100 columns, preserving printed four-decimal coordinates. Separately compare the grid primary vortex(.6172,.7344) from TableV. These rounded finite-grid numerical tables are neither continuum exact values nor outputs from the present solver.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/cavity-ghia-re100/?lang=en#cavity-ghia-re100-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-wall-flow/#cavity-ghia-re100)
+
+- primary-research-reference: [U. Ghia, K. N. Ghia and C. T. Shin (1982), High-Re solutions for incompressible flow using the Navier-Stokes equations and a multigrid method](https://www.sciencedirect.com/science/article/pii/0021999182900584) — Original PDF rendered and visually read:391–392 equations/Fig1;398–399 TablesI/II Re100 columns;408 TableV primary vortex. Publisher abstract/bibliography read; publisher PDF403. Original PDF obtained from recorded public mirror; no full-paper audit.
+- actual-original-table-transcription-provenance: [Original Ghia TablesI/II andV transcription/source audit](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/references/source-review.json) — Original PDF selected printed391–392,398–399,408 visually inspected. PDF SHA2561d76e4636d24d0fad41c7bdb5ed383e9b224b0bfe3aa0317ce7dfc50619f2d93; public mirror is only its delivery location. Transcribed CSV accompanies the immutable release.
+#### Related test problem figures and code
+
+##### [Re100 lid-driven cavity](https://hrkoyama.github.io/numerical-methods-atlas/problems/lid-driven-cavity/?lang=en) (`lid-driven-cavity`)
+
+![Saved finest Re100 streamlines and speed. Red dot: computed grid primary vortex; hollow dot: original Ghia TableV location.](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/results/cavity-ghia-re100-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/lid-driven-cavity/?lang=en#code-en)
+
+Same-problem link
+
+Educational Re100 checks on three fixed grids. Lid/sidewall corner velocities are discontinuous; stationary corners take precedence. Ghia values are rounded numerical references, not an exact solution, and printed four-decimal coordinates are preserved. No high-Re, turbulence, original-algorithm reproduction or cavity-pressure validation is claimed.
+
+- [Run and validate: Re100 lid-driven cavity: Ghia centerline comparison](https://hrkoyama.github.io/numerical-methods-atlas/validation/cavity-ghia-re100/?lang=en) (`cavity-ghia-re100`) · [Code ZIP: Re100 lid-driven cavity: Ghia centerline comparison](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/atlas-wall-flow-2026-11-23-r2.zip)
+
+Scope of this execution example: March a real nonperiodic 2D viscous incompressible solver to steady state on 17/33/65 node grids and compare against original Ghia centerlines. Retain streamlines, grid vortex center, true PDE residual and discrete divergence.
+
+
+
+
+### Wall manufactured solution: polynomial velocity and separate pressure operator
+
+Manufactured solution · 2D
+
+`psi*=8 f(x)f(y),f(z)=z²(1−z)²; s=u*omega*_x+v*omega*_y−nu*Delta omega*. Separate: p_op=x²+y²+sin(pi*x)sin(pi*y).`
+
+Unit square,viscosity.01,no-slip,psi*=8x²(1−x)²y²(1−y)²,u*=psi*_y,v*=−psi*_x,omega*=−Delta psi*. Construct s=u*omega*_x+v*omega*_y−nu*Delta omega* from the continuous vorticity PDE, qualified by independent tensor-coefficient differentiation. PDE wall vorticity uses the same Thom closure as the cavity without exact injection. Nonzero-Dirichlet Poisson/gradient for p_op=x²+y²+sin(pi*x)sin(pi*y) is a separate operator problem, not coupled flow or cavity pressure.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/wall-manufactured/?lang=en#wall-manufactured-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-wall-flow/#wall-manufactured)
+
+- primary-research-reference: [Kambiz Salari and Patrick Knupp (2000), Code Verification by the Method of Manufactured Solutions](https://www.sandia.gov/research/publications/details/code-verification-by-the-method-of-manufactured-solutions-2000-06-01/) — Official Sandia/OSTI record and primary report printed12 at UNT read for MMS plus mesh refinement. No whole-report audit. Our quartic polynomial and pressure field are newly constructed.
+#### Related test problem figures and code
+
+##### [Manufactured incompressible flow with nonperiodic walls](https://hrkoyama.github.io/numerical-methods-atlas/problems/wall-manufactured/?lang=en) (`wall-manufactured`)
+
+![Computed finest manufactured-flow streamlines and velocity error, using the same Thom closure as the cavity without exact wall-vorticity injection.](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/results/wall-manufactured-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/wall-manufactured/?lang=en#code-en)
+
+Same-problem link
+
+Thom wall vorticity has first-order local truncation; publish observed shear rates without promising second order. Pressure is eliminated from streamfunction evolution, so a pressure gauge is inapplicable. The separate operator MMS does not verify cavity pressure, traction boundaries or MAC projection. Independent polynomial differentiation is distinct from comparison with an independent flow solver.
+
+- [Run and validate: Nonperiodic wall MMS: velocity, shear and pressure operator](https://hrkoyama.github.io/numerical-methods-atlas/validation/wall-manufactured/?lang=en) (`wall-manufactured`) · [Code ZIP: Nonperiodic wall MMS: velocity, shear and pressure operator](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/atlas-wall-flow-2026-11-23-r2.zip)
+
+Scope of this execution example: Apply analytic forcing to the same wall-bounded2D solver, measuring grid convergence of velocity/streamfunction and actual wall-vorticity/shear errors. A separate nonzero-Dirichlet manufactured pressure verifies Poisson and boundary-gradient operators.

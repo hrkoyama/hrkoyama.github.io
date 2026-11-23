@@ -16,6 +16,8 @@ $$
 
 [解説](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/stability/)
 
+既存の共通移流例を保持し、追加の有限体積WENO比較ではq₀=cos(2πx)+.1sin³(2πx)、[0,1]周期・速度1・T=1を使います。局所臨界多項式は別診断で、点値とセル平均や時間刻み誤差を区別します。
+
 #### 関連するテスト問題の図とコード
 
 ##### [周期正弦波の線形移流](https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=ja) (`advection-sine`)
@@ -27,6 +29,10 @@ $$
 - [実行・検証：周期正弦波の線形移流：風上法と解析解](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/advection-sine/?lang=ja) (`advection-sine`) · [コードZIP：周期正弦波の線形移流：風上法と解析解](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip)
 
 この実行例の範囲：長さ1の周期区間でq_t+a q_x=0を1周期進め、64/128点の1次風上法を平行移動した正弦波と比較する。計算値、解析値、誤差をCSVへ出す。
+
+- [実行・検証：WENO-JS／Z：臨界点とεの固定比較](https://hrkoyama.github.io/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=ja) (`weno-critical-epsilon`) · [コードZIP：WENO-JS／Z：臨界点とεの固定比較](https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/atlas-weno-critical-2026-11-23.zip)
+
+この実行例の範囲：同じセル平均からのWENO5再構成と実際の周期輸送で、JS重みとZ二乗重みを比較します。3種類の臨界性、3種類のε、固定格子と時間刻み半減を分けて保存します。
 
 
 ##### [周期矩形波の線形移流](https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-square/?lang=ja) (`advection-square`)
@@ -615,6 +621,8 @@ $$
 
 [解説](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/geophysical-grids/)
 
+既存の湿潤1次元例と線形回転Fourier検査を保持します。追加Ritter例は平坦床・g9.81、[-10,10]、hL1/hR0、t.5の真の乾燥床です。地形源項付きの静止湖・Bernoulli流は別モデルshallow-water-bedへ案内します。
+
 #### 関連するテスト問題の図とコード
 
 ##### [湿潤床ダム崩壊](https://hrkoyama.github.io/numerical-methods-atlas/problems/dam-break/?lang=ja) (`dam-break`)
@@ -624,6 +632,19 @@ $$
 [コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/dam-break/?lang=ja#code-ja)
 
 固定入力実行例は未登録です。
+
+##### [乾燥床へのRitter破堤流](https://hrkoyama.github.io/numerical-methods-atlas/problems/dry-bed-dam-break/?lang=ja) (`dry-bed-dam-break`)
+
+![実際の1次元浅水計算の保存配列による水深・流量と乾湿前線のプレビュー。時空間図は1次元の5保存時刻です。](https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/results/dry-bed-dam-break-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/dry-bed-dam-break/?lang=ja#code-ja)
+
+平坦床・無摩擦、[−10,10]m、ダムx=0、左深さ1m・右0m、初速0、g=9.81、t=.5s、800/1600/3200セル。SWASHESのRitter式を明示した別スケールで使い、原例の.005m・6s入力とは区別します。
+
+- [実行・検証：乾いた河床のダム破壊：実際のwetting/drying](https://hrkoyama.github.io/numerical-methods-atlas/validation/dry-bed-dam-break/?lang=ja) (`dry-bed-dam-break`) · [コードZIP：乾いた河床のダム破壊：実際のwetting/drying](https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/atlas-shallow-water-2026-11-23.zip)
+
+この実行例の範囲：右半分を厳密にh=q=0として開始する浅水方程式を解き、実際の乾湿前線の進行と保存をRitter解析解と比較します。
+
 
 
 
@@ -754,9 +775,11 @@ $$
 \nabla\cdot\boldsymbol u=0
 $$
 
-一定密度・粘性の代表形。公開例は周期2次元MAC格子の射影法とTaylor–Green渦です。
+一定密度・粘性の代表形。周期2D MAC射影・Taylor–Green渦に加え、圧力を消去する非周期Re100キャビティを別配布で検証します。
 
 [解説](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/incompressible/)
+
+既存の周期2D MAC射影・Taylor–Green例を保持し、追加の非周期Re100キャビティでは渦度・流れ関数法とThom壁条件を使います。速度中心線をGhia有限格子数値表と比較します。圧力を消去しているため、キャビティ圧力・圧力境界・MAC射影の追加検証とは表示しません。
 
 #### 関連するテスト問題の図とコード
 
@@ -790,6 +813,19 @@ $$
 格子BGK・体積力・半格子壁を使う計算と、巨視的な定常非圧縮流路解を結びます。
 
 固定入力実行例は未登録です。
+
+##### [Re100の蓋駆動キャビティ](https://hrkoyama.github.io/numerical-methods-atlas/problems/lid-driven-cavity/?lang=ja) (`lid-driven-cavity`)
+
+![保存した最細Re100計算の流線と速さ。赤点は格子上の主渦、白抜き点はGhia表Vの主渦位置です。](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/results/cavity-ghia-re100-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/lid-driven-cavity/?lang=ja#code-ja)
+
+無次元の単位正方形、ν=.01、蓋速度U=1、Re=100。上面の内部節点だけu=1、他壁と四隅の速度は0、全壁ψ=0。初期内部渦度は0。壁渦度はThom条件で各Heun段に再設定します。
+
+- [実行・検証：Re=100蓋駆動キャビティ：Ghia中心線との比較](https://hrkoyama.github.io/numerical-methods-atlas/validation/cavity-ghia-re100/?lang=ja) (`cavity-ghia-re100`) · [コードZIP：Re=100蓋駆動キャビティ：Ghia中心線との比較](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/atlas-wall-flow-2026-11-23-r2.zip)
+
+この実行例の範囲：非周期・粘性非圧縮の実際の2D計算を17/33/65点格子で定常化し、Ghia原著の速度中心線と比較します。流線・渦中心・真の残差と発散を同時に保存します。
+
 
 
 
@@ -1884,6 +1920,88 @@ $$
 
 
 
+### 地形源項付き浅水方程式
+
+ID: `shallow-water-bed` · local-example
+
+$$
+\partial_t h+\partial_xq=0
+$$
+
+$$
+\partial_tq+\partial_x\!\left(q^2/h+gh^2/2\right)=-gh\,\partial_x z,\qquad q=hu
+$$
+
+$$
+u=0,\qquad h_i=\max(\eta_0-z_i,0)
+$$
+
+摩擦・降雨なしの1次元Saint–Venant系。連続の地形と、保存平均から表現した区分定数の床を区別し、静水再構成の釣合いを確認します。 真の乾燥状態h=q=0では運動量の移流流束q²/hを0と定義します。
+
+[解説](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-shallow-water/)
+
+1次元、g=9.81、長さ25m、8<x<12でz=.2−.05(x−10)²m。水位.5/.1mの静水は200セル、流量4.42m²/s・下流深さ2mの定常流は100/200/400セル、t=2s。地形は区分定数セル平均。定常流から開始し、静水からの定常化実験とは区別します。
+
+#### 関連するテスト問題の図とコード
+
+##### [SWASHES地形上の静止湖・定常浅水流](https://hrkoyama.github.io/numerical-methods-atlas/problems/swashes-topography/?lang=ja) (`swashes-topography`)
+
+![保存した有限体積配列から描いた地形・水面と定常誤差のプレビュー。](https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/results/swashes-topography-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/swashes-topography/?lang=ja#code-ja)
+
+1次元、g=9.81、長さ25m、8<x<12でz=.2−.05(x−10)²m。水位.5/.1mの静水は200セル、流量4.42m²/s・下流深さ2mの定常流は100/200/400セル、t=2s。地形は区分定数セル平均。定常流から開始し、静水からの定常化実験とは区別します。
+
+- [実行・検証：SWASHES地形流：静水と非零流量の定常解](https://hrkoyama.github.io/numerical-methods-atlas/validation/swashes-topography/?lang=ja) (`swashes-topography`) · [コードZIP：SWASHES地形流：静水と非零流量の定常解](https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/atlas-shallow-water-2026-11-23.zip)
+
+この実行例の範囲：水没・露出した隆起上の静水と、非零流量の亜臨界定常解を別々に検査します。静水の保存と、動く定常流に残る離散化誤差を区別します。
+
+
+
+
+### 外力付き非圧縮流と壁面製造解
+
+ID: `forced-incompressible` · local-example
+
+$$
+\partial_t\boldsymbol u+(\boldsymbol u\cdot\nabla)\boldsymbol u=-\nabla p+\nu\Delta\boldsymbol u+\boldsymbol f,\qquad\nabla\cdot\boldsymbol u=0
+$$
+
+$$
+\omega_t+u\omega_x+v\omega_y=\nu\Delta\omega+s,\quad s=(\nabla\times\boldsymbol f)_z,\quad-\Delta\psi=\omega,\quad(u,v)=(\psi_y,-\psi_x)
+$$
+
+$$
+\psi_\star=8x^2(1-x)^2y^2(1-y)^2,\quad s=\boldsymbol u_\star\cdot\nabla\omega_\star-\nu\Delta\omega_\star
+$$
+
+$$
+-\Delta p_{\mathrm{op},\star}=-4+2\pi^2\sin(\pi x)\sin(\pi y),\quad p_{\mathrm{op},\star}=x^2+y^2+\sin(\pi x)\sin(\pi y)
+$$
+
+一定密度1の外力付き非圧縮系です。実際の流れは外力のcurlを使う渦度・流れ関数形で圧力を消去します。p_opは独立の非零Dirichlet Poisson・勾配演算子の製造問題で、流れと結合した圧力場やキャビティ圧力ではありません。
+
+[解説](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-wall-flow/)
+
+単位正方形・ν=.01・17/33/65点。キャビティと同じThom壁条件で製造流れを解き、速度・流れ関数・壁剪断を比較します。圧力は別の製造演算子問題として評価します。
+
+#### 関連するテスト問題の図とコード
+
+##### [非周期壁面の製造非圧縮流](https://hrkoyama.github.io/numerical-methods-atlas/problems/wall-manufactured/?lang=ja) (`wall-manufactured`)
+
+![実計算した最細の製造流れの流線と速度誤差。厳密壁渦度を注入せず、キャビティと同じThom閉鎖を使います。](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/results/wall-manufactured-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/wall-manufactured/?lang=ja#code-ja)
+
+単位正方形、ν=.01、17/33/65点、ψ=8f(x)f(y),f(z)=z²(1−z)²。全壁で非浸透・滑りなし。渦度外力は連続方程式から解析的に導出し、全壁にキャビティと同じThom条件を使用します。厳密壁渦度は注入しません。
+
+- [実行・検証：非周期壁面の製造解：速度・剪断・圧力演算子](https://hrkoyama.github.io/numerical-methods-atlas/validation/wall-manufactured/?lang=ja) (`wall-manufactured`) · [コードZIP：非周期壁面の製造解：速度・剪断・圧力演算子](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/atlas-wall-flow-2026-11-23-r2.zip)
+
+この実行例の範囲：キャビティと同じ壁条件付き2Dソルバーに解析外力を与え、速度と流れ関数の格子収束、壁渦度・壁剪断の誤差を測ります。別の非零Dirichlet圧力製造解でPoisson・勾配の境界演算子も検査します。
+
+
+
+
 ## English
 
 ### Linear advection
@@ -1898,6 +2016,8 @@ Transport at constant speed a: translation, numerical diffusion and stability.
 
 [Reading](https://hrkoyama.github.io/numerical-methods-atlas/en/read/stability/)
 
+Retain existing common advection examples. The additional FV WENO comparison uses q₀=cos(2πx)+.1sin³(2πx), periodic[0,1], speed1 and T1. Local critical polynomials are separate diagnostics; distinguish point values, cell means and time-step effects.
+
 #### Related test problem figures and code
 
 ##### [Periodic sine-wave advection](https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=en) (`advection-sine`)
@@ -1909,6 +2029,10 @@ Transport at constant speed a: translation, numerical diffusion and stability.
 - [Run and validate: Periodic sine advection: upwind and analytic transport](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/advection-sine/?lang=en) (`advection-sine`) · [Code ZIP: Periodic sine advection: upwind and analytic transport](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip)
 
 Scope of this execution example: Advance q_t+a q_x=0 for one period on a unit periodic interval. Compare first-order upwind on 64/128 points with an analytically translated sine, exporting computed, analytic and error values.
+
+- [Run and validate: WENO-JS/Z: fixed critical-point and epsilon comparison](https://hrkoyama.github.io/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=en) (`weno-critical-epsilon`) · [Code ZIP: WENO-JS/Z: fixed critical-point and epsilon comparison](https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/atlas-weno-critical-2026-11-23.zip)
+
+Scope of this execution example: Compare WENO5 JS and Z power-two weights from the same cell means, then evolve actual periodic transport. Retain three regularity classes, three epsilon choices, fixed grids and separate halved-time-step diagnostics.
 
 
 ##### [Periodic square-wave advection](https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-square/?lang=en) (`advection-square`)
@@ -2497,6 +2621,8 @@ The first two equations are 1D flat-bed, frictionless flow; the remaining lines 
 
 [Reading](https://hrkoyama.github.io/numerical-methods-atlas/en/read/geophysical-grids/)
 
+Retain existing wet1D examples and linear rotating Fourier checks. The additional Ritter case is genuinely dry flat-bed flow with g9.81,[-10,10],hL1/hR0 and t.5. Bed-source lakes and Bernoulli flow link to the separate shallow-water-bed model.
+
 #### Related test problem figures and code
 
 ##### [Wet-bed dam break](https://hrkoyama.github.io/numerical-methods-atlas/problems/dam-break/?lang=en) (`dam-break`)
@@ -2506,6 +2632,19 @@ The first two equations are 1D flat-bed, frictionless flow; the remaining lines 
 [Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/dam-break/?lang=en#code-en)
 
 No fixed-input execution example is registered.
+
+##### [Ritter dam break onto a dry bed](https://hrkoyama.github.io/numerical-methods-atlas/problems/dry-bed-dam-break/?lang=en) (`dry-bed-dam-break`)
+
+![Preview from actual saved 1D shallow-water depth/discharge arrays. The space-time panel shows five saved times, not a 2D flow.](https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/results/dry-bed-dam-break-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/dry-bed-dam-break/?lang=en#code-en)
+
+Flat frictionless bed on[-10,10]m, dam0, hL=1m/hR=0, initial velocity0, g=9.81, t=.5s,800/1600/3200 cells. The Ritter formula uses an explicit rescaling distinct from the paper numerical example.
+
+- [Run and validate: Dry-bed dam break: actual wetting and dry states](https://hrkoyama.github.io/numerical-methods-atlas/validation/dry-bed-dam-break/?lang=en) (`dry-bed-dam-break`) · [Code ZIP: Dry-bed dam break: actual wetting and dry states](https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/atlas-shallow-water-2026-11-23.zip)
+
+Scope of this execution example: Start the right half at exactly h=q=0 and compare wetting-front advance, conservation and conservative errors with the Ritter analytic solution.
+
 
 
 
@@ -2636,9 +2775,11 @@ $$
 \nabla\cdot\boldsymbol u=0
 $$
 
-A representative constant-density, constant-viscosity form. Public examples use periodic 2D MAC projection and a Taylor–Green vortex.
+Representative constant-density/viscosity flow. In addition to periodic2D MAC projection/Taylor–Green, a separate release verifies a pressure-eliminated nonperiodic Re100 cavity.
 
 [Reading](https://hrkoyama.github.io/numerical-methods-atlas/en/read/incompressible/)
+
+Retain existing periodic2D MAC projection/Taylor–Green examples. The additional nonperiodic Re100 cavity uses vorticity/streamfunction and Thom walls, comparing velocity centerlines with finite-grid Ghia tables. Pressure is eliminated; this adds no cavity-pressure, pressure-boundary or MAC-projection validation.
 
 #### Related test problem figures and code
 
@@ -2672,6 +2813,19 @@ No fixed-input execution example is registered.
 Links the lattice-BGK/body-force/halfway-wall calculation to its macroscopic steady incompressible channel solution.
 
 No fixed-input execution example is registered.
+
+##### [Re100 lid-driven cavity](https://hrkoyama.github.io/numerical-methods-atlas/problems/lid-driven-cavity/?lang=en) (`lid-driven-cavity`)
+
+![Saved finest Re100 streamlines and speed. Red dot: computed grid primary vortex; hollow dot: original Ghia TableV location.](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/results/cavity-ghia-re100-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/lid-driven-cavity/?lang=en#code-en)
+
+Dimensionless unit square, viscosity.01, lid speed1, Re100. Top interior nodes haveu1; other walls and all four corners have zero velocity. Psi0 on every wall; initial interior vorticity0. Reapply Thom wall vorticity at every Heun stage.
+
+- [Run and validate: Re100 lid-driven cavity: Ghia centerline comparison](https://hrkoyama.github.io/numerical-methods-atlas/validation/cavity-ghia-re100/?lang=en) (`cavity-ghia-re100`) · [Code ZIP: Re100 lid-driven cavity: Ghia centerline comparison](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/atlas-wall-flow-2026-11-23-r2.zip)
+
+Scope of this execution example: March a real nonperiodic 2D viscous incompressible solver to steady state on 17/33/65 node grids and compare against original Ghia centerlines. Retain streamlines, grid vortex center, true PDE residual and discrete divergence.
+
 
 
 
@@ -3762,3 +3916,85 @@ This is scalar transport in a prescribed divergence-free rotation, not Euler-flu
 - [Run and validate: Zalesak-type 2D rotation: conservation, bounds and shape error](https://hrkoyama.github.io/numerical-methods-atlas/validation/zalesak-rotation/?lang=en) (`zalesak-rotation`) · [Code ZIP: Zalesak-type 2D rotation: conservation, bounds and shape error](https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/atlas-zalesak-2026-11-23.zip)
 
 Scope of this execution example: Rotate a slotted disk through one full turn with an actual 2D finite-volume solver, comparing donor-cell and minmod MUSCL. Eight runs combine three grids with half-cell-center and 45-degree-start probes; measure conservation, bounds at every SSP stage, shape error and slot filling.
+
+
+
+
+### Shallow-water equations with bed source
+
+ID: `shallow-water-bed` · local-example
+
+$$
+\partial_t h+\partial_xq=0
+$$
+
+$$
+\partial_tq+\partial_x\!\left(q^2/h+gh^2/2\right)=-gh\,\partial_x z,\qquad q=hu
+$$
+
+$$
+u=0,\qquad h_i=\max(\eta_0-z_i,0)
+$$
+
+One-dimensional frictionless Saint–Venant flow without rainfall. Distinguish the continuous topography from represented piecewise-constant bed means when checking hydrostatic balance. At a genuinely dry state h=q=0, define the advective momentum flux q²/h as0.
+
+[Reading](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/)
+
+1D, g=9.81, L=25m, compact parabolic bed z=.2-.05(x-10)^2 on8<x<12. Lakes at surface .5/.1m use200 cells. Moving flow q=4.42m2/s, downstream h=2m uses100/200/400 cells to2s. Initialize the steady branch, not the published rest-to-steady transient.
+
+#### Related test problem figures and code
+
+##### [SWASHES lakes and steady shallow flow over topography](https://hrkoyama.github.io/numerical-methods-atlas/problems/swashes-topography/?lang=en) (`swashes-topography`)
+
+![Preview of represented bed, saved FV surfaces and moving-steady errors.](https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/results/swashes-topography-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/swashes-topography/?lang=en#code-en)
+
+1D, g=9.81, L=25m, compact parabolic bed z=.2-.05(x-10)^2 on8<x<12. Lakes at surface .5/.1m use200 cells. Moving flow q=4.42m2/s, downstream h=2m uses100/200/400 cells to2s. Initialize the steady branch, not the published rest-to-steady transient.
+
+- [Run and validate: SWASHES topographic flow: lakes and nonzero steady discharge](https://hrkoyama.github.io/numerical-methods-atlas/validation/swashes-topography/?lang=en) (`swashes-topography`) · [Code ZIP: SWASHES topographic flow: lakes and nonzero steady discharge](https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/atlas-shallow-water-2026-11-23.zip)
+
+Scope of this execution example: Check two lake equilibria separately from nonzero subcritical flow, distinguishing lake preservation from moving-flow discretization error.
+
+
+
+
+### Forced incompressible flow and wall manufactured solutions
+
+ID: `forced-incompressible` · local-example
+
+$$
+\partial_t\boldsymbol u+(\boldsymbol u\cdot\nabla)\boldsymbol u=-\nabla p+\nu\Delta\boldsymbol u+\boldsymbol f,\qquad\nabla\cdot\boldsymbol u=0
+$$
+
+$$
+\omega_t+u\omega_x+v\omega_y=\nu\Delta\omega+s,\quad s=(\nabla\times\boldsymbol f)_z,\quad-\Delta\psi=\omega,\quad(u,v)=(\psi_y,-\psi_x)
+$$
+
+$$
+\psi_\star=8x^2(1-x)^2y^2(1-y)^2,\quad s=\boldsymbol u_\star\cdot\nabla\omega_\star-\nu\Delta\omega_\star
+$$
+
+$$
+-\Delta p_{\mathrm{op},\star}=-4+2\pi^2\sin(\pi x)\sin(\pi y),\quad p_{\mathrm{op},\star}=x^2+y^2+\sin(\pi x)\sin(\pi y)
+$$
+
+Constant-density-one forced incompressible flow. The actual solver uses the curl forcing in a pressure-eliminated vorticity/streamfunction form. p_op is a separate nonzero-Dirichlet Poisson/gradient manufactured operator problem, not a coupled flow pressure or cavity pressure.
+
+[Reading](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-wall-flow/)
+
+Unit square, viscosity.01 and17/33/65nodes. Evolve the manufactured flow with the same Thom closure as the cavity, comparing velocity, streamfunction and wall shear. Pressure is assessed only in a separate manufactured operator problem.
+
+#### Related test problem figures and code
+
+##### [Manufactured incompressible flow with nonperiodic walls](https://hrkoyama.github.io/numerical-methods-atlas/problems/wall-manufactured/?lang=en) (`wall-manufactured`)
+
+![Computed finest manufactured-flow streamlines and velocity error, using the same Thom closure as the cavity without exact wall-vorticity injection.](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/results/wall-manufactured-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/wall-manufactured/?lang=en#code-en)
+
+Unit square, viscosity.01,17/33/65nodes,psi8f(x)f(y), f(z)=z²(1−z)². All walls are impermeable/no-slip. Derive the curl forcing from the continuous PDE and use the same actual Thom closure as the cavity on every wall; never inject exact wall vorticity.
+
+- [Run and validate: Nonperiodic wall MMS: velocity, shear and pressure operator](https://hrkoyama.github.io/numerical-methods-atlas/validation/wall-manufactured/?lang=en) (`wall-manufactured`) · [Code ZIP: Nonperiodic wall MMS: velocity, shear and pressure operator](https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/atlas-wall-flow-2026-11-23-r2.zip)
+
+Scope of this execution example: Apply analytic forcing to the same wall-bounded2D solver, measuring grid convergence of velocity/streamfunction and actual wall-vorticity/shear errors. A separate nonzero-Dirichlet manufactured pressure verifies Poisson and boundary-gradient operators.

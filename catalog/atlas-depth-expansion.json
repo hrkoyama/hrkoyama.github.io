@@ -285,6 +285,51 @@
         "ja": "切り欠き付き円盤を、与えた剛体回転速度で運ぶ2次元スカラー保存則です。一次風上とminmod付きMUSCLを同じSSPRK(3,3)で比較し、一回転後の保存量・範囲・形状誤差と格子位置・初期角度の依存を確認します。 基準系列は64²・128²・256²セルで、64²の位置ずらし・初期角度診断を別に設けます。",
         "en": "A two-dimensional scalar conservation law transports a slotted disk in a prescribed rigid-rotation velocity. Compare donor-cell upwinding and minmod MUSCL with the same SSPRK(3,3), checking full-turn mass, bounds, shape error and dependence on grid placement and initial angle. The base refinements use64²,128² and256² cells, with separate placement and initial-angle diagnostics at64²."
       }
+    },
+    {
+      "id": "weno-critical",
+      "edition": "2026-11-23",
+      "title": {
+        "ja": "WENOの臨界点・ε依存性",
+        "en": "WENO critical points and epsilon dependence"
+      },
+      "fields": [
+        "fluid"
+      ],
+      "intro": {
+        "ja": "セル平均からのWENO-JS／Z二乗重みの臨界点再構成と、実際の周期スカラー輸送を比較します。εの違い、解析セル平均と点値、空間誤差と時間刻みの影響を分けます。 選んだ一次臨界多項式では微小εのJS・Zの局所次数はともに約5で、Zの主誤差が小さい結果です。",
+        "en": "Compare critical-point reconstruction from cell means using WENO-JS/Z power-two weights and actual periodic scalar transport. Separate epsilon choices, analytic cell means versus point values, and spatial error versus time-step effects. For the selected first-critical polynomial, both tiny-epsilon JS and Z show local rates about5; Z has a smaller leading error."
+      }
+    },
+    {
+      "id": "shallow-water",
+      "edition": "2026-11-23",
+      "title": {
+        "ja": "浅水流：地形・静止湖・乾燥床",
+        "en": "Shallow water: topography, lakes and dry beds"
+      },
+      "fields": [
+        "fluid"
+      ],
+      "intro": {
+        "ja": "浅水系の地形源項と静水再構成を、全湿潤・露出床の静止湖とSWASHESの定常Bernoulli流で検査します。別の平坦床Ritter破堤は、真の乾燥状態・保存収支・固定水深の前縁を確認します。",
+        "en": "Check shallow-water bed sources and hydrostatic reconstruction with wet/emerged lakes and a SWASHES steady Bernoulli flow. A separate flat-bed Ritter dam break tests genuinely dry states, conservation budgets and a fixed-depth front."
+      }
+    },
+    {
+      "id": "wall-flow",
+      "edition": "2026-11-23-r2",
+      "title": {
+        "ja": "非周期壁面：キャビティと製造解",
+        "en": "Nonperiodic walls: cavity and manufactured flow"
+      },
+      "fields": [
+        "fluid"
+      ],
+      "intro": {
+        "ja": "非周期壁面の2D渦度・流れ関数法でRe100蓋駆動キャビティと製造流れを解きます。Ghia原著の有限格子数値表、壁剪断と格子収束を比較し、独立した圧力Poisson・勾配製造問題を区別します。",
+        "en": "Solve a Re100 lid-driven cavity and manufactured flow with a nonperiodic wall-bounded2D vorticity/streamfunction method. Compare original finite-grid Ghia tables, wall shear and grid refinement, keeping a separate pressure-Poisson/gradient manufactured problem distinct."
+      }
     }
   ],
   "case_problem_ids": {
@@ -336,7 +381,12 @@
     "low-mach-vortex": "isentropic-vortex",
     "guderley-implosion": "guderley",
     "euler-double-rarefaction-positivity": "double-rarefaction",
-    "zalesak-rotation": "zalesak"
+    "zalesak-rotation": "zalesak",
+    "weno-critical-epsilon": "advection-sine",
+    "swashes-topography": "swashes-topography",
+    "dry-bed-dam-break": "dry-bed-dam-break",
+    "cavity-ghia-re100": "lid-driven-cavity",
+    "wall-manufactured": "wall-manufactured"
   },
   "routine_policy": {
     "ja": "通常の補助例CIは、公開レジストリに登録した補助配布グループをNumPy・SciPy・pytestで実行します。保存済みの独立参照は版・入力・実行記録を照合し、新規の参照計算と区別します。量子収束を含む従来の共通22例は必要時の手動実行とし、既存の配布物・公差・履歴を保持します。",
@@ -446,6 +496,26 @@
     "zalesak-rotation": {
       "ja": "与えた発散ゼロの回転速度に従うスカラー輸送で、Euler流体の発展ではありません。Zalesak型の円盤・スロットによる形状保持の問題を用いますが、ZalesakのFCTアルゴリズムそのものを実装した例ではありません。連続指示関数の点値と保存量の幾何学的セル平均を区別し、周期境界での数値的な裾も測ります。 初版の32²/64²/128²では26検査・156/158判定に合格しましたが、最細の相対L1誤差が一次風上で約1.11675（基準1.0）、MUSCLで約.6023（基準.55）となり不合格でした。元入力・受入基準・保存配列・失敗を保持し、受入基準と流束・26検査を変えずに、改訂の実行前契約で基準系列を64²/128²/256²へ細分化しました。 改訂は26検査と8計算158判定に合格し、テストと本計算は同じ120秒枠で約19.58秒でした。N256の相対L1は一次風上約.932256、MUSCL約.394271（比約.423）、全計算の質量変化の最大値は約8.90×10⁻¹⁵です。全段の記録範囲は0〜1でしたが、この範囲には初期状態も含み、有界性だけで切り欠きが正しく保たれたとは判断しません。空スロット内プローブはセル平均の区分定数場を重み付けする離散診断で、連続解の点値ではありません。参照セル平均にも混合セルによる射影基準があるため、数値平均・参照平均・その差を別に保存します。N256の超過量は一次風上約.63465、MUSCL約.36501と、なお拡散が残ります。N64ではMUSCLのプローブ超過量が一次風上を上回る場合もあり、全指標・全格子での一様な優位は主張しません。幅.05の境界帯にある質量の割合はN256で約.0178615/.000243761（一次風上/MUSCL）でした。連続の厳密場はこの帯でゼロであり、周期境界へ伸びる数値的な裾を隠していません。",
       "en": "This is scalar transport in a prescribed divergence-free rotation, not Euler-fluid evolution. It uses a Zalesak-type slotted-disk shape test without claiming implementation of Zalesak’s FCT algorithm. Pointwise indicator values and geometric conserved cell means are distinguished; numerical tails near periodic boundaries are also measured. The initial32²/64²/128² series passed26 tests and156/158 gates, but its finest relative L1 was about1.11675 for donor-cell(limit1.0) and.6023 for MUSCL(limit.55), so it failed. Retain all original inputs,criteria,fields and failed decisions. A new pre-execution contract refines the base series to64²/128²/256² without changing acceptance thresholds, flux algorithms or the26 tests. Revision 2 passed all 26 tests and all 158 gates over eight runs; tests plus the fixed-input driver took about 19.58 seconds within one 120-second budget. At N=256 the relative L1 errors are about 0.932256 for donor-cell and 0.394271 for MUSCL (ratio about 0.423); the maximum absolute mass change over all runs is about 8.90e-15. Recorded stage bounds are 0 to 1, including initial states, but bounds alone do not establish accurate slot preservation. The inner empty-slot probe weights the piecewise-constant cell-mean field; it is not a point value of the continuum solution. Mixed reference cells create a projection baseline, so numerical mean, reference mean and their excess are stored separately. At N=256 the excesses are about 0.63465 and 0.36501 for donor-cell/MUSCL, showing substantial remaining diffusion. At N=64 the MUSCL slot excess can exceed donor-cell, so no uniform improvement across every metric and grid is claimed. The N=256 mass fractions in the fixed-width 0.05 boundary band are about 0.0178615/0.000243761 for donor-cell/MUSCL. The compact exact field vanishes there; these periodic-boundary tails remain visible in the diagnostics."
+    },
+    "weno-critical-epsilon": {
+      "ja": "一次臨界点の面再構成だけに次数判定を置き、二次臨界点は診断値として残します。固定εは解の振幅・単位に依存します。局所再構成の次数とPDE全体の次数、有限体積版と原著の有限差分版を区別します。衝撃波、Euler/MHD、一般の高次臨界点、任意入力の安定性・TVD・正値性は今回の保証に含めません。 選んだ一次臨界多項式では、微小εのJS・Zのどちらも最後の格子対の局所再構成次数は約5です。JSの絶対誤差は約9.77×10⁻⁹から2.88×10⁻¹³、Zは約2.12×10⁻⁹から5.70×10⁻¹⁴へ減少し、最細のZ/JS比は約.198です。この固定例が示すのは主誤差の減少であり、JSの次数低下やZによる普遍的な臨界点の次数回復を観測したという意味ではありません。二次臨界クラスの結果は別の診断として残します。",
+      "en": "Order gates concern the chosen first-critical interface reconstruction; second-critical values remain diagnostic. Fixed epsilon depends on amplitude/units. Distinguish reconstruction order from PDE convergence and this FV implementation from original FD papers. No shock/Euler/MHD, arbitrary higher-critical-point, universal stability/TVD or positivity guarantee is claimed. For the selected first-critical polynomial, BOTH tiny-epsilon JS and Z have local reconstruction rates of about5 on the last grid pair. JS absolute error decreases from about9.77e-9 to2.88e-13 and Z from about2.12e-9 to5.70e-14, with a finest Z/JS ratio about.198. This fixed example demonstrates a smaller leading error; it does not observe JS order loss or establish universal critical-point order recovery by Z. The second-critical class remains a separate diagnostic."
+    },
+    "swashes-topography": {
+      "ja": "静水の厳密釣合いは表現したセル地形に対する性質です。非零流量の定常解は厳密には保存されず、有限時刻の誤差を測ります。遷移流・跳水・摩擦・降雨・浸透・2次元流や完全離散エントロピー安定性は検証しません。 最終改訂は31単体検査と群全体8計算109判定に合格しました。定常流の最細N400では水深L1約.0249108、相対水深L1約.000505933です。静止湖の表現した床の釣合い、有限時間の移動定常流の誤差、乾燥床の前縁誤差を別々に保存します。",
+      "en": "Exact lake balance concerns the represented cell bed. Moving steady states retain finite-time numerical error. Transcritical flows, jumps, friction, rain, infiltration, 2D flow and fully discrete entropy stability are outside scope. The final revision passed31 unit checks and all109 gates over8 group runs. The finest moving steady case,N400, has depthL1 about.0249108 and relative depthL1 about.000505933. Represented-bed lake balance, finite-time moving steady errors and dry-bed front errors are retained separately."
+    },
+    "dry-bed-dam-break": {
+      "ja": "前線診断はセル平均の.001m等深線で、厳密な支持端を別に保存します。非負性は固定実行の実測です。初期乾セルの濡れを検査し、後退汀線・周期的な再乾燥、実地洪水、摩擦や地形上の移動前線は検証しません。 初回100/200/400セル・[−5,5]mでは28検査と105/109判定が合格し、乾セル残存3判定と前線誤差.3960>.25mが不合格でした。元の全記録を保持し、許容条件を変えず領域・格子を細分化しました。 領域・格子だけを変えた第2回は微小な裾のbinary64 underflowで停止しました。第3回は同じHLL更新の水量packetによる代数的評価を導入し、元の28検査に3検査を追加します。 第3回は108/109判定が合格し、最細の前線誤差.27415>.25mで不合格でした。第4回は同じ領域のRitter格子だけを1600/3200/6400に細分化します。相対水深L1は領域内参照質量で正規化し、領域変更を比べるため絶対L1も保存します。 最終改訂4の固定格子は1600/3200/6400、領域[-10,10]m、t=.5sです。31単体検査と群全体109判定に合格しました。領域拡大による規格化の有利化を避けるため、受入判定の水深L1は元の固定参照質量5m²で規格化し、最細の値は.001773819、絶対水深L1は.008869095m²です。拡大領域の参照質量10m²による.000886909は別の診断値で、受入基準には使いません。相対運動量L1は.009590172、水深.001m等値線の前縁誤差は.2069613m<.25m、最終の真の乾燥セルは1679です。前三改訂の不合格を保持し、深さfloor・状態clip・再試行は0です。",
+      "en": "The .001m mean-depth contour differs from the analytic support edge, which is reported separately. These fixed runs test wetting of initially dry cells. Retreating shorelines, re-drying cycles, real floods, friction and moving fronts over topography are outside scope. The initial100/200/400-cell [-5,5]m attempt passed28 tests and105/109 gates; three retained-dry-cell gates and the .3960m>.25m contour error failed. All original records remain archived; revision2 enlarges/refines the input without changing acceptance. Revision2 then stopped on a binary64 subnormal-tail dry-momentum artifact. Revision3 factors the same HLL update into water packets and adds three regression/equivalence tests; the original28 remain unchanged. Revision3 passed108/109 gates but failed the .27415m>.25m contour criterion. Revision4 refines only Ritter grids to1600/3200/6400. Relative depth L1 is normalized by domain reference mass; absolute L1 is also retained because the domain changed between revisions1 and2. Final revision4 uses1600/3200/6400cells on[-10,10]m at t.5s and passed31 unit checks and all109 group gates. Acceptance depthL1 retains the original fixed reference mass5m², giving finest.001773819 and absolute depthL1.008869095m². Normalization by the enlarged-domain reference mass10m² gives.000886909 as a separate diagnostic, never an easier acceptance criterion. Relative momentumL1 is.009590172; the depth.001m contour error is.2069613m<.25m and1679 genuinely dry cells remain. All three earlier failures are retained; depth floors,state clips and retries are zero."
+    },
+    "cavity-ghia-re100": {
+      "ja": "Re=100・3固定格子の教育用検査です。蓋と側壁の角に速度の不連続があり、角の速度は静止側を優先します。Ghia値は丸めた数値参照で厳密解ではなく、4桁座標をそのまま使います。高Re・乱流・原著アルゴリズムの再現・キャビティ圧力を検証したとは主張しません。 科学ソース改訂3・不変配布版2026-11-23-r2は22単体検査と群全体94判定に合格しました。初回のNumPy真偽値のJSON直列化失敗に加え、次の未公開候補は共通verifierが必要とする完了状態・ケースID別の最上位合否が不足していました。この配布版はJSONのtermination・failure・ケース別checksを整え、従来の3診断をsummary_checksへ保持する封筒形式だけの修正と、回帰検査1件を追加しています。入力・受入条件・数値ソルバー・参照と従来21検査は不変で、6計算の保存NPZ配列は前候補とビット一致しています。元の未公開配布物は公開ツリー外の作業記録へ保存し、旧候補の失敗履歴も保持しました。 最細Ghia中心線の最大誤差はu約.00277820、v約.00590408、格子主渦は(.609375,.734375)、真の定常残差は約9.68×10⁻¹⁰です。圧力を消去する流れ関数法であり、キャビティ圧力を検証したとは表示しません。",
+      "en": "Educational Re=100 checks on three fixed grids. Lid/sidewall corner velocities are discontinuous; stationary corners take precedence. Ghia values are rounded numerical references, not an exact solution, and printed four-decimal coordinates are preserved. No high-Re, turbulence, original-algorithm reproduction or cavity-pressure validation is claimed. Scientific-source revision3, immutable edition2026-11-23-r2, passed22 unit checks and all94 group gates. After the initial NumPy-boolean JSON-serialization failure, the next unpublished candidate lacked completion status and case-ID top-level checks required by the common verifier. This edition only repairs the JSON envelope with termination,failure and case-keyed checks, retaining the prior three diagnostics under summary_checks, and adds one regression. Inputs,acceptance,numerical solver,references and the prior21 tests are unchanged. All six saved NPZ field arrays are bit-identical to the previous candidate. The original unpublished packet is archived outside the public tree, and earlier failure history is retained. Finest Ghia centerline maximum errors are about.00277820 foru and.00590408 forv; the grid primary vortex is(.609375,.734375), with true steady residual about9.68e-10. Pressure is eliminated in streamfunction evolution; cavity pressure is not validated."
+    },
+    "wall-manufactured": {
+      "ja": "Thomの壁渦度局所打切りは一次で、壁剪断の二次精度は主張せず観測次数を示します。流れ関数の発展では圧力を消去するためゲージは該当しません。圧力診断は独立した演算子製造問題であり、キャビティの圧力・応力境界やMAC射影の検証ではありません。多項式の別微分は独立な流体ソルバーとの比較とは区別します。 科学ソース改訂3・不変配布版2026-11-23-r2は22単体検査と群全体94判定に合格しました。初回のNumPy真偽値のJSON直列化失敗に加え、次の未公開候補は共通verifierが必要とする完了状態・ケースID別の最上位合否が不足していました。この配布版はJSONのtermination・failure・ケース別checksを整え、従来の3診断をsummary_checksへ保持する封筒形式だけの修正と、回帰検査1件を追加しています。入力・受入条件・数値ソルバー・参照と従来21検査は不変で、6計算の保存NPZ配列は前候補とビット一致しています。元の未公開配布物は公開ツリー外の作業記録へ保存し、旧候補の失敗履歴も保持しました。 最細速度L2は約2.638×10⁻⁵、最後の格子対の速度・流れ関数次数は約2.009/2.022です。実際の壁剪断の観測次数は約1.982ですが、厳密ψでのThom局所打切り次数は約.989で、一般の二次壁公式の保証ではありません。独立した圧力演算子のp・全勾配・境界勾配の次数は約1.978/2.318/1.998であり、キャビティ圧力とは別です。",
+      "en": "Thom wall vorticity has first-order local truncation; publish observed shear rates without promising second order. Pressure is eliminated from streamfunction evolution, so a pressure gauge is inapplicable. The separate operator MMS does not verify cavity pressure, traction boundaries or MAC projection. Independent polynomial differentiation is distinct from comparison with an independent flow solver. Scientific-source revision3, immutable edition2026-11-23-r2, passed22 unit checks and all94 group gates. After the initial NumPy-boolean JSON-serialization failure, the next unpublished candidate lacked completion status and case-ID top-level checks required by the common verifier. This edition only repairs the JSON envelope with termination,failure and case-keyed checks, retaining the prior three diagnostics under summary_checks, and adds one regression. Inputs,acceptance,numerical solver,references and the prior21 tests are unchanged. All six saved NPZ field arrays are bit-identical to the previous candidate. The original unpublished packet is archived outside the public tree, and earlier failure history is retained. Finest velocityL2 is about2.638e-5, with last-pair velocity/streamfunction orders about2.009/2.022. Actual wall-shear order is about1.982, while local Thom truncation on exactpsi is about.989; this does not guarantee a universally second-order wall formula. The separate pressure-operatorp/full-gradient/boundary-gradient orders are about1.978/2.318/1.998, distinct from cavity pressure."
     }
   },
   "case_equations": {
@@ -528,6 +598,51 @@
       "note": {
         "ja": "qの2次元保存形輸送。速度a=−ω(y−yc), b=ω(x−xc)は与えられ、∂xa+∂yb=0です。面で共有する速度・数値流束を使い、スカラーのセル平均を更新します。",
         "en": "Two-dimensional conservative transport of q with prescribed a=-omega(y-yc), b=omega(x-xc), whose divergence is zero. Shared face velocities and numerical fluxes update scalar cell means."
+      }
+    },
+    "weno-critical-epsilon": {
+      "ids": [
+        "linear-advection"
+      ],
+      "note": {
+        "ja": "局所多項式のセル中心x=0、再構成面h/2、h=1/64…1/512を使います。輸送は[0,1]周期・速度1・q₀=cos(2πx)+.1sin³(2πx)、T=1、32/64/128セルです。全て有限体積セル平均であり、点値を誤差の参照にしません。",
+        "en": "Local polynomials have center x=0 and target h/2, h=1/64…1/512. Transport uses periodic[0,1], unit speed, q₀=cos(2πx)+.1sin³(2πx), T=1 and32/64/128 cells. All evolved states/references are FV cell means, not point samples."
+      }
+    },
+    "swashes-topography": {
+      "ids": [
+        "shallow-water-bed"
+      ],
+      "note": {
+        "ja": "1次元、g=9.81、長さ25m、8<x<12でz=.2−.05(x−10)²m。水位.5/.1mの静水は200セル、流量4.42m²/s・下流深さ2mの定常流は100/200/400セル、t=2s。地形は区分定数セル平均。定常流から開始し、静水からの定常化実験とは区別します。",
+        "en": "1D, g=9.81, L=25m, compact parabolic bed z=.2-.05(x-10)^2 on8<x<12. Lakes at surface .5/.1m use200 cells. Moving flow q=4.42m2/s, downstream h=2m uses100/200/400 cells to2s. Initialize the steady branch, not the published rest-to-steady transient."
+      }
+    },
+    "dry-bed-dam-break": {
+      "ids": [
+        "shallow-water"
+      ],
+      "note": {
+        "ja": "平坦床・無摩擦、[−10,10]m、ダムx=0、左深さ1m・右0m、初速0、g=9.81、t=.5s、1600/3200/6400セル。SWASHESのRitter式を明示した別スケールで使い、原例の.005m・6s入力とは区別します。",
+        "en": "Flat frictionless bed on[-10,10]m, dam0, hL=1m/hR=0, initial velocity0, g=9.81, t=.5s,1600/3200/6400 cells. The Ritter formula uses an explicit rescaling distinct from the paper numerical example."
+      }
+    },
+    "cavity-ghia-re100": {
+      "ids": [
+        "navier-stokes"
+      ],
+      "note": {
+        "ja": "無次元の単位正方形、ν=.01、蓋速度U=1、Re=100。上面の内部節点だけu=1、他壁と四隅の速度は0、全壁ψ=0。初期内部渦度は0。壁渦度はThom条件で各Heun段に再設定します。",
+        "en": "Dimensionless unit square, viscosity .01, lid speed1, Re=100. Top interior nodes have u=1; other walls and all four corners have zero velocity. Psi=0 on every wall; initial interior vorticity 0. Reapply Thom wall vorticity at every Heun stage."
+      }
+    },
+    "wall-manufactured": {
+      "ids": [
+        "forced-incompressible"
+      ],
+      "note": {
+        "ja": "単位正方形、ν=.01、17/33/65点、ψ=8f(x)f(y),f(z)=z²(1−z)²。全壁で非浸透・滑りなし。渦度外力は連続方程式から解析的に導出し、全壁にキャビティと同じThom条件を使用します。厳密壁渦度は注入しません。",
+        "en": "Unit square, viscosity .01,17/33/65nodes,psi8f(x)f(y), f(z)=z²(1−z)². All walls are impermeable/no-slip. Derive the curl forcing from the continuous PDE and use the same actual Thom closure as the cavity on every wall; never inject exact wall vorticity."
       }
     }
   }

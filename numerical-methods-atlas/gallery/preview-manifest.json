@@ -1045,10 +1045,58 @@
         "ja": "実際の2次元スカラー輸送の最細格子の保存セル平均。全[0,1]²のうちx∈[.28,.72], y∈[.53,.97]の円盤周辺を拡大し、一回転後の一次風上とminmod MUSCLを幾何学的な参照セル平均と比較します。切り欠きの数値拡散を残した図で、FCT法やEuler流体の計算ではありません。",
         "en": "Saved cell means on the finest grid of actual two-dimensional scalar transport. Zoom x in[.28,.72],y in[.53,.97] from the full unit square and compare donor-cell upwinding and minmod MUSCL after one revolution against geometric reference cell means. Slot diffusion remains visible; this is not an FCT algorithm or Euler-flow calculation."
       }
+    },
+    {
+      "id": "swashes-topography",
+      "image": "/code/validated-examples/2026-11-23/shallow-water/results/swashes-topography-preview.png",
+      "image_sha256": "dfbcd9dc201a400172a4c82346772383c32b6ff77d9e16d72992994be962e01c",
+      "width": 960,
+      "height": 576,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "保存した有限体積配列から描いた地形・水面と定常誤差のプレビュー。",
+        "en": "Preview of represented bed, saved FV surfaces and moving-steady errors."
+      }
+    },
+    {
+      "id": "dry-bed-dam-break",
+      "image": "/code/validated-examples/2026-11-23/shallow-water/results/dry-bed-dam-break-preview.png",
+      "image_sha256": "84a63409b927c0ee6214d1c2519e5727493f121cc835340e509d997e3eff32e2",
+      "width": 960,
+      "height": 576,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "実際の1次元浅水計算の保存配列による水深・流量と乾湿前線のプレビュー。時空間図は1次元の5保存時刻です。",
+        "en": "Preview from actual saved 1D shallow-water depth/discharge arrays. The space-time panel shows five saved times, not a 2D flow."
+      }
+    },
+    {
+      "id": "lid-driven-cavity",
+      "image": "/code/validated-examples/2026-11-23-r2/wall-flow/results/cavity-ghia-re100-preview.png",
+      "image_sha256": "ce88c820d7513d83c054892f36ee234d938cf180428f3a6783899deb3b9f77b5",
+      "width": 1038,
+      "height": 909,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "保存した最細Re100計算の流線と速さ。赤点は格子上の主渦、白抜き点はGhia表Vの主渦位置です。",
+        "en": "Saved finest Re100 streamlines and speed. Red dot: computed grid primary vortex; hollow dot: original Ghia TableV location."
+      }
+    },
+    {
+      "id": "wall-manufactured",
+      "image": "/code/validated-examples/2026-11-23-r2/wall-flow/results/wall-manufactured-preview.png",
+      "image_sha256": "edb1f81d131734b64f5056b10209f6a93ba3e8148ea6d5f50bcd9af312acf4d7",
+      "width": 1040,
+      "height": 901,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "実計算した最細の製造流れの流線と速度誤差。厳密壁渦度を注入せず、キャビティと同じThom閉鎖を使います。",
+        "en": "Computed finest manufactured-flow streamlines and velocity error, using the same Thom closure as the cavity without exact wall-vorticity injection."
+      }
     }
   ],
   "source_sha256": {
-    "catalog/atlas-gallery.json": "0198ffe0c37eda0c59e10dff7b6a026410f7c8e473b9f432b061f5531350783a",
+    "catalog/atlas-gallery.json": "2f794039c800e6221c995482c41ccde0015a778df619ddd5a1418f5e4e002c95",
     "scripts/render-atlas-gallery.py": "62956b5a0ece0c5144ec079bb30f36e44b3ccf97e4b56b677d4de356cdbab04c",
     "code/numerical-methods-atlas/2026-11-21/numart/benchmarks.py": "dc8f83aafea473b5f0e1e7bf82630484dd60aa446859c1f602571adc3c59f019",
     "code/numerical-methods-atlas/2026-11-21/numart/solvers.py": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d",
@@ -1095,8 +1143,8 @@
     "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
     "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
     "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
-    "catalog/atlas-test-problems.json": "5f210155a1fa739db4baa26e279015aebc92914c6a613dd3cf882e0d72c5fda9",
-    "catalog/atlas-depth-expansion.json": "b2e5a2d218c1bc2f542b2f54d38fc1c1b21193b1fa931ca6cfd3bccddb5667cf",
+    "catalog/atlas-test-problems.json": "fbd338a47e91a37a1881d5d8d06125971331434f742f539e3a21f339ad37958a",
+    "catalog/atlas-depth-expansion.json": "6080528b544ab1d60956b6e382b12b1505fe80fdbd66bac8791f78014878748f",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
     "code/validated-examples/2026-11-22/foundations/inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -1262,7 +1310,32 @@
     "code/validated-examples/2026-11-23/zalesak/verification.json": "aad9b39c23d83e967588361edfdb05724f1ea3fade93843ebb05b5fd829ba44e",
     "code/validated-examples/2026-11-23/zalesak/results/result.json": "51851a31df72eec078e25171deeacd2699a9bfe9eedc55b4bc6831fd233b408d",
     "code/validated-examples/2026-11-23/zalesak/results/zalesak-rotation.png": "1d7ed7b6669b25cbe45951d26ffc82974790c5234237eff32e7456064822ed27",
-    "code/validated-examples/2026-11-23/zalesak/results/zalesak-rotation-preview.png": "4c1236cfeda0f42d555a6a918ed20682729c95c91f2ab6a9c615e2eb5fbcdccc"
+    "code/validated-examples/2026-11-23/zalesak/results/zalesak-rotation-preview.png": "4c1236cfeda0f42d555a6a918ed20682729c95c91f2ab6a9c615e2eb5fbcdccc",
+    "code/validated-examples/2026-11-23/weno-critical/cases.json": "6b68c525e99fe15adbdce97a5d078289e5df0ff5f63cd9c790784a29b979440b",
+    "code/validated-examples/2026-11-23/weno-critical/inputs.json": "1236a9d75c55a9cc9dfbdcb4f184c57e82b06e45948422e4ca75b750295860a0",
+    "code/validated-examples/2026-11-23/weno-critical/source-manifest.json": "abd8b0a29bb81b7d98b897ec0a0eb409f77873857ec8199c3767f1ede11b43a5",
+    "code/validated-examples/2026-11-23/weno-critical/verification.json": "ccbf3c6a2fe7055b324a0d98c152da909242f36e0c82ca3281038e4c9b0c165f",
+    "code/validated-examples/2026-11-23/weno-critical/results/result.json": "c4150a350d0854b3b815bd820790711ecdbcc7594690c0ad8c15e23f6aa3d05d",
+    "code/validated-examples/2026-11-23/weno-critical/results/weno-critical-epsilon.png": "b2fae938bbb2e2f8b179f079baf86c85ec6ead23cc99ecbf019e4a2c80ec6167",
+    "code/validated-examples/2026-11-23/weno-critical/results/weno-critical-epsilon-preview.png": "a70007470597454c794b682ba985521ee32f2e8cbbaba2eb7eff9371296138d4",
+    "code/validated-examples/2026-11-23/shallow-water/cases.json": "9296c20b7609cb4acdcd5a0ce437781dcd2e7635dbfea0a924f8468a3e5a5792",
+    "code/validated-examples/2026-11-23/shallow-water/inputs.json": "fff83d5e5feda6863ca574a15701b532e85fdb2872110ab4b4ba1a2ebde4f147",
+    "code/validated-examples/2026-11-23/shallow-water/source-manifest.json": "0fdab6190462f91176fa2eb4eb452d6fb66c2066b0e07d115b8ea789231614da",
+    "code/validated-examples/2026-11-23/shallow-water/verification.json": "e342321ddc1f7692e08dcc7a63478912956f63637c855f2f85eaf0999c4d22cc",
+    "code/validated-examples/2026-11-23/shallow-water/results/result.json": "49a56493e429dd3b4c9d6f8eba72c53ddd3469689699217157b9823a392c015f",
+    "code/validated-examples/2026-11-23/shallow-water/results/swashes-topography.png": "3b91bc40a354bebf41dfae5658f077c4a2eb8ffcbfd537a6211c9c96a52dce2c",
+    "code/validated-examples/2026-11-23/shallow-water/results/swashes-topography-preview.png": "dfbcd9dc201a400172a4c82346772383c32b6ff77d9e16d72992994be962e01c",
+    "code/validated-examples/2026-11-23/shallow-water/results/dry-bed-dam-break.png": "462d58375af1a86ce16672c5ac827012a17f13902f40b622736382b1ace5fd6a",
+    "code/validated-examples/2026-11-23/shallow-water/results/dry-bed-dam-break-preview.png": "84a63409b927c0ee6214d1c2519e5727493f121cc835340e509d997e3eff32e2",
+    "code/validated-examples/2026-11-23-r2/wall-flow/cases.json": "ed51f9003bbf5ddfa88602dd579ad962c81f95fb5dd3e7ef32973b17f9844d70",
+    "code/validated-examples/2026-11-23-r2/wall-flow/inputs.json": "41281dc7b9e7cc2a79dd88d5f17e6d2b9be1c3d492691244856ec1cf11d7e2c4",
+    "code/validated-examples/2026-11-23-r2/wall-flow/source-manifest.json": "5defc88a20d06c6806f1aa18c5a5a9f027c7891d8a237bb5fe980169d1bbdfe4",
+    "code/validated-examples/2026-11-23-r2/wall-flow/verification.json": "6daf2fa12cf2e7f604bb54413b82e36bbe72891132e1846abf598f9c9600b096",
+    "code/validated-examples/2026-11-23-r2/wall-flow/results/result.json": "ce92039a849015c3c3bd1de8e6ef77052f6fc5a9765ff961bc20086180996252",
+    "code/validated-examples/2026-11-23-r2/wall-flow/results/cavity-ghia-re100.png": "264ec174a0aaeb374d6506ba91503f44e6518ebb9f91a7a309ff8a890f372906",
+    "code/validated-examples/2026-11-23-r2/wall-flow/results/cavity-ghia-re100-preview.png": "ce88c820d7513d83c054892f36ee234d938cf180428f3a6783899deb3b9f77b5",
+    "code/validated-examples/2026-11-23-r2/wall-flow/results/wall-manufactured.png": "8e85ee6e755ba71c723b19b5222e85e450f88c4383bbce7526b23a6d6f04cdb8",
+    "code/validated-examples/2026-11-23-r2/wall-flow/results/wall-manufactured-preview.png": "edb1f81d131734b64f5056b10209f6a93ba3e8148ea6d5f50bcd9af312acf4d7"
   },
   "calculations_sha256": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6",
   "maintenance_updates": [
@@ -1364,6 +1437,56 @@
         "code/validated-examples/2026-11-23/zalesak/results/result.json": "51851a31df72eec078e25171deeacd2699a9bfe9eedc55b4bc6831fd233b408d",
         "code/validated-examples/2026-11-23/zalesak/results/zalesak-rotation.png": "1d7ed7b6669b25cbe45951d26ffc82974790c5234237eff32e7456064822ed27",
         "code/validated-examples/2026-11-23/zalesak/results/zalesak-rotation-preview.png": "4c1236cfeda0f42d555a6a918ed20682729c95c91f2ab6a9c615e2eb5fbcdccc"
+      }
+    },
+    {
+      "reviewed_on": "2026-11-23",
+      "operation": "Add four primary saved figures and one supplemental WENO figure for backlog13–17; preserve all87 earlier primary records and bytes.",
+      "primary_item_count_before": 87,
+      "primary_item_count_after": 91,
+      "historical_primary_records_unchanged": true,
+      "historical_numerical_previews_executed": false,
+      "historical_figures_rerendered": false,
+      "changed_catalog_bindings": {
+        "catalog/atlas-gallery.json": {
+          "before": "0198ffe0c37eda0c59e10dff7b6a026410f7c8e473b9f432b061f5531350783a",
+          "after": "2f794039c800e6221c995482c41ccde0015a778df619ddd5a1418f5e4e002c95"
+        },
+        "catalog/atlas-test-problems.json": {
+          "before": "5f210155a1fa739db4baa26e279015aebc92914c6a613dd3cf882e0d72c5fda9",
+          "after": "fbd338a47e91a37a1881d5d8d06125971331434f742f539e3a21f339ad37958a"
+        },
+        "catalog/atlas-depth-expansion.json": {
+          "before": "b2e5a2d218c1bc2f542b2f54d38fc1c1b21193b1fa931ca6cfd3bccddb5667cf",
+          "after": "6080528b544ab1d60956b6e382b12b1505fe80fdbd66bac8791f78014878748f"
+        }
+      },
+      "new_release_bindings": {
+        "code/validated-examples/2026-11-23/weno-critical/cases.json": "6b68c525e99fe15adbdce97a5d078289e5df0ff5f63cd9c790784a29b979440b",
+        "code/validated-examples/2026-11-23/weno-critical/inputs.json": "1236a9d75c55a9cc9dfbdcb4f184c57e82b06e45948422e4ca75b750295860a0",
+        "code/validated-examples/2026-11-23/weno-critical/source-manifest.json": "abd8b0a29bb81b7d98b897ec0a0eb409f77873857ec8199c3767f1ede11b43a5",
+        "code/validated-examples/2026-11-23/weno-critical/verification.json": "ccbf3c6a2fe7055b324a0d98c152da909242f36e0c82ca3281038e4c9b0c165f",
+        "code/validated-examples/2026-11-23/weno-critical/results/result.json": "c4150a350d0854b3b815bd820790711ecdbcc7594690c0ad8c15e23f6aa3d05d",
+        "code/validated-examples/2026-11-23/weno-critical/results/weno-critical-epsilon.png": "b2fae938bbb2e2f8b179f079baf86c85ec6ead23cc99ecbf019e4a2c80ec6167",
+        "code/validated-examples/2026-11-23/weno-critical/results/weno-critical-epsilon-preview.png": "a70007470597454c794b682ba985521ee32f2e8cbbaba2eb7eff9371296138d4",
+        "code/validated-examples/2026-11-23/shallow-water/cases.json": "9296c20b7609cb4acdcd5a0ce437781dcd2e7635dbfea0a924f8468a3e5a5792",
+        "code/validated-examples/2026-11-23/shallow-water/inputs.json": "fff83d5e5feda6863ca574a15701b532e85fdb2872110ab4b4ba1a2ebde4f147",
+        "code/validated-examples/2026-11-23/shallow-water/source-manifest.json": "0fdab6190462f91176fa2eb4eb452d6fb66c2066b0e07d115b8ea789231614da",
+        "code/validated-examples/2026-11-23/shallow-water/verification.json": "e342321ddc1f7692e08dcc7a63478912956f63637c855f2f85eaf0999c4d22cc",
+        "code/validated-examples/2026-11-23/shallow-water/results/result.json": "49a56493e429dd3b4c9d6f8eba72c53ddd3469689699217157b9823a392c015f",
+        "code/validated-examples/2026-11-23/shallow-water/results/swashes-topography.png": "3b91bc40a354bebf41dfae5658f077c4a2eb8ffcbfd537a6211c9c96a52dce2c",
+        "code/validated-examples/2026-11-23/shallow-water/results/swashes-topography-preview.png": "dfbcd9dc201a400172a4c82346772383c32b6ff77d9e16d72992994be962e01c",
+        "code/validated-examples/2026-11-23/shallow-water/results/dry-bed-dam-break.png": "462d58375af1a86ce16672c5ac827012a17f13902f40b622736382b1ace5fd6a",
+        "code/validated-examples/2026-11-23/shallow-water/results/dry-bed-dam-break-preview.png": "84a63409b927c0ee6214d1c2519e5727493f121cc835340e509d997e3eff32e2",
+        "code/validated-examples/2026-11-23-r2/wall-flow/cases.json": "ed51f9003bbf5ddfa88602dd579ad962c81f95fb5dd3e7ef32973b17f9844d70",
+        "code/validated-examples/2026-11-23-r2/wall-flow/inputs.json": "41281dc7b9e7cc2a79dd88d5f17e6d2b9be1c3d492691244856ec1cf11d7e2c4",
+        "code/validated-examples/2026-11-23-r2/wall-flow/source-manifest.json": "5defc88a20d06c6806f1aa18c5a5a9f027c7891d8a237bb5fe980169d1bbdfe4",
+        "code/validated-examples/2026-11-23-r2/wall-flow/verification.json": "6daf2fa12cf2e7f604bb54413b82e36bbe72891132e1846abf598f9c9600b096",
+        "code/validated-examples/2026-11-23-r2/wall-flow/results/result.json": "ce92039a849015c3c3bd1de8e6ef77052f6fc5a9765ff961bc20086180996252",
+        "code/validated-examples/2026-11-23-r2/wall-flow/results/cavity-ghia-re100.png": "264ec174a0aaeb374d6506ba91503f44e6518ebb9f91a7a309ff8a890f372906",
+        "code/validated-examples/2026-11-23-r2/wall-flow/results/cavity-ghia-re100-preview.png": "ce88c820d7513d83c054892f36ee234d938cf180428f3a6783899deb3b9f77b5",
+        "code/validated-examples/2026-11-23-r2/wall-flow/results/wall-manufactured.png": "8e85ee6e755ba71c723b19b5222e85e450f88c4383bbce7526b23a6d6f04cdb8",
+        "code/validated-examples/2026-11-23-r2/wall-flow/results/wall-manufactured-preview.png": "edb1f81d131734b64f5056b10209f6a93ba3e8148ea6d5f50bcd9af312acf4d7"
       }
     }
   ]

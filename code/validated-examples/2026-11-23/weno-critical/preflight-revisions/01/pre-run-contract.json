@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "revision": 1,
+  "created_at_utc": "2026-11-23T10:43:35.353208+00:00",
+  "declared_before_first_scientific_execution": true,
+  "declared_before_first_pytest_execution": true,
+  "declared_before_first_pde_run": true,
+  "planned_tests": 36,
+  "planned_numerical_gates": 217,
+  "planned_local_reconstructions": 72,
+  "planned_fixed_pde_runs": 24,
+  "runtime_limit_seconds": 120,
+  "shared_pytest_plus_main_budget_seconds": 120,
+  "scope": "Finite-volume left WENO5 trace from analytic means; JS exponent2 and Z exponent2, fixed epsilon1e-40/1e-6/h². First/second critical diagnostics separate from actual periodic scalar transport. No universal high-critical-order guarantee.",
+  "presentation_files_excluded": [
+    "README.md",
+    "cases.json",
+    "plot.py",
+    "requirements-plotting.txt",
+    "LICENSE"
+  ],
+  "files_sha256": {
+    "inputs.json": "d70484b294dbb83d7356e2880766f7dbf0e63b983bc1064cfa47d3000bec2705",
+    "acceptance.json": "a9cff61c3b803a51a148058eab8eb2e11ce7f3aba86a394a063d7fa1cddddbe9",
+    "weno.py": "34c6d106f3c539f4a6e568bf1b0cc26d0096b9bd3c1c9215ab31ba4d57e51505",
+    "run.py": "ed2b37f04f98d94292d194d67fdd7830c6d1fd560edcc7ff8d5ff99f97f1ced3",
+    "test_weno.py": "0b09deec47c745e3be7f458ebbac0a52dfd836d1f3588f3d30030d8472c797dc",
+    "references/analytic.py": "a697dfabdf8186dc3d94b7a49d8d3652ddf39d0b49a125e7e55686486c0ea234",
+    "references/citations.json": "ef65e1123f1e7d054ad8cd0c42f8d368171942a60f8366032ffc5139d815396d",
+    "references/source-review.json": "0c1b83f4ba3dcb5444a9f28355f796ee332d6ed82da35c51a5f717115207c397",
+    "source-provenance.json": "97c946f6f7a4b91e92a25d9b9c3878c07f3639162140f19b5d22b2267c5c7b28",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75"
+  }
+}

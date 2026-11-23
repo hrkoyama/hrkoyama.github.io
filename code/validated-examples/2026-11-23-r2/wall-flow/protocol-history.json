@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "previous_contract_sha256": "dacb9f46258eebd4ba736824fbf31a65a6ceeea9db088d1eda46c7e5c718a0a6",
+  "attempt01_directory": "attempts/01",
+  "attempt01_passed": false,
+  "attempt01_failure": "Final json.dumps raised TypeError on numpy.bool_ from the primary-table qualifier. Six flow fields, three pressure arrays embedded in manufactured NPZ, CSV, source snapshot and logs retained. No result.json existed; none fabricated.",
+  "revision_scope": "Cast independent reference qualification decisions to native bool; add one serialization regression. Existing20-test file, solver, runner, inputs and acceptance remain byte-identical.",
+  "unchanged_scientific_files": {
+    "inputs.json": true,
+    "acceptance.json": true,
+    "wall_flow.py": true,
+    "run.py": true,
+    "test_wall_flow.py": true
+  },
+  "acceptance_relaxed": false,
+  "revision3": {
+    "previous_contract_sha256": "828276c0e04e0977992e96d7bf25a85be5516083deac9746d90e099f9a98feb1",
+    "reason": "The successful R2 scientific output did not conform to the real public verifier envelope: missing termination/failure and diagnostic-name top-level checks instead of case IDs. Preserve numerical records and every array, move the three diagnostics to summary_checks, add case-ID decisions, completion reason and null failure.",
+    "archive": "attempts/02",
+    "unchanged": {
+      "inputs.json": true,
+      "acceptance.json": true,
+      "wall_flow.py": true,
+      "references/qualify_reference.py": true,
+      "test_wall_flow.py": true,
+      "test_serialization.py": true
+    },
+    "tests": 22,
+    "numerical_gates": 94,
+    "acceptance_relaxed": false
+  }
+}

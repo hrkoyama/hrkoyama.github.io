@@ -1,0 +1,30 @@
+{
+  "reviewer": "root, independent of implementation subagent",
+  "before_first_main_and_pytest": true,
+  "contract_sha256": "60b6fb56896cd80bcbba3ba03d498440fafc260d3edb1c99103a9dda2a88de7a",
+  "files_sha256": {
+    "inputs.json": "a8e5c02f468aab0156c520fc47b26a5426d640d1aea4775c841663e2dfed4dc5",
+    "acceptance.json": "644da767ea681ea9f87df16848ed9d499c6f0468b2e239ec69f4aa1793ac22ec",
+    "shallow_water.py": "6402f76ff341a7246e8ba20c104891f467402c74bca9e47b2dec7636b508ae33",
+    "run.py": "f108711501e31b928334917bd8a76b2e14db151a326d2e2124ff645d23d63e73",
+    "test_shallow_water.py": "98b893551010a5c0e2ff1725f8fc74ef676cb5b188dcf8baf9ff8ef91eb7fc75",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "source-provenance.json": "c143ee01cfbcb75c01d3cd818d021c477d40165256bb81828ce7a362adc71882",
+    "references/README.md": "15e017ced012db7a0b4b9bd636b6e101f8e39cc1c846c6f762168866d8340c74",
+    "references/__init__.py": "63b9b60f426ea05b6d6aa613616d3569e98f3e8246d39c7defa1d5af53a09dc2",
+    "references/analytic.py": "9c979fa7b0308e753e82cea173b96f6a33f6ec277805dafce55fb44dae3d644e",
+    "references/citations.json": "9a0b12ff324f7810a570edfdfd744058cffce7972ab370d2d62c696147c4b62f",
+    "references/source-review.json": "f133a544921fc22d514e8523a02b0b4ef31e96348ea920deb63f678e82e80feb",
+    "protocol-history.json": "51ee6bc9aa6bf4ad157cbb264ae702cec025be210b093b8fe271ac47afb78faf",
+    "pre-run-review.json": "2027f3af1ca2b46c893b83e5c041a7a7dbb602c406180ac7e69fc2ea2b59bef5"
+  },
+  "findings": [
+    "R2 inputonly domain[-10,10] and dedicatedRitter800/1600/3200 grids; minimaldrivergridselection change",
+    "Original acceptance/solver/reference/28tests preserved byteforbyte with full105of109 failedattempt retained",
+    "Longer domain accommodates finite-stencil tiny positive tails without using a dry floor",
+    "Finer grid tests same0.25m fixed h>=.001 frontcontour limit; exact support front remains separately disclosed",
+    "HydrostaticHLL/FE commonflux and bedimpulse massmomentum accounting reviewed; nonzeroBernoulli andstaticrepresentedbed distinguished",
+    "Bilingual required metadata, existing method IDs, dependency pins and KaTeX formulas pass preflight"
+  ],
+  "approved_for_declared_execution": true
+}

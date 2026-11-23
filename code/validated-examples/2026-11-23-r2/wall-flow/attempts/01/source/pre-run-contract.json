@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "revision": 1,
+  "created_at_utc": "2026-11-23T10:46:12.852717+00:00",
+  "declared_before_first_scientific_execution": true,
+  "declared_before_first_pde_run": true,
+  "declared_before_first_pytest_execution": true,
+  "planned_tests": 20,
+  "planned_numerical_gates": 94,
+  "planned_fixed_runs": 6,
+  "planned_separate_pressure_operator_runs": 3,
+  "runtime_limit_seconds": 120,
+  "shared_pytest_plus_main_budget_seconds": 120,
+  "scoped_update": "Re100 original Ghia centerlines and wall MMS with the same real nonperiodic centered FD/Heun/Thom vorticity/Dirichlet DST solver. Separate manufactured nonzero Dirichlet pressure-Poisson/gradient operator is explicitly not cavity pressure.",
+  "presentation_files_excluded": [
+    "cases.json",
+    "README.md",
+    "LICENSE",
+    "plot.py",
+    "requirements-plot.txt"
+  ],
+  "files_sha256": {
+    "acceptance.json": "6d592a67e1e2d765278961336beb18f2c7cd421f965310fe57ec290359d1cd82",
+    "inputs.json": "41281dc7b9e7cc2a79dd88d5f17e6d2b9be1c3d492691244856ec1cf11d7e2c4",
+    "pre-run-review.json": "079eb10961a492951377f52475179d43b9af10c65b46638cd90c5dcc55e696db",
+    "references/__init__.py": "c5ce773b690de12ef336339fefbbe1585d2cc7b0a51dd1bd161a7650858a35e6",
+    "references/citations.json": "a5533d7ceeeb4bd748db29830758c81eed4a83cf33738ec7b213510ce9bac4d6",
+    "references/ghia-re100.csv": "0e844ac059c779a67819b8def7b1f0798b690a414214177a2a45b9397f6a1335",
+    "references/qualify_reference.py": "60bee7a41e55e575db69cf7b4465ffed4f8ee97fa102f8dd9e295b4b37aa3a1f",
+    "references/source-review.json": "0bc6d4f697c67d8d7e1209e257997527047dcde7f5a924f7f123a5d3ca77c77b",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "run.py": "6945781da35c1ed9bf8d9bd21aabf8e5232647b11e4d25a3f551abe05f572d47",
+    "source-provenance.json": "a81e755bce968df20ff243276b4835b539fec80774c41b3908db8199de7c8e4c",
+    "test_wall_flow.py": "3319db7a4a9f507b3f3a686c6524e4165aeb17b5a99a84f6e8d40e098cf2341a",
+    "wall_flow.py": "dd0e3e430859096afae33377b16924e604250fcb394fba40645a9d6983dc391e",
+    "references/README.md": "b915c9d4686816b61ed9e8af6f80fbd652228323785957afc14b6c1d0e2fca30"
+  }
+}

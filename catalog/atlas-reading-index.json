@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_on": "2026-11-22",
+  "reviewed_on": "2026-11-23",
   "title": {
     "ja": "分野別に解説を読む",
     "en": "Learn by field"
@@ -108,7 +108,8 @@
         "validation-noh",
         "validation-noh-cartesian",
         "validation-sedov",
-        "validation-guderley"
+        "validation-guderley",
+        "validation-weno-critical"
       ]
     },
     {
@@ -132,7 +133,9 @@
         "mhd",
         "relativistic-hydrodynamics",
         "validation-mhd",
-        "validation-mhd-convergence"
+        "validation-mhd-convergence",
+        "validation-shallow-water",
+        "validation-wall-flow"
       ]
     },
     {

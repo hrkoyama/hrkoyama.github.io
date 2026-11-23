@@ -70,6 +70,7 @@ Read about reconstruction, limiting and shock robustness, followed by low-Mach c
 - [Noh:2D Cartesian flow and grid orientation error](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-noh-cartesian/)
 - [Sedov–Taylor point blast: lightweight spherical-radial validation](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sedov/)
 - [Guderley converging shock: lightweight spherical-radial verification](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-guderley/)
+- [WENO critical points and epsilon dependence](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-weno-critical/)
 
 ## Meshes, finite elements and coupled equations
 
@@ -86,6 +87,8 @@ Organize spatial discretization and coordinates, then examine incompressible flo
 - [Relativistic hydrodynamics: SRHD, GRHD, and GRMHD](https://hrkoyama.github.io/numerical-methods-atlas/en/read/relativistic-hydrodynamics/)
 - [Independent fluid/MHD comparisons and CT/GLM](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd/)
 - [CT and GLM: matched controls, independent checks and grid/time convergence](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-convergence/)
+- [Shallow water: topography, lakes and dry beds](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/)
+- [Nonperiodic walls: cavity and manufactured flow](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-wall-flow/)
 
 ## Particles, kinetic methods and transport
 

@@ -182,8 +182,14 @@ def load(root=ROOT):
         item['completion_evidence'] = completion_evidence(root, item, receipts)
     active = [item['id'] for item in data['items'] if item['state'] == 'in-progress']
     workflow = data['workflow']
-    if workflow.get('max_active') != 1 or len(active) > 1 or workflow.get('active_item') != (active[0] if active else None):
-        raise ValueError('Backlog must have at most one correctly identified active item')
+    maximum = workflow.get('max_active')
+    if isinstance(maximum, bool) or not isinstance(maximum, int) or not 1 <= maximum <= 5 or len(active) > maximum:
+        raise ValueError('Backlog must have one to five permitted active slots')
+    if maximum == 1:
+        if workflow.get('active_item') != (active[0] if active else None) or workflow.get('active_items', active) != active:
+            raise ValueError('Backlog must correctly identify its active item')
+    elif workflow.get('active_item') is not None or workflow.get('active_items') != active or not workflow.get('batch_id'):
+        raise ValueError('A batch must identify every active item and its batch')
     expected = data['source']['proposal_count'] + data['source']['shared_count']
     if expected != len(data['items']):
         raise ValueError('Backlog proposal count differs from the registered inventory')
@@ -302,14 +308,18 @@ def item_html(item, data, language):
 
 
 def section(data, language):
-    ja = language == 'ja'; counts = data['counts']; active = data['workflow']['active_item']
+    ja = language == 'ja'; counts = data['counts']; workflow = data['workflow']
+    active = workflow.get('active_items', [workflow['active_item']] if workflow['active_item'] else [])
     out = '<section data-site-language="' + language + '" data-backlog-root="' + language + '" lang="' + language + '"><header class="backlog-heading"><p class="backlog-eyebrow">BENCHMARK WORK LOG</p><h1>' + text(data['title'][language]) + '</h1><p>' + text(data['description'][language]) + '</p></header>'
     out += '<nav class="backlog-navigation" aria-label="' + ('関連する入口' if ja else 'Related entries') + '">' + link(ORIGIN + BASE + '?lang=' + language, 'アトラス' if ja else 'Atlas home') + link(ORIGIN + BASE + 'gallery/?lang=' + language, 'テスト問題の名前と図' if ja else 'Test problems by name and figure') + link(ORIGIN + BASE + 'explore/?lang=' + language, '体系的に読む' if ja else 'Read systematically') + '</nav>'
     out += '<div class="backlog-summary">' + ''.join('<span><strong>' + str(counts['states'][state]) + '</strong> ' + STATES[state][language] + '</span>' for state in STATES) + '</div>'
     if active:
-        item = next(row for row in data['items'] if row['id'] == active)
-        title_language = ' lang="ja"' if not ja and re.search(r'[\u3040-\u9fff]', localized(item['title'], language)) else ''
-        out += '<aside class="backlog-active"><p>' + ('いま進めている1件' if ja else 'One item currently active') + '</p>' + link('#' + active + '-' + language, localized(item['title'], language), title_language) + '<span>' + ('入力・参照・検査・図を揃えてから次へ進みます。' if ja else 'Complete its inputs, reference, checks and figure before starting the next item.') + '</span></aside>'
+        out += '<aside class="backlog-active"><p>' + ('いま進めている' + str(len(active)) + '件' if ja else str(len(active)) + ' active items') + '</p><ul>'
+        for ident in active:
+            item = next(row for row in data['items'] if row['id'] == ident)
+            title_language = ' lang="ja"' if not ja and re.search(r'[\u3040-\u9fff]', localized(item['title'], language)) else ''
+            out += '<li>' + link('#' + ident + '-' + language, localized(item['title'], language), title_language) + '</li>'
+        out += '</ul><span>' + ('各問題の入力・参照・検査・図を個別に揃え、索引と公開をまとめます。' if ja else 'Keep each item’s inputs, reference, checks and figure independent; refresh indexes and publish together.') + '</span></aside>'
     out += '<details class="backlog-policy"><summary>' + ('進め方・状態と引用の読み方' if ja else 'Workflow, states and citation scope') + '</summary><p>' + text(data['policy'][language]) + '</p><p>' + text(data['workflow']['completion_rule'][language]) + '</p><p>' + text(data['citation_policy'][language]) + '</p><p>' + ('表示の検証済みは保存証拠の確認を指し、ページを開くたびに全計算を走らせるものではありません。' if ja else 'Verified means checked saved evidence; opening this page never starts calculations.') + '</p></details>'
     if not ja:
         out += '<p class="backlog-language-note">Candidate names and detailed survey notes currently remain in Japanese. English controls and summaries describe their status.</p>'

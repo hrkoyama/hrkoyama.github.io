@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-23-d27e536263
-Captured (UTC): 2026-11-23T10:08:28+00:00
+Snapshot: 2026-11-23-62d05cddaa
+Captured (UTC): 2026-11-23T11:12:35+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -8882,7 +8882,7 @@ R. Car; M. Parrinello (1985)
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/#verification
 Coverage: reading
 
-Two hydrogenic/He problem families were executed, independently compared and added to the 87-problem inventory. A scoped H₂ finite-basis RHF example now adds independent-reference, SCF and basis checks. A scoped periodic-He DFT workflow is now added; molecular DFT, FCI and other periodic materials are not validated.
+Two hydrogenic/He problem families were executed, independently compared and added to the 91-problem inventory. A scoped H₂ finite-basis RHF example now adds independent-reference, SCF and basis checks. A scoped periodic-He DFT workflow is now added; molecular DFT, FCI and other periodic materials are not validated.
 Runnable and checked
 
 ## Quantum chemistry and DFT: approximations and equations — One electron: hydrogenic atoms [en]
@@ -12587,8 +12587,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Published web edition, counted 2026-11-22. These are counts of catalog entries and documented examples, not a claim that every entry is a verified end-to-end solver.
-47 equation/model entries · 131 methods and building blocks · 243 journal/conference papers · 300 total sources.
-There are 9 saved-profile equation-gallery cases across 7 equation families, and 102 reading chapters including this inventory.
+49 equation/model entries · 131 methods and building blocks · 243 journal/conference papers · 300 total sources.
+There are 9 saved-profile equation-gallery cases across 7 equation families, and 105 reading chapters including this inventory.
 
 ## Site coverage and counting rules — Equations and models# [en]
 
@@ -12596,7 +12596,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Named equation/model entries, not scalar component equations or mathematically disjoint families. Includes frameworks and auxiliary formulations; variants share one entry except the three separately explained SR/GR fluid systems. Biological entries are imported once from their own catalog.
-24 entries have scoped local examples; 23 are reading-only, including all 22 biological survey entries. A coupled system is one entry; its individual component equations do not increase the count. Poisson/Laplace and dimensional variants share entries. Named frameworks and specialized kinetic laws can both appear, so this is not a count of mathematically disjoint families.
+26 entries have scoped local examples; 23 are reading-only, including all 22 biological survey entries. A coupled system is one entry; its individual component equations do not increase the count. Poisson/Laplace and dimensional variants share entries. Named frameworks and specialized kinetic laws can both appear, so this is not a count of mathematically disjoint families.
 
 ## Site coverage and counting rules — Physics & mathematical models# [en]
 
@@ -27361,6 +27361,444 @@ J. Thrussell and J. M. Ferguson (2023). ExactPack: A python library of exact ana
 Review scope / review_level: official-record-and-selected-pinned-code-execution
 Unmodified selected pinned Sedov evaluator actually run at6001/12001 points. Source hashes, parameters, point values, decisions and BSD-3-Clause retained; not another numerical Euler solver or whole-library test.
 
+## Shallow water: topography, lakes and dry beds — Shallow water: topography, lakes and dry beds [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/
+Coverage: reading
+
+Check shallow-water bed sources and hydrostatic reconstruction with wet/emerged lakes and a SWASHES steady Bernoulli flow. A separate flat-bed Ritter dam break tests genuinely dry states, conservation budgets and a fixed-depth front.
+
+## Shallow water: topography, lakes and dry beds — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/#run-all
+Coverage: reading
+
+Run inside atlas-shallow-water-2026-11-23 from the ZIP. This command executes all 2 fixed cases in the supplement. Choose a new or empty output directory.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Shallow water: topography, lakes and dry beds — SWASHES topographic flow: lakes and nonzero steady discharge [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/
+Coverage: reading
+
+Check two lake equilibria separately from nonzero subcritical flow, distinguishing lake preservation from moving-flow discretization error.
+Methods, equations, figures and references
+Methods used
+Godunov-type finite volumes
+HLL
+Forward Euler
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Hydrostatic reconstruction, shared HLL flux and left/right pressure corrections discretize the bed source; forward Euler and face CFL .4. Lakes use reflecting walls. Moving subcritical boundaries impose upstream q and downstream h, extrapolating the other datum. No state floors, clipping or retries. Algebraically factor HLL updates into nonnegative water packets; advected momentum uses those same rounded masses, without a small-depth threshold or subsequent repair.
+Shallow-water equations with bed source
+1D, g=9.81, L=25m, compact parabolic bed z=.2-.05(x-10)^2 on8<x<12. Lakes at surface .5/.1m use200 cells. Moving flow q=4.42m2/s, downstream h=2m uses100/200/400 cells to2s. Initialize the steady branch, not the published rest-to-steady transient.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+
+## Shallow water: topography, lakes and dry beds — SWASHES topographic flow: lakes and nonzero steady discharge [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/
+Coverage: reading
+
+SWASHES lakes and steady shallow flow over topography
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+Freeze31 unit checks and eight group runs. Record lake drift, every FE minimum depth, shared-flux/bed-impulse budgets, conservative-mean L1 errors and three-grid ratios. Qualify an independent Bernoulli bisection by energy and branch checks.
+Same-problem reference · Analytic reference
+Lake at rest: wet and emerged equilibrium over represented bed
+Exact lake balance concerns the represented cell bed. Moving steady states retain finite-time numerical error. Transcritical flows, jumps, friction, rain, infiltration, 2D flow and fully discrete entropy stability are outside scope.
+Same-problem reference · Semi-analytic reference
+SWASHES steady flow: subcritical Bernoulli root
+Exact lake balance concerns the represented cell bed. Moving steady states retain finite-time numerical error. Transcritical flows, jumps, friction, rain, infiltration, 2D flow and fully discrete entropy stability are outside scope.
+Input and validation protocol history · Initial input
+
+## Shallow water: topography, lakes and dry beds — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/#swashes-topography-assumptions
+Coverage: reading
+
+1D, g=9.81, L=25m, compact parabolic bed z=.2-.05(x-10)^2 on8<x<12. Lakes at surface .5/.1m use200 cells. Moving flow q=4.42m2/s, downstream h=2m uses100/200/400 cells to2s. Initialize the steady branch, not the published rest-to-steady transient.
+
+## Shallow water: topography, lakes and dry beds — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/#swashes-topography-algorithm
+Coverage: reading
+
+Hydrostatic reconstruction, shared HLL flux and left/right pressure corrections discretize the bed source; forward Euler and face CFL .4. Lakes use reflecting walls. Moving subcritical boundaries impose upstream q and downstream h, extrapolating the other datum. No state floors, clipping or retries. Algebraically factor HLL updates into nonnegative water packets; advected momentum uses those same rounded masses, without a small-depth threshold or subsequent repair.
+\partial_t h+\partial_x q=0,\qquad \partial_tq+\partial_x(q^2/h+gh^2/2)=-gh\partial_xzz^*=\max(z_L,z_R),\quad h_K^*=\max(0,h_K+z_K-z^*),\quad q_K^*=h_K^*u_KF_K=F_{\mathrm{HLL}}(U_L^*,U_R^*)+(0,\tfrac12g(h_K^2-(h_K^*)^2))^Tq=4.42,\quad h+z+q^2/(2gh^2)=2+4.42^2/(8g),\quad h>(q^2/g)^{1/3}
+
+## Shallow water: topography, lakes and dry beds — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/#swashes-topography-validation
+Coverage: reading
+
+Freeze31 unit checks and eight group runs. Record lake drift, every FE minimum depth, shared-flux/bed-impulse budgets, conservative-mean L1 errors and three-grid ratios. Qualify an independent Bernoulli bisection by energy and branch checks.
+
+## Shallow water: topography, lakes and dry beds — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/#swashes-topography-limits
+Coverage: reading
+
+Exact lake balance concerns the represented cell bed. Moving steady states retain finite-time numerical error. Transcritical flows, jumps, friction, rain, infiltration, 2D flow and fully discrete entropy stability are outside scope.
+
+## Shallow water: topography, lakes and dry beds — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/#swashes-topography-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+n400
+steps536
+time2
+depth_l10.0249107506127
+momentum_l10.0600872468879
+relative_depth_l10.000505932693276
+relative_momentum_l10.000543775989935
+depth_linf0.00642472619238
+minimum_depth1.7071673524
+maximum_depth2.0053503464
+maximum_velocity2.58857396537
+maximum_courant0.4
+maximum_step_mass_defect8.6247543363e-15
+maximum_step_momentum_defect1.70913994695e-14
+minimum_staying_coefficient0.734464640585
+maximum_total_mass_defect8.03844865466e-14
+maximum_total_momentum_defect3.85243269577e-13
+mass_change1.74538262629e-05
+boundary_mass_change1.74538262704e-05
+bed_momentum_impulse-0.0282824071098
+initial_dry_cells0
+final_dry_cells0
+newly_wet_cells0
+all_saved_values_finitetrue
+depth_floor_count0
+state_clip_count0
+rejected_steps0
+retries0
+判定 / checkPassed
+lake-immersed: maximum_step_mass_defecttrue
+lake-immersed: maximum_step_momentum_defecttrue
+lake-immersed: maximum_total_mass_defecttrue
+lake-immersed: maximum_total_momentum_defecttrue
+lake-immersed: nonnegative depthtrue
+lake-immersed: finite arraystrue
+lake-immersed: face CFLtrue
+lake-immersed: no repairs or retriestrue
+lake-immersed: five exact output timestrue
+lake-immersed: maximum_equilibrium_depth_drifttrue
+lake-immersed: maximum_equilibrium_dischargetrue
+
+## Shallow water: topography, lakes and dry beds — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/#swashes-topography-measurements
+Coverage: reading
+
+lake-emerged: maximum_step_mass_defecttrue
+lake-emerged: maximum_step_momentum_defecttrue
+lake-emerged: maximum_total_mass_defecttrue
+lake-emerged: maximum_total_momentum_defecttrue
+lake-emerged: nonnegative depthtrue
+lake-emerged: finite arraystrue
+lake-emerged: face CFLtrue
+lake-emerged: no repairs or retriestrue
+lake-emerged: five exact output timestrue
+lake-emerged: maximum_equilibrium_depth_drifttrue
+lake-emerged: maximum_equilibrium_dischargetrue
+subcritical-n100: maximum_step_mass_defecttrue
+subcritical-n100: maximum_step_momentum_defecttrue
+subcritical-n100: maximum_total_mass_defecttrue
+subcritical-n100: maximum_total_momentum_defecttrue
+subcritical-n100: nonnegative depthtrue
+subcritical-n100: finite arraystrue
+subcritical-n100: face CFLtrue
+subcritical-n100: no repairs or retriestrue
+subcritical-n100: five exact output timestrue
+subcritical-n200: maximum_step_mass_defecttrue
+subcritical-n200: maximum_step_momentum_defecttrue
+subcritical-n200: maximum_total_mass_defecttrue
+subcritical-n200: maximum_total_momentum_defecttrue
+subcritical-n200: nonnegative depthtrue
+subcritical-n200: finite arraystrue
+subcritical-n200: face CFLtrue
+subcritical-n200: no repairs or retriestrue
+subcritical-n200: five exact output timestrue
+subcritical-n400: maximum_step_mass_defecttrue
+subcritical-n400: maximum_step_momentum_defecttrue
+subcritical-n400: maximum_total_mass_defecttrue
+
+## Shallow water: topography, lakes and dry beds — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/#swashes-topography-measurements
+Coverage: reading
+
+subcritical-n400: maximum_total_momentum_defecttrue
+subcritical-n400: nonnegative depthtrue
+subcritical-n400: finite arraystrue
+subcritical-n400: face CFLtrue
+subcritical-n400: no repairs or retriestrue
+subcritical-n400: five exact output timestrue
+subcritical finest relative_depth_l1true
+subcritical relative_depth_l1 refinement 1true
+subcritical relative_depth_l1 refinement 2true
+subcritical finest relative_momentum_l1true
+subcritical relative_momentum_l1 refinement 1true
+subcritical relative_momentum_l1 refinement 2true
+reference: Bernoulli energy constanttrue
+reference: subcritical branchtrue
+reference: Gauss8 vs Gauss16 conservative meanstrue
+reference: Ritter total masstrue
+reference: Ritter finite difference PDE residualtrue
+reference: exact dry branchtrue
+all fixed runs completedtrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Preview of represented bed, saved FV surfaces and moving-steady errors.Read every stored record
+
+## Shallow water: topography, lakes and dry beds — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/#swashes-topography-measurements
+Coverage: reading
+
+idcasefamilynsurfacestepstimedepth_l1momentum_l1relative_depth_l1relative_momentum_l1depth_linfminimum_depthmaximum_depthmaximum_velocitymaximum_courantmaximum_step_mass_defectmaximum_step_momentum_defectminimum_staying_coefficientmaximum_total_mass_defectmaximum_total_momentum_defectmass_changeboundary_mass_changebed_momentum_impulseinitial_dry_cellsfinal_dry_cellsnewly_wet_cellsall_saved_values_finitedepth_floor_countstate_clip_countrejected_stepsretriessnapshot_timesmaximum_equilibrium_depth_driftmaximum_equilibrium_discharge
+lake-immersedswashes-topographylake2000.59227.48012762841e-152.88435932187e-156.2508030321e-162.88435932187e-154.4408920985e-160.3002604166670.51.99208134818e-150.41.15185638805e-159.79712439899e-180.61.7763568394e-155.30489427158e-17-7.2858385991e-1505.12363069452e-17000true0000[0.0,0.5,1.0,1.5,2.0]4.4408920985e-167.45868860846e-16
+lake-emergedswashes-topographylake2000.14028.07947458936e-162.84715787942e-173.74915349061e-162.84715787942e-174.16333634234e-1700.12.95134567e-160.42.82759926584e-166.36621789215e-190.64.4408920985e-166.00310713979e-18-7.73144569199e-1601.44700943678e-1722220true0000[0.0,0.5,1.0,1.5,2.0]4.16333634234e-172.05966162927e-17
+
+## Shallow water: topography, lakes and dry beds — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/#swashes-topography-measurements
+Coverage: reading
+
+subcritical-n100swashes-topographysubcritical100—13620.09643736274760.2227140303810.001958624829330.002015511587160.02469061354881.706197594432.015478168462.585026100960.41.01896852053e-151.58132445398e-140.7339150702075.31389362537e-141.41347003546e-130.0003437109460060.000343710946001-0.0992156995567000true0000[0.0,0.5,1.0,1.5,2.0]——
+subcritical-n200swashes-topographysubcritical200—26820.04937687162680.1167091688680.001002835042430.001056191573460.01269957641271.70678208682.009313043892.587863114280.41.19011910776e-151.86517468137e-140.7342264845715.28200884884e-146.62473548241e-136.54157876871e-056.54157876882e-05-0.0541260135504000true0000[0.0,0.5,1.0,1.5,2.0]——
+subcritical-n400swashes-topographysubcritical400—53620.02491075061270.06008724688790.0005059326932760.0005437759899350.006424726192381.70716735242.00535034642.588573965370.48.6247543363e-151.70913994695e-140.7344646405858.03844865466e-143.85243269577e-131.74538262629e-051.74538262704e-05-0.0282824071098000true0000[0.0,0.5,1.0,1.5,2.0]——
+Measurements and complete records / JSON
+
+## Shallow water: topography, lakes and dry beds — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/#swashes-topography-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+O. Delestre et al. (2013). SWASHES: a compilation of shallow water analytic solutions for hydraulic and environmental studies · DOI: 10.1002/fld.3741
+Review scope / review_level: selected-equations-and-fixed-inputs
+E. Audusse, F. Bouchut, M.-O. Bristeau, R. Klein, B. Perthame (2004). A Fast and Stable Well-Balanced Scheme with Hydrostatic Reconstruction for Shallow Water Flows · DOI: 10.1137/S1064827503431090
+Review scope / review_level: bibliography-and-author-follow-up
+E. Audusse, F. Bouchut, M.-O. Bristeau, J. Sainte-Marie (2016). Kinetic entropy inequality and hydrostatic reconstruction scheme for the Saint-Venant system
+Review scope / review_level: selected-scheme-equations
+Institut Denis Poisson / SWASHES authors (n.d.). SWASHES project page
+Review scope / review_level: official-project-scope-and-rights
+
+## Shallow water: topography, lakes and dry beds — Dry-bed dam break: actual wetting and dry states [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/
+Coverage: reading
+
+Start the right half at exactly h=q=0 and compare wetting-front advance, conservation and conservative errors with the Ritter analytic solution.
+Methods, equations, figures and references
+Methods used
+Godunov-type finite volumes
+HLL
+Forward Euler
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+The FV solver supports h=q=0 directly; one-sided dry HLL speeds use u-c/u+2c and their reflection. Forward Euler at face CFL .4 records every minimum and shared-flux budget without raising cell depths. Algebraically factor HLL updates into nonnegative water packets; advected momentum uses those same rounded masses, without a small-depth threshold or subsequent repair.
+Shallow-water equations
+Flat frictionless bed on[-10,10]m, dam0, hL=1m/hR=0, initial velocity0, g=9.81, t=.5s,1600/3200/6400 cells. The Ritter formula uses an explicit rescaling distinct from the paper numerical example.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Ritter dam break onto a dry bed
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## Shallow water: topography, lakes and dry beds — Dry-bed dam break: actual wetting and dry states [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/
+Coverage: reading
+
+Record all FE minima, newly wetted and remaining dry cells, boundary-aware mass/momentum budgets, and L1 refinement. Split Gauss8 h/hu references are qualified by Gauss16, mass and PDE identities. Diagnose the rightmost cell center with mean h>=.001m. Depth acceptance uses the original fixed5m2 reference mass, preventing domain extension from weakening the criterion; full-domain relativeL1 remains a separate diagnostic.
+Same-problem reference · Analytic reference
+Ritter dry-bed dam break: dedicated g9.81 cell-mean reference
+The .001m mean-depth contour differs from the analytic support edge, which is reported separately. These fixed runs test wetting of initially dry cells. Retreating shorelines, re-drying cycles, real floods, friction and moving fronts over topography are outside scope. The initial100/200/400-cell [-5,5]m attempt passed28 tests and105/109 gates; three retained-dry-cell gates and the .3960m>.25m contour error failed. All original records remain archived; revision2 enlarges/refines the input without changing acceptance. Revision2 then stopped on a binary64 subnormal-tail dry-momentum artifact. Revision3 factors the same HLL update into water packets and adds three regression/equivalence tests; the original28 remain unchanged.
+Related-model reference · Analytic reference
+Shallow water / dry-bed fan
+
+## Shallow water: topography, lakes and dry beds — Dry-bed dam break: actual wetting and dry states [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/
+Coverage: reading
+
+Retain the historical dry-bed reference gravity/domain/time unchanged. The new g9.81,[-10,10],t.5 computation uses its dedicated Ritter reference.
+Input and validation protocol history · Initial input
+
+## Shallow water: topography, lakes and dry beds — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/#dry-bed-dam-break-assumptions
+Coverage: reading
+
+Flat frictionless bed on[-10,10]m, dam0, hL=1m/hR=0, initial velocity0, g=9.81, t=.5s,1600/3200/6400 cells. The Ritter formula uses an explicit rescaling distinct from the paper numerical example.
+
+## Shallow water: topography, lakes and dry beds — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/#dry-bed-dam-break-algorithm
+Coverage: reading
+
+The FV solver supports h=q=0 directly; one-sided dry HLL speeds use u-c/u+2c and their reflection. Forward Euler at face CFL .4 records every minimum and shared-flux budget without raising cell depths. Algebraically factor HLL updates into nonnegative water packets; advected momentum uses those same rounded masses, without a small-depth threshold or subsequent repair.
+c_L=\sqrt{gh_L},\quad x_A=x_0-c_Lt,\quad x_B=x_0+2c_Lth=(2c_L-(x-x_0)/t)^2/(9g),\quad u=\tfrac23((x-x_0)/t+c_L)\quad (x_A<x<x_B)\bar U_i^{\mathrm{ref}}=\Delta x^{-1}\int_{C_i}(h,hu)^Tdx,\quad x_{.001}=x_B-3t\sqrt{g(0.001)}
+
+## Shallow water: topography, lakes and dry beds — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/#dry-bed-dam-break-validation
+Coverage: reading
+
+Record all FE minima, newly wetted and remaining dry cells, boundary-aware mass/momentum budgets, and L1 refinement. Split Gauss8 h/hu references are qualified by Gauss16, mass and PDE identities. Diagnose the rightmost cell center with mean h>=.001m. Depth acceptance uses the original fixed5m2 reference mass, preventing domain extension from weakening the criterion; full-domain relativeL1 remains a separate diagnostic.
+
+## Shallow water: topography, lakes and dry beds — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/#dry-bed-dam-break-limits
+Coverage: reading
+
+The .001m mean-depth contour differs from the analytic support edge, which is reported separately. These fixed runs test wetting of initially dry cells. Retreating shorelines, re-drying cycles, real floods, friction and moving fronts over topography are outside scope. The initial100/200/400-cell [-5,5]m attempt passed28 tests and105/109 gates; three retained-dry-cell gates and the .3960m>.25m contour error failed. All original records remain archived; revision2 enlarges/refines the input without changing acceptance. Revision2 then stopped on a binary64 subnormal-tail dry-momentum artifact. Revision3 factors the same HLL update into water packets and adds three regression/equivalence tests; the original28 remain unchanged. Revision3 passed108/109 gates but failed the .27415m>.25m contour criterion. Revision4 refines only Ritter grids to1600/3200/6400. Relative depth L1 is normalized by domain reference mass; absolute L1 is also retained because the domain changed between revisions1 and2.
+
+## Shallow water: topography, lakes and dry beds — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/#dry-bed-dam-break-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+n6400
+steps2263
+time0.5
+depth_l10.00886909478548
+momentum_l10.0235198962171
+relative_depth_l10.000886909478548
+relative_momentum_l10.00959017175007
+depth_linf0.0183784523193
+minimum_depth0
+maximum_depth1
+maximum_velocity5.61896964156
+maximum_courant0.4
+maximum_step_mass_defect2.17570697344e-15
+maximum_step_momentum_defect2.47198095327e-17
+minimum_staying_coefficient0.603833712823
+maximum_total_mass_defect4.97379915032e-14
+maximum_total_momentum_defect7.54951656745e-15
+mass_change-7.90478793533e-15
+boundary_mass_change0
+bed_momentum_impulse0
+initial_dry_cells3200
+final_dry_cells1679
+newly_wet_cells1521
+all_saved_values_finitetrue
+depth_floor_count0
+state_clip_count0
+rejected_steps0
+retries0
+front_depth_threshold0.001
+numerical_threshold_front2.7765625
+analytic_threshold_front2.9835237865
+analytic_support_front3.13209195267
+threshold_front_error0.2069612865
+depth_acceptance_reference_mass5
+fixed_reference_relative_depth_l10.0017738189571
+判定 / checkPassed
+ritter-n1600: maximum_step_mass_defecttrue
+ritter-n1600: maximum_step_momentum_defecttrue
+ritter-n1600: maximum_total_mass_defecttrue
+ritter-n1600: maximum_total_momentum_defecttrue
+ritter-n1600: nonnegative depthtrue
+ritter-n1600: finite arraystrue
+
+## Shallow water: topography, lakes and dry beds — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/#dry-bed-dam-break-measurements
+Coverage: reading
+
+ritter-n1600: face CFLtrue
+ritter-n1600: no repairs or retriestrue
+ritter-n1600: five exact output timestrue
+ritter-n1600: actual wettingtrue
+ritter-n1600: dry cells retainedtrue
+ritter-n3200: maximum_step_mass_defecttrue
+ritter-n3200: maximum_step_momentum_defecttrue
+ritter-n3200: maximum_total_mass_defecttrue
+ritter-n3200: maximum_total_momentum_defecttrue
+ritter-n3200: nonnegative depthtrue
+ritter-n3200: finite arraystrue
+ritter-n3200: face CFLtrue
+ritter-n3200: no repairs or retriestrue
+ritter-n3200: five exact output timestrue
+ritter-n3200: actual wettingtrue
+ritter-n3200: dry cells retainedtrue
+ritter-n6400: maximum_step_mass_defecttrue
+ritter-n6400: maximum_step_momentum_defecttrue
+ritter-n6400: maximum_total_mass_defecttrue
+ritter-n6400: maximum_total_momentum_defecttrue
+ritter-n6400: nonnegative depthtrue
+ritter-n6400: finite arraystrue
+ritter-n6400: face CFLtrue
+ritter-n6400: no repairs or retriestrue
+ritter-n6400: five exact output timestrue
+ritter-n6400: actual wettingtrue
+ritter-n6400: dry cells retainedtrue
+ritter finest relative_depth_l1true
+ritter relative_depth_l1 refinement 1true
+ritter relative_depth_l1 refinement 2true
+ritter finest relative_momentum_l1true
+ritter relative_momentum_l1 refinement 1true
+ritter relative_momentum_l1 refinement 2true
+finest threshold front errortrue
+reference: Bernoulli energy constanttrue
+reference: subcritical branchtrue
+
+## Shallow water: topography, lakes and dry beds — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/#dry-bed-dam-break-measurements
+Coverage: reading
+
+reference: Gauss8 vs Gauss16 conservative meanstrue
+reference: Ritter total masstrue
+reference: Ritter finite difference PDE residualtrue
+reference: exact dry branchtrue
+all fixed runs completedtrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Preview from actual saved 1D shallow-water depth/discharge arrays. The space-time panel shows five saved times, not a 2D flow.Read every stored record
+idcasefamilynstepstimedepth_l1momentum_l1relative_depth_l1relative_momentum_l1depth_linfminimum_depthmaximum_depthmaximum_velocitymaximum_courantmaximum_step_mass_defectmaximum_step_momentum_defectminimum_staying_coefficientmaximum_total_mass_defectmaximum_total_momentum_defectmass_changeboundary_mass_changebed_momentum_impulseinitial_dry_cellsfinal_dry_cellsnewly_wet_cellsall_saved_values_finitedepth_floor_countstate_clip_countrejected_stepsretriessnapshot_timesfront_depth_thresholdnumerical_threshold_frontanalytic_threshold_frontanalytic_support_frontthreshold_front_errordepth_acceptance_reference_massfixed_reference_relative_depth_l1
+
+## Shallow water: topography, lakes and dry beds — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/#dry-bed-dam-break-measurements
+Coverage: reading
+
+ritter-n1600dry-bed-dam-breakritter16005320.50.02512521724720.06613198451150.002512521724720.02696513129930.0333858449528015.159439026190.42.04935144584e-154.33680868994e-170.6038337128233.19744231092e-146.2172489379e-15-1.1990408666e-1400800297503true0000[0.0,0.125,0.25,0.375,0.5]0.0012.643752.98352378653.132091952670.339773786550.00502504344943
+ritter-n3200dry-bed-dam-breakritter320010990.50.01507445912090.039845590090.001507445912090.01624692766160.0250891220951015.415693342860.42.13489874755e-152.99239799606e-170.6038337128233.19744231092e-149.7699626167e-15-1.1901590824e-14001600728872true0000[0.0,0.125,0.25,0.375,0.5]0.0012.7093752.98352378653.132091952670.274148786550.00301489182418
+ritter-n6400dry-bed-dam-breakritter640022630.50.008869094785480.02351989621710.0008869094785480.009590171750070.0183784523193015.618969641560.42.17570697344e-152.47198095327e-170.6038337128234.97379915032e-147.54951656745e-15-7.90478793533e-1500320016791521true0000[0.0,0.125,0.25,0.375,0.5]0.0012.77656252.98352378653.132091952670.206961286550.0017738189571
+Measurements and complete records / JSON
+
+## Shallow water: topography, lakes and dry beds — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/#dry-bed-dam-break-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+O. Delestre et al. (2013). SWASHES: a compilation of shallow water analytic solutions for hydraulic and environmental studies · DOI: 10.1002/fld.3741
+Review scope / review_level: selected-equations-and-fixed-inputs
+E. Audusse, F. Bouchut, M.-O. Bristeau, R. Klein, B. Perthame (2004). A Fast and Stable Well-Balanced Scheme with Hydrostatic Reconstruction for Shallow Water Flows · DOI: 10.1137/S1064827503431090
+Review scope / review_level: bibliography-and-author-follow-up
+E. Audusse, F. Bouchut, M.-O. Bristeau, J. Sainte-Marie (2016). Kinetic entropy inequality and hydrostatic reconstruction scheme for the Saint-Venant system
+Review scope / review_level: selected-scheme-equations
+Institut Denis Poisson / SWASHES authors (n.d.). SWASHES project page
+Review scope / review_level: official-project-scope-and-rights
+
 ## Operator splitting: Lie–Trotter and Strang on the same reaction–diffusion problem — Operator splitting: Lie–Trotter and Strang on the same reaction–diffusion problem [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-splitting/
@@ -28339,6 +28777,785 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-th
 Coverage: reading
 
 Checked the author’s official note identifying a typo in the 2007 paper’s gamma-based generation of Gaussian-square sums. Year is access year. This is an original implementation, not a reproduction of the downloadable code.
+
+## Nonperiodic walls: cavity and manufactured flow — Nonperiodic walls: cavity and manufactured flow [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-wall-flow/
+Coverage: reading
+
+Solve a Re100 lid-driven cavity and manufactured flow with a nonperiodic wall-bounded2D vorticity/streamfunction method. Compare original finite-grid Ghia tables, wall shear and grid refinement, keeping a separate pressure-Poisson/gradient manufactured problem distinct.
+
+## Nonperiodic walls: cavity and manufactured flow — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-wall-flow/#run-all
+Coverage: reading
+
+Run inside atlas-wall-flow-2026-11-23-r2 from the ZIP. This command executes all 2 fixed cases in the supplement. Choose a new or empty output directory.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Nonperiodic walls: cavity and manufactured flow — Re100 lid-driven cavity: Ghia centerline comparison [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-wall-flow/
+Coverage: reading
+
+March a real nonperiodic 2D viscous incompressible solver to steady state on 17/33/65 node grids and compare against original Ghia centerlines. Retain streamlines, grid vortex center, true PDE residual and discrete divergence.
+Methods, equations, figures and references
+Methods used
+Centered spatial difference
+Heun / SSPRK(2,2)
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Advance vorticity transport with centered differences and Heun. Each stage solves−Delta_h psi=omega using a nonperiodic Dirichlet DST, then forms u=psi_y,v=−psi_x. Use local first-order Thom wall vorticity; this is an independent method, not Ghia CSI-MG or its higher-order wall formula.
+Incompressible Navier–Stokes
+Dimensionless unit square, viscosity .01, lid speed1, Re=100. Top interior nodes have u=1; other walls and all four corners have zero velocity. Psi=0 on every wall; initial interior vorticity 0. Reapply Thom wall vorticity at every Heun stage.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Re100 lid-driven cavity
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+
+## Nonperiodic walls: cavity and manufactured flow — Re100 lid-driven cavity: Ghia centerline comparison [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-wall-flow/
+Coverage: reading
+
+Reference and validation scope
+Freeze 22 pytest checks and 94 group gates. Linearly interpolate to 17 points per velocity transcribed after direct visual reading of original TablesI/II, printed 398–399. Require finest component maximum errors≤.03, refinement decrease and steady residual≤1e−7. Also check primary-vortex grid location from TableV, wall values, Poisson residual and discrete divergence.
+Same-problem reference · Finite-grid numerical reference
+Ghia Re100: original finite-grid velocity centerlines
+Educational Re100 checks on three fixed grids. Lid/sidewall corner velocities are discontinuous; stationary corners take precedence. Ghia values are rounded numerical references, not an exact solution, and printed four-decimal coordinates are preserved. No high-Re, turbulence, original-algorithm reproduction or cavity-pressure validation is claimed.
+Input and validation protocol history · Initial input
+
+## Nonperiodic walls: cavity and manufactured flow — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-wall-flow/#cavity-ghia-re100-assumptions
+Coverage: reading
+
+Dimensionless unit square, viscosity .01, lid speed1, Re=100. Top interior nodes have u=1; other walls and all four corners have zero velocity. Psi=0 on every wall; initial interior vorticity 0. Reapply Thom wall vorticity at every Heun stage.
+
+## Nonperiodic walls: cavity and manufactured flow — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-wall-flow/#cavity-ghia-re100-algorithm
+Coverage: reading
+
+Advance vorticity transport with centered differences and Heun. Each stage solves−Delta_h psi=omega using a nonperiodic Dirichlet DST, then forms u=psi_y,v=−psi_x. Use local first-order Thom wall vorticity; this is an independent method, not Ghia CSI-MG or its higher-order wall formula.
+\omega_t+u\omega_x+v\omega_y=\nu\Delta\omega,\quad -\Delta\psi=\omega,\quad (u,v)=(\psi_y,-\psi_x)\mathrm{Re}=UL/\nu=100,\quad \psi|_{\partial\Omega}=0,\quad u(x,1)=1\ (0<x<1)\omega_{\mathrm{top},i}=-2\psi_{J-1,i}/h^2-2U/h,\quad \omega_{\mathrm{stationary}}=-2\psi_{\mathrm{adj}}/h^2+O(h)\omega^{(1)}=\omega^n+\Delta t L(\omega^n),\quad \omega^{n+1}=\tfrac12\omega^n+\tfrac12[\omega^{(1)}+\Delta t L(\omega^{(1)})]
+
+## Nonperiodic walls: cavity and manufactured flow — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-wall-flow/#cavity-ghia-re100-validation
+Coverage: reading
+
+Freeze 22 pytest checks and 94 group gates. Linearly interpolate to 17 points per velocity transcribed after direct visual reading of original TablesI/II, printed 398–399. Require finest component maximum errors≤.03, refinement decrease and steady residual≤1e−7. Also check primary-vortex grid location from TableV, wall values, Poisson residual and discrete divergence.
+
+## Nonperiodic walls: cavity and manufactured flow — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-wall-flow/#cavity-ghia-re100-limits
+Coverage: reading
+
+Educational Re=100 checks on three fixed grids. Lid/sidewall corner velocities are discontinuous; stationary corners take precedence. Ghia values are rounded numerical references, not an exact solution, and printed four-decimal coordinates are preserved. No high-Re, turbulence, original-algorithm reproduction or cavity-pressure validation is claimed.
+
+## Nonperiodic walls: cavity and manufactured flow — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-wall-flow/#cavity-ghia-re100-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+finest_u_ghia_maximum0.00277819607899
+finest_v_ghia_maximum0.00590408122718
+finest_vortex_center[0.609375,0.734375]
+finest_steady_residual9.68482100072e-10
+判定 / checkPassed
+n17: steady stop reachedtrue
+n17: steady PDE residualtrue
+n17: streamfunction Poisson residualtrue
+n17: discrete divergencetrue
+n17: u wall valuestrue
+n17: v wall valuestrue
+n17: psi wall valuestrue
+n17: finite states and historytrue
+n17: no clipping or retrytrue
+n17: recorded advective Couranttrue
+n33: steady stop reachedtrue
+n33: steady PDE residualtrue
+n33: streamfunction Poisson residualtrue
+n33: discrete divergencetrue
+n33: u wall valuestrue
+n33: v wall valuestrue
+n33: psi wall valuestrue
+n33: finite states and historytrue
+n33: no clipping or retrytrue
+n33: recorded advective Couranttrue
+n65: steady stop reachedtrue
+n65: steady PDE residualtrue
+n65: streamfunction Poisson residualtrue
+n65: discrete divergencetrue
+n65: u wall valuestrue
+n65: v wall valuestrue
+n65: psi wall valuestrue
+n65: finite states and historytrue
+n65: no clipping or retrytrue
+n65: recorded advective Couranttrue
+finest u primary-table maximum errortrue
+finest v primary-table maximum errortrue
+Ghia centerline refinement 1true
+Ghia centerline refinement 2true
+
+## Nonperiodic walls: cavity and manufactured flow — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-wall-flow/#cavity-ghia-re100-measurements
+Coverage: reading
+
+finest primary-vortex grid locationtrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Saved finest Re100 streamlines and speed. Red dot: computed grid primary vortex; hollow dot: original Ghia TableV location.Read every stored record
+nhtimestepsdtconvergedsteady_residualpoisson_residualdivergence_maximumu_boundary_errorv_boundary_errorpsi_boundary_errormaximum_recorded_courantfiniterepairsu_ghia_maximumu_ghia_rmsv_ghia_maximumv_ghia_rmsvortex_center_gridvortex_center_distancestreamfunction_minimumcenterline_maximum_errorfield_file
+170.062539.8437525500.015625true8.55726434157e-103.19744231092e-142.22044604925e-160000.25true00.03810886378120.02070018107890.05248336836540.0292764476338[0.625,0.75]0.0174413302245-0.09097857940850.0524833683654cavity-n17.npz
+330.0312539.8437551000.0078125true8.39289276966e-101.38111744263e-131.7763568394e-150000.25true00.008890043995790.004669835444730.008566201995810.00492437664862[0.625,0.75]0.0174413302245-0.1003814812570.00889004399579cavity-n33.npz
+650.01562539.3676757812107500.003662109375true9.68482100072e-108.82849349182e-133.5527136788e-150000.234375true00.002778196078990.001382245862050.005904081227180.00283945638697[0.609375,0.734375]0.007825039936-0.1027234370370.00590408122718cavity-n65.npz
+Measurements and complete records / JSON
+
+## Nonperiodic walls: cavity and manufactured flow — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-wall-flow/#cavity-ghia-re100-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+U. Ghia, K. N. Ghia and C. T. Shin (1982). High-Re solutions for incompressible flow using the Navier-Stokes equations and a multigrid method · DOI: 10.1016/0021-9991(82)90058-4
+Review scope / review_level: primary-original-selected-pages
+Visually inspected original equations/boundary figure, Re100 columns in TablesI/II and primary vortex in TableV. The public mirror delivers the original paper; its PDF is not redistributed. This independently written solver differs from CSI-MG.
+Kambiz Salari and Patrick Knupp (2000). Code Verification by the Method of Manufactured Solutions · DOI: 10.2172/759450
+Review scope / review_level: primary-selected-section-and-official-abstract
+Read official Sandia/OSTI metadata/abstract and original report printed12 on MMS together with mesh refinement. The polynomial and pressure field are constructed for this example.
+
+## Nonperiodic walls: cavity and manufactured flow — Nonperiodic wall MMS: velocity, shear and pressure operator [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-wall-flow/
+Coverage: reading
+
+Apply analytic forcing to the same wall-bounded2D solver, measuring grid convergence of velocity/streamfunction and actual wall-vorticity/shear errors. A separate nonzero-Dirichlet manufactured pressure verifies Poisson and boundary-gradient operators.
+Methods, equations, figures and references
+Methods used
+Centered spatial difference
+Heun / SSPRK(2,2)
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Use the shared centered FD/Heun/nonperiodic Dirichlet DST solver. Qualify explicit analytic derivatives against independently differentiated tensor coefficients. Separately solve nonzero-Dirichlet Poisson for p=x²+y²+sin(pi*x)sin(pi*y), checking central interior and second-order one-sided boundary gradients.
+Forced incompressible flow and wall manufactured solutions
+Unit square, viscosity .01,17/33/65nodes,psi8f(x)f(y), f(z)=z²(1−z)². All walls are impermeable/no-slip. Derive the curl forcing from the continuous PDE and use the same actual Thom closure as the cavity on every wall; never inject exact wall vorticity.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Manufactured incompressible flow with nonperiodic walls
+
+## Nonperiodic walls: cavity and manufactured flow — Nonperiodic wall MMS: velocity, shear and pressure operator [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-wall-flow/
+Coverage: reading
+
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+Require finest-pair psi/velocity orders ≥1.7, decreasing and bounded errors, and decreasing actual wall-vorticity/velocity-gradient shear errors. Separate pressure orders must be≥1.8 for p and≥1.7 for full/boundary gradients. Record five independent polynomial-reference checks, four-wall values, true steady residual and nonperiodic Poisson residual.
+Same-problem reference · Manufactured solution
+Wall manufactured solution: polynomial velocity and separate pressure operator
+Thom wall vorticity has first-order local truncation; publish observed shear rates without promising second order. Pressure is eliminated from streamfunction evolution, so a pressure gauge is inapplicable. The separate operator MMS does not verify cavity pressure, traction boundaries or MAC projection. Independent polynomial differentiation is distinct from comparison with an independent flow solver.
+Input and validation protocol history · Initial input
+
+## Nonperiodic walls: cavity and manufactured flow — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-wall-flow/#wall-manufactured-assumptions
+Coverage: reading
+
+Unit square, viscosity .01,17/33/65nodes,psi8f(x)f(y), f(z)=z²(1−z)². All walls are impermeable/no-slip. Derive the curl forcing from the continuous PDE and use the same actual Thom closure as the cavity on every wall; never inject exact wall vorticity.
+
+## Nonperiodic walls: cavity and manufactured flow — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-wall-flow/#wall-manufactured-algorithm
+Coverage: reading
+
+Use the shared centered FD/Heun/nonperiodic Dirichlet DST solver. Qualify explicit analytic derivatives against independently differentiated tensor coefficients. Separately solve nonzero-Dirichlet Poisson for p=x²+y²+sin(pi*x)sin(pi*y), checking central interior and second-order one-sided boundary gradients.
+f(z)=z^2(1-z)^2,\quad \psi_\star=8f(x)f(y),\quad u_\star=\partial_y\psi_\star,\quad v_\star=-\partial_x\psi_\star,\quad\omega_\star=-\Delta\psi_\star\omega_t+u\omega_x+v\omega_y=\nu\Delta\omega+s,\quad s=u_\star\partial_x\omega_\star+v_\star\partial_y\omega_\star-\nu\Delta\omega_\starp_\star=x^2+y^2+\sin(\pi x)\sin(\pi y),\quad -\Delta p_\star=-4+2\pi^2\sin(\pi x)\sin(\pi y),\quad p|_{\partial\Omega}=p_\star\tau_{xy}/\mu=\partial_y u\quad\text{on stationary horizontal walls},\qquad p_{\mathrm{obs}}=\log_2(E_h/E_{h/2})
+
+## Nonperiodic walls: cavity and manufactured flow — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-wall-flow/#wall-manufactured-validation
+Coverage: reading
+
+Require finest-pair psi/velocity orders ≥1.7, decreasing and bounded errors, and decreasing actual wall-vorticity/velocity-gradient shear errors. Separate pressure orders must be≥1.8 for p and≥1.7 for full/boundary gradients. Record five independent polynomial-reference checks, four-wall values, true steady residual and nonperiodic Poisson residual.
+
+## Nonperiodic walls: cavity and manufactured flow — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-wall-flow/#wall-manufactured-limits
+Coverage: reading
+
+Thom wall vorticity has first-order local truncation; publish observed shear rates without promising second order. Pressure is eliminated from streamfunction evolution, so a pressure gauge is inapplicable. The separate operator MMS does not verify cavity pressure, traction boundaries or MAC projection. Independent polynomial differentiation is distinct from comparison with an independent flow solver.
+
+## Nonperiodic walls: cavity and manufactured flow — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-wall-flow/#wall-manufactured-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+finest_velocity_l22.63799152749e-05
+finest_streamfunction_l23.05797665568e-05
+observed_orders{"psi_l2":[2.0426330065243574,2.021783836772359],"velocity_l2":[1.9917746694984177,2.0086644375747413],"wall_omega_maximum":[1.937772137605888,1.9794771588130946],"wall_shear_maximum":[1.9412705074950394,1.9820164294643936],"thom_exact_psi_wall_truncation":[0.9769163868869587,0.9885952367277506],"pressure_l2":[1.9590185209239261,1.9784952274339704],"pressure_gradient_l2":[2.3544980286788206,2.3175253385985015],"pressure_boundary_gradient_l2":[1.9914961869556822,1.9978781190385215]}
+reference_qualification{"checks":{"independent tensor-polynomial fields":true,"independent tensor-polynomial forcing":true,"analytic four-wall no slip":true,"analytic incompressibility":true,"two primary-table columns each 17 points":true},"field_maximum":1.27675647831893e-15,"forcing_maximum":4.038436252074007e-15,"exact_wall_speed":1.27675647831893e-15,"passed":true}
+pressure_scopeSeparate manufactured Dirichlet operator; cavity pressure not computed.
+判定 / checkPassed
+n17: steady stop reachedtrue
+n17: steady PDE residualtrue
+n17: streamfunction Poisson residualtrue
+n17: discrete divergencetrue
+n17: u wall valuestrue
+
+## Nonperiodic walls: cavity and manufactured flow — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-wall-flow/#wall-manufactured-measurements
+Coverage: reading
+
+n17: v wall valuestrue
+n17: psi wall valuestrue
+n17: finite states and historytrue
+n17: no clipping or retrytrue
+n17: recorded advective Couranttrue
+n33: steady stop reachedtrue
+n33: steady PDE residualtrue
+n33: streamfunction Poisson residualtrue
+n33: discrete divergencetrue
+n33: u wall valuestrue
+n33: v wall valuestrue
+n33: psi wall valuestrue
+n33: finite states and historytrue
+n33: no clipping or retrytrue
+n33: recorded advective Couranttrue
+n65: steady stop reachedtrue
+n65: steady PDE residualtrue
+n65: streamfunction Poisson residualtrue
+n65: discrete divergencetrue
+n65: u wall valuestrue
+n65: v wall valuestrue
+n65: psi wall valuestrue
+n65: finite states and historytrue
+n65: no clipping or retrytrue
+n65: recorded advective Couranttrue
+psi_l2 refinement 1true
+velocity_l2 refinement 1true
+wall_omega_maximum refinement 1true
+wall_shear_maximum refinement 1true
+psi_l2 refinement 2true
+velocity_l2 refinement 2true
+wall_omega_maximum refinement 2true
+wall_shear_maximum refinement 2true
+finest streamfunction ordertrue
+finest velocity ordertrue
+finest streamfunction accuracytrue
+finest velocity accuracytrue
+n17: separate pressure Dirichlet boundarytrue
+n17: separate pressure Poisson residualtrue
+n17: finite separate pressure solutiontrue
+n33: separate pressure Dirichlet boundarytrue
+n33: separate pressure Poisson residualtrue
+n33: finite separate pressure solutiontrue
+
+## Nonperiodic walls: cavity and manufactured flow — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-wall-flow/#wall-manufactured-measurements
+Coverage: reading
+
+n65: separate pressure Dirichlet boundarytrue
+n65: separate pressure Poisson residualtrue
+n65: finite separate pressure solutiontrue
+finest separate pressure_l2 ordertrue
+finest separate pressure_gradient_l2 ordertrue
+finest separate pressure_boundary_gradient_l2 ordertrue
+independent tensor-polynomial fieldstrue
+independent tensor-polynomial forcingtrue
+analytic four-wall no sliptrue
+analytic incompressibilitytrue
+two primary-table columns each 17 pointstrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Computed finest manufactured-flow streamlines and velocity error, using the same Thom closure as the cavity without exact wall-vorticity injection.Read every stored record
+nhtimestepsdtconvergedsteady_residualpoisson_residualdivergence_maximumu_boundary_errorv_boundary_errorpsi_boundary_errormaximum_recorded_courantfiniterepairspsi_l2u_l2v_l2omega_l2velocity_l2wall_omega_maximumwall_shear_maximumthom_exact_psi_wall_truncationpressure_l2pressure_gradient_l2pressure_boundary_gradient_l2pressure_boundary_errorpressure_poisson_residualpressure_finitefield_file
+
+## Nonperiodic walls: cavity and manufactured flow — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-wall-flow/#wall-manufactured-measurements
+Coverage: reading
+
+170.062539.8437525500.015625true6.90019985594e-101.1990408666e-141.11022302463e-160000.0298731026947true00.000511617687580.0002985455248770.0002985455248770.005866112242290.0004222071302670.01000482248090.02108038290230.121093750.001514806795330.01780828424230.035405599512405.38236122338e-13truemanufactured-n17.npz
+330.0312539.062550000.0078125true8.52032833176e-103.98014954328e-142.22044604925e-160000.0297821146823true00.0001241800256867.50631258017e-057.50631258017e-050.001488050744280.0001061552905430.002611450805540.005489058289160.06152343750.0003896134203010.003482150580050.0089037275853103.27160520897e-12truemanufactured-n33.npz
+650.01562538.818359375106000.003662109375true9.21645537666e-102.12940776123e-132.22044604925e-160000.0278983471864true03.05797665568e-051.8653416978e-051.8653416978e-050.0003745186549782.63799152749e-050.0006622162726690.001389477266120.0310058593759.88661217004e-050.000698558698570.0022292081518301.32196475988e-11truemanufactured-n65.npz
+Measurements and complete records / JSON
+
+## Nonperiodic walls: cavity and manufactured flow — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-wall-flow/#wall-manufactured-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+U. Ghia, K. N. Ghia and C. T. Shin (1982). High-Re solutions for incompressible flow using the Navier-Stokes equations and a multigrid method · DOI: 10.1016/0021-9991(82)90058-4
+Review scope / review_level: primary-original-selected-pages
+Visually inspected original equations/boundary figure, Re100 columns in TablesI/II and primary vortex in TableV. The public mirror delivers the original paper; its PDF is not redistributed. This independently written solver differs from CSI-MG.
+Kambiz Salari and Patrick Knupp (2000). Code Verification by the Method of Manufactured Solutions · DOI: 10.2172/759450
+Review scope / review_level: primary-selected-section-and-official-abstract
+Read official Sandia/OSTI metadata/abstract and original report printed12 on MMS together with mesh refinement. The polynomial and pressure field are constructed for this example.
+
+## WENO critical points and epsilon dependence — WENO critical points and epsilon dependence [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-weno-critical/
+Coverage: reading
+
+Compare critical-point reconstruction from cell means using WENO-JS/Z power-two weights and actual periodic scalar transport. Separate epsilon choices, analytic cell means versus point values, and spatial error versus time-step effects. For the selected first-critical polynomial, both tiny-epsilon JS and Z show local rates about5; Z has a smaller leading error.
+
+## WENO critical points and epsilon dependence — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-weno-critical/#run-all
+Coverage: reading
+
+Run inside atlas-weno-critical-2026-11-23 from the ZIP. This command executes all 1 fixed cases in the supplement. Choose a new or empty output directory.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## WENO critical points and epsilon dependence — WENO-JS/Z: fixed critical-point and epsilon comparison [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-weno-critical/
+Coverage: reading
+
+Compare WENO5 JS and Z power-two weights from the same cell means, then evolve actual periodic transport. Retain three regularity classes, three epsilon choices, fixed grids and separate halved-time-step diagnostics.
+Methods, equations, figures and references
+Methods used
+WENO5-JS
+FD WENO5-Z
+Classical RK4
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Share three candidates, linear weights(.1,.6,.3) and JS indicators. Normalize JS d/(beta+epsilon)² or Z d[1+(|beta0−beta2|/(beta+epsilon))²]. Use epsilon10⁻⁴⁰,10⁻⁶,h². Actual transport uses shared upwind face fluxes and classical RK4 at Courant.1 without state clipping/retries.
+Linear advection
+Local polynomials have center x=0 and target h/2, h=1/64…1/512. Transport uses periodic[0,1], unit speed, q₀=cos(2πx)+.1sin³(2πx), T=1 and32/64/128 cells. All evolved states/references are FV cell means, not point samples.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Periodic sine-wave advection
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## WENO critical points and epsilon dependence — WENO-JS/Z: fixed critical-point and epsilon comparison [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-weno-critical/
+Coverage: reading
+
+Pre-run contract fixes72 local reconstructions,24 PDE runs and36 pytest checks. Qualify analytic means against independent Gauss12 quadrature; retain local errors/weights, transport L1/L2/Linf, mass, stage finiteness, intermediate times and shared-flux budgets. Six finest-grid half-dt differences must be at most10% of corresponding continuum errors.
+Related-model reference · Analytic reference
+Advection / sine translation
+Same periodic sine-transport model at speed one. The library amplitude is 0.25 versus 0.2 in the common fixed input; DG/CIP representations and output times also differ.
+Related-model reference · Analytic reference
+WENO critical points: polynomial cell means and analytic periodic transport
+An additional constant-speed periodic-transport reference. The cos+.1sin³ cell means and local critical polynomials differ from the historical single-sine/CIP display.
+
+## WENO critical points and epsilon dependence — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-weno-critical/#weno-critical-epsilon-assumptions
+Coverage: reading
+
+Local polynomials have center x=0 and target h/2, h=1/64…1/512. Transport uses periodic[0,1], unit speed, q₀=cos(2πx)+.1sin³(2πx), T=1 and32/64/128 cells. All evolved states/references are FV cell means, not point samples.
+
+## WENO critical points and epsilon dependence — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-weno-critical/#weno-critical-epsilon-algorithm
+Coverage: reading
+
+Share three candidates, linear weights(.1,.6,.3) and JS indicators. Normalize JS d/(beta+epsilon)² or Z d[1+(|beta0−beta2|/(beta+epsilon))²]. Use epsilon10⁻⁴⁰,10⁻⁶,h². Actual transport uses shared upwind face fluxes and classical RK4 at Courant.1 without state clipping/retries.
+\bar q_i=h^{-1}\int_{x_i-h/2}^{x_i+h/2}q(x)\,dx,\qquad q^-_{i+1/2}=\sum_{k=0}^2\omega_k p_k(p_0,p_1,p_2)=\frac16(2\bar q_{i-2}-7\bar q_{i-1}+11\bar q_i,-\bar q_{i-1}+5\bar q_i+2\bar q_{i+1},2\bar q_i+5\bar q_{i+1}-\bar q_{i+2})\omega_k=\alpha_k/\sum_j\alpha_j,\quad d=(.1,.6,.3),\quad\alpha_k^{JS}=d_k/(\epsilon+\beta_k)^2,\quad\alpha_k^Z=d_k[1+(\tau_5/(\epsilon+\beta_k))^2],\quad\tau_5=|\beta_0-\beta_2|\partial_tq+\partial_xq=0,\quad q(x,t)=q_0(x-t),\quad\frac{d\bar q_i}{dt}=-\frac{q^-_{i+1/2}-q^-_{i-1/2}}h\bar q_i(t)=\operatorname{sinc}(h)\cos\theta_i+.075\operatorname{sinc}(h)\sin\theta_i-.025\operatorname{sinc}(3h)\sin(3\theta_i),\quad\theta_i=2\pi(x_i-t),\quad\operatorname{sinc}(z)=\frac{\sin\pi z}{\pi z}
+
+## WENO critical points and epsilon dependence — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-weno-critical/#weno-critical-epsilon-validation
+Coverage: reading
+
+Pre-run contract fixes72 local reconstructions,24 PDE runs and36 pytest checks. Qualify analytic means against independent Gauss12 quadrature; retain local errors/weights, transport L1/L2/Linf, mass, stage finiteness, intermediate times and shared-flux budgets. Six finest-grid half-dt differences must be at most10% of corresponding continuum errors.
+
+## WENO critical points and epsilon dependence — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-weno-critical/#weno-critical-epsilon-limits
+Coverage: reading
+
+Order gates concern the chosen first-critical interface reconstruction; second-critical values remain diagnostic. Fixed epsilon depends on amplitude/units. Distinguish reconstruction order from PDE convergence and this FV implementation from original FD papers. No shock/Euler/MHD, arbitrary higher-critical-point, universal stability/TVD or positivity guarantee is claimed.
+
+## WENO critical points and epsilon dependence — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-weno-critical/#weno-critical-epsilon-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+completed_pde_runs24
+local_reconstructions72
+maximum_transport_mass_error2.3288662665e-16
+判定 / checkPassed
+72 fixed local reconstructionstrue
+24 fixed PDE runs completedtrue
+independent analytic-cell quadraturetrue
+convex normalized local weightstrue
+first-critical weno-js fixed-1e-40 refinement n128true
+first-critical weno-js fixed-1e-40 refinement n256true
+first-critical weno-js fixed-1e-40 refinement n512true
+first-critical weno-js fixed-1e-6 refinement n128true
+first-critical weno-js fixed-1e-6 refinement n256true
+first-critical weno-js fixed-1e-6 refinement n512true
+first-critical weno-js h-squared refinement n128true
+first-critical weno-js h-squared refinement n256true
+first-critical weno-js h-squared refinement n512true
+first-critical weno-z fixed-1e-40 refinement n128true
+first-critical weno-z fixed-1e-40 refinement n256true
+first-critical weno-z fixed-1e-40 refinement n512true
+first-critical weno-z fixed-1e-6 refinement n128true
+first-critical weno-z fixed-1e-6 refinement n256true
+first-critical weno-z fixed-1e-6 refinement n512true
+first-critical weno-z h-squared refinement n128true
+first-critical weno-z h-squared refinement n256true
+first-critical weno-z h-squared refinement n512true
+
+## WENO critical points and epsilon dependence — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-weno-critical/#weno-critical-epsilon-measurements
+Coverage: reading
+
+first-critical tiny-epsilon Z/JS errortrue
+first-critical last reconstruction order weno-z fixed-1e-40true
+first-critical last reconstruction order weno-js h-squaredtrue
+weno-js-fixed-1e-40-n32: finite saved arraystrue
+weno-js-fixed-1e-40-n32: time reachedtrue
+weno-js-fixed-1e-40-n32: periodic masstrue
+weno-js-fixed-1e-40-n32: shared RHS flux balancetrue
+weno-js-fixed-1e-40-n32: all requested snapshotstrue
+weno-js-fixed-1e-40-n32: four stage evaluations per steptrue
+weno-js-fixed-1e-40-n32: no clipping or retriestrue
+weno-js-fixed-1e-40-n64: finite saved arraystrue
+weno-js-fixed-1e-40-n64: time reachedtrue
+weno-js-fixed-1e-40-n64: periodic masstrue
+weno-js-fixed-1e-40-n64: shared RHS flux balancetrue
+weno-js-fixed-1e-40-n64: all requested snapshotstrue
+weno-js-fixed-1e-40-n64: four stage evaluations per steptrue
+weno-js-fixed-1e-40-n64: no clipping or retriestrue
+weno-js-fixed-1e-40-n128: finite saved arraystrue
+weno-js-fixed-1e-40-n128: time reachedtrue
+weno-js-fixed-1e-40-n128: periodic masstrue
+weno-js-fixed-1e-40-n128: shared RHS flux balancetrue
+weno-js-fixed-1e-40-n128: all requested snapshotstrue
+weno-js-fixed-1e-40-n128: four stage evaluations per steptrue
+weno-js-fixed-1e-40-n128: no clipping or retriestrue
+weno-js-fixed-1e-6-n32: finite saved arraystrue
+weno-js-fixed-1e-6-n32: time reachedtrue
+weno-js-fixed-1e-6-n32: periodic masstrue
+
+## WENO critical points and epsilon dependence — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-weno-critical/#weno-critical-epsilon-measurements
+Coverage: reading
+
+weno-js-fixed-1e-6-n32: shared RHS flux balancetrue
+weno-js-fixed-1e-6-n32: all requested snapshotstrue
+weno-js-fixed-1e-6-n32: four stage evaluations per steptrue
+weno-js-fixed-1e-6-n32: no clipping or retriestrue
+weno-js-fixed-1e-6-n64: finite saved arraystrue
+weno-js-fixed-1e-6-n64: time reachedtrue
+weno-js-fixed-1e-6-n64: periodic masstrue
+weno-js-fixed-1e-6-n64: shared RHS flux balancetrue
+weno-js-fixed-1e-6-n64: all requested snapshotstrue
+weno-js-fixed-1e-6-n64: four stage evaluations per steptrue
+weno-js-fixed-1e-6-n64: no clipping or retriestrue
+weno-js-fixed-1e-6-n128: finite saved arraystrue
+weno-js-fixed-1e-6-n128: time reachedtrue
+weno-js-fixed-1e-6-n128: periodic masstrue
+weno-js-fixed-1e-6-n128: shared RHS flux balancetrue
+weno-js-fixed-1e-6-n128: all requested snapshotstrue
+weno-js-fixed-1e-6-n128: four stage evaluations per steptrue
+weno-js-fixed-1e-6-n128: no clipping or retriestrue
+weno-js-h-squared-n32: finite saved arraystrue
+weno-js-h-squared-n32: time reachedtrue
+weno-js-h-squared-n32: periodic masstrue
+weno-js-h-squared-n32: shared RHS flux balancetrue
+weno-js-h-squared-n32: all requested snapshotstrue
+weno-js-h-squared-n32: four stage evaluations per steptrue
+weno-js-h-squared-n32: no clipping or retriestrue
+weno-js-h-squared-n64: finite saved arraystrue
+weno-js-h-squared-n64: time reachedtrue
+weno-js-h-squared-n64: periodic masstrue
+
+## WENO critical points and epsilon dependence — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-weno-critical/#weno-critical-epsilon-measurements
+Coverage: reading
+
+weno-js-h-squared-n64: shared RHS flux balancetrue
+weno-js-h-squared-n64: all requested snapshotstrue
+weno-js-h-squared-n64: four stage evaluations per steptrue
+weno-js-h-squared-n64: no clipping or retriestrue
+weno-js-h-squared-n128: finite saved arraystrue
+weno-js-h-squared-n128: time reachedtrue
+weno-js-h-squared-n128: periodic masstrue
+weno-js-h-squared-n128: shared RHS flux balancetrue
+weno-js-h-squared-n128: all requested snapshotstrue
+weno-js-h-squared-n128: four stage evaluations per steptrue
+weno-js-h-squared-n128: no clipping or retriestrue
+weno-z-fixed-1e-40-n32: finite saved arraystrue
+weno-z-fixed-1e-40-n32: time reachedtrue
+weno-z-fixed-1e-40-n32: periodic masstrue
+weno-z-fixed-1e-40-n32: shared RHS flux balancetrue
+weno-z-fixed-1e-40-n32: all requested snapshotstrue
+weno-z-fixed-1e-40-n32: four stage evaluations per steptrue
+weno-z-fixed-1e-40-n32: no clipping or retriestrue
+weno-z-fixed-1e-40-n64: finite saved arraystrue
+weno-z-fixed-1e-40-n64: time reachedtrue
+weno-z-fixed-1e-40-n64: periodic masstrue
+weno-z-fixed-1e-40-n64: shared RHS flux balancetrue
+weno-z-fixed-1e-40-n64: all requested snapshotstrue
+weno-z-fixed-1e-40-n64: four stage evaluations per steptrue
+weno-z-fixed-1e-40-n64: no clipping or retriestrue
+weno-z-fixed-1e-40-n128: finite saved arraystrue
+weno-z-fixed-1e-40-n128: time reachedtrue
+weno-z-fixed-1e-40-n128: periodic masstrue
+
+## WENO critical points and epsilon dependence — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-weno-critical/#weno-critical-epsilon-measurements
+Coverage: reading
+
+weno-z-fixed-1e-40-n128: shared RHS flux balancetrue
+weno-z-fixed-1e-40-n128: all requested snapshotstrue
+weno-z-fixed-1e-40-n128: four stage evaluations per steptrue
+weno-z-fixed-1e-40-n128: no clipping or retriestrue
+weno-z-fixed-1e-6-n32: finite saved arraystrue
+weno-z-fixed-1e-6-n32: time reachedtrue
+weno-z-fixed-1e-6-n32: periodic masstrue
+weno-z-fixed-1e-6-n32: shared RHS flux balancetrue
+weno-z-fixed-1e-6-n32: all requested snapshotstrue
+weno-z-fixed-1e-6-n32: four stage evaluations per steptrue
+weno-z-fixed-1e-6-n32: no clipping or retriestrue
+weno-z-fixed-1e-6-n64: finite saved arraystrue
+weno-z-fixed-1e-6-n64: time reachedtrue
+weno-z-fixed-1e-6-n64: periodic masstrue
+weno-z-fixed-1e-6-n64: shared RHS flux balancetrue
+weno-z-fixed-1e-6-n64: all requested snapshotstrue
+weno-z-fixed-1e-6-n64: four stage evaluations per steptrue
+weno-z-fixed-1e-6-n64: no clipping or retriestrue
+weno-z-fixed-1e-6-n128: finite saved arraystrue
+weno-z-fixed-1e-6-n128: time reachedtrue
+weno-z-fixed-1e-6-n128: periodic masstrue
+weno-z-fixed-1e-6-n128: shared RHS flux balancetrue
+weno-z-fixed-1e-6-n128: all requested snapshotstrue
+weno-z-fixed-1e-6-n128: four stage evaluations per steptrue
+weno-z-fixed-1e-6-n128: no clipping or retriestrue
+weno-z-h-squared-n32: finite saved arraystrue
+weno-z-h-squared-n32: time reachedtrue
+weno-z-h-squared-n32: periodic masstrue
+
+## WENO critical points and epsilon dependence — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-weno-critical/#weno-critical-epsilon-measurements
+Coverage: reading
+
+weno-z-h-squared-n32: shared RHS flux balancetrue
+weno-z-h-squared-n32: all requested snapshotstrue
+weno-z-h-squared-n32: four stage evaluations per steptrue
+weno-z-h-squared-n32: no clipping or retriestrue
+weno-z-h-squared-n64: finite saved arraystrue
+weno-z-h-squared-n64: time reachedtrue
+weno-z-h-squared-n64: periodic masstrue
+weno-z-h-squared-n64: shared RHS flux balancetrue
+weno-z-h-squared-n64: all requested snapshotstrue
+weno-z-h-squared-n64: four stage evaluations per steptrue
+weno-z-h-squared-n64: no clipping or retriestrue
+weno-z-h-squared-n128: finite saved arraystrue
+weno-z-h-squared-n128: time reachedtrue
+weno-z-h-squared-n128: periodic masstrue
+weno-z-h-squared-n128: shared RHS flux balancetrue
+weno-z-h-squared-n128: all requested snapshotstrue
+weno-z-h-squared-n128: four stage evaluations per steptrue
+weno-z-h-squared-n128: no clipping or retriestrue
+weno-js-fixed-1e-40-time-half: finite saved arraystrue
+weno-js-fixed-1e-40-time-half: time reachedtrue
+weno-js-fixed-1e-40-time-half: periodic masstrue
+weno-js-fixed-1e-40-time-half: shared RHS flux balancetrue
+weno-js-fixed-1e-40-time-half: all requested snapshotstrue
+weno-js-fixed-1e-40-time-half: four stage evaluations per steptrue
+weno-js-fixed-1e-40-time-half: no clipping or retriestrue
+weno-js-fixed-1e-6-time-half: finite saved arraystrue
+weno-js-fixed-1e-6-time-half: time reachedtrue
+
+## WENO critical points and epsilon dependence — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-weno-critical/#weno-critical-epsilon-measurements
+Coverage: reading
+
+weno-js-fixed-1e-6-time-half: periodic masstrue
+weno-js-fixed-1e-6-time-half: shared RHS flux balancetrue
+weno-js-fixed-1e-6-time-half: all requested snapshotstrue
+weno-js-fixed-1e-6-time-half: four stage evaluations per steptrue
+weno-js-fixed-1e-6-time-half: no clipping or retriestrue
+weno-js-h-squared-time-half: finite saved arraystrue
+weno-js-h-squared-time-half: time reachedtrue
+weno-js-h-squared-time-half: periodic masstrue
+weno-js-h-squared-time-half: shared RHS flux balancetrue
+weno-js-h-squared-time-half: all requested snapshotstrue
+weno-js-h-squared-time-half: four stage evaluations per steptrue
+weno-js-h-squared-time-half: no clipping or retriestrue
+weno-z-fixed-1e-40-time-half: finite saved arraystrue
+weno-z-fixed-1e-40-time-half: time reachedtrue
+weno-z-fixed-1e-40-time-half: periodic masstrue
+weno-z-fixed-1e-40-time-half: shared RHS flux balancetrue
+weno-z-fixed-1e-40-time-half: all requested snapshotstrue
+weno-z-fixed-1e-40-time-half: four stage evaluations per steptrue
+weno-z-fixed-1e-40-time-half: no clipping or retriestrue
+weno-z-fixed-1e-6-time-half: finite saved arraystrue
+weno-z-fixed-1e-6-time-half: time reachedtrue
+weno-z-fixed-1e-6-time-half: periodic masstrue
+weno-z-fixed-1e-6-time-half: shared RHS flux balancetrue
+weno-z-fixed-1e-6-time-half: all requested snapshotstrue
+weno-z-fixed-1e-6-time-half: four stage evaluations per steptrue
+
+## WENO critical points and epsilon dependence — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-weno-critical/#weno-critical-epsilon-measurements
+Coverage: reading
+
+weno-z-fixed-1e-6-time-half: no clipping or retriestrue
+weno-z-h-squared-time-half: finite saved arraystrue
+weno-z-h-squared-time-half: time reachedtrue
+weno-z-h-squared-time-half: periodic masstrue
+weno-z-h-squared-time-half: shared RHS flux balancetrue
+weno-z-h-squared-time-half: all requested snapshotstrue
+weno-z-h-squared-time-half: four stage evaluations per steptrue
+weno-z-h-squared-time-half: no clipping or retriestrue
+weno-js fixed-1e-40 PDE refinement n64true
+weno-js fixed-1e-40 PDE refinement n128true
+weno-js fixed-1e-40 finest PDE L1true
+weno-js fixed-1e-40 dt contamination fractiontrue
+weno-js fixed-1e-6 PDE refinement n64true
+weno-js fixed-1e-6 PDE refinement n128true
+weno-js fixed-1e-6 finest PDE L1true
+weno-js fixed-1e-6 dt contamination fractiontrue
+weno-js h-squared PDE refinement n64true
+weno-js h-squared PDE refinement n128true
+weno-js h-squared finest PDE L1true
+weno-js h-squared dt contamination fractiontrue
+weno-z fixed-1e-40 PDE refinement n64true
+weno-z fixed-1e-40 PDE refinement n128true
+weno-z fixed-1e-40 finest PDE L1true
+weno-z fixed-1e-40 dt contamination fractiontrue
+weno-z fixed-1e-6 PDE refinement n64true
+weno-z fixed-1e-6 PDE refinement n128true
+weno-z fixed-1e-6 finest PDE L1true
+weno-z fixed-1e-6 dt contamination fractiontrue
+weno-z h-squared PDE refinement n64true
+weno-z h-squared PDE refinement n128true
+weno-z h-squared finest PDE L1true
+
+## WENO critical points and epsilon dependence — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-weno-critical/#weno-critical-epsilon-measurements
+Coverage: reading
+
+weno-z h-squared dt contamination fractiontrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Saved finest-grid actual periodic transport fields and cell-mean errors, alongside a separate local-polynomial first-critical interface reconstruction study.Read every stored record
+idmethodepsilon_policynfamilycourantepsilontimestepsrhs_evaluationsl1l2linfmaximum_mass_changemaximum_rhs_mass_defectminimummaximumsnapshot_timessnapshot_l1clip_countretriesfieldall_finitetime_half_difference_l1
+weno-js-fixed-1e-40-n32weno-jsfixed-1e-4032refinement0.11e-40132012800.0005973099074940.0006824968210120.001243449650971.51463043496e-168.32667268469e-17-0.9984054462570.998405446257[0.0,0.25,0.5,0.75,1.0][0.0,0.00017684485864721833,0.0003243619287532331,0.0004594401717969268,0.0005973099074937288]00field-weno-js-fixed-1e-40-n32.npztrue—
+weno-js-fixed-1e-40-n64weno-jsfixed-1e-4064refinement0.11e-40164025602.85264469592e-053.36012346293e-057.47749243768e-056.50521303491e-178.32667268469e-17-0.9995992987230.999599298723[0.0,0.25,0.5,0.75,1.0][0.0,7.957224437882726e-06,1.522964439676193e-05,2.1972632201265716e-05,2.852644695924703e-05]00field-weno-js-fixed-1e-40-n64.npztrue—
+
+## WENO critical points and epsilon dependence — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-weno-critical/#weno-critical-epsilon-measurements
+Coverage: reading
+
+weno-js-fixed-1e-40-n128weno-jsfixed-1e-40128refinement0.11e-401128051201.25661163551e-061.80765024832e-067.24960200682e-061.0364972769e-161.52655665886e-16-0.9998997108280.999899710828[0.0,0.25,0.5,0.75,1.0][0.0,3.4041383445497205e-07,6.611920536956457e-07,9.653895156651532e-07,1.2566116355136017e-06]00field-weno-js-fixed-1e-40-n128.npztrue—
+weno-js-fixed-1e-6-n32weno-jsfixed-1e-632refinement0.11e-06132012800.0005973124274660.0006824691800680.001243401826161.44524149592e-168.32667268469e-17-0.9984054333940.998405433394[0.0,0.25,0.5,0.75,1.0][0.0,0.00017680356208186945,0.0003243162700813571,0.0004594375790105275,0.0005973124274657013]00field-weno-js-fixed-1e-6-n32.npztrue—
+weno-js-fixed-1e-6-n64weno-jsfixed-1e-664refinement0.11e-06164025602.84588920135e-053.35126687755e-057.4386365696e-055.89805981832e-178.32667268469e-17-0.9995992949870.999599294987[0.0,0.25,0.5,0.75,1.0][0.0,7.937366410439928e-06,1.519341075397829e-05,2.192404540745437e-05,2.8458892013549265e-05]00field-weno-js-fixed-1e-6-n64.npztrue—
+weno-js-fixed-1e-6-n128weno-jsfixed-1e-6128refinement0.11e-061128051201.21930263636e-061.72720701417e-066.83679907698e-061.11022302463e-161.38777878078e-16-0.9998997122810.999899712281[0.0,0.25,0.5,0.75,1.0][0.0,3.2895055978758104e-07,6.402382355773098e-07,9.357831398719657e-07,1.2193026363643497e-06]00field-weno-js-fixed-1e-6-n128.npztrue—
+
+## WENO critical points and epsilon dependence — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-weno-critical/#weno-critical-epsilon-measurements
+Coverage: reading
+
+weno-js-h-squared-n32weno-jsh-squared32refinement0.10.0009765625132012800.0005918976514460.0006712870965310.001210681123561.10046520507e-168.32667268469e-17-0.9983999748830.998399974883[0.0,0.25,0.5,0.75,1.0][0.0,0.0001589801582780714,0.0003092990804009775,0.00045270783415495583,0.0005918976514464944]00field-weno-js-h-squared-n32.npztrue—
+weno-js-h-squared-n64weno-jsh-squared64refinement0.10.000244140625164025602.30366240388e-052.69023449457e-054.83180025124e-059.31329666165e-179.71445146547e-17-0.9995993279340.999599327934[0.0,0.25,0.5,0.75,1.0][0.0,6.120812840977119e-06,1.1939122589202768e-05,1.7551274657011092e-05,2.3036624038847006e-05]00field-weno-js-h-squared-n64.npztrue—
+weno-js-h-squared-n128weno-jsh-squared128refinement0.16.103515625e-051128051208.08288140216e-079.30033943705e-071.9386939063e-069.15066633578e-171.11022302463e-16-0.9998997391880.999899739188[0.0,0.25,0.5,0.75,1.0][0.0,2.0347872919408835e-07,4.065546945217289e-07,6.081593935297928e-07,8.082881402163137e-07]00field-weno-js-h-squared-n128.npztrue—
+weno-z-fixed-1e-40-n32weno-zfixed-1e-4032refinement0.11e-40132012800.0003184081151780.0003533546705620.000518882885294.39101879857e-175.55111512313e-17-0.9984038603670.998403860367[0.0,0.25,0.5,0.75,1.0][0.0,8.005520887783798e-05,0.00016007704639309738,0.00023947662512480486,0.00031840811517821414]00field-weno-z-fixed-1e-40-n32.npztrue—
+
+## WENO critical points and epsilon dependence — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-weno-critical/#weno-critical-epsilon-measurements
+Coverage: reading
+
+weno-z-fixed-1e-40-n64weno-zfixed-1e-4064refinement0.11e-40164025601.08028229457e-051.20449693099e-051.80054353631e-051.3238108526e-168.32667268469e-17-0.9995995803340.999599580334[0.0,0.25,0.5,0.75,1.0][0.0,2.70061854743106e-06,5.401877189614821e-06,8.102315598584224e-06,1.0802822945711111e-05]00field-weno-z-fixed-1e-40-n64.npztrue—
+weno-z-fixed-1e-40-n128weno-zfixed-1e-40128refinement0.11e-401128051203.44449596883e-073.83262852885e-075.65219569815e-071.61790069189e-161.11022302463e-16-0.9998997457760.999899745776[0.0,0.25,0.5,0.75,1.0][0.0,8.611940995463356e-08,1.722263464137776e-07,2.5833606331795815e-07,3.4444959688345405e-07]00field-weno-z-fixed-1e-40-n128.npztrue—
+weno-z-fixed-1e-6-n32weno-zfixed-1e-632refinement0.11e-06132012800.0003184275501140.0003533776503170.0005188775631321.61654543918e-168.32667268469e-17-0.9984038545160.998403854516[0.0,0.25,0.5,0.75,1.0][0.0,8.006068393328388e-05,0.0001600869590956366,0.0002394912690227097,0.00031842755011425073]00field-weno-z-fixed-1e-6-n32.npztrue—
+weno-z-fixed-1e-6-n64weno-zfixed-1e-664refinement0.11e-06164025601.0806231553e-051.20470853244e-051.79982626769e-051.07552855511e-169.71445146547e-17-0.9995995796570.999599579657[0.0,0.25,0.5,0.75,1.0][0.0,2.7015461207072775e-06,5.403643835243761e-06,8.104913764223998e-06,1.0806231552981898e-05]00field-weno-z-fixed-1e-6-n64.npztrue—
+
+## WENO critical points and epsilon dependence — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-weno-critical/#weno-critical-epsilon-measurements
+Coverage: reading
+
+weno-z-fixed-1e-6-n128weno-zfixed-1e-6128refinement0.11e-061128051203.44739085152e-073.83376017073e-075.65306405242e-077.02563007771e-171.38777878078e-16-0.9998997457790.999899745779[0.0,0.25,0.5,0.75,1.0][0.0,8.619585269270514e-08,1.7237675749084426e-07,2.5855731583261285e-07,3.447390851515008e-07]00field-weno-z-fixed-1e-6-n128.npztrue—
+weno-z-h-squared-n32weno-zh-squared32refinement0.10.0009765625132012800.0003254111179910.0003623113309220.0005261359577917.16657636013e-178.32667268469e-17-0.9984017843610.998401784361[0.0,0.25,0.5,0.75,1.0][0.0,8.200886277531046e-05,0.00016362217948354065,0.000244739254559487,0.0003254111179907895]00field-weno-z-h-squared-n32.npztrue—
+weno-z-h-squared-n64weno-zh-squared64refinement0.10.000244140625164025601.08965678858e-051.21113400302e-051.77928181982e-058.76035355368e-179.71445146547e-17-0.9995995667130.999599566713[0.0,0.25,0.5,0.75,1.0][0.0,2.7249772618995064e-06,5.449362924989033e-06,8.173202074902267e-06,1.0896567885809705e-05]00field-weno-z-h-squared-n64.npztrue—
+weno-z-h-squared-n128weno-zh-squared128refinement0.16.103515625e-051128051203.45062736365e-073.83546637636e-075.65656457563e-071.35308431126e-161.2490009027e-16-0.9998997458790.999899745879[0.0,0.25,0.5,0.75,1.0][0.0,8.626642411944572e-08,1.725323428770258e-07,2.5879777770942297e-07,3.4506273636540304e-07]00field-weno-z-h-squared-n128.npztrue—
+
+## WENO critical points and epsilon dependence — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-weno-critical/#weno-critical-epsilon-measurements
+Coverage: reading
+
+weno-js-fixed-1e-40-time-halfweno-jsfixed-1e-40128time-probe0.051e-4012560102401.25661449004e-061.80764263744e-067.24945463215e-061.48318857196e-161.38777878078e-16-0.999899642940.99989964294[0.0,0.25,0.5,0.75,1.0][0.0,3.4041324252286976e-07,6.611928928379593e-07,9.653912413782044e-07,1.2566144900396248e-06]00field-weno-js-fixed-1e-40-time-half.npztrue1.11374492148e-10
+weno-js-fixed-1e-6-time-halfweno-jsfixed-1e-6128time-probe0.051e-0612560102401.21930537697e-061.72719847496e-066.83664914403e-062.3288662665e-161.38777878078e-16-0.999899644040.99989964404[0.0,0.25,0.5,0.75,1.0][0.0,3.289508688784687e-07,6.402390616646366e-07,9.357848106791215e-07,1.2193053769714074e-06]00field-weno-js-fixed-1e-6-time-half.npztrue1.11349891276e-10
+weno-js-h-squared-time-halfweno-jsh-squared128time-probe0.056.103515625e-0512560102408.08279198062e-079.30020083703e-071.93853361141e-061.37043154602e-161.38777878078e-16-0.9998996702280.999899670228[0.0,0.25,0.5,0.75,1.0][0.0,2.0347646872997428e-07,4.0655017159721353e-07,6.081526432367057e-07,8.082791980615984e-07]00field-weno-js-h-squared-time-half.npztrue1.11015501886e-10
+
+## WENO critical points and epsilon dependence — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-weno-critical/#weno-critical-epsilon-measurements
+Coverage: reading
+
+weno-z-fixed-1e-40-time-halfweno-zfixed-1e-40128time-probe0.051e-4012560102403.44437674699e-073.83253530242e-075.65229019367e-071.39428399382e-161.38777878078e-16-0.9998996770760.999899677076[0.0,0.25,0.5,0.75,1.0][0.0,8.611642951926349e-08,1.7222038528242234e-07,2.583271217230707e-07,3.4443767469850796e-07]00field-weno-z-fixed-1e-40-time-half.npztrue1.10940422132e-10
+weno-z-fixed-1e-6-time-halfweno-zfixed-1e-6128time-probe0.051e-0612560102403.44727166539e-073.83366700008e-075.65315833811e-071.17093834628e-161.38777878078e-16-0.9998996770670.999899677067[0.0,0.25,0.5,0.75,1.0][0.0,8.619287307346825e-08,1.7237079822206704e-07,2.585483770008146e-07,3.4472716653900087e-07]00field-weno-z-fixed-1e-6-time-half.npztrue1.10940546382e-10
+weno-z-h-squared-time-halfweno-zh-squared128time-probe0.056.103515625e-0512560102403.45050826338e-073.83537340625e-075.65665827623e-071.41379963292e-161.2490009027e-16-0.9998996771480.999899677148[0.0,0.25,0.5,0.75,1.0][0.0,8.626344661976986e-08,1.7252638789990024e-07,2.587888451771104e-07,3.450508263379683e-07]00field-weno-z-h-squared-time-half.npztrue1.10940455824e-10
+Measurements and complete records / JSON
+
+## WENO critical points and epsilon dependence — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-weno-critical/#weno-critical-epsilon-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Guang-Shan Jiang and Chi-Wang Shu (1996). Efficient Implementation of Weighted ENO Schemes · DOI: 10.1006/jcph.1996.0130
+Review scope / review_level: NASA-hosted ICASE95-73 preprint selected sections1–3: candidate Table1, optimal Table2, equations2.15–2.16 and3.1–3.9; text layer inspected, not full paper/numerical tables
+Inspected selected sections1–3 of the NASA preprint for candidates, weights, indicators and finite-difference point-value conventions. Original experiments/Euler characteristic reconstruction are not reproduced.
+Rafael Borges, Monique Carmona, Bruno Costa and Wai Sun Don (2008). An improved weighted essentially non-oscillatory scheme for hyperbolic conservation laws · DOI: 10.1016/j.jcp.2007.11.038
+Review scope / review_level: Author-institution publication record and abstract inspected; publisher full text returned403; original full paper and numerical experiments not audited
+Inspected the author institution bibliography/abstract. Full publisher text was unavailable; no full-paper audit or replication of original power-one experiments is claimed. The implemented power-two formula was checked in another primary research paper.
+
+## WENO critical points and epsilon dependence — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-weno-critical/#weno-critical-epsilon-references
+Coverage: reading
+
+Bart S. van Lith, Jan H. M. ten Thije Boonkkamp and Wilbert L. IJzerman (2017). Embedded WENO: A design strategy to improve existing WENO schemes · DOI: 10.1016/j.jcp.2016.11.026
+Review scope / review_level: Institution-hosted accepted manuscript section2 equations2–15 (PDF pages4–8) and selected section4.2 (PDF page22) text inspected; screenshot requests cache-missed; not a full-paper review
+Inspected cell-average equations2–3, candidate/linear weights4–7, JS indicators/weights8–13, Z weights15 and selected power-two discussion in section4.2. The paper’s new embedded schemes are not implemented and its PDF is not redistributed.
 
 ## Zalesak-type 2D rotation: conservation, bounds and shape error — Zalesak-type 2D rotation: conservation, bounds and shape error [en]
 
@@ -35734,7 +36951,7 @@ R. Car; M. Parrinello (1985)
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemistry/#verification
 Coverage: reading
 
-水素型原子・Heの2問題群を実行し、独立参照と比較して全87問題の台帳へ加えました。さらにH₂の有限基底RHFを独立参照・SCFと基底の収束で検証しました。周期Heセルの限定DFTも追加。分子DFT・FCIや他の周期物質へ検証を拡張していません。
+水素型原子・Heの2問題群を実行し、独立参照と比較して全91問題の台帳へ加えました。さらにH₂の有限基底RHFを独立参照・SCFと基底の収束で検証しました。周期Heセルの限定DFTも追加。分子DFT・FCIや他の周期物質へ検証を拡張していません。
 実行・検証例あり
 
 ## 量子化学・DFT：何を近似し、何を解くか — 1電子：水素型原子 [ja]
@@ -38871,8 +40088,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 公開Web版、集計日2026-11-22。数えるのはカタログ項目と記載した実験例です。すべての項目が検証済みの完全なソルバーであるという意味ではありません。
-方程式・モデル47項目・計算法と構成要素131項目・学術誌／会議論文243件・全参考資料300件。
-保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め102章です。
+方程式・モデル49項目・計算法と構成要素131項目・学術誌／会議論文243件・全参考資料300件。
+保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め105章です。
 
 ## 収録範囲と数え方 — 方程式とモデル# [ja]
 
@@ -38880,7 +40097,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 名前付きの方程式・モデルを数えます。スカラー成分や数学的に互いに独立な系統の数ではありません。枠組みや補助定式化を含み、通常は派生形を一つにまとめます。ただし個別に説明するSR／GRの流体系3種類は分けます。生物モデルは専用カタログから一度だけ取り込みます。
-ローカル実験のある項目は24、文献解説のみは23で、後者には生物調査22項目すべてを含みます。連成系は一項目とし、成分方程式では増やしません。Poisson／Laplaceや次元の違いもまとめます。枠組みと個別反応則が並ぶため、数学的に独立した系統数ではありません。
+ローカル実験のある項目は26、文献解説のみは23で、後者には生物調査22項目すべてを含みます。連成系は一項目とし、成分方程式では増やしません。Poisson／Laplaceや次元の違いもまとめます。枠組みと個別反応則が並ぶため、数学的に独立した系統数ではありません。
 一覧の詳細な範囲注記は原文（英語）を保持します。各章の日本語本文も併せて参照できます。
 
 ## 収録範囲と数え方 — 物理・数学モデル# [ja]
@@ -53082,6 +54299,422 @@ J. Thrussell and J. M. Ferguson (2023). ExactPack: A python library of exact ana
 確認範囲 / review_level: official-record-and-selected-pinned-code-execution
 固定commitの未改変Sedov評価器を6001/12001点で実行。ソースhash・パラメータ・点値・照合判定・BSD-3-Clauseを保存。別のEuler数値ソルバーや全ライブラリ検査ではありません。
 
+## 浅水流：地形・静止湖・乾燥床 — 浅水流：地形・静止湖・乾燥床 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-shallow-water/
+Coverage: reading
+
+浅水系の地形源項と静水再構成を、全湿潤・露出床の静止湖とSWASHESの定常Bernoulli流で検査します。別の平坦床Ritter破堤は、真の乾燥状態・保存収支・固定水深の前縁を確認します。
+
+## 浅水流：地形・静止湖・乾燥床 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-shallow-water/#run-all
+Coverage: reading
+
+ZIPの atlas-shallow-water-2026-11-23 フォルダで実行します。このコマンドは配布版の全2例を実行します。新規または空の出力先を指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## 浅水流：地形・静止湖・乾燥床 — SWASHES地形流：静水と非零流量の定常解 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-shallow-water/
+Coverage: reading
+
+水没・露出した隆起上の静水と、非零流量の亜臨界定常解を別々に検査します。静水の保存と、動く定常流に残る離散化誤差を区別します。
+手法・式・図・参照解
+使用手法
+Godunov型有限体積法
+HLL
+前進Euler法
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+非負な静水圧再構成、共有HLL流束と左右の圧力補正で地形源項を離散化します。前進Euler、面Courant数.4。静水は反射壁。亜臨界流は上流で流量・下流で水深のみを指定し他変数を外挿します。floor・clip・retryはありません。 HLL更新を非負の水量packetに代数的に分解し、丸め後の同じ水量から移流運動量を作ります。微小水深閾値や事後修復は使いません。
+地形源項付き浅水方程式
+1次元、g=9.81、長さ25m、8<x<12でz=.2−.05(x−10)²m。水位.5/.1mの静水は200セル、流量4.42m²/s・下流深さ2mの定常流は100/200/400セル、t=2s。地形は区分定数セル平均。定常流から開始し、静水からの定常化実験とは区別します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+SWASHES地形上の静止湖・定常浅水流
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+31単体検査と8固定計算を事前固定。静水の水深・流量の最大変化、全FE段の非負水深、共有流束と地形運動量の収支、定常流3格子の保存量セル平均L1誤差・細分化比を保存します。独立したBernoulli二分法のエネルギー一定・亜臨界枝を照合します。
+同じ問題の参照 · 解析参照
+静止湖：表現した床の上の湿潤・露出平衡
+静水の厳密釣合いは表現したセル地形に対する性質です。非零流量の定常解は厳密には保存されず、有限時刻の誤差を測ります。遷移流・跳水・摩擦・降雨・浸透・2次元流や完全離散エントロピー安定性は検証しません。
+同じ問題の参照 · 半解析参照
+SWASHES定常流：非射流Bernoulli根
+静水の厳密釣合いは表現したセル地形に対する性質です。非零流量の定常解は厳密には保存されず、有限時刻の誤差を測ります。遷移流・跳水・摩擦・降雨・浸透・2次元流や完全離散エントロピー安定性は検証しません。
+入力・検証手順の履歴 · 初回の入力
+
+## 浅水流：地形・静止湖・乾燥床 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-shallow-water/#swashes-topography-assumptions
+Coverage: reading
+
+1次元、g=9.81、長さ25m、8<x<12でz=.2−.05(x−10)²m。水位.5/.1mの静水は200セル、流量4.42m²/s・下流深さ2mの定常流は100/200/400セル、t=2s。地形は区分定数セル平均。定常流から開始し、静水からの定常化実験とは区別します。
+
+## 浅水流：地形・静止湖・乾燥床 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-shallow-water/#swashes-topography-algorithm
+Coverage: reading
+
+非負な静水圧再構成、共有HLL流束と左右の圧力補正で地形源項を離散化します。前進Euler、面Courant数.4。静水は反射壁。亜臨界流は上流で流量・下流で水深のみを指定し他変数を外挿します。floor・clip・retryはありません。 HLL更新を非負の水量packetに代数的に分解し、丸め後の同じ水量から移流運動量を作ります。微小水深閾値や事後修復は使いません。
+\partial_t h+\partial_x q=0,\qquad \partial_tq+\partial_x(q^2/h+gh^2/2)=-gh\partial_xzz^*=\max(z_L,z_R),\quad h_K^*=\max(0,h_K+z_K-z^*),\quad q_K^*=h_K^*u_KF_K=F_{\mathrm{HLL}}(U_L^*,U_R^*)+(0,\tfrac12g(h_K^2-(h_K^*)^2))^Tq=4.42,\quad h+z+q^2/(2gh^2)=2+4.42^2/(8g),\quad h>(q^2/g)^{1/3}
+
+## 浅水流：地形・静止湖・乾燥床 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-shallow-water/#swashes-topography-validation
+Coverage: reading
+
+31単体検査と8固定計算を事前固定。静水の水深・流量の最大変化、全FE段の非負水深、共有流束と地形運動量の収支、定常流3格子の保存量セル平均L1誤差・細分化比を保存します。独立したBernoulli二分法のエネルギー一定・亜臨界枝を照合します。
+
+## 浅水流：地形・静止湖・乾燥床 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-shallow-water/#swashes-topography-limits
+Coverage: reading
+
+静水の厳密釣合いは表現したセル地形に対する性質です。非零流量の定常解は厳密には保存されず、有限時刻の誤差を測ります。遷移流・跳水・摩擦・降雨・浸透・2次元流や完全離散エントロピー安定性は検証しません。
+
+## 浅水流：地形・静止湖・乾燥床 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-shallow-water/#swashes-topography-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+n400
+steps536
+time2
+depth_l10.0249107506127
+momentum_l10.0600872468879
+relative_depth_l10.000505932693276
+relative_momentum_l10.000543775989935
+depth_linf0.00642472619238
+minimum_depth1.7071673524
+maximum_depth2.0053503464
+maximum_velocity2.58857396537
+maximum_courant0.4
+maximum_step_mass_defect8.6247543363e-15
+maximum_step_momentum_defect1.70913994695e-14
+minimum_staying_coefficient0.734464640585
+maximum_total_mass_defect8.03844865466e-14
+maximum_total_momentum_defect3.85243269577e-13
+mass_change1.74538262629e-05
+boundary_mass_change1.74538262704e-05
+bed_momentum_impulse-0.0282824071098
+initial_dry_cells0
+final_dry_cells0
+newly_wet_cells0
+all_saved_values_finitetrue
+depth_floor_count0
+state_clip_count0
+rejected_steps0
+retries0
+判定 / check合格
+lake-immersed: maximum_step_mass_defecttrue
+lake-immersed: maximum_step_momentum_defecttrue
+lake-immersed: maximum_total_mass_defecttrue
+lake-immersed: maximum_total_momentum_defecttrue
+lake-immersed: nonnegative depthtrue
+lake-immersed: finite arraystrue
+lake-immersed: face CFLtrue
+lake-immersed: no repairs or retriestrue
+lake-immersed: five exact output timestrue
+lake-immersed: maximum_equilibrium_depth_drifttrue
+lake-immersed: maximum_equilibrium_dischargetrue
+lake-emerged: maximum_step_mass_defecttrue
+lake-emerged: maximum_step_momentum_defecttrue
+
+## 浅水流：地形・静止湖・乾燥床 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-shallow-water/#swashes-topography-measurements
+Coverage: reading
+
+lake-emerged: maximum_total_mass_defecttrue
+lake-emerged: maximum_total_momentum_defecttrue
+lake-emerged: nonnegative depthtrue
+lake-emerged: finite arraystrue
+lake-emerged: face CFLtrue
+lake-emerged: no repairs or retriestrue
+lake-emerged: five exact output timestrue
+lake-emerged: maximum_equilibrium_depth_drifttrue
+lake-emerged: maximum_equilibrium_dischargetrue
+subcritical-n100: maximum_step_mass_defecttrue
+subcritical-n100: maximum_step_momentum_defecttrue
+subcritical-n100: maximum_total_mass_defecttrue
+subcritical-n100: maximum_total_momentum_defecttrue
+subcritical-n100: nonnegative depthtrue
+subcritical-n100: finite arraystrue
+subcritical-n100: face CFLtrue
+subcritical-n100: no repairs or retriestrue
+subcritical-n100: five exact output timestrue
+subcritical-n200: maximum_step_mass_defecttrue
+subcritical-n200: maximum_step_momentum_defecttrue
+subcritical-n200: maximum_total_mass_defecttrue
+subcritical-n200: maximum_total_momentum_defecttrue
+subcritical-n200: nonnegative depthtrue
+subcritical-n200: finite arraystrue
+subcritical-n200: face CFLtrue
+subcritical-n200: no repairs or retriestrue
+subcritical-n200: five exact output timestrue
+subcritical-n400: maximum_step_mass_defecttrue
+subcritical-n400: maximum_step_momentum_defecttrue
+subcritical-n400: maximum_total_mass_defecttrue
+subcritical-n400: maximum_total_momentum_defecttrue
+subcritical-n400: nonnegative depthtrue
+
+## 浅水流：地形・静止湖・乾燥床 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-shallow-water/#swashes-topography-measurements
+Coverage: reading
+
+subcritical-n400: finite arraystrue
+subcritical-n400: face CFLtrue
+subcritical-n400: no repairs or retriestrue
+subcritical-n400: five exact output timestrue
+subcritical finest relative_depth_l1true
+subcritical relative_depth_l1 refinement 1true
+subcritical relative_depth_l1 refinement 2true
+subcritical finest relative_momentum_l1true
+subcritical relative_momentum_l1 refinement 1true
+subcritical relative_momentum_l1 refinement 2true
+reference: Bernoulli energy constanttrue
+reference: subcritical branchtrue
+reference: Gauss8 vs Gauss16 conservative meanstrue
+reference: Ritter total masstrue
+reference: Ritter finite difference PDE residualtrue
+reference: exact dry branchtrue
+all fixed runs completedtrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存した有限体積配列から描いた地形・水面と定常誤差のプレビュー。全記録を表で読む
+idcasefamilynsurfacestepstimedepth_l1momentum_l1relative_depth_l1relative_momentum_l1depth_linfminimum_depthmaximum_depthmaximum_velocitymaximum_courantmaximum_step_mass_defectmaximum_step_momentum_defectminimum_staying_coefficientmaximum_total_mass_defectmaximum_total_momentum_defectmass_changeboundary_mass_changebed_momentum_impulseinitial_dry_cellsfinal_dry_cellsnewly_wet_cellsall_saved_values_finitedepth_floor_countstate_clip_countrejected_stepsretriessnapshot_timesmaximum_equilibrium_depth_driftmaximum_equilibrium_discharge
+
+## 浅水流：地形・静止湖・乾燥床 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-shallow-water/#swashes-topography-measurements
+Coverage: reading
+
+lake-immersedswashes-topographylake2000.59227.48012762841e-152.88435932187e-156.2508030321e-162.88435932187e-154.4408920985e-160.3002604166670.51.99208134818e-150.41.15185638805e-159.79712439899e-180.61.7763568394e-155.30489427158e-17-7.2858385991e-1505.12363069452e-17000true0000[0.0,0.5,1.0,1.5,2.0]4.4408920985e-167.45868860846e-16
+lake-emergedswashes-topographylake2000.14028.07947458936e-162.84715787942e-173.74915349061e-162.84715787942e-174.16333634234e-1700.12.95134567e-160.42.82759926584e-166.36621789215e-190.64.4408920985e-166.00310713979e-18-7.73144569199e-1601.44700943678e-1722220true0000[0.0,0.5,1.0,1.5,2.0]4.16333634234e-172.05966162927e-17
+subcritical-n100swashes-topographysubcritical100—13620.09643736274760.2227140303810.001958624829330.002015511587160.02469061354881.706197594432.015478168462.585026100960.41.01896852053e-151.58132445398e-140.7339150702075.31389362537e-141.41347003546e-130.0003437109460060.000343710946001-0.0992156995567000true0000[0.0,0.5,1.0,1.5,2.0]——
+subcritical-n200swashes-topographysubcritical200—26820.04937687162680.1167091688680.001002835042430.001056191573460.01269957641271.70678208682.009313043892.587863114280.41.19011910776e-151.86517468137e-140.7342264845715.28200884884e-146.62473548241e-136.54157876871e-056.54157876882e-05-0.0541260135504000true0000[0.0,0.5,1.0,1.5,2.0]——
+
+## 浅水流：地形・静止湖・乾燥床 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-shallow-water/#swashes-topography-measurements
+Coverage: reading
+
+subcritical-n400swashes-topographysubcritical400—53620.02491075061270.06008724688790.0005059326932760.0005437759899350.006424726192381.70716735242.00535034642.588573965370.48.6247543363e-151.70913994695e-140.7344646405858.03844865466e-143.85243269577e-131.74538262629e-051.74538262704e-05-0.0282824071098000true0000[0.0,0.5,1.0,1.5,2.0]——
+この例の実測値・全記録 / JSON
+
+## 浅水流：地形・静止湖・乾燥床 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-shallow-water/#swashes-topography-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+O. Delestre et al. (2013). SWASHES: a compilation of shallow water analytic solutions for hydraulic and environmental studies · DOI: 10.1002/fld.3741
+確認範囲 / review_level: selected-equations-and-fixed-inputs
+E. Audusse, F. Bouchut, M.-O. Bristeau, R. Klein, B. Perthame (2004). A Fast and Stable Well-Balanced Scheme with Hydrostatic Reconstruction for Shallow Water Flows · DOI: 10.1137/S1064827503431090
+確認範囲 / review_level: bibliography-and-author-follow-up
+E. Audusse, F. Bouchut, M.-O. Bristeau, J. Sainte-Marie (2016). Kinetic entropy inequality and hydrostatic reconstruction scheme for the Saint-Venant system
+確認範囲 / review_level: selected-scheme-equations
+Institut Denis Poisson / SWASHES authors (n.d.). SWASHES project page
+確認範囲 / review_level: official-project-scope-and-rights
+
+## 浅水流：地形・静止湖・乾燥床 — 乾いた河床のダム破壊：実際のwetting/drying [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-shallow-water/
+Coverage: reading
+
+右半分を厳密にh=q=0として開始する浅水方程式を解き、実際の乾湿前線の進行と保存をRitter解析解と比較します。
+手法・式・図・参照解
+使用手法
+Godunov型有限体積法
+HLL
+前進Euler法
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+同じ有限体積ソルバーが乾状態h=q=0を直接扱います。片側乾床HLL波速はu−c,u+2c（反対向きも同様）。面Courant数.4で前進Euler更新し、状態の切上げなしに全更新後の非負性と共有流束収支を記録します。 HLL更新を非負の水量packetに代数的に分解し、丸め後の同じ水量から移流運動量を作ります。微小水深閾値や事後修復は使いません。
+浅水方程式
+平坦床・無摩擦、[−10,10]m、ダムx=0、左深さ1m・右0m、初速0、g=9.81、t=.5s、1600/3200/6400セル。SWASHESのRitter式を明示した別スケールで使い、原例の.005m・6s入力とは区別します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+乾燥床へのRitter破堤流
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+全段の水深min、新たに濡れた初期乾セル数、残る乾セル数、境界流束を含む質量・運動量収支を保存します。Ritterのhとhuをファン端で分割したGauss8セル平均と比較し、Gauss16・全質量・PDE残差で参照を確認。3格子L1細分化とh≥.001mの最右セル中心を検査します。 水深L1の合否は初回と同じ固定参照質量5m²で正規化し、領域を広げたことによる基準の緩和を防ぎます。領域全体の相対L1は別の診断です。
+同じ問題の参照 · 解析参照
+Ritter乾燥床破堤：g9.81の専用セル平均参照
+前線診断はセル平均の.001m等深線で、厳密な支持端を別に保存します。非負性は固定実行の実測です。初期乾セルの濡れを検査し、後退汀線・周期的な再乾燥、実地洪水、摩擦や地形上の移動前線は検証しません。 初回100/200/400セル・[−5,5]mでは28検査と105/109判定が合格し、乾セル残存3判定と前線誤差.3960>.25mが不合格でした。元の全記録を保持し、許容条件を変えず領域・格子を細分化しました。 領域・格子だけを変えた第2回は微小な裾のbinary64 underflowで停止しました。第3回は同じHLL更新の水量packetによる代数的評価を導入し、元の28検査に3検査を追加します。
+関連モデルの参照 · 解析参照
+浅水／乾床への膨張波
+既存の乾燥床浅水参照は元の重力・領域・時刻を保持します。今回のg9.81・[-10,10]・t.5は専用Ritter参照で照合します。
+入力・検証手順の履歴 · 初回の入力
+
+## 浅水流：地形・静止湖・乾燥床 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-shallow-water/#dry-bed-dam-break-assumptions
+Coverage: reading
+
+平坦床・無摩擦、[−10,10]m、ダムx=0、左深さ1m・右0m、初速0、g=9.81、t=.5s、1600/3200/6400セル。SWASHESのRitter式を明示した別スケールで使い、原例の.005m・6s入力とは区別します。
+
+## 浅水流：地形・静止湖・乾燥床 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-shallow-water/#dry-bed-dam-break-algorithm
+Coverage: reading
+
+同じ有限体積ソルバーが乾状態h=q=0を直接扱います。片側乾床HLL波速はu−c,u+2c（反対向きも同様）。面Courant数.4で前進Euler更新し、状態の切上げなしに全更新後の非負性と共有流束収支を記録します。 HLL更新を非負の水量packetに代数的に分解し、丸め後の同じ水量から移流運動量を作ります。微小水深閾値や事後修復は使いません。
+c_L=\sqrt{gh_L},\quad x_A=x_0-c_Lt,\quad x_B=x_0+2c_Lth=(2c_L-(x-x_0)/t)^2/(9g),\quad u=\tfrac23((x-x_0)/t+c_L)\quad (x_A<x<x_B)\bar U_i^{\mathrm{ref}}=\Delta x^{-1}\int_{C_i}(h,hu)^Tdx,\quad x_{.001}=x_B-3t\sqrt{g(0.001)}
+
+## 浅水流：地形・静止湖・乾燥床 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-shallow-water/#dry-bed-dam-break-validation
+Coverage: reading
+
+全段の水深min、新たに濡れた初期乾セル数、残る乾セル数、境界流束を含む質量・運動量収支を保存します。Ritterのhとhuをファン端で分割したGauss8セル平均と比較し、Gauss16・全質量・PDE残差で参照を確認。3格子L1細分化とh≥.001mの最右セル中心を検査します。 水深L1の合否は初回と同じ固定参照質量5m²で正規化し、領域を広げたことによる基準の緩和を防ぎます。領域全体の相対L1は別の診断です。
+
+## 浅水流：地形・静止湖・乾燥床 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-shallow-water/#dry-bed-dam-break-limits
+Coverage: reading
+
+前線診断はセル平均の.001m等深線で、厳密な支持端を別に保存します。非負性は固定実行の実測です。初期乾セルの濡れを検査し、後退汀線・周期的な再乾燥、実地洪水、摩擦や地形上の移動前線は検証しません。 初回100/200/400セル・[−5,5]mでは28検査と105/109判定が合格し、乾セル残存3判定と前線誤差.3960>.25mが不合格でした。元の全記録を保持し、許容条件を変えず領域・格子を細分化しました。 領域・格子だけを変えた第2回は微小な裾のbinary64 underflowで停止しました。第3回は同じHLL更新の水量packetによる代数的評価を導入し、元の28検査に3検査を追加します。 第3回は108/109判定が合格し、最細の前線誤差.27415>.25mで不合格でした。第4回は同じ領域のRitter格子だけを1600/3200/6400に細分化します。相対水深L1は領域内参照質量で正規化し、領域変更を比べるため絶対L1も保存します。
+
+## 浅水流：地形・静止湖・乾燥床 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-shallow-water/#dry-bed-dam-break-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+n6400
+steps2263
+time0.5
+depth_l10.00886909478548
+momentum_l10.0235198962171
+relative_depth_l10.000886909478548
+relative_momentum_l10.00959017175007
+depth_linf0.0183784523193
+minimum_depth0
+maximum_depth1
+maximum_velocity5.61896964156
+maximum_courant0.4
+maximum_step_mass_defect2.17570697344e-15
+maximum_step_momentum_defect2.47198095327e-17
+minimum_staying_coefficient0.603833712823
+maximum_total_mass_defect4.97379915032e-14
+maximum_total_momentum_defect7.54951656745e-15
+mass_change-7.90478793533e-15
+boundary_mass_change0
+bed_momentum_impulse0
+initial_dry_cells3200
+final_dry_cells1679
+newly_wet_cells1521
+all_saved_values_finitetrue
+depth_floor_count0
+state_clip_count0
+rejected_steps0
+retries0
+front_depth_threshold0.001
+numerical_threshold_front2.7765625
+analytic_threshold_front2.9835237865
+analytic_support_front3.13209195267
+threshold_front_error0.2069612865
+depth_acceptance_reference_mass5
+fixed_reference_relative_depth_l10.0017738189571
+判定 / check合格
+ritter-n1600: maximum_step_mass_defecttrue
+ritter-n1600: maximum_step_momentum_defecttrue
+ritter-n1600: maximum_total_mass_defecttrue
+ritter-n1600: maximum_total_momentum_defecttrue
+ritter-n1600: nonnegative depthtrue
+ritter-n1600: finite arraystrue
+ritter-n1600: face CFLtrue
+ritter-n1600: no repairs or retriestrue
+ritter-n1600: five exact output timestrue
+
+## 浅水流：地形・静止湖・乾燥床 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-shallow-water/#dry-bed-dam-break-measurements
+Coverage: reading
+
+ritter-n1600: actual wettingtrue
+ritter-n1600: dry cells retainedtrue
+ritter-n3200: maximum_step_mass_defecttrue
+ritter-n3200: maximum_step_momentum_defecttrue
+ritter-n3200: maximum_total_mass_defecttrue
+ritter-n3200: maximum_total_momentum_defecttrue
+ritter-n3200: nonnegative depthtrue
+ritter-n3200: finite arraystrue
+ritter-n3200: face CFLtrue
+ritter-n3200: no repairs or retriestrue
+ritter-n3200: five exact output timestrue
+ritter-n3200: actual wettingtrue
+ritter-n3200: dry cells retainedtrue
+ritter-n6400: maximum_step_mass_defecttrue
+ritter-n6400: maximum_step_momentum_defecttrue
+ritter-n6400: maximum_total_mass_defecttrue
+ritter-n6400: maximum_total_momentum_defecttrue
+ritter-n6400: nonnegative depthtrue
+ritter-n6400: finite arraystrue
+ritter-n6400: face CFLtrue
+ritter-n6400: no repairs or retriestrue
+ritter-n6400: five exact output timestrue
+ritter-n6400: actual wettingtrue
+ritter-n6400: dry cells retainedtrue
+ritter finest relative_depth_l1true
+ritter relative_depth_l1 refinement 1true
+ritter relative_depth_l1 refinement 2true
+ritter finest relative_momentum_l1true
+ritter relative_momentum_l1 refinement 1true
+ritter relative_momentum_l1 refinement 2true
+finest threshold front errortrue
+reference: Bernoulli energy constanttrue
+reference: subcritical branchtrue
+reference: Gauss8 vs Gauss16 conservative meanstrue
+reference: Ritter total masstrue
+
+## 浅水流：地形・静止湖・乾燥床 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-shallow-water/#dry-bed-dam-break-measurements
+Coverage: reading
+
+reference: Ritter finite difference PDE residualtrue
+reference: exact dry branchtrue
+all fixed runs completedtrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。実際の1次元浅水計算の保存配列による水深・流量と乾湿前線のプレビュー。時空間図は1次元の5保存時刻です。全記録を表で読む
+idcasefamilynstepstimedepth_l1momentum_l1relative_depth_l1relative_momentum_l1depth_linfminimum_depthmaximum_depthmaximum_velocitymaximum_courantmaximum_step_mass_defectmaximum_step_momentum_defectminimum_staying_coefficientmaximum_total_mass_defectmaximum_total_momentum_defectmass_changeboundary_mass_changebed_momentum_impulseinitial_dry_cellsfinal_dry_cellsnewly_wet_cellsall_saved_values_finitedepth_floor_countstate_clip_countrejected_stepsretriessnapshot_timesfront_depth_thresholdnumerical_threshold_frontanalytic_threshold_frontanalytic_support_frontthreshold_front_errordepth_acceptance_reference_massfixed_reference_relative_depth_l1
+ritter-n1600dry-bed-dam-breakritter16005320.50.02512521724720.06613198451150.002512521724720.02696513129930.0333858449528015.159439026190.42.04935144584e-154.33680868994e-170.6038337128233.19744231092e-146.2172489379e-15-1.1990408666e-1400800297503true0000[0.0,0.125,0.25,0.375,0.5]0.0012.643752.98352378653.132091952670.339773786550.00502504344943
+
+## 浅水流：地形・静止湖・乾燥床 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-shallow-water/#dry-bed-dam-break-measurements
+Coverage: reading
+
+ritter-n3200dry-bed-dam-breakritter320010990.50.01507445912090.039845590090.001507445912090.01624692766160.0250891220951015.415693342860.42.13489874755e-152.99239799606e-170.6038337128233.19744231092e-149.7699626167e-15-1.1901590824e-14001600728872true0000[0.0,0.125,0.25,0.375,0.5]0.0012.7093752.98352378653.132091952670.274148786550.00301489182418
+ritter-n6400dry-bed-dam-breakritter640022630.50.008869094785480.02351989621710.0008869094785480.009590171750070.0183784523193015.618969641560.42.17570697344e-152.47198095327e-170.6038337128234.97379915032e-147.54951656745e-15-7.90478793533e-1500320016791521true0000[0.0,0.125,0.25,0.375,0.5]0.0012.77656252.98352378653.132091952670.206961286550.0017738189571
+この例の実測値・全記録 / JSON
+
+## 浅水流：地形・静止湖・乾燥床 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-shallow-water/#dry-bed-dam-break-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+O. Delestre et al. (2013). SWASHES: a compilation of shallow water analytic solutions for hydraulic and environmental studies · DOI: 10.1002/fld.3741
+確認範囲 / review_level: selected-equations-and-fixed-inputs
+E. Audusse, F. Bouchut, M.-O. Bristeau, R. Klein, B. Perthame (2004). A Fast and Stable Well-Balanced Scheme with Hydrostatic Reconstruction for Shallow Water Flows · DOI: 10.1137/S1064827503431090
+確認範囲 / review_level: bibliography-and-author-follow-up
+E. Audusse, F. Bouchut, M.-O. Bristeau, J. Sainte-Marie (2016). Kinetic entropy inequality and hydrostatic reconstruction scheme for the Saint-Venant system
+確認範囲 / review_level: selected-scheme-equations
+Institut Denis Poisson / SWASHES authors (n.d.). SWASHES project page
+確認範囲 / review_level: official-project-scope-and-rights
+
 ## 作用素分割：同じ反応拡散でLie–TrotterとStrangを比較 — 作用素分割：同じ反応拡散でLie–TrotterとStrangを比較 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-splitting/
@@ -53993,6 +55626,761 @@ G. Bussi and M. Parrinello (2008). Stochastic thermostats: comparison of local a
 Giovanni Bussi (2026). Research algorithms: stochastic velocity rescaling
 確認範囲 / review_level: author-official-algorithm-note
 著者の公式アルゴリズム頁にある2007年論文のGaussian二乗和をΓ分布で生成する記述のtypo注記を確認。年は確認年。配布コードの転載ではなく独自実装です。
+
+## 非周期壁面：キャビティと製造解 — 非周期壁面：キャビティと製造解 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-wall-flow/
+Coverage: reading
+
+非周期壁面の2D渦度・流れ関数法でRe100蓋駆動キャビティと製造流れを解きます。Ghia原著の有限格子数値表、壁剪断と格子収束を比較し、独立した圧力Poisson・勾配製造問題を区別します。
+
+## 非周期壁面：キャビティと製造解 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-wall-flow/#run-all
+Coverage: reading
+
+ZIPの atlas-wall-flow-2026-11-23-r2 フォルダで実行します。このコマンドは配布版の全2例を実行します。新規または空の出力先を指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## 非周期壁面：キャビティと製造解 — Re=100蓋駆動キャビティ：Ghia中心線との比較 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-wall-flow/
+Coverage: reading
+
+非周期・粘性非圧縮の実際の2D計算を17/33/65点格子で定常化し、Ghia原著の速度中心線と比較します。流線・渦中心・真の残差と発散を同時に保存します。
+手法・式・図・参照解
+使用手法
+空間中心差分
+Heun法／SSPRK(2,2)
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+ωt+uωx+vωy=νΔωを中央差分とHeun法で進め、各段で−Δhψ=ωを非周期Dirichlet DSTで解きます。u=ψy,v=−ψx。局所一次のThom壁渦度を使用し、原著のCSI-MGと高次壁公式は実装していません。
+非圧縮Navier–Stokes
+無次元の単位正方形、ν=.01、蓋速度U=1、Re=100。上面の内部節点だけu=1、他壁と四隅の速度は0、全壁ψ=0。初期内部渦度は0。壁渦度はThom条件で各Heun段に再設定します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+Re100の蓋駆動キャビティ
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+22単体検査と群全体94判定を事前固定。原著の表I/II（印刷398–399頁）を直接確認して転記した17点ずつへ線形補間し、最細の各速度最大誤差≤.03、細分化で減少、定常残差≤1e−7を検査します。表Vの主渦位置・壁値・Poisson残差・離散発散も確認します。
+同じ問題の参照 · 有限格子の数値参照
+Ghia Re100：原著の有限格子速度中心線
+Re=100・3固定格子の教育用検査です。蓋と側壁の角に速度の不連続があり、角の速度は静止側を優先します。Ghia値は丸めた数値参照で厳密解ではなく、4桁座標をそのまま使います。高Re・乱流・原著アルゴリズムの再現・キャビティ圧力を検証したとは主張しません。
+入力・検証手順の履歴 · 初回の入力
+
+## 非周期壁面：キャビティと製造解 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-wall-flow/#cavity-ghia-re100-assumptions
+Coverage: reading
+
+無次元の単位正方形、ν=.01、蓋速度U=1、Re=100。上面の内部節点だけu=1、他壁と四隅の速度は0、全壁ψ=0。初期内部渦度は0。壁渦度はThom条件で各Heun段に再設定します。
+
+## 非周期壁面：キャビティと製造解 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-wall-flow/#cavity-ghia-re100-algorithm
+Coverage: reading
+
+ωt+uωx+vωy=νΔωを中央差分とHeun法で進め、各段で−Δhψ=ωを非周期Dirichlet DSTで解きます。u=ψy,v=−ψx。局所一次のThom壁渦度を使用し、原著のCSI-MGと高次壁公式は実装していません。
+\omega_t+u\omega_x+v\omega_y=\nu\Delta\omega,\quad -\Delta\psi=\omega,\quad (u,v)=(\psi_y,-\psi_x)\mathrm{Re}=UL/\nu=100,\quad \psi|_{\partial\Omega}=0,\quad u(x,1)=1\ (0<x<1)\omega_{\mathrm{top},i}=-2\psi_{J-1,i}/h^2-2U/h,\quad \omega_{\mathrm{stationary}}=-2\psi_{\mathrm{adj}}/h^2+O(h)\omega^{(1)}=\omega^n+\Delta t L(\omega^n),\quad \omega^{n+1}=\tfrac12\omega^n+\tfrac12[\omega^{(1)}+\Delta t L(\omega^{(1)})]
+
+## 非周期壁面：キャビティと製造解 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-wall-flow/#cavity-ghia-re100-validation
+Coverage: reading
+
+22単体検査と群全体94判定を事前固定。原著の表I/II（印刷398–399頁）を直接確認して転記した17点ずつへ線形補間し、最細の各速度最大誤差≤.03、細分化で減少、定常残差≤1e−7を検査します。表Vの主渦位置・壁値・Poisson残差・離散発散も確認します。
+
+## 非周期壁面：キャビティと製造解 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-wall-flow/#cavity-ghia-re100-limits
+Coverage: reading
+
+Re=100・3固定格子の教育用検査です。蓋と側壁の角に速度の不連続があり、角の速度は静止側を優先します。Ghia値は丸めた数値参照で厳密解ではなく、4桁座標をそのまま使います。高Re・乱流・原著アルゴリズムの再現・キャビティ圧力を検証したとは主張しません。
+
+## 非周期壁面：キャビティと製造解 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-wall-flow/#cavity-ghia-re100-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+finest_u_ghia_maximum0.00277819607899
+finest_v_ghia_maximum0.00590408122718
+finest_vortex_center[0.609375,0.734375]
+finest_steady_residual9.68482100072e-10
+判定 / check合格
+n17: steady stop reachedtrue
+n17: steady PDE residualtrue
+n17: streamfunction Poisson residualtrue
+n17: discrete divergencetrue
+n17: u wall valuestrue
+n17: v wall valuestrue
+n17: psi wall valuestrue
+n17: finite states and historytrue
+n17: no clipping or retrytrue
+n17: recorded advective Couranttrue
+n33: steady stop reachedtrue
+n33: steady PDE residualtrue
+n33: streamfunction Poisson residualtrue
+n33: discrete divergencetrue
+n33: u wall valuestrue
+n33: v wall valuestrue
+n33: psi wall valuestrue
+n33: finite states and historytrue
+n33: no clipping or retrytrue
+n33: recorded advective Couranttrue
+n65: steady stop reachedtrue
+n65: steady PDE residualtrue
+n65: streamfunction Poisson residualtrue
+n65: discrete divergencetrue
+n65: u wall valuestrue
+n65: v wall valuestrue
+n65: psi wall valuestrue
+n65: finite states and historytrue
+n65: no clipping or retrytrue
+n65: recorded advective Couranttrue
+finest u primary-table maximum errortrue
+finest v primary-table maximum errortrue
+Ghia centerline refinement 1true
+Ghia centerline refinement 2true
+finest primary-vortex grid locationtrue
+
+## 非周期壁面：キャビティと製造解 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-wall-flow/#cavity-ghia-re100-measurements
+Coverage: reading
+
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存した最細Re100計算の流線と速さ。赤点は格子上の主渦、白抜き点はGhia表Vの主渦位置です。全記録を表で読む
+nhtimestepsdtconvergedsteady_residualpoisson_residualdivergence_maximumu_boundary_errorv_boundary_errorpsi_boundary_errormaximum_recorded_courantfiniterepairsu_ghia_maximumu_ghia_rmsv_ghia_maximumv_ghia_rmsvortex_center_gridvortex_center_distancestreamfunction_minimumcenterline_maximum_errorfield_file
+170.062539.8437525500.015625true8.55726434157e-103.19744231092e-142.22044604925e-160000.25true00.03810886378120.02070018107890.05248336836540.0292764476338[0.625,0.75]0.0174413302245-0.09097857940850.0524833683654cavity-n17.npz
+330.0312539.8437551000.0078125true8.39289276966e-101.38111744263e-131.7763568394e-150000.25true00.008890043995790.004669835444730.008566201995810.00492437664862[0.625,0.75]0.0174413302245-0.1003814812570.00889004399579cavity-n33.npz
+650.01562539.3676757812107500.003662109375true9.68482100072e-108.82849349182e-133.5527136788e-150000.234375true00.002778196078990.001382245862050.005904081227180.00283945638697[0.609375,0.734375]0.007825039936-0.1027234370370.00590408122718cavity-n65.npz
+この例の実測値・全記録 / JSON
+
+## 非周期壁面：キャビティと製造解 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-wall-flow/#cavity-ghia-re100-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+U. Ghia, K. N. Ghia and C. T. Shin (1982). High-Re solutions for incompressible flow using the Navier-Stokes equations and a multigrid method · DOI: 10.1016/0021-9991(82)90058-4
+確認範囲 / review_level: primary-original-selected-pages
+原著の式・境界図・表I/IIのRe100列と表Vの主渦を直接目視確認。公開ミラーは原著の配送元として記録し、論文PDFは配布しません。本実装は原著のCSI-MG法とは異なります。
+Kambiz Salari and Patrick Knupp (2000). Code Verification by the Method of Manufactured Solutions · DOI: 10.2172/759450
+確認範囲 / review_level: primary-selected-section-and-official-abstract
+Sandia/OSTI公式書誌・抄録と、原著報告の印刷12頁で製造解と格子細分化の併用を確認。本例の多項式と圧力場は独自に構成しました。
+
+## 非周期壁面：キャビティと製造解 — 非周期壁面の製造解：速度・剪断・圧力演算子 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-wall-flow/
+Coverage: reading
+
+キャビティと同じ壁条件付き2Dソルバーに解析外力を与え、速度と流れ関数の格子収束、壁渦度・壁剪断の誤差を測ります。別の非零Dirichlet圧力製造解でPoisson・勾配の境界演算子も検査します。
+手法・式・図・参照解
+使用手法
+空間中心差分
+Heun法／SSPRK(2,2)
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+共通の中央差分・Heun・非周期Dirichlet DST Poissonを使用します。多項式の明示微分と、独立な係数行列の微分を照合します。別途p=x²+y²+sinπx sinπyの非零Dirichlet Poisson問題を解き、内部中央差分・壁上の二次片側差分勾配を検査します。
+外力付き非圧縮流と壁面製造解
+単位正方形、ν=.01、17/33/65点、ψ=8f(x)f(y),f(z)=z²(1−z)²。全壁で非浸透・滑りなし。渦度外力は連続方程式から解析的に導出し、全壁にキャビティと同じThom条件を使用します。厳密壁渦度は注入しません。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+非周期壁面の製造非圧縮流
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+ψと速度の最細刻み対の次数≥1.7、誤差減少・絶対誤差、実際の壁渦度と速度勾配剪断の誤差減少を検査します。圧力演算子はp次数≥1.8、全体と境界の勾配次数≥1.7。独立多項式照合5項目、全壁値、真の定常残差、非周期Poisson残差も記録します。
+同じ問題の参照 · 製造解
+壁面製造解：多項式速度と独立した圧力演算子
+Thomの壁渦度局所打切りは一次で、壁剪断の二次精度は主張せず観測次数を示します。流れ関数の発展では圧力を消去するためゲージは該当しません。圧力診断は独立した演算子製造問題であり、キャビティの圧力・応力境界やMAC射影の検証ではありません。多項式の別微分は独立な流体ソルバーとの比較とは区別します。
+入力・検証手順の履歴 · 初回の入力
+
+## 非周期壁面：キャビティと製造解 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-wall-flow/#wall-manufactured-assumptions
+Coverage: reading
+
+単位正方形、ν=.01、17/33/65点、ψ=8f(x)f(y),f(z)=z²(1−z)²。全壁で非浸透・滑りなし。渦度外力は連続方程式から解析的に導出し、全壁にキャビティと同じThom条件を使用します。厳密壁渦度は注入しません。
+
+## 非周期壁面：キャビティと製造解 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-wall-flow/#wall-manufactured-algorithm
+Coverage: reading
+
+共通の中央差分・Heun・非周期Dirichlet DST Poissonを使用します。多項式の明示微分と、独立な係数行列の微分を照合します。別途p=x²+y²+sinπx sinπyの非零Dirichlet Poisson問題を解き、内部中央差分・壁上の二次片側差分勾配を検査します。
+f(z)=z^2(1-z)^2,\quad \psi_\star=8f(x)f(y),\quad u_\star=\partial_y\psi_\star,\quad v_\star=-\partial_x\psi_\star,\quad\omega_\star=-\Delta\psi_\star\omega_t+u\omega_x+v\omega_y=\nu\Delta\omega+s,\quad s=u_\star\partial_x\omega_\star+v_\star\partial_y\omega_\star-\nu\Delta\omega_\starp_\star=x^2+y^2+\sin(\pi x)\sin(\pi y),\quad -\Delta p_\star=-4+2\pi^2\sin(\pi x)\sin(\pi y),\quad p|_{\partial\Omega}=p_\star\tau_{xy}/\mu=\partial_y u\quad\text{on stationary horizontal walls},\qquad p_{\mathrm{obs}}=\log_2(E_h/E_{h/2})
+
+## 非周期壁面：キャビティと製造解 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-wall-flow/#wall-manufactured-validation
+Coverage: reading
+
+ψと速度の最細刻み対の次数≥1.7、誤差減少・絶対誤差、実際の壁渦度と速度勾配剪断の誤差減少を検査します。圧力演算子はp次数≥1.8、全体と境界の勾配次数≥1.7。独立多項式照合5項目、全壁値、真の定常残差、非周期Poisson残差も記録します。
+
+## 非周期壁面：キャビティと製造解 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-wall-flow/#wall-manufactured-limits
+Coverage: reading
+
+Thomの壁渦度局所打切りは一次で、壁剪断の二次精度は主張せず観測次数を示します。流れ関数の発展では圧力を消去するためゲージは該当しません。圧力診断は独立した演算子製造問題であり、キャビティの圧力・応力境界やMAC射影の検証ではありません。多項式の別微分は独立な流体ソルバーとの比較とは区別します。
+
+## 非周期壁面：キャビティと製造解 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-wall-flow/#wall-manufactured-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+finest_velocity_l22.63799152749e-05
+finest_streamfunction_l23.05797665568e-05
+observed_orders{"psi_l2":[2.0426330065243574,2.021783836772359],"velocity_l2":[1.9917746694984177,2.0086644375747413],"wall_omega_maximum":[1.937772137605888,1.9794771588130946],"wall_shear_maximum":[1.9412705074950394,1.9820164294643936],"thom_exact_psi_wall_truncation":[0.9769163868869587,0.9885952367277506],"pressure_l2":[1.9590185209239261,1.9784952274339704],"pressure_gradient_l2":[2.3544980286788206,2.3175253385985015],"pressure_boundary_gradient_l2":[1.9914961869556822,1.9978781190385215]}
+reference_qualification{"checks":{"independent tensor-polynomial fields":true,"independent tensor-polynomial forcing":true,"analytic four-wall no slip":true,"analytic incompressibility":true,"two primary-table columns each 17 points":true},"field_maximum":1.27675647831893e-15,"forcing_maximum":4.038436252074007e-15,"exact_wall_speed":1.27675647831893e-15,"passed":true}
+pressure_scopeSeparate manufactured Dirichlet operator; cavity pressure not computed.
+判定 / check合格
+n17: steady stop reachedtrue
+n17: steady PDE residualtrue
+n17: streamfunction Poisson residualtrue
+n17: discrete divergencetrue
+n17: u wall valuestrue
+n17: v wall valuestrue
+n17: psi wall valuestrue
+n17: finite states and historytrue
+n17: no clipping or retrytrue
+
+## 非周期壁面：キャビティと製造解 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-wall-flow/#wall-manufactured-measurements
+Coverage: reading
+
+n17: recorded advective Couranttrue
+n33: steady stop reachedtrue
+n33: steady PDE residualtrue
+n33: streamfunction Poisson residualtrue
+n33: discrete divergencetrue
+n33: u wall valuestrue
+n33: v wall valuestrue
+n33: psi wall valuestrue
+n33: finite states and historytrue
+n33: no clipping or retrytrue
+n33: recorded advective Couranttrue
+n65: steady stop reachedtrue
+n65: steady PDE residualtrue
+n65: streamfunction Poisson residualtrue
+n65: discrete divergencetrue
+n65: u wall valuestrue
+n65: v wall valuestrue
+n65: psi wall valuestrue
+n65: finite states and historytrue
+n65: no clipping or retrytrue
+n65: recorded advective Couranttrue
+psi_l2 refinement 1true
+velocity_l2 refinement 1true
+wall_omega_maximum refinement 1true
+wall_shear_maximum refinement 1true
+psi_l2 refinement 2true
+velocity_l2 refinement 2true
+wall_omega_maximum refinement 2true
+wall_shear_maximum refinement 2true
+finest streamfunction ordertrue
+finest velocity ordertrue
+finest streamfunction accuracytrue
+finest velocity accuracytrue
+n17: separate pressure Dirichlet boundarytrue
+n17: separate pressure Poisson residualtrue
+n17: finite separate pressure solutiontrue
+n33: separate pressure Dirichlet boundarytrue
+n33: separate pressure Poisson residualtrue
+n33: finite separate pressure solutiontrue
+n65: separate pressure Dirichlet boundarytrue
+n65: separate pressure Poisson residualtrue
+
+## 非周期壁面：キャビティと製造解 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-wall-flow/#wall-manufactured-measurements
+Coverage: reading
+
+n65: finite separate pressure solutiontrue
+finest separate pressure_l2 ordertrue
+finest separate pressure_gradient_l2 ordertrue
+finest separate pressure_boundary_gradient_l2 ordertrue
+independent tensor-polynomial fieldstrue
+independent tensor-polynomial forcingtrue
+analytic four-wall no sliptrue
+analytic incompressibilitytrue
+two primary-table columns each 17 pointstrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。実計算した最細の製造流れの流線と速度誤差。厳密壁渦度を注入せず、キャビティと同じThom閉鎖を使います。全記録を表で読む
+nhtimestepsdtconvergedsteady_residualpoisson_residualdivergence_maximumu_boundary_errorv_boundary_errorpsi_boundary_errormaximum_recorded_courantfiniterepairspsi_l2u_l2v_l2omega_l2velocity_l2wall_omega_maximumwall_shear_maximumthom_exact_psi_wall_truncationpressure_l2pressure_gradient_l2pressure_boundary_gradient_l2pressure_boundary_errorpressure_poisson_residualpressure_finitefield_file
+170.062539.8437525500.015625true6.90019985594e-101.1990408666e-141.11022302463e-160000.0298731026947true00.000511617687580.0002985455248770.0002985455248770.005866112242290.0004222071302670.01000482248090.02108038290230.121093750.001514806795330.01780828424230.035405599512405.38236122338e-13truemanufactured-n17.npz
+
+## 非周期壁面：キャビティと製造解 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-wall-flow/#wall-manufactured-measurements
+Coverage: reading
+
+330.0312539.062550000.0078125true8.52032833176e-103.98014954328e-142.22044604925e-160000.0297821146823true00.0001241800256867.50631258017e-057.50631258017e-050.001488050744280.0001061552905430.002611450805540.005489058289160.06152343750.0003896134203010.003482150580050.0089037275853103.27160520897e-12truemanufactured-n33.npz
+650.01562538.818359375106000.003662109375true9.21645537666e-102.12940776123e-132.22044604925e-160000.0278983471864true03.05797665568e-051.8653416978e-051.8653416978e-050.0003745186549782.63799152749e-050.0006622162726690.001389477266120.0310058593759.88661217004e-050.000698558698570.0022292081518301.32196475988e-11truemanufactured-n65.npz
+この例の実測値・全記録 / JSON
+
+## 非周期壁面：キャビティと製造解 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-wall-flow/#wall-manufactured-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+U. Ghia, K. N. Ghia and C. T. Shin (1982). High-Re solutions for incompressible flow using the Navier-Stokes equations and a multigrid method · DOI: 10.1016/0021-9991(82)90058-4
+確認範囲 / review_level: primary-original-selected-pages
+原著の式・境界図・表I/IIのRe100列と表Vの主渦を直接目視確認。公開ミラーは原著の配送元として記録し、論文PDFは配布しません。本実装は原著のCSI-MG法とは異なります。
+Kambiz Salari and Patrick Knupp (2000). Code Verification by the Method of Manufactured Solutions · DOI: 10.2172/759450
+確認範囲 / review_level: primary-selected-section-and-official-abstract
+Sandia/OSTI公式書誌・抄録と、原著報告の印刷12頁で製造解と格子細分化の併用を確認。本例の多項式と圧力場は独自に構成しました。
+
+## WENOの臨界点・ε依存性 — WENOの臨界点・ε依存性 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-weno-critical/
+Coverage: reading
+
+セル平均からのWENO-JS／Z二乗重みの臨界点再構成と、実際の周期スカラー輸送を比較します。εの違い、解析セル平均と点値、空間誤差と時間刻みの影響を分けます。 選んだ一次臨界多項式では微小εのJS・Zの局所次数はともに約5で、Zの主誤差が小さい結果です。
+
+## WENOの臨界点・ε依存性 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-weno-critical/#run-all
+Coverage: reading
+
+ZIPの atlas-weno-critical-2026-11-23 フォルダで実行します。このコマンドは配布版の全1例を実行します。新規または空の出力先を指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## WENOの臨界点・ε依存性 — WENO-JS／Z：臨界点とεの固定比較 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-weno-critical/
+Coverage: reading
+
+同じセル平均からのWENO5再構成と実際の周期輸送で、JS重みとZ二乗重みを比較します。3種類の臨界性、3種類のε、固定格子と時間刻み半減を分けて保存します。
+手法・式・図・参照解
+使用手法
+WENO5-JS
+有限差分WENO5-Z
+古典的RK4
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+3候補と線形重み(.1,.6,.3)、Jiang–Shu指標を共通にし、JSはd/(β+ε)²、Zはd[1+(|β₀−β₂|/(β+ε))²]を正規化します。ε=10⁻⁴⁰,10⁻⁶,h²です。輸送は共有風上面流束と古典RK4、Courant.1を使い、状態クリップ・再試行を行いません。
+線形移流
+局所多項式のセル中心x=0、再構成面h/2、h=1/64…1/512を使います。輸送は[0,1]周期・速度1・q₀=cos(2πx)+.1sin³(2πx)、T=1、32/64/128セルです。全て有限体積セル平均であり、点値を誤差の参照にしません。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+周期正弦波の線形移流
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+実行前契約で72局所再構成・24PDE計算・36pytestを固定します。解析セル平均を独立Gauss12求積と照合し、局所の誤差・重み、輸送のL1/L2/L∞・質量・全段有限性・中間時刻と保存流束を記録します。最細格子で6通りの刻み半減差が対応する連続解誤差の10%以下か確認します。
+関連モデルの参照 · 解析参照
+移流／正弦波の平行移動
+同じ周期・速度1の正弦移流モデルです。参照一覧は振幅0.25、共通固定入力は0.2で、DG・CIP等の表現や時間も異なります。
+関連モデルの参照 · 解析参照
+WENO臨界点：多項式セル平均と解析的周期輸送
+同じ一定速度の周期移流に対する追加参照ですが、cos+.1sin³のセル平均と局所臨界多項式は、従来の単一正弦・CIP表示と異なります。
+
+## WENOの臨界点・ε依存性 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-weno-critical/#weno-critical-epsilon-assumptions
+Coverage: reading
+
+局所多項式のセル中心x=0、再構成面h/2、h=1/64…1/512を使います。輸送は[0,1]周期・速度1・q₀=cos(2πx)+.1sin³(2πx)、T=1、32/64/128セルです。全て有限体積セル平均であり、点値を誤差の参照にしません。
+
+## WENOの臨界点・ε依存性 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-weno-critical/#weno-critical-epsilon-algorithm
+Coverage: reading
+
+3候補と線形重み(.1,.6,.3)、Jiang–Shu指標を共通にし、JSはd/(β+ε)²、Zはd[1+(|β₀−β₂|/(β+ε))²]を正規化します。ε=10⁻⁴⁰,10⁻⁶,h²です。輸送は共有風上面流束と古典RK4、Courant.1を使い、状態クリップ・再試行を行いません。
+\bar q_i=h^{-1}\int_{x_i-h/2}^{x_i+h/2}q(x)\,dx,\qquad q^-_{i+1/2}=\sum_{k=0}^2\omega_k p_k(p_0,p_1,p_2)=\frac16(2\bar q_{i-2}-7\bar q_{i-1}+11\bar q_i,-\bar q_{i-1}+5\bar q_i+2\bar q_{i+1},2\bar q_i+5\bar q_{i+1}-\bar q_{i+2})\omega_k=\alpha_k/\sum_j\alpha_j,\quad d=(.1,.6,.3),\quad\alpha_k^{JS}=d_k/(\epsilon+\beta_k)^2,\quad\alpha_k^Z=d_k[1+(\tau_5/(\epsilon+\beta_k))^2],\quad\tau_5=|\beta_0-\beta_2|\partial_tq+\partial_xq=0,\quad q(x,t)=q_0(x-t),\quad\frac{d\bar q_i}{dt}=-\frac{q^-_{i+1/2}-q^-_{i-1/2}}h\bar q_i(t)=\operatorname{sinc}(h)\cos\theta_i+.075\operatorname{sinc}(h)\sin\theta_i-.025\operatorname{sinc}(3h)\sin(3\theta_i),\quad\theta_i=2\pi(x_i-t),\quad\operatorname{sinc}(z)=\frac{\sin\pi z}{\pi z}
+
+## WENOの臨界点・ε依存性 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-weno-critical/#weno-critical-epsilon-validation
+Coverage: reading
+
+実行前契約で72局所再構成・24PDE計算・36pytestを固定します。解析セル平均を独立Gauss12求積と照合し、局所の誤差・重み、輸送のL1/L2/L∞・質量・全段有限性・中間時刻と保存流束を記録します。最細格子で6通りの刻み半減差が対応する連続解誤差の10%以下か確認します。
+
+## WENOの臨界点・ε依存性 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-weno-critical/#weno-critical-epsilon-limits
+Coverage: reading
+
+一次臨界点の面再構成だけに次数判定を置き、二次臨界点は診断値として残します。固定εは解の振幅・単位に依存します。局所再構成の次数とPDE全体の次数、有限体積版と原著の有限差分版を区別します。衝撃波、Euler/MHD、一般の高次臨界点、任意入力の安定性・TVD・正値性は今回の保証に含めません。
+
+## WENOの臨界点・ε依存性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-weno-critical/#weno-critical-epsilon-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+completed_pde_runs24
+local_reconstructions72
+maximum_transport_mass_error2.3288662665e-16
+判定 / check合格
+72 fixed local reconstructionstrue
+24 fixed PDE runs completedtrue
+independent analytic-cell quadraturetrue
+convex normalized local weightstrue
+first-critical weno-js fixed-1e-40 refinement n128true
+first-critical weno-js fixed-1e-40 refinement n256true
+first-critical weno-js fixed-1e-40 refinement n512true
+first-critical weno-js fixed-1e-6 refinement n128true
+first-critical weno-js fixed-1e-6 refinement n256true
+first-critical weno-js fixed-1e-6 refinement n512true
+first-critical weno-js h-squared refinement n128true
+first-critical weno-js h-squared refinement n256true
+first-critical weno-js h-squared refinement n512true
+first-critical weno-z fixed-1e-40 refinement n128true
+first-critical weno-z fixed-1e-40 refinement n256true
+first-critical weno-z fixed-1e-40 refinement n512true
+first-critical weno-z fixed-1e-6 refinement n128true
+first-critical weno-z fixed-1e-6 refinement n256true
+first-critical weno-z fixed-1e-6 refinement n512true
+first-critical weno-z h-squared refinement n128true
+first-critical weno-z h-squared refinement n256true
+first-critical weno-z h-squared refinement n512true
+first-critical tiny-epsilon Z/JS errortrue
+first-critical last reconstruction order weno-z fixed-1e-40true
+
+## WENOの臨界点・ε依存性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-weno-critical/#weno-critical-epsilon-measurements
+Coverage: reading
+
+first-critical last reconstruction order weno-js h-squaredtrue
+weno-js-fixed-1e-40-n32: finite saved arraystrue
+weno-js-fixed-1e-40-n32: time reachedtrue
+weno-js-fixed-1e-40-n32: periodic masstrue
+weno-js-fixed-1e-40-n32: shared RHS flux balancetrue
+weno-js-fixed-1e-40-n32: all requested snapshotstrue
+weno-js-fixed-1e-40-n32: four stage evaluations per steptrue
+weno-js-fixed-1e-40-n32: no clipping or retriestrue
+weno-js-fixed-1e-40-n64: finite saved arraystrue
+weno-js-fixed-1e-40-n64: time reachedtrue
+weno-js-fixed-1e-40-n64: periodic masstrue
+weno-js-fixed-1e-40-n64: shared RHS flux balancetrue
+weno-js-fixed-1e-40-n64: all requested snapshotstrue
+weno-js-fixed-1e-40-n64: four stage evaluations per steptrue
+weno-js-fixed-1e-40-n64: no clipping or retriestrue
+weno-js-fixed-1e-40-n128: finite saved arraystrue
+weno-js-fixed-1e-40-n128: time reachedtrue
+weno-js-fixed-1e-40-n128: periodic masstrue
+weno-js-fixed-1e-40-n128: shared RHS flux balancetrue
+weno-js-fixed-1e-40-n128: all requested snapshotstrue
+weno-js-fixed-1e-40-n128: four stage evaluations per steptrue
+weno-js-fixed-1e-40-n128: no clipping or retriestrue
+weno-js-fixed-1e-6-n32: finite saved arraystrue
+weno-js-fixed-1e-6-n32: time reachedtrue
+weno-js-fixed-1e-6-n32: periodic masstrue
+weno-js-fixed-1e-6-n32: shared RHS flux balancetrue
+weno-js-fixed-1e-6-n32: all requested snapshotstrue
+
+## WENOの臨界点・ε依存性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-weno-critical/#weno-critical-epsilon-measurements
+Coverage: reading
+
+weno-js-fixed-1e-6-n32: four stage evaluations per steptrue
+weno-js-fixed-1e-6-n32: no clipping or retriestrue
+weno-js-fixed-1e-6-n64: finite saved arraystrue
+weno-js-fixed-1e-6-n64: time reachedtrue
+weno-js-fixed-1e-6-n64: periodic masstrue
+weno-js-fixed-1e-6-n64: shared RHS flux balancetrue
+weno-js-fixed-1e-6-n64: all requested snapshotstrue
+weno-js-fixed-1e-6-n64: four stage evaluations per steptrue
+weno-js-fixed-1e-6-n64: no clipping or retriestrue
+weno-js-fixed-1e-6-n128: finite saved arraystrue
+weno-js-fixed-1e-6-n128: time reachedtrue
+weno-js-fixed-1e-6-n128: periodic masstrue
+weno-js-fixed-1e-6-n128: shared RHS flux balancetrue
+weno-js-fixed-1e-6-n128: all requested snapshotstrue
+weno-js-fixed-1e-6-n128: four stage evaluations per steptrue
+weno-js-fixed-1e-6-n128: no clipping or retriestrue
+weno-js-h-squared-n32: finite saved arraystrue
+weno-js-h-squared-n32: time reachedtrue
+weno-js-h-squared-n32: periodic masstrue
+weno-js-h-squared-n32: shared RHS flux balancetrue
+weno-js-h-squared-n32: all requested snapshotstrue
+weno-js-h-squared-n32: four stage evaluations per steptrue
+weno-js-h-squared-n32: no clipping or retriestrue
+weno-js-h-squared-n64: finite saved arraystrue
+weno-js-h-squared-n64: time reachedtrue
+weno-js-h-squared-n64: periodic masstrue
+weno-js-h-squared-n64: shared RHS flux balancetrue
+weno-js-h-squared-n64: all requested snapshotstrue
+
+## WENOの臨界点・ε依存性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-weno-critical/#weno-critical-epsilon-measurements
+Coverage: reading
+
+weno-js-h-squared-n64: four stage evaluations per steptrue
+weno-js-h-squared-n64: no clipping or retriestrue
+weno-js-h-squared-n128: finite saved arraystrue
+weno-js-h-squared-n128: time reachedtrue
+weno-js-h-squared-n128: periodic masstrue
+weno-js-h-squared-n128: shared RHS flux balancetrue
+weno-js-h-squared-n128: all requested snapshotstrue
+weno-js-h-squared-n128: four stage evaluations per steptrue
+weno-js-h-squared-n128: no clipping or retriestrue
+weno-z-fixed-1e-40-n32: finite saved arraystrue
+weno-z-fixed-1e-40-n32: time reachedtrue
+weno-z-fixed-1e-40-n32: periodic masstrue
+weno-z-fixed-1e-40-n32: shared RHS flux balancetrue
+weno-z-fixed-1e-40-n32: all requested snapshotstrue
+weno-z-fixed-1e-40-n32: four stage evaluations per steptrue
+weno-z-fixed-1e-40-n32: no clipping or retriestrue
+weno-z-fixed-1e-40-n64: finite saved arraystrue
+weno-z-fixed-1e-40-n64: time reachedtrue
+weno-z-fixed-1e-40-n64: periodic masstrue
+weno-z-fixed-1e-40-n64: shared RHS flux balancetrue
+weno-z-fixed-1e-40-n64: all requested snapshotstrue
+weno-z-fixed-1e-40-n64: four stage evaluations per steptrue
+weno-z-fixed-1e-40-n64: no clipping or retriestrue
+weno-z-fixed-1e-40-n128: finite saved arraystrue
+weno-z-fixed-1e-40-n128: time reachedtrue
+weno-z-fixed-1e-40-n128: periodic masstrue
+weno-z-fixed-1e-40-n128: shared RHS flux balancetrue
+weno-z-fixed-1e-40-n128: all requested snapshotstrue
+
+## WENOの臨界点・ε依存性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-weno-critical/#weno-critical-epsilon-measurements
+Coverage: reading
+
+weno-z-fixed-1e-40-n128: four stage evaluations per steptrue
+weno-z-fixed-1e-40-n128: no clipping or retriestrue
+weno-z-fixed-1e-6-n32: finite saved arraystrue
+weno-z-fixed-1e-6-n32: time reachedtrue
+weno-z-fixed-1e-6-n32: periodic masstrue
+weno-z-fixed-1e-6-n32: shared RHS flux balancetrue
+weno-z-fixed-1e-6-n32: all requested snapshotstrue
+weno-z-fixed-1e-6-n32: four stage evaluations per steptrue
+weno-z-fixed-1e-6-n32: no clipping or retriestrue
+weno-z-fixed-1e-6-n64: finite saved arraystrue
+weno-z-fixed-1e-6-n64: time reachedtrue
+weno-z-fixed-1e-6-n64: periodic masstrue
+weno-z-fixed-1e-6-n64: shared RHS flux balancetrue
+weno-z-fixed-1e-6-n64: all requested snapshotstrue
+weno-z-fixed-1e-6-n64: four stage evaluations per steptrue
+weno-z-fixed-1e-6-n64: no clipping or retriestrue
+weno-z-fixed-1e-6-n128: finite saved arraystrue
+weno-z-fixed-1e-6-n128: time reachedtrue
+weno-z-fixed-1e-6-n128: periodic masstrue
+weno-z-fixed-1e-6-n128: shared RHS flux balancetrue
+weno-z-fixed-1e-6-n128: all requested snapshotstrue
+weno-z-fixed-1e-6-n128: four stage evaluations per steptrue
+weno-z-fixed-1e-6-n128: no clipping or retriestrue
+weno-z-h-squared-n32: finite saved arraystrue
+weno-z-h-squared-n32: time reachedtrue
+weno-z-h-squared-n32: periodic masstrue
+weno-z-h-squared-n32: shared RHS flux balancetrue
+weno-z-h-squared-n32: all requested snapshotstrue
+
+## WENOの臨界点・ε依存性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-weno-critical/#weno-critical-epsilon-measurements
+Coverage: reading
+
+weno-z-h-squared-n32: four stage evaluations per steptrue
+weno-z-h-squared-n32: no clipping or retriestrue
+weno-z-h-squared-n64: finite saved arraystrue
+weno-z-h-squared-n64: time reachedtrue
+weno-z-h-squared-n64: periodic masstrue
+weno-z-h-squared-n64: shared RHS flux balancetrue
+weno-z-h-squared-n64: all requested snapshotstrue
+weno-z-h-squared-n64: four stage evaluations per steptrue
+weno-z-h-squared-n64: no clipping or retriestrue
+weno-z-h-squared-n128: finite saved arraystrue
+weno-z-h-squared-n128: time reachedtrue
+weno-z-h-squared-n128: periodic masstrue
+weno-z-h-squared-n128: shared RHS flux balancetrue
+weno-z-h-squared-n128: all requested snapshotstrue
+weno-z-h-squared-n128: four stage evaluations per steptrue
+weno-z-h-squared-n128: no clipping or retriestrue
+weno-js-fixed-1e-40-time-half: finite saved arraystrue
+weno-js-fixed-1e-40-time-half: time reachedtrue
+weno-js-fixed-1e-40-time-half: periodic masstrue
+weno-js-fixed-1e-40-time-half: shared RHS flux balancetrue
+weno-js-fixed-1e-40-time-half: all requested snapshotstrue
+weno-js-fixed-1e-40-time-half: four stage evaluations per steptrue
+weno-js-fixed-1e-40-time-half: no clipping or retriestrue
+weno-js-fixed-1e-6-time-half: finite saved arraystrue
+weno-js-fixed-1e-6-time-half: time reachedtrue
+weno-js-fixed-1e-6-time-half: periodic masstrue
+weno-js-fixed-1e-6-time-half: shared RHS flux balancetrue
+
+## WENOの臨界点・ε依存性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-weno-critical/#weno-critical-epsilon-measurements
+Coverage: reading
+
+weno-js-fixed-1e-6-time-half: all requested snapshotstrue
+weno-js-fixed-1e-6-time-half: four stage evaluations per steptrue
+weno-js-fixed-1e-6-time-half: no clipping or retriestrue
+weno-js-h-squared-time-half: finite saved arraystrue
+weno-js-h-squared-time-half: time reachedtrue
+weno-js-h-squared-time-half: periodic masstrue
+weno-js-h-squared-time-half: shared RHS flux balancetrue
+weno-js-h-squared-time-half: all requested snapshotstrue
+weno-js-h-squared-time-half: four stage evaluations per steptrue
+weno-js-h-squared-time-half: no clipping or retriestrue
+weno-z-fixed-1e-40-time-half: finite saved arraystrue
+weno-z-fixed-1e-40-time-half: time reachedtrue
+weno-z-fixed-1e-40-time-half: periodic masstrue
+weno-z-fixed-1e-40-time-half: shared RHS flux balancetrue
+weno-z-fixed-1e-40-time-half: all requested snapshotstrue
+weno-z-fixed-1e-40-time-half: four stage evaluations per steptrue
+weno-z-fixed-1e-40-time-half: no clipping or retriestrue
+weno-z-fixed-1e-6-time-half: finite saved arraystrue
+weno-z-fixed-1e-6-time-half: time reachedtrue
+weno-z-fixed-1e-6-time-half: periodic masstrue
+weno-z-fixed-1e-6-time-half: shared RHS flux balancetrue
+weno-z-fixed-1e-6-time-half: all requested snapshotstrue
+weno-z-fixed-1e-6-time-half: four stage evaluations per steptrue
+weno-z-fixed-1e-6-time-half: no clipping or retriestrue
+weno-z-h-squared-time-half: finite saved arraystrue
+
+## WENOの臨界点・ε依存性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-weno-critical/#weno-critical-epsilon-measurements
+Coverage: reading
+
+weno-z-h-squared-time-half: time reachedtrue
+weno-z-h-squared-time-half: periodic masstrue
+weno-z-h-squared-time-half: shared RHS flux balancetrue
+weno-z-h-squared-time-half: all requested snapshotstrue
+weno-z-h-squared-time-half: four stage evaluations per steptrue
+weno-z-h-squared-time-half: no clipping or retriestrue
+weno-js fixed-1e-40 PDE refinement n64true
+weno-js fixed-1e-40 PDE refinement n128true
+weno-js fixed-1e-40 finest PDE L1true
+weno-js fixed-1e-40 dt contamination fractiontrue
+weno-js fixed-1e-6 PDE refinement n64true
+weno-js fixed-1e-6 PDE refinement n128true
+weno-js fixed-1e-6 finest PDE L1true
+weno-js fixed-1e-6 dt contamination fractiontrue
+weno-js h-squared PDE refinement n64true
+weno-js h-squared PDE refinement n128true
+weno-js h-squared finest PDE L1true
+weno-js h-squared dt contamination fractiontrue
+weno-z fixed-1e-40 PDE refinement n64true
+weno-z fixed-1e-40 PDE refinement n128true
+weno-z fixed-1e-40 finest PDE L1true
+weno-z fixed-1e-40 dt contamination fractiontrue
+weno-z fixed-1e-6 PDE refinement n64true
+weno-z fixed-1e-6 PDE refinement n128true
+weno-z fixed-1e-6 finest PDE L1true
+weno-z fixed-1e-6 dt contamination fractiontrue
+weno-z h-squared PDE refinement n64true
+weno-z h-squared PDE refinement n128true
+weno-z h-squared finest PDE L1true
+weno-z h-squared dt contamination fractiontrue
+
+## WENOの臨界点・ε依存性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-weno-critical/#weno-critical-epsilon-measurements
+Coverage: reading
+
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存した最細格子の実際の周期輸送場とセル平均誤差、別の局所多項式による一次臨界点の面再構成誤差。全記録を表で読む
+idmethodepsilon_policynfamilycourantepsilontimestepsrhs_evaluationsl1l2linfmaximum_mass_changemaximum_rhs_mass_defectminimummaximumsnapshot_timessnapshot_l1clip_countretriesfieldall_finitetime_half_difference_l1
+weno-js-fixed-1e-40-n32weno-jsfixed-1e-4032refinement0.11e-40132012800.0005973099074940.0006824968210120.001243449650971.51463043496e-168.32667268469e-17-0.9984054462570.998405446257[0.0,0.25,0.5,0.75,1.0][0.0,0.00017684485864721833,0.0003243619287532331,0.0004594401717969268,0.0005973099074937288]00field-weno-js-fixed-1e-40-n32.npztrue—
+weno-js-fixed-1e-40-n64weno-jsfixed-1e-4064refinement0.11e-40164025602.85264469592e-053.36012346293e-057.47749243768e-056.50521303491e-178.32667268469e-17-0.9995992987230.999599298723[0.0,0.25,0.5,0.75,1.0][0.0,7.957224437882726e-06,1.522964439676193e-05,2.1972632201265716e-05,2.852644695924703e-05]00field-weno-js-fixed-1e-40-n64.npztrue—
+weno-js-fixed-1e-40-n128weno-jsfixed-1e-40128refinement0.11e-401128051201.25661163551e-061.80765024832e-067.24960200682e-061.0364972769e-161.52655665886e-16-0.9998997108280.999899710828[0.0,0.25,0.5,0.75,1.0][0.0,3.4041383445497205e-07,6.611920536956457e-07,9.653895156651532e-07,1.2566116355136017e-06]00field-weno-js-fixed-1e-40-n128.npztrue—
+
+## WENOの臨界点・ε依存性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-weno-critical/#weno-critical-epsilon-measurements
+Coverage: reading
+
+weno-js-fixed-1e-6-n32weno-jsfixed-1e-632refinement0.11e-06132012800.0005973124274660.0006824691800680.001243401826161.44524149592e-168.32667268469e-17-0.9984054333940.998405433394[0.0,0.25,0.5,0.75,1.0][0.0,0.00017680356208186945,0.0003243162700813571,0.0004594375790105275,0.0005973124274657013]00field-weno-js-fixed-1e-6-n32.npztrue—
+weno-js-fixed-1e-6-n64weno-jsfixed-1e-664refinement0.11e-06164025602.84588920135e-053.35126687755e-057.4386365696e-055.89805981832e-178.32667268469e-17-0.9995992949870.999599294987[0.0,0.25,0.5,0.75,1.0][0.0,7.937366410439928e-06,1.519341075397829e-05,2.192404540745437e-05,2.8458892013549265e-05]00field-weno-js-fixed-1e-6-n64.npztrue—
+weno-js-fixed-1e-6-n128weno-jsfixed-1e-6128refinement0.11e-061128051201.21930263636e-061.72720701417e-066.83679907698e-061.11022302463e-161.38777878078e-16-0.9998997122810.999899712281[0.0,0.25,0.5,0.75,1.0][0.0,3.2895055978758104e-07,6.402382355773098e-07,9.357831398719657e-07,1.2193026363643497e-06]00field-weno-js-fixed-1e-6-n128.npztrue—
+weno-js-h-squared-n32weno-jsh-squared32refinement0.10.0009765625132012800.0005918976514460.0006712870965310.001210681123561.10046520507e-168.32667268469e-17-0.9983999748830.998399974883[0.0,0.25,0.5,0.75,1.0][0.0,0.0001589801582780714,0.0003092990804009775,0.00045270783415495583,0.0005918976514464944]00field-weno-js-h-squared-n32.npztrue—
+
+## WENOの臨界点・ε依存性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-weno-critical/#weno-critical-epsilon-measurements
+Coverage: reading
+
+weno-js-h-squared-n64weno-jsh-squared64refinement0.10.000244140625164025602.30366240388e-052.69023449457e-054.83180025124e-059.31329666165e-179.71445146547e-17-0.9995993279340.999599327934[0.0,0.25,0.5,0.75,1.0][0.0,6.120812840977119e-06,1.1939122589202768e-05,1.7551274657011092e-05,2.3036624038847006e-05]00field-weno-js-h-squared-n64.npztrue—
+weno-js-h-squared-n128weno-jsh-squared128refinement0.16.103515625e-051128051208.08288140216e-079.30033943705e-071.9386939063e-069.15066633578e-171.11022302463e-16-0.9998997391880.999899739188[0.0,0.25,0.5,0.75,1.0][0.0,2.0347872919408835e-07,4.065546945217289e-07,6.081593935297928e-07,8.082881402163137e-07]00field-weno-js-h-squared-n128.npztrue—
+weno-z-fixed-1e-40-n32weno-zfixed-1e-4032refinement0.11e-40132012800.0003184081151780.0003533546705620.000518882885294.39101879857e-175.55111512313e-17-0.9984038603670.998403860367[0.0,0.25,0.5,0.75,1.0][0.0,8.005520887783798e-05,0.00016007704639309738,0.00023947662512480486,0.00031840811517821414]00field-weno-z-fixed-1e-40-n32.npztrue—
+weno-z-fixed-1e-40-n64weno-zfixed-1e-4064refinement0.11e-40164025601.08028229457e-051.20449693099e-051.80054353631e-051.3238108526e-168.32667268469e-17-0.9995995803340.999599580334[0.0,0.25,0.5,0.75,1.0][0.0,2.70061854743106e-06,5.401877189614821e-06,8.102315598584224e-06,1.0802822945711111e-05]00field-weno-z-fixed-1e-40-n64.npztrue—
+
+## WENOの臨界点・ε依存性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-weno-critical/#weno-critical-epsilon-measurements
+Coverage: reading
+
+weno-z-fixed-1e-40-n128weno-zfixed-1e-40128refinement0.11e-401128051203.44449596883e-073.83262852885e-075.65219569815e-071.61790069189e-161.11022302463e-16-0.9998997457760.999899745776[0.0,0.25,0.5,0.75,1.0][0.0,8.611940995463356e-08,1.722263464137776e-07,2.5833606331795815e-07,3.4444959688345405e-07]00field-weno-z-fixed-1e-40-n128.npztrue—
+weno-z-fixed-1e-6-n32weno-zfixed-1e-632refinement0.11e-06132012800.0003184275501140.0003533776503170.0005188775631321.61654543918e-168.32667268469e-17-0.9984038545160.998403854516[0.0,0.25,0.5,0.75,1.0][0.0,8.006068393328388e-05,0.0001600869590956366,0.0002394912690227097,0.00031842755011425073]00field-weno-z-fixed-1e-6-n32.npztrue—
+weno-z-fixed-1e-6-n64weno-zfixed-1e-664refinement0.11e-06164025601.0806231553e-051.20470853244e-051.79982626769e-051.07552855511e-169.71445146547e-17-0.9995995796570.999599579657[0.0,0.25,0.5,0.75,1.0][0.0,2.7015461207072775e-06,5.403643835243761e-06,8.104913764223998e-06,1.0806231552981898e-05]00field-weno-z-fixed-1e-6-n64.npztrue—
+weno-z-fixed-1e-6-n128weno-zfixed-1e-6128refinement0.11e-061128051203.44739085152e-073.83376017073e-075.65306405242e-077.02563007771e-171.38777878078e-16-0.9998997457790.999899745779[0.0,0.25,0.5,0.75,1.0][0.0,8.619585269270514e-08,1.7237675749084426e-07,2.5855731583261285e-07,3.447390851515008e-07]00field-weno-z-fixed-1e-6-n128.npztrue—
+
+## WENOの臨界点・ε依存性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-weno-critical/#weno-critical-epsilon-measurements
+Coverage: reading
+
+weno-z-h-squared-n32weno-zh-squared32refinement0.10.0009765625132012800.0003254111179910.0003623113309220.0005261359577917.16657636013e-178.32667268469e-17-0.9984017843610.998401784361[0.0,0.25,0.5,0.75,1.0][0.0,8.200886277531046e-05,0.00016362217948354065,0.000244739254559487,0.0003254111179907895]00field-weno-z-h-squared-n32.npztrue—
+weno-z-h-squared-n64weno-zh-squared64refinement0.10.000244140625164025601.08965678858e-051.21113400302e-051.77928181982e-058.76035355368e-179.71445146547e-17-0.9995995667130.999599566713[0.0,0.25,0.5,0.75,1.0][0.0,2.7249772618995064e-06,5.449362924989033e-06,8.173202074902267e-06,1.0896567885809705e-05]00field-weno-z-h-squared-n64.npztrue—
+weno-z-h-squared-n128weno-zh-squared128refinement0.16.103515625e-051128051203.45062736365e-073.83546637636e-075.65656457563e-071.35308431126e-161.2490009027e-16-0.9998997458790.999899745879[0.0,0.25,0.5,0.75,1.0][0.0,8.626642411944572e-08,1.725323428770258e-07,2.5879777770942297e-07,3.4506273636540304e-07]00field-weno-z-h-squared-n128.npztrue—
+weno-js-fixed-1e-40-time-halfweno-jsfixed-1e-40128time-probe0.051e-4012560102401.25661449004e-061.80764263744e-067.24945463215e-061.48318857196e-161.38777878078e-16-0.999899642940.99989964294[0.0,0.25,0.5,0.75,1.0][0.0,3.4041324252286976e-07,6.611928928379593e-07,9.653912413782044e-07,1.2566144900396248e-06]00field-weno-js-fixed-1e-40-time-half.npztrue1.11374492148e-10
+
+## WENOの臨界点・ε依存性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-weno-critical/#weno-critical-epsilon-measurements
+Coverage: reading
+
+weno-js-fixed-1e-6-time-halfweno-jsfixed-1e-6128time-probe0.051e-0612560102401.21930537697e-061.72719847496e-066.83664914403e-062.3288662665e-161.38777878078e-16-0.999899644040.99989964404[0.0,0.25,0.5,0.75,1.0][0.0,3.289508688784687e-07,6.402390616646366e-07,9.357848106791215e-07,1.2193053769714074e-06]00field-weno-js-fixed-1e-6-time-half.npztrue1.11349891276e-10
+weno-js-h-squared-time-halfweno-jsh-squared128time-probe0.056.103515625e-0512560102408.08279198062e-079.30020083703e-071.93853361141e-061.37043154602e-161.38777878078e-16-0.9998996702280.999899670228[0.0,0.25,0.5,0.75,1.0][0.0,2.0347646872997428e-07,4.0655017159721353e-07,6.081526432367057e-07,8.082791980615984e-07]00field-weno-js-h-squared-time-half.npztrue1.11015501886e-10
+weno-z-fixed-1e-40-time-halfweno-zfixed-1e-40128time-probe0.051e-4012560102403.44437674699e-073.83253530242e-075.65229019367e-071.39428399382e-161.38777878078e-16-0.9998996770760.999899677076[0.0,0.25,0.5,0.75,1.0][0.0,8.611642951926349e-08,1.7222038528242234e-07,2.583271217230707e-07,3.4443767469850796e-07]00field-weno-z-fixed-1e-40-time-half.npztrue1.10940422132e-10
+
+## WENOの臨界点・ε依存性 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-weno-critical/#weno-critical-epsilon-measurements
+Coverage: reading
+
+weno-z-fixed-1e-6-time-halfweno-zfixed-1e-6128time-probe0.051e-0612560102403.44727166539e-073.83366700008e-075.65315833811e-071.17093834628e-161.38777878078e-16-0.9998996770670.999899677067[0.0,0.25,0.5,0.75,1.0][0.0,8.619287307346825e-08,1.7237079822206704e-07,2.585483770008146e-07,3.4472716653900087e-07]00field-weno-z-fixed-1e-6-time-half.npztrue1.10940546382e-10
+weno-z-h-squared-time-halfweno-zh-squared128time-probe0.056.103515625e-0512560102403.45050826338e-073.83537340625e-075.65665827623e-071.41379963292e-161.2490009027e-16-0.9998996771480.999899677148[0.0,0.25,0.5,0.75,1.0][0.0,8.626344661976986e-08,1.7252638789990024e-07,2.587888451771104e-07,3.450508263379683e-07]00field-weno-z-h-squared-time-half.npztrue1.10940455824e-10
+この例の実測値・全記録 / JSON
+
+## WENOの臨界点・ε依存性 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-weno-critical/#weno-critical-epsilon-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Guang-Shan Jiang and Chi-Wang Shu (1996). Efficient Implementation of Weighted ENO Schemes · DOI: 10.1006/jcph.1996.0130
+確認範囲 / review_level: NASA-hosted ICASE95-73 preprint selected sections1–3: candidate Table1, optimal Table2, equations2.15–2.16 and3.1–3.9; text layer inspected, not full paper/numerical tables
+NASA公開プレプリントの節1–3で係数・重み・滑らかさ指標と有限差分の点値の規約を確認。原著の全実験やEuler特性分解を再現したとは表示しません。
+Rafael Borges, Monique Carmona, Bruno Costa and Wai Sun Don (2008). An improved weighted essentially non-oscillatory scheme for hyperbolic conservation laws · DOI: 10.1016/j.jcp.2007.11.038
+確認範囲 / review_level: Author-institution publication record and abstract inspected; publisher full text returned403; original full paper and numerical experiments not audited
+著者所属機関の書誌と抄録を確認。出版社全文は取得不能であり、全文読了・元の実験・指数1の再現は主張しません。実装する指数2の式は別の一次研究論文でも確認しました。
+Bart S. van Lith, Jan H. M. ten Thije Boonkkamp and Wilbert L. IJzerman (2017). Embedded WENO: A design strategy to improve existing WENO schemes · DOI: 10.1016/j.jcp.2016.11.026
+確認範囲 / review_level: Institution-hosted accepted manuscript section2 equations2–15 (PDF pages4–8) and selected section4.2 (PDF page22) text inspected; screenshot requests cache-missed; not a full-paper review
+
+## WENOの臨界点・ε依存性 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-weno-critical/#weno-critical-epsilon-references
+Coverage: reading
+
+機関公開の著者版でセル平均の式(2)–(3)、候補・線形重み(4)–(7)、JS指標と重み(8)–(13)、Z重み(15)、節4.2の指数2を確認。新規のembedded方式は実装せず、論文PDFも同梱しません。
 
 ## Zalesak型2D回転輸送：保存・有界性・形状誤差 — Zalesak型2D回転輸送：保存・有界性・形状誤差 [ja]
 

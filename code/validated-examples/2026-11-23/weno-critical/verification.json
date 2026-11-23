@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "group": "weno-critical",
+  "edition": "2026-11-23",
+  "verified_on": "2026-11-23",
+  "source_manifest_sha256": "abd8b0a29bb81b7d98b897ec0a0eb409f77873857ec8199c3767f1ede11b43a5",
+  "archive": {
+    "file": "atlas-weno-critical-2026-11-23.zip",
+    "sha256": "9c119480261013ef8ed0c58716c45af5b9fb9d3e891aef56b95b66fbd8415491",
+    "bytes": 1454591,
+    "archive_directory": "atlas-weno-critical-2026-11-23"
+  },
+  "archive_sha256": "9c119480261013ef8ed0c58716c45af5b9fb9d3e891aef56b95b66fbd8415491",
+  "returncode": 0,
+  "passed_tests": 36,
+  "tests": 36,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "weno-critical-epsilon"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 6.220799250000709,
+  "independent_rerun_seconds": 6.557543999999325,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

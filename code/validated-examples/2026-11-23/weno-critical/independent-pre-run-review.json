@@ -1,0 +1,26 @@
+{
+  "reviewer": "root, independent of implementation subagent",
+  "before_first_main_and_pytest": true,
+  "contract_sha256": "cc0851bd1d12ab977e416c847d140c9fc8d7e7511ce34488909b65f8cf66409e",
+  "files_sha256": {
+    "inputs.json": "1236a9d75c55a9cc9dfbdcb4f184c57e82b06e45948422e4ca75b750295860a0",
+    "acceptance.json": "a9cff61c3b803a51a148058eab8eb2e11ce7f3aba86a394a063d7fa1cddddbe9",
+    "weno.py": "34c6d106f3c539f4a6e568bf1b0cc26d0096b9bd3c1c9215ab31ba4d57e51505",
+    "run.py": "ed2b37f04f98d94292d194d67fdd7830c6d1fd560edcc7ff8d5ff99f97f1ced3",
+    "test_weno.py": "0b09deec47c745e3be7f458ebbac0a52dfd836d1f3588f3d30030d8472c797dc",
+    "references/analytic.py": "a697dfabdf8186dc3d94b7a49d8d3652ddf39d0b49a125e7e55686486c0ea234",
+    "references/citations.json": "ef65e1123f1e7d054ad8cd0c42f8d368171942a60f8366032ffc5139d815396d",
+    "references/source-review.json": "0c1b83f4ba3dcb5444a9f28355f796ee332d6ed82da35c51a5f717115207c397",
+    "source-provenance.json": "97c946f6f7a4b91e92a25d9b9c3878c07f3639162140f19b5d22b2267c5c7b28",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75"
+  },
+  "findings": [
+    "FV candidate polynomials, JS indicators and ideal weights verified; Z exponent2 explicitly scoped",
+    "Exact Fourier cell averages qualified by independent Gauss integration; actual PDE flux shared at interfaces",
+    "Three epsilon policies distinguish parameter scaling; critical-polynomial and PDE evidence are separate",
+    "Reconstruction-only meshes64/128/256/512 avoid anticipated preasymptotic cancellation; original unexecuted preflight retained; all acceptance criteria unchanged",
+    "Fixed36tests/72reconstructions/24PDEruns/217gates; half-dt probes separately bound temporal contamination",
+    "Bilingual required metadata, existing method IDs, dependency pins and KaTeX formulas pass preflight"
+  ],
+  "approved_for_declared_execution": true
+}

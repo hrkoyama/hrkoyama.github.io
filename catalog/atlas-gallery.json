@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_on": "2026-11-22",
+  "reviewed_on": "2026-11-23",
   "scope": "One explicitly mapped visual per atlas test problem. Existing shared figures are identified. Derived plots use stored numerical values; computed previews record fixed inputs and numerical checks.",
   "items": [
     {
@@ -973,6 +973,42 @@
       "caption": {
         "ja": "実際の2次元スカラー輸送の最細格子の保存セル平均。全[0,1]²のうちx∈[.28,.72], y∈[.53,.97]の円盤周辺を拡大し、一回転後の一次風上とminmod MUSCLを幾何学的な参照セル平均と比較します。切り欠きの数値拡散を残した図で、FCT法やEuler流体の計算ではありません。",
         "en": "Saved cell means on the finest grid of actual two-dimensional scalar transport. Zoom x in[.28,.72],y in[.53,.97] from the full unit square and compare donor-cell upwinding and minmod MUSCL after one revolution against geometric reference cell means. Slot diffusion remains visible; this is not an FCT algorithm or Euler-flow calculation."
+      }
+    },
+    {
+      "id": "swashes-topography",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-23/shallow-water/results/swashes-topography-preview.png",
+      "caption": {
+        "ja": "保存した有限体積配列から描いた地形・水面と定常誤差のプレビュー。",
+        "en": "Preview of represented bed, saved FV surfaces and moving-steady errors."
+      }
+    },
+    {
+      "id": "dry-bed-dam-break",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-23/shallow-water/results/dry-bed-dam-break-preview.png",
+      "caption": {
+        "ja": "実際の1次元浅水計算の保存配列による水深・流量と乾湿前線のプレビュー。時空間図は1次元の5保存時刻です。",
+        "en": "Preview from actual saved 1D shallow-water depth/discharge arrays. The space-time panel shows five saved times, not a 2D flow."
+      }
+    },
+    {
+      "id": "lid-driven-cavity",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-23-r2/wall-flow/results/cavity-ghia-re100-preview.png",
+      "caption": {
+        "ja": "保存した最細Re100計算の流線と速さ。赤点は格子上の主渦、白抜き点はGhia表Vの主渦位置です。",
+        "en": "Saved finest Re100 streamlines and speed. Red dot: computed grid primary vortex; hollow dot: original Ghia TableV location."
+      }
+    },
+    {
+      "id": "wall-manufactured",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-23-r2/wall-flow/results/wall-manufactured-preview.png",
+      "caption": {
+        "ja": "実計算した最細の製造流れの流線と速度誤差。厳密壁渦度を注入せず、キャビティと同じThom閉鎖を使います。",
+        "en": "Computed finest manufactured-flow streamlines and velocity error, using the same Thom closure as the cavity without exact wall-vorticity injection."
       }
     }
   ]

@@ -46,6 +46,14 @@ Resources explicitly registered to the methods, problems and executions of this 
 
 ## Code and validation
 
+- [SWASHES topographic flow: lakes and nonzero steady discharge](<https://hrkoyama.github.io/numerical-methods-atlas/validation/swashes-topography/?lang=en>)
+  availability: run
+
+  Check two lake equilibria separately from nonzero subcritical flow, distinguishing lake preservation from moving-flow discretization error.
+- [Dry-bed dam break: actual wetting and dry states](<https://hrkoyama.github.io/numerical-methods-atlas/validation/dry-bed-dam-break/?lang=en>)
+  availability: run
+
+  Start the right half at exactly h=q=0 and compare wetting-front advance, conservation and conservative errors with the Ritter analytic solution.
 - [Double Mach reflection: lightweight grid verification](<https://hrkoyama.github.io/numerical-methods-atlas/validation/double-mach-reflection/?lang=en>)
   availability: run
 
@@ -70,6 +78,14 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   An inward spherical Guderley shock in cold stationary gas is evolved from t=-1 to -0.85 on 128/256/512 radial shells. HLL fluxes and Heun steps are checked against a similarity eigenvalue/field, shock trajectory and discrete conservation budgets.
+- [Re100 lid-driven cavity: Ghia centerline comparison](<https://hrkoyama.github.io/numerical-methods-atlas/validation/cavity-ghia-re100/?lang=en>)
+  availability: run
+
+  March a real nonperiodic 2D viscous incompressible solver to steady state on 17/33/65 node grids and compare against original Ghia centerlines. Retain streamlines, grid vortex center, true PDE residual and discrete divergence.
+- [Nonperiodic wall MMS: velocity, shear and pressure operator](<https://hrkoyama.github.io/numerical-methods-atlas/validation/wall-manufactured/?lang=en>)
+  availability: run
+
+  Apply analytic forcing to the same wall-bounded2D solver, measuring grid convergence of velocity/streamfunction and actual wall-vorticity/shear errors. A separate nonzero-Dirichlet manufactured pressure verifies Poisson and boundary-gradient operators.
 - [Euler double rarefaction: positivity at every stage](<https://hrkoyama.github.io/numerical-methods-atlas/validation/euler-double-rarefaction-positivity/?lang=en>)
   availability: run
 
@@ -82,6 +98,10 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Rotate a slotted disk through one full turn with an actual 2D finite-volume solver, comparing donor-cell and minmod MUSCL. Eight runs combine three grids with half-cell-center and 45-degree-start probes; measure conservation, bounds at every SSP stage, shape error and slot filling.
+- [WENO-JS/Z: fixed critical-point and epsilon comparison](<https://hrkoyama.github.io/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=en>)
+  availability: run
+
+  Compare WENO5 JS and Z power-two weights from the same cell means, then evolve actual periodic transport. Retain three regularity classes, three epsilon choices, fixed grids and separate halved-time-step diagnostics.
 - [Logistic growth: analytic solution and time refinement](<https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/logistic-growth/?lang=en>)
   availability: run
 

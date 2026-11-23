@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "frozen_before_scientific_execution": true,
+  "limits": {
+    "balance": 2e-10,
+    "lake_equilibrium": 2e-12,
+    "subcritical_finest_relative_depth_l1": 0.01,
+    "subcritical_finest_relative_momentum_l1": 0.01,
+    "ritter_finest_relative_depth_l1": 0.05,
+    "ritter_finest_relative_momentum_l1": 0.08,
+    "refinement_ratio": 0.85,
+    "front_error": 0.25
+  },
+  "front_convention": "Rightmost cell CENTER with cell-average h>=0.001m, compared with continuous Ritter h=0.001m contour; exact support front separately retained. No positivity floor is used.",
+  "scope": "Eight fixed first-order 1D FV runs, not exhaustive flood validation. All recorded depths must be nonnegative with no tolerance band; no state repair/retry."
+}

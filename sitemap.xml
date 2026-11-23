@@ -772,10 +772,19 @@
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sedov/</loc>
   </url>
   <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/</loc>
+  </url>
+  <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-splitting/</loc>
   </url>
   <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/</loc>
+  </url>
+  <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-wall-flow/</loc>
+  </url>
+  <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-weno-critical/</loc>
   </url>
   <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-zalesak/</loc>
@@ -1090,10 +1099,19 @@
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sedov/</loc>
   </url>
   <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-shallow-water/</loc>
+  </url>
+  <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-splitting/</loc>
   </url>
   <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/</loc>
+  </url>
+  <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-wall-flow/</loc>
+  </url>
+  <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-weno-critical/</loc>
   </url>
   <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-zalesak/</loc>
@@ -1594,6 +1612,9 @@
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/problems/double-rarefaction/</loc>
   </url>
   <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/problems/dry-bed-dam-break/</loc>
+  </url>
+  <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/problems/entropy-1d/</loc>
   </url>
   <url>
@@ -1658,6 +1679,9 @@
   </url>
   <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/problems/lbm-shear/</loc>
+  </url>
+  <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/problems/lid-driven-cavity/</loc>
   </url>
   <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/problems/logarithmic-particles/</loc>
@@ -1786,6 +1810,9 @@
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/problems/strong-shock/</loc>
   </url>
   <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/problems/swashes-topography/</loc>
+  </url>
+  <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/problems/taylor-green/</loc>
   </url>
   <url>
@@ -1802,6 +1829,9 @@
   </url>
   <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/problems/uniform-slab/</loc>
+  </url>
+  <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/problems/wall-manufactured/</loc>
   </url>
   <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/problems/zalesak/</loc>
@@ -1834,6 +1864,9 @@
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/validation/brio-independent/</loc>
   </url>
   <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/validation/cavity-ghia-re100/</loc>
+  </url>
+  <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-kinetic-kernel/</loc>
   </url>
   <url>
@@ -1856,6 +1889,9 @@
   </url>
   <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/validation/double-mach-reflection/</loc>
+  </url>
+  <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/validation/dry-bed-dam-break/</loc>
   </url>
   <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/validation/dsmc-statistics/</loc>
@@ -1969,7 +2005,16 @@
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/validation/spme/</loc>
   </url>
   <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/validation/swashes-topography/</loc>
+  </url>
+  <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/validation/turing-schnakenberg/</loc>
+  </url>
+  <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/validation/wall-manufactured/</loc>
+  </url>
+  <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/validation/weno-critical-epsilon/</loc>
   </url>
   <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/validation/zalesak-rotation/</loc>

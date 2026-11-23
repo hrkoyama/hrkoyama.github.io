@@ -1,0 +1,27 @@
+{
+  "reviewed_on": "2026-11-23",
+  "passed": true,
+  "scope": "Both scientific main figures and both gallery previews were read as PNG; all four PDF pages were separately rendered with Poppler and visually inspected. Color fields rasterized within vector PDF/SVG to avoid false white mesh seams; streamline/text remain vector. No scientific computation repeated for plotting.",
+  "files_sha256": {
+    "cavity-ghia-re100-preview.pdf": "962b245801998d18e83d12c185223116059482aef3548b9505a81180fc40fd96",
+    "cavity-ghia-re100-preview.png": "ce88c820d7513d83c054892f36ee234d938cf180428f3a6783899deb3b9f77b5",
+    "cavity-ghia-re100-preview.svg": "f4fac39873992372a8a3bccc20dc08fb3dff78e5e555199fca8afb01b1d32574",
+    "cavity-ghia-re100.pdf": "eaf5993607ca4f49e1bbeb4d623907f7594ef9b3c33ca76ba6226c41a0b62f9e",
+    "cavity-ghia-re100.png": "264ec174a0aaeb374d6506ba91503f44e6518ebb9f91a7a309ff8a890f372906",
+    "cavity-ghia-re100.svg": "3f7b3956365ff29596c39183f76234bb2c8551caba019e750817fa3dcf525fa7",
+    "wall-manufactured-preview.pdf": "dab3501c7c9aaad0d3cb60c503e2a3afbf17ec85670beb0d669e114ff0455020",
+    "wall-manufactured-preview.png": "edb1f81d131734b64f5056b10209f6a93ba3e8148ea6d5f50bcd9af312acf4d7",
+    "wall-manufactured-preview.svg": "0692d7bf0d8820c5951d997b5b715ea6e07f16026c1912ba9b6097cddbce67d2",
+    "wall-manufactured.pdf": "f58f1c99412fba4abf2d6b057289bbead439239f5c005825ae1185c8fa617b98",
+    "wall-manufactured.png": "8e85ee6e755ba71c723b19b5222e85e450f88c4383bbce7526b23a6d6f04cdb8",
+    "wall-manufactured.svg": "6bbd369d0cbe7fb598d0c03258ed20ef568fae02ea8b9967546cf3a158b88e82"
+  },
+  "plot_sha256": "5972e878e0d0bf0b1bd458896a516c20b7a19a9574bff682057a9c335ee2aefd",
+  "png_figures": 4,
+  "pdf_pages_visually_reviewed": 4,
+  "formats": [
+    "PNG",
+    "SVG",
+    "PDF"
+  ]
+}

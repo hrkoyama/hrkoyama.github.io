@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "cases": {
+    "weno-critical-epsilon": {
+      "reconstruction_grids": [
+        64,
+        128,
+        256,
+        512
+      ],
+      "profiles": [
+        "regular",
+        "first-critical",
+        "second-critical"
+      ],
+      "methods": [
+        "weno-js",
+        "weno-z"
+      ],
+      "epsilon_policies": [
+        "fixed-1e-40",
+        "fixed-1e-6",
+        "h-squared"
+      ],
+      "transport_grids": [
+        32,
+        64,
+        128
+      ],
+      "transport_final_time": 1.0,
+      "transport_courant": 0.1,
+      "transport_snapshot_times": [
+        0.0,
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ],
+      "time_probe_factor": 0.5,
+      "max_steps": 10000,
+      "reconstruction_target": "x=h/2; center i at x=0; exact cell means on offsets -2,-1,0,1,2",
+      "transport_profile": "q=cos(2*pi*x)+0.1*sin(2*pi*x)^3; unit speed; periodic [0,1]"
+    }
+  }
+}

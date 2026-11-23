@@ -29,7 +29,7 @@
   "test_files": [
     "test_numerics"
   ],
-  "code_mapping_scope": "Related chapter modules and test files; not a claim that each test covers every named method.",
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct.",
   "references": [
     {
       "url": "https://doi.org/10.1016/0021-9991(78)90023-2",
@@ -72,6 +72,4089 @@
     "WENOスキーム",
     "Jiang-Shu WENO"
   ],
+  "depth_release": {
+    "group": "weno-critical",
+    "case_ids": [
+      "weno-critical-epsilon"
+    ],
+    "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/",
+    "code_edition": "2026-11-23",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/weno.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/references/analytic.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/test_weno.py"
+    ],
+    "run_commands": [
+      "python -m pytest -q",
+      "python run.py --input inputs.json --output output"
+    ],
+    "run_from": "atlas-weno-critical-2026-11-23",
+    "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/atlas-weno-critical-2026-11-23.zip",
+    "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/source-manifest.json",
+    "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/verification.json",
+    "code_archive_sha256": "9c119480261013ef8ed0c58716c45af5b9fb9d3e891aef56b95b66fbd8415491",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/results/result.json",
+    "passed_tests": 36,
+    "examples": [
+      {
+        "id": "weno-critical-epsilon",
+        "title": {
+          "ja": "WENO-JS／Z：臨界点とεの固定比較",
+          "en": "WENO-JS/Z: fixed critical-point and epsilon comparison"
+        },
+        "method_ids": [
+          "weno-js",
+          "weno-z",
+          "rk4"
+        ],
+        "domains": [
+          "transport",
+          "pde"
+        ],
+        "code_files": [
+          "run.py",
+          "weno.py",
+          "references/analytic.py"
+        ],
+        "summary": {
+          "ja": "同じセル平均からのWENO5再構成と実際の周期輸送で、JS重みとZ二乗重みを比較します。3種類の臨界性、3種類のε、固定格子と時間刻み半減を分けて保存します。",
+          "en": "Compare WENO5 JS and Z power-two weights from the same cell means, then evolve actual periodic transport. Retain three regularity classes, three epsilon choices, fixed grids and separate halved-time-step diagnostics."
+        },
+        "assumptions": {
+          "ja": "局所多項式のセル中心x=0、再構成面h/2、h=1/64…1/512を使います。輸送は[0,1]周期・速度1・q₀=cos(2πx)+.1sin³(2πx)、T=1、32/64/128セルです。全て有限体積セル平均であり、点値を誤差の参照にしません。",
+          "en": "Local polynomials have center x=0 and target h/2, h=1/64…1/512. Transport uses periodic[0,1], unit speed, q₀=cos(2πx)+.1sin³(2πx), T=1 and32/64/128 cells. All evolved states/references are FV cell means, not point samples."
+        },
+        "algorithm": {
+          "ja": "3候補と線形重み(.1,.6,.3)、Jiang–Shu指標を共通にし、JSはd/(β+ε)²、Zはd[1+(|β₀−β₂|/(β+ε))²]を正規化します。ε=10⁻⁴⁰,10⁻⁶,h²です。輸送は共有風上面流束と古典RK4、Courant.1を使い、状態クリップ・再試行を行いません。",
+          "en": "Share three candidates, linear weights(.1,.6,.3) and JS indicators. Normalize JS d/(beta+epsilon)² or Z d[1+(|beta0−beta2|/(beta+epsilon))²]. Use epsilon10⁻⁴⁰,10⁻⁶,h². Actual transport uses shared upwind face fluxes and classical RK4 at Courant.1 without state clipping/retries."
+        },
+        "validation": {
+          "ja": "実行前契約で72局所再構成・24PDE計算・36pytestを固定します。解析セル平均を独立Gauss12求積と照合し、局所の誤差・重み、輸送のL1/L2/L∞・質量・全段有限性・中間時刻と保存流束を記録します。最細格子で6通りの刻み半減差が対応する連続解誤差の10%以下か確認します。",
+          "en": "Pre-run contract fixes72 local reconstructions,24 PDE runs and36 pytest checks. Qualify analytic means against independent Gauss12 quadrature; retain local errors/weights, transport L1/L2/Linf, mass, stage finiteness, intermediate times and shared-flux budgets. Six finest-grid half-dt differences must be at most10% of corresponding continuum errors."
+        },
+        "limits": {
+          "ja": "一次臨界点の面再構成だけに次数判定を置き、二次臨界点は診断値として残します。固定εは解の振幅・単位に依存します。局所再構成の次数とPDE全体の次数、有限体積版と原著の有限差分版を区別します。衝撃波、Euler/MHD、一般の高次臨界点、任意入力の安定性・TVD・正値性は今回の保証に含めません。",
+          "en": "Order gates concern the chosen first-critical interface reconstruction; second-critical values remain diagnostic. Fixed epsilon depends on amplitude/units. Distinguish reconstruction order from PDE convergence and this FV implementation from original FD papers. No shock/Euler/MHD, arbitrary higher-critical-point, universal stability/TVD or positivity guarantee is claimed."
+        },
+        "formulas": [
+          "\\bar q_i=h^{-1}\\int_{x_i-h/2}^{x_i+h/2}q(x)\\,dx,\\qquad q^-_{i+1/2}=\\sum_{k=0}^2\\omega_k p_k",
+          "(p_0,p_1,p_2)=\\frac16(2\\bar q_{i-2}-7\\bar q_{i-1}+11\\bar q_i,-\\bar q_{i-1}+5\\bar q_i+2\\bar q_{i+1},2\\bar q_i+5\\bar q_{i+1}-\\bar q_{i+2})",
+          "\\omega_k=\\alpha_k/\\sum_j\\alpha_j,\\quad d=(.1,.6,.3),\\quad\\alpha_k^{JS}=d_k/(\\epsilon+\\beta_k)^2,\\quad\\alpha_k^Z=d_k[1+(\\tau_5/(\\epsilon+\\beta_k))^2],\\quad\\tau_5=|\\beta_0-\\beta_2|",
+          "\\partial_tq+\\partial_xq=0,\\quad q(x,t)=q_0(x-t),\\quad\\frac{d\\bar q_i}{dt}=-\\frac{q^-_{i+1/2}-q^-_{i-1/2}}h",
+          "\\bar q_i(t)=\\operatorname{sinc}(h)\\cos\\theta_i+.075\\operatorname{sinc}(h)\\sin\\theta_i-.025\\operatorname{sinc}(3h)\\sin(3\\theta_i),\\quad\\theta_i=2\\pi(x_i-t),\\quad\\operatorname{sinc}(z)=\\frac{\\sin\\pi z}{\\pi z}"
+        ],
+        "references": [
+          {
+            "id": "jiang-shu1996",
+            "author": "Guang-Shan Jiang and Chi-Wang Shu",
+            "year": 1996,
+            "title": "Efficient Implementation of Weighted ENO Schemes",
+            "journal": "Journal of Computational Physics",
+            "volume": "126",
+            "pages": "202–228",
+            "doi": "10.1006/jcph.1996.0130",
+            "url": "https://ntrs.nasa.gov/api/citations/19960007052/downloads/19960007052.pdf",
+            "type": "article",
+            "role": "Classical JS candidate/weight/indicator background; preprint finite-difference convention distinguished from this FV implementation",
+            "review_level": "NASA-hosted ICASE95-73 preprint selected sections1–3: candidate Table1, optimal Table2, equations2.15–2.16 and3.1–3.9; text layer inspected, not full paper/numerical tables",
+            "review": {
+              "ja": "NASA公開プレプリントの節1–3で係数・重み・滑らかさ指標と有限差分の点値の規約を確認。原著の全実験やEuler特性分解を再現したとは表示しません。",
+              "en": "Inspected selected sections1–3 of the NASA preprint for candidates, weights, indicators and finite-difference point-value conventions. Original experiments/Euler characteristic reconstruction are not reproduced."
+            },
+            "accessed_on": "2026-11-23"
+          },
+          {
+            "id": "borges2008",
+            "author": "Rafael Borges, Monique Carmona, Bruno Costa and Wai Sun Don",
+            "year": 2008,
+            "title": "An improved weighted essentially non-oscillatory scheme for hyperbolic conservation laws",
+            "journal": "Journal of Computational Physics",
+            "volume": "227",
+            "pages": "3191–3211",
+            "doi": "10.1016/j.jcp.2007.11.038",
+            "url": "https://scholars.hkbu.edu.hk/en/publications/an-improved-weighted-essentially-non-oscillatory-scheme-for-hyper-2/",
+            "type": "article",
+            "role": "Original WENO-Z attribution and historical scope, not an actually inspected full-text formula source",
+            "review_level": "Author-institution publication record and abstract inspected; publisher full text returned403; original full paper and numerical experiments not audited",
+            "review": {
+              "ja": "著者所属機関の書誌と抄録を確認。出版社全文は取得不能であり、全文読了・元の実験・指数1の再現は主張しません。実装する指数2の式は別の一次研究論文でも確認しました。",
+              "en": "Inspected the author institution bibliography/abstract. Full publisher text was unavailable; no full-paper audit or replication of original power-one experiments is claimed. The implemented power-two formula was checked in another primary research paper."
+            },
+            "accessed_on": "2026-11-23"
+          },
+          {
+            "id": "vanlith2017",
+            "author": "Bart S. van Lith, Jan H. M. ten Thije Boonkkamp and Wilbert L. IJzerman",
+            "year": 2017,
+            "title": "Embedded WENO: A design strategy to improve existing WENO schemes",
+            "journal": "Journal of Computational Physics",
+            "volume": "330",
+            "pages": "529–549",
+            "doi": "10.1016/j.jcp.2016.11.026",
+            "url": "https://pure.tue.nl/ws/portalfiles/portal/53481949/embedded_WENO.pdf",
+            "type": "article",
+            "role": "Actually inspected finite-volume cell-mean derivation of baseline JS/Z candidates, weights and power-two choice; embedded modifications excluded",
+            "review_level": "Institution-hosted accepted manuscript section2 equations2–15 (PDF pages4–8) and selected section4.2 (PDF page22) text inspected; screenshot requests cache-missed; not a full-paper review",
+            "review": {
+              "ja": "機関公開の著者版でセル平均の式(2)–(3)、候補・線形重み(4)–(7)、JS指標と重み(8)–(13)、Z重み(15)、節4.2の指数2を確認。新規のembedded方式は実装せず、論文PDFも同梱しません。",
+              "en": "Inspected cell-average equations2–3, candidate/linear weights4–7, JS indicators/weights8–13, Z weights15 and selected power-two discussion in section4.2. The paper’s new embedded schemes are not implemented and its PDF is not redistributed."
+            },
+            "accessed_on": "2026-11-23"
+          }
+        ],
+        "citations": [
+          {
+            "id": "jiang-shu1996",
+            "author": "Guang-Shan Jiang and Chi-Wang Shu",
+            "year": 1996,
+            "title": "Efficient Implementation of Weighted ENO Schemes",
+            "journal": "Journal of Computational Physics",
+            "volume": "126",
+            "pages": "202–228",
+            "doi": "10.1006/jcph.1996.0130",
+            "url": "https://ntrs.nasa.gov/api/citations/19960007052/downloads/19960007052.pdf",
+            "type": "article",
+            "role": "Classical JS candidate/weight/indicator background; preprint finite-difference convention distinguished from this FV implementation",
+            "review_level": "NASA-hosted ICASE95-73 preprint selected sections1–3: candidate Table1, optimal Table2, equations2.15–2.16 and3.1–3.9; text layer inspected, not full paper/numerical tables",
+            "review": {
+              "ja": "NASA公開プレプリントの節1–3で係数・重み・滑らかさ指標と有限差分の点値の規約を確認。原著の全実験やEuler特性分解を再現したとは表示しません。",
+              "en": "Inspected selected sections1–3 of the NASA preprint for candidates, weights, indicators and finite-difference point-value conventions. Original experiments/Euler characteristic reconstruction are not reproduced."
+            },
+            "accessed_on": "2026-11-23"
+          },
+          {
+            "id": "borges2008",
+            "author": "Rafael Borges, Monique Carmona, Bruno Costa and Wai Sun Don",
+            "year": 2008,
+            "title": "An improved weighted essentially non-oscillatory scheme for hyperbolic conservation laws",
+            "journal": "Journal of Computational Physics",
+            "volume": "227",
+            "pages": "3191–3211",
+            "doi": "10.1016/j.jcp.2007.11.038",
+            "url": "https://scholars.hkbu.edu.hk/en/publications/an-improved-weighted-essentially-non-oscillatory-scheme-for-hyper-2/",
+            "type": "article",
+            "role": "Original WENO-Z attribution and historical scope, not an actually inspected full-text formula source",
+            "review_level": "Author-institution publication record and abstract inspected; publisher full text returned403; original full paper and numerical experiments not audited",
+            "review": {
+              "ja": "著者所属機関の書誌と抄録を確認。出版社全文は取得不能であり、全文読了・元の実験・指数1の再現は主張しません。実装する指数2の式は別の一次研究論文でも確認しました。",
+              "en": "Inspected the author institution bibliography/abstract. Full publisher text was unavailable; no full-paper audit or replication of original power-one experiments is claimed. The implemented power-two formula was checked in another primary research paper."
+            },
+            "accessed_on": "2026-11-23"
+          },
+          {
+            "id": "vanlith2017",
+            "author": "Bart S. van Lith, Jan H. M. ten Thije Boonkkamp and Wilbert L. IJzerman",
+            "year": 2017,
+            "title": "Embedded WENO: A design strategy to improve existing WENO schemes",
+            "journal": "Journal of Computational Physics",
+            "volume": "330",
+            "pages": "529–549",
+            "doi": "10.1016/j.jcp.2016.11.026",
+            "url": "https://pure.tue.nl/ws/portalfiles/portal/53481949/embedded_WENO.pdf",
+            "type": "article",
+            "role": "Actually inspected finite-volume cell-mean derivation of baseline JS/Z candidates, weights and power-two choice; embedded modifications excluded",
+            "review_level": "Institution-hosted accepted manuscript section2 equations2–15 (PDF pages4–8) and selected section4.2 (PDF page22) text inspected; screenshot requests cache-missed; not a full-paper review",
+            "review": {
+              "ja": "機関公開の著者版でセル平均の式(2)–(3)、候補・線形重み(4)–(7)、JS指標と重み(8)–(13)、Z重み(15)、節4.2の指数2を確認。新規のembedded方式は実装せず、論文PDFも同梱しません。",
+              "en": "Inspected cell-average equations2–3, candidate/linear weights4–7, JS indicators/weights8–13, Z weights15 and selected power-two discussion in section4.2. The paper’s new embedded schemes are not implemented and its PDF is not redistributed."
+            },
+            "accessed_on": "2026-11-23"
+          }
+        ],
+        "additional_figures": [
+          {
+            "file": "weno-critical-epsilon-preview.png",
+            "caption": {
+              "ja": "保存した最細格子の実際の周期輸送場とセル平均誤差、別の局所多項式による一次臨界点の面再構成誤差。",
+              "en": "Saved finest-grid actual periodic transport fields and cell-mean errors, alongside a separate local-polynomial first-critical interface reconstruction study."
+            }
+          }
+        ],
+        "gallery_figure": "weno-critical-epsilon-preview.png",
+        "measured": {
+          "id": "weno-critical-epsilon",
+          "passed": true,
+          "records": [
+            {
+              "id": "weno-js-fixed-1e-40-n32",
+              "method": "weno-js",
+              "epsilon_policy": "fixed-1e-40",
+              "n": 32,
+              "family": "refinement",
+              "courant": 0.1,
+              "epsilon": 1e-40,
+              "time": 1.0,
+              "steps": 320,
+              "rhs_evaluations": 1280,
+              "l1": 0.0005973099074937288,
+              "l2": 0.0006824968210118866,
+              "linf": 0.0012434496509712081,
+              "maximum_mass_change": 1.5146304349622497e-16,
+              "maximum_rhs_mass_defect": 8.326672684688674e-17,
+              "minimum": -0.9984054462570296,
+              "maximum": 0.9984054462570296,
+              "snapshot_times": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "snapshot_l1": [
+                0.0,
+                0.00017684485864721833,
+                0.0003243619287532331,
+                0.0004594401717969268,
+                0.0005973099074937288
+              ],
+              "clip_count": 0,
+              "retries": 0,
+              "field": "field-weno-js-fixed-1e-40-n32.npz",
+              "all_finite": true
+            },
+            {
+              "id": "weno-js-fixed-1e-40-n64",
+              "method": "weno-js",
+              "epsilon_policy": "fixed-1e-40",
+              "n": 64,
+              "family": "refinement",
+              "courant": 0.1,
+              "epsilon": 1e-40,
+              "time": 1.0,
+              "steps": 640,
+              "rhs_evaluations": 2560,
+              "l1": 2.852644695924703e-05,
+              "l2": 3.360123462930724e-05,
+              "linf": 7.4774924376797e-05,
+              "maximum_mass_change": 6.505213034913027e-17,
+              "maximum_rhs_mass_defect": 8.326672684688674e-17,
+              "minimum": -0.9995992987232583,
+              "maximum": 0.9995992987232583,
+              "snapshot_times": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "snapshot_l1": [
+                0.0,
+                7.957224437882726e-06,
+                1.522964439676193e-05,
+                2.1972632201265716e-05,
+                2.852644695924703e-05
+              ],
+              "clip_count": 0,
+              "retries": 0,
+              "field": "field-weno-js-fixed-1e-40-n64.npz",
+              "all_finite": true
+            },
+            {
+              "id": "weno-js-fixed-1e-40-n128",
+              "method": "weno-js",
+              "epsilon_policy": "fixed-1e-40",
+              "n": 128,
+              "family": "refinement",
+              "courant": 0.1,
+              "epsilon": 1e-40,
+              "time": 1.0,
+              "steps": 1280,
+              "rhs_evaluations": 5120,
+              "l1": 1.2566116355136017e-06,
+              "l2": 1.8076502483158637e-06,
+              "linf": 7.249602006820233e-06,
+              "maximum_mass_change": 1.0364972768961422e-16,
+              "maximum_rhs_mass_defect": 1.5265566588595902e-16,
+              "minimum": -0.9998997108281651,
+              "maximum": 0.9998997108281649,
+              "snapshot_times": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "snapshot_l1": [
+                0.0,
+                3.4041383445497205e-07,
+                6.611920536956457e-07,
+                9.653895156651532e-07,
+                1.2566116355136017e-06
+              ],
+              "clip_count": 0,
+              "retries": 0,
+              "field": "field-weno-js-fixed-1e-40-n128.npz",
+              "all_finite": true
+            },
+            {
+              "id": "weno-js-fixed-1e-6-n32",
+              "method": "weno-js",
+              "epsilon_policy": "fixed-1e-6",
+              "n": 32,
+              "family": "refinement",
+              "courant": 0.1,
+              "epsilon": 1e-06,
+              "time": 1.0,
+              "steps": 320,
+              "rhs_evaluations": 1280,
+              "l1": 0.0005973124274657013,
+              "l2": 0.0006824691800677099,
+              "linf": 0.0012434018261622166,
+              "maximum_mass_change": 1.4452414959231774e-16,
+              "maximum_rhs_mass_defect": 8.326672684688674e-17,
+              "minimum": -0.9984054333942187,
+              "maximum": 0.9984054333942187,
+              "snapshot_times": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "snapshot_l1": [
+                0.0,
+                0.00017680356208186945,
+                0.0003243162700813571,
+                0.0004594375790105275,
+                0.0005973124274657013
+              ],
+              "clip_count": 0,
+              "retries": 0,
+              "field": "field-weno-js-fixed-1e-6-n32.npz",
+              "all_finite": true
+            },
+            {
+              "id": "weno-js-fixed-1e-6-n64",
+              "method": "weno-js",
+              "epsilon_policy": "fixed-1e-6",
+              "n": 64,
+              "family": "refinement",
+              "courant": 0.1,
+              "epsilon": 1e-06,
+              "time": 1.0,
+              "steps": 640,
+              "rhs_evaluations": 2560,
+              "l1": 2.8458892013549265e-05,
+              "l2": 3.3512668775454524e-05,
+              "linf": 7.438636569601087e-05,
+              "maximum_mass_change": 5.898059818321144e-17,
+              "maximum_rhs_mass_defect": 8.326672684688674e-17,
+              "minimum": -0.9995992949869204,
+              "maximum": 0.9995992949869204,
+              "snapshot_times": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "snapshot_l1": [
+                0.0,
+                7.937366410439928e-06,
+                1.519341075397829e-05,
+                2.192404540745437e-05,
+                2.8458892013549265e-05
+              ],
+              "clip_count": 0,
+              "retries": 0,
+              "field": "field-weno-js-fixed-1e-6-n64.npz",
+              "all_finite": true
+            },
+            {
+              "id": "weno-js-fixed-1e-6-n128",
+              "method": "weno-js",
+              "epsilon_policy": "fixed-1e-6",
+              "n": 128,
+              "family": "refinement",
+              "courant": 0.1,
+              "epsilon": 1e-06,
+              "time": 1.0,
+              "steps": 1280,
+              "rhs_evaluations": 5120,
+              "l1": 1.2193026363643497e-06,
+              "l2": 1.7272070141672947e-06,
+              "linf": 6.836799076981315e-06,
+              "maximum_mass_change": 1.1102230246251565e-16,
+              "maximum_rhs_mass_defect": 1.3877787807814457e-16,
+              "minimum": -0.9998997122813733,
+              "maximum": 0.9998997122813734,
+              "snapshot_times": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "snapshot_l1": [
+                0.0,
+                3.2895055978758104e-07,
+                6.402382355773098e-07,
+                9.357831398719657e-07,
+                1.2193026363643497e-06
+              ],
+              "clip_count": 0,
+              "retries": 0,
+              "field": "field-weno-js-fixed-1e-6-n128.npz",
+              "all_finite": true
+            },
+            {
+              "id": "weno-js-h-squared-n32",
+              "method": "weno-js",
+              "epsilon_policy": "h-squared",
+              "n": 32,
+              "family": "refinement",
+              "courant": 0.1,
+              "epsilon": 0.0009765625,
+              "time": 1.0,
+              "steps": 320,
+              "rhs_evaluations": 1280,
+              "l1": 0.0005918976514464944,
+              "l2": 0.0006712870965314445,
+              "linf": 0.001210681123559345,
+              "maximum_mass_change": 1.100465205072787e-16,
+              "maximum_rhs_mass_defect": 8.326672684688674e-17,
+              "minimum": -0.9983999748833232,
+              "maximum": 0.9983999748833232,
+              "snapshot_times": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "snapshot_l1": [
+                0.0,
+                0.0001589801582780714,
+                0.0003092990804009775,
+                0.00045270783415495583,
+                0.0005918976514464944
+              ],
+              "clip_count": 0,
+              "retries": 0,
+              "field": "field-weno-js-h-squared-n32.npz",
+              "all_finite": true
+            },
+            {
+              "id": "weno-js-h-squared-n64",
+              "method": "weno-js",
+              "epsilon_policy": "h-squared",
+              "n": 64,
+              "family": "refinement",
+              "courant": 0.1,
+              "epsilon": 0.000244140625,
+              "time": 1.0,
+              "steps": 640,
+              "rhs_evaluations": 2560,
+              "l1": 2.3036624038847006e-05,
+              "l2": 2.690234494566534e-05,
+              "linf": 4.831800251237084e-05,
+              "maximum_mass_change": 9.313296661650483e-17,
+              "maximum_rhs_mass_defect": 9.71445146547012e-17,
+              "minimum": -0.9995993279336186,
+              "maximum": 0.9995993279336185,
+              "snapshot_times": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "snapshot_l1": [
+                0.0,
+                6.120812840977119e-06,
+                1.1939122589202768e-05,
+                1.7551274657011092e-05,
+                2.3036624038847006e-05
+              ],
+              "clip_count": 0,
+              "retries": 0,
+              "field": "field-weno-js-h-squared-n64.npz",
+              "all_finite": true
+            },
+            {
+              "id": "weno-js-h-squared-n128",
+              "method": "weno-js",
+              "epsilon_policy": "h-squared",
+              "n": 128,
+              "family": "refinement",
+              "courant": 0.1,
+              "epsilon": 6.103515625e-05,
+              "time": 1.0,
+              "steps": 1280,
+              "rhs_evaluations": 5120,
+              "l1": 8.082881402163137e-07,
+              "l2": 9.300339437050221e-07,
+              "linf": 1.938693906300415e-06,
+              "maximum_mass_change": 9.150666335777657e-17,
+              "maximum_rhs_mass_defect": 1.1102230246251565e-16,
+              "minimum": -0.9998997391876424,
+              "maximum": 0.9998997391876423,
+              "snapshot_times": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "snapshot_l1": [
+                0.0,
+                2.0347872919408835e-07,
+                4.065546945217289e-07,
+                6.081593935297928e-07,
+                8.082881402163137e-07
+              ],
+              "clip_count": 0,
+              "retries": 0,
+              "field": "field-weno-js-h-squared-n128.npz",
+              "all_finite": true
+            },
+            {
+              "id": "weno-z-fixed-1e-40-n32",
+              "method": "weno-z",
+              "epsilon_policy": "fixed-1e-40",
+              "n": 32,
+              "family": "refinement",
+              "courant": 0.1,
+              "epsilon": 1e-40,
+              "time": 1.0,
+              "steps": 320,
+              "rhs_evaluations": 1280,
+              "l1": 0.00031840811517821414,
+              "l2": 0.00035335467056243246,
+              "linf": 0.0005188828852899785,
+              "maximum_mass_change": 4.391018798566293e-17,
+              "maximum_rhs_mass_defect": 5.551115123125783e-17,
+              "minimum": -0.9984038603665076,
+              "maximum": 0.9984038603665079,
+              "snapshot_times": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "snapshot_l1": [
+                0.0,
+                8.005520887783798e-05,
+                0.00016007704639309738,
+                0.00023947662512480486,
+                0.00031840811517821414
+              ],
+              "clip_count": 0,
+              "retries": 0,
+              "field": "field-weno-z-fixed-1e-40-n32.npz",
+              "all_finite": true
+            },
+            {
+              "id": "weno-z-fixed-1e-40-n64",
+              "method": "weno-z",
+              "epsilon_policy": "fixed-1e-40",
+              "n": 64,
+              "family": "refinement",
+              "courant": 0.1,
+              "epsilon": 1e-40,
+              "time": 1.0,
+              "steps": 640,
+              "rhs_evaluations": 2560,
+              "l1": 1.0802822945711111e-05,
+              "l2": 1.2044969309885482e-05,
+              "linf": 1.8005435363122047e-05,
+              "maximum_mass_change": 1.323810852604801e-16,
+              "maximum_rhs_mass_defect": 8.326672684688674e-17,
+              "minimum": -0.9995995803336025,
+              "maximum": 0.9995995803336024,
+              "snapshot_times": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "snapshot_l1": [
+                0.0,
+                2.70061854743106e-06,
+                5.401877189614821e-06,
+                8.102315598584224e-06,
+                1.0802822945711111e-05
+              ],
+              "clip_count": 0,
+              "retries": 0,
+              "field": "field-weno-z-fixed-1e-40-n64.npz",
+              "all_finite": true
+            },
+            {
+              "id": "weno-z-fixed-1e-40-n128",
+              "method": "weno-z",
+              "epsilon_policy": "fixed-1e-40",
+              "n": 128,
+              "family": "refinement",
+              "courant": 0.1,
+              "epsilon": 1e-40,
+              "time": 1.0,
+              "steps": 1280,
+              "rhs_evaluations": 5120,
+              "l1": 3.4444959688345405e-07,
+              "l2": 3.83262852885465e-07,
+              "linf": 5.652195698147011e-07,
+              "maximum_mass_change": 1.617900691891494e-16,
+              "maximum_rhs_mass_defect": 1.1102230246251565e-16,
+              "minimum": -0.9998997457760899,
+              "maximum": 0.9998997457760896,
+              "snapshot_times": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "snapshot_l1": [
+                0.0,
+                8.611940995463356e-08,
+                1.722263464137776e-07,
+                2.5833606331795815e-07,
+                3.4444959688345405e-07
+              ],
+              "clip_count": 0,
+              "retries": 0,
+              "field": "field-weno-z-fixed-1e-40-n128.npz",
+              "all_finite": true
+            },
+            {
+              "id": "weno-z-fixed-1e-6-n32",
+              "method": "weno-z",
+              "epsilon_policy": "fixed-1e-6",
+              "n": 32,
+              "family": "refinement",
+              "courant": 0.1,
+              "epsilon": 1e-06,
+              "time": 1.0,
+              "steps": 320,
+              "rhs_evaluations": 1280,
+              "l1": 0.00031842755011425073,
+              "l2": 0.0003533776503168711,
+              "linf": 0.000518877563131976,
+              "maximum_mass_change": 1.616545439175887e-16,
+              "maximum_rhs_mass_defect": 8.326672684688674e-17,
+              "minimum": -0.9984038545159734,
+              "maximum": 0.9984038545159735,
+              "snapshot_times": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "snapshot_l1": [
+                0.0,
+                8.006068393328388e-05,
+                0.0001600869590956366,
+                0.0002394912690227097,
+                0.00031842755011425073
+              ],
+              "clip_count": 0,
+              "retries": 0,
+              "field": "field-weno-z-fixed-1e-6-n32.npz",
+              "all_finite": true
+            },
+            {
+              "id": "weno-z-fixed-1e-6-n64",
+              "method": "weno-z",
+              "epsilon_policy": "fixed-1e-6",
+              "n": 64,
+              "family": "refinement",
+              "courant": 0.1,
+              "epsilon": 1e-06,
+              "time": 1.0,
+              "steps": 640,
+              "rhs_evaluations": 2560,
+              "l1": 1.0806231552981898e-05,
+              "l2": 1.2047085324431922e-05,
+              "linf": 1.79982626768993e-05,
+              "maximum_mass_change": 1.0755285551056204e-16,
+              "maximum_rhs_mass_defect": 9.71445146547012e-17,
+              "minimum": -0.9995995796565156,
+              "maximum": 0.9995995796565156,
+              "snapshot_times": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "snapshot_l1": [
+                0.0,
+                2.7015461207072775e-06,
+                5.403643835243761e-06,
+                8.104913764223998e-06,
+                1.0806231552981898e-05
+              ],
+              "clip_count": 0,
+              "retries": 0,
+              "field": "field-weno-z-fixed-1e-6-n64.npz",
+              "all_finite": true
+            },
+            {
+              "id": "weno-z-fixed-1e-6-n128",
+              "method": "weno-z",
+              "epsilon_policy": "fixed-1e-6",
+              "n": 128,
+              "family": "refinement",
+              "courant": 0.1,
+              "epsilon": 1e-06,
+              "time": 1.0,
+              "steps": 1280,
+              "rhs_evaluations": 5120,
+              "l1": 3.447390851515008e-07,
+              "l2": 3.833760170732922e-07,
+              "linf": 5.653064052424384e-07,
+              "maximum_mass_change": 7.025630077706069e-17,
+              "maximum_rhs_mass_defect": 1.3877787807814457e-16,
+              "minimum": -0.9998997457787913,
+              "maximum": 0.9998997457787913,
+              "snapshot_times": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "snapshot_l1": [
+                0.0,
+                8.619585269270514e-08,
+                1.7237675749084426e-07,
+                2.5855731583261285e-07,
+                3.447390851515008e-07
+              ],
+              "clip_count": 0,
+              "retries": 0,
+              "field": "field-weno-z-fixed-1e-6-n128.npz",
+              "all_finite": true
+            },
+            {
+              "id": "weno-z-h-squared-n32",
+              "method": "weno-z",
+              "epsilon_policy": "h-squared",
+              "n": 32,
+              "family": "refinement",
+              "courant": 0.1,
+              "epsilon": 0.0009765625,
+              "time": 1.0,
+              "steps": 320,
+              "rhs_evaluations": 1280,
+              "l1": 0.0003254111179907895,
+              "l2": 0.00036231133092192857,
+              "linf": 0.0005261359577908298,
+              "maximum_mass_change": 7.166576360129184e-17,
+              "maximum_rhs_mass_defect": 8.326672684688674e-17,
+              "minimum": -0.9984017843611184,
+              "maximum": 0.9984017843611184,
+              "snapshot_times": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "snapshot_l1": [
+                0.0,
+                8.200886277531046e-05,
+                0.00016362217948354065,
+                0.000244739254559487,
+                0.0003254111179907895
+              ],
+              "clip_count": 0,
+              "retries": 0,
+              "field": "field-weno-z-h-squared-n32.npz",
+              "all_finite": true
+            },
+            {
+              "id": "weno-z-h-squared-n64",
+              "method": "weno-z",
+              "epsilon_policy": "h-squared",
+              "n": 64,
+              "family": "refinement",
+              "courant": 0.1,
+              "epsilon": 0.000244140625,
+              "time": 1.0,
+              "steps": 640,
+              "rhs_evaluations": 2560,
+              "l1": 1.0896567885809705e-05,
+              "l2": 1.211134003023527e-05,
+              "linf": 1.779281819824785e-05,
+              "maximum_mass_change": 8.760353553682876e-17,
+              "maximum_rhs_mass_defect": 9.71445146547012e-17,
+              "minimum": -0.999599566712559,
+              "maximum": 0.9995995667125589,
+              "snapshot_times": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "snapshot_l1": [
+                0.0,
+                2.7249772618995064e-06,
+                5.449362924989033e-06,
+                8.173202074902267e-06,
+                1.0896567885809705e-05
+              ],
+              "clip_count": 0,
+              "retries": 0,
+              "field": "field-weno-z-h-squared-n64.npz",
+              "all_finite": true
+            },
+            {
+              "id": "weno-z-h-squared-n128",
+              "method": "weno-z",
+              "epsilon_policy": "h-squared",
+              "n": 128,
+              "family": "refinement",
+              "courant": 0.1,
+              "epsilon": 6.103515625e-05,
+              "time": 1.0,
+              "steps": 1280,
+              "rhs_evaluations": 5120,
+              "l1": 3.4506273636540304e-07,
+              "l2": 3.8354663763594423e-07,
+              "linf": 5.65656457562902e-07,
+              "maximum_mass_change": 1.3530843112619095e-16,
+              "maximum_rhs_mass_defect": 1.249000902703301e-16,
+              "minimum": -0.999899745878628,
+              "maximum": 0.9998997458786278,
+              "snapshot_times": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "snapshot_l1": [
+                0.0,
+                8.626642411944572e-08,
+                1.725323428770258e-07,
+                2.5879777770942297e-07,
+                3.4506273636540304e-07
+              ],
+              "clip_count": 0,
+              "retries": 0,
+              "field": "field-weno-z-h-squared-n128.npz",
+              "all_finite": true
+            },
+            {
+              "id": "weno-js-fixed-1e-40-time-half",
+              "method": "weno-js",
+              "epsilon_policy": "fixed-1e-40",
+              "n": 128,
+              "family": "time-probe",
+              "courant": 0.05,
+              "epsilon": 1e-40,
+              "time": 1.0,
+              "steps": 2560,
+              "rhs_evaluations": 10240,
+              "l1": 1.2566144900396248e-06,
+              "l2": 1.807642637442641e-06,
+              "linf": 7.249454632152208e-06,
+              "maximum_mass_change": 1.48318857196017e-16,
+              "maximum_rhs_mass_defect": 1.3877787807814457e-16,
+              "minimum": -0.9998996429398631,
+              "maximum": 0.9998996429398631,
+              "snapshot_times": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "snapshot_l1": [
+                0.0,
+                3.4041324252286976e-07,
+                6.611928928379593e-07,
+                9.653912413782044e-07,
+                1.2566144900396248e-06
+              ],
+              "clip_count": 0,
+              "retries": 0,
+              "field": "field-weno-js-fixed-1e-40-time-half.npz",
+              "all_finite": true,
+              "time_half_difference_l1": 1.1137449214835074e-10
+            },
+            {
+              "id": "weno-js-fixed-1e-6-time-half",
+              "method": "weno-js",
+              "epsilon_policy": "fixed-1e-6",
+              "n": 128,
+              "family": "time-probe",
+              "courant": 0.05,
+              "epsilon": 1e-06,
+              "time": 1.0,
+              "steps": 2560,
+              "rhs_evaluations": 10240,
+              "l1": 1.2193053769714074e-06,
+              "l2": 1.7271984749584893e-06,
+              "linf": 6.836649144026374e-06,
+              "maximum_mass_change": 2.3288662664988635e-16,
+              "maximum_rhs_mass_defect": 1.3877787807814457e-16,
+              "minimum": -0.9998996440398183,
+              "maximum": 0.9998996440398182,
+              "snapshot_times": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "snapshot_l1": [
+                0.0,
+                3.289508688784687e-07,
+                6.402390616646366e-07,
+                9.357848106791215e-07,
+                1.2193053769714074e-06
+              ],
+              "clip_count": 0,
+              "retries": 0,
+              "field": "field-weno-js-fixed-1e-6-time-half.npz",
+              "all_finite": true,
+              "time_half_difference_l1": 1.1134989127579639e-10
+            },
+            {
+              "id": "weno-js-h-squared-time-half",
+              "method": "weno-js",
+              "epsilon_policy": "h-squared",
+              "n": 128,
+              "family": "time-probe",
+              "courant": 0.05,
+              "epsilon": 6.103515625e-05,
+              "time": 1.0,
+              "steps": 2560,
+              "rhs_evaluations": 10240,
+              "l1": 8.082791980615984e-07,
+              "l2": 9.300200837034889e-07,
+              "linf": 1.938533611411941e-06,
+              "maximum_mass_change": 1.3704315460216776e-16,
+              "maximum_rhs_mass_defect": 1.3877787807814457e-16,
+              "minimum": -0.9998996702280211,
+              "maximum": 0.9998996702280211,
+              "snapshot_times": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "snapshot_l1": [
+                0.0,
+                2.0347646872997428e-07,
+                4.0655017159721353e-07,
+                6.081526432367057e-07,
+                8.082791980615984e-07
+              ],
+              "clip_count": 0,
+              "retries": 0,
+              "field": "field-weno-js-h-squared-time-half.npz",
+              "all_finite": true,
+              "time_half_difference_l1": 1.110155018857039e-10
+            },
+            {
+              "id": "weno-z-fixed-1e-40-time-half",
+              "method": "weno-z",
+              "epsilon_policy": "fixed-1e-40",
+              "n": 128,
+              "family": "time-probe",
+              "courant": 0.05,
+              "epsilon": 1e-40,
+              "time": 1.0,
+              "steps": 2560,
+              "rhs_evaluations": 10240,
+              "l1": 3.4443767469850796e-07,
+              "l2": 3.832535302421382e-07,
+              "linf": 5.652290193669529e-07,
+              "maximum_mass_change": 1.3942839938163587e-16,
+              "maximum_rhs_mass_defect": 1.3877787807814457e-16,
+              "minimum": -0.9998996770759012,
+              "maximum": 0.9998996770759012,
+              "snapshot_times": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "snapshot_l1": [
+                0.0,
+                8.611642951926349e-08,
+                1.7222038528242234e-07,
+                2.583271217230707e-07,
+                3.4443767469850796e-07
+              ],
+              "clip_count": 0,
+              "retries": 0,
+              "field": "field-weno-z-fixed-1e-40-time-half.npz",
+              "all_finite": true,
+              "time_half_difference_l1": 1.1094042213209178e-10
+            },
+            {
+              "id": "weno-z-fixed-1e-6-time-half",
+              "method": "weno-z",
+              "epsilon_policy": "fixed-1e-6",
+              "n": 128,
+              "family": "time-probe",
+              "courant": 0.05,
+              "epsilon": 1e-06,
+              "time": 1.0,
+              "steps": 2560,
+              "rhs_evaluations": 10240,
+              "l1": 3.4472716653900087e-07,
+              "l2": 3.8336670000792406e-07,
+              "linf": 5.65315833811475e-07,
+              "maximum_mass_change": 1.1709383462843448e-16,
+              "maximum_rhs_mass_defect": 1.3877787807814457e-16,
+              "minimum": -0.9998996770666572,
+              "maximum": 0.9998996770666572,
+              "snapshot_times": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "snapshot_l1": [
+                0.0,
+                8.619287307346825e-08,
+                1.7237079822206704e-07,
+                2.585483770008146e-07,
+                3.4472716653900087e-07
+              ],
+              "clip_count": 0,
+              "retries": 0,
+              "field": "field-weno-z-fixed-1e-6-time-half.npz",
+              "all_finite": true,
+              "time_half_difference_l1": 1.1094054638166075e-10
+            },
+            {
+              "id": "weno-z-h-squared-time-half",
+              "method": "weno-z",
+              "epsilon_policy": "h-squared",
+              "n": 128,
+              "family": "time-probe",
+              "courant": 0.05,
+              "epsilon": 6.103515625e-05,
+              "time": 1.0,
+              "steps": 2560,
+              "rhs_evaluations": 10240,
+              "l1": 3.450508263379683e-07,
+              "l2": 3.8353734062458165e-07,
+              "linf": 5.656658276231852e-07,
+              "maximum_mass_change": 1.4137996329210978e-16,
+              "maximum_rhs_mass_defect": 1.249000902703301e-16,
+              "minimum": -0.9998996771484501,
+              "maximum": 0.9998996771484501,
+              "snapshot_times": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "snapshot_l1": [
+                0.0,
+                8.626344661976986e-08,
+                1.7252638789990024e-07,
+                2.587888451771104e-07,
+                3.450508263379683e-07
+              ],
+              "clip_count": 0,
+              "retries": 0,
+              "field": "field-weno-z-h-squared-time-half.npz",
+              "all_finite": true,
+              "time_half_difference_l1": 1.1094045582367429e-10
+            }
+          ],
+          "reconstruction_records": [
+            {
+              "profile": "regular",
+              "method": "weno-js",
+              "epsilon_policy": "fixed-1e-40",
+              "n": 64,
+              "h": 0.015625,
+              "epsilon": 1e-40,
+              "trace": 0.007874010522854183,
+              "reference": 0.007874015747802332,
+              "absolute_error": 5.224948149487596e-09,
+              "weight_deviation": 0.0006881183214512143,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.10018817937220086,
+              "tau5": 2.624437460863223e-08
+            },
+            {
+              "profile": "regular",
+              "method": "weno-js",
+              "epsilon_policy": "fixed-1e-40",
+              "n": 128,
+              "h": 0.0078125,
+              "epsilon": 1e-40,
+              "trace": 0.0039215684642272455,
+              "reference": 0.003921568627447414,
+              "absolute_error": 1.6322016828385078e-10,
+              "weight_deviation": 0.00017404520539343604,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.10004551801185986,
+              "tau5": 8.16213754461885e-10
+            },
+            {
+              "profile": "regular",
+              "method": "weno-js",
+              "epsilon_policy": "fixed-1e-40",
+              "n": 256,
+              "h": 0.00390625,
+              "epsilon": 1e-40,
+              "trace": 0.0019569471573289646,
+              "reference": 0.001956947162426559,
+              "absolute_error": 5.097594221736834e-12,
+              "weight_deviation": 4.373676269009419e-05,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.10001118465490672,
+              "tau5": 2.5476057000746108e-11
+            },
+            {
+              "profile": "regular",
+              "method": "weno-js",
+              "epsilon_policy": "fixed-1e-40",
+              "n": 512,
+              "h": 0.001953125,
+              "epsilon": 1e-40,
+              "trace": 0.0009775171063901276,
+              "reference": 0.0009775171065493637,
+              "absolute_error": 1.5923612255164254e-13,
+              "weight_deviation": 1.09607795025779e-05,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.10000277149121035,
+              "tau5": 7.958875884863737e-13
+            },
+            {
+              "profile": "regular",
+              "method": "weno-js",
+              "epsilon_policy": "fixed-1e-6",
+              "n": 64,
+              "h": 0.015625,
+              "epsilon": 1e-06,
+              "trace": 0.007874010536561438,
+              "reference": 0.007874015747802332,
+              "absolute_error": 5.2112408936710874e-09,
+              "weight_deviation": 0.000685313141379984,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.10018741209499524,
+              "tau5": 2.624437460863223e-08
+            },
+            {
+              "profile": "regular",
+              "method": "weno-js",
+              "epsilon_policy": "fixed-1e-6",
+              "n": 128,
+              "h": 0.0078125,
+              "epsilon": 1e-06,
+              "trace": 0.003921568465919773,
+              "reference": 0.003921568627447414,
+              "absolute_error": 1.6152764108906537e-10,
+              "weight_deviation": 0.00017124006598190356,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.10004478436662594,
+              "tau5": 8.16213754461885e-10
+            },
+            {
+              "profile": "regular",
+              "method": "weno-js",
+              "epsilon_policy": "fixed-1e-6",
+              "n": 256,
+              "h": 0.00390625,
+              "epsilon": 1e-06,
+              "trace": 0.001956947157530608,
+              "reference": 0.001956947162426559,
+              "absolute_error": 4.895950832251028e-12,
+              "weight_deviation": 4.1046826748436516e-05,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.10001049676466102,
+              "tau5": 2.5476057000746108e-11
+            },
+            {
+              "profile": "regular",
+              "method": "weno-js",
+              "epsilon_policy": "fixed-1e-6",
+              "n": 512,
+              "h": 0.001953125,
+              "epsilon": 1e-06,
+              "trace": 0.0009775171064113942,
+              "reference": 0.0009775171065493637,
+              "absolute_error": 1.3796949693833938e-13,
+              "weight_deviation": 8.684272519876579e-06,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.10000219586417272,
+              "tau5": 7.958875884863737e-13
+            },
+            {
+              "profile": "regular",
+              "method": "weno-js",
+              "epsilon_policy": "h-squared",
+              "n": 64,
+              "h": 0.015625,
+              "epsilon": 0.000244140625,
+              "trace": 0.007874012203479084,
+              "reference": 0.007874015747802332,
+              "absolute_error": 3.544323248089176e-09,
+              "weight_deviation": 0.0003441733018305637,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.10009411191215002,
+              "tau5": 2.624437460863223e-08
+            },
+            {
+              "profile": "regular",
+              "method": "weno-js",
+              "epsilon_policy": "h-squared",
+              "n": 128,
+              "h": 0.0078125,
+              "epsilon": 6.103515625e-05,
+              "trace": 0.003921568516729342,
+              "reference": 0.003921568627447414,
+              "absolute_error": 1.1071807186346927e-10,
+              "weight_deviation": 8.702970295038082e-05,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.10002276058511843,
+              "tau5": 8.16213754461885e-10
+            },
+            {
+              "profile": "regular",
+              "method": "weno-js",
+              "epsilon_policy": "h-squared",
+              "n": 256,
+              "h": 0.00390625,
+              "epsilon": 1.52587890625e-05,
+              "trace": 0.001956947158968234,
+              "reference": 0.001956947162426559,
+              "absolute_error": 3.458324772387389e-12,
+              "weight_deviation": 2.186882397203771e-05,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.10000559243200943,
+              "tau5": 2.5476057000746108e-11
+            },
+            {
+              "profile": "regular",
+              "method": "weno-js",
+              "epsilon_policy": "h-squared",
+              "n": 512,
+              "h": 0.001953125,
+              "epsilon": 3.814697265625e-06,
+              "trace": 0.0009775171064413239,
+              "reference": 0.0009775171065493637,
+              "absolute_error": 1.0803987912644253e-13,
+              "weight_deviation": 5.480417378911362e-06,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.10000138575232177,
+              "tau5": 7.958875884863737e-13
+            },
+            {
+              "profile": "regular",
+              "method": "weno-z",
+              "epsilon_policy": "fixed-1e-40",
+              "n": 64,
+              "h": 0.015625,
+              "epsilon": 1e-40,
+              "trace": 0.007874013885157145,
+              "reference": 0.007874015747802332,
+              "absolute_error": 1.8626451873948735e-09,
+              "weight_deviation": 7.934208845483681e-12,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.1000000000021698,
+              "tau5": 2.624437460863223e-08
+            },
+            {
+              "profile": "regular",
+              "method": "weno-z",
+              "epsilon_policy": "fixed-1e-40",
+              "n": 128,
+              "h": 0.0078125,
+              "epsilon": 1e-40,
+              "trace": 0.003921568569239754,
+              "reference": 0.003921568627447414,
+              "absolute_error": 5.820766004610567e-11,
+              "weight_deviation": 3.108624468950438e-14,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.10000000000000817,
+              "tau5": 8.16213754461885e-10
+            },
+            {
+              "profile": "regular",
+              "method": "weno-z",
+              "epsilon_policy": "fixed-1e-40",
+              "n": 256,
+              "h": 0.00390625,
+              "epsilon": 1e-40,
+              "trace": 0.001956947160607569,
+              "reference": 0.001956947162426559,
+              "absolute_error": 1.8189898372267255e-12,
+              "weight_deviation": 1.6653345369377348e-16,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.10000000000000005,
+              "tau5": 2.5476057000746108e-11
+            },
+            {
+              "profile": "regular",
+              "method": "weno-z",
+              "epsilon_policy": "fixed-1e-40",
+              "n": 512,
+              "h": 0.001953125,
+              "epsilon": 1e-40,
+              "trace": 0.0009775171064925203,
+              "reference": 0.0009775171065493637,
+              "absolute_error": 5.684341886080802e-14,
+              "weight_deviation": 0.0,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.1,
+              "tau5": 7.958875884863737e-13
+            },
+            {
+              "profile": "regular",
+              "method": "weno-z",
+              "epsilon_policy": "fixed-1e-6",
+              "n": 64,
+              "h": 0.015625,
+              "epsilon": 1e-06,
+              "trace": 0.007874013885157145,
+              "reference": 0.007874015747802332,
+              "absolute_error": 1.8626451873948735e-09,
+              "weight_deviation": 7.837619442341293e-12,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.10000000000214336,
+              "tau5": 2.624437460863223e-08
+            },
+            {
+              "profile": "regular",
+              "method": "weno-z",
+              "epsilon_policy": "fixed-1e-6",
+              "n": 128,
+              "h": 0.0078125,
+              "epsilon": 1e-06,
+              "trace": 0.003921568569239753,
+              "reference": 0.003921568627447414,
+              "absolute_error": 5.820766091346741e-11,
+              "weight_deviation": 2.964295475749168e-14,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.10000000000000778,
+              "tau5": 8.16213754461885e-10
+            },
+            {
+              "profile": "regular",
+              "method": "weno-z",
+              "epsilon_policy": "fixed-1e-6",
+              "n": 256,
+              "h": 0.00390625,
+              "epsilon": 1e-06,
+              "trace": 0.0019569471606075686,
+              "reference": 0.001956947162426559,
+              "absolute_error": 1.8189902709075945e-12,
+              "weight_deviation": 1.1102230246251565e-16,
+              "weight_sum_defect": 1.1102230246251565e-16,
+              "minimum_weight": 0.10000000000000002,
+              "tau5": 2.5476057000746108e-11
+            },
+            {
+              "profile": "regular",
+              "method": "weno-z",
+              "epsilon_policy": "fixed-1e-6",
+              "n": 512,
+              "h": 0.001953125,
+              "epsilon": 1e-06,
+              "trace": 0.0009775171064925203,
+              "reference": 0.0009775171065493637,
+              "absolute_error": 5.684341886080802e-14,
+              "weight_deviation": 0.0,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.1,
+              "tau5": 7.958875884863737e-13
+            },
+            {
+              "profile": "regular",
+              "method": "weno-z",
+              "epsilon_policy": "h-squared",
+              "n": 64,
+              "h": 0.015625,
+              "epsilon": 0.000244140625,
+              "trace": 0.007874013885157178,
+              "reference": 0.007874015747802332,
+              "absolute_error": 1.8626451544351275e-09,
+              "weight_deviation": 9.93205517829665e-13,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.1000000000002716,
+              "tau5": 2.624437460863223e-08
+            },
+            {
+              "profile": "regular",
+              "method": "weno-z",
+              "epsilon_policy": "h-squared",
+              "n": 128,
+              "h": 0.0078125,
+              "epsilon": 6.103515625e-05,
+              "trace": 0.003921568569239753,
+              "reference": 0.003921568627447414,
+              "absolute_error": 5.820766091346741e-11,
+              "weight_deviation": 3.885780586188048e-15,
+              "weight_sum_defect": 1.1102230246251565e-16,
+              "minimum_weight": 0.10000000000000102,
+              "tau5": 8.16213754461885e-10
+            },
+            {
+              "profile": "regular",
+              "method": "weno-z",
+              "epsilon_policy": "h-squared",
+              "n": 256,
+              "h": 0.00390625,
+              "epsilon": 1.52587890625e-05,
+              "trace": 0.001956947160607569,
+              "reference": 0.001956947162426559,
+              "absolute_error": 1.8189898372267255e-12,
+              "weight_deviation": 0.0,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.1,
+              "tau5": 2.5476057000746108e-11
+            },
+            {
+              "profile": "regular",
+              "method": "weno-z",
+              "epsilon_policy": "h-squared",
+              "n": 512,
+              "h": 0.001953125,
+              "epsilon": 3.814697265625e-06,
+              "trace": 0.0009775171064925203,
+              "reference": 0.0009775171065493637,
+              "absolute_error": 5.684341886080802e-14,
+              "weight_deviation": 0.0,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.1,
+              "tau5": 7.958875884863737e-13
+            },
+            {
+              "profile": "first-critical",
+              "method": "weno-js",
+              "epsilon_policy": "fixed-1e-40",
+              "n": 64,
+              "h": 0.015625,
+              "epsilon": 1e-40,
+              "trace": 6.150597808724173e-05,
+              "reference": 6.151574780233204e-05,
+              "absolute_error": 9.769715090309633e-09,
+              "weight_deviation": 0.04369533001684983,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.12432337983273277,
+              "tau5": 4.859611639947611e-08
+            },
+            {
+              "profile": "first-critical",
+              "method": "weno-js",
+              "epsilon_policy": "fixed-1e-40",
+              "n": 128,
+              "h": 0.0078125,
+              "epsilon": 1e-40,
+              "trace": 1.5318328166889877e-05,
+              "reference": 1.5318627447413746e-05,
+              "absolute_error": 2.9928052386928917e-10,
+              "weight_deviation": 0.02218888704319255,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.11170322353869278,
+              "tau5": 1.5147056854054084e-09
+            },
+            {
+              "profile": "first-critical",
+              "method": "weno-js",
+              "epsilon_policy": "fixed-1e-40",
+              "n": 256,
+              "h": 0.00390625,
+              "epsilon": 1e-40,
+              "trace": 3.822153169544703e-06,
+              "reference": 3.822162426558862e-06,
+              "absolute_error": 9.257014159018775e-12,
+              "weight_deviation": 0.01117414675508216,
+              "weight_sum_defect": 1.1102230246251565e-16,
+              "minimum_weight": 0.10573793122213442,
+              "tau5": 4.730392985321449e-11
+            },
+            {
+              "profile": "first-critical",
+              "method": "weno-js",
+              "epsilon_policy": "fixed-1e-40",
+              "n": 512,
+              "h": 0.001953125,
+              "epsilon": 1e-40,
+              "trace": 9.546062615838624e-07,
+              "reference": 9.546065493637457e-07,
+              "absolute_error": 2.8777988322798993e-13,
+              "weight_deviation": 0.005606279625208321,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.10284068304401169,
+              "tau5": 1.4780086164765057e-12
+            },
+            {
+              "profile": "first-critical",
+              "method": "weno-js",
+              "epsilon_policy": "fixed-1e-6",
+              "n": 64,
+              "h": 0.015625,
+              "epsilon": 1e-06,
+              "trace": 6.151729996561439e-05,
+              "reference": 6.151574780233204e-05,
+              "absolute_error": 1.5521632823435258e-09,
+              "weight_deviation": 0.009506379479579719,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.10459805118920648,
+              "tau5": 4.859611639947611e-08
+            },
+            {
+              "profile": "first-critical",
+              "method": "weno-js",
+              "epsilon_policy": "fixed-1e-6",
+              "n": 128,
+              "h": 0.0078125,
+              "epsilon": 1e-06,
+              "trace": 1.5318580279800778e-05,
+              "reference": 1.5318627447413746e-05,
+              "absolute_error": 4.716761296862451e-11,
+              "weight_deviation": 0.0003650006536698447,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.1001765360646487,
+              "tau5": 1.5147056854054084e-09
+            },
+            {
+              "profile": "first-critical",
+              "method": "weno-js",
+              "epsilon_policy": "fixed-1e-6",
+              "n": 256,
+              "h": 0.00390625,
+              "epsilon": 1e-06,
+              "trace": 3.822160629863883e-06,
+              "reference": 3.822162426558862e-06,
+              "absolute_error": 1.7966949788369925e-12,
+              "weight_deviation": 1.1459499608401646e-05,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.10000563149910707,
+              "tau5": 4.730392985321449e-11
+            },
+            {
+              "profile": "first-critical",
+              "method": "weno-js",
+              "epsilon_policy": "fixed-1e-6",
+              "n": 512,
+              "h": 0.001953125,
+              "epsilon": 1e-06,
+              "trace": 9.546064925639418e-07,
+              "reference": 9.546065493637457e-07,
+              "absolute_error": 5.679980386380447e-14,
+              "weight_deviation": 3.5654797125861393e-07,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.10000017673384438,
+              "tau5": 1.4780086164765057e-12
+            },
+            {
+              "profile": "first-critical",
+              "method": "weno-js",
+              "epsilon_policy": "h-squared",
+              "n": 64,
+              "h": 0.015625,
+              "epsilon": 0.000244140625,
+              "trace": 6.15139092300492e-05,
+              "reference": 6.151574780233204e-05,
+              "absolute_error": 1.8385722828500066e-09,
+              "weight_deviation": 4.9704243172077334e-05,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.10002320084986435,
+              "tau5": 4.859611639947611e-08
+            },
+            {
+              "profile": "first-critical",
+              "method": "weno-js",
+              "epsilon_policy": "h-squared",
+              "n": 128,
+              "h": 0.0078125,
+              "epsilon": 6.103515625e-05,
+              "trace": 1.5318569427371627e-05,
+              "reference": 1.5318627447413746e-05,
+              "absolute_error": 5.8020042119539834e-11,
+              "weight_deviation": 6.078515202290191e-06,
+              "weight_sum_defect": 2.220446049250313e-16,
+              "minimum_weight": 0.10000293592404913,
+              "tau5": 1.5147056854054084e-09
+            },
+            {
+              "profile": "first-critical",
+              "method": "weno-js",
+              "epsilon_policy": "h-squared",
+              "n": 256,
+              "h": 0.00390625,
+              "epsilon": 1.52587890625e-05,
+              "trace": 3.822160609033748e-06,
+              "reference": 3.822162426558862e-06,
+              "absolute_error": 1.8175251139730154e-12,
+              "weight_deviation": 7.517301601200899e-07,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.10000036940470822,
+              "tau5": 4.730392985321449e-11
+            },
+            {
+              "profile": "first-critical",
+              "method": "weno-js",
+              "epsilon_policy": "h-squared",
+              "n": 512,
+              "h": 0.001953125,
+              "epsilon": 3.814697265625e-06,
+              "trace": 9.546064925317618e-07,
+              "reference": 9.546065493637457e-07,
+              "absolute_error": 5.683198391602008e-14,
+              "weight_deviation": 9.347129764636364e-08,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.10000004633184378,
+              "tau5": 1.4780086164765057e-12
+            },
+            {
+              "profile": "first-critical",
+              "method": "weno-z",
+              "epsilon_policy": "fixed-1e-40",
+              "n": 64,
+              "h": 0.015625,
+              "epsilon": 1e-40,
+              "trace": 6.15136234101562e-05,
+              "reference": 6.151574780233204e-05,
+              "absolute_error": 2.1243921758447998e-09,
+              "weight_deviation": 0.0014464425878076281,
+              "weight_sum_defect": 1.1102230246251565e-16,
+              "minimum_weight": 0.10080517465953266,
+              "tau5": 4.859611639947611e-08
+            },
+            {
+              "profile": "first-critical",
+              "method": "weno-z",
+              "epsilon_policy": "fixed-1e-40",
+              "n": 128,
+              "h": 0.0078125,
+              "epsilon": 1e-40,
+              "trace": 1.5318567172480176e-05,
+              "reference": 1.5318627447413746e-05,
+              "absolute_error": 6.027493356996561e-11,
+              "weight_deviation": 0.0001902764127202361,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.1001003586790032,
+              "tau5": 1.5147056854054084e-09
+            },
+            {
+              "profile": "first-critical",
+              "method": "weno-z",
+              "epsilon_policy": "fixed-1e-40",
+              "n": 256,
+              "h": 0.00390625,
+              "epsilon": 1e-40,
+              "trace": 3.822160591402773e-06,
+              "reference": 3.822162426558862e-06,
+              "absolute_error": 1.8351560886764877e-12,
+              "weight_deviation": 2.4287213083784565e-05,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.10001247149883627,
+              "tau5": 4.730392985321449e-11
+            },
+            {
+              "profile": "first-critical",
+              "method": "weno-z",
+              "epsilon_policy": "fixed-1e-40",
+              "n": 512,
+              "h": 0.001953125,
+              "epsilon": 1e-40,
+              "trace": 9.546064923941104e-07,
+              "reference": 9.546065493637457e-07,
+              "absolute_error": 5.696963524027838e-14,
+              "weight_deviation": 3.064068100855355e-06,
+              "weight_sum_defect": 1.1102230246251565e-16,
+              "minimum_weight": 0.10000155255300874,
+              "tau5": 1.4780086164765057e-12
+            },
+            {
+              "profile": "first-critical",
+              "method": "weno-z",
+              "epsilon_policy": "fixed-1e-6",
+              "n": 64,
+              "h": 0.015625,
+              "epsilon": 1e-06,
+              "trace": 6.151389020012213e-05,
+              "reference": 6.151574780233204e-05,
+              "absolute_error": 1.8576022099117857e-09,
+              "weight_deviation": 1.4038882663380825e-05,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.10000679033498133,
+              "tau5": 4.859611639947611e-08
+            },
+            {
+              "profile": "first-critical",
+              "method": "weno-z",
+              "epsilon_policy": "fixed-1e-6",
+              "n": 128,
+              "h": 0.0078125,
+              "epsilon": 1e-06,
+              "trace": 1.531856923977736e-05,
+              "reference": 1.5318627447413746e-05,
+              "absolute_error": 5.8207636386781387e-11,
+              "weight_deviation": 8.107750026908889e-10,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.10000000039213915,
+              "tau5": 1.5147056854054084e-09
+            },
+            {
+              "profile": "first-critical",
+              "method": "weno-z",
+              "epsilon_policy": "fixed-1e-6",
+              "n": 256,
+              "h": 0.00390625,
+              "epsilon": 1e-06,
+              "trace": 3.822160607569456e-06,
+              "reference": 3.822162426558862e-06,
+              "absolute_error": 1.8189894052399224e-12,
+              "weight_deviation": 2.5590640717609858e-14,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.1000000000000126,
+              "tau5": 4.730392985321449e-11
+            },
+            {
+              "profile": "first-critical",
+              "method": "weno-z",
+              "epsilon_policy": "fixed-1e-6",
+              "n": 512,
+              "h": 0.001953125,
+              "epsilon": 1e-06,
+              "trace": 9.54606492520327e-07,
+              "reference": 9.546065493637457e-07,
+              "absolute_error": 5.684341864904978e-14,
+              "weight_deviation": 0.0,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.1,
+              "tau5": 1.4780086164765057e-12
+            },
+            {
+              "profile": "first-critical",
+              "method": "weno-z",
+              "epsilon_policy": "h-squared",
+              "n": 64,
+              "h": 0.015625,
+              "epsilon": 0.000244140625,
+              "trace": 6.151388515718373e-05,
+              "reference": 6.151574780233204e-05,
+              "absolute_error": 1.8626451483093852e-09,
+              "weight_deviation": 1.965094753586527e-12,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.10000000000091724,
+              "tau5": 4.859611639947611e-08
+            },
+            {
+              "profile": "first-critical",
+              "method": "weno-z",
+              "epsilon_policy": "h-squared",
+              "n": 128,
+              "h": 0.0078125,
+              "epsilon": 6.103515625e-05,
+              "trace": 1.531856923975284e-05,
+              "reference": 1.5318627447413746e-05,
+              "absolute_error": 5.8207660906691144e-11,
+              "weight_deviation": 3.7192471324942744e-15,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.10000000000000182,
+              "tau5": 1.5147056854054084e-09
+            },
+            {
+              "profile": "first-critical",
+              "method": "weno-z",
+              "epsilon_policy": "h-squared",
+              "n": 256,
+              "h": 0.00390625,
+              "epsilon": 1.52587890625e-05,
+              "trace": 3.822160607569456e-06,
+              "reference": 3.822162426558862e-06,
+              "absolute_error": 1.8189894052399224e-12,
+              "weight_deviation": 0.0,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.1,
+              "tau5": 4.730392985321449e-11
+            },
+            {
+              "profile": "first-critical",
+              "method": "weno-z",
+              "epsilon_policy": "h-squared",
+              "n": 512,
+              "h": 0.001953125,
+              "epsilon": 3.814697265625e-06,
+              "trace": 9.54606492520327e-07,
+              "reference": 9.546065493637457e-07,
+              "absolute_error": 5.684341864904978e-14,
+              "weight_deviation": 0.0,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.1,
+              "tau5": 1.4780086164765057e-12
+            },
+            {
+              "profile": "second-critical",
+              "method": "weno-js",
+              "epsilon_policy": "fixed-1e-40",
+              "n": 64,
+              "h": 0.015625,
+              "epsilon": 1e-40,
+              "trace": 2.396397115594271e-06,
+              "reference": 4.805915523320436e-07,
+              "absolute_error": 1.9158055632622273e-06,
+              "weight_deviation": 0.39914147055742166,
+              "weight_sum_defect": 1.1102230246251565e-16,
+              "minimum_weight": 0.0002702300496532453,
+              "tau5": 9.837250458666357e-11
+            },
+            {
+              "profile": "second-critical",
+              "method": "weno-js",
+              "epsilon_policy": "fixed-1e-40",
+              "n": 128,
+              "h": 0.0078125,
+              "epsilon": 1e-40,
+              "trace": 2.9848642877761244e-07,
+              "reference": 5.983838491374627e-08,
+              "absolute_error": 2.3864804386386617e-07,
+              "weight_deviation": 0.399114424092328,
+              "weight_sum_defect": 2.220446049250313e-16,
+              "minimum_weight": 0.00024908526567154836,
+              "tau5": 7.676734139865131e-13
+            },
+            {
+              "profile": "second-critical",
+              "method": "weno-js",
+              "epsilon_policy": "fixed-1e-40",
+              "n": 256,
+              "h": 0.00390625,
+              "epsilon": 1e-40,
+              "trace": 3.7246799338247296e-08,
+              "reference": 7.465160933861625e-09,
+              "absolute_error": 2.978163840438567e-08,
+              "weight_deviation": 0.39909849062923763,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.00023920940174030313,
+              "tau5": 5.995765386424207e-15
+            },
+            {
+              "profile": "second-critical",
+              "method": "weno-js",
+              "epsilon_policy": "fixed-1e-40",
+              "n": 512,
+              "h": 0.001953125,
+              "epsilon": 1e-40,
+              "trace": 4.651926070402615e-09,
+              "reference": 9.322329574956711e-10,
+              "absolute_error": 3.7196931129069435e-09,
+              "weight_deviation": 0.39908990733509764,
+              "weight_sum_defect": 1.1102230246251565e-16,
+              "minimum_weight": 0.00023443746533859545,
+              "tau5": 4.683862965888948e-17
+            },
+            {
+              "profile": "second-critical",
+              "method": "weno-js",
+              "epsilon_policy": "fixed-1e-6",
+              "n": 64,
+              "h": 0.015625,
+              "epsilon": 1e-06,
+              "trace": 4.80099575424841e-07,
+              "reference": 4.805915523320436e-07,
+              "absolute_error": 4.919769072026152e-10,
+              "weight_deviation": 0.0002958801768027097,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.0999407665798767,
+              "tau5": 9.837250458666357e-11
+            },
+            {
+              "profile": "second-critical",
+              "method": "weno-js",
+              "epsilon_policy": "fixed-1e-6",
+              "n": 128,
+              "h": 0.0078125,
+              "epsilon": 1e-06,
+              "trace": 5.978282685067959e-08,
+              "reference": 5.983838491374627e-08,
+              "absolute_error": 5.5558063066680515e-11,
+              "weight_deviation": 4.517395956082915e-06,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.09999898579966429,
+              "tau5": 7.676734139865131e-13
+            },
+            {
+              "profile": "second-critical",
+              "method": "weno-js",
+              "epsilon_policy": "fixed-1e-6",
+              "n": 256,
+              "h": 0.00390625,
+              "epsilon": 1e-06,
+              "trace": 7.463347101525842e-09,
+              "reference": 7.465160933861625e-09,
+              "absolute_error": 1.813832335783016e-12,
+              "weight_deviation": 6.98044018143662e-08,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.09999998344826407,
+              "tau5": 5.995765386424207e-15
+            },
+            {
+              "profile": "second-critical",
+              "method": "weno-js",
+              "epsilon_policy": "fixed-1e-6",
+              "n": 512,
+              "h": 0.001953125,
+              "epsilon": 1e-06,
+              "trace": 9.321761241365192e-10,
+              "reference": 9.322329574956711e-10,
+              "absolute_error": 5.683335915197172e-14,
+              "weight_deviation": 1.0848362208548679e-09,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.09999999973581673,
+              "tau5": 4.683862965888948e-17
+            },
+            {
+              "profile": "second-critical",
+              "method": "weno-js",
+              "epsilon_policy": "h-squared",
+              "n": 64,
+              "h": 0.015625,
+              "epsilon": 0.000244140625,
+              "trace": 4.787345238298536e-07,
+              "reference": 4.805915523320436e-07,
+              "absolute_error": 1.8570285021900687e-09,
+              "weight_deviation": 1.2124791805012691e-06,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.09999975731994847,
+              "tau5": 9.837250458666357e-11
+            },
+            {
+              "profile": "second-critical",
+              "method": "weno-js",
+              "epsilon_policy": "h-squared",
+              "n": 128,
+              "h": 0.0078125,
+              "epsilon": 6.103515625e-05,
+              "trace": 5.978022066412968e-08,
+              "reference": 5.983838491374627e-08,
+              "absolute_error": 5.816424961658508e-11,
+              "weight_deviation": 7.401352208891154e-08,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.09999998338325304,
+              "tau5": 7.676734139865131e-13
+            },
+            {
+              "profile": "second-critical",
+              "method": "weno-js",
+              "epsilon_policy": "h-squared",
+              "n": 256,
+              "h": 0.00390625,
+              "epsilon": 1.52587890625e-05,
+              "trace": 7.463342282431703e-09,
+              "reference": 7.465160933861625e-09,
+              "absolute_error": 1.8186514299221893e-12,
+              "weight_deviation": 4.574701728543573e-09,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.09999999891526537,
+              "tau5": 5.995765386424207e-15
+            },
+            {
+              "profile": "second-critical",
+              "method": "weno-js",
+              "epsilon_policy": "h-squared",
+              "n": 512,
+              "h": 0.001953125,
+              "epsilon": 3.814697265625e-06,
+              "trace": 9.321761167139022e-10,
+              "reference": 9.322329574956711e-10,
+              "absolute_error": 5.6840781768896936e-14,
+              "weight_deviation": 2.8438329469082646e-10,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.09999999993074596,
+              "tau5": 4.683862965888948e-17
+            },
+            {
+              "profile": "second-critical",
+              "method": "weno-z",
+              "epsilon_policy": "fixed-1e-40",
+              "n": 64,
+              "h": 0.015625,
+              "epsilon": 1e-40,
+              "trace": 2.239081217012271e-06,
+              "reference": 4.805915523320436e-07,
+              "absolute_error": 1.7584896646802276e-06,
+              "weight_deviation": 0.3663979027042026,
+              "weight_sum_defect": 2.220446049250313e-16,
+              "minimum_weight": 0.008451561056914102,
+              "tau5": 9.837250458666357e-11
+            },
+            {
+              "profile": "second-critical",
+              "method": "weno-z",
+              "epsilon_policy": "fixed-1e-40",
+              "n": 128,
+              "h": 0.0078125,
+              "epsilon": 1e-40,
+              "trace": 2.3568168532501864e-07,
+              "reference": 5.983838491374627e-08,
+              "absolute_error": 1.7584330041127237e-07,
+              "weight_deviation": 0.2941055319781376,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.026494022585215164,
+              "tau5": 7.676734139865131e-13
+            },
+            {
+              "profile": "second-critical",
+              "method": "weno-z",
+              "epsilon_policy": "fixed-1e-40",
+              "n": 256,
+              "h": 0.00390625,
+              "epsilon": 1e-40,
+              "trace": 1.973128478127577e-08,
+              "reference": 7.465160933861625e-09,
+              "absolute_error": 1.2266123847414143e-08,
+              "weight_deviation": 0.16439050055755788,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.05890807234923631,
+              "tau5": 5.995765386424207e-15
+            },
+            {
+              "profile": "second-critical",
+              "method": "weno-z",
+              "epsilon_policy": "fixed-1e-40",
+              "n": 512,
+              "h": 0.001953125,
+              "epsilon": 1e-40,
+              "trace": 1.486491718757464e-09,
+              "reference": 9.322329574956711e-10,
+              "absolute_error": 5.542587612617929e-10,
+              "weight_deviation": 0.059472213429343834,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.0851329770086668,
+              "tau5": 4.683862965888948e-17
+            },
+            {
+              "profile": "second-critical",
+              "method": "weno-z",
+              "epsilon_policy": "fixed-1e-6",
+              "n": 64,
+              "h": 0.015625,
+              "epsilon": 1e-06,
+              "trace": 4.787289071960694e-07,
+              "reference": 4.805915523320436e-07,
+              "absolute_error": 1.8626451359742561e-09,
+              "weight_deviation": 2.861821890576266e-12,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.09999999999942713,
+              "tau5": 9.837250458666357e-11
+            },
+            {
+              "profile": "second-critical",
+              "method": "weno-z",
+              "epsilon_policy": "fixed-1e-6",
+              "n": 128,
+              "h": 0.0078125,
+              "epsilon": 1e-06,
+              "trace": 5.978017725283276e-08,
+              "reference": 5.983838491374627e-08,
+              "absolute_error": 5.820766091350711e-11,
+              "weight_deviation": 0.0,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.1,
+              "tau5": 7.676734139865131e-13
+            },
+            {
+              "profile": "second-critical",
+              "method": "weno-z",
+              "epsilon_policy": "fixed-1e-6",
+              "n": 256,
+              "h": 0.00390625,
+              "epsilon": 1e-06,
+              "trace": 7.463341944458076e-09,
+              "reference": 7.465160933861625e-09,
+              "absolute_error": 1.818989403549165e-12,
+              "weight_deviation": 0.0,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.1,
+              "tau5": 5.995765386424207e-15
+            },
+            {
+              "profile": "second-critical",
+              "method": "weno-z",
+              "epsilon_policy": "fixed-1e-6",
+              "n": 512,
+              "h": 0.001953125,
+              "epsilon": 1e-06,
+              "trace": 9.321761140768103e-10,
+              "reference": 9.322329574956711e-10,
+              "absolute_error": 5.684341886080802e-14,
+              "weight_deviation": 0.0,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.1,
+              "tau5": 4.683862965888948e-17
+            },
+            {
+              "profile": "second-critical",
+              "method": "weno-z",
+              "epsilon_policy": "h-squared",
+              "n": 64,
+              "h": 0.015625,
+              "epsilon": 0.000244140625,
+              "trace": 4.787289071828126e-07,
+              "reference": 4.805915523320436e-07,
+              "absolute_error": 1.862645149231063e-09,
+              "weight_deviation": 0.0,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.1,
+              "tau5": 9.837250458666357e-11
+            },
+            {
+              "profile": "second-critical",
+              "method": "weno-z",
+              "epsilon_policy": "h-squared",
+              "n": 128,
+              "h": 0.0078125,
+              "epsilon": 6.103515625e-05,
+              "trace": 5.978017725283276e-08,
+              "reference": 5.983838491374627e-08,
+              "absolute_error": 5.820766091350711e-11,
+              "weight_deviation": 0.0,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.1,
+              "tau5": 7.676734139865131e-13
+            },
+            {
+              "profile": "second-critical",
+              "method": "weno-z",
+              "epsilon_policy": "h-squared",
+              "n": 256,
+              "h": 0.00390625,
+              "epsilon": 1.52587890625e-05,
+              "trace": 7.463341944458076e-09,
+              "reference": 7.465160933861625e-09,
+              "absolute_error": 1.818989403549165e-12,
+              "weight_deviation": 0.0,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.1,
+              "tau5": 5.995765386424207e-15
+            },
+            {
+              "profile": "second-critical",
+              "method": "weno-z",
+              "epsilon_policy": "h-squared",
+              "n": 512,
+              "h": 0.001953125,
+              "epsilon": 3.814697265625e-06,
+              "trace": 9.321761140768103e-10,
+              "reference": 9.322329574956711e-10,
+              "absolute_error": 5.684341886080802e-14,
+              "weight_deviation": 0.0,
+              "weight_sum_defect": 0.0,
+              "minimum_weight": 0.1,
+              "tau5": 4.683862965888948e-17
+            }
+          ],
+          "reference_qualification": {
+            "algorithm": "Fourier antiderivative versus independent Gauss12 point-function integration",
+            "maximum_difference": 5.551115123125783e-16,
+            "differences": [
+              4.440892098500626e-16,
+              4.440892098500626e-16,
+              3.3306690738754696e-16,
+              4.458239333260394e-16,
+              4.458239333260394e-16,
+              4.440892098500626e-16,
+              3.885780586188048e-16,
+              3.3306690738754696e-16,
+              4.440892098500626e-16,
+              4.440892098500626e-16,
+              5.551115123125783e-16,
+              4.440892098500626e-16,
+              4.440892098500626e-16,
+              4.649058915617843e-16,
+              5.551115123125783e-16
+            ]
+          },
+          "metrics": {
+            "completed_pde_runs": 24,
+            "local_reconstructions": 72,
+            "maximum_transport_mass_error": 2.3288662664988635e-16
+          },
+          "checks": {
+            "72 fixed local reconstructions": true,
+            "24 fixed PDE runs completed": true,
+            "independent analytic-cell quadrature": true,
+            "convex normalized local weights": true,
+            "first-critical weno-js fixed-1e-40 refinement n128": true,
+            "first-critical weno-js fixed-1e-40 refinement n256": true,
+            "first-critical weno-js fixed-1e-40 refinement n512": true,
+            "first-critical weno-js fixed-1e-6 refinement n128": true,
+            "first-critical weno-js fixed-1e-6 refinement n256": true,
+            "first-critical weno-js fixed-1e-6 refinement n512": true,
+            "first-critical weno-js h-squared refinement n128": true,
+            "first-critical weno-js h-squared refinement n256": true,
+            "first-critical weno-js h-squared refinement n512": true,
+            "first-critical weno-z fixed-1e-40 refinement n128": true,
+            "first-critical weno-z fixed-1e-40 refinement n256": true,
+            "first-critical weno-z fixed-1e-40 refinement n512": true,
+            "first-critical weno-z fixed-1e-6 refinement n128": true,
+            "first-critical weno-z fixed-1e-6 refinement n256": true,
+            "first-critical weno-z fixed-1e-6 refinement n512": true,
+            "first-critical weno-z h-squared refinement n128": true,
+            "first-critical weno-z h-squared refinement n256": true,
+            "first-critical weno-z h-squared refinement n512": true,
+            "first-critical tiny-epsilon Z/JS error": true,
+            "first-critical last reconstruction order weno-z fixed-1e-40": true,
+            "first-critical last reconstruction order weno-js h-squared": true,
+            "weno-js-fixed-1e-40-n32: finite saved arrays": true,
+            "weno-js-fixed-1e-40-n32: time reached": true,
+            "weno-js-fixed-1e-40-n32: periodic mass": true,
+            "weno-js-fixed-1e-40-n32: shared RHS flux balance": true,
+            "weno-js-fixed-1e-40-n32: all requested snapshots": true,
+            "weno-js-fixed-1e-40-n32: four stage evaluations per step": true,
+            "weno-js-fixed-1e-40-n32: no clipping or retries": true,
+            "weno-js-fixed-1e-40-n64: finite saved arrays": true,
+            "weno-js-fixed-1e-40-n64: time reached": true,
+            "weno-js-fixed-1e-40-n64: periodic mass": true,
+            "weno-js-fixed-1e-40-n64: shared RHS flux balance": true,
+            "weno-js-fixed-1e-40-n64: all requested snapshots": true,
+            "weno-js-fixed-1e-40-n64: four stage evaluations per step": true,
+            "weno-js-fixed-1e-40-n64: no clipping or retries": true,
+            "weno-js-fixed-1e-40-n128: finite saved arrays": true,
+            "weno-js-fixed-1e-40-n128: time reached": true,
+            "weno-js-fixed-1e-40-n128: periodic mass": true,
+            "weno-js-fixed-1e-40-n128: shared RHS flux balance": true,
+            "weno-js-fixed-1e-40-n128: all requested snapshots": true,
+            "weno-js-fixed-1e-40-n128: four stage evaluations per step": true,
+            "weno-js-fixed-1e-40-n128: no clipping or retries": true,
+            "weno-js-fixed-1e-6-n32: finite saved arrays": true,
+            "weno-js-fixed-1e-6-n32: time reached": true,
+            "weno-js-fixed-1e-6-n32: periodic mass": true,
+            "weno-js-fixed-1e-6-n32: shared RHS flux balance": true,
+            "weno-js-fixed-1e-6-n32: all requested snapshots": true,
+            "weno-js-fixed-1e-6-n32: four stage evaluations per step": true,
+            "weno-js-fixed-1e-6-n32: no clipping or retries": true,
+            "weno-js-fixed-1e-6-n64: finite saved arrays": true,
+            "weno-js-fixed-1e-6-n64: time reached": true,
+            "weno-js-fixed-1e-6-n64: periodic mass": true,
+            "weno-js-fixed-1e-6-n64: shared RHS flux balance": true,
+            "weno-js-fixed-1e-6-n64: all requested snapshots": true,
+            "weno-js-fixed-1e-6-n64: four stage evaluations per step": true,
+            "weno-js-fixed-1e-6-n64: no clipping or retries": true,
+            "weno-js-fixed-1e-6-n128: finite saved arrays": true,
+            "weno-js-fixed-1e-6-n128: time reached": true,
+            "weno-js-fixed-1e-6-n128: periodic mass": true,
+            "weno-js-fixed-1e-6-n128: shared RHS flux balance": true,
+            "weno-js-fixed-1e-6-n128: all requested snapshots": true,
+            "weno-js-fixed-1e-6-n128: four stage evaluations per step": true,
+            "weno-js-fixed-1e-6-n128: no clipping or retries": true,
+            "weno-js-h-squared-n32: finite saved arrays": true,
+            "weno-js-h-squared-n32: time reached": true,
+            "weno-js-h-squared-n32: periodic mass": true,
+            "weno-js-h-squared-n32: shared RHS flux balance": true,
+            "weno-js-h-squared-n32: all requested snapshots": true,
+            "weno-js-h-squared-n32: four stage evaluations per step": true,
+            "weno-js-h-squared-n32: no clipping or retries": true,
+            "weno-js-h-squared-n64: finite saved arrays": true,
+            "weno-js-h-squared-n64: time reached": true,
+            "weno-js-h-squared-n64: periodic mass": true,
+            "weno-js-h-squared-n64: shared RHS flux balance": true,
+            "weno-js-h-squared-n64: all requested snapshots": true,
+            "weno-js-h-squared-n64: four stage evaluations per step": true,
+            "weno-js-h-squared-n64: no clipping or retries": true,
+            "weno-js-h-squared-n128: finite saved arrays": true,
+            "weno-js-h-squared-n128: time reached": true,
+            "weno-js-h-squared-n128: periodic mass": true,
+            "weno-js-h-squared-n128: shared RHS flux balance": true,
+            "weno-js-h-squared-n128: all requested snapshots": true,
+            "weno-js-h-squared-n128: four stage evaluations per step": true,
+            "weno-js-h-squared-n128: no clipping or retries": true,
+            "weno-z-fixed-1e-40-n32: finite saved arrays": true,
+            "weno-z-fixed-1e-40-n32: time reached": true,
+            "weno-z-fixed-1e-40-n32: periodic mass": true,
+            "weno-z-fixed-1e-40-n32: shared RHS flux balance": true,
+            "weno-z-fixed-1e-40-n32: all requested snapshots": true,
+            "weno-z-fixed-1e-40-n32: four stage evaluations per step": true,
+            "weno-z-fixed-1e-40-n32: no clipping or retries": true,
+            "weno-z-fixed-1e-40-n64: finite saved arrays": true,
+            "weno-z-fixed-1e-40-n64: time reached": true,
+            "weno-z-fixed-1e-40-n64: periodic mass": true,
+            "weno-z-fixed-1e-40-n64: shared RHS flux balance": true,
+            "weno-z-fixed-1e-40-n64: all requested snapshots": true,
+            "weno-z-fixed-1e-40-n64: four stage evaluations per step": true,
+            "weno-z-fixed-1e-40-n64: no clipping or retries": true,
+            "weno-z-fixed-1e-40-n128: finite saved arrays": true,
+            "weno-z-fixed-1e-40-n128: time reached": true,
+            "weno-z-fixed-1e-40-n128: periodic mass": true,
+            "weno-z-fixed-1e-40-n128: shared RHS flux balance": true,
+            "weno-z-fixed-1e-40-n128: all requested snapshots": true,
+            "weno-z-fixed-1e-40-n128: four stage evaluations per step": true,
+            "weno-z-fixed-1e-40-n128: no clipping or retries": true,
+            "weno-z-fixed-1e-6-n32: finite saved arrays": true,
+            "weno-z-fixed-1e-6-n32: time reached": true,
+            "weno-z-fixed-1e-6-n32: periodic mass": true,
+            "weno-z-fixed-1e-6-n32: shared RHS flux balance": true,
+            "weno-z-fixed-1e-6-n32: all requested snapshots": true,
+            "weno-z-fixed-1e-6-n32: four stage evaluations per step": true,
+            "weno-z-fixed-1e-6-n32: no clipping or retries": true,
+            "weno-z-fixed-1e-6-n64: finite saved arrays": true,
+            "weno-z-fixed-1e-6-n64: time reached": true,
+            "weno-z-fixed-1e-6-n64: periodic mass": true,
+            "weno-z-fixed-1e-6-n64: shared RHS flux balance": true,
+            "weno-z-fixed-1e-6-n64: all requested snapshots": true,
+            "weno-z-fixed-1e-6-n64: four stage evaluations per step": true,
+            "weno-z-fixed-1e-6-n64: no clipping or retries": true,
+            "weno-z-fixed-1e-6-n128: finite saved arrays": true,
+            "weno-z-fixed-1e-6-n128: time reached": true,
+            "weno-z-fixed-1e-6-n128: periodic mass": true,
+            "weno-z-fixed-1e-6-n128: shared RHS flux balance": true,
+            "weno-z-fixed-1e-6-n128: all requested snapshots": true,
+            "weno-z-fixed-1e-6-n128: four stage evaluations per step": true,
+            "weno-z-fixed-1e-6-n128: no clipping or retries": true,
+            "weno-z-h-squared-n32: finite saved arrays": true,
+            "weno-z-h-squared-n32: time reached": true,
+            "weno-z-h-squared-n32: periodic mass": true,
+            "weno-z-h-squared-n32: shared RHS flux balance": true,
+            "weno-z-h-squared-n32: all requested snapshots": true,
+            "weno-z-h-squared-n32: four stage evaluations per step": true,
+            "weno-z-h-squared-n32: no clipping or retries": true,
+            "weno-z-h-squared-n64: finite saved arrays": true,
+            "weno-z-h-squared-n64: time reached": true,
+            "weno-z-h-squared-n64: periodic mass": true,
+            "weno-z-h-squared-n64: shared RHS flux balance": true,
+            "weno-z-h-squared-n64: all requested snapshots": true,
+            "weno-z-h-squared-n64: four stage evaluations per step": true,
+            "weno-z-h-squared-n64: no clipping or retries": true,
+            "weno-z-h-squared-n128: finite saved arrays": true,
+            "weno-z-h-squared-n128: time reached": true,
+            "weno-z-h-squared-n128: periodic mass": true,
+            "weno-z-h-squared-n128: shared RHS flux balance": true,
+            "weno-z-h-squared-n128: all requested snapshots": true,
+            "weno-z-h-squared-n128: four stage evaluations per step": true,
+            "weno-z-h-squared-n128: no clipping or retries": true,
+            "weno-js-fixed-1e-40-time-half: finite saved arrays": true,
+            "weno-js-fixed-1e-40-time-half: time reached": true,
+            "weno-js-fixed-1e-40-time-half: periodic mass": true,
+            "weno-js-fixed-1e-40-time-half: shared RHS flux balance": true,
+            "weno-js-fixed-1e-40-time-half: all requested snapshots": true,
+            "weno-js-fixed-1e-40-time-half: four stage evaluations per step": true,
+            "weno-js-fixed-1e-40-time-half: no clipping or retries": true,
+            "weno-js-fixed-1e-6-time-half: finite saved arrays": true,
+            "weno-js-fixed-1e-6-time-half: time reached": true,
+            "weno-js-fixed-1e-6-time-half: periodic mass": true,
+            "weno-js-fixed-1e-6-time-half: shared RHS flux balance": true,
+            "weno-js-fixed-1e-6-time-half: all requested snapshots": true,
+            "weno-js-fixed-1e-6-time-half: four stage evaluations per step": true,
+            "weno-js-fixed-1e-6-time-half: no clipping or retries": true,
+            "weno-js-h-squared-time-half: finite saved arrays": true,
+            "weno-js-h-squared-time-half: time reached": true,
+            "weno-js-h-squared-time-half: periodic mass": true,
+            "weno-js-h-squared-time-half: shared RHS flux balance": true,
+            "weno-js-h-squared-time-half: all requested snapshots": true,
+            "weno-js-h-squared-time-half: four stage evaluations per step": true,
+            "weno-js-h-squared-time-half: no clipping or retries": true,
+            "weno-z-fixed-1e-40-time-half: finite saved arrays": true,
+            "weno-z-fixed-1e-40-time-half: time reached": true,
+            "weno-z-fixed-1e-40-time-half: periodic mass": true,
+            "weno-z-fixed-1e-40-time-half: shared RHS flux balance": true,
+            "weno-z-fixed-1e-40-time-half: all requested snapshots": true,
+            "weno-z-fixed-1e-40-time-half: four stage evaluations per step": true,
+            "weno-z-fixed-1e-40-time-half: no clipping or retries": true,
+            "weno-z-fixed-1e-6-time-half: finite saved arrays": true,
+            "weno-z-fixed-1e-6-time-half: time reached": true,
+            "weno-z-fixed-1e-6-time-half: periodic mass": true,
+            "weno-z-fixed-1e-6-time-half: shared RHS flux balance": true,
+            "weno-z-fixed-1e-6-time-half: all requested snapshots": true,
+            "weno-z-fixed-1e-6-time-half: four stage evaluations per step": true,
+            "weno-z-fixed-1e-6-time-half: no clipping or retries": true,
+            "weno-z-h-squared-time-half: finite saved arrays": true,
+            "weno-z-h-squared-time-half: time reached": true,
+            "weno-z-h-squared-time-half: periodic mass": true,
+            "weno-z-h-squared-time-half: shared RHS flux balance": true,
+            "weno-z-h-squared-time-half: all requested snapshots": true,
+            "weno-z-h-squared-time-half: four stage evaluations per step": true,
+            "weno-z-h-squared-time-half: no clipping or retries": true,
+            "weno-js fixed-1e-40 PDE refinement n64": true,
+            "weno-js fixed-1e-40 PDE refinement n128": true,
+            "weno-js fixed-1e-40 finest PDE L1": true,
+            "weno-js fixed-1e-40 dt contamination fraction": true,
+            "weno-js fixed-1e-6 PDE refinement n64": true,
+            "weno-js fixed-1e-6 PDE refinement n128": true,
+            "weno-js fixed-1e-6 finest PDE L1": true,
+            "weno-js fixed-1e-6 dt contamination fraction": true,
+            "weno-js h-squared PDE refinement n64": true,
+            "weno-js h-squared PDE refinement n128": true,
+            "weno-js h-squared finest PDE L1": true,
+            "weno-js h-squared dt contamination fraction": true,
+            "weno-z fixed-1e-40 PDE refinement n64": true,
+            "weno-z fixed-1e-40 PDE refinement n128": true,
+            "weno-z fixed-1e-40 finest PDE L1": true,
+            "weno-z fixed-1e-40 dt contamination fraction": true,
+            "weno-z fixed-1e-6 PDE refinement n64": true,
+            "weno-z fixed-1e-6 PDE refinement n128": true,
+            "weno-z fixed-1e-6 finest PDE L1": true,
+            "weno-z fixed-1e-6 dt contamination fraction": true,
+            "weno-z h-squared PDE refinement n64": true,
+            "weno-z h-squared PDE refinement n128": true,
+            "weno-z h-squared finest PDE L1": true,
+            "weno-z h-squared dt contamination fraction": true
+          },
+          "check_details": [
+            {
+              "name": "72 fixed local reconstructions",
+              "value": 72,
+              "bound": 72,
+              "passed": true
+            },
+            {
+              "name": "24 fixed PDE runs completed",
+              "value": [
+                "weno-js-fixed-1e-40-n32",
+                "weno-js-fixed-1e-40-n64",
+                "weno-js-fixed-1e-40-n128",
+                "weno-js-fixed-1e-6-n32",
+                "weno-js-fixed-1e-6-n64",
+                "weno-js-fixed-1e-6-n128",
+                "weno-js-h-squared-n32",
+                "weno-js-h-squared-n64",
+                "weno-js-h-squared-n128",
+                "weno-z-fixed-1e-40-n32",
+                "weno-z-fixed-1e-40-n64",
+                "weno-z-fixed-1e-40-n128",
+                "weno-z-fixed-1e-6-n32",
+                "weno-z-fixed-1e-6-n64",
+                "weno-z-fixed-1e-6-n128",
+                "weno-z-h-squared-n32",
+                "weno-z-h-squared-n64",
+                "weno-z-h-squared-n128",
+                "weno-js-fixed-1e-40-time-half",
+                "weno-js-fixed-1e-6-time-half",
+                "weno-js-h-squared-time-half",
+                "weno-z-fixed-1e-40-time-half",
+                "weno-z-fixed-1e-6-time-half",
+                "weno-z-h-squared-time-half"
+              ],
+              "bound": [
+                "weno-js-fixed-1e-40-n32",
+                "weno-js-fixed-1e-40-n64",
+                "weno-js-fixed-1e-40-n128",
+                "weno-js-fixed-1e-6-n32",
+                "weno-js-fixed-1e-6-n64",
+                "weno-js-fixed-1e-6-n128",
+                "weno-js-h-squared-n32",
+                "weno-js-h-squared-n64",
+                "weno-js-h-squared-n128",
+                "weno-z-fixed-1e-40-n32",
+                "weno-z-fixed-1e-40-n64",
+                "weno-z-fixed-1e-40-n128",
+                "weno-z-fixed-1e-6-n32",
+                "weno-z-fixed-1e-6-n64",
+                "weno-z-fixed-1e-6-n128",
+                "weno-z-h-squared-n32",
+                "weno-z-h-squared-n64",
+                "weno-z-h-squared-n128",
+                "weno-js-fixed-1e-40-time-half",
+                "weno-js-fixed-1e-6-time-half",
+                "weno-js-h-squared-time-half",
+                "weno-z-fixed-1e-40-time-half",
+                "weno-z-fixed-1e-6-time-half",
+                "weno-z-h-squared-time-half"
+              ],
+              "passed": true
+            },
+            {
+              "name": "independent analytic-cell quadrature",
+              "value": 5.551115123125783e-16,
+              "bound": 3e-14,
+              "passed": true
+            },
+            {
+              "name": "convex normalized local weights",
+              "value": 2.220446049250313e-16,
+              "bound": 5e-15,
+              "passed": true
+            },
+            {
+              "name": "first-critical weno-js fixed-1e-40 refinement n128",
+              "value": 0.030633495562847987,
+              "bound": 0.8,
+              "passed": true
+            },
+            {
+              "name": "first-critical weno-js fixed-1e-40 refinement n256",
+              "value": 0.030930893996502687,
+              "bound": 0.8,
+              "passed": true
+            },
+            {
+              "name": "first-critical weno-js fixed-1e-40 refinement n512",
+              "value": 0.03108776526474429,
+              "bound": 0.8,
+              "passed": true
+            },
+            {
+              "name": "first-critical weno-js fixed-1e-6 refinement n128",
+              "value": 0.03038830611777437,
+              "bound": 0.8,
+              "passed": true
+            },
+            {
+              "name": "first-critical weno-js fixed-1e-6 refinement n256",
+              "value": 0.03809170881791577,
+              "bound": 0.8,
+              "passed": true
+            },
+            {
+              "name": "first-critical weno-js fixed-1e-6 refinement n512",
+              "value": 0.03161349284816903,
+              "bound": 0.8,
+              "passed": true
+            },
+            {
+              "name": "first-critical weno-js h-squared refinement n128",
+              "value": 0.03155711780316945,
+              "bound": 0.8,
+              "passed": true
+            },
+            {
+              "name": "first-critical weno-js h-squared refinement n256",
+              "value": 0.0313258151420906,
+              "bound": 0.8,
+              "passed": true
+            },
+            {
+              "name": "first-critical weno-js h-squared refinement n512",
+              "value": 0.03126888507845062,
+              "bound": 0.8,
+              "passed": true
+            },
+            {
+              "name": "first-critical weno-z fixed-1e-40 refinement n128",
+              "value": 0.028372790229278775,
+              "bound": 0.8,
+              "passed": true
+            },
+            {
+              "name": "first-critical weno-z fixed-1e-40 refinement n256",
+              "value": 0.03044642241780798,
+              "bound": 0.8,
+              "passed": true
+            },
+            {
+              "name": "first-critical weno-z fixed-1e-40 refinement n512",
+              "value": 0.031043482127650956,
+              "bound": 0.8,
+              "passed": true
+            },
+            {
+              "name": "first-critical weno-z fixed-1e-6 refinement n128",
+              "value": 0.03133482296489385,
+              "bound": 0.8,
+              "passed": true
+            },
+            {
+              "name": "first-critical weno-z fixed-1e-6 refinement n256",
+              "value": 0.03125001319677368,
+              "bound": 0.8,
+              "passed": true
+            },
+            {
+              "name": "first-critical weno-z fixed-1e-6 refinement n512",
+              "value": 0.031249999854480848,
+              "bound": 0.8,
+              "passed": true
+            },
+            {
+              "name": "first-critical weno-z h-squared refinement n128",
+              "value": 0.03125000001182343,
+              "bound": 0.8,
+              "passed": true
+            },
+            {
+              "name": "first-critical weno-z h-squared refinement n256",
+              "value": 0.03125000003274181,
+              "bound": 0.8,
+              "passed": true
+            },
+            {
+              "name": "first-critical weno-z h-squared refinement n512",
+              "value": 0.031249999854480848,
+              "bound": 0.8,
+              "passed": true
+            },
+            {
+              "name": "first-critical tiny-epsilon Z/JS error",
+              "value": 0.19796253511974954,
+              "bound": 0.25,
+              "passed": true
+            },
+            {
+              "name": "first-critical last reconstruction order weno-z fixed-1e-40",
+              "value": 5.00956579698765,
+              "bound": 4.5,
+              "passed": true
+            },
+            {
+              "name": "first-critical last reconstruction order weno-js h-squared",
+              "value": 4.999128410245256,
+              "bound": 4.5,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-40-n32: finite saved arrays",
+              "value": true,
+              "bound": true,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-40-n32: time reached",
+              "value": 1.0,
+              "bound": 1.0,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-40-n32: periodic mass",
+              "value": 1.5146304349622497e-16,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-40-n32: shared RHS flux balance",
+              "value": 8.326672684688674e-17,
+              "bound": 3e-13,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-40-n32: all requested snapshots",
+              "value": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "bound": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-40-n32: four stage evaluations per step",
+              "value": 1280,
+              "bound": 1280,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-40-n32: no clipping or retries",
+              "value": 0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-40-n64: finite saved arrays",
+              "value": true,
+              "bound": true,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-40-n64: time reached",
+              "value": 1.0,
+              "bound": 1.0,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-40-n64: periodic mass",
+              "value": 6.505213034913027e-17,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-40-n64: shared RHS flux balance",
+              "value": 8.326672684688674e-17,
+              "bound": 3e-13,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-40-n64: all requested snapshots",
+              "value": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "bound": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-40-n64: four stage evaluations per step",
+              "value": 2560,
+              "bound": 2560,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-40-n64: no clipping or retries",
+              "value": 0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-40-n128: finite saved arrays",
+              "value": true,
+              "bound": true,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-40-n128: time reached",
+              "value": 1.0,
+              "bound": 1.0,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-40-n128: periodic mass",
+              "value": 1.0364972768961422e-16,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-40-n128: shared RHS flux balance",
+              "value": 1.5265566588595902e-16,
+              "bound": 3e-13,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-40-n128: all requested snapshots",
+              "value": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "bound": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-40-n128: four stage evaluations per step",
+              "value": 5120,
+              "bound": 5120,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-40-n128: no clipping or retries",
+              "value": 0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-6-n32: finite saved arrays",
+              "value": true,
+              "bound": true,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-6-n32: time reached",
+              "value": 1.0,
+              "bound": 1.0,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-6-n32: periodic mass",
+              "value": 1.4452414959231774e-16,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-6-n32: shared RHS flux balance",
+              "value": 8.326672684688674e-17,
+              "bound": 3e-13,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-6-n32: all requested snapshots",
+              "value": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "bound": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-6-n32: four stage evaluations per step",
+              "value": 1280,
+              "bound": 1280,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-6-n32: no clipping or retries",
+              "value": 0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-6-n64: finite saved arrays",
+              "value": true,
+              "bound": true,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-6-n64: time reached",
+              "value": 1.0,
+              "bound": 1.0,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-6-n64: periodic mass",
+              "value": 5.898059818321144e-17,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-6-n64: shared RHS flux balance",
+              "value": 8.326672684688674e-17,
+              "bound": 3e-13,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-6-n64: all requested snapshots",
+              "value": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "bound": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-6-n64: four stage evaluations per step",
+              "value": 2560,
+              "bound": 2560,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-6-n64: no clipping or retries",
+              "value": 0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-6-n128: finite saved arrays",
+              "value": true,
+              "bound": true,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-6-n128: time reached",
+              "value": 1.0,
+              "bound": 1.0,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-6-n128: periodic mass",
+              "value": 1.1102230246251565e-16,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-6-n128: shared RHS flux balance",
+              "value": 1.3877787807814457e-16,
+              "bound": 3e-13,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-6-n128: all requested snapshots",
+              "value": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "bound": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-6-n128: four stage evaluations per step",
+              "value": 5120,
+              "bound": 5120,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-6-n128: no clipping or retries",
+              "value": 0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "weno-js-h-squared-n32: finite saved arrays",
+              "value": true,
+              "bound": true,
+              "passed": true
+            },
+            {
+              "name": "weno-js-h-squared-n32: time reached",
+              "value": 1.0,
+              "bound": 1.0,
+              "passed": true
+            },
+            {
+              "name": "weno-js-h-squared-n32: periodic mass",
+              "value": 1.100465205072787e-16,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "weno-js-h-squared-n32: shared RHS flux balance",
+              "value": 8.326672684688674e-17,
+              "bound": 3e-13,
+              "passed": true
+            },
+            {
+              "name": "weno-js-h-squared-n32: all requested snapshots",
+              "value": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "bound": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "passed": true
+            },
+            {
+              "name": "weno-js-h-squared-n32: four stage evaluations per step",
+              "value": 1280,
+              "bound": 1280,
+              "passed": true
+            },
+            {
+              "name": "weno-js-h-squared-n32: no clipping or retries",
+              "value": 0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "weno-js-h-squared-n64: finite saved arrays",
+              "value": true,
+              "bound": true,
+              "passed": true
+            },
+            {
+              "name": "weno-js-h-squared-n64: time reached",
+              "value": 1.0,
+              "bound": 1.0,
+              "passed": true
+            },
+            {
+              "name": "weno-js-h-squared-n64: periodic mass",
+              "value": 9.313296661650483e-17,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "weno-js-h-squared-n64: shared RHS flux balance",
+              "value": 9.71445146547012e-17,
+              "bound": 3e-13,
+              "passed": true
+            },
+            {
+              "name": "weno-js-h-squared-n64: all requested snapshots",
+              "value": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "bound": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "passed": true
+            },
+            {
+              "name": "weno-js-h-squared-n64: four stage evaluations per step",
+              "value": 2560,
+              "bound": 2560,
+              "passed": true
+            },
+            {
+              "name": "weno-js-h-squared-n64: no clipping or retries",
+              "value": 0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "weno-js-h-squared-n128: finite saved arrays",
+              "value": true,
+              "bound": true,
+              "passed": true
+            },
+            {
+              "name": "weno-js-h-squared-n128: time reached",
+              "value": 1.0,
+              "bound": 1.0,
+              "passed": true
+            },
+            {
+              "name": "weno-js-h-squared-n128: periodic mass",
+              "value": 9.150666335777657e-17,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "weno-js-h-squared-n128: shared RHS flux balance",
+              "value": 1.1102230246251565e-16,
+              "bound": 3e-13,
+              "passed": true
+            },
+            {
+              "name": "weno-js-h-squared-n128: all requested snapshots",
+              "value": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "bound": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "passed": true
+            },
+            {
+              "name": "weno-js-h-squared-n128: four stage evaluations per step",
+              "value": 5120,
+              "bound": 5120,
+              "passed": true
+            },
+            {
+              "name": "weno-js-h-squared-n128: no clipping or retries",
+              "value": 0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-40-n32: finite saved arrays",
+              "value": true,
+              "bound": true,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-40-n32: time reached",
+              "value": 1.0,
+              "bound": 1.0,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-40-n32: periodic mass",
+              "value": 4.391018798566293e-17,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-40-n32: shared RHS flux balance",
+              "value": 5.551115123125783e-17,
+              "bound": 3e-13,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-40-n32: all requested snapshots",
+              "value": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "bound": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-40-n32: four stage evaluations per step",
+              "value": 1280,
+              "bound": 1280,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-40-n32: no clipping or retries",
+              "value": 0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-40-n64: finite saved arrays",
+              "value": true,
+              "bound": true,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-40-n64: time reached",
+              "value": 1.0,
+              "bound": 1.0,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-40-n64: periodic mass",
+              "value": 1.323810852604801e-16,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-40-n64: shared RHS flux balance",
+              "value": 8.326672684688674e-17,
+              "bound": 3e-13,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-40-n64: all requested snapshots",
+              "value": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "bound": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-40-n64: four stage evaluations per step",
+              "value": 2560,
+              "bound": 2560,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-40-n64: no clipping or retries",
+              "value": 0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-40-n128: finite saved arrays",
+              "value": true,
+              "bound": true,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-40-n128: time reached",
+              "value": 1.0,
+              "bound": 1.0,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-40-n128: periodic mass",
+              "value": 1.617900691891494e-16,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-40-n128: shared RHS flux balance",
+              "value": 1.1102230246251565e-16,
+              "bound": 3e-13,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-40-n128: all requested snapshots",
+              "value": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "bound": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-40-n128: four stage evaluations per step",
+              "value": 5120,
+              "bound": 5120,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-40-n128: no clipping or retries",
+              "value": 0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-6-n32: finite saved arrays",
+              "value": true,
+              "bound": true,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-6-n32: time reached",
+              "value": 1.0,
+              "bound": 1.0,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-6-n32: periodic mass",
+              "value": 1.616545439175887e-16,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-6-n32: shared RHS flux balance",
+              "value": 8.326672684688674e-17,
+              "bound": 3e-13,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-6-n32: all requested snapshots",
+              "value": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "bound": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-6-n32: four stage evaluations per step",
+              "value": 1280,
+              "bound": 1280,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-6-n32: no clipping or retries",
+              "value": 0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-6-n64: finite saved arrays",
+              "value": true,
+              "bound": true,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-6-n64: time reached",
+              "value": 1.0,
+              "bound": 1.0,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-6-n64: periodic mass",
+              "value": 1.0755285551056204e-16,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-6-n64: shared RHS flux balance",
+              "value": 9.71445146547012e-17,
+              "bound": 3e-13,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-6-n64: all requested snapshots",
+              "value": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "bound": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-6-n64: four stage evaluations per step",
+              "value": 2560,
+              "bound": 2560,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-6-n64: no clipping or retries",
+              "value": 0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-6-n128: finite saved arrays",
+              "value": true,
+              "bound": true,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-6-n128: time reached",
+              "value": 1.0,
+              "bound": 1.0,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-6-n128: periodic mass",
+              "value": 7.025630077706069e-17,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-6-n128: shared RHS flux balance",
+              "value": 1.3877787807814457e-16,
+              "bound": 3e-13,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-6-n128: all requested snapshots",
+              "value": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "bound": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-6-n128: four stage evaluations per step",
+              "value": 5120,
+              "bound": 5120,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-6-n128: no clipping or retries",
+              "value": 0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "weno-z-h-squared-n32: finite saved arrays",
+              "value": true,
+              "bound": true,
+              "passed": true
+            },
+            {
+              "name": "weno-z-h-squared-n32: time reached",
+              "value": 1.0,
+              "bound": 1.0,
+              "passed": true
+            },
+            {
+              "name": "weno-z-h-squared-n32: periodic mass",
+              "value": 7.166576360129184e-17,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "weno-z-h-squared-n32: shared RHS flux balance",
+              "value": 8.326672684688674e-17,
+              "bound": 3e-13,
+              "passed": true
+            },
+            {
+              "name": "weno-z-h-squared-n32: all requested snapshots",
+              "value": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "bound": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "passed": true
+            },
+            {
+              "name": "weno-z-h-squared-n32: four stage evaluations per step",
+              "value": 1280,
+              "bound": 1280,
+              "passed": true
+            },
+            {
+              "name": "weno-z-h-squared-n32: no clipping or retries",
+              "value": 0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "weno-z-h-squared-n64: finite saved arrays",
+              "value": true,
+              "bound": true,
+              "passed": true
+            },
+            {
+              "name": "weno-z-h-squared-n64: time reached",
+              "value": 1.0,
+              "bound": 1.0,
+              "passed": true
+            },
+            {
+              "name": "weno-z-h-squared-n64: periodic mass",
+              "value": 8.760353553682876e-17,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "weno-z-h-squared-n64: shared RHS flux balance",
+              "value": 9.71445146547012e-17,
+              "bound": 3e-13,
+              "passed": true
+            },
+            {
+              "name": "weno-z-h-squared-n64: all requested snapshots",
+              "value": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "bound": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "passed": true
+            },
+            {
+              "name": "weno-z-h-squared-n64: four stage evaluations per step",
+              "value": 2560,
+              "bound": 2560,
+              "passed": true
+            },
+            {
+              "name": "weno-z-h-squared-n64: no clipping or retries",
+              "value": 0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "weno-z-h-squared-n128: finite saved arrays",
+              "value": true,
+              "bound": true,
+              "passed": true
+            },
+            {
+              "name": "weno-z-h-squared-n128: time reached",
+              "value": 1.0,
+              "bound": 1.0,
+              "passed": true
+            },
+            {
+              "name": "weno-z-h-squared-n128: periodic mass",
+              "value": 1.3530843112619095e-16,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "weno-z-h-squared-n128: shared RHS flux balance",
+              "value": 1.249000902703301e-16,
+              "bound": 3e-13,
+              "passed": true
+            },
+            {
+              "name": "weno-z-h-squared-n128: all requested snapshots",
+              "value": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "bound": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "passed": true
+            },
+            {
+              "name": "weno-z-h-squared-n128: four stage evaluations per step",
+              "value": 5120,
+              "bound": 5120,
+              "passed": true
+            },
+            {
+              "name": "weno-z-h-squared-n128: no clipping or retries",
+              "value": 0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-40-time-half: finite saved arrays",
+              "value": true,
+              "bound": true,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-40-time-half: time reached",
+              "value": 1.0,
+              "bound": 1.0,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-40-time-half: periodic mass",
+              "value": 1.48318857196017e-16,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-40-time-half: shared RHS flux balance",
+              "value": 1.3877787807814457e-16,
+              "bound": 3e-13,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-40-time-half: all requested snapshots",
+              "value": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "bound": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-40-time-half: four stage evaluations per step",
+              "value": 10240,
+              "bound": 10240,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-40-time-half: no clipping or retries",
+              "value": 0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-6-time-half: finite saved arrays",
+              "value": true,
+              "bound": true,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-6-time-half: time reached",
+              "value": 1.0,
+              "bound": 1.0,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-6-time-half: periodic mass",
+              "value": 2.3288662664988635e-16,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-6-time-half: shared RHS flux balance",
+              "value": 1.3877787807814457e-16,
+              "bound": 3e-13,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-6-time-half: all requested snapshots",
+              "value": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "bound": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-6-time-half: four stage evaluations per step",
+              "value": 10240,
+              "bound": 10240,
+              "passed": true
+            },
+            {
+              "name": "weno-js-fixed-1e-6-time-half: no clipping or retries",
+              "value": 0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "weno-js-h-squared-time-half: finite saved arrays",
+              "value": true,
+              "bound": true,
+              "passed": true
+            },
+            {
+              "name": "weno-js-h-squared-time-half: time reached",
+              "value": 1.0,
+              "bound": 1.0,
+              "passed": true
+            },
+            {
+              "name": "weno-js-h-squared-time-half: periodic mass",
+              "value": 1.3704315460216776e-16,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "weno-js-h-squared-time-half: shared RHS flux balance",
+              "value": 1.3877787807814457e-16,
+              "bound": 3e-13,
+              "passed": true
+            },
+            {
+              "name": "weno-js-h-squared-time-half: all requested snapshots",
+              "value": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "bound": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "passed": true
+            },
+            {
+              "name": "weno-js-h-squared-time-half: four stage evaluations per step",
+              "value": 10240,
+              "bound": 10240,
+              "passed": true
+            },
+            {
+              "name": "weno-js-h-squared-time-half: no clipping or retries",
+              "value": 0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-40-time-half: finite saved arrays",
+              "value": true,
+              "bound": true,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-40-time-half: time reached",
+              "value": 1.0,
+              "bound": 1.0,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-40-time-half: periodic mass",
+              "value": 1.3942839938163587e-16,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-40-time-half: shared RHS flux balance",
+              "value": 1.3877787807814457e-16,
+              "bound": 3e-13,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-40-time-half: all requested snapshots",
+              "value": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "bound": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-40-time-half: four stage evaluations per step",
+              "value": 10240,
+              "bound": 10240,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-40-time-half: no clipping or retries",
+              "value": 0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-6-time-half: finite saved arrays",
+              "value": true,
+              "bound": true,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-6-time-half: time reached",
+              "value": 1.0,
+              "bound": 1.0,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-6-time-half: periodic mass",
+              "value": 1.1709383462843448e-16,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-6-time-half: shared RHS flux balance",
+              "value": 1.3877787807814457e-16,
+              "bound": 3e-13,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-6-time-half: all requested snapshots",
+              "value": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "bound": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-6-time-half: four stage evaluations per step",
+              "value": 10240,
+              "bound": 10240,
+              "passed": true
+            },
+            {
+              "name": "weno-z-fixed-1e-6-time-half: no clipping or retries",
+              "value": 0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "weno-z-h-squared-time-half: finite saved arrays",
+              "value": true,
+              "bound": true,
+              "passed": true
+            },
+            {
+              "name": "weno-z-h-squared-time-half: time reached",
+              "value": 1.0,
+              "bound": 1.0,
+              "passed": true
+            },
+            {
+              "name": "weno-z-h-squared-time-half: periodic mass",
+              "value": 1.4137996329210978e-16,
+              "bound": 3e-12,
+              "passed": true
+            },
+            {
+              "name": "weno-z-h-squared-time-half: shared RHS flux balance",
+              "value": 1.249000902703301e-16,
+              "bound": 3e-13,
+              "passed": true
+            },
+            {
+              "name": "weno-z-h-squared-time-half: all requested snapshots",
+              "value": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "bound": [
+                0.0,
+                0.25,
+                0.5,
+                0.75,
+                1.0
+              ],
+              "passed": true
+            },
+            {
+              "name": "weno-z-h-squared-time-half: four stage evaluations per step",
+              "value": 10240,
+              "bound": 10240,
+              "passed": true
+            },
+            {
+              "name": "weno-z-h-squared-time-half: no clipping or retries",
+              "value": 0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "weno-js fixed-1e-40 PDE refinement n64",
+              "value": 0.04775820156565297,
+              "bound": 0.65,
+              "passed": true
+            },
+            {
+              "name": "weno-js fixed-1e-40 PDE refinement n128",
+              "value": 0.044050758838238814,
+              "bound": 0.65,
+              "passed": true
+            },
+            {
+              "name": "weno-js fixed-1e-40 finest PDE L1",
+              "value": 1.2566116355136017e-06,
+              "bound": 0.0001,
+              "passed": true
+            },
+            {
+              "name": "weno-js fixed-1e-40 dt contamination fraction",
+              "value": 8.863079809286488e-05,
+              "bound": 0.1,
+              "passed": true
+            },
+            {
+              "name": "weno-js fixed-1e-6 PDE refinement n64",
+              "value": 0.04764490190551648,
+              "bound": 0.65,
+              "passed": true
+            },
+            {
+              "name": "weno-js fixed-1e-6 PDE refinement n128",
+              "value": 0.042844346708362374,
+              "bound": 0.65,
+              "passed": true
+            },
+            {
+              "name": "weno-js fixed-1e-6 finest PDE L1",
+              "value": 1.2193026363643497e-06,
+              "bound": 0.0001,
+              "passed": true
+            },
+            {
+              "name": "weno-js fixed-1e-6 dt contamination fraction",
+              "value": 9.132260355625363e-05,
+              "bound": 0.1,
+              "passed": true
+            },
+            {
+              "name": "weno-js h-squared PDE refinement n64",
+              "value": 0.038919944998175825,
+              "bound": 0.65,
+              "passed": true
+            },
+            {
+              "name": "weno-js h-squared PDE refinement n128",
+              "value": 0.0350870917046389,
+              "bound": 0.65,
+              "passed": true
+            },
+            {
+              "name": "weno-js h-squared finest PDE L1",
+              "value": 8.082881402163137e-07,
+              "bound": 0.0001,
+              "passed": true
+            },
+            {
+              "name": "weno-js h-squared dt contamination fraction",
+              "value": 0.0001373464441232479,
+              "bound": 0.1,
+              "passed": true
+            },
+            {
+              "name": "weno-z fixed-1e-40 PDE refinement n64",
+              "value": 0.03392759930023999,
+              "bound": 0.65,
+              "passed": true
+            },
+            {
+              "name": "weno-z fixed-1e-40 PDE refinement n128",
+              "value": 0.03188514693006293,
+              "bound": 0.65,
+              "passed": true
+            },
+            {
+              "name": "weno-z fixed-1e-40 finest PDE L1",
+              "value": 3.4444959688345405e-07,
+              "bound": 0.0001,
+              "passed": true
+            },
+            {
+              "name": "weno-z fixed-1e-40 dt contamination fraction",
+              "value": 0.0003220802786122259,
+              "bound": 0.1,
+              "passed": true
+            },
+            {
+              "name": "weno-z fixed-1e-6 PDE refinement n64",
+              "value": 0.033936233058680564,
+              "bound": 0.65,
+              "passed": true
+            },
+            {
+              "name": "weno-z fixed-1e-6 PDE refinement n128",
+              "value": 0.031901878417214986,
+              "bound": 0.65,
+              "passed": true
+            },
+            {
+              "name": "weno-z fixed-1e-6 finest PDE L1",
+              "value": 3.447390851515008e-07,
+              "bound": 0.0001,
+              "passed": true
+            },
+            {
+              "name": "weno-z fixed-1e-6 dt contamination fraction",
+              "value": 0.0003218101780739664,
+              "bound": 0.1,
+              "passed": true
+            },
+            {
+              "name": "weno-z h-squared PDE refinement n64",
+              "value": 0.03348554269777016,
+              "bound": 0.65,
+              "passed": true
+            },
+            {
+              "name": "weno-z h-squared PDE refinement n128",
+              "value": 0.03166710288794406,
+              "bound": 0.65,
+              "passed": true
+            },
+            {
+              "name": "weno-z h-squared finest PDE L1",
+              "value": 3.4506273636540304e-07,
+              "bound": 0.0001,
+              "passed": true
+            },
+            {
+              "name": "weno-z h-squared dt contamination fraction",
+              "value": 0.00032150807413233474,
+              "bound": 0.1,
+              "passed": true
+            }
+          ]
+        },
+        "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/weno-critical-epsilon/",
+        "reading": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-weno-critical/#weno-critical-epsilon",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-weno-critical/#weno-critical-epsilon"
+        }
+      }
+    ]
+  },
+  "depth_scope": {
+    "ja": "セル平均からのWENO-JS／Z二乗重みの臨界点再構成と、実際の周期スカラー輸送を比較します。εの違い、解析セル平均と点値、空間誤差と時間刻みの影響を分けます。",
+    "en": "Compare critical-point reconstruction from cell means using WENO-JS/Z power-two weights and actual periodic scalar transport. Separate epsilon choices, analytic cell means versus point values, and spatial error versus time-step effects."
+  },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/weno-js/",
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/weno-js/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/weno-js/index.md",
@@ -80,10 +4163,14 @@
     "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/riemann.py",
     "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/benchmarks.py",
     "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/equations.py",
-    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/advection.py"
+    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/advection.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/weno.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/references/analytic.py"
   ],
   "test_urls": [
-    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py"
+    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/test_weno.py"
   ],
   "run_commands": [
     "python -m pytest -q tests/test_numerics.py"
@@ -91,11 +4178,35 @@
   "run_from": "Extracted code edition directory",
   "code_base": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/",
   "code_edition": "2026-11-21",
-  "execution_examples": [],
+  "execution_examples": [
+    {
+      "id": "weno-critical-epsilon",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    }
+  ],
   "problem_navigation": {
     "method_id": "weno-js",
     "status": "educational-example",
     "equations": [
+      {
+        "id": "linear-advection",
+        "name": {
+          "ja": "線形移流",
+          "en": "Linear advection"
+        },
+        "problem_ids": [
+          "advection-sine"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#linear-advection-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#linear-advection-en"
+        }
+      },
       {
         "id": "euler",
         "name": {
@@ -113,6 +4224,67 @@
       }
     ],
     "problems": [
+      {
+        "id": "advection-sine",
+        "name": {
+          "ja": "周期正弦波の線形移流",
+          "en": "Periodic sine-wave advection"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/advection-sine.png",
+          "sha256": "dbb022150fee1472e54b24dfd3f01363bcfd3998f7e21da9dad6f30e4d224f0a",
+          "width": 832,
+          "height": 494,
+          "caption": {
+            "ja": "保存済みのCIP・線形補間・厳密な移流波形。",
+            "en": "Stored CIP, linear-interpolation and exact advection profiles."
+          },
+          "source_kind": "stored-data-plot"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "weno-critical-epsilon",
+            "kind": "supplement",
+            "name": {
+              "ja": "WENO-JS／Z：臨界点とεの固定比較",
+              "en": "WENO-JS/Z: fixed critical-point and epsilon comparison"
+            },
+            "scope": {
+              "ja": "同じセル平均からのWENO5再構成と実際の周期輸送で、JS重みとZ二乗重みを比較します。3種類の臨界性、3種類のε、固定格子と時間刻み半減を分けて保存します。",
+              "en": "Compare WENO5 JS and Z power-two weights from the same cell means, then evolve actual periodic transport. Retain three regularity classes, three epsilon choices, fixed grids and separate halved-time-step diagnostics."
+            },
+            "method_ids": [
+              "weno-js",
+              "weno-z",
+              "rk4"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/atlas-weno-critical-2026-11-23.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。 セル平均からのWENO-JS／Z二乗重みの臨界点再構成と、実際の周期スカラー輸送を比較します。εの違い、解析セル平均と点値、空間誤差と時間刻みの影響を分けます。",
+          "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions. Compare critical-point reconstruction from cell means using WENO-JS/Z power-two weights and actual periodic scalar transport. Separate epsilon choices, analytic cell means versus point values, and spatial error versus time-step effects."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=en#references-en"
+        }
+      },
       {
         "id": "entropy-1d",
         "name": {
@@ -187,6 +4359,61 @@
       }
     ],
     "references": [
+      {
+        "problem_id": "advection-sine",
+        "problem_name": {
+          "ja": "周期正弦波の線形移流",
+          "en": "Periodic sine-wave advection"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "sine-advection",
+            "title": {
+              "ja": "移流／正弦波の平行移動",
+              "en": "Advection / sine translation"
+            },
+            "kind": "analytic",
+            "relation": "related-model",
+            "note": {
+              "ja": "同じ周期・速度1の正弦移流モデルです。参照一覧は振幅0.25、共通固定入力は0.2で、DG・CIP等の表現や時間も異なります。",
+              "en": "Same periodic sine-transport model at speed one. The library amplitude is 0.25 versus 0.2 in the common fixed input; DG/CIP representations and output times also differ."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-sine-advection-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-sine-advection-en"
+            },
+            "view": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=sine-advection",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=sine-advection"
+            }
+          },
+          {
+            "id": "weno-critical-profile",
+            "title": {
+              "ja": "WENO臨界点：多項式セル平均と解析的周期輸送",
+              "en": "WENO critical points: polynomial cell means and analytic periodic transport"
+            },
+            "kind": "analytic",
+            "relation": "related-model",
+            "note": {
+              "ja": "同じ一定速度の周期移流に対する追加参照ですが、cos+.1sin³のセル平均と局所臨界多項式は、従来の単一正弦・CIP表示と異なります。",
+              "en": "An additional constant-speed periodic-transport reference. The cos+.1sin³ cell means and local critical polynomials differ from the historical single-sine/CIP display."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-weno-critical-profile-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-weno-critical-profile-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=ja#weno-critical-epsilon-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=en#weno-critical-epsilon-en-measurements"
+            }
+          }
+        ]
+      },
       {
         "problem_id": "entropy-1d",
         "problem_name": {

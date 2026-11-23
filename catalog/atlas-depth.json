@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_on": "2026-11-22",
+  "reviewed_on": "2026-11-23",
   "title": {
     "ja": "分野ごとの実装・検証範囲",
     "en": "Implementation and validation by field"
@@ -17,8 +17,8 @@
         "en": "Fluid dynamics"
       },
       "scope": {
-        "ja": "Euler衝撃波・滑らかな渦などに複数の教育用コードと保存結果があります。固定入力での検証内容は問題ごとに異なります。",
-        "en": "Several educational codes and saved results cover Euler shocks and smooth vortices. Fixed-input validation differs by problem."
+        "ja": "Euler衝撃波・滑らかな渦などに複数の教育用コードと保存結果があります。固定入力での検証内容は問題ごとに異なります。 追加の固定例はWENOのε、浅水の地形・乾燥床、Re100壁面流と製造解を扱います。",
+        "en": "Several educational codes and saved results cover Euler shocks and smooth vortices. Fixed-input validation differs by problem. Additional fixed cases cover WENO epsilon, shallow-water bed/dry states, and Re100 wall flow with manufactured verification."
       },
       "examples": [
         "sod",
@@ -30,12 +30,12 @@
         "en": "/numerical-methods-atlas/en/read/benchmarks/"
       },
       "reference": {
-        "ja": "Sodは厳密Riemann解。Shu–Osherは独立実装Athena++の保存参照と比較。細格子差と独立参照差を区別。",
-        "en": "Sod uses the exact Riemann solution. Shu–Osher compares with a stored independent Athena++ reference. Separate fine-grid differences from independent-reference differences."
+        "ja": "Sodは厳密Riemann解。Shu–Osherは独立実装Athena++の保存参照と比較。細格子差と独立参照差を区別。 解析セル平均、表現した地形上の静止湖、半解析Bernoulli根、Ritter解、Ghiaの有限格子数値表と製造解を、それぞれ異なる参照として扱います。",
+        "en": "Sod uses the exact Riemann solution. Shu–Osher compares with a stored independent Athena++ reference. Separate fine-grid differences from independent-reference differences. Distinguish analytic cell means, lakes over the represented bed, semi-analytic Bernoulli roots, Ritter fields, finite-grid Ghia tables and manufactured references."
       },
       "refinement": {
-        "ja": "各実行例の格子誤差・保存則・減衰などを確認。全流体問題の一括認証ではありません。",
-        "en": "Checks include grid errors, conservation and decay in individual examples; this is not blanket fluid-solver certification."
+        "ja": "各実行例の格子誤差・保存則・減衰などを確認。全流体問題の一括認証ではありません。 壁面圧力は独立した演算子製造問題で、キャビティの圧力を検証したとは表示しません。",
+        "en": "Checks include grid errors, conservation and decay in individual examples; this is not blanket fluid-solver certification. Wall-pressure verification is a separate operator manufactured problem, not validation of cavity pressure."
       },
       "next": {
         "ja": "同じ問題で手法間の誤差・散逸・失敗条件を比較する。",
@@ -51,7 +51,12 @@
         "low-mach-vortex",
         "guderley-implosion",
         "euler-double-rarefaction-positivity",
-        "zalesak-rotation"
+        "zalesak-rotation",
+        "weno-critical-epsilon",
+        "swashes-topography",
+        "dry-bed-dam-break",
+        "cavity-ghia-re100",
+        "wall-manufactured"
       ]
     },
     {

@@ -10,6 +10,19 @@ const hash=p=>createHash('sha256').update(bytes(p)).digest('hex');
 const objectHash=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex');
 const group='zalesak',id='zalesak-rotation';
 const base='code/validated-examples/2026-11-23/zalesak/';
+// The new batch changes execution scope only; retain every earlier formula/ID/status.
+const oldEquationMetadata={"linear-advection":{"coverage_scope":"","note":{"ja":"一定速度aによる輸送。波形の移動、数値拡散、安定性へ。","en":"Transport at constant speed a: translation, numerical diffusion and stability."}},"shallow-water":{"coverage_scope":"Wet 1D flow and linear rotating Fourier symbols; no full geophysical dynamical core.","note":{"ja":"前2式は平坦床・摩擦なしの1次元系。後2行は水深Hまわりの線形回転系。非線形流れのテストと、回転系のFourier記号の検証を区別します。","en":"The first two equations are 1D flat-bed, frictionless flow; the remaining lines are the linear rotating system about depth H. Distinguish nonlinear flow tests from rotating-system Fourier-symbol checks."}},"navier-stokes":{"coverage_scope":"","note":{"ja":"一定密度・粘性の代表形。公開例は周期2次元MAC格子の射影法とTaylor–Green渦です。","en":"A representative constant-density, constant-viscosity form. Public examples use periodic 2D MAC projection and a Taylor–Green vortex."}}};
+const historicalEquation=row=>{if(!oldEquationMetadata[row.id])return row;const copy={...row,...oldEquationMetadata[row.id]};delete copy.execution_scope;delete copy.supplemental_examples;return copy;};
+
+
+// Remove only this batch's appended WENO evidence/entry for the historical golden.
+const historicalProblem = row => {
+ if(row.id!=='advection-sine')return row;
+ const copy={...row,evidence:row.evidence.filter(e=>!e.path.includes('/weno-critical/'))};
+ const remaining=(row.supplemental_examples||[]).filter(e=>e.id!=='weno-critical-epsilon');
+ if(remaining.length)copy.supplemental_examples=remaining;else delete copy.supplemental_examples;
+ return copy;
+};
 
 test('canonical equation additions enter both shared inventories without changing imported equation or method records',()=>{
  const program=String.raw`import copy,json,sys
@@ -17,13 +30,13 @@ from pathlib import Path
 sys.path.insert(0,str(Path.cwd()/'scripts'))
 from atlas_equation_inventory import merge_catalog_equations,ORIGIN
 canonical=json.loads(Path('catalog/atlas-equations.json').read_text())['equations']
-assert len(canonical)==47
+assert len(canonical)==49
 for name in ['numerical-methods-atlas/coverage.json','numerical-methods-atlas/assets/site-coverage.json']:
  original=json.loads(Path(name).read_text())['items'];before=copy.deepcopy(original)
  result=merge_catalog_equations(original,canonical)
  assert original==before
  assert {x['id'] for x in result if x['kind']=='equation'}=={x['id'] for x in canonical}
- assert len([x for x in result if x['kind']=='equation'])==47
+ assert len([x for x in result if x['kind']=='equation'])==49
  for old in original:
   if old.get('origin')!=ORIGIN:
    assert next(x for x in result if x['kind']==old['kind'] and x['id']==old['id'])==old
@@ -45,17 +58,17 @@ print('canonical model additions synchronize without replacing historical invent
 
 test('Zalesak adds one scalar problem while preserving nineteen releases, eighty-six primary figures and all previous equations/references',()=>{
  const registry=json('numerical-methods-atlas/validation/releases.json');
- assert.equal(registry.case_count,49);assert.equal(registry.releases.length,20);
- assert.equal(objectHash(registry.releases.filter(r=>r.group!==group)),'0b22556a067a3320bc7984fd2eedcbf97fe4b935ac6db98ca449933553a1c745');
+ assert.equal(registry.case_count,54);assert.equal(registry.releases.length,23);
+ assert.equal(objectHash(registry.releases.filter(r=>r.group!==group&&!['weno-critical','shallow-water','wall-flow'].includes(r.group))),'0b22556a067a3320bc7984fd2eedcbf97fe4b935ac6db98ca449933553a1c745');
  const release=registry.releases.find(r=>r.group===group);assert.deepEqual(release.case_ids,[id]);assert.equal(release.tests,26);
- assert.equal(registry.releases.reduce((s,r)=>s+r.tests,0),598+26);
+ assert.equal(registry.releases.filter(r=>!['weno-critical','shallow-water','wall-flow'].includes(r.group)).reduce((s,r)=>s+r.tests,0),598+26);
  const previews=json('numerical-methods-atlas/gallery/preview-manifest.json').items;
- assert.equal(previews.length,87);assert.equal(objectHash(previews.filter(p=>p.id!==group)),'3d6a5bd72993ebb9110689f25d2cd9560b11a8188806e97db4c1e7b37af5d3ef');
- const problems=json('catalog/atlas-test-problems.json').problems;assert.equal(problems.length,87);
- assert.equal(objectHash(problems.filter(p=>p.id!==group)),'8b131bb281c278a7d556d31d8e6ed9539c44a2abb8e57e5b3e333044161b6247');
- const equations=json('catalog/atlas-equations.json').equations;assert.equal(equations.length,47);
- assert.equal(objectHash(equations.filter(p=>p.id!=='rotational-advection')),'e408172f62ae24312952989490300562a76bd7f2d9164b69f97e715eb27fc9b9');
- assert.equal(objectHash(json('catalog/atlas-reference-supplements.json').cases.filter(p=>p.id!==id)),'b1cbe79c82644c6c2d19d3a27944e996a0c6ae7707a899068445e693e6a5dbe3');
+ assert.equal(previews.length,91);assert.equal(objectHash(previews.filter(p=>p.id!==group&&!['swashes-topography','dry-bed-dam-break','lid-driven-cavity','wall-manufactured'].includes(p.id))),'3d6a5bd72993ebb9110689f25d2cd9560b11a8188806e97db4c1e7b37af5d3ef');
+ const problems=json('catalog/atlas-test-problems.json').problems;assert.equal(problems.length,91);
+ assert.equal(objectHash(problems.filter(p=>p.id!==group&&!['swashes-topography','dry-bed-dam-break','lid-driven-cavity','wall-manufactured'].includes(p.id)).map(historicalProblem)),'8b131bb281c278a7d556d31d8e6ed9539c44a2abb8e57e5b3e333044161b6247');
+ const equations=json('catalog/atlas-equations.json').equations;assert.equal(equations.length,49);
+ assert.equal(objectHash(equations.filter(p=>!['rotational-advection','shallow-water-bed','forced-incompressible'].includes(p.id)).map(historicalEquation)),'e408172f62ae24312952989490300562a76bd7f2d9164b69f97e715eb27fc9b9');
+ assert.equal(objectHash(json('catalog/atlas-reference-supplements.json').cases.filter(p=>p.id!==id&&!['weno-critical-profile','lake-at-rest-bed','swashes-bernoulli','ritter-dry-bed','ghia-re100','wall-mms'].includes(p.id))),'b1cbe79c82644c6c2d19d3a27944e996a0c6ae7707a899068445e693e6a5dbe3');
  assert.equal(hash('numerical-methods-atlas/assets/reference-solutions.json'),'c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc');
  assert.equal(hash('numerical-methods-atlas/code-and-data/examples.json'),'3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7');
  const methods=json('catalog/atlas-methods.json').methods;assert.equal(methods.length,147);
@@ -69,7 +82,7 @@ test('the actual two-dimensional saved figure connects to scalar rotation, its a
  assert.equal(page.problem_id,'zalesak');assert.deepEqual([...page.method_ids].sort(),['minmod','muscl','ssprk33','upwind']);
  assert.deepEqual(page.execution_navigation.equations.map(x=>x.id),['rotational-advection']);
  const problem=json('numerical-methods-atlas/problems/zalesak/index.json');assert.ok(problem.executions.some(x=>x.id===id));assert.ok(problem.references.some(x=>x.id===id));
- const gallery=json('numerical-methods-atlas/gallery/index.json');assert.equal(gallery.items.length,87);assert.equal(gallery.counts.runnable_problems,47);
+ const gallery=json('numerical-methods-atlas/gallery/index.json');assert.equal(gallery.items.length,91);assert.equal(gallery.counts.runnable_problems,51);
  const item=gallery.items.find(x=>x.id==='zalesak');assert.equal(item.image,'/'+base+'results/'+id+'-preview.png');assert.equal(item.image_sha256,hash(base+'results/'+id+'-preview.png'));assert.equal(item.runnable,true);
  const execution=item.supplemental_execution_entries.find(x=>x.id===id);assert.ok(execution);assert.ok(execution.download.endsWith('atlas-zalesak-2026-11-23.zip'));
  const reference=json('numerical-methods-atlas/solutions/index.json').cases.find(x=>x.id===id);

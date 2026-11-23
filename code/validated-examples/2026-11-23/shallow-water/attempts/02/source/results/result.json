@@ -1,0 +1,1030 @@
+{
+  "schema_version": 1,
+  "passed": false,
+  "checks": {
+    "swashes-topography": false,
+    "dry-bed-dam-break": false
+  },
+  "cases": [
+    {
+      "id": "swashes-topography",
+      "passed": false,
+      "records": [
+        {
+          "id": "lake-immersed",
+          "case": "swashes-topography",
+          "family": "lake",
+          "n": 200,
+          "surface": 0.5,
+          "steps": 92,
+          "time": 2.0,
+          "depth_l1": 0.0,
+          "momentum_l1": 4.07891661176374e-16,
+          "relative_depth_l1": 0.0,
+          "relative_momentum_l1": 4.07891661176374e-16,
+          "depth_linf": 0.0,
+          "minimum_depth": 0.30026041666666664,
+          "maximum_depth": 0.5,
+          "maximum_velocity": 8.196159306900554e-16,
+          "maximum_courant": 0.4,
+          "maximum_step_mass_defect": 0.0,
+          "maximum_step_momentum_defect": 5.012919423849414e-18,
+          "maximum_total_mass_defect": 0.0,
+          "maximum_total_momentum_defect": 3.785522197711065e-16,
+          "mass_change": 0.0,
+          "boundary_mass_change": 0.0,
+          "bed_momentum_impulse": -3.7855221977110644e-16,
+          "initial_dry_cells": 0,
+          "final_dry_cells": 0,
+          "newly_wet_cells": 0,
+          "all_saved_values_finite": true,
+          "depth_floor_count": 0,
+          "state_clip_count": 0,
+          "rejected_steps": 0,
+          "retries": 0,
+          "snapshot_times": [
+            0.0,
+            0.5,
+            1.0,
+            1.5,
+            2.0
+          ],
+          "maximum_equilibrium_depth_drift": 0.0,
+          "maximum_equilibrium_discharge": 2.665764111427987e-16
+        },
+        {
+          "id": "lake-emerged",
+          "case": "swashes-topography",
+          "family": "lake",
+          "n": 200,
+          "surface": 0.1,
+          "steps": 40,
+          "time": 2.0,
+          "depth_l1": 0.0,
+          "momentum_l1": 2.8845303552724587e-19,
+          "relative_depth_l1": 0.0,
+          "relative_momentum_l1": 2.8845303552724587e-19,
+          "depth_linf": 0.0,
+          "minimum_depth": 0.0,
+          "maximum_depth": 0.1,
+          "maximum_velocity": 4.747437994216818e-17,
+          "maximum_courant": 0.4,
+          "maximum_step_mass_defect": 0.0,
+          "maximum_step_momentum_defect": 1.751441968352558e-19,
+          "maximum_total_mass_defect": 0.0,
+          "maximum_total_momentum_defect": 6.938893903907228e-18,
+          "mass_change": 0.0,
+          "boundary_mass_change": 0.0,
+          "bed_momentum_impulse": 6.938893903907228e-18,
+          "initial_dry_cells": 22,
+          "final_dry_cells": 22,
+          "newly_wet_cells": 0,
+          "all_saved_values_finite": true,
+          "depth_floor_count": 0,
+          "state_clip_count": 0,
+          "rejected_steps": 0,
+          "retries": 0,
+          "snapshot_times": [
+            0.0,
+            0.5,
+            1.0,
+            1.5,
+            2.0
+          ],
+          "maximum_equilibrium_depth_drift": 0.0,
+          "maximum_equilibrium_discharge": 1.0508651810115348e-18
+        },
+        {
+          "id": "subcritical-n100",
+          "case": "swashes-topography",
+          "family": "subcritical",
+          "n": 100,
+          "steps": 136,
+          "time": 2.0,
+          "depth_l1": 0.096437362747609,
+          "momentum_l1": 0.22271403038092852,
+          "relative_depth_l1": 0.001958624829329651,
+          "relative_momentum_l1": 0.0020155115871577224,
+          "depth_linf": 0.02469061354876856,
+          "minimum_depth": 1.7061975944337897,
+          "maximum_depth": 2.0154781684583587,
+          "maximum_velocity": 2.5850261009643445,
+          "maximum_courant": 0.4,
+          "maximum_step_mass_defect": 6.5494747415718e-16,
+          "maximum_step_momentum_defect": 1.9307472287621863e-15,
+          "maximum_total_mass_defect": 4.3267527147922147e-14,
+          "maximum_total_momentum_defect": 1.4453022112448366e-13,
+          "mass_change": 0.00034371094602142493,
+          "boundary_mass_change": 0.0003437109460145136,
+          "bed_momentum_impulse": -0.09921569955672335,
+          "initial_dry_cells": 0,
+          "final_dry_cells": 0,
+          "newly_wet_cells": 0,
+          "all_saved_values_finite": true,
+          "depth_floor_count": 0,
+          "state_clip_count": 0,
+          "rejected_steps": 0,
+          "retries": 0,
+          "snapshot_times": [
+            0.0,
+            0.5,
+            1.0,
+            1.5,
+            2.0
+          ]
+        },
+        {
+          "id": "subcritical-n200",
+          "case": "swashes-topography",
+          "family": "subcritical",
+          "n": 200,
+          "steps": 268,
+          "time": 2.0,
+          "depth_l1": 0.0493768716267704,
+          "momentum_l1": 0.11670916886759208,
+          "relative_depth_l1": 0.0010028350424297872,
+          "relative_momentum_l1": 0.0010561915734623752,
+          "depth_linf": 0.01269957641273467,
+          "minimum_depth": 1.7067820867958878,
+          "maximum_depth": 2.009313043889906,
+          "maximum_velocity": 2.5878631142837896,
+          "maximum_courant": 0.4,
+          "maximum_step_mass_defect": 4.744321889503942e-16,
+          "maximum_step_momentum_defect": 1.2569697886710696e-15,
+          "maximum_total_mass_defect": 5.070229235036041e-14,
+          "maximum_total_momentum_defect": 4.613531778829838e-13,
+          "mass_change": 6.541578770413725e-05,
+          "boundary_mass_change": 6.541578770320992e-05,
+          "bed_momentum_impulse": -0.054126013550376925,
+          "initial_dry_cells": 0,
+          "final_dry_cells": 0,
+          "newly_wet_cells": 0,
+          "all_saved_values_finite": true,
+          "depth_floor_count": 0,
+          "state_clip_count": 0,
+          "rejected_steps": 0,
+          "retries": 0,
+          "snapshot_times": [
+            0.0,
+            0.5,
+            1.0,
+            1.5,
+            2.0
+          ]
+        },
+        {
+          "id": "subcritical-n400",
+          "case": "swashes-topography",
+          "family": "subcritical",
+          "n": 400,
+          "steps": 536,
+          "time": 2.0,
+          "depth_l1": 0.024910750612704313,
+          "momentum_l1": 0.0600872468880399,
+          "relative_depth_l1": 0.0005059326932754719,
+          "relative_momentum_l1": 0.0005437759899370102,
+          "depth_linf": 0.006424726192373553,
+          "minimum_depth": 1.707167352395832,
+          "maximum_depth": 2.0053503464023854,
+          "maximum_velocity": 2.5885739653660536,
+          "maximum_courant": 0.4,
+          "maximum_step_mass_defect": 2.734858811900523e-16,
+          "maximum_step_momentum_defect": 9.472809906277413e-16,
+          "maximum_total_mass_defect": 1.0897622204961364e-13,
+          "maximum_total_momentum_defect": 7.040826255355626e-13,
+          "mass_change": 1.74538263039703e-05,
+          "boundary_mass_change": 1.7453826301854577e-05,
+          "bed_momentum_impulse": -0.028282407109783202,
+          "initial_dry_cells": 0,
+          "final_dry_cells": 0,
+          "newly_wet_cells": 0,
+          "all_saved_values_finite": true,
+          "depth_floor_count": 0,
+          "state_clip_count": 0,
+          "rejected_steps": 0,
+          "retries": 0,
+          "snapshot_times": [
+            0.0,
+            0.5,
+            1.0,
+            1.5,
+            2.0
+          ]
+        }
+      ],
+      "check_details": [
+        {
+          "name": "lake-immersed: maximum_step_mass_defect",
+          "value": 0.0,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "lake-immersed: maximum_step_momentum_defect",
+          "value": 5.012919423849414e-18,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "lake-immersed: maximum_total_mass_defect",
+          "value": 0.0,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "lake-immersed: maximum_total_momentum_defect",
+          "value": 3.785522197711065e-16,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "lake-immersed: nonnegative depth",
+          "value": 0.30026041666666664,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "lake-immersed: finite arrays",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "lake-immersed: face CFL",
+          "value": 0.4,
+          "bound": 0.40000000000001,
+          "passed": true
+        },
+        {
+          "name": "lake-immersed: no repairs or retries",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "lake-immersed: five exact output times",
+          "value": [
+            0.0,
+            0.5,
+            1.0,
+            1.5,
+            2.0
+          ],
+          "bound": [
+            0.0,
+            0.5,
+            1.0,
+            1.5,
+            2.0
+          ],
+          "passed": true
+        },
+        {
+          "name": "lake-immersed: maximum_equilibrium_depth_drift",
+          "value": 0.0,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "lake-immersed: maximum_equilibrium_discharge",
+          "value": 2.665764111427987e-16,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "lake-emerged: maximum_step_mass_defect",
+          "value": 0.0,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "lake-emerged: maximum_step_momentum_defect",
+          "value": 1.751441968352558e-19,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "lake-emerged: maximum_total_mass_defect",
+          "value": 0.0,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "lake-emerged: maximum_total_momentum_defect",
+          "value": 6.938893903907228e-18,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "lake-emerged: nonnegative depth",
+          "value": 0.0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "lake-emerged: finite arrays",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "lake-emerged: face CFL",
+          "value": 0.4,
+          "bound": 0.40000000000001,
+          "passed": true
+        },
+        {
+          "name": "lake-emerged: no repairs or retries",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "lake-emerged: five exact output times",
+          "value": [
+            0.0,
+            0.5,
+            1.0,
+            1.5,
+            2.0
+          ],
+          "bound": [
+            0.0,
+            0.5,
+            1.0,
+            1.5,
+            2.0
+          ],
+          "passed": true
+        },
+        {
+          "name": "lake-emerged: maximum_equilibrium_depth_drift",
+          "value": 0.0,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "lake-emerged: maximum_equilibrium_discharge",
+          "value": 1.0508651810115348e-18,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n100: maximum_step_mass_defect",
+          "value": 6.5494747415718e-16,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n100: maximum_step_momentum_defect",
+          "value": 1.9307472287621863e-15,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n100: maximum_total_mass_defect",
+          "value": 4.3267527147922147e-14,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n100: maximum_total_momentum_defect",
+          "value": 1.4453022112448366e-13,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n100: nonnegative depth",
+          "value": 1.7061975944337897,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n100: finite arrays",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n100: face CFL",
+          "value": 0.4,
+          "bound": 0.40000000000001,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n100: no repairs or retries",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n100: five exact output times",
+          "value": [
+            0.0,
+            0.5,
+            1.0,
+            1.5,
+            2.0
+          ],
+          "bound": [
+            0.0,
+            0.5,
+            1.0,
+            1.5,
+            2.0
+          ],
+          "passed": true
+        },
+        {
+          "name": "subcritical-n200: maximum_step_mass_defect",
+          "value": 4.744321889503942e-16,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n200: maximum_step_momentum_defect",
+          "value": 1.2569697886710696e-15,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n200: maximum_total_mass_defect",
+          "value": 5.070229235036041e-14,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n200: maximum_total_momentum_defect",
+          "value": 4.613531778829838e-13,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n200: nonnegative depth",
+          "value": 1.7067820867958878,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n200: finite arrays",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n200: face CFL",
+          "value": 0.4,
+          "bound": 0.40000000000001,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n200: no repairs or retries",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n200: five exact output times",
+          "value": [
+            0.0,
+            0.5,
+            1.0,
+            1.5,
+            2.0
+          ],
+          "bound": [
+            0.0,
+            0.5,
+            1.0,
+            1.5,
+            2.0
+          ],
+          "passed": true
+        },
+        {
+          "name": "subcritical-n400: maximum_step_mass_defect",
+          "value": 2.734858811900523e-16,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n400: maximum_step_momentum_defect",
+          "value": 9.472809906277413e-16,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n400: maximum_total_mass_defect",
+          "value": 1.0897622204961364e-13,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n400: maximum_total_momentum_defect",
+          "value": 7.040826255355626e-13,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n400: nonnegative depth",
+          "value": 1.707167352395832,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n400: finite arrays",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n400: face CFL",
+          "value": 0.4,
+          "bound": 0.40000000000001,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n400: no repairs or retries",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "subcritical-n400: five exact output times",
+          "value": [
+            0.0,
+            0.5,
+            1.0,
+            1.5,
+            2.0
+          ],
+          "bound": [
+            0.0,
+            0.5,
+            1.0,
+            1.5,
+            2.0
+          ],
+          "passed": true
+        },
+        {
+          "name": "subcritical finest relative_depth_l1",
+          "value": 0.0005059326932754719,
+          "bound": 0.01,
+          "passed": true
+        },
+        {
+          "name": "subcritical relative_depth_l1 refinement 1",
+          "value": 0.5120097669613494,
+          "bound": 0.85,
+          "passed": true
+        },
+        {
+          "name": "subcritical relative_depth_l1 refinement 2",
+          "value": 0.5045024075441544,
+          "bound": 0.85,
+          "passed": true
+        },
+        {
+          "name": "subcritical finest relative_momentum_l1",
+          "value": 0.0005437759899370102,
+          "bound": 0.01,
+          "passed": true
+        },
+        {
+          "name": "subcritical relative_momentum_l1 refinement 1",
+          "value": 0.5240315065376618,
+          "bound": 0.85,
+          "passed": true
+        },
+        {
+          "name": "subcritical relative_momentum_l1 refinement 2",
+          "value": 0.5148459840049853,
+          "bound": 0.85,
+          "passed": true
+        },
+        {
+          "name": "reference: Bernoulli energy constant",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "reference: subcritical branch",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "reference: Gauss8 vs Gauss16 conservative means",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "reference: Ritter total mass",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "reference: Ritter finite difference PDE residual",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "reference: exact dry branch",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "all fixed runs completed",
+          "value": 5,
+          "bound": 5,
+          "passed": true
+        }
+      ],
+      "checks": {
+        "lake-immersed: maximum_step_mass_defect": true,
+        "lake-immersed: maximum_step_momentum_defect": true,
+        "lake-immersed: maximum_total_mass_defect": true,
+        "lake-immersed: maximum_total_momentum_defect": true,
+        "lake-immersed: nonnegative depth": true,
+        "lake-immersed: finite arrays": true,
+        "lake-immersed: face CFL": true,
+        "lake-immersed: no repairs or retries": true,
+        "lake-immersed: five exact output times": true,
+        "lake-immersed: maximum_equilibrium_depth_drift": true,
+        "lake-immersed: maximum_equilibrium_discharge": true,
+        "lake-emerged: maximum_step_mass_defect": true,
+        "lake-emerged: maximum_step_momentum_defect": true,
+        "lake-emerged: maximum_total_mass_defect": true,
+        "lake-emerged: maximum_total_momentum_defect": true,
+        "lake-emerged: nonnegative depth": true,
+        "lake-emerged: finite arrays": true,
+        "lake-emerged: face CFL": true,
+        "lake-emerged: no repairs or retries": true,
+        "lake-emerged: five exact output times": true,
+        "lake-emerged: maximum_equilibrium_depth_drift": true,
+        "lake-emerged: maximum_equilibrium_discharge": true,
+        "subcritical-n100: maximum_step_mass_defect": true,
+        "subcritical-n100: maximum_step_momentum_defect": true,
+        "subcritical-n100: maximum_total_mass_defect": true,
+        "subcritical-n100: maximum_total_momentum_defect": true,
+        "subcritical-n100: nonnegative depth": true,
+        "subcritical-n100: finite arrays": true,
+        "subcritical-n100: face CFL": true,
+        "subcritical-n100: no repairs or retries": true,
+        "subcritical-n100: five exact output times": true,
+        "subcritical-n200: maximum_step_mass_defect": true,
+        "subcritical-n200: maximum_step_momentum_defect": true,
+        "subcritical-n200: maximum_total_mass_defect": true,
+        "subcritical-n200: maximum_total_momentum_defect": true,
+        "subcritical-n200: nonnegative depth": true,
+        "subcritical-n200: finite arrays": true,
+        "subcritical-n200: face CFL": true,
+        "subcritical-n200: no repairs or retries": true,
+        "subcritical-n200: five exact output times": true,
+        "subcritical-n400: maximum_step_mass_defect": true,
+        "subcritical-n400: maximum_step_momentum_defect": true,
+        "subcritical-n400: maximum_total_mass_defect": true,
+        "subcritical-n400: maximum_total_momentum_defect": true,
+        "subcritical-n400: nonnegative depth": true,
+        "subcritical-n400: finite arrays": true,
+        "subcritical-n400: face CFL": true,
+        "subcritical-n400: no repairs or retries": true,
+        "subcritical-n400: five exact output times": true,
+        "subcritical finest relative_depth_l1": true,
+        "subcritical relative_depth_l1 refinement 1": true,
+        "subcritical relative_depth_l1 refinement 2": true,
+        "subcritical finest relative_momentum_l1": true,
+        "subcritical relative_momentum_l1 refinement 1": true,
+        "subcritical relative_momentum_l1 refinement 2": true,
+        "reference: Bernoulli energy constant": true,
+        "reference: subcritical branch": true,
+        "reference: Gauss8 vs Gauss16 conservative means": true,
+        "reference: Ritter total mass": true,
+        "reference: Ritter finite difference PDE residual": true,
+        "reference: exact dry branch": true,
+        "all fixed runs completed": true
+      },
+      "metrics": {
+        "n": 400,
+        "steps": 536,
+        "time": 2.0,
+        "depth_l1": 0.024910750612704313,
+        "momentum_l1": 0.0600872468880399,
+        "relative_depth_l1": 0.0005059326932754719,
+        "relative_momentum_l1": 0.0005437759899370102,
+        "depth_linf": 0.006424726192373553,
+        "minimum_depth": 1.707167352395832,
+        "maximum_depth": 2.0053503464023854,
+        "maximum_velocity": 2.5885739653660536,
+        "maximum_courant": 0.4,
+        "maximum_step_mass_defect": 2.734858811900523e-16,
+        "maximum_step_momentum_defect": 9.472809906277413e-16,
+        "maximum_total_mass_defect": 1.0897622204961364e-13,
+        "maximum_total_momentum_defect": 7.040826255355626e-13,
+        "mass_change": 1.74538263039703e-05,
+        "boundary_mass_change": 1.7453826301854577e-05,
+        "bed_momentum_impulse": -0.028282407109783202,
+        "initial_dry_cells": 0,
+        "final_dry_cells": 0,
+        "newly_wet_cells": 0,
+        "all_saved_values_finite": true,
+        "depth_floor_count": 0,
+        "state_clip_count": 0,
+        "rejected_steps": 0,
+        "retries": 0
+      },
+      "reference_qualification": {
+        "checks": {
+          "Bernoulli energy constant": true,
+          "subcritical branch": true,
+          "Gauss8 vs Gauss16 conservative means": true,
+          "Ritter total mass": true,
+          "Ritter finite difference PDE residual": true,
+          "exact dry branch": true
+        },
+        "maximum_quadrature_gap": 3.3306690738754696e-16,
+        "maximum_pde_residual": 5.995204332975845e-10,
+        "energy_span": 4.440892098500626e-16
+      }
+    },
+    {
+      "id": "dry-bed-dam-break",
+      "passed": false,
+      "records": [
+        {
+          "id": "ritter-n800",
+          "case": "dry-bed-dam-break",
+          "family": "ritter",
+          "n": 800,
+          "steps": 255,
+          "time": 0.5,
+          "depth_l1": 0.04076516843016947,
+          "momentum_l1": 0.10625103409014838,
+          "relative_depth_l1": 0.004076516843016888,
+          "relative_momentum_l1": 0.043323561300773396,
+          "depth_linf": 0.04418975150437188,
+          "minimum_depth": 0.0,
+          "maximum_depth": 1.0,
+          "maximum_velocity": 4.844553403363496,
+          "maximum_courant": 0.4000000000000001,
+          "maximum_step_mass_defect": 2.0918962160247554e-17,
+          "maximum_step_momentum_defect": 2.0816681711721685e-17,
+          "maximum_total_mass_defect": 1.7763568394002505e-14,
+          "maximum_total_momentum_defect": 3.3306690738754696e-15,
+          "mass_change": 2.6645352591004136e-16,
+          "boundary_mass_change": 0.0,
+          "bed_momentum_impulse": 0.0,
+          "initial_dry_cells": 400,
+          "final_dry_cells": 145,
+          "newly_wet_cells": 255,
+          "all_saved_values_finite": true,
+          "depth_floor_count": 0,
+          "state_clip_count": 0,
+          "rejected_steps": 0,
+          "retries": 0,
+          "snapshot_times": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "front_depth_threshold": 0.001,
+          "numerical_threshold_front": 2.5875000000000012,
+          "analytic_threshold_front": 2.9835237865001925,
+          "analytic_support_front": 3.132091952673165,
+          "threshold_front_error": 0.3960237865001912
+        }
+      ],
+      "check_details": [
+        {
+          "name": "ritter-n800: maximum_step_mass_defect",
+          "value": 2.0918962160247554e-17,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "ritter-n800: maximum_step_momentum_defect",
+          "value": 2.0816681711721685e-17,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "ritter-n800: maximum_total_mass_defect",
+          "value": 1.7763568394002505e-14,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "ritter-n800: maximum_total_momentum_defect",
+          "value": 3.3306690738754696e-15,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "ritter-n800: nonnegative depth",
+          "value": 0.0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "ritter-n800: finite arrays",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "ritter-n800: face CFL",
+          "value": 0.4000000000000001,
+          "bound": 0.40000000000001,
+          "passed": true
+        },
+        {
+          "name": "ritter-n800: no repairs or retries",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "ritter-n800: five exact output times",
+          "value": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "bound": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "passed": true
+        },
+        {
+          "name": "ritter-n800: actual wetting",
+          "value": 255,
+          "bound": 1,
+          "passed": true
+        },
+        {
+          "name": "ritter-n800: dry cells retained",
+          "value": 145,
+          "bound": 1,
+          "passed": true
+        },
+        {
+          "name": "reference: Bernoulli energy constant",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "reference: subcritical branch",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "reference: Gauss8 vs Gauss16 conservative means",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "reference: Ritter total mass",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "reference: Ritter finite difference PDE residual",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "reference: exact dry branch",
+          "value": true,
+          "bound": true,
+          "passed": true
+        },
+        {
+          "name": "all fixed runs completed",
+          "value": 1,
+          "bound": 3,
+          "passed": false
+        }
+      ],
+      "checks": {
+        "ritter-n800: maximum_step_mass_defect": true,
+        "ritter-n800: maximum_step_momentum_defect": true,
+        "ritter-n800: maximum_total_mass_defect": true,
+        "ritter-n800: maximum_total_momentum_defect": true,
+        "ritter-n800: nonnegative depth": true,
+        "ritter-n800: finite arrays": true,
+        "ritter-n800: face CFL": true,
+        "ritter-n800: no repairs or retries": true,
+        "ritter-n800: five exact output times": true,
+        "ritter-n800: actual wetting": true,
+        "ritter-n800: dry cells retained": true,
+        "reference: Bernoulli energy constant": true,
+        "reference: subcritical branch": true,
+        "reference: Gauss8 vs Gauss16 conservative means": true,
+        "reference: Ritter total mass": true,
+        "reference: Ritter finite difference PDE residual": true,
+        "reference: exact dry branch": true,
+        "all fixed runs completed": false
+      },
+      "metrics": {
+        "n": 800,
+        "steps": 255,
+        "time": 0.5,
+        "depth_l1": 0.04076516843016947,
+        "momentum_l1": 0.10625103409014838,
+        "relative_depth_l1": 0.004076516843016888,
+        "relative_momentum_l1": 0.043323561300773396,
+        "depth_linf": 0.04418975150437188,
+        "minimum_depth": 0.0,
+        "maximum_depth": 1.0,
+        "maximum_velocity": 4.844553403363496,
+        "maximum_courant": 0.4000000000000001,
+        "maximum_step_mass_defect": 2.0918962160247554e-17,
+        "maximum_step_momentum_defect": 2.0816681711721685e-17,
+        "maximum_total_mass_defect": 1.7763568394002505e-14,
+        "maximum_total_momentum_defect": 3.3306690738754696e-15,
+        "mass_change": 2.6645352591004136e-16,
+        "boundary_mass_change": 0.0,
+        "bed_momentum_impulse": 0.0,
+        "initial_dry_cells": 400,
+        "final_dry_cells": 145,
+        "newly_wet_cells": 255,
+        "all_saved_values_finite": true,
+        "depth_floor_count": 0,
+        "state_clip_count": 0,
+        "rejected_steps": 0,
+        "retries": 0,
+        "front_depth_threshold": 0.001,
+        "numerical_threshold_front": 2.5875000000000012,
+        "analytic_threshold_front": 2.9835237865001925,
+        "analytic_support_front": 3.132091952673165,
+        "threshold_front_error": 0.3960237865001912
+      },
+      "reference_qualification": {
+        "checks": {
+          "Bernoulli energy constant": true,
+          "subcritical branch": true,
+          "Gauss8 vs Gauss16 conservative means": true,
+          "Ritter total mass": true,
+          "Ritter finite difference PDE residual": true,
+          "exact dry branch": true
+        },
+        "maximum_quadrature_gap": 3.3306690738754696e-16,
+        "maximum_pde_residual": 5.995204332975845e-10,
+        "energy_span": 4.440892098500626e-16
+      }
+    }
+  ],
+  "input_sha256": "a8e5c02f468aab0156c520fc47b26a5426d640d1aea4775c841663e2dfed4dc5",
+  "source_sha256": {
+    "inputs.json": "a8e5c02f468aab0156c520fc47b26a5426d640d1aea4775c841663e2dfed4dc5",
+    "acceptance.json": "644da767ea681ea9f87df16848ed9d499c6f0468b2e239ec69f4aa1793ac22ec",
+    "shallow_water.py": "6402f76ff341a7246e8ba20c104891f467402c74bca9e47b2dec7636b508ae33",
+    "run.py": "f108711501e31b928334917bd8a76b2e14db151a326d2e2124ff645d23d63e73",
+    "test_shallow_water.py": "98b893551010a5c0e2ff1725f8fc74ef676cb5b188dcf8baf9ff8ef91eb7fc75",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "source-provenance.json": "c143ee01cfbcb75c01d3cd818d021c477d40165256bb81828ce7a362adc71882",
+    "references/README.md": "15e017ced012db7a0b4b9bd636b6e101f8e39cc1c846c6f762168866d8340c74",
+    "references/__init__.py": "63b9b60f426ea05b6d6aa613616d3569e98f3e8246d39c7defa1d5af53a09dc2",
+    "references/analytic.py": "9c979fa7b0308e753e82cea173b96f6a33f6ec277805dafce55fb44dae3d644e",
+    "references/citations.json": "9a0b12ff324f7810a570edfdfd744058cffce7972ab370d2d62c696147c4b62f",
+    "references/source-review.json": "f133a544921fc22d514e8523a02b0b4ef31e96348ea920deb63f678e82e80feb",
+    "protocol-history.json": "51ee6bc9aa6bf4ad157cbb264ae702cec025be210b093b8fe271ac47afb78faf",
+    "pre-run-review.json": "2027f3af1ca2b46c893b83e5c041a7a7dbb602c406180ac7e69fc2ea2b59bef5",
+    "pre-run-contract.json": "60b6fb56896cd80bcbba3ba03d498440fafc260d3edb1c99103a9dda2a88de7a"
+  },
+  "files_sha256": {
+    "field-lake-immersed.npz": "6562239b17793055e4c459deb4260151cece5b039f8341d9bdb968531cfac59c",
+    "field-lake-emerged.npz": "6717593cbdb7dd3934519475cd12122bffa2b1d12a3d491d4b9cba4146533830",
+    "field-subcritical-n100.npz": "6917f9697f43cef0de9e0379b8670ea335a463ee57c3155ef43fccb6aa16a4c1",
+    "field-subcritical-n200.npz": "dc490869baff1f52c5907c30038287cf00a159bb2397a40297b5c75898db525c",
+    "field-subcritical-n400.npz": "3f4903f3225008826622a454ae6c5263447bce0f5dad0853682a0783fb48f672",
+    "field-ritter-n800.npz": "488df576e343696b1be0ee36ca93b668d6107e83dd9122667a69facc0ebb6893",
+    "swashes-topography.csv": "d5a6e869b4f98457613a705a572d8c00fa34a2228df7f7238ed9fc75a6145a3c",
+    "dry-bed-dam-break.csv": "87b9ec9e3b3fc3678cfab3ae52adc45c933676b1ebdc29113edd9d46ab369669"
+  },
+  "duration_seconds": 0.47718020799948135,
+  "failure": {
+    "type": "ArithmeticError",
+    "message": "Invalid dry state"
+  },
+  "termination": "calculation_failed"
+}

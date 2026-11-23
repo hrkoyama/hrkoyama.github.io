@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "revision": 4,
+  "ready_for_root_packaging": true,
+  "contract_sha256": "570caf3cefc13a1b77c413fd96c2b89cbca75711782cc2e88c25f1d69e9c3f13",
+  "result_sha256": "b6de8a1fc7178b815b93020eefc7bd11d5095dab0056d63deece5c1b262ec9d3",
+  "passed": true,
+  "tests": 31,
+  "original_numerical_gates": 109,
+  "fixed_runs": 8,
+  "combined_seconds": 3.935383166997781,
+  "scientific_sources_unchanged_after_execution": true,
+  "figures_saved_from_actual_arrays": {
+    "swashes-topography-preview.png": "dfbcd9dc201a400172a4c82346772383c32b6ff77d9e16d72992994be962e01c",
+    "swashes-topography.pdf": "1a32398ad40ef1f19602239c58ffca97fc57bf6c744fba0403a307d322d4706b",
+    "dry-bed-dam-break-preview.png": "84a63409b927c0ee6214d1c2519e5727493f121cc835340e509d997e3eff32e2",
+    "swashes-topography.png": "3b91bc40a354bebf41dfae5658f077c4a2eb8ffcbfd537a6211c9c96a52dce2c",
+    "dry-bed-dam-break.png": "462d58375af1a86ce16672c5ac827012a17f13902f40b622736382b1ace5fd6a",
+    "dry-bed-dam-break.pdf": "40110c51bb3be4a382342b8a7578d89a346711bdea558b8179ab7f0221e82af6",
+    "dry-bed-dam-break.svg": "64a4f2cb923c60aa5a3199f2585850a4e3681bcc633dc3a1a4b737a0f4ec242b",
+    "swashes-topography.svg": "1a6224a8aa30397f268e113851417791ad3b36296ab33671d743056f62767653"
+  },
+  "visual_review": "Both main PNGs directly inspected: legible axes/legends, actual saved bed/flow fields and three-grid measurements, five-time 1D depth image explicitly labeled; no solver executed during rendering.",
+  "scope": "Existing old results/acceptance records retained; only this new 1D group rerun. SWASHES library and independent PDE engine were not executed."
+}

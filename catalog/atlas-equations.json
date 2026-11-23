@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "reviewed_on": "2026-11-21",
+  "reviewed_on": "2026-11-23",
   "scope": "All equation/model entries in the shared atlas coverage inventory. Formulas are representative forms or explicitly identified schematic systems; they do not supply every closure or implementation. Status and coverage IDs are matched at build time.",
   "formula_format": "latex",
   "groups": [
@@ -45,7 +45,14 @@
       ],
       "status": "local-example",
       "group": "physical",
-      "coverage_scope": ""
+      "coverage_scope": "Existing constant-speed transport plus a fixed periodic WENO cell-mean comparison; local reconstruction rates are not universal PDE rates.",
+      "supplemental_examples": [
+        "weno-critical-epsilon"
+      ],
+      "execution_scope": {
+        "ja": "既存の共通移流例を保持し、追加の有限体積WENO比較ではq₀=cos(2πx)+.1sin³(2πx)、[0,1]周期・速度1・T=1を使います。局所臨界多項式は別診断で、点値とセル平均や時間刻み誤差を区別します。",
+        "en": "Retain existing common advection examples. The additional FV WENO comparison uses q₀=cos(2πx)+.1sin³(2πx), periodic[0,1], speed1 and T1. Local critical polynomials are separate diagnostics; distinguish point values, cell means and time-step effects."
+      }
     },
     {
       "id": "heat",
@@ -168,7 +175,14 @@
       ],
       "status": "local-example",
       "group": "physical",
-      "coverage_scope": "Wet 1D flow and linear rotating Fourier symbols; no full geophysical dynamical core."
+      "coverage_scope": "Wet1D and linear rotating Fourier checks plus a genuine dry-bed Ritter example; bed sources are represented by a separate model.",
+      "supplemental_examples": [
+        "dry-bed-dam-break"
+      ],
+      "execution_scope": {
+        "ja": "既存の湿潤1次元例と線形回転Fourier検査を保持します。追加Ritter例は平坦床・g9.81、[-10,10]、hL1/hR0、t.5の真の乾燥床です。地形源項付きの静止湖・Bernoulli流は別モデルshallow-water-bedへ案内します。",
+        "en": "Retain existing wet1D examples and linear rotating Fourier checks. The additional Ritter case is genuinely dry flat-bed flow with g9.81,[-10,10],hL1/hR0 and t.5. Bed-source lakes and Bernoulli flow link to the separate shallow-water-bed model."
+      }
     },
     {
       "id": "isothermal",
@@ -222,12 +236,19 @@
       ],
       "chapter": "incompressible",
       "note": {
-        "ja": "一定密度・粘性の代表形。公開例は周期2次元MAC格子の射影法とTaylor–Green渦です。",
-        "en": "A representative constant-density, constant-viscosity form. Public examples use periodic 2D MAC projection and a Taylor–Green vortex."
+        "ja": "一定密度・粘性の代表形。周期2D MAC射影・Taylor–Green渦に加え、圧力を消去する非周期Re100キャビティを別配布で検証します。",
+        "en": "Representative constant-density/viscosity flow. In addition to periodic2D MAC projection/Taylor–Green, a separate release verifies a pressure-eliminated nonperiodic Re100 cavity."
       },
       "status": "local-example",
       "group": "physical",
-      "coverage_scope": ""
+      "coverage_scope": "Scoped periodic MAC/Taylor–Green and nonperiodic Re100 vorticity-cavity examples; cavity pressure is not validated.",
+      "supplemental_examples": [
+        "cavity-ghia-re100"
+      ],
+      "execution_scope": {
+        "ja": "既存の周期2D MAC射影・Taylor–Green例を保持し、追加の非周期Re100キャビティでは渦度・流れ関数法とThom壁条件を使います。速度中心線をGhia有限格子数値表と比較します。圧力を消去しているため、キャビティ圧力・圧力境界・MAC射影の追加検証とは表示しません。",
+        "en": "Retain existing periodic2D MAC projection/Taylor–Green examples. The additional nonperiodic Re100 cavity uses vorticity/streamfunction and Thom walls, comparing velocity centerlines with finite-grid Ghia tables. Pressure is eliminated; this adds no cavity-pressure, pressure-boundary or MAC-projection validation."
+      }
     },
     {
       "id": "bgk",
@@ -1098,6 +1119,61 @@
       },
       "supplemental_examples": [
         "zalesak-rotation"
+      ]
+    },
+    {
+      "id": "shallow-water-bed",
+      "name": {
+        "ja": "地形源項付き浅水方程式",
+        "en": "Shallow-water equations with bed source"
+      },
+      "formula": [
+        "\\partial_t h+\\partial_xq=0",
+        "\\partial_tq+\\partial_x\\!\\left(q^2/h+gh^2/2\\right)=-gh\\,\\partial_x z,\\qquad q=hu",
+        "u=0,\\qquad h_i=\\max(\\eta_0-z_i,0)"
+      ],
+      "chapter": "validation-shallow-water",
+      "note": {
+        "ja": "摩擦・降雨なしの1次元Saint–Venant系。連続の地形と、保存平均から表現した区分定数の床を区別し、静水再構成の釣合いを確認します。 真の乾燥状態h=q=0では運動量の移流流束q²/hを0と定義します。",
+        "en": "One-dimensional frictionless Saint–Venant flow without rainfall. Distinguish the continuous topography from represented piecewise-constant bed means when checking hydrostatic balance. At a genuinely dry state h=q=0, define the advective momentum flux q²/h as0."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "coverage_scope": "Fixed1D hydrostatic-reconstruction lakes over represented bed and initialized subcritical Bernoulli flow; no general geophysical core.",
+      "execution_scope": {
+        "ja": "1次元、g=9.81、長さ25m、8<x<12でz=.2−.05(x−10)²m。水位.5/.1mの静水は200セル、流量4.42m²/s・下流深さ2mの定常流は100/200/400セル、t=2s。地形は区分定数セル平均。定常流から開始し、静水からの定常化実験とは区別します。",
+        "en": "1D, g=9.81, L=25m, compact parabolic bed z=.2-.05(x-10)^2 on8<x<12. Lakes at surface .5/.1m use200 cells. Moving flow q=4.42m2/s, downstream h=2m uses100/200/400 cells to2s. Initialize the steady branch, not the published rest-to-steady transient."
+      },
+      "supplemental_examples": [
+        "swashes-topography"
+      ]
+    },
+    {
+      "id": "forced-incompressible",
+      "name": {
+        "ja": "外力付き非圧縮流と壁面製造解",
+        "en": "Forced incompressible flow and wall manufactured solutions"
+      },
+      "formula": [
+        "\\partial_t\\boldsymbol u+(\\boldsymbol u\\cdot\\nabla)\\boldsymbol u=-\\nabla p+\\nu\\Delta\\boldsymbol u+\\boldsymbol f,\\qquad\\nabla\\cdot\\boldsymbol u=0",
+        "\\omega_t+u\\omega_x+v\\omega_y=\\nu\\Delta\\omega+s,\\quad s=(\\nabla\\times\\boldsymbol f)_z,\\quad-\\Delta\\psi=\\omega,\\quad(u,v)=(\\psi_y,-\\psi_x)",
+        "\\psi_\\star=8x^2(1-x)^2y^2(1-y)^2,\\quad s=\\boldsymbol u_\\star\\cdot\\nabla\\omega_\\star-\\nu\\Delta\\omega_\\star",
+        "-\\Delta p_{\\mathrm{op},\\star}=-4+2\\pi^2\\sin(\\pi x)\\sin(\\pi y),\\quad p_{\\mathrm{op},\\star}=x^2+y^2+\\sin(\\pi x)\\sin(\\pi y)"
+      ],
+      "chapter": "validation-wall-flow",
+      "note": {
+        "ja": "一定密度1の外力付き非圧縮系です。実際の流れは外力のcurlを使う渦度・流れ関数形で圧力を消去します。p_opは独立の非零Dirichlet Poisson・勾配演算子の製造問題で、流れと結合した圧力場やキャビティ圧力ではありません。",
+        "en": "Constant-density-one forced incompressible flow. The actual solver uses the curl forcing in a pressure-eliminated vorticity/streamfunction form. p_op is a separate nonzero-Dirichlet Poisson/gradient manufactured operator problem, not a coupled flow pressure or cavity pressure."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "coverage_scope": "Fixed no-slip polynomial flow with curl forcing and a separate manufactured Dirichlet pressure operator; no cavity-pressure or MAC-projection validation.",
+      "execution_scope": {
+        "ja": "単位正方形・ν=.01・17/33/65点。キャビティと同じThom壁条件で製造流れを解き、速度・流れ関数・壁剪断を比較します。圧力は別の製造演算子問題として評価します。",
+        "en": "Unit square, viscosity.01 and17/33/65nodes. Evolve the manufactured flow with the same Thom closure as the cavity, comparing velocity, streamfunction and wall shear. Pressure is assessed only in a separate manufactured operator problem."
+      },
+      "supplemental_examples": [
+        "wall-manufactured"
       ]
     }
   ]

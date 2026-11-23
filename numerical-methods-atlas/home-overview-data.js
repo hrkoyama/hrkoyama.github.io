@@ -1017,11 +1017,23 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "validation-shallow-water": [
+    "ja",
+    "en"
+  ],
   "validation-splitting": [
     "ja",
     "en"
   ],
   "validation-thermostats": [
+    "ja",
+    "en"
+  ],
+  "validation-wall-flow": [
+    "ja",
+    "en"
+  ],
+  "validation-weno-critical": [
     "ja",
     "en"
   ],

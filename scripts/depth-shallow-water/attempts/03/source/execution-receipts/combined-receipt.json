@@ -1,0 +1,37 @@
+{
+  "revision": 3,
+  "runtime_limit_seconds": 120,
+  "shared_pytest_plus_main_budget_seconds": 120,
+  "free_disk_bytes_before": 11231416320,
+  "contract_sha256": "acce9ebb6c134715762d1e4b1cdd74c5c4408693e72bf190f15b51dd76b9c9ab",
+  "pytest": {
+    "returncode": 0,
+    "remaining_budget_before_seconds": 119.99994820799839,
+    "elapsed_group_seconds": 0.46438079200015636
+  },
+  "run": {
+    "returncode": 1,
+    "remaining_budget_before_seconds": 119.53561649999756,
+    "elapsed_group_seconds": 1.8824035420002474
+  },
+  "total_seconds": 1.8824055420009245,
+  "pytest_counts": {
+    "tests": 31,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "passed": false,
+  "runs": 8,
+  "gates": 109,
+  "scientific_duration_seconds": 1.3455935830024828,
+  "failed": [
+    {
+      "name": "finest threshold front error",
+      "value": 0.2741487865001919,
+      "bound": 0.25,
+      "passed": false
+    }
+  ],
+  "free_disk_bytes_after": 11230494720
+}

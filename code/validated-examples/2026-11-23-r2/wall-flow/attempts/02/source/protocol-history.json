@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "previous_contract_sha256": "dacb9f46258eebd4ba736824fbf31a65a6ceeea9db088d1eda46c7e5c718a0a6",
+  "attempt01_directory": "attempts/01",
+  "attempt01_passed": false,
+  "attempt01_failure": "Final json.dumps raised TypeError on numpy.bool_ from the primary-table qualifier. Six flow fields, three pressure arrays embedded in manufactured NPZ, CSV, source snapshot and logs retained. No result.json existed; none fabricated.",
+  "revision_scope": "Cast independent reference qualification decisions to native bool; add one serialization regression. Existing20-test file, solver, runner, inputs and acceptance remain byte-identical.",
+  "unchanged_scientific_files": {
+    "inputs.json": true,
+    "acceptance.json": true,
+    "wall_flow.py": true,
+    "run.py": true,
+    "test_wall_flow.py": true
+  },
+  "acceptance_relaxed": false
+}

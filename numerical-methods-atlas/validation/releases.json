@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "edition": "2026-11-22",
-  "case_count": 49,
+  "case_count": 54,
   "releases": [
     {
       "group": "foundations",
@@ -311,6 +311,50 @@
         "zalesak-rotation"
       ],
       "tests": 26
+    },
+    {
+      "group": "weno-critical",
+      "edition": "2026-11-23",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/",
+      "archive": "atlas-weno-critical-2026-11-23.zip",
+      "archive_sha256": "9c119480261013ef8ed0c58716c45af5b9fb9d3e891aef56b95b66fbd8415491",
+      "manifest_sha256": "abd8b0a29bb81b7d98b897ec0a0eb409f77873857ec8199c3767f1ede11b43a5",
+      "verification_sha256": "ccbf3c6a2fe7055b324a0d98c152da909242f36e0c82ca3281038e4c9b0c165f",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "weno-critical-epsilon"
+      ],
+      "tests": 36
+    },
+    {
+      "group": "shallow-water",
+      "edition": "2026-11-23",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/",
+      "archive": "atlas-shallow-water-2026-11-23.zip",
+      "archive_sha256": "259244fc5c237542ba577df62308fd2a3191979dd43717d58df33d8abb902644",
+      "manifest_sha256": "0fdab6190462f91176fa2eb4eb452d6fb66c2066b0e07d115b8ea789231614da",
+      "verification_sha256": "e342321ddc1f7692e08dcc7a63478912956f63637c855f2f85eaf0999c4d22cc",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "dry-bed-dam-break",
+        "swashes-topography"
+      ],
+      "tests": 31
+    },
+    {
+      "group": "wall-flow",
+      "edition": "2026-11-23-r2",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/",
+      "archive": "atlas-wall-flow-2026-11-23-r2.zip",
+      "archive_sha256": "de499fde477a49b1eae10bd6bf04b0800b58105ca5d504ec6eff2ec3272690fd",
+      "manifest_sha256": "5defc88a20d06c6806f1aa18c5a5a9f027c7891d8a237bb5fe980169d1bbdfe4",
+      "verification_sha256": "6daf2fa12cf2e7f604bb54413b82e36bbe72891132e1846abf598f9c9600b096",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "cavity-ghia-re100",
+        "wall-manufactured"
+      ],
+      "tests": 22
     }
   ]
 }

@@ -1,0 +1,6 @@
+{
+  "source/test_wall_flow.py": "source/archived_test_wall_flow.py",
+  "reason": "Preserve the exact original bytes without recursive pytest collection.",
+  "failed_stage": "Final JSON serialization after six flow and three pressure operator solves.",
+  "result_json_existed": false
+}

@@ -16,7 +16,7 @@ const catalog = json('catalog/atlas-depth-expansion.json');
 const edition = group => catalog.groups.find(x => x.id === group).edition || catalog.edition;
 const base = group => `code/validated-examples/${edition(group)}/${group}/`;
 const entry = id => `numerical-methods-atlas/validation/${id}/`;
-const groupIds = ['foundations', 'models', 'particles', 'mhd', 'thermostats', 'biology', 'mcmc', 'mhd-convergence', 'foundations-conditioning', 'particle-transport', 'splitting', 'noh', 'noh-cartesian', 'sedov', 'double-mach', 'forward-step','low-mach','guderley','euler-positivity','zalesak'];
+const groupIds = ['foundations', 'models', 'particles', 'mhd', 'thermostats', 'biology', 'mcmc', 'mhd-convergence', 'foundations-conditioning', 'particle-transport', 'splitting', 'noh', 'noh-cartesian', 'sedov', 'double-mach', 'forward-step','low-mach','guderley','euler-positivity','zalesak','weno-critical','shallow-water','wall-flow'];
 const expectedIds = [
   'sa-amg', 'qr-svd-factorization', 'krylov-eigenvalues', 'gauss-adaptive-quadrature',
   'gaussian-mcmc', 'langevin-harmonic', 'reaction-diffusion-fourier', 'turing-schnakenberg', 'fitzhugh-nagumo',
@@ -29,6 +29,7 @@ const expectedIds = [
   'amg-conditioning', 'qr-svd-conditioning', 'krylov-eigen-conditioning', 'quadrature-conditioning',
   'ewald-convergence', 'spme-convergence', 'fmm-convergence', 'pic-conservation', 'dsmc-statistics', 'radiation-convergence',
   'reaction-diffusion-splitting', 'noh-shock', 'noh-cartesian-2d', 'sedov-blast', 'double-mach-reflection', 'forward-step-m3', 'low-mach-vortex', 'guderley-implosion', 'euler-double-rarefaction-positivity', 'zalesak-rotation',
+  'weno-critical-epsilon', 'swashes-topography', 'dry-bed-dam-break', 'cavity-ghia-re100', 'wall-manufactured',
 ].sort();
 const metadata = group => {
   const value = json(base(group) + 'cases.json');
@@ -96,10 +97,10 @@ test('forty original cases plus Noh and their independently dated releases stay 
   const index = json('numerical-methods-atlas/validation/index.json');
   assert.deepEqual(actualCases.map(x => x.item.id).sort(), expectedIds);
   assert.deepEqual(index.cases.map(x => x.id).sort(), expectedIds);
-  assert.equal(index.case_count, 49);
-  assert.equal(actualCases.filter(x => !['noh','noh-cartesian','sedov','double-mach','forward-step','low-mach','guderley','euler-positivity','zalesak'].includes(x.group)).length, 40);
+  assert.equal(index.case_count, 54);
+  assert.equal(actualCases.filter(x => !['noh','noh-cartesian','sedov','double-mach','forward-step','low-mach','guderley','euler-positivity','zalesak','weno-critical','shallow-water','wall-flow'].includes(x.group)).length, 40);
   assert.equal(edition('noh'), '2026-11-23-r5');
-  assert.ok(groupIds.filter(x => !['noh','noh-cartesian','sedov','double-mach','forward-step','low-mach','guderley','euler-positivity','zalesak'].includes(x)).every(x => edition(x) === '2026-11-22'));
+  assert.ok(groupIds.filter(x => !['noh','noh-cartesian','sedov','double-mach','forward-step','low-mach','guderley','euler-positivity','zalesak','weno-critical','shallow-water','wall-flow'].includes(x)).every(x => edition(x) === '2026-11-22'));
   assert.equal(index.case_problem_ids['noh-shock'], 'noh');
   assert.deepEqual(index.groups.map(x => x.id).sort(), [...groupIds].sort());
   assert.equal(index.common_registry.example_count, 22);
@@ -317,6 +318,17 @@ with tempfile.TemporaryDirectory() as directory:
   except AssertionError:pass
   else:raise AssertionError('Unproven initial-input identity accepted')
  data['manifest']['files']['inputs-initial.json']='4'*64;assert m.initial_input_name(data)=='inputs-initial.json'
+ del data['manifest']['files']['inputs-initial.json']
+ archive='attempts/01/source/';(p/archive).mkdir(parents=True)
+ contract={'declared_before_first_scientific_execution':True,'files_sha256':{'inputs.json':'5'*64}}
+ (p/archive/'pre-run-contract.json').write_text(json.dumps(contract))
+ data['manifest']['files'].update({archive+'inputs.json':'5'*64,archive+'pre-run-contract.json':'6'*64})
+ assert m.initial_input_name(data)==archive+'inputs.json'
+ for key,value in [('declared_before_first_scientific_execution',False),('files_sha256',{'inputs.json':'7'*64})]:
+  (p/archive/'pre-run-contract.json').write_text(json.dumps({**contract,key:value}))
+  try:m.initial_input_name(data)
+  except AssertionError:pass
+  else:raise AssertionError('Unproven archived initial-input identity accepted')
  del data['manifest']['files']['protocol-history.json'];assert m.initial_input_name(data) is None
 print('Initial-input links preserve both original-copy and unchanged-input protocols')
 `;

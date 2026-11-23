@@ -1,0 +1,26 @@
+{
+  "reviewer": "root, independent of implementation subagent",
+  "reviewed_before_first_main_and_pytest": true,
+  "contract_sha256": "ae311f6352a78a46f206c1bf7e9636577e2ef91bc6ffe16bb35898e3712fcc42",
+  "files_sha256": {
+    "inputs.json": "d70484b294dbb83d7356e2880766f7dbf0e63b983bc1064cfa47d3000bec2705",
+    "acceptance.json": "a9cff61c3b803a51a148058eab8eb2e11ce7f3aba86a394a063d7fa1cddddbe9",
+    "weno.py": "34c6d106f3c539f4a6e568bf1b0cc26d0096b9bd3c1c9215ab31ba4d57e51505",
+    "run.py": "ed2b37f04f98d94292d194d67fdd7830c6d1fd560edcc7ff8d5ff99f97f1ced3",
+    "test_weno.py": "0b09deec47c745e3be7f458ebbac0a52dfd836d1f3588f3d30030d8472c797dc",
+    "references/analytic.py": "a697dfabdf8186dc3d94b7a49d8d3652ddf39d0b49a125e7e55686486c0ea234",
+    "references/citations.json": "ef65e1123f1e7d054ad8cd0c42f8d368171942a60f8366032ffc5139d815396d",
+    "references/source-review.json": "0c1b83f4ba3dcb5444a9f28355f796ee332d6ed82da35c51a5f717115207c397",
+    "source-provenance.json": "97c946f6f7a4b91e92a25d9b9c3878c07f3639162140f19b5d22b2267c5c7b28",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75"
+  },
+  "findings": [
+    "FV candidate polynomials and JS indicators match cell-average reconstruction; ideal weights .1/.6/.3",
+    "Z exponent2 explicitly scoped, epsilon remains positive, common JS alpha rescaling cancels",
+    "Periodic flux is shared; actual continuum comparison uses independently qualified analytic cell means",
+    "Critical-point reconstruction and actual PDE/half-dt evidence are distinct",
+    "Numerical thresholds and 36tests/72reconstructions/24PDEruns/217gates declared before execution",
+    "Bilingual metadata, three dependency pins and all KaTeX formulas pass preflight"
+  ],
+  "approved_for_declared_execution": true
+}

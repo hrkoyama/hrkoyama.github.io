@@ -44,6 +44,12 @@ def initial_input_name(data):
         return None
     if 'inputs-initial.json' in files:
         return 'inputs-initial.json'
+    archived = 'attempts/01/source/'
+    if archived+'inputs.json' in files and archived+'pre-run-contract.json' in files:
+        initial = read_json(data['directory']/(archived+'pre-run-contract.json'))
+        assert initial.get('declared_before_first_scientific_execution') is True
+        assert initial['files_sha256']['inputs.json'] == files[archived+'inputs.json'], 'Archived initial input differs from its original contract'
+        return archived+'inputs.json'
     history = read_json(data['directory']/'protocol-history.json')
     assert history.get('locked_before_primary_pilot_and_reference') is True
     assert history.get('post_pilot_criteria_changes') is False

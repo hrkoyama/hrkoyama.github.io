@@ -165,7 +165,9 @@ test('both generated indexes show the precise reverse cards, visible first three
       }
     }
   }
-  for(const id of ['euler-vacuum','swe-dry-bed','swe-vacuum','couette'])assert.deepEqual(routes.references[id],[],'a nearby physical model does not fabricate '+id+' correspondences');
+  for(const id of ['euler-vacuum','swe-vacuum','couette'])assert.deepEqual(routes.references[id],[],'a nearby physical model does not fabricate '+id+' correspondences');
+  assert.deepEqual(routes.references['swe-dry-bed'].map(row=>row.id),['dry-bed-dam-break']);
+  assert.equal(routes.references['swe-dry-bed'][0].relation,'related-model','historical dry-bed parameters are linked only as a related model');
   assert.match(JSON.stringify(routes.references['taylor-green'][0].note),/π\/4/);
 });
 

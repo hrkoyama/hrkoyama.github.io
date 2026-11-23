@@ -37,13 +37,13 @@ test('matched CT and GLM examples retain their earlier primary releases and reso
 
 test('same-target OT refinements add no problem while the constructed equilibrium adds exactly one',()=>{
  const index=json('numerical-methods-atlas/validation/index.json');
- assert.equal(index.case_count,49);assert.equal(index.groups.length,20);
+ assert.equal(index.case_count,54);assert.equal(index.groups.length,23);
  assert.equal(index.case_problem_ids[cases[0]],'advected-magnetostatic-equilibrium');
  assert.equal(index.case_problem_ids[cases[1]],'orszag-tang');
  assert.equal(index.case_problem_ids[cases[2]],null);
  assert.equal(Object.values(index.case_problem_ids).filter(x=>x===null).length,5);
  const problems=json('numerical-methods-atlas/test-cases/index.json').problems;
- assert.equal(problems.length,87);
+ assert.equal(problems.length,91);
  assert.equal(problems.filter(p=>p.id==='advected-magnetostatic-equilibrium').length,1);
  const ot=problems.find(p=>p.id==='orszag-tang');
  assert.deepEqual(ot.supplemental_examples.map(x=>x.id).sort(),['ct-glm-independent','ct-glm-ot-convergence']);

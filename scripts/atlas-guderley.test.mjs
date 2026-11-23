@@ -34,13 +34,13 @@ print('invalid metadata rejected before scientific execution')`;
 
 test('Guderley adds one physical problem while preserving seventeen releases and all eighty-five earlier pictures',()=>{
  const registry=json('numerical-methods-atlas/validation/releases.json');
- assert.equal(objectHash(registry.releases.filter(r=>!['guderley','euler-positivity','zalesak'].includes(r.group))),'b95903d012a9887e306fcf32ee3955420226f179b2ab9861acd3a9aea94c54b6');
- assert.equal(registry.case_count,49);assert.equal(registry.releases.length,20);
+ assert.equal(objectHash(registry.releases.filter(r=>!['guderley','euler-positivity','zalesak','weno-critical','shallow-water','wall-flow'].includes(r.group))),'b95903d012a9887e306fcf32ee3955420226f179b2ab9861acd3a9aea94c54b6');
+ assert.equal(registry.case_count,54);assert.equal(registry.releases.length,23);
  const release=registry.releases.find(r=>r.group==='guderley');assert.deepEqual(release.case_ids,['guderley-implosion']);
- assert.equal(registry.releases.filter(r=>!['euler-positivity','zalesak'].includes(r.group)).reduce((s,r)=>s+r.tests,0),538+release.tests);
- const pictures=json('numerical-methods-atlas/gallery/preview-manifest.json').items.filter(r=>!['guderley','zalesak'].includes(r.id)).map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}));
+ assert.equal(registry.releases.filter(r=>!['euler-positivity','zalesak','weno-critical','shallow-water','wall-flow'].includes(r.group)).reduce((s,r)=>s+r.tests,0),538+release.tests);
+ const pictures=json('numerical-methods-atlas/gallery/preview-manifest.json').items.filter(r=>!['guderley','zalesak','swashes-topography','dry-bed-dam-break','lid-driven-cavity','wall-manufactured'].includes(r.id)).map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}));
  assert.equal(pictures.length,85);assert.equal(objectHash(pictures),'2a351e7c3700902a8c862474c75f7c2bd985b2c3312d573bdc9e2187f8def7f4');
- assert.equal(json('catalog/atlas-test-problems.json').problems.length,87);
+ assert.equal(json('catalog/atlas-test-problems.json').problems.length,91);
  assert.equal(json('catalog/atlas-methods.json').methods.length,147);assert.equal(json('catalog/atlas-execution-examples.json').examples.length,22);
  const receipt=json(base+'verification.json');assert.equal(receipt.tests,release.tests);assert.equal(receipt.passed,true);assert.equal(receipt.all_cases_rerun,true);assert.equal(hash(base+receipt.archive.file),receipt.archive.sha256);
  for(const[p,h]of Object.entries(json(base+'source-manifest.json').files))assert.equal(hash(base+p),h,p);

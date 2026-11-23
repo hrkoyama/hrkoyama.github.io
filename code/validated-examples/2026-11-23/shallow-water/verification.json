@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "group": "shallow-water",
+  "edition": "2026-11-23",
+  "verified_on": "2026-11-23",
+  "source_manifest_sha256": "0fdab6190462f91176fa2eb4eb452d6fb66c2066b0e07d115b8ea789231614da",
+  "archive": {
+    "file": "atlas-shallow-water-2026-11-23.zip",
+    "sha256": "259244fc5c237542ba577df62308fd2a3191979dd43717d58df33d8abb902644",
+    "bytes": 3195040,
+    "archive_directory": "atlas-shallow-water-2026-11-23"
+  },
+  "archive_sha256": "259244fc5c237542ba577df62308fd2a3191979dd43717d58df33d8abb902644",
+  "returncode": 0,
+  "passed_tests": 31,
+  "tests": 31,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "dry-bed-dam-break",
+    "swashes-topography"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 3.9044223750024685,
+  "independent_rerun_seconds": 3.6197136669979955,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

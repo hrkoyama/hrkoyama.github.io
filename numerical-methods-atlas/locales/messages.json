@@ -7515,5 +7515,81 @@
   "coverage.rotational-advection.scope": {
     "ja": "与えた発散ゼロの剛体回転だけを扱います。Euler流体や任意速度場の一般的な検証ではありません。",
     "en": "Prescribed divergence-free solid rotation only; not Euler fluid dynamics or arbitrary velocity fields."
+  },
+  "reference.weno-critical-profile.title": {
+    "ja": "WENO臨界点：多項式セル平均と解析的周期輸送",
+    "en": "WENO critical points: polynomial cell means and analytic periodic transport"
+  },
+  "reference.weno-critical-profile.assumptions": {
+    "ja": "局所参照はx=0を中心とする5セルの解析平均からh/2を評価する多項式です。通常・一次・二次臨界の3形、h=1/64…1/512を区別します。実際の周期輸送参照は[0,1]、速度1、T1、q₀=cos(2πx)+.1sin³(2πx)のFourier積分セル平均で、別のGauss12点関数求積と照合します。局所多項式と輸送の初期形は異なり、点値や別PDE計算の参照ではありません。",
+    "en": "Local references integrate polynomials over five cells centered around x=0 and evaluate at h/2. Regular, first-critical and second-critical profiles use h=1/64…1/512. The actual periodic-transport reference is the Fourier-integrated cell mean of q₀=cos(2πx)+.1sin³(2πx) on[0,1], speed1,T1, checked independently by Gauss12 point-function quadrature. Local polynomials differ from the evolved profile; neither point samples nor another PDE calculation are substituted for cell means."
+  },
+  "reference.lake-at-rest-bed.title": {
+    "ja": "静止湖：表現した床の上の湿潤・露出平衡",
+    "en": "Lake at rest: wet and emerged equilibrium over represented bed"
+  },
+  "reference.lake-at-rest-bed.assumptions": {
+    "ja": "g9.81、[0,25]m、200セル。8<x<12の放物線床z=.2−.05(x−10)²をセルごとにGauss8で平均し、h_i=max(η₀−z_i,0)、q_i=0、η₀=.5/.1mを初期化します。静水再構成が保つのはこの表現した区分定数床の平衡であり、連続床上の水深平均をそのまま使う別問題ではありません。",
+    "en": "Use g9.81,[0,25]m and200cells. Represent z=.2−.05(x−10)² on8<x<12 by split Gauss8 cell means, initializing h_i=max(eta0−z_i,0),q_i0 with eta0=.5/.1m. Hydrostatic reconstruction preserves equilibrium over this represented piecewise-constant bed; this differs from directly averaging depth over the continuous bed."
+  },
+  "reference.swashes-bernoulli.title": {
+    "ja": "SWASHES定常流：非射流Bernoulli根",
+    "en": "SWASHES steady flow: subcritical Bernoulli root"
+  },
+  "reference.swashes-bernoulli.assumptions": {
+    "ja": "g9.81、[0,25]m、同じ放物線床、流量q4.42m²/s、下流h2m。h+z+q²/(2gh²)=2+q²/(8g)の非射流根を別の二分法で求め、セル平均求積を比較します。100/200/400セルのPDE計算は定常参照から初期化してt2まで進め、SWASHESの静止状態からの過渡計算そのものは再現しません。",
+    "en": "Use g9.81,[0,25]m, the parabolic bed, discharge q4.42m²/s and downstream depth2m. Independently bisect the subcritical root of h+z+q²/(2gh²)=2+q²/(8g) and qualify cell quadrature. PDE runs on100/200/400cells start from the steady reference and advance to t2; they do not reproduce the original rest-to-steady transient."
+  },
+  "reference.ritter-dry-bed.title": {
+    "ja": "Ritter乾燥床破堤：g9.81の専用セル平均参照",
+    "en": "Ritter dry-bed dam break: dedicated g9.81 cell-mean reference"
+  },
+  "reference.ritter-dry-bed.assumptions": {
+    "ja": "平坦・摩擦なしの[-10,10]m、堰x0=0、hL1m/hR0、初速0、g9.81、t.5s。左波頭−sqrt(g)tと真の乾燥前縁2sqrt(g)tで分割して保存量(h,hu)をセル平均します。固定水深.001mの等値線も区別します。旧参照カードと重力・領域・時刻の異なる専用入力で、旧値は変更しません。",
+    "en": "Flat frictionless[-10,10]m, dam x00,hL1m/hR0,zero initial velocity,g9.81,t.5s. Split conserved(h,hu) cell means at the rarefaction head−sqrt(g)t and genuine dry front2sqrt(g)t. Separately track the fixed depth.001m contour. These dedicated gravity/domain/time inputs differ from the historical card, whose values remain unchanged."
+  },
+  "reference.ghia-re100.title": {
+    "ja": "Ghia Re100：原著の有限格子速度中心線",
+    "en": "Ghia Re100: original finite-grid velocity centerlines"
+  },
+  "reference.ghia-re100.assumptions": {
+    "ja": "単位正方形、Re100、蓋速度1、他壁静止。Ghia原著の表I/IIのRe100列から速度u(0.5,y)とv(x,0.5)各17点を直接確認して転記し、印刷された4桁座標を保持します。表Vの格子上の主渦位置(.6172,.7344)を別に比較します。丸めを含む有限格子数値表で、厳密な連続解でも今回のソルバー出力でもありません。",
+    "en": "Unit square,Re100,unit top lid and stationary other walls. Transcribe17points each of u(.5,y) and v(x,.5) after direct inspection of original TablesI/II Re100 columns, preserving printed four-decimal coordinates. Separately compare the grid primary vortex(.6172,.7344) from TableV. These rounded finite-grid numerical tables are neither continuum exact values nor outputs from the present solver."
+  },
+  "reference.wall-mms.title": {
+    "ja": "壁面製造解：多項式速度と独立した圧力演算子",
+    "en": "Wall manufactured solution: polynomial velocity and separate pressure operator"
+  },
+  "reference.wall-mms.assumptions": {
+    "ja": "単位正方形・ν.01・滑りなし、ψ*=8x²(1−x)²y²(1−y)²、u*=ψ*y、v*=−ψ*x、ω*=−Δψ*。連続の渦度式からs=u*ω*x+v*ω*y−νΔω*を構成し、独立の係数行列微分と照合します。PDE計算の壁渦度はキャビティと同じThom式で、厳密値を注入しません。p_op=x²+y²+sinπx sinπyの非零Dirichlet Poisson・勾配は別の演算子問題で、流れに結合した圧力やキャビティ圧力ではありません。",
+    "en": "Unit square,viscosity.01,no-slip,psi*=8x²(1−x)²y²(1−y)²,u*=psi*_y,v*=−psi*_x,omega*=−Delta psi*. Construct s=u*omega*_x+v*omega*_y−nu*Delta omega* from the continuous vorticity PDE, qualified by independent tensor-coefficient differentiation. PDE wall vorticity uses the same Thom closure as the cavity without exact injection. Nonzero-Dirichlet Poisson/gradient for p_op=x²+y²+sin(pi*x)sin(pi*y) is a separate operator problem, not coupled flow or cavity pressure."
+  },
+  "coverage.shallow-water-bed.title": {
+    "ja": "地形源項付き浅水方程式",
+    "en": "Shallow-water equations with bed source"
+  },
+  "coverage.forced-incompressible.title": {
+    "ja": "外力付き非圧縮流と壁面製造解",
+    "en": "Forced incompressible flow and wall manufactured solutions"
+  },
+  "coverage.linear-advection.scope": {
+    "ja": "既存の一定速度移流と、固定周期WENOセル平均比較。局所再構成の次数を全PDEの普遍的次数と混同しません。",
+    "en": "Existing constant-speed transport plus a fixed periodic WENO cell-mean comparison; local reconstruction rates are not universal PDE rates."
+  },
+  "coverage.shallow-water.scope": {
+    "ja": "既存の湿潤1D・線形回転Fourier検査に、真の乾燥床Ritter例を追加。地形源項は別モデルに分離します。",
+    "en": "Wet1D and linear rotating Fourier checks plus a genuine dry-bed Ritter example; bed sources are represented by a separate model."
+  },
+  "coverage.navier-stokes.scope": {
+    "ja": "周期MAC・Taylor–Greenと非周期Re100渦度キャビティの限定例。キャビティ圧力の検証は含みません。",
+    "en": "Scoped periodic MAC/Taylor–Green and nonperiodic Re100 vorticity-cavity examples; cavity pressure is not validated."
+  },
+  "coverage.shallow-water-bed.scope": {
+    "ja": "表現した床上の静止湖と、定常解で初期化する1D静水再構成Bernoulli流の固定例。一般の地球流体コアではありません。",
+    "en": "Fixed1D hydrostatic-reconstruction lakes over represented bed and initialized subcritical Bernoulli flow; no general geophysical core."
+  },
+  "coverage.forced-incompressible.scope": {
+    "ja": "滑りなしの固定多項式流れとcurl外力、独立した圧力Dirichlet製造演算子。キャビティ圧力やMAC射影は検証しません。",
+    "en": "Fixed no-slip polynomial flow with curl forcing and a separate manufactured Dirichlet pressure operator; no cavity-pressure or MAC-projection validation."
   }
 }

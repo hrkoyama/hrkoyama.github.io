@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "reviewed_on": "2026-11-21",
+  "reviewed_on": "2026-11-23",
   "scope": "All equation/model entries in the shared atlas coverage inventory. Formulas are representative forms or explicitly identified schematic systems; they do not supply every closure or implementation. Status and coverage IDs are matched at build time.",
   "formula_format": "latex",
   "groups": [
@@ -45,7 +45,14 @@
       ],
       "status": "local-example",
       "group": "physical",
-      "coverage_scope": "",
+      "coverage_scope": "Existing constant-speed transport plus a fixed periodic WENO cell-mean comparison; local reconstruction rates are not universal PDE rates.",
+      "supplemental_examples": [
+        "weno-critical-epsilon"
+      ],
+      "execution_scope": {
+        "ja": "既存の共通移流例を保持し、追加の有限体積WENO比較ではq₀=cos(2πx)+.1sin³(2πx)、[0,1]周期・速度1・T=1を使います。局所臨界多項式は別診断で、点値とセル平均や時間刻み誤差を区別します。",
+        "en": "Retain existing common advection examples. The additional FV WENO comparison uses q₀=cos(2πx)+.1sin³(2πx), periodic[0,1], speed1 and T1. Local critical polynomials are separate diagnostics; distinguish point values, cell means and time-step effects."
+      },
       "reading": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/stability/",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/stability/"
@@ -63,7 +70,29 @@
           }
         }
       ],
-      "supplemental_execution_examples": [],
+      "supplemental_execution_examples": [
+        {
+          "id": "weno-critical-epsilon",
+          "name": {
+            "ja": "WENO-JS／Z：臨界点とεの固定比較",
+            "en": "WENO-JS/Z: fixed critical-point and epsilon comparison"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/weno.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/references/analytic.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/test_weno.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-23/weno-critical/verification.json",
+          "results": "/code/validated-examples/2026-11-23/weno-critical/results/result.json"
+        }
+      ],
       "related_problems": [
         {
           "id": "advection-sine",
@@ -112,6 +141,30 @@
               "input": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/advection-sine.json",
               "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
               "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json"
+            },
+            {
+              "id": "weno-critical-epsilon",
+              "kind": "supplement",
+              "name": {
+                "ja": "WENO-JS／Z：臨界点とεの固定比較",
+                "en": "WENO-JS/Z: fixed critical-point and epsilon comparison"
+              },
+              "scope": {
+                "ja": "同じセル平均からのWENO5再構成と実際の周期輸送で、JS重みとZ二乗重みを比較します。3種類の臨界性、3種類のε、固定格子と時間刻み半減を分けて保存します。",
+                "en": "Compare WENO5 JS and Z power-two weights from the same cell means, then evolve actual periodic transport. Retain three regularity classes, three epsilon choices, fixed grids and separate halved-time-step diagnostics."
+              },
+              "method_ids": [
+                "weno-js",
+                "weno-z",
+                "rk4"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/atlas-weno-critical-2026-11-23.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/verification.json"
             }
           ]
         },
@@ -2171,13 +2224,44 @@
       ],
       "status": "local-example",
       "group": "physical",
-      "coverage_scope": "Wet 1D flow and linear rotating Fourier symbols; no full geophysical dynamical core.",
+      "coverage_scope": "Wet1D and linear rotating Fourier checks plus a genuine dry-bed Ritter example; bed sources are represented by a separate model.",
+      "supplemental_examples": [
+        "dry-bed-dam-break"
+      ],
+      "execution_scope": {
+        "ja": "既存の湿潤1次元例と線形回転Fourier検査を保持します。追加Ritter例は平坦床・g9.81、[-10,10]、hL1/hR0、t.5の真の乾燥床です。地形源項付きの静止湖・Bernoulli流は別モデルshallow-water-bedへ案内します。",
+        "en": "Retain existing wet1D examples and linear rotating Fourier checks. The additional Ritter case is genuinely dry flat-bed flow with g9.81,[-10,10],hL1/hR0 and t.5. Bed-source lakes and Bernoulli flow link to the separate shallow-water-bed model."
+      },
       "reading": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/geophysical-grids/",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/geophysical-grids/"
       },
       "execution_examples": [],
-      "supplemental_execution_examples": [],
+      "supplemental_execution_examples": [
+        {
+          "id": "dry-bed-dam-break",
+          "name": {
+            "ja": "乾いた河床のダム破壊：実際のwetting/drying",
+            "en": "Dry-bed dam break: actual wetting and dry states"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dry-bed-dam-break/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dry-bed-dam-break/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/shallow_water.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/references/analytic.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/protocol-candidates/04-before-normalization/run.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/test_packet_arithmetic.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/test_shallow_water.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-23/shallow-water/verification.json",
+          "results": "/code/validated-examples/2026-11-23/shallow-water/results/result.json"
+        }
+      ],
       "related_problems": [
         {
           "id": "dam-break",
@@ -2205,6 +2289,62 @@
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dam-break/?lang=en#code-en"
           },
           "executions": []
+        },
+        {
+          "id": "dry-bed-dam-break",
+          "name": {
+            "ja": "乾燥床へのRitter破堤流",
+            "en": "Ritter dam break onto a dry bed"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/results/dry-bed-dam-break-preview.png",
+            "sha256": "84a63409b927c0ee6214d1c2519e5727493f121cc835340e509d997e3eff32e2",
+            "width": 960,
+            "height": 576,
+            "caption": {
+              "ja": "実際の1次元浅水計算の保存配列による水深・流量と乾湿前線のプレビュー。時空間図は1次元の5保存時刻です。",
+              "en": "Preview from actual saved 1D shallow-water depth/discharge arrays. The space-time panel shows five saved times, not a 2D flow."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dry-bed-dam-break/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dry-bed-dam-break/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dry-bed-dam-break/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dry-bed-dam-break/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "dry-bed-dam-break",
+              "kind": "supplement",
+              "name": {
+                "ja": "乾いた河床のダム破壊：実際のwetting/drying",
+                "en": "Dry-bed dam break: actual wetting and dry states"
+              },
+              "scope": {
+                "ja": "右半分を厳密にh=q=0として開始する浅水方程式を解き、実際の乾湿前線の進行と保存をRitter解析解と比較します。",
+                "en": "Start the right half at exactly h=q=0 and compare wetting-front advance, conservation and conservative errors with the Ritter analytic solution."
+              },
+              "method_ids": [
+                "godunov",
+                "hll",
+                "forward-euler"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dry-bed-dam-break/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dry-bed-dam-break/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/atlas-shallow-water-2026-11-23.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "平坦床・無摩擦、[−10,10]m、ダムx=0、左深さ1m・右0m、初速0、g=9.81、t=.5s、800/1600/3200セル。SWASHESのRitter式を明示した別スケールで使い、原例の.005m・6s入力とは区別します。",
+            "en": "Flat frictionless bed on[-10,10]m, dam0, hL=1m/hR=0, initial velocity0, g=9.81, t=.5s,800/1600/3200 cells. The Ritter formula uses an explicit rescaling distinct from the paper numerical example."
+          }
         }
       ]
     },
@@ -2571,12 +2711,19 @@
       ],
       "chapter": "incompressible",
       "note": {
-        "ja": "一定密度・粘性の代表形。公開例は周期2次元MAC格子の射影法とTaylor–Green渦です。",
-        "en": "A representative constant-density, constant-viscosity form. Public examples use periodic 2D MAC projection and a Taylor–Green vortex."
+        "ja": "一定密度・粘性の代表形。周期2D MAC射影・Taylor–Green渦に加え、圧力を消去する非周期Re100キャビティを別配布で検証します。",
+        "en": "Representative constant-density/viscosity flow. In addition to periodic2D MAC projection/Taylor–Green, a separate release verifies a pressure-eliminated nonperiodic Re100 cavity."
       },
       "status": "local-example",
       "group": "physical",
-      "coverage_scope": "",
+      "coverage_scope": "Scoped periodic MAC/Taylor–Green and nonperiodic Re100 vorticity-cavity examples; cavity pressure is not validated.",
+      "supplemental_examples": [
+        "cavity-ghia-re100"
+      ],
+      "execution_scope": {
+        "ja": "既存の周期2D MAC射影・Taylor–Green例を保持し、追加の非周期Re100キャビティでは渦度・流れ関数法とThom壁条件を使います。速度中心線をGhia有限格子数値表と比較します。圧力を消去しているため、キャビティ圧力・圧力境界・MAC射影の追加検証とは表示しません。",
+        "en": "Retain existing periodic2D MAC projection/Taylor–Green examples. The additional nonperiodic Re100 cavity uses vorticity/streamfunction and Thom walls, comparing velocity centerlines with finite-grid Ghia tables. Pressure is eliminated; this adds no cavity-pressure, pressure-boundary or MAC-projection validation."
+      },
       "reading": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/incompressible/",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/incompressible/"
@@ -2594,7 +2741,31 @@
           }
         }
       ],
-      "supplemental_execution_examples": [],
+      "supplemental_execution_examples": [
+        {
+          "id": "cavity-ghia-re100",
+          "name": {
+            "ja": "Re=100蓋駆動キャビティ：Ghia中心線との比較",
+            "en": "Re100 lid-driven cavity: Ghia centerline comparison"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/cavity-ghia-re100/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/cavity-ghia-re100/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/wall_flow.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/references/qualify_reference.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/test_result_envelope.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/test_serialization.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/test_wall_flow.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-23-r2/wall-flow/verification.json",
+          "results": "/code/validated-examples/2026-11-23-r2/wall-flow/results/result.json"
+        }
+      ],
       "related_problems": [
         {
           "id": "taylor-green",
@@ -2706,6 +2877,61 @@
           "note": {
             "ja": "格子BGK・体積力・半格子壁を使う計算と、巨視的な定常非圧縮流路解を結びます。",
             "en": "Links the lattice-BGK/body-force/halfway-wall calculation to its macroscopic steady incompressible channel solution."
+          }
+        },
+        {
+          "id": "lid-driven-cavity",
+          "name": {
+            "ja": "Re100の蓋駆動キャビティ",
+            "en": "Re100 lid-driven cavity"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/results/cavity-ghia-re100-preview.png",
+            "sha256": "ce88c820d7513d83c054892f36ee234d938cf180428f3a6783899deb3b9f77b5",
+            "width": 1038,
+            "height": 909,
+            "caption": {
+              "ja": "保存した最細Re100計算の流線と速さ。赤点は格子上の主渦、白抜き点はGhia表Vの主渦位置です。",
+              "en": "Saved finest Re100 streamlines and speed. Red dot: computed grid primary vortex; hollow dot: original Ghia TableV location."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lid-driven-cavity/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lid-driven-cavity/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lid-driven-cavity/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lid-driven-cavity/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "cavity-ghia-re100",
+              "kind": "supplement",
+              "name": {
+                "ja": "Re=100蓋駆動キャビティ：Ghia中心線との比較",
+                "en": "Re100 lid-driven cavity: Ghia centerline comparison"
+              },
+              "scope": {
+                "ja": "非周期・粘性非圧縮の実際の2D計算を17/33/65点格子で定常化し、Ghia原著の速度中心線と比較します。流線・渦中心・真の残差と発散を同時に保存します。",
+                "en": "March a real nonperiodic 2D viscous incompressible solver to steady state on 17/33/65 node grids and compare against original Ghia centerlines. Retain streamlines, grid vortex center, true PDE residual and discrete divergence."
+              },
+              "method_ids": [
+                "centered-difference",
+                "heun"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/cavity-ghia-re100/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/cavity-ghia-re100/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/atlas-wall-flow-2026-11-23-r2.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "無次元の単位正方形、ν=.01、蓋速度U=1、Re=100。上面の内部節点だけu=1、他壁と四隅の速度は0、全壁ψ=0。初期内部渦度は0。壁渦度はThom条件で各Heun段に再設定します。",
+            "en": "Dimensionless unit square, viscosity.01, lid speed1, Re100. Top interior nodes haveu1; other walls and all four corners have zero velocity. Psi0 on every wall; initial interior vorticity0. Reapply Thom wall vorticity at every Heun stage."
           }
         }
       ]
@@ -5458,15 +5684,245 @@
           }
         }
       ]
+    },
+    {
+      "id": "shallow-water-bed",
+      "name": {
+        "ja": "地形源項付き浅水方程式",
+        "en": "Shallow-water equations with bed source"
+      },
+      "formula": [
+        "\\partial_t h+\\partial_xq=0",
+        "\\partial_tq+\\partial_x\\!\\left(q^2/h+gh^2/2\\right)=-gh\\,\\partial_x z,\\qquad q=hu",
+        "u=0,\\qquad h_i=\\max(\\eta_0-z_i,0)"
+      ],
+      "chapter": "validation-shallow-water",
+      "note": {
+        "ja": "摩擦・降雨なしの1次元Saint–Venant系。連続の地形と、保存平均から表現した区分定数の床を区別し、静水再構成の釣合いを確認します。 真の乾燥状態h=q=0では運動量の移流流束q²/hを0と定義します。",
+        "en": "One-dimensional frictionless Saint–Venant flow without rainfall. Distinguish the continuous topography from represented piecewise-constant bed means when checking hydrostatic balance. At a genuinely dry state h=q=0, define the advective momentum flux q²/h as0."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "coverage_scope": "Fixed1D hydrostatic-reconstruction lakes over represented bed and initialized subcritical Bernoulli flow; no general geophysical core.",
+      "execution_scope": {
+        "ja": "1次元、g=9.81、長さ25m、8<x<12でz=.2−.05(x−10)²m。水位.5/.1mの静水は200セル、流量4.42m²/s・下流深さ2mの定常流は100/200/400セル、t=2s。地形は区分定数セル平均。定常流から開始し、静水からの定常化実験とは区別します。",
+        "en": "1D, g=9.81, L=25m, compact parabolic bed z=.2-.05(x-10)^2 on8<x<12. Lakes at surface .5/.1m use200 cells. Moving flow q=4.42m2/s, downstream h=2m uses100/200/400 cells to2s. Initialize the steady branch, not the published rest-to-steady transient."
+      },
+      "supplemental_examples": [
+        "swashes-topography"
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-shallow-water/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/"
+      },
+      "execution_examples": [],
+      "supplemental_execution_examples": [
+        {
+          "id": "swashes-topography",
+          "name": {
+            "ja": "SWASHES地形流：静水と非零流量の定常解",
+            "en": "SWASHES topographic flow: lakes and nonzero steady discharge"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/swashes-topography/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/swashes-topography/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/shallow_water.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/references/analytic.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/protocol-candidates/04-before-normalization/run.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/test_packet_arithmetic.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/test_shallow_water.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-23/shallow-water/verification.json",
+          "results": "/code/validated-examples/2026-11-23/shallow-water/results/result.json"
+        }
+      ],
+      "related_problems": [
+        {
+          "id": "swashes-topography",
+          "name": {
+            "ja": "SWASHES地形上の静止湖・定常浅水流",
+            "en": "SWASHES lakes and steady shallow flow over topography"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/results/swashes-topography-preview.png",
+            "sha256": "dfbcd9dc201a400172a4c82346772383c32b6ff77d9e16d72992994be962e01c",
+            "width": 960,
+            "height": 576,
+            "caption": {
+              "ja": "保存した有限体積配列から描いた地形・水面と定常誤差のプレビュー。",
+              "en": "Preview of represented bed, saved FV surfaces and moving-steady errors."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/swashes-topography/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/swashes-topography/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/swashes-topography/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/swashes-topography/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "swashes-topography",
+              "kind": "supplement",
+              "name": {
+                "ja": "SWASHES地形流：静水と非零流量の定常解",
+                "en": "SWASHES topographic flow: lakes and nonzero steady discharge"
+              },
+              "scope": {
+                "ja": "水没・露出した隆起上の静水と、非零流量の亜臨界定常解を別々に検査します。静水の保存と、動く定常流に残る離散化誤差を区別します。",
+                "en": "Check two lake equilibria separately from nonzero subcritical flow, distinguishing lake preservation from moving-flow discretization error."
+              },
+              "method_ids": [
+                "godunov",
+                "hll",
+                "forward-euler"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/swashes-topography/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/swashes-topography/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/atlas-shallow-water-2026-11-23.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/shallow-water/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "1次元、g=9.81、長さ25m、8<x<12でz=.2−.05(x−10)²m。水位.5/.1mの静水は200セル、流量4.42m²/s・下流深さ2mの定常流は100/200/400セル、t=2s。地形は区分定数セル平均。定常流から開始し、静水からの定常化実験とは区別します。",
+            "en": "1D, g=9.81, L=25m, compact parabolic bed z=.2-.05(x-10)^2 on8<x<12. Lakes at surface .5/.1m use200 cells. Moving flow q=4.42m2/s, downstream h=2m uses100/200/400 cells to2s. Initialize the steady branch, not the published rest-to-steady transient."
+          }
+        }
+      ]
+    },
+    {
+      "id": "forced-incompressible",
+      "name": {
+        "ja": "外力付き非圧縮流と壁面製造解",
+        "en": "Forced incompressible flow and wall manufactured solutions"
+      },
+      "formula": [
+        "\\partial_t\\boldsymbol u+(\\boldsymbol u\\cdot\\nabla)\\boldsymbol u=-\\nabla p+\\nu\\Delta\\boldsymbol u+\\boldsymbol f,\\qquad\\nabla\\cdot\\boldsymbol u=0",
+        "\\omega_t+u\\omega_x+v\\omega_y=\\nu\\Delta\\omega+s,\\quad s=(\\nabla\\times\\boldsymbol f)_z,\\quad-\\Delta\\psi=\\omega,\\quad(u,v)=(\\psi_y,-\\psi_x)",
+        "\\psi_\\star=8x^2(1-x)^2y^2(1-y)^2,\\quad s=\\boldsymbol u_\\star\\cdot\\nabla\\omega_\\star-\\nu\\Delta\\omega_\\star",
+        "-\\Delta p_{\\mathrm{op},\\star}=-4+2\\pi^2\\sin(\\pi x)\\sin(\\pi y),\\quad p_{\\mathrm{op},\\star}=x^2+y^2+\\sin(\\pi x)\\sin(\\pi y)"
+      ],
+      "chapter": "validation-wall-flow",
+      "note": {
+        "ja": "一定密度1の外力付き非圧縮系です。実際の流れは外力のcurlを使う渦度・流れ関数形で圧力を消去します。p_opは独立の非零Dirichlet Poisson・勾配演算子の製造問題で、流れと結合した圧力場やキャビティ圧力ではありません。",
+        "en": "Constant-density-one forced incompressible flow. The actual solver uses the curl forcing in a pressure-eliminated vorticity/streamfunction form. p_op is a separate nonzero-Dirichlet Poisson/gradient manufactured operator problem, not a coupled flow pressure or cavity pressure."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "coverage_scope": "Fixed no-slip polynomial flow with curl forcing and a separate manufactured Dirichlet pressure operator; no cavity-pressure or MAC-projection validation.",
+      "execution_scope": {
+        "ja": "単位正方形・ν=.01・17/33/65点。キャビティと同じThom壁条件で製造流れを解き、速度・流れ関数・壁剪断を比較します。圧力は別の製造演算子問題として評価します。",
+        "en": "Unit square, viscosity.01 and17/33/65nodes. Evolve the manufactured flow with the same Thom closure as the cavity, comparing velocity, streamfunction and wall shear. Pressure is assessed only in a separate manufactured operator problem."
+      },
+      "supplemental_examples": [
+        "wall-manufactured"
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-wall-flow/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-wall-flow/"
+      },
+      "execution_examples": [],
+      "supplemental_execution_examples": [
+        {
+          "id": "wall-manufactured",
+          "name": {
+            "ja": "非周期壁面の製造解：速度・剪断・圧力演算子",
+            "en": "Nonperiodic wall MMS: velocity, shear and pressure operator"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/wall-manufactured/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/wall-manufactured/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/wall_flow.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/references/qualify_reference.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/test_result_envelope.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/test_serialization.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/test_wall_flow.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-23-r2/wall-flow/verification.json",
+          "results": "/code/validated-examples/2026-11-23-r2/wall-flow/results/result.json"
+        }
+      ],
+      "related_problems": [
+        {
+          "id": "wall-manufactured",
+          "name": {
+            "ja": "非周期壁面の製造非圧縮流",
+            "en": "Manufactured incompressible flow with nonperiodic walls"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/results/wall-manufactured-preview.png",
+            "sha256": "edb1f81d131734b64f5056b10209f6a93ba3e8148ea6d5f50bcd9af312acf4d7",
+            "width": 1040,
+            "height": 901,
+            "caption": {
+              "ja": "実計算した最細の製造流れの流線と速度誤差。厳密壁渦度を注入せず、キャビティと同じThom閉鎖を使います。",
+              "en": "Computed finest manufactured-flow streamlines and velocity error, using the same Thom closure as the cavity without exact wall-vorticity injection."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/wall-manufactured/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/wall-manufactured/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/wall-manufactured/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/wall-manufactured/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "wall-manufactured",
+              "kind": "supplement",
+              "name": {
+                "ja": "非周期壁面の製造解：速度・剪断・圧力演算子",
+                "en": "Nonperiodic wall MMS: velocity, shear and pressure operator"
+              },
+              "scope": {
+                "ja": "キャビティと同じ壁条件付き2Dソルバーに解析外力を与え、速度と流れ関数の格子収束、壁渦度・壁剪断の誤差を測ります。別の非零Dirichlet圧力製造解でPoisson・勾配の境界演算子も検査します。",
+                "en": "Apply analytic forcing to the same wall-bounded2D solver, measuring grid convergence of velocity/streamfunction and actual wall-vorticity/shear errors. A separate nonzero-Dirichlet manufactured pressure verifies Poisson and boundary-gradient operators."
+              },
+              "method_ids": [
+                "centered-difference",
+                "heun"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/wall-manufactured/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/wall-manufactured/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/atlas-wall-flow-2026-11-23-r2.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "単位正方形、ν=.01、17/33/65点、ψ=8f(x)f(y),f(z)=z²(1−z)²。全壁で非浸透・滑りなし。渦度外力は連続方程式から解析的に導出し、全壁にキャビティと同じThom条件を使用します。厳密壁渦度は注入しません。",
+            "en": "Unit square, viscosity.01,17/33/65nodes,psi8f(x)f(y), f(z)=z²(1−z)². All walls are impermeable/no-slip. Derive the curl forcing from the continuous PDE and use the same actual Thom closure as the cavity on every wall; never inject exact wall vorticity."
+          }
+        }
+      ]
     }
   ],
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/equations/",
   "counts": {
-    "total": 47,
-    "local_example": 24,
+    "total": 49,
+    "local_example": 26,
     "reading_only": 23,
     "groups": {
-      "physical": 16,
+      "physical": 18,
       "relativistic": 5,
       "biology": 22,
       "quantum": 4
@@ -5478,13 +5934,13 @@
   },
   "execution_example_count": 22,
   "problem_routes_source_sha256": {
-    "catalog/atlas-depth-expansion.json": "b2e5a2d218c1bc2f542b2f54d38fc1c1b21193b1fa931ca6cfd3bccddb5667cf",
-    "catalog/atlas-equations.json": "29aa9e9c0e9e273b0a2581708fe8dcb31429e7a124a7596ec66046fe08d8e88f",
+    "catalog/atlas-depth-expansion.json": "6080528b544ab1d60956b6e382b12b1505fe80fdbd66bac8791f78014878748f",
+    "catalog/atlas-equations.json": "50b68b43fdcae4cdf3e2a2a5062a7cd809503761c248275a52d1a58622f7f426",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
-    "catalog/atlas-methods.json": "270402769611e844e54a79e38931e2ab348797a838e383f8e3e712317db1376b",
-    "catalog/atlas-problem-links.json": "afa74c35bd622afe629d56bf97169a663131dcef63fb76bb91a4d659cb39f56c",
-    "catalog/atlas-reference-supplements.json": "7cd6bc88a0da7d85ad839495b733d3b6a95f88b174d505f7195623922ed2549d",
-    "catalog/atlas-test-problems.json": "5f210155a1fa739db4baa26e279015aebc92914c6a613dd3cf882e0d72c5fda9",
+    "catalog/atlas-methods.json": "2c08a1023555ec2ee08a5d1c9c86acc037a6efd2a215b97a240ec63f058bdf13",
+    "catalog/atlas-problem-links.json": "fca94497ae867bfefbd5d9557802dfd3291f186f382c5ba3fed42cf6c3230e6d",
+    "catalog/atlas-reference-supplements.json": "c8f2a0dfab619ae566386acd51d81c2164afa49c5d410ca15a3ef4d2d373b6c7",
+    "catalog/atlas-test-problems.json": "fbd338a47e91a37a1881d5d8d06125971331434f742f539e3a21f339ad37958a",
     "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
     "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
     "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
@@ -5555,6 +6011,11 @@
     "code/validated-examples/2026-11-23-r2/sedov/results/result.json": "e4767029260bee54e0de2c85b07cbca07c5b99c4eb999b9d609735b6e615ef23",
     "code/validated-examples/2026-11-23-r2/sedov/source-manifest.json": "4a92404602abd0d01096aae1576afb96533c64ea68989615df885a4310e3479f",
     "code/validated-examples/2026-11-23-r2/sedov/verification.json": "1bec773b9e6d657ea7b71996df2bcc2c593f64b8cbb51942ed7d106be3419a03",
+    "code/validated-examples/2026-11-23-r2/wall-flow/atlas-wall-flow-2026-11-23-r2.zip": "de499fde477a49b1eae10bd6bf04b0800b58105ca5d504ec6eff2ec3272690fd",
+    "code/validated-examples/2026-11-23-r2/wall-flow/cases.json": "ed51f9003bbf5ddfa88602dd579ad962c81f95fb5dd3e7ef32973b17f9844d70",
+    "code/validated-examples/2026-11-23-r2/wall-flow/results/result.json": "ce92039a849015c3c3bd1de8e6ef77052f6fc5a9765ff961bc20086180996252",
+    "code/validated-examples/2026-11-23-r2/wall-flow/source-manifest.json": "5defc88a20d06c6806f1aa18c5a5a9f027c7891d8a237bb5fe980169d1bbdfe4",
+    "code/validated-examples/2026-11-23-r2/wall-flow/verification.json": "6daf2fa12cf2e7f604bb54413b82e36bbe72891132e1846abf598f9c9600b096",
     "code/validated-examples/2026-11-23-r3/guderley/atlas-guderley-2026-11-23-r3.zip": "f00ff906861495bd73b2ae75f7c3895fab505ba45ad7a34a2612700405d8466f",
     "code/validated-examples/2026-11-23-r3/guderley/cases.json": "72e621b096fdb1ff229dba33b9243667a7e7c4f9b2593d7331953333707f28f7",
     "code/validated-examples/2026-11-23-r3/guderley/results/result.json": "c85894f329b97d62ef9d093792316028e4b3b9ca38a0488047bdbab2542e84bb",
@@ -5580,6 +6041,16 @@
     "code/validated-examples/2026-11-23/low-mach/results/result.json": "5e1fdfa86dc57b13857bd571de1070d00ac5237400e0fc9ee9875fae9824d9f5",
     "code/validated-examples/2026-11-23/low-mach/source-manifest.json": "ff359786cf6efff8e5e61f842ae63a866cb7655a4151b2d33ac12501eed98124",
     "code/validated-examples/2026-11-23/low-mach/verification.json": "f747210e1d46900c4f56b01e989696c3feaee35361fe42be11428fd280bacf84",
+    "code/validated-examples/2026-11-23/shallow-water/atlas-shallow-water-2026-11-23.zip": "259244fc5c237542ba577df62308fd2a3191979dd43717d58df33d8abb902644",
+    "code/validated-examples/2026-11-23/shallow-water/cases.json": "9296c20b7609cb4acdcd5a0ce437781dcd2e7635dbfea0a924f8468a3e5a5792",
+    "code/validated-examples/2026-11-23/shallow-water/results/result.json": "49a56493e429dd3b4c9d6f8eba72c53ddd3469689699217157b9823a392c015f",
+    "code/validated-examples/2026-11-23/shallow-water/source-manifest.json": "0fdab6190462f91176fa2eb4eb452d6fb66c2066b0e07d115b8ea789231614da",
+    "code/validated-examples/2026-11-23/shallow-water/verification.json": "e342321ddc1f7692e08dcc7a63478912956f63637c855f2f85eaf0999c4d22cc",
+    "code/validated-examples/2026-11-23/weno-critical/atlas-weno-critical-2026-11-23.zip": "9c119480261013ef8ed0c58716c45af5b9fb9d3e891aef56b95b66fbd8415491",
+    "code/validated-examples/2026-11-23/weno-critical/cases.json": "6b68c525e99fe15adbdce97a5d078289e5df0ff5f63cd9c790784a29b979440b",
+    "code/validated-examples/2026-11-23/weno-critical/results/result.json": "c4150a350d0854b3b815bd820790711ecdbcc7594690c0ad8c15e23f6aa3d05d",
+    "code/validated-examples/2026-11-23/weno-critical/source-manifest.json": "abd8b0a29bb81b7d98b897ec0a0eb409f77873857ec8199c3767f1ede11b43a5",
+    "code/validated-examples/2026-11-23/weno-critical/verification.json": "ccbf3c6a2fe7055b324a0d98c152da909242f36e0c82ca3281038e4c9b0c165f",
     "code/validated-examples/2026-11-23/zalesak/atlas-zalesak-2026-11-23.zip": "28e7d2bc93d3a5ba1cb015c874c489e9fd1a2e8a586a46d519800c799b0fb6f8",
     "code/validated-examples/2026-11-23/zalesak/cases.json": "4ff0db4160a4da838ddb57089dae6849d18d3386fedd935365ab53795611831a",
     "code/validated-examples/2026-11-23/zalesak/results/result.json": "51851a31df72eec078e25171deeacd2699a9bfe9eedc55b4bc6831fd233b408d",
@@ -5588,21 +6059,41 @@
     "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "c7b79b042315a085a9683ebe05d0e14ae4edcc0b8bce470c0d435355e627bf95"
+    "numerical-methods-atlas/gallery/preview-manifest.json": "c56f91764e5569d11300598e0d11abfa518dbc90e7273ad2442f5830c5927e84"
   },
   "supplemental_case_ids": [
+    "cavity-ghia-re100",
+    "dry-bed-dam-break",
     "fitzhugh-nagumo",
     "schnakenberg-nonlinear",
     "schnakenberg-pattern",
+    "swashes-topography",
     "turing-schnakenberg",
+    "wall-manufactured",
+    "weno-critical-epsilon",
     "zalesak-rotation"
   ],
   "execution_evidence_source_sha256": {
-    "numerical-methods-atlas/assets/biological-models.json": "657be85b4aa6dc2fe2488167635ddd71888fe47459972723a5830a5323f8a1ba",
+    "numerical-methods-atlas/assets/biological-models.json": "b4432736fdbb32d6ec0be5104585348bfc166663688640f8d99a039dd4e521ab",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "catalog/atlas-equations.json": "29aa9e9c0e9e273b0a2581708fe8dcb31429e7a124a7596ec66046fe08d8e88f",
+    "catalog/atlas-equations.json": "50b68b43fdcae4cdf3e2a2a5062a7cd809503761c248275a52d1a58622f7f426",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
+    "code/validated-examples/2026-11-23/weno-critical/source-manifest.json": "abd8b0a29bb81b7d98b897ec0a0eb409f77873857ec8199c3767f1ede11b43a5",
+    "code/validated-examples/2026-11-23/weno-critical/verification.json": "ccbf3c6a2fe7055b324a0d98c152da909242f36e0c82ca3281038e4c9b0c165f",
+    "code/validated-examples/2026-11-23/weno-critical/cases.json": "6b68c525e99fe15adbdce97a5d078289e5df0ff5f63cd9c790784a29b979440b",
+    "code/validated-examples/2026-11-23/weno-critical/results/result.json": "c4150a350d0854b3b815bd820790711ecdbcc7594690c0ad8c15e23f6aa3d05d",
+    "code/validated-examples/2026-11-23/weno-critical/atlas-weno-critical-2026-11-23.zip": "9c119480261013ef8ed0c58716c45af5b9fb9d3e891aef56b95b66fbd8415491",
+    "code/validated-examples/2026-11-23/shallow-water/source-manifest.json": "0fdab6190462f91176fa2eb4eb452d6fb66c2066b0e07d115b8ea789231614da",
+    "code/validated-examples/2026-11-23/shallow-water/verification.json": "e342321ddc1f7692e08dcc7a63478912956f63637c855f2f85eaf0999c4d22cc",
+    "code/validated-examples/2026-11-23/shallow-water/cases.json": "9296c20b7609cb4acdcd5a0ce437781dcd2e7635dbfea0a924f8468a3e5a5792",
+    "code/validated-examples/2026-11-23/shallow-water/results/result.json": "49a56493e429dd3b4c9d6f8eba72c53ddd3469689699217157b9823a392c015f",
+    "code/validated-examples/2026-11-23/shallow-water/atlas-shallow-water-2026-11-23.zip": "259244fc5c237542ba577df62308fd2a3191979dd43717d58df33d8abb902644",
+    "code/validated-examples/2026-11-23-r2/wall-flow/source-manifest.json": "5defc88a20d06c6806f1aa18c5a5a9f027c7891d8a237bb5fe980169d1bbdfe4",
+    "code/validated-examples/2026-11-23-r2/wall-flow/verification.json": "6daf2fa12cf2e7f604bb54413b82e36bbe72891132e1846abf598f9c9600b096",
+    "code/validated-examples/2026-11-23-r2/wall-flow/cases.json": "ed51f9003bbf5ddfa88602dd579ad962c81f95fb5dd3e7ef32973b17f9844d70",
+    "code/validated-examples/2026-11-23-r2/wall-flow/results/result.json": "ce92039a849015c3c3bd1de8e6ef77052f6fc5a9765ff961bc20086180996252",
+    "code/validated-examples/2026-11-23-r2/wall-flow/atlas-wall-flow-2026-11-23-r2.zip": "de499fde477a49b1eae10bd6bf04b0800b58105ca5d504ec6eff2ec3272690fd",
     "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
     "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
     "code/validated-examples/2026-11-22/models/cases.json": "09b670a3462f7f1395dcdf12b507786b69616c0ea165d2678efe780ddb0cf0e6",
@@ -5727,6 +6218,30 @@
               "input": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/advection-sine.json",
               "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
               "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json"
+            },
+            {
+              "id": "weno-critical-epsilon",
+              "kind": "supplement",
+              "name": {
+                "ja": "WENO-JS／Z：臨界点とεの固定比較",
+                "en": "WENO-JS/Z: fixed critical-point and epsilon comparison"
+              },
+              "scope": {
+                "ja": "同じセル平均からのWENO5再構成と実際の周期輸送で、JS重みとZ二乗重みを比較します。3種類の臨界性、3種類のε、固定格子と時間刻み半減を分けて保存します。",
+                "en": "Compare WENO5 JS and Z power-two weights from the same cell means, then evolve actual periodic transport. Retain three regularity classes, three epsilon choices, fixed grids and separate halved-time-step diagnostics."
+              },
+              "method_ids": [
+                "weno-js",
+                "weno-z",
+                "rk4"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/atlas-weno-critical-2026-11-23.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/verification.json"
             }
           ]
         }

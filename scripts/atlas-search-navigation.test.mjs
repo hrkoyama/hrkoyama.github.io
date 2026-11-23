@@ -292,7 +292,7 @@ test('execution, method and reverse-reference graphs preserve exact runners, nul
     assert.deepEqual(sorted(runIds(graph)),sorted(new Set(method.problem_navigation.problems.flatMap(problem=>problem.executions.map(run=>run.id)))));
     for(const run of graph.groups.code.filter(row=>row.availability==='run'))assert.ok(run.method_ids.includes(method.id),method.id+' cannot borrow a runner using a different method');
   }
-  assert.deepEqual(runIds(source.nodes['method:hllc']),['sod']);assert.deepEqual(runIds(source.nodes['method:weno-z']),['shu-osher']);assert.deepEqual(runIds(source.nodes['method:roe']),['low-mach-vortex']);
+  assert.deepEqual(runIds(source.nodes['method:hllc']),['sod']);assert.deepEqual(runIds(source.nodes['method:weno-z']),['weno-critical-epsilon','shu-osher']);assert.deepEqual(runIds(source.nodes['method:roe']),['low-mach-vortex']);
   assert.deepEqual(ids(source.nodes['execution:h2-rhf'].groups.equations),['formulation-h2-rhf','hartree-fock-model']);
   for(const id of ['automatic-differentiation','adjoint','optimization','fdtd']){
     const graph=source.nodes['method:'+id];assert.deepEqual(runIds(graph),[]);

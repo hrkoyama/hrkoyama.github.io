@@ -11,6 +11,15 @@ const objectHash=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex')
 const group='euler-positivity',id='euler-double-rarefaction-positivity';
 const base='code/validated-examples/2026-11-23-r2/euler-positivity/';
 
+// Remove only this batch's appended WENO evidence/entry for the historical golden.
+const historicalProblem = row => {
+ if(row.id!=='advection-sine')return row;
+ const copy={...row,evidence:row.evidence.filter(e=>!e.path.includes('/weno-critical/'))};
+ const remaining=(row.supplemental_examples||[]).filter(e=>e.id!=='weno-critical-epsilon');
+ if(remaining.length)copy.supplemental_examples=remaining;else delete copy.supplemental_examples;
+ return copy;
+};
+
 test('a supplemental gallery picture must opt in to a verified additional PNG with bilingual captions',()=>{
  const program=String.raw`import base64,copy,hashlib,tempfile,sys
 from pathlib import Path
@@ -44,15 +53,15 @@ print('manifest-bound supplemental gallery opt-in checked')`;
 
 test('Euler stage positivity reuses one problem and preserves eighteen older releases and all eighty-six primary pictures',()=>{
  const registry=json('numerical-methods-atlas/validation/releases.json');
- assert.equal(objectHash(registry.releases.filter(r=>r.group!==group&&r.group!=='zalesak')),'897f2f731b5911739be0230dfb5ae0ab174ebeb08b954bcca028f02d59dba1ee');
- assert.equal(registry.case_count,49);assert.equal(registry.releases.length,20);
+ assert.equal(objectHash(registry.releases.filter(r=>r.group!==group&&!['zalesak','weno-critical','shallow-water','wall-flow'].includes(r.group))),'897f2f731b5911739be0230dfb5ae0ab174ebeb08b954bcca028f02d59dba1ee');
+ assert.equal(registry.case_count,54);assert.equal(registry.releases.length,23);
  const release=registry.releases.find(r=>r.group===group);assert.deepEqual(release.case_ids,[id]);
- assert.equal(registry.releases.filter(r=>r.group!=='zalesak').reduce((s,r)=>s+r.tests,0),571+release.tests);
- const pictures=json('numerical-methods-atlas/gallery/preview-manifest.json').items.filter(r=>r.id!=='zalesak').map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}));
+ assert.equal(registry.releases.filter(r=>!['zalesak','weno-critical','shallow-water','wall-flow'].includes(r.group)).reduce((s,r)=>s+r.tests,0),571+release.tests);
+ const pictures=json('numerical-methods-atlas/gallery/preview-manifest.json').items.filter(r=>!['zalesak','swashes-topography','dry-bed-dam-break','lid-driven-cavity','wall-manufactured'].includes(r.id)).map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}));
  assert.equal(pictures.length,86);assert.equal(objectHash(pictures),'c64fafd78d6ae0a39941161c2932799ffca4f8eb0e3885ce2998de58f4a1f429');
  const problems=json('catalog/atlas-test-problems.json').problems;
- assert.equal(problems.length,87);
- const before=problems.filter(p=>p.id!=='zalesak').map(p=>{if(p.id!=='double-rarefaction')return p;const copy={...p};delete copy.supplemental_examples;return copy;});
+ assert.equal(problems.length,91);
+ const before=problems.filter(p=>!['zalesak','swashes-topography','dry-bed-dam-break','lid-driven-cavity','wall-manufactured'].includes(p.id)).map(historicalProblem).map(p=>{if(p.id!=='double-rarefaction')return p;const copy={...p};delete copy.supplemental_examples;return copy;});
  assert.equal(objectHash(before),'cb3e36911d193201104862c1d0038e1b1b08c551946f7508a0ce7f4eb1fafd67');
  assert.equal(json('catalog/atlas-methods.json').methods.length,147);
  assert.equal(hash('numerical-methods-atlas/code-and-data/examples.json'),'3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7');

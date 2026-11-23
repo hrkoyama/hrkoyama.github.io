@@ -559,6 +559,360 @@
           "note": "The official Firedrake demonstration attributes its rotating-body setup to this work. Its role here is contextual attribution, not a claim that the full paper or its numerical algorithm was implemented."
         }
       ]
+    },
+    {
+      "id": "weno-critical-profile",
+      "model": "linear-advection",
+      "kind": "analytic",
+      "title": "WENO critical points: polynomial cell means and analytic periodic transport",
+      "assumptions": "Local references integrate polynomials over five cells centered around x=0 and evaluate at h/2. Regular, first-critical and second-critical profiles use h=1/64…1/512. The actual periodic-transport reference is the Fourier-integrated cell mean of q₀=cos(2πx)+.1sin³(2πx) on[0,1], speed1,T1, checked independently by Gauss12 point-function quadrature. Local polynomials differ from the evolved profile; neither point samples nor another PDE calculation are substituted for cell means.",
+      "formula": "qbar_i=h^-1 integral_Ci q0(x-t)dx; q0=cos(2pi*x)+.1*sin(2pi*x)^3; local P=x+...+x^5, x²+x³+x⁴+x⁵, or x³+x⁴+x⁵.",
+      "dimension": 1,
+      "bounds": [
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "components": [
+        "q"
+      ],
+      "field_type": "scalar",
+      "parameters": {
+        "speed": 1.0,
+        "time": 1.0,
+        "transport_grids": [
+          32,
+          64,
+          128
+        ],
+        "reconstruction_grids": [
+          64,
+          128,
+          256,
+          512
+        ]
+      },
+      "sources": [
+        "https://ntrs.nasa.gov/api/citations/19960007052/downloads/19960007052.pdf",
+        "https://scholars.hkbu.edu.hk/en/publications/an-improved-weighted-essentially-non-oscillatory-scheme-for-hyper-2/",
+        "https://pure.tue.nl/ws/portalfiles/portal/53481949/embedded_WENO.pdf"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=ja#weno-critical-epsilon-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=en#weno-critical-epsilon-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-weno-critical/#weno-critical-epsilon",
+        "en": "/numerical-methods-atlas/en/read/validation-weno-critical/#weno-critical-epsilon"
+      },
+      "reference_scope": "Analytic integration with independent quadrature qualification, not an independent PDE engine. Full Borges text was unavailable; finite-volume power-two formulas were checked in another primary research paper.",
+      "citations": [
+        {
+          "role": "Classical JS candidate/weight/indicator background; preprint finite-difference convention distinguished from this FV implementation",
+          "title": "Guang-Shan Jiang and Chi-Wang Shu (1996), Efficient Implementation of Weighted ENO Schemes",
+          "url": "https://ntrs.nasa.gov/api/citations/19960007052/downloads/19960007052.pdf",
+          "note": "NASA-hosted ICASE95-73 preprint selected sections1–3: candidate Table1, optimal Table2, equations2.15–2.16 and3.1–3.9; text layer inspected, not full paper/numerical tables"
+        },
+        {
+          "role": "Original WENO-Z attribution and historical scope, not an actually inspected full-text formula source",
+          "title": "Rafael Borges, Monique Carmona, Bruno Costa and Wai Sun Don (2008), An improved weighted essentially non-oscillatory scheme for hyperbolic conservation laws",
+          "url": "https://scholars.hkbu.edu.hk/en/publications/an-improved-weighted-essentially-non-oscillatory-scheme-for-hyper-2/",
+          "note": "Author-institution publication record and abstract inspected; publisher full text returned403; original full paper and numerical experiments not audited"
+        },
+        {
+          "role": "Actually inspected finite-volume cell-mean derivation of baseline JS/Z candidates, weights and power-two choice; embedded modifications excluded",
+          "title": "Bart S. van Lith, Jan H. M. ten Thije Boonkkamp and Wilbert L. IJzerman (2017), Embedded WENO: A design strategy to improve existing WENO schemes",
+          "url": "https://pure.tue.nl/ws/portalfiles/portal/53481949/embedded_WENO.pdf",
+          "note": "Institution-hosted accepted manuscript section2 equations2–15 (PDF pages4–8) and selected section4.2 (PDF page22) text inspected; screenshot requests cache-missed; not a full-paper review"
+        }
+      ]
+    },
+    {
+      "id": "lake-at-rest-bed",
+      "model": "shallow-water-bed",
+      "kind": "analytic",
+      "title": "Lake at rest: wet and emerged equilibrium over represented bed",
+      "assumptions": "Use g9.81,[0,25]m and200cells. Represent z=.2−.05(x−10)² on8<x<12 by split Gauss8 cell means, initializing h_i=max(eta0−z_i,0),q_i0 with eta0=.5/.1m. Hydrostatic reconstruction preserves equilibrium over this represented piecewise-constant bed; this differs from directly averaging depth over the continuous bed.",
+      "formula": "q_i=0; h_i=max(eta0-z_i,0); z_i=cellmean(z); eta0=.5 or .1.",
+      "dimension": 1,
+      "bounds": [
+        [
+          0.0,
+          25.0
+        ]
+      ],
+      "components": [
+        "h",
+        "hu"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "g": 9.81,
+        "surface_levels": [
+          0.5,
+          0.1
+        ],
+        "cells": 200,
+        "bed": "split Gauss8 cell mean"
+      },
+      "sources": [
+        "https://arxiv.org/pdf/1110.0288",
+        "https://epubs.siam.org/doi/abs/10.1137/S1064827503431090",
+        "https://arxiv.org/pdf/1409.3825"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/swashes-topography/?lang=ja#swashes-topography-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/swashes-topography/?lang=en#swashes-topography-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-shallow-water/#swashes-topography",
+        "en": "/numerical-methods-atlas/en/read/validation-shallow-water/#swashes-topography"
+      },
+      "reference_scope": "Discrete hydrostatic equilibrium for the represented bed; wet and emerged cases are distinct. No universal fully discrete entropy inequality is claimed.",
+      "citations": [
+        {
+          "role": "analytic formulas and benchmark provenance",
+          "title": "O. Delestre et al. (2013), SWASHES: a compilation of shallow water analytic solutions for hydraulic and environmental studies",
+          "url": "https://arxiv.org/pdf/1110.0288",
+          "note": "Author arXiv v3: sections2,3.1.1-3.1.3,4.1.2. Bump, lakes, Bernoulli and Ritter formulas inspected; no full-library audit or SWASHES execution/source reuse."
+        },
+        {
+          "role": "original HR attribution",
+          "title": "E. Audusse, F. Bouchut, M.-O. Bristeau, R. Klein, B. Perthame (2004), A Fast and Stable Well-Balanced Scheme with Hydrostatic Reconstruction for Shallow Water Flows",
+          "url": "https://epubs.siam.org/doi/abs/10.1137/S1064827503431090",
+          "note": "Publisher/author bibliography checked. Author-linked original PDF retrieval timed out; HR algebra read in author follow-up arXiv1409.3825. No full original-paper audit."
+        },
+        {
+          "role": "directly inspected HR algebra",
+          "title": "E. Audusse, F. Bouchut, M.-O. Bristeau, J. Sainte-Marie (2016), Kinetic entropy inequality and hydrostatic reconstruction scheme for the Saint-Venant system",
+          "url": "https://arxiv.org/pdf/1409.3825",
+          "note": "arXiv v2 section1 model/entropy caveat; section3.1 equations3.1-3.5 face states and pressure corrections. Full kinetic proof not audited or claimed for this HLL solver."
+        }
+      ]
+    },
+    {
+      "id": "swashes-bernoulli",
+      "model": "shallow-water-bed",
+      "kind": "semi-analytic",
+      "title": "SWASHES steady flow: subcritical Bernoulli root",
+      "assumptions": "Use g9.81,[0,25]m, the parabolic bed, discharge q4.42m²/s and downstream depth2m. Independently bisect the subcritical root of h+z+q²/(2gh²)=2+q²/(8g) and qualify cell quadrature. PDE runs on100/200/400cells start from the steady reference and advance to t2; they do not reproduce the original rest-to-steady transient.",
+      "formula": "q=4.42; h+z+q²/(2gh²)=2+q²/(8g); h>(q²/g)^(1/3).",
+      "dimension": 1,
+      "bounds": [
+        [
+          0.0,
+          25.0
+        ]
+      ],
+      "components": [
+        "h",
+        "hu"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "g": 9.81,
+        "discharge": 4.42,
+        "downstream_depth": 2.0,
+        "time": 2.0,
+        "grids": [
+          100,
+          200,
+          400
+        ]
+      },
+      "sources": [
+        "https://arxiv.org/pdf/1110.0288"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/swashes-topography/?lang=ja#swashes-topography-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/swashes-topography/?lang=en#swashes-topography-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-shallow-water/#swashes-topography",
+        "en": "/numerical-methods-atlas/en/read/validation-shallow-water/#swashes-topography"
+      },
+      "reference_scope": "Semi-analytic steady Bernoulli roots and cell quadrature from a separately written evaluator. SWASHES software is not executed; this is not an independent numerical PDE engine.",
+      "citations": [
+        {
+          "role": "analytic formulas and benchmark provenance",
+          "title": "O. Delestre et al. (2013), SWASHES: a compilation of shallow water analytic solutions for hydraulic and environmental studies",
+          "url": "https://arxiv.org/pdf/1110.0288",
+          "note": "Author arXiv v3: sections2,3.1.1-3.1.3,4.1.2. Bump, lakes, Bernoulli and Ritter formulas inspected; no full-library audit or SWASHES execution/source reuse."
+        }
+      ]
+    },
+    {
+      "id": "ritter-dry-bed",
+      "model": "shallow-water",
+      "kind": "analytic",
+      "title": "Ritter dry-bed dam break: dedicated g9.81 cell-mean reference",
+      "assumptions": "Flat frictionless[-10,10]m, dam x00,hL1m/hR0,zero initial velocity,g9.81,t.5s. Split conserved(h,hu) cell means at the rarefaction head−sqrt(g)t and genuine dry front2sqrt(g)t. Separately track the fixed depth.001m contour. These dedicated gravity/domain/time inputs differ from the historical card, whose values remain unchanged.",
+      "formula": "cL=sqrt(g*hL); h=(2*cL-(x-x0)/t)^2/(9*g), u=2*((x-x0)/t+cL)/3 inside fan; hR=0 beyond x0+2*cL*t.",
+      "dimension": 1,
+      "bounds": [
+        [
+          -10.0,
+          10.0
+        ]
+      ],
+      "components": [
+        "h",
+        "hu"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "g": 9.81,
+        "left_depth": 1.0,
+        "right_depth": 0.0,
+        "time": 0.5,
+        "dam_position": 0.0,
+        "grids": [
+          1600,
+          3200,
+          6400
+        ],
+        "front_depth_threshold": 0.001
+      },
+      "sources": [
+        "https://arxiv.org/pdf/1110.0288"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/dry-bed-dam-break/?lang=ja#dry-bed-dam-break-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/dry-bed-dam-break/?lang=en#dry-bed-dam-break-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-shallow-water/#dry-bed-dam-break",
+        "en": "/numerical-methods-atlas/en/read/validation-shallow-water/#dry-bed-dam-break"
+      },
+      "reference_scope": "Analytic Ritter fields integrated as conserved cell means. Preserve actual zero depths and distinguish the fixed-threshold contour from the mathematical dry front.",
+      "citations": [
+        {
+          "role": "analytic formulas and benchmark provenance",
+          "title": "O. Delestre et al. (2013), SWASHES: a compilation of shallow water analytic solutions for hydraulic and environmental studies",
+          "url": "https://arxiv.org/pdf/1110.0288",
+          "note": "Author arXiv v3: sections2,3.1.1-3.1.3,4.1.2. Bump, lakes, Bernoulli and Ritter formulas inspected; no full-library audit or SWASHES execution/source reuse."
+        }
+      ]
+    },
+    {
+      "id": "ghia-re100",
+      "model": "navier-stokes",
+      "kind": "numerical-reference",
+      "title": "Ghia Re100: original finite-grid velocity centerlines",
+      "assumptions": "Unit square,Re100,unit top lid and stationary other walls. Transcribe17points each of u(.5,y) and v(x,.5) after direct inspection of original TablesI/II Re100 columns, preserving printed four-decimal coordinates. Separately compare the grid primary vortex(.6172,.7344) from TableV. These rounded finite-grid numerical tables are neither continuum exact values nor outputs from the present solver.",
+      "formula": "u_ref(.5,y_j),v_ref(x_j,.5): original TablesI/II Re100; primary vortex(x,y)=(.6172,.7344): TableV.",
+      "dimension": 2,
+      "bounds": [
+        [
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "components": [
+        "u",
+        "v"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "reynolds": 100,
+        "velocity_points_per_component": 17,
+        "primary_vortex": [
+          0.6172,
+          0.7344
+        ],
+        "computed_nodes": [
+          17,
+          33,
+          65
+        ]
+      },
+      "sources": [
+        "https://www.sciencedirect.com/science/article/pii/0021999182900584"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/cavity-ghia-re100/?lang=ja#cavity-ghia-re100-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/cavity-ghia-re100/?lang=en#cavity-ghia-re100-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-wall-flow/#cavity-ghia-re100",
+        "en": "/numerical-methods-atlas/en/read/validation-wall-flow/#cavity-ghia-re100"
+      },
+      "reference_scope": "Selected original pages were visually inspected; PDF delivery URL/SHA are recorded separately. No PDF is redistributed. The present centered-FD/Heun/Thom solver differs from original CSI-MG; these data do not reference cavity pressure.",
+      "citations": [
+        {
+          "role": "primary-research-reference",
+          "title": "U. Ghia, K. N. Ghia and C. T. Shin (1982), High-Re solutions for incompressible flow using the Navier-Stokes equations and a multigrid method",
+          "url": "https://www.sciencedirect.com/science/article/pii/0021999182900584",
+          "note": "Original PDF rendered and visually read:391–392 equations/Fig1;398–399 TablesI/II Re100 columns;408 TableV primary vortex. Publisher abstract/bibliography read; publisher PDF403. Original PDF obtained from recorded public mirror; no full-paper audit."
+        },
+        {
+          "role": "actual-original-table-transcription-provenance",
+          "title": "Original Ghia TablesI/II andV transcription/source audit",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/references/source-review.json",
+          "note": "Original PDF selected printed391–392,398–399,408 visually inspected. PDF SHA2561d76e4636d24d0fad41c7bdb5ed383e9b224b0bfe3aa0317ce7dfc50619f2d93; public mirror is only its delivery location. Transcribed CSV accompanies the immutable release."
+        }
+      ]
+    },
+    {
+      "id": "wall-mms",
+      "model": "forced-incompressible",
+      "kind": "manufactured",
+      "title": "Wall manufactured solution: polynomial velocity and separate pressure operator",
+      "assumptions": "Unit square,viscosity.01,no-slip,psi*=8x²(1−x)²y²(1−y)²,u*=psi*_y,v*=−psi*_x,omega*=−Delta psi*. Construct s=u*omega*_x+v*omega*_y−nu*Delta omega* from the continuous vorticity PDE, qualified by independent tensor-coefficient differentiation. PDE wall vorticity uses the same Thom closure as the cavity without exact injection. Nonzero-Dirichlet Poisson/gradient for p_op=x²+y²+sin(pi*x)sin(pi*y) is a separate operator problem, not coupled flow or cavity pressure.",
+      "formula": "psi*=8 f(x)f(y),f(z)=z²(1−z)²; s=u*omega*_x+v*omega*_y−nu*Delta omega*. Separate: p_op=x²+y²+sin(pi*x)sin(pi*y).",
+      "dimension": 2,
+      "bounds": [
+        [
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "components": [
+        "u",
+        "v",
+        "psi",
+        "omega"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "viscosity": 0.01,
+        "amplitude": 8.0,
+        "nodes": [
+          17,
+          33,
+          65
+        ],
+        "pressure_operator": "separate nonzero Dirichlet manufactured Poisson/gradient"
+      },
+      "sources": [
+        "https://www.sandia.gov/research/publications/details/code-verification-by-the-method-of-manufactured-solutions-2000-06-01/"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/wall-manufactured/?lang=ja#wall-manufactured-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/wall-manufactured/?lang=en#wall-manufactured-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-wall-flow/#wall-manufactured",
+        "en": "/numerical-methods-atlas/en/read/validation-wall-flow/#wall-manufactured"
+      },
+      "reference_scope": "Manufactured fields with independent analytic differentiation, not an independent flow engine. Pressure is eliminated from streamfunction evolution, so no pressure gauge applies there; pressure-operator verification remains separate.",
+      "citations": [
+        {
+          "role": "primary-research-reference",
+          "title": "Kambiz Salari and Patrick Knupp (2000), Code Verification by the Method of Manufactured Solutions",
+          "url": "https://www.sandia.gov/research/publications/details/code-verification-by-the-method-of-manufactured-solutions-2000-06-01/",
+          "note": "Official Sandia/OSTI record and primary report printed12 at UNT read for MMS plus mesh refinement. No whole-report audit. Our quartic polynomial and pressure field are newly constructed."
+        }
+      ]
     }
   ]
 }

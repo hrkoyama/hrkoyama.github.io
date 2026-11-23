@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "declared_before_first_scientific_execution": true,
+  "limits": {
+    "steady_residual": 1e-7,
+    "poisson_residual": 3e-10,
+    "discrete_divergence": 5e-13,
+    "boundary_value": 1e-14,
+    "maximum_recorded_courant": 0.5,
+    "finest_ghia_u_maximum": 0.03,
+    "finest_ghia_v_maximum": 0.03,
+    "consecutive_cavity_error_ratio": 0.95,
+    "finest_vortex_center_distance": 0.04,
+    "minimum_mms_velocity_order": 1.7,
+    "minimum_mms_streamfunction_order": 1.7,
+    "maximum_consecutive_mms_error_ratio": 0.7,
+    "maximum_consecutive_wall_error_ratio": 0.9,
+    "minimum_pressure_order": 1.8,
+    "minimum_pressure_gradient_order": 1.7,
+    "minimum_pressure_boundary_gradient_order": 1.7,
+    "finest_mms_streamfunction_l2": 0.0001,
+    "finest_mms_velocity_l2": 0.001
+  },
+  "interpretation": "Fixed educational low-Re tests, not high-Re or turbulence validation. Ghia errors use linear interpolation to the printed four-decimal coordinates. The actual Thom wall-vorticity and velocity-gradient shear errors are reported and required to decrease; a second-order pointwise wall-vorticity claim is not made. Pressure is a separately manufactured Dirichlet operator problem, never a cavity-pressure validation. No state clipping, retry, hidden filtering or tolerance relaxation."
+}

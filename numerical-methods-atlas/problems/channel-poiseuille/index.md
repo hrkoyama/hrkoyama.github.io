@@ -30,7 +30,7 @@ $$
 \nabla\cdot\boldsymbol u=0
 $$
 
-一定密度・粘性の代表形。公開例は周期2次元MAC格子の射影法とTaylor–Green渦です。
+一定密度・粘性の代表形。周期2D MAC射影・Taylor–Green渦に加え、圧力を消去する非周期Re100キャビティを別配布で検証します。
 
 ### 厳密解・参照解
 
@@ -100,7 +100,7 @@ $$
 \nabla\cdot\boldsymbol u=0
 $$
 
-A representative constant-density, constant-viscosity form. Public examples use periodic 2D MAC projection and a Taylor–Green vortex.
+Representative constant-density/viscosity flow. In addition to periodic2D MAC projection/Taylor–Green, a separate release verifies a pressure-eliminated nonperiodic Re100 cavity.
 
 ### Exact and reference solutions
 

@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "initial_attempt": {
+    "passed": false,
+    "pytest_passed": 28,
+    "numerical_passed": 105,
+    "numerical_total": 109,
+    "failed": [
+      "No exact-zero cells remained at finite numerical-domain end on all three Ritter grids",
+      "Finest fixed0.001m-contour error0.3960237865001921 exceeded unchanged0.25m limit"
+    ],
+    "contract_sha256": "d8444966bfd6e09ab635ccb6711b0c751bc38792ff652a98075e0ad2c1add334"
+  },
+  "revision_2": {
+    "change": "Ritter domain[-5,5] ->[-10,10]; separate Ritter grids100/200/400 ->800/1600/3200; topography100/200/400 and lakes200 unchanged",
+    "reason": "Longer dry reach avoids tiny positive finite-stencil tails filling the domain. Finer Ritter cell widths0.025/0.0125/0.00625 target contour resolution without loosening limits.",
+    "unchanged_files_sha256": {
+      "acceptance.json": "644da767ea681ea9f87df16848ed9d499c6f0468b2e239ec69f4aa1793ac22ec",
+      "shallow_water.py": "6402f76ff341a7246e8ba20c104891f467402c74bca9e47b2dec7636b508ae33",
+      "test_shallow_water.py": "98b893551010a5c0e2ff1725f8fc74ef676cb5b188dcf8baf9ff8ef91eb7fc75",
+      "references/analytic.py": "9c979fa7b0308e753e82cea173b96f6a33f6ec277805dafce55fb44dae3d644e"
+    },
+    "declared_before_revision_2_execution": true,
+    "outcome": {
+      "passed": false,
+      "pytest_passed": 28,
+      "completed_runs": 6,
+      "failure": "ArithmeticError Invalid dry state: subnormal tail water rounded to zero while momentum remained nonzero; no state repair performed.",
+      "first_ritter_front_error": 0.3960237865001912,
+      "first_ritter_remaining_dry_cells": 145,
+      "archive": "attempts/02",
+      "limitation": "Generic velocity guard did not attach the failing candidate. All six completed arrays/diagnostics and actual failure were retained; revision3 adds candidate retention."
+    }
+  },
+  "revision_3": {
+    "declared_before_execution": true,
+    "change": "Factor mathematically identical HLL FE mass/momentum update into nonnegative water packets; use already-rounded packet masses for advective momentum. Keep pressure and bed impulse separate. Add negative-staying-coefficient rejection and candidate retention; no depth threshold, floor, projection or retry.",
+    "unchanged": "All109 original numerical criteria, original28 tests, analytic references and revision2 inputs unchanged.",
+    "additional_tests": 3,
+    "previous_contract_sha256": "60b6fb56896cd80bcbba3ba03d498440fafc260d3edb1c99103a9dda2a88de7a",
+    "outcome": {
+      "passed": false,
+      "pytest_passed": 31,
+      "runs_completed": 8,
+      "numerical_passed": 108,
+      "numerical_total": 109,
+      "failed": "Finest fixed0.001m contour error0.2741487865001919m > unchanged0.25m criterion; all dry-state/conservation/positivity/refinement gates passed.",
+      "total_seconds": 1.8824055420009245,
+      "archive": "attempts/03"
+    }
+  },
+  "revision_4": {
+    "declared_before_execution": true,
+    "change": "Ritter grids800/1600/3200 ->1600/3200/6400, domain[-10,10] unchanged; topography/lakes unchanged.",
+    "reason": "Resolve the fixed depth-contour-front diagnostic without altering any limit or scientific algorithm.",
+    "unchanged_files_sha256": {
+      "acceptance.json": "644da767ea681ea9f87df16848ed9d499c6f0468b2e239ec69f4aa1793ac22ec",
+      "shallow_water.py": "a1e6503bfa631111d3375bd6e4dd7dbac17a4d2dec88389cdcb1a9dadd9a1b76",
+      "test_shallow_water.py": "98b893551010a5c0e2ff1725f8fc74ef676cb5b188dcf8baf9ff8ef91eb7fc75",
+      "test_packet_arithmetic.py": "a153d8c85f20e52f65f429f38707ef54141d3cceff61255ac45c36555009e508",
+      "references/analytic.py": "9c979fa7b0308e753e82cea173b96f6a33f6ec277805dafce55fb44dae3d644e"
+    },
+    "previous_contract_sha256": "acce9ebb6c134715762d1e4b1cdd74c5c4408693e72bf190f15b51dd76b9c9ab",
+    "unexecuted_candidate_contract_sha256": "a14cf1cd0f574cb1290683e89d76fdcc027c70cb12eb57b96a1ba8efdc455cd7",
+    "normalization_review": "Before any revision4 execution, root required preserving the original attempt01 depth acceptance scale: initial wet length5m * hL1m =5m2. Add fixed_reference_relative_depth_l1=absolute depthL1/5 for Ritter depth acceptance/refinement; retain full-domain relative_depth_l1 diagnostic. This prevents domain extension weakening the original0.05 depth criterion. Momentum scale, all109 criterion values, solver/reference/tests unchanged."
+  },
+  "independent_review_field_clarification": "The archived revision2 independent review field before_first_main_and_pytest meant before that revision2 execution, not before the first-ever run. Revision3+ use before_this_revision_main_and_pytest; original archived bytes are retained.",
+  "error_norm_scope": "Ritter acceptance uses the original fixed5m2 reference mass from attempt01. The enlarged-domain relative depthL1 remains diagnostic; absoluteL1 and fixed-reference-normalizedL1 are both retained. Momentum normalization is unchanged."
+}

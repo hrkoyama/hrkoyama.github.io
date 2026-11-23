@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch13-17/env/bin/python",
+    "-W",
+    "error",
+    "plot.py"
+  ],
+  "passed": false,
+  "stage": "Matplotlib import, before render",
+  "error": "pyparsing.warnings.PyparsingDeprecationWarning: oneOf deprecated - use one_of",
+  "interpretation": "Extra strict plotting invocation; numerical pytest and runner already passed. Canonical packaging plot command has no -Werror. No scientific or plotting source modified."
+}

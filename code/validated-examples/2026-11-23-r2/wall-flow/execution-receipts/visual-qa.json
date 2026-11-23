@@ -1,0 +1,29 @@
+{
+  "reviewed_on": "2026-11-23",
+  "passed": true,
+  "scope": "All4scientific PNG images and all4Poppler-rendered PDF pages are bit-identical to the visually inspected successful revision2 figures. Actual new envelope source rerun; plotting reads only saved unchanged numerical arrays.",
+  "png_figures": 4,
+  "pdf_pages": 4,
+  "png_bit_identical_to_visually_reviewed_revision2": true,
+  "pdf_render_comparison": {
+    "cavity-ghia-re100-preview.png": true,
+    "cavity-ghia-re100.png": true,
+    "wall-manufactured-preview.png": true,
+    "wall-manufactured.png": true
+  },
+  "plot_sha256": "5972e878e0d0bf0b1bd458896a516c20b7a19a9574bff682057a9c335ee2aefd",
+  "files_sha256": {
+    "cavity-ghia-re100-preview.pdf": "b9d298f4276137a8ee056f5ccf8ed4883e20d43fd5a29e0e1fd5e4890abc50dc",
+    "cavity-ghia-re100-preview.png": "ce88c820d7513d83c054892f36ee234d938cf180428f3a6783899deb3b9f77b5",
+    "cavity-ghia-re100-preview.svg": "3c541a2da22d3e0941173825c96da7e08158215bf8f66acd56b0b7de09ee5b8a",
+    "cavity-ghia-re100.pdf": "c806e0cc89b78c617df5ec87709c63bea9f8349c56775e46925f0c71d7900229",
+    "cavity-ghia-re100.png": "264ec174a0aaeb374d6506ba91503f44e6518ebb9f91a7a309ff8a890f372906",
+    "cavity-ghia-re100.svg": "6c6794ed0750ddff13b69dcf37d3edbb5ac793a90c58665e74630b46605e2aba",
+    "wall-manufactured-preview.pdf": "c3741fb99b5c77269d22396eaf07dc4f9667a85da228b20119d7716a7659e2a8",
+    "wall-manufactured-preview.png": "edb1f81d131734b64f5056b10209f6a93ba3e8148ea6d5f50bcd9af312acf4d7",
+    "wall-manufactured-preview.svg": "05a82842ba98c80f54379c0c51379b01ffa826f44282a99bcbcefcd6d40ce6bd",
+    "wall-manufactured.pdf": "0a5eb23ac4e86877767318be7ffb9684e608e15da64ac7a498624d235371c845",
+    "wall-manufactured.png": "8e85ee6e755ba71c723b19b5222e85e450f88c4383bbce7526b23a6d6f04cdb8",
+    "wall-manufactured.svg": "d2d747011ef3f4e995678bcaf04bbd6bbe98bda75046c923a514cc4d33c8b233"
+  }
+}

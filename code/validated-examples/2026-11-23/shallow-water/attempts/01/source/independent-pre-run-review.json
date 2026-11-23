@@ -1,0 +1,30 @@
+{
+  "reviewer": "root, independent of implementation subagent",
+  "before_first_main_and_pytest": true,
+  "contract_sha256": "d8444966bfd6e09ab635ccb6711b0c751bc38792ff652a98075e0ad2c1add334",
+  "files_sha256": {
+    "inputs.json": "76af8ebcf9d49343bae088494bd0f63b5813f29c02814beb0e6b421b3617a522",
+    "acceptance.json": "644da767ea681ea9f87df16848ed9d499c6f0468b2e239ec69f4aa1793ac22ec",
+    "shallow_water.py": "6402f76ff341a7246e8ba20c104891f467402c74bca9e47b2dec7636b508ae33",
+    "run.py": "a6091faca43f98a7c4da2c725ca0b0bc4df3d0ef27b6a61858bc36e35e9feb04",
+    "test_shallow_water.py": "98b893551010a5c0e2ff1725f8fc74ef676cb5b188dcf8baf9ff8ef91eb7fc75",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "source-provenance.json": "c143ee01cfbcb75c01d3cd818d021c477d40165256bb81828ce7a362adc71882",
+    "references/README.md": "15e017ced012db7a0b4b9bd636b6e101f8e39cc1c846c6f762168866d8340c74",
+    "references/__init__.py": "63b9b60f426ea05b6d6aa613616d3569e98f3e8246d39c7defa1d5af53a09dc2",
+    "references/analytic.py": "9c979fa7b0308e753e82cea173b96f6a33f6ec277805dafce55fb44dae3d644e",
+    "references/citations.json": "9a0b12ff324f7810a570edfdfd744058cffce7972ab370d2d62c696147c4b62f",
+    "references/source-review.json": "f133a544921fc22d514e8523a02b0b4ef31e96348ea920deb63f678e82e80feb",
+    "pre-run-review.json": "ef1b3fa2552d83bbbe29f433f8ce3eb7239765527a185a28c968dfecf06edb59"
+  },
+  "findings": [
+    "Hydrostatic reconstruction and left/right pressure corrections balance lake-at-rest for represented bed",
+    "One shared HLL mass flux, exact one-sided dry wave bounds, FE faceCFL0.4, no depth floor or clipping",
+    "Momentum budget separates boundary flux and bed impulse; stage traces retained",
+    "Ritter conservative means are branch-split polynomial Gauss integrals; PDE residual and quadrature order comparison qualify reference",
+    "Bernoulli subcritical root bracket lies above critical depth; initialized preservation test distinct from rest-to-steady SWASHES",
+    "Strict nonnegative depth and fixed109gates/28tests/8runs with no post-result criterion changes",
+    "Bilingual required metadata, existing method IDs, dependency pins and KaTeX formulas pass preflight"
+  ],
+  "approved_for_declared_execution": true
+}

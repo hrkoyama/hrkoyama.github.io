@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "status": "READY for revision3 envelope-only review; not yet executed",
+  "scope": "Backlog16 low-Re Ghia cavity and17 nonperiodic manufactured wall flow. Six fixed flow grids, three separate pressure operator solves. No high-Re scan, turbulence, independent dense reference regeneration, or quantum calculation.",
+  "model": "Real 2D incompressible vorticity transport with Poisson coupling and no-slip nonperiodic walls. Same centered FD/Heun/Thom solver for both flow cases.",
+  "analytic_derivation": "psi=A f(x)f(y), f=z²(1−z)²; u=psi_y, v=−psi_x, omega=−Delta psi; forcing=u*omega_x+v*omega_y−nu*Delta omega. f''''=24. Qualify against independently differentiated tensor polynomial coefficients.",
+  "wall_derivation": "Thom wall omega=−2psi_adj/h² on stationary walls; top adds−2U/h. Local wall omega truncation is O(h), not claimed second-order. Require actual wall omega and velocity-gradient shear errors decrease and publish observed rates. Exact MMS omega never sets boundary values.",
+  "pressure": "Pressure gauge not applicable to streamfunction evolution. A separate p=x²+y²+sin(pi*x)sin(pi*y) with analytic nonzero Dirichlet boundary checks Poisson and interior/one-sided boundary gradients. This does not validate cavity pressure.",
+  "reference_audit": "Original Ghia paper rendered/visually read on391–392,398–399,408. Preserve rounded printed coordinates. Original numerical method differs from this solver. Source details recorded without redistributing PDF.",
+  "failure_policy": "Preserve any failing source/input/acceptance/result/log snapshot before a new protocol; never relax thresholds to pass. No clipping, retries, filtering or hidden exact-solution injection.",
+  "expected_numerical_gates": 94,
+  "expected_pytest_tests": 22,
+  "combined_seconds_limit": 120,
+  "revision_reason": "The successful R2 scientific output did not conform to the real public verifier envelope: missing termination/failure and diagnostic-name top-level checks instead of case IDs. Preserve numerical records and every array, move the three diagnostics to summary_checks, add case-ID decisions, completion reason and null failure."
+}

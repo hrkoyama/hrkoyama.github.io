@@ -1,0 +1,33 @@
+{
+  "reviewer": "root, independent of implementation subagent",
+  "before_this_revision_main_and_pytest": true,
+  "contract_sha256": "a34774f1927e1f53810e20dfbd804f749194a0cdc6a711444744967f6f952395",
+  "files_sha256": {
+    "acceptance.json": "6d592a67e1e2d765278961336beb18f2c7cd421f965310fe57ec290359d1cd82",
+    "inputs.json": "41281dc7b9e7cc2a79dd88d5f17e6d2b9be1c3d492691244856ec1cf11d7e2c4",
+    "pre-run-review.json": "ac6fd17b6cccc272912243cd4aa51179afaa277df23072e97525c0d6ba7011ec",
+    "protocol-history.json": "8586871141630dadf470ef3007505bc8afc9701e52db807018c72d252d0defc6",
+    "references/__init__.py": "c5ce773b690de12ef336339fefbbe1585d2cc7b0a51dd1bd161a7650858a35e6",
+    "references/citations.json": "a5533d7ceeeb4bd748db29830758c81eed4a83cf33738ec7b213510ce9bac4d6",
+    "references/ghia-re100.csv": "0e844ac059c779a67819b8def7b1f0798b690a414214177a2a45b9397f6a1335",
+    "references/qualify_reference.py": "67102bf89f6317ff9e8751618792a58f1bf73b4ff342f41d9a92adce623f23d9",
+    "references/source-review.json": "0bc6d4f697c67d8d7e1209e257997527047dcde7f5a924f7f123a5d3ca77c77b",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "run.py": "0e15bbefa591399c48d5787f5951c682f11699f3d9569a2696920294cf9e7abe",
+    "source-provenance.json": "a81e755bce968df20ff243276b4835b539fec80774c41b3908db8199de7c8e4c",
+    "test_result_envelope.py": "98141edad6605bd4205c6cb953717046de1233a8e981d1bc38e96147694e51a9",
+    "test_serialization.py": "bcef53bc3a0f9a1016774485ea5f57987a6b0a65ccc6d2e16827bbef34d8080e",
+    "test_wall_flow.py": "3319db7a4a9f507b3f3a686c6524e4165aeb17b5a99a84f6e8d40e098cf2341a",
+    "wall_flow.py": "dd0e3e430859096afae33377b16924e604250fcb394fba40645a9d6983dc391e",
+    "references/README.md": "b915c9d4686816b61ed9e8af6f80fbd652228323785957afc14b6c1d0e2fca30"
+  },
+  "findings": [
+    "R3 output-envelope-only revision reuses identical caseobjects, inputs, acceptance, solver, references and allprior21tests",
+    "Top-level checks exactly map case IDs; diagnosticflags retained separately; explicitfixed_budget_completed termination and null failure align withactualpublicvalidator",
+    "New22nd regression rejects failedcase/failedsummary and checksJSON-native serialization withoutchanging numerical acceptance",
+    "SuccessfulR2arrays and source preserved; unpublishedoriginalZIP moved intactoutsidepublictree; next immutableedition2026-11-23-r2",
+    "22pytest/94gates and all6flow+3pressure inputs unchanged; originalprimaryGhia andwallMMSscopes unchanged",
+    "Bilingual required metadata, existing method IDs, dependency pins and KaTeX formulas pass preflight"
+  ],
+  "approved_for_declared_execution": true
+}

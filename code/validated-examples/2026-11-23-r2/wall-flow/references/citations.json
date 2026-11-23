@@ -1,0 +1,39 @@
+[
+  {
+    "id": "ghia1982",
+    "author": "U. Ghia, K. N. Ghia and C. T. Shin",
+    "year": 1982,
+    "title": "High-Re solutions for incompressible flow using the Navier-Stokes equations and a multigrid method",
+    "journal": "Journal of Computational Physics",
+    "volume": "48",
+    "number": "3",
+    "pages": "387–411",
+    "doi": "10.1016/0021-9991(82)90058-4",
+    "url": "https://www.sciencedirect.com/science/article/pii/0021999182900584",
+    "type": "article",
+    "review_level": "primary-original-selected-pages",
+    "review_scope": "Original PDF rendered and visually read:391–392 equations/Fig1;398–399 TablesI/II Re100 columns;408 TableV primary vortex. Publisher abstract/bibliography read; publisher PDF403. Original PDF obtained from recorded public mirror; no full-paper audit.",
+    "review": {
+      "ja": "原著の式・境界図・表I/IIのRe100列と表Vの主渦を直接目視確認。公開ミラーは原著の配送元として記録し、論文PDFは配布しません。本実装は原著のCSI-MG法とは異なります。",
+      "en": "Visually inspected original equations/boundary figure, Re100 columns in TablesI/II and primary vortex in TableV. The public mirror delivers the original paper; its PDF is not redistributed. This independently written solver differs from CSI-MG."
+    },
+    "accessed_on": "2026-11-23"
+  },
+  {
+    "id": "salari-knupp2000",
+    "author": "Kambiz Salari and Patrick Knupp",
+    "year": 2000,
+    "title": "Code Verification by the Method of Manufactured Solutions",
+    "report": "SAND2000-1444",
+    "doi": "10.2172/759450",
+    "url": "https://www.sandia.gov/research/publications/details/code-verification-by-the-method-of-manufactured-solutions-2000-06-01/",
+    "type": "technical-report",
+    "review_level": "primary-selected-section-and-official-abstract",
+    "review_scope": "Official Sandia/OSTI record and primary report printed12 at UNT read for MMS plus mesh refinement. No whole-report audit. Our quartic polynomial and pressure field are newly constructed.",
+    "review": {
+      "ja": "Sandia/OSTI公式書誌・抄録と、原著報告の印刷12頁で製造解と格子細分化の併用を確認。本例の多項式と圧力場は独自に構成しました。",
+      "en": "Read official Sandia/OSTI metadata/abstract and original report printed12 on MMS together with mesh refinement. The polynomial and pressure field are constructed for this example."
+    },
+    "accessed_on": "2026-11-23"
+  }
+]

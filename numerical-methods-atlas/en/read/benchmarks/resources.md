@@ -185,6 +185,14 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Standard γ=1.4 Sod tube with left/right (ρ,u,p)=(1,0,1)/(0.125,0,0.1), initial jump x=0.5 and t=0.2. Compare 80/160-cell piecewise-constant Godunov-type/HLLC/SSPRK3 updates with a self-similar Euler solution.
+- [SWASHES topographic flow: lakes and nonzero steady discharge](<https://hrkoyama.github.io/numerical-methods-atlas/validation/swashes-topography/?lang=en>)
+  availability: run
+
+  Check two lake equilibria separately from nonzero subcritical flow, distinguishing lake preservation from moving-flow discretization error.
+- [Dry-bed dam break: actual wetting and dry states](<https://hrkoyama.github.io/numerical-methods-atlas/validation/dry-bed-dam-break/?lang=en>)
+  availability: run
+
+  Start the right half at exactly h=q=0 and compare wetting-front advance, conservation and conservative errors with the Ritter analytic solution.
 - [Shu–Osher: independent reference and mesh refinement](<https://hrkoyama.github.io/numerical-methods-atlas/validation/shu-independent/?lang=en>)
   availability: run
 
@@ -209,6 +217,10 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Rotate a slotted disk through one full turn with an actual 2D finite-volume solver, comparing donor-cell and minmod MUSCL. Eight runs combine three grids with half-cell-center and 45-degree-start probes; measure conservation, bounds at every SSP stage, shape error and slot filling.
+- [WENO-JS/Z: fixed critical-point and epsilon comparison](<https://hrkoyama.github.io/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=en>)
+  availability: run
+
+  Compare WENO5 JS and Z power-two weights from the same cell means, then evolve actual periodic transport. Retain three regularity classes, three epsilon choices, fixed grids and separate halved-time-step diagnostics.
 - [Noh problem: an actual 2D Cartesian Euler calculation](<https://hrkoyama.github.io/numerical-methods-atlas/validation/noh-cartesian-2d/?lang=en>)
   availability: run
 

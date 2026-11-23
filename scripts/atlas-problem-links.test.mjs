@@ -127,7 +127,7 @@ function links(html){
 }
 
 test('the reviewed problem links and generated hub inventory cover every physical problem exactly once',()=>{
-  assert.equal(inventory.length,87);
+  assert.equal(inventory.length,91);
   const expected=inventory.map(row=>row.id);
   for(const rows of [mapping.problems,index.problems]){
     assert.deepEqual(rows.map(row=>row.id),expected);
@@ -228,7 +228,7 @@ test('hub equations, references and methods use only explicitly reviewed identit
       assert.deepEqual(reference.note,binding.note);
       assert.equal(reference.kind,source.kind);
       assert.deepEqual(reference.title,source.title);
-      assert.ok(markdown.includes(reference.id));
+      for(const language of ['ja','en']){assert.ok(markdown.includes(reference.url[language]),reference.id+' explicit reference destination');assert.ok(markdown.includes(reference.title[language]),reference.id+' localized reference title');}
     }
     for(const method of problem.methods){
       assert.equal(method.status,methodMap.get(method.id).status);

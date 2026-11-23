@@ -101,9 +101,38 @@
         {
           "path": "numerical-methods-atlas/experiments.json",
           "json_pointer": "/dg"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/weno-critical/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "weno-critical-epsilon"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/weno-critical/results/weno-critical-epsilon-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/weno-critical/inputs.json",
+          "json_pointer": "/cases/weno-critical-epsilon"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/weno-critical/verification.json",
+          "json_pointer": "/all_cases_rerun"
         }
       ],
-      "availability": "saved-output"
+      "availability": "saved-output",
+      "supplemental_examples": [
+        {
+          "id": "weno-critical-epsilon",
+          "url": "/numerical-methods-atlas/validation/weno-critical-epsilon/",
+          "name": {
+            "ja": "WENO-JS／Z：臨界点とεの固定比較",
+            "en": "WENO-JS/Z: fixed critical-point and epsilon comparison"
+          }
+        }
+      ]
     },
     {
       "id": "advection-square",
@@ -3002,6 +3031,198 @@
           "name": {
             "ja": "Zalesak型2D回転輸送：保存・有界性・形状誤差",
             "en": "Zalesak-type 2D rotation: conservation, bounds and shape error"
+          }
+        }
+      ]
+    },
+    {
+      "id": "swashes-topography",
+      "group": "fluid",
+      "name": {
+        "ja": "SWASHES地形上の静止湖・定常浅水流",
+        "en": "SWASHES lakes and steady shallow flow over topography"
+      },
+      "chapter": "validation-shallow-water",
+      "reading_section": "swashes-topography",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/shallow-water/",
+      "verification": "/code/validated-examples/2026-11-23/shallow-water/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/shallow-water/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "swashes-topography"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/shallow-water/results/swashes-topography-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/shallow-water/inputs.json",
+          "json_pointer": "/topography"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/shallow-water/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "swashes-topography",
+          "url": "/numerical-methods-atlas/validation/swashes-topography/",
+          "name": {
+            "ja": "SWASHES地形流：静水と非零流量の定常解",
+            "en": "SWASHES topographic flow: lakes and nonzero steady discharge"
+          }
+        }
+      ]
+    },
+    {
+      "id": "dry-bed-dam-break",
+      "group": "fluid",
+      "name": {
+        "ja": "乾燥床へのRitter破堤流",
+        "en": "Ritter dam break onto a dry bed"
+      },
+      "chapter": "validation-shallow-water",
+      "reading_section": "dry-bed-dam-break",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/shallow-water/",
+      "verification": "/code/validated-examples/2026-11-23/shallow-water/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/shallow-water/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "dry-bed-dam-break"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/shallow-water/results/dry-bed-dam-break-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/shallow-water/inputs.json",
+          "json_pointer": "/ritter"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/shallow-water/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "dry-bed-dam-break",
+          "url": "/numerical-methods-atlas/validation/dry-bed-dam-break/",
+          "name": {
+            "ja": "乾いた河床のダム破壊：実際のwetting/drying",
+            "en": "Dry-bed dam break: actual wetting and dry states"
+          }
+        }
+      ]
+    },
+    {
+      "id": "lid-driven-cavity",
+      "group": "viscous",
+      "name": {
+        "ja": "Re100の蓋駆動キャビティ",
+        "en": "Re100 lid-driven cavity"
+      },
+      "chapter": "validation-wall-flow",
+      "reading_section": "cavity-ghia-re100",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23-r2/wall-flow/",
+      "verification": "/code/validated-examples/2026-11-23-r2/wall-flow/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23-r2/wall-flow/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "cavity-ghia-re100"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r2/wall-flow/results/cavity-ghia-re100-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r2/wall-flow/inputs.json",
+          "json_pointer": "/nodes"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r2/wall-flow/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "cavity-ghia-re100",
+          "url": "/numerical-methods-atlas/validation/cavity-ghia-re100/",
+          "name": {
+            "ja": "Re=100蓋駆動キャビティ：Ghia中心線との比較",
+            "en": "Re100 lid-driven cavity: Ghia centerline comparison"
+          }
+        }
+      ]
+    },
+    {
+      "id": "wall-manufactured",
+      "group": "viscous",
+      "name": {
+        "ja": "非周期壁面の製造非圧縮流",
+        "en": "Manufactured incompressible flow with nonperiodic walls"
+      },
+      "chapter": "validation-wall-flow",
+      "reading_section": "wall-manufactured",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23-r2/wall-flow/",
+      "verification": "/code/validated-examples/2026-11-23-r2/wall-flow/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23-r2/wall-flow/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "wall-manufactured"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r2/wall-flow/results/wall-manufactured-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r2/wall-flow/inputs.json",
+          "json_pointer": "/nodes"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23-r2/wall-flow/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "wall-manufactured",
+          "url": "/numerical-methods-atlas/validation/wall-manufactured/",
+          "name": {
+            "ja": "非周期壁面の製造解：速度・剪断・圧力演算子",
+            "en": "Nonperiodic wall MMS: velocity, shear and pressure operator"
           }
         }
       ]
