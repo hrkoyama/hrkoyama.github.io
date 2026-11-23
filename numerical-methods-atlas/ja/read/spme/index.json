@@ -40,7 +40,7 @@
   ],
   "locale": "ja",
   "source_url": "/catalog/atlas-detailed-reading.json",
-  "updated_on": "2026-11-22",
+  "updated_on": "2026-11-23",
   "translation_status": "draft",
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/spme/",
   "methods": [
@@ -93,7 +93,7 @@
       }
     }
   ],
-  "source_sha256": "f5e4b7e39f89322182359aa6adb9ac4af24a52337e07ca40b3933623f769b6eb",
+  "source_sha256": "d771642c889ef2e2aaf3830978486f6c96481cfe095960f8a90c3a90deeb7385",
   "scoped_supplements": [
     {
       "id": "spme",
@@ -169,7 +169,7 @@
     }
   ],
   "supplemental_source_sha256": {
-    "catalog/atlas-depth-expansion.json": "b2e5a2d218c1bc2f542b2f54d38fc1c1b21193b1fa931ca6cfd3bccddb5667cf",
+    "catalog/atlas-depth-expansion.json": "291e40ad500108713ce524fc809dd3b771b3ad7e9c6fc22c8659b42ef1bf60ba",
     "code/validated-examples/2026-11-22/particles/source-manifest.json": "63cefd473db691db611628f6501b2b58d6727c055ffde1b9a4962bfecfacd125",
     "code/validated-examples/2026-11-22/particles/verification.json": "48744c4ce661cb76ce7cba81d55bbbb2737885c472966237e78c9e3dfcbf43b7",
     "code/validated-examples/2026-11-22/particles/cases.json": "f6e68b2ec8d0cd56357b1aeecea3f9c40cf22f89e7f9c1b8b9442ad020ddbf86",

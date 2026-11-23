@@ -4,14 +4,14 @@
   "reviewed_on": "2026-11-22",
   "scope": "One explicitly mapped visual per atlas test problem. Existing shared figures are identified. Derived plots use stored numerical values; computed previews record fixed inputs and numerical checks.",
   "counts": {
-    "test_problems": 87,
-    "runnable_problems": 47,
+    "test_problems": 88,
+    "runnable_problems": 48,
     "common_runnable_problems": 22,
-    "supplemental_runnable_problems": 28,
-    "supplemental_case_count": 44,
-    "supplemental_release_case_count": 49,
+    "supplemental_runnable_problems": 29,
+    "supplemental_case_count": 46,
+    "supplemental_release_case_count": 51,
     "groups": {
-      "transport": 10,
+      "transport": 11,
       "fluid": 19,
       "mhd": 5,
       "viscous": 3,
@@ -26,7 +26,7 @@
     },
     "visual_sources": {
       "stored-data-plot": 27,
-      "existing-figure": 51,
+      "existing-figure": 52,
       "computed-preview": 9
     }
   },
@@ -7777,10 +7777,160 @@
           }
         }
       ]
+    },
+    {
+      "id": "level-set-circle",
+      "group": "transport",
+      "name": {
+        "ja": "レベルセットで表した円の移流",
+        "en": "Advection of a level-set circle"
+      },
+      "chapter": "level-set",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/level-set/",
+      "verification": "/code/validated-examples/2026-11-23/level-set/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/level-set/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "level-set-translation"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/level-set/inputs.json",
+          "json_pointer": "/cases/level-set-translation"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/level-set/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "level-set-rotation"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/level-set/inputs.json",
+          "json_pointer": "/cases/level-set-rotation"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/level-set/results/level-set-overview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/level-set/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "level-set-translation",
+          "url": "/numerical-methods-atlas/validation/level-set-translation/",
+          "name": {
+            "ja": "レベルセット円の2D平行移動：界面・面積・再初期化",
+            "en": "2D level-set circle translation: interface, area and redistancing"
+          }
+        },
+        {
+          "id": "level-set-rotation",
+          "url": "/numerical-methods-atlas/validation/level-set-rotation/",
+          "name": {
+            "ja": "偏心したレベルセット円の2D剛体回転",
+            "en": "2D rigid rotation of an off-center level-set circle"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/level-set/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/level-set/"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#level-set-circle",
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "image": "/code/validated-examples/2026-11-23/level-set/results/level-set-overview.png",
+      "image_sha256": "88f72aed9b862da17107f9f1c07c1ca10b3f43e61342de01e03f55379723f730",
+      "width": 1450,
+      "height": 652,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "実際の128²レベルセット場から抽出した円のゼロ等値線。左は平行移動、右は偏心円の一周回転。解析界面と移流単独・単純な再初期化ありを比較します。VOF計算ではなく、面積保存を補正していません。",
+        "en": "Zero contours extracted from actual128² level-set fields: translation(left) and an off-center full rotation(right). Compare analytic interfaces against advection alone and simple redistancing. This is not a VOF calculation, and no area correction is applied."
+      },
+      "visual_input": {
+        "id": "level-set-circle",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-23/level-set/results/level-set-overview.png",
+        "caption": {
+          "ja": "実際の128²レベルセット場から抽出した円のゼロ等値線。左は平行移動、右は偏心円の一周回転。解析界面と移流単独・単純な再初期化ありを比較します。VOF計算ではなく、面積保存を補正していません。",
+          "en": "Zero contours extracted from actual128² level-set fields: translation(left) and an off-center full rotation(right). Compare analytic interfaces against advection alone and simple redistancing. This is not a VOF calculation, and no area correction is applied."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#level-set-circle-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/level-set-circle/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/level-set-circle/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "level-set-translation",
+          "title": {
+            "ja": "レベルセット円の2D平行移動：界面・面積・再初期化",
+            "en": "2D level-set circle translation: interface, area and redistancing"
+          },
+          "group": "level-set",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/level-set-translation/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/level-set-translation/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/level_set.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/geometry.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/test_level_set.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/atlas-level-set-2026-11-23.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/verification.json"
+        },
+        {
+          "id": "level-set-rotation",
+          "title": {
+            "ja": "偏心したレベルセット円の2D剛体回転",
+            "en": "2D rigid rotation of an off-center level-set circle"
+          },
+          "group": "level-set",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/level-set-rotation/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/level-set-rotation/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/level_set.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/geometry.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/test_level_set.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/atlas-level-set-2026-11-23.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/verification.json"
+        }
+      ]
     }
   ],
   "source_sha256": {
-    "catalog/atlas-gallery.json": "0198ffe0c37eda0c59e10dff7b6a026410f7c8e473b9f432b061f5531350783a",
+    "catalog/atlas-gallery.json": "c339739274fc36ff5fd49390170c817aeda8668fae53083e81ad650615d50fac",
     "scripts/render-atlas-gallery.py": "62956b5a0ece0c5144ec079bb30f36e44b3ccf97e4b56b677d4de356cdbab04c",
     "code/numerical-methods-atlas/2026-11-21/numart/benchmarks.py": "dc8f83aafea473b5f0e1e7bf82630484dd60aa446859c1f602571adc3c59f019",
     "code/numerical-methods-atlas/2026-11-21/numart/solvers.py": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d",
@@ -7827,8 +7977,8 @@
     "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
     "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
     "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
-    "catalog/atlas-test-problems.json": "5f210155a1fa739db4baa26e279015aebc92914c6a613dd3cf882e0d72c5fda9",
-    "catalog/atlas-depth-expansion.json": "b2e5a2d218c1bc2f542b2f54d38fc1c1b21193b1fa931ca6cfd3bccddb5667cf",
+    "catalog/atlas-test-problems.json": "4ebf0cc08dc205e678bd82994b6e989d5c17eaa6ab9a36fd299b09ce62954319",
+    "catalog/atlas-depth-expansion.json": "291e40ad500108713ce524fc809dd3b771b3ad7e9c6fc22c8659b42ef1bf60ba",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
     "code/validated-examples/2026-11-22/foundations/inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -7995,18 +8145,26 @@
     "code/validated-examples/2026-11-23/zalesak/results/result.json": "51851a31df72eec078e25171deeacd2699a9bfe9eedc55b4bc6831fd233b408d",
     "code/validated-examples/2026-11-23/zalesak/results/zalesak-rotation.png": "1d7ed7b6669b25cbe45951d26ffc82974790c5234237eff32e7456064822ed27",
     "code/validated-examples/2026-11-23/zalesak/results/zalesak-rotation-preview.png": "4c1236cfeda0f42d555a6a918ed20682729c95c91f2ab6a9c615e2eb5fbcdccc",
+    "code/validated-examples/2026-11-23/level-set/cases.json": "b077db49bb69055b9612a2153f7d9ea4d9c1025f0bf13b0c94157d2e9235e655",
+    "code/validated-examples/2026-11-23/level-set/inputs.json": "48b36acc98390bc01af40c9a19d3ae348b6d737df30449bbcbd5850511df7ac2",
+    "code/validated-examples/2026-11-23/level-set/source-manifest.json": "7055bd243b522c8de50c2091a983c61b734a589105af49d27d63f0519f9075e4",
+    "code/validated-examples/2026-11-23/level-set/verification.json": "d70c2ed415b9e61bac769c0060a7ee1e7a4cf4b0b8ce1a6beabd4bca09ef7042",
+    "code/validated-examples/2026-11-23/level-set/results/result.json": "7108491721386902c6adaa5ea5c1c709b31a204060346d0c93a06efd4a4a5a31",
+    "code/validated-examples/2026-11-23/level-set/results/level-set-translation.png": "4e99dec1449e65944b246b2280dd5439a5dbc59a99633b201f57e5cd0453507e",
+    "code/validated-examples/2026-11-23/level-set/results/level-set-rotation.png": "54c6d02fd40c0bf702f413f8ce12aaefc43a5f911d681b42ad7634d6a26ebdde",
+    "code/validated-examples/2026-11-23/level-set/results/level-set-overview.png": "88f72aed9b862da17107f9f1c07c1ca10b3f43e61342de01e03f55379723f730",
     "code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py": "4ad61ac54dfa59d7d61959c5699f290e2386c23bf5b4b930a5d98576feaa54d1",
     "code/numerical-methods-atlas/2026-11-21/tests/test_linear.py": "5e7323f2734fb7328c35706ccd90fc25076bd46d01d32cd9c78c8cd25dd0421f",
     "code/numerical-methods-atlas/2026-11-21/tests/test_sparse_fem.py": "4076e514e0b9b5fd94dead4af33fe7e7548fba6a7b48b3e21a406034f7170afb",
     "code/numerical-methods-atlas/2026-11-21/tests/test_runge_kutta.py": "920a5eb560afe7f560cae8d22f879f125851f4ee0451b24720d0eca0082c31ce",
     "code/numerical-methods-atlas/2026-11-21/tests/test_new_models.py": "2937daf8fa8ad86882ac06e47835a6309ca1df3d0283c7dfb7b9606dc3906b1f",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "c7b79b042315a085a9683ebe05d0e14ae4edcc0b8bce470c0d435355e627bf95",
+    "numerical-methods-atlas/gallery/preview-manifest.json": "ea7830aa7e81700f9f3a70244a32b83f491ab71180380ce8b322708827e27a65",
     "numerical-methods-atlas/gallery/calculations.json": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6",
     "numerical-methods-atlas/gallery/verification.json": "46c39543afa9d943dfef896fadbc8f84d847f1a145d9b1427a2336de7a3a50f9",
-    "numerical-methods-atlas/test-cases/index.json": "ce53e5cef04d5986e2f98c47a01e30813e70204d809a005c5ce440ac8917528e",
+    "numerical-methods-atlas/test-cases/index.json": "cf6256bfd8abb42d7c7bdade36f9ae256d614a448dbf10fc13ab004c7563b6f8",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "scripts/atlas_execution_discovery.py": "3431dae95fb0adc68e1deca07b406b70bd99480f9ad6023a31765cb07ccf84be",
-    "scripts/atlas_depth_release.py": "9b459e20be7a7694e5e889dc8390a3b4e42ae8fe1d7169221eb571b697ced346",
+    "scripts/atlas_depth_release.py": "2db29d47e0a8089f412b8e6f99044ddd6cafd878c6c094cf793dce45f98cec8f",
     "scripts/atlas_goal_availability.py": "110f9026c13acbba1c02bfc6dd3234ba3e7ead631a5fefd129cee9d9ec30721b",
     "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
     "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
@@ -8031,6 +8189,7 @@
     "code/validated-examples/2026-11-23/low-mach/atlas-low-mach-2026-11-23.zip": "717b2ceed76d37cf4c1e570a7a022e1a17d66fce3048648a3edde4164a1513aa",
     "code/validated-examples/2026-11-23-r3/guderley/atlas-guderley-2026-11-23-r3.zip": "f00ff906861495bd73b2ae75f7c3895fab505ba45ad7a34a2612700405d8466f",
     "code/validated-examples/2026-11-23-r2/euler-positivity/atlas-euler-positivity-2026-11-23-r2.zip": "0f2c8a3bf94a612f89d8f6f695b94574dd05d70976aa97a497ef47ff4e0c1efe",
-    "code/validated-examples/2026-11-23/zalesak/atlas-zalesak-2026-11-23.zip": "28e7d2bc93d3a5ba1cb015c874c489e9fd1a2e8a586a46d519800c799b0fb6f8"
+    "code/validated-examples/2026-11-23/zalesak/atlas-zalesak-2026-11-23.zip": "28e7d2bc93d3a5ba1cb015c874c489e9fd1a2e8a586a46d519800c799b0fb6f8",
+    "code/validated-examples/2026-11-23/level-set/atlas-level-set-2026-11-23.zip": "46c2c2fd0aea98eb4cc4facef8d30cc81ebd6b1b9e0d965f7ef79167a06c048b"
   }
 }

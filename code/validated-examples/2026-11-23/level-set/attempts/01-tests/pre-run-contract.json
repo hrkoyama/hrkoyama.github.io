@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "frozen_before_execution": true,
+  "fixed_on": "2026-11-23",
+  "planned_tests": 22,
+  "planned_fixed_cases": [
+    "level-set-translation",
+    "level-set-rotation"
+  ],
+  "planned_base_runs": 12,
+  "planned_cfl_sensitivity_runs": 4,
+  "scope": "Input and numerical acceptance fixed before the first production run. Both modes and all grids use the same ENO2/Heun advection; only the declared redistancing calls differ.",
+  "files_sha256": {
+    "geometry.py": "0c1ac85db980f2e3378da6a3ca7beaef46c466ad5c64dafa122c3700c2a0f7fd",
+    "level_set.py": "d831e308d1db2ae8e51871c6385813611dcba12803c3dfb33625833f985c79b7",
+    "run.py": "2c609b056e6f857bb0cd2efbe8c311da5233908347eb994408d8158194e65cf9",
+    "test_level_set.py": "7656b0870a5ceb75a77f56a69a0c75fff5fbc18e540f143467108462e295ffb5",
+    "inputs.json": "48b36acc98390bc01af40c9a19d3ae348b6d737df30449bbcbd5850511df7ac2",
+    "inputs-initial.json": "48b36acc98390bc01af40c9a19d3ae348b6d737df30449bbcbd5850511df7ac2",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75"
+  }
+}

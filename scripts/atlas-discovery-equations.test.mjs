@@ -37,7 +37,7 @@ test('all execution families have scoped bilingual formula and outcome metadata'
 
 test('twenty-two execution formulas stay separate from the unchanged model inventory',()=>{
   assert.equal(published.counts.total,coverage.counts.equations);
-  assert.equal(published.counts.total,47);
+  assert.equal(published.counts.total,48);
   assert.equal(published.equations.length,source.equations.length);
   assert.equal(published.counts.local_example,coverage.counts.local_equations);
   assert.equal(published.counts.reading_only,coverage.counts.reading_equations);
@@ -54,7 +54,7 @@ test('twenty-two execution formulas stay separate from the unchanged model inven
     if(model.status==='reading')assert.deepEqual(model.execution_examples,[]);
   }
   assert.deepEqual(published.equations.find(x=>x.id==='time-dependent-kohn-sham').execution_examples,[]);
-  assert.equal(coverage.counts.test_problems,87);
+  assert.equal(coverage.counts.test_problems,88);
 });
 
 test('formula shortcuts contain static math and direct input/run/validation routes',()=>{

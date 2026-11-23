@@ -24,11 +24,11 @@ test('time refinement preserves the initially declared numerical acceptance crit
 
 test('nonlinear biological comparisons reuse one physical problem and preserve the earlier linear-onset release',()=>{
  const index=json('numerical-methods-atlas/validation/index.json');
- assert.equal(index.case_count,49);
- assert.equal(index.groups.length,20);
+ assert.equal(index.case_count,51);
+ assert.equal(index.groups.length,21);
  for(const id of cases)assert.equal(index.case_problem_ids[id],'turing-schnakenberg');
  const inventory=json('numerical-methods-atlas/test-cases/index.json').problems;
- assert.equal(inventory.length,87);
+ assert.equal(inventory.length,88);
  assert.equal(inventory.filter(x=>x.id==='turing-schnakenberg').length,1);
  const problem=inventory.find(x=>x.id==='turing-schnakenberg');
  assert.deepEqual(new Set(problem.supplemental_examples.map(x=>x.id)),new Set(['turing-schnakenberg',...cases,'reaction-diffusion-splitting']));
@@ -47,8 +47,8 @@ test('five earlier supplement archives, the common registry and unrelated availa
  const hashes={foundations:'1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2',models:'18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c',particles:'8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6',mhd:'2e7eeaaacaeb918671228cc56ab333d0c4ca5a9879241846f5772594552d0b16',thermostats:'38142da988bf0c790eab7e7f10f8d1e209d074c3627f73a207f5223a24e18d65'};
  for(const [group,hash] of Object.entries(hashes))assert.equal(sha(`code/validated-examples/2026-11-22/${group}/atlas-${group}-2026-11-22.zip`),hash);
  assert.equal(sha('numerical-methods-atlas/code-and-data/examples.json'),'3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7');
- assert.equal(methods.length,147);
- assert.deepEqual(Object.fromEntries(['educational-example','reading-only','planned'].map(s=>[s,methods.filter(m=>m.status===s).length])),{'educational-example':117,'reading-only':14,'planned':16});
+ assert.equal(methods.length,149);
+ assert.deepEqual(Object.fromEntries(['educational-example','reading-only','planned'].map(s=>[s,methods.filter(m=>m.status===s).length])),{'educational-example':118,'reading-only':15,'planned':16});
  const bio=json('numerical-methods-atlas/assets/biological-models.json').models;
  assert.deepEqual(new Set(bio.filter(x=>x.status==='scoped-educational-example').map(x=>x.id)),new Set(['logistic','sir','turing','schnakenberg','fitzhugh-nagumo']));
  const detailed=read('.github/workflows/atlas-public-linux.yml').toString();

@@ -17,13 +17,13 @@ from pathlib import Path
 sys.path.insert(0,str(Path.cwd()/'scripts'))
 from atlas_equation_inventory import merge_catalog_equations,ORIGIN
 canonical=json.loads(Path('catalog/atlas-equations.json').read_text())['equations']
-assert len(canonical)==47
+assert len(canonical)==48
 for name in ['numerical-methods-atlas/coverage.json','numerical-methods-atlas/assets/site-coverage.json']:
  original=json.loads(Path(name).read_text())['items'];before=copy.deepcopy(original)
  result=merge_catalog_equations(original,canonical)
  assert original==before
  assert {x['id'] for x in result if x['kind']=='equation'}=={x['id'] for x in canonical}
- assert len([x for x in result if x['kind']=='equation'])==47
+ assert len([x for x in result if x['kind']=='equation'])==48
  for old in original:
   if old.get('origin')!=ORIGIN:
    assert next(x for x in result if x['kind']==old['kind'] and x['id']==old['id'])==old
@@ -45,21 +45,21 @@ print('canonical model additions synchronize without replacing historical invent
 
 test('Zalesak adds one scalar problem while preserving nineteen releases, eighty-six primary figures and all previous equations/references',()=>{
  const registry=json('numerical-methods-atlas/validation/releases.json');
- assert.equal(registry.case_count,49);assert.equal(registry.releases.length,20);
- assert.equal(objectHash(registry.releases.filter(r=>r.group!==group)),'0b22556a067a3320bc7984fd2eedcbf97fe4b935ac6db98ca449933553a1c745');
+ assert.equal(registry.case_count,51);assert.equal(registry.releases.length,21);
+ assert.equal(objectHash(registry.releases.filter(r=>r.group!==group&&r.group!=='level-set')),'0b22556a067a3320bc7984fd2eedcbf97fe4b935ac6db98ca449933553a1c745');
  const release=registry.releases.find(r=>r.group===group);assert.deepEqual(release.case_ids,[id]);assert.equal(release.tests,26);
- assert.equal(registry.releases.reduce((s,r)=>s+r.tests,0),598+26);
+ assert.equal(registry.releases.reduce((s,r)=>s+r.tests,0),598+26+22);
  const previews=json('numerical-methods-atlas/gallery/preview-manifest.json').items;
- assert.equal(previews.length,87);assert.equal(objectHash(previews.filter(p=>p.id!==group)),'3d6a5bd72993ebb9110689f25d2cd9560b11a8188806e97db4c1e7b37af5d3ef');
- const problems=json('catalog/atlas-test-problems.json').problems;assert.equal(problems.length,87);
- assert.equal(objectHash(problems.filter(p=>p.id!==group)),'8b131bb281c278a7d556d31d8e6ed9539c44a2abb8e57e5b3e333044161b6247');
- const equations=json('catalog/atlas-equations.json').equations;assert.equal(equations.length,47);
- assert.equal(objectHash(equations.filter(p=>p.id!=='rotational-advection')),'e408172f62ae24312952989490300562a76bd7f2d9164b69f97e715eb27fc9b9');
- assert.equal(objectHash(json('catalog/atlas-reference-supplements.json').cases.filter(p=>p.id!==id)),'b1cbe79c82644c6c2d19d3a27944e996a0c6ae7707a899068445e693e6a5dbe3');
+ assert.equal(previews.length,88);assert.equal(objectHash(previews.filter(p=>p.id!==group&&p.id!=='level-set-circle')),'3d6a5bd72993ebb9110689f25d2cd9560b11a8188806e97db4c1e7b37af5d3ef');
+ const problems=json('catalog/atlas-test-problems.json').problems;assert.equal(problems.length,88);
+ assert.equal(objectHash(problems.filter(p=>p.id!==group&&p.id!=='level-set-circle')),'8b131bb281c278a7d556d31d8e6ed9539c44a2abb8e57e5b3e333044161b6247');
+ const equations=json('catalog/atlas-equations.json').equations;assert.equal(equations.length,48);
+ assert.equal(objectHash(equations.filter(p=>p.id!=='rotational-advection'&&p.id!=='level-set-advection')),'e408172f62ae24312952989490300562a76bd7f2d9164b69f97e715eb27fc9b9');
+ assert.equal(objectHash(json('catalog/atlas-reference-supplements.json').cases.filter(p=>p.id!==id&&!['level-set-translation','level-set-rotation'].includes(p.id))),'b1cbe79c82644c6c2d19d3a27944e996a0c6ae7707a899068445e693e6a5dbe3');
  assert.equal(hash('numerical-methods-atlas/assets/reference-solutions.json'),'c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc');
  assert.equal(hash('numerical-methods-atlas/code-and-data/examples.json'),'3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7');
- const methods=json('catalog/atlas-methods.json').methods;assert.equal(methods.length,147);
- assert.deepEqual(Object.fromEntries(['educational-example','reading-only','planned'].map(s=>[s,methods.filter(m=>m.status===s).length])),{'educational-example':117,'reading-only':14,planned:16});
+ const methods=json('catalog/atlas-methods.json').methods;assert.equal(methods.length,149);
+ assert.deepEqual(Object.fromEntries(['educational-example','reading-only','planned'].map(s=>[s,methods.filter(m=>m.status===s).length])),{'educational-example':118,'reading-only':15,planned:16});
  const receipt=json(base+'verification.json');assert.equal(receipt.passed,true);assert.equal(receipt.all_cases_rerun,true);assert.equal(receipt.tests,26);assert.equal(hash(base+receipt.archive.file),receipt.archive.sha256);
  for(const[p,h]of Object.entries(json(base+'source-manifest.json').files))assert.equal(hash(base+p),h,p);
 });
@@ -69,7 +69,7 @@ test('the actual two-dimensional saved figure connects to scalar rotation, its a
  assert.equal(page.problem_id,'zalesak');assert.deepEqual([...page.method_ids].sort(),['minmod','muscl','ssprk33','upwind']);
  assert.deepEqual(page.execution_navigation.equations.map(x=>x.id),['rotational-advection']);
  const problem=json('numerical-methods-atlas/problems/zalesak/index.json');assert.ok(problem.executions.some(x=>x.id===id));assert.ok(problem.references.some(x=>x.id===id));
- const gallery=json('numerical-methods-atlas/gallery/index.json');assert.equal(gallery.items.length,87);assert.equal(gallery.counts.runnable_problems,47);
+ const gallery=json('numerical-methods-atlas/gallery/index.json');assert.equal(gallery.items.length,88);assert.equal(gallery.counts.runnable_problems,48);
  const item=gallery.items.find(x=>x.id==='zalesak');assert.equal(item.image,'/'+base+'results/'+id+'-preview.png');assert.equal(item.image_sha256,hash(base+'results/'+id+'-preview.png'));assert.equal(item.runnable,true);
  const execution=item.supplemental_execution_entries.find(x=>x.id===id);assert.ok(execution);assert.ok(execution.download.endsWith('atlas-zalesak-2026-11-23.zip'));
  const reference=json('numerical-methods-atlas/solutions/index.json').cases.find(x=>x.id===id);

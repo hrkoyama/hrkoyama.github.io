@@ -4,8 +4,8 @@
   "title": "分野別に解説を読む",
   "description": "理論・導出・計算例を、分野ごとにまとめた読み物です。基礎から関連する手法と検証例へ進めます。",
   "source": "/catalog/atlas-reading-index.json",
-  "source_sha256": "119522b39111340ab8fe6257062833ee98d921877a3d2cdb758df23b8116c19d",
-  "chapter_count": 102,
+  "source_sha256": "1cf701ec7c13db1f8399c98bb285080ebe46b22818114418f9b1ebf076c2c62a",
+  "chapter_count": 104,
   "groups": [
     {
       "id": "foundations-time",
@@ -395,6 +395,28 @@
             "en"
           ],
           "search_text": "validation-zalesak Zalesak型2D回転輸送：保存・有界性・形状誤差 Zalesak-type 2D rotation: conservation, bounds and shape error 流体・衝撃波・定常解法 Fluids, shocks and steady solvers"
+        },
+        {
+          "id": "level-set",
+          "title": "レベルセット法：動く界面とVOFとの比較",
+          "url": "/numerical-methods-atlas/ja/read/level-set/",
+          "language": "ja",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "level-set レベルセット法：動く界面とVOFとの比較 Level sets: moving interfaces and comparison with VOF 流体・衝撃波・定常解法 Fluids, shocks and steady solvers"
+        },
+        {
+          "id": "validation-level-set",
+          "title": "レベルセット法：円の2D移流・剛体回転",
+          "url": "/numerical-methods-atlas/ja/read/validation-level-set/",
+          "language": "ja",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-level-set レベルセット法：円の2D移流・剛体回転 Level sets: 2D circle translation and rigid rotation 流体・衝撃波・定常解法 Fluids, shocks and steady solvers"
         },
         {
           "id": "rotated-hybrid",

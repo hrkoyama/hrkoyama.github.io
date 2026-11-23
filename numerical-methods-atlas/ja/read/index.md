@@ -54,6 +54,8 @@
 - [発展的な勾配制限：TVBと正値性保存](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/advanced-limiters/)
 - [Euler二重膨張波：段階ごとの正値性](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-euler-positivity/)
 - [Zalesak型2D回転輸送：保存・有界性・形状誤差](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-zalesak/)
+- [レベルセット法：動く界面とVOFとの比較](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/level-set/)
+- [レベルセット法：円の2D移流・剛体回転](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-level-set/)
 - [回転ハイブリッド・リーマンソルバー](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/rotated-hybrid/)
 - [波追跡PPM、AUSM系と曲面前方の衝撃波](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/shock-expansion/)
 - [カーバンクル現象](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/carbuncle/)

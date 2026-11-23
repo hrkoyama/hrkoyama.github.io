@@ -4007,6 +4007,83 @@
         "python -m pytest -q",
         "python run.py --input inputs.json --output output"
       ]
+    },
+    {
+      "id": "level-set-circle",
+      "group": "transport",
+      "name": {
+        "ja": "レベルセットで表した円の移流",
+        "en": "Advection of a level-set circle"
+      },
+      "chapter": "level-set",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-23/level-set/",
+      "verification": "/code/validated-examples/2026-11-23/level-set/verification.json",
+      "commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-23/level-set/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "level-set-translation"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/level-set/inputs.json",
+          "json_pointer": "/cases/level-set-translation"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/level-set/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "level-set-rotation"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/level-set/inputs.json",
+          "json_pointer": "/cases/level-set-rotation"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/level-set/results/level-set-overview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-23/level-set/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "level-set-translation",
+          "url": "/numerical-methods-atlas/validation/level-set-translation/",
+          "name": {
+            "ja": "レベルセット円の2D平行移動：界面・面積・再初期化",
+            "en": "2D level-set circle translation: interface, area and redistancing"
+          }
+        },
+        {
+          "id": "level-set-rotation",
+          "url": "/numerical-methods-atlas/validation/level-set-rotation/",
+          "name": {
+            "ja": "偏心したレベルセット円の2D剛体回転",
+            "en": "2D rigid rotation of an off-center level-set circle"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/level-set/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/level-set/"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#level-set-circle",
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ]
     }
   ],
   "excluded_examples": {
@@ -4035,11 +4112,11 @@
   },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/",
   "counts": {
-    "test_problems": 87,
-    "saved_test_problems": 87,
+    "test_problems": 88,
+    "saved_test_problems": 88,
     "code_test_problems": 0,
     "groups": {
-      "transport": 10,
+      "transport": 11,
       "fluid": 19,
       "mhd": 5,
       "viscous": 3,
@@ -4054,7 +4131,7 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-test-problems.json": "5f210155a1fa739db4baa26e279015aebc92914c6a613dd3cf882e0d72c5fda9",
+    "catalog/atlas-test-problems.json": "4ebf0cc08dc205e678bd82994b6e989d5c17eaa6ab9a36fd299b09ce62954319",
     "numerical-methods-atlas/equation-gallery.json": "e99af38238a50232f92875817c4556ab6c730289db13014efdd41913096c902e",
     "numerical-methods-atlas/cip.json": "3aa33fbffad6b9ad76310e9b713629a1a35b4e30e419db0c531180cf769e6b6f",
     "numerical-methods-atlas/limiters.json": "3242180ba171420220fd349cac93dff552466070f886f3d00a70927939255312",
@@ -4199,7 +4276,11 @@
     "code/validated-examples/2026-11-23/zalesak/results/result.json": "51851a31df72eec078e25171deeacd2699a9bfe9eedc55b4bc6831fd233b408d",
     "code/validated-examples/2026-11-23/zalesak/results/zalesak-rotation-preview.png": "4c1236cfeda0f42d555a6a918ed20682729c95c91f2ab6a9c615e2eb5fbcdccc",
     "code/validated-examples/2026-11-23/zalesak/inputs.json": "0dcc0dc1e870fd50ddf5778ee189ec4069694247fdee6610c16832ed4d690c63",
-    "code/validated-examples/2026-11-23/zalesak/verification.json": "aad9b39c23d83e967588361edfdb05724f1ea3fade93843ebb05b5fd829ba44e"
+    "code/validated-examples/2026-11-23/zalesak/verification.json": "aad9b39c23d83e967588361edfdb05724f1ea3fade93843ebb05b5fd829ba44e",
+    "code/validated-examples/2026-11-23/level-set/results/result.json": "7108491721386902c6adaa5ea5c1c709b31a204060346d0c93a06efd4a4a5a31",
+    "code/validated-examples/2026-11-23/level-set/inputs.json": "48b36acc98390bc01af40c9a19d3ae348b6d737df30449bbcbd5850511df7ac2",
+    "code/validated-examples/2026-11-23/level-set/results/level-set-overview.png": "88f72aed9b862da17107f9f1c07c1ca10b3f43e61342de01e03f55379723f730",
+    "code/validated-examples/2026-11-23/level-set/verification.json": "d70c2ed415b9e61bac769c0060a7ee1e7a4cf4b0b8ce1a6beabd4bca09ef7042"
   },
   "code_edition": "2026-11-21",
   "code_verification": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/verification.json"

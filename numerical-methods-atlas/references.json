@@ -3556,6 +3556,82 @@
     "origin": "curated-method-metadata"
   },
   {
+    "id": "osher-sethian1988",
+    "author": "S. Osher and J. A. Sethian",
+    "year": 1988,
+    "title": "Fronts propagating with curvature-dependent speed: Algorithms based on Hamilton-Jacobi formulations",
+    "type": "article",
+    "journal": "Journal of Computational Physics",
+    "volume": "79",
+    "pages": "12–49",
+    "doi": "10.1016/0021-9991(88)90002-2",
+    "source": "https://math.berkeley.edu/~sethian/Papers/sethian.osher.88.pdf",
+    "source_review": {
+      "level": "full-text",
+      "url": "https://math.berkeley.edu/~sethian/Papers/sethian.osher.88.pdf",
+      "scope": "Selected author-hosted original passages: abstract, implicit front representation and Hamilton–Jacobi transport/normal-motion formulation. No full-paper audit or reproduction of its full experiment suite.",
+      "scope_ja": "著者公開の原著から抄録・陰的な界面表現・Hamilton–Jacobi型の移流と法線運動の該当箇所を参照。論文全体の監査や原著の全計算の再現ではありません。"
+    },
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "hirt-nichols1981",
+    "author": "C. W. Hirt and B. D. Nichols",
+    "year": 1981,
+    "title": "Volume of fluid (VOF) method for the dynamics of free boundaries",
+    "type": "article",
+    "journal": "Journal of Computational Physics",
+    "volume": "39",
+    "pages": "201–225",
+    "doi": "10.1016/0021-9991(81)90145-5",
+    "source": "https://www.sciencedirect.com/science/article/pii/0021999181901455",
+    "source_review": {
+      "level": "abstract-and-metadata",
+      "url": "https://www.sciencedirect.com/science/article/pii/0021999181901455",
+      "scope": "Publisher bibliography and abstract for the original volume-fraction formulation. No full-text algorithm audit or implementation of its donor–acceptor scheme.",
+      "scope_ja": "出版社の書誌・抄録を確認し、体積率による表現の原著として引用。原著全体やdonor–acceptor法の実装を監査・再現したとは主張しません。"
+    },
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "sussman-fatemi1999",
+    "author": "M. Sussman and E. Fatemi",
+    "year": 1999,
+    "title": "An Efficient, Interface-Preserving Level Set Redistancing Algorithm and Its Application to Interfacial Incompressible Fluid Flow",
+    "type": "article",
+    "journal": "SIAM Journal on Scientific Computing",
+    "volume": "20",
+    "pages": "1165–1191",
+    "doi": "10.1137/S1064827596298245",
+    "source": "https://epubs.siam.org/doi/10.1137/S1064827596298245",
+    "source_review": {
+      "level": "abstract-and-metadata",
+      "url": "https://epubs.siam.org/doi/10.1137/S1064827596298245",
+      "scope": "Official abstract and bibliography: redistancing quality includes retaining the zero interface; its constrained higher-order algorithm is not the simple Godunov auxiliary iteration implemented here.",
+      "scope_ja": "公式の抄録・書誌を確認。距離関数の再構成とゼロ界面の保持を区別する資料であり、原著の制約付き高次法を今回の単純なGodunov反復と同一視しません。"
+    },
+    "origin": "curated-method-metadata"
+  },
+  {
+    "id": "sussman-puckett2000",
+    "author": "M. Sussman and E. G. Puckett",
+    "year": 2000,
+    "title": "A Coupled Level Set and Volume-of-Fluid Method for Computing 3D and Axisymmetric Incompressible Two-Phase Flows",
+    "type": "article",
+    "journal": "Journal of Computational Physics",
+    "volume": "162",
+    "pages": "301–337",
+    "doi": "10.1006/jcph.2000.6537",
+    "source": "https://www.math.ucdavis.edu/~egp/PUBLICATIONS/JOURNAL_ARTICLES/APPEARED/2000/MSS-EGP_2000.pdf",
+    "source_review": {
+      "level": "full-text",
+      "url": "https://www.math.ucdavis.edu/~egp/PUBLICATIONS/JOURNAL_ARTICLES/APPEARED/2000/MSS-EGP_2000.pdf",
+      "scope": "Author-hosted pp.302–305, equations(1)–(6),(9),(12),(15): signed-distance geometry, enclosed-mass issue and volume-fraction conservation. Sign is reversed here to make phi negative inside. No CLSVOF or two-phase fluid experiment executed.",
+      "scope_ja": "著者公開PDFの302–305頁、式(1)–(6),(9),(12),(15)の界面幾何・囲まれた質量の誤差・体積率の保存を参照。本教材は内部を負とするため符号規約を反転。CLSVOFや二相流の原著実験は実行していません。"
+    },
+    "origin": "curated-method-metadata"
+  },
+  {
     "id": "noh1987",
     "type": "article",
     "author": "Noh, W. F.",

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "edition": "Published web edition",
-  "counted_on": "2026-11-22",
+  "counted_on": "2026-11-23",
   "policy": {
     "equations": "Named equation/model entries, not scalar component equations or mathematically disjoint families. Includes frameworks and auxiliary formulations; variants share one entry except the three separately explained SR/GR fluid systems. Biological entries are imported once from their own catalog.",
     "methods": "Named numerical methods and building blocks with a reading chapter. Aliases count once; RK stages, dimensions, parameter combinations, mesh layouts and theoretical conditions do not add methods. A family and a separately explained algorithm may both appear. Not a count of mutually exclusive end-to-end solvers.",
@@ -10,26 +10,26 @@
     "test_problems": "Count independent problems across published atlas results and the verified public code edition. Distinguish governing equations, dimensions, boundary conditions and named initial/source problems; merge solver, mesh, step-size, parameter-sweep, random-seed and presentation variants of the same problem. Repeated Sod exhibits, wedge Mach variants and CT/GLM variants do not add problems. Exclude reference-only evaluations, planned/literature-only entries, diagrams, and local identity/invariant/input-error unit checks. Static-force, boundary-value, approximation and algebraic problems are included; not every entry is a time-evolving simulation."
   },
   "counts": {
-    "equations": 47,
-    "methods": 131,
-    "papers": 243,
-    "references": 300,
-    "journal_articles": 237,
+    "equations": 48,
+    "methods": 133,
+    "papers": 247,
+    "references": 304,
+    "journal_articles": 241,
     "conference_papers": 6,
     "books": 25,
     "chapters": 3,
     "reports": 3,
     "other_sources": 26,
-    "local_equations": 24,
+    "local_equations": 25,
     "reading_equations": 23,
-    "local_methods": 117,
-    "reading_methods": 14,
+    "local_methods": 118,
+    "reading_methods": 15,
     "biological_entries": 22,
     "gallery_cases": 9,
     "gallery_equations": 7,
-    "reading_chapters": 102,
-    "test_problems": 87,
-    "saved_test_problems": 87,
+    "reading_chapters": 104,
+    "test_problems": 88,
+    "saved_test_problems": 88,
     "code_test_problems": 0
   },
   "items": [
@@ -1310,6 +1310,16 @@
       "origin": "curated-equation-catalog"
     },
     {
+      "kind": "equation",
+      "id": "level-set-advection",
+      "label": "Level-set interface advection",
+      "chapter": "level-set",
+      "status": "local-example",
+      "group": "Physics & mathematical models",
+      "scope": "Prescribed2D rigid motions with analytic exterior data only. Normal-speed, curvature-driven and two-phase fluid equations are reading only.",
+      "origin": "curated-equation-catalog"
+    },
+    {
       "kind": "method",
       "id": "monte-carlo",
       "label": "Monte Carlo integration",
@@ -1698,6 +1708,26 @@
       "group": "Time integration",
       "scope": "Advance a 32-point Schnakenberg reaction–diffusion problem to T=1 with matched inputs and subsolvers. Four step sizes check first-/second-order temporal convergence, reference sensitivity, reaction balance and failure on nonconvergence in a lightweight comparison.",
       "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "level-set",
+      "label": "Level-set method",
+      "chapter": "validation-level-set",
+      "status": "local-example",
+      "group": "Coupling, constraints & particles",
+      "scope": "Prescribed circle translation and off-center full rotation only: 2D ENO2/Heun,32²/64²/128²,T1, optional redistancing, five common observations and anN64 CFL-halving sensitivity.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "vof",
+      "label": "Volume-of-fluid / VOF",
+      "chapter": "level-set",
+      "status": "reading",
+      "group": "Coupling, constraints & particles",
+      "scope": "VOF/CLSVOF comparisons describe formulations and conditions. No VOF implementation, performance ranking, curvature-flow, two-phase-flow or topology-change validation is claimed.",
+      "origin": "curated-interface-reading"
     }
   ],
   "publications": [
@@ -3109,6 +3139,30 @@
       "origin": "curated-method-metadata"
     },
     {
+      "id": "osher-sethian1988",
+      "type": "article",
+      "identity": "doi:10.1016/0021-9991(88)90002-2",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "hirt-nichols1981",
+      "type": "article",
+      "identity": "doi:10.1016/0021-9991(81)90145-5",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "sussman-fatemi1999",
+      "type": "article",
+      "identity": "doi:10.1137/s1064827596298245",
+      "origin": "curated-method-metadata"
+    },
+    {
+      "id": "sussman-puckett2000",
+      "type": "article",
+      "identity": "doi:10.1006/jcph.2000.6537",
+      "origin": "curated-method-metadata"
+    },
+    {
       "id": "schrodinger1926",
       "type": "article",
       "identity": "doi:10.1002/andp.19263840404",
@@ -3339,15 +3393,15 @@
   },
   "public_extension_sha256": {
     "catalog/atlas-quantum.json": "415dd98efe103ad5a2d950c22b98980f53539f6243b93e4e193dbca2c67169fe",
-    "catalog/atlas-methods.json": "270402769611e844e54a79e38931e2ab348797a838e383f8e3e712317db1376b",
-    "catalog/atlas-equations.json": "29aa9e9c0e9e273b0a2581708fe8dcb31429e7a124a7596ec66046fe08d8e88f",
-    "catalog/atlas-method-primary-references.json": "9bc3991b1f9c50bc75d5c6c69a09b5fd030341ba2834f19d79cc76c92b37b0d5"
+    "catalog/atlas-methods.json": "93ffaa684f9b4060b22bc5c61c0edc923d22d5c1166e023893a352e573130794",
+    "catalog/atlas-equations.json": "096608ff9504a5542997323173fedbe4b71b6bdb2152d83a1983618379a678a1",
+    "catalog/atlas-method-primary-references.json": "81781bcd44c25473182a83403a8e450dad93df70461c679fb3dc7934f61d5581"
   },
   "equation_execution_source_sha256": {
     "numerical-methods-atlas/assets/biological-models.json": "657be85b4aa6dc2fe2488167635ddd71888fe47459972723a5830a5323f8a1ba",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "catalog/atlas-equations.json": "29aa9e9c0e9e273b0a2581708fe8dcb31429e7a124a7596ec66046fe08d8e88f",
+    "catalog/atlas-equations.json": "096608ff9504a5542997323173fedbe4b71b6bdb2152d83a1983618379a678a1",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
     "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
@@ -3363,6 +3417,11 @@
     "code/validated-examples/2026-11-23/zalesak/verification.json": "aad9b39c23d83e967588361edfdb05724f1ea3fade93843ebb05b5fd829ba44e",
     "code/validated-examples/2026-11-23/zalesak/cases.json": "4ff0db4160a4da838ddb57089dae6849d18d3386fedd935365ab53795611831a",
     "code/validated-examples/2026-11-23/zalesak/results/result.json": "51851a31df72eec078e25171deeacd2699a9bfe9eedc55b4bc6831fd233b408d",
-    "code/validated-examples/2026-11-23/zalesak/atlas-zalesak-2026-11-23.zip": "28e7d2bc93d3a5ba1cb015c874c489e9fd1a2e8a586a46d519800c799b0fb6f8"
+    "code/validated-examples/2026-11-23/zalesak/atlas-zalesak-2026-11-23.zip": "28e7d2bc93d3a5ba1cb015c874c489e9fd1a2e8a586a46d519800c799b0fb6f8",
+    "code/validated-examples/2026-11-23/level-set/source-manifest.json": "7055bd243b522c8de50c2091a983c61b734a589105af49d27d63f0519f9075e4",
+    "code/validated-examples/2026-11-23/level-set/verification.json": "d70c2ed415b9e61bac769c0060a7ee1e7a4cf4b0b8ce1a6beabd4bca09ef7042",
+    "code/validated-examples/2026-11-23/level-set/cases.json": "b077db49bb69055b9612a2153f7d9ea4d9c1025f0bf13b0c94157d2e9235e655",
+    "code/validated-examples/2026-11-23/level-set/results/result.json": "7108491721386902c6adaa5ea5c1c709b31a204060346d0c93a06efd4a4a5a31",
+    "code/validated-examples/2026-11-23/level-set/atlas-level-set-2026-11-23.zip": "46c2c2fd0aea98eb4cc4facef8d30cc81ebd6b1b9e0d965f7ef79167a06c048b"
   }
 }

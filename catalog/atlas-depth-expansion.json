@@ -285,6 +285,22 @@
         "ja": "切り欠き付き円盤を、与えた剛体回転速度で運ぶ2次元スカラー保存則です。一次風上とminmod付きMUSCLを同じSSPRK(3,3)で比較し、一回転後の保存量・範囲・形状誤差と格子位置・初期角度の依存を確認します。 基準系列は64²・128²・256²セルで、64²の位置ずらし・初期角度診断を別に設けます。",
         "en": "A two-dimensional scalar conservation law transports a slotted disk in a prescribed rigid-rotation velocity. Compare donor-cell upwinding and minmod MUSCL with the same SSPRK(3,3), checking full-turn mass, bounds, shape error and dependence on grid placement and initial angle. The base refinements use64²,128² and256² cells, with separate placement and initial-angle diagnostics at64²."
       }
+    },
+    {
+      "id": "level-set",
+      "edition": "2026-11-23",
+      "title": {
+        "ja": "レベルセット法：円の2D移流・剛体回転",
+        "en": "Level sets: 2D circle translation and rigid rotation"
+      },
+      "fields": [
+        "fluid",
+        "transport"
+      ],
+      "intro": {
+        "ja": "符号付き距離のゼロ等値線を32²/64²/128²で数値移流し、再初期化の有無、解析的な界面位置、面積と格子・時間刻みの細分化を比較します。VOFは理論比較のみです。",
+        "en": "Numerically transport the signed-distance zero contour on32²/64²/128² grids, comparing optional redistancing, analytic interface positions, geometric area and coupled grid/time refinement. VOF is a conceptual comparison only."
+      }
     }
   ],
   "case_problem_ids": {
@@ -336,7 +352,9 @@
     "low-mach-vortex": "isentropic-vortex",
     "guderley-implosion": "guderley",
     "euler-double-rarefaction-positivity": "double-rarefaction",
-    "zalesak-rotation": "zalesak"
+    "zalesak-rotation": "zalesak",
+    "level-set-translation": "level-set-circle",
+    "level-set-rotation": "level-set-circle"
   },
   "routine_policy": {
     "ja": "通常の補助例CIは、公開レジストリに登録した補助配布グループをNumPy・SciPy・pytestで実行します。保存済みの独立参照は版・入力・実行記録を照合し、新規の参照計算と区別します。量子収束を含む従来の共通22例は必要時の手動実行とし、既存の配布物・公差・履歴を保持します。",
@@ -528,6 +546,24 @@
       "note": {
         "ja": "qの2次元保存形輸送。速度a=−ω(y−yc), b=ω(x−xc)は与えられ、∂xa+∂yb=0です。面で共有する速度・数値流束を使い、スカラーのセル平均を更新します。",
         "en": "Two-dimensional conservative transport of q with prescribed a=-omega(y-yc), b=omega(x-xc), whose divergence is zero. Shared face velocities and numerical fluxes update scalar cell means."
+      }
+    },
+    "level-set-translation": {
+      "ids": [
+        "level-set-advection"
+      ],
+      "note": {
+        "ja": "円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。",
+        "en": "Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution."
+      }
+    },
+    "level-set-rotation": {
+      "ids": [
+        "level-set-advection"
+      ],
+      "note": {
+        "ja": "円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。",
+        "en": "Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution."
       }
     }
   }

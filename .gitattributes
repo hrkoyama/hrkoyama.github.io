@@ -35,3 +35,7 @@ code/validated-examples/2026-11-23-r3/guderley/references/attempts/**/exactpack_
 # Preserve verbatim prepublication failure logs in the Euler positivity receipt.
 code/validated-examples/2026-11-23-r2/euler-positivity/attempts/01/site-tests.log -whitespace
 scripts/depth-euler-positivity/attempts/01/site-tests.log -whitespace
+
+# Preserve the original level-set arithmetic-unit failure transcript verbatim.
+scripts/depth-level-set/attempts/01-tests/pytest.txt -whitespace
+code/validated-examples/2026-11-23/level-set/attempts/01-tests/pytest.txt -whitespace

@@ -1045,10 +1045,22 @@
         "ja": "実際の2次元スカラー輸送の最細格子の保存セル平均。全[0,1]²のうちx∈[.28,.72], y∈[.53,.97]の円盤周辺を拡大し、一回転後の一次風上とminmod MUSCLを幾何学的な参照セル平均と比較します。切り欠きの数値拡散を残した図で、FCT法やEuler流体の計算ではありません。",
         "en": "Saved cell means on the finest grid of actual two-dimensional scalar transport. Zoom x in[.28,.72],y in[.53,.97] from the full unit square and compare donor-cell upwinding and minmod MUSCL after one revolution against geometric reference cell means. Slot diffusion remains visible; this is not an FCT algorithm or Euler-flow calculation."
       }
+    },
+    {
+      "id": "level-set-circle",
+      "image": "/code/validated-examples/2026-11-23/level-set/results/level-set-overview.png",
+      "image_sha256": "88f72aed9b862da17107f9f1c07c1ca10b3f43e61342de01e03f55379723f730",
+      "width": 1450,
+      "height": 652,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "実際の128²レベルセット場から抽出した円のゼロ等値線。左は平行移動、右は偏心円の一周回転。解析界面と移流単独・単純な再初期化ありを比較します。VOF計算ではなく、面積保存を補正していません。",
+        "en": "Zero contours extracted from actual128² level-set fields: translation(left) and an off-center full rotation(right). Compare analytic interfaces against advection alone and simple redistancing. This is not a VOF calculation, and no area correction is applied."
+      }
     }
   ],
   "source_sha256": {
-    "catalog/atlas-gallery.json": "0198ffe0c37eda0c59e10dff7b6a026410f7c8e473b9f432b061f5531350783a",
+    "catalog/atlas-gallery.json": "c339739274fc36ff5fd49390170c817aeda8668fae53083e81ad650615d50fac",
     "scripts/render-atlas-gallery.py": "62956b5a0ece0c5144ec079bb30f36e44b3ccf97e4b56b677d4de356cdbab04c",
     "code/numerical-methods-atlas/2026-11-21/numart/benchmarks.py": "dc8f83aafea473b5f0e1e7bf82630484dd60aa446859c1f602571adc3c59f019",
     "code/numerical-methods-atlas/2026-11-21/numart/solvers.py": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d",
@@ -1095,8 +1107,8 @@
     "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
     "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
     "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
-    "catalog/atlas-test-problems.json": "5f210155a1fa739db4baa26e279015aebc92914c6a613dd3cf882e0d72c5fda9",
-    "catalog/atlas-depth-expansion.json": "b2e5a2d218c1bc2f542b2f54d38fc1c1b21193b1fa931ca6cfd3bccddb5667cf",
+    "catalog/atlas-test-problems.json": "4ebf0cc08dc205e678bd82994b6e989d5c17eaa6ab9a36fd299b09ce62954319",
+    "catalog/atlas-depth-expansion.json": "291e40ad500108713ce524fc809dd3b771b3ad7e9c6fc22c8659b42ef1bf60ba",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
     "code/validated-examples/2026-11-22/foundations/inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -1262,7 +1274,15 @@
     "code/validated-examples/2026-11-23/zalesak/verification.json": "aad9b39c23d83e967588361edfdb05724f1ea3fade93843ebb05b5fd829ba44e",
     "code/validated-examples/2026-11-23/zalesak/results/result.json": "51851a31df72eec078e25171deeacd2699a9bfe9eedc55b4bc6831fd233b408d",
     "code/validated-examples/2026-11-23/zalesak/results/zalesak-rotation.png": "1d7ed7b6669b25cbe45951d26ffc82974790c5234237eff32e7456064822ed27",
-    "code/validated-examples/2026-11-23/zalesak/results/zalesak-rotation-preview.png": "4c1236cfeda0f42d555a6a918ed20682729c95c91f2ab6a9c615e2eb5fbcdccc"
+    "code/validated-examples/2026-11-23/zalesak/results/zalesak-rotation-preview.png": "4c1236cfeda0f42d555a6a918ed20682729c95c91f2ab6a9c615e2eb5fbcdccc",
+    "code/validated-examples/2026-11-23/level-set/cases.json": "b077db49bb69055b9612a2153f7d9ea4d9c1025f0bf13b0c94157d2e9235e655",
+    "code/validated-examples/2026-11-23/level-set/inputs.json": "48b36acc98390bc01af40c9a19d3ae348b6d737df30449bbcbd5850511df7ac2",
+    "code/validated-examples/2026-11-23/level-set/source-manifest.json": "7055bd243b522c8de50c2091a983c61b734a589105af49d27d63f0519f9075e4",
+    "code/validated-examples/2026-11-23/level-set/verification.json": "d70c2ed415b9e61bac769c0060a7ee1e7a4cf4b0b8ce1a6beabd4bca09ef7042",
+    "code/validated-examples/2026-11-23/level-set/results/result.json": "7108491721386902c6adaa5ea5c1c709b31a204060346d0c93a06efd4a4a5a31",
+    "code/validated-examples/2026-11-23/level-set/results/level-set-translation.png": "4e99dec1449e65944b246b2280dd5439a5dbc59a99633b201f57e5cd0453507e",
+    "code/validated-examples/2026-11-23/level-set/results/level-set-rotation.png": "54c6d02fd40c0bf702f413f8ce12aaefc43a5f911d681b42ad7634d6a26ebdde",
+    "code/validated-examples/2026-11-23/level-set/results/level-set-overview.png": "88f72aed9b862da17107f9f1c07c1ca10b3f43e61342de01e03f55379723f730"
   },
   "calculations_sha256": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6",
   "maintenance_updates": [
@@ -1364,6 +1384,26 @@
         "code/validated-examples/2026-11-23/zalesak/results/result.json": "51851a31df72eec078e25171deeacd2699a9bfe9eedc55b4bc6831fd233b408d",
         "code/validated-examples/2026-11-23/zalesak/results/zalesak-rotation.png": "1d7ed7b6669b25cbe45951d26ffc82974790c5234237eff32e7456064822ed27",
         "code/validated-examples/2026-11-23/zalesak/results/zalesak-rotation-preview.png": "4c1236cfeda0f42d555a6a918ed20682729c95c91f2ab6a9c615e2eb5fbcdccc"
+      }
+    }
+  ],
+  "metadata_updates": [
+    {
+      "reviewed_on": "2026-11-23",
+      "scope": "Add one transported-circle-interface problem using the newly measured immutable level-set figure. All87 pre-existing preview items, figure bytes, gallery calculations and their scientific verification are unchanged; only discovery metadata hashes are refreshed.",
+      "sources": {
+        "catalog/atlas-gallery.json": {
+          "previous_sha256": "0198ffe0c37eda0c59e10dff7b6a026410f7c8e473b9f432b061f5531350783a",
+          "current_sha256": "c339739274fc36ff5fd49390170c817aeda8668fae53083e81ad650615d50fac"
+        },
+        "catalog/atlas-test-problems.json": {
+          "previous_sha256": "5f210155a1fa739db4baa26e279015aebc92914c6a613dd3cf882e0d72c5fda9",
+          "current_sha256": "4ebf0cc08dc205e678bd82994b6e989d5c17eaa6ab9a36fd299b09ce62954319"
+        },
+        "catalog/atlas-depth-expansion.json": {
+          "previous_sha256": "b2e5a2d218c1bc2f542b2f54d38fc1c1b21193b1fa931ca6cfd3bccddb5667cf",
+          "current_sha256": "291e40ad500108713ce524fc809dd3b771b3ad7e9c6fc22c8659b42ef1bf60ba"
+        }
       }
     }
   ]

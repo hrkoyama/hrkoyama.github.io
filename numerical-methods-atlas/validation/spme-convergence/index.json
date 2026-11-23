@@ -487,7 +487,7 @@
     "passed_tests": 75
   },
   "source_sha256": {
-    "catalog/atlas-depth-expansion.json": "b2e5a2d218c1bc2f542b2f54d38fc1c1b21193b1fa931ca6cfd3bccddb5667cf",
+    "catalog/atlas-depth-expansion.json": "291e40ad500108713ce524fc809dd3b771b3ad7e9c6fc22c8659b42ef1bf60ba",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
     "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
@@ -587,7 +587,12 @@
     "code/validated-examples/2026-11-23/zalesak/verification.json": "aad9b39c23d83e967588361edfdb05724f1ea3fade93843ebb05b5fd829ba44e",
     "code/validated-examples/2026-11-23/zalesak/cases.json": "4ff0db4160a4da838ddb57089dae6849d18d3386fedd935365ab53795611831a",
     "code/validated-examples/2026-11-23/zalesak/results/result.json": "51851a31df72eec078e25171deeacd2699a9bfe9eedc55b4bc6831fd233b408d",
-    "code/validated-examples/2026-11-23/zalesak/atlas-zalesak-2026-11-23.zip": "28e7d2bc93d3a5ba1cb015c874c489e9fd1a2e8a586a46d519800c799b0fb6f8"
+    "code/validated-examples/2026-11-23/zalesak/atlas-zalesak-2026-11-23.zip": "28e7d2bc93d3a5ba1cb015c874c489e9fd1a2e8a586a46d519800c799b0fb6f8",
+    "code/validated-examples/2026-11-23/level-set/source-manifest.json": "7055bd243b522c8de50c2091a983c61b734a589105af49d27d63f0519f9075e4",
+    "code/validated-examples/2026-11-23/level-set/verification.json": "d70c2ed415b9e61bac769c0060a7ee1e7a4cf4b0b8ce1a6beabd4bca09ef7042",
+    "code/validated-examples/2026-11-23/level-set/cases.json": "b077db49bb69055b9612a2153f7d9ea4d9c1025f0bf13b0c94157d2e9235e655",
+    "code/validated-examples/2026-11-23/level-set/results/result.json": "7108491721386902c6adaa5ea5c1c709b31a204060346d0c93a06efd4a4a5a31",
+    "code/validated-examples/2026-11-23/level-set/atlas-level-set-2026-11-23.zip": "46c2c2fd0aea98eb4cc4facef8d30cc81ebd6b1b9e0d965f7ef79167a06c048b"
   },
   "scope": {
     "ja": "共通22実行例の台帳とは別に管理する追加検証集です。配布ZIPを独立展開し、各グループの全固定入力と検査を実行した記録を示します。設定・手法・刻み幅の違いを独立した物理問題の数には加算しません。",
@@ -784,13 +789,13 @@
     }
   },
   "navigation_source_sha256": {
-    "catalog/atlas-depth-expansion.json": "b2e5a2d218c1bc2f542b2f54d38fc1c1b21193b1fa931ca6cfd3bccddb5667cf",
-    "catalog/atlas-equations.json": "29aa9e9c0e9e273b0a2581708fe8dcb31429e7a124a7596ec66046fe08d8e88f",
+    "catalog/atlas-depth-expansion.json": "291e40ad500108713ce524fc809dd3b771b3ad7e9c6fc22c8659b42ef1bf60ba",
+    "catalog/atlas-equations.json": "096608ff9504a5542997323173fedbe4b71b6bdb2152d83a1983618379a678a1",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
-    "catalog/atlas-methods.json": "270402769611e844e54a79e38931e2ab348797a838e383f8e3e712317db1376b",
-    "catalog/atlas-problem-links.json": "afa74c35bd622afe629d56bf97169a663131dcef63fb76bb91a4d659cb39f56c",
-    "catalog/atlas-reference-supplements.json": "7cd6bc88a0da7d85ad839495b733d3b6a95f88b174d505f7195623922ed2549d",
-    "catalog/atlas-test-problems.json": "5f210155a1fa739db4baa26e279015aebc92914c6a613dd3cf882e0d72c5fda9",
+    "catalog/atlas-methods.json": "93ffaa684f9b4060b22bc5c61c0edc923d22d5c1166e023893a352e573130794",
+    "catalog/atlas-problem-links.json": "8b6f4110d6431e579c80bf889346261f02814f8551d73651bfbe1d6ead1fa0e6",
+    "catalog/atlas-reference-supplements.json": "ca6e03b42f9e52641124e0ac5964fe3d4416c4b5a69664bb68223895963626bd",
+    "catalog/atlas-test-problems.json": "4ebf0cc08dc205e678bd82994b6e989d5c17eaa6ab9a36fd299b09ce62954319",
     "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
     "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
     "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
@@ -928,6 +933,13 @@
     "code/validated-examples/2026-11-23/forward-step/results/result.json": "636e179813165fbe620caadd825ac699973ea2dde897d13aed8b2d22102e6704",
     "code/validated-examples/2026-11-23/forward-step/source-manifest.json": "77546e263d8e08266cedb57ef5e128a3bee68d7b9597fb56bed2eee5dcbec6dc",
     "code/validated-examples/2026-11-23/forward-step/verification.json": "f40317a2721c2048c6174bf41c03adf5e3eddae07e19ae95e6ed5210a9b01914",
+    "code/validated-examples/2026-11-23/level-set/atlas-level-set-2026-11-23.zip": "46c2c2fd0aea98eb4cc4facef8d30cc81ebd6b1b9e0d965f7ef79167a06c048b",
+    "code/validated-examples/2026-11-23/level-set/cases.json": "b077db49bb69055b9612a2153f7d9ea4d9c1025f0bf13b0c94157d2e9235e655",
+    "code/validated-examples/2026-11-23/level-set/results/level-set-rotation.png": "54c6d02fd40c0bf702f413f8ce12aaefc43a5f911d681b42ad7634d6a26ebdde",
+    "code/validated-examples/2026-11-23/level-set/results/level-set-translation.png": "4e99dec1449e65944b246b2280dd5439a5dbc59a99633b201f57e5cd0453507e",
+    "code/validated-examples/2026-11-23/level-set/results/result.json": "7108491721386902c6adaa5ea5c1c709b31a204060346d0c93a06efd4a4a5a31",
+    "code/validated-examples/2026-11-23/level-set/source-manifest.json": "7055bd243b522c8de50c2091a983c61b734a589105af49d27d63f0519f9075e4",
+    "code/validated-examples/2026-11-23/level-set/verification.json": "d70c2ed415b9e61bac769c0060a7ee1e7a4cf4b0b8ce1a6beabd4bca09ef7042",
     "code/validated-examples/2026-11-23/low-mach/atlas-low-mach-2026-11-23.zip": "717b2ceed76d37cf4c1e570a7a022e1a17d66fce3048648a3edde4164a1513aa",
     "code/validated-examples/2026-11-23/low-mach/cases.json": "8a33dd861d6c635afeb526a2823fa33e88dc84fb49f1ae8a5ba19cbad32ae058",
     "code/validated-examples/2026-11-23/low-mach/results/low-mach-vortex.png": "38635f161af26efd48e0c0a2bc463974e3e81e6b506770a4c6f6c19b24be1970",
@@ -943,7 +955,7 @@
     "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "c7b79b042315a085a9683ebe05d0e14ae4edcc0b8bce470c0d435355e627bf95",
-    "numerical-methods-atlas/locales/messages.json": "ede6878491f6da87ccd4f86d8dd5048f3e8a97a8d9d1c2ab9aa438f57e8eb7fe"
+    "numerical-methods-atlas/gallery/preview-manifest.json": "ea7830aa7e81700f9f3a70244a32b83f491ab71180380ce8b322708827e27a65",
+    "numerical-methods-atlas/locales/messages.json": "86117463256e3f51870a7cce3cd45e05e1313173e723ed6fde6a131fc7227fd0"
   }
 }

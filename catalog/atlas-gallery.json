@@ -974,6 +974,15 @@
         "ja": "実際の2次元スカラー輸送の最細格子の保存セル平均。全[0,1]²のうちx∈[.28,.72], y∈[.53,.97]の円盤周辺を拡大し、一回転後の一次風上とminmod MUSCLを幾何学的な参照セル平均と比較します。切り欠きの数値拡散を残した図で、FCT法やEuler流体の計算ではありません。",
         "en": "Saved cell means on the finest grid of actual two-dimensional scalar transport. Zoom x in[.28,.72],y in[.53,.97] from the full unit square and compare donor-cell upwinding and minmod MUSCL after one revolution against geometric reference cell means. Slot diffusion remains visible; this is not an FCT algorithm or Euler-flow calculation."
       }
+    },
+    {
+      "id": "level-set-circle",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-23/level-set/results/level-set-overview.png",
+      "caption": {
+        "ja": "実際の128²レベルセット場から抽出した円のゼロ等値線。左は平行移動、右は偏心円の一周回転。解析界面と移流単独・単純な再初期化ありを比較します。VOF計算ではなく、面積保存を補正していません。",
+        "en": "Zero contours extracted from actual128² level-set fields: translation(left) and an off-center full rotation(right). Compare analytic interfaces against advection alone and simple redistancing. This is not a VOF calculation, and no area correction is applied."
+      }
     }
   ]
 }

@@ -1,0 +1,278 @@
+[
+  {
+    "id": "level-set-translation",
+    "title": {
+      "ja": "レベルセット円の2D平行移動：界面・面積・再初期化",
+      "en": "2D level-set circle translation: interface, area and redistancing"
+    },
+    "method_ids": [
+      "level-set"
+    ],
+    "summary": {
+      "ja": "中心(.3,.35)の半径.15の円を速度(.2,.1)でT=1まで平行移動します。32²/64²/128²のENO2＋Heunを用い、再初期化の有無、途中の界面位置、面積誤差と格子・刻みの細分化を比べます。",
+      "en": "Translate a radius.15 circle from(.3,.35) at velocity(.2,.1) toT=1. ENO2/Heun on32²/64²/128² grids compares optional redistancing, intermediate interfaces, geometric area and coupled grid/time refinement."
+    },
+    "assumptions": {
+      "ja": "全て無次元、領域[0,1]²、内部φ<0。与えた非圧縮の剛体運動だけを解き、円は境界から離れます。外側2層のゴースト値は各RK段階で解析解を指定します。周期境界ではなく、内部のφは数値更新します。出力時刻0/.25/.5/.75/1、物理Courant数max(|u|+|v|)Δt/Δx≤.35。",
+      "en": "All quantities are nondimensional on[0,1]², with phi<0 inside. The prescribed divergence-free rigid motion keeps the circle away from the boundary. Two exterior ghost layers receive analytic data at each RK stage; this is not a periodic boundary. Every interior value is numerically advanced. Observe0/.25/.5/.75/1; max(|u|+|v|)dt/dx<=.35."
+    },
+    "algorithm": {
+      "ja": "移流は両モードで同じ2次ENO片側微分とHeun RK2。2階差分の絶対値でステンシルを選択します。再初期化ありでは物理時刻.1ごとに、呼出し開始時の平滑符号を固定した1次Godunov法をΔτ=.3Δxで5回実行。体積補正、界面への投影、φのclip、隠れたretry、内部の解析解への置換を行いません。",
+      "en": "Both modes use the same second-order ENO one-sided differences and Heun RK2, selecting stencils by absolute second differences. Optional redistancing occurs every.1 physical time: five first-order Godunov steps, dtau=.3dx, with the smoothed sign frozen per call. There is no volume correction, interface projection, phi clipping, hidden retry or analytic interior reset."
+    },
+    "validation": {
+      "ja": "解析的な円の中心運動と符号付き距離を参照し、4つの正の共通時刻の最悪値を測定します。界面位置は格子辺上で線形補間したφ=0点の半径誤差、面積は格子中心間を三角形に分けた区分線形φの負領域から計算。初期の幾何学的な面積偏りも残します。|φ厳密|≤2Δx帯のφ誤差と距離勾配、各再初期化による面積変化、N64でのCourant半減も別記録。",
+      "en": "Analytic center motion and signed distance provide the reference. Take worst errors over the four positive common observation times. Interface error samples linearly interpolated grid-edge zeros; area comes from the negative portion of a piecewise-linear triangulation between grid centers, retaining initial geometric bias. Also record phi error and distance-gradient quality in|phi_exact|<=2dx, each redistancing area jump and a separateN64 CFL-halving sensitivity."
+    },
+    "limits": {
+      "ja": "辺上の半径誤差はHausdorff距離ではなく、ΔxとΔtを同時に細分化した観測次数は純粋な空間次数と区別します。再初期化で面積や位置が改善するとは限らず、本例では最細格子でも誤差が増えます。VOFとの数値的な優劣比較、独立PDEエンジン、界面の合体分裂、曲率流・表面張力・二相Navier–Stokesは検証していません。2モードは同じ円の移流問題の追加条件です。",
+      "en": "Sampled radial error is not a Hausdorff distance. Observed order refines dx and dt together rather than isolating spatial order. Redistancing need not improve area or position; errors increase here even on the finest grid. No numerical VOF ranking, separate PDE engine, topology change, curvature flow, surface tension or two-phase Navier–Stokes validation is claimed. The two motions are conditions of one transported-circle-interface problem."
+    },
+    "formulas": [
+      "\\Gamma(t)=\\{\\mathbf{x}:\\phi(\\mathbf{x},t)=0\\},\\quad \\phi_t+\\mathbf{u}\\cdot\\nabla\\phi=0,\\quad\\phi_{\\rm ref}(\\mathbf{x},t)=\\|\\mathbf{x}-\\mathbf{c}(t)\\|-0.15",
+      "\\psi_\\tau+S_\\epsilon(\\phi_0)(\\|\\nabla\\psi\\|-1)=0,\\quad S_\\epsilon(z)=z/\\sqrt{z^2+\\Delta x^2}",
+      "E_\\Gamma=\\max_{t\\in\\{.25,.5,.75,1\\}}\\max_{\\mathbf{z}\\in Z_h(t)}\\left|\\|\\mathbf{z}-\\mathbf{c}(t)\\|-r\\right|,\\quad E_A=\\max_t\\left|A_h(t)/(\\pi r^2)-1\\right|"
+    ],
+    "references": [
+      {
+        "id": "osher-sethian1988",
+        "author": "S. Osher and J. A. Sethian",
+        "year": 1988,
+        "title": "Fronts propagating with curvature-dependent speed: Algorithms based on Hamilton-Jacobi formulations",
+        "type": "article",
+        "journal": "Journal of Computational Physics",
+        "volume": "79",
+        "pages": "12–49",
+        "doi": "10.1016/0021-9991(88)90002-2",
+        "source": "https://math.berkeley.edu/~sethian/Papers/sethian.osher.88.pdf",
+        "source_review": {
+          "level": "full-text",
+          "url": "https://math.berkeley.edu/~sethian/Papers/sethian.osher.88.pdf",
+          "scope": "Selected author-hosted original passages: abstract, implicit front representation and Hamilton–Jacobi transport/normal-motion formulation. No full-paper audit or reproduction of its full experiment suite.",
+          "scope_ja": "著者公開の原著から抄録・陰的な界面表現・Hamilton–Jacobi型の移流と法線運動の該当箇所を参照。論文全体の監査や原著の全計算の再現ではありません。"
+        },
+        "url": "https://math.berkeley.edu/~sethian/Papers/sethian.osher.88.pdf",
+        "review_level": "full-text",
+        "review": {
+          "ja": "著者公開の原著から抄録・陰的な界面表現・Hamilton–Jacobi型の移流と法線運動の該当箇所を参照。論文全体の監査や原著の全計算の再現ではありません。",
+          "en": "Selected author-hosted original passages: abstract, implicit front representation and Hamilton–Jacobi transport/normal-motion formulation. No full-paper audit or reproduction of its full experiment suite."
+        }
+      },
+      {
+        "id": "hirt-nichols1981",
+        "author": "C. W. Hirt and B. D. Nichols",
+        "year": 1981,
+        "title": "Volume of fluid (VOF) method for the dynamics of free boundaries",
+        "type": "article",
+        "journal": "Journal of Computational Physics",
+        "volume": "39",
+        "pages": "201–225",
+        "doi": "10.1016/0021-9991(81)90145-5",
+        "source": "https://www.sciencedirect.com/science/article/pii/0021999181901455",
+        "source_review": {
+          "level": "abstract-and-metadata",
+          "url": "https://www.sciencedirect.com/science/article/pii/0021999181901455",
+          "scope": "Publisher bibliography and abstract for the original volume-fraction formulation. No full-text algorithm audit or implementation of its donor–acceptor scheme.",
+          "scope_ja": "出版社の書誌・抄録を確認し、体積率による表現の原著として引用。原著全体やdonor–acceptor法の実装を監査・再現したとは主張しません。"
+        },
+        "url": "https://www.sciencedirect.com/science/article/pii/0021999181901455",
+        "review_level": "abstract-and-metadata",
+        "review": {
+          "ja": "出版社の書誌・抄録を確認し、体積率による表現の原著として引用。原著全体やdonor–acceptor法の実装を監査・再現したとは主張しません。",
+          "en": "Publisher bibliography and abstract for the original volume-fraction formulation. No full-text algorithm audit or implementation of its donor–acceptor scheme."
+        }
+      },
+      {
+        "id": "sussman-fatemi1999",
+        "author": "M. Sussman and E. Fatemi",
+        "year": 1999,
+        "title": "An Efficient, Interface-Preserving Level Set Redistancing Algorithm and Its Application to Interfacial Incompressible Fluid Flow",
+        "type": "article",
+        "journal": "SIAM Journal on Scientific Computing",
+        "volume": "20",
+        "pages": "1165–1191",
+        "doi": "10.1137/S1064827596298245",
+        "source": "https://epubs.siam.org/doi/10.1137/S1064827596298245",
+        "source_review": {
+          "level": "abstract-and-metadata",
+          "url": "https://epubs.siam.org/doi/10.1137/S1064827596298245",
+          "scope": "Official abstract and bibliography: redistancing quality includes retaining the zero interface; its constrained higher-order algorithm is not the simple Godunov auxiliary iteration implemented here.",
+          "scope_ja": "公式の抄録・書誌を確認。距離関数の再構成とゼロ界面の保持を区別する資料であり、原著の制約付き高次法を今回の単純なGodunov反復と同一視しません。"
+        },
+        "url": "https://epubs.siam.org/doi/10.1137/S1064827596298245",
+        "review_level": "abstract-and-metadata",
+        "review": {
+          "ja": "公式の抄録・書誌を確認。距離関数の再構成とゼロ界面の保持を区別する資料であり、原著の制約付き高次法を今回の単純なGodunov反復と同一視しません。",
+          "en": "Official abstract and bibliography: redistancing quality includes retaining the zero interface; its constrained higher-order algorithm is not the simple Godunov auxiliary iteration implemented here."
+        }
+      },
+      {
+        "id": "sussman-puckett2000",
+        "author": "M. Sussman and E. G. Puckett",
+        "year": 2000,
+        "title": "A Coupled Level Set and Volume-of-Fluid Method for Computing 3D and Axisymmetric Incompressible Two-Phase Flows",
+        "type": "article",
+        "journal": "Journal of Computational Physics",
+        "volume": "162",
+        "pages": "301–337",
+        "doi": "10.1006/jcph.2000.6537",
+        "source": "https://www.math.ucdavis.edu/~egp/PUBLICATIONS/JOURNAL_ARTICLES/APPEARED/2000/MSS-EGP_2000.pdf",
+        "source_review": {
+          "level": "full-text",
+          "url": "https://www.math.ucdavis.edu/~egp/PUBLICATIONS/JOURNAL_ARTICLES/APPEARED/2000/MSS-EGP_2000.pdf",
+          "scope": "Author-hosted pp.302–305, equations(1)–(6),(9),(12),(15): signed-distance geometry, enclosed-mass issue and volume-fraction conservation. Sign is reversed here to make phi negative inside. No CLSVOF or two-phase fluid experiment executed.",
+          "scope_ja": "著者公開PDFの302–305頁、式(1)–(6),(9),(12),(15)の界面幾何・囲まれた質量の誤差・体積率の保存を参照。本教材は内部を負とするため符号規約を反転。CLSVOFや二相流の原著実験は実行していません。"
+        },
+        "url": "https://www.math.ucdavis.edu/~egp/PUBLICATIONS/JOURNAL_ARTICLES/APPEARED/2000/MSS-EGP_2000.pdf",
+        "review_level": "full-text",
+        "review": {
+          "ja": "著者公開PDFの302–305頁、式(1)–(6),(9),(12),(15)の界面幾何・囲まれた質量の誤差・体積率の保存を参照。本教材は内部を負とするため符号規約を反転。CLSVOFや二相流の原著実験は実行していません。",
+          "en": "Author-hosted pp.302–305, equations(1)–(6),(9),(12),(15): signed-distance geometry, enclosed-mass issue and volume-fraction conservation. Sign is reversed here to make phi negative inside. No CLSVOF or two-phase fluid experiment executed."
+        }
+      }
+    ],
+    "code_files": [
+      "run.py",
+      "level_set.py",
+      "geometry.py"
+    ]
+  },
+  {
+    "id": "level-set-rotation",
+    "title": {
+      "ja": "偏心したレベルセット円の2D剛体回転",
+      "en": "2D rigid rotation of an off-center level-set circle"
+    },
+    "method_ids": [
+      "level-set"
+    ],
+    "summary": {
+      "ja": "中心(.68,.5)の半径.15の円を(.5,.5)周りに角速度2πで1周回転させます。32²/64²/128²のENO2＋Heunを用い、再初期化の有無、途中の界面位置、面積誤差と格子・刻みの細分化を比べます。",
+      "en": "Rotate a radius.15 circle initially centered at(.68,.5) once about(.5,.5), with angular speed2pi. ENO2/Heun on32²/64²/128² grids compares optional redistancing, intermediate interfaces, geometric area and coupled grid/time refinement."
+    },
+    "assumptions": {
+      "ja": "全て無次元、領域[0,1]²、内部φ<0。与えた非圧縮の剛体運動だけを解き、円は境界から離れます。外側2層のゴースト値は各RK段階で解析解を指定します。周期境界ではなく、内部のφは数値更新します。出力時刻0/.25/.5/.75/1、物理Courant数max(|u|+|v|)Δt/Δx≤.35。",
+      "en": "All quantities are nondimensional on[0,1]², with phi<0 inside. The prescribed divergence-free rigid motion keeps the circle away from the boundary. Two exterior ghost layers receive analytic data at each RK stage; this is not a periodic boundary. Every interior value is numerically advanced. Observe0/.25/.5/.75/1; max(|u|+|v|)dt/dx<=.35."
+    },
+    "algorithm": {
+      "ja": "移流は両モードで同じ2次ENO片側微分とHeun RK2。2階差分の絶対値でステンシルを選択します。再初期化ありでは物理時刻.1ごとに、呼出し開始時の平滑符号を固定した1次Godunov法をΔτ=.3Δxで5回実行。体積補正、界面への投影、φのclip、隠れたretry、内部の解析解への置換を行いません。",
+      "en": "Both modes use the same second-order ENO one-sided differences and Heun RK2, selecting stencils by absolute second differences. Optional redistancing occurs every.1 physical time: five first-order Godunov steps, dtau=.3dx, with the smoothed sign frozen per call. There is no volume correction, interface projection, phi clipping, hidden retry or analytic interior reset."
+    },
+    "validation": {
+      "ja": "解析的な円の中心運動と符号付き距離を参照し、4つの正の共通時刻の最悪値を測定します。界面位置は格子辺上で線形補間したφ=0点の半径誤差、面積は格子中心間を三角形に分けた区分線形φの負領域から計算。初期の幾何学的な面積偏りも残します。|φ厳密|≤2Δx帯のφ誤差と距離勾配、各再初期化による面積変化、N64でのCourant半減も別記録。",
+      "en": "Analytic center motion and signed distance provide the reference. Take worst errors over the four positive common observation times. Interface error samples linearly interpolated grid-edge zeros; area comes from the negative portion of a piecewise-linear triangulation between grid centers, retaining initial geometric bias. Also record phi error and distance-gradient quality in|phi_exact|<=2dx, each redistancing area jump and a separateN64 CFL-halving sensitivity."
+    },
+    "limits": {
+      "ja": "辺上の半径誤差はHausdorff距離ではなく、ΔxとΔtを同時に細分化した観測次数は純粋な空間次数と区別します。再初期化で面積や位置が改善するとは限らず、本例では最細格子でも誤差が増えます。VOFとの数値的な優劣比較、独立PDEエンジン、界面の合体分裂、曲率流・表面張力・二相Navier–Stokesは検証していません。2モードは同じ円の移流問題の追加条件です。",
+      "en": "Sampled radial error is not a Hausdorff distance. Observed order refines dx and dt together rather than isolating spatial order. Redistancing need not improve area or position; errors increase here even on the finest grid. No numerical VOF ranking, separate PDE engine, topology change, curvature flow, surface tension or two-phase Navier–Stokes validation is claimed. The two motions are conditions of one transported-circle-interface problem."
+    },
+    "formulas": [
+      "\\Gamma(t)=\\{\\mathbf{x}:\\phi(\\mathbf{x},t)=0\\},\\quad \\phi_t+\\mathbf{u}\\cdot\\nabla\\phi=0,\\quad\\phi_{\\rm ref}(\\mathbf{x},t)=\\|\\mathbf{x}-\\mathbf{c}(t)\\|-0.15",
+      "\\psi_\\tau+S_\\epsilon(\\phi_0)(\\|\\nabla\\psi\\|-1)=0,\\quad S_\\epsilon(z)=z/\\sqrt{z^2+\\Delta x^2}",
+      "E_\\Gamma=\\max_{t\\in\\{.25,.5,.75,1\\}}\\max_{\\mathbf{z}\\in Z_h(t)}\\left|\\|\\mathbf{z}-\\mathbf{c}(t)\\|-r\\right|,\\quad E_A=\\max_t\\left|A_h(t)/(\\pi r^2)-1\\right|"
+    ],
+    "references": [
+      {
+        "id": "osher-sethian1988",
+        "author": "S. Osher and J. A. Sethian",
+        "year": 1988,
+        "title": "Fronts propagating with curvature-dependent speed: Algorithms based on Hamilton-Jacobi formulations",
+        "type": "article",
+        "journal": "Journal of Computational Physics",
+        "volume": "79",
+        "pages": "12–49",
+        "doi": "10.1016/0021-9991(88)90002-2",
+        "source": "https://math.berkeley.edu/~sethian/Papers/sethian.osher.88.pdf",
+        "source_review": {
+          "level": "full-text",
+          "url": "https://math.berkeley.edu/~sethian/Papers/sethian.osher.88.pdf",
+          "scope": "Selected author-hosted original passages: abstract, implicit front representation and Hamilton–Jacobi transport/normal-motion formulation. No full-paper audit or reproduction of its full experiment suite.",
+          "scope_ja": "著者公開の原著から抄録・陰的な界面表現・Hamilton–Jacobi型の移流と法線運動の該当箇所を参照。論文全体の監査や原著の全計算の再現ではありません。"
+        },
+        "url": "https://math.berkeley.edu/~sethian/Papers/sethian.osher.88.pdf",
+        "review_level": "full-text",
+        "review": {
+          "ja": "著者公開の原著から抄録・陰的な界面表現・Hamilton–Jacobi型の移流と法線運動の該当箇所を参照。論文全体の監査や原著の全計算の再現ではありません。",
+          "en": "Selected author-hosted original passages: abstract, implicit front representation and Hamilton–Jacobi transport/normal-motion formulation. No full-paper audit or reproduction of its full experiment suite."
+        }
+      },
+      {
+        "id": "hirt-nichols1981",
+        "author": "C. W. Hirt and B. D. Nichols",
+        "year": 1981,
+        "title": "Volume of fluid (VOF) method for the dynamics of free boundaries",
+        "type": "article",
+        "journal": "Journal of Computational Physics",
+        "volume": "39",
+        "pages": "201–225",
+        "doi": "10.1016/0021-9991(81)90145-5",
+        "source": "https://www.sciencedirect.com/science/article/pii/0021999181901455",
+        "source_review": {
+          "level": "abstract-and-metadata",
+          "url": "https://www.sciencedirect.com/science/article/pii/0021999181901455",
+          "scope": "Publisher bibliography and abstract for the original volume-fraction formulation. No full-text algorithm audit or implementation of its donor–acceptor scheme.",
+          "scope_ja": "出版社の書誌・抄録を確認し、体積率による表現の原著として引用。原著全体やdonor–acceptor法の実装を監査・再現したとは主張しません。"
+        },
+        "url": "https://www.sciencedirect.com/science/article/pii/0021999181901455",
+        "review_level": "abstract-and-metadata",
+        "review": {
+          "ja": "出版社の書誌・抄録を確認し、体積率による表現の原著として引用。原著全体やdonor–acceptor法の実装を監査・再現したとは主張しません。",
+          "en": "Publisher bibliography and abstract for the original volume-fraction formulation. No full-text algorithm audit or implementation of its donor–acceptor scheme."
+        }
+      },
+      {
+        "id": "sussman-fatemi1999",
+        "author": "M. Sussman and E. Fatemi",
+        "year": 1999,
+        "title": "An Efficient, Interface-Preserving Level Set Redistancing Algorithm and Its Application to Interfacial Incompressible Fluid Flow",
+        "type": "article",
+        "journal": "SIAM Journal on Scientific Computing",
+        "volume": "20",
+        "pages": "1165–1191",
+        "doi": "10.1137/S1064827596298245",
+        "source": "https://epubs.siam.org/doi/10.1137/S1064827596298245",
+        "source_review": {
+          "level": "abstract-and-metadata",
+          "url": "https://epubs.siam.org/doi/10.1137/S1064827596298245",
+          "scope": "Official abstract and bibliography: redistancing quality includes retaining the zero interface; its constrained higher-order algorithm is not the simple Godunov auxiliary iteration implemented here.",
+          "scope_ja": "公式の抄録・書誌を確認。距離関数の再構成とゼロ界面の保持を区別する資料であり、原著の制約付き高次法を今回の単純なGodunov反復と同一視しません。"
+        },
+        "url": "https://epubs.siam.org/doi/10.1137/S1064827596298245",
+        "review_level": "abstract-and-metadata",
+        "review": {
+          "ja": "公式の抄録・書誌を確認。距離関数の再構成とゼロ界面の保持を区別する資料であり、原著の制約付き高次法を今回の単純なGodunov反復と同一視しません。",
+          "en": "Official abstract and bibliography: redistancing quality includes retaining the zero interface; its constrained higher-order algorithm is not the simple Godunov auxiliary iteration implemented here."
+        }
+      },
+      {
+        "id": "sussman-puckett2000",
+        "author": "M. Sussman and E. G. Puckett",
+        "year": 2000,
+        "title": "A Coupled Level Set and Volume-of-Fluid Method for Computing 3D and Axisymmetric Incompressible Two-Phase Flows",
+        "type": "article",
+        "journal": "Journal of Computational Physics",
+        "volume": "162",
+        "pages": "301–337",
+        "doi": "10.1006/jcph.2000.6537",
+        "source": "https://www.math.ucdavis.edu/~egp/PUBLICATIONS/JOURNAL_ARTICLES/APPEARED/2000/MSS-EGP_2000.pdf",
+        "source_review": {
+          "level": "full-text",
+          "url": "https://www.math.ucdavis.edu/~egp/PUBLICATIONS/JOURNAL_ARTICLES/APPEARED/2000/MSS-EGP_2000.pdf",
+          "scope": "Author-hosted pp.302–305, equations(1)–(6),(9),(12),(15): signed-distance geometry, enclosed-mass issue and volume-fraction conservation. Sign is reversed here to make phi negative inside. No CLSVOF or two-phase fluid experiment executed.",
+          "scope_ja": "著者公開PDFの302–305頁、式(1)–(6),(9),(12),(15)の界面幾何・囲まれた質量の誤差・体積率の保存を参照。本教材は内部を負とするため符号規約を反転。CLSVOFや二相流の原著実験は実行していません。"
+        },
+        "url": "https://www.math.ucdavis.edu/~egp/PUBLICATIONS/JOURNAL_ARTICLES/APPEARED/2000/MSS-EGP_2000.pdf",
+        "review_level": "full-text",
+        "review": {
+          "ja": "著者公開PDFの302–305頁、式(1)–(6),(9),(12),(15)の界面幾何・囲まれた質量の誤差・体積率の保存を参照。本教材は内部を負とするため符号規約を反転。CLSVOFや二相流の原著実験は実行していません。",
+          "en": "Author-hosted pp.302–305, equations(1)–(6),(9),(12),(15): signed-distance geometry, enclosed-mass issue and volume-fraction conservation. Sign is reversed here to make phi negative inside. No CLSVOF or two-phase fluid experiment executed."
+        }
+      }
+    ],
+    "code_files": [
+      "run.py",
+      "level_set.py",
+      "geometry.py"
+    ]
+  }
+]

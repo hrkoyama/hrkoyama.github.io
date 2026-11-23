@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title description" lang="ja">
 <title id="title">数値計算を、根拠から。</title><desc id="description">条件と一次文献から、固定入力・公開コード・結果照合へ。日英の数値計算資料集と代表22実行例を紹介する文章・画像・リンク。</desc>
-<metadata>{&quot;source&quot;: &quot;https://hrkoyama.github.io/numerical-methods-atlas/share/&quot;, &quot;rights&quot;: &quot;https://hrkoyama.github.io/rights/&quot;, &quot;scope&quot;: &quot;Introduction graphic; not new simulation output&quot;, &quot;counts&quot;: {&quot;methods&quot;: 131, &quot;papers&quot;: 243, &quot;equations&quot;: 47, &quot;test_problems&quot;: 87, &quot;execution_examples&quot;: 22}}</metadata>
+<metadata>{&quot;source&quot;: &quot;https://hrkoyama.github.io/numerical-methods-atlas/share/&quot;, &quot;rights&quot;: &quot;https://hrkoyama.github.io/rights/&quot;, &quot;scope&quot;: &quot;Introduction graphic; not new simulation output&quot;, &quot;counts&quot;: {&quot;methods&quot;: 133, &quot;papers&quot;: 247, &quot;equations&quot;: 48, &quot;test_problems&quot;: 88, &quot;execution_examples&quot;: 22}}</metadata>
 <rect x="0" y="0" width="1200" height="630" fill="#f4f2e8"/>
 <rect x="60" y="28" width="54" height="5" fill="#a34f30"/>
 <text x="60" y="64" font-family="Hiragino Sans, Noto Sans CJK JP, Noto Sans JP, sans-serif" font-size="19" font-weight="600" text-anchor="start" fill="#183f34">NUMERICAL METHODS ATLAS · 人とAIのために</text>
@@ -19,13 +19,13 @@
 <rect x="820" y="258" width="320" height="116" fill="#183f34"/>
 <text x="842" y="304" font-family="Hiragino Sans, Noto Sans CJK JP, Noto Sans JP, sans-serif" font-size="23" font-weight="600" text-anchor="start" fill="#f4f2e8">結果と参照値を照合</text>
 <text x="842" y="344" font-family="Hiragino Sans, Noto Sans CJK JP, Noto Sans JP, sans-serif" font-size="19" font-weight="600" text-anchor="start" fill="#f4f2e8">結果を確かめる</text>
-<text x="60" y="465" font-family="Hiragino Sans, Noto Sans CJK JP, Noto Sans JP, sans-serif" font-size="46" font-weight="600" text-anchor="start" fill="#183f34">131</text>
+<text x="60" y="465" font-family="Hiragino Sans, Noto Sans CJK JP, Noto Sans JP, sans-serif" font-size="46" font-weight="600" text-anchor="start" fill="#183f34">133</text>
 <text x="60" y="504" font-family="Hiragino Sans, Noto Sans CJK JP, Noto Sans JP, sans-serif" font-size="17" font-weight="600" text-anchor="start" fill="#183f34">収録手法・構成要素</text>
-<text x="340" y="465" font-family="Hiragino Sans, Noto Sans CJK JP, Noto Sans JP, sans-serif" font-size="46" font-weight="600" text-anchor="start" fill="#183f34">243</text>
+<text x="340" y="465" font-family="Hiragino Sans, Noto Sans CJK JP, Noto Sans JP, sans-serif" font-size="46" font-weight="600" text-anchor="start" fill="#183f34">247</text>
 <text x="340" y="504" font-family="Hiragino Sans, Noto Sans CJK JP, Noto Sans JP, sans-serif" font-size="17" font-weight="600" text-anchor="start" fill="#183f34">学術論文（重複除外）</text>
-<text x="620" y="465" font-family="Hiragino Sans, Noto Sans CJK JP, Noto Sans JP, sans-serif" font-size="46" font-weight="600" text-anchor="start" fill="#183f34">47</text>
+<text x="620" y="465" font-family="Hiragino Sans, Noto Sans CJK JP, Noto Sans JP, sans-serif" font-size="46" font-weight="600" text-anchor="start" fill="#183f34">48</text>
 <text x="620" y="504" font-family="Hiragino Sans, Noto Sans CJK JP, Noto Sans JP, sans-serif" font-size="17" font-weight="600" text-anchor="start" fill="#183f34">方程式・モデル</text>
-<text x="900" y="465" font-family="Hiragino Sans, Noto Sans CJK JP, Noto Sans JP, sans-serif" font-size="46" font-weight="600" text-anchor="start" fill="#183f34">87</text>
+<text x="900" y="465" font-family="Hiragino Sans, Noto Sans CJK JP, Noto Sans JP, sans-serif" font-size="46" font-weight="600" text-anchor="start" fill="#183f34">88</text>
 <text x="900" y="504" font-family="Hiragino Sans, Noto Sans CJK JP, Noto Sans JP, sans-serif" font-size="17" font-weight="600" text-anchor="start" fill="#183f34">テスト問題</text>
 <rect x="60" y="533" width="1080" height="1" fill="#cbd1c5"/>
 <text x="60" y="569" font-family="Hiragino Sans, Noto Sans CJK JP, Noto Sans JP, sans-serif" font-size="17" font-weight="600" text-anchor="start" fill="#183f34">固定入力の実行例 22問題 ／ 教育用例・文献のみ・予定を区別</text>

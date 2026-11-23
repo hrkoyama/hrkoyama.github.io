@@ -2122,6 +2122,45 @@
         "ja": "同じ回転速度・周期有限体積格子で、一次風上とminmod MUSCLをSSPRK(3,3)で進めます。Zalesak FCTを実装したという意味ではありません。",
         "en": "Donor-cell upwinding and minmod MUSCL use the same prescribed rotation, periodic finite-volume grid and SSPRK(3,3). This does not claim implementation of Zalesak FCT."
       }
+    },
+    {
+      "id": "level-set-circle",
+      "equation_ids": [
+        "level-set-advection"
+      ],
+      "equation_note": {
+        "ja": "円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。",
+        "en": "Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution."
+      },
+      "reference_note": {
+        "ja": "円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。",
+        "en": "Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution."
+      },
+      "references": [
+        {
+          "id": "level-set-translation",
+          "relation": "same-problem",
+          "note": {
+            "ja": "円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。",
+            "en": "Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution."
+          }
+        },
+        {
+          "id": "level-set-rotation",
+          "relation": "same-problem",
+          "note": {
+            "ja": "円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。",
+            "en": "Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution."
+          }
+        }
+      ],
+      "method_ids": [
+        "level-set"
+      ],
+      "method_note": {
+        "ja": "専用の2D ENO2／Heunレベルセット移流。任意選択の単純なGodunov再初期化による面積変化も保存し、VOF実装を割り当てません。",
+        "en": "Dedicated2D ENO2/Heun level-set advection. Optional simple Godunov redistancing retains measured area changes; no VOF implementation is assigned."
+      }
     }
   ]
 }

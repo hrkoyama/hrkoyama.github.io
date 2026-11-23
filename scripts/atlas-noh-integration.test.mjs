@@ -24,11 +24,11 @@ function local(value){
 
 test('Noh adds one physical problem while every historical problem, image and reference value remains unchanged',()=>{
   const problems=json('catalog/atlas-test-problems.json').problems;
-  assert.equal(problems.length,87);assert.equal(problems.filter(row=>row.id==='noh').length,1);
-  assert.equal(objectSha(problems.filter(row=>!['noh','sedov','double-mach','forward-step','isentropic-vortex','guderley','zalesak'].includes(row.id)).map(row=>{if(row.id!=='double-rarefaction')return row;const copy={...row};delete copy.supplemental_examples;return copy;})),'3268e6e1356ae6fb75dc525ee8420673efb2237dd0aef8a111abaa919db6a7ab');
+  assert.equal(problems.length,88);assert.equal(problems.filter(row=>row.id==='noh').length,1);
+  assert.equal(objectSha(problems.filter(row=>!['noh','sedov','double-mach','forward-step','isentropic-vortex','guderley','zalesak','level-set-circle'].includes(row.id)).map(row=>{if(row.id!=='double-rarefaction')return row;const copy={...row};delete copy.supplemental_examples;return copy;})),'3268e6e1356ae6fb75dc525ee8420673efb2237dd0aef8a111abaa919db6a7ab');
   const previews=json('numerical-methods-atlas/gallery/preview-manifest.json').items;
-  assert.equal(previews.length,87);
-  assert.equal(objectSha(previews.filter(row=>!['noh','sedov','double-mach','forward-step','isentropic-vortex','guderley','zalesak'].includes(row.id)).map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}))),'25c25a4cb7ad5c54e5788b984d949c44994d3f1706ed36c4ef30a3ce36fa6c2b');
+  assert.equal(previews.length,88);
+  assert.equal(objectSha(previews.filter(row=>!['noh','sedov','double-mach','forward-step','isentropic-vortex','guderley','zalesak','level-set-circle'].includes(row.id)).map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}))),'25c25a4cb7ad5c54e5788b984d949c44994d3f1706ed36c4ef30a3ce36fa6c2b');
   assert.equal(sha('numerical-methods-atlas/assets/reference-solutions.json'),'c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc');
   assert.equal(sha('numerical-methods-atlas/code-and-data/examples.json'),'3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7');
 });
@@ -200,7 +200,7 @@ test('spherical diagnostics distinguish discrete conservation from the signed SS
 
 test('Noh reference, figure, chapter and execution connect through their actual new records',()=>{
   const addition=json('catalog/atlas-reference-supplements.json').cases;
-  assert.deepEqual(addition.filter(row=>row.id!=='zalesak-rotation').map(row=>row.id),['noh','sedov','double-mach','forward-step','isentropic-vortex','guderley']);assert.equal(addition[0].kind,'analytic');
+  assert.deepEqual(addition.filter(row=>!['zalesak-rotation','level-set-translation','level-set-rotation'].includes(row.id)).map(row=>row.id),['noh','sedov','double-mach','forward-step','isentropic-vortex','guderley']);assert.equal(addition[0].kind,'analytic');
   const reference=json('numerical-methods-atlas/solutions/index.json').cases.find(row=>row.id==='noh');
   const problem=json('numerical-methods-atlas/problems/noh/index.json');
   const run=json('numerical-methods-atlas/validation/noh-shock/index.json');
@@ -264,7 +264,7 @@ with tempfile.TemporaryDirectory(prefix='atlas-reference-catalog-') as directory
  old=root/'numerical-methods-atlas/assets/reference-solutions.json';old.parent.mkdir(parents=True);old.write_text(json.dumps({'cases':[{'id':'old'}]}))
  extra=root/'catalog/atlas-reference-supplements.json';extra.parent.mkdir()
  def write(value):extra.write_text(json.dumps(value))
- write(source);assert [row['id'] for row in load_reference_cases(root) if row['id']!='zalesak-rotation']==['old','noh','sedov','double-mach','forward-step','isentropic-vortex','guderley']
+ write(source);assert [row['id'] for row in load_reference_cases(root) if row['id'] not in ['zalesak-rotation','level-set-translation','level-set-rotation']]==['old','noh','sedov','double-mach','forward-step','isentropic-vortex','guderley']
  for mutation in ['duplicate','citation','route']:
   bad=copy.deepcopy(source)
   if mutation=='duplicate':bad['cases'][0]['id']='old'

@@ -191,6 +191,14 @@ for path in [ATLAS/'coverage.json',ATLAS/'assets/site-coverage.json']:
             coverage['items'].append({'kind':'method','id':x['id'],'label':x['name']['en'],
                 'chapter':'operator-splitting','status':'reading','group':x['group']['en'],
                 'scope':x['limitations']['en'],'origin':splitting_origin})
+    interface_origin='curated-interface-reading'
+    coverage['items']=[x for x in coverage['items'] if x.get('origin')!=interface_origin]
+    for x in load(ROOT/'catalog/atlas-methods.json')['methods']:
+        if x.get('origin')==interface_origin and not x.get('depth_release'):
+            assert x['status']=='reading-only' and not x['code_modules'] and not x['test_files']
+            coverage['items'].append({'kind':'method','id':x['id'],'label':x['name']['en'],
+                'chapter':'level-set','status':'reading','group':x['group']['en'],
+                'scope':x['limitations']['en'],'origin':interface_origin})
     coverage['publications']=[x for x in coverage['publications'] if x.get('origin')!='curated-quantum-reading']
     identities={x['identity'] for x in coverage['publications']}
     for r in refs.values():

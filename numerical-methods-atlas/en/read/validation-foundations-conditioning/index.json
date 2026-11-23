@@ -3008,7 +3008,7 @@
     }
   ],
   "source_sha256": {
-    "catalog/atlas-depth-expansion.json": "b2e5a2d218c1bc2f542b2f54d38fc1c1b21193b1fa931ca6cfd3bccddb5667cf",
+    "catalog/atlas-depth-expansion.json": "291e40ad500108713ce524fc809dd3b771b3ad7e9c6fc22c8659b42ef1bf60ba",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
     "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
@@ -3108,6 +3108,11 @@
     "code/validated-examples/2026-11-23/zalesak/verification.json": "aad9b39c23d83e967588361edfdb05724f1ea3fade93843ebb05b5fd829ba44e",
     "code/validated-examples/2026-11-23/zalesak/cases.json": "4ff0db4160a4da838ddb57089dae6849d18d3386fedd935365ab53795611831a",
     "code/validated-examples/2026-11-23/zalesak/results/result.json": "51851a31df72eec078e25171deeacd2699a9bfe9eedc55b4bc6831fd233b408d",
-    "code/validated-examples/2026-11-23/zalesak/atlas-zalesak-2026-11-23.zip": "28e7d2bc93d3a5ba1cb015c874c489e9fd1a2e8a586a46d519800c799b0fb6f8"
+    "code/validated-examples/2026-11-23/zalesak/atlas-zalesak-2026-11-23.zip": "28e7d2bc93d3a5ba1cb015c874c489e9fd1a2e8a586a46d519800c799b0fb6f8",
+    "code/validated-examples/2026-11-23/level-set/source-manifest.json": "7055bd243b522c8de50c2091a983c61b734a589105af49d27d63f0519f9075e4",
+    "code/validated-examples/2026-11-23/level-set/verification.json": "d70c2ed415b9e61bac769c0060a7ee1e7a4cf4b0b8ce1a6beabd4bca09ef7042",
+    "code/validated-examples/2026-11-23/level-set/cases.json": "b077db49bb69055b9612a2153f7d9ea4d9c1025f0bf13b0c94157d2e9235e655",
+    "code/validated-examples/2026-11-23/level-set/results/result.json": "7108491721386902c6adaa5ea5c1c709b31a204060346d0c93a06efd4a4a5a31",
+    "code/validated-examples/2026-11-23/level-set/atlas-level-set-2026-11-23.zip": "46c2c2fd0aea98eb4cc4facef8d30cc81ebd6b1b9e0d965f7ef79167a06c048b"
   }
 }

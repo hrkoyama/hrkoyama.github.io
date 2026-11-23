@@ -1099,6 +1099,33 @@
       "supplemental_examples": [
         "zalesak-rotation"
       ]
+    },
+    {
+      "id": "level-set-advection",
+      "name": {
+        "ja": "レベルセット界面の移流",
+        "en": "Level-set interface advection"
+      },
+      "formula": [
+        "\\Gamma(t)=\\{\\mathbf{x}:\\phi(\\mathbf{x},t)=0\\},\\qquad\\phi<0\\;\\text{inside},\\quad\\phi>0\\;\\text{outside}",
+        "\\frac{D\\phi}{Dt}=0\\quad\\Longrightarrow\\quad\\phi_t+\\mathbf{u}\\cdot\\nabla\\phi=0"
+      ],
+      "chapter": "level-set",
+      "note": {
+        "ja": "ゼロ等値線で界面を表す非保存形の移流式。円の平行移動・剛体回転を検証し、VOFの体積率輸送と区別します。",
+        "en": "Nonconservative transport of an implicit zero-contour interface. Dedicated circle translation and rigid rotation distinguish this from VOF fraction transport."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "coverage_scope": "Prescribed2D rigid motions with analytic exterior data only. Normal-speed, curvature-driven and two-phase fluid equations are reading only.",
+      "execution_scope": {
+        "ja": "与えた速度による円の平行移動・偏心1周回転。2D ENO2/Heun、32²/64²/128²、T1、再初期化あり/なし、5共通時刻とN64の刻み半減だけを検証。",
+        "en": "Prescribed circle translation and off-center full rotation only: 2D ENO2/Heun,32²/64²/128²,T1, optional redistancing, five common observations and anN64 CFL-halving sensitivity."
+      },
+      "supplemental_examples": [
+        "level-set-translation",
+        "level-set-rotation"
+      ]
     }
   ]
 }

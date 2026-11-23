@@ -17,8 +17,8 @@
         "en": "Fluid dynamics"
       },
       "scope": {
-        "ja": "Euler衝撃波・滑らかな渦などに複数の教育用コードと保存結果があります。固定入力での検証内容は問題ごとに異なります。",
-        "en": "Several educational codes and saved results cover Euler shocks and smooth vortices. Fixed-input validation differs by problem."
+        "ja": "Euler衝撃波・滑らかな渦などに複数の教育用コードと保存結果があります。固定入力での検証内容は問題ごとに異なります。 円のレベルセット移流は指定した速度による界面輸送の別検証です。",
+        "en": "Several educational codes and saved results cover Euler shocks and smooth vortices. Fixed-input validation differs by problem. Level-set circle transport is separate interface evidence in a prescribed velocity."
       },
       "examples": [
         "sod",
@@ -51,7 +51,9 @@
         "low-mach-vortex",
         "guderley-implosion",
         "euler-double-rarefaction-positivity",
-        "zalesak-rotation"
+        "zalesak-rotation",
+        "level-set-translation",
+        "level-set-rotation"
       ]
     },
     {

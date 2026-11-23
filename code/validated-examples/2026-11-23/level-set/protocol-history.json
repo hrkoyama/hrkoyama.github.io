@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "first_fixed_protocol_passed": true,
+  "acceptance_modified_after_first_execution": false,
+  "input_sha256_before_first_execution": "48b36acc98390bc01af40c9a19d3ae348b6d737df30449bbcbd5850511df7ac2",
+  "first_run_metrics": [
+    {
+      "id": "level-set-translation",
+      "metrics": {
+        "finest_grid": 128,
+        "final_time": 1.0,
+        "advection_observed_order": 1.8968704888340944,
+        "advection_finest_interface_error": 0.00029557712133185254,
+        "advection_finest_relative_area_error": 0.002182466628085633,
+        "redistance_finest_interface_error": 0.0011428359418646783,
+        "redistance_finest_relative_area_error": 0.00931654728247977,
+        "redistance_maximum_area_jump": 0.0005264752370461312,
+        "cfl_halving_band_phi_difference_n64": 1.4067607491909376e-05
+      },
+      "checks": {
+        "advection_interface_refines": true,
+        "advection_order_resolved": true,
+        "advection_finest_interface": true,
+        "advection_finest_area": true,
+        "redistance_finest_interface": true,
+        "redistance_finest_area": true,
+        "shared_observation_times": true,
+        "courant_bound": true,
+        "time_step_sensitivity": true,
+        "fixed_redistance_schedule": true
+      }
+    },
+    {
+      "id": "level-set-rotation",
+      "metrics": {
+        "finest_grid": 128,
+        "final_time": 1.0,
+        "advection_observed_order": 2.0215147988362197,
+        "advection_finest_interface_error": 0.0013945082921070773,
+        "advection_finest_relative_area_error": 0.010638924591504395,
+        "redistance_finest_interface_error": 0.0021776855808661455,
+        "redistance_finest_relative_area_error": 0.020243352863389963,
+        "redistance_maximum_area_jump": 0.0005648260383181863,
+        "cfl_halving_band_phi_difference_n64": 7.785529870305357e-06
+      },
+      "checks": {
+        "advection_interface_refines": true,
+        "advection_order_resolved": true,
+        "advection_finest_interface": true,
+        "advection_finest_area": true,
+        "redistance_finest_interface": true,
+        "redistance_finest_area": true,
+        "shared_observation_times": true,
+        "courant_bound": true,
+        "time_step_sensitivity": true,
+        "fixed_redistance_schedule": true
+      }
+    }
+  ],
+  "unit_test_revision": {
+    "original_passed": 21,
+    "original_failed": 1,
+    "reason": "Fixed2e-16 absolute tangent-dot-product tolerance was below the observed one binary64 ulp2.220446049250313e-16. Replace only that arithmetic unit assertion with a scale-aware4epsilon product-sum rounding bound. Numerical source, inputs and every production acceptance criterion are byte-identical.",
+    "original_evidence": "attempts/01-tests/"
+  }
+}

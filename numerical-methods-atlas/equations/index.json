@@ -5458,15 +5458,169 @@
           }
         }
       ]
+    },
+    {
+      "id": "level-set-advection",
+      "name": {
+        "ja": "レベルセット界面の移流",
+        "en": "Level-set interface advection"
+      },
+      "formula": [
+        "\\Gamma(t)=\\{\\mathbf{x}:\\phi(\\mathbf{x},t)=0\\},\\qquad\\phi<0\\;\\text{inside},\\quad\\phi>0\\;\\text{outside}",
+        "\\frac{D\\phi}{Dt}=0\\quad\\Longrightarrow\\quad\\phi_t+\\mathbf{u}\\cdot\\nabla\\phi=0"
+      ],
+      "chapter": "level-set",
+      "note": {
+        "ja": "ゼロ等値線で界面を表す非保存形の移流式。円の平行移動・剛体回転を検証し、VOFの体積率輸送と区別します。",
+        "en": "Nonconservative transport of an implicit zero-contour interface. Dedicated circle translation and rigid rotation distinguish this from VOF fraction transport."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "coverage_scope": "Prescribed2D rigid motions with analytic exterior data only. Normal-speed, curvature-driven and two-phase fluid equations are reading only.",
+      "execution_scope": {
+        "ja": "与えた速度による円の平行移動・偏心1周回転。2D ENO2/Heun、32²/64²/128²、T1、再初期化あり/なし、5共通時刻とN64の刻み半減だけを検証。",
+        "en": "Prescribed circle translation and off-center full rotation only: 2D ENO2/Heun,32²/64²/128²,T1, optional redistancing, five common observations and anN64 CFL-halving sensitivity."
+      },
+      "supplemental_examples": [
+        "level-set-translation",
+        "level-set-rotation"
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/level-set/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/level-set/"
+      },
+      "execution_examples": [],
+      "supplemental_execution_examples": [
+        {
+          "id": "level-set-translation",
+          "name": {
+            "ja": "レベルセット円の2D平行移動：界面・面積・再初期化",
+            "en": "2D level-set circle translation: interface, area and redistancing"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/level-set-translation/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/level-set-translation/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/level_set.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/geometry.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/test_level_set.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-23/level-set/verification.json",
+          "results": "/code/validated-examples/2026-11-23/level-set/results/result.json"
+        },
+        {
+          "id": "level-set-rotation",
+          "name": {
+            "ja": "偏心したレベルセット円の2D剛体回転",
+            "en": "2D rigid rotation of an off-center level-set circle"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/level-set-rotation/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/level-set-rotation/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/level_set.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/geometry.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/test_level_set.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-23/level-set/verification.json",
+          "results": "/code/validated-examples/2026-11-23/level-set/results/result.json"
+        }
+      ],
+      "related_problems": [
+        {
+          "id": "level-set-circle",
+          "name": {
+            "ja": "レベルセットで表した円の移流",
+            "en": "Advection of a level-set circle"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/results/level-set-overview.png",
+            "sha256": "88f72aed9b862da17107f9f1c07c1ca10b3f43e61342de01e03f55379723f730",
+            "width": 1450,
+            "height": 652,
+            "caption": {
+              "ja": "実際の128²レベルセット場から抽出した円のゼロ等値線。左は平行移動、右は偏心円の一周回転。解析界面と移流単独・単純な再初期化ありを比較します。VOF計算ではなく、面積保存を補正していません。",
+              "en": "Zero contours extracted from actual128² level-set fields: translation(left) and an off-center full rotation(right). Compare analytic interfaces against advection alone and simple redistancing. This is not a VOF calculation, and no area correction is applied."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/level-set-circle/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/level-set-circle/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/level-set-circle/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/level-set-circle/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "level-set-translation",
+              "kind": "supplement",
+              "name": {
+                "ja": "レベルセット円の2D平行移動：界面・面積・再初期化",
+                "en": "2D level-set circle translation: interface, area and redistancing"
+              },
+              "scope": {
+                "ja": "中心(.3,.35)の半径.15の円を速度(.2,.1)でT=1まで平行移動します。32²/64²/128²のENO2＋Heunを用い、再初期化の有無、途中の界面位置、面積誤差と格子・刻みの細分化を比べます。",
+                "en": "Translate a radius.15 circle from(.3,.35) at velocity(.2,.1) toT=1. ENO2/Heun on32²/64²/128² grids compares optional redistancing, intermediate interfaces, geometric area and coupled grid/time refinement."
+              },
+              "method_ids": [
+                "level-set"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/level-set-translation/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/level-set-translation/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/atlas-level-set-2026-11-23.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/verification.json"
+            },
+            {
+              "id": "level-set-rotation",
+              "kind": "supplement",
+              "name": {
+                "ja": "偏心したレベルセット円の2D剛体回転",
+                "en": "2D rigid rotation of an off-center level-set circle"
+              },
+              "scope": {
+                "ja": "中心(.68,.5)の半径.15の円を(.5,.5)周りに角速度2πで1周回転させます。32²/64²/128²のENO2＋Heunを用い、再初期化の有無、途中の界面位置、面積誤差と格子・刻みの細分化を比べます。",
+                "en": "Rotate a radius.15 circle initially centered at(.68,.5) once about(.5,.5), with angular speed2pi. ENO2/Heun on32²/64²/128² grids compares optional redistancing, intermediate interfaces, geometric area and coupled grid/time refinement."
+              },
+              "method_ids": [
+                "level-set"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/level-set-rotation/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/level-set-rotation/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/atlas-level-set-2026-11-23.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/level-set/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "円の平行移動と偏心した剛体回転の解析的な中心運動・符号付き距離が参照です。2モードの面積・界面誤差を測り、VOFや二相流の実行とは区別します。",
+            "en": "Analytic circle center motion and signed distance provide references for translation and off-center rigid rotation. Interface/area errors of both modes are measured; this is not a VOF or two-phase fluid execution."
+          }
+        }
+      ]
     }
   ],
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/equations/",
   "counts": {
-    "total": 47,
-    "local_example": 24,
+    "total": 48,
+    "local_example": 25,
     "reading_only": 23,
     "groups": {
-      "physical": 16,
+      "physical": 17,
       "relativistic": 5,
       "biology": 22,
       "quantum": 4
@@ -5478,13 +5632,13 @@
   },
   "execution_example_count": 22,
   "problem_routes_source_sha256": {
-    "catalog/atlas-depth-expansion.json": "b2e5a2d218c1bc2f542b2f54d38fc1c1b21193b1fa931ca6cfd3bccddb5667cf",
-    "catalog/atlas-equations.json": "29aa9e9c0e9e273b0a2581708fe8dcb31429e7a124a7596ec66046fe08d8e88f",
+    "catalog/atlas-depth-expansion.json": "291e40ad500108713ce524fc809dd3b771b3ad7e9c6fc22c8659b42ef1bf60ba",
+    "catalog/atlas-equations.json": "096608ff9504a5542997323173fedbe4b71b6bdb2152d83a1983618379a678a1",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
-    "catalog/atlas-methods.json": "270402769611e844e54a79e38931e2ab348797a838e383f8e3e712317db1376b",
-    "catalog/atlas-problem-links.json": "afa74c35bd622afe629d56bf97169a663131dcef63fb76bb91a4d659cb39f56c",
-    "catalog/atlas-reference-supplements.json": "7cd6bc88a0da7d85ad839495b733d3b6a95f88b174d505f7195623922ed2549d",
-    "catalog/atlas-test-problems.json": "5f210155a1fa739db4baa26e279015aebc92914c6a613dd3cf882e0d72c5fda9",
+    "catalog/atlas-methods.json": "93ffaa684f9b4060b22bc5c61c0edc923d22d5c1166e023893a352e573130794",
+    "catalog/atlas-problem-links.json": "8b6f4110d6431e579c80bf889346261f02814f8551d73651bfbe1d6ead1fa0e6",
+    "catalog/atlas-reference-supplements.json": "ca6e03b42f9e52641124e0ac5964fe3d4416c4b5a69664bb68223895963626bd",
+    "catalog/atlas-test-problems.json": "4ebf0cc08dc205e678bd82994b6e989d5c17eaa6ab9a36fd299b09ce62954319",
     "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
     "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
     "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
@@ -5575,6 +5729,11 @@
     "code/validated-examples/2026-11-23/forward-step/results/result.json": "636e179813165fbe620caadd825ac699973ea2dde897d13aed8b2d22102e6704",
     "code/validated-examples/2026-11-23/forward-step/source-manifest.json": "77546e263d8e08266cedb57ef5e128a3bee68d7b9597fb56bed2eee5dcbec6dc",
     "code/validated-examples/2026-11-23/forward-step/verification.json": "f40317a2721c2048c6174bf41c03adf5e3eddae07e19ae95e6ed5210a9b01914",
+    "code/validated-examples/2026-11-23/level-set/atlas-level-set-2026-11-23.zip": "46c2c2fd0aea98eb4cc4facef8d30cc81ebd6b1b9e0d965f7ef79167a06c048b",
+    "code/validated-examples/2026-11-23/level-set/cases.json": "b077db49bb69055b9612a2153f7d9ea4d9c1025f0bf13b0c94157d2e9235e655",
+    "code/validated-examples/2026-11-23/level-set/results/result.json": "7108491721386902c6adaa5ea5c1c709b31a204060346d0c93a06efd4a4a5a31",
+    "code/validated-examples/2026-11-23/level-set/source-manifest.json": "7055bd243b522c8de50c2091a983c61b734a589105af49d27d63f0519f9075e4",
+    "code/validated-examples/2026-11-23/level-set/verification.json": "d70c2ed415b9e61bac769c0060a7ee1e7a4cf4b0b8ce1a6beabd4bca09ef7042",
     "code/validated-examples/2026-11-23/low-mach/atlas-low-mach-2026-11-23.zip": "717b2ceed76d37cf4c1e570a7a022e1a17d66fce3048648a3edde4164a1513aa",
     "code/validated-examples/2026-11-23/low-mach/cases.json": "8a33dd861d6c635afeb526a2823fa33e88dc84fb49f1ae8a5ba19cbad32ae058",
     "code/validated-examples/2026-11-23/low-mach/results/result.json": "5e1fdfa86dc57b13857bd571de1070d00ac5237400e0fc9ee9875fae9824d9f5",
@@ -5588,10 +5747,12 @@
     "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "c7b79b042315a085a9683ebe05d0e14ae4edcc0b8bce470c0d435355e627bf95"
+    "numerical-methods-atlas/gallery/preview-manifest.json": "ea7830aa7e81700f9f3a70244a32b83f491ab71180380ce8b322708827e27a65"
   },
   "supplemental_case_ids": [
     "fitzhugh-nagumo",
+    "level-set-rotation",
+    "level-set-translation",
     "schnakenberg-nonlinear",
     "schnakenberg-pattern",
     "turing-schnakenberg",
@@ -5601,7 +5762,7 @@
     "numerical-methods-atlas/assets/biological-models.json": "657be85b4aa6dc2fe2488167635ddd71888fe47459972723a5830a5323f8a1ba",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "catalog/atlas-equations.json": "29aa9e9c0e9e273b0a2581708fe8dcb31429e7a124a7596ec66046fe08d8e88f",
+    "catalog/atlas-equations.json": "096608ff9504a5542997323173fedbe4b71b6bdb2152d83a1983618379a678a1",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
     "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
@@ -5617,7 +5778,12 @@
     "code/validated-examples/2026-11-23/zalesak/verification.json": "aad9b39c23d83e967588361edfdb05724f1ea3fade93843ebb05b5fd829ba44e",
     "code/validated-examples/2026-11-23/zalesak/cases.json": "4ff0db4160a4da838ddb57089dae6849d18d3386fedd935365ab53795611831a",
     "code/validated-examples/2026-11-23/zalesak/results/result.json": "51851a31df72eec078e25171deeacd2699a9bfe9eedc55b4bc6831fd233b408d",
-    "code/validated-examples/2026-11-23/zalesak/atlas-zalesak-2026-11-23.zip": "28e7d2bc93d3a5ba1cb015c874c489e9fd1a2e8a586a46d519800c799b0fb6f8"
+    "code/validated-examples/2026-11-23/zalesak/atlas-zalesak-2026-11-23.zip": "28e7d2bc93d3a5ba1cb015c874c489e9fd1a2e8a586a46d519800c799b0fb6f8",
+    "code/validated-examples/2026-11-23/level-set/source-manifest.json": "7055bd243b522c8de50c2091a983c61b734a589105af49d27d63f0519f9075e4",
+    "code/validated-examples/2026-11-23/level-set/verification.json": "d70c2ed415b9e61bac769c0060a7ee1e7a4cf4b0b8ce1a6beabd4bca09ef7042",
+    "code/validated-examples/2026-11-23/level-set/cases.json": "b077db49bb69055b9612a2153f7d9ea4d9c1025f0bf13b0c94157d2e9235e655",
+    "code/validated-examples/2026-11-23/level-set/results/result.json": "7108491721386902c6adaa5ea5c1c709b31a204060346d0c93a06efd4a4a5a31",
+    "code/validated-examples/2026-11-23/level-set/atlas-level-set-2026-11-23.zip": "46c2c2fd0aea98eb4cc4facef8d30cc81ebd6b1b9e0d965f7ef79167a06c048b"
   },
   "execution_formula_scope": {
     "ja": "公開済み22問題を文字・数式・保存図から探すための案内。実行条件・配布物・数値判定は既存実行台帳を参照し、画像や式の掲載を新しい数値検証として数えない。",
