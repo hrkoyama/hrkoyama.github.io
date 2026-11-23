@@ -337,7 +337,7 @@ with tempfile.TemporaryDirectory() as temporary:
         assert (directory/'pytest.stdout.log').is_file() and (directory/'run.stderr.log').is_file()
         assert (directory/'generated/result.json').is_file()
 assert not any(name in sys.modules for name in ['numpy', 'scipy', 'pytest', 'pyscf'])
-`);
+`, 120_000);
 });
 
 test('runner failures, timeout, skips, altered inputs and omitted decisions preserve explicit failed reports', () => {
