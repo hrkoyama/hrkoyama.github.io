@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 import re
 from atlas_depth_release import GROUPS, load_depth_group, read_json
+from depth_verifier_assets import render_depth_verifier
 
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY_PATH = 'numerical-methods-atlas/validation/releases.json'
@@ -45,6 +46,7 @@ def render_registry(registry):
 
 
 def build():
+    render_depth_verifier(ROOT)
     payload = render_registry(build_registry(ROOT))
     workflow = ROOT / WORKFLOW_PATH
     text = workflow.read_text()

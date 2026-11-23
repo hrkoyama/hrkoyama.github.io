@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "generator": "scripts/search_assets.py",
+  "modules": [
+    {
+      "source": "frontend/search/home-search.js",
+      "output": "numerical-methods-atlas/home-search.js",
+      "source_sha256": "bdaf2dfdb9ea693d04280c81d69f7e4ede482ba1f91d42a46e952e2f84ed04ed",
+      "sha256": "15697a0a46dd22f4bf1ca8618d5a5d68084f93e672abfacb81de162594b52035",
+      "dependencies": {
+        "search/atlas-query-index.json": "1cc8429811ad3de295d9240d908c4d78f7a9798e29a114606d8e88740e4a65ba",
+        "search/engine.mjs": "d05430b0283ed397110c1d53ec8936a3173c72eb09369448a73e31f4a3459c74",
+        "search/method-search.mjs": "887be92cb26b6b81bb0044ffeea1ab2e2d3b1d1b78e74b1f5d26f539cf1f3314",
+        "search/navigation.mjs": "49405df7f32343584f79d403353131395cda11293d009e5e1cdbea4c93391bbc"
+      }
+    },
+    {
+      "source": "frontend/search/compact-index.mjs",
+      "output": "search/compact-index.mjs",
+      "source_sha256": "957cbb4e144f40b477dc0a5c8f758729875a2d752838d4dfa033ba5f567b4ba2",
+      "sha256": "e4fadfc9d5156692abe8293ee60ce69493f8425ce130f50014942f8b91b3cd56",
+      "dependencies": {}
+    },
+    {
+      "source": "frontend/search/engine.mjs",
+      "output": "search/engine.mjs",
+      "source_sha256": "5eed4b75d2acb44025386711ef4a121d3661891e8279260c68be65c650a51de1",
+      "sha256": "d05430b0283ed397110c1d53ec8936a3173c72eb09369448a73e31f4a3459c74",
+      "dependencies": {
+        "search/compact-index.mjs": "e4fadfc9d5156692abe8293ee60ce69493f8425ce130f50014942f8b91b3cd56",
+        "search/method-search.mjs": "887be92cb26b6b81bb0044ffeea1ab2e2d3b1d1b78e74b1f5d26f539cf1f3314",
+        "search/navigation.mjs": "49405df7f32343584f79d403353131395cda11293d009e5e1cdbea4c93391bbc"
+      }
+    },
+    {
+      "source": "frontend/search/method-search.mjs",
+      "output": "search/method-search.mjs",
+      "source_sha256": "8f904685ba2a50ed737fde7c09dd9a314bd25b27659815898137c061a218b213",
+      "sha256": "887be92cb26b6b81bb0044ffeea1ab2e2d3b1d1b78e74b1f5d26f539cf1f3314",
+      "dependencies": {
+        "search/goals-data.mjs": "8bf88d84e111f3ade6b300cfb8a0f4a460569483fc9aa022d89f61f50ce2bc6f",
+        "search/methods.css": "efa8031daab462ece5e3dd965880ff27f65b759f2bc60818b61ec04355e3305a",
+        "search/navigation.mjs": "49405df7f32343584f79d403353131395cda11293d009e5e1cdbea4c93391bbc"
+      }
+    },
+    {
+      "source": "frontend/search/navigation.mjs",
+      "output": "search/navigation.mjs",
+      "source_sha256": "e6fc21fd6ac95b6d596af9a4e86b9c25ef411b4e41216a825c1693117377f635",
+      "sha256": "49405df7f32343584f79d403353131395cda11293d009e5e1cdbea4c93391bbc",
+      "dependencies": {
+        "search/compact-index.mjs": "e4fadfc9d5156692abe8293ee60ce69493f8425ce130f50014942f8b91b3cd56",
+        "search/navigation.css": "6f60fecbfc1e7e7c794c9483e580c55ac1bccb780aa0ee1bb7a20b3da97a42ac"
+      }
+    },
+    {
+      "source": "frontend/search/search.js",
+      "output": "search/search.js",
+      "source_sha256": "7583643dd1c2fb7f4f54e808fcdc58e7763bb8c95205ae8fd3b079866c01bce6",
+      "sha256": "6e51ba1ecd2f5f2a7febbc0ac4a87a57b3dfced93166a08371a1482521e3c56a",
+      "dependencies": {
+        "search/compact-index.mjs": "e4fadfc9d5156692abe8293ee60ce69493f8425ce130f50014942f8b91b3cd56",
+        "search/engine.mjs": "d05430b0283ed397110c1d53ec8936a3173c72eb09369448a73e31f4a3459c74",
+        "search/method-search.mjs": "887be92cb26b6b81bb0044ffeea1ab2e2d3b1d1b78e74b1f5d26f539cf1f3314",
+        "search/navigation.mjs": "49405df7f32343584f79d403353131395cda11293d009e5e1cdbea4c93391bbc"
+      }
+    }
+  ],
+  "configuration_consumers": [
+    "numerical-methods-atlas/home-overview.js",
+    "search/index.html"
+  ]
+}

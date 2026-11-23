@@ -1,3 +1,4 @@
+import {methodCount} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync,existsSync} from 'node:fs';
@@ -46,7 +47,7 @@ test('known supplemental failure and execution boundaries remain visible in both
   assert.ok(section.includes(lang==='ja'?'未実施':'have not been run'));
  }
  for(const figure of config.figures)assert.ok(existsSync(new URL(base+'figures/'+figure.file,root)));
- assert.equal(json('catalog/atlas-methods.json').methods.length,152);
+ assert.equal(json('catalog/atlas-methods.json').methods.length,methodCount);
  assert.equal(json('catalog/atlas-execution-examples.json').examples.length,22);
  const problems=json('catalog/atlas-test-problems.json').problems;
  assert.equal(problems.filter(problem=>!['noh','sedov','guderley','zalesak','swashes-topography','dry-bed-dam-break','lid-driven-cavity','wall-manufactured','level-set-circle', 'kh-initial-growth', 'rt-initial-growth', 'lshape-fem', 'annular-viscous-mms', 'poisson-neumann', 'poisson-robin', 'ale-nonuniform-transport', 'cgrid-rotating-wave', 'srhd-collision', 'srmhd-alfven'].includes(problem.id)).length,83,'the kit preserves the historical problem inventory');
@@ -59,7 +60,7 @@ test('agent kit is reachable from the real static and runtime home and code guid
  const staticHome=read('numerical-methods-atlas/index.html'),guide=read('numerical-methods-atlas/code-and-data/index.html');
  for(const lang of ['ja','en'])for(const html of [rendered[lang],staticHome,guide])assert.ok(html.includes(config.route+'?lang='+lang));
  for(const file of ['TESTSET.md','TESTSET-en.md','manifest.json'])assert.ok(read('llms.txt').includes('https://hrkoyama.github.io'+config.route+file));
- assert.ok(read('scripts/refresh-site.py').includes('scripts/build-atlas-agent-kits.py'));
+ assert.ok(JSON.parse(read('catalog/site-build-pipeline.json')).stages.some(stage=>stage.script==='scripts/build-atlas-agent-kits.py'));
 });
 
 test('the first release and its original instructions remain byte-identical',()=>{

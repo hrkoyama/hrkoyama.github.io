@@ -1,0 +1,7 @@
+{
+  "$schema": "./schemas/atlas-registration.schema.json",
+  "schema_version": 1,
+  "methods_catalog": "catalog/atlas-methods.json",
+  "supplements_catalog": "catalog/atlas-depth-expansion.json",
+  "policy": "Current IDs and totals follow these canonical catalogs. Immutable editions, manifests, numeric criteria and historical golden checks remain fixed."
+}

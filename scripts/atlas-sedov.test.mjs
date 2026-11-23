@@ -1,3 +1,4 @@
+import {methodCount} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -16,7 +17,7 @@ test('Sedov adds one problem and release while preserving the previous thirteen 
  assert.equal(registry.releases.filter(r=>!['euler-positivity','zalesak','weno-critical','shallow-water','wall-flow','level-set', 'instability-growth', 'mhd-transport', 'mesh-boundary', 'moving-waves', 'relativistic', 'sem-fr'].includes(r.group)).reduce((s,r)=>s+r.tests,0),571);
  const release=registry.releases.find(r=>r.group==='sedov');assert.equal(release.tests,23);assert.deepEqual(release.case_ids,['sedov-blast']);
  const problems=json('catalog/atlas-test-problems.json').problems;assert.equal(problems.length,102);assert.equal(problems.filter(p=>p.id==='sedov').length,1);
- assert.equal(json('catalog/atlas-methods.json').methods.length,152);
+ assert.equal(json('catalog/atlas-methods.json').methods.length,methodCount);
  assert.equal(json('catalog/atlas-execution-examples.json').examples.length,22);
  const manifest=json(base+'source-manifest.json');for(const[p,h]of Object.entries(manifest.files))assert.equal(hash(base+p),h,p);
  const receipt=json(base+'verification.json');assert.equal(receipt.tests,23);assert.equal(receipt.all_cases_rerun,true);assert.equal(receipt.passed,true);assert.equal(hash(base+receipt.archive.file),receipt.archive.sha256);

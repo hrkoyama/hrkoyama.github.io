@@ -1,3 +1,4 @@
+import {supplementGroupIds,supplementCaseIds} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
@@ -16,23 +17,8 @@ const catalog = json('catalog/atlas-depth-expansion.json');
 const edition = group => catalog.groups.find(x => x.id === group).edition || catalog.edition;
 const base = group => `code/validated-examples/${edition(group)}/${group}/`;
 const entry = id => `numerical-methods-atlas/validation/${id}/`;
-const groupIds = ["foundations","models","particles","mhd","thermostats","biology","mcmc","mhd-convergence","foundations-conditioning","particle-transport","splitting","noh","noh-cartesian","sedov","double-mach","forward-step","low-mach","guderley","euler-positivity","zalesak","weno-critical","shallow-water","wall-flow","level-set","sem-fr","instability-growth","mhd-transport","mesh-boundary","moving-waves","relativistic"];
-const expectedIds = [
-  'kh-initial-growth','rt-initial-growth','circular-alfven-refinement','magnetic-loop-independent','postshock-orszag-tang','lshape-fem','annular-viscous-mms','poisson-neumann','poisson-robin','ale-nonuniform-transport','cgrid-rotating-wave','srhd-collision','srmhd-alfven',
-  'sem-poisson-2d','fr-periodic-advection',
-  'sa-amg', 'qr-svd-factorization', 'krylov-eigenvalues', 'gauss-adaptive-quadrature',
-  'gaussian-mcmc', 'langevin-harmonic', 'reaction-diffusion-fourier', 'turing-schnakenberg', 'fitzhugh-nagumo',
-  'ewald', 'spme', 'fmm', 'pic', 'dsmc', 'radiation-transport',
-  'ct-glm-independent', 'brio-independent', 'shu-independent', 'glm-fourier-mode',
-  'csvr-kinetic-kernel', 'csvr-langevin-harmonic', 'csvr-langevin-quartic',
-  'schnakenberg-nonlinear', 'schnakenberg-pattern',
-  'mcmc-multimodal-mixing', 'mcmc-diagnostic-reference',
-  'ct-glm-smooth-convergence', 'ct-glm-ot-convergence', 'ct-glm-constraint-control',
-  'amg-conditioning', 'qr-svd-conditioning', 'krylov-eigen-conditioning', 'quadrature-conditioning',
-  'ewald-convergence', 'spme-convergence', 'fmm-convergence', 'pic-conservation', 'dsmc-statistics', 'radiation-convergence',
-  'reaction-diffusion-splitting', 'noh-shock', 'noh-cartesian-2d', 'sedov-blast', 'double-mach-reflection', 'forward-step-m3', 'low-mach-vortex', 'guderley-implosion', 'euler-double-rarefaction-positivity', 'zalesak-rotation',
-  'weno-critical-epsilon', 'swashes-topography', 'dry-bed-dam-break', 'cavity-ghia-re100', 'wall-manufactured', 'level-set-translation', 'level-set-rotation',
-].sort();
+const groupIds = supplementGroupIds;
+const expectedIds = [...supplementCaseIds].sort();
 const metadata = group => {
   const value = json(base(group) + 'cases.json');
   return Array.isArray(value) ? value : value.cases;

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Atlas canonical registration sources",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "schema_version", "methods_catalog", "supplements_catalog", "policy"],
+  "properties": {
+    "$schema": {"const": "./schemas/atlas-registration.schema.json"},
+    "schema_version": {"const": 1},
+    "methods_catalog": {"const": "catalog/atlas-methods.json"},
+    "supplements_catalog": {"const": "catalog/atlas-depth-expansion.json"},
+    "policy": {"type": "string", "minLength": 1}
+  }
+}

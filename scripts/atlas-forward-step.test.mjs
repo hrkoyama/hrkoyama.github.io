@@ -1,3 +1,4 @@
+import {methodCount} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -17,7 +18,7 @@ test('forward step preserves all fifteen published releases and eighty-three his
  const release=registry.releases.find(r=>r.group==='forward-step');assert.equal(release.tests,24);assert.deepEqual(release.case_ids,['forward-step-m3']);
  const pictures=json('numerical-methods-atlas/gallery/preview-manifest.json').items.filter(r=>!['forward-step','isentropic-vortex','guderley','zalesak','swashes-topography','dry-bed-dam-break','lid-driven-cavity','wall-manufactured','level-set-circle', 'kh-initial-growth', 'rt-initial-growth', 'lshape-fem', 'annular-viscous-mms', 'poisson-neumann', 'poisson-robin', 'ale-nonuniform-transport', 'cgrid-rotating-wave', 'srhd-collision', 'srmhd-alfven'].includes(r.id)).map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}));
  assert.equal(pictures.length,83);assert.equal(objectHash(pictures),'cc42574f290cd31549ef959f4bc97086be02d90e57655fcf5d2c172dbf3203b6');
- assert.equal(json('catalog/atlas-test-problems.json').problems.length,102);assert.equal(json('catalog/atlas-methods.json').methods.length,152);assert.equal(json('catalog/atlas-execution-examples.json').examples.length,22);
+ assert.equal(json('catalog/atlas-test-problems.json').problems.length,102);assert.equal(json('catalog/atlas-methods.json').methods.length,methodCount);assert.equal(json('catalog/atlas-execution-examples.json').examples.length,22);
  const manifest=json(base+'source-manifest.json');for(const[p,h]of Object.entries(manifest.files))assert.equal(hash(base+p),h,p);
  const receipt=json(base+'verification.json');assert.equal(receipt.tests,24);assert.equal(receipt.passed,true);assert.equal(receipt.all_cases_rerun,true);assert.equal(hash(base+receipt.archive.file),receipt.archive.sha256);
 });

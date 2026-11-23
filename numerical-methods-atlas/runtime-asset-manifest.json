@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "generator": "scripts/atlas_runtime_assets.py",
+  "modules": [
+    {
+      "source": "frontend/atlas/app.js",
+      "output": "numerical-methods-atlas/app.js",
+      "source_sha256": "2ea7d909f5c50a8a037fa6ba9f1f066db253cd6f2fe8cf11c7c57a41a5f1e05d",
+      "sha256": "2916da72d633403b5457f04573115524a3294f0b513cb4493e431995e2991a17",
+      "dependencies": {
+        "numerical-methods-atlas/atlas-runtime-data.mjs": "597b55d2f38eec87e8d4e4581dc79e88b7cf1edf3a1f95ee64b7323422dbd43f",
+        "numerical-methods-atlas/chapter-resources.mjs": "79bbce91aed59e8b4ac9fb504a5bcb264441f23b68cf6a67fc869ecd1c16c9ab",
+        "numerical-methods-atlas/coverage.js": "6ff11947c360a1292179c333c5226356494ba5a1ebedc1dae7b5cf0f3ae92d0b",
+        "numerical-methods-atlas/coverage.json": "9e476a0a64367207784e745ae1cc78dd7cf9b19fef57c9b37506fdc68e513023",
+        "numerical-methods-atlas/home-navigation.mjs": "cfc4a0ba611ff1a4f2438c088b382e378b28290b03057d7050007a7f322e672e",
+        "numerical-methods-atlas/home-overview.js": "3af7bc042606070bb43c6826cb9a74af720b0872bd861aff16d2a286b0bb9de6",
+        "numerical-methods-atlas/locales/messages.json": "4beb45452dbc7569b6ab5f57fc476b755f451af3b3eecc9bffa276bc811efcb9",
+        "numerical-methods-atlas/references.json": "72233b78dff7d21ebd45b62ea11200d83db02da4f35691793bc02470ea3e7318",
+        "numerical-methods-atlas/wave-evolution.js": "f53bf3879d2a8531da1bc22422b074c3850324afde54898ecc9e036b5bfdb7e8"
+      }
+    }
+  ],
+  "data_sources": {
+    "catalog/atlas-purpose.json": "b63721b9f464c53ea017af39932f57e8391f8d364ed4ce80f028e569b9863a4f",
+    "numerical-methods-atlas/content.ja.json": "fd4b8e2394aa22a9945f0f4035bf6fde5b0e4e758f0cded83104a9604592503e",
+    "numerical-methods-atlas/content.en.json": "4fd137c5717da6f1688659250a163491d27feff0b32163dc194b2db4a2c2ab80"
+  },
+  "generated_data": {
+    "url": "/numerical-methods-atlas/atlas-runtime-data.mjs",
+    "sha256": "597b55d2f38eec87e8d4e4581dc79e88b7cf1edf3a1f95ee64b7323422dbd43f"
+  }
+}

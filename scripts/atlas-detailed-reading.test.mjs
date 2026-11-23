@@ -1,3 +1,4 @@
+import {methodCount,methodStatusCounts} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -8,7 +9,7 @@ const methods=read('catalog/atlas-methods.json').methods;
 const originalPlanned=['ewald','pme','spme','slab-ewald','fdtd','pic','amg','qr-svd','eigensolvers','splines','quadrature','chebyshev','wavelets','optimization','monte-carlo','mcmc','sde','adjoint','radiation-transport','dsmc','dae','automatic-differentiation','pinn-operators'];
 test('all 23 formerly unlinked methods have substantive bilingual reading while implementation states remain honest',()=>{
  assert.equal(source.chapters.length,33);
- assert.equal(methods.length,152);assert.equal(methods.filter(m=>m.status==='planned').length,16);assert.equal(methods.filter(m=>m.status==='educational-example').length,121);assert.equal(methods.filter(m=>m.status==='reading-only').length,15);
+ assert.equal(methods.length,methodCount);assert.equal(methods.filter(m=>m.status==='planned').length,methodStatusCounts.planned);assert.equal(methods.filter(m=>m.status==='educational-example').length,methodStatusCounts['educational-example']);assert.equal(methods.filter(m=>m.status==='reading-only').length,methodStatusCounts['reading-only']);
  for(const id of originalPlanned){
   const chapter=source.chapters.find(c=>c.id===id),m=methods.find(m=>m.id===id);assert.ok(chapter,id);assert.equal(m.status,['monte-carlo','sde','automatic-differentiation','adjoint','optimization','fdtd'].includes(id)||m.depth_release?'educational-example':'planned');
   if(!['automatic-differentiation','adjoint','optimization'].includes(id)){assert.equal(m.code_modules.length,0);assert.equal(m.test_files.length,0);}

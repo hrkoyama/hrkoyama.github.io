@@ -1,3 +1,4 @@
+import {methodCount} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -163,7 +164,7 @@ test('BOMD and CPMD are searchable reading-only methods with equations and prima
   const source = json('catalog/atlas-periodic-reading.json');
   const section = source.sections.find(s => s.id === 'first-principles-md');
   assert.ok(section);
-  assert.equal(methods.length, 152);
+  assert.equal(methods.length, methodCount);
   assert.equal(json('numerical-methods-atlas/coverage.json').counts.methods, 136);
   for (const [id, alias] of [['born-oppenheimer-md', 'BOMD'], ['car-parrinello-md', 'CPMD']]) {
     const method = methods.find(m => m.id === id);

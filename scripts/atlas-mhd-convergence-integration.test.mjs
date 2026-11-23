@@ -1,3 +1,4 @@
+import {methodCount,methodStatusCounts} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -49,8 +50,8 @@ test('same-target OT refinements add no problem while the constructed equilibriu
  const otExecutions=ot.supplemental_examples.map(x=>x.id);
  assert.deepEqual(otExecutions.filter(id=>id!=='postshock-orszag-tang').sort(),['ct-glm-independent','ct-glm-ot-convergence']);
  assert.deepEqual(otExecutions.filter(id=>id==='postshock-orszag-tang'),['postshock-orszag-tang']);
- assert.equal(methods.length,152);
- assert.deepEqual(Object.fromEntries(['educational-example','reading-only','planned'].map(s=>[s,methods.filter(m=>m.status===s).length])),{'educational-example':121,'reading-only':15,'planned':16});
+ assert.equal(methods.length,methodCount);
+ assert.deepEqual(Object.fromEntries(['educational-example','reading-only','planned'].map(s=>[s,methods.filter(m=>m.status===s).length])),methodStatusCounts);
 });
 
 test('seven immutable earlier archives, common examples and pre-pilot controls stay fixed',()=>{

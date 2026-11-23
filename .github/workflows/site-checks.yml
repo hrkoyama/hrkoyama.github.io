@@ -25,3 +25,33 @@ jobs:
         run: python3 scripts/check-site.py
       - name: Check browser-local research and search logic
         run: node --test scripts/*.test.mjs
+  browser-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CI: 'true'
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install locked browser test tooling
+        run: npm ci --ignore-scripts
+      - name: Install the pinned Chromium browser
+        run: npx --no-install playwright install --with-deps chromium
+      - name: Check Japanese and English routes at narrow and standard widths
+        run: npm run test:browser
+      - name: Retain browser results and screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas-browser-smoke-${{ github.sha }}
+          path: |
+            test-results/
+            playwright-report/
+          if-no-files-found: warn

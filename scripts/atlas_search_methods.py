@@ -1,7 +1,5 @@
 """Small, shared public method records for the two search entry points."""
 import json
-import hashlib
-import re
 
 
 def search_methods(root, navigation=None):
@@ -25,40 +23,3 @@ def search_methods(root, navigation=None):
                 example['name'] = data.get('name', {'ja': example['id'], 'en': example['id']})
                 example['guide'] = {lang: '/numerical-methods-atlas/code-and-data/examples/' + example['id'] + '/?lang=' + lang for lang in ['ja', 'en']}
     return records
-
-
-def version_navigation_imports(root, text):
-    """Version callers after the shared navigation module and its CSS are ready."""
-    digest = hashlib.sha256((root / 'search/navigation.mjs').read_bytes()).hexdigest()[:12]
-    return re.sub(r"(from ['\"](?:[.]/|[.][.]/search/)navigation[.]mjs)(?:\?v=[a-f0-9]+)?(['\"])",
-                  lambda match: match[1] + '?v=' + digest + match[2], text)
-
-
-def version_method_search(root):
-    compact_hash = hashlib.sha256((root/'search/compact-index.mjs').read_bytes()).hexdigest()[:12]
-    for name in ['search/navigation.mjs', 'search/engine.mjs', 'search/search.js']:
-        path = root/name
-        path.write_text(re.sub(r"from './compact-index[.]mjs(?:[?]v=[a-f0-9]+)?'",
-                               "from './compact-index.mjs?v="+compact_hash+"'", path.read_text()))
-    navigation = root / 'search/navigation.mjs'
-    navigation_css_hash = hashlib.sha256((root / 'search/navigation.css').read_bytes()).hexdigest()[:12]
-    navigation.write_text(re.sub(
-        r"new URL\('./navigation[.]css(?:\?v=[a-f0-9]+)?',import.meta.url\)",
-        "new URL('./navigation.css?v=" + navigation_css_hash + "',import.meta.url)", navigation.read_text()))
-    module = root / 'search/method-search.mjs'
-    css_hash = hashlib.sha256((root / 'search/methods.css').read_bytes()).hexdigest()[:12]
-    text=re.sub(r"new URL\('./methods[.]css(?:\?v=[a-f0-9]+)?',import.meta.url\)", "new URL('./methods.css?v=" + css_hash + "',import.meta.url)", module.read_text())
-    goal_hash=hashlib.sha256((root/'search/goals-data.mjs').read_bytes()).hexdigest()[:12]
-    text=re.sub(r"from './goals-data[.]mjs(?:\?v=[a-f0-9]+)?'", "from './goals-data.mjs?v="+goal_hash+"'",text)
-    text=version_navigation_imports(root, text)
-    module.write_text(text)
-    return hashlib.sha256(module.read_bytes()).hexdigest()[:12]
-
-
-def version_search_engine(root):
-    method_hash = version_method_search(root)
-    path = root/'search/engine.mjs'
-    text=re.sub(r"from './method-search[.]mjs(?:[?]v=[a-f0-9]+)?'",
-                "from './method-search.mjs?v="+method_hash+"'", path.read_text())
-    path.write_text(version_navigation_imports(root,text))
-    return hashlib.sha256(path.read_bytes()).hexdigest()[:12]

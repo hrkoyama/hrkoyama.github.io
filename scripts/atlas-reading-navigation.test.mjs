@@ -55,10 +55,10 @@ function resourceLinksAreVisible(html, lang, where) {
 }
 
 test('compact reading navigation runs after the chapter directory and before search indexing', () => {
-  const refresh = read('scripts/refresh-site.py');
-  const navigation = refresh.indexOf("'scripts/build-atlas-reading-navigation.py'");
-  assert.ok(navigation > refresh.indexOf("'scripts/build-atlas-reading-index.py'"));
-  assert.ok(navigation < refresh.indexOf("'scripts/build-atlas-search.py'"));
+  const refresh = JSON.parse(read('catalog/site-build-pipeline.json')).stages.map(stage=>stage.script);
+  const navigation = refresh.indexOf('scripts/build-atlas-reading-navigation.py');
+  assert.ok(navigation > refresh.indexOf('scripts/build-atlas-reading-index.py'));
+  assert.ok(navigation < refresh.indexOf('scripts/build-atlas-search.py'));
 });
 
 test('every original chapter uses two compact navigation groups with current state only on the actual resource page', () => {

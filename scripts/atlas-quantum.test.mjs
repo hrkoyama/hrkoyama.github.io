@@ -74,8 +74,9 @@ test('DFT is discoverable by Japanese, English and aliases, and all new equation
   assert.equal(models.length,4);
   for(const x of models)for(const url of Object.values(x.reading))assert.ok(new URL(url).hash);
   const app=read('numerical-methods-atlas/app.js');
-  assert.equal(app.split('const atlasDocumentVersions =').length-1,1);
-  for(const lang of ['ja','en'])assert.ok(app.includes(createHash('sha256').update(readFileSync(new URL(`numerical-methods-atlas/content.${lang}.json`,root))).digest('hex').slice(0,12)));
+  assert.equal(app.split('import {atlasIntroDescriptions,atlasDocumentVersions}').length-1,1);
+  const runtime=read('numerical-methods-atlas/atlas-runtime-data.mjs');assert.equal(runtime.split('export const atlasDocumentVersions =').length-1,1);
+  for(const lang of ['ja','en'])assert.ok(runtime.includes(createHash('sha256').update(readFileSync(new URL(`numerical-methods-atlas/content.${lang}.json`,root))).digest('hex').slice(0,12)));
 });
 
 test('only executed quantum examples enter test-problem counts and specialist AI is deferred until 2027',()=>{

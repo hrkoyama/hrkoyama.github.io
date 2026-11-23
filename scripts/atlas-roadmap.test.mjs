@@ -1,3 +1,4 @@
+import {methodCount} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -117,7 +118,7 @@ test('year-end priorities specify agent-ready verified code and separate origina
   const problems=JSON.parse(read('catalog/atlas-test-problems.json'));
   const methods=JSON.parse(read('catalog/atlas-methods.json'));
   const quantum=JSON.parse(read('catalog/atlas-quantum.json'));
-  assert.equal(registry.examples.length,22);assert.equal(problems.problems.length,102);assert.equal(methods.methods.length,152);assert.equal(quantum.sections.length,20);
+  assert.equal(registry.examples.length,22);assert.equal(problems.problems.length,102);assert.equal(methods.methods.length,methodCount);assert.equal(quantum.sections.length,20);
   assert.match(byId.get('executable-example-registry').scope.en,/22 examples/);
   assert.match(byId.get('representative-recipes').scope.en,/83-problem\/39-runnable-entrance/);
   assert.match(byId.get('method-assumptions-review').scope.en,/all 147 entries/);

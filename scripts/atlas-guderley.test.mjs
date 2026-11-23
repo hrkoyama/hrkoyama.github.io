@@ -1,3 +1,4 @@
+import {methodCount} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -41,7 +42,7 @@ test('Guderley adds one physical problem while preserving seventeen releases and
  const pictures=json('numerical-methods-atlas/gallery/preview-manifest.json').items.filter(r=>!['guderley','zalesak','swashes-topography','dry-bed-dam-break','lid-driven-cavity','wall-manufactured','level-set-circle', 'kh-initial-growth', 'rt-initial-growth', 'lshape-fem', 'annular-viscous-mms', 'poisson-neumann', 'poisson-robin', 'ale-nonuniform-transport', 'cgrid-rotating-wave', 'srhd-collision', 'srmhd-alfven'].includes(r.id)).map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}));
  assert.equal(pictures.length,85);assert.equal(objectHash(pictures),'2a351e7c3700902a8c862474c75f7c2bd985b2c3312d573bdc9e2187f8def7f4');
  assert.equal(json('catalog/atlas-test-problems.json').problems.length,102);
- assert.equal(json('catalog/atlas-methods.json').methods.length,152);assert.equal(json('catalog/atlas-execution-examples.json').examples.length,22);
+ assert.equal(json('catalog/atlas-methods.json').methods.length,methodCount);assert.equal(json('catalog/atlas-execution-examples.json').examples.length,22);
  const receipt=json(base+'verification.json');assert.equal(receipt.tests,release.tests);assert.equal(receipt.passed,true);assert.equal(receipt.all_cases_rerun,true);assert.equal(hash(base+receipt.archive.file),receipt.archive.sha256);
  for(const[p,h]of Object.entries(json(base+'source-manifest.json').files))assert.equal(hash(base+p),h,p);
 });

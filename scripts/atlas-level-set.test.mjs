@@ -1,3 +1,4 @@
+import {methodCount} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -28,7 +29,7 @@ test('the dedicated two-case release preserves all previous releases, method rec
  assert.equal(registry.releases.reduce((s,r)=>s+r.tests,0),893);
  assert.equal(objectHash(registry.releases.filter(r=>!['level-set','weno-critical','shallow-water','wall-flow', 'instability-growth', 'mhd-transport', 'mesh-boundary', 'moving-waves', 'relativistic', 'sem-fr'].includes(r.group))),'150a2bfb669938f7c9c67dde0f23fcc4dace9e54c3298841fed651a57bb5fd3f');
  const methods=json('catalog/atlas-methods.json').methods;
- assert.equal(methods.length,152);
+ assert.equal(methods.length,methodCount);
  assert.equal(objectHash(methods.filter(m=>!['level-set','vof', 'q1-fem', 'spectral-element', 'flux-reconstruction'].includes(m.id)).map(historicalMethod)),'6462e0c0e177b17a95b97d953fd12bf2887933124691bb8844c5cc0eda9ee904');
  const pictures=json('numerical-methods-atlas/gallery/preview-manifest.json').items;
  assert.equal(pictures.length,102);

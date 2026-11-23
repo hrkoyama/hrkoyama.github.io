@@ -136,13 +136,8 @@ for path in [ATLAS/'coverage.json',ATLAS/'assets/site-coverage.json']:
     coverage['policy']['test_problems']=data['policy']['en']
     coverage['test_inventory']={'url':ORIGIN+ROUTE,'json_url':ORIGIN+ROUTE+'index.json','catalog':'catalog/atlas-test-problems.json','reviewed_on':data['reviewed_on']}
     path.write_text(json.dumps(coverage,ensure_ascii=False,indent=2)+'\n')
-# The original nine-case statistic remains available under its scoped JSON key.
-module=ATLAS/'coverage.js';text=module.read_text()
-old="{n:c.gallery_cases,label:'Equation-gallery cases',note:`${c.gallery_equations} equation families · saved numerical profiles`,href:'#/equations',className:''}"
-new="{n:c.test_problems,label:currentLanguage()==='ja'?'テスト計算':'Test problems',note:currentLanguage()==='ja'?'全分野の独立問題・重複を除く':'Independent problems across all atlas domains',href:'/numerical-methods-atlas/test-cases/',className:''}"
-if old in text:text=text.replace(old,new)
-assert new in text,'Review upstream coverage highlights'
-module.write_text(text)
+# The coverage UI is edited directly; this builder supplies its data and cache version.
+module=ATLAS/'coverage.js'
 app=ATLAS/'app.js';text=app.read_text()
 text=re.sub(r"from './coverage[.]js(?:[?]v=[a-f0-9]+)?'","from './coverage.js?v="+digest(module)[:12]+"'",text)
 text=re.sub(r"'coverage[.]json(?:[?]v=[a-f0-9]+)?'","'coverage.json?v="+digest(ATLAS/'coverage.json')[:12]+"'",text)

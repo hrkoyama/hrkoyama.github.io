@@ -1,3 +1,4 @@
+import {methodCount} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -17,7 +18,7 @@ test('Double Mach extends an existing problem and preserves all fourteen earlier
  const release=registry.releases.find(r=>r.group==='double-mach');assert.equal(release.tests,21);assert.deepEqual(release.case_ids,['double-mach-reflection']);
  const pictures=json('numerical-methods-atlas/gallery/preview-manifest.json').items.filter(r=>!['double-mach','forward-step','isentropic-vortex','guderley','zalesak','swashes-topography','dry-bed-dam-break','lid-driven-cavity','wall-manufactured','level-set-circle', 'kh-initial-growth', 'rt-initial-growth', 'lshape-fem', 'annular-viscous-mms', 'poisson-neumann', 'poisson-robin', 'ale-nonuniform-transport', 'cgrid-rotating-wave', 'srhd-collision', 'srmhd-alfven'].includes(r.id)).map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}));
  assert.equal(pictures.length,82);assert.equal(objectHash(pictures),'c37221ab9426dd1bd3b6497f2ca56764ab7d737807edceb231600fc0f3294483');
- assert.equal(json('catalog/atlas-test-problems.json').problems.length,102);assert.equal(json('catalog/atlas-methods.json').methods.length,152);assert.equal(json('catalog/atlas-execution-examples.json').examples.length,22);
+ assert.equal(json('catalog/atlas-test-problems.json').problems.length,102);assert.equal(json('catalog/atlas-methods.json').methods.length,methodCount);assert.equal(json('catalog/atlas-execution-examples.json').examples.length,22);
  const manifest=json(base+'source-manifest.json');for(const[p,h]of Object.entries(manifest.files))assert.equal(hash(base+p),h,p);
  const receipt=json(base+'verification.json');assert.equal(receipt.tests,21);assert.equal(receipt.passed,true);assert.equal(receipt.all_cases_rerun,true);assert.equal(hash(base+receipt.archive.file),receipt.archive.sha256);
 });

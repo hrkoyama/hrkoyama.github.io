@@ -45,15 +45,15 @@ test('one bilingual editorial catalog covers every existing chapter exactly once
 });
 
 test('the unified contents are rebuilt after legacy appenders and before public indexes', () => {
-  const refresh = read('scripts/refresh-site.py');
-  const unified = refresh.indexOf("'scripts/build-atlas-reading-index.py'");
+  const refresh = JSON.parse(read('catalog/site-build-pipeline.json')).stages.map(stage=>stage.script);
+  const unified = refresh.indexOf('scripts/build-atlas-reading-index.py');
   assert.ok(unified > 0);
   for (const builder of ['build-quantum-examples.py','build-atlas-detailed-reading.py','build-atlas-depth-examples.py','build-atlas-h2.py','build-atlas-periodic.py','build-atlas-forces.py','build-atlas-quantum.py','build-thermostat-reading.py']) {
-    const position = refresh.indexOf("'scripts/"+builder+"'");
+    const position = refresh.indexOf('scripts/'+builder);
     assert.ok(position >= 0 && position < unified, builder+' cannot append a second contents section afterward');
   }
   for (const builder of ['build-atlas-search.py','build-site-chrome.mjs','build-sitemap.py','build-guide.py','build-search.py']) {
-    assert.ok(refresh.indexOf("'scripts/"+builder+"'") > unified, builder+' sees the final contents');
+    assert.ok(refresh.indexOf('scripts/'+builder) > unified, builder+' sees the final contents');
   }
 });
 

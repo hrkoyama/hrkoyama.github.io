@@ -1,3 +1,4 @@
+import {methodCount,methodStatusCounts} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -22,7 +23,7 @@ test('seven methods retain original particle releases and expose precisely their
   for(const [path,hash] of Object.entries(entry.source_sha256))assert.equal(sha(path),hash,path);
   for(const lang of ['ja','en'])assert.ok(entry.assumptions[lang]&&entry.validation[lang]&&entry.limits[lang]);
  }
- assert.equal(methods.length,152);assert.deepEqual(Object.fromEntries(['educational-example','reading-only','planned'].map(s=>[s,methods.filter(x=>x.status===s).length])),{'educational-example':121,'reading-only':15,'planned':16});
+ assert.equal(methods.length,methodCount);assert.deepEqual(Object.fromEntries(['educational-example','reading-only','planned'].map(s=>[s,methods.filter(x=>x.status===s).length])),methodStatusCounts);
 });
 
 test('six refinements reuse five physical families without changing diagnostic or problem totals',()=>{

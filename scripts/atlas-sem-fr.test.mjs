@@ -1,3 +1,4 @@
+import {methodCount} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -18,7 +19,7 @@ const baseline=json('scripts/sem-fr-baseline.json'),result=json(base+'results/re
 
 test('SEM/FR preserve the previous149 method records,24 releases,92 primary pictures and common executions',()=>{
  const rows=json('catalog/atlas-methods.json').methods;
- assert.equal(rows.length,152);
+ assert.equal(rows.length,methodCount);
  const original=rows.filter(m=>!methods.includes(m.id)&&m.id!=='q1-fem').map(batch18HistoricalMethod).map(m=>Object.fromEntries(Object.entries(m).filter(([k])=>!(['p1-fem','dg'].includes(m.id)&&['depth_release','depth_scope','depth_previous_status'].includes(k)))));
  assert.equal(hash(original),baseline.method_records_sha256);
  const registry=json('numerical-methods-atlas/validation/releases.json');

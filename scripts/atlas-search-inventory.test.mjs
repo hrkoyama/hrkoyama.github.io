@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
-import {copyFileSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync} from 'node:fs';
+import {cpSync, copyFileSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync} from 'node:fs';
 import {join} from 'node:path';
 import {tmpdir} from 'node:os';
 import {pathToFileURL, fileURLToPath} from 'node:url';
@@ -42,6 +42,7 @@ function fixture() {
   write(directory, 'numerical-methods-atlas/new-guide/index.html', '<main><section data-site-language="ja"><h1>新しい案内</h1><p>GuideJapaneseToken</p></section><section data-site-language="en"><h1>New published guide</h1><p>GuideEnglishToken</p></section></main>');
   // Poisoned seed proves that the previous generated index is never an input.
   write(directory, 'numerical-methods-atlas/home-search-index.json', {version:1,entries:[{id:'ghost',title:{ja:'GhostSeedToken',en:'GhostSeedToken'},headings:{ja:[],en:[]},keywords:['GhostSeedToken'],routes:{en:'/numerical-methods-atlas/en/read/ghost/'}}]});
+  cpSync(join(root,'frontend/search'),join(directory,'frontend/search'),{recursive:true});
   write(directory, 'package.json', {type:'module'});
   write(directory, 'llms.txt', '');
   for (const file of ['numerical-methods-atlas/home-search.js','numerical-methods-atlas/i18n.js','numerical-methods-atlas/reading-urls.js','search/compact-index.mjs','search/engine.mjs','search/search.js','search/method-search.mjs','search/methods.css','search/goals-data.mjs','search/navigation.mjs','search/navigation.css']) {

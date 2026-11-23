@@ -356,10 +356,6 @@ page=ATLAS/'index.html';static=page.read_text()
 for key,old in old_copy.items():
     for lang,value in old.items():static=static.replace(esc(value),esc(new_copy[key][lang]))
 page.write_text(static)
-app=ATLAS/'app.js';text=app.read_text()
-notice='const plannedQuantumNotice = () => `<aside class="callout page-width planned-extension" id="quantum-plan" aria-labelledby="quantum-plan-title"><p class="eyebrow">${escapeHTML(t("planned.quantum.eyebrow"))}</p><h2 id="quantum-plan-title">${escapeHTML(t("planned.quantum.title"))}</h2><p>${escapeHTML(t("planned.quantum.scope"))}</p><p class="planned-status">${escapeHTML(t("planned.quantum.status"))}</p><a class="text-link" href="#/read/quantum-chemistry">${escapeHTML(t("planned.quantum.link"))}</a></aside>`;'
-text,n=re.subn(r'const plannedQuantumNotice = [^\n]+',lambda m:notice,text);assert n==1
-for filename in ['references.json','locales/messages.json']:
-    text=re.sub("'"+re.escape(filename)+r"(?:[?]v=[a-f0-9]+)?'","'"+filename+'?v='+sha(ATLAS/filename)[:12]+"'",text)
-app.write_text(text)
+# The runtime template owns the notice logic; the final asset pass versions its data.
+
 print('Built bilingual quantum reading:',len(methods),'topics,',len(refs),'primary publications; counts:',counts['methods'],counts['equations'],counts['papers'])

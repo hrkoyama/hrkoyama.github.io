@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "@playwright/test": "1.65.1"
+  },
+  "private": true,
+  "scripts": {
+    "test:browser": "playwright test --config=playwright.config.mjs"
+  },
+  "name": "hrkoyama-public-site-checks"
+}

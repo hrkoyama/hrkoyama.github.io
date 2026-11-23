@@ -3,7 +3,9 @@
 import argparse,hashlib,importlib.metadata,importlib.util,json,os,re,shutil,subprocess,sys,tempfile,time,xml.etree.ElementTree as ET,zipfile
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
-GROUPS=['foundations','models','particles','mhd','thermostats','biology','mcmc','mhd-convergence','foundations-conditioning','particle-transport', 'splitting', 'noh', 'noh-cartesian', 'sedov', 'double-mach', 'forward-step', 'low-mach', 'guderley', 'euler-positivity', 'zalesak', 'weno-critical', 'shallow-water', 'wall-flow', 'level-set', 'sem-fr', 'instability-growth', 'mhd-transport', 'mesh-boundary', 'moving-waves', 'relativistic']
+sys.path.insert(0,str(ROOT/'scripts'))
+from atlas_registration import registered_groups, validate_case_references
+GROUPS = registered_groups(Path(__file__).resolve().parents[1])
 
 # Keep this self-contained preflight equal to the public-only verifier's
 # reviewed DIRECT_PINS policy; packaging must fail before running science.
@@ -47,6 +49,7 @@ def package(group,edition):
                        for language in ['ja','en']), (case['id'],field)
         assert case['references'] and all(reference.get('review_level') for reference in case['references'])
     validate_requirements((source/'requirements.txt').read_bytes())
+    validate_case_references(ROOT,metadata)
     with tempfile.TemporaryDirectory(prefix='atlas-validation-') as tmp:
         tmp=Path(tmp);stage=tmp/prefix;stage.mkdir()
         for p in source.rglob('*'):

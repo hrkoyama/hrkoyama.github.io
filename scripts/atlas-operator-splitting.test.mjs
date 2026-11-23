@@ -16,10 +16,10 @@ const published = json('numerical-methods-atlas/methods/index.json').methods;
 const chapter = json('catalog/atlas-detailed-reading.json').chapters.find(c => c.id === 'operator-splitting');
 
 test('search indexes the final published home, sharing counts and roadmap in the same build', () => {
-  const refresh = text('scripts/refresh-site.py');
-  const purpose = "'scripts/build-atlas-purpose.py'", search = "'scripts/build-atlas-search.py'";
+  const refresh = JSON.parse(text('catalog/site-build-pipeline.json')).stages.map(stage=>stage.script);
+  const purpose = 'scripts/build-atlas-purpose.py', search = 'scripts/build-atlas-search.py';
   assert.ok(refresh.indexOf(purpose) < refresh.indexOf(search));
-  assert.ok(refresh.indexOf("'scripts/build-atlas-sharing.py'") < refresh.indexOf(search));
+  assert.ok(refresh.indexOf('scripts/build-atlas-sharing.py') < refresh.indexOf(search));
   assert.ok(refresh.lastIndexOf(purpose) > refresh.indexOf(search), 'finalize parent asset hashes after search');
   execFileSync('python3', ['-B', '-c', `
 import importlib.util,json,pathlib,sys

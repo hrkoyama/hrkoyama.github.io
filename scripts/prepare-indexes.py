@@ -143,8 +143,24 @@ def index_bytes(repository):
     return repository.index.read_bytes() if repository.index.exists() else None
 
 
-def verify_destinations(repository, paths, before, original_index):
-    if index_bytes(repository) != original_index:
+def index_state(repository, env=None):
+    """Only staged entries and semantic flags; ignore stat/cache extensions.
+
+    -v preserves assume-unchanged and skip-worktree flags. The diff against an
+    empty tree distinguishes intent-to-add from a genuinely staged empty file,
+    including on an unborn branch, without consulting working-tree contents.
+    """
+    empty = repository.git('hash-object', '-w', '-t', 'tree', '--stdin', data=b'').decode().strip()
+    return tuple(repository.git(*command, env=env) for command in [
+        ('ls-files', '--stage', '-z'),
+        ('ls-files', '-v', '-z'),
+        ('diff', '--cached', '--raw', '-z', '--no-renames', '--no-ext-diff',
+         '--no-textconv', '--no-abbrev', '--ita-invisible-in-index', empty, '--'),
+    ])
+
+
+def verify_destinations(repository, paths, before, original_state):
+    if index_state(repository) != original_state:
         raise PreparationError('The active Git index changed during generation; retry the commit.')
     conflicts = []
     for name in paths:
@@ -184,8 +200,8 @@ def copy_entry(source, target):
             temporary.unlink()
 
 
-def apply_changes(repository, snapshot, temporary_index, paths, before, after, original_index, scratch):
-    verify_destinations(repository, paths, before, original_index)
+def apply_changes(repository, snapshot, temporary_index, paths, before, after, original_state, scratch):
+    verify_destinations(repository, paths, before, original_state)
     env = {**repository.env, 'GIT_INDEX_FILE':str(temporary_index)}
     records = []
     for name in paths:
@@ -200,6 +216,16 @@ def apply_changes(repository, snapshot, temporary_index, paths, before, after, o
                 oid = repository.git('hash-object', '-w', '--no-filters', '--', str(source)).strip()
             records.append(entry.mode.encode()+b' '+oid+b'\t'+os.fsencode(name)+b'\0')
     repository.git('update-index', '-z', '--index-info', env=env, data=b''.join(records))
+    # Replacing a blob with --index-info clears these user-selected flags.
+    # Restore their initial meaning on retained generated paths; stat refreshes
+    # remain free to change while the source/blob guard still protects edits.
+    tags = {os.fsdecode(row[2:]):row[:1] for row in original_state[1].split(b'\0') if row}
+    for option, selected in [('--assume-unchanged', lambda tag:tag.islower()),
+                             ('--skip-worktree', lambda tag:tag.upper()==b'S')]:
+        names = [name for name in paths if after.get(name) is not None and selected(tags.get(name,b'H'))]
+        if names:
+            repository.git('update-index', option, '-z', '--stdin', env=env,
+                           data=b''.join(os.fsencode(name)+b'\0' for name in names))
     backup = scratch/'backup'
     for name in paths:
         if before.get(name) is not None:
@@ -219,7 +245,7 @@ def apply_changes(repository, snapshot, temporary_index, paths, before, after, o
             stream.write(temporary_index.read_bytes())
             stream.flush()
             os.fsync(stream.fileno())
-        verify_destinations(repository, paths, before, original_index)
+        verify_destinations(repository, paths, before, original_state)
         for name in paths:
             applied.append(name)
             target = repository.root/name
@@ -261,6 +287,7 @@ def prepare(check=False):
             repository.git('read-tree', '--empty', env=env)
         else:
             temporary_index.write_bytes(original_index)
+        original_state = index_state(repository, env)
         tree = repository.git('write-tree', env=env).decode().strip()
         before = repository.entries(tree)
         snapshot = scratch/'site'
@@ -275,13 +302,13 @@ def prepare(check=False):
         paths = sorted(name for name in before.keys() | after.keys() if before.get(name) != after.get(name))
         for name in paths:
             print(('A' if name not in before else 'D' if name not in after else 'M')+' '+name)
-        if index_bytes(repository) != original_index:
+        if index_state(repository) != original_state:
             raise PreparationError('The active Git index changed during generation; retry the commit.')
         if check:
             print('Generated indexes are stale.' if paths else 'Generated indexes are current.')
             return 1 if paths else 0
         if paths:
-            apply_changes(repository, snapshot, temporary_index, paths, before, after, original_index, scratch)
+            apply_changes(repository, snapshot, temporary_index, paths, before, after, original_state, scratch)
         print('Automatically staged '+str(len(paths))+' generated file(s).')
     return 0
 

@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Generated from scripts/templates/verify-depth-public.py.tmpl; edit that template.
 """Verify reviewed lightweight public ZIPs without a source checkout.
 
 Only the Python standard library is used by this verifier. The current Python

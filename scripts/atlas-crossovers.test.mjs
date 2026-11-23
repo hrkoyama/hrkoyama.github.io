@@ -1,3 +1,4 @@
+import {methodCount} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync, existsSync} from 'node:fs';
@@ -41,7 +42,7 @@ function localTarget(href) {
 
 test('crossovers preserve the scientific inventory and canonical availability', () => {
   const coverage = json('numerical-methods-atlas/coverage.json');
-  assert.equal(methods.length, 152);
+  assert.equal(methods.length, methodCount);
   assert.equal(json('catalog/atlas-equations.json').equations.length, 56);
   assert.equal(coverage.counts.papers, coverage.publications.filter(row => ['article', 'inproceedings'].includes(row.type)).length);
   assert.equal(coverage.counts.references, coverage.publications.length);

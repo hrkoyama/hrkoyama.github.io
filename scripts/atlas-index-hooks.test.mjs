@@ -185,3 +185,57 @@ test('opted-in hooks refresh a path-limited commit using its temporary active in
   assert.equal(f.git(['show','HEAD:unrelated.txt']),'unrelated');
   assert.equal(f.read('unrelated.txt'),'leave this unstaged\n');
 });
+
+test('stat-only refresh and index format changes keep identical staged meaning and permit preparation',t=>{
+  for(const action of ['refresh','index-version','split-index']){
+    const f=fixture(t);
+    const change=action==='refresh'?`import os\np=${JSON.stringify(join(f.cwd,'source.txt'))}\ns=os.stat(p);os.utime(p,ns=(s.st_atime_ns,s.st_mtime_ns+2000000000))\nsubprocess.run(['git','update-index','--refresh'],cwd=${JSON.stringify(f.cwd)},check=True)\n`:`subprocess.run(['git','update-index',${JSON.stringify(action==='index-version'?'--index-version=4':'--split-index')}],cwd=${JSON.stringify(f.cwd)},check=True)\n`;
+    f.write('scripts/refresh-site.py',builder+'import subprocess\n'+change);f.git(['add','scripts/refresh-site.py']);
+    const before=f.git(['write-tree']);succeeded(f.run());
+    assert.equal(f.git(['show',':source.txt']),'staged source');assert.equal(f.git(['show',':index.txt']),'index: staged source');
+    assert.notEqual(f.git(['write-tree']),before,'only generated content changes the staged tree');
+  }
+});
+
+test('concurrent staged path, executable mode, semantic flags and intent-to-add changes are rejected',t=>{
+  for(const action of ['rename','mode','assume','skip','intent']){
+    const f=fixture(t);let mutation;
+    if(action==='intent'){
+      f.write('intent.txt','');f.git(['add','-N','intent.txt']);mutation="['add','intent.txt']";
+    }else mutation={rename:"['mv','unrelated.txt','renamed.txt']",mode:"['update-index','--chmod=+x','unrelated.txt']",assume:"['update-index','--assume-unchanged','unrelated.txt']",skip:"['update-index','--skip-worktree','unrelated.txt']"}[action];
+    f.write('scripts/refresh-site.py',builder+`import subprocess\nsubprocess.run(['git',*${mutation}],cwd=${JSON.stringify(f.cwd)},check=True)\n`);f.git(['add','scripts/refresh-site.py']);
+    const old=f.read('index.txt'),result=f.run();assert.equal(result.status,1,action);assert.match(result.stderr,/active Git index changed/);assert.equal(f.read('index.txt'),old);assert.equal(f.git(['show',':index.txt']),'old index');
+    if(action==='mode')assert.match(f.git(['ls-files','--stage','unrelated.txt']),/^100755/);
+    if(action==='rename')assert.ok(f.git(['ls-files']).includes('renamed.txt'));
+  }
+});
+
+test('I/O failure and keyboard interruption during application restore files, index and owned lock',t=>{
+  for(const error of ['OSError','KeyboardInterrupt']){
+    const f=fixture(t,builder+"Path('added.txt').write_text('added')\n");
+    const initial=f.index(),old=f.read('index.txt');
+    const code=String.raw`import importlib.util,sys
+spec=importlib.util.spec_from_file_location('prepare',sys.argv[1]);m=importlib.util.module_from_spec(spec);sys.modules[spec.name]=m;spec.loader.exec_module(m)
+original=m.copy_entry;counter=0
+def copy(source,target):
+ global counter
+ if str(target).startswith(str(m.Repository().root)):
+  counter+=1
+  if counter==2:raise ${error}('injected application failure')
+ return original(source,target)
+m.copy_entry=copy
+try:m.prepare()
+except ${error}:pass
+else:raise AssertionError('injected error was not raised')
+`;
+    const result=spawnSync(python,['-B','-c',code,prepare],{cwd:f.cwd,env:f.env,encoding:'utf8'});succeeded(result);
+    assert.deepEqual(f.index(),initial);assert.equal(f.read('index.txt'),old);assert.equal(existsSync(join(f.cwd,'added.txt')),false);assert.equal(existsSync(join(f.cwd,'.git/index.lock')),false);assert.deepEqual(readdirSync(f.scratch),[]);
+  }
+});
+
+test('pre-existing semantic flags survive an authorized generated-file update',t=>{
+ for(const flags of [['--assume-unchanged'],['--skip-worktree'],['--assume-unchanged','--skip-worktree']]){
+  const f=fixture(t);for(const flag of flags)f.git(['update-index',flag,'index.txt']);const tag=f.git(['ls-files','-v','index.txt']);
+  succeeded(f.run());assert.equal(f.git(['show',':index.txt']),'index: staged source');assert.equal(f.git(['ls-files','-v','index.txt']),tag,flags.join(' ')+' must be retained');
+ }
+});

@@ -1,3 +1,4 @@
+// Generated from frontend/search/compact-index.mjs by scripts/search_assets.py. Edit the source template.
 /** Decode a fixed public vocabulary; fetch only fixed same-site detail assets. */
 const decoded=new WeakMap(),pending=new Map();
 export function unpackSearchIndex(data){

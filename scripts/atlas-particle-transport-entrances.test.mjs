@@ -1,3 +1,4 @@
+import {methodCount,methodStatusCounts} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -71,7 +72,7 @@ test('the bounded FMM overlay retains every byte of both historical gravity arti
  }
  assert.match(config.intro.en,/negative-logarithmic kernel in 2D free space/);
  assert.match(config.comparison_note.en,/No monotonic error with depth/);
- assert.ok(read('scripts/refresh-site.py').includes("'scripts/build-atlas-particle-transport-supplements.py'"));
+ assert.ok(JSON.parse(read('catalog/site-build-pipeline.json')).stages.some(stage=>stage.script==='scripts/build-atlas-particle-transport-supplements.py'));
 const python=String.raw`
 import importlib.util,sys
 sys.path.insert(0,'scripts')
@@ -124,7 +125,7 @@ test('one scoped goal and two depth fields expose six new checks without changin
  assert.match(stage.gap.en,/does not validate gravity PM/);
  for(const language of ['ja','en'])assert.ok(stage.reading.some(x=>x.url[language]===`/numerical-methods-atlas/${language}/read/validation-particle-transport/`));
  const methods=json('catalog/atlas-methods.json').methods;
- assert.equal(methods.length,152);assert.equal(methods.filter(x=>x.status==='educational-example').length,121);
+ assert.equal(methods.length,methodCount);assert.equal(methods.filter(x=>x.status==='educational-example').length,methodStatusCounts['educational-example']);
 });
 
 test('all 80 historical gallery illustrations, image checksums and captions survive the new supplemental evidence',()=>{

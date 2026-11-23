@@ -1,3 +1,4 @@
+import {methodCount,methodStatusCounts} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -69,7 +70,7 @@ test('Euler stage positivity reuses one problem and preserves eighteen older rel
  assert.equal(problems.length,102);
  const before=problems.filter(p=>!['zalesak','swashes-topography','dry-bed-dam-break','lid-driven-cavity','wall-manufactured','level-set-circle', 'kh-initial-growth', 'rt-initial-growth', 'lshape-fem', 'annular-viscous-mms', 'poisson-neumann', 'poisson-robin', 'ale-nonuniform-transport', 'cgrid-rotating-wave', 'srhd-collision', 'srmhd-alfven'].includes(p.id)).map(historicalProblem).map(p=>{if(p.id!=='double-rarefaction')return p;const copy={...p};delete copy.supplemental_examples;return copy;});
  assert.equal(objectHash(before),'cb3e36911d193201104862c1d0038e1b1b08c551946f7508a0ce7f4eb1fafd67');
- assert.equal(json('catalog/atlas-methods.json').methods.length,152);
+ assert.equal(json('catalog/atlas-methods.json').methods.length,methodCount);
  assert.equal(hash('numerical-methods-atlas/code-and-data/examples.json'),'3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7');
  const receipt=json(base+'verification.json');assert.equal(receipt.tests,release.tests);assert.equal(receipt.passed,true);assert.equal(receipt.all_cases_rerun,true);assert.equal(hash(base+receipt.archive.file),receipt.archive.sha256);
  for(const[p,h]of Object.entries(json(base+'source-manifest.json').files))assert.equal(hash(base+p),h,p);
@@ -92,7 +93,7 @@ test('the new double-rarefaction figure is visible and linked to actual methods,
  assert.equal((html.match(new RegExp('data-supplemental-preview="'+id+'"','g'))||[]).length,2);
  const methods=json('numerical-methods-atlas/methods/index.json').methods;
  for(const mid of page.method_ids){const method=methods.find(x=>x.id===mid);assert.equal(method.status,'educational-example');assert.ok([method.depth_release,...(method.depth_additional_releases||[])].some(x=>x.group===group));}
- assert.deepEqual(Object.fromEntries(['educational-example','reading-only','planned'].map(s=>[s,methods.filter(m=>m.status===s).length])),{'educational-example':121,'reading-only':15,planned:16});
+ assert.deepEqual(Object.fromEntries(['educational-example','reading-only','planned'].map(s=>[s,methods.filter(m=>m.status===s).length])),methodStatusCounts);
 });
 
 test('the frozen three-grid Euler update retains every positive stage, actual scaling, shared-flux budgets and full x-t data',()=>{

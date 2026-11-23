@@ -1,3 +1,4 @@
+import {methodCount} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync,existsSync} from 'node:fs';
@@ -60,7 +61,7 @@ test('stored observed orders follow shared-time errors and the actual subsolver 
 
 test('the two methods acquire only the verified dedicated release and the physical/common problem inventories stay fixed',()=>{
  const methods=json('numerical-methods-atlas/methods/index.json').methods;
- assert.equal(methods.length,152);
+ assert.equal(methods.length,methodCount);
  for(const methodId of ['lie-trotter','strang-splitting']){
   const method=methods.find(x=>x.id===methodId);
   assert.equal(method.status,'educational-example');

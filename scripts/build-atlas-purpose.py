@@ -134,23 +134,8 @@ for content in ATLAS.glob('content*.json'):
     content.write_text(json.dumps(data,ensure_ascii=False,separators=(',',':'))+'\n')
 # A newly added chapter must also be discoverable through existing #/read links
 # when a returning browser has a cached language document bundle.
-versions={lang:digest(ATLAS/('content.'+lang+'.json')) for lang in ['ja','en']}
-text=app.read_text()
-text=re.sub(r'const atlasIntroDescriptions = [^\n]+;\n','',text)
-text='const atlasIntroDescriptions = '+json.dumps({lang:copy[lang]['meta_description'] for lang in copy},ensure_ascii=False)+';\n'+text
-text,count=re.subn(r"const description = (?:currentLanguage\(\)==='ja' \? [^\n]+|atlasIntroDescriptions\[currentLanguage\(\)\]);",'const description = atlasIntroDescriptions[currentLanguage()];',text,count=1)
-assert count==1,'Review upstream description handling'
-anchor=" document.querySelector('meta[property=\"og:title\"]').content=site.title[currentLanguage()];"
-social_line=" // atlas-social-locale\n for(const key of ['twitter:title','twitter:description'])document.querySelector('meta[name=\"'+key+'\"]').content=key==='twitter:title'?site.title[currentLanguage()]:description;\n document.querySelector('meta[property=\"og:image\"]').content=new URL('share/atlas-intro-'+currentLanguage()+'.png',import.meta.url).href;\n document.querySelector('meta[name=\"twitter:image\"]').content=new URL('share/atlas-intro-'+currentLanguage()+'.png',import.meta.url).href;\n // /atlas-social-locale"
-text=re.sub(r'\n // atlas-social-locale\n.*?\n // /atlas-social-locale','',text,flags=re.S)
-assert text.count(anchor)==1
-text=text.replace(anchor,anchor+'\n'+social_line)
-text=re.sub(r"'locales/messages.json(?:[?]v=[a-f0-9]+)?'","'locales/messages.json?v="+digest(ATLAS/'locales/messages.json')+"'",text)
-text=re.sub(r'const atlasDocumentVersions = [^\n]+;\n','',text)
-text=text.replace('const documentCache = new Map();','const atlasDocumentVersions = '+json.dumps(versions)+';\nconst documentCache = new Map();')
-text=text.replace('fetch(`content.${language}.json`)','fetch(`content.${language}.json?v=${atlasDocumentVersions[language]}`)')
-assert 'fetch(`content.${language}.json?v=${atlasDocumentVersions[language]}`)' in text
-app.write_text(text)
+from atlas_runtime_assets import build_atlas_runtime
+build_atlas_runtime(ROOT)
 text=page.read_text();text=re.sub(r'src="app.js(?:[?]v=[a-f0-9]+)?"','src="app.js?v='+digest(app)+'"',text);page.write_text(text)
 guide=ROOT/'llms.txt';text=re.sub(r'^- \[Atlas introduction and sharing\].*\n?','',guide.read_text(),flags=re.M)
 guide.write_text(text.rstrip()+'\n- [Atlas introduction and sharing](https://hrkoyama.github.io/numerical-methods-atlas/share/): Bilingual first-visit explanation, eight-area map and reading paths on /numerical-methods-atlas/explore/, and shareable introduction text and PNG/SVG cards. [Sharing metadata / JSON](https://hrkoyama.github.io/numerical-methods-atlas/share/sharing.json) derives counts from the existing catalogs. Introductory materials have their own limited sharing terms; scientific records and verification scope are unchanged.\n')

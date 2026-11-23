@@ -4,7 +4,8 @@ from pathlib import Path
 from compact_search import write_compact
 from html.parser import HTMLParser
 from urllib.parse import urlparse,unquote
-from atlas_search_methods import search_methods,version_method_search,version_navigation_imports
+from atlas_search_methods import search_methods
+from search_assets import build_search_assets
 import re,json,hashlib,xml.etree.ElementTree as ET
 ROOT=Path(__file__).resolve().parents[1]
 ORIGIN='https://hrkoyama.github.io'
@@ -139,21 +140,5 @@ source_data={'version':1,'documents':documents,'sourceSha256':receipts,'navigati
 data=json.dumps(source_data,ensure_ascii=False,separators=(',',':'))+'\n'
 (ROOT/'search/index.json').write_text(data)
 compact_path=write_compact(ROOT,source_data,'site')
-digest=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()[:12]
-js=ROOT/'search/search.js'
-shared=ROOT/'search/method-search.mjs'
-shared_hash=version_method_search(ROOT)
-for module in [ROOT/'search/engine.mjs',js]:
- text=re.sub(r"from './method-search[.]mjs(?:\?v=[a-f0-9]+)?'","from './method-search.mjs?v="+shared_hash+"'",module.read_text())
- module.write_text(version_navigation_imports(ROOT,text))
-js.write_text(re.sub(r"from './engine\.mjs(?:\?v=[a-f0-9]+)?'", "from './engine.mjs?v="+digest(ROOT/'search/engine.mjs')+"'",js.read_text()))
-page=ROOT/'search/index.html';html=page.read_text()
-for name in ['search.js','search.css']:
- html=re.sub(r'(/search/'+re.escape(name)+r')(?:\?v=[a-f0-9]+)?',r'\1?v='+digest(ROOT/'search'/name),html)
-html=re.sub(r'data-search-index="[^"]+"','data-search-index="/search/query-index.json?v='+digest(compact_path)+'"',html)
-html=re.sub(r'\sdata-atlas-search-index="[^"]*"|\sdata-search-count="[^"]*"|\sdata-atlas-search-count="[^"]*"','',html)
-atlas_compact=ROOT/'search/atlas-query-index.json'
-atlas_count=len(atlas_index['entries'])
-html=html.replace('data-search-index="','data-atlas-search-index="/search/atlas-query-index.json?v='+digest(atlas_compact)+'" data-search-count="'+str(len(documents))+'" data-atlas-search-count="'+str(atlas_count)+'" data-search-index="',1)
-page.write_text(html)
+build_search_assets(ROOT)
 print('Built site search:',len(documents),'public pages/resources;',len(data.encode()),'bytes;',len(notebooks),'notebook records. No PDF/image OCR or external content.')

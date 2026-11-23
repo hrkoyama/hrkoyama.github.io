@@ -156,19 +156,7 @@ doc += '<script type="module" src="/atlas-gallery.mjs?v=' + sha(ROOT / 'atlas-ga
 
 # Preserve the old route as an entrance to the complete index. Original visual
 # experiments remain available under #/figures, including their comparison tools.
-app = ATLAS / 'app.js'
-text = app.read_text()
-marker = " if(type==='gallery'){location.replace('/numerical-methods-atlas/gallery/?lang='+currentLanguage());return;}"
-if marker not in text:
-    target = " if(type==='read' && !documents[parts[1]]) {"
-    assert target in text
-    text = text.replace(target, marker + '\n' + target, 1)
-text = re.sub(r'gallery,(?:figures:gallery,)+movies:moviesPage', 'gallery,figures:gallery,movies:moviesPage', text)
-if 'figures:gallery' not in text:
-    text = text.replace('methods:methodPage,gallery,', 'methods:methodPage,gallery,figures:gallery,', 1)
-text = text.replace("gallery:'Numerical gallery',movies:", "gallery:'Numerical gallery',figures:'Figures and comparison tools',movies:")
-assert 'figures:gallery' in text
-app.write_text(text)
+# SPA gallery routing is canonical logic in frontend/atlas/app.js.
 path = ATLAS / 'sitemap.xml'
 xml = ET.parse(path); ns = '{http://www.sitemaps.org/schemas/sitemap/0.9}'
 if ORIGIN + ROUTE not in {x.text for x in xml.getroot().findall('.//{*}loc')}:

@@ -1,3 +1,4 @@
+import {methodCount} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -14,8 +15,8 @@ const ids=results=>results.map(result=>result.id);
 const path=value=>{const url=new URL(value,origin);return url.pathname+url.search+url.hash;};
 
 test('every registered ID, bilingual name and curated alias reaches its own canonical method',()=>{
-  assert.equal(catalog.length,152);
-  assert.equal(new Set(catalog.map(method=>method.id)).size,152);
+  assert.equal(catalog.length,methodCount);
+  assert.equal(new Set(catalog.map(method=>method.id)).size,methodCount);
   for(const method of catalog){
     const queries=[[method.id,'ja'],[method.name.ja,'ja'],[method.name.en,'en'],
       ...(method.aliases||[]).map(alias=>[alias,'ja'])];
@@ -124,7 +125,7 @@ function withDOM(run){
 }
 
 test('published method cards expose every real related code/test URL and preserve availability',()=>withDOM(({render})=>{
-  assert.equal(published.length,152);
+  assert.equal(published.length,methodCount);
   assert.equal(published.filter(method=>method.status==='educational-example').length,121);
   for(const method of published){
     for(const language of ['ja','en']){

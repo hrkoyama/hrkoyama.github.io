@@ -1,3 +1,4 @@
+import {methodCount,methodStatusCounts} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -17,7 +18,7 @@ test('low-Mach vortex preserves sixteen frozen release records and eighty-four o
  const release=registry.releases.find(r=>r.group==='low-mach');assert.equal(release.tests,35);assert.deepEqual(release.case_ids,['low-mach-vortex']);
  const pictures=json('numerical-methods-atlas/gallery/preview-manifest.json').items.filter(r=>!['isentropic-vortex','guderley','zalesak','swashes-topography','dry-bed-dam-break','lid-driven-cavity','wall-manufactured','level-set-circle', 'kh-initial-growth', 'rt-initial-growth', 'lshape-fem', 'annular-viscous-mms', 'poisson-neumann', 'poisson-robin', 'ale-nonuniform-transport', 'cgrid-rotating-wave', 'srhd-collision', 'srmhd-alfven'].includes(r.id)).map(({id,image,image_sha256,caption})=>({id,image,image_sha256,caption}));
  assert.equal(pictures.length,84);assert.equal(objectHash(pictures),'1b8d229d378a47d05a78a8d2c3ca6350c794b1cee3366a0a12c7805602a84107');
- assert.equal(json('catalog/atlas-test-problems.json').problems.length,102);assert.equal(json('catalog/atlas-methods.json').methods.length,152);assert.equal(json('catalog/atlas-execution-examples.json').examples.length,22);
+ assert.equal(json('catalog/atlas-test-problems.json').problems.length,102);assert.equal(json('catalog/atlas-methods.json').methods.length,methodCount);assert.equal(json('catalog/atlas-execution-examples.json').examples.length,22);
  const manifest=json(base+'source-manifest.json');for(const[p,h]of Object.entries(manifest.files))assert.equal(hash(base+p),h,p);
  const receipt=json(base+'verification.json');assert.equal(receipt.tests,35);assert.equal(receipt.passed,true);assert.equal(receipt.all_cases_rerun,true);assert.equal(hash(base+receipt.archive.file),receipt.archive.sha256);
 });
@@ -52,7 +53,7 @@ test('low-Mach execution, analytic reference, method status and the existing vor
  const problem=json('numerical-methods-atlas/problems/isentropic-vortex/index.json');assert.ok(problem.executions.some(x=>x.id==='low-mach-vortex'));assert.ok(problem.references.some(x=>x.id==='isentropic-vortex'));
  const reference=json('numerical-methods-atlas/solutions/index.json').cases.find(x=>x.id==='isentropic-vortex');assert.equal(reference.kind,'analytic');assert.equal(reference.dimension,2);
  const methods=json('numerical-methods-atlas/methods/index.json').methods;const low=methods.find(x=>x.id==='low-mach-preconditioning');assert.equal(low.status,'educational-example');assert.equal(low.depth_release.group,'low-mach');
- assert.deepEqual(Object.fromEntries(['educational-example','reading-only','planned'].map(s=>[s,methods.filter(m=>m.status===s).length])),{'educational-example':121,'reading-only':15,planned:16});
+ assert.deepEqual(Object.fromEntries(['educational-example','reading-only','planned'].map(s=>[s,methods.filter(m=>m.status===s).length])),methodStatusCounts);
  const item=json('numerical-methods-atlas/gallery/index.json').items.find(x=>x.id==='isentropic-vortex');assert.ok(item.image.endsWith('/low-mach/results/low-mach-vortex-preview.png'));assert.equal(hash(item.image.slice(1)),item.image_sha256);assert.equal(item.runnable,true);
  for(const lang of ['ja','en']){const html=bytes(`numerical-methods-atlas/${lang}/read/validation-low-mach/index.html`).toString();assert.ok(html.includes('10.1051/0004-6361/201425059'));assert.ok(html.includes('low-mach-vortex'));}
 });

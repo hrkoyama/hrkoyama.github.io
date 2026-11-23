@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Generate stable, bilingual human and machine routes from one method catalog."""
 from pathlib import Path
+from atlas_registration import inventory, validate_public_methods
 import hashlib
 import html
 import json
@@ -22,6 +23,7 @@ ATLAS=ROOT/'numerical-methods-atlas'
 ORIGIN='https://hrkoyama.github.io'
 DATA=json.loads((ROOT/'catalog/atlas-methods.json').read_text())
 METHODS=DATA['methods']
+inventory(ROOT)
 METHOD_ROUTES=load_method_routes(ROOT)
 REVIEWED=validate_method_reviews(DATA)
 EXECUTION_RECORDS=json.loads((ROOT/'catalog/atlas-execution-examples.json').read_text())['examples']
@@ -281,6 +283,7 @@ map_page=page('手法・コードの対応表','Methods and code reference','/nu
 map_page=map_page.replace('<body class="profile-page">','<body class="profile-page" data-site-language-anchors="suffix">',1)
 write('/numerical-methods-atlas/methods/index.html',map_page)
 published={**DATA,'methods':[public_record(x) for x in METHODS],'problem_navigation_source_sha256':METHOD_ROUTES['source_sha256'],'code_release':{'download':ORIGIN+CODE+archive,'manifest':ORIGIN+CODE+'source-manifest.json','verification':ORIGIN+CODE+'verification.json','sha256':archive_hash}}
+validate_public_methods(ROOT,published['methods'])
 write('/numerical-methods-atlas/methods/index.json',json.dumps(published,ensure_ascii=False,indent=2)+'\n')
 write('/numerical-methods-atlas/methods/navigation.json',json.dumps(METHOD_ROUTES,ensure_ascii=False,indent=2)+'\n')
 if REVIEWED:

@@ -1,0 +1,513 @@
+{
+  "schema_version": 1,
+  "scope": "Ordered build only. Scientific solvers and immutable release packaging are excluded. Input/output annotations describe the search boundary; no incremental-skip decisions use them.",
+  "stages": [
+    {
+      "id": "build-notebook-bibliography",
+      "runner": "python",
+      "script": "scripts/build-notebook-bibliography.py",
+      "args": [],
+      "depends_on": []
+    },
+    {
+      "id": "build-public-resources",
+      "runner": "python",
+      "script": "scripts/build-public-resources.py",
+      "args": [],
+      "depends_on": [
+        "build-notebook-bibliography"
+      ]
+    },
+    {
+      "id": "build-atlas-execution-examples",
+      "runner": "python",
+      "script": "scripts/build-atlas-execution-examples.py",
+      "args": [],
+      "depends_on": [
+        "build-public-resources"
+      ]
+    },
+    {
+      "id": "update-atlas-ci-pins",
+      "runner": "python",
+      "script": "scripts/update-atlas-ci-pins.py",
+      "args": [],
+      "depends_on": [
+        "build-atlas-execution-examples"
+      ]
+    },
+    {
+      "id": "build-quantum-examples",
+      "runner": "python",
+      "script": "scripts/build-quantum-examples.py",
+      "args": [],
+      "depends_on": [
+        "update-atlas-ci-pins"
+      ]
+    },
+    {
+      "id": "build-atlas-method-sources",
+      "runner": "python",
+      "script": "scripts/build-atlas-method-sources.py",
+      "args": [],
+      "depends_on": [
+        "build-quantum-examples"
+      ]
+    },
+    {
+      "id": "build-atlas-fdtd",
+      "runner": "python",
+      "script": "scripts/build-atlas-fdtd.py",
+      "args": [],
+      "depends_on": [
+        "build-atlas-method-sources"
+      ]
+    },
+    {
+      "id": "build-atlas-benchmark-references",
+      "runner": "python",
+      "script": "scripts/build-atlas-benchmark-references.py",
+      "args": [],
+      "depends_on": [
+        "build-atlas-fdtd"
+      ]
+    },
+    {
+      "id": "build-atlas-detailed-reading",
+      "runner": "python",
+      "script": "scripts/build-atlas-detailed-reading.py",
+      "args": [],
+      "depends_on": [
+        "build-atlas-benchmark-references"
+      ]
+    },
+    {
+      "id": "build-atlas-depth-examples",
+      "runner": "python",
+      "script": "scripts/build-atlas-depth-examples.py",
+      "args": [],
+      "depends_on": [
+        "build-atlas-detailed-reading"
+      ]
+    },
+    {
+      "id": "build-atlas-mhd-supplements",
+      "runner": "python",
+      "script": "scripts/build-atlas-mhd-supplements.py",
+      "args": [],
+      "depends_on": [
+        "build-atlas-depth-examples"
+      ]
+    },
+    {
+      "id": "build-atlas-particle-transport-supplements",
+      "runner": "python",
+      "script": "scripts/build-atlas-particle-transport-supplements.py",
+      "args": [],
+      "depends_on": [
+        "build-atlas-mhd-supplements"
+      ]
+    },
+    {
+      "id": "update-depth-ci-pins",
+      "runner": "python",
+      "script": "scripts/update-depth-ci-pins.py",
+      "args": [],
+      "depends_on": [
+        "build-atlas-particle-transport-supplements"
+      ],
+      "inputs": [
+        "catalog/atlas-registration.json",
+        "catalog/atlas-depth-expansion.json",
+        "scripts/templates/verify-depth-public.py.tmpl",
+        "code/validated-examples/**/verification.json"
+      ],
+      "outputs": [
+        "scripts/verify-depth-public.py",
+        "numerical-methods-atlas/validation/releases.json",
+        ".github/workflows/atlas-depth-linux.yml"
+      ],
+      "checks": [
+        "scripts/atlas-registration.test.mjs",
+        "scripts/atlas-depth-ci.test.mjs"
+      ]
+    },
+    {
+      "id": "build-atlas-h2",
+      "runner": "python",
+      "script": "scripts/build-atlas-h2.py",
+      "args": [],
+      "depends_on": [
+        "update-depth-ci-pins"
+      ]
+    },
+    {
+      "id": "build-atlas-periodic",
+      "runner": "python",
+      "script": "scripts/build-atlas-periodic.py",
+      "args": [],
+      "depends_on": [
+        "build-atlas-h2"
+      ]
+    },
+    {
+      "id": "build-atlas-forces",
+      "runner": "python",
+      "script": "scripts/build-atlas-forces.py",
+      "args": [],
+      "depends_on": [
+        "build-atlas-periodic"
+      ]
+    },
+    {
+      "id": "build-atlas-quantum",
+      "runner": "python",
+      "script": "scripts/build-atlas-quantum.py",
+      "args": [],
+      "depends_on": [
+        "build-atlas-forces"
+      ]
+    },
+    {
+      "id": "build-atlas-resources",
+      "runner": "python",
+      "script": "scripts/build-atlas-resources.py",
+      "args": [],
+      "depends_on": [
+        "build-atlas-quantum"
+      ]
+    },
+    {
+      "id": "build-atlas-autodiff",
+      "runner": "python",
+      "script": "scripts/build-atlas-autodiff.py",
+      "args": [],
+      "depends_on": [
+        "build-atlas-resources"
+      ]
+    },
+    {
+      "id": "build-atlas-execution-guide",
+      "runner": "python",
+      "script": "scripts/build-atlas-execution-guide.py",
+      "args": [],
+      "depends_on": [
+        "build-atlas-autodiff"
+      ]
+    },
+    {
+      "id": "build-atlas-agent-kits",
+      "runner": "python",
+      "script": "scripts/build-atlas-agent-kits.py",
+      "args": [],
+      "depends_on": [
+        "build-atlas-execution-guide"
+      ]
+    },
+    {
+      "id": "build-atlas-execution-entries",
+      "runner": "python",
+      "script": "scripts/build-atlas-execution-entries.py",
+      "args": [],
+      "depends_on": [
+        "build-atlas-agent-kits"
+      ]
+    },
+    {
+      "id": "build-atlas-ci-page",
+      "runner": "python",
+      "script": "scripts/build-atlas-ci-page.py",
+      "args": [],
+      "depends_on": [
+        "build-atlas-execution-entries"
+      ]
+    },
+    {
+      "id": "build-thermostat-reading",
+      "runner": "python",
+      "script": "scripts/build-thermostat-reading.py",
+      "args": [],
+      "depends_on": [
+        "build-atlas-ci-page"
+      ]
+    },
+    {
+      "id": "build-atlas-keep",
+      "runner": "python",
+      "script": "scripts/build-atlas-keep.py",
+      "args": [],
+      "depends_on": [
+        "build-thermostat-reading"
+      ]
+    },
+    {
+      "id": "build-atlas-stability",
+      "runner": "python",
+      "script": "scripts/build-atlas-stability.py",
+      "args": [],
+      "depends_on": [
+        "build-atlas-keep"
+      ]
+    },
+    {
+      "id": "build-atlas-test-problems",
+      "runner": "python",
+      "script": "scripts/build-atlas-test-problems.py",
+      "args": [],
+      "depends_on": [
+        "build-atlas-stability"
+      ]
+    },
+    {
+      "id": "build-atlas-equations",
+      "runner": "python",
+      "script": "scripts/build-atlas-equations.py",
+      "args": [],
+      "depends_on": [
+        "build-atlas-test-problems"
+      ]
+    },
+    {
+      "id": "build-atlas-gallery",
+      "runner": "python",
+      "script": "scripts/build-atlas-gallery.py",
+      "args": [],
+      "depends_on": [
+        "build-atlas-equations"
+      ]
+    },
+    {
+      "id": "build-atlas-solutions",
+      "runner": "python",
+      "script": "scripts/build-atlas-solutions.py",
+      "args": [],
+      "depends_on": [
+        "build-atlas-gallery"
+      ]
+    },
+    {
+      "id": "build-atlas-problems",
+      "runner": "python",
+      "script": "scripts/build-atlas-problems.py",
+      "args": [],
+      "depends_on": [
+        "build-atlas-solutions"
+      ]
+    },
+    {
+      "id": "build-atlas-goals",
+      "runner": "python",
+      "script": "scripts/build-atlas-goals.py",
+      "args": [],
+      "depends_on": [
+        "build-atlas-problems"
+      ]
+    },
+    {
+      "id": "build-atlas-depth",
+      "runner": "python",
+      "script": "scripts/build-atlas-depth.py",
+      "args": [],
+      "depends_on": [
+        "build-atlas-goals"
+      ]
+    },
+    {
+      "id": "build-atlas-crossovers",
+      "runner": "python",
+      "script": "scripts/build-atlas-crossovers.py",
+      "args": [],
+      "depends_on": [
+        "build-atlas-depth"
+      ]
+    },
+    {
+      "id": "build-atlas-textbook-papers",
+      "runner": "python",
+      "script": "scripts/build-atlas-textbook-papers.py",
+      "args": [],
+      "depends_on": [
+        "build-atlas-crossovers"
+      ]
+    },
+    {
+      "id": "build-atlas-reading-index",
+      "runner": "python",
+      "script": "scripts/build-atlas-reading-index.py",
+      "args": [],
+      "depends_on": [
+        "build-atlas-textbook-papers"
+      ]
+    },
+    {
+      "id": "build-atlas-reading-navigation",
+      "runner": "python",
+      "script": "scripts/build-atlas-reading-navigation.py",
+      "args": [],
+      "depends_on": [
+        "build-atlas-reading-index"
+      ]
+    },
+    {
+      "id": "build-atlas-chapter-resources",
+      "runner": "python",
+      "script": "scripts/build-atlas-chapter-resources.py",
+      "args": [],
+      "depends_on": [
+        "build-atlas-reading-navigation"
+      ]
+    },
+    {
+      "id": "build-atlas-benchmark-backlog",
+      "runner": "python",
+      "script": "scripts/build-atlas-benchmark-backlog.py",
+      "args": [],
+      "depends_on": [
+        "build-atlas-chapter-resources"
+      ]
+    },
+    {
+      "id": "build-atlas-purpose",
+      "runner": "python",
+      "script": "scripts/build-atlas-purpose.py",
+      "args": [],
+      "depends_on": [
+        "build-atlas-benchmark-backlog"
+      ],
+      "purpose": "Finalize home/explore content before indexing.",
+      "inputs": [
+        "frontend/atlas/app.js",
+        "catalog/atlas-purpose.json",
+        "numerical-methods-atlas/content.*.json"
+      ],
+      "outputs": [
+        "numerical-methods-atlas/app.js",
+        "numerical-methods-atlas/atlas-runtime-data.mjs",
+        "numerical-methods-atlas/runtime-asset-manifest.json"
+      ],
+      "checks": [
+        "scripts/search-assets.test.mjs"
+      ]
+    },
+    {
+      "id": "build-atlas-sharing",
+      "runner": "python",
+      "script": "scripts/build-atlas-sharing.py",
+      "args": [],
+      "depends_on": [
+        "build-atlas-purpose"
+      ]
+    },
+    {
+      "id": "build-atlas-search",
+      "runner": "python",
+      "script": "scripts/build-atlas-search.py",
+      "args": [],
+      "depends_on": [
+        "build-atlas-sharing"
+      ],
+      "inputs": [
+        "catalog/atlas-*.json",
+        "numerical-methods-atlas/**/index.html",
+        "frontend/search/*"
+      ],
+      "outputs": [
+        "numerical-methods-atlas/home-search-index.json",
+        "search/atlas-query-index.json",
+        "search/details/*.json",
+        "search/asset-manifest.json"
+      ],
+      "checks": [
+        "scripts/atlas-priority1.test.mjs",
+        "scripts/atlas-search-inventory.test.mjs"
+      ]
+    },
+    {
+      "id": "build-atlas-purpose-after-search",
+      "runner": "python",
+      "script": "scripts/build-atlas-purpose.py",
+      "args": [],
+      "depends_on": [
+        "build-atlas-search"
+      ],
+      "purpose": "Propagate the generated home-search module version to the existing home parents.",
+      "inputs": [
+        "frontend/atlas/app.js",
+        "catalog/atlas-purpose.json",
+        "numerical-methods-atlas/content.*.json"
+      ],
+      "outputs": [
+        "numerical-methods-atlas/app.js",
+        "numerical-methods-atlas/atlas-runtime-data.mjs",
+        "numerical-methods-atlas/runtime-asset-manifest.json"
+      ],
+      "checks": [
+        "scripts/search-assets.test.mjs"
+      ]
+    },
+    {
+      "id": "build-site-chrome",
+      "runner": "node",
+      "script": "scripts/build-site-chrome.mjs",
+      "args": [],
+      "depends_on": [
+        "build-atlas-purpose-after-search"
+      ]
+    },
+    {
+      "id": "build-sitemap",
+      "runner": "python",
+      "script": "scripts/build-sitemap.py",
+      "args": [],
+      "depends_on": [
+        "build-site-chrome"
+      ]
+    },
+    {
+      "id": "build-guide",
+      "runner": "python",
+      "script": "scripts/build-guide.py",
+      "args": [
+        "--local-site",
+        "."
+      ],
+      "depends_on": [
+        "build-sitemap"
+      ]
+    },
+    {
+      "id": "build-search",
+      "runner": "python",
+      "script": "scripts/build-search.py",
+      "args": [],
+      "depends_on": [
+        "build-guide"
+      ],
+      "inputs": [
+        "search/index.html",
+        "numerical-methods-atlas/home-search-index.json",
+        "frontend/search/*",
+        "guide/index.json"
+      ],
+      "outputs": [
+        "search/index.json",
+        "search/query-index.json",
+        "search/details/*.json",
+        "search/asset-manifest.json"
+      ],
+      "checks": [
+        "scripts/atlas-priority1.test.mjs",
+        "browser/atlas-smoke.spec.mjs"
+      ]
+    },
+    {
+      "id": "check-site",
+      "runner": "python",
+      "script": "scripts/check-site.py",
+      "args": [],
+      "depends_on": [
+        "build-search"
+      ]
+    }
+  ]
+}

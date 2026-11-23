@@ -1,5 +1,19 @@
 # 更新と復元の手順
 
+## 優先度2の保守境界と検査（2026-11-23）
+
+`prepare-indexes.py`はステージされたpath・mode・blobと意味のあるindexフラグを比較する。stat/cacheだけの更新・index形式変更は許すが、内容・rename・実行属性・intent-to-add・assume-unchanged・skip-worktreeの変更は拒否する。適用時のindex lock、生成先の未ステージ変更の拒否、I/O失敗・割り込み時の復元は保持する。`atlas-index-hooks.test.mjs`の隔離リポジトリで確認する。
+
+検索の編集用ロジックは`frontend/search/`、公開モジュールは生成物である。 共通入口の正本は`frontend/atlas/app.js`、可変文言・言語文書の版は`atlas-runtime-data.mjs`へ生成し、`runtime-asset-manifest.json`で対応を示す。gallery・quantum等のビルダーから共通入口の関数を補修する処理を除き、coverageの描画も編集用JSの正本で保持する。`scripts/search_assets.py`が明示した`{{asset:...}}`だけを依存資産のSHAへ展開し、`search/asset-manifest.json`へ正本・出力・依存SHAを記録する。`build-atlas-search.py`は本文から索引と関連データを作り、フロントの実装を意味的な文字列置換で補修しない。親モジュールのimportと検索HTMLのdata属性には、宣言したcache版・設定だけを反映する。編集はテンプレートへ行い、生成済みJSの直接編集は次の集約で置き換わる。
+
+通常の全生成の順番は`catalog/site-build-pipeline.json`、事前検査は`scripts/site_pipeline.py`にある。依存は実行前に検査する。2回のpurpose生成は、検索前の本文確定と検索後の親モジュールへの版伝播という別の役割を明記する。検索の入力・生成先・検査は同じ契約に記録する。入力一覧から全生成を省略する仕組みは追加しない。日次集約・公開前の例外理由と実ログは引き続き非公開キューへ記録する。
+
+登録の入口は`catalog/atlas-registration.json`と`catalog/schemas/atlas-registration.schema.json`。手法の正本は従来の`atlas-methods.json`、補助群と現行editionの正本は従来の`atlas-depth-expansion.json`であり、件数や群IDを別に手作業で複製しない。packager・loaderは共通登録を使う。公開のみの独立verifierは`scripts/templates/verify-depth-public.py.tmpl`から厳密な群allowlistを生成し、既存どおりworkflowのSHAで固定する。標準ライブラリだけの独立実行を保持する。公開済みZIP・入力・参照・基準を再包装しない。
+
+現行inventoryの検査は`scripts/fixtures/atlas-inventory.mjs`を使い、固定した総数の修正を各機能テストへ散らさない。登録検査は不正ID・重複・未登録の手法/群/ケース・関係のない根拠の転用・根拠のない教育用表示を拒否する。旧版のSHA、版固有のケース数、数値公差、goldenは従来の固定値を保持し、現行総数に合わせて緩めない。
+
+実ブラウザーの検査は`browser/atlas-smoke.spec.mjs`と`playwright.config.mjs`。日英それぞれ390/1280pxで、ホーム→検索→実行例、キーボード操作、手法フィルター、数式、横スクロール表、CSSと資産の読み込み、画面用索引のサイズ予算を確認する。Public site checksの独立jobが固定したPlaywright/Chromiumで実行し、結果・画面をartifactへ保存する。数値ソルバーや独立参照は再計算せず、ZIP本文の追試は既存の公開Linux検証が担う。ローカル実行は`npm ci --ignore-scripts`、`npx --no-install playwright install chromium`、`npm run test:browser`。公式のCI・webServer手順は https://playwright.dev/docs/ci-intro と https://playwright.dev/docs/test-webserver を参照する。
+
 ## 実装範囲の表示と軽量な共通検索（2026-11-23）
 
 HF/KSのモデル説明は一般形と公開した原子・H₂・固定周期Heセルの範囲を区別する。catalog/atlas-equations.jsonのnoteだけを修正し、式・入力・参照・受入条件と配布版を保持する。モデルに結び付く実行例と各ケースの制約は既存の台帳から案内する。
