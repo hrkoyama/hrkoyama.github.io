@@ -56,8 +56,8 @@
     {
       "source": "frontend/search/search.js",
       "output": "search/search.js",
-      "source_sha256": "7583643dd1c2fb7f4f54e808fcdc58e7763bb8c95205ae8fd3b079866c01bce6",
-      "sha256": "6e51ba1ecd2f5f2a7febbc0ac4a87a57b3dfced93166a08371a1482521e3c56a",
+      "source_sha256": "13057927ce6307f88a74b79ca9512b38c561271892ee52e50f634c5a8267e299",
+      "sha256": "576d5077b7a9af4b9bca5b22cc2b9b39ac5814722c9cdff23a02e761b9946a99",
       "dependencies": {
         "search/compact-index.mjs": "e4fadfc9d5156692abe8293ee60ce69493f8425ce130f50014942f8b91b3cd56",
         "search/engine.mjs": "d05430b0283ed397110c1d53ec8936a3173c72eb09369448a73e31f4a3459c74",

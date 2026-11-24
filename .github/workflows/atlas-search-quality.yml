@@ -1,0 +1,101 @@
+name: Atlas cold-search performance verification
+on:
+  push:
+    branches: [main, 'codex/**']
+    paths:
+      - 'frontend/search/**'
+      - 'search/atlas-query-index.json'
+      - 'scripts/build-atlas-execution-entries.py'
+      - 'performance/**'
+      - 'playwright.search-performance.config.mjs'
+      - 'scripts/serve-atlas-gzip.py'
+      - 'scripts/summarize-search-performance.mjs'
+      - 'scripts/wait-search-publication.py'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/atlas-search-quality.yml'
+  workflow_dispatch:
+    inputs:
+      target:
+        description: 'candidate-build explicitly regenerates derived files once; other modes do not'
+        type: choice
+        options: [candidate, candidate-build, published]
+        default: candidate
+permissions:
+  contents: read
+jobs:
+  cold-search:
+    if: >-
+      github.repository == 'hrkoyama/hrkoyama.github.io' &&
+      ((github.ref == 'refs/heads/main' && (github.event_name == 'push' || inputs.target == 'published')) ||
+       (github.ref != 'refs/heads/main' &&
+        ((github.event_name == 'workflow_dispatch' && inputs.target != 'published') ||
+         contains(github.event.head_commit.message, '[atlas-search-build]') ||
+         contains(github.event.head_commit.message, '[atlas-search-measure]'))))
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      CI: 'true'
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install locked browser tooling
+        run: npm ci --ignore-scripts
+      - name: Install the pinned Chromium browser
+        run: npx --no-install playwright install --with-deps chromium
+      - name: Explicitly aggregate derived files in this isolated candidate
+        if: github.ref != 'refs/heads/main' && (inputs.target == 'candidate-build' || contains(github.event.head_commit.message, '[atlas-search-build]'))
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p test-results/search-quality-build
+          python3 - <<'PY'
+          import datetime,json,pathlib,subprocess
+          def git(*a):return subprocess.check_output(['git',*a],text=True).strip()
+          pathlib.Path('test-results/search-quality-build/generation.json').write_text(json.dumps({'passed':False,'source_commit':git('rev-parse','HEAD'),'input_tree':git('write-tree'),'started_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()},indent=2)+'\n')
+          PY
+          python3 scripts/prepare-indexes.py > test-results/search-quality-build/prepare.log 2>&1
+          git diff --cached --binary > test-results/search-quality-build/generated.patch
+          python3 - <<'PY'
+          import datetime,hashlib,json,pathlib,subprocess
+          def git(*a):return subprocess.check_output(['git',*a],text=True).strip()
+          out=pathlib.Path('test-results/search-quality-build');p=out/'generation.json';data=json.loads(p.read_text())
+          changed=git('diff','--cached','--name-only').splitlines()
+          assert not any(x.startswith('code/') or x.endswith('.zip') for x in changed), 'Scientific distributions must be unchanged'
+          data.update(passed=True,output_tree=git('write-tree'),completed_at_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),changed_paths=changed,patch_sha256=hashlib.sha256((out/'generated.patch').read_bytes()).hexdigest(),log_sha256=hashlib.sha256((out/'prepare.log').read_bytes()).hexdigest())
+          p.write_text(json.dumps(data,indent=2)+'\n')
+          PY
+      - name: Bind the measurement to its exact staged tree and target
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "ATLAS_PERF_TREE=$(git write-tree)" >> "$GITHUB_ENV"
+          if [ "$GITHUB_REF" = 'refs/heads/main' ]; then
+            echo 'ATLAS_PERF_TARGET=published' >> "$GITHUB_ENV"
+          else
+            echo 'ATLAS_PERF_TARGET=candidate' >> "$GITHUB_ENV"
+          fi
+      - name: Wait for the same reviewed files at the HR origin
+        if: github.ref == 'refs/heads/main'
+        run: python3 scripts/wait-search-publication.py
+      - name: Measure twelve cold searches with full network and CPU shaping
+        run: npm run test:search-performance
+      - name: Summarize all samples without discarding failures
+        if: always()
+        run: node scripts/summarize-search-performance.mjs
+      - name: Retain measurements and explicit-generation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas-cold-search-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            test-results/search-performance/
+            test-results/search-quality-build/
+          if-no-files-found: error

@@ -13,6 +13,8 @@ from atlas_execution_discovery import (ROOT,ORIGIN,ENTRY_BASE,REGISTRY_URL,
 spec=importlib.util.spec_from_file_location('execution_guide',ROOT/'scripts/build-atlas-execution-guide.py')
 guide=importlib.util.module_from_spec(spec);spec.loader.exec_module(guide)
 ESC=html.escape
+SUPPLEMENT_FEATURES=('sem-poisson-2d','fr-periodic-advection','level-set-translation',
+                     'level-set-rotation','reaction-diffusion-splitting')
 
 def write(path,value):
     path.parent.mkdir(parents=True,exist_ok=True)
@@ -20,6 +22,23 @@ def write(path,value):
 
 def json_text(data):return json.dumps(data,ensure_ascii=False,indent=2,allow_nan=False)+'\n'
 def link(url,label):return '<a href="'+ESC(url,quote=True)+'">'+ESC(label)+'</a>'
+
+def supplementary_entry(root,navigation,lang):
+    """Expose the existing separate registry; never merge its case count into problems."""
+    from atlas_registration import registered_groups
+    cases={key:row for key,row in navigation['executions'].items() if row['kind']=='supplement'}
+    if not set(SUPPLEMENT_FEATURES)<=cases.keys():
+        raise ValueError('Featured supplement must have an existing execution route')
+    count=len(cases);groups=len(registered_groups(root));ja=lang=='ja'
+    shared=sum(row['kind']=='common' for row in navigation['executions'].values())
+    title='補助実行例も探す' if ja else 'Explore supplementary examples'
+    note=(f'共通の{shared}例とは別に、{groups}群・{count}ケースの固定入力を公開しています。各例でコード、保存結果、受入条件を確認できます。ケース数と物理問題数は別の集計です。' if ja else
+          f'A separate registry provides {count} fixed-input cases in {groups} groups alongside the {shared} shared examples. Each case links code, saved results and acceptance conditions. Case counts and physical-problem counts are separate.')
+    label=f'補助{count}ケースの一覧へ →' if ja else f'Browse all {count} supplementary cases →'
+    body='<aside class="execution-supplement-entry" aria-labelledby="supplementary-examples-'+lang+'"><h2 id="supplementary-examples-'+lang+'">'+title+'</h2><p>'+ESC(note)+'</p><p>'+link('/numerical-methods-atlas/validation/?lang='+lang,label)+'</p><ul>'
+    for ident in SUPPLEMENT_FEATURES:
+        body+='<li>'+link('/numerical-methods-atlas/validation/'+ident+'/?lang='+lang,cases[ident]['name'][lang])+'</li>'
+    return body+'</ul></aside>'
 
 def document(url,title,description,sections,root=ROOT):
     head='<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
@@ -108,6 +127,7 @@ def build(root=ROOT):
     for lang in ['ja','en']:
         ja=lang=='ja'
         body='<section data-site-language="'+lang+'" lang="'+lang+'"><p class="eyebrow">22 FIXED-INPUT EXAMPLES</p><h1>'+('何を確かめるか、問題から選ぶ' if ja else 'Choose the result you want to check')+'</h1><p class="intro">'+('入力を取得し、計算し、結果を判定する22の入口です。各例で使える条件と確かめられる量を確認できます。' if ja else 'Twenty-two paths from fixed input to computation and numerical decisions. Each example states its conditions and what you can check.')+'</p><nav class="resource-nav">'+link('/numerical-methods-atlas/?lang='+lang,'文字で探す' if ja else 'Search by words')+link('/numerical-methods-atlas/equations/?lang='+lang,'数式から探す' if ja else 'Browse by formula')+link('/numerical-methods-atlas/gallery/?lang='+lang,'絵から探す' if ja else 'Browse by picture')+link('/numerical-methods-atlas/code-and-data/?lang='+lang,'共通手順と全実行記録' if ja else 'Common steps and execution records')+link('/numerical-methods-atlas/code-and-data/ci/?lang='+lang,'Linuxの継続検証' if ja else 'Linux verification CI')+'</nav><ul class="execution-entry-index">'
+        body=body.removesuffix('<ul class="execution-entry-index">')+supplementary_entry(root,navigation,lang)+'<ul class="execution-entry-index">'
         for item in data['examples']:
             x=item['execution'];body+='<li data-entry-id="'+x['id']+'"><h2>'+link(entry_url(x['id'],lang),x['name'][lang])+'</h2><p>'+ESC(item['outcome'][lang])+'</p>'+link(entry_url(x['id'],lang),'入力・実行・判定へ →' if ja else 'Input, execution and checks →')
             body+='<details class="execution-resource-details"><summary>'+('手法・式・図・参照解' if ja else 'Methods, equations, figures and references')+'</summary>'+render_execution_navigation(navigation['executions'][x['id']],lang)+'</details></li>'
