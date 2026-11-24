@@ -23,6 +23,6 @@ test('same-content PDF receipt covers the exact manuscript and frozen figure/equ
 test('code ZIP and its reviewed source stay frozen together',()=>{
  const r=json('code/numerical-foundations/2026-11-24/release.json');assert.equal(sha(r.zip.slice(1)),r.zip_sha256);assert.equal(r.unit_tests,25);assert.equal(r.comparison_tests,2);assert.equal(r.acceptance_checks,34);for(const [p,s]of Object.entries(r.source_files))assert.equal(sha(p),s,p);
 });
-test('Japanese and English directories disclose the Japanese course without changing chapter registry',()=>{
- const catalog=json('catalog/atlas-reading-index.json');for(const lang of ['ja','en']){const page=read('numerical-methods-atlas/'+lang+'/read/index.html').toString();assert.ok(page.includes(d.base));const index=json('numerical-methods-atlas/'+lang+'/read/index.json');assert.equal(index.chapter_count,catalog.groups.flatMap(g=>g.chapters).length);assert.equal(index.learning_packages[0].language,'ja');}
+test('Japanese and English directories link the matching course without changing chapter registry',()=>{
+ const catalog=json('catalog/atlas-reading-index.json');for(const lang of ['ja','en']){const page=read('numerical-methods-atlas/'+lang+'/read/index.html').toString();assert.ok(page.includes(d.base+(lang==='en'?'en/':'')));const index=json('numerical-methods-atlas/'+lang+'/read/index.json');assert.equal(index.chapter_count,catalog.groups.flatMap(g=>g.chapters).length);assert.equal(index.learning_packages[0].language,lang);assert.equal(index.learning_packages[0].url,d.base+(lang==='en'?'en/':''));}
 });

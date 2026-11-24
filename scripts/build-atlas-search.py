@@ -213,10 +213,19 @@ def main(root=ROOT, navigation=None):
             entry['routes']={language:routes[language] for language in editions}
         index['entries'].append(entry)
     course=read_json(ROOT/'catalog/atlas-foundations-course.json')
+    english_course=read_json(ROOT/'catalog/atlas-foundations-course.en.json')
     if course:
-        add('foundations-course',{},['初学者','基礎','19章','beginner numerical foundations'],{'ja':course['base']})
+        routes={'ja':course['base']}
+        if english_course:routes['en']=english_course['base']
+        add('foundations-course',{},['初学者','基礎','19章','beginner numerical foundations'],routes)
         for chapter in course['chapters']:
-            add('foundations-course-'+chapter['id'],{},[chapter['title'],'初学者','基礎'],{'ja':course['base']+chapter['id']+'/'})
+            routes={'ja':course['base']+chapter['id']+'/'}
+            aliases=[chapter['title'],'初学者','基礎']
+            if english_course:
+                counterpart=next(c for c in english_course['chapters'] if c['id']==chapter['id'])
+                routes['en']=english_course['base']+chapter['id']+'/'
+                aliases.append(counterpart['title'])
+            add('foundations-course-'+chapter['id'],{},aliases,routes)
     for x in catalog['methods']:
         review=x.get('method_review',{})
         extra=[]

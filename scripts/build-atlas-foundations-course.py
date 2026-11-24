@@ -21,7 +21,11 @@ def build(root=ROOT):
     release=json.loads((root/'code/numerical-foundations/2026-11-24/release.json').read_text());assert sha(root/release['zip'].lstrip('/'))==release['zip_sha256']
     for file,digest in release['source_files'].items():assert sha(root/file)==digest,file
     def layout(title,body,route):
-        return '<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+e(title)+' | 数値計算の基礎</title><meta name="description" content="誤差、安定性、境界条件、分割法、シンプレクティック積分を学ぶ初学者向け教材。本文・図・小さな計算例・確認問題をWebとPDFで。"><link rel="canonical" href="'+ORIGIN+route+'"><link rel="stylesheet" href="/styles/atlas-foundations-course.css?v='+sha(root/'styles/atlas-foundations-course.css')[:12]+'"></head><body><main><nav aria-label="パンくず"><a href="/numerical-methods-atlas/ja/read/">アトラスの読み物</a> / <a href="'+base+'">数値計算の基礎</a></nav>'+body+'<footer><a href="'+base+'">全19章の目次</a> · <a href="'+assets+'numerical-foundations-ja.pdf">同じ内容のPDF</a> · <a href="'+release['zip']+'">計算例のコードZIP</a><p>2026年11月24日版 · '+e(d['rights'])+'</p></footer></main></body></html>\n'
+        document = '<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+e(title)+' | 数値計算の基礎</title><meta name="description" content="誤差、安定性、境界条件、分割法、シンプレクティック積分を学ぶ初学者向け教材。本文・図・小さな計算例・確認問題をWebとPDFで。"><link rel="canonical" href="'+ORIGIN+route+'"><link rel="stylesheet" href="/styles/atlas-foundations-course.css?v='+sha(root/'styles/atlas-foundations-course.css')[:12]+'"></head><body><main><nav aria-label="パンくず"><a href="/numerical-methods-atlas/ja/read/">アトラスの読み物</a> / <a href="'+base+'">数値計算の基礎</a></nav>'+body+'<footer><a href="'+base+'">全19章の目次</a> · <a href="'+assets+'numerical-foundations-ja.pdf">同じ内容のPDF</a> · <a href="'+release['zip']+'">計算例のコードZIP</a><p>2026年11月24日版 · '+e(d['rights'])+'</p></footer></main></body></html>\n'
+        counterpart=base+'en/'+route[len(base):]
+        alternates='<link rel="alternate" hreflang="ja" href="'+ORIGIN+route+'"><link rel="alternate" hreflang="en" href="'+ORIGIN+counterpart+'">'
+        language='<nav class="course-language" aria-label="教材の言語"><a href="'+route+'" hreflang="ja" aria-current="page">日本語</a> · <a href="'+counterpart+'" hreflang="en" lang="en">English</a></nav>'
+        return document.replace('</head>',alternates+'</head>').replace('<body>','<body data-content-language="ja">').replace('<main>','<main>'+language,1)
     downloads='<div class="downloads"><a href="'+assets+'numerical-foundations-ja.pdf">PDFをダウンロード</a><a href="'+release['zip']+'">小さな計算例のコードZIP</a><a href="/catalog/atlas-foundations-course.json">共通の原稿JSON</a></div>'
     intro='<p class="eyebrow">NUMERICAL METHODS ATLAS / FOUNDATIONS</p><h1>'+e(d['title'])+'</h1><p class="subtitle">'+e(d['subtitle'])+'</p><p>全19章 · 19枚の図 · 38問の確認問題と解答 · 2026年11月24日版</p>'+downloads+'<section><h2 id="start">はじめに</h2>'+paragraphs(d['preface'])+'<p>想定読者：'+e(d['audience'])+'</p><p>コード断片は配布ZIPのディレクトリで実行します。第19章のコマンドはシェルに入力します。</p></section>'
     for part in d['parts']:
@@ -43,5 +47,7 @@ def build(root=ROOT):
         body+='<nav class="chapter-nav" aria-label="章を移動">'+(('<a rel="prev" href="'+base+f'{c["n"]-1:02d}/">← 前の章</a>') if c['n']>1 else '<a href="'+base+'">← はじめに</a>')+'<a href="'+base+'">目次</a>'+('<a rel="next" href="'+base+f'{c["n"]+1:02d}/">次の章 →</a>' if c['n']<19 else '<a href="'+base+'#references">参考資料 →</a>')+'</nav>'
         chapter=out/c['id'];chapter.mkdir(exist_ok=True);(chapter/'index.html').write_text(layout(c['title'],body,base+c['id']+'/'))
     print('Built 19 beginner chapters + course index from shared PDF manuscript; frozen assets verified.')
+    from foundations_en_web import build as build_english
+    build_english(root)
 
 if __name__=='__main__':build()
