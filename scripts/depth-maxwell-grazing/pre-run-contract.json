@@ -1,12 +1,9 @@
 {
   "schema_version": 1,
   "group": "maxwell-grazing",
-  "revision": 5,
-  "frozen_at_utc": "2026-11-24T05:59:31.347592+00:00",
-  "status": "FROZEN_AFTER_RETAINED_FIRST_FULL_MAIN_BEFORE_THIS_REVISION",
-  "before_any_fullcase_main": false,
-  "before_any_group_pytest": false,
-  "prior_qualification_actual_pass": 100,
+  "revision": 6,
+  "frozen_at_utc": "2026-11-24T06:19:36.711519+00:00",
+  "status": "FROZEN_METADATA_DATE_CORRECTION_AWAITING_CANONICAL_REVERIFICATION",
   "old_qualification_actual_pass": 165,
   "reference_cache_qualified": true,
   "planned_pytest": 15,
@@ -16,9 +13,9 @@
   "shared_group_seconds": 120,
   "files_sha256": {
     "LICENSE": "e1053200337d037d9d81620956ce49263117c6540b1c1352c030c220bee05f59",
-    "README.md": "5ac205cbd181c97c8c0d614091eaa1e38adb84a2b26f8a1a767538c709882d7c",
+    "README.md": "fd80da5d1475177f3157403f94715585c923d78bf95d977e7fc010ec0921a1e2",
     "acceptance.json": "65e7ffdc2018c703cb14d18c84fff6b3ae31b3e92a18125a0b0f092b015de6f7",
-    "cases.json": "4bf5ddd00a2fce40aa4378ca99fcd15a95407ca9c5090ed48e5ae8bab9670236",
+    "cases.json": "6b8417bd334606a183298f805a4337b9bda947fff47de60c34bd7844b69e4c7c",
     "centered_pml.py": "a4fa64b2780b0400d4cbbc161080e6f03bf6905bcb651aa5da651699ee8e13ab",
     "history/first-full-main/README.md": "38a320ce1faf10aa22dd285da8612a76ae46f005d436001e8ed278007f9d5555",
     "history/first-full-main/README.md.txt": "c725c6054ebe1ee934a549df084772468de397261a50213044ea93eb42f9ef73",
@@ -54,15 +51,34 @@
   },
   "reference_scope": "Qualified source and caches are bound. See cases.json for continuum vs same-grid reference roles. Main and pytest remain unexecuted until separate root authorization.",
   "previous_unexecuted_contract_sha256": "df8ad28f33f66744929948b51e7eaaf3518fa3c06d4efc0bb9901e95be07156f",
-  "revision_reason": "Joint grid/layer-strength family peaks6/9/12, not fixed-PML order. All44 criteria/physical parameters/reference waveforms unchanged;2additive actual-parameter regressions.",
-  "before_this_revision_execution": true,
-  "prior_primary_main_passed": false,
-  "prior_actual_completed_evolutions": 5,
-  "prior_actual_scientific_gates": 44,
-  "prior_passed_scientific_gates": 42,
-  "previous_contract_sha256": "82e00c660167cb3ad5b473b3d3d093675291420f25da13f3faf60b26fbca3dbb",
-  "retained_failed_result_sha256": "e95982d664f6a2c4831d47e1623ac22160b12d52d45467a315b4c98cc7ba2707",
+  "revision_reason": "Metadata only:Ansys/Meep publication dates remain unknown;record consultation date instead. NIST2026 is the verified version year,not initial publication. No numerical source,input,cache,test,criterion or result changes.",
+  "previous_contract_sha256": "670079bf7050f34c48d2aabd7f6ff9de42a8fe236b713953b899167ecd2052ba",
   "all_original_check_call_AST_exact": true,
   "all_old_test_function_AST_exact": true,
-  "reference_waveform_regenerations": 0
+  "reference_waveform_regenerations": 0,
+  "metadata_revision": "r4",
+  "proposed_edition": "2026-11-24-r2",
+  "before_any_fullcase_main": false,
+  "before_any_group_pytest": false,
+  "before_metadata_r4_canonical_rerun": true,
+  "historical_pre_metadata_chronology": {
+    "before_any_fullcase_main": false,
+    "before_any_group_pytest": false,
+    "prior_qualification_actual_pass": 100,
+    "before_this_revision_execution": true,
+    "prior_primary_main_passed": false,
+    "prior_actual_completed_evolutions": 5,
+    "prior_actual_scientific_gates": 44,
+    "prior_passed_scientific_gates": 42
+  },
+  "current_scientific_validation": {
+    "basis_edition": "2026-11-24",
+    "canonical_passed": true,
+    "tests": 15,
+    "scientific_gates": 44,
+    "verification_sha256": "e580cbc5cea905c464bea9480bc0290251da0c99cdf80b5b29109eb23420647f"
+  },
+  "historical_retained_failure_evidence": {
+    "retained_failed_result_sha256": "e95982d664f6a2c4831d47e1623ac22160b12d52d45467a315b4c98cc7ba2707"
+  }
 }

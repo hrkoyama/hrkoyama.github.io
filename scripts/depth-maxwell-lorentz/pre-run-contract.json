@@ -1,12 +1,9 @@
 {
   "schema_version": 1,
   "group": "maxwell-lorentz",
-  "revision": 3,
-  "frozen_at_utc": "2026-11-24T05:59:31.318842+00:00",
-  "status": "FROZEN_AFTER_RETAINED_FIRST_FULL_MAIN_BEFORE_THIS_REVISION",
-  "before_any_fullcase_main": false,
-  "before_any_group_pytest": false,
-  "prior_qualification_actual_pass": 100,
+  "revision": 4,
+  "frozen_at_utc": "2026-11-24T06:19:36.639730+00:00",
+  "status": "FROZEN_METADATA_DATE_CORRECTION_AWAITING_CANONICAL_REVERIFICATION",
   "old_qualification_actual_pass": 165,
   "reference_cache_qualified": true,
   "planned_pytest": 15,
@@ -16,9 +13,9 @@
   "shared_group_seconds": 120,
   "files_sha256": {
     "LICENSE": "e1053200337d037d9d81620956ce49263117c6540b1c1352c030c220bee05f59",
-    "README.md": "e83c9e8272e35d3347b756eb70f063e38a320272e66743b85359b82b099377af",
+    "README.md": "5af374b7efb97d2adf8be795cc8f13aa9868006efa2964d685c7328688242f97",
     "acceptance.json": "65e7ffdc2018c703cb14d18c84fff6b3ae31b3e92a18125a0b0f092b015de6f7",
-    "cases.json": "6b7653de0b6c8bb8d2c051376408c6a85d25cd01dad0f95510cc08119fdf8c4d",
+    "cases.json": "efbaea689701c155491c147a7ed1a7c4f55f6d253fc2a718ba5cd11ca5061c20",
     "history/first-full-main/README.md": "38a320ce1faf10aa22dd285da8612a76ae46f005d436001e8ed278007f9d5555",
     "history/first-full-main/README.md.txt": "7c3889625ea3b6bfac72fb44c9a798a6935c8848efaeb628b88ffc175f5de827",
     "history/first-full-main/cases.json.txt": "76fc945fb0cd236c509c0dce1df3e711771cc0b761efcd67c2b9625f4971fa6d",
@@ -45,15 +42,34 @@
   },
   "reference_scope": "Qualified source and caches are bound. See cases.json for continuum vs same-grid reference roles. Main and pytest remain unexecuted until separate root authorization.",
   "previous_unexecuted_contract_sha256": "0c7262373f226a8757024aff956ab36f313b6ed24cc229b58dc002eb6673adc8",
-  "revision_reason": "Fixed T60 measurement window; original material/grid/scheduler/reference sources and all57 criteria unchanged.",
-  "before_this_revision_execution": true,
-  "prior_primary_main_passed": false,
-  "prior_actual_completed_evolutions": 12,
-  "prior_actual_scientific_gates": 57,
-  "prior_passed_scientific_gates": 53,
-  "previous_contract_sha256": "b854fb53cd95157f954a19ad07d36bbe374b09aafdd36a7efcbfd387d3a5294f",
-  "retained_failed_result_sha256": "c5ab25f42408ba2983ea38d452a8db34096bdf6ab1af4913504b93da609d6e18",
+  "revision_reason": "Metadata only:Ansys/Meep publication dates remain unknown;record consultation date instead. NIST2026 is the verified version year,not initial publication. No numerical source,input,cache,test,criterion or result changes.",
+  "previous_contract_sha256": "96948188d2c110d668053e4c71ace81c32dcf976c6931f136cf595551e608a48",
   "all_original_check_call_AST_exact": true,
   "all_old_test_function_AST_exact": true,
-  "reference_waveform_regenerations": 0
+  "reference_waveform_regenerations": 0,
+  "metadata_revision": "r4",
+  "proposed_edition": "2026-11-24-r2",
+  "before_any_fullcase_main": false,
+  "before_any_group_pytest": false,
+  "before_metadata_r4_canonical_rerun": true,
+  "historical_pre_metadata_chronology": {
+    "before_any_fullcase_main": false,
+    "before_any_group_pytest": false,
+    "prior_qualification_actual_pass": 100,
+    "before_this_revision_execution": true,
+    "prior_primary_main_passed": false,
+    "prior_actual_completed_evolutions": 12,
+    "prior_actual_scientific_gates": 57,
+    "prior_passed_scientific_gates": 53
+  },
+  "current_scientific_validation": {
+    "basis_edition": "2026-11-24",
+    "canonical_passed": true,
+    "tests": 15,
+    "scientific_gates": 57,
+    "verification_sha256": "ae6466eb956613052771bdc5e0df63a18705fd71b305035571e910e2a153f8ec"
+  },
+  "historical_retained_failure_evidence": {
+    "retained_failed_result_sha256": "c5ab25f42408ba2983ea38d452a8db34096bdf6ab1af4913504b93da609d6e18"
+  }
 }

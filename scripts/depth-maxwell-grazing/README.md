@@ -62,3 +62,11 @@ updates. references/reuse-audit.json documents the unchanged call arguments.
 The joint family is peak = 6N/512, not fixed-layer spatial order. Actual
 peaks/rates are saved in records, CSV and NPZ; the normal control is peak6
 and the damped fine companion is peak12.
+
+## Documentation dates / 文書日付
+
+Meep documentation: publication/revision date unverified; accessed 2026-11-24.
+Meep文書の公開・改訂日は未確認で、2026-11-24は参照日です。
+
+The original reading record and all scientific inputs, algorithms, references, tests and criteria are unchanged.
+元の閲読記録と科学入力・数値アルゴリズム・参照データ・検査・受入基準は変更していません。

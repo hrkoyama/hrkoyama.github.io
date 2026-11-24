@@ -1293,7 +1293,7 @@
     {
       "id": "cylinder-mie2d",
       "kind": "image",
-      "source": "/code/validated-examples/2026-11-24/maxwell-cylinder/results/cylinder-mie2d-preview.png",
+      "source": "/code/validated-examples/2026-11-24-r2/maxwell-cylinder/results/cylinder-mie2d-preview.png",
       "caption": {
         "ja": "保存した最細格子の実2D散乱電場phasorの実部。 図の中央の白抜きは診断用のr<0.4のマスクで、物理円柱の半径0.25とは区別します。",
         "en": "Real part of the actual saved scattered electric phasor on the finest two-dimensional grid. The central white region is a diagnostic mask at r<0.4, distinct from the physical cylinder radius0.25."
@@ -1302,7 +1302,7 @@
     {
       "id": "lorentz-oblique-sp",
       "kind": "image",
-      "source": "/code/validated-examples/2026-11-24/maxwell-lorentz/results/lorentz-oblique-sp-preview.png",
+      "source": "/code/validated-examples/2026-11-24-r2/maxwell-lorentz/results/lorentz-oblique-sp-preview.png",
       "caption": {
         "ja": "保存したp偏光の実電場をky=4の周期y方向へ再構成した場。 周期y方向の1周期を表示しています。波形を見やすくするため、x軸とy軸の表示縮尺は異なります。",
         "en": "Actual saved p-polarized electric field reconstructed over the periodic y direction at ky=4. One transverse y period is shown. The displayed x and y scales differ to make the fields visible."
@@ -1311,7 +1311,7 @@
     {
       "id": "dispersive-grazing-pml",
       "kind": "image",
-      "source": "/code/validated-examples/2026-11-24/maxwell-grazing/results/dispersive-grazing-pml-preview.png",
+      "source": "/code/validated-examples/2026-11-24-r2/maxwell-grazing/results/dispersive-grazing-pml-preview.png",
       "caption": {
         "ja": "保存した浅角度の実電場を周期y方向へ再構成。灰色はPML領域です。 周期y方向の1周期を表示しています。波形を見やすくするため、x軸とy軸の表示縮尺は異なります。",
         "en": "Actual saved grazing electric field reconstructed over the periodic y direction; gray shading marks the PML. One transverse y period is shown. The displayed x and y scales differ to make the fields visible."

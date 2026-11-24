@@ -46,3 +46,13 @@ unchanged. The earlier 165-component qualification is retained separately;
 that result alone did not complete any of these three full candidates.
 Primary-source URLs and the exact selected reading scope are in cases.json.
 Original Yee, Berenger and Roden-Gedney papers are not claimed as read.
+
+## Documentation dates / 文書日付
+
+Ansys documentation: publication/revision date unverified; accessed 2026-11-24.
+NIST DLMF: 2026 identifies version 1.2.8, released 2026-09-15, not the initial publication year.
+Ansys文書の公開・改訂日は未確認で、2026-11-24は参照日です。
+NIST DLMFの2026年は版1.2.8（2026-09-15）の版年で、初版公開年ではありません。
+
+The original reading record and all scientific inputs, algorithms, references, tests and criteria are unchanged.
+元の閲読記録と科学入力・数値アルゴリズム・参照データ・検査・受入基準は変更していません。

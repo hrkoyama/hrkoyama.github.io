@@ -4762,26 +4762,26 @@
       "chapter": "validation-maxwell-cylinder",
       "reading_section": "cylinder-mie2d",
       "availability": "saved-output",
-      "code_base": "/code/validated-examples/2026-11-24/maxwell-cylinder/",
-      "verification": "/code/validated-examples/2026-11-24/maxwell-cylinder/verification.json",
+      "code_base": "/code/validated-examples/2026-11-24-r2/maxwell-cylinder/",
+      "verification": "/code/validated-examples/2026-11-24-r2/maxwell-cylinder/verification.json",
       "commands": [
         "python -B -W error -m pytest -q -p no:cacheprovider",
         "python -B -W error run.py --input inputs.json --output fresh-output"
       ],
       "evidence": [
         {
-          "path": "code/validated-examples/2026-11-24/maxwell-cylinder/results/result.json",
+          "path": "code/validated-examples/2026-11-24-r2/maxwell-cylinder/results/result.json",
           "json_pointer": "/cases",
           "where": {
             "id": "cylinder-mie2d"
           }
         },
         {
-          "path": "code/validated-examples/2026-11-24/maxwell-cylinder/results/cylinder-mie2d-preview.png",
+          "path": "code/validated-examples/2026-11-24-r2/maxwell-cylinder/results/cylinder-mie2d-preview.png",
           "artifact": "image"
         },
         {
-          "path": "code/validated-examples/2026-11-24/maxwell-cylinder/verification.json",
+          "path": "code/validated-examples/2026-11-24-r2/maxwell-cylinder/verification.json",
           "json_pointer": "/all_cases_rerun"
         }
       ],
@@ -4806,26 +4806,26 @@
       "chapter": "validation-maxwell-lorentz",
       "reading_section": "lorentz-oblique-sp",
       "availability": "saved-output",
-      "code_base": "/code/validated-examples/2026-11-24/maxwell-lorentz/",
-      "verification": "/code/validated-examples/2026-11-24/maxwell-lorentz/verification.json",
+      "code_base": "/code/validated-examples/2026-11-24-r2/maxwell-lorentz/",
+      "verification": "/code/validated-examples/2026-11-24-r2/maxwell-lorentz/verification.json",
       "commands": [
         "python -B -W error -m pytest -q -p no:cacheprovider",
         "python -B -W error run.py --input inputs.json --output fresh-output"
       ],
       "evidence": [
         {
-          "path": "code/validated-examples/2026-11-24/maxwell-lorentz/results/result.json",
+          "path": "code/validated-examples/2026-11-24-r2/maxwell-lorentz/results/result.json",
           "json_pointer": "/cases",
           "where": {
             "id": "lorentz-oblique-sp"
           }
         },
         {
-          "path": "code/validated-examples/2026-11-24/maxwell-lorentz/results/lorentz-oblique-sp-preview.png",
+          "path": "code/validated-examples/2026-11-24-r2/maxwell-lorentz/results/lorentz-oblique-sp-preview.png",
           "artifact": "image"
         },
         {
-          "path": "code/validated-examples/2026-11-24/maxwell-lorentz/verification.json",
+          "path": "code/validated-examples/2026-11-24-r2/maxwell-lorentz/verification.json",
           "json_pointer": "/all_cases_rerun"
         }
       ],
@@ -4850,26 +4850,26 @@
       "chapter": "validation-maxwell-grazing",
       "reading_section": "dispersive-grazing-pml",
       "availability": "saved-output",
-      "code_base": "/code/validated-examples/2026-11-24/maxwell-grazing/",
-      "verification": "/code/validated-examples/2026-11-24/maxwell-grazing/verification.json",
+      "code_base": "/code/validated-examples/2026-11-24-r2/maxwell-grazing/",
+      "verification": "/code/validated-examples/2026-11-24-r2/maxwell-grazing/verification.json",
       "commands": [
         "python -B -W error -m pytest -q -p no:cacheprovider",
         "python -B -W error run.py --input inputs.json --output fresh-output"
       ],
       "evidence": [
         {
-          "path": "code/validated-examples/2026-11-24/maxwell-grazing/results/result.json",
+          "path": "code/validated-examples/2026-11-24-r2/maxwell-grazing/results/result.json",
           "json_pointer": "/cases",
           "where": {
             "id": "dispersive-grazing-pml"
           }
         },
         {
-          "path": "code/validated-examples/2026-11-24/maxwell-grazing/results/dispersive-grazing-pml-preview.png",
+          "path": "code/validated-examples/2026-11-24-r2/maxwell-grazing/results/dispersive-grazing-pml-preview.png",
           "artifact": "image"
         },
         {
-          "path": "code/validated-examples/2026-11-24/maxwell-grazing/verification.json",
+          "path": "code/validated-examples/2026-11-24-r2/maxwell-grazing/verification.json",
           "json_pointer": "/all_cases_rerun"
         }
       ],

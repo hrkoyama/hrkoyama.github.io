@@ -3897,14 +3897,14 @@
       "depth_additional_releases": [
         {
           "group": "maxwell-lorentz",
-          "edition": "2026-11-24",
+          "edition": "2026-11-24-r2",
           "case_ids": [
             "lorentz-oblique-sp"
           ]
         },
         {
           "group": "maxwell-grazing",
-          "edition": "2026-11-24",
+          "edition": "2026-11-24-r2",
           "case_ids": [
             "dispersive-grazing-pml"
           ]
@@ -3914,7 +3914,7 @@
         {
           "release": {
             "group": "maxwell-lorentz",
-            "edition": "2026-11-24",
+            "edition": "2026-11-24-r2",
             "case_ids": [
               "lorentz-oblique-sp"
             ]
@@ -3933,7 +3933,7 @@
         {
           "release": {
             "group": "maxwell-grazing",
-            "edition": "2026-11-24",
+            "edition": "2026-11-24-r2",
             "case_ids": [
               "dispersive-grazing-pml"
             ]
@@ -4012,7 +4012,7 @@
       ],
       "depth_release": {
         "group": "maxwell-cylinder",
-        "edition": "2026-11-24",
+        "edition": "2026-11-24-r2",
         "case_ids": [
           "cylinder-mie2d"
         ]
@@ -4021,7 +4021,7 @@
         {
           "release": {
             "group": "maxwell-cylinder",
-            "edition": "2026-11-24",
+            "edition": "2026-11-24-r2",
             "case_ids": [
               "cylinder-mie2d"
             ]
@@ -4040,7 +4040,7 @@
         {
           "release": {
             "group": "maxwell-lorentz",
-            "edition": "2026-11-24",
+            "edition": "2026-11-24-r2",
             "case_ids": [
               "lorentz-oblique-sp"
             ]
@@ -4059,7 +4059,7 @@
         {
           "release": {
             "group": "maxwell-grazing",
-            "edition": "2026-11-24",
+            "edition": "2026-11-24-r2",
             "case_ids": [
               "dispersive-grazing-pml"
             ]
@@ -4079,14 +4079,14 @@
       "depth_additional_releases": [
         {
           "group": "maxwell-lorentz",
-          "edition": "2026-11-24",
+          "edition": "2026-11-24-r2",
           "case_ids": [
             "lorentz-oblique-sp"
           ]
         },
         {
           "group": "maxwell-grazing",
-          "edition": "2026-11-24",
+          "edition": "2026-11-24-r2",
           "case_ids": [
             "dispersive-grazing-pml"
           ]
@@ -12644,7 +12644,7 @@
       "boundary_conditions_ja": "第6版は遠方PEC外端、PMLなし、半体積平均の整合界面と真空モニター。旧周期/PEC・PML例を保持。",
       "depth_release": {
         "group": "maxwell-cylinder",
-        "edition": "2026-11-24",
+        "edition": "2026-11-24-r2",
         "case_ids": [
           "cylinder-mie2d"
         ]
@@ -12653,7 +12653,7 @@
         {
           "release": {
             "group": "maxwell-cylinder",
-            "edition": "2026-11-24",
+            "edition": "2026-11-24-r2",
             "case_ids": [
               "cylinder-mie2d"
             ]
@@ -12672,7 +12672,7 @@
         {
           "release": {
             "group": "maxwell-lorentz",
-            "edition": "2026-11-24",
+            "edition": "2026-11-24-r2",
             "case_ids": [
               "lorentz-oblique-sp"
             ]
@@ -12691,7 +12691,7 @@
         {
           "release": {
             "group": "maxwell-grazing",
-            "edition": "2026-11-24",
+            "edition": "2026-11-24-r2",
             "case_ids": [
               "dispersive-grazing-pml"
             ]
@@ -12711,14 +12711,14 @@
       "depth_additional_releases": [
         {
           "group": "maxwell-lorentz",
-          "edition": "2026-11-24",
+          "edition": "2026-11-24-r2",
           "case_ids": [
             "lorentz-oblique-sp"
           ]
         },
         {
           "group": "maxwell-grazing",
-          "edition": "2026-11-24",
+          "edition": "2026-11-24-r2",
           "case_ids": [
             "dispersive-grazing-pml"
           ]

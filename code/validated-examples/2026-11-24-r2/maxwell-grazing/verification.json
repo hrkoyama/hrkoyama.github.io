@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "group": "maxwell-grazing",
+  "edition": "2026-11-24-r2",
+  "verified_on": "2026-11-24",
+  "source_manifest_sha256": "6ea7a32ee58596fde26b74b5992fd76b95cfa17895b0f40b7af7438d183fbc0b",
+  "archive": {
+    "file": "atlas-maxwell-grazing-2026-11-24-r2.zip",
+    "sha256": "a9d0c65eb27e26b05eafd3774b9f651b01baf28e617769bb2bbcb7efb0b90d3d",
+    "bytes": 24547218,
+    "archive_directory": "atlas-maxwell-grazing-2026-11-24-r2"
+  },
+  "archive_sha256": "a9d0c65eb27e26b05eafd3774b9f651b01baf28e617769bb2bbcb7efb0b90d3d",
+  "returncode": 0,
+  "passed_tests": 15,
+  "tests": 15,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "dispersive-grazing-pml"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 30.156636583000363,
+  "independent_rerun_seconds": 29.04870537500028,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

@@ -1,0 +1,252 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "cases": [
+    {
+      "id": "cylinder-mie2d",
+      "passed": true,
+      "checks": {
+        "reference-and-new-components-qualified": true,
+        "cylinder-ppw12/finite": true,
+        "cylinder-ppw12/outward-scattering-power": true,
+        "cylinder-ppw12/closed-contour-sensitivity": true,
+        "cylinder-ppw12/fixed-window-sensitivity": true,
+        "cylinder-ppw18/finite": true,
+        "cylinder-ppw18/outward-scattering-power": true,
+        "cylinder-ppw18/closed-contour-sensitivity": true,
+        "cylinder-ppw18/fixed-window-sensitivity": true,
+        "cylinder-ppw24/finite": true,
+        "cylinder-ppw24/outward-scattering-power": true,
+        "cylinder-ppw24/closed-contour-sensitivity": true,
+        "cylinder-ppw24/fixed-window-sensitivity": true,
+        "finest-scattering-width": true,
+        "finest-exterior-scattered-field": true,
+        "coarse-to-finest-improvement": true,
+        "complete-run-phasor-linearity": true,
+        "complete-run-power-quadratic": true,
+        "zero-contrast-stored-snapshot-fields": true
+      },
+      "check_details": [
+        {
+          "name": "reference-and-new-components-qualified",
+          "value": 100,
+          "bound": 100,
+          "passed": true
+        },
+        {
+          "name": "cylinder-ppw12/finite",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "cylinder-ppw12/outward-scattering-power",
+          "value": 0.921516711893712,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "cylinder-ppw12/closed-contour-sensitivity",
+          "value": 0.00039973309817384713,
+          "bound": 0.01,
+          "passed": true
+        },
+        {
+          "name": "cylinder-ppw12/fixed-window-sensitivity",
+          "value": 1.1207512730945438e-06,
+          "bound": 0.005,
+          "passed": true
+        },
+        {
+          "name": "cylinder-ppw18/finite",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "cylinder-ppw18/outward-scattering-power",
+          "value": 1.1341926106853863,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "cylinder-ppw18/closed-contour-sensitivity",
+          "value": 0.00018365005866118528,
+          "bound": 0.01,
+          "passed": true
+        },
+        {
+          "name": "cylinder-ppw18/fixed-window-sensitivity",
+          "value": 1.689622556979945e-06,
+          "bound": 0.005,
+          "passed": true
+        },
+        {
+          "name": "cylinder-ppw24/finite",
+          "value": 0,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "cylinder-ppw24/outward-scattering-power",
+          "value": 0.9571725126288017,
+          "bound": 0,
+          "passed": true
+        },
+        {
+          "name": "cylinder-ppw24/closed-contour-sensitivity",
+          "value": 0.00010042527452347095,
+          "bound": 0.01,
+          "passed": true
+        },
+        {
+          "name": "cylinder-ppw24/fixed-window-sensitivity",
+          "value": 2.6581479594770165e-07,
+          "bound": 0.005,
+          "passed": true
+        },
+        {
+          "name": "finest-scattering-width",
+          "value": 0.02115770161610031,
+          "bound": 0.1,
+          "passed": true
+        },
+        {
+          "name": "finest-exterior-scattered-field",
+          "value": 0.030278686279997306,
+          "bound": 0.15,
+          "passed": true
+        },
+        {
+          "name": "coarse-to-finest-improvement",
+          "value": 0.02115770161610031,
+          "bound": 0.057620727331704535,
+          "passed": true
+        },
+        {
+          "name": "complete-run-phasor-linearity",
+          "value": 0.0,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "complete-run-power-quadratic",
+          "value": 0.0,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "zero-contrast-stored-snapshot-fields",
+          "value": 0.0,
+          "bound": 1e-26,
+          "passed": true
+        }
+      ],
+      "records": [
+        {
+          "id": "cylinder-ppw12",
+          "ppw": 12,
+          "cells": 72,
+          "steps": 1160,
+          "dt": 0.034482758620689655,
+          "fields": "cylinder-ppw12.npz",
+          "width": 0.921516711893712,
+          "reference_width": 0.9778618212649008,
+          "width_relative": 0.057620727331704535,
+          "field_relative": 0.083600071126108,
+          "contour_fraction": 0.00039973309817384713,
+          "window_fraction": 1.1207512730945438e-06,
+          "staircase_area": 0.1736111111111111,
+          "exact_area": 0.19634954084936207
+        },
+        {
+          "id": "cylinder-ppw18",
+          "ppw": 18,
+          "cells": 108,
+          "steps": 1720,
+          "dt": 0.023255813953488372,
+          "fields": "cylinder-ppw18.npz",
+          "width": 1.1341926106853863,
+          "reference_width": 0.9778618212649008,
+          "width_relative": 0.15987002050889543,
+          "field_relative": 0.1468722318940999,
+          "contour_fraction": 0.00018365005866118528,
+          "window_fraction": 1.689622556979945e-06,
+          "staircase_area": 0.21296296296296297,
+          "exact_area": 0.19634954084936207
+        },
+        {
+          "id": "cylinder-ppw24",
+          "ppw": 24,
+          "cells": 144,
+          "steps": 2280,
+          "dt": 0.017543859649122806,
+          "fields": "cylinder-ppw24.npz",
+          "width": 0.9571725126288017,
+          "reference_width": 0.9778618212649008,
+          "width_relative": 0.02115770161610031,
+          "field_relative": 0.030278686279997306,
+          "contour_fraction": 0.00010042527452347095,
+          "window_fraction": 2.6581479594770165e-07,
+          "staircase_area": 0.1892361111111111,
+          "exact_area": 0.19634954084936207
+        },
+        {
+          "id": "cylinder-half-amplitude",
+          "ppw": 24,
+          "steps": 2280,
+          "amplitude": 0.5,
+          "fields": "cylinder-half-amplitude.npz",
+          "linearity": 0.0
+        },
+        {
+          "id": "cylinder-vacuum",
+          "ppw": 12,
+          "steps": 1160,
+          "epsilon": 1.0,
+          "fields": "cylinder-vacuum.npz",
+          "stored_snapshot_scattered_peak": 0.0
+        }
+      ],
+      "metrics": {
+        "completed_primary_and_control_runs": 5,
+        "spatial_dimensions": 2,
+        "geometry": "Explicitnodalstaircase,noorderclaim",
+        "scattering_is_power_integral": true,
+        "reference": "IndependentordinarycylindricalJ/H1,notspherical",
+        "gallery_source": 145,
+        "finest_scattering_width": 0.9571725126288017,
+        "independent_scattering_width": 0.9778618212649008,
+        "finest_width_relative_error": 0.02115770161610031,
+        "finest_exterior_field_relative_error": 0.030278686279997306,
+        "complete_run_phasor_linearity": 0.0
+      }
+    }
+  ],
+  "checks": {
+    "cylinder-mie2d": true
+  },
+  "termination": "fixed_budget_completed",
+  "failure": null,
+  "input_sha256": "dd26a0de9f369e246970f1fffcaaa7435580b62dff8574daa768a59370bf5b7f",
+  "duration_seconds": 6.035476249999192,
+  "source_sha256": {
+    "LICENSE": "e1053200337d037d9d81620956ce49263117c6540b1c1352c030c220bee05f59",
+    "README.md": "6410d14d81cc8f8a6e8f6c8f1d3d40dc4a9324839ab71160b175bde3ed7f501c",
+    "acceptance.json": "65e7ffdc2018c703cb14d18c84fff6b3ae31b3e92a18125a0b0f092b015de6f7",
+    "cases.json": "68902102c6f2dbf82608ef802b1dbc502aeb95f2c08590e762d4028d2950f2b8",
+    "cylinder_draft.py": "c133a24605f00019eb858d11b0887fd5d07a88942bbc29841df73ae8426a5945",
+    "cylinder_evolution.py": "7bc2ea7eaeb69ed2102bba76a6c2c5ce895d64fdefa4ef96d3744cdf027dcf14",
+    "inputs.json": "dd26a0de9f369e246970f1fffcaaa7435580b62dff8574daa768a59370bf5b7f",
+    "io_contract.py": "d24a709621e7a3419ba2ed3264606242ce67cf79879e57466668a40ec2988792",
+    "plot.py": "c974296ab95f159048f274936c4f0255dbbc566bef4f6c94e8349647948a364c",
+    "poynting.py": "0bccf914b7daad7a258957fd65f222a793ce8bc7097698a7a494532cb8f84da6",
+    "reference_draft.py": "d50ed84ce3c4e71ec9ed76105daa6b7f0d77d05ed5eedc69abb98c3d33667f61",
+    "references/qualification-origin.json": "5bde9f1e789a5fa087eaef64fe4d5fcfb15d90148ac24aff01ffeeec5e4b8b3e",
+    "references/qualification.json": "ae9ef359ae7223f001b0f19f94f4e74737b3b6a64ffc6a46e2f8ba1e2ac1a607",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "run.py": "84bbb727df853a90bf1ba4ec994d307a0c013746d3b623215382f3eb3a319a9a",
+    "test_cylinder.py": "e8477c69ae8637fad2dd77a5c56a97bc9de34cc07f029095ee088a7891b2e57a",
+    "pre-run-contract.json": "79b080b830ab18885695acf71a16d6d40f0940216f96a8f857ca0f05ba5106c7"
+  }
+}

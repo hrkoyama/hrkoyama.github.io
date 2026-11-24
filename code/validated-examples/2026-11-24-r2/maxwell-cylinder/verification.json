@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "group": "maxwell-cylinder",
+  "edition": "2026-11-24-r2",
+  "verified_on": "2026-11-24",
+  "source_manifest_sha256": "bd55f11428730f3ad2a4048b74efd4dc4eae9997e55c8bc151d5ed4c0adf2dd6",
+  "archive": {
+    "file": "atlas-maxwell-cylinder-2026-11-24-r2.zip",
+    "sha256": "bf2f69032cfe912d23e065582397202a695dde241350774a0c69997b70bd1a06",
+    "bytes": 16448749,
+    "archive_directory": "atlas-maxwell-cylinder-2026-11-24-r2"
+  },
+  "archive_sha256": "bf2f69032cfe912d23e065582397202a695dde241350774a0c69997b70bd1a06",
+  "returncode": 0,
+  "passed_tests": 22,
+  "tests": 22,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "cylinder-mie2d"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 6.403526458001579,
+  "independent_rerun_seconds": 7.2723657919996185,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

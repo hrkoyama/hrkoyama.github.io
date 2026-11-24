@@ -4,6 +4,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createReadStream,readFileSync,statSync} from 'node:fs';
 import {createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
 const root=new URL('../',import.meta.url);
 const bytes=p=>readFileSync(new URL(p,root));
 const json=p=>JSON.parse(bytes(p));
@@ -218,4 +219,28 @@ test('only active MHD moves to November 24, retaining old November 23 bytes, inp
  assert.equal(result.passed,true);assert.equal(v.passed,true);assert.equal(v.passed_tests,47);
  for(const c of result.cases){assert.equal(fingerprint(sorted(Object.keys(c.checks))),before.case_check_key_hashes[c.id]);assert.ok(Object.values(c.checks).every(value=>value===true));}
  assert.equal(manifest.version,e.new_edition);assert.equal(sha(base+'source-manifest.json'),release.manifest_sha256);
+});
+
+// Document consultation/version dates are not inferred publication years.
+test('official document dates distinguish access, version release and publication',()=>{
+ const refs=current().releases.filter(row=>row.group.startsWith('maxwell-')).flatMap(row=>json(releaseBase(row)+'cases.json').flatMap(c=>[...c.references,...c.citations]));
+ const undated=refs.filter(row=>['ansys-cylinder','meep-materials'].includes(row.id));assert.ok(undated.length);
+ for(const r of undated){assert.equal(Object.hasOwn(r,'year'),false);assert.equal(r.accessed_on,'2026-11-24');}
+ const nist=refs.filter(row=>row.id==='nist-wronskian');assert.ok(nist.length);
+ for(const r of nist){assert.equal(r.year_role,'version');assert.equal(r.version,'1.2.8');assert.equal(r.release_date,'2026-09-15');assert.equal(r.accessed_on,'2026-11-24');}
+ for(const r of refs.filter(row=>row.id==='johnson-pml'))assert.equal(r.year,2021);
+ execFileSync('python3',['-B','-c',String.raw`
+import ast
+from pathlib import Path
+a=ast.parse(Path('scripts/build-atlas-depth-examples.py').read_text())
+f=next(n for n in a.body if isinstance(n,ast.FunctionDef) and n.name=='reference_label')
+ns={};exec(compile(ast.Module(body=[f],type_ignores=[]),'reference-label-only','exec'),ns)
+label=ns['reference_label']
+assert label({'title':'Official formulation'})=='Official formulation'
+unknown=label({'author':'Official author','title':'Undated documentation','accessed_on':'2026-11-24'})
+assert '(n.d.)' in unknown and '[accessed 2026-11-24]' in unknown and '(2026)' not in unknown
+version=label({'author':'NIST DLMF','title':'Identity','year':2026,'year_role':'version','version':'1.2.8','release_date':'2026-09-15','accessed_on':'2026-11-24'})
+assert 'version 1.2.8, released 2026-09-15' in version and '[accessed 2026-11-24]' in version
+assert label({'author':'Original author','title':'Paper','year':2021})=='Original author (2021). Paper'
+`],{cwd:root,timeout:10_000});
 });

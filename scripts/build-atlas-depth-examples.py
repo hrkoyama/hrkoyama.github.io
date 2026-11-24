@@ -147,7 +147,14 @@ def group_commands(data, language):
 
 def reference_label(reference):
     author = reference.get('author')
-    return (author+' ('+str(reference.get('year', 'n.d.'))+'). ' if author else '')+reference['title']
+    if reference.get('year_role') == 'version':
+        label = (author+'. ' if author else '')+reference['title']
+        label += ' (version '+reference['version']+', released '+reference['release_date']+')'
+    else:
+        label = (author+' ('+str(reference.get('year', 'n.d.'))+'). ' if author else '')+reference['title']
+    if reference.get('accessed_on'):
+        label += ' [accessed '+reference['accessed_on']+']'
+    return label
 
 
 def reference_html(case, language, anchor):

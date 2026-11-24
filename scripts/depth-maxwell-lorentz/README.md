@@ -54,3 +54,11 @@ history/first-full-main contains compact scientific results and old
 changed-source texts. All complete original source and failed native NPZ
 arrays remain in the retained private attempt. This compact public history
 does not claim to contain every failed native field.
+
+## Documentation dates / 文書日付
+
+Meep documentation: publication/revision date unverified; accessed 2026-11-24.
+Meep文書の公開・改訂日は未確認で、2026-11-24は参照日です。
+
+The original reading record and all scientific inputs, algorithms, references, tests and criteria are unchanged.
+元の閲読記録と科学入力・数値アルゴリズム・参照データ・検査・受入基準は変更していません。
