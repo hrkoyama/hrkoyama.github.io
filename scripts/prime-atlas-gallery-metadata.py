@@ -140,13 +140,14 @@ def assemble(root, *, load_group=None):
                 'Only immutable canonical image sources may be primed')
         matches = []
         for group in expansion['groups']:
-            prefix = 'code/validated-examples/' + group['edition'] + '/' + group['id'] + '/'
+            edition = group.get('edition', expansion['edition'])
+            prefix = 'code/validated-examples/' + edition + '/' + group['id'] + '/'
             if source.startswith('/' + prefix):
-                matches.append((group, prefix))
+                matches.append((group, edition, prefix))
         require(len(matches) == 1, 'Saved picture needs exactly one source release')
-        group, prefix = matches[0]
+        group, edition, prefix = matches[0]
         base = root / prefix
-        key = (group['id'], group['edition'])
+        key = (group['id'], edition)
         if key not in loaded_groups:
             loaded_groups[key] = load_group(root, *key)
         qualified = loaded_groups[key]
@@ -157,9 +158,9 @@ def assemble(root, *, load_group=None):
                 all(verification.get(key) == 0 for key in ['failures', 'errors', 'skipped']),
                 'Unqualified canonical release: ' + group['id'])
         require(manifest.get('group') == group['id'] and
-                manifest.get('version') == group['edition'] and
+                manifest.get('version') == edition and
                 verification.get('group') == group['id'] and
-                verification.get('edition') == group['edition'] and
+                verification.get('edition') == edition and
                 verification['source_manifest_sha256'] == sha(base / 'source-manifest.json'),
                 'Canonical packet identity differs')
         files = manifest['files']

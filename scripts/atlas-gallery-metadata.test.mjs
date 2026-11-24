@@ -38,7 +38,7 @@ class MetadataFixtures(unittest.TestCase):
   dump(self.base/'verification.json',self.verification)
   self.catalog={'reviewed_on':'2026-11-24','items':[{'id':'old','kind':'image','source':'/assets/old.png','caption':{'ja':'元の図','en':'Old figure'}},{'id':'new','kind':'image','source':'/code/validated-examples/2026-11-24/fixture/results/new-preview.png','caption':{'ja':'保存図 表示条件','en':'Saved figure Display scope'}}]}
   dump(r/'catalog/atlas-gallery.json',self.catalog);dump(r/'catalog/atlas-test-problems.json',{'problems':[{'id':'old'},{'id':'new'}]})
-  dump(r/'catalog/atlas-depth-expansion.json',{'groups':[{'id':'fixture','edition':'2026-11-24'}],'case_problem_ids':{'new':'new'},'case_notes':{'new':{'ja':'制限 表示条件','en':'Limits Display scope'}}})
+  dump(r/'catalog/atlas-depth-expansion.json',{'edition':'2026-11-22','groups':[{'id':'fixture','edition':'2026-11-24'}],'case_problem_ids':{'new':'new'},'case_notes':{'new':{'ja':'制限 表示条件','en':'Limits Display scope'}}})
   dump(self.gallery/'calculations.json',{'historical_numerics':'unchanged'});dump(self.gallery/'verification.json',{'historical_tests':20})
   self.old={'schema_version':1,'items':[{'id':'old','image':'/assets/old.png','image_sha256':digest(r/'assets/old.png'),'width':2,'height':1,'source_kind':'existing-figure','caption':self.catalog['items'][0]['caption']}],'source_sha256':{'assets/old.png':digest(r/'assets/old.png'),'catalog/atlas-gallery.json':'0'*64,'catalog/atlas-test-problems.json':'1'*64,'catalog/atlas-depth-expansion.json':'2'*64},'calculations_sha256':digest(self.gallery/'calculations.json'),'metadata_updates':[{'scope':'Retained prior history'}]}
   dump(self.gallery/'preview-manifest.json',self.old);self.calls=0
@@ -59,6 +59,18 @@ class MetadataFixtures(unittest.TestCase):
    if name!='numerical-methods-atlas/gallery/preview-manifest.json':self.assertEqual((self.root/name).read_bytes(),value,name)
   with patch.dict(sys.modules,{'atlas_depth_release':types.SimpleNamespace(load_depth_group=self.load)}),contextlib.redirect_stdout(io.StringIO()):module.prime(self.root)
   self.assertEqual((self.gallery/'preview-manifest.json').read_bytes(),once);self.assertFalse((self.gallery/'preview-manifest.json.metadata.tmp').exists())
+ def test_nonmatching_legacy_group_inherits_root_edition(self):
+  path=self.root/'catalog/atlas-depth-expansion.json';expansion=json.loads(path.read_text())
+  expansion['groups'].insert(0,{'id':'legacy'});dump(path,expansion)
+  result,added=self.assemble()
+  self.assertEqual(added,['new']);self.assertEqual(self.calls,1)
+  self.assertEqual(result['items'][1]['image'],self.catalog['items'][1]['source'])
+ def test_matching_group_inherits_root_edition_everywhere(self):
+  path=self.root/'catalog/atlas-depth-expansion.json';expansion=json.loads(path.read_text())
+  expansion['edition']='2026-11-24';expansion['groups']=[{'id':'fixture'}];dump(path,expansion)
+  result,added=self.assemble()
+  self.assertEqual(added,['new']);self.assertEqual(self.calls,1)
+  self.assertEqual(result['items'][1]['image'],self.catalog['items'][1]['source'])
  def test_new_scientific_plot_is_not_implicitly_generated(self):
   self.catalog['items'][1]['kind']='computed-preview';dump(self.root/'catalog/atlas-gallery.json',self.catalog)
   with self.assertRaises(ValueError):self.assemble()
@@ -85,10 +97,10 @@ class MetadataFixtures(unittest.TestCase):
   with patch.dict(sys.modules,{'atlas_depth_release':types.SimpleNamespace(load_depth_group=reject)}),self.assertRaises(AssertionError):module.prime(self.root)
   self.assertEqual((self.gallery/'preview-manifest.json').read_bytes(),before)
 suite=unittest.defaultTestLoader.loadTestsFromTestCase(MetadataFixtures);result=unittest.TextTestRunner(verbosity=1).run(suite)
-assert result.wasSuccessful() and result.testsRun==8
-print('Eight metadata-only fixtures passed; no scientific package or solver executed.')
+assert result.wasSuccessful() and result.testsRun==10
+print('Ten metadata-only fixtures passed; no scientific package or solver executed.')
 `,primer],{encoding:'utf8',timeout:20000,maxBuffer:4*1024*1024});
- assert.match(output,/Eight metadata-only fixtures passed/);
+ assert.match(output,/Ten metadata-only fixtures passed/);
 });
 
 test('saved-image priming precedes strict reverse-route consumers',()=>{
