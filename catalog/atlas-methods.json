@@ -16087,18 +16087,11 @@
           "scope": "Selected official LU, Cholesky, conditioning and refinement paragraphs were read. LAPACK writes A=PLU; this source records PA=LU. The implemented mixed-precision refinement differs from the selected same-precision RFS description."
         }
       ],
-      "assumptions": {
-        "ja": "実正方行列、行部分ピボット、固定された小さい非特異例。",
-        "en": "Real, square, nonsingular matrices from a small fixed set; row partial pivoting."
-      },
-      "units": {
-        "ja": "無次元の代数系。FEM弦では長さ・張力・密度1。",
-        "en": "Dimensionless algebraic controls. The FEM string has unit length, tension and density."
-      },
-      "boundary_conditions": {
-        "ja": "代数例に物理境界なし。弦は同次Dirichlet端点。",
-        "en": "No physical boundary conditions apply to the algebraic matrices. The string has homogeneous Dirichlet endpoints."
-      },
+      "assumptions": [
+        "Real, square, nonsingular matrices from a small fixed set; row partial pivoting."
+      ],
+      "units": "Dimensionless algebraic controls. The FEM string has unit length, tension and density.",
+      "boundary_conditions": "No physical boundary conditions apply to the algebraic matrices. The string has homogeneous Dirichlet endpoints.",
       "limitations": {
         "ja": "全スケールでの安定性・任意の高条件数系の収束を保証せず、binary64再構成の増大率とbinary32補正因子を区別。",
         "en": "No guarantee for arbitrary scaling or convergence on every ill-conditioned matrix. Binary64 reconstruction growth is distinct from the binary32 correction factor."
@@ -16147,7 +16140,12 @@
             }
           ]
         }
-      ]
+      ],
+      "assumptions_ja": [
+        "実正方行列、行部分ピボット、固定された小さい非特異例。"
+      ],
+      "units_ja": "無次元の代数系。FEM弦では長さ・張力・密度1。",
+      "boundary_conditions_ja": "代数例に物理境界なし。弦は同次Dirichlet端点。"
     },
     {
       "id": "cholesky",
@@ -16180,18 +16178,11 @@
           "scope": "Selected official LU, Cholesky, conditioning and refinement paragraphs were read. LAPACK writes A=PLU; this source records PA=LU. The implemented mixed-precision refinement differs from the selected same-precision RFS description."
         }
       ],
-      "assumptions": {
-        "ja": "実対称正定値。対称性と正ピボットを明示検査。",
-        "en": "Real symmetric positive-definite matrices. Exact symmetry and positive pivots are explicitly checked."
-      },
-      "units": {
-        "ja": "無次元の代数系。FEM弦では長さ・張力・密度1。",
-        "en": "Dimensionless algebraic controls. The FEM string has unit length, tension and density."
-      },
-      "boundary_conditions": {
-        "ja": "代数例に物理境界なし。弦は同次Dirichlet端点。",
-        "en": "No physical boundary conditions apply to the algebraic matrices. The string has homogeneous Dirichlet endpoints."
-      },
+      "assumptions": [
+        "Real symmetric positive-definite matrices. Exact symmetry and positive pivots are explicitly checked."
+      ],
+      "units": "Dimensionless algebraic controls. The FEM string has unit length, tension and density.",
+      "boundary_conditions": "No physical boundary conditions apply to the algebraic matrices. The string has homogeneous Dirichlet endpoints.",
       "limitations": {
         "ja": "不定値・複素系・pivotedCholesky・任意の極端なスケールには拡張していません。",
         "en": "No indefinite or complex systems, pivoted Cholesky, or arbitrary extreme-scaling capability is claimed."
@@ -16239,7 +16230,12 @@
             }
           ]
         }
-      ]
+      ],
+      "assumptions_ja": [
+        "実対称正定値。対称性と正ピボットを明示検査。"
+      ],
+      "units_ja": "無次元の代数系。FEM弦では長さ・張力・密度1。",
+      "boundary_conditions_ja": "代数例に物理境界なし。弦は同次Dirichlet端点。"
     },
     {
       "id": "minres",
@@ -16272,18 +16268,11 @@
           "scope": "Selected author discussion of symmetry, indefinite A, SPD preconditioning, Lanczos and the original residual was read. The original 1975 paper was not read."
         }
       ],
-      "assumptions": {
-        "ja": "実対称非特異A、前処理はSPD合同変換。",
-        "en": "Real symmetric nonsingular A, with SPD congruence preconditioning."
-      },
-      "units": {
-        "ja": "無次元の代数系。FEM弦では長さ・張力・密度1。",
-        "en": "Dimensionless algebraic controls. The FEM string has unit length, tension and density."
-      },
-      "boundary_conditions": {
-        "ja": "代数例に物理境界なし。弦は同次Dirichlet端点。",
-        "en": "No physical boundary conditions apply to the algebraic matrices. The string has homogeneous Dirichlet endpoints."
-      },
+      "assumptions": [
+        "Real symmetric nonsingular A, with SPD congruence preconditioning."
+      ],
+      "units": "Dimensionless algebraic controls. The FEM string has unit length, tension and density.",
+      "boundary_conditions": "No physical boundary conditions apply to the algebraic matrices. The string has homogeneous Dirichlet endpoints.",
       "limitations": {
         "ja": "短漸化式のproductionPaige–Saunders実装やMINRES-QLP、特異系の最小ノルム解、完全なStokesPDEではありません。",
         "en": "This is not compact production Paige–Saunders MINRES, MINRES-QLP, a singular minimum-norm solver, or a full Stokes PDE solver."
@@ -16331,7 +16320,12 @@
             }
           ]
         }
-      ]
+      ],
+      "assumptions_ja": [
+        "実対称非特異A、前処理はSPD合同変換。"
+      ],
+      "units_ja": "無次元の代数系。FEM弦では長さ・張力・密度1。",
+      "boundary_conditions_ja": "代数例に物理境界なし。弦は同次Dirichlet端点。"
     },
     {
       "id": "lobpcg",
@@ -16369,18 +16363,11 @@
           "scope": "Selected adapter and initial B-orthonormalization exception handling was read. The component binds the hash of the actual installed source."
         }
       ],
-      "assumptions": {
-        "ja": "対称K、SPD質量M、n15/31/63、3列初期{1,x³,x⁶}と厳密K逆前処理。",
-        "en": "Symmetric K, SPD mass matrix M, 15/31/63 interior nodes, initial columns {1, x^3, x^6}, and exact-K-inverse preconditioning."
-      },
-      "units": {
-        "ja": "無次元の代数系。FEM弦では長さ・張力・密度1。",
-        "en": "Dimensionless algebraic controls. The FEM string has unit length, tension and density."
-      },
-      "boundary_conditions": {
-        "ja": "代数例に物理境界なし。弦は同次Dirichlet端点。",
-        "en": "No physical boundary conditions apply to the algebraic matrices. The string has homogeneous Dirichlet endpoints."
-      },
+      "assumptions": [
+        "Symmetric K, SPD mass matrix M, 15/31/63 interior nodes, initial columns {1, x^3, x^6}, and exact-K-inverse preconditioning."
+      ],
+      "units": "Dimensionless algebraic controls. The FEM string has unit length, tension and density.",
+      "boundary_conditions": "No physical boundary conditions apply to the algebraic matrices. The string has homogeneous Dirichlet endpoints.",
       "limitations": {
         "ja": "LOBPCG本体はSciPyで自作ではなく、小さい1D弦のみ。未返却のライブラリ内部反復保存や一般のcluster/性能保証はしません。",
         "en": "LOBPCG is implemented by SciPy, not authored here. This example covers a small 1D string; it does not expose unreturned internal histories or guarantee general clustered-spectrum or performance behavior."
@@ -16428,7 +16415,12 @@
             }
           ]
         }
-      ]
+      ],
+      "assumptions_ja": [
+        "対称K、SPD質量M、n15/31/63、3列初期{1,x³,x⁶}と厳密K逆前処理。"
+      ],
+      "units_ja": "無次元の代数系。FEM弦では長さ・張力・密度1。",
+      "boundary_conditions_ja": "代数例に物理境界なし。弦は同次Dirichlet端点。"
     },
     {
       "id": "pseudo-arclength-continuation",
@@ -16466,18 +16458,11 @@
           "scope": "Problem8/Eq52: boundary-value equation, analytic cosh family, branch count and printed rounded critical value. The author’s parameter equals2 times our theta. Independent Decimal80 exact-family qualification remains the numerical reference; the printed rounded anchor is a separate coarse check."
         }
       ],
-      "assumptions": {
-        "ja": "無次元x∈[0,1]、両端u=0、中心差分の内点31/63/127。零解から固定ds=0.1で80step。λ=2で上下枝を補正し、λ=4は離散無解の意図的な対照です。擬似弧長は物理時間ではありません。",
-        "en": "Dimensionless x in [0,1] with zero Dirichlet endpoints and 31/63/127 interior nodes. Take 80 fixed ds=0.1 steps from the zero solution. Correct both branches at lambda=2; lambda=4 is a deliberate discrete no-solution control. Pseudo-arclength is not physical time."
-      },
-      "units": {
-        "ja": "無次元。擬似弧長は物理時間ではありません。",
-        "en": "Dimensionless. Pseudo-arclength is not physical time."
-      },
-      "boundary_conditions": {
-        "ja": "x=0,1で同次Dirichlet条件。",
-        "en": "Homogeneous Dirichlet endpoints at x=0 and x=1."
-      },
+      "assumptions": [
+        "Dimensionless x in [0,1] with zero Dirichlet endpoints and 31/63/127 interior nodes. Take 80 fixed ds=0.1 steps from the zero solution. Correct both branches at lambda=2; lambda=4 is a deliberate discrete no-solution control. Pseudo-arclength is not physical time."
+      ],
+      "units": "Dimensionless. Pseudo-arclength is not physical time.",
+      "boundary_conditions": "Homogeneous Dirichlet endpoints at x=0 and x=1.",
       "limitations": {
         "ja": "小さな1次元の単純foldだけです。分岐曲線の解析族比較では計算した中点値を族の座標に使い、固定λの独立形状比較と区別します。連続foldは離散解そのものではなく、一般の分岐追跡や大規模性能は保証しません。",
         "en": "A small one-dimensional simple fold only. The whole-curve family comparison uses the computed midpoint as its family coordinate and is distinct from the independent fixed-lambda profile checks. The continuum fold is not an exact discrete solution. No general bifurcation-tracking or large-scale performance claim."
@@ -16525,7 +16510,12 @@
             }
           ]
         }
-      ]
+      ],
+      "assumptions_ja": [
+        "無次元x∈[0,1]、両端u=0、中心差分の内点31/63/127。零解から固定ds=0.1で80step。λ=2で上下枝を補正し、λ=4は離散無解の意図的な対照です。擬似弧長は物理時間ではありません。"
+      ],
+      "units_ja": "無次元。擬似弧長は物理時間ではありません。",
+      "boundary_conditions_ja": "x=0,1で同次Dirichlet条件。"
     },
     {
       "id": "jacobian-free-newton-krylov",
@@ -16573,18 +16563,11 @@
           "scope": "Selected Inexact Newton-like Methods and beginning of Matrix-Free Methods, residual forcing inequality and matrix-free/preconditioner distinction. Context only. No PETSc installation/execution or borrowed numerical success. Our hyperplane continuation is not a claim to implement every SNES arc-length scheme."
         }
       ],
-      "assumptions": {
-        "ja": "同じ無次元1次元Dirichlet問題でλ=3、内点63/127、初期値0または4sin(πx)。3Jv×2格子×2枝の12解法と固定η=1e-8の解析Jv対照1本。GMRES restart24/max96、Newton最大24、残差許容1e-9です。",
-        "en": "The same dimensionless one-dimensional Dirichlet problem at lambda=3, 63/127 interior nodes, starting from zero or 4sin(pi*x). Twelve mode/grid/branch solves plus one analytic-Jv constant-eta=1e-8 control. GMRES restart24/max96, at most 24 Newton steps and nonlinear tolerance1e-9."
-      },
-      "units": {
-        "ja": "無次元。擬似弧長は物理時間ではありません。",
-        "en": "Dimensionless. Pseudo-arclength is not physical time."
-      },
-      "boundary_conditions": {
-        "ja": "x=0,1で同次Dirichlet条件。",
-        "en": "Homogeneous Dirichlet endpoints at x=0 and x=1."
-      },
+      "assumptions": [
+        "The same dimensionless one-dimensional Dirichlet problem at lambda=3, 63/127 interior nodes, starting from zero or 4sin(pi*x). Twelve mode/grid/branch solves plus one analytic-Jv constant-eta=1e-8 control. GMRES restart24/max96, at most 24 Newton steps and nonlinear tolerance1e-9."
+      ],
+      "units": "Dimensionless. Pseudo-arclength is not physical time.",
+      "boundary_conditions": "Homogeneous Dirichlet endpoints at x=0 and x=1.",
       "limitations": {
         "ja": "小1次元BVP向けの教育実装です。ADは四則・exp・境界paddingの方向微分に限ります。小Hessenberg行列と基底は保持します。ηの固定下限があるため、原著EWの漸近収束定理、一般AD/PETScとの同等性、速度向上や大域収束は主張しません。",
         "en": "An educational small1D BVP. AD covers only elementary arithmetic, exp and linear boundary padding. Small Hessenberg matrices and Krylov bases are stored. The fixed eta floor precludes claiming the unmodified EW asymptotic theorem. No general-AD/PETSc equivalence, speedup or global-convergence guarantee."
@@ -16632,7 +16615,12 @@
             }
           ]
         }
-      ]
+      ],
+      "assumptions_ja": [
+        "同じ無次元1次元Dirichlet問題でλ=3、内点63/127、初期値0または4sin(πx)。3Jv×2格子×2枝の12解法と固定η=1e-8の解析Jv対照1本。GMRES restart24/max96、Newton最大24、残差許容1e-9です。"
+      ],
+      "units_ja": "無次元。擬似弧長は物理時間ではありません。",
+      "boundary_conditions_ja": "x=0,1で同次Dirichlet条件。"
     }
   ],
   "editorial_policy": {

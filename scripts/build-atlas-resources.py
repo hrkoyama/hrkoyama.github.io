@@ -12,6 +12,7 @@ from atlas_inverse_release import inverse_release_record
 from atlas_fdtd_release import fdtd_release_record
 from atlas_multinverse_release import multinverse_release_record
 from atlas_depth_release import depth_release_records
+from atlas_method_scope import depth_coverage_scope
 from atlas_method_routes import load_method_routes
 from atlas_method_route_cards import (render_method_route_links, render_method_routes,
                                       markdown_method_routes)
@@ -393,7 +394,7 @@ for x in METHODS:
             forces=record['force_release'];force_base=forces['code_base']
             body+='<h2>'+('周期He₂の原子間力とBOMDへの接続' if ja else 'Periodic He₂ forces and the BOMD interface')+'</h2><p>'+esc(x['force_scope'][lang])+'</p><p>'+link('/numerical-methods-atlas/'+lang+'/read/periodic-forces/','力の有限差分・独立参照・収束' if ja else 'Force finite differences, independent reference and refinement')+' · '+link(force_base+'periodic_forces.py','Python force driver')+' · '+link(force_base+'bomd.py','BOMD adapter')+' · '+link(force_base+'test_periodic_forces.py','Tests')+' · '+link(forces['release']['download'],'ZIP')+'</p>'
         if x.get('depth_release'):
-            body+='<h2>'+('小規模な専用実装と実測検証' if ja else 'Small dedicated implementations and measured checks')+'</h2><p>'+esc(x['depth_scope'][lang])+'</p>'
+            body+='<h2>'+('小規模な専用実装と実測検証' if ja else 'Small dedicated implementations and measured checks')+'</h2><p>'+esc(depth_coverage_scope(x,lang))+'</p>'
             for extra in [record['depth_release'],*record.get('depth_additional_releases',[])]:
                 body+='<ul>'+''.join('<li>'+link(e['entry']+'?lang='+lang,e['title'][lang])+' · '+link(e['reading'][lang],'条件・数式・一次文献' if ja else 'Conditions, equations and primary sources')+'</li>' for e in extra['examples'])+'</ul>'
                 body+='<p>'+link(extra['code_download'],'コード・固定入力・テスト・結果 ZIP' if ja else 'Code, fixed inputs, tests and results ZIP')+' · '+link(extra['code_verification'],str(extra['passed_tests'])+('件の検査と独立展開記録' if ja else ' tests and independent-extraction receipt'))+'</p>'
@@ -442,7 +443,7 @@ for x in METHODS:
         md+='Download: '+record['code_download']+'\nManifest: '+record['code_manifest']+'\nVerification: '+record['code_verification']+'\nMeasurements: '+record['results']+'\n\nCommands (from extracted supplement):\n\n```sh\npython -m pip install -r requirements.txt\n'+'\n'.join(record['run_commands'])+'\n```\n\n'
     if x.get('force_examples'):md+='Force scope: '+x['force_scope']['en']+'\n\n'+json.dumps(record['force_release'],ensure_ascii=False,indent=2)+'\n\n'
     if x.get('depth_release'):
-        md+='## Small fixed-input validation supplements\n\n'+x['depth_scope']['en']+'\n\n'+x['depth_scope']['ja']+'\n\n'
+        md+='## Small fixed-input validation supplements\n\n'+depth_coverage_scope(x,'en')+'\n\n'+depth_coverage_scope(x,'ja')+'\n\n'
         for extra in [record['depth_release'],*record.get('depth_additional_releases',[])]:
             md+='\n'.join('- '+e['title']['en']+': '+e['entry'] for e in extra['examples'])+'\n\n'
             md+='Download: '+extra['code_download']+'\nVerification: '+extra['code_verification']+'\nResults: '+extra['results']+'\n\n'

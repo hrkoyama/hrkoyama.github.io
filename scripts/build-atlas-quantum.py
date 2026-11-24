@@ -15,6 +15,8 @@ import xml.etree.ElementTree as ET
 from atlas_execution_discovery import load_discovery
 from atlas_equation_availability import equation_evidence
 from atlas_equation_inventory import merge_catalog_equations
+from atlas_method_scope import depth_coverage_scope
+
 
 ROOT=Path(__file__).resolve().parents[1]
 ATLAS=ROOT/'numerical-methods-atlas'
@@ -180,7 +182,7 @@ for path in [ATLAS/'coverage.json',ATLAS/'assets/site-coverage.json']:
         assert x['status']=='educational-example'
         coverage['items'].append({'kind':'method','id':x['id'],'label':x['name']['en'],
             'chapter':'validation-'+x['depth_release']['group'],'status':'local-example',
-            'group':x['group']['en'],'scope':x['depth_scope']['en'],'origin':'curated-depth-example'})
+            'group':x['group']['en'],'scope':depth_coverage_scope(x,'en'),'origin':'curated-depth-example'})
     # New splitting readings extend the method inventory, not the solver or
     # independent-problem inventory. Preserve all earlier example assignments.
     splitting_origin='curated-operator-splitting-reading'

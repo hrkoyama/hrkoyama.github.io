@@ -244,3 +244,45 @@ assert 'version 1.2.8, released 2026-09-15' in version and '[accessed 2026-11-24
 assert label({'author':'Original author','title':'Paper','year':2021})=='Original author (2021). Paper'
 `],{cwd:root,timeout:10_000});
 });
+
+test('coverage retains legacy scopes and uses only the exact primary supplemental profile',()=>{
+ execFileSync('python3',['-B','-c',String.raw`
+import ast,copy,json
+from pathlib import Path
+a=ast.parse(Path('scripts/atlas_method_scope.py').read_text())
+f=next(n for n in a.body if isinstance(n,ast.FunctionDef) and n.name=='depth_coverage_scope')
+ns={};exec(compile(ast.Module(body=[f],type_ignores=[]),'coverage-scope-only','exec'),ns);scope=ns['depth_coverage_scope']
+methods=json.loads(Path('catalog/atlas-methods.json').read_text())['methods'];fallback=[]
+for m in methods:
+ if not m.get('depth_release'):continue
+ for lang in ('ja','en'):
+  value=scope(m,lang)
+  if 'depth_scope' in m:assert value==m['depth_scope'][lang]
+  else:
+   matched=[p for p in m['supplemental_scope_profiles'] if p['release']==m['depth_release']];assert len(matched)==1
+   assert value.startswith(matched[0]['scope'][lang]) and all(p[lang] in value for p in matched[0]['limits'])
+ if 'depth_scope' not in m:fallback.append(m['id'])
+assert set(fallback)=={'leapfrog','thomas','gmres','newton','fdtd','automatic-differentiation'}
+release={'group':'one','edition':'2026-11-24','case_ids':['fixed']}
+profile={'release':release,'scope':{'ja':'固定例のみ。','en':'Fixed case only.'},'limits':[{'ja':'一般保証なし。','en':'No general guarantee.'}]}
+other={'release':{**release,'group':'other'},'scope':{'ja':'別の例。','en':'UNRELATED RELEASE'},'limits':profile['limits']}
+m={'depth_release':release,'supplemental_scope_profiles':[profile,other],'summary':{'en':'UNQUALIFIED GLOBAL SUMMARY'}}
+assert scope(m,'en')=='Fixed case only. No general guarantee.'
+for variant in [dict(m,supplemental_scope_profiles=[]),dict(m,supplemental_scope_profiles=[profile,profile]),dict(m,supplemental_scope_profiles=[other]),dict(m,supplemental_scope_profiles=[{**profile,'limits':[]}]),dict(m,supplemental_scope_profiles=[{**profile,'scope':{'en':'Missing Japanese'}}]),dict(m,depth_scope={})]:
+ try:scope(variant,'en')
+ except ValueError:pass
+ else:raise AssertionError('Missing, duplicate or malformed primary scope was accepted')
+`],{cwd:root,timeout:10_000});
+});
+
+test('six new method records retain the existing bilingual field types and rendered text',()=>{
+ const rows=json('catalog/atlas-methods.json').methods;
+ const escape=value=>value.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#x27;');
+ for(const id of baseline.expected_new_method_ids){
+  const row=rows.find(m=>m.id===id),rendered=json(`numerical-methods-atlas/methods/${id}/index.json`);
+  for(const key of ['assumptions','assumptions_ja']){assert.ok(Array.isArray(row[key])&&row[key].length&&row[key].every(v=>typeof v==='string'&&v.trim()));assert.deepEqual(rendered[key],row[key]);}
+  for(const key of ['units','units_ja','boundary_conditions','boundary_conditions_ja']){assert.equal(typeof row[key],'string');assert.ok(row[key].trim());assert.equal(rendered[key],row[key]);}
+  const html=bytes(`numerical-methods-atlas/methods/${id}/index.html`).toString();
+  for(const value of [...row.assumptions,...row.assumptions_ja,row.units,row.units_ja,row.boundary_conditions,row.boundary_conditions_ja])assert.ok(html.includes(escape(value)),id+'/bilingual-condition-display');
+ }
+});
