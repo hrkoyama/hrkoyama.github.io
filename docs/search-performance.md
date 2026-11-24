@@ -13,9 +13,13 @@
 
 `npm run test:search-performance` は通常の `test:browser` と別の設定。`ATLAS_PERF_TARGET=published` が公開側、それ以外の既定は候補fixture。結果は `test-results/search-performance/`、集計は `node scripts/summarize-search-performance.mjs`。失敗時の標本・traceもworkflow artifactへ保持する。
 
-`Atlas cold-search performance verification` は定期実行しない。関連変更のmain pushでは公開版を測定する。候補ブランチでは明示dispatchかcommit中の `[atlas-search-measure]` で測定する。全索引生成まで必要な場合だけ `[atlas-search-build]` または `candidate-build` を明示指定し、生成ログ・入力tree・出力tree・patchを別に保持する。これらのcommit markerだけではworkflowのpush pathsフィルターを越えない。通常コミットごとの全再生成には使わない。
+`Atlas cold-search performance verification` は定期実行しない。関連変更のmain pushでは公開版を測定する。候補ブランチでは明示dispatchかcommit中の `[atlas-search-measure]` で測定する。全索引生成まで必要な場合だけ `[atlas-search-build]` または `candidate-build` を明示指定し、生成ログ・入力tree・出力tree・patchを別に保持する。通常コミットごとの全再生成には使わない。ローカル容量不足時も、公開前に生成treeと取り込むpatchを照合する。
+
+使用APIは [Playwright CDPSession](https://playwright.dev/docs/api/class-cdpsession)、[DevTools Network](https://chromedevtools.github.io/devtools-protocol/tot/Network/)、[DevTools Emulation](https://chromedevtools.github.io/devtools-protocol/tot/Emulation/) を参照する。計測は独立したテストcontextで行い、訪問者向けJSへの計測・送信機能は追加しない。
 
 ## 容量制約時の候補生成と取得
+
+[運用追記前の文書（旧全文保存版）](search-performance-before-remote-generation-2026-11-24.md)を同じdocs階層に保持しています。以下は容量制約時の運用追記です。
 
 [既存workflow](../.github/workflows/atlas-search-quality.yml)の `candidate-build` は、非main候補で標準の `prepare-indexes.py` を一回実行し、生成差分をstaged treeへ含めた状態で12標本を測る。`candidate` は生成せず候補を測り、`published` はmainの配信版を測る。ローカルの全snapshot作成を避けるための経路であり、科学計算・図・配布ZIPの再生成stageではない。
 
@@ -42,4 +46,4 @@ gh workflow run atlas-search-quality.yml \
 
 生成差分をコミットした最終候補をpushし、その同SHAで標準の **Public site checks**（索引鮮度・全Node・日英4ブラウザー）を通す。遠隔生成runが成功しても、最終候補CIや公開後確認の代替にはならない。失敗・中断・部分取得は保持する。生成後に正本を変更したら古いpatchを使い回さず、必要性と理由を記録して再度reviewする。公開までの残りの確認は[保守手順](../MAINTENANCE.md#候補固定公開実配信の確認)に従う。
 
-使用APIは [Playwright CDPSession](https://playwright.dev/docs/api/class-cdpsession)、[DevTools Network](https://chromedevtools.github.io/devtools-protocol/tot/Network/)、[DevTools Emulation](https://chromedevtools.github.io/devtools-protocol/tot/Emulation/) を参照する。計測は独立したテストcontextで行い、訪問者向けJSへの計測・送信機能は追加しない。
+これらのcommit markerだけではworkflowのpush pathsフィルターを越えない。

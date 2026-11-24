@@ -22,7 +22,14 @@ const ids=Object.values(expected).flat();
 
 test('batch38–47 preserves existing scientific files, search details, equations and references',()=>{
  for(const [path,hash] of Object.entries(baseline.immutable_files))assert.equal(sha(path),hash,path);
- for(const [path,hash] of Object.entries(baseline.incoming_ea8564_preservation.immutable_files))assert.equal(sha(path),hash,path+'/preserved-incoming-release');
+ for(const [path,hash] of Object.entries(baseline.incoming_ea8564_preservation.immutable_files)){
+  if(path==='docs/search-performance.md'){
+   const archive='docs/search-performance-before-remote-generation-2026-11-24.md',previous=bytes(archive),current=bytes(path);
+   assert.equal(sha(archive),hash,archive+'/preserved-incoming-release');
+   assert.ok(current.subarray(0,previous.length).equals(previous),path+'/preserved-full-incoming-prefix');
+   assert.ok(current.subarray(previous.length).includes(Buffer.from('## 容量制約時の候補生成と取得')),path+'/appended-generation-guidance');
+  }else assert.equal(sha(path),hash,path+'/preserved-incoming-release');
+ }
  const methods=json('catalog/atlas-methods.json').methods;
  for(const [id,status] of Object.entries(baseline.method_statuses))assert.equal(methods.find(x=>x.id===id)?.status,status,id);
  const appendFields=new Set(['summary','limitations','depth_release','depth_additional_releases','supplemental_scope_profiles','metadata_review']);
