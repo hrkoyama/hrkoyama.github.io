@@ -18,7 +18,7 @@ jobs:
           python-version: '3.12'
       - name: Verify and rerun only the published course ZIP, without a checkout
         env:
-          ZIP_SHA256: '9c9aae03e2be85a15919fd93d13b1d497dbb4d885849d3645bfdcd001e7e6d37'
+          ZIP_SHA256: '88aad757f41507f70db3e1f4ff4cfd167c32d73577050b7feb589524d6f40a84'
           TARGET_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
         shell: bash
         run: |
@@ -45,6 +45,10 @@ jobs:
           (root/'verification.log').write_text(run.stdout+run.stderr)
           print(run.stdout+run.stderr)
           receipt={'target_sha':os.environ['TARGET_SHA'],'source_checkout':False,'url':url,'zip_sha256':hashlib.sha256(data).hexdigest(),'unit_tests':25,'fixed_checks':34,'csv_files':15,'passed':run.returncode==0,'python':sys.version}
+          if run.returncode==0:
+              measured=json.loads(run.stdout.strip().splitlines()[-1])
+              assert measured['comparison_tests']==2
+              receipt['comparison_tests']=measured['comparison_tests']
           (root/'receipt.json').write_text(json.dumps(receipt,indent=2)+'\n')
           assert run.returncode==0
           PY

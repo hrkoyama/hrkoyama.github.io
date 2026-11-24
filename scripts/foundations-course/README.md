@@ -1,6 +1,6 @@
 # 分野を超えて使う 数値計算の基礎 — 小さな計算室
 
-2026-11-24版。Python 3.12の標準ライブラリだけで計算・25単体テスト・34固定判定・15CSVの照合を実行できます。NumPy、ネット接続、乱数、外部ソルバーは不要です。
+2026-11-24版。Python 3.12の標準ライブラリだけで計算・25計算テスト・2照合テスト・34固定判定・15CSVの照合を実行できます。NumPy、ネット接続、乱数、外部ソルバーは不要です。
 
 ```sh
 python verify_release.py
@@ -21,8 +21,12 @@ python -m pip install reportlab==4.4.9
 python plot.py --results results --output figures-new
 ```
 
-全19章は同じ一次元問題・小さな行列を再利用します。図19枚を19個の独立した物理検証とは数えません。入力を変えた探索結果は、この配布版の固定検証とは分けて保存してください。クロスOSの数値比較は入力に固定した相対1e-9・絶対1e-10を使います。図の再生成バイト一致は要求しません。
+全19章は同じ一次元問題・小さな行列を再利用します。図19枚を19個の独立した物理検証とは数えません。入力を変えた探索結果は、この配布版の固定検証とは分けて保存してください。通常のクロスOS比較は入力に固定した相対1e-9・絶対1e-10です。丸めを観察する derivative.csv だけは、80桁のDecimal Taylor参照と各sin評価1ULP・除算1ULPから導く誤差幅を使います。全16行について、参照CSVと再計算CSVの両方を独立参照・誤差列の整合性で検査します。実行環境のsin/cosが使う1ULPの仮定自体も各固定入力で検査します。単に行を除外したり、元の34合格条件や他14CSVの公差を緩めたりしていません。図の再生成バイト一致は要求しません。
 
 本文・Web・PDF: https://hrkoyama.github.io/numerical-methods-atlas/learn/numerical-foundations/
 
 コードはMIT License。参照先の教科書・講義資料は同梱していません。
+
+R2は初公開前の照合修正です。初候補はLinuxで25計算テストと34判定に合格後、h=1e-8のsin差分で約5.55e-9のOS差が出て保存CSV照合に失敗しました。初候補のZIP（SHA 9c9aae03…）とログは制作履歴に保持しています。R2でも入力・計算コード・保存結果・図は同じです。`portability-contract.json`が新しい参照式の固定条件と参照資料を示します。
+
+参考：[Highamの著者講義資料（標準モデルとSterbenzの定理）](https://www.maths.manchester.ac.uk/~higham/talks/asna02.pdf)、[Python 3.12 math公式資料](https://docs.python.org/3.12/library/math.html)。

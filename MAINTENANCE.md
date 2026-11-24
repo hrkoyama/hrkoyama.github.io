@@ -382,4 +382,6 @@ pre-commitは既定で全索引生成をskipする。`ATLAS_REFRESH_INDEXES_ON_C
 
 `build-atlas-foundations-course.py` は固定PDF/図/ZIPのSHAと原稿の一致を確認し、Webだけを生成する。通常の `refresh-site.py` は科学計算、MathJax、ReportLab、PDF生成を実行しない。公開版の原稿を変えるときは、先に小さな計算例の固定条件をレビューし、`scripts/foundations-course/` の実行・テスト・独立ZIP展開確認、共通数式SVG、PDFの再生成・全ページの目視確認、`verify-foundations-book.py` の抽出照合を行う。既刊PDFとZIPは保存し、公開済み版を黙って差し替えず版を追加する。
 
-本教材の計算はPython 3.12標準ライブラリのみ。25単体テスト・34固定判定・15CSVを `verify_release.py` で照合する。最初の風上法の粗い格子系列の失敗は履歴へ保存し、閾値を変えず系列を細かくした。意図的な不安定・低次対照の検出合格と、高精度法の合格を区別する。PDF制作時のみReportLab 4.4.9・svglib 1.6.0・MathJax 3.2.2・日本語TrueTypeフォントを使う。図は保存CSVから描き、WebとPDFで同じSVGを使う。公開前は `Foundations course candidate Linux verification` が候補ZIPをLinuxで実行する。公開ZIPだけのLinux追試は `Foundations course public Linux verification` に記録する。
+本教材の計算はPython 3.12標準ライブラリのみ。25計算テスト・2照合テスト・34固定判定・15CSVを `verify_release.py` で照合する。最初の風上法の粗い格子系列の失敗は履歴へ保存し、閾値を変えず系列を細かくした。意図的な不安定・低次対照の検出合格と、高精度法の合格を区別する。PDF制作時のみReportLab 4.4.9・svglib 1.6.0・MathJax 3.2.2・日本語TrueTypeフォントを使う。図は保存CSVから描き、WebとPDFで同じSVGを使う。公開前は `Foundations course candidate Linux verification` が候補ZIPをLinuxで実行する。公開ZIPだけのLinux追試は `Foundations course public Linux verification` に記録する。
+
+初公開前R2では、丸めの影響を観察するderivative.csvのOS間等値照合を、80桁の独立Taylor参照とULP由来の境界へ修正した。初候補ZIPとLinux失敗を保持し、元の25計算テスト・34条件・他14CSVの公差・保存値・図を保持した。新しい2照合テストは両OSの記録値の検査と破損値の拒否を確認する。Pythonのlibm全般に1ULP精度を仮定せず、固定入力のsin/cosを参照式で検査する。

@@ -1,17 +1,18 @@
 {
   "passed": true,
   "zip": "/code/numerical-foundations/2026-11-24/numerical-foundations-lab-2026-11-24.zip",
-  "zip_sha256": "9c9aae03e2be85a15919fd93d13b1d497dbb4d885849d3645bfdcd001e7e6d37",
+  "zip_sha256": "88aad757f41507f70db3e1f4ff4cfd167c32d73577050b7feb589524d6f40a84",
   "prefix": "numerical-foundations-lab-2026-11-24",
   "unit_tests": 25,
   "acceptance_checks": 34,
   "csv_files": 15,
   "manifest": {
     "edition": "2026-11-24",
-    "scope": "Small fixed educational exercises, not 19 independent scientific problems.",
+    "revision": 2,
+    "scope": "Same fixed educational inputs/results; independent80-digit verification of the cancellation diagnostic; all scientific criteria unchanged.",
     "files": {
       "LICENSE": "24b21aee67828df80b1f6cd9a03c45cef126acb6b1486e346b786a8e5002d704",
-      "README.md": "73f4255a7313b4635e532fe382f653a1b9f3c526c513c79bea3a492637d26a57",
+      "README.md": "c8a69ee3a5aee4a01887acc8d19261442e4e4330de617dc16f9b5e5025135e3e",
       "contract.json": "a38398536d919dbd8b3d6064f2f639caeead229c6fae888e870df0774edfc495",
       "development-history.json": "fd88c1034f557df8ad6933b3f11b1bd46f9960b686f556c10100a218537cdb7b",
       "history/attempt-01/contract.json": "15607fc69fb78a4de5c8028d48f8bd56ca0f1ff1b0f810f8bff035c1866e9fda",
@@ -23,6 +24,8 @@
       "inputs.json": "c08fcdf3ea551b5ec913b210b20e0e6e1a60dcf0e5332d6d462ba66bca22c84b",
       "lab.py": "1ee4e88d6093c400f7fad13427f1f1788b813bf91034be76277486916ee4d6cf",
       "plot.py": "2d1315595e721aa3162f8b0f23615d1359316645c0e45879ea89b9455267f553",
+      "portability-contract.json": "39bf5cf4dd59f1d94fa4a4f427a109625c224e3148e22b54cdc79e1742543079",
+      "portable_roundoff.py": "55a62cea9dcd00a7c0613d174ed0a6a8fe755f9e03dee40b3c3b200d103773c9",
       "results/advection-field.csv": "fa96fd6a3e1fab8ccd19da813c8669435ae839f2cbba04b3335124ed816afabd",
       "results/advection.csv": "ee65339c3cb703fd98ede273b24255cd2cd453e70bf0a6722d7c422bd98e71b1",
       "results/boundary-field.csv": "fe792186f36d278d9a2b42251eb644afdb1a8b388ee2b592763e82c0300ae29f",
@@ -41,12 +44,13 @@
       "results/unstable.csv": "4b2724b9fc2c453a2b44664db1e119219570ba14d90e791012000a7e627d8dcd",
       "review.json": "f2f341092cb122cbe435ac73117c99146813da33c5f1291c5f54d14b056910ae",
       "test_lab.py": "ab0237418725af4444646f1e019ae5c88eea241ae9cdb807c94be63c623d918e",
-      "verify_release.py": "c5d5f46607d7d050ac991cc852377407ea2c6588ec12cd95329c881c8e327829"
+      "test_portability.py": "f926333998dd4b75ae8e35bdf60e5fba521aecddd9cc9b2aa94125cc3ce19b69",
+      "verify_release.py": "d591b6308f06eded2e12860477d199be9420bcf80b413c3aafc4ada1b570af65"
     }
   },
   "source_files": {
     "scripts/foundations-course/LICENSE": "24b21aee67828df80b1f6cd9a03c45cef126acb6b1486e346b786a8e5002d704",
-    "scripts/foundations-course/README.md": "73f4255a7313b4635e532fe382f653a1b9f3c526c513c79bea3a492637d26a57",
+    "scripts/foundations-course/README.md": "c8a69ee3a5aee4a01887acc8d19261442e4e4330de617dc16f9b5e5025135e3e",
     "scripts/foundations-course/build_book.py": "254e1da23f6d3dbf69966cefd942a851029dd60977214b36caaa347f5d688ae2",
     "scripts/foundations-course/contract.json": "a38398536d919dbd8b3d6064f2f639caeead229c6fae888e870df0774edfc495",
     "scripts/foundations-course/development-history.json": "fd88c1034f557df8ad6933b3f11b1bd46f9960b686f556c10100a218537cdb7b",
@@ -59,8 +63,18 @@
     "scripts/foundations-course/inputs.json": "c08fcdf3ea551b5ec913b210b20e0e6e1a60dcf0e5332d6d462ba66bca22c84b",
     "scripts/foundations-course/lab.py": "1ee4e88d6093c400f7fad13427f1f1788b813bf91034be76277486916ee4d6cf",
     "scripts/foundations-course/plot.py": "2d1315595e721aa3162f8b0f23615d1359316645c0e45879ea89b9455267f553",
+    "scripts/foundations-course/portability-contract.json": "39bf5cf4dd59f1d94fa4a4f427a109625c224e3148e22b54cdc79e1742543079",
+    "scripts/foundations-course/portable_roundoff.py": "55a62cea9dcd00a7c0613d174ed0a6a8fe755f9e03dee40b3c3b200d103773c9",
     "scripts/foundations-course/review.json": "f2f341092cb122cbe435ac73117c99146813da33c5f1291c5f54d14b056910ae",
     "scripts/foundations-course/test_lab.py": "ab0237418725af4444646f1e019ae5c88eea241ae9cdb807c94be63c623d918e",
-    "scripts/foundations-course/verify_release.py": "c5d5f46607d7d050ac991cc852377407ea2c6588ec12cd95329c881c8e327829"
+    "scripts/foundations-course/test_portability.py": "f926333998dd4b75ae8e35bdf60e5fba521aecddd9cc9b2aa94125cc3ce19b69",
+    "scripts/foundations-course/verify_release.py": "d591b6308f06eded2e12860477d199be9420bcf80b413c3aafc4ada1b570af65"
+  },
+  "revision": 2,
+  "comparison_tests": 2,
+  "previous_candidate": {
+    "commit": "f251783b3db7361e9137ef769cfed4ebf8f0292e",
+    "zip_sha256": "9c9aae03e2be85a15919fd93d13b1d497dbb4d885849d3645bfdcd001e7e6d37",
+    "status": "Unpublished initial candidate; original25scientific tests/34checks passed, Linux cancellation-CSV equality failed; exact bytes retained in Git history."
   }
 }

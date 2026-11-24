@@ -1,0 +1,41 @@
+{
+  "frozen_at_utc": "2026-11-24T01:04:04.355722+00:00",
+  "status": "reviewed before revised comparison execution",
+  "old_candidate": "f251783b3db7361e9137ef769cfed4ebf8f0292e",
+  "old_zip_sha256": "9c9aae03e2be85a15919fd93d13b1d497dbb4d885849d3645bfdcd001e7e6d37",
+  "failed_Linux_run": 45301593116,
+  "failure": {
+    "csv": "derivative.csv",
+    "row": 7,
+    "h": 1e-08,
+    "Mac": 0.5403023028982545,
+    "Linux": 0.5403023084493697
+  },
+  "review": "Central sine quotient amplifies endpoint libm rounding by1/h. Replace only this diagnostic CSV cross-OS equality with an80-digit independent Taylor oracle and a derived one-ULP-per-endpoint envelope; exact Sterbenz subtraction and one division ULP are enclosed. Both recorded and current rows, all library-bound assumptions and error-column identity must pass. |argument|<=2 enforced; 80 terms, remainder1e-70, precision80.",
+  "unchanged": "lab.py, original inputs/review/contract, all25 scientific tests, all34 physical/fixed acceptance checks, all other14CSV tolerances1e-9/1e-10, saved numerical results/figures. No tolerance is increased in inputs.json.",
+  "new_tests": "2 separate portability tests: both observed OS values accepted by independent bound; damaged derivative and error rejected.",
+  "reviewer": "Self-review; no claim of independent human review.",
+  "source_sha256": {
+    "test_portability.py": "f926333998dd4b75ae8e35bdf60e5fba521aecddd9cc9b2aa94125cc3ce19b69",
+    "portable_roundoff.py": "55a62cea9dcd00a7c0613d174ed0a6a8fe755f9e03dee40b3c3b200d103773c9"
+  },
+  "references_consulted": [
+    {
+      "url": "https://www.maths.manchester.ac.uk/~higham/talks/asna02.pdf",
+      "scope": "Author lecture slides, displayed pages3 and6: standard arithmetic model and Sterbenz exact subtraction; not a complete audit of the lecture."
+    },
+    {
+      "url": "https://docs.python.org/3.12/library/math.html",
+      "scope": "Official math/ulp interface and platform C math implementation note. A1ULP sin/cos bound is checked by our oracle on each fixed argument, not assumed as a universal Python guarantee."
+    }
+  ],
+  "integration_frozen_at_utc": "2026-11-24T01:08:09.373336+00:00",
+  "verifier_sha256": "d591b6308f06eded2e12860477d199be9420bcf80b413c3aafc4ada1b570af65",
+  "original_science_files_sha256": {
+    "lab.py": "1ee4e88d6093c400f7fad13427f1f1788b813bf91034be76277486916ee4d6cf",
+    "test_lab.py": "ab0237418725af4444646f1e019ae5c88eea241ae9cdb807c94be63c623d918e",
+    "inputs.json": "c08fcdf3ea551b5ec913b210b20e0e6e1a60dcf0e5332d6d462ba66bca22c84b",
+    "review.json": "f2f341092cb122cbe435ac73117c99146813da33c5f1291c5f54d14b056910ae",
+    "contract.json": "a38398536d919dbd8b3d6064f2f639caeead229c6fae888e870df0774edfc495"
+  }
+}
