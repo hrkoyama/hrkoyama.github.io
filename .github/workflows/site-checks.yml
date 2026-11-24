@@ -23,6 +23,19 @@ jobs:
         run: python3 scripts/prepare-indexes.py --check
       - name: Check public links, data and generated indexes
         run: python3 scripts/check-site.py
+  logic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
       - name: Check browser-local research and search logic
         run: node --test scripts/*.test.mjs
   browser-smoke:

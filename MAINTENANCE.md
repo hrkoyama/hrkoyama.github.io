@@ -101,7 +101,7 @@ pre-commitは既定で全索引生成をskipする。`ATLAS_REFRESH_INDEXES_ON_C
 
 ## 候補固定・公開・実配信の確認
 
-1. 変更をコミットし、HRの `codex/` ブランチで **Public site checks** の成功を確認する。`check` jobは全生成の鮮度・参照・Node検査、`browser-smoke` jobは日英×390/1280pxの4profileを確認する。ブラウザー検査は数値計算の追試を代替しない。検証中のSHAと作業コピーはcleanに固定する。
+1. 変更をコミットし、HRの `codex/` ブランチで **Public site checks** の3 jobsすべての成功を確認する。`check` jobは全生成の鮮度・参照、並列の `logic` jobは全Node検査、`browser-smoke` jobは日英×390/1280pxの4profileを確認する。ブラウザー検査は数値計算の追試を代替しない。検証中のSHAと作業コピーはcleanに固定する。
 2. 公開直前に最新の `origin/main` と私用キューの実公開中状態を再確認し、他作業の公開に重ねない。差があれば今回の変更だけを統合し、影響する検査を再実行する。実際のpush URLが `hrkoyama/hrkoyama.github.io`、Pages設定が `main` のルート・`https://hrkoyama.github.io/` であることを再確認する。
 3. 固定候補を **`git push origin HEAD:refs/heads/main`** で公開する。隔離ブランチから古いローカル `main` を誤って送らない。force pushはしない。
 4. 公開した同じSHAで **Pages build and deployment** と **Public site checks** の成功を確認する。匿名HTTPで変更したページ・文書・図・ダウンロードのURL、内容、版・ハッシュを照合する。保存物の照合と、新たな数値実行を区別して記録する。
