@@ -8,6 +8,7 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/runge-kutta/
 
 ## 手法
 
+- [Dormand–Prince RK45](<https://hrkoyama.github.io/numerical-methods-atlas/methods/rk45/?lang=ja>)
 - [前進Euler法](<https://hrkoyama.github.io/numerical-methods-atlas/methods/forward-euler/?lang=ja>)
 
   公開の全陽的RK tableauに対する非自律・非線形製造解の検査です。保存プレビューはRK4を使います。
@@ -91,6 +92,14 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/runge-kutta/
 
 ## コード・検証
 
+- [RK45の埋込み推定・補間・イベント](<https://hrkoyama.github.io/numerical-methods-atlas/validation/rk45-dense-events/?lang=ja>)
+  availability: run
+
+  減衰回転の解析解を使い、受理/棄却・FSAL・区間内補間・向き付き交差時刻を分けて検査します。
+- [Dormand–Prince RK45：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/rk45/?lang=ja#method-execution-ja>)
+  availability: source
+
+  手法固有の配布版と関連ソースを案内します。固定入力例は別の項目で区別します。
 - [指数関数を厳密解に持つ非線形・非自律ODE：コード・検証状況](<https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-exp-ode/?lang=ja#code-ja>)
   availability: source
 

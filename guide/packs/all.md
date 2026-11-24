@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-24-9433aacf81
-Captured (UTC): 2026-11-24T11:03:43+00:00
+Snapshot: 2026-11-24-d7c5be6bf1
+Captured (UTC): 2026-11-24T15:01:02+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -2728,7 +2728,7 @@ For an index-1 system with known solution, measure state error, F residual, alge
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/dae/#publication-scope
 Coverage: reading
 
-Reading, representative equations and sources are published. Dedicated code and numerical verification remain planned. The suggested checks above are not measured results, and code/results of other methods are not presented as validation of this method.
+Links lead to existing educational code and dated verification records. This reading/translation update changes no scientific code or historical measurements and does not claim reproduction of an entire paper.
 Differential-algebraic equations / DAE
 
 ## Differential-algebraic equations / DAE — Primary publications, supporting sources and review scope [en]
@@ -9153,7 +9153,7 @@ R. Car; M. Parrinello (1985)
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/#verification
 Coverage: reading
 
-Two hydrogenic/He problem families were executed, independently compared and added to the 141-problem inventory. A scoped H₂ finite-basis RHF example now adds independent-reference, SCF and basis checks. A scoped periodic-He DFT workflow is now added; molecular DFT, FCI and other periodic materials are not validated.
+Two hydrogenic/He problem families were executed, independently compared and added to the 149-problem inventory. A scoped H₂ finite-basis RHF example now adds independent-reference, SCF and basis checks. A scoped periodic-He DFT workflow is now added; molecular DFT, FCI and other periodic materials are not validated.
 Runnable and checked
 
 ## Quantum chemistry and DFT: approximations and equations — One electron: hydrogenic atoms [en]
@@ -12874,8 +12874,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Published web edition, counted 2026-11-24. These are counts of catalog entries and documented examples, not a claim that every entry is a verified end-to-end solver.
-72 equation/model entries · 144 methods and building blocks · 249 journal/conference papers · 310 total sources.
-There are 9 saved-profile equation-gallery cases across 7 equation families, and 141 reading chapters including this inventory.
+80 equation/model entries · 149 methods and building blocks · 249 journal/conference papers · 310 total sources.
+There are 9 saved-profile equation-gallery cases across 7 equation families, and 145 reading chapters including this inventory.
 
 ## Site coverage and counting rules — Equations and models# [en]
 
@@ -12883,7 +12883,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Named equation/model entries, not scalar component equations or mathematically disjoint families. Includes frameworks and auxiliary formulations; variants share one entry except the three separately explained SR/GR fluid systems. Biological entries are imported once from their own catalog.
-50 entries have scoped local examples; 22 are reading-only, including all 22 biological survey entries. A coupled system is one entry; its individual component equations do not increase the count. Poisson/Laplace and dimensional variants share entries. Named frameworks and specialized kinetic laws can both appear, so this is not a count of mathematically disjoint families.
+58 entries have scoped local examples; 22 are reading-only, including all 22 biological survey entries. A coupled system is one entry; its individual component equations do not increase the count. Poisson/Laplace and dimensional variants share entries. Named frameworks and specialized kinetic laws can both appear, so this is not a count of mathematically disjoint families.
 
 ## Site coverage and counting rules — Physics & mathematical models# [en]
 
@@ -12969,7 +12969,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Named numerical methods and building blocks with a reading chapter. Aliases count once; RK stages, dimensions, parameter combinations, mesh layouts and theoretical conditions do not add methods. A family and a separately explained algorithm may both appear. Not a count of mutually exclusive end-to-end solvers.
-129 entries have scoped local examples; 15 are reading-only. Reconstruction limiters, preconditioners and coupling operators are building blocks, not complete PDE solvers. Mesh layouts, CFL conditions and theorems are not counted as numerical methods.
+134 entries have scoped local examples; 15 are reading-only. Reconstruction limiters, preconditioners and coupling operators are building blocks, not complete PDE solvers. Mesh layouts, CFL conditions and theorems are not counted as numerical methods.
 
 ## Site coverage and counting rules — Spatial discretization# [en]
 
@@ -17634,6 +17634,571 @@ Algebraic multigrid by smoothed aggregation for second and fourth order elliptic
 Review scope / review_level: publisher-abstract-only-full-paper-unread
 Metadata and abstract only. No general robustness theorem claimed for these fixed jumps/tensors.
 
+## DAE initialization, conservation and constraint drift — DAE initialization, conservation and constraint drift [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/
+Coverage: reading
+
+Compare consistent initialization, an index-one conservation DAE, and an underlying ODE for an index-three pendulum. Comparisons with stored official IDA output are distinguished from newly executed independent ODE references.
+
+## DAE initialization, conservation and constraint drift — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/#run-all
+Coverage: reading
+
+Run inside atlas-dae-controls-2026-11-24 from the ZIP. This command executes all 3 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## DAE initialization, conservation and constraint drift — Consistent initialization and discrete residuals for an index-one DAE [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/
+Coverage: reading
+
+Separate initialization, backward-Euler error and residuals on a known positive index-one DAE branch.
+Methods, equations, figures and references
+Methods used
+Differential-algebraic equations / DAE
+Backward Euler
+Armijo-damped Newton
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Use coupled Newton with an Armijo search in the same scaled norm, retaining rather than repairing a singular initial guess.
+Semi-explicit index-one DAE
+Dimensionless positive branch; differential and algebraic row scales are both one, with the maximum norm.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Consistent initialization and discrete residuals for an index-one DAE
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Compare independent Decimal manufactured states, three discrete roots and three fixed grids, checking first-order error and the algebraic constraint.
+Same-problem reference · Manufactured solution
+Consistent initialization and discrete residuals for an index-one DAE
+One authored positive branch and fixed BE runs; no IDA execution or general DAE-solver qualification.
+
+## DAE initialization, conservation and constraint drift — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/#index1-dae-consistent-initialization-assumptions
+Coverage: reading
+
+Dimensionless positive branch; differential and algebraic row scales are both one, with the maximum norm.
+
+## DAE initialization, conservation and constraint drift — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/#index1-dae-consistent-initialization-algorithm
+Coverage: reading
+
+Use coupled Newton with an Armijo search in the same scaled norm, retaining rather than repairing a singular initial guess.
+F1=ydot+y-z+exp(-2t/3), F2=z^3-y^2y=exp(-t), z=exp(-2t/3)
+
+## DAE initialization, conservation and constraint drift — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/#index1-dae-consistent-initialization-validation
+Coverage: reading
+
+Compare independent Decimal manufactured states, three discrete roots and three fixed grids, checking first-order error and the algebraic constraint.
+
+## DAE initialization, conservation and constraint drift — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/#index1-dae-consistent-initialization-limits
+Coverage: reading
+
+One authored positive branch and fixed BE runs; no IDA execution or general DAE-solver qualification.
+
+## DAE initialization, conservation and constraint drift — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/#index1-dae-consistent-initialization-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+reference:three-independent-discrete-roots3.58602036954e-14
+initialize-0.5:root0
+initialize-2:root2.22044604925e-16
+index1-BE-16:step-residual9.53681578153e-14
+index1-BE-16:constraint9.53681578153e-14
+index1-BE-16:MMS-bound0.0176556679912
+index1-BE-32:step-residual1.55431223448e-15
+index1-BE-32:constraint4.4408920985e-16
+index1-BE-32:MMS-bound0.00889059915166
+index1-BE-64:step-residual3.5527136788e-15
+index1-BE-64:constraint3.33066907388e-16
+index1-BE-64:MMS-bound0.00446111129112
+first-order-refinement[0.989778852631791,0.9948775084516599]
+finest_max_state_error0.00446111129112
+observed_orders[0.989778852631791,0.9948775084516599]
+one_step_reference_errors[3.5860203695392556e-14,1.1102230246251565e-16,1.1102230246251565e-16]
+original_targets_met30
+original_targets_total30
+判定 / checkPassed
+reference:MMS-0true
+reference:MMS-1true
+reference:MMS-2true
+reference:nonexpansive-positive-regiontrue
+reference:initial-differentiated-constrainttrue
+reference:three-positive-branch-bracketstrue
+reference:three-independent-discrete-rootstrue
+initialize-0.5:roottrue
+initialize-0.5:algebraic-residualtrue
+initialize-2:roottrue
+initialize-2:algebraic-residualtrue
+initialize-0:expected-singular-statustrue
+
+## DAE initialization, conservation and constraint drift — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/#index1-dae-consistent-initialization-measurements
+Coverage: reading
+
+index1-BE-16:finitetrue
+index1-BE-16:positivetrue
+index1-BE-16:step-residualtrue
+index1-BE-16:constrainttrue
+index1-BE-16:MMS-boundtrue
+index1-BE-32:finitetrue
+index1-BE-32:positivetrue
+index1-BE-32:step-residualtrue
+index1-BE-32:constrainttrue
+index1-BE-32:MMS-boundtrue
+index1-BE-64:finitetrue
+index1-BE-64:positivetrue
+index1-BE-64:step-residualtrue
+index1-BE-64:constrainttrue
+index1-BE-64:MMS-boundtrue
+first-order-refinementtrue
+initial-F-and-hidden-constrainttrue
+six-record-identitiestrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Separate initialization, backward-Euler error and residuals on a known positive index-one DAE branch. Drawn from saved arrays.Saved residuals, constraints and budgets shown separately; symmetric log axes retain zero values.Read every stored record
+idkindterminationmetricssteps
+initialize-0.5initializationconsistent_initialization{"termination":"consistent_initialization","iterations":5,"residual":0.0}—
+initialize-2initializationconsistent_initialization{"termination":"consistent_initialization","iterations":6,"residual":6.661338147750939e-16}—
+initialize-0expected_initial_failureinitialization_singular_jacobian{"termination":"initialization_singular_jacobian","iterations":0,"residual":1.0}—
+
+## DAE initialization, conservation and constraint drift — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/#index1-dae-consistent-initialization-measurements
+Coverage: reading
+
+index1-BE-16trajectorycompleted_fixed_steps{"max_state_error":0.017655667991177793,"max_algebraic_residual":9.536815781530095e-14,"max_derivative_unit_step_residual":9.536815781530095e-14,"Newton_iterations":48}16
+index1-BE-32trajectorycompleted_fixed_steps{"max_state_error":0.00889059915166246,"max_algebraic_residual":4.440892098500626e-16,"max_derivative_unit_step_residual":1.5543122344752192e-15,"Newton_iterations":96}32
+index1-BE-64trajectorycompleted_fixed_steps{"max_state_error":0.0044611112911168704,"max_algebraic_residual":3.3306690738754696e-16,"max_derivative_unit_step_residual":3.552713678800501e-15,"Newton_iterations":192}64
+Measurements and complete records / JSON
+
+## DAE initialization, conservation and constraint drift — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/#index1-dae-consistent-initialization-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+SUNDIALS v7.1.1 IDA mathematics, section 5.2 [accessed 2026-11-24]
+Review scope / review_level: official-documentation-selected-equations
+Residual form, BDF/Newton and consistent initialization sections selected. Section5.2 is not an IDA version. This authored MMS/BE solver is not IDA.
+
+## DAE initialization, conservation and constraint drift — Robertson conservation DAE and stored official IDA values [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/
+Coverage: reading
+
+Compare the Robertson conservation DAE and full ODE on the same fixed time grids, with a separate check of stored official IDA values. The first retained run missed four original time-accuracy and refinement goals.
+Methods, equations, figures and references
+Methods used
+Differential-algebraic equations / DAE
+Backward Euler
+Armijo-damped Newton
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Use fixed BE/Newton with analytic Jacobians and no mass projection or concentration clipping.
+Robertson chemical kinetics
+Model time zero to four; the intermediate-species state and residual scale is 1e-4. Printing intervals and numerical errors are distinct.
+Semi-explicit index-one DAE
+Model time zero to four; the intermediate-species state and residual scale is 1e-4. Printing intervals and numerical errors are distinct.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Robertson kinetics: ODE and conservation DAE
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+
+## DAE initialization, conservation and constraint drift — Robertson conservation DAE and stored official IDA values [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/
+Coverage: reading
+
+Evaluate all 39 original targets, retaining the four unmet accuracy/refinement goals as study outcomes. The other 35 requirements, independent references and faithful saved-array recomputation remain mandatory.
+Same-problem reference · Finite-grid numerical reference
+Robertson kinetics: initial stiffness and actual error
+Conservation and positivity are observations for these inputs, not universal guarantees. Accuracy is sampled on T <= 0.4; this does not validate long-time chemistry or an all-time error bound.
+Same-problem reference · Finite-grid numerical reference
+Robertson conservation DAE and stored official IDA values
+Only two official SUNDIALS v7.1.1 printed rows; zero new IDA executions, with no long-time chemistry or general DAE-performance claim. No asymptotic-convergence or all-original-accuracy-goals claim is made for this fixed schedule.
+
+## DAE initialization, conservation and constraint drift — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/#robertson-conservation-dae-assumptions
+Coverage: reading
+
+Model time zero to four; the intermediate-species state and residual scale is 1e-4. Printing intervals and numerical errors are distinct.
+
+## DAE initialization, conservation and constraint drift — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/#robertson-conservation-dae-algorithm
+Coverage: reading
+
+Use fixed BE/Newton with analytic Jacobians and no mass projection or concentration clipping.
+F1=ydot1+0.04*y1-1e4*y2*y3; F2=ydot2-0.04*y1+1e4*y2*y3+3e7*y2^2; F3=y1+y2+y3-1M=diag(1,1,0)
+
+## DAE initialization, conservation and constraint drift — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/#robertson-conservation-dae-validation
+Coverage: reading
+
+Evaluate all 39 original targets, retaining the four unmet accuracy/refinement goals as study outcomes. The other 35 requirements, independent references and faithful saved-array recomputation remain mandatory.
+
+## DAE initialization, conservation and constraint drift — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/#robertson-conservation-dae-limits
+Coverage: reading
+
+Only two official SUNDIALS v7.1.1 printed rows; zero new IDA executions, with no long-time chemistry or general DAE-performance claim. No asymptotic-convergence or all-original-accuracy-goals claim is made for this fixed schedule.
+
+## DAE initialization, conservation and constraint drift — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/#robertson-conservation-dae-measurements
+Coverage: reading
+
+量 / metricMeasured value
+robertson-residual_dae-r1:nonnegative0
+robertson-residual_dae-r1:nonlinear-residual1.07105741228e-12
+robertson-residual_dae-r1:mass2.22044604925e-16
+robertson-residual_dae-r2:nonnegative0
+robertson-residual_dae-r2:nonlinear-residual1.98047347584e-12
+robertson-residual_dae-r2:mass2.22044604925e-16
+robertson-residual_dae-r4:nonnegative0
+robertson-residual_dae-r4:nonlinear-residual9.18210184603e-13
+robertson-residual_dae-r4:mass2.22044604925e-16
+residual_dae:refinement[1.0816554513576002,1.7211244337110214]
+residual_dae:finest-reference-error0.00775577218605
+residual_dae:official-printed-comparison[[0.0,0.0,1.98496998732485e-06],[2.8469832178190657e-05,3.4259947900275225e-09,3.737975817291739e-05]]
+robertson-full_ode-r1:nonnegative0
+robertson-full_ode-r1:nonlinear-residual1.07073540742e-12
+robertson-full_ode-r1:mass4.4408920985e-16
+robertson-full_ode-r2:nonnegative0
+robertson-full_ode-r2:nonlinear-residual1.98064288243e-12
+robertson-full_ode-r2:mass1.55431223448e-15
+robertson-full_ode-r4:nonnegative0
+robertson-full_ode-r4:nonlinear-residual9.18210184603e-13
+robertson-full_ode-r4:mass8.881784197e-16
+full_ode:refinement[1.0816554513576304,1.72112443371103]
+full_ode:finest-reference-error0.00775577218605
+full_ode:official-printed-comparison[[0.0,0.0,1.9849699872138277e-06],[2.8469832178079635e-05,3.4259947900546275e-09,3.737975817323658e-05]]
+
+## DAE initialization, conservation and constraint drift — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/#robertson-conservation-dae-measurements
+Coverage: reading
+
+ODE-DAE-r18.13151629364e-16
+ODE-DAE-r22.10064170919e-15
+ODE-DAE-r48.80914265144e-16
+finest_scaled_error_DAE0.00775577218605
+finest_scaled_error_ODE0.00775577218605
+reference_solver_counters[{"id":"reference-radau-loose","method":"Radau","nfev":4291,"njev":43,"nlu":166,"status":0,"observations":1537},{"id":"reference-radau-tight","method":"Radau","nfev":12141,"njev":9,"nlu":124,"status":0,"observations":1537},{"id":"reference-bdf-tight","method":"BDF","nfev":1593,"njev":3,"nlu":110,"status":0,"observations":1537}]
+IDA_new_executions0
+original_targets_met35
+original_targets_total39
+判定 / checkPassed
+reference:all-reference-complete-finite-nonnegativetrue
+reference:reference-agreement-0true
+reference:reference-agreement-2true
+reference:official-IDA-printed-interval-qualificationtrue
+inconsistent-initial-rejectedtrue
+robertson-residual_dae-r1:finitetrue
+robertson-residual_dae-r1:nonnegativetrue
+robertson-residual_dae-r1:nonlinear-residualtrue
+robertson-residual_dae-r1:masstrue
+robertson-residual_dae-r2:finitetrue
+robertson-residual_dae-r2:nonnegativetrue
+robertson-residual_dae-r2:nonlinear-residualtrue
+robertson-residual_dae-r2:masstrue
+robertson-residual_dae-r4:finitetrue
+robertson-residual_dae-r4:nonnegativetrue
+robertson-residual_dae-r4:nonlinear-residualtrue
+robertson-residual_dae-r4:masstrue
+residual_dae:official-printed-comparisontrue
+robertson-full_ode-r1:finitetrue
+
+## DAE initialization, conservation and constraint drift — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/#robertson-conservation-dae-measurements
+Coverage: reading
+
+robertson-full_ode-r1:nonnegativetrue
+robertson-full_ode-r1:nonlinear-residualtrue
+robertson-full_ode-r1:masstrue
+robertson-full_ode-r2:finitetrue
+robertson-full_ode-r2:nonnegativetrue
+robertson-full_ode-r2:nonlinear-residualtrue
+robertson-full_ode-r2:masstrue
+robertson-full_ode-r4:finitetrue
+robertson-full_ode-r4:nonnegativetrue
+robertson-full_ode-r4:nonlinear-residualtrue
+robertson-full_ode-r4:masstrue
+full_ode:official-printed-comparisontrue
+ODE-DAE-r1true
+ODE-DAE-r2true
+ODE-DAE-r4true
+seven-record-identitiestrue
+verification:original-target-inventorytrue
+verification:all-original-decisions-recomputedtrue
+verification:measured-records-match-saved-arraystrue
+verification:frozen-original-input-and-acceptancetrue
+verification:independent-reference-integritytrue
+verification:actual-target-summarytrue
+verification:retained-first-attempt-historytrue
+verification:only-declared-study-goals-are-nonmandatorytrue
+
+## DAE initialization, conservation and constraint drift — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/#robertson-conservation-dae-measurements
+Coverage: reading
+
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Compare the Robertson conservation DAE and full ODE on the same fixed time grids, with a separate check of stored official IDA values. Drawn from saved arrays. The first-run goal shortfall and each rerun’s actual target decisions remain explicit in the saved JSON.Saved residuals, constraints and budgets shown separately; symmetric log axes retain zero values. The first-run goal shortfall and each rerun’s actual target decisions remain explicit in the saved JSON.Read every stored record
+idkindterminationmetricsformulationsteps
+inconsistent-initial-rejectionexpected_initial_failureinitial_algebraic_constraint_violated{"mass_residual":9.999999999998899e-05}——
+robertson-residual_dae-r1trajectorycompleted_fixed_steps{"max_scaled_reference_error":0.014438638971779891,"max_mass_error":2.220446049250313e-16,"max_scaled_step_residual":1.0710574122841998e-12,"minimum_species":0.0,"Newton_iterations":900}residual_dae384
+robertson-residual_dae-r2trajectorycompleted_fixed_steps{"max_scaled_reference_error":0.013348649011714184,"max_mass_error":2.220446049250313e-16,"max_scaled_step_residual":1.9804734758359423e-12,"minimum_species":0.0,"Newton_iterations":1723}residual_dae768
+
+## DAE initialization, conservation and constraint drift — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/#robertson-conservation-dae-measurements
+Coverage: reading
+
+robertson-residual_dae-r4trajectorycompleted_fixed_steps{"max_scaled_reference_error":0.007755772186054176,"max_mass_error":2.220446049250313e-16,"max_scaled_step_residual":9.182101846032633e-13,"minimum_species":0.0,"Newton_iterations":3078}residual_dae1536
+robertson-full_ode-r1trajectorycompleted_fixed_steps{"max_scaled_reference_error":0.014438638971780366,"max_mass_error":4.440892098500626e-16,"max_scaled_step_residual":1.0707354074153451e-12,"minimum_species":0.0,"Newton_iterations":900}full_ode384
+robertson-full_ode-r2trajectorycompleted_fixed_steps{"max_scaled_reference_error":0.013348649011714252,"max_mass_error":1.5543122344752192e-15,"max_scaled_step_residual":1.980642882425393e-12,"minimum_species":0.0,"Newton_iterations":1723}full_ode768
+robertson-full_ode-r4trajectorycompleted_fixed_steps{"max_scaled_reference_error":0.007755772186054176,"max_mass_error":8.881784197001252e-16,"max_scaled_step_residual":9.182101846032633e-13,"minimum_species":0.0,"Newton_iterations":3078}full_ode1536
+Measurements and complete records / JSON
+
+## DAE initialization, conservation and constraint drift — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/#robertson-conservation-dae-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+SUNDIALS v7.1.1 idaRoberts_dns example [accessed 2026-11-24]
+Review scope / review_level: official-source-selected-functions
+Read residual/Jacobian, initialization, tolerances and print format. Own first two residual rows have opposite sign and the same zero set.
+Stored official v7.1.1 IDA Robertson output [accessed 2026-11-24]
+Review scope / review_level: official-stored-output-selected-rows
+Selected printed t=0.4 and4 values only, with Decimal rounding intervals. These approximate IDA values are not exact truth; no IDA run is performed here.
+
+## DAE initialization, conservation and constraint drift — Index reduction, constraint drift and explicit stabilization for a pendulum [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/
+Coverage: reading
+
+Derive an explicit ODE from an index-three position constraint and compare drift and stabilization for consistent and inconsistent starts.
+Methods, equations, figures and references
+Methods used
+Differential-algebraic equations / DAE
+Classical RK4
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Advance the index-reduced ODE and a critical constraint-error extension with fixed RK4, integrating constraint work at the same stages.
+Constrained planar pendulum
+m=L=g=1, initial angle 0.7 and zero angular velocity; off-manifold controls explicitly add radial velocity.
+Hamiltonian systems and oscillators
+m=L=g=1, initial angle 0.7 and zero angular velocity; off-manifold controls explicitly add radial velocity.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Constrained planar pendulum
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Qualify the Jacobi family against two independent angular ODE runs, then compare states, exact constraint laws and energy/work budgets.
+Same-problem reference · Semi-analytic reference
+Index reduction, constraint drift and explicit stabilization for a pendulum
+
+## DAE initialization, conservation and constraint drift — Index reduction, constraint drift and explicit stabilization for a pendulum [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/
+Coverage: reading
+
+No projection, normalization or SHAKE/RATTLE; no general index-three-solver or symplecticity claim.
+Same-problem reference · Semi-analytic reference
+SHAKE and RATTLE: constraints and momentum ownership
+Original SHAKE and RATTLE full texts remain unread; selected author lecture notes were inspected. The finite-difference symplectic defect is a local proxy, not a general proof, and centered SHAKE velocity is not assigned RATTLE tangency.
+
+## DAE initialization, conservation and constraint drift — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/#high-index-pendulum-assumptions
+Coverage: reading
+
+m=L=g=1, initial angle 0.7 and zero angular velocity; off-manifold controls explicitly add radial velocity.
+
+## DAE initialization, conservation and constraint drift — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/#high-index-pendulum-algorithm
+Coverage: reading
+
+Advance the index-reduced ODE and a critical constraint-error extension with fixed RK4, integrating constraint work at the same stages.
+C=(q.q-1)/2, D=q.v, lambda=(v.v-q_y+2D+C)/(q.q)Cddot+2*Cdot+C=0; Wdot=-lambda*(q.v)
+
+## DAE initialization, conservation and constraint drift — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/#high-index-pendulum-validation
+Coverage: reading
+
+Qualify the Jacobi family against two independent angular ODE runs, then compare states, exact constraint laws and energy/work budgets.
+
+## DAE initialization, conservation and constraint drift — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/#high-index-pendulum-limits
+Coverage: reading
+
+No projection, normalization or SHAKE/RATTLE; no general index-three-solver or symplecticity claim.
+
+## DAE initialization, conservation and constraint drift — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/#high-index-pendulum-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+pendulum-consistent-underlying-2000:state1.62886951705e-08
+pendulum-consistent-underlying-2000:energy1.18496817914e-08
+pendulum-consistent-stabilized-2000:state2.18239935845e-09
+pendulum-consistent-stabilized-2000:energy1.22456489393e-10
+pendulum-radial-underlying-2000:C-law1.0557027235e-08
+pendulum-radial-underlying-2000:D-law1.0374748274e-09
+pendulum-radial-underlying-2000:work-ledger4.06214124837e-11
+pendulum-radial-stabilized-2000:C-law1.0589864169e-10
+pendulum-radial-stabilized-2000:D-law1.11336099736e-10
+pendulum-radial-stabilized-2000:work-ledger1.26327727947e-09
+underlying-consistent-fourth-order[3.997663875510909,3.999093883138539]
+visible-unstabilized-drift0.019999989443
+stabilized-drift-ratio8.89400134498e-10
+finest_consistent_state_error1.62886951705e-08
+observed_orders[3.997663875510909,3.999093883138539]
+stabilized_to_unstabilized_drift_ratio8.89400134498e-10
+reference_solver_counters[{"id":"angular-reference-0","method":"DOP853","nfev":1373,"njev":0,"nlu":0,"status":0,"observations":33},{"id":"angular-reference-1","method":"DOP853","nfev":2273,"njev":0,"nlu":0,"status":0,"observations":33}]
+original_targets_met45
+original_targets_total45
+判定 / checkPassed
+
+## DAE initialization, conservation and constraint drift — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/#high-index-pendulum-measurements
+Coverage: reading
+
+reference:Jacobi-angular-agreementtrue
+reference:angular-tolerance-agreementtrue
+reference:Jacobi-initialtrue
+reference:Jacobi-invariantstrue
+reference:AGM-Ktrue
+reference:Decimal-remainder-qualificationtrue
+reference:constraint-identity-Falsetrue
+reference:constraint-work-Falsetrue
+reference:constraint-identity-Truetrue
+reference:constraint-work-Truetrue
+default-consistency-rejectiontrue
+pendulum-consistent-underlying-500:finitetrue
+pendulum-consistent-underlying-500:radiustrue
+pendulum-consistent-underlying-1000:finitetrue
+pendulum-consistent-underlying-1000:radiustrue
+pendulum-consistent-underlying-2000:finitetrue
+pendulum-consistent-underlying-2000:radiustrue
+pendulum-consistent-underlying-2000:statetrue
+pendulum-consistent-underlying-2000:energytrue
+pendulum-consistent-stabilized-2000:finitetrue
+pendulum-consistent-stabilized-2000:radiustrue
+pendulum-consistent-stabilized-2000:statetrue
+pendulum-consistent-stabilized-2000:energytrue
+pendulum-radial-underlying-500:finitetrue
+pendulum-radial-underlying-500:radiustrue
+pendulum-radial-underlying-1000:finitetrue
+pendulum-radial-underlying-1000:radiustrue
+pendulum-radial-underlying-2000:finitetrue
+pendulum-radial-underlying-2000:radiustrue
+pendulum-radial-underlying-2000:C-lawtrue
+pendulum-radial-underlying-2000:D-lawtrue
+pendulum-radial-underlying-2000:work-ledgertrue
+pendulum-radial-stabilized-500:finitetrue
+
+## DAE initialization, conservation and constraint drift — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/#high-index-pendulum-measurements
+Coverage: reading
+
+pendulum-radial-stabilized-500:radiustrue
+pendulum-radial-stabilized-1000:finitetrue
+pendulum-radial-stabilized-1000:radiustrue
+pendulum-radial-stabilized-2000:finitetrue
+pendulum-radial-stabilized-2000:radiustrue
+pendulum-radial-stabilized-2000:C-lawtrue
+pendulum-radial-stabilized-2000:D-lawtrue
+pendulum-radial-stabilized-2000:work-ledgertrue
+underlying-consistent-fourth-ordertrue
+visible-unstabilized-drifttrue
+stabilized-drift-ratiotrue
+eleven-record-identitiestrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Derive an explicit ODE from an index-three position constraint and compare drift and stabilization for consistent and inconsistent starts. Drawn from saved arrays.Saved residuals, constraints and budgets shown separately; symmetric log axes retain zero values.Read every stored record
+idkindterminationmetricsinitial_consistentconstraint_extensionstepsRHS_evaluations
+default-inconsistent-rejectionexpected_initial_failureinitial_velocity_constraint_violated{"C":0.0,"D":0.001}————
+
+## DAE initialization, conservation and constraint drift — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/#high-index-pendulum-measurements
+Coverage: reading
+
+pendulum-consistent-underlying-500trajectorycompleted_fixed_steps{"max_state_error":4.160545245934788e-06,"max_abs_C":2.765469672483256e-06,"C_exact_law_error":2.765469672483256e-06,"D_exact_law_error":2.7391049113589805e-07,"max_energy_error":3.0130832572305977e-06,"max_energy_work_balance_error":1.8252864454015173e-08,"minimum_radius_squared":0.999994469060655}trueunderlying_ode5002000
+pendulum-consistent-underlying-1000trajectorycompleted_fixed_steps{"max_state_error":2.604554864560349e-07,"max_abs_C":1.7316282147072926e-07,"C_exact_law_error":1.7316282147072926e-07,"D_exact_law_error":1.713857653018458e-08,"max_energy_error":1.8919273392370428e-07,"max_energy_work_balance_error":8.221427626750745e-10,"minimum_radius_squared":0.9999996536743571}trueunderlying_ode10004000
+pendulum-consistent-underlying-2000trajectorycompleted_fixed_steps{"max_state_error":1.6288695170452172e-08,"max_abs_C":1.0830674912476468e-08,"C_exact_law_error":1.0830674912476468e-08,"D_exact_law_error":1.0715459075605338e-09,"max_energy_error":1.1849681791353817e-08,"max_energy_work_balance_error":4.1426898669475616e-11,"minimum_radius_squared":0.9999999783386502}trueunderlying_ode20008000
+
+## DAE initialization, conservation and constraint drift — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/#high-index-pendulum-measurements
+Coverage: reading
+
+pendulum-consistent-stabilized-2000trajectorycompleted_fixed_steps{"max_state_error":2.182399358452436e-09,"max_abs_C":1.0581768794537538e-10,"C_exact_law_error":1.0581768794537538e-10,"D_exact_law_error":1.1133916011374367e-10,"max_energy_error":1.2245648939313014e-10,"max_energy_work_balance_error":1.262848326362555e-09,"minimum_radius_squared":0.9999999999119735}truecritical_constraint_stabilization20008000
+pendulum-radial-underlying-500trajectorycompleted_fixed_steps{"max_state_error":null,"max_abs_C":0.01999730449987358,"C_exact_law_error":2.6955001264199197e-06,"D_exact_law_error":2.6519275278438087e-07,"max_energy_error":0.021853616550225663,"max_energy_work_balance_error":1.773553745879064e-08,"minimum_radius_squared":1.0}falseunderlying_ode5002000
+pendulum-radial-underlying-1000trajectorycompleted_fixed_steps{"max_state_error":null,"max_abs_C":0.019999831214412733,"C_exact_law_error":1.687855872671562e-07,"D_exact_law_error":1.6593273643138173e-08,"max_energy_error":0.021856315611555877,"max_energy_work_balance_error":8.02820952078287e-10,"minimum_radius_squared":1.0}falseunderlying_ode10004000
+
+## DAE initialization, conservation and constraint drift — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/#high-index-pendulum-measurements
+Coverage: reading
+
+pendulum-radial-underlying-2000trajectorycompleted_fixed_steps{"max_state_error":null,"max_abs_C":0.019999989442972765,"C_exact_law_error":1.0557027235041927e-08,"D_exact_law_error":1.037474827401963e-09,"max_energy_error":0.021856485118469382,"max_energy_work_balance_error":4.06214124837323e-11,"minimum_radius_squared":1.0}falseunderlying_ode20008000
+pendulum-radial-stabilized-500trajectorycompleted_fixed_steps{"max_state_error":null,"max_abs_C":0.00036789506087830937,"C_exact_law_error":2.70874640680434e-08,"D_exact_law_error":2.8949574397093593e-08,"max_energy_error":0.0003082872934667691,"max_energy_work_balance_error":3.1977183966938887e-07,"minimum_radius_squared":0.9999999763781866}falsecritical_constraint_stabilization5002000
+pendulum-radial-stabilized-1000trajectorycompleted_fixed_steps{"max_state_error":null,"max_abs_C":0.00036788043239688317,"C_exact_law_error":1.6940355969667815e-09,"D_exact_law_error":1.7906875354268062e-09,"max_energy_error":0.00030827311284586933,"max_energy_work_balance_error":2.0137442365109428e-08,"minimum_radius_squared":0.9999999986894732}falsecritical_constraint_stabilization10004000
+
+## DAE initialization, conservation and constraint drift — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/#high-index-pendulum-measurements
+Coverage: reading
+
+pendulum-radial-stabilized-2000trajectorycompleted_fixed_steps{"max_state_error":null,"max_abs_C":0.0003678795035788607,"C_exact_law_error":1.058986416895176e-10,"D_exact_law_error":1.113360997362714e-10,"max_energy_error":0.00030827223479734656,"max_energy_work_balance_error":1.2632772794691789e-09,"minimum_radius_squared":1.0}falsecritical_constraint_stabilization20008000
+Measurements and complete records / JSON
+
+## DAE initialization, conservation and constraint drift — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/#high-index-pendulum-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+NIST DLMF section22.19(i), pendulum [accessed 2026-11-24]
+Review scope / review_level: official-reference-selected-equations
+Selected pendulum formulas, phase and modulus convention. Authored Cartesian conversion uses K-t; SciPy takes parameter m=k². No full chapter reading claimed.
+NIST DLMF section19.8(i), arithmetic-geometric mean [accessed 2026-11-24]
+Review scope / review_level: official-reference-selected-equations
+Selected AGM/K identity; independent Decimal Machin pi and sine with explicit finite remainders qualify a single fixed modulus.
+
 ## Double Mach reflection: lightweight grid verification — Double Mach reflection: lightweight grid verification [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-double-mach/
@@ -20335,6 +20900,751 @@ J. N. Lyness (1969). Notes on the Adaptive Simpson Quadrature Routine · DOI: 10
 Review scope / review_level: publisher-metadata
 Official reference-implementation documentation: scipy.special.roots_legendre.html · scipy.integrate.quad.html
 
+## Geometric integration of constraints, orbits and multiple frequencies — Geometric integration of constraints, orbits and multiple frequencies [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/
+Coverage: reading
+
+Fixed small examples compare SHAKE/RATTLE, Kepler orbits and coupled oscillators. Constraints, phase, energy and rounding effects are reported separately.
+
+## Geometric integration of constraints, orbits and multiple frequencies — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#run-all
+Coverage: reading
+
+Run inside atlas-geometric-controls-2026-11-24 from the ZIP. This command executes all 3 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Geometric integration of constraints, orbits and multiple frequencies — SHAKE and RATTLE: constraints and momentum ownership [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/
+Coverage: reading
+
+Ten fixed pendulum evolutions distinguish position constraints, full-time tangent momentum and interior centered momentum.
+Methods, equations, figures and references
+Methods used
+SHAKE constrained integration
+RATTLE constrained integration
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Original scalar Newton position constraints, RATTLE final tangent impulses and SHAKE position pairs. SHAKE momentum is centered only at interior nodes; endpoint momenta are absent. SHAKE solves columns are eta, eta/h^2, position residual and Newton updates. Column1 uses the uniform recurrence normalization eta/h^2. For the first constrained half-step startup, the physical multiplier is 2*eta/h^2; later full position-Verlet steps use eta/h^2. Reverse-pair steps all use the later recurrence convention. RATTLE has its separate five-column normalization. No scientific gate or plot uses SHAKE column1.
+Constrained planar pendulum
+L=m=g=1, initial angle 0.7 and zero angular velocity. C=(q·q−1)/2, T=100 and h=0.04/0.02/0.01; position targets are fixed at 1e−13, with a coarse 1e−10 companion.
+Hamiltonian systems and oscillators
+
+## Geometric integration of constraints, orbits and multiple frequencies — SHAKE and RATTLE: constraints and momentum ownership [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/
+Coverage: reading
+
+L=m=g=1, initial angle 0.7 and zero angular velocity. C=(q·q−1)/2, T=100 and h=0.04/0.02/0.01; position targets are fixed at 1e−13, with a coarse 1e−10 companion.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Constrained planar pendulum
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+A separately qualified Jacobi family and angular DOP853 reference support 74 main decisions. Finite-C centered identities, two-delta reduced-map diagnostics and position-pair versus full-state reversals are distinct.
+Same-problem reference · Semi-analytic reference
+Index reduction, constraint drift and explicit stabilization for a pendulum
+No projection, normalization or SHAKE/RATTLE; no general index-three-solver or symplecticity claim.
+Same-problem reference · Semi-analytic reference
+SHAKE and RATTLE: constraints and momentum ownership
+Original SHAKE and RATTLE full texts remain unread; selected author lecture notes were inspected. The finite-difference symplectic defect is a local proxy, not a general proof, and centered SHAKE velocity is not assigned RATTLE tangency.
+
+## Geometric integration of constraints, orbits and multiple frequencies — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#shake-rattle-pendulum-assumptions
+Coverage: reading
+
+L=m=g=1, initial angle 0.7 and zero angular velocity. C=(q·q−1)/2, T=100 and h=0.04/0.02/0.01; position targets are fixed at 1e−13, with a coarse 1e−10 companion.
+
+## Geometric integration of constraints, orbits and multiple frequencies — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#shake-rattle-pendulum-algorithm
+Coverage: reading
+
+Original scalar Newton position constraints, RATTLE final tangent impulses and SHAKE position pairs. SHAKE momentum is centered only at interior nodes; endpoint momenta are absent. SHAKE solves columns are eta, eta/h^2, position residual and Newton updates. Column1 uses the uniform recurrence normalization eta/h^2. For the first constrained half-step startup, the physical multiplier is 2*eta/h^2; later full position-Verlet steps use eta/h^2. Reverse-pair steps all use the later recurrence convention. RATTLE has its separate five-column normalization. No scientific gate or plot uses SHAKE column1.
+C(q)=\tfrac12(q^Tq-1)=0q_{n+1}=q_n+h p_n+\tfrac12h^2 f-\eta_n q_nq_n^Tp_n^c=\frac{\|q_n-q_{n-1}\|^2-\|q_{n+1}-q_n\|^2}{4h}+\frac{C_{n+1}-C_{n-1}}{2h}
+
+## Geometric integration of constraints, orbits and multiple frequencies — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#shake-rattle-pendulum-validation
+Coverage: reading
+
+A separately qualified Jacobi family and angular DOP853 reference support 74 main decisions. Finite-C centered identities, two-delta reduced-map diagnostics and position-pair versus full-state reversals are distinct.
+
+## Geometric integration of constraints, orbits and multiple frequencies — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#shake-rattle-pendulum-limits
+Coverage: reading
+
+Original SHAKE and RATTLE full texts remain unread; selected author lecture notes were inspected. The finite-difference symplectic defect is a local proxy, not a general proof, and centered SHAKE velocity is not assigned RATTLE tangency.
+
+## Geometric integration of constraints, orbits and multiple frequencies — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#shake-rattle-pendulum-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+rattle_observed_orders[2.0002044529735445,2.0000564458078465]
+shake_observed_orders[2.000077432739235,2.0000041345609065]
+reduced_map_probes[{"state":[0.7,0.0],"symplectic_defect":3.424459604772778e-10,"FD_difference":1.7850310118916468e-10},{"state":[0.3,0.2],"symplectic_defect":3.746203347532173e-11,"FD_difference":1.8735013540549517e-10},{"state":[-0.4,-0.3],"symplectic_defect":1.2937362292575472e-10,"FD_difference":2.7755575615628914e-10}]
+evolution_count10
+centered_SHAKE_not_RATTLE_tangenttrue
+maximum_constraint3.81106257663e-12
+判定 / checkPassed
+rattle-tight-2500-finitetrue
+rattle-tight-2500-completedtrue
+rattle-tight-2500-constrainttrue
+rattle-tight-2500-statetrue
+rattle-tight-2500-energytrue
+rattle-tight-2500-solvertrue
+rattle-tight-2500-tangenttrue
+rattle-tight-5000-finitetrue
+rattle-tight-5000-completedtrue
+rattle-tight-5000-constrainttrue
+rattle-tight-5000-statetrue
+rattle-tight-5000-energytrue
+rattle-tight-5000-solvertrue
+rattle-tight-5000-tangenttrue
+rattle-tight-10000-finitetrue
+rattle-tight-10000-completedtrue
+rattle-tight-10000-constrainttrue
+rattle-tight-10000-statetrue
+rattle-tight-10000-energytrue
+rattle-tight-10000-solvertrue
+rattle-tight-10000-tangenttrue
+rattle-loose-2500-finitetrue
+
+## Geometric integration of constraints, orbits and multiple frequencies — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#shake-rattle-pendulum-measurements
+Coverage: reading
+
+rattle-loose-2500-completedtrue
+rattle-loose-2500-constrainttrue
+rattle-loose-2500-statetrue
+rattle-loose-2500-energytrue
+rattle-loose-2500-solvertrue
+rattle-loose-2500-tangenttrue
+rattle-reverse-finitetrue
+rattle-reverse-stepstrue
+rattle-reverse-recoverytrue
+shake-tight-2500-finitetrue
+shake-tight-2500-completedtrue
+shake-tight-2500-constrainttrue
+shake-tight-2500-statetrue
+shake-tight-2500-energytrue
+shake-tight-2500-solvertrue
+shake-tight-2500-finite-C-identitytrue
+shake-tight-2500-centered-tangencytrue
+shake-tight-5000-finitetrue
+shake-tight-5000-completedtrue
+shake-tight-5000-constrainttrue
+shake-tight-5000-statetrue
+shake-tight-5000-energytrue
+shake-tight-5000-solvertrue
+shake-tight-5000-finite-C-identitytrue
+shake-tight-5000-centered-tangencytrue
+shake-tight-10000-finitetrue
+shake-tight-10000-completedtrue
+shake-tight-10000-constrainttrue
+shake-tight-10000-statetrue
+shake-tight-10000-energytrue
+shake-tight-10000-solvertrue
+shake-tight-10000-finite-C-identitytrue
+shake-tight-10000-centered-tangencytrue
+shake-loose-2500-finitetrue
+shake-loose-2500-completedtrue
+shake-loose-2500-constrainttrue
+shake-loose-2500-statetrue
+shake-loose-2500-energytrue
+shake-loose-2500-solvertrue
+shake-loose-2500-finite-C-identitytrue
+shake-loose-2500-centered-tangencytrue
+shake-reverse-finitetrue
+shake-reverse-stepstrue
+shake-reverse-recoverytrue
+rattle-state-ordertrue
+shake-state-ordertrue
+
+## Geometric integration of constraints, orbits and multiple frequencies — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#shake-rattle-pendulum-measurements
+Coverage: reading
+
+reduced-map-0-symplectic-proxytrue
+reduced-map-0-FD-consistencytrue
+reduced-map-1-symplectic-proxytrue
+reduced-map-1-FD-consistencytrue
+reduced-map-2-symplectic-proxytrue
+reduced-map-2-FD-consistencytrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Saved reduced phase portraits at h=0.01. SHAKE uses interior centered momentum; RATTLE uses full-time tangent momentum.Read every stored record
+idrolemethodhstepstargetconstrainttangentmax_state_errormax_energy_errormax_solver_residualmax_solver_updatesraw_filediagnostic_filemomentum_scoperecovery_defectcentered_identity_discrepancyfinite_C_jump
+rattle-tight-2500primaryrattle0.0425001e-139.83657599818e-145.55111512313e-170.008956493612250.000105103018489.83657599818e-143rattle-tight-2500.npzrattle-tight-2500-diagnostics.npzFull-time constrained momentum———
+rattle-tight-5000primaryrattle0.0250001e-131.11022302463e-155.55111512313e-170.002238806105932.6280868993e-051.11022302463e-152rattle-tight-5000.npzrattle-tight-5000-diagnostics.npzFull-time constrained momentum———
+rattle-tight-10000primaryrattle0.01100001e-132.22044604925e-165.55111512313e-170.0005596796284476.57019349737e-062.22044604925e-162rattle-tight-10000.npzrattle-tight-10000-diagnostics.npzFull-time constrained momentum———
+
+## Geometric integration of constraints, orbits and multiple frequencies — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#shake-rattle-pendulum-measurements
+Coverage: reading
+
+rattle-loose-2500primaryrattle0.0425001e-102.38919994899e-135.55111512313e-170.00895649360270.0001051030189842.38919994899e-132rattle-loose-2500.npzrattle-loose-2500-diagnostics.npzFull-time constrained momentum———
+rattle-reversereversalrattle—2500———————rattle-reverse.npz——1.02947640973e-13——
+shake-tight-2500primaryshake0.0425001e-131.74305014866e-140.0001826022377050.008949400574180.000105103007221.74305014866e-143shake-tight-2500.npzshake-tight-2500-diagnostics.npzInterior centered momentum; endpoint momentum is absent—1.86396037494e-151.74305014866e-14
+shake-tight-5000primaryshake0.0250001e-131.50990331349e-144.56503960533e-050.002237230063072.62808690098e-051.50990331349e-142shake-tight-5000.npzshake-tight-5000-diagnostics.npzInterior centered momentum; endpoint momentum is absent—4.14071717452e-151.22124532709e-15
+shake-tight-10000primaryshake0.01100001e-132.22044604925e-161.14125900504e-050.0005593059128746.57019344785e-062.22044604925e-162shake-tight-10000.npzshake-tight-10000-diagnostics.npzInterior centered momentum; endpoint momentum is absent—7.92557209098e-153.33066907388e-16
+shake-loose-2500primaryshake0.0425001e-103.81106257663e-120.0001826022342640.008949400429180.0001051030162733.81106257663e-122shake-loose-2500.npzshake-loose-2500-diagnostics.npzInterior centered momentum; endpoint momentum is absent—2.02984330733e-153.4172664698e-13
+
+## Geometric integration of constraints, orbits and multiple frequencies — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#shake-rattle-pendulum-measurements
+Coverage: reading
+
+shake-reversereversalshake—2499———————shake-reverse.npz——7.45399637809e-14——
+Measurements and complete records / JSON
+
+## Geometric integration of constraints, orbits and multiple frequencies — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#shake-rattle-pendulum-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Solving Differential Equations on Manifolds [accessed 2026-11-24]
+Review scope / review_level: selected-primary-scope
+Author-hosted lecture notes, selected printed page50, SectionV.5, equations5.1–5.3 and Theorem5.1 statement, rendered and visually read. Centered SHAKE momentum and RATTLE final tangency are explicit. The original1977 SHAKE and1983 RATTLE articles remain full-text unread; no full proof review is claimed.
+Lecture2: Symplectic integrators [accessed 2026-11-24]
+Review scope / review_level: selected-primary-scope
+Author-hosted course notes, selected rendered printed pages2,12–13: Verlet kick/drift form, symplectic statement, Lie and symmetric Strang compositions. This does not qualify every state-dependent step rule or the authored coupled resonance experiment.
+DLMF22.4: Periods, Poles, and Zeros (version 1.2.8, released 2026-09-15) [accessed 2026-11-24]
+Review scope / review_level: selected-primary-scope
+Official Table22.4.1 selected real periods: sn and cn have4K, dn has2K. Version date is not an initial publication date. Common-period reduction and direct-library periodicity qualification are separate from the independent angular DOP853 state comparison.
+
+## Geometric integration of constraints, orbits and multiple frequencies — Kepler eccentricity and time-step controls [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/
+Coverage: reading
+
+Sixteen fixed evolutions at e=0.1/0.7 compare invariants, same-time phase error, physical periapsis times and reversal.
+Methods, equations, figures and references
+Methods used
+Velocity Verlet / particle leapfrog
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Original central-force KDK Verlet. Fixed, replayed and regenerated schedules are distinct. Positive radial crossings of cubic Hermite trajectories are localized by brentq.
+Kepler two-body problem
+a=mu=reduced mass=1, without softening. One-period runs use 512/1024/2048 steps; ten-period controls use h0=2π/2048. Variable steps use h=h0|q| at the current state, with only the final step shortened to the physical endpoint.
+Gravitational particle model
+a=mu=reduced mass=1, without softening. One-period runs use 512/1024/2048 steps; ten-period controls use h0=2π/2048. Variable steps use h=h0|q| at the current state, with only the final step shortened to the physical endpoint.
+Hamiltonian systems and oscillators
+a=mu=reduced mass=1, without softening. One-period runs use 512/1024/2048 steps; ten-period controls use h0=2π/2048. Variable steps use h=h0|q| at the current state, with only the final step shortened to the physical endpoint.
+Problem figure
+
+## Geometric integration of constraints, orbits and multiple frequencies — Kepler eccentricity and time-step controls [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/
+Coverage: reading
+
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Unsoftened Kepler two-body time error
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+An independent Kepler-equation family, qualified with brentq and bisection, supports 92 main decisions: full-state error, energy/angular momentum, at least eight periapses, finite-window order and reversal defects.
+Same-problem reference · Analytic reference
+Unsoftened Kepler two-body time error
+One orbit at fixed eccentricity only; softened binaries and long-time behavior are outside this exact reference.
+Same-problem reference · Semi-analytic reference
+Kepler eccentricity and time-step controls
+Small invariant errors do not establish phase accuracy. No canonical symplectic-defect measurement is claimed for the variable-step map, and fixed-h properties are not transferred automatically. R1 resolution was revised to R2 using pre-execution asymptotic planning, not measured calibration.
+
+## Geometric integration of constraints, orbits and multiple frequencies — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#kepler-eccentricity-assumptions
+Coverage: reading
+
+a=mu=reduced mass=1, without softening. One-period runs use 512/1024/2048 steps; ten-period controls use h0=2π/2048. Variable steps use h=h0|q| at the current state, with only the final step shortened to the physical endpoint.
+
+## Geometric integration of constraints, orbits and multiple frequencies — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#kepler-eccentricity-algorithm
+Coverage: reading
+
+Original central-force KDK Verlet. Fixed, replayed and regenerated schedules are distinct. Positive radial crossings of cubic Hermite trajectories are localized by brentq.
+\ddot q=-q/\|q\|^3E-e\sin E=t,\quad q=(\cos E-e,\sqrt{1-e^2}\sin E)H=\tfrac12\|p\|^2-1/\|q\|
+
+## Geometric integration of constraints, orbits and multiple frequencies — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#kepler-eccentricity-validation
+Coverage: reading
+
+An independent Kepler-equation family, qualified with brentq and bisection, supports 92 main decisions: full-state error, energy/angular momentum, at least eight periapses, finite-window order and reversal defects.
+
+## Geometric integration of constraints, orbits and multiple frequencies — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#kepler-eccentricity-limits
+Coverage: reading
+
+Small invariant errors do not establish phase accuracy. No canonical symplectic-defect measurement is claimed for the variable-step map, and fixed-h properties are not transferred automatically. R1 resolution was revised to R2 using pre-execution asymptotic planning, not measured calibration.
+
+## Geometric integration of constraints, orbits and multiple frequencies — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#kepler-eccentricity-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+e0.1_orders[1.9999876782390122,1.9999962905452664]
+e0.7_orders[1.987542094585538,2.000215589787777]
+evolution_count16
+variable_map_symplecticity_measuredfalse
+max_state_error0.398497085973
+判定 / checkPassed
+e0p1-fixed-512-finitetrue
+e0p1-fixed-512-timetrue
+e0p1-fixed-512-radiustrue
+e0p1-fixed-512-angulartrue
+e0p1-fixed-512-energytrue
+e0p1-fixed-512-referencetrue
+e0p1-fixed-1024-finitetrue
+e0p1-fixed-1024-timetrue
+e0p1-fixed-1024-radiustrue
+e0p1-fixed-1024-angulartrue
+e0p1-fixed-1024-energytrue
+e0p1-fixed-1024-referencetrue
+e0p1-fixed-2048-finitetrue
+e0p1-fixed-2048-timetrue
+e0p1-fixed-2048-radiustrue
+e0p1-fixed-2048-angulartrue
+e0p1-fixed-2048-energytrue
+e0p1-fixed-2048-referencetrue
+e0p1-fixed-long-finitetrue
+e0p1-fixed-long-timetrue
+e0p1-fixed-long-radiustrue
+e0p1-fixed-long-angulartrue
+e0p1-fixed-long-energytrue
+e0p1-fixed-long-referencetrue
+e0p1-fixed-long-periapsis-counttrue
+e0p1-fixed-long-periapsis-timetrue
+e0p1-variable-long-finitetrue
+e0p1-variable-long-timetrue
+e0p1-variable-long-radiustrue
+e0p1-variable-long-angulartrue
+e0p1-variable-long-energytrue
+e0p1-variable-long-referencetrue
+e0p1-variable-long-periapsis-counttrue
+e0p1-variable-long-periapsis-timetrue
+e0p1-reverse-fixed-finitetrue
+
+## Geometric integration of constraints, orbits and multiple frequencies — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#kepler-eccentricity-measurements
+Coverage: reading
+
+e0p1-reverse-fixed-scheduletrue
+e0p1-reverse-fixed-recovery-or-diagnostic-scopetrue
+e0p1-reverse-variable-replay-finitetrue
+e0p1-reverse-variable-replay-scheduletrue
+e0p1-reverse-variable-replay-recovery-or-diagnostic-scopetrue
+e0p1-reverse-variable-regenerated-finitetrue
+e0p1-reverse-variable-regenerated-scheduletrue
+e0p1-reverse-variable-regenerated-recovery-or-diagnostic-scopetrue
+e0p7-fixed-512-finitetrue
+e0p7-fixed-512-timetrue
+e0p7-fixed-512-radiustrue
+e0p7-fixed-512-angulartrue
+e0p7-fixed-512-energytrue
+e0p7-fixed-512-referencetrue
+e0p7-fixed-1024-finitetrue
+e0p7-fixed-1024-timetrue
+e0p7-fixed-1024-radiustrue
+e0p7-fixed-1024-angulartrue
+e0p7-fixed-1024-energytrue
+e0p7-fixed-1024-referencetrue
+e0p7-fixed-2048-finitetrue
+e0p7-fixed-2048-timetrue
+e0p7-fixed-2048-radiustrue
+e0p7-fixed-2048-angulartrue
+e0p7-fixed-2048-energytrue
+e0p7-fixed-2048-referencetrue
+e0p7-fixed-long-finitetrue
+e0p7-fixed-long-timetrue
+e0p7-fixed-long-radiustrue
+e0p7-fixed-long-angulartrue
+e0p7-fixed-long-energytrue
+e0p7-fixed-long-referencetrue
+e0p7-fixed-long-periapsis-counttrue
+e0p7-fixed-long-periapsis-timetrue
+e0p7-variable-long-finitetrue
+e0p7-variable-long-timetrue
+e0p7-variable-long-radiustrue
+e0p7-variable-long-angulartrue
+e0p7-variable-long-energytrue
+e0p7-variable-long-referencetrue
+e0p7-variable-long-periapsis-counttrue
+e0p7-variable-long-periapsis-timetrue
+e0p7-reverse-fixed-finitetrue
+
+## Geometric integration of constraints, orbits and multiple frequencies — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#kepler-eccentricity-measurements
+Coverage: reading
+
+e0p7-reverse-fixed-scheduletrue
+e0p7-reverse-fixed-recovery-or-diagnostic-scopetrue
+e0p7-reverse-variable-replay-finitetrue
+e0p7-reverse-variable-replay-scheduletrue
+e0p7-reverse-variable-replay-recovery-or-diagnostic-scopetrue
+e0p7-reverse-variable-regenerated-finitetrue
+e0p7-reverse-variable-regenerated-scheduletrue
+e0p7-reverse-variable-regenerated-recovery-or-diagnostic-scopetrue
+e0.1-fine-statetrue
+e0.1-state-ordertrue
+e0.1-fine-energytrue
+e0.7-fine-statetrue
+e0.7-state-ordertrue
+e0.7-fine-energytrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Saved ten-period fixed-step and variable-step orbits at e=0.7, shown with equal physical aspect and an unsoftened central force.Read every stored record
+idroleeccentricitycontrolperiodsstepsmax_hmax_state_errormax_energy_errorangular_normalized_driftmin_radiusraw_filediagnostic_fileperiapsis_countmax_periapsis_time_errormax_apsidal_angle_driftrecovery_defectreversal_scope
+e0p1-fixed-512primary0.1fixed15120.01227184630310.0006405116966378.05053269043e-069.46060665224e-160.9e0p1-fixed-512.npze0p1-fixed-512-diagnostics.npz—————
+e0p1-fixed-1024primary0.1fixed110240.006135923151540.0001601292917852.01217441925e-062.67123011357e-150.9e0p1-fixed-1024.npze0p1-fixed-1024-diagnostics.npz—————
+
+## Geometric integration of constraints, orbits and multiple frequencies — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#kepler-eccentricity-measurements
+Coverage: reading
+
+e0p1-fixed-2048primary0.1fixed120480.003067961575774.00324258773e-055.03014929321e-073.2833870146e-150.9e0p1-fixed-2048.npze0p1-fixed-2048-diagnostics.npz—————
+e0p1-fixed-longprimary0.1fixed10204800.003067961575770.0004002652750385.03014948028e-079.62755853434e-150.9e0p1-fixed-long.npze0p1-fixed-long-diagnostics.npz99.91844474569e-050.00016635838789——
+e0p1-variable-longprimary0.1variable10204800.003374775480060.0004110313358444.78469069809e-074.11814642509e-150.9e0p1-variable-long.npze0p1-variable-long-diagnostics.npz90.0002232461866922.40836284575e-05——
+e0p1-reverse-fixedreversal0.1fixed—2048—————e0p1-reverse-fixed.npz————1.51456275812e-15saved_schedule_reversal
+e0p1-reverse-variable-replayreversal0.1variable-replay—20480—————e0p1-reverse-variable-replay.npz————1.30107235271e-12saved_schedule_reversal
+e0p1-reverse-variable-regeneratedreversal0.1variable-regenerated—20480—————e0p1-reverse-variable-regenerated.npz————7.23428736521e-07diagnostic_not_time_symmetric
+e0p7-fixed-512primary0.7fixed15120.01227184630310.3984970859730.0019520858034.53378853739e-160.3e0p7-fixed-512.npze0p7-fixed-512-diagnostics.npz—————
+e0p7-fixed-1024primary0.7fixed110240.006135923151540.1004882682250.0004873138605731.03629452283e-150.3e0p7-fixed-1024.npze0p7-fixed-1024-diagnostics.npz—————
+
+## Geometric integration of constraints, orbits and multiple frequencies — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#kepler-eccentricity-measurements
+Coverage: reading
+
+e0p7-fixed-2048primary0.7fixed120480.003067961575770.02511831320930.000121784019811.23059974586e-150.3e0p7-fixed-2048.npze0p7-fixed-2048-diagnostics.npz—————
+e0p7-fixed-longprimary0.7fixed10204800.003067961575770.2499035356340.0001217840776866.34730395234e-150.3e0p7-fixed-long.npze0p7-fixed-long-diagnostics.npz90.0196603280650.00122824865363——
+e0p7-variable-longprimary0.7variable10204790.005215668515520.02274175959581.41545398982e-054.209946499e-150.3e0p7-variable-long.npze0p7-variable-long-diagnostics.npz90.001804519551989.68816660619e-06——
+e0p7-reverse-fixedreversal0.7fixed—2048—————e0p7-reverse-fixed.npz————2.20521651418e-13saved_schedule_reversal
+e0p7-reverse-variable-replayreversal0.7variable-replay—20479—————e0p7-reverse-variable-replay.npz————7.36477491551e-11saved_schedule_reversal
+e0p7-reverse-variable-regeneratedreversal0.7variable-regenerated—20479—————e0p7-reverse-variable-regenerated.npz————0.000810391229359diagnostic_not_time_symmetric
+Measurements and complete records / JSON
+
+## Geometric integration of constraints, orbits and multiple frequencies — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#kepler-eccentricity-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Lecture2: Symplectic integrators [accessed 2026-11-24]
+Review scope / review_level: selected-primary-scope
+Author-hosted course notes, selected rendered printed pages2,12–13: Verlet kick/drift form, symplectic statement, Lie and symmetric Strang compositions. This does not qualify every state-dependent step rule or the authored coupled resonance experiment.
+Approximate Positions of the Planets [accessed 2026-11-24]
+Review scope / review_level: selected-primary-scope
+Official JPL page, selected steps3–4 and Kepler equation. Only the eccentric-anomaly equation and elliptic coordinate transformation are used; no planetary coefficient tables, fitted ephemeris accuracy or Horizons calculation is claimed. Publication date was not verified.
+
+## Geometric integration of constraints, orbits and multiple frequencies — Coupled frequencies and finite-window resonance [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/
+Coverage: reading
+
+A genuinely coupled two-degree-of-freedom system uses twelve 64-step probes and six accuracy trajectories to separate normal modes, coordinate exchange, discrete maps and roundoff.
+Methods, equations, figures and references
+Methods used
+Velocity Verlet / particle leapfrog
+Strang splitting
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Full-potential Verlet and a Strang impulse composition: half B kick, exact A flow, half B kick. A contains the fast oscillator and slow free drift; B contains the slow potential and the coupling.
+Coupled two-frequency harmonic oscillators
+alpha=1, omega=10/20, q0=(1,1/omega) and p0=0. Central probes retain the evaluated binary64 h and sin/cos coefficients without snapping to mathematical pi.
+Hamiltonian systems and oscillators
+alpha=1, omega=10/20, q0=(1,1/omega) and p0=0. Central probes retain the evaluated binary64 h and sin/cos coefficients without snapping to mathematical pi.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Coupled frequencies and finite-window resonance
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## Geometric integration of constraints, orbits and multiple frequencies — Coupled frequencies and finite-window resonance [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/
+Coverage: reading
+
+The 116 main decisions distinguish independent coupled normal modes, Decimal80/120 and Fraction frozen-coefficient maps, and stagewise gamma8 roundoff allowances. Ideal-pi Jordan structure is checked separately by rational identities. Each probe uses the current saved coefficient hex for its own Decimal80/120 actions; six accuracy actions use Decimal80.
+Same-problem reference · Semi-analytic reference
+Coupled frequencies and finite-window resonance
+The central actual floating map remains unresolved; ideal-pi Jordan structure is not transferred to it. Results concern 64-step amplification and small fixed inputs, not a scanned resonance diagram, general stability or a universal long-time error theorem.
+
+## Geometric integration of constraints, orbits and multiple frequencies — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#multifrequency-resonance-assumptions
+Coverage: reading
+
+alpha=1, omega=10/20, q0=(1,1/omega) and p0=0. Central probes retain the evaluated binary64 h and sin/cos coefficients without snapping to mathematical pi.
+
+## Geometric integration of constraints, orbits and multiple frequencies — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#multifrequency-resonance-algorithm
+Coverage: reading
+
+Full-potential Verlet and a Strang impulse composition: half B kick, exact A flow, half B kick. A contains the fast oscillator and slow free drift; B contains the slow potential and the coupling.
+H=\tfrac12(p_1^2+p_2^2+q_1^2+\omega^2q_2^2)+\alpha q_1q_2\Phi_h=\varphi^B_{h/2}\circ\varphi^A_h\circ\varphi^B_{h/2}\chi_{\theta=\pi}(z)=(z+1)^2[z^2-(2-h^2)z+1]
+
+## Geometric integration of constraints, orbits and multiple frequencies — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#multifrequency-resonance-validation
+Coverage: reading
+
+The 116 main decisions distinguish independent coupled normal modes, Decimal80/120 and Fraction frozen-coefficient maps, and stagewise gamma8 roundoff allowances. Ideal-pi Jordan structure is checked separately by rational identities. Each probe uses the current saved coefficient hex for its own Decimal80/120 actions; six accuracy actions use Decimal80.
+
+## Geometric integration of constraints, orbits and multiple frequencies — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#multifrequency-resonance-limits
+Coverage: reading
+
+The central actual floating map remains unresolved; ideal-pi Jordan structure is not transferred to it. Results concern 64-step amplification and small fixed inputs, not a scanned resonance diagram, general stability or a universal long-time error theorem.
+
+## Geometric integration of constraints, orbits and multiple frequencies — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#multifrequency-resonance-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+verlet_observed_orders[2.0006335257949495,2.0004237164828513]
+impulse_observed_orders[2.000688773919643,2.0001158542645605]
+evolution_count18
+probe_steps64
+ideal_pi_separate_from_actual_floattrue
+maximum_frozen_map_relative_error2.43246837616e-15
+判定 / checkPassed
+w10-verlet-1p0-finite-captrue
+w10-verlet-1p0-completedtrue
+w10-verlet-1p0-discrete-referencetrue
+w10-verlet-1p0-roundofftrue
+w10-verlet-1p0-symplectictrue
+w10-verlet-1p0-classificationtrue
+w10-verlet-1p8-finite-captrue
+w10-verlet-1p8-completedtrue
+w10-verlet-1p8-discrete-referencetrue
+w10-verlet-1p8-roundofftrue
+w10-verlet-1p8-symplectictrue
+w10-verlet-1p8-classificationtrue
+w10-verlet-2p2-finite-captrue
+w10-verlet-2p2-completedtrue
+w10-verlet-2p2-discrete-referencetrue
+w10-verlet-2p2-roundofftrue
+w10-verlet-2p2-symplectictrue
+w10-verlet-2p2-classificationtrue
+w10-impulse-0p9-finite-captrue
+w10-impulse-0p9-completedtrue
+w10-impulse-0p9-discrete-referencetrue
+w10-impulse-0p9-roundofftrue
+w10-impulse-0p9-symplectictrue
+w10-impulse-0p9-classificationtrue
+w10-impulse-1p0-finite-captrue
+w10-impulse-1p0-completedtrue
+w10-impulse-1p0-discrete-referencetrue
+w10-impulse-1p0-roundofftrue
+w10-impulse-1p0-symplectictrue
+w10-impulse-1p0-classificationtrue
+
+## Geometric integration of constraints, orbits and multiple frequencies — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#multifrequency-resonance-measurements
+Coverage: reading
+
+w10-impulse-1p1-finite-captrue
+w10-impulse-1p1-completedtrue
+w10-impulse-1p1-discrete-referencetrue
+w10-impulse-1p1-roundofftrue
+w10-impulse-1p1-symplectictrue
+w10-impulse-1p1-classificationtrue
+w20-verlet-1p0-finite-captrue
+w20-verlet-1p0-completedtrue
+w20-verlet-1p0-discrete-referencetrue
+w20-verlet-1p0-roundofftrue
+w20-verlet-1p0-symplectictrue
+w20-verlet-1p0-classificationtrue
+w20-verlet-1p8-finite-captrue
+w20-verlet-1p8-completedtrue
+w20-verlet-1p8-discrete-referencetrue
+w20-verlet-1p8-roundofftrue
+w20-verlet-1p8-symplectictrue
+w20-verlet-1p8-classificationtrue
+w20-verlet-2p2-finite-captrue
+w20-verlet-2p2-completedtrue
+w20-verlet-2p2-discrete-referencetrue
+w20-verlet-2p2-roundofftrue
+w20-verlet-2p2-symplectictrue
+w20-verlet-2p2-classificationtrue
+w20-impulse-0p9-finite-captrue
+w20-impulse-0p9-completedtrue
+w20-impulse-0p9-discrete-referencetrue
+w20-impulse-0p9-roundofftrue
+w20-impulse-0p9-symplectictrue
+w20-impulse-0p9-classificationtrue
+w20-impulse-1p0-finite-captrue
+w20-impulse-1p0-completedtrue
+w20-impulse-1p0-discrete-referencetrue
+w20-impulse-1p0-roundofftrue
+w20-impulse-1p0-symplectictrue
+w20-impulse-1p0-classificationtrue
+w20-impulse-1p1-finite-captrue
+w20-impulse-1p1-completedtrue
+w20-impulse-1p1-discrete-referencetrue
+w20-impulse-1p1-roundofftrue
+w20-impulse-1p1-symplectictrue
+w20-impulse-1p1-classificationtrue
+w10-verlet-accuracy-500-finitetrue
+
+## Geometric integration of constraints, orbits and multiple frequencies — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#multifrequency-resonance-measurements
+Coverage: reading
+
+w10-verlet-accuracy-500-completedtrue
+w10-verlet-accuracy-500-statetrue
+w10-verlet-accuracy-500-energytrue
+w10-verlet-accuracy-500-modetrue
+w10-verlet-accuracy-500-discrete-referencetrue
+w10-verlet-accuracy-1000-finitetrue
+w10-verlet-accuracy-1000-completedtrue
+w10-verlet-accuracy-1000-statetrue
+w10-verlet-accuracy-1000-energytrue
+w10-verlet-accuracy-1000-modetrue
+w10-verlet-accuracy-1000-discrete-referencetrue
+w10-verlet-accuracy-2000-finitetrue
+w10-verlet-accuracy-2000-completedtrue
+w10-verlet-accuracy-2000-statetrue
+w10-verlet-accuracy-2000-energytrue
+w10-verlet-accuracy-2000-modetrue
+w10-verlet-accuracy-2000-discrete-referencetrue
+w10-impulse-accuracy-500-finitetrue
+w10-impulse-accuracy-500-completedtrue
+w10-impulse-accuracy-500-statetrue
+w10-impulse-accuracy-500-energytrue
+w10-impulse-accuracy-500-modetrue
+w10-impulse-accuracy-500-discrete-referencetrue
+w10-impulse-accuracy-1000-finitetrue
+w10-impulse-accuracy-1000-completedtrue
+w10-impulse-accuracy-1000-statetrue
+w10-impulse-accuracy-1000-energytrue
+w10-impulse-accuracy-1000-modetrue
+w10-impulse-accuracy-1000-discrete-referencetrue
+w10-impulse-accuracy-2000-finitetrue
+w10-impulse-accuracy-2000-completedtrue
+w10-impulse-accuracy-2000-statetrue
+w10-impulse-accuracy-2000-energytrue
+w10-impulse-accuracy-2000-modetrue
+w10-impulse-accuracy-2000-discrete-referencetrue
+verlet-state-ordertrue
+verlet-fine-statetrue
+
+## Geometric integration of constraints, orbits and multiple frequencies — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#multifrequency-resonance-measurements
+Coverage: reading
+
+verlet-fine-relative-Htrue
+verlet-fine-coordinate-energytrue
+impulse-state-ordertrue
+impulse-fine-statetrue
+impulse-fine-relative-Htrue
+impulse-fine-coordinate-energytrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Saved q1–q2 coordinates of the finest impulse trajectory, colored by physical time. This is one coupled trajectory, not a scanned phase diagram.Read every stored record
+idrolemethodomegahstepsdiscrete_relative_errorroundoff_bound_satisfiednormalized_symplectic_defectmax_energy_errorreference_action_precisionsraw_filediagnostic_filereference_map_classificationideal_map_classificationactual_frozen_map_classificationactual_frozen_map_spectral_radiusclassification_scopefinite_horizon_amplificationcurrent_coefficient_precision_errormax_scaled_state_errorrelative_energy_envelopemax_coordinate_energy_errormodal_energy_identity_error
+
+## Geometric integration of constraints, orbits and multiple frequencies — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#multifrequency-resonance-measurements
+Coverage: reading
+
+w10-verlet-1p0probeverlet100.1644.1455021675e-16true1.04165983661e-190.115218900591[80,120]w10-verlet-1p0.npzw10-verlet-1p0-diagnostics.npzstablestableraw_spectrum_reported_without_exact_stability_theorem1Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.1.561984072191.51240370892e-79————
+w10-verlet-1p8probeverlet100.18641.25221341392e-15true7.00784872562e-190.494347665743[80,120]w10-verlet-1p8.npzw10-verlet-1p8-diagnostics.npzstablestableraw_spectrum_reported_without_exact_stability_theorem1Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.1.554302100523.88949553353e-79————
+
+## Geometric integration of constraints, orbits and multiple frequencies — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#multifrequency-resonance-measurements
+Coverage: reading
+
+w10-verlet-2p2probeverlet100.22641.5118039278e-15true9.92644130513e-183.91232481462e+48[80,120]w10-verlet-2p2.npzw10-verlet-2p2-diagnostics.npzunstableunstableraw_spectrum_reported_without_exact_stability_theorem2.42875530747Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.2.7970240909e+249.46370637986e-79————
+w10-impulse-0p9probeimpulse100.282743338823646.3747767284e-16true1.05592144405e-170.15779817027[80,120]w10-impulse-0p9.npzw10-impulse-0p9-diagnostics.npzstablestableraw_spectrum_reported_without_exact_stability_theorem1Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.1.44320008328.66017810038e-80————
+
+## Geometric integration of constraints, orbits and multiple frequencies — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#multifrequency-resonance-measurements
+Coverage: reading
+
+w10-impulse-1p0probeimpulse100.314159265359641.88640903812e-16true1.11022302463e-160.204500023051[80,120]w10-impulse-1p0.npzw10-impulse-1p0-diagnostics.npzunresolved_near_degeneracydefective_jordanunresolved_near_degeneracy1.00000000099Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.1.414894201452.97465992285e-80————
+w10-impulse-1p1probeimpulse100.345575191895642.69761264157e-16true1.40977667279e-180.248341439997[80,120]w10-impulse-1p1.npzw10-impulse-1p1-diagnostics.npzstablestableraw_spectrum_reported_without_exact_stability_theorem1Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.1.414213562371.29102757322e-79————
+
+## Geometric integration of constraints, orbits and multiple frequencies — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#multifrequency-resonance-measurements
+Coverage: reading
+
+w20-verlet-1p0probeverlet200.05644.7671449485e-16true9.82502327522e-190.103708715259[80,120]w20-verlet-1p0.npzw20-verlet-1p0-diagnostics.npzstablestableraw_spectrum_reported_without_exact_stability_theorem1Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.1.486194647751.11804390993e-79————
+w20-verlet-1p8probeverlet200.09641.01291172563e-15true1.10330478926e-190.44750083836[80,120]w20-verlet-1p8.npzw20-verlet-1p8-diagnostics.npzstablestableraw_spectrum_reported_without_exact_stability_theorem1Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.1.478693525981.23813330223e-79————
+
+## Geometric integration of constraints, orbits and multiple frequencies — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#multifrequency-resonance-measurements
+Coverage: reading
+
+w20-verlet-2p2probeverlet200.11641.02185709015e-15true2.57044417087e-183.45670986617e+48[80,120]w20-verlet-2p2.npzw20-verlet-2p2-diagnostics.npzunstableunstableraw_spectrum_reported_without_exact_stability_theorem2.42820317237Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.2.62932465388e+245.93439029712e-79————
+w20-impulse-0p9probeimpulse200.141371669412643.39404889258e-16true5.66615644127e-180.0771688863705[80,120]w20-impulse-0p9.npzw20-impulse-0p9-diagnostics.npzstablestableraw_spectrum_reported_without_exact_stability_theorem1Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.1.429284171211.78324568114e-79————
+
+## Geometric integration of constraints, orbits and multiple frequencies — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#multifrequency-resonance-measurements
+Coverage: reading
+
+w20-impulse-1p0probeimpulse200.157079632679641.48430897538e-16true5.55111512313e-170.100588725899[80,120]w20-impulse-1p0.npzw20-impulse-1p0-diagnostics.npzunresolved_near_degeneracydefective_jordanunresolved_near_degeneracy1.00000000036Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.1.414214755923.97461708009e-80————
+w20-impulse-1p1probeimpulse200.172787595947642.80124643933e-16true5.66259116448e-180.123734733851[80,120]w20-impulse-1p1.npzw20-impulse-1p1-diagnostics.npzstablestableraw_spectrum_reported_without_exact_stability_theorem1Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.1.414213562371.31922046073e-79————
+w10-verlet-accuracy-500accuracyverlet100.025007.34488809639e-16true2.25637105046e-170.00610904909426[80]w10-verlet-accuracy-500.npzw10-verlet-accuracy-500-diagnostics.npz———————0.1861159072680.002909070997260.02360650489256.66133814775e-16
+
+## Geometric integration of constraints, orbits and multiple frequencies — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#multifrequency-resonance-measurements
+Coverage: reading
+
+w10-verlet-accuracy-1000accuracyverlet100.0110001.49132981002e-15true1.00293715515e-180.00152637045342[80]w10-verlet-accuracy-1000.npzw10-verlet-accuracy-1000-diagnostics.npz———————0.04650854919020.0007268430730550.005929023980024.4408920985e-16
+w10-verlet-accuracy-2000accuracyverlet100.00520001.83456595878e-15true1.1102369025e-160.000381864485818[80]w10-verlet-accuracy-2000.npzw10-verlet-accuracy-2000-diagnostics.npz———————0.01162372293330.0001818402313420.001481436354166.66133814775e-16
+w10-impulse-accuracy-500accuracyimpulse100.025008.28009418528e-16true2.95874265028e-190.000740628124124[80]w10-impulse-accuracy-500.npzw10-impulse-accuracy-500-diagnostics.npz———————0.0007374603729820.0003526800591070.0008009530643686.66133814775e-16
+w10-impulse-accuracy-1000accuracyimpulse100.0110002.43246837616e-15true1.11027853716e-160.000185102124823[80]w10-impulse-accuracy-1000.npzw10-impulse-accuracy-1000-diagnostics.npz———————0.0001842770943578.81438689635e-050.0002001768115726.66133814775e-16
+w10-impulse-accuracy-2000accuracyimpulse100.00520002.08298648735e-15true1.1102369025e-164.62721019772e-05[80]w10-impulse-accuracy-2000.npzw10-impulse-accuracy-2000-diagnostics.npz———————4.60655741882e-052.20343342748e-055.00403647109e-056.66133814775e-16
+Measurements and complete records / JSON
+
+## Geometric integration of constraints, orbits and multiple frequencies — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#multifrequency-resonance-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Lecture2: Symplectic integrators [accessed 2026-11-24]
+Review scope / review_level: selected-primary-scope
+Author-hosted course notes, selected rendered printed pages2,12–13: Verlet kick/drift form, symplectic statement, Lie and symmetric Strang compositions. This does not qualify every state-dependent step rule or the authored coupled resonance experiment.
+
 ## Line searches and trust regions from identical starts — Line searches and trust regions from identical starts [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-globalization-controls/
@@ -22680,6 +23990,15 @@ Time refinement/phase, synchronized all-step energy,P/L/COM,independent pair for
 Same-problem reference · Analytic reference
 Unsoftened Kepler two-body time error
 One orbit at fixed eccentricity only; softened binaries and long-time behavior are outside this exact reference.
+Same-problem reference · Semi-analytic reference
+Kepler eccentricity and time-step controls
+
+## Gravitational trajectories: Kepler and softened finite particles — Unsoftened Kepler two-body time error [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-gravity-dynamics/
+Coverage: reading
+
+Small invariant errors do not establish phase accuracy. No canonical symplectic-defect measurement is claimed for the variable-step map, and fixed-h properties are not transferred automatically. R1 resolution was revised to R2 using pre-execution asymptotic planning, not measured calibration.
 
 ## Gravitational trajectories: Kepler and softened finite particles — Assumptions, units and boundaries [en]
 
@@ -34722,6 +36041,754 @@ Mignone, Andrea (2014). High-order conservative reconstruction schemes for finit
 Review scope / review_level: original-arxiv-selected-sections-2.2-3.1-4.2
 Selected original arXiv sections 2.2, 3.1 and 4.2 checked for volume centroids, conservative linear reconstruction and source integration. The restricted minmod/Rusanov/Heun and numerical-stress source are Atlas choices, distinct from reproducing the full paper scheme.
 
+## Stiff ODEs, RK45 and boundary splitting — Stiff ODEs, RK45 and boundary splitting [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/
+Coverage: reading
+
+Small fixed inputs validate Robertson and van der Pol, RK45 interpolation/events, and splitting with inhomogeneous boundaries. Independent references distinguish local estimates from actual errors and temporal from spatial errors.
+
+## Stiff ODEs, RK45 and boundary splitting — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#run-all
+Coverage: reading
+
+Run inside atlas-ode-adaptivity-2026-11-24-r2 from the ZIP. This command executes all 4 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Stiff ODEs, RK45 and boundary splitting — Robertson kinetics: initial stiffness and actual error [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/
+Coverage: reading
+
+Compare BDF2, SDIRK2 and adaptive step doubling on a short fixed interval against qualified Radau and BDF references.
+Methods, equations, figures and references
+Methods used
+BDF2
+L-stable SDIRK2
+Adaptive SDIRK2 / step doubling
+Armijo-damped Newton
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+BDF2 starts with backward Euler on the same grid. SDIRK2 stages use a weighted maximum residual and reuse Jacobian factors only within one stage. Adaptive steps use an RMS step-doubling estimate and accept the two-half-step result.
+Robertson chemical kinetics
+A nondimensional three-species system starts at (1, 0, 0) and ends at T = 0.4. The fixed methods use 512, 1024 and 2048 steps; two adaptive tolerance settings bring the total to eight runs.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Robertson kinetics: ODE and conservation DAE
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Check actual errors at 22 common times, mass and minimum values at every accepted state, true stage residuals, and actual RHS, Jacobian, factorization and linear-solve counts separately.
+
+## Stiff ODEs, RK45 and boundary splitting — Robertson kinetics: initial stiffness and actual error [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/
+Coverage: reading
+
+Same-problem reference · Finite-grid numerical reference
+Robertson kinetics: initial stiffness and actual error
+Conservation and positivity are observations for these inputs, not universal guarantees. Accuracy is sampled on T <= 0.4; this does not validate long-time chemistry or an all-time error bound.
+Same-problem reference · Finite-grid numerical reference
+Robertson conservation DAE and stored official IDA values
+Only two official SUNDIALS v7.1.1 printed rows; zero new IDA executions, with no long-time chemistry or general DAE-performance claim. No asymptotic-convergence or all-original-accuracy-goals claim is made for this fixed schedule.
+
+## Stiff ODEs, RK45 and boundary splitting — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#robertson-stiff-kinetics-assumptions
+Coverage: reading
+
+A nondimensional three-species system starts at (1, 0, 0) and ends at T = 0.4. The fixed methods use 512, 1024 and 2048 steps; two adaptive tolerance settings bring the total to eight runs.
+
+## Stiff ODEs, RK45 and boundary splitting — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#robertson-stiff-kinetics-algorithm
+Coverage: reading
+
+BDF2 starts with backward Euler on the same grid. SDIRK2 stages use a weighted maximum residual and reuse Jacobian factors only within one stage. Adaptive steps use an RMS step-doubling estimate and accept the two-half-step result.
+\dot y_1=-0.04y_1+10^4y_2y_3,\quad\dot y_2=-\dot y_1-3\!\times\!10^7y_2^2,\quad\dot y_3=3\!\times\!10^7y_2^2\|r\|_{w,\infty}=\max_i|r_i|/w_i,\quad e_{\rm dbl}=(y_{h/2,h/2}-y_h)/3
+
+## Stiff ODEs, RK45 and boundary splitting — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#robertson-stiff-kinetics-validation
+Coverage: reading
+
+Check actual errors at 22 common times, mass and minimum values at every accepted state, true stage residuals, and actual RHS, Jacobian, factorization and linear-solve counts separately.
+
+## Stiff ODEs, RK45 and boundary splitting — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#robertson-stiff-kinetics-limits
+Coverage: reading
+
+Conservation and positivity are observations for these inputs, not universal guarantees. Accuracy is sampled on T <= 0.4; this does not validate long-time chemistry or an all-time error bound.
+
+## Stiff ODEs, RK45 and boundary splitting — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#robertson-stiff-kinetics-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+maximum_sampled_weighted_error0.043888885126
+factorizations11711
+linear_solves23896
+factor_reuses12185
+accuracy_scopeFixed reference observation times only; all-step positivity/conservation separately tested. Stage residual norm is weightedLinf; adaptive estimator norm is RMS.
+判定 / checkPassed
+robertson-bdf2-512:complete-finitetrue
+robertson-bdf2-512:true-stage-residualtrue
+robertson-bdf2-512:masstrue
+robertson-bdf2-512:accepted-positivitytrue
+robertson-bdf2-1024:complete-finitetrue
+robertson-bdf2-1024:true-stage-residualtrue
+robertson-bdf2-1024:masstrue
+robertson-bdf2-1024:accepted-positivitytrue
+robertson-bdf2-2048:complete-finitetrue
+robertson-bdf2-2048:true-stage-residualtrue
+robertson-bdf2-2048:masstrue
+robertson-bdf2-2048:accepted-positivitytrue
+robertson-sdirk2-512:complete-finitetrue
+robertson-sdirk2-512:true-stage-residualtrue
+robertson-sdirk2-512:masstrue
+robertson-sdirk2-512:accepted-positivitytrue
+robertson-sdirk2-1024:complete-finitetrue
+robertson-sdirk2-1024:true-stage-residualtrue
+robertson-sdirk2-1024:masstrue
+robertson-sdirk2-1024:accepted-positivitytrue
+robertson-sdirk2-2048:complete-finitetrue
+robertson-sdirk2-2048:true-stage-residualtrue
+robertson-sdirk2-2048:masstrue
+
+## Stiff ODEs, RK45 and boundary splitting — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#robertson-stiff-kinetics-measurements
+Coverage: reading
+
+robertson-sdirk2-2048:accepted-positivitytrue
+robertson-sdirk-doubling-loose:complete-finitetrue
+robertson-sdirk-doubling-loose:true-stage-residualtrue
+robertson-sdirk-doubling-loose:masstrue
+robertson-sdirk-doubling-loose:accepted-positivitytrue
+robertson-sdirk-doubling-tight:complete-finitetrue
+robertson-sdirk-doubling-tight:true-stage-residualtrue
+robertson-sdirk-doubling-tight:masstrue
+robertson-sdirk-doubling-tight:accepted-positivitytrue
+robertson-bdf2:finest-accuracytrue
+robertson-bdf2:refinementtrue
+robertson-sdirk2:finest-accuracytrue
+robertson-sdirk2:refinementtrue
+robertson-adaptive-loose:accuracytrue
+robertson-adaptive-tight:accuracytrue
+robertson-adaptive:actual-tolerance-responsetrue
+actual-within-stage-factor-reusetrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Compare BDF2, SDIRK2 and adaptive step doubling on a short fixed interval against qualified Radau and BDF references. This preview reads saved numerical fields and references only.Read every stored record
+run_idmethodmustepsattemptsrejectedrtolsampled_weighted_linfminimum_accepted_statemaximum_accepted_state_absmaximum_completed_stage_residualminimum_completed_stage_valuemaximum_completed_stage_absmass_errorrhsjacobianfactorizationslinear_solvesfactor_reusesnewton_updatesline_search_rejectionsstage_failures
+
+## Stiff ODEs, RK45 and boundary splitting — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#robertson-stiff-kinetics-measurements
+Coverage: reading
+
+robertson-bdf2-512bdf251251200.043888885126014.80894485474e-131.02920104242e-050.9999687526613.33066907388e-1526065205201047527104700
+robertson-bdf2-1024bdf21024102400.0141359470562016.92506609104e-132.13307517103e-060.9999843753572.44249065418e-1551681032103220721040207200
+robertson-bdf2-2048bdf22048204800.00333492428986014.97395878427e-133.28205177242e-070.9999921875664.21884749358e-15103042060206041282068412800
+robertson-sdirk2-512sdirk251251200.00450951228896017.62888049073e-135.12485551976e-070.9999908471816.66133814775e-1651601031103120681037206800
+robertson-sdirk2-1024sdirk21024102400.000969209565232015.18238116711e-136.97127537515e-080.9999954235651.66533453694e-15103022060206041272067412700
+robertson-sdirk2-2048sdirk22048204800.000228589474763016.12805043932e-138.91592276762e-090.9999977117771.99840144433e-15205744114411482394125823900
+robertson-sdirk-doubling-loosesdirk2-step-doubling353940.00016.18214051083e-05019.27424447232e-139.09589852174e-100.9999989329742.22044604925e-16172230930974443574400
+robertson-sdirk-doubling-tightsdirk2-step-doubling869261e-063.4182272201e-06019.9308161884e-136.93981099913e-130.9999999025544.4408920985e-1634945855851471886147100
+Measurements and complete records / JSON
+
+## Stiff ODEs, RK45 and boundary splitting — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#robertson-stiff-kinetics-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Official SUNDIALS cvRoberts_dns model definition [accessed 2026-11-24]
+Review scope / review_level: official-source-selected-functions
+Read the model, initial values and Jacobian in selected official source sections. The observed main URL is not an immutable release pin. Our T = 0.4 scope does not reproduce the original paper, the long 4e10 benchmark or its numerical tables.
+SciPy1.14.1 solve_ivp and selected official source [accessed 2026-11-24]
+Review scope / review_level: official-selected-source
+Read selected fixed-version method, API, local-tolerance and termination sections. This is not a full audit of the original research papers.
+
+## Stiff ODEs, RK45 and boundary splitting — Van der Pol: an early stiffness transition [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/
+Coverage: reading
+
+Separate local control from global error. The first study met 208 of 209 original targets; the mu = 1 tight adaptive run missed the 2e-5 global goal.
+Methods, equations, figures and references
+Methods used
+BDF2
+L-stable SDIRK2
+Adaptive SDIRK2 / step doubling
+Armijo-damped Newton
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Use actual BDF2, SDIRK2 and adaptive step doubling, analytic Jacobians, factor reuse within each implicit stage, and retained candidates on failure.
+Van der Pol oscillator
+The system is xprime = v and vprime = mu(1 - x squared)v - x, initially (2, 0), over T = 2. Two fixed methods, three step counts and two mu values plus four adaptive runs give 16 runs.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Van der Pol: an early stiffness transition
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+Compare 21 sampled times with qualified Radau and BDF references. Preserve every original decision, including false values. Require the other 208 conditions separately from three checks of faithful disclosure, actual local controls and retained original failure evidence.
+
+## Stiff ODEs, RK45 and boundary splitting — Van der Pol: an early stiffness transition [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/
+Coverage: reading
+
+Same-problem reference · Finite-grid numerical reference
+Van der Pol: an early stiffness transition
+This post-measurement reporting revision is not a numerical repair. The first error, 4.535633779e-5, exceeded the original 2e-5 goal. Local tolerances do not guarantee global accuracy, and reporting PASS does not mean all original goals were met. Full large-mu cycles are outside scope.
+
+## Stiff ODEs, RK45 and boundary splitting — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#van-der-pol-stiff-transition-assumptions
+Coverage: reading
+
+The system is xprime = v and vprime = mu(1 - x squared)v - x, initially (2, 0), over T = 2. Two fixed methods, three step counts and two mu values plus four adaptive runs give 16 runs.
+
+## Stiff ODEs, RK45 and boundary splitting — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#van-der-pol-stiff-transition-algorithm
+Coverage: reading
+
+Use actual BDF2, SDIRK2 and adaptive step doubling, analytic Jacobians, factor reuse within each implicit stage, and retained candidates on failure.
+\dot x=v,\qquad \dot v=\mu(1-x^2)v-x,\quad\mu\in\{1,100\}
+
+## Stiff ODEs, RK45 and boundary splitting — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#van-der-pol-stiff-transition-validation
+Coverage: reading
+
+Compare 21 sampled times with qualified Radau and BDF references. Preserve every original decision, including false values. Require the other 208 conditions separately from three checks of faithful disclosure, actual local controls and retained original failure evidence.
+
+## Stiff ODEs, RK45 and boundary splitting — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#van-der-pol-stiff-transition-limits
+Coverage: reading
+
+This post-measurement reporting revision is not a numerical repair. The first error, 4.535633779e-5, exceeded the original 2e-5 goal. Local tolerances do not guarantee global accuracy, and reporting PASS does not mean all original goals were met. Full large-mu cycles are outside scope.
+
+## Stiff ODEs, RK45 and boundary splitting — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#van-der-pol-stiff-transition-measurements
+Coverage: reading
+
+量 / metricMeasured value
+maximum_sampled_weighted_error0.001353983887
+factorizations12376
+linear_solves20946
+factor_reuses8570
+accuracy_scopeFixed reference observation times only; all-step positivity/conservation separately tested. Stage residual norm is weightedLinf; adaptive estimator norm is RMS.
+original_mu1_tight_global_goal2e-05
+actual_mu1_tight_global_error4.535633779e-05
+original_mu1_tight_global_goal_metfalse
+reporting_scopeCurrent protocol verifies faithful reporting; it does not assert this original global accuracy goal was met.
+判定 / checkPassed
+vdp-mu1-bdf2-256:complete-finitetrue
+vdp-mu1-bdf2-256:true-stage-residualtrue
+vdp-mu1-bdf2-256:bounded-statetrue
+vdp-mu1-bdf2-512:complete-finitetrue
+vdp-mu1-bdf2-512:true-stage-residualtrue
+vdp-mu1-bdf2-512:bounded-statetrue
+vdp-mu1-bdf2-1024:complete-finitetrue
+vdp-mu1-bdf2-1024:true-stage-residualtrue
+vdp-mu1-bdf2-1024:bounded-statetrue
+vdp-mu1-sdirk2-256:complete-finitetrue
+vdp-mu1-sdirk2-256:true-stage-residualtrue
+vdp-mu1-sdirk2-256:bounded-statetrue
+vdp-mu1-sdirk2-512:complete-finitetrue
+vdp-mu1-sdirk2-512:true-stage-residualtrue
+vdp-mu1-sdirk2-512:bounded-statetrue
+vdp-mu1-sdirk2-1024:complete-finitetrue
+vdp-mu1-sdirk2-1024:true-stage-residualtrue
+vdp-mu1-sdirk2-1024:bounded-statetrue
+vdp-mu1-sdirk-doubling-loose:complete-finitetrue
+vdp-mu1-sdirk-doubling-loose:true-stage-residualtrue
+
+## Stiff ODEs, RK45 and boundary splitting — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#van-der-pol-stiff-transition-measurements
+Coverage: reading
+
+vdp-mu1-sdirk-doubling-loose:bounded-statetrue
+vdp-mu1-sdirk-doubling-tight:complete-finitetrue
+vdp-mu1-sdirk-doubling-tight:true-stage-residualtrue
+vdp-mu1-sdirk-doubling-tight:bounded-statetrue
+vdp-mu100-bdf2-256:complete-finitetrue
+vdp-mu100-bdf2-256:true-stage-residualtrue
+vdp-mu100-bdf2-256:bounded-statetrue
+vdp-mu100-bdf2-512:complete-finitetrue
+vdp-mu100-bdf2-512:true-stage-residualtrue
+vdp-mu100-bdf2-512:bounded-statetrue
+vdp-mu100-bdf2-1024:complete-finitetrue
+vdp-mu100-bdf2-1024:true-stage-residualtrue
+vdp-mu100-bdf2-1024:bounded-statetrue
+vdp-mu100-sdirk2-256:complete-finitetrue
+vdp-mu100-sdirk2-256:true-stage-residualtrue
+vdp-mu100-sdirk2-256:bounded-statetrue
+vdp-mu100-sdirk2-512:complete-finitetrue
+vdp-mu100-sdirk2-512:true-stage-residualtrue
+vdp-mu100-sdirk2-512:bounded-statetrue
+vdp-mu100-sdirk2-1024:complete-finitetrue
+vdp-mu100-sdirk2-1024:true-stage-residualtrue
+vdp-mu100-sdirk2-1024:bounded-statetrue
+vdp-mu100-sdirk-doubling-loose:complete-finitetrue
+vdp-mu100-sdirk-doubling-loose:true-stage-residualtrue
+vdp-mu100-sdirk-doubling-loose:bounded-statetrue
+vdp-mu100-sdirk-doubling-tight:complete-finitetrue
+vdp-mu100-sdirk-doubling-tight:true-stage-residualtrue
+vdp-mu100-sdirk-doubling-tight:bounded-statetrue
+vdp-mu1-bdf2:finest-accuracytrue
+vdp-mu1-bdf2:refinementtrue
+vdp-mu1-sdirk2:finest-accuracytrue
+vdp-mu1-sdirk2:refinementtrue
+
+## Stiff ODEs, RK45 and boundary splitting — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#van-der-pol-stiff-transition-measurements
+Coverage: reading
+
+vdp-mu1-adaptive-loose:accuracytrue
+vdp-mu1-adaptive:actual-tolerance-responsetrue
+vdp-mu100-bdf2:finest-accuracytrue
+vdp-mu100-bdf2:refinementtrue
+vdp-mu100-sdirk2:finest-accuracytrue
+vdp-mu100-sdirk2:refinementtrue
+vdp-mu100-adaptive-loose:accuracytrue
+vdp-mu100-adaptive-tight:accuracytrue
+vdp-mu100-adaptive:actual-tolerance-responsetrue
+actual-within-stage-factor-reusetrue
+vdp-mu1-adaptive-tight:original-goal-outcome-faithfully-reportedtrue
+vdp-mu1-adaptive-tight:accepted-local-controls-satisfiedtrue
+vdp-mu1-adaptive-tight:immutable-original-failure-boundtrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Saved fixed-step comparisons and the local/global error distinction. The first study met 208/209 targets; the unmet mu = 1 adaptive global goal of 2e-5 remains recorded.Read every stored record
+run_idmethodmustepsattemptsrejectedrtolsampled_weighted_linfminimum_accepted_statemaximum_accepted_state_absmaximum_completed_stage_residualminimum_completed_stage_valuemaximum_completed_stage_absmass_errorrhsjacobianfactorizationslinear_solvesfactor_reusesnewton_updatesline_search_rejectionsstage_failuresoriginal_global_goaloriginal_global_goal_met
+vdp-mu1-bdf2-256bdf2125625600.000242792058954-1.8330664255428.28451023061e-13-1.833066425541.99988073187178225625676350776300——
+
+## Stiff ODEs, RK45 and boundary splitting — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#van-der-pol-stiff-transition-measurements
+Coverage: reading
+
+vdp-mu1-bdf2-512bdf2151251206.41987484502e-05-1.8329974650529.70076449724e-13-1.832997465051.9999698363526165125121052540105200——
+vdp-mu1-bdf2-1024bdf211024102401.64984329252e-05-1.8329802832725.69145425233e-14-1.832980283271.9999924150851201024102420481024204800——
+vdp-mu1-sdirk2-256sdirk2125625601.0194407621e-05-1.8329847623929.9929916772e-13-1.832984762391.9999895994729885125121238726123800——
+vdp-mu1-sdirk2-512sdirk2151251202.55116390213e-06-1.8329771191521.23913032612e-13-1.832977119151.9999973909651201024102420481024204800——
+vdp-mu1-sdirk2-1024sdirk211024102406.38120058793e-07-1.8329752061123.31876670243e-13-1.832975206111.99999934662102382048204840952047409500——
+vdp-mu1-sdirk-doubling-loosesdirk2-step-doubling1282800.00010.00051112644675-1.8334856944327.34957233961e-13-1.833542930321.99999739096126224824854729954700——
+vdp-mu1-sdirk-doubling-tightsdirk2-step-doubling1899121e-064.535633779e-05-1.8330199243229.50734066127e-13-1.833020144411.99999929589340656656614308641430002e-050
+vdp-mu100-bdf2-256bdf210025625600.001353983887-0.0068380801555223.4663244497e-13-0.006838080155521.99996349241128625625651525951500——
+vdp-mu100-bdf2-512bdf210051251200.000410326732644-0.0067418420296525.83638172513e-13-0.006741842029651.999985948725625125121025513102500——
+
+## Stiff ODEs, RK45 and boundary splitting — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#van-der-pol-stiff-transition-measurements
+Coverage: reading
+
+vdp-mu100-bdf2-1024bdf21001024102404.72017078383e-05-0.0067418420274227.15461255057e-13-0.006741842027421.99999518935309810241024103713103700——
+vdp-mu100-sdirk2-256sdirk210025625600.000571365998336-0.006741842028528.69739528018e-13-0.00674184202851.99999379059205651251277226077200——
+vdp-mu100-sdirk2-512sdirk210051251209.74913843015e-05-0.0067418420273729.26427877956e-13-0.006741842027371.99999805098310610241024104117104100——
+vdp-mu100-sdirk2-1024sdirk21001024102402.22086096577e-05-0.0067418420278526.90115573266e-13-0.006741842027851.99999944137619820482048207527207500——
+vdp-mu100-sdirk-doubling-loosesdirk2-step-doubling100353830.00011.21148985438e-06-0.00674184200628.74310547578e-13-0.0067418420061.99999998822117022822847124347100——
+vdp-mu100-sdirk-doubling-tightsdirk2-step-doubling100939741e-066.67517680809e-08-0.0067418420059629.85748707324e-13-0.006741842005961.99999999966216058258278920778900——
+Measurements and complete records / JSON
+
+## Stiff ODEs, RK45 and boundary splitting — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#van-der-pol-stiff-transition-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+scikit-sundae official van der Pol example [accessed 2026-11-24]
+Review scope / review_level: official-project-example-selected-equations
+Read the equations and initial state in the official binding example. Our mu = 1 and 100, T = 2 inputs are an authored early-transient scope, not an original-paper or full mu = 1000 cycle reproduction.
+SciPy1.14.1 solve_ivp and selected official source [accessed 2026-11-24]
+Review scope / review_level: official-selected-source
+Read selected fixed-version method, API, local-tolerance and termination sections. This is not a full audit of the original research papers.
+
+## Stiff ODEs, RK45 and boundary splitting — RK45: embedded errors, dense output and events [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/
+Coverage: reading
+
+Use analytic damped rotation to test acceptance, rejection, FSAL ownership, dense interpolation and directed event times separately.
+Methods, equations, figures and references
+Methods used
+Dormand–Prince RK45
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Use actual Dormand–Prince 5(4) stages, a quartic continuous extension, an accepted-state derivative cache and bracket bisection on retained interpolants. A rejected endpoint never replaces the accepted starting derivative.
+Finite-dimensional linear evolution systems
+Use gamma = 0.2, omega = 3, initial state (1, 0), and T = 2. Three paired relative and absolute tolerances with two maximum steps, plus two terminal runs, give eight runs.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+RK45: embedded errors, dense output and events
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Analytic states and the simple crossings at pi/6 and pi/2 provide independent truth. Check endpoints, 97 off-mesh samples, event times and residuals, and the actual identity nfev = 1 + 6 times the attempted-step count.
+Same-problem reference · Analytic reference
+
+## Stiff ODEs, RK45 and boundary splitting — RK45: embedded errors, dense output and events [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/
+Coverage: reading
+
+RK45: embedded errors, dense output and events
+There is no general guarantee for tangential roots, multiple crossings within a step or systems with resets. Initial-zero and ownership controls are limited component tests; local tolerances and global accuracy remain distinct.
+
+## Stiff ODEs, RK45 and boundary splitting — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#rk45-dense-events-assumptions
+Coverage: reading
+
+Use gamma = 0.2, omega = 3, initial state (1, 0), and T = 2. Three paired relative and absolute tolerances with two maximum steps, plus two terminal runs, give eight runs.
+
+## Stiff ODEs, RK45 and boundary splitting — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#rk45-dense-events-algorithm
+Coverage: reading
+
+Use actual Dormand–Prince 5(4) stages, a quartic continuous extension, an accepted-state derivative cache and bracket bisection on retained interpolants. A rejected endpoint never replaces the accepted starting derivative.
+y(t)=e^{-0.2t}(\cos 3t,\sin 3t)^T,\quad t_*=\pi/6,\pi/2y(t_n+\theta h)=y_n+hQ(\theta,\theta^2,\theta^3,\theta^4)^T
+
+## Stiff ODEs, RK45 and boundary splitting — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#rk45-dense-events-validation
+Coverage: reading
+
+Analytic states and the simple crossings at pi/6 and pi/2 provide independent truth. Check endpoints, 97 off-mesh samples, event times and residuals, and the actual identity nfev = 1 + 6 times the attempted-step count.
+
+## Stiff ODEs, RK45 and boundary splitting — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#rk45-dense-events-limits
+Coverage: reading
+
+There is no general guarantee for tangential roots, multiple crossings within a step or systems with resets. Initial-zero and ownership controls are limited component tests; local tolerances and global accuracy remain distinct.
+
+## Stiff ODEs, RK45 and boundary splitting — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#rk45-dense-events-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+maximum_dense_error6.1368272e-05
+maximum_event_time_error1.46188632142e-05
+actual_RHS_evaluations2162
+rejected_trials40
+scopeAnalytic state/simple crossings; accepted-full endpoint versus terminal dense-root state distinct. No global guarantee inferred from localtol.
+判定 / checkPassed
+rk45-loose-hmax0.4:completion-and-worktrue
+rk45-loose-hmax0.4:endpoint-errortrue
+rk45-loose-hmax0.4:offmesh-errortrue
+rk45-loose-hmax0.4:event-time-and-settrue
+rk45-loose-hmax0.4:event-residualtrue
+rk45-loose-hmax0.1:completion-and-worktrue
+rk45-loose-hmax0.1:endpoint-errortrue
+rk45-loose-hmax0.1:offmesh-errortrue
+rk45-loose-hmax0.1:event-time-and-settrue
+rk45-loose-hmax0.1:event-residualtrue
+rk45-medium-hmax0.4:completion-and-worktrue
+rk45-medium-hmax0.4:endpoint-errortrue
+rk45-medium-hmax0.4:offmesh-errortrue
+rk45-medium-hmax0.4:event-time-and-settrue
+rk45-medium-hmax0.4:event-residualtrue
+rk45-medium-hmax0.1:completion-and-worktrue
+rk45-medium-hmax0.1:endpoint-errortrue
+rk45-medium-hmax0.1:offmesh-errortrue
+rk45-medium-hmax0.1:event-time-and-settrue
+rk45-medium-hmax0.1:event-residualtrue
+rk45-tight-hmax0.4:completion-and-worktrue
+rk45-tight-hmax0.4:endpoint-errortrue
+rk45-tight-hmax0.4:offmesh-errortrue
+
+## Stiff ODEs, RK45 and boundary splitting — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#rk45-dense-events-measurements
+Coverage: reading
+
+rk45-tight-hmax0.4:event-time-and-settrue
+rk45-tight-hmax0.4:event-residualtrue
+rk45-tight-hmax0.1:completion-and-worktrue
+rk45-tight-hmax0.1:endpoint-errortrue
+rk45-tight-hmax0.1:offmesh-errortrue
+rk45-tight-hmax0.1:event-time-and-settrue
+rk45-tight-hmax0.1:event-residualtrue
+rk45-terminal-direction-1:completion-and-worktrue
+rk45-terminal-direction-1:endpoint-errortrue
+rk45-terminal-direction-1:offmesh-errortrue
+rk45-terminal-direction-1:event-time-and-settrue
+rk45-terminal-direction-1:event-residualtrue
+rk45-terminal-direction1:completion-and-worktrue
+rk45-terminal-direction1:endpoint-errortrue
+rk45-terminal-direction1:offmesh-errortrue
+rk45-terminal-direction1:event-time-and-settrue
+rk45-terminal-direction1:event-residualtrue
+hmax0.4:actual-tolerance-responsetrue
+hmax0.1:actual-tolerance-responsetrue
+rejected-trial-actually-exercisedtrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Use analytic damped rotation to test acceptance, rejection, FSAL ownership, dense interpolation and directed event times separately. This preview reads saved numerical fields and references only.Read every stored record
+run_idrtolmax_stepdirectionterminaloutput_timeendpoint_linfoffmesh_linfevent_time_absevent_residual_abseventsnfevattempted_stepsaccepted_stepsrejected_steps
+
+## Stiff ODEs, RK45 and boundary splitting — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#rk45-dense-events-measurements
+Coverage: reading
+
+rk45-loose-hmax0.40.00010.40025.88678506838e-056.1368272e-051.46188632142e-059.80326930744e-1429716124
+rk45-loose-hmax0.10.00010.10022.7115644502e-062.6281247637e-062.29552932218e-072.36907715667e-13212120200
+rk45-medium-hmax0.41e-060.40025.37107195164e-075.11526105917e-077.36628158471e-091.31145094784e-14221135296
+rk45-medium-hmax0.11e-060.10025.3703864078e-075.14462422885e-079.68359248343e-091.69544933648e-13220534295
+rk45-tight-hmax0.41e-080.40025.21424436961e-095.21424670108e-094.82530904122e-101.65822217069e-13249382757
+rk45-tight-hmax0.11e-080.10025.21529230912e-095.21516951846e-094.8169224165e-102.92231516763e-14248781756
+rk45-terminal-direction-11e-080.4-110.5235987757331.77590464556e-092.21307361326e-091.34953270781e-101.65822217069e-13115125205
+rk45-terminal-direction11e-080.4111.570796327284.36766012246e-094.38690073157e-094.82530904122e-106.21551421442e-14139766597
+Measurements and complete records / JSON
+
+## Stiff ODEs, RK45 and boundary splitting — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#rk45-dense-events-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+SciPy1.14.1 RK45 coefficient and dense-output source [accessed 2026-11-24]
+Review scope / review_level: official-release-source-selected-functions
+Read C, A, B, E, P, stage evaluation, accepted/rejected FSAL updates and quartic evaluation. The original Dormand–Prince 1980 and Shampine 1986 papers remain unread beyond bibliography. The adapted coefficient BSD notice is retained.
+
+## Stiff ODEs, RK45 and boundary splitting — Strang splitting: Dirichlet boundary order reduction and correction [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/
+Coverage: reading
+
+Evolve actual one-dimensional nonperiodic fields and compare unmodified and boundary-corrected Strang splitting against the same spatial discretization.
+Methods, equations, figures and references
+Methods used
+Strang splitting
+Lie–Trotter splitting
+Centered spatial difference
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+For w = u - 1, use the unmodified split (Lw, w + 1) or the corrected split (Lw + 1, w). Compose actual Dirichlet DST-I flows and retain the reaction boundary mismatch.
+Linear reaction-diffusion with inhomogeneous boundaries
+Solve u_t = u_xx + u on [0, 1] with both boundary values equal to 1, an analytic steady state plus a 0.1 sine perturbation, and T = 0.1. Use 31, 63 and 127 interior nodes with 8, 16, 32 and 64 steps, plus four Lie controls: 28 runs.
+Heat / diffusion equation
+Solve u_t = u_xx + u on [0, 1] with both boundary values equal to 1, an analytic steady state plus a 0.1 sine perturbation, and T = 0.1. Use 31, 63 and 127 interior nodes with 8, 16, 32 and 64 steps, plus four Lie controls: 28 runs.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Strang splitting: Dirichlet boundary order reduction and correction
+
+## Stiff ODEs, RK45 and boundary splitting — Strang splitting: Dirichlet boundary order reduction and correction [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/
+Coverage: reading
+
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+First qualify an independent sparse affine exponential action against separately written sine sums. Then separate temporal error against the same finite-difference system, spatial error against the analytic continuum field, and observed order in the fixed regime.
+Same-problem reference · Semi-analytic reference
+Strang splitting: Dirichlet boundary order reduction and correction
+This is an authored linear specialization, not a reproduction of the original nonlinear tables. It makes no general claim for nonautonomous boundaries or universal order loss. The final reaction-trace mismatch of Lie splitting is disclosed separately.
+
+## Stiff ODEs, RK45 and boundary splitting — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#strang-boundary-order-reduction-assumptions
+Coverage: reading
+
+Solve u_t = u_xx + u on [0, 1] with both boundary values equal to 1, an analytic steady state plus a 0.1 sine perturbation, and T = 0.1. Use 31, 63 and 127 interior nodes with 8, 16, 32 and 64 steps, plus four Lie controls: 28 runs.
+
+## Stiff ODEs, RK45 and boundary splitting — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#strang-boundary-order-reduction-algorithm
+Coverage: reading
+
+For w = u - 1, use the unmodified split (Lw, w + 1) or the corrected split (Lw + 1, w). Compose actual Dirichlet DST-I flows and retain the reaction boundary mismatch.
+u_t=u_{xx}+u,\quad u(0,t)=u(1,t)=1,\quad w=u-1A_{\rm raw}(w)=L_hw,\ B_{\rm raw}(w)=w+1;\quad A_{\rm corr}(w)=L_hw+1,\ B_{\rm corr}(w)=w
+
+## Stiff ODEs, RK45 and boundary splitting — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#strang-boundary-order-reduction-validation
+Coverage: reading
+
+First qualify an independent sparse affine exponential action against separately written sine sums. Then separate temporal error against the same finite-difference system, spatial error against the analytic continuum field, and observed order in the fixed regime.
+
+## Stiff ODEs, RK45 and boundary splitting — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#strang-boundary-order-reduction-limits
+Coverage: reading
+
+This is an authored linear specialization, not a reproduction of the original nonlinear tables. It makes no general claim for nonautonomous boundaries or universal order loss. The final reaction-trace mismatch of Lie splitting is disclosed separately.
+
+## Stiff ODEs, RK45 and boundary splitting — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#strang-boundary-order-reduction-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+N127_finest_raw_temporal_error0.000110722775941
+N127_finest_corrected_temporal_error9.8305208418e-08
+reference_spatial_order1.99999508731
+scopeActual1Dnonperiodicfields. TimevsSAME-FDoracle; spacevsanalyticcontinuum. Linearautonomousspecialization, fixed-regime order; no universal reduction/theorem reproduction.
+判定 / checkPassed
+boundary-n31-strang-unmodified-8:actual-field-and-worktrue
+boundary-n31-strang-unmodified-8:boundary-compatibility-ledgertrue
+boundary-n31-strang-unmodified-16:actual-field-and-worktrue
+boundary-n31-strang-unmodified-16:boundary-compatibility-ledgertrue
+boundary-n31-strang-unmodified-32:actual-field-and-worktrue
+boundary-n31-strang-unmodified-32:boundary-compatibility-ledgertrue
+boundary-n31-strang-unmodified-64:actual-field-and-worktrue
+boundary-n31-strang-unmodified-64:boundary-compatibility-ledgertrue
+boundary-n31-strang-boundary-corrected-8:actual-field-and-worktrue
+boundary-n31-strang-boundary-corrected-8:boundary-compatibility-ledgertrue
+boundary-n31-strang-boundary-corrected-16:actual-field-and-worktrue
+boundary-n31-strang-boundary-corrected-16:boundary-compatibility-ledgertrue
+boundary-n31-strang-boundary-corrected-32:actual-field-and-worktrue
+
+## Stiff ODEs, RK45 and boundary splitting — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#strang-boundary-order-reduction-measurements
+Coverage: reading
+
+boundary-n31-strang-boundary-corrected-32:boundary-compatibility-ledgertrue
+boundary-n31-strang-boundary-corrected-64:actual-field-and-worktrue
+boundary-n31-strang-boundary-corrected-64:boundary-compatibility-ledgertrue
+boundary-n63-strang-unmodified-8:actual-field-and-worktrue
+boundary-n63-strang-unmodified-8:boundary-compatibility-ledgertrue
+boundary-n63-strang-unmodified-16:actual-field-and-worktrue
+boundary-n63-strang-unmodified-16:boundary-compatibility-ledgertrue
+boundary-n63-strang-unmodified-32:actual-field-and-worktrue
+boundary-n63-strang-unmodified-32:boundary-compatibility-ledgertrue
+boundary-n63-strang-unmodified-64:actual-field-and-worktrue
+boundary-n63-strang-unmodified-64:boundary-compatibility-ledgertrue
+boundary-n63-strang-boundary-corrected-8:actual-field-and-worktrue
+boundary-n63-strang-boundary-corrected-8:boundary-compatibility-ledgertrue
+boundary-n63-strang-boundary-corrected-16:actual-field-and-worktrue
+boundary-n63-strang-boundary-corrected-16:boundary-compatibility-ledgertrue
+boundary-n63-strang-boundary-corrected-32:actual-field-and-worktrue
+boundary-n63-strang-boundary-corrected-32:boundary-compatibility-ledgertrue
+boundary-n63-strang-boundary-corrected-64:actual-field-and-worktrue
+boundary-n63-strang-boundary-corrected-64:boundary-compatibility-ledgertrue
+boundary-n127-strang-unmodified-8:actual-field-and-worktrue
+
+## Stiff ODEs, RK45 and boundary splitting — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#strang-boundary-order-reduction-measurements
+Coverage: reading
+
+boundary-n127-strang-unmodified-8:boundary-compatibility-ledgertrue
+boundary-n127-strang-unmodified-16:actual-field-and-worktrue
+boundary-n127-strang-unmodified-16:boundary-compatibility-ledgertrue
+boundary-n127-strang-unmodified-32:actual-field-and-worktrue
+boundary-n127-strang-unmodified-32:boundary-compatibility-ledgertrue
+boundary-n127-strang-unmodified-64:actual-field-and-worktrue
+boundary-n127-strang-unmodified-64:boundary-compatibility-ledgertrue
+boundary-n127-strang-boundary-corrected-8:actual-field-and-worktrue
+boundary-n127-strang-boundary-corrected-8:boundary-compatibility-ledgertrue
+boundary-n127-strang-boundary-corrected-16:actual-field-and-worktrue
+boundary-n127-strang-boundary-corrected-16:boundary-compatibility-ledgertrue
+boundary-n127-strang-boundary-corrected-32:actual-field-and-worktrue
+boundary-n127-strang-boundary-corrected-32:boundary-compatibility-ledgertrue
+boundary-n127-strang-boundary-corrected-64:actual-field-and-worktrue
+boundary-n127-strang-boundary-corrected-64:boundary-compatibility-ledgertrue
+boundary-n127-lie-8:actual-field-and-worktrue
+boundary-n127-lie-8:boundary-compatibility-ledgertrue
+boundary-n127-lie-16:actual-field-and-worktrue
+boundary-n127-lie-16:boundary-compatibility-ledgertrue
+boundary-n127-lie-32:actual-field-and-worktrue
+boundary-n127-lie-32:boundary-compatibility-ledgertrue
+boundary-n127-lie-64:actual-field-and-worktrue
+
+## Stiff ODEs, RK45 and boundary splitting — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#strang-boundary-order-reduction-measurements
+Coverage: reading
+
+boundary-n127-lie-64:boundary-compatibility-ledgertrue
+n31:corrected-finest-accuracytrue
+n63:corrected-finest-accuracytrue
+n127:corrected-finest-accuracytrue
+strang-unmodified:fixed-regime-temporal-ordertrue
+strang-boundary-corrected:fixed-regime-temporal-ordertrue
+finest:boundary-correction-improvestrue
+separate-reference-spatial-ordertrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Evolve actual one-dimensional nonperiodic fields and compare unmodified and boundary-corrected Strang splitting against the same spatial discretization. This preview reads saved numerical fields and references only.Read every stored record
+run_idmethodnstepsdttemporal_linfreference_spatial_linfcontinuum_total_linfdiffusion_callsreaction_callsreaction_trace_defectlast_subflow_trace_defect
+boundary-n31-strang-unmodified-8strang-unmodified3180.01250.0008757063477923.99622533536e-050.0008675031571041680.01257845154060
+boundary-n31-strang-unmodified-16strang-unmodified31160.006250.0004199203549933.99622533536e-050.00041614126004332160.006269572003760
+boundary-n31-strang-unmodified-32strang-unmodified31320.0031250.0002040534745483.99622533536e-050.00020136246091164320.003129887902740
+boundary-n31-strang-unmodified-64strang-unmodified31640.00156257.85927842151e-053.99622533536e-057.64184165065e-05128640.001563721339160
+
+## Stiff ODEs, RK45 and boundary splitting — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#strang-boundary-order-reduction-measurements
+Coverage: reading
+
+boundary-n31-strang-boundary-corrected-8strang-boundary-corrected3180.01255.26474326623e-063.99622533536e-053.7388141306e-0516800
+boundary-n31-strang-boundary-corrected-16strang-boundary-corrected31160.006251.41166138046e-063.99622533536e-053.93187975738e-05321600
+boundary-n31-strang-boundary-corrected-32strang-boundary-corrected31320.0031253.67413591551e-073.99622533536e-053.98014037544e-05643200
+boundary-n31-strang-boundary-corrected-64strang-boundary-corrected31640.00156259.27594256961e-083.99622533536e-053.99220417007e-051286400
+boundary-n63-strang-unmodified-8strang-unmodified6380.01250.0008925569277969.99070778218e-060.0008905061113571680.01257845154060
+boundary-n63-strang-unmodified-16strang-unmodified63160.006250.0004412363555849.99070778218e-060.00043968767654132160.006269572003760
+boundary-n63-strang-unmodified-32strang-unmodified63320.0031250.0002208703833669.99070778218e-060.00021992568408664320.003129887902740
+boundary-n63-strang-unmodified-64strang-unmodified63640.00156250.0001052545029419.99070778218e-060.000104914770293128640.001563721339160
+boundary-n63-strang-boundary-corrected-8strang-boundary-corrected6380.01255.29834530827e-069.99070778218e-067.41615670807e-0616800
+boundary-n63-strang-boundary-corrected-16strang-boundary-corrected63160.006251.42848130968e-069.99070778218e-069.3473269458e-06321600
+
+## Stiff ODEs, RK45 and boundary splitting — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#strang-boundary-order-reduction-measurements
+Coverage: reading
+
+boundary-n63-strang-boundary-corrected-32strang-boundary-corrected63320.0031253.75698622213e-079.99070778218e-069.8298730451e-06643200
+boundary-n63-strang-boundary-corrected-64strang-boundary-corrected63640.00156259.72549960565e-089.99070778218e-069.95049980035e-061286400
+boundary-n127-strang-unmodified-8strang-unmodified12780.01250.0009028332894232.49768545069e-060.0009023830995371680.01257845154060
+boundary-n127-strang-unmodified-16strang-unmodified127160.006250.0004533522360362.49768545069e-060.00045302856260932160.006269572003760
+boundary-n127-strang-unmodified-32strang-unmodified127320.0031250.0002250794715292.49768545069e-060.00022481974455264320.003129887902740
+boundary-n127-strang-unmodified-64strang-unmodified127640.00156250.0001107227759412.49768545069e-060.000110545040464128640.001563721339160
+boundary-n127-strang-boundary-corrected-8strang-boundary-corrected12780.01255.30669129128e-062.49768545069e-064.39798854579e-0616800
+boundary-n127-strang-boundary-corrected-16strang-boundary-corrected127160.006251.43271183783e-062.49768545069e-061.85432510613e-06321600
+boundary-n127-strang-boundary-corrected-32strang-boundary-corrected127320.0031253.78229272346e-072.49768545069e-062.33685497464e-06643200
+boundary-n127-strang-boundary-corrected-64strang-boundary-corrected127640.00156259.8305208418e-082.49768545069e-062.45747896233e-061286400
+
+## Stiff ODEs, RK45 and boundary splitting — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#strang-boundary-order-reduction-measurements
+Coverage: reading
+
+boundary-n127-lie-8lie-unmodified12780.01250.01181830854822.49768545069e-060.0118183740152880.01257845154060.0125784515406
+boundary-n127-lie-16lie-unmodified127160.006250.005756692724352.49768545069e-060.0057567581913816160.006269572003760.00626957200376
+boundary-n127-lie-32lie-unmodified127320.0031250.002783227896892.49768545069e-060.0027832933639332320.003129887902740.00312988790274
+boundary-n127-lie-64lie-unmodified127640.00156250.001330542801642.49768545069e-060.0013306082686764640.001563721339160.00156372133916
+Measurements and complete records / JSON
+
+## Stiff ODEs, RK45 and boundary splitting — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#strang-boundary-order-reduction-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+L. Einkemmer; A. Ostermann (2014). Overcoming order reduction in diffusion-reaction splitting. Part1: Dirichlet boundary conditions [accessed 2026-11-24]
+Review scope / review_level: primary-preprint-selected-sections
+Read selected extracted text from the 2014 v1 preprint: section 2, Algorithm 2, the constant-boundary example, section 3.2 assumptions and result, and the one-dimensional example. This was not a full-proof or whole-PDF visual audit; the present linear specialization does not reproduce the nonlinear tables.
+
 ## Particles and transport: independent references, conservation and statistical error — Particles and transport: independent references, conservation and statistical error [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-particle-transport/
@@ -43514,6 +45581,190 @@ The SciPy community (2024). SciPy1.14.1 solve_ivp reference
 Review scope / review_level: official-versioned-documentation-selected-methods-and-tolerances
 Consulted SciPy 1.14.1 methods and rtol/atol documentation. Radau order five and DOP853 order eight are independent time algorithms for the same spatial system, not exact continuum solutions.
 
+## Modal damping of steady multistage RK — Modal damping of steady multistage RK [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-steady-rk/
+Coverage: reading
+
+A 16-component periodic linear field measures pseudo-time residual damping with stable, neutral and expanding controls. This is distinct from fourth-order accuracy for nonlinear physical-time problems.
+
+## Modal damping of steady multistage RK — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-steady-rk/#run-all
+Coverage: reading
+
+Run inside atlas-steady-rk-2026-11-24 from the ZIP. This command executes all 1 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Modal damping of steady multistage RK — Real-space mode damping with steady multistage RK [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-steady-rk/
+Coverage: reading
+
+Apply four steady residual stages on a periodic grid, separating damping, neutrality and amplification of discrete modes. The retained first run missed the original absolute residual goal in the expanding control.
+Methods, equations, figures and references
+Methods used
+Jameson-type steady multistage Runge–Kutta
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Use the same base state in every stage and retain complete fields, stage residuals and evaluation counts.
+Finite-dimensional linear evolution systems
+A fixed dimensionless sixteen-node periodic linear residual; pseudo-time is an iteration parameter.
+Finite-dimensional linear systems and factorizations
+A fixed dimensionless sixteen-node periodic linear residual; pseudo-time is an iteration parameter.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Real-space mode damping with steady multistage RK
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+
+## Modal damping of steady multistage RK — Real-space mode damping with steady multistage RK [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-steady-rk/
+Coverage: reading
+
+Retain all 41 original numerical targets and their actual decisions. Only the expanding-control absolute residual goal is a separate study outcome; the other 40 requirements and faithful recomputation from saved arrays remain mandatory.
+Same-problem reference · Analytic reference
+Real-space mode damping with steady multistage RK
+Limited to a fixed linear example; no JST compressible flux, nonlinear fourth-order RK or all-start convergence claim. Verification of this study does not mean that all original numerical targets were met.
+
+## Modal damping of steady multistage RK — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-steady-rk/#jameson-steady-linear-modes-assumptions
+Coverage: reading
+
+A fixed dimensionless sixteen-node periodic linear residual; pseudo-time is an iteration parameter.
+
+## Modal damping of steady multistage RK — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-steady-rk/#jameson-steady-linear-modes-algorithm
+Coverage: reading
+
+Use the same base state in every stage and retain complete fields, stage residuals and evaluation counts.
+Y_j=u_n-alpha_j*dtau*(A*Y_(j-1)-b)P(z)=1+z+z^2/2+z^3/6+z^4/24; lambda_4=9+2i, lambda_8=17
+
+## Modal damping of steady multistage RK — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-steady-rk/#jameson-steady-linear-modes-validation
+Coverage: reading
+
+Retain all 41 original numerical targets and their actual decisions. Only the expanding-control absolute residual goal is a separate study outcome; the other 40 requirements and faithful recomputation from saved arrays remain mandatory.
+
+## Modal damping of steady multistage RK — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-steady-rk/#jameson-steady-linear-modes-limits
+Coverage: reading
+
+Limited to a fixed linear example; no JST compressible flux, nonlinear fourth-order RK or all-start convergence claim. Verification of this study does not mean that all original numerical targets were met.
+
+## Modal damping of steady multistage RK — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-steady-rk/#jameson-steady-linear-modes-measurements
+Coverage: reading
+
+量 / metricMeasured value
+stable-h32:field-error3.33066907388e-16
+stable-h32:residual-reduction6.44637075149e-09
+stable-h32:nonzero-mode41.52383936183e-08
+stable-h16:field-error2.22044604925e-16
+stable-h16:residual-reduction6.62107877097e-09
+stable-h16:nonzero-mode41.53811258096e-08
+neutral-constant:neutrality0
+expanding-nyquist:expected-expansion1875.59486518
+expanding-nyquist:normalized-error3.63488699125e-16
+max_field_error6.8212102633e-13
+original_targets_met40
+original_targets_total41
+判定 / checkPassed
+reference:h32-mode4:expanded-vs-stagestrue
+reference:h32-mode4:prior-classificationtrue
+reference:h32-mode8:expanded-vs-stagestrue
+reference:h32-mode8:prior-classificationtrue
+reference:h16-mode4:expanded-vs-stagestrue
+reference:h16-mode4:prior-classificationtrue
+reference:h16-mode8:expanded-vs-stagestrue
+reference:h16-mode8:prior-classificationtrue
+reference:neutral:expanded-vs-stagestrue
+reference:neutral:prior-classificationtrue
+reference:expanding:expanded-vs-stagestrue
+reference:expanding:prior-classificationtrue
+reference:rational-stencil-mode4true
+reference:rational-stencil-mode8true
+stable-h32:finitetrue
+stable-h32:stage-counttrue
+stable-h32:spurious-modetrue
+stable-h32:true-residual-referencetrue
+stable-h32:field-errortrue
+stable-h32:residual-reductiontrue
+stable-h32:nonzero-mode4true
+stable-h16:finitetrue
+stable-h16:stage-counttrue
+stable-h16:spurious-modetrue
+
+## Modal damping of steady multistage RK — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-steady-rk/#jameson-steady-linear-modes-measurements
+Coverage: reading
+
+stable-h16:true-residual-referencetrue
+stable-h16:field-errortrue
+stable-h16:residual-reductiontrue
+stable-h16:nonzero-mode4true
+neutral-constant:finitetrue
+neutral-constant:stage-counttrue
+neutral-constant:spurious-modetrue
+neutral-constant:true-residual-referencetrue
+neutral-constant:neutralitytrue
+expanding-nyquist:finitetrue
+expanding-nyquist:stage-counttrue
+expanding-nyquist:spurious-modetrue
+expanding-nyquist:expected-expansiontrue
+expanding-nyquist:normalized-errortrue
+steady-fixed-pointtrue
+four-record-identitiestrue
+verification:original-target-inventorytrue
+verification:all-original-decisions-recomputedtrue
+verification:measured-records-match-saved-arraystrue
+verification:frozen-original-input-and-acceptancetrue
+verification:independent-reference-integritytrue
+verification:actual-target-summarytrue
+verification:retained-first-attempt-historytrue
+verification:only-declared-study-goals-are-nonmandatorytrue
+
+## Modal damping of steady multistage RK — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-steady-rk/#jameson-steady-linear-modes-measurements
+Coverage: reading
+
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Apply four steady residual stages on a periodic grid, separating damping, neutrality and amplification of discrete modes. Drawn from saved arrays. The first-run goal shortfall and each rerun’s actual target decisions remain explicit in the saved JSON.Saved residuals, constraints and budgets shown separately; symmetric log axes retain zero values. The first-run goal shortfall and each rerun’s actual target decisions remain explicit in the saved JSON.Read every stored record
+idroleterminationstepsstage_residual_evaluationsmonitor_residual_evaluationsmetrics
+stable-h32steady_iterationcompleted_fixed_steps6425665{"full_field_maxabs_error":3.3306690738754696e-16,"normalized_field_error":1.7143221587850987e-16,"mode4_final_amplitude":1.5238393618337132e-08,"residual_ratio":6.446370751486289e-09,"spurious_mode_maxabs":1.1102230246251565e-16,"modal_residual_error":2.6645352591003757e-15}
+stable-h16steady_iterationcompleted_fixed_steps3212833{"full_field_maxabs_error":2.220446049250313e-16,"normalized_field_error":1.1997714173839207e-16,"mode4_final_amplitude":1.5381125809623605e-08,"residual_ratio":6.6210787709662455e-09,"spurious_mode_maxabs":1.1102230246251565e-16,"modal_residual_error":1.1102230246251565e-15}
+
+## Modal damping of steady multistage RK — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-steady-rk/#jameson-steady-linear-modes-measurements
+Coverage: reading
+
+neutral-constantneutral_controlcompleted_fixed_steps8329{"full_field_maxabs_error":0.0,"normalized_field_error":0.0,"mode4_final_amplitude":0.0,"residual_ratio":null,"spurious_mode_maxabs":0.0,"modal_residual_error":0.0}
+expanding-nyquistexpected_expansion_controlcompleted_fixed_steps4165{"full_field_maxabs_error":6.821210263296962e-13,"normalized_field_error":3.634886991251329e-16,"mode4_final_amplitude":0.0,"residual_ratio":1875.5948651814128,"spurious_mode_maxabs":0.0,"modal_residual_error":1.0913936421275139e-11}
+Measurements and complete records / JSON
+
+## Modal damping of steady multistage RK — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-steady-rk/#jameson-steady-linear-modes-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+PERFORM time integration schemes [accessed 2026-11-24]
+Review scope / review_level: official-documentation-selected-equations
+Selected four-stage base-state recurrence. No full JST 1981 paper reading or compressible-flow implementation claim.
+
 ## Weak/strong SDE errors and sampling uncertainty — Weak/strong SDE errors and sampling uncertainty [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/
@@ -50591,7 +52842,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/dae/#publication-scope
 Coverage: reading
 
-解説・代表式・文献を公開しています。専用コードと数値検証結果は実装予定です。上記の検証案は未実施で、他の手法のコードや計算結果をこの手法の検証として流用しません。
+既存の教育用コードと版を固定した検証記録への案内です。今回の本文・翻訳の追加でコードや過去の測定結果を変更せず、原論文全体の再現を主張しません。
 微分代数方程式（DAE）
 
 ## 微分代数方程式（DAE） — 一次文献・関連資料と確認範囲 [ja]
@@ -55707,7 +57958,7 @@ R. Car; M. Parrinello (1985)
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemistry/#verification
 Coverage: reading
 
-水素型原子・Heの2問題群を実行し、独立参照と比較して全141問題の台帳へ加えました。さらにH₂の有限基底RHFを独立参照・SCFと基底の収束で検証しました。周期Heセルの限定DFTも追加。分子DFT・FCIや他の周期物質へ検証を拡張していません。
+水素型原子・Heの2問題群を実行し、独立参照と比較して全149問題の台帳へ加えました。さらにH₂の有限基底RHFを独立参照・SCFと基底の収束で検証しました。周期Heセルの限定DFTも追加。分子DFT・FCIや他の周期物質へ検証を拡張していません。
 実行・検証例あり
 
 ## 量子化学・DFT：何を近似し、何を解くか — 1電子：水素型原子 [ja]
@@ -58860,8 +61111,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 公開Web版、集計日2026-11-24。数えるのはカタログ項目と記載した実験例です。すべての項目が検証済みの完全なソルバーであるという意味ではありません。
-方程式・モデル72項目・計算法と構成要素144項目・学術誌／会議論文249件・全参考資料310件。
-保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め141章です。
+方程式・モデル80項目・計算法と構成要素149項目・学術誌／会議論文249件・全参考資料310件。
+保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め145章です。
 
 ## 収録範囲と数え方 — 方程式とモデル# [ja]
 
@@ -58869,7 +61120,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 名前付きの方程式・モデルを数えます。スカラー成分や数学的に互いに独立な系統の数ではありません。枠組みや補助定式化を含み、通常は派生形を一つにまとめます。ただし個別に説明するSR／GRの流体系3種類は分けます。生物モデルは専用カタログから一度だけ取り込みます。
-ローカル実験のある項目は50、文献解説のみは22で、後者には生物調査22項目すべてを含みます。連成系は一項目とし、成分方程式では増やしません。Poisson／Laplaceや次元の違いもまとめます。枠組みと個別反応則が並ぶため、数学的に独立した系統数ではありません。
+ローカル実験のある項目は58、文献解説のみは22で、後者には生物調査22項目すべてを含みます。連成系は一項目とし、成分方程式では増やしません。Poisson／Laplaceや次元の違いもまとめます。枠組みと個別反応則が並ぶため、数学的に独立した系統数ではありません。
 一覧の詳細な範囲注記は原文（英語）を保持します。各章の日本語本文も併せて参照できます。
 
 ## 収録範囲と数え方 — 物理・数学モデル# [ja]
@@ -58956,7 +61207,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 名前付きの離散化法、積分法、線形・非線形解法、連成演算子を数えます。パラメータの違いでは増やしません。
-ローカル実験のある項目は129、文献解説のみは15です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。
+ローカル実験のある項目は134、文献解説のみは15です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。
 
 ## 収録範囲と数え方 — 空間離散化# [ja]
 
@@ -63369,6 +65620,553 @@ Algebraic multigrid by smoothed aggregation for second and fourth order elliptic
 確認範囲 / review_level: publisher-abstract-only-full-paper-unread
 Metadata and abstract only. No general robustness theorem claimed for these fixed jumps/tensors.
 
+## DAEの初期化・保存則・拘束ドリフト — DAEの初期化・保存則・拘束ドリフト [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/
+Coverage: reading
+
+整合初期化、index-1保存則DAE、index-3振り子の微分拘束に基づくODEを比較します。保存された公式IDA出力との比較と、新たに実行した独立ODE参照を区別します。
+
+## DAEの初期化・保存則・拘束ドリフト — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/#run-all
+Coverage: reading
+
+ZIPの atlas-dae-controls-2026-11-24 フォルダで実行します。このコマンドは配布版の全3例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## DAEの初期化・保存則・拘束ドリフト — index-1 DAEの整合初期化と離散残差 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/
+Coverage: reading
+
+既知の正枝を持つindex-1 DAEで初期化と後退Eulerの誤差・残差を分離します。
+手法・式・図・参照解
+使用手法
+微分代数方程式（DAE）
+後退Euler法
+Armijo減衰Newton法
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+連立Newtonと同じ尺度のArmijo線探索を用い、特異な初期推測は修復せず記録します。
+半陽的index-1 DAE
+無次元・正枝。微分行と代数行の尺度はそれぞれ1で、最大ノルムを用います。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+index-1 DAEの整合初期化と離散残差
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+独立Decimal製造解・3つの離散根と3固定格子を比較し、一次誤差と代数拘束を確認します。
+同じ問題の参照 · 製造解
+index-1 DAEの整合初期化と離散残差
+単一の製造正枝・固定BE計算です。IDA実行や一般DAEソルバーの検証ではありません。
+
+## DAEの初期化・保存則・拘束ドリフト — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/#index1-dae-consistent-initialization-assumptions
+Coverage: reading
+
+無次元・正枝。微分行と代数行の尺度はそれぞれ1で、最大ノルムを用います。
+
+## DAEの初期化・保存則・拘束ドリフト — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/#index1-dae-consistent-initialization-algorithm
+Coverage: reading
+
+連立Newtonと同じ尺度のArmijo線探索を用い、特異な初期推測は修復せず記録します。
+F1=ydot+y-z+exp(-2t/3), F2=z^3-y^2y=exp(-t), z=exp(-2t/3)
+
+## DAEの初期化・保存則・拘束ドリフト — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/#index1-dae-consistent-initialization-validation
+Coverage: reading
+
+独立Decimal製造解・3つの離散根と3固定格子を比較し、一次誤差と代数拘束を確認します。
+
+## DAEの初期化・保存則・拘束ドリフト — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/#index1-dae-consistent-initialization-limits
+Coverage: reading
+
+単一の製造正枝・固定BE計算です。IDA実行や一般DAEソルバーの検証ではありません。
+
+## DAEの初期化・保存則・拘束ドリフト — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/#index1-dae-consistent-initialization-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+reference:three-independent-discrete-roots3.58602036954e-14
+initialize-0.5:root0
+initialize-2:root2.22044604925e-16
+index1-BE-16:step-residual9.53681578153e-14
+index1-BE-16:constraint9.53681578153e-14
+index1-BE-16:MMS-bound0.0176556679912
+index1-BE-32:step-residual1.55431223448e-15
+index1-BE-32:constraint4.4408920985e-16
+index1-BE-32:MMS-bound0.00889059915166
+index1-BE-64:step-residual3.5527136788e-15
+index1-BE-64:constraint3.33066907388e-16
+index1-BE-64:MMS-bound0.00446111129112
+first-order-refinement[0.989778852631791,0.9948775084516599]
+finest_max_state_error0.00446111129112
+observed_orders[0.989778852631791,0.9948775084516599]
+one_step_reference_errors[3.5860203695392556e-14,1.1102230246251565e-16,1.1102230246251565e-16]
+original_targets_met30
+original_targets_total30
+判定 / check合格
+reference:MMS-0true
+reference:MMS-1true
+reference:MMS-2true
+reference:nonexpansive-positive-regiontrue
+reference:initial-differentiated-constrainttrue
+reference:three-positive-branch-bracketstrue
+reference:three-independent-discrete-rootstrue
+initialize-0.5:roottrue
+initialize-0.5:algebraic-residualtrue
+initialize-2:roottrue
+initialize-2:algebraic-residualtrue
+initialize-0:expected-singular-statustrue
+index1-BE-16:finitetrue
+index1-BE-16:positivetrue
+index1-BE-16:step-residualtrue
+index1-BE-16:constrainttrue
+
+## DAEの初期化・保存則・拘束ドリフト — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/#index1-dae-consistent-initialization-measurements
+Coverage: reading
+
+index1-BE-16:MMS-boundtrue
+index1-BE-32:finitetrue
+index1-BE-32:positivetrue
+index1-BE-32:step-residualtrue
+index1-BE-32:constrainttrue
+index1-BE-32:MMS-boundtrue
+index1-BE-64:finitetrue
+index1-BE-64:positivetrue
+index1-BE-64:step-residualtrue
+index1-BE-64:constrainttrue
+index1-BE-64:MMS-boundtrue
+first-order-refinementtrue
+initial-F-and-hidden-constrainttrue
+six-record-identitiestrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。既知の正枝を持つindex-1 DAEで初期化と後退Eulerの誤差・残差を分離します。 保存配列から作図。保存済み残差・拘束・収支を別表示。ゼロ値は対称対数軸で保持します。全記録を表で読む
+idkindterminationmetricssteps
+initialize-0.5initializationconsistent_initialization{"termination":"consistent_initialization","iterations":5,"residual":0.0}—
+initialize-2initializationconsistent_initialization{"termination":"consistent_initialization","iterations":6,"residual":6.661338147750939e-16}—
+initialize-0expected_initial_failureinitialization_singular_jacobian{"termination":"initialization_singular_jacobian","iterations":0,"residual":1.0}—
+index1-BE-16trajectorycompleted_fixed_steps{"max_state_error":0.017655667991177793,"max_algebraic_residual":9.536815781530095e-14,"max_derivative_unit_step_residual":9.536815781530095e-14,"Newton_iterations":48}16
+index1-BE-32trajectorycompleted_fixed_steps{"max_state_error":0.00889059915166246,"max_algebraic_residual":4.440892098500626e-16,"max_derivative_unit_step_residual":1.5543122344752192e-15,"Newton_iterations":96}32
+
+## DAEの初期化・保存則・拘束ドリフト — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/#index1-dae-consistent-initialization-measurements
+Coverage: reading
+
+index1-BE-64trajectorycompleted_fixed_steps{"max_state_error":0.0044611112911168704,"max_algebraic_residual":3.3306690738754696e-16,"max_derivative_unit_step_residual":3.552713678800501e-15,"Newton_iterations":192}64
+この例の実測値・全記録 / JSON
+
+## DAEの初期化・保存則・拘束ドリフト — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/#index1-dae-consistent-initialization-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+SUNDIALS v7.1.1 IDA mathematics, section 5.2 [accessed 2026-11-24]
+確認範囲 / review_level: official-documentation-selected-equations
+Residual form, BDF/Newton and consistent initialization sections selected. Section5.2 is not an IDA version. This authored MMS/BE solver is not IDA.
+
+## DAEの初期化・保存則・拘束ドリフト — Robertson保存制約DAEと公式IDA保存値 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/
+Coverage: reading
+
+Robertsonの保存制約DAEと全ODEを同じ固定時間格子で比較し、公式IDA保存値を別に照合します。 初回は元の時間精度・細分化目標4件が未達でした。
+手法・式・図・参照解
+使用手法
+微分代数方程式（DAE）
+後退Euler法
+Armijo減衰Newton法
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+解析Jacobian付き固定BE/Newtonを使い、質量の投影・濃度クリップはしません。
+Robertson反応系
+モデル時間0から4。中間種と残差の尺度は1e-4。公式印字値の丸め幅と数値誤差を区別します。
+半陽的index-1 DAE
+モデル時間0から4。中間種と残差の尺度は1e-4。公式印字値の丸め幅と数値誤差を区別します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+Robertson反応系：ODEと保存則DAE
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+元39目標をすべて実測し、精度・細分化4目標の未達を変更せず研究結果として記録します。他35条件と独立参照・保存配列からの判定再計算は必須です。
+同じ問題の参照 · 有限格子の数値参照
+Robertson反応系の初期剛性と実誤差
+保存/正値性は固定入力の観測で、一般的な保証ではありません。T=.4の短時間・標本時刻での精度であり、長時間化学精度や全時刻誤差上限は主張しません。
+同じ問題の参照 · 有限格子の数値参照
+Robertson保存制約DAEと公式IDA保存値
+公式SUNDIALS v7.1.1の2印字行のみ。IDAの新規実行0、長時間の化学精度や一般DAE性能は扱いません。 この固定時間格子の漸近収束や元精度目標の全合格は主張しません。
+
+## DAEの初期化・保存則・拘束ドリフト — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/#robertson-conservation-dae-assumptions
+Coverage: reading
+
+モデル時間0から4。中間種と残差の尺度は1e-4。公式印字値の丸め幅と数値誤差を区別します。
+
+## DAEの初期化・保存則・拘束ドリフト — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/#robertson-conservation-dae-algorithm
+Coverage: reading
+
+解析Jacobian付き固定BE/Newtonを使い、質量の投影・濃度クリップはしません。
+F1=ydot1+0.04*y1-1e4*y2*y3; F2=ydot2-0.04*y1+1e4*y2*y3+3e7*y2^2; F3=y1+y2+y3-1M=diag(1,1,0)
+
+## DAEの初期化・保存則・拘束ドリフト — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/#robertson-conservation-dae-validation
+Coverage: reading
+
+元39目標をすべて実測し、精度・細分化4目標の未達を変更せず研究結果として記録します。他35条件と独立参照・保存配列からの判定再計算は必須です。
+
+## DAEの初期化・保存則・拘束ドリフト — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/#robertson-conservation-dae-limits
+Coverage: reading
+
+公式SUNDIALS v7.1.1の2印字行のみ。IDAの新規実行0、長時間の化学精度や一般DAE性能は扱いません。 この固定時間格子の漸近収束や元精度目標の全合格は主張しません。
+
+## DAEの初期化・保存則・拘束ドリフト — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/#robertson-conservation-dae-measurements
+Coverage: reading
+
+量 / metric実測値
+robertson-residual_dae-r1:nonnegative0
+robertson-residual_dae-r1:nonlinear-residual1.07105741228e-12
+robertson-residual_dae-r1:mass2.22044604925e-16
+robertson-residual_dae-r2:nonnegative0
+robertson-residual_dae-r2:nonlinear-residual1.98047347584e-12
+robertson-residual_dae-r2:mass2.22044604925e-16
+robertson-residual_dae-r4:nonnegative0
+robertson-residual_dae-r4:nonlinear-residual9.18210184603e-13
+robertson-residual_dae-r4:mass2.22044604925e-16
+residual_dae:refinement[1.0816554513576002,1.7211244337110214]
+residual_dae:finest-reference-error0.00775577218605
+residual_dae:official-printed-comparison[[0.0,0.0,1.98496998732485e-06],[2.8469832178190657e-05,3.4259947900275225e-09,3.737975817291739e-05]]
+robertson-full_ode-r1:nonnegative0
+robertson-full_ode-r1:nonlinear-residual1.07073540742e-12
+robertson-full_ode-r1:mass4.4408920985e-16
+robertson-full_ode-r2:nonnegative0
+robertson-full_ode-r2:nonlinear-residual1.98064288243e-12
+robertson-full_ode-r2:mass1.55431223448e-15
+robertson-full_ode-r4:nonnegative0
+robertson-full_ode-r4:nonlinear-residual9.18210184603e-13
+robertson-full_ode-r4:mass8.881784197e-16
+full_ode:refinement[1.0816554513576304,1.72112443371103]
+full_ode:finest-reference-error0.00775577218605
+full_ode:official-printed-comparison[[0.0,0.0,1.9849699872138277e-06],[2.8469832178079635e-05,3.4259947900546275e-09,3.737975817323658e-05]]
+ODE-DAE-r18.13151629364e-16
+
+## DAEの初期化・保存則・拘束ドリフト — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/#robertson-conservation-dae-measurements
+Coverage: reading
+
+ODE-DAE-r22.10064170919e-15
+ODE-DAE-r48.80914265144e-16
+finest_scaled_error_DAE0.00775577218605
+finest_scaled_error_ODE0.00775577218605
+reference_solver_counters[{"id":"reference-radau-loose","method":"Radau","nfev":4291,"njev":43,"nlu":166,"status":0,"observations":1537},{"id":"reference-radau-tight","method":"Radau","nfev":12141,"njev":9,"nlu":124,"status":0,"observations":1537},{"id":"reference-bdf-tight","method":"BDF","nfev":1593,"njev":3,"nlu":110,"status":0,"observations":1537}]
+IDA_new_executions0
+original_targets_met35
+original_targets_total39
+判定 / check合格
+reference:all-reference-complete-finite-nonnegativetrue
+reference:reference-agreement-0true
+reference:reference-agreement-2true
+reference:official-IDA-printed-interval-qualificationtrue
+inconsistent-initial-rejectedtrue
+robertson-residual_dae-r1:finitetrue
+robertson-residual_dae-r1:nonnegativetrue
+robertson-residual_dae-r1:nonlinear-residualtrue
+robertson-residual_dae-r1:masstrue
+robertson-residual_dae-r2:finitetrue
+robertson-residual_dae-r2:nonnegativetrue
+robertson-residual_dae-r2:nonlinear-residualtrue
+robertson-residual_dae-r2:masstrue
+robertson-residual_dae-r4:finitetrue
+robertson-residual_dae-r4:nonnegativetrue
+robertson-residual_dae-r4:nonlinear-residualtrue
+robertson-residual_dae-r4:masstrue
+residual_dae:official-printed-comparisontrue
+robertson-full_ode-r1:finitetrue
+robertson-full_ode-r1:nonnegativetrue
+
+## DAEの初期化・保存則・拘束ドリフト — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/#robertson-conservation-dae-measurements
+Coverage: reading
+
+robertson-full_ode-r1:nonlinear-residualtrue
+robertson-full_ode-r1:masstrue
+robertson-full_ode-r2:finitetrue
+robertson-full_ode-r2:nonnegativetrue
+robertson-full_ode-r2:nonlinear-residualtrue
+robertson-full_ode-r2:masstrue
+robertson-full_ode-r4:finitetrue
+robertson-full_ode-r4:nonnegativetrue
+robertson-full_ode-r4:nonlinear-residualtrue
+robertson-full_ode-r4:masstrue
+full_ode:official-printed-comparisontrue
+ODE-DAE-r1true
+ODE-DAE-r2true
+ODE-DAE-r4true
+seven-record-identitiestrue
+verification:original-target-inventorytrue
+verification:all-original-decisions-recomputedtrue
+verification:measured-records-match-saved-arraystrue
+verification:frozen-original-input-and-acceptancetrue
+verification:independent-reference-integritytrue
+verification:actual-target-summarytrue
+verification:retained-first-attempt-historytrue
+verification:only-declared-study-goals-are-nonmandatorytrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。Robertsonの保存制約DAEと全ODEを同じ固定時間格子で比較し、公式IDA保存値を別に照合します。 保存配列から作図。 初回の元精度目標未達と再実行の実測判定は保存JSONで区別します。保存済み残差・拘束・収支を別表示。ゼロ値は対称対数軸で保持します。 初回の元精度目標未達と再実行の実測判定は保存JSONで区別します。全記録を表で読む
+idkindterminationmetricsformulationsteps
+inconsistent-initial-rejectionexpected_initial_failureinitial_algebraic_constraint_violated{"mass_residual":9.999999999998899e-05}——
+
+## DAEの初期化・保存則・拘束ドリフト — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/#robertson-conservation-dae-measurements
+Coverage: reading
+
+robertson-residual_dae-r1trajectorycompleted_fixed_steps{"max_scaled_reference_error":0.014438638971779891,"max_mass_error":2.220446049250313e-16,"max_scaled_step_residual":1.0710574122841998e-12,"minimum_species":0.0,"Newton_iterations":900}residual_dae384
+robertson-residual_dae-r2trajectorycompleted_fixed_steps{"max_scaled_reference_error":0.013348649011714184,"max_mass_error":2.220446049250313e-16,"max_scaled_step_residual":1.9804734758359423e-12,"minimum_species":0.0,"Newton_iterations":1723}residual_dae768
+robertson-residual_dae-r4trajectorycompleted_fixed_steps{"max_scaled_reference_error":0.007755772186054176,"max_mass_error":2.220446049250313e-16,"max_scaled_step_residual":9.182101846032633e-13,"minimum_species":0.0,"Newton_iterations":3078}residual_dae1536
+robertson-full_ode-r1trajectorycompleted_fixed_steps{"max_scaled_reference_error":0.014438638971780366,"max_mass_error":4.440892098500626e-16,"max_scaled_step_residual":1.0707354074153451e-12,"minimum_species":0.0,"Newton_iterations":900}full_ode384
+robertson-full_ode-r2trajectorycompleted_fixed_steps{"max_scaled_reference_error":0.013348649011714252,"max_mass_error":1.5543122344752192e-15,"max_scaled_step_residual":1.980642882425393e-12,"minimum_species":0.0,"Newton_iterations":1723}full_ode768
+
+## DAEの初期化・保存則・拘束ドリフト — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/#robertson-conservation-dae-measurements
+Coverage: reading
+
+robertson-full_ode-r4trajectorycompleted_fixed_steps{"max_scaled_reference_error":0.007755772186054176,"max_mass_error":8.881784197001252e-16,"max_scaled_step_residual":9.182101846032633e-13,"minimum_species":0.0,"Newton_iterations":3078}full_ode1536
+この例の実測値・全記録 / JSON
+
+## DAEの初期化・保存則・拘束ドリフト — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/#robertson-conservation-dae-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+SUNDIALS v7.1.1 idaRoberts_dns example [accessed 2026-11-24]
+確認範囲 / review_level: official-source-selected-functions
+Read residual/Jacobian, initialization, tolerances and print format. Own first two residual rows have opposite sign and the same zero set.
+Stored official v7.1.1 IDA Robertson output [accessed 2026-11-24]
+確認範囲 / review_level: official-stored-output-selected-rows
+Selected printed t=0.4 and4 values only, with Decimal rounding intervals. These approximate IDA values are not exact truth; no IDA run is performed here.
+
+## DAEの初期化・保存則・拘束ドリフト — 振り子の指数低減・拘束ドリフト・明示安定化 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/
+Coverage: reading
+
+位置拘束の指数3系から明示ODEを導き、整合・非整合初期値の拘束ドリフトと安定化を比較します。
+手法・式・図・参照解
+使用手法
+微分代数方程式（DAE）
+古典的RK4
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+指数低減ODEと臨界拘束誤差拡張を固定RK4で積分し、拘束仕事も同じ段で積分します。
+拘束付き平面振り子
+m=L=g=1、初期角0.7、初期角速度0。非整合制御では半径方向速度を明示的に加えます。
+Hamilton系・振動子
+m=L=g=1、初期角0.7、初期角速度0。非整合制御では半径方向速度を明示的に加えます。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+拘束付き振り子
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+Jacobi解析族と独立角度ODE2計算を資格確認し、場・拘束の厳密法則・エネルギー仕事収支を比較します。
+同じ問題の参照 · 半解析参照
+振り子の指数低減・拘束ドリフト・明示安定化
+投影・正規化・SHAKE/RATTLEなし。一般指数3ソルバーやシンプレクティック性の検証ではありません。
+同じ問題の参照 · 半解析参照
+SHAKEとRATTLE：拘束と運動量の違い
+原著SHAKE/RATTLE本文は未読で、著者講義ノートの選択箇所を確認。有限差分のsymplectic defectは一般証明ではなく、中心化SHAKE速度にRATTLEの接線拘束を要求しません。
+
+## DAEの初期化・保存則・拘束ドリフト — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/#high-index-pendulum-assumptions
+Coverage: reading
+
+m=L=g=1、初期角0.7、初期角速度0。非整合制御では半径方向速度を明示的に加えます。
+
+## DAEの初期化・保存則・拘束ドリフト — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/#high-index-pendulum-algorithm
+Coverage: reading
+
+指数低減ODEと臨界拘束誤差拡張を固定RK4で積分し、拘束仕事も同じ段で積分します。
+C=(q.q-1)/2, D=q.v, lambda=(v.v-q_y+2D+C)/(q.q)Cddot+2*Cdot+C=0; Wdot=-lambda*(q.v)
+
+## DAEの初期化・保存則・拘束ドリフト — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/#high-index-pendulum-validation
+Coverage: reading
+
+Jacobi解析族と独立角度ODE2計算を資格確認し、場・拘束の厳密法則・エネルギー仕事収支を比較します。
+
+## DAEの初期化・保存則・拘束ドリフト — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/#high-index-pendulum-limits
+Coverage: reading
+
+投影・正規化・SHAKE/RATTLEなし。一般指数3ソルバーやシンプレクティック性の検証ではありません。
+
+## DAEの初期化・保存則・拘束ドリフト — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/#high-index-pendulum-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+pendulum-consistent-underlying-2000:state1.62886951705e-08
+pendulum-consistent-underlying-2000:energy1.18496817914e-08
+pendulum-consistent-stabilized-2000:state2.18239935845e-09
+pendulum-consistent-stabilized-2000:energy1.22456489393e-10
+pendulum-radial-underlying-2000:C-law1.0557027235e-08
+pendulum-radial-underlying-2000:D-law1.0374748274e-09
+pendulum-radial-underlying-2000:work-ledger4.06214124837e-11
+pendulum-radial-stabilized-2000:C-law1.0589864169e-10
+pendulum-radial-stabilized-2000:D-law1.11336099736e-10
+pendulum-radial-stabilized-2000:work-ledger1.26327727947e-09
+underlying-consistent-fourth-order[3.997663875510909,3.999093883138539]
+visible-unstabilized-drift0.019999989443
+stabilized-drift-ratio8.89400134498e-10
+finest_consistent_state_error1.62886951705e-08
+observed_orders[3.997663875510909,3.999093883138539]
+stabilized_to_unstabilized_drift_ratio8.89400134498e-10
+reference_solver_counters[{"id":"angular-reference-0","method":"DOP853","nfev":1373,"njev":0,"nlu":0,"status":0,"observations":33},{"id":"angular-reference-1","method":"DOP853","nfev":2273,"njev":0,"nlu":0,"status":0,"observations":33}]
+original_targets_met45
+original_targets_total45
+判定 / check合格
+reference:Jacobi-angular-agreementtrue
+reference:angular-tolerance-agreementtrue
+reference:Jacobi-initialtrue
+reference:Jacobi-invariantstrue
+
+## DAEの初期化・保存則・拘束ドリフト — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/#high-index-pendulum-measurements
+Coverage: reading
+
+reference:AGM-Ktrue
+reference:Decimal-remainder-qualificationtrue
+reference:constraint-identity-Falsetrue
+reference:constraint-work-Falsetrue
+reference:constraint-identity-Truetrue
+reference:constraint-work-Truetrue
+default-consistency-rejectiontrue
+pendulum-consistent-underlying-500:finitetrue
+pendulum-consistent-underlying-500:radiustrue
+pendulum-consistent-underlying-1000:finitetrue
+pendulum-consistent-underlying-1000:radiustrue
+pendulum-consistent-underlying-2000:finitetrue
+pendulum-consistent-underlying-2000:radiustrue
+pendulum-consistent-underlying-2000:statetrue
+pendulum-consistent-underlying-2000:energytrue
+pendulum-consistent-stabilized-2000:finitetrue
+pendulum-consistent-stabilized-2000:radiustrue
+pendulum-consistent-stabilized-2000:statetrue
+pendulum-consistent-stabilized-2000:energytrue
+pendulum-radial-underlying-500:finitetrue
+pendulum-radial-underlying-500:radiustrue
+pendulum-radial-underlying-1000:finitetrue
+pendulum-radial-underlying-1000:radiustrue
+pendulum-radial-underlying-2000:finitetrue
+pendulum-radial-underlying-2000:radiustrue
+pendulum-radial-underlying-2000:C-lawtrue
+pendulum-radial-underlying-2000:D-lawtrue
+pendulum-radial-underlying-2000:work-ledgertrue
+pendulum-radial-stabilized-500:finitetrue
+pendulum-radial-stabilized-500:radiustrue
+pendulum-radial-stabilized-1000:finitetrue
+pendulum-radial-stabilized-1000:radiustrue
+
+## DAEの初期化・保存則・拘束ドリフト — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/#high-index-pendulum-measurements
+Coverage: reading
+
+pendulum-radial-stabilized-2000:finitetrue
+pendulum-radial-stabilized-2000:radiustrue
+pendulum-radial-stabilized-2000:C-lawtrue
+pendulum-radial-stabilized-2000:D-lawtrue
+pendulum-radial-stabilized-2000:work-ledgertrue
+underlying-consistent-fourth-ordertrue
+visible-unstabilized-drifttrue
+stabilized-drift-ratiotrue
+eleven-record-identitiestrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。位置拘束の指数3系から明示ODEを導き、整合・非整合初期値の拘束ドリフトと安定化を比較します。 保存配列から作図。保存済み残差・拘束・収支を別表示。ゼロ値は対称対数軸で保持します。全記録を表で読む
+idkindterminationmetricsinitial_consistentconstraint_extensionstepsRHS_evaluations
+default-inconsistent-rejectionexpected_initial_failureinitial_velocity_constraint_violated{"C":0.0,"D":0.001}————
+pendulum-consistent-underlying-500trajectorycompleted_fixed_steps{"max_state_error":4.160545245934788e-06,"max_abs_C":2.765469672483256e-06,"C_exact_law_error":2.765469672483256e-06,"D_exact_law_error":2.7391049113589805e-07,"max_energy_error":3.0130832572305977e-06,"max_energy_work_balance_error":1.8252864454015173e-08,"minimum_radius_squared":0.999994469060655}trueunderlying_ode5002000
+
+## DAEの初期化・保存則・拘束ドリフト — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/#high-index-pendulum-measurements
+Coverage: reading
+
+pendulum-consistent-underlying-1000trajectorycompleted_fixed_steps{"max_state_error":2.604554864560349e-07,"max_abs_C":1.7316282147072926e-07,"C_exact_law_error":1.7316282147072926e-07,"D_exact_law_error":1.713857653018458e-08,"max_energy_error":1.8919273392370428e-07,"max_energy_work_balance_error":8.221427626750745e-10,"minimum_radius_squared":0.9999996536743571}trueunderlying_ode10004000
+pendulum-consistent-underlying-2000trajectorycompleted_fixed_steps{"max_state_error":1.6288695170452172e-08,"max_abs_C":1.0830674912476468e-08,"C_exact_law_error":1.0830674912476468e-08,"D_exact_law_error":1.0715459075605338e-09,"max_energy_error":1.1849681791353817e-08,"max_energy_work_balance_error":4.1426898669475616e-11,"minimum_radius_squared":0.9999999783386502}trueunderlying_ode20008000
+pendulum-consistent-stabilized-2000trajectorycompleted_fixed_steps{"max_state_error":2.182399358452436e-09,"max_abs_C":1.0581768794537538e-10,"C_exact_law_error":1.0581768794537538e-10,"D_exact_law_error":1.1133916011374367e-10,"max_energy_error":1.2245648939313014e-10,"max_energy_work_balance_error":1.262848326362555e-09,"minimum_radius_squared":0.9999999999119735}truecritical_constraint_stabilization20008000
+
+## DAEの初期化・保存則・拘束ドリフト — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/#high-index-pendulum-measurements
+Coverage: reading
+
+pendulum-radial-underlying-500trajectorycompleted_fixed_steps{"max_state_error":null,"max_abs_C":0.01999730449987358,"C_exact_law_error":2.6955001264199197e-06,"D_exact_law_error":2.6519275278438087e-07,"max_energy_error":0.021853616550225663,"max_energy_work_balance_error":1.773553745879064e-08,"minimum_radius_squared":1.0}falseunderlying_ode5002000
+pendulum-radial-underlying-1000trajectorycompleted_fixed_steps{"max_state_error":null,"max_abs_C":0.019999831214412733,"C_exact_law_error":1.687855872671562e-07,"D_exact_law_error":1.6593273643138173e-08,"max_energy_error":0.021856315611555877,"max_energy_work_balance_error":8.02820952078287e-10,"minimum_radius_squared":1.0}falseunderlying_ode10004000
+pendulum-radial-underlying-2000trajectorycompleted_fixed_steps{"max_state_error":null,"max_abs_C":0.019999989442972765,"C_exact_law_error":1.0557027235041927e-08,"D_exact_law_error":1.037474827401963e-09,"max_energy_error":0.021856485118469382,"max_energy_work_balance_error":4.06214124837323e-11,"minimum_radius_squared":1.0}falseunderlying_ode20008000
+
+## DAEの初期化・保存則・拘束ドリフト — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/#high-index-pendulum-measurements
+Coverage: reading
+
+pendulum-radial-stabilized-500trajectorycompleted_fixed_steps{"max_state_error":null,"max_abs_C":0.00036789506087830937,"C_exact_law_error":2.70874640680434e-08,"D_exact_law_error":2.8949574397093593e-08,"max_energy_error":0.0003082872934667691,"max_energy_work_balance_error":3.1977183966938887e-07,"minimum_radius_squared":0.9999999763781866}falsecritical_constraint_stabilization5002000
+pendulum-radial-stabilized-1000trajectorycompleted_fixed_steps{"max_state_error":null,"max_abs_C":0.00036788043239688317,"C_exact_law_error":1.6940355969667815e-09,"D_exact_law_error":1.7906875354268062e-09,"max_energy_error":0.00030827311284586933,"max_energy_work_balance_error":2.0137442365109428e-08,"minimum_radius_squared":0.9999999986894732}falsecritical_constraint_stabilization10004000
+pendulum-radial-stabilized-2000trajectorycompleted_fixed_steps{"max_state_error":null,"max_abs_C":0.0003678795035788607,"C_exact_law_error":1.058986416895176e-10,"D_exact_law_error":1.113360997362714e-10,"max_energy_error":0.00030827223479734656,"max_energy_work_balance_error":1.2632772794691789e-09,"minimum_radius_squared":1.0}falsecritical_constraint_stabilization20008000
+この例の実測値・全記録 / JSON
+
+## DAEの初期化・保存則・拘束ドリフト — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/#high-index-pendulum-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+NIST DLMF section22.19(i), pendulum [accessed 2026-11-24]
+確認範囲 / review_level: official-reference-selected-equations
+Selected pendulum formulas, phase and modulus convention. Authored Cartesian conversion uses K-t; SciPy takes parameter m=k². No full chapter reading claimed.
+NIST DLMF section19.8(i), arithmetic-geometric mean [accessed 2026-11-24]
+確認範囲 / review_level: official-reference-selected-equations
+Selected AGM/K identity; independent Decimal Machin pi and sine with explicit finite remainders qualify a single fixed modulus.
+
 ## Double Mach反射：多格子の軽量検証 — Double Mach反射：多格子の軽量検証 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-double-mach/
@@ -65885,6 +68683,725 @@ J. N. Lyness (1969). Notes on the Adaptive Simpson Quadrature Routine · DOI: 10
 確認範囲 / review_level: publisher-metadata
 独立参照の公式資料：scipy.special.roots_legendre.html · scipy.integrate.quad.html
 
+## 拘束・軌道・多周波数の幾何積分 — 拘束・軌道・多周波数の幾何積分 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/
+Coverage: reading
+
+SHAKE/RATTLE、Kepler軌道、結合振動子を固定した小規模条件で比較します。拘束、位相、エネルギーと丸め誤差を別々に示します。
+
+## 拘束・軌道・多周波数の幾何積分 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#run-all
+Coverage: reading
+
+ZIPの atlas-geometric-controls-2026-11-24 フォルダで実行します。このコマンドは配布版の全3例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## 拘束・軌道・多周波数の幾何積分 — SHAKEとRATTLE：拘束と運動量の違い [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/
+Coverage: reading
+
+単振り子の10固定軌道で、位置拘束、全時刻の接線運動量と内部点の中心化運動量を区別します。
+手法・式・図・参照解
+使用手法
+SHAKE拘束積分
+RATTLE拘束積分
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+独自のスカラーNewton位置拘束、RATTLE終端接線impulse、SHAKE位置対。SHAKEの運動量は内部点だけで中心化し、端点を作りません。 SHAKEのsolves列はeta、eta/h^2、位置残差、Newton更新数です。列1は一律にeta/h^2ですが、初回半刻みの物理乗数は2eta/h^2、以後の位置Verletではeta/h^2です。逆位置対はすべて後者です。判定と図はこの列1を使いません。
+拘束付き平面振り子
+L=m=g=1、初期角0.7、初期角速度0。C=(q·q−1)/2、T=100、h=0.04/0.02/0.01。拘束目標1e−13と粗格子の1e−10比較を固定。
+Hamilton系・振動子
+L=m=g=1、初期角0.7、初期角速度0。C=(q·q−1)/2、T=100、h=0.04/0.02/0.01。拘束目標1e−13と粗格子の1e−10比較を固定。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+拘束付き振り子
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+独立Jacobi解析族と角度系DOP853の資格、74主判定。有限Cの中心化恒等式、2段階FDの縮約写像診断、位置対／全状態の逆積分を分離。
+同じ問題の参照 · 半解析参照
+振り子の指数低減・拘束ドリフト・明示安定化
+投影・正規化・SHAKE/RATTLEなし。一般指数3ソルバーやシンプレクティック性の検証ではありません。
+同じ問題の参照 · 半解析参照
+SHAKEとRATTLE：拘束と運動量の違い
+原著SHAKE/RATTLE本文は未読で、著者講義ノートの選択箇所を確認。有限差分のsymplectic defectは一般証明ではなく、中心化SHAKE速度にRATTLEの接線拘束を要求しません。
+
+## 拘束・軌道・多周波数の幾何積分 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#shake-rattle-pendulum-assumptions
+Coverage: reading
+
+L=m=g=1、初期角0.7、初期角速度0。C=(q·q−1)/2、T=100、h=0.04/0.02/0.01。拘束目標1e−13と粗格子の1e−10比較を固定。
+
+## 拘束・軌道・多周波数の幾何積分 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#shake-rattle-pendulum-algorithm
+Coverage: reading
+
+独自のスカラーNewton位置拘束、RATTLE終端接線impulse、SHAKE位置対。SHAKEの運動量は内部点だけで中心化し、端点を作りません。 SHAKEのsolves列はeta、eta/h^2、位置残差、Newton更新数です。列1は一律にeta/h^2ですが、初回半刻みの物理乗数は2eta/h^2、以後の位置Verletではeta/h^2です。逆位置対はすべて後者です。判定と図はこの列1を使いません。
+C(q)=\tfrac12(q^Tq-1)=0q_{n+1}=q_n+h p_n+\tfrac12h^2 f-\eta_n q_nq_n^Tp_n^c=\frac{\|q_n-q_{n-1}\|^2-\|q_{n+1}-q_n\|^2}{4h}+\frac{C_{n+1}-C_{n-1}}{2h}
+
+## 拘束・軌道・多周波数の幾何積分 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#shake-rattle-pendulum-validation
+Coverage: reading
+
+独立Jacobi解析族と角度系DOP853の資格、74主判定。有限Cの中心化恒等式、2段階FDの縮約写像診断、位置対／全状態の逆積分を分離。
+
+## 拘束・軌道・多周波数の幾何積分 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#shake-rattle-pendulum-limits
+Coverage: reading
+
+原著SHAKE/RATTLE本文は未読で、著者講義ノートの選択箇所を確認。有限差分のsymplectic defectは一般証明ではなく、中心化SHAKE速度にRATTLEの接線拘束を要求しません。
+
+## 拘束・軌道・多周波数の幾何積分 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#shake-rattle-pendulum-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+rattle_observed_orders[2.0002044529735445,2.0000564458078465]
+shake_observed_orders[2.000077432739235,2.0000041345609065]
+reduced_map_probes[{"state":[0.7,0.0],"symplectic_defect":3.424459604772778e-10,"FD_difference":1.7850310118916468e-10},{"state":[0.3,0.2],"symplectic_defect":3.746203347532173e-11,"FD_difference":1.8735013540549517e-10},{"state":[-0.4,-0.3],"symplectic_defect":1.2937362292575472e-10,"FD_difference":2.7755575615628914e-10}]
+evolution_count10
+centered_SHAKE_not_RATTLE_tangenttrue
+maximum_constraint3.81106257663e-12
+判定 / check合格
+rattle-tight-2500-finitetrue
+rattle-tight-2500-completedtrue
+rattle-tight-2500-constrainttrue
+rattle-tight-2500-statetrue
+rattle-tight-2500-energytrue
+rattle-tight-2500-solvertrue
+rattle-tight-2500-tangenttrue
+rattle-tight-5000-finitetrue
+rattle-tight-5000-completedtrue
+rattle-tight-5000-constrainttrue
+rattle-tight-5000-statetrue
+rattle-tight-5000-energytrue
+rattle-tight-5000-solvertrue
+rattle-tight-5000-tangenttrue
+rattle-tight-10000-finitetrue
+rattle-tight-10000-completedtrue
+rattle-tight-10000-constrainttrue
+rattle-tight-10000-statetrue
+rattle-tight-10000-energytrue
+rattle-tight-10000-solvertrue
+rattle-tight-10000-tangenttrue
+rattle-loose-2500-finitetrue
+rattle-loose-2500-completedtrue
+rattle-loose-2500-constrainttrue
+rattle-loose-2500-statetrue
+
+## 拘束・軌道・多周波数の幾何積分 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#shake-rattle-pendulum-measurements
+Coverage: reading
+
+rattle-loose-2500-energytrue
+rattle-loose-2500-solvertrue
+rattle-loose-2500-tangenttrue
+rattle-reverse-finitetrue
+rattle-reverse-stepstrue
+rattle-reverse-recoverytrue
+shake-tight-2500-finitetrue
+shake-tight-2500-completedtrue
+shake-tight-2500-constrainttrue
+shake-tight-2500-statetrue
+shake-tight-2500-energytrue
+shake-tight-2500-solvertrue
+shake-tight-2500-finite-C-identitytrue
+shake-tight-2500-centered-tangencytrue
+shake-tight-5000-finitetrue
+shake-tight-5000-completedtrue
+shake-tight-5000-constrainttrue
+shake-tight-5000-statetrue
+shake-tight-5000-energytrue
+shake-tight-5000-solvertrue
+shake-tight-5000-finite-C-identitytrue
+shake-tight-5000-centered-tangencytrue
+shake-tight-10000-finitetrue
+shake-tight-10000-completedtrue
+shake-tight-10000-constrainttrue
+shake-tight-10000-statetrue
+shake-tight-10000-energytrue
+shake-tight-10000-solvertrue
+shake-tight-10000-finite-C-identitytrue
+shake-tight-10000-centered-tangencytrue
+shake-loose-2500-finitetrue
+shake-loose-2500-completedtrue
+shake-loose-2500-constrainttrue
+shake-loose-2500-statetrue
+shake-loose-2500-energytrue
+shake-loose-2500-solvertrue
+shake-loose-2500-finite-C-identitytrue
+shake-loose-2500-centered-tangencytrue
+shake-reverse-finitetrue
+shake-reverse-stepstrue
+shake-reverse-recoverytrue
+rattle-state-ordertrue
+shake-state-ordertrue
+reduced-map-0-symplectic-proxytrue
+reduced-map-0-FD-consistencytrue
+
+## 拘束・軌道・多周波数の幾何積分 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#shake-rattle-pendulum-measurements
+Coverage: reading
+
+reduced-map-1-symplectic-proxytrue
+reduced-map-1-FD-consistencytrue
+reduced-map-2-symplectic-proxytrue
+reduced-map-2-FD-consistencytrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存したh=0.01の縮約位相軌道。SHAKEは内部点の中心化運動量、RATTLEは全時刻の接線運動量です。全記録を表で読む
+idrolemethodhstepstargetconstrainttangentmax_state_errormax_energy_errormax_solver_residualmax_solver_updatesraw_filediagnostic_filemomentum_scoperecovery_defectcentered_identity_discrepancyfinite_C_jump
+rattle-tight-2500primaryrattle0.0425001e-139.83657599818e-145.55111512313e-170.008956493612250.000105103018489.83657599818e-143rattle-tight-2500.npzrattle-tight-2500-diagnostics.npzFull-time constrained momentum———
+rattle-tight-5000primaryrattle0.0250001e-131.11022302463e-155.55111512313e-170.002238806105932.6280868993e-051.11022302463e-152rattle-tight-5000.npzrattle-tight-5000-diagnostics.npzFull-time constrained momentum———
+rattle-tight-10000primaryrattle0.01100001e-132.22044604925e-165.55111512313e-170.0005596796284476.57019349737e-062.22044604925e-162rattle-tight-10000.npzrattle-tight-10000-diagnostics.npzFull-time constrained momentum———
+rattle-loose-2500primaryrattle0.0425001e-102.38919994899e-135.55111512313e-170.00895649360270.0001051030189842.38919994899e-132rattle-loose-2500.npzrattle-loose-2500-diagnostics.npzFull-time constrained momentum———
+rattle-reversereversalrattle—2500———————rattle-reverse.npz——1.02947640973e-13——
+
+## 拘束・軌道・多周波数の幾何積分 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#shake-rattle-pendulum-measurements
+Coverage: reading
+
+shake-tight-2500primaryshake0.0425001e-131.74305014866e-140.0001826022377050.008949400574180.000105103007221.74305014866e-143shake-tight-2500.npzshake-tight-2500-diagnostics.npzInterior centered momentum; endpoint momentum is absent—1.86396037494e-151.74305014866e-14
+shake-tight-5000primaryshake0.0250001e-131.50990331349e-144.56503960533e-050.002237230063072.62808690098e-051.50990331349e-142shake-tight-5000.npzshake-tight-5000-diagnostics.npzInterior centered momentum; endpoint momentum is absent—4.14071717452e-151.22124532709e-15
+shake-tight-10000primaryshake0.01100001e-132.22044604925e-161.14125900504e-050.0005593059128746.57019344785e-062.22044604925e-162shake-tight-10000.npzshake-tight-10000-diagnostics.npzInterior centered momentum; endpoint momentum is absent—7.92557209098e-153.33066907388e-16
+shake-loose-2500primaryshake0.0425001e-103.81106257663e-120.0001826022342640.008949400429180.0001051030162733.81106257663e-122shake-loose-2500.npzshake-loose-2500-diagnostics.npzInterior centered momentum; endpoint momentum is absent—2.02984330733e-153.4172664698e-13
+shake-reversereversalshake—2499———————shake-reverse.npz——7.45399637809e-14——
+この例の実測値・全記録 / JSON
+
+## 拘束・軌道・多周波数の幾何積分 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#shake-rattle-pendulum-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Solving Differential Equations on Manifolds [accessed 2026-11-24]
+確認範囲 / review_level: selected-primary-scope
+Author-hosted lecture notes, selected printed page50, SectionV.5, equations5.1–5.3 and Theorem5.1 statement, rendered and visually read. Centered SHAKE momentum and RATTLE final tangency are explicit. The original1977 SHAKE and1983 RATTLE articles remain full-text unread; no full proof review is claimed.
+Lecture2: Symplectic integrators [accessed 2026-11-24]
+確認範囲 / review_level: selected-primary-scope
+Author-hosted course notes, selected rendered printed pages2,12–13: Verlet kick/drift form, symplectic statement, Lie and symmetric Strang compositions. This does not qualify every state-dependent step rule or the authored coupled resonance experiment.
+DLMF22.4: Periods, Poles, and Zeros (version 1.2.8, released 2026-09-15) [accessed 2026-11-24]
+確認範囲 / review_level: selected-primary-scope
+Official Table22.4.1 selected real periods: sn and cn have4K, dn has2K. Version date is not an initial publication date. Common-period reduction and direct-library periodicity qualification are separate from the independent angular DOP853 state comparison.
+
+## 拘束・軌道・多周波数の幾何積分 — 離心率を変えたKepler軌道と時間刻み [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/
+Coverage: reading
+
+e=0.1/0.7の16固定軌道で、保存量と同時刻の位相誤差、実際の近日点時刻と逆積分を比較します。
+手法・式・図・参照解
+使用手法
+速度Verlet／粒子leapfrog法
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+独自の中心力KDK Verlet。固定・保存刻み再生・再生成刻みを区別し、cubic Hermite軌道の正の放射速度交差をbrentqで局在化。
+Kepler二体問題
+a=μ=換算質量=1、軟化なし。1周期は512/1024/2048刻み、10周期は基準2048刻み/周期。変動刻みh=h0|q|を現在状態から定め、最後だけ物理終端へ短縮。
+重力粒子モデル
+a=μ=換算質量=1、軟化なし。1周期は512/1024/2048刻み、10周期は基準2048刻み/周期。変動刻みh=h0|q|を現在状態から定め、最後だけ物理終端へ短縮。
+Hamilton系・振動子
+a=μ=換算質量=1、軟化なし。1周期は512/1024/2048刻み、10周期は基準2048刻み/周期。変動刻みh=h0|q|を現在状態から定め、最後だけ物理終端へ短縮。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+無軟化Kepler二体の時間誤差
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+独立のKepler方程式brentq／二分法解析族、92主判定。全状態誤差とエネルギー・角運動量、8回以上の近日点、有限窓の順序と反転誤差を検査。
+同じ問題の参照 · 解析参照
+無軟化Kepler二体の時間誤差
+1周期・固定離心率のみ。軟化軌道や長時間安定性はこの参照の範囲外。
+同じ問題の参照 · 半解析参照
+離心率を変えたKepler軌道と時間刻み
+保存量の小さい誤差から位相精度を推論しません。変動刻み写像の正準symplectic defectは測定せず、固定hの性質をそのまま移しません。初期解像度R1は数値実行前の漸近解析でR2へ改訂。
+
+## 拘束・軌道・多周波数の幾何積分 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#kepler-eccentricity-assumptions
+Coverage: reading
+
+a=μ=換算質量=1、軟化なし。1周期は512/1024/2048刻み、10周期は基準2048刻み/周期。変動刻みh=h0|q|を現在状態から定め、最後だけ物理終端へ短縮。
+
+## 拘束・軌道・多周波数の幾何積分 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#kepler-eccentricity-algorithm
+Coverage: reading
+
+独自の中心力KDK Verlet。固定・保存刻み再生・再生成刻みを区別し、cubic Hermite軌道の正の放射速度交差をbrentqで局在化。
+\ddot q=-q/\|q\|^3E-e\sin E=t,\quad q=(\cos E-e,\sqrt{1-e^2}\sin E)H=\tfrac12\|p\|^2-1/\|q\|
+
+## 拘束・軌道・多周波数の幾何積分 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#kepler-eccentricity-validation
+Coverage: reading
+
+独立のKepler方程式brentq／二分法解析族、92主判定。全状態誤差とエネルギー・角運動量、8回以上の近日点、有限窓の順序と反転誤差を検査。
+
+## 拘束・軌道・多周波数の幾何積分 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#kepler-eccentricity-limits
+Coverage: reading
+
+保存量の小さい誤差から位相精度を推論しません。変動刻み写像の正準symplectic defectは測定せず、固定hの性質をそのまま移しません。初期解像度R1は数値実行前の漸近解析でR2へ改訂。
+
+## 拘束・軌道・多周波数の幾何積分 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#kepler-eccentricity-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+e0.1_orders[1.9999876782390122,1.9999962905452664]
+e0.7_orders[1.987542094585538,2.000215589787777]
+evolution_count16
+variable_map_symplecticity_measuredfalse
+max_state_error0.398497085973
+判定 / check合格
+e0p1-fixed-512-finitetrue
+e0p1-fixed-512-timetrue
+e0p1-fixed-512-radiustrue
+e0p1-fixed-512-angulartrue
+e0p1-fixed-512-energytrue
+e0p1-fixed-512-referencetrue
+e0p1-fixed-1024-finitetrue
+e0p1-fixed-1024-timetrue
+e0p1-fixed-1024-radiustrue
+e0p1-fixed-1024-angulartrue
+e0p1-fixed-1024-energytrue
+e0p1-fixed-1024-referencetrue
+e0p1-fixed-2048-finitetrue
+e0p1-fixed-2048-timetrue
+e0p1-fixed-2048-radiustrue
+e0p1-fixed-2048-angulartrue
+e0p1-fixed-2048-energytrue
+e0p1-fixed-2048-referencetrue
+e0p1-fixed-long-finitetrue
+e0p1-fixed-long-timetrue
+e0p1-fixed-long-radiustrue
+e0p1-fixed-long-angulartrue
+e0p1-fixed-long-energytrue
+e0p1-fixed-long-referencetrue
+e0p1-fixed-long-periapsis-counttrue
+e0p1-fixed-long-periapsis-timetrue
+e0p1-variable-long-finitetrue
+e0p1-variable-long-timetrue
+e0p1-variable-long-radiustrue
+e0p1-variable-long-angulartrue
+e0p1-variable-long-energytrue
+e0p1-variable-long-referencetrue
+e0p1-variable-long-periapsis-counttrue
+e0p1-variable-long-periapsis-timetrue
+e0p1-reverse-fixed-finitetrue
+e0p1-reverse-fixed-scheduletrue
+e0p1-reverse-fixed-recovery-or-diagnostic-scopetrue
+
+## 拘束・軌道・多周波数の幾何積分 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#kepler-eccentricity-measurements
+Coverage: reading
+
+e0p1-reverse-variable-replay-finitetrue
+e0p1-reverse-variable-replay-scheduletrue
+e0p1-reverse-variable-replay-recovery-or-diagnostic-scopetrue
+e0p1-reverse-variable-regenerated-finitetrue
+e0p1-reverse-variable-regenerated-scheduletrue
+e0p1-reverse-variable-regenerated-recovery-or-diagnostic-scopetrue
+e0p7-fixed-512-finitetrue
+e0p7-fixed-512-timetrue
+e0p7-fixed-512-radiustrue
+e0p7-fixed-512-angulartrue
+e0p7-fixed-512-energytrue
+e0p7-fixed-512-referencetrue
+e0p7-fixed-1024-finitetrue
+e0p7-fixed-1024-timetrue
+e0p7-fixed-1024-radiustrue
+e0p7-fixed-1024-angulartrue
+e0p7-fixed-1024-energytrue
+e0p7-fixed-1024-referencetrue
+e0p7-fixed-2048-finitetrue
+e0p7-fixed-2048-timetrue
+e0p7-fixed-2048-radiustrue
+e0p7-fixed-2048-angulartrue
+e0p7-fixed-2048-energytrue
+e0p7-fixed-2048-referencetrue
+e0p7-fixed-long-finitetrue
+e0p7-fixed-long-timetrue
+e0p7-fixed-long-radiustrue
+e0p7-fixed-long-angulartrue
+e0p7-fixed-long-energytrue
+e0p7-fixed-long-referencetrue
+e0p7-fixed-long-periapsis-counttrue
+e0p7-fixed-long-periapsis-timetrue
+e0p7-variable-long-finitetrue
+e0p7-variable-long-timetrue
+e0p7-variable-long-radiustrue
+e0p7-variable-long-angulartrue
+e0p7-variable-long-energytrue
+e0p7-variable-long-referencetrue
+e0p7-variable-long-periapsis-counttrue
+e0p7-variable-long-periapsis-timetrue
+e0p7-reverse-fixed-finitetrue
+e0p7-reverse-fixed-scheduletrue
+e0p7-reverse-fixed-recovery-or-diagnostic-scopetrue
+
+## 拘束・軌道・多周波数の幾何積分 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#kepler-eccentricity-measurements
+Coverage: reading
+
+e0p7-reverse-variable-replay-finitetrue
+e0p7-reverse-variable-replay-scheduletrue
+e0p7-reverse-variable-replay-recovery-or-diagnostic-scopetrue
+e0p7-reverse-variable-regenerated-finitetrue
+e0p7-reverse-variable-regenerated-scheduletrue
+e0p7-reverse-variable-regenerated-recovery-or-diagnostic-scopetrue
+e0.1-fine-statetrue
+e0.1-state-ordertrue
+e0.1-fine-energytrue
+e0.7-fine-statetrue
+e0.7-state-ordertrue
+e0.7-fine-energytrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存したe=0.7、10周期の固定刻み／変動刻み軌道。物理座標は等倍率で、中心力は軟化していません。全記録を表で読む
+idroleeccentricitycontrolperiodsstepsmax_hmax_state_errormax_energy_errorangular_normalized_driftmin_radiusraw_filediagnostic_fileperiapsis_countmax_periapsis_time_errormax_apsidal_angle_driftrecovery_defectreversal_scope
+e0p1-fixed-512primary0.1fixed15120.01227184630310.0006405116966378.05053269043e-069.46060665224e-160.9e0p1-fixed-512.npze0p1-fixed-512-diagnostics.npz—————
+e0p1-fixed-1024primary0.1fixed110240.006135923151540.0001601292917852.01217441925e-062.67123011357e-150.9e0p1-fixed-1024.npze0p1-fixed-1024-diagnostics.npz—————
+e0p1-fixed-2048primary0.1fixed120480.003067961575774.00324258773e-055.03014929321e-073.2833870146e-150.9e0p1-fixed-2048.npze0p1-fixed-2048-diagnostics.npz—————
+
+## 拘束・軌道・多周波数の幾何積分 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#kepler-eccentricity-measurements
+Coverage: reading
+
+e0p1-fixed-longprimary0.1fixed10204800.003067961575770.0004002652750385.03014948028e-079.62755853434e-150.9e0p1-fixed-long.npze0p1-fixed-long-diagnostics.npz99.91844474569e-050.00016635838789——
+e0p1-variable-longprimary0.1variable10204800.003374775480060.0004110313358444.78469069809e-074.11814642509e-150.9e0p1-variable-long.npze0p1-variable-long-diagnostics.npz90.0002232461866922.40836284575e-05——
+e0p1-reverse-fixedreversal0.1fixed—2048—————e0p1-reverse-fixed.npz————1.51456275812e-15saved_schedule_reversal
+e0p1-reverse-variable-replayreversal0.1variable-replay—20480—————e0p1-reverse-variable-replay.npz————1.30107235271e-12saved_schedule_reversal
+e0p1-reverse-variable-regeneratedreversal0.1variable-regenerated—20480—————e0p1-reverse-variable-regenerated.npz————7.23428736521e-07diagnostic_not_time_symmetric
+e0p7-fixed-512primary0.7fixed15120.01227184630310.3984970859730.0019520858034.53378853739e-160.3e0p7-fixed-512.npze0p7-fixed-512-diagnostics.npz—————
+e0p7-fixed-1024primary0.7fixed110240.006135923151540.1004882682250.0004873138605731.03629452283e-150.3e0p7-fixed-1024.npze0p7-fixed-1024-diagnostics.npz—————
+e0p7-fixed-2048primary0.7fixed120480.003067961575770.02511831320930.000121784019811.23059974586e-150.3e0p7-fixed-2048.npze0p7-fixed-2048-diagnostics.npz—————
+
+## 拘束・軌道・多周波数の幾何積分 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#kepler-eccentricity-measurements
+Coverage: reading
+
+e0p7-fixed-longprimary0.7fixed10204800.003067961575770.2499035356340.0001217840776866.34730395234e-150.3e0p7-fixed-long.npze0p7-fixed-long-diagnostics.npz90.0196603280650.00122824865363——
+e0p7-variable-longprimary0.7variable10204790.005215668515520.02274175959581.41545398982e-054.209946499e-150.3e0p7-variable-long.npze0p7-variable-long-diagnostics.npz90.001804519551989.68816660619e-06——
+e0p7-reverse-fixedreversal0.7fixed—2048—————e0p7-reverse-fixed.npz————2.20521651418e-13saved_schedule_reversal
+e0p7-reverse-variable-replayreversal0.7variable-replay—20479—————e0p7-reverse-variable-replay.npz————7.36477491551e-11saved_schedule_reversal
+e0p7-reverse-variable-regeneratedreversal0.7variable-regenerated—20479—————e0p7-reverse-variable-regenerated.npz————0.000810391229359diagnostic_not_time_symmetric
+この例の実測値・全記録 / JSON
+
+## 拘束・軌道・多周波数の幾何積分 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#kepler-eccentricity-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Lecture2: Symplectic integrators [accessed 2026-11-24]
+確認範囲 / review_level: selected-primary-scope
+Author-hosted course notes, selected rendered printed pages2,12–13: Verlet kick/drift form, symplectic statement, Lie and symmetric Strang compositions. This does not qualify every state-dependent step rule or the authored coupled resonance experiment.
+Approximate Positions of the Planets [accessed 2026-11-24]
+確認範囲 / review_level: selected-primary-scope
+Official JPL page, selected steps3–4 and Kepler equation. Only the eccentric-anomaly equation and elliptic coordinate transformation are used; no planetary coefficient tables, fitted ephemeris accuracy or Horizons calculation is claimed. Publication date was not verified.
+
+## 拘束・軌道・多周波数の幾何積分 — 結合した2周波数系と共鳴の有限窓 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/
+Coverage: reading
+
+2自由度の実結合系で、12の64刻みprobeと6の精度軌道を使い、真のモード、座標間交換、離散写像と丸めを分けます。
+手法・式・図・参照解
+使用手法
+速度Verlet／粒子leapfrog法
+Strang分割
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+全ポテンシャルVerletと、B半kick・A厳密flow・B半kickのStrang impulse。Aには高速調和振動子と低速自由流、Bには低速位置項と結合を含めます。
+二周波数の結合調和振動子
+α=1、ω=10/20、q0=(1,1/ω)、p0=0。中心probeは保存binary64のhとsin/cosをそのまま使い、πへ丸め直しません。
+Hamilton系・振動子
+α=1、ω=10/20、q0=(1,1/ω)、p0=0。中心probeは保存binary64のhとsin/cosをそのまま使い、πへ丸め直しません。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+結合した2周波数系と共鳴の有限窓
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+116主判定。独立の結合固有モード解析、保存係数Decimal80/120・Fraction写像、段階別γ8丸め上界を区別。理想πのJordan構造は有理恒等式で別確認。 各probeは現在保存した係数hexからDecimal80/120を評価し、6精度軌道はDecimal80を用います。
+同じ問題の参照 · 半解析参照
+結合した2周波数系と共鳴の有限窓
+中心の実浮動係数写像はunresolvedとし、理想πのJordan性を移しません。64刻み増幅と小さい固定入力の観測であり、走査した共鳴図・一般安定性・長時間の普遍誤差定理は主張しません。
+
+## 拘束・軌道・多周波数の幾何積分 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#multifrequency-resonance-assumptions
+Coverage: reading
+
+α=1、ω=10/20、q0=(1,1/ω)、p0=0。中心probeは保存binary64のhとsin/cosをそのまま使い、πへ丸め直しません。
+
+## 拘束・軌道・多周波数の幾何積分 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#multifrequency-resonance-algorithm
+Coverage: reading
+
+全ポテンシャルVerletと、B半kick・A厳密flow・B半kickのStrang impulse。Aには高速調和振動子と低速自由流、Bには低速位置項と結合を含めます。
+H=\tfrac12(p_1^2+p_2^2+q_1^2+\omega^2q_2^2)+\alpha q_1q_2\Phi_h=\varphi^B_{h/2}\circ\varphi^A_h\circ\varphi^B_{h/2}\chi_{\theta=\pi}(z)=(z+1)^2[z^2-(2-h^2)z+1]
+
+## 拘束・軌道・多周波数の幾何積分 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#multifrequency-resonance-validation
+Coverage: reading
+
+116主判定。独立の結合固有モード解析、保存係数Decimal80/120・Fraction写像、段階別γ8丸め上界を区別。理想πのJordan構造は有理恒等式で別確認。 各probeは現在保存した係数hexからDecimal80/120を評価し、6精度軌道はDecimal80を用います。
+
+## 拘束・軌道・多周波数の幾何積分 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#multifrequency-resonance-limits
+Coverage: reading
+
+中心の実浮動係数写像はunresolvedとし、理想πのJordan性を移しません。64刻み増幅と小さい固定入力の観測であり、走査した共鳴図・一般安定性・長時間の普遍誤差定理は主張しません。
+
+## 拘束・軌道・多周波数の幾何積分 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#multifrequency-resonance-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+verlet_observed_orders[2.0006335257949495,2.0004237164828513]
+impulse_observed_orders[2.000688773919643,2.0001158542645605]
+evolution_count18
+probe_steps64
+ideal_pi_separate_from_actual_floattrue
+maximum_frozen_map_relative_error2.43246837616e-15
+判定 / check合格
+w10-verlet-1p0-finite-captrue
+w10-verlet-1p0-completedtrue
+w10-verlet-1p0-discrete-referencetrue
+w10-verlet-1p0-roundofftrue
+w10-verlet-1p0-symplectictrue
+w10-verlet-1p0-classificationtrue
+w10-verlet-1p8-finite-captrue
+w10-verlet-1p8-completedtrue
+w10-verlet-1p8-discrete-referencetrue
+w10-verlet-1p8-roundofftrue
+w10-verlet-1p8-symplectictrue
+w10-verlet-1p8-classificationtrue
+w10-verlet-2p2-finite-captrue
+w10-verlet-2p2-completedtrue
+w10-verlet-2p2-discrete-referencetrue
+w10-verlet-2p2-roundofftrue
+w10-verlet-2p2-symplectictrue
+w10-verlet-2p2-classificationtrue
+w10-impulse-0p9-finite-captrue
+w10-impulse-0p9-completedtrue
+w10-impulse-0p9-discrete-referencetrue
+w10-impulse-0p9-roundofftrue
+w10-impulse-0p9-symplectictrue
+w10-impulse-0p9-classificationtrue
+w10-impulse-1p0-finite-captrue
+w10-impulse-1p0-completedtrue
+w10-impulse-1p0-discrete-referencetrue
+w10-impulse-1p0-roundofftrue
+w10-impulse-1p0-symplectictrue
+w10-impulse-1p0-classificationtrue
+w10-impulse-1p1-finite-captrue
+w10-impulse-1p1-completedtrue
+w10-impulse-1p1-discrete-referencetrue
+
+## 拘束・軌道・多周波数の幾何積分 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#multifrequency-resonance-measurements
+Coverage: reading
+
+w10-impulse-1p1-roundofftrue
+w10-impulse-1p1-symplectictrue
+w10-impulse-1p1-classificationtrue
+w20-verlet-1p0-finite-captrue
+w20-verlet-1p0-completedtrue
+w20-verlet-1p0-discrete-referencetrue
+w20-verlet-1p0-roundofftrue
+w20-verlet-1p0-symplectictrue
+w20-verlet-1p0-classificationtrue
+w20-verlet-1p8-finite-captrue
+w20-verlet-1p8-completedtrue
+w20-verlet-1p8-discrete-referencetrue
+w20-verlet-1p8-roundofftrue
+w20-verlet-1p8-symplectictrue
+w20-verlet-1p8-classificationtrue
+w20-verlet-2p2-finite-captrue
+w20-verlet-2p2-completedtrue
+w20-verlet-2p2-discrete-referencetrue
+w20-verlet-2p2-roundofftrue
+w20-verlet-2p2-symplectictrue
+w20-verlet-2p2-classificationtrue
+w20-impulse-0p9-finite-captrue
+w20-impulse-0p9-completedtrue
+w20-impulse-0p9-discrete-referencetrue
+w20-impulse-0p9-roundofftrue
+w20-impulse-0p9-symplectictrue
+w20-impulse-0p9-classificationtrue
+w20-impulse-1p0-finite-captrue
+w20-impulse-1p0-completedtrue
+w20-impulse-1p0-discrete-referencetrue
+w20-impulse-1p0-roundofftrue
+w20-impulse-1p0-symplectictrue
+w20-impulse-1p0-classificationtrue
+w20-impulse-1p1-finite-captrue
+w20-impulse-1p1-completedtrue
+w20-impulse-1p1-discrete-referencetrue
+w20-impulse-1p1-roundofftrue
+w20-impulse-1p1-symplectictrue
+w20-impulse-1p1-classificationtrue
+w10-verlet-accuracy-500-finitetrue
+w10-verlet-accuracy-500-completedtrue
+w10-verlet-accuracy-500-statetrue
+w10-verlet-accuracy-500-energytrue
+
+## 拘束・軌道・多周波数の幾何積分 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#multifrequency-resonance-measurements
+Coverage: reading
+
+w10-verlet-accuracy-500-modetrue
+w10-verlet-accuracy-500-discrete-referencetrue
+w10-verlet-accuracy-1000-finitetrue
+w10-verlet-accuracy-1000-completedtrue
+w10-verlet-accuracy-1000-statetrue
+w10-verlet-accuracy-1000-energytrue
+w10-verlet-accuracy-1000-modetrue
+w10-verlet-accuracy-1000-discrete-referencetrue
+w10-verlet-accuracy-2000-finitetrue
+w10-verlet-accuracy-2000-completedtrue
+w10-verlet-accuracy-2000-statetrue
+w10-verlet-accuracy-2000-energytrue
+w10-verlet-accuracy-2000-modetrue
+w10-verlet-accuracy-2000-discrete-referencetrue
+w10-impulse-accuracy-500-finitetrue
+w10-impulse-accuracy-500-completedtrue
+w10-impulse-accuracy-500-statetrue
+w10-impulse-accuracy-500-energytrue
+w10-impulse-accuracy-500-modetrue
+w10-impulse-accuracy-500-discrete-referencetrue
+w10-impulse-accuracy-1000-finitetrue
+w10-impulse-accuracy-1000-completedtrue
+w10-impulse-accuracy-1000-statetrue
+w10-impulse-accuracy-1000-energytrue
+w10-impulse-accuracy-1000-modetrue
+w10-impulse-accuracy-1000-discrete-referencetrue
+w10-impulse-accuracy-2000-finitetrue
+w10-impulse-accuracy-2000-completedtrue
+w10-impulse-accuracy-2000-statetrue
+w10-impulse-accuracy-2000-energytrue
+w10-impulse-accuracy-2000-modetrue
+w10-impulse-accuracy-2000-discrete-referencetrue
+verlet-state-ordertrue
+verlet-fine-statetrue
+verlet-fine-relative-Htrue
+verlet-fine-coordinate-energytrue
+impulse-state-ordertrue
+impulse-fine-statetrue
+
+## 拘束・軌道・多周波数の幾何積分 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#multifrequency-resonance-measurements
+Coverage: reading
+
+impulse-fine-relative-Htrue
+impulse-fine-coordinate-energytrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存した最細impulse軌道の実q1–q2座標と物理時刻。これは走査相図ではなく、結合した1軌道です。全記録を表で読む
+idrolemethodomegahstepsdiscrete_relative_errorroundoff_bound_satisfiednormalized_symplectic_defectmax_energy_errorreference_action_precisionsraw_filediagnostic_filereference_map_classificationideal_map_classificationactual_frozen_map_classificationactual_frozen_map_spectral_radiusclassification_scopefinite_horizon_amplificationcurrent_coefficient_precision_errormax_scaled_state_errorrelative_energy_envelopemax_coordinate_energy_errormodal_energy_identity_error
+w10-verlet-1p0probeverlet100.1644.1455021675e-16true1.04165983661e-190.115218900591[80,120]w10-verlet-1p0.npzw10-verlet-1p0-diagnostics.npzstablestableraw_spectrum_reported_without_exact_stability_theorem1Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.1.561984072191.51240370892e-79————
+
+## 拘束・軌道・多周波数の幾何積分 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#multifrequency-resonance-measurements
+Coverage: reading
+
+w10-verlet-1p8probeverlet100.18641.25221341392e-15true7.00784872562e-190.494347665743[80,120]w10-verlet-1p8.npzw10-verlet-1p8-diagnostics.npzstablestableraw_spectrum_reported_without_exact_stability_theorem1Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.1.554302100523.88949553353e-79————
+w10-verlet-2p2probeverlet100.22641.5118039278e-15true9.92644130513e-183.91232481462e+48[80,120]w10-verlet-2p2.npzw10-verlet-2p2-diagnostics.npzunstableunstableraw_spectrum_reported_without_exact_stability_theorem2.42875530747Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.2.7970240909e+249.46370637986e-79————
+
+## 拘束・軌道・多周波数の幾何積分 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#multifrequency-resonance-measurements
+Coverage: reading
+
+w10-impulse-0p9probeimpulse100.282743338823646.3747767284e-16true1.05592144405e-170.15779817027[80,120]w10-impulse-0p9.npzw10-impulse-0p9-diagnostics.npzstablestableraw_spectrum_reported_without_exact_stability_theorem1Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.1.44320008328.66017810038e-80————
+w10-impulse-1p0probeimpulse100.314159265359641.88640903812e-16true1.11022302463e-160.204500023051[80,120]w10-impulse-1p0.npzw10-impulse-1p0-diagnostics.npzunresolved_near_degeneracydefective_jordanunresolved_near_degeneracy1.00000000099Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.1.414894201452.97465992285e-80————
+
+## 拘束・軌道・多周波数の幾何積分 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#multifrequency-resonance-measurements
+Coverage: reading
+
+w10-impulse-1p1probeimpulse100.345575191895642.69761264157e-16true1.40977667279e-180.248341439997[80,120]w10-impulse-1p1.npzw10-impulse-1p1-diagnostics.npzstablestableraw_spectrum_reported_without_exact_stability_theorem1Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.1.414213562371.29102757322e-79————
+w20-verlet-1p0probeverlet200.05644.7671449485e-16true9.82502327522e-190.103708715259[80,120]w20-verlet-1p0.npzw20-verlet-1p0-diagnostics.npzstablestableraw_spectrum_reported_without_exact_stability_theorem1Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.1.486194647751.11804390993e-79————
+
+## 拘束・軌道・多周波数の幾何積分 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#multifrequency-resonance-measurements
+Coverage: reading
+
+w20-verlet-1p8probeverlet200.09641.01291172563e-15true1.10330478926e-190.44750083836[80,120]w20-verlet-1p8.npzw20-verlet-1p8-diagnostics.npzstablestableraw_spectrum_reported_without_exact_stability_theorem1Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.1.478693525981.23813330223e-79————
+w20-verlet-2p2probeverlet200.11641.02185709015e-15true2.57044417087e-183.45670986617e+48[80,120]w20-verlet-2p2.npzw20-verlet-2p2-diagnostics.npzunstableunstableraw_spectrum_reported_without_exact_stability_theorem2.42820317237Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.2.62932465388e+245.93439029712e-79————
+
+## 拘束・軌道・多周波数の幾何積分 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#multifrequency-resonance-measurements
+Coverage: reading
+
+w20-impulse-0p9probeimpulse200.141371669412643.39404889258e-16true5.66615644127e-180.0771688863705[80,120]w20-impulse-0p9.npzw20-impulse-0p9-diagnostics.npzstablestableraw_spectrum_reported_without_exact_stability_theorem1Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.1.429284171211.78324568114e-79————
+w20-impulse-1p0probeimpulse200.157079632679641.48430897538e-16true5.55111512313e-170.100588725899[80,120]w20-impulse-1p0.npzw20-impulse-1p0-diagnostics.npzunresolved_near_degeneracydefective_jordanunresolved_near_degeneracy1.00000000036Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.1.414214755923.97461708009e-80————
+
+## 拘束・軌道・多周波数の幾何積分 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#multifrequency-resonance-measurements
+Coverage: reading
+
+w20-impulse-1p1probeimpulse200.172787595947642.80124643933e-16true5.66259116448e-180.123734733851[80,120]w20-impulse-1p1.npzw20-impulse-1p1-diagnostics.npzstablestableraw_spectrum_reported_without_exact_stability_theorem1Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.1.414213562371.31922046073e-79————
+w10-verlet-accuracy-500accuracyverlet100.025007.34488809639e-16true2.25637105046e-170.00610904909426[80]w10-verlet-accuracy-500.npzw10-verlet-accuracy-500-diagnostics.npz———————0.1861159072680.002909070997260.02360650489256.66133814775e-16
+w10-verlet-accuracy-1000accuracyverlet100.0110001.49132981002e-15true1.00293715515e-180.00152637045342[80]w10-verlet-accuracy-1000.npzw10-verlet-accuracy-1000-diagnostics.npz———————0.04650854919020.0007268430730550.005929023980024.4408920985e-16
+w10-verlet-accuracy-2000accuracyverlet100.00520001.83456595878e-15true1.1102369025e-160.000381864485818[80]w10-verlet-accuracy-2000.npzw10-verlet-accuracy-2000-diagnostics.npz———————0.01162372293330.0001818402313420.001481436354166.66133814775e-16
+
+## 拘束・軌道・多周波数の幾何積分 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#multifrequency-resonance-measurements
+Coverage: reading
+
+w10-impulse-accuracy-500accuracyimpulse100.025008.28009418528e-16true2.95874265028e-190.000740628124124[80]w10-impulse-accuracy-500.npzw10-impulse-accuracy-500-diagnostics.npz———————0.0007374603729820.0003526800591070.0008009530643686.66133814775e-16
+w10-impulse-accuracy-1000accuracyimpulse100.0110002.43246837616e-15true1.11027853716e-160.000185102124823[80]w10-impulse-accuracy-1000.npzw10-impulse-accuracy-1000-diagnostics.npz———————0.0001842770943578.81438689635e-050.0002001768115726.66133814775e-16
+w10-impulse-accuracy-2000accuracyimpulse100.00520002.08298648735e-15true1.1102369025e-164.62721019772e-05[80]w10-impulse-accuracy-2000.npzw10-impulse-accuracy-2000-diagnostics.npz———————4.60655741882e-052.20343342748e-055.00403647109e-056.66133814775e-16
+この例の実測値・全記録 / JSON
+
+## 拘束・軌道・多周波数の幾何積分 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#multifrequency-resonance-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Lecture2: Symplectic integrators [accessed 2026-11-24]
+確認範囲 / review_level: selected-primary-scope
+Author-hosted course notes, selected rendered printed pages2,12–13: Verlet kick/drift form, symplectic statement, Lie and symmetric Strang compositions. This does not qualify every state-dependent step rule or the authored coupled resonance experiment.
+
 ## 同じ初期値から線探索と信頼領域を比べる — 同じ初期値から線探索と信頼領域を比べる [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-globalization-controls/
@@ -68224,6 +71741,9 @@ G=M=a1,e.4,masses.6/.4、epsilon0、128/256/512steps、初期COM/P0。
 同じ問題の参照 · 解析参照
 無軟化Kepler二体の時間誤差
 1周期・固定離心率のみ。軟化軌道や長時間安定性はこの参照の範囲外。
+同じ問題の参照 · 半解析参照
+離心率を変えたKepler軌道と時間刻み
+保存量の小さい誤差から位相精度を推論しません。変動刻み写像の正準symplectic defectは測定せず、固定hの性質をそのまま移しません。初期解像度R1は数値実行前の漸近解析でR2へ改訂。
 
 ## 重力軌道：Keplerと軟化有限粒子 — 前提・単位・境界 [ja]
 
@@ -79837,6 +83357,728 @@ Mignone, Andrea (2014). High-order conservative reconstruction schemes for finit
 確認範囲 / review_level: original-arxiv-selected-sections-2.2-3.1-4.2
 原著arXivの§2.2・3.1・4.2を選択確認。体積重心と保存的な線形再構築・幾何源積分の背景です。本実装は限定したminmod/Rusanov/Heunと独自の数値応力源を使い、論文全体の方式の再現とは区別します。
 
+## 硬いODE・RK45・境界分割 — 硬いODE・RK45・境界分割 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/
+Coverage: reading
+
+Robertsonとvan der Pol、RK45の補間・イベント、非同次境界の分割法を小さな固定入力で検証します。独立参照、局所推定と実誤差、時間誤差と空間誤差を区別します。
+
+## 硬いODE・RK45・境界分割 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#run-all
+Coverage: reading
+
+ZIPの atlas-ode-adaptivity-2026-11-24-r2 フォルダで実行します。このコマンドは配布版の全4例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## 硬いODE・RK45・境界分割 — Robertson反応系の初期剛性と実誤差 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/
+Coverage: reading
+
+短い固定区間でBDF2・SDIRK2・倍分割適応法を、資格済みRadau/BDF参照と比較します。
+手法・式・図・参照解
+使用手法
+BDF2
+L安定なSDIRK2
+適応SDIRK2／ステップ倍分割
+Armijo減衰Newton法
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+BDF2は同格子BE開始。SDIRK2の非線形段階は重み付き最大残差で判定し、同じ段階内だけJacobian因子を再利用。適応法はRMS倍分割誤差と2半刻みを採用。
+Robertson反応系
+無次元3成分、初期値(1,0,0)、T=.4。固定512/1024/2048刻みと2許容誤差の適応法で計8run。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+Robertson反応系：ODEと保存則DAE
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+22共通時刻の実誤差、全受理時刻の質量/最小値、真の段階残差、実RHS/Jacobian/因子/solve数を別判定します。
+同じ問題の参照 · 有限格子の数値参照
+Robertson反応系の初期剛性と実誤差
+保存/正値性は固定入力の観測で、一般的な保証ではありません。T=.4の短時間・標本時刻での精度であり、長時間化学精度や全時刻誤差上限は主張しません。
+同じ問題の参照 · 有限格子の数値参照
+Robertson保存制約DAEと公式IDA保存値
+公式SUNDIALS v7.1.1の2印字行のみ。IDAの新規実行0、長時間の化学精度や一般DAE性能は扱いません。 この固定時間格子の漸近収束や元精度目標の全合格は主張しません。
+
+## 硬いODE・RK45・境界分割 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#robertson-stiff-kinetics-assumptions
+Coverage: reading
+
+無次元3成分、初期値(1,0,0)、T=.4。固定512/1024/2048刻みと2許容誤差の適応法で計8run。
+
+## 硬いODE・RK45・境界分割 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#robertson-stiff-kinetics-algorithm
+Coverage: reading
+
+BDF2は同格子BE開始。SDIRK2の非線形段階は重み付き最大残差で判定し、同じ段階内だけJacobian因子を再利用。適応法はRMS倍分割誤差と2半刻みを採用。
+\dot y_1=-0.04y_1+10^4y_2y_3,\quad\dot y_2=-\dot y_1-3\!\times\!10^7y_2^2,\quad\dot y_3=3\!\times\!10^7y_2^2\|r\|_{w,\infty}=\max_i|r_i|/w_i,\quad e_{\rm dbl}=(y_{h/2,h/2}-y_h)/3
+
+## 硬いODE・RK45・境界分割 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#robertson-stiff-kinetics-validation
+Coverage: reading
+
+22共通時刻の実誤差、全受理時刻の質量/最小値、真の段階残差、実RHS/Jacobian/因子/solve数を別判定します。
+
+## 硬いODE・RK45・境界分割 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#robertson-stiff-kinetics-limits
+Coverage: reading
+
+保存/正値性は固定入力の観測で、一般的な保証ではありません。T=.4の短時間・標本時刻での精度であり、長時間化学精度や全時刻誤差上限は主張しません。
+
+## 硬いODE・RK45・境界分割 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#robertson-stiff-kinetics-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+maximum_sampled_weighted_error0.043888885126
+factorizations11711
+linear_solves23896
+factor_reuses12185
+accuracy_scopeFixed reference observation times only; all-step positivity/conservation separately tested. Stage residual norm is weightedLinf; adaptive estimator norm is RMS.
+判定 / check合格
+robertson-bdf2-512:complete-finitetrue
+robertson-bdf2-512:true-stage-residualtrue
+robertson-bdf2-512:masstrue
+robertson-bdf2-512:accepted-positivitytrue
+robertson-bdf2-1024:complete-finitetrue
+robertson-bdf2-1024:true-stage-residualtrue
+robertson-bdf2-1024:masstrue
+robertson-bdf2-1024:accepted-positivitytrue
+robertson-bdf2-2048:complete-finitetrue
+robertson-bdf2-2048:true-stage-residualtrue
+robertson-bdf2-2048:masstrue
+robertson-bdf2-2048:accepted-positivitytrue
+robertson-sdirk2-512:complete-finitetrue
+robertson-sdirk2-512:true-stage-residualtrue
+robertson-sdirk2-512:masstrue
+robertson-sdirk2-512:accepted-positivitytrue
+robertson-sdirk2-1024:complete-finitetrue
+robertson-sdirk2-1024:true-stage-residualtrue
+robertson-sdirk2-1024:masstrue
+robertson-sdirk2-1024:accepted-positivitytrue
+robertson-sdirk2-2048:complete-finitetrue
+robertson-sdirk2-2048:true-stage-residualtrue
+robertson-sdirk2-2048:masstrue
+robertson-sdirk2-2048:accepted-positivitytrue
+robertson-sdirk-doubling-loose:complete-finitetrue
+
+## 硬いODE・RK45・境界分割 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#robertson-stiff-kinetics-measurements
+Coverage: reading
+
+robertson-sdirk-doubling-loose:true-stage-residualtrue
+robertson-sdirk-doubling-loose:masstrue
+robertson-sdirk-doubling-loose:accepted-positivitytrue
+robertson-sdirk-doubling-tight:complete-finitetrue
+robertson-sdirk-doubling-tight:true-stage-residualtrue
+robertson-sdirk-doubling-tight:masstrue
+robertson-sdirk-doubling-tight:accepted-positivitytrue
+robertson-bdf2:finest-accuracytrue
+robertson-bdf2:refinementtrue
+robertson-sdirk2:finest-accuracytrue
+robertson-sdirk2:refinementtrue
+robertson-adaptive-loose:accuracytrue
+robertson-adaptive-tight:accuracytrue
+robertson-adaptive:actual-tolerance-responsetrue
+actual-within-stage-factor-reusetrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。短い固定区間でBDF2・SDIRK2・倍分割適応法を、資格済みRadau/BDF参照と比較します。 保存済みの数値場と参照を用いた図です。全記録を表で読む
+run_idmethodmustepsattemptsrejectedrtolsampled_weighted_linfminimum_accepted_statemaximum_accepted_state_absmaximum_completed_stage_residualminimum_completed_stage_valuemaximum_completed_stage_absmass_errorrhsjacobianfactorizationslinear_solvesfactor_reusesnewton_updatesline_search_rejectionsstage_failures
+robertson-bdf2-512bdf251251200.043888885126014.80894485474e-131.02920104242e-050.9999687526613.33066907388e-1526065205201047527104700
+robertson-bdf2-1024bdf21024102400.0141359470562016.92506609104e-132.13307517103e-060.9999843753572.44249065418e-1551681032103220721040207200
+
+## 硬いODE・RK45・境界分割 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#robertson-stiff-kinetics-measurements
+Coverage: reading
+
+robertson-bdf2-2048bdf22048204800.00333492428986014.97395878427e-133.28205177242e-070.9999921875664.21884749358e-15103042060206041282068412800
+robertson-sdirk2-512sdirk251251200.00450951228896017.62888049073e-135.12485551976e-070.9999908471816.66133814775e-1651601031103120681037206800
+robertson-sdirk2-1024sdirk21024102400.000969209565232015.18238116711e-136.97127537515e-080.9999954235651.66533453694e-15103022060206041272067412700
+robertson-sdirk2-2048sdirk22048204800.000228589474763016.12805043932e-138.91592276762e-090.9999977117771.99840144433e-15205744114411482394125823900
+robertson-sdirk-doubling-loosesdirk2-step-doubling353940.00016.18214051083e-05019.27424447232e-139.09589852174e-100.9999989329742.22044604925e-16172230930974443574400
+robertson-sdirk-doubling-tightsdirk2-step-doubling869261e-063.4182272201e-06019.9308161884e-136.93981099913e-130.9999999025544.4408920985e-1634945855851471886147100
+この例の実測値・全記録 / JSON
+
+## 硬いODE・RK45・境界分割 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#robertson-stiff-kinetics-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Official SUNDIALS cvRoberts_dns model definition [accessed 2026-11-24]
+確認範囲 / review_level: official-source-selected-functions
+観測mainのモデル式・初期値・Jacobianを選択閲読。今回T=.4のみで、原論文全文・4e10の長時間計算や既存数値表の再現ではありません。
+SciPy1.14.1 solve_ivp and selected official source [accessed 2026-11-24]
+確認範囲 / review_level: official-selected-source
+固定版の手法/API・局所許容誤差・終了状態を選択確認。独立原著の全編監査ではありません。
+
+## 硬いODE・RK45・境界分割 — van der Polの短時間剛性遷移 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/
+Coverage: reading
+
+局所制御と大域誤差を分離します。初回は元209目標中208達成で、μ=1の厳しい適応設定は大域目標2e-5に未達でした。
+手法・式・図・参照解
+使用手法
+BDF2
+L安定なSDIRK2
+適応SDIRK2／ステップ倍分割
+Armijo減衰Newton法
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+BDF2/SDIRK2と倍分割適応法。解析Jacobian・段階内だけの因子再利用・失敗時の候補保存を実装します。
+van der Pol振動子
+x′=v,v′=μ(1−x²)v−x、初期値(2,0)、T=2。2方式×3刻み×2μと適応4runで計16run。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+van der Polの短時間剛性遷移
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+資格済みRadau/BDFと21時刻で比較。元の全判定を偽値も含め保存し、他208条件と、結果の忠実な表示・実局所制御・元失敗保存の3検証を別に要求します。
+同じ問題の参照 · 有限格子の数値参照
+van der Polの短時間剛性遷移
+測定後の報告範囲変更で、数値的な修復ではありません。初回誤差4.535633779e-5は元目標2e-5を超えます。局所rtolは大域誤差を保証せず、報告検証の合格は全元目標の達成ではありません。大μ全周期は対象外です。
+
+## 硬いODE・RK45・境界分割 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#van-der-pol-stiff-transition-assumptions
+Coverage: reading
+
+x′=v,v′=μ(1−x²)v−x、初期値(2,0)、T=2。2方式×3刻み×2μと適応4runで計16run。
+
+## 硬いODE・RK45・境界分割 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#van-der-pol-stiff-transition-algorithm
+Coverage: reading
+
+BDF2/SDIRK2と倍分割適応法。解析Jacobian・段階内だけの因子再利用・失敗時の候補保存を実装します。
+\dot x=v,\qquad \dot v=\mu(1-x^2)v-x,\quad\mu\in\{1,100\}
+
+## 硬いODE・RK45・境界分割 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#van-der-pol-stiff-transition-validation
+Coverage: reading
+
+資格済みRadau/BDFと21時刻で比較。元の全判定を偽値も含め保存し、他208条件と、結果の忠実な表示・実局所制御・元失敗保存の3検証を別に要求します。
+
+## 硬いODE・RK45・境界分割 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#van-der-pol-stiff-transition-limits
+Coverage: reading
+
+測定後の報告範囲変更で、数値的な修復ではありません。初回誤差4.535633779e-5は元目標2e-5を超えます。局所rtolは大域誤差を保証せず、報告検証の合格は全元目標の達成ではありません。大μ全周期は対象外です。
+
+## 硬いODE・RK45・境界分割 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#van-der-pol-stiff-transition-measurements
+Coverage: reading
+
+量 / metric実測値
+maximum_sampled_weighted_error0.001353983887
+factorizations12376
+linear_solves20946
+factor_reuses8570
+accuracy_scopeFixed reference observation times only; all-step positivity/conservation separately tested. Stage residual norm is weightedLinf; adaptive estimator norm is RMS.
+original_mu1_tight_global_goal2e-05
+actual_mu1_tight_global_error4.535633779e-05
+original_mu1_tight_global_goal_metfalse
+reporting_scopeCurrent protocol verifies faithful reporting; it does not assert this original global accuracy goal was met.
+判定 / check合格
+vdp-mu1-bdf2-256:complete-finitetrue
+vdp-mu1-bdf2-256:true-stage-residualtrue
+vdp-mu1-bdf2-256:bounded-statetrue
+vdp-mu1-bdf2-512:complete-finitetrue
+vdp-mu1-bdf2-512:true-stage-residualtrue
+vdp-mu1-bdf2-512:bounded-statetrue
+vdp-mu1-bdf2-1024:complete-finitetrue
+vdp-mu1-bdf2-1024:true-stage-residualtrue
+vdp-mu1-bdf2-1024:bounded-statetrue
+vdp-mu1-sdirk2-256:complete-finitetrue
+vdp-mu1-sdirk2-256:true-stage-residualtrue
+vdp-mu1-sdirk2-256:bounded-statetrue
+vdp-mu1-sdirk2-512:complete-finitetrue
+vdp-mu1-sdirk2-512:true-stage-residualtrue
+vdp-mu1-sdirk2-512:bounded-statetrue
+vdp-mu1-sdirk2-1024:complete-finitetrue
+vdp-mu1-sdirk2-1024:true-stage-residualtrue
+vdp-mu1-sdirk2-1024:bounded-statetrue
+vdp-mu1-sdirk-doubling-loose:complete-finitetrue
+vdp-mu1-sdirk-doubling-loose:true-stage-residualtrue
+vdp-mu1-sdirk-doubling-loose:bounded-statetrue
+
+## 硬いODE・RK45・境界分割 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#van-der-pol-stiff-transition-measurements
+Coverage: reading
+
+vdp-mu1-sdirk-doubling-tight:complete-finitetrue
+vdp-mu1-sdirk-doubling-tight:true-stage-residualtrue
+vdp-mu1-sdirk-doubling-tight:bounded-statetrue
+vdp-mu100-bdf2-256:complete-finitetrue
+vdp-mu100-bdf2-256:true-stage-residualtrue
+vdp-mu100-bdf2-256:bounded-statetrue
+vdp-mu100-bdf2-512:complete-finitetrue
+vdp-mu100-bdf2-512:true-stage-residualtrue
+vdp-mu100-bdf2-512:bounded-statetrue
+vdp-mu100-bdf2-1024:complete-finitetrue
+vdp-mu100-bdf2-1024:true-stage-residualtrue
+vdp-mu100-bdf2-1024:bounded-statetrue
+vdp-mu100-sdirk2-256:complete-finitetrue
+vdp-mu100-sdirk2-256:true-stage-residualtrue
+vdp-mu100-sdirk2-256:bounded-statetrue
+vdp-mu100-sdirk2-512:complete-finitetrue
+vdp-mu100-sdirk2-512:true-stage-residualtrue
+vdp-mu100-sdirk2-512:bounded-statetrue
+vdp-mu100-sdirk2-1024:complete-finitetrue
+vdp-mu100-sdirk2-1024:true-stage-residualtrue
+vdp-mu100-sdirk2-1024:bounded-statetrue
+vdp-mu100-sdirk-doubling-loose:complete-finitetrue
+vdp-mu100-sdirk-doubling-loose:true-stage-residualtrue
+vdp-mu100-sdirk-doubling-loose:bounded-statetrue
+vdp-mu100-sdirk-doubling-tight:complete-finitetrue
+vdp-mu100-sdirk-doubling-tight:true-stage-residualtrue
+vdp-mu100-sdirk-doubling-tight:bounded-statetrue
+vdp-mu1-bdf2:finest-accuracytrue
+vdp-mu1-bdf2:refinementtrue
+vdp-mu1-sdirk2:finest-accuracytrue
+vdp-mu1-sdirk2:refinementtrue
+vdp-mu1-adaptive-loose:accuracytrue
+
+## 硬いODE・RK45・境界分割 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#van-der-pol-stiff-transition-measurements
+Coverage: reading
+
+vdp-mu1-adaptive:actual-tolerance-responsetrue
+vdp-mu100-bdf2:finest-accuracytrue
+vdp-mu100-bdf2:refinementtrue
+vdp-mu100-sdirk2:finest-accuracytrue
+vdp-mu100-sdirk2:refinementtrue
+vdp-mu100-adaptive-loose:accuracytrue
+vdp-mu100-adaptive-tight:accuracytrue
+vdp-mu100-adaptive:actual-tolerance-responsetrue
+actual-within-stage-factor-reusetrue
+vdp-mu1-adaptive-tight:original-goal-outcome-faithfully-reportedtrue
+vdp-mu1-adaptive-tight:accepted-local-controls-satisfiedtrue
+vdp-mu1-adaptive-tight:immutable-original-failure-boundtrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存済みの固定刻み比較と局所/大域誤差の区別。初回208/209で、μ=1適応法の大域目標2e-5は未達のまま保持します。全記録を表で読む
+run_idmethodmustepsattemptsrejectedrtolsampled_weighted_linfminimum_accepted_statemaximum_accepted_state_absmaximum_completed_stage_residualminimum_completed_stage_valuemaximum_completed_stage_absmass_errorrhsjacobianfactorizationslinear_solvesfactor_reusesnewton_updatesline_search_rejectionsstage_failuresoriginal_global_goaloriginal_global_goal_met
+vdp-mu1-bdf2-256bdf2125625600.000242792058954-1.8330664255428.28451023061e-13-1.833066425541.99988073187178225625676350776300——
+vdp-mu1-bdf2-512bdf2151251206.41987484502e-05-1.8329974650529.70076449724e-13-1.832997465051.9999698363526165125121052540105200——
+vdp-mu1-bdf2-1024bdf211024102401.64984329252e-05-1.8329802832725.69145425233e-14-1.832980283271.9999924150851201024102420481024204800——
+
+## 硬いODE・RK45・境界分割 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#van-der-pol-stiff-transition-measurements
+Coverage: reading
+
+vdp-mu1-sdirk2-256sdirk2125625601.0194407621e-05-1.8329847623929.9929916772e-13-1.832984762391.9999895994729885125121238726123800——
+vdp-mu1-sdirk2-512sdirk2151251202.55116390213e-06-1.8329771191521.23913032612e-13-1.832977119151.9999973909651201024102420481024204800——
+vdp-mu1-sdirk2-1024sdirk211024102406.38120058793e-07-1.8329752061123.31876670243e-13-1.832975206111.99999934662102382048204840952047409500——
+vdp-mu1-sdirk-doubling-loosesdirk2-step-doubling1282800.00010.00051112644675-1.8334856944327.34957233961e-13-1.833542930321.99999739096126224824854729954700——
+vdp-mu1-sdirk-doubling-tightsdirk2-step-doubling1899121e-064.535633779e-05-1.8330199243229.50734066127e-13-1.833020144411.99999929589340656656614308641430002e-050
+vdp-mu100-bdf2-256bdf210025625600.001353983887-0.0068380801555223.4663244497e-13-0.006838080155521.99996349241128625625651525951500——
+vdp-mu100-bdf2-512bdf210051251200.000410326732644-0.0067418420296525.83638172513e-13-0.006741842029651.999985948725625125121025513102500——
+vdp-mu100-bdf2-1024bdf21001024102404.72017078383e-05-0.0067418420274227.15461255057e-13-0.006741842027421.99999518935309810241024103713103700——
+vdp-mu100-sdirk2-256sdirk210025625600.000571365998336-0.006741842028528.69739528018e-13-0.00674184202851.99999379059205651251277226077200——
+
+## 硬いODE・RK45・境界分割 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#van-der-pol-stiff-transition-measurements
+Coverage: reading
+
+vdp-mu100-sdirk2-512sdirk210051251209.74913843015e-05-0.0067418420273729.26427877956e-13-0.006741842027371.99999805098310610241024104117104100——
+vdp-mu100-sdirk2-1024sdirk21001024102402.22086096577e-05-0.0067418420278526.90115573266e-13-0.006741842027851.99999944137619820482048207527207500——
+vdp-mu100-sdirk-doubling-loosesdirk2-step-doubling100353830.00011.21148985438e-06-0.00674184200628.74310547578e-13-0.0067418420061.99999998822117022822847124347100——
+vdp-mu100-sdirk-doubling-tightsdirk2-step-doubling100939741e-066.67517680809e-08-0.0067418420059629.85748707324e-13-0.006741842005961.99999999966216058258278920778900——
+この例の実測値・全記録 / JSON
+
+## 硬いODE・RK45・境界分割 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#van-der-pol-stiff-transition-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+scikit-sundae official van der Pol example [accessed 2026-11-24]
+確認範囲 / review_level: official-project-example-selected-equations
+公式binding例の2階/1階系と初期値を確認。採用μ=1/100,T=2は独自の軽量範囲で、原著やμ1000全周期の再現ではありません。
+SciPy1.14.1 solve_ivp and selected official source [accessed 2026-11-24]
+確認範囲 / review_level: official-selected-source
+固定版の手法/API・局所許容誤差・終了状態を選択確認。独立原著の全編監査ではありません。
+
+## 硬いODE・RK45・境界分割 — RK45の埋込み推定・補間・イベント [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/
+Coverage: reading
+
+減衰回転の解析解を使い、受理/棄却・FSAL・区間内補間・向き付き交差時刻を分けて検査します。
+手法・式・図・参照解
+使用手法
+Dormand–Prince RK45
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+実Dormand–Prince5(4)・quartic連続拡張・受理状態が所有するFSAL・保存補間上の符号区間二分法。拒否端点を昇格しません。
+有限次元の線形発展系
+γ=.2,ω=3、初期値(1,0)、T=2。3対のrtol/atol×2最大刻みと終端交差2runで計8run。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+RK45の埋込み推定・補間・イベント
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+解析状態とπ/6,π/2の単純交差を参照に、端点/97オフメッシュ点/イベント時刻・残差と実nfev=1+6試行数を判定。
+同じ問題の参照 · 解析参照
+RK45の埋込み推定・補間・イベント
+接触根・1刻み内の多重交差・reset付き系の一般性は保証しません。初期零/所有権/resetは限定成分対照で、局所許容誤差と大域精度を同一視しません。
+
+## 硬いODE・RK45・境界分割 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#rk45-dense-events-assumptions
+Coverage: reading
+
+γ=.2,ω=3、初期値(1,0)、T=2。3対のrtol/atol×2最大刻みと終端交差2runで計8run。
+
+## 硬いODE・RK45・境界分割 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#rk45-dense-events-algorithm
+Coverage: reading
+
+実Dormand–Prince5(4)・quartic連続拡張・受理状態が所有するFSAL・保存補間上の符号区間二分法。拒否端点を昇格しません。
+y(t)=e^{-0.2t}(\cos 3t,\sin 3t)^T,\quad t_*=\pi/6,\pi/2y(t_n+\theta h)=y_n+hQ(\theta,\theta^2,\theta^3,\theta^4)^T
+
+## 硬いODE・RK45・境界分割 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#rk45-dense-events-validation
+Coverage: reading
+
+解析状態とπ/6,π/2の単純交差を参照に、端点/97オフメッシュ点/イベント時刻・残差と実nfev=1+6試行数を判定。
+
+## 硬いODE・RK45・境界分割 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#rk45-dense-events-limits
+Coverage: reading
+
+接触根・1刻み内の多重交差・reset付き系の一般性は保証しません。初期零/所有権/resetは限定成分対照で、局所許容誤差と大域精度を同一視しません。
+
+## 硬いODE・RK45・境界分割 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#rk45-dense-events-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+maximum_dense_error6.1368272e-05
+maximum_event_time_error1.46188632142e-05
+actual_RHS_evaluations2162
+rejected_trials40
+scopeAnalytic state/simple crossings; accepted-full endpoint versus terminal dense-root state distinct. No global guarantee inferred from localtol.
+判定 / check合格
+rk45-loose-hmax0.4:completion-and-worktrue
+rk45-loose-hmax0.4:endpoint-errortrue
+rk45-loose-hmax0.4:offmesh-errortrue
+rk45-loose-hmax0.4:event-time-and-settrue
+rk45-loose-hmax0.4:event-residualtrue
+rk45-loose-hmax0.1:completion-and-worktrue
+rk45-loose-hmax0.1:endpoint-errortrue
+rk45-loose-hmax0.1:offmesh-errortrue
+rk45-loose-hmax0.1:event-time-and-settrue
+rk45-loose-hmax0.1:event-residualtrue
+rk45-medium-hmax0.4:completion-and-worktrue
+rk45-medium-hmax0.4:endpoint-errortrue
+rk45-medium-hmax0.4:offmesh-errortrue
+rk45-medium-hmax0.4:event-time-and-settrue
+rk45-medium-hmax0.4:event-residualtrue
+rk45-medium-hmax0.1:completion-and-worktrue
+rk45-medium-hmax0.1:endpoint-errortrue
+rk45-medium-hmax0.1:offmesh-errortrue
+rk45-medium-hmax0.1:event-time-and-settrue
+rk45-medium-hmax0.1:event-residualtrue
+rk45-tight-hmax0.4:completion-and-worktrue
+rk45-tight-hmax0.4:endpoint-errortrue
+rk45-tight-hmax0.4:offmesh-errortrue
+rk45-tight-hmax0.4:event-time-and-settrue
+rk45-tight-hmax0.4:event-residualtrue
+rk45-tight-hmax0.1:completion-and-worktrue
+
+## 硬いODE・RK45・境界分割 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#rk45-dense-events-measurements
+Coverage: reading
+
+rk45-tight-hmax0.1:endpoint-errortrue
+rk45-tight-hmax0.1:offmesh-errortrue
+rk45-tight-hmax0.1:event-time-and-settrue
+rk45-tight-hmax0.1:event-residualtrue
+rk45-terminal-direction-1:completion-and-worktrue
+rk45-terminal-direction-1:endpoint-errortrue
+rk45-terminal-direction-1:offmesh-errortrue
+rk45-terminal-direction-1:event-time-and-settrue
+rk45-terminal-direction-1:event-residualtrue
+rk45-terminal-direction1:completion-and-worktrue
+rk45-terminal-direction1:endpoint-errortrue
+rk45-terminal-direction1:offmesh-errortrue
+rk45-terminal-direction1:event-time-and-settrue
+rk45-terminal-direction1:event-residualtrue
+hmax0.4:actual-tolerance-responsetrue
+hmax0.1:actual-tolerance-responsetrue
+rejected-trial-actually-exercisedtrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。減衰回転の解析解を使い、受理/棄却・FSAL・区間内補間・向き付き交差時刻を分けて検査します。 保存済みの数値場と参照を用いた図です。全記録を表で読む
+run_idrtolmax_stepdirectionterminaloutput_timeendpoint_linfoffmesh_linfevent_time_absevent_residual_abseventsnfevattempted_stepsaccepted_stepsrejected_steps
+rk45-loose-hmax0.40.00010.40025.88678506838e-056.1368272e-051.46188632142e-059.80326930744e-1429716124
+rk45-loose-hmax0.10.00010.10022.7115644502e-062.6281247637e-062.29552932218e-072.36907715667e-13212120200
+rk45-medium-hmax0.41e-060.40025.37107195164e-075.11526105917e-077.36628158471e-091.31145094784e-14221135296
+
+## 硬いODE・RK45・境界分割 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#rk45-dense-events-measurements
+Coverage: reading
+
+rk45-medium-hmax0.11e-060.10025.3703864078e-075.14462422885e-079.68359248343e-091.69544933648e-13220534295
+rk45-tight-hmax0.41e-080.40025.21424436961e-095.21424670108e-094.82530904122e-101.65822217069e-13249382757
+rk45-tight-hmax0.11e-080.10025.21529230912e-095.21516951846e-094.8169224165e-102.92231516763e-14248781756
+rk45-terminal-direction-11e-080.4-110.5235987757331.77590464556e-092.21307361326e-091.34953270781e-101.65822217069e-13115125205
+rk45-terminal-direction11e-080.4111.570796327284.36766012246e-094.38690073157e-094.82530904122e-106.21551421442e-14139766597
+この例の実測値・全記録 / JSON
+
+## 硬いODE・RK45・境界分割 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#rk45-dense-events-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+SciPy1.14.1 RK45 coefficient and dense-output source [accessed 2026-11-24]
+確認範囲 / review_level: official-release-source-selected-functions
+C/A/B/E/P、段階・受理/棄却時FSAL更新、quartic補間を確認。原Dormand–Prince1980/Shampine1986論文は書誌参照のみで全文未読。係数由来のBSD通知を同梱。
+
+## 硬いODE・RK45・境界分割 — Dirichlet境界でのStrang次数低下と補正 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/
+Coverage: reading
+
+実1D非周期場で、未補正/境界補正Strangを同じFD参照へ比較し、時間誤差と空間誤差を分けます。
+手法・式・図・参照解
+使用手法
+Strang分割
+Lie–Trotter分割
+空間中心差分
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+w=u−1で未補正(Lw,w+1)、補正(Lw+1,w)に分割。実DirichletDST-I指数流を合成し、反応の境界不整合を保持します。
+非同次境界を持つ線形反応拡散
+u_t=u_xx+u、[0,1]、両端u=1、解析定常解+.1正弦摂動、T=.1。内部31/63/127点・8/16/32/64刻みとLie対照4run、計28run。
+熱・拡散方程式
+u_t=u_xx+u、[0,1]、両端u=1、解析定常解+.1正弦摂動、T=.1。内部31/63/127点・8/16/32/64刻みとLie対照4run、計28run。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+Dirichlet境界でのStrang次数低下と補正
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+独立疎affine指数作用と別記述の正弦和を先に資格。同FD時間誤差・解析連続解との差・固定格子/刻み領域の観測次数を判定。
+同じ問題の参照 · 半解析参照
+Dirichlet境界でのStrang次数低下と補正
+原著の線形特殊例で非線形数値表の再現ではありません。非自律/一般境界や普遍的な次数低下は主張せず、Lie終端の反応trace不整合も別表示します。
+
+## 硬いODE・RK45・境界分割 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#strang-boundary-order-reduction-assumptions
+Coverage: reading
+
+u_t=u_xx+u、[0,1]、両端u=1、解析定常解+.1正弦摂動、T=.1。内部31/63/127点・8/16/32/64刻みとLie対照4run、計28run。
+
+## 硬いODE・RK45・境界分割 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#strang-boundary-order-reduction-algorithm
+Coverage: reading
+
+w=u−1で未補正(Lw,w+1)、補正(Lw+1,w)に分割。実DirichletDST-I指数流を合成し、反応の境界不整合を保持します。
+u_t=u_{xx}+u,\quad u(0,t)=u(1,t)=1,\quad w=u-1A_{\rm raw}(w)=L_hw,\ B_{\rm raw}(w)=w+1;\quad A_{\rm corr}(w)=L_hw+1,\ B_{\rm corr}(w)=w
+
+## 硬いODE・RK45・境界分割 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#strang-boundary-order-reduction-validation
+Coverage: reading
+
+独立疎affine指数作用と別記述の正弦和を先に資格。同FD時間誤差・解析連続解との差・固定格子/刻み領域の観測次数を判定。
+
+## 硬いODE・RK45・境界分割 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#strang-boundary-order-reduction-limits
+Coverage: reading
+
+原著の線形特殊例で非線形数値表の再現ではありません。非自律/一般境界や普遍的な次数低下は主張せず、Lie終端の反応trace不整合も別表示します。
+
+## 硬いODE・RK45・境界分割 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#strang-boundary-order-reduction-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+N127_finest_raw_temporal_error0.000110722775941
+N127_finest_corrected_temporal_error9.8305208418e-08
+reference_spatial_order1.99999508731
+scopeActual1Dnonperiodicfields. TimevsSAME-FDoracle; spacevsanalyticcontinuum. Linearautonomousspecialization, fixed-regime order; no universal reduction/theorem reproduction.
+判定 / check合格
+boundary-n31-strang-unmodified-8:actual-field-and-worktrue
+boundary-n31-strang-unmodified-8:boundary-compatibility-ledgertrue
+boundary-n31-strang-unmodified-16:actual-field-and-worktrue
+boundary-n31-strang-unmodified-16:boundary-compatibility-ledgertrue
+boundary-n31-strang-unmodified-32:actual-field-and-worktrue
+boundary-n31-strang-unmodified-32:boundary-compatibility-ledgertrue
+boundary-n31-strang-unmodified-64:actual-field-and-worktrue
+boundary-n31-strang-unmodified-64:boundary-compatibility-ledgertrue
+boundary-n31-strang-boundary-corrected-8:actual-field-and-worktrue
+boundary-n31-strang-boundary-corrected-8:boundary-compatibility-ledgertrue
+boundary-n31-strang-boundary-corrected-16:actual-field-and-worktrue
+boundary-n31-strang-boundary-corrected-16:boundary-compatibility-ledgertrue
+boundary-n31-strang-boundary-corrected-32:actual-field-and-worktrue
+boundary-n31-strang-boundary-corrected-32:boundary-compatibility-ledgertrue
+
+## 硬いODE・RK45・境界分割 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#strang-boundary-order-reduction-measurements
+Coverage: reading
+
+boundary-n31-strang-boundary-corrected-64:actual-field-and-worktrue
+boundary-n31-strang-boundary-corrected-64:boundary-compatibility-ledgertrue
+boundary-n63-strang-unmodified-8:actual-field-and-worktrue
+boundary-n63-strang-unmodified-8:boundary-compatibility-ledgertrue
+boundary-n63-strang-unmodified-16:actual-field-and-worktrue
+boundary-n63-strang-unmodified-16:boundary-compatibility-ledgertrue
+boundary-n63-strang-unmodified-32:actual-field-and-worktrue
+boundary-n63-strang-unmodified-32:boundary-compatibility-ledgertrue
+boundary-n63-strang-unmodified-64:actual-field-and-worktrue
+boundary-n63-strang-unmodified-64:boundary-compatibility-ledgertrue
+boundary-n63-strang-boundary-corrected-8:actual-field-and-worktrue
+boundary-n63-strang-boundary-corrected-8:boundary-compatibility-ledgertrue
+boundary-n63-strang-boundary-corrected-16:actual-field-and-worktrue
+boundary-n63-strang-boundary-corrected-16:boundary-compatibility-ledgertrue
+boundary-n63-strang-boundary-corrected-32:actual-field-and-worktrue
+boundary-n63-strang-boundary-corrected-32:boundary-compatibility-ledgertrue
+boundary-n63-strang-boundary-corrected-64:actual-field-and-worktrue
+boundary-n63-strang-boundary-corrected-64:boundary-compatibility-ledgertrue
+boundary-n127-strang-unmodified-8:actual-field-and-worktrue
+boundary-n127-strang-unmodified-8:boundary-compatibility-ledgertrue
+
+## 硬いODE・RK45・境界分割 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#strang-boundary-order-reduction-measurements
+Coverage: reading
+
+boundary-n127-strang-unmodified-16:actual-field-and-worktrue
+boundary-n127-strang-unmodified-16:boundary-compatibility-ledgertrue
+boundary-n127-strang-unmodified-32:actual-field-and-worktrue
+boundary-n127-strang-unmodified-32:boundary-compatibility-ledgertrue
+boundary-n127-strang-unmodified-64:actual-field-and-worktrue
+boundary-n127-strang-unmodified-64:boundary-compatibility-ledgertrue
+boundary-n127-strang-boundary-corrected-8:actual-field-and-worktrue
+boundary-n127-strang-boundary-corrected-8:boundary-compatibility-ledgertrue
+boundary-n127-strang-boundary-corrected-16:actual-field-and-worktrue
+boundary-n127-strang-boundary-corrected-16:boundary-compatibility-ledgertrue
+boundary-n127-strang-boundary-corrected-32:actual-field-and-worktrue
+boundary-n127-strang-boundary-corrected-32:boundary-compatibility-ledgertrue
+boundary-n127-strang-boundary-corrected-64:actual-field-and-worktrue
+boundary-n127-strang-boundary-corrected-64:boundary-compatibility-ledgertrue
+boundary-n127-lie-8:actual-field-and-worktrue
+boundary-n127-lie-8:boundary-compatibility-ledgertrue
+boundary-n127-lie-16:actual-field-and-worktrue
+boundary-n127-lie-16:boundary-compatibility-ledgertrue
+boundary-n127-lie-32:actual-field-and-worktrue
+boundary-n127-lie-32:boundary-compatibility-ledgertrue
+boundary-n127-lie-64:actual-field-and-worktrue
+boundary-n127-lie-64:boundary-compatibility-ledgertrue
+
+## 硬いODE・RK45・境界分割 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#strang-boundary-order-reduction-measurements
+Coverage: reading
+
+n31:corrected-finest-accuracytrue
+n63:corrected-finest-accuracytrue
+n127:corrected-finest-accuracytrue
+strang-unmodified:fixed-regime-temporal-ordertrue
+strang-boundary-corrected:fixed-regime-temporal-ordertrue
+finest:boundary-correction-improvestrue
+separate-reference-spatial-ordertrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。実1D非周期場で、未補正/境界補正Strangを同じFD参照へ比較し、時間誤差と空間誤差を分けます。 保存済みの数値場と参照を用いた図です。全記録を表で読む
+run_idmethodnstepsdttemporal_linfreference_spatial_linfcontinuum_total_linfdiffusion_callsreaction_callsreaction_trace_defectlast_subflow_trace_defect
+boundary-n31-strang-unmodified-8strang-unmodified3180.01250.0008757063477923.99622533536e-050.0008675031571041680.01257845154060
+boundary-n31-strang-unmodified-16strang-unmodified31160.006250.0004199203549933.99622533536e-050.00041614126004332160.006269572003760
+boundary-n31-strang-unmodified-32strang-unmodified31320.0031250.0002040534745483.99622533536e-050.00020136246091164320.003129887902740
+boundary-n31-strang-unmodified-64strang-unmodified31640.00156257.85927842151e-053.99622533536e-057.64184165065e-05128640.001563721339160
+boundary-n31-strang-boundary-corrected-8strang-boundary-corrected3180.01255.26474326623e-063.99622533536e-053.7388141306e-0516800
+boundary-n31-strang-boundary-corrected-16strang-boundary-corrected31160.006251.41166138046e-063.99622533536e-053.93187975738e-05321600
+
+## 硬いODE・RK45・境界分割 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#strang-boundary-order-reduction-measurements
+Coverage: reading
+
+boundary-n31-strang-boundary-corrected-32strang-boundary-corrected31320.0031253.67413591551e-073.99622533536e-053.98014037544e-05643200
+boundary-n31-strang-boundary-corrected-64strang-boundary-corrected31640.00156259.27594256961e-083.99622533536e-053.99220417007e-051286400
+boundary-n63-strang-unmodified-8strang-unmodified6380.01250.0008925569277969.99070778218e-060.0008905061113571680.01257845154060
+boundary-n63-strang-unmodified-16strang-unmodified63160.006250.0004412363555849.99070778218e-060.00043968767654132160.006269572003760
+boundary-n63-strang-unmodified-32strang-unmodified63320.0031250.0002208703833669.99070778218e-060.00021992568408664320.003129887902740
+boundary-n63-strang-unmodified-64strang-unmodified63640.00156250.0001052545029419.99070778218e-060.000104914770293128640.001563721339160
+boundary-n63-strang-boundary-corrected-8strang-boundary-corrected6380.01255.29834530827e-069.99070778218e-067.41615670807e-0616800
+boundary-n63-strang-boundary-corrected-16strang-boundary-corrected63160.006251.42848130968e-069.99070778218e-069.3473269458e-06321600
+boundary-n63-strang-boundary-corrected-32strang-boundary-corrected63320.0031253.75698622213e-079.99070778218e-069.8298730451e-06643200
+boundary-n63-strang-boundary-corrected-64strang-boundary-corrected63640.00156259.72549960565e-089.99070778218e-069.95049980035e-061286400
+
+## 硬いODE・RK45・境界分割 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#strang-boundary-order-reduction-measurements
+Coverage: reading
+
+boundary-n127-strang-unmodified-8strang-unmodified12780.01250.0009028332894232.49768545069e-060.0009023830995371680.01257845154060
+boundary-n127-strang-unmodified-16strang-unmodified127160.006250.0004533522360362.49768545069e-060.00045302856260932160.006269572003760
+boundary-n127-strang-unmodified-32strang-unmodified127320.0031250.0002250794715292.49768545069e-060.00022481974455264320.003129887902740
+boundary-n127-strang-unmodified-64strang-unmodified127640.00156250.0001107227759412.49768545069e-060.000110545040464128640.001563721339160
+boundary-n127-strang-boundary-corrected-8strang-boundary-corrected12780.01255.30669129128e-062.49768545069e-064.39798854579e-0616800
+boundary-n127-strang-boundary-corrected-16strang-boundary-corrected127160.006251.43271183783e-062.49768545069e-061.85432510613e-06321600
+boundary-n127-strang-boundary-corrected-32strang-boundary-corrected127320.0031253.78229272346e-072.49768545069e-062.33685497464e-06643200
+boundary-n127-strang-boundary-corrected-64strang-boundary-corrected127640.00156259.8305208418e-082.49768545069e-062.45747896233e-061286400
+boundary-n127-lie-8lie-unmodified12780.01250.01181830854822.49768545069e-060.0118183740152880.01257845154060.0125784515406
+boundary-n127-lie-16lie-unmodified127160.006250.005756692724352.49768545069e-060.0057567581913816160.006269572003760.00626957200376
+
+## 硬いODE・RK45・境界分割 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#strang-boundary-order-reduction-measurements
+Coverage: reading
+
+boundary-n127-lie-32lie-unmodified127320.0031250.002783227896892.49768545069e-060.0027832933639332320.003129887902740.00312988790274
+boundary-n127-lie-64lie-unmodified127640.00156250.001330542801642.49768545069e-060.0013306082686764640.001563721339160.00156372133916
+この例の実測値・全記録 / JSON
+
+## 硬いODE・RK45・境界分割 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#strang-boundary-order-reduction-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+L. Einkemmer; A. Ostermann (2014). Overcoming order reduction in diffusion-reaction splitting. Part1: Dirichlet boundary conditions [accessed 2026-11-24]
+確認範囲 / review_level: primary-preprint-selected-sections
+2014v1の§2/Algorithm2/定数境界例、§3.2の定理・仮定、1D例の選択抽出テキストを閲読。全証明・原PDF全画像の監査ではありません。今回線形特殊例で、原著の非線形数値表ではありません。
+
 ## 粒子・輸送：独立参照・保存則・統計誤差 — 粒子・輸送：独立参照・保存則・統計誤差 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-particle-transport/
@@ -88367,6 +92609,178 @@ PubMedの書誌・DOIと出版社索引の抄録を確認。原著本文は403�
 The SciPy community (2024). SciPy1.14.1 solve_ivp reference
 確認範囲 / review_level: official-versioned-documentation-selected-methods-and-tolerances
 SciPy 1.14.1公式資料のmethod・rtol/atolを参照。Radau 5次とDOP853 8次は同じ空間離散の独立した時間積分法として用い、連続PDEの厳密解とは呼びません。
+
+## 定常多段RKのモード減衰 — 定常多段RKのモード減衰 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-steady-rk/
+Coverage: reading
+
+16成分の周期線形場で擬似時間の残差減衰を測り、安定・非減衰・発散の対照を示します。非線形非定常問題の4次精度とは区別します。
+
+## 定常多段RKのモード減衰 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-steady-rk/#run-all
+Coverage: reading
+
+ZIPの atlas-steady-rk-2026-11-24 フォルダで実行します。このコマンドは配布版の全1例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## 定常多段RKのモード減衰 — 定常多段RKの実空間モード減衰 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-steady-rk/
+Coverage: reading
+
+周期格子の実残差に4段定常反復を適用し、離散モードの減衰・中立・増幅を区別します。 初回の増幅制御では元の絶対残差目標が未達でした。
+手法・式・図・参照解
+使用手法
+Jameson型の定常多段Runge–Kutta
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+全段で同じ基底状態を用い、全場・全段残差・評価回数を保存します。
+有限次元の線形発展系
+無次元の固定16点・周期・線形残差。疑似時間は反復パラメータです。
+有限次元線形方程式と行列分解
+無次元の固定16点・周期・線形残差。疑似時間は反復パラメータです。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+定常多段RKの実空間モード減衰
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+元の41数値目標と実際の真偽を変更せず保存します。増幅制御の絶対残差目標だけを研究結果として分離し、他40条件と保存配列からの判定再計算・正確な表示を必須にします。
+同じ問題の参照 · 解析参照
+定常多段RKの実空間モード減衰
+固定線形例に限定。JST圧縮性流束や非線形4次RK、任意初期値の収束は検証しません。 元の全数値目標の合格を意味する公開ではありません。
+
+## 定常多段RKのモード減衰 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-steady-rk/#jameson-steady-linear-modes-assumptions
+Coverage: reading
+
+無次元の固定16点・周期・線形残差。疑似時間は反復パラメータです。
+
+## 定常多段RKのモード減衰 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-steady-rk/#jameson-steady-linear-modes-algorithm
+Coverage: reading
+
+全段で同じ基底状態を用い、全場・全段残差・評価回数を保存します。
+Y_j=u_n-alpha_j*dtau*(A*Y_(j-1)-b)P(z)=1+z+z^2/2+z^3/6+z^4/24; lambda_4=9+2i, lambda_8=17
+
+## 定常多段RKのモード減衰 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-steady-rk/#jameson-steady-linear-modes-validation
+Coverage: reading
+
+元の41数値目標と実際の真偽を変更せず保存します。増幅制御の絶対残差目標だけを研究結果として分離し、他40条件と保存配列からの判定再計算・正確な表示を必須にします。
+
+## 定常多段RKのモード減衰 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-steady-rk/#jameson-steady-linear-modes-limits
+Coverage: reading
+
+固定線形例に限定。JST圧縮性流束や非線形4次RK、任意初期値の収束は検証しません。 元の全数値目標の合格を意味する公開ではありません。
+
+## 定常多段RKのモード減衰 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-steady-rk/#jameson-steady-linear-modes-measurements
+Coverage: reading
+
+量 / metric実測値
+stable-h32:field-error3.33066907388e-16
+stable-h32:residual-reduction6.44637075149e-09
+stable-h32:nonzero-mode41.52383936183e-08
+stable-h16:field-error2.22044604925e-16
+stable-h16:residual-reduction6.62107877097e-09
+stable-h16:nonzero-mode41.53811258096e-08
+neutral-constant:neutrality0
+expanding-nyquist:expected-expansion1875.59486518
+expanding-nyquist:normalized-error3.63488699125e-16
+max_field_error6.8212102633e-13
+original_targets_met40
+original_targets_total41
+判定 / check合格
+reference:h32-mode4:expanded-vs-stagestrue
+reference:h32-mode4:prior-classificationtrue
+reference:h32-mode8:expanded-vs-stagestrue
+reference:h32-mode8:prior-classificationtrue
+reference:h16-mode4:expanded-vs-stagestrue
+reference:h16-mode4:prior-classificationtrue
+reference:h16-mode8:expanded-vs-stagestrue
+reference:h16-mode8:prior-classificationtrue
+reference:neutral:expanded-vs-stagestrue
+reference:neutral:prior-classificationtrue
+reference:expanding:expanded-vs-stagestrue
+reference:expanding:prior-classificationtrue
+reference:rational-stencil-mode4true
+reference:rational-stencil-mode8true
+stable-h32:finitetrue
+stable-h32:stage-counttrue
+stable-h32:spurious-modetrue
+stable-h32:true-residual-referencetrue
+stable-h32:field-errortrue
+stable-h32:residual-reductiontrue
+stable-h32:nonzero-mode4true
+stable-h16:finitetrue
+stable-h16:stage-counttrue
+stable-h16:spurious-modetrue
+
+## 定常多段RKのモード減衰 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-steady-rk/#jameson-steady-linear-modes-measurements
+Coverage: reading
+
+stable-h16:true-residual-referencetrue
+stable-h16:field-errortrue
+stable-h16:residual-reductiontrue
+stable-h16:nonzero-mode4true
+neutral-constant:finitetrue
+neutral-constant:stage-counttrue
+neutral-constant:spurious-modetrue
+neutral-constant:true-residual-referencetrue
+neutral-constant:neutralitytrue
+expanding-nyquist:finitetrue
+expanding-nyquist:stage-counttrue
+expanding-nyquist:spurious-modetrue
+expanding-nyquist:expected-expansiontrue
+expanding-nyquist:normalized-errortrue
+steady-fixed-pointtrue
+four-record-identitiestrue
+verification:original-target-inventorytrue
+verification:all-original-decisions-recomputedtrue
+verification:measured-records-match-saved-arraystrue
+verification:frozen-original-input-and-acceptancetrue
+verification:independent-reference-integritytrue
+verification:actual-target-summarytrue
+verification:retained-first-attempt-historytrue
+verification:only-declared-study-goals-are-nonmandatorytrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。周期格子の実残差に4段定常反復を適用し、離散モードの減衰・中立・増幅を区別します。 保存配列から作図。 初回の元精度目標未達と再実行の実測判定は保存JSONで区別します。保存済み残差・拘束・収支を別表示。ゼロ値は対称対数軸で保持します。 初回の元精度目標未達と再実行の実測判定は保存JSONで区別します。全記録を表で読む
+idroleterminationstepsstage_residual_evaluationsmonitor_residual_evaluationsmetrics
+
+## 定常多段RKのモード減衰 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-steady-rk/#jameson-steady-linear-modes-measurements
+Coverage: reading
+
+stable-h32steady_iterationcompleted_fixed_steps6425665{"full_field_maxabs_error":3.3306690738754696e-16,"normalized_field_error":1.7143221587850987e-16,"mode4_final_amplitude":1.5238393618337132e-08,"residual_ratio":6.446370751486289e-09,"spurious_mode_maxabs":1.1102230246251565e-16,"modal_residual_error":2.6645352591003757e-15}
+stable-h16steady_iterationcompleted_fixed_steps3212833{"full_field_maxabs_error":2.220446049250313e-16,"normalized_field_error":1.1997714173839207e-16,"mode4_final_amplitude":1.5381125809623605e-08,"residual_ratio":6.6210787709662455e-09,"spurious_mode_maxabs":1.1102230246251565e-16,"modal_residual_error":1.1102230246251565e-15}
+neutral-constantneutral_controlcompleted_fixed_steps8329{"full_field_maxabs_error":0.0,"normalized_field_error":0.0,"mode4_final_amplitude":0.0,"residual_ratio":null,"spurious_mode_maxabs":0.0,"modal_residual_error":0.0}
+expanding-nyquistexpected_expansion_controlcompleted_fixed_steps4165{"full_field_maxabs_error":6.821210263296962e-13,"normalized_field_error":3.634886991251329e-16,"mode4_final_amplitude":0.0,"residual_ratio":1875.5948651814128,"spurious_mode_maxabs":0.0,"modal_residual_error":1.0913936421275139e-11}
+この例の実測値・全記録 / JSON
+
+## 定常多段RKのモード減衰 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-steady-rk/#jameson-steady-linear-modes-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+PERFORM time integration schemes [accessed 2026-11-24]
+確認範囲 / review_level: official-documentation-selected-equations
+Selected four-stage base-state recurrence. No full JST 1981 paper reading or compressible-flow implementation claim.
 
 ## SDEの弱誤差・強誤差と標本誤差 — SDEの弱誤差・強誤差と標本誤差 [ja]
 

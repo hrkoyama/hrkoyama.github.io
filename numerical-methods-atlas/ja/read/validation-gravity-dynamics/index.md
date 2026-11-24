@@ -54,6 +54,10 @@ G=M=a1,e.4,masses.6/.4、epsilon0、128/256/512steps、初期COM/P0。
 - [無軟化Kepler二体の時間誤差](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-gravity-kepler-ja) (`gravity-kepler`; 同じ問題の参照 · 解析参照)
 
 1周期・固定離心率のみ。軟化軌道や長時間安定性はこの参照の範囲外。
+
+- [離心率を変えたKepler軌道と時間刻み](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-kepler-eccentricity-ja) (`kepler-eccentricity`; 同じ問題の参照 · 半解析参照)
+
+保存量の小さい誤差から位相精度を推論しません。変動刻み写像の正準symplectic defectは測定せず、固定hの性質をそのまま移しません。初期解像度R1は数値実行前の漸近解析でR2へ改訂。
 ### 前提・単位・境界
 
 G=M=a1,e.4,masses.6/.4、epsilon0、128/256/512steps、初期COM/P0。

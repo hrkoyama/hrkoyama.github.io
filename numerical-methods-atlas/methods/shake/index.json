@@ -1,0 +1,717 @@
+{
+  "id": "shake",
+  "name": {
+    "ja": "SHAKE拘束積分",
+    "en": "SHAKE constrained integration"
+  },
+  "group": {
+    "id": "time",
+    "ja": "時間積分",
+    "en": "Time integration"
+  },
+  "summary": {
+    "ja": "位置拘束を解くVerlet型の離散写像です。振り子では連続な近傍枝を固定し、中心差分で再構成した運動量を区別します。",
+    "en": "A Verlet-type discrete map solves position constraints. The pendulum example selects the nearby continuous branch and distinguishes momentum reconstructed by centered differences."
+  },
+  "status": "educational-example",
+  "origin": "development-candidate",
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/symplectic/",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/symplectic/"
+  },
+  "code_modules": [],
+  "test_files": [],
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct.",
+  "code_mapping_scope_ja": "実行の根拠は版を固定した追加配布例です。章へのリンクは補足解説です。",
+  "assumptions": [
+    "The planar pendulum has unit mass, length and gravity, initial angle 0.7 and zero initial angular velocity.",
+    "The position-constraint solve uses fixed iteration and residual limits; nonconvergence is retained as failure."
+  ],
+  "assumptions_ja": [
+    "単位質量・長さ・重力の平面振り子で、初期角は0.7、初期角速度は0です。",
+    "位置拘束の非線形解法は反復上限と残差基準を固定し、未収束を成功に置き換えません。"
+  ],
+  "units": "The fixed example is nondimensional; constraint and multiplier units depend on the formulation in general.",
+  "units_ja": "固定例は無次元です。一般には拘束と乗数の単位は定式化に依存します。",
+  "boundary_conditions": "There is no spatial boundary; conditions are the position and velocity constraint manifolds.",
+  "boundary_conditions_ja": "空間境界はなく、位置と速度の拘束面が条件です。",
+  "limitations": {
+    "ja": "中心差分運動量の接線残差をRATTLEの速度拘束と同一視しません。単一の滑らかな円拘束の固定例であり、一般の拘束ネットワークは未検証です。",
+    "en": "The tangency residual of reconstructed centered momentum is distinct from the RATTLE velocity constraint. Only fixed examples with one smooth circular constraint are validated; general constraint networks are outside this release."
+  },
+  "aliases": [
+    "SHAKE",
+    "SHAKE algorithm"
+  ],
+  "metadata_review": {
+    "on": "2026-11-24",
+    "level": "Frozen inputs and criteria, independently reviewed references, actual canonical main and independently extracted ZIP pytest/all-input rerun; scope is release-specific.",
+    "supplemental_review": {
+      "on": "2026-11-24",
+      "level": "Frozen fixed inputs, independently reviewed references and criteria, actual pytest/main and independently extracted ZIP. See release-specific scope and retained failure history."
+    }
+  },
+  "references": [
+    {
+      "url": "https://www.unige.ch/~hairer/poly-sde-mani.pdf",
+      "label": "Solving Differential Equations on Manifolds",
+      "scope": "Author-hosted lecture notes, selected printed page50, SectionV.5, equations5.1–5.3 and Theorem5.1 statement, rendered and visually read. Centered SHAKE momentum and RATTLE final tangency are explicit. The original1977 SHAKE and1983 RATTLE articles remain full-text unread; no full proof review is claimed. Source date: 2011 (date displayed on lecture notes); this is not asserted as the publication year.",
+      "verification": {
+        "level": "selected-primary-scope",
+        "checked_on": "2026-11-24"
+      }
+    },
+    {
+      "url": "https://www.unige.ch/~hairer/poly_geoint/week2.pdf",
+      "label": "Lecture2: Symplectic integrators",
+      "scope": "Author-hosted course notes, selected rendered printed pages2,12–13: Verlet kick/drift form, symplectic statement, Lie and symmetric Strang compositions. This does not qualify every state-dependent step rule or the authored coupled resonance experiment. Source date: 2010 (displayed course date); this is not asserted as the publication year.",
+      "verification": {
+        "level": "selected-primary-scope",
+        "checked_on": "2026-11-24"
+      }
+    },
+    {
+      "url": "https://dlmf.nist.gov/22.4",
+      "label": "DLMF22.4: Periods, Poles, and Zeros",
+      "scope": "Official Table22.4.1 selected real periods: sn and cn have4K, dn has2K. Version date is not an initial publication date. Common-period reduction and direct-library periodicity qualification are separate from the independent angular DOP853 state comparison. Source date: 2026 (version); this is not asserted as the publication year.",
+      "verification": {
+        "level": "selected-primary-scope",
+        "checked_on": "2026-11-24"
+      }
+    }
+  ],
+  "depth_release": {
+    "group": "geometric-controls",
+    "case_ids": [
+      "shake-rattle-pendulum"
+    ],
+    "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/",
+    "code_edition": "2026-11-24",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/physics.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/diagnostics.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/analytic.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/discrete.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/io_utils.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/qualify.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/test_geometry.py"
+    ],
+    "run_commands": [
+      "python -m pytest -q",
+      "python run.py --input inputs.json --output output"
+    ],
+    "run_from": "atlas-geometric-controls-2026-11-24",
+    "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip",
+    "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/source-manifest.json",
+    "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/verification.json",
+    "code_archive_sha256": "4e3ef28ab6c91ae62918b7effc6f37097ec0f5a4ed878d4d33fa06e1945329a2",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/results/result.json",
+    "passed_tests": 32,
+    "examples": [
+      {
+        "id": "shake-rattle-pendulum",
+        "method_ids": [
+          "shake",
+          "rattle"
+        ],
+        "domains": [
+          "classical-mechanics",
+          "geometric-integration"
+        ],
+        "validation_count": 32,
+        "title": {
+          "ja": "SHAKEとRATTLE：拘束と運動量の違い",
+          "en": "SHAKE and RATTLE: constraints and momentum ownership"
+        },
+        "summary": {
+          "ja": "単振り子の10固定軌道で、位置拘束、全時刻の接線運動量と内部点の中心化運動量を区別します。",
+          "en": "Ten fixed pendulum evolutions distinguish position constraints, full-time tangent momentum and interior centered momentum."
+        },
+        "assumptions": {
+          "ja": "L=m=g=1、初期角0.7、初期角速度0。C=(q·q−1)/2、T=100、h=0.04/0.02/0.01。拘束目標1e−13と粗格子の1e−10比較を固定。",
+          "en": "L=m=g=1, initial angle 0.7 and zero angular velocity. C=(q·q−1)/2, T=100 and h=0.04/0.02/0.01; position targets are fixed at 1e−13, with a coarse 1e−10 companion."
+        },
+        "algorithm": {
+          "ja": "独自のスカラーNewton位置拘束、RATTLE終端接線impulse、SHAKE位置対。SHAKEの運動量は内部点だけで中心化し、端点を作りません。 SHAKEのsolves列はeta、eta/h^2、位置残差、Newton更新数です。列1は一律にeta/h^2ですが、初回半刻みの物理乗数は2eta/h^2、以後の位置Verletではeta/h^2です。逆位置対はすべて後者です。判定と図はこの列1を使いません。",
+          "en": "Original scalar Newton position constraints, RATTLE final tangent impulses and SHAKE position pairs. SHAKE momentum is centered only at interior nodes; endpoint momenta are absent. SHAKE solves columns are eta, eta/h^2, position residual and Newton updates. Column1 uses the uniform recurrence normalization eta/h^2. For the first constrained half-step startup, the physical multiplier is 2*eta/h^2; later full position-Verlet steps use eta/h^2. Reverse-pair steps all use the later recurrence convention. RATTLE has its separate five-column normalization. No scientific gate or plot uses SHAKE column1."
+        },
+        "validation": {
+          "ja": "独立Jacobi解析族と角度系DOP853の資格、74主判定。有限Cの中心化恒等式、2段階FDの縮約写像診断、位置対／全状態の逆積分を分離。",
+          "en": "A separately qualified Jacobi family and angular DOP853 reference support 74 main decisions. Finite-C centered identities, two-delta reduced-map diagnostics and position-pair versus full-state reversals are distinct."
+        },
+        "limits": {
+          "ja": "原著SHAKE/RATTLE本文は未読で、著者講義ノートの選択箇所を確認。有限差分のsymplectic defectは一般証明ではなく、中心化SHAKE速度にRATTLEの接線拘束を要求しません。",
+          "en": "Original SHAKE and RATTLE full texts remain unread; selected author lecture notes were inspected. The finite-difference symplectic defect is a local proxy, not a general proof, and centered SHAKE velocity is not assigned RATTLE tangency."
+        },
+        "review_level": {
+          "ja": "一次資料の選択閲読と独立参照資格。実際の成否は保存result.jsonとverification.jsonに記録します。",
+          "en": "Selected primary passages and separately qualified independent references. Actual outcomes are recorded in the saved result.json and verification.json."
+        },
+        "formulas": [
+          "C(q)=\\tfrac12(q^Tq-1)=0",
+          "q_{n+1}=q_n+h p_n+\\tfrac12h^2 f-\\eta_n q_n",
+          "q_n^Tp_n^c=\\frac{\\|q_n-q_{n-1}\\|^2-\\|q_{n+1}-q_n\\|^2}{4h}+\\frac{C_{n+1}-C_{n-1}}{2h}"
+        ],
+        "source_files": [
+          "physics.py",
+          "diagnostics.py",
+          "run.py",
+          "references/analytic.py",
+          "references/discrete.py"
+        ],
+        "code_files": [
+          "physics.py",
+          "diagnostics.py",
+          "run.py",
+          "references/analytic.py",
+          "references/discrete.py"
+        ],
+        "references": [
+          {
+            "id": "hairer-manifolds-2011",
+            "title": "Solving Differential Equations on Manifolds",
+            "url": "https://www.unige.ch/~hairer/poly-sde-mani.pdf",
+            "year": 2011,
+            "year_role": "date displayed on lecture notes",
+            "accessed_on": "2026-11-24",
+            "review_level": "selected-primary-scope",
+            "review_scope": "Author-hosted lecture notes, selected printed page50, SectionV.5, equations5.1–5.3 and Theorem5.1 statement, rendered and visually read. Centered SHAKE momentum and RATTLE final tangency are explicit. The original1977 SHAKE and1983 RATTLE articles remain full-text unread; no full proof review is claimed."
+          },
+          {
+            "id": "hairer-symplectic-2010",
+            "title": "Lecture2: Symplectic integrators",
+            "url": "https://www.unige.ch/~hairer/poly_geoint/week2.pdf",
+            "year": 2010,
+            "year_role": "displayed course date",
+            "accessed_on": "2026-11-24",
+            "review_level": "selected-primary-scope",
+            "review_scope": "Author-hosted course notes, selected rendered printed pages2,12–13: Verlet kick/drift form, symplectic statement, Lie and symmetric Strang compositions. This does not qualify every state-dependent step rule or the authored coupled resonance experiment."
+          },
+          {
+            "id": "dlmf-jacobi-periods",
+            "title": "DLMF22.4: Periods, Poles, and Zeros",
+            "url": "https://dlmf.nist.gov/22.4",
+            "year": 2026,
+            "year_role": "version",
+            "version": "1.2.8",
+            "release_date": "2026-09-15",
+            "accessed_on": "2026-11-24",
+            "review_level": "selected-primary-scope",
+            "review_scope": "Official Table22.4.1 selected real periods: sn and cn have4K, dn has2K. Version date is not an initial publication date. Common-period reduction and direct-library periodicity qualification are separate from the independent angular DOP853 state comparison."
+          }
+        ],
+        "gallery_figure": "shake-rattle-pendulum-preview.png",
+        "additional_figures": [
+          {
+            "file": "shake-rattle-pendulum-preview.png",
+            "caption": {
+              "ja": "保存したh=0.01の縮約位相軌道。SHAKEは内部点の中心化運動量、RATTLEは全時刻の接線運動量です。",
+              "en": "Saved reduced phase portraits at h=0.01. SHAKE uses interior centered momentum; RATTLE uses full-time tangent momentum."
+            }
+          }
+        ],
+        "measured": {
+          "id": "shake-rattle-pendulum",
+          "passed": true,
+          "checks": {
+            "rattle-tight-2500-finite": true,
+            "rattle-tight-2500-completed": true,
+            "rattle-tight-2500-constraint": true,
+            "rattle-tight-2500-state": true,
+            "rattle-tight-2500-energy": true,
+            "rattle-tight-2500-solver": true,
+            "rattle-tight-2500-tangent": true,
+            "rattle-tight-5000-finite": true,
+            "rattle-tight-5000-completed": true,
+            "rattle-tight-5000-constraint": true,
+            "rattle-tight-5000-state": true,
+            "rattle-tight-5000-energy": true,
+            "rattle-tight-5000-solver": true,
+            "rattle-tight-5000-tangent": true,
+            "rattle-tight-10000-finite": true,
+            "rattle-tight-10000-completed": true,
+            "rattle-tight-10000-constraint": true,
+            "rattle-tight-10000-state": true,
+            "rattle-tight-10000-energy": true,
+            "rattle-tight-10000-solver": true,
+            "rattle-tight-10000-tangent": true,
+            "rattle-loose-2500-finite": true,
+            "rattle-loose-2500-completed": true,
+            "rattle-loose-2500-constraint": true,
+            "rattle-loose-2500-state": true,
+            "rattle-loose-2500-energy": true,
+            "rattle-loose-2500-solver": true,
+            "rattle-loose-2500-tangent": true,
+            "rattle-reverse-finite": true,
+            "rattle-reverse-steps": true,
+            "rattle-reverse-recovery": true,
+            "shake-tight-2500-finite": true,
+            "shake-tight-2500-completed": true,
+            "shake-tight-2500-constraint": true,
+            "shake-tight-2500-state": true,
+            "shake-tight-2500-energy": true,
+            "shake-tight-2500-solver": true,
+            "shake-tight-2500-finite-C-identity": true,
+            "shake-tight-2500-centered-tangency": true,
+            "shake-tight-5000-finite": true,
+            "shake-tight-5000-completed": true,
+            "shake-tight-5000-constraint": true,
+            "shake-tight-5000-state": true,
+            "shake-tight-5000-energy": true,
+            "shake-tight-5000-solver": true,
+            "shake-tight-5000-finite-C-identity": true,
+            "shake-tight-5000-centered-tangency": true,
+            "shake-tight-10000-finite": true,
+            "shake-tight-10000-completed": true,
+            "shake-tight-10000-constraint": true,
+            "shake-tight-10000-state": true,
+            "shake-tight-10000-energy": true,
+            "shake-tight-10000-solver": true,
+            "shake-tight-10000-finite-C-identity": true,
+            "shake-tight-10000-centered-tangency": true,
+            "shake-loose-2500-finite": true,
+            "shake-loose-2500-completed": true,
+            "shake-loose-2500-constraint": true,
+            "shake-loose-2500-state": true,
+            "shake-loose-2500-energy": true,
+            "shake-loose-2500-solver": true,
+            "shake-loose-2500-finite-C-identity": true,
+            "shake-loose-2500-centered-tangency": true,
+            "shake-reverse-finite": true,
+            "shake-reverse-steps": true,
+            "shake-reverse-recovery": true,
+            "rattle-state-order": true,
+            "shake-state-order": true,
+            "reduced-map-0-symplectic-proxy": true,
+            "reduced-map-0-FD-consistency": true,
+            "reduced-map-1-symplectic-proxy": true,
+            "reduced-map-1-FD-consistency": true,
+            "reduced-map-2-symplectic-proxy": true,
+            "reduced-map-2-FD-consistency": true
+          },
+          "records": [
+            {
+              "id": "rattle-tight-2500",
+              "role": "primary",
+              "method": "rattle",
+              "h": 0.04,
+              "steps": 2500,
+              "target": 1e-13,
+              "constraint": 9.836575998178887e-14,
+              "tangent": 5.551115123125783e-17,
+              "max_state_error": 0.008956493612250547,
+              "max_energy_error": 0.0001051030184795465,
+              "max_solver_residual": 9.836575998178887e-14,
+              "max_solver_updates": 3.0,
+              "raw_file": "rattle-tight-2500.npz",
+              "diagnostic_file": "rattle-tight-2500-diagnostics.npz",
+              "momentum_scope": "Full-time constrained momentum"
+            },
+            {
+              "id": "rattle-tight-5000",
+              "role": "primary",
+              "method": "rattle",
+              "h": 0.02,
+              "steps": 5000,
+              "target": 1e-13,
+              "constraint": 1.1102230246251565e-15,
+              "tangent": 5.551115123125783e-17,
+              "max_state_error": 0.0022388061059291624,
+              "max_energy_error": 2.6280868993033835e-05,
+              "max_solver_residual": 1.1102230246251565e-15,
+              "max_solver_updates": 2.0,
+              "raw_file": "rattle-tight-5000.npz",
+              "diagnostic_file": "rattle-tight-5000-diagnostics.npz",
+              "momentum_scope": "Full-time constrained momentum"
+            },
+            {
+              "id": "rattle-tight-10000",
+              "role": "primary",
+              "method": "rattle",
+              "h": 0.01,
+              "steps": 10000,
+              "target": 1e-13,
+              "constraint": 2.220446049250313e-16,
+              "tangent": 5.551115123125783e-17,
+              "max_state_error": 0.000559679628447093,
+              "max_energy_error": 6.570193497368315e-06,
+              "max_solver_residual": 2.220446049250313e-16,
+              "max_solver_updates": 2.0,
+              "raw_file": "rattle-tight-10000.npz",
+              "diagnostic_file": "rattle-tight-10000-diagnostics.npz",
+              "momentum_scope": "Full-time constrained momentum"
+            },
+            {
+              "id": "rattle-loose-2500",
+              "role": "primary",
+              "method": "rattle",
+              "h": 0.04,
+              "steps": 2500,
+              "target": 1e-10,
+              "constraint": 2.389199948993337e-13,
+              "tangent": 5.551115123125783e-17,
+              "max_state_error": 0.008956493602698842,
+              "max_energy_error": 0.0001051030189838098,
+              "max_solver_residual": 2.389199948993337e-13,
+              "max_solver_updates": 2.0,
+              "raw_file": "rattle-loose-2500.npz",
+              "diagnostic_file": "rattle-loose-2500-diagnostics.npz",
+              "momentum_scope": "Full-time constrained momentum"
+            },
+            {
+              "id": "rattle-reverse",
+              "method": "rattle",
+              "role": "reversal",
+              "steps": 2500,
+              "recovery_defect": 1.0294764097334133e-13,
+              "raw_file": "rattle-reverse.npz"
+            },
+            {
+              "id": "shake-tight-2500",
+              "role": "primary",
+              "method": "shake",
+              "h": 0.04,
+              "steps": 2500,
+              "target": 1e-13,
+              "constraint": 1.7430501486614958e-14,
+              "tangent": 0.00018260223770480422,
+              "max_state_error": 0.008949400574177653,
+              "max_energy_error": 0.00010510300722033072,
+              "max_solver_residual": 1.7430501486614958e-14,
+              "max_solver_updates": 3.0,
+              "raw_file": "shake-tight-2500.npz",
+              "diagnostic_file": "shake-tight-2500-diagnostics.npz",
+              "momentum_scope": "Interior centered momentum; endpoint momentum is absent",
+              "centered_identity_discrepancy": 1.8639603749370792e-15,
+              "finite_C_jump": 1.7430501486614958e-14
+            },
+            {
+              "id": "shake-tight-5000",
+              "role": "primary",
+              "method": "shake",
+              "h": 0.02,
+              "steps": 5000,
+              "target": 1e-13,
+              "constraint": 1.509903313490213e-14,
+              "tangent": 4.565039605330945e-05,
+              "max_state_error": 0.0022372300630726497,
+              "max_energy_error": 2.6280869009798202e-05,
+              "max_solver_residual": 1.509903313490213e-14,
+              "max_solver_updates": 2.0,
+              "raw_file": "shake-tight-5000.npz",
+              "diagnostic_file": "shake-tight-5000-diagnostics.npz",
+              "momentum_scope": "Interior centered momentum; endpoint momentum is absent",
+              "centered_identity_discrepancy": 4.140717174520858e-15,
+              "finite_C_jump": 1.2212453270876722e-15
+            },
+            {
+              "id": "shake-tight-10000",
+              "role": "primary",
+              "method": "shake",
+              "h": 0.01,
+              "steps": 10000,
+              "target": 1e-13,
+              "constraint": 2.220446049250313e-16,
+              "tangent": 1.1412590050441374e-05,
+              "max_state_error": 0.0005593059128738499,
+              "max_energy_error": 6.570193447852368e-06,
+              "max_solver_residual": 2.220446049250313e-16,
+              "max_solver_updates": 2.0,
+              "raw_file": "shake-tight-10000.npz",
+              "diagnostic_file": "shake-tight-10000-diagnostics.npz",
+              "momentum_scope": "Interior centered momentum; endpoint momentum is absent",
+              "centered_identity_discrepancy": 7.925572090977662e-15,
+              "finite_C_jump": 3.3306690738754696e-16
+            },
+            {
+              "id": "shake-loose-2500",
+              "role": "primary",
+              "method": "shake",
+              "h": 0.04,
+              "steps": 2500,
+              "target": 1e-10,
+              "constraint": 3.811062576630775e-12,
+              "tangent": 0.00018260223426380673,
+              "max_state_error": 0.008949400429175858,
+              "max_energy_error": 0.00010510301627342233,
+              "max_solver_residual": 3.811062576630775e-12,
+              "max_solver_updates": 2.0,
+              "raw_file": "shake-loose-2500.npz",
+              "diagnostic_file": "shake-loose-2500-diagnostics.npz",
+              "momentum_scope": "Interior centered momentum; endpoint momentum is absent",
+              "centered_identity_discrepancy": 2.0298433073273614e-15,
+              "finite_C_jump": 3.417266469796232e-13
+            },
+            {
+              "id": "shake-reverse",
+              "method": "shake",
+              "role": "reversal",
+              "steps": 2499,
+              "recovery_defect": 7.453996378088811e-14,
+              "raw_file": "shake-reverse.npz"
+            }
+          ],
+          "metrics": {
+            "rattle_observed_orders": [
+              2.0002044529735445,
+              2.0000564458078465
+            ],
+            "shake_observed_orders": [
+              2.000077432739235,
+              2.0000041345609065
+            ],
+            "reduced_map_probes": [
+              {
+                "state": [
+                  0.7,
+                  0.0
+                ],
+                "symplectic_defect": 3.424459604772778e-10,
+                "FD_difference": 1.7850310118916468e-10
+              },
+              {
+                "state": [
+                  0.3,
+                  0.2
+                ],
+                "symplectic_defect": 3.746203347532173e-11,
+                "FD_difference": 1.8735013540549517e-10
+              },
+              {
+                "state": [
+                  -0.4,
+                  -0.3
+                ],
+                "symplectic_defect": 1.2937362292575472e-10,
+                "FD_difference": 2.7755575615628914e-10
+              }
+            ],
+            "evolution_count": 10,
+            "centered_SHAKE_not_RATTLE_tangent": true,
+            "maximum_constraint": 3.811062576630775e-12
+          }
+        },
+        "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/shake-rattle-pendulum/",
+        "reading": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#shake-rattle-pendulum",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#shake-rattle-pendulum"
+        }
+      }
+    ]
+  },
+  "supplemental_scope_profiles": [
+    {
+      "release": {
+        "group": "geometric-controls",
+        "edition": "2026-11-24",
+        "case_ids": [
+          "shake-rattle-pendulum"
+        ]
+      },
+      "scope": {
+        "ja": "追加固定例：SHAKEとRATTLE：拘束と運動量の違い。条件と検証範囲は各配布版で確認してください。",
+        "en": "Additional fixed examples: SHAKE and RATTLE: constraints and momentum ownership. See each release for assumptions and checked scope."
+      },
+      "limits": [
+        {
+          "ja": "原著SHAKE/RATTLE本文は未読で、著者講義ノートの選択箇所を確認。有限差分のsymplectic defectは一般証明ではなく、中心化SHAKE速度にRATTLEの接線拘束を要求しません。",
+          "en": "Original SHAKE and RATTLE full texts remain unread; selected author lecture notes were inspected. The finite-difference symplectic defect is a local proxy, not a general proof, and centered SHAKE velocity is not assigned RATTLE tangency."
+        }
+      ]
+    }
+  ],
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/shake/",
+  "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/shake/index.json",
+  "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/shake/index.md",
+  "code_urls": [
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/physics.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/diagnostics.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/analytic.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/discrete.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/io_utils.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/qualify.py"
+  ],
+  "test_urls": [
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/test_geometry.py"
+  ],
+  "run_commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output"
+  ],
+  "run_from": "atlas-geometric-controls-2026-11-24",
+  "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/",
+  "code_edition": "2026-11-24",
+  "execution_examples": [
+    {
+      "id": "shake-rattle-pendulum",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/shake-rattle-pendulum/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/shake-rattle-pendulum/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    }
+  ],
+  "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip",
+  "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/source-manifest.json",
+  "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/verification.json",
+  "code_archive_sha256": "4e3ef28ab6c91ae62918b7effc6f37097ec0f5a4ed878d4d33fa06e1945329a2",
+  "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/results/result.json",
+  "problem_navigation": {
+    "method_id": "shake",
+    "status": "educational-example",
+    "equations": [
+      {
+        "id": "constrained-pendulum",
+        "name": {
+          "ja": "拘束付き平面振り子",
+          "en": "Constrained planar pendulum"
+        },
+        "problem_ids": [
+          "high-index-pendulum"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#constrained-pendulum-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#constrained-pendulum-en"
+        }
+      },
+      {
+        "id": "hamiltonian",
+        "name": {
+          "ja": "Hamilton系・振動子",
+          "en": "Hamiltonian systems and oscillators"
+        },
+        "problem_ids": [
+          "high-index-pendulum"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#hamiltonian-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#hamiltonian-en"
+        }
+      }
+    ],
+    "problems": [
+      {
+        "id": "high-index-pendulum",
+        "name": {
+          "ja": "拘束付き振り子",
+          "en": "Constrained planar pendulum"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/results/high-index-pendulum-preview.png",
+          "sha256": "5c9e7d6c1ffbdaac74b1ffd39702ac14caa6e17bf75d338359671bc5594a91a8",
+          "width": 1090,
+          "height": 424,
+          "caption": {
+            "ja": "位置拘束の指数3系から明示ODEを導き、整合・非整合初期値の拘束ドリフトと安定化を比較します。 保存配列から作図。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。",
+            "en": "Derive an explicit ODE from an index-three position constraint and compare drift and stabilization for consistent and inconsistent starts. Drawn from saved arrays. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/high-index-pendulum/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/high-index-pendulum/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/high-index-pendulum/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/high-index-pendulum/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "shake-rattle-pendulum",
+            "kind": "supplement",
+            "name": {
+              "ja": "SHAKEとRATTLE：拘束と運動量の違い",
+              "en": "SHAKE and RATTLE: constraints and momentum ownership"
+            },
+            "scope": {
+              "ja": "単振り子の10固定軌道で、位置拘束、全時刻の接線運動量と内部点の中心化運動量を区別します。",
+              "en": "Ten fixed pendulum evolutions distinguish position constraints, full-time tangent momentum and interior centered momentum."
+            },
+            "method_ids": [
+              "shake",
+              "rattle"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/shake-rattle-pendulum/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/shake-rattle-pendulum/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "指数低減ODEと臨界拘束誤差拡張を固定RK4で積分し、拘束仕事も同じ段で積分します。 独自のスカラーNewton位置拘束、RATTLE終端接線impulse、SHAKE位置対。SHAKEの運動量は内部点だけで中心化し、端点を作りません。 SHAKEのsolves列はeta、eta/h^2、位置残差、Newton更新数です。列1は一律にeta/h^2ですが、初回半刻みの物理乗数は2eta/h^2、以後の位置Verletではeta/h^2です。逆位置対はすべて後者です。判定と図はこの列1を使いません。",
+          "en": "Advance the index-reduced ODE and a critical constraint-error extension with fixed RK4, integrating constraint work at the same stages. Original scalar Newton position constraints, RATTLE final tangent impulses and SHAKE position pairs. SHAKE momentum is centered only at interior nodes; endpoint momenta are absent. SHAKE solves columns are eta, eta/h^2, position residual and Newton updates. Column1 uses the uniform recurrence normalization eta/h^2. For the first constrained half-step startup, the physical multiplier is 2*eta/h^2; later full position-Verlet steps use eta/h^2. Reverse-pair steps all use the later recurrence convention. RATTLE has its separate five-column normalization. No scientific gate or plot uses SHAKE column1."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/high-index-pendulum/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/high-index-pendulum/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "high-index-pendulum",
+        "problem_name": {
+          "ja": "拘束付き振り子",
+          "en": "Constrained planar pendulum"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/high-index-pendulum/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/high-index-pendulum/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "high-index-pendulum",
+            "title": {
+              "ja": "振り子の指数低減・拘束ドリフト・明示安定化",
+              "en": "Index reduction, constraint drift and explicit stabilization for a pendulum"
+            },
+            "kind": "semi-analytic",
+            "relation": "same-problem",
+            "note": {
+              "ja": "投影・正規化・SHAKE/RATTLEなし。一般指数3ソルバーやシンプレクティック性の検証ではありません。",
+              "en": "No projection, normalization or SHAKE/RATTLE; no general index-three-solver or symplecticity claim."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-high-index-pendulum-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-high-index-pendulum-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/high-index-pendulum/?lang=ja#high-index-pendulum-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/high-index-pendulum/?lang=en#high-index-pendulum-en-measurements"
+            }
+          },
+          {
+            "id": "shake-rattle-pendulum",
+            "title": {
+              "ja": "SHAKEとRATTLE：拘束と運動量の違い",
+              "en": "SHAKE and RATTLE: constraints and momentum ownership"
+            },
+            "kind": "semi-analytic",
+            "relation": "same-problem",
+            "note": {
+              "ja": "原著SHAKE/RATTLE本文は未読で、著者講義ノートの選択箇所を確認。有限差分のsymplectic defectは一般証明ではなく、中心化SHAKE速度にRATTLEの接線拘束を要求しません。",
+              "en": "Original SHAKE and RATTLE full texts remain unread; selected author lecture notes were inspected. The finite-difference symplectic defect is a local proxy, not a general proof, and centered SHAKE velocity is not assigned RATTLE tangency."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-shake-rattle-pendulum-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-shake-rattle-pendulum-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/shake-rattle-pendulum/?lang=ja#shake-rattle-pendulum-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/shake-rattle-pendulum/?lang=en#shake-rattle-pendulum-en-measurements"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

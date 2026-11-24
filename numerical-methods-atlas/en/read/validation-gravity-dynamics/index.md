@@ -54,6 +54,10 @@ Time refinement/phase, synchronized all-step energy,P/L/COM,independent pair for
 - [Unsoftened Kepler two-body time error](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-gravity-kepler-en) (`gravity-kepler`; Same-problem reference · Analytic reference)
 
 One orbit at fixed eccentricity only; softened binaries and long-time behavior are outside this exact reference.
+
+- [Kepler eccentricity and time-step controls](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-kepler-eccentricity-en) (`kepler-eccentricity`; Same-problem reference · Semi-analytic reference)
+
+Small invariant errors do not establish phase accuracy. No canonical symplectic-defect measurement is claimed for the variable-step map, and fixed-h properties are not transferred automatically. R1 resolution was revised to R2 using pre-execution asymptotic planning, not measured calibration.
 ### Assumptions, units and boundaries
 
 G=M=a1,e.4,masses.6/.4,epsilon0,128/256/512steps,initialCOM/P0.

@@ -1,0 +1,189 @@
+{
+  "schema_version": 1,
+  "id": "rk45-dense-events",
+  "name": {
+    "ja": "RK45の埋込み推定・補間・イベント",
+    "en": "RK45: embedded errors, dense output and events"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rk45-dense-events/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rk45-dense-events/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rk45-dense-events/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/rk45-dense-events-preview.png",
+    "sha256": "014ce3e765d29479456cd7f479ae26870061991856405a1b51e62da548a1067c",
+    "width": 1378,
+    "height": 566,
+    "caption": {
+      "ja": "減衰回転の解析解を使い、受理/棄却・FSAL・区間内補間・向き付き交差時刻を分けて検査します。 保存済みの数値場と参照を用いた図です。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。",
+      "en": "Use analytic damped rotation to test acceptance, rejection, FSAL ownership, dense interpolation and directed event times separately. This preview reads saved numerical fields and references only. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#rk45-dense-events",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#rk45-dense-events"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#rk45-dense-events",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#rk45-dense-events-en"
+  },
+  "equations": [
+    {
+      "id": "linear-evolution-system",
+      "name": {
+        "ja": "有限次元の線形発展系",
+        "en": "Finite-dimensional linear evolution systems"
+      },
+      "formula": [
+        "\\dot y=Ay+b"
+      ],
+      "note": {
+        "ja": "減衰回転の物理時刻と、定常残差を減衰させる擬似時間を例ごとに区別します。",
+        "en": "Each example distinguishes physical time in damped rotation from pseudo-time used to reduce steady residuals."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#linear-evolution-system-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#linear-evolution-system-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "γ=.2,ω=3、初期値(1,0)、T=2。3対のrtol/atol×2最大刻みと終端交差2runで計8run。",
+    "en": "Use gamma = 0.2, omega = 3, initial state (1, 0), and T = 2. Three paired relative and absolute tolerances with two maximum steps, plus two terminal runs, give eight runs."
+  },
+  "formulations": [
+    {
+      "id": "supplement-rk45-dense-events",
+      "name": {
+        "ja": "RK45の埋込み推定・補間・イベント",
+        "en": "RK45: embedded errors, dense output and events"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "y(t)=e^{-0.2t}(\\cos 3t,\\sin 3t)^T,\\quad t_*=\\pi/6,\\pi/2",
+        "y(t_n+\\theta h)=y_n+hQ(\\theta,\\theta^2,\\theta^3,\\theta^4)^T"
+      ],
+      "note": {
+        "ja": "減衰回転の解析解を使い、受理/棄却・FSAL・区間内補間・向き付き交差時刻を分けて検査します。",
+        "en": "Use analytic damped rotation to test acceptance, rejection, FSAL ownership, dense interpolation and directed event times separately."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "rk45-dense-events",
+      "kind": "analytic",
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "title": {
+        "ja": "RK45の埋込み推定・補間・イベント",
+        "en": "RK45: embedded errors, dense output and events"
+      },
+      "formula": "y(t)=e^{-0.2t}(\\cos 3t,\\sin 3t)^T,\\quad t_*=\\pi/6,\\pi/2;\\quad y(t_n+\\theta h)=y_n+hQ(\\theta,\\theta^2,\\theta^3,\\theta^4)^T",
+      "assumptions": {
+        "ja": "γ=.2,ω=3、初期値(1,0)、T=2。3対のrtol/atol×2最大刻みと終端交差2runで計8run。",
+        "en": "Use gamma = 0.2, omega = 3, initial state (1, 0), and T = 2. Three paired relative and absolute tolerances with two maximum steps, plus two terminal runs, give eight runs."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "接触根・1刻み内の多重交差・reset付き系の一般性は保証しません。初期零/所有権/resetは限定成分対照で、局所許容誤差と大域精度を同一視しません。",
+        "en": "There is no general guarantee for tangential roots, multiple crossings within a step or systems with resets. Initial-zero and ownership controls are limited component tests; local tolerances and global accuracy remain distinct."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rk45-dense-events/?lang=ja#rk45-dense-events-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rk45-dense-events/?lang=en#rk45-dense-events-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "解析状態とπ/6,π/2の単純交差を参照に、端点/97オフメッシュ点/イベント時刻・残差と実nfev=1+6試行数を判定。",
+    "en": "Analytic states and the simple crossings at pi/6 and pi/2 provide independent truth. Check endpoints, 97 off-mesh samples, event times and residuals, and the actual identity nfev = 1 + 6 times the attempted-step count."
+  },
+  "methods": [
+    {
+      "id": "rk45",
+      "name": {
+        "ja": "Dormand–Prince RK45",
+        "en": "Dormand–Prince RK45"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk45/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk45/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "実Dormand–Prince5(4)・quartic連続拡張・受理状態が所有するFSAL・保存補間上の符号区間二分法。拒否端点を昇格しません。",
+    "en": "Use actual Dormand–Prince 5(4) stages, a quartic continuous extension, an accepted-state derivative cache and bracket bisection on retained interpolants. A rejected endpoint never replaces the accepted starting derivative."
+  },
+  "executions": [
+    {
+      "id": "rk45-dense-events",
+      "kind": "supplement",
+      "name": {
+        "ja": "RK45の埋込み推定・補間・イベント",
+        "en": "RK45: embedded errors, dense output and events"
+      },
+      "method_ids": [
+        "rk45"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rk45-dense-events/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rk45-dense-events/?lang=en"
+      },
+      "scope": {
+        "ja": "減衰回転の解析解を使い、受理/棄却・FSAL・区間内補間・向き付き交差時刻を分けて検査します。",
+        "en": "Use analytic damped rotation to test acceptance, rejection, FSAL ownership, dense interpolation and directed event times separately."
+      },
+      "assumptions": {
+        "ja": "γ=.2,ω=3、初期値(1,0)、T=2。3対のrtol/atol×2最大刻みと終端交差2runで計8run。",
+        "en": "Use gamma = 0.2, omega = 3, initial state (1, 0), and T = 2. Three paired relative and absolute tolerances with two maximum steps, plus two terminal runs, give eight runs."
+      },
+      "limits": {
+        "ja": "接触根・1刻み内の多重交差・reset付き系の一般性は保証しません。初期零/所有権/resetは限定成分対照で、局所許容誤差と大域精度を同一視しません。",
+        "en": "There is no general guarantee for tangential roots, multiple crossings within a step or systems with resets. Initial-zero and ownership controls are limited component tests; local tolerances and global accuracy remain distinct."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/atlas-ode-adaptivity-2026-11-24-r2.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "解析状態とπ/6,π/2の単純交差を参照に、端点/97オフメッシュ点/イベント時刻・残差と実nfev=1+6試行数を判定。",
+        "en": "Analytic states and the simple crossings at pi/6 and pi/2 provide independent truth. Check endpoints, 97 off-mesh samples, event times and residuals, and the actual identity nfev = 1 + 6 times the attempted-step count."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/experiments.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/io_contract.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/reference_eval.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/dopri.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/tableau.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_boundary.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_contract.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_dopri.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_reporting.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_stiff.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

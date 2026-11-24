@@ -5500,8 +5500,8 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "verified",
-      "current": "Bratu の減衰 Newton、十分減少線探索、組み立て Jacobian と GMRES/ILU 内部解法がある。一般の matrix-free Jv・trust region・continuation は atlas-methods の制限に明記。",
+      "state": "published",
+      "current": "固定入力のコード・保存図をHRで公開。匿名公開ファイル照合、実HR日英画面、公開ZIP Linux全56群116例1456pytestと全56JUnitの検査が合格。公開時点の条件・参照の読解範囲・失敗履歴は各配布記録を参照。",
       "tasks": [
         "Bratu と小さいスケール不良の連立系で同じ初期値集合を使用",
         "失敗・特異 Jacobian・停滞を区別して保存"
@@ -5529,7 +5529,7 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-24/globalization-controls/verification.json",
+        "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
         "inputs": [
           "/code/validated-examples/2026-11-24/globalization-controls/inputs.json",
           "/code/validated-examples/2026-11-24/globalization-controls/acceptance.json",
@@ -5544,7 +5544,9 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-24/globalization-controls/README.md",
-          "/code/validated-examples/2026-11-24/globalization-controls/cases.json"
+          "/code/validated-examples/2026-11-24/globalization-controls/cases.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
+          "/code/validated-examples/2026-11-24/globalization-controls/verification.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#globalization-difficult-starts-ja",
         "execution": "/numerical-methods-atlas/validation/globalization-difficult-starts/?lang=ja#globalization-difficult-starts-ja-measurements",
@@ -5560,7 +5562,7 @@
         "local_evidence_checked": true,
         "verification_passed": true,
         "links": {
-          "verification": "/code/validated-examples/2026-11-24/globalization-controls/verification.json",
+          "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
           "inputs": [
             "/code/validated-examples/2026-11-24/globalization-controls/inputs.json",
             "/code/validated-examples/2026-11-24/globalization-controls/acceptance.json",
@@ -5575,7 +5577,9 @@
           ],
           "references": [
             "/code/validated-examples/2026-11-24/globalization-controls/README.md",
-            "/code/validated-examples/2026-11-24/globalization-controls/cases.json"
+            "/code/validated-examples/2026-11-24/globalization-controls/cases.json",
+            "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
+            "/code/validated-examples/2026-11-24/globalization-controls/verification.json"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#globalization-difficult-starts-ja",
           "execution": "/numerical-methods-atlas/validation/globalization-difficult-starts/?lang=ja#globalization-difficult-starts-ja-measurements",
@@ -5597,8 +5601,8 @@
       "priority": "P1",
       "kind": "implementation",
       "initial_coverage": "解説のみ",
-      "state": "verified",
-      "current": "独自の forward dual-number、JVP/Jacobian と解析微分・有限差分の Bratu 比較は実装・配布・検証済み。逆モード/VJP/HVP は章内説明がある。",
+      "state": "published",
+      "current": "固定入力のコード・保存図をHRで公開。匿名公開ファイル照合、実HR日英画面、公開ZIP Linux全56群116例1456pytestと全56JUnitの検査が合格。公開時点の条件・参照の読解範囲・失敗履歴は各配布記録を参照。",
       "tasks": [
         "Bratu 残差で dot(Jv,w)=dot(v,Jᵀw) を解析値・方向差分と比較",
         "複数出力/多数入力で評価回数とメモリを比較"
@@ -5639,7 +5643,7 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-24/reverse-higher-ad/verification.json",
+        "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
         "inputs": [
           "/code/validated-examples/2026-11-24/reverse-higher-ad/inputs.json",
           "/code/validated-examples/2026-11-24/reverse-higher-ad/acceptance.json",
@@ -5654,7 +5658,9 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-24/reverse-higher-ad/README.md",
-          "/code/validated-examples/2026-11-24/reverse-higher-ad/cases.json"
+          "/code/validated-examples/2026-11-24/reverse-higher-ad/cases.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
+          "/code/validated-examples/2026-11-24/reverse-higher-ad/verification.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#reverse-vjp-duality-ja",
         "execution": "/numerical-methods-atlas/validation/reverse-vjp-duality/?lang=ja#reverse-vjp-duality-ja-measurements",
@@ -5670,7 +5676,7 @@
         "local_evidence_checked": true,
         "verification_passed": true,
         "links": {
-          "verification": "/code/validated-examples/2026-11-24/reverse-higher-ad/verification.json",
+          "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
           "inputs": [
             "/code/validated-examples/2026-11-24/reverse-higher-ad/inputs.json",
             "/code/validated-examples/2026-11-24/reverse-higher-ad/acceptance.json",
@@ -5685,7 +5691,9 @@
           ],
           "references": [
             "/code/validated-examples/2026-11-24/reverse-higher-ad/README.md",
-            "/code/validated-examples/2026-11-24/reverse-higher-ad/cases.json"
+            "/code/validated-examples/2026-11-24/reverse-higher-ad/cases.json",
+            "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
+            "/code/validated-examples/2026-11-24/reverse-higher-ad/verification.json"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#reverse-vjp-duality-ja",
           "execution": "/numerical-methods-atlas/validation/reverse-vjp-duality/?lang=ja#reverse-vjp-duality-ja-measurements",
@@ -5707,8 +5715,8 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "解説のみ",
-      "state": "verified",
-      "current": "独自の forward dual-number、JVP/Jacobian と解析微分・有限差分の Bratu 比較は実装・配布・検証済み。逆モード/VJP/HVP は章内説明がある。",
+      "state": "published",
+      "current": "固定入力のコード・保存図をHRで公開。匿名公開ファイル照合、実HR日英画面、公開ZIP Linux全56群116例1456pytestと全56JUnitの検査が合格。公開時点の条件・参照の読解範囲・失敗履歴は各配布記録を参照。",
       "tasks": [
         "小さな既知二次関数と Bratu 目的関数で HVP を照合",
         "状態を固定した偏微分と陰関数を通る全微分を区別"
@@ -5749,7 +5757,7 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-24/reverse-higher-ad/verification.json",
+        "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
         "inputs": [
           "/code/validated-examples/2026-11-24/reverse-higher-ad/inputs.json",
           "/code/validated-examples/2026-11-24/reverse-higher-ad/acceptance.json",
@@ -5764,7 +5772,9 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-24/reverse-higher-ad/README.md",
-          "/code/validated-examples/2026-11-24/reverse-higher-ad/cases.json"
+          "/code/validated-examples/2026-11-24/reverse-higher-ad/cases.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
+          "/code/validated-examples/2026-11-24/reverse-higher-ad/verification.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#hessian-vector-products-ja",
         "execution": "/numerical-methods-atlas/validation/hessian-vector-products/?lang=ja#hessian-vector-products-ja-measurements",
@@ -5780,7 +5790,7 @@
         "local_evidence_checked": true,
         "verification_passed": true,
         "links": {
-          "verification": "/code/validated-examples/2026-11-24/reverse-higher-ad/verification.json",
+          "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
           "inputs": [
             "/code/validated-examples/2026-11-24/reverse-higher-ad/inputs.json",
             "/code/validated-examples/2026-11-24/reverse-higher-ad/acceptance.json",
@@ -5795,7 +5805,9 @@
           ],
           "references": [
             "/code/validated-examples/2026-11-24/reverse-higher-ad/README.md",
-            "/code/validated-examples/2026-11-24/reverse-higher-ad/cases.json"
+            "/code/validated-examples/2026-11-24/reverse-higher-ad/cases.json",
+            "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
+            "/code/validated-examples/2026-11-24/reverse-higher-ad/verification.json"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#hessian-vector-products-ja",
           "execution": "/numerical-methods-atlas/validation/hessian-vector-products/?lang=ja#hessian-vector-products-ja-measurements",
@@ -5817,8 +5829,8 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "verified",
-      "current": "独自の forward dual-number、JVP/Jacobian と解析微分・有限差分の Bratu 比較は実装・配布・検証済み。逆モード/VJP/HVP は章内説明がある。",
+      "state": "published",
+      "current": "固定入力のコード・保存図をHRで公開。匿名公開ファイル照合、実HR日英画面、公開ZIP Linux全56群116例1456pytestと全56JUnitの検査が合格。公開時点の条件・参照の読解範囲・失敗履歴は各配布記録を参照。",
       "tasks": [
         "abs/max、箱制約境界、反復停止条件を含む簡単な例で方向依存・失敗を表示",
         "離散化された滑らかな残差の微分と、アルゴリズム分岐の微分を区別"
@@ -5859,7 +5871,7 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-24/reverse-higher-ad/verification.json",
+        "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
         "inputs": [
           "/code/validated-examples/2026-11-24/reverse-higher-ad/inputs.json",
           "/code/validated-examples/2026-11-24/reverse-higher-ad/acceptance.json",
@@ -5874,7 +5886,9 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-24/reverse-higher-ad/README.md",
-          "/code/validated-examples/2026-11-24/reverse-higher-ad/cases.json"
+          "/code/validated-examples/2026-11-24/reverse-higher-ad/cases.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
+          "/code/validated-examples/2026-11-24/reverse-higher-ad/verification.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#kink-branch-derivatives-ja",
         "execution": "/numerical-methods-atlas/validation/kink-branch-derivatives/?lang=ja#kink-branch-derivatives-ja-measurements",
@@ -5890,7 +5904,7 @@
         "local_evidence_checked": true,
         "verification_passed": true,
         "links": {
-          "verification": "/code/validated-examples/2026-11-24/reverse-higher-ad/verification.json",
+          "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
           "inputs": [
             "/code/validated-examples/2026-11-24/reverse-higher-ad/inputs.json",
             "/code/validated-examples/2026-11-24/reverse-higher-ad/acceptance.json",
@@ -5905,7 +5919,9 @@
           ],
           "references": [
             "/code/validated-examples/2026-11-24/reverse-higher-ad/README.md",
-            "/code/validated-examples/2026-11-24/reverse-higher-ad/cases.json"
+            "/code/validated-examples/2026-11-24/reverse-higher-ad/cases.json",
+            "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
+            "/code/validated-examples/2026-11-24/reverse-higher-ad/verification.json"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#kink-branch-derivatives-ja",
           "execution": "/numerical-methods-atlas/validation/kink-branch-derivatives/?lang=ja#kink-branch-derivatives-ja-measurements",
@@ -5927,8 +5943,8 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "verified",
-      "current": "Bratu の陰関数感度と離散随伴、解析パラメータ微分、有限差分、前進/随伴一致がある。現在の実例は定常・小規模密行列で、逆問題も一つ又は二つのパラメータ。",
+      "state": "published",
+      "current": "固定入力のコード・保存図をHRで公開。匿名公開ファイル照合、実HR日英画面、公開ZIP Linux全56群116例1456pytestと全56JUnitの検査が合格。公開時点の条件・参照の読解範囲・失敗履歴は各配布記録を参照。",
       "tasks": [
         "小さい拡散 ODE 半離散系又は既知線形 ODE の終端目的関数を使用",
         "前進感度・離散随伴・方向差分を照合し、保存全軌道と checkpoint 再計算を比較"
@@ -5992,7 +6008,7 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-24/adjoint/verification.json",
+        "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
         "inputs": [
           "/code/validated-examples/2026-11-24/adjoint/inputs.json",
           "/code/validated-examples/2026-11-24/adjoint/acceptance.json",
@@ -6014,7 +6030,9 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-24/adjoint/README.md",
-          "/code/validated-examples/2026-11-24/adjoint/cases.json"
+          "/code/validated-examples/2026-11-24/adjoint/cases.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
+          "/code/validated-examples/2026-11-24/adjoint/verification.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#diffusion-discrete-adjoint-ja",
         "execution": "/numerical-methods-atlas/validation/diffusion-discrete-adjoint/?lang=ja#diffusion-discrete-adjoint-ja-measurements",
@@ -6030,7 +6048,7 @@
         "local_evidence_checked": true,
         "verification_passed": true,
         "links": {
-          "verification": "/code/validated-examples/2026-11-24/adjoint/verification.json",
+          "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
           "inputs": [
             "/code/validated-examples/2026-11-24/adjoint/inputs.json",
             "/code/validated-examples/2026-11-24/adjoint/acceptance.json",
@@ -6052,7 +6070,9 @@
           ],
           "references": [
             "/code/validated-examples/2026-11-24/adjoint/README.md",
-            "/code/validated-examples/2026-11-24/adjoint/cases.json"
+            "/code/validated-examples/2026-11-24/adjoint/cases.json",
+            "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
+            "/code/validated-examples/2026-11-24/adjoint/verification.json"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#diffusion-discrete-adjoint-ja",
           "execution": "/numerical-methods-atlas/validation/diffusion-discrete-adjoint/?lang=ja#diffusion-discrete-adjoint-ja-measurements",
@@ -6074,8 +6094,8 @@
       "priority": "P1",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "verified",
-      "current": "Bratu の陰関数感度と離散随伴、解析パラメータ微分、有限差分、前進/随伴一致がある。現在の実例は定常・小規模密行列で、逆問題も一つ又は二つのパラメータ。",
+      "state": "published",
+      "current": "固定入力のコード・保存図をHRで公開。匿名公開ファイル照合、実HR日英画面、公開ZIP Linux全56群116例1456pytestと全56JUnitの検査が合格。公開時点の条件・参照の読解範囲・失敗履歴は各配布記録を参照。",
       "tasks": [
         "Bratu 臨界 λ へ近づく列で最小特異値、感度、差分刻み依存を保存",
         "状態/随伴線形残差が勾配誤差へ与える影響を分離"
@@ -6146,7 +6166,7 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-24/adjoint/verification.json",
+        "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
         "inputs": [
           "/code/validated-examples/2026-11-24/adjoint/inputs.json",
           "/code/validated-examples/2026-11-24/adjoint/acceptance.json",
@@ -6173,7 +6193,9 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-24/adjoint/README.md",
-          "/code/validated-examples/2026-11-24/adjoint/cases.json"
+          "/code/validated-examples/2026-11-24/adjoint/cases.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
+          "/code/validated-examples/2026-11-24/adjoint/verification.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#bratu-fold-sensitivity-ja",
         "execution": "/numerical-methods-atlas/validation/bratu-fold-sensitivity/?lang=ja#bratu-fold-sensitivity-ja-measurements",
@@ -6189,7 +6211,7 @@
         "local_evidence_checked": true,
         "verification_passed": true,
         "links": {
-          "verification": "/code/validated-examples/2026-11-24/adjoint/verification.json",
+          "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
           "inputs": [
             "/code/validated-examples/2026-11-24/adjoint/inputs.json",
             "/code/validated-examples/2026-11-24/adjoint/acceptance.json",
@@ -6216,7 +6238,9 @@
           ],
           "references": [
             "/code/validated-examples/2026-11-24/adjoint/README.md",
-            "/code/validated-examples/2026-11-24/adjoint/cases.json"
+            "/code/validated-examples/2026-11-24/adjoint/cases.json",
+            "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
+            "/code/validated-examples/2026-11-24/adjoint/verification.json"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#bratu-fold-sensitivity-ja",
           "execution": "/numerical-methods-atlas/validation/bratu-fold-sensitivity/?lang=ja#bratu-fold-sensitivity-ja-measurements",
@@ -6238,8 +6262,8 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "verified",
-      "current": "Bratu の陰関数感度と離散随伴、解析パラメータ微分、有限差分、前進/随伴一致がある。現在の実例は定常・小規模密行列で、逆問題も一つ又は二つのパラメータ。",
+      "state": "published",
+      "current": "固定入力のコード・保存図をHRで公開。匿名公開ファイル照合、実HR日英画面、公開ZIP Linux全56群116例1456pytestと全56JUnitの検査が合格。公開時点の条件・参照の読解範囲・失敗履歴は各配布記録を参照。",
       "tasks": [
         "二つの基底から小さな分布係数へ拡張し、全 Jacobian を作る場合と比較",
         "目的関数数とパラメータ数を区別して作業量を測定"
@@ -6310,7 +6334,7 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-24/adjoint/verification.json",
+        "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
         "inputs": [
           "/code/validated-examples/2026-11-24/adjoint/inputs.json",
           "/code/validated-examples/2026-11-24/adjoint/acceptance.json",
@@ -6337,7 +6361,9 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-24/adjoint/README.md",
-          "/code/validated-examples/2026-11-24/adjoint/cases.json"
+          "/code/validated-examples/2026-11-24/adjoint/cases.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
+          "/code/validated-examples/2026-11-24/adjoint/verification.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#bratu-distributed-vjp-ja",
         "execution": "/numerical-methods-atlas/validation/bratu-distributed-vjp/?lang=ja#bratu-distributed-vjp-ja-measurements",
@@ -6353,7 +6379,7 @@
         "local_evidence_checked": true,
         "verification_passed": true,
         "links": {
-          "verification": "/code/validated-examples/2026-11-24/adjoint/verification.json",
+          "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
           "inputs": [
             "/code/validated-examples/2026-11-24/adjoint/inputs.json",
             "/code/validated-examples/2026-11-24/adjoint/acceptance.json",
@@ -6380,7 +6406,9 @@
           ],
           "references": [
             "/code/validated-examples/2026-11-24/adjoint/README.md",
-            "/code/validated-examples/2026-11-24/adjoint/cases.json"
+            "/code/validated-examples/2026-11-24/adjoint/cases.json",
+            "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
+            "/code/validated-examples/2026-11-24/adjoint/verification.json"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#bratu-distributed-vjp-ja",
           "execution": "/numerical-methods-atlas/validation/bratu-distributed-vjp/?lang=ja#bratu-distributed-vjp-ja-measurements",
@@ -6402,8 +6430,8 @@
       "priority": "P1",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "verified",
-      "current": "Bratu λ 推定、二パラメータ空間係数推定、箱制約投影勾配・Armijo、Tikhonov 正則化とデータのみの感度 SVD による識別可能性を実装済み。BFGS と Rosenbrock の検証案は章にあるが未実行。SVD 診断は統計的 Fisher 情報・厳密 Hessian とは呼んでいない。",
+      "state": "published",
+      "current": "固定入力のコード・保存図をHRで公開。匿名公開ファイル照合、実HR日英画面、公開ZIP Linux全56群116例1456pytestと全56JUnitの検査が合格。公開時点の条件・参照の読解範囲・失敗履歴は各配布記録を参照。",
       "tasks": [
         "既存二パラメータ Bratu で投影勾配と同じ観測・誤差基準で比較",
         "重み・変数スケーリング・悪条件感度の下で停止理由と線形解法を保存"
@@ -6447,7 +6475,7 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-24/inverse-optimization/verification.json",
+        "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
         "inputs": [
           "/code/validated-examples/2026-11-24/inverse-optimization/inputs.json",
           "/code/validated-examples/2026-11-24/inverse-optimization/acceptance.json",
@@ -6466,7 +6494,9 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-24/inverse-optimization/README.md",
-          "/code/validated-examples/2026-11-24/inverse-optimization/cases.json"
+          "/code/validated-examples/2026-11-24/inverse-optimization/cases.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
+          "/code/validated-examples/2026-11-24/inverse-optimization/verification.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#bratu-gn-lm-bounds-ja",
         "execution": "/numerical-methods-atlas/validation/bratu-gn-lm-bounds/?lang=ja#bratu-gn-lm-bounds-ja-measurements",
@@ -6482,7 +6512,7 @@
         "local_evidence_checked": true,
         "verification_passed": true,
         "links": {
-          "verification": "/code/validated-examples/2026-11-24/inverse-optimization/verification.json",
+          "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
           "inputs": [
             "/code/validated-examples/2026-11-24/inverse-optimization/inputs.json",
             "/code/validated-examples/2026-11-24/inverse-optimization/acceptance.json",
@@ -6501,7 +6531,9 @@
           ],
           "references": [
             "/code/validated-examples/2026-11-24/inverse-optimization/README.md",
-            "/code/validated-examples/2026-11-24/inverse-optimization/cases.json"
+            "/code/validated-examples/2026-11-24/inverse-optimization/cases.json",
+            "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
+            "/code/validated-examples/2026-11-24/inverse-optimization/verification.json"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#bratu-gn-lm-bounds-ja",
           "execution": "/numerical-methods-atlas/validation/bratu-gn-lm-bounds/?lang=ja#bratu-gn-lm-bounds-ja-measurements",
@@ -6523,8 +6555,8 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "解説のみ",
-      "state": "verified",
-      "current": "Bratu λ 推定、二パラメータ空間係数推定、箱制約投影勾配・Armijo、Tikhonov 正則化とデータのみの感度 SVD による識別可能性を実装済み。BFGS と Rosenbrock の検証案は章にあるが未実行。SVD 診断は統計的 Fisher 情報・厳密 Hessian とは呼んでいない。",
+      "state": "published",
+      "current": "固定入力のコード・保存図をHRで公開。匿名公開ファイル照合、実HR日英画面、公開ZIP Linux全56群116例1456pytestと全56JUnitの検査が合格。公開時点の条件・参照の読解範囲・失敗履歴は各配布記録を参照。",
       "tasks": [
         "既知 SPD 二次関数と Rosenbrock の複数初期値で勾配検査・曲率条件を保存",
         "準 Newton と正則化逆問題の役割を区別。Fletcher1970 は現状 metadata のため利用箇所を補足"
@@ -6595,7 +6627,7 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-24/inverse-optimization/verification.json",
+        "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
         "inputs": [
           "/code/validated-examples/2026-11-24/inverse-optimization/inputs.json",
           "/code/validated-examples/2026-11-24/inverse-optimization/acceptance.json",
@@ -6611,7 +6643,9 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-24/inverse-optimization/README.md",
-          "/code/validated-examples/2026-11-24/inverse-optimization/cases.json"
+          "/code/validated-examples/2026-11-24/inverse-optimization/cases.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
+          "/code/validated-examples/2026-11-24/inverse-optimization/verification.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#bfgs-lbfgs-controls-ja",
         "execution": "/numerical-methods-atlas/validation/bfgs-lbfgs-controls/?lang=ja#bfgs-lbfgs-controls-ja-measurements",
@@ -6627,7 +6661,7 @@
         "local_evidence_checked": true,
         "verification_passed": true,
         "links": {
-          "verification": "/code/validated-examples/2026-11-24/inverse-optimization/verification.json",
+          "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
           "inputs": [
             "/code/validated-examples/2026-11-24/inverse-optimization/inputs.json",
             "/code/validated-examples/2026-11-24/inverse-optimization/acceptance.json",
@@ -6643,7 +6677,9 @@
           ],
           "references": [
             "/code/validated-examples/2026-11-24/inverse-optimization/README.md",
-            "/code/validated-examples/2026-11-24/inverse-optimization/cases.json"
+            "/code/validated-examples/2026-11-24/inverse-optimization/cases.json",
+            "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
+            "/code/validated-examples/2026-11-24/inverse-optimization/verification.json"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#bfgs-lbfgs-controls-ja",
           "execution": "/numerical-methods-atlas/validation/bfgs-lbfgs-controls/?lang=ja#bfgs-lbfgs-controls-ja-measurements",
@@ -6665,8 +6701,8 @@
       "priority": "P1",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "verified",
-      "current": "Bratu λ 推定、二パラメータ空間係数推定、箱制約投影勾配・Armijo、Tikhonov 正則化とデータのみの感度 SVD による識別可能性を実装済み。BFGS と Rosenbrock の検証案は章にあるが未実行。SVD 診断は統計的 Fisher 情報・厳密 Hessian とは呼んでいない。",
+      "state": "published",
+      "current": "固定入力のコード・保存図をHRで公開。匿名公開ファイル照合、実HR日英画面、公開ZIP Linux全56群116例1456pytestと全56JUnitの検査が合格。公開時点の条件・参照の読解範囲・失敗履歴は各配布記録を参照。",
       "tasks": [
         "観測を細かい別格子で作り、粗格子で推定して inverse crime を分離",
         "固定ノイズの少数反復、discrepancy/L-curve などの γ 選択、推定偏りと安定性を検証",
@@ -6725,7 +6761,7 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-24/inverse-optimization/verification.json",
+        "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
         "inputs": [
           "/code/validated-examples/2026-11-24/inverse-optimization/inputs.json",
           "/code/validated-examples/2026-11-24/inverse-optimization/acceptance.json",
@@ -6742,7 +6778,9 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-24/inverse-optimization/README.md",
-          "/code/validated-examples/2026-11-24/inverse-optimization/cases.json"
+          "/code/validated-examples/2026-11-24/inverse-optimization/cases.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
+          "/code/validated-examples/2026-11-24/inverse-optimization/verification.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#bratu-noise-regularization-ja",
         "execution": "/numerical-methods-atlas/validation/bratu-noise-regularization/?lang=ja#bratu-noise-regularization-ja-measurements",
@@ -6758,7 +6796,7 @@
         "local_evidence_checked": true,
         "verification_passed": true,
         "links": {
-          "verification": "/code/validated-examples/2026-11-24/inverse-optimization/verification.json",
+          "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
           "inputs": [
             "/code/validated-examples/2026-11-24/inverse-optimization/inputs.json",
             "/code/validated-examples/2026-11-24/inverse-optimization/acceptance.json",
@@ -6775,7 +6813,9 @@
           ],
           "references": [
             "/code/validated-examples/2026-11-24/inverse-optimization/README.md",
-            "/code/validated-examples/2026-11-24/inverse-optimization/cases.json"
+            "/code/validated-examples/2026-11-24/inverse-optimization/cases.json",
+            "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
+            "/code/validated-examples/2026-11-24/inverse-optimization/verification.json"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#bratu-noise-regularization-ja",
           "execution": "/numerical-methods-atlas/validation/bratu-noise-regularization/?lang=ja#bratu-noise-regularization-ja-measurements",
@@ -6797,7 +6837,7 @@
       "priority": "P1",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "planned",
+      "state": "verified",
       "current": "Euler/Heun/midpoint/Ralston/Kutta3/RK4/SSPRK、BDF2/SDIRK2/IMEX Euler、step doubling と非自律製造解、幾何積分がある。新規 Lie/Strang は有限振幅 Schnakenberg の同一空間離散に対する Radau/DOP853 独立時間参照で検証済み。",
       "tasks": [
         "軽い固定 μ・時区間だけを用い、stiffness 遷移、保存量/正値性、許容誤差と実誤差を比較",
@@ -6816,6 +6856,24 @@
           "url": "https://sundials.readthedocs.io/en/latest/ida/Mathematics_link.html",
           "checked_on": "2026-11-23",
           "review": "公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。"
+        },
+        {
+          "title": "Official SUNDIALS cvRoberts_dns model definition",
+          "url": "https://raw.githubusercontent.com/LLNL/sundials/main/examples/cvode/serial/cvRoberts_dns.c",
+          "review": "Read the model, initial values and Jacobian in selected official source sections. The observed main URL is not an immutable release pin. Our T = 0.4 scope does not reproduce the original paper, the long 4e10 benchmark or its numerical tables.",
+          "review_level": "official-source-selected-functions"
+        },
+        {
+          "title": "SciPy1.14.1 solve_ivp and selected official source",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html",
+          "review": "Read selected fixed-version method, API, local-tolerance and termination sections. This is not a full audit of the original research papers.",
+          "review_level": "official-selected-source"
+        },
+        {
+          "title": "scikit-sundae official van der Pol example",
+          "url": "https://scikit-sundae.readthedocs.io/en/stable/examples/van_der_pol.html",
+          "review": "Read the equations and initial state in the official binding example. Our mu = 1 and 100, T = 2 inputs are an authored early-transient scope, not an original-paper or full mu = 1000 cycle reproduction.",
+          "review_level": "official-project-example-selected-equations"
         }
       ],
       "baseline_evidence": [
@@ -6834,9 +6892,87 @@
           "id": "reaction-diffusion-splitting"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/inputs.json",
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/acceptance.json",
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/robertson-stiff-kinetics.png",
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/robertson-stiff-kinetics-preview.png",
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/van-der-pol-stiff-transition.png",
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/van-der-pol-stiff-transition-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/run.py",
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/experiments.py",
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/io_contract.py",
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/reference_eval.py",
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/models.py",
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/stiff.py",
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/reporting_policy.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/README.md",
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/cases.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#robertson-stiff-kinetics-ja",
+        "execution": "/numerical-methods-atlas/validation/robertson-stiff-kinetics/?lang=ja#robertson-stiff-kinetics-ja-measurements",
+        "note": {
+          "ja": "固定入力の正規実行と独立展開ZIPのpytest・全入力再実行が合格しました。公開後の同一SHAによるHTTP・UI・Linuxの確認は別に記録します。",
+          "en": "Canonical execution and independently extracted ZIP pytest/all-input reruns passed. Same-SHA post-publication HTTP, UI and Linux checks are recorded separately."
+        },
+        "case_ids": [
+          "robertson-stiff-kinetics",
+          "van-der-pol-stiff-transition"
+        ]
+      },
       "sequence": 68,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/inputs.json",
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/acceptance.json",
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/robertson-stiff-kinetics.png",
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/robertson-stiff-kinetics-preview.png",
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/van-der-pol-stiff-transition.png",
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/van-der-pol-stiff-transition-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/run.py",
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/experiments.py",
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/io_contract.py",
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/reference_eval.py",
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/models.py",
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/stiff.py",
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/reporting_policy.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/README.md",
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/cases.json"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#robertson-stiff-kinetics-ja",
+          "execution": "/numerical-methods-atlas/validation/robertson-stiff-kinetics/?lang=ja#robertson-stiff-kinetics-ja-measurements",
+          "note": {
+            "ja": "固定入力の正規実行と独立展開ZIPのpytest・全入力再実行が合格しました。公開後の同一SHAによるHTTP・UI・Linuxの確認は別に記録します。",
+            "en": "Canonical execution and independently extracted ZIP pytest/all-input reruns passed. Same-SHA post-publication HTTP, UI and Linux checks are recorded separately."
+          },
+          "case_ids": [
+            "robertson-stiff-kinetics",
+            "van-der-pol-stiff-transition"
+          ]
+        }
+      }
     },
     {
       "id": "ode-time-2",
@@ -6849,7 +6985,7 @@
       "priority": "P1",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "planned",
+      "state": "verified",
       "current": "Euler/Heun/midpoint/Ralston/Kutta3/RK4/SSPRK、BDF2/SDIRK2/IMEX Euler、step doubling と非自律製造解、幾何積分がある。新規 Lie/Strang は有限振幅 Schnakenberg の同一空間離散に対する Radau/DOP853 独立時間参照で検証済み。",
       "tasks": [
         "既知交差時刻を持つ減衰振動または落下問題で補間誤差とイベント時刻を照合",
@@ -6868,6 +7004,12 @@
           "url": "https://sundials.readthedocs.io/en/latest/ida/Mathematics_link.html",
           "checked_on": "2026-11-23",
           "review": "公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。"
+        },
+        {
+          "title": "SciPy1.14.1 RK45 coefficient and dense-output source",
+          "url": "https://github.com/scipy/scipy/blob/v1.14.1/scipy/integrate/_ivp/rk.py",
+          "review": "Read C, A, B, E, P, stage evaluation, accepted/rejected FSAL updates and quartic evaluation. The original Dormand–Prince 1980 and Shampine 1986 papers remain unread beyond bibliography. The adapted coefficient BSD notice is retained.",
+          "review_level": "official-release-source-selected-functions"
         }
       ],
       "baseline_evidence": [
@@ -6886,9 +7028,73 @@
           "id": "reaction-diffusion-splitting"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/inputs.json",
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/acceptance.json",
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/rk45-dense-events.png",
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/rk45-dense-events-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/run.py",
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/experiments.py",
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/io_contract.py",
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/reference_eval.py",
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/dopri.py",
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/tableau.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/README.md",
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/cases.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#rk45-dense-events-ja",
+        "execution": "/numerical-methods-atlas/validation/rk45-dense-events/?lang=ja#rk45-dense-events-ja-measurements",
+        "note": {
+          "ja": "固定入力の正規実行と独立展開ZIPのpytest・全入力再実行が合格しました。公開後の同一SHAによるHTTP・UI・Linuxの確認は別に記録します。",
+          "en": "Canonical execution and independently extracted ZIP pytest/all-input reruns passed. Same-SHA post-publication HTTP, UI and Linux checks are recorded separately."
+        }
+      },
       "sequence": 69,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/inputs.json",
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/acceptance.json",
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/rk45-dense-events.png",
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/rk45-dense-events-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/run.py",
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/experiments.py",
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/io_contract.py",
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/reference_eval.py",
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/dopri.py",
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/tableau.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/README.md",
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/cases.json"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#rk45-dense-events-ja",
+          "execution": "/numerical-methods-atlas/validation/rk45-dense-events/?lang=ja#rk45-dense-events-ja-measurements",
+          "note": {
+            "ja": "固定入力の正規実行と独立展開ZIPのpytest・全入力再実行が合格しました。公開後の同一SHAによるHTTP・UI・Linuxの確認は別に記録します。",
+            "en": "Canonical execution and independently extracted ZIP pytest/all-input reruns passed. Same-SHA post-publication HTTP, UI and Linux checks are recorded separately."
+          }
+        }
+      }
     },
     {
       "id": "ode-time-3",
@@ -6901,7 +7107,7 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "planned",
+      "state": "verified",
       "current": "Euler/Heun/midpoint/Ralston/Kutta3/RK4/SSPRK、BDF2/SDIRK2/IMEX Euler、step doubling と非自律製造解、幾何積分がある。新規 Lie/Strang は有限振幅 Schnakenberg の同一空間離散に対する Radau/DOP853 独立時間参照で検証済み。",
       "tasks": [
         "既存周期・固定格子 Schnakenberg の検証を保持し、非同次境界か時間依存係数を一つ追加",
@@ -6920,6 +7126,12 @@
           "url": "https://sundials.readthedocs.io/en/latest/ida/Mathematics_link.html",
           "checked_on": "2026-11-23",
           "review": "公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。"
+        },
+        {
+          "title": "Overcoming order reduction in diffusion-reaction splitting. Part1: Dirichlet boundary conditions",
+          "url": "https://arxiv.org/abs/1411.0465",
+          "review": "Read selected extracted text from the 2014 v1 preprint: section 2, Algorithm 2, the constant-boundary example, section 3.2 assumptions and result, and the one-dimensional example. This was not a full-proof or whole-PDF visual audit; the present linear specialization does not reproduce the nonlinear tables.",
+          "review_level": "primary-preprint-selected-sections"
         }
       ],
       "baseline_evidence": [
@@ -6938,9 +7150,71 @@
           "id": "reaction-diffusion-splitting"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/inputs.json",
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/acceptance.json",
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/strang-boundary-order-reduction.png",
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/strang-boundary-order-reduction-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/run.py",
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/experiments.py",
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/io_contract.py",
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/reference_eval.py",
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/boundary.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/README.md",
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/cases.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#strang-boundary-order-reduction-ja",
+        "execution": "/numerical-methods-atlas/validation/strang-boundary-order-reduction/?lang=ja#strang-boundary-order-reduction-ja-measurements",
+        "note": {
+          "ja": "固定入力の正規実行と独立展開ZIPのpytest・全入力再実行が合格しました。公開後の同一SHAによるHTTP・UI・Linuxの確認は別に記録します。",
+          "en": "Canonical execution and independently extracted ZIP pytest/all-input reruns passed. Same-SHA post-publication HTTP, UI and Linux checks are recorded separately."
+        }
+      },
       "sequence": 70,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/inputs.json",
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/acceptance.json",
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/strang-boundary-order-reduction.png",
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/strang-boundary-order-reduction-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/run.py",
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/experiments.py",
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/io_contract.py",
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/reference_eval.py",
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/boundary.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/README.md",
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/cases.json"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#strang-boundary-order-reduction-ja",
+          "execution": "/numerical-methods-atlas/validation/strang-boundary-order-reduction/?lang=ja#strang-boundary-order-reduction-ja-measurements",
+          "note": {
+            "ja": "固定入力の正規実行と独立展開ZIPのpytest・全入力再実行が合格しました。公開後の同一SHAによるHTTP・UI・Linuxの確認は別に記録します。",
+            "en": "Canonical execution and independently extracted ZIP pytest/all-input reruns passed. Same-SHA post-publication HTTP, UI and Linux checks are recorded separately."
+          }
+        }
+      }
     },
     {
       "id": "ode-time-additional",
@@ -6953,14 +7227,21 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "解説のみ",
-      "state": "planned",
+      "state": "verified",
       "current": "Euler/Heun/midpoint/Ralston/Kutta3/RK4/SSPRK、BDF2/SDIRK2/IMEX Euler、step doubling と非自律製造解、幾何積分がある。新規 Lie/Strang は有限振幅 Schnakenberg の同一空間離散に対する Radau/DOP853 独立時間参照で検証済み。",
       "tasks": [
         "既存steady-runge-kutta章の基準状態型多段式と安定性多項式を、小さい線形問題の残差減衰で照合する。",
         "古典RK4の非定常4次精度、擬似時間の収束、非線形定常ソルバーの大域収束を区別する。"
       ],
       "scope_note": "",
-      "sources": [],
+      "sources": [
+        {
+          "title": "PERFORM time integration schemes",
+          "url": "https://perform.readthedocs.io/en/latest/solver/timeschemes.html",
+          "review": "Selected four-stage base-state recurrence. No full JST 1981 paper reading or compressible-flow implementation claim.",
+          "review_level": "official-documentation-selected-equations"
+        }
+      ],
       "baseline_evidence": [
         {
           "path": "catalog/atlas-detailed-reading.json",
@@ -6970,9 +7251,65 @@
           "path": "numerical-methods-atlas/ja/read/steady-runge-kutta/index.html"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-24/steady-rk/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-24/steady-rk/inputs.json",
+          "/code/validated-examples/2026-11-24/steady-rk/acceptance.json",
+          "/code/validated-examples/2026-11-24/steady-rk/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-24/steady-rk/results/jameson-steady-linear-modes.png",
+          "/code/validated-examples/2026-11-24/steady-rk/results/jameson-steady-linear-modes-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-24/steady-rk/run.py",
+          "/code/validated-examples/2026-11-24/steady-rk/steady.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-24/steady-rk/README.md",
+          "/code/validated-examples/2026-11-24/steady-rk/cases.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#jameson-steady-linear-modes-ja",
+        "execution": "/numerical-methods-atlas/validation/jameson-steady-linear-modes/?lang=ja#jameson-steady-linear-modes-ja-measurements",
+        "note": {
+          "ja": "固定入力の正規実行と独立展開ZIPのpytest・全入力再実行が合格しました。公開後の同一SHAによるHTTP・UI・Linuxの確認は別に記録します。",
+          "en": "Canonical execution and independently extracted ZIP pytest/all-input reruns passed. Same-SHA post-publication HTTP, UI and Linux checks are recorded separately."
+        }
+      },
       "sequence": 71,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-24/steady-rk/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-24/steady-rk/inputs.json",
+            "/code/validated-examples/2026-11-24/steady-rk/acceptance.json",
+            "/code/validated-examples/2026-11-24/steady-rk/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-24/steady-rk/results/jameson-steady-linear-modes.png",
+            "/code/validated-examples/2026-11-24/steady-rk/results/jameson-steady-linear-modes-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-24/steady-rk/run.py",
+            "/code/validated-examples/2026-11-24/steady-rk/steady.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-24/steady-rk/README.md",
+            "/code/validated-examples/2026-11-24/steady-rk/cases.json"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#jameson-steady-linear-modes-ja",
+          "execution": "/numerical-methods-atlas/validation/jameson-steady-linear-modes/?lang=ja#jameson-steady-linear-modes-ja-measurements",
+          "note": {
+            "ja": "固定入力の正規実行と独立展開ZIPのpytest・全入力再実行が合格しました。公開後の同一SHAによるHTTP・UI・Linuxの確認は別に記録します。",
+            "en": "Canonical execution and independently extracted ZIP pytest/all-input reruns passed. Same-SHA post-publication HTTP, UI and Linux checks are recorded separately."
+          }
+        }
+      }
     },
     {
       "id": "dae-1",
@@ -6985,7 +7322,7 @@
       "priority": "P1",
       "kind": "implementation",
       "initial_coverage": "解説のみ",
-      "state": "planned",
+      "state": "verified",
       "current": "dae は planned だが章は存在し、F(t,y,y′)=0、index-1、整合初期値、BDF Newton 行列を説明。専用の実行・保存結果はまだない。Gear の本文確認は導入・定式化範囲に限定。",
       "tasks": [
         "解析解が作れる半陽的 index-1 系で微分・代数残差と全体次数を確認",
@@ -6998,6 +7335,12 @@
           "url": "https://sundials.readthedocs.io/en/latest/ida/Mathematics_link.html",
           "checked_on": "2026-11-23",
           "review": "公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。"
+        },
+        {
+          "title": "SUNDIALS v7.1.1 IDA mathematics, section 5.2",
+          "url": "https://sundials.readthedocs.io/en/v7.1.1/ida/Mathematics_link.html",
+          "review": "Residual form, BDF/Newton and consistent initialization sections selected. Section5.2 is not an IDA version. This authored MMS/BE solver is not IDA.",
+          "review_level": "official-documentation-selected-equations"
         }
       ],
       "baseline_evidence": [
@@ -7013,9 +7356,67 @@
           "id": "gear1971"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-24/dae-controls/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-24/dae-controls/inputs.json",
+          "/code/validated-examples/2026-11-24/dae-controls/acceptance.json",
+          "/code/validated-examples/2026-11-24/dae-controls/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-24/dae-controls/results/index1-dae-consistent-initialization.png",
+          "/code/validated-examples/2026-11-24/dae-controls/results/index1-dae-consistent-initialization-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-24/dae-controls/run.py",
+          "/code/validated-examples/2026-11-24/dae-controls/models.py",
+          "/code/validated-examples/2026-11-24/dae-controls/newton.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-24/dae-controls/README.md",
+          "/code/validated-examples/2026-11-24/dae-controls/cases.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#index1-dae-consistent-initialization-ja",
+        "execution": "/numerical-methods-atlas/validation/index1-dae-consistent-initialization/?lang=ja#index1-dae-consistent-initialization-ja-measurements",
+        "note": {
+          "ja": "固定入力の正規実行と独立展開ZIPのpytest・全入力再実行が合格しました。公開後の同一SHAによるHTTP・UI・Linuxの確認は別に記録します。",
+          "en": "Canonical execution and independently extracted ZIP pytest/all-input reruns passed. Same-SHA post-publication HTTP, UI and Linux checks are recorded separately."
+        }
+      },
       "sequence": 72,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-24/dae-controls/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-24/dae-controls/inputs.json",
+            "/code/validated-examples/2026-11-24/dae-controls/acceptance.json",
+            "/code/validated-examples/2026-11-24/dae-controls/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-24/dae-controls/results/index1-dae-consistent-initialization.png",
+            "/code/validated-examples/2026-11-24/dae-controls/results/index1-dae-consistent-initialization-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-24/dae-controls/run.py",
+            "/code/validated-examples/2026-11-24/dae-controls/models.py",
+            "/code/validated-examples/2026-11-24/dae-controls/newton.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-24/dae-controls/README.md",
+            "/code/validated-examples/2026-11-24/dae-controls/cases.json"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#index1-dae-consistent-initialization-ja",
+          "execution": "/numerical-methods-atlas/validation/index1-dae-consistent-initialization/?lang=ja#index1-dae-consistent-initialization-ja-measurements",
+          "note": {
+            "ja": "固定入力の正規実行と独立展開ZIPのpytest・全入力再実行が合格しました。公開後の同一SHAによるHTTP・UI・Linuxの確認は別に記録します。",
+            "en": "Canonical execution and independently extracted ZIP pytest/all-input reruns passed. Same-SHA post-publication HTTP, UI and Linux checks are recorded separately."
+          }
+        }
+      }
     },
     {
       "id": "dae-2",
@@ -7028,7 +7429,7 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "planned",
+      "state": "verified",
       "current": "dae は planned だが章は存在し、F(t,y,y′)=0、index-1、整合初期値、BDF Newton 行列を説明。専用の実行・保存結果はまだない。Gear の本文確認は導入・定式化範囲に限定。",
       "tasks": [
         "ODE 形式と一つの保存則を代数式にした index-1 形式を同じ入力で比較",
@@ -7041,6 +7442,18 @@
           "url": "https://sundials.readthedocs.io/en/latest/ida/Mathematics_link.html",
           "checked_on": "2026-11-23",
           "review": "公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。"
+        },
+        {
+          "title": "SUNDIALS v7.1.1 idaRoberts_dns example",
+          "url": "https://github.com/LLNL/sundials/blob/v7.1.1/examples/ida/serial/idaRoberts_dns.c",
+          "review": "Read residual/Jacobian, initialization, tolerances and print format. Own first two residual rows have opposite sign and the same zero set.",
+          "review_level": "official-source-selected-functions"
+        },
+        {
+          "title": "Stored official v7.1.1 IDA Robertson output",
+          "url": "https://github.com/LLNL/sundials/blob/v7.1.1/examples/ida/serial/idaRoberts_dns.out",
+          "review": "Selected printed t=0.4 and4 values only, with Decimal rounding intervals. These approximate IDA values are not exact truth; no IDA run is performed here.",
+          "review_level": "official-stored-output-selected-rows"
         }
       ],
       "baseline_evidence": [
@@ -7056,9 +7469,67 @@
           "id": "gear1971"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-24/dae-controls/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-24/dae-controls/inputs.json",
+          "/code/validated-examples/2026-11-24/dae-controls/acceptance.json",
+          "/code/validated-examples/2026-11-24/dae-controls/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-24/dae-controls/results/robertson-conservation-dae.png",
+          "/code/validated-examples/2026-11-24/dae-controls/results/robertson-conservation-dae-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-24/dae-controls/run.py",
+          "/code/validated-examples/2026-11-24/dae-controls/models.py",
+          "/code/validated-examples/2026-11-24/dae-controls/newton.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-24/dae-controls/README.md",
+          "/code/validated-examples/2026-11-24/dae-controls/cases.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#robertson-stiff-kinetics-ja",
+        "execution": "/numerical-methods-atlas/validation/robertson-conservation-dae/?lang=ja#robertson-conservation-dae-ja-measurements",
+        "note": {
+          "ja": "固定入力の正規実行と独立展開ZIPのpytest・全入力再実行が合格しました。公開後の同一SHAによるHTTP・UI・Linuxの確認は別に記録します。",
+          "en": "Canonical execution and independently extracted ZIP pytest/all-input reruns passed. Same-SHA post-publication HTTP, UI and Linux checks are recorded separately."
+        }
+      },
       "sequence": 73,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-24/dae-controls/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-24/dae-controls/inputs.json",
+            "/code/validated-examples/2026-11-24/dae-controls/acceptance.json",
+            "/code/validated-examples/2026-11-24/dae-controls/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-24/dae-controls/results/robertson-conservation-dae.png",
+            "/code/validated-examples/2026-11-24/dae-controls/results/robertson-conservation-dae-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-24/dae-controls/run.py",
+            "/code/validated-examples/2026-11-24/dae-controls/models.py",
+            "/code/validated-examples/2026-11-24/dae-controls/newton.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-24/dae-controls/README.md",
+            "/code/validated-examples/2026-11-24/dae-controls/cases.json"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#robertson-stiff-kinetics-ja",
+          "execution": "/numerical-methods-atlas/validation/robertson-conservation-dae/?lang=ja#robertson-conservation-dae-ja-measurements",
+          "note": {
+            "ja": "固定入力の正規実行と独立展開ZIPのpytest・全入力再実行が合格しました。公開後の同一SHAによるHTTP・UI・Linuxの確認は別に記録します。",
+            "en": "Canonical execution and independently extracted ZIP pytest/all-input reruns passed. Same-SHA post-publication HTTP, UI and Linux checks are recorded separately."
+          }
+        }
+      }
     },
     {
       "id": "dae-3",
@@ -7071,7 +7542,7 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "解説のみ",
-      "state": "planned",
+      "state": "verified",
       "current": "dae は planned だが章は存在し、F(t,y,y′)=0、index-1、整合初期値、BDF Newton 行列を説明。専用の実行・保存結果はまだない。Gear の本文確認は導入・定式化範囲に限定。",
       "tasks": [
         "小さい拘束振り子で元の拘束・速度拘束・エネルギーのドリフトを表示",
@@ -7084,6 +7555,18 @@
           "url": "https://sundials.readthedocs.io/en/latest/ida/Mathematics_link.html",
           "checked_on": "2026-11-23",
           "review": "公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。"
+        },
+        {
+          "title": "NIST DLMF section22.19(i), pendulum",
+          "url": "https://dlmf.nist.gov/22.19",
+          "review": "Selected pendulum formulas, phase and modulus convention. Authored Cartesian conversion uses K-t; SciPy takes parameter m=k². No full chapter reading claimed.",
+          "review_level": "official-reference-selected-equations"
+        },
+        {
+          "title": "NIST DLMF section19.8(i), arithmetic-geometric mean",
+          "url": "https://dlmf.nist.gov/19.8",
+          "review": "Selected AGM/K identity; independent Decimal Machin pi and sine with explicit finite remainders qualify a single fixed modulus.",
+          "review_level": "official-reference-selected-equations"
         }
       ],
       "baseline_evidence": [
@@ -7099,9 +7582,67 @@
           "id": "gear1971"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-24/dae-controls/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-24/dae-controls/inputs.json",
+          "/code/validated-examples/2026-11-24/dae-controls/acceptance.json",
+          "/code/validated-examples/2026-11-24/dae-controls/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-24/dae-controls/results/high-index-pendulum.png",
+          "/code/validated-examples/2026-11-24/dae-controls/results/high-index-pendulum-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-24/dae-controls/run.py",
+          "/code/validated-examples/2026-11-24/dae-controls/models.py",
+          "/code/validated-examples/2026-11-24/dae-controls/newton.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-24/dae-controls/README.md",
+          "/code/validated-examples/2026-11-24/dae-controls/cases.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#high-index-pendulum-ja",
+        "execution": "/numerical-methods-atlas/validation/high-index-pendulum/?lang=ja#high-index-pendulum-ja-measurements",
+        "note": {
+          "ja": "固定入力の正規実行と独立展開ZIPのpytest・全入力再実行が合格しました。公開後の同一SHAによるHTTP・UI・Linuxの確認は別に記録します。",
+          "en": "Canonical execution and independently extracted ZIP pytest/all-input reruns passed. Same-SHA post-publication HTTP, UI and Linux checks are recorded separately."
+        }
+      },
       "sequence": 74,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-24/dae-controls/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-24/dae-controls/inputs.json",
+            "/code/validated-examples/2026-11-24/dae-controls/acceptance.json",
+            "/code/validated-examples/2026-11-24/dae-controls/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-24/dae-controls/results/high-index-pendulum.png",
+            "/code/validated-examples/2026-11-24/dae-controls/results/high-index-pendulum-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-24/dae-controls/run.py",
+            "/code/validated-examples/2026-11-24/dae-controls/models.py",
+            "/code/validated-examples/2026-11-24/dae-controls/newton.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-24/dae-controls/README.md",
+            "/code/validated-examples/2026-11-24/dae-controls/cases.json"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#high-index-pendulum-ja",
+          "execution": "/numerical-methods-atlas/validation/high-index-pendulum/?lang=ja#high-index-pendulum-ja-measurements",
+          "note": {
+            "ja": "固定入力の正規実行と独立展開ZIPのpytest・全入力再実行が合格しました。公開後の同一SHAによるHTTP・UI・Linuxの確認は別に記録します。",
+            "en": "Canonical execution and independently extracted ZIP pytest/all-input reruns passed. Same-SHA post-publication HTTP, UI and Linux checks are recorded separately."
+          }
+        }
+      }
     },
     {
       "id": "geometric-1",
@@ -7114,7 +7655,7 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "planned",
+      "state": "verified",
       "current": "symplectic Euler、Verlet、Yoshida4、implicit midpoint を harmonic/quartic Hamiltonian で比較し、エネルギー・位相・写像の構造を検査済み。単純な振動子がない、という欠落ではない。",
       "tasks": [
         "位置・速度拘束残差、時間反転、エネルギー長期挙動を比較",
@@ -7133,6 +7674,24 @@
           "url": "https://www.unige.ch/~hairer/preprints/hairer-pisa.pdf",
           "checked_on": "2026-11-23",
           "review": "著者公開原稿の構造・長時間挙動・高振動問題の射程を確認。"
+        },
+        {
+          "title": "Solving Differential Equations on Manifolds",
+          "url": "https://www.unige.ch/~hairer/poly-sde-mani.pdf",
+          "review": "Author-hosted lecture notes, selected printed page50, SectionV.5, equations5.1–5.3 and Theorem5.1 statement, rendered and visually read. Centered SHAKE momentum and RATTLE final tangency are explicit. The original1977 SHAKE and1983 RATTLE articles remain full-text unread; no full proof review is claimed. Source date: 2011 (date displayed on lecture notes); this is not asserted as the publication year.",
+          "review_level": "selected-primary-scope"
+        },
+        {
+          "title": "Lecture2: Symplectic integrators",
+          "url": "https://www.unige.ch/~hairer/poly_geoint/week2.pdf",
+          "review": "Author-hosted course notes, selected rendered printed pages2,12–13: Verlet kick/drift form, symplectic statement, Lie and symmetric Strang compositions. This does not qualify every state-dependent step rule or the authored coupled resonance experiment. Source date: 2010 (displayed course date); this is not asserted as the publication year.",
+          "review_level": "selected-primary-scope"
+        },
+        {
+          "title": "DLMF22.4: Periods, Poles, and Zeros",
+          "url": "https://dlmf.nist.gov/22.4",
+          "review": "Official Table22.4.1 selected real periods: sn and cn have4K, dn has2K. Version date is not an initial publication date. Common-period reduction and direct-library periodicity qualification are separate from the independent angular DOP853 state comparison. Source date: 2026 (version); this is not asserted as the publication year.",
+          "review_level": "selected-primary-scope"
         }
       ],
       "baseline_evidence": [
@@ -7147,9 +7706,71 @@
           "path": "code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-24/geometric-controls/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-24/geometric-controls/inputs.json",
+          "/code/validated-examples/2026-11-24/geometric-controls/acceptance.json",
+          "/code/validated-examples/2026-11-24/geometric-controls/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-24/geometric-controls/results/shake-rattle-pendulum.png",
+          "/code/validated-examples/2026-11-24/geometric-controls/results/shake-rattle-pendulum-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-24/geometric-controls/run.py",
+          "/code/validated-examples/2026-11-24/geometric-controls/physics.py",
+          "/code/validated-examples/2026-11-24/geometric-controls/diagnostics.py",
+          "/code/validated-examples/2026-11-24/geometric-controls/references/analytic.py",
+          "/code/validated-examples/2026-11-24/geometric-controls/references/discrete.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-24/geometric-controls/README.md",
+          "/code/validated-examples/2026-11-24/geometric-controls/cases.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#high-index-pendulum-ja",
+        "execution": "/numerical-methods-atlas/validation/shake-rattle-pendulum/?lang=ja#shake-rattle-pendulum-ja-measurements",
+        "note": {
+          "ja": "固定入力の正規実行と独立展開ZIPのpytest・全入力再実行が合格しました。公開後の同一SHAによるHTTP・UI・Linuxの確認は別に記録します。",
+          "en": "Canonical execution and independently extracted ZIP pytest/all-input reruns passed. Same-SHA post-publication HTTP, UI and Linux checks are recorded separately."
+        }
+      },
       "sequence": 75,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-24/geometric-controls/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-24/geometric-controls/inputs.json",
+            "/code/validated-examples/2026-11-24/geometric-controls/acceptance.json",
+            "/code/validated-examples/2026-11-24/geometric-controls/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-24/geometric-controls/results/shake-rattle-pendulum.png",
+            "/code/validated-examples/2026-11-24/geometric-controls/results/shake-rattle-pendulum-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-24/geometric-controls/run.py",
+            "/code/validated-examples/2026-11-24/geometric-controls/physics.py",
+            "/code/validated-examples/2026-11-24/geometric-controls/diagnostics.py",
+            "/code/validated-examples/2026-11-24/geometric-controls/references/analytic.py",
+            "/code/validated-examples/2026-11-24/geometric-controls/references/discrete.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-24/geometric-controls/README.md",
+            "/code/validated-examples/2026-11-24/geometric-controls/cases.json"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#high-index-pendulum-ja",
+          "execution": "/numerical-methods-atlas/validation/shake-rattle-pendulum/?lang=ja#shake-rattle-pendulum-ja-measurements",
+          "note": {
+            "ja": "固定入力の正規実行と独立展開ZIPのpytest・全入力再実行が合格しました。公開後の同一SHAによるHTTP・UI・Linuxの確認は別に記録します。",
+            "en": "Canonical execution and independently extracted ZIP pytest/all-input reruns passed. Same-SHA post-publication HTTP, UI and Linux checks are recorded separately."
+          }
+        }
+      }
     },
     {
       "id": "geometric-2",
@@ -7162,7 +7783,7 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "planned",
+      "state": "verified",
       "current": "symplectic Euler、Verlet、Yoshida4、implicit midpoint を harmonic/quartic Hamiltonian で比較し、エネルギー・位相・写像の構造を検査済み。単純な振動子がない、という欠落ではない。",
       "tasks": [
         "既知楕円軌道で位相・角運動量・エネルギー誤差を別々に保存",
@@ -7181,6 +7802,18 @@
           "url": "https://www.unige.ch/~hairer/preprints/hairer-pisa.pdf",
           "checked_on": "2026-11-23",
           "review": "著者公開原稿の構造・長時間挙動・高振動問題の射程を確認。"
+        },
+        {
+          "title": "Lecture2: Symplectic integrators",
+          "url": "https://www.unige.ch/~hairer/poly_geoint/week2.pdf",
+          "review": "Author-hosted course notes, selected rendered printed pages2,12–13: Verlet kick/drift form, symplectic statement, Lie and symmetric Strang compositions. This does not qualify every state-dependent step rule or the authored coupled resonance experiment. Source date: 2010 (displayed course date); this is not asserted as the publication year.",
+          "review_level": "selected-primary-scope"
+        },
+        {
+          "title": "Approximate Positions of the Planets",
+          "url": "https://ssd.jpl.nasa.gov/planets/approx_pos.html",
+          "review": "Official JPL page, selected steps3–4 and Kepler equation. Only the eccentric-anomaly equation and elliptic coordinate transformation are used; no planetary coefficient tables, fitted ephemeris accuracy or Horizons calculation is claimed. Publication date was not verified.",
+          "review_level": "selected-primary-scope"
         }
       ],
       "baseline_evidence": [
@@ -7195,9 +7828,71 @@
           "path": "code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-24/geometric-controls/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-24/geometric-controls/inputs.json",
+          "/code/validated-examples/2026-11-24/geometric-controls/acceptance.json",
+          "/code/validated-examples/2026-11-24/geometric-controls/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-24/geometric-controls/results/kepler-eccentricity.png",
+          "/code/validated-examples/2026-11-24/geometric-controls/results/kepler-eccentricity-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-24/geometric-controls/run.py",
+          "/code/validated-examples/2026-11-24/geometric-controls/physics.py",
+          "/code/validated-examples/2026-11-24/geometric-controls/diagnostics.py",
+          "/code/validated-examples/2026-11-24/geometric-controls/references/analytic.py",
+          "/code/validated-examples/2026-11-24/geometric-controls/references/discrete.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-24/geometric-controls/README.md",
+          "/code/validated-examples/2026-11-24/geometric-controls/cases.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#gravity-kepler-ja",
+        "execution": "/numerical-methods-atlas/validation/kepler-eccentricity/?lang=ja#kepler-eccentricity-ja-measurements",
+        "note": {
+          "ja": "固定入力の正規実行と独立展開ZIPのpytest・全入力再実行が合格しました。公開後の同一SHAによるHTTP・UI・Linuxの確認は別に記録します。",
+          "en": "Canonical execution and independently extracted ZIP pytest/all-input reruns passed. Same-SHA post-publication HTTP, UI and Linux checks are recorded separately."
+        }
+      },
       "sequence": 76,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-24/geometric-controls/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-24/geometric-controls/inputs.json",
+            "/code/validated-examples/2026-11-24/geometric-controls/acceptance.json",
+            "/code/validated-examples/2026-11-24/geometric-controls/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-24/geometric-controls/results/kepler-eccentricity.png",
+            "/code/validated-examples/2026-11-24/geometric-controls/results/kepler-eccentricity-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-24/geometric-controls/run.py",
+            "/code/validated-examples/2026-11-24/geometric-controls/physics.py",
+            "/code/validated-examples/2026-11-24/geometric-controls/diagnostics.py",
+            "/code/validated-examples/2026-11-24/geometric-controls/references/analytic.py",
+            "/code/validated-examples/2026-11-24/geometric-controls/references/discrete.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-24/geometric-controls/README.md",
+            "/code/validated-examples/2026-11-24/geometric-controls/cases.json"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#gravity-kepler-ja",
+          "execution": "/numerical-methods-atlas/validation/kepler-eccentricity/?lang=ja#kepler-eccentricity-ja-measurements",
+          "note": {
+            "ja": "固定入力の正規実行と独立展開ZIPのpytest・全入力再実行が合格しました。公開後の同一SHAによるHTTP・UI・Linuxの確認は別に記録します。",
+            "en": "Canonical execution and independently extracted ZIP pytest/all-input reruns passed. Same-SHA post-publication HTTP, UI and Linux checks are recorded separately."
+          }
+        }
+      }
     },
     {
       "id": "geometric-3",
@@ -7210,7 +7905,7 @@
       "priority": "P3",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "planned",
+      "state": "verified",
       "current": "symplectic Euler、Verlet、Yoshida4、implicit midpoint を harmonic/quartic Hamiltonian で比較し、エネルギー・位相・写像の構造を検査済み。単純な振動子がない、という欠落ではない。",
       "tasks": [
         "小さい結合振動子又は短い FPU 鎖で周波数比と刻みを限定走査",
@@ -7229,6 +7924,12 @@
           "url": "https://www.unige.ch/~hairer/preprints/hairer-pisa.pdf",
           "checked_on": "2026-11-23",
           "review": "著者公開原稿の構造・長時間挙動・高振動問題の射程を確認。"
+        },
+        {
+          "title": "Lecture2: Symplectic integrators",
+          "url": "https://www.unige.ch/~hairer/poly_geoint/week2.pdf",
+          "review": "Author-hosted course notes, selected rendered printed pages2,12–13: Verlet kick/drift form, symplectic statement, Lie and symmetric Strang compositions. This does not qualify every state-dependent step rule or the authored coupled resonance experiment. Source date: 2010 (displayed course date); this is not asserted as the publication year.",
+          "review_level": "selected-primary-scope"
         }
       ],
       "baseline_evidence": [
@@ -7243,9 +7944,71 @@
           "path": "code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-24/geometric-controls/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-24/geometric-controls/inputs.json",
+          "/code/validated-examples/2026-11-24/geometric-controls/acceptance.json",
+          "/code/validated-examples/2026-11-24/geometric-controls/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-24/geometric-controls/results/multifrequency-resonance.png",
+          "/code/validated-examples/2026-11-24/geometric-controls/results/multifrequency-resonance-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-24/geometric-controls/run.py",
+          "/code/validated-examples/2026-11-24/geometric-controls/physics.py",
+          "/code/validated-examples/2026-11-24/geometric-controls/diagnostics.py",
+          "/code/validated-examples/2026-11-24/geometric-controls/references/analytic.py",
+          "/code/validated-examples/2026-11-24/geometric-controls/references/discrete.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-24/geometric-controls/README.md",
+          "/code/validated-examples/2026-11-24/geometric-controls/cases.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#multifrequency-resonance-ja",
+        "execution": "/numerical-methods-atlas/validation/multifrequency-resonance/?lang=ja#multifrequency-resonance-ja-measurements",
+        "note": {
+          "ja": "固定入力の正規実行と独立展開ZIPのpytest・全入力再実行が合格しました。公開後の同一SHAによるHTTP・UI・Linuxの確認は別に記録します。",
+          "en": "Canonical execution and independently extracted ZIP pytest/all-input reruns passed. Same-SHA post-publication HTTP, UI and Linux checks are recorded separately."
+        }
+      },
       "sequence": 77,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-24/geometric-controls/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-24/geometric-controls/inputs.json",
+            "/code/validated-examples/2026-11-24/geometric-controls/acceptance.json",
+            "/code/validated-examples/2026-11-24/geometric-controls/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-24/geometric-controls/results/multifrequency-resonance.png",
+            "/code/validated-examples/2026-11-24/geometric-controls/results/multifrequency-resonance-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-24/geometric-controls/run.py",
+            "/code/validated-examples/2026-11-24/geometric-controls/physics.py",
+            "/code/validated-examples/2026-11-24/geometric-controls/diagnostics.py",
+            "/code/validated-examples/2026-11-24/geometric-controls/references/analytic.py",
+            "/code/validated-examples/2026-11-24/geometric-controls/references/discrete.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-24/geometric-controls/README.md",
+            "/code/validated-examples/2026-11-24/geometric-controls/cases.json"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#multifrequency-resonance-ja",
+          "execution": "/numerical-methods-atlas/validation/multifrequency-resonance/?lang=ja#multifrequency-resonance-ja-measurements",
+          "note": {
+            "ja": "固定入力の正規実行と独立展開ZIPのpytest・全入力再実行が合格しました。公開後の同一SHAによるHTTP・UI・Linuxの確認は別に記録します。",
+            "en": "Canonical execution and independently extracted ZIP pytest/all-input reruns passed. Same-SHA post-publication HTTP, UI and Linux checks are recorded separately."
+          }
+        }
+      }
     },
     {
       "id": "quadrature-1",
@@ -8343,10 +9106,10 @@
     "total": 103,
     "fields": 36,
     "states": {
-      "planned": 41,
+      "planned": 31,
       "in-progress": 2,
       "verified": 10,
-      "published": 50
+      "published": 60
     },
     "kinds": {
       "implementation": 58,
@@ -8361,10 +9124,10 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-benchmark-backlog.json": "8fc2c9287a7f22c20fa68222097378dc46b855691442d047fbeb8c8a37a93111",
+    "catalog/atlas-benchmark-backlog.json": "96389ab80bf4c5fffaf9186e731e03d66c97375bb3d89b73c30ba63f98e7a7eb",
     "catalog/atlas-detailed-reading.json": "4e50c7c9810337a166e8d3243b5f9de0daaf143a881e955921d9bf7e4be8f20c",
     "catalog/atlas-method-primary-references.json": "0b0f4df551b17a83672b3251a8155be2d7f3648f6e48f550cc99d8d49b2ef13c",
-    "catalog/atlas-methods.json": "36bd0014995be691a9a9d62d8c45d4f4b3782823b147740dc2ede4f5ae9ced7b",
+    "catalog/atlas-methods.json": "82dfd3336a82bc165f4f47d3e1f709481866e053bf1c9bcb342520bf0d257609",
     "code/validated-examples/2026-11-23-r2/euler-positivity/acceptance.json": "f08558b2703369a2260db1252dc40272f76556a2f6205688faa88a4c37c79050",
     "code/validated-examples/2026-11-23-r2/euler-positivity/euler_positivity.py": "c22015d9435095b3f08189d1b09be4a040c79062b1cc76fd15648cca00f73a58",
     "code/validated-examples/2026-11-23-r2/euler-positivity/inputs.json": "a1185e4b8be0f49f8f3f551f934614110c227d39b2bb0dc4438c5301428d751b",
@@ -8668,6 +9431,30 @@
     "code/validated-examples/2026-11-24-r2/maxwell-lorentz/results/lorentz-oblique-sp-preview.png": "b85480fcaeb675536ed6da9f82006b72cb86954d36ee08958ba957b850c4c9ca",
     "code/validated-examples/2026-11-24-r2/maxwell-lorentz/run.py": "441f9de109dab9a8a814456e4d9b05a6b2be35d6c4055f530adb28302c80838f",
     "code/validated-examples/2026-11-24-r2/maxwell-lorentz/verification.json": "7703e35d6a56ca69a6aaf17e7bd910bccad1c7cf21632e4625eda29c09d37d6d",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/README.md": "94872f6fdd61446b8c5a0897bc84f7c4b6ac45eeb51f375304c0b1e78af614bd",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/acceptance.json": "fd7e7cfe528d9844e2992e8ef96d6b33e482e8c5d2bc63a4d6955431168f6051",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/boundary.py": "be2b853a1a22b50aa9a15703e9aae754d46014c7d8209c59fc5dc8deec1a7523",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/cases.json": "b88c01a4388790cc795041ffcecfcbdf465e8953443ea522d23247a715900845",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/dopri.py": "0a840cfc9b3ae54e320294a131f53c66ca840f9bcf86d879423cce5968b4ffb0",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/experiments.py": "c578dc81fa13d1c8594e233f1f342dd429eacb15cfffc1e5dad7ae35f5d63da5",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/inputs.json": "08841a5698329c02021434dc4f1784cb1dbbd428de7e493dda6a3014e85315d3",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/io_contract.py": "10c56e7a7f4affd57cf1c3f5a1cf96d0b423f5cf2c2bae25422f480407acf1c6",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/models.py": "577648a96291f17bdd18c4e1cf32e9a0def468da5b3ed2abffaec6eb4a39dcfc",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/pre-run-contract.json": "6fe131b168e7f72699bd046984f890fa1a6ebe7d3f898a2858ef2cd95241e266",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/reference_eval.py": "17b866c67933dea240d01a837b181166adf1998fb21fbe424fe9e2ef39db8f19",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/reporting_policy.py": "0eb698a7ea473cc89e0ca24cf577d484c457e9d12885120272bfeb4699fbd94b",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/rk45-dense-events-preview.png": "014ce3e765d29479456cd7f479ae26870061991856405a1b51e62da548a1067c",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/rk45-dense-events.png": "6c0034b85c730a1ebc76032ddbc7b5369b2e0cc1dc8eaa80cdb0ac9a8b73898a",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/robertson-stiff-kinetics-preview.png": "2bae45f251405e4aeb534a7bbc9bc52175dc62a9bf33d48e49a8a3a2105cab2a",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/robertson-stiff-kinetics.png": "0928ef92d1b9c4ec2b502f7f56193f52849bb3e656076ad78dae15b34cdf1670",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/strang-boundary-order-reduction-preview.png": "f6fc7c2def18c49db259548f9f0687a1dbff5fb88a29ec697392e320d160b6ae",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/strang-boundary-order-reduction.png": "08b59e9171944215a9a4329f4f2836ddb9bc16008f81bf4264df0ac4923bb14b",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/van-der-pol-stiff-transition-preview.png": "e5b5b922e24c8dc44ac1b78c927f1698b42bdbc90eae114160f1899a9bf980e5",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/van-der-pol-stiff-transition.png": "9b15a3f5b80d23ad8b618411116389eb2057f7ad24a927abb6327e1a444b0f10",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/run.py": "621111f3e08a09d2410e448ffbfe7a33717daf7562bd98a7839ef8194c57fe55",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/stiff.py": "d948246b8ce5f8102ca15f6904666ad366762d92802f21b421c8568ec3d256ce",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/tableau.py": "280608cede3340a0b3f32e792a3643e93ccb9fb29d06fb8c03c5fa3091c21c4e",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json": "56e03be5a74a8b4519e131c8988da000e9429412a97ce9f0bd04c83907e930f3",
     "code/validated-examples/2026-11-24-r2/radiation-matter/README.md": "26be52ae84a5919fb59b7d9af71cb7db30583ea4c213d1ccc6650f104cdf8498",
     "code/validated-examples/2026-11-24-r2/radiation-matter/acceptance.json": "d90424437d8296e6dcb03901dbf8a2d049fd70b565ca5c84b27971610d756d9d",
     "code/validated-examples/2026-11-24-r2/radiation-matter/inputs.json": "9032f6d9ba61972884d55c46ea93d6bda13e42d38a40f64c0a9ba619d48a8400",
@@ -8714,6 +9501,21 @@
     "code/validated-examples/2026-11-24/adjoint/state_linear.py": "5d145f5cbd48ab16193d2284c08277a20682233ef9e31e93ad1229cdde7ff3fd",
     "code/validated-examples/2026-11-24/adjoint/time_adjoint.py": "41a8cd6a47cd5e970f3d2af1b9d0d2a7414a699650d73323026cd7fb10d05025",
     "code/validated-examples/2026-11-24/adjoint/verification.json": "4a2d6bb02db35895f7621ead01f1603269523980a83aa3120a04412032dbf604",
+    "code/validated-examples/2026-11-24/dae-controls/README.md": "bd190a82a02e36c0500a274ac593d405d664dc94b32a5b3d09d061dc0ab26b1a",
+    "code/validated-examples/2026-11-24/dae-controls/acceptance.json": "de0c9378204b8b08610318f41d98efb95cc2c31048a6b593707197635a0cba96",
+    "code/validated-examples/2026-11-24/dae-controls/cases.json": "b5a4e533751629a22667809a1d609ff709a8ebc0b121a7aa3bbb30e70c82f2ca",
+    "code/validated-examples/2026-11-24/dae-controls/inputs.json": "f2fe378da0eba05ddb47e8333f6b00b1effbf83e22b13fc8e1ad6079338cb275",
+    "code/validated-examples/2026-11-24/dae-controls/models.py": "537ea2beb6dac6488216c6bf8e22848be9eac506807043b5f0bf9b240e9c7295",
+    "code/validated-examples/2026-11-24/dae-controls/newton.py": "59b5763372b5ac27cb5c45357a11db94bb5a464c26df08989f8556f0de8d09dc",
+    "code/validated-examples/2026-11-24/dae-controls/pre-run-contract.json": "514a3555b7978f36f59311b8c675d38a7859432f85521b699451916db80c95ef",
+    "code/validated-examples/2026-11-24/dae-controls/results/high-index-pendulum-preview.png": "5c9e7d6c1ffbdaac74b1ffd39702ac14caa6e17bf75d338359671bc5594a91a8",
+    "code/validated-examples/2026-11-24/dae-controls/results/high-index-pendulum.png": "2c9ab9c83084ab5d2edae4672b52a53a8a36c027b4977e33815b8ce335e7825d",
+    "code/validated-examples/2026-11-24/dae-controls/results/index1-dae-consistent-initialization-preview.png": "a29de45d4d64534b80d906f4bf8eff1f8966e27d964addf5d58ffd2f8c3c175d",
+    "code/validated-examples/2026-11-24/dae-controls/results/index1-dae-consistent-initialization.png": "85ceac38e47526e37f66ad9295168ab2d4a5e518c9bbbfea90d0456c5cc38495",
+    "code/validated-examples/2026-11-24/dae-controls/results/robertson-conservation-dae-preview.png": "3f6d265ac74813f7cc2735f490f4a58691a14842b0fd6bb5ea3138e1c47bc6c9",
+    "code/validated-examples/2026-11-24/dae-controls/results/robertson-conservation-dae.png": "79352aac7310de162443e3692f9fc32898ce8c3f73bb0d6088ae40aead2e1236",
+    "code/validated-examples/2026-11-24/dae-controls/run.py": "df0a4be4e3e38043c22f956503c0642ecb84f54f62eca3c064fc2bbe9d236284",
+    "code/validated-examples/2026-11-24/dae-controls/verification.json": "cbc490c02eb2c86689652cfb344a208bccaa8faedbd8d893564d4732eccaa46c",
     "code/validated-examples/2026-11-24/dsmc-shock/README.md": "86ad36d722e09fe9b812418433596bf043ca6be296dc98ff73204bdd8f98d802",
     "code/validated-examples/2026-11-24/dsmc-shock/acceptance.json": "ca835b4e4606640d6da9cc49b1332fed4c44c5e47c3b49e547a8687f0881986b",
     "code/validated-examples/2026-11-24/dsmc-shock/inputs.json": "ef53152d7f42f153843ec505116be67377db77336bf14dd724c4f253d4d0f166",
@@ -8721,6 +9523,23 @@
     "code/validated-examples/2026-11-24/dsmc-shock/results/dsmc-planar-shock-preview.png": "89e25d3088c177ac0cb027fe58f02627b049626d0198bda02abc0eb6fec6555c",
     "code/validated-examples/2026-11-24/dsmc-shock/run.py": "badd9a284810dcfba7467726a6e042be6766dde1b7cea65dd3e856e39c9addec",
     "code/validated-examples/2026-11-24/dsmc-shock/verification.json": "7e7919032dafc67b5e857acd4464516cb4b742eed89ff8adae7f3c8cf75a96f5",
+    "code/validated-examples/2026-11-24/geometric-controls/README.md": "cafe58cc2864bf42ad9a9ecfa139731972b337758cbd6766d27cd522a9494e14",
+    "code/validated-examples/2026-11-24/geometric-controls/acceptance.json": "9b2b3d1ccd8337f8894396d82d20b43dabb330135f08e26c53cbc4645e39059b",
+    "code/validated-examples/2026-11-24/geometric-controls/cases.json": "f97c3c5cef1540cba0c16b8f8d32d70696d4d22105eaf784ff2e17cd3ccecd8b",
+    "code/validated-examples/2026-11-24/geometric-controls/diagnostics.py": "1e5ffb1fb0ddc0c305dbf7e9428fbd4f8c5c5356bae272eccc65f028f5c87439",
+    "code/validated-examples/2026-11-24/geometric-controls/inputs.json": "3f5ae2a9e57f8f420dc3e0916414c33dbcb7ad575974f3122aa13385473da31b",
+    "code/validated-examples/2026-11-24/geometric-controls/physics.py": "c7bbbdecc4f43091d145cf8c71a5f0110b6d901dd8d2e07152bc826bcc627b5a",
+    "code/validated-examples/2026-11-24/geometric-controls/pre-run-contract.json": "1870b74a1764fdf5b1cffbee7c9d12c8bf6d4fa7e5d634c62a369b688084386b",
+    "code/validated-examples/2026-11-24/geometric-controls/references/analytic.py": "905208c2c2ef470066f6187849badac46872135e11555a3d0b54693e225988eb",
+    "code/validated-examples/2026-11-24/geometric-controls/references/discrete.py": "8ba4f451194d2aa9b1e174069aba8dcaca73a42e676421695b23a3b622ea59df",
+    "code/validated-examples/2026-11-24/geometric-controls/results/kepler-eccentricity-preview.png": "7ace12c92ced25abe01ace7da61b4b9de4740f74105d712f3a0678fd7b3f1d2d",
+    "code/validated-examples/2026-11-24/geometric-controls/results/kepler-eccentricity.png": "43b8dbc48c05c258930ab6466734c3460613fe1372eb66d6c7c826c077b64b21",
+    "code/validated-examples/2026-11-24/geometric-controls/results/multifrequency-resonance-preview.png": "971cc717fea17fc6184f618778728aa4b3929c651fe9b835dfa1e9bb4340a8c8",
+    "code/validated-examples/2026-11-24/geometric-controls/results/multifrequency-resonance.png": "d43c92c73eeae7dbbd83d9d13abdef46d1ed9a408ce3fb5bf958ef7be9172e2a",
+    "code/validated-examples/2026-11-24/geometric-controls/results/shake-rattle-pendulum-preview.png": "641b9888074c078692079ff36eb605175015028a7c044d7f3df880876829d52e",
+    "code/validated-examples/2026-11-24/geometric-controls/results/shake-rattle-pendulum.png": "1f59c992e01e6258c987ec518a675379cb426e43e1f8b2ad4f60085bcbba9794",
+    "code/validated-examples/2026-11-24/geometric-controls/run.py": "149e67c9aab288f586549e8f25cfd12453eebe114daf870799449601944f6903",
+    "code/validated-examples/2026-11-24/geometric-controls/verification.json": "507d5825483d27a7cefe5a3ef683c4e5a818234d4c8098a97772e92de056d50d",
     "code/validated-examples/2026-11-24/globalization-controls/README.md": "015fe6fddb659b05aae8efede274110180cca7d02b95a584e3bf56721fab1537",
     "code/validated-examples/2026-11-24/globalization-controls/acceptance.json": "4927a8d6d5c9d1cdba042fd42171f18f2e152f2ab70c845e552d644b7fc9ef31",
     "code/validated-examples/2026-11-24/globalization-controls/cases.json": "257b16d3e1af5cf9a9b53c747314e9c58d6b0fb2c98f445d4809f8f4eb0e7e66",
@@ -8805,6 +9624,16 @@
     "code/validated-examples/2026-11-24/reverse-higher-ad/results/reverse-vjp-duality.png": "e75030219736de92e19b2f2ded569a0d19de5fbf3916c1db2ce3d55e9ea0f433",
     "code/validated-examples/2026-11-24/reverse-higher-ad/run.py": "d05c0a0e9d22e8bf113e8da8020e68cc1e8fbd709efa7e6b5c58184d2ada432b",
     "code/validated-examples/2026-11-24/reverse-higher-ad/verification.json": "1cb830974a5e0b4571ae3cec9219bddd4ca856a3f5c47130787daaf9ab81f641",
+    "code/validated-examples/2026-11-24/steady-rk/README.md": "fc1896f2426647dd4e7e9f91797b6bf4ad7b4a8b9593a11d2d5973ee4d6a2598",
+    "code/validated-examples/2026-11-24/steady-rk/acceptance.json": "af846323a4e4235d968ecb431eea825fbee40f7a1047e65b18c70b7d4a83fe00",
+    "code/validated-examples/2026-11-24/steady-rk/cases.json": "faced210cbcf6c1ef091d18f0af09b5c973a5e04ebb78e44e869071bce2c6e13",
+    "code/validated-examples/2026-11-24/steady-rk/inputs.json": "7f5afd4ad594265d55f34b0ebce95fc5fdd9e66c11b88a4df5f802e8688fb072",
+    "code/validated-examples/2026-11-24/steady-rk/pre-run-contract.json": "c8e34e1d81802874d180baa1d8d0c9f7972319ba67bc1c94a88ec242007df662",
+    "code/validated-examples/2026-11-24/steady-rk/results/jameson-steady-linear-modes-preview.png": "bb7038e55ff63e665f2a3f71cf33992cbea96efcc3753578b819fd4335e22432",
+    "code/validated-examples/2026-11-24/steady-rk/results/jameson-steady-linear-modes.png": "29bbdcd63dc7154cb330aca395650a32045cb43159dd07b05b47ddc53774f1c7",
+    "code/validated-examples/2026-11-24/steady-rk/run.py": "673a8d608f2ceac982c88f00329d60d7dbd7740cc05aa04ae3a613e4f2766661",
+    "code/validated-examples/2026-11-24/steady-rk/steady.py": "f206dfa6518a51707baea7f1a48bef382df7a1df9196895750e8c29c1fe07a4c",
+    "code/validated-examples/2026-11-24/steady-rk/verification.json": "037f6c02ee4b1a1ee5147e7340dfd3ed0599c9ae7b53a260479a214160ace43d",
     "code/validated-examples/2026-11-24/stochastic-accuracy/README.md": "bd7b38de542db9c58ea9eb134f41510b3a1bff3b5aa1d3cc978526b3ff2d2ebb",
     "code/validated-examples/2026-11-24/stochastic-accuracy/acceptance.json": "cd8ad3c6391de11eb562f3027493c519cf69954d13a67b49c01df3eb221b45c9",
     "code/validated-examples/2026-11-24/stochastic-accuracy/inputs.json": "c6ccd5eaa236bd52c053c8f1cd20efa081d89a7e7715ed7e77e8ecc89efdd9d1",
@@ -8822,10 +9651,10 @@
     "code/validated-examples/2026-11-24/stochastic-estimation/results/normal-tail-importance-preview.png": "bb43d99a5fddd23605e1a9c5c757f6ef0119a6b6dac33b8224ac153bf718fba4",
     "code/validated-examples/2026-11-24/stochastic-estimation/run.py": "4267474a1b22f476924b298dcc5e9910ccb5338ce2d8e1920235d3114bbf0e86",
     "code/validated-examples/2026-11-24/stochastic-estimation/verification.json": "04589e7e1285b60e3d327c5772d392405e04f5fc9623a0850b38c9eaa9478f90",
-    "numerical-methods-atlas/gallery/index.html": "f6e8a26a7571e17e90555c0fa4ada624f8f38a1cbbee74d6b3b2a96b2bb01cb4",
+    "numerical-methods-atlas/gallery/index.html": "a23d042dc4b196b3ad8e636a0fed40a66b0a76613fe3798603b542b728bc0f4e",
     "numerical-methods-atlas/methods/thomas/index.html": "67aef687451948913dacc077e38dfee86df93ccc2baf33990b3a851ea0c6cd0b",
     "numerical-methods-atlas/reading/thomas-provenance.json": "a9eff54993f6f992bcddbb01ddf306adf59a234c8745a7a86557d38a3ab65ee2",
-    "numerical-methods-atlas/solutions/index.html": "014fb490cfc3fd3ec430654cb152563319e92338d17f660e13b811411b3561fd",
+    "numerical-methods-atlas/solutions/index.html": "d48efa085fb4d6768e4115bbefd3abd5fbd4818d9811902449345cfbd23a8612",
     "numerical-methods-atlas/validation/ale-nonuniform-transport/index.html": "7aa6c5eb188f78d0dfe31500b2fbc2e029abb79f844d658ce3a35afd68004a46",
     "numerical-methods-atlas/validation/annular-viscous-mms/index.html": "fcd250bb18308ab5934e70fa6c15f2d810d6544459dd5c38adb6914d00be1024",
     "numerical-methods-atlas/validation/bfgs-lbfgs-controls/index.html": "e937246a0ab08fc8ff00178d4f61ff7686ddff22baf2372bcbc68bc03f8022e7",
@@ -8854,10 +9683,14 @@
     "numerical-methods-atlas/validation/gbm-milstein-strong/index.html": "8a66c6dfc62f0d81d7c39a35588efbbe8eb1b962bfcfc7b71385c2589a1e1c49",
     "numerical-methods-atlas/validation/gbm-weak-moments/index.html": "d94a2724f77c74c24277d62ef47a3f116ecfbe580e0362e5274ef14773b1d8e2",
     "numerical-methods-atlas/validation/globalization-difficult-starts/index.html": "d3611557558ad94ed19632262a1e1e1096373d3d7895e692793ae1691e6cd464",
-    "numerical-methods-atlas/validation/gravity-kepler/index.html": "3ba3f565f2ce101dc36afff6765692e9edb449b87440da4689d6915495bd6172",
+    "numerical-methods-atlas/validation/gravity-kepler/index.html": "22eea590d5cdc6304d824ea4e55fa48817844772969693287c4b068852ce2908",
     "numerical-methods-atlas/validation/guderley-implosion/index.html": "3c09d4266144f40a1be9ab64711f3b5b20541f3b463ed50a2f4d68aad3f9f674",
     "numerical-methods-atlas/validation/hessian-vector-products/index.html": "4bd7665cf7c972d386c8097efa3ac996e0b1f24ffe5906f4b841d51c99bc4d17",
+    "numerical-methods-atlas/validation/high-index-pendulum/index.html": "e12b2525a22592ea0b3bb157eddec461fc22a04f390aa07f0b311dda9c46b309",
+    "numerical-methods-atlas/validation/index1-dae-consistent-initialization/index.html": "ca0bf3a02f8d2aaab2e91a636a23b791b4efb7cebda762f2384791041ec78eb3",
     "numerical-methods-atlas/validation/isotropic-scattering-slab/index.html": "47de967da787880337329def851acf578012b65acd7edbf6eb54baeb608f332a",
+    "numerical-methods-atlas/validation/jameson-steady-linear-modes/index.html": "bae49bc294b0cc4ecd96868be9e0f6aea63caec7679d231857c9270845568feb",
+    "numerical-methods-atlas/validation/kepler-eccentricity/index.html": "50ba60aaf7ecaa0655f07e098b24c2add9b08720cda0b791a71a811ec28b4c33",
     "numerical-methods-atlas/validation/kh-initial-growth/index.html": "3d145babd1acca96d0d8bc4024c3a2b0e4eadfe3658264cf159b0f76f07f4a05",
     "numerical-methods-atlas/validation/kink-branch-derivatives/index.html": "957f3958c2c23aa6ab668192a5fac96f6f3e802f9472026d186dd34343e9fbc9",
     "numerical-methods-atlas/validation/lbm-annular-couette-control/index.html": "2d0b0069a29f5c983f3bea89a3de11c6b0cb4df613b282e8817898d0d2671256",
@@ -8866,6 +9699,7 @@
     "numerical-methods-atlas/validation/lorentz-oblique-sp/index.html": "a61839d2d3e41a5758402020d9872f92b09ac9e5180368dab3175414c1b70c15",
     "numerical-methods-atlas/validation/low-mach-vortex/index.html": "ccc91b913e449ed7f143641095d4640b62307932587224bf16f4b1aed03a49b6",
     "numerical-methods-atlas/validation/lshape-fem/index.html": "ee9a88feef70afb1227ff3472510f8c696c3626eafed9872333ad3cf832ebbfe",
+    "numerical-methods-atlas/validation/multifrequency-resonance/index.html": "fbf86c23a117610652711f18b94958e78d418bb82c688e20a34fb8fada73f9f7",
     "numerical-methods-atlas/validation/neutral-slab-yb/index.html": "957250d32b8b37ae555ec7c3e66943dd8e9da3408bcb120c0194448d72437353",
     "numerical-methods-atlas/validation/noh-cartesian-2d/index.html": "0037c7d552ba9c7b88b35a2011132d20a11c687b6a5baba1dcaa2241055de0d2",
     "numerical-methods-atlas/validation/normal-tail-importance/index.html": "513b6a58efd38c58c0ae4372939d56267a87e99ced4e58fe36f4610675789c96",
@@ -8875,10 +9709,15 @@
     "numerical-methods-atlas/validation/postshock-orszag-tang/index.html": "abf9b97b408e9d8029ff6c9fd91c1ef78092140dbccba7edc46e5af2de7b603b",
     "numerical-methods-atlas/validation/restarted-shift-invert/index.html": "5c6c17a68a6dd2c8edabf2c3f6f915be9edbf8e25ebcf3eaa0ccf466ac73cae9",
     "numerical-methods-atlas/validation/reverse-vjp-duality/index.html": "e9dd3d82da466d27e8e141bf279553b5b5339f3f405d664de768a9fb91c2f188",
+    "numerical-methods-atlas/validation/rk45-dense-events/index.html": "22c0a86d068edea91e534d3a33da57457a7f47b9edb0fb9608313a8c9a120ce9",
+    "numerical-methods-atlas/validation/robertson-conservation-dae/index.html": "8d5666af0c562a878d76a7d325447e563eb35c4a8af479b0ca907e7e9bad3d7a",
+    "numerical-methods-atlas/validation/robertson-stiff-kinetics/index.html": "7da8e1e4cc03f189491ea53820629945c600fbc2b01cbeeeea81c8d5e5469c9b",
     "numerical-methods-atlas/validation/sedov-blast/index.html": "28f10d4721bf48266e595e278e09a99d404e90659825e9055d8ba62d44cf1285",
     "numerical-methods-atlas/validation/shadow-absorber2d/index.html": "88d246ab837e65f959e0979a33eec07c0b24c507a2fc7928d878e54f0a28e895",
+    "numerical-methods-atlas/validation/shake-rattle-pendulum/index.html": "3dcd9609abb149da1deda3d41faa9dcf09952e280e05eeab91633b4f8bc711c0",
     "numerical-methods-atlas/validation/srhd-collision/index.html": "78e6141371b3d586bc728237ec023b506dd330715fd68d6968c7a0aca4fc6de5",
     "numerical-methods-atlas/validation/srmhd-alfven/index.html": "6f4049edc3a8a562129d48f6c5f5e89b3de4b936bb20792a4d6e0e9aa94712e4",
+    "numerical-methods-atlas/validation/strang-boundary-order-reduction/index.html": "810e8076b62bf2004ffc651a4154752147b49d2e6701c01568af24c725595ce7",
     "numerical-methods-atlas/validation/su-olson-diffusion1996/index.html": "a5ee4de84ded150bb9b58b612fdf83d3e839c551a2cb565717d578c36f776c2c",
     "numerical-methods-atlas/validation/swashes-topography/index.html": "eadbd0c32d58f2200dfc55b309aa0ac20424dd83f0919b28586ff1f435009f10",
     "numerical-methods-atlas/validation/symmetric-saddle-minres/index.html": "43c4aff7bea5444567b544b3016b51de405f1502652afa48b5eacbdc33f17189",
@@ -8890,6 +9729,7 @@
     "numerical-methods-atlas/validation/verification/2026-11-23-zalesak-public.json": "85da729371ecceeb80953fabe8c4932d6b476bcdacd492f9102c08c8fa09a3dc",
     "numerical-methods-atlas/validation/verification/2026-11-24-batch28-37-public.json": "e6c80f9c769e876cf0aebfc6dd9ae765701b77635762ccd83801629e971ad0f3",
     "numerical-methods-atlas/validation/verification/2026-11-24-batch48-57-public.json": "34e51bb48f51768f2cd359f25522bf555776f4ccfd53b65c08aec277f7ff50ae",
+    "numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json": "dae69e4ff9553208d0fa497abcc47dea42548ddeb6d9f5ba66e474e5b10580d9",
     "numerical-methods-atlas/validation/wall-manufactured/index.html": "e33d4f70c30285c157c31b831e3b77df0329702cab0a0aacbade139daba5fdea",
     "numerical-methods-atlas/validation/weno-critical-epsilon/index.html": "23740e895d653ab2ab7d76dd9e3bf89ce5f8618ec75e65bdb0efae9d5e674fd7",
     "numerical-methods-atlas/validation/zalesak-rotation/index.html": "02d3ddc9b3f8cc8f30c28f38fded450264568dc6c7d92ea9bc534e75e3b38a48"

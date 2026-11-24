@@ -1,9 +1,9 @@
 // Generated from frontend/atlas/app.js by scripts/atlas_runtime_assets.py. Edit the source template.
-import {atlasIntroDescriptions,atlasDocumentVersions} from './atlas-runtime-data.mjs?v=fdf7714c5ce3';
-import {homeOverviewPage,wireHomeOverview} from './home-overview.js?v=db725cae8a81';
-import {resolveHomeLegacyURL} from './home-navigation.mjs?v=b1d598bee4aa';
+import {atlasIntroDescriptions,atlasDocumentVersions} from './atlas-runtime-data.mjs?v=63a8b21f1a3e';
+import {homeOverviewPage,wireHomeOverview} from './home-overview.js?v=412aa026f0f5';
+import {resolveHomeLegacyURL} from './home-navigation.mjs?v=81b468d3cfc9';
 import {readingURL,rewriteReadingLinks} from './reading-urls.js';
-import {chapterEditions} from './chapter-resources.mjs?v=5c2519353c6a';
+import {chapterEditions} from './chapter-resources.mjs?v=72eacb510460';
 import {expansionPage,wireExpansion} from './shock-expansion.js';
 import {referencePage as exactPage,wireReferences} from './reference-solutions.js';
 import {glossaryPage,wireGlossary} from './glossary.js';
@@ -330,7 +330,7 @@ async function route(options={}) {
 document.querySelector('.skip-link').addEventListener('click',e=>{e.preventDefault();main.focus();main.scrollIntoView();});
 document.querySelector('#figure-dialog').addEventListener('click',e=>{if(e.target===e.currentTarget)e.currentTarget.close();});
 try {
- [localeCatalog,references,sod,experiments,foundations,coverage,translationStatus,glossary,site]=await Promise.all(['locales/messages.json?v=093881fe9e3d','references.json?v=3da6820a557d','sod.json','experiments.json','foundations.json','coverage.json?v=ff468f78b663','translation-status.json','glossary.json','site.json'].map(async file=>{const response=await fetch(file);if(!response.ok)throw Error(`Cannot load ${file}`);return response.json();}));
+ [localeCatalog,references,sod,experiments,foundations,coverage,translationStatus,glossary,site]=await Promise.all(['locales/messages.json?v=e1a41dee65ea','references.json?v=3da6820a557d','sod.json','experiments.json','foundations.json','coverage.json?v=c9a77cac339d','translation-status.json','glossary.json','site.json'].map(async file=>{const response=await fetch(file);if(!response.ok)throw Error(`Cannot load ${file}`);return response.json();}));
  repo=site.repositoryUrl;
  references.sort((a,b)=>a.year-b.year||a.id.localeCompare(b.id));
  let saved;try{saved=localStorage.getItem('hrkoyama.home.language') || localStorage.getItem('numart-language');}catch{}

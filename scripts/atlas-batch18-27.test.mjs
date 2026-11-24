@@ -1,3 +1,4 @@
+import {projectMethodBeforeBatch68} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -61,7 +62,7 @@ test('the ten-item addition preserves 2755 baseline payload files, one audited i
  const registry=json('numerical-methods-atlas/validation/releases.json');
  assert.equal(proof.releases.length,24);
  for(const old of proof.releases)assert.deepEqual(registry.releases.find(x=>x.group===old.group),old);
- const methods=json('catalog/atlas-methods.json').methods;
+ const methods=json('catalog/atlas-methods.json').methods.map(projectMethodBeforeBatch68);
  assert.equal(Object.keys(proof.method_status).length,149);
  for(const[id,status]of Object.entries(proof.method_status))assert.equal(methods.find(x=>x.id===id)?.status,id==='slab-ewald'?'educational-example':status,id);
  const equations=json('catalog/atlas-equations.json').equations;

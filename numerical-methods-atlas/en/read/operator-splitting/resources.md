@@ -14,7 +14,9 @@ Resources explicitly registered to the methods, problems and executions of this 
 
 ## Equations
 
-No chapter-specific association is registered. Atlas-wide index: [Equations](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en)
+- [Linear reaction-diffusion with inhomogeneous boundaries](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#inhomogeneous-reaction-diffusion-en>)
+
+  Separate temporal errors relative to the same nonperiodic finite-difference system from spatial errors relative to the continuous exact family.
 
 ## Problem figures
 
@@ -30,6 +32,14 @@ No chapter-specific association is registered. Atlas-wide index: [Exact and refe
   availability: run
 
   Advance a 32-point Schnakenberg reaction–diffusion problem to T=1 with matched inputs and subsolvers. Four step sizes check first-/second-order temporal convergence, reference sensitivity, reaction balance and failure on nonconvergence in a lightweight comparison.
+- [Strang splitting: Dirichlet boundary order reduction and correction](<https://hrkoyama.github.io/numerical-methods-atlas/validation/strang-boundary-order-reduction/?lang=en>)
+  availability: run
+
+  Evolve actual one-dimensional nonperiodic fields and compare unmodified and boundary-corrected Strang splitting against the same spatial discretization.
+- [Coupled frequencies and finite-window resonance](<https://hrkoyama.github.io/numerical-methods-atlas/validation/multifrequency-resonance/?lang=en>)
+  availability: run
+
+  A genuinely coupled two-degree-of-freedom system uses twelve 64-step probes and six accuracy trajectories to separate normal modes, coordinate exchange, discrete maps and roundoff.
 - [Lie–Trotter splitting — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/lie-trotter/?lang=en#method-execution-en>)
   availability: source
 

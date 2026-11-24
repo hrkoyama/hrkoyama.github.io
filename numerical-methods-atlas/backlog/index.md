@@ -3447,13 +3447,13 @@ ID: nonlinear-2 · P2 · 公開済み · 新規実装
 
 ### 信頼領域と線探索の難しい初期値比較
 
-ID: nonlinear-3 · P2 · 検証済み · 新規実装
+ID: nonlinear-3 · P2 · 公開済み · 新規実装
 
 調査時の範囲：未収録
 
 調査時の現状：
 
-Bratu の減衰 Newton、十分減少線探索、組み立て Jacobian と GMRES/ILU 内部解法がある。一般の matrix-free Jv・trust region・continuation は atlas-methods の制限に明記。
+固定入力のコード・保存図をHRで公開。匿名公開ファイル照合、実HR日英画面、公開ZIP Linux全56群116例1456pytestと全56JUnitの検査が合格。公開時点の条件・参照の読解範囲・失敗履歴は各配布記録を参照。
 
 追加内容・最小の検証：
 
@@ -3480,7 +3480,7 @@ Bratu の減衰 Newton、十分減少線探索、組み立て Jacobian と GMRES
 
 ```json
 {
-  "verification": "/code/validated-examples/2026-11-24/globalization-controls/verification.json",
+  "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
   "inputs": [
     "/code/validated-examples/2026-11-24/globalization-controls/inputs.json",
     "/code/validated-examples/2026-11-24/globalization-controls/acceptance.json",
@@ -3495,7 +3495,9 @@ Bratu の減衰 Newton、十分減少線探索、組み立て Jacobian と GMRES
   ],
   "references": [
     "/code/validated-examples/2026-11-24/globalization-controls/README.md",
-    "/code/validated-examples/2026-11-24/globalization-controls/cases.json"
+    "/code/validated-examples/2026-11-24/globalization-controls/cases.json",
+    "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
+    "/code/validated-examples/2026-11-24/globalization-controls/verification.json"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#globalization-difficult-starts-ja",
   "execution": "/numerical-methods-atlas/validation/globalization-difficult-starts/?lang=ja#globalization-difficult-starts-ja-measurements",
@@ -3510,13 +3512,13 @@ Bratu の減衰 Newton、十分減少線探索、組み立て Jacobian と GMRES
 
 ### 逆モード VJP の実装と JVP/VJP 双対性検査
 
-ID: automatic-differentiation-1 · P1 · 検証済み · 新規実装
+ID: automatic-differentiation-1 · P1 · 公開済み · 新規実装
 
 調査時の範囲：解説のみ
 
 調査時の現状：
 
-独自の forward dual-number、JVP/Jacobian と解析微分・有限差分の Bratu 比較は実装・配布・検証済み。逆モード/VJP/HVP は章内説明がある。
+固定入力のコード・保存図をHRで公開。匿名公開ファイル照合、実HR日英画面、公開ZIP Linux全56群116例1456pytestと全56JUnitの検査が合格。公開時点の条件・参照の読解範囲・失敗履歴は各配布記録を参照。
 
 追加内容・最小の検証：
 
@@ -3547,7 +3549,7 @@ ID: automatic-differentiation-1 · P1 · 検証済み · 新規実装
 
 ```json
 {
-  "verification": "/code/validated-examples/2026-11-24/reverse-higher-ad/verification.json",
+  "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
   "inputs": [
     "/code/validated-examples/2026-11-24/reverse-higher-ad/inputs.json",
     "/code/validated-examples/2026-11-24/reverse-higher-ad/acceptance.json",
@@ -3562,7 +3564,9 @@ ID: automatic-differentiation-1 · P1 · 検証済み · 新規実装
   ],
   "references": [
     "/code/validated-examples/2026-11-24/reverse-higher-ad/README.md",
-    "/code/validated-examples/2026-11-24/reverse-higher-ad/cases.json"
+    "/code/validated-examples/2026-11-24/reverse-higher-ad/cases.json",
+    "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
+    "/code/validated-examples/2026-11-24/reverse-higher-ad/verification.json"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#reverse-vjp-duality-ja",
   "execution": "/numerical-methods-atlas/validation/reverse-vjp-duality/?lang=ja#reverse-vjp-duality-ja-measurements",
@@ -3575,13 +3579,13 @@ ID: automatic-differentiation-1 · P1 · 検証済み · 新規実装
 
 ### Hessian-vector 積・二階微分の検証
 
-ID: automatic-differentiation-2 · P2 · 検証済み · 新規実装
+ID: automatic-differentiation-2 · P2 · 公開済み · 新規実装
 
 調査時の範囲：解説のみ
 
 調査時の現状：
 
-独自の forward dual-number、JVP/Jacobian と解析微分・有限差分の Bratu 比較は実装・配布・検証済み。逆モード/VJP/HVP は章内説明がある。
+固定入力のコード・保存図をHRで公開。匿名公開ファイル照合、実HR日英画面、公開ZIP Linux全56群116例1456pytestと全56JUnitの検査が合格。公開時点の条件・参照の読解範囲・失敗履歴は各配布記録を参照。
 
 追加内容・最小の検証：
 
@@ -3612,7 +3616,7 @@ ID: automatic-differentiation-2 · P2 · 検証済み · 新規実装
 
 ```json
 {
-  "verification": "/code/validated-examples/2026-11-24/reverse-higher-ad/verification.json",
+  "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
   "inputs": [
     "/code/validated-examples/2026-11-24/reverse-higher-ad/inputs.json",
     "/code/validated-examples/2026-11-24/reverse-higher-ad/acceptance.json",
@@ -3627,7 +3631,9 @@ ID: automatic-differentiation-2 · P2 · 検証済み · 新規実装
   ],
   "references": [
     "/code/validated-examples/2026-11-24/reverse-higher-ad/README.md",
-    "/code/validated-examples/2026-11-24/reverse-higher-ad/cases.json"
+    "/code/validated-examples/2026-11-24/reverse-higher-ad/cases.json",
+    "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
+    "/code/validated-examples/2026-11-24/reverse-higher-ad/verification.json"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#hessian-vector-products-ja",
   "execution": "/numerical-methods-atlas/validation/hessian-vector-products/?lang=ja#hessian-vector-products-ja-measurements",
@@ -3640,13 +3646,13 @@ ID: automatic-differentiation-2 · P2 · 検証済み · 新規実装
 
 ### 分岐・非滑らか演算と微分の適用範囲
 
-ID: automatic-differentiation-3 · P2 · 検証済み · 検証の拡充
+ID: automatic-differentiation-3 · P2 · 公開済み · 検証の拡充
 
 調査時の範囲：検証範囲不足
 
 調査時の現状：
 
-独自の forward dual-number、JVP/Jacobian と解析微分・有限差分の Bratu 比較は実装・配布・検証済み。逆モード/VJP/HVP は章内説明がある。
+固定入力のコード・保存図をHRで公開。匿名公開ファイル照合、実HR日英画面、公開ZIP Linux全56群116例1456pytestと全56JUnitの検査が合格。公開時点の条件・参照の読解範囲・失敗履歴は各配布記録を参照。
 
 追加内容・最小の検証：
 
@@ -3677,7 +3683,7 @@ ID: automatic-differentiation-3 · P2 · 検証済み · 検証の拡充
 
 ```json
 {
-  "verification": "/code/validated-examples/2026-11-24/reverse-higher-ad/verification.json",
+  "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
   "inputs": [
     "/code/validated-examples/2026-11-24/reverse-higher-ad/inputs.json",
     "/code/validated-examples/2026-11-24/reverse-higher-ad/acceptance.json",
@@ -3692,7 +3698,9 @@ ID: automatic-differentiation-3 · P2 · 検証済み · 検証の拡充
   ],
   "references": [
     "/code/validated-examples/2026-11-24/reverse-higher-ad/README.md",
-    "/code/validated-examples/2026-11-24/reverse-higher-ad/cases.json"
+    "/code/validated-examples/2026-11-24/reverse-higher-ad/cases.json",
+    "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
+    "/code/validated-examples/2026-11-24/reverse-higher-ad/verification.json"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#kink-branch-derivatives-ja",
   "execution": "/numerical-methods-atlas/validation/kink-branch-derivatives/?lang=ja#kink-branch-derivatives-ja-measurements",
@@ -3707,13 +3715,13 @@ ID: automatic-differentiation-3 · P2 · 検証済み · 検証の拡充
 
 ### 時間依存問題の離散随伴と checkpointing
 
-ID: sensitivity-adjoint-1 · P2 · 検証済み · 新規実装
+ID: sensitivity-adjoint-1 · P2 · 公開済み · 新規実装
 
 調査時の範囲：未収録
 
 調査時の現状：
 
-Bratu の陰関数感度と離散随伴、解析パラメータ微分、有限差分、前進/随伴一致がある。現在の実例は定常・小規模密行列で、逆問題も一つ又は二つのパラメータ。
+固定入力のコード・保存図をHRで公開。匿名公開ファイル照合、実HR日英画面、公開ZIP Linux全56群116例1456pytestと全56JUnitの検査が合格。公開時点の条件・参照の読解範囲・失敗履歴は各配布記録を参照。
 
 追加内容・最小の検証：
 
@@ -3751,7 +3759,7 @@ Bratu の陰関数感度と離散随伴、解析パラメータ微分、有限�
 
 ```json
 {
-  "verification": "/code/validated-examples/2026-11-24/adjoint/verification.json",
+  "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
   "inputs": [
     "/code/validated-examples/2026-11-24/adjoint/inputs.json",
     "/code/validated-examples/2026-11-24/adjoint/acceptance.json",
@@ -3773,7 +3781,9 @@ Bratu の陰関数感度と離散随伴、解析パラメータ微分、有限�
   ],
   "references": [
     "/code/validated-examples/2026-11-24/adjoint/README.md",
-    "/code/validated-examples/2026-11-24/adjoint/cases.json"
+    "/code/validated-examples/2026-11-24/adjoint/cases.json",
+    "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
+    "/code/validated-examples/2026-11-24/adjoint/verification.json"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#diffusion-discrete-adjoint-ja",
   "execution": "/numerical-methods-atlas/validation/diffusion-discrete-adjoint/?lang=ja#diffusion-discrete-adjoint-ja-measurements",
@@ -3786,13 +3796,13 @@ Bratu の陰関数感度と離散随伴、解析パラメータ微分、有限�
 
 ### 折り返し・悪条件下での感度と解法許容誤差
 
-ID: sensitivity-adjoint-2 · P1 · 検証済み · 検証の拡充
+ID: sensitivity-adjoint-2 · P1 · 公開済み · 検証の拡充
 
 調査時の範囲：検証範囲不足
 
 調査時の現状：
 
-Bratu の陰関数感度と離散随伴、解析パラメータ微分、有限差分、前進/随伴一致がある。現在の実例は定常・小規模密行列で、逆問題も一つ又は二つのパラメータ。
+固定入力のコード・保存図をHRで公開。匿名公開ファイル照合、実HR日英画面、公開ZIP Linux全56群116例1456pytestと全56JUnitの検査が合格。公開時点の条件・参照の読解範囲・失敗履歴は各配布記録を参照。
 
 追加内容・最小の検証：
 
@@ -3832,7 +3842,7 @@ Bratu の陰関数感度と離散随伴、解析パラメータ微分、有限�
 
 ```json
 {
-  "verification": "/code/validated-examples/2026-11-24/adjoint/verification.json",
+  "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
   "inputs": [
     "/code/validated-examples/2026-11-24/adjoint/inputs.json",
     "/code/validated-examples/2026-11-24/adjoint/acceptance.json",
@@ -3859,7 +3869,9 @@ Bratu の陰関数感度と離散随伴、解析パラメータ微分、有限�
   ],
   "references": [
     "/code/validated-examples/2026-11-24/adjoint/README.md",
-    "/code/validated-examples/2026-11-24/adjoint/cases.json"
+    "/code/validated-examples/2026-11-24/adjoint/cases.json",
+    "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
+    "/code/validated-examples/2026-11-24/adjoint/verification.json"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#bratu-fold-sensitivity-ja",
   "execution": "/numerical-methods-atlas/validation/bratu-fold-sensitivity/?lang=ja#bratu-fold-sensitivity-ja-measurements",
@@ -3872,13 +3884,13 @@ Bratu の陰関数感度と離散随伴、解析パラメータ微分、有限�
 
 ### 多数の空間パラメータへの行列非形成 VJP 展開
 
-ID: sensitivity-adjoint-3 · P2 · 検証済み · 検証の拡充
+ID: sensitivity-adjoint-3 · P2 · 公開済み · 検証の拡充
 
 調査時の範囲：検証範囲不足
 
 調査時の現状：
 
-Bratu の陰関数感度と離散随伴、解析パラメータ微分、有限差分、前進/随伴一致がある。現在の実例は定常・小規模密行列で、逆問題も一つ又は二つのパラメータ。
+固定入力のコード・保存図をHRで公開。匿名公開ファイル照合、実HR日英画面、公開ZIP Linux全56群116例1456pytestと全56JUnitの検査が合格。公開時点の条件・参照の読解範囲・失敗履歴は各配布記録を参照。
 
 追加内容・最小の検証：
 
@@ -3918,7 +3930,7 @@ Bratu の陰関数感度と離散随伴、解析パラメータ微分、有限�
 
 ```json
 {
-  "verification": "/code/validated-examples/2026-11-24/adjoint/verification.json",
+  "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
   "inputs": [
     "/code/validated-examples/2026-11-24/adjoint/inputs.json",
     "/code/validated-examples/2026-11-24/adjoint/acceptance.json",
@@ -3945,7 +3957,9 @@ Bratu の陰関数感度と離散随伴、解析パラメータ微分、有限�
   ],
   "references": [
     "/code/validated-examples/2026-11-24/adjoint/README.md",
-    "/code/validated-examples/2026-11-24/adjoint/cases.json"
+    "/code/validated-examples/2026-11-24/adjoint/cases.json",
+    "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
+    "/code/validated-examples/2026-11-24/adjoint/verification.json"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#bratu-distributed-vjp-ja",
   "execution": "/numerical-methods-atlas/validation/bratu-distributed-vjp/?lang=ja#bratu-distributed-vjp-ja-measurements",
@@ -3960,13 +3974,13 @@ Bratu の陰関数感度と離散随伴、解析パラメータ微分、有限�
 
 ### Gauss–Newton/Levenberg–Marquardt と境界付き最小二乗
 
-ID: inverse-optimization-1 · P1 · 検証済み · 新規実装
+ID: inverse-optimization-1 · P1 · 公開済み · 新規実装
 
 調査時の範囲：未収録
 
 調査時の現状：
 
-Bratu λ 推定、二パラメータ空間係数推定、箱制約投影勾配・Armijo、Tikhonov 正則化とデータのみの感度 SVD による識別可能性を実装済み。BFGS と Rosenbrock の検証案は章にあるが未実行。SVD 診断は統計的 Fisher 情報・厳密 Hessian とは呼んでいない。
+固定入力のコード・保存図をHRで公開。匿名公開ファイル照合、実HR日英画面、公開ZIP Linux全56群116例1456pytestと全56JUnitの検査が合格。公開時点の条件・参照の読解範囲・失敗履歴は各配布記録を参照。
 
 追加内容・最小の検証：
 
@@ -3998,7 +4012,7 @@ Bratu λ 推定、二パラメータ空間係数推定、箱制約投影勾配�
 
 ```json
 {
-  "verification": "/code/validated-examples/2026-11-24/inverse-optimization/verification.json",
+  "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
   "inputs": [
     "/code/validated-examples/2026-11-24/inverse-optimization/inputs.json",
     "/code/validated-examples/2026-11-24/inverse-optimization/acceptance.json",
@@ -4017,7 +4031,9 @@ Bratu λ 推定、二パラメータ空間係数推定、箱制約投影勾配�
   ],
   "references": [
     "/code/validated-examples/2026-11-24/inverse-optimization/README.md",
-    "/code/validated-examples/2026-11-24/inverse-optimization/cases.json"
+    "/code/validated-examples/2026-11-24/inverse-optimization/cases.json",
+    "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
+    "/code/validated-examples/2026-11-24/inverse-optimization/verification.json"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#bratu-gn-lm-bounds-ja",
   "execution": "/numerical-methods-atlas/validation/bratu-gn-lm-bounds/?lang=ja#bratu-gn-lm-bounds-ja-measurements",
@@ -4030,13 +4046,13 @@ Bratu λ 推定、二パラメータ空間係数推定、箱制約投影勾配�
 
 ### BFGS/L-BFGS と標準 Rosenbrock 問題の固定検証
 
-ID: inverse-optimization-2 · P2 · 検証済み · 新規実装
+ID: inverse-optimization-2 · P2 · 公開済み · 新規実装
 
 調査時の範囲：解説のみ
 
 調査時の現状：
 
-Bratu λ 推定、二パラメータ空間係数推定、箱制約投影勾配・Armijo、Tikhonov 正則化とデータのみの感度 SVD による識別可能性を実装済み。BFGS と Rosenbrock の検証案は章にあるが未実行。SVD 診断は統計的 Fisher 情報・厳密 Hessian とは呼んでいない。
+固定入力のコード・保存図をHRで公開。匿名公開ファイル照合、実HR日英画面、公開ZIP Linux全56群116例1456pytestと全56JUnitの検査が合格。公開時点の条件・参照の読解範囲・失敗履歴は各配布記録を参照。
 
 追加内容・最小の検証：
 
@@ -4076,7 +4092,7 @@ Bratu λ 推定、二パラメータ空間係数推定、箱制約投影勾配�
 
 ```json
 {
-  "verification": "/code/validated-examples/2026-11-24/inverse-optimization/verification.json",
+  "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
   "inputs": [
     "/code/validated-examples/2026-11-24/inverse-optimization/inputs.json",
     "/code/validated-examples/2026-11-24/inverse-optimization/acceptance.json",
@@ -4092,7 +4108,9 @@ Bratu λ 推定、二パラメータ空間係数推定、箱制約投影勾配�
   ],
   "references": [
     "/code/validated-examples/2026-11-24/inverse-optimization/README.md",
-    "/code/validated-examples/2026-11-24/inverse-optimization/cases.json"
+    "/code/validated-examples/2026-11-24/inverse-optimization/cases.json",
+    "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
+    "/code/validated-examples/2026-11-24/inverse-optimization/verification.json"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#bfgs-lbfgs-controls-ja",
   "execution": "/numerical-methods-atlas/validation/bfgs-lbfgs-controls/?lang=ja#bfgs-lbfgs-controls-ja-measurements",
@@ -4105,13 +4123,13 @@ Bratu λ 推定、二パラメータ空間係数推定、箱制約投影勾配�
 
 ### ノイズ・離散化不一致下の正則化選択と推定不確かさ
 
-ID: inverse-optimization-3 · P1 · 検証済み · 検証の拡充
+ID: inverse-optimization-3 · P1 · 公開済み · 検証の拡充
 
 調査時の範囲：検証範囲不足
 
 調査時の現状：
 
-Bratu λ 推定、二パラメータ空間係数推定、箱制約投影勾配・Armijo、Tikhonov 正則化とデータのみの感度 SVD による識別可能性を実装済み。BFGS と Rosenbrock の検証案は章にあるが未実行。SVD 診断は統計的 Fisher 情報・厳密 Hessian とは呼んでいない。
+固定入力のコード・保存図をHRで公開。匿名公開ファイル照合、実HR日英画面、公開ZIP Linux全56群116例1456pytestと全56JUnitの検査が合格。公開時点の条件・参照の読解範囲・失敗履歴は各配布記録を参照。
 
 追加内容・最小の検証：
 
@@ -4148,7 +4166,7 @@ Bratu λ 推定、二パラメータ空間係数推定、箱制約投影勾配�
 
 ```json
 {
-  "verification": "/code/validated-examples/2026-11-24/inverse-optimization/verification.json",
+  "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
   "inputs": [
     "/code/validated-examples/2026-11-24/inverse-optimization/inputs.json",
     "/code/validated-examples/2026-11-24/inverse-optimization/acceptance.json",
@@ -4165,7 +4183,9 @@ Bratu λ 推定、二パラメータ空間係数推定、箱制約投影勾配�
   ],
   "references": [
     "/code/validated-examples/2026-11-24/inverse-optimization/README.md",
-    "/code/validated-examples/2026-11-24/inverse-optimization/cases.json"
+    "/code/validated-examples/2026-11-24/inverse-optimization/cases.json",
+    "/numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json",
+    "/code/validated-examples/2026-11-24/inverse-optimization/verification.json"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#bratu-noise-regularization-ja",
   "execution": "/numerical-methods-atlas/validation/bratu-noise-regularization/?lang=ja#bratu-noise-regularization-ja-measurements",
@@ -4180,7 +4200,7 @@ Bratu λ 推定、二パラメータ空間係数推定、箱制約投影勾配�
 
 ### 標準 stiff ベンチマーク：Robertson 反応系と van der Pol
 
-ID: ode-time-1 · P1 · 未着手 · 新規実装
+ID: ode-time-1 · P1 · 検証済み · 新規実装
 
 調査時の範囲：未収録
 
@@ -4211,10 +4231,58 @@ Euler/Heun/midpoint/Ralston/Kutta3/RK4/SSPRK、BDF2/SDIRK2/IMEX Euler、step dou
   公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。
 - [SUNDIALS IDA mathematical considerations](<https://sundials.readthedocs.io/en/latest/ida/Mathematics_link.html>)
   公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。
+- [Official SUNDIALS cvRoberts_dns model definition](<https://raw.githubusercontent.com/LLNL/sundials/main/examples/cvode/serial/cvRoberts_dns.c>)
+  Read the model, initial values and Jacobian in selected official source sections. The observed main URL is not an immutable release pin. Our T = 0.4 scope does not reproduce the original paper, the long 4e10 benchmark or its numerical tables.
+- [SciPy1.14.1 solve_ivp and selected official source](<https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html>)
+  Read selected fixed-version method, API, local-tolerance and termination sections. This is not a full audit of the original research papers.
+- [scikit-sundae official van der Pol example](<https://scikit-sundae.readthedocs.io/en/stable/examples/van_der_pol.html>)
+  Read the equations and initial state in the official binding example. Our mu = 1 and 100, T = 2 inputs are an authored early-transient scope, not an original-paper or full mu = 1000 cycle reproduction.
+
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/inputs.json",
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/acceptance.json",
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/robertson-stiff-kinetics.png",
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/robertson-stiff-kinetics-preview.png",
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/van-der-pol-stiff-transition.png",
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/van-der-pol-stiff-transition-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/run.py",
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/experiments.py",
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/io_contract.py",
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/reference_eval.py",
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/models.py",
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/stiff.py",
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/reporting_policy.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/README.md",
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/cases.json"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#robertson-stiff-kinetics-ja",
+  "execution": "/numerical-methods-atlas/validation/robertson-stiff-kinetics/?lang=ja#robertson-stiff-kinetics-ja-measurements",
+  "note": {
+    "ja": "固定入力の正規実行と独立展開ZIPのpytest・全入力再実行が合格しました。公開後の同一SHAによるHTTP・UI・Linuxの確認は別に記録します。",
+    "en": "Canonical execution and independently extracted ZIP pytest/all-input reruns passed. Same-SHA post-publication HTTP, UI and Linux checks are recorded separately."
+  },
+  "case_ids": [
+    "robertson-stiff-kinetics",
+    "van-der-pol-stiff-transition"
+  ]
+}
+```
 
 ### 埋込み RK45・dense output・イベント位置決め
 
-ID: ode-time-2 · P1 · 未着手 · 新規実装
+ID: ode-time-2 · P1 · 検証済み · 新規実装
 
 調査時の範囲：未収録
 
@@ -4245,10 +4313,47 @@ Euler/Heun/midpoint/Ralston/Kutta3/RK4/SSPRK、BDF2/SDIRK2/IMEX Euler、step dou
   公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。
 - [SUNDIALS IDA mathematical considerations](<https://sundials.readthedocs.io/en/latest/ida/Mathematics_link.html>)
   公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。
+- [SciPy1.14.1 RK45 coefficient and dense-output source](<https://github.com/scipy/scipy/blob/v1.14.1/scipy/integrate/_ivp/rk.py>)
+  Read C, A, B, E, P, stage evaluation, accepted/rejected FSAL updates and quartic evaluation. The original Dormand–Prince 1980 and Shampine 1986 papers remain unread beyond bibliography. The adapted coefficient BSD notice is retained.
+
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/inputs.json",
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/acceptance.json",
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/rk45-dense-events.png",
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/rk45-dense-events-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/run.py",
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/experiments.py",
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/io_contract.py",
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/reference_eval.py",
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/dopri.py",
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/tableau.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/README.md",
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/cases.json"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#rk45-dense-events-ja",
+  "execution": "/numerical-methods-atlas/validation/rk45-dense-events/?lang=ja#rk45-dense-events-ja-measurements",
+  "note": {
+    "ja": "固定入力の正規実行と独立展開ZIPのpytest・全入力再実行が合格しました。公開後の同一SHAによるHTTP・UI・Linuxの確認は別に記録します。",
+    "en": "Canonical execution and independently extracted ZIP pytest/all-input reruns passed. Same-SHA post-publication HTTP, UI and Linux checks are recorded separately."
+  }
+}
+```
 
 ### 分割法の境界・時間依存と order reduction
 
-ID: ode-time-3 · P2 · 未着手 · 検証の拡充
+ID: ode-time-3 · P2 · 検証済み · 検証の拡充
 
 調査時の範囲：検証範囲不足
 
@@ -4281,10 +4386,46 @@ Lie/Strang 自体は収録済み。
   公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。
 - [SUNDIALS IDA mathematical considerations](<https://sundials.readthedocs.io/en/latest/ida/Mathematics_link.html>)
   公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。
+- [Overcoming order reduction in diffusion-reaction splitting. Part1: Dirichlet boundary conditions](<https://arxiv.org/abs/1411.0465>)
+  Read selected extracted text from the 2014 v1 preprint: section 2, Algorithm 2, the constant-boundary example, section 3.2 assumptions and result, and the one-dimensional example. This was not a full-proof or whole-PDF visual audit; the present linear specialization does not reproduce the nonlinear tables.
+
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/inputs.json",
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/acceptance.json",
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/strang-boundary-order-reduction.png",
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/strang-boundary-order-reduction-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/run.py",
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/experiments.py",
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/io_contract.py",
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/reference_eval.py",
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/boundary.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/README.md",
+    "/code/validated-examples/2026-11-24-r2/ode-adaptivity/cases.json"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#strang-boundary-order-reduction-ja",
+  "execution": "/numerical-methods-atlas/validation/strang-boundary-order-reduction/?lang=ja#strang-boundary-order-reduction-ja-measurements",
+  "note": {
+    "ja": "固定入力の正規実行と独立展開ZIPのpytest・全入力再実行が合格しました。公開後の同一SHAによるHTTP・UI・Linuxの確認は別に記録します。",
+    "en": "Canonical execution and independently extracted ZIP pytest/all-input reruns passed. Same-SHA post-publication HTTP, UI and Linux checks are recorded separately."
+  }
+}
+```
 
 ### Jameson系の定常多段RKによる線形モード減衰
 
-ID: ode-time-additional · P2 · 未着手 · 新規実装
+ID: ode-time-additional · P2 · 検証済み · 新規実装
 
 調査時の範囲：解説のみ
 
@@ -4309,12 +4450,45 @@ Euler/Heun/midpoint/Ralston/Kutta3/RK4/SSPRK、BDF2/SDIRK2/IMEX Euler、step dou
 - `catalog/atlas-detailed-reading.json` · steady-runge-kutta
 - `numerical-methods-atlas/ja/read/steady-runge-kutta/index.html`
 
+- [PERFORM time integration schemes](<https://perform.readthedocs.io/en/latest/solver/timeschemes.html>)
+  Selected four-stage base-state recurrence. No full JST 1981 paper reading or compressible-flow implementation claim.
+
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-24/steady-rk/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-24/steady-rk/inputs.json",
+    "/code/validated-examples/2026-11-24/steady-rk/acceptance.json",
+    "/code/validated-examples/2026-11-24/steady-rk/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-24/steady-rk/results/jameson-steady-linear-modes.png",
+    "/code/validated-examples/2026-11-24/steady-rk/results/jameson-steady-linear-modes-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-24/steady-rk/run.py",
+    "/code/validated-examples/2026-11-24/steady-rk/steady.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-24/steady-rk/README.md",
+    "/code/validated-examples/2026-11-24/steady-rk/cases.json"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#jameson-steady-linear-modes-ja",
+  "execution": "/numerical-methods-atlas/validation/jameson-steady-linear-modes/?lang=ja#jameson-steady-linear-modes-ja-measurements",
+  "note": {
+    "ja": "固定入力の正規実行と独立展開ZIPのpytest・全入力再実行が合格しました。公開後の同一SHAによるHTTP・UI・Linuxの確認は別に記録します。",
+    "en": "Canonical execution and independently extracted ZIP pytest/all-input reruns passed. Same-SHA post-publication HTTP, UI and Linux checks are recorded separately."
+  }
+}
+```
 
 ## 微分代数方程式 DAE
 
 ### index-1 DAE：整合初期化込みの最小実装
 
-ID: dae-1 · P1 · 未着手 · 新規実装
+ID: dae-1 · P1 · 検証済み · 新規実装
 
 調査時の範囲：解説のみ
 
@@ -4342,10 +4516,44 @@ dae は planned だが章は存在し、F(t,y,y′)=0、index-1、整合初期�
 
 - [SUNDIALS IDA mathematical considerations](<https://sundials.readthedocs.io/en/latest/ida/Mathematics_link.html>)
   公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。
+- [SUNDIALS v7.1.1 IDA mathematics, section 5.2](<https://sundials.readthedocs.io/en/v7.1.1/ida/Mathematics_link.html>)
+  Residual form, BDF/Newton and consistent initialization sections selected. Section5.2 is not an IDA version. This authored MMS/BE solver is not IDA.
+
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-24/dae-controls/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-24/dae-controls/inputs.json",
+    "/code/validated-examples/2026-11-24/dae-controls/acceptance.json",
+    "/code/validated-examples/2026-11-24/dae-controls/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-24/dae-controls/results/index1-dae-consistent-initialization.png",
+    "/code/validated-examples/2026-11-24/dae-controls/results/index1-dae-consistent-initialization-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-24/dae-controls/run.py",
+    "/code/validated-examples/2026-11-24/dae-controls/models.py",
+    "/code/validated-examples/2026-11-24/dae-controls/newton.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-24/dae-controls/README.md",
+    "/code/validated-examples/2026-11-24/dae-controls/cases.json"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#index1-dae-consistent-initialization-ja",
+  "execution": "/numerical-methods-atlas/validation/index1-dae-consistent-initialization/?lang=ja#index1-dae-consistent-initialization-ja-measurements",
+  "note": {
+    "ja": "固定入力の正規実行と独立展開ZIPのpytest・全入力再実行が合格しました。公開後の同一SHAによるHTTP・UI・Linuxの確認は別に記録します。",
+    "en": "Canonical execution and independently extracted ZIP pytest/all-input reruns passed. Same-SHA post-publication HTTP, UI and Linux checks are recorded separately."
+  }
+}
+```
 
 ### 名前付き DAE ベンチマーク：Robertson の保存則 DAE 形式
 
-ID: dae-2 · P2 · 未着手 · 新規実装
+ID: dae-2 · P2 · 検証済み · 新規実装
 
 調査時の範囲：未収録
 
@@ -4373,10 +4581,46 @@ dae は planned だが章は存在し、F(t,y,y′)=0、index-1、整合初期�
 
 - [SUNDIALS IDA mathematical considerations](<https://sundials.readthedocs.io/en/latest/ida/Mathematics_link.html>)
   公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。
+- [SUNDIALS v7.1.1 idaRoberts_dns example](<https://github.com/LLNL/sundials/blob/v7.1.1/examples/ida/serial/idaRoberts_dns.c>)
+  Read residual/Jacobian, initialization, tolerances and print format. Own first two residual rows have opposite sign and the same zero set.
+- [Stored official v7.1.1 IDA Robertson output](<https://github.com/LLNL/sundials/blob/v7.1.1/examples/ida/serial/idaRoberts_dns.out>)
+  Selected printed t=0.4 and4 values only, with Decimal rounding intervals. These approximate IDA values are not exact truth; no IDA run is performed here.
+
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-24/dae-controls/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-24/dae-controls/inputs.json",
+    "/code/validated-examples/2026-11-24/dae-controls/acceptance.json",
+    "/code/validated-examples/2026-11-24/dae-controls/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-24/dae-controls/results/robertson-conservation-dae.png",
+    "/code/validated-examples/2026-11-24/dae-controls/results/robertson-conservation-dae-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-24/dae-controls/run.py",
+    "/code/validated-examples/2026-11-24/dae-controls/models.py",
+    "/code/validated-examples/2026-11-24/dae-controls/newton.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-24/dae-controls/README.md",
+    "/code/validated-examples/2026-11-24/dae-controls/cases.json"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#robertson-stiff-kinetics-ja",
+  "execution": "/numerical-methods-atlas/validation/robertson-conservation-dae/?lang=ja#robertson-conservation-dae-ja-measurements",
+  "note": {
+    "ja": "固定入力の正規実行と独立展開ZIPのpytest・全入力再実行が合格しました。公開後の同一SHAによるHTTP・UI・Linuxの確認は別に記録します。",
+    "en": "Canonical execution and independently extracted ZIP pytest/all-input reruns passed. Same-SHA post-publication HTTP, UI and Linux checks are recorded separately."
+  }
+}
+```
 
 ### 高 index 系の index reduction と拘束ドリフト
 
-ID: dae-3 · P2 · 未着手 · 新規実装
+ID: dae-3 · P2 · 検証済み · 新規実装
 
 調査時の範囲：解説のみ
 
@@ -4404,12 +4648,48 @@ dae は planned だが章は存在し、F(t,y,y′)=0、index-1、整合初期�
 
 - [SUNDIALS IDA mathematical considerations](<https://sundials.readthedocs.io/en/latest/ida/Mathematics_link.html>)
   公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。
+- [NIST DLMF section22.19(i), pendulum](<https://dlmf.nist.gov/22.19>)
+  Selected pendulum formulas, phase and modulus convention. Authored Cartesian conversion uses K-t; SciPy takes parameter m=k². No full chapter reading claimed.
+- [NIST DLMF section19.8(i), arithmetic-geometric mean](<https://dlmf.nist.gov/19.8>)
+  Selected AGM/K identity; independent Decimal Machin pi and sine with explicit finite remainders qualify a single fixed modulus.
+
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-24/dae-controls/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-24/dae-controls/inputs.json",
+    "/code/validated-examples/2026-11-24/dae-controls/acceptance.json",
+    "/code/validated-examples/2026-11-24/dae-controls/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-24/dae-controls/results/high-index-pendulum.png",
+    "/code/validated-examples/2026-11-24/dae-controls/results/high-index-pendulum-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-24/dae-controls/run.py",
+    "/code/validated-examples/2026-11-24/dae-controls/models.py",
+    "/code/validated-examples/2026-11-24/dae-controls/newton.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-24/dae-controls/README.md",
+    "/code/validated-examples/2026-11-24/dae-controls/cases.json"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#high-index-pendulum-ja",
+  "execution": "/numerical-methods-atlas/validation/high-index-pendulum/?lang=ja#high-index-pendulum-ja-measurements",
+  "note": {
+    "ja": "固定入力の正規実行と独立展開ZIPのpytest・全入力再実行が合格しました。公開後の同一SHAによるHTTP・UI・Linuxの確認は別に記録します。",
+    "en": "Canonical execution and independently extracted ZIP pytest/all-input reruns passed. Same-SHA post-publication HTTP, UI and Linux checks are recorded separately."
+  }
+}
+```
 
 ## 幾何積分・Hamilton 系
 
 ### SHAKE/RATTLE：拘束付き振り子の固定入力比較
 
-ID: geometric-1 · P2 · 未着手 · 新規実装
+ID: geometric-1 · P2 · 検証済み · 新規実装
 
 調査時の範囲：未収録
 
@@ -4439,10 +4719,50 @@ symplectic Euler、Verlet、Yoshida4、implicit midpoint を harmonic/quartic Ha
   著者公開講義の拘束系・幾何積分の対象を確認。
 - [Hairer: Important aspects of geometric numerical integration](<https://www.unige.ch/~hairer/preprints/hairer-pisa.pdf>)
   著者公開原稿の構造・長時間挙動・高振動問題の射程を確認。
+- [Solving Differential Equations on Manifolds](<https://www.unige.ch/~hairer/poly-sde-mani.pdf>)
+  Author-hosted lecture notes, selected printed page50, SectionV.5, equations5.1–5.3 and Theorem5.1 statement, rendered and visually read. Centered SHAKE momentum and RATTLE final tangency are explicit. The original1977 SHAKE and1983 RATTLE articles remain full-text unread; no full proof review is claimed. Source date: 2011 (date displayed on lecture notes); this is not asserted as the publication year.
+- [Lecture2: Symplectic integrators](<https://www.unige.ch/~hairer/poly_geoint/week2.pdf>)
+  Author-hosted course notes, selected rendered printed pages2,12–13: Verlet kick/drift form, symplectic statement, Lie and symmetric Strang compositions. This does not qualify every state-dependent step rule or the authored coupled resonance experiment. Source date: 2010 (displayed course date); this is not asserted as the publication year.
+- [DLMF22.4: Periods, Poles, and Zeros](<https://dlmf.nist.gov/22.4>)
+  Official Table22.4.1 selected real periods: sn and cn have4K, dn has2K. Version date is not an initial publication date. Common-period reduction and direct-library periodicity qualification are separate from the independent angular DOP853 state comparison. Source date: 2026 (version); this is not asserted as the publication year.
+
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-24/geometric-controls/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-24/geometric-controls/inputs.json",
+    "/code/validated-examples/2026-11-24/geometric-controls/acceptance.json",
+    "/code/validated-examples/2026-11-24/geometric-controls/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-24/geometric-controls/results/shake-rattle-pendulum.png",
+    "/code/validated-examples/2026-11-24/geometric-controls/results/shake-rattle-pendulum-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-24/geometric-controls/run.py",
+    "/code/validated-examples/2026-11-24/geometric-controls/physics.py",
+    "/code/validated-examples/2026-11-24/geometric-controls/diagnostics.py",
+    "/code/validated-examples/2026-11-24/geometric-controls/references/analytic.py",
+    "/code/validated-examples/2026-11-24/geometric-controls/references/discrete.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-24/geometric-controls/README.md",
+    "/code/validated-examples/2026-11-24/geometric-controls/cases.json"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#high-index-pendulum-ja",
+  "execution": "/numerical-methods-atlas/validation/shake-rattle-pendulum/?lang=ja#shake-rattle-pendulum-ja-measurements",
+  "note": {
+    "ja": "固定入力の正規実行と独立展開ZIPのpytest・全入力再実行が合格しました。公開後の同一SHAによるHTTP・UI・Linuxの確認は別に記録します。",
+    "en": "Canonical execution and independently extracted ZIP pytest/all-input reruns passed. Same-SHA post-publication HTTP, UI and Linux checks are recorded separately."
+  }
+}
+```
 
 ### Kepler 問題の離心率依存と近日点誤差
 
-ID: geometric-2 · P2 · 未着手 · 検証の拡充
+ID: geometric-2 · P2 · 検証済み · 検証の拡充
 
 調査時の範囲：検証範囲不足
 
@@ -4474,10 +4794,48 @@ N体重力や軌道積分の既存例を未収録とは呼ばず、幾何積分�
   著者公開講義の拘束系・幾何積分の対象を確認。
 - [Hairer: Important aspects of geometric numerical integration](<https://www.unige.ch/~hairer/preprints/hairer-pisa.pdf>)
   著者公開原稿の構造・長時間挙動・高振動問題の射程を確認。
+- [Lecture2: Symplectic integrators](<https://www.unige.ch/~hairer/poly_geoint/week2.pdf>)
+  Author-hosted course notes, selected rendered printed pages2,12–13: Verlet kick/drift form, symplectic statement, Lie and symmetric Strang compositions. This does not qualify every state-dependent step rule or the authored coupled resonance experiment. Source date: 2010 (displayed course date); this is not asserted as the publication year.
+- [Approximate Positions of the Planets](<https://ssd.jpl.nasa.gov/planets/approx_pos.html>)
+  Official JPL page, selected steps3–4 and Kepler equation. Only the eccentric-anomaly equation and elliptic coordinate transformation are used; no planetary coefficient tables, fitted ephemeris accuracy or Horizons calculation is claimed. Publication date was not verified.
+
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-24/geometric-controls/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-24/geometric-controls/inputs.json",
+    "/code/validated-examples/2026-11-24/geometric-controls/acceptance.json",
+    "/code/validated-examples/2026-11-24/geometric-controls/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-24/geometric-controls/results/kepler-eccentricity.png",
+    "/code/validated-examples/2026-11-24/geometric-controls/results/kepler-eccentricity-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-24/geometric-controls/run.py",
+    "/code/validated-examples/2026-11-24/geometric-controls/physics.py",
+    "/code/validated-examples/2026-11-24/geometric-controls/diagnostics.py",
+    "/code/validated-examples/2026-11-24/geometric-controls/references/analytic.py",
+    "/code/validated-examples/2026-11-24/geometric-controls/references/discrete.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-24/geometric-controls/README.md",
+    "/code/validated-examples/2026-11-24/geometric-controls/cases.json"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#gravity-kepler-ja",
+  "execution": "/numerical-methods-atlas/validation/kepler-eccentricity/?lang=ja#kepler-eccentricity-ja-measurements",
+  "note": {
+    "ja": "固定入力の正規実行と独立展開ZIPのpytest・全入力再実行が合格しました。公開後の同一SHAによるHTTP・UI・Linuxの確認は別に記録します。",
+    "en": "Canonical execution and independently extracted ZIP pytest/all-input reruns passed. Same-SHA post-publication HTTP, UI and Linux checks are recorded separately."
+  }
+}
+```
 
 ### 多周波数・高振動系での共鳴と安定性限界
 
-ID: geometric-3 · P3 · 未着手 · 検証の拡充
+ID: geometric-3 · P3 · 検証済み · 検証の拡充
 
 調査時の範囲：検証範囲不足
 
@@ -4507,6 +4865,42 @@ symplectic Euler、Verlet、Yoshida4、implicit midpoint を harmonic/quartic Ha
   著者公開講義の拘束系・幾何積分の対象を確認。
 - [Hairer: Important aspects of geometric numerical integration](<https://www.unige.ch/~hairer/preprints/hairer-pisa.pdf>)
   著者公開原稿の構造・長時間挙動・高振動問題の射程を確認。
+- [Lecture2: Symplectic integrators](<https://www.unige.ch/~hairer/poly_geoint/week2.pdf>)
+  Author-hosted course notes, selected rendered printed pages2,12–13: Verlet kick/drift form, symplectic statement, Lie and symmetric Strang compositions. This does not qualify every state-dependent step rule or the authored coupled resonance experiment. Source date: 2010 (displayed course date); this is not asserted as the publication year.
+
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-24/geometric-controls/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-24/geometric-controls/inputs.json",
+    "/code/validated-examples/2026-11-24/geometric-controls/acceptance.json",
+    "/code/validated-examples/2026-11-24/geometric-controls/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-24/geometric-controls/results/multifrequency-resonance.png",
+    "/code/validated-examples/2026-11-24/geometric-controls/results/multifrequency-resonance-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-24/geometric-controls/run.py",
+    "/code/validated-examples/2026-11-24/geometric-controls/physics.py",
+    "/code/validated-examples/2026-11-24/geometric-controls/diagnostics.py",
+    "/code/validated-examples/2026-11-24/geometric-controls/references/analytic.py",
+    "/code/validated-examples/2026-11-24/geometric-controls/references/discrete.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-24/geometric-controls/README.md",
+    "/code/validated-examples/2026-11-24/geometric-controls/cases.json"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#multifrequency-resonance-ja",
+  "execution": "/numerical-methods-atlas/validation/multifrequency-resonance/?lang=ja#multifrequency-resonance-ja-measurements",
+  "note": {
+    "ja": "固定入力の正規実行と独立展開ZIPのpytest・全入力再実行が合格しました。公開後の同一SHAによるHTTP・UI・Linuxの確認は別に記録します。",
+    "en": "Canonical execution and independently extracted ZIP pytest/all-input reruns passed. Same-SHA post-publication HTTP, UI and Linux checks are recorded separately."
+  }
+}
+```
 
 ## 数値求積
 

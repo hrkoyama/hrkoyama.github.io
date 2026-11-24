@@ -123,6 +123,22 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/sparse-nonlinear/
   availability: run
 
   同じ固定初期値からNewton・Armijo・doglegを比較し、真の根と非根停留・予算終了を区別します。
+- [Robertson反応系の初期剛性と実誤差](<https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-stiff-kinetics/?lang=ja>)
+  availability: run
+
+  短い固定区間でBDF2・SDIRK2・倍分割適応法を、資格済みRadau/BDF参照と比較します。
+- [Robertson保存制約DAEと公式IDA保存値](<https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-conservation-dae/?lang=ja>)
+  availability: run
+
+  Robertsonの保存制約DAEと全ODEを同じ固定時間格子で比較し、公式IDA保存値を別に照合します。 初回は元の時間精度・細分化目標4件が未達でした。
+- [van der Polの短時間剛性遷移](<https://hrkoyama.github.io/numerical-methods-atlas/validation/van-der-pol-stiff-transition/?lang=ja>)
+  availability: run
+
+  局所制御と大域誤差を分離します。初回は元209目標中208達成で、μ=1の厳しい適応設定は大域目標2e-5に未達でした。
+- [index-1 DAEの整合初期化と離散残差](<https://hrkoyama.github.io/numerical-methods-atlas/validation/index1-dae-consistent-initialization/?lang=ja>)
+  availability: run
+
+  既知の正枝を持つindex-1 DAEで初期化と後退Eulerの誤差・残差を分離します。
 - [再始動GMRES：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/gmres/?lang=ja#method-execution-ja>)
   availability: source
 

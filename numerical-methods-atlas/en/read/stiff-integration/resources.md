@@ -30,6 +30,12 @@ Resources explicitly registered to the methods, problems and executions of this 
 
 ## Equations
 
+- [Robertson chemical kinetics](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#robertson-kinetics-en>)
+
+  Distinguish the stiff three-species ODE from an index-one DAE obtained by replacing one equation with conservation.
+- [Van der Pol oscillator](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#van-der-pol-en>)
+
+  Compare work and error for fixed mu values over a short interval; this does not validate a full relaxation cycle.
 - [This execution’s formulation and conditions](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#execution-stiff-cosine-en>)
 
   Temporal initial-value problems using the existing two-stage SDIRK2. Main case: t=1 and 1000/2000/4000 steps. These example formulas are separate from the 46-model inventory, not new heat-PDE or general stiff-system entries.
@@ -61,6 +67,14 @@ Resources explicitly registered to the methods, problems and executions of this 
 
 ## Code and validation
 
+- [Robertson kinetics: initial stiffness and actual error](<https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-stiff-kinetics/?lang=en>)
+  availability: run
+
+  Compare BDF2, SDIRK2 and adaptive step doubling on a short fixed interval against qualified Radau and BDF references.
+- [Van der Pol: an early stiffness transition](<https://hrkoyama.github.io/numerical-methods-atlas/validation/van-der-pol-stiff-transition/?lang=en>)
+  availability: run
+
+  Separate local control from global error. The first study met 208 of 209 original targets; the mu = 1 tight adaptive run missed the 2e-5 global goal.
 - [Stiff cosine-tracking ODE: SDIRK2](<https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/stiff-cosine/?lang=en>)
   availability: run
 

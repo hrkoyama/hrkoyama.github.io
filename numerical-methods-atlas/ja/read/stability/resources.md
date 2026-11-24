@@ -154,6 +154,10 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/stability/
   availability: run
 
   2重みだけの局所hat作用で8/16/32個の空間係数を表し、目的関数ごとの随伴VJPを全感度参照と比較します。
+- [Dirichlet境界でのStrang次数低下と補正](<https://hrkoyama.github.io/numerical-methods-atlas/validation/strang-boundary-order-reduction/?lang=ja>)
+  availability: run
+
+  実1D非周期場で、未補正/境界補正Strangを同じFD参照へ比較し、時間誤差と空間誤差を分けます。
 - [周期正弦波の線形移流：風上法と解析解](<https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/advection-sine/?lang=ja>)
   availability: run
 

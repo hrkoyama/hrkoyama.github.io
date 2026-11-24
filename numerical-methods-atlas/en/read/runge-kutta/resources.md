@@ -8,6 +8,7 @@ Resources explicitly registered to the methods, problems and executions of this 
 
 ## Methods
 
+- [Dormand–Prince RK45](<https://hrkoyama.github.io/numerical-methods-atlas/methods/rk45/?lang=en>)
 - [Forward Euler](<https://hrkoyama.github.io/numerical-methods-atlas/methods/forward-euler/?lang=en>)
 
   Public nonautonomous/nonlinear manufactured-solution checks exercise every explicit RK tableau; the saved preview uses RK4.
@@ -91,6 +92,14 @@ No chapter-specific association is registered. Atlas-wide index: [Equations](htt
 
 ## Code and validation
 
+- [RK45: embedded errors, dense output and events](<https://hrkoyama.github.io/numerical-methods-atlas/validation/rk45-dense-events/?lang=en>)
+  availability: run
+
+  Use analytic damped rotation to test acceptance, rejection, FSAL ownership, dense interpolation and directed event times separately.
+- [Dormand–Prince RK45 — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/rk45/?lang=en#method-execution-en>)
+  availability: source
+
+  Method-specific editions and related sources; fixed-input runs are listed separately.
 - [Nonlinear nonautonomous ODE with exponential exact solution — code and validation status](<https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-exp-ode/?lang=en#code-en>)
   availability: source
 

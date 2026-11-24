@@ -8,6 +8,7 @@ Resources explicitly registered to the methods, problems and executions of this 
 
 ## Methods
 
+- [Jameson-type steady multistage Runge–Kutta](<https://hrkoyama.github.io/numerical-methods-atlas/methods/jameson-steady-rk/?lang=en>)
 - [Classical RK4](<https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/?lang=en>)
 - [Dual time stepping](<https://hrkoyama.github.io/numerical-methods-atlas/methods/dual-time/?lang=en>)
 - [Low-Mach PDE preconditioning](<https://hrkoyama.github.io/numerical-methods-atlas/methods/low-mach-preconditioning/?lang=en>)
@@ -27,4 +28,11 @@ No chapter-specific association is registered. Atlas-wide index: [Exact and refe
 
 ## Code and validation
 
-No chapter-specific association is registered. Atlas-wide index: [Code, inputs and validation](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en)
+- [Real-space mode damping with steady multistage RK](<https://hrkoyama.github.io/numerical-methods-atlas/validation/jameson-steady-linear-modes/?lang=en>)
+  availability: run
+
+  Apply four steady residual stages on a periodic grid, separating damping, neutrality and amplification of discrete modes. The retained first run missed the original absolute residual goal in the expanding control.
+- [Jameson-type steady multistage Runge–Kutta — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/jameson-steady-rk/?lang=en#method-execution-en>)
+  availability: source
+
+  Method-specific editions and related sources; fixed-input runs are listed separately.

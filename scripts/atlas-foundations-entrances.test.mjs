@@ -53,7 +53,13 @@ test('AMG algebraic diagnostics remain outside physical counts and the Poisson g
  const added=['pivoted-direct-refinement','symmetric-saddle-minres','restarted-shift-invert','fem-mass-eigen'];
  const retained=depth.supplemental_examples.filter(id=>!['checkerboard-diffusion','rotated-anisotropic-diffusion'].includes(id));
  assert.deepEqual(retained.slice(0,previous.length),previous);
- assert.deepEqual(retained.slice(previous.length),added);
+ assert.deepEqual(retained.slice(previous.length,previous.length+added.length),added);
+ // Retain the exact older8+4 prefix; append only the dated68 canonical11.
+ const cohort68=json('scripts/fixtures/atlas-batch68-77-baseline.json');
+ const added68=Object.values(cohort68.expected_new_groups).flat();
+ assert.equal(added68.length,11);assert.equal(new Set(added68).size,11);
+ assert.deepEqual(retained.slice(previous.length+added.length),added68);
+ assert.equal(new Set(retained).size,retained.length);
  const release=config.groups.find(row=>row.id==='linear-algebra-spectral');
  assert.equal(release.edition,'2026-11-24-r3');
  const metadata=json(`code/validated-examples/${release.edition}/${release.id}/cases.json`);

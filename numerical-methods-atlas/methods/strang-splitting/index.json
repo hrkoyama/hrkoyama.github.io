@@ -10,8 +10,8 @@
     "en": "Time integration"
   },
   "summary": {
-    "ja": "半刻み・全刻み・半刻みの対称合成による2次の時間積分法。Lie–Trotterとの違い、部分ソルバーの次数、境界条件と安定性、既存の反応拡散の実行例を解説する。 同じ32格子のSchnakenberg問題を比較する専用コード・固定入力・追試記録があります。",
-    "en": "Second-order integration using a symmetric half/full/half composition. Compare Lie–Trotter, subsolver order, boundaries and stability, with links to existing reaction–diffusion runs. Dedicated code, fixed inputs and rerun evidence compare the same 32-point Schnakenberg problem."
+    "ja": "半刻み・全刻み・半刻みの対称合成による2次の時間積分法。Lie–Trotterとの違い、部分ソルバーの次数、境界条件と安定性、既存の反応拡散の実行例を解説する。 同じ32格子のSchnakenberg問題を比較する専用コード・固定入力・追試記録があります。 追加固定例：Dirichlet境界でのStrang次数低下と補正。条件と検証範囲は各配布版で確認してください。 追加固定例：結合した2周波数系と共鳴の有限窓。条件と検証範囲は各配布版で確認してください。",
+    "en": "Second-order integration using a symmetric half/full/half composition. Compare Lie–Trotter, subsolver order, boundaries and stability, with links to existing reaction–diffusion runs. Dedicated code, fixed inputs and rerun evidence compare the same 32-point Schnakenberg problem. Additional fixed examples: Strang splitting: Dirichlet boundary order reduction and correction. See each release for assumptions and checked scope. Additional fixed examples: Coupled frequencies and finite-window resonance. See each release for assumptions and checked scope."
   },
   "status": "educational-example",
   "origin": "curated-operator-splitting-reading",
@@ -51,12 +51,16 @@
   "boundary_conditions": "None for the two-component ODE. PDEs need compatible stage boundary data; inhomogeneous or time-dependent boundaries can reduce order.",
   "boundary_conditions_ja": "2成分ODEに空間境界条件はない。PDEでは部分問題・段階の境界値を整合させる。非同次・時間依存境界では次数低下を確認。",
   "limitations": {
-    "ja": "固定格子での採用合成法の時間誤差であり、分割誤差と反応中点則の離散誤差を含みます。連続PDEの厳密解・空間収束・独立PDE実装の照合とは呼びません。u+vは反応で保存せず、正濃度は固定入力での観測です。計算費は実際の部分流呼出し数で示し、速度の順位やStrangの一般的優越を主張しません。既存Schnakenberg問題の追加比較で、物理問題数・共通22例・旧配布版の公差や成功履歴を増減・変更しません。長時間パターン・2D・一般境界は対象外です。",
-    "en": "This measures temporal error of the adopted compositions at fixed space, including splitting and midpoint-reaction discretization errors. It is not an exact continuum solution, spatial convergence check or independent PDE-engine comparison. Reactions do not conserve u+v; positivity is observed only for the fixed input. Work is reported as actual subflow calls, without runtime rankings or universal Strang superiority. This additional comparison of the existing Schnakenberg problem changes neither physical-problem counts, the common 22 examples, old release criteria nor success history. Long-time patterns, 2D and general boundaries are outside scope."
+    "ja": "固定格子での採用合成法の時間誤差であり、分割誤差と反応中点則の離散誤差を含みます。連続PDEの厳密解・空間収束・独立PDE実装の照合とは呼びません。u+vは反応で保存せず、正濃度は固定入力での観測です。計算費は実際の部分流呼出し数で示し、速度の順位やStrangの一般的優越を主張しません。既存Schnakenberg問題の追加比較で、物理問題数・共通22例・旧配布版の公差や成功履歴を増減・変更しません。長時間パターン・2D・一般境界は対象外です。 上記の制限は既存配布版の範囲です。今回の追加配布版：原著の線形特殊例で非線形数値表の再現ではありません。非自律/一般境界や普遍的な次数低下は主張せず、Lie終端の反応trace不整合も別表示します。 上記の制限は既存配布版の範囲です。今回の追加配布版：中心の実浮動係数写像はunresolvedとし、理想πのJordan性を移しません。64刻み増幅と小さい固定入力の観測であり、走査した共鳴図・一般安定性・長時間の普遍誤差定理は主張しません。",
+    "en": "This measures temporal error of the adopted compositions at fixed space, including splitting and midpoint-reaction discretization errors. It is not an exact continuum solution, spatial convergence check or independent PDE-engine comparison. Reactions do not conserve u+v; positivity is observed only for the fixed input. Work is reported as actual subflow calls, without runtime rankings or universal Strang superiority. This additional comparison of the existing Schnakenberg problem changes neither physical-problem counts, the common 22 examples, old release criteria nor success history. Long-time patterns, 2D and general boundaries are outside scope. The preceding limitations describe earlier editions. This additional release: This is an authored linear specialization, not a reproduction of the original nonlinear tables. It makes no general claim for nonautonomous boundaries or universal order loss. The final reaction-trace mismatch of Lie splitting is disclosed separately. The preceding limitations describe earlier editions. This additional release: The central actual floating map remains unresolved; ideal-pi Jordan structure is not transferred to it. Results concern 64-step amplification and small fixed inputs, not a scanned resonance diagram, general stability or a universal long-time error theorem."
   },
   "metadata_review": {
     "on": "2026-11-22",
-    "level": "dedicated bounded reaction-diffusion comparison; 16 tests and all fixed inputs rerun after independent ZIP extraction; same-FD Radau/DOP853 references distinguished from continuum PDE accuracy"
+    "level": "dedicated bounded reaction-diffusion comparison; 16 tests and all fixed inputs rerun after independent ZIP extraction; same-FD Radau/DOP853 references distinguished from continuum PDE accuracy",
+    "supplemental_review": {
+      "on": "2026-11-24",
+      "level": "Frozen fixed inputs, independently reviewed references and criteria, actual pytest/main and independently extracted ZIP. See release-specific scope and retained failure history."
+    }
   },
   "aliases": [
     "Strang splitting",
@@ -1509,16 +1513,1429 @@
     "ja": "32格子・終了時刻1のSchnakenberg反応拡散を、同じ入力・部分ソルバーでLie–TrotterとStrangにより進めます。4段階の時間刻みで1次／2次の収束、参照の感度、反応収支と未収束時の失敗を確かめる軽量な比較例です。",
     "en": "Advance a 32-point Schnakenberg reaction–diffusion problem to T=1 with matched inputs and subsolvers. Four step sizes check first-/second-order temporal convergence, reference sensitivity, reaction balance and failure on nonconvergence in a lightweight comparison."
   },
+  "depth_additional_releases": [
+    {
+      "group": "ode-adaptivity",
+      "case_ids": [
+        "strang-boundary-order-reduction"
+      ],
+      "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/",
+      "code_edition": "2026-11-24-r2",
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/experiments.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/io_contract.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/reference_eval.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/boundary.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/models.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/stiff.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/reporting_policy.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/dopri.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/tableau.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/boundary_reference.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/coefficient_exact.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/qualify.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/reference_models.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_boundary.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_contract.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_dopri.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_reporting.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_stiff.py"
+      ],
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "run_from": "atlas-ode-adaptivity-2026-11-24-r2",
+      "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/atlas-ode-adaptivity-2026-11-24-r2.zip",
+      "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/source-manifest.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+      "code_archive_sha256": "19e6bed36d5a49a865881df12170edf9f79b4c5365e35ae91186eaf33bb5bc3a",
+      "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/result.json",
+      "passed_tests": 41,
+      "examples": [
+        {
+          "id": "strang-boundary-order-reduction",
+          "method_ids": [
+            "strang-splitting",
+            "lie-trotter",
+            "centered-difference"
+          ],
+          "title": {
+            "ja": "Dirichlet境界でのStrang次数低下と補正",
+            "en": "Strang splitting: Dirichlet boundary order reduction and correction"
+          },
+          "summary": {
+            "ja": "実1D非周期場で、未補正/境界補正Strangを同じFD参照へ比較し、時間誤差と空間誤差を分けます。",
+            "en": "Evolve actual one-dimensional nonperiodic fields and compare unmodified and boundary-corrected Strang splitting against the same spatial discretization."
+          },
+          "assumptions": {
+            "ja": "u_t=u_xx+u、[0,1]、両端u=1、解析定常解+.1正弦摂動、T=.1。内部31/63/127点・8/16/32/64刻みとLie対照4run、計28run。",
+            "en": "Solve u_t = u_xx + u on [0, 1] with both boundary values equal to 1, an analytic steady state plus a 0.1 sine perturbation, and T = 0.1. Use 31, 63 and 127 interior nodes with 8, 16, 32 and 64 steps, plus four Lie controls: 28 runs."
+          },
+          "algorithm": {
+            "ja": "w=u−1で未補正(Lw,w+1)、補正(Lw+1,w)に分割。実DirichletDST-I指数流を合成し、反応の境界不整合を保持します。",
+            "en": "For w = u - 1, use the unmodified split (Lw, w + 1) or the corrected split (Lw + 1, w). Compose actual Dirichlet DST-I flows and retain the reaction boundary mismatch."
+          },
+          "validation": {
+            "ja": "独立疎affine指数作用と別記述の正弦和を先に資格。同FD時間誤差・解析連続解との差・固定格子/刻み領域の観測次数を判定。",
+            "en": "First qualify an independent sparse affine exponential action against separately written sine sums. Then separate temporal error against the same finite-difference system, spatial error against the analytic continuum field, and observed order in the fixed regime."
+          },
+          "limits": {
+            "ja": "原著の線形特殊例で非線形数値表の再現ではありません。非自律/一般境界や普遍的な次数低下は主張せず、Lie終端の反応trace不整合も別表示します。",
+            "en": "This is an authored linear specialization, not a reproduction of the original nonlinear tables. It makes no general claim for nonautonomous boundaries or universal order loss. The final reaction-trace mismatch of Lie splitting is disclosed separately."
+          },
+          "domains": [
+            "time",
+            "foundations"
+          ],
+          "code_files": [
+            "run.py",
+            "experiments.py",
+            "io_contract.py",
+            "reference_eval.py",
+            "boundary.py"
+          ],
+          "references": [
+            {
+              "id": "einkemmer-ostermann-dirichlet",
+              "author": "L. Einkemmer; A. Ostermann",
+              "title": "Overcoming order reduction in diffusion-reaction splitting. Part1: Dirichlet boundary conditions",
+              "year": 2014,
+              "url": "https://arxiv.org/abs/1411.0465",
+              "accessed_on": "2026-11-24",
+              "review_level": "primary-preprint-selected-sections",
+              "review": {
+                "ja": "2014v1の§2/Algorithm2/定数境界例、§3.2の定理・仮定、1D例の選択抽出テキストを閲読。全証明・原PDF全画像の監査ではありません。今回線形特殊例で、原著の非線形数値表ではありません。",
+                "en": "Read selected extracted text from the 2014 v1 preprint: section 2, Algorithm 2, the constant-boundary example, section 3.2 assumptions and result, and the one-dimensional example. This was not a full-proof or whole-PDF visual audit; the present linear specialization does not reproduce the nonlinear tables."
+              }
+            }
+          ],
+          "gallery_figure": "strang-boundary-order-reduction-preview.png",
+          "additional_figures": [
+            {
+              "file": "strang-boundary-order-reduction-preview.png",
+              "caption": {
+                "ja": "実1D非周期場で、未補正/境界補正Strangを同じFD参照へ比較し、時間誤差と空間誤差を分けます。 保存済みの数値場と参照を用いた図です。",
+                "en": "Evolve actual one-dimensional nonperiodic fields and compare unmodified and boundary-corrected Strang splitting against the same spatial discretization. This preview reads saved numerical fields and references only."
+              }
+            }
+          ],
+          "formulas": [
+            "u_t=u_{xx}+u,\\quad u(0,t)=u(1,t)=1,\\quad w=u-1",
+            "A_{\\rm raw}(w)=L_hw,\\ B_{\\rm raw}(w)=w+1;\\quad A_{\\rm corr}(w)=L_hw+1,\\ B_{\\rm corr}(w)=w"
+          ],
+          "measured": {
+            "id": "strang-boundary-order-reduction",
+            "passed": true,
+            "checks": {
+              "boundary-n31-strang-unmodified-8:actual-field-and-work": true,
+              "boundary-n31-strang-unmodified-8:boundary-compatibility-ledger": true,
+              "boundary-n31-strang-unmodified-16:actual-field-and-work": true,
+              "boundary-n31-strang-unmodified-16:boundary-compatibility-ledger": true,
+              "boundary-n31-strang-unmodified-32:actual-field-and-work": true,
+              "boundary-n31-strang-unmodified-32:boundary-compatibility-ledger": true,
+              "boundary-n31-strang-unmodified-64:actual-field-and-work": true,
+              "boundary-n31-strang-unmodified-64:boundary-compatibility-ledger": true,
+              "boundary-n31-strang-boundary-corrected-8:actual-field-and-work": true,
+              "boundary-n31-strang-boundary-corrected-8:boundary-compatibility-ledger": true,
+              "boundary-n31-strang-boundary-corrected-16:actual-field-and-work": true,
+              "boundary-n31-strang-boundary-corrected-16:boundary-compatibility-ledger": true,
+              "boundary-n31-strang-boundary-corrected-32:actual-field-and-work": true,
+              "boundary-n31-strang-boundary-corrected-32:boundary-compatibility-ledger": true,
+              "boundary-n31-strang-boundary-corrected-64:actual-field-and-work": true,
+              "boundary-n31-strang-boundary-corrected-64:boundary-compatibility-ledger": true,
+              "boundary-n63-strang-unmodified-8:actual-field-and-work": true,
+              "boundary-n63-strang-unmodified-8:boundary-compatibility-ledger": true,
+              "boundary-n63-strang-unmodified-16:actual-field-and-work": true,
+              "boundary-n63-strang-unmodified-16:boundary-compatibility-ledger": true,
+              "boundary-n63-strang-unmodified-32:actual-field-and-work": true,
+              "boundary-n63-strang-unmodified-32:boundary-compatibility-ledger": true,
+              "boundary-n63-strang-unmodified-64:actual-field-and-work": true,
+              "boundary-n63-strang-unmodified-64:boundary-compatibility-ledger": true,
+              "boundary-n63-strang-boundary-corrected-8:actual-field-and-work": true,
+              "boundary-n63-strang-boundary-corrected-8:boundary-compatibility-ledger": true,
+              "boundary-n63-strang-boundary-corrected-16:actual-field-and-work": true,
+              "boundary-n63-strang-boundary-corrected-16:boundary-compatibility-ledger": true,
+              "boundary-n63-strang-boundary-corrected-32:actual-field-and-work": true,
+              "boundary-n63-strang-boundary-corrected-32:boundary-compatibility-ledger": true,
+              "boundary-n63-strang-boundary-corrected-64:actual-field-and-work": true,
+              "boundary-n63-strang-boundary-corrected-64:boundary-compatibility-ledger": true,
+              "boundary-n127-strang-unmodified-8:actual-field-and-work": true,
+              "boundary-n127-strang-unmodified-8:boundary-compatibility-ledger": true,
+              "boundary-n127-strang-unmodified-16:actual-field-and-work": true,
+              "boundary-n127-strang-unmodified-16:boundary-compatibility-ledger": true,
+              "boundary-n127-strang-unmodified-32:actual-field-and-work": true,
+              "boundary-n127-strang-unmodified-32:boundary-compatibility-ledger": true,
+              "boundary-n127-strang-unmodified-64:actual-field-and-work": true,
+              "boundary-n127-strang-unmodified-64:boundary-compatibility-ledger": true,
+              "boundary-n127-strang-boundary-corrected-8:actual-field-and-work": true,
+              "boundary-n127-strang-boundary-corrected-8:boundary-compatibility-ledger": true,
+              "boundary-n127-strang-boundary-corrected-16:actual-field-and-work": true,
+              "boundary-n127-strang-boundary-corrected-16:boundary-compatibility-ledger": true,
+              "boundary-n127-strang-boundary-corrected-32:actual-field-and-work": true,
+              "boundary-n127-strang-boundary-corrected-32:boundary-compatibility-ledger": true,
+              "boundary-n127-strang-boundary-corrected-64:actual-field-and-work": true,
+              "boundary-n127-strang-boundary-corrected-64:boundary-compatibility-ledger": true,
+              "boundary-n127-lie-8:actual-field-and-work": true,
+              "boundary-n127-lie-8:boundary-compatibility-ledger": true,
+              "boundary-n127-lie-16:actual-field-and-work": true,
+              "boundary-n127-lie-16:boundary-compatibility-ledger": true,
+              "boundary-n127-lie-32:actual-field-and-work": true,
+              "boundary-n127-lie-32:boundary-compatibility-ledger": true,
+              "boundary-n127-lie-64:actual-field-and-work": true,
+              "boundary-n127-lie-64:boundary-compatibility-ledger": true,
+              "n31:corrected-finest-accuracy": true,
+              "n63:corrected-finest-accuracy": true,
+              "n127:corrected-finest-accuracy": true,
+              "strang-unmodified:fixed-regime-temporal-order": true,
+              "strang-boundary-corrected:fixed-regime-temporal-order": true,
+              "finest:boundary-correction-improves": true,
+              "separate-reference-spatial-order": true
+            },
+            "records": [
+              {
+                "run_id": "boundary-n31-strang-unmodified-8",
+                "method": "strang-unmodified",
+                "n": 31,
+                "steps": 8,
+                "dt": 0.0125,
+                "temporal_linf": 0.0008757063477917715,
+                "reference_spatial_linf": 3.996225335356485e-05,
+                "continuum_total_linf": 0.0008675031571037106,
+                "diffusion_calls": 16,
+                "reaction_calls": 8,
+                "reaction_trace_defect": 0.012578451540634377,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n31-strang-unmodified-16",
+                "method": "strang-unmodified",
+                "n": 31,
+                "steps": 16,
+                "dt": 0.00625,
+                "temporal_linf": 0.00041992035499327507,
+                "reference_spatial_linf": 3.996225335356485e-05,
+                "continuum_total_linf": 0.00041614126004252405,
+                "diffusion_calls": 32,
+                "reaction_calls": 16,
+                "reaction_trace_defect": 0.006269572003762011,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n31-strang-unmodified-32",
+                "method": "strang-unmodified",
+                "n": 31,
+                "steps": 32,
+                "dt": 0.003125,
+                "temporal_linf": 0.00020405347454843792,
+                "reference_spatial_linf": 3.996225335356485e-05,
+                "continuum_total_linf": 0.00020136246091140286,
+                "diffusion_calls": 64,
+                "reaction_calls": 32,
+                "reaction_trace_defect": 0.0031298879027391487,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n31-strang-unmodified-64",
+                "method": "strang-unmodified",
+                "n": 31,
+                "steps": 64,
+                "dt": 0.0015625,
+                "temporal_linf": 7.859278421507021e-05,
+                "reference_spatial_linf": 3.996225335356485e-05,
+                "continuum_total_linf": 7.641841650651848e-05,
+                "diffusion_calls": 128,
+                "reaction_calls": 64,
+                "reaction_trace_defect": 0.001563721339156308,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n31-strang-boundary-corrected-8",
+                "method": "strang-boundary-corrected",
+                "n": 31,
+                "steps": 8,
+                "dt": 0.0125,
+                "temporal_linf": 5.264743266231164e-06,
+                "reference_spatial_linf": 3.996225335356485e-05,
+                "continuum_total_linf": 3.7388141306049505e-05,
+                "diffusion_calls": 16,
+                "reaction_calls": 8,
+                "reaction_trace_defect": 0.0,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n31-strang-boundary-corrected-16",
+                "method": "strang-boundary-corrected",
+                "n": 31,
+                "steps": 16,
+                "dt": 0.00625,
+                "temporal_linf": 1.4116613804571188e-06,
+                "reference_spatial_linf": 3.996225335356485e-05,
+                "continuum_total_linf": 3.9318797573795194e-05,
+                "diffusion_calls": 32,
+                "reaction_calls": 16,
+                "reaction_trace_defect": 0.0,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n31-strang-boundary-corrected-32",
+                "method": "strang-boundary-corrected",
+                "n": 31,
+                "steps": 32,
+                "dt": 0.003125,
+                "temporal_linf": 3.674135915510135e-07,
+                "reference_spatial_linf": 3.996225335356485e-05,
+                "continuum_total_linf": 3.980140375436925e-05,
+                "diffusion_calls": 64,
+                "reaction_calls": 32,
+                "reaction_trace_defect": 0.0,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n31-strang-boundary-corrected-64",
+                "method": "strang-boundary-corrected",
+                "n": 31,
+                "steps": 64,
+                "dt": 0.0015625,
+                "temporal_linf": 9.27594256960873e-08,
+                "reference_spatial_linf": 3.996225335356485e-05,
+                "continuum_total_linf": 3.992204170066849e-05,
+                "diffusion_calls": 128,
+                "reaction_calls": 64,
+                "reaction_trace_defect": 0.0,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n63-strang-unmodified-8",
+                "method": "strang-unmodified",
+                "n": 63,
+                "steps": 8,
+                "dt": 0.0125,
+                "temporal_linf": 0.0008925569277957734,
+                "reference_spatial_linf": 9.990707782181474e-06,
+                "continuum_total_linf": 0.0008905061113566592,
+                "diffusion_calls": 16,
+                "reaction_calls": 8,
+                "reaction_trace_defect": 0.012578451540634377,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n63-strang-unmodified-16",
+                "method": "strang-unmodified",
+                "n": 63,
+                "steps": 16,
+                "dt": 0.00625,
+                "temporal_linf": 0.00044123635558435126,
+                "reference_spatial_linf": 9.990707782181474e-06,
+                "continuum_total_linf": 0.0004396876765413449,
+                "diffusion_calls": 32,
+                "reaction_calls": 16,
+                "reaction_trace_defect": 0.006269572003762011,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n63-strang-unmodified-32",
+                "method": "strang-unmodified",
+                "n": 63,
+                "steps": 32,
+                "dt": 0.003125,
+                "temporal_linf": 0.00022087038336637832,
+                "reference_spatial_linf": 9.990707782181474e-06,
+                "continuum_total_linf": 0.00021992568408601976,
+                "diffusion_calls": 64,
+                "reaction_calls": 32,
+                "reaction_trace_defect": 0.0031298879027391487,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n63-strang-unmodified-64",
+                "method": "strang-unmodified",
+                "n": 63,
+                "steps": 64,
+                "dt": 0.0015625,
+                "temporal_linf": 0.00010525450294140981,
+                "reference_spatial_linf": 9.990707782181474e-06,
+                "continuum_total_linf": 0.00010491477029273,
+                "diffusion_calls": 128,
+                "reaction_calls": 64,
+                "reaction_trace_defect": 0.001563721339156308,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n63-strang-boundary-corrected-8",
+                "method": "strang-boundary-corrected",
+                "n": 63,
+                "steps": 8,
+                "dt": 0.0125,
+                "temporal_linf": 5.2983453082688925e-06,
+                "reference_spatial_linf": 9.990707782181474e-06,
+                "continuum_total_linf": 7.416156708073274e-06,
+                "diffusion_calls": 16,
+                "reaction_calls": 8,
+                "reaction_trace_defect": 0.0,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n63-strang-boundary-corrected-16",
+                "method": "strang-boundary-corrected",
+                "n": 63,
+                "steps": 16,
+                "dt": 0.00625,
+                "temporal_linf": 1.4284813096843152e-06,
+                "reference_spatial_linf": 9.990707782181474e-06,
+                "continuum_total_linf": 9.347326945796652e-06,
+                "diffusion_calls": 32,
+                "reaction_calls": 16,
+                "reaction_trace_defect": 0.0,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n63-strang-boundary-corrected-32",
+                "method": "strang-boundary-corrected",
+                "n": 63,
+                "steps": 32,
+                "dt": 0.003125,
+                "temporal_linf": 3.7569862221253914e-07,
+                "reference_spatial_linf": 9.990707782181474e-06,
+                "continuum_total_linf": 9.829873045097415e-06,
+                "diffusion_calls": 64,
+                "reaction_calls": 32,
+                "reaction_trace_defect": 0.0,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n63-strang-boundary-corrected-64",
+                "method": "strang-boundary-corrected",
+                "n": 63,
+                "steps": 64,
+                "dt": 0.0015625,
+                "temporal_linf": 9.725499605650612e-08,
+                "reference_spatial_linf": 9.990707782181474e-06,
+                "continuum_total_linf": 9.950499800348567e-06,
+                "diffusion_calls": 128,
+                "reaction_calls": 64,
+                "reaction_trace_defect": 0.0,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n127-strang-unmodified-8",
+                "method": "strang-unmodified",
+                "n": 127,
+                "steps": 8,
+                "dt": 0.0125,
+                "temporal_linf": 0.0009028332894225333,
+                "reference_spatial_linf": 2.4976854506864044e-06,
+                "continuum_total_linf": 0.0009023830995367188,
+                "diffusion_calls": 16,
+                "reaction_calls": 8,
+                "reaction_trace_defect": 0.012578451540634377,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n127-strang-unmodified-16",
+                "method": "strang-unmodified",
+                "n": 127,
+                "steps": 16,
+                "dt": 0.00625,
+                "temporal_linf": 0.000453352236035931,
+                "reference_spatial_linf": 2.4976854506864044e-06,
+                "continuum_total_linf": 0.0004530285626085373,
+                "diffusion_calls": 32,
+                "reaction_calls": 16,
+                "reaction_trace_defect": 0.006269572003762011,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n127-strang-unmodified-32",
+                "method": "strang-unmodified",
+                "n": 127,
+                "steps": 32,
+                "dt": 0.003125,
+                "temporal_linf": 0.000225079471529277,
+                "reference_spatial_linf": 2.4976854506864044e-06,
+                "continuum_total_linf": 0.00022481974455157427,
+                "diffusion_calls": 64,
+                "reaction_calls": 32,
+                "reaction_trace_defect": 0.0031298879027391487,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n127-strang-unmodified-64",
+                "method": "strang-unmodified",
+                "n": 127,
+                "steps": 64,
+                "dt": 0.0015625,
+                "temporal_linf": 0.00011072277594093016,
+                "reference_spatial_linf": 2.4976854506864044e-06,
+                "continuum_total_linf": 0.00011054504046437152,
+                "diffusion_calls": 128,
+                "reaction_calls": 64,
+                "reaction_trace_defect": 0.001563721339156308,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n127-strang-boundary-corrected-8",
+                "method": "strang-boundary-corrected",
+                "n": 127,
+                "steps": 8,
+                "dt": 0.0125,
+                "temporal_linf": 5.306691291284693e-06,
+                "reference_spatial_linf": 2.4976854506864044e-06,
+                "continuum_total_linf": 4.397988545790099e-06,
+                "diffusion_calls": 16,
+                "reaction_calls": 8,
+                "reaction_trace_defect": 0.0,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n127-strang-boundary-corrected-16",
+                "method": "strang-boundary-corrected",
+                "n": 127,
+                "steps": 16,
+                "dt": 0.00625,
+                "temporal_linf": 1.4327118378343329e-06,
+                "reference_spatial_linf": 2.4976854506864044e-06,
+                "continuum_total_linf": 1.8543251061320376e-06,
+                "diffusion_calls": 32,
+                "reaction_calls": 16,
+                "reaction_trace_defect": 0.0,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n127-strang-boundary-corrected-32",
+                "method": "strang-boundary-corrected",
+                "n": 127,
+                "steps": 32,
+                "dt": 0.003125,
+                "temporal_linf": 3.782292723464309e-07,
+                "reference_spatial_linf": 2.4976854506864044e-06,
+                "continuum_total_linf": 2.336854974638314e-06,
+                "diffusion_calls": 64,
+                "reaction_calls": 32,
+                "reaction_trace_defect": 0.0,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n127-strang-boundary-corrected-64",
+                "method": "strang-boundary-corrected",
+                "n": 127,
+                "steps": 64,
+                "dt": 0.0015625,
+                "temporal_linf": 9.830520841802581e-08,
+                "reference_spatial_linf": 2.4976854506864044e-06,
+                "continuum_total_linf": 2.45747896232551e-06,
+                "diffusion_calls": 128,
+                "reaction_calls": 64,
+                "reaction_trace_defect": 0.0,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n127-lie-8",
+                "method": "lie-unmodified",
+                "n": 127,
+                "steps": 8,
+                "dt": 0.0125,
+                "temporal_linf": 0.011818308548201317,
+                "reference_spatial_linf": 2.4976854506864044e-06,
+                "continuum_total_linf": 0.011818374015232891,
+                "diffusion_calls": 8,
+                "reaction_calls": 8,
+                "reaction_trace_defect": 0.012578451540634377,
+                "last_subflow_trace_defect": 0.012578451540634377
+              },
+              {
+                "run_id": "boundary-n127-lie-16",
+                "method": "lie-unmodified",
+                "n": 127,
+                "steps": 16,
+                "dt": 0.00625,
+                "temporal_linf": 0.005756692724346202,
+                "reference_spatial_linf": 2.4976854506864044e-06,
+                "continuum_total_linf": 0.0057567581913777754,
+                "diffusion_calls": 16,
+                "reaction_calls": 16,
+                "reaction_trace_defect": 0.006269572003762011,
+                "last_subflow_trace_defect": 0.006269572003762011
+              },
+              {
+                "run_id": "boundary-n127-lie-32",
+                "method": "lie-unmodified",
+                "n": 127,
+                "steps": 32,
+                "dt": 0.003125,
+                "temporal_linf": 0.002783227896894447,
+                "reference_spatial_linf": 2.4976854506864044e-06,
+                "continuum_total_linf": 0.0027832933639260204,
+                "diffusion_calls": 32,
+                "reaction_calls": 32,
+                "reaction_trace_defect": 0.0031298879027391487,
+                "last_subflow_trace_defect": 0.0031298879027391487
+              },
+              {
+                "run_id": "boundary-n127-lie-64",
+                "method": "lie-unmodified",
+                "n": 127,
+                "steps": 64,
+                "dt": 0.0015625,
+                "temporal_linf": 0.0013305428016394671,
+                "reference_spatial_linf": 2.4976854506864044e-06,
+                "continuum_total_linf": 0.0013306082686710408,
+                "diffusion_calls": 64,
+                "reaction_calls": 64,
+                "reaction_trace_defect": 0.001563721339156308,
+                "last_subflow_trace_defect": 0.001563721339156308
+              }
+            ],
+            "metrics": {
+              "N127_finest_raw_temporal_error": 0.00011072277594093016,
+              "N127_finest_corrected_temporal_error": 9.830520841802581e-08,
+              "reference_spatial_order": 1.9999950873134633,
+              "scope": "Actual1Dnonperiodicfields. TimevsSAME-FDoracle; spacevsanalyticcontinuum. Linearautonomousspecialization, fixed-regime order; no universal reduction/theorem reproduction."
+            },
+            "original_target_results": {
+              "boundary-n31-strang-unmodified-8:actual-field-and-work": true,
+              "boundary-n31-strang-unmodified-8:boundary-compatibility-ledger": true,
+              "boundary-n31-strang-unmodified-16:actual-field-and-work": true,
+              "boundary-n31-strang-unmodified-16:boundary-compatibility-ledger": true,
+              "boundary-n31-strang-unmodified-32:actual-field-and-work": true,
+              "boundary-n31-strang-unmodified-32:boundary-compatibility-ledger": true,
+              "boundary-n31-strang-unmodified-64:actual-field-and-work": true,
+              "boundary-n31-strang-unmodified-64:boundary-compatibility-ledger": true,
+              "boundary-n31-strang-boundary-corrected-8:actual-field-and-work": true,
+              "boundary-n31-strang-boundary-corrected-8:boundary-compatibility-ledger": true,
+              "boundary-n31-strang-boundary-corrected-16:actual-field-and-work": true,
+              "boundary-n31-strang-boundary-corrected-16:boundary-compatibility-ledger": true,
+              "boundary-n31-strang-boundary-corrected-32:actual-field-and-work": true,
+              "boundary-n31-strang-boundary-corrected-32:boundary-compatibility-ledger": true,
+              "boundary-n31-strang-boundary-corrected-64:actual-field-and-work": true,
+              "boundary-n31-strang-boundary-corrected-64:boundary-compatibility-ledger": true,
+              "boundary-n63-strang-unmodified-8:actual-field-and-work": true,
+              "boundary-n63-strang-unmodified-8:boundary-compatibility-ledger": true,
+              "boundary-n63-strang-unmodified-16:actual-field-and-work": true,
+              "boundary-n63-strang-unmodified-16:boundary-compatibility-ledger": true,
+              "boundary-n63-strang-unmodified-32:actual-field-and-work": true,
+              "boundary-n63-strang-unmodified-32:boundary-compatibility-ledger": true,
+              "boundary-n63-strang-unmodified-64:actual-field-and-work": true,
+              "boundary-n63-strang-unmodified-64:boundary-compatibility-ledger": true,
+              "boundary-n63-strang-boundary-corrected-8:actual-field-and-work": true,
+              "boundary-n63-strang-boundary-corrected-8:boundary-compatibility-ledger": true,
+              "boundary-n63-strang-boundary-corrected-16:actual-field-and-work": true,
+              "boundary-n63-strang-boundary-corrected-16:boundary-compatibility-ledger": true,
+              "boundary-n63-strang-boundary-corrected-32:actual-field-and-work": true,
+              "boundary-n63-strang-boundary-corrected-32:boundary-compatibility-ledger": true,
+              "boundary-n63-strang-boundary-corrected-64:actual-field-and-work": true,
+              "boundary-n63-strang-boundary-corrected-64:boundary-compatibility-ledger": true,
+              "boundary-n127-strang-unmodified-8:actual-field-and-work": true,
+              "boundary-n127-strang-unmodified-8:boundary-compatibility-ledger": true,
+              "boundary-n127-strang-unmodified-16:actual-field-and-work": true,
+              "boundary-n127-strang-unmodified-16:boundary-compatibility-ledger": true,
+              "boundary-n127-strang-unmodified-32:actual-field-and-work": true,
+              "boundary-n127-strang-unmodified-32:boundary-compatibility-ledger": true,
+              "boundary-n127-strang-unmodified-64:actual-field-and-work": true,
+              "boundary-n127-strang-unmodified-64:boundary-compatibility-ledger": true,
+              "boundary-n127-strang-boundary-corrected-8:actual-field-and-work": true,
+              "boundary-n127-strang-boundary-corrected-8:boundary-compatibility-ledger": true,
+              "boundary-n127-strang-boundary-corrected-16:actual-field-and-work": true,
+              "boundary-n127-strang-boundary-corrected-16:boundary-compatibility-ledger": true,
+              "boundary-n127-strang-boundary-corrected-32:actual-field-and-work": true,
+              "boundary-n127-strang-boundary-corrected-32:boundary-compatibility-ledger": true,
+              "boundary-n127-strang-boundary-corrected-64:actual-field-and-work": true,
+              "boundary-n127-strang-boundary-corrected-64:boundary-compatibility-ledger": true,
+              "boundary-n127-lie-8:actual-field-and-work": true,
+              "boundary-n127-lie-8:boundary-compatibility-ledger": true,
+              "boundary-n127-lie-16:actual-field-and-work": true,
+              "boundary-n127-lie-16:boundary-compatibility-ledger": true,
+              "boundary-n127-lie-32:actual-field-and-work": true,
+              "boundary-n127-lie-32:boundary-compatibility-ledger": true,
+              "boundary-n127-lie-64:actual-field-and-work": true,
+              "boundary-n127-lie-64:boundary-compatibility-ledger": true,
+              "n31:corrected-finest-accuracy": true,
+              "n63:corrected-finest-accuracy": true,
+              "n127:corrected-finest-accuracy": true,
+              "strang-unmodified:fixed-regime-temporal-order": true,
+              "strang-boundary-corrected:fixed-regime-temporal-order": true,
+              "finest:boundary-correction-improves": true,
+              "separate-reference-spatial-order": true
+            },
+            "original_target_summary": {
+              "met": 63,
+              "total": 63,
+              "all_met": true,
+              "acceptance_sha256": "fd7e7cfe528d9844e2992e8ef96d6b33e482e8c5d2bc63a4d6955431168f6051"
+            }
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/strang-boundary-order-reduction/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#strang-boundary-order-reduction",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#strang-boundary-order-reduction"
+          }
+        }
+      ]
+    },
+    {
+      "group": "geometric-controls",
+      "case_ids": [
+        "multifrequency-resonance"
+      ],
+      "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/",
+      "code_edition": "2026-11-24",
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/physics.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/diagnostics.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/analytic.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/discrete.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/io_utils.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/qualify.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/test_geometry.py"
+      ],
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "run_from": "atlas-geometric-controls-2026-11-24",
+      "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip",
+      "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/source-manifest.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/verification.json",
+      "code_archive_sha256": "4e3ef28ab6c91ae62918b7effc6f37097ec0f5a4ed878d4d33fa06e1945329a2",
+      "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/results/result.json",
+      "passed_tests": 32,
+      "examples": [
+        {
+          "id": "multifrequency-resonance",
+          "method_ids": [
+            "verlet",
+            "strang-splitting"
+          ],
+          "domains": [
+            "classical-mechanics",
+            "geometric-integration"
+          ],
+          "validation_count": 32,
+          "title": {
+            "ja": "結合した2周波数系と共鳴の有限窓",
+            "en": "Coupled frequencies and finite-window resonance"
+          },
+          "summary": {
+            "ja": "2自由度の実結合系で、12の64刻みprobeと6の精度軌道を使い、真のモード、座標間交換、離散写像と丸めを分けます。",
+            "en": "A genuinely coupled two-degree-of-freedom system uses twelve 64-step probes and six accuracy trajectories to separate normal modes, coordinate exchange, discrete maps and roundoff."
+          },
+          "assumptions": {
+            "ja": "α=1、ω=10/20、q0=(1,1/ω)、p0=0。中心probeは保存binary64のhとsin/cosをそのまま使い、πへ丸め直しません。",
+            "en": "alpha=1, omega=10/20, q0=(1,1/omega) and p0=0. Central probes retain the evaluated binary64 h and sin/cos coefficients without snapping to mathematical pi."
+          },
+          "algorithm": {
+            "ja": "全ポテンシャルVerletと、B半kick・A厳密flow・B半kickのStrang impulse。Aには高速調和振動子と低速自由流、Bには低速位置項と結合を含めます。",
+            "en": "Full-potential Verlet and a Strang impulse composition: half B kick, exact A flow, half B kick. A contains the fast oscillator and slow free drift; B contains the slow potential and the coupling."
+          },
+          "validation": {
+            "ja": "116主判定。独立の結合固有モード解析、保存係数Decimal80/120・Fraction写像、段階別γ8丸め上界を区別。理想πのJordan構造は有理恒等式で別確認。 各probeは現在保存した係数hexからDecimal80/120を評価し、6精度軌道はDecimal80を用います。",
+            "en": "The 116 main decisions distinguish independent coupled normal modes, Decimal80/120 and Fraction frozen-coefficient maps, and stagewise gamma8 roundoff allowances. Ideal-pi Jordan structure is checked separately by rational identities. Each probe uses the current saved coefficient hex for its own Decimal80/120 actions; six accuracy actions use Decimal80."
+          },
+          "limits": {
+            "ja": "中心の実浮動係数写像はunresolvedとし、理想πのJordan性を移しません。64刻み増幅と小さい固定入力の観測であり、走査した共鳴図・一般安定性・長時間の普遍誤差定理は主張しません。",
+            "en": "The central actual floating map remains unresolved; ideal-pi Jordan structure is not transferred to it. Results concern 64-step amplification and small fixed inputs, not a scanned resonance diagram, general stability or a universal long-time error theorem."
+          },
+          "review_level": {
+            "ja": "一次資料の選択閲読と独立参照資格。実際の成否は保存result.jsonとverification.jsonに記録します。",
+            "en": "Selected primary passages and separately qualified independent references. Actual outcomes are recorded in the saved result.json and verification.json."
+          },
+          "formulas": [
+            "H=\\tfrac12(p_1^2+p_2^2+q_1^2+\\omega^2q_2^2)+\\alpha q_1q_2",
+            "\\Phi_h=\\varphi^B_{h/2}\\circ\\varphi^A_h\\circ\\varphi^B_{h/2}",
+            "\\chi_{\\theta=\\pi}(z)=(z+1)^2[z^2-(2-h^2)z+1]"
+          ],
+          "source_files": [
+            "physics.py",
+            "diagnostics.py",
+            "run.py",
+            "references/analytic.py",
+            "references/discrete.py"
+          ],
+          "code_files": [
+            "physics.py",
+            "diagnostics.py",
+            "run.py",
+            "references/analytic.py",
+            "references/discrete.py"
+          ],
+          "references": [
+            {
+              "id": "hairer-symplectic-2010",
+              "title": "Lecture2: Symplectic integrators",
+              "url": "https://www.unige.ch/~hairer/poly_geoint/week2.pdf",
+              "year": 2010,
+              "year_role": "displayed course date",
+              "accessed_on": "2026-11-24",
+              "review_level": "selected-primary-scope",
+              "review_scope": "Author-hosted course notes, selected rendered printed pages2,12–13: Verlet kick/drift form, symplectic statement, Lie and symmetric Strang compositions. This does not qualify every state-dependent step rule or the authored coupled resonance experiment."
+            }
+          ],
+          "gallery_figure": "multifrequency-resonance-preview.png",
+          "additional_figures": [
+            {
+              "file": "multifrequency-resonance-preview.png",
+              "caption": {
+                "ja": "保存した最細impulse軌道の実q1–q2座標と物理時刻。これは走査相図ではなく、結合した1軌道です。",
+                "en": "Saved q1–q2 coordinates of the finest impulse trajectory, colored by physical time. This is one coupled trajectory, not a scanned phase diagram."
+              }
+            }
+          ],
+          "measured": {
+            "id": "multifrequency-resonance",
+            "passed": true,
+            "checks": {
+              "w10-verlet-1p0-finite-cap": true,
+              "w10-verlet-1p0-completed": true,
+              "w10-verlet-1p0-discrete-reference": true,
+              "w10-verlet-1p0-roundoff": true,
+              "w10-verlet-1p0-symplectic": true,
+              "w10-verlet-1p0-classification": true,
+              "w10-verlet-1p8-finite-cap": true,
+              "w10-verlet-1p8-completed": true,
+              "w10-verlet-1p8-discrete-reference": true,
+              "w10-verlet-1p8-roundoff": true,
+              "w10-verlet-1p8-symplectic": true,
+              "w10-verlet-1p8-classification": true,
+              "w10-verlet-2p2-finite-cap": true,
+              "w10-verlet-2p2-completed": true,
+              "w10-verlet-2p2-discrete-reference": true,
+              "w10-verlet-2p2-roundoff": true,
+              "w10-verlet-2p2-symplectic": true,
+              "w10-verlet-2p2-classification": true,
+              "w10-impulse-0p9-finite-cap": true,
+              "w10-impulse-0p9-completed": true,
+              "w10-impulse-0p9-discrete-reference": true,
+              "w10-impulse-0p9-roundoff": true,
+              "w10-impulse-0p9-symplectic": true,
+              "w10-impulse-0p9-classification": true,
+              "w10-impulse-1p0-finite-cap": true,
+              "w10-impulse-1p0-completed": true,
+              "w10-impulse-1p0-discrete-reference": true,
+              "w10-impulse-1p0-roundoff": true,
+              "w10-impulse-1p0-symplectic": true,
+              "w10-impulse-1p0-classification": true,
+              "w10-impulse-1p1-finite-cap": true,
+              "w10-impulse-1p1-completed": true,
+              "w10-impulse-1p1-discrete-reference": true,
+              "w10-impulse-1p1-roundoff": true,
+              "w10-impulse-1p1-symplectic": true,
+              "w10-impulse-1p1-classification": true,
+              "w20-verlet-1p0-finite-cap": true,
+              "w20-verlet-1p0-completed": true,
+              "w20-verlet-1p0-discrete-reference": true,
+              "w20-verlet-1p0-roundoff": true,
+              "w20-verlet-1p0-symplectic": true,
+              "w20-verlet-1p0-classification": true,
+              "w20-verlet-1p8-finite-cap": true,
+              "w20-verlet-1p8-completed": true,
+              "w20-verlet-1p8-discrete-reference": true,
+              "w20-verlet-1p8-roundoff": true,
+              "w20-verlet-1p8-symplectic": true,
+              "w20-verlet-1p8-classification": true,
+              "w20-verlet-2p2-finite-cap": true,
+              "w20-verlet-2p2-completed": true,
+              "w20-verlet-2p2-discrete-reference": true,
+              "w20-verlet-2p2-roundoff": true,
+              "w20-verlet-2p2-symplectic": true,
+              "w20-verlet-2p2-classification": true,
+              "w20-impulse-0p9-finite-cap": true,
+              "w20-impulse-0p9-completed": true,
+              "w20-impulse-0p9-discrete-reference": true,
+              "w20-impulse-0p9-roundoff": true,
+              "w20-impulse-0p9-symplectic": true,
+              "w20-impulse-0p9-classification": true,
+              "w20-impulse-1p0-finite-cap": true,
+              "w20-impulse-1p0-completed": true,
+              "w20-impulse-1p0-discrete-reference": true,
+              "w20-impulse-1p0-roundoff": true,
+              "w20-impulse-1p0-symplectic": true,
+              "w20-impulse-1p0-classification": true,
+              "w20-impulse-1p1-finite-cap": true,
+              "w20-impulse-1p1-completed": true,
+              "w20-impulse-1p1-discrete-reference": true,
+              "w20-impulse-1p1-roundoff": true,
+              "w20-impulse-1p1-symplectic": true,
+              "w20-impulse-1p1-classification": true,
+              "w10-verlet-accuracy-500-finite": true,
+              "w10-verlet-accuracy-500-completed": true,
+              "w10-verlet-accuracy-500-state": true,
+              "w10-verlet-accuracy-500-energy": true,
+              "w10-verlet-accuracy-500-mode": true,
+              "w10-verlet-accuracy-500-discrete-reference": true,
+              "w10-verlet-accuracy-1000-finite": true,
+              "w10-verlet-accuracy-1000-completed": true,
+              "w10-verlet-accuracy-1000-state": true,
+              "w10-verlet-accuracy-1000-energy": true,
+              "w10-verlet-accuracy-1000-mode": true,
+              "w10-verlet-accuracy-1000-discrete-reference": true,
+              "w10-verlet-accuracy-2000-finite": true,
+              "w10-verlet-accuracy-2000-completed": true,
+              "w10-verlet-accuracy-2000-state": true,
+              "w10-verlet-accuracy-2000-energy": true,
+              "w10-verlet-accuracy-2000-mode": true,
+              "w10-verlet-accuracy-2000-discrete-reference": true,
+              "w10-impulse-accuracy-500-finite": true,
+              "w10-impulse-accuracy-500-completed": true,
+              "w10-impulse-accuracy-500-state": true,
+              "w10-impulse-accuracy-500-energy": true,
+              "w10-impulse-accuracy-500-mode": true,
+              "w10-impulse-accuracy-500-discrete-reference": true,
+              "w10-impulse-accuracy-1000-finite": true,
+              "w10-impulse-accuracy-1000-completed": true,
+              "w10-impulse-accuracy-1000-state": true,
+              "w10-impulse-accuracy-1000-energy": true,
+              "w10-impulse-accuracy-1000-mode": true,
+              "w10-impulse-accuracy-1000-discrete-reference": true,
+              "w10-impulse-accuracy-2000-finite": true,
+              "w10-impulse-accuracy-2000-completed": true,
+              "w10-impulse-accuracy-2000-state": true,
+              "w10-impulse-accuracy-2000-energy": true,
+              "w10-impulse-accuracy-2000-mode": true,
+              "w10-impulse-accuracy-2000-discrete-reference": true,
+              "verlet-state-order": true,
+              "verlet-fine-state": true,
+              "verlet-fine-relative-H": true,
+              "verlet-fine-coordinate-energy": true,
+              "impulse-state-order": true,
+              "impulse-fine-state": true,
+              "impulse-fine-relative-H": true,
+              "impulse-fine-coordinate-energy": true
+            },
+            "records": [
+              {
+                "id": "w10-verlet-1p0",
+                "role": "probe",
+                "method": "verlet",
+                "omega": 10,
+                "h": 0.1,
+                "steps": 64,
+                "discrete_relative_error": 4.145502167504218e-16,
+                "roundoff_bound_satisfied": true,
+                "normalized_symplectic_defect": 1.0416598366111144e-19,
+                "max_energy_error": 0.11521890059060136,
+                "reference_action_precisions": [
+                  80,
+                  120
+                ],
+                "raw_file": "w10-verlet-1p0.npz",
+                "diagnostic_file": "w10-verlet-1p0-diagnostics.npz",
+                "reference_map_classification": "stable",
+                "ideal_map_classification": "stable",
+                "actual_frozen_map_classification": "raw_spectrum_reported_without_exact_stability_theorem",
+                "actual_frozen_map_spectral_radius": 0.9999999999999999,
+                "classification_scope": "Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.",
+                "finite_horizon_amplification": 1.561984072192242,
+                "current_coefficient_precision_error": 1.5124037089205902e-79
+              },
+              {
+                "id": "w10-verlet-1p8",
+                "role": "probe",
+                "method": "verlet",
+                "omega": 10,
+                "h": 0.18,
+                "steps": 64,
+                "discrete_relative_error": 1.2522134139177896e-15,
+                "roundoff_bound_satisfied": true,
+                "normalized_symplectic_defect": 7.007848725616845e-19,
+                "max_energy_error": 0.49434766574278466,
+                "reference_action_precisions": [
+                  80,
+                  120
+                ],
+                "raw_file": "w10-verlet-1p8.npz",
+                "diagnostic_file": "w10-verlet-1p8-diagnostics.npz",
+                "reference_map_classification": "stable",
+                "ideal_map_classification": "stable",
+                "actual_frozen_map_classification": "raw_spectrum_reported_without_exact_stability_theorem",
+                "actual_frozen_map_spectral_radius": 0.9999999999999997,
+                "classification_scope": "Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.",
+                "finite_horizon_amplification": 1.554302100515351,
+                "current_coefficient_precision_error": 3.8894955335283575e-79
+              },
+              {
+                "id": "w10-verlet-2p2",
+                "role": "probe",
+                "method": "verlet",
+                "omega": 10,
+                "h": 0.22000000000000003,
+                "steps": 64,
+                "discrete_relative_error": 1.5118039277954516e-15,
+                "roundoff_bound_satisfied": true,
+                "normalized_symplectic_defect": 9.926441305125045e-18,
+                "max_energy_error": 3.912324814618784e+48,
+                "reference_action_precisions": [
+                  80,
+                  120
+                ],
+                "raw_file": "w10-verlet-2p2.npz",
+                "diagnostic_file": "w10-verlet-2p2-diagnostics.npz",
+                "reference_map_classification": "unstable",
+                "ideal_map_classification": "unstable",
+                "actual_frozen_map_classification": "raw_spectrum_reported_without_exact_stability_theorem",
+                "actual_frozen_map_spectral_radius": 2.4287553074746806,
+                "classification_scope": "Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.",
+                "finite_horizon_amplification": 2.7970240909000787e+24,
+                "current_coefficient_precision_error": 9.463706379857612e-79
+              },
+              {
+                "id": "w10-impulse-0p9",
+                "role": "probe",
+                "method": "impulse",
+                "omega": 10,
+                "h": 0.2827433388230814,
+                "steps": 64,
+                "discrete_relative_error": 6.374776728399525e-16,
+                "roundoff_bound_satisfied": true,
+                "normalized_symplectic_defect": 1.0559214440481042e-17,
+                "max_energy_error": 0.15779817027003462,
+                "reference_action_precisions": [
+                  80,
+                  120
+                ],
+                "raw_file": "w10-impulse-0p9.npz",
+                "diagnostic_file": "w10-impulse-0p9-diagnostics.npz",
+                "reference_map_classification": "stable",
+                "ideal_map_classification": "stable",
+                "actual_frozen_map_classification": "raw_spectrum_reported_without_exact_stability_theorem",
+                "actual_frozen_map_spectral_radius": 1.0000000000000002,
+                "classification_scope": "Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.",
+                "finite_horizon_amplification": 1.4432000831973606,
+                "current_coefficient_precision_error": 8.660178100378759e-80
+              },
+              {
+                "id": "w10-impulse-1p0",
+                "role": "probe",
+                "method": "impulse",
+                "omega": 10,
+                "h": 0.3141592653589793,
+                "steps": 64,
+                "discrete_relative_error": 1.8864090381194407e-16,
+                "roundoff_bound_satisfied": true,
+                "normalized_symplectic_defect": 1.1102230246251565e-16,
+                "max_energy_error": 0.20450002305130444,
+                "reference_action_precisions": [
+                  80,
+                  120
+                ],
+                "raw_file": "w10-impulse-1p0.npz",
+                "diagnostic_file": "w10-impulse-1p0-diagnostics.npz",
+                "reference_map_classification": "unresolved_near_degeneracy",
+                "ideal_map_classification": "defective_jordan",
+                "actual_frozen_map_classification": "unresolved_near_degeneracy",
+                "actual_frozen_map_spectral_radius": 1.000000000987884,
+                "classification_scope": "Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.",
+                "finite_horizon_amplification": 1.4148942014488144,
+                "current_coefficient_precision_error": 2.9746599228475e-80
+              },
+              {
+                "id": "w10-impulse-1p1",
+                "role": "probe",
+                "method": "impulse",
+                "omega": 10,
+                "h": 0.3455751918948773,
+                "steps": 64,
+                "discrete_relative_error": 2.697612641566338e-16,
+                "roundoff_bound_satisfied": true,
+                "normalized_symplectic_defect": 1.409776672786576e-18,
+                "max_energy_error": 0.24834143999714675,
+                "reference_action_precisions": [
+                  80,
+                  120
+                ],
+                "raw_file": "w10-impulse-1p1.npz",
+                "diagnostic_file": "w10-impulse-1p1-diagnostics.npz",
+                "reference_map_classification": "stable",
+                "ideal_map_classification": "stable",
+                "actual_frozen_map_classification": "raw_spectrum_reported_without_exact_stability_theorem",
+                "actual_frozen_map_spectral_radius": 1.0000000000000009,
+                "classification_scope": "Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.",
+                "finite_horizon_amplification": 1.4142135623730951,
+                "current_coefficient_precision_error": 1.291027573220984e-79
+              },
+              {
+                "id": "w20-verlet-1p0",
+                "role": "probe",
+                "method": "verlet",
+                "omega": 20,
+                "h": 0.05,
+                "steps": 64,
+                "discrete_relative_error": 4.767144948498519e-16,
+                "roundoff_bound_satisfied": true,
+                "normalized_symplectic_defect": 9.82502327522141e-19,
+                "max_energy_error": 0.10370871525863312,
+                "reference_action_precisions": [
+                  80,
+                  120
+                ],
+                "raw_file": "w20-verlet-1p0.npz",
+                "diagnostic_file": "w20-verlet-1p0-diagnostics.npz",
+                "reference_map_classification": "stable",
+                "ideal_map_classification": "stable",
+                "actual_frozen_map_classification": "raw_spectrum_reported_without_exact_stability_theorem",
+                "actual_frozen_map_spectral_radius": 1.0000000000000004,
+                "classification_scope": "Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.",
+                "finite_horizon_amplification": 1.4861946477456165,
+                "current_coefficient_precision_error": 1.1180439099341437e-79
+              },
+              {
+                "id": "w20-verlet-1p8",
+                "role": "probe",
+                "method": "verlet",
+                "omega": 20,
+                "h": 0.09,
+                "steps": 64,
+                "discrete_relative_error": 1.0129117256347924e-15,
+                "roundoff_bound_satisfied": true,
+                "normalized_symplectic_defect": 1.1033047892648788e-19,
+                "max_energy_error": 0.4475008383602117,
+                "reference_action_precisions": [
+                  80,
+                  120
+                ],
+                "raw_file": "w20-verlet-1p8.npz",
+                "diagnostic_file": "w20-verlet-1p8-diagnostics.npz",
+                "reference_map_classification": "stable",
+                "ideal_map_classification": "stable",
+                "actual_frozen_map_classification": "raw_spectrum_reported_without_exact_stability_theorem",
+                "actual_frozen_map_spectral_radius": 0.9999999999999999,
+                "classification_scope": "Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.",
+                "finite_horizon_amplification": 1.4786935259763927,
+                "current_coefficient_precision_error": 1.2381333022261956e-79
+              },
+              {
+                "id": "w20-verlet-2p2",
+                "role": "probe",
+                "method": "verlet",
+                "omega": 20,
+                "h": 0.11000000000000001,
+                "steps": 64,
+                "discrete_relative_error": 1.0218570901485969e-15,
+                "roundoff_bound_satisfied": true,
+                "normalized_symplectic_defect": 2.57044417086976e-18,
+                "max_energy_error": 3.4567098661726565e+48,
+                "reference_action_precisions": [
+                  80,
+                  120
+                ],
+                "raw_file": "w20-verlet-2p2.npz",
+                "diagnostic_file": "w20-verlet-2p2-diagnostics.npz",
+                "reference_map_classification": "unstable",
+                "ideal_map_classification": "unstable",
+                "actual_frozen_map_classification": "raw_spectrum_reported_without_exact_stability_theorem",
+                "actual_frozen_map_spectral_radius": 2.428203172369799,
+                "classification_scope": "Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.",
+                "finite_horizon_amplification": 2.629324653883594e+24,
+                "current_coefficient_precision_error": 5.934390297120603e-79
+              },
+              {
+                "id": "w20-impulse-0p9",
+                "role": "probe",
+                "method": "impulse",
+                "omega": 20,
+                "h": 0.1413716694115407,
+                "steps": 64,
+                "discrete_relative_error": 3.394048892577888e-16,
+                "roundoff_bound_satisfied": true,
+                "normalized_symplectic_defect": 5.6661564412693846e-18,
+                "max_energy_error": 0.07716888637049724,
+                "reference_action_precisions": [
+                  80,
+                  120
+                ],
+                "raw_file": "w20-impulse-0p9.npz",
+                "diagnostic_file": "w20-impulse-0p9-diagnostics.npz",
+                "reference_map_classification": "stable",
+                "ideal_map_classification": "stable",
+                "actual_frozen_map_classification": "raw_spectrum_reported_without_exact_stability_theorem",
+                "actual_frozen_map_spectral_radius": 0.9999999999999999,
+                "classification_scope": "Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.",
+                "finite_horizon_amplification": 1.4292841712090125,
+                "current_coefficient_precision_error": 1.7832456811386294e-79
+              },
+              {
+                "id": "w20-impulse-1p0",
+                "role": "probe",
+                "method": "impulse",
+                "omega": 20,
+                "h": 0.15707963267948966,
+                "steps": 64,
+                "discrete_relative_error": 1.4843089753780595e-16,
+                "roundoff_bound_satisfied": true,
+                "normalized_symplectic_defect": 5.551115123125783e-17,
+                "max_energy_error": 0.10058872589898016,
+                "reference_action_precisions": [
+                  80,
+                  120
+                ],
+                "raw_file": "w20-impulse-1p0.npz",
+                "diagnostic_file": "w20-impulse-1p0-diagnostics.npz",
+                "reference_map_classification": "unresolved_near_degeneracy",
+                "ideal_map_classification": "defective_jordan",
+                "actual_frozen_map_classification": "unresolved_near_degeneracy",
+                "actual_frozen_map_spectral_radius": 1.000000000359987,
+                "classification_scope": "Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.",
+                "finite_horizon_amplification": 1.4142147559165,
+                "current_coefficient_precision_error": 3.974617080093606e-80
+              },
+              {
+                "id": "w20-impulse-1p1",
+                "role": "probe",
+                "method": "impulse",
+                "omega": 20,
+                "h": 0.17278759594743864,
+                "steps": 64,
+                "discrete_relative_error": 2.801246439326266e-16,
+                "roundoff_bound_satisfied": true,
+                "normalized_symplectic_defect": 5.662591164476928e-18,
+                "max_energy_error": 0.1237347338514605,
+                "reference_action_precisions": [
+                  80,
+                  120
+                ],
+                "raw_file": "w20-impulse-1p1.npz",
+                "diagnostic_file": "w20-impulse-1p1-diagnostics.npz",
+                "reference_map_classification": "stable",
+                "ideal_map_classification": "stable",
+                "actual_frozen_map_classification": "raw_spectrum_reported_without_exact_stability_theorem",
+                "actual_frozen_map_spectral_radius": 1.0000000000000004,
+                "classification_scope": "Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.",
+                "finite_horizon_amplification": 1.4142135623730951,
+                "current_coefficient_precision_error": 1.3192204607275523e-79
+              },
+              {
+                "id": "w10-verlet-accuracy-500",
+                "role": "accuracy",
+                "method": "verlet",
+                "omega": 10,
+                "h": 0.02,
+                "steps": 500,
+                "discrete_relative_error": 7.344888096386707e-16,
+                "roundoff_bound_satisfied": true,
+                "normalized_symplectic_defect": 2.256371050463633e-17,
+                "max_energy_error": 0.006109049094255248,
+                "reference_action_precisions": [
+                  80
+                ],
+                "raw_file": "w10-verlet-accuracy-500.npz",
+                "diagnostic_file": "w10-verlet-accuracy-500-diagnostics.npz",
+                "max_scaled_state_error": 0.18611590726793545,
+                "relative_energy_envelope": 0.0029090709972644036,
+                "max_coordinate_energy_error": 0.023606504892498936,
+                "modal_energy_identity_error": 6.661338147750939e-16
+              },
+              {
+                "id": "w10-verlet-accuracy-1000",
+                "role": "accuracy",
+                "method": "verlet",
+                "omega": 10,
+                "h": 0.01,
+                "steps": 1000,
+                "discrete_relative_error": 1.4913298100213874e-15,
+                "roundoff_bound_satisfied": true,
+                "normalized_symplectic_defect": 1.0029371551531778e-18,
+                "max_energy_error": 0.0015263704534154154,
+                "reference_action_precisions": [
+                  80
+                ],
+                "raw_file": "w10-verlet-accuracy-1000.npz",
+                "diagnostic_file": "w10-verlet-accuracy-1000-diagnostics.npz",
+                "max_scaled_state_error": 0.04650854919021377,
+                "relative_energy_envelope": 0.0007268430730549597,
+                "max_coordinate_energy_error": 0.005929023980017933,
+                "modal_energy_identity_error": 4.440892098500626e-16
+              },
+              {
+                "id": "w10-verlet-accuracy-2000",
+                "role": "accuracy",
+                "method": "verlet",
+                "omega": 10,
+                "h": 0.005,
+                "steps": 2000,
+                "discrete_relative_error": 1.83456595878474e-15,
+                "roundoff_bound_satisfied": true,
+                "normalized_symplectic_defect": 1.1102369024997003e-16,
+                "max_energy_error": 0.00038186448581845056,
+                "reference_action_precisions": [
+                  80
+                ],
+                "raw_file": "w10-verlet-accuracy-2000.npz",
+                "diagnostic_file": "w10-verlet-accuracy-2000-diagnostics.npz",
+                "max_scaled_state_error": 0.01162372293333569,
+                "relative_energy_envelope": 0.0001818402313421193,
+                "max_coordinate_energy_error": 0.0014814363541617581,
+                "modal_energy_identity_error": 6.661338147750939e-16
+              },
+              {
+                "id": "w10-impulse-accuracy-500",
+                "role": "accuracy",
+                "method": "impulse",
+                "omega": 10,
+                "h": 0.02,
+                "steps": 500,
+                "discrete_relative_error": 8.28009418528374e-16,
+                "roundoff_bound_satisfied": true,
+                "normalized_symplectic_defect": 2.9587426502801494e-19,
+                "max_energy_error": 0.0007406281241237878,
+                "reference_action_precisions": [
+                  80
+                ],
+                "raw_file": "w10-impulse-accuracy-500.npz",
+                "diagnostic_file": "w10-impulse-accuracy-500-diagnostics.npz",
+                "max_scaled_state_error": 0.0007374603729817292,
+                "relative_energy_envelope": 0.0003526800591065656,
+                "max_coordinate_energy_error": 0.00080095306436756,
+                "modal_energy_identity_error": 6.661338147750939e-16
+              },
+              {
+                "id": "w10-impulse-accuracy-1000",
+                "role": "accuracy",
+                "method": "impulse",
+                "omega": 10,
+                "h": 0.01,
+                "steps": 1000,
+                "discrete_relative_error": 2.432468376162801e-15,
+                "roundoff_bound_satisfied": true,
+                "normalized_symplectic_defect": 1.1102785371641666e-16,
+                "max_energy_error": 0.0001851021248233664,
+                "reference_action_precisions": [
+                  80
+                ],
+                "raw_file": "w10-impulse-accuracy-1000.npz",
+                "diagnostic_file": "w10-impulse-accuracy-1000-diagnostics.npz",
+                "max_scaled_state_error": 0.00018427709435707353,
+                "relative_energy_envelope": 8.814386896350781e-05,
+                "max_coordinate_energy_error": 0.00020017681157191713,
+                "modal_energy_identity_error": 6.661338147750939e-16
+              },
+              {
+                "id": "w10-impulse-accuracy-2000",
+                "role": "accuracy",
+                "method": "impulse",
+                "omega": 10,
+                "h": 0.005,
+                "steps": 2000,
+                "discrete_relative_error": 2.082986487349954e-15,
+                "roundoff_bound_satisfied": true,
+                "normalized_symplectic_defect": 1.1102369024997003e-16,
+                "max_energy_error": 4.6272101977162805e-05,
+                "reference_action_precisions": [
+                  80
+                ],
+                "raw_file": "w10-impulse-accuracy-2000.npz",
+                "diagnostic_file": "w10-impulse-accuracy-2000-diagnostics.npz",
+                "max_scaled_state_error": 4.606557418824412e-05,
+                "relative_energy_envelope": 2.203433427483943e-05,
+                "max_coordinate_energy_error": 5.0040364710901564e-05,
+                "modal_energy_identity_error": 6.661338147750939e-16
+              }
+            ],
+            "metrics": {
+              "verlet_observed_orders": [
+                2.0006335257949495,
+                2.0004237164828513
+              ],
+              "impulse_observed_orders": [
+                2.000688773919643,
+                2.0001158542645605
+              ],
+              "evolution_count": 18,
+              "probe_steps": 64,
+              "ideal_pi_separate_from_actual_float": true,
+              "maximum_frozen_map_relative_error": 2.432468376162801e-15
+            }
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/multifrequency-resonance/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#multifrequency-resonance",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#multifrequency-resonance"
+          }
+        }
+      ]
+    }
+  ],
+  "supplemental_scope_profiles": [
+    {
+      "release": {
+        "group": "ode-adaptivity",
+        "edition": "2026-11-24-r2",
+        "case_ids": [
+          "strang-boundary-order-reduction"
+        ]
+      },
+      "scope": {
+        "ja": "追加固定例：Dirichlet境界でのStrang次数低下と補正。条件と検証範囲は各配布版で確認してください。",
+        "en": "Additional fixed examples: Strang splitting: Dirichlet boundary order reduction and correction. See each release for assumptions and checked scope."
+      },
+      "limits": [
+        {
+          "ja": "原著の線形特殊例で非線形数値表の再現ではありません。非自律/一般境界や普遍的な次数低下は主張せず、Lie終端の反応trace不整合も別表示します。",
+          "en": "This is an authored linear specialization, not a reproduction of the original nonlinear tables. It makes no general claim for nonautonomous boundaries or universal order loss. The final reaction-trace mismatch of Lie splitting is disclosed separately."
+        }
+      ]
+    },
+    {
+      "release": {
+        "group": "geometric-controls",
+        "edition": "2026-11-24",
+        "case_ids": [
+          "multifrequency-resonance"
+        ]
+      },
+      "scope": {
+        "ja": "追加固定例：結合した2周波数系と共鳴の有限窓。条件と検証範囲は各配布版で確認してください。",
+        "en": "Additional fixed examples: Coupled frequencies and finite-window resonance. See each release for assumptions and checked scope."
+      },
+      "limits": [
+        {
+          "ja": "中心の実浮動係数写像はunresolvedとし、理想πのJordan性を移しません。64刻み増幅と小さい固定入力の観測であり、走査した共鳴図・一般安定性・長時間の普遍誤差定理は主張しません。",
+          "en": "The central actual floating map remains unresolved; ideal-pi Jordan structure is not transferred to it. Results concern 64-step amplification and small fixed inputs, not a scanned resonance diagram, general stability or a universal long-time error theorem."
+        }
+      ]
+    }
+  ],
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/strang-splitting/",
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/strang-splitting/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/strang-splitting/index.md",
   "code_urls": [
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/run.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/splitting.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/reference.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/reference.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/experiments.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/io_contract.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/reference_eval.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/boundary.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/models.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/stiff.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/reporting_policy.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/dopri.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/tableau.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/boundary_reference.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/coefficient_exact.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/qualify.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/reference_models.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/physics.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/diagnostics.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/analytic.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/discrete.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/io_utils.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/qualify.py"
   ],
   "test_urls": [
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/test_splitting.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/test_splitting.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_boundary.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_contract.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_dopri.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_reporting.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_stiff.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/test_geometry.py"
   ],
   "run_commands": [
     "python -m pytest -q",
@@ -1534,6 +2951,24 @@
       "guide": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-splitting/?lang=ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-splitting/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    },
+    {
+      "id": "strang-boundary-order-reduction",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/strang-boundary-order-reduction/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/strang-boundary-order-reduction/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    },
+    {
+      "id": "multifrequency-resonance",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/multifrequency-resonance/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/multifrequency-resonance/?lang=en"
       },
       "kind": "dedicated-supplement"
     }
@@ -1573,6 +3008,62 @@
         "url": {
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-turing-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bio-turing-en"
+        }
+      },
+      {
+        "id": "inhomogeneous-reaction-diffusion",
+        "name": {
+          "ja": "非同次境界を持つ線形反応拡散",
+          "en": "Linear reaction-diffusion with inhomogeneous boundaries"
+        },
+        "problem_ids": [
+          "strang-boundary-order-reduction"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#inhomogeneous-reaction-diffusion-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#inhomogeneous-reaction-diffusion-en"
+        }
+      },
+      {
+        "id": "heat",
+        "name": {
+          "ja": "熱・拡散方程式",
+          "en": "Heat / diffusion equation"
+        },
+        "problem_ids": [
+          "strang-boundary-order-reduction"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#heat-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#heat-en"
+        }
+      },
+      {
+        "id": "coupled-harmonic-oscillators",
+        "name": {
+          "ja": "二周波数の結合調和振動子",
+          "en": "Coupled two-frequency harmonic oscillators"
+        },
+        "problem_ids": [
+          "multifrequency-resonance"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#coupled-harmonic-oscillators-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#coupled-harmonic-oscillators-en"
+        }
+      },
+      {
+        "id": "hamiltonian",
+        "name": {
+          "ja": "Hamilton系・振動子",
+          "en": "Hamiltonian systems and oscillators"
+        },
+        "problem_ids": [
+          "multifrequency-resonance"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#hamiltonian-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#hamiltonian-en"
         }
       }
     ],
@@ -1636,6 +3127,127 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/turing-schnakenberg/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/turing-schnakenberg/?lang=en#references-en"
         }
+      },
+      {
+        "id": "strang-boundary-order-reduction",
+        "name": {
+          "ja": "Dirichlet境界でのStrang次数低下と補正",
+          "en": "Strang splitting: Dirichlet boundary order reduction and correction"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/strang-boundary-order-reduction-preview.png",
+          "sha256": "f6fc7c2def18c49db259548f9f0687a1dbff5fb88a29ec697392e320d160b6ae",
+          "width": 1375,
+          "height": 566,
+          "caption": {
+            "ja": "実1D非周期場で、未補正/境界補正Strangを同じFD参照へ比較し、時間誤差と空間誤差を分けます。 保存済みの数値場と参照を用いた図です。",
+            "en": "Evolve actual one-dimensional nonperiodic fields and compare unmodified and boundary-corrected Strang splitting against the same spatial discretization. This preview reads saved numerical fields and references only."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strang-boundary-order-reduction/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strang-boundary-order-reduction/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strang-boundary-order-reduction/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strang-boundary-order-reduction/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "strang-boundary-order-reduction",
+            "kind": "supplement",
+            "name": {
+              "ja": "Dirichlet境界でのStrang次数低下と補正",
+              "en": "Strang splitting: Dirichlet boundary order reduction and correction"
+            },
+            "scope": {
+              "ja": "実1D非周期場で、未補正/境界補正Strangを同じFD参照へ比較し、時間誤差と空間誤差を分けます。",
+              "en": "Evolve actual one-dimensional nonperiodic fields and compare unmodified and boundary-corrected Strang splitting against the same spatial discretization."
+            },
+            "method_ids": [
+              "strang-splitting",
+              "lie-trotter",
+              "centered-difference"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/strang-boundary-order-reduction/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/strang-boundary-order-reduction/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/atlas-ode-adaptivity-2026-11-24-r2.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "w=u−1で未補正(Lw,w+1)、補正(Lw+1,w)に分割。実DirichletDST-I指数流を合成し、反応の境界不整合を保持します。",
+          "en": "For w = u - 1, use the unmodified split (Lw, w + 1) or the corrected split (Lw + 1, w). Compose actual Dirichlet DST-I flows and retain the reaction boundary mismatch."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strang-boundary-order-reduction/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strang-boundary-order-reduction/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "multifrequency-resonance",
+        "name": {
+          "ja": "結合した2周波数系と共鳴の有限窓",
+          "en": "Coupled frequencies and finite-window resonance"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/results/multifrequency-resonance-preview.png",
+          "sha256": "971cc717fea17fc6184f618778728aa4b3929c651fe9b835dfa1e9bb4340a8c8",
+          "width": 1170,
+          "height": 870,
+          "caption": {
+            "ja": "保存した最細impulse軌道の実q1–q2座標と物理時刻。これは走査相図ではなく、結合した1軌道です。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。",
+            "en": "Saved q1–q2 coordinates of the finest impulse trajectory, colored by physical time. This is one coupled trajectory, not a scanned phase diagram. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/multifrequency-resonance/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/multifrequency-resonance/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/multifrequency-resonance/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/multifrequency-resonance/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "multifrequency-resonance",
+            "kind": "supplement",
+            "name": {
+              "ja": "結合した2周波数系と共鳴の有限窓",
+              "en": "Coupled frequencies and finite-window resonance"
+            },
+            "scope": {
+              "ja": "2自由度の実結合系で、12の64刻みprobeと6の精度軌道を使い、真のモード、座標間交換、離散写像と丸めを分けます。",
+              "en": "A genuinely coupled two-degree-of-freedom system uses twelve 64-step probes and six accuracy trajectories to separate normal modes, coordinate exchange, discrete maps and roundoff."
+            },
+            "method_ids": [
+              "verlet",
+              "strang-splitting"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/multifrequency-resonance/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/multifrequency-resonance/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "全ポテンシャルVerletと、B半kick・A厳密flow・B半kickのStrang impulse。Aには高速調和振動子と低速自由流、Bには低速位置項と結合を含めます。",
+          "en": "Full-potential Verlet and a Strang impulse composition: half B kick, exact A flow, half B kick. A contains the fast oscillator and slow free drift; B contains the slow potential and the coupling."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/multifrequency-resonance/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/multifrequency-resonance/?lang=en#references-en"
+        }
       }
     ],
     "references": [
@@ -1650,6 +3262,74 @@
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/turing-schnakenberg/?lang=en#references-en"
         },
         "cases": []
+      },
+      {
+        "problem_id": "strang-boundary-order-reduction",
+        "problem_name": {
+          "ja": "Dirichlet境界でのStrang次数低下と補正",
+          "en": "Strang splitting: Dirichlet boundary order reduction and correction"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strang-boundary-order-reduction/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strang-boundary-order-reduction/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "strang-boundary-order-reduction",
+            "title": {
+              "ja": "Dirichlet境界でのStrang次数低下と補正",
+              "en": "Strang splitting: Dirichlet boundary order reduction and correction"
+            },
+            "kind": "semi-analytic",
+            "relation": "same-problem",
+            "note": {
+              "ja": "原著の線形特殊例で非線形数値表の再現ではありません。非自律/一般境界や普遍的な次数低下は主張せず、Lie終端の反応trace不整合も別表示します。",
+              "en": "This is an authored linear specialization, not a reproduction of the original nonlinear tables. It makes no general claim for nonautonomous boundaries or universal order loss. The final reaction-trace mismatch of Lie splitting is disclosed separately."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-strang-boundary-order-reduction-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-strang-boundary-order-reduction-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/strang-boundary-order-reduction/?lang=ja#strang-boundary-order-reduction-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/strang-boundary-order-reduction/?lang=en#strang-boundary-order-reduction-en-measurements"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "multifrequency-resonance",
+        "problem_name": {
+          "ja": "結合した2周波数系と共鳴の有限窓",
+          "en": "Coupled frequencies and finite-window resonance"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/multifrequency-resonance/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/multifrequency-resonance/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "multifrequency-resonance",
+            "title": {
+              "ja": "結合した2周波数系と共鳴の有限窓",
+              "en": "Coupled frequencies and finite-window resonance"
+            },
+            "kind": "semi-analytic",
+            "relation": "same-problem",
+            "note": {
+              "ja": "中心の実浮動係数写像はunresolvedとし、理想πのJordan性を移しません。64刻み増幅と小さい固定入力の観測であり、走査した共鳴図・一般安定性・長時間の普遍誤差定理は主張しません。",
+              "en": "The central actual floating map remains unresolved; ideal-pi Jordan structure is not transferred to it. Results concern 64-step amplification and small fixed inputs, not a scanned resonance diagram, general stability or a universal long-time error theorem."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-multifrequency-resonance-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-multifrequency-resonance-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/multifrequency-resonance/?lang=ja#multifrequency-resonance-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/multifrequency-resonance/?lang=en#multifrequency-resonance-en-measurements"
+            }
+          }
+        ]
       }
     ]
   }

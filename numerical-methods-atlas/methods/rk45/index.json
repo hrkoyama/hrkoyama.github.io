@@ -1,0 +1,620 @@
+{
+  "id": "rk45",
+  "name": {
+    "ja": "Dormand–Prince RK45",
+    "en": "Dormand–Prince RK45"
+  },
+  "group": {
+    "id": "time",
+    "ja": "時間積分",
+    "en": "Time integration"
+  },
+  "summary": {
+    "ja": "埋込み5(4)誤差推定と刻み制御、4次の連続拡張、向き付きイベントを組み合わせる陽的時間積分です。",
+    "en": "Explicit time integration combines an embedded 5(4) error estimator, adaptive steps, a quartic continuous extension and directed events."
+  },
+  "status": "educational-example",
+  "origin": "development-candidate",
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/runge-kutta/",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/runge-kutta/"
+  },
+  "code_modules": [],
+  "test_files": [],
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct.",
+  "code_mapping_scope_ja": "実行の根拠は版を固定した追加配布例です。章へのリンクは補足解説です。",
+  "assumptions": [
+    "The target is a smooth nonstiff initial-value problem; tolerances must match component scales.",
+    "FSAL reuses the RHS owned by the accepted state and never promotes a rejected trial endpoint.",
+    "Simple sign crossings are localized on interpolants of retained accepted steps."
+  ],
+  "assumptions_ja": [
+    "滑らかな非硬い初期値問題を対象とし、許容誤差は成分の尺度に合わせます。",
+    "FSALは受理状態の右辺を再利用し、棄却した試行の端点で置き換えません。",
+    "保存した受理区間の補間を用いて単純な符号交差を探します。"
+  ],
+  "units": "Time and step size share units; atol has each state component's units and rtol is dimensionless.",
+  "units_ja": "時刻と刻みは同じ単位です。atolは各成分、rtolは無次元の尺度です。",
+  "boundary_conditions": "The ODE step has no spatial boundary; an RHS for a semidiscrete PDE must supply its boundaries.",
+  "boundary_conditions_ja": "ODE自体に空間境界はなく、空間離散した系では右辺が境界を供給します。",
+  "limitations": {
+    "ja": "硬い系、接触根、1刻み内の複数交差、reset系の一般保証はありません。局所許容誤差を大域誤差の上界とみなしません。",
+    "en": "No general guarantee is provided for stiff systems, tangential roots, multiple crossings per step or reset systems. Local tolerances are not global error bounds."
+  },
+  "aliases": [
+    "RK45",
+    "Dormand-Prince 5(4)",
+    "DOPRI5",
+    "埋込みRunge–Kutta"
+  ],
+  "metadata_review": {
+    "on": "2026-11-24",
+    "level": "Frozen inputs and criteria, independently reviewed references, actual canonical main and independently extracted ZIP pytest/all-input rerun; scope is release-specific.",
+    "supplemental_review": {
+      "on": "2026-11-24",
+      "level": "Frozen fixed inputs, independently reviewed references and criteria, actual pytest/main and independently extracted ZIP. See release-specific scope and retained failure history."
+    }
+  },
+  "references": [
+    {
+      "url": "https://github.com/scipy/scipy/blob/v1.14.1/scipy/integrate/_ivp/rk.py",
+      "label": "SciPy1.14.1 RK45 coefficient and dense-output source",
+      "scope": "Read C, A, B, E, P, stage evaluation, accepted/rejected FSAL updates and quartic evaluation. The original Dormand–Prince 1980 and Shampine 1986 papers remain unread beyond bibliography. The adapted coefficient BSD notice is retained.",
+      "verification": {
+        "level": "official-release-source-selected-functions",
+        "checked_on": "2026-11-24"
+      }
+    }
+  ],
+  "depth_release": {
+    "group": "ode-adaptivity",
+    "case_ids": [
+      "rk45-dense-events"
+    ],
+    "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/",
+    "code_edition": "2026-11-24-r2",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/experiments.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/io_contract.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/reference_eval.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/dopri.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/tableau.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/models.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/stiff.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/reporting_policy.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/boundary.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/boundary_reference.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/coefficient_exact.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/qualify.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/reference_models.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_boundary.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_contract.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_dopri.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_reporting.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_stiff.py"
+    ],
+    "run_commands": [
+      "python -m pytest -q",
+      "python run.py --input inputs.json --output output"
+    ],
+    "run_from": "atlas-ode-adaptivity-2026-11-24-r2",
+    "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/atlas-ode-adaptivity-2026-11-24-r2.zip",
+    "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/source-manifest.json",
+    "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+    "code_archive_sha256": "19e6bed36d5a49a865881df12170edf9f79b4c5365e35ae91186eaf33bb5bc3a",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/result.json",
+    "passed_tests": 41,
+    "examples": [
+      {
+        "id": "rk45-dense-events",
+        "method_ids": [
+          "rk45"
+        ],
+        "title": {
+          "ja": "RK45の埋込み推定・補間・イベント",
+          "en": "RK45: embedded errors, dense output and events"
+        },
+        "summary": {
+          "ja": "減衰回転の解析解を使い、受理/棄却・FSAL・区間内補間・向き付き交差時刻を分けて検査します。",
+          "en": "Use analytic damped rotation to test acceptance, rejection, FSAL ownership, dense interpolation and directed event times separately."
+        },
+        "assumptions": {
+          "ja": "γ=.2,ω=3、初期値(1,0)、T=2。3対のrtol/atol×2最大刻みと終端交差2runで計8run。",
+          "en": "Use gamma = 0.2, omega = 3, initial state (1, 0), and T = 2. Three paired relative and absolute tolerances with two maximum steps, plus two terminal runs, give eight runs."
+        },
+        "algorithm": {
+          "ja": "実Dormand–Prince5(4)・quartic連続拡張・受理状態が所有するFSAL・保存補間上の符号区間二分法。拒否端点を昇格しません。",
+          "en": "Use actual Dormand–Prince 5(4) stages, a quartic continuous extension, an accepted-state derivative cache and bracket bisection on retained interpolants. A rejected endpoint never replaces the accepted starting derivative."
+        },
+        "validation": {
+          "ja": "解析状態とπ/6,π/2の単純交差を参照に、端点/97オフメッシュ点/イベント時刻・残差と実nfev=1+6試行数を判定。",
+          "en": "Analytic states and the simple crossings at pi/6 and pi/2 provide independent truth. Check endpoints, 97 off-mesh samples, event times and residuals, and the actual identity nfev = 1 + 6 times the attempted-step count."
+        },
+        "limits": {
+          "ja": "接触根・1刻み内の多重交差・reset付き系の一般性は保証しません。初期零/所有権/resetは限定成分対照で、局所許容誤差と大域精度を同一視しません。",
+          "en": "There is no general guarantee for tangential roots, multiple crossings within a step or systems with resets. Initial-zero and ownership controls are limited component tests; local tolerances and global accuracy remain distinct."
+        },
+        "domains": [
+          "time",
+          "foundations"
+        ],
+        "code_files": [
+          "run.py",
+          "experiments.py",
+          "io_contract.py",
+          "reference_eval.py",
+          "dopri.py",
+          "tableau.py"
+        ],
+        "references": [
+          {
+            "id": "scipy-rk45-coefficients",
+            "title": "SciPy1.14.1 RK45 coefficient and dense-output source",
+            "url": "https://github.com/scipy/scipy/blob/v1.14.1/scipy/integrate/_ivp/rk.py",
+            "version": "1.14.1",
+            "accessed_on": "2026-11-24",
+            "review_level": "official-release-source-selected-functions",
+            "review": {
+              "ja": "C/A/B/E/P、段階・受理/棄却時FSAL更新、quartic補間を確認。原Dormand–Prince1980/Shampine1986論文は書誌参照のみで全文未読。係数由来のBSD通知を同梱。",
+              "en": "Read C, A, B, E, P, stage evaluation, accepted/rejected FSAL updates and quartic evaluation. The original Dormand–Prince 1980 and Shampine 1986 papers remain unread beyond bibliography. The adapted coefficient BSD notice is retained."
+            }
+          }
+        ],
+        "gallery_figure": "rk45-dense-events-preview.png",
+        "additional_figures": [
+          {
+            "file": "rk45-dense-events-preview.png",
+            "caption": {
+              "ja": "減衰回転の解析解を使い、受理/棄却・FSAL・区間内補間・向き付き交差時刻を分けて検査します。 保存済みの数値場と参照を用いた図です。",
+              "en": "Use analytic damped rotation to test acceptance, rejection, FSAL ownership, dense interpolation and directed event times separately. This preview reads saved numerical fields and references only."
+            }
+          }
+        ],
+        "formulas": [
+          "y(t)=e^{-0.2t}(\\cos 3t,\\sin 3t)^T,\\quad t_*=\\pi/6,\\pi/2",
+          "y(t_n+\\theta h)=y_n+hQ(\\theta,\\theta^2,\\theta^3,\\theta^4)^T"
+        ],
+        "measured": {
+          "id": "rk45-dense-events",
+          "passed": true,
+          "checks": {
+            "rk45-loose-hmax0.4:completion-and-work": true,
+            "rk45-loose-hmax0.4:endpoint-error": true,
+            "rk45-loose-hmax0.4:offmesh-error": true,
+            "rk45-loose-hmax0.4:event-time-and-set": true,
+            "rk45-loose-hmax0.4:event-residual": true,
+            "rk45-loose-hmax0.1:completion-and-work": true,
+            "rk45-loose-hmax0.1:endpoint-error": true,
+            "rk45-loose-hmax0.1:offmesh-error": true,
+            "rk45-loose-hmax0.1:event-time-and-set": true,
+            "rk45-loose-hmax0.1:event-residual": true,
+            "rk45-medium-hmax0.4:completion-and-work": true,
+            "rk45-medium-hmax0.4:endpoint-error": true,
+            "rk45-medium-hmax0.4:offmesh-error": true,
+            "rk45-medium-hmax0.4:event-time-and-set": true,
+            "rk45-medium-hmax0.4:event-residual": true,
+            "rk45-medium-hmax0.1:completion-and-work": true,
+            "rk45-medium-hmax0.1:endpoint-error": true,
+            "rk45-medium-hmax0.1:offmesh-error": true,
+            "rk45-medium-hmax0.1:event-time-and-set": true,
+            "rk45-medium-hmax0.1:event-residual": true,
+            "rk45-tight-hmax0.4:completion-and-work": true,
+            "rk45-tight-hmax0.4:endpoint-error": true,
+            "rk45-tight-hmax0.4:offmesh-error": true,
+            "rk45-tight-hmax0.4:event-time-and-set": true,
+            "rk45-tight-hmax0.4:event-residual": true,
+            "rk45-tight-hmax0.1:completion-and-work": true,
+            "rk45-tight-hmax0.1:endpoint-error": true,
+            "rk45-tight-hmax0.1:offmesh-error": true,
+            "rk45-tight-hmax0.1:event-time-and-set": true,
+            "rk45-tight-hmax0.1:event-residual": true,
+            "rk45-terminal-direction-1:completion-and-work": true,
+            "rk45-terminal-direction-1:endpoint-error": true,
+            "rk45-terminal-direction-1:offmesh-error": true,
+            "rk45-terminal-direction-1:event-time-and-set": true,
+            "rk45-terminal-direction-1:event-residual": true,
+            "rk45-terminal-direction1:completion-and-work": true,
+            "rk45-terminal-direction1:endpoint-error": true,
+            "rk45-terminal-direction1:offmesh-error": true,
+            "rk45-terminal-direction1:event-time-and-set": true,
+            "rk45-terminal-direction1:event-residual": true,
+            "hmax0.4:actual-tolerance-response": true,
+            "hmax0.1:actual-tolerance-response": true,
+            "rejected-trial-actually-exercised": true
+          },
+          "records": [
+            {
+              "run_id": "rk45-loose-hmax0.4",
+              "rtol": 0.0001,
+              "max_step": 0.4,
+              "direction": 0,
+              "terminal": 0,
+              "output_time": 2.0,
+              "endpoint_linf": 5.8867850683763656e-05,
+              "offmesh_linf": 6.136827199998418e-05,
+              "event_time_abs": 1.4618863214188593e-05,
+              "event_residual_abs": 9.803269307440132e-14,
+              "events": 2,
+              "nfev": 97,
+              "attempted_steps": 16,
+              "accepted_steps": 12,
+              "rejected_steps": 4
+            },
+            {
+              "run_id": "rk45-loose-hmax0.1",
+              "rtol": 0.0001,
+              "max_step": 0.1,
+              "direction": 0,
+              "terminal": 0,
+              "output_time": 2.0,
+              "endpoint_linf": 2.711564450197379e-06,
+              "offmesh_linf": 2.6281247637038874e-06,
+              "event_time_abs": 2.2955293221826878e-07,
+              "event_residual_abs": 2.369077156672006e-13,
+              "events": 2,
+              "nfev": 121,
+              "attempted_steps": 20,
+              "accepted_steps": 20,
+              "rejected_steps": 0
+            },
+            {
+              "run_id": "rk45-medium-hmax0.4",
+              "rtol": 1e-06,
+              "max_step": 0.4,
+              "direction": 0,
+              "terminal": 0,
+              "output_time": 2.0,
+              "endpoint_linf": 5.371071951643103e-07,
+              "offmesh_linf": 5.115261059174259e-07,
+              "event_time_abs": 7.366281584708645e-09,
+              "event_residual_abs": 1.3114509478384662e-14,
+              "events": 2,
+              "nfev": 211,
+              "attempted_steps": 35,
+              "accepted_steps": 29,
+              "rejected_steps": 6
+            },
+            {
+              "run_id": "rk45-medium-hmax0.1",
+              "rtol": 1e-06,
+              "max_step": 0.1,
+              "direction": 0,
+              "terminal": 0,
+              "output_time": 2.0,
+              "endpoint_linf": 5.370386407799188e-07,
+              "offmesh_linf": 5.144624228847761e-07,
+              "event_time_abs": 9.683592483433756e-09,
+              "event_residual_abs": 1.6954493364806922e-13,
+              "events": 2,
+              "nfev": 205,
+              "attempted_steps": 34,
+              "accepted_steps": 29,
+              "rejected_steps": 5
+            },
+            {
+              "run_id": "rk45-tight-hmax0.4",
+              "rtol": 1e-08,
+              "max_step": 0.4,
+              "direction": 0,
+              "terminal": 0,
+              "output_time": 2.0,
+              "endpoint_linf": 5.214244369611265e-09,
+              "offmesh_linf": 5.214246701079617e-09,
+              "event_time_abs": 4.825309041223136e-10,
+              "event_residual_abs": 1.65822217068623e-13,
+              "events": 2,
+              "nfev": 493,
+              "attempted_steps": 82,
+              "accepted_steps": 75,
+              "rejected_steps": 7
+            },
+            {
+              "run_id": "rk45-tight-hmax0.1",
+              "rtol": 1e-08,
+              "max_step": 0.1,
+              "direction": 0,
+              "terminal": 0,
+              "output_time": 2.0,
+              "endpoint_linf": 5.215292309124209e-09,
+              "offmesh_linf": 5.215169518457685e-09,
+              "event_time_abs": 4.816922416495117e-10,
+              "event_residual_abs": 2.922315167630529e-14,
+              "events": 2,
+              "nfev": 487,
+              "attempted_steps": 81,
+              "accepted_steps": 75,
+              "rejected_steps": 6
+            },
+            {
+              "run_id": "rk45-terminal-direction-1",
+              "rtol": 1e-08,
+              "max_step": 0.4,
+              "direction": -1,
+              "terminal": 1,
+              "output_time": 0.5235987757332521,
+              "endpoint_linf": 1.7759046455623206e-09,
+              "offmesh_linf": 2.2130736132552897e-09,
+              "event_time_abs": 1.3495327078061337e-10,
+              "event_residual_abs": 1.65822217068623e-13,
+              "events": 1,
+              "nfev": 151,
+              "attempted_steps": 25,
+              "accepted_steps": 20,
+              "rejected_steps": 5
+            },
+            {
+              "run_id": "rk45-terminal-direction1",
+              "rtol": 1e-08,
+              "max_step": 0.4,
+              "direction": 1,
+              "terminal": 1,
+              "output_time": 1.5707963272774275,
+              "endpoint_linf": 4.367660122461814e-09,
+              "offmesh_linf": 4.386900731567778e-09,
+              "event_time_abs": 4.825309041223136e-10,
+              "event_residual_abs": 6.2155142144249e-14,
+              "events": 1,
+              "nfev": 397,
+              "attempted_steps": 66,
+              "accepted_steps": 59,
+              "rejected_steps": 7
+            }
+          ],
+          "metrics": {
+            "maximum_dense_error": 6.136827199998418e-05,
+            "maximum_event_time_error": 1.4618863214188593e-05,
+            "actual_RHS_evaluations": 2162,
+            "rejected_trials": 40,
+            "scope": "Analytic state/simple crossings; accepted-full endpoint versus terminal dense-root state distinct. No global guarantee inferred from localtol."
+          },
+          "original_target_results": {
+            "rk45-loose-hmax0.4:completion-and-work": true,
+            "rk45-loose-hmax0.4:endpoint-error": true,
+            "rk45-loose-hmax0.4:offmesh-error": true,
+            "rk45-loose-hmax0.4:event-time-and-set": true,
+            "rk45-loose-hmax0.4:event-residual": true,
+            "rk45-loose-hmax0.1:completion-and-work": true,
+            "rk45-loose-hmax0.1:endpoint-error": true,
+            "rk45-loose-hmax0.1:offmesh-error": true,
+            "rk45-loose-hmax0.1:event-time-and-set": true,
+            "rk45-loose-hmax0.1:event-residual": true,
+            "rk45-medium-hmax0.4:completion-and-work": true,
+            "rk45-medium-hmax0.4:endpoint-error": true,
+            "rk45-medium-hmax0.4:offmesh-error": true,
+            "rk45-medium-hmax0.4:event-time-and-set": true,
+            "rk45-medium-hmax0.4:event-residual": true,
+            "rk45-medium-hmax0.1:completion-and-work": true,
+            "rk45-medium-hmax0.1:endpoint-error": true,
+            "rk45-medium-hmax0.1:offmesh-error": true,
+            "rk45-medium-hmax0.1:event-time-and-set": true,
+            "rk45-medium-hmax0.1:event-residual": true,
+            "rk45-tight-hmax0.4:completion-and-work": true,
+            "rk45-tight-hmax0.4:endpoint-error": true,
+            "rk45-tight-hmax0.4:offmesh-error": true,
+            "rk45-tight-hmax0.4:event-time-and-set": true,
+            "rk45-tight-hmax0.4:event-residual": true,
+            "rk45-tight-hmax0.1:completion-and-work": true,
+            "rk45-tight-hmax0.1:endpoint-error": true,
+            "rk45-tight-hmax0.1:offmesh-error": true,
+            "rk45-tight-hmax0.1:event-time-and-set": true,
+            "rk45-tight-hmax0.1:event-residual": true,
+            "rk45-terminal-direction-1:completion-and-work": true,
+            "rk45-terminal-direction-1:endpoint-error": true,
+            "rk45-terminal-direction-1:offmesh-error": true,
+            "rk45-terminal-direction-1:event-time-and-set": true,
+            "rk45-terminal-direction-1:event-residual": true,
+            "rk45-terminal-direction1:completion-and-work": true,
+            "rk45-terminal-direction1:endpoint-error": true,
+            "rk45-terminal-direction1:offmesh-error": true,
+            "rk45-terminal-direction1:event-time-and-set": true,
+            "rk45-terminal-direction1:event-residual": true,
+            "hmax0.4:actual-tolerance-response": true,
+            "hmax0.1:actual-tolerance-response": true,
+            "rejected-trial-actually-exercised": true
+          },
+          "original_target_summary": {
+            "met": 43,
+            "total": 43,
+            "all_met": true,
+            "acceptance_sha256": "fd7e7cfe528d9844e2992e8ef96d6b33e482e8c5d2bc63a4d6955431168f6051"
+          }
+        },
+        "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rk45-dense-events/",
+        "reading": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#rk45-dense-events",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#rk45-dense-events"
+        }
+      }
+    ]
+  },
+  "supplemental_scope_profiles": [
+    {
+      "release": {
+        "group": "ode-adaptivity",
+        "edition": "2026-11-24-r2",
+        "case_ids": [
+          "rk45-dense-events"
+        ]
+      },
+      "scope": {
+        "ja": "追加固定例：RK45の埋込み推定・補間・イベント。条件と検証範囲は各配布版で確認してください。",
+        "en": "Additional fixed examples: RK45: embedded errors, dense output and events. See each release for assumptions and checked scope."
+      },
+      "limits": [
+        {
+          "ja": "接触根・1刻み内の多重交差・reset付き系の一般性は保証しません。初期零/所有権/resetは限定成分対照で、局所許容誤差と大域精度を同一視しません。",
+          "en": "There is no general guarantee for tangential roots, multiple crossings within a step or systems with resets. Initial-zero and ownership controls are limited component tests; local tolerances and global accuracy remain distinct."
+        }
+      ]
+    }
+  ],
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk45/",
+  "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk45/index.json",
+  "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk45/index.md",
+  "code_urls": [
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/experiments.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/io_contract.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/reference_eval.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/dopri.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/tableau.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/models.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/stiff.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/reporting_policy.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/boundary.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/boundary_reference.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/coefficient_exact.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/qualify.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/reference_models.py"
+  ],
+  "test_urls": [
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_boundary.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_contract.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_dopri.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_reporting.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_stiff.py"
+  ],
+  "run_commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output"
+  ],
+  "run_from": "atlas-ode-adaptivity-2026-11-24-r2",
+  "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/",
+  "code_edition": "2026-11-24-r2",
+  "execution_examples": [
+    {
+      "id": "rk45-dense-events",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rk45-dense-events/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rk45-dense-events/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    }
+  ],
+  "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/atlas-ode-adaptivity-2026-11-24-r2.zip",
+  "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/source-manifest.json",
+  "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+  "code_archive_sha256": "19e6bed36d5a49a865881df12170edf9f79b4c5365e35ae91186eaf33bb5bc3a",
+  "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/result.json",
+  "problem_navigation": {
+    "method_id": "rk45",
+    "status": "educational-example",
+    "equations": [
+      {
+        "id": "linear-evolution-system",
+        "name": {
+          "ja": "有限次元の線形発展系",
+          "en": "Finite-dimensional linear evolution systems"
+        },
+        "problem_ids": [
+          "rk45-dense-events"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#linear-evolution-system-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#linear-evolution-system-en"
+        }
+      }
+    ],
+    "problems": [
+      {
+        "id": "rk45-dense-events",
+        "name": {
+          "ja": "RK45の埋込み推定・補間・イベント",
+          "en": "RK45: embedded errors, dense output and events"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/rk45-dense-events-preview.png",
+          "sha256": "014ce3e765d29479456cd7f479ae26870061991856405a1b51e62da548a1067c",
+          "width": 1378,
+          "height": 566,
+          "caption": {
+            "ja": "減衰回転の解析解を使い、受理/棄却・FSAL・区間内補間・向き付き交差時刻を分けて検査します。 保存済みの数値場と参照を用いた図です。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。",
+            "en": "Use analytic damped rotation to test acceptance, rejection, FSAL ownership, dense interpolation and directed event times separately. This preview reads saved numerical fields and references only. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rk45-dense-events/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rk45-dense-events/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rk45-dense-events/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rk45-dense-events/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "rk45-dense-events",
+            "kind": "supplement",
+            "name": {
+              "ja": "RK45の埋込み推定・補間・イベント",
+              "en": "RK45: embedded errors, dense output and events"
+            },
+            "scope": {
+              "ja": "減衰回転の解析解を使い、受理/棄却・FSAL・区間内補間・向き付き交差時刻を分けて検査します。",
+              "en": "Use analytic damped rotation to test acceptance, rejection, FSAL ownership, dense interpolation and directed event times separately."
+            },
+            "method_ids": [
+              "rk45"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rk45-dense-events/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rk45-dense-events/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/atlas-ode-adaptivity-2026-11-24-r2.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "実Dormand–Prince5(4)・quartic連続拡張・受理状態が所有するFSAL・保存補間上の符号区間二分法。拒否端点を昇格しません。",
+          "en": "Use actual Dormand–Prince 5(4) stages, a quartic continuous extension, an accepted-state derivative cache and bracket bisection on retained interpolants. A rejected endpoint never replaces the accepted starting derivative."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rk45-dense-events/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rk45-dense-events/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "rk45-dense-events",
+        "problem_name": {
+          "ja": "RK45の埋込み推定・補間・イベント",
+          "en": "RK45: embedded errors, dense output and events"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rk45-dense-events/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rk45-dense-events/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "rk45-dense-events",
+            "title": {
+              "ja": "RK45の埋込み推定・補間・イベント",
+              "en": "RK45: embedded errors, dense output and events"
+            },
+            "kind": "analytic",
+            "relation": "same-problem",
+            "note": {
+              "ja": "接触根・1刻み内の多重交差・reset付き系の一般性は保証しません。初期零/所有権/resetは限定成分対照で、局所許容誤差と大域精度を同一視しません。",
+              "en": "There is no general guarantee for tangential roots, multiple crossings within a step or systems with resets. Initial-zero and ownership controls are limited component tests; local tolerances and global accuracy remain distinct."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-rk45-dense-events-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-rk45-dense-events-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/rk45-dense-events/?lang=ja#rk45-dense-events-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/rk45-dense-events/?lang=en#rk45-dense-events-en-measurements"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

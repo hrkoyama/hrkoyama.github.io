@@ -10,8 +10,8 @@
     "test_problems": "Count independent problems across published atlas results and the verified public code edition. Distinguish governing equations, dimensions, boundary conditions and named initial/source problems; merge solver, mesh, step-size, parameter-sweep, random-seed and presentation variants of the same problem. Repeated Sod exhibits, wedge Mach variants and CT/GLM variants do not add problems. Exclude reference-only evaluations, planned/literature-only entries, diagrams, and local identity/invariant/input-error unit checks. Static-force, boundary-value, approximation and algebraic problems are included; not every entry is a time-evolving simulation."
   },
   "counts": {
-    "equations": 72,
-    "methods": 144,
+    "equations": 80,
+    "methods": 149,
     "papers": 249,
     "references": 310,
     "journal_articles": 242,
@@ -20,16 +20,16 @@
     "chapters": 3,
     "reports": 4,
     "other_sources": 29,
-    "local_equations": 50,
+    "local_equations": 58,
     "reading_equations": 22,
-    "local_methods": 129,
+    "local_methods": 134,
     "reading_methods": 15,
     "biological_entries": 22,
     "gallery_cases": 9,
     "gallery_equations": 7,
-    "reading_chapters": 141,
-    "test_problems": 141,
-    "saved_test_problems": 141,
+    "reading_chapters": 145,
+    "test_problems": 149,
+    "saved_test_problems": 149,
     "code_test_problems": 0
   },
   "items": [
@@ -404,35 +404,8 @@
     },
     {
       "kind": "method",
-      "id": "bdf2",
-      "label": "BDF2",
-      "chapter": "stiff-integration",
-      "status": "local-example",
-      "group": "Time integration",
-      "scope": ""
-    },
-    {
-      "kind": "method",
-      "id": "sdirk2",
-      "label": "L-stable SDIRK2",
-      "chapter": "stiff-integration",
-      "status": "local-example",
-      "group": "Time integration",
-      "scope": ""
-    },
-    {
-      "kind": "method",
       "id": "imex-euler",
       "label": "IMEX Euler",
-      "chapter": "stiff-integration",
-      "status": "local-example",
-      "group": "Time integration",
-      "scope": ""
-    },
-    {
-      "kind": "method",
-      "id": "step-doubling",
-      "label": "Adaptive SDIRK2 / step doubling",
       "chapter": "stiff-integration",
       "status": "local-example",
       "group": "Time integration",
@@ -1407,6 +1380,86 @@
       "origin": "curated-equation-catalog"
     },
     {
+      "kind": "equation",
+      "id": "robertson-kinetics",
+      "label": "Robertson chemical kinetics",
+      "chapter": "stiff-integration",
+      "status": "local-example",
+      "group": "Physics & mathematical models",
+      "scope": "Fixed educational models; see each release for inputs, reference qualification and limits.",
+      "origin": "curated-equation-catalog"
+    },
+    {
+      "kind": "equation",
+      "id": "van-der-pol",
+      "label": "Van der Pol oscillator",
+      "chapter": "stiff-integration",
+      "status": "local-example",
+      "group": "Physics & mathematical models",
+      "scope": "Fixed educational models; see each release for inputs, reference qualification and limits.",
+      "origin": "curated-equation-catalog"
+    },
+    {
+      "kind": "equation",
+      "id": "linear-evolution-system",
+      "label": "Finite-dimensional linear evolution systems",
+      "chapter": "time-integration",
+      "status": "local-example",
+      "group": "Physics & mathematical models",
+      "scope": "Fixed educational models; see each release for inputs, reference qualification and limits.",
+      "origin": "curated-equation-catalog"
+    },
+    {
+      "kind": "equation",
+      "id": "inhomogeneous-reaction-diffusion",
+      "label": "Linear reaction-diffusion with inhomogeneous boundaries",
+      "chapter": "operator-splitting",
+      "status": "local-example",
+      "group": "Physics & mathematical models",
+      "scope": "Fixed educational models; see each release for inputs, reference qualification and limits.",
+      "origin": "curated-equation-catalog"
+    },
+    {
+      "kind": "equation",
+      "id": "index-one-dae",
+      "label": "Semi-explicit index-one DAE",
+      "chapter": "dae",
+      "status": "local-example",
+      "group": "Physics & mathematical models",
+      "scope": "Fixed educational models; see each release for inputs, reference qualification and limits.",
+      "origin": "curated-equation-catalog"
+    },
+    {
+      "kind": "equation",
+      "id": "constrained-pendulum",
+      "label": "Constrained planar pendulum",
+      "chapter": "dae",
+      "status": "local-example",
+      "group": "Physics & mathematical models",
+      "scope": "Fixed educational models; see each release for inputs, reference qualification and limits.",
+      "origin": "curated-equation-catalog"
+    },
+    {
+      "kind": "equation",
+      "id": "kepler-two-body",
+      "label": "Kepler two-body problem",
+      "chapter": "symplectic",
+      "status": "local-example",
+      "group": "Physics & mathematical models",
+      "scope": "Fixed educational models; see each release for inputs, reference qualification and limits.",
+      "origin": "curated-equation-catalog"
+    },
+    {
+      "kind": "equation",
+      "id": "coupled-harmonic-oscillators",
+      "label": "Coupled two-frequency harmonic oscillators",
+      "chapter": "symplectic",
+      "status": "local-example",
+      "group": "Physics & mathematical models",
+      "scope": "Fixed educational models; see each release for inputs, reference qualification and limits.",
+      "origin": "curated-equation-catalog"
+    },
+    {
       "kind": "method",
       "id": "centered-difference",
       "label": "Centered spatial difference",
@@ -1594,6 +1647,36 @@
       "status": "local-example",
       "group": "Time integration",
       "scope": "Additional fixed examples: Mie scattering width of a two-dimensional dielectric cylinder. See each release for assumptions and checked scope. This is a lossless two-dimensional Ez cylinder, not a three-dimensional sphere. Report staircase geometry error without claiming general second-order curved-boundary accuracy or precision scattering for arbitrary frequencies and materials.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "bdf2",
+      "label": "BDF2",
+      "chapter": "validation-ode-adaptivity",
+      "status": "local-example",
+      "group": "Time integration",
+      "scope": "Additional fixed examples: Robertson kinetics: initial stiffness and actual error, Van der Pol: an early stiffness transition. See each release for assumptions and checked scope. Conservation and positivity are observations for these inputs, not universal guarantees. Accuracy is sampled on T <= 0.4; this does not validate long-time chemistry or an all-time error bound. This post-measurement reporting revision is not a numerical repair. The first error, 4.535633779e-5, exceeded the original 2e-5 goal. Local tolerances do not guarantee global accuracy, and reporting PASS does not mean all original goals were met. Full large-mu cycles are outside scope.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "sdirk2",
+      "label": "L-stable SDIRK2",
+      "chapter": "validation-ode-adaptivity",
+      "status": "local-example",
+      "group": "Time integration",
+      "scope": "Additional fixed examples: Robertson kinetics: initial stiffness and actual error, Van der Pol: an early stiffness transition. See each release for assumptions and checked scope. Conservation and positivity are observations for these inputs, not universal guarantees. Accuracy is sampled on T <= 0.4; this does not validate long-time chemistry or an all-time error bound. This post-measurement reporting revision is not a numerical repair. The first error, 4.535633779e-5, exceeded the original 2e-5 goal. Local tolerances do not guarantee global accuracy, and reporting PASS does not mean all original goals were met. Full large-mu cycles are outside scope.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "step-doubling",
+      "label": "Adaptive SDIRK2 / step doubling",
+      "chapter": "validation-ode-adaptivity",
+      "status": "local-example",
+      "group": "Time integration",
+      "scope": "Additional fixed examples: Robertson kinetics: initial stiffness and actual error, Van der Pol: an early stiffness transition. See each release for assumptions and checked scope. Conservation and positivity are observations for these inputs, not universal guarantees. Accuracy is sampled on T <= 0.4; this does not validate long-time chemistry or an all-time error bound. This post-measurement reporting revision is not a numerical repair. The first error, 4.535633779e-5, exceeded the original 2e-5 goal. Local tolerances do not guarantee global accuracy, and reporting PASS does not mean all original goals were met. Full large-mu cycles are outside scope.",
       "origin": "curated-depth-example"
     },
     {
@@ -1928,6 +2011,16 @@
     },
     {
       "kind": "method",
+      "id": "dae",
+      "label": "Differential-algebraic equations / DAE",
+      "chapter": "validation-dae-controls",
+      "status": "local-example",
+      "group": "Time integration",
+      "scope": "Additional fixed examples: Consistent initialization and discrete residuals for an index-one DAE, Robertson conservation DAE and stored official IDA values, Index reduction, constraint drift and explicit stabilization for a pendulum. See each release for assumptions and checked scope. One authored positive branch and fixed BE runs; no IDA execution or general DAE-solver qualification. Only two official SUNDIALS v7.1.1 printed rows; zero new IDA executions, with no long-time chemistry or general DAE-performance claim. No asymptotic-convergence or all-original-accuracy-goals claim is made for this fixed schedule. No projection, normalization or SHAKE/RATTLE; no general index-three-solver or symplecticity claim.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
       "id": "automatic-differentiation",
       "label": "Automatic differentiation",
       "chapter": "validation-bratu-continuation-jfnk",
@@ -2084,6 +2177,46 @@
       "status": "local-example",
       "group": "Linear & nonlinear solvers",
       "scope": "Fixed small nonlinear systems separate the original residual from a left-scaled merit and check a Euclidean Cauchy–Gauss–Newton dogleg with every rejected trial retained.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "rk45",
+      "label": "Dormand–Prince RK45",
+      "chapter": "validation-ode-adaptivity",
+      "status": "local-example",
+      "group": "Time integration",
+      "scope": "Additional fixed examples: RK45: embedded errors, dense output and events. See each release for assumptions and checked scope. There is no general guarantee for tangential roots, multiple crossings within a step or systems with resets. Initial-zero and ownership controls are limited component tests; local tolerances and global accuracy remain distinct.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "jameson-steady-rk",
+      "label": "Jameson-type steady multistage Runge–Kutta",
+      "chapter": "validation-steady-rk",
+      "status": "local-example",
+      "group": "Time integration",
+      "scope": "Additional fixed examples: Real-space mode damping with steady multistage RK. See each release for assumptions and checked scope. Limited to a fixed linear example; no JST compressible flux, nonlinear fourth-order RK or all-start convergence claim. Verification of this study does not mean that all original numerical targets were met.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "shake",
+      "label": "SHAKE constrained integration",
+      "chapter": "validation-geometric-controls",
+      "status": "local-example",
+      "group": "Time integration",
+      "scope": "Additional fixed examples: SHAKE and RATTLE: constraints and momentum ownership. See each release for assumptions and checked scope. Original SHAKE and RATTLE full texts remain unread; selected author lecture notes were inspected. The finite-difference symplectic defect is a local proxy, not a general proof, and centered SHAKE velocity is not assigned RATTLE tangency.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "rattle",
+      "label": "RATTLE constrained integration",
+      "chapter": "validation-geometric-controls",
+      "status": "local-example",
+      "group": "Time integration",
+      "scope": "Additional fixed examples: SHAKE and RATTLE: constraints and momentum ownership. See each release for assumptions and checked scope. Original SHAKE and RATTLE full texts remain unread; selected author lecture notes were inspected. The finite-difference symplectic defect is a local proxy, not a general proof, and centered SHAKE velocity is not assigned RATTLE tangency.",
       "origin": "curated-depth-example"
     },
     {
@@ -3796,15 +3929,15 @@
   },
   "public_extension_sha256": {
     "catalog/atlas-quantum.json": "415dd98efe103ad5a2d950c22b98980f53539f6243b93e4e193dbca2c67169fe",
-    "catalog/atlas-methods.json": "36bd0014995be691a9a9d62d8c45d4f4b3782823b147740dc2ede4f5ae9ced7b",
-    "catalog/atlas-equations.json": "7ee122ac83cae11b26e42faaf8ae5fc24f508dfb694eadc2513b27c96781c6eb",
+    "catalog/atlas-methods.json": "82dfd3336a82bc165f4f47d3e1f709481866e053bf1c9bcb342520bf0d257609",
+    "catalog/atlas-equations.json": "61d1366ee14643fb0c8f5dff26c878f713396bf78e765c7344a4fc56a30e9b28",
     "catalog/atlas-method-primary-references.json": "0b0f4df551b17a83672b3251a8155be2d7f3648f6e48f550cc99d8d49b2ef13c"
   },
   "equation_execution_source_sha256": {
     "numerical-methods-atlas/assets/biological-models.json": "3ee3489ca4d2632d672576fcd75c062137053e203b55cbf51ee0cbe8cfc9556f",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "catalog/atlas-equations.json": "7ee122ac83cae11b26e42faaf8ae5fc24f508dfb694eadc2513b27c96781c6eb",
+    "catalog/atlas-equations.json": "61d1366ee14643fb0c8f5dff26c878f713396bf78e765c7344a4fc56a30e9b28",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "code/validated-examples/2026-11-23/weno-critical/source-manifest.json": "abd8b0a29bb81b7d98b897ec0a0eb409f77873857ec8199c3767f1ede11b43a5",
     "code/validated-examples/2026-11-23/weno-critical/verification.json": "ccbf3c6a2fe7055b324a0d98c152da909242f36e0c82ca3281038e4c9b0c165f",
@@ -3821,6 +3954,11 @@
     "code/validated-examples/2026-11-24/adjoint/cases.json": "2ee30f6ebfc8e1e49d9fb581e19dcd821f2b6f2b02a2f27400272d0301071645",
     "code/validated-examples/2026-11-24/adjoint/results/result.json": "adbb489d0cf730f76cd1bfb1b7b9fe85948c42b4ed90dac7595aa71f1fbbc036",
     "code/validated-examples/2026-11-24/adjoint/atlas-adjoint-2026-11-24.zip": "6b78fd9d4320e9790bd6ebe2a0ef61a25c55c7fdc0a14dd37d0ca1a37b80a5ee",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/source-manifest.json": "f45223afdb2709aae27d4a6bc0b45b32c78e15b17012dc30cfe6f100acf064ef",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json": "56e03be5a74a8b4519e131c8988da000e9429412a97ce9f0bd04c83907e930f3",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/cases.json": "b88c01a4388790cc795041ffcecfcbdf465e8953443ea522d23247a715900845",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/result.json": "6d61f82c6c4854a92696faebb2f3fcc650b50abc141a945720d432077dd789cf",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/atlas-ode-adaptivity-2026-11-24-r2.zip": "19e6bed36d5a49a865881df12170edf9f79b4c5365e35ae91186eaf33bb5bc3a",
     "code/validated-examples/2026-11-23/mesh-boundary/source-manifest.json": "96e55d4c564baf804d3ae7feb86a36c7d7a3d4079f5e47180326fd2c09ee675a",
     "code/validated-examples/2026-11-23/mesh-boundary/verification.json": "1191781061a2ec3339d26d8e9e4db605e9c40e8d5d5dfa6433712b38f43f7d01",
     "code/validated-examples/2026-11-23/mesh-boundary/cases.json": "30c7d39639f74d4f263a045cccc8ced3e14a466e4e279c4c156fc21ce176f796",
@@ -3861,6 +3999,16 @@
     "code/validated-examples/2026-11-24/lbm-curved-boundary/cases.json": "a6423cddd48d0540aa5121e0ea3d8b84e8db9792d8650582e9f6e22fd168e78b",
     "code/validated-examples/2026-11-24/lbm-curved-boundary/results/result.json": "954e50130a966eb647e09bb3e6ebd2ce8e73f3cac34fbe5094d0eb5fee77088d",
     "code/validated-examples/2026-11-24/lbm-curved-boundary/atlas-lbm-curved-boundary-2026-11-24.zip": "69757fbf7ccab53450d7bdf6ce3023cd6f5ca3b42698d2e8c7a383421a1c640d",
+    "code/validated-examples/2026-11-24/dae-controls/source-manifest.json": "d2fb466758236e7de6b078693209262ad99f3eadc343e9e719fc990a6e3cec4c",
+    "code/validated-examples/2026-11-24/dae-controls/verification.json": "cbc490c02eb2c86689652cfb344a208bccaa8faedbd8d893564d4732eccaa46c",
+    "code/validated-examples/2026-11-24/dae-controls/cases.json": "b5a4e533751629a22667809a1d609ff709a8ebc0b121a7aa3bbb30e70c82f2ca",
+    "code/validated-examples/2026-11-24/dae-controls/results/result.json": "a6bbc6b2201ee1f9992a450ffc268e7351f60c1947085b12e4387c05f4e42499",
+    "code/validated-examples/2026-11-24/dae-controls/atlas-dae-controls-2026-11-24.zip": "3f4d3ed14053a3a2a6f495c4445fb5c64093e59c07559b6632d2cdd9ea454fad",
+    "code/validated-examples/2026-11-24/geometric-controls/source-manifest.json": "ef06a73e7a39a839112d5d1c3bb962860dc37e95eec1fb80e6ade23b64ab844a",
+    "code/validated-examples/2026-11-24/geometric-controls/verification.json": "507d5825483d27a7cefe5a3ef683c4e5a818234d4c8098a97772e92de056d50d",
+    "code/validated-examples/2026-11-24/geometric-controls/cases.json": "f97c3c5cef1540cba0c16b8f8d32d70696d4d22105eaf784ff2e17cd3ccecd8b",
+    "code/validated-examples/2026-11-24/geometric-controls/results/result.json": "1e0ba587a26f6b15380621e3b04f44f2dee205d5ffe49086fd23c8972c85510b",
+    "code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip": "4e3ef28ab6c91ae62918b7effc6f37097ec0f5a4ed878d4d33fa06e1945329a2",
     "code/validated-examples/2026-11-23/fmm3d/source-manifest.json": "bc624983d4b0480538aa873ff2a867491e4384d25ea39930b5bb948b98e59c89",
     "code/validated-examples/2026-11-23/fmm3d/verification.json": "b6cc2a0ad2f31c01ebd833447f7f6d9496db6df5f6c14deb93d4f057d177c175",
     "code/validated-examples/2026-11-23/fmm3d/cases.json": "ca113f993ead48117c2678734dbb774a07d7911eab0f3392a4ac897b48f1b5f9",
@@ -3981,6 +4129,11 @@
     "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/cases.json": "604f637dccb85e22735600f1cae8e98cec3332d1eab1c4b12ff8d8e293eb33b3",
     "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/result.json": "caffe188cea7298dea1a3592fb4815992fa6a4f2900db99ba8443d1199e21dea",
     "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/atlas-linear-algebra-spectral-2026-11-24-r3.zip": "3d14112335ce8a55cce306ec689d430f172d02a49f4675ae5948a2fab7ca1452",
+    "code/validated-examples/2026-11-24/steady-rk/source-manifest.json": "05dd64c334156ee7ea2d10c47efa4d5822cfc3ba61ae3ad5867aeea3c6cad13c",
+    "code/validated-examples/2026-11-24/steady-rk/verification.json": "037f6c02ee4b1a1ee5147e7340dfd3ed0599c9ae7b53a260479a214160ace43d",
+    "code/validated-examples/2026-11-24/steady-rk/cases.json": "faced210cbcf6c1ef091d18f0af09b5c973a5e04ebb78e44e869071bce2c6e13",
+    "code/validated-examples/2026-11-24/steady-rk/results/result.json": "304601760794cdec210ae729223b0d0a57d987a5cc7ddfd5da8323c86fac6e48",
+    "code/validated-examples/2026-11-24/steady-rk/atlas-steady-rk-2026-11-24.zip": "a6524122fbc92701504894dff03837587170c0f4d39ce50657d4d5a23d36d3d9",
     "code/validated-examples/2026-11-24-r2/maxwell-cylinder/source-manifest.json": "bd55f11428730f3ad2a4048b74efd4dc4eae9997e55c8bc151d5ed4c0adf2dd6",
     "code/validated-examples/2026-11-24-r2/maxwell-cylinder/verification.json": "85cfc10421948d42deda85916ac2a6d4a41b7ad7af91db890fd91b5c745bf51a",
     "code/validated-examples/2026-11-24-r2/maxwell-cylinder/cases.json": "68902102c6f2dbf82608ef802b1dbc502aeb95f2c08590e762d4028d2950f2b8",

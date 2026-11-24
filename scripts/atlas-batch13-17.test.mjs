@@ -1,3 +1,4 @@
+import {projectMethodBeforeBatch68} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -19,7 +20,7 @@ test('the five-item addition preserves all prior distribution bytes, primary pic
  for(const old of proof.primary_figures){assert.deepEqual(gallery.find(x=>x.id===old.id),old);assert.equal(sha(old.image.slice(1)),old.image_sha256);}
  const registry=json('numerical-methods-atlas/validation/releases.json');
  for(const old of proof.releases)assert.deepEqual(registry.releases.find(x=>x.group===old.group),old);
- const methods=json('catalog/atlas-methods.json').methods;for(const[id,status]of Object.entries(proof.method_status))assert.equal(methods.find(x=>x.id===id).status,id==='slab-ewald'?'educational-example':status);
+ const methods=json('catalog/atlas-methods.json').methods.map(projectMethodBeforeBatch68);for(const[id,status]of Object.entries(proof.method_status))assert.equal(methods.find(x=>x.id===id).status,id==='slab-ewald'?'educational-example':status);
  const eq=json('catalog/atlas-equations.json').equations;for(const[id,formula]of Object.entries(proof.equation_formulas))assert.deepEqual(eq.find(x=>x.id===id).formula,formula);
  const refs=json('catalog/atlas-reference-supplements.json').cases;for(const old of proof.reference_supplements)assert.deepEqual(refs.find(x=>x.id===old.id),old);
  const concurrent=json('numerical-methods-atlas/validation/verification/2026-11-23-batch13-17-concurrent-preservation.json');

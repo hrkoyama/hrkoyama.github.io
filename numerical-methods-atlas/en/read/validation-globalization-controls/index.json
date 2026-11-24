@@ -21987,7 +21987,7 @@
     }
   ],
   "source_sha256": {
-    "catalog/atlas-depth-expansion.json": "5d3f5ab6f626a0bc4627b680dbe64ab75f738f8660f25862cf58a97ac2e39b90",
+    "catalog/atlas-depth-expansion.json": "9cf692c64631ff4c64803d9caac072b3edc5dab0afec414d67df99eae3098d28",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
     "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
@@ -22267,6 +22267,26 @@
     "code/validated-examples/2026-11-24/inverse-optimization/verification.json": "76f3f6b1550ce190e3d3afdd4b9a4e2f75373c58d97ccd655b2ac0bad4a3a74f",
     "code/validated-examples/2026-11-24/inverse-optimization/cases.json": "9dfc1a14b447d70b2bd903a397cdf77d28ecb0e462cc876bdb3b44db9197150d",
     "code/validated-examples/2026-11-24/inverse-optimization/results/result.json": "48ded080378cf6e3f6aebf005f41b70c7f6f7065f741d15f3f700e821c919218",
-    "code/validated-examples/2026-11-24/inverse-optimization/atlas-inverse-optimization-2026-11-24.zip": "ffefd2d5876a3db10596d6e1f089f73be7a82288d63f348bcd960b9497412b44"
+    "code/validated-examples/2026-11-24/inverse-optimization/atlas-inverse-optimization-2026-11-24.zip": "ffefd2d5876a3db10596d6e1f089f73be7a82288d63f348bcd960b9497412b44",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/source-manifest.json": "f45223afdb2709aae27d4a6bc0b45b32c78e15b17012dc30cfe6f100acf064ef",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json": "56e03be5a74a8b4519e131c8988da000e9429412a97ce9f0bd04c83907e930f3",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/cases.json": "b88c01a4388790cc795041ffcecfcbdf465e8953443ea522d23247a715900845",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/result.json": "6d61f82c6c4854a92696faebb2f3fcc650b50abc141a945720d432077dd789cf",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/atlas-ode-adaptivity-2026-11-24-r2.zip": "19e6bed36d5a49a865881df12170edf9f79b4c5365e35ae91186eaf33bb5bc3a",
+    "code/validated-examples/2026-11-24/steady-rk/source-manifest.json": "05dd64c334156ee7ea2d10c47efa4d5822cfc3ba61ae3ad5867aeea3c6cad13c",
+    "code/validated-examples/2026-11-24/steady-rk/verification.json": "037f6c02ee4b1a1ee5147e7340dfd3ed0599c9ae7b53a260479a214160ace43d",
+    "code/validated-examples/2026-11-24/steady-rk/cases.json": "faced210cbcf6c1ef091d18f0af09b5c973a5e04ebb78e44e869071bce2c6e13",
+    "code/validated-examples/2026-11-24/steady-rk/results/result.json": "304601760794cdec210ae729223b0d0a57d987a5cc7ddfd5da8323c86fac6e48",
+    "code/validated-examples/2026-11-24/steady-rk/atlas-steady-rk-2026-11-24.zip": "a6524122fbc92701504894dff03837587170c0f4d39ce50657d4d5a23d36d3d9",
+    "code/validated-examples/2026-11-24/dae-controls/source-manifest.json": "d2fb466758236e7de6b078693209262ad99f3eadc343e9e719fc990a6e3cec4c",
+    "code/validated-examples/2026-11-24/dae-controls/verification.json": "cbc490c02eb2c86689652cfb344a208bccaa8faedbd8d893564d4732eccaa46c",
+    "code/validated-examples/2026-11-24/dae-controls/cases.json": "b5a4e533751629a22667809a1d609ff709a8ebc0b121a7aa3bbb30e70c82f2ca",
+    "code/validated-examples/2026-11-24/dae-controls/results/result.json": "a6bbc6b2201ee1f9992a450ffc268e7351f60c1947085b12e4387c05f4e42499",
+    "code/validated-examples/2026-11-24/dae-controls/atlas-dae-controls-2026-11-24.zip": "3f4d3ed14053a3a2a6f495c4445fb5c64093e59c07559b6632d2cdd9ea454fad",
+    "code/validated-examples/2026-11-24/geometric-controls/source-manifest.json": "ef06a73e7a39a839112d5d1c3bb962860dc37e95eec1fb80e6ade23b64ab844a",
+    "code/validated-examples/2026-11-24/geometric-controls/verification.json": "507d5825483d27a7cefe5a3ef683c4e5a818234d4c8098a97772e92de056d50d",
+    "code/validated-examples/2026-11-24/geometric-controls/cases.json": "f97c3c5cef1540cba0c16b8f8d32d70696d4d22105eaf784ff2e17cd3ccecd8b",
+    "code/validated-examples/2026-11-24/geometric-controls/results/result.json": "1e0ba587a26f6b15380621e3b04f44f2dee205d5ffe49086fd23c8972c85510b",
+    "code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip": "4e3ef28ab6c91ae62918b7effc6f37097ec0f5a4ed878d4d33fa06e1945329a2"
   }
 }

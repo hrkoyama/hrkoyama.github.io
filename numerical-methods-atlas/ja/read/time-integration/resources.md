@@ -29,6 +29,9 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/time-integration/
 - [Hamilton系・振動子](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#hamiltonian-ja>)
 
   正準方程式と分離可能なHamiltonianの代表形。調和・4次ポテンシャルの振動子で、エネルギー誤差とシンプレクティック性を比べます。 この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。
+- [有限次元の線形発展系](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#linear-evolution-system-ja>)
+
+  減衰回転の物理時刻と、定常残差を減衰させる擬似時間を例ごとに区別します。
 
 ## 問題の図
 
@@ -62,6 +65,14 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/time-integration/
   availability: run
 
   後退Eulerの離散写像を実際に逆伝播し、接線・独立高精度mode解・block replayと比較します。
+- [Robertson保存制約DAEと公式IDA保存値](<https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-conservation-dae/?lang=ja>)
+  availability: run
+
+  Robertsonの保存制約DAEと全ODEを同じ固定時間格子で比較し、公式IDA保存値を別に照合します。 初回は元の時間精度・細分化目標4件が未達でした。
+- [index-1 DAEの整合初期化と離散残差](<https://hrkoyama.github.io/numerical-methods-atlas/validation/index1-dae-consistent-initialization/?lang=ja>)
+  availability: run
+
+  既知の正枝を持つindex-1 DAEで初期化と後退Eulerの誤差・残差を分離します。
 - [Double Mach反射：多格子の軽量検証](<https://hrkoyama.github.io/numerical-methods-atlas/validation/double-mach-reflection/?lang=ja>)
   availability: run
 
@@ -178,6 +189,10 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/time-integration/
   availability: run
 
   実際の2D staggered場を時間積分し、連続波と離散symbolの参照を分けて比較します。
+- [振り子の指数低減・拘束ドリフト・明示安定化](<https://hrkoyama.github.io/numerical-methods-atlas/validation/high-index-pendulum/?lang=ja>)
+  availability: run
+
+  位置拘束の指数3系から明示ODEを導き、整合・非整合初期値の拘束ドリフトと安定化を比較します。
 - [Schnakenberg有限振幅過渡：非線形性と独立参照](<https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-nonlinear/?lang=ja>)
   availability: run
 

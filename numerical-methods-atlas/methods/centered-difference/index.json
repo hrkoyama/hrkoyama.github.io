@@ -10,8 +10,8 @@
     "en": "Spatial discretization"
   },
   "summary": {
-    "ja": "「空間中心差分」の考え方と適用範囲を、解説章・一次文献・関連する教育用コードからたどります。 追加固定例：擬似弧長継続でBratuのfoldを越える、解析・中央差分・方向ADによるJacobian不要Newton–Krylov。条件と検証範囲は各配布版で確認してください。 追加固定例：離散fold近傍のBratu感度、分布係数Bratuの行列非形成VJP。条件と検証範囲は各配布版で確認してください。",
-    "en": "Read about Centered spatial difference, follow the original references and inspect related educational code and checks. Additional fixed examples: Crossing the Bratu fold with pseudo-arclength continuation, Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products. See each release for assumptions and checked scope. Additional fixed examples: Bratu sensitivity near the discrete fold, Matrix-free VJP for distributed Bratu coefficients. See each release for assumptions and checked scope."
+    "ja": "「空間中心差分」の考え方と適用範囲を、解説章・一次文献・関連する教育用コードからたどります。 追加固定例：擬似弧長継続でBratuのfoldを越える、解析・中央差分・方向ADによるJacobian不要Newton–Krylov。条件と検証範囲は各配布版で確認してください。 追加固定例：離散fold近傍のBratu感度、分布係数Bratuの行列非形成VJP。条件と検証範囲は各配布版で確認してください。 追加固定例：Dirichlet境界でのStrang次数低下と補正。条件と検証範囲は各配布版で確認してください。",
+    "en": "Read about Centered spatial difference, follow the original references and inspect related educational code and checks. Additional fixed examples: Crossing the Bratu fold with pseudo-arclength continuation, Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products. See each release for assumptions and checked scope. Additional fixed examples: Bratu sensitivity near the discrete fold, Matrix-free VJP for distributed Bratu coefficients. See each release for assumptions and checked scope. Additional fixed examples: Strang splitting: Dirichlet boundary order reduction and correction. See each release for assumptions and checked scope."
   },
   "status": "educational-example",
   "origin": "existing-coverage-catalog",
@@ -48,8 +48,8 @@
   "units": null,
   "boundary_conditions": null,
   "limitations": {
-    "ja": "対象方程式・境界条件・検証の範囲は解説章と各コードを確認してください。教育用例は汎用ソルバーの完成を意味しません。 追加固定例：小さな1次元の単純foldだけです。分岐曲線の解析族比較では計算した中点値を族の座標に使い、固定λの独立形状比較と区別します。連続foldは離散解そのものではなく、一般の分岐追跡や大規模性能は保証しません。 小1次元BVP向けの教育実装です。ADは四則・exp・境界paddingの方向微分に限ります。小Hessenberg行列と基底は保持します。ηの固定下限があるため、原著EWの漸近収束定理、一般AD/PETScとの同等性、速度向上や大域収束は主張しません。 上記の制限は既存配布版の範囲です。今回の追加配布版：連続foldは離散foldではありません。rtol1e-4/1e-8は達成必須、requested1e-12は観測のみで未達を収束と表示しません。返却候補の独立勾配精度は別判定。最小固有値/丸めscaleは浮動小数点の診断で保証区間ではありません。BratuのJは対称であり、非対称転置は別の演算子対照です。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。 同じ離散状態の微分検証で、独立した物理PDE解の証明や一般ADではありません。保存arrayと固定Krylov workspaceの記録はRSS測定ではありません。m=2のθ端点は[a-b-2,a+b-2]で、物理係数端点[a-b,a+b]と区別します。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。",
-    "en": "See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers. Additional fixed examples: A small one-dimensional simple fold only. The whole-curve family comparison uses the computed midpoint as its family coordinate and is distinct from the independent fixed-lambda profile checks. The continuum fold is not an exact discrete solution. No general bifurcation-tracking or large-scale performance claim. An educational small1D BVP. AD covers only elementary arithmetic, exp and linear boundary padding. Small Hessenberg matrices and Krylov bases are stored. The fixed eta floor precludes claiming the unmodified EW asymptotic theorem. No general-AD/PETSc equivalence, speedup or global-convergence guarantee. The preceding limitations describe earlier editions. This additional release: The continuum fold is not the discrete fold. rtol1e-4/1e-8 targets are required; requested1e-12 is observational and unmet is never called converged. Independent accuracy of the returned gradient is a separate gate. Eigenvalue/roundoff scales are floating diagnostics, not certified intervals. Bratu J is symmetric; the nonsymmetric transpose is a separate operator control. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved. Derivative verification at the same discrete state, not independent physical-PDE truth or general AD. Persistent arrays and fixed Krylov workspace inventories are not RSS measurements. For m=2, theta endpoints are[a-b-2,a+b-2], distinct from physical coefficient endpoints[a-b,a+b]. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved."
+    "ja": "対象方程式・境界条件・検証の範囲は解説章と各コードを確認してください。教育用例は汎用ソルバーの完成を意味しません。 追加固定例：小さな1次元の単純foldだけです。分岐曲線の解析族比較では計算した中点値を族の座標に使い、固定λの独立形状比較と区別します。連続foldは離散解そのものではなく、一般の分岐追跡や大規模性能は保証しません。 小1次元BVP向けの教育実装です。ADは四則・exp・境界paddingの方向微分に限ります。小Hessenberg行列と基底は保持します。ηの固定下限があるため、原著EWの漸近収束定理、一般AD/PETScとの同等性、速度向上や大域収束は主張しません。 上記の制限は既存配布版の範囲です。今回の追加配布版：連続foldは離散foldではありません。rtol1e-4/1e-8は達成必須、requested1e-12は観測のみで未達を収束と表示しません。返却候補の独立勾配精度は別判定。最小固有値/丸めscaleは浮動小数点の診断で保証区間ではありません。BratuのJは対称であり、非対称転置は別の演算子対照です。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。 同じ離散状態の微分検証で、独立した物理PDE解の証明や一般ADではありません。保存arrayと固定Krylov workspaceの記録はRSS測定ではありません。m=2のθ端点は[a-b-2,a+b-2]で、物理係数端点[a-b,a+b]と区別します。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。 上記の制限は既存配布版の範囲です。今回の追加配布版：原著の線形特殊例で非線形数値表の再現ではありません。非自律/一般境界や普遍的な次数低下は主張せず、Lie終端の反応trace不整合も別表示します。",
+    "en": "See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers. Additional fixed examples: A small one-dimensional simple fold only. The whole-curve family comparison uses the computed midpoint as its family coordinate and is distinct from the independent fixed-lambda profile checks. The continuum fold is not an exact discrete solution. No general bifurcation-tracking or large-scale performance claim. An educational small1D BVP. AD covers only elementary arithmetic, exp and linear boundary padding. Small Hessenberg matrices and Krylov bases are stored. The fixed eta floor precludes claiming the unmodified EW asymptotic theorem. No general-AD/PETSc equivalence, speedup or global-convergence guarantee. The preceding limitations describe earlier editions. This additional release: The continuum fold is not the discrete fold. rtol1e-4/1e-8 targets are required; requested1e-12 is observational and unmet is never called converged. Independent accuracy of the returned gradient is a separate gate. Eigenvalue/roundoff scales are floating diagnostics, not certified intervals. Bratu J is symmetric; the nonsymmetric transpose is a separate operator control. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved. Derivative verification at the same discrete state, not independent physical-PDE truth or general AD. Persistent arrays and fixed Krylov workspace inventories are not RSS measurements. For m=2, theta endpoints are[a-b-2,a+b-2], distinct from physical coefficient endpoints[a-b,a+b]. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved. The preceding limitations describe earlier editions. This additional release: This is an authored linear specialization, not a reproduction of the original nonlinear tables. It makes no general claim for nonautonomous boundaries or universal order loss. The final reaction-trace mismatch of Lie splitting is disclosed separately."
   },
   "metadata_review": {
     "level": "chapter-linked; detailed method-specific curation in progress",
@@ -26714,6 +26714,667 @@
           }
         }
       ]
+    },
+    {
+      "group": "ode-adaptivity",
+      "case_ids": [
+        "strang-boundary-order-reduction"
+      ],
+      "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/",
+      "code_edition": "2026-11-24-r2",
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/experiments.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/io_contract.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/reference_eval.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/boundary.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/models.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/stiff.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/reporting_policy.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/dopri.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/tableau.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/boundary_reference.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/coefficient_exact.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/qualify.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/reference_models.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_boundary.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_contract.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_dopri.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_reporting.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_stiff.py"
+      ],
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "run_from": "atlas-ode-adaptivity-2026-11-24-r2",
+      "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/atlas-ode-adaptivity-2026-11-24-r2.zip",
+      "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/source-manifest.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+      "code_archive_sha256": "19e6bed36d5a49a865881df12170edf9f79b4c5365e35ae91186eaf33bb5bc3a",
+      "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/result.json",
+      "passed_tests": 41,
+      "examples": [
+        {
+          "id": "strang-boundary-order-reduction",
+          "method_ids": [
+            "strang-splitting",
+            "lie-trotter",
+            "centered-difference"
+          ],
+          "title": {
+            "ja": "Dirichlet境界でのStrang次数低下と補正",
+            "en": "Strang splitting: Dirichlet boundary order reduction and correction"
+          },
+          "summary": {
+            "ja": "実1D非周期場で、未補正/境界補正Strangを同じFD参照へ比較し、時間誤差と空間誤差を分けます。",
+            "en": "Evolve actual one-dimensional nonperiodic fields and compare unmodified and boundary-corrected Strang splitting against the same spatial discretization."
+          },
+          "assumptions": {
+            "ja": "u_t=u_xx+u、[0,1]、両端u=1、解析定常解+.1正弦摂動、T=.1。内部31/63/127点・8/16/32/64刻みとLie対照4run、計28run。",
+            "en": "Solve u_t = u_xx + u on [0, 1] with both boundary values equal to 1, an analytic steady state plus a 0.1 sine perturbation, and T = 0.1. Use 31, 63 and 127 interior nodes with 8, 16, 32 and 64 steps, plus four Lie controls: 28 runs."
+          },
+          "algorithm": {
+            "ja": "w=u−1で未補正(Lw,w+1)、補正(Lw+1,w)に分割。実DirichletDST-I指数流を合成し、反応の境界不整合を保持します。",
+            "en": "For w = u - 1, use the unmodified split (Lw, w + 1) or the corrected split (Lw + 1, w). Compose actual Dirichlet DST-I flows and retain the reaction boundary mismatch."
+          },
+          "validation": {
+            "ja": "独立疎affine指数作用と別記述の正弦和を先に資格。同FD時間誤差・解析連続解との差・固定格子/刻み領域の観測次数を判定。",
+            "en": "First qualify an independent sparse affine exponential action against separately written sine sums. Then separate temporal error against the same finite-difference system, spatial error against the analytic continuum field, and observed order in the fixed regime."
+          },
+          "limits": {
+            "ja": "原著の線形特殊例で非線形数値表の再現ではありません。非自律/一般境界や普遍的な次数低下は主張せず、Lie終端の反応trace不整合も別表示します。",
+            "en": "This is an authored linear specialization, not a reproduction of the original nonlinear tables. It makes no general claim for nonautonomous boundaries or universal order loss. The final reaction-trace mismatch of Lie splitting is disclosed separately."
+          },
+          "domains": [
+            "time",
+            "foundations"
+          ],
+          "code_files": [
+            "run.py",
+            "experiments.py",
+            "io_contract.py",
+            "reference_eval.py",
+            "boundary.py"
+          ],
+          "references": [
+            {
+              "id": "einkemmer-ostermann-dirichlet",
+              "author": "L. Einkemmer; A. Ostermann",
+              "title": "Overcoming order reduction in diffusion-reaction splitting. Part1: Dirichlet boundary conditions",
+              "year": 2014,
+              "url": "https://arxiv.org/abs/1411.0465",
+              "accessed_on": "2026-11-24",
+              "review_level": "primary-preprint-selected-sections",
+              "review": {
+                "ja": "2014v1の§2/Algorithm2/定数境界例、§3.2の定理・仮定、1D例の選択抽出テキストを閲読。全証明・原PDF全画像の監査ではありません。今回線形特殊例で、原著の非線形数値表ではありません。",
+                "en": "Read selected extracted text from the 2014 v1 preprint: section 2, Algorithm 2, the constant-boundary example, section 3.2 assumptions and result, and the one-dimensional example. This was not a full-proof or whole-PDF visual audit; the present linear specialization does not reproduce the nonlinear tables."
+              }
+            }
+          ],
+          "gallery_figure": "strang-boundary-order-reduction-preview.png",
+          "additional_figures": [
+            {
+              "file": "strang-boundary-order-reduction-preview.png",
+              "caption": {
+                "ja": "実1D非周期場で、未補正/境界補正Strangを同じFD参照へ比較し、時間誤差と空間誤差を分けます。 保存済みの数値場と参照を用いた図です。",
+                "en": "Evolve actual one-dimensional nonperiodic fields and compare unmodified and boundary-corrected Strang splitting against the same spatial discretization. This preview reads saved numerical fields and references only."
+              }
+            }
+          ],
+          "formulas": [
+            "u_t=u_{xx}+u,\\quad u(0,t)=u(1,t)=1,\\quad w=u-1",
+            "A_{\\rm raw}(w)=L_hw,\\ B_{\\rm raw}(w)=w+1;\\quad A_{\\rm corr}(w)=L_hw+1,\\ B_{\\rm corr}(w)=w"
+          ],
+          "measured": {
+            "id": "strang-boundary-order-reduction",
+            "passed": true,
+            "checks": {
+              "boundary-n31-strang-unmodified-8:actual-field-and-work": true,
+              "boundary-n31-strang-unmodified-8:boundary-compatibility-ledger": true,
+              "boundary-n31-strang-unmodified-16:actual-field-and-work": true,
+              "boundary-n31-strang-unmodified-16:boundary-compatibility-ledger": true,
+              "boundary-n31-strang-unmodified-32:actual-field-and-work": true,
+              "boundary-n31-strang-unmodified-32:boundary-compatibility-ledger": true,
+              "boundary-n31-strang-unmodified-64:actual-field-and-work": true,
+              "boundary-n31-strang-unmodified-64:boundary-compatibility-ledger": true,
+              "boundary-n31-strang-boundary-corrected-8:actual-field-and-work": true,
+              "boundary-n31-strang-boundary-corrected-8:boundary-compatibility-ledger": true,
+              "boundary-n31-strang-boundary-corrected-16:actual-field-and-work": true,
+              "boundary-n31-strang-boundary-corrected-16:boundary-compatibility-ledger": true,
+              "boundary-n31-strang-boundary-corrected-32:actual-field-and-work": true,
+              "boundary-n31-strang-boundary-corrected-32:boundary-compatibility-ledger": true,
+              "boundary-n31-strang-boundary-corrected-64:actual-field-and-work": true,
+              "boundary-n31-strang-boundary-corrected-64:boundary-compatibility-ledger": true,
+              "boundary-n63-strang-unmodified-8:actual-field-and-work": true,
+              "boundary-n63-strang-unmodified-8:boundary-compatibility-ledger": true,
+              "boundary-n63-strang-unmodified-16:actual-field-and-work": true,
+              "boundary-n63-strang-unmodified-16:boundary-compatibility-ledger": true,
+              "boundary-n63-strang-unmodified-32:actual-field-and-work": true,
+              "boundary-n63-strang-unmodified-32:boundary-compatibility-ledger": true,
+              "boundary-n63-strang-unmodified-64:actual-field-and-work": true,
+              "boundary-n63-strang-unmodified-64:boundary-compatibility-ledger": true,
+              "boundary-n63-strang-boundary-corrected-8:actual-field-and-work": true,
+              "boundary-n63-strang-boundary-corrected-8:boundary-compatibility-ledger": true,
+              "boundary-n63-strang-boundary-corrected-16:actual-field-and-work": true,
+              "boundary-n63-strang-boundary-corrected-16:boundary-compatibility-ledger": true,
+              "boundary-n63-strang-boundary-corrected-32:actual-field-and-work": true,
+              "boundary-n63-strang-boundary-corrected-32:boundary-compatibility-ledger": true,
+              "boundary-n63-strang-boundary-corrected-64:actual-field-and-work": true,
+              "boundary-n63-strang-boundary-corrected-64:boundary-compatibility-ledger": true,
+              "boundary-n127-strang-unmodified-8:actual-field-and-work": true,
+              "boundary-n127-strang-unmodified-8:boundary-compatibility-ledger": true,
+              "boundary-n127-strang-unmodified-16:actual-field-and-work": true,
+              "boundary-n127-strang-unmodified-16:boundary-compatibility-ledger": true,
+              "boundary-n127-strang-unmodified-32:actual-field-and-work": true,
+              "boundary-n127-strang-unmodified-32:boundary-compatibility-ledger": true,
+              "boundary-n127-strang-unmodified-64:actual-field-and-work": true,
+              "boundary-n127-strang-unmodified-64:boundary-compatibility-ledger": true,
+              "boundary-n127-strang-boundary-corrected-8:actual-field-and-work": true,
+              "boundary-n127-strang-boundary-corrected-8:boundary-compatibility-ledger": true,
+              "boundary-n127-strang-boundary-corrected-16:actual-field-and-work": true,
+              "boundary-n127-strang-boundary-corrected-16:boundary-compatibility-ledger": true,
+              "boundary-n127-strang-boundary-corrected-32:actual-field-and-work": true,
+              "boundary-n127-strang-boundary-corrected-32:boundary-compatibility-ledger": true,
+              "boundary-n127-strang-boundary-corrected-64:actual-field-and-work": true,
+              "boundary-n127-strang-boundary-corrected-64:boundary-compatibility-ledger": true,
+              "boundary-n127-lie-8:actual-field-and-work": true,
+              "boundary-n127-lie-8:boundary-compatibility-ledger": true,
+              "boundary-n127-lie-16:actual-field-and-work": true,
+              "boundary-n127-lie-16:boundary-compatibility-ledger": true,
+              "boundary-n127-lie-32:actual-field-and-work": true,
+              "boundary-n127-lie-32:boundary-compatibility-ledger": true,
+              "boundary-n127-lie-64:actual-field-and-work": true,
+              "boundary-n127-lie-64:boundary-compatibility-ledger": true,
+              "n31:corrected-finest-accuracy": true,
+              "n63:corrected-finest-accuracy": true,
+              "n127:corrected-finest-accuracy": true,
+              "strang-unmodified:fixed-regime-temporal-order": true,
+              "strang-boundary-corrected:fixed-regime-temporal-order": true,
+              "finest:boundary-correction-improves": true,
+              "separate-reference-spatial-order": true
+            },
+            "records": [
+              {
+                "run_id": "boundary-n31-strang-unmodified-8",
+                "method": "strang-unmodified",
+                "n": 31,
+                "steps": 8,
+                "dt": 0.0125,
+                "temporal_linf": 0.0008757063477917715,
+                "reference_spatial_linf": 3.996225335356485e-05,
+                "continuum_total_linf": 0.0008675031571037106,
+                "diffusion_calls": 16,
+                "reaction_calls": 8,
+                "reaction_trace_defect": 0.012578451540634377,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n31-strang-unmodified-16",
+                "method": "strang-unmodified",
+                "n": 31,
+                "steps": 16,
+                "dt": 0.00625,
+                "temporal_linf": 0.00041992035499327507,
+                "reference_spatial_linf": 3.996225335356485e-05,
+                "continuum_total_linf": 0.00041614126004252405,
+                "diffusion_calls": 32,
+                "reaction_calls": 16,
+                "reaction_trace_defect": 0.006269572003762011,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n31-strang-unmodified-32",
+                "method": "strang-unmodified",
+                "n": 31,
+                "steps": 32,
+                "dt": 0.003125,
+                "temporal_linf": 0.00020405347454843792,
+                "reference_spatial_linf": 3.996225335356485e-05,
+                "continuum_total_linf": 0.00020136246091140286,
+                "diffusion_calls": 64,
+                "reaction_calls": 32,
+                "reaction_trace_defect": 0.0031298879027391487,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n31-strang-unmodified-64",
+                "method": "strang-unmodified",
+                "n": 31,
+                "steps": 64,
+                "dt": 0.0015625,
+                "temporal_linf": 7.859278421507021e-05,
+                "reference_spatial_linf": 3.996225335356485e-05,
+                "continuum_total_linf": 7.641841650651848e-05,
+                "diffusion_calls": 128,
+                "reaction_calls": 64,
+                "reaction_trace_defect": 0.001563721339156308,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n31-strang-boundary-corrected-8",
+                "method": "strang-boundary-corrected",
+                "n": 31,
+                "steps": 8,
+                "dt": 0.0125,
+                "temporal_linf": 5.264743266231164e-06,
+                "reference_spatial_linf": 3.996225335356485e-05,
+                "continuum_total_linf": 3.7388141306049505e-05,
+                "diffusion_calls": 16,
+                "reaction_calls": 8,
+                "reaction_trace_defect": 0.0,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n31-strang-boundary-corrected-16",
+                "method": "strang-boundary-corrected",
+                "n": 31,
+                "steps": 16,
+                "dt": 0.00625,
+                "temporal_linf": 1.4116613804571188e-06,
+                "reference_spatial_linf": 3.996225335356485e-05,
+                "continuum_total_linf": 3.9318797573795194e-05,
+                "diffusion_calls": 32,
+                "reaction_calls": 16,
+                "reaction_trace_defect": 0.0,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n31-strang-boundary-corrected-32",
+                "method": "strang-boundary-corrected",
+                "n": 31,
+                "steps": 32,
+                "dt": 0.003125,
+                "temporal_linf": 3.674135915510135e-07,
+                "reference_spatial_linf": 3.996225335356485e-05,
+                "continuum_total_linf": 3.980140375436925e-05,
+                "diffusion_calls": 64,
+                "reaction_calls": 32,
+                "reaction_trace_defect": 0.0,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n31-strang-boundary-corrected-64",
+                "method": "strang-boundary-corrected",
+                "n": 31,
+                "steps": 64,
+                "dt": 0.0015625,
+                "temporal_linf": 9.27594256960873e-08,
+                "reference_spatial_linf": 3.996225335356485e-05,
+                "continuum_total_linf": 3.992204170066849e-05,
+                "diffusion_calls": 128,
+                "reaction_calls": 64,
+                "reaction_trace_defect": 0.0,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n63-strang-unmodified-8",
+                "method": "strang-unmodified",
+                "n": 63,
+                "steps": 8,
+                "dt": 0.0125,
+                "temporal_linf": 0.0008925569277957734,
+                "reference_spatial_linf": 9.990707782181474e-06,
+                "continuum_total_linf": 0.0008905061113566592,
+                "diffusion_calls": 16,
+                "reaction_calls": 8,
+                "reaction_trace_defect": 0.012578451540634377,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n63-strang-unmodified-16",
+                "method": "strang-unmodified",
+                "n": 63,
+                "steps": 16,
+                "dt": 0.00625,
+                "temporal_linf": 0.00044123635558435126,
+                "reference_spatial_linf": 9.990707782181474e-06,
+                "continuum_total_linf": 0.0004396876765413449,
+                "diffusion_calls": 32,
+                "reaction_calls": 16,
+                "reaction_trace_defect": 0.006269572003762011,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n63-strang-unmodified-32",
+                "method": "strang-unmodified",
+                "n": 63,
+                "steps": 32,
+                "dt": 0.003125,
+                "temporal_linf": 0.00022087038336637832,
+                "reference_spatial_linf": 9.990707782181474e-06,
+                "continuum_total_linf": 0.00021992568408601976,
+                "diffusion_calls": 64,
+                "reaction_calls": 32,
+                "reaction_trace_defect": 0.0031298879027391487,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n63-strang-unmodified-64",
+                "method": "strang-unmodified",
+                "n": 63,
+                "steps": 64,
+                "dt": 0.0015625,
+                "temporal_linf": 0.00010525450294140981,
+                "reference_spatial_linf": 9.990707782181474e-06,
+                "continuum_total_linf": 0.00010491477029273,
+                "diffusion_calls": 128,
+                "reaction_calls": 64,
+                "reaction_trace_defect": 0.001563721339156308,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n63-strang-boundary-corrected-8",
+                "method": "strang-boundary-corrected",
+                "n": 63,
+                "steps": 8,
+                "dt": 0.0125,
+                "temporal_linf": 5.2983453082688925e-06,
+                "reference_spatial_linf": 9.990707782181474e-06,
+                "continuum_total_linf": 7.416156708073274e-06,
+                "diffusion_calls": 16,
+                "reaction_calls": 8,
+                "reaction_trace_defect": 0.0,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n63-strang-boundary-corrected-16",
+                "method": "strang-boundary-corrected",
+                "n": 63,
+                "steps": 16,
+                "dt": 0.00625,
+                "temporal_linf": 1.4284813096843152e-06,
+                "reference_spatial_linf": 9.990707782181474e-06,
+                "continuum_total_linf": 9.347326945796652e-06,
+                "diffusion_calls": 32,
+                "reaction_calls": 16,
+                "reaction_trace_defect": 0.0,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n63-strang-boundary-corrected-32",
+                "method": "strang-boundary-corrected",
+                "n": 63,
+                "steps": 32,
+                "dt": 0.003125,
+                "temporal_linf": 3.7569862221253914e-07,
+                "reference_spatial_linf": 9.990707782181474e-06,
+                "continuum_total_linf": 9.829873045097415e-06,
+                "diffusion_calls": 64,
+                "reaction_calls": 32,
+                "reaction_trace_defect": 0.0,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n63-strang-boundary-corrected-64",
+                "method": "strang-boundary-corrected",
+                "n": 63,
+                "steps": 64,
+                "dt": 0.0015625,
+                "temporal_linf": 9.725499605650612e-08,
+                "reference_spatial_linf": 9.990707782181474e-06,
+                "continuum_total_linf": 9.950499800348567e-06,
+                "diffusion_calls": 128,
+                "reaction_calls": 64,
+                "reaction_trace_defect": 0.0,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n127-strang-unmodified-8",
+                "method": "strang-unmodified",
+                "n": 127,
+                "steps": 8,
+                "dt": 0.0125,
+                "temporal_linf": 0.0009028332894225333,
+                "reference_spatial_linf": 2.4976854506864044e-06,
+                "continuum_total_linf": 0.0009023830995367188,
+                "diffusion_calls": 16,
+                "reaction_calls": 8,
+                "reaction_trace_defect": 0.012578451540634377,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n127-strang-unmodified-16",
+                "method": "strang-unmodified",
+                "n": 127,
+                "steps": 16,
+                "dt": 0.00625,
+                "temporal_linf": 0.000453352236035931,
+                "reference_spatial_linf": 2.4976854506864044e-06,
+                "continuum_total_linf": 0.0004530285626085373,
+                "diffusion_calls": 32,
+                "reaction_calls": 16,
+                "reaction_trace_defect": 0.006269572003762011,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n127-strang-unmodified-32",
+                "method": "strang-unmodified",
+                "n": 127,
+                "steps": 32,
+                "dt": 0.003125,
+                "temporal_linf": 0.000225079471529277,
+                "reference_spatial_linf": 2.4976854506864044e-06,
+                "continuum_total_linf": 0.00022481974455157427,
+                "diffusion_calls": 64,
+                "reaction_calls": 32,
+                "reaction_trace_defect": 0.0031298879027391487,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n127-strang-unmodified-64",
+                "method": "strang-unmodified",
+                "n": 127,
+                "steps": 64,
+                "dt": 0.0015625,
+                "temporal_linf": 0.00011072277594093016,
+                "reference_spatial_linf": 2.4976854506864044e-06,
+                "continuum_total_linf": 0.00011054504046437152,
+                "diffusion_calls": 128,
+                "reaction_calls": 64,
+                "reaction_trace_defect": 0.001563721339156308,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n127-strang-boundary-corrected-8",
+                "method": "strang-boundary-corrected",
+                "n": 127,
+                "steps": 8,
+                "dt": 0.0125,
+                "temporal_linf": 5.306691291284693e-06,
+                "reference_spatial_linf": 2.4976854506864044e-06,
+                "continuum_total_linf": 4.397988545790099e-06,
+                "diffusion_calls": 16,
+                "reaction_calls": 8,
+                "reaction_trace_defect": 0.0,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n127-strang-boundary-corrected-16",
+                "method": "strang-boundary-corrected",
+                "n": 127,
+                "steps": 16,
+                "dt": 0.00625,
+                "temporal_linf": 1.4327118378343329e-06,
+                "reference_spatial_linf": 2.4976854506864044e-06,
+                "continuum_total_linf": 1.8543251061320376e-06,
+                "diffusion_calls": 32,
+                "reaction_calls": 16,
+                "reaction_trace_defect": 0.0,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n127-strang-boundary-corrected-32",
+                "method": "strang-boundary-corrected",
+                "n": 127,
+                "steps": 32,
+                "dt": 0.003125,
+                "temporal_linf": 3.782292723464309e-07,
+                "reference_spatial_linf": 2.4976854506864044e-06,
+                "continuum_total_linf": 2.336854974638314e-06,
+                "diffusion_calls": 64,
+                "reaction_calls": 32,
+                "reaction_trace_defect": 0.0,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n127-strang-boundary-corrected-64",
+                "method": "strang-boundary-corrected",
+                "n": 127,
+                "steps": 64,
+                "dt": 0.0015625,
+                "temporal_linf": 9.830520841802581e-08,
+                "reference_spatial_linf": 2.4976854506864044e-06,
+                "continuum_total_linf": 2.45747896232551e-06,
+                "diffusion_calls": 128,
+                "reaction_calls": 64,
+                "reaction_trace_defect": 0.0,
+                "last_subflow_trace_defect": 0.0
+              },
+              {
+                "run_id": "boundary-n127-lie-8",
+                "method": "lie-unmodified",
+                "n": 127,
+                "steps": 8,
+                "dt": 0.0125,
+                "temporal_linf": 0.011818308548201317,
+                "reference_spatial_linf": 2.4976854506864044e-06,
+                "continuum_total_linf": 0.011818374015232891,
+                "diffusion_calls": 8,
+                "reaction_calls": 8,
+                "reaction_trace_defect": 0.012578451540634377,
+                "last_subflow_trace_defect": 0.012578451540634377
+              },
+              {
+                "run_id": "boundary-n127-lie-16",
+                "method": "lie-unmodified",
+                "n": 127,
+                "steps": 16,
+                "dt": 0.00625,
+                "temporal_linf": 0.005756692724346202,
+                "reference_spatial_linf": 2.4976854506864044e-06,
+                "continuum_total_linf": 0.0057567581913777754,
+                "diffusion_calls": 16,
+                "reaction_calls": 16,
+                "reaction_trace_defect": 0.006269572003762011,
+                "last_subflow_trace_defect": 0.006269572003762011
+              },
+              {
+                "run_id": "boundary-n127-lie-32",
+                "method": "lie-unmodified",
+                "n": 127,
+                "steps": 32,
+                "dt": 0.003125,
+                "temporal_linf": 0.002783227896894447,
+                "reference_spatial_linf": 2.4976854506864044e-06,
+                "continuum_total_linf": 0.0027832933639260204,
+                "diffusion_calls": 32,
+                "reaction_calls": 32,
+                "reaction_trace_defect": 0.0031298879027391487,
+                "last_subflow_trace_defect": 0.0031298879027391487
+              },
+              {
+                "run_id": "boundary-n127-lie-64",
+                "method": "lie-unmodified",
+                "n": 127,
+                "steps": 64,
+                "dt": 0.0015625,
+                "temporal_linf": 0.0013305428016394671,
+                "reference_spatial_linf": 2.4976854506864044e-06,
+                "continuum_total_linf": 0.0013306082686710408,
+                "diffusion_calls": 64,
+                "reaction_calls": 64,
+                "reaction_trace_defect": 0.001563721339156308,
+                "last_subflow_trace_defect": 0.001563721339156308
+              }
+            ],
+            "metrics": {
+              "N127_finest_raw_temporal_error": 0.00011072277594093016,
+              "N127_finest_corrected_temporal_error": 9.830520841802581e-08,
+              "reference_spatial_order": 1.9999950873134633,
+              "scope": "Actual1Dnonperiodicfields. TimevsSAME-FDoracle; spacevsanalyticcontinuum. Linearautonomousspecialization, fixed-regime order; no universal reduction/theorem reproduction."
+            },
+            "original_target_results": {
+              "boundary-n31-strang-unmodified-8:actual-field-and-work": true,
+              "boundary-n31-strang-unmodified-8:boundary-compatibility-ledger": true,
+              "boundary-n31-strang-unmodified-16:actual-field-and-work": true,
+              "boundary-n31-strang-unmodified-16:boundary-compatibility-ledger": true,
+              "boundary-n31-strang-unmodified-32:actual-field-and-work": true,
+              "boundary-n31-strang-unmodified-32:boundary-compatibility-ledger": true,
+              "boundary-n31-strang-unmodified-64:actual-field-and-work": true,
+              "boundary-n31-strang-unmodified-64:boundary-compatibility-ledger": true,
+              "boundary-n31-strang-boundary-corrected-8:actual-field-and-work": true,
+              "boundary-n31-strang-boundary-corrected-8:boundary-compatibility-ledger": true,
+              "boundary-n31-strang-boundary-corrected-16:actual-field-and-work": true,
+              "boundary-n31-strang-boundary-corrected-16:boundary-compatibility-ledger": true,
+              "boundary-n31-strang-boundary-corrected-32:actual-field-and-work": true,
+              "boundary-n31-strang-boundary-corrected-32:boundary-compatibility-ledger": true,
+              "boundary-n31-strang-boundary-corrected-64:actual-field-and-work": true,
+              "boundary-n31-strang-boundary-corrected-64:boundary-compatibility-ledger": true,
+              "boundary-n63-strang-unmodified-8:actual-field-and-work": true,
+              "boundary-n63-strang-unmodified-8:boundary-compatibility-ledger": true,
+              "boundary-n63-strang-unmodified-16:actual-field-and-work": true,
+              "boundary-n63-strang-unmodified-16:boundary-compatibility-ledger": true,
+              "boundary-n63-strang-unmodified-32:actual-field-and-work": true,
+              "boundary-n63-strang-unmodified-32:boundary-compatibility-ledger": true,
+              "boundary-n63-strang-unmodified-64:actual-field-and-work": true,
+              "boundary-n63-strang-unmodified-64:boundary-compatibility-ledger": true,
+              "boundary-n63-strang-boundary-corrected-8:actual-field-and-work": true,
+              "boundary-n63-strang-boundary-corrected-8:boundary-compatibility-ledger": true,
+              "boundary-n63-strang-boundary-corrected-16:actual-field-and-work": true,
+              "boundary-n63-strang-boundary-corrected-16:boundary-compatibility-ledger": true,
+              "boundary-n63-strang-boundary-corrected-32:actual-field-and-work": true,
+              "boundary-n63-strang-boundary-corrected-32:boundary-compatibility-ledger": true,
+              "boundary-n63-strang-boundary-corrected-64:actual-field-and-work": true,
+              "boundary-n63-strang-boundary-corrected-64:boundary-compatibility-ledger": true,
+              "boundary-n127-strang-unmodified-8:actual-field-and-work": true,
+              "boundary-n127-strang-unmodified-8:boundary-compatibility-ledger": true,
+              "boundary-n127-strang-unmodified-16:actual-field-and-work": true,
+              "boundary-n127-strang-unmodified-16:boundary-compatibility-ledger": true,
+              "boundary-n127-strang-unmodified-32:actual-field-and-work": true,
+              "boundary-n127-strang-unmodified-32:boundary-compatibility-ledger": true,
+              "boundary-n127-strang-unmodified-64:actual-field-and-work": true,
+              "boundary-n127-strang-unmodified-64:boundary-compatibility-ledger": true,
+              "boundary-n127-strang-boundary-corrected-8:actual-field-and-work": true,
+              "boundary-n127-strang-boundary-corrected-8:boundary-compatibility-ledger": true,
+              "boundary-n127-strang-boundary-corrected-16:actual-field-and-work": true,
+              "boundary-n127-strang-boundary-corrected-16:boundary-compatibility-ledger": true,
+              "boundary-n127-strang-boundary-corrected-32:actual-field-and-work": true,
+              "boundary-n127-strang-boundary-corrected-32:boundary-compatibility-ledger": true,
+              "boundary-n127-strang-boundary-corrected-64:actual-field-and-work": true,
+              "boundary-n127-strang-boundary-corrected-64:boundary-compatibility-ledger": true,
+              "boundary-n127-lie-8:actual-field-and-work": true,
+              "boundary-n127-lie-8:boundary-compatibility-ledger": true,
+              "boundary-n127-lie-16:actual-field-and-work": true,
+              "boundary-n127-lie-16:boundary-compatibility-ledger": true,
+              "boundary-n127-lie-32:actual-field-and-work": true,
+              "boundary-n127-lie-32:boundary-compatibility-ledger": true,
+              "boundary-n127-lie-64:actual-field-and-work": true,
+              "boundary-n127-lie-64:boundary-compatibility-ledger": true,
+              "n31:corrected-finest-accuracy": true,
+              "n63:corrected-finest-accuracy": true,
+              "n127:corrected-finest-accuracy": true,
+              "strang-unmodified:fixed-regime-temporal-order": true,
+              "strang-boundary-corrected:fixed-regime-temporal-order": true,
+              "finest:boundary-correction-improves": true,
+              "separate-reference-spatial-order": true
+            },
+            "original_target_summary": {
+              "met": 63,
+              "total": 63,
+              "all_met": true,
+              "acceptance_sha256": "fd7e7cfe528d9844e2992e8ef96d6b33e482e8c5d2bc63a4d6955431168f6051"
+            }
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/strang-boundary-order-reduction/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#strang-boundary-order-reduction",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#strang-boundary-order-reduction"
+          }
+        }
+      ]
     }
   ],
   "supplemental_scope_profiles": [
@@ -26762,6 +27423,25 @@
         {
           "ja": "同じ離散状態の微分検証で、独立した物理PDE解の証明や一般ADではありません。保存arrayと固定Krylov workspaceの記録はRSS測定ではありません。m=2のθ端点は[a-b-2,a+b-2]で、物理係数端点[a-b,a+b]と区別します。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。",
           "en": "Derivative verification at the same discrete state, not independent physical-PDE truth or general AD. Persistent arrays and fixed Krylov workspace inventories are not RSS measurements. For m=2, theta endpoints are[a-b-2,a+b-2], distinct from physical coefficient endpoints[a-b,a+b]. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved."
+        }
+      ]
+    },
+    {
+      "release": {
+        "group": "ode-adaptivity",
+        "edition": "2026-11-24-r2",
+        "case_ids": [
+          "strang-boundary-order-reduction"
+        ]
+      },
+      "scope": {
+        "ja": "追加固定例：Dirichlet境界でのStrang次数低下と補正。条件と検証範囲は各配布版で確認してください。",
+        "en": "Additional fixed examples: Strang splitting: Dirichlet boundary order reduction and correction. See each release for assumptions and checked scope."
+      },
+      "limits": [
+        {
+          "ja": "原著の線形特殊例で非線形数値表の再現ではありません。非自律/一般境界や普遍的な次数低下は主張せず、Lie終端の反応trace不整合も別表示します。",
+          "en": "This is an authored linear specialization, not a reproduction of the original nonlinear tables. It makes no general claim for nonautonomous boundaries or universal order loss. The final reaction-trace mismatch of Lie splitting is disclosed separately."
         }
       ]
     }
@@ -26817,7 +27497,21 @@
     "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/time_adjoint.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/io_contract.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/qualify_references.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/conftest.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/conftest.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/experiments.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/io_contract.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/reference_eval.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/boundary.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/models.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/stiff.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/reporting_policy.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/dopri.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/tableau.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/boundary_reference.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/coefficient_exact.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/qualify.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/reference_models.py"
   ],
   "test_urls": [
     "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
@@ -26833,7 +27527,12 @@
     "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/test_bratu.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/test_distributed.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/test_fold.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/test_time.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/test_time.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_boundary.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_contract.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_dopri.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_reporting.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_stiff.py"
   ],
   "run_commands": [
     "python -m pytest -q tests/test_time_geometry.py tests/test_numerics.py"
@@ -26976,6 +27675,15 @@
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-distributed-vjp/?lang=en"
       },
       "kind": "dedicated-supplement"
+    },
+    {
+      "id": "strang-boundary-order-reduction",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/strang-boundary-order-reduction/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/strang-boundary-order-reduction/?lang=en"
+      },
+      "kind": "dedicated-supplement"
     }
   ],
   "problem_navigation": {
@@ -26991,7 +27699,8 @@
         "problem_ids": [
           "heat-periodic",
           "heat-dirichlet",
-          "reaction-diffusion-fourier"
+          "reaction-diffusion-fourier",
+          "strang-boundary-order-reduction"
         ],
         "url": {
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#heat-ja",
@@ -27140,6 +27849,20 @@
         "url": {
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bratu-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bratu-en"
+        }
+      },
+      {
+        "id": "inhomogeneous-reaction-diffusion",
+        "name": {
+          "ja": "非同次境界を持つ線形反応拡散",
+          "en": "Linear reaction-diffusion with inhomogeneous boundaries"
+        },
+        "problem_ids": [
+          "strang-boundary-order-reduction"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#inhomogeneous-reaction-diffusion-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#inhomogeneous-reaction-diffusion-en"
         }
       }
     ],
@@ -28048,6 +28771,67 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-distributed-vjp/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-distributed-vjp/?lang=en#references-en"
         }
+      },
+      {
+        "id": "strang-boundary-order-reduction",
+        "name": {
+          "ja": "Dirichlet境界でのStrang次数低下と補正",
+          "en": "Strang splitting: Dirichlet boundary order reduction and correction"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/strang-boundary-order-reduction-preview.png",
+          "sha256": "f6fc7c2def18c49db259548f9f0687a1dbff5fb88a29ec697392e320d160b6ae",
+          "width": 1375,
+          "height": 566,
+          "caption": {
+            "ja": "実1D非周期場で、未補正/境界補正Strangを同じFD参照へ比較し、時間誤差と空間誤差を分けます。 保存済みの数値場と参照を用いた図です。",
+            "en": "Evolve actual one-dimensional nonperiodic fields and compare unmodified and boundary-corrected Strang splitting against the same spatial discretization. This preview reads saved numerical fields and references only."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strang-boundary-order-reduction/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strang-boundary-order-reduction/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strang-boundary-order-reduction/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strang-boundary-order-reduction/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "strang-boundary-order-reduction",
+            "kind": "supplement",
+            "name": {
+              "ja": "Dirichlet境界でのStrang次数低下と補正",
+              "en": "Strang splitting: Dirichlet boundary order reduction and correction"
+            },
+            "scope": {
+              "ja": "実1D非周期場で、未補正/境界補正Strangを同じFD参照へ比較し、時間誤差と空間誤差を分けます。",
+              "en": "Evolve actual one-dimensional nonperiodic fields and compare unmodified and boundary-corrected Strang splitting against the same spatial discretization."
+            },
+            "method_ids": [
+              "strang-splitting",
+              "lie-trotter",
+              "centered-difference"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/strang-boundary-order-reduction/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/strang-boundary-order-reduction/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/atlas-ode-adaptivity-2026-11-24-r2.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "w=u−1で未補正(Lw,w+1)、補正(Lw+1,w)に分割。実DirichletDST-I指数流を合成し、反応の境界不整合を保持します。",
+          "en": "For w = u - 1, use the unmodified split (Lw, w + 1) or the corrected split (Lw + 1, w). Compose actual Dirichlet DST-I flows and retain the reaction boundary mismatch."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strang-boundary-order-reduction/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strang-boundary-order-reduction/?lang=en#references-en"
+        }
       }
     ],
     "references": [
@@ -28534,6 +29318,40 @@
             "view": {
               "ja": "/numerical-methods-atlas/validation/bratu-distributed-vjp/?lang=ja#bratu-distributed-vjp-ja-measurements",
               "en": "/numerical-methods-atlas/validation/bratu-distributed-vjp/?lang=en#bratu-distributed-vjp-en-measurements"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "strang-boundary-order-reduction",
+        "problem_name": {
+          "ja": "Dirichlet境界でのStrang次数低下と補正",
+          "en": "Strang splitting: Dirichlet boundary order reduction and correction"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strang-boundary-order-reduction/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strang-boundary-order-reduction/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "strang-boundary-order-reduction",
+            "title": {
+              "ja": "Dirichlet境界でのStrang次数低下と補正",
+              "en": "Strang splitting: Dirichlet boundary order reduction and correction"
+            },
+            "kind": "semi-analytic",
+            "relation": "same-problem",
+            "note": {
+              "ja": "原著の線形特殊例で非線形数値表の再現ではありません。非自律/一般境界や普遍的な次数低下は主張せず、Lie終端の反応trace不整合も別表示します。",
+              "en": "This is an authored linear specialization, not a reproduction of the original nonlinear tables. It makes no general claim for nonautonomous boundaries or universal order loss. The final reaction-trace mismatch of Lie splitting is disclosed separately."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-strang-boundary-order-reduction-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-strang-boundary-order-reduction-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/strang-boundary-order-reduction/?lang=ja#strang-boundary-order-reduction-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/strang-boundary-order-reduction/?lang=en#strang-boundary-order-reduction-en-measurements"
             }
           }
         ]

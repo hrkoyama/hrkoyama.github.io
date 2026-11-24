@@ -977,6 +977,10 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "validation-dae-controls": [
+    "ja",
+    "en"
+  ],
   "validation-double-mach": [
     "ja",
     "en"
@@ -1006,6 +1010,10 @@ export const homeReadingLanguages = {
     "en"
   ],
   "validation-foundations-conditioning": [
+    "ja",
+    "en"
+  ],
+  "validation-geometric-controls": [
     "ja",
     "en"
   ],
@@ -1105,6 +1113,10 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "validation-ode-adaptivity": [
+    "ja",
+    "en"
+  ],
   "validation-particle-transport": [
     "ja",
     "en"
@@ -1154,6 +1166,10 @@ export const homeReadingLanguages = {
     "en"
   ],
   "validation-splitting": [
+    "ja",
+    "en"
+  ],
+  "validation-steady-rk": [
     "ja",
     "en"
   ],

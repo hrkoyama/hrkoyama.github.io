@@ -14,7 +14,9 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/operator-splitting/
 
 ## 方程式
 
-章固有の対応は未登録です。全体一覧：[方程式](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja)
+- [非同次境界を持つ線形反応拡散](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#inhomogeneous-reaction-diffusion-ja>)
+
+  同じ非周期有限差分系に対する時間誤差と、連続厳密解に対する空間誤差を分けます。
 
 ## 問題の図
 
@@ -30,6 +32,14 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/operator-splitting/
   availability: run
 
   32格子・終了時刻1のSchnakenberg反応拡散を、同じ入力・部分ソルバーでLie–TrotterとStrangにより進めます。4段階の時間刻みで1次／2次の収束、参照の感度、反応収支と未収束時の失敗を確かめる軽量な比較例です。
+- [Dirichlet境界でのStrang次数低下と補正](<https://hrkoyama.github.io/numerical-methods-atlas/validation/strang-boundary-order-reduction/?lang=ja>)
+  availability: run
+
+  実1D非周期場で、未補正/境界補正Strangを同じFD参照へ比較し、時間誤差と空間誤差を分けます。
+- [結合した2周波数系と共鳴の有限窓](<https://hrkoyama.github.io/numerical-methods-atlas/validation/multifrequency-resonance/?lang=ja>)
+  availability: run
+
+  2自由度の実結合系で、12の64刻みprobeと6の精度軌道を使い、真のモード、座標間交換、離散写像と丸めを分けます。
 - [Lie–Trotter分割：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/lie-trotter/?lang=ja#method-execution-ja>)
   availability: source
 

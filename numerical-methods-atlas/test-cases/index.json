@@ -5305,6 +5305,14 @@
             "ja": "無軟化Kepler二体の時間誤差",
             "en": "Unsoftened Kepler two-body time error"
           }
+        },
+        {
+          "id": "kepler-eccentricity",
+          "url": "/numerical-methods-atlas/validation/kepler-eccentricity/",
+          "name": {
+            "ja": "離心率を変えたKepler軌道と時間刻み",
+            "en": "Kepler eccentricity and time-step controls"
+          }
         }
       ],
       "reading": {
@@ -7194,6 +7202,462 @@
         "python -B -W error -m pytest -q -p no:cacheprovider",
         "python -B -W error run.py --input inputs.json --output fresh-output"
       ]
+    },
+    {
+      "id": "robertson-stiff-kinetics",
+      "group": "time",
+      "name": {
+        "ja": "Robertson反応系：ODEと保存則DAE",
+        "en": "Robertson kinetics: ODE and conservation DAE"
+      },
+      "chapter": "validation-ode-adaptivity",
+      "reading_section": "robertson-stiff-kinetics",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/",
+      "verification": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "robertson-stiff-kinetics"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/robertson-stiff-kinetics-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "robertson-stiff-kinetics",
+          "url": "/numerical-methods-atlas/validation/robertson-stiff-kinetics/",
+          "name": {
+            "ja": "Robertson反応系の初期剛性と実誤差",
+            "en": "Robertson kinetics: initial stiffness and actual error"
+          }
+        },
+        {
+          "id": "robertson-conservation-dae",
+          "url": "/numerical-methods-atlas/validation/robertson-conservation-dae/",
+          "name": {
+            "ja": "Robertson保存制約DAEと公式IDA保存値",
+            "en": "Robertson conservation DAE and stored official IDA values"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#robertson-stiff-kinetics",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#robertson-stiff-kinetics"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#robertson-stiff-kinetics",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ]
+    },
+    {
+      "id": "van-der-pol-stiff-transition",
+      "group": "time",
+      "name": {
+        "ja": "van der Polの短時間剛性遷移",
+        "en": "Van der Pol: an early stiffness transition"
+      },
+      "chapter": "validation-ode-adaptivity",
+      "reading_section": "van-der-pol-stiff-transition",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/",
+      "verification": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "van-der-pol-stiff-transition"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/van-der-pol-stiff-transition-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "van-der-pol-stiff-transition",
+          "url": "/numerical-methods-atlas/validation/van-der-pol-stiff-transition/",
+          "name": {
+            "ja": "van der Polの短時間剛性遷移",
+            "en": "Van der Pol: an early stiffness transition"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#van-der-pol-stiff-transition",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#van-der-pol-stiff-transition"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#van-der-pol-stiff-transition",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ]
+    },
+    {
+      "id": "rk45-dense-events",
+      "group": "time",
+      "name": {
+        "ja": "RK45の埋込み推定・補間・イベント",
+        "en": "RK45: embedded errors, dense output and events"
+      },
+      "chapter": "validation-ode-adaptivity",
+      "reading_section": "rk45-dense-events",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/",
+      "verification": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "rk45-dense-events"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/rk45-dense-events-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "rk45-dense-events",
+          "url": "/numerical-methods-atlas/validation/rk45-dense-events/",
+          "name": {
+            "ja": "RK45の埋込み推定・補間・イベント",
+            "en": "RK45: embedded errors, dense output and events"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#rk45-dense-events",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#rk45-dense-events"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#rk45-dense-events",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ]
+    },
+    {
+      "id": "strang-boundary-order-reduction",
+      "group": "time",
+      "name": {
+        "ja": "Dirichlet境界でのStrang次数低下と補正",
+        "en": "Strang splitting: Dirichlet boundary order reduction and correction"
+      },
+      "chapter": "validation-ode-adaptivity",
+      "reading_section": "strang-boundary-order-reduction",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/",
+      "verification": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "strang-boundary-order-reduction"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/strang-boundary-order-reduction-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "strang-boundary-order-reduction",
+          "url": "/numerical-methods-atlas/validation/strang-boundary-order-reduction/",
+          "name": {
+            "ja": "Dirichlet境界でのStrang次数低下と補正",
+            "en": "Strang splitting: Dirichlet boundary order reduction and correction"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#strang-boundary-order-reduction",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#strang-boundary-order-reduction"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#strang-boundary-order-reduction",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ]
+    },
+    {
+      "id": "jameson-steady-linear-modes",
+      "group": "time",
+      "name": {
+        "ja": "定常多段RKの実空間モード減衰",
+        "en": "Real-space mode damping with steady multistage RK"
+      },
+      "chapter": "validation-steady-rk",
+      "reading_section": "jameson-steady-linear-modes",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24/steady-rk/",
+      "verification": "/code/validated-examples/2026-11-24/steady-rk/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24/steady-rk/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "jameson-steady-linear-modes"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/steady-rk/results/jameson-steady-linear-modes-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/steady-rk/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "jameson-steady-linear-modes",
+          "url": "/numerical-methods-atlas/validation/jameson-steady-linear-modes/",
+          "name": {
+            "ja": "定常多段RKの実空間モード減衰",
+            "en": "Real-space mode damping with steady multistage RK"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-steady-rk/#jameson-steady-linear-modes",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-steady-rk/#jameson-steady-linear-modes"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/steady-rk/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#jameson-steady-linear-modes",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ]
+    },
+    {
+      "id": "index1-dae-consistent-initialization",
+      "group": "time",
+      "name": {
+        "ja": "index-1 DAEの整合初期化と離散残差",
+        "en": "Consistent initialization and discrete residuals for an index-one DAE"
+      },
+      "chapter": "validation-dae-controls",
+      "reading_section": "index1-dae-consistent-initialization",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24/dae-controls/",
+      "verification": "/code/validated-examples/2026-11-24/dae-controls/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24/dae-controls/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "index1-dae-consistent-initialization"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/dae-controls/results/index1-dae-consistent-initialization-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/dae-controls/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "index1-dae-consistent-initialization",
+          "url": "/numerical-methods-atlas/validation/index1-dae-consistent-initialization/",
+          "name": {
+            "ja": "index-1 DAEの整合初期化と離散残差",
+            "en": "Consistent initialization and discrete residuals for an index-one DAE"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/#index1-dae-consistent-initialization",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/#index1-dae-consistent-initialization"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#index1-dae-consistent-initialization",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ]
+    },
+    {
+      "id": "high-index-pendulum",
+      "group": "time",
+      "name": {
+        "ja": "拘束付き振り子",
+        "en": "Constrained planar pendulum"
+      },
+      "chapter": "validation-dae-controls",
+      "reading_section": "high-index-pendulum",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24/dae-controls/",
+      "verification": "/code/validated-examples/2026-11-24/dae-controls/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24/dae-controls/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "high-index-pendulum"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/dae-controls/results/high-index-pendulum-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/dae-controls/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "high-index-pendulum",
+          "url": "/numerical-methods-atlas/validation/high-index-pendulum/",
+          "name": {
+            "ja": "振り子の指数低減・拘束ドリフト・明示安定化",
+            "en": "Index reduction, constraint drift and explicit stabilization for a pendulum"
+          }
+        },
+        {
+          "id": "shake-rattle-pendulum",
+          "url": "/numerical-methods-atlas/validation/shake-rattle-pendulum/",
+          "name": {
+            "ja": "SHAKEとRATTLE：拘束と運動量の違い",
+            "en": "SHAKE and RATTLE: constraints and momentum ownership"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/#high-index-pendulum",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/#high-index-pendulum"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#high-index-pendulum",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ]
+    },
+    {
+      "id": "multifrequency-resonance",
+      "group": "time",
+      "name": {
+        "ja": "結合した2周波数系と共鳴の有限窓",
+        "en": "Coupled frequencies and finite-window resonance"
+      },
+      "chapter": "validation-geometric-controls",
+      "reading_section": "multifrequency-resonance",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24/geometric-controls/",
+      "verification": "/code/validated-examples/2026-11-24/geometric-controls/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24/geometric-controls/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "multifrequency-resonance"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/geometric-controls/results/multifrequency-resonance-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/geometric-controls/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "multifrequency-resonance",
+          "url": "/numerical-methods-atlas/validation/multifrequency-resonance/",
+          "name": {
+            "ja": "結合した2周波数系と共鳴の有限窓",
+            "en": "Coupled frequencies and finite-window resonance"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#multifrequency-resonance",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#multifrequency-resonance"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#multifrequency-resonance",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ]
     }
   ],
   "excluded_examples": {
@@ -7222,8 +7686,8 @@
   },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/",
   "counts": {
-    "test_problems": 141,
-    "saved_test_problems": 141,
+    "test_problems": 149,
+    "saved_test_problems": 149,
     "code_test_problems": 0,
     "groups": {
       "transport": 17,
@@ -7232,7 +7696,7 @@
       "viscous": 9,
       "elliptic": 22,
       "gravity": 11,
-      "time": 8,
+      "time": 16,
       "approximation": 9,
       "quantum": 5,
       "biology": 5,
@@ -7243,7 +7707,7 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-test-problems.json": "76dd9b5103fb4a87e1c9b930862ceee229cf14c641b3d9a04c9bf46658ab7837",
+    "catalog/atlas-test-problems.json": "a26379f4a8b6a236b38af6e664312f24161c97e37e65b6e7bad71ff8eb923f20",
     "numerical-methods-atlas/equation-gallery.json": "e99af38238a50232f92875817c4556ab6c730289db13014efdd41913096c902e",
     "numerical-methods-atlas/cip.json": "3aa33fbffad6b9ad76310e9b713629a1a35b4e30e419db0c531180cf769e6b6f",
     "numerical-methods-atlas/limiters.json": "3242180ba171420220fd349cac93dff552466070f886f3d00a70927939255312",
@@ -7512,7 +7976,23 @@
     "code/validated-examples/2026-11-24/inverse-optimization/results/bratu-gn-lm-bounds-preview.png": "ca68334a2b0b59377458def88e7ab2a1971c9af461d1334f2fbc5fc9bef0274e",
     "code/validated-examples/2026-11-24/inverse-optimization/verification.json": "76f3f6b1550ce190e3d3afdd4b9a4e2f75373c58d97ccd655b2ac0bad4a3a74f",
     "code/validated-examples/2026-11-24/inverse-optimization/results/bfgs-lbfgs-controls-preview.png": "1d14d1186acab1ef8a9a7ca638a1d196e51f61a17319d42423e0dd5257c92363",
-    "code/validated-examples/2026-11-24/inverse-optimization/results/bratu-noise-regularization-preview.png": "b43caf14cf8ba49af80aecad69e5f7394dcb5f6a2afc3c01f4320b29f194ff0a"
+    "code/validated-examples/2026-11-24/inverse-optimization/results/bratu-noise-regularization-preview.png": "b43caf14cf8ba49af80aecad69e5f7394dcb5f6a2afc3c01f4320b29f194ff0a",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/result.json": "6d61f82c6c4854a92696faebb2f3fcc650b50abc141a945720d432077dd789cf",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/robertson-stiff-kinetics-preview.png": "2bae45f251405e4aeb534a7bbc9bc52175dc62a9bf33d48e49a8a3a2105cab2a",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json": "56e03be5a74a8b4519e131c8988da000e9429412a97ce9f0bd04c83907e930f3",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/van-der-pol-stiff-transition-preview.png": "e5b5b922e24c8dc44ac1b78c927f1698b42bdbc90eae114160f1899a9bf980e5",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/rk45-dense-events-preview.png": "014ce3e765d29479456cd7f479ae26870061991856405a1b51e62da548a1067c",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/strang-boundary-order-reduction-preview.png": "f6fc7c2def18c49db259548f9f0687a1dbff5fb88a29ec697392e320d160b6ae",
+    "code/validated-examples/2026-11-24/steady-rk/results/result.json": "304601760794cdec210ae729223b0d0a57d987a5cc7ddfd5da8323c86fac6e48",
+    "code/validated-examples/2026-11-24/steady-rk/results/jameson-steady-linear-modes-preview.png": "bb7038e55ff63e665f2a3f71cf33992cbea96efcc3753578b819fd4335e22432",
+    "code/validated-examples/2026-11-24/steady-rk/verification.json": "037f6c02ee4b1a1ee5147e7340dfd3ed0599c9ae7b53a260479a214160ace43d",
+    "code/validated-examples/2026-11-24/dae-controls/results/result.json": "a6bbc6b2201ee1f9992a450ffc268e7351f60c1947085b12e4387c05f4e42499",
+    "code/validated-examples/2026-11-24/dae-controls/results/index1-dae-consistent-initialization-preview.png": "a29de45d4d64534b80d906f4bf8eff1f8966e27d964addf5d58ffd2f8c3c175d",
+    "code/validated-examples/2026-11-24/dae-controls/verification.json": "cbc490c02eb2c86689652cfb344a208bccaa8faedbd8d893564d4732eccaa46c",
+    "code/validated-examples/2026-11-24/dae-controls/results/high-index-pendulum-preview.png": "5c9e7d6c1ffbdaac74b1ffd39702ac14caa6e17bf75d338359671bc5594a91a8",
+    "code/validated-examples/2026-11-24/geometric-controls/results/result.json": "1e0ba587a26f6b15380621e3b04f44f2dee205d5ffe49086fd23c8972c85510b",
+    "code/validated-examples/2026-11-24/geometric-controls/results/multifrequency-resonance-preview.png": "971cc717fea17fc6184f618778728aa4b3929c651fe9b835dfa1e9bb4340a8c8",
+    "code/validated-examples/2026-11-24/geometric-controls/verification.json": "507d5825483d27a7cefe5a3ef683c4e5a818234d4c8098a97772e92de056d50d"
   },
   "code_edition": "2026-11-21",
   "code_verification": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/verification.json"

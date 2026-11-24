@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "id": "multifrequency-resonance",
+  "name": {
+    "ja": "結合した2周波数系と共鳴の有限窓",
+    "en": "Coupled frequencies and finite-window resonance"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/multifrequency-resonance/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/multifrequency-resonance/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/multifrequency-resonance/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/results/multifrequency-resonance-preview.png",
+    "sha256": "971cc717fea17fc6184f618778728aa4b3929c651fe9b835dfa1e9bb4340a8c8",
+    "width": 1170,
+    "height": 870,
+    "caption": {
+      "ja": "保存した最細impulse軌道の実q1–q2座標と物理時刻。これは走査相図ではなく、結合した1軌道です。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。",
+      "en": "Saved q1–q2 coordinates of the finest impulse trajectory, colored by physical time. This is one coupled trajectory, not a scanned phase diagram. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#multifrequency-resonance",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#multifrequency-resonance"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#multifrequency-resonance",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#multifrequency-resonance-en"
+  },
+  "equations": [
+    {
+      "id": "coupled-harmonic-oscillators",
+      "name": {
+        "ja": "二周波数の結合調和振動子",
+        "en": "Coupled two-frequency harmonic oscillators"
+      },
+      "formula": [
+        "H=\\tfrac12(p_1^2+p_2^2+q_1^2+\\omega^2q_2^2)+q_1q_2"
+      ],
+      "note": {
+        "ja": "連続正規モード、理想分割写像、保存した浮動小数点係数の写像、実際の反復丸めを区別します。",
+        "en": "Separate continuous normal modes, the ideal split map, a map with stored floating-point coefficients, and repeated rounded updates."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#coupled-harmonic-oscillators-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#coupled-harmonic-oscillators-en"
+      }
+    },
+    {
+      "id": "hamiltonian",
+      "name": {
+        "ja": "Hamilton系・振動子",
+        "en": "Hamiltonian systems and oscillators"
+      },
+      "formula": [
+        "\\dot q=\\frac{\\partial H}{\\partial p},\\qquad\\dot p=-\\frac{\\partial H}{\\partial q}",
+        "H=\\frac{p^2}{2}+V(q)"
+      ],
+      "note": {
+        "ja": "正準方程式と分離可能なHamiltonianの代表形。調和・4次ポテンシャルの振動子で、エネルギー誤差とシンプレクティック性を比べます。",
+        "en": "Canonical equations and a representative separable Hamiltonian. Harmonic and quartic oscillators distinguish energy error from symplecticity."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#hamiltonian-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#hamiltonian-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "α=1、ω=10/20、q0=(1,1/ω)、p0=0。中心probeは保存binary64のhとsin/cosをそのまま使い、πへ丸め直しません。",
+    "en": "alpha=1, omega=10/20, q0=(1,1/omega) and p0=0. Central probes retain the evaluated binary64 h and sin/cos coefficients without snapping to mathematical pi."
+  },
+  "formulations": [
+    {
+      "id": "supplement-multifrequency-resonance",
+      "name": {
+        "ja": "結合した2周波数系と共鳴の有限窓",
+        "en": "Coupled frequencies and finite-window resonance"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "H=\\tfrac12(p_1^2+p_2^2+q_1^2+\\omega^2q_2^2)+\\alpha q_1q_2",
+        "\\Phi_h=\\varphi^B_{h/2}\\circ\\varphi^A_h\\circ\\varphi^B_{h/2}",
+        "\\chi_{\\theta=\\pi}(z)=(z+1)^2[z^2-(2-h^2)z+1]"
+      ],
+      "note": {
+        "ja": "2自由度の実結合系で、12の64刻みprobeと6の精度軌道を使い、真のモード、座標間交換、離散写像と丸めを分けます。",
+        "en": "A genuinely coupled two-degree-of-freedom system uses twelve 64-step probes and six accuracy trajectories to separate normal modes, coordinate exchange, discrete maps and roundoff."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "multifrequency-resonance",
+      "kind": "semi-analytic",
+      "kind_label": {
+        "ja": "半解析解",
+        "en": "Semi-analytic reference"
+      },
+      "title": {
+        "ja": "結合した2周波数系と共鳴の有限窓",
+        "en": "Coupled frequencies and finite-window resonance"
+      },
+      "formula": "H=\\tfrac12(p_1^2+p_2^2+q_1^2+\\omega^2q_2^2)+\\alpha q_1q_2;\\quad \\Phi_h=\\varphi^B_{h/2}\\circ\\varphi^A_h\\circ\\varphi^B_{h/2};\\quad \\chi_{\\theta=\\pi}(z)=(z+1)^2[z^2-(2-h^2)z+1]",
+      "assumptions": {
+        "ja": "α=1、ω=10/20、q0=(1,1/ω)、p0=0。中心probeは保存binary64のhとsin/cosをそのまま使い、πへ丸め直しません。",
+        "en": "alpha=1, omega=10/20, q0=(1,1/omega) and p0=0. Central probes retain the evaluated binary64 h and sin/cos coefficients without snapping to mathematical pi."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "中心の実浮動係数写像はunresolvedとし、理想πのJordan性を移しません。64刻み増幅と小さい固定入力の観測であり、走査した共鳴図・一般安定性・長時間の普遍誤差定理は主張しません。",
+        "en": "The central actual floating map remains unresolved; ideal-pi Jordan structure is not transferred to it. Results concern 64-step amplification and small fixed inputs, not a scanned resonance diagram, general stability or a universal long-time error theorem."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/multifrequency-resonance/?lang=ja#multifrequency-resonance-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/multifrequency-resonance/?lang=en#multifrequency-resonance-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "116主判定。独立の結合固有モード解析、保存係数Decimal80/120・Fraction写像、段階別γ8丸め上界を区別。理想πのJordan構造は有理恒等式で別確認。 各probeは現在保存した係数hexからDecimal80/120を評価し、6精度軌道はDecimal80を用います。",
+    "en": "The 116 main decisions distinguish independent coupled normal modes, Decimal80/120 and Fraction frozen-coefficient maps, and stagewise gamma8 roundoff allowances. Ideal-pi Jordan structure is checked separately by rational identities. Each probe uses the current saved coefficient hex for its own Decimal80/120 actions; six accuracy actions use Decimal80."
+  },
+  "methods": [
+    {
+      "id": "verlet",
+      "name": {
+        "ja": "速度Verlet／粒子leapfrog法",
+        "en": "Velocity Verlet / particle leapfrog"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/verlet/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/verlet/?lang=en"
+      }
+    },
+    {
+      "id": "strang-splitting",
+      "name": {
+        "ja": "Strang分割",
+        "en": "Strang splitting"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/strang-splitting/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/strang-splitting/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "全ポテンシャルVerletと、B半kick・A厳密flow・B半kickのStrang impulse。Aには高速調和振動子と低速自由流、Bには低速位置項と結合を含めます。",
+    "en": "Full-potential Verlet and a Strang impulse composition: half B kick, exact A flow, half B kick. A contains the fast oscillator and slow free drift; B contains the slow potential and the coupling."
+  },
+  "executions": [
+    {
+      "id": "multifrequency-resonance",
+      "kind": "supplement",
+      "name": {
+        "ja": "結合した2周波数系と共鳴の有限窓",
+        "en": "Coupled frequencies and finite-window resonance"
+      },
+      "method_ids": [
+        "verlet",
+        "strang-splitting"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/multifrequency-resonance/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/multifrequency-resonance/?lang=en"
+      },
+      "scope": {
+        "ja": "2自由度の実結合系で、12の64刻みprobeと6の精度軌道を使い、真のモード、座標間交換、離散写像と丸めを分けます。",
+        "en": "A genuinely coupled two-degree-of-freedom system uses twelve 64-step probes and six accuracy trajectories to separate normal modes, coordinate exchange, discrete maps and roundoff."
+      },
+      "assumptions": {
+        "ja": "α=1、ω=10/20、q0=(1,1/ω)、p0=0。中心probeは保存binary64のhとsin/cosをそのまま使い、πへ丸め直しません。",
+        "en": "alpha=1, omega=10/20, q0=(1,1/omega) and p0=0. Central probes retain the evaluated binary64 h and sin/cos coefficients without snapping to mathematical pi."
+      },
+      "limits": {
+        "ja": "中心の実浮動係数写像はunresolvedとし、理想πのJordan性を移しません。64刻み増幅と小さい固定入力の観測であり、走査した共鳴図・一般安定性・長時間の普遍誤差定理は主張しません。",
+        "en": "The central actual floating map remains unresolved; ideal-pi Jordan structure is not transferred to it. Results concern 64-step amplification and small fixed inputs, not a scanned resonance diagram, general stability or a universal long-time error theorem."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "116主判定。独立の結合固有モード解析、保存係数Decimal80/120・Fraction写像、段階別γ8丸め上界を区別。理想πのJordan構造は有理恒等式で別確認。 各probeは現在保存した係数hexからDecimal80/120を評価し、6精度軌道はDecimal80を用います。",
+        "en": "The 116 main decisions distinguish independent coupled normal modes, Decimal80/120 and Fraction frozen-coefficient maps, and stagewise gamma8 roundoff allowances. Ideal-pi Jordan structure is checked separately by rational identities. Each probe uses the current saved coefficient hex for its own Decimal80/120 actions; six accuracy actions use Decimal80."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/physics.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/diagnostics.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/analytic.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/discrete.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/test_geometry.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

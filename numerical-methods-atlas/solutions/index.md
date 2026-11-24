@@ -1724,6 +1724,10 @@ G=M=a1,e.4,masses.6/.4、epsilon0、128/256/512steps、初期COM/P0。 位相/�
 
 この実行例の範囲：非等質量二体をKDKで1周し、独立Kepler方程式の位置・速度とエネルギー/角運動量を照合。
 
+- [実行・検証：離心率を変えたKepler軌道と時間刻み](https://hrkoyama.github.io/numerical-methods-atlas/validation/kepler-eccentricity/?lang=ja) (`kepler-eccentricity`) · [コードZIP：離心率を変えたKepler軌道と時間刻み](https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip)
+
+この実行例の範囲：e=0.1/0.7の16固定軌道で、保存量と同時刻の位相誤差、実際の近日点時刻と逆積分を比較します。
+
 
 
 
@@ -3011,6 +3015,363 @@ abs・ReLU・clip・多項式分岐の固定7点と方向±1を用います。�
 - [実行・検証：雑音・モデル差と有限γ経路の正則化](https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-noise-regularization/?lang=ja) (`bratu-noise-regularization`) · [コードZIP：雑音・モデル差と有限γ経路の正則化](https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/atlas-inverse-optimization-2026-11-24.zip)
 
 この実行例の範囲：2独立ノイズベクトルを尺度・データ文脈で共有し、42固定fitから有限γ選択と固定γの局所共分散を分けます。
+
+
+
+
+### Robertson反応系の初期剛性と実誤差
+
+有限格子の数値参照 · 常微分・微分代数方程式（空間次元なし）
+
+`\dot y_1=-0.04y_1+10^4y_2y_3,\quad\dot y_2=-\dot y_1-3\!\times\!10^7y_2^2,\quad\dot y_3=3\!\times\!10^7y_2^2;\quad \|r\|_{w,\infty}=\max_i|r_i|/w_i,\quad e_{\rm dbl}=(y_{h/2,h/2}-y_h)/3`
+
+無次元3成分、初期値(1,0,0)、T=.4。固定512/1024/2048刻みと2許容誤差の適応法で計8run。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-stiff-kinetics/?lang=ja#robertson-stiff-kinetics-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#robertson-stiff-kinetics)
+
+- selected-source-formulation: [Official SUNDIALS cvRoberts_dns model definition](https://raw.githubusercontent.com/LLNL/sundials/main/examples/cvode/serial/cvRoberts_dns.c) — Read the model, initial values and Jacobian in selected official source sections. The observed main URL is not an immutable release pin. Our T = 0.4 scope does not reproduce the original paper, the long 4e10 benchmark or its numerical tables.
+- selected-source-formulation: [SciPy1.14.1 solve_ivp and selected official source](https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html) — Read selected fixed-version method, API, local-tolerance and termination sections. This is not a full audit of the original research papers.
+#### 関連するテスト問題の図とコード
+
+##### [Robertson反応系：ODEと保存則DAE](https://hrkoyama.github.io/numerical-methods-atlas/problems/robertson-stiff-kinetics/?lang=ja) (`robertson-stiff-kinetics`)
+
+![短い固定区間でBDF2・SDIRK2・倍分割適応法を、資格済みRadau/BDF参照と比較します。 保存済みの数値場と参照を用いた図です。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/robertson-stiff-kinetics-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/robertson-stiff-kinetics/?lang=ja#code-ja)
+
+同じ問題への対応
+
+保存/正値性は固定入力の観測で、一般的な保証ではありません。T=.4の短時間・標本時刻での精度であり、長時間化学精度や全時刻誤差上限は主張しません。
+
+- [実行・検証：Robertson反応系の初期剛性と実誤差](https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-stiff-kinetics/?lang=ja) (`robertson-stiff-kinetics`) · [コードZIP：Robertson反応系の初期剛性と実誤差](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/atlas-ode-adaptivity-2026-11-24-r2.zip)
+
+この実行例の範囲：短い固定区間でBDF2・SDIRK2・倍分割適応法を、資格済みRadau/BDF参照と比較します。
+
+- [実行・検証：Robertson保存制約DAEと公式IDA保存値](https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-conservation-dae/?lang=ja) (`robertson-conservation-dae`) · [コードZIP：Robertson保存制約DAEと公式IDA保存値](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/atlas-dae-controls-2026-11-24.zip)
+
+この実行例の範囲：Robertsonの保存制約DAEと全ODEを同じ固定時間格子で比較し、公式IDA保存値を別に照合します。 初回は元の時間精度・細分化目標4件が未達でした。
+
+
+
+
+### van der Polの短時間剛性遷移
+
+有限格子の数値参照 · 常微分・微分代数方程式（空間次元なし）
+
+`\dot x=v,\qquad \dot v=\mu(1-x^2)v-x,\quad\mu\in\{1,100\}`
+
+x′=v,v′=μ(1−x²)v−x、初期値(2,0)、T=2。2方式×3刻み×2μと適応4runで計16run。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/van-der-pol-stiff-transition/?lang=ja#van-der-pol-stiff-transition-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#van-der-pol-stiff-transition)
+
+- selected-source-formulation: [scikit-sundae official van der Pol example](https://scikit-sundae.readthedocs.io/en/stable/examples/van_der_pol.html) — Read the equations and initial state in the official binding example. Our mu = 1 and 100, T = 2 inputs are an authored early-transient scope, not an original-paper or full mu = 1000 cycle reproduction.
+- selected-source-formulation: [SciPy1.14.1 solve_ivp and selected official source](https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html) — Read selected fixed-version method, API, local-tolerance and termination sections. This is not a full audit of the original research papers.
+#### 関連するテスト問題の図とコード
+
+##### [van der Polの短時間剛性遷移](https://hrkoyama.github.io/numerical-methods-atlas/problems/van-der-pol-stiff-transition/?lang=ja) (`van-der-pol-stiff-transition`)
+
+![保存済みの固定刻み比較と局所/大域誤差の区別。初回208/209で、μ=1適応法の大域目標2e-5は未達のまま保持します。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/van-der-pol-stiff-transition-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/van-der-pol-stiff-transition/?lang=ja#code-ja)
+
+同じ問題への対応
+
+測定後の報告範囲変更で、数値的な修復ではありません。初回誤差4.535633779e-5は元目標2e-5を超えます。局所rtolは大域誤差を保証せず、報告検証の合格は全元目標の達成ではありません。大μ全周期は対象外です。
+
+- [実行・検証：van der Polの短時間剛性遷移](https://hrkoyama.github.io/numerical-methods-atlas/validation/van-der-pol-stiff-transition/?lang=ja) (`van-der-pol-stiff-transition`) · [コードZIP：van der Polの短時間剛性遷移](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/atlas-ode-adaptivity-2026-11-24-r2.zip)
+
+この実行例の範囲：局所制御と大域誤差を分離します。初回は元209目標中208達成で、μ=1の厳しい適応設定は大域目標2e-5に未達でした。
+
+
+
+
+### RK45の埋込み推定・補間・イベント
+
+解析解 · 常微分・微分代数方程式（空間次元なし）
+
+`y(t)=e^{-0.2t}(\cos 3t,\sin 3t)^T,\quad t_*=\pi/6,\pi/2;\quad y(t_n+\theta h)=y_n+hQ(\theta,\theta^2,\theta^3,\theta^4)^T`
+
+γ=.2,ω=3、初期値(1,0)、T=2。3対のrtol/atol×2最大刻みと終端交差2runで計8run。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/rk45-dense-events/?lang=ja#rk45-dense-events-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#rk45-dense-events)
+
+- selected-source-formulation: [SciPy1.14.1 RK45 coefficient and dense-output source](https://github.com/scipy/scipy/blob/v1.14.1/scipy/integrate/_ivp/rk.py) — Read C, A, B, E, P, stage evaluation, accepted/rejected FSAL updates and quartic evaluation. The original Dormand–Prince 1980 and Shampine 1986 papers remain unread beyond bibliography. The adapted coefficient BSD notice is retained.
+#### 関連するテスト問題の図とコード
+
+##### [RK45の埋込み推定・補間・イベント](https://hrkoyama.github.io/numerical-methods-atlas/problems/rk45-dense-events/?lang=ja) (`rk45-dense-events`)
+
+![減衰回転の解析解を使い、受理/棄却・FSAL・区間内補間・向き付き交差時刻を分けて検査します。 保存済みの数値場と参照を用いた図です。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/rk45-dense-events-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/rk45-dense-events/?lang=ja#code-ja)
+
+同じ問題への対応
+
+接触根・1刻み内の多重交差・reset付き系の一般性は保証しません。初期零/所有権/resetは限定成分対照で、局所許容誤差と大域精度を同一視しません。
+
+- [実行・検証：RK45の埋込み推定・補間・イベント](https://hrkoyama.github.io/numerical-methods-atlas/validation/rk45-dense-events/?lang=ja) (`rk45-dense-events`) · [コードZIP：RK45の埋込み推定・補間・イベント](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/atlas-ode-adaptivity-2026-11-24-r2.zip)
+
+この実行例の範囲：減衰回転の解析解を使い、受理/棄却・FSAL・区間内補間・向き付き交差時刻を分けて検査します。
+
+
+
+
+### Dirichlet境界でのStrang次数低下と補正
+
+半解析解 · 1次元
+
+`u_t=u_{xx}+u,\quad u(0,t)=u(1,t)=1,\quad w=u-1;\quad A_{\rm raw}(w)=L_hw,\ B_{\rm raw}(w)=w+1;\quad A_{\rm corr}(w)=L_hw+1,\ B_{\rm corr}(w)=w`
+
+u_t=u_xx+u、[0,1]、両端u=1、解析定常解+.1正弦摂動、T=.1。内部31/63/127点・8/16/32/64刻みとLie対照4run、計28run。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/strang-boundary-order-reduction/?lang=ja#strang-boundary-order-reduction-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#strang-boundary-order-reduction)
+
+- selected-source-formulation: [Overcoming order reduction in diffusion-reaction splitting. Part1: Dirichlet boundary conditions](https://arxiv.org/abs/1411.0465) — Read selected extracted text from the 2014 v1 preprint: section 2, Algorithm 2, the constant-boundary example, section 3.2 assumptions and result, and the one-dimensional example. This was not a full-proof or whole-PDF visual audit; the present linear specialization does not reproduce the nonlinear tables.
+#### 関連するテスト問題の図とコード
+
+##### [Dirichlet境界でのStrang次数低下と補正](https://hrkoyama.github.io/numerical-methods-atlas/problems/strang-boundary-order-reduction/?lang=ja) (`strang-boundary-order-reduction`)
+
+![実1D非周期場で、未補正/境界補正Strangを同じFD参照へ比較し、時間誤差と空間誤差を分けます。 保存済みの数値場と参照を用いた図です。](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/strang-boundary-order-reduction-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/strang-boundary-order-reduction/?lang=ja#code-ja)
+
+同じ問題への対応
+
+原著の線形特殊例で非線形数値表の再現ではありません。非自律/一般境界や普遍的な次数低下は主張せず、Lie終端の反応trace不整合も別表示します。
+
+- [実行・検証：Dirichlet境界でのStrang次数低下と補正](https://hrkoyama.github.io/numerical-methods-atlas/validation/strang-boundary-order-reduction/?lang=ja) (`strang-boundary-order-reduction`) · [コードZIP：Dirichlet境界でのStrang次数低下と補正](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/atlas-ode-adaptivity-2026-11-24-r2.zip)
+
+この実行例の範囲：実1D非周期場で、未補正/境界補正Strangを同じFD参照へ比較し、時間誤差と空間誤差を分けます。
+
+
+
+
+### 定常多段RKの実空間モード減衰
+
+解析解 · 常微分・微分代数方程式（空間次元なし）
+
+`Y_j=u_n-alpha_j*dtau*(A*Y_(j-1)-b);\quad P(z)=1+z+z^2/2+z^3/6+z^4/24; lambda_4=9+2i, lambda_8=17`
+
+無次元の固定16点・周期・線形残差。疑似時間は反復パラメータです。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/jameson-steady-linear-modes/?lang=ja#jameson-steady-linear-modes-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-steady-rk/#jameson-steady-linear-modes)
+
+- selected-source-formulation: [PERFORM time integration schemes](https://perform.readthedocs.io/en/latest/solver/timeschemes.html) — Selected four-stage base-state recurrence. No full JST 1981 paper reading or compressible-flow implementation claim.
+#### 関連するテスト問題の図とコード
+
+##### [定常多段RKの実空間モード減衰](https://hrkoyama.github.io/numerical-methods-atlas/problems/jameson-steady-linear-modes/?lang=ja) (`jameson-steady-linear-modes`)
+
+![周期格子の実残差に4段定常反復を適用し、離散モードの減衰・中立・増幅を区別します。 保存配列から作図。 初回の元精度目標未達と再実行の実測判定は保存JSONで区別します。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。](https://hrkoyama.github.io/code/validated-examples/2026-11-24/steady-rk/results/jameson-steady-linear-modes-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/jameson-steady-linear-modes/?lang=ja#code-ja)
+
+同じ問題への対応
+
+固定線形例に限定。JST圧縮性流束や非線形4次RK、任意初期値の収束は検証しません。 元の全数値目標の合格を意味する公開ではありません。
+
+- [実行・検証：定常多段RKの実空間モード減衰](https://hrkoyama.github.io/numerical-methods-atlas/validation/jameson-steady-linear-modes/?lang=ja) (`jameson-steady-linear-modes`) · [コードZIP：定常多段RKの実空間モード減衰](https://hrkoyama.github.io/code/validated-examples/2026-11-24/steady-rk/atlas-steady-rk-2026-11-24.zip)
+
+この実行例の範囲：周期格子の実残差に4段定常反復を適用し、離散モードの減衰・中立・増幅を区別します。 初回の増幅制御では元の絶対残差目標が未達でした。
+
+
+
+
+### index-1 DAEの整合初期化と離散残差
+
+製造解 · 常微分・微分代数方程式（空間次元なし）
+
+`F1=ydot+y-z+exp(-2t/3), F2=z^3-y^2;\quad y=exp(-t), z=exp(-2t/3)`
+
+無次元・正枝。微分行と代数行の尺度はそれぞれ1で、最大ノルムを用います。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/index1-dae-consistent-initialization/?lang=ja#index1-dae-consistent-initialization-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/#index1-dae-consistent-initialization)
+
+- selected-source-formulation: [SUNDIALS v7.1.1 IDA mathematics, section 5.2](https://sundials.readthedocs.io/en/v7.1.1/ida/Mathematics_link.html) — Residual form, BDF/Newton and consistent initialization sections selected. Section5.2 is not an IDA version. This authored MMS/BE solver is not IDA.
+#### 関連するテスト問題の図とコード
+
+##### [index-1 DAEの整合初期化と離散残差](https://hrkoyama.github.io/numerical-methods-atlas/problems/index1-dae-consistent-initialization/?lang=ja) (`index1-dae-consistent-initialization`)
+
+![既知の正枝を持つindex-1 DAEで初期化と後退Eulerの誤差・残差を分離します。 保存配列から作図。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/results/index1-dae-consistent-initialization-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/index1-dae-consistent-initialization/?lang=ja#code-ja)
+
+同じ問題への対応
+
+単一の製造正枝・固定BE計算です。IDA実行や一般DAEソルバーの検証ではありません。
+
+- [実行・検証：index-1 DAEの整合初期化と離散残差](https://hrkoyama.github.io/numerical-methods-atlas/validation/index1-dae-consistent-initialization/?lang=ja) (`index1-dae-consistent-initialization`) · [コードZIP：index-1 DAEの整合初期化と離散残差](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/atlas-dae-controls-2026-11-24.zip)
+
+この実行例の範囲：既知の正枝を持つindex-1 DAEで初期化と後退Eulerの誤差・残差を分離します。
+
+
+
+
+### Robertson保存制約DAEと公式IDA保存値
+
+有限格子の数値参照 · 常微分・微分代数方程式（空間次元なし）
+
+`F1=ydot1+0.04*y1-1e4*y2*y3; F2=ydot2-0.04*y1+1e4*y2*y3+3e7*y2^2; F3=y1+y2+y3-1;\quad M=diag(1,1,0)`
+
+モデル時間0から4。中間種と残差の尺度は1e-4。公式印字値の丸め幅と数値誤差を区別します。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-conservation-dae/?lang=ja#robertson-conservation-dae-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/#robertson-conservation-dae)
+
+- selected-source-formulation: [SUNDIALS v7.1.1 idaRoberts_dns example](https://github.com/LLNL/sundials/blob/v7.1.1/examples/ida/serial/idaRoberts_dns.c) — Read residual/Jacobian, initialization, tolerances and print format. Own first two residual rows have opposite sign and the same zero set.
+- selected-source-formulation: [Stored official v7.1.1 IDA Robertson output](https://github.com/LLNL/sundials/blob/v7.1.1/examples/ida/serial/idaRoberts_dns.out) — Selected printed t=0.4 and4 values only, with Decimal rounding intervals. These approximate IDA values are not exact truth; no IDA run is performed here.
+#### 関連するテスト問題の図とコード
+
+##### [Robertson反応系：ODEと保存則DAE](https://hrkoyama.github.io/numerical-methods-atlas/problems/robertson-stiff-kinetics/?lang=ja) (`robertson-stiff-kinetics`)
+
+![短い固定区間でBDF2・SDIRK2・倍分割適応法を、資格済みRadau/BDF参照と比較します。 保存済みの数値場と参照を用いた図です。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/robertson-stiff-kinetics-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/robertson-stiff-kinetics/?lang=ja#code-ja)
+
+同じ問題への対応
+
+公式SUNDIALS v7.1.1の2印字行のみ。IDAの新規実行0、長時間の化学精度や一般DAE性能は扱いません。 この固定時間格子の漸近収束や元精度目標の全合格は主張しません。
+
+- [実行・検証：Robertson反応系の初期剛性と実誤差](https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-stiff-kinetics/?lang=ja) (`robertson-stiff-kinetics`) · [コードZIP：Robertson反応系の初期剛性と実誤差](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/atlas-ode-adaptivity-2026-11-24-r2.zip)
+
+この実行例の範囲：短い固定区間でBDF2・SDIRK2・倍分割適応法を、資格済みRadau/BDF参照と比較します。
+
+- [実行・検証：Robertson保存制約DAEと公式IDA保存値](https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-conservation-dae/?lang=ja) (`robertson-conservation-dae`) · [コードZIP：Robertson保存制約DAEと公式IDA保存値](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/atlas-dae-controls-2026-11-24.zip)
+
+この実行例の範囲：Robertsonの保存制約DAEと全ODEを同じ固定時間格子で比較し、公式IDA保存値を別に照合します。 初回は元の時間精度・細分化目標4件が未達でした。
+
+
+
+
+### 振り子の指数低減・拘束ドリフト・明示安定化
+
+半解析解 · 常微分・微分代数方程式（空間次元なし）
+
+`C=(q.q-1)/2, D=q.v, lambda=(v.v-q_y+2D+C)/(q.q);\quad Cddot+2*Cdot+C=0; Wdot=-lambda*(q.v)`
+
+m=L=g=1、初期角0.7、初期角速度0。非整合制御では半径方向速度を明示的に加えます。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/high-index-pendulum/?lang=ja#high-index-pendulum-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/#high-index-pendulum)
+
+- selected-source-formulation: [NIST DLMF section22.19(i), pendulum](https://dlmf.nist.gov/22.19) — Selected pendulum formulas, phase and modulus convention. Authored Cartesian conversion uses K-t; SciPy takes parameter m=k². No full chapter reading claimed.
+- selected-source-formulation: [NIST DLMF section19.8(i), arithmetic-geometric mean](https://dlmf.nist.gov/19.8) — Selected AGM/K identity; independent Decimal Machin pi and sine with explicit finite remainders qualify a single fixed modulus.
+#### 関連するテスト問題の図とコード
+
+##### [拘束付き振り子](https://hrkoyama.github.io/numerical-methods-atlas/problems/high-index-pendulum/?lang=ja) (`high-index-pendulum`)
+
+![位置拘束の指数3系から明示ODEを導き、整合・非整合初期値の拘束ドリフトと安定化を比較します。 保存配列から作図。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/results/high-index-pendulum-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/high-index-pendulum/?lang=ja#code-ja)
+
+同じ問題への対応
+
+投影・正規化・SHAKE/RATTLEなし。一般指数3ソルバーやシンプレクティック性の検証ではありません。
+
+- [実行・検証：振り子の指数低減・拘束ドリフト・明示安定化](https://hrkoyama.github.io/numerical-methods-atlas/validation/high-index-pendulum/?lang=ja) (`high-index-pendulum`) · [コードZIP：振り子の指数低減・拘束ドリフト・明示安定化](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/atlas-dae-controls-2026-11-24.zip)
+
+この実行例の範囲：位置拘束の指数3系から明示ODEを導き、整合・非整合初期値の拘束ドリフトと安定化を比較します。
+
+- [実行・検証：SHAKEとRATTLE：拘束と運動量の違い](https://hrkoyama.github.io/numerical-methods-atlas/validation/shake-rattle-pendulum/?lang=ja) (`shake-rattle-pendulum`) · [コードZIP：SHAKEとRATTLE：拘束と運動量の違い](https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip)
+
+この実行例の範囲：単振り子の10固定軌道で、位置拘束、全時刻の接線運動量と内部点の中心化運動量を区別します。
+
+
+
+
+### SHAKEとRATTLE：拘束と運動量の違い
+
+半解析解 · 常微分・微分代数方程式（空間次元なし）
+
+`C(q)=\tfrac12(q^Tq-1)=0;\quad q_{n+1}=q_n+h p_n+\tfrac12h^2 f-\eta_n q_n;\quad q_n^Tp_n^c=\frac{\|q_n-q_{n-1}\|^2-\|q_{n+1}-q_n\|^2}{4h}+\frac{C_{n+1}-C_{n-1}}{2h}`
+
+L=m=g=1、初期角0.7、初期角速度0。C=(q·q−1)/2、T=100、h=0.04/0.02/0.01。拘束目標1e−13と粗格子の1e−10比較を固定。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/shake-rattle-pendulum/?lang=ja#shake-rattle-pendulum-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#shake-rattle-pendulum)
+
+- selected-source-formulation: [Solving Differential Equations on Manifolds](https://www.unige.ch/~hairer/poly-sde-mani.pdf) — Author-hosted lecture notes, selected printed page50, SectionV.5, equations5.1–5.3 and Theorem5.1 statement, rendered and visually read. Centered SHAKE momentum and RATTLE final tangency are explicit. The original1977 SHAKE and1983 RATTLE articles remain full-text unread; no full proof review is claimed. Source date: 2011 (date displayed on lecture notes); this is not asserted as the publication year.
+- selected-source-formulation: [Lecture2: Symplectic integrators](https://www.unige.ch/~hairer/poly_geoint/week2.pdf) — Author-hosted course notes, selected rendered printed pages2,12–13: Verlet kick/drift form, symplectic statement, Lie and symmetric Strang compositions. This does not qualify every state-dependent step rule or the authored coupled resonance experiment. Source date: 2010 (displayed course date); this is not asserted as the publication year.
+- selected-source-formulation: [DLMF22.4: Periods, Poles, and Zeros](https://dlmf.nist.gov/22.4) — Official Table22.4.1 selected real periods: sn and cn have4K, dn has2K. Version date is not an initial publication date. Common-period reduction and direct-library periodicity qualification are separate from the independent angular DOP853 state comparison. Source date: 2026 (version); this is not asserted as the publication year.
+#### 関連するテスト問題の図とコード
+
+##### [拘束付き振り子](https://hrkoyama.github.io/numerical-methods-atlas/problems/high-index-pendulum/?lang=ja) (`high-index-pendulum`)
+
+![位置拘束の指数3系から明示ODEを導き、整合・非整合初期値の拘束ドリフトと安定化を比較します。 保存配列から作図。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/results/high-index-pendulum-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/high-index-pendulum/?lang=ja#code-ja)
+
+同じ問題への対応
+
+原著SHAKE/RATTLE本文は未読で、著者講義ノートの選択箇所を確認。有限差分のsymplectic defectは一般証明ではなく、中心化SHAKE速度にRATTLEの接線拘束を要求しません。
+
+- [実行・検証：振り子の指数低減・拘束ドリフト・明示安定化](https://hrkoyama.github.io/numerical-methods-atlas/validation/high-index-pendulum/?lang=ja) (`high-index-pendulum`) · [コードZIP：振り子の指数低減・拘束ドリフト・明示安定化](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/atlas-dae-controls-2026-11-24.zip)
+
+この実行例の範囲：位置拘束の指数3系から明示ODEを導き、整合・非整合初期値の拘束ドリフトと安定化を比較します。
+
+- [実行・検証：SHAKEとRATTLE：拘束と運動量の違い](https://hrkoyama.github.io/numerical-methods-atlas/validation/shake-rattle-pendulum/?lang=ja) (`shake-rattle-pendulum`) · [コードZIP：SHAKEとRATTLE：拘束と運動量の違い](https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip)
+
+この実行例の範囲：単振り子の10固定軌道で、位置拘束、全時刻の接線運動量と内部点の中心化運動量を区別します。
+
+
+
+
+### 離心率を変えたKepler軌道と時間刻み
+
+半解析解 · 常微分・微分代数方程式（空間次元なし）
+
+`\ddot q=-q/\|q\|^3;\quad E-e\sin E=t,\quad q=(\cos E-e,\sqrt{1-e^2}\sin E);\quad H=\tfrac12\|p\|^2-1/\|q\|`
+
+a=μ=換算質量=1、軟化なし。1周期は512/1024/2048刻み、10周期は基準2048刻み/周期。変動刻みh=h0|q|を現在状態から定め、最後だけ物理終端へ短縮。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/kepler-eccentricity/?lang=ja#kepler-eccentricity-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#kepler-eccentricity)
+
+- selected-source-formulation: [Lecture2: Symplectic integrators](https://www.unige.ch/~hairer/poly_geoint/week2.pdf) — Author-hosted course notes, selected rendered printed pages2,12–13: Verlet kick/drift form, symplectic statement, Lie and symmetric Strang compositions. This does not qualify every state-dependent step rule or the authored coupled resonance experiment. Source date: 2010 (displayed course date); this is not asserted as the publication year.
+- selected-source-formulation: [Approximate Positions of the Planets](https://ssd.jpl.nasa.gov/planets/approx_pos.html) — Official JPL page, selected steps3–4 and Kepler equation. Only the eccentric-anomaly equation and elliptic coordinate transformation are used; no planetary coefficient tables, fitted ephemeris accuracy or Horizons calculation is claimed. Publication date was not verified.
+#### 関連するテスト問題の図とコード
+
+##### [無軟化Kepler二体の時間誤差](https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-kepler/?lang=ja) (`gravity-kepler`)
+
+![固定入力を実際に計算した保存配列からの検証図。](https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-kepler-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-kepler/?lang=ja#code-ja)
+
+同じ問題への対応
+
+保存量の小さい誤差から位相精度を推論しません。変動刻み写像の正準symplectic defectは測定せず、固定hの性質をそのまま移しません。初期解像度R1は数値実行前の漸近解析でR2へ改訂。
+
+- [実行・検証：無軟化Kepler二体の時間誤差](https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-kepler/?lang=ja) (`gravity-kepler`) · [コードZIP：無軟化Kepler二体の時間誤差](https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/atlas-gravity-dynamics-2026-11-23.zip)
+
+この実行例の範囲：非等質量二体をKDKで1周し、独立Kepler方程式の位置・速度とエネルギー/角運動量を照合。
+
+- [実行・検証：離心率を変えたKepler軌道と時間刻み](https://hrkoyama.github.io/numerical-methods-atlas/validation/kepler-eccentricity/?lang=ja) (`kepler-eccentricity`) · [コードZIP：離心率を変えたKepler軌道と時間刻み](https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip)
+
+この実行例の範囲：e=0.1/0.7の16固定軌道で、保存量と同時刻の位相誤差、実際の近日点時刻と逆積分を比較します。
+
+
+
+
+### 結合した2周波数系と共鳴の有限窓
+
+半解析解 · 常微分・微分代数方程式（空間次元なし）
+
+`H=\tfrac12(p_1^2+p_2^2+q_1^2+\omega^2q_2^2)+\alpha q_1q_2;\quad \Phi_h=\varphi^B_{h/2}\circ\varphi^A_h\circ\varphi^B_{h/2};\quad \chi_{\theta=\pi}(z)=(z+1)^2[z^2-(2-h^2)z+1]`
+
+α=1、ω=10/20、q0=(1,1/ω)、p0=0。中心probeは保存binary64のhとsin/cosをそのまま使い、πへ丸め直しません。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/multifrequency-resonance/?lang=ja#multifrequency-resonance-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#multifrequency-resonance)
+
+- selected-source-formulation: [Lecture2: Symplectic integrators](https://www.unige.ch/~hairer/poly_geoint/week2.pdf) — Author-hosted course notes, selected rendered printed pages2,12–13: Verlet kick/drift form, symplectic statement, Lie and symmetric Strang compositions. This does not qualify every state-dependent step rule or the authored coupled resonance experiment. Source date: 2010 (displayed course date); this is not asserted as the publication year.
+#### 関連するテスト問題の図とコード
+
+##### [結合した2周波数系と共鳴の有限窓](https://hrkoyama.github.io/numerical-methods-atlas/problems/multifrequency-resonance/?lang=ja) (`multifrequency-resonance`)
+
+![保存した最細impulse軌道の実q1–q2座標と物理時刻。これは走査相図ではなく、結合した1軌道です。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。](https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/results/multifrequency-resonance-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/multifrequency-resonance/?lang=ja#code-ja)
+
+同じ問題への対応
+
+中心の実浮動係数写像はunresolvedとし、理想πのJordan性を移しません。64刻み増幅と小さい固定入力の観測であり、走査した共鳴図・一般安定性・長時間の普遍誤差定理は主張しません。
+
+- [実行・検証：結合した2周波数系と共鳴の有限窓](https://hrkoyama.github.io/numerical-methods-atlas/validation/multifrequency-resonance/?lang=ja) (`multifrequency-resonance`) · [コードZIP：結合した2周波数系と共鳴の有限窓](https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip)
+
+この実行例の範囲：2自由度の実結合系で、12の64刻みprobeと6の精度軌道を使い、真のモード、座標間交換、離散写像と丸めを分けます。
 
 
 
@@ -4735,6 +5096,10 @@ One orbit at fixed eccentricity only; softened binaries and long-time behavior a
 
 Scope of this execution example: Advance an unequal-mass binary for one orbit with KDK and compare independent Kepler positions/velocities and conservation.
 
+- [Run and validate: Kepler eccentricity and time-step controls](https://hrkoyama.github.io/numerical-methods-atlas/validation/kepler-eccentricity/?lang=en) (`kepler-eccentricity`) · [Code ZIP: Kepler eccentricity and time-step controls](https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip)
+
+Scope of this execution example: Sixteen fixed evolutions at e=0.1/0.7 compare invariants, same-time phase error, physical periapsis times and reversal.
+
 
 
 
@@ -6022,3 +6387,360 @@ Ellipses are plug-in noise propagation for a local Gauss–Newton linear model w
 - [Run and validate: Noise, model discrepancy and finite gamma paths](https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-noise-regularization/?lang=en) (`bratu-noise-regularization`) · [Code ZIP: Noise, model discrepancy and finite gamma paths](https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/atlas-inverse-optimization-2026-11-24.zip)
 
 Scope of this execution example: Two independent noise vectors are reused across scales and data contexts. Forty-two fixed fits separate finite-list gamma selection from fixed-gamma local covariance.
+
+
+
+
+### Robertson kinetics: initial stiffness and actual error
+
+Finite-grid numerical reference · ODE / DAE (no spatial dimension)
+
+`\dot y_1=-0.04y_1+10^4y_2y_3,\quad\dot y_2=-\dot y_1-3\!\times\!10^7y_2^2,\quad\dot y_3=3\!\times\!10^7y_2^2;\quad \|r\|_{w,\infty}=\max_i|r_i|/w_i,\quad e_{\rm dbl}=(y_{h/2,h/2}-y_h)/3`
+
+A nondimensional three-species system starts at (1, 0, 0) and ends at T = 0.4. The fixed methods use 512, 1024 and 2048 steps; two adaptive tolerance settings bring the total to eight runs.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-stiff-kinetics/?lang=en#robertson-stiff-kinetics-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#robertson-stiff-kinetics)
+
+- selected-source-formulation: [Official SUNDIALS cvRoberts_dns model definition](https://raw.githubusercontent.com/LLNL/sundials/main/examples/cvode/serial/cvRoberts_dns.c) — Read the model, initial values and Jacobian in selected official source sections. The observed main URL is not an immutable release pin. Our T = 0.4 scope does not reproduce the original paper, the long 4e10 benchmark or its numerical tables.
+- selected-source-formulation: [SciPy1.14.1 solve_ivp and selected official source](https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html) — Read selected fixed-version method, API, local-tolerance and termination sections. This is not a full audit of the original research papers.
+#### Related test problem figures and code
+
+##### [Robertson kinetics: ODE and conservation DAE](https://hrkoyama.github.io/numerical-methods-atlas/problems/robertson-stiff-kinetics/?lang=en) (`robertson-stiff-kinetics`)
+
+![Compare BDF2, SDIRK2 and adaptive step doubling on a short fixed interval against qualified Radau and BDF references. This preview reads saved numerical fields and references only. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions.](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/robertson-stiff-kinetics-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/robertson-stiff-kinetics/?lang=en#code-en)
+
+Same-problem link
+
+Conservation and positivity are observations for these inputs, not universal guarantees. Accuracy is sampled on T <= 0.4; this does not validate long-time chemistry or an all-time error bound.
+
+- [Run and validate: Robertson kinetics: initial stiffness and actual error](https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-stiff-kinetics/?lang=en) (`robertson-stiff-kinetics`) · [Code ZIP: Robertson kinetics: initial stiffness and actual error](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/atlas-ode-adaptivity-2026-11-24-r2.zip)
+
+Scope of this execution example: Compare BDF2, SDIRK2 and adaptive step doubling on a short fixed interval against qualified Radau and BDF references.
+
+- [Run and validate: Robertson conservation DAE and stored official IDA values](https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-conservation-dae/?lang=en) (`robertson-conservation-dae`) · [Code ZIP: Robertson conservation DAE and stored official IDA values](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/atlas-dae-controls-2026-11-24.zip)
+
+Scope of this execution example: Compare the Robertson conservation DAE and full ODE on the same fixed time grids, with a separate check of stored official IDA values. The first retained run missed four original time-accuracy and refinement goals.
+
+
+
+
+### Van der Pol: an early stiffness transition
+
+Finite-grid numerical reference · ODE / DAE (no spatial dimension)
+
+`\dot x=v,\qquad \dot v=\mu(1-x^2)v-x,\quad\mu\in\{1,100\}`
+
+The system is xprime = v and vprime = mu(1 - x squared)v - x, initially (2, 0), over T = 2. Two fixed methods, three step counts and two mu values plus four adaptive runs give 16 runs.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/van-der-pol-stiff-transition/?lang=en#van-der-pol-stiff-transition-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#van-der-pol-stiff-transition)
+
+- selected-source-formulation: [scikit-sundae official van der Pol example](https://scikit-sundae.readthedocs.io/en/stable/examples/van_der_pol.html) — Read the equations and initial state in the official binding example. Our mu = 1 and 100, T = 2 inputs are an authored early-transient scope, not an original-paper or full mu = 1000 cycle reproduction.
+- selected-source-formulation: [SciPy1.14.1 solve_ivp and selected official source](https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html) — Read selected fixed-version method, API, local-tolerance and termination sections. This is not a full audit of the original research papers.
+#### Related test problem figures and code
+
+##### [Van der Pol: an early stiffness transition](https://hrkoyama.github.io/numerical-methods-atlas/problems/van-der-pol-stiff-transition/?lang=en) (`van-der-pol-stiff-transition`)
+
+![Saved fixed-step comparisons and the local/global error distinction. The first study met 208/209 targets; the unmet mu = 1 adaptive global goal of 2e-5 remains recorded. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions.](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/van-der-pol-stiff-transition-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/van-der-pol-stiff-transition/?lang=en#code-en)
+
+Same-problem link
+
+This post-measurement reporting revision is not a numerical repair. The first error, 4.535633779e-5, exceeded the original 2e-5 goal. Local tolerances do not guarantee global accuracy, and reporting PASS does not mean all original goals were met. Full large-mu cycles are outside scope.
+
+- [Run and validate: Van der Pol: an early stiffness transition](https://hrkoyama.github.io/numerical-methods-atlas/validation/van-der-pol-stiff-transition/?lang=en) (`van-der-pol-stiff-transition`) · [Code ZIP: Van der Pol: an early stiffness transition](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/atlas-ode-adaptivity-2026-11-24-r2.zip)
+
+Scope of this execution example: Separate local control from global error. The first study met 208 of 209 original targets; the mu = 1 tight adaptive run missed the 2e-5 global goal.
+
+
+
+
+### RK45: embedded errors, dense output and events
+
+Analytic reference · ODE / DAE (no spatial dimension)
+
+`y(t)=e^{-0.2t}(\cos 3t,\sin 3t)^T,\quad t_*=\pi/6,\pi/2;\quad y(t_n+\theta h)=y_n+hQ(\theta,\theta^2,\theta^3,\theta^4)^T`
+
+Use gamma = 0.2, omega = 3, initial state (1, 0), and T = 2. Three paired relative and absolute tolerances with two maximum steps, plus two terminal runs, give eight runs.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/rk45-dense-events/?lang=en#rk45-dense-events-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#rk45-dense-events)
+
+- selected-source-formulation: [SciPy1.14.1 RK45 coefficient and dense-output source](https://github.com/scipy/scipy/blob/v1.14.1/scipy/integrate/_ivp/rk.py) — Read C, A, B, E, P, stage evaluation, accepted/rejected FSAL updates and quartic evaluation. The original Dormand–Prince 1980 and Shampine 1986 papers remain unread beyond bibliography. The adapted coefficient BSD notice is retained.
+#### Related test problem figures and code
+
+##### [RK45: embedded errors, dense output and events](https://hrkoyama.github.io/numerical-methods-atlas/problems/rk45-dense-events/?lang=en) (`rk45-dense-events`)
+
+![Use analytic damped rotation to test acceptance, rejection, FSAL ownership, dense interpolation and directed event times separately. This preview reads saved numerical fields and references only. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions.](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/rk45-dense-events-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/rk45-dense-events/?lang=en#code-en)
+
+Same-problem link
+
+There is no general guarantee for tangential roots, multiple crossings within a step or systems with resets. Initial-zero and ownership controls are limited component tests; local tolerances and global accuracy remain distinct.
+
+- [Run and validate: RK45: embedded errors, dense output and events](https://hrkoyama.github.io/numerical-methods-atlas/validation/rk45-dense-events/?lang=en) (`rk45-dense-events`) · [Code ZIP: RK45: embedded errors, dense output and events](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/atlas-ode-adaptivity-2026-11-24-r2.zip)
+
+Scope of this execution example: Use analytic damped rotation to test acceptance, rejection, FSAL ownership, dense interpolation and directed event times separately.
+
+
+
+
+### Strang splitting: Dirichlet boundary order reduction and correction
+
+Semi-analytic reference · 1D
+
+`u_t=u_{xx}+u,\quad u(0,t)=u(1,t)=1,\quad w=u-1;\quad A_{\rm raw}(w)=L_hw,\ B_{\rm raw}(w)=w+1;\quad A_{\rm corr}(w)=L_hw+1,\ B_{\rm corr}(w)=w`
+
+Solve u_t = u_xx + u on [0, 1] with both boundary values equal to 1, an analytic steady state plus a 0.1 sine perturbation, and T = 0.1. Use 31, 63 and 127 interior nodes with 8, 16, 32 and 64 steps, plus four Lie controls: 28 runs.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/strang-boundary-order-reduction/?lang=en#strang-boundary-order-reduction-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#strang-boundary-order-reduction)
+
+- selected-source-formulation: [Overcoming order reduction in diffusion-reaction splitting. Part1: Dirichlet boundary conditions](https://arxiv.org/abs/1411.0465) — Read selected extracted text from the 2014 v1 preprint: section 2, Algorithm 2, the constant-boundary example, section 3.2 assumptions and result, and the one-dimensional example. This was not a full-proof or whole-PDF visual audit; the present linear specialization does not reproduce the nonlinear tables.
+#### Related test problem figures and code
+
+##### [Strang splitting: Dirichlet boundary order reduction and correction](https://hrkoyama.github.io/numerical-methods-atlas/problems/strang-boundary-order-reduction/?lang=en) (`strang-boundary-order-reduction`)
+
+![Evolve actual one-dimensional nonperiodic fields and compare unmodified and boundary-corrected Strang splitting against the same spatial discretization. This preview reads saved numerical fields and references only.](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/strang-boundary-order-reduction-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/strang-boundary-order-reduction/?lang=en#code-en)
+
+Same-problem link
+
+This is an authored linear specialization, not a reproduction of the original nonlinear tables. It makes no general claim for nonautonomous boundaries or universal order loss. The final reaction-trace mismatch of Lie splitting is disclosed separately.
+
+- [Run and validate: Strang splitting: Dirichlet boundary order reduction and correction](https://hrkoyama.github.io/numerical-methods-atlas/validation/strang-boundary-order-reduction/?lang=en) (`strang-boundary-order-reduction`) · [Code ZIP: Strang splitting: Dirichlet boundary order reduction and correction](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/atlas-ode-adaptivity-2026-11-24-r2.zip)
+
+Scope of this execution example: Evolve actual one-dimensional nonperiodic fields and compare unmodified and boundary-corrected Strang splitting against the same spatial discretization.
+
+
+
+
+### Real-space mode damping with steady multistage RK
+
+Analytic reference · ODE / DAE (no spatial dimension)
+
+`Y_j=u_n-alpha_j*dtau*(A*Y_(j-1)-b);\quad P(z)=1+z+z^2/2+z^3/6+z^4/24; lambda_4=9+2i, lambda_8=17`
+
+A fixed dimensionless sixteen-node periodic linear residual; pseudo-time is an iteration parameter.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/jameson-steady-linear-modes/?lang=en#jameson-steady-linear-modes-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-steady-rk/#jameson-steady-linear-modes)
+
+- selected-source-formulation: [PERFORM time integration schemes](https://perform.readthedocs.io/en/latest/solver/timeschemes.html) — Selected four-stage base-state recurrence. No full JST 1981 paper reading or compressible-flow implementation claim.
+#### Related test problem figures and code
+
+##### [Real-space mode damping with steady multistage RK](https://hrkoyama.github.io/numerical-methods-atlas/problems/jameson-steady-linear-modes/?lang=en) (`jameson-steady-linear-modes`)
+
+![Apply four steady residual stages on a periodic grid, separating damping, neutrality and amplification of discrete modes. Drawn from saved arrays. The first-run goal shortfall and each rerun’s actual target decisions remain explicit in the saved JSON. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions.](https://hrkoyama.github.io/code/validated-examples/2026-11-24/steady-rk/results/jameson-steady-linear-modes-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/jameson-steady-linear-modes/?lang=en#code-en)
+
+Same-problem link
+
+Limited to a fixed linear example; no JST compressible flux, nonlinear fourth-order RK or all-start convergence claim. Verification of this study does not mean that all original numerical targets were met.
+
+- [Run and validate: Real-space mode damping with steady multistage RK](https://hrkoyama.github.io/numerical-methods-atlas/validation/jameson-steady-linear-modes/?lang=en) (`jameson-steady-linear-modes`) · [Code ZIP: Real-space mode damping with steady multistage RK](https://hrkoyama.github.io/code/validated-examples/2026-11-24/steady-rk/atlas-steady-rk-2026-11-24.zip)
+
+Scope of this execution example: Apply four steady residual stages on a periodic grid, separating damping, neutrality and amplification of discrete modes. The retained first run missed the original absolute residual goal in the expanding control.
+
+
+
+
+### Consistent initialization and discrete residuals for an index-one DAE
+
+Manufactured solution · ODE / DAE (no spatial dimension)
+
+`F1=ydot+y-z+exp(-2t/3), F2=z^3-y^2;\quad y=exp(-t), z=exp(-2t/3)`
+
+Dimensionless positive branch; differential and algebraic row scales are both one, with the maximum norm.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/index1-dae-consistent-initialization/?lang=en#index1-dae-consistent-initialization-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/#index1-dae-consistent-initialization)
+
+- selected-source-formulation: [SUNDIALS v7.1.1 IDA mathematics, section 5.2](https://sundials.readthedocs.io/en/v7.1.1/ida/Mathematics_link.html) — Residual form, BDF/Newton and consistent initialization sections selected. Section5.2 is not an IDA version. This authored MMS/BE solver is not IDA.
+#### Related test problem figures and code
+
+##### [Consistent initialization and discrete residuals for an index-one DAE](https://hrkoyama.github.io/numerical-methods-atlas/problems/index1-dae-consistent-initialization/?lang=en) (`index1-dae-consistent-initialization`)
+
+![Separate initialization, backward-Euler error and residuals on a known positive index-one DAE branch. Drawn from saved arrays. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions.](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/results/index1-dae-consistent-initialization-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/index1-dae-consistent-initialization/?lang=en#code-en)
+
+Same-problem link
+
+One authored positive branch and fixed BE runs; no IDA execution or general DAE-solver qualification.
+
+- [Run and validate: Consistent initialization and discrete residuals for an index-one DAE](https://hrkoyama.github.io/numerical-methods-atlas/validation/index1-dae-consistent-initialization/?lang=en) (`index1-dae-consistent-initialization`) · [Code ZIP: Consistent initialization and discrete residuals for an index-one DAE](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/atlas-dae-controls-2026-11-24.zip)
+
+Scope of this execution example: Separate initialization, backward-Euler error and residuals on a known positive index-one DAE branch.
+
+
+
+
+### Robertson conservation DAE and stored official IDA values
+
+Finite-grid numerical reference · ODE / DAE (no spatial dimension)
+
+`F1=ydot1+0.04*y1-1e4*y2*y3; F2=ydot2-0.04*y1+1e4*y2*y3+3e7*y2^2; F3=y1+y2+y3-1;\quad M=diag(1,1,0)`
+
+Model time zero to four; the intermediate-species state and residual scale is 1e-4. Printing intervals and numerical errors are distinct.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-conservation-dae/?lang=en#robertson-conservation-dae-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/#robertson-conservation-dae)
+
+- selected-source-formulation: [SUNDIALS v7.1.1 idaRoberts_dns example](https://github.com/LLNL/sundials/blob/v7.1.1/examples/ida/serial/idaRoberts_dns.c) — Read residual/Jacobian, initialization, tolerances and print format. Own first two residual rows have opposite sign and the same zero set.
+- selected-source-formulation: [Stored official v7.1.1 IDA Robertson output](https://github.com/LLNL/sundials/blob/v7.1.1/examples/ida/serial/idaRoberts_dns.out) — Selected printed t=0.4 and4 values only, with Decimal rounding intervals. These approximate IDA values are not exact truth; no IDA run is performed here.
+#### Related test problem figures and code
+
+##### [Robertson kinetics: ODE and conservation DAE](https://hrkoyama.github.io/numerical-methods-atlas/problems/robertson-stiff-kinetics/?lang=en) (`robertson-stiff-kinetics`)
+
+![Compare BDF2, SDIRK2 and adaptive step doubling on a short fixed interval against qualified Radau and BDF references. This preview reads saved numerical fields and references only. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions.](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/robertson-stiff-kinetics-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/robertson-stiff-kinetics/?lang=en#code-en)
+
+Same-problem link
+
+Only two official SUNDIALS v7.1.1 printed rows; zero new IDA executions, with no long-time chemistry or general DAE-performance claim. No asymptotic-convergence or all-original-accuracy-goals claim is made for this fixed schedule.
+
+- [Run and validate: Robertson kinetics: initial stiffness and actual error](https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-stiff-kinetics/?lang=en) (`robertson-stiff-kinetics`) · [Code ZIP: Robertson kinetics: initial stiffness and actual error](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/atlas-ode-adaptivity-2026-11-24-r2.zip)
+
+Scope of this execution example: Compare BDF2, SDIRK2 and adaptive step doubling on a short fixed interval against qualified Radau and BDF references.
+
+- [Run and validate: Robertson conservation DAE and stored official IDA values](https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-conservation-dae/?lang=en) (`robertson-conservation-dae`) · [Code ZIP: Robertson conservation DAE and stored official IDA values](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/atlas-dae-controls-2026-11-24.zip)
+
+Scope of this execution example: Compare the Robertson conservation DAE and full ODE on the same fixed time grids, with a separate check of stored official IDA values. The first retained run missed four original time-accuracy and refinement goals.
+
+
+
+
+### Index reduction, constraint drift and explicit stabilization for a pendulum
+
+Semi-analytic reference · ODE / DAE (no spatial dimension)
+
+`C=(q.q-1)/2, D=q.v, lambda=(v.v-q_y+2D+C)/(q.q);\quad Cddot+2*Cdot+C=0; Wdot=-lambda*(q.v)`
+
+m=L=g=1, initial angle 0.7 and zero angular velocity; off-manifold controls explicitly add radial velocity.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/high-index-pendulum/?lang=en#high-index-pendulum-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/#high-index-pendulum)
+
+- selected-source-formulation: [NIST DLMF section22.19(i), pendulum](https://dlmf.nist.gov/22.19) — Selected pendulum formulas, phase and modulus convention. Authored Cartesian conversion uses K-t; SciPy takes parameter m=k². No full chapter reading claimed.
+- selected-source-formulation: [NIST DLMF section19.8(i), arithmetic-geometric mean](https://dlmf.nist.gov/19.8) — Selected AGM/K identity; independent Decimal Machin pi and sine with explicit finite remainders qualify a single fixed modulus.
+#### Related test problem figures and code
+
+##### [Constrained planar pendulum](https://hrkoyama.github.io/numerical-methods-atlas/problems/high-index-pendulum/?lang=en) (`high-index-pendulum`)
+
+![Derive an explicit ODE from an index-three position constraint and compare drift and stabilization for consistent and inconsistent starts. Drawn from saved arrays. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions.](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/results/high-index-pendulum-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/high-index-pendulum/?lang=en#code-en)
+
+Same-problem link
+
+No projection, normalization or SHAKE/RATTLE; no general index-three-solver or symplecticity claim.
+
+- [Run and validate: Index reduction, constraint drift and explicit stabilization for a pendulum](https://hrkoyama.github.io/numerical-methods-atlas/validation/high-index-pendulum/?lang=en) (`high-index-pendulum`) · [Code ZIP: Index reduction, constraint drift and explicit stabilization for a pendulum](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/atlas-dae-controls-2026-11-24.zip)
+
+Scope of this execution example: Derive an explicit ODE from an index-three position constraint and compare drift and stabilization for consistent and inconsistent starts.
+
+- [Run and validate: SHAKE and RATTLE: constraints and momentum ownership](https://hrkoyama.github.io/numerical-methods-atlas/validation/shake-rattle-pendulum/?lang=en) (`shake-rattle-pendulum`) · [Code ZIP: SHAKE and RATTLE: constraints and momentum ownership](https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip)
+
+Scope of this execution example: Ten fixed pendulum evolutions distinguish position constraints, full-time tangent momentum and interior centered momentum.
+
+
+
+
+### SHAKE and RATTLE: constraints and momentum ownership
+
+Semi-analytic reference · ODE / DAE (no spatial dimension)
+
+`C(q)=\tfrac12(q^Tq-1)=0;\quad q_{n+1}=q_n+h p_n+\tfrac12h^2 f-\eta_n q_n;\quad q_n^Tp_n^c=\frac{\|q_n-q_{n-1}\|^2-\|q_{n+1}-q_n\|^2}{4h}+\frac{C_{n+1}-C_{n-1}}{2h}`
+
+L=m=g=1, initial angle 0.7 and zero angular velocity. C=(q·q−1)/2, T=100 and h=0.04/0.02/0.01; position targets are fixed at 1e−13, with a coarse 1e−10 companion.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/shake-rattle-pendulum/?lang=en#shake-rattle-pendulum-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#shake-rattle-pendulum)
+
+- selected-source-formulation: [Solving Differential Equations on Manifolds](https://www.unige.ch/~hairer/poly-sde-mani.pdf) — Author-hosted lecture notes, selected printed page50, SectionV.5, equations5.1–5.3 and Theorem5.1 statement, rendered and visually read. Centered SHAKE momentum and RATTLE final tangency are explicit. The original1977 SHAKE and1983 RATTLE articles remain full-text unread; no full proof review is claimed. Source date: 2011 (date displayed on lecture notes); this is not asserted as the publication year.
+- selected-source-formulation: [Lecture2: Symplectic integrators](https://www.unige.ch/~hairer/poly_geoint/week2.pdf) — Author-hosted course notes, selected rendered printed pages2,12–13: Verlet kick/drift form, symplectic statement, Lie and symmetric Strang compositions. This does not qualify every state-dependent step rule or the authored coupled resonance experiment. Source date: 2010 (displayed course date); this is not asserted as the publication year.
+- selected-source-formulation: [DLMF22.4: Periods, Poles, and Zeros](https://dlmf.nist.gov/22.4) — Official Table22.4.1 selected real periods: sn and cn have4K, dn has2K. Version date is not an initial publication date. Common-period reduction and direct-library periodicity qualification are separate from the independent angular DOP853 state comparison. Source date: 2026 (version); this is not asserted as the publication year.
+#### Related test problem figures and code
+
+##### [Constrained planar pendulum](https://hrkoyama.github.io/numerical-methods-atlas/problems/high-index-pendulum/?lang=en) (`high-index-pendulum`)
+
+![Derive an explicit ODE from an index-three position constraint and compare drift and stabilization for consistent and inconsistent starts. Drawn from saved arrays. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions.](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/results/high-index-pendulum-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/high-index-pendulum/?lang=en#code-en)
+
+Same-problem link
+
+Original SHAKE and RATTLE full texts remain unread; selected author lecture notes were inspected. The finite-difference symplectic defect is a local proxy, not a general proof, and centered SHAKE velocity is not assigned RATTLE tangency.
+
+- [Run and validate: Index reduction, constraint drift and explicit stabilization for a pendulum](https://hrkoyama.github.io/numerical-methods-atlas/validation/high-index-pendulum/?lang=en) (`high-index-pendulum`) · [Code ZIP: Index reduction, constraint drift and explicit stabilization for a pendulum](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/atlas-dae-controls-2026-11-24.zip)
+
+Scope of this execution example: Derive an explicit ODE from an index-three position constraint and compare drift and stabilization for consistent and inconsistent starts.
+
+- [Run and validate: SHAKE and RATTLE: constraints and momentum ownership](https://hrkoyama.github.io/numerical-methods-atlas/validation/shake-rattle-pendulum/?lang=en) (`shake-rattle-pendulum`) · [Code ZIP: SHAKE and RATTLE: constraints and momentum ownership](https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip)
+
+Scope of this execution example: Ten fixed pendulum evolutions distinguish position constraints, full-time tangent momentum and interior centered momentum.
+
+
+
+
+### Kepler eccentricity and time-step controls
+
+Semi-analytic reference · ODE / DAE (no spatial dimension)
+
+`\ddot q=-q/\|q\|^3;\quad E-e\sin E=t,\quad q=(\cos E-e,\sqrt{1-e^2}\sin E);\quad H=\tfrac12\|p\|^2-1/\|q\|`
+
+a=mu=reduced mass=1, without softening. One-period runs use 512/1024/2048 steps; ten-period controls use h0=2π/2048. Variable steps use h=h0|q| at the current state, with only the final step shortened to the physical endpoint.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/kepler-eccentricity/?lang=en#kepler-eccentricity-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#kepler-eccentricity)
+
+- selected-source-formulation: [Lecture2: Symplectic integrators](https://www.unige.ch/~hairer/poly_geoint/week2.pdf) — Author-hosted course notes, selected rendered printed pages2,12–13: Verlet kick/drift form, symplectic statement, Lie and symmetric Strang compositions. This does not qualify every state-dependent step rule or the authored coupled resonance experiment. Source date: 2010 (displayed course date); this is not asserted as the publication year.
+- selected-source-formulation: [Approximate Positions of the Planets](https://ssd.jpl.nasa.gov/planets/approx_pos.html) — Official JPL page, selected steps3–4 and Kepler equation. Only the eccentric-anomaly equation and elliptic coordinate transformation are used; no planetary coefficient tables, fitted ephemeris accuracy or Horizons calculation is claimed. Publication date was not verified.
+#### Related test problem figures and code
+
+##### [Unsoftened Kepler two-body time error](https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-kepler/?lang=en) (`gravity-kepler`)
+
+![Validation figure from actual saved fixed-input calculation arrays.](https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-kepler-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-kepler/?lang=en#code-en)
+
+Same-problem link
+
+Small invariant errors do not establish phase accuracy. No canonical symplectic-defect measurement is claimed for the variable-step map, and fixed-h properties are not transferred automatically. R1 resolution was revised to R2 using pre-execution asymptotic planning, not measured calibration.
+
+- [Run and validate: Unsoftened Kepler two-body time error](https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-kepler/?lang=en) (`gravity-kepler`) · [Code ZIP: Unsoftened Kepler two-body time error](https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/atlas-gravity-dynamics-2026-11-23.zip)
+
+Scope of this execution example: Advance an unequal-mass binary for one orbit with KDK and compare independent Kepler positions/velocities and conservation.
+
+- [Run and validate: Kepler eccentricity and time-step controls](https://hrkoyama.github.io/numerical-methods-atlas/validation/kepler-eccentricity/?lang=en) (`kepler-eccentricity`) · [Code ZIP: Kepler eccentricity and time-step controls](https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip)
+
+Scope of this execution example: Sixteen fixed evolutions at e=0.1/0.7 compare invariants, same-time phase error, physical periapsis times and reversal.
+
+
+
+
+### Coupled frequencies and finite-window resonance
+
+Semi-analytic reference · ODE / DAE (no spatial dimension)
+
+`H=\tfrac12(p_1^2+p_2^2+q_1^2+\omega^2q_2^2)+\alpha q_1q_2;\quad \Phi_h=\varphi^B_{h/2}\circ\varphi^A_h\circ\varphi^B_{h/2};\quad \chi_{\theta=\pi}(z)=(z+1)^2[z^2-(2-h^2)z+1]`
+
+alpha=1, omega=10/20, q0=(1,1/omega) and p0=0. Central probes retain the evaluated binary64 h and sin/cos coefficients without snapping to mathematical pi.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/multifrequency-resonance/?lang=en#multifrequency-resonance-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#multifrequency-resonance)
+
+- selected-source-formulation: [Lecture2: Symplectic integrators](https://www.unige.ch/~hairer/poly_geoint/week2.pdf) — Author-hosted course notes, selected rendered printed pages2,12–13: Verlet kick/drift form, symplectic statement, Lie and symmetric Strang compositions. This does not qualify every state-dependent step rule or the authored coupled resonance experiment. Source date: 2010 (displayed course date); this is not asserted as the publication year.
+#### Related test problem figures and code
+
+##### [Coupled frequencies and finite-window resonance](https://hrkoyama.github.io/numerical-methods-atlas/problems/multifrequency-resonance/?lang=en) (`multifrequency-resonance`)
+
+![Saved q1–q2 coordinates of the finest impulse trajectory, colored by physical time. This is one coupled trajectory, not a scanned phase diagram. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions.](https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/results/multifrequency-resonance-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/multifrequency-resonance/?lang=en#code-en)
+
+Same-problem link
+
+The central actual floating map remains unresolved; ideal-pi Jordan structure is not transferred to it. Results concern 64-step amplification and small fixed inputs, not a scanned resonance diagram, general stability or a universal long-time error theorem.
+
+- [Run and validate: Coupled frequencies and finite-window resonance](https://hrkoyama.github.io/numerical-methods-atlas/validation/multifrequency-resonance/?lang=en) (`multifrequency-resonance`) · [Code ZIP: Coupled frequencies and finite-window resonance](https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip)
+
+Scope of this execution example: A genuinely coupled two-degree-of-freedom system uses twelve 64-step probes and six accuracy trajectories to separate normal modes, coordinate exchange, discrete maps and roundoff.

@@ -19,6 +19,10 @@ Start with error and stability, then follow time integration and equations with 
 - [Operator splitting: Lie–Trotter and Strang on the same reaction–diffusion problem](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-splitting/)
 - [Symplectic integration: a canonical map, not an exact energy promise](https://hrkoyama.github.io/numerical-methods-atlas/en/read/symplectic/)
 - [Differential-algebraic equations / DAE](https://hrkoyama.github.io/numerical-methods-atlas/en/read/dae/)
+- [Stiff ODEs, RK45 and boundary splitting](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/)
+- [Modal damping of steady multistage RK](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-steady-rk/)
+- [DAE initialization, conservation and constraint drift](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/)
+- [Geometric integration of constraints, orbits and multiple frequencies](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/)
 
 ## Elliptic problems, linear algebra and approximation
 

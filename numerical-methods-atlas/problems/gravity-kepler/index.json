@@ -48,11 +48,48 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#particle-gravity-ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#particle-gravity-en"
       }
+    },
+    {
+      "id": "kepler-two-body",
+      "name": {
+        "ja": "Kepler二体問題",
+        "en": "Kepler two-body problem"
+      },
+      "formula": [
+        "\\dot q=p,\\qquad\\dot p=-q/\\|q\\|^3,\\qquad H=\\tfrac12p^Tp-1/\\|q\\|"
+      ],
+      "note": {
+        "ja": "無次元化した平面楕円軌道で位相、角運動量、エネルギーと刻みの影響を分けます。",
+        "en": "Nondimensional planar ellipses separate phase, angular momentum, energy and step-selection effects."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#kepler-two-body-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#kepler-two-body-en"
+      }
+    },
+    {
+      "id": "hamiltonian",
+      "name": {
+        "ja": "Hamilton系・振動子",
+        "en": "Hamiltonian systems and oscillators"
+      },
+      "formula": [
+        "\\dot q=\\frac{\\partial H}{\\partial p},\\qquad\\dot p=-\\frac{\\partial H}{\\partial q}",
+        "H=\\frac{p^2}{2}+V(q)"
+      ],
+      "note": {
+        "ja": "正準方程式と分離可能なHamiltonianの代表形。調和・4次ポテンシャルの振動子で、エネルギー誤差とシンプレクティック性を比べます。",
+        "en": "Canonical equations and a representative separable Hamiltonian. Harmonic and quartic oscillators distinguish energy error from symplecticity."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#hamiltonian-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#hamiltonian-en"
+      }
     }
   ],
   "equation_note": {
-    "ja": "G=M=a1,e.4,masses.6/.4、epsilon0、128/256/512steps、初期COM/P0。",
-    "en": "G=M=a1,e.4,masses.6/.4,epsilon0,128/256/512steps,initialCOM/P0."
+    "ja": "G=M=a1,e.4,masses.6/.4、epsilon0、128/256/512steps、初期COM/P0。 a=μ=換算質量=1、軟化なし。1周期は512/1024/2048刻み、10周期は基準2048刻み/周期。変動刻みh=h0|q|を現在状態から定め、最後だけ物理終端へ短縮。",
+    "en": "G=M=a1,e.4,masses.6/.4,epsilon0,128/256/512steps,initialCOM/P0. a=mu=reduced mass=1, without softening. One-period runs use 512/1024/2048 steps; ten-period controls use h0=2π/2048. Variable steps use h=h0|q| at the current state, with only the final step shortened to the physical endpoint."
   },
   "formulations": [
     {
@@ -71,6 +108,24 @@
       "note": {
         "ja": "非等質量二体をKDKで1周し、独立Kepler方程式の位置・速度とエネルギー/角運動量を照合。",
         "en": "Advance an unequal-mass binary for one orbit with KDK and compare independent Kepler positions/velocities and conservation."
+      }
+    },
+    {
+      "id": "supplement-kepler-eccentricity",
+      "name": {
+        "ja": "離心率を変えたKepler軌道と時間刻み",
+        "en": "Kepler eccentricity and time-step controls"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "\\ddot q=-q/\\|q\\|^3",
+        "E-e\\sin E=t,\\quad q=(\\cos E-e,\\sqrt{1-e^2}\\sin E)",
+        "H=\\tfrac12\\|p\\|^2-1/\\|q\\|"
+      ],
+      "note": {
+        "ja": "e=0.1/0.7の16固定軌道で、保存量と同時刻の位相誤差、実際の近日点時刻と逆積分を比較します。",
+        "en": "Sixteen fixed evolutions at e=0.1/0.7 compare invariants, same-time phase error, physical periapsis times and reversal."
       }
     }
   ],
@@ -100,11 +155,37 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-kepler/?lang=ja#gravity-kepler-ja-measurements",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-kepler/?lang=en#gravity-kepler-en-measurements"
       }
+    },
+    {
+      "id": "kepler-eccentricity",
+      "kind": "semi-analytic",
+      "kind_label": {
+        "ja": "半解析解",
+        "en": "Semi-analytic reference"
+      },
+      "title": {
+        "ja": "離心率を変えたKepler軌道と時間刻み",
+        "en": "Kepler eccentricity and time-step controls"
+      },
+      "formula": "\\ddot q=-q/\\|q\\|^3;\\quad E-e\\sin E=t,\\quad q=(\\cos E-e,\\sqrt{1-e^2}\\sin E);\\quad H=\\tfrac12\\|p\\|^2-1/\\|q\\|",
+      "assumptions": {
+        "ja": "a=μ=換算質量=1、軟化なし。1周期は512/1024/2048刻み、10周期は基準2048刻み/周期。変動刻みh=h0|q|を現在状態から定め、最後だけ物理終端へ短縮。",
+        "en": "a=mu=reduced mass=1, without softening. One-period runs use 512/1024/2048 steps; ten-period controls use h0=2π/2048. Variable steps use h=h0|q| at the current state, with only the final step shortened to the physical endpoint."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "保存量の小さい誤差から位相精度を推論しません。変動刻み写像の正準symplectic defectは測定せず、固定hの性質をそのまま移しません。初期解像度R1は数値実行前の漸近解析でR2へ改訂。",
+        "en": "Small invariant errors do not establish phase accuracy. No canonical symplectic-defect measurement is claimed for the variable-step map, and fixed-h properties are not transferred automatically. R1 resolution was revised to R2 using pre-execution asymptotic planning, not measured calibration."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/kepler-eccentricity/?lang=ja#kepler-eccentricity-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/kepler-eccentricity/?lang=en#kepler-eccentricity-en-measurements"
+      }
     }
   ],
   "reference_note": {
-    "ja": "位相/時間次数、全同期stepエネルギー、P/L/COM、独立pair力とroot残差。",
-    "en": "Time refinement/phase, synchronized all-step energy,P/L/COM,independent pair force and root residuals."
+    "ja": "位相/時間次数、全同期stepエネルギー、P/L/COM、独立pair力とroot残差。 独立のKepler方程式brentq／二分法解析族、92主判定。全状態誤差とエネルギー・角運動量、8回以上の近日点、有限窓の順序と反転誤差を検査。",
+    "en": "Time refinement/phase, synchronized all-step energy,P/L/COM,independent pair force and root residuals. An independent Kepler-equation family, qualified with brentq and bisection, supports 92 main decisions: full-state error, energy/angular momentum, at least eight periapses, finite-window order and reversal defects."
   },
   "methods": [
     {
@@ -122,8 +203,8 @@
     }
   ],
   "method_note": {
-    "ja": "位置のみの力でkick半分→drift→kick半分。独立のbracketed Kepler rootと解析速度を使用。",
-    "en": "Position-only kick-half/drift/kick-half; separate bracketed Kepler root and analytic velocities."
+    "ja": "位置のみの力でkick半分→drift→kick半分。独立のbracketed Kepler rootと解析速度を使用。 独自の中心力KDK Verlet。固定・保存刻み再生・再生成刻みを区別し、cubic Hermite軌道の正の放射速度交差をbrentqで局在化。",
+    "en": "Position-only kick-half/drift/kick-half; separate bracketed Kepler root and analytic velocities. Original central-force KDK Verlet. Fixed, replayed and regenerated schedules are distinct. Positive radial crossings of cubic Hermite trajectories are localized by brentq."
   },
   "executions": [
     {
@@ -176,6 +257,61 @@
       ],
       "test_urls": [
         "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/test_dynamics.py"
+      ],
+      "source_scope": "package"
+    },
+    {
+      "id": "kepler-eccentricity",
+      "kind": "supplement",
+      "name": {
+        "ja": "離心率を変えたKepler軌道と時間刻み",
+        "en": "Kepler eccentricity and time-step controls"
+      },
+      "method_ids": [
+        "verlet"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/kepler-eccentricity/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/kepler-eccentricity/?lang=en"
+      },
+      "scope": {
+        "ja": "e=0.1/0.7の16固定軌道で、保存量と同時刻の位相誤差、実際の近日点時刻と逆積分を比較します。",
+        "en": "Sixteen fixed evolutions at e=0.1/0.7 compare invariants, same-time phase error, physical periapsis times and reversal."
+      },
+      "assumptions": {
+        "ja": "a=μ=換算質量=1、軟化なし。1周期は512/1024/2048刻み、10周期は基準2048刻み/周期。変動刻みh=h0|q|を現在状態から定め、最後だけ物理終端へ短縮。",
+        "en": "a=mu=reduced mass=1, without softening. One-period runs use 512/1024/2048 steps; ten-period controls use h0=2π/2048. Variable steps use h=h0|q| at the current state, with only the final step shortened to the physical endpoint."
+      },
+      "limits": {
+        "ja": "保存量の小さい誤差から位相精度を推論しません。変動刻み写像の正準symplectic defectは測定せず、固定hの性質をそのまま移しません。初期解像度R1は数値実行前の漸近解析でR2へ改訂。",
+        "en": "Small invariant errors do not establish phase accuracy. No canonical symplectic-defect measurement is claimed for the variable-step map, and fixed-h properties are not transferred automatically. R1 resolution was revised to R2 using pre-execution asymptotic planning, not measured calibration."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "独立のKepler方程式brentq／二分法解析族、92主判定。全状態誤差とエネルギー・角運動量、8回以上の近日点、有限窓の順序と反転誤差を検査。",
+        "en": "An independent Kepler-equation family, qualified with brentq and bisection, supports 92 main decisions: full-state error, energy/angular momentum, at least eight periapses, finite-window order and reversal defects."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/physics.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/diagnostics.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/analytic.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/discrete.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/test_geometry.py"
       ],
       "source_scope": "package"
     }

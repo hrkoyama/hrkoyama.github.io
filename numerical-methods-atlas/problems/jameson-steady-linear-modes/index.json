@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "id": "jameson-steady-linear-modes",
+  "name": {
+    "ja": "定常多段RKの実空間モード減衰",
+    "en": "Real-space mode damping with steady multistage RK"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/jameson-steady-linear-modes/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/jameson-steady-linear-modes/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/jameson-steady-linear-modes/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/steady-rk/results/jameson-steady-linear-modes-preview.png",
+    "sha256": "bb7038e55ff63e665f2a3f71cf33992cbea96efcc3753578b819fd4335e22432",
+    "width": 1090,
+    "height": 424,
+    "caption": {
+      "ja": "周期格子の実残差に4段定常反復を適用し、離散モードの減衰・中立・増幅を区別します。 保存配列から作図。 初回の元精度目標未達と再実行の実測判定は保存JSONで区別します。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。",
+      "en": "Apply four steady residual stages on a periodic grid, separating damping, neutrality and amplification of discrete modes. Drawn from saved arrays. The first-run goal shortfall and each rerun’s actual target decisions remain explicit in the saved JSON. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-steady-rk/#jameson-steady-linear-modes",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-steady-rk/#jameson-steady-linear-modes"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#jameson-steady-linear-modes",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#jameson-steady-linear-modes-en"
+  },
+  "equations": [
+    {
+      "id": "linear-evolution-system",
+      "name": {
+        "ja": "有限次元の線形発展系",
+        "en": "Finite-dimensional linear evolution systems"
+      },
+      "formula": [
+        "\\dot y=Ay+b"
+      ],
+      "note": {
+        "ja": "減衰回転の物理時刻と、定常残差を減衰させる擬似時間を例ごとに区別します。",
+        "en": "Each example distinguishes physical time in damped rotation from pseudo-time used to reduce steady residuals."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#linear-evolution-system-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#linear-evolution-system-en"
+      }
+    },
+    {
+      "id": "finite-dimensional-linear-system",
+      "name": {
+        "ja": "有限次元線形方程式と行列分解",
+        "en": "Finite-dimensional linear systems and factorizations"
+      },
+      "formula": [
+        "A x=b",
+        "P A=L U",
+        "A=L L^\\top\\quad(A=A^\\top>0)",
+        "r=b-Ax"
+      ],
+      "note": {
+        "ja": "有限行列Aと右辺bの代数問題です。LU/Cholesky・混合精度改良・対称不定値鞍点系を固定例で検査し、連続PDEの解とは区別します。",
+        "en": "Finite matrices A and right-hand sides b define algebraic problems. Fixed LU, Cholesky, refinement and symmetric-indefinite saddle controls are distinct from continuum PDE solutions."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#finite-dimensional-linear-system-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#finite-dimensional-linear-system-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "無次元の固定16点・周期・線形残差。疑似時間は反復パラメータです。",
+    "en": "A fixed dimensionless sixteen-node periodic linear residual; pseudo-time is an iteration parameter."
+  },
+  "formulations": [
+    {
+      "id": "supplement-jameson-steady-linear-modes",
+      "name": {
+        "ja": "定常多段RKの実空間モード減衰",
+        "en": "Real-space mode damping with steady multistage RK"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "Y_j=u_n-alpha_j*dtau*(A*Y_(j-1)-b)",
+        "P(z)=1+z+z^2/2+z^3/6+z^4/24; lambda_4=9+2i, lambda_8=17"
+      ],
+      "note": {
+        "ja": "周期格子の実残差に4段定常反復を適用し、離散モードの減衰・中立・増幅を区別します。 初回の増幅制御では元の絶対残差目標が未達でした。",
+        "en": "Apply four steady residual stages on a periodic grid, separating damping, neutrality and amplification of discrete modes. The retained first run missed the original absolute residual goal in the expanding control."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "jameson-steady-linear-modes",
+      "kind": "analytic",
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "title": {
+        "ja": "定常多段RKの実空間モード減衰",
+        "en": "Real-space mode damping with steady multistage RK"
+      },
+      "formula": "Y_j=u_n-alpha_j*dtau*(A*Y_(j-1)-b);\\quad P(z)=1+z+z^2/2+z^3/6+z^4/24; lambda_4=9+2i, lambda_8=17",
+      "assumptions": {
+        "ja": "無次元の固定16点・周期・線形残差。疑似時間は反復パラメータです。",
+        "en": "A fixed dimensionless sixteen-node periodic linear residual; pseudo-time is an iteration parameter."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "固定線形例に限定。JST圧縮性流束や非線形4次RK、任意初期値の収束は検証しません。 元の全数値目標の合格を意味する公開ではありません。",
+        "en": "Limited to a fixed linear example; no JST compressible flux, nonlinear fourth-order RK or all-start convergence claim. Verification of this study does not mean that all original numerical targets were met."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/jameson-steady-linear-modes/?lang=ja#jameson-steady-linear-modes-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/jameson-steady-linear-modes/?lang=en#jameson-steady-linear-modes-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "元の41数値目標と実際の真偽を変更せず保存します。増幅制御の絶対残差目標だけを研究結果として分離し、他40条件と保存配列からの判定再計算・正確な表示を必須にします。",
+    "en": "Retain all 41 original numerical targets and their actual decisions. Only the expanding-control absolute residual goal is a separate study outcome; the other 40 requirements and faithful recomputation from saved arrays remain mandatory."
+  },
+  "methods": [
+    {
+      "id": "jameson-steady-rk",
+      "name": {
+        "ja": "Jameson型の定常多段Runge–Kutta",
+        "en": "Jameson-type steady multistage Runge–Kutta"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/jameson-steady-rk/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/jameson-steady-rk/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "全段で同じ基底状態を用い、全場・全段残差・評価回数を保存します。",
+    "en": "Use the same base state in every stage and retain complete fields, stage residuals and evaluation counts."
+  },
+  "executions": [
+    {
+      "id": "jameson-steady-linear-modes",
+      "kind": "supplement",
+      "name": {
+        "ja": "定常多段RKの実空間モード減衰",
+        "en": "Real-space mode damping with steady multistage RK"
+      },
+      "method_ids": [
+        "jameson-steady-rk"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/jameson-steady-linear-modes/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/jameson-steady-linear-modes/?lang=en"
+      },
+      "scope": {
+        "ja": "周期格子の実残差に4段定常反復を適用し、離散モードの減衰・中立・増幅を区別します。 初回の増幅制御では元の絶対残差目標が未達でした。",
+        "en": "Apply four steady residual stages on a periodic grid, separating damping, neutrality and amplification of discrete modes. The retained first run missed the original absolute residual goal in the expanding control."
+      },
+      "assumptions": {
+        "ja": "無次元の固定16点・周期・線形残差。疑似時間は反復パラメータです。",
+        "en": "A fixed dimensionless sixteen-node periodic linear residual; pseudo-time is an iteration parameter."
+      },
+      "limits": {
+        "ja": "固定線形例に限定。JST圧縮性流束や非線形4次RK、任意初期値の収束は検証しません。 元の全数値目標の合格を意味する公開ではありません。",
+        "en": "Limited to a fixed linear example; no JST compressible flux, nonlinear fourth-order RK or all-start convergence claim. Verification of this study does not mean that all original numerical targets were met."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/steady-rk/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/steady-rk/atlas-steady-rk-2026-11-24.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/steady-rk/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/steady-rk/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "元の41数値目標と実際の真偽を変更せず保存します。増幅制御の絶対残差目標だけを研究結果として分離し、他40条件と保存配列からの判定再計算・正確な表示を必須にします。",
+        "en": "Retain all 41 original numerical targets and their actual decisions. Only the expanding-control absolute residual goal is a separate study outcome; the other 40 requirements and faithful recomputation from saved arrays remain mandatory."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/steady-rk/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/steady-rk/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/steady-rk/steady.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/steady-rk/test_cases.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

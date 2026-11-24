@@ -1,0 +1,342 @@
+{
+  "schema_version": 1,
+  "id": "high-index-pendulum",
+  "name": {
+    "ja": "拘束付き振り子",
+    "en": "Constrained planar pendulum"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/high-index-pendulum/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/high-index-pendulum/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/high-index-pendulum/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/results/high-index-pendulum-preview.png",
+    "sha256": "5c9e7d6c1ffbdaac74b1ffd39702ac14caa6e17bf75d338359671bc5594a91a8",
+    "width": 1090,
+    "height": 424,
+    "caption": {
+      "ja": "位置拘束の指数3系から明示ODEを導き、整合・非整合初期値の拘束ドリフトと安定化を比較します。 保存配列から作図。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。",
+      "en": "Derive an explicit ODE from an index-three position constraint and compare drift and stabilization for consistent and inconsistent starts. Drawn from saved arrays. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/#high-index-pendulum",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/#high-index-pendulum"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#high-index-pendulum",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#high-index-pendulum-en"
+  },
+  "equations": [
+    {
+      "id": "constrained-pendulum",
+      "name": {
+        "ja": "拘束付き平面振り子",
+        "en": "Constrained planar pendulum"
+      },
+      "formula": [
+        "\\dot q=p,\\quad\\dot p=(0,-1)-\\lambda q,\\quad q^Tq=1,\\quad q^Tp=0"
+      ],
+      "note": {
+        "ja": "元の位置拘束DAE、微分した拘束に基づくODE、SHAKE/RATTLEの離散写像を区別します。",
+        "en": "Distinguish the original position-constrained DAE, an underlying ODE based on differentiated constraints, and the SHAKE/RATTLE discrete maps."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#constrained-pendulum-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#constrained-pendulum-en"
+      }
+    },
+    {
+      "id": "hamiltonian",
+      "name": {
+        "ja": "Hamilton系・振動子",
+        "en": "Hamiltonian systems and oscillators"
+      },
+      "formula": [
+        "\\dot q=\\frac{\\partial H}{\\partial p},\\qquad\\dot p=-\\frac{\\partial H}{\\partial q}",
+        "H=\\frac{p^2}{2}+V(q)"
+      ],
+      "note": {
+        "ja": "正準方程式と分離可能なHamiltonianの代表形。調和・4次ポテンシャルの振動子で、エネルギー誤差とシンプレクティック性を比べます。",
+        "en": "Canonical equations and a representative separable Hamiltonian. Harmonic and quartic oscillators distinguish energy error from symplecticity."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#hamiltonian-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#hamiltonian-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "m=L=g=1、初期角0.7、初期角速度0。非整合制御では半径方向速度を明示的に加えます。 L=m=g=1、初期角0.7、初期角速度0。C=(q·q−1)/2、T=100、h=0.04/0.02/0.01。拘束目標1e−13と粗格子の1e−10比較を固定。",
+    "en": "m=L=g=1, initial angle 0.7 and zero angular velocity; off-manifold controls explicitly add radial velocity. L=m=g=1, initial angle 0.7 and zero angular velocity. C=(q·q−1)/2, T=100 and h=0.04/0.02/0.01; position targets are fixed at 1e−13, with a coarse 1e−10 companion."
+  },
+  "formulations": [
+    {
+      "id": "supplement-high-index-pendulum",
+      "name": {
+        "ja": "振り子の指数低減・拘束ドリフト・明示安定化",
+        "en": "Index reduction, constraint drift and explicit stabilization for a pendulum"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "C=(q.q-1)/2, D=q.v, lambda=(v.v-q_y+2D+C)/(q.q)",
+        "Cddot+2*Cdot+C=0; Wdot=-lambda*(q.v)"
+      ],
+      "note": {
+        "ja": "位置拘束の指数3系から明示ODEを導き、整合・非整合初期値の拘束ドリフトと安定化を比較します。",
+        "en": "Derive an explicit ODE from an index-three position constraint and compare drift and stabilization for consistent and inconsistent starts."
+      }
+    },
+    {
+      "id": "supplement-shake-rattle-pendulum",
+      "name": {
+        "ja": "SHAKEとRATTLE：拘束と運動量の違い",
+        "en": "SHAKE and RATTLE: constraints and momentum ownership"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "C(q)=\\tfrac12(q^Tq-1)=0",
+        "q_{n+1}=q_n+h p_n+\\tfrac12h^2 f-\\eta_n q_n",
+        "q_n^Tp_n^c=\\frac{\\|q_n-q_{n-1}\\|^2-\\|q_{n+1}-q_n\\|^2}{4h}+\\frac{C_{n+1}-C_{n-1}}{2h}"
+      ],
+      "note": {
+        "ja": "単振り子の10固定軌道で、位置拘束、全時刻の接線運動量と内部点の中心化運動量を区別します。",
+        "en": "Ten fixed pendulum evolutions distinguish position constraints, full-time tangent momentum and interior centered momentum."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "high-index-pendulum",
+      "kind": "semi-analytic",
+      "kind_label": {
+        "ja": "半解析解",
+        "en": "Semi-analytic reference"
+      },
+      "title": {
+        "ja": "振り子の指数低減・拘束ドリフト・明示安定化",
+        "en": "Index reduction, constraint drift and explicit stabilization for a pendulum"
+      },
+      "formula": "C=(q.q-1)/2, D=q.v, lambda=(v.v-q_y+2D+C)/(q.q);\\quad Cddot+2*Cdot+C=0; Wdot=-lambda*(q.v)",
+      "assumptions": {
+        "ja": "m=L=g=1、初期角0.7、初期角速度0。非整合制御では半径方向速度を明示的に加えます。",
+        "en": "m=L=g=1, initial angle 0.7 and zero angular velocity; off-manifold controls explicitly add radial velocity."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "投影・正規化・SHAKE/RATTLEなし。一般指数3ソルバーやシンプレクティック性の検証ではありません。",
+        "en": "No projection, normalization or SHAKE/RATTLE; no general index-three-solver or symplecticity claim."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/high-index-pendulum/?lang=ja#high-index-pendulum-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/high-index-pendulum/?lang=en#high-index-pendulum-en-measurements"
+      }
+    },
+    {
+      "id": "shake-rattle-pendulum",
+      "kind": "semi-analytic",
+      "kind_label": {
+        "ja": "半解析解",
+        "en": "Semi-analytic reference"
+      },
+      "title": {
+        "ja": "SHAKEとRATTLE：拘束と運動量の違い",
+        "en": "SHAKE and RATTLE: constraints and momentum ownership"
+      },
+      "formula": "C(q)=\\tfrac12(q^Tq-1)=0;\\quad q_{n+1}=q_n+h p_n+\\tfrac12h^2 f-\\eta_n q_n;\\quad q_n^Tp_n^c=\\frac{\\|q_n-q_{n-1}\\|^2-\\|q_{n+1}-q_n\\|^2}{4h}+\\frac{C_{n+1}-C_{n-1}}{2h}",
+      "assumptions": {
+        "ja": "L=m=g=1、初期角0.7、初期角速度0。C=(q·q−1)/2、T=100、h=0.04/0.02/0.01。拘束目標1e−13と粗格子の1e−10比較を固定。",
+        "en": "L=m=g=1, initial angle 0.7 and zero angular velocity. C=(q·q−1)/2, T=100 and h=0.04/0.02/0.01; position targets are fixed at 1e−13, with a coarse 1e−10 companion."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "原著SHAKE/RATTLE本文は未読で、著者講義ノートの選択箇所を確認。有限差分のsymplectic defectは一般証明ではなく、中心化SHAKE速度にRATTLEの接線拘束を要求しません。",
+        "en": "Original SHAKE and RATTLE full texts remain unread; selected author lecture notes were inspected. The finite-difference symplectic defect is a local proxy, not a general proof, and centered SHAKE velocity is not assigned RATTLE tangency."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/shake-rattle-pendulum/?lang=ja#shake-rattle-pendulum-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/shake-rattle-pendulum/?lang=en#shake-rattle-pendulum-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "Jacobi解析族と独立角度ODE2計算を資格確認し、場・拘束の厳密法則・エネルギー仕事収支を比較します。 独立Jacobi解析族と角度系DOP853の資格、74主判定。有限Cの中心化恒等式、2段階FDの縮約写像診断、位置対／全状態の逆積分を分離。",
+    "en": "Qualify the Jacobi family against two independent angular ODE runs, then compare states, exact constraint laws and energy/work budgets. A separately qualified Jacobi family and angular DOP853 reference support 74 main decisions. Finite-C centered identities, two-delta reduced-map diagnostics and position-pair versus full-state reversals are distinct."
+  },
+  "methods": [
+    {
+      "id": "dae",
+      "name": {
+        "ja": "微分代数方程式（DAE）",
+        "en": "Differential-algebraic equations / DAE"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/dae/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/dae/?lang=en"
+      }
+    },
+    {
+      "id": "rk4",
+      "name": {
+        "ja": "古典的RK4",
+        "en": "Classical RK4"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/?lang=en"
+      }
+    },
+    {
+      "id": "shake",
+      "name": {
+        "ja": "SHAKE拘束積分",
+        "en": "SHAKE constrained integration"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/shake/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/shake/?lang=en"
+      }
+    },
+    {
+      "id": "rattle",
+      "name": {
+        "ja": "RATTLE拘束積分",
+        "en": "RATTLE constrained integration"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rattle/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rattle/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "指数低減ODEと臨界拘束誤差拡張を固定RK4で積分し、拘束仕事も同じ段で積分します。 独自のスカラーNewton位置拘束、RATTLE終端接線impulse、SHAKE位置対。SHAKEの運動量は内部点だけで中心化し、端点を作りません。 SHAKEのsolves列はeta、eta/h^2、位置残差、Newton更新数です。列1は一律にeta/h^2ですが、初回半刻みの物理乗数は2eta/h^2、以後の位置Verletではeta/h^2です。逆位置対はすべて後者です。判定と図はこの列1を使いません。",
+    "en": "Advance the index-reduced ODE and a critical constraint-error extension with fixed RK4, integrating constraint work at the same stages. Original scalar Newton position constraints, RATTLE final tangent impulses and SHAKE position pairs. SHAKE momentum is centered only at interior nodes; endpoint momenta are absent. SHAKE solves columns are eta, eta/h^2, position residual and Newton updates. Column1 uses the uniform recurrence normalization eta/h^2. For the first constrained half-step startup, the physical multiplier is 2*eta/h^2; later full position-Verlet steps use eta/h^2. Reverse-pair steps all use the later recurrence convention. RATTLE has its separate five-column normalization. No scientific gate or plot uses SHAKE column1."
+  },
+  "executions": [
+    {
+      "id": "high-index-pendulum",
+      "kind": "supplement",
+      "name": {
+        "ja": "振り子の指数低減・拘束ドリフト・明示安定化",
+        "en": "Index reduction, constraint drift and explicit stabilization for a pendulum"
+      },
+      "method_ids": [
+        "dae",
+        "rk4"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/high-index-pendulum/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/high-index-pendulum/?lang=en"
+      },
+      "scope": {
+        "ja": "位置拘束の指数3系から明示ODEを導き、整合・非整合初期値の拘束ドリフトと安定化を比較します。",
+        "en": "Derive an explicit ODE from an index-three position constraint and compare drift and stabilization for consistent and inconsistent starts."
+      },
+      "assumptions": {
+        "ja": "m=L=g=1、初期角0.7、初期角速度0。非整合制御では半径方向速度を明示的に加えます。",
+        "en": "m=L=g=1, initial angle 0.7 and zero angular velocity; off-manifold controls explicitly add radial velocity."
+      },
+      "limits": {
+        "ja": "投影・正規化・SHAKE/RATTLEなし。一般指数3ソルバーやシンプレクティック性の検証ではありません。",
+        "en": "No projection, normalization or SHAKE/RATTLE; no general index-three-solver or symplecticity claim."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/atlas-dae-controls-2026-11-24.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "Jacobi解析族と独立角度ODE2計算を資格確認し、場・拘束の厳密法則・エネルギー仕事収支を比較します。",
+        "en": "Qualify the Jacobi family against two independent angular ODE runs, then compare states, exact constraint laws and energy/work budgets."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/models.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/newton.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_cases.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_serialization.py"
+      ],
+      "source_scope": "package"
+    },
+    {
+      "id": "shake-rattle-pendulum",
+      "kind": "supplement",
+      "name": {
+        "ja": "SHAKEとRATTLE：拘束と運動量の違い",
+        "en": "SHAKE and RATTLE: constraints and momentum ownership"
+      },
+      "method_ids": [
+        "shake",
+        "rattle"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/shake-rattle-pendulum/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/shake-rattle-pendulum/?lang=en"
+      },
+      "scope": {
+        "ja": "単振り子の10固定軌道で、位置拘束、全時刻の接線運動量と内部点の中心化運動量を区別します。",
+        "en": "Ten fixed pendulum evolutions distinguish position constraints, full-time tangent momentum and interior centered momentum."
+      },
+      "assumptions": {
+        "ja": "L=m=g=1、初期角0.7、初期角速度0。C=(q·q−1)/2、T=100、h=0.04/0.02/0.01。拘束目標1e−13と粗格子の1e−10比較を固定。",
+        "en": "L=m=g=1, initial angle 0.7 and zero angular velocity. C=(q·q−1)/2, T=100 and h=0.04/0.02/0.01; position targets are fixed at 1e−13, with a coarse 1e−10 companion."
+      },
+      "limits": {
+        "ja": "原著SHAKE/RATTLE本文は未読で、著者講義ノートの選択箇所を確認。有限差分のsymplectic defectは一般証明ではなく、中心化SHAKE速度にRATTLEの接線拘束を要求しません。",
+        "en": "Original SHAKE and RATTLE full texts remain unread; selected author lecture notes were inspected. The finite-difference symplectic defect is a local proxy, not a general proof, and centered SHAKE velocity is not assigned RATTLE tangency."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "独立Jacobi解析族と角度系DOP853の資格、74主判定。有限Cの中心化恒等式、2段階FDの縮約写像診断、位置対／全状態の逆積分を分離。",
+        "en": "A separately qualified Jacobi family and angular DOP853 reference support 74 main decisions. Finite-C centered identities, two-delta reduced-map diagnostics and position-pair versus full-state reversals are distinct."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/physics.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/diagnostics.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/analytic.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/discrete.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/test_geometry.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

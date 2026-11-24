@@ -123,6 +123,22 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Compare Newton, Armijo and dogleg from identical fixed starts, distinguishing roots from stationary nonroots and budget exhaustion.
+- [Robertson kinetics: initial stiffness and actual error](<https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-stiff-kinetics/?lang=en>)
+  availability: run
+
+  Compare BDF2, SDIRK2 and adaptive step doubling on a short fixed interval against qualified Radau and BDF references.
+- [Robertson conservation DAE and stored official IDA values](<https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-conservation-dae/?lang=en>)
+  availability: run
+
+  Compare the Robertson conservation DAE and full ODE on the same fixed time grids, with a separate check of stored official IDA values. The first retained run missed four original time-accuracy and refinement goals.
+- [Van der Pol: an early stiffness transition](<https://hrkoyama.github.io/numerical-methods-atlas/validation/van-der-pol-stiff-transition/?lang=en>)
+  availability: run
+
+  Separate local control from global error. The first study met 208 of 209 original targets; the mu = 1 tight adaptive run missed the 2e-5 global goal.
+- [Consistent initialization and discrete residuals for an index-one DAE](<https://hrkoyama.github.io/numerical-methods-atlas/validation/index1-dae-consistent-initialization/?lang=en>)
+  availability: run
+
+  Separate initialization, backward-Euler error and residuals on a known positive index-one DAE branch.
 - [Restarted GMRES — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/gmres/?lang=en#method-execution-en>)
   availability: source
 

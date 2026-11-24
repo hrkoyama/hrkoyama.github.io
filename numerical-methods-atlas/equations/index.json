@@ -278,7 +278,8 @@
       "coverage_scope": "",
       "supplemental_examples": [
         "su-olson-transport1997",
-        "diffusion-discrete-adjoint"
+        "diffusion-discrete-adjoint",
+        "strang-boundary-order-reduction"
       ],
       "reading": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/elliptic/",
@@ -351,6 +352,42 @@
           ],
           "verification": "/code/validated-examples/2026-11-24/adjoint/verification.json",
           "results": "/code/validated-examples/2026-11-24/adjoint/results/result.json"
+        },
+        {
+          "id": "strang-boundary-order-reduction",
+          "name": {
+            "ja": "Dirichlet境界でのStrang次数低下と補正",
+            "en": "Strang splitting: Dirichlet boundary order reduction and correction"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/strang-boundary-order-reduction/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/strang-boundary-order-reduction/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/experiments.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/io_contract.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/reference_eval.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/boundary.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/models.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/stiff.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/reporting_policy.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/dopri.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/tableau.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/boundary_reference.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/coefficient_exact.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/qualify.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/reference_models.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_boundary.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_contract.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_dopri.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_reporting.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_stiff.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+          "results": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/result.json"
         }
       ],
       "related_problems": [
@@ -604,6 +641,62 @@
           "note": {
             "ja": "無次元x∈[0,1]、u(0,t)=u(1,t)=0。内点7/15、時間step64/128/256、T=.1。κ=.1、θ=.2。目的関数のh重みを含む座標転置です。",
             "en": "Dimensionless x in [0,1], fixed zero Dirichlet endpoints, 7/15 interior nodes and 64/128/256 time steps to T=.1; kappa=.1 and theta=.2. Coordinate transposes include explicit objective h weights."
+          }
+        },
+        {
+          "id": "strang-boundary-order-reduction",
+          "name": {
+            "ja": "Dirichlet境界でのStrang次数低下と補正",
+            "en": "Strang splitting: Dirichlet boundary order reduction and correction"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/strang-boundary-order-reduction-preview.png",
+            "sha256": "f6fc7c2def18c49db259548f9f0687a1dbff5fb88a29ec697392e320d160b6ae",
+            "width": 1375,
+            "height": 566,
+            "caption": {
+              "ja": "実1D非周期場で、未補正/境界補正Strangを同じFD参照へ比較し、時間誤差と空間誤差を分けます。 保存済みの数値場と参照を用いた図です。",
+              "en": "Evolve actual one-dimensional nonperiodic fields and compare unmodified and boundary-corrected Strang splitting against the same spatial discretization. This preview reads saved numerical fields and references only."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strang-boundary-order-reduction/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strang-boundary-order-reduction/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strang-boundary-order-reduction/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strang-boundary-order-reduction/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "strang-boundary-order-reduction",
+              "kind": "supplement",
+              "name": {
+                "ja": "Dirichlet境界でのStrang次数低下と補正",
+                "en": "Strang splitting: Dirichlet boundary order reduction and correction"
+              },
+              "scope": {
+                "ja": "実1D非周期場で、未補正/境界補正Strangを同じFD参照へ比較し、時間誤差と空間誤差を分けます。",
+                "en": "Evolve actual one-dimensional nonperiodic fields and compare unmodified and boundary-corrected Strang splitting against the same spatial discretization."
+              },
+              "method_ids": [
+                "strang-splitting",
+                "lie-trotter",
+                "centered-difference"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/strang-boundary-order-reduction/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/strang-boundary-order-reduction/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/atlas-ode-adaptivity-2026-11-24-r2.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "u_t=u_xx+u、[0,1]、両端u=1、解析定常解+.1正弦摂動、T=.1。内部31/63/127点・8/16/32/64刻みとLie対照4run、計28run。",
+            "en": "Solve u_t = u_xx + u on [0, 1] with both boundary values equal to 1, an analytic steady state plus a 0.1 sine perturbation, and T = 0.1. Use 31, 63 and 127 interior nodes with 8, 16, 32 and 64 steps, plus four Lie controls: 28 runs."
           }
         }
       ]
@@ -4518,6 +4611,12 @@
       "status": "local-example",
       "group": "physical",
       "coverage_scope": "",
+      "supplemental_examples": [
+        "high-index-pendulum",
+        "shake-rattle-pendulum",
+        "kepler-eccentricity",
+        "multifrequency-resonance"
+      ],
       "reading": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/symplectic/",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/symplectic/"
@@ -4535,7 +4634,109 @@
           }
         }
       ],
-      "supplemental_execution_examples": [],
+      "supplemental_execution_examples": [
+        {
+          "id": "high-index-pendulum",
+          "name": {
+            "ja": "振り子の指数低減・拘束ドリフト・明示安定化",
+            "en": "Index reduction, constraint drift and explicit stabilization for a pendulum"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/high-index-pendulum/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/high-index-pendulum/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/models.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/newton.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/experiments.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/io_contract.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/references.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/reporting.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_cases.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_serialization.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-24/dae-controls/verification.json",
+          "results": "/code/validated-examples/2026-11-24/dae-controls/results/result.json"
+        },
+        {
+          "id": "shake-rattle-pendulum",
+          "name": {
+            "ja": "SHAKEとRATTLE：拘束と運動量の違い",
+            "en": "SHAKE and RATTLE: constraints and momentum ownership"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/shake-rattle-pendulum/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/shake-rattle-pendulum/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/physics.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/diagnostics.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/analytic.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/discrete.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/io_utils.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/qualify.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/test_geometry.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-24/geometric-controls/verification.json",
+          "results": "/code/validated-examples/2026-11-24/geometric-controls/results/result.json"
+        },
+        {
+          "id": "kepler-eccentricity",
+          "name": {
+            "ja": "離心率を変えたKepler軌道と時間刻み",
+            "en": "Kepler eccentricity and time-step controls"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/kepler-eccentricity/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/kepler-eccentricity/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/physics.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/diagnostics.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/analytic.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/discrete.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/io_utils.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/qualify.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/test_geometry.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-24/geometric-controls/verification.json",
+          "results": "/code/validated-examples/2026-11-24/geometric-controls/results/result.json"
+        },
+        {
+          "id": "multifrequency-resonance",
+          "name": {
+            "ja": "結合した2周波数系と共鳴の有限窓",
+            "en": "Coupled frequencies and finite-window resonance"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/multifrequency-resonance/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/multifrequency-resonance/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/physics.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/diagnostics.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/analytic.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/discrete.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/io_utils.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/qualify.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/test_geometry.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-24/geometric-controls/verification.json",
+          "results": "/code/validated-examples/2026-11-24/geometric-controls/results/result.json"
+        }
+      ],
       "related_problems": [
         {
           "id": "harmonic-oscillator",
@@ -4767,6 +4968,215 @@
             "ja": "Hamilton系へのリンクは非調和ポテンシャルの力学部分です。確率温度浴を加えたCSVR・Langevinの分布検証を行います。",
             "en": "The Hamiltonian link identifies the anharmonic mechanical part; validation concerns distributions with added stochastic CSVR/Langevin heat baths."
           }
+        },
+        {
+          "id": "gravity-kepler",
+          "name": {
+            "ja": "無軟化Kepler二体の時間誤差",
+            "en": "Unsoftened Kepler two-body time error"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-kepler-preview.png",
+            "sha256": "12b3902c4f90faa30226cf0ca1c14e35c9f1de85339c09acbb7818a47a8ae758",
+            "width": 920,
+            "height": 592,
+            "caption": {
+              "ja": "固定入力を実際に計算した保存配列からの検証図。",
+              "en": "Validation figure from actual saved fixed-input calculation arrays."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-kepler/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-kepler/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-kepler/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-kepler/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "gravity-kepler",
+              "kind": "supplement",
+              "name": {
+                "ja": "無軟化Kepler二体の時間誤差",
+                "en": "Unsoftened Kepler two-body time error"
+              },
+              "scope": {
+                "ja": "非等質量二体をKDKで1周し、独立Kepler方程式の位置・速度とエネルギー/角運動量を照合。",
+                "en": "Advance an unequal-mass binary for one orbit with KDK and compare independent Kepler positions/velocities and conservation."
+              },
+              "method_ids": [
+                "verlet"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-kepler/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-kepler/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/atlas-gravity-dynamics-2026-11-23.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/verification.json"
+            },
+            {
+              "id": "kepler-eccentricity",
+              "kind": "supplement",
+              "name": {
+                "ja": "離心率を変えたKepler軌道と時間刻み",
+                "en": "Kepler eccentricity and time-step controls"
+              },
+              "scope": {
+                "ja": "e=0.1/0.7の16固定軌道で、保存量と同時刻の位相誤差、実際の近日点時刻と逆積分を比較します。",
+                "en": "Sixteen fixed evolutions at e=0.1/0.7 compare invariants, same-time phase error, physical periapsis times and reversal."
+              },
+              "method_ids": [
+                "verlet"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/kepler-eccentricity/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/kepler-eccentricity/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "G=M=a1,e.4,masses.6/.4、epsilon0、128/256/512steps、初期COM/P0。 a=μ=換算質量=1、軟化なし。1周期は512/1024/2048刻み、10周期は基準2048刻み/周期。変動刻みh=h0|q|を現在状態から定め、最後だけ物理終端へ短縮。",
+            "en": "G=M=a1,e.4,masses.6/.4,epsilon0,128/256/512steps,initialCOM/P0. a=mu=reduced mass=1, without softening. One-period runs use 512/1024/2048 steps; ten-period controls use h0=2π/2048. Variable steps use h=h0|q| at the current state, with only the final step shortened to the physical endpoint."
+          }
+        },
+        {
+          "id": "high-index-pendulum",
+          "name": {
+            "ja": "拘束付き振り子",
+            "en": "Constrained planar pendulum"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/results/high-index-pendulum-preview.png",
+            "sha256": "5c9e7d6c1ffbdaac74b1ffd39702ac14caa6e17bf75d338359671bc5594a91a8",
+            "width": 1090,
+            "height": 424,
+            "caption": {
+              "ja": "位置拘束の指数3系から明示ODEを導き、整合・非整合初期値の拘束ドリフトと安定化を比較します。 保存配列から作図。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。",
+              "en": "Derive an explicit ODE from an index-three position constraint and compare drift and stabilization for consistent and inconsistent starts. Drawn from saved arrays. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/high-index-pendulum/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/high-index-pendulum/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/high-index-pendulum/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/high-index-pendulum/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "high-index-pendulum",
+              "kind": "supplement",
+              "name": {
+                "ja": "振り子の指数低減・拘束ドリフト・明示安定化",
+                "en": "Index reduction, constraint drift and explicit stabilization for a pendulum"
+              },
+              "scope": {
+                "ja": "位置拘束の指数3系から明示ODEを導き、整合・非整合初期値の拘束ドリフトと安定化を比較します。",
+                "en": "Derive an explicit ODE from an index-three position constraint and compare drift and stabilization for consistent and inconsistent starts."
+              },
+              "method_ids": [
+                "dae",
+                "rk4"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/high-index-pendulum/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/high-index-pendulum/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/atlas-dae-controls-2026-11-24.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/verification.json"
+            },
+            {
+              "id": "shake-rattle-pendulum",
+              "kind": "supplement",
+              "name": {
+                "ja": "SHAKEとRATTLE：拘束と運動量の違い",
+                "en": "SHAKE and RATTLE: constraints and momentum ownership"
+              },
+              "scope": {
+                "ja": "単振り子の10固定軌道で、位置拘束、全時刻の接線運動量と内部点の中心化運動量を区別します。",
+                "en": "Ten fixed pendulum evolutions distinguish position constraints, full-time tangent momentum and interior centered momentum."
+              },
+              "method_ids": [
+                "shake",
+                "rattle"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/shake-rattle-pendulum/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/shake-rattle-pendulum/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "m=L=g=1、初期角0.7、初期角速度0。非整合制御では半径方向速度を明示的に加えます。 L=m=g=1、初期角0.7、初期角速度0。C=(q·q−1)/2、T=100、h=0.04/0.02/0.01。拘束目標1e−13と粗格子の1e−10比較を固定。",
+            "en": "m=L=g=1, initial angle 0.7 and zero angular velocity; off-manifold controls explicitly add radial velocity. L=m=g=1, initial angle 0.7 and zero angular velocity. C=(q·q−1)/2, T=100 and h=0.04/0.02/0.01; position targets are fixed at 1e−13, with a coarse 1e−10 companion."
+          }
+        },
+        {
+          "id": "multifrequency-resonance",
+          "name": {
+            "ja": "結合した2周波数系と共鳴の有限窓",
+            "en": "Coupled frequencies and finite-window resonance"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/results/multifrequency-resonance-preview.png",
+            "sha256": "971cc717fea17fc6184f618778728aa4b3929c651fe9b835dfa1e9bb4340a8c8",
+            "width": 1170,
+            "height": 870,
+            "caption": {
+              "ja": "保存した最細impulse軌道の実q1–q2座標と物理時刻。これは走査相図ではなく、結合した1軌道です。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。",
+              "en": "Saved q1–q2 coordinates of the finest impulse trajectory, colored by physical time. This is one coupled trajectory, not a scanned phase diagram. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/multifrequency-resonance/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/multifrequency-resonance/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/multifrequency-resonance/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/multifrequency-resonance/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "multifrequency-resonance",
+              "kind": "supplement",
+              "name": {
+                "ja": "結合した2周波数系と共鳴の有限窓",
+                "en": "Coupled frequencies and finite-window resonance"
+              },
+              "scope": {
+                "ja": "2自由度の実結合系で、12の64刻みprobeと6の精度軌道を使い、真のモード、座標間交換、離散写像と丸めを分けます。",
+                "en": "A genuinely coupled two-degree-of-freedom system uses twelve 64-step probes and six accuracy trajectories to separate normal modes, coordinate exchange, discrete maps and roundoff."
+              },
+              "method_ids": [
+                "verlet",
+                "strang-splitting"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/multifrequency-resonance/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/multifrequency-resonance/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "α=1、ω=10/20、q0=(1,1/ω)、p0=0。中心probeは保存binary64のhとsin/cosをそのまま使い、πへ丸め直しません。",
+            "en": "alpha=1, omega=10/20, q0=(1,1/omega) and p0=0. Central probes retain the evaluated binary64 h and sin/cos coefficients without snapping to mathematical pi."
+          }
         }
       ]
     },
@@ -4791,7 +5201,8 @@
       "supplemental_examples": [
         "fmm3d-inverse-r",
         "gravity-kepler",
-        "gravity-plummer-short"
+        "gravity-plummer-short",
+        "kepler-eccentricity"
       ],
       "reading": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/particle-gravity/",
@@ -4890,6 +5301,31 @@
           ],
           "verification": "/code/validated-examples/2026-11-23/gravity-dynamics/verification.json",
           "results": "/code/validated-examples/2026-11-23/gravity-dynamics/results/result.json"
+        },
+        {
+          "id": "kepler-eccentricity",
+          "name": {
+            "ja": "離心率を変えたKepler軌道と時間刻み",
+            "en": "Kepler eccentricity and time-step controls"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/kepler-eccentricity/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/kepler-eccentricity/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/physics.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/diagnostics.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/analytic.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/discrete.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/io_utils.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/qualify.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/test_geometry.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-24/geometric-controls/verification.json",
+          "results": "/code/validated-examples/2026-11-24/geometric-controls/results/result.json"
         }
       ],
       "related_problems": [
@@ -5122,11 +5558,33 @@
               "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/inputs.json",
               "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/atlas-gravity-dynamics-2026-11-23.zip",
               "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/verification.json"
+            },
+            {
+              "id": "kepler-eccentricity",
+              "kind": "supplement",
+              "name": {
+                "ja": "離心率を変えたKepler軌道と時間刻み",
+                "en": "Kepler eccentricity and time-step controls"
+              },
+              "scope": {
+                "ja": "e=0.1/0.7の16固定軌道で、保存量と同時刻の位相誤差、実際の近日点時刻と逆積分を比較します。",
+                "en": "Sixteen fixed evolutions at e=0.1/0.7 compare invariants, same-time phase error, physical periapsis times and reversal."
+              },
+              "method_ids": [
+                "verlet"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/kepler-eccentricity/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/kepler-eccentricity/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/verification.json"
             }
           ],
           "note": {
-            "ja": "G=M=a1,e.4,masses.6/.4、epsilon0、128/256/512steps、初期COM/P0。",
-            "en": "G=M=a1,e.4,masses.6/.4,epsilon0,128/256/512steps,initialCOM/P0."
+            "ja": "G=M=a1,e.4,masses.6/.4、epsilon0、128/256/512steps、初期COM/P0。 a=μ=換算質量=1、軟化なし。1周期は512/1024/2048刻み、10周期は基準2048刻み/周期。変動刻みh=h0|q|を現在状態から定め、最後だけ物理終端へ短縮。",
+            "en": "G=M=a1,e.4,masses.6/.4,epsilon0,128/256/512steps,initialCOM/P0. a=mu=reduced mass=1, without softening. One-period runs use 512/1024/2048 steps; ten-period controls use h0=2π/2048. Variable steps use h=h0|q| at the current state, with only the final step shortened to the physical endpoint."
           }
         },
         {
@@ -11583,7 +12041,8 @@
       },
       "supplemental_examples": [
         "pivoted-direct-refinement",
-        "symmetric-saddle-minres"
+        "symmetric-saddle-minres",
+        "jameson-steady-linear-modes"
       ],
       "reading": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/",
@@ -11636,6 +12095,30 @@
           ],
           "verification": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
           "results": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/result.json"
+        },
+        {
+          "id": "jameson-steady-linear-modes",
+          "name": {
+            "ja": "定常多段RKの実空間モード減衰",
+            "en": "Real-space mode damping with steady multistage RK"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/jameson-steady-linear-modes/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/jameson-steady-linear-modes/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/steady-rk/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/steady-rk/steady.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/steady-rk/experiments.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/steady-rk/io_contract.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/steady-rk/references.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/steady-rk/reporting.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/steady-rk/test_cases.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-24/steady-rk/verification.json",
+          "results": "/code/validated-examples/2026-11-24/steady-rk/results/result.json"
         }
       ],
       "related_problems": [
@@ -11747,6 +12230,60 @@
           "note": {
             "ja": "速度12/24、圧力5/11の代数的混合Poisson/Stokes型ブロック。元の真の残差1e-9を共通基準にします。",
             "en": "Algebraic mixed-Poisson/Stokes-type blocks with velocity sizes 12 and 24 and pressure sizes 5 and 11. The common original-system residual tolerance is 1e-9."
+          }
+        },
+        {
+          "id": "jameson-steady-linear-modes",
+          "name": {
+            "ja": "定常多段RKの実空間モード減衰",
+            "en": "Real-space mode damping with steady multistage RK"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/steady-rk/results/jameson-steady-linear-modes-preview.png",
+            "sha256": "bb7038e55ff63e665f2a3f71cf33992cbea96efcc3753578b819fd4335e22432",
+            "width": 1090,
+            "height": 424,
+            "caption": {
+              "ja": "周期格子の実残差に4段定常反復を適用し、離散モードの減衰・中立・増幅を区別します。 保存配列から作図。 初回の元精度目標未達と再実行の実測判定は保存JSONで区別します。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。",
+              "en": "Apply four steady residual stages on a periodic grid, separating damping, neutrality and amplification of discrete modes. Drawn from saved arrays. The first-run goal shortfall and each rerun’s actual target decisions remain explicit in the saved JSON. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/jameson-steady-linear-modes/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/jameson-steady-linear-modes/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/jameson-steady-linear-modes/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/jameson-steady-linear-modes/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "jameson-steady-linear-modes",
+              "kind": "supplement",
+              "name": {
+                "ja": "定常多段RKの実空間モード減衰",
+                "en": "Real-space mode damping with steady multistage RK"
+              },
+              "scope": {
+                "ja": "周期格子の実残差に4段定常反復を適用し、離散モードの減衰・中立・増幅を区別します。 初回の増幅制御では元の絶対残差目標が未達でした。",
+                "en": "Apply four steady residual stages on a periodic grid, separating damping, neutrality and amplification of discrete modes. The retained first run missed the original absolute residual goal in the expanding control."
+              },
+              "method_ids": [
+                "jameson-steady-rk"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/jameson-steady-linear-modes/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/jameson-steady-linear-modes/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/steady-rk/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/steady-rk/atlas-steady-rk-2026-11-24.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/steady-rk/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "無次元の固定16点・周期・線形残差。疑似時間は反復パラメータです。",
+            "en": "A fixed dimensionless sixteen-node periodic linear residual; pseudo-time is an iteration parameter."
           }
         }
       ]
@@ -12830,17 +13367,1273 @@
           }
         }
       ]
+    },
+    {
+      "id": "robertson-kinetics",
+      "name": {
+        "ja": "Robertson反応系",
+        "en": "Robertson chemical kinetics"
+      },
+      "formula": [
+        "\\dot y_1=-0.04y_1+10^4y_2y_3,\\quad\\dot y_2=0.04y_1-10^4y_2y_3-3\\times10^7y_2^2,\\quad\\dot y_3=3\\times10^7y_2^2",
+        "y_1+y_2+y_3=1"
+      ],
+      "chapter": "stiff-integration",
+      "note": {
+        "ja": "3成分の硬い反応ODEと、保存則を代数式に置き換えたindex-1 DAEを区別して比較します。",
+        "en": "Distinguish the stiff three-species ODE from an index-one DAE obtained by replacing one equation with conservation."
+      },
+      "status": "local-example",
+      "group": "biology",
+      "coverage_scope": "Fixed educational models; see each release for inputs, reference qualification and limits.",
+      "supplemental_examples": [
+        "robertson-stiff-kinetics",
+        "robertson-conservation-dae"
+      ],
+      "formula_source": {
+        "kind": "verified-supplement",
+        "path": "code/validated-examples/2026-11-24-r2/ode-adaptivity/cases.json",
+        "case_id": "robertson-stiff-kinetics",
+        "sha256": "b88c01a4388790cc795041ffcecfcbdf465e8953443ea522d23247a715900845",
+        "json_pointer": "/0/formulas/0",
+        "source_formula": "\\dot y_1=-0.04y_1+10^4y_2y_3,\\quad\\dot y_2=-\\dot y_1-3\\!\\times\\!10^7y_2^2,\\quad\\dot y_3=3\\!\\times\\!10^7y_2^2",
+        "derivation_note": {
+          "ja": "出典の第2式に第1式を代入して反応項を展開しています。3式の和が0なので、初期総量1から保存式 y1+y2+y3=1 を得ます。DAE例はその保存式を別に検証します。",
+          "en": "Substitute the first RHS into the second to expand the reaction terms. Summing the three equations gives zero; initial total one yields y1+y2+y3=1. The DAE example separately validates that conservation form."
+        }
+      },
+      "execution_scope": {
+        "ja": "3成分の固定Robertson反応系を、短い時区間のODEと固定した粗い刻みの保存則DAEで検証します。DAEの未達の時間精度・収束目標もそのまま表示します。",
+        "en": "Fixed three-species Robertson examples cover a short-time ODE and a conservation DAE on a prescribed coarse schedule. The DAE unmet temporal accuracy/refinement targets remain visible."
+      },
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/stiff-integration/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/stiff-integration/"
+      },
+      "execution_examples": [],
+      "supplemental_execution_examples": [
+        {
+          "id": "robertson-stiff-kinetics",
+          "name": {
+            "ja": "Robertson反応系の初期剛性と実誤差",
+            "en": "Robertson kinetics: initial stiffness and actual error"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-stiff-kinetics/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-stiff-kinetics/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/experiments.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/io_contract.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/reference_eval.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/models.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/stiff.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/reporting_policy.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/dopri.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/tableau.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/boundary.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/boundary_reference.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/coefficient_exact.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/qualify.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/reference_models.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_boundary.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_contract.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_dopri.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_reporting.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_stiff.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+          "results": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/result.json"
+        },
+        {
+          "id": "robertson-conservation-dae",
+          "name": {
+            "ja": "Robertson保存制約DAEと公式IDA保存値",
+            "en": "Robertson conservation DAE and stored official IDA values"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-conservation-dae/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-conservation-dae/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/models.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/newton.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/experiments.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/io_contract.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/references.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/reporting.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_cases.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_serialization.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-24/dae-controls/verification.json",
+          "results": "/code/validated-examples/2026-11-24/dae-controls/results/result.json"
+        }
+      ],
+      "related_problems": [
+        {
+          "id": "robertson-stiff-kinetics",
+          "name": {
+            "ja": "Robertson反応系：ODEと保存則DAE",
+            "en": "Robertson kinetics: ODE and conservation DAE"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/robertson-stiff-kinetics-preview.png",
+            "sha256": "2bae45f251405e4aeb534a7bbc9bc52175dc62a9bf33d48e49a8a3a2105cab2a",
+            "width": 1377,
+            "height": 564,
+            "caption": {
+              "ja": "短い固定区間でBDF2・SDIRK2・倍分割適応法を、資格済みRadau/BDF参照と比較します。 保存済みの数値場と参照を用いた図です。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。",
+              "en": "Compare BDF2, SDIRK2 and adaptive step doubling on a short fixed interval against qualified Radau and BDF references. This preview reads saved numerical fields and references only. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/robertson-stiff-kinetics/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/robertson-stiff-kinetics/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/robertson-stiff-kinetics/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/robertson-stiff-kinetics/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "robertson-stiff-kinetics",
+              "kind": "supplement",
+              "name": {
+                "ja": "Robertson反応系の初期剛性と実誤差",
+                "en": "Robertson kinetics: initial stiffness and actual error"
+              },
+              "scope": {
+                "ja": "短い固定区間でBDF2・SDIRK2・倍分割適応法を、資格済みRadau/BDF参照と比較します。",
+                "en": "Compare BDF2, SDIRK2 and adaptive step doubling on a short fixed interval against qualified Radau and BDF references."
+              },
+              "method_ids": [
+                "bdf2",
+                "sdirk2",
+                "step-doubling",
+                "newton"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-stiff-kinetics/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-stiff-kinetics/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/atlas-ode-adaptivity-2026-11-24-r2.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json"
+            },
+            {
+              "id": "robertson-conservation-dae",
+              "kind": "supplement",
+              "name": {
+                "ja": "Robertson保存制約DAEと公式IDA保存値",
+                "en": "Robertson conservation DAE and stored official IDA values"
+              },
+              "scope": {
+                "ja": "Robertsonの保存制約DAEと全ODEを同じ固定時間格子で比較し、公式IDA保存値を別に照合します。 初回は元の時間精度・細分化目標4件が未達でした。",
+                "en": "Compare the Robertson conservation DAE and full ODE on the same fixed time grids, with a separate check of stored official IDA values. The first retained run missed four original time-accuracy and refinement goals."
+              },
+              "method_ids": [
+                "dae",
+                "backward-euler",
+                "newton"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-conservation-dae/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-conservation-dae/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/atlas-dae-controls-2026-11-24.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "無次元3成分、初期値(1,0,0)、T=.4。固定512/1024/2048刻みと2許容誤差の適応法で計8run。 モデル時間0から4。中間種と残差の尺度は1e-4。公式印字値の丸め幅と数値誤差を区別します。",
+            "en": "A nondimensional three-species system starts at (1, 0, 0) and ends at T = 0.4. The fixed methods use 512, 1024 and 2048 steps; two adaptive tolerance settings bring the total to eight runs. Model time zero to four; the intermediate-species state and residual scale is 1e-4. Printing intervals and numerical errors are distinct."
+          }
+        }
+      ]
+    },
+    {
+      "id": "van-der-pol",
+      "name": {
+        "ja": "van der Pol振動子",
+        "en": "Van der Pol oscillator"
+      },
+      "formula": [
+        "\\dot x=v,\\qquad\\dot v=\\mu(1-x^2)v-x"
+      ],
+      "chapter": "stiff-integration",
+      "note": {
+        "ja": "固定したμと短い時区間で硬さによる仕事量と誤差を比較します。完全な緩和振動周期の検証ではありません。",
+        "en": "Compare work and error for fixed mu values over a short interval; this does not validate a full relaxation cycle."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "coverage_scope": "Fixed educational models; see each release for inputs, reference qualification and limits.",
+      "supplemental_examples": [
+        "van-der-pol-stiff-transition"
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/stiff-integration/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/stiff-integration/"
+      },
+      "execution_examples": [],
+      "supplemental_execution_examples": [
+        {
+          "id": "van-der-pol-stiff-transition",
+          "name": {
+            "ja": "van der Polの短時間剛性遷移",
+            "en": "Van der Pol: an early stiffness transition"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/van-der-pol-stiff-transition/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/van-der-pol-stiff-transition/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/experiments.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/io_contract.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/reference_eval.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/models.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/stiff.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/reporting_policy.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/dopri.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/tableau.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/boundary.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/boundary_reference.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/coefficient_exact.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/qualify.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/reference_models.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_boundary.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_contract.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_dopri.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_reporting.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_stiff.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+          "results": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/result.json"
+        }
+      ],
+      "related_problems": [
+        {
+          "id": "van-der-pol-stiff-transition",
+          "name": {
+            "ja": "van der Polの短時間剛性遷移",
+            "en": "Van der Pol: an early stiffness transition"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/van-der-pol-stiff-transition-preview.png",
+            "sha256": "e5b5b922e24c8dc44ac1b78c927f1698b42bdbc90eae114160f1899a9bf980e5",
+            "width": 1355,
+            "height": 605,
+            "caption": {
+              "ja": "保存済みの固定刻み比較と局所/大域誤差の区別。初回208/209で、μ=1適応法の大域目標2e-5は未達のまま保持します。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。",
+              "en": "Saved fixed-step comparisons and the local/global error distinction. The first study met 208/209 targets; the unmet mu = 1 adaptive global goal of 2e-5 remains recorded. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/van-der-pol-stiff-transition/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/van-der-pol-stiff-transition/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/van-der-pol-stiff-transition/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/van-der-pol-stiff-transition/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "van-der-pol-stiff-transition",
+              "kind": "supplement",
+              "name": {
+                "ja": "van der Polの短時間剛性遷移",
+                "en": "Van der Pol: an early stiffness transition"
+              },
+              "scope": {
+                "ja": "局所制御と大域誤差を分離します。初回は元209目標中208達成で、μ=1の厳しい適応設定は大域目標2e-5に未達でした。",
+                "en": "Separate local control from global error. The first study met 208 of 209 original targets; the mu = 1 tight adaptive run missed the 2e-5 global goal."
+              },
+              "method_ids": [
+                "bdf2",
+                "sdirk2",
+                "step-doubling",
+                "newton"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/van-der-pol-stiff-transition/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/van-der-pol-stiff-transition/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/atlas-ode-adaptivity-2026-11-24-r2.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "x′=v,v′=μ(1−x²)v−x、初期値(2,0)、T=2。2方式×3刻み×2μと適応4runで計16run。",
+            "en": "The system is xprime = v and vprime = mu(1 - x squared)v - x, initially (2, 0), over T = 2. Two fixed methods, three step counts and two mu values plus four adaptive runs give 16 runs."
+          }
+        }
+      ]
+    },
+    {
+      "id": "linear-evolution-system",
+      "name": {
+        "ja": "有限次元の線形発展系",
+        "en": "Finite-dimensional linear evolution systems"
+      },
+      "formula": [
+        "\\dot y=Ay+b"
+      ],
+      "chapter": "time-integration",
+      "note": {
+        "ja": "減衰回転の物理時刻と、定常残差を減衰させる擬似時間を例ごとに区別します。",
+        "en": "Each example distinguishes physical time in damped rotation from pseudo-time used to reduce steady residuals."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "coverage_scope": "Fixed educational models; see each release for inputs, reference qualification and limits.",
+      "supplemental_examples": [
+        "rk45-dense-events",
+        "jameson-steady-linear-modes"
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/time-integration/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/time-integration/"
+      },
+      "execution_examples": [],
+      "supplemental_execution_examples": [
+        {
+          "id": "rk45-dense-events",
+          "name": {
+            "ja": "RK45の埋込み推定・補間・イベント",
+            "en": "RK45: embedded errors, dense output and events"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rk45-dense-events/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rk45-dense-events/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/experiments.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/io_contract.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/reference_eval.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/dopri.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/tableau.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/models.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/stiff.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/reporting_policy.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/boundary.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/boundary_reference.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/coefficient_exact.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/qualify.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/reference_models.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_boundary.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_contract.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_dopri.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_reporting.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_stiff.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+          "results": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/result.json"
+        },
+        {
+          "id": "jameson-steady-linear-modes",
+          "name": {
+            "ja": "定常多段RKの実空間モード減衰",
+            "en": "Real-space mode damping with steady multistage RK"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/jameson-steady-linear-modes/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/jameson-steady-linear-modes/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/steady-rk/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/steady-rk/steady.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/steady-rk/experiments.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/steady-rk/io_contract.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/steady-rk/references.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/steady-rk/reporting.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/steady-rk/test_cases.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-24/steady-rk/verification.json",
+          "results": "/code/validated-examples/2026-11-24/steady-rk/results/result.json"
+        }
+      ],
+      "related_problems": [
+        {
+          "id": "rk45-dense-events",
+          "name": {
+            "ja": "RK45の埋込み推定・補間・イベント",
+            "en": "RK45: embedded errors, dense output and events"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/rk45-dense-events-preview.png",
+            "sha256": "014ce3e765d29479456cd7f479ae26870061991856405a1b51e62da548a1067c",
+            "width": 1378,
+            "height": 566,
+            "caption": {
+              "ja": "減衰回転の解析解を使い、受理/棄却・FSAL・区間内補間・向き付き交差時刻を分けて検査します。 保存済みの数値場と参照を用いた図です。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。",
+              "en": "Use analytic damped rotation to test acceptance, rejection, FSAL ownership, dense interpolation and directed event times separately. This preview reads saved numerical fields and references only. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rk45-dense-events/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rk45-dense-events/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rk45-dense-events/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rk45-dense-events/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "rk45-dense-events",
+              "kind": "supplement",
+              "name": {
+                "ja": "RK45の埋込み推定・補間・イベント",
+                "en": "RK45: embedded errors, dense output and events"
+              },
+              "scope": {
+                "ja": "減衰回転の解析解を使い、受理/棄却・FSAL・区間内補間・向き付き交差時刻を分けて検査します。",
+                "en": "Use analytic damped rotation to test acceptance, rejection, FSAL ownership, dense interpolation and directed event times separately."
+              },
+              "method_ids": [
+                "rk45"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rk45-dense-events/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rk45-dense-events/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/atlas-ode-adaptivity-2026-11-24-r2.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "γ=.2,ω=3、初期値(1,0)、T=2。3対のrtol/atol×2最大刻みと終端交差2runで計8run。",
+            "en": "Use gamma = 0.2, omega = 3, initial state (1, 0), and T = 2. Three paired relative and absolute tolerances with two maximum steps, plus two terminal runs, give eight runs."
+          }
+        },
+        {
+          "id": "jameson-steady-linear-modes",
+          "name": {
+            "ja": "定常多段RKの実空間モード減衰",
+            "en": "Real-space mode damping with steady multistage RK"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/steady-rk/results/jameson-steady-linear-modes-preview.png",
+            "sha256": "bb7038e55ff63e665f2a3f71cf33992cbea96efcc3753578b819fd4335e22432",
+            "width": 1090,
+            "height": 424,
+            "caption": {
+              "ja": "周期格子の実残差に4段定常反復を適用し、離散モードの減衰・中立・増幅を区別します。 保存配列から作図。 初回の元精度目標未達と再実行の実測判定は保存JSONで区別します。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。",
+              "en": "Apply four steady residual stages on a periodic grid, separating damping, neutrality and amplification of discrete modes. Drawn from saved arrays. The first-run goal shortfall and each rerun’s actual target decisions remain explicit in the saved JSON. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/jameson-steady-linear-modes/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/jameson-steady-linear-modes/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/jameson-steady-linear-modes/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/jameson-steady-linear-modes/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "jameson-steady-linear-modes",
+              "kind": "supplement",
+              "name": {
+                "ja": "定常多段RKの実空間モード減衰",
+                "en": "Real-space mode damping with steady multistage RK"
+              },
+              "scope": {
+                "ja": "周期格子の実残差に4段定常反復を適用し、離散モードの減衰・中立・増幅を区別します。 初回の増幅制御では元の絶対残差目標が未達でした。",
+                "en": "Apply four steady residual stages on a periodic grid, separating damping, neutrality and amplification of discrete modes. The retained first run missed the original absolute residual goal in the expanding control."
+              },
+              "method_ids": [
+                "jameson-steady-rk"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/jameson-steady-linear-modes/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/jameson-steady-linear-modes/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/steady-rk/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/steady-rk/atlas-steady-rk-2026-11-24.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/steady-rk/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "無次元の固定16点・周期・線形残差。疑似時間は反復パラメータです。",
+            "en": "A fixed dimensionless sixteen-node periodic linear residual; pseudo-time is an iteration parameter."
+          }
+        }
+      ]
+    },
+    {
+      "id": "inhomogeneous-reaction-diffusion",
+      "name": {
+        "ja": "非同次境界を持つ線形反応拡散",
+        "en": "Linear reaction-diffusion with inhomogeneous boundaries"
+      },
+      "formula": [
+        "u_t=u_{xx}+u,\\quad0<x<1,\\quad u(0,t)=u(1,t)=1"
+      ],
+      "chapter": "operator-splitting",
+      "note": {
+        "ja": "同じ非周期有限差分系に対する時間誤差と、連続厳密解に対する空間誤差を分けます。",
+        "en": "Separate temporal errors relative to the same nonperiodic finite-difference system from spatial errors relative to the continuous exact family."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "coverage_scope": "Fixed educational models; see each release for inputs, reference qualification and limits.",
+      "supplemental_examples": [
+        "strang-boundary-order-reduction"
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/operator-splitting/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/operator-splitting/"
+      },
+      "execution_examples": [],
+      "supplemental_execution_examples": [
+        {
+          "id": "strang-boundary-order-reduction",
+          "name": {
+            "ja": "Dirichlet境界でのStrang次数低下と補正",
+            "en": "Strang splitting: Dirichlet boundary order reduction and correction"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/strang-boundary-order-reduction/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/strang-boundary-order-reduction/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/experiments.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/io_contract.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/reference_eval.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/boundary.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/models.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/stiff.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/reporting_policy.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/dopri.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/tableau.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/boundary_reference.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/coefficient_exact.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/qualify.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/reference_models.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_boundary.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_contract.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_dopri.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_reporting.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_stiff.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+          "results": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/result.json"
+        }
+      ],
+      "related_problems": [
+        {
+          "id": "strang-boundary-order-reduction",
+          "name": {
+            "ja": "Dirichlet境界でのStrang次数低下と補正",
+            "en": "Strang splitting: Dirichlet boundary order reduction and correction"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/strang-boundary-order-reduction-preview.png",
+            "sha256": "f6fc7c2def18c49db259548f9f0687a1dbff5fb88a29ec697392e320d160b6ae",
+            "width": 1375,
+            "height": 566,
+            "caption": {
+              "ja": "実1D非周期場で、未補正/境界補正Strangを同じFD参照へ比較し、時間誤差と空間誤差を分けます。 保存済みの数値場と参照を用いた図です。",
+              "en": "Evolve actual one-dimensional nonperiodic fields and compare unmodified and boundary-corrected Strang splitting against the same spatial discretization. This preview reads saved numerical fields and references only."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strang-boundary-order-reduction/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strang-boundary-order-reduction/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strang-boundary-order-reduction/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/strang-boundary-order-reduction/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "strang-boundary-order-reduction",
+              "kind": "supplement",
+              "name": {
+                "ja": "Dirichlet境界でのStrang次数低下と補正",
+                "en": "Strang splitting: Dirichlet boundary order reduction and correction"
+              },
+              "scope": {
+                "ja": "実1D非周期場で、未補正/境界補正Strangを同じFD参照へ比較し、時間誤差と空間誤差を分けます。",
+                "en": "Evolve actual one-dimensional nonperiodic fields and compare unmodified and boundary-corrected Strang splitting against the same spatial discretization."
+              },
+              "method_ids": [
+                "strang-splitting",
+                "lie-trotter",
+                "centered-difference"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/strang-boundary-order-reduction/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/strang-boundary-order-reduction/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/atlas-ode-adaptivity-2026-11-24-r2.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "u_t=u_xx+u、[0,1]、両端u=1、解析定常解+.1正弦摂動、T=.1。内部31/63/127点・8/16/32/64刻みとLie対照4run、計28run。",
+            "en": "Solve u_t = u_xx + u on [0, 1] with both boundary values equal to 1, an analytic steady state plus a 0.1 sine perturbation, and T = 0.1. Use 31, 63 and 127 interior nodes with 8, 16, 32 and 64 steps, plus four Lie controls: 28 runs."
+          }
+        }
+      ]
+    },
+    {
+      "id": "index-one-dae",
+      "name": {
+        "ja": "半陽的index-1 DAE",
+        "en": "Semi-explicit index-one DAE"
+      },
+      "formula": [
+        "\\dot y=f(t,y,z),\\qquad0=g(t,y,z),\\qquad\\det g_z\\ne0"
+      ],
+      "chapter": "dae",
+      "note": {
+        "ja": "整合初期化と微分・代数残差を扱う小規模な固定例です。一般DAEソルバーの完成を意味しません。",
+        "en": "Small fixed examples expose consistent initialization and separate differential/algebraic residuals; this is not a general-purpose DAE solver."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "coverage_scope": "Fixed educational models; see each release for inputs, reference qualification and limits.",
+      "supplemental_examples": [
+        "index1-dae-consistent-initialization",
+        "robertson-conservation-dae"
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/dae/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/dae/"
+      },
+      "execution_examples": [],
+      "supplemental_execution_examples": [
+        {
+          "id": "index1-dae-consistent-initialization",
+          "name": {
+            "ja": "index-1 DAEの整合初期化と離散残差",
+            "en": "Consistent initialization and discrete residuals for an index-one DAE"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/index1-dae-consistent-initialization/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/index1-dae-consistent-initialization/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/models.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/newton.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/experiments.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/io_contract.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/references.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/reporting.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_cases.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_serialization.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-24/dae-controls/verification.json",
+          "results": "/code/validated-examples/2026-11-24/dae-controls/results/result.json"
+        },
+        {
+          "id": "robertson-conservation-dae",
+          "name": {
+            "ja": "Robertson保存制約DAEと公式IDA保存値",
+            "en": "Robertson conservation DAE and stored official IDA values"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-conservation-dae/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-conservation-dae/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/models.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/newton.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/experiments.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/io_contract.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/references.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/reporting.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_cases.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_serialization.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-24/dae-controls/verification.json",
+          "results": "/code/validated-examples/2026-11-24/dae-controls/results/result.json"
+        }
+      ],
+      "related_problems": [
+        {
+          "id": "robertson-stiff-kinetics",
+          "name": {
+            "ja": "Robertson反応系：ODEと保存則DAE",
+            "en": "Robertson kinetics: ODE and conservation DAE"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/robertson-stiff-kinetics-preview.png",
+            "sha256": "2bae45f251405e4aeb534a7bbc9bc52175dc62a9bf33d48e49a8a3a2105cab2a",
+            "width": 1377,
+            "height": 564,
+            "caption": {
+              "ja": "短い固定区間でBDF2・SDIRK2・倍分割適応法を、資格済みRadau/BDF参照と比較します。 保存済みの数値場と参照を用いた図です。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。",
+              "en": "Compare BDF2, SDIRK2 and adaptive step doubling on a short fixed interval against qualified Radau and BDF references. This preview reads saved numerical fields and references only. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/robertson-stiff-kinetics/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/robertson-stiff-kinetics/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/robertson-stiff-kinetics/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/robertson-stiff-kinetics/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "robertson-stiff-kinetics",
+              "kind": "supplement",
+              "name": {
+                "ja": "Robertson反応系の初期剛性と実誤差",
+                "en": "Robertson kinetics: initial stiffness and actual error"
+              },
+              "scope": {
+                "ja": "短い固定区間でBDF2・SDIRK2・倍分割適応法を、資格済みRadau/BDF参照と比較します。",
+                "en": "Compare BDF2, SDIRK2 and adaptive step doubling on a short fixed interval against qualified Radau and BDF references."
+              },
+              "method_ids": [
+                "bdf2",
+                "sdirk2",
+                "step-doubling",
+                "newton"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-stiff-kinetics/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-stiff-kinetics/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/atlas-ode-adaptivity-2026-11-24-r2.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json"
+            },
+            {
+              "id": "robertson-conservation-dae",
+              "kind": "supplement",
+              "name": {
+                "ja": "Robertson保存制約DAEと公式IDA保存値",
+                "en": "Robertson conservation DAE and stored official IDA values"
+              },
+              "scope": {
+                "ja": "Robertsonの保存制約DAEと全ODEを同じ固定時間格子で比較し、公式IDA保存値を別に照合します。 初回は元の時間精度・細分化目標4件が未達でした。",
+                "en": "Compare the Robertson conservation DAE and full ODE on the same fixed time grids, with a separate check of stored official IDA values. The first retained run missed four original time-accuracy and refinement goals."
+              },
+              "method_ids": [
+                "dae",
+                "backward-euler",
+                "newton"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-conservation-dae/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-conservation-dae/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/atlas-dae-controls-2026-11-24.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "無次元3成分、初期値(1,0,0)、T=.4。固定512/1024/2048刻みと2許容誤差の適応法で計8run。 モデル時間0から4。中間種と残差の尺度は1e-4。公式印字値の丸め幅と数値誤差を区別します。",
+            "en": "A nondimensional three-species system starts at (1, 0, 0) and ends at T = 0.4. The fixed methods use 512, 1024 and 2048 steps; two adaptive tolerance settings bring the total to eight runs. Model time zero to four; the intermediate-species state and residual scale is 1e-4. Printing intervals and numerical errors are distinct."
+          }
+        },
+        {
+          "id": "index1-dae-consistent-initialization",
+          "name": {
+            "ja": "index-1 DAEの整合初期化と離散残差",
+            "en": "Consistent initialization and discrete residuals for an index-one DAE"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/results/index1-dae-consistent-initialization-preview.png",
+            "sha256": "a29de45d4d64534b80d906f4bf8eff1f8966e27d964addf5d58ffd2f8c3c175d",
+            "width": 1090,
+            "height": 424,
+            "caption": {
+              "ja": "既知の正枝を持つindex-1 DAEで初期化と後退Eulerの誤差・残差を分離します。 保存配列から作図。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。",
+              "en": "Separate initialization, backward-Euler error and residuals on a known positive index-one DAE branch. Drawn from saved arrays. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/index1-dae-consistent-initialization/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/index1-dae-consistent-initialization/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/index1-dae-consistent-initialization/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/index1-dae-consistent-initialization/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "index1-dae-consistent-initialization",
+              "kind": "supplement",
+              "name": {
+                "ja": "index-1 DAEの整合初期化と離散残差",
+                "en": "Consistent initialization and discrete residuals for an index-one DAE"
+              },
+              "scope": {
+                "ja": "既知の正枝を持つindex-1 DAEで初期化と後退Eulerの誤差・残差を分離します。",
+                "en": "Separate initialization, backward-Euler error and residuals on a known positive index-one DAE branch."
+              },
+              "method_ids": [
+                "dae",
+                "backward-euler",
+                "newton"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/index1-dae-consistent-initialization/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/index1-dae-consistent-initialization/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/atlas-dae-controls-2026-11-24.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "無次元・正枝。微分行と代数行の尺度はそれぞれ1で、最大ノルムを用います。",
+            "en": "Dimensionless positive branch; differential and algebraic row scales are both one, with the maximum norm."
+          }
+        }
+      ]
+    },
+    {
+      "id": "constrained-pendulum",
+      "name": {
+        "ja": "拘束付き平面振り子",
+        "en": "Constrained planar pendulum"
+      },
+      "formula": [
+        "\\dot q=p,\\quad\\dot p=(0,-1)-\\lambda q,\\quad q^Tq=1,\\quad q^Tp=0"
+      ],
+      "chapter": "dae",
+      "note": {
+        "ja": "元の位置拘束DAE、微分した拘束に基づくODE、SHAKE/RATTLEの離散写像を区別します。",
+        "en": "Distinguish the original position-constrained DAE, an underlying ODE based on differentiated constraints, and the SHAKE/RATTLE discrete maps."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "coverage_scope": "Fixed educational models; see each release for inputs, reference qualification and limits.",
+      "supplemental_examples": [
+        "high-index-pendulum",
+        "shake-rattle-pendulum"
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/dae/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/dae/"
+      },
+      "execution_examples": [],
+      "supplemental_execution_examples": [
+        {
+          "id": "high-index-pendulum",
+          "name": {
+            "ja": "振り子の指数低減・拘束ドリフト・明示安定化",
+            "en": "Index reduction, constraint drift and explicit stabilization for a pendulum"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/high-index-pendulum/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/high-index-pendulum/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/models.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/newton.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/experiments.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/io_contract.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/references.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/reporting.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_cases.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_serialization.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-24/dae-controls/verification.json",
+          "results": "/code/validated-examples/2026-11-24/dae-controls/results/result.json"
+        },
+        {
+          "id": "shake-rattle-pendulum",
+          "name": {
+            "ja": "SHAKEとRATTLE：拘束と運動量の違い",
+            "en": "SHAKE and RATTLE: constraints and momentum ownership"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/shake-rattle-pendulum/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/shake-rattle-pendulum/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/physics.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/diagnostics.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/analytic.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/discrete.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/io_utils.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/qualify.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/test_geometry.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-24/geometric-controls/verification.json",
+          "results": "/code/validated-examples/2026-11-24/geometric-controls/results/result.json"
+        }
+      ],
+      "related_problems": [
+        {
+          "id": "high-index-pendulum",
+          "name": {
+            "ja": "拘束付き振り子",
+            "en": "Constrained planar pendulum"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/results/high-index-pendulum-preview.png",
+            "sha256": "5c9e7d6c1ffbdaac74b1ffd39702ac14caa6e17bf75d338359671bc5594a91a8",
+            "width": 1090,
+            "height": 424,
+            "caption": {
+              "ja": "位置拘束の指数3系から明示ODEを導き、整合・非整合初期値の拘束ドリフトと安定化を比較します。 保存配列から作図。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。",
+              "en": "Derive an explicit ODE from an index-three position constraint and compare drift and stabilization for consistent and inconsistent starts. Drawn from saved arrays. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/high-index-pendulum/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/high-index-pendulum/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/high-index-pendulum/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/high-index-pendulum/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "high-index-pendulum",
+              "kind": "supplement",
+              "name": {
+                "ja": "振り子の指数低減・拘束ドリフト・明示安定化",
+                "en": "Index reduction, constraint drift and explicit stabilization for a pendulum"
+              },
+              "scope": {
+                "ja": "位置拘束の指数3系から明示ODEを導き、整合・非整合初期値の拘束ドリフトと安定化を比較します。",
+                "en": "Derive an explicit ODE from an index-three position constraint and compare drift and stabilization for consistent and inconsistent starts."
+              },
+              "method_ids": [
+                "dae",
+                "rk4"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/high-index-pendulum/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/high-index-pendulum/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/atlas-dae-controls-2026-11-24.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/verification.json"
+            },
+            {
+              "id": "shake-rattle-pendulum",
+              "kind": "supplement",
+              "name": {
+                "ja": "SHAKEとRATTLE：拘束と運動量の違い",
+                "en": "SHAKE and RATTLE: constraints and momentum ownership"
+              },
+              "scope": {
+                "ja": "単振り子の10固定軌道で、位置拘束、全時刻の接線運動量と内部点の中心化運動量を区別します。",
+                "en": "Ten fixed pendulum evolutions distinguish position constraints, full-time tangent momentum and interior centered momentum."
+              },
+              "method_ids": [
+                "shake",
+                "rattle"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/shake-rattle-pendulum/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/shake-rattle-pendulum/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "m=L=g=1、初期角0.7、初期角速度0。非整合制御では半径方向速度を明示的に加えます。 L=m=g=1、初期角0.7、初期角速度0。C=(q·q−1)/2、T=100、h=0.04/0.02/0.01。拘束目標1e−13と粗格子の1e−10比較を固定。",
+            "en": "m=L=g=1, initial angle 0.7 and zero angular velocity; off-manifold controls explicitly add radial velocity. L=m=g=1, initial angle 0.7 and zero angular velocity. C=(q·q−1)/2, T=100 and h=0.04/0.02/0.01; position targets are fixed at 1e−13, with a coarse 1e−10 companion."
+          }
+        }
+      ]
+    },
+    {
+      "id": "kepler-two-body",
+      "name": {
+        "ja": "Kepler二体問題",
+        "en": "Kepler two-body problem"
+      },
+      "formula": [
+        "\\dot q=p,\\qquad\\dot p=-q/\\|q\\|^3,\\qquad H=\\tfrac12p^Tp-1/\\|q\\|"
+      ],
+      "chapter": "symplectic",
+      "note": {
+        "ja": "無次元化した平面楕円軌道で位相、角運動量、エネルギーと刻みの影響を分けます。",
+        "en": "Nondimensional planar ellipses separate phase, angular momentum, energy and step-selection effects."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "coverage_scope": "Fixed educational models; see each release for inputs, reference qualification and limits.",
+      "supplemental_examples": [
+        "kepler-eccentricity"
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/symplectic/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/symplectic/"
+      },
+      "execution_examples": [],
+      "supplemental_execution_examples": [
+        {
+          "id": "kepler-eccentricity",
+          "name": {
+            "ja": "離心率を変えたKepler軌道と時間刻み",
+            "en": "Kepler eccentricity and time-step controls"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/kepler-eccentricity/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/kepler-eccentricity/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/physics.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/diagnostics.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/analytic.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/discrete.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/io_utils.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/qualify.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/test_geometry.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-24/geometric-controls/verification.json",
+          "results": "/code/validated-examples/2026-11-24/geometric-controls/results/result.json"
+        }
+      ],
+      "related_problems": [
+        {
+          "id": "gravity-kepler",
+          "name": {
+            "ja": "無軟化Kepler二体の時間誤差",
+            "en": "Unsoftened Kepler two-body time error"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-kepler-preview.png",
+            "sha256": "12b3902c4f90faa30226cf0ca1c14e35c9f1de85339c09acbb7818a47a8ae758",
+            "width": 920,
+            "height": 592,
+            "caption": {
+              "ja": "固定入力を実際に計算した保存配列からの検証図。",
+              "en": "Validation figure from actual saved fixed-input calculation arrays."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-kepler/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-kepler/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-kepler/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-kepler/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "gravity-kepler",
+              "kind": "supplement",
+              "name": {
+                "ja": "無軟化Kepler二体の時間誤差",
+                "en": "Unsoftened Kepler two-body time error"
+              },
+              "scope": {
+                "ja": "非等質量二体をKDKで1周し、独立Kepler方程式の位置・速度とエネルギー/角運動量を照合。",
+                "en": "Advance an unequal-mass binary for one orbit with KDK and compare independent Kepler positions/velocities and conservation."
+              },
+              "method_ids": [
+                "verlet"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-kepler/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-kepler/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/atlas-gravity-dynamics-2026-11-23.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/verification.json"
+            },
+            {
+              "id": "kepler-eccentricity",
+              "kind": "supplement",
+              "name": {
+                "ja": "離心率を変えたKepler軌道と時間刻み",
+                "en": "Kepler eccentricity and time-step controls"
+              },
+              "scope": {
+                "ja": "e=0.1/0.7の16固定軌道で、保存量と同時刻の位相誤差、実際の近日点時刻と逆積分を比較します。",
+                "en": "Sixteen fixed evolutions at e=0.1/0.7 compare invariants, same-time phase error, physical periapsis times and reversal."
+              },
+              "method_ids": [
+                "verlet"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/kepler-eccentricity/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/kepler-eccentricity/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "G=M=a1,e.4,masses.6/.4、epsilon0、128/256/512steps、初期COM/P0。 a=μ=換算質量=1、軟化なし。1周期は512/1024/2048刻み、10周期は基準2048刻み/周期。変動刻みh=h0|q|を現在状態から定め、最後だけ物理終端へ短縮。",
+            "en": "G=M=a1,e.4,masses.6/.4,epsilon0,128/256/512steps,initialCOM/P0. a=mu=reduced mass=1, without softening. One-period runs use 512/1024/2048 steps; ten-period controls use h0=2π/2048. Variable steps use h=h0|q| at the current state, with only the final step shortened to the physical endpoint."
+          }
+        }
+      ]
+    },
+    {
+      "id": "coupled-harmonic-oscillators",
+      "name": {
+        "ja": "二周波数の結合調和振動子",
+        "en": "Coupled two-frequency harmonic oscillators"
+      },
+      "formula": [
+        "H=\\tfrac12(p_1^2+p_2^2+q_1^2+\\omega^2q_2^2)+q_1q_2"
+      ],
+      "chapter": "symplectic",
+      "note": {
+        "ja": "連続正規モード、理想分割写像、保存した浮動小数点係数の写像、実際の反復丸めを区別します。",
+        "en": "Separate continuous normal modes, the ideal split map, a map with stored floating-point coefficients, and repeated rounded updates."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "coverage_scope": "Fixed educational models; see each release for inputs, reference qualification and limits.",
+      "supplemental_examples": [
+        "multifrequency-resonance"
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/symplectic/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/symplectic/"
+      },
+      "execution_examples": [],
+      "supplemental_execution_examples": [
+        {
+          "id": "multifrequency-resonance",
+          "name": {
+            "ja": "結合した2周波数系と共鳴の有限窓",
+            "en": "Coupled frequencies and finite-window resonance"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/multifrequency-resonance/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/multifrequency-resonance/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/physics.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/diagnostics.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/analytic.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/discrete.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/io_utils.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/qualify.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/test_geometry.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-24/geometric-controls/verification.json",
+          "results": "/code/validated-examples/2026-11-24/geometric-controls/results/result.json"
+        }
+      ],
+      "related_problems": [
+        {
+          "id": "multifrequency-resonance",
+          "name": {
+            "ja": "結合した2周波数系と共鳴の有限窓",
+            "en": "Coupled frequencies and finite-window resonance"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/results/multifrequency-resonance-preview.png",
+            "sha256": "971cc717fea17fc6184f618778728aa4b3929c651fe9b835dfa1e9bb4340a8c8",
+            "width": 1170,
+            "height": 870,
+            "caption": {
+              "ja": "保存した最細impulse軌道の実q1–q2座標と物理時刻。これは走査相図ではなく、結合した1軌道です。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。",
+              "en": "Saved q1–q2 coordinates of the finest impulse trajectory, colored by physical time. This is one coupled trajectory, not a scanned phase diagram. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/multifrequency-resonance/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/multifrequency-resonance/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/multifrequency-resonance/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/multifrequency-resonance/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "multifrequency-resonance",
+              "kind": "supplement",
+              "name": {
+                "ja": "結合した2周波数系と共鳴の有限窓",
+                "en": "Coupled frequencies and finite-window resonance"
+              },
+              "scope": {
+                "ja": "2自由度の実結合系で、12の64刻みprobeと6の精度軌道を使い、真のモード、座標間交換、離散写像と丸めを分けます。",
+                "en": "A genuinely coupled two-degree-of-freedom system uses twelve 64-step probes and six accuracy trajectories to separate normal modes, coordinate exchange, discrete maps and roundoff."
+              },
+              "method_ids": [
+                "verlet",
+                "strang-splitting"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/multifrequency-resonance/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/multifrequency-resonance/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "α=1、ω=10/20、q0=(1,1/ω)、p0=0。中心probeは保存binary64のhとsin/cosをそのまま使い、πへ丸め直しません。",
+            "en": "alpha=1, omega=10/20, q0=(1,1/omega) and p0=0. Central probes retain the evaluated binary64 h and sin/cos coefficients without snapping to mathematical pi."
+          }
+        }
+      ]
     }
   ],
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/equations/",
   "counts": {
-    "total": 72,
-    "local_example": 50,
+    "total": 80,
+    "local_example": 58,
     "reading_only": 22,
     "groups": {
-      "physical": 36,
+      "physical": 43,
       "relativistic": 6,
-      "biology": 22,
+      "biology": 23,
       "quantum": 4,
       "algebraic": 4
     }
@@ -12851,13 +14644,13 @@
   },
   "execution_example_count": 22,
   "problem_routes_source_sha256": {
-    "catalog/atlas-depth-expansion.json": "5d3f5ab6f626a0bc4627b680dbe64ab75f738f8660f25862cf58a97ac2e39b90",
-    "catalog/atlas-equations.json": "7ee122ac83cae11b26e42faaf8ae5fc24f508dfb694eadc2513b27c96781c6eb",
+    "catalog/atlas-depth-expansion.json": "9cf692c64631ff4c64803d9caac072b3edc5dab0afec414d67df99eae3098d28",
+    "catalog/atlas-equations.json": "61d1366ee14643fb0c8f5dff26c878f713396bf78e765c7344a4fc56a30e9b28",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
-    "catalog/atlas-methods.json": "36bd0014995be691a9a9d62d8c45d4f4b3782823b147740dc2ede4f5ae9ced7b",
-    "catalog/atlas-problem-links.json": "73e8f336dc644b50c604ac4ca8889d7638d2c36ddec3ad70f3c93e5a3c0d8d64",
-    "catalog/atlas-reference-supplements.json": "b9f3735a1d296e84f3f92febeaf335904d35531f3d33cef760da73b8ad78bc07",
-    "catalog/atlas-test-problems.json": "76dd9b5103fb4a87e1c9b930862ceee229cf14c641b3d9a04c9bf46658ab7837",
+    "catalog/atlas-methods.json": "82dfd3336a82bc165f4f47d3e1f709481866e053bf1c9bcb342520bf0d257609",
+    "catalog/atlas-problem-links.json": "b58e2bdf1ebe0c0c2633c2e1f96002020a5316bdfde8d17ee62f677fe1b3c156",
+    "catalog/atlas-reference-supplements.json": "35ce6804f79238ea87159340ebed57815ec42e239e0cf4fd7cc3bebd128478a2",
+    "catalog/atlas-test-problems.json": "a26379f4a8b6a236b38af6e664312f24161c97e37e65b6e7bad71ff8eb923f20",
     "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
     "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
     "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
@@ -13058,6 +14851,11 @@
     "code/validated-examples/2026-11-24-r2/maxwell-lorentz/results/result.json": "6d8ed5f5a1ecfb389610850e093860ef029faa5b1ecd60e719e1a70423429051",
     "code/validated-examples/2026-11-24-r2/maxwell-lorentz/source-manifest.json": "f2a3b94d686d7114f9675e6d4f3afba01ffc63abdf137f739aa2052bfbdd64b4",
     "code/validated-examples/2026-11-24-r2/maxwell-lorentz/verification.json": "7703e35d6a56ca69a6aaf17e7bd910bccad1c7cf21632e4625eda29c09d37d6d",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/atlas-ode-adaptivity-2026-11-24-r2.zip": "19e6bed36d5a49a865881df12170edf9f79b4c5365e35ae91186eaf33bb5bc3a",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/cases.json": "b88c01a4388790cc795041ffcecfcbdf465e8953443ea522d23247a715900845",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/result.json": "6d61f82c6c4854a92696faebb2f3fcc650b50abc141a945720d432077dd789cf",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/source-manifest.json": "f45223afdb2709aae27d4a6bc0b45b32c78e15b17012dc30cfe6f100acf064ef",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json": "56e03be5a74a8b4519e131c8988da000e9429412a97ce9f0bd04c83907e930f3",
     "code/validated-examples/2026-11-24-r2/radiation-matter/atlas-radiation-matter-2026-11-24-r2.zip": "fe1e3d790bd9792d8781243dc4d5ff40d3491a181a11c795569f3f4e542ed7e6",
     "code/validated-examples/2026-11-24-r2/radiation-matter/cases.json": "c5522498e8c797035b7c093d4371d88a7950e19f26ab6c6495faa81e7e1b8ebb",
     "code/validated-examples/2026-11-24-r2/radiation-matter/results/result.json": "39c457ec19fa3e73ed021778b4fd4fa19d112cf895c344cf7ffed63847ce9e54",
@@ -13073,11 +14871,21 @@
     "code/validated-examples/2026-11-24/adjoint/results/result.json": "adbb489d0cf730f76cd1bfb1b7b9fe85948c42b4ed90dac7595aa71f1fbbc036",
     "code/validated-examples/2026-11-24/adjoint/source-manifest.json": "3536c89cf5356d8f0bb9eda75674cafd4741862cf7f7d479a0a3c377aa0b3a34",
     "code/validated-examples/2026-11-24/adjoint/verification.json": "4a2d6bb02db35895f7621ead01f1603269523980a83aa3120a04412032dbf604",
+    "code/validated-examples/2026-11-24/dae-controls/atlas-dae-controls-2026-11-24.zip": "3f4d3ed14053a3a2a6f495c4445fb5c64093e59c07559b6632d2cdd9ea454fad",
+    "code/validated-examples/2026-11-24/dae-controls/cases.json": "b5a4e533751629a22667809a1d609ff709a8ebc0b121a7aa3bbb30e70c82f2ca",
+    "code/validated-examples/2026-11-24/dae-controls/results/result.json": "a6bbc6b2201ee1f9992a450ffc268e7351f60c1947085b12e4387c05f4e42499",
+    "code/validated-examples/2026-11-24/dae-controls/source-manifest.json": "d2fb466758236e7de6b078693209262ad99f3eadc343e9e719fc990a6e3cec4c",
+    "code/validated-examples/2026-11-24/dae-controls/verification.json": "cbc490c02eb2c86689652cfb344a208bccaa8faedbd8d893564d4732eccaa46c",
     "code/validated-examples/2026-11-24/dsmc-shock/atlas-dsmc-shock-2026-11-24.zip": "92794cc568e7857346a24489eddaae113eb60754de7ba717254955ace9d8d961",
     "code/validated-examples/2026-11-24/dsmc-shock/cases.json": "d5123d6e0f48145bcf0b25a68cffb2f9250bb019e21ea42760db848aed536b22",
     "code/validated-examples/2026-11-24/dsmc-shock/results/result.json": "a4cd1e0092935bccd85bc0cf14086d01c723f05e4ce9474c3563283b3a55562e",
     "code/validated-examples/2026-11-24/dsmc-shock/source-manifest.json": "cc8ff5afec49e7f1ccffd2cce91bcf85e4e116c7389342304667bc7c9bb5eccf",
     "code/validated-examples/2026-11-24/dsmc-shock/verification.json": "7e7919032dafc67b5e857acd4464516cb4b742eed89ff8adae7f3c8cf75a96f5",
+    "code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip": "4e3ef28ab6c91ae62918b7effc6f37097ec0f5a4ed878d4d33fa06e1945329a2",
+    "code/validated-examples/2026-11-24/geometric-controls/cases.json": "f97c3c5cef1540cba0c16b8f8d32d70696d4d22105eaf784ff2e17cd3ccecd8b",
+    "code/validated-examples/2026-11-24/geometric-controls/results/result.json": "1e0ba587a26f6b15380621e3b04f44f2dee205d5ffe49086fd23c8972c85510b",
+    "code/validated-examples/2026-11-24/geometric-controls/source-manifest.json": "ef06a73e7a39a839112d5d1c3bb962860dc37e95eec1fb80e6ade23b64ab844a",
+    "code/validated-examples/2026-11-24/geometric-controls/verification.json": "507d5825483d27a7cefe5a3ef683c4e5a818234d4c8098a97772e92de056d50d",
     "code/validated-examples/2026-11-24/globalization-controls/atlas-globalization-controls-2026-11-24.zip": "a8d55166dedf528bbb143080998b5bdd0a95ad37d29d589206499e23dbc9fe4d",
     "code/validated-examples/2026-11-24/globalization-controls/cases.json": "257b16d3e1af5cf9a9b53c747314e9c58d6b0fb2c98f445d4809f8f4eb0e7e66",
     "code/validated-examples/2026-11-24/globalization-controls/results/result.json": "64a4ee192598660d6aefcb3bac2693a59bf568a5e2ab4fa7cbe9fe529ffa0218",
@@ -13128,6 +14936,11 @@
     "code/validated-examples/2026-11-24/reverse-higher-ad/results/result.json": "c7e23a2174d768b1bd95e1170e0e633efbec172c4e3cf3eab8e5f61d020d8374",
     "code/validated-examples/2026-11-24/reverse-higher-ad/source-manifest.json": "a6933b5568bf03c5306f25f74bc36435cee98f890bd8b30364390cbb3f0fefb5",
     "code/validated-examples/2026-11-24/reverse-higher-ad/verification.json": "1cb830974a5e0b4571ae3cec9219bddd4ca856a3f5c47130787daaf9ab81f641",
+    "code/validated-examples/2026-11-24/steady-rk/atlas-steady-rk-2026-11-24.zip": "a6524122fbc92701504894dff03837587170c0f4d39ce50657d4d5a23d36d3d9",
+    "code/validated-examples/2026-11-24/steady-rk/cases.json": "faced210cbcf6c1ef091d18f0af09b5c973a5e04ebb78e44e869071bce2c6e13",
+    "code/validated-examples/2026-11-24/steady-rk/results/result.json": "304601760794cdec210ae729223b0d0a57d987a5cc7ddfd5da8323c86fac6e48",
+    "code/validated-examples/2026-11-24/steady-rk/source-manifest.json": "05dd64c334156ee7ea2d10c47efa4d5822cfc3ba61ae3ad5867aeea3c6cad13c",
+    "code/validated-examples/2026-11-24/steady-rk/verification.json": "037f6c02ee4b1a1ee5147e7340dfd3ed0599c9ae7b53a260479a214160ace43d",
     "code/validated-examples/2026-11-24/stochastic-accuracy/atlas-stochastic-accuracy-2026-11-24.zip": "6a6ecc012df95853e20b2aa6db2fcceb8fce216872805a2b285c1f123a1e9801",
     "code/validated-examples/2026-11-24/stochastic-accuracy/cases.json": "32bbca261339410393cdbaed888ab3b226374b7dc2b9308f0aaedf0c90cc52bb",
     "code/validated-examples/2026-11-24/stochastic-accuracy/results/result.json": "9322e0a28a62774d84e4f38504d05063d8e668e11599f4959aab186d06a38016",
@@ -13141,7 +14954,7 @@
     "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "97b55e9b7a8eb7b487026a91124dd7315866e2ff6679156489cda37ec6205b05"
+    "numerical-methods-atlas/gallery/preview-manifest.json": "7708927c98694afeb5453e6d68568dd1f76d9e23b12f78f80456b5752f31ce2d"
   },
   "supplemental_case_ids": [
     "ale-nonuniform-transport",
@@ -13174,7 +14987,11 @@
     "gravity-kepler",
     "gravity-plummer-short",
     "hessian-vector-products",
+    "high-index-pendulum",
+    "index1-dae-consistent-initialization",
     "isotropic-scattering-slab",
+    "jameson-steady-linear-modes",
+    "kepler-eccentricity",
     "kh-initial-growth",
     "kink-branch-derivatives",
     "lbm-annular-couette-control",
@@ -13186,6 +15003,7 @@
     "lorentz-oblique-sp",
     "lshape-fem",
     "magnetic-loop-independent",
+    "multifrequency-resonance",
     "neutral-slab-yb",
     "normal-tail-importance",
     "opposing-beams2d",
@@ -13197,13 +15015,18 @@
     "postshock-orszag-tang",
     "restarted-shift-invert",
     "reverse-vjp-duality",
+    "rk45-dense-events",
+    "robertson-conservation-dae",
+    "robertson-stiff-kinetics",
     "rotated-anisotropic-diffusion",
     "rt-initial-growth",
     "schnakenberg-nonlinear",
     "schnakenberg-pattern",
     "shadow-absorber2d",
+    "shake-rattle-pendulum",
     "srhd-collision",
     "srmhd-alfven",
+    "strang-boundary-order-reduction",
     "su-olson-diffusion1996",
     "su-olson-transport1997",
     "swashes-topography",
@@ -13211,6 +15034,7 @@
     "thermal-landau-damping",
     "thermal-two-stream",
     "turing-schnakenberg",
+    "van-der-pol-stiff-transition",
     "wall-manufactured",
     "weno-critical-epsilon",
     "zalesak-rotation"
@@ -13219,7 +15043,7 @@
     "numerical-methods-atlas/assets/biological-models.json": "3ee3489ca4d2632d672576fcd75c062137053e203b55cbf51ee0cbe8cfc9556f",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "catalog/atlas-equations.json": "7ee122ac83cae11b26e42faaf8ae5fc24f508dfb694eadc2513b27c96781c6eb",
+    "catalog/atlas-equations.json": "61d1366ee14643fb0c8f5dff26c878f713396bf78e765c7344a4fc56a30e9b28",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "code/validated-examples/2026-11-23/weno-critical/source-manifest.json": "abd8b0a29bb81b7d98b897ec0a0eb409f77873857ec8199c3767f1ede11b43a5",
     "code/validated-examples/2026-11-23/weno-critical/verification.json": "ccbf3c6a2fe7055b324a0d98c152da909242f36e0c82ca3281038e4c9b0c165f",
@@ -13236,6 +15060,11 @@
     "code/validated-examples/2026-11-24/adjoint/cases.json": "2ee30f6ebfc8e1e49d9fb581e19dcd821f2b6f2b02a2f27400272d0301071645",
     "code/validated-examples/2026-11-24/adjoint/results/result.json": "adbb489d0cf730f76cd1bfb1b7b9fe85948c42b4ed90dac7595aa71f1fbbc036",
     "code/validated-examples/2026-11-24/adjoint/atlas-adjoint-2026-11-24.zip": "6b78fd9d4320e9790bd6ebe2a0ef61a25c55c7fdc0a14dd37d0ca1a37b80a5ee",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/source-manifest.json": "f45223afdb2709aae27d4a6bc0b45b32c78e15b17012dc30cfe6f100acf064ef",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json": "56e03be5a74a8b4519e131c8988da000e9429412a97ce9f0bd04c83907e930f3",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/cases.json": "b88c01a4388790cc795041ffcecfcbdf465e8953443ea522d23247a715900845",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/result.json": "6d61f82c6c4854a92696faebb2f3fcc650b50abc141a945720d432077dd789cf",
+    "code/validated-examples/2026-11-24-r2/ode-adaptivity/atlas-ode-adaptivity-2026-11-24-r2.zip": "19e6bed36d5a49a865881df12170edf9f79b4c5365e35ae91186eaf33bb5bc3a",
     "code/validated-examples/2026-11-23/mesh-boundary/source-manifest.json": "96e55d4c564baf804d3ae7feb86a36c7d7a3d4079f5e47180326fd2c09ee675a",
     "code/validated-examples/2026-11-23/mesh-boundary/verification.json": "1191781061a2ec3339d26d8e9e4db605e9c40e8d5d5dfa6433712b38f43f7d01",
     "code/validated-examples/2026-11-23/mesh-boundary/cases.json": "30c7d39639f74d4f263a045cccc8ced3e14a466e4e279c4c156fc21ce176f796",
@@ -13276,6 +15105,16 @@
     "code/validated-examples/2026-11-24/lbm-curved-boundary/cases.json": "a6423cddd48d0540aa5121e0ea3d8b84e8db9792d8650582e9f6e22fd168e78b",
     "code/validated-examples/2026-11-24/lbm-curved-boundary/results/result.json": "954e50130a966eb647e09bb3e6ebd2ce8e73f3cac34fbe5094d0eb5fee77088d",
     "code/validated-examples/2026-11-24/lbm-curved-boundary/atlas-lbm-curved-boundary-2026-11-24.zip": "69757fbf7ccab53450d7bdf6ce3023cd6f5ca3b42698d2e8c7a383421a1c640d",
+    "code/validated-examples/2026-11-24/dae-controls/source-manifest.json": "d2fb466758236e7de6b078693209262ad99f3eadc343e9e719fc990a6e3cec4c",
+    "code/validated-examples/2026-11-24/dae-controls/verification.json": "cbc490c02eb2c86689652cfb344a208bccaa8faedbd8d893564d4732eccaa46c",
+    "code/validated-examples/2026-11-24/dae-controls/cases.json": "b5a4e533751629a22667809a1d609ff709a8ebc0b121a7aa3bbb30e70c82f2ca",
+    "code/validated-examples/2026-11-24/dae-controls/results/result.json": "a6bbc6b2201ee1f9992a450ffc268e7351f60c1947085b12e4387c05f4e42499",
+    "code/validated-examples/2026-11-24/dae-controls/atlas-dae-controls-2026-11-24.zip": "3f4d3ed14053a3a2a6f495c4445fb5c64093e59c07559b6632d2cdd9ea454fad",
+    "code/validated-examples/2026-11-24/geometric-controls/source-manifest.json": "ef06a73e7a39a839112d5d1c3bb962860dc37e95eec1fb80e6ade23b64ab844a",
+    "code/validated-examples/2026-11-24/geometric-controls/verification.json": "507d5825483d27a7cefe5a3ef683c4e5a818234d4c8098a97772e92de056d50d",
+    "code/validated-examples/2026-11-24/geometric-controls/cases.json": "f97c3c5cef1540cba0c16b8f8d32d70696d4d22105eaf784ff2e17cd3ccecd8b",
+    "code/validated-examples/2026-11-24/geometric-controls/results/result.json": "1e0ba587a26f6b15380621e3b04f44f2dee205d5ffe49086fd23c8972c85510b",
+    "code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip": "4e3ef28ab6c91ae62918b7effc6f37097ec0f5a4ed878d4d33fa06e1945329a2",
     "code/validated-examples/2026-11-23/fmm3d/source-manifest.json": "bc624983d4b0480538aa873ff2a867491e4384d25ea39930b5bb948b98e59c89",
     "code/validated-examples/2026-11-23/fmm3d/verification.json": "b6cc2a0ad2f31c01ebd833447f7f6d9496db6df5f6c14deb93d4f057d177c175",
     "code/validated-examples/2026-11-23/fmm3d/cases.json": "ca113f993ead48117c2678734dbb774a07d7911eab0f3392a4ac897b48f1b5f9",
@@ -13396,6 +15235,11 @@
     "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/cases.json": "604f637dccb85e22735600f1cae8e98cec3332d1eab1c4b12ff8d8e293eb33b3",
     "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/result.json": "caffe188cea7298dea1a3592fb4815992fa6a4f2900db99ba8443d1199e21dea",
     "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/atlas-linear-algebra-spectral-2026-11-24-r3.zip": "3d14112335ce8a55cce306ec689d430f172d02a49f4675ae5948a2fab7ca1452",
+    "code/validated-examples/2026-11-24/steady-rk/source-manifest.json": "05dd64c334156ee7ea2d10c47efa4d5822cfc3ba61ae3ad5867aeea3c6cad13c",
+    "code/validated-examples/2026-11-24/steady-rk/verification.json": "037f6c02ee4b1a1ee5147e7340dfd3ed0599c9ae7b53a260479a214160ace43d",
+    "code/validated-examples/2026-11-24/steady-rk/cases.json": "faced210cbcf6c1ef091d18f0af09b5c973a5e04ebb78e44e869071bce2c6e13",
+    "code/validated-examples/2026-11-24/steady-rk/results/result.json": "304601760794cdec210ae729223b0d0a57d987a5cc7ddfd5da8323c86fac6e48",
+    "code/validated-examples/2026-11-24/steady-rk/atlas-steady-rk-2026-11-24.zip": "a6524122fbc92701504894dff03837587170c0f4d39ce50657d4d5a23d36d3d9",
     "code/validated-examples/2026-11-24-r2/maxwell-cylinder/source-manifest.json": "bd55f11428730f3ad2a4048b74efd4dc4eae9997e55c8bc151d5ed4c0adf2dd6",
     "code/validated-examples/2026-11-24-r2/maxwell-cylinder/verification.json": "85cfc10421948d42deda85916ac2a6d4a41b7ad7af91db890fd91b5c745bf51a",
     "code/validated-examples/2026-11-24-r2/maxwell-cylinder/cases.json": "68902102c6f2dbf82608ef802b1dbc502aeb95f2c08590e762d4028d2950f2b8",

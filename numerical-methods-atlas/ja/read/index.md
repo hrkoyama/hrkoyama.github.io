@@ -19,6 +19,10 @@
 - [作用素分割：同じ反応拡散でLie–TrotterとStrangを比較](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-splitting/)
 - [シンプレクティック積分：正準写像とエネルギーを分ける](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/symplectic/)
 - [微分代数方程式（DAE）](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/dae/)
+- [硬いODE・RK45・境界分割](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/)
+- [定常多段RKのモード減衰](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-steady-rk/)
+- [DAEの初期化・保存則・拘束ドリフト](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/)
+- [拘束・軌道・多周波数の幾何積分](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/)
 
 ## 楕円型問題・線形代数・近似
 

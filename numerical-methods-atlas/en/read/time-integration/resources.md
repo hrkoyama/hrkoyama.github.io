@@ -29,6 +29,9 @@ Resources explicitly registered to the methods, problems and executions of this 
 - [Hamiltonian systems and oscillators](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#hamiltonian-en>)
 
   Canonical equations and a representative separable Hamiltonian. Harmonic and quartic oscillators distinguish energy error from symplecticity. Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters.
+- [Finite-dimensional linear evolution systems](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#linear-evolution-system-en>)
+
+  Each example distinguishes physical time in damped rotation from pseudo-time used to reduce steady residuals.
 
 ## Problem figures
 
@@ -62,6 +65,14 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Reverse the actual backward-Euler map and compare tangent derivatives, independent high-precision modes and block replay.
+- [Robertson conservation DAE and stored official IDA values](<https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-conservation-dae/?lang=en>)
+  availability: run
+
+  Compare the Robertson conservation DAE and full ODE on the same fixed time grids, with a separate check of stored official IDA values. The first retained run missed four original time-accuracy and refinement goals.
+- [Consistent initialization and discrete residuals for an index-one DAE](<https://hrkoyama.github.io/numerical-methods-atlas/validation/index1-dae-consistent-initialization/?lang=en>)
+  availability: run
+
+  Separate initialization, backward-Euler error and residuals on a known positive index-one DAE branch.
 - [Double Mach reflection: lightweight grid verification](<https://hrkoyama.github.io/numerical-methods-atlas/validation/double-mach-reflection/?lang=en>)
   availability: run
 
@@ -178,6 +189,10 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Time-advance actual2D staggered fields and distinguish continuous-wave references from semidiscrete symbols.
+- [Index reduction, constraint drift and explicit stabilization for a pendulum](<https://hrkoyama.github.io/numerical-methods-atlas/validation/high-index-pendulum/?lang=en>)
+  availability: run
+
+  Derive an explicit ODE from an index-three position constraint and compare drift and stabilization for consistent and inconsistent starts.
 - [Finite-amplitude Schnakenberg transient: nonlinearity and independent reference](<https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-nonlinear/?lang=en>)
   availability: run
 

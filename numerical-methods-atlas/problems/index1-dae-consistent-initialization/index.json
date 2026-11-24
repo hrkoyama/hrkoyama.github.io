@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "id": "index1-dae-consistent-initialization",
+  "name": {
+    "ja": "index-1 DAEの整合初期化と離散残差",
+    "en": "Consistent initialization and discrete residuals for an index-one DAE"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/index1-dae-consistent-initialization/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/index1-dae-consistent-initialization/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/index1-dae-consistent-initialization/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/results/index1-dae-consistent-initialization-preview.png",
+    "sha256": "a29de45d4d64534b80d906f4bf8eff1f8966e27d964addf5d58ffd2f8c3c175d",
+    "width": 1090,
+    "height": 424,
+    "caption": {
+      "ja": "既知の正枝を持つindex-1 DAEで初期化と後退Eulerの誤差・残差を分離します。 保存配列から作図。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。",
+      "en": "Separate initialization, backward-Euler error and residuals on a known positive index-one DAE branch. Drawn from saved arrays. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dae-controls/#index1-dae-consistent-initialization",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dae-controls/#index1-dae-consistent-initialization"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#index1-dae-consistent-initialization",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#index1-dae-consistent-initialization-en"
+  },
+  "equations": [
+    {
+      "id": "index-one-dae",
+      "name": {
+        "ja": "半陽的index-1 DAE",
+        "en": "Semi-explicit index-one DAE"
+      },
+      "formula": [
+        "\\dot y=f(t,y,z),\\qquad0=g(t,y,z),\\qquad\\det g_z\\ne0"
+      ],
+      "note": {
+        "ja": "整合初期化と微分・代数残差を扱う小規模な固定例です。一般DAEソルバーの完成を意味しません。",
+        "en": "Small fixed examples expose consistent initialization and separate differential/algebraic residuals; this is not a general-purpose DAE solver."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#index-one-dae-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#index-one-dae-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "無次元・正枝。微分行と代数行の尺度はそれぞれ1で、最大ノルムを用います。",
+    "en": "Dimensionless positive branch; differential and algebraic row scales are both one, with the maximum norm."
+  },
+  "formulations": [
+    {
+      "id": "supplement-index1-dae-consistent-initialization",
+      "name": {
+        "ja": "index-1 DAEの整合初期化と離散残差",
+        "en": "Consistent initialization and discrete residuals for an index-one DAE"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "F1=ydot+y-z+exp(-2t/3), F2=z^3-y^2",
+        "y=exp(-t), z=exp(-2t/3)"
+      ],
+      "note": {
+        "ja": "既知の正枝を持つindex-1 DAEで初期化と後退Eulerの誤差・残差を分離します。",
+        "en": "Separate initialization, backward-Euler error and residuals on a known positive index-one DAE branch."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "index1-dae-consistent-initialization",
+      "kind": "manufactured",
+      "kind_label": {
+        "ja": "製造解",
+        "en": "Manufactured solution"
+      },
+      "title": {
+        "ja": "index-1 DAEの整合初期化と離散残差",
+        "en": "Consistent initialization and discrete residuals for an index-one DAE"
+      },
+      "formula": "F1=ydot+y-z+exp(-2t/3), F2=z^3-y^2;\\quad y=exp(-t), z=exp(-2t/3)",
+      "assumptions": {
+        "ja": "無次元・正枝。微分行と代数行の尺度はそれぞれ1で、最大ノルムを用います。",
+        "en": "Dimensionless positive branch; differential and algebraic row scales are both one, with the maximum norm."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "単一の製造正枝・固定BE計算です。IDA実行や一般DAEソルバーの検証ではありません。",
+        "en": "One authored positive branch and fixed BE runs; no IDA execution or general DAE-solver qualification."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/index1-dae-consistent-initialization/?lang=ja#index1-dae-consistent-initialization-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/index1-dae-consistent-initialization/?lang=en#index1-dae-consistent-initialization-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "独立Decimal製造解・3つの離散根と3固定格子を比較し、一次誤差と代数拘束を確認します。",
+    "en": "Compare independent Decimal manufactured states, three discrete roots and three fixed grids, checking first-order error and the algebraic constraint."
+  },
+  "methods": [
+    {
+      "id": "dae",
+      "name": {
+        "ja": "微分代数方程式（DAE）",
+        "en": "Differential-algebraic equations / DAE"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/dae/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/dae/?lang=en"
+      }
+    },
+    {
+      "id": "backward-euler",
+      "name": {
+        "ja": "後退Euler法",
+        "en": "Backward Euler"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/backward-euler/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/backward-euler/?lang=en"
+      }
+    },
+    {
+      "id": "newton",
+      "name": {
+        "ja": "Armijo減衰Newton法",
+        "en": "Armijo-damped Newton"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/newton/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/newton/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "連立Newtonと同じ尺度のArmijo線探索を用い、特異な初期推測は修復せず記録します。",
+    "en": "Use coupled Newton with an Armijo search in the same scaled norm, retaining rather than repairing a singular initial guess."
+  },
+  "executions": [
+    {
+      "id": "index1-dae-consistent-initialization",
+      "kind": "supplement",
+      "name": {
+        "ja": "index-1 DAEの整合初期化と離散残差",
+        "en": "Consistent initialization and discrete residuals for an index-one DAE"
+      },
+      "method_ids": [
+        "dae",
+        "backward-euler",
+        "newton"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/index1-dae-consistent-initialization/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/index1-dae-consistent-initialization/?lang=en"
+      },
+      "scope": {
+        "ja": "既知の正枝を持つindex-1 DAEで初期化と後退Eulerの誤差・残差を分離します。",
+        "en": "Separate initialization, backward-Euler error and residuals on a known positive index-one DAE branch."
+      },
+      "assumptions": {
+        "ja": "無次元・正枝。微分行と代数行の尺度はそれぞれ1で、最大ノルムを用います。",
+        "en": "Dimensionless positive branch; differential and algebraic row scales are both one, with the maximum norm."
+      },
+      "limits": {
+        "ja": "単一の製造正枝・固定BE計算です。IDA実行や一般DAEソルバーの検証ではありません。",
+        "en": "One authored positive branch and fixed BE runs; no IDA execution or general DAE-solver qualification."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/atlas-dae-controls-2026-11-24.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "独立Decimal製造解・3つの離散根と3固定格子を比較し、一次誤差と代数拘束を確認します。",
+        "en": "Compare independent Decimal manufactured states, three discrete roots and three fixed grids, checking first-order error and the algebraic constraint."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/models.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/newton.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_cases.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_serialization.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

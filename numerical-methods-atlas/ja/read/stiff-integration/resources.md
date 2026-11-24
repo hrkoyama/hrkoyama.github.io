@@ -30,6 +30,12 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/stiff-integration/
 
 ## 方程式
 
+- [Robertson反応系](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#robertson-kinetics-ja>)
+
+  3成分の硬い反応ODEと、保存則を代数式に置き換えたindex-1 DAEを区別して比較します。
+- [van der Pol振動子](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#van-der-pol-ja>)
+
+  固定したμと短い時区間で硬さによる仕事量と誤差を比較します。完全な緩和振動周期の検証ではありません。
 - [この実行例の式と条件](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#execution-stiff-cosine-ja>)
 
   既存2段SDIRK2を使う時間初期値問題。主問題はt=1、1000/2000/4000刻み。46モデル台帳とは別の実行例の式で、熱PDEや汎用硬い系の新規モデルとして数えない。
@@ -61,6 +67,14 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/stiff-integration/
 
 ## コード・検証
 
+- [Robertson反応系の初期剛性と実誤差](<https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-stiff-kinetics/?lang=ja>)
+  availability: run
+
+  短い固定区間でBDF2・SDIRK2・倍分割適応法を、資格済みRadau/BDF参照と比較します。
+- [van der Polの短時間剛性遷移](<https://hrkoyama.github.io/numerical-methods-atlas/validation/van-der-pol-stiff-transition/?lang=ja>)
+  availability: run
+
+  局所制御と大域誤差を分離します。初回は元209目標中208達成で、μ=1の厳しい適応設定は大域目標2e-5に未達でした。
 - [硬い余弦追従ODE：SDIRK2](<https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/stiff-cosine/?lang=ja>)
   availability: run
 

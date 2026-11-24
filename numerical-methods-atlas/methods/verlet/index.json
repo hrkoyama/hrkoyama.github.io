@@ -10,8 +10,8 @@
     "en": "Time integration"
   },
   "summary": {
-    "ja": "既存配布版：位置だけに依存する力を、半分のkick・drift・半分のkickで進める2次の可逆・シンプレクティック法。公開例は単位質量の調和/四次振動子で、エネルギー誤差と構造保存が同じでないことを確かめる。 追加固定例：無軟化Kepler二体の時間誤差、冷たいPlummer密度由来32粒子の短時間力学。条件と検証範囲は各配布版で確認してください。 追加固定例：温かいPICの線形Landau減衰、温かいPICの二流初期成長。条件と検証範囲は各配布版で確認してください。 追加固定例：PIC空間演算の独立実装照合。条件と検証範囲は各配布版で確認してください。",
-    "en": "Existing releases: A second-order reversible symplectic method using half kick, drift and half kick for position-dependent forces. Released unit-mass harmonic/quartic oscillators illustrate why energy error and geometric structure preservation are different properties. Additional fixed examples: Unsoftened Kepler two-body time error, Short-time32body dynamics from a cold Plummer-density sample. See each release for assumptions and checked scope. Additional fixed examples: Warm PIC linear Landau damping, Warm PIC two-stream initial growth. See each release for assumptions and checked scope. Additional fixed examples: Independently coded PIC spatial pipeline. See each release for assumptions and checked scope."
+    "ja": "既存配布版：位置だけに依存する力を、半分のkick・drift・半分のkickで進める2次の可逆・シンプレクティック法。公開例は単位質量の調和/四次振動子で、エネルギー誤差と構造保存が同じでないことを確かめる。 追加固定例：無軟化Kepler二体の時間誤差、冷たいPlummer密度由来32粒子の短時間力学。条件と検証範囲は各配布版で確認してください。 追加固定例：温かいPICの線形Landau減衰、温かいPICの二流初期成長。条件と検証範囲は各配布版で確認してください。 追加固定例：PIC空間演算の独立実装照合。条件と検証範囲は各配布版で確認してください。 追加固定例：離心率を変えたKepler軌道と時間刻み、結合した2周波数系と共鳴の有限窓。条件と検証範囲は各配布版で確認してください。",
+    "en": "Existing releases: A second-order reversible symplectic method using half kick, drift and half kick for position-dependent forces. Released unit-mass harmonic/quartic oscillators illustrate why energy error and geometric structure preservation are different properties. Additional fixed examples: Unsoftened Kepler two-body time error, Short-time32body dynamics from a cold Plummer-density sample. See each release for assumptions and checked scope. Additional fixed examples: Warm PIC linear Landau damping, Warm PIC two-stream initial growth. See each release for assumptions and checked scope. Additional fixed examples: Independently coded PIC spatial pipeline. See each release for assumptions and checked scope. Additional fixed examples: Kepler eccentricity and time-step controls, Coupled frequencies and finite-window resonance. See each release for assumptions and checked scope."
   },
   "status": "educational-example",
   "origin": "existing-coverage-catalog",
@@ -72,15 +72,15 @@
   "units": "The released oscillator is nondimensional with m=1 and harmonic ω=1. A general-mass formulation would require drift h p/m and consistent position, momentum, force and time scales; that generalization is not an input feature of this released function.",
   "boundary_conditions": "Spatial boundary conditions do not apply to this oscillator phase-space map. It is a different problem from the original periodic Lennard-Jones fluid; particle periodicity, walls and constraints are not implemented here.",
   "limitations": {
-    "ja": "既存配布版の制約：元のHamiltonianを各ステップで厳密保存するわけではない。シンプレクティックでも大刻みは不安定になり得て、ω=1の調和振動子では|h|<2が安定域の内部。速度依存力、摩擦・サーモスタット、拘束、一般の可変刻みや非分離Hamiltonianでは、同じ性質をそのまま保証できない。公開関数は一般分子動力学solverではない。 今回の追加固定例：1周期・固定離心率のみ。軟化軌道や長時間安定性はこの参照の範囲外。 冷たい有限N初期値で平衡Plummer分布/連続球厳密軌道ではありません。BHの一般相反性・大域symplectic性は主張しません。 今回の追加固定例：1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。 1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。 今回の追加固定例：離散演算の独立したコーディング照合です。時間積分法や連続方程式を変えた独立エンジン、連続極限の収束、冷たいプラズマの振動参照の再現を意味しません。既存cold-plasma-picの関連補助検証として扱い、温かい初期速度の軌道を冷たい解と同一視しません。",
-    "en": "Limits of existing releases: The original Hamiltonian is not exactly preserved at each step. A symplectic map can still be unstable at large steps; for the ω=1 harmonic oscillator, |h|<2 is the interior stability interval. Velocity-dependent forces, friction/thermostats, constraints, generic variable steps and nonseparable Hamiltonians require different treatment. This function is not a general molecular-dynamics solver. Additional fixed examples: One orbit at fixed eccentricity only; softened binaries and long-time behavior are outside this exact reference. Cold finite-N initial value,not an equilibrium Plummer DF or exact continuum orbit. No general BH reciprocity/global symplecticity claim. Additional fixed examples: Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established. Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established. Additional fixed examples: Independent coding check of discrete spatial operators. It does not change the time integrator/continuum model, establish continuum convergence, or reproduce the cold-plasma oscillation reference. A related supplement of cold-plasma-pic; the finite warm velocity spread is explicit."
+    "ja": "既存配布版の制約：元のHamiltonianを各ステップで厳密保存するわけではない。シンプレクティックでも大刻みは不安定になり得て、ω=1の調和振動子では|h|<2が安定域の内部。速度依存力、摩擦・サーモスタット、拘束、一般の可変刻みや非分離Hamiltonianでは、同じ性質をそのまま保証できない。公開関数は一般分子動力学solverではない。 今回の追加固定例：1周期・固定離心率のみ。軟化軌道や長時間安定性はこの参照の範囲外。 冷たい有限N初期値で平衡Plummer分布/連続球厳密軌道ではありません。BHの一般相反性・大域symplectic性は主張しません。 今回の追加固定例：1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。 1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。 今回の追加固定例：離散演算の独立したコーディング照合です。時間積分法や連続方程式を変えた独立エンジン、連続極限の収束、冷たいプラズマの振動参照の再現を意味しません。既存cold-plasma-picの関連補助検証として扱い、温かい初期速度の軌道を冷たい解と同一視しません。 上記の制限は既存配布版の範囲です。今回の追加配布版：保存量の小さい誤差から位相精度を推論しません。変動刻み写像の正準symplectic defectは測定せず、固定hの性質をそのまま移しません。初期解像度R1は数値実行前の漸近解析でR2へ改訂。 中心の実浮動係数写像はunresolvedとし、理想πのJordan性を移しません。64刻み増幅と小さい固定入力の観測であり、走査した共鳴図・一般安定性・長時間の普遍誤差定理は主張しません。",
+    "en": "Limits of existing releases: The original Hamiltonian is not exactly preserved at each step. A symplectic map can still be unstable at large steps; for the ω=1 harmonic oscillator, |h|<2 is the interior stability interval. Velocity-dependent forces, friction/thermostats, constraints, generic variable steps and nonseparable Hamiltonians require different treatment. This function is not a general molecular-dynamics solver. Additional fixed examples: One orbit at fixed eccentricity only; softened binaries and long-time behavior are outside this exact reference. Cold finite-N initial value,not an equilibrium Plummer DF or exact continuum orbit. No general BH reciprocity/global symplecticity claim. Additional fixed examples: Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established. Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established. Additional fixed examples: Independent coding check of discrete spatial operators. It does not change the time integrator/continuum model, establish continuum convergence, or reproduce the cold-plasma oscillation reference. A related supplement of cold-plasma-pic; the finite warm velocity spread is explicit. The preceding limitations describe earlier editions. This additional release: Small invariant errors do not establish phase accuracy. No canonical symplectic-defect measurement is claimed for the variable-step map, and fixed-h properties are not transferred automatically. R1 resolution was revised to R2 using pre-execution asymptotic planning, not measured calibration. The central actual floating map remains unresolved; ideal-pi Jordan structure is not transferred to it. Results concern 64-step amplification and small fixed inputs, not a scanned resonance diagram, general stability or a universal long-time error theorem."
   },
   "metadata_review": {
     "level": "method-specific source-and-code inspection; no numerical rerun; reference access recorded individually",
     "on": "2026-11-22",
     "supplemental_review": {
-      "on": "2026-11-23",
-      "level": "Frozen fixed-input source,independent review,actual pytest/main and independently extracted ZIP; see each new release for exact reference independence and failed-attempt history."
+      "on": "2026-11-24",
+      "level": "Frozen fixed inputs, independently reviewed references and criteria, actual pytest/main and independently extracted ZIP. See release-specific scope and retained failure history."
     }
   },
   "assumptions_ja": [
@@ -699,6 +699,30 @@
         {
           "ja": "離散演算の独立したコーディング照合です。時間積分法や連続方程式を変えた独立エンジン、連続極限の収束、冷たいプラズマの振動参照の再現を意味しません。既存cold-plasma-picの関連補助検証として扱い、温かい初期速度の軌道を冷たい解と同一視しません。",
           "en": "Independent coding check of discrete spatial operators. It does not change the time integrator/continuum model, establish continuum convergence, or reproduce the cold-plasma oscillation reference. A related supplement of cold-plasma-pic; the finite warm velocity spread is explicit."
+        }
+      ]
+    },
+    {
+      "release": {
+        "group": "geometric-controls",
+        "edition": "2026-11-24",
+        "case_ids": [
+          "kepler-eccentricity",
+          "multifrequency-resonance"
+        ]
+      },
+      "scope": {
+        "ja": "追加固定例：離心率を変えたKepler軌道と時間刻み、結合した2周波数系と共鳴の有限窓。条件と検証範囲は各配布版で確認してください。",
+        "en": "Additional fixed examples: Kepler eccentricity and time-step controls, Coupled frequencies and finite-window resonance. See each release for assumptions and checked scope."
+      },
+      "limits": [
+        {
+          "ja": "保存量の小さい誤差から位相精度を推論しません。変動刻み写像の正準symplectic defectは測定せず、固定hの性質をそのまま移しません。初期解像度R1は数値実行前の漸近解析でR2へ改訂。",
+          "en": "Small invariant errors do not establish phase accuracy. No canonical symplectic-defect measurement is claimed for the variable-step map, and fixed-h properties are not transferred automatically. R1 resolution was revised to R2 using pre-execution asymptotic planning, not measured calibration."
+        },
+        {
+          "ja": "中心の実浮動係数写像はunresolvedとし、理想πのJordan性を移しません。64刻み増幅と小さい固定入力の観測であり、走査した共鳴図・一般安定性・長時間の普遍誤差定理は主張しません。",
+          "en": "The central actual floating map remains unresolved; ideal-pi Jordan structure is not transferred to it. Results concern 64-step amplification and small fixed inputs, not a scanned resonance diagram, general stability or a universal long-time error theorem."
         }
       ]
     }
@@ -4492,6 +4516,1118 @@
           }
         }
       ]
+    },
+    {
+      "group": "geometric-controls",
+      "case_ids": [
+        "kepler-eccentricity",
+        "multifrequency-resonance"
+      ],
+      "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/",
+      "code_edition": "2026-11-24",
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/physics.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/diagnostics.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/analytic.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/discrete.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/io_utils.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/qualify.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/test_geometry.py"
+      ],
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "run_from": "atlas-geometric-controls-2026-11-24",
+      "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip",
+      "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/source-manifest.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/verification.json",
+      "code_archive_sha256": "4e3ef28ab6c91ae62918b7effc6f37097ec0f5a4ed878d4d33fa06e1945329a2",
+      "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/results/result.json",
+      "passed_tests": 32,
+      "examples": [
+        {
+          "id": "kepler-eccentricity",
+          "method_ids": [
+            "verlet"
+          ],
+          "domains": [
+            "classical-mechanics",
+            "geometric-integration"
+          ],
+          "validation_count": 32,
+          "title": {
+            "ja": "離心率を変えたKepler軌道と時間刻み",
+            "en": "Kepler eccentricity and time-step controls"
+          },
+          "summary": {
+            "ja": "e=0.1/0.7の16固定軌道で、保存量と同時刻の位相誤差、実際の近日点時刻と逆積分を比較します。",
+            "en": "Sixteen fixed evolutions at e=0.1/0.7 compare invariants, same-time phase error, physical periapsis times and reversal."
+          },
+          "assumptions": {
+            "ja": "a=μ=換算質量=1、軟化なし。1周期は512/1024/2048刻み、10周期は基準2048刻み/周期。変動刻みh=h0|q|を現在状態から定め、最後だけ物理終端へ短縮。",
+            "en": "a=mu=reduced mass=1, without softening. One-period runs use 512/1024/2048 steps; ten-period controls use h0=2π/2048. Variable steps use h=h0|q| at the current state, with only the final step shortened to the physical endpoint."
+          },
+          "algorithm": {
+            "ja": "独自の中心力KDK Verlet。固定・保存刻み再生・再生成刻みを区別し、cubic Hermite軌道の正の放射速度交差をbrentqで局在化。",
+            "en": "Original central-force KDK Verlet. Fixed, replayed and regenerated schedules are distinct. Positive radial crossings of cubic Hermite trajectories are localized by brentq."
+          },
+          "validation": {
+            "ja": "独立のKepler方程式brentq／二分法解析族、92主判定。全状態誤差とエネルギー・角運動量、8回以上の近日点、有限窓の順序と反転誤差を検査。",
+            "en": "An independent Kepler-equation family, qualified with brentq and bisection, supports 92 main decisions: full-state error, energy/angular momentum, at least eight periapses, finite-window order and reversal defects."
+          },
+          "limits": {
+            "ja": "保存量の小さい誤差から位相精度を推論しません。変動刻み写像の正準symplectic defectは測定せず、固定hの性質をそのまま移しません。初期解像度R1は数値実行前の漸近解析でR2へ改訂。",
+            "en": "Small invariant errors do not establish phase accuracy. No canonical symplectic-defect measurement is claimed for the variable-step map, and fixed-h properties are not transferred automatically. R1 resolution was revised to R2 using pre-execution asymptotic planning, not measured calibration."
+          },
+          "review_level": {
+            "ja": "一次資料の選択閲読と独立参照資格。実際の成否は保存result.jsonとverification.jsonに記録します。",
+            "en": "Selected primary passages and separately qualified independent references. Actual outcomes are recorded in the saved result.json and verification.json."
+          },
+          "formulas": [
+            "\\ddot q=-q/\\|q\\|^3",
+            "E-e\\sin E=t,\\quad q=(\\cos E-e,\\sqrt{1-e^2}\\sin E)",
+            "H=\\tfrac12\\|p\\|^2-1/\\|q\\|"
+          ],
+          "source_files": [
+            "physics.py",
+            "diagnostics.py",
+            "run.py",
+            "references/analytic.py",
+            "references/discrete.py"
+          ],
+          "code_files": [
+            "physics.py",
+            "diagnostics.py",
+            "run.py",
+            "references/analytic.py",
+            "references/discrete.py"
+          ],
+          "references": [
+            {
+              "id": "hairer-symplectic-2010",
+              "title": "Lecture2: Symplectic integrators",
+              "url": "https://www.unige.ch/~hairer/poly_geoint/week2.pdf",
+              "year": 2010,
+              "year_role": "displayed course date",
+              "accessed_on": "2026-11-24",
+              "review_level": "selected-primary-scope",
+              "review_scope": "Author-hosted course notes, selected rendered printed pages2,12–13: Verlet kick/drift form, symplectic statement, Lie and symmetric Strang compositions. This does not qualify every state-dependent step rule or the authored coupled resonance experiment."
+            },
+            {
+              "id": "jpl-kepler-equation",
+              "title": "Approximate Positions of the Planets",
+              "url": "https://ssd.jpl.nasa.gov/planets/approx_pos.html",
+              "accessed_on": "2026-11-24",
+              "review_level": "selected-primary-scope",
+              "review_scope": "Official JPL page, selected steps3–4 and Kepler equation. Only the eccentric-anomaly equation and elliptic coordinate transformation are used; no planetary coefficient tables, fitted ephemeris accuracy or Horizons calculation is claimed. Publication date was not verified."
+            }
+          ],
+          "gallery_figure": "kepler-eccentricity-preview.png",
+          "additional_figures": [
+            {
+              "file": "kepler-eccentricity-preview.png",
+              "caption": {
+                "ja": "保存したe=0.7、10周期の固定刻み／変動刻み軌道。物理座標は等倍率で、中心力は軟化していません。",
+                "en": "Saved ten-period fixed-step and variable-step orbits at e=0.7, shown with equal physical aspect and an unsoftened central force."
+              }
+            }
+          ],
+          "measured": {
+            "id": "kepler-eccentricity",
+            "passed": true,
+            "checks": {
+              "e0p1-fixed-512-finite": true,
+              "e0p1-fixed-512-time": true,
+              "e0p1-fixed-512-radius": true,
+              "e0p1-fixed-512-angular": true,
+              "e0p1-fixed-512-energy": true,
+              "e0p1-fixed-512-reference": true,
+              "e0p1-fixed-1024-finite": true,
+              "e0p1-fixed-1024-time": true,
+              "e0p1-fixed-1024-radius": true,
+              "e0p1-fixed-1024-angular": true,
+              "e0p1-fixed-1024-energy": true,
+              "e0p1-fixed-1024-reference": true,
+              "e0p1-fixed-2048-finite": true,
+              "e0p1-fixed-2048-time": true,
+              "e0p1-fixed-2048-radius": true,
+              "e0p1-fixed-2048-angular": true,
+              "e0p1-fixed-2048-energy": true,
+              "e0p1-fixed-2048-reference": true,
+              "e0p1-fixed-long-finite": true,
+              "e0p1-fixed-long-time": true,
+              "e0p1-fixed-long-radius": true,
+              "e0p1-fixed-long-angular": true,
+              "e0p1-fixed-long-energy": true,
+              "e0p1-fixed-long-reference": true,
+              "e0p1-fixed-long-periapsis-count": true,
+              "e0p1-fixed-long-periapsis-time": true,
+              "e0p1-variable-long-finite": true,
+              "e0p1-variable-long-time": true,
+              "e0p1-variable-long-radius": true,
+              "e0p1-variable-long-angular": true,
+              "e0p1-variable-long-energy": true,
+              "e0p1-variable-long-reference": true,
+              "e0p1-variable-long-periapsis-count": true,
+              "e0p1-variable-long-periapsis-time": true,
+              "e0p1-reverse-fixed-finite": true,
+              "e0p1-reverse-fixed-schedule": true,
+              "e0p1-reverse-fixed-recovery-or-diagnostic-scope": true,
+              "e0p1-reverse-variable-replay-finite": true,
+              "e0p1-reverse-variable-replay-schedule": true,
+              "e0p1-reverse-variable-replay-recovery-or-diagnostic-scope": true,
+              "e0p1-reverse-variable-regenerated-finite": true,
+              "e0p1-reverse-variable-regenerated-schedule": true,
+              "e0p1-reverse-variable-regenerated-recovery-or-diagnostic-scope": true,
+              "e0p7-fixed-512-finite": true,
+              "e0p7-fixed-512-time": true,
+              "e0p7-fixed-512-radius": true,
+              "e0p7-fixed-512-angular": true,
+              "e0p7-fixed-512-energy": true,
+              "e0p7-fixed-512-reference": true,
+              "e0p7-fixed-1024-finite": true,
+              "e0p7-fixed-1024-time": true,
+              "e0p7-fixed-1024-radius": true,
+              "e0p7-fixed-1024-angular": true,
+              "e0p7-fixed-1024-energy": true,
+              "e0p7-fixed-1024-reference": true,
+              "e0p7-fixed-2048-finite": true,
+              "e0p7-fixed-2048-time": true,
+              "e0p7-fixed-2048-radius": true,
+              "e0p7-fixed-2048-angular": true,
+              "e0p7-fixed-2048-energy": true,
+              "e0p7-fixed-2048-reference": true,
+              "e0p7-fixed-long-finite": true,
+              "e0p7-fixed-long-time": true,
+              "e0p7-fixed-long-radius": true,
+              "e0p7-fixed-long-angular": true,
+              "e0p7-fixed-long-energy": true,
+              "e0p7-fixed-long-reference": true,
+              "e0p7-fixed-long-periapsis-count": true,
+              "e0p7-fixed-long-periapsis-time": true,
+              "e0p7-variable-long-finite": true,
+              "e0p7-variable-long-time": true,
+              "e0p7-variable-long-radius": true,
+              "e0p7-variable-long-angular": true,
+              "e0p7-variable-long-energy": true,
+              "e0p7-variable-long-reference": true,
+              "e0p7-variable-long-periapsis-count": true,
+              "e0p7-variable-long-periapsis-time": true,
+              "e0p7-reverse-fixed-finite": true,
+              "e0p7-reverse-fixed-schedule": true,
+              "e0p7-reverse-fixed-recovery-or-diagnostic-scope": true,
+              "e0p7-reverse-variable-replay-finite": true,
+              "e0p7-reverse-variable-replay-schedule": true,
+              "e0p7-reverse-variable-replay-recovery-or-diagnostic-scope": true,
+              "e0p7-reverse-variable-regenerated-finite": true,
+              "e0p7-reverse-variable-regenerated-schedule": true,
+              "e0p7-reverse-variable-regenerated-recovery-or-diagnostic-scope": true,
+              "e0.1-fine-state": true,
+              "e0.1-state-order": true,
+              "e0.1-fine-energy": true,
+              "e0.7-fine-state": true,
+              "e0.7-state-order": true,
+              "e0.7-fine-energy": true
+            },
+            "records": [
+              {
+                "id": "e0p1-fixed-512",
+                "role": "primary",
+                "eccentricity": 0.1,
+                "control": "fixed",
+                "periods": 1,
+                "steps": 512,
+                "max_h": 0.01227184630308513,
+                "max_state_error": 0.0006405116966371698,
+                "max_energy_error": 8.050532690428991e-06,
+                "angular_normalized_drift": 9.460606652240774e-16,
+                "min_radius": 0.9,
+                "raw_file": "e0p1-fixed-512.npz",
+                "diagnostic_file": "e0p1-fixed-512-diagnostics.npz"
+              },
+              {
+                "id": "e0p1-fixed-1024",
+                "role": "primary",
+                "eccentricity": 0.1,
+                "control": "fixed",
+                "periods": 1,
+                "steps": 1024,
+                "max_h": 0.006135923151542565,
+                "max_state_error": 0.00016012929178472874,
+                "max_energy_error": 2.0121744192524993e-06,
+                "angular_normalized_drift": 2.6712301135738655e-15,
+                "min_radius": 0.9,
+                "raw_file": "e0p1-fixed-1024.npz",
+                "diagnostic_file": "e0p1-fixed-1024-diagnostics.npz"
+              },
+              {
+                "id": "e0p1-fixed-2048",
+                "role": "primary",
+                "eccentricity": 0.1,
+                "control": "fixed",
+                "periods": 1,
+                "steps": 2048,
+                "max_h": 0.0030679615757712823,
+                "max_state_error": 4.003242587734681e-05,
+                "max_energy_error": 5.030149293205888e-07,
+                "angular_normalized_drift": 3.28338701460121e-15,
+                "min_radius": 0.9,
+                "raw_file": "e0p1-fixed-2048.npz",
+                "diagnostic_file": "e0p1-fixed-2048-diagnostics.npz"
+              },
+              {
+                "id": "e0p1-fixed-long",
+                "role": "primary",
+                "eccentricity": 0.1,
+                "control": "fixed",
+                "periods": 10,
+                "steps": 20480,
+                "max_h": 0.0030679615757712823,
+                "max_state_error": 0.0004002652750377689,
+                "max_energy_error": 5.030149480278467e-07,
+                "angular_normalized_drift": 9.62755853433914e-15,
+                "min_radius": 0.9,
+                "raw_file": "e0p1-fixed-long.npz",
+                "diagnostic_file": "e0p1-fixed-long-diagnostics.npz",
+                "periapsis_count": 9,
+                "max_periapsis_time_error": 9.918444745693478e-05,
+                "max_apsidal_angle_drift": 0.00016635838788952936
+              },
+              {
+                "id": "e0p1-variable-long",
+                "role": "primary",
+                "eccentricity": 0.1,
+                "control": "variable",
+                "periods": 10,
+                "steps": 20480,
+                "max_h": 0.0033747754800617894,
+                "max_state_error": 0.0004110313358435562,
+                "max_energy_error": 4.784690698089733e-07,
+                "angular_normalized_drift": 4.118146425093043e-15,
+                "min_radius": 0.9,
+                "raw_file": "e0p1-variable-long.npz",
+                "diagnostic_file": "e0p1-variable-long-diagnostics.npz",
+                "periapsis_count": 9,
+                "max_periapsis_time_error": 0.00022324618669244956,
+                "max_apsidal_angle_drift": 2.408362845749749e-05
+              },
+              {
+                "id": "e0p1-reverse-fixed",
+                "role": "reversal",
+                "control": "fixed",
+                "eccentricity": 0.1,
+                "recovery_defect": 1.5145627581249812e-15,
+                "steps": 2048,
+                "reversal_scope": "saved_schedule_reversal",
+                "raw_file": "e0p1-reverse-fixed.npz"
+              },
+              {
+                "id": "e0p1-reverse-variable-replay",
+                "role": "reversal",
+                "control": "variable-replay",
+                "eccentricity": 0.1,
+                "recovery_defect": 1.301072352705602e-12,
+                "steps": 20480,
+                "reversal_scope": "saved_schedule_reversal",
+                "raw_file": "e0p1-reverse-variable-replay.npz"
+              },
+              {
+                "id": "e0p1-reverse-variable-regenerated",
+                "role": "reversal",
+                "control": "variable-regenerated",
+                "eccentricity": 0.1,
+                "recovery_defect": 7.234287365207127e-07,
+                "steps": 20480,
+                "reversal_scope": "diagnostic_not_time_symmetric",
+                "raw_file": "e0p1-reverse-variable-regenerated.npz"
+              },
+              {
+                "id": "e0p7-fixed-512",
+                "role": "primary",
+                "eccentricity": 0.7,
+                "control": "fixed",
+                "periods": 1,
+                "steps": 512,
+                "max_h": 0.01227184630308513,
+                "max_state_error": 0.39849708597264355,
+                "max_energy_error": 0.0019520858029951071,
+                "angular_normalized_drift": 4.533788537386635e-16,
+                "min_radius": 0.30000000000000004,
+                "raw_file": "e0p7-fixed-512.npz",
+                "diagnostic_file": "e0p7-fixed-512-diagnostics.npz"
+              },
+              {
+                "id": "e0p7-fixed-1024",
+                "role": "primary",
+                "eccentricity": 0.7,
+                "control": "fixed",
+                "periods": 1,
+                "steps": 1024,
+                "max_h": 0.006135923151542565,
+                "max_state_error": 0.10048826822515622,
+                "max_energy_error": 0.000487313860572991,
+                "angular_normalized_drift": 1.0362945228312308e-15,
+                "min_radius": 0.30000000000000004,
+                "raw_file": "e0p7-fixed-1024.npz",
+                "diagnostic_file": "e0p7-fixed-1024-diagnostics.npz"
+              },
+              {
+                "id": "e0p7-fixed-2048",
+                "role": "primary",
+                "eccentricity": 0.7,
+                "control": "fixed",
+                "periods": 1,
+                "steps": 2048,
+                "max_h": 0.0030679615757712823,
+                "max_state_error": 0.02511831320929015,
+                "max_energy_error": 0.00012178401980955655,
+                "angular_normalized_drift": 1.2305997458620865e-15,
+                "min_radius": 0.30000000000000004,
+                "raw_file": "e0p7-fixed-2048.npz",
+                "diagnostic_file": "e0p7-fixed-2048-diagnostics.npz"
+              },
+              {
+                "id": "e0p7-fixed-long",
+                "role": "primary",
+                "eccentricity": 0.7,
+                "control": "fixed",
+                "periods": 10,
+                "steps": 20480,
+                "max_h": 0.0030679615757712823,
+                "max_state_error": 0.2499035356344505,
+                "max_energy_error": 0.00012178407768614896,
+                "angular_normalized_drift": 6.347303952341288e-15,
+                "min_radius": 0.30000000000000004,
+                "raw_file": "e0p7-fixed-long.npz",
+                "diagnostic_file": "e0p7-fixed-long-diagnostics.npz",
+                "periapsis_count": 9,
+                "max_periapsis_time_error": 0.019660328065015165,
+                "max_apsidal_angle_drift": 0.0012282486536329058
+              },
+              {
+                "id": "e0p7-variable-long",
+                "role": "primary",
+                "eccentricity": 0.7,
+                "control": "variable",
+                "periods": 10,
+                "steps": 20479,
+                "max_h": 0.005215668515519853,
+                "max_state_error": 0.02274175959580029,
+                "max_energy_error": 1.4154539898170171e-05,
+                "angular_normalized_drift": 4.209946499001875e-15,
+                "min_radius": 0.30000000000000004,
+                "raw_file": "e0p7-variable-long.npz",
+                "diagnostic_file": "e0p7-variable-long-diagnostics.npz",
+                "periapsis_count": 9,
+                "max_periapsis_time_error": 0.001804519551981798,
+                "max_apsidal_angle_drift": 9.68816660619108e-06
+              },
+              {
+                "id": "e0p7-reverse-fixed",
+                "role": "reversal",
+                "control": "fixed",
+                "eccentricity": 0.7,
+                "recovery_defect": 2.2052165141787552e-13,
+                "steps": 2048,
+                "reversal_scope": "saved_schedule_reversal",
+                "raw_file": "e0p7-reverse-fixed.npz"
+              },
+              {
+                "id": "e0p7-reverse-variable-replay",
+                "role": "reversal",
+                "control": "variable-replay",
+                "eccentricity": 0.7,
+                "recovery_defect": 7.36477491550565e-11,
+                "steps": 20479,
+                "reversal_scope": "saved_schedule_reversal",
+                "raw_file": "e0p7-reverse-variable-replay.npz"
+              },
+              {
+                "id": "e0p7-reverse-variable-regenerated",
+                "role": "reversal",
+                "control": "variable-regenerated",
+                "eccentricity": 0.7,
+                "recovery_defect": 0.0008103912293590188,
+                "steps": 20479,
+                "reversal_scope": "diagnostic_not_time_symmetric",
+                "raw_file": "e0p7-reverse-variable-regenerated.npz"
+              }
+            ],
+            "metrics": {
+              "e0.1_orders": [
+                1.9999876782390122,
+                1.9999962905452664
+              ],
+              "e0.7_orders": [
+                1.987542094585538,
+                2.000215589787777
+              ],
+              "evolution_count": 16,
+              "variable_map_symplecticity_measured": false,
+              "max_state_error": 0.39849708597264355
+            }
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/kepler-eccentricity/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#kepler-eccentricity",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#kepler-eccentricity"
+          }
+        },
+        {
+          "id": "multifrequency-resonance",
+          "method_ids": [
+            "verlet",
+            "strang-splitting"
+          ],
+          "domains": [
+            "classical-mechanics",
+            "geometric-integration"
+          ],
+          "validation_count": 32,
+          "title": {
+            "ja": "結合した2周波数系と共鳴の有限窓",
+            "en": "Coupled frequencies and finite-window resonance"
+          },
+          "summary": {
+            "ja": "2自由度の実結合系で、12の64刻みprobeと6の精度軌道を使い、真のモード、座標間交換、離散写像と丸めを分けます。",
+            "en": "A genuinely coupled two-degree-of-freedom system uses twelve 64-step probes and six accuracy trajectories to separate normal modes, coordinate exchange, discrete maps and roundoff."
+          },
+          "assumptions": {
+            "ja": "α=1、ω=10/20、q0=(1,1/ω)、p0=0。中心probeは保存binary64のhとsin/cosをそのまま使い、πへ丸め直しません。",
+            "en": "alpha=1, omega=10/20, q0=(1,1/omega) and p0=0. Central probes retain the evaluated binary64 h and sin/cos coefficients without snapping to mathematical pi."
+          },
+          "algorithm": {
+            "ja": "全ポテンシャルVerletと、B半kick・A厳密flow・B半kickのStrang impulse。Aには高速調和振動子と低速自由流、Bには低速位置項と結合を含めます。",
+            "en": "Full-potential Verlet and a Strang impulse composition: half B kick, exact A flow, half B kick. A contains the fast oscillator and slow free drift; B contains the slow potential and the coupling."
+          },
+          "validation": {
+            "ja": "116主判定。独立の結合固有モード解析、保存係数Decimal80/120・Fraction写像、段階別γ8丸め上界を区別。理想πのJordan構造は有理恒等式で別確認。 各probeは現在保存した係数hexからDecimal80/120を評価し、6精度軌道はDecimal80を用います。",
+            "en": "The 116 main decisions distinguish independent coupled normal modes, Decimal80/120 and Fraction frozen-coefficient maps, and stagewise gamma8 roundoff allowances. Ideal-pi Jordan structure is checked separately by rational identities. Each probe uses the current saved coefficient hex for its own Decimal80/120 actions; six accuracy actions use Decimal80."
+          },
+          "limits": {
+            "ja": "中心の実浮動係数写像はunresolvedとし、理想πのJordan性を移しません。64刻み増幅と小さい固定入力の観測であり、走査した共鳴図・一般安定性・長時間の普遍誤差定理は主張しません。",
+            "en": "The central actual floating map remains unresolved; ideal-pi Jordan structure is not transferred to it. Results concern 64-step amplification and small fixed inputs, not a scanned resonance diagram, general stability or a universal long-time error theorem."
+          },
+          "review_level": {
+            "ja": "一次資料の選択閲読と独立参照資格。実際の成否は保存result.jsonとverification.jsonに記録します。",
+            "en": "Selected primary passages and separately qualified independent references. Actual outcomes are recorded in the saved result.json and verification.json."
+          },
+          "formulas": [
+            "H=\\tfrac12(p_1^2+p_2^2+q_1^2+\\omega^2q_2^2)+\\alpha q_1q_2",
+            "\\Phi_h=\\varphi^B_{h/2}\\circ\\varphi^A_h\\circ\\varphi^B_{h/2}",
+            "\\chi_{\\theta=\\pi}(z)=(z+1)^2[z^2-(2-h^2)z+1]"
+          ],
+          "source_files": [
+            "physics.py",
+            "diagnostics.py",
+            "run.py",
+            "references/analytic.py",
+            "references/discrete.py"
+          ],
+          "code_files": [
+            "physics.py",
+            "diagnostics.py",
+            "run.py",
+            "references/analytic.py",
+            "references/discrete.py"
+          ],
+          "references": [
+            {
+              "id": "hairer-symplectic-2010",
+              "title": "Lecture2: Symplectic integrators",
+              "url": "https://www.unige.ch/~hairer/poly_geoint/week2.pdf",
+              "year": 2010,
+              "year_role": "displayed course date",
+              "accessed_on": "2026-11-24",
+              "review_level": "selected-primary-scope",
+              "review_scope": "Author-hosted course notes, selected rendered printed pages2,12–13: Verlet kick/drift form, symplectic statement, Lie and symmetric Strang compositions. This does not qualify every state-dependent step rule or the authored coupled resonance experiment."
+            }
+          ],
+          "gallery_figure": "multifrequency-resonance-preview.png",
+          "additional_figures": [
+            {
+              "file": "multifrequency-resonance-preview.png",
+              "caption": {
+                "ja": "保存した最細impulse軌道の実q1–q2座標と物理時刻。これは走査相図ではなく、結合した1軌道です。",
+                "en": "Saved q1–q2 coordinates of the finest impulse trajectory, colored by physical time. This is one coupled trajectory, not a scanned phase diagram."
+              }
+            }
+          ],
+          "measured": {
+            "id": "multifrequency-resonance",
+            "passed": true,
+            "checks": {
+              "w10-verlet-1p0-finite-cap": true,
+              "w10-verlet-1p0-completed": true,
+              "w10-verlet-1p0-discrete-reference": true,
+              "w10-verlet-1p0-roundoff": true,
+              "w10-verlet-1p0-symplectic": true,
+              "w10-verlet-1p0-classification": true,
+              "w10-verlet-1p8-finite-cap": true,
+              "w10-verlet-1p8-completed": true,
+              "w10-verlet-1p8-discrete-reference": true,
+              "w10-verlet-1p8-roundoff": true,
+              "w10-verlet-1p8-symplectic": true,
+              "w10-verlet-1p8-classification": true,
+              "w10-verlet-2p2-finite-cap": true,
+              "w10-verlet-2p2-completed": true,
+              "w10-verlet-2p2-discrete-reference": true,
+              "w10-verlet-2p2-roundoff": true,
+              "w10-verlet-2p2-symplectic": true,
+              "w10-verlet-2p2-classification": true,
+              "w10-impulse-0p9-finite-cap": true,
+              "w10-impulse-0p9-completed": true,
+              "w10-impulse-0p9-discrete-reference": true,
+              "w10-impulse-0p9-roundoff": true,
+              "w10-impulse-0p9-symplectic": true,
+              "w10-impulse-0p9-classification": true,
+              "w10-impulse-1p0-finite-cap": true,
+              "w10-impulse-1p0-completed": true,
+              "w10-impulse-1p0-discrete-reference": true,
+              "w10-impulse-1p0-roundoff": true,
+              "w10-impulse-1p0-symplectic": true,
+              "w10-impulse-1p0-classification": true,
+              "w10-impulse-1p1-finite-cap": true,
+              "w10-impulse-1p1-completed": true,
+              "w10-impulse-1p1-discrete-reference": true,
+              "w10-impulse-1p1-roundoff": true,
+              "w10-impulse-1p1-symplectic": true,
+              "w10-impulse-1p1-classification": true,
+              "w20-verlet-1p0-finite-cap": true,
+              "w20-verlet-1p0-completed": true,
+              "w20-verlet-1p0-discrete-reference": true,
+              "w20-verlet-1p0-roundoff": true,
+              "w20-verlet-1p0-symplectic": true,
+              "w20-verlet-1p0-classification": true,
+              "w20-verlet-1p8-finite-cap": true,
+              "w20-verlet-1p8-completed": true,
+              "w20-verlet-1p8-discrete-reference": true,
+              "w20-verlet-1p8-roundoff": true,
+              "w20-verlet-1p8-symplectic": true,
+              "w20-verlet-1p8-classification": true,
+              "w20-verlet-2p2-finite-cap": true,
+              "w20-verlet-2p2-completed": true,
+              "w20-verlet-2p2-discrete-reference": true,
+              "w20-verlet-2p2-roundoff": true,
+              "w20-verlet-2p2-symplectic": true,
+              "w20-verlet-2p2-classification": true,
+              "w20-impulse-0p9-finite-cap": true,
+              "w20-impulse-0p9-completed": true,
+              "w20-impulse-0p9-discrete-reference": true,
+              "w20-impulse-0p9-roundoff": true,
+              "w20-impulse-0p9-symplectic": true,
+              "w20-impulse-0p9-classification": true,
+              "w20-impulse-1p0-finite-cap": true,
+              "w20-impulse-1p0-completed": true,
+              "w20-impulse-1p0-discrete-reference": true,
+              "w20-impulse-1p0-roundoff": true,
+              "w20-impulse-1p0-symplectic": true,
+              "w20-impulse-1p0-classification": true,
+              "w20-impulse-1p1-finite-cap": true,
+              "w20-impulse-1p1-completed": true,
+              "w20-impulse-1p1-discrete-reference": true,
+              "w20-impulse-1p1-roundoff": true,
+              "w20-impulse-1p1-symplectic": true,
+              "w20-impulse-1p1-classification": true,
+              "w10-verlet-accuracy-500-finite": true,
+              "w10-verlet-accuracy-500-completed": true,
+              "w10-verlet-accuracy-500-state": true,
+              "w10-verlet-accuracy-500-energy": true,
+              "w10-verlet-accuracy-500-mode": true,
+              "w10-verlet-accuracy-500-discrete-reference": true,
+              "w10-verlet-accuracy-1000-finite": true,
+              "w10-verlet-accuracy-1000-completed": true,
+              "w10-verlet-accuracy-1000-state": true,
+              "w10-verlet-accuracy-1000-energy": true,
+              "w10-verlet-accuracy-1000-mode": true,
+              "w10-verlet-accuracy-1000-discrete-reference": true,
+              "w10-verlet-accuracy-2000-finite": true,
+              "w10-verlet-accuracy-2000-completed": true,
+              "w10-verlet-accuracy-2000-state": true,
+              "w10-verlet-accuracy-2000-energy": true,
+              "w10-verlet-accuracy-2000-mode": true,
+              "w10-verlet-accuracy-2000-discrete-reference": true,
+              "w10-impulse-accuracy-500-finite": true,
+              "w10-impulse-accuracy-500-completed": true,
+              "w10-impulse-accuracy-500-state": true,
+              "w10-impulse-accuracy-500-energy": true,
+              "w10-impulse-accuracy-500-mode": true,
+              "w10-impulse-accuracy-500-discrete-reference": true,
+              "w10-impulse-accuracy-1000-finite": true,
+              "w10-impulse-accuracy-1000-completed": true,
+              "w10-impulse-accuracy-1000-state": true,
+              "w10-impulse-accuracy-1000-energy": true,
+              "w10-impulse-accuracy-1000-mode": true,
+              "w10-impulse-accuracy-1000-discrete-reference": true,
+              "w10-impulse-accuracy-2000-finite": true,
+              "w10-impulse-accuracy-2000-completed": true,
+              "w10-impulse-accuracy-2000-state": true,
+              "w10-impulse-accuracy-2000-energy": true,
+              "w10-impulse-accuracy-2000-mode": true,
+              "w10-impulse-accuracy-2000-discrete-reference": true,
+              "verlet-state-order": true,
+              "verlet-fine-state": true,
+              "verlet-fine-relative-H": true,
+              "verlet-fine-coordinate-energy": true,
+              "impulse-state-order": true,
+              "impulse-fine-state": true,
+              "impulse-fine-relative-H": true,
+              "impulse-fine-coordinate-energy": true
+            },
+            "records": [
+              {
+                "id": "w10-verlet-1p0",
+                "role": "probe",
+                "method": "verlet",
+                "omega": 10,
+                "h": 0.1,
+                "steps": 64,
+                "discrete_relative_error": 4.145502167504218e-16,
+                "roundoff_bound_satisfied": true,
+                "normalized_symplectic_defect": 1.0416598366111144e-19,
+                "max_energy_error": 0.11521890059060136,
+                "reference_action_precisions": [
+                  80,
+                  120
+                ],
+                "raw_file": "w10-verlet-1p0.npz",
+                "diagnostic_file": "w10-verlet-1p0-diagnostics.npz",
+                "reference_map_classification": "stable",
+                "ideal_map_classification": "stable",
+                "actual_frozen_map_classification": "raw_spectrum_reported_without_exact_stability_theorem",
+                "actual_frozen_map_spectral_radius": 0.9999999999999999,
+                "classification_scope": "Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.",
+                "finite_horizon_amplification": 1.561984072192242,
+                "current_coefficient_precision_error": 1.5124037089205902e-79
+              },
+              {
+                "id": "w10-verlet-1p8",
+                "role": "probe",
+                "method": "verlet",
+                "omega": 10,
+                "h": 0.18,
+                "steps": 64,
+                "discrete_relative_error": 1.2522134139177896e-15,
+                "roundoff_bound_satisfied": true,
+                "normalized_symplectic_defect": 7.007848725616845e-19,
+                "max_energy_error": 0.49434766574278466,
+                "reference_action_precisions": [
+                  80,
+                  120
+                ],
+                "raw_file": "w10-verlet-1p8.npz",
+                "diagnostic_file": "w10-verlet-1p8-diagnostics.npz",
+                "reference_map_classification": "stable",
+                "ideal_map_classification": "stable",
+                "actual_frozen_map_classification": "raw_spectrum_reported_without_exact_stability_theorem",
+                "actual_frozen_map_spectral_radius": 0.9999999999999997,
+                "classification_scope": "Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.",
+                "finite_horizon_amplification": 1.554302100515351,
+                "current_coefficient_precision_error": 3.8894955335283575e-79
+              },
+              {
+                "id": "w10-verlet-2p2",
+                "role": "probe",
+                "method": "verlet",
+                "omega": 10,
+                "h": 0.22000000000000003,
+                "steps": 64,
+                "discrete_relative_error": 1.5118039277954516e-15,
+                "roundoff_bound_satisfied": true,
+                "normalized_symplectic_defect": 9.926441305125045e-18,
+                "max_energy_error": 3.912324814618784e+48,
+                "reference_action_precisions": [
+                  80,
+                  120
+                ],
+                "raw_file": "w10-verlet-2p2.npz",
+                "diagnostic_file": "w10-verlet-2p2-diagnostics.npz",
+                "reference_map_classification": "unstable",
+                "ideal_map_classification": "unstable",
+                "actual_frozen_map_classification": "raw_spectrum_reported_without_exact_stability_theorem",
+                "actual_frozen_map_spectral_radius": 2.4287553074746806,
+                "classification_scope": "Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.",
+                "finite_horizon_amplification": 2.7970240909000787e+24,
+                "current_coefficient_precision_error": 9.463706379857612e-79
+              },
+              {
+                "id": "w10-impulse-0p9",
+                "role": "probe",
+                "method": "impulse",
+                "omega": 10,
+                "h": 0.2827433388230814,
+                "steps": 64,
+                "discrete_relative_error": 6.374776728399525e-16,
+                "roundoff_bound_satisfied": true,
+                "normalized_symplectic_defect": 1.0559214440481042e-17,
+                "max_energy_error": 0.15779817027003462,
+                "reference_action_precisions": [
+                  80,
+                  120
+                ],
+                "raw_file": "w10-impulse-0p9.npz",
+                "diagnostic_file": "w10-impulse-0p9-diagnostics.npz",
+                "reference_map_classification": "stable",
+                "ideal_map_classification": "stable",
+                "actual_frozen_map_classification": "raw_spectrum_reported_without_exact_stability_theorem",
+                "actual_frozen_map_spectral_radius": 1.0000000000000002,
+                "classification_scope": "Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.",
+                "finite_horizon_amplification": 1.4432000831973606,
+                "current_coefficient_precision_error": 8.660178100378759e-80
+              },
+              {
+                "id": "w10-impulse-1p0",
+                "role": "probe",
+                "method": "impulse",
+                "omega": 10,
+                "h": 0.3141592653589793,
+                "steps": 64,
+                "discrete_relative_error": 1.8864090381194407e-16,
+                "roundoff_bound_satisfied": true,
+                "normalized_symplectic_defect": 1.1102230246251565e-16,
+                "max_energy_error": 0.20450002305130444,
+                "reference_action_precisions": [
+                  80,
+                  120
+                ],
+                "raw_file": "w10-impulse-1p0.npz",
+                "diagnostic_file": "w10-impulse-1p0-diagnostics.npz",
+                "reference_map_classification": "unresolved_near_degeneracy",
+                "ideal_map_classification": "defective_jordan",
+                "actual_frozen_map_classification": "unresolved_near_degeneracy",
+                "actual_frozen_map_spectral_radius": 1.000000000987884,
+                "classification_scope": "Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.",
+                "finite_horizon_amplification": 1.4148942014488144,
+                "current_coefficient_precision_error": 2.9746599228475e-80
+              },
+              {
+                "id": "w10-impulse-1p1",
+                "role": "probe",
+                "method": "impulse",
+                "omega": 10,
+                "h": 0.3455751918948773,
+                "steps": 64,
+                "discrete_relative_error": 2.697612641566338e-16,
+                "roundoff_bound_satisfied": true,
+                "normalized_symplectic_defect": 1.409776672786576e-18,
+                "max_energy_error": 0.24834143999714675,
+                "reference_action_precisions": [
+                  80,
+                  120
+                ],
+                "raw_file": "w10-impulse-1p1.npz",
+                "diagnostic_file": "w10-impulse-1p1-diagnostics.npz",
+                "reference_map_classification": "stable",
+                "ideal_map_classification": "stable",
+                "actual_frozen_map_classification": "raw_spectrum_reported_without_exact_stability_theorem",
+                "actual_frozen_map_spectral_radius": 1.0000000000000009,
+                "classification_scope": "Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.",
+                "finite_horizon_amplification": 1.4142135623730951,
+                "current_coefficient_precision_error": 1.291027573220984e-79
+              },
+              {
+                "id": "w20-verlet-1p0",
+                "role": "probe",
+                "method": "verlet",
+                "omega": 20,
+                "h": 0.05,
+                "steps": 64,
+                "discrete_relative_error": 4.767144948498519e-16,
+                "roundoff_bound_satisfied": true,
+                "normalized_symplectic_defect": 9.82502327522141e-19,
+                "max_energy_error": 0.10370871525863312,
+                "reference_action_precisions": [
+                  80,
+                  120
+                ],
+                "raw_file": "w20-verlet-1p0.npz",
+                "diagnostic_file": "w20-verlet-1p0-diagnostics.npz",
+                "reference_map_classification": "stable",
+                "ideal_map_classification": "stable",
+                "actual_frozen_map_classification": "raw_spectrum_reported_without_exact_stability_theorem",
+                "actual_frozen_map_spectral_radius": 1.0000000000000004,
+                "classification_scope": "Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.",
+                "finite_horizon_amplification": 1.4861946477456165,
+                "current_coefficient_precision_error": 1.1180439099341437e-79
+              },
+              {
+                "id": "w20-verlet-1p8",
+                "role": "probe",
+                "method": "verlet",
+                "omega": 20,
+                "h": 0.09,
+                "steps": 64,
+                "discrete_relative_error": 1.0129117256347924e-15,
+                "roundoff_bound_satisfied": true,
+                "normalized_symplectic_defect": 1.1033047892648788e-19,
+                "max_energy_error": 0.4475008383602117,
+                "reference_action_precisions": [
+                  80,
+                  120
+                ],
+                "raw_file": "w20-verlet-1p8.npz",
+                "diagnostic_file": "w20-verlet-1p8-diagnostics.npz",
+                "reference_map_classification": "stable",
+                "ideal_map_classification": "stable",
+                "actual_frozen_map_classification": "raw_spectrum_reported_without_exact_stability_theorem",
+                "actual_frozen_map_spectral_radius": 0.9999999999999999,
+                "classification_scope": "Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.",
+                "finite_horizon_amplification": 1.4786935259763927,
+                "current_coefficient_precision_error": 1.2381333022261956e-79
+              },
+              {
+                "id": "w20-verlet-2p2",
+                "role": "probe",
+                "method": "verlet",
+                "omega": 20,
+                "h": 0.11000000000000001,
+                "steps": 64,
+                "discrete_relative_error": 1.0218570901485969e-15,
+                "roundoff_bound_satisfied": true,
+                "normalized_symplectic_defect": 2.57044417086976e-18,
+                "max_energy_error": 3.4567098661726565e+48,
+                "reference_action_precisions": [
+                  80,
+                  120
+                ],
+                "raw_file": "w20-verlet-2p2.npz",
+                "diagnostic_file": "w20-verlet-2p2-diagnostics.npz",
+                "reference_map_classification": "unstable",
+                "ideal_map_classification": "unstable",
+                "actual_frozen_map_classification": "raw_spectrum_reported_without_exact_stability_theorem",
+                "actual_frozen_map_spectral_radius": 2.428203172369799,
+                "classification_scope": "Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.",
+                "finite_horizon_amplification": 2.629324653883594e+24,
+                "current_coefficient_precision_error": 5.934390297120603e-79
+              },
+              {
+                "id": "w20-impulse-0p9",
+                "role": "probe",
+                "method": "impulse",
+                "omega": 20,
+                "h": 0.1413716694115407,
+                "steps": 64,
+                "discrete_relative_error": 3.394048892577888e-16,
+                "roundoff_bound_satisfied": true,
+                "normalized_symplectic_defect": 5.6661564412693846e-18,
+                "max_energy_error": 0.07716888637049724,
+                "reference_action_precisions": [
+                  80,
+                  120
+                ],
+                "raw_file": "w20-impulse-0p9.npz",
+                "diagnostic_file": "w20-impulse-0p9-diagnostics.npz",
+                "reference_map_classification": "stable",
+                "ideal_map_classification": "stable",
+                "actual_frozen_map_classification": "raw_spectrum_reported_without_exact_stability_theorem",
+                "actual_frozen_map_spectral_radius": 0.9999999999999999,
+                "classification_scope": "Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.",
+                "finite_horizon_amplification": 1.4292841712090125,
+                "current_coefficient_precision_error": 1.7832456811386294e-79
+              },
+              {
+                "id": "w20-impulse-1p0",
+                "role": "probe",
+                "method": "impulse",
+                "omega": 20,
+                "h": 0.15707963267948966,
+                "steps": 64,
+                "discrete_relative_error": 1.4843089753780595e-16,
+                "roundoff_bound_satisfied": true,
+                "normalized_symplectic_defect": 5.551115123125783e-17,
+                "max_energy_error": 0.10058872589898016,
+                "reference_action_precisions": [
+                  80,
+                  120
+                ],
+                "raw_file": "w20-impulse-1p0.npz",
+                "diagnostic_file": "w20-impulse-1p0-diagnostics.npz",
+                "reference_map_classification": "unresolved_near_degeneracy",
+                "ideal_map_classification": "defective_jordan",
+                "actual_frozen_map_classification": "unresolved_near_degeneracy",
+                "actual_frozen_map_spectral_radius": 1.000000000359987,
+                "classification_scope": "Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.",
+                "finite_horizon_amplification": 1.4142147559165,
+                "current_coefficient_precision_error": 3.974617080093606e-80
+              },
+              {
+                "id": "w20-impulse-1p1",
+                "role": "probe",
+                "method": "impulse",
+                "omega": 20,
+                "h": 0.17278759594743864,
+                "steps": 64,
+                "discrete_relative_error": 2.801246439326266e-16,
+                "roundoff_bound_satisfied": true,
+                "normalized_symplectic_defect": 5.662591164476928e-18,
+                "max_energy_error": 0.1237347338514605,
+                "reference_action_precisions": [
+                  80,
+                  120
+                ],
+                "raw_file": "w20-impulse-1p1.npz",
+                "diagnostic_file": "w20-impulse-1p1-diagnostics.npz",
+                "reference_map_classification": "stable",
+                "ideal_map_classification": "stable",
+                "actual_frozen_map_classification": "raw_spectrum_reported_without_exact_stability_theorem",
+                "actual_frozen_map_spectral_radius": 1.0000000000000004,
+                "classification_scope": "Central actual float map unresolved; ideal mathematical pi structure is separate. Off-central classification is explicitly the qualified mathematical reference class. The actual frozen map spectrum and finite action are reported without turning near-unit floating eigenvalues into a theorem.",
+                "finite_horizon_amplification": 1.4142135623730951,
+                "current_coefficient_precision_error": 1.3192204607275523e-79
+              },
+              {
+                "id": "w10-verlet-accuracy-500",
+                "role": "accuracy",
+                "method": "verlet",
+                "omega": 10,
+                "h": 0.02,
+                "steps": 500,
+                "discrete_relative_error": 7.344888096386707e-16,
+                "roundoff_bound_satisfied": true,
+                "normalized_symplectic_defect": 2.256371050463633e-17,
+                "max_energy_error": 0.006109049094255248,
+                "reference_action_precisions": [
+                  80
+                ],
+                "raw_file": "w10-verlet-accuracy-500.npz",
+                "diagnostic_file": "w10-verlet-accuracy-500-diagnostics.npz",
+                "max_scaled_state_error": 0.18611590726793545,
+                "relative_energy_envelope": 0.0029090709972644036,
+                "max_coordinate_energy_error": 0.023606504892498936,
+                "modal_energy_identity_error": 6.661338147750939e-16
+              },
+              {
+                "id": "w10-verlet-accuracy-1000",
+                "role": "accuracy",
+                "method": "verlet",
+                "omega": 10,
+                "h": 0.01,
+                "steps": 1000,
+                "discrete_relative_error": 1.4913298100213874e-15,
+                "roundoff_bound_satisfied": true,
+                "normalized_symplectic_defect": 1.0029371551531778e-18,
+                "max_energy_error": 0.0015263704534154154,
+                "reference_action_precisions": [
+                  80
+                ],
+                "raw_file": "w10-verlet-accuracy-1000.npz",
+                "diagnostic_file": "w10-verlet-accuracy-1000-diagnostics.npz",
+                "max_scaled_state_error": 0.04650854919021377,
+                "relative_energy_envelope": 0.0007268430730549597,
+                "max_coordinate_energy_error": 0.005929023980017933,
+                "modal_energy_identity_error": 4.440892098500626e-16
+              },
+              {
+                "id": "w10-verlet-accuracy-2000",
+                "role": "accuracy",
+                "method": "verlet",
+                "omega": 10,
+                "h": 0.005,
+                "steps": 2000,
+                "discrete_relative_error": 1.83456595878474e-15,
+                "roundoff_bound_satisfied": true,
+                "normalized_symplectic_defect": 1.1102369024997003e-16,
+                "max_energy_error": 0.00038186448581845056,
+                "reference_action_precisions": [
+                  80
+                ],
+                "raw_file": "w10-verlet-accuracy-2000.npz",
+                "diagnostic_file": "w10-verlet-accuracy-2000-diagnostics.npz",
+                "max_scaled_state_error": 0.01162372293333569,
+                "relative_energy_envelope": 0.0001818402313421193,
+                "max_coordinate_energy_error": 0.0014814363541617581,
+                "modal_energy_identity_error": 6.661338147750939e-16
+              },
+              {
+                "id": "w10-impulse-accuracy-500",
+                "role": "accuracy",
+                "method": "impulse",
+                "omega": 10,
+                "h": 0.02,
+                "steps": 500,
+                "discrete_relative_error": 8.28009418528374e-16,
+                "roundoff_bound_satisfied": true,
+                "normalized_symplectic_defect": 2.9587426502801494e-19,
+                "max_energy_error": 0.0007406281241237878,
+                "reference_action_precisions": [
+                  80
+                ],
+                "raw_file": "w10-impulse-accuracy-500.npz",
+                "diagnostic_file": "w10-impulse-accuracy-500-diagnostics.npz",
+                "max_scaled_state_error": 0.0007374603729817292,
+                "relative_energy_envelope": 0.0003526800591065656,
+                "max_coordinate_energy_error": 0.00080095306436756,
+                "modal_energy_identity_error": 6.661338147750939e-16
+              },
+              {
+                "id": "w10-impulse-accuracy-1000",
+                "role": "accuracy",
+                "method": "impulse",
+                "omega": 10,
+                "h": 0.01,
+                "steps": 1000,
+                "discrete_relative_error": 2.432468376162801e-15,
+                "roundoff_bound_satisfied": true,
+                "normalized_symplectic_defect": 1.1102785371641666e-16,
+                "max_energy_error": 0.0001851021248233664,
+                "reference_action_precisions": [
+                  80
+                ],
+                "raw_file": "w10-impulse-accuracy-1000.npz",
+                "diagnostic_file": "w10-impulse-accuracy-1000-diagnostics.npz",
+                "max_scaled_state_error": 0.00018427709435707353,
+                "relative_energy_envelope": 8.814386896350781e-05,
+                "max_coordinate_energy_error": 0.00020017681157191713,
+                "modal_energy_identity_error": 6.661338147750939e-16
+              },
+              {
+                "id": "w10-impulse-accuracy-2000",
+                "role": "accuracy",
+                "method": "impulse",
+                "omega": 10,
+                "h": 0.005,
+                "steps": 2000,
+                "discrete_relative_error": 2.082986487349954e-15,
+                "roundoff_bound_satisfied": true,
+                "normalized_symplectic_defect": 1.1102369024997003e-16,
+                "max_energy_error": 4.6272101977162805e-05,
+                "reference_action_precisions": [
+                  80
+                ],
+                "raw_file": "w10-impulse-accuracy-2000.npz",
+                "diagnostic_file": "w10-impulse-accuracy-2000-diagnostics.npz",
+                "max_scaled_state_error": 4.606557418824412e-05,
+                "relative_energy_envelope": 2.203433427483943e-05,
+                "max_coordinate_energy_error": 5.0040364710901564e-05,
+                "modal_energy_identity_error": 6.661338147750939e-16
+              }
+            ],
+            "metrics": {
+              "verlet_observed_orders": [
+                2.0006335257949495,
+                2.0004237164828513
+              ],
+              "impulse_observed_orders": [
+                2.000688773919643,
+                2.0001158542645605
+              ],
+              "evolution_count": 18,
+              "probe_steps": 64,
+              "ideal_pi_separate_from_actual_float": true,
+              "maximum_frozen_map_relative_error": 2.432468376162801e-15
+            }
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/multifrequency-resonance/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-geometric-controls/#multifrequency-resonance",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-geometric-controls/#multifrequency-resonance"
+          }
+        }
+      ]
     }
   ],
   "depth_scope": {
@@ -4516,13 +5652,21 @@
     "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/experiments.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/run.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/primary.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/references/scalar_pic.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/references/scalar_pic.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/physics.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/diagnostics.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/analytic.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/discrete.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/io_utils.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/references/qualify.py"
   ],
   "test_urls": [
     "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_hamiltonian.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/test_dynamics.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/test_pic.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/test_spatial.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/test_spatial.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/test_geometry.py"
   ],
   "run_commands": [
     "python -m pytest -q tests/test_hamiltonian.py"
@@ -4583,6 +5727,24 @@
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pic-independent-spatial/?lang=en"
       },
       "kind": "dedicated-supplement"
+    },
+    {
+      "id": "kepler-eccentricity",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/kepler-eccentricity/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/kepler-eccentricity/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    },
+    {
+      "id": "multifrequency-resonance",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/multifrequency-resonance/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/multifrequency-resonance/?lang=en"
+      },
+      "kind": "dedicated-supplement"
     }
   ],
   "problem_navigation": {
@@ -4597,7 +5759,9 @@
         },
         "problem_ids": [
           "harmonic-oscillator",
-          "quartic-oscillator"
+          "quartic-oscillator",
+          "gravity-kepler",
+          "multifrequency-resonance"
         ],
         "url": {
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#hamiltonian-ja",
@@ -4647,6 +5811,34 @@
         "url": {
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#particle-gravity-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#particle-gravity-en"
+        }
+      },
+      {
+        "id": "kepler-two-body",
+        "name": {
+          "ja": "Kepler二体問題",
+          "en": "Kepler two-body problem"
+        },
+        "problem_ids": [
+          "gravity-kepler"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#kepler-two-body-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#kepler-two-body-en"
+        }
+      },
+      {
+        "id": "coupled-harmonic-oscillators",
+        "name": {
+          "ja": "二周波数の結合調和振動子",
+          "en": "Coupled two-frequency harmonic oscillators"
+        },
+        "problem_ids": [
+          "multifrequency-resonance"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#coupled-harmonic-oscillators-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#coupled-harmonic-oscillators-en"
         }
       }
     ],
@@ -4854,12 +6046,34 @@
             "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/inputs.json",
             "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/atlas-gravity-dynamics-2026-11-23.zip",
             "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/verification.json"
+          },
+          {
+            "id": "kepler-eccentricity",
+            "kind": "supplement",
+            "name": {
+              "ja": "離心率を変えたKepler軌道と時間刻み",
+              "en": "Kepler eccentricity and time-step controls"
+            },
+            "scope": {
+              "ja": "e=0.1/0.7の16固定軌道で、保存量と同時刻の位相誤差、実際の近日点時刻と逆積分を比較します。",
+              "en": "Sixteen fixed evolutions at e=0.1/0.7 compare invariants, same-time phase error, physical periapsis times and reversal."
+            },
+            "method_ids": [
+              "verlet"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/kepler-eccentricity/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/kepler-eccentricity/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/verification.json"
           }
         ],
         "role": "execution",
         "method_note": {
-          "ja": "位置のみの力でkick半分→drift→kick半分。独立のbracketed Kepler rootと解析速度を使用。",
-          "en": "Position-only kick-half/drift/kick-half; separate bracketed Kepler root and analytic velocities."
+          "ja": "位置のみの力でkick半分→drift→kick半分。独立のbracketed Kepler rootと解析速度を使用。 独自の中心力KDK Verlet。固定・保存刻み再生・再生成刻みを区別し、cubic Hermite軌道の正の放射速度交差をbrentqで局在化。",
+          "en": "Position-only kick-half/drift/kick-half; separate bracketed Kepler root and analytic velocities. Original central-force KDK Verlet. Fixed, replayed and regenerated schedules are distinct. Positive radial crossings of cubic Hermite trajectories are localized by brentq."
         },
         "reference_url": {
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-kepler/?lang=ja#references-ja",
@@ -5047,6 +6261,66 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/thermal-two-stream/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/thermal-two-stream/?lang=en#references-en"
         }
+      },
+      {
+        "id": "multifrequency-resonance",
+        "name": {
+          "ja": "結合した2周波数系と共鳴の有限窓",
+          "en": "Coupled frequencies and finite-window resonance"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/results/multifrequency-resonance-preview.png",
+          "sha256": "971cc717fea17fc6184f618778728aa4b3929c651fe9b835dfa1e9bb4340a8c8",
+          "width": 1170,
+          "height": 870,
+          "caption": {
+            "ja": "保存した最細impulse軌道の実q1–q2座標と物理時刻。これは走査相図ではなく、結合した1軌道です。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。",
+            "en": "Saved q1–q2 coordinates of the finest impulse trajectory, colored by physical time. This is one coupled trajectory, not a scanned phase diagram. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/multifrequency-resonance/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/multifrequency-resonance/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/multifrequency-resonance/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/multifrequency-resonance/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "multifrequency-resonance",
+            "kind": "supplement",
+            "name": {
+              "ja": "結合した2周波数系と共鳴の有限窓",
+              "en": "Coupled frequencies and finite-window resonance"
+            },
+            "scope": {
+              "ja": "2自由度の実結合系で、12の64刻みprobeと6の精度軌道を使い、真のモード、座標間交換、離散写像と丸めを分けます。",
+              "en": "A genuinely coupled two-degree-of-freedom system uses twelve 64-step probes and six accuracy trajectories to separate normal modes, coordinate exchange, discrete maps and roundoff."
+            },
+            "method_ids": [
+              "verlet",
+              "strang-splitting"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/multifrequency-resonance/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/multifrequency-resonance/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "全ポテンシャルVerletと、B半kick・A厳密flow・B半kickのStrang impulse。Aには高速調和振動子と低速自由流、Bには低速位置項と結合を含めます。",
+          "en": "Full-potential Verlet and a Strang impulse composition: half B kick, exact A flow, half B kick. A contains the fast oscillator and slow free drift; B contains the slow potential and the coupling."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/multifrequency-resonance/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/multifrequency-resonance/?lang=en#references-en"
+        }
       }
     ],
     "references": [
@@ -5138,6 +6412,27 @@
             "view": {
               "ja": "/numerical-methods-atlas/validation/gravity-kepler/?lang=ja#gravity-kepler-ja-measurements",
               "en": "/numerical-methods-atlas/validation/gravity-kepler/?lang=en#gravity-kepler-en-measurements"
+            }
+          },
+          {
+            "id": "kepler-eccentricity",
+            "title": {
+              "ja": "離心率を変えたKepler軌道と時間刻み",
+              "en": "Kepler eccentricity and time-step controls"
+            },
+            "kind": "semi-analytic",
+            "relation": "same-problem",
+            "note": {
+              "ja": "保存量の小さい誤差から位相精度を推論しません。変動刻み写像の正準symplectic defectは測定せず、固定hの性質をそのまま移しません。初期解像度R1は数値実行前の漸近解析でR2へ改訂。",
+              "en": "Small invariant errors do not establish phase accuracy. No canonical symplectic-defect measurement is claimed for the variable-step map, and fixed-h properties are not transferred automatically. R1 resolution was revised to R2 using pre-execution asymptotic planning, not measured calibration."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-kepler-eccentricity-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-kepler-eccentricity-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/kepler-eccentricity/?lang=ja#kepler-eccentricity-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/kepler-eccentricity/?lang=en#kepler-eccentricity-en-measurements"
             }
           }
         ]
@@ -5240,6 +6535,40 @@
             "view": {
               "ja": "/numerical-methods-atlas/validation/thermal-two-stream/?lang=ja#thermal-two-stream-ja-measurements",
               "en": "/numerical-methods-atlas/validation/thermal-two-stream/?lang=en#thermal-two-stream-en-measurements"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "multifrequency-resonance",
+        "problem_name": {
+          "ja": "結合した2周波数系と共鳴の有限窓",
+          "en": "Coupled frequencies and finite-window resonance"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/multifrequency-resonance/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/multifrequency-resonance/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "multifrequency-resonance",
+            "title": {
+              "ja": "結合した2周波数系と共鳴の有限窓",
+              "en": "Coupled frequencies and finite-window resonance"
+            },
+            "kind": "semi-analytic",
+            "relation": "same-problem",
+            "note": {
+              "ja": "中心の実浮動係数写像はunresolvedとし、理想πのJordan性を移しません。64刻み増幅と小さい固定入力の観測であり、走査した共鳴図・一般安定性・長時間の普遍誤差定理は主張しません。",
+              "en": "The central actual floating map remains unresolved; ideal-pi Jordan structure is not transferred to it. Results concern 64-step amplification and small fixed inputs, not a scanned resonance diagram, general stability or a universal long-time error theorem."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-multifrequency-resonance-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-multifrequency-resonance-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/multifrequency-resonance/?lang=ja#multifrequency-resonance-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/multifrequency-resonance/?lang=en#multifrequency-resonance-en-measurements"
             }
           }
         ]

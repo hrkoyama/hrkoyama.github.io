@@ -4,8 +4,8 @@
   "title": "Learn by field",
   "description": "Read the theory, derivations and worked examples by field, from foundations to related methods and verification.",
   "source": "/catalog/atlas-reading-index.json",
-  "source_sha256": "ce6e7d0b574fee3207dba539e46f2750220a1f3f81deec88de72dbfb55e25f8a",
-  "chapter_count": 141,
+  "source_sha256": "7ffc77f89eda15d0a01d8b2cfe19edffa56a2570bccef4f8005f2862dbca49d9",
+  "chapter_count": 145,
   "groups": [
     {
       "id": "foundations-time",
@@ -110,6 +110,50 @@
             "en"
           ],
           "search_text": "dae 微分代数方程式（DAE） Differential-algebraic equations / DAE 基礎・誤差・時間積分 Foundations, error and time integration"
+        },
+        {
+          "id": "validation-ode-adaptivity",
+          "title": "Stiff ODEs, RK45 and boundary splitting",
+          "url": "/numerical-methods-atlas/en/read/validation-ode-adaptivity/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-ode-adaptivity 硬いODE・RK45・境界分割 Stiff ODEs, RK45 and boundary splitting 基礎・誤差・時間積分 Foundations, error and time integration"
+        },
+        {
+          "id": "validation-steady-rk",
+          "title": "Modal damping of steady multistage RK",
+          "url": "/numerical-methods-atlas/en/read/validation-steady-rk/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-steady-rk 定常多段RKのモード減衰 Modal damping of steady multistage RK 基礎・誤差・時間積分 Foundations, error and time integration"
+        },
+        {
+          "id": "validation-dae-controls",
+          "title": "DAE initialization, conservation and constraint drift",
+          "url": "/numerical-methods-atlas/en/read/validation-dae-controls/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-dae-controls DAEの初期化・保存則・拘束ドリフト DAE initialization, conservation and constraint drift 基礎・誤差・時間積分 Foundations, error and time integration"
+        },
+        {
+          "id": "validation-geometric-controls",
+          "title": "Geometric integration of constraints, orbits and multiple frequencies",
+          "url": "/numerical-methods-atlas/en/read/validation-geometric-controls/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-geometric-controls 拘束・軌道・多周波数の幾何積分 Geometric integration of constraints, orbits and multiple frequencies 基礎・誤差・時間積分 Foundations, error and time integration"
         }
       ]
     },

@@ -8,6 +8,7 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/steady-runge-kutta/
 
 ## 手法
 
+- [Jameson型の定常多段Runge–Kutta](<https://hrkoyama.github.io/numerical-methods-atlas/methods/jameson-steady-rk/?lang=ja>)
 - [古典的RK4](<https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/?lang=ja>)
 - [二重時間積分](<https://hrkoyama.github.io/numerical-methods-atlas/methods/dual-time/?lang=ja>)
 - [低Mach数のPDE前処理](<https://hrkoyama.github.io/numerical-methods-atlas/methods/low-mach-preconditioning/?lang=ja>)
@@ -27,4 +28,11 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/steady-runge-kutta/
 
 ## コード・検証
 
-章固有の対応は未登録です。全体一覧：[コード・入力・検証](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja)
+- [定常多段RKの実空間モード減衰](<https://hrkoyama.github.io/numerical-methods-atlas/validation/jameson-steady-linear-modes/?lang=ja>)
+  availability: run
+
+  周期格子の実残差に4段定常反復を適用し、離散モードの減衰・中立・増幅を区別します。 初回の増幅制御では元の絶対残差目標が未達でした。
+- [Jameson型の定常多段Runge–Kutta：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/jameson-steady-rk/?lang=ja#method-execution-ja>)
+  availability: source
+
+  手法固有の配布版と関連ソースを案内します。固定入力例は別の項目で区別します。

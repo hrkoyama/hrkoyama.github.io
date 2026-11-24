@@ -10,8 +10,8 @@
     "en": "Time integration"
   },
   "summary": {
-    "ja": "硬い常微分方程式の減衰を扱う2段2次の陰的Runge–Kutta法。公開版はγ=1−1/√2のstiffly accurateなL安定SDIRKで、各段階にNewton法を用い、別のラッパーでステップ倍化による局所誤差制御を行う。",
-    "en": "A two-stage second-order implicit Runge–Kutta method for stiff ODE decay. The release uses stiffly accurate L-stable SDIRK with γ=1−1/√2 and Newton stage solves; a separate wrapper adds step-doubling local-error control."
+    "ja": "硬い常微分方程式の減衰を扱う2段2次の陰的Runge–Kutta法。公開版はγ=1−1/√2のstiffly accurateなL安定SDIRKで、各段階にNewton法を用い、別のラッパーでステップ倍化による局所誤差制御を行う。 追加固定例：Robertson反応系の初期剛性と実誤差、van der Polの短時間剛性遷移。条件と検証範囲は各配布版で確認してください。",
+    "en": "A two-stage second-order implicit Runge–Kutta method for stiff ODE decay. The release uses stiffly accurate L-stable SDIRK with γ=1−1/√2 and Newton stage solves; a separate wrapper adds step-doubling local-error control. Additional fixed examples: Robertson kinetics: initial stiffness and actual error, Van der Pol: an early stiffness transition. See each release for assumptions and checked scope."
   },
   "status": "educational-example",
   "origin": "existing-coverage-catalog",
@@ -25,7 +25,7 @@
   "test_files": [
     "test_new_models"
   ],
-  "code_mapping_scope": "Related chapter modules and test files; not a claim that each test covers every named method.",
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct.",
   "references": [
     {
       "url": "https://doi.org/10.1137/0714068",
@@ -72,12 +72,16 @@
   "units": "h has time units, f_i has y_i/time, and J_ij has y_i/(y_j×time). Nondimensionalization or component scaling is needed: the fixed Newton tolerance 2×10^-12 does not automatically adapt to arbitrary physical units. Adaptive atol sets state scales and rtol is dimensionless.",
   "boundary_conditions": "Spatial boundaries do not apply to the ODE time step itself. For semidiscrete PDEs, incorporate boundary conditions and their time dependence consistently into the RHS and Jacobian.",
   "limitations": {
-    "ja": "L安定性は正確な段階解を前提とする線形試験方程式の性質であり、大刻みの精度・非線形収束・正値性を保証しない。Newton失敗時は固定版が例外、適応版が試行棄却を行う。埋込み対ではなくステップ倍化で、rtol/atolは局所誤差尺度であり最終大域誤差の保証ではない。一般DAE、質量行列、イベント処理は未実装。",
-    "en": "L-stability concerns the linear test equation with accurate stage solves; it guarantees neither large-step accuracy, nonlinear convergence nor positivity. A Newton failure raises in the fixed version and rejects a trial in the adaptive wrapper. Adaptivity uses step doubling, not an embedded pair; rtol/atol control a local error scale, not a guaranteed final global error. General DAEs, mass matrices and events are not implemented."
+    "ja": "L安定性は正確な段階解を前提とする線形試験方程式の性質であり、大刻みの精度・非線形収束・正値性を保証しない。Newton失敗時は固定版が例外、適応版が試行棄却を行う。埋込み対ではなくステップ倍化で、rtol/atolは局所誤差尺度であり最終大域誤差の保証ではない。一般DAE、質量行列、イベント処理は未実装。 上記の制限は既存配布版の範囲です。今回の追加配布版：保存/正値性は固定入力の観測で、一般的な保証ではありません。T=.4の短時間・標本時刻での精度であり、長時間化学精度や全時刻誤差上限は主張しません。 測定後の報告範囲変更で、数値的な修復ではありません。初回誤差4.535633779e-5は元目標2e-5を超えます。局所rtolは大域誤差を保証せず、報告検証の合格は全元目標の達成ではありません。大μ全周期は対象外です。",
+    "en": "L-stability concerns the linear test equation with accurate stage solves; it guarantees neither large-step accuracy, nonlinear convergence nor positivity. A Newton failure raises in the fixed version and rejects a trial in the adaptive wrapper. Adaptivity uses step doubling, not an embedded pair; rtol/atol control a local error scale, not a guaranteed final global error. General DAEs, mass matrices and events are not implemented. The preceding limitations describe earlier editions. This additional release: Conservation and positivity are observations for these inputs, not universal guarantees. Accuracy is sampled on T <= 0.4; this does not validate long-time chemistry or an all-time error bound. This post-measurement reporting revision is not a numerical repair. The first error, 4.535633779e-5, exceeded the original 2e-5 goal. Local tolerances do not guarantee global accuracy, and reporting PASS does not mean all original goals were met. Full large-mu cycles are outside scope."
   },
   "metadata_review": {
     "level": "method-specific source-and-code inspection; no numerical rerun; reference access recorded individually",
-    "on": "2026-11-22"
+    "on": "2026-11-22",
+    "supplemental_review": {
+      "on": "2026-11-24",
+      "level": "Frozen fixed inputs, independently reviewed references and criteria, actual pytest/main and independently extracted ZIP. See release-specific scope and retained failure history."
+    }
   },
   "assumptions_ja": [
     "対象は実数の1次元配列で表すODE y'=f(t,y)。整合するJacobian ∂f/∂yを呼び出し側が与える。",
@@ -183,14 +187,1151 @@
     "2次SDIRK",
     "L-stable SDIRK2"
   ],
+  "depth_release": {
+    "group": "ode-adaptivity",
+    "case_ids": [
+      "robertson-stiff-kinetics",
+      "van-der-pol-stiff-transition"
+    ],
+    "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/",
+    "code_edition": "2026-11-24-r2",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/experiments.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/io_contract.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/reference_eval.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/models.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/stiff.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/reporting_policy.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/dopri.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/tableau.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/boundary.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/boundary_reference.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/coefficient_exact.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/qualify.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/reference_models.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_boundary.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_contract.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_dopri.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_reporting.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_stiff.py"
+    ],
+    "run_commands": [
+      "python -m pytest -q",
+      "python run.py --input inputs.json --output output"
+    ],
+    "run_from": "atlas-ode-adaptivity-2026-11-24-r2",
+    "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/atlas-ode-adaptivity-2026-11-24-r2.zip",
+    "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/source-manifest.json",
+    "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+    "code_archive_sha256": "19e6bed36d5a49a865881df12170edf9f79b4c5365e35ae91186eaf33bb5bc3a",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/result.json",
+    "passed_tests": 41,
+    "examples": [
+      {
+        "id": "robertson-stiff-kinetics",
+        "method_ids": [
+          "bdf2",
+          "sdirk2",
+          "step-doubling",
+          "newton"
+        ],
+        "title": {
+          "ja": "Robertson反応系の初期剛性と実誤差",
+          "en": "Robertson kinetics: initial stiffness and actual error"
+        },
+        "summary": {
+          "ja": "短い固定区間でBDF2・SDIRK2・倍分割適応法を、資格済みRadau/BDF参照と比較します。",
+          "en": "Compare BDF2, SDIRK2 and adaptive step doubling on a short fixed interval against qualified Radau and BDF references."
+        },
+        "assumptions": {
+          "ja": "無次元3成分、初期値(1,0,0)、T=.4。固定512/1024/2048刻みと2許容誤差の適応法で計8run。",
+          "en": "A nondimensional three-species system starts at (1, 0, 0) and ends at T = 0.4. The fixed methods use 512, 1024 and 2048 steps; two adaptive tolerance settings bring the total to eight runs."
+        },
+        "algorithm": {
+          "ja": "BDF2は同格子BE開始。SDIRK2の非線形段階は重み付き最大残差で判定し、同じ段階内だけJacobian因子を再利用。適応法はRMS倍分割誤差と2半刻みを採用。",
+          "en": "BDF2 starts with backward Euler on the same grid. SDIRK2 stages use a weighted maximum residual and reuse Jacobian factors only within one stage. Adaptive steps use an RMS step-doubling estimate and accept the two-half-step result."
+        },
+        "validation": {
+          "ja": "22共通時刻の実誤差、全受理時刻の質量/最小値、真の段階残差、実RHS/Jacobian/因子/solve数を別判定します。",
+          "en": "Check actual errors at 22 common times, mass and minimum values at every accepted state, true stage residuals, and actual RHS, Jacobian, factorization and linear-solve counts separately."
+        },
+        "limits": {
+          "ja": "保存/正値性は固定入力の観測で、一般的な保証ではありません。T=.4の短時間・標本時刻での精度であり、長時間化学精度や全時刻誤差上限は主張しません。",
+          "en": "Conservation and positivity are observations for these inputs, not universal guarantees. Accuracy is sampled on T <= 0.4; this does not validate long-time chemistry or an all-time error bound."
+        },
+        "domains": [
+          "time",
+          "foundations"
+        ],
+        "code_files": [
+          "run.py",
+          "experiments.py",
+          "io_contract.py",
+          "reference_eval.py",
+          "models.py",
+          "stiff.py"
+        ],
+        "references": [
+          {
+            "id": "sundials-robertson-model",
+            "title": "Official SUNDIALS cvRoberts_dns model definition",
+            "url": "https://raw.githubusercontent.com/LLNL/sundials/main/examples/cvode/serial/cvRoberts_dns.c",
+            "accessed_on": "2026-11-24",
+            "review_level": "official-source-selected-functions",
+            "review": {
+              "ja": "観測mainのモデル式・初期値・Jacobianを選択閲読。今回T=.4のみで、原論文全文・4e10の長時間計算や既存数値表の再現ではありません。",
+              "en": "Read the model, initial values and Jacobian in selected official source sections. The observed main URL is not an immutable release pin. Our T = 0.4 scope does not reproduce the original paper, the long 4e10 benchmark or its numerical tables."
+            }
+          },
+          {
+            "id": "scipy-ivp-1.14.1",
+            "title": "SciPy1.14.1 solve_ivp and selected official source",
+            "version": "1.14.1",
+            "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html",
+            "accessed_on": "2026-11-24",
+            "review_level": "official-selected-source",
+            "review": {
+              "ja": "固定版の手法/API・局所許容誤差・終了状態を選択確認。独立原著の全編監査ではありません。",
+              "en": "Read selected fixed-version method, API, local-tolerance and termination sections. This is not a full audit of the original research papers."
+            }
+          }
+        ],
+        "gallery_figure": "robertson-stiff-kinetics-preview.png",
+        "additional_figures": [
+          {
+            "file": "robertson-stiff-kinetics-preview.png",
+            "caption": {
+              "ja": "短い固定区間でBDF2・SDIRK2・倍分割適応法を、資格済みRadau/BDF参照と比較します。 保存済みの数値場と参照を用いた図です。",
+              "en": "Compare BDF2, SDIRK2 and adaptive step doubling on a short fixed interval against qualified Radau and BDF references. This preview reads saved numerical fields and references only."
+            }
+          }
+        ],
+        "formulas": [
+          "\\dot y_1=-0.04y_1+10^4y_2y_3,\\quad\\dot y_2=-\\dot y_1-3\\!\\times\\!10^7y_2^2,\\quad\\dot y_3=3\\!\\times\\!10^7y_2^2",
+          "\\|r\\|_{w,\\infty}=\\max_i|r_i|/w_i,\\quad e_{\\rm dbl}=(y_{h/2,h/2}-y_h)/3"
+        ],
+        "measured": {
+          "id": "robertson-stiff-kinetics",
+          "passed": true,
+          "checks": {
+            "robertson-bdf2-512:complete-finite": true,
+            "robertson-bdf2-512:true-stage-residual": true,
+            "robertson-bdf2-512:mass": true,
+            "robertson-bdf2-512:accepted-positivity": true,
+            "robertson-bdf2-1024:complete-finite": true,
+            "robertson-bdf2-1024:true-stage-residual": true,
+            "robertson-bdf2-1024:mass": true,
+            "robertson-bdf2-1024:accepted-positivity": true,
+            "robertson-bdf2-2048:complete-finite": true,
+            "robertson-bdf2-2048:true-stage-residual": true,
+            "robertson-bdf2-2048:mass": true,
+            "robertson-bdf2-2048:accepted-positivity": true,
+            "robertson-sdirk2-512:complete-finite": true,
+            "robertson-sdirk2-512:true-stage-residual": true,
+            "robertson-sdirk2-512:mass": true,
+            "robertson-sdirk2-512:accepted-positivity": true,
+            "robertson-sdirk2-1024:complete-finite": true,
+            "robertson-sdirk2-1024:true-stage-residual": true,
+            "robertson-sdirk2-1024:mass": true,
+            "robertson-sdirk2-1024:accepted-positivity": true,
+            "robertson-sdirk2-2048:complete-finite": true,
+            "robertson-sdirk2-2048:true-stage-residual": true,
+            "robertson-sdirk2-2048:mass": true,
+            "robertson-sdirk2-2048:accepted-positivity": true,
+            "robertson-sdirk-doubling-loose:complete-finite": true,
+            "robertson-sdirk-doubling-loose:true-stage-residual": true,
+            "robertson-sdirk-doubling-loose:mass": true,
+            "robertson-sdirk-doubling-loose:accepted-positivity": true,
+            "robertson-sdirk-doubling-tight:complete-finite": true,
+            "robertson-sdirk-doubling-tight:true-stage-residual": true,
+            "robertson-sdirk-doubling-tight:mass": true,
+            "robertson-sdirk-doubling-tight:accepted-positivity": true,
+            "robertson-bdf2:finest-accuracy": true,
+            "robertson-bdf2:refinement": true,
+            "robertson-sdirk2:finest-accuracy": true,
+            "robertson-sdirk2:refinement": true,
+            "robertson-adaptive-loose:accuracy": true,
+            "robertson-adaptive-tight:accuracy": true,
+            "robertson-adaptive:actual-tolerance-response": true,
+            "actual-within-stage-factor-reuse": true
+          },
+          "records": [
+            {
+              "run_id": "robertson-bdf2-512",
+              "method": "bdf2",
+              "mu": "",
+              "steps": 512,
+              "attempts": 512,
+              "rejected": 0,
+              "rtol": "",
+              "sampled_weighted_linf": 0.04388888512603525,
+              "minimum_accepted_state": 0.0,
+              "maximum_accepted_state_abs": 1.0,
+              "maximum_completed_stage_residual": 4.808944854741565e-13,
+              "minimum_completed_stage_value": 1.02920104242184e-05,
+              "maximum_completed_stage_abs": 0.9999687526614204,
+              "mass_error": 3.3306690738754696e-15,
+              "rhs": 2606,
+              "jacobian": 520,
+              "factorizations": 520,
+              "linear_solves": 1047,
+              "factor_reuses": 527,
+              "newton_updates": 1047,
+              "line_search_rejections": 0,
+              "stage_failures": 0
+            },
+            {
+              "run_id": "robertson-bdf2-1024",
+              "method": "bdf2",
+              "mu": "",
+              "steps": 1024,
+              "attempts": 1024,
+              "rejected": 0,
+              "rtol": "",
+              "sampled_weighted_linf": 0.014135947056239846,
+              "minimum_accepted_state": 0.0,
+              "maximum_accepted_state_abs": 1.0,
+              "maximum_completed_stage_residual": 6.925066091043302e-13,
+              "minimum_completed_stage_value": 2.1330751710264497e-06,
+              "maximum_completed_stage_abs": 0.9999843753565512,
+              "mass_error": 2.4424906541753444e-15,
+              "rhs": 5168,
+              "jacobian": 1032,
+              "factorizations": 1032,
+              "linear_solves": 2072,
+              "factor_reuses": 1040,
+              "newton_updates": 2072,
+              "line_search_rejections": 0,
+              "stage_failures": 0
+            },
+            {
+              "run_id": "robertson-bdf2-2048",
+              "method": "bdf2",
+              "mu": "",
+              "steps": 2048,
+              "attempts": 2048,
+              "rejected": 0,
+              "rtol": "",
+              "sampled_weighted_linf": 0.0033349242898610847,
+              "minimum_accepted_state": 0.0,
+              "maximum_accepted_state_abs": 1.0,
+              "maximum_completed_stage_residual": 4.973958784267523e-13,
+              "minimum_completed_stage_value": 3.2820517724152157e-07,
+              "maximum_completed_stage_abs": 0.9999921875658322,
+              "mass_error": 4.218847493575595e-15,
+              "rhs": 10304,
+              "jacobian": 2060,
+              "factorizations": 2060,
+              "linear_solves": 4128,
+              "factor_reuses": 2068,
+              "newton_updates": 4128,
+              "line_search_rejections": 0,
+              "stage_failures": 0
+            },
+            {
+              "run_id": "robertson-sdirk2-512",
+              "method": "sdirk2",
+              "mu": "",
+              "steps": 512,
+              "attempts": 512,
+              "rejected": 0,
+              "rtol": "",
+              "sampled_weighted_linf": 0.004509512288960093,
+              "minimum_accepted_state": 0.0,
+              "maximum_accepted_state_abs": 1.0,
+              "maximum_completed_stage_residual": 7.628880490731804e-13,
+              "minimum_completed_stage_value": 5.124855519762501e-07,
+              "maximum_completed_stage_abs": 0.9999908471808194,
+              "mass_error": 6.661338147750939e-16,
+              "rhs": 5160,
+              "jacobian": 1031,
+              "factorizations": 1031,
+              "linear_solves": 2068,
+              "factor_reuses": 1037,
+              "newton_updates": 2068,
+              "line_search_rejections": 0,
+              "stage_failures": 0
+            },
+            {
+              "run_id": "robertson-sdirk2-1024",
+              "method": "sdirk2",
+              "mu": "",
+              "steps": 1024,
+              "attempts": 1024,
+              "rejected": 0,
+              "rtol": "",
+              "sampled_weighted_linf": 0.0009692095652322842,
+              "minimum_accepted_state": 0.0,
+              "maximum_accepted_state_abs": 1.0,
+              "maximum_completed_stage_residual": 5.182381167106794e-13,
+              "minimum_completed_stage_value": 6.971275375154559e-08,
+              "maximum_completed_stage_abs": 0.9999954235647593,
+              "mass_error": 1.6653345369377348e-15,
+              "rhs": 10302,
+              "jacobian": 2060,
+              "factorizations": 2060,
+              "linear_solves": 4127,
+              "factor_reuses": 2067,
+              "newton_updates": 4127,
+              "line_search_rejections": 0,
+              "stage_failures": 0
+            },
+            {
+              "run_id": "robertson-sdirk2-2048",
+              "method": "sdirk2",
+              "mu": "",
+              "steps": 2048,
+              "attempts": 2048,
+              "rejected": 0,
+              "rtol": "",
+              "sampled_weighted_linf": 0.0002285894747633795,
+              "minimum_accepted_state": 0.0,
+              "maximum_accepted_state_abs": 1.0,
+              "maximum_completed_stage_residual": 6.128050439324368e-13,
+              "minimum_completed_stage_value": 8.915922767622012e-09,
+              "maximum_completed_stage_abs": 0.9999977117769756,
+              "mass_error": 1.9984014443252818e-15,
+              "rhs": 20574,
+              "jacobian": 4114,
+              "factorizations": 4114,
+              "linear_solves": 8239,
+              "factor_reuses": 4125,
+              "newton_updates": 8239,
+              "line_search_rejections": 0,
+              "stage_failures": 0
+            },
+            {
+              "run_id": "robertson-sdirk-doubling-loose",
+              "method": "sdirk2-step-doubling",
+              "mu": "",
+              "steps": 35,
+              "attempts": 39,
+              "rejected": 4,
+              "rtol": 0.0001,
+              "sampled_weighted_linf": 6.182140510830377e-05,
+              "minimum_accepted_state": 0.0,
+              "maximum_accepted_state_abs": 1.0,
+              "maximum_completed_stage_residual": 9.27424447231512e-13,
+              "minimum_completed_stage_value": 9.095898521736431e-10,
+              "maximum_completed_stage_abs": 0.9999989329743101,
+              "mass_error": 2.220446049250313e-16,
+              "rhs": 1722,
+              "jacobian": 309,
+              "factorizations": 309,
+              "linear_solves": 744,
+              "factor_reuses": 435,
+              "newton_updates": 744,
+              "line_search_rejections": 0,
+              "stage_failures": 0
+            },
+            {
+              "run_id": "robertson-sdirk-doubling-tight",
+              "method": "sdirk2-step-doubling",
+              "mu": "",
+              "steps": 86,
+              "attempts": 92,
+              "rejected": 6,
+              "rtol": 1e-06,
+              "sampled_weighted_linf": 3.418227220101499e-06,
+              "minimum_accepted_state": 0.0,
+              "maximum_accepted_state_abs": 1.0,
+              "maximum_completed_stage_residual": 9.930816188396941e-13,
+              "minimum_completed_stage_value": 6.93981099913277e-13,
+              "maximum_completed_stage_abs": 0.9999999025544273,
+              "mass_error": 4.440892098500626e-16,
+              "rhs": 3494,
+              "jacobian": 585,
+              "factorizations": 585,
+              "linear_solves": 1471,
+              "factor_reuses": 886,
+              "newton_updates": 1471,
+              "line_search_rejections": 0,
+              "stage_failures": 0
+            }
+          ],
+          "metrics": {
+            "maximum_sampled_weighted_error": 0.04388888512603525,
+            "factorizations": 11711,
+            "linear_solves": 23896,
+            "factor_reuses": 12185,
+            "accuracy_scope": "Fixed reference observation times only; all-step positivity/conservation separately tested. Stage residual norm is weightedLinf; adaptive estimator norm is RMS."
+          },
+          "original_target_results": {
+            "robertson-bdf2-512:complete-finite": true,
+            "robertson-bdf2-512:true-stage-residual": true,
+            "robertson-bdf2-512:mass": true,
+            "robertson-bdf2-512:accepted-positivity": true,
+            "robertson-bdf2-1024:complete-finite": true,
+            "robertson-bdf2-1024:true-stage-residual": true,
+            "robertson-bdf2-1024:mass": true,
+            "robertson-bdf2-1024:accepted-positivity": true,
+            "robertson-bdf2-2048:complete-finite": true,
+            "robertson-bdf2-2048:true-stage-residual": true,
+            "robertson-bdf2-2048:mass": true,
+            "robertson-bdf2-2048:accepted-positivity": true,
+            "robertson-sdirk2-512:complete-finite": true,
+            "robertson-sdirk2-512:true-stage-residual": true,
+            "robertson-sdirk2-512:mass": true,
+            "robertson-sdirk2-512:accepted-positivity": true,
+            "robertson-sdirk2-1024:complete-finite": true,
+            "robertson-sdirk2-1024:true-stage-residual": true,
+            "robertson-sdirk2-1024:mass": true,
+            "robertson-sdirk2-1024:accepted-positivity": true,
+            "robertson-sdirk2-2048:complete-finite": true,
+            "robertson-sdirk2-2048:true-stage-residual": true,
+            "robertson-sdirk2-2048:mass": true,
+            "robertson-sdirk2-2048:accepted-positivity": true,
+            "robertson-sdirk-doubling-loose:complete-finite": true,
+            "robertson-sdirk-doubling-loose:true-stage-residual": true,
+            "robertson-sdirk-doubling-loose:mass": true,
+            "robertson-sdirk-doubling-loose:accepted-positivity": true,
+            "robertson-sdirk-doubling-tight:complete-finite": true,
+            "robertson-sdirk-doubling-tight:true-stage-residual": true,
+            "robertson-sdirk-doubling-tight:mass": true,
+            "robertson-sdirk-doubling-tight:accepted-positivity": true,
+            "robertson-bdf2:finest-accuracy": true,
+            "robertson-bdf2:refinement": true,
+            "robertson-sdirk2:finest-accuracy": true,
+            "robertson-sdirk2:refinement": true,
+            "robertson-adaptive-loose:accuracy": true,
+            "robertson-adaptive-tight:accuracy": true,
+            "robertson-adaptive:actual-tolerance-response": true,
+            "actual-within-stage-factor-reuse": true
+          },
+          "original_target_summary": {
+            "met": 40,
+            "total": 40,
+            "all_met": true,
+            "acceptance_sha256": "fd7e7cfe528d9844e2992e8ef96d6b33e482e8c5d2bc63a4d6955431168f6051"
+          }
+        },
+        "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-stiff-kinetics/",
+        "reading": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#robertson-stiff-kinetics",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#robertson-stiff-kinetics"
+        }
+      },
+      {
+        "id": "van-der-pol-stiff-transition",
+        "method_ids": [
+          "bdf2",
+          "sdirk2",
+          "step-doubling",
+          "newton"
+        ],
+        "title": {
+          "ja": "van der Polの短時間剛性遷移",
+          "en": "Van der Pol: an early stiffness transition"
+        },
+        "summary": {
+          "ja": "局所制御と大域誤差を分離します。初回は元209目標中208達成で、μ=1の厳しい適応設定は大域目標2e-5に未達でした。",
+          "en": "Separate local control from global error. The first study met 208 of 209 original targets; the mu = 1 tight adaptive run missed the 2e-5 global goal."
+        },
+        "assumptions": {
+          "ja": "x′=v,v′=μ(1−x²)v−x、初期値(2,0)、T=2。2方式×3刻み×2μと適応4runで計16run。",
+          "en": "The system is xprime = v and vprime = mu(1 - x squared)v - x, initially (2, 0), over T = 2. Two fixed methods, three step counts and two mu values plus four adaptive runs give 16 runs."
+        },
+        "algorithm": {
+          "ja": "BDF2/SDIRK2と倍分割適応法。解析Jacobian・段階内だけの因子再利用・失敗時の候補保存を実装します。",
+          "en": "Use actual BDF2, SDIRK2 and adaptive step doubling, analytic Jacobians, factor reuse within each implicit stage, and retained candidates on failure."
+        },
+        "validation": {
+          "ja": "資格済みRadau/BDFと21時刻で比較。元の全判定を偽値も含め保存し、他208条件と、結果の忠実な表示・実局所制御・元失敗保存の3検証を別に要求します。",
+          "en": "Compare 21 sampled times with qualified Radau and BDF references. Preserve every original decision, including false values. Require the other 208 conditions separately from three checks of faithful disclosure, actual local controls and retained original failure evidence."
+        },
+        "limits": {
+          "ja": "測定後の報告範囲変更で、数値的な修復ではありません。初回誤差4.535633779e-5は元目標2e-5を超えます。局所rtolは大域誤差を保証せず、報告検証の合格は全元目標の達成ではありません。大μ全周期は対象外です。",
+          "en": "This post-measurement reporting revision is not a numerical repair. The first error, 4.535633779e-5, exceeded the original 2e-5 goal. Local tolerances do not guarantee global accuracy, and reporting PASS does not mean all original goals were met. Full large-mu cycles are outside scope."
+        },
+        "domains": [
+          "time",
+          "foundations"
+        ],
+        "code_files": [
+          "run.py",
+          "experiments.py",
+          "io_contract.py",
+          "reference_eval.py",
+          "models.py",
+          "stiff.py",
+          "reporting_policy.py"
+        ],
+        "references": [
+          {
+            "id": "official-vdp-example",
+            "title": "scikit-sundae official van der Pol example",
+            "url": "https://scikit-sundae.readthedocs.io/en/stable/examples/van_der_pol.html",
+            "accessed_on": "2026-11-24",
+            "review_level": "official-project-example-selected-equations",
+            "review": {
+              "ja": "公式binding例の2階/1階系と初期値を確認。採用μ=1/100,T=2は独自の軽量範囲で、原著やμ1000全周期の再現ではありません。",
+              "en": "Read the equations and initial state in the official binding example. Our mu = 1 and 100, T = 2 inputs are an authored early-transient scope, not an original-paper or full mu = 1000 cycle reproduction."
+            }
+          },
+          {
+            "id": "scipy-ivp-1.14.1",
+            "title": "SciPy1.14.1 solve_ivp and selected official source",
+            "version": "1.14.1",
+            "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html",
+            "accessed_on": "2026-11-24",
+            "review_level": "official-selected-source",
+            "review": {
+              "ja": "固定版の手法/API・局所許容誤差・終了状態を選択確認。独立原著の全編監査ではありません。",
+              "en": "Read selected fixed-version method, API, local-tolerance and termination sections. This is not a full audit of the original research papers."
+            }
+          }
+        ],
+        "gallery_figure": "van-der-pol-stiff-transition-preview.png",
+        "additional_figures": [
+          {
+            "file": "van-der-pol-stiff-transition-preview.png",
+            "caption": {
+              "ja": "保存済みの固定刻み比較と局所/大域誤差の区別。初回208/209で、μ=1適応法の大域目標2e-5は未達のまま保持します。",
+              "en": "Saved fixed-step comparisons and the local/global error distinction. The first study met 208/209 targets; the unmet mu = 1 adaptive global goal of 2e-5 remains recorded."
+            }
+          }
+        ],
+        "formulas": [
+          "\\dot x=v,\\qquad \\dot v=\\mu(1-x^2)v-x,\\quad\\mu\\in\\{1,100\\}"
+        ],
+        "measured": {
+          "id": "van-der-pol-stiff-transition",
+          "passed": true,
+          "checks": {
+            "vdp-mu1-bdf2-256:complete-finite": true,
+            "vdp-mu1-bdf2-256:true-stage-residual": true,
+            "vdp-mu1-bdf2-256:bounded-state": true,
+            "vdp-mu1-bdf2-512:complete-finite": true,
+            "vdp-mu1-bdf2-512:true-stage-residual": true,
+            "vdp-mu1-bdf2-512:bounded-state": true,
+            "vdp-mu1-bdf2-1024:complete-finite": true,
+            "vdp-mu1-bdf2-1024:true-stage-residual": true,
+            "vdp-mu1-bdf2-1024:bounded-state": true,
+            "vdp-mu1-sdirk2-256:complete-finite": true,
+            "vdp-mu1-sdirk2-256:true-stage-residual": true,
+            "vdp-mu1-sdirk2-256:bounded-state": true,
+            "vdp-mu1-sdirk2-512:complete-finite": true,
+            "vdp-mu1-sdirk2-512:true-stage-residual": true,
+            "vdp-mu1-sdirk2-512:bounded-state": true,
+            "vdp-mu1-sdirk2-1024:complete-finite": true,
+            "vdp-mu1-sdirk2-1024:true-stage-residual": true,
+            "vdp-mu1-sdirk2-1024:bounded-state": true,
+            "vdp-mu1-sdirk-doubling-loose:complete-finite": true,
+            "vdp-mu1-sdirk-doubling-loose:true-stage-residual": true,
+            "vdp-mu1-sdirk-doubling-loose:bounded-state": true,
+            "vdp-mu1-sdirk-doubling-tight:complete-finite": true,
+            "vdp-mu1-sdirk-doubling-tight:true-stage-residual": true,
+            "vdp-mu1-sdirk-doubling-tight:bounded-state": true,
+            "vdp-mu100-bdf2-256:complete-finite": true,
+            "vdp-mu100-bdf2-256:true-stage-residual": true,
+            "vdp-mu100-bdf2-256:bounded-state": true,
+            "vdp-mu100-bdf2-512:complete-finite": true,
+            "vdp-mu100-bdf2-512:true-stage-residual": true,
+            "vdp-mu100-bdf2-512:bounded-state": true,
+            "vdp-mu100-bdf2-1024:complete-finite": true,
+            "vdp-mu100-bdf2-1024:true-stage-residual": true,
+            "vdp-mu100-bdf2-1024:bounded-state": true,
+            "vdp-mu100-sdirk2-256:complete-finite": true,
+            "vdp-mu100-sdirk2-256:true-stage-residual": true,
+            "vdp-mu100-sdirk2-256:bounded-state": true,
+            "vdp-mu100-sdirk2-512:complete-finite": true,
+            "vdp-mu100-sdirk2-512:true-stage-residual": true,
+            "vdp-mu100-sdirk2-512:bounded-state": true,
+            "vdp-mu100-sdirk2-1024:complete-finite": true,
+            "vdp-mu100-sdirk2-1024:true-stage-residual": true,
+            "vdp-mu100-sdirk2-1024:bounded-state": true,
+            "vdp-mu100-sdirk-doubling-loose:complete-finite": true,
+            "vdp-mu100-sdirk-doubling-loose:true-stage-residual": true,
+            "vdp-mu100-sdirk-doubling-loose:bounded-state": true,
+            "vdp-mu100-sdirk-doubling-tight:complete-finite": true,
+            "vdp-mu100-sdirk-doubling-tight:true-stage-residual": true,
+            "vdp-mu100-sdirk-doubling-tight:bounded-state": true,
+            "vdp-mu1-bdf2:finest-accuracy": true,
+            "vdp-mu1-bdf2:refinement": true,
+            "vdp-mu1-sdirk2:finest-accuracy": true,
+            "vdp-mu1-sdirk2:refinement": true,
+            "vdp-mu1-adaptive-loose:accuracy": true,
+            "vdp-mu1-adaptive:actual-tolerance-response": true,
+            "vdp-mu100-bdf2:finest-accuracy": true,
+            "vdp-mu100-bdf2:refinement": true,
+            "vdp-mu100-sdirk2:finest-accuracy": true,
+            "vdp-mu100-sdirk2:refinement": true,
+            "vdp-mu100-adaptive-loose:accuracy": true,
+            "vdp-mu100-adaptive-tight:accuracy": true,
+            "vdp-mu100-adaptive:actual-tolerance-response": true,
+            "actual-within-stage-factor-reuse": true,
+            "vdp-mu1-adaptive-tight:original-goal-outcome-faithfully-reported": true,
+            "vdp-mu1-adaptive-tight:accepted-local-controls-satisfied": true,
+            "vdp-mu1-adaptive-tight:immutable-original-failure-bound": true
+          },
+          "records": [
+            {
+              "run_id": "vdp-mu1-bdf2-256",
+              "method": "bdf2",
+              "mu": 1,
+              "steps": 256,
+              "attempts": 256,
+              "rejected": 0,
+              "rtol": "",
+              "sampled_weighted_linf": 0.00024279205895412492,
+              "minimum_accepted_state": -1.8330664255356515,
+              "maximum_accepted_state_abs": 2.0,
+              "maximum_completed_stage_residual": 8.284510230605058e-13,
+              "minimum_completed_stage_value": -1.8330664255356515,
+              "maximum_completed_stage_abs": 1.99988073186935,
+              "mass_error": "",
+              "rhs": 1782,
+              "jacobian": 256,
+              "factorizations": 256,
+              "linear_solves": 763,
+              "factor_reuses": 507,
+              "newton_updates": 763,
+              "line_search_rejections": 0,
+              "stage_failures": 0
+            },
+            {
+              "run_id": "vdp-mu1-bdf2-512",
+              "method": "bdf2",
+              "mu": 1,
+              "steps": 512,
+              "attempts": 512,
+              "rejected": 0,
+              "rtol": "",
+              "sampled_weighted_linf": 6.419874845020601e-05,
+              "minimum_accepted_state": -1.8329974650537786,
+              "maximum_accepted_state_abs": 2.0,
+              "maximum_completed_stage_residual": 9.700764497244663e-13,
+              "minimum_completed_stage_value": -1.8329974650537786,
+              "maximum_completed_stage_abs": 1.999969836348214,
+              "mass_error": "",
+              "rhs": 2616,
+              "jacobian": 512,
+              "factorizations": 512,
+              "linear_solves": 1052,
+              "factor_reuses": 540,
+              "newton_updates": 1052,
+              "line_search_rejections": 0,
+              "stage_failures": 0
+            },
+            {
+              "run_id": "vdp-mu1-bdf2-1024",
+              "method": "bdf2",
+              "mu": 1,
+              "steps": 1024,
+              "attempts": 1024,
+              "rejected": 0,
+              "rtol": "",
+              "sampled_weighted_linf": 1.6498432925249676e-05,
+              "minimum_accepted_state": -1.832980283267919,
+              "maximum_accepted_state_abs": 2.0,
+              "maximum_completed_stage_residual": 5.691454252332306e-14,
+              "minimum_completed_stage_value": -1.832980283267919,
+              "maximum_completed_stage_abs": 1.9999924150768624,
+              "mass_error": "",
+              "rhs": 5120,
+              "jacobian": 1024,
+              "factorizations": 1024,
+              "linear_solves": 2048,
+              "factor_reuses": 1024,
+              "newton_updates": 2048,
+              "line_search_rejections": 0,
+              "stage_failures": 0
+            },
+            {
+              "run_id": "vdp-mu1-sdirk2-256",
+              "method": "sdirk2",
+              "mu": 1,
+              "steps": 256,
+              "attempts": 256,
+              "rejected": 0,
+              "rtol": "",
+              "sampled_weighted_linf": 1.0194407620955914e-05,
+              "minimum_accepted_state": -1.8329847623934064,
+              "maximum_accepted_state_abs": 2.0,
+              "maximum_completed_stage_residual": 9.992991677199026e-13,
+              "minimum_completed_stage_value": -1.8329847623934064,
+              "maximum_completed_stage_abs": 1.9999895994725603,
+              "mass_error": "",
+              "rhs": 2988,
+              "jacobian": 512,
+              "factorizations": 512,
+              "linear_solves": 1238,
+              "factor_reuses": 726,
+              "newton_updates": 1238,
+              "line_search_rejections": 0,
+              "stage_failures": 0
+            },
+            {
+              "run_id": "vdp-mu1-sdirk2-512",
+              "method": "sdirk2",
+              "mu": 1,
+              "steps": 512,
+              "attempts": 512,
+              "rejected": 0,
+              "rtol": "",
+              "sampled_weighted_linf": 2.5511639021313925e-06,
+              "minimum_accepted_state": -1.8329771191496875,
+              "maximum_accepted_state_abs": 2.0,
+              "maximum_completed_stage_residual": 1.239130326124993e-13,
+              "minimum_completed_stage_value": -1.8329771191496875,
+              "maximum_completed_stage_abs": 1.999997390964176,
+              "mass_error": "",
+              "rhs": 5120,
+              "jacobian": 1024,
+              "factorizations": 1024,
+              "linear_solves": 2048,
+              "factor_reuses": 1024,
+              "newton_updates": 2048,
+              "line_search_rejections": 0,
+              "stage_failures": 0
+            },
+            {
+              "run_id": "vdp-mu1-sdirk2-1024",
+              "method": "sdirk2",
+              "mu": 1,
+              "steps": 1024,
+              "attempts": 1024,
+              "rejected": 0,
+              "rtol": "",
+              "sampled_weighted_linf": 6.381200587934899e-07,
+              "minimum_accepted_state": -1.8329752061058442,
+              "maximum_accepted_state_abs": 2.0,
+              "maximum_completed_stage_residual": 3.318766702425924e-13,
+              "minimum_completed_stage_value": -1.8329752061058442,
+              "maximum_completed_stage_abs": 1.9999993466229415,
+              "mass_error": "",
+              "rhs": 10238,
+              "jacobian": 2048,
+              "factorizations": 2048,
+              "linear_solves": 4095,
+              "factor_reuses": 2047,
+              "newton_updates": 4095,
+              "line_search_rejections": 0,
+              "stage_failures": 0
+            },
+            {
+              "run_id": "vdp-mu1-sdirk-doubling-loose",
+              "method": "sdirk2-step-doubling",
+              "mu": 1,
+              "steps": 28,
+              "attempts": 28,
+              "rejected": 0,
+              "rtol": 0.0001,
+              "sampled_weighted_linf": 0.0005111264467498877,
+              "minimum_accepted_state": -1.8334856944325353,
+              "maximum_accepted_state_abs": 2.0,
+              "maximum_completed_stage_residual": 7.349572339609978e-13,
+              "minimum_completed_stage_value": -1.8335429303213742,
+              "maximum_completed_stage_abs": 1.999997390964176,
+              "mass_error": "",
+              "rhs": 1262,
+              "jacobian": 248,
+              "factorizations": 248,
+              "linear_solves": 547,
+              "factor_reuses": 299,
+              "newton_updates": 547,
+              "line_search_rejections": 0,
+              "stage_failures": 0
+            },
+            {
+              "run_id": "vdp-mu1-sdirk-doubling-tight",
+              "method": "sdirk2-step-doubling",
+              "mu": 1,
+              "steps": 89,
+              "attempts": 91,
+              "rejected": 2,
+              "rtol": 1e-06,
+              "sampled_weighted_linf": 4.535633779001458e-05,
+              "minimum_accepted_state": -1.8330199243235754,
+              "maximum_accepted_state_abs": 2.0,
+              "maximum_completed_stage_residual": 9.507340661268904e-13,
+              "minimum_completed_stage_value": -1.8330201444061935,
+              "maximum_completed_stage_abs": 1.9999992958873214,
+              "mass_error": "",
+              "rhs": 3406,
+              "jacobian": 566,
+              "factorizations": 566,
+              "linear_solves": 1430,
+              "factor_reuses": 864,
+              "newton_updates": 1430,
+              "line_search_rejections": 0,
+              "stage_failures": 0,
+              "original_global_goal": 2e-05,
+              "original_global_goal_met": 0
+            },
+            {
+              "run_id": "vdp-mu100-bdf2-256",
+              "method": "bdf2",
+              "mu": 100,
+              "steps": 256,
+              "attempts": 256,
+              "rejected": 0,
+              "rtol": "",
+              "sampled_weighted_linf": 0.0013539838869965851,
+              "minimum_accepted_state": -0.006838080155524056,
+              "maximum_accepted_state_abs": 2.0,
+              "maximum_completed_stage_residual": 3.466324449696856e-13,
+              "minimum_completed_stage_value": -0.006838080155524056,
+              "maximum_completed_stage_abs": 1.9999634924114458,
+              "mass_error": "",
+              "rhs": 1286,
+              "jacobian": 256,
+              "factorizations": 256,
+              "linear_solves": 515,
+              "factor_reuses": 259,
+              "newton_updates": 515,
+              "line_search_rejections": 0,
+              "stage_failures": 0
+            },
+            {
+              "run_id": "vdp-mu100-bdf2-512",
+              "method": "bdf2",
+              "mu": 100,
+              "steps": 512,
+              "attempts": 512,
+              "rejected": 0,
+              "rtol": "",
+              "sampled_weighted_linf": 0.0004103267326437945,
+              "minimum_accepted_state": -0.006741842029653189,
+              "maximum_accepted_state_abs": 2.0,
+              "maximum_completed_stage_residual": 5.836381725132789e-13,
+              "minimum_completed_stage_value": -0.006741842029653189,
+              "maximum_completed_stage_abs": 1.9999859486976843,
+              "mass_error": "",
+              "rhs": 2562,
+              "jacobian": 512,
+              "factorizations": 512,
+              "linear_solves": 1025,
+              "factor_reuses": 513,
+              "newton_updates": 1025,
+              "line_search_rejections": 0,
+              "stage_failures": 0
+            },
+            {
+              "run_id": "vdp-mu100-bdf2-1024",
+              "method": "bdf2",
+              "mu": 100,
+              "steps": 1024,
+              "attempts": 1024,
+              "rejected": 0,
+              "rtol": "",
+              "sampled_weighted_linf": 4.7201707838267354e-05,
+              "minimum_accepted_state": -0.006741842027424237,
+              "maximum_accepted_state_abs": 2.0,
+              "maximum_completed_stage_residual": 7.15461255056756e-13,
+              "minimum_completed_stage_value": -0.006741842027424237,
+              "maximum_completed_stage_abs": 1.9999951893474617,
+              "mass_error": "",
+              "rhs": 3098,
+              "jacobian": 1024,
+              "factorizations": 1024,
+              "linear_solves": 1037,
+              "factor_reuses": 13,
+              "newton_updates": 1037,
+              "line_search_rejections": 0,
+              "stage_failures": 0
+            },
+            {
+              "run_id": "vdp-mu100-sdirk2-256",
+              "method": "sdirk2",
+              "mu": 100,
+              "steps": 256,
+              "attempts": 256,
+              "rejected": 0,
+              "rtol": "",
+              "sampled_weighted_linf": 0.0005713659983363041,
+              "minimum_accepted_state": -0.006741842028503904,
+              "maximum_accepted_state_abs": 2.0,
+              "maximum_completed_stage_residual": 8.69739528017668e-13,
+              "minimum_completed_stage_value": -0.006741842028503904,
+              "maximum_completed_stage_abs": 1.9999937905865768,
+              "mass_error": "",
+              "rhs": 2056,
+              "jacobian": 512,
+              "factorizations": 512,
+              "linear_solves": 772,
+              "factor_reuses": 260,
+              "newton_updates": 772,
+              "line_search_rejections": 0,
+              "stage_failures": 0
+            },
+            {
+              "run_id": "vdp-mu100-sdirk2-512",
+              "method": "sdirk2",
+              "mu": 100,
+              "steps": 512,
+              "attempts": 512,
+              "rejected": 0,
+              "rtol": "",
+              "sampled_weighted_linf": 9.749138430147596e-05,
+              "minimum_accepted_state": -0.0067418420273681655,
+              "maximum_accepted_state_abs": 2.0,
+              "maximum_completed_stage_residual": 9.264278779561663e-13,
+              "minimum_completed_stage_value": -0.0067418420273681655,
+              "maximum_completed_stage_abs": 1.9999980509776925,
+              "mass_error": "",
+              "rhs": 3106,
+              "jacobian": 1024,
+              "factorizations": 1024,
+              "linear_solves": 1041,
+              "factor_reuses": 17,
+              "newton_updates": 1041,
+              "line_search_rejections": 0,
+              "stage_failures": 0
+            },
+            {
+              "run_id": "vdp-mu100-sdirk2-1024",
+              "method": "sdirk2",
+              "mu": 100,
+              "steps": 1024,
+              "attempts": 1024,
+              "rejected": 0,
+              "rtol": "",
+              "sampled_weighted_linf": 2.2208609657680366e-05,
+              "minimum_accepted_state": -0.006741842027845878,
+              "maximum_accepted_state_abs": 2.0,
+              "maximum_completed_stage_residual": 6.901155732664808e-13,
+              "minimum_completed_stage_value": -0.006741842027845878,
+              "maximum_completed_stage_abs": 1.9999994413717115,
+              "mass_error": "",
+              "rhs": 6198,
+              "jacobian": 2048,
+              "factorizations": 2048,
+              "linear_solves": 2075,
+              "factor_reuses": 27,
+              "newton_updates": 2075,
+              "line_search_rejections": 0,
+              "stage_failures": 0
+            },
+            {
+              "run_id": "vdp-mu100-sdirk-doubling-loose",
+              "method": "sdirk2-step-doubling",
+              "mu": 100,
+              "steps": 35,
+              "attempts": 38,
+              "rejected": 3,
+              "rtol": 0.0001,
+              "sampled_weighted_linf": 1.211489854379376e-06,
+              "minimum_accepted_state": -0.00674184200599618,
+              "maximum_accepted_state_abs": 2.0,
+              "maximum_completed_stage_residual": 8.743105475776287e-13,
+              "minimum_completed_stage_value": -0.00674184200599618,
+              "maximum_completed_stage_abs": 1.9999999882195032,
+              "mass_error": "",
+              "rhs": 1170,
+              "jacobian": 228,
+              "factorizations": 228,
+              "linear_solves": 471,
+              "factor_reuses": 243,
+              "newton_updates": 471,
+              "line_search_rejections": 0,
+              "stage_failures": 0
+            },
+            {
+              "run_id": "vdp-mu100-sdirk-doubling-tight",
+              "method": "sdirk2-step-doubling",
+              "mu": 100,
+              "steps": 93,
+              "attempts": 97,
+              "rejected": 4,
+              "rtol": 1e-06,
+              "sampled_weighted_linf": 6.675176808090127e-08,
+              "minimum_accepted_state": -0.006741842005962833,
+              "maximum_accepted_state_abs": 2.0,
+              "maximum_completed_stage_residual": 9.85748707324225e-13,
+              "minimum_completed_stage_value": -0.006741842005962833,
+              "maximum_completed_stage_abs": 1.9999999996645121,
+              "mass_error": "",
+              "rhs": 2160,
+              "jacobian": 582,
+              "factorizations": 582,
+              "linear_solves": 789,
+              "factor_reuses": 207,
+              "newton_updates": 789,
+              "line_search_rejections": 0,
+              "stage_failures": 0
+            }
+          ],
+          "metrics": {
+            "maximum_sampled_weighted_error": 0.0013539838869965851,
+            "factorizations": 12376,
+            "linear_solves": 20946,
+            "factor_reuses": 8570,
+            "accuracy_scope": "Fixed reference observation times only; all-step positivity/conservation separately tested. Stage residual norm is weightedLinf; adaptive estimator norm is RMS.",
+            "original_mu1_tight_global_goal": 2e-05,
+            "actual_mu1_tight_global_error": 4.535633779001458e-05,
+            "original_mu1_tight_global_goal_met": false,
+            "reporting_scope": "Current protocol verifies faithful reporting; it does not assert this original global accuracy goal was met."
+          },
+          "original_target_results": {
+            "vdp-mu1-bdf2-256:complete-finite": true,
+            "vdp-mu1-bdf2-256:true-stage-residual": true,
+            "vdp-mu1-bdf2-256:bounded-state": true,
+            "vdp-mu1-bdf2-512:complete-finite": true,
+            "vdp-mu1-bdf2-512:true-stage-residual": true,
+            "vdp-mu1-bdf2-512:bounded-state": true,
+            "vdp-mu1-bdf2-1024:complete-finite": true,
+            "vdp-mu1-bdf2-1024:true-stage-residual": true,
+            "vdp-mu1-bdf2-1024:bounded-state": true,
+            "vdp-mu1-sdirk2-256:complete-finite": true,
+            "vdp-mu1-sdirk2-256:true-stage-residual": true,
+            "vdp-mu1-sdirk2-256:bounded-state": true,
+            "vdp-mu1-sdirk2-512:complete-finite": true,
+            "vdp-mu1-sdirk2-512:true-stage-residual": true,
+            "vdp-mu1-sdirk2-512:bounded-state": true,
+            "vdp-mu1-sdirk2-1024:complete-finite": true,
+            "vdp-mu1-sdirk2-1024:true-stage-residual": true,
+            "vdp-mu1-sdirk2-1024:bounded-state": true,
+            "vdp-mu1-sdirk-doubling-loose:complete-finite": true,
+            "vdp-mu1-sdirk-doubling-loose:true-stage-residual": true,
+            "vdp-mu1-sdirk-doubling-loose:bounded-state": true,
+            "vdp-mu1-sdirk-doubling-tight:complete-finite": true,
+            "vdp-mu1-sdirk-doubling-tight:true-stage-residual": true,
+            "vdp-mu1-sdirk-doubling-tight:bounded-state": true,
+            "vdp-mu100-bdf2-256:complete-finite": true,
+            "vdp-mu100-bdf2-256:true-stage-residual": true,
+            "vdp-mu100-bdf2-256:bounded-state": true,
+            "vdp-mu100-bdf2-512:complete-finite": true,
+            "vdp-mu100-bdf2-512:true-stage-residual": true,
+            "vdp-mu100-bdf2-512:bounded-state": true,
+            "vdp-mu100-bdf2-1024:complete-finite": true,
+            "vdp-mu100-bdf2-1024:true-stage-residual": true,
+            "vdp-mu100-bdf2-1024:bounded-state": true,
+            "vdp-mu100-sdirk2-256:complete-finite": true,
+            "vdp-mu100-sdirk2-256:true-stage-residual": true,
+            "vdp-mu100-sdirk2-256:bounded-state": true,
+            "vdp-mu100-sdirk2-512:complete-finite": true,
+            "vdp-mu100-sdirk2-512:true-stage-residual": true,
+            "vdp-mu100-sdirk2-512:bounded-state": true,
+            "vdp-mu100-sdirk2-1024:complete-finite": true,
+            "vdp-mu100-sdirk2-1024:true-stage-residual": true,
+            "vdp-mu100-sdirk2-1024:bounded-state": true,
+            "vdp-mu100-sdirk-doubling-loose:complete-finite": true,
+            "vdp-mu100-sdirk-doubling-loose:true-stage-residual": true,
+            "vdp-mu100-sdirk-doubling-loose:bounded-state": true,
+            "vdp-mu100-sdirk-doubling-tight:complete-finite": true,
+            "vdp-mu100-sdirk-doubling-tight:true-stage-residual": true,
+            "vdp-mu100-sdirk-doubling-tight:bounded-state": true,
+            "vdp-mu1-bdf2:finest-accuracy": true,
+            "vdp-mu1-bdf2:refinement": true,
+            "vdp-mu1-sdirk2:finest-accuracy": true,
+            "vdp-mu1-sdirk2:refinement": true,
+            "vdp-mu1-adaptive-loose:accuracy": true,
+            "vdp-mu1-adaptive-tight:accuracy": false,
+            "vdp-mu1-adaptive:actual-tolerance-response": true,
+            "vdp-mu100-bdf2:finest-accuracy": true,
+            "vdp-mu100-bdf2:refinement": true,
+            "vdp-mu100-sdirk2:finest-accuracy": true,
+            "vdp-mu100-sdirk2:refinement": true,
+            "vdp-mu100-adaptive-loose:accuracy": true,
+            "vdp-mu100-adaptive-tight:accuracy": true,
+            "vdp-mu100-adaptive:actual-tolerance-response": true,
+            "actual-within-stage-factor-reuse": true
+          },
+          "original_target_summary": {
+            "met": 62,
+            "total": 63,
+            "all_met": false,
+            "acceptance_sha256": "fd7e7cfe528d9844e2992e8ef96d6b33e482e8c5d2bc63a4d6955431168f6051"
+          },
+          "validation_scope": "study_with_explicit_original_accuracy_goal_outcomes",
+          "study_results": {
+            "mu1_tight_global_goal": {
+              "original_gate_id": "vdp-mu1-adaptive-tight:accuracy",
+              "requested_global_bound": 2e-05,
+              "actual_sampled_weighted_linf": 4.535633779001458e-05,
+              "target_met": false,
+              "accepted_local_controls_satisfied": true,
+              "post_measurement_scope_revision": true,
+              "original_failure_evidence": {
+                "passed": true,
+                "original_result_sha256": "cfa21c7c70f71d10894e057487e8ff93c65a57dd395d55097c330f4c351bb5b0",
+                "original_input_sha256": "08841a5698329c02021434dc4f1784cb1dbbd428de7e493dda6a3014e85315d3",
+                "original_acceptance_sha256": "fd7e7cfe528d9844e2992e8ef96d6b33e482e8c5d2bc63a4d6955431168f6051",
+                "first_study": {
+                  "met": 208,
+                  "total": 209,
+                  "all_met": false
+                },
+                "current_outcome_not_fixed": true
+              },
+              "scope": "Current protocol verifies faithful reporting; it does not assert this original global accuracy goal was met."
+            }
+          },
+          "original_study_goal_measurements": {
+            "vdp-mu1-adaptive-tight:accuracy": {
+              "measured": 4.535633779001458e-05,
+              "limit": 2e-05,
+              "comparison": "<=",
+              "units": "dimensionless sampled weighted L-infinity error",
+              "met": false
+            }
+          }
+        },
+        "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/van-der-pol-stiff-transition/",
+        "reading": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#van-der-pol-stiff-transition",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ode-adaptivity/#van-der-pol-stiff-transition"
+        }
+      }
+    ]
+  },
+  "supplemental_scope_profiles": [
+    {
+      "release": {
+        "group": "ode-adaptivity",
+        "edition": "2026-11-24-r2",
+        "case_ids": [
+          "robertson-stiff-kinetics",
+          "van-der-pol-stiff-transition"
+        ]
+      },
+      "scope": {
+        "ja": "追加固定例：Robertson反応系の初期剛性と実誤差、van der Polの短時間剛性遷移。条件と検証範囲は各配布版で確認してください。",
+        "en": "Additional fixed examples: Robertson kinetics: initial stiffness and actual error, Van der Pol: an early stiffness transition. See each release for assumptions and checked scope."
+      },
+      "limits": [
+        {
+          "ja": "保存/正値性は固定入力の観測で、一般的な保証ではありません。T=.4の短時間・標本時刻での精度であり、長時間化学精度や全時刻誤差上限は主張しません。",
+          "en": "Conservation and positivity are observations for these inputs, not universal guarantees. Accuracy is sampled on T <= 0.4; this does not validate long-time chemistry or an all-time error bound."
+        },
+        {
+          "ja": "測定後の報告範囲変更で、数値的な修復ではありません。初回誤差4.535633779e-5は元目標2e-5を超えます。局所rtolは大域誤差を保証せず、報告検証の合格は全元目標の達成ではありません。大μ全周期は対象外です。",
+          "en": "This post-measurement reporting revision is not a numerical repair. The first error, 4.535633779e-5, exceeded the original 2e-5 goal. Local tolerances do not guarantee global accuracy, and reporting PASS does not mean all original goals were met. Full large-mu cycles are outside scope."
+        }
+      ]
+    }
+  ],
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/sdirk2/",
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/sdirk2/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/sdirk2/index.md",
   "code_urls": [
-    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/stiff.py"
+    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/stiff.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/experiments.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/io_contract.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/reference_eval.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/models.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/stiff.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/reporting_policy.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/dopri.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/tableau.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/boundary.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/boundary_reference.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/coefficient_exact.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/qualify.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/reference_models.py"
   ],
   "test_urls": [
-    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_new_models.py"
+    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_new_models.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_boundary.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_contract.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_dopri.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_reporting.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_stiff.py"
   ],
   "run_commands": [
     "python -m pytest -q tests/test_new_models.py"
@@ -206,12 +1347,73 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#stiff-cosine-ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#stiff-cosine-en"
       }
+    },
+    {
+      "id": "robertson-stiff-kinetics",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-stiff-kinetics/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-stiff-kinetics/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    },
+    {
+      "id": "van-der-pol-stiff-transition",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/van-der-pol-stiff-transition/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/van-der-pol-stiff-transition/?lang=en"
+      },
+      "kind": "dedicated-supplement"
     }
   ],
   "problem_navigation": {
     "method_id": "sdirk2",
     "status": "educational-example",
-    "equations": [],
+    "equations": [
+      {
+        "id": "robertson-kinetics",
+        "name": {
+          "ja": "Robertson反応系",
+          "en": "Robertson chemical kinetics"
+        },
+        "problem_ids": [
+          "robertson-stiff-kinetics"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#robertson-kinetics-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#robertson-kinetics-en"
+        }
+      },
+      {
+        "id": "index-one-dae",
+        "name": {
+          "ja": "半陽的index-1 DAE",
+          "en": "Semi-explicit index-one DAE"
+        },
+        "problem_ids": [
+          "robertson-stiff-kinetics"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#index-one-dae-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#index-one-dae-en"
+        }
+      },
+      {
+        "id": "van-der-pol",
+        "name": {
+          "ja": "van der Pol振動子",
+          "en": "Van der Pol oscillator"
+        },
+        "problem_ids": [
+          "van-der-pol-stiff-transition"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#van-der-pol-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#van-der-pol-en"
+        }
+      }
+    ],
     "problems": [
       {
         "id": "stiff-cosine",
@@ -307,6 +1509,130 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-ode/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-ode/?lang=en#references-en"
         }
+      },
+      {
+        "id": "robertson-stiff-kinetics",
+        "name": {
+          "ja": "Robertson反応系：ODEと保存則DAE",
+          "en": "Robertson kinetics: ODE and conservation DAE"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/robertson-stiff-kinetics-preview.png",
+          "sha256": "2bae45f251405e4aeb534a7bbc9bc52175dc62a9bf33d48e49a8a3a2105cab2a",
+          "width": 1377,
+          "height": 564,
+          "caption": {
+            "ja": "短い固定区間でBDF2・SDIRK2・倍分割適応法を、資格済みRadau/BDF参照と比較します。 保存済みの数値場と参照を用いた図です。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。",
+            "en": "Compare BDF2, SDIRK2 and adaptive step doubling on a short fixed interval against qualified Radau and BDF references. This preview reads saved numerical fields and references only. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/robertson-stiff-kinetics/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/robertson-stiff-kinetics/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/robertson-stiff-kinetics/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/robertson-stiff-kinetics/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "robertson-stiff-kinetics",
+            "kind": "supplement",
+            "name": {
+              "ja": "Robertson反応系の初期剛性と実誤差",
+              "en": "Robertson kinetics: initial stiffness and actual error"
+            },
+            "scope": {
+              "ja": "短い固定区間でBDF2・SDIRK2・倍分割適応法を、資格済みRadau/BDF参照と比較します。",
+              "en": "Compare BDF2, SDIRK2 and adaptive step doubling on a short fixed interval against qualified Radau and BDF references."
+            },
+            "method_ids": [
+              "bdf2",
+              "sdirk2",
+              "step-doubling",
+              "newton"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-stiff-kinetics/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-stiff-kinetics/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/atlas-ode-adaptivity-2026-11-24-r2.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "BDF2は同格子BE開始。SDIRK2の非線形段階は重み付き最大残差で判定し、同じ段階内だけJacobian因子を再利用。適応法はRMS倍分割誤差と2半刻みを採用。 解析Jacobian付き固定BE/Newtonを使い、質量の投影・濃度クリップはしません。",
+          "en": "BDF2 starts with backward Euler on the same grid. SDIRK2 stages use a weighted maximum residual and reuse Jacobian factors only within one stage. Adaptive steps use an RMS step-doubling estimate and accept the two-half-step result. Use fixed BE/Newton with analytic Jacobians and no mass projection or concentration clipping."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/robertson-stiff-kinetics/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/robertson-stiff-kinetics/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "van-der-pol-stiff-transition",
+        "name": {
+          "ja": "van der Polの短時間剛性遷移",
+          "en": "Van der Pol: an early stiffness transition"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/van-der-pol-stiff-transition-preview.png",
+          "sha256": "e5b5b922e24c8dc44ac1b78c927f1698b42bdbc90eae114160f1899a9bf980e5",
+          "width": 1355,
+          "height": 605,
+          "caption": {
+            "ja": "保存済みの固定刻み比較と局所/大域誤差の区別。初回208/209で、μ=1適応法の大域目標2e-5は未達のまま保持します。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。",
+            "en": "Saved fixed-step comparisons and the local/global error distinction. The first study met 208/209 targets; the unmet mu = 1 adaptive global goal of 2e-5 remains recorded. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/van-der-pol-stiff-transition/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/van-der-pol-stiff-transition/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/van-der-pol-stiff-transition/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/van-der-pol-stiff-transition/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "van-der-pol-stiff-transition",
+            "kind": "supplement",
+            "name": {
+              "ja": "van der Polの短時間剛性遷移",
+              "en": "Van der Pol: an early stiffness transition"
+            },
+            "scope": {
+              "ja": "局所制御と大域誤差を分離します。初回は元209目標中208達成で、μ=1の厳しい適応設定は大域目標2e-5に未達でした。",
+              "en": "Separate local control from global error. The first study met 208 of 209 original targets; the mu = 1 tight adaptive run missed the 2e-5 global goal."
+            },
+            "method_ids": [
+              "bdf2",
+              "sdirk2",
+              "step-doubling",
+              "newton"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/van-der-pol-stiff-transition/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/van-der-pol-stiff-transition/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/atlas-ode-adaptivity-2026-11-24-r2.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "BDF2/SDIRK2と倍分割適応法。解析Jacobian・段階内だけの因子再利用・失敗時の候補保存を実装します。",
+          "en": "Use actual BDF2, SDIRK2 and adaptive step doubling, analytic Jacobians, factor reuse within each implicit stage, and retained candidates on failure."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/van-der-pol-stiff-transition/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/van-der-pol-stiff-transition/?lang=en#references-en"
+        }
       }
     ],
     "references": [
@@ -333,6 +1659,95 @@
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-ode/?lang=en#references-en"
         },
         "cases": []
+      },
+      {
+        "problem_id": "robertson-stiff-kinetics",
+        "problem_name": {
+          "ja": "Robertson反応系：ODEと保存則DAE",
+          "en": "Robertson kinetics: ODE and conservation DAE"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/robertson-stiff-kinetics/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/robertson-stiff-kinetics/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "robertson-stiff-kinetics",
+            "title": {
+              "ja": "Robertson反応系の初期剛性と実誤差",
+              "en": "Robertson kinetics: initial stiffness and actual error"
+            },
+            "kind": "numerical-reference",
+            "relation": "same-problem",
+            "note": {
+              "ja": "保存/正値性は固定入力の観測で、一般的な保証ではありません。T=.4の短時間・標本時刻での精度であり、長時間化学精度や全時刻誤差上限は主張しません。",
+              "en": "Conservation and positivity are observations for these inputs, not universal guarantees. Accuracy is sampled on T <= 0.4; this does not validate long-time chemistry or an all-time error bound."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-robertson-stiff-kinetics-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-robertson-stiff-kinetics-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/robertson-stiff-kinetics/?lang=ja#robertson-stiff-kinetics-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/robertson-stiff-kinetics/?lang=en#robertson-stiff-kinetics-en-measurements"
+            }
+          },
+          {
+            "id": "robertson-conservation-dae",
+            "title": {
+              "ja": "Robertson保存制約DAEと公式IDA保存値",
+              "en": "Robertson conservation DAE and stored official IDA values"
+            },
+            "kind": "numerical-reference",
+            "relation": "same-problem",
+            "note": {
+              "ja": "公式SUNDIALS v7.1.1の2印字行のみ。IDAの新規実行0、長時間の化学精度や一般DAE性能は扱いません。 この固定時間格子の漸近収束や元精度目標の全合格は主張しません。",
+              "en": "Only two official SUNDIALS v7.1.1 printed rows; zero new IDA executions, with no long-time chemistry or general DAE-performance claim. No asymptotic-convergence or all-original-accuracy-goals claim is made for this fixed schedule."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-robertson-conservation-dae-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-robertson-conservation-dae-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/robertson-conservation-dae/?lang=ja#robertson-conservation-dae-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/robertson-conservation-dae/?lang=en#robertson-conservation-dae-en-measurements"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "van-der-pol-stiff-transition",
+        "problem_name": {
+          "ja": "van der Polの短時間剛性遷移",
+          "en": "Van der Pol: an early stiffness transition"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/van-der-pol-stiff-transition/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/van-der-pol-stiff-transition/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "van-der-pol-stiff-transition",
+            "title": {
+              "ja": "van der Polの短時間剛性遷移",
+              "en": "Van der Pol: an early stiffness transition"
+            },
+            "kind": "numerical-reference",
+            "relation": "same-problem",
+            "note": {
+              "ja": "測定後の報告範囲変更で、数値的な修復ではありません。初回誤差4.535633779e-5は元目標2e-5を超えます。局所rtolは大域誤差を保証せず、報告検証の合格は全元目標の達成ではありません。大μ全周期は対象外です。",
+              "en": "This post-measurement reporting revision is not a numerical repair. The first error, 4.535633779e-5, exceeded the original 2e-5 goal. Local tolerances do not guarantee global accuracy, and reporting PASS does not mean all original goals were met. Full large-mu cycles are outside scope."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-van-der-pol-stiff-transition-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-van-der-pol-stiff-transition-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/van-der-pol-stiff-transition/?lang=ja#van-der-pol-stiff-transition-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/van-der-pol-stiff-transition/?lang=en#van-der-pol-stiff-transition-en-measurements"
+            }
+          }
+        ]
       }
     ]
   }
