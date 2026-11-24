@@ -2,10 +2,13 @@
 import importlib.metadata,json,re,unicodedata
 from pypdf import PdfReader
 from foundations_en_contract import ROOT,SOURCE,load,fragments,sha
+from foundations_pdf_text import extract_body
 d=load();edition=ROOT/d['base'].lstrip('/')/d['edition'];pdf=edition/'numerical-foundations-en.pdf'
 reader=PdfReader(pdf)
 def norm(s):return re.sub(r'\s+','',unicodedata.normalize('NFKC',s)).replace('−','-')
-text=norm('\n'.join(p.extract_text() for p in reader.pages));expected=fragments(d)
+raw_text=norm('\n'.join(p.extract_text() for p in reader.pages));expected=fragments(d)
+raw_missing=[t for t in expected if norm(t) not in raw_text]
+text=norm(extract_body(reader))
 missing=[t for t in expected if norm(t) not in text]
 assert not missing,repr(missing)
 shared=ROOT/d['assets_base'].lstrip('/')
@@ -16,6 +19,7 @@ receipt={'passed':True,'source_sha256':sha(ROOT/SOURCE),'pdf_pages':len(reader.p
  'assets':{str(p.relative_to(ROOT)):sha(p) for p in paths},
  'shared_assets_base':d['assets_base'],'generation':'GitHub-side authoring; Web/PDF share one English manuscript. Equations, plots, saved data, Japanese PDF and scientific ZIP are reused unchanged.',
  'visual_review':'All pages must be rendered and reviewed before publication; rendering artifacts and final review evidence are kept with the release process.',
+ 'text_extraction':{'footer_regions_audited':len(reader.pages),'only_exact_footer_and_page_number_excluded':True,'raw_full_text_missing_fragments':len(raw_missing)},
  'dependencies':{p:importlib.metadata.version(p) for p in ['reportlab','svglib','pypdf']}}
 (edition/'book-verification.json').write_text(json.dumps(receipt,indent=2)+'\n')
 print(json.dumps({k:v for k,v in receipt.items() if k!='assets'},indent=2))

@@ -5,6 +5,7 @@ on:
     paths:
       - 'catalog/atlas-foundations-course.en.json'
       - 'scripts/foundations_en_contract.py'
+      - 'scripts/foundations_pdf_text.py'
       - 'scripts/foundations-course/build_book_en.py'
       - 'scripts/verify-foundations-book-en.py'
       - '.github/workflows/foundations-course-english-authoring.yml'
@@ -26,6 +27,7 @@ jobs:
           sparse-checkout: |
             /catalog/atlas-foundations-course*.json
             /scripts/foundations_en_contract.py
+            /scripts/foundations_pdf_text.py
             /scripts/verify-foundations-book-en.py
             /scripts/foundations-course/build_book*.py
             /numerical-methods-atlas/learn/numerical-foundations/2026-11-24/
@@ -44,8 +46,8 @@ jobs:
           mkdir -p test-results/foundations-en/pages test-results/foundations-en/contacts
           python -m pip freeze > test-results/foundations-en/pip-freeze.txt
           python scripts/foundations-course/build_book_en.py --font /usr/share/fonts/truetype/dejavu/DejaVuSans.ttf --mono /usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf > test-results/foundations-en/build.log 2>&1
-          python scripts/verify-foundations-book-en.py > test-results/foundations-en/verification.log 2>&1
           cp numerical-methods-atlas/learn/numerical-foundations/en/2026-11-24/numerical-foundations-en.pdf test-results/foundations-en/
+          python scripts/verify-foundations-book-en.py > test-results/foundations-en/verification.log 2>&1
           cp numerical-methods-atlas/learn/numerical-foundations/en/2026-11-24/book-verification.json test-results/foundations-en/
       - name: Render every PDF page and record source-bound artifacts
         run: |
