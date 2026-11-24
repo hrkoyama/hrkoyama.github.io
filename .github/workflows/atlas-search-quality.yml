@@ -48,6 +48,12 @@ jobs:
           python-version: '3.12'
       - name: Install locked browser tooling
         run: npm ci --ignore-scripts
+      - name: Prepare Japanese sharing-image rendering dependencies
+        if: github.ref != 'refs/heads/main' && (inputs.target == 'candidate-build' || contains(github.event.head_commit.message, '[atlas-search-build]'))
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y fonts-noto-cjk
+          python3 -m pip install --only-binary=:all: --no-cache-dir -r numerical-methods-atlas/share/render-requirements.txt
       - name: Explicitly aggregate derived files in this isolated candidate
         if: github.ref != 'refs/heads/main' && (inputs.target == 'candidate-build' || contains(github.event.head_commit.message, '[atlas-search-build]'))
         shell: bash
